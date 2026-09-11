@@ -12,7 +12,7 @@ about a quarter of the runtime). This is honest SIMPLIFICATION — remove the ce
 safety window closed. Deletion first, gate work after.
 
 STATE AT SWITCH:
-- Committed: f2d4d01d08 (012 projection contracts + fleet flip); 5511e4eac2 (U1 window-free finalize CAS +
+- Committed: dd0cca0f77 (012 projection contracts + fleet flip); fd0bd2df92 (U1 window-free finalize CAS +
   phase 010 scaffold).
 - Uncommitted but verified: U3+U4 in 005/scratch/run-gate.mjs (authority-state accepts final; real
   negative-controlled reader-contracts).

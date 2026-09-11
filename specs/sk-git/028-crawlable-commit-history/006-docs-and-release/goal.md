@@ -90,9 +90,9 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| README, changelog, version | Done | `d6ca91f853`, VALID x3, package PASS |
-| Vocabulary and manifests | Done | `a8135ef83c`, gate 13/13 |
-| Rule and AGENTS.md | Done | `d4d6096ac1` |
+| README, changelog, version | Done | `dcdf2f8441`, VALID x3, package PASS |
+| Vocabulary and manifests | Done | `8d5acf93d5`, gate 13/13 |
+| Rule and AGENTS.md | Done | `581e2862a5` |
 
 ### Deviations and findings
 

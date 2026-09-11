@@ -188,7 +188,7 @@
     ],
     "causal_summary": "The single-executor deep-alignment loop dispatches its `cli-codex` leaf with `--sandbox workspace-write` because the leaf is required to Bash-write its three per-iteration artifacts (the iteration narrative, the appended `deep-alignment-state.jsonl` record, and the write-once delta file) — the native `@deep-alignment` agent deliberately has no Write/Edit tool",
     "created_at": "2026-07-23T12:49:06.629Z",
-    "last_save_at": "2026-08-30T15:39:21.822Z",
+    "last_save_at": "2026-09-11T16:42:26.622Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,12 +198,12 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bcc79644e40014a9efb1363e4d36681da727fadfe34c0bc1a118d61fbd1b58c1",
+    "source_fingerprint": "sha256:fee1fd2a6284b8af09feef41898dd040724de05d81a675caef93346b239fb851",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "10c698544ce6ff24df8ae6f6adef04b772eb574aca2a28a0175bad6777c8a5f9",
       "plan.md": "757f2753737d10a6f0c476803f95d533979ecc0abce194a8ea64d06856948dcc",
-      "tasks.md": "4ec83d82d97818a3fe8432e569d890dedfa2bd114a3edf9fa3c1d8142aae14b2",
+      "tasks.md": "05bd3b99f0ea5e54b6fb3480d8f79158848bf9de7ceed76802c1d001c9b739f4",
       "decision-record.md": "26ffa4acfc2849045830580a7abb5d66523518f74a311ec1e267c0d86ca011a3",
       "implementation-summary.md": "b616549859afd72c06478ff6852c0b6475c250c446b37e8f66d0e9a497fde1f3"
     },

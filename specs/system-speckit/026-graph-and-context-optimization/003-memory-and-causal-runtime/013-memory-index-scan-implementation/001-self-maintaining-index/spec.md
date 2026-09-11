@@ -15,7 +15,7 @@ _memory:
     packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/001-self-maintaining-index"
     last_updated_at: "2026-06-01T14:55:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Phases 1-3 + Phase-4 follow-up shipped (942ad78d9c, v28, rebuild 9614/9614)"
+    recent_action: "Phases 1-3 + Phase-4 follow-up shipped (01c9aa46a2, v28, rebuild 9614/9614)"
     next_safe_action: "None binding; optional checkpoint-v2 and MCP front-proxy scaffolds"
     blockers: []
     key_files:
@@ -41,7 +41,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Shipped & deployed — Phases 1-3 merged 2026-05-31 (SC1-SC5 met); Phase-4 council follow-up shipped 2026-06-01 (active-row uniqueness guard + multi-tenant scope isolation, commit `942ad78d9c`, schema v28). Follow-up detail in `handover.md` §6-8 + `implementation-summary.md`. |
+| **Status** | Shipped & deployed — Phases 1-3 merged 2026-05-31 (SC1-SC5 met); Phase-4 council follow-up shipped 2026-06-01 (active-row uniqueness guard + multi-tenant scope isolation, commit `01c9aa46a2`, schema v28). Follow-up detail in `handover.md` §6-8 + `implementation-summary.md`. |
 | **Created** | 2026-05-31 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` (003-memory-and-causal-runtime) |

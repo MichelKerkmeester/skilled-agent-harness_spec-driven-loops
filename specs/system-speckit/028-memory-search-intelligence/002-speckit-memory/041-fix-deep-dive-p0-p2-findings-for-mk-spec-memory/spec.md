@@ -142,7 +142,7 @@ Per-phase Files-to-Change tables live in each child `spec.md`; the program's bla
 | Risk | Ranking changes shift result quality before eval-parity lands | Medium — unmeasurable regressions | Phase 006 Part 1 (eval parity) is a hard prerequisite for 006 Part 2, 007, 008 ranking work |
 | Risk | Concurrent sessions writing the index during migrations | Medium | Run migrations under the maintenance marker; single-writer lease respected |
 | Dependency | Phase 002's shared active-row predicate | Phases 001/005 exclusion behavior depends on it | Execution order places 002 before 005; 001's dedup honors the predicate |
-| Dependency | GPT restructure commit `32aae18dc7` (013/014/015 adoption) | Absorption pointers in phase 013 reference the new paths | Landed and verified before this program was scaffolded |
+| Dependency | GPT restructure commit `1a9bb12f33` (013/014/015 adoption) | Absorption pointers in phase 013 reference the new paths | Landed and verified before this program was scaffolded |
 | Risk | Scope creep across ~150 findings | Medium | Phase boundaries are frozen per `research/phase-decomposition.md`; new findings go to phase 013's sweep, not into open phases |
 <!-- /ANCHOR:risks -->
 
@@ -213,5 +213,5 @@ Per-phase Files-to-Change tables live in each child `spec.md`; the program's bla
 
 - **Evidence**: `research/deep-dive-report.md`, `research/findings-ledger.md`, `research/phase-decomposition.md`
 - **Absorbed trackers**: `../../004-review-remediation/002-memory-schema-and-concurrency/`, `../../004-review-remediation/004-p2-triage/`, `../../000-release-cleanup/015-manual-playbook-execution-sweep/001-findings-remediation/` (Group-A rows)
-- **Adopted sibling packets** (same restructure, commit 32aae18dc7; 013 re-nested to `../../003-spec-data-quality/050-validate-sh-dist-freshness-and-repo-remediation/` on 2026-07-04): `../../003-spec-data-quality/050-validate-sh-dist-freshness-and-repo-remediation/`, `../../000-release-cleanup/015-manual-playbook-execution-sweep/`, `../../../../system-deep-loop/038-deep-loop-runtime/007-deep-review-followup-hardening/`
+- **Adopted sibling packets** (same restructure, commit 1a9bb12f33; 013 re-nested to `../../003-spec-data-quality/050-validate-sh-dist-freshness-and-repo-remediation/` on 2026-07-04): `../../003-spec-data-quality/050-validate-sh-dist-freshness-and-repo-remediation/`, `../../000-release-cleanup/015-manual-playbook-execution-sweep/`, `../../../../system-deep-loop/038-deep-loop-runtime/007-deep-review-followup-hardening/`
 - **Graph metadata**: `graph-metadata.json`

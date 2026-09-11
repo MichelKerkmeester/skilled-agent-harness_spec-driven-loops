@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Against a corpus of 180 prompts written the way people write, 8 reach the intended mode",
     "created_at": "2026-09-02T16:34:06Z",
-    "last_save_at": "2026-09-02T22:06:42.889Z",
+    "last_save_at": "2026-09-11T16:42:12.734Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +209,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2cab08241d77d719758af1886a6632825e54fa8ab40efece77ec6ca18a5879dd",
+    "source_fingerprint": "sha256:c6a6f63f3aee5326719c135133887ff9b2c21774c3d4df65e38444bbd9570e35",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f0dba85fb233083a5800eeeb8be0edaeb9e81656ac9a54c1e1f25aae03af85d9",
-      "plan.md": "68a03ffed9d963e7ec1c2358b95cd4786d0a12e8900076ddc1177d26e2de4c13",
-      "tasks.md": "bd2334bb971042edcad37e9ff05f0c406457b8511ba45ad954092ffe03003dd2",
-      "implementation-summary.md": "e92e8c55750bb67f5d359d8c8d24456b10b4ba7b045e2695c82272887c30a28e"
+      "plan.md": "dba6aa112a6267a20592475a68152e7d1b5327ef85f8f16fc6c8bdc1540635b0",
+      "tasks.md": "5b9590d434823c27fbacb14bf3fcc49b35c99d91387e7c55c54a03a24dd17a9a",
+      "implementation-summary.md": "10c3d35e8351f081d1a1a687a8d633721ee6193756975ce707144f04ffc1c7c2"
     },
     "last_active_child_id": null,
     "last_active_at": null

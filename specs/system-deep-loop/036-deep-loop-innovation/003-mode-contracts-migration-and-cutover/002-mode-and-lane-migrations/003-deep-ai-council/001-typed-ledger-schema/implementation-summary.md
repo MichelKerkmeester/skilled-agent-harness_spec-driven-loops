@@ -46,7 +46,7 @@ _memory:
 | **Level** | 2 |
 | **Status** | Complete |
 | **Posture** | Additive-dark; the legacy Deep AI Council state path remains authoritative |
-| **Baseline revision** | `012652b479dee08455de574574c5e7a8971a8b0b` |
+| **Baseline revision** | `68b518ab0d8ee5b2bce3a8f1938a7944a1d5945e` |
 <!-- /ANCHOR:metadata -->
 
 ---

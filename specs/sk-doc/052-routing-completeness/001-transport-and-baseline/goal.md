@@ -76,7 +76,7 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Governing transport named | Done | `03f5db4876` settles which scorer governs routing |
+| Governing transport named | Done | `ab1881aeaf` settles which scorer governs routing |
 | Baseline frozen | Done | Register findings 1 and 2 read Fixed |
 | Rank source corrected | Done | Re-sorting by score inflated one hub from 7 to 44; register finding 3 |
 

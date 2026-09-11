@@ -205,7 +205,7 @@
     ],
     "causal_summary": "The spec-kit check workflow, which the round-one census presented as closing the CI-invisibility gap, had no push trigger, so on the repository's documented direct-push flow none of its six lanes ran; the changed-packet gate had the same shape",
     "created_at": "2026-09-07T13:14:44.762Z",
-    "last_save_at": "2026-09-08T15:47:15.017Z",
+    "last_save_at": "2026-09-11T16:42:48.503Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +216,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:038c67a16ce2121b360615d05308a9d78ab4a09b31409fc719ab8bd51b7b16a4",
+    "source_fingerprint": "sha256:12f3d78ad9c73c3f97433427c317ce156f2f839ed46daad3a392c85dd5a2f3a0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5e28f05320bd2852d42aba9e475041ed7569a4748ab0accb3b093c12e1c0df99",
       "plan.md": "0934a1aa1b46bda43c3ec516df36d362d59653c69c6cb89bc46787abd0a73fb5",
       "tasks.md": "238d83523a998f24b63fdd3703f1449cb6eaa6b4953d323de40449ecd805defa",
-      "implementation-summary.md": "a741f6c2836f0fbf67d9a344d6f1d5147b57362551194f8c8e603c23930f0e0b"
+      "implementation-summary.md": "ceb42025739ef4184fca413724295a75db404aec695260d5dddc02408a7bfe60"
     },
     "last_active_child_id": null,
     "last_active_at": null

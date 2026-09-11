@@ -7,7 +7,7 @@
 
 ## Focus
 
-Verify the six Chart.js URLs that carry claims about defaults, tooltips, responsive sizing, canvas accessibility, legend placement, and tick callbacks, then compare the equivalent shipped-corpus behavior at commit `756a7fcd4c`.
+Verify the six Chart.js URLs that carry claims about defaults, tooltips, responsive sizing, canvas accessibility, legend placement, and tick callbacks, then compare the equivalent shipped-corpus behavior at commit `3ce648be44`.
 
 ## Findings
 
@@ -59,16 +59,16 @@ Verify the six Chart.js URLs that carry claims about defaults, tooltips, respons
 - **Documented version:** Current `latest` docs; semver not stated.
 - **Evidence:** The page says custom tick formatting is done by overriding `ticks.callback`, documents its `(value, index, ticks)` arguments, and warns that the callback author then owns all label formatting. It also documents the category-axis `getLabelForValue` distinction. The baseline's use of this API as a formatting precedent is current.
 
-## Corpus at commit `756a7fcd4c228b1faeddbf10f449cfbc2409656f`
+## Corpus at commit `3ce648be44c3a4ef02da1562e74d500a77ccf5a9`
 
-- **Tooltip equivalent:** The corpus does not ship Chart.js, but the dependency-free replacement is present on the eight targeted forms. `scatter.html` defines a native SVG `title` helper at lines 139-146 and attaches it to each circle at lines 187-190. This is an equivalent hover affordance, not a Chart.js tooltip implementation. `[CORPUS@756a7fcd4c: .opencode/skills/sk-doc/sk-create-chart/assets/templates/scatter.html:139-146,187-190]`
-- **Canvas accessibility equivalent:** The corpus uses SVG with a resolving figure title/description and a text table rather than canvas. The contract requires `role="img"`, resolving `aria-labelledby`, and `data-chart-table` at rule 10. `[CORPUS@756a7fcd4c: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:163-164]`
-- **Responsive equivalent:** The corpus has a static pan affordance, not runtime container re-rendering. Rule 14 requires a sideways-scrollable figure and a drawing `min-width`; the contract explicitly says the check does not measure a narrow screen. `[CORPUS@756a7fcd4c: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:167-172,197-201]`
+- **Tooltip equivalent:** The corpus does not ship Chart.js, but the dependency-free replacement is present on the eight targeted forms. `scatter.html` defines a native SVG `title` helper at lines 139-146 and attaches it to each circle at lines 187-190. This is an equivalent hover affordance, not a Chart.js tooltip implementation. `[CORPUS@3ce648be44: .opencode/skills/sk-doc/sk-create-chart/assets/templates/scatter.html:139-146,187-190]`
+- **Canvas accessibility equivalent:** The corpus uses SVG with a resolving figure title/description and a text table rather than canvas. The contract requires `role="img"`, resolving `aria-labelledby`, and `data-chart-table` at rule 10. `[CORPUS@3ce648be44: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:163-164]`
+- **Responsive equivalent:** The corpus has a static pan affordance, not runtime container re-rendering. Rule 14 requires a sideways-scrollable figure and a drawing `min-width`; the contract explicitly says the check does not measure a narrow screen. `[CORPUS@3ce648be44: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:167-172,197-201]`
 - **Legend placement:** There is no Chart.js legend component. The templates' in-figure keys remain a local SVG layout decision; no upstream default should be copied into the single-file contract.
 
 ## Assessment
 
-All six Chart.js citations resolve and support the attributed option or behavior. The only qualification is scope: the overview page supports the general defaults narrative, while the individual pages are the evidence for exact values. The shipped corpus now matches the relevant *outcomes* through native SVG titles, explicit SVG/table accessibility, and a static overflow floor; it intentionally lacks Chart.js's runtime canvas resize and plugin machinery because the contract requires a self-contained, no-remote-dependency HTML file. `[CORPUS@756a7fcd4c: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:159,163-167]`
+All six Chart.js citations resolve and support the attributed option or behavior. The only qualification is scope: the overview page supports the general defaults narrative, while the individual pages are the evidence for exact values. The shipped corpus now matches the relevant *outcomes* through native SVG titles, explicit SVG/table accessibility, and a static overflow floor; it intentionally lacks Chart.js's runtime canvas resize and plugin machinery because the contract requires a self-contained, no-remote-dependency HTML file. `[CORPUS@3ce648be44: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:159,163-167]`
 
 **New-information ratio:** 0.90  
 **Answered:** Chart.js default tooltip, responsive/aspect-ratio, canvas accessibility, legend position, and tick callback are current.  
@@ -91,7 +91,7 @@ All six Chart.js citations resolve and support the attributed option or behavior
 
 ## Ruled Out
 
-- **Chart.js runtime/canvas implementation:** It would violate the self-contained no-remote-dependency delivery contract and would not improve the corpus's SVG/table accessibility boundary. `[CORPUS@756a7fcd4c: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:159,163-167]`
+- **Chart.js runtime/canvas implementation:** It would violate the self-contained no-remote-dependency delivery contract and would not improve the corpus's SVG/table accessibility boundary. `[CORPUS@3ce648be44: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:159,163-167]`
 
 ## Questions Remaining
 

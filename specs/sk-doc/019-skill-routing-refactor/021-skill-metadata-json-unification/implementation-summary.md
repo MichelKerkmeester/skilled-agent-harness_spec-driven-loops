@@ -33,7 +33,7 @@ _memory:
     answered_questions:
       - "Standalone alias files are a derivable identity projection; hub alias files are authored relocations"
       - "No production advisor consumer reads a skill-root description.json, so it is hub-only"
-      - "Root framework pointer and fleet CI wiring resolved in 2fa9fc480c; AGENTS.md:450 and routing-registry-drift.yml:99-108"
+      - "Root framework pointer and fleet CI wiring resolved in c4b5f27ae8; AGENTS.md:450 and routing-registry-drift.yml:99-108"
       - "Post-ship active fleet is 11 roots; system-code-graph was removed after packet authoring"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary | v2.2 -->
@@ -54,7 +54,7 @@ _memory:
 | **Track** | sk-doc |
 | **Parent** | `sk-doc/019-skill-routing-refactor` |
 | **Branch** | `sk-doc/0112-skill-metadata-json-unification` |
-| **Base** | `skilled/v4.0.0.0` at `f8399bf5a0` |
+| **Base** | `skilled/v4.0.0.0` at `89568f95f8` |
 | **Worktree** | `.worktrees/0112-sk-doc-skill-metadata-json-unification` |
 | **Research Source** | `research/lineages/sol-high-fast/research.md` |
 <!-- /ANCHOR:metadata -->
@@ -170,7 +170,7 @@ The rows below preserve ship-time outputs from the 12-root fleet as historical e
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-**Landed.** The packet's four commits were rebased onto the moving origin tip and pushed to `origin/skilled/v4.0.0.0` at `2fa9fc480c` on 2026-07-28, followed by the reconciliation commits through `c95b899bdc` and this conformance pass. The local main-tree `skilled/v4.0.0.0` diverged during landing (same-subject rebased duplicates from a concurrent session) and is left for its owning session to reconcile.
+**Landed.** The packet's four commits were rebased onto the moving origin tip and pushed to `origin/skilled/v4.0.0.0` at `c4b5f27ae8` on 2026-07-28, followed by the reconciliation commits through `786407a5dc` and this conformance pass. The local main-tree `skilled/v4.0.0.0` diverged during landing (same-subject rebased duplicates from a concurrent session) and is left for its owning session to reconcile.
 
 **Post-ship root inventory.** `system-code-graph` was removed after the packet was authored against a 12-root fleet. Current class and freshness gates report 11/11; ship-time 12-root measurements remain labeled as historical evidence.
 

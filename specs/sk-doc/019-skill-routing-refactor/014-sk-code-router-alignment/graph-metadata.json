@@ -190,7 +190,7 @@
     ],
     "causal_summary": "sk-code's routing cannot be measured on the typed-pair surface, and its committed benchmark baseline actively misleads:",
     "created_at": "2026-07-16T19:43:16.256Z",
-    "last_save_at": "2026-08-30T15:39:14.895Z",
+    "last_save_at": "2026-09-11T16:42:04.310Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3658d1210467550cd68635ff564e85aa5647d65b61d3aa4a5565e5772d0dc380",
+    "source_fingerprint": "sha256:4884c8b040da99020b93246962148635613c0f05e43106ed2c968fe60d1e5c0e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b7b4d54d14ec189ffc305b33fbe579e1056842fb25459ed66f12176cdb4cbf02",
       "plan.md": "11876e1e66eb25210a216d02e520f1f3720151510f71ee999d48ab9b78435799",
       "tasks.md": "bfcdb8c37b0c37402c2122052a726d1dc28ff3b19556e93f9412b6f01a24e6a0",
-      "implementation-summary.md": "5c8ec99bd98891d46e5740105370f4d708d6a1c113da52534b333693b41d4a92"
+      "implementation-summary.md": "cf0b8471f3143e2391eb1fe0d2fc55b943b55df5775cd6d5dd99e03ab6c143a7"
     },
     "last_active_child_id": null,
     "last_active_at": null

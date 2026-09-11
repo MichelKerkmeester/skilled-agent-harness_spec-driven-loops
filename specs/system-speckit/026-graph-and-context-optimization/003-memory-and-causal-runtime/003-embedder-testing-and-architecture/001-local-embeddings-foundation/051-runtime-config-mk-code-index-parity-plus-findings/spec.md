@@ -42,7 +42,7 @@ Runtime MCP configs still carried the legacy `system_code_graph` server key in t
 
 **Key Decisions**: use `mk_code_index` as the config key, keep tool IDs such as `code_graph_scan` unchanged, and defer only P2 work that is broader than a small bounded fix.
 
-**Critical Dependencies**: the local rename commit is `50cfabb6e2`, matching the requested subject even though the dispatch SHA `7cfc16ed9` is not present in this checkout.
+**Critical Dependencies**: the local rename commit is `a0c46439dd`, matching the requested subject even though the dispatch SHA `7cfc16ed9` is not present in this checkout.
 
 ---
 <!-- ANCHOR:metadata -->
@@ -147,7 +147,7 @@ Bring runtime config identity into parity and leave a traceable ledger for every
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Risk | Dispatch listed SHA `7cfc16ed9`, but local history has `50cfabb6e2` for the same rename subject. | Wrong evidence source if uncorrected. | Use the local commit with the matching subject and record the mismatch. |
+| Risk | Dispatch listed SHA `7cfc16ed9`, but local history has `a0c46439dd` for the same rename subject. | Wrong evidence source if uncorrected. | Use the local commit with the matching subject and record the mismatch. |
 | Risk | 048 report count in the dispatch differs from the local report. | Binding counts could appear lower than expected. | Count against the checked-in report: 2 P1 and 12 P2. |
 | Risk | Broad P2 remediations can destabilize evidence tooling. | Over-scoped fixes could introduce production bugs. | Defer broad runner hardening to named packets. |
 | Dependency | OpenCode CLI is the only direct runtime MCP smoke available. | Cannot smoke Claude, Codex, or Gemini directly. | Validate config syntax and run `opencode mcp list`. |

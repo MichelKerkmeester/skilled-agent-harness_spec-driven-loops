@@ -150,7 +150,7 @@ contextType: "general"
 - [x] CHK-FIX-004 [P0] Not applicable. No security, path, parser or redaction surface is touched
 - [x] CHK-FIX-005 [P1] Matrix axes listed. Four runtime trees by one command, and two routing stages by one hub
 - [x] CHK-FIX-006 [P1] Not applicable. No test or code path reads process-wide state
-- [x] CHK-FIX-007 [P1] Evidence is pinned to observed command output captured in the session scratch directory, and to the working tree at `c2af3510d7` plus the changes listed in `spec.md`
+- [x] CHK-FIX-007 [P1] Evidence is pinned to observed command output captured in the session scratch directory, and to the working tree at `6fd2ca518d` plus the changes listed in `spec.md`
 <!-- /ANCHOR:fix-completeness -->
 
 ---

@@ -97,7 +97,7 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Packet opened with the seven scope items | Done | this file; `spec.md` section 3 |
-| Phase 15 dependency confirmed | Done | `git log -1 --format='%h %s' -- .opencode/skills/sk-design/sk-design-chart` returned `416827fd10 feat(sk-design): bring the chart corpus to the shadcn visual register and plan DESIGN.md theming` |
+| Phase 15 dependency confirmed | Done | `git log -1 --format='%h %s' -- .opencode/skills/sk-design/sk-design-chart` returned `6d4ef47150 feat(sk-design): bring the chart corpus to the shadcn visual register and plan DESIGN.md theming` |
 | Local DESIGN.md applicator and checker branch | Done | `node --test scripts/tests/` passed 4 tests; static and extra corpus runs returned `RESULT: PASSED` |
 | Stripe proof delivery | Done | `assets/examples/grouped-bars-stripe-style.html`; exact two-form apply run returned `RESULT: PASSED` |
 | Packet close-out | Open on render | strict validation passed with `AC_COVERAGE` 9/9; AC-006 remains open on sandbox render |

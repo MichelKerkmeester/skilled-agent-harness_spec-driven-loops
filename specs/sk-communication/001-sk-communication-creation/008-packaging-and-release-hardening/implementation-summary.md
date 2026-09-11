@@ -96,7 +96,7 @@ Implementation ran as dispatched worker packets on GPT-5.6 SOL through cli-codex
 | Local-only privacy | PASS: rehearsal proves zero hosted calls with no hidden fallback |
 | Rollback | PASS: original-only mode needs no provider or network and never mutates canonical state |
 | Strict packet validation | PASS: Phase 008 strict and parent recursive strict, zero errors |
-| Implementation checkpoint | `aea92b33b6` (series 3ae034247d through aea92b33b6) |
+| Implementation checkpoint | `7fa595f709` (series 1e81107b34 through 7fa595f709) |
 <!-- /ANCHOR:verification -->
 
 ---

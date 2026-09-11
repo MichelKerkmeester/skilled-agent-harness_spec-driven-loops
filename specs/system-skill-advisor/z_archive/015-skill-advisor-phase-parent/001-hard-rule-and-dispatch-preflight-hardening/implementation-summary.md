@@ -45,13 +45,13 @@ Both acceptance tests are satisfied.
 **Wave D — deep-loop stall reliability (AC-2):**
 - Stall detection defaults flipped ON: `lagCeilingMs` 0→300000, `progressHeartbeatSeconds` 0→60
   (`executor-config.ts`) + the `stallWatchdogMs` raw-alias default 0→300000 (`fanout-run.cjs`, the
-  schema-bypass reader — all three together) — commit `5bc0a3037c`.
+  schema-bypass reader — all three together) — commit `dbe7d72102`.
 - Abnormal-exit classification widened: any non-SIGTERM signal-kill now fails loud instead of being
-  masked as exit-0 success (`fanout-run.cjs`) — commit `37c9eed7b4`.
+  masked as exit-0 success (`fanout-run.cjs`) — commit `7bdda62239`.
 - Loud-signal: `stall_detected`/`orphan_requeued`/`aborted` mirrored to stderr
-  (`observability-events.cjs`) — commit `3ad2c5e52c`.
+  (`observability-events.cjs`) — commit `28067b76c9`.
 
-**Wave A′ + B2 — skill-advisor dispatch enforcement (AC-1):** commit `015a18437a`
+**Wave A′ + B2 — skill-advisor dispatch enforcement (AC-1):** commit `034b564161`
 - `hard_rules:` frontmatter on `cli-opencode` + `cli-claude-code` SKILL.md.
 - `dispatch-rule-checks.mjs` (dependency-free parser + pure checks) + `dispatch-preflight-lint.mjs`
   (PreToolUse(Bash) hook — warn-first, fail-open) + `.claude/settings.json` wiring + a `node --test` suite.

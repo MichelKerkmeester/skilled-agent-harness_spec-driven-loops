@@ -29,7 +29,7 @@ Two blocker-class design holes and the dropped rollout safety-belt are fixed as 
 | 009 pacing-and-resume | moved | **005** retrofit-pacing-and-rollout-completion |
 | 010 injection-slimming | subsumed | **003** command-contract-compiler (inject the contract + one link) |
 
-The old `001-…` through `010-…` folders are removed; their committed content is recoverable at commit `5483436d6a`.
+The old `001-…` through `010-…` folders are removed; their committed content is recoverable at commit `6db901bbd1`.
 
 ## New phase map (dependency order)
 

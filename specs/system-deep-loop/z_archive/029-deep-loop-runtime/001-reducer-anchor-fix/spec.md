@@ -14,7 +14,7 @@ _memory:
     packet_pointer: "system-deep-loop/029-deep-loop-runtime/001-reducer-anchor-fix"
     last_updated_at: "2026-06-19T08:10:00+02:00"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Authored Level-1 impl sub-phase for the DONE Q6-anchor reducer template fix (commit 738e118751)"
+    recent_action: "Authored Level-1 impl sub-phase for the DONE Q6-anchor reducer template fix (commit 61fe63b24d)"
     next_safe_action: "None, candidate is COMPLETE. This sub-phase records it against its 030 commit"
     blockers: []
     key_files:
@@ -52,7 +52,7 @@ _memory:
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
 | **Parent research phase** | `system-deep-loop/029-deep-loop-runtime` (Deep Loop, convergence/fan-out/council intelligence) |
 | **Source research** | `../research/research.md`, `../../research/roadmap.md`, `../../research/synthesis/01-go-candidates.md` + `03` + `04` |
-| **Shipped-record cross-ref** | Wave-0 record (commit `738e118751`) |
+| **Shipped-record cross-ref** | Wave-0 record (commit `61fe63b24d`) |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -80,7 +80,7 @@ Wrap each of the 7 reducer-owned headings in its `ANCHOR:<id>` … `/ANCHOR:<id>
 
 | ID | Candidate | One-line | Seam | Eff | Status |
 |----|-----------|----------|------|-----|--------|
-| Q6-anchor | **Reducer-anchor template FIX** | wrap the 7 reducer-target headings (`key-questions`, `answered-questions`, `what-worked`, `what-failed`, `exhausted-approaches`, `ruled-out-directions`, `next-focus`) in `ANCHOR:*` marker pairs in the shipped strategy template | template `deep_research_strategy.md` vs `reduce-state.cjs:699-745` | S (near-zero) | **DONE**, commit `738e118751` |
+| Q6-anchor | **Reducer-anchor template FIX** | wrap the 7 reducer-target headings (`key-questions`, `answered-questions`, `what-worked`, `what-failed`, `exhausted-approaches`, `ruled-out-directions`, `next-focus`) in `ANCHOR:*` marker pairs in the shipped strategy template | template `deep_research_strategy.md` vs `reduce-state.cjs:699-745` | S (near-zero) | **DONE**, commit `61fe63b24d` |
 
 This is the deep-loop roadmap's **rank-1 candidate and the only unconditional ship-first win**: a confirmed correctness defect, near-zero effort/risk, template-only, **no runtime-code change, no dependencies**. The build order is `Q6-anchor FIX (ship first) → D2 → D3 → Q2 → D1`. Everything after Q6-anchor depends on the absent D2 reliability signal and is NO-GO until built and benchmarked (sibling sub-phases of `004-deep-loop`, not here). [research.md §"Top-5 Ranked + Build Order", roadmap.md §"Wave-0 spearhead".]
 
@@ -119,7 +119,7 @@ This is the deep-loop roadmap's **rank-1 candidate and the only unconditional sh
 
 - **SC-001**: The shipped strategy template carries exactly the 7 reducer-owned anchor pairs (14 `ANCHOR:` markers), matching the already-correct shape of this session's hand-patched working copy. [VERIFIED: template grep = 14 `ANCHOR:` markers, all 7 ids present.]
 - **SC-002**: A fresh strategy copy reduces deterministically. The reducer never throws `Missing anchor section` on the first reduce. [VERIFIED: each of the 7 ids matches the `replaceAnchorSection` regex.]
-- **SC-003**: The change is template-only and independently reversible (a single 14-line additive hunk). [VERIFIED: commit `738e118751` touches only the template + scaffolds the 030 record.]
+- **SC-003**: The change is template-only and independently reversible (a single 14-line additive hunk). [VERIFIED: commit `61fe63b24d` touches only the template + scaffolds the 030 record.]
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -140,7 +140,7 @@ This is the deep-loop roadmap's **rank-1 candidate and the only unconditional sh
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- None. The candidate is a confirmed, scoped, template-only fix and is already DONE (commit `738e118751`). The remaining deep-loop open questions (D3 threshold re-baselining, the 001 content-derived ordering call site, non-prompt-pack continuity paths) belong to the D2/D3/Q2 cluster, not to this sub-phase.
+- None. The candidate is a confirmed, scoped, template-only fix and is already DONE (commit `61fe63b24d`). The remaining deep-loop open questions (D3 threshold re-baselining, the 001 content-derived ordering call site, non-prompt-pack continuity paths) belong to the D2/D3/Q2 cluster, not to this sub-phase.
 <!-- /ANCHOR:questions -->
 
 ---
@@ -152,4 +152,4 @@ This is the deep-loop roadmap's **rank-1 candidate and the only unconditional sh
 - **Implementation Summary**: See `implementation-summary.md`
 - **Parent research**: `../research/research.md` (Deep Loop external-mining synthesis, §"Reducer-anchor template gap, CONFIRMED REAL BUG", Q6 in §"Key Questions, Answers").
 - **Cross-cutting roadmap**: `../../research/roadmap.md` (§"a near-zero-effort correctness FIX", Wave-0 spearhead rank-1), `../../research/synthesis/01-go-candidates.md`, `03-corrections-caveats-and-residuals.md`, `04-sibling-and-cross-cutting.md`.
-- **Shipped record (Wave-0)**: Wave-0 record (commit `738e118751`, "7 anchor pairs added, reducer regex verified (all 7 match)").
+- **Shipped record (Wave-0)**: Wave-0 record (commit `61fe63b24d`, "7 anchor pairs added, reducer regex verified (all 7 match)").

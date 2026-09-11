@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Daemon re-election was \"default-on\" only by convention: the launcher's `daemonReelectionEnabled` returned true exclusively for an explicit `1`/`on`, so an unconfigured launcher fell back to kill-on-disposal, and every doc claimed \"the launcher's code default stays off, so the runtime configs are the on-switch.\" Separately, the four MCP runtime configs had drifted: `.mcp.json`/`.claude/mcp.json` carried an invalid-JSON missing comma in the code-index block; all four were inflated by drift-prone `NOTE` trivia (per-server token-budget estimates and full tool-list dumps) alongside the useful",
     "created_at": "2026-06-14T07:07:19.444Z",
-    "last_save_at": "2026-08-30T15:39:34.202Z",
+    "last_save_at": "2026-09-11T16:42:37.821Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +206,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9537405fdbdf1bb8a9200538eed5898dbd60c61082780fc5f7b3e87a997b2403",
+    "source_fingerprint": "sha256:c40d7337ddedca21db445609cc20ec14cee2648033b22c13b4367cbc52fb2801",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "579b2088b2e19d643ab03a7d80e7e47f9bf765d9d33b0b0855d2a55cac1c3b02",
+      "spec.md": "728b1599ff227f168ef5acb665a546a27184f6fd574516289f8e452673b5a431",
       "plan.md": "223a6429c0aeab6dd1ab158285dbff96af30e24c231790e1db11f84a1dcd1898",
-      "tasks.md": "f93500062167b877752ccb3a76f8e0459a2d6fbd8bd2f875ecda0166347dd26c",
-      "implementation-summary.md": "a49f819a3dba5f0508c85e04964c3c311a3fac6f106b40eaf659802da8659d79"
+      "tasks.md": "8ea2c3a31cce81e9141a4d5161ea420335a811f4784966e423754e22cc152509",
+      "implementation-summary.md": "2da407b50a0977d2371ed2a2dee50e1f18bbd19b1bc84ae84d186ff3d8a8e629"
     },
     "last_active_child_id": null,
     "last_active_at": null

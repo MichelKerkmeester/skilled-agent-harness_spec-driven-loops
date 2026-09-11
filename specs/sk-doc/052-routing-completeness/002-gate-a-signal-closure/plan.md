@@ -112,7 +112,7 @@ reads the first array element, compares its `skillId` against the owning hub and
 <!-- ANCHOR:affected-surfaces -->
 ## FIX ADDENDUM: AFFECTED SURFACES
 
-The measurement changed nothing. The follow-up fix in `08eb67a0de` changed the surfaces below.
+The measurement changed nothing. The follow-up fix in `aa11c2b622` changed the surfaces below.
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
@@ -164,7 +164,7 @@ node .opencode/bin/skill-advisor.cjs advisor_recommend \
 The 2026-09-02 re-run used the same two commands over the current declared vocabulary, at 12
 concurrent requests, with exit status read from a per-signal file.
 
-The 2026-09-03 re-sweep at HEAD `fe1ec30fe8` used them again over 389 declared signals. It
+The 2026-09-03 re-sweep at HEAD `8cab525c27` used them again over 389 declared signals. It
 started at 12 concurrent, where 51 calls returned exit 75 and `socket closed before response`,
 which is daemon back-pressure rather than a routing answer. Those 51 were cleared and re-run
 at 4 concurrent, and all 389 replies in the committed capture are exit 0. Each row also
@@ -193,7 +193,7 @@ from a signal whose vocabulary genuinely reaches no mode.
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: A hub loses a prompt it owned, or a retired signal turns out to have been routing.
-- **Procedure**: `git revert 08eb67a0de` restores the routers, registries, graph metadata, the run-time override and the gold labels together. The two research documents are additive and carry no runtime effect.
+- **Procedure**: `git revert aa11c2b622` restores the routers, registries, graph metadata, the run-time override and the gold labels together. The two research documents are additive and carry no runtime effect.
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -241,7 +241,7 @@ Extract ──► Sweep ──► Classify ──► Tally ──► Fix ──�
 - [x] Monitoring alerts set. Canary fixtures ran during the fix
 
 ### Rollback Procedure
-1. `git revert 08eb67a0de` to restore routers, registries, metadata, the override and gold labels.
+1. `git revert aa11c2b622` to restore routers, registries, metadata, the override and gold labels.
 2. Re-run the sweep and confirm the hub totals return to 234 of 444.
 3. Re-run the three regression suites and confirm no hub lost a prompt it owned.
 4. Notify the phase 004 owner, since the collision list depends on these numbers.
@@ -303,8 +303,8 @@ Extract ──► Sweep ──► Classify ──► Tally ──► Fix ──�
 
 | Milestone | Description | Success Criteria | Target |
 |-----------|-------------|------------------|--------|
-| M1 | Baseline measured | 444 rows, one bucket each, double-tallied | `dbc8678c9d` |
-| M2 | Vocabulary closed | Retirements audited, stage-two classes added | `08eb67a0de` |
+| M1 | Baseline measured | 444 rows, one bucket each, double-tallied | `12aa10504a` |
+| M2 | Vocabulary closed | Retirements audited, stage-two classes added | `aa11c2b622` |
 | M3 | Every signal settled | A fresh sweep leaves no unresolved signal without a decision | Done, 2026-09-03. All 50 decided in twelve groups |
 <!-- /ANCHOR:milestones -->
 

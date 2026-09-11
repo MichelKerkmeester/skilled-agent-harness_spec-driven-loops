@@ -13,11 +13,11 @@ contextType: "implementation"
 
 Verification: parts A 17/17, B 17/17, C 15/17 (tri-114, tri-116 OVERTAKEN by this program's own shipped work), D 13/14 (tri-159 REFUTED by pre-existing test assertions). Host correction on record: tri-192 is SUPERSEDED cross-lane — its "3/3 prose" proof was the L8 probe-harness artifact; under correct `--command` dispatch the same inline template passes 3/3 (see L8 disposition). Doc sweep CLOSED 25 findings (verdict `../verify/l9-docs-batch-verdict.md`, three residues remedied in-commit; the env count now ships WITH its counting method).
 
-## Closed in code wave 4 (commit b8c6371669, Fable-verified)
+## Closed in code wave 4 (commit 5192cf811d, Fable-verified)
 tri-065/066/067 (fixture-validation chain: baseline fixtures regenerated strict-green, .cjs runner on the current JSON contract at 97 pass, all three suites wired into the tracked mcp_server test path via `test:spec-validation` — the scripts workspace package.json is gitignored by design, so its local wiring is convenience only). tri-169 (boundary-aware `keyword_present()` across all three router docs; the verifier found four surviving substring checks, remedied in the same commit). Supporting repair: both shell suites adjudicated case-by-case to the current validator contract (32/32, 108/108) without touching validator code; the orphaned CLI save-lane scrub test joined the tree.
 
 ## Stale-queue correction (audited 2026-06-12)
-tri-006, tri-179 and tri-182 were already CLOSED by code wave 1 (commit 7c8740a426: escaped spec-folder scoping, the regression dataset-size floor gate, the reachable timeout marker) — the queue lines below had not been reconciled. The floor gate was re-proven live this session: a 3-case dataset fails `gates.total_cases` and exits 1.
+tri-006, tri-179 and tri-182 were already CLOSED by code wave 1 (commit 7572b214ad: escaped spec-folder scoping, the regression dataset-size floor gate, the reachable timeout marker) — the queue lines below had not been reconciled. The floor gate was re-proven live this session: a 3-case dataset fails `gates.total_cases` and exits 1.
 
 ## Code wave 7 (implemented, in verification)
 tri-161: `code_graph_status` activeScope now exposes `includeGlobs`/`excludeGlobs` as structured fields and the label appends a "narrowed by includeGlobs: …" suffix, so a `*.ts`-only scan no longer reads as a full scan.

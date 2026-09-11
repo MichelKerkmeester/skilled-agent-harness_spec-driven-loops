@@ -42,7 +42,8 @@
       "tasks.md",
       "decision-record.md",
       "implementation-summary.md",
-      ".opencode/skills/system-deep-loop/runtime/lib/dispatch-receipts/resume-projection.ts"
+      ".opencode/skills/system-deep-loop/runtime/lib/dispatch-receipts/resume-projection.ts",
+      "runtime/vitest.config.ts"
     ],
     "entities": [
       {
@@ -79,6 +80,12 @@
         "name": "resume-projection.ts",
         "kind": "code",
         "path": ".opencode/skills/system-deep-loop/runtime/lib/dispatch-receipts/resume-projection.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vitest.config.ts",
+        "kind": "code",
+        "path": "runtime/vitest.config.ts",
         "source": "derived"
       },
       {
@@ -182,17 +189,11 @@
         "kind": "proper_noun",
         "path": "decision-record.md",
         "source": "derived"
-      },
-      {
-        "name": "Context Research",
-        "kind": "proper_noun",
-        "path": "decision-record.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Standalone readiness gates verify sealed bindings and certificates on two independent paths and never compare the sealed digest set with the certificate's `artifactClaims`/`artifactSetDigest` (`F-013-01`)",
     "created_at": "2026-07-31T01:25:20.717Z",
-    "last_save_at": "2026-08-30T15:39:21.707Z",
+    "last_save_at": "2026-09-11T16:42:25.270Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,14 +203,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:23df6e6d40479b8a48db6a39c3f0f2965afc4759ecaed7591b5e636a30d9a6fc",
+    "source_fingerprint": "sha256:01dc285f0262d7f011871c3dfc53438cc39666ebb93a42d2db13f6ce714e75f2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5bca01e87af46d5ab5bb86d9bbac4af9f96dfa6b589dee3a9dce1c6f375ab190",
+      "spec.md": "671ddb3fedf1bb5312f989ddb38b2535ffc3750e5967d890719133fb21c462c5",
       "plan.md": "33af3731d791a37e4ed5606a369bc38ee59e3f9d850aca053c873013755a396a",
-      "tasks.md": "7917316bfb725d177a3bee5d5aa4a15e3b5395684e399ea202a2f53a7d91ef49",
+      "tasks.md": "b446fc05c8cce5e48c548669e27f38cab40aaeb3eb6d7555a37d226fffe91e4f",
       "decision-record.md": "175faa85c62108c085f9b271684252613dfde29ce7701e87adbd390b8b9036c9",
-      "implementation-summary.md": "6bf89cf277ecc71951907befc641e7c39cc79ec452409daca8a4f2e5fb7c1254"
+      "implementation-summary.md": "2d443ddc72e92708ce373547476a4b789e2eb6e051612c3dc65703c269f86b62"
     },
     "last_active_child_id": null,
     "last_active_at": null

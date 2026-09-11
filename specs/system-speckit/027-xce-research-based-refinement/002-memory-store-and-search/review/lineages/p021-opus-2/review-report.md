@@ -24,7 +24,7 @@ Packet 021 instruments the spec-memory reindex scan with an event-loop lag sampl
 One P1 holds the verdict at CONDITIONAL: `runIndexScan` has **two** tail-phase execution paths, and the `timedPhase` wrapper that delivers REQ-001 (per-phase wall-clock) and REQ-003 (per-tail-phase marker refresh) is applied only to the `files.length > 0` path. The `files.length === 0` path — the common incremental-no-change background scan — runs the same four tail phases as bare calls, so the REQ-001/REQ-003 acceptance criteria are not met there and the implementation-summary's "each un-yielded tail phase refreshes the marker on entry" is inaccurate for that path.
 
 - Active findings: **P0=0, P1=1, P2=3**
-- Scope: 3 files (the full change surface of commit `372bb0f2cd`)
+- Scope: 3 files (the full change surface of commit `da09d7c69e`)
 - Dimensions covered: correctness, security, traceability, maintainability (4/4)
 - Security: no findings (no new trust boundary, no external input, hashing unchanged, log lines carry no secrets)
 
@@ -93,7 +93,7 @@ Unresolved gap: REQ-001/REQ-003 coverage on the `files.length === 0` path (F001)
 
 ## 9. Audit Appendix
 
-**Coverage.** 1 iteration, 4/4 dimensions, 3/3 in-scope files. Change surface = commit `372bb0f2cd` (memory-index.ts +66/-, trigger-embedding-backfill.ts +36/-, vitest +69).
+**Coverage.** 1 iteration, 4/4 dimensions, 3/3 in-scope files. Change surface = commit `da09d7c69e` (memory-index.ts +66/-, trigger-embedding-backfill.ts +36/-, vitest +69).
 
 **Replay validation.** Single-iteration run; recomputed `newFindingsRatio` 0.30 and P0=0/P1=1/P2=3 match the JSONL iteration record and findings registry. Dimension coverage 4/4 stable. Stop reason `maxIterations reached` matches the synthesis_complete event. Verdict logic: 0 active P0 + 1 active P1 → CONDITIONAL (consistent; VERDICT_LOCK not triggered, no P0).
 

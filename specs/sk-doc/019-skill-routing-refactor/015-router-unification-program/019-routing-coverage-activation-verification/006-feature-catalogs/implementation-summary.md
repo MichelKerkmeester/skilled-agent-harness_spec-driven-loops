@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Compiled-Routing Feature Catalogs"
-description: "Delivered-state record for the seven-hub compiled-routing catalog coverage: Option A shipped — 6 new hub-root catalogs, 12 hub-architecture/compiled-routing leaves, sk-design's extension leaf, and the two canonical-surface extensions. Committed in 8532c4b64b."
+description: "Delivered-state record for the seven-hub compiled-routing catalog coverage: Option A shipped — 6 new hub-root catalogs, 12 hub-architecture/compiled-routing leaves, sk-design's extension leaf, and the two canonical-surface extensions. Committed in bb2fcbbd27."
 trigger_phrases:
   - "compiled routing catalogs implementation summary"
   - "feature catalog topology current status"
@@ -19,7 +19,7 @@ contextType: "implementation"
 
 | Field | Value |
 |-------|-------|
-| **Status** | Implemented — committed in `8532c4b64b`. 19 new + 3 extended catalog files; no runtime/router/manifest/scorer touched (frozen scorer SHA-256 unchanged) |
+| **Status** | Implemented — committed in `bb2fcbbd27`. 19 new + 3 extended catalog files; no runtime/router/manifest/scorer touched (frozen scorer SHA-256 unchanged) |
 | **Date** | 2026-07-21 |
 | **Level** | 2 |
 | **Implementation** | Complete: 19 new files, 3 files extended |
@@ -99,12 +99,12 @@ Verified `002`/`003` were actually live at durable `.opencode/bin/**` paths by r
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **`002`/`003`'s own `implementation-summary.md` files are stale.** They read "Planned — no runtime implementation started" while the runtime is actually live, committed (`4153cbebd8`, `a1cdb65d90`), and consumed by `advisor_recommend`. This packet verified the real code/git state directly rather than trusting those docs, per the Logic-Sync protocol, but did not correct `002`/`003`'s own docs — out of this packet's scope (`002`/`003` are sibling children, not owned by 006). Flagging for the dispatcher/operator to reconcile.
+1. **`002`/`003`'s own `implementation-summary.md` files are stale.** They read "Planned — no runtime implementation started" while the runtime is actually live, committed (`6b81fde29e`, `c926b25506`), and consumed by `advisor_recommend`. This packet verified the real code/git state directly rather than trusting those docs, per the Logic-Sync protocol, but did not correct `002`/`003`'s own docs — out of this packet's scope (`002`/`003` are sibling children, not owned by 006). Flagging for the dispatcher/operator to reconcile.
 2. **Two files under `sk-doc/create-feature-catalog/assets/` show as modified but were not edited by this work.** `feature-catalog-template.md` and `feature-catalog-snippet-template.md` carry small, unrelated diffs (trigger-phrase doc-trigger-harvest wording; a `{TEST_TYPE}` taxonomy placeholder) present in the worktree before/independent of this session — confirmed via `git diff` inspection. Not reverted, since reverting another concurrent session's apparently-legitimate edit would itself be a scope violation.
 3. **Two pre-existing dirty files in `.opencode/specs/`** (`mcp-tooling/008-mcp-aside/001-research/research/research.md`, `system-deep-loop/032-deep-alignment-mode/013-review-remediation/decision-record.md`) were already modified in this worktree before this session started (confirmed by the first `git status` call of this session) — unrelated to this packet, not touched further.
 4. **The per-hub leaf filename convention is this packet's choice, not independently re-evidenced beyond `sk-design`.** `compiled-routing-and-legacy-fallback.md` was directly evidenced only for `sk-design` in research; applying it fleet-wide (and choosing the category-folder-equals-filename shape) is this packet's consistency decision, stated explicitly.
 5. **The P4 wording rewrite is owned elsewhere.** This packet's leaves state the opt-in/pre-cutover wording matching each hub's current `SKILL.md`; `../011-activation-cutover-p4/` owns the future atomic rewrite to default-on + kill-switch wording, gated on that hub's own parity/serving-status/fallback/rollback checks.
-6. **Committed** in `8532c4b64b` (the earlier no-commit instruction was superseded by the program's commit pass).
+6. **Committed** in `bb2fcbbd27` (the earlier no-commit instruction was superseded by the program's commit pass).
 <!-- /ANCHOR:limitations -->
 
 ---

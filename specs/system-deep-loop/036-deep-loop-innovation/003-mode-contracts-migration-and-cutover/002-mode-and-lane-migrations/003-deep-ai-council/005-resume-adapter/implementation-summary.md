@@ -48,7 +48,7 @@ _memory:
 | **Status** | Complete |
 | **Evidence reconciliation** | Reinstated by 021 on 2026-07-31 with fresh suite evidence; completion remains supported. |
 | **Posture** | Additive-dark with legacy writers and authority unchanged |
-| **Candidate SHA** | `fbf3c7291eb432ca541666397b95bf5da7bc500b` |
+| **Candidate SHA** | `73d07301b0e18de7ddc105448f96cd9be8a1aaaa` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -120,7 +120,7 @@ All output is explicitly `dark-evidence-only` or `shadow-only`, with `legacyAuth
 
 | Check | Result |
 |-------|--------|
-| Target Vitest | PASS, 1 file and 10 tests; suite sha256 `33153e0912c98042fecd2b0f3cbcd120f3b4d489714dd29358b2d80efe1b69fb`; candidate SHA `dd07cb1f52ed2ebaca7d152d0a088366b2958b32` |
+| Target Vitest | PASS, 1 file and 10 tests; suite sha256 `33153e0912c98042fecd2b0f3cbcd120f3b4d489714dd29358b2d80efe1b69fb`; candidate SHA `1cdb86cfa06f78bb9247eab3bd4a2cb245f0590f` |
 | Resume matrix | PASS for exact-reuse, compatible, migrate, blocked, and rebuild-required |
 | Forged effect confirmation | PASS, descriptor binding fails and the effect remains blocked |
 | Compatibility ownership | PASS, untrusted caller-compatible drift blocks and trusted migration classifies migrate |

@@ -272,10 +272,10 @@ Count leaves ─────┘
 
 | Milestone | Description | Success Criteria | Target |
 |-----------|-------------|------------------|--------|
-| M1 | Surfaces reconciled | Inventory at 252, readme on the current mode set | `98a327edf9` |
-| M2 | Check added and proven | Fails three ways, passes on restore | `98a327edf9` |
-| M3 | Real instance fixed | The hidden command back in its own row | `08eb67a0de` |
-| M4 | Findings recorded closed | Five findings and the new check in the register | `8bb9011584` |
+| M1 | Surfaces reconciled | Inventory at 252, readme on the current mode set | `90ea7ecb09` |
+| M2 | Check added and proven | Fails three ways, passes on restore | `90ea7ecb09` |
+| M3 | Real instance fixed | The hidden command back in its own row | `aa11c2b622` |
+| M4 | Findings recorded closed | Five findings and the new check in the register | `ca9e3885b8` |
 <!-- /ANCHOR:milestones -->
 
 ---

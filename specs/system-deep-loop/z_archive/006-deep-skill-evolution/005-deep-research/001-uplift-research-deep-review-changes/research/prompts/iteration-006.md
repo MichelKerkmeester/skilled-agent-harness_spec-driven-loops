@@ -1,7 +1,7 @@
 # RCAF DEEP RESEARCH — ITERATION 6 — changelog + version accuracy cross-check
 
 ## ROLE
-Expert verifier. Cross-check the deep-research v1.12.0.0 changelog (just shipped in commit 56456514ce) against actual arc 118 changes. Find factual drift between claim and reality.
+Expert verifier. Cross-check the deep-research v1.12.0.0 changelog (just shipped in commit 3850237631) against actual arc 118 changes. Find factual drift between claim and reality.
 
 ## CONTEXT
 

@@ -147,8 +147,8 @@ trigger_phrases: []
   - Fix: Regenerate the hub's graph-metadata.json, or manually update line 160 to 'deep-ai-council/SKILL.md' and bump derived.last_updated_at.
   - _via DeepSeek-v4-Pro, iter 5_
 - **002-F021 [P1/traceability]** plan.md was never reconciled with the execution — all phases remain unchecked post-execution
-  - File: `.opencode/specs/skilled-agent-orchestration/119-parent-skill-native-invocability/002-deep-loop-alignment/plan.md` (lines 123-133 (phase checkboxes) vs commit b0cbbe7b67)
-  - Evidence: plan.md was NOT modified in the execution commit (git diff b0cbbe7b67~1..b0cbbe7b67 -- plan.md produced no output). Phases 1-3 (lines 123-133) all remain '[ ]' unchecked despite the rename (Stage 1), routing retrofit (Stage 3), and keep-decisions (Stages 2/4) having been executed.
+  - File: `.opencode/specs/skilled-agent-orchestration/119-parent-skill-native-invocability/002-deep-loop-alignment/plan.md` (lines 123-133 (phase checkboxes) vs commit 8ef0455117)
+  - Evidence: plan.md was NOT modified in the execution commit (git diff 8ef0455117~1..8ef0455117 -- plan.md produced no output). Phases 1-3 (lines 123-133) all remain '[ ]' unchecked despite the rename (Stage 1), routing retrofit (Stage 3), and keep-decisions (Stages 2/4) having been executed.
   - Impact: The execution plan is a dead artifact: it does not trace which stages were actually completed, in what order, or with what gate outcomes. A reader following the plan cannot confirm execution status.
   - Fix: Update plan.md phase checkboxes to reflect actual execution: Stage 1 [x] (rename done), Stage 2 [x] (kept-all per earned-keep), Stage 3 [x] (invokable-hub routing done), Stage 4 [x] (merged-identity kept), Stage 5 [x] (--check gate passed per commit message).
   - _via DeepSeek-v4-Pro, iter 5_

@@ -5,7 +5,7 @@ trigger_phrases: []
 # Deep Review Strategy — 007-output-surface-parity (lineage p017c007-opus)
 
 ## Topic
-Review the shipped contract phase that makes `/memory:search` rendered output comparable across models and surfaces: one score (`similarity`), one scale (0–1), one name, two decimals, mandated on every surface, with named optional trailing fields. Target files: `.opencode/commands/memory/search.md` and `.opencode/commands/memory/assets/search_presentation.txt`. Committed at `254289251a`.
+Review the shipped contract phase that makes `/memory:search` rendered output comparable across models and surfaces: one score (`similarity`), one scale (0–1), one name, two decimals, mandated on every surface, with named optional trailing fields. Target files: `.opencode/commands/memory/search.md` and `.opencode/commands/memory/assets/search_presentation.txt`. Committed at `3a289d732d`.
 
 ## Review Dimensions
 - [x] Correctness — contract internal consistency, render math, exemption logic

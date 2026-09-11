@@ -84,7 +84,7 @@ Five independent verification/fix actions. Four (Phases 1-4) touch only their ow
 - **Phase 2 targets**: live route-gold under `sk-design/manual-testing-playbook/**` (scenario `.md` files with `expected_workflow_mode` frontmatter) vs. frozen historical run records under `sk-design/benchmark/{baseline,after-*,compiled-routing}/**` (15 files mentioning retired modes as historical outcomes — e.g. `compiled-routing/2026-07-21--playbook-verify--sonnet/report.md:83-84,100` recording `TV-001 V2`, `TV-001 V3`, `SR-002 P3` against the old `interface+foundations` topology). The historical files are provenance and stay untouched; only a fresh run's output is new.
 - **Phase 3 target**: `mcp-server/lib/validation/spec-doc-structure.ts:927-929` (`looksLikeCitation`) and `:981-989` (`validateSpecDocSufficiency`'s research.md branch), which only look inside parsed anchors that `research.md`'s generator never emits.
 - **Phase 4 target**: `mcp-server/lib/search/folder-discovery.ts:238-249` (`pickIncomingAuthoredOptionalFields`), called from `getDescriptionWritePayload` (`:260-269`), called from `savePerFolderDescription` (`:1164`) — the actual write path for every `description.json` in the repo.
-- **Phase 5 target**: 25 files recoverable from `b217d74b81^` — 11 fixture pairs, `ai-fingerprint-registry.json`, `ai-fingerprint-self-defect-card.md`, two parity scripts — landing under new paths since the `audit/` subtree they lived under no longer exists.
+- **Phase 5 target**: 25 files recoverable from `562074ad7c^` — 11 fixture pairs, `ai-fingerprint-registry.json`, `ai-fingerprint-self-defect-card.md`, two parity scripts — landing under new paths since the `audit/` subtree they lived under no longer exists.
 
 ### Data Flow
 1. Compare the styles checksum against its frozen snapshot.
@@ -127,7 +127,7 @@ Five independent verification/fix actions. Four (Phases 1-4) touch only their ow
 
 ### Phase 5: AI-Tell Fixture Restoration (OPERATOR-GATED)
 - [ ] Do NOT execute without an explicit operator decision recorded against the Open Question in `spec.md` §7
-- [ ] Scope, sourced from `b217d74b81^`: 11 `clean.html`/`tell.html` fixture pairs (22 files, originally under `design-interface/assets/audit/ai-fingerprint-fixtures/ai-fingerprint-<name>/`), `ai-fingerprint-registry.json`, `ai-fingerprint-self-defect-card.md`, and the two parity scripts `shared/scripts/ai-fingerprint-fixture-check.mjs` / `ai-fingerprint-registry-check.mjs`
+- [ ] Scope, sourced from `562074ad7c^`: 11 `clean.html`/`tell.html` fixture pairs (22 files, originally under `design-interface/assets/audit/ai-fingerprint-fixtures/ai-fingerprint-<name>/`), `ai-fingerprint-registry.json`, `ai-fingerprint-self-defect-card.md`, and the two parity scripts `shared/scripts/ai-fingerprint-fixture-check.mjs` / `ai-fingerprint-registry-check.mjs`
 - [ ] Recommendation on record (not yet approved): restore fixtures + registry + parity scripts only — do NOT restore the `/20` rubric, severity model, report templates, or evidence worksheet; that elimination holds
 - [ ] Landing paths differ from the deleted originals: the `audit/` subtree the fixtures lived under no longer exists, so restored fixtures land under the live `design-interface/assets/` tree, and the two parity scripts need repointing at whatever path/format the restored fixtures use post-consolidation
 - [ ] Several `interface-preflight-card.md` §11 AI-TELL SWEEP rows correspond by name to specific deleted fixture pairs (e.g. `ai-fingerprint-ghost-card-border-plus-shadow` → the 1px-border-plus-16px-shadow row; `ai-fingerprint-over-rounded-cards` → the border-radius-24px-or-more row; `ai-fingerprint-diagonal-stripe-background` → the diagonal-stripe-background row) — restoring the fixtures would make these rows mechanically decidable again instead of honour-system prose
@@ -168,7 +168,7 @@ Five independent verification/fix actions. Four (Phases 1-4) touch only their ow
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: any phase's verification fails after execution, or Phase 4's fix regresses the system-spec-kit workspace test suite.
-- **Procedure**: Phases 1-3 are read/verify-only or touch only this packet's own docs — revertible by `git checkout` per file. Phase 4 is a single-function, one-line addition, independently `git`-revertible, plus a `dist` rebuild to match. Phase 5, if ever executed, restores files from `b217d74b81^` — revertible by re-deleting the restored paths.
+- **Procedure**: Phases 1-3 are read/verify-only or touch only this packet's own docs — revertible by `git checkout` per file. Phase 4 is a single-function, one-line addition, independently `git`-revertible, plus a `dist` rebuild to match. Phase 5, if ever executed, restores files from `562074ad7c^` — revertible by re-deleting the restored paths.
 <!-- /ANCHOR:rollback -->
 
 ---

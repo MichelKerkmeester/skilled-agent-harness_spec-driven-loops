@@ -23,7 +23,7 @@ contextType: "implementation"
 
 A secondary `mk-spec-memory` launcher running under a different `SPECKIT_IPC_SOCKET_DIR` than the live daemon used to recompute a socket path the owner never opened, fail `fs.existsSync`, and report `no-bridge-socket`, even though the daemon was alive and reachable. This closed defect (c), deferred as a follow-up in packet 018 (front-proxy recycle hardening).
 
-The lease now carries the owner's actual IPC socket path, and the shared launcher bridge prefers it, so a divergent-env secondary connects to the real daemon instead of giving up. The schema change is additive and optional. Leases that predate the field, and the skill-advisor and code-index leases that never carry it, fall back to the existing env recompute unchanged. Committed as `1f1e52ca8e`.
+The lease now carries the owner's actual IPC socket path, and the shared launcher bridge prefers it, so a divergent-env secondary connects to the real daemon instead of giving up. The schema change is additive and optional. Leases that predate the field, and the skill-advisor and code-index leases that never carry it, fall back to the existing env recompute unchanged. Committed as `821c296fa1`.
 
 ### Added
 

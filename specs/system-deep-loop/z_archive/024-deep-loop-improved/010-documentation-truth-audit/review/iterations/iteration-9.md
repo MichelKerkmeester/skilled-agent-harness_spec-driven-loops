@@ -2,7 +2,7 @@
 
 ## Dimension
 
-Final-report completeness and remediation-workstream ordering, with fresh verification of the current README Goal wording after concurrent commit `0650d3123d` and later branch commits.
+Final-report completeness and remediation-workstream ordering, with fresh verification of the current README Goal wording after concurrent commit `91bbf49a7c` and later branch commits.
 
 ## Files Reviewed
 

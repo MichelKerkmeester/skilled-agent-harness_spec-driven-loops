@@ -9,7 +9,7 @@ _memory:
     packet_pointer: "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/001-deprecate-numbered-category-prefix/004-execute-migration"
     last_updated_at: "2026-07-17T14:36:44Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Migration executed atomically; 391 folders renamed; commit b2f6c3ee52"
+    recent_action: "Migration executed atomically; 391 folders renamed; commit 773a29e429"
     next_safe_action: "Complete"
     blockers: []
     completion_pct: 100
@@ -47,7 +47,7 @@ harness).
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 Ran the Phase 003 engine with mutation enabled in one atomic pass over the live worktree, then verified the
-residual-folder and reference invariants. Commit `b2f6c3ee52`.
+residual-folder and reference invariants. Commit `773a29e429`.
 <!-- /ANCHOR:how-delivered -->
 
 <!-- ANCHOR:decisions -->

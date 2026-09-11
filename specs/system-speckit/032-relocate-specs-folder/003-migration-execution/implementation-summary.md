@@ -49,7 +49,7 @@ The runbook scoped in this phase (11 numbered steps, each with an exact command 
 
 ### The Flip (Step 4)
 
-The atomic step: `specs/` is now the real, physical directory; `.opencode/specs` is a relative symlink to `../specs`. Landed in one commit (`606e55cb8a`) together with the `.gitignore` rebase for the four downstream projects (`ai-systems`, `anobel.com`, `barter`, `z-future`), per ADR-002's leak-prevention requirement. All three named pre-commit checks passed before committing.
+The atomic step: `specs/` is now the real, physical directory; `.opencode/specs` is a relative symlink to `../specs`. Landed in one commit (`416ef56527`) together with the `.gitignore` rebase for the four downstream projects (`ai-systems`, `anobel.com`, `barter`, `z-future`), per ADR-002's leak-prevention requirement. All three named pre-commit checks passed before committing.
 
 ### The Wider Fix (Steps 5-8, 10)
 
@@ -69,7 +69,7 @@ The operator chose to bulk-delete the stale rows immediately rather than defer t
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Executed the runbook from `plan.md` §4 in order, verifying each step's named check before proceeding, per the operator's autonomous-execution directive. Along the way: discovered and resolved a 3,308-file pre-existing dirty tree blocking step 1's pre-flight (committed as its own change, `2666012cfe` after a rebase), fixed a genuinely ambiguous 2,814-file deletion (the already-decommissioned `system-code-graph` packet) with an explicit operator decision, and removed the `system-code-graph` skill folder's last stray artifact per a separate operator request mid-run. Resolved two later remote divergences (concurrent live work landing on the same branch) via rebase, no data loss.
+Executed the runbook from `plan.md` §4 in order, verifying each step's named check before proceeding, per the operator's autonomous-execution directive. Along the way: discovered and resolved a 3,308-file pre-existing dirty tree blocking step 1's pre-flight (committed as its own change, `b49a891634` after a rebase), fixed a genuinely ambiguous 2,814-file deletion (the already-decommissioned `system-code-graph` packet) with an explicit operator decision, and removed the `system-code-graph` skill folder's last stray artifact per a separate operator request mid-run. Resolved two later remote divergences (concurrent live work landing on the same branch) via rebase, no data loss.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -93,7 +93,7 @@ Executed the runbook from `plan.md` §4 in order, verifying each step's named ch
 | Check | Result |
 |-------|--------|
 | Step 1-8, 10 named checks | PASS — see `tasks.md` T004-T013 for evidence per step |
-| Step 4's 3 pre-commit checks (gitignore match, symlink target, no leaked project trees) | PASS — all 3 confirmed before commit `606e55cb8a` |
+| Step 4's 3 pre-commit checks (gitignore match, symlink target, no leaked project trees) | PASS — all 3 confirmed before commit `416ef56527` |
 | `registryCoverageGaps()` | PASS — empty |
 | `spec-root-*` test suite | 54/55 pass (1 pre-existing, unrelated regex typo) |
 | `tsc --noEmit` across both packages | PASS — 0 new errors |
@@ -112,5 +112,5 @@ Executed the runbook from `plan.md` §4 in order, verifying each step's named ch
 3. **A live concurrent session is working on this same branch** in a separate worktree (confirmed via multiple independent commit pushes during this run). Anyone picking this packet back up should re-fetch before assuming the branch tip.
 4. **A post-close re-run of `strict-pass-freshness.ts` stalled and coincided with ~196 unrelated `description.json` files changing on disk.** Killed after 15+ minutes at 0% CPU with zero output, reverted the unrelated changes via `git checkout --` before anything was staged or pushed. Investigated the cause directly (read `strict-pass-freshness.ts` and every validator in `validate.sh`'s call chain: `generated-metadata-drift.js`, `generated-metadata-integrity.js`, `continuity-freshness.js`, `evidence-marker-lint.js`) — none of them contain a file-write call. The mutation was almost certainly caused by concurrent sessions' own legitimate work landing during that window (3-4 other heavy agent processes were confirmed actively running spec-folder work at the time), not this tool. The stall itself is far more consistent with severe resource contention (system load average 12.94; the sweep runs `spawnSync` strictly sequentially across ~2,000 folders) than with an actual bug in the tool. Correcting an earlier draft of this limitation, which wrongly attributed both to the sweep tool without verifying causation first.
 
-Correction to an earlier claim in this file: an earlier save of this document claimed `CLAUDE.md` carried the same stale "Spec folder path" row `AGENTS.md` had before step 8 fixed it. Re-checked directly — that claim was wrong. `CLAUDE.md`'s row already reads correctly (`specs/[track]/...` canonical, `.opencode/specs` legacy); it was corrected as part of the pre-existing dirty-tree commit `2666012cfe`, before this runbook ever started. No action needed.
+Correction to an earlier claim in this file: an earlier save of this document claimed `CLAUDE.md` carried the same stale "Spec folder path" row `AGENTS.md` had before step 8 fixed it. Re-checked directly — that claim was wrong. `CLAUDE.md`'s row already reads correctly (`specs/[track]/...` canonical, `.opencode/specs` legacy); it was corrected as part of the pre-existing dirty-tree commit `b49a891634`, before this runbook ever started. No action needed.
 <!-- /ANCHOR:limitations -->

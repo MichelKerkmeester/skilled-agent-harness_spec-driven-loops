@@ -40,11 +40,11 @@ Output written to <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code
 ### INFO
 | ID | What | Evidence | Remediation |
 |----|------|----------|-------------|
-| 001 | IOC references in documentation only | Commit 7fd26b27ae spec.md contains references to `gh-token-monitor.sh`, `api.github.com/user`, and LaunchAgent patterns in threat description documentation, not actual malicious code | None - documentation is legitimate |
-| 002 | Legitimate temp directory cleanup | Commit 03b9d832176 contains `rm -rf /tmp/devin-session-playbook` - legitimate temp cleanup in documentation | None - normal temp file management |
+| 001 | IOC references in documentation only | Commit b2cd83be46 spec.md contains references to `gh-token-monitor.sh`, `api.github.com/user`, and LaunchAgent patterns in threat description documentation, not actual malicious code | None - documentation is legitimate |
+| 002 | Legitimate temp directory cleanup | Commit f5435f1bea9 contains `rm -rf /tmp/devin-session-playbook` - legitimate temp cleanup in documentation | None - normal temp file management |
 | 003 | Legitimate executable script additions | Multiple commits show `create mode 100755` for test harnesses and shell scripts (e.g., run-substrate-stress-harness.mjs, mcp-doctor.sh) | None - legitimate test infrastructure |
 | 004 | Legitimate hook infrastructure | Extensive hook file additions and renames across system-spec-kit, system-skill-advisor for OpenCode hook system | None - legitimate development work |
-| 005 | Normal package-lock churn | package-lock.json changes in commits 4630827fe3, 367bbe4211 are normal npm dependency management | None - expected dependency updates |
+| 005 | Normal package-lock churn | package-lock.json changes in commits f2c544163b, a7d8588db0 are normal npm dependency management | None - expected dependency updates |
 | 006 | No base64 blobs found | Base64 blob search (120+ char lines) returned exit code 1 with no output | None - verified clean |
 | 007 | No persistence mechanisms | No LaunchAgent, systemd, cron, .zsh, or .bash file additions in last 30 days | None - verified clean |
 

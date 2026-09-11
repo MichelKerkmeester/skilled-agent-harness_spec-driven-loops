@@ -26,7 +26,7 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions:
-      - "Cleanup executed against the skill READMEs and root README (commit 6754d3a133)."
+      - "Cleanup executed against the skill READMEs and root README (commit ed06dcdc21)."
       - "Edits only, house structure preserved, paths resolve, strict validation 0/0."
 ---
 

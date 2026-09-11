@@ -67,9 +67,9 @@ _memory:
 
 > Keystone candidates (total-comparator tiebreaks + content-id primitives), shipped in Wave-0 / packet 030.
 
-- [x] T001 two-content-id-primitives, centralize content-body + canonical-field SHA-256 into `lib/content-id.ts` (`hashContentBody`, `hashCanonicalJson`) [Done, commit `18c8582e33`, byte-identical proven by parity test, no behavior change].
-- [x] T002 ANN-tie-stable-order, append `, m.id ASC` (COALESCE) to the 4 ranked ANN `ORDER BY distance` (`vector-index-queries.ts:169,199,458,570`) [Done, commit `bec0eed27f`].
-- [x] T003 C5-B content-derived tiebreak, `content_hash`-asc tiebreak (COALESCE id) in the deterministic comparator + all 5 RRF output sorts (`ranking-contract.ts`, `rrf-fusion.ts`, `hybrid-search.ts`) [Done, commit `bec0eed27f`, primary order unchanged, verified].
+- [x] T001 two-content-id-primitives, centralize content-body + canonical-field SHA-256 into `lib/content-id.ts` (`hashContentBody`, `hashCanonicalJson`) [Done, commit `0113515f43`, byte-identical proven by parity test, no behavior change].
+- [x] T002 ANN-tie-stable-order, append `, m.id ASC` (COALESCE) to the 4 ranked ANN `ORDER BY distance` (`vector-index-queries.ts:169,199,458,570`) [Done, commit `5c0a966df3`].
+- [x] T003 C5-B content-derived tiebreak, `content_hash`-asc tiebreak (COALESCE id) in the deterministic comparator + all 5 RRF output sorts (`ranking-contract.ts`, `rrf-fusion.ts`, `hybrid-search.ts`) [Done, commit `5c0a966df3`, primary order unchanged, verified].
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -79,8 +79,8 @@ _memory:
 
 > Byte-identical-by-default seams (C-X1 `'active'`, C6-A clock), shipped in Wave-0 / packet 030.
 
-- [x] T004 C-X1 `'active'`, expose the active-channel bonus denominator as the `bonusOverChannels` param, default `'active'` (`rrf-fusion.ts:296-371,345-388`) [Done, commit `65cfcea513`, byte-identical traced arithmetically, opus SHIP].
-- [x] T005 C6-A rank-time decay clock, caller-`nowMs` rank-time decay vs the `trackAccess`-only path, restored the no-timestamp skip guard so it is a pure refactor (`stage2-fusion.ts:897-908`, `fsrs.ts:40-47`) [Done, commit `65cfcea513`, reinforcement stays a separate event].
+- [x] T004 C-X1 `'active'`, expose the active-channel bonus denominator as the `bonusOverChannels` param, default `'active'` (`rrf-fusion.ts:296-371,345-388`) [Done, commit `84c532114d`, byte-identical traced arithmetically, opus SHIP].
+- [x] T005 C6-A rank-time decay clock, caller-`nowMs` rank-time decay vs the `trackAccess`-only path, restored the no-timestamp skip guard so it is a pure refactor (`stage2-fusion.ts:897-908`, `fsrs.ts:40-47`) [Done, commit `84c532114d`, reinforcement stays a separate event].
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -99,7 +99,7 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T010 Re-confirm shipped-candidate commits against `030` section 14 (`18c8582e33`, `bec0eed27f` ×2, `65cfcea513` ×2).
+- [x] T010 Re-confirm shipped-candidate commits against `030` section 14 (`0113515f43`, `5c0a966df3` ×2, `84c532114d` ×2).
 - [x] T011 Record the cross-subsystem byte-compare contract (`fuseResultsMulti` `'active'` default, consumers 002/003/004) in `spec.md` + `plan.md`.
 - [x] T012 Author `plan.md`, `tasks.md`, `checklist.md` from the system-spec-kit Level-3 templates.
 - [x] T013 Run `validate.sh --strict` on this sub-phase and fix structure issues.

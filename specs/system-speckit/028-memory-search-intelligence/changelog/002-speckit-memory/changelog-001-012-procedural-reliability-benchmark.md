@@ -19,7 +19,7 @@ contextType: "implementation"
 
 ### Summary
 
-This phase shipped the default-off safe core for procedural reliability and left every candidate promotion benchmark-gated. The outcome and correction mirror, an f64 Beta reliability primitive and a procedural recall fold all landed behind their flags with deterministic tests, while default recall stays byte-identical with both flags off. The four candidates stay pending until a benefit benchmark proves the reliability fold out-earns the existing access and confirmation signals. Commit `8f8776e329` carried the lib code with focused tests.
+This phase shipped the default-off safe core for procedural reliability and left every candidate promotion benchmark-gated. The outcome and correction mirror, an f64 Beta reliability primitive and a procedural recall fold all landed behind their flags with deterministic tests, while default recall stays byte-identical with both flags off. The four candidates stay pending until a benefit benchmark proves the reliability fold out-earns the existing access and confirmation signals. Commit `508af65780` carried the lib code with focused tests.
 
 ### Added
 

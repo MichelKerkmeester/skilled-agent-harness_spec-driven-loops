@@ -141,7 +141,7 @@ A registry row is not proof a request arrives. Every routing claim comes from th
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-Revert `112d5471f4`. The commit is self-contained: the hub files it created, the standalone files
+Revert `08c9d0605d`. The commit is self-contained: the hub files it created, the standalone files
 it deleted and the 28 renames all move together, so a single revert restores the standalone skill
 with its history intact. Nothing outside `.opencode/skills/sk-design/` and this packet is touched.
 <!-- /ANCHOR:rollback -->
@@ -184,7 +184,7 @@ The cost is concentrated in the root `SKILL.md` rewrite, not in the move.
 - [x] No intermediate state leaves the hub root without a `SKILL.md`
 
 ### Rollback Procedure
-1. `git revert 112d5471f4`
+1. `git revert 08c9d0605d`
 2. Rebuild the advisor daemon and observe its generation move
 3. Replay the sixteen phrases; they should match the baseline exactly
 

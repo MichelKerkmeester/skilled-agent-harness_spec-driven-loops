@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Durable Archiving & Serving-Snapshot"
-description: "Delivered specification for the durable <hub>/benchmark/compiled-routing/<run-label>/ convention, serving-snapshot.json schema and renderer, repo-relative provenance, and active-manifest archive boundary. Implemented in 2a39ecb9a0 without changing the default, a live hub, the frozen baseline label, or the frozen scorer trio. The append-only flip-history ledger is explicitly owned by sibling 010 and later landed in a1cdb65d90."
+description: "Delivered specification for the durable <hub>/benchmark/compiled-routing/<run-label>/ convention, serving-snapshot.json schema and renderer, repo-relative provenance, and active-manifest archive boundary. Implemented in beca825aa4 without changing the default, a live hub, the frozen baseline label, or the frozen scorer trio. The append-only flip-history ledger is explicitly owned by sibling 010 and later landed in c926b25506."
 trigger_phrases:
   - "durable archiving serving snapshot"
   - "compiled routing report path convention"
@@ -12,7 +12,7 @@ _memory:
     packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/007-durable-archiving-and-serving-snapshot"
     last_updated_at: "2026-07-21T03:58:44Z"
     last_updated_by: "codex-gpt-5.6"
-    recent_action: "Reconciled delivered scope to commit 2a39ecb9a0"
+    recent_action: "Reconciled delivered scope to commit beca825aa4"
     next_safe_action: "P4/011 operator-gated cutover remains pending"
     blockers: []
     key_files:
@@ -26,7 +26,7 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions:
-      - "Archive and snapshot tooling landed in 2a39ecb9a0; ledger ownership moved to 010"
+      - "Archive and snapshot tooling landed in beca825aa4; ledger ownership moved to 010"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
@@ -44,7 +44,7 @@ FAILURE MODES:
 
 Compiled-routing evidence today has no durable home and no joined view. Lane C's live executor writes only to whatever `--outputs-dir` the caller passes (`run-skill-benchmark.cjs:295-298`); a LUNA real-model run either pollutes the parity directory or vanishes once its temp output is discarded (`CF-ARC-1`). Per-hub activation state is split across seven separate JSON files under `013-live-activation/activation/<hub>/` (confirmed this session: `manifest.json`, `manifest.prior.json`, `manifest.candidate.json`, `manifest.serving-prior.json`, `fence-state.json`, `activation-record.json`, `serving-flip-record.json`) with no single joined artifact (`CF-ARC-2`). And shipped reports already serialize a stale absolute worktree path — `sk-code/benchmark/reports/2026-06-01--router-final--router/skill-benchmark-report.json:7-10` points at a checkout path that no longer matches where the file actually lives, a live demonstration of the exact staleness `CF-ARC-3` describes (CONFIRMED, `verification-v1.md` §2).
 
-Commit `2a39ecb9a0` delivered the durable report-path convention (`<hub>/benchmark/compiled-routing/<run-label>/`, fail-closed on an existing label), the `serving-snapshot.json` schema and renderer, repo-relative provenance, JSON-to-Markdown report blocks, and all seven hub benchmark indexes. Archive capture is gated against the promoted active serving manifest, never a `009-parent-hub-rollout` shadow candidate, and the frozen `baseline` label is rejected. The append-only `flip-history.jsonl` requirement was deliberately transferred to sibling `010`, whose activation drivers own transitions; it later landed in `a1cdb65d90`.
+Commit `beca825aa4` delivered the durable report-path convention (`<hub>/benchmark/compiled-routing/<run-label>/`, fail-closed on an existing label), the `serving-snapshot.json` schema and renderer, repo-relative provenance, JSON-to-Markdown report blocks, and all seven hub benchmark indexes. Archive capture is gated against the promoted active serving manifest, never a `009-parent-hub-rollout` shadow candidate, and the frozen `baseline` label is rejected. The append-only `flip-history.jsonl` requirement was deliberately transferred to sibling `010`, whose activation drivers own transitions; it later landed in `c926b25506`.
 
 This child changes no routing default and performs no hub cutover. It supplies durable evidence tooling for the later operator-gated P4/011 canary and cutover; the repository default remains off.
 
@@ -57,7 +57,7 @@ This child changes no routing default and performs no hub cutover. It supplies d
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | Implemented — archive/snapshot/provenance/index scope landed in `2a39ecb9a0`; transition-ledger ownership moved to sibling 010 and landed in `a1cdb65d90`. No hub was cut over and the repository default remains off. |
+| **Status** | Implemented — archive/snapshot/provenance/index scope landed in `beca825aa4`; transition-ledger ownership moved to sibling 010 and landed in `c926b25506`. No hub was cut over and the repository default remains off. |
 | **Created** | 2026-07-20 |
 | **Branch** | `sk-doc/0089-default-routing-cutover` |
 | **Phase** | 007-durable-archiving-and-serving-snapshot (015 child; contributes to the P3 coverage-closure join gate ahead of P4) |

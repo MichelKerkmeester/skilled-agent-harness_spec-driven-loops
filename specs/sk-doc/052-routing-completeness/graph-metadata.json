@@ -181,14 +181,14 @@
     ],
     "causal_summary": "A hub can be complete in every registry and still not be reachable",
     "created_at": "2026-09-02T16:33:39Z",
-    "last_save_at": "2026-09-05T13:55:09.942Z",
+    "last_save_at": "2026-09-11T16:42:12.506Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:06324592d50f6ea3a0ca4b42f59ed939d675dda1b0f2a9912fc2c63b70269350",
+    "source_fingerprint": "sha256:f05ac27b5da4de34706d4a89f8e56991809e4052346e36ce7df05e3f876f8b6c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a4121d4af25879445fd3668008cf9c56e972c7977285815ab7c2eb5096264039"

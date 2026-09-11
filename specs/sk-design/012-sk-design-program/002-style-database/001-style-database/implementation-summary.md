@@ -71,7 +71,7 @@ The published-SQLite-generation style database per 001, using Node `node:sqlite`
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Dispatched a GPT-5.6-SOL (high) implementer via `opencode run` in an isolated worktree off origin tip `4283b6a331`, with the 001 research + 003 spec as authoritative design. The agent ran its own review sub-loop, hardening the generation-publish path (fsync ordering, immutable generation orphans so a synced pointer can never dangle, post-pointer fault coverage) before reporting. Then verified independently by the orchestrator.
+Dispatched a GPT-5.6-SOL (high) implementer via `opencode run` in an isolated worktree off origin tip `11d0305e0e`, with the 001 research + 003 spec as authoritative design. The agent ran its own review sub-loop, hardening the generation-publish path (fsync ordering, immutable generation orphans so a synced pointer can never dangle, post-pointer fault coverage) before reporting. Then verified independently by the orchestrator.
 <!-- /ANCHOR:how-delivered -->
 
 ---

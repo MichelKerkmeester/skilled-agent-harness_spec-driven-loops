@@ -45,7 +45,7 @@ This packet closed both gaps. SIGHUP and SIGQUIT now route to `fatalShutdown(...
 
 - `npm run build --workspace=@spec-kit/mcp-server`: PASS (2026-05-29, workspace build exit 0)
 - `tsc --noEmit` (context-server): PASS (407 tests green, tsc clean per commit message)
-- Vitest context-server + lifecycle-shutdown + signal-vocab + launcher suites: 407 tests pass (per commit `904204c272`)
+- Vitest context-server + lifecycle-shutdown + signal-vocab + launcher suites: 407 tests pass (per commit `de14496628`)
 - `validate.sh --strict` on packet folder: required before publishing
 - CHK-022/023 targeted vitest suites: not re-run this session per implementation-summary
 

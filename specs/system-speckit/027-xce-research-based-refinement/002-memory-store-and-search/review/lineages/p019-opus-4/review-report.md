@@ -46,7 +46,7 @@ No spec change required for shippability. If the docs-accuracy fix is taken: ame
 | Protocol | Class | Status | Evidence |
 |----------|-------|--------|----------|
 | `spec_code` | core / hard | PASS | REQ-001 `memory-index.ts:1450-1502`; REQ-002 launcher `:814-825` + `:1685-1694`; REQ-003 predicate fail-safe branches `model-server-supervision.cjs:622-628`; REQ-004 `config.ts:63-94` vs launcher `:329-333` + live marker artifact |
-| `checklist_evidence` | core / hard | PASS | implementation-summary Verification table corroborated by commit `7800409646`/`44ab2dbfaf` and on-disk marker |
+| `checklist_evidence` | core / hard | PASS | implementation-summary Verification table corroborated by commit `d64215a5de`/`96846f4d34` and on-disk marker |
 
 No overlay protocols apply to a spec-folder target.
 

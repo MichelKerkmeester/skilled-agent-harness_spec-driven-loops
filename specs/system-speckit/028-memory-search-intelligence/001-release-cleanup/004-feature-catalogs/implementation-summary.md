@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Feature Catalog Cleanup"
-description: "Execution summary for the Feature Catalog Cleanup release-cleanup phase. The system-spec-kit feature_catalog was aligned to shipped behavior (commit ab405fa052), edits only with no entry added or removed."
+description: "Execution summary for the Feature Catalog Cleanup release-cleanup phase. The system-spec-kit feature_catalog was aligned to shipped behavior (commit 7b74ddfbe5), edits only with no entry added or removed."
 trigger_phrases:
   - "004-feature-catalogs implementation summary"
   - "028 release cleanup 004-feature-catalogs"
@@ -23,7 +23,7 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions:
-      - "This summary records the executed Level-2 cleanup (commit ab405fa052)."
+      - "This summary records the executed Level-2 cleanup (commit 7b74ddfbe5)."
       - "12 catalog files aligned, count self-checks hold, strict validation 0/0."
 ---
 
@@ -38,7 +38,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 004-feature-catalogs |
-| **Completed** | 2026-06-19 (commit ab405fa052) |
+| **Completed** | 2026-06-19 (commit 7b74ddfbe5) |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -47,7 +47,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-The feature catalog cleanup executed on this branch (commit ab405fa052). The system-spec-kit feature_catalog was reviewed against current shipped behavior and 12 files were aligned, fixing stale source-reference paths and drift across the retrieval, discovery, pipeline-architecture, governance and context-preservation entries. No catalog entry was added or removed, so the count self-checks still hold, and every corrected path was verified to resolve.
+The feature catalog cleanup executed on this branch (commit 7b74ddfbe5). The system-spec-kit feature_catalog was reviewed against current shipped behavior and 12 files were aligned, fixing stale source-reference paths and drift across the retrieval, discovery, pipeline-architecture, governance and context-preservation entries. No catalog entry was added or removed, so the count self-checks still hold, and every corrected path was verified to resolve.
 
 ### Files Changed
 
@@ -86,7 +86,7 @@ Discovery enumerated the system-spec-kit feature_catalog entries. Each candidate
 
 | Check | Result |
 |-------|--------|
-| Cleanup execution | Executed at ab405fa052, 12 catalog files aligned, 0 entries added or removed |
+| Cleanup execution | Executed at 7b74ddfbe5, 12 catalog files aligned, 0 entries added or removed |
 | Path resolution | All corrected paths resolve |
 | Strict validation | PASSED, 0 errors and 0 warnings via `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-speckit/028-memory-search-intelligence/000-release-cleanup/004-feature-catalogs --strict` |
 <!-- /ANCHOR:verification -->

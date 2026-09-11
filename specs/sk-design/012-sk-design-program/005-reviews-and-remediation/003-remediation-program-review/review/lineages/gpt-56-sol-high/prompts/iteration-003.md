@@ -12,7 +12,7 @@ Resolved route: mode=review; target_agent=@deep-review; execution=single_review_
 Iteration: 3 of 10. `stopPolicy=max-iterations`; convergence is telemetry before 10.
 Dimension: traceability.
 Active findings: P0=0 P1=1 P2=0. Security finding `P1-001` remains active. Its prior adjudication packet omitted `findingId`, so the latest claim-adjudication event is failed.
-Review target: `.opencode/specs/sk-design/017-remediation-program-review`; scope is its validated 118-entry manifest at pinned HEAD `7b9d3b6b71`.
+Review target: `.opencode/specs/sk-design/017-remediation-program-review`; scope is its validated 118-entry manifest at pinned HEAD `6432665a68`.
 Focus: full `spec_code` and `checklist_evidence` replay across packet 012/008 and packets 015/001/005/006 plus the 015 parent. Verify shipped-vs-deferred status, human-gated items, reported test counts, and evidence behind the publication/parity claims. Also re-read `P1-001` evidence and emit it as a refinement with a complete typed adjudication packet containing `findingId: "P1-001"` so the gate can recover.
 
 ## Required Setup Bindings

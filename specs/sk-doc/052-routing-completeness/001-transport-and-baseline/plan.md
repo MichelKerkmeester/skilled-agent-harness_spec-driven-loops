@@ -107,10 +107,10 @@ The one behavioural edit in this phase is the Gate 2 manual fallback line in `AG
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| `AGENTS.md` Gate 2 fallback | Tells a person which command to run when no hook brief appears | Updated to name the daemon CLI | `4e66155b6c`, 2 insertions and 2 deletions |
+| `AGENTS.md` Gate 2 fallback | Tells a person which command to run when no hook brief appears | Updated to name the daemon CLI | `628a60157c`, 2 insertions and 2 deletions |
 | `mcp-server/scripts/skill_advisor.py` | The Python scorer, used by validation | Unchanged, and named in the gate text as a non-fallback | `grep -rn "skill_advisor.py" .opencode/skills/system-skill-advisor/hooks/lib/` returns no match |
 | `.opencode/bin/skill-advisor.cjs` | The daemon-backed CLI the gate now names | Unchanged, and verified as the same scorer the hook consults | Daemon stopped, one call issued, which self-started it and answered |
-| `research/transport-finding.md` | The citable record of the three reads | Created | `03f5db4876`, 65 lines |
+| `research/transport-finding.md` | The citable record of the three reads | Created | `ab1881aeaf`, 65 lines |
 
 Required inventories:
 - Same-class producers: `rg -n 'skill_advisor.py' .opencode/skills/system-skill-advisor`.
@@ -169,7 +169,7 @@ node .opencode/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"dqi sc
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: The named transport turns out to be wrong, or the gate-text change sends readers to a command that does not answer.
-- **Procedure**: `git revert 4e66155b6c` restores the previous Gate 2 fallback line. The finding document is additive and can be deleted without touching runtime behaviour.
+- **Procedure**: `git revert 628a60157c` restores the previous Gate 2 fallback line. The finding document is additive and can be deleted without touching runtime behaviour.
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -218,7 +218,7 @@ Setup (read the chain) ──► Core (record the rules) ──► Verify (probe
 - [x] Monitoring alerts set (not applicable, since no service behaviour changed)
 
 ### Rollback Procedure
-1. `git revert 4e66155b6c` to restore the previous Gate 2 fallback text.
+1. `git revert 628a60157c` to restore the previous Gate 2 fallback text.
 2. Confirm `AGENTS.md` again names the previous command.
 3. Re-read the finding document, since it stays true either way.
 4. Notify nobody, since the change is internal to the repository's own instructions.
@@ -279,9 +279,9 @@ Setup (read the chain) ──► Core (record the rules) ──► Verify (probe
 
 | Milestone | Description | Success Criteria | Target |
 |-----------|-------------|------------------|--------|
-| M1 | Transport named | A file and line resolve the governing scorer | `03f5db4876` |
-| M2 | Reading rules frozen | Floor and rank rules recorded with evidence | `03f5db4876` |
-| M3 | Written gate agrees with the automation | `AGENTS.md` names the daemon CLI | `4e66155b6c` |
+| M1 | Transport named | A file and line resolve the governing scorer | `ab1881aeaf` |
+| M2 | Reading rules frozen | Floor and rank rules recorded with evidence | `ab1881aeaf` |
+| M3 | Written gate agrees with the automation | `AGENTS.md` names the daemon CLI | `628a60157c` |
 <!-- /ANCHOR:milestones -->
 
 ---

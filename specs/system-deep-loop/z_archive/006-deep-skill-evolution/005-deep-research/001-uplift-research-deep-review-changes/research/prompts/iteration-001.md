@@ -8,20 +8,20 @@ Expert researcher cataloging the upgrades shipped for deep-review in arc 118 (an
 This is ITERATION 1 of 10 on the question: **which 118 deep-review upgrades should propagate to deep-research?**
 
 The 118 arc shipped across these commits (origin/main, most recent first):
-- `56456514ce` fix(118): deep-review fix-pack — close P1/P2 advisories (groups 1/2/3/5)
-- `aa593eb897` review(118): deep-review iters 3-10 + synthesis — PASS hasAdvisories=true
-- `f8f3bdcac6` review(118): cli-devin SWE-1.6 deep-review iters 1-2
-- `d485837718` chore(118): deferred-items closure — strip MCP comments + restore 117 keywords
-- `14b40f23b3` chore(118/008): verify + changelog + closeout — deep-loop FULL_ISOLATE complete
-- `71042e1a33` chore(118): sk-doc canonical companions for deep-loop-runtime
-- `1a32678e7b` chore(118): sk-doc conformance pass on deep-loop-runtime SKILL.md + README.md
-- `be2e777a4f` feat(118/007): split tests by responsibility — runtime tests move to deep-loop-runtime/
-- `e590c12e19` feat(118/006): /doctor + system-code-graph collateral updates
-- `107c522599` feat(118/002-005): deep-loop FULL_ISOLATE transition
-- `954702a8f4` feat(118/001): scaffold deep-loop-runtime/ skeleton
-- `bd77886d0a` feat(118): scaffold deep-loop FULL_ISOLATE_NO_MCP phased arc
+- `3850237631` fix(118): deep-review fix-pack — close P1/P2 advisories (groups 1/2/3/5)
+- `6a2f5c5732` review(118): deep-review iters 3-10 + synthesis — PASS hasAdvisories=true
+- `e5368e1448` review(118): cli-devin SWE-1.6 deep-review iters 1-2
+- `3cc85ccfc0` chore(118): deferred-items closure — strip MCP comments + restore 117 keywords
+- `ee78835faf` chore(118/008): verify + changelog + closeout — deep-loop FULL_ISOLATE complete
+- `07a159bac2` chore(118): sk-doc canonical companions for deep-loop-runtime
+- `c46c431a1b` chore(118): sk-doc conformance pass on deep-loop-runtime SKILL.md + README.md
+- `300bfe603a` feat(118/007): split tests by responsibility — runtime tests move to deep-loop-runtime/
+- `243369d358` feat(118/006): /doctor + system-code-graph collateral updates
+- `35503d4b78` feat(118/002-005): deep-loop FULL_ISOLATE transition
+- `8e09f1ec6b` feat(118/001): scaffold deep-loop-runtime/ skeleton
+- `f41f5c9a5d` feat(118): scaffold deep-loop FULL_ISOLATE_NO_MCP phased arc
 
-Plus the 117 deliberation packet that preceded it: `1e35680075`.
+Plus the 117 deliberation packet that preceded it: `20527ff8a1`.
 
 ## ACTION
 
@@ -93,8 +93,8 @@ For each commit listed, look at the changes that touched deep-review or deep-loo
 
 `.opencode/specs/.../research/deltas/iter-001.jsonl`:
 ```jsonl
-{"iter":1,"change_id":"C-001","type":"RUNTIME-RELOCATION","scope":"lib/deep-loop/","evidence":"commit 107c522599","deep_review_specific":false,"bilateral":true}
-{"iter":1,"change_id":"C-002","type":"MCP-REMOVAL","scope":"4 handler files","evidence":"commit 107c522599 phase 004","deep_review_specific":false,"bilateral":true}
+{"iter":1,"change_id":"C-001","type":"RUNTIME-RELOCATION","scope":"lib/deep-loop/","evidence":"commit 35503d4b78","deep_review_specific":false,"bilateral":true}
+{"iter":1,"change_id":"C-002","type":"MCP-REMOVAL","scope":"4 handler files","evidence":"commit 35503d4b78 phase 004","deep_review_specific":false,"bilateral":true}
 ...
 ```
 

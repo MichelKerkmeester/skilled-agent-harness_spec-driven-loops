@@ -177,7 +177,7 @@ Required inventories:
 | Operator decision Q4 | Internal | Red | The exact-header flag cannot be designed; 003's gate falls back to a scripted per-file header assertion outside the verifier |
 | Operator decision Q5 | Internal | Red | The scan-root change cannot land; the wrapper stays near-vacuous and later children's deltas must be captured per-root by hand |
 | Operator decision Q2 | Internal | Yellow | The 020 amendment cannot be written; 002 and 003 work lists stay provisional at the deep-loop border |
-| Existing hotfix `a83080a83b` | Internal | Green | Already landed; this phase must not re-apply it, only fixture the failure mode |
+| Existing hotfix `5aeb2340b6` | Internal | Green | Already landed; this phase must not re-apply it, only fixture the failure mode |
 | `verify_alignment_drift.py` flag surface | Internal | Green | Confirmed at HEAD: `--root` (repeatable), `--fail-on-warn`, `--check-router` |
 <!-- /ANCHOR:dependencies -->
 

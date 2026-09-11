@@ -32,7 +32,7 @@ _memory:
 | **Spec Folder** | 031-route-gold-and-signal-remediation |
 | **Completed** | 2026-07-29 |
 | **Level** | 2 |
-| **Commits** | 0536eed47e (Lane 1), ae83eb38be (Lane 2) |
+| **Commits** | 99fac72521 (Lane 1), 3052a25110 (Lane 2) |
 <!-- /ANCHOR:metadata -->
 
 ---

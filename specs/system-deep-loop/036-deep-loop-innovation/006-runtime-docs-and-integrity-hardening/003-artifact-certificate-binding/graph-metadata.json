@@ -47,7 +47,8 @@
       ".opencode/skills/system-deep-loop/runtime/lib/sealed-reference-artifacts/artifact-events.ts",
       ".opencode/skills/system-deep-loop/runtime/lib/deep-ai-council-reducers/deep-ai-council-reducer.ts",
       ".opencode/skills/system-deep-loop/runtime/lib/model-benchmark-reducers/model-benchmark-reducer.ts",
-      ".opencode/skills/system-deep-loop/runtime/lib/deep-research-reducers/deep-research-reducer.ts"
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-research-reducers/deep-research-reducer.ts",
+      "runtime/vitest.config.ts"
     ],
     "entities": [
       {
@@ -108,6 +109,12 @@
         "name": "deep-research-reducer.ts",
         "kind": "code",
         "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-research-reducers/deep-research-reducer.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vitest.config.ts",
+        "kind": "code",
+        "path": "runtime/vitest.config.ts",
         "source": "derived"
       },
       {
@@ -187,17 +194,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Known Limitations",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Evidence is accepted on partial or metadata-only correspondence in twelve places",
     "created_at": "2026-07-31T01:25:20.255Z",
-    "last_save_at": "2026-08-30T15:39:21.682Z",
+    "last_save_at": "2026-09-11T16:42:25.177Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,14 +208,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:50b264b27862ccbb8de51ad3320fa10abc9ded88adf798b9f775b81f1c7121e2",
+    "source_fingerprint": "sha256:b1e1a668efa936e7e6b6ce17db1d6cf644165a0ca7a0aa91572db37387b90cc5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "46f054acfad9f4ac1e42ddb6bb42bc3896f79af3f90d227c92989e8e2285297e",
+      "spec.md": "10472efb192b287d4ff8d7fd2a28d9b2f2b89b7e967c0f94d52b62620d0af9fc",
       "plan.md": "72d51f9909d64704fcf83de45d9d17139c9a31b0b29f0e29f34263dc9ef519f6",
-      "tasks.md": "6ca8db2a736a27d697b90cfced02ed18b5ad179784472297b86b6352dfcb20ba",
+      "tasks.md": "0e40c233922bdc1268cda26c9a1c21e39613ce2528b81d871ffeeb4a78f53edc",
       "decision-record.md": "47dd75fb0f5171354a5b30f505b7fb0226ade240279e6df9a88fadbd5fbfabdf",
-      "implementation-summary.md": "a3181102ef2a779ba036cc1c8eed6d3ced013b9b036f3ea205888ce957020315"
+      "implementation-summary.md": "7ae95fecff29fa1f08e03e09fb0e17b90ea69538db53d25c11e57824dc3ef5e9"
     },
     "last_active_child_id": null,
     "last_active_at": null

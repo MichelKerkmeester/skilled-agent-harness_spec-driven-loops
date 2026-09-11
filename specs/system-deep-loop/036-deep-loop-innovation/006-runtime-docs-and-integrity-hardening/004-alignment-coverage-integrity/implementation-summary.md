@@ -13,7 +13,7 @@ _memory:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/004-alignment-coverage-integrity"
     last_updated_at: "2026-08-17T04:04:40Z"
     last_updated_by: "codex"
-    recent_action: "Landed as ca64df3f55+ee8c4dd67a+c83c53d44c+1578d8533e on skilled/v4.0.0.0"
+    recent_action: "Landed as ed8eb5d4cf+5e078ce498+2cd3eec4d8+46e806286e on skilled/v4.0.0.0"
     next_safe_action: "None — all findings landed"
     blockers: []
     key_files:
@@ -44,9 +44,9 @@ _memory:
 | **Completed** | 2026-08-07 |
 | **Level** | 3 |
 | **Status** | Completed |
-| **Candidate SHA** | `9229cb8f3e281c9291e6d631237528bc755e6f4b` |
-| **Landed Commits** | `ca64df3f55` + `ee8c4dd67a` + `c83c53d44c` + `1578d8533e` on `skilled/v4.0.0.0` |
-| **Rollback** | Restore the touched implementation and test files to `5c98e4654e4bcaf2c7002412d6da2b92f1793942`; preserve the `leaf-artifact-writer.ts` 020 module header when restoring. |
+| **Candidate SHA** | `2d12dfc5f5f365f396c51a7dea1c7cb825f5501b` |
+| **Landed Commits** | `ed8eb5d4cf` + `5e078ce498` + `2cd3eec4d8` + `46e806286e` on `skilled/v4.0.0.0` |
+| **Rollback** | Restore the touched implementation and test files to `0c5c966015760b053edc39722b06fa3f121a4cfa`; preserve the `leaf-artifact-writer.ts` 020 module header when restoring. |
 <!-- /ANCHOR:metadata -->
 
 ### Executive Summary
@@ -101,7 +101,7 @@ The leaf writer requires `dispatchedSlice` and per-artifact evidence without res
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The work followed confirm-first red/green cycles: the cited implementation sites were re-read at HEAD, each residual defect received a failing fixture before its patch, and the affected alignment and runtime suites were run per file. The change landed as `ca64df3f55` (leaf-artifact-writer + reducer), `ee8c4dd67a` (alignment-identity.cjs), `c83c53d44c` (deep-alignment scripts and tests), and `1578d8533e` (mode-registry backend registration) on `skilled/v4.0.0.0`.
+The work followed confirm-first red/green cycles: the cited implementation sites were re-read at HEAD, each residual defect received a failing fixture before its patch, and the affected alignment and runtime suites were run per file. The change landed as `ed8eb5d4cf` (leaf-artifact-writer + reducer), `5e078ce498` (alignment-identity.cjs), `2cd3eec4d8` (deep-alignment scripts and tests), and `46e806286e` (mode-registry backend registration) on `skilled/v4.0.0.0`.
 
 An independent read-only reviewer returned CONFIRMED PASS after probing the status-less failed-delta exclusion, target-object live receipt, seal/workflow wiring, registry identity, and scoped comment/ID hygiene.
 <!-- /ANCHOR:how-delivered -->

@@ -51,7 +51,7 @@ Pass 1 of the drift audit corrected four feature docs to say their claimed shipp
 
 1. **Summary-fusion lane**: added the missing measured-rejection reason (Recall@20 -0.036, displacement-only) and the guessed-weight caveat pass 1 didn't include.
 2. **Seeded-PPR**: added exact 0.0000-delta numbers and a forward-pointer to the parallel revisit project, later finalized with that project's real CUT-confirmed verdict once it completed.
-3. **C4 shadow-weight promoter**: fixed a factually-wrong "never committed" claim in three docs - it was committed at `10c5b61493` and deleted at `8efcde0e6b` alongside its only consumer.
+3. **C4 shadow-weight promoter**: fixed a factually-wrong "never committed" claim in three docs - it was committed at `7cd16f70fa` and deleted at `6b99eb68d2` alongside its only consumer.
 4. **Outcome-weighted ranking**: fixed pass-1's own incorrect "never committed" claim, plus a dangling link to a folder that no longer exists.
 5. **045-drift-audit-remediation pointer**: added a short follow-up note in the prior pass's own docs, without altering its completion status.
 

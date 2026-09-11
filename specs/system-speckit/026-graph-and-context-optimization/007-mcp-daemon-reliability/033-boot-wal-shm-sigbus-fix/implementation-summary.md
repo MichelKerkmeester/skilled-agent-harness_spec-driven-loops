@@ -52,7 +52,7 @@ _memory:
 ## What Was Built
 
 **Status: COMPLETE.** The boot-time health check that silently reverted the 2026-07-05
-`journal_mode=DELETE` SIGBUS mitigation (commit `8807393bea`) back to `WAL` on every daemon
+`journal_mode=DELETE` SIGBUS mitigation (commit `9063556fc8`) back to `WAL` on every daemon
 restart no longer does so. `DELETE` (and legacy `WAL`, for back-compat) are now treated as
 valid, healthy states — no mutation. Any other, truly unexpected mode is logged but never
 force-changed.

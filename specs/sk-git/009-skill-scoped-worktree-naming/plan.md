@@ -102,19 +102,19 @@ WRAPPER      := "work/" RUNTIME "/" TIMESTAMP "-" PID     (exempt, local-only)
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
-### Phase 1 — Codify the contract (shipped — `2eb1bf2974`)
+### Phase 1 — Codify the contract (shipped — `960f121f21`)
 
 Rewrite sk-git ALWAYS #4 to the owner-first grammar; tighten cleanup ordering (worktree remove before branch delete); add rules for the allocator, migration, and active-worktree protection; update references, advisor keywords/`Owns:`, `graph-metadata.json`, manual-testing playbook, and a `v1.2.0.0` changelog.
 
-### Phase 2 — Allocator + validator (shipped — `bdb31a31db`, 31/31)
+### Phase 2 — Allocator + validator (shipped — `252b7302b2`, 31/31)
 
 Add `.opencode/skills/sk-git/scripts/worktree-naming.sh` (`load_skill_ids`, `validate_owner/slug/branch/pair`, `allocate_number` under a common-dir lock, `create_named_worktree`, `create_detached_worktree`) plus a shell test harness covering valid classes, invalid forms, duplicate/concurrent allocation, detached numbering, and the wrapper exemption.
 
-### Phase 3 — Wrapper/reaper hardening (shipped — `925ca3c738`, 9/9)
+### Phase 3 — Wrapper/reaper hardening (shipped — `f64a08df63`, 9/9)
 
 `worktree-session.sh`: validate runtime input; write a session-activity marker before `exec`; disable auto-reap on marker-write failure. `worktree-reaper.sh`: only auto-reap exact wrapper pairs; keep on live/missing/ambiguous marker; resolve the merge target from the recorded live branch (not `main`); make human worktrees report-only; never `--force`.
 
-### Phase 4 — Enforcement rollout (shipped — `6e6fdfb57d`, 8/8)
+### Phase 4 — Enforcement rollout (shipped — `e328a758e6`, 8/8)
 
 Versioned `pre-push` that validates only new remote-branch creation, accepts task/release/reserved forms, rejects wrapper and other non-conformant refs (including `backup/*` — the earlier backup wildcard was removed during implementation) on push, permits legacy-branch updates with a warning, and never blocks `skilled/v*`. Wire the installer, hook README, and CI fixture matrix. PR head-name enforcement stays non-blocking until legacy PR branches are inventoried.
 

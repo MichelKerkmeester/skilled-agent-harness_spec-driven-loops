@@ -19,7 +19,7 @@ contextType: "implementation"
 
 ### Summary
 
-This child phase executed (commit ab405fa052). The system-spec-kit feature_catalog was reviewed against current shipped behavior and 12 files were aligned, fixing stale source-reference paths and drift across the retrieval, discovery, pipeline-architecture, governance and context-preservation entries. No catalog entry was added or removed, so the count self-checks still hold, and every corrected path was verified to resolve.
+This child phase executed (commit 7b74ddfbe5). The system-spec-kit feature_catalog was reviewed against current shipped behavior and 12 files were aligned, fixing stale source-reference paths and drift across the retrieval, discovery, pipeline-architecture, governance and context-preservation entries. No catalog entry was added or removed, so the count self-checks still hold, and every corrected path was verified to resolve.
 
 ### Added
 
@@ -40,7 +40,7 @@ This child phase executed (commit ab405fa052). The system-spec-kit feature_catal
 
 | Check | Result |
 |-------|--------|
-| Cleanup execution | Executed at ab405fa052, 12 catalog files aligned, 0 entries added or removed |
+| Cleanup execution | Executed at 7b74ddfbe5, 12 catalog files aligned, 0 entries added or removed |
 | Task completion | PASS, all tasks done, 0 open |
 | Strict validation | PASS, 0 errors and 0 warnings |
 

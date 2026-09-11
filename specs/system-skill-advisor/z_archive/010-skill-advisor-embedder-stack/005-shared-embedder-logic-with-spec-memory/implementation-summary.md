@@ -27,7 +27,7 @@ _memory:
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary-core | v2.2 -->
 
-> **Status: SHIPPED (original + Round 2 hardening).** The original 5-step plan shipped 2026-05-21 (`5d1ed78ae1`) with a same-day deep-review remediation (`12a322aa45`), but this packet's spec/plan/tasks docs were never updated to say so until this doc pass — only `implementation-summary.md` itself told the truth. A Round 2 pass on 2026-07-08 found and fixed a real cross-server database-path leakage defect, hardened provider persistence, and shipped an empirically-verified (not categorically-guaranteed) onnx shutdown-crash mitigation in a shared binary. Live daemon smoke (originally T017, still not executed as literally scoped) remains the one open operator-side gap — see Known Limitations.
+> **Status: SHIPPED (original + Round 2 hardening).** The original 5-step plan shipped 2026-05-21 (`5d1ed78ae1`) with a same-day deep-review remediation (`23e7b6b6b3`), but this packet's spec/plan/tasks docs were never updated to say so until this doc pass — only `implementation-summary.md` itself told the truth. A Round 2 pass on 2026-07-08 found and fixed a real cross-server database-path leakage defect, hardened provider persistence, and shipped an empirically-verified (not categorically-guaranteed) onnx shutdown-crash mitigation in a shared binary. Live daemon smoke (originally T017, still not executed as literally scoped) remains the one open operator-side gap — see Known Limitations.
 
 ### Remediation commit (after deep-review iter-001)
 

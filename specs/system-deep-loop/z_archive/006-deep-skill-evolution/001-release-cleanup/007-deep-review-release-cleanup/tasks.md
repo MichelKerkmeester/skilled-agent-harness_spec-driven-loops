@@ -128,7 +128,7 @@ _memory:
 - [x] T060 For each artifact in scope: reload sk-doc template, diff structural sections, score template-match %
 - [x] T061 Emit per-artifact entry to `validation-report.jsonl` (schema-validated) — 96 rows, 96/96 valid
 - [x] T062 Compile `validation-report.md` human-readable summary
-- [x] T063 **STOP. Surface report to human.** — pushed as commit `1d316482c3`
+- [x] T063 **STOP. Surface report to human.** — pushed as commit `a77d13fa5f`
 - [x] T064 Wait for explicit human approval — operator replied "Approve" on 2026-05-23
 - [x] T065 Record approval in `decision-record.md` as ADR-006 (date, approver, scope) — ADR-006 Accepted
 - [x] T066 Confirm ADR-006 present before any phase-5 dispatch begins — verified, status Accepted

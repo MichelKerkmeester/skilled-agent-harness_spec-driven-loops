@@ -31,7 +31,7 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions:
-      - "The scaffold is fixed at the wrapper's root resolution, and the same edit landed concurrently in 743e626543."
+      - "The scaffold is fixed at the wrapper's root resolution, and the same edit landed concurrently in ccbff09cfb."
       - "The parity pin was never reachable from committed inputs. Both scorers now honour the database directory override, the test pins the CI regime, and the pins read 109 and 102."
       - "trigger_phrases died because spec-kit's keyword list gained trigger-phrases, whose variants tie sk-doc's explicit evidence and trip the low-information abstention. The keyword is removed and the signal resolves again."
       - "The strict validator's placeholder rule matches two marker forms only, never bracketed template text, which is why a boilerplate spec validated. Recorded with owner system-spec-kit."
@@ -61,13 +61,13 @@ record relies on was opened and read before it was repeated here.
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted, implemented in `743e626543` and completed here |
+| **Status** | Accepted, implemented in `ccbff09cfb` and completed here |
 | **Date** | 2026-09-05 |
 | **Deciders** | Operator |
 
 ### Context
 
-`b4c2484696` nested the spec-kit CLI workspace from `scripts/` to `runtime/cli/`. The
+`f65b8f1e5b` nested the spec-kit CLI workspace from `scripts/` to `runtime/cli/`. The
 render wrapper `inline-gate-renderer.sh` resolves its skill root one directory up from
 itself and expects `node_modules/tsx/dist/loader.mjs` there. Before the move that was
 `scripts/`, which carried its own `node_modules`. After it, that is `runtime/cli`, whose
@@ -94,7 +94,7 @@ this phase found after the first three had been fixed. Two are absolute and one 
 
 Point all four at the skill root, three levels up, which is the spelling
 `template-utils.sh` already uses beside them. Leave the fallback as it is. The identical
-edit to the first three landed concurrently in `743e626543`, from
+edit to the first three landed concurrently in `ccbff09cfb`, from
 `specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting`, so
 this tree carries no diff for them. The fourth, in `runtime/cli/tests/inline-gate-renderer.vitest.ts`,
 is this phase's diff.
@@ -135,7 +135,7 @@ is this phase's diff.
 
 `python-ts-parity.vitest.ts` pinned the Python reference at 112 gold-correct top-1 calls,
 the native scorer preserving 107 of them, and an accepted regression list of five ids. The
-pin was last set on 2026-09-01 in `35721a4db7`. The suite is in no workflow under
+pin was last set on 2026-09-01 in `7bc5d546e3`. The suite is in no workflow under
 `.github/`.
 
 On 2026-09-05 two identical local runs returned 113 and 108 with 5 regressions, then 114
@@ -221,8 +221,8 @@ external executor, and a phrase naming another skill's runtime was never inside 
 `trigger_phrases`, declared by `sk-doc`, went from RESOLVED at 0.488 to NO_RECOMMENDATION
 with both scorers returning nothing and no rejection reason. The investigation found the
 mechanism in four steps. `system-spec-kit/SKILL.md:8` gained the keyword `trigger-phrases`
-in `cf6a635703` on 2026-09-03, which reached this branch through the merge `144897ba5d`
-after the sweep tree `726af58b4c` was measured. `lib/scorer/text.ts:40` expands a keyword
+in `0969611e24` on 2026-09-03, which reached this branch through the merge `6b06d6c892`
+after the sweep tree `f26f92cff3` was measured. `lib/scorer/text.ts:40` expands a keyword
 into its hyphen, space and underscore variants, so spec-kit acquired the explicit evidence
 `author:trigger_phrases`, byte-identical to sk-doc's. Identical evidence gives identical
 confidence, 0.82 each, which `lib/scorer/ambiguity.ts:33` clusters on a zero confidence gap

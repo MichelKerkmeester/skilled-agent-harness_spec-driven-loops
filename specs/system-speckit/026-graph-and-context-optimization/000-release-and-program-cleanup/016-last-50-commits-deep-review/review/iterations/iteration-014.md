@@ -10,7 +10,7 @@ trigger_phrases: []
 - **Dimension:** maintainability
 - **Angle:** A6-verify — adversarial re-verification of F-A6-01 (P1 auto-fix default-ON coverage gap from iter 7)
 - **Budget profile:** adjudicate (target 8-10 tool calls; referee/skeptic pass on a single carried-forward finding)
-- **Review target:** git range `a9e9bdb0a5^..HEAD` (HEAD `12de3d3a7e`)
+- **Review target:** git range `fd67ede05f^..HEAD` (HEAD `3923a65db1`)
 - **Session:** `2026-06-05T11:16:17Z` (generation 1, lineageMode new)
 - **Parallel-safety:** wrote ONLY `iterations/iteration-014.md` + `deltas/iter-014.jsonl`. Did NOT touch `deep-review-state.jsonl`, `deep-review-strategy.md`, findings-registry, or config (concurrent dispatch).
 

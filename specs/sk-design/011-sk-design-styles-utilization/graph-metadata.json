@@ -146,18 +146,18 @@
     ],
     "causal_summary": "Packet `010-sk-design-styles-from-refero` extracts ~1,290 real design systems into `.opencode/skills/sk-design/styles/`, each a folder of DESIGN.md + CSS-variables + Tailwind-v4 + design-tokens + provenance",
     "created_at": "2026-07-18T09:21:31.581Z",
-    "last_save_at": "2026-09-08T04:49:13.240Z",
+    "last_save_at": "2026-09-11T16:41:54.470Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:6a1bfaee3ba33483ad216f0a7d5c463428338eae237e294ad69344f0d56858c4",
+    "source_fingerprint": "sha256:0c52e03805c0eb1a4927e4ed77634a9a887466acb2cef4d988f205746e1b6bef",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "701f9aa5caa852425f16b9b6f8c8768798f9dabe2c7caa1e53e7bdd1fcb7082f",
-      "handover.md": "4565099b9b68015a99b9335c3a78071a662aa623be010d4fd7c66fee22be6219"
+      "handover.md": "0203e555fe2766f2d8f94ec7b92dfa7aa89580e007ec8b17fb02d1fb64fcc62f"
     },
     "last_active_child_id": "sk-design/011-sk-design-styles-utilization/009-foundations-motion",
     "last_active_at": null

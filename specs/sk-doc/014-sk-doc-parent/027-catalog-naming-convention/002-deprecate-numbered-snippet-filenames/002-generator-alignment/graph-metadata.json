@@ -189,7 +189,7 @@
     ],
     "causal_summary": "Phase 002 of the numbered-snippet-filename deprecation. Fix playbook-generator.cjs so it emits descriptive-slug scenario filenames (with an optional stage: frontmatter field) instead of AG-NNN.md, and re-verify that the sk-doc convention docs (create-feature-catalog, create-manual-testing-playbook), their templates, and the four /create:* generator YAMLs already forbid numbered per-feature filenames. Small foundation phase — no folders renamed, no existing files touched here.",
     "created_at": "2026-07-11T14:47:54.283Z",
-    "last_save_at": "2026-09-11T04:36:08.650Z",
+    "last_save_at": "2026-09-11T16:42:01.151Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,13 +198,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2d2aeb2fd448a9fe9407c7bdda746dc9e0f2a2a04e0fa2c15462551f6013f296",
+    "source_fingerprint": "sha256:1aaf554a131d1ddfced60fd79ec17e5b2299b4b38dead95a5ad09ff7d4fc0cad",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "bd70eb3b4f0b7259a5024a66c596a68ad0a282943efc94ecd70fb722dc5f0019",
       "plan.md": "91c3661f0fcb88edcf416edd5c4d070badb2c0cf135d82219f4d35667da3a293",
       "tasks.md": "de145bc2f9002f1b4f6cbea2d6477e0891e09ed9b7f8d9b9085f9a8dfc9c4ce5",
-      "implementation-summary.md": "635d3dfa44e1c219e55098a6cb40ef2c0b22e98d4a12ad8e60ca1b89c559fa14"
+      "implementation-summary.md": "bceb54528d75a58c95d62d73136abc8db466e54d34e3d10d2cac651958ac6a0f"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -193,7 +193,7 @@
     ],
     "causal_summary": "The `.opencode/plugins/mk-dist-freshness-guard.js` plugin emitted stale-dist warnings with `console.warn` and `console.error` during `tool.execute.before` for risky `opencode run` / `validate.sh` commands and once per session during `session.created`",
     "created_at": "2026-07-04T00:00:00Z",
-    "last_save_at": "2026-08-30T15:39:10.827Z",
+    "last_save_at": "2026-09-11T16:41:50.574Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d35ffcb38f91a608fa488b05ce6c93a2db7a3adb218c860399ab577b1645dff9",
+    "source_fingerprint": "sha256:c2b52df919a2e288519d477fb5f400a7ddda96aff2d969fd4102dbec09c894e8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "71e3666ad0820d928c97e0afc07f9ebd0d38f15cbf4db6d00a7df9591cbd6bca",
-      "plan.md": "7e164f123b665036a01fb266efa7b157b466a9d66287635377d611252f961846",
-      "tasks.md": "8e16610cc70fa81362f6769436f6e6b8c6c9a3ee5b25de6115ad867d807f1377",
-      "implementation-summary.md": "02210770537a00134f0424e178cb8714aaf2f7b00f26a834e9bf9ee8c3e5cff9"
+      "spec.md": "3075d4b68eb5ee504afe87291cbb69381c74300516ffbd1a933032ed8c7eb076",
+      "plan.md": "784d357c63b7cde1dbe16fd83e72866c38686fe6e9a73f8dc6530a5e9edf287d",
+      "tasks.md": "a91b11a79bc9ec0fb2fa32b75f53fed695258d53e9bfa558475a41a5ad783cbd",
+      "implementation-summary.md": "698cbebae5c9ec80303f93fdde429153a9f3a0aca7e9fcbd50c9fe28d42da993"
     },
     "last_active_child_id": null,
     "last_active_at": null

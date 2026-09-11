@@ -36,7 +36,7 @@ trigger_phrases: []
   `.opencode/specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/008-existing-readme-cleanup/tasks.md:52`  
   `.opencode/specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/008-existing-readme-cleanup/implementation-summary.md:52`
 
-  Evidence: Tasks T003–T008 describe six completed “repair” batches totaling 100 files. The implementation summary simultaneously says only 64 READMEs were repaired, which matches commit `a4b492c644` exactly: 64 modified READMEs and one deletion. The remaining 36 outcomes are not explained.
+  Evidence: Tasks T003–T008 describe six completed “repair” batches totaling 100 files. The implementation summary simultaneously says only 64 READMEs were repaired, which matches commit `81dacd794d` exactly: 64 modified READMEs and one deletion. The remaining 36 outcomes are not explained.
 
   Fix: Describe the 100 files as candidates reviewed, then record that 64 required edits and 36 were verified no-ops/false positives. Otherwise, identify the uncompleted repairs.
 
@@ -44,6 +44,6 @@ trigger_phrases: []
 
   `.opencode/specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/008-existing-readme-cleanup/checklist.md:42`
 
-  Evidence: CHK-001 calls the input “171 raw broken refs,” while the same checklist at lines 53 and 66—and the spec and implementation summary—claim a 177→119 phase result. Commit `9015dbfadd`, immediately before the phase-008 implementation commit, repaired audit findings in five newly authored READMEs, making a staged 177→171→119 interpretation plausible but undocumented.
+  Evidence: CHK-001 calls the input “171 raw broken refs,” while the same checklist at lines 53 and 66—and the spec and implementation summary—claim a 177→119 phase result. Commit `2047307dae`, immediately before the phase-008 implementation commit, repaired audit findings in five newly authored READMEs, making a staged 177→171→119 interpretation plausible but undocumented.
 
   Fix: Record the stages explicitly: 177 before post-authoring reconciliation, 171 entering phase 008, and 119 after phase 008. Attribute each delta to its commit.

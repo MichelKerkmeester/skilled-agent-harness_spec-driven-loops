@@ -44,7 +44,7 @@ _memory:
 | **Date** | 2026-07-05 |
 | **Decision Owner** | Fable-5 adjudication requested as "let fable 5 decide" |
 | **Scope** | BM25 scoped fill-limit regression |
-| **Implemented In** | Commit `e4fcccc320` |
+| **Implemented In** | Commit `32c1aea94f` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -81,10 +81,10 @@ The refinement keeps the useful performance saving by resolving metadata in rank
 
 | Evidence | Finding |
 |----------|---------|
-| 2026-06-11 fix `6c0e1dee207` | Corpus-bounded over-fetch was deliberate scoped-search behavior, and comments remained in the file. |
-| 016/010 performance commit `d17b0d7b99` | Introduced `limit*3` while claiming it changed performance "without changing what search returns". |
-| Test drift commit `8142e1dae3` | Deleted-column drift masked the scoped fill-limit regression. |
-| Empirical A/B | Current behavior showed 0/25 and 0/75 in adversarial scoped fixtures, while `d17b0d7b99~1` produced 3/3. |
+| 2026-06-11 fix `841cd832149` | Corpus-bounded over-fetch was deliberate scoped-search behavior, and comments remained in the file. |
+| 016/010 performance commit `51b63d8bcb` | Introduced `limit*3` while claiming it changed performance "without changing what search returns". |
+| Test drift commit `91b9cbb7b5` | Deleted-column drift masked the scoped fill-limit regression. |
+| Empirical A/B | Current behavior showed 0/25 and 0/75 in adversarial scoped fixtures, while `51b63d8bcb~1` produced 3/3. |
 | BM25 engine behavior | Both BM25 engines full-sort regardless of `k`, so the `limit*3` cap saved only metadata SELECT volume, not ranking work. |
 | Post-fix verification | `stress:harness` 45/45, `hybrid-search.vitest` 102/102, `tsc` clean, regression baseline delta 0. |
 <!-- /ANCHOR:evidence -->

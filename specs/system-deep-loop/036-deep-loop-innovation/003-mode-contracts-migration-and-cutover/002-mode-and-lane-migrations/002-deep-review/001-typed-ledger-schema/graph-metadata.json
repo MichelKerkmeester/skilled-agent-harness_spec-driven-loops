@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Plan the Deep Review mode event vocabulary over the shared typed append-only ledger: a versioned envelope specialization, typed review lifecycle, scope and dimension passes, candidate findings, adjudication, convergence, and review-report handoff. This phase defines events and upcaster hooks only; reducers and projections belong to the next sibling.",
     "created_at": "2026-07-16T03:43:32.178Z",
-    "last_save_at": "2026-08-30T15:39:20.990Z",
+    "last_save_at": "2026-09-11T16:42:22.313Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,14 +205,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:77894a099541fb89398f00c3cc7bae4848c4dfc6b2bb63bc70378d91c44fcade",
+    "source_fingerprint": "sha256:1dd5ccac529d31a7ede556896f00643ea76d697f3c63854803fd97a9b44034e6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1420463ef4c8196e3b70e1103d9ed015595e1e2807234d7eec8ece9bf318415d",
       "plan.md": "0501b4371a7224d037c634fa70bdcfa85ad480aa59dcb8c3f6e01fbfe991a36e",
       "tasks.md": "a9217b0fde85304c43604fb6b22eddbbb05ef6456218a30697210d0f3d3f54d6",
       "decision-record.md": "4422ac4dc0bee015396461f0eb58b77b969b5cb6aa439893cd35e0588f07a84a",
-      "implementation-summary.md": "65b2a657e4f78219d075cb116b50c8e164d8fa68c427cdea58d8019cc1f36dc6"
+      "implementation-summary.md": "665aa788b6f18923d260de6c5fcb74b902f16fae73d1352e40377007e96cac81"
     },
     "last_active_child_id": null,
     "last_active_at": null

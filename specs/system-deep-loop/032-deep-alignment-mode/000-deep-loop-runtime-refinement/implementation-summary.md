@@ -53,7 +53,7 @@ Two phases against the same 62-finding corpus. First a triage: read both source 
 1. Read `research.md` end to end (all 17 sections) and `deep-review-findings-registry.json` for review's real findings.
 2. Identified two findings independently corroborated by BOTH loops using different methods — the strongest confidence signal available: the canonical-agent contract-drift class, and the reduce-state content-extraction bug class.
 3. Spot-verified every remaining Tier-2 candidate's cited file:line directly rather than trusting the source document's claim.
-4. Applied the Tier 1+2 fixes after operator confirmation (2026-07-11), each test-gated against the existing suites — commits `0803969e41` and `3e9892a9c0` (Tier 1+2 core), `a8b3f0af01` (a further 32 dogfood findings). Example: `deep-research/scripts/reduce-state.cjs:1556` now matches `###` (H3) headings, fixing the `keyFindings`-stuck-at-0 bug.
+4. Applied the Tier 1+2 fixes after operator confirmation (2026-07-11), each test-gated against the existing suites — commits `077a2cc7d0` and `da6e82357d` (Tier 1+2 core), `395d5cf346` (a further 32 dogfood findings). Example: `deep-research/scripts/reduce-state.cjs:1556` now matches `###` (H3) headings, fixing the `keyFindings`-stuck-at-0 bug.
 5. Deferred Tier 3 (loop-lock nonce ownership, the deep-improvement `minReplayCount:3` repeatability gate, and the ~50 lower-tier P2 items) to a follow-up pass rather than inflating this packet's scope.
 <!-- /ANCHOR:how-delivered -->
 
@@ -77,7 +77,7 @@ Two phases against the same 62-finding corpus. First a triage: read both source 
 | Check | Result |
 |-------|--------|
 | Every Tier-1/Tier-2 finding's citation spot-checked | Confirmed — each cited file:line read directly, not assumed from the source document |
-| Tier 1+2 fixes applied | Confirmed — commits `0803969e41`, `3e9892a9c0`, `a8b3f0af01`; the `reduce-state.cjs` H3-heading fix is present at `deep-research/scripts/reduce-state.cjs:1556` |
+| Tier 1+2 fixes applied | Confirmed — commits `077a2cc7d0`, `da6e82357d`, `395d5cf346`; the `reduce-state.cjs` H3-heading fix is present at `deep-research/scripts/reduce-state.cjs:1556` |
 | Runtime test suite | 73 files / 721 tests pass (green) |
 | Compiled command-contract drift | Clean (`[CONTRACT DRIFT] OK commands=3`) |
 | Packet strict validation | `validate.sh --recursive --strict` on `032-deep-alignment-mode` = 12/12 PASSED, 0 FAILED |

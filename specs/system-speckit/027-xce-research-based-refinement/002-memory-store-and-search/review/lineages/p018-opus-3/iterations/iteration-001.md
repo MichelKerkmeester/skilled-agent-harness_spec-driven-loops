@@ -5,7 +5,7 @@ trigger_phrases: []
 # Iteration 1: Full-spectrum review (correctness, security, traceability, maintainability)
 
 ## Focus
-Single-iteration review (maxIterations=1) of the 018 reindex-scan responsiveness + cancellability fix. All four dimensions covered in one pass over the actual diff (`f1dbb676f2`) and current source state. Scope per spec: the event-loop starvation defect inside `runIndexScan`, the `processBatches` early-abort, and the in-process cancel mirror. The launcher lease-heartbeat re-election is explicitly out of scope (separate supervision subsystem, documented follow-on).
+Single-iteration review (maxIterations=1) of the 018 reindex-scan responsiveness + cancellability fix. All four dimensions covered in one pass over the actual diff (`a48325ab74`) and current source state. Scope per spec: the event-loop starvation defect inside `runIndexScan`, the `processBatches` early-abort, and the in-process cancel mirror. The launcher lease-heartbeat re-election is explicitly out of scope (separate supervision subsystem, documented follow-on).
 
 Files under review:
 - `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts` (tail loops, processBatches call site, background dispatch hook)
@@ -54,7 +54,7 @@ None.
 - `isCancelRequestedFast` is allocation/IO-free (`job-store.ts:335-338`, `Set.has`); the background dispatch routes `isCancelled` through it (`memory-index.ts:1444`); the durable `cancel_requested` column still backs status/recovery via `isCancelRequested` (`job-store.ts:329-333`). The bare `isCancelRequested` import was correctly dropped from the handler (grep for `\bisCancelRequested\b` in handler returns zero).
 
 ### Traceability note (could not independently re-run)
-SC-001 / REQ-004 assert "68 tests pass across batch-processor, job-store, job-queue, job-queue-state-edge, handler-memory-index-scan-jobs." This review could not re-run the suite (`npx`/`vitest` are blocked in this sandboxed review environment). The claim is asserted by commit `f1dbb676f2` and implementation-summary.md:89, and the mock-parity change required to keep the suite green is present at `tests/handler-memory-index-scan-jobs.vitest.ts:107`. No evidence contradicts the claim; it is recorded as asserted-not-independently-verified rather than as a finding.
+SC-001 / REQ-004 assert "68 tests pass across batch-processor, job-store, job-queue, job-queue-state-edge, handler-memory-index-scan-jobs." This review could not re-run the suite (`npx`/`vitest` are blocked in this sandboxed review environment). The claim is asserted by commit `a48325ab74` and implementation-summary.md:89, and the mock-parity change required to keep the suite green is present at `tests/handler-memory-index-scan-jobs.vitest.ts:107`. No evidence contradicts the claim; it is recorded as asserted-not-independently-verified rather than as a finding.
 
 ## Ruled Out
 - "Index drift after early-abort": ruled out — partial `results` are in batch order and tallied via positional `filesToIndex[i]`; cancelled runs return the envelope, discarding the partial tally. Evidence: `memory-index.ts:1036-1038`, `:1178`.

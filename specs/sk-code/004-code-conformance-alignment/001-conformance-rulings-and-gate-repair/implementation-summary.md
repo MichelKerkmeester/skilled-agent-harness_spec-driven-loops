@@ -56,7 +56,7 @@ The installed hook paths, comment-hygiene matcher, test naming table, Node disco
 
 ### Baseline anchor
 
-- `git rev-parse HEAD` returned `719ad8f638c54084c3354ed53b0a0a8bfdafce56`.
+- `git rev-parse HEAD` returned `cf5c8d5ec1bfbfdc9cead654c7957c2910739f53`.
 - The packet-scoped `git status --short` was empty before the baseline capture.
 - The baseline command was `python3 .opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py --root <R>` for each listed root. Output receipts below preserve the verifier's verdict/count lines and SHA-256 of each captured output.
 

@@ -53,7 +53,7 @@ Work landed in two commits on 2026-05-14: `2ad7f79fa` for config parity and `b74
 
 | Check | Result |
 |-------|--------|
-| `git show 50cfabb6e2 --stat` | PASS: local rename commit found. Requested SHA `7cfc16ed9` absent from this checkout. |
+| `git show a0c46439dd --stat` | PASS: local rename commit found. Requested SHA `7cfc16ed9` absent from this checkout. |
 | Config legacy grep | PASS: no `system_code_graph` or `system-code-graph-launcher` matches in any of the four runtime configs. |
 | JSON parse (`opencode.json`, `.claude/mcp.json`, `.gemini/settings.json`) | PASS: all three parse cleanly with Node/JSON tooling. |
 | TOML parse (`.codex/config.toml`) | PASS: parses with Python 3.11 `tomllib`. |

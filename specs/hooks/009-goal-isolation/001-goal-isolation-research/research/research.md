@@ -25,7 +25,7 @@ The two systems coexist by design — neither reads the other's state file. [SOU
 | **OpenCode** | mk-goal plugin | `.opencode/plugins/mk-goal.js` | PRESENT — per-session state |
 | **Pi** | goal-context.ts | `.opencode/hooks/goal/pi/goal-context.ts` | PRESENT — input/session_start/turn_end hooks |
 | **Cursor** | goal-inject.mjs | `.opencode/hooks/goal/cursor/goal-inject.mjs` | PRESENT — sessionStart-only injection |
-| **Devin** | goal-inject/session-start/verify.mjs | `.opencode/hooks/goal/devin/` | **DECOMMISSIONED** — files deleted in commit `cac19bbfa5e`, registration reverted in `.devin/hooks.v1.json`. Do NOT restore. [SOURCE: git log, .devin/hooks.v1.json] |
+| **Devin** | goal-inject/session-start/verify.mjs | `.opencode/hooks/goal/devin/` | **DECOMMISSIONED** — files deleted in commit `a2241041b09`, registration reverted in `.devin/hooks.v1.json`. Do NOT restore. [SOURCE: git log, .devin/hooks.v1.json] |
 | **Claude Code** | None (uses mk-goal symlink) | `.claude/commands` → `.opencode/commands` | No dedicated adapter; falls under OpenCode's mk-goal if plugin loads in Claude context. [SOURCE: goal-plugin.md:140] |
 | **Codex** | None | — | No goal integration of any kind. [SOURCE: goal-plugin.md:140] |
 
@@ -94,7 +94,7 @@ The OpenCode mk-goal plugin already demonstrates session-scoped state isolation 
 
 3. **How does the current Pi goal plugin store, inject, verify, pause, complete, and clear goal state?** → ANSWERED in iteration 1.
 
-4. **Does the current Devin adapter still work against the latest runtime?** → The Devin adapter was **decommissioned** in commit `cac19bbfa5e` (`feat(goal)!: decommission Devin commands + goal hook`). Adapter files removed, registration reverted from `.devin/hooks.v1.json`. Should NOT be restored — it was explicitly decommissioned.
+4. **Does the current Devin adapter still work against the latest runtime?** → The Devin adapter was **decommissioned** in commit `a2241041b09` (`feat(goal)!: decommission Devin commands + goal hook`). Adapter files removed, registration reverted from `.devin/hooks.v1.json`. Should NOT be restored — it was explicitly decommissioned.
 
 5. **What cross-session collision scenario reproduces the leak in Pi, and what is the minimal structural fix?** → ANSWERED in iteration 1 (collision trace) and iteration 2 (full arc through `resolveStateDir`). Minimal structural fix: thread a session-scoping key through `resolveStateDir` so it returns a per-runtime or per-session subdirectory/file rather than a single shared path. `resolveStateDir` is the single choke point — change it and every function downstream inherits the isolation.
 
@@ -268,7 +268,7 @@ There is no compatibility fallback to an implicit default session. Native Pi man
 | REQ-002 (verified evidence) | ✅ | Every finding cites current source file lines, git history, or test evidence |
 | REQ-003 (session identity) | ✅ | Pi native lifecycle/command context and Cursor hook payload are confirmed; management stays unsupported where the same id cannot be supplied |
 | REQ-004 (migration contract) | ✅ | 4-phase migration with scope key, opaque filenames, quarantine, resume/fork semantics |
-| REQ-005 (Devin truth) | ✅ | Iteration 2: Devin decommissioned in commit `cac19bbfa5e`; do NOT restore |
+| REQ-005 (Devin truth) | ✅ | Iteration 2: Devin decommissioned in commit `a2241041b09`; do NOT restore |
 | REQ-006 (proof plan) | ✅ | 4-stage, 13-assertion verification matrix with 7-point final gate |
 
 ## Dead Ends

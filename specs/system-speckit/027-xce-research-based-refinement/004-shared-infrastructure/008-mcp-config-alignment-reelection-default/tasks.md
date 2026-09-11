@@ -62,7 +62,7 @@ _memory:
 
 - [x] T007 vitest 5/5; `node -e` truth table; `node --check` launcher
 - [x] T008 Parse-and-compare: 4 files parse + env 1:1 per server + zero banned keys
-- [x] T009 Doc-sync grep clean; comment-hygiene clean; scoped commit `c67a972b88`
+- [x] T009 Doc-sync grep clean; comment-hygiene clean; scoped commit `429272e8fe`
 
 <!-- /ANCHOR:phase-3 -->
 ---

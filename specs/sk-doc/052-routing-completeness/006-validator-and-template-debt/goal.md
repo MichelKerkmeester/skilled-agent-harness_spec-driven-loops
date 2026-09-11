@@ -77,7 +77,7 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Phase authored | Done | `a1a213d2cf` authored the three phases that wait on no measurement |
+| Phase authored | Done | `9b140fca14` authored the three phases that wait on no measurement |
 | Two findings fixed | Done | Register 29 and 30 read Fixed |
 | Three findings owned | Done | Register 26, 27 and 28 read Planned against this phase |
 | Template backlog triaged | Done | `research/template-triage.md`, 2026-09-03. 520 blockers across 38 of 50 detected templates sorted into 347 prose, 134 emitted, 29 scanner gaps and 10 exemptions |
@@ -90,7 +90,7 @@ and findings belong here.
 |------|------|
 | Tree count versus fleet count | 24 of 40 templates in this tree hide blockers. The fleet figure is 45 of 53 once payload is scanned, and the sweep is roadmap work rather than phase work |
 | The worst offender scores zero | It emits 43 blockers while the scanner reports a clean document |
-| The recorded 45 of 53 does not reproduce | Re-running the pre-fix scanner over the same file set gives 44 of 53. The masking fix in `82938b3e1c` then moved it to 41 of 53 repo-wide, 38 of 50 under `.opencode/` |
+| The recorded 45 of 53 does not reproduce | Re-running the pre-fix scanner over the same file set gives 44 of 53. The masking fix in `6c90ef079b` then moved it to 41 of 53 repo-wide, 38 of 50 under `.opencode/` |
 | Two thirds of the backlog is guidance | 347 of 520 occurrences sit in prose no generated document ever sees, so the sweep is smaller than the headline count implied |
 | The sweep hit the triage's estimate exactly | 38 template files touched under `.opencode/`, 24 carrying an emitted blocker, matching what section 11 projected |
 | Shape A needed no scanner change | All ten inline-code occurrences were inside `{PROMPT ...}` placeholders in the two playbook templates. Rewriting the placeholder is the better fix, because it was modelling banned punctuation for the author who fills it in |

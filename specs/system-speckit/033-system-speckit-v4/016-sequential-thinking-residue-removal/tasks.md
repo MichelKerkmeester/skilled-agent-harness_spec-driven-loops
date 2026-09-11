@@ -34,7 +34,7 @@ contextType: "general"
 ## Phase 1: Setup
 
 - [x] T001 Confirm the server is absent from all four runtime configs (`opencode.json`, `.claude/mcp.json`, `.codex/config.toml`, `.utcp_config.json`) — all four returned no match
-- [x] T002 Identify the real decommission commit `7673da6bc24` and confirm its file list never touched `.opencode/commands/doctor/`
+- [x] T002 Identify the real decommission commit `edff3a4c161` and confirm its file list never touched `.opencode/commands/doctor/`
 - [x] T003 [P] Establish the doctor test surface from `.opencode/commands/doctor/scripts/README.md` §4 and §7
 - [x] T004 Capture the baseline: `bash -n` ×2, `route-validate.sh`, `--self-test`, `check-mcp-mutation-class.sh`, three `tests/*.test.cjs`, and `mcp-doctor.sh --json`
 - [x] T005 Record the negative control — `mcp-doctor.sh --server sequential_thinking --json` proves a live probe and two false warnings
@@ -141,7 +141,7 @@ contextType: "general"
 - [x] CHK-FIX-004 [P0] Not applicable — no security, path, parser or redaction logic changed. Adversarial input case (`--server` with a retired name) still executed.
 - [x] CHK-FIX-005 [P1] Matrix axes listed in `plan.md` — four file layers × two operations; every cell inspected.
 - [x] CHK-FIX-006 [P1] Not applicable — no test or code path reads process-wide state.
-- [x] CHK-FIX-007 [P1] Evidence pinned to `49a17ac317` (HEAD at start) and the working-tree diff; nothing committed.
+- [x] CHK-FIX-007 [P1] Evidence pinned to `464ec4b5c1` (HEAD at start) and the working-tree diff; nothing committed.
 <!-- /ANCHOR:fix-completeness -->
 
 ---

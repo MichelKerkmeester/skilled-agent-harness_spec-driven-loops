@@ -41,7 +41,7 @@ _memory:
 | **Spec Folder** | 023-parent-hub-remediation |
 | **Completed** | 2026-07-07 (plan + execution: 8/9 WUs shipped; WU5 gated) |
 | **Level** | 1 |
-| **Deliverable** | `plan.md` + WU1-4/6-9 shipped across 8 commits (`f788c86932`…`1fc620e83e`) |
+| **Deliverable** | `plan.md` + WU1-4/6-9 shipped across 8 commits (`2beea3be18`…`c409b3b6db`) |
 
 <!-- /ANCHOR:metadata -->
 ---

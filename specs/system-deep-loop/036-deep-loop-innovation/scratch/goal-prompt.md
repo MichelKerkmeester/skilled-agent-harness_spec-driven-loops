@@ -13,7 +13,7 @@ cross-check, alternating so the model that did NOT build a change verifies it:
 - Model B: DeepSeek-v4-flash (cli-opencode, opencode-go gateway).
 
 CANDIDATE: fresh isolated worktree `.worktrees/0144-system-deep-loop-036-p0-remediation` at SHA
-`ced5fe53cc1`. tsc baseline rc0. NEVER the dirty shared checkout; NEVER touch worktrees 0091/0100/0101 or
+`3b4c36071f5`. tsc baseline rc0. NEVER the dirty shared checkout; NEVER touch worktrees 0091/0100/0101 or
 lanes 047-050 (another session owns them). `skilled/v4` is a MOVING shared branch — reconcile before any land.
 
 DISPATCH (contracts pre-read; full mechanics in cli-codex / cli-opencode SKILL.md):

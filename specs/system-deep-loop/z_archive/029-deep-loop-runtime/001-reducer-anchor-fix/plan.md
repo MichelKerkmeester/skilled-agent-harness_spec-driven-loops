@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Deep Research Reducer-Anchor Template Fix (028/004)"
-description: "Template-only fix: add the 7 reducer-owned ANCHOR marker pairs to the shipped deep_research_strategy.md so reduce-state.cjs stops hard-failing Missing anchor section on the first reduce. No runtime-code change, no dependencies. Already landed in commit 738e118751."
+description: "Template-only fix: add the 7 reducer-owned ANCHOR marker pairs to the shipped deep_research_strategy.md so reduce-state.cjs stops hard-failing Missing anchor section on the first reduce. No runtime-code change, no dependencies. Already landed in commit 61fe63b24d."
 trigger_phrases:
   - "reducer anchor fix plan"
   - "deep research strategy template plan"
@@ -13,7 +13,7 @@ _memory:
     last_updated_at: "2026-06-19T08:10:00+02:00"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Authored Level-1 plan for the DONE Q6-anchor reducer template fix"
-    next_safe_action: "None, candidate is COMPLETE (commit 738e118751)"
+    next_safe_action: "None, candidate is COMPLETE (commit 61fe63b24d)"
     blockers: []
     key_files:
       - "spec.md"
@@ -153,5 +153,5 @@ Required inventories:
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: The reducer still throws `Missing anchor section`, or an anchor id is mismatched.
-- **Procedure**: Revert the single template hunk (commit `738e118751` touches only `deep_research_strategy.md` plus the 030 scaffold). The change is additive and isolated. Reverting restores the prior template with zero runtime-code impact.
+- **Procedure**: Revert the single template hunk (commit `61fe63b24d` touches only `deep_research_strategy.md` plus the 030 scaffold). The change is additive and isolated. Reverting restores the prior template with zero runtime-code impact.
 <!-- /ANCHOR:rollback -->

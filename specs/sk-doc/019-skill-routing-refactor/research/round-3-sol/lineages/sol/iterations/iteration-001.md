@@ -5,7 +5,7 @@ trigger_phrases: []
 # Iteration 1: Direct-Child Packet Consistency Inventory
 
 ## Focus
-Mechanically inventoried all 21 direct children `001-*` through `021-*` for declared level, spec/summary/graph status, checklist completion, and required-file consistency. Nested descendants and all excluded `research/**`, `benchmark/**`, `lineages/**`, `*.out`, `*.log`, and run-record artifacts were not treated as defect candidates. Commit `140266be3e` changed parent documents and historical research artifacts, but no direct-child canonical packet file, so every defect below is **PRE-EXISTING** rather than **NEW**.
+Mechanically inventoried all 21 direct children `001-*` through `021-*` for declared level, spec/summary/graph status, checklist completion, and required-file consistency. Nested descendants and all excluded `research/**`, `benchmark/**`, `lineages/**`, `*.out`, `*.log`, and run-record artifacts were not treated as defect candidates. Commit `3c94775856` changed parent documents and historical research artifacts, but no direct-child canonical packet file, so every defect below is **PRE-EXISTING** rather than **NEW**.
 
 ## Inventory
 
@@ -28,7 +28,7 @@ Mechanically inventoried all 21 direct children `001-*` through `021-*` for decl
 ## Ruled Out
 - 013 and 014 superficially resemble 012 because they are planned Level-3 packets without implementation summaries, but both pass strict `FILE_EXISTS` and `LEVEL_MATCH`; absence alone is not an analogous defect for their current lifecycle state. [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/013-skill-advisor-routing-fixes/graph-metadata.json:42-48] [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/014-benchmark-harness-typed-wiring/graph-metadata.json:42-48]
 - 020 and 021 are phase parents. Treating their absent heavy documents as Level-3 required-file failures would be a false positive. [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/020-router-unification-program/graph-metadata.json:41] [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/021-documentation-quality-program/graph-metadata.json:45]
-- No direct-child defect was introduced by `140266be3e`; that commit's packet changes are parent-level canonical docs plus excluded historical research artifacts. [INFERENCE: based on `git show --name-only 140266be3e` and the cited direct-child file histories]
+- No direct-child defect was introduced by `3c94775856`; that commit's packet changes are parent-level canonical docs plus excluded historical research artifacts. [INFERENCE: based on `git show --name-only 3c94775856` and the cited direct-child file histories]
 
 ## Dead Ends
 None. The mechanical direct-child matrix was productive; nested phase-child validator failures are deferred because this iteration was explicitly direct-child-only.
@@ -50,7 +50,7 @@ None. The mechanical direct-child matrix was productive; nested phase-child vali
 
 ## Assessment
 - New information ratio: 0.75 (015 and 019 fully new; known 012 and 017 independently verified and therefore partially new)
-- Questions addressed: q1 direct-child consistency; q2 analogous defects; q4 defects introduced by `140266be3e`
+- Questions addressed: q1 direct-child consistency; q2 analogous defects; q4 defects introduced by `3c94775856`
 - Questions answered: q1 (inventory complete and four direct-child defects identified); q2 (015 and 019 are analogous metadata/status failures); q4 for this focus (no direct-child defect is NEW)
 
 ## Reflection

@@ -4,7 +4,7 @@ DEEP-REVIEW
 
 ## ROLE
 
-You are a SWE-1.6 deep-review LEAF iteration worker auditing the 008 deep-skill doc-evolution ship (commit 5f3e0a2f53). READ-ONLY. Cite EVERY finding with `file:line` evidence — inference-only findings are NOT acceptable. Before output, call sequential_thinking (>=5 thoughts) per your agent-config.
+You are a SWE-1.6 deep-review LEAF iteration worker auditing the 008 deep-skill doc-evolution ship (commit fb8d560443). READ-ONLY. Cite EVERY finding with `file:line` evidence — inference-only findings are NOT acceptable. Before output, call sequential_thinking (>=5 thoughts) per your agent-config.
 
 ## STATE
 
@@ -12,7 +12,7 @@ Segment: 1 | Iteration: 2 of 5 | Dimension: D2 traceability
 Findings so far: 0 P0 / 0 P1 / 0 P2 (iter-1 correctness = CLEAN)
 Next focus: D2 Traceability — changelog accuracy, present-tense discipline, and resource-map/spec-status claim accuracy.
 
-Review Target: the 5 deep-* skills' docs as shipped in 5f3e0a2f53.
+Review Target: the 5 deep-* skills' docs as shipped in fb8d560443.
 Iteration: 2 of 5 | Dimension this iteration: traceability
 
 ## SEED CONTEXT (read first)
@@ -21,13 +21,13 @@ Iteration: 2 of 5 | Dimension this iteration: traceability
 - Their changelogs: each skill's `changelog/` dir (new versions: deep-loop-runtime v1.4.0.0, deep-research v1.14.0.0, deep-ai-council v2.3.0.0, deep-agent-improvement v1.8.0.0, deep-review v1.11.0.0).
 - **sk-doc traceability conventions (the bar):**
   - Changelogs: NO frontmatter; start with a summary paragraph; carry a `> Spec folder:` pointer; use `#### Category` subsections. (Reference: `.opencode/skills/sk-doc/assets/changelog_template.md`.)
-  - **Present-tense discipline:** SKILL.md, README, and references/ state present-tense logic + rationale ONLY. Spec/phase/test citations (e.g. "tested in phase X", "008", "5f3e0a2f53", "spec folder NNN") belong ONLY in `changelog/v*.md`. A phase/spec/test citation in a SKILL.md/README/reference is a TRACEABILITY VIOLATION.
+  - **Present-tense discipline:** SKILL.md, README, and references/ state present-tense logic + rationale ONLY. Spec/phase/test citations (e.g. "tested in phase X", "008", "fb8d560443", "spec folder NNN") belong ONLY in `changelog/v*.md`. A phase/spec/test citation in a SKILL.md/README/reference is a TRACEABILITY VIOLATION.
 - 008 audit + claims to verify: `../../001-spec-and-resource-map/resource-map.yaml`
 
 ## PRE-PLANNING (ordered, with acceptance criteria)
 
 1. For each of the 5 skills, read the newest `changelog/v*.md`: confirm NO frontmatter, a summary-first paragraph, a `> Spec folder:` pointer, and `#### Category` subsections. Acceptance: per-skill PASS or a concrete deviation with file:line.
-2. **Present-tense sweep:** grep the 5 skills' SKILL.md + references/ (NOT changelog/) for phase/spec/test citations — patterns like `phase \d`, `tested in`, `5f3e0a2f53`, `\b00[0-9]-`, `spec folder`, `v1\.\d+\.\d+\.\d+` version refs in prose. Acceptance: a list of any present-tense violations with file:line, or "0 violations across N files."
+2. **Present-tense sweep:** grep the 5 skills' SKILL.md + references/ (NOT changelog/) for phase/spec/test citations — patterns like `phase \d`, `tested in`, `fb8d560443`, `\b00[0-9]-`, `spec folder`, `v1\.\d+\.\d+\.\d+` version refs in prose. Acceptance: a list of any present-tense violations with file:line, or "0 violations across N files."
 3. Spot-check 2-3 resource-map.yaml completion claims (e.g. `phase_002b_completion`, `phase_consolidation`) against the actual on-disk state. Acceptance: claims accurate, or a concrete mismatch with file:line.
 4. Confirm each skill's README RELATED-DOCUMENTS / changelog pointer references the correct current changelog version. Acceptance: PASS or a stale version pointer with file:line.
 

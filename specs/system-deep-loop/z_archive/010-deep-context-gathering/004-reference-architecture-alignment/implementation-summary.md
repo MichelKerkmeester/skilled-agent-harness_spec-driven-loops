@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "deep-context's reference layer was aligned to its mature siblings: the two flat references moved into convergence/ and protocol/ subfolders, eight new lean references mirror deep-research's layout, the smart-router was rewritten to the canonical pattern, and all old-flat-path citations were swept to the new paths, with zero loop-behavior change. Shipped and committed in e73ffe6610; validate.sh --strict passed on 134 / 003 / 004."
+description: "deep-context's reference layer was aligned to its mature siblings: the two flat references moved into convergence/ and protocol/ subfolders, eight new lean references mirror deep-research's layout, the smart-router was rewritten to the canonical pattern, and all old-flat-path citations were swept to the new paths, with zero loop-behavior change. Shipped and committed in f956205942; validate.sh --strict passed on 134 / 003 / 004."
 trigger_phrases:
   - "reference alignment implementation"
   - "smart router rewrite summary"
@@ -14,7 +14,7 @@ _memory:
     packet_pointer: "system-deep-loop/z_archive/010-deep-context-gathering/004-reference-architecture-alignment"
     last_updated_at: "2026-06-07T10:30:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Shipped reference reorg + canonical router + citation sweep (e73ffe6610)"
+    recent_action: "Shipped reference reorg + canonical router + citation sweep (f956205942)"
     next_safe_action: "None; phase complete and all follow-ups resolved"
     blockers: []
     key_files:
@@ -47,7 +47,7 @@ _memory:
 |-------|-------|
 | **Spec Folder** | 004-reference-architecture-alignment |
 | **Status** | Complete |
-| **Completed** | 2026-06-07 (commit e73ffe6610) |
+| **Completed** | 2026-06-07 (commit f956205942) |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->
 
@@ -56,7 +56,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-This packet aligned deep-context's reference layer and smart-router to its mature sibling `deep-research` so the skill is navigable, growable, and recognizably a peer loop, while changing zero loop behavior. The work shipped and is committed in `e73ffe6610`. The sections below describe what was delivered.
+This packet aligned deep-context's reference layer and smart-router to its mature sibling `deep-research` so the skill is navigable, growable, and recognizably a peer loop, while changing zero loop behavior. The work shipped and is committed in `f956205942`. The sections below describe what was delivered.
 
 ### Subfoldered reference layout
 
@@ -114,7 +114,7 @@ The change was documentation-and-routing only: no `.cjs` script and no runtime h
 | `deep-loop-runtime` vitest regression suite | N/A, docs-only change; no runtime `.cjs`/`.ts` touched |
 | Skill advisor resolves deep-context with new paths | PASS, advisor graph reindexed (skill_graph_validate: 22 nodes / 87 edges / 0 errors) |
 | `validate.sh --strict` on the packet | PASS (0 errors; on 134 / 003 / 004; 2026-06-07) |
-| Committed | PASS, `e73ffe6610` |
+| Committed | PASS, `f956205942` |
 <!-- /ANCHOR:verification -->
 
 ---

@@ -36,7 +36,7 @@ _memory:
 | **Completed** | 2026-07-21 |
 | **Level** | 3 |
 | **Status** | Complete |
-| **Baseline revision** | `012652b479` plus the scoped additive working-tree delta |
+| **Baseline revision** | `68b518ab0d` plus the scoped additive working-tree delta |
 | **Runtime LOC added** | 1,830 |
 | **Test LOC added** | 1,039 |
 <!-- /ANCHOR:metadata -->

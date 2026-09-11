@@ -96,7 +96,7 @@ with it.
 | ADR-003 | `mcp-server/handlers/memory-search.ts`, `mcp-server/tests/memory-search-token-budget.vitest.ts` | Yes, both |
 | ADR-004 | `mcp-server/lib/storage/incremental-index.ts`, `mcp-server/tests/incremental-index-move-reconcile.vitest.ts` | Yes, both |
 | ADR-005 | `scripts/tests/coverage-graph-integration.vitest.ts`, `scripts/tests/coverage-graph-cross-layer.vitest.ts`, `scripts/tests/graph-convergence-parity.vitest.ts`, `scripts/tests/session-isolation.vitest.ts`, repoint target `.opencode/skills/system-deep-loop/runtime/lib/coverage-graph/` | No. None sits under `mcp-server/`, and 049 names `system-deep-loop` as untouched |
-| ADR-006 | `mcp-server/lib/enrichment/retry-budget.ts` | Yes, but already shipped in `59a597e37d` |
+| ADR-006 | `mcp-server/lib/enrichment/retry-budget.ts` | Yes, but already shipped in `7e93c9ae79` |
 | ADR-007 | `.opencode/skills/system-spec-kit/shared/paths.ts`, plus `mcp-server/tests/memory-roadmap-flags.vitest.ts` and `mcp-server/tests/db-lifecycle-paths.vitest.ts` | Split. The five failing tests are inside and go away. `shared/paths.ts` survives the delete, but `resolveDatabaseDir` resolves the memory database directory that 049 removes, so its subject goes even where its file does not |
 | ADR-008 | `scripts/memory/generate-context.ts`, `scripts/tests/generate-context-cli-authority.vitest.ts` | No. 049 phase 001 creates under `scripts/memory/` rather than deleting it. 049 phase 002 does ask what replaces the save-path metadata refresh, so the entry point has an open question but no delete order |
 | Daemon recycle | `.opencode/bin/system-spec-memory-launcher.cjs`, the OpenCode plugin and the hook concern | Yes. 049 phase 003 deletes the launcher, the plugin and `.opencode/hooks/spec-memory/` |
@@ -108,7 +108,7 @@ before you act on it, because 049 is itself still Pending and its scope can move
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Save-path infinite loop | Done | `59a597e37d` fixed the loop that stopped the suite completing |
+| Save-path infinite loop | Done | `7e93c9ae79` fixed the loop that stopped the suite completing |
 | Three findings fixed in session | Done | Register 35, 36 and 37 read Fixed |
 | Eight ADRs recorded | Done | `007-spec-kit-residue/decision-record.md`, with a resolution on every entry |
 | ADR-001 to ADR-004 | Superseded | Every subject path confirmed on disk under `mcp-server/`, which 049 phase 003 lists as Delete |

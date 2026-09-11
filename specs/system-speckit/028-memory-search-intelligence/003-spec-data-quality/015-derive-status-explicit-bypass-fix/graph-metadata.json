@@ -38,9 +38,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      "scripts/validation/generated-metadata-integrity.ts",
-      "tests/feature-flag-reference-docs.vitest.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -65,18 +63,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "generated-metadata-integrity.ts",
-        "kind": "code",
-        "path": "scripts/validation/generated-metadata-integrity.ts",
-        "source": "derived"
-      },
-      {
-        "name": "feature-flag-reference-docs.vitest.ts",
-        "kind": "test",
-        "path": "tests/feature-flag-reference-docs.vitest.ts",
         "source": "derived"
       },
       {
@@ -186,11 +172,23 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`deriveStatus` (`graph-metadata-parser.ts:1185-1195`) reads any doc's own explicit `status:` frontmatter field or `spec.md`'s METADATA table status, ranked `implementation-summary.md` > `checklist.md` > `tasks.md` > `plan.md` > `spec.md`, and returns that value immediately when present — including `complete` — before the phase-010 completion-evidence fallback (`:1215-1239`) ever runs",
     "created_at": "2026-07-02T15:04:28.309Z",
-    "last_save_at": "2026-08-30T15:39:36.018Z",
+    "last_save_at": "2026-09-11T16:42:44.173Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:888da8fe4273e3692b739443a7dcb981613046f76dbf131ce6a11d7acd192e89",
+    "source_fingerprint": "sha256:5551e199b8469b62c0a6ea5d1b8a52e46c03209aceba7f3bb7d25f36f87aa59d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "308936b358ae464fec0d1deccb7f0795bae839b67e5e2a84837fd9847ec62253",
+      "spec.md": "8ae9ceef5d806cc2fbc96481ceffc511d495020e2893840ab3b34428e3588799",
       "plan.md": "d43be3d1aaa5aa79f1bed1c3083f8510fbe8410e0a979ad36bbc4f85397e1d27",
       "tasks.md": "b5edfd2365c22bf2c639182d2d9a4b44bd39c7a934f8c8014d65d74b38a761ce",
-      "implementation-summary.md": "64c2a896b9708a3b6e95002ab08686f3a6dcf6e30f050e8ac44a9fb0aa34771e"
+      "implementation-summary.md": "67700d19ee3daba243aacc5fd114fe4a1d64684b94768e7e67664ae40d7df6d5"
     },
     "last_active_child_id": null,
     "last_active_at": null

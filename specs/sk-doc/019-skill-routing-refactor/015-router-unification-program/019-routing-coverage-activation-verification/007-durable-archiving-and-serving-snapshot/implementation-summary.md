@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Durable Archiving & Serving-Snapshot"
-description: "Completion record for durable compiled-routing archiving. Commit 2a39ecb9a0 delivered the fail-closed <hub>/benchmark/compiled-routing/ convention, serving-snapshot schema and renderer, report rendering, repo-relative provenance, execution context, and all seven benchmark indexes. The append-only transition ledger was intentionally assigned to sibling 010 and later landed in a1cdb65d90. No hub or repository default was changed; the frozen scorer trio remained byte-identical."
+description: "Completion record for durable compiled-routing archiving. Commit beca825aa4 delivered the fail-closed <hub>/benchmark/compiled-routing/ convention, serving-snapshot schema and renderer, report rendering, repo-relative provenance, execution context, and all seven benchmark indexes. The append-only transition ledger was intentionally assigned to sibling 010 and later landed in c926b25506. No hub or repository default was changed; the frozen scorer trio remained byte-identical."
 trigger_phrases:
   - "durable archiving implementation summary"
   - "serving snapshot current status"
@@ -11,7 +11,7 @@ _memory:
     packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/007-durable-archiving-and-serving-snapshot"
     last_updated_at: "2026-07-21T03:58:44Z"
     last_updated_by: "codex-gpt-5.6"
-    recent_action: "Reconciled completion evidence to commit 2a39ecb9a0"
+    recent_action: "Reconciled completion evidence to commit beca825aa4"
     next_safe_action: "P4/011 operator-gated cutover remains pending"
     blockers: []
     key_files:
@@ -25,7 +25,7 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions:
-      - "Snapshot tooling landed in 2a39ecb9a0; transition ledger ownership moved to 010"
+      - "Snapshot tooling landed in beca825aa4; transition ledger ownership moved to 010"
 ---
 # Implementation Summary: Durable Archiving & Serving-Snapshot
 
@@ -39,11 +39,11 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Implemented — landed in `2a39ecb9a0`, behind the still-off flag; the frozen scorer stayed byte-identical (SHA-256 unchanged) |
+| **Status** | Implemented — landed in `beca825aa4`, behind the still-off flag; the frozen scorer stayed byte-identical (SHA-256 unchanged) |
 | **Date** | 2026-07-20 |
 | **Level** | 2 |
 | **Implementation** | Complete for this child's owned scope — archive convention/writer, snapshot schema/capture/renderer, report/provenance rendering, execution context, storage guide, and seven benchmark indexes |
-| **Transition ledger** | Deliberately not duplicated here; REQ-006 ownership moved to sibling 010 and its append-only history landed in `a1cdb65d90` |
+| **Transition ledger** | Deliberately not duplicated here; REQ-006 ownership moved to sibling 010 and its append-only history landed in `c926b25506` |
 | **Current archiving state** | Convention and tooling exist under `sk-doc:create-benchmark`; archives are created only at explicit operator-run labels and fail closed on collisions |
 | **Strict validation** | Rerun after final metadata regeneration; result recorded at handoff |
 <!-- /ANCHOR:metadata -->
@@ -53,7 +53,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Implemented and committed in `2a39ecb9a0`: a durable, fail-closed report-path convention for compiled-routing evidence; a `serving-snapshot.json` schema/capture/renderer joining manifest, fence, flag, freshness, and parity; JSON-to-Markdown report and provenance blocks; repo-relative provenance; a complete execution-context record; storage guidance; and all seven hub benchmark indexes. Every archive step is gated on the promoted active serving manifest and rejects a shadow-candidate source, manifest drift, the frozen `baseline` label, and any existing run label. The frozen scorer trio remained untouched.
+Implemented and committed in `beca825aa4`: a durable, fail-closed report-path convention for compiled-routing evidence; a `serving-snapshot.json` schema/capture/renderer joining manifest, fence, flag, freshness, and parity; JSON-to-Markdown report and provenance blocks; repo-relative provenance; a complete execution-context record; storage guidance; and all seven hub benchmark indexes. Every archive step is gated on the promoted active serving manifest and rejects a shadow-candidate source, manifest drift, the frozen `baseline` label, and any existing run label. The frozen scorer trio remained untouched.
 
 ### Delivered Surfaces
 
@@ -63,7 +63,7 @@ Implemented and committed in `2a39ecb9a0`: a durable, fail-closed report-path co
 | Snapshot schema + renderer | `create-benchmark/references/skill-benchmark/serving-snapshot-schema.md`, a renderer script | Joined per-hub compiled-routing state |
 | Report rendering | `system-deep-loop/deep-improvement/scripts/skill-benchmark/build-report.cjs` | `report.compiledRouting` JSON→Markdown block |
 | Provenance | `skill-benchmark-storage-guide.md` | Repo-relative `rootRel` documentation + new label conventions |
-| Transition log | Owned by sibling `010`; landed in `a1cdb65d90` | Append-only history stays with the drivers that mutate serving state |
+| Transition log | Owned by sibling `010`; landed in `c926b25506` | Append-only history stays with the drivers that mutate serving state |
 | Index | `<hub>/benchmark/README.md` (7 hubs) | Convention row alongside existing archive-directory rows |
 
 No runtime router, serving manifest, repository default, existing `baseline` label, or frozen scorer file was modified by this child.
@@ -74,7 +74,7 @@ No runtime router, serving manifest, repository default, existing `baseline` lab
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The `002` runtime foundation and `004` parity lane landed first. Commit `2a39ecb9a0` then added the archive writer and snapshot renderer, extended the non-frozen report renderer, documented portable storage, and created or extended all seven benchmark indexes. The implementation used explicit fixture exercises recorded in `tasks.md`: collision, shadow-source rejection, manifest drift, snapshot validation, portability, execution-context completeness, baseline refusal, and frozen-scorer equality. REQ-006 moved to sibling 010 because only the serving-state drivers can own an honest append-only transition ledger.
+The `002` runtime foundation and `004` parity lane landed first. Commit `beca825aa4` then added the archive writer and snapshot renderer, extended the non-frozen report renderer, documented portable storage, and created or extended all seven benchmark indexes. The implementation used explicit fixture exercises recorded in `tasks.md`: collision, shadow-source rejection, manifest drift, snapshot validation, portability, execution-context completeness, baseline refusal, and frozen-scorer equality. REQ-006 moved to sibling 010 because only the serving-state drivers can own an honest append-only transition ledger.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -106,8 +106,8 @@ The `002` runtime foundation and `004` parity lane landed first. Commit `2a39ecb
 | Repo-relative provenance | Pass — archived report drops the absolute root, records `rootRel` plus immutable digests, and remains valid after a path move |
 | Execution context | Pass — executor, model/variant, CLI, flag, runtime/manifest digests, scenarios, and revision are persisted |
 | Frozen boundaries | Pass — frozen scorer SHA-256 unchanged; `baseline` run label is refused; no serving manifest is written |
-| Seven hub indexes | Pass — four benchmark READMEs extended and three created in `2a39ecb9a0` |
-| Append-only transition history | Satisfied by owning sibling 010 in `a1cdb65d90`; not duplicated in this child |
+| Seven hub indexes | Pass — four benchmark READMEs extended and three created in `beca825aa4` |
+| Append-only transition history | Satisfied by owning sibling 010 in `c926b25506`; not duplicated in this child |
 | Strict packet validation | Pending only until final metadata regeneration; final result recorded at handoff |
 
 ## Milestone Status
@@ -115,7 +115,7 @@ The `002` runtime foundation and `004` parity lane landed first. Commit `2a39ecb
 | Milestone | Status | Evidence |
 |-----------|--------|----------|
 | M0 dependencies + schema | Done | `002`/`004` landed; schema and collision-free labels pinned before the archive implementation |
-| M1 archive + snapshot | Done | Writer, capture, validator, renderer, provenance, and execution context landed in `2a39ecb9a0` |
+| M1 archive + snapshot | Done | Writer, capture, validator, renderer, provenance, and execution context landed in `beca825aa4` |
 | M2 reporting + indexes | Done | `build-report.cjs`, storage guide, and all seven benchmark indexes landed |
 | M3 verification | Done | Collision, source-boundary, drift, portability, baseline, snapshot, and digest evidence recorded in committed tasks |
 <!-- /ANCHOR:verification -->
@@ -136,9 +136,9 @@ The `002` runtime foundation and `004` parity lane landed first. Commit `2a39ecb
 <!-- ANCHOR:follow-up -->
 ## Follow-ups
 
-- [x] Dependency, schema, archive, snapshot, renderer, provenance, execution-context, and seven-index work landed in `2a39ecb9a0`.
+- [x] Dependency, schema, archive, snapshot, renderer, provenance, execution-context, and seven-index work landed in `beca825aa4`.
 - [x] Collision, boundary, drift, portability, snapshot, baseline, and frozen-digest evidence was recorded with the implementation.
-- [x] Append-only transition-history ownership moved to sibling 010 and landed in `a1cdb65d90`.
+- [x] Append-only transition-history ownership moved to sibling 010 and landed in `c926b25506`.
 - [ ] Use the archive and snapshot tooling during the operator-gated P4/011 canary after the 013/014 join gate becomes green.
 - [ ] Keep default-off until that operator authorization; this packet does not perform cutover.
 <!-- /ANCHOR:follow-up -->
@@ -148,6 +148,6 @@ The `002` runtime foundation and `004` parity lane landed first. Commit `2a39ecb
 <!-- ANCHOR:deviations -->
 ## Deviations from Plan
 
-The append-only `flip-history.jsonl` writer did not land in `2a39ecb9a0`; ownership moved to sibling 010 so the ledger is written by the same drivers that mutate serving state. That sibling implementation landed in `a1cdb65d90`. Archive capture also reads the promoted runtime manifests delivered by `002`, not the mutable spec-tree copies described in the initial plan. Neither deviation changes the child safety contract.
+The append-only `flip-history.jsonl` writer did not land in `beca825aa4`; ownership moved to sibling 010 so the ledger is written by the same drivers that mutate serving state. That sibling implementation landed in `c926b25506`. Archive capture also reads the promoted runtime manifests delivered by `002`, not the mutable spec-tree copies described in the initial plan. Neither deviation changes the child safety contract.
 
 <!-- /ANCHOR:deviations -->

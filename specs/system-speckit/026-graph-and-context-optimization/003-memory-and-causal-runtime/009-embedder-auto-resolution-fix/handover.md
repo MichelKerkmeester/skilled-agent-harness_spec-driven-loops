@@ -67,11 +67,11 @@ Read this if you are the reorg/reindex agent (or a fresh agent resuming that thr
 ### 2.3 Files Modified
 | File | Change Summary | Status |
 | ---- | -------------- | ------ |
-| `.opencode/skills/system-spec-kit/shared/embeddings/factory.ts` | sqlite3 shell-out → node:sqlite read; generic provider/shard resolution; warn-once | complete (commit 746e08d8e8) |
+| `.opencode/skills/system-spec-kit/shared/embeddings/factory.ts` | sqlite3 shell-out → node:sqlite read; generic provider/shard resolution; warn-once | complete (commit 9a1a5b1608) |
 | `.opencode/skills/system-spec-kit/mcp_server/tests/factory-auto-resolution.vitest.ts` | Regression: auto resolves ollama with sqlite3 off PATH | complete |
 | `.claude/mcp.json`, `opencode.json` | Reverted pin `ollama`→`auto` | complete |
 | `database.bak-20260527-134948/` | The 1.3 GB rollback snapshot you left — **DELETED** (user-approved); don't look for it | done |
-| `graph-metadata.json` ×2 (your 028-link fixes, commit `7ab9ec9337`) | Correct and intact — no action needed | verified |
+| `graph-metadata.json` ×2 (your 028-link fixes, commit `2a58b1473a`) | Correct and intact — no action needed | verified |
 <!-- /ANCHOR:context-transfer -->
 
 ---
@@ -85,7 +85,7 @@ Read this if you are the reorg/reindex agent (or a fresh agent resuming that thr
 
 ### 3.2 Priority Tasks Remaining
 1. (Verification, optional) Confirm your 83 moved-tree rows now show `embedding_status=success` — they backfill via the retry queue / the next save.
-2. (Optional) Push commit `746e08d8e8` to `origin/main` (committed locally this session, not pushed).
+2. (Optional) Push commit `9a1a5b1608` to `origin/main` (committed locally this session, not pushed).
 3. (Process) Avoid running mutating agents against the shared mk-spec-memory DB/daemon in parallel — the cross-session daemon kill is what corrupted your read of the situation.
 
 ### 3.3 Critical Context to Load
@@ -101,7 +101,7 @@ Read this if you are the reorg/reindex agent (or a fresh agent resuming that thr
 ## 4. Validation Checklist
 
 Before handover, verified:
-- [x] All in-progress work committed (`746e08d8e8`; not yet pushed — noted above)
+- [x] All in-progress work committed (`9a1a5b1608`; not yet pushed — noted above)
 - [x] Current context saved via `generate-context.js` (009 packet, 6 indexed/updated) + `_memory.continuity`
 - [x] No breaking changes left mid-implementation (builds clean; pin reverted only after §6 passed)
 - [x] Tests passing (regression 1/1; sibling embedder suites 16/16; §6 harness resolves ollama)

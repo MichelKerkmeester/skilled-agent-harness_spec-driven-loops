@@ -9,7 +9,7 @@ trigger_phrases: []
 - **Mode:** review (read-only — findings only, no code modification)
 - **Dimension:** correctness | **Angle:** A3 (causal / relation-inference integrity)
 - **Budget profile:** verify (target 11-13 calls; used 10 tool calls — file:line evidence rereads + P0 adjudication on conflict-guard)
-- **Review target:** git range `a9e9bdb0a5^..HEAD`; focus `mcp_server/lib/causal/relation-backfill.ts` (#1 churn, 748 LOC new), `lib/graph/contradiction-detection.ts`, `handlers/causal-graph.ts`, `lib/causal/relation-coverage.ts`, `lib/storage/causal-edges.ts`.
+- **Review target:** git range `fd67ede05f^..HEAD`; focus `mcp_server/lib/causal/relation-backfill.ts` (#1 churn, 748 LOC new), `lib/graph/contradiction-detection.ts`, `handlers/causal-graph.ts`, `lib/causal/relation-coverage.ts`, `lib/storage/causal-edges.ts`.
 - **Session:** `2026-06-05T11:16:17Z` (generation 1, lineageMode new, releaseReadinessState in-progress)
 
 ## Files Reviewed
@@ -79,7 +79,7 @@ None.
 ## Ruled Out
 1. **Conflict guard invalidates valid edges (charter A3 P0 hypothesis) — REFUTED.** The guard SKIPS rather than invalidates; ordering (Edge Case #1) ensures valid in-transaction edges are seen. The guard never calls `invalidateEdge`; only the pre-existing `detectContradictions`/`insertEdge` path can, and the guard suppresses exactly the inserts that would trigger it on a conflicting pair.
 2. **3-node transitive contradiction cycle handling (charter A3) — NOT A NEW DEFECT.** `contradiction-detection.ts` models ONLY same-pair conflicts (`CONFLICTING_RELATIONS` 38-42; directional query 88); it has no transitive-cycle logic and never claimed to. This file is 1/1 line in range (pre-existing). The new backfill cannot be faulted for a transitive-cycle model the system does not implement. The reciprocal sliver is captured as P2 #1 (newly reachable via the new opt-in collector); the 3-node transitive case is purely pre-existing and out of range.
-3. **`memory_causal_unlink` physical-delete + no auto-only guard — PRE-EXISTING, OUT OF RANGE.** `deleteEdge` (`causal-edges.ts:748`) is a physical `DELETE FROM causal_edges` (not an `invalid_at` tombstone) and the handler (`causal-graph.ts:1124`) deletes ANY edge incl manual with no `created_by='auto'` guard. Both the handler unlink path and `deleteEdge` are UNCHANGED in `a9e9bdb0a5^..HEAD`. Per SCOPE LOCK this is not a new finding for this range. Flagged here so a future whole-graph review (not range-scoped) can decide whether unlink should tombstone and restrict to auto edges.
+3. **`memory_causal_unlink` physical-delete + no auto-only guard — PRE-EXISTING, OUT OF RANGE.** `deleteEdge` (`causal-edges.ts:748`) is a physical `DELETE FROM causal_edges` (not an `invalid_at` tombstone) and the handler (`causal-graph.ts:1124`) deletes ANY edge incl manual with no `created_by='auto'` guard. Both the handler unlink path and `deleteEdge` are UNCHANGED in `fd67ede05f^..HEAD`. Per SCOPE LOCK this is not a new finding for this range. Flagged here so a future whole-graph review (not range-scoped) can decide whether unlink should tombstone and restrict to auto edges.
 
 ## Next Focus
 - **Dimension:** correctness | **Angle:** A4 (shutdown durability & lifecycle) — `context-server.ts` WAL-checkpoint-on-close (~1592/2169), `lib/runtime/shutdown-hooks.ts`, `shared/ipc/socket-server.ts` close()/parent-dir-fsync (~363-387), dispose() idempotency.

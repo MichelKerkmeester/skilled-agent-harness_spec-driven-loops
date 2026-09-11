@@ -147,7 +147,7 @@ Required inventories:
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Phase 021's validator + finding fixes | Prerequisite | Complete, pushed as `e0a35f44b9` | This phase's benchmark rerun exists specifically to confirm it |
+| Phase 021's validator + finding fixes | Prerequisite | Complete, pushed as `541ec66583` | This phase's benchmark rerun exists specifically to confirm it |
 | `run-skill-benchmark.cjs` | Verification tool | Available | Would need manual routing verification only |
 <!-- /ANCHOR:dependencies -->
 

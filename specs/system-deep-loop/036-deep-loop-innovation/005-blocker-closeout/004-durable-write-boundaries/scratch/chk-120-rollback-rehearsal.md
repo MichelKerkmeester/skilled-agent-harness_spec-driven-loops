@@ -12,12 +12,12 @@ signed off. It does not survive contact.
 Step 1 of the documented procedure: *"Revert the export demotion commit,
 restoring the direct export while keeping fencing inside the gateway."*
 
-The export demotion is `5c98e4654e feat(deep-loop): gateway-only fenced ledger
+The export demotion is `0c5c966015 feat(deep-loop): gateway-only fenced ledger
 mutation`. Rehearsed in an isolated worktree at a committed, clean HEAD, with
 the undo (`git reset --hard`) established before starting.
 
 ```
-$ git revert --no-commit 5c98e4654e
+$ git revert --no-commit 0c5c966015
 CONFLICT (content): ... x64
 ```
 
@@ -62,7 +62,7 @@ be migrated:
 4. Record which mechanisms were relaxed; the corresponding blocker reopens for
    those.
 
-The independent race fixes (`ff3a574014` and siblings) remain individually
+The independent race fixes (`2ccb5cc6f7` and siblings) remain individually
 revertible — that half of the plan is intact and was not disturbed by this
 finding.
 

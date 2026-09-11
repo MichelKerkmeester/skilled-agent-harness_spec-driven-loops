@@ -13,7 +13,7 @@ _memory:
     packet_pointer: "sk-design/019-sk-design-diagram-upgrade/010-design-md-style-reference"
     last_updated_at: "2026-09-11T10:15:00Z"
     last_updated_by: "markdown-agent"
-    recent_action: "Re-closed against 9371f99938/76ad403c52; fixed the plan.md link row"
+    recent_action: "Re-closed against 1b57a90d73/7bf1c3af7d; fixed the plan.md link row"
     next_safe_action: "Add an SKILL.md reference to scripts/apply-design-md.cjs, or waive AC-018 with a recorded ADR"
     blockers:
       - "SKILL.md never names scripts/apply-design-md.cjs — REQ-016/AC-018 still unmet on that one point"
@@ -45,7 +45,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 010-design-md-style-reference |
-| **Completed** | Not complete — re-closed 2026-09-11 against commits `9371f99938` and `76ad403c52`; one criterion (AC-018) remains |
+| **Completed** | Not complete — re-closed 2026-09-11 against commits `1b57a90d73` and `7bf1c3af7d`; one criterion (AC-018) remains |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -83,9 +83,9 @@ recorded as `goal.md`'s decision D15, with a pointer from `plan.md` §3.1 and th
 | `.opencode/skills/sk-design/sk-design-diagram/assets/style-reference/harness-diagram/DESIGN.md` | Created | The stock v3 reference, curated so `--default` reproduces `diagram-palette.json` exactly |
 | `.opencode/skills/sk-design/sk-design-diagram/assets/style-reference/harness-diagram/origin.md` | Created | Provenance: states plainly the reference was authored from the packet's own palette, not measured |
 | `.opencode/skills/sk-design/sk-design-diagram/assets/style-reference/harness-diagram/diagram-palette.json`, `icons.html` | Moved in (later commits) | The token source and icon specimen joined the reference bundle so a "visual language" is one directory |
-| `.opencode/skills/sk-design/sk-design-diagram/SKILL.md` | Modified (commit `76ad403c52`, still partial) | Gained the WHEN TO USE activation trigger, five keyword triggers, one REFERENCES row (`design-md-theming.md`), and the version bump to `1.2.0.0`; still names `scripts/apply-design-md.cjs` nowhere |
-| `.opencode/skills/sk-design/sk-design-diagram/scripts/families/derivation-gates.cjs` | Modified (commit `9371f99938`) | Accepts an optional ` system=design-md` sentinel token, requires and validates its provenance comment, skips byte-equality for that block only, keeps every gate (adding `textOnMark` for the accent role when themed) |
-| `.opencode/skills/sk-design/sk-design-diagram/scripts/tests/mutation-cases.cjs`, `scripts/tests/fixtures/design-md-sample.html` | Modified / Created (commit `9371f99938`) | Two new `derivation-gates` cases (deleted provenance; accent under `textOnMark`) against a new fixture |
+| `.opencode/skills/sk-design/sk-design-diagram/SKILL.md` | Modified (commit `7bf1c3af7d`, still partial) | Gained the WHEN TO USE activation trigger, five keyword triggers, one REFERENCES row (`design-md-theming.md`), and the version bump to `1.2.0.0`; still names `scripts/apply-design-md.cjs` nowhere |
+| `.opencode/skills/sk-design/sk-design-diagram/scripts/families/derivation-gates.cjs` | Modified (commit `1b57a90d73`) | Accepts an optional ` system=design-md` sentinel token, requires and validates its provenance comment, skips byte-equality for that block only, keeps every gate (adding `textOnMark` for the accent role when themed) |
+| `.opencode/skills/sk-design/sk-design-diagram/scripts/tests/mutation-cases.cjs`, `scripts/tests/fixtures/design-md-sample.html` | Modified / Created (commit `1b57a90d73`) | Two new `derivation-gates` cases (deleted provenance; accent under `textOnMark`) against a new fixture |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -93,11 +93,11 @@ recorded as `goal.md`'s decision D15, with a pointer from `plan.md` §3.1 and th
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The applicator shipped in one commit (`78ab2b220b`), then three follow-on refactors moved its
-reference bundle: `c1f109bfe4` and `9a4b60e0ed` relocated `diagram-palette.json` and `icons.html`
+The applicator shipped in one commit (`b325724af8`), then three follow-on refactors moved its
+reference bundle: `8031ccc387` and `c2b442f827` relocated `diagram-palette.json` and `icons.html`
 into the same directory as `DESIGN.md`/`origin.md`, landing the bundle at
 `assets/style-reference/harness-diagram/` rather than the `assets/style-reference/diagram-stock/`
-path `spec.md` names — a rename that went unrecorded until this closeout pass. `f3bf733cf4` later
+path `spec.md` names — a rename that went unrecorded until this closeout pass. `08e8051eaf` later
 repainted five forms after two new checker rules moved a chip-label colour and a legend swatch.
 
 This closeout pass reran the applicator's own claims directly rather than trusting the commit
@@ -109,7 +109,7 @@ T025 — the chart sibling's `evilcharts/DESIGN.md` under `--all` — which fail
 issue the identity case never exercises (see Known Limitations).
 
 **Re-closeout pass (2026-09-11).** Three of the four gaps that prior pass left `Unmet` were closed
-by commits `9371f99938` and `76ad403c52`. This pass reran all of it live rather than trusting the
+by commits `1b57a90d73` and `7bf1c3af7d`. This pass reran all of it live rather than trusting the
 task/AC evidence carried over from the prior pass: `node --test scripts/tests/` (18/18, up from
 16/16), a hand-built themed delivery run through `check-diagram-corpus.cjs --extra` (fails on
 deleted provenance, passes on a well-formed non-stock accent), and `SKILL.md`'s literal content
@@ -161,11 +161,11 @@ applicator's own write-time gate and the corpus-wide checker's `textOnMark` gate
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **`SKILL.md` still does not fully route to the new capability as REQ-016 specifies.** Commit `76ad403c52` added the WHEN TO USE activation trigger, five keyword triggers, one REFERENCES row (`design-md-theming.md`), and the version bump to `1.2.0.0` — but `scripts/apply-design-md.cjs` is still named nowhere in the file (`grep -ni "apply-design\|\.cjs" SKILL.md` — no hits), and HOW IT WORKS still carries only its pre-existing one-sentence pointer, not a dedicated paragraph. A user can discover the capability and its reference doc, but has to open that doc to learn the script exists.
+1. **`SKILL.md` still does not fully route to the new capability as REQ-016 specifies.** Commit `7bf1c3af7d` added the WHEN TO USE activation trigger, five keyword triggers, one REFERENCES row (`design-md-theming.md`), and the version bump to `1.2.0.0` — but `scripts/apply-design-md.cjs` is still named nowhere in the file (`grep -ni "apply-design\|\.cjs" SKILL.md` — no hits), and HOW IT WORKS still carries only its pre-existing one-sentence pointer, not a dedicated paragraph. A user can discover the capability and its reference doc, but has to open that doc to learn the script exists.
 2. **`assets/style-reference/diagram-stock/` was never built.** The reference bundle shipped at `assets/style-reference/harness-diagram/` instead, and no `tokens.json` file exists there — dark-theme support is declared through `DESIGN.md`'s own `**Theme:**` line, which the code accepts as an alternative signal. Functionally equivalent for this packet's own reference; `spec.md`'s Files-to-Change table names the wrong path and an extra file.
 3. **`soft`'s documented text-gate exemption is narrower in code than in either doc.** `plan.md` §3.1 and `references/design-md-theming.md` §5 both describe `soft` as "never held to the text gate." `validateRoles()` (`apply-design-md.cjs:674`) puts `soft` in `TEXT_ROLES` and only excuses a sub-gate value when its measured ratio exactly reproduces a *recorded* departure ratio from `diagram-palette.json`. `--default` passes because the identity value reproduces the stock 3.48:1 departure exactly; a freshly-derived `soft` value that matches no recorded departure fails outright — observed live against a real second reference (17 forms, ratios as low as 1.04:1). Themed corpora that don't happen to reproduce the exact stock ratio will see this as a real failure mode, not a documentation nit.
 4. **REQ-008 (series-capacity shortfall) and the "declares dark but too few neutrals" terminal case were not reproduced live** — both refusal paths exist and were confirmed by direct code reading, but a hand-edited reference kept supplying enough fallback candidates from its remaining rows to avoid triggering either one within the time available.
-5. **The applicator's own write-time gate and the corpus-wide checker's gate disagree on `textOnMark`.** `apply-design-md.cjs`'s `validateRoles()` never checks `textOnMark` for `accent`, only `markOnPaper` and (when `ink` exists) `accentAgainstInk`; `derivation-gates.cjs`'s themed branch (commit `9371f99938`) adds `textOnMark` as a fourth check. A moved-accent reference reran this pass wrote clean under the applicator's own `--all` run (`RESULT: PASSED`) but then failed `check-diagram-corpus.cjs --extra` on 2 of the 39 forms it wrote (`accent measures 3.70:1 ... textOnMark gate is 4.5:1`). Neither tool is wrong on its own terms, and nothing in this phase's requirements says which one governs — but a themed delivery is not provably clean until both agree, and today only the second one checks.
+5. **The applicator's own write-time gate and the corpus-wide checker's gate disagree on `textOnMark`.** `apply-design-md.cjs`'s `validateRoles()` never checks `textOnMark` for `accent`, only `markOnPaper` and (when `ink` exists) `accentAgainstInk`; `derivation-gates.cjs`'s themed branch (commit `1b57a90d73`) adds `textOnMark` as a fourth check. A moved-accent reference reran this pass wrote clean under the applicator's own `--all` run (`RESULT: PASSED`) but then failed `check-diagram-corpus.cjs --extra` on 2 of the 39 forms it wrote (`accent measures 3.70:1 ... textOnMark gate is 4.5:1`). Neither tool is wrong on its own terms, and nothing in this phase's requirements says which one governs — but a themed delivery is not provably clean until both agree, and today only the second one checks.
 <!-- /ANCHOR:limitations -->
 
 ---

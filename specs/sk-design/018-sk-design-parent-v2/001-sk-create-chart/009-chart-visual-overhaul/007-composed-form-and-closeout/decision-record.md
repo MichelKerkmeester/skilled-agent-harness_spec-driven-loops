@@ -297,7 +297,7 @@ method cannot see.
 
 Packet 054 later edited the same file again and took it to 1.1.0.0, one step for its own round, so
 the phase 005 round stayed unpaid. Under the convention this ADR states, two editing rounds since
-the first release put the file at 1.2.0.0, and it now reads that. The earlier `abf77df9d0` edit is
+the first release put the file at 1.2.0.0, and it now reads that. The earlier `4e0968b4d8` edit is
 not counted: it repointed one cross-reference from section 5 to section 6 across six playbook
 files, and none of the six moved for it, so a mechanical pointer repair is the class this packet
 has consistently left unversioned.

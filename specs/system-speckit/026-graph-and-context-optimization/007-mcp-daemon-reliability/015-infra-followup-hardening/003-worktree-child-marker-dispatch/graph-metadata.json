@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Packet 035 built `worktree-session.sh`, which isolates each top-level AI session in its own git worktree but exec's in place for orchestrated children",
     "created_at": "2026-05-30T20:56:41.887Z",
-    "last_save_at": "2026-08-30T15:39:32.433Z",
+    "last_save_at": "2026-09-11T16:42:36.027Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bc6945a992372e96695ebc86d26e7fe59bbbccbc8fabeb1e336a1e15546de86d",
+    "source_fingerprint": "sha256:82071417a7097d0d6b59ba4e2797f01626de32d1fdd123b20d3083da9ff86c02",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0d3ec8e6f661dc15e37e335e61acb9d537529c8a22032964ae089f2d4b2f002b",
-      "plan.md": "cef6cbb9e7a4b1ac0b8652fc56096bfdf5b61cf7c9f38f270315c9d0a4021e9b",
-      "tasks.md": "af2539cf9e23459b3fff399449183414be896c3c6c632deab28dc838fbb455db",
-      "implementation-summary.md": "7ece73ea4617801a567d440386878839eac40dbc3035d2d89541490e9577f9e7"
+      "spec.md": "cf93ff51eb24bd66f143d01b1cf6528de424e55b058a3642d6bce44ea4513e33",
+      "plan.md": "67739b62768119c063117e356a960fdc2dfbbffba5644cc3d816c678e1bf77dc",
+      "tasks.md": "755e4b623637263330499ab350ac3afca79cd78f2555ee5034b83ddf38d8664e",
+      "implementation-summary.md": "3d9b83327cb3cfee38eae8ced75feefb61bcc3ae17870e8d0f6efdfde028f0a2"
     },
     "last_active_child_id": null,
     "last_active_at": null

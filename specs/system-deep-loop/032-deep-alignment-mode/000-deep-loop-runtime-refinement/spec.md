@@ -66,7 +66,7 @@ Triage the findings, confirm a prioritized subset genuinely worth fixing now, an
 - Propose a phased remediation order for the confirmed candidates.
 
 ### Scope evolution (planning pass → applied)
-- Code change was gated on operator confirmation. That confirmation landed 2026-07-11; the Tier 1+2 candidates in §5 were then applied and test-gated (commits `0803969e41`, `3e9892a9c0`, `a8b3f0af01`).
+- Code change was gated on operator confirmation. That confirmation landed 2026-07-11; the Tier 1+2 candidates in §5 were then applied and test-gated (commits `077a2cc7d0`, `da6e82357d`, `395d5cf346`).
 - Tier 3 items (§5) stay out of scope here, deferred to a follow-up pass.
 - Re-litigating findings already covered by other open packets (none currently known to overlap) stayed out of scope.
 

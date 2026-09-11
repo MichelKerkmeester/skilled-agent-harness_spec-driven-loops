@@ -54,11 +54,11 @@ reverted. A fifth was built, measured, and reverted.
 
 | Item | Commit | Suite |
 |------|--------|-------|
-| W1 — an unreported cache signal is not a miss | `20ece8e556` | 98 → 103 |
-| W2 — an explicit zero cached-read rate is a price | `afba356590` | 103 → 104 |
-| W3 — a model can declare it never reports cache usage | `29fa3b7825` | 104 → 106 |
-| ~~W4 — lift a prefix only after it proves stable~~ | reverted in `ced19eae00` | — |
-| W5 — remember a learned key rejection across restarts | `a3e0d78f24` | 111 → 113 |
+| W1 — an unreported cache signal is not a miss | `891e728d36` | 98 → 103 |
+| W2 — an explicit zero cached-read rate is a price | `ca3e9b4885` | 103 → 104 |
+| W3 — a model can declare it never reports cache usage | `0b6be71f09` | 104 → 106 |
+| ~~W4 — lift a prefix only after it proves stable~~ | reverted in `99c1c42d7e` | — |
+| W5 — remember a learned key rejection across restarts | `b2c2f98bcd` | 111 → 113 |
 
 W1 avoided the trap the research identified: tokens and cost record unconditionally, and only
 `hitRequests` and the measured denominator exclude an unreported sample. The naive version would

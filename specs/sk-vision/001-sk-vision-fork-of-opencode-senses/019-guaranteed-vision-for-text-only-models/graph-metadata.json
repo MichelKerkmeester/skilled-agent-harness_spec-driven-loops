@@ -198,7 +198,7 @@
     ],
     "causal_summary": "sk-vision's auto-inspect never blocks message submit (a 2-second grace, then it injects whatever is ready — often just a materialized file path)",
     "created_at": "2026-08-18T04:14:00.119Z",
-    "last_save_at": "2026-08-30T15:39:19.679Z",
+    "last_save_at": "2026-09-11T16:42:15.762Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f4be96e1865d71e6ab1ba968f67d9b63bea25b78d7a0814652ccebadba399873",
+    "source_fingerprint": "sha256:6c454ea5ec8f922b6f7c0b77ebfc975125132f140ea0526bcc9f5d9e0a5ed7c3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d8bcb6d52de1f7327760130316c6845b8864ffa8c36263c20ce6d95986c79951",
-      "plan.md": "395dd4ff9ec7e6bdae62e26e2ee60aaeedf149c0616ea8dc9d282f416eb59e77",
-      "tasks.md": "648b420dc3e427508bb9febfd63468fbfc437c5c5525115b4716fc8392522ab7",
-      "implementation-summary.md": "fc1eac09dfcaf2d6792695e841e005f194de257b31a33c168c91705c30a51641"
+      "spec.md": "804011033cc4912114b7f4aa672dd33248937d671007b52f735a5945e7127982",
+      "plan.md": "71a62546a7967bb4a812d156dcd5fbe259ce61990e18dea410b43e3632080133",
+      "tasks.md": "558ea7d63106df506f2beec45da5ef6ae7a7949d6157b1633ebd3bfa7b01d9cd",
+      "implementation-summary.md": "576746dceaa28bfdce4a82527ab366fc6e9cda65ff68f1bfcf7f7c08f0c061d1"
     },
     "last_active_child_id": null,
     "last_active_at": null

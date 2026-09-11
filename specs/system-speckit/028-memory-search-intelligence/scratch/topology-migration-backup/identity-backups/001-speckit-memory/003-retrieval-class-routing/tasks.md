@@ -48,7 +48,7 @@ _memory:
 
 **Task Format**: `T### [P?] Description (file path)`
 
-**Status note**: C2-A, C2-C and the default-off C2-B mechanism are implemented in this phase. None of the seven candidates in this cluster was implemented in the flat Wave-0 (packet 030). Packet 030 remains out of scope. The only related shipped item from 030 is the *dependency* C-X1 (`bonusOverChannels`, commit `65cfcea513`), which unblocks C2-B and is therefore a prerequisite that is already satisfied, not a task here.
+**Status note**: C2-A, C2-C and the default-off C2-B mechanism are implemented in this phase. None of the seven candidates in this cluster was implemented in the flat Wave-0 (packet 030). Packet 030 remains out of scope. The only related shipped item from 030 is the *dependency* C-X1 (`bonusOverChannels`, commit `84c532114d`), which unblocks C2-B and is therefore a prerequisite that is already satisfied, not a task here.
 <!-- /ANCHOR:notation -->
 
 ---

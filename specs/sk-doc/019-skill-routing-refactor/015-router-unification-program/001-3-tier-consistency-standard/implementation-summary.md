@@ -57,12 +57,12 @@ At session start **6 of 7 hubs were BLOCKED-BY-ROUTE-GOLD**. This milestone took
 
 | Hub | Verdict | Route-gold | Aggregate | Commit |
 |-----|---------|-----------|-----------|--------|
-| sk-prompt | PASS | 4/4 | 100 | `5dd0a330a4` |
-| mcp-tooling | PASS | 13/13 | 98 | `c8744a5c91` |
-| cli-external-orchestration | PASS | 7/7 | 90 | `691418d967` |
-| system-deep-loop | PASS | 20/20 | 99 | `6cd8ab14e4` |
-| sk-code | PASS | 15/15 | 93 | `0e3528cb32` |
-| sk-doc | PASS | 32/32 | 98 | `023b974b12` |
+| sk-prompt | PASS | 4/4 | 100 | `d1af47f281` |
+| mcp-tooling | PASS | 13/13 | 98 | `f3bfae49c2` |
+| cli-external-orchestration | PASS | 7/7 | 90 | `e4696f771e` |
+| system-deep-loop | PASS | 20/20 | 99 | `d60cc2c755` |
+| sk-code | PASS | 15/15 | 93 | `dfc57cf4f8` |
+| sk-doc | PASS | 32/32 | 98 | `f3c7ce0ec3` |
 | sk-design | PASS (already) | 0/0 | 94 | — |
 
 ### The load-bearing finding: route-gold reconciliation was THREE problems, not "stale paths"

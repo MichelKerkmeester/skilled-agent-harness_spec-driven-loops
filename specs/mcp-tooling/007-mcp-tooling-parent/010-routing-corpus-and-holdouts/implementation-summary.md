@@ -69,7 +69,7 @@ The six-mode mcp-tooling hub can now catch a routing regression in ANY mode blin
 
 ### Baseline re-capture, including a pre-existing heal
 
-`node scripts/routing-accuracy/capture-scorer-eval-baseline.mjs --write` (run from `mcp_server/`) regenerated `scorer-eval-baseline.json` against the 200-row corpus. This also healed a pre-existing drift that predates this phase: the July 10 hub-merge relabel had landed without a re-capture, so the fixture-hash ratchet was already failing before this program started. The re-captured fixture pins `capturedAt: 2026-07-16`, `capturedAtSha: 2146dee114`, and honest metrics: full_corpus_top1 153/200 (0.765), holdout_top1 57/78 (0.7308), ambiguity_top1 16/25 (0.64), delegation bucket 10/11 (0.9091). The ratchet gate passes 7/7 against it.
+`node scripts/routing-accuracy/capture-scorer-eval-baseline.mjs --write` (run from `mcp_server/`) regenerated `scorer-eval-baseline.json` against the 200-row corpus. This also healed a pre-existing drift that predates this phase: the July 10 hub-merge relabel had landed without a re-capture, so the fixture-hash ratchet was already failing before this program started. The re-captured fixture pins `capturedAt: 2026-07-16`, `capturedAtSha: 36f7e4c1d2`, and honest metrics: full_corpus_top1 153/200 (0.765), holdout_top1 57/78 (0.7308), ambiguity_top1 16/25 (0.64), delegation bucket 10/11 (0.9091). The ratchet gate passes 7/7 against it.
 
 ### Files Changed
 
@@ -117,7 +117,7 @@ Mirror-first, then gate. The existing MT-H01/MT-H02 contract and the corpus row 
 | Holdout coverage 6-of-6 modes | PASS, MT-H01..MT-H06 `expected_intent` enumerate all six mode ids |
 | MT-H01 boundary section + version bump | PASS, `holdout_browser_inspect.md:10` `version: 1.1.0.0`, boundary section present at line 17 |
 | Corpus integrity | PASS, `wc -l` = 200; line-by-line JSON parse reports `invalid: 0`; ids rr-hub6-201..207 at lines 194-200 |
-| `capture-scorer-eval-baseline.mjs --write` | PASS, fixture written with `capturedAt: 2026-07-16`, `capturedAtSha: 2146dee114` |
+| `capture-scorer-eval-baseline.mjs --write` | PASS, fixture written with `capturedAt: 2026-07-16`, `capturedAtSha: 36f7e4c1d2` |
 | `npx vitest run tests/parity/scorer-eval-baseline-ratchet.vitest.ts` | PASS, `Test Files 1 passed (1)`, `Tests 7 passed (7)` |
 | `generate-description.js <child> .` + `backfill-graph-metadata.js <child>` | PASS, description.json and graph-metadata.json regenerated |
 | `validate.sh <child> --strict --no-recursive` | PASSED |

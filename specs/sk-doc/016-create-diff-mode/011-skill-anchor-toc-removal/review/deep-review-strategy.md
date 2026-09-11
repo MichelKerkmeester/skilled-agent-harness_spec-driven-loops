@@ -6,7 +6,7 @@ trigger_phrases: []
 
 ## Review Charter
 
-**Target:** git commit `1e58d845af` — "docs(117): remove TOC blocks + HTML anchor comments from skill docs"
+**Target:** git commit `e5ee6609c2` — "docs(117): remove TOC blocks + HTML anchor comments from skill docs"
 **Question:** Did the cleanup break anything by accident?
 **Scope:** 897 files (857 skill `*.md` under `.opencode/skills/`; 20 non-md: sk-doc `template_rules.json`, `test_validator.py`, 6 `/create` command YAMLs + README.txt, and the 117 spec packet docs/metadata).
 **Diff stat:** +3,184 / −12,998 (deletion-dominated, as expected for removal).

@@ -55,7 +55,6 @@
       ".opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs",
       ".opencode/skills/sk-design/sk-design-chart/scripts/README.md",
       ".opencode/skills/sk-design/sk-design-chart/references/design-md-theming.md",
-      ".opencode/skills/sk-design/sk-design-chart/changelog/v1.4.0.0.md",
       ".opencode/skills/sk-design/sk-design-chart/scripts/tests/apply-design-md.test.cjs",
       "scratch/captures/grouped-bars-light.png"
     ],
@@ -139,12 +138,6 @@
         "source": "derived"
       },
       {
-        "name": "v1.4.0.0.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/sk-design-chart/changelog/v1.4.0.0.md",
-        "source": "derived"
-      },
-      {
         "name": "apply-design-md.test.cjs",
         "kind": "file",
         "path": ".opencode/skills/sk-design/sk-design-chart/scripts/tests/apply-design-md.test.cjs",
@@ -203,11 +196,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Style References",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`sk-design-md-generator` measures a live site into a v3 Style Reference, a `DESIGN.md` whose colour table, typography section and radius table hold every value verbatim",
     "created_at": "2026-09-08T06:21:09Z",
-    "last_save_at": "2026-09-08T08:18:25.493Z",
+    "last_save_at": "2026-09-11T16:41:58.167Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,13 +217,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3a1b414eb50ee5e04c6e446041d247c970419c563d6478637ec6441754984176",
+    "source_fingerprint": "sha256:42055f01ba66372fe67c2d48f58dfb3e5a69517ae813278c3ddbf59457187cb6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c6751c6021da820c15ef9c5ad67c35e6ac5c486bcb51e36eda7f6134618a0c58",
-      "plan.md": "fbdd2fb7bff41e88a1fbb0dc7e71850e551428f703fa0679cf07a185792c7b5f",
-      "tasks.md": "830c91800a60173378e8fa4882bf443173114e3bda6952f27a4d013d61e3a90f",
-      "implementation-summary.md": "53aea47cc58140fc4d1c7cba4a40e9583a1dc97f03b463d0e43aab6ba5dc26af"
+      "plan.md": "ba7c19366721abcbc202a6305a0325e14b3ffd47fe0872c3e0818d6990e54ff3",
+      "tasks.md": "2eab9a675e11c584a139f7b34f1821d929e95f7e2b0ffc641a9e19128c75fe89",
+      "implementation-summary.md": "0122826325d38a0a98e9f140fbb2e135c5d236f2d26636bf7b3ecefdab678ab1"
     },
     "last_active_at": null
   }

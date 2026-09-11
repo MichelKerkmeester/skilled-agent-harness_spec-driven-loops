@@ -11,8 +11,8 @@ live repository for the first time. Nothing in the runtime had ever called the d
 test before this.
 
     mode                      deep-research
-    candidateSha              f54af685e94749750b88bb037fbfdc67f8a0f025   (real HEAD)
-    baseSha                   9399bd108143ae77cd2775124e4573e73908ab41   (real parent)
+    candidateSha              6b42f05ec9949e2ce2bfe046518627c24f7e5327   (real HEAD)
+    baseSha                   88092faabb888c9b83900367d3295678f348a7dc   (real parent)
     startingAuthorityEpoch    1                                          (read from the live record)
     verifierActorId           operator:michel.k@getbarter.com            (resolved, not supplied)
     protectedPathsUnchanged   true

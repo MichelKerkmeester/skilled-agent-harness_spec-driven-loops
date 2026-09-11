@@ -69,7 +69,7 @@ The 200-iteration campaign identified the total-comparator as THE keystone of th
 
 **We chose**: Ship the keystone first, the two content-id primitives (`lib/content-id.ts`) and the content-derived tiebreaks (C5-B at the comparator/output sorts, ANN `, m.id ASC` below RRF), as the foundation every other determinism candidate and sibling subsystem depends on.
 
-**How it works**: The content-id formula is centralized into one module with two named primitives (`hashContentBody`, `hashCanonicalJson`), proven byte-identical by a parity test. C5-B adds the content-derived tiebreak. The ANN COALESCE tiebreak makes LIMIT-survival into fusion run-stable. All shipped in Wave-0 (commits `18c8582e33`, `bec0eed27f`).
+**How it works**: The content-id formula is centralized into one module with two named primitives (`hashContentBody`, `hashCanonicalJson`), proven byte-identical by a parity test. C5-B adds the content-derived tiebreak. The ANN COALESCE tiebreak makes LIMIT-survival into fusion run-stable. All shipped in Wave-0 (commits `0113515f43`, `5c0a966df3`).
 <!-- /ANCHOR:adr-001-decision -->
 
 ---
@@ -102,7 +102,7 @@ The 200-iteration campaign identified the total-comparator as THE keystone of th
 
 | Risk | Impact | Mitigation |
 |------|--------|------------|
-| Centralized hash diverges from legacy bare-hex | H | Parity test proves byte-identical (commit `18c8582e33`) |
+| Centralized hash diverges from legacy bare-hex | H | Parity test proves byte-identical (commit `0113515f43`) |
 | C5-B re-baselines golden files | M | Primary order unchanged (verified), one-time re-baseline |
 <!-- /ANCHOR:adr-001-consequences -->
 
@@ -128,7 +128,7 @@ The 200-iteration campaign identified the total-comparator as THE keystone of th
 ### Implementation
 
 **What changes**:
-- `lib/content-id.ts` created (`18c8582e33`), C5-B + ANN tiebreaks (`bec0eed27f`).
+- `lib/content-id.ts` created (`0113515f43`), C5-B + ANN tiebreaks (`5c0a966df3`).
 
 **How to roll back**: Revert the listed commits independently, no migration to reverse.
 <!-- /ANCHOR:adr-001-impl -->
@@ -168,7 +168,7 @@ C-X1 exposes the active-channel bonus denominator as a named param and C6-A turn
 
 **We chose**: Treat byte-identical default behavior as the hard ship gate for the C-X1 `'active'` param and the C6-A clock.
 
-**How it works**: C-X1 defaults to `'active'` (byte-identity traced arithmetically). C6-A restored the no-timestamp skip guard so it is a pure refactor. Both shipped in commit `65cfcea513` with an opus SHIP.
+**How it works**: C-X1 defaults to `'active'` (byte-identity traced arithmetically). C6-A restored the no-timestamp skip guard so it is a pure refactor. Both shipped in commit `84c532114d` with an opus SHIP.
 <!-- /ANCHOR:adr-002-decision -->
 
 ---
@@ -226,9 +226,9 @@ C-X1 exposes the active-channel bonus denominator as a named param and C6-A turn
 ### Implementation
 
 **What changes**:
-- C-X1 `'active'` default + C6-A clock shipped in `65cfcea513`.
+- C-X1 `'active'` default + C6-A clock shipped in `84c532114d`.
 
-**How to roll back**: Revert `65cfcea513`, the param and clock refactor come out together.
+**How to roll back**: Revert `84c532114d`, the param and clock refactor come out together.
 <!-- /ANCHOR:adr-002-impl -->
 <!-- /ANCHOR:adr-002 -->
 

@@ -69,7 +69,7 @@ FAILURE MODES:
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 32** of the Spec-Kit Memory MCP phase-parent's child map, and the direct follow-up to **030-opencode-temp-worker-reaping** (Done, committed `90a2462721` + `d4be07abbc`, pushed).
+This is **Phase 32** of the Spec-Kit Memory MCP phase-parent's child map, and the direct follow-up to **030-opencode-temp-worker-reaping** (Done, committed `65f05f37b9` + `2dbd92b8f8`, pushed).
 
 **Scope Boundary**: Everything deliberately deferred out of 030's scope — the production embedder demand-listener lifecycle gap that daemon re-election surfaces, and the process-killer hardening `orphan-mcp-sweeper.sh` needs before its staged live activation. This phase does not touch 030's already-shipped test-leak fix or its sweeper embedder-sidecar awareness.
 

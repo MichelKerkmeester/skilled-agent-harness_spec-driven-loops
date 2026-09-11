@@ -13,7 +13,7 @@ _memory:
     packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/002-checkpoint-v2-file-snapshot"
     last_updated_at: "2026-06-02T10:03:31Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Checkpoint-v2 shipped, gate-fixed (cce4fe931d), live-verified, deployed to main"
+    recent_action: "Checkpoint-v2 shipped, gate-fixed (0cdbcc0170), live-verified, deployed to main"
     next_safe_action: "None binding; front-proxy (E) shipped; needs-rebuild sentinel shipped (013/005)"
     blockers: []
     key_files:
@@ -73,7 +73,7 @@ A v2 file-based full-DB checkpoint path. Unscoped full-DB `checkpoint_create` no
 
 ### Post-deploy fix — v2 selection was inert (caught by live verification)
 
-The live verification this session revealed the shipped feature did **not activate** on the production (sharded) runtime. The v2 selection gate (`hasMainVectorPayloadTables`) treated the presence of `vec_memories` **or `vec_metadata`** in main as "vector payload in main" and fell back to v1. But the shard-attach slimming (`drop_canonical_vector_payload_tables`) intentionally **retains** the small `vec_metadata` config table in main (a dimension fallback) while dropping `vec_memories`. So on every sharded daemon the gate always saw `vec_metadata` and silently chose v1 — the exact `Invalid string length` path v2 exists to prevent. The fix gates on `vec_memories` only, plus a regression test reproducing the daemon post-slim state. Committed as `cce4fe931d`.
+The live verification this session revealed the shipped feature did **not activate** on the production (sharded) runtime. The v2 selection gate (`hasMainVectorPayloadTables`) treated the presence of `vec_memories` **or `vec_metadata`** in main as "vector payload in main" and fell back to v1. But the shard-attach slimming (`drop_canonical_vector_payload_tables`) intentionally **retains** the small `vec_metadata` config table in main (a dimension fallback) while dropping `vec_memories`. So on every sharded daemon the gate always saw `vec_metadata` and silently chose v1 — the exact `Invalid string length` path v2 exists to prevent. The fix gates on `vec_memories` only, plus a regression test reproducing the daemon post-slim state. Committed as `0cdbcc0170`.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -113,7 +113,7 @@ The real proof came after a deliberate `dist/` rebuild: a live full-DB `checkpoi
 | Multi-lens review (no P0/P1) | PASS — SAFE TO DEPLOY (note: missed the inert-selection bug; live verify caught it) |
 | Live full-DB v2 CREATE on ~300 MB production DB | PASS — `snapshot_format=v2`, 297 MB main + 72 MB shard snapshot in 0.37 s, no `Invalid string length`; `PRAGMA integrity_check` ok on both files |
 | Live restore round-trip (isolated scratch via real `reopenActiveDatabase`) | PASS — restored 9665 memories, `rowsTotal==ftsRowsTotal==vecRowsTotal`, errors `[]`, production untouched |
-| v2-selection gate bug fixed + redeployed + re-verified | PASS — commit `cce4fe931d` |
+| v2-selection gate bug fixed + redeployed + re-verified | PASS — commit `0cdbcc0170` |
 <!-- /ANCHOR:verification -->
 
 ---

@@ -24,7 +24,7 @@ contextType: "implementation"
 
 Arc 010/001 deep-research identified three P0 security findings in the embedder sidecar IPC path. The sidecar client could accumulate unbounded stdout bytes before parsing JSON (F12). The rerank-sidecar ledger write used predictable temp file names based on PID and timestamp, enabling symlink pre-creation attacks (F13). The sidecar worker had no line length or input array cap before JSON parsing, allowing unbounded allocation (F47).
 
-All three findings were closed in commit `4fbc4098db`. Surgical fixes touched only the cited lines. F12 added a 1MB line cap and 10MB buffer cap to `handleStdout()` with structured error emission and deterministic child termination. F13 replaced the predictable suffix with `crypto.randomBytes(16).toString('hex')` and switched to exclusive-create file semantics. F47 mirrored the 1MB line cap in `sidecar-worker.ts` and added a 500-item input array rejection before allocation. A total of 31 tests across 4 suites were added, covering every overflow scenario with defense-in-depth assertions.
+All three findings were closed in commit `719610899f`. Surgical fixes touched only the cited lines. F12 added a 1MB line cap and 10MB buffer cap to `handleStdout()` with structured error emission and deterministic child termination. F13 replaced the predictable suffix with `crypto.randomBytes(16).toString('hex')` and switched to exclusive-create file semantics. F47 mirrored the 1MB line cap in `sidecar-worker.ts` and added a 500-item input array rejection before allocation. A total of 31 tests across 4 suites were added, covering every overflow scenario with defense-in-depth assertions.
 
 ### Added
 

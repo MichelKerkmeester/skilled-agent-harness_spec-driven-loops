@@ -155,7 +155,7 @@ Additive, surgical edits to the existing fan-out pool / run / reduce-state modul
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| 030 pool gauges + graceful-self-stop (`46812f12a8`) | Internal (shipped) | Green | C1 extends the same `buildPoolSummary`, confirmed present |
+| 030 pool gauges + graceful-self-stop (`ba632c340c`) | Internal (shipped) | Green | C1 extends the same `buildPoolSummary`, confirmed present |
 | `classifyExitCode` / `cli-guards.cjs` | Internal | Green | C2 may site its classifier beside it (or stand alone) |
 | D2 reliability signal | None | N/A | Cluster is explicitly independent, no block |
 | `reduce-state.cjs` resume resolver (`:434`) | Internal | Green | C4/C5 seam, confirmed present |

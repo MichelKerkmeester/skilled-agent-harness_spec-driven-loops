@@ -15,7 +15,7 @@ _memory:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/007-improvement-promotion-authority"
     last_updated_at: "2026-08-18T23:59:00Z"
     last_updated_by: "orchestrator"
-    recent_action: "Recorded adversarial TOCTOU fix c897dcf294 re-binding candidate to approval at consumption"
+    recent_action: "Recorded adversarial TOCTOU fix 25158f20c7 re-binding candidate to approval at consumption"
     next_safe_action: "Pass the additive-dark acceptance review before promotion enforcement goes live"
     blockers:
       - "Additive-dark acceptance review must pass before promotion goes live (CHK-018)"
@@ -104,7 +104,7 @@ A task marked `[B]` records its blocker inline and is not started until the bloc
 Promotion copies bytes into canonical targets. Every test in this child runs against a fixture target tree, never the real one.
 
 - [x] T001 **CONFIRM BEFORE BUILD.** For each of the 13 finding IDs in scope, re-read the cited `file:line` at current HEAD and record `CONFIRMED` / `REFUTED` / `MOVED` / `ALREADY-FIXED` with a cited probe. Carry the severity calibration: the actor is the operator or a stale local file. (`spec.md` §3 scope table) [4h]
-- [x] T002 [P] Capture the improvement baseline: `npx vitest run --config .opencode/skills/system-deep-loop/deep-improvement/scripts/vitest.config.mjs`. Record discovered, pass, fail, skip, exit code and SHA. [1h] {deps: T001} Done 2026-08-18. Pre-edit baseline captured at `d0d8623ddf` (parent of the first landing commit) in a throwaway worktree, then re-run post-landing — a real before/after, not a relabelled current run. Full project: 17 -> 13 failing files, 54 -> 49 failing tests, 478 -> 542 passing, 547 -> 591 discovered, exit non-zero both sides. Per lane: `agent-improvement` 60 -> 63 passed with zero failures throughout; `shared` 124 passed/1 failed -> 159 passed/0 failed. All residual red sits in the `model-benchmark` and `skill-benchmark` sibling lanes and decreased across this change. Detail: `scratch/improvement-project-baseline.md`.
+- [x] T002 [P] Capture the improvement baseline: `npx vitest run --config .opencode/skills/system-deep-loop/deep-improvement/scripts/vitest.config.mjs`. Record discovered, pass, fail, skip, exit code and SHA. [1h] {deps: T001} Done 2026-08-18. Pre-edit baseline captured at `de9ce00df4` (parent of the first landing commit) in a throwaway worktree, then re-run post-landing — a real before/after, not a relabelled current run. Full project: 17 -> 13 failing files, 54 -> 49 failing tests, 478 -> 542 passing, 547 -> 591 discovered, exit non-zero both sides. Per lane: `agent-improvement` 60 -> 63 passed with zero failures throughout; `shared` 124 passed/1 failed -> 159 passed/0 failed. All residual red sits in the `model-benchmark` and `skill-benchmark` sibling lanes and decreased across this change. Detail: `scratch/improvement-project-baseline.md`.
 - [x] T003 [P] Capture the council baseline: `npx vitest run --config .opencode/skills/system-deep-loop/deep-ai-council/vitest.config.mjs`. [1h] {deps: T001}
 - [x] T004 Fix the acceptance receipt contents in ADR-001: evidence digests, paths, target preimage, candidate snapshot, evaluator epoch, approval identity [4h] {deps: T001} [Evidence: `promotion receipt authority > authenticates the decided authority fields and evidence bindings`; suite SHA-256 `0505321f555e3edab1a3145da4e5acce74cb4b022408b10c2f49867d1a1fa265`]
 - [x] T005 Choose and record the evaluator identity authority the candidate cannot control [2h] {deps: T001} [Evidence: `score-candidate evaluator authority > ignores candidate frontmatter when selecting evaluator identity and rubric source`; suite SHA-256 `0505321f555e3edab1a3145da4e5acce74cb4b022408b10c2f49867d1a1fa265`]
@@ -143,7 +143,7 @@ Promotion copies bytes into canonical targets. Every test in this child runs aga
 
 ### T001 Finding Classification and Probe Ledger
 
-Severity remains calibrated as an operator/stale-local-file robustness risk, not a remote-attacker incident. `HEAD` before this task was `149742c46260277ae26df6fe6cfe582a9d02454d`. The affected-test aggregate suite-content SHA-256 is `0505321f555e3edab1a3145da4e5acce74cb4b022408b10c2f49867d1a1fa265`. These changes landed additive-dark under commits `0d1827eef50`, `f6cdf604a25` and `a28a39354b7` (status reconciled `ab6aae0a714`), so the candidate-SHA evidence that was previously pending now exists. An independent adversarial pass (T021 / CHK-005) then found and fixed a Medium candidate-rebind TOCTOU gap under `c897dcf294`. Go-live stays gated: promotion enforcement is dark until the additive-dark acceptance review (CHK-018) passes.
+Severity remains calibrated as an operator/stale-local-file robustness risk, not a remote-attacker incident. `HEAD` before this task was `149742c46260277ae26df6fe6cfe582a9d02454d`. The affected-test aggregate suite-content SHA-256 is `0505321f555e3edab1a3145da4e5acce74cb4b022408b10c2f49867d1a1fa265`. These changes landed additive-dark under commits `9d258a879ef`, `700cb920447` and `fdb8216e9b4` (status reconciled `1642dcaed9b`), so the candidate-SHA evidence that was previously pending now exists. An independent adversarial pass (T021 / CHK-005) then found and fixed a Medium candidate-rebind TOCTOU gap under `25158f20c7`. Go-live stays gated: promotion enforcement is dark until the additive-dark acceptance review (CHK-018) passes.
 
 | Finding | HEAD classification | Final disposition | Named probe |
 |---------|---------------------|-------------------|-------------|
@@ -168,7 +168,7 @@ Severity remains calibrated as an operator/stale-local-file robustness risk, not
 | Council project | 10 files; 109 passed, 2 failed; exit 1 | 10 files; 118 passed, 0 failed; exit 0 | T003 complete; both original failures fixed |
 | Promotion-authority affected matrix | Partial baseline: 7 files; 29 passed, 2 failed, 15 skipped; exit 1 | 8 files; 52 passed; exit 0, plus sweep 2 files/25 passed/exit 0 and REMEDIATE 2 passed/exit 0 | Implementation gate green; not a valid full-project T002 baseline |
 | Full improvement project | No valid pre-edit full-project baseline | 52 files; 530 passed, 45 failed; exit 1; failure paths are outside this packet, but pre-existence was not proven by a full base run | T002 (full pre-edit baseline) remains open at CHK-002/CHK-010; T020 closed at affected-suite scope (council + promotion-authority deltas); no false whole-project delta claim |
-| Promotion-authority suites (adversarial close) | 44 passed | 48 passed (+4, the new `promote-candidate-approval-binding.vitest.ts`); 0 regressions; exit 0 | Adversarial TOCTOU fix landed `c897dcf294`; reproduced green at reconciliation |
+| Promotion-authority suites (adversarial close) | 44 passed | 48 passed (+4, the new `promote-candidate-approval-binding.vitest.ts`); 0 regressions; exit 0 | Adversarial TOCTOU fix landed `25158f20c7`; reproduced green at reconciliation |
 | TypeScript | Not captured | `tsc --noEmit --ignoreDeprecations 6.0`: exit 0 | Green |
 <!-- /ANCHOR:phase-2 -->
 
@@ -179,8 +179,8 @@ Severity remains calibrated as an operator/stale-local-file robustness risk, not
 
 ### Delta and gate [M6]
 
-- [x] T020 Re-run both vitest projects; report deltas against the T002 and T003 baselines [2h] {deps: T008, T010, T011, T013, T014, T016, T017, T018, T019} [Evidence: council delta 109/2/exit1 -> 118/0/exit0 (T003); adversarial close re-ran the affected promotion-authority suites 44 -> 48 (+4 new binding suite), 0 regressions via `vitest`; landed `c897dcf294`. The full 52-file improvement-project T002 baseline was not captured, so the whole-project delta remains open at CHK-002/CHK-010.]
-- [x] T021 Independent adversarial verification pass targeted at whether any promotion path still trusts a mutable local file [6h] {deps: T020} [Evidence: independent pass (different actor than the builder) found a Medium candidate-rebind TOCTOU gap and fixed it with the shared fail-closed guard `assertCandidateMatchesApproval` at both consumption boundaries (`promote-candidate.cjs:377` accept, `:1011` single-phase), proven by `promote-candidate-approval-binding.vitest.ts`; landed `c897dcf294`. Two LOW residual defense-in-depth findings accepted as follow-up.]
+- [x] T020 Re-run both vitest projects; report deltas against the T002 and T003 baselines [2h] {deps: T008, T010, T011, T013, T014, T016, T017, T018, T019} [Evidence: council delta 109/2/exit1 -> 118/0/exit0 (T003); adversarial close re-ran the affected promotion-authority suites 44 -> 48 (+4 new binding suite), 0 regressions via `vitest`; landed `25158f20c7`. The full 52-file improvement-project T002 baseline was not captured, so the whole-project delta remains open at CHK-002/CHK-010.]
+- [x] T021 Independent adversarial verification pass targeted at whether any promotion path still trusts a mutable local file [6h] {deps: T020} [Evidence: independent pass (different actor than the builder) found a Medium candidate-rebind TOCTOU gap and fixed it with the shared fail-closed guard `assertCandidateMatchesApproval` at both consumption boundaries (`promote-candidate.cjs:377` accept, `:1011` single-phase), proven by `promote-candidate-approval-binding.vitest.ts`; landed `25158f20c7`. Two LOW residual defense-in-depth findings accepted as follow-up.]
 - [x] T022 `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/007-improvement-promotion-authority --strict` exits 0; record the improvement-lane gate for `014` [2h] {deps: T021} Done 2026-08-18. `validate.sh --strict` exits 0 with zero errors and zero warnings.
 <!-- /ANCHOR:phase-3 -->
 
@@ -193,8 +193,8 @@ Severity remains calibrated as an operator/stale-local-file robustness risk, not
 - [x] No `[B]` blocked tasks remaining — the only `[B]` occurrences are the legend and its explanatory line
 - [ ] Every scoped finding ID resolved to a fix, a `REFUTED` rationale, or an `ALREADY-FIXED` commit citation
 - [ ] Every confirmed finding carries a negative test that was red pre-fix
-- [x] Whole gate re-run and reported as a delta against the captured baseline — pre-edit `d0d8623ddf` vs post-landing: 17 -> 13 failing files, 54 -> 49 failing tests, 478 -> 542 passing; residual red confined to the benchmark sibling lanes and decreasing (`scratch/improvement-project-baseline.md`)
-- [x] Independent adversarial verification pass recorded — found and fixed a Medium candidate-rebind TOCTOU gap (`c897dcf294`) and flagged two LOW residuals; sign-off row approved 2026-08-18
+- [x] Whole gate re-run and reported as a delta against the captured baseline — pre-edit `de9ce00df4` vs post-landing: 17 -> 13 failing files, 54 -> 49 failing tests, 478 -> 542 passing; residual red confined to the benchmark sibling lanes and decreasing (`scratch/improvement-project-baseline.md`)
+- [x] Independent adversarial verification pass recorded — found and fixed a Medium candidate-rebind TOCTOU gap (`25158f20c7`) and flagged two LOW residuals; sign-off row approved 2026-08-18
 - [ ] `checklist.md` fully verified with test-name + suite-digest + SHA evidence
 - [x] All ADRs have a terminal status — all four are `Accepted`
 - [x] `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <this-child> --strict` exits 0 — re-run 2026-08-18 from the final state: Errors 0, Warnings 0

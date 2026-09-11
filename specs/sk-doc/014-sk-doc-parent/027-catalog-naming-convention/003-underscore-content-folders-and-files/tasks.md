@@ -53,13 +53,13 @@ _memory:
 - [x] T004 [P] Rename all in-scope content folders hyphen→underscore (`feature_catalog/<category>/`, `manual_testing_playbook/<category>/`, plus `references/`/`assets/`/`benchmark/` content subfolders)
 - [x] T005 [P] Rename all in-scope per-feature `.md` files hyphen→underscore (e.g. `read-path-freshness.md` → `read_path_freshness.md`)
 - [x] T006 Rewrite live references in lockstep: root index tables (`feature_catalog.md` / `manual_testing_playbook.md` rows), `category:` frontmatter values, and markdown cross-ref links
-- [x] T007 Rewrite the `create-feature-catalog` + `create-manual-testing-playbook` generators to emit `category_name` / `feature_name.md` (shipped as 027 parent commit `7cc369f2ed`)
+- [x] T007 Rewrite the `create-feature-catalog` + `create-manual-testing-playbook` generators to emit `category_name` / `feature_name.md` (shipped as 027 parent commit `76541f6833`)
 <!-- /ANCHOR:phase-2 -->
 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T008 Merge the parallel agent branches path-scoped: `git log` confirms merge commits `0659149d08` + `b5afa1206c`
+- [x] T008 Merge the parallel agent branches path-scoped: `git log` confirms merge commits `f2f94fe364` + `44dc909a76`
 - [x] T009 Residual-hyphen grep gate = 0: `git ls-files '**/feature_catalog/**/*-*.md' '**/manual_testing_playbook/**/*-*.md'` (excl z_archive) returns 0 tracked
 - [x] T010 Underscore end-state confirmed: `git ls-files` finds 2,032 tracked underscore `.md` content files present under the in-scope surfaces
 - [x] T011 No classification regression: `validate.sh --strict` keeps every catalog/playbook leaf typed (validator keys on parent-dir name, `validate_document.py:129,137`)

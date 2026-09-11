@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Merge design-motion into design-interface"
-description: "Ordered plan reusing commit b217d74b819's foundations-merge sequence: decide the restraint-gate ordering mechanism first, then move content, resolve collisions, rewire the command/router/test surface, and delete the retired mode."
+description: "Ordered plan reusing commit 562074ad7c5's foundations-merge sequence: decide the restraint-gate ordering mechanism first, then move content, resolve collisions, rewire the command/router/test surface, and delete the retired mode."
 trigger_phrases:
   - "motion merge plan"
   - "design-motion retirement plan"
@@ -12,7 +12,7 @@ _memory:
     packet_pointer: "sk-design/014-template-conformance/010-motion-merge"
     last_updated_at: "2026-07-27T19:00:00Z"
     last_updated_by: "spec-reconciler"
-    recent_action: "Marked all four plan phases delivered by commit c1981d2b91"
+    recent_action: "Marked all four plan phases delivered by commit c52071edb6"
     next_safe_action: "Clear the 4 remaining design-motion path references in 3 hub files"
     blockers: []
     key_files:
@@ -46,7 +46,7 @@ _memory:
 | **Testing** | `design-command-surface-check.mjs`, `interface-command-contract.test.mjs`, `design-command-surface-check.test.mjs`, manual grep sweep |
 
 ### Overview
-**Delivered** — all four phases landed in commit `c1981d2b91` (92 files, `+759/-2390`), with one verification item left open (see Phase 4). Four gated phases. Phase 1 decides and records the restraint-gate ordering mechanism BEFORE any content moves — this is load-bearing, mirroring `001-apache-devendoring`'s de-vendor-before-delete discipline. Phase 2 moves content using the proven `b217d74b819` foundations-merge sequence, resolving the 9 filename collisions explicitly. Phase 3 rewires the command/router/test surface (the machine-constraint set the spec names). Phase 4 deletes `design-motion` and verifies. If Phase 1 cannot produce a mechanically checkable ordering guarantee, halt before Phase 2.
+**Delivered** — all four phases landed in commit `c52071edb6` (92 files, `+759/-2390`), with one verification item left open (see Phase 4). Four gated phases. Phase 1 decides and records the restraint-gate ordering mechanism BEFORE any content moves — this is load-bearing, mirroring `001-apache-devendoring`'s de-vendor-before-delete discipline. Phase 2 moves content using the proven `562074ad7c5` foundations-merge sequence, resolving the 9 filename collisions explicitly. Phase 3 rewires the command/router/test surface (the machine-constraint set the spec names). Phase 4 deletes `design-motion` and verifies. If Phase 1 cannot produce a mechanically checkable ordering guarantee, halt before Phase 2.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -55,7 +55,7 @@ _memory:
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [x] Commit `b217d74b819` (foundations-merge sequence) has been read in full.
+- [x] Commit `562074ad7c5` (foundations-merge sequence) has been read in full.
 - [x] All 9 filename collisions are enumerated with their resolution (suffix vs. merge) decided.
 - [x] The restraint-gate ordering mechanism (`DEFAULT_RESOURCE` vs. preflight §10 row) is chosen and its rationale recorded — three mechanisms shipped rather than one.
 
@@ -83,7 +83,7 @@ Reuse the proven foundations-merge sequence (nest `references/`+`assets/`, flatt
 - **Test/verification update**: both test rosters, `design-command-surface-check.mjs` self-tests.
 
 ### Data Flow
-Read `b217d74b819` -> decide ordering mechanism, record rationale -> HARD STOP CHECK -> move `references/`+`assets/` -> flatten `procedures/`+`corpus/`, resolving 9 collisions -> add motion intents + task lane to `design-interface/SKILL.md` + `command-metadata.json` + `design.md` -> repoint `next`/`preferSiblingWhen`/`typicallyBefore`/`handoff.nextOptions` -> collapse `hub-router.json` `tieBreak` -> collapse `grounding-receipt.mjs` `PAIRED_MODES` (keep `'motion'` axis) -> delete `motion-character-handoff.md`, `design-motion/SKILL.md`/`README.md`/`changelog/`, `/interface:motion` + runtime mirrors -> update both test rosters -> sweep-grep + run checkers.
+Read `562074ad7c5` -> decide ordering mechanism, record rationale -> HARD STOP CHECK -> move `references/`+`assets/` -> flatten `procedures/`+`corpus/`, resolving 9 collisions -> add motion intents + task lane to `design-interface/SKILL.md` + `command-metadata.json` + `design.md` -> repoint `next`/`preferSiblingWhen`/`typicallyBefore`/`handoff.nextOptions` -> collapse `hub-router.json` `tieBreak` -> collapse `grounding-receipt.mjs` `PAIRED_MODES` (keep `'motion'` axis) -> delete `motion-character-handoff.md`, `design-motion/SKILL.md`/`README.md`/`changelog/`, `/interface:motion` + runtime mirrors -> update both test rosters -> sweep-grep + run checkers.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -95,14 +95,14 @@ Read `b217d74b819` -> decide ordering mechanism, record rationale -> HARD STOP C
 
 **Delivered** — the mechanism question was answered with three mechanisms, not one.
 
-- [x] Read `b217d74b819`'s diff in full.
+- [x] Read `562074ad7c5`'s diff in full.
 - [x] Compare `DEFAULT_RESOURCE` (conditioned on temporal intent) against a preflight §10 binary row for mechanical enforceability.
 - [x] Record the chosen mechanism and rationale (in `implementation-summary.md`'s Key Decisions).
 - [x] HARD STOP CHECK: if neither mechanism is genuinely enforceable, halt and escalate to the operator before Phase 2. *(Not triggered.)*
 
 ### Phase 2: Move content (blocked on Phase 1 passing)
 
-**Delivered** in `c1981d2b91`.
+**Delivered** in `c52071edb6`.
 
 - [x] Nest `design-motion/references/*` -> `design-interface/references/motion/`.
 - [x] Nest `design-motion/assets/*` -> `design-interface/assets/motion/`.
@@ -113,7 +113,7 @@ Read `b217d74b819` -> decide ordering mechanism, record rationale -> HARD STOP C
 
 ### Phase 3: Rewire command/router/test surface
 
-**Delivered** in `c1981d2b91`.
+**Delivered** in `c52071edb6`.
 
 - [x] Add 5-6 motion intents to `design-interface/SKILL.md` mirroring the `VISUAL_SYSTEM` pattern. *(Six shipped.)*
 - [x] Wire the chosen ordering mechanism into `SKILL.md` and/or `interface-preflight-card.md` §10. *(Both, plus per-intent resource ordering.)*
@@ -157,9 +157,9 @@ Three of four closed; the sweep is the open item.
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|--------------------|
-| Commit `b217d74b819` sequence | Internal | Reused | Reinventing the sequence risks missing a step this packet doesn't re-derive |
+| Commit `562074ad7c5` sequence | Internal | Reused | Reinventing the sequence risks missing a step this packet doesn't re-derive |
 | Phase 1 ordering-mechanism decision | Internal | Satisfied | Blocked all of Phase 2 — load-bearing gate, and it passed |
-| `009-aesthetics-retirement` landing first | Internal | Landed first; `c1981d2b91` also carries `009`'s spec-doc reconciliation | Not a hard dependency — both touch `design-interface/SKILL.md` and `command-metadata.json`, so sequencing avoids merge friction |
+| `009-aesthetics-retirement` landing first | Internal | Landed first; `c52071edb6` also carries `009`'s spec-doc reconciliation | Not a hard dependency — both touch `design-interface/SKILL.md` and `command-metadata.json`, so sequencing avoids merge friction |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -167,7 +167,7 @@ Three of four closed; the sweep is the open item.
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Status**: Not exercised. The merge shipped in `c1981d2b91` and remains revertible from there; it is a separate commit from `009` and `011` as planned.
+- **Status**: Not exercised. The merge shipped in `c52071edb6` and remains revertible from there; it is a separate commit from `009` and `011` as planned.
 - **Trigger**: The restraint-gate ordering mechanism is later found unenforceable, or the command-surface checker fails post-merge.
 - **Procedure**: Revert the merge commit(s); `design-motion/` and `/interface:motion` return via git history; re-attempt Phase 1 with the corrected mechanism.
 <!-- /ANCHOR:rollback -->
@@ -212,5 +212,5 @@ Phase 1 (Decide ordering) ──(HARD GATE)──> Phase 2 (Move content) ──
 <!--
 LEVEL 2 PLAN
 - Four gated phases; ordering-mechanism decision is the load-bearing gate
-- Reuses proven b217d74b819 sequence rather than inventing a fresh approach
+- Reuses proven 562074ad7c5 sequence rather than inventing a fresh approach
 -->

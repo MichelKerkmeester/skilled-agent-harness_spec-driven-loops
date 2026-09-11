@@ -19,7 +19,7 @@ contextType: "implementation"
 
 ### Summary
 
-This phase shipped the content-addressed derived ID for generated causal edges behind the default-off `SPECKIT_DERIVED_ID_PROVENANCE` flag. The derived-id helper reuses the shared content-id primitive, the schema version 40 migration adds the additive identity column with a partial unique index and the write path persists the id only for generated rows when the flag is on. Default behavior stays byte-identical until the gate is enabled. Commit `ed53661043` carried the lib code and a 396-line passing test.
+This phase shipped the content-addressed derived ID for generated causal edges behind the default-off `SPECKIT_DERIVED_ID_PROVENANCE` flag. The derived-id helper reuses the shared content-id primitive, the schema version 40 migration adds the additive identity column with a partial unique index and the write path persists the id only for generated rows when the flag is on. Default behavior stays byte-identical until the gate is enabled. Commit `a00803e724` carried the lib code and a 396-line passing test.
 
 ### Added
 
@@ -40,7 +40,7 @@ This phase shipped the content-addressed derived ID for generated causal edges b
 ### Verification
 
 - Planning docs strict validation: PASS.
-- Implementation tests: PASS. Focused suite 5 files / 41 tests at commit `ed53661043`.
+- Implementation tests: PASS. Focused suite 5 files / 41 tests at commit `a00803e724`.
 - Migration and backfill tests: PASS, covered by the derived-id-provenance suite.
 
 ### Files Changed

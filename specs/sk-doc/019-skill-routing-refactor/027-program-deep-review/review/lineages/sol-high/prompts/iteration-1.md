@@ -16,7 +16,7 @@ Stop Policy: max-iterations; convergence is telemetry before iteration 5.
 Resource Map Coverage: resource-map.md not present; skipping coverage gate.
 
 ## TASK
-Execute exactly one deep-review iteration. Review the program correctness claims and implementation invariants named in the target `spec.md`, prioritizing the H/S classifier, command-metadata schema, fleet gate, manifest generation/freshness, scaffolder, and watcher state transitions. Use commit range `2fa9fc480c..a39e6ea716` only to identify in-scope program changes. Load `.opencode/skills/sk-code/code-review/references/review-core.md` before severity calls.
+Execute exactly one deep-review iteration. Review the program correctness claims and implementation invariants named in the target `spec.md`, prioritizing the H/S classifier, command-metadata schema, fleet gate, manifest generation/freshness, scaffolder, and watcher state transitions. Use commit range `c4b5f27ae8..c573706cfe` only to identify in-scope program changes. Load `.opencode/skills/sk-code/code-review/references/review-core.md` before severity calls.
 
 ## STATE FILES
 - Config: `.opencode/specs/sk-doc/019-skill-routing-refactor/027-program-deep-review/review/lineages/sol-high/deep-review-config.json`

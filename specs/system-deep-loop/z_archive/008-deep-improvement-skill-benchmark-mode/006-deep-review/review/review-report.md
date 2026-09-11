@@ -18,7 +18,7 @@ Target: the deep-improvement skill's new **Lane C (skill-benchmark)** engine, th
 
 > **Post-review remediation (2026-05-31):** the review loop itself was report-only. After review,
 > the operator elected full cleanup, and all 11 verified findings (F-01…F-11) were applied and
-> committed at `60030d7278` — three-lane docs corrected, `--advisor-mode` documented, Lane C polish
+> committed at `444917ace9` — three-lane docs corrected, `--advisor-mode` documented, Lane C polish
 > + the stale 003 note fixed. Suite re-verified **209/209, exit 0**. The "open" status in the
 > registry below reflects state **at review time**; treat F-01…F-11 as RESOLVED by that commit.
 
@@ -31,7 +31,7 @@ The shipped Lane C code is **correct**. Opus 4.8 independently re-ran the suite 
 no security holes (the advisor subprocess uses argv-array `spawnSync`, no `shell:true`; d5 path-escape
 guard and contamination substring-matching are sound), the rename is complete and consistent across
 both the TypeScript and Python advisor surfaces (no split-brain), and `loop-host.cjs` is **purely
-additive** — Lane A / Lane B plans are byte-identical (`git show --stat 40d1ca5543` touches no Lane A/B
+additive** — Lane A / Lane B plans are byte-identical (`git show --stat 44d2129ea1` touches no Lane A/B
 module; the three mode-sets are disjoint).
 
 The 9-iteration MiniMax breadth pass produced **64 raw findings (20 P0 / 19 P1 / 22 P2)** but was
@@ -76,7 +76,7 @@ Opus revised a MiniMax severity, the origin is noted in §9.
 | F-08 | P2 | `references/skill-benchmark/{scoring_contract,operator_guide,scenario_authoring}.md` (+ 2 JSON assets) | no frontmatter / no `## 1. OVERVIEW` / un-numbered sentence-case H2s — inconsistent with the skill's **own** Lane A/B reference docs (which carry `title/type/status` + `## 1. OVERVIEW` + numbered ALL-CAPS). **Operator-flagged.** Consistency polish, not a structural violation (`template_rules.json` marks these recommended/optional; raw-JSON assets are a repo-wide pattern) | add `title/type/status` frontmatter + numbered `## 1. OVERVIEW` + ALL-CAPS H2s to the three reference docs to match the Lane A/B siblings | open |
 | F-09 | P2 | `scripts/skill-benchmark/d5-connectivity.cjs:48` | missing-SKILL.md early-return sets `score:0`, but the normal penalty path (line 91-92) yields `60` for the same one-P0 condition (verdict unaffected — `gateFailed:true` on both paths — but raw score differs for debug/compare consumers) | return `score:60` in the early-return branch, or fall through to the shared penalty computation | open |
 | F-10 | P2 | `scripts/tests/skill-benchmark.vitest.ts:188-200` | e2e runs `--skill cli-codex` (no fixtures) so `scenarioRows` is empty and it asserts only schema/mode/dual-artifact; plus uncleaned temp dir + uncovered ambiguity/negative-fixture cases (unit scorer tests DO cover scoring, so not false-confidence) | assert `scenarioRows.length > 0` via the deep-improvement skill (ships a real fixture); add `afterAll` cleanup + the two edge-case rows | open |
-| F-11 | P2 | `…/003-skill-rename-deep-improvement/implementation-summary.md:60` | stale "Not committed yet … parallel-session-revert hazard" — the rename landed at `caf072e39e` (in HEAD); spec "Complete" status is now correct, only this note is stale | update to "Committed at `caf072e39e`", drop the hazard caveat (`completion_pct:100` is accurate) | open |
+| F-11 | P2 | `…/003-skill-rename-deep-improvement/implementation-summary.md:60` | stale "Not committed yet … parallel-session-revert hazard" — the rename landed at `123ef15261` (in HEAD); spec "Complete" status is now correct, only this note is stale | update to "Committed at `123ef15261`", drop the hazard caveat (`completion_pct:100` is accurate) | open |
 
 ## 4. Remediation Workstreams
 
@@ -157,7 +157,7 @@ parallel — is specified to close.)*
 **Verification ground-truth (Opus, this pass).**
 - Test suite: **208 passed, 20 files, exit 0** (run from `scripts/`; "No test files found" is a wrong-cwd
   artifact, not a red suite).
-- Both packet commits in HEAD: `caf072e39e` (rename), `40d1ca5543` (Lane C build).
+- Both packet commits in HEAD: `123ef15261` (rename), `44d2129ea1` (Lane C build).
 - No advisor split-brain: TS `aliases.ts`/`explicit.ts`/`fusion.ts` carry no rename tokens (grep hits
   were in compiled `dist/`); Python has 35 `deep-improvement` refs + 6 legacy aliases all → new id.
 

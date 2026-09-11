@@ -1,6 +1,6 @@
 ---
 title: "Deep Review Report: lineage minimax-m3-high"
-description: "Synthesis of 5 iterations reviewing 3 commits (bf0986cecd, 9a42aedae4, dc7fdfb0a7) on skilled/v4.0.0.0"
+description: "Synthesis of 5 iterations reviewing 3 commits (7e67a7bb3a, 5dd5547949, 6a2127a51e) on skilled/v4.0.0.0"
 sessionId: fanout-minimax-m3-high-1784606267078-bpkeoi
 generation: 1
 lineageMode: new
@@ -25,9 +25,9 @@ Five iterations reviewed the three commits shipped to `skilled/v4.0.0.0` this se
 
 | Commit | Subject | Verdict |
 |--------|---------|---------|
-| `bf0986cecd` | feat(sk-design): implement styles-DB evolution Phase 0 foundation (015/001) | **PASS** (correctness, security, maintainability) |
-| `9a42aedae4` | refactor(sk-design): retire the `/design:*` alias namespace (012/006) | **CONDITIONAL** (4 P1 traceability defects) |
-| `dc7fdfb0a7` | docs(sk-doc): register phase 012 and bring 020 tree to clean full-depth validation | **PASS** (traceability + maintainability) |
+| `7e67a7bb3a` | feat(sk-design): implement styles-DB evolution Phase 0 foundation (015/001) | **PASS** (correctness, security, maintainability) |
+| `5dd5547949` | refactor(sk-design): retire the `/design:*` alias namespace (012/006) | **CONDITIONAL** (4 P1 traceability defects) |
+| `6a2127a51e` | docs(sk-doc): register phase 012 and bring 020 tree to clean full-depth validation | **PASS** (traceability + maintainability) |
 
 **Overall verdict: CONDITIONAL** — 4 P1 findings in the 012/006 packet's bookkeeping
 metadata and dangling `/design:*` prose; the executable code is correct and the
@@ -78,7 +78,7 @@ MAD noise-floor criterion met; coverage_age = 2).
 - **File**: `.opencode/specs/sk-design/012-style-database-and-interface-commands/006-retire-design-alias-namespace/spec.md:25-26`
 - **Evidence**: `recent_action: "Author the /design:* retirement spec (AUTHOR-SPEC stage)"`,
   `completion_pct: 0`, `session_dedup.fingerprint: "sha256:000...000"`.
-- **Issue**: implementation shipped in commit `9a42aedae4`; the packet's own frontmatter
+- **Issue**: implementation shipped in commit `5dd5547949`; the packet's own frontmatter
   contradicts the commit message's "validate.sh --strict on 012/006 = 0/0" claim.
 
 #### F4 — `012/006/implementation-summary.md` claims "not yet implemented"
@@ -140,7 +140,7 @@ MAD noise-floor criterion met; coverage_age = 2).
 
 ### Workstream A: 012/006 packet metadata post-implementation (P1)
 
-This is the largest single follow-up. The commit `9a42aedae4` added the 012/006
+This is the largest single follow-up. The commit `5dd5547949` added the 012/006
 spec packet in AUTHOR-SPEC stage and shipped the implementation in the same
 commit. The packet was never post-implemented. The remediation is a single
 follow-up commit that updates the packet's metadata to shipped state.

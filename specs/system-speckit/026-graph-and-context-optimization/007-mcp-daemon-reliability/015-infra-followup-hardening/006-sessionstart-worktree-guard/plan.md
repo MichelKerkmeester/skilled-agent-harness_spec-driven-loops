@@ -127,7 +127,7 @@ Required inventories:
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| worktree-guard.sh | Internal | Green (035, c657219dd9) | The script being wired |
+| worktree-guard.sh | Internal | Green (035, ec02cd1875) | The script being wired |
 | Claude hook schema | Runtime | Stable | Wiring target |
 <!-- /ANCHOR:dependencies -->
 

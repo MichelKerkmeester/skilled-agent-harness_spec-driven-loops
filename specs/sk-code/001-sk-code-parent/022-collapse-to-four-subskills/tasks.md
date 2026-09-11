@@ -109,7 +109,7 @@ _memory:
 - [x] T025 Verify full benchmark suite [medium] — full skill-benchmark vitest suite passed 107/107 across 8 files
 - [x] T026 Verify markdown links [small] — check-markdown-links completed cleanly with 0 sk-code links flagged
 - [x] T027 Record verification evidence in checklist.md [small] — every checklist item is checked with evidence grounded in the verified packet facts
-- [x] T028 Record Files Changed and Deviations in implementation-summary.md [medium] — includes Stage A commit `2cd3b3f7a9`, Stage B commit `6c0d9959b9`, verification evidence, limitations, and scoped deviations
+- [x] T028 Record Files Changed and Deviations in implementation-summary.md [medium] — includes Stage A commit `531cf1a0c8`, Stage B commit `3a6fae70e1`, verification evidence, limitations, and scoped deviations
 
 <!-- /ANCHOR:phase-5 -->
 ---

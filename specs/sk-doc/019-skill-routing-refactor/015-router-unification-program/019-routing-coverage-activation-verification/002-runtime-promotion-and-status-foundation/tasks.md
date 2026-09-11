@@ -1,6 +1,6 @@
 ---
 title: "Tasks: Runtime Promotion & Status Foundation (P0)"
-description: "Task breakdown for the P0 foundation (REQ-001 through REQ-009: closure promotion, eligibility/engine split, status probe, ENV entry, tri-state flag, breadcrumbs, and the durable no-spec-import rule), reconciled to the implemented+committed state (landed in 4153cbebd8)."
+description: "Task breakdown for the P0 foundation (REQ-001 through REQ-009: closure promotion, eligibility/engine split, status probe, ENV entry, tri-state flag, breadcrumbs, and the durable no-spec-import rule), reconciled to the implemented+committed state (landed in 6b81fde29e)."
 trigger_phrases:
   - "runtime promotion status foundation tasks"
   - "compiled routing p0 task list"
@@ -11,7 +11,7 @@ _memory:
     packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/002-runtime-promotion-and-status-foundation"
     last_updated_at: "2026-07-21T03:58:44Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Reconciled the task breakdown to the implemented+committed state (code landed in 4153cbebd8)"
+    recent_action: "Reconciled the task breakdown to the implemented+committed state (code landed in 6b81fde29e)"
     next_safe_action: "P4/011 operator-gated cutover remains pending"
     blockers: []
     key_files:
@@ -25,7 +25,7 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions:
-      - "Q1: the promoted closure is hosted at .opencode/bin/lib/compiled-routing/ (landed in 4153cbebd8)"
+      - "Q1: the promoted closure is hosted at .opencode/bin/lib/compiled-routing/ (landed in 6b81fde29e)"
 ---
 # Tasks: Runtime Promotion & Status Foundation (P0)
 
@@ -103,7 +103,7 @@ _memory:
 
 - [x] T018 Verify the flag truth-table (unset/`0`/`1`/`false`/`off`/invalid) and the empty-cohort unset-to-legacy behavior. (REQ-004; flag unit tests) {deps: T013, T014}
 - [x] T019 Verify the status `causeCode` matrix over fresh/stale/missing-manifest/broken-resolver fixtures separates drift from breakage. (REQ-003; status tests) {deps: T011}
-- [x] T020 Verify compiled and legacy routing decisions are byte-identical across the route-gold corpus, with the frozen scorer consumed read-only and its digests unchanged. (REQ-008; Lane C parity, `4153cbebd8`) {deps: T005, T014}
+- [x] T020 Verify compiled and legacy routing decisions are byte-identical across the route-gold corpus, with the frozen scorer consumed read-only and its digests unchanged. (REQ-008; Lane C parity, `6b81fde29e`) {deps: T005, T014}
 - [x] T021 Run `validate.sh --strict` on this folder to Errors 0, confirm the durable rule fails a seeded spec-import, and record an honest handoff. (REQ-007, REQ-008; final evidence) {deps: T005-T020}
 
 **Planned evidence**: truth-table log, `causeCode` matrix, parity report, frozen-digest equality, durable-rule fixture result, strict validation output, Planned-state handoff.
@@ -114,12 +114,12 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [x] REQ-001 through REQ-009 each have direct evidence and an owning task. (landed in 4153cbebd8)
-- [x] The operator go-ahead to begin is recorded before Phase 2 starts. (given; implementation committed in 4153cbebd8)
-- [x] No runtime path reads under `.opencode/specs` (move simulation green). (invariant + `check-no-spec-imports.cjs` guard; 4153cbebd8)
-- [x] The three frozen scorer files remain byte-identical to their baseline hashes. (SHA-256 unchanged, 3/3; 4153cbebd8)
-- [x] Compiled routing remains decision-identical to legacy across the gated corpus; no hub is lit. (invariant; 4153cbebd8)
-- [x] The durable no-spec-import rule is wired into CI with passing fixtures. (`.github/workflows/runtime-no-spec-import.yml`; 4153cbebd8)
+- [x] REQ-001 through REQ-009 each have direct evidence and an owning task. (landed in 6b81fde29e)
+- [x] The operator go-ahead to begin is recorded before Phase 2 starts. (given; implementation committed in 6b81fde29e)
+- [x] No runtime path reads under `.opencode/specs` (move simulation green). (invariant + `check-no-spec-imports.cjs` guard; 6b81fde29e)
+- [x] The three frozen scorer files remain byte-identical to their baseline hashes. (SHA-256 unchanged, 3/3; 6b81fde29e)
+- [x] Compiled routing remains decision-identical to legacy across the gated corpus; no hub is lit. (invariant; 6b81fde29e)
+- [x] The durable no-spec-import rule is wired into CI with passing fixtures. (`.github/workflows/runtime-no-spec-import.yml`; 6b81fde29e)
 - [x] Strict packet validation reports zero errors. (re-run this pass)
 <!-- /ANCHOR:completion -->
 

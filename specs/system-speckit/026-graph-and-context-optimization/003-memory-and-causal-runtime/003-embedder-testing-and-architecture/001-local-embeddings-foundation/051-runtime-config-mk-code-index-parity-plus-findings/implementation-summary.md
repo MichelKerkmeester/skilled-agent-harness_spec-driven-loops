@@ -91,7 +91,7 @@ Work landed in logical commits. `2ad7f79fa` handles runtime config parity. `b74e
 
 | Check | Result |
 |-------|--------|
-| `git show 50cfabb6e2 --stat` | PASS: local rename commit found; requested SHA `7cfc16ed9` absent. |
+| `git show a0c46439dd --stat` | PASS: local rename commit found; requested SHA `7cfc16ed9` absent. |
 | Config legacy grep | PASS: no `system_code_graph` or `system-code-graph-launcher` matches in the four runtime configs. |
 | JSON parse | PASS: `opencode.json`, `.claude/mcp.json`, and `.gemini/settings.json` parse with Node/JSON tooling. |
 | TOML parse | PASS: `.codex/config.toml` parses with Python 3.11 `tomllib`. |

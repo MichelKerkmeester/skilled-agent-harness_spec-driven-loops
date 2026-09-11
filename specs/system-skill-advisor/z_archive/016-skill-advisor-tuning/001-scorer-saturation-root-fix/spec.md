@@ -15,7 +15,7 @@ _memory:
     last_updated_at: "2026-07-07T17:37:00.000Z"
     last_updated_by: "opus-4.8"
     recent_action: "Pre-implementation spec authored"
-    next_safe_action: "Record close-out, WS1 falsified, superseded by commit e2711fb580"
+    next_safe_action: "Record close-out, WS1 falsified, superseded by commit 875884b80a"
 ---
 # Feature Specification: Advisor-Scorer Saturation-Class Root Fix (WS1–WS6) + Advisor Projection Vocab
 
@@ -31,7 +31,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Closed — WS1 saturation thesis empirically falsified & re-scoped (superseded by workstreams 002–008 + audit-phrase calibration, commit e2711fb580) |
+| **Status** | Closed — WS1 saturation thesis empirically falsified & re-scoped (superseded by workstreams 002–008 + audit-phrase calibration, commit 875884b80a) |
 | **Created** | 2026-07-06 |
 | **Branch** | `system-speckit/028-memory-search-intelligence` |
 
@@ -63,7 +63,7 @@ Replace the pre-clamp penalty class with a durable post-cap demotion channel and
 - **Layer 1b — Advisor projection vocabulary**: sk-code `graph-metadata.json` + `SKILL.md` frontmatter gain `code audit`, `code review loop`, `findings-first review`, `release readiness`, `audit`, `findings`, `security`, and `correctness`; deep-loop-workflows drops bare `code audit` and `severity weighted findings`, keeping its loop/convergence identity.
 
 ### Out of Scope
-- Any sk-code-local, advisor-scorer-independent routing discovery already shipped as Layer 1 (packet 024, commits `ec014f95c6` code + `852ee387cc` docs/rollup) — CWV/accessibility smart-routing vocabulary, router-replay acronym boundaries, and the Lane-C D3 empty-gold proxy fix.
+- Any sk-code-local, advisor-scorer-independent routing discovery already shipped as Layer 1 (packet 024, commits `cdc51fc894` code + `9d56aec824` docs/rollup) — CWV/accessibility smart-routing vocabulary, router-replay acronym boundaries, and the Lane-C D3 empty-gold proxy fix.
 - Rewriting deep-loop-workflows' loop/convergence doctrine or its benchmark harness beyond the two advisor-metadata vocab deletions named above.
 - Editing the memory daemon, its database, or any embedding provider infrastructure beyond restoring one deterministic embedding path for the WS6 ablation.
 
@@ -198,6 +198,6 @@ Replace the pre-clamp penalty class with a durable post-cap demotion channel and
 - **Design input**: `research/scorer-fix-recommendation.md` (verbatim copy of the two-round GPT-5.5 synthesis that defines WS1–WS6)
 - **Plan**: `plan.md` · **Tasks**: `tasks.md` · **Checklist**: `checklist.md` · **Implementation Summary**: `implementation-summary.md`
 - **Parent**: `../spec.md` (`system-skill-advisor` phase parent)
-- **Layer 1 predecessor**: packet 024 (`skilled-agent-orchestration/124-sk-code-parent/024-sk-code-advisor-routing-and-discovery`), commits `ec014f95c6` + `852ee387cc`
+- **Layer 1 predecessor**: packet 024 (`skilled-agent-orchestration/124-sk-code-parent/024-sk-code-advisor-routing-and-discovery`), commits `cdc51fc894` + `9d56aec824`
 
 <!-- /ANCHOR:related-docs -->

@@ -36,7 +36,7 @@ contextType: "general"
 
 - [ ] T001 Capture the failing baseline: the five `dispatch_failure` records and the reverted operator edit, so the fix has a negative control (lineage artifact directory)
 - [ ] T002 Confirm the runtime toolchain is live before any stream edits code: `npm run typecheck` and `npm test` both run green (`.opencode/skills/system-deep-loop/runtime`)
-- [x] T003 [P] Assign the four streams their disjoint file sets and record the boundary, so two streams never open the same file (this packet) (done: implementation-summary.md 'How It Was Delivered' records the four streams worked on disjoint files, commit 54e65e115a)
+- [x] T003 [P] Assign the four streams their disjoint file sets and record the boundary, so two streams never open the same file (this packet) (done: implementation-summary.md 'How It Was Delivered' records the four streams worked on disjoint files, commit dbcdd8b3ad)
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -44,16 +44,16 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T004 [P] Stream 1: add an in-process execution directive to `buildLoopPrompt` covering every CLI lineage kind (`runtime/scripts/fanout-run.cjs`) (done: file modified in commit 2c2687e260, AC-001 4 passed exit 0)
-- [x] T005 [P] Stream 1: write the directive guard test that iterates the supported lineage kinds (`runtime/tests/fanout-loop-prompt-in-process.test.ts`) (done: file created in commit 2c2687e260, AC-001 4 passed exit 0)
-- [x] T006 [P] Stream 2: add the pre-dispatch in-process rule to the cli-codex executor step (`.opencode/commands/deep/assets/deep-research-auto.yaml`) (done: file modified in commit 2c2687e260, AC-002 Met)
-- [x] T007 [P] Stream 2: mirror that rule in the review workflow, keeping both steps identical (`.opencode/commands/deep/assets/deep-review-auto.yaml`) (done: file modified in commit 2c2687e260, AC-002 Met)
-- [x] T008 [P] Stream 2: add the pre-spawn refusal inside the embedded node script of both codex steps (both auto YAMLs) (done: both YAMLs modified in commit 2c2687e260, AC-002 records the pre-spawn validateExecutorDispatchAllowed refusal)
-- [x] T009 [P] Stream 2: make the recursion guard refuse a nested cli-codex dispatch before spawn, deciding from the dispatch stack rather than the session id alone (`runtime/lib/deep-loop/executor-audit.ts`) (done: file modified in commit 2c2687e260, AC-003 43 passed exit 0)
-- [x] T010 [P] Stream 2: cover refuse, top-level allow and stale-session rows (`runtime/tests/unit/executor-audit.vitest.ts`) (done: file modified in commit 2c2687e260, AC-003 refusal rows and AC-004 allow/CODEX_SESSION_ID rows, exit 0)
-- [x] T011 [P] Stream 3: write the reverted diff to `<artifactDir>/containment-reverted/<iteration>-<timestamp>.patch` before any revert (`runtime/lib/deep-loop/write-containment.ts`) (done: file modified in commit 2c2687e260, AC-005 patch-exists row 34 passed exit 0)
-- [x] T012 [P] Stream 3: add `revertedPatchPath` to the `containment_violation` event and `recoveryHint` to the returned result (`runtime/lib/deep-loop/write-containment.ts`) (done: file modified in commit 2c2687e260, AC-006 event and result rows, exit 0)
-- [x] T013 [P] Stream 4: add the executor rule and the containment rule to the three documents that a lineage author reads (`cli-codex/SKILL.md`, `deep-research/references/protocol/loop-protocol.md`, `system-deep-loop/SKILL.md`) (done: all three docs modified in commit 2c2687e260, AC-008 Met, read on disk)
+- [x] T004 [P] Stream 1: add an in-process execution directive to `buildLoopPrompt` covering every CLI lineage kind (`runtime/scripts/fanout-run.cjs`) (done: file modified in commit fddefe53bf, AC-001 4 passed exit 0)
+- [x] T005 [P] Stream 1: write the directive guard test that iterates the supported lineage kinds (`runtime/tests/fanout-loop-prompt-in-process.test.ts`) (done: file created in commit fddefe53bf, AC-001 4 passed exit 0)
+- [x] T006 [P] Stream 2: add the pre-dispatch in-process rule to the cli-codex executor step (`.opencode/commands/deep/assets/deep-research-auto.yaml`) (done: file modified in commit fddefe53bf, AC-002 Met)
+- [x] T007 [P] Stream 2: mirror that rule in the review workflow, keeping both steps identical (`.opencode/commands/deep/assets/deep-review-auto.yaml`) (done: file modified in commit fddefe53bf, AC-002 Met)
+- [x] T008 [P] Stream 2: add the pre-spawn refusal inside the embedded node script of both codex steps (both auto YAMLs) (done: both YAMLs modified in commit fddefe53bf, AC-002 records the pre-spawn validateExecutorDispatchAllowed refusal)
+- [x] T009 [P] Stream 2: make the recursion guard refuse a nested cli-codex dispatch before spawn, deciding from the dispatch stack rather than the session id alone (`runtime/lib/deep-loop/executor-audit.ts`) (done: file modified in commit fddefe53bf, AC-003 43 passed exit 0)
+- [x] T010 [P] Stream 2: cover refuse, top-level allow and stale-session rows (`runtime/tests/unit/executor-audit.vitest.ts`) (done: file modified in commit fddefe53bf, AC-003 refusal rows and AC-004 allow/CODEX_SESSION_ID rows, exit 0)
+- [x] T011 [P] Stream 3: write the reverted diff to `<artifactDir>/containment-reverted/<iteration>-<timestamp>.patch` before any revert (`runtime/lib/deep-loop/write-containment.ts`) (done: file modified in commit fddefe53bf, AC-005 patch-exists row 34 passed exit 0)
+- [x] T012 [P] Stream 3: add `revertedPatchPath` to the `containment_violation` event and `recoveryHint` to the returned result (`runtime/lib/deep-loop/write-containment.ts`) (done: file modified in commit fddefe53bf, AC-006 event and result rows, exit 0)
+- [x] T013 [P] Stream 4: add the executor rule and the containment rule to the three documents that a lineage author reads (`cli-codex/SKILL.md`, `deep-research/references/protocol/loop-protocol.md`, `system-deep-loop/SKILL.md`) (done: all three docs modified in commit fddefe53bf, AC-008 Met, read on disk)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -61,7 +61,7 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T014 Stream 3: prove recovery with a `git apply` round trip in a temporary repository, not a string assertion (`runtime/tests/unit/write-containment.vitest.ts`) (done: file modified in commit 2c2687e260, AC-007 git apply round trip, exit 0)
+- [x] T014 Stream 3: prove recovery with a `git apply` round trip in a temporary repository, not a string assertion (`runtime/tests/unit/write-containment.vitest.ts`) (done: file modified in commit fddefe53bf, AC-007 git apply round trip, exit 0)
 - [ ] T015 Parse both auto YAMLs and confirm the codex step still fails closed when the binary is absent (both auto YAMLs)
 - [x] T016 Run the authoritative gate once, after all four streams land: full `npm test` plus `npm run typecheck` (`.opencode/skills/system-deep-loop/runtime`) (done: goal.md records 153 files, 2531 tests passed, 0 failed; implementation-summary.md records typecheck at the pre-change baseline count with no errors in changed files)
 - [ ] T017 Re-run a short cli-codex lineage and confirm zero nested `codex exec` processes and zero `dispatch_failure` records (lineage artifact directory)
@@ -118,7 +118,7 @@ contextType: "general"
 
 - [x] CHK-001 [P0] Requirements documented in spec.md (done: spec.md Section 4 documents REQ-001 through REQ-009 across P0 and P1 tiers)
 - [x] CHK-002 [P0] Technical approach defined in plan.md (done: plan.md Section 3 defines the layered-refusal architecture, key components and data flow)
-- [x] CHK-003 [P1] Dependencies identified and available (done: plan.md Section 6 lists three dependencies with status, and commit 2c2687e260 shows all three landed)
+- [x] CHK-003 [P1] Dependencies identified and available (done: plan.md Section 6 lists three dependencies with status, and commit fddefe53bf shows all three landed)
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -154,7 +154,7 @@ contextType: "general"
 - [ ] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases.
 - [x] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed. (done: plan.md lists the matrix axes, and AC-003/AC-010 record 43 and 157 passed rows)
 - [x] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state. (done: AC-004 covers a stale `CODEX_SESSION_ID` left in the environment being treated as nesting, exit 0)
-- [x] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range. (done: goal.md Progress table pins commits `2c2687e260` and `54e65e115a`)
+- [x] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range. (done: goal.md Progress table pins commits `fddefe53bf` and `dbcdd8b3ad`)
 <!-- /ANCHOR:fix-completeness -->
 
 ---

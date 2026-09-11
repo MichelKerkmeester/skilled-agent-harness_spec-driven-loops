@@ -62,7 +62,7 @@ FAILURE MODES:
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 12** of packet 028, closing Target 2 of the 10-iteration GPT-5.5 xhigh adversarial follow-up review (`review-report.md`, session `gpt-followup-audit-20260702T104647Z`) — an independent audit of phase 010's own shipped `deriveStatus` completion-evidence fix (commits `ea2bb09b7a`, `ca9bea9f78`, `b70a441388`) against that phase's `spec.md` REQ-001 through REQ-005.
+This is **Phase 12** of packet 028, closing Target 2 of the 10-iteration GPT-5.5 xhigh adversarial follow-up review (`review-report.md`, session `gpt-followup-audit-20260702T104647Z`) — an independent audit of phase 010's own shipped `deriveStatus` completion-evidence fix (commits `4f1f64c20a`, `c02b2a2f39`, `f9724f9e2d`) against that phase's `spec.md` REQ-001 through REQ-005.
 
 **Scope Boundary**: `deriveStatus`'s explicit-status precedence branch, `orchestrator.ts`'s wiring of the enforcement flag, their regression tests, and a documentation amendment to phase 010's own `spec.md`. Does NOT touch the 7 other pre-existing `generated-metadata-integrity.ts` violation codes (traced end-to-end in review iteration 7, confirmed not regressed by the phase-010 fix). Does NOT re-open the 213-folder bulk-correction question (still deferred, operator's call, unaffected by this phase).
 

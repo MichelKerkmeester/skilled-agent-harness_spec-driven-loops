@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Deep Review of the Last 50 Commits (a9e9bdb0a5^..HEAD)"
+title: "Feature Specification: Deep Review of the Last 50 Commits (fd67ede05f^..HEAD)"
 description: "A read-only 20-iteration deep review of the last 50 commits across 9 research angles. Verdict CONDITIONAL: 0 P0, 3 actionable P1 (all recoverable), ~17 P2 advisories. Output is a findings report; many seeded P0 hypotheses were adversarially refuted. No code changed."
 trigger_phrases:
   - "last 50 commits deep review"
@@ -29,7 +29,7 @@ _memory:
       - "Gate 3 pre-answered: create the canonical docs for the existing 016 review packet (authorized)."
       - "Read-only review: no reviewed source code is modified; remediation routes to a future packet."
 ---
-# Feature Specification: Deep Review of the Last 50 Commits (a9e9bdb0a5^..HEAD)
+# Feature Specification: Deep Review of the Last 50 Commits (fd67ede05f^..HEAD)
 
 <!-- SPECKIT_LEVEL: 1 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
@@ -54,7 +54,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The last 50 commits (git range `a9e9bdb0a5^..HEAD`, HEAD `12de3d3a7e`) shipped launcher/IPC concurrency hardening, memory-write and async-enrichment changes, causal/relation inference, shutdown/lifecycle wiring, config edits including the Gemini removal, and a large changelog rollup. Without a structured adversarial review across these change-areas, a latent durability, lifecycle, or contract regression could survive into a release that looks green.
+The last 50 commits (git range `fd67ede05f^..HEAD`, HEAD `3923a65db1`) shipped launcher/IPC concurrency hardening, memory-write and async-enrichment changes, causal/relation inference, shutdown/lifecycle wiring, config edits including the Gemini removal, and a large changelog rollup. Without a structured adversarial review across these change-areas, a latent durability, lifecycle, or contract regression could survive into a release that looks green.
 
 ### Purpose
 Produce a code-evidenced P0/P1/P2 findings report (the verdict and remediation order) that says whether this commit range is releasable and exactly which defects need remediation, without modifying any reviewed code.
@@ -125,7 +125,7 @@ Produce a code-evidenced P0/P1/P2 findings report (the verdict and remediation o
 |------|------|--------|------------|
 | Risk | Seeded P0 hypotheses accepted without code re-read | High - false alarms in a release-gating report | Adversarial verification round re-read HEAD; 4 of 5 candidate P1s downgraded, multiple P0 hypotheses refuted |
 | Risk | A P1 stated without a concrete failure trace | Med - non-actionable finding | Every P1 carries a `file:line` trace verified in code (e.g. F-A4-01 fence absence verified iter-12) |
-| Dependency | Repo code at HEAD `12de3d3a7e` | Ground truth for verification | All findings read the actual HEAD source |
+| Dependency | Repo code at HEAD `3923a65db1` | Ground truth for verification | All findings read the actual HEAD source |
 <!-- /ANCHOR:risks -->
 
 ---

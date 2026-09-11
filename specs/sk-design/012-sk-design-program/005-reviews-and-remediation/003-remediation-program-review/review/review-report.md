@@ -7,12 +7,12 @@ trigger_phrases: []
 > **Verdict: CONDITIONAL** — **0 P0**. The SOL lineage raised 10 P1s; **independent human verification against the code confirms 5 genuinely-actionable, downgrades 3 to minor nits, flags 1 as over-scoped, and refutes 1.** No correctness/security blocker; the real issues are documentation/metadata-honesty gaps left by the restructure plus two minor code edges.
 >
 > **Executor:** cli-opencode `openai/gpt-5.6-sol` (normal speed), high effort, **10/10 forced iterations** (`stop-policy max-iterations`), single lineage. Runtime ~1h39m, 0 retries, 0 failures.
-> **Scope:** 118-file curated manifest at pinned HEAD `7b9d3b6b71` (bundle data + concurrent deep-loop work excluded). Read-only; no remediation applied, no default flipped.
+> **Scope:** 118-file curated manifest at pinned HEAD `6432665a68` (bundle data + concurrent deep-loop work excluded). Read-only; no remediation applied, no default flipped.
 > **Verification:** every finding below was re-checked against the actual file:line — some empirically reproduced (`operator.mjs` run directly).
 
 ## Headline
 
-**No P0s: no correctness failure, no security vulnerability, no fabricated code/data/tests.** The core logic (manifest atomicity, generation-pointer identity, legacy-by-default, fail-closed absent-generation, the 17 preserved modules) held up. The SOL run's value was surfacing **documentation/metadata drift** — the restructure moved `_db → lib/database` and `_engine → lib/engine`, but several docs + generated-metadata files still point at the old paths and still say "Planned/in_progress" for shipped children. That is a real completion-honesty gap in my own reconciliation (commits `61a62a0c40`, `7b9d3b6b71` fixed the *child* packet docs but missed the parent map, the graph-metadata, and two styles docs).
+**No P0s: no correctness failure, no security vulnerability, no fabricated code/data/tests.** The core logic (manifest atomicity, generation-pointer identity, legacy-by-default, fail-closed absent-generation, the 17 preserved modules) held up. The SOL run's value was surfacing **documentation/metadata drift** — the restructure moved `_db → lib/database` and `_engine → lib/engine`, but several docs + generated-metadata files still point at the old paths and still say "Planned/in_progress" for shipped children. That is a real completion-honesty gap in my own reconciliation (commits `d8563d547e`, `6432665a68` fixed the *child* packet docs but missed the parent map, the graph-metadata, and two styles docs).
 
 ## Verified findings (confirmed against the code, most-actionable first)
 
@@ -68,4 +68,4 @@ trigger_phrases: []
 ## Source
 
 - SOL lineage report: `review/lineages/gpt-56-sol-high/review-report.md` (10-iteration audit appendix, per-iteration deltas, findings registry).
-- Target: diff `5772e0bfd3..7b9d3b6b71`, pinned HEAD `7b9d3b6b71` on `skilled/v4.0.0.0`. Read-only; default read path unchanged (`legacy`).
+- Target: diff `555f99bfcc..6432665a68`, pinned HEAD `6432665a68` on `skilled/v4.0.0.0`. Read-only; default read path unchanged (`legacy`).

@@ -61,7 +61,7 @@ This is where the topology actually changed. 11 steps, each with its own command
 ### The flip itself (step 4) — real commit, real diff
 
 ```
-commit 606e55cb8a981e69fc3cdc43c711fe3ca560ff2e
+commit 416ef565272488401e6de146d45d23b77d0f8776
 feat(spec-root)!: flip specs/ to canonical, .opencode/specs to symlink
 ```
 

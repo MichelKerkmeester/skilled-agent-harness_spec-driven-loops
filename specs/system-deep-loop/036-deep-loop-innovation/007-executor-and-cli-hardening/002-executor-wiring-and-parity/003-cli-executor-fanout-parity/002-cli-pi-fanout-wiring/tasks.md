@@ -55,7 +55,7 @@ _memory:
 ## Completion Criteria
 - [x] cli-pi dispatches through the fan-out for every allowlisted model.
 - [x] Reasoning forwards as `--thinking`; invalid levels fail closed.
-- [x] Landed on origin with strict validation clean — commit `ed62b46d65`, `validate.sh --strict` `Errors: 0`.
+- [x] Landed on origin with strict validation clean — commit `395d0dd17e`, `validate.sh --strict` `Errors: 0`.
 <!-- /ANCHOR:completion -->
 
 <!-- ANCHOR:cross-refs -->

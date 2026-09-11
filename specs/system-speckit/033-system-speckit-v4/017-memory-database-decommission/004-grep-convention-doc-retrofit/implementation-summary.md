@@ -124,7 +124,7 @@ the `triggerPhrases` spelling as a key, so the normalizer never fired on the cor
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skills/system-spec-kit/references/structure/grep-convention.md` | Created | The convention, committed at `89faec9717` before any corpus change |
+| `.opencode/skills/system-spec-kit/references/structure/grep-convention.md` | Created | The convention, committed at `c39d613f23` before any corpus change |
 | `.opencode/skills/system-spec-kit/scripts/retrieval/retrofit-convention.mjs` | Created | The five-stage pipeline over the frozen manifest |
 | `.opencode/skills/system-spec-kit/scripts/retrieval/lib/grep-convention.mjs` | Created | Classifier, preimage hasher, anchor parser, allowlist, diff classifier, handlers and the shared severity table |
 | `.opencode/skills/system-spec-kit/scripts/retrieval/rg-wrapper.mjs` | Created | Three recipes, the caller-side rank tuple and the exit mapping |
@@ -148,12 +148,12 @@ Three agents built the pieces: D6 wrote the convention, C6 built the pipeline ac
 C7 took the validator rule, the templates, the test harness and the drift-marker hook fix. The
 orchestrator ran the corpus passes itself, one track at a time, and did the work that had to stay in
 one pair of hands: the verdict comparison against the phase-002 commit, the mechanical diff
-classification and the commits. Delivery is seven commits — the convention at `89faec9717`, the
-tooling at `d09294c2a9` and `2f3320a6b1`, and the corpus at `6fb5a7181e`, `41f18b4ca9`, `c307a2265e`
-and `fb59dd49dd`.
+classification and the commits. Delivery is seven commits — the convention at `c39d613f23`, the
+tooling at `265d9a206f` and `cdfa247b14`, and the corpus at `2f58acfb6e`, `f138cd5487`, `396c0f3f0e`
+and `2896c6ac68`.
 
 The 10,000-file commit broke a hook on its way through. The post-commit drift-marker hook passed the
-diff as an argument and overflowed the environment limit; it now streams, fixed in `2f3320a6b1`.
+diff as an argument and overflowed the environment limit; it now streams, fixed in `cdfa247b14`.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -179,7 +179,7 @@ diff as an argument and overflowed the environment limit; it now streams, fixed 
 
 | Check | Result |
 |-------|--------|
-| Convention precedes the corpus | `grep-convention.md` at `89faec9717`, strictly before the tooling at `d09294c2a9` and the first corpus pass at `6fb5a7181e`; registered in the skill `SKILL.md` and README, sk-doc validator 0 issues |
+| Convention precedes the corpus | `grep-convention.md` at `c39d613f23`, strictly before the tooling at `265d9a206f` and the first corpus pass at `2f58acfb6e`; registered in the skill `SKILL.md` and README, sk-doc validator 0 issues |
 | Enumeration completeness | 22,094 documents, zero unclassified: missing 10,187 (9,143 no block, 1,044 no key), malformed-or-unclosed 1, non-yaml 1, valid-empty 11,882, duplicate 23, oversized 0 |
 | Corpus pass | 14 tracks in sequence, 10,210 written, 0 failures; rescan residue 0 across 22,094 considered |
 | Body preservation | `verify-preimage` 22,094 verified, 0 mismatches, 0 missing; diff classifier 36,271 changed lines across 10,202 files all inside frontmatter, 0 anchor-marker lines, 0 other |

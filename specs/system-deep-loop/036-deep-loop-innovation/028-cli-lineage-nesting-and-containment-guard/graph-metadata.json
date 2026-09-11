@@ -208,7 +208,7 @@
     ],
     "causal_summary": "A cli-codex fan-out lineage spawned a nested `codex exec` on every iteration and returned zero findings, and write containment reverted a concurrent operator edit from HEAD with no recoverable record",
     "created_at": "2026-09-02T17:17:51Z",
-    "last_save_at": "2026-09-05T09:54:55.507Z",
+    "last_save_at": "2026-09-11T16:42:29.219Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,13 +219,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f1054ed2b8ca19220c5f025cec33e45620057d55b148c5a756b6af126c69764c",
+    "source_fingerprint": "sha256:19317da9d0c391007ac81a57ffc727983d1c3ef9ec7bf1c6c0a7d4d0e2a88a9f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "53bbd7f209aeff09eabd94073bcff2be283d3cf472600c2045d9ace0aab6b9a4",
       "plan.md": "5aab58aac46d392dd8a0cbc568a4018967838b62ec07e71b197ab1300df924d1",
-      "tasks.md": "f59a4362f6674a1290a1255065279d0a00dba745a7ba90c5075f07b7d6a59a3f",
-      "implementation-summary.md": "7c24b63ca6b5945e1029ec8df54d4959680e20a9df7ff2ab3f8442bfcf72a26a"
+      "tasks.md": "04330dd083f41685840333bf02717ca5f5b47cb0047406f8263ed112ea09b98b",
+      "implementation-summary.md": "d8f5e3fe2566205017356dad6068ba7be6fc5205900fca0d1ea4f504adb5429b"
     },
     "last_active_child_id": null,
     "last_active_at": null

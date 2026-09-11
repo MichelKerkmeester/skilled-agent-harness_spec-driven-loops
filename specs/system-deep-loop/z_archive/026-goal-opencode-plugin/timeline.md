@@ -35,31 +35,31 @@ _memory:
 
 ## 1. Design and packetization (2026-06-28)
 
- 9e9945a424  feat(156-agent-loops): scaffold loop-systems implementation roadmap + /goal research
- 3b1041fc38  docs(156-agent-loops): synthesize /goal plugin design research.md
- 51a56df8fc  docs(goal-plugin): author 6 sub-phase specs Complete + lean-trio parent
+ 9c8ceb52df  feat(156-agent-loops): scaffold loop-systems implementation roadmap + /goal research
+ 69a2241a04  docs(156-agent-loops): synthesize /goal plugin design research.md
+ 745b57ff27  docs(goal-plugin): author 6 sub-phase specs Complete + lean-trio parent
 
 ## 2. Phases 001-006: state, injection, command, lifecycle, supervisor, continuation (2026-06-28 to 2026-06-29)
 
- c5087e0955  feat(goal-plugin): passive /goal — state store + injection + command
- d03255dbd8  feat(goal-plugin): lifecycle tracking + completion supervisor
- be8f2cf937  feat(goal-plugin): guarded active-continuation (default-off)
- 94e1e98a4f  fix(goal-plugin): goal.md uses $ARGUMENTS + forces the tool call; add tool-path test
+ a992d6d3bd  feat(goal-plugin): passive /goal — state store + injection + command
+ 85e3b40135  feat(goal-plugin): lifecycle tracking + completion supervisor
+ ac98d750de  feat(goal-plugin): guarded active-continuation (default-off)
+ a2c93b1a1b  fix(goal-plugin): goal.md uses $ARGUMENTS + forces the tool call; add tool-path test
 
 ## 3. Review and validation scope (2026-06-29)
 
- 411f512947  docs(deep-review): 20-iter review packet for 156/002 loop-systems + /goal
- bb33403ffa  test(deep-review): MiMo-V2.5-Pro runs all 41 new-feature playbook scenarios, 41/41 PASS
+ 179717a3ed  docs(deep-review): 20-iter review packet for 156/002 loop-systems + /goal
+ 331ce58026  test(deep-review): MiMo-V2.5-Pro runs all 41 new-feature playbook scenarios, 41/41 PASS
 
 ## 4. First-audit hardening (2026-06-29)
 
- a1ac2b96af  fix(goal-plugin): export only the default so OpenCode loads it (live E2E verified)
- a5e4f911f0  fix(goal-plugin): terminal-goal revival, injection clamp, continuation-lock leak (deep-review)
- 7e00cc349f  docs(commands): align /goal command doc with sk-doc command template
+ 8082c97bbf  fix(goal-plugin): export only the default so OpenCode loads it (live E2E verified)
+ 3ec6a035cf  fix(goal-plugin): terminal-goal revival, injection clamp, continuation-lock leak (deep-review)
+ 49d0144eeb  docs(commands): align /goal command doc with sk-doc command template
 
 ## 5. Phases 007-008: prompt enhancement and system-spec-kit integration (2026-06-30)
 
- aca0f7eb8b  docs(system-spec-kit): document goal plugin integration
+ 3b0497f812  docs(system-spec-kit): document goal plugin integration
 
 ## 6. Dual-audit remediation, phases 010-014 (2026-07-01)
 
@@ -67,19 +67,19 @@ A deep-research (8 iterations) plus deep-review (15 iterations) dual audit again
 
 The command-normalization phase and its same-day amendment account for the three committed filename renames: `goal.md` -> `goal_opencode.md` -> `goal.md` -> `goal_opencode.md`. Historical references to `goal.md` are real; `opencode_goal.md` is not part of the committed lineage.
 
- 4be33488ea  chore(032-goal-opencode-plugin): snapshot dual-audit + remediation phases before dispatch
- 3cb6d1bff9  fix(mk-goal): land phase 010 security + correctness fixes
- 303902e631  fix(mk-goal): normalize command filename + close 2 config-contract gaps
- f510f8e96f  fix(mk-goal): close 2 config-contract gaps + fix command doc/metadata
- 698cc11031  fix(032-goal-opencode-plugin): make phase 004's key_files fix durable
- 380e9d05ef  test(mk-goal): backfill regression coverage for real integration seams
- 6aba6dea67  docs(032-goal-opencode-plugin): record operator decision for usage_limited
- 9c8c5ac56a  docs(032-goal-opencode-plugin): create phase 014, mark 010-012 complete
- ea9a45d649  feat(mk-goal): wire usage_limited detector + fingerprint/observability polish
- cba2d1e7fc  feat(mk-goal): archive-then-prune goal state, sweep orphaned sessions
- 5dc1ee92a3  docs(032-goal-opencode-plugin): mark phases 010-014 complete
- 8405ba4f57  fix(032-goal-opencode-plugin): amend command name to goal_opencode.md
- 731291a833  chore(032-goal-opencode-plugin): archive completed plugin-implementation audit
+ 384aad52b0  chore(032-goal-opencode-plugin): snapshot dual-audit + remediation phases before dispatch
+ 9fe9685db6  fix(mk-goal): land phase 010 security + correctness fixes
+ 815eb035b3  fix(mk-goal): normalize command filename + close 2 config-contract gaps
+ e2426731fd  fix(mk-goal): close 2 config-contract gaps + fix command doc/metadata
+ 0820c35415  fix(032-goal-opencode-plugin): make phase 004's key_files fix durable
+ 37eaaad0a1  test(mk-goal): backfill regression coverage for real integration seams
+ 380bf34773  docs(032-goal-opencode-plugin): record operator decision for usage_limited
+ 17a82d4e0c  docs(032-goal-opencode-plugin): create phase 014, mark 010-012 complete
+ 563541d3d0  feat(mk-goal): wire usage_limited detector + fingerprint/observability polish
+ 870da2e9e5  feat(mk-goal): archive-then-prune goal state, sweep orphaned sessions
+ 65ad53323f  docs(032-goal-opencode-plugin): mark phases 010-014 complete
+ 2086c70c42  fix(032-goal-opencode-plugin): amend command name to goal_opencode.md
+ f660130760  chore(032-goal-opencode-plugin): archive completed plugin-implementation audit
 
 ## 7. Documentation-staleness audit and shared test-directory rename (2026-07-01)
 
@@ -87,8 +87,8 @@ A separate 10-iteration deep-research plus 10-iteration deep-review pass asked w
 
 DR-013-P1-001 is not part of the goal plugin packet after disposition review; it is tracked as a deferral to the deep-loop-runtime track.
 
- 0650d3123d  docs(032-goal-opencode-plugin): remediate 10-iter doc-staleness review findings
- 8bfbffc433  refactor(plugins): rename __tests__ to tests, complete goal-plugin doc sweep
+ 91bbf49a7c  docs(032-goal-opencode-plugin): remediate 10-iter doc-staleness review findings
+ 1f20ab5e1a  refactor(plugins): rename __tests__ to tests, complete goal-plugin doc sweep
 
 ## 8. Implementation detail map
 

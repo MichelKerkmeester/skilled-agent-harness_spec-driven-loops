@@ -28,7 +28,7 @@ Every change of these types already shipped to deep-research via the shared `dee
 | C-011..C-013 | TEST-MIGRATION | Tests moved to deep-loop-runtime/tests/; cross-package vitest discovery |
 | C-017..C-022 | CANONICAL-COMPANIONS | deep-research already has feature_catalog/, manual_testing_playbook/, references/, graph-metadata.json |
 | C-023..C-026 | DOC-COMPLIANCE | deep-research SKILL.md + README.md sk-doc DQI healthy |
-| C-027 | VERSION-BUMP | deep-research SKILL.md v1.6.2.0 → v1.12.0.0 bumped in 118 closeout commit `56456514ce` |
+| C-027 | VERSION-BUMP | deep-research SKILL.md v1.6.2.0 → v1.12.0.0 bumped in 118 closeout commit `3850237631` |
 
 ## SKIP (10 — deep-review-specific)
 

@@ -23,7 +23,7 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions:
-      - "foundations mode-consolidation root cause: confirmed via git show --stat b217d74b819, shared with 008-manual-testing-playbook rather than re-researched"
+      - "foundations mode-consolidation root cause: confirmed via git show --stat 562074ad7c5, shared with 008-manual-testing-playbook rather than re-researched"
 ---
 
 # Implementation Summary
@@ -49,7 +49,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-- **Confirmed root cause**: `git show --stat b217d74b819` proves `foundations` was a real, separate `sk-design` mode later flattened into `design-interface`. Reused the same evidence `008-manual-testing-playbook` already confirmed, per this leaf's own risk note not to duplicate the research.
+- **Confirmed root cause**: `git show --stat 562074ad7c5` proves `foundations` was a real, separate `sk-design` mode later flattened into `design-interface`. Reused the same evidence `008-manual-testing-playbook` already confirmed, per this leaf's own risk note not to duplicate the research.
 - **Applied disposition for `v1.0.0.0-foundations.md`: kept as-is, standalone historical record.** Evidence for this choice: (1) `grep -rl "v1.0.0.0-foundations"` across the whole `sk-design` skill returns zero hits — nothing links to it by path, so nothing breaks by leaving it in place; (2) it is the only surviving record of the `foundations` mode's 2026-06-25 initial release — deleting it with no other landing spot would be a silent history loss (the exact risk `spec.md` flagged); (3) `008-manual-testing-playbook`'s independent investigation of the same underlying root cause reached the same "keep, don't delete" conclusion for its own `foundations-*`/`motion-*` files, so this is a consistent disposition across both leaves, not a one-off guess.
 - **Re-ran REQ-004's file-count check and found a 3rd file** the spec's "exactly 2 files" inventory didn't have: `v1.1.0.0.md` (2026-07-27, "Original design guidance, Apache dependency removed"). Read it in full — it is sibling packet `001-apache-devendoring`'s own changelog entry, confirming that packet already executed the Apache de-vendoring and the `licensing-and-provenance` scenario deletion that `008-manual-testing-playbook` independently found already gone from the playbook. Not residue; genuinely `design-interface`'s own release history. Confirmed it follows the same local 2-field-frontmatter + versioned-heading + `**Released:**` + narrative-sections convention as the other 2 files.
 - **Audited `v1.0.0.0.md` and `v1.1.0.0.md`** against the cited governing template: found the spec's citation of `changelog-template.md` §7 is itself imprecise (§7 governs spec-kit's nested packet-local changelog *output mode* — a different artifact with a different naming scheme, `changelog-<packet>-<phase>.md`, that lives at the spec-folder level, not the skill-mode level). The actual applicable convention is the shared local format all 3 files in this directory already follow consistently, which they do.
@@ -60,7 +60,7 @@ _memory:
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Reused the `git show --stat b217d74b819` root-cause confirmation already established for `008-manual-testing-playbook` rather than re-running the git-history search, per this leaf's own explicit "coordinate rather than duplicate" scope note. Verified the "no dangling references" precondition for keeping `v1.0.0.0-foundations.md` in place with a repo-scoped grep. Re-ran the file-count check fresh against the current directory rather than trusting the spec's 2-file inventory, which surfaced the sibling-added 3rd file.
+Reused the `git show --stat 562074ad7c5` root-cause confirmation already established for `008-manual-testing-playbook` rather than re-running the git-history search, per this leaf's own explicit "coordinate rather than duplicate" scope note. Verified the "no dangling references" precondition for keeping `v1.0.0.0-foundations.md` in place with a repo-scoped grep. Re-ran the file-count check fresh against the current directory rather than trusting the spec's 2-file inventory, which surfaced the sibling-added 3rd file.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -82,7 +82,7 @@ Reused the `git show --stat b217d74b819` root-cause confirmation already establi
 
 | Check | Result |
 |-------|--------|
-| `foundations` root cause | Confirmed via `git show --stat b217d74b819` |
+| `foundations` root cause | Confirmed via `git show --stat 562074ad7c5` |
 | `grep -rl "v1.0.0.0-foundations"` (dangling reference check) | 0 matches — safe to keep in place |
 | `find changelog -type f` | 3 files (`v1.0.0.0.md`, `v1.0.0.0-foundations.md`, `v1.1.0.0.md`) — 1 more than the spec's 2-file inventory, accounted for as sibling `001-apache-devendoring`'s own entry |
 | Format consistency across all 3 files | Confirmed — same local convention |

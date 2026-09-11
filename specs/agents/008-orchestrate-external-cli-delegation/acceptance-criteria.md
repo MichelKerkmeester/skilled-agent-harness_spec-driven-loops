@@ -24,7 +24,7 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions:
-      - "Which sandbox_mode is intended for the Codex orchestrate runtime: the generator's read-only, or the workspace-write the committed TOML carried since ace6d0ee66? Answered 2026-09-02 - workspace-write; the generator table was corrected to match."
+      - "Which sandbox_mode is intended for the Codex orchestrate runtime: the generator's read-only, or the workspace-write the committed TOML carried since 50a9bec6f7? Answered 2026-09-02 - workspace-write; the generator table was corrected to match."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: acceptance-criteria | v2.2 -->
 # Acceptance Criteria: Orchestrator external CLI delegation, opt-in by explicit user request

@@ -25,7 +25,7 @@ _memory:
     open_questions: []
     answered_questions:
       - "Phases 1 to 6 are Complete on disk and in the map; the log's earlier note about the map reading Pending is resolved."
-      - "The phase implementation summaries were written back in bed94b42cc; the log's earlier note about them scaffolding is resolved."
+      - "The phase implementation summaries were written back in d890599404; the log's earlier note about them scaffolding is resolved."
 ---
 # Goal: Routing Completeness
 
@@ -109,15 +109,15 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| 001 transport and baseline | Done | `03f5db4876` settles which scorer governs |
-| 002 Gate A signal closure | Done | `dbc8678c9d` measures 234 of 444; `08eb67a0de` resolves half the vocabulary that reached nothing; `726af58b4c` closes at 345 of 388 |
-| 003 Gate B realistic corpus | Done | `4a5de9e52b` measures 8 of 180; `8c6d6fd455` drops the command-surface modes from the denominator |
-| 004 cross-hub vocabulary | Done | `4a5de9e52b` re-scoped the phase the Gate B number invalidated |
-| 005 hub surface truth | Done | `8bb9011584` records the findings closed and the check that keeps them closed |
-| 006 validator and template debt | Done | `a1a213d2cf` authored the phase; `82938b3e1c`, `970a033381`, `cac56b9082` and `cb9fdb44f3` shipped it |
+| 001 transport and baseline | Done | `ab1881aeaf` settles which scorer governs |
+| 002 Gate A signal closure | Done | `12aa10504a` measures 234 of 444; `aa11c2b622` resolves half the vocabulary that reached nothing; `f26f92cff3` closes at 345 of 388 |
+| 003 Gate B realistic corpus | Done | `b3de2effda` measures 8 of 180; `54eecf457a` drops the command-surface modes from the denominator |
+| 004 cross-hub vocabulary | Done | `b3de2effda` re-scoped the phase the Gate B number invalidated |
+| 005 hub surface truth | Done | `ca9e3885b8` records the findings closed and the check that keeps them closed |
+| 006 validator and template debt | Done | `9b140fca14` authored the phase; `6c90ef079b`, `587b8c6fe3`, `1fe528a98c` and `318620c23d` shipped it |
 | 007 spec-kit residue | Done | Nine decisions ruled, two implemented. The suite runs to the end sharded, 12 of 12 shards in 34m00s, and its 181 failures split into 31 grouped by mechanism and 150 inside 049's delete |
 | 008 drift after closure | Done | Both gates re-run on 2026-09-05 with per-row artifacts; scaffold suite 9 of 9 after three loader paths; one signal retired, two findings owned |
-| Findings register | Done | `d7f70069b9` gives every finding an owner and every phase a runnable gate; phase 008 adds rows 41 to 45 |
+| Findings register | Done | `cbab717dc9` gives every finding an owner and every phase a runnable gate; phase 008 adds rows 41 to 45 |
 
 ### Deviations and findings
 
@@ -127,5 +127,5 @@ and findings belong here.
 | The semantic lane left off | Enabling it is a scoring change, and D2 forbids one here. It moves to its own packet under `specs/system-skill-advisor/` |
 | Phase 007 overtaken by packet 049 | `specs/system-speckit/049-memory-decommission` deletes the tree most of the residue lives in. The 007 goal carries the per-decision mapping, and ADR-009 extends the same test to the residue itself. 049 has since closed and the tree is gone |
 | The parent documents lagged the tree | The map read Pending for six closed phases, the goal's criteria were unchecked though met, and the roadmap called 049 Pending after it closed. Reconciled in phase 008; the validator had passed throughout, which is a finding about the validator recorded in the register |
-| The spec-kit scaffolder broke two days after closure | `b4c2484696` nested the CLI workspace and the render wrapper lost its loader. Every Level 3 scaffold wrote no documents until phase 008 fixed three path literals |
+| The spec-kit scaffolder broke two days after closure | `f65b8f1e5b` nested the CLI workspace and the render wrapper lost its loader. Every Level 3 scaffold wrote no documents until phase 008 fixed three path literals |
 <!-- /ANCHOR:log -->

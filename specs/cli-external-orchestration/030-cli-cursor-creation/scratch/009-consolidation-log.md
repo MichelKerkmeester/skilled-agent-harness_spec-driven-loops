@@ -185,7 +185,7 @@ documented in §3, then re-validated clean.
 
 ## 6. Commit
 
-`4bf29688aa` — "docs(030-cli-cursor-creation): consolidate 009-014 into
+`7488c4c60f` — "docs(030-cli-cursor-creation): consolidate 009-014 into
 009-cursor-hooks-lifecycle phase parent" — on branch `skilled/v4.0.0.0`.
 NOT pushed (per instructions).
 
@@ -336,7 +336,7 @@ mechanical pattern across `spec.md`/`plan.md`/`tasks.md`/`checklist.md`/
   the 4-item cold-read numbered list, including inside the copy-paste "Ready-to-Use
   Analysis Prompt" block) updated `018-...` -> `013-...`; left untouched the
   handover's historical evidence-table rows ("Phase 018 canonical documents...
-  Created in 348b644283", "Phase 018 strict validation... PASSED", etc.) since
+  Created in bc9ccca5ba", "Phase 018 strict validation... PASSED", etc.) since
   those cite what was literally run under that name at authoring time, same
   category as Task #1's own precedent.
 - **`009-cursor-hooks-lifecycle/spec.md`** (the phase-parent itself, a sibling

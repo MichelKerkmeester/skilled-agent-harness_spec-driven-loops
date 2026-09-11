@@ -292,7 +292,7 @@ Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>
 ```
 revert: feat(026/041) cli-skills baseline+overlay contract
 
-Reverts 5423e8d92d. The baseline+overlay design assumed all
+Reverts 588d3cd50d. The baseline+overlay design assumed all
 downstream skills could discover overlays via filesystem-walk,
 but mcp-coco-index needs the overlay set at index-build time.
 Re-attempt after packet 060 lands the build-time discovery API.

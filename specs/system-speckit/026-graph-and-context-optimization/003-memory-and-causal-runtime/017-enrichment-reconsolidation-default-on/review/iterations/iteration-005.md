@@ -6,7 +6,7 @@ trigger_phrases: []
 
 **Dimension:** correctness
 **Dispatch:** gpt-5.5-fast (variant high) via cli-opencode — real verdict returned (dispatchOk=true)
-**Scope/focus:** `checkpoint_create` `includeEmbeddings` (commit `15d2e4988d`) — verify `includeEmbeddings: z.boolean().optional()` added to `checkpointCreateSchema` AND to the ~line 567 allowlist, that unknown params are still rejected, and that the handler/storage actually honors `includeEmbeddings` (excludes vec tables).
+**Scope/focus:** `checkpoint_create` `includeEmbeddings` (commit `e1165bcef8`) — verify `includeEmbeddings: z.boolean().optional()` added to `checkpointCreateSchema` AND to the ~line 567 allowlist, that unknown params are still rejected, and that the handler/storage actually honors `includeEmbeddings` (excludes vec tables).
 
 ## Verdict: FAIL
 

@@ -14,7 +14,7 @@ _memory:
     packet_pointer: "system-deep-loop/z_archive/010-deep-context-gathering/004-reference-architecture-alignment"
     last_updated_at: "2026-06-07T10:30:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Shipped reference reorg + canonical router + citation sweep (e73ffe6610)"
+    recent_action: "Shipped reference reorg + canonical router + citation sweep (f956205942)"
     next_safe_action: "None; phase complete. Optional: later test-pattern fix for 2 stale greps"
     blockers: []
     key_files:

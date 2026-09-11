@@ -514,7 +514,7 @@ The phase-3 README rewrite needs an explicit tone target. The root `Public/READM
 
 ### Context
 
-Phase 4 ran the alignment validation gate against every artifact under `.opencode/skills/deep-review/` in resource-map scope. The walker produced `validation-report.jsonl` (96 schema-validated rows) and `validation-report.md` (human-readable summary) and was pushed to main as commit `1d316482c3`. The verdict was PASS: 95 of 96 artifacts at 100% template match, 1 at 100% with the documented NOT-APPLICABLE deviation for `assets/prompt_pack_iteration.md.tmpl` (intentional renderer-template exemption per AF-0016), zero FAIL.
+Phase 4 ran the alignment validation gate against every artifact under `.opencode/skills/deep-review/` in resource-map scope. The walker produced `validation-report.jsonl` (96 schema-validated rows) and `validation-report.md` (human-readable summary) and was pushed to main as commit `a77d13fa5f`. The verdict was PASS: 95 of 96 artifacts at 100% template match, 1 at 100% with the documented NOT-APPLICABLE deviation for `assets/prompt_pack_iteration.md.tmpl` (intentional renderer-template exemption per AF-0016), zero FAIL.
 
 The gate was the explicit blocker before Phase 5 (10-iteration cli-devin SWE-1.6 deep-research loop per ADR-001). Without an approval record here, Phase 5 dispatch was forbidden.
 
@@ -530,7 +530,7 @@ The gate was the explicit blocker before Phase 5 (10-iteration cli-devin SWE-1.6
 | Approval date | 2026-05-23 |
 | Approval mechanism | Single-word "Approve" reply to the Phase-4 surfaced report in this session |
 | Approval scope | Phase 5 dispatch under ADR-001 (CLI-DEVIN SWE-1.6 x10), ADR-002 (surgical-edit), ADR-003 (resource-map.md only), ADR-004 (Smart Router preservation), ADR-005 (README tone calibration) |
-| Validation report reference | [`validation-report.md`](./validation-report.md) commit `1d316482c3` |
+| Validation report reference | [`validation-report.md`](./validation-report.md) commit `a77d13fa5f` |
 | Audit findings reference | [`audit-findings.jsonl`](./audit-findings.jsonl) (23 findings, all resolved as of Phase 4 close) |
 
 ### Out of Scope for This Approval

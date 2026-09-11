@@ -9,7 +9,7 @@ trigger_phrases: []
 - **Mode:** review (read-only — findings only, no code modification)
 - **Dimension:** correctness | **Angle:** A3-deepen (deepen F-A3-01: downstream consumer impact of reciprocal-contradictory edge pairs)
 - **Budget profile:** verify (target 11-13 calls; used 11 tool calls — consumer-tracing + recursion-guard adjudication + dryRun re-confirm)
-- **Review target:** git range `a9e9bdb0a5^..HEAD`; deepen scope = downstream consumers of `causal_edges` rows with `relation IN (supports, contradicts)`.
+- **Review target:** git range `fd67ede05f^..HEAD`; deepen scope = downstream consumers of `causal_edges` rows with `relation IN (supports, contradicts)`.
 - **READ-FIRST seed:** `iterations/iteration-004.md` (F-A3-01 — the opt-in `contradicts` collector materializes reciprocal-contradictory pairs the directional model never reconciles).
 - **Session:** `2026-06-05T11:16:17Z` (generation 1, lineageMode new, releaseReadinessState in-progress)
 
@@ -88,7 +88,7 @@ None. The deepen did not surface any consumer that ASSUMES mutual exclusivity an
 
 ## Next Focus
 - **Dimension:** correctness | **Angle:** whole-graph (NON-range) reconciliation of the directional contradiction model — reciprocal/transitive contradiction cycles, and whether `memory_causal_unlink` should tombstone + restrict to auto edges (carry-forward from iteration-004 ruled-out #3).
-- **Reason:** A3 (range-scoped) is now fully converged: F-A3-01 settled at P2 with downstream impact proven benign; F-A3-02 re-confirmed. The only remaining causal-consistency work is explicitly OUT OF the `a9e9bdb0a5^..HEAD` range (pre-existing directional model + pre-existing unlink path) and belongs to a future whole-graph review.
+- **Reason:** A3 (range-scoped) is now fully converged: F-A3-01 settled at P2 with downstream impact proven benign; F-A3-02 re-confirmed. The only remaining causal-consistency work is explicitly OUT OF the `fd67ede05f^..HEAD` range (pre-existing directional model + pre-existing unlink path) and belongs to a future whole-graph review.
 - **Rotation status:** correctness A3 + A3-deepen complete (iter 4 + iter 18). No new range-scoped A3 angle remains.
 - **Blocked/productive carry-forward:** Productive — two whole-graph (non-range) items feed a future review: (a) reciprocal/transitive contradiction reconciliation in the directional model; (b) wiring causal edges into trust-tree at the live `memory_context`/`memory_search` call sites (currently unfed — Edge Case #3) and its interaction with reciprocal pairs. Neither belongs in this range's findings.
 - **Required evidence (future whole-graph review):** a reconciliation policy for reciprocal `contradicts`+`supports`; live trust-tree causal wiring decision; unlink tombstone-vs-physical-delete + auto-only-guard decision.

@@ -190,7 +190,7 @@
     ],
     "causal_summary": "Plan the signed evidence bundle that authorizes a per-mode authority flip and the monitored rollback window that keeps the flip reversible until clean closure. The certificate is a ledger event binding parity, rollback, migration, and policy evidence.",
     "created_at": "2026-07-16T03:43:57.641Z",
-    "last_save_at": "2026-09-10T20:46:34.391Z",
+    "last_save_at": "2026-09-11T16:42:23.651Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,12 +199,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1bfd97cb197d77c43f998c26595d05a71e0ebe6eda482808307f967af3e258d7",
+    "source_fingerprint": "sha256:1ce4568f28ef628e18a8dc6f5afbc407877fe65a2af4250d139870a5c1450f5f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c361c3cbc6327f3e3dfd580a0d1bab2b4796d1957d29893b288cba1a6b0addac",
       "plan.md": "ae51d3b1ff943a1e73e5cc133b3df39e0e9a92e95fa315e8702208a586ffaac5",
-      "tasks.md": "8e3dee62bc4cf14596d33d29c2def90944a84a6b6d3264eccb7883d6196f94f9",
+      "tasks.md": "bd50cc1dc3807a99feba9ba5e870fd0f18f77bef40b02ee9b14ea014283e12de",
       "implementation-summary.md": "02d8f219ae5bd07b59f1cc84ef1f22616302474f2b4faf7262960c8491893d13"
     },
     "last_active_child_id": null,

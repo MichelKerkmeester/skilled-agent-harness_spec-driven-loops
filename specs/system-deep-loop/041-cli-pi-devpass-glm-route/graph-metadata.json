@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The operator asked for a deep-research run on GLM-5.3-Flash at `max` through cli-pi, billed to DevPass, their flat-price LLM Gateway plan",
     "created_at": "2026-09-05T10:59:12Z",
-    "last_save_at": "2026-09-07T16:17:14.342Z",
+    "last_save_at": "2026-09-11T16:42:29.889Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +209,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2df2d5c7ad43d7936b88433124d6f7d232472e387354f555449fecdb578b0b20",
+    "source_fingerprint": "sha256:81ce0a4ada41d8fb871cb7e2c8e4a8150d878ff7a4b534e70b62fde58ad63c71",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3940bbcfb14c1b8c9667868387c21ae22b49a090014d17d3bbbf99cea22b5b1d",
+      "spec.md": "d29210258a85972ad53e50e258d94f849494f828eed89159d24b2f534e7d717d",
       "plan.md": "ee5f84bf53c6525d943c0ae6f1857071d6c828c9a84fd1bc4aa1303a2606452e",
-      "tasks.md": "9eb7144d1995068d3457266b39c2336792f01723c0acb393fc780b903b272e4a",
-      "implementation-summary.md": "28a5c8878b84868a9c2d79fc0a5f2629f18578ac7fa429beeefc954443a1f553"
+      "tasks.md": "56e42c46cc81999806bb8096de142814b922d48bde2b102665ca258897786f3f",
+      "implementation-summary.md": "c95b2718ee1914dbf1d20b53da92177270fbd7e94ccc309c15d4e1c9c67eaea8"
     },
     "last_active_child_id": null,
     "last_active_at": null

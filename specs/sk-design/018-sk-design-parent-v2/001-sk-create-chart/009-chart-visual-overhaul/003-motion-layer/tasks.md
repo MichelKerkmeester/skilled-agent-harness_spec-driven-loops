@@ -148,7 +148,7 @@ contextType: "implementation"
 - [x] CHK-FIX-003 [P0] The consumer inventory covers every file the render path walks, because the two-render comparison runs over the same set. 29 files, 58 assertions
 - [x] CHK-FIX-004 [P0] The adversarial cases for the extended rule are the three named in the plan, and each was executed. Two more were added for the new rendered check
 - [x] CHK-FIX-005 [P1] The route matrix lists both bar growth routes and the rendered evidence that chose one. `implementation-summary.md`, with the frames in `scratch/route-test/`
-- [x] CHK-FIX-007 [P1] Evidence is pinned to the working-tree state that produced it, named in the acceptance criteria. Nothing is committed, so every capture is from the working tree at `28d3defea8` plus the twelve files this phase changed
+- [x] CHK-FIX-007 [P1] Evidence is pinned to the working-tree state that produced it, named in the acceptance criteria. Nothing is committed, so every capture is from the working tree at `74bc17ccaf` plus the twelve files this phase changed
 <!-- /ANCHOR:fix-completeness -->
 
 ---

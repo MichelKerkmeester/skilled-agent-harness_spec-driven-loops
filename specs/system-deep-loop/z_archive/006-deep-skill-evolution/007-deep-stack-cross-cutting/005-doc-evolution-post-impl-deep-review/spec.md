@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: post-implementation deep-review of the 008 doc-evolution ship"
-description: "Scoped cli-devin SWE-1.6 deep-review of the 5 deep-* skills' docs (commit 5f3e0a2f53) across correctness, traceability, maintainability, and security, producing a PASS/CONDITIONAL/FAIL verdict and a remediation record."
+description: "Scoped cli-devin SWE-1.6 deep-review of the 5 deep-* skills' docs (commit fb8d560443) across correctness, traceability, maintainability, and security, producing a PASS/CONDITIONAL/FAIL verdict and a remediation record."
 trigger_phrases:
   - "008 post-implementation deep-review"
   - "deep-skill doc-evolution review"
@@ -52,7 +52,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The 008 deep-skill doc-evolution ship (commit 5f3e0a2f53) reworked the 5 deep-* skills' documentation substantially. The constitutional post-implementation deep-review obligation attaches to that ship and was the one outstanding closeout item.
+The 008 deep-skill doc-evolution ship (commit fb8d560443) reworked the 5 deep-* skills' documentation substantially. The constitutional post-implementation deep-review obligation attaches to that ship and was the one outstanding closeout item.
 
 ### Purpose
 Run a scoped, convergence-gated deep-review across correctness, traceability, maintainability, and security; produce a PASS/CONDITIONAL/FAIL verdict; adjudicate findings; and remediate any confirmed issue.
@@ -64,7 +64,7 @@ Run a scoped, convergence-gated deep-review across correctness, traceability, ma
 ## 3. SCOPE
 
 ### In Scope
-- Deep-review of the 5 deep-* skills' SKILL.md, README, references, feature_catalog, manual_testing_playbook, and changelogs as shipped in 5f3e0a2f53.
+- Deep-review of the 5 deep-* skills' SKILL.md, README, references, feature_catalog, manual_testing_playbook, and changelogs as shipped in fb8d560443.
 - A formal verdict + remediation of confirmed findings.
 
 ### Out of Scope

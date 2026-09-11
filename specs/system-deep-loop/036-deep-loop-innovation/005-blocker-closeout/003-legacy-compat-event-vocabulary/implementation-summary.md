@@ -54,7 +54,7 @@ _memory:
 
 Implemented full compatibility coverage for the six scoped vocabularies: deep-research, deep-review, deep-alignment, deep-ai-council, skill-benchmark, and the deep-improvement-common bridge. Every captured real-log replay produced zero `blocked:unknown-legacy-record` outcomes. Unknown, genuinely unregistered stems still block loudly in negative tests.
 
-The candidate is intentionally uncommitted. The clean ledger-schema rollback anchor is `5c98e4654e4bcaf2c7002412d6da2b92f1793942`; no rollback was required because the gates stayed green.
+The candidate is intentionally uncommitted. The clean ledger-schema rollback anchor is `0c5c966015760b053edc39722b06fa3f121a4cfa`; no rollback was required because the gates stayed green.
 <!-- /ANCHOR:what-built -->
 
 <!-- ANCHOR:how-delivered -->
@@ -63,7 +63,7 @@ The candidate is intentionally uncommitted. The clean ledger-schema rollback anc
 
 ### T001 confirmation-first record
 
-T001 was completed before the first implementation edit against HEAD `9229cb8f3e281c9291e6d631237528bc755e6f4b`. The cited locations were re-read at that HEAD and classified as follows.
+T001 was completed before the first implementation edit against HEAD `2d12dfc5f5f365f396c51a7dea1c7cb825f5501b`. The cited locations were re-read at that HEAD and classified as follows.
 
 | Finding | Status | Confirmed evidence | Severity calibration |
 |---------|--------|--------------------|----------------------|
@@ -222,7 +222,7 @@ The red probes replayed the captured real logs before the corresponding upcaster
 | `F-023-03` | `replays captured council state logs without unknown legacy blocks` and `accepts the live heartbeat and registers both terminal record types` | Live heartbeat and failure-cleanup rows blocked; terminal names were unregistered. | Council ledger suite `724066a76a0c007beab3ff50d761aa17e378fd2d`, candidate upcaster `1c2b258a6b8b16d2da362ce4f816515c09ebd8e3`. |
 | `F-024-01` | `replays the captured common lifecycle log through the skill vocabulary` | Shared common lifecycle rows blocked through skill-benchmark. | Skill ledger suite `08242984f6795d21aae8ea74f336424f4ad63186`, candidate upcaster `c7cf1f5caae7690c60c8e9aedf50fbb861837dde`. |
 
-The current suite hashes are content digests from `git hash-object`; no commit SHA was created because the orchestrator owns landing. The pre-fix reference is HEAD `9229cb8f3e281c9291e6d631237528bc755e6f4b`.
+The current suite hashes are content digests from `git hash-object`; no commit SHA was created because the orchestrator owns landing. The pre-fix reference is HEAD `2d12dfc5f5f365f396c51a7dea1c7cb825f5501b`.
 
 The independent negative guard is `blocks an unregistered legacy stem instead of dropping it`: it asserts `blocked`, `unknown-legacy-record`, a null target, and the invented stem remains visible in the decision input. Council heartbeat and alignment multi-slice tests are the two structural adversarial cases.
 
@@ -261,7 +261,7 @@ A separate post-build verification pass re-read the six upcasters, fixture prove
 The rollback command is:
 
 ```text
-git checkout 5c98e4654e4bcaf2c7002412d6da2b92f1793942 -- \
+git checkout 0c5c966015760b053edc39722b06fa3f121a4cfa -- \
   .opencode/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/legacy-compatibility.ts \
   .opencode/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/legacy-compatibility.ts \
   .opencode/skills/system-deep-loop/runtime/lib/deep-alignment-ledger-schema/legacy-compatibility.ts \

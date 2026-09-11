@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The packet ships eleven manual-testing scenarios that had never been run, so no claim about the",
     "created_at": "2026-09-02T18:55:23Z",
-    "last_save_at": "2026-09-05T13:45:51.709Z",
+    "last_save_at": "2026-09-11T16:42:12.324Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,12 +222,12 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:97e4d6f41fb43e4b95344028816ab0ca76b0de22c10ffa788dfff52614a4a7be",
+    "source_fingerprint": "sha256:195f5af827ddfe4156b364165a68b00e33095a56d5cd5da54cb4b4f9aff96170",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "41b7b78fbbd0cb64198f5d9d8740777f62841038581bce741b6b0fb4942bd54a",
       "plan.md": "bf59374a64a52947b33eea4c1da0d0e8831d657c8828a298427a0d8cb5c94a5d",
-      "tasks.md": "ec6e98cad395d6fbdcba78b79ab82ec540f9810eb8f6a7973abc687bcd5065b5",
+      "tasks.md": "f57f8e3171a7b975f87c29e513119cd14b86e4409d875cf802e3283519bde54d",
       "decision-record.md": "3d5626306ce3b0f32912867d179e463600463436f3c7b51d1211a9b79fec5963",
       "implementation-summary.md": "396ca8e5740de6cc530adaae2ebcb6eb2ba44278ad9f581dd83a0ecdf422e667"
     },

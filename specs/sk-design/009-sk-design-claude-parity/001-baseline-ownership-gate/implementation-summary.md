@@ -92,7 +92,7 @@ This phase delivered an evidence-first governance gate: read-only status collect
 | Baseline snapshot | Collected: `/tmp/skd-bench-phase001/report.json` (+ `report.md`), verdict `CONDITIONAL`, aggregate `69/100`, D5 `100/100`, no gate failures | Later phases have a replayable comparison baseline |
 | Touched-file inventory | Collected: empty (scoped `git status`/`git diff` for `.opencode/skills/sk-design` returned no output) | Ownership is resolved — nothing pending to classify |
 | Ownership decision | Collected: `PRESERVE` the committed parent-hub baseline; no revert/absorb/defer/block rows | Gate closes without an open ownership blocker |
-| Rollback path | Documented: non-destructive `git diff` inspection first, destructive checkout against `ba8906743c1b1e327ff4d4a758bb9d67e9d6c8ed` only after explicit confirmation | Later phases have a named, non-destructive-first rollback |
+| Rollback path | Documented: non-destructive `git diff` inspection first, destructive checkout against `914bc78c295d33edd3c09ec8c94b43472a20fbf5` only after explicit confirmation | Later phases have a named, non-destructive-first rollback |
 
 <!-- /ANCHOR:how-delivered -->
 ---

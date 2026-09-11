@@ -248,7 +248,7 @@ file carries no version, so the second prompt reaching the mode would have been 
 
 After the authored digests were re-pinned, the sk-doc canary stayed red on a second set: the
 benchmark loader and scorer scripts under `system-deep-loop/deep-improvement/scripts/skill-benchmark/`.
-Both changed in commit `2f21545e3e` and are clean at HEAD. The same stale hashes sit in the shared
+Both changed in commit `bedf5691b7` and are clean at HEAD. The same stale hashes sit in the shared
 `005-decision-evaluator/harness/protected-digests.json` and in the four sibling hub canaries.
 
 ### Constraints

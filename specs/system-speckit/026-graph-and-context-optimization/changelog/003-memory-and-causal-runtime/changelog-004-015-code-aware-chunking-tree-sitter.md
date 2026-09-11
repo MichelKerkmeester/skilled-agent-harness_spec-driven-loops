@@ -80,7 +80,7 @@ A new `CodeAwareSplitter` class was built using tree-sitter grammars for TypeScr
 | `.opencode/skills/mcp-coco-index/mcp_server/tests/test_code_aware_chunker.py` (NEW) | 38 test cases for splitter dispatch, grammar paths, fallbacks and env kill-switch |
 | `.opencode/skills/mcp-coco-index/mcp_server/tests/test_config.py` | Config tests extended for code-aware flag and registry override |
 
-Shipped in commit `cd8f04bc32` (2026-05-19).
+Shipped in commit `382059a468` (2026-05-19).
 
 ### Follow-Ups
 

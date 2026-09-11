@@ -76,7 +76,7 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T011 Dry-run sk-git adapter against a real commit range; confirm exempt Git-generated subjects are not flagged — `discover HEAD~15 HEAD` + real `Merge`-commit exemption confirmed; `check --commit fd9fc599be...` (real pre-hook legacy-scope commit) correctly suppressed to `[]`.
+- [x] T011 Dry-run sk-git adapter against a real commit range; confirm exempt Git-generated subjects are not flagged — `discover HEAD~15 HEAD` + real `Merge`-commit exemption confirmed; `check --commit 9ce397f9b6...` (real pre-hook legacy-scope commit) correctly suppressed to `[]`.
 - [x] T012 Dry-run sk-design adapter against a real repo `DESIGN.md`; confirm findings cite a real rubric dimension — all 4 real example fixtures (`vercel`/`linear`/`stripe`/`supabase`) checked clean after 2 real bugs found by this exact dry-run were fixed (`sk_design_adapter.md` Section 7).
 - [x] T013 Confirm both adapters return the documented empty-scope result on zero artifacts — `sk-git.cjs discover()` with an off-label `paths` scope and `sk-design.cjs discover()` with an off-label `branchRange` scope both return `{artifacts:[], nodes:[]}`.
 - [x] T014 Update `checklist.md` with evidence for each verified item — see `checklist.md`.

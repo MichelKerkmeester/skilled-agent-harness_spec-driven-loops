@@ -98,9 +98,9 @@ The merge landed across three commits, not the one the plan anticipated:
 
 | Commit | What | Files |
 |--------|------|-------|
-| `9f03950aba` | The directory merge: 38 forms renamed and moved, both scripts rewritten to classify by content/basename instead of directory, `catalog-bidirectional.cjs` and three `kind`-consuming families updated, CI collapsed to one applicator step with no exclusion | 141 files |
-| `c1f109bfe4` | Scope extension: palette source and icon specimen moved beside the Style Reference; two legend swatches fixed to stop keying a dash pattern their drawing never draws | 18 files |
-| `9a4b60e0ed` | Scope extension: tokens and icons moved one level further, inside `assets/style-reference/harness-diagram/`, so a visual language is one bundle | 17 files |
+| `59d5aef373` | The directory merge: 38 forms renamed and moved, both scripts rewritten to classify by content/basename instead of directory, `catalog-bidirectional.cjs` and three `kind`-consuming families updated, CI collapsed to one applicator step with no exclusion | 141 files |
+| `8031ccc387` | Scope extension: palette source and icon specimen moved beside the Style Reference; two legend swatches fixed to stop keying a dash pattern their drawing never draws | 18 files |
+| `c2b442f827` | Scope extension: tokens and icons moved one level further, inside `assets/style-reference/harness-diagram/`, so a visual language is one bundle | 17 files |
 
 Representative changes (full detail per file is in `tasks.md`'s per-task evidence):
 
@@ -138,7 +138,7 @@ tree, rather than trusting the shipped commit messages:
   before this phase ran; `diagram-palette.json`'s `untokenized` array was already `[]`).
 - `rg -n "assets/(examples|templates)" .opencode/skills/sk-design/sk-design-diagram .github/workflows`
   → zero matches.
-- `gh run view 34571238552` (workflow "Diagram Corpus", head `f3bf733cf4`, the branch's current tip)
+- `gh run view 34571238552` (workflow "Diagram Corpus", head `08e8051eaf`, the branch's current tip)
   → all three jobs `success`: "Corpus check", "Both applicators reproduce the stock bytes",
   "Mutation suite".
 <!-- /ANCHOR:how-delivered -->
@@ -152,7 +152,7 @@ tree, rather than trusting the shipped commit messages:
 |----------|-----|
 | Applicator dispatch keys off palette-block presence, not basename (deviation from REQ-003) | The content signal and the basename signal partition the corpus identically today (only the four starters carry the block), so this was a defensible implementation choice, not a defect - but it is a real deviation from what `spec.md`/`plan.md` specified, named here rather than silently absorbed |
 | `node-budget.cjs`'s `kind === 'specimen'` guard removed, not left untouched (deviation from REQ-014) | `check-diagram-corpus.cjs` never assigns `kind = 'specimen'`; the guard was unreachable before this phase and after it. The shipped commit chose to delete the dead branch rather than preserve it verbatim as `plan.md` and `goal.md`'s own pre-execution log both predicted. Functionally inert either way |
-| Scope extension: palette source and icon specimen consolidated into `assets/style-reference/` | Operator instruction received mid-phase, recorded in `goal.md`'s LOG as a scope extension rather than absorbed silently. Two further commits (`c1f109bfe4`, `9a4b60e0ed`) carried it out; `sk-design-chart/` stayed untouched throughout (D12; confirmed empty `git diff` across all three commits) |
+| Scope extension: palette source and icon specimen consolidated into `assets/style-reference/` | Operator instruction received mid-phase, recorded in `goal.md`'s LOG as a scope extension rather than absorbed silently. Two further commits (`8031ccc387`, `c2b442f827`) carried it out; `sk-design-chart/` stayed untouched throughout (D12; confirmed empty `git diff` across all three commits) |
 | `diagram-palette.json`'s `examples` key renamed to `forms`, `untokenized: []` dropped | Not what REQ-008 specified ("no other key is renamed or restructured"), but matches the applicator's new `--forms` terminology and drops an already-empty array rather than repointing nothing. `pins`, the other key REQ-008 named, had already been removed from this file in an earlier phase - the spec's inventory was stale by execution time, a risk `plan.md` itself flagged (T001's note that a document could change between authoring and execution) |
 <!-- /ANCHOR:decisions -->
 
@@ -169,12 +169,12 @@ tree, rather than trusting the shipped commit messages:
 | `apply-design-md.cjs --default --all` vs `assets/diagrams/` | PASS - `diff -rq` empty, no exception needed |
 | `--forms`/`--all` mutual exclusion | PASS - `--forms x --all` exits 2, `ERROR: --all cannot be combined with --forms` |
 | Unknown form name fails closed | PASS - `--forms nonexistent-form` exits 2, `ERROR: form does not exist: nonexistent-form` |
-| `git log --follow` on a sampled starter, form, screenshot | PASS - reaches `277efcb1c37`, `77898f77767`, `c64e9cc331` respectively, all pre-dating the move |
+| `git log --follow` on a sampled starter, form, screenshot | PASS - reaches `99a1736f0ca`, `9f5dcdf94f9`, `33cd4e7946` respectively, all pre-dating the move |
 | `rg -n "assets/(examples\|templates)"` over the skill tree and `.github/workflows` | PASS - 0 matches |
 | Merged README's 32 relative links | PASS - all resolve (checked programmatically) |
 | `sk-design-chart/` untouched (D12) | PASS - 0 files in that tree appear in any of the three commits' diff stats |
 | No ephemeral spec/task/finding id in any touched script or workflow | PASS - `grep -rnE "REQ-[0-9]\|T0[0-9]{2}\b\|AC-[0-9]\|F[0-9]{1,2}\b"` returns nothing |
-| Live CI run, current branch tip (`f3bf733cf4`) | PASS - `gh run view 34571238552`: Corpus check / Both applicators / Mutation suite all `success` |
+| Live CI run, current branch tip (`08e8051eaf`) | PASS - `gh run view 34571238552`: Corpus check / Both applicators / Mutation suite all `success` |
 | `bash .../validate.sh specs/sk-design/019-sk-design-diagram-upgrade/009-one-form-library --strict` | See the literal `RESULT:` line this closeout pass reports in chat; run from the repository root with `NODE_PRESERVE_SYMLINKS=1` against the `realpath .opencode` path per the operator's standing convention |
 <!-- /ANCHOR:verification -->
 

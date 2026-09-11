@@ -6,7 +6,7 @@ trigger_phrases: []
 
 ## Focus
 
-Iteration 3's focus was Q-003: drift over phases 004 (architecture coverage + transition contract), 005 (fanout live-tools unblock — touched by `739b85ac57` itself), and 006 (transition authorized-ledger core — touched indirectly by `6cd8ab14e4e` and `708d25acf04`). Resolve every runtime path each phase names against pinned HEAD; flag any premise invalidated by the typed-pair routing surface or the cli-opencode unblock.
+Iteration 3's focus was Q-003: drift over phases 004 (architecture coverage + transition contract), 005 (fanout live-tools unblock — touched by `739b85ac57` itself), and 006 (transition authorized-ledger core — touched indirectly by `d60cc2c7553` and `fa74e868615`). Resolve every runtime path each phase names against pinned HEAD; flag any premise invalidated by the typed-pair routing surface or the cli-opencode unblock.
 
 ## Actions Taken
 
@@ -22,7 +22,7 @@ Iteration 3's focus was Q-003: drift over phases 004 (architecture coverage + tr
 
 ### F3.1 — Phase 004: zero drift detected (candidate negative control)
 
-Phase 004 is a phase parent with three children. Cited paths inside phase 004 are intra-packet (`001-spine-architecture-adr`, `002-recommendation-ledger-bijective-map`, `003-transition-versioning-and-rollback-policy`) — all resolve at HEAD. Phase 004 does NOT cite any `runtime/` path that could have been renamed by `cc77a1e550a`, nor any routing-registry path that could have been touched by `6cd8ab14e4e` / `708d25acf04` / `908efde8d8f`.
+Phase 004 is a phase parent with three children. Cited paths inside phase 004 are intra-packet (`001-spine-architecture-adr`, `002-recommendation-ledger-bijective-map`, `003-transition-versioning-and-rollback-policy`) — all resolve at HEAD. Phase 004 does NOT cite any `runtime/` path that could have been renamed by `b052f329a73`, nor any routing-registry path that could have been touched by `d60cc2c7553` / `fa74e868615` / `4b2c351cc1e`.
 
 Phase 004's `001-spine-architecture-adr` is referenced by phase 006 (`006/spec.md:54` cites `../004-architecture-coverage-and-transition-contract/001-spine-architecture-adr/spec.md`) and that path resolves.
 
@@ -55,13 +55,13 @@ Phase 006 cites two intra-packet paths plus the general `runtime/` substrate. Bo
 - `002-deep-loop-effectiveness-and-fanout/research/research-modes.md` — RESOLVES.
 - `004-architecture-coverage-and-transition-contract/001-spine-architecture-adr/spec.md` — RESOLVES.
 
-Phase 006's scope is the DARK substrate: versioned event envelope, typed append-only ledger, replay fingerprints, fail-closed transition-authorization gateway. It is explicitly "dark (non-authoritative)" — legacy writers remain the source of truth until phase 014. None of the routing commits (`6cd8ab14e4e`, `708d25acf04`, `908efde8d8f`) touch ledger, event-envelope, or transition-authorization paths.
+Phase 006's scope is the DARK substrate: versioned event envelope, typed append-only ledger, replay fingerprints, fail-closed transition-authorization gateway. It is explicitly "dark (non-authoritative)" — legacy writers remain the source of truth until phase 014. None of the routing commits (`d60cc2c7553`, `fa74e868615`, `4b2c351cc1e`) touch ledger, event-envelope, or transition-authorization paths.
 
-The typed-pair routing surface (`708d25acf04`) added `resourceContractVersion: 1` to `mode-registry.json`. Phase 006 doesn't read `mode-registry.json` — it writes a parallel typed event substrate. No interaction.
+The typed-pair routing surface (`fa74e868615`) added `resourceContractVersion: 1` to `mode-registry.json`. Phase 006 doesn't read `mode-registry.json` — it writes a parallel typed event substrate. No interaction.
 
 **Phase 006 = still valid** (no first-order or second-order drift). Candidate for negative control alongside phase 004.
 
-[SOURCE: `006/spec.md:48` (handoff criteria — dark substrate); `006/spec.md:54` (citations); `git cat-file -e 739b85ac57:...research-modes.md` resolves; `git cat-file -e 739b85ac57:...001-spine-architecture-adr/spec.md` resolves; `git diff 0ce43ff589..739b85ac57 -- .opencode/skills/system-deep-loop/mode-registry.json` shows only metadata changes, no ledger/event-envelope paths.]
+[SOURCE: `006/spec.md:48` (handoff criteria — dark substrate); `006/spec.md:54` (citations); `git cat-file -e 739b85ac57:...research-modes.md` resolves; `git cat-file -e 739b85ac57:...001-spine-architecture-adr/spec.md` resolves; `git diff 60b9ed8bc2..739b85ac57 -- .opencode/skills/system-deep-loop/mode-registry.json` shows only metadata changes, no ledger/event-envelope paths.]
 
 ## Questions Answered
 
@@ -80,7 +80,7 @@ The typed-pair routing surface (`708d25acf04`) added `resourceContractVersion: 1
 - `git show --stat 739b85ac57` + commit body (cli-opencode unblock, 17 lines, dispatch-env only)
 - `fanout-run.cjs:1378-1395` (buildLineageCommand, cli-codex argv still starts with `exec`)
 - Grep `liveTools|webSearch|invocationFingerprint|capability preflight|live-search` in `fanout-run.cjs` and `executor-config.ts` (0 hits)
-- `git diff 0ce43ff589..739b85ac57 -- .opencode/skills/system-deep-loop/mode-registry.json` (30-line diff, no ledger paths)
+- `git diff 60b9ed8bc2..739b85ac57 -- .opencode/skills/system-deep-loop/mode-registry.json` (30-line diff, no ledger paths)
 
 ## Assessment
 
@@ -107,4 +107,4 @@ The typed-pair routing surface (`708d25acf04`) added `resourceContractVersion: 1
 
 ## Recommended Next Focus
 
-Iteration 4: Phases 007-009 drift. Phase 007 (shared evidence + control services — touched by skill-benchmark typed-pair series), 008 (compatibility shadow + rollback bridge), 009 (fanout fan-in durable orchestration — touched by `739b85ac57` and `9259c23e313`). Resolve every runtime path each phase names; flag any second-order drift from the typed-pair skill-benchmark rewrites.
+Iteration 4: Phases 007-009 drift. Phase 007 (shared evidence + control services — touched by skill-benchmark typed-pair series), 008 (compatibility shadow + rollback bridge), 009 (fanout fan-in durable orchestration — touched by `739b85ac57` and `1accee48991`). Resolve every runtime path each phase names; flag any second-order drift from the typed-pair skill-benchmark rewrites.

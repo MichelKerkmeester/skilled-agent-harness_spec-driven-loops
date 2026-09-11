@@ -13,7 +13,7 @@ _memory:
     packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/013-compiled-coverage-buildout"
     last_updated_at: "2026-07-21T12:49:16Z"
     last_updated_by: "claude"
-    recent_action: "Reconciled spec.md status to Complete (matches implementation-summary.md; 7dfffa0c93)"
+    recent_action: "Reconciled spec.md status to Complete (matches implementation-summary.md; 4cd19370da)"
     next_safe_action: "None; 011-activation-cutover-p4 (P4, operator-gated) consumes this coverage"
     blockers: []
     key_files:
@@ -61,7 +61,7 @@ The compiled skill-router mechanism is byte-identical to legacy where it has cov
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P0 |
-| **Status** | Complete. All 7 hubs (sk-code, sk-design, sk-doc, sk-prompt, mcp-tooling, system-deep-loop, cli-external-orchestration) reached `compiled-serving` parity (0 drift each) and the staged default-on flip landed — `DEFAULT_ON_HUBS` populated in both resolver copies, commit `7dfffa0c93`. See `implementation-summary.md` for the full 6-commit delivery record. |
+| **Status** | Complete. All 7 hubs (sk-code, sk-design, sk-doc, sk-prompt, mcp-tooling, system-deep-loop, cli-external-orchestration) reached `compiled-serving` parity (0 drift each) and the staged default-on flip landed — `DEFAULT_ON_HUBS` populated in both resolver copies, commit `4cd19370da`. See `implementation-summary.md` for the full 6-commit delivery record. |
 | **Created** | 2026-07-21 |
 | **Branch** | `sk-doc/0089-default-routing-cutover` |
 <!-- /ANCHOR:metadata -->

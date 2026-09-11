@@ -9,7 +9,7 @@ trigger_phrases: []
 - **Mode:** review (read-only — findings only, no code modification)
 - **Dimension:** correctness | **Angle:** A2-deepen (settle latent F-A2-01 + F-A2-03)
 - **Budget profile:** adjudicate (target 8-10 tool calls; used 8)
-- **Review target:** git range `a9e9bdb0a5^..HEAD`, A2 surface in `system-spec-kit/mcp_server`
+- **Review target:** git range `fd67ede05f^..HEAD`, A2 surface in `system-spec-kit/mcp_server`
 - **Session:** `2026-06-05T11:16:17Z` (generation 1, lineageMode new)
 - **Parallel-safety:** wrote ONLY `iterations/iteration-016.md` + `deltas/iter-016.jsonl`. Did NOT touch `deep-review-state.jsonl`, `deep-review-strategy.md`, `deep-review-findings-registry.json`, or `deep-review-config.json`.
 

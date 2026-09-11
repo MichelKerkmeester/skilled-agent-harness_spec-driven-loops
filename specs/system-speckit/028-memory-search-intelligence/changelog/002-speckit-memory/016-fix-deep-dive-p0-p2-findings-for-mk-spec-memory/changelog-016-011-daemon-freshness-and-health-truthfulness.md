@@ -19,7 +19,7 @@ contextType: "implementation"
 
 ### Summary
 
-The dist-freshness checker no longer deadlocks. A successful build now pre-warms the per-entry source-hash cache, so the next freshness check short-circuits to fresh instead of falling through to an mtime comparison that could never write the cache. This removed the false-stale state that blocked the compiled validator and the memory CLI for a whole working session. `spec-memory.cjs` now exempts `--help`, `--version` and `completion` from the freshness gate. The health exclusion-audit queries `content_text` instead of the nonexistent `content` column, so the silent-risk diagnostic can fire again. Shipped in `d6e79a333d`.
+The dist-freshness checker no longer deadlocks. A successful build now pre-warms the per-entry source-hash cache, so the next freshness check short-circuits to fresh instead of falling through to an mtime comparison that could never write the cache. This removed the false-stale state that blocked the compiled validator and the memory CLI for a whole working session. `spec-memory.cjs` now exempts `--help`, `--version` and `completion` from the freshness gate. The health exclusion-audit queries `content_text` instead of the nonexistent `content` column, so the silent-risk diagnostic can fire again. Shipped in `40b26e3d9c`.
 
 ### Added
 

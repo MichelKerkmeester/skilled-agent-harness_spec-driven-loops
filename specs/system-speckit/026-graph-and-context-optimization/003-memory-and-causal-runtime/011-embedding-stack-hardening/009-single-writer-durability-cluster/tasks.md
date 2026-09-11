@@ -73,7 +73,7 @@ _memory:
 
 - [x] T011 Harness A realized as launcher-model-server-single-writer-cluster.vitest.ts + daemon-detect.vitest.ts (single-owner / no-orphan / live-childPid) — pass
 - [x] T012 Harness B realized as vector-index-store-durability + reindex-durability-cancel + hf-model-server-perimeter vitest suites — pass
-- [x] T013 mcp+shared+scripts build (exit 0) + node --check 2 .cjs + 26 new + 29 regression + 9 leases tests; committed aa6860d835
+- [x] T013 mcp+shared+scripts build (exit 0) + node --check 2 .cjs + 26 new + 29 regression + 9 leases tests; committed 07c1787a96
 
 <!-- /ANCHOR:phase-3 -->
 ---

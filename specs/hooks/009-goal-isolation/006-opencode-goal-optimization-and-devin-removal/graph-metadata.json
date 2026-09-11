@@ -49,7 +49,6 @@
       ".opencode/hooks/goal/lib/goal-core.cjs",
       ".codex/AGENTS.md",
       ".codex/config.toml",
-      ".opencode/skills/system-spec-kit/scripts/validate-command-tree-parity.sh",
       ".claude/SYNC.md",
       ".devin/hooks.v1.json",
       ".opencode/hooks/goal/pi/goal-context.ts",
@@ -103,12 +102,6 @@
         "name": "config.toml",
         "kind": "file",
         "path": ".codex/config.toml",
-        "source": "derived"
-      },
-      {
-        "name": "validate-command-tree-parity.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/validate-command-tree-parity.sh",
         "source": "derived"
       },
       {
@@ -200,11 +193,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`mk-goal.js` derives a state filename by hex-encoding the full OpenCode session id",
     "created_at": "2026-08-10T17:42:43Z",
-    "last_save_at": "2026-08-30T15:39:09.582Z",
+    "last_save_at": "2026-09-11T16:41:50.297Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,14 +213,14 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:8d412525c9c7959d2abf7af07ab233bc737488bbb24500837fd363ee5d8459c9",
+    "source_fingerprint": "sha256:8a5816800c22363b31763e4faf3c11445a79b23340fa2d37cafbcaf2f9ffadef",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f7a779e85bf928183331d14e75c4ff939306246332e11e78ec586530c1234791",
       "plan.md": "4c2232075d97f6232bdc239ee9f0138f7e720e4187352d8edaf32ee8b1a827a0",
       "tasks.md": "9f795dd8fba0225b434604cd2d691f3a75ed046b101803489989569008d2c395",
-      "implementation-summary.md": "a289e40364b1cc3b8b2c1cd3fda1fbfff1355331bff47d2136f3d6c5044dcec5",
-      "handover.md": "7d5faf099650f33d4a3bb4739a62e307ea7198e72a2eab1ddde3a4688823a9de"
+      "implementation-summary.md": "e7b082715ce4ec301591a44d95c4dd5eeff02e367d1ba705d3914a7aff84b0c6",
+      "handover.md": "19bdd904c1aae91f4f149d178c6924de503e9d04e3a5f99487cd864f009553fd"
     },
     "last_active_child_id": null,
     "last_active_at": null

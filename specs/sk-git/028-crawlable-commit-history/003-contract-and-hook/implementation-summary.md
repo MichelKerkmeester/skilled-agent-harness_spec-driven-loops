@@ -77,7 +77,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Four briefs, one change each, in the order the decisions fixed: hook whitelist first, allocator, stamper, then documents. Each child returned evidence, and the conductor re-ran every harness and validator before committing. The first detached child died silently with an empty log after writing the hook edit; the attached background runner was used from then on and is recorded as this phase's one architecture decision. SKILL.md crossed the 5,000-word package cap by 114 words, so four ALWAYS rules that restated their references were condensed. Four commits landed on the worktree branch: `43f727bc1b`, `cda76b4ad9`, `e5a85ced55`, `3bfb4619c6`.
+Four briefs, one change each, in the order the decisions fixed: hook whitelist first, allocator, stamper, then documents. Each child returned evidence, and the conductor re-ran every harness and validator before committing. The first detached child died silently with an empty log after writing the hook edit; the attached background runner was used from then on and is recorded as this phase's one architecture decision. SKILL.md crossed the 5,000-word package cap by 114 words, so four ALWAYS rules that restated their references were condensed. Four commits landed on the worktree branch: `3f5db4c543`, `a9e6bac519`, `5554bdc821`, `7df69e9b6a`.
 <!-- /ANCHOR:how-delivered -->
 
 ---

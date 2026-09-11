@@ -22,7 +22,7 @@ trigger_phrases: []
 - `.opencode/skills/system-deep-loop/deep-research/assets/deep-research-config.json:19-26` (config template uses `kind: "native"` — canonical runtime field)
 - `.opencode/commands/deep/assets/compiled/deep-research.contract.md:252,268,275` (compiled contract documents `config.executor.type` as the command-layer field; `--executor` → `config.executor.type`; default `native`)
 - `.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` (grep for alignment/command-benchmark/conformance: 0 hits)
-- `git show d1a5981b58c -- .opencode/commands/deep/assets/deep-research-auto.yaml` (commit added cursor/devin/pi using `{config.executor.type}` — followed research's existing field convention)
+- `git show 3029aad3c34 -- .opencode/commands/deep/assets/deep-research-auto.yaml` (commit added cursor/devin/pi using `{config.executor.type}` — followed research's existing field convention)
 - `.opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/fanout/fanout-single-executor-parity-research.md` (DR-054 parity validation contract)
 
 ## Findings by Severity
@@ -45,13 +45,13 @@ None.
   - `executor-config.ts:58-59` — schema defines only `kind`; `:433-457` — `normalizeExecutorConfigInput` aliases `type`→`kind` with a deprecation warning; `executor-config.vitest.ts:94` — test confirms the alias.
   - `deep-research.contract.md:252,275` — compiled contract documents `config.executor.type` as the command-layer field populated by `--executor`.
   - `deep-research-config.json:20` — config template uses `kind: "native"` (runtime-layer canonical field).
-- **Counterevidence sought:** (1) Is this a correctness bug — does research fail to dispatch because the config template uses `kind` but the YAML branches on `type`? — No: the command layer populates `config.executor.type` from the `--executor` CLI flag (per compiled contract :275), and the runtime normalizes `type`→`kind` inside the dispatched script (executor-config.ts:433). The two layers (command/YAML vs runtime/TS) use different field names by design; the config template's `kind` is the runtime-layer field. (2) Was this drift introduced by commit d1a5981b58c? — No: `git show d1a5981b58c` shows the commit added cursor/devin/pi to research using `{config.executor.type}`, following the file's pre-existing convention. Research always used `type`; review always used `kind`. (3) Do both modes pass their vitest suites? — Yes (commit messages cite 71/71 targeted auto-YAML vitest; executor-config.vitest.ts:94 covers the alias).
+- **Counterevidence sought:** (1) Is this a correctness bug — does research fail to dispatch because the config template uses `kind` but the YAML branches on `type`? — No: the command layer populates `config.executor.type` from the `--executor` CLI flag (per compiled contract :275), and the runtime normalizes `type`→`kind` inside the dispatched script (executor-config.ts:433). The two layers (command/YAML vs runtime/TS) use different field names by design; the config template's `kind` is the runtime-layer field. (2) Was this drift introduced by commit 3029aad3c34? — No: `git show 3029aad3c34` shows the commit added cursor/devin/pi to research using `{config.executor.type}`, following the file's pre-existing convention. Research always used `type`; review always used `kind`. (3) Do both modes pass their vitest suites? — Yes (commit messages cite 71/71 targeted auto-YAML vitest; executor-config.vitest.ts:94 covers the alias).
 - **Alternative explanation:** The `type`/`kind` split is a deliberate two-layer design (command-layer `type` populated by `--executor`, runtime-layer `kind` per the schema). Research predates the `kind` canonicalization and kept its command-layer `type`; review was written later with `kind`. Both resolve correctly via the alias. The drift is cosmetic tech-debt, not a functional defect.
 - **Final severity:** P2 — pre-existing, observation-only, not introduced by the commit under review. Both modes dispatch correctly. The hazard is future porting mistakes, not a current failure.
 - **Confidence:** 0.80
 - **Downgrade trigger:** Would mark out-of-scope (no finding) if a future commit canonicalizes research to `kind` or documents the two-layer field-name split in the contract.
 - **Finding class:** tech-debt
-- **Scope proof:** `git show d1a5981b58c -- deep-research-auto.yaml` adds cursor/devin/pi with `{config.executor.type}`; the `branch_on: "config.executor.type"` line and all pre-existing branches (claude_code, opencode, codex) are unchanged by the commit.
+- **Scope proof:** `git show 3029aad3c34 -- deep-research-auto.yaml` adds cursor/devin/pi with `{config.executor.type}`; the `branch_on: "config.executor.type"` line and all pre-existing branches (claude_code, opencode, codex) are unchanged by the commit.
 - **Affected surface hints:** ["executor-routing", "field-naming", "research", "review"]
 - **Risk score:** 1 (observation only)
 - **Recommendation:** Out of scope for this commit. Consider a follow-up to canonicalize research's command-layer field to `kind` (updating branch_on, all template vars, the compiled contract, and the `--executor` mapping) so both modes share one field name, eliminating the porting hazard.
@@ -64,13 +64,13 @@ None.
   - `deep-research-auto.yaml` — no `if_cli_copilot` (grep across all auto.yaml confirms copilot only in review + review-confirm).
   - `executor-config.ts:77-100` — EXECUTOR_KIND_FLAG_SUPPORT has no `cli-copilot` entry; copilot is not a registered executor kind.
   - `deep-research.contract.md:252` — compiled contract documents `config.executor.type` values as `native | cli-opencode | cli-claude-code` (copilot not listed for research).
-- **Counterevidence sought:** (1) Is copilot a configurable executor for research? — The research compiled contract (:252) lists only `native | cli-opencode | cli-claude-code` as documented executor values; copilot is not listed, suggesting it is review-specific by design. (2) Would a research config with `executor.type: copilot` silently degrade to native? — No: with no `if_cli_copilot` branch and no `else:` clause, an unmatched branch value produces no dispatch command → the iteration fails `post_dispatch_validate` (no iteration file written). This is fail-closed by validation, not a silent native degrade. (3) Was this asymmetry introduced by d1a5981b58c? — No: the copilot branch is not in the commit's diff for research; it is a pre-existing review-only branch.
+- **Counterevidence sought:** (1) Is copilot a configurable executor for research? — The research compiled contract (:252) lists only `native | cli-opencode | cli-claude-code` as documented executor values; copilot is not listed, suggesting it is review-specific by design. (2) Would a research config with `executor.type: copilot` silently degrade to native? — No: with no `if_cli_copilot` branch and no `else:` clause, an unmatched branch value produces no dispatch command → the iteration fails `post_dispatch_validate` (no iteration file written). This is fail-closed by validation, not a silent native degrade. (3) Was this asymmetry introduced by 3029aad3c34? — No: the copilot branch is not in the commit's diff for research; it is a pre-existing review-only branch.
 - **Alternative explanation:** Copilot single-dispatch is a review-specific capability (review's authority-guard preamble via `buildCopilotPromptArg` is tailored to the review workflow's Gate-3 spec-folder enforcement). Research does not need it. The asymmetry is intentional, not a parity gap.
 - **Final severity:** P2 — pre-existing, observation-only. The failure mode for an unsupported executor kind is fail-closed (opaque validation failure, not silent native). The asymmetry is likely by design but is undocumented as such.
 - **Confidence:** 0.72
 - **Downgrade trigger:** Would mark out-of-scope (no finding) if the research contract explicitly documents copilot as unsupported, or if copilot is confirmed review-only by design.
 - **Finding class:** tech-debt
-- **Scope proof:** `git show d1a5981b58c` does not touch any `if_cli_copilot` branch; the branch predates the commit in review and was never present in research.
+- **Scope proof:** `git show 3029aad3c34` does not touch any `if_cli_copilot` branch; the branch predates the commit in review and was never present in research.
 - **Affected surface hints:** ["executor-routing", "cli-copilot", "branch-parity"]
 - **Risk score:** 1 (observation only)
 - **Recommendation:** Out of scope for this commit. If copilot is intentionally review-only, document that in the research compiled contract's executor-value list. If it should be portable, add an `if_cli_copilot` branch to research mirroring review's `buildCopilotPromptArg` pattern.
@@ -78,7 +78,7 @@ None.
 ## Focus-Question Adjudication
 
 ### (1) cursor/devin/pi parity across ALL deep-loop command workflows
-**CONFIRMED PRESENT in both modes that have single-executor dispatch.** `deep-research-auto.yaml` has if_cli_cursor (:1170), if_cli_devin (:1261), if_cli_pi (:1352). `deep-review-auto.yaml` has if_cli_cursor (:1496), if_cli_devin (:1587), if_cli_pi (:1678). The fix (d1a5981b58c) landed in BOTH research and review — no parity gap for cursor/devin/pi.
+**CONFIRMED PRESENT in both modes that have single-executor dispatch.** `deep-research-auto.yaml` has if_cli_cursor (:1170), if_cli_devin (:1261), if_cli_pi (:1352). `deep-review-auto.yaml` has if_cli_cursor (:1496), if_cli_devin (:1587), if_cli_pi (:1678). The fix (3029aad3c34) landed in BOTH research and review — no parity gap for cursor/devin/pi.
 
 The other deep-loop auto.yaml files (`deep-ai-council-auto.yaml`, `deep-agent-improvement-auto.yaml`, `deep-model-benchmark-auto.yaml`, `deep-skill-benchmark-auto.yaml`) and `prompt_improve_auto.yaml` have NO executor routing branches (`branch_on: config.executor`, `if_cli_*`, `if_native` at dispatch level all absent). This is by design: ai-council dispatches an in-process council (`target_agent: ai-council` at :170), not a per-iteration CLI dispatch; the benchmark and prompt-improve modes have no per-iteration CLI executor dispatch step. **No silent-native-fallback path survives elsewhere.**
 
@@ -89,7 +89,7 @@ The other deep-loop auto.yaml files (`deep-ai-council-auto.yaml`, `deep-agent-im
 - **write-containment:** cursor/devin/pi/codex branches in BOTH call `enforceWriteContainment` (revert out-of-scope writes + exit 1 on violation). claude_code/opencode/copilot branches do NOT (rely on permission-mode/sandbox flags). This divergence is pre-existing and consistent between research/review for the shared branches. [SOURCE: deep-research-auto.yaml:1604-1614; deep-review-auto.yaml:1751-1761]
 - **Model allowlist:** enforced inside `buildLineageCommand` for cursor/devin/pi (one source of truth). codex/claude_code/opencode do not pass through the builder, so their model constraints are enforced by the CLI itself, not the builder. Consistent between research and review.
 
-**Verdict: fail-closed contract is consistent across research and review for the cursor/devin/pi branches (the focus of d1a5981b58c). No drift in the new branches.**
+**Verdict: fail-closed contract is consistent across research and review for the cursor/devin/pi branches (the focus of 3029aad3c34). No drift in the new branches.**
 
 ### (3) No else-fallthrough silently dispatching native
 **CONFIRMED.** Neither `deep-research-auto.yaml` nor `deep-review-auto.yaml` has an `else:` clause within the executor dispatch branch block. The branch block goes `branch_on` → `if_native` → `if_cli_*`... → `post_dispatch_validate` (no else/default). The two `else:` hits in review (:1978, :2036) are in later convergence/evaluation steps, NOT executor dispatch. An unmatched executor kind produces no dispatch command → `post_dispatch_validate` fails (assert_exists / assert_appended gates) → `on_failure.redispatch_once`. This is fail-closed by validation, not silent native. [SOURCE: grep `^\s+else:` across all three auto.yaml; post_dispatch_validate blocks at deep-research-auto.yaml:1633, deep-review-auto.yaml:1773]
@@ -102,7 +102,7 @@ The other deep-loop auto.yaml files (`deep-ai-council-auto.yaml`, `deep-agent-im
 | Protocol | Level | Status | Evidence |
 |---|---|---|---|
 | `spec_code` | core | pass (carried) | No spec-code contradiction. The 024-executor-kind-routing spec's single-dispatch requirement is satisfied: cursor/devin/pi branches present in both research and review, fail-closed, no silent native fallback. |
-| `checklist_evidence` | core | pass (carried) | Commit d1a5981b58c cites targeted auto-YAML vitest 71/71; not re-run (observation-only). The branch structure inspected matches the cited contract. |
+| `checklist_evidence` | core | pass (carried) | Commit 3029aad3c34 cites targeted auto-YAML vitest 71/71; not re-run (observation-only). The branch structure inspected matches the cited contract. |
 | `skill_agent` | overlay | pass (carried) | ai-council/agent-improvement/benchmark modes have no executor routing by design (in-process or no per-iteration dispatch). |
 | `agent_cross_runtime` | overlay | pass (carried) | No mirror-surface executor-routing files (routing lives only in .opencode canonical auto.yaml). |
 | `feature_catalog_code` | overlay | pass (carried) | No new feature-catalog references. |

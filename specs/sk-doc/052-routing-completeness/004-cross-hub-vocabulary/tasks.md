@@ -51,7 +51,7 @@ _memory:
 
 - [x] T001 Read the durable directive and freeze its three decisions (`goal.md`) - evidence: D1 to D3 carried into `spec.md` section 4
 - [x] T002 Confirm the advisor daemon governs and its weights are frozen - evidence: parent packet D1 and D2
-- [x] T003 [P] Capture the before numbers for both gates - evidence: Gate A 234 of 444 in `dbc8678c9d`, Gate B 8 of 180 in `4a5de9e52b`
+- [x] T003 [P] Capture the before numbers for both gates - evidence: Gate A 234 of 444 in `12aa10504a`, Gate B 8 of 180 in `b3de2effda`
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -59,12 +59,12 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T004 Qualify the three bare single-word tokens to the code sense they meant (`.opencode/skills/sk-code/graph-metadata.json`) - evidence: `f8c2595ce0`
-- [x] T005 Give the documentation hub the phrasings people use rather than internal labels (`.opencode/skills/sk-doc/graph-metadata.json`) - evidence: `f8c2595ce0`, 21 lines
-- [x] T006 Sweep all 84 declared hub signals for the reach-then-drop shape - evidence: five found, four given a stage-two class in `461ef9261f`
-- [x] T007 Change the executor override to lift the hub instead of inserting a routeless rank-one entry (`.../lib/scorer/executor-delegation.ts`) - evidence: `08eb67a0de`
-- [x] T008 Rebuild executor routing around the compiled route (`.opencode/skills/cli-external-orchestration/hub-router.json`) - evidence: `08eb67a0de`, 47 lines
-- [x] T009 Re-scope the phase after Gate B invalidated its premise (`spec.md`) - evidence: `4a5de9e52b`, 42 lines
+- [x] T004 Qualify the three bare single-word tokens to the code sense they meant (`.opencode/skills/sk-code/graph-metadata.json`) - evidence: `e96760aa3b`
+- [x] T005 Give the documentation hub the phrasings people use rather than internal labels (`.opencode/skills/sk-doc/graph-metadata.json`) - evidence: `e96760aa3b`, 21 lines
+- [x] T006 Sweep all 84 declared hub signals for the reach-then-drop shape - evidence: five found, four given a stage-two class in `add6602050`
+- [x] T007 Change the executor override to lift the hub instead of inserting a routeless rank-one entry (`.../lib/scorer/executor-delegation.ts`) - evidence: `aa11c2b622`
+- [x] T008 Rebuild executor routing around the compiled route (`.opencode/skills/cli-external-orchestration/hub-router.json`) - evidence: `aa11c2b622`, 47 lines
+- [x] T009 Re-scope the phase after Gate B invalidated its premise (`spec.md`) - evidence: `b3de2effda`, 42 lines
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -72,8 +72,8 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T010 Run the three-suite regression control - evidence: 444 declared signals, 180 realistic prompts, 224 out-of-scope controls, recorded in `08eb67a0de`
-- [x] T011 Re-capture gold labels and compare accuracy to the committed baseline - evidence: metrics byte-identical, `08eb67a0de`
+- [x] T010 Run the three-suite regression control - evidence: 444 declared signals, 180 realistic prompts, 224 out-of-scope controls, recorded in `aa11c2b622`
+- [x] T011 Re-capture gold labels and compare accuracy to the committed baseline - evidence: metrics byte-identical, `aa11c2b622`
 - [x] T012 Regenerate compiled-route manifests with each routing edit - evidence: freshness reports `fresh` for all five hubs, re-run 2026-09-02
 - [x] T013 Re-pin canary digests from the files and confirm a stale digest still fails - evidence: five canaries exit 0, re-run 2026-09-02
 - [x] T014 Record what keyword ownership cannot reach - evidence: the 94-row bucket named in `spec.md` section 2 and in `goal.md`
@@ -157,7 +157,7 @@ _memory:
 - [x] CHK-FIX-004 [P0] Adversarial cases covered by the canary fixtures, which caught two real regressions
 - [x] CHK-FIX-005 [P1] Matrix axes listed: owned prompts, cross-hub collisions, out-of-scope controls
 - [x] CHK-FIX-006 [P1] The daemon was queried live rather than through a cached recommendation
-- [x] CHK-FIX-007 [P1] Evidence pinned to `f8c2595ce0`, `461ef9261f`, `4a5de9e52b` and `08eb67a0de`
+- [x] CHK-FIX-007 [P1] Evidence pinned to `e96760aa3b`, `add6602050`, `b3de2effda` and `aa11c2b622`
 <!-- /ANCHOR:fix-completeness -->
 
 ---

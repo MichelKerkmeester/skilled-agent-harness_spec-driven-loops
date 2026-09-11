@@ -5,7 +5,7 @@ trigger_phrases: []
 Independent code review (READ-ONLY). You may run git, read files, run `python3`/`node` for validation only (no writes). Do NOT modify any file.
 
 # Task
-Audit git commit `1e58d845af` (TOC + `<!-- ANCHOR -->` removal across skill docs + standards/config/template/command edits). Find anything broken **by accident**.
+Audit git commit `e5ee6609c2` (TOC + `<!-- ANCHOR -->` removal across skill docs + standards/config/template/command edits). Find anything broken **by accident**.
 
 This is **Iteration 3 of 10**. Focus: **standards/config + `/create` command consistency** (correctness + maintainability).
 

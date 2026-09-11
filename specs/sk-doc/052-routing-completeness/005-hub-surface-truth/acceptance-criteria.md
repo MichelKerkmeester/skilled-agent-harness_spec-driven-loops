@@ -54,9 +54,9 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |---|---|---|---|---|---|
-| AC-001 | REQ-001 | Given the inventory intent claims completeness, When it is compared to the leaf manifest, Then it enumerates every leaf or drops the claim | `ROUTER.md:1` FULL_INVENTORY holds 252 paths, matching the manifest leaf count, each resolving on disk. Recorded at `98a327edf9` | Met | |
-| AC-002 | REQ-002 | Given a mode with a command file in every runtime tree, When the hub manifest is read, Then it does not report the mode as commandless | Re-run 2026-09-02: `grep -n 'sk-create-diff' .opencode/skills/sk-doc/SKILL.md` returns the mode's own row at `SKILL.md:35` carrying `/create:diff`, with no dash. The fix landed in `08eb67a0de` | Met | |
-| AC-003 | REQ-003 | Given the readme summary and its frontmatter, When compared to the mode registry, Then both name the current mode set | `README.md:1` description, trigger phrases and at-a-glance table each name all six previously missing domains. Recorded at `98a327edf9` | Met | |
+| AC-001 | REQ-001 | Given the inventory intent claims completeness, When it is compared to the leaf manifest, Then it enumerates every leaf or drops the claim | `ROUTER.md:1` FULL_INVENTORY holds 252 paths, matching the manifest leaf count, each resolving on disk. Recorded at `90ea7ecb09` | Met | |
+| AC-002 | REQ-002 | Given a mode with a command file in every runtime tree, When the hub manifest is read, Then it does not report the mode as commandless | Re-run 2026-09-02: `grep -n 'sk-create-diff' .opencode/skills/sk-doc/SKILL.md` returns the mode's own row at `SKILL.md:35` carrying `/create:diff`, with no dash. The fix landed in `aa11c2b622` | Met | |
+| AC-003 | REQ-003 | Given the readme summary and its frontmatter, When compared to the mode registry, Then both name the current mode set | `README.md:1` description, trigger phrases and at-a-glance table each name all six previously missing domains. Recorded at `90ea7ecb09` | Met | |
 | AC-004 | REQ-004 | Given a document that contradicts its registry, When the new check runs, Then it fails | `parent-skill-check-command-column.test.cjs:1` covers the dash form, a wrong command string and a deleted row, and the restore case. Invariant 6c lives at `parent-skill-check.cjs:1` | Met | |
 
 ### Status values

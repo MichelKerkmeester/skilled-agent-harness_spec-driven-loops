@@ -48,7 +48,7 @@ Derived memory artifacts, starting with generated causal edges, currently have n
 
 **Key Decisions**: additive `TEXT` identity column + partial `UNIQUE` index (NOT `AUTOINCREMENT`). The `derived_id` input MUST include anchors so the legacy anchor-inclusive UNIQUE backfill does not reject. Reuse `lib/content-id.ts`, do not author a third hash.
 
-**Critical Dependencies**: the shipped two-primitive content-id module (`lib/content-id.ts`, 030 commit `18c8582e33`). A `causal_edges` schema migration with a `SCHEMA_VERSION` bump.
+**Critical Dependencies**: the shipped two-primitive content-id module (`lib/content-id.ts`, 030 commit `0113515f43`). A `causal_edges` schema migration with a `SCHEMA_VERSION` bump.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -159,7 +159,7 @@ Give derived causal edges a content-addressed `derived_id = sha256(canonical-tri
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | Shipped two-primitive content-id module (`lib/content-id.ts`, 030 `18c8582e33`) | Without it, C4-B would author a third hash (forbidden) | Confirm module present and `hashCanonicalJson` signature before build |
+| Dependency | Shipped two-primitive content-id module (`lib/content-id.ts`, 030 `0113515f43`) | Without it, C4-B would author a third hash (forbidden) | Confirm module present and `hashCanonicalJson` signature before build |
 | Dependency | `causal_edges` schema migration + `SCHEMA_VERSION` bump | A wedged migration rolls back the whole upgrade batch (shared transaction) | Anchor-safe backfill pre-pass, additive-only column + index, test on a real DB copy |
 | Risk | `derived_id` input omits anchors | Backfill rejects against the legacy anchor-inclusive UNIQUE, migration wedges | REQ-002 makes anchor-inclusion a P0 with a backfill-no-reject test (the single most-cited C4-B caveat) |
 | Risk | Wrong/ambiguous canonical-field order or `source` definition | Non-reproducible ids across processes, crash-replay produces a different id | Fix a deterministic field order + kind-tag + `source` definition in `decision-record.md`, assert cross-process stability |

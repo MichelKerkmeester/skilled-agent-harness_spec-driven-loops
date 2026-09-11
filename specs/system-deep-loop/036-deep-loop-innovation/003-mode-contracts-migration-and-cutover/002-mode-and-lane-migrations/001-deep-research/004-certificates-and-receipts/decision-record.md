@@ -310,5 +310,5 @@ Enforce output-artifact receipt coverage and ordered provenance at both issuance
 - Additive-dark: exported certificate and receipt types are unchanged; only private derivation and validation logic.
 - The certificate suite grew from 31 to 36 tests (decoy output and permuted provenance across both paths, plus a
   positive control); the whole-runtime type-check stays clean. An independent adversarial re-verify confirmed both
-  holes closed with no over-tightening. Landed on the release branch as commit 6320b9bfd7.
+  holes closed with no over-tightening. Landed on the release branch as commit 730a8ce15d.
 <!-- /ANCHOR:adr-004 -->

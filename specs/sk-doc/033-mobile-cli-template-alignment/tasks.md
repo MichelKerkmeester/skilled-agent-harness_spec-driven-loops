@@ -38,7 +38,7 @@ contextType: "general"
 - [x] T001 Record playbook violations against the real validator (`manual-testing-playbook/`) - `FAIL_CLOSED, violations=84, operator=7, routing_gold_excluded=0`
 - [x] T002 Record per-file DQI for assets, `code-standards.md`, `quality/` - assets 74-88, code-standards 86, quality README 81
 - [x] T003 Record grep counts for the two names being removed - `design-reference` 12, `dqi-baseline` 5
-- [x] T004 Confirm deletion targets are tracked and capture the rollback anchor - all tracked, tree clean, anchor `856c17d5ed`
+- [x] T004 Confirm deletion targets are tracked and capture the rollback anchor - all tracked, tree clean, anchor `5a4bd90bd0`
 - [x] T005 Determine which playbook contract actually governs this packet - confirmed via `validate-playbook-topology.cjs`: the packet's `--skill-dir` reports `leaf-manifest.json not found`, so operator-scenario governs instead
 <!-- /ANCHOR:phase-1 -->
 
@@ -174,7 +174,7 @@ Surfaced while verifying the playbook conversion; the operator directed the fix 
 - [x] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases. - Not applicable: no security/path/parser/redaction code is touched by this packet
 - [x] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed. - Not applicable: no algorithmic input matrix exists; the change set is five disjoint file-lane edits, not a parsing/security matrix
 - [x] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state. - Not applicable: no process-wide state or environment-dependent code is touched
-- [x] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range. - Evidence is pinned to the rollback anchor `856c17d5ed`, confirmed clean and fully tracked before any lane edit (T004)
+- [x] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range. - Evidence is pinned to the rollback anchor `5a4bd90bd0`, confirmed clean and fully tracked before any lane edit (T004)
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -247,7 +247,7 @@ Surfaced while verifying the playbook conversion; the operator directed the fix 
 <!-- ANCHOR:deploy-ready -->
 ## L3+: Deployment Readiness
 
-- [ ] CHK-120 [P0] Rollback procedure documented and tested - documented in plan.md §7 with a pinned commit (`856c17d5ed`) and confirmed-tracked files (T004); the restore command itself has not been dry-run executed
+- [ ] CHK-120 [P0] Rollback procedure documented and tested - documented in plan.md §7 with a pinned commit (`5a4bd90bd0`) and confirmed-tracked files (T004); the restore command itself has not been dry-run executed
 - [x] CHK-121 [P0] Feature flag configured (if applicable) - Not applicable: no runtime feature flag governs a documentation packet
 - [x] CHK-122 [P1] Monitoring/alerting configured - Not applicable: no runtime monitoring surface exists
 - [x] CHK-123 [P1] Runbook created - satisfied via the plan.md §7 rollback procedure, which serves as this packet's runbook; no separate runbook artifact is warranted for a docs-only change

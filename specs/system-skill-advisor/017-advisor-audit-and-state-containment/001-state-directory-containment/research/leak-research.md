@@ -1319,17 +1319,17 @@ all=160 runtime=0
 .opencode/skills/system-deep-loop/runtime/lib/legacy-projections/legacy-projection-manifest.ts:259:    pathTemplate: '.opencode/skills/.loop-guard-state/.archive/{hex(session_id)}.json',
 [0m
 [0m$ [0mgit log -5 --date=iso-strict --format='%h %ad %s' -- '.opencode/skills/system-skill-advisor/mcp-server/lib/utils/workspace-root.ts' '.opencode/skills/system-skill-advisor/mcp-server/tests/utils/workspace-root.vitest.ts'
-cc77a1e550a 2026-07-19T06:02:44+02:00 refactor(sk-doc): migrate filesystem names to kebab-case (020, squashed)
+b052f329a73 2026-07-19T06:02:44+02:00 refactor(sk-doc): migrate filesystem names to kebab-case (020, squashed)
 [0m
 [0m$ [0mgit log --all --oneline -- '.opencode/skills/system-spec-kit/.opencode' '.opencode/specs/system-speckit/028-memory-search-intelligence/.opencode' '.opencode/skills/cli-external-orchestration/cli-opencode/.opencode'
-f9afa7a76ca fix(spec-kit): 028 Phase R audit remediation — 72 tasks swarm-implemented, adversarially verified
-a53918b47f1 chore(deep-loops/036): prep 003 generalization-probe scenario cells (WIP)
-caeb3f61e11 feat(deep-loops/030): land phase 011, deep-review remediation, and dist-freshness enforcement
-540fac01e41 checkpoint: land 031 GPT deep-loop hardening (phases 008-013) + broader WIP
+859e9dc9b22 fix(spec-kit): 028 Phase R audit remediation — 72 tasks swarm-implemented, adversarially verified
+dc7ae595eb2 chore(deep-loops/036): prep 003 generalization-probe scenario cells (WIP)
+fe706ded25d feat(deep-loops/030): land phase 011, deep-review remediation, and dist-freshness enforcement
+1746a34a5b1 checkpoint: land 031 GPT deep-loop hardening (phases 008-013) + broader WIP
 88051ebaa67 fix(054+096): runtime cleanup followups — strict sentinel + deprecated purge + orphan-files diagnosis
-013171e6ddc fix(054+096): runtime cleanup followups — strict sentinel + deprecated purge + orphan-files diagnosis
+161f06e7c55 fix(054+096): runtime cleanup followups — strict sentinel + deprecated purge + orphan-files diagnosis
 40dcf80052d refactor(opencode): rename .opencode/{skill,agent,command}/ to plural per official docs
-6647661f323 refactor(opencode): rename .opencode/{skill,agent,command}/ to plural per official docs
+f14c8c591d0 refactor(opencode): rename .opencode/{skill,agent,command}/ to plural per official docs
 [0m
 [0m$ [0mnode -e 'const fs=require("fs"),cp=require("child_process"),path=require("path");const out=cp.execFileSync("find",[".opencode","-type","f","(","-path","*/.opencode/skills/.advisor-state/*","-o","-path","*/.opencode/skills/.spec-gate-state/*","-o","-path","*/.opencode/logs/cli-dispatch-audit.log*",")","-print0"],{maxBuffer:20*1024*1024}).toString();const files=out.split("\0").filter(Boolean);const m=new Map();for(const f of files){const i=f.indexOf("/.opencode/");const r=f.slice(0,i+10);const s=fs.statSync(f).mtime;const v=m.get(r)||{n:0,min:s,max:s};v.n++;if(s<v.min)v.min=s;if(s>v.max)v.max=s;m.set(r,v)}for(const [r,v] of [...m].sort())console.log(`${v.n}\t${v.min.toISOString()}\t${v.max.toISOString()}\t${r}`)'
 1	2026-07-24T13:12:31.827Z	2026-07-24T13:12:31.827Z	.opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/.opencode
@@ -1352,8 +1352,8 @@ caeb3f61e11 feat(deep-loops/030): land phase 011, deep-review remediation, and d
 3	2026-07-27T05:19:27.477Z	2026-07-27T05:19:34.870Z	.opencode/specs/system-speckit/028-memory-search-intelligence/.opencode
 1	2026-07-27T05:27:38.817Z	2026-07-27T05:27:38.817Z	.opencode/specs/system-speckit/028-memory-search-intelligence/001-release-cleanup/.opencode
 [0m
-[0m$ [0mgit show --stat --oneline cc77a1e550a -- '.opencode/skills/system-skill-advisor/mcp-server/lib/utils/workspace-root.ts' '.opencode/skills/system-skill-advisor/mcp-server/tests/utils/workspace-root.vitest.ts'
-cc77a1e550a refactor(sk-doc): migrate filesystem names to kebab-case (020, squashed)
+[0m$ [0mgit show --stat --oneline b052f329a73 -- '.opencode/skills/system-skill-advisor/mcp-server/lib/utils/workspace-root.ts' '.opencode/skills/system-skill-advisor/mcp-server/tests/utils/workspace-root.vitest.ts'
+b052f329a73 refactor(sk-doc): migrate filesystem names to kebab-case (020, squashed)
  .../mcp-server/lib/utils/workspace-root.ts         | 92 ++++++++++++++++++++++
  .../tests/utils/workspace-root.vitest.ts           | 80 +++++++++++++++++++
  2 files changed, 172 insertions(+)
@@ -1429,7 +1429,7 @@ Full output saved to: /Users/michelkerkmeester/.local/share/opencode/tool-output
 .opencode/specs/system-deep-loop/036-deep-loop-innovation/.opencode/logs/cli-dispatch-audit.log:1:{"schema_version":1,"ts":"2026-07-19T10:18:38.158Z","runtime":"claude","sessionID":"fa71437d-7136-48f9-8cd1-8f0d7df8a829","callID":"toolu_01T2z542ZeAH3SHxYVpHjvvy","skill":"cli-opencode","command":"cd \"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-deep-loop/036-deep-loop-innovation\" && echo \"=== model/transport ids in implementation phases (003-017) ===\" && grep -rn \"gpt-5\\.6\\|cli-codex\\|opencode run\\|codex exec\\|--variant\" --include=\"*.md\" 003-* 004-* 005-* 006-* 007-* 008-* 009-* 010-* 011-* 012-* 013-* 014-* 015-* 016-* 017-* 2>/dev/null | head -20 && echo \"--- count ---\" && grep -rn \"gpt-5\\.6\\|cli-codex\\|opencode run\" --include=\"*.md\" 003-* 00…[truncated]","commandTruncated":true,"model":null,"target":null,"durationMs":null,"exitCode":null,"outputBytes":4377}
 [0m
 [0m$ [0mgit log --all --format='%h %ad %s' --date=iso-strict -- '.opencode/specs/system-skill-advisor/z_archive/013-advisor-and-codegraph-migrated-items/003-advisor-state-spec-folder-leak/implementation-summary.md'
-8053477c5fa 2026-07-16T18:07:49+02:00 refactor(system-skill-advisor): archive 016, land 017 as sole active
+7c0ce997d5d 2026-07-16T18:07:49+02:00 refactor(system-skill-advisor): archive 016, land 017 as sole active
 [0m
 [0m$ [0mfind .opencode -type f -path '*/.opencode/skills/.advisor-state/skill-graph-generation.json' -print0 | node -e 'let b=[];process.stdin.on("data",d=>b.push(d));process.stdin.on("end",()=>{for(const f of Buffer.concat(b).toString().split("\0").filter(Boolean)){try{const j=JSON.parse(require("fs").readFileSync(f,"utf8"));console.log(`${j.updatedAt||"?"}\t${j.reason||"?"}\t${f}`)}catch(e){console.log(`INVALID\t${f}`)}}})'
 2026-07-15T11:46:18.056Z	LEGACY_ADVISOR_GENERATION_BUMP	.opencode/specs/system-deep-loop/036-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/.opencode/skills/.advisor-state/skill-graph-generation.json

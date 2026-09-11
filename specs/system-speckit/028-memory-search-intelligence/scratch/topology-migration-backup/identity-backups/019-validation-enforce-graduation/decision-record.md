@@ -132,7 +132,7 @@ Three validation rules need to move from advisory-only to enforcing-by-default. 
 
 **How to roll back**: Revert the single-flag default change; the census/backfill work (spec-doc corrections, regenerated JSON) is not undone since it is independently correct regardless of the flag's state.
 
-**Confirmed in practice**: Phase 1 (128→2 residual, commit 3dceda7760) and Phase 2 (1,130→74 residual, commit 7544197691) both shipped exactly this shape. One correction found during implementation: all three flags actually resolve through inline bash default-expansion in their own rule scripts, not `capability-flags.ts` (zero references found there) — the pattern itself held, only the specific file target named in this ADR's own "What changes" needed fixing.
+**Confirmed in practice**: Phase 1 (128→2 residual, commit bc0a665719) and Phase 2 (1,130→74 residual, commit 198a9d794e) both shipped exactly this shape. One correction found during implementation: all three flags actually resolve through inline bash default-expansion in their own rule scripts, not `capability-flags.ts` (zero references found there) — the pattern itself held, only the specific file target named in this ADR's own "What changes" needed fixing.
 <!-- /ANCHOR:adr-001-impl -->
 <!-- /ANCHOR:adr-001 -->
 

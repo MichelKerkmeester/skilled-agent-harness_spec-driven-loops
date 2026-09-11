@@ -1,6 +1,6 @@
 ---
 title: "Decision Record: Phase 016 sk-code content coherence and reference integrity"
-description: "Decision records for phase 016 sk-code content coherence: ADR-001 metadata refresh (Accepted, realized via af1170c663) and ADR-002 hooks relocation (Superseded — 0 broken hooks refs, no live defect)."
+description: "Decision records for phase 016 sk-code content coherence: ADR-001 metadata refresh (Accepted, realized via 907027032b) and ADR-002 hooks relocation (Superseded — 0 broken hooks refs, no live defect)."
 trigger_phrases:
   - "sk-code metadata canon decision"
   - "sk-code hooks relocation decision"
@@ -33,7 +33,7 @@ _memory:
 | **Status** | Accepted |
 | **Date** | 2026-07-05 |
 | **Deciders** | Operator, phase 016 implementer |
-| **Outcome** | Realized via `af1170c663` — the metadata was already two-axis coherent (3d-canon/5f pass); the only stale remnant, 3 merger placeholder fields, was removed. |
+| **Outcome** | Realized via `907027032b` — the metadata was already two-axis coherent (3d-canon/5f pass); the only stale remnant, 3 merger placeholder fields, was removed. |
 
 ---
 
@@ -46,7 +46,7 @@ The master plan says sk-code `description.json` and `graph-metadata.json` are th
 
 - The metadata must describe the current model with mode-registry, hub-router, workflowMode, packetKind, three surface packets, and surfaceBundle language.
 - Phase 017 may still settle shared canon vocabulary, so implementation must avoid locking in contradictory metadata wording.
-- Realized: the only metadata edit was the `af1170c663` placeholder-field removal; the broader two-axis prose was already canonical.
+- Realized: the only metadata edit was the `907027032b` placeholder-field removal; the broader two-axis prose was already canonical.
 
 <!-- /ANCHOR:adr-001-context -->
 ---

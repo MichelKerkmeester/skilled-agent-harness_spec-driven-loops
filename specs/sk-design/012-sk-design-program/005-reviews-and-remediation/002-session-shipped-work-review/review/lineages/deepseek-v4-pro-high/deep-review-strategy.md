@@ -6,7 +6,7 @@ trigger_phrases: []
 
 ## Topic
 
-Deep review of 3 shipped commits: `bf0986cecd` (015 Phase-0 styles-DB foundation), `9a42aedae4` (command-namespace dedup), `dc7fdfb0a7` (sk-doc/020 naming). Review target: spec-folder `016-session-shipped-work-review`.
+Deep review of 3 shipped commits: `7e67a7bb3a` (015 Phase-0 styles-DB foundation), `5dd5547949` (command-namespace dedup), `6a2127a51e` (sk-doc/020 naming). Review target: spec-folder `016-session-shipped-work-review`.
 
 ## Review Dimensions
 
@@ -41,7 +41,7 @@ None yet.
 
 ## Next Focus
 
-D1 Correctness — start with `bf0986cecd` (015 Phase-0 styles-DB foundation). Focus files:
+D1 Correctness — start with `7e67a7bb3a` (015 Phase-0 styles-DB foundation). Focus files:
 - `.opencode/skills/sk-design/styles/_db/generation-manifest.mjs`
 - `.opencode/skills/sk-design/styles/_db/stage-telemetry.mjs`
 - `.opencode/skills/sk-design/styles/_db/canonical.mjs`
@@ -55,9 +55,9 @@ D1 Correctness — start with `bf0986cecd` (015 Phase-0 styles-DB foundation). F
 ## Known Context
 
 - Review target type: spec-folder with review charter describing 3 commits to audit
-- Commit 1 (`bf0986cecd`): 015 Phase-0 styles-DB foundation — NEW generation-manifest, stage-telemetry, canonical, oracle modules + 5 test suites; MODIFIED indexer, operator, retrieval, schema
-- Commit 2 (`9a42aedae4`): command-namespace dedup — modified command-surface checker, registries, SKILL.md; deleted commands/design/
-- Commit 3 (`dc7fdfb0a7`): sk-doc/020 naming — 180 spec-doc files, all under specs/sk-doc/020-hyphen-naming-convention/
+- Commit 1 (`7e67a7bb3a`): 015 Phase-0 styles-DB foundation — NEW generation-manifest, stage-telemetry, canonical, oracle modules + 5 test suites; MODIFIED indexer, operator, retrieval, schema
+- Commit 2 (`5dd5547949`): command-namespace dedup — modified command-surface checker, registries, SKILL.md; deleted commands/design/
+- Commit 3 (`6a2127a51e`): sk-doc/020 naming — 180 spec-doc files, all under specs/sk-doc/020-hyphen-naming-convention/
 - REQ-001 to REQ-006 in spec.md define specific verification requirements
 - resource-map.md not present. Skipping coverage gate.
 
@@ -72,7 +72,7 @@ No overlay protocols applicable for spec-folder target. No feature_catalog_code,
 
 ## Files Under Review
 
-### Commit bf0986cecd (015 Phase-0)
+### Commit 7e67a7bb3a (015 Phase-0)
 | File | Type | Priority | Status |
 |------|------|----------|--------|
 | .opencode/skills/sk-design/styles/_db/generation-manifest.mjs | new | HIGH | unreviewed |
@@ -87,7 +87,7 @@ No overlay protocols applicable for spec-folder target. No feature_catalog_code,
 | .opencode/skills/sk-design/styles/_db/retrieval.mjs | modified | HIGH | unreviewed |
 | .opencode/skills/sk-design/styles/_db/schema.mjs | modified | HIGH | unreviewed |
 
-### Commit 9a42aedae4 (command-namespace dedup)
+### Commit 5dd5547949 (command-namespace dedup)
 | File | Type | Priority | Status |
 |------|------|----------|--------|
 | .opencode/skills/sk-design/shared/scripts/design-command-surface-check.mjs | modified | HIGH | unreviewed |
@@ -98,7 +98,7 @@ No overlay protocols applicable for spec-folder target. No feature_catalog_code,
 | .opencode/skills/sk-design/README.md | modified | MEDIUM | unreviewed |
 | commands/design/ (5 wrappers + 15 assets) | deleted | HIGH | unreviewed |
 
-### Commit dc7fdfb0a7 (sk-doc/020 naming)
+### Commit 6a2127a51e (sk-doc/020 naming)
 | Dir | Type | Priority | Status |
 |-----|------|----------|--------|
 | .opencode/specs/sk-doc/020-hyphen-naming-convention/ | spec-docs | LOW | unreviewed |

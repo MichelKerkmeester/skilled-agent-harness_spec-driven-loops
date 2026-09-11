@@ -55,8 +55,8 @@ Phase 0 (T001-T004), WS1 (T010-T015), WS2 (T020-T028), WS3 (T030-T031), and WS4 
 
 - [x] T001 Obtain the operator ruling on ADR-001 defaultResource semantics; record it and flip ADR-001 to Accepted (decision-record.md) [blocks T010 onward] [evidence: `decision-record.md` ADR-001 Status "Accepted (2026-07-16 ... fallback-only, option (a))" + Adjudication note; ruling relayed via implementation dispatch]
 - [x] T002 Confirm or amend ADR-002 route-gold gate scope with the operator (decision-record.md) [blocks T020 onward] [evidence: `decision-record.md` ADR-002 Status "Accepted (2026-07-16 ... scope confirmed as planned)"]
-- [x] T003 [P] Freeze current replay outputs for 13 hub and 49 packet scenarios as regression fixtures (scratch/, then evidence folder) [evidence: regression/pre-fix-replay-hub.json (13 rows, 6/13 intent match) + regression/pre-fix-replay-packets.json (49 rows, 38/49 intent match), captured at repo HEAD 1508a744d3 via router-replay.cjs routeSkillResources]
-- [x] T004 [P] Capture pre-change baselines: package/hub gate outputs, advisor ratchet counts, advisor probe results (evidence folder) [evidence: regression/pre-fix-gates.md — package_skill.py --check PASS, parent-skill-check PASS, scorer-eval-baseline-ratchet 7/7 PASS (baseline 153/200, 57/78, 16/25 @2146dee114); advisor-probe capture deferred, recorded as open in pre-fix-gates.md]
+- [x] T003 [P] Freeze current replay outputs for 13 hub and 49 packet scenarios as regression fixtures (scratch/, then evidence folder) [evidence: regression/pre-fix-replay-hub.json (13 rows, 6/13 intent match) + regression/pre-fix-replay-packets.json (49 rows, 38/49 intent match), captured at repo HEAD d840fa8339 via router-replay.cjs routeSkillResources]
+- [x] T004 [P] Capture pre-change baselines: package/hub gate outputs, advisor ratchet counts, advisor probe results (evidence folder) [evidence: regression/pre-fix-gates.md — package_skill.py --check PASS, parent-skill-check PASS, scorer-eval-baseline-ratchet 7/7 PASS (baseline 153/200, 57/78, 16/25 @36f7e4c1d2); advisor-probe capture deferred, recorded as open in pre-fix-gates.md]
 <!-- /ANCHOR:phase-1 -->
 
 ---

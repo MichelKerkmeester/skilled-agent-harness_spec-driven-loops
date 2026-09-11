@@ -21,7 +21,7 @@ $ git rev-list --count main..skilled/v4.0.0.0   -> 47
 $ git rev-list --count skilled/v4.0.0.0..main   -> 0     (main is an ancestor)
 $ git rev-list --count origin/main..skilled/v4.0.0.0 / reverse -> 0 / 0  (same tip)
 $ git log --format='%h %ci %s' -1 skilled/v4.0.0.0
-440e5dc15c 2026-09-11 09:20:00 +0200 docs(specs): close out four phases against what actually shipped
+6106f88ccd 2026-09-11 09:20:00 +0200 docs(specs): close out four phases against what actually shipped
 
 $ git branch --format='%(refname:short)' | wc -l   -> 60
 $ git worktree list | wc -l                        -> 28
@@ -65,7 +65,7 @@ rg -l '\b[0-9a-f]{10}\b' .opencode/skills/*/changelog README.md -> 0
 
 ## Findings
 
-1. **The live count is 9,108, not 9,106.** Two commits landed after the brief was written (`76ad403c52` 09:19:38, `440e5dc15c` 09:20:00 on 2026-09-11), and `main` is 47 behind `skilled/v4.0.0.0` (not 45). `origin/main` and `skilled/v4.0.0.0` are the same tip. The retrofit baseline must be pinned by SHA at execution time, not by the brief's counts. [SOURCE: command:git rev-list --count main..skilled/v4.0.0.0 → 47] [SOURCE: command:git log -1 skilled/v4.0.0.0 → 440e5dc15c]
+1. **The live count is 9,108, not 9,106.** Two commits landed after the brief was written (`7bf1c3af7d` 09:19:38, `6106f88ccd` 09:20:00 on 2026-09-11), and `main` is 47 behind `skilled/v4.0.0.0` (not 45). `origin/main` and `skilled/v4.0.0.0` are the same tip. The retrofit baseline must be pinned by SHA at execution time, not by the brief's counts. [SOURCE: command:git rev-list --count main..skilled/v4.0.0.0 → 47] [SOURCE: command:git log -1 skilled/v4.0.0.0 → 6106f88ccd]
 2. **Branch/worktree/tag landscape has drifted from the brief: 60 branches (not 59), 28 worktrees (not 20), 149 tags (not 5).** Tags include release tags (`1.0.0.0`…), backup tags (`backup-0131-presync`, `backup-A-rebase-…`), `Test`, and `027/baseline`. Angle 9's blast radius must be re-derived from the live refs, not the brief. [SOURCE: command:git branch / git worktree list / git tag counts]
 3. **Only 73% of authored subjects satisfy the current hook grammar.** 6,643 of 9,108 match `SUBJECT_RE`; 147 are git-generated exemptions; 2,318 authored commits fail — 1,864 with a `type(` prefix but a scope/charset failure (spaces like `fix(spec-kit tests):`, slashes like `(036/014)`, uppercase) and 601 with no `type(` prefix at all (e.g. `restore hook hub and centralize every runtime hook`). [SOURCE: command:python3 SUBJECT_RE scan over skilled/v4.0.0.0]
 4. **Numeric scopes are 15% of history despite the hook blocking them.** 1,355 commits carry a numeric-only scope, led by `028` (256), `026` (112), `016` (106), `027` (94), `029` (69), `152` (42). The current contract postdates much of this history; any retrofit that normalizes scopes must decide what happens to these 1,355 subjects, and angle 7's mapping can exploit them. [SOURCE: command:python3 numeric-scope scan]
@@ -78,7 +78,7 @@ rg -l '\b[0-9a-f]{10}\b' .opencode/skills/*/changelog README.md -> 0
 
 ## Recommendations
 
-1. **[implementable today]** Pin the retrofit baseline as a SHA of `skilled/v4.0.0.0` (`440e5dc15c` at measurement) plus the merge-base with `main`, and state the live ref counts, rather than the brief's 9,106/45/59/20/5 numbers.
+1. **[implementable today]** Pin the retrofit baseline as a SHA of `skilled/v4.0.0.0` (`6106f88ccd` at measurement) plus the merge-base with `main`, and state the live ref counts, rather than the brief's 9,106/45/59/20/5 numbers.
 2. **[needs a contract decision]** Decide whether retrofit normalization covers only structure (identifier/citation) or also hook hygiene (length, lowercase, scope charset). Findings 3-5 show the two have very different volumes: ~2,300 regex failures and ~2,900 over-length subjects versus a identifier/citation touch that can leave subjects untouched.
 3. **[implementable today]** Treat the 1,355 numeric-scope subjects as the highest-value mapping input for angle 7 (each already names a packet number in the scope), before falling back to `Refs:` (349), `specs/` touches (1,194), or ordinals.
 4. **[needs a contract decision]** Since `Co-Authored-By` (7,363) and `Claude-Session` (3,836) dominate trailers and neither is fully whitelisted, trailer policy in the new grammar should explicitly say whether existing trailers are preserved verbatim, normalized, or left alone.

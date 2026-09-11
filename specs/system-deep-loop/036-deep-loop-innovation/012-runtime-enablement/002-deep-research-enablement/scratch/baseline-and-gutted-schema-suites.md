@@ -8,7 +8,7 @@ trigger_phrases: []
 
 Captured before any edit for this work, whole runtime suite, default reporter.
 
-    HEAD       94530a29c7
+    HEAD       ac58b91667
     command    npx vitest run
     Test Files 17 failed | 172 passed (189)
     Tests      15 failed | 4210 passed | 39 skipped (4264)
@@ -34,12 +34,12 @@ The seventh mode's file, `model-benchmark-ledger-schema.vitest.ts`, is intact at
 
 ## When, and whether the content moved
 
-    2666012cfe   11 lines     chore(repo): commit accumulated spec/skill WIP...
-    aa66365e78   1019 lines   feat(036/023): full upcaster coverage ...
-    5c98e4654e   995 lines
-    293a9e85b3   993 lines
+    b49a891634   11 lines     chore(repo): commit accumulated spec/skill WIP...
+    8a49bc4703   1019 lines   feat(036/023): full upcaster coverage ...
+    0c5c966015   995 lines
+    02c12aac82   993 lines
 
-`2666012cfe` (2026-08-07) is a bulk sync of accumulated uncommitted work. It took
+`b49a891634` (2026-08-07) is a bulk sync of accumulated uncommitted work. It took
 the deep-research file from 1019 lines to 11, and did the same to five siblings.
 
 The content did not move somewhere else. `unknownLegacyRecords`, one of the three

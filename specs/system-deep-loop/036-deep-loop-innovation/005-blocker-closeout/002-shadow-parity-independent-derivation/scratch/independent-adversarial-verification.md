@@ -48,7 +48,7 @@ The audit also asserts the ledger side *does* reach a fold, so a mode cannot
 pass by deriving from neither source.
 
 **Negative control.** A green instrument that cannot go red proves nothing, so
-the same audit was run against the pre-fix council adapter (`8b6b7b1f7e^`). It
+the same audit was run against the pre-fix council adapter (`13c7f1f999^`). It
 reports `REFUTED — ledger side reaches raw-event scan: councilProjectionFromEvents`,
 which is exactly the `F-006-01` defect. The instrument detects the thing it
 claims to detect.
@@ -134,7 +134,7 @@ classification being right.
 
 | Group | Result when re-enabled |
 |---|---|
-| agent-improvement (5) | Fail in 1-3 ms with `EnvelopeValidationError: Payload validator rejected the event` — the fixture builds events the current schema rejects, at `push` -> `createEvent` -> `prepareAgentImprovementEvent`. They have never worked; git shows them authored already-skipped in `a9dbf88154` and never once enabled |
+| agent-improvement (5) | Fail in 1-3 ms with `EnvelopeValidationError: Payload validator rejected the event` — the fixture builds events the current schema rejects, at `push` -> `createEvent` -> `prepareAgentImprovementEvent`. They have never worked; git shows them authored already-skipped in `283eef0c5a` and never once enabled |
 | deep-alignment (5) | Run for real (7-12 s each) and fail with `AssertionError: expected 'execution-outcome' to be 'projection-semantic'` |
 
 **Neither group shows a divergence going undetected**, which is the claim that

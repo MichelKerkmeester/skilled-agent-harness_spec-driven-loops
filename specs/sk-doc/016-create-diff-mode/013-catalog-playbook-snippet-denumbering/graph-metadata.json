@@ -156,17 +156,17 @@
     ],
     "causal_summary": "Per-feature snippet files in feature catalogs and manual testing playbooks carry a globally sequential numeric prefix (`001-feature-name.md`, `NNN-feature-name.md`) that \"continues across categories and does not reset.\" That prefix makes the packages hard to maintain: inserting, reordering, or moving a feature forces a renumber, the global sequence drifts (real folders already mix `007` next to `024`), and two features can only be told apart by their number — producing duplicate slugs once the number is stripped",
     "created_at": "2026-06-06T06:46:12.378Z",
-    "last_save_at": "2026-09-06T04:27:44.849Z",
+    "last_save_at": "2026-09-11T16:42:03.338Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:f87cb46b01b846fda4fda5cc599cad8a711533c18fd3341554492e4e5955d73b",
+    "source_fingerprint": "sha256:bb0e10a69de4cc0cfddcd2975467267586e125e365023e5c12cee7f0f7ce7e3e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7011980ad9e4b2d50a6f55d9edab8de24f11e26e0afd65f0aff368f8c3021b94",
+      "spec.md": "d48286ebbf80052fcae17243f61ef2087227b2a4ac6a0549ea37b6978ddae4a5",
       "resource-map.md": "81cef34cdc59023846e233b383f4a37cac45f2264d3712957442912c6fa178b6"
     },
     "last_active_child_id": "sk-doc/013-catalog-playbook-snippet-denumbering/007-link-integrity-guard",

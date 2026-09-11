@@ -8,7 +8,7 @@ Cross-checker: cli-opencode + deepseek-v4-pro
 
 ### Item 1: skill count (Pass 1 claimed DRIFTED)
 - **Pass 1 status**: DRIFTED (19 → 20)
-- **My verification**: `ls -d .opencode/skills/*/SKILL.md | wc -l` returns **20**. All 20 directories contain a SKILL.md file. The CLI-devin skill was added in commit `df8395f7e2` (`feat(cli-devin): Introduce Devin CLI orchestrator skill`). The README documents cli-devin at lines 847-849 in the CROSS-AI CLI subsection, so cli-devin IS acknowledged in prose — but the numeric count was not bumped.
+- **My verification**: `ls -d .opencode/skills/*/SKILL.md | wc -l` returns **20**. All 20 directories contain a SKILL.md file. The CLI-devin skill was added in commit `04580ca3bf` (`feat(cli-devin): Introduce Devin CLI orchestrator skill`). The README documents cli-devin at lines 847-849 in the CROSS-AI CLI subsection, so cli-devin IS acknowledged in prose — but the numeric count was not bumped.
 - **My verdict**: **CONFIRMED**
 - **Additional finding**: The README Skills Library section (lines 768-896) documents only 19 skills by name. The `deep-ai-council` skill (at `.opencode/skills/deep-ai-council/SKILL.md`) is entirely absent from the Skills Library. It is mentioned only as an agent (line 951, Agent Network section). Like `deep-research` and `deep-review`, `deep-ai-council` is both a skill AND an agent — it needs a listing under the Skills Library (likely under "OTHER" near line 880).
 - **Final suggested rewrite**: `🎯 20 Skills` in all 5 locations (lines 7, 55, 770, 1415, 1491). Additionally, add a `deep-ai-council` skill entry to the OTHER subsection of the Skills Library.
@@ -78,7 +78,7 @@ A clear list of surgical edits the next pass (sonnet @markdown) should apply:
 EDIT 1: README.md:7
   FROM: "11 agents, 19 skills, 22 command entry points"
   TO:   "11 agents, 20 skills, 22 command entry points"
-  REASON: Skill count drifted from 19 to 20; cli-devin added in df8395f7e2
+  REASON: Skill count drifted from 19 to 20; cli-devin added in 04580ca3bf
 
 EDIT 2: README.md:55
   FROM: "| **🎯 19 Skills**        | Code, docs, git, prompts, MCP, research, review, improvement, cross-AI, and standalone system packages"

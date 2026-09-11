@@ -13,11 +13,11 @@ I've completed a full read-only trace of the slice and its real dependencies. He
 
 ## Review: Advisor BFS skill-graph traversal — equivalence, cycles, depth bounds
 
-**Slice traced:** `lib/skill-graph/skill-graph-queries.ts` (the two BFS callers `transitivePath` + `subgraph`), the shared helper `lib/skill-graph/bfs-traversal.ts`, the legacy recursive/iterative implementation removed in `16bf17d2c1`, and the two test files that lock the behavior.
+**Slice traced:** `lib/skill-graph/skill-graph-queries.ts` (the two BFS callers `transitivePath` + `subgraph`), the shared helper `lib/skill-graph/bfs-traversal.ts`, the legacy recursive/iterative implementation removed in `a7c52e1407`, and the two test files that lock the behavior.
 
 ### Equivalence to the prior implementation
 
-I diffed the new helper-based code against the legacy code it replaced (commit `16bf17d2c1`, `MAX_TRANSITIVE_DEPTH = 8`).
+I diffed the new helper-based code against the legacy code it replaced (commit `a7c52e1407`, `MAX_TRANSITIVE_DEPTH = 8`).
 
 - **`transitivePath`** — Legacy capped expansion at dequeue with `current.edges.length >= 8`; new caps with `current.depth >= maxDepth` where `maxDepth = clampSkillGraphTraversalDepth(8,0) = 8` (bfs-traversal.ts:60, :74). For this caller `depth === edges.length` at every state, so the cap is identical. Target detection is equivalent: legacy checked `relation.node.id === toSkillId` *before* pushing and only for unvisited rows; new runs `shouldStop` after the `visited.has` guard and before `visited.add`/push (bfs-traversal.ts:84-100). Both return the target the first time it is discovered, at hop counts up to and including 8. `nodeCache`/`onRelation` is populated for **every** read row in both versions, including visited ones — preserved (skill-graph-queries.ts:339-341).
 - **`subgraph`** — `safeDepth` formula is byte-for-byte the same (`clampSkillGraphTraversalDepth(depth,1)` reproduces `Number.isFinite ? max(0,min(trunc,8)) : 1`, bfs-traversal.ts:50-54). Both record `nodes`/`edges` for every relation before the visited guard, so boundary edges to already-seen nodes are captured identically (skill-graph-queries.ts:403-406). Output sorting unchanged (skill-graph-queries.ts:410-417).

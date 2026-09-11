@@ -25,7 +25,7 @@ The packet's two headline deliverables are correctly implemented and the load-be
 
 The one material gap is **REQ-003** (per-tail-phase marker refresh + per-phase timing): it is applied only on the main scan path. The `files.length === 0` early-return branch (`memory-index.ts:785-883`) runs the same four tail phases — orphan-sweep, enrichment-repair, near-dup-repair, trigger-backfill — **without** `timedPhase`, so on that branch they neither fire `onPhase`/`maintenance.refresh()` nor emit `phase=` timing. That branch is the routine steady-state path for a background incremental scan that finds no changed files but still runs the periodic tail repairs (F001, P1). Two P2 advisories: the spec/plan/summary describe `timedPhase` coverage as universal when it is main-path-only (F002), and a redundant trailing `setImmediate` after the final chunk (F003).
 
-Scope: 3 changed source/test files from commit `372bb0f2cd` + the packet's spec docs. Security dimension is N/A (internal daemon maintenance; no external input, no credentials; logs emit only phase names and lag ms).
+Scope: 3 changed source/test files from commit `da09d7c69e` + the packet's spec docs. Security dimension is N/A (internal daemon maintenance; no external input, no credentials; logs emit only phase names and lag ms).
 
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: system-deep-loop Children Contract Conformance"
-description: "Shipped: 3 of 5 deep-loop SKILL.md files conformed to the create-skill contract (fresh LUNA MAX update + fresh Sonnet-5 xhigh verify); deep-ai-council + deep-research already passed. Commit f454518df1."
+description: "Shipped: 3 of 5 deep-loop SKILL.md files conformed to the create-skill contract (fresh LUNA MAX update + fresh Sonnet-5 xhigh verify); deep-ai-council + deep-research already passed. Commit 2699217c3f."
 trigger_phrases:
   - "004-deep-loop-children implementation summary"
   - "conformance batch status"
@@ -42,7 +42,7 @@ _memory:
 
 3 conformed; deep-ai-council + deep-research already passed.
 
-Breakdown: **3 conformed** (fresh GPT-5.6 LUNA MAX update + fresh Sonnet-5 xhigh verify), **2 already passing** at baseline (no edit), **0 exempt**. Shipped commit: `f454518df1`.
+Breakdown: **3 conformed** (fresh GPT-5.6 LUNA MAX update + fresh Sonnet-5 xhigh verify), **2 already passing** at baseline (no edit), **0 exempt**. Shipped commit: `2699217c3f`.
 
 Conformed:
 - `system-deep-loop/deep-alignment`

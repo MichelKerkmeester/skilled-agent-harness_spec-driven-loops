@@ -56,7 +56,7 @@ Production code referenced columns the schema lacks.
 
 - A1 F11 the `source_kind` select in `lib/storage/lineage-state.ts` failed when `memory_index` lacks the column. The select is now guarded to emit `NULL AS source_kind` on narrow and legacy schemas via a `PRAGMA table_info` probe, and a reconsolidation merge-contract test was added.
 - A2 F12 the adaptive-ranking consumption insert wrote `query_text` while `consumption_log` has only `query_hash`. The adaptive insert now hashes the query and writes `query_hash`, and a schema-contract test was added.
-- Verification: `adaptive-ranking-e2e`, `adaptive-ranking` and `reconsolidation` = 3 files, 80 passed. Both contract tests fail under a mutation check when the bad column is reintroduced. Real-repo typecheck exit 0. Comment hygiene clean. Commit `adbcc65e83`.
+- Verification: `adaptive-ranking-e2e`, `adaptive-ranking` and `reconsolidation` = 3 files, 80 passed. Both contract tests fail under a mutation check when the bad column is reintroduced. Real-repo typecheck exit 0. Comment hygiene clean. Commit `27a1477f7e`.
 
 ### Cluster B. Wiring gaps (P1, dominant theme)
 
@@ -67,11 +67,11 @@ Five features were implemented and unit-tested but never hooked into the runtime
 - B3 llm-reformulation is wired into the deep pipeline (`lib/search/pipeline/stage1-candidate-gen.ts`, `hybrid-search.ts`) with a trace test.
 - B4 query-surrogates wiring landed in `stage1-candidate-gen.ts` and the existing surrogate suite stays green. The dedicated index-time invocation test was carried as a follow-up.
 - B5 the contextual-tree header is wired via `applyContextualTreeHeader` and its call site in `formatters/search-results.ts`. The dedicated header-by-mode test was carried as a follow-up.
-- Verification: the full blast-radius sweep over memory-search, search-results, hybrid-search, stage1, graph-lifecycle, scoring, composite, surrogates, reconsolidation and adaptive = 47 files, 1165 passed, 0 failed. Comment hygiene clean. Alignment drift 0 errors. The gpt-5.5 dispatch was cut at the cap mid-B5 but all five call sites landed, and the worktree node_modules workspace resolution was repaired to run the integration suites. Commit `e5b4735c4b`.
+- Verification: the full blast-radius sweep over memory-search, search-results, hybrid-search, stage1, graph-lifecycle, scoring, composite, surrogates, reconsolidation and adaptive = 47 files, 1165 passed, 0 failed. Comment hygiene clean. Alignment drift 0 errors. The gpt-5.5 dispatch was cut at the cap mid-B5 but all five call sites landed, and the worktree node_modules workspace resolution was repaired to run the integration suites. Commit `390f04bddb`.
 
 ### Cluster C. retrievalLevel not honored (P1)
 
-`retrievalLevel: local|global|auto` is now honored end to end. The handler and pipeline branch on it (`handlers/memory-search.ts`, `lib/search/pipeline/stage1-candidate-gen.ts`, `types.ts`, `search-utils.ts`), cache keys include retrievalLevel so levels cannot cross-contaminate, and an omitted value defaults to auto. The strict public input schema (`schemas/tool-input-schemas.ts`) was missing the param so strict validation rejected it pre-handler, so the zod field plus an allow-list entry were added. This two-line mirror was closed directly rather than re-dispatched, because gpt-5.5 had correctly flagged it as out of its granted scope. Verification: retrieval-level, handler, tool-input-schema and memory-search suites = 6 files, 155 passed. A mutation check confirmed the distinguishing test fails when the global branch is disabled. Typecheck exit 0. Comment hygiene clean. Commit `f0e063eed4`.
+`retrievalLevel: local|global|auto` is now honored end to end. The handler and pipeline branch on it (`handlers/memory-search.ts`, `lib/search/pipeline/stage1-candidate-gen.ts`, `types.ts`, `search-utils.ts`), cache keys include retrievalLevel so levels cannot cross-contaminate, and an omitted value defaults to auto. The strict public input schema (`schemas/tool-input-schemas.ts`) was missing the param so strict validation rejected it pre-handler, so the zod field plus an allow-list entry were added. This two-line mirror was closed directly rather than re-dispatched, because gpt-5.5 had correctly flagged it as out of its granted scope. Verification: retrieval-level, handler, tool-input-schema and memory-search suites = 6 files, 155 passed. A mutation check confirmed the distinguishing test fails when the global branch is disabled. Typecheck exit 0. Comment hygiene clean. Commit `750424c739`.
 
 ### Cluster D. Ordering (P1)
 
@@ -79,7 +79,7 @@ Two ordering contracts were violated.
 
 - D1 F13 folder rank is now the primary sort key with individual score secondary within a folder (`lib/search/folder-relevance.ts`), with a test that orders by folder rank before individual score.
 - D2 channel minimum-representation now reserves a top-k slot for each active channel's best candidate even below the quality floor, without breaking the floor for the rest (`lib/search/channel-enforcement.ts`, `channel-representation.ts`), with a test for the reserved slots.
-- Verification: folder-relevance, channel-enforcement, channel-representation, query-router-channel-interaction and feature-eval-query-intelligence = 5 files, 98 passed. Mutation checks confirm both assertions fail when the fix is reverted. Typecheck exit 0. Comment hygiene clean. Commit `cbf4f4d111`.
+- Verification: folder-relevance, channel-enforcement, channel-representation, query-router-channel-interaction and feature-eval-query-intelligence = 5 files, 98 passed. Mutation checks confirm both assertions fail when the fix is reverted. Typecheck exit 0. Comment hygiene clean. Commit `2d68d3109a`.
 
 ### Cluster E. Advisor persistence (P0/P1)
 
@@ -91,7 +91,7 @@ Six advisor lifecycle, persistence and routing regressions.
 - E4 F4 the rollback transaction now also clears lifecycleStatus and redirectTo (`lib/lifecycle/rollback.ts`), with a test that asserts lifecycle-field cleanup.
 - E5 F5 required no source fix. `scripts/skill_advisor_bench.py` already returned non-zero on failure at base (`return 0 if overall_pass else 1`) and was unchanged in this range, so nothing was changed there. F5's real defect, the warm p95 latency over the 50ms gate, was surfaced but not fixed; it is deferred. (The earlier note that a `lib/metrics.ts` change carried this was a misattribution: that change is E3's outcome-persistence un-gating, not E5.)
 - E6 F6 the disabled-hook `--force-native` now errors native-unavailable with a non-zero exit (`scripts/skill_advisor.py`).
-- Verification: routing-parity-deep-skills, skill-graph-db, advisor-validate, lifecycle-derived-metadata, compat/shim and cli-help-aliases-errors = 7 files, 61 passed. tsc exit 0 direct against tsconfig.build.json. Comment hygiene clean. Security and rollback mutation-checked. Commit `917ad633a3`.
+- Verification: routing-parity-deep-skills, skill-graph-db, advisor-validate, lifecycle-derived-metadata, compat/shim and cli-help-aliases-errors = 7 files, 61 passed. tsc exit 0 direct against tsconfig.build.json. Comment hygiene clean. Security and rollback mutation-checked. Commit `c00e9e21c6`.
 
 ### Cluster F. DB lifecycle (P2)
 
@@ -100,7 +100,7 @@ Three cross-process and retry gaps.
 - F1c the cross-process DB hot-rebind machinery (`registerDatabaseRebindListener`, `core/db-state.ts`, `context-server.ts`) pre-existed unchanged. This packet did not add new rebind code; it standardized the db-path in `core/config.ts` and added a new end-to-end test (`db-lifecycle-paths.vitest.ts`) that exercises the pre-existing rebind, proving that after an external `.db-updated` marker the DB reinits and a follow-up stats or health reflects the new DB, non-stale and healthy.
 - F2c DB-path resolution is standardized through one helper respecting env precedence, with divergent runtime and migration entry points routed through it and hardcoded fallbacks removed (`core/config.ts`, `scripts/migrations/*-checkpoint.ts`), with a test that resolves the same path across runtime and migration.
 - F3c the embedding-retry orchestrator e2e now passes end to end: pending rows stay lexical-only until processed, failures record retry and backoff metadata, and success uses the embedding cache and refreshes both vector and lexical surfaces (`lib/providers/retry-manager.ts`, `lib/search/vector-index-store.ts`). The cause was implementation, not a stale test. retry-manager 60/60.
-- Verification: db-lifecycle-paths plus retry-manager = 3 files, 63 passed. Typecheck exit 0. Comment hygiene clean. F1 and F2 mutation-checked True-RED. Commit `f27945593e`.
+- Verification: db-lifecycle-paths plus retry-manager = 3 files, 63 passed. Typecheck exit 0. Comment hygiene clean. F1 and F2 mutation-checked True-RED. Commit `c777df3865`.
 
 ### Clusters G and H. Code-graph and quality (P2)
 
@@ -111,25 +111,25 @@ One code-graph refresh gap plus four quality items.
 - H2 F9 the two stale tests were updated to the current impl shapes, the causal-edges `skippedManual` count and the mutation-hooks `semantic-trigger-cache`. 94 passed.
 - H3 F14 entity-extractor dedup now uses the canonical `normalizeEntityName()` so the extractor and linker agree (`lib/extraction/entity-extractor.ts`). 50 passed.
 - H4 the 7-layer metadata passes its documented validation surface, with two stale test expectations corrected, the memory_health budget 1500 and the dispatch truncation assertion. 136 passed.
-- Verification: the spec-kit H1 to H4 suites = 11 files, 421 passed, the code-graph G1 ensure-ready = 17 passed, spec-kit typecheck exit 0, comment hygiene clean on both surfaces, alignment drift clean on both surfaces. Commit `3291c05389`.
+- Verification: the spec-kit H1 to H4 suites = 11 files, 421 passed, the code-graph G1 ensure-ready = 17 passed, spec-kit typecheck exit 0, comment hygiene clean on both surfaces, alignment drift clean on both surfaces. Commit `beacce4c07`.
 
 ### Follow-up tests and re-parenting
 
-The dedicated tests that B4, B5 and the C strict schema were carrying as test holes were added: the B4 surrogate index-time invocation test, the B5 contextual-tree header-by-mode test and the C strict-schema-accepts-retrievalLevel assertion. Commit `374ca93caa`. The post-phase-6 phases were then re-parented under their relevant parents. Commit `64d064d868`.
+The dedicated tests that B4, B5 and the C strict schema were carrying as test holes were added: the B4 surrogate index-time invocation test, the B5 contextual-tree header-by-mode test and the C strict-schema-accepts-retrievalLevel assertion. Commit `ea6b2ba179`. The post-phase-6 phases were then re-parented under their relevant parents. Commit `bd2c8e4085`.
 
 ### Commit list
 
 | Commit | Cluster | What |
 |--------|---------|------|
-| `adbcc65e83` | A | schema drift, F11 source_kind select guard, F12 consumption_log query_hash alignment |
-| `e5b4735c4b` | B | wire five implemented-but-dead memory-search features into the runtime |
-| `f0e063eed4` | C | honor retrievalLevel local, global and auto end to end |
-| `cbf4f4d111` | D | folder rank primary sort plus guaranteed top-k channel representation |
-| `917ad633a3` | E | advisor persistence hardening, F1 through F6 |
-| `f27945593e` | F | DB lifecycle, db-path standardization plus a new end-to-end test of the pre-existing cross-process rebind, embedding-retry e2e |
-| `3291c05389` | G and H | code-graph write-local refresh plus quality cleanup |
-| `374ca93caa` | follow-up | B4, B5 and C strict-schema tests |
-| `64d064d868` | migration | re-parent the post-phase-6 phases under their relevant parents |
+| `27a1477f7e` | A | schema drift, F11 source_kind select guard, F12 consumption_log query_hash alignment |
+| `390f04bddb` | B | wire five implemented-but-dead memory-search features into the runtime |
+| `750424c739` | C | honor retrievalLevel local, global and auto end to end |
+| `2d68d3109a` | D | folder rank primary sort plus guaranteed top-k channel representation |
+| `c00e9e21c6` | E | advisor persistence hardening, F1 through F6 |
+| `c777df3865` | F | DB lifecycle, db-path standardization plus a new end-to-end test of the pre-existing cross-process rebind, embedding-retry e2e |
+| `beacce4c07` | G and H | code-graph write-local refresh plus quality cleanup |
+| `ea6b2ba179` | follow-up | B4, B5 and C strict-schema tests |
+| `bd2c8e4085` | migration | re-parent the post-phase-6 phases under their relevant parents |
 
 ### Excluded as isolation and harness artifacts (not bugs)
 
@@ -186,7 +186,7 @@ The findings were triaged into eight clusters by failure mode, then gpt-5.5-fast
 
 2. **Verification is per cluster, not whole-suite.** Each cluster was swept over its own blast radius. A whole-repo run that exercises every touched surface together has not yet run, so a cross-cluster interaction would only surface in that whole-suite pass.
 
-3. **Two B fixes carried test holes that the follow-up commit closed.** B4 surrogate index-time and B5 contextual-tree header landed as fixed with their dedicated invocation tests added later in commit `374ca93caa`. The C strict-schema-accepts-retrievalLevel assertion was added in the same commit.
+3. **Two B fixes carried test holes that the follow-up commit closed.** B4 surrogate index-time and B5 contextual-tree header landed as fixed with their dedicated invocation tests added later in commit `ea6b2ba179`. The C strict-schema-accepts-retrievalLevel assertion was added in the same commit.
 
 4. **The excluded artifacts are excluded by judgment.** The six isolation and harness artifacts were read as environment or documented-intent rather than product bugs. That call rests on the clone-environment caveats recorded in the packet 011 validation.
 

@@ -16,7 +16,7 @@ contextType: "implementation"
 
 > Spec folder: `.opencode/specs/deep-loops/032-goal-opencode-plugin/012-regression-test-backfill` (Level 1)
 > Parent packet: `.opencode/specs/deep-loops/032-goal-opencode-plugin`
-> Commit: `380e9d05ef` test(mk-goal): backfill regression coverage for real integration seams
+> Commit: `37eaaad0a1` test(mk-goal): backfill regression coverage for real integration seams
 
 ### Summary
 

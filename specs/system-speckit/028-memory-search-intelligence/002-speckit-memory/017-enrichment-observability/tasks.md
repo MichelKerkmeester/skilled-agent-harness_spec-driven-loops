@@ -1,6 +1,6 @@
 ---
 title: "Tasks: Enrichment Observability - read-side gauges (028/001 impl)"
-description: "Task Format: T### [P?] Description (file path). gauge-pending-failed pre-checked done at e1c6a3c793. gauge-lag pending."
+description: "Task Format: T### [P?] Description (file path). gauge-pending-failed pre-checked done at 672d8a9187. gauge-lag pending."
 trigger_phrases:
   - "enrichment observability tasks"
   - "gauge lag tasks"
@@ -54,11 +54,11 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-gauge-pending-failed (DONE, shipped `e1c6a3c793`): the read-side backlog query + aggregator this sub-phase extends already exist.
+gauge-pending-failed (DONE, shipped `672d8a9187`): the read-side backlog query + aggregator this sub-phase extends already exist.
 
-- [x] T001 Compute the at-rest backlog distribution from the non-complete rows query (`handlers/memory-crud-health.ts:904-907`), shipped `e1c6a3c793`
-- [x] T002 Fold pending/failed into `getBackgroundEnrichmentStats` (`handlers/memory-save.ts:2969-2970`), shipped `e1c6a3c793`
-- [x] T003 Neutral-degrade on a schema edge via the catch-block (`handlers/memory-crud-health.ts:908-910`), shipped `e1c6a3c793`
+- [x] T001 Compute the at-rest backlog distribution from the non-complete rows query (`handlers/memory-crud-health.ts:904-907`), shipped `672d8a9187`
+- [x] T002 Fold pending/failed into `getBackgroundEnrichmentStats` (`handlers/memory-save.ts:2969-2970`), shipped `672d8a9187`
+- [x] T003 Neutral-degrade on a schema edge via the catch-block (`handlers/memory-crud-health.ts:908-910`), shipped `672d8a9187`
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -101,5 +101,5 @@ gauge-lag (DONE, needs-benchmark note satisfied by focused verification, no sche
 
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
-- **Shipped record (pending/failed)**: Wave-0 record (`e1c6a3c793`)
+- **Shipped record (pending/failed)**: Wave-0 record (`672d8a9187`)
 <!-- /ANCHOR:cross-refs -->

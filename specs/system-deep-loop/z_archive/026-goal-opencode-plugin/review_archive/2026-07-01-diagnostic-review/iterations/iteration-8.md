@@ -8,7 +8,7 @@
 
 ## Objective
 
-Adversarially falsify iteration 7's optimism. Iter-7 called `Claude-Session: https://claude.ai/code/session_01MaduKvU39V7TZ4qrdB8b5k` on commit `8405ba4f57` "a concrete handle" naming the concurrent session. The brief posits two competing failure modes, both fatal to iter-7's reading: **(a)** the id is a FIXED template placeholder reused verbatim by unrelated sessions (zero evidentiary value); **(b)** the id is real but belongs to the COMMITTING session, not the described concurrent one (zero *distinguishing* value). Determine which (if either) the data supports, and re-baseline the prose-only past-tense confidence.
+Adversarially falsify iteration 7's optimism. Iter-7 called `Claude-Session: https://claude.ai/code/session_01MaduKvU39V7TZ4qrdB8b5k` on commit `2086c70c42` "a concrete handle" naming the concurrent session. The brief posits two competing failure modes, both fatal to iter-7's reading: **(a)** the id is a FIXED template placeholder reused verbatim by unrelated sessions (zero evidentiary value); **(b)** the id is real but belongs to the COMMITTING session, not the described concurrent one (zero *distinguishing* value). Determine which (if either) the data supports, and re-baseline the prose-only past-tense confidence.
 
 ## Session-Handle Uniqueness Check
 
@@ -27,29 +27,29 @@ Exact-id probes (all read-only, `git log --all`):
 **The 16 commits are ONE coherent burst**, all Michel Kerkmeester, all packet-032/mk-goal/plugins, 2026-07-01 **12:48:44 → 20:16:57 +0200** (~7.5 h):
 
 ```
-4be33488ea 12:48  chore: snapshot dual-audit + remediation phases before dispatch
-3cb6d1bff9 13:17  fix(mk-goal): land phase 010 security + correctness fixes
-303902e631 13:38  fix(mk-goal): normalize command filename + close 2 config-contract gaps
-f510f8e96f 13:39  fix(mk-goal): close 2 config-contract gaps + fix command doc/metadata
-698cc11031 14:07  fix(032): make phase 004's key_files fix durable
-380e9d05ef 14:09  test(mk-goal): backfill regression coverage
-6aba6dea67 14:43  docs(032): record operator decision for usage_limited
-9c8c5ac56a 14:50  docs(032): create phase 014, mark 010-012 complete
-ea9a45d649 15:05  feat(mk-goal): wire usage_limited detector
-cba2d1e7fc 15:23  feat(mk-goal): archive-then-prune goal state
-5dc1ee92a3 15:25  docs(032): mark phases 010-014 complete
-8405ba4f57 15:42  fix(032): amend command name to goal_opencode.md   <-- THE "concurrent session" commit
-731291a833 16:32  chore(032): archive completed plugin-implementation audit
-0650d3123d 19:39  docs(032): remediate 10-iter doc-staleness review findings
-8bfbffc433 20:05  refactor(plugins): rename __tests__ to tests
-c4d34bc71f 20:16  docs(032): add timeline, before-vs-after, changelogs
+384aad52b0 12:48  chore: snapshot dual-audit + remediation phases before dispatch
+9fe9685db6 13:17  fix(mk-goal): land phase 010 security + correctness fixes
+815eb035b3 13:38  fix(mk-goal): normalize command filename + close 2 config-contract gaps
+e2426731fd 13:39  fix(mk-goal): close 2 config-contract gaps + fix command doc/metadata
+0820c35415 14:07  fix(032): make phase 004's key_files fix durable
+37eaaad0a1 14:09  test(mk-goal): backfill regression coverage
+380bf34773 14:43  docs(032): record operator decision for usage_limited
+17a82d4e0c 14:50  docs(032): create phase 014, mark 010-012 complete
+563541d3d0 15:05  feat(mk-goal): wire usage_limited detector
+870da2e9e5 15:23  feat(mk-goal): archive-then-prune goal state
+65ad53323f 15:25  docs(032): mark phases 010-014 complete
+2086c70c42 15:42  fix(032): amend command name to goal_opencode.md   <-- THE "concurrent session" commit
+f660130760 16:32  chore(032): archive completed plugin-implementation audit
+91bbf49a7c 19:39  docs(032): remediate 10-iter doc-staleness review findings
+1f20ab5e1a 20:05  refactor(plugins): rename __tests__ to tests
+5d46aa5e31 20:16  docs(032): add timeline, before-vs-after, changelogs
 ```
 
-`8405ba4f57` is **sandwiched mid-flow** between `5dc1ee92a3` ("mark phases 010-014 complete", 15:25) and `731291a833` ("archive completed audit", 16:32) — i.e. it is an interior commit of the remediation session, not an isolated artifact a concurrent session left behind.
+`2086c70c42` is **sandwiched mid-flow** between `65ad53323f` ("mark phases 010-014 complete", 15:25) and `f660130760` ("archive completed audit", 16:32) — i.e. it is an interior commit of the remediation session, not an isolated artifact a concurrent session left behind.
 
 **Verdict on the brief's "fixed template" hypothesis — REFUTED.** A fixed placeholder would (i) dominate the 588 `Claude-Session` commits, not sit at 2.7%; (ii) collapse to ONE id, not a ≥16-id long-tail; (iii) scatter across unrelated packets/dates, not cluster in one ~7.5 h coherent burst. The id is a **real per-session id for one specific Claude session**. (Caveat: the brief asserts the literal lives in "Claude Code's own commit-message instructions ... in this very session's system prompt." This runtime — OpenCode/GLM-5.2 — has no such injected prompt, and the literal is in ZERO committed repo files. Whether Claude Code injects it as an example is untestable from here, but the *observed usage pattern* is per-session, not templated: even if the example exists, sessions are clearly emitting real ids, not copying the example verbatim — the long-tail proves it.)
 
-**Verdict on iter-7's "concrete handle for the concurrent session" — ALSO REFUTED, by a different mechanism.** The one real session that owns this id is the **authoring/remediation session**, not the described concurrent one. The same handle rides 15 sibling commits that are unambiguously the phase-011 remediation author's OWN work (phase-010 security fixes, phase-014 creation, "mark 010-014 complete", test backfill, doc remediation). A trailer stamped by `git commit` identifies **who committed**, never a third party merely *described* in the message body. The concurrent session left no trailer because — per `8405ba4f57`'s own prose — its work was **uncommitted working-tree state**, i.e. it never ran `git commit`. Iteration 7 conflated the speaker with the subject.
+**Verdict on iter-7's "concrete handle for the concurrent session" — ALSO REFUTED, by a different mechanism.** The one real session that owns this id is the **authoring/remediation session**, not the described concurrent one. The same handle rides 15 sibling commits that are unambiguously the phase-011 remediation author's OWN work (phase-010 security fixes, phase-014 creation, "mark 010-014 complete", test backfill, doc remediation). A trailer stamped by `git commit` identifies **who committed**, never a third party merely *described* in the message body. The concurrent session left no trailer because — per `2086c70c42`'s own prose — its work was **uncommitted working-tree state**, i.e. it never ran `git commit`. Iteration 7 conflated the speaker with the subject.
 
 ## Co-Authored-By Uniqueness Check
 
@@ -63,9 +63,9 @@ c4d34bc71f 20:16  docs(032): add timeline, before-vs-after, changelogs
 
 ## Revised D2 Assessment
 
-The trailer was never the load-bearing evidence for iter-7's prose case (the operator-statement citation + the commit prose were), but iter-7 *did* list it in `evidenceRefs` and flagged it as "a concrete handle ... worth checking." That framing is now corrected: the handle corroborates only that the remediation session committed `8405ba4f57` — already obvious from author/date. It does **not** corroborate that a *distinct* concurrent session existed.
+The trailer was never the load-bearing evidence for iter-7's prose case (the operator-statement citation + the commit prose were), but iter-7 *did* list it in `evidenceRefs` and flagged it as "a concrete handle ... worth checking." That framing is now corrected: the handle corroborates only that the remediation session committed `2086c70c42` — already obvious from author/date. It does **not** corroborate that a *distinct* concurrent session existed.
 
-Strip the handle; what survives for "a concurrent session existed and acted on 2026-07-01"? Only the **prose** of `8405ba4f57` itself ("already renamed in the shared working tree, uncommitted" / "matching what a concurrent session had independently converged on") plus the operator-statement citation family (`changelog-032-011:33`). That is a single first-hand author claim — accountable, committed, no obvious motive to fabricate — but it is ONE source, lacking the second-party fingerprint (named file + line-count + captured concurrency-state) the base-rate (design-039) shows this repo's genuine concurrent claims carry.
+Strip the handle; what survives for "a concurrent session existed and acted on 2026-07-01"? Only the **prose** of `2086c70c42` itself ("already renamed in the shared working tree, uncommitted" / "matching what a concurrent session had independently converged on") plus the operator-statement citation family (`changelog-032-011:33`). That is a single first-hand author claim — accountable, committed, no obvious motive to fabricate — but it is ONE source, lacking the second-party fingerprint (named file + line-count + captured concurrency-state) the base-rate (design-039) shows this repo's genuine concurrent claims carry.
 
 | Sub-claim | iter-7 | **iter-8** | Basis for change |
 |---|---|---|---|
@@ -87,10 +87,10 @@ Strip the handle; what survives for "a concurrent session existed and acted on 2
 
 #### D2-P2-004 (NEW) — `Claude-Session` / `Co-Authored-By` trailers are committer/model attribution, not described-actor attribution; cannot corroborate a DISTINCT concurrent session (corrects iter-7 "concrete handle")
 
-- **claim:** The `Claude-Session` and `Co-Authored-By` trailers on `8405ba4f57` identify the COMMITTING session and its MODEL. They do not — and structurally cannot — identify the "concurrent session" merely described in the message prose. Treating them as session-attribution evidence for a distinct concurrent session (as iter-7 did) is a category error.
+- **claim:** The `Claude-Session` and `Co-Authored-By` trailers on `2086c70c42` identify the COMMITTING session and its MODEL. They do not — and structurally cannot — identify the "concurrent session" merely described in the message prose. Treating them as session-attribution evidence for a distinct concurrent session (as iter-7 did) is a category error.
 - **evidenceRefs:**
-  - id `session_01MaduKvU39V7TZ4qrdB8b5k` on **16** commits, byte-identical, forming one 12:48–20:17 remediation burst incl. `8405ba4f57` (`git log --all --grep` + `sort -u` → 1 line);
-  - `8405ba4f57` (15:42) interior to the burst, between `5dc1ee92a3` (15:25 "mark 010-014 complete") and `731291a833` (16:32 "archive audit") — i.e. same-session flow;
+  - id `session_01MaduKvU39V7TZ4qrdB8b5k` on **16** commits, byte-identical, forming one 12:48–20:17 remediation burst incl. `2086c70c42` (`git log --all --grep` + `sort -u` → 1 line);
+  - `2086c70c42` (15:42) interior to the burst, between `65ad53323f` (15:25 "mark 010-014 complete") and `f660130760` (16:32 "archive audit") — i.e. same-session flow;
   - **0** commits carry the id in diff content (`git log -S` pickaxe); **0** committed repo files contain it (working-tree `rg` hits only this `review/` packet);
   - `Co-Authored-By: Claude Sonnet 5` = **26×** repo-wide, model-level (Opus 4.7/4.8/4.6 in thousands); ≥16 distinct `Claude-Session` ids in a long-tail (193/99/70/69/54/…/16/…).
 - **counterevidenceSought (and result):** (1) Brief's "fixed template" hypothesis — REFUTED: a template would dominate 588 `Claude-Session` commits (not 2.7%), collapse to one id (not a 16-id long-tail), and scatter (not cluster in one burst). The id is a real per-session id. (2) Is the id unique to one commit (true fingerprint)? NO — 16 commits. So it is neither generic-placeholder nor single-commit-unique; it is one real session's id, and that session is the author.
@@ -105,7 +105,7 @@ Strip the handle; what survives for "a concurrent session existed and acted on 2
 #### D2-P2-002 (CONFIDENCE DOWNGRADED 0.84 → 0.80) — iter-8 correction: the `Claude-Session` URL carried in `evidenceRefs` identifies the authoring session, not a distinct concurrent one; prose + operator-statement are the sole surviving support
 
 - **What changed:** the `Claude-Session` URL and `Co-Authored-By: Claude Sonnet 5` entries iter-7 added to `evidenceRefs` are **not** independent corroboration of a second session (see D2-P2-004). The operator-statement citation (`changelog-032-011:33`) and the commit PROSE remain valid and are the entire surviving support.
-- **evidenceRefs (corrected):** drop the trailer's evidentiary weight; retain `8405ba4f57` prose ("already renamed in the shared working tree, uncommitted" / "matching what a concurrent session had independently converged on") + `changelog-032-011:33`.
+- **evidenceRefs (corrected):** drop the trailer's evidentiary weight; retain `2086c70c42` prose ("already renamed in the shared working tree, uncommitted" / "matching what a concurrent session had independently converged on") + `changelog-032-011:33`.
 - **finalSeverity:** **P2** (unchanged — still governed by the present-tense pickup question).
 - **confidence:** 0.84 → **0.80**.
 - **downgradeTrigger / upgradeTrigger:** unchanged from iter-7.

@@ -35,7 +35,7 @@ _memory:
 
 Phase 002 accepted both ADRs — build a new topology-flip function on existing primitives (ADR-001), keep specs shared-by-default with an opt-in ownership override (ADR-002). This phase converted that design into a literal, ordered runbook, then executed it: `specs/` is now the real, canonical directory and `.opencode/specs` is the compat symlink. All 11 steps ran and verified clean, including step 9 (Memory MCP reindex) — worked around a daemon-workspace mismatch with a standalone reindex, then a verified bulk-delete of 10,459 stale-alias rows the reindex alone couldn't clean up.
 
-**Key Decisions**: The runbook executed as one atomic unit (symlink flip + `.gitignore` rebase together, in commit `606e55cb8a`, never split); every step had a pass/fail check before the next step ran; testing during step 10 surfaced 6 more hardcoded-direction call sites beyond the originally-named 12, fixed in the same pass; step 9's design gap (symlink makes old-alias rows unorphanable) got a verified bulk-delete rather than a deferred code-level fix.
+**Key Decisions**: The runbook executed as one atomic unit (symlink flip + `.gitignore` rebase together, in commit `416ef56527`, never split); every step had a pass/fail check before the next step ran; testing during step 10 surfaced 6 more hardcoded-direction call sites beyond the originally-named 12, fixed in the same pass; step 9's design gap (symlink makes old-alias rows unorphanable) got a verified bulk-delete rather than a deferred code-level fix.
 
 **Critical Dependencies**: None remaining. Only T015 (operator final review) is open.
 

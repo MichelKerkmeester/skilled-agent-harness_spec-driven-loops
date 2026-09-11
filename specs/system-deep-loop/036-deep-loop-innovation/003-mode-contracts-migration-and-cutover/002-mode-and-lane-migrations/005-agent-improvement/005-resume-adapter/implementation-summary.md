@@ -45,7 +45,7 @@ _memory:
 | **Level** | 2 |
 | **Status** | Complete |
 | **Posture** | Additive-dark with legacy authority unchanged |
-| **Base SHA** | `fbf3c7291eb432ca541666397b95bf5da7bc500b` |
+| **Base SHA** | `73d07301b0e18de7ddc105448f96cd9be8a1aaaa` |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:what-built -->

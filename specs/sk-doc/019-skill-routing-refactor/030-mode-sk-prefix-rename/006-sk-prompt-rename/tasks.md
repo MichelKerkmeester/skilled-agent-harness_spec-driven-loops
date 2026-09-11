@@ -33,7 +33,7 @@ parent: "sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename"
 - [x] T001 Apply the frozen map slice (moves + typed edits) — see implementation summary
 - [x] T002 Regenerate generated artifacts and repair engine/consumer paths as found
 - [x] T003 Reproduce the Lane C gate and the link baseline exactly
-- [x] T004 Commit with paired renames (9efb3fc561)
+- [x] T004 Commit with paired renames (3329485188)
 <!-- /ANCHOR:phase-1 -->
 
 ---

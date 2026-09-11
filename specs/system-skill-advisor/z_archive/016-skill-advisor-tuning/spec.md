@@ -101,7 +101,7 @@ Per-phase detail lives in each child's `plan.md`. This parent authors only `spec
 ## 4. OPEN QUESTIONS
 
 - **Layer-1b projection vocab** — adding single-pass audit/review vocab to the advisor-facing metadata is deferred to bundle with the coordinated reindex, since metadata edits only take effect post-reindex.
-- **001 umbrella close-out** — RESOLVED: 001 is closed out as WS1-falsified/superseded; its close-out imports the experiment record (WS1 post-cap demotion implemented → measured net -2 / fixed 0 of 6 / broke 2 → reverted; superseded by audit-phrase calibration in commit e2711fb580).
+- **001 umbrella close-out** — RESOLVED: 001 is closed out as WS1-falsified/superseded; its close-out imports the experiment record (WS1 post-cap demotion implemented → measured net -2 / fixed 0 of 6 / broke 2 → reverted; superseded by audit-phrase calibration in commit 875884b80a).
 <!-- /ANCHOR:questions -->
 
 ---

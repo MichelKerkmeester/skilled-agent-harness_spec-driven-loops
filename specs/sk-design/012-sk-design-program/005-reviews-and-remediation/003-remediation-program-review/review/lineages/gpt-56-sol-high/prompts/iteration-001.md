@@ -13,7 +13,7 @@ Iteration: 1 of 10. Stop policy is max-iterations; convergence is telemetry only
 Dimension: correctness.
 Prior findings: P0=0 P1=0 P2=0.
 Review target: `.opencode/specs/sk-design/017-remediation-program-review`.
-Review scope: the 118 unique existing files in `.opencode/specs/sk-design/017-remediation-program-review/goal-file-manifest.txt`, at pinned HEAD `7b9d3b6b71` and range `5772e0bfd3..7b9d3b6b71`.
+Review scope: the 118 unique existing files in `.opencode/specs/sk-design/017-remediation-program-review/goal-file-manifest.txt`, at pinned HEAD `6432665a68` and range `555f99bfcc..6432665a68`.
 Focus: inventory and behavioral invariants across the interface-command rewrite, styles-library restructure, and persistent-database activation. Sample all three packets and identify the highest-risk correctness producers/consumers for later passes.
 
 ## Required Setup Bindings

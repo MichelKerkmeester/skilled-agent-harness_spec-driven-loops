@@ -125,7 +125,7 @@ Refuted (not fixed): SOL's original framing of F002 against the flip gate (`asse
 - **Frozen-scorer contamination.** Mitigated by re-hashing the three digests after every fix.
 - **F007 touches the authored engine and re-mint path**, the same class of change as the original merge reconcile. Mitigated by reconciling bin into authored only (the runtime bin is untouched) and re-running `--check` and `--verify`.
 - **Continuity freshness on the doc set.** Mitigated by regenerating description and graph metadata at close.
-- Depends on the verified v4 landing (`ed8f3e20d0`) not regressing.
+- Depends on the verified v4 landing (`5b09575bba`) not regressing.
 
 <!-- /ANCHOR:risks -->
 ---

@@ -12,7 +12,7 @@ Smallest fix: keep 054 closed only after T009-T012, or split T009 into its own p
 
 ### F-I1-002 — 052 already named debt 054 did not absorb. CONFIRMED. P1 (programme hole)
 The 052 goal LOG still lists items that 054 did not take:
-- Three sk-doc validator class defects (playbook folder-index READMEs, compiled deep-loop contracts, install-scripts folder README), each failing the same way at `5220257bf7`. [SOURCE: specs/system-speckit/052-memory-decommission-landing/goal.md:197-200]
+- Three sk-doc validator class defects (playbook folder-index READMEs, compiled deep-loop contracts, install-scripts folder README), each failing the same way at `576c37b72e`. [SOURCE: specs/system-speckit/052-memory-decommission-landing/goal.md:197-200]
 - `validate-command-references.cjs` depends on machine-local ignored sqlite files, so doctor command-reference checks pass only where daemons have run. [SOURCE: specs/system-speckit/052-memory-decommission-landing/goal.md:201]
 - Eleven deleted runtime hook mirrors in the checkout predate the landing lane and remain "the operator's pending deletion". [SOURCE: specs/system-speckit/052-memory-decommission-landing/goal.md:116]
 - `onnxruntime-common` absent from the main checkout `node_modules` while the HF provider resolves it through the skill-root tree. A fresh install was not run. [SOURCE: specs/system-speckit/052-memory-decommission-landing/goal.md:208]
@@ -24,13 +24,13 @@ Smallest fix: open a follow-up packet (or extend 054) that names each row with a
 Live `README.md:771` now says `stress-test/` and `runtime/` with no `[mcp-server/]` label. [SOURCE: README.md:771]
 Live `.opencode/bin/README.md:183` now says "spec-kit runtime's ENV-REFERENCE.md". [SOURCE: .opencode/bin/README.md:183]
 Live 053 summary line 56 says "declares three dependencies instead of twelve". [SOURCE: .opencode/specs/system-speckit/053-spec-kit-runtime-rename/implementation-summary.md:56]
-The 052 LOG attributes those two P2s to `85d9791eb3`. [SOURCE: specs/system-speckit/052-memory-decommission-landing/goal.md:127]
+The 052 LOG attributes those two P2s to `a4e85f6ad4`. [SOURCE: specs/system-speckit/052-memory-decommission-landing/goal.md:127]
 Smallest fix: stamp the 053 review report as superseded for F001/F002, or the next review loop will rediscover closed items.
 
 ### F-I1-004 — 053 implementation-summary contradicts itself on whether the rename review ran. CONFIRMED. P2 (evidence)
 Limitation 5 says "The ten-iteration review has not run. AC-010 stays open". [SOURCE: .opencode/specs/system-speckit/053-spec-kit-runtime-rename/implementation-summary.md:210-211]
 The verification table two screens above says the ten-iteration review PASS'd as lineage `luna-max-pass3`. [SOURCE: .opencode/specs/system-speckit/053-spec-kit-runtime-rename/implementation-summary.md:180]
-The 052 LOG also records attempt 4 PASS at `556ab01b71`. [SOURCE: specs/system-speckit/052-memory-decommission-landing/goal.md:127]
+The 052 LOG also records attempt 4 PASS at `4b894ebda0`. [SOURCE: specs/system-speckit/052-memory-decommission-landing/goal.md:127]
 Smallest fix: delete or rewrite limitation 5 so the packet does not claim AC-010 is still open.
 
 ### F-I1-005 — 053 left two stale references and an unfinished suite on purpose. CONFIRMED. P2 (carried debt)

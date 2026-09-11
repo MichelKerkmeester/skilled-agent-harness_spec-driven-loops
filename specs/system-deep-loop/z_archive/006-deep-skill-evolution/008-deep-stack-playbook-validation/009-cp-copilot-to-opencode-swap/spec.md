@@ -53,7 +53,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The 007 validation run recorded **19 SKIP** verdicts. 18 of those are copilot-driven CP/discipline stress scenarios — deep-review `07--command-flow-stress-tests` (CP-052..057), deep-research `07--command-flow-stress-tests` (CP-046..051), deep-agent-improvement `08--agent-discipline-stress-tests` (CP-040..045) — that invoke `copilot -p ... --model gpt-5.5`. The `copilot` CLI is org-policy-blocked in this environment ("Third-party MCP servers disabled by org policy"), so they cannot run. CP-040..045 carry a **second** blocker: their setup needs the `060-stress-test` fixture, pruned in checkpoint commit `e917f76347`.
+The 007 validation run recorded **19 SKIP** verdicts. 18 of those are copilot-driven CP/discipline stress scenarios — deep-review `07--command-flow-stress-tests` (CP-052..057), deep-research `07--command-flow-stress-tests` (CP-046..051), deep-agent-improvement `08--agent-discipline-stress-tests` (CP-040..045) — that invoke `copilot -p ... --model gpt-5.5`. The `copilot` CLI is org-policy-blocked in this environment ("Third-party MCP servers disabled by org policy"), so they cannot run. CP-040..045 carry a **second** blocker: their setup needs the `060-stress-test` fixture, pruned in checkpoint commit `ebe7d6bb3c`.
 
 ### Purpose
 Replace the copilot executor with `cli-opencode` (model `deepseek/deepseek-v4-pro` via the **direct DeepSeek API provider**, not opencode-go) in all 18 scenario files, restore the pruned deep-agent-improvement fixture from git, re-run the scenarios, orchestrator-verify, and flip the 007 ledger SKIPs to their real verdicts. opencode natively owns the `.opencode/` command runtime, so `/deep:*` slash commands execute without the foreign-runtime overhead copilot incurred.
@@ -68,7 +68,7 @@ Replace the copilot executor with `cli-opencode` (model `deepseek/deepseek-v4-pr
 
 ### In Scope
 - Swap `copilot -p ... --model gpt-5.5 --allow-all-tools --no-ask-user --add-dir ...` → `opencode run ... --model deepseek/deepseek-v4-pro --dangerously-skip-permissions --dir <sandbox> </dev/null` in 18 scenario files (30 invocations).
-- Restore the pruned `060-stress-test` fixture (4 runtime forms) from `e917f76347^` to the deep-agent-improvement skill at the current plural path.
+- Restore the pruned `060-stress-test` fixture (4 runtime forms) from `ebe7d6bb3c^` to the deep-agent-improvement skill at the current plural path.
 - Re-run the 18 scenarios via opencode, orchestrator-verify the grep-checkable signals, and flip the 007 child ledger SKIPs (CP-040..045 in 005, CP-046..051 in 004, CP-052..057 in 003).
 - Update `006-release-readiness-synthesis/release-readiness-matrix.md` tallies + verdict.
 

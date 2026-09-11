@@ -15,7 +15,7 @@ contextType: "implementation"
 > Status legend: `[ ]` open · `[x]` done. Executor: deepseek/luna (operator directive). Each task is self-contained; cite `research/lineages/dsflashgo/research.md` for evidence.
 
 <!-- ANCHOR:tasks -->
-## Phase 1 — CI fleet-gate hardening (HIGH) — DONE (commit 4dfd1f33e5; deepseek-flash GAP-1, LUNA GAP-2)
+## Phase 1 — CI fleet-gate hardening (HIGH) — DONE (commit 3520c2bc31; deepseek-flash GAP-1, LUNA GAP-2)
 
 - [x] T001 [P0] Added `.opencode/skills/*/ROUTER.md` to the `push` `paths:` block of `.github/workflows/routing-registry-drift.yml`. (GAP-1) — `grep -c ROUTER.md` = 2
 - [x] T002 [P0] Added `.opencode/skills/*/ROUTER.md` to the `pull_request` `paths:` block of the same workflow. (GAP-1)

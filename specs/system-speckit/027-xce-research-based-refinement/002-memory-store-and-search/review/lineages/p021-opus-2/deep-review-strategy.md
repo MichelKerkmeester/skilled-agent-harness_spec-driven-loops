@@ -28,7 +28,7 @@ Release-readiness review of packet 021 ("cooperative heavy phases keep the daemo
 - Delta vs prior: n/a (first iteration)
 
 ## What Worked
-- Git-diff-first read of commit 372bb0f2cd isolated the exact change surface (3 files).
+- Git-diff-first read of commit da09d7c69e isolated the exact change surface (3 files).
 - Reading both `runTriggerEmbeddingBackfill` call sites surfaced the un-timed empty-files path that prose/diff reading alone hid.
 - Tracing `onPhase` to its single wiring point (memory-index.ts:1507-1512 → `maintenance.refresh()`) confirmed the marker-refresh mechanism and exactly which path it does/doesn't cover.
 

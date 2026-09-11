@@ -24,7 +24,7 @@ contextType: "implementation"
 
 Five deferred P2 findings on the `sidecar-client.ts` API surface were confirmed present and then closed. F9 exposed a test-only environment helper as a production named export. F32, F39 and F97 used legacy snake_case or abbreviated response field names without a canonical camelCase alternative. F99 resolved pending-map entries through an unsafe cast that bypassed discriminator checks.
 
-All five findings were closed in commit `fa30304726`. The production module no longer exports `buildSidecarEnv`. Test access was rerouted through `sidecar-client.testables.ts`. Canonical camelCase fields (`lastRequestAt`, `idleForMs`, `requestCount`, `dimensions`) were added alongside their deprecated legacy aliases, with a once-per-process stderr warning on alias reads. The pending-map cast was replaced with `unknown`-typed map entries narrowed through `isPendingRequest()`. Regression fixtures in `sidecar-hardening.vitest.ts` lock each finding closed.
+All five findings were closed in commit `577f8d67d2`. The production module no longer exports `buildSidecarEnv`. Test access was rerouted through `sidecar-client.testables.ts`. Canonical camelCase fields (`lastRequestAt`, `idleForMs`, `requestCount`, `dimensions`) were added alongside their deprecated legacy aliases, with a once-per-process stderr warning on alias reads. The pending-map cast was replaced with `unknown`-typed map entries narrowed through `isPendingRequest()`. Regression fixtures in `sidecar-hardening.vitest.ts` lock each finding closed.
 
 ### Added
 

@@ -1,6 +1,6 @@
 ---
 title: "Deep Review Report: Embedding-Stack Hardening Program (031 + 026/007 daemon)"
-description: "Full 20-iteration spec-kit deep review of the committed embedding-stack hardening program — executor cli-codex gpt-5.5 high fast (9 sequential discovery + 1 adjudication + 11 parallel deepening/adversarial passes). Verdict CONDITIONAL: 0 P0, 16 P1 (2 fixed), 3 P2. Two WAL-durability P1s fixed in b588951fba; the rest carry a prioritized remediation plan."
+description: "Full 20-iteration spec-kit deep review of the committed embedding-stack hardening program — executor cli-codex gpt-5.5 high fast (9 sequential discovery + 1 adjudication + 11 parallel deepening/adversarial passes). Verdict CONDITIONAL: 0 P0, 16 P1 (2 fixed), 3 P2. Two WAL-durability P1s fixed in b50f89781a; the rest carry a prioritized remediation plan."
 trigger_phrases:
   - "embedding stack deep review report"
 importance_tier: "important"
@@ -15,7 +15,7 @@ contextType: "review"
 
 A **full 20-iteration** deep-review loop (executor **cli-codex gpt-5.5, reasoning high, service tier fast**) over the committed embedding-stack hardening program — `031` phases 001–005 + the `026/007` daemon-durability children 009/010/012/013. Iterations 1–9 ran sequentially (one dimension/pass) + iter 7 was an adversarial adjudication pass; iterations 10–20 ran as **11 parallel gpt-5.5/high/fast agents** (pool of 5), each escalating to line-level granularity on a distinct surface plus a dedicated adversarial-refutation pass (iter 18) and a security sweep (iter 19). All 4 dimensions covered and saturated; ~13 sub-areas adversarially ruled clean across the run. No P0 (no data-corruption-on-the-happy-path or shipped no-op) — the per-phase gauntlets already caught those. The value here is **cross-phase / integration / line-level findings the single-phase reviews structurally could not see**, dominated by two themes:
 
-- **WAL-durability-on-close completeness** (2 P1) — **FIXED** in `b588951fba`.
+- **WAL-durability-on-close completeness** (2 P1) — **FIXED** in `b50f89781a`.
 - **single-writer / lease lifecycle** under-hardening across both launchers (multiple P1) — deferred to a coordinated follow-up (overlaps active parallel WIP + the `026/004/013` OR-R-01 election race).
 
 This review independently corroborated two parallel efforts: the code-graph audit's OR-R-01 (owner-lease election race) and a daemon-shutdown review's WS-1 (the non-active-connection WAL gap). Three independent reviews converging on the same single-writer/WAL classes is strong signal these are the real residual risks.
@@ -26,7 +26,7 @@ Target type: files (curated committed code). Reviewed: `shared/embeddings/{auto-
 
 ## 3. Findings
 
-### Fixed in this session (b588951fba)
+### Fixed in this session (b50f89781a)
 
 | ID | Sev | Finding | File:loc | Status |
 |----|-----|---------|----------|--------|

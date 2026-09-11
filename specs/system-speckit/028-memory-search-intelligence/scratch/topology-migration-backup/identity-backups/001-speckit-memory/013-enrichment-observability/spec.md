@@ -76,7 +76,7 @@ Expose decoupled read-side observability of the enrichment backlog, pending coun
 
 | Candidate | One-line | Seam | Eff | Status |
 |-----------|----------|------|-----|--------|
-| **gauge-pending-failed** | alias the at-rest pending/failed backlog distribution onto the existing `getBackgroundEnrichmentStats` aggregator (no new state) | `handlers/memory-save.ts:2954-2972`, `handlers/memory-crud-health.ts:902-913` | S | **DONE** (`e1c6a3c793`) |
+| **gauge-pending-failed** | alias the at-rest pending/failed backlog distribution onto the existing `getBackgroundEnrichmentStats` aggregator (no new state) | `handlers/memory-save.ts:2954-2972`, `handlers/memory-crud-health.ts:902-913` | S | **DONE** (`672d8a9187`) |
 | **gauge-lag** | oldest-pending age = `MIN(created_at)` over rows WHERE `post_insert_enrichment_status != 'complete'`, surfaced as a backlog-age gauge, **decoupled from C4-C** (the consolidation cursor). It rides the existing status column + `created_at` + the health query | `handlers/memory-crud-health.ts` (extends the existing backlog query) | S | **DONE** |
 
 > Both candidates are read-side only, additive and individually reversible. `gauge-pending-failed` shipped first. `gauge-lag` now extends the same health block. The research is explicit that lag is **decoupled from C4-C**, it does NOT depend on the consolidation cursor / Wave-1 shared infra [CONFIRMED: `../../research/roadmap.md:295`, `../../research/synthesis/01-go-candidates.md:32`, `../research/cross-packet-027-reconciliation/research.md:62`].
@@ -113,7 +113,7 @@ Expose decoupled read-side observability of the enrichment backlog, pending coun
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-003 | gauge-lag degrades gracefully on a schema edge | When the column is absent or the query throws, the gauge returns a neutral value (0 / null) and the existing scheduler counters still surface, mirroring the shipped pending/failed catch-block [CONFIRMED: `handlers/memory-crud-health.ts:908-910`] |
-| REQ-004 | gauge-pending/failed remains as-shipped | The pending/failed gauges (`e1c6a3c793`) are unchanged, lag is purely additive to the same health block |
+| REQ-004 | gauge-pending/failed remains as-shipped | The pending/failed gauges (`672d8a9187`) are unchanged, lag is purely additive to the same health block |
 <!-- /ANCHOR:requirements -->
 
 ---

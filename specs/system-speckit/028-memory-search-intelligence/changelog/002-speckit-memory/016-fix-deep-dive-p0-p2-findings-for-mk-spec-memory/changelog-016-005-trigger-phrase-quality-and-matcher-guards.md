@@ -19,7 +19,7 @@ contextType: "implementation"
 
 ### Summary
 
-`memory_match_triggers` stops surfacing noise. Legacy rows stored word-soup phrases that matched almost anything and the matcher ranked them on single-token hits. A batched, resumable, checkpoint-gated migration regenerated 48 legacy rows through the quality extractor. The matcher now applies a stopword, minimum-length and IDF guard to single-token matches and dedupes phrases per memory. The phrase cache is keyed on path and mtime instead of re-reading the whole corpus every 60 seconds. Trigger writes merge extracted phrases with user-authored ones instead of clobbering them. A gated migration deduped the constitutional rows from 30 to 19 distinct. Shipped in `23f5583ad3`.
+`memory_match_triggers` stops surfacing noise. Legacy rows stored word-soup phrases that matched almost anything and the matcher ranked them on single-token hits. A batched, resumable, checkpoint-gated migration regenerated 48 legacy rows through the quality extractor. The matcher now applies a stopword, minimum-length and IDF guard to single-token matches and dedupes phrases per memory. The phrase cache is keyed on path and mtime instead of re-reading the whole corpus every 60 seconds. Trigger writes merge extracted phrases with user-authored ones instead of clobbering them. A gated migration deduped the constitutional rows from 30 to 19 distinct. Shipped in `9d5d5380aa`.
 
 ### Added
 

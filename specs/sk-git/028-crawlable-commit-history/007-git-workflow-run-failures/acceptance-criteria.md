@@ -55,7 +55,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
 | AC-001 | REQ-001 | Given the observed list, When the lineage runs, Then every item is reproduced or shown impossible with the command | research/lineages/deepseek/research.md, five iterations; conductor re-ran the lock and trailer cases | Met | - |
-| AC-002 | REQ-002 | Given each confirmed failure in scope, When adjusted, Then the producer changed and a harness case covers it | commits 53a7e2f008, 48f06d6bc8, c934677956; harnesses 2, 11, 25, 43, 25 node, 39, 24, 18, 7 | Met | - |
+| AC-002 | REQ-002 | Given each confirmed failure in scope, When adjusted, Then the producer changed and a harness case covers it | commits ab8458c250, debfaf217d, f83952c3a9; harnesses 2, 11, 25, 43, 25 node, 39, 24, 18, 7 | Met | - |
 | AC-003 | REQ-003 | Given the adjusted tree, When a fresh fan-out lineage runs, Then it settles with succeeded 1 | research/proof/orchestration-summary.json succeeded 1, failed 0 | Met | - |
 
 ### Status values

@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Enrichment Observability - read-side gauges (028/001 impl)"
-description: "The pending/failed enrichment-backlog gauges shipped at e1c6a3c793. The decoupled oldest-pending lag gauge now extends the same health query with no schema migration."
+description: "The pending/failed enrichment-backlog gauges shipped at 672d8a9187. The decoupled oldest-pending lag gauge now extends the same health query with no schema migration."
 trigger_phrases:
   - "enrichment observability summary"
   - "gauge lag status"
@@ -57,7 +57,7 @@ This sub-phase turns the silent background enrichment backlog into something an 
 
 ### gauge-pending-failed (shipped)
 
-You can now see how many rows are waiting and how many failed enrichment, straight from the health response. The health handler runs one grouped query over the non-complete backlog and folds the pending and failed counts into the existing `getBackgroundEnrichmentStats` aggregator. A stuck or backed-up scheduler stops being invisible. This landed in Wave-0 at commit `e1c6a3c793`.
+You can now see how many rows are waiting and how many failed enrichment, straight from the health response. The health handler runs one grouped query over the non-complete backlog and folds the pending and failed counts into the existing `getBackgroundEnrichmentStats` aggregator. A stuck or backed-up scheduler stops being invisible. This landed in Wave-0 at commit `672d8a9187`.
 
 ### gauge-lag (shipped)
 
@@ -67,7 +67,7 @@ The sibling gauge answers a different question: not how many rows are waiting, b
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts` | Modified (`e1c6a3c793`) | `getBackgroundEnrichmentStats` returns pending/failed and remains DB-free |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts` | Modified (`672d8a9187`) | `getBackgroundEnrichmentStats` returns pending/failed and remains DB-free |
 | `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts` | Modified | Backlog query + `backgroundEnrichment` block, gauge-lag extends it with `MIN(created_at)` and neutral degradation |
 | `.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-health-edge.vitest.ts` | Modified | Known-age fixture, neutral all-complete case and missing-column degradation coverage |
 <!-- /ANCHOR:what-built -->
@@ -77,7 +77,7 @@ The sibling gauge answers a different question: not how many rows are waiting, b
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-gauge-pending-failed shipped as one isolated, reversible hunk on the 028 branch at `e1c6a3c793` ("feat(memory): constitutional CAS guard + enrichment gauges + skip-closed sweep hygiene"), alongside two unrelated sibling candidates in the same commit. gauge-lag now ships as a single additive read-side hunk in `memory-crud-health.ts`, with a known-age fixture test, an all-complete neutral case, a missing-column neutral case, typecheck, build, focused vitest and strict packet validation.
+gauge-pending-failed shipped as one isolated, reversible hunk on the 028 branch at `672d8a9187` ("feat(memory): constitutional CAS guard + enrichment gauges + skip-closed sweep hygiene"), alongside two unrelated sibling candidates in the same commit. gauge-lag now ships as a single additive read-side hunk in `memory-crud-health.ts`, with a known-age fixture test, an all-complete neutral case, a missing-column neutral case, typecheck, build, focused vitest and strict packet validation.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -100,7 +100,7 @@ gauge-pending-failed shipped as one isolated, reversible hunk on the 028 branch 
 
 | Check | Result |
 |-------|--------|
-| gauge-pending-failed shipped | PASS, commit `e1c6a3c793` (verified + `git log`) |
+| gauge-pending-failed shipped | PASS, commit `672d8a9187` (verified + `git log`) |
 | gauge-lag implemented | PASS, `oldestPendingAt` + `oldestPendingAgeMs` surfaced in `backgroundEnrichment` |
 | `npm run typecheck` | PASS, baseline PASS, after PASS |
 | `npx vitest run mcp_server/tests/handler-memory-health-edge.vitest.ts` | PASS, baseline 11 passed, after 13 passed |

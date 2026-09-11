@@ -21,23 +21,23 @@ git fetch origin skilled/v4.0.0.0
 git rev-parse FETCH_HEAD
 ```
 
-**`4c133e8aab436a703015325d9b124c1f400983d3`** — `docs(036/029,031): author missing
+**`482f927a300971ed92c6a2aaefb07dbd9acd4651`** — `docs(036/029,031): author missing
 implementation summaries for the landed remediation`, 2026-08-08T01:29:15+02:00.
 
-Confirmed a descendant of the landed-024 clean anchor `5c98e4654e` (`git merge-base
---is-ancestor 5c98e4654e FETCH_HEAD` → true). All eight WS1 children's cited landing
+Confirmed a descendant of the landed-024 clean anchor `0c5c966015` (`git merge-base
+--is-ancestor 0c5c966015 FETCH_HEAD` → true). All eight WS1 children's cited landing
 commits are confirmed ancestors of this SHA:
 
 | Child | Commit(s) | Ancestor of candidate SHA |
 |---|---|---|
-| 026 | `ca64df3f55` + `ee8c4dd67a` + `c83c53d44c` + `1578d8533e` | Yes |
-| 027 | `c6957eac3c` | Yes |
-| 028 | `d0d8623ddf` | Yes |
-| 029 | `0d1827eef5` | Yes |
-| 030 | `2f84f78bf7` | Yes |
-| 031 | `8fc33832c9` + `8b887bef5f` + `5611f21a15` | Yes |
-| 032 | `bf4f280ce7` | Yes |
-| 033 | `4446839af8` | Yes |
+| 026 | `ed8eb5d4cf` + `5e078ce498` + `2cd3eec4d8` + `46e806286e` | Yes |
+| 027 | `2e89392a91` | Yes |
+| 028 | `de9ce00df4` | Yes |
+| 029 | `9d258a879e` | Yes |
+| 030 | `e45e786cd5` | Yes |
+| 031 | `afcbbea714` + `9b99be4b26` + `8761d976a0` | Yes |
+| 032 | `f476b45fe4` | Yes |
+| 033 | `53d977fcae` | Yes |
 
 ## 2. What "the 014-blocking findings" means here
 
@@ -51,7 +51,7 @@ Two review artifacts, at two different scopes, both fed the WS1 program:
   all landed on origin before this WS1 tranche per `036/handover.md`. Not re-verified here;
   out of this record's scope.
 - **`Blocker 3`** (no fencing at the append boundary) was addressed by
-  `004-durable-write-boundaries` (`5c98e4654e`). A **follow-up 20-iteration review**
+  `004-durable-write-boundaries` (`0c5c966015`). A **follow-up 20-iteration review**
   scoped to 024 alone (`004-durable-write-boundaries/review/lineages/luna/review-report.md`,
   dated 2026-08-05) found the 024 fix itself had six residual defects: **F001, F002, F003,
   F004, F005** (all confirmed against code, P0/P1) plus **F007** (completion-metadata
@@ -65,7 +65,7 @@ Two review artifacts, at two different scopes, both fed the WS1 program:
 
 ## 3. F001–F007 blocker → remediation map (the 024 follow-up review)
 
-All five landed as one commit, **`4446839af8`** (033), confirmed an ancestor of the candidate
+All five landed as one commit, **`53d977fcae`** (033), confirmed an ancestor of the candidate
 SHA. Each row below was checked against the **actual code at the candidate SHA**, not against
 the implementation-summary's self-report alone — three of the five P0/P1 findings have a real
 gap between what `033/implementation-summary.md` claims and what the landed code does.
@@ -73,7 +73,7 @@ gap between what `033/implementation-summary.md` claims and what the landed code
 | Finding | Severity | What the review found | What 033 landed | Verdict | 014-cutover blocker? |
 |---|---|---|---|---|---|
 | **F001** | P0 | Gateway (`transition-authorization-gateway.ts`) lets caller-supplied `actorId`/`capabilityId`/`evidenceDigest` through unchecked when no binding resolves. | Added an **opt-in** `identityResolver` option + `#checkIdentity()`, invoked only `if (this.#options.identityResolver)`. Verified: `identityResolver` is never configured at **any** of the 14 production gateway-construction sites in `runtime/lib` — grep confirms zero non-test `identityResolver:` assignments. The suite's own first test in the new `identity resolver binding` block is named **`stays fail-open with no identityResolver configured, matching shadow-parity harnesses by design`** and asserts `verdict: 'allow'` for `actorId: 'anyone-claims-this'`. The type docstring says the same: *"Callers that never configure a resolver keep today's posture unchanged."* | **PARTIALLY-CLEARED.** A working deny-on-mismatch mechanism exists and is test-proven for the opt-in path (forged actor/capability/evidence all correctly denied once a resolver is wired). But the *default* behavior every current caller gets is exactly the fail-open behavior the finding described. | **Yes, conditionally.** Not a blocker for the current additive-dark state (nothing is authoritative yet, so there is no live caller whose identity matters). **Becomes a live blocker the moment any mode's authority cuts over to ledger-authoritative**, unless that mode's cutover work wires a real `identityResolver`. Track as a `014` per-mode cutover precondition, not a closed item. |
-| **F002** | P0 | Policy identity (`transition-policy-registry.ts`) doesn't cover implicit closure-captured authorization state — two differently-behaving policy closures can hash to the same identity. | Registry's `registerPolicy()` already folds `capturedAuthorizationState ?? authorizationState ?? null` into the digest (this existed pre-033, at `5c98e4654e`, and still defaults to `null` with no rejection — confirmed by diffing `transition-policy-registry.ts` between `5c98e4654e` and the candidate SHA: **zero lines changed by 033**). What 033 actually shipped is `capturedAuthorizationState: { state, epoch }` wired at the **8 shadow-parity `harness-adapter.ts` call sites** — the specific evidence the review cited. | **PARTIALLY-CLEARED.** The 8 call sites the review's evidence pointed at are genuinely fixed. The general registry mechanism the implementation-summary claims ("rejects registrations without explicit serializable authorization state") was **not landed** — the registry still silently accepts `null`. | **No**, for the current state — the 8 sites were the only production policy registrations that existed, so the concrete finding is closed. **Residual structural gap**: any future policy registration that doesn't explicitly pass captured state reintroduces the same class of bug with no registry-level guard. Worth a follow-up hardening ticket, not a cutover blocker. |
+| **F002** | P0 | Policy identity (`transition-policy-registry.ts`) doesn't cover implicit closure-captured authorization state — two differently-behaving policy closures can hash to the same identity. | Registry's `registerPolicy()` already folds `capturedAuthorizationState ?? authorizationState ?? null` into the digest (this existed pre-033, at `0c5c966015`, and still defaults to `null` with no rejection — confirmed by diffing `transition-policy-registry.ts` between `0c5c966015` and the candidate SHA: **zero lines changed by 033**). What 033 actually shipped is `capturedAuthorizationState: { state, epoch }` wired at the **8 shadow-parity `harness-adapter.ts` call sites** — the specific evidence the review cited. | **PARTIALLY-CLEARED.** The 8 call sites the review's evidence pointed at are genuinely fixed. The general registry mechanism the implementation-summary claims ("rejects registrations without explicit serializable authorization state") was **not landed** — the registry still silently accepts `null`. | **No**, for the current state — the 8 sites were the only production policy registrations that existed, so the concrete finding is closed. **Residual structural gap**: any future policy registration that doesn't explicitly pass captured state reintroduces the same class of bug with no registry-level guard. Worth a follow-up hardening ticket, not a cutover blocker. |
 | **F003** | P1 | Staged leaf publication (`leaf-artifact-writer.ts`) has no cross-process single-winner boundary. | `leaf-artifact-writer.ts` now constructs a `FencedLeaseCoordinator` and holds its lease across stage→publish→append (confirmed at the code: `coordinator.acquire(...)` wraps the full boundary). The one production caller (`deep-alignment-auto.yaml`) was updated with the matching `await`. | **CLEARED.** Code matches the claim; structurally sound. | No. |
 | **F004** | P1 | Stale append-lock reclaim (`atomic-state.ts`) can remove a live owner lock and release a successor. | Rebuilt with pid+nonce owner tokens (`makeAppendLockToken`), dead-owner-only reclaim (`isAppendLockReclaimable` checks `processAlive`), atomic single-inode `renameSync` claim (only one reclaimer can win the rename), and compare-and-delete release that restores an already-superseded claim via CAS rather than blind unlink. Read in full — the logic is internally consistent and correctly reasoned. | **CLEARED.** Code matches the claim; structurally sound. | No. |
 | **F005** | P0 | Fresh loop-lock acquisition (`loop-lock.ts`) can report two winners through the partial-file window (direct `wx`-open + write + fsync, not atomic). | The **fresh**-acquisition path (`acquireLoopLockFileOnly` → `writeLoopLockExclusive`, lines 239–262/429–454) is **unchanged** — it still does a direct `wx` open, write, fsync (no temp-file-plus-hard-link or temp-file-plus-rename atomicity). `033`'s own commit message is honest about this: *"F005: loop-lock two-process race — no defect reproduced; hardened via the release-path fix."* The implementation-summary's claim that loop-lock "writes a complete serialized owner record to a unique temporary file, fsyncs it, and hard-links it into the exclusive target path" **does not match the code** — no `linkSync` call exists anywhere in `loop-lock.ts`. The real two-process test (`allows exactly one fresh cross-process acquire to win`, spawns genuine child processes) passes, most likely because a separate, pre-existing mechanism — a host-local single-flight socket lease (`acquireLoopLockWithHostLocalSingleFlight`) — already serializes concurrent acquire attempts on one host before they reach the file-level write, not because the file write itself became atomic. | **PARTIALLY-CLEARED / DISCREPANCY FLAGGED.** The specific two-process race the review named is not currently reproducible, and the release path was genuinely hardened. But the structural cause the review cited (non-atomic fresh-acquisition write) is still present in the code, and the implementation-summary's technical description of the fix is inaccurate — it describes a hard-link mechanism that was never built. | **Yes, conditionally.** Low risk today because the socket-based single-flight mitigates it in the one path exercised by tests. **Flag for correction before/at cutover**: either land the actually-atomic fresh-acquisition write (temp file + fsync + `renameSync`/`linkSync` into place, matching the pattern `writeLoopLockAtomic` already uses elsewhere in the same file), or explicitly document the single-flight socket as the real invariant and add a test that exercises `acquireLoopLockFileOnly` directly (bypassing the socket layer) to prove the residual race is acceptable. |

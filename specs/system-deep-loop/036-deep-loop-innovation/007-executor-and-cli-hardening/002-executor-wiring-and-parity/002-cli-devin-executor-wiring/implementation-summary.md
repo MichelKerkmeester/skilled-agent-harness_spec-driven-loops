@@ -71,11 +71,11 @@ _memory:
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `runtime/lib/deep-loop/executor-config.ts` | Modified | Kind, flag support, capability row, model allowlist and guard (`107a732a40`) |
-| `runtime/lib/deep-loop/executor-audit.ts` | Modified | Binary, state-env, home-dir, env-prefix entries (`107a732a40`) |
-| `runtime/scripts/fanout-run.cjs` | Modified | Lineage adapter, allowlist mirror, PATH preflight, export (`107a732a40`, repaired `88ffed2893`) |
-| `runtime/tests/unit/executor-config.vitest.ts` | Modified | Capability-matrix literal extended for cli-devin (`107a732a40`) |
-| `runtime/tests/unit/fanout-run.vitest.ts` | Modified | cli-devin adapter test block (`107a732a40`, `88ffed2893`) |
+| `runtime/lib/deep-loop/executor-config.ts` | Modified | Kind, flag support, capability row, model allowlist and guard (`b1db56520b`) |
+| `runtime/lib/deep-loop/executor-audit.ts` | Modified | Binary, state-env, home-dir, env-prefix entries (`b1db56520b`) |
+| `runtime/scripts/fanout-run.cjs` | Modified | Lineage adapter, allowlist mirror, PATH preflight, export (`b1db56520b`, repaired `569e54b914`) |
+| `runtime/tests/unit/executor-config.vitest.ts` | Modified | Capability-matrix literal extended for cli-devin (`b1db56520b`) |
+| `runtime/tests/unit/fanout-run.vitest.ts` | Modified | cli-devin adapter test block (`b1db56520b`, `569e54b914`) |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -83,7 +83,7 @@ _memory:
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The wiring landed in `107a732a40` as a purely additive change that mirrors the existing `cli-cursor` adapter, so no existing kind's behaviour was touched. Every CLI fact came from live `devin --help` and `devin models list` output rather than the skill's reference table, which omits tier names and would have produced the wrong id. A follow-up repair, `88ffed2893`, fixed the fan-out dispatch against the current Devin CLI after a live run surfaced flag drift. Coverage arrived in the same commits: `executor-config.vitest.ts` extends the literal capability-matrix assertion, and `fanout-run.vitest.ts` adds a cli-devin block covering command shape, sandbox mapping, allowlist accept and reject, default model, and fail-closed absence.
+The wiring landed in `b1db56520b` as a purely additive change that mirrors the existing `cli-cursor` adapter, so no existing kind's behaviour was touched. Every CLI fact came from live `devin --help` and `devin models list` output rather than the skill's reference table, which omits tier names and would have produced the wrong id. A follow-up repair, `569e54b914`, fixed the fan-out dispatch against the current Devin CLI after a live run surfaced flag drift. Coverage arrived in the same commits: `executor-config.vitest.ts` extends the literal capability-matrix assertion, and `fanout-run.vitest.ts` adds a cli-devin block covering command shape, sandbox mapping, allowlist accept and reject, default model, and fail-closed absence.
 <!-- /ANCHOR:how-delivered -->
 
 ---

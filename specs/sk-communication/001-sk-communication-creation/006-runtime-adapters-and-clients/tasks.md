@@ -65,11 +65,11 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## PHASE 2: IMPLEMENTATION
 
-- [x] T004 Implement adapter contract and shared conformance harness (`packages/cli-communication-projection/src/runtimes/`) [evidence: `adapter.ts` contract + `assertRuntimeAdapterConformance`; commit 0a0d931dfc]
-- [x] T005 [P] Implement six runtime mappings, full-projection clients, and safe-native append, sidecar, or original-only paths (`src/runtimes/`, `src/clients/`) [evidence: claude/codex/pi/opencode/devin/cursor adapters + `src/clients/`; commits dea1ad3d2a, b5f02f638c]
+- [x] T004 Implement adapter contract and shared conformance harness (`packages/cli-communication-projection/src/runtimes/`) [evidence: `adapter.ts` contract + `assertRuntimeAdapterConformance`; commit b8fd9549ec]
+- [x] T005 [P] Implement six runtime mappings, full-projection clients, and safe-native append, sidecar, or original-only paths (`src/runtimes/`, `src/clients/`) [evidence: claude/codex/pi/opencode/devin/cursor adapters + `src/clients/`; commits 73b2564843, 73c974ce8d]
 - [x] T006 Implement typed incompatibility, failure, cancellation, timeout, disconnect, tier-downgrade, and exact-original outcomes (`src/runtimes/`, `src/clients/`) [evidence: `exactEvent`/`exactPresentation` in every adapter; fail-closed to safe-native/original-only]
-- [x] T007 Emit content-free runtime, capability, presentation-tier, and degradation reason events (`src/runtimes/`, `src/clients/`) [evidence: `telemetryFor` with `sanitizeRuntimeTelemetryPathId`; content and credential canaries pass; commit 0a07c50640]
-- [x] T008 [P] Run pinned fixture replay, atomic-render proof, disconnect, cancellation, tier-downgrade, and degraded-mode smoke tests (`test/runtimes/`) [evidence: `fixtures.test.ts`, `smoke.test.ts`, `edge-cases.test.ts`, `performance.test.ts`; commit b9cd4d1d46]
+- [x] T007 Emit content-free runtime, capability, presentation-tier, and degradation reason events (`src/runtimes/`, `src/clients/`) [evidence: `telemetryFor` with `sanitizeRuntimeTelemetryPathId`; content and credential canaries pass; commit 40c42b76f3]
+- [x] T008 [P] Run pinned fixture replay, atomic-render proof, disconnect, cancellation, tier-downgrade, and degraded-mode smoke tests (`test/runtimes/`) [evidence: `fixtures.test.ts`, `smoke.test.ts`, `edge-cases.test.ts`, `performance.test.ts`; commit 67ddc94b9b]
 <!-- /ANCHOR:phase-2 -->
 
 ---

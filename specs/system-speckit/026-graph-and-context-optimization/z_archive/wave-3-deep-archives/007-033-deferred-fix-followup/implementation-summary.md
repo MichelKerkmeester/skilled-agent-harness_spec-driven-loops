@@ -77,7 +77,7 @@ _memory:
 
 Direct main-agent Edit/Write calls. Earlier in the session, a codex dispatch hit a usage-limit error mid-flight (OpenAI API quota), so this packet's mechanical work was applied directly to keep momentum. No external CLI dispatch needed.
 
-The architecture.md reconstruction was the load-bearing piece. The original 26KB content from `1fcc5a1f5` (later rebased to `81f28435af`) was force-pushed over by a parallel session, leaving an empty file. Rather than wait for the original to surface elsewhere, this packet writes fresh architecture content matching the current 10-tool reality.
+The architecture.md reconstruction was the load-bearing piece. The original 26KB content from `1fcc5a1f5` (later rebased to `2490a69840`) was force-pushed over by a parallel session, leaving an empty file. Rather than wait for the original to surface elsewhere, this packet writes fresh architecture content matching the current 10-tool reality.
 
 This is also the second commit landed under the corrected git identity (MichelKerkmeester personal account, fixed earlier in this session).
 <!-- /ANCHOR:how-delivered -->

@@ -11,17 +11,17 @@ Fresh Fable 5 verifier, 2026-06-12. Scope: every doc-only DONE finding from the 
 - tri-017: CLOSED
 - tri-053: CLOSED
 - tri-056: CLOSED
-- tri-059: CLOSED (landed in commit 64c4e7b25b, not uncommitted)
+- tri-059: CLOSED (landed in commit d75fa78178, not uncommitted)
 - tri-063: INCOMPLETE (count not recounted after the batch's own edit)
 - tri-064: INCOMPLETE (scoped-partial by design; ~39 vars still undocumented)
-- tri-068: CLOSED (landed in commit 64c4e7b25b, not uncommitted)
+- tri-068: CLOSED (landed in commit d75fa78178, not uncommitted)
 - tri-079: CLOSED
 - tri-081: CLOSED
 - tri-084: INCOMPLETE (new claim contradicted by code and by sibling tri-178 fix)
 - tri-087: CLOSED
 - tri-100: CLOSED
 - tri-102: CLOSED
-- tri-106: CLOSED (landed in commit 64c4e7b25b, not uncommitted)
+- tri-106: CLOSED (landed in commit d75fa78178, not uncommitted)
 - tri-118: CLOSED
 - tri-126: CLOSED (live-verified)
 - tri-127: CLOSED
@@ -48,7 +48,7 @@ Fresh Fable 5 verifier, 2026-06-12. Scope: every doc-only DONE finding from the 
 Lifecycle Restore bullet (`database/checkpoints/README.md:92`) now says live files are renamed to sibling `.bak` files during the swap and explicitly attributes `restore-backups/` to the raw restore migration script. Code: `lib/storage/checkpoints.ts:2642-2643` (`${liveMainPath}.bak` / `${liveShardPath}.bak`); `scripts/migrations/restore-checkpoint.ts:103` defaults its backup dir to `checkpoints/restore-backups`. No new false claims.
 
 ### tri-059 — CLOSED (committed, not uncommitted)
-`mcp_server/README.md:174` now says `SCHEMA_VERSION` (currently `37`) with generic migration coverage. Code: `lib/search/vector-index-schema.ts:626` `SCHEMA_VERSION = 37`. Provenance note: this fix is not in the working tree diff — it landed inside commit `64c4e7b25b` ("fix(029/L6+L7)…", 15:52 today), consistent with the shared-git-index sweep pattern. Content matches the prescription exactly.
+`mcp_server/README.md:174` now says `SCHEMA_VERSION` (currently `37`) with generic migration coverage. Code: `lib/search/vector-index-schema.ts:626` `SCHEMA_VERSION = 37`. Provenance note: this fix is not in the working tree diff — it landed inside commit `d75fa78178` ("fix(029/L6+L7)…", 15:52 today), consistent with the shared-git-index sweep pattern. Content matches the prescription exactly.
 
 ### tri-063 — INCOMPLETE
 `ENV_REFERENCE.md:127` count corrected 179 → 237. Failure mode hit: the 237 figure is the Part-A verifier's PRE-edit recount, and the same batch then added one new unique table row (`SPECKIT_BOOT_FTS_AUTOHEAL`, tri-064) without recounting — under the source method the table now totals 238. Independent recounts bracket the truth without ever yielding 237 on the current doc: strict first-cell line-start parse = 234 (233 at HEAD, +1 from the new row), first-cell tokens incl. multi-var cells = 236, first-cell ∪ flags-summary third-cell rows = 243. Residue: regenerate the count (or recount post-edit to 238 / state the method). Dramatically better than 179, but the corrected number is provably not a post-edit recount.
@@ -57,7 +57,7 @@ Lifecycle Restore bullet (`database/checkpoints/README.md:92`) now says live fil
 New `SPECKIT_BOOT_FTS_AUTOHEAL` row (`ENV_REFERENCE.md:184`) is accurate against `context-server.ts:381-410`: default-on (`!== '0'`), rebuild + re-verify on unclean-shutdown FTS failure, `0` = detect-only that logs without rebuilding. Minor nit: the row types it `boolean`, but only the literal `0` disables (`false` does not); the description's explicit "set `0`" instruction is correct. The finding's full scope (~40 undocumented runtime vars) remains open — the seat log itself declares "remaining env-var backfill remains a follow-up". Carry-over recorded below.
 
 ### tri-068 — CLOSED (committed, not uncommitted)
-`mcp_server/README.md:39` and `:239` now state MCP client configs point at `.opencode/bin/mk-spec-memory-launcher.cjs`, with `dist/context-server.js` as the launcher-spawned backend. Code/config: `opencode.json` `mk-spec-memory.command` = `node .opencode/bin/mk-spec-memory-launcher.cjs`; consistent with `INSTALL_GUIDE.md:327`. Same provenance as tri-059 (in commit `64c4e7b25b`).
+`mcp_server/README.md:39` and `:239` now state MCP client configs point at `.opencode/bin/mk-spec-memory-launcher.cjs`, with `dist/context-server.js` as the launcher-spawned backend. Code/config: `opencode.json` `mk-spec-memory.command` = `node .opencode/bin/mk-spec-memory-launcher.cjs`; consistent with `INSTALL_GUIDE.md:327`. Same provenance as tri-059 (in commit `d75fa78178`).
 
 ### tri-079 — CLOSED
 `system-code-graph/SKILL.md` Fallback Contract bullet now reads: warm daemon → use the daemon-backed CLI recovery path; neither MCP nor warm CLI → report and stop. This reconciles with the dual-stack paragraph (~:286) which still prescribes the CLI when MCP transport is missing/failed while the daemon is warm. Contradiction inside the file resolved; no behavior overclaimed.
@@ -78,7 +78,7 @@ All three docs now say 50: `manual_testing_playbook/python-compat/regression-sui
 021 `implementation-summary.md:118` Known Limitation §3 now states the raw `LIKE` prefix exists in FTS5 AND vector AND hybrid/keyword lanes without `ESCAPE`. Code re-verified: `vector-index-queries.ts:90,570,862` and `hybrid-search.ts:698,2149` still push raw `${specFolder}/%`; zero `ESCAPE` hits in both files. The doc now matches the (still-unfixed, code-queue tri-006) reality without overclaiming a fix.
 
 ### tri-106 — CLOSED (committed, not uncommitted)
-`database/vectors/README.md:111` now: `vec_<dim>` = "Plain table … dim-tagged BLOB payload … the sqlite-vec virtual table surface is `vec_memories`"; `:91` naming-table row also corrected to "plain table name". Code: `vector-index-store.ts:807-814` `CREATE TABLE IF NOT EXISTS … (id INTEGER PRIMARY KEY, vec BLOB NOT NULL)`, with `vec_memories` created behind `sqlite_vec_available_flag` just below. Same provenance as tri-059/068 (commit `64c4e7b25b`).
+`database/vectors/README.md:111` now: `vec_<dim>` = "Plain table … dim-tagged BLOB payload … the sqlite-vec virtual table surface is `vec_memories`"; `:91` naming-table row also corrected to "plain table name". Code: `vector-index-store.ts:807-814` `CREATE TABLE IF NOT EXISTS … (id INTEGER PRIMARY KEY, vec BLOB NOT NULL)`, with `vec_memories` created behind `sqlite_vec_available_flag` just below. Same provenance as tri-059/068 (commit `d75fa78178`).
 
 ### tri-118 — CLOSED
 `handlers/README.md:115` now lists `graphChannelInvocationRate`, per-channel invocation rates, `totalRecorded`, `windowSize` and explicitly says no per-channel count fields. Code: `memory-crud-health.ts:1250-1255` returns exactly those four keys in `routing`.
@@ -133,4 +133,4 @@ Both YAMLs now run `command: "git add {state_paths.packet_dir}"` (research :967,
 
 ## Provenance Note
 
-Three fixes (tri-059, tri-068, tri-106) are not in the uncommitted diff: they sit inside commit `64c4e7b25b` (fix(029/L6+L7), 15:52 today) — consistent with this repo's known shared-git-index commit sweep. Content verified identical to the prescriptions; no action needed beyond awareness that "uncommitted batch" undercounts by these three files.
+Three fixes (tri-059, tri-068, tri-106) are not in the uncommitted diff: they sit inside commit `d75fa78178` (fix(029/L6+L7), 15:52 today) — consistent with this repo's known shared-git-index commit sweep. Content verified identical to the prescriptions; no action needed beyond awareness that "uncommitted batch" undercounts by these three files.

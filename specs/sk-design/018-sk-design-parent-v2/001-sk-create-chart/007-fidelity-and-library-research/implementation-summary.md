@@ -153,7 +153,7 @@ caution rather than a change: a documented default in a library that ships a run
 evidence about a file that ships none, and two of the corrections exist because the first pass
 treated one as the other.
 
-The same run re-read the shipped corpus at `756a7fcd4c` against the T-and-C checklist and reached
+The same run re-read the shipped corpus at `3ce648be44` against the T-and-C checklist and reached
 the same verdicts this phase recorded, with three it reads more strictly. Those three readings are
 now the record here rather than a note in someone else's ledger.
 

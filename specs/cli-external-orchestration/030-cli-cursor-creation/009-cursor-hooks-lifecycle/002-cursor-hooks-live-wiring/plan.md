@@ -83,7 +83,7 @@ Empirical live-fire testing against the real repo, not unit tests (this phase to
 ## 6. DEPENDENCIES
 | Dependency | Type | Status | Impact if Blocked |
 |---|---|---|---|
-| Phase 004 (hook adapter layer) | Internal | Green (committed `433cfc17c8`-adjacent history; ADR-001 origin) | Source of the 4 adapters and the original committed-registration decision this phase executes |
+| Phase 004 (hook adapter layer) | Internal | Green (committed `b41e0bc7d8`-adjacent history; ADR-001 origin) | Source of the 4 adapters and the original committed-registration decision this phase executes |
 | `mcp-server` dist build | Internal | Green — confirmed fresh (built after the `.ts` sources, standalone-tested) | `sessionStart`/`sessionEnd` adapters require the compiled `.js` output |
 | Cursor's hooks merge-precedence behavior | External | Green — confirmed via official docs before proceeding | Determines whether registering a project-level file is safe alongside the pre-existing user-level one |
 <!-- /ANCHOR:dependencies -->

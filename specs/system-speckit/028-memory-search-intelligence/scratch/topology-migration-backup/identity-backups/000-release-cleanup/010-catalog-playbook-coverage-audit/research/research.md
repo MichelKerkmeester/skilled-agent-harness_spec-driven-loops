@@ -40,7 +40,7 @@ _memory:
 
 The question: did packet 028 ship features into the three daemon-backed system skills (system-spec-kit, system-code-graph, system-skill-advisor) that were never added to those skills feature catalogs or testing playbooks?
 
-The answer is yes, and the gaps are systematic. After twenty read-only audit iterations across the two models (gpt-5.5-fast and deepseek-v4-pro) and a verification pass over every high-severity cluster, the audit confirms roughly fifty real coverage gaps. They concentrate exactly where the audit predicted: the 028 release-cleanup track aligned ONLY system-spec-kit's catalog and playbook (phases 004 and 005, commit ab405fa052), and it did so as edits-only with no entries added. So code-graph and skill-advisor never had their 028 feature-areas cataloged at all, and even the synced spec-kit catalog is missing the new always-on features and kept-on flags that an edits-only pass could not introduce.
+The answer is yes, and the gaps are systematic. After twenty read-only audit iterations across the two models (gpt-5.5-fast and deepseek-v4-pro) and a verification pass over every high-severity cluster, the audit confirms roughly fifty real coverage gaps. They concentrate exactly where the audit predicted: the 028 release-cleanup track aligned ONLY system-spec-kit's catalog and playbook (phases 004 and 005, commit 7b74ddfbe5), and it did so as edits-only with no entries added. So code-graph and skill-advisor never had their 028 feature-areas cataloged at all, and even the synced spec-kit catalog is missing the new always-on features and kept-on flags that an edits-only pass could not introduce.
 
 The verdict per surface:
 

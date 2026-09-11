@@ -14,7 +14,7 @@ _memory:
     packet_pointer: "system-speckit/028-memory-search-intelligence/001-speckit-memory/004-graceful-degradation"
     last_updated_at: "2026-07-04T17:50:57.895Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Author C9 impl sub-phase spec (DONE-record for 030 484b77b589)"
+    recent_action: "Author C9 impl sub-phase spec (DONE-record for 030 fa62d04fd0)"
     next_safe_action: "None. C9 shipped and record tracks done-state in 028 impl tree"
     blockers: []
     key_files:
@@ -48,7 +48,7 @@ _memory:
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
 | **Parent Packet** | system-speckit/028-memory-search-intelligence/001-speckit-memory |
 | **Candidates** | C9 |
-| **Shipped In** | 030 commit `484b77b589` (Wave-0 record) |
+| **Shipped In** | 030 commit `fa62d04fd0` (Wave-0 record) |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -135,7 +135,7 @@ Detect embedder-unavailable on recall and route the null-embedding case into the
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- None. C9 shipped in 030 (`484b77b589`). This folder records the done-state in the 028 impl tree. The pass-1 "vector-branch-caveated" note (roadmap.md:237) was resolved during impl: the vector/multi-concept branches were given an explicit lexical route and the degrade was traced to BM25 [CONFIRMED: 030 spec §14 row 2].
+- None. C9 shipped in 030 (`fa62d04fd0`). This folder records the done-state in the 028 impl tree. The pass-1 "vector-branch-caveated" note (roadmap.md:237) was resolved during impl: the vector/multi-concept branches were given an explicit lexical route and the degrade was traced to BM25 [CONFIRMED: 030 spec §14 row 2].
 <!-- /ANCHOR:questions -->
 
 ---
@@ -149,5 +149,5 @@ Detect embedder-unavailable on recall and route the null-embedding case into the
 - **Research evidence**: `../research/research.md`, `../research/iterations/iteration-003.md` (Q9), `../research/deltas/iter-003.jsonl` (f-iter003-007, p-iter003-C9A), `../research/deltas/iter-034.jsonl` (C9-sketch)
 - **Roadmap**: `../../research/roadmap.md` (C9 rows, Wave-0 spearhead)
 - **Synthesis**: `../../research/synthesis/01-go-candidates.md` (C9 row)
-- **Wave-0 shipped record**: Wave-0 record (commit `484b77b589`)
+- **Wave-0 shipped record**: Wave-0 record (commit `fa62d04fd0`)
 <!-- /ANCHOR:related-docs -->

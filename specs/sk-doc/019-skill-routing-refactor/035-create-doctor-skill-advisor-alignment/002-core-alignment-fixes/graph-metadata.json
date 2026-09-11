@@ -204,7 +204,7 @@
     ],
     "causal_summary": "`../001-research/research/research.md` found the create → doctor → skill-advisor system structurally sound but operationally under-wired: no command proves a newly created skill reached the live advisor index, `/doctor:skill-advisor` omits the live `skillgraphvalidate` tool from its own declared surface, `leaf-manifest.json` generation is inconsistently owned, and three small but real, fully-diagnosed defects sit in the doctor/create surfaces (route-validate parity, a stale template cross-reference, a missing tool declaration)",
     "created_at": "2026-07-31T03:21:54.016Z",
-    "last_save_at": "2026-08-30T15:39:16.036Z",
+    "last_save_at": "2026-09-11T16:42:10.379Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +213,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4a0348bd5204a252ce235d7371327c2c8011f651fc8216093e88445799055acb",
+    "source_fingerprint": "sha256:4d05f704e909c6e357fa2f7b58d06c88a34087effdb5de1c27e5b826b4282812",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2e240bafdda3d18a4b2c387d1af94da5610e2f60055986c7bc52d4efe876b4dc",
       "plan.md": "7fae8818336b80fcfc5e030388a09d585f701bea68f2e3e3bf623f4c75573b0b",
       "tasks.md": "898e578edb344dc3dd64c0740d15d1b19a42e8a0d672ce3b69e915cc57c01003",
-      "implementation-summary.md": "8b0d17951fcb3e55a9ab18aee4a7c5152578e2b4b0376eed9642da006515f35a"
+      "implementation-summary.md": "da3f345a2a3c71b5d6ec7ed6fe4bef306efa0a11f31a1948164a55a8c9d27871"
     },
     "last_active_child_id": null,
     "last_active_at": null

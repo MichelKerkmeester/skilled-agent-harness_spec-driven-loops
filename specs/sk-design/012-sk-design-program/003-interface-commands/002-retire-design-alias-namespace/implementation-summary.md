@@ -14,7 +14,7 @@ _memory:
     last_updated_at: "2026-07-22T16:57:27Z"
 
     last_updated_by: "review-remediation"
-    recent_action: "Shipped in commit 9a42aedae4; docs reconciled; metadata complete."
+    recent_action: "Shipped in commit 5dd5547949; docs reconciled; metadata complete."
     next_safe_action: "None — packet complete and verified."
     blockers: []
     key_files:
@@ -43,7 +43,7 @@ _memory:
 |-------|-------|
 | **Spec Folder** | 002-retire-design-alias-namespace |
 | **Status** | Complete |
-| **Shipped** | commit `9a42aedae4` on `skilled/v4.0.0.0` |
+| **Shipped** | commit `5dd5547949` on `skilled/v4.0.0.0` |
 | **Level** | 2 |
 | **Created** | 2026-07-20 |
 | **Completed** | 2026-07-21 |
@@ -75,7 +75,7 @@ _memory:
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Implemented in the isolated worktree `0090-sk-design-command-dedup`, then committed and pushed to `skilled/v4.0.0.0` as `9a42aedae4`. Sequence: registries first, then the checker, then the `commands/design/` deletion and test updates, then the executable-contract verification. The ungated-doc reconciliation (checklist item CHK-050) was completed as a follow-up after a two-model deep review flagged the residual prose, and this metadata was reconciled to shipped in the same follow-up.
+Implemented in the isolated worktree `0090-sk-design-command-dedup`, then committed and pushed to `skilled/v4.0.0.0` as `5dd5547949`. Sequence: registries first, then the checker, then the `commands/design/` deletion and test updates, then the executable-contract verification. The ungated-doc reconciliation (checklist item CHK-050) was completed as a follow-up after a two-model deep review flagged the residual prose, and this metadata was reconciled to shipped in the same follow-up.
 <!-- /ANCHOR:how-delivered -->
 
 ---

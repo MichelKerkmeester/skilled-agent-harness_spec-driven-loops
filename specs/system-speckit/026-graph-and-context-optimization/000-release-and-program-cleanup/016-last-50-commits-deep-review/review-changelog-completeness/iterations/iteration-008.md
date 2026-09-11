@@ -8,7 +8,7 @@ trigger_phrases: []
 ```
 === YOUR ANGLE (iteration 08) ===
 NESTED-TREE COVERAGE — small tracks 001 + 005 + 006 + 007.
-Run ls on .opencode/specs/system-spec-kit/026-graph-and-context-optimization/changelog/001-research-and-baseline , .opencode/specs/system-spec-kit/026-graph-and-context-optimization/changelog/005-graph-impact-and-affordance , .opencode/specs/system-spec-kit/026-graph-and-context-optimization/changelog/006-operator-tooling , .opencode/specs/system-spec-kit/026-graph-and-context-optimization/changelog/007-mcp-daemon-reliability . These tracks are small (7/7/32/27 files). Confirm the in-window daemon-reliability / operator-tooling work (front-proxy, launcher, worktree, doctor) is represented. The O6 launcher-ownership (3419e0a3e9) and socket-server reconvergence (3d1667dd68) post-window code should appear here or in 003. Flag genuinely missing coverage P1. Bound to these four directories.
+Run ls on .opencode/specs/system-spec-kit/026-graph-and-context-optimization/changelog/001-research-and-baseline , .opencode/specs/system-spec-kit/026-graph-and-context-optimization/changelog/005-graph-impact-and-affordance , .opencode/specs/system-spec-kit/026-graph-and-context-optimization/changelog/006-operator-tooling , .opencode/specs/system-spec-kit/026-graph-and-context-optimization/changelog/007-mcp-daemon-reliability . These tracks are small (7/7/32/27 files). Confirm the in-window daemon-reliability / operator-tooling work (front-proxy, launcher, worktree, doctor) is represented. The O6 launcher-ownership (9efd1652bc) and socket-server reconvergence (795cfb8a07) post-window code should appear here or in 003. Flag genuinely missing coverage P1. Bound to these four directories.
 ```
 
 ## Executor output (gpt-5.5-fast high)

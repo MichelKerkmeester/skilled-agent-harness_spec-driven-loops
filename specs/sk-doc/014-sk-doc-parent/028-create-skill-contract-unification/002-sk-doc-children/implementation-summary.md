@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: sk-doc Children Contract Conformance"
-description: "Shipped: 10 of 11 sk-doc create-* SKILL.md files conformed to the create-skill contract (fresh LUNA MAX update + fresh Sonnet-5 xhigh verify); create-flowchart already passed. Commit 85cc0d5efd."
+description: "Shipped: 10 of 11 sk-doc create-* SKILL.md files conformed to the create-skill contract (fresh LUNA MAX update + fresh Sonnet-5 xhigh verify); create-flowchart already passed. Commit 45400ec088."
 trigger_phrases:
   - "002-sk-doc-children implementation summary"
   - "conformance batch status"
@@ -42,7 +42,7 @@ _memory:
 
 10 conformed; create-flowchart already passed.
 
-Breakdown: **10 conformed** (fresh GPT-5.6 LUNA MAX update + fresh Sonnet-5 xhigh verify), **1 already passing** at baseline (no edit), **0 exempt**. Shipped commit: `85cc0d5efd`.
+Breakdown: **10 conformed** (fresh GPT-5.6 LUNA MAX update + fresh Sonnet-5 xhigh verify), **1 already passing** at baseline (no edit), **0 exempt**. Shipped commit: `45400ec088`.
 
 Conformed:
 - `sk-doc/create-agent`

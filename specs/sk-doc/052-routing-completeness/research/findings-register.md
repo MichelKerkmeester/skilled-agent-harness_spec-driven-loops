@@ -47,15 +47,15 @@ with those phases rather than being asserted from this document.
 | 7 | Fifty-nine signals surface no recommendation at all | 002 | Planned | - |
 | 8 | Six signals name several modes at once | 002 | Planned | - |
 | 9 | Gate B stands at 8 of 180 realistic phrasings | 003 | Planned | - |
-| 10 | The semantic lane is weighted 0.05 and has five of fourteen skill nodes without a vector | 003 | Decision | Out of scope here by D2 and planned in `specs/system-skill-advisor/023-semantic-lane-enablement` (`c0ab5103fd`), which corrected the premise: the lane is live rather than shadow-only and nine nodes already carry a vector. |
+| 10 | The semantic lane is weighted 0.05 and has five of fourteen skill nodes without a vector | 003 | Decision | Out of scope here by D2 and planned in `specs/system-skill-advisor/023-semantic-lane-enablement` (`c0c20756fd`), which corrected the premise: the lane is live rather than shadow-only and nine nodes already carry a vector. |
 | 11 | Two modes route by command surface and cannot be reached through a prompt | 003 | Fixed | - |
-| 12 | Duplicate uncompiled entries under bare executor names outrank their compiled routes | 004 | Fixed | `08eb67a0de` changed the run-time override to lift the hub. Re-verified 2026-09-02: six bare executor names return `cli-external-orchestration` at rank one with a compiled route, and no routeless bare-name entry appears |
+| 12 | Duplicate uncompiled entries under bare executor names outrank their compiled routes | 004 | Fixed | `aa11c2b622` changed the run-time override to lift the hub. Re-verified 2026-09-02: six bare executor names return `cli-external-orchestration` at rank one with a compiled route, and no routeless bare-name entry appears |
 | 13 | One hub takes fourteen rows it does not own, from outside the measured five | 004 | Planned | Not attempted, per `004-cross-hub-vocabulary/implementation-summary.md` |
 | 14 | Surface vocabulary bundling takes rows belonging to three other hubs | 004 | Planned | Not attempted, per `004-cross-hub-vocabulary/implementation-summary.md` |
 | 15 | The skill-creation intent loses to the code hub when phrased with a product name | 004 | Planned | Not attempted, per `004-cross-hub-vocabulary/implementation-summary.md` |
-| 16 | Bare single-word tokens let one hub swallow another hub's core purpose | 004 | Fixed | `f8c2595ce0` qualified the three tokens |
-| 17 | Stage-one signals existed with no stage-two class to resolve to | 004 | Fixed | `461ef9261f` gave four of the five a class |
-| 18 | The benchmark mode reached its hub and resolved to nothing | 004 | Fixed | `461ef9261f` |
+| 16 | Bare single-word tokens let one hub swallow another hub's core purpose | 004 | Fixed | `e96760aa3b` qualified the three tokens |
+| 17 | Stage-one signals existed with no stage-two class to resolve to | 004 | Fixed | `add6602050` gave four of the five a class |
+| 18 | The benchmark mode reached its hub and resolved to nothing | 004 | Fixed | `add6602050` |
 | 41 | `spec kit runtime` declared by the CLI hub is won by `system-spec-kit` at 0.93 once the spec-kit engine moved under `runtime/` | 008 | Fixed | Retired from both intent-signal lists on 2026-09-05; mint `already-exists`, guard fresh, live replay `system-spec-kit` first and `delegate to opencode` still on the CLI hub. `008-drift-after-closure/decision-record.md` ADR-003 |
 | 42 | `trigger_phrases`, declared by `sk-doc` and resolved at 0.488 on 2026-09-04, returns nothing from both scorers on 2026-09-05 with no rejection reason and no change to the hub's metadata | 008 | Planned | Owner `system-skill-advisor`. `importance_tier` and `contextType` beside it still resolve. ADR-003 in phase 008 holds the evidence; a sweep of every underscored declared signal is the first step |
 | 43 | The Python and TypeScript parity pin reads three different numbers in one session, 113/108, 114/108 and 114/107 with two added regressions under an empty database directory, because the Python reference loads the daemon's local skill graph | 008 | Planned | Owner `system-skill-advisor`. Not in CI. Left unedited by D2; ADR-002 in phase 008 records all three readings and the two row ids |
@@ -66,13 +66,13 @@ with those phases rather than being asserted from this document.
 
 | # | Finding | Phase | State | Evidence |
 |---|---|---|---|---|
-| 19 | The inventory intent claims completeness and lists 128 of 252 leaves | 005 | Fixed | `98a327edf9` completed `ROUTER.md` FULL_INVENTORY to 252 leaves |
-| 20 | The hub manifest reports a mode as commandless while its command ships in five runtimes | 005 | Fixed | `08eb67a0de` restored the row. Re-verified 2026-09-02: `.opencode/skills/sk-doc/SKILL.md:35` carries `/create:diff` rather than a dash |
-| 21 | The readme summary and its frontmatter describe a smaller hub than the one shipping | 005 | Fixed | `98a327edf9` rewrote the description inside its budget |
-| 22 | Five modes were absent from the hub readme while present in every registry | 005 | Fixed | `98a327edf9` |
-| 23 | Twelve link labels named paths they did not point at | 005 | Fixed | `98a327edf9` |
-| 24 | A hub leaf manifest had gone stale, leaving a new reference unreachable | 005 | Fixed | `98a327edf9` |
-| 25 | A contract in the hub manifest is not honoured by two packets | 005 | Fixed | `08eb67a0de` added the keyword-triggers line to both packets. Re-verified 2026-09-02: `sk-create-frontmatter/SKILL.md:36` and `sk-create-repo-rule/SKILL.md:36` each carry one. The phase summary still records this row as Planned, which this entry supersedes |
+| 19 | The inventory intent claims completeness and lists 128 of 252 leaves | 005 | Fixed | `90ea7ecb09` completed `ROUTER.md` FULL_INVENTORY to 252 leaves |
+| 20 | The hub manifest reports a mode as commandless while its command ships in five runtimes | 005 | Fixed | `aa11c2b622` restored the row. Re-verified 2026-09-02: `.opencode/skills/sk-doc/SKILL.md:35` carries `/create:diff` rather than a dash |
+| 21 | The readme summary and its frontmatter describe a smaller hub than the one shipping | 005 | Fixed | `90ea7ecb09` rewrote the description inside its budget |
+| 22 | Five modes were absent from the hub readme while present in every registry | 005 | Fixed | `90ea7ecb09` |
+| 23 | Twelve link labels named paths they did not point at | 005 | Fixed | `90ea7ecb09` |
+| 24 | A hub leaf manifest had gone stale, leaving a new reference unreachable | 005 | Fixed | `90ea7ecb09` |
+| 25 | A contract in the hub manifest is not honoured by two packets | 005 | Fixed | `aa11c2b622` added the keyword-triggers line to both packets. Re-verified 2026-09-02: `sk-create-frontmatter/SKILL.md:36` and `sk-create-repo-rule/SKILL.md:36` each carry one. The phase summary still records this row as Planned, which this entry supersedes |
 
 ---
 
@@ -80,11 +80,11 @@ with those phases rather than being asserted from this document.
 
 | # | Finding | Phase | State | Evidence |
 |---|---|---|---|---|
-| 26 | Twenty-four of forty templates hide voice blockers inside their own fenced payload | 006 | Planned | Re-measured at 45 of 53 across the fleet once the payload is scanned (`d229b0a24d`). Rewriting a payload changes what a template emits, so the backlog is a decision per template and sits on the packet roadmap |
-| 27 | The document validator blocks on scanner fixtures the packaging gate already exempts | 006 | Fixed | `d229b0a24d` moved the packaging gate's exemption into the validator. Re-verified 2026-09-02: `validate_document.py` exits 0 on both voice fixtures |
-| 28 | Forty-eight planning documents carry boilerplate from a template since corrected | 006 | Fixed | `d229b0a24d` rewrote fifty-six documents, not forty-eight. Re-verified 2026-09-02: one match remains across `specs/`, the acceptance criterion that quotes the retired sentence |
-| 29 | A rule template emitted a banned character on the line its contract called verbatim | 006 | Fixed | `c1b3b780c3` corrected the template, and all nine shipped rules already used the other form |
-| 30 | Sixteen documents lacked the overview section the validator requires | 006 | Fixed | `d87e8dd162` fixed fourteen and left two scanner fixtures under the exemption |
+| 26 | Twenty-four of forty templates hide voice blockers inside their own fenced payload | 006 | Planned | Re-measured at 45 of 53 across the fleet once the payload is scanned (`71f1c2f9bc`). Rewriting a payload changes what a template emits, so the backlog is a decision per template and sits on the packet roadmap |
+| 27 | The document validator blocks on scanner fixtures the packaging gate already exempts | 006 | Fixed | `71f1c2f9bc` moved the packaging gate's exemption into the validator. Re-verified 2026-09-02: `validate_document.py` exits 0 on both voice fixtures |
+| 28 | Forty-eight planning documents carry boilerplate from a template since corrected | 006 | Fixed | `71f1c2f9bc` rewrote fifty-six documents, not forty-eight. Re-verified 2026-09-02: one match remains across `specs/`, the acceptance criterion that quotes the retired sentence |
+| 29 | A rule template emitted a banned character on the line its contract called verbatim | 006 | Fixed | `02f1ec6170` corrected the template, and all nine shipped rules already used the other form |
+| 30 | Sixteen documents lacked the overview section the validator requires | 006 | Fixed | `2912ce44a8` fixed fourteen and left two scanner fixtures under the exemption |
 | 44 | The spec validator reported `PLACEHOLDER_FILLED` passing on a parent `spec.md` carrying 69 bracket placeholders, and `AC_CLOSURE` inactive below Level 2 on a Level 3 phase parent, so a closed packet with template boilerplate validated strict | 008 | Planned | Owner `system-spec-kit`. `check-placeholders.sh` counted 69 on the parent and 50 on phase 007 while `validate.sh --strict` printed `RESULT: PASSED`. The documents were filled by hand in phase 008; the rule gap is the finding |
 
 ---
@@ -93,14 +93,14 @@ with those phases rather than being asserted from this document.
 
 | # | Finding | Phase | State | Evidence |
 |---|---|---|---|---|
-| 31 | The suite cannot complete: a reused worker spins and a bound kills the run | 007 | Fixed | `59a597e37d` fixed the save-path loop. Verified 2026-09-03 by a completed run: `npm run test:sharded`, 12 of 12 shards, 34m00s wall, 989 modules, no shard exited 124 |
+| 31 | The suite cannot complete: a reused worker spins and a bound kills the run | 007 | Fixed | `7e93c9ae79` fixed the save-path loop. Verified 2026-09-03 by a completed run: `npm run test:sharded`, 12 of 12 shards, 34m00s wall, 989 modules, no shard exited 124 |
 | 32 | Roughly one hundred and fifteen failures have a signature and no mechanism | 007 | Decision | Measured at 181 rather than 115 and split by ADR-009. The 31 in surviving trees are grouped into 15 named mechanisms in `007-spec-kit-residue/implementation-summary.md`. The 150 under `mcp-server/`, plus 3 files that fail at load, are counted and attributed and left undiagnosed, because 049 deletes their subject |
 | 33 | Twenty-five references to names that do not exist sit in never-typechecked tests | 007 | Decision | Measured at 48 rather than 25 and split by ADR-009. The 27 in `scripts/tests/` are fixed, 27 to 0 with total errors 496 to 469. The 21 under `mcp-server/` are recorded, along with the only lane that sees them. The absent lane over the surviving trees stays open as adjacent finding A4 |
-| 34 | Five contract questions have the test and the code asserting opposite things | 007 | Decision | Recorded superseded in `007-spec-kit-residue/decision-record.md` at `82938b3e1c`: ADR-001 to ADR-004 and ADR-007 name paths under `.opencode/skills/system-spec-kit/mcp-server/`, which `specs/system-speckit/049-memory-decommission` phase 003 lists as Delete, so each carries the operator's decision text and no edit. |
+| 34 | Five contract questions have the test and the code asserting opposite things | 007 | Decision | Recorded superseded in `007-spec-kit-residue/decision-record.md` at `6c90ef079b`: ADR-001 to ADR-004 and ADR-007 name paths under `.opencode/skills/system-spec-kit/mcp-server/`, which `specs/system-speckit/049-memory-decommission` phase 003 lists as Delete, so each carries the operator's decision text and no edit. |
 | 35 | Twelve test files collected no tests at all while reporting as failures | 007 | Fixed | Owned by phase 007 |
 | 36 | A launcher killed itself on a redirected stdin, under the repository's own rule | 007 | Fixed | Owned by phase 007 |
 | 37 | A daemon socket path exceeded the platform limit and could never bind | 007 | Fixed | Owned by phase 007 |
-| 45 | After `b4c2484696` nested the CLI workspace, the render wrapper resolved its skill root one level up, found no tsx loader, and fell into an inline renderer that writes to stdout, so every Level 3 scaffold produced no documents | 008 | Fixed | Three loader literals repointed to the skill root, landed in `743e626543` from `specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting` concurrently with this phase's identical edit. `scaffold-golden-snapshots.vitest.ts` 9 of 9 from 1 failed; a scratch Level 3 packet renders eleven documents. ADR-001 in phase 008 |
+| 45 | After `f65b8f1e5b` nested the CLI workspace, the render wrapper resolved its skill root one level up, found no tsx loader, and fell into an inline renderer that writes to stdout, so every Level 3 scaffold produced no documents | 008 | Fixed | Three loader literals repointed to the skill root, landed in `ccbff09cfb` from `specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting` concurrently with this phase's identical edit. `scaffold-golden-snapshots.vitest.ts` 9 of 9 from 1 failed; a scratch Level 3 packet renders eleven documents. ADR-001 in phase 008 |
 
 ---
 

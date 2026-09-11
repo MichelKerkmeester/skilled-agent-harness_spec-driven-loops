@@ -16,7 +16,7 @@ contextType: "implementation"
 
 > Spec folder: `.opencode/specs/deep-loops/032-goal-opencode-plugin/011-command-surface-normalization` (Level 1)
 > Parent packet: `.opencode/specs/deep-loops/032-goal-opencode-plugin`
-> Commits: `303902e631` fix(mk-goal): normalize command filename + close 2 config-contract gaps; `f510f8e96f` fix(mk-goal): close 2 config-contract gaps + fix command doc/metadata; `8405ba4f57` fix(032-goal-opencode-plugin): amend command name to goal_opencode.md
+> Commits: `815eb035b3` fix(mk-goal): normalize command filename + close 2 config-contract gaps; `e2426731fd` fix(mk-goal): close 2 config-contract gaps + fix command doc/metadata; `2086c70c42` fix(032-goal-opencode-plugin): amend command name to goal_opencode.md
 
 ### Summary
 

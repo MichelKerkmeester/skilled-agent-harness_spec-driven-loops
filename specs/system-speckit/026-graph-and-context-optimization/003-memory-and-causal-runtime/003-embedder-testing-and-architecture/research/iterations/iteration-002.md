@@ -13,7 +13,7 @@ Iteration 2 audited arc `001-local-embeddings-foundation`, with emphasis on the 
 4. Ran grep probes for `EMBEDDINGS_PROVIDER`, `MEMORY_AUTO_MIGRATE_HF_TO_LLAMA`, `llama-cpp`, `hf-local`, `ollama`, `runMigration`, `migrate-embeddings-to-llama-cpp`, `contextSize`, `mk-spec-memory`, and `mk_code_index`.
 5. Spot-checked source files referenced by arc docs: `.opencode/skills/system-spec-kit/shared/embeddings/factory.ts`, `.opencode/skills/system-spec-kit/shared/embeddings/profile.ts`, `.opencode/skills/system-spec-kit/mcp_server/lib/embedders/execution-router.ts`, and `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md`.
 6. Spot-checked phase docs for `018-llama-cpp-auto-migration` and `028-local-llm-feature-test-suite`, then compared their claims against current scripts and tests.
-7. Ran `git log --oneline -- .opencode/specs/.../001-local-embeddings-foundation`, which showed only broad metadata/renumbering commits for this path (`db12a824f9`, `656542344e`, `0aeb35be61`, `d8c6036792`), not a clean arc-local closeout commit trail.
+7. Ran `git log --oneline -- .opencode/specs/.../001-local-embeddings-foundation`, which showed only broad metadata/renumbering commits for this path (`310e08af64`, `9f024f2ba3`, `56669b9598`, `4035977c35`), not a clean arc-local closeout commit trail.
 
 ## Findings
 

@@ -91,8 +91,8 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [x] All P0/P1 tasks have command-backed evidence. [EVIDENCE: runtime and packet gates pass; implementation evidence is pinned to commit `348b644283`.]
-- [x] No blocked implementation tasks remain. [EVIDENCE: T001-T013 are complete and CHK-FIX-007 is pinned to implementation commit `348b644283`.]
+- [x] All P0/P1 tasks have command-backed evidence. [EVIDENCE: runtime and packet gates pass; implementation evidence is pinned to commit `bc9ccca5ba`.]
+- [x] No blocked implementation tasks remain. [EVIDENCE: T001-T013 are complete and CHK-FIX-007 is pinned to implementation commit `bc9ccca5ba`.]
 - [x] Runtime, configuration, docs, and recursive packet gates pass. [EVIDENCE: all runtime suites and document checks pass; phase 018 and packet 030 recursive strict validation report 0 errors and 0 warnings.]
 <!-- /ANCHOR:completion -->
 

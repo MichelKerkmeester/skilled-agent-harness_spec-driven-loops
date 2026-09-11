@@ -33,7 +33,7 @@ _memory:
       - "description.json is hub-only; no production advisor consumer reads a skill-root description.json"
       - "leaf-aliases.json is generated for S as an identity projection and authored for H"
       - "command-metadata.json stays an sk-design overlay; its consumers do not enumerate roots"
-      - "Root framework pointer and fleet CI wiring are current in 2fa9fc480c; AGENTS.md:450 and routing-registry-drift.yml:99-108"
+      - "Root framework pointer and fleet CI wiring are current in c4b5f27ae8; AGENTS.md:450 and routing-registry-drift.yml:99-108"
       - "Post-ship active fleet is 11 roots; system-code-graph was removed after authoring and the gate reports checked=11"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->
@@ -100,7 +100,7 @@ Four distinct defect classes are visible in that table:
 1. **Broken advisor identity pair at authoring time.** Five skills (`mcp-code-mode`, `sk-git`, `system-code-graph`, `system-skill-advisor`, `system-spec-kit`) shipped `graph-metadata.json` without `description.json`. The root framework doc stated the advisor metadata pair lived together at a hub or standalone-skill root. Half the pair was missing on 42 percent of the authoring-time fleet.
 2. **Unexplained alias-overlay variance.** `leaf-aliases.json` exists on five skills and not the other seven. `generate-leaf-manifest.cjs` treats absence as zero authored aliases, so absence is legal — but no document states when a skill should author one, so a maintainer cannot tell whether their skill's absence is correct or an oversight.
 3. **Ungeneralized command-metadata pilot.** `command-metadata.json` exists only for `sk-design`, consumed by four distinct call sites including the skill-benchmark harness and an advisor command-binding test. `sk-doc`, `system-deep-loop` and `system-spec-kit` each own multiple commands and have no equivalent, so those consumers see partial fleet coverage.
-4. **No canonical documentation and no fleet-wide gate at authoring time.** `create-skill` documented the leaf-manifest generator's mechanics but not the per-class presence contract. `ci-leaf-manifest-freshness.cjs` gated one file type fleet-wide; the other seven had no equivalent coverage gate. Nothing regenerated or backfilled the pair-level metadata automatically. Post-ship, the class gate and freshness gate run in CI at `.github/workflows/routing-registry-drift.yml:99-108` (wiring commit `2fa9fc480c`).
+4. **No canonical documentation and no fleet-wide gate at authoring time.** `create-skill` documented the leaf-manifest generator's mechanics but not the per-class presence contract. `ci-leaf-manifest-freshness.cjs` gated one file type fleet-wide; the other seven had no equivalent coverage gate. Nothing regenerated or backfilled the pair-level metadata automatically. Post-ship, the class gate and freshness gate run in CI at `.github/workflows/routing-registry-drift.yml:99-108` (wiring commit `c4b5f27ae8`).
 
 The through-line: partial adoption is invisible because nothing declares what full adoption means.
 
@@ -250,7 +250,7 @@ Enumerated after research synthesis. The classes of change are known:
 | R-001 | Backfilled `description.json` files shift advisor routing outcomes | H | M | Baseline routing accuracy before, re-measure after, block on regression |
 | R-002 | The class taxonomy is drawn to fit the current drift rather than the real design intent, ratifying the mess | H | M | Require the taxonomy to be justified from consumer requirements and file:line evidence, not from the presence table |
 | R-003 | `command-metadata.json` generalization breaks a consumer written against the single sk-design example | M | M | Enumerate and test all four consumers before authoring new files |
-| R-004 | The new gate is added but not wired into any path that actually runs | M | M | Resolved post-ship: doctor and CI wiring are present; `.github/workflows/routing-registry-drift.yml:99-108` invokes both fleet gates (commit `2fa9fc480c`) |
+| R-004 | The new gate is added but not wired into any path that actually runs | M | M | Resolved post-ship: doctor and CI wiring are present; `.github/workflows/routing-registry-drift.yml:99-108` invokes both fleet gates (commit `c4b5f27ae8`) |
 
 ---
 
@@ -277,7 +277,7 @@ Enumerated after research synthesis. The classes of change are known:
 <!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
-- None outstanding. The class taxonomy, alias split, command-metadata scope, `sk-git` remediation, and consumer-impact questions were resolved by the shipped implementation and recorded in `decision-record.md`; the root framework pointer and CI wiring were subsequently confirmed in `2fa9fc480c`.
+- None outstanding. The class taxonomy, alias split, command-metadata scope, `sk-git` remediation, and consumer-impact questions were resolved by the shipped implementation and recorded in `decision-record.md`; the root framework pointer and CI wiring were subsequently confirmed in `c4b5f27ae8`.
 <!-- /ANCHOR:questions -->
 
 ---

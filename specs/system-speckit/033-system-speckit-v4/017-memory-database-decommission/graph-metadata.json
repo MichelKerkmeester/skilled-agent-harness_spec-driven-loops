@@ -174,14 +174,14 @@
     ],
     "causal_summary": "The `system-spec-memory` MCP subsystem is a derived search index over `specs//.md` that",
     "created_at": "2026-09-02T11:04:48Z",
-    "last_save_at": "2026-09-06T07:07:55.358Z",
+    "last_save_at": "2026-09-11T16:42:46.563Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:d630b592fbe3af8d31b8512dbfb2b002881f3b58d23c8da13a783ae4b5c06907",
+    "source_fingerprint": "sha256:2928cdc2f3ea659ce1615284f13e477971e064b77bd07208fc30fecf4425151f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "912657c1d57653bfe3452eabed1a8ffa6201ef05bfe364162a3d58e27b125188"

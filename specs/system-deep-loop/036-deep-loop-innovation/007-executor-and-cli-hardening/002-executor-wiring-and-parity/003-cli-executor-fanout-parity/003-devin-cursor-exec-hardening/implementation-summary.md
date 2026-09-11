@@ -13,7 +13,7 @@ _memory:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/003-cli-executor-fanout-parity/003-devin-cursor-exec-hardening"
     last_updated_at: "2026-08-18T23:59:00Z"
     last_updated_by: "orchestrator"
-    recent_action: "Landed devin+cursor containment re-map in commit b1d36b1741"
+    recent_action: "Landed devin+cursor containment re-map in commit 35a3951784"
     next_safe_action: "Proceed to per-mode executor parity phase 004"
     blockers: []
     key_files:
@@ -40,7 +40,7 @@ _memory:
 | Field | Value |
 |---|---|
 | **Spec Folder** | 003-devin-cursor-exec-hardening |
-| **Completed** | 2026-07-29 (landed `b1d36b1741`) |
+| **Completed** | 2026-07-29 (landed `35a3951784`) |
 | **Level** | 2 |
 | **Status** | Complete |
 | **Posture** | Corrective flag re-map of two builders + one resolver; no other executor kind changes |
@@ -97,7 +97,7 @@ The mappings were derived empirically: each CLI was dispatched non-interactively
 | Live cursor read-only (`--mode plan --trust`) | PASS — "Plan mode blocked the write command", no file written; native read returned the token |
 | Live cursor workspace-write (`--force --sandbox enabled`) | PASS — file written, exit 0, no stall, no trust-block |
 | Cross-model SOL review (cli-opencode GPT-5.6-SOL, high) | REQUESTED_CHANGES, 0 P0 / 3 P1 — P1-002 fixed; P1-001 and P1-003 verified non-reproducing against the real hooks/MCP (see below) |
-| `validate.sh --strict` | Errors: 0 — packet reconciled to Complete after landing `b1d36b1741` |
+| `validate.sh --strict` | Errors: 0 — packet reconciled to Complete after landing `35a3951784` |
 
 Live command shapes now produced by the builders:
 

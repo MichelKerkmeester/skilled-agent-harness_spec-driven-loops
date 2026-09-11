@@ -16,11 +16,11 @@ Independent verification of all accumulated findings, exact citation ranges, sev
 
 ## Findings
 
-No new finding. The accumulated set remains 15 findings: 10 P1 and 5 P2; 1 NEW and 14 PRE-EXISTING. The only NEW finding is the incomplete root resume behavior introduced by the root pointer changed in `140266be3e`; the nested null pointers it exposes are pre-existing, but the newly reachable path is a commit-introduced behavior.
+No new finding. The accumulated set remains 15 findings: 10 P1 and 5 P2; 1 NEW and 14 PRE-EXISTING. The only NEW finding is the incomplete root resume behavior introduced by the root pointer changed in `3c94775856`; the nested null pointers it exposes are pre-existing, but the newly reachable path is a commit-introduced behavior.
 
 ## Questions Answered
 - All accumulated findings retain file:line evidence in their iteration records; missing-file claims are paired with the declaring file's level/path lines and validator output.
-- The commit boundary supports the classifications: child packets and live compiled-routing sources were not changed by `140266be3e`; the root pointer at `graph-metadata.json:122` was changed and is the sole NEW defect.
+- The commit boundary supports the classifications: child packets and live compiled-routing sources were not changed by `3c94775856`; the root pointer at `graph-metadata.json:122` was changed and is the sole NEW defect.
 - The link scan remains clean for current non-excluded Markdown links; stale authored path tokens are separate findings because they are not necessarily Markdown links.
 
 ## Questions Remaining
@@ -29,7 +29,7 @@ No new finding. The accumulated set remains 15 findings: 10 P1 and 5 P2; 1 NEW a
 
 ## Sources Consulted
 - Iterations `001` through `008` in this lineage
-- `git diff --name-status 140266be3e^ 140266be3e`
+- `git diff --name-status 3c94775856^ 3c94775856`
 - Current cited parent, child, runtime, manifest, and resume-resolver files
 - Non-excluded root-aware Markdown-link scan
 - Live `router-replay.cjs` seven-hub replay and `generate-leaf-manifest.cjs --check`

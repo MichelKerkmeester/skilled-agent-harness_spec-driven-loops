@@ -210,7 +210,7 @@
     ],
     "causal_summary": "A packet that closes on measured numbers stays true only while its inputs hold still",
     "created_at": "2026-09-05T13:40:04Z",
-    "last_save_at": "2026-09-05T14:42:20.598Z",
+    "last_save_at": "2026-09-11T16:42:14.506Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,14 +222,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3b6256ee85ee36f93a8e59f54262c25335476d97b678163a738f45f025995bb2",
+    "source_fingerprint": "sha256:027d10fa14f9db459386b4771db7cef2e153d5d9a1d50e62ba57df2b0851910c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2e5a7f3037a569117b7982f61ada292af3720dfd03c45bb1a0c3553a0b4498a5",
+      "spec.md": "2b4b1a60ab6bb652197e29ca0118c1bd424cc58ba5ef232400537a02709c3822",
       "plan.md": "7ea883b4b4d3d89af31f24da1fee485ac41b671a700e465164afc1dc262eb0bb",
-      "tasks.md": "986cf0ce893b5c75111c3d296316c2a7633cd56697a2048d1dc571c8b3dd5cbc",
-      "decision-record.md": "dc31d92842930d7a58ed7877c9cab5b36ac815ccacbb591dbd223ecb1ef67ae6",
-      "implementation-summary.md": "ec2956e3547baf6aefb0aeb012f558f9c3443533eaf50fe98b4f2af3ea6e56dc"
+      "tasks.md": "9f8c2343cb449c6fdf16f3a60b301bc80bf1b16c49a2081a3e9b3b6d8221b9cd",
+      "decision-record.md": "1584b958ae03a700d7255a82e6c418aa225d70828af55750951fc76ae617d36f",
+      "implementation-summary.md": "ef70954efba44d52192071931011073048b8f12f9438931812753a60a96c7520"
     },
     "last_active_child_id": null,
     "last_active_at": null

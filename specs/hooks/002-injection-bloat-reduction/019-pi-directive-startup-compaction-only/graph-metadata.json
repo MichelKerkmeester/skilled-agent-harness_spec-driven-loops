@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Constant advisor directives shown on every cli-pi message. Root-caused: the directives-only advisor-failure fallback was intentionally always-shown, so it repeats whenever the advisor is unavailable in Pi. Fix ships: the fallback now dedups to once per boundary (Pi). Root-cause of the advisor unavailability in cli-pi is a separate open thread.",
     "created_at": "2026-08-30T15:39:09.055Z",
-    "last_save_at": "2026-08-30T15:39:09.055Z",
+    "last_save_at": "2026-09-11T16:41:47.096Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,10 +202,10 @@
       "plan.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:af695c3624a84c43b5535935252966006ced495a4fe92a3579acebe4fbe65e49",
+    "source_fingerprint": "sha256:31c3d8eaca48a1db364cf49451504230d5dc47c0b723ecd027fd6710e16d1f7a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3808902412384215d0cbec607027e2ff8105609cf7cf7b049d2787aade65d58b",
+      "spec.md": "0b49d58c034cc5c0bdc7f5cb478ea5a58d069d46b61c949cb425637d5c2018ea",
       "plan.md": "1bc547d91b0b6a05ad1d287ebe8c00b04cea2375b92ee6c401f39fc1619bb48f",
       "implementation-summary.md": "dbe07a6f724f815cdc359697c918f2e3db9cd1678b4348aec6f9c0b85e6c2744"
     },

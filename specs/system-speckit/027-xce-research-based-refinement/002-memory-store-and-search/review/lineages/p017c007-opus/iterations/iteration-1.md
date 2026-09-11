@@ -5,7 +5,7 @@ All phases complete. The fan-out lineage review packet is written and validated 
 
 **Summary — lineage `p017c007-opus`, verdict: PASS (hasAdvisories: true)**
 
-- **Target:** Level 1 contract-only phase `007-output-surface-parity` — markdown edits to `.opencode/commands/memory/search.md` and `search_presentation.txt` (committed `254289251a`).
+- **Target:** Level 1 contract-only phase `007-output-surface-parity` — markdown edits to `.opencode/commands/memory/search.md` and `search_presentation.txt` (committed `3a289d732d`).
 - **Coverage:** 1 iteration, all 4 dimensions (correctness, security, traceability, maintainability). maxIterations=1 reached; evidence/scope/coverage gates green.
 - **Verification:** Re-read every `implementation-summary.md` claim at its cited source — one-score/scale/name mandate, five core slots, surface-parity clause, named optional fields, COSTAR register, and "O1 untouched" all **confirmed** consistent across both contract files; render math (`79.44/100 → 0.79`) correct; empty-result exemption logically sound.
 - **Findings (2× P2, no P0/P1):**

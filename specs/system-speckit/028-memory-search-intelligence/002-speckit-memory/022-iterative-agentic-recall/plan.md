@@ -152,7 +152,7 @@ Required inventories:
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Loop governor (greenfield) | Internal | Green (built default-off) | Gate-zero delivered in 16ee739b08 (`agentic-loop-governor.ts`, 18 tests), packet unblocked, promotion pending |
+| Loop governor (greenfield) | Internal | Green (built default-off) | Gate-zero delivered in 22ad4ab05b (`agentic-loop-governor.ts`, 18 tests), packet unblocked, promotion pending |
 | Letta tool-rule DAG template | External (research) | Green (documented) | Lose the bounding template, would need a fresh governor design |
 | Benchmark harness | Internal | Yellow (to build in Phase 3) | Cannot make an evidence-based promotion decision |
 | LLM availability in MCP runtime | Internal | Yellow | Agentic path can't run, deterministic path unaffected (flag-off) |

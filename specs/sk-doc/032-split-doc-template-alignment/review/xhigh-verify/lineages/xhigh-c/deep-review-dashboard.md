@@ -107,7 +107,7 @@ No corrupt JSONL lines detected.
 - candidateCoverage: covered=7, ruledOut=17, deferred=1, blocked=0
 
 ### Search Debt
-- iteration 4 content_preservation (deferred): No authoritative all-target rename manifest or normalized 160-target diff audit was available within the final-pass budget.; evidence=git:dd9e700477384f2b4312f3236428e300b29e840e, git:1922cffed797c62b96e8cf862308232b3f6ba7a8, .opencode/specs/sk-doc/032-split-doc-template-alignment/spec.md:70
+- iteration 4 content_preservation (deferred): No authoritative all-target rename manifest or normalized 160-target diff audit was available within the final-pass budget.; evidence=git:2705b1794ae0e04d2a1fbe32cf962977bb6037d8, git:5ee70a6870e549f7140f14ee38bc3cd951970d39, .opencode/specs/sk-doc/032-split-doc-template-alignment/spec.md:70
 
 ### Ruled-Out Candidates
 - iteration 1 frontmatter_contract (ruled_out): All 163 files satisfied the frontmatter/version checks.; evidence=.opencode/specs/sk-doc/032-split-doc-template-alignment/checklist.md:49, .opencode/specs/sk-doc/032-split-doc-template-alignment/spec.md:67

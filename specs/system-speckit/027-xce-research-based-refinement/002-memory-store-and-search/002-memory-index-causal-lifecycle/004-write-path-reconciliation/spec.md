@@ -170,7 +170,7 @@ Introduce a typed `(desiredRows, priorRows) -> DiffAction[]` model so memory wri
 | REQ-003 | `memory_index_scan` produces a statediff plan before DB writes. | Scan logs or debug output include planned actions before any target sink mutates rows. |
 | REQ-004 | Stale deletes remain guarded by replacement-index success. | Existing behavior that defers stale cleanup after failed replacement indexing is preserved in statediff planning. |
 | REQ-005 | `memory_save` uses statediff for durable storage targets after semantic policy gates. | Save path reconciles memory row, embedding row, lexical rows, and related projections through target sinks. |
-| REQ-010 | The `memory_save` statediff conversion MUST model post-insert enrichment as ASYNC / pending-marker replay (commit `0060a097b3` deferred enrichment after row commit), not same-response graph writes. | Durable rows commit synchronously; generated graph/enrichment edges are applied via the async pending-marker path and reconciled on replay, never in the same save response. |
+| REQ-010 | The `memory_save` statediff conversion MUST model post-insert enrichment as ASYNC / pending-marker replay (commit `7504112605` deferred enrichment after row commit), not same-response graph writes. | Durable rows commit synchronously; generated graph/enrichment edges are applied via the async pending-marker path and reconciled on replay, never in the same save response. |
 
 ### P1 - Required (complete OR user-approved deferral)
 

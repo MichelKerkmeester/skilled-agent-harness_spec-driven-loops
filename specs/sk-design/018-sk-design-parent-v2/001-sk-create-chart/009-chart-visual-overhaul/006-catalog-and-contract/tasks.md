@@ -114,7 +114,7 @@ contextType: "implementation"
 - [x] CHK-001 [P0] Requirements documented in spec.md
 - [x] CHK-002 [P0] Technical approach defined in plan.md
 - [x] CHK-003 [P0] The twenty-row re-check written down before any row was edited. It is in ADR-001, and no row was edited
-- [x] CHK-004 [P1] Phases 001 through 005 closed. 005 is committed at `ddc0db1e36`
+- [x] CHK-004 [P1] Phases 001 through 005 closed. 005 is committed at `666afa7f18`
 <!-- /ANCHOR:pre-impl -->
 
 ---

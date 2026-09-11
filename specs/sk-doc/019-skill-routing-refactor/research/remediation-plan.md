@@ -39,20 +39,20 @@ produced false positives — see §5).
 ## 2. Canonical finding register
 
 Legend — **Status:** ✅ done · ⬜ remaining · ❌ rejected (verified false/non-defect).
-**Sev:** P1/P2. **Prov:** NEW (introduced/exposed by commit `140266be3e`) · PRE (pre-existing).
+**Sev:** P1/P2. **Prov:** NEW (introduced/exposed by commit `3c94775856`) · PRE (pre-existing).
 
 | # | Finding | luna / sol | Sev | Prov | Status | Where |
 |---|---------|-----------|-----|------|--------|-------|
-| F-01 | Residual "sk-code + sk-doc ONLY" surface-router claims (lines 48/56/136) vs 7/7 reality | F06 / CF-09 | P1 | NEW | ✅ | `v4 2cc0787dcb` |
-| F-02 | "operator-gated" claim vs runtime **default-on** (7/7 manifests compiled) | — / CF-11+12 | P1 | NEW | ✅ | wt `9f7aeebc3d` |
-| F-03 | "7/7 hubs PASS" overstated — route-gold applies to 6 hubs | F08 / CF-18 | P1 | NEW | ✅ | `v4 2cc0787dcb` |
-| F-04 | Resume chain stranded — `015/003` `last_active_child_id` null | F09 / CF-05 | P1 | NEW | ✅ | `v4 2cc0787dcb` (015→003) |
-| F-05 | Parent prose conflates benchmark replay with live compiled serving | F07 / CF-10 | P1 | PRE | ✅ | `v4 2cc0787dcb` |
-| F-06 | `001-research/004` `_memory.continuity` over-long narrative (`SPECDOC_FRONTMATTER_004`) | F03 / CF-02 | P1 | PRE | ✅ | wt `a3f5b74e99` |
-| F-07 | `011` stale `smart_routing.md` path ×4 | F13 / CF-15 | P2 | PRE | ✅ | wt `a3f5b74e99` |
-| F-08 | `012` `mcp_server` refs ×25 (lib/tests → `mcp-server`; hooks → top-level `hooks/`) | F12 / CF-16 | P1 | PRE | ✅ | wt `0c7d26900f` |
-| F-09 | Nested `015/003/015` phase map lists 12 of 14 children (missing 013, 016) | — / CF-07 | P1 | PRE | ✅ | wt `0c7d26900f` |
-| F-10 | Nested `015/003/015` pointer at stale `011`; current in-progress is `013` | F10 / CF-08 | P1 | PRE | ✅ | wt `0c7d26900f` |
+| F-01 | Residual "sk-code + sk-doc ONLY" surface-router claims (lines 48/56/136) vs 7/7 reality | F06 / CF-09 | P1 | NEW | ✅ | `v4 b50ab61352` |
+| F-02 | "operator-gated" claim vs runtime **default-on** (7/7 manifests compiled) | — / CF-11+12 | P1 | NEW | ✅ | wt `933992c6d9` |
+| F-03 | "7/7 hubs PASS" overstated — route-gold applies to 6 hubs | F08 / CF-18 | P1 | NEW | ✅ | `v4 b50ab61352` |
+| F-04 | Resume chain stranded — `015/003` `last_active_child_id` null | F09 / CF-05 | P1 | NEW | ✅ | `v4 b50ab61352` (015→003) |
+| F-05 | Parent prose conflates benchmark replay with live compiled serving | F07 / CF-10 | P1 | PRE | ✅ | `v4 b50ab61352` |
+| F-06 | `001-research/004` `_memory.continuity` over-long narrative (`SPECDOC_FRONTMATTER_004`) | F03 / CF-02 | P1 | PRE | ✅ | wt `16308ed4fc` |
+| F-07 | `011` stale `smart_routing.md` path ×4 | F13 / CF-15 | P2 | PRE | ✅ | wt `16308ed4fc` |
+| F-08 | `012` `mcp_server` refs ×25 (lib/tests → `mcp-server`; hooks → top-level `hooks/`) | F12 / CF-16 | P1 | PRE | ✅ | wt `21576d36e7` |
+| F-09 | Nested `015/003/015` phase map lists 12 of 14 children (missing 013, 016) | — / CF-07 | P1 | PRE | ✅ | wt `21576d36e7` |
+| F-10 | Nested `015/003/015` pointer at stale `011`; current in-progress is `013` | F10 / CF-08 | P1 | PRE | ✅ | wt `21576d36e7` |
 | F-11 | sk-code typed contract "resolves 0 resources" | F15 / — | P1 | PRE | ❌ | live route works; documented lossy index-table benchmark-replay |
 | F-12 | Parent handoff row names "wrong" `015/spec.md` + `016/spec.md` | — / CF-14 | P2 | NEW | ❌ | both files exist — sol false positive |
 | F-13 | Duplicate `012-*` prefix under 015/003 is a resume collision | — / CF-06 | P2 | PRE | ❌ | both models ruled non-defect (full IDs resolve) |
@@ -77,7 +77,7 @@ Legend — **Status:** ✅ done · ⬜ remaining · ❌ rejected (verified false
 
 ## 3. Completed (verify-first, committed)
 
-All 4 NEW findings from commit `140266be3e` are fixed, plus 6 pre-existing. See §2 for
+All 4 NEW findings from commit `3c94775856` are fixed, plus 6 pre-existing. See §2 for
 locations. Two model claims were **rejected on verification** (F-11, F-12) and one **ruled
 non-defect by both models** (F-13) — do not "fix" these.
 
@@ -151,7 +151,7 @@ Both models produced false positives, caught only by disk verification:
   isolates edits from the concurrent session's main-tree containment sweeps (canary-confirmed).
 - **Do all remaining work in the worktree**, commit per wave, then `git merge --no-ff` into
   `skilled/v4.0.0.0`. The branch is disjoint from the concurrent `system-deep-loop/036` work.
-- `v4` also carries **unpushed** `2cc0787dcb` (F-01/03/04/05) + the concurrent session's commits;
+- `v4` also carries **unpushed** `b50ab61352` (F-01/03/04/05) + the concurrent session's commits;
   push `v4` when that session settles (its owner controls push timing).
 
 ---
@@ -183,17 +183,17 @@ sk-design and deep-loop-runtime items.
 Waves executed in worktree `sk-doc/0104-019-audit-remediation`. Verify-first materially changed
 several findings from the original register.
 
-**R1 — done (`247d82a779`).** F-14 (012): root cause was `hasStartedWork()` — 012 has 8 completed
+**R1 — done (`d1997f1fd0`).** F-14 (012): root cause was `hasStartedWork()` — 012 has 8 completed
 tasks (Layer A; deliverables verified on disk), so implementation-summary.md became required while
 the packet still claimed "Planned". Authored a truthful In-Progress implementation-summary + set
 Status In Progress. **012 now validates Errors:0.**
 
-**R2 — one real defect, rest verify-adjusted to non-defects (`7534f7021d`).** Only F-16 (`014`)
+**R2 — one real defect, rest verify-adjusted to non-defects (`6ba6a42af0`).** Only F-16 (`014`)
 was a real narrative defect — declared Planned in spec+graph but 23/25 checklist + impl-summary =
 In Progress; reconciled. The others are **graph-derivation lag on truthful specs**, not over-claims:
 F-15 (`001-research/006` "Research Complete" + impl-summary = true), F-18 (`015/003/009` "Complete, REQ-006
 deferred out-of-scope" validates Errors:0), F-18 (015/013 "Complete" carries the verified default-on
-commit `7dfffa0c93`). sol CF-19/CF-20 counted explicitly-deferred / minor items as incomplete. No edit.
+commit `4cd19370da`). sol CF-19/CF-20 counted explicitly-deferred / minor items as incomplete. No edit.
 
 **R3 — verified REAL; deferred as a scoped structural decision.** 001-research/008, 001-research/010, and all 8
 001-research/009 idea-children declare Level 2 but are research deep-dives with only `spec.md` + `presentation.md`

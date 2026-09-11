@@ -73,7 +73,7 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T009 Re-capture the scorer baseline (`node scripts/routing-accuracy/capture-scorer-eval-baseline.mjs --write` from `mcp_server/`) [evidence: `scorer-eval-baseline.json` `capturedAt: 2026-07-16`, `capturedAtSha: 2146dee114`; metrics: full_corpus_top1 153/200 (0.765), holdout_top1 57/78 (0.7308), delegation bucket 10/11 (0.9091)]
+- [x] T009 Re-capture the scorer baseline (`node scripts/routing-accuracy/capture-scorer-eval-baseline.mjs --write` from `mcp_server/`) [evidence: `scorer-eval-baseline.json` `capturedAt: 2026-07-16`, `capturedAtSha: 36f7e4c1d2`; metrics: full_corpus_top1 153/200 (0.765), holdout_top1 57/78 (0.7308), delegation bucket 10/11 (0.9091)]
 - [x] T010 Run the ratchet gate (`npx vitest run tests/parity/scorer-eval-baseline-ratchet.vitest.ts`) [evidence: `Test Files 1 passed (1)`, `Tests 7 passed (7)`]
 - [x] T011 Corpus integrity + spec child gates [evidence: JSON parse `lines: 200 invalid: 0`; generate-description.js + backfill-graph-metadata.js run; `validate.sh --strict --no-recursive` PASSED]
 <!-- /ANCHOR:phase-3 -->

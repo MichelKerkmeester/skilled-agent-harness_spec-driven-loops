@@ -82,8 +82,8 @@ Unit tests at both runtime dispatch entry points assert (a) every allowlisted id
 ## 6. DEPENDENCIES
 | Dependency | Type | Status | Impact if Blocked |
 |---|---|---|---|
-| Phase 002 (executor support) | Internal | Green (committed `ecd91d3373`) | `CURSOR_SUPPORTED_MODELS`/`buildCursorLineageCommand` must exist to harden |
-| Phase 003 (skill packet) | Internal | Green (committed `11024cc893`) | `SKILL.md`/`cli-reference.md` must exist to rewrite |
+| Phase 002 (executor support) | Internal | Green (committed `b8d52d6ae7`) | `CURSOR_SUPPORTED_MODELS`/`buildCursorLineageCommand` must exist to harden |
+| Phase 003 (skill packet) | Internal | Green (committed `b5926f2a45`) | `SKILL.md`/`cli-reference.md` must exist to rewrite |
 | `cursor-agent --list-models` (authenticated) | External | Green — account authenticated this session | Exact id confirmation for the allowlist |
 <!-- /ANCHOR:dependencies -->
 

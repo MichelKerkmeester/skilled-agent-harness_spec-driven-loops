@@ -57,7 +57,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-001 | REQ-001 | Given a staged command source whose mirrors were not regenerated, When the hook runs, Then it exits 1 naming `sync-runtime-mirrors.cjs` | Harness shape 2: `exit=1 BLOCKED [gate:mirror-parity]: sync-runtime-mirrors.cjs failed` | Met | - |
 | AC-002 | REQ-002 | Given regenerated mirrors that are untracked, When the hook runs, Then it exits 1 listing the unstaged outputs | Harness shape 3: `BLOCKED [gate:mirror-parity]: a generated mirror has changes that are not staged` | Met | - |
 | AC-003 | REQ-001 | Given a clean tree, When the hook runs, Then it exits 0 | Harness shape 1: `exit=0` | Met | - |
-| AC-004 | REQ-003 | Given a push touching only a mirror path, When GitHub evaluates triggers, Then Spec-Kit Check runs | Both `paths:` blocks parse with ten entries; runs `34153814137` (main) and `34153812346` (v4) fired on `328accca03` and succeeded | Met | - |
+| AC-004 | REQ-003 | Given a push touching only a mirror path, When GitHub evaluates triggers, Then Spec-Kit Check runs | Both `paths:` blocks parse with ten entries; runs `34153814137` (main) and `34153812346` (v4) fired on `e40302c123` and succeeded | Met | - |
 | AC-005 | REQ-004 | Given the default branch, When open alerts are listed, Then the list is empty | `gh api .../dependabot/alerts?state=open` after the lockfile push, recorded in `implementation-summary.md` | Met | - |
 | AC-006 | REQ-005 | Given the bumped advisor lockfile, When the suite runs, Then it passes at the same count as the HEAD lockfile | 880 passed with the fixed lock; 880 passed with the HEAD lock as control | Met | - |
 <!-- /ANCHOR:criteria -->

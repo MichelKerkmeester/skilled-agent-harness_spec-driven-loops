@@ -54,7 +54,7 @@ Author `cli-pi/manual-testing-playbook/manual-testing-playbook.md` plus 19 `PI-N
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [x] Phase 012 confirmed landed (its `.pi/prompts/`, `.pi/agents/`, `.pi/extensions/` artifacts exist and are live-verified). [EVIDENCE: commit `97036ca885`]
+- [x] Phase 012 confirmed landed (its `.pi/prompts/`, `.pi/agents/`, `.pi/extensions/` artifacts exist and are live-verified). [EVIDENCE: commit `74f5988ba2`]
 - [x] `cli-cursor/manual-testing-playbook/`'s exact structure read and understood as the shape template. [EVIDENCE: this session's research agent report]
 - [x] `sk-doc/create-manual-testing-playbook/SKILL.md`'s canonical contract read in full. [EVIDENCE: same report]
 

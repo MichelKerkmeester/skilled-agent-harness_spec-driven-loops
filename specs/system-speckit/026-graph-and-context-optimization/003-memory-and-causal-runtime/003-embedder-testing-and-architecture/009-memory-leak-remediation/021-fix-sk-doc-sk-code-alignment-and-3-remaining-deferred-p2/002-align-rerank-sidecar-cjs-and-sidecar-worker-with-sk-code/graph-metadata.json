@@ -44,7 +44,8 @@
       "plan.md",
       "tasks.md",
       "decision-record.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/node_modules/vitest/vitest.mjs"
     ],
     "entities": [
       {
@@ -75,6 +76,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "vitest.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/node_modules/vitest/vitest.mjs",
         "source": "derived"
       },
       {
@@ -184,17 +191,11 @@
         "kind": "proper_noun",
         "path": "decision-record.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Two sidecar files have documented sk-code drift",
     "created_at": "2026-05-23T11:55:36.907Z",
-    "last_save_at": "2026-08-30T15:39:31.521Z",
+    "last_save_at": "2026-09-11T16:42:33.177Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +205,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d6a39650bd63b7d74c8bc6277ba11527d8c675eac57c5975c6a1419ee3ad4a56",
+    "source_fingerprint": "sha256:37a2bd4781007b6a848080bba1142e6a9cb5a73553dde15247e3ae06ff2aae45",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4237870afdf666adf203a115e2fe857e4f8c69ef5ab4ca53f260af9c600dcf79",
-      "plan.md": "4abc5d50db5bcee765e1c5ab3dea82f788ef4b3ae351f94837f99bffd158fa3f",
-      "tasks.md": "f30b7133df723805c3dd1748299404ce6ef7dbc2e19829bedc69ec33012ff81c",
-      "decision-record.md": "01e36e7000fdb61cafc1c7fae2a6ba4abdf052c4c97ac94bfe8cdde63a055c64",
+      "spec.md": "b61f8353e85cc3aac6c90c51bd04656f03e419d9f403940610653eeda6b579d9",
+      "plan.md": "b19cb9da8f216936528909debd47319d046a3fa25208c6528807f5d335725015",
+      "tasks.md": "89309ca4cf9841ec8366498de1a04ec2b43cbbb5ad0a281b048cb14c01be6fa0",
+      "decision-record.md": "3bee5768a413fb0c2b2527b45d5718328b836cdbebaf581552f71350ff166134",
       "implementation-summary.md": "98167ae1088b4df45d02f236937c122cb936f51a30ec0b09062cd0a98b27ef3c"
     },
     "last_active_child_id": null,

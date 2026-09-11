@@ -12,7 +12,7 @@ _memory:
     packet_pointer: "sk-communication/001-sk-communication-creation/008-packaging-and-release-hardening"
     last_updated_at: "2026-08-13T04:36:10.000Z"
     last_updated_by: "claude"
-    recent_action: "Completed the Phase 008 framework and pinned checkpoint aea92b33b6."
+    recent_action: "Completed the Phase 008 framework and pinned checkpoint 7fa595f709."
     next_safe_action: "Run the operator release prerequisites, then record the parent release decision."
     blockers: []
     key_files:
@@ -41,7 +41,7 @@ Phase 008 completes the implementation of the portable CLI communication project
 <!-- ANCHOR:when-to-use -->
 ## WHEN TO USE THIS TEMPLATE
 
-Open this handover when taking the parent packet's release decision. Phase 008 is complete at checkpoint `aea92b33b6` and finishes the implementation of the portable CLI communication projection: packaging, the compatibility doctor, the release gate, original-only rollback, docs, and rehearsals are all built and verified. The release is blocked on operator-supplied evidence — the human non-inferiority study, a live credentialed smoke, and fresh provider facts — not on more code.
+Open this handover when taking the parent packet's release decision. Phase 008 is complete at checkpoint `7fa595f709` and finishes the implementation of the portable CLI communication projection: packaging, the compatibility doctor, the release gate, original-only rollback, docs, and rehearsals are all built and verified. The release is blocked on operator-supplied evidence — the human non-inferiority study, a live credentialed smoke, and fresh provider facts — not on more code.
 <!-- /ANCHOR:when-to-use -->
 
 ---
@@ -54,7 +54,7 @@ Open this handover when taking the parent packet's release decision. Phase 008 i
 - **Phase completed**: Package hardening, compatibility doctor, release gate, rollback, docs, and rehearsals
 - **Handover time**: 2026-08-12T11:24:18.928Z
 - **Recent action**: Passed the 289-test package gate, `npm pack --dry-run`, a second-model adversarial review, and strict recursive validation.
-- **Implementation checkpoint**: `aea92b33b6`
+- **Implementation checkpoint**: `7fa595f709`
 <!-- /ANCHOR:handover-summary -->
 
 ---

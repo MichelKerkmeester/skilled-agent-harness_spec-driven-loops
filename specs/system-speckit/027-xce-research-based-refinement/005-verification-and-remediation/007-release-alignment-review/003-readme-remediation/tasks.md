@@ -68,7 +68,7 @@ _memory:
 
 ### Re-grep + Commit
 - [x] T007 [P2] Verify stale signatures gone (re-grep) + spot-checks — CLI=37, `--agent` guidance, rosters confirmed
-- [x] T008 [P1] Commit scoped + push — `83f36b8050`, `4fd438323e`
+- [x] T008 [P1] Commit scoped + push — `9c5d509038`, `865888ee49`
 
 
 <!-- /ANCHOR:phase-3 -->

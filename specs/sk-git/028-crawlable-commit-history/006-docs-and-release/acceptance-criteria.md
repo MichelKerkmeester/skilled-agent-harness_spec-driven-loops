@@ -54,9 +54,9 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given the release, When README, changelog and SKILL.md are validated, Then each is VALID and both versions read 1.6.0.0 | three VALID lines, `d6ca91f853` | Met | - |
-| AC-002 | REQ-002 | Given the vocabulary edit, When the metadata gate and package check run, Then both pass | gate checked 13 passed 13 fixed 1; Result: PASS; `a8135ef83c` | Met | - |
-| AC-003 | REQ-003 | Given ADR-005, When the rule and AGENTS.md are edited, Then the freeze paragraph and the identity row exist with the version bumped | `d4d6096ac1`, diff reviewed in full | Met | - |
+| AC-001 | REQ-001 | Given the release, When README, changelog and SKILL.md are validated, Then each is VALID and both versions read 1.6.0.0 | three VALID lines, `dcdf2f8441` | Met | - |
+| AC-002 | REQ-002 | Given the vocabulary edit, When the metadata gate and package check run, Then both pass | gate checked 13 passed 13 fixed 1; Result: PASS; `8d5acf93d5` | Met | - |
+| AC-003 | REQ-003 | Given ADR-005, When the rule and AGENTS.md are edited, Then the freeze paragraph and the identity row exist with the version bumped | `581e2862a5`, diff reviewed in full | Met | - |
 | AC-004 | US-002 | Given a commit-id prompt, When the advisor scores it on the main checkout, Then sk-git is recommended at or above the bar | deferred to the merge: the daemon indexes the main checkout | Unmet | - |
 
 ### Status values

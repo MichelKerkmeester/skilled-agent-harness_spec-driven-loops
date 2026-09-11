@@ -49,7 +49,7 @@ _memory:
 <!-- ANCHOR:when-to-use -->
 ## WHEN TO USE THIS TEMPLATE
 
-Open this handover before touching the orphan MCP sweeper, the launcher idle timeout, or the Claude session-exit cleanup. Implementation, documentation, and the dry-run review are complete and pushed to `origin/main` at `e85fb49e27`. What is deliberately not done is activation: the LaunchAgent was never installed or loaded and the home-level Claude config was never modified, so a next session starts with dry-run and read-only checks and asks before any real sweep.
+Open this handover before touching the orphan MCP sweeper, the launcher idle timeout, or the Claude session-exit cleanup. Implementation, documentation, and the dry-run review are complete and pushed to `origin/main` at `9eeebf9d9f`. What is deliberately not done is activation: the LaunchAgent was never installed or loaded and the home-level Claude config was never modified, so a next session starts with dry-run and read-only checks and asks before any real sweep.
 <!-- /ANCHOR:when-to-use -->
 
 ---
@@ -60,7 +60,7 @@ Open this handover before touching the orphan MCP sweeper, the launcher idle tim
 - **From Session:** 2026-05-24 Codex desktop implementation and documentation session
 - **To Session:** next AI or operator validation session
 - **Phase Completed:** implementation, documentation, dry-run review, commit, and push
-- **Handover Time:** 2026-05-24 after commit `e85fb49e27f0e8d186a51ffad71d7eb543bc61c8`
+- **Handover Time:** 2026-05-24 after commit `9eeebf9d9f7bf6e04ab44d81c34bdc3b44c9e024`
 - **Current Branch:** `main`
 - **Remote State:** pushed to `origin/main`
 - **Spec Packet:** `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/022-orphan-mcp-leak-prevention/`
@@ -81,7 +81,7 @@ Open this handover before touching the orphan MCP sweeper, the launcher idle tim
 | Chain Claude cleanup inside the existing single nested `Stop` hook | Existing tests enforce canonical nested Stop hook shape. | `.claude/settings.local.json` keeps one Stop hook command and appends cleanup after `session-stop.js`. |
 | Implement idle self-exit in MCP server processes | Servers can observe primary stdio and secondary IPC activity directly. | Added `SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN` support across Spec Kit, Skill Advisor, and Code Graph MCP servers. |
 | Preserve operator safety rules in the sweeper | The original incident report required multi-session safety and `devin` preservation. | Sweeper preserves `devin --print`, `/tmp/devin-*`, `/tmp/codex-browser-use`, Ollama, non-MCP TCP listeners, live Claude descendants, and freshest young MCP instances. |
-| Commit all staged work exactly as requested | User explicitly asked to commit and push all staged files to `main`. | Created and pushed commit `e85fb49e27f0e8d186a51ffad71d7eb543bc61c8`. |
+| Commit all staged work exactly as requested | User explicitly asked to commit and push all staged files to `main`. | Created and pushed commit `9eeebf9d9f7bf6e04ab44d81c34bdc3b44c9e024`. |
 
 ### 2.2 Blockers Encountered
 
@@ -140,7 +140,7 @@ Open this handover before touching the orphan MCP sweeper, the launcher idle tim
 
 ### 3.4 Commit and Push State
 
-- Commit: `e85fb49e27f0e8d186a51ffad71d7eb543bc61c8`
+- Commit: `9eeebf9d9f7bf6e04ab44d81c34bdc3b44c9e024`
 - Commit message: `chore: update agent runtime infrastructure`
 - Pushed: yes, `origin/main`
 - Cached diff check before commit: passed after staged whitespace cleanup
@@ -182,7 +182,7 @@ The most important runtime safety rule is preservation before killing. Any futur
 
 The idle timeout is server-owned, not launcher-owned. `SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN=0` disables it, fractional values are allowed for tests, and the default remains 30 minutes. Activity is refreshed from primary stdio plus secondary IPC socket connect, data, and write paths.
 
-The pushed commit was large and included other staged repo work in addition to the orphan MCP packet. That was intentional for the commit action because the operator asked to commit all staged files. Do not infer that every changed file in `e85fb49e27` belongs to this packet.
+The pushed commit was large and included other staged repo work in addition to the orphan MCP packet. That was intentional for the commit action because the operator asked to commit all staged files. Do not infer that every changed file in `9eeebf9d9f` belongs to this packet.
 
 If the next session tests this work, use dry-run and read-only checks first. Real sweeps, LaunchAgent loading, and home-level config writes need fresh operator approval.
 <!-- /ANCHOR:session-notes -->

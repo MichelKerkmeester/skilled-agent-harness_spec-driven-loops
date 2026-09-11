@@ -36,7 +36,7 @@ Daemon re-election was on only because the runtime configs set `SPECKIT_DAEMON_R
 ### Fixed
 
 - The `.claude/mcp.json` and `.mcp.json` invalid-JSON missing comma in the code-index block. Both files were unparseable before this phase, regardless of the alignment work.
-- An initial over-aggressive removal of all notes was corrected on user follow-up (commit `645bd69fb2`): the operational and reference notes were restored, canonicalised to "Node", and aligned 1:1, with only the drift-prone trivia removed.
+- An initial over-aggressive removal of all notes was corrected on user follow-up (commit `5c3f38c058`): the operational and reference notes were restored, canonicalised to "Node", and aligned 1:1, with only the drift-prone trivia removed.
 
 ### Verification
 
@@ -67,5 +67,5 @@ Daemon re-election was on only because the runtime configs set `SPECKIT_DAEMON_R
 
 - Live daemons and warm sessions keep the prior behavior until their next respawn or fresh session, when the launcher `.cjs` and the configs are re-read.
 - `SPECKIT_ADVISOR_DOC_TRIGGERS` is now active in Claude Code and opencode too, not just codex. It is a dampened derived-lane signal, low-risk and intended repo-wide.
-- A combined five-iteration deep review of this phase and `009` ran after ship. Two of its findings touched these config and launcher surfaces (the stale reelection comment and the `_NOTE_INDEX_DEFAULTS` selectable-subset note) and were remediated in commit `3dc7148f04`, documented in the `009` changelog.
-- The `_NOTE_*` documentation keys in these configs were later de-numbered (for example `_NOTE_6_GET_VOYAGE_KEY` became `_NOTE_GET_VOYAGE_KEY`) and re-sorted into a logical per-server reading order in commit `daf9f28444`, with the four configs kept aligned 1:1.
+- A combined five-iteration deep review of this phase and `009` ran after ship. Two of its findings touched these config and launcher surfaces (the stale reelection comment and the `_NOTE_INDEX_DEFAULTS` selectable-subset note) and were remediated in commit `ee11e5a2b9`, documented in the `009` changelog.
+- The `_NOTE_*` documentation keys in these configs were later de-numbered (for example `_NOTE_6_GET_VOYAGE_KEY` became `_NOTE_GET_VOYAGE_KEY`) and re-sorted into a logical per-server reading order in commit `83e754f6fd`, with the four configs kept aligned 1:1.

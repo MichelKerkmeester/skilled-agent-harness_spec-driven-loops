@@ -201,7 +201,7 @@
     ],
     "causal_summary": "Two scorers answer the same question",
     "created_at": "2026-09-02T16:34:04Z",
-    "last_save_at": "2026-09-02T22:06:42.540Z",
+    "last_save_at": "2026-09-11T16:42:12.680Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +212,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:04ea88def6590c941127bf10bc62c80cf041fba68e61417f5bb14bf8b69a9056",
+    "source_fingerprint": "sha256:6f525ee316be2719c32e55e1e0ed02e6b5dda95feb865e8448f012cc6922f295",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "90323e0a496b451be7cee9588c4ce2ee165a53bbfdc1926673e84298126cc70c",
-      "plan.md": "853912e331bf6541cfee3cf967c8444f540ddd124702c12ec49c112ee1bcd54a",
-      "tasks.md": "9d3199a13b91dcaf97353571ba4869b8029f5ad1cdbe34d76a219219b39c347f",
-      "implementation-summary.md": "b21ff521f040c1ade433bd88fe8fd5f100a42fb2e3c49d501994d93551210de9"
+      "plan.md": "7ed6ef872c4ab94bc988b6ae604e8fb281ea03ac1b6ff54838e0eed299ad8c94",
+      "tasks.md": "2fe6ab679209084c63937bab23f567bb76d70cad8cc5632bb816cbf4137b834b",
+      "implementation-summary.md": "b58cedbc7f1167b18dc587aac4838b1e9470f694aaf92db4a3f08b979bd78847"
     },
     "last_active_child_id": null,
     "last_active_at": null

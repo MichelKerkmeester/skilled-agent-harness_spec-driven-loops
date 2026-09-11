@@ -9,7 +9,7 @@ _memory:
     packet_pointer: "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/002-deprecate-numbered-snippet-filenames/005-validate-and-rebenchmark"
     last_updated_at: "2026-07-17T14:36:44Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Recursive validate Errors 0 + independent review; spec closure commit 8d0580e6aa"
+    recent_action: "Recursive validate Errors 0 + independent review; spec closure commit 7ffa3f75b7"
     next_safe_action: "Complete"
     blockers: []
     completion_pct: 100
@@ -49,7 +49,7 @@ confirmed pre-existing.
 The formal `/deep:review` loop was unavailable — its command contract is mid-refactor by a concurrent session
 (deleted reducer, in-flight snapshot tooling), so an independent review was run instead (operator-approved),
 each dimension a separate GPT-5.6-sol-fast xhigh agent whose findings were verified against `HEAD~2`. Spec
-closure commit `8d0580e6aa`.
+closure commit `7ffa3f75b7`.
 <!-- /ANCHOR:how-delivered -->
 
 <!-- ANCHOR:decisions -->

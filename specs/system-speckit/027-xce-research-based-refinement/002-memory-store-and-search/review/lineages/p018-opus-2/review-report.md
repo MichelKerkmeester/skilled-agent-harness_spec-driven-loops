@@ -27,7 +27,7 @@ shipped changes do what the spec claims and the single stated correctness risk
 
 One claim could not be executed in this autonomous lineage: REQ-004 ("68 touched-surface
 tests pass"). `npx vitest` requires interactive approval unavailable here, so the
-suite-green claim from `implementation-summary.md` / commit `f1dbb676f2` is recorded as
+suite-green claim from `implementation-summary.md` / commit `a48325ab74` is recorded as
 **operator-verifiable**, not independently confirmed. It does not gate the verdict
 because no P0/P1 correctness defect was found by static review.
 

@@ -140,7 +140,7 @@ Required inventories: the iter-2 adversarial pass ran `rg`/`ls`/`find` across al
 |------------|------|--------|-------------------|
 | cli-devin SWE-1.6 | External | Green | Loop cannot run; verified logged-in at setup |
 | sequential_thinking MCP | External | Green | Iteration reasoning degraded; registered at setup |
-| `deep-loop-runtime/lib/deep-loop/` | Internal | Green | Reducer/convergence break; restored by the 273ae52e30 loop-driver fix |
+| `deep-loop-runtime/lib/deep-loop/` | Internal | Green | Reducer/convergence break; restored by the 326ba40d57 loop-driver fix |
 <!-- /ANCHOR:dependencies -->
 
 ---

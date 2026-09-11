@@ -108,7 +108,7 @@ The required order was followed: REQ-004 fixed the totals shape and guard first,
 | Final `npm run typecheck` | PASS: exit 0 |
 | REQ-001 negative controls | PASS: corrupt/future files unreadable; original bytes preserved; one of two CAS writers rejected. HANDOFF added a real two-OS-process test proving `withCrossProcessLock` serializes the whole cycle, not just same-process writers. |
 | REQ-004 negative controls | PASS: `aborted` rejected; `stop` recorded; `NaN` and negative input left totals unchanged |
-| REQ-002 negative control | A HANDOFF review correctly found the original exact-text pin's expected text already contained the post-split relabeled line, so it never proved byte-identity with the actual pre-split renderer. `telemetry.test.ts` now also line-diffs against the real pre-split renderer's frozen output (`git show 19ac4a458d`), asserting every line matches except the one deliberately relabeled savings line. |
+| REQ-002 negative control | A HANDOFF review correctly found the original exact-text pin's expected text already contained the post-split relabeled line, so it never proved byte-identity with the actual pre-split renderer. `telemetry.test.ts` now also line-diffs against the real pre-split renderer's frozen output (`git show 3124cb6e8e`), asserting every line matches except the one deliberately relabeled savings line. |
 | Standalone REQ-005 harness | PASS: 10/50/200/800 turns measured; no hot-path change |
 | Crossover benchmark | NOT RUN by design; phase 003 packaging fix is not yet available |
 <!-- /ANCHOR:verification -->

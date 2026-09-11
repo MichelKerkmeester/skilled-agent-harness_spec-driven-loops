@@ -19,7 +19,7 @@ contextType: "implementation"
 
 ### Summary
 
-This phase shipped the C3-A edge-presence currentness candidate behind the default-off `SPECKIT_EDGE_PRESENCE_CURRENTNESS` flag, alongside a sequenced Level-3 plan for the four remaining candidates. The read-side currentness reconciliation lands in `temporal-edges.ts` `getValidEdges` with its schema migration, and recall stays byte-identical while the flag is off. The four remaining currentness and temporal-recall candidates stay pending schema, benchmark and shared-infra evidence. Commit `cb92f2f211` carried the slice with a 241-line passing test.
+This phase shipped the C3-A edge-presence currentness candidate behind the default-off `SPECKIT_EDGE_PRESENCE_CURRENTNESS` flag, alongside a sequenced Level-3 plan for the four remaining candidates. The read-side currentness reconciliation lands in `temporal-edges.ts` `getValidEdges` with its schema migration, and recall stays byte-identical while the flag is off. The four remaining currentness and temporal-recall candidates stay pending schema, benchmark and shared-infra evidence. Commit `8cc41ae155` carried the slice with a 241-line passing test.
 
 ### Added
 
@@ -40,7 +40,7 @@ _No fixes recorded._
 
 - Strict phase validation: PASS.
 - Wave-0 evidence cross-check: PASS.
-- Code verification: PASS. C3-A test 3 pass and typecheck 0 at commit `cb92f2f211`.
+- Code verification: PASS. C3-A test 3 pass and typecheck 0 at commit `8cc41ae155`.
 
 ### Files Changed
 

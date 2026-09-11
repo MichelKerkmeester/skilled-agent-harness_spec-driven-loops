@@ -4,7 +4,7 @@ trigger_phrases: []
 ---
 # Deep Review Report — 012 Causal-Traversal BFS
 
-Review target: `system-spec-kit/027-xce-research-based-refinement/012-causal-traversal-bfs` (shared BFS traversal replacing two recursive-CTE read paths; commit db38d4b921).
+Review target: `system-spec-kit/027-xce-research-based-refinement/012-causal-traversal-bfs` (shared BFS traversal replacing two recursive-CTE read paths; commit 2f9612c58a).
 Mode: autonomous fan-out (`/deep:start-review-loop` via `fanout-run.cjs`), 3× cli-opencode `gpt-5.5-fast --variant high` lineages, strongest-restriction merge.
 
 ---

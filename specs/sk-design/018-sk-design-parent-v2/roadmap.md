@@ -50,7 +50,7 @@ tree the previous one left green.
 
 | # | Phase | Status | What it breaks mid-flight | What proves it fixed |
 |---|-------|--------|---------------------------|----------------------|
-| 1 | `002-hub-and-fundamentals` | **Done** `112d5471f4` | The root has no SKILL.md between move and author, so it lands as one commit | Fleet gate class H pass; two design phrases at baseline |
+| 1 | `002-hub-and-fundamentals` | **Done** `08c9d0605d` | The root has no SKILL.md between move and author, so it lands as one commit | Fleet gate class H pass; two design phrases at baseline |
 | 2 | `003-md-generator-as-mode` | **Done** | The generator's own identity files must go, or the root reports a nested identity; `/design:extract` and the design agent hold dead paths until rewritten | Both hub gates; `skill_graph_validate` clean; the generator's own tests from the new path; the regression 002 introduced closed |
 | 3 | `004-chart-and-diagram-cutover` | **Done** | A router signal whose packet is not on disk fails whichever hub is wrong, so both hubs are edited in one commit | Both parent-skill checks; chart phrases naming sk-design and sk-doc no longer claiming them; the chart corpus checker from its new location |
 | 4 | `001-sk-create-chart` | **Done** | 219 files carry the old pointer until repaired; the trigger index is stale until regenerated | `validate.sh --strict` on the moved packet; pointer sweep clean |

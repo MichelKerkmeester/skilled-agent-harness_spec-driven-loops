@@ -87,7 +87,7 @@ _memory:
 
 ### Manual Verification
 - [x] T025 Confirm strict-gap inventory: sk-code 6, deep-loop 27, sk-design 10 [shipped]
-- [x] T026 Confirm code work was pushed in core and tail commits (`b6fe2f31b1`, `deab5a3853`, `d1b545e4b6`) [shipped]
+- [x] T026 Confirm code work was pushed in core and tail commits (`f35597ffd8`, `deab5a3853`, `a0bbe9f063`) [shipped]
 
 ### Documentation
 - [x] T027 Backfill Level-2 `spec.md` in current template shape (`spec.md`) [current session]

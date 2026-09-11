@@ -19,7 +19,7 @@ contextType: "implementation"
 
 ### Summary
 
-This phase shipped the safe core for off-turn sleep-time consolidation behind default-off flags. The bounded tool-rule governor and a shadow agent scaffold are delivered, while the synchronous save path stays unchanged. Off-turn dispatch, live archival writes and benchmark promotion remain pending. The packet stays default-off, shadow-first and governor-first because it mutates archival memory outside the foreground turn. Commit `8f8776e329` carried the governor and scaffold with a passing governor test.
+This phase shipped the safe core for off-turn sleep-time consolidation behind default-off flags. The bounded tool-rule governor and a shadow agent scaffold are delivered, while the synchronous save path stays unchanged. Off-turn dispatch, live archival writes and benchmark promotion remain pending. The packet stays default-off, shadow-first and governor-first because it mutates archival memory outside the foreground turn. Commit `508af65780` carried the governor and scaffold with a passing governor test.
 
 ### Added
 

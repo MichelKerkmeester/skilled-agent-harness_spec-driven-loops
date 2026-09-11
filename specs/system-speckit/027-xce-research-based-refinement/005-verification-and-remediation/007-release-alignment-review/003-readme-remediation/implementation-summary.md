@@ -67,7 +67,7 @@ The confirmed README / code-README drift from the Track A review was remediated 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The fix ran as a file-disjoint fleet of gpt-5.5-fast markdown seats in a shared worktree, each confirming-then-fixing its area's cited claims before editing. Confidence came from a two-stage gate: an independent 13-seat read-only accuracy audit re-checked every rewrite against live source, and a 12-seat correction fleet closed the flagged long tail. Final re-grep proved the stale signatures gone and no wrong CLI=39 introduced; edits were committed scoped (`83f36b8050`, `4fd438323e`).
+The fix ran as a file-disjoint fleet of gpt-5.5-fast markdown seats in a shared worktree, each confirming-then-fixing its area's cited claims before editing. Confidence came from a two-stage gate: an independent 13-seat read-only accuracy audit re-checked every rewrite against live source, and a 12-seat correction fleet closed the flagged long tail. Final re-grep proved the stale signatures gone and no wrong CLI=39 introduced; edits were committed scoped (`9c5d509038`, `865888ee49`).
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -94,7 +94,7 @@ The fix ran as a file-disjoint fleet of gpt-5.5-fast markdown seats in a shared 
 | Stale-signature re-grep | Pass | resume spelling, BGE/cloud-first defaults, 4-mode roster, dead links → zero in fixed files |
 | Spot-checks | Pass | cli rosters, deep-loop improvement mode confirmed; no wrong CLI=39 remains |
 | Accuracy audit + correction | Pass | false-value long tail closed; corrections are docs-only |
-| Scoped commit | Pass | `83f36b8050`, `4fd438323e` |
+| Scoped commit | Pass | `9c5d509038`, `865888ee49` |
 
 
 <!-- /ANCHOR:verification -->

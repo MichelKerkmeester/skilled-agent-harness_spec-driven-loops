@@ -3,7 +3,7 @@
 **Completed:** 2026-09-03  
 **Iterations:** 10/10 (`max-iterations`)  
 **Baseline citations:** 43  
-**Corpus:** commit `756a7fcd4c`
+**Corpus:** commit `3ce648be44`
 
 ## Verdicts
 

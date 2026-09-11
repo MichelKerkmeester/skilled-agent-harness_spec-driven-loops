@@ -17,7 +17,7 @@ Resource map: resource-map.md not present; skipping coverage gate.
 Memory context refresh: packet spec and root phase map loaded by the orchestrator.
 Next focus: Independently reproduce phase 003's two renamed runtime-reference paths and zero-match `behavior_benchmark/` glob, then resolve the packet-033 renumber dependency with commit and path evidence.
 
-Research Topic: Drift census over packet 036-deep-loop-innovation: have commits after baseline 0ce43ff589 invalidated or degraded any planned phases 003-017? Every phase ultimately needs an explicit verdict with commit SHA plus path:line evidence. Separate first-order path/symbol drift from second-order premise drift.
+Research Topic: Drift census over packet 036-deep-loop-innovation: have commits after baseline 60b9ed8bc2 invalidated or degraded any planned phases 003-017? Every phase ultimately needs an explicit verdict with commit SHA plus path:line evidence. Separate first-order path/symbol drift from second-order premise drift.
 Iteration: 1 of 10
 Focus Area: Independently reproduce phase 003's two renamed runtime-reference paths and zero-match `behavior_benchmark/` glob, then resolve the packet-033 renumber dependency with commit and path evidence.
 Remaining Key Questions:
@@ -49,7 +49,7 @@ All paths are relative to the repo root.
 - Target 3-5 focused research actions and stay within 12 tool calls.
 - Research only. Do not implement fixes or modify files being investigated.
 - Every finding needs `[SOURCE: path:line]`, a commit SHA, or a clearly labeled command-output citation.
-- Use the actual `0ce43ff589..HEAD` commit range. Independently verify the positive controls rather than merely repeating the prompt.
+- Use the actual `60b9ed8bc2..HEAD` commit range. Independently verify the positive controls rather than merely repeating the prompt.
 - The workflow reducer owns strategy, registry, and dashboard. Treat them as read-only.
 - ALLOWED WRITE PATHS are only the iteration narrative, append-only state log, and per-iteration delta file listed above.
 - BANNED OPERATIONS: deletion, rename, truncation, git mutation, or any write outside those three paths.

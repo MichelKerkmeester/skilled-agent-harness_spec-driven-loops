@@ -127,10 +127,10 @@ No data flow changes. Existing launcher and worker inputs/outputs remain untouch
 
 | Dependency | Use |
 |------------|-----|
-| Commit `fbb8a23cda` | CommonJS boxed header/JSDoc precedent |
-| Commit `e5113fedc4` | Council primitive documentation sweep precedent |
-| Commit `8dfafc7189` | TypeScript TSDoc and section divider precedent |
-| Commit `f081112aab` | Recent alignment style precedent |
+| Commit `5a9ecbead3` | CommonJS boxed header/JSDoc precedent |
+| Commit `98b6199c1b` | Council primitive documentation sweep precedent |
+| Commit `002dfa1e7a` | TypeScript TSDoc and section divider precedent |
+| Commit `28f5bd32cc` | Recent alignment style precedent |
 | `verify_alignment_drift.py` | Required proof that sk-code alignment drift is closed |
 <!-- /ANCHOR:dependencies -->
 

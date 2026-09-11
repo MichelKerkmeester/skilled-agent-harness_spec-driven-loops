@@ -2,7 +2,7 @@
 
 ## Focus
 
-Security dimension audit of the 008 deep-skill doc-evolution ship (commit 5f3e0a2f53). This iteration examined the 5 deep-* skills' documentation for exposed secrets, unsafe example commands, host/path exposure, and permission/scope guidance issues.
+Security dimension audit of the 008 deep-skill doc-evolution ship (commit fb8d560443). This iteration examined the 5 deep-* skills' documentation for exposed secrets, unsafe example commands, host/path exposure, and permission/scope guidance issues.
 
 ## Actions Taken
 

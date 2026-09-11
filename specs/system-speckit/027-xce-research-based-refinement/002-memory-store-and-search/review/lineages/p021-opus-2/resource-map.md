@@ -18,4 +18,4 @@ trigger_phrases: []
 - F001: structural path divergence — REQ-001/REQ-003 instrumentation+marker-refresh present only on `files.length > 0`; the common no-change background scan path (`memory-index.ts:788-804`) is uncovered. Source: iteration-001.
 
 ## Implementation paths absent from any map
-- None beyond the three reviewed files; commit `372bb0f2cd` touched only these plus the spec docs.
+- None beyond the three reviewed files; commit `da09d7c69e` touched only these plus the spec docs.

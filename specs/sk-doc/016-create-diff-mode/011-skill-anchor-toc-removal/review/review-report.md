@@ -1,6 +1,6 @@
 ---
 title: "Deep Review Report: 117 Skill Anchor + TOC Removal"
-description: "Independent 6-pass cli-codex (gpt-5.5) review of commit 1e58d845af: verdict CONDITIONAL — 3 P1 + 6 P2, no P0; one real structural defect (orphaned numbered-TOC lists)."
+description: "Independent 6-pass cli-codex (gpt-5.5) review of commit e5ee6609c2: verdict CONDITIONAL — 3 P1 + 6 P2, no P0; one real structural defect (orphaned numbered-TOC lists)."
 trigger_phrases:
   - "117 toc removal review report"
   - "deep review skill anchor toc"
@@ -13,7 +13,7 @@ contextType: "review"
 
 | Field | Value |
 |-------|-------|
-| **Target** | git commit `1e58d845af` (TOC + `<!-- ANCHOR -->` removal; 897 files, +3,184/−12,998) |
+| **Target** | git commit `e5ee6609c2` (TOC + `<!-- ANCHOR -->` removal; 897 files, +3,184/−12,998) |
 | **Executor** | cli-codex `gpt-5.5`, reasoning=medium, service-tier=fast, sandbox=read-only |
 | **Iterations** | 6 of 10 (converged) |
 | **Stop reason** | converged — 2 consecutive PASS passes (5,6); exhaustive stale-guidance + content-loss sweeps found nothing new |
@@ -77,7 +77,7 @@ contextType: "review"
 
 ## 7. REMEDIATION OUTCOME (applied + re-verified)
 
-All 9 findings fixed in this session (working-tree changes on top of commit `1e58d845af`; 18 files, +52/−153):
+All 9 findings fixed in this session (working-tree changes on top of commit `e5ee6609c2`; 18 files, +52/−153):
 - **F-001** — orphaned numbered-TOC lists removed from all 8 files via the transform's new `--orphan-toc` mode. Re-verify: **0** orphaned numbered-TOC lists in scope.
 - **F-002** — `readme_template.md` optional-anchor guidance replaced with the no-anchor policy.
 - **F-003** — `002`/`004` implementation-summaries corrected to record the orphaned-TOC defect + fix.

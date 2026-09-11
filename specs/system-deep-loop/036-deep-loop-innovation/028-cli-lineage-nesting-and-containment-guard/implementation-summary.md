@@ -128,7 +128,7 @@ Five Opus leaf agents worked the four streams in parallel on disjoint files in a
 | Full runtime suite on branch 017 before the concurrent-run change | PASS, 153 files, 2524 tests passed, 7 skipped, 0 failed, exit 0 |
 | Full runtime suite on branch 017 with the concurrent-run change | PASS, 153 files, 2531 tests passed, 0 failed, per the Progress table in `goal.md` |
 | `validate.sh --strict` on this packet | PASS, errors 0 |
-| Task ledger reconciled against commits `2c2687e260` and `54e65e115a` on 2026-09-05 | 26 of 47 tasks.md items confirmed with evidence, 21 left open, see tasks.md |
+| Task ledger reconciled against commits `fddefe53bf` and `dbcdd8b3ad` on 2026-09-05 | 26 of 47 tasks.md items confirmed with evidence, 21 left open, see tasks.md |
 
 The packet is complete and the ledger is not, and those are different facts. Closure is decided by `acceptance-criteria.md`, whose ten rows are all `Met` and whose closure statement reads `Closeable: Yes`. The 21 rows still open in `tasks.md` are generic checklist boilerplate that nobody recorded an observed result for, so they are left unticked rather than back-filled from an assumption. `completion_pct` tracks the closure gate, not the ledger.
 <!-- /ANCHOR:verification -->

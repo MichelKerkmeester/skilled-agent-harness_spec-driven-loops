@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The hub grew from three modes to six, but the blind-holdout suite in `hubrouting/` covered only mcp-chrome-devtools (MT-H01) and mcp-figma (MT-H02), so routing regressions in the four other modes had no blind detection",
     "created_at": "2026-07-16T12:58:36Z",
-    "last_save_at": "2026-08-30T15:39:09.811Z",
+    "last_save_at": "2026-09-11T16:41:50.421Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:adcd4a1d6f7b5b92d69617c6596caad4ee70f9f075f1b2896dbf353bfcac7389",
+    "source_fingerprint": "sha256:ef2fc0d151d463b6956d1ea498fc81b73633a071186b00d1d20419e34dad38df",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "019bbf312f4d807e42d5ec7f04d0fa5996ef50cc5cb611d5eadf343f0782ae89",
-      "plan.md": "7160c541814619f270097a60b7ddf962f688c1685e0ac99fa841e2062a0ed201",
-      "tasks.md": "005bb111d73c62d3d8887c4108743de0a4b71659b9716856779a2659401b74f3",
-      "implementation-summary.md": "c28a19e1519ba8d2a62f5572f7bc881f1d6b6ecbd93bf88ddc006bb10f15a3a6"
+      "plan.md": "6bfdf8009a88fe38400820404d2e6dcb80a7d3e378f783b92900114fc25e9ce3",
+      "tasks.md": "5b6941ae72bdca444115b9884237c17c98de541a5ec269e0ee585a539ed232d9",
+      "implementation-summary.md": "8bccef512cf03b96a5f19685c988b55604ba96a7768695872ed3ebf470127c34"
     },
     "last_active_child_id": null,
     "last_active_at": null

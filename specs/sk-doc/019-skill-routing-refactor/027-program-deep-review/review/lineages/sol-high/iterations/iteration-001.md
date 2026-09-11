@@ -9,7 +9,7 @@ trigger_phrases: []
 - Session: `fanout-sol-high-1785257671132-a9gil1` (generation 1, lineage mode `new`)
 - Focus: correctness
 - Budget profile: `verify`
-- Commit range used for discovery only: `2fa9fc480c..a39e6ea716`
+- Commit range used for discovery only: `c4b5f27ae8..c573706cfe`
 
 ## Files Reviewed
 - `.opencode/specs/sk-doc/019-skill-routing-refactor/027-program-deep-review/spec.md`

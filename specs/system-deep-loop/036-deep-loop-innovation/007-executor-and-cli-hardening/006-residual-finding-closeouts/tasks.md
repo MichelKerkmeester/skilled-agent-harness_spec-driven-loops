@@ -83,11 +83,11 @@ _memory:
 
 ### WS-022 — REQ-005 full-surface fixtures (REQ-001)
 - [x] T020 [P] Enumerate the protected semantic surface list per mode for deep-ai-council and agent-improvement [REQ-001]
-  - **Evidence**: Per-field divergence tests enumerate each surface; council `e0b4e902c5` (57/2), agent-improvement `a9dbf88154` (48/10).
+  - **Evidence**: Per-field divergence tests enumerate each surface; council `590a8bc619` (57/2), agent-improvement `283eef0c5a` (48/10).
 - [x] T021 [P] Enumerate the surface list per mode for model-benchmark and skill-benchmark [REQ-001]
-  - **Evidence**: model-benchmark `46310b9c45` (63/5), skill-benchmark `7ec622f1be` (41/5).
+  - **Evidence**: model-benchmark `8bdffb4d1e` (63/5), skill-benchmark `5d154654e4` (41/5).
 - [x] T022 [P] Enumerate the surface list per mode for deep-alignment (all 40 stems) and deep-review [REQ-001]
-  - **Evidence**: deep-alignment `1109a40925` (31/8), deep-review `e69bbd1150` (26/2). Six deep-alignment finding-chain fields carry proven structural-limit skips.
+  - **Evidence**: deep-alignment `6f50d710cc` (31/8), deep-review `676e702a5b` (26/2). Six deep-alignment finding-chain fields carry proven structural-limit skips.
 - [x] T023 Add fixtures that emit every stem so each surface element is field-by-field divergence-diffed per mode [REQ-001]
   - **Evidence**: Compact per-field scenes populate each testable surface element; every test corrupts one reducer-state slice and asserts `divergence.class === 'projection-semantic'`, so a hollow fixture fails the assertion.
 - [x] T024 Record accepted schema-gap exclusions (agent-improvement's three fields; skill-benchmark `evidenceSetDigest`) or land an approved reducer change [REQ-001]

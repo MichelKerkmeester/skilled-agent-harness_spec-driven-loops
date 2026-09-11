@@ -17,8 +17,8 @@ Then continue the cold-read order from the handover:
 
 ## Current state (2026-08-02 evening — do NOT redo completed work)
 
-- **Packet 005 (pi input-hook latency): COMPLETE.** Code restored after a third concurrent wipe, verified (build green, 41/41 tests, smoke OK), committed `fdd295981a` on `skilled/v4.0.0.0`, pushed.
-- **Packet 006 (spec-gate question noise): IMPLEMENTED + merged + pushed.** Verified (core suite green, runtime suites 47/47, live pi smoke: read-only silent / mutating asks, 3× GPT 5.6 LUNA MAX FAST validators `APPROVED_WITH_NOTES`), `validate.sh --strict` Errors 0 Warnings 0, committed `e251617bef` on the worktree branch, merged to main, pushed (remote tip `9229cb8f3e`). A SOL FAST refinement round was applied after the push (E=skip grammar, `sanitizePromptForClassify` moved into the core with tests, OpenCode bridge directive parity) — that round still needs its own commit + push.
+- **Packet 005 (pi input-hook latency): COMPLETE.** Code restored after a third concurrent wipe, verified (build green, 41/41 tests, smoke OK), committed `b70167711f` on `skilled/v4.0.0.0`, pushed.
+- **Packet 006 (spec-gate question noise): IMPLEMENTED + merged + pushed.** Verified (core suite green, runtime suites 47/47, live pi smoke: read-only silent / mutating asks, 3× GPT 5.6 LUNA MAX FAST validators `APPROVED_WITH_NOTES`), `validate.sh --strict` Errors 0 Warnings 0, committed `9d1f0fffb8` on the worktree branch, merged to main, pushed (remote tip `2d12dfc5f5`). A SOL FAST refinement round was applied after the push (E=skip grammar, `sanitizePromptForClassify` moved into the core with tests, OpenCode bridge directive parity) — that round still needs its own commit + push.
 - **Spec folder is pre-approved:** `.opencode/specs/hooks/006-spec-gate-question-noise` — Gate 3 is answered (option A). Do not re-ask it, do not create new packets without operator direction.
 
 ## Remaining work (ask the operator first)

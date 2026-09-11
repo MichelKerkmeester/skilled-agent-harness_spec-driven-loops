@@ -59,9 +59,9 @@ Define the per-mode artifact contract before touching dispatch, because fulfillm
 - [x] Existing lineage shapes enumerated, and wrapper shell usage enumerated (`tasks.md` T003/T004)
 
 ### Definition of Done
-- [x] Fulfillment: iteration counts derived from files (F-010-02, `d0d8623ddf`); the full per-mode artifact contract is an accepted deferral (sibling `007/006` REQ-004)
-- [x] Containment uniform across kinds, with content-identity dirty-path detection (`568aa17a40` + `d0d8623ddf`; per-kind test `f48b50be79`)
-- [x] Allowlisted sink landed (F-020-01, `d0d8623ddf`); argv dispatch (`F-016-01`) and filtered Codex environment (`F-016-06`) are accepted deferrals (sibling `007/006` REQ-004)
+- [x] Fulfillment: iteration counts derived from files (F-010-02, `de9ce00df4`); the full per-mode artifact contract is an accepted deferral (sibling `007/006` REQ-004)
+- [x] Containment uniform across kinds, with content-identity dirty-path detection (`0947953081` + `de9ce00df4`; per-kind test `f48b50be79`)
+- [x] Allowlisted sink landed (F-020-01, `de9ce00df4`); argv dispatch (`F-016-01`) and filtered Codex environment (`F-016-06`) are accepted deferrals (sibling `007/006` REQ-004)
 - [x] Whole gate re-run and reported as a delta (sibling `007/006`: 5 suites, 215 tests, 0 failed)
 - [x] Independent adversarial verification pass complete (`checklist.md` CHK-005 + sibling REQ-U04)
 - [Deferred: benign `CONTINUITY_FRESHNESS` dirty_tree warning clears on commit] `validate.sh --strict` exits 0 for this child (reports `Errors: 0`)
@@ -127,24 +127,24 @@ Required inventories (run before implementation, record the output):
 
 ### Phase 2: Artifact contract
 - [Deferred: per-mode artifact contract accepted deferral, sibling `007/006` REQ-004] Define the per-mode artifact contract and decide where it lives
-- [x] Validate before fulfillment: F-010-01 state-log check landed `d0d8623ddf`; report-only rejection test `90121aeed6`
-- [x] Derive iteration counts from actual iteration files (F-010-02, `d0d8623ddf`; test `90121aeed6`)
+- [x] Validate before fulfillment: F-010-01 state-log check landed `de9ce00df4`; report-only rejection test `90121aeed6`
+- [x] Derive iteration counts from actual iteration files (F-010-02, `de9ce00df4`; test `90121aeed6`)
 
 ### Phase 3: Provenance
-- [x] Carry `effectiveConfig` and `invocationFingerprint` through to the worker (F-010-03, `d0d8623ddf`)
-- [x] Record sandbox mode, timeout, search policy, config dir, governor and executable identity in the audit (F-010-04, `d0d8623ddf`)
+- [x] Carry `effectiveConfig` and `invocationFingerprint` through to the worker (F-010-03, `de9ce00df4`)
+- [x] Record sandbox mode, timeout, search policy, config dir, governor and executable identity in the audit (F-010-04, `de9ce00df4`)
 - [x] Assert audit distinctness for materially different invocations (`888fab793a`)
 
 ### Phase 4: Containment and dispatch
-- [x] Reject sandbox modes a kind cannot enforce (F-016-03, `568aa17a40`; test `a20833dacb`)
-- [x] Run post-dispatch containment for every kind (REQ-010, `568aa17a40`; per-kind test `f48b50be79`)
-- [x] Detect dirty-path truncation by content identity (F-016-04, `d0d8623ddf`; test `ed26cf274b`)
-- [x] Hard-fail out-of-worktree artifact scopes (F-016-05, `d0d8623ddf`; test `ed26cf274b`)
+- [x] Reject sandbox modes a kind cannot enforce (F-016-03, `0947953081`; test `a20833dacb`)
+- [x] Run post-dispatch containment for every kind (REQ-010, `0947953081`; per-kind test `f48b50be79`)
+- [x] Detect dirty-path truncation by content identity (F-016-04, `de9ce00df4`; test `ed26cf274b`)
+- [x] Hard-fail out-of-worktree artifact scopes (F-016-05, `de9ce00df4`; test `ed26cf274b`)
 - [Deferred: `F-016-01` accepted deferral, sibling `007/006` REQ-004] Move wrappers to argv dispatch
 - [Deferred: `F-016-06` accepted deferral, sibling `007/006` REQ-004] Filter the standalone Codex environment
 
 ### Phase 5: Sink and gate
-- [x] Allowlist the observability sink; stop interpolating raw labels (F-020-01/02, `d0d8623ddf`; test `52da064126`)
+- [x] Allowlist the observability sink; stop interpolating raw labels (F-020-01/02, `de9ce00df4`; test `52da064126`)
 - [x] Re-run typecheck, tests and the receipts suites; report the delta (sibling `007/006`: 5 suites, 215 tests, 0 failed)
 - [x] Independent adversarial verification pass (`checklist.md` CHK-005)
 <!-- /ANCHOR:phases -->
@@ -329,7 +329,7 @@ Phase 4 (Containment + dispatch) ──► Phase 5 (Sink + gate)
 | ADR-001 | Fulfillment is derived from a per-mode artifact contract, never from report presence | Accepted |
 | ADR-002 | Dispatch moves from shell interpolation to argv | Accepted (wrapper attempt reverted; `F-016-01` accepted deferral) |
 | ADR-003 | Containment is uniform across dispatch kinds and detects truncation by content identity | Accepted (delivered; uniform half via ADR-004) |
-| ADR-004 | Containment failures are non-fatal-by-default, making uniform containment and a rejecting cli-opencode policy safe to ship | Accepted (landed `568aa17a40`) |
+| ADR-004 | Containment failures are non-fatal-by-default, making uniform containment and a rejecting cli-opencode policy safe to ship | Accepted (landed `0947953081`) |
 
 Full context, alternatives, and consequences: `decision-record.md`.
 <!-- /ANCHOR:l3-adr-summary -->

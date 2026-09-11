@@ -11,7 +11,7 @@ _memory:
     packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/001-self-maintaining-index"
     last_updated_at: "2026-06-02T10:03:31Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Phase 4 shipped (942ad78d9c, v28); clean rebuild 9614/9614, 0 missing-vector"
+    recent_action: "Phase 4 shipped (01c9aa46a2, v28); clean rebuild 9614/9614, 0 missing-vector"
     next_safe_action: "None binding; D/E durability and front-proxy shipped (013/002, 013/003)"
     blockers: []
     key_files:
@@ -36,7 +36,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 001-self-maintaining-index |
-| **Status** | Shipped & deployed. **Phases 1-3** (2026-05-31): coalescing + async drain + move reconciliation. **Phase 4** (council follow-up, 2026-06-01): active-row uniqueness guard (deprecate-before-insert + v28 partial unique index) + multi-tenant scope isolation — commit `942ad78d9c`; clean index rebuild → 9614 rows / 9614 vectors / 0 missing (`healthy_fresh`). Checkpoint-v2 (D) + MCP front-proxy (E) re-deferred — see `handover.md` §8. |
+| **Status** | Shipped & deployed. **Phases 1-3** (2026-05-31): coalescing + async drain + move reconciliation. **Phase 4** (council follow-up, 2026-06-01): active-row uniqueness guard (deprecate-before-insert + v28 partial unique index) + multi-tenant scope isolation — commit `01c9aa46a2`; clean index rebuild → 9614 rows / 9614 vectors / 0 missing (`healthy_fresh`). Checkpoint-v2 (D) + MCP front-proxy (E) re-deferred — see `handover.md` §8. |
 | **Level** | 2 |
 | **Created** | 2026-05-31 |
 | **Research Source** | `../012-memory-index-scan-ux-hardening/research/research.md` |
@@ -60,7 +60,7 @@ Planned deliverable (full 5-angle self-maintaining index, research.md §6), in t
 | Phase 1 | Yes | tsc 0 errors; 14/14 tests; merged 2026-05-31 |
 | Phase 2 | Yes | tsc 0 errors; 17/17 tests; merged 2026-05-31 |
 | Phase 3 | Yes | tsc 0 errors; 19/19 tests; merged 2026-05-31 |
-| Phase 4 (council follow-up) | Code: Yes / D,E: re-deferred | deprecate-before-insert + v28 unique index + scope isolation (commit `942ad78d9c`); clean rebuild 0 collisions; 5-round deep-review R5 = SAFE TO DEPLOY; checkpoint-v2 (D) + MCP-proxy (E) re-deferred |
+| Phase 4 (council follow-up) | Code: Yes / D,E: re-deferred | deprecate-before-insert + v28 unique index + scope isolation (commit `01c9aa46a2`); clean rebuild 0 collisions; 5-round deep-review R5 = SAFE TO DEPLOY; checkpoint-v2 (D) + MCP-proxy (E) re-deferred |
 
 **Phase 4 — Active-Row Uniqueness Guard + Multi-Tenant Scope Isolation (2026-06-01).** The deferred council follow-ups (see Known Limitations §6) were taken up in a focused session:
 - **Dup-on-reindex** is closed by **deprecate-before-insert** (retire the predecessor to `tier='deprecated'` — excluded from the active index — before inserting the new active row; constitutional rows are never declassified) backed by the **v28 partial unique index** `idx_memory_logical_key_active_unique` over `(spec_folder, COALESCE(NULLIF(canonical_file_path,''),file_path), COALESCE(NULLIF(TRIM(anchor_id),''),'_'), tenant/user/agent/session)` `WHERE importance_tier NOT IN ('constitutional','deprecated')`. The legacy table-level `UNIQUE(spec_folder,file_path,anchor_id)` was removed. Deprecate-before-insert was chosen over delete-before-insert specifically to preserve `memory_lineage`/causal/drift history.
@@ -105,7 +105,7 @@ Docs authored by claude-opus-4-8 from the 012 research synthesis using the canon
 | Daemon rebuild + restart (new code live) | DONE — pid 23371; `index.orphanFiles` numeric + `sweepOrphanIndexRows` live + `scanKey` present |
 | Embedder after restart | ollama `nomic-embed-text-v1.5`, healthy (auto-cascade re-selected on restart) |
 | 012/013 reindex + dup repair | DONE — 012 fresh; 013 = 6 clean success rows; `failedVectors` 36→6 |
-| **Phase 4** code committed | DONE — `942ad78d9c` (24 files, +763/-117); deprecate-before-insert + v28 index + scope isolation |
+| **Phase 4** code committed | DONE — `01c9aa46a2` (24 files, +763/-117); deprecate-before-insert + v28 index + scope isolation |
 | **Phase 4** v28 schema live | VERIFIED — `schema_version`=28 (applied 2026-06-01 14:22); `idx_memory_logical_key_active_unique` present; legacy table UNIQUE absent |
 | **Phase 4** active-row uniqueness on live data | VERIFIED — 9614 active rows hold under the unique index (0 logical-key collisions) |
 | **Phase 4** index/vector consistency | VERIFIED — `memory_health` `healthy_fresh`: rowsTotal=ftsRowsTotal=vecRowsTotal=9614, `mismatchedIds: []`, pending/retry/failed vectors = 0 |

@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Rollback, Audit Integrity & Non-Hub Policy"
-description: "Completion record for rollback and audit safety. Commit a1cdb65d90 delivered activate-hub.cjs --rollback, flip-serving.cjs prior/fence fixes, shared append-only history, the five-candidate non-hub policy and fixtures, and the P2 canary profile. The P1 session-snapshot field/status-probe work was explicitly deferred. No live hub or repository default was flipped, and the frozen scorer trio stayed SHA-256-identical."
+description: "Completion record for rollback and audit safety. Commit c926b25506 delivered activate-hub.cjs --rollback, flip-serving.cjs prior/fence fixes, shared append-only history, the five-candidate non-hub policy and fixtures, and the P2 canary profile. The P1 session-snapshot field/status-probe work was explicitly deferred. No live hub or repository default was flipped, and the frozen scorer trio stayed SHA-256-identical."
 trigger_phrases:
   - "rollback audit integrity implementation summary"
   - "non-hub policy delivered summary"
@@ -11,7 +11,7 @@ _memory:
     packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/010-rollback-audit-and-non-hub-policy"
     last_updated_at: "2026-07-21T03:58:44Z"
     last_updated_by: "codex-gpt-5.6"
-    recent_action: "Reconciled delivery evidence to commit a1cdb65d90"
+    recent_action: "Reconciled delivery evidence to commit c926b25506"
     next_safe_action: "P4/011 operator-gated cutover remains pending"
     blockers: []
     key_files:
@@ -40,7 +40,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Implemented — landed in `a1cdb65d90`. `activate-hub.cjs --rollback`, the `flip-serving.cjs` serving-prior/fence-direction fixes, the append-only audit history, and the non-hub ineligibility policy are built; additive to two already-shipped drivers, no live hub's `servingAuthority` flipped, frozen scorer byte-identical (SHA-256 unchanged) |
+| **Status** | Implemented — landed in `c926b25506`. `activate-hub.cjs --rollback`, the `flip-serving.cjs` serving-prior/fence-direction fixes, the append-only audit history, and the non-hub ineligibility policy are built; additive to two already-shipped drivers, no live hub's `servingAuthority` flipped, frozen scorer byte-identical (SHA-256 unchanged) |
 | **Authored** | 2026-07-20 |
 | **Level** | 2 |
 | **Serving authority** | Unaffected by design — this child adds/fixes rollback capability on two already-shipped drivers but does not itself flip any hub's `servingAuthority` or `selectedPolicy` |
@@ -54,7 +54,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-> **Status: Implemented** (landed in `a1cdb65d90`). The build below is delivered, additive to two already-shipped drivers; no live hub's serving authority was flipped and the frozen scorer stayed SHA-256-identical.
+> **Status: Implemented** (landed in `c926b25506`). The build below is delivered, additive to two already-shipped drivers; no live hub's serving authority was flipped and the frozen scorer stayed SHA-256-identical.
 
 `--rollback` was added to `activate-hub.cjs`, reusing its existing hash validation as a committed recovery command. `flip-serving.cjs` now refreshes `serving-prior` on every forward flip and records fence `direction`, closing rollback-then-reflip ambiguity. Both drivers append the same `flip-history/V1` ledger without replacing their latest-record files. The non-hub policy names and negatively tests `sk-git`, `system-code-graph`, `system-skill-advisor`, `system-spec-kit`, and `mcp-code-mode`, with the seven real hubs as a positive control. A P2 canary profile documents the window, thresholds, rollback trigger, and an honest operator-fill owner placeholder. The P1 `session-snapshot.ts` field rename/status-probe work did not land and is not part of this completion claim.
 
@@ -77,9 +77,9 @@ _memory:
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-> **Status: Implemented** (landed in `a1cdb65d90`). The phases below describe the delivered sequence.
+> **Status: Implemented** (landed in `c926b25506`). The phases below describe the delivered sequence.
 
-Commit `a1cdb65d90` modified the two drivers additively, then added the shared ledger references/policies and isolated verification scripts. The rollback drill imports the real driver functions but copies production-shaped inputs into OS temp directories; the non-hub suite reads the real topology and exercises rejection paths without mutating it. The commit changes no live hub manifest/fence file, no default-on cohort, and no frozen scorer. The P1 session-snapshot/status-probe work was left out rather than represented as complete.
+Commit `c926b25506` modified the two drivers additively, then added the shared ledger references/policies and isolated verification scripts. The rollback drill imports the real driver functions but copies production-shaped inputs into OS temp directories; the non-hub suite reads the real topology and exercises rejection paths without mutating it. The commit changes no live hub manifest/fence file, no default-on cohort, and no frozen scorer. The P1 session-snapshot/status-probe work was left out rather than represented as complete.
 
 <!-- /ANCHOR:how-delivered -->
 
@@ -146,7 +146,7 @@ Commit `a1cdb65d90` modified the two drivers additively, then added the shared l
 <!-- ANCHOR:follow-up -->
 ## Follow-ups
 
-- [x] Rollback, prior refresh, fence direction, append-only ledger, policy, fixtures, and P2 canary profile landed in `a1cdb65d90`.
+- [x] Rollback, prior refresh, fence direction, append-only ledger, policy, fixtures, and P2 canary profile landed in `c926b25506`.
 - [ ] REQ-007: reconcile session snapshot/status fields only under a separately approved P1 follow-up; this completion record does not include them.
 - [ ] Assign the canary owner and execute the profile only after the P4/011 join gate is green and an operator authorizes the run.
 - [ ] Keep the repository default off until that cutover decision.

@@ -141,7 +141,7 @@ contextType: "general"
 - [x] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases. [EVIDENCE: not applicable. This phase touches no parser, path-redaction or security-sensitive code path]
 - [x] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed. [EVIDENCE: the README baseline's 87-missing/26-verdict-shape split is stated in spec.md's problem statement before any regeneration task runs]
 - [x] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state. [EVIDENCE: not applicable. Every check in this phase reads only git state and checked-in files, no environment-dependent behavior]
-- [x] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range. [EVIDENCE: commit `0ed06e1d1d` is already cited for the sk-design fix. The closing commit SHA for this phase's own changes is recorded in implementation-summary.md once it lands]
+- [x] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range. [EVIDENCE: commit `bd77c72630` is already cited for the sk-design fix. The closing commit SHA for this phase's own changes is recorded in implementation-summary.md once it lands]
 <!-- /ANCHOR:fix-completeness -->
 
 ---

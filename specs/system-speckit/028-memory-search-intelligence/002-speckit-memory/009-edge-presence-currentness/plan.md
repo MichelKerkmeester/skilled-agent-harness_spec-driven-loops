@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Edge-Presence Currentness & Temporal Recall (028/001 impl phase)"
-description: "Sequenced plan for five temporal candidates: C3-A shipped default-off (cb92f2f211), four PENDING (C3-C, memory_history, CG-temporal-query-extraction, M-unforget-channel-disjointness) behind gates: substrate-first ordering on C3-B, read-side currentness wiring, temporal-mode recall, an as-of lineage tool, query-range extraction and the 4-channel unforget-disjointness invariant. Schema and benchmark gates per candidate."
+description: "Sequenced plan for five temporal candidates: C3-A shipped default-off (8cc41ae155), four PENDING (C3-C, memory_history, CG-temporal-query-extraction, M-unforget-channel-disjointness) behind gates: substrate-first ordering on C3-B, read-side currentness wiring, temporal-mode recall, an as-of lineage tool, query-range extraction and the 4-channel unforget-disjointness invariant. Schema and benchmark gates per candidate."
 trigger_phrases:
   - "edge presence currentness plan"
   - "temporal recall implementation plan"
@@ -53,7 +53,7 @@ _memory:
 
 This phase makes the Memory MCP's bi-temporal edge substrate the **live currentness path** and adds the temporal-recall surface on top of it. The substrate (`temporal-edges.ts`, `contradiction-detection.ts`) already compiles and `SPECKIT_TEMPORAL_EDGES` is already ON, the work is read-side wiring plus store reconciliation, not a flag flip. The five candidates are sequenced on a single substrate prerequisite (C3-B four-timestamp window, owned by a sibling phase): C3-A wires currentness onto the read path, C3-C adds TemporalMode, memory_history exposes the lib-only as-of resolver, temporal-query-extraction parses a range from the NL query, unforget-disjointness extends the revision matrix from 2 to 4 channels.
 
-C3-A shipped default-off (cb92f2f211). The remaining four are **PENDING**, none shipped in Wave-0 (030). Two (temporal-query-extraction, unforget-disjointness) are benchmark/shared-infra gated and may stay deferred within this phase.
+C3-A shipped default-off (8cc41ae155). The remaining four are **PENDING**, none shipped in Wave-0 (030). Two (temporal-query-extraction, unforget-disjointness) are benchmark/shared-infra gated and may stay deferred within this phase.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -124,7 +124,7 @@ Inventories are scoped to the temporal seams above. The `active_memory_projectio
 - [ ] Capture the non-temporal recall baseline for additivity byte-checks.
 
 ### Phase 2: Core Implementation
-- [x] C3-A: wire the read-side `getValidEdges` currentness filter + lineage↔causal-edge store reconciliation, committed cb92f2f211, 3/3 tests pass
+- [x] C3-A: wire the read-side `getValidEdges` currentness filter + lineage↔causal-edge store reconciliation, committed 8cc41ae155, 3/3 tests pass
 - [ ] C3-C: add the `TemporalMode` enum + `current-support` provider, Current byte-identical (gate AsKnownAt on C3-B).
 - [ ] memory_history: expose the lib-only as-of resolver as a new MCP tool (~5-surface parity add).
 - [ ] CG-temporal-query-extraction: parse `QueryInterval` from the NL query, filter by range, fall through when no bounds (needs-benchmark for precision).

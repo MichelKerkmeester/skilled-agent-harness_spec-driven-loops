@@ -193,7 +193,7 @@
     ],
     "causal_summary": "The every skill-level README plus repository and runtime top-level README surfaces needs a release-readiness cleanup contract before any document edits begin",
     "created_at": "2026-06-19T00:00:00Z",
-    "last_save_at": "2026-08-30T15:39:34.480Z",
+    "last_save_at": "2026-09-11T16:42:39.833Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:807d8ccb32f9e2d21804709046e209bd46260d14596875db1d2f1ca52596b52a",
+    "source_fingerprint": "sha256:6b0d291294e79dc80367db9d5f71987a0db6c9cac1c68ca422b725788afb2132",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "629d86fbe3aa37fffc04c1caa0feea92dcafe325068ef06e1dd3597083d57187",
+      "spec.md": "943e604932baa3786d212f1f4ac71e3808e8993719a00c92c44ed54f3eb1635f",
       "plan.md": "2e2eeb09bed705f07367238c5ca1398bab3cb600789309c5f3233c36ce6412d5",
       "tasks.md": "2b832f48887a408e20cf1a23edf7f4c33ae53eedc4d40f2f6c328a5702c63635",
-      "implementation-summary.md": "883bb3ca86b39b5546d150caf374c1313bb1413d9b02c628bcd4a3e3f3cbf3d4"
+      "implementation-summary.md": "30b80d23d840d764610239caf2042916fe42b0b682fa2d7f5b190489a4c8a178"
     },
     "last_active_child_id": null,
     "last_active_at": null

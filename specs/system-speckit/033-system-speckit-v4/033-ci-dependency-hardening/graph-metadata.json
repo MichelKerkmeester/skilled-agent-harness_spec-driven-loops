@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The operator received a \"runs failed\" email on every push for days",
     "created_at": "2026-09-07T19:44:27Z",
-    "last_save_at": "2026-09-08T18:23:53.309Z",
+    "last_save_at": "2026-09-11T16:42:48.967Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +211,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:65fdc30022fbf5985344f4e247879c8fef35329d58ee904385f6dae727d68176",
+    "source_fingerprint": "sha256:d864d328425a176e6d9227a9f26c6e18394fd97d9af227199b31292c4261398f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0846a732537ed19c2d2696d29b61a50000530ee49448a6184ea9a22372e67265",
-      "plan.md": "5206bd91074d5d7b213a37907439803f975019f5ab8e8abb1632ce0a70df1b84",
-      "tasks.md": "9b4643786e82a56876d062a90c5bdb386cb4482aa536653598f0876cc34221ec",
-      "implementation-summary.md": "da7c5e688cb5b832430fb260e595a5b49ac402dca3a5997da9ede51efec0cb06"
+      "plan.md": "1db388e82382e52b1381ed0c82e233d88aa4caa6e0a41548c29e8f25bbca5553",
+      "tasks.md": "5caaf9dd20b9f02bf46a749199cf5652dfc58fd35be25d40fd43d092266fe50f",
+      "implementation-summary.md": "a862b173db08d1dc82152f7ca24b93973e24aafc3de0f2285d7f7fac3b72d511"
     },
     "last_active_at": null
   }

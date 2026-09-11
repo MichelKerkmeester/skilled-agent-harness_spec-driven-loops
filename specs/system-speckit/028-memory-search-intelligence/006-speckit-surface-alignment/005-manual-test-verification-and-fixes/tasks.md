@@ -53,10 +53,10 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T006 Fix gold-battery path in `system-code-graph/mcp_server/lib/gold-query-verifier.ts` (`bda7f57879`) [completed]
-- [x] T007 Restore corpus-bounded BM25 candidate fill in `system-spec-kit/mcp_server/lib/search/hybrid-search.ts` (`e4fcccc320`) [completed]
-- [x] T008 Preserve BM25 performance saving through rank-ordered incremental metadata resolution in 500-id batches with early exit at `limit` survivors (`e4fcccc320`) [completed]
-- [x] T009 Fix `bm25-scope-then-limit-stress.vitest.ts` test drift for `deleted_at` and intercept string (`e4fcccc320`) [completed]
+- [x] T006 Fix gold-battery path in `system-code-graph/mcp_server/lib/gold-query-verifier.ts` (`4313a2dfbc`) [completed]
+- [x] T007 Restore corpus-bounded BM25 candidate fill in `system-spec-kit/mcp_server/lib/search/hybrid-search.ts` (`32c1aea94f`) [completed]
+- [x] T008 Preserve BM25 performance saving through rank-ordered incremental metadata resolution in 500-id batches with early exit at `limit` survivors (`32c1aea94f`) [completed]
+- [x] T009 Fix `bm25-scope-then-limit-stress.vitest.ts` test drift for `deleted_at` and intercept string (`32c1aea94f`) [completed]
 <!-- /ANCHOR:phase-2 -->
 
 ---

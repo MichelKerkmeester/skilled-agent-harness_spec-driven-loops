@@ -44,7 +44,7 @@ Fixed: the three comments now reference `sk-code/ROUTER.md`; `grep -c smart_rout
 - **Recommendation:** run this rebuild inside the 015 router-unification program's compiled-routing environment, which holds the complete activation state + retained-rollback closure and the canary/promote/verify flow; fix the `system-deep-loop` owner harness's missing prior-manifest creation first. Confirm the frozen replay/scorer digests stay untouched throughout.
 - **Verify (when done there):** `compiled-route-status.cjs --all` reports all seven hubs `compiled` / `fresh`, or a decision record documents intentional legacy-serving for those two.
 
-## FU-3 — Root ROUTER.md prose-structure drift + no enforcement — DONE (main `3530c221e7`, v4 `1cbe3b2ec5`)
+## FU-3 — Root ROUTER.md prose-structure drift + no enforcement — DONE (main `5f0ad0fcb8`, v4 `93acb4c8b7`)
 
 Four class-H hubs had drifted from the canonical root-ROUTER.md section shape the conformant hubs (sk-code, sk-design, sk-prompt) carry: OVERVIEW → INTENT MODEL → MACHINE-READABLE ROUTER → HOW TO READ. sk-doc had lost both OVERVIEW and INTENT MODEL and mis-numbered its sections; cli-external-orchestration, mcp-tooling, and system-deep-loop each lacked OVERVIEW.
 

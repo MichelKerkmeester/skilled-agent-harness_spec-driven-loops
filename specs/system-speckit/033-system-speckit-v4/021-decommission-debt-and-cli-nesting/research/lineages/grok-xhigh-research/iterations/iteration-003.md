@@ -60,4 +60,4 @@ Smallest fix: say three consumers, two import and one process, or drop the "no t
 - Live zvec/system-plugins search on README, AGENTS, doctor, CI, gitignore (clean).
 
 ## Recommended Next Focus
-Angle 2. Registrations, symlinks, hook configs, CI workflows and doctor assets, starting with the eleven session-lifecycle registrations restored at commit 273767431d.
+Angle 2. Registrations, symlinks, hook configs, CI workflows and doctor assets, starting with the eleven session-lifecycle registrations restored at commit 9bca36ef52.

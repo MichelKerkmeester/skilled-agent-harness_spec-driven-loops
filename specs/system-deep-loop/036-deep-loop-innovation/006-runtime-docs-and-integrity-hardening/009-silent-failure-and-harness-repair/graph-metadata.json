@@ -50,6 +50,7 @@
       ".opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/manual-testing-playbook.md",
       ".opencode/skills/system-deep-loop/deep-review/scripts/render-contract-snapshot.cjs",
       ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs",
+      "runtime/vitest.config.ts",
       ".opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
       ".opencode/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs"
     ],
@@ -133,6 +134,12 @@
         "source": "derived"
       },
       {
+        "name": "vitest.config.ts",
+        "kind": "code",
+        "path": "runtime/vitest.config.ts",
+        "source": "derived"
+      },
+      {
         "name": "reduce-state.cjs",
         "kind": "file",
         "path": ".opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
@@ -191,17 +198,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Overview Capture",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Twenty-three findings in three lanes share one shape",
     "created_at": "2026-07-31T01:25:21.556Z",
-    "last_save_at": "2026-08-30T15:39:21.759Z",
+    "last_save_at": "2026-09-11T16:42:26.264Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,14 +212,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2a5e68c57c7e9a6593199b99fa205537799cdcc91ff8c76ed54e8771eaa58275",
+    "source_fingerprint": "sha256:77c75279acbb7e0ca11edb4cffd7d31766891318cfac32fbc5cec5a61fc72485",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8283ace2429c3d9b8fdabce7d475b90b60e85167c1f7321fc98fe186bcc06933",
-      "plan.md": "62dd8dcb4ce30bd090a52509f1b6f6035c7729b3b300dd2714069ab719f8c922",
-      "tasks.md": "8bce0f4ac814e706ac6385688f1193f38c37e02355317f9bce1f7060ebec1c78",
+      "plan.md": "035645f67a7a9c55def2ec0153ebad18519714e6793f7a5869f81a81ea79f70b",
+      "tasks.md": "637d5e304f3b728aad079bce733c3d214eb4db2ce20741a1a94e7a8ae250b41e",
       "decision-record.md": "d3b20a64db573eece0604bd1fdb216b361bcbdae118778293cc3e8fb2fd467e0",
-      "implementation-summary.md": "bae1f2fb2de01fd5eae4d476ec443ba02d92d76b83b645e323d19522e95e2573"
+      "implementation-summary.md": "da02577b471e08f9e17dac4b7f3c4f4c4b12641805ca6b409b2a9274259cf6a3"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -47,7 +47,7 @@ A search that returned one strong, clearly-best memory was reading `weak` and ea
 | `.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts` | Modified |
 | `.opencode/skills/system-spec-kit/mcp_server/tests/request-quality-aggregation.vitest.ts` | Added |
 
-> Note: the `confidence-scoring.ts` production hunk landed in the same commit as phase `004` (`0fb87eb78a`). This entry documents the request-quality work as its own phase.
+> Note: the `confidence-scoring.ts` production hunk landed in the same commit as phase `004` (`f92a72ff25`). This entry documents the request-quality work as its own phase.
 
 ### Follow-Ups
 

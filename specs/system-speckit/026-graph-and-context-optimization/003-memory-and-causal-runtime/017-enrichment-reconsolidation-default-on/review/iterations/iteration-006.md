@@ -6,7 +6,7 @@ trigger_phrases: []
 
 **Verdict:** FAIL
 
-Dispatched gpt-5.5-fast (high) for an adversarial SECURITY-dimension review of the flag-flip blast radius (commit `0060a097b3`): every save now enriches + reconsolidates + quality-auto-fixes by default. The reviewer read the actual source and returned 3 P1 findings tracing each default-on path to its concrete destructive/unbounded side effect.
+Dispatched gpt-5.5-fast (high) for an adversarial SECURITY-dimension review of the flag-flip blast radius (commit `7504112605`): every save now enriches + reconsolidates + quality-auto-fixes by default. The reviewer read the actual source and returned 3 P1 findings tracing each default-on path to its concrete destructive/unbounded side effect.
 
 ## Findings
 

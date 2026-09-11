@@ -144,7 +144,7 @@ self-contradictory claim; only a metadata lag. Different from F3-F5.
 
 ### Changelog / release notes
 
-- The commit dc7fdfb0a7's commit message records the registry additions
+- The commit 6a2127a51e's commit message records the registry additions
   (`012-code-dir-naming-enforcement`).
 - I did not find a CHANGELOG entry recording the 012/006 retirement; the commit
   relies on the spec packet alone for the release narrative. This is a minor doc

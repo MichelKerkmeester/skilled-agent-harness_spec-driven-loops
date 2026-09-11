@@ -60,7 +60,7 @@ contextType: "general"
 - [x] T009 Prove composition for the changed route and two unchanged neighbours in one run (done: `llmgateway/glm-5.3-flash`, `openrouter/z-ai/glm-5.3-flash`, `opencode-go/deepseek-v4-flash-vision-exp`, all at `--thinking max`)
 - [x] T010 Run the targeted suites (done: `executor-config.vitest.ts` 92 passed; `fanout-run.vitest.ts -t 'cli-pi adapter'` 10 passed)
 - [x] T011 Confirm the functional diff is one line and the rest is comments (done: the non-comment diff is exactly the one map entry)
-- [x] T012 Attribute every remaining failure in a touched file (done: `combo-matrix.vitest.ts` expects `opencode-go/deepseek-v4-flash` and receives the `-vision-exp` default from commit `5aae5f0bc8`; unrelated and pre-existing. One flaky checkpoint-timing test in `fanout-run.vitest.ts` did not reproduce on re-run)
+- [x] T012 Attribute every remaining failure in a touched file (done: `combo-matrix.vitest.ts` expects `opencode-go/deepseek-v4-flash` and receives the `-vision-exp` default from commit `77c0cf1cf0`; unrelated and pre-existing. One flaky checkpoint-timing test in `fanout-run.vitest.ts` did not reproduce on re-run)
 - [x] T013 Grep the runtime for surviving claims of the old mapping (done: none outside unrelated `glm-5.1` fixtures)
 - [x] T016 Prove the credential gap from a real dispatch rather than from composition (done: the fan-out reached pi and returned `No API key found for llmgateway` while the identical direct dispatch succeeded; composition, the unit test and the smoke test were all green at that moment)
 - [ ] T014 Run the whole `system-deep-loop` runtime suite. NOT DONE: the targeted suites cover the changed surface, and a full run was not performed in this session

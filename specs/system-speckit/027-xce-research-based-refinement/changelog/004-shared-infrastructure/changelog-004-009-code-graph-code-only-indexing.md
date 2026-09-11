@@ -38,7 +38,7 @@ The code graph's default include globs pulled in markdown, so prose docs were wa
 
 ### Fixed
 
-Post-review remediation of the combined `008` + `009` deep review (commit `3dc7148f04`; 4 P1 + 4 P2, all verified real against current source):
+Post-review remediation of the combined `008` + `009` deep review (commit `ee11e5a2b9`; 4 P1 + 4 P2, all verified real against current source):
 
 - F1 (P1) `lib/structural-indexer.ts` — `collectSpecificFiles`, the incremental and stale-file reindex path, now enforces the same `includeGlobs` file-type allowlist as the full walk, so a changed `.md` can no longer re-enter the graph as a `'doc'` node. A new indexer test proves a `.md` passed via `specificFiles` is not persisted while `.ts` and `.json` are.
 - F2 (P1) `bin/mk-code-index-launcher.cjs` — `resolveMaintainerModeCategories` uses `Object.hasOwn` instead of the prototype-chain `in`, so prototype names like `constructor` and `toString` no longer set junk `INDEX_*` env keys.

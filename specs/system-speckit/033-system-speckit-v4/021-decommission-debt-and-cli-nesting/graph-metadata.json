@@ -211,7 +211,7 @@
     ],
     "causal_summary": "The landing and rename packets closed with debt recorded rather than fixed: the scripts freshness table counted the trigger-index generator's fixtures as sources, the fan-out runner discarded lineage stderr, the review leaf could write iteration files at the cwd, a rollback runbook documented retired automation, a dead response type and a stale test name survived",
     "created_at": "2026-09-05T03:23:43Z",
-    "last_save_at": "2026-09-08T18:23:44.328Z",
+    "last_save_at": "2026-09-11T16:42:47.785Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:79e47897affefa3c146e13bdef5d3f524fea807ece73ded99495c330668cf4c8",
+    "source_fingerprint": "sha256:1bd4d8bc5d28628e41cd1bcdddc1a87d2a6a918e24be543b982529ac1aaf5d06",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "75d96f9ff9c2be61d3ef7bcfc6ad6fcb1a5d3381d8b59221cb556cd08f862107",
       "plan.md": "3004e6af00a5bc194e57605ce2d8247ed320ec2e6f49ca9b2b535ce383149d78",
-      "tasks.md": "44858923b69d1d22e65fe4a3e50e904a306d15275f6845a989ff08f9949cd878",
-      "implementation-summary.md": "bbfd098780fe22ca6691f44b59be5b7d59c485a38183044f164c731bbac266f5"
+      "tasks.md": "1cc37b26df85e18222a0ddedd73e4c900164f47a492174b021ba5ec0bd93c302",
+      "implementation-summary.md": "57be62d099dbb402d99b8ae557331e3ab458b0bba456a0b2fcd8b9f968ab70cd"
     },
     "last_active_child_id": "system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/007-memory-command-family-naming-decision",
     "last_active_at": null

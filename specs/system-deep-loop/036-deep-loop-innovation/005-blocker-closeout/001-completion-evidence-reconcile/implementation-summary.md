@@ -39,7 +39,7 @@ _memory:
 | **Last evidence recorded** | 2026-07-31 |
 | **Level** | 3 |
 | **Status** | COMPLETE |
-| **Candidate SHA** | `dd07cb1f52ed2ebaca7d152d0a088366b2958b32` |
+| **Candidate SHA** | `1cdb86cfa06f78bb9247eab3bd4a2cb245f0590f` |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:what-built -->
@@ -56,7 +56,7 @@ The M2 reopen set was frozen before any cited checklist, parent rollup, or prere
 
 The frozen parent/dependency rollup set includes the 013 root, the `001-deep-research`, `002-deep-review`, and `003-deep-ai-council` lane parents, every reopened leaf summary and status record, phase 015's unstarted rollup, and phase 016's prerequisite wording. The 016 manifest, validator, alignment RED anchor, and shared rollout record remain confirmed inputs for later tasks and were not modified by this leaf.
 
-The confirmed baseline is anchored at `dd07cb1f52`: integration 83 tests/1 fail; lifecycle 2/2; council runtime tests 28/28; hierarchical budgets 29/29; alignment scripts 48/41 pass with 5 fail; council mode Vitest 106/105/1 fail; improvement mode Vitest 547 total/478 pass/54 fail/15 skip with 17 of 48 files red.
+The confirmed baseline is anchored at `1cdb86cfa0`: integration 83 tests/1 fail; lifecycle 2/2; council runtime tests 28/28; hierarchical budgets 29/29; alignment scripts 48/41 pass with 5 fail; council mode Vitest 106/105/1 fail; improvement mode Vitest 547 total/478 pass/54 fail/15 skip with 17 of 48 files red.
 <!-- /ANCHOR:what-built -->
 
 <!-- ANCHOR:how-delivered -->
@@ -126,7 +126,7 @@ T016-T026 landed after this summary's earlier IN PROGRESS state (acceptance-boun
 This child is COMPLETE. What remains open lives in other packets, not here:
 
 - **6 pre-existing runtime unit failures** (state-census disposition test plus the render/drift contract suites) are assigned to the silent-failure and harness-repair child (`009-silent-failure-and-harness-repair`); they predate this child and were not introduced or fixed by it.
-- **The `F-ORC-01` alignment RED anchor** (48 tests / 41 pass / 5 fail / 2 skip at SHA `dd07cb1f52`) stays RED by design — `031` Lane B triages it, not this child. `tasks.md` Phase 3 carries a named follow-up to re-verify it once `031` lands.
+- **The `F-ORC-01` alignment RED anchor** (48 tests / 41 pass / 5 fail / 2 skip at SHA `1cdb86cfa0`) stays RED by design — `031` Lane B triages it, not this child. `tasks.md` Phase 3 carries a named follow-up to re-verify it once `031` lands.
 - CHK-008, CHK-121, and CHK-140 in `checklist.md` are the closeout-ordering items; this reconciliation pass closed them from its own strict-validation run and cross-doc status flip. The remaining 12 (CHK-003, CHK-022, CHK-040, CHK-090/091, CHK-111, CHK-130-132, CHK-141, and CHK-FIX-004/006) are non-blocking verification-thoroughness checks outside the T026 satisfiable set; each carries an `[x] [DEFERRED: reason]` documented deferral rather than a faked run.
 <!-- /ANCHOR:final-state -->
 

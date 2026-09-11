@@ -123,7 +123,7 @@ Two byte-faithful copies of the compiled engine: the promoted runtime under `.op
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
 | Frozen scorer trio | Internal | Green (never edited) | Parity oracle invalid |
-| Verified v4 landing (`ed8f3e20d0`) | Internal | Green | Regression baseline lost |
+| Verified v4 landing (`5b09575bba`) | Internal | Green | Regression baseline lost |
 | Promoted bin engine | Internal | Green | F007 reconcile source lost |
 
 <!-- /ANCHOR:dependencies -->

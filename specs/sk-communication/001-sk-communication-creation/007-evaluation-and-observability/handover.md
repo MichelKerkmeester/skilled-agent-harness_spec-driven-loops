@@ -12,7 +12,7 @@ _memory:
     packet_pointer: "sk-communication/001-sk-communication-creation/007-evaluation-and-observability"
     last_updated_at: "2026-08-12T09:40:00Z"
     last_updated_by: "claude"
-    recent_action: "Completed the Phase 007 framework and pinned checkpoint ffce7901a2."
+    recent_action: "Completed the Phase 007 framework and pinned checkpoint c5a57ccffa."
     next_safe_action: "Approve the Phase 008 packaging architecture, then execute T001."
     blockers: []
     key_files:
@@ -41,7 +41,7 @@ Phase 007 provides the release-gate framework, content-free observability, and t
 <!-- ANCHOR:when-to-use -->
 ## WHEN TO USE THIS TEMPLATE
 
-Open this handover when starting Phase 008. Phase 007 is complete at checkpoint `ffce7901a2` and supplies the release-gate evaluation framework, content-free observability, and the provenance discipline that keeps an LLM-judge result from ever counting as human evidence. Read it before packaging a release, because the gate Phase 008 must enforce is the powered blind human study defined here.
+Open this handover when starting Phase 008. Phase 007 is complete at checkpoint `c5a57ccffa` and supplies the release-gate evaluation framework, content-free observability, and the provenance discipline that keeps an LLM-judge result from ever counting as human evidence. Read it before packaging a release, because the gate Phase 008 must enforce is the powered blind human study defined here.
 <!-- /ANCHOR:when-to-use -->
 
 ---
@@ -54,7 +54,7 @@ Open this handover when starting Phase 008. Phase 007 is complete at checkpoint 
 - **Phase completed**: Evaluation framework, observability aggregation, LLM-judge proxy, and a live provisional demo
 - **Handover time**: 2026-08-12T09:40:00Z
 - **Recent action**: Passed the 247-test package gate, a second-model adversarial review, and strict recursive validation.
-- **Implementation checkpoint**: `ffce7901a2`
+- **Implementation checkpoint**: `c5a57ccffa`
 <!-- /ANCHOR:handover-summary -->
 
 ---

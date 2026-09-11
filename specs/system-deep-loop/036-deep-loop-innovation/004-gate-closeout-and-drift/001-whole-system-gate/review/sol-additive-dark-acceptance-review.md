@@ -10,7 +10,7 @@ trigger_phrases: []
 |---|---|
 | Candidate SHA | `cb4209617e58346711efdc6409d568b51eb6c012` |
 | Branch | `system-deep-loop/0153-036-innovation-completion` |
-| Merge base | `dc3736d584bf9f32707bce9986cad46bfa94b63d` |
+| Merge base | `9e44ee73c805d8b48379a9f8cd9b1ac017d73874` |
 | Commits ahead | 25 |
 | Initial worktree | Clean |
 | Review posture | Independent blocking acceptance review; read-only except this record |
@@ -23,11 +23,11 @@ Commands with relative test paths ran from `.opencode/skills/system-deep-loop/ru
 
 | # | Verification command | Exit | Result |
 |---:|---|---:|---|
-| 1 | Candidate-binding shell gate: `git rev-parse HEAD`, `git branch --show-current`, `git merge-base dc3736d584 HEAD`, `git rev-list --count dc3736d584..HEAD`, `git status --short` | 0 | PASS — exact SHA/branch/base, 25 commits, clean before review |
+| 1 | Candidate-binding shell gate: `git rev-parse HEAD`, `git branch --show-current`, `git merge-base 9e44ee73c8 HEAD`, `git rev-list --count 9e44ee73c8..HEAD`, `git status --short` | 0 | PASS — exact SHA/branch/base, 25 commits, clean before review |
 | 2 | Eight-mode/seven-layer non-empty module-and-focused-suite audit over `{deep-research,deep-review,deep-ai-council,deep-improvement-common,agent-improvement,model-benchmark,skill-benchmark,deep-alignment}` × `{ledger-schema,reducers,sealed-artifacts,certificates,resume-adapter,shadow-parity,rollback-gate}` | 0 | PASS — 56 module entry points and focused suites present/non-empty |
 | 3 | Production authority audit: `rg -n 'selectAuthorityRoute|AuthorityRegistry|CutoverCoordinator' ...` excluding the future selector and tests, plus live-state assignment scan | 0 | PASS — no production selector consumer and no live/ledger-authoritative assignment |
-| 4 | Declared legacy-writer preservation loop: `git diff --quiet dc3736d584..HEAD -- <each LEGACY_DARK_BOUNDARIES source>` | 0 | PASS — all 11 declared legacy authority/writer files exist and are unchanged |
-| 5 | Live legacy model-benchmark preservation gate: `git diff --quiet dc3736d584..HEAD -- .opencode/commands/deep/assets/deep-model-benchmark-auto.yaml .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs` | 1 | **FAIL / BLOCK** — both active production files are modified |
+| 4 | Declared legacy-writer preservation loop: `git diff --quiet 9e44ee73c8..HEAD -- <each LEGACY_DARK_BOUNDARIES source>` | 0 | PASS — all 11 declared legacy authority/writer files exist and are unchanged |
+| 5 | Live legacy model-benchmark preservation gate: `git diff --quiet 9e44ee73c8..HEAD -- .opencode/commands/deep/assets/deep-model-benchmark-auto.yaml .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs` | 1 | **FAIL / BLOCK** — both active production files are modified |
 | 6 | Initial `npx --no-install vitest run tests/unit/deep-research-rollback-gate.vitest.ts tests/unit/deep-research-shadow-parity.vitest.ts --configLoader runner` | 130 | INCONCLUSIVE — reviewer interrupted before learning the rollback suite legitimately takes about 820 seconds; superseded by rows 7–9 |
 | 7 | `npx --no-install vitest run tests/unit/deep-research-shadow-parity.vitest.ts --configLoader runner` | 0 | PASS — 49/49 |
 | 8 | `npx --no-install vitest run tests/unit/deep-research-rollback-gate.vitest.ts --configLoader runner` | 0 | PASS — 79/79 |
@@ -42,7 +42,7 @@ Commands with relative test paths ran from `.opencode/skills/system-deep-loop/ru
 | 17 | `node tests/stress/cli-adapter/validate-playbook-package.cjs` | 0 | PASS — 98 cells / 98 indexed tests / 98 playbooks; no missing, duplicate, or orphan entries |
 | 18 | Cross-mode shared-substrate shell audit over all eight sealed-artifact modules and parity adapters | 0 | PASS — all modes bind shared sealed-reference APIs and verify parity certificates; no competing mode-local store/hash class found |
 | 19 | `npx --no-install tsc --noEmit --ignoreDeprecations 6.0` | 0 | PASS |
-| 20 | Scope shell gate over `git diff --name-only dc3736d584..HEAD`, deletion scan, and `.opencode` package/lock scan | 0 | PASS — deep-loop program paths only; no deletions; no `.opencode/package.json` or lockfile bump |
+| 20 | Scope shell gate over `git diff --name-only 9e44ee73c8..HEAD`, deletion scan, and `.opencode` package/lock scan | 0 | PASS — deep-loop program paths only; no deletions; no `.opencode/package.json` or lockfile bump |
 | 21 | Initial artifact check: `check_authored_name_kebab.py`, `extract_structure.py`, and auto-detected `validate_document.py` | 1 | REMEDIATED — filename and structure passed; generic validator requested an `Overview` section |
 | 22 | Second auto-detected artifact check after adding `Overview` | 1 | ROUTE MISMATCH — generic Markdown defaults to numbered README headings, which do not govern this spec-packet review record |
 | 23 | Final artifact check with `validate_document.py <review> --type spec` | 0 | PASS — kebab name, extracted structure, and spec validation with zero issues |
@@ -62,7 +62,7 @@ The ledger-side mechanisms themselves remain dark:
 However, the broader claim that no live/legacy path changed is false:
 
 - The active command router owns the auto workflow and loads it for `model-benchmark :auto`, then executes the selected asset step-by-step (`.opencode/commands/deep/model-benchmark.md:126-132`, `:138-146`, `:152-155`).
-- At the merge base, that live asset specified `promotion: guarded_canonical_only` and an executable `step_promote_candidate` calling `promote-candidate.cjs` (`dc3736d584:.opencode/commands/deep/assets/deep-model-benchmark-auto.yaml:18`, `:195-198`).
+- At the merge base, that live asset specified `promotion: guarded_canonical_only` and an executable `step_promote_candidate` calling `promote-candidate.cjs` (`9e44ee73c8:.opencode/commands/deep/assets/deep-model-benchmark-auto.yaml:18`, `:195-198`).
 - The candidate instead specifies `promotion: advisory_only` and a non-mutating `step_recommend_candidate` (`.opencode/commands/deep/assets/deep-model-benchmark-auto.yaml:18`, `:192-197`). A focused production test enforces that it cannot invoke canonical promotion (`.opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/autonomous-promotion-authority.vitest.ts:6-19`).
 - The shared live promotion helper is also modified from the merge base, including authenticated receipt and boundary behavior. The explicit preservation gate therefore exits 1.
 
@@ -117,7 +117,7 @@ The merge-base-to-candidate diff contains 505 files and is confined to the 036 d
 
 ### B-001 — Active legacy model-benchmark behavior changed
 
-**Exact defect:** commit `cb4209617e58346711efdc6409d568b51eb6c012` changes the active `model-benchmark :auto` workflow from a guarded canonical promotion step to advisory-only recommendation and changes the shared promotion helper. Because `.opencode/commands/deep/model-benchmark.md:141-146` loads and executes that asset in production, the candidate is not wholly additive-dark relative to `dc3736d584`; the preservation gate exits 1.
+**Exact defect:** commit `cb4209617e58346711efdc6409d568b51eb6c012` changes the active `model-benchmark :auto` workflow from a guarded canonical promotion step to advisory-only recommendation and changes the shared promotion helper. Because `.opencode/commands/deep/model-benchmark.md:141-146` loads and executes that asset in production, the candidate is not wholly additive-dark relative to `9e44ee73c8`; the preservation gate exits 1.
 
 **Acceptance impact:** unresolved blocking failure of claim 1. The fact that the new behavior is safer does not satisfy the review's explicit no-legacy-path-change condition.
 

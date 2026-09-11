@@ -15,7 +15,7 @@ parent: "sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename"
 `008-verification-and-closeout`. The phase 008 and phase 009 observations remain
 historical records; this file is the authority for the current executable state.
 
-**Repository identity:** `ab605d5c0bffcc9e56749538b796fae082d0b512` plus the
+**Repository identity:** `ee8c74bd6e4aa17b8e89f25e68ef7d351e950fa8` plus the
 uncommitted working-tree changes present during these runs. The evidence is a
 working-tree measurement, not a clean-commit claim.
 

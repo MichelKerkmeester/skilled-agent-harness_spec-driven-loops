@@ -59,15 +59,15 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T004 Remove the banned character from the verbatim binding line (`.../sk-create-repo-rule/assets/repo-rule-template.md`) - evidence: `c1b3b780c3`
-- [x] T005 Re-derive the measured table in the rule anatomy contract (`.../sk-create-repo-rule/references/rule-anatomy.md`) - evidence: `c1b3b780c3`, five of nine rows had drifted
-- [x] T006 State that a template is scanned with `--include-code` and a zero without it is unmeasured (`.../scope-and-exemptions.md`) - evidence: `c1b3b780c3`
-- [x] T007 Strip the punctuation from the plan template scaffold line (`.opencode/skills/system-spec-kit/templates/core/plan.md.tmpl`) - evidence: `9ae247d772`
-- [x] T008 Re-capture the golden snapshots against the corrected template - evidence: `9ae247d772`
-- [x] T009 Add overview sections to fourteen documents, leaving two fixtures exempt - evidence: `d87e8dd162`
-- [x] T010 Add the fixture-tree exemption to the document validator - evidence: `d229b0a24d`, releasing 485 tracked files
-- [x] T011 Make a template detectable by name and location so its payload is read - evidence: `d229b0a24d`
-- [x] T012 Rewrite the superseded scaffold line in fifty-six planning documents - evidence: `d229b0a24d`
+- [x] T004 Remove the banned character from the verbatim binding line (`.../sk-create-repo-rule/assets/repo-rule-template.md`) - evidence: `02f1ec6170`
+- [x] T005 Re-derive the measured table in the rule anatomy contract (`.../sk-create-repo-rule/references/rule-anatomy.md`) - evidence: `02f1ec6170`, five of nine rows had drifted
+- [x] T006 State that a template is scanned with `--include-code` and a zero without it is unmeasured (`.../scope-and-exemptions.md`) - evidence: `02f1ec6170`
+- [x] T007 Strip the punctuation from the plan template scaffold line (`.opencode/skills/system-spec-kit/templates/core/plan.md.tmpl`) - evidence: `2f4b9a481d`
+- [x] T008 Re-capture the golden snapshots against the corrected template - evidence: `2f4b9a481d`
+- [x] T009 Add overview sections to fourteen documents, leaving two fixtures exempt - evidence: `2912ce44a8`
+- [x] T010 Add the fixture-tree exemption to the document validator - evidence: `71f1c2f9bc`, releasing 485 tracked files
+- [x] T011 Make a template detectable by name and location so its payload is read - evidence: `71f1c2f9bc`
+- [x] T012 Rewrite the superseded scaffold line in fifty-six planning documents - evidence: `71f1c2f9bc`
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -80,7 +80,7 @@ _memory:
 - [x] T015 Search `specs/` for the superseded scaffold sentence - evidence: re-run 2026-09-02, one match, the criterion that describes this task
 - [x] T016 Measure the blocker delta across the fifty-six rewritten documents - evidence: every file dropped by exactly one and none rose
 - [x] T017 Re-score every template in the fleet with payload scanning on - evidence: 45 of 53 carry a real blocker, recorded rather than swept
-- [x] T018 Confirm the packaging gate still exempts fixture trees after the validator change - evidence: `d229b0a24d`
+- [x] T018 Confirm the packaging gate still exempts fixture trees after the validator change - evidence: `71f1c2f9bc`
 - [x] T019 Triage every detected template blocker into prose, emitted payload, exemption or scanner gap - evidence: `research/template-triage.md`, 2026-09-03. 38 of 50 detected templates, 520 occurrences, classified 347 prose, 134 emitted, 29 gap, 10 exempt, with a ranked fix order and the consumer named for every emitted file
 - [x] T020 Re-measure the fleet before sweeping, since the triage counts predate both scanner rulings - evidence: 2026-09-04, `is_template_path` over `git ls-files` gives 54 detected and 509 blockers across 41 files, against the triage's 530 across 41 of 53
 - [x] T021 Sweep the guidance-only blockers across every detected template - evidence: 354 occurrences cleared under `.opencode/`, with a fence-position check confirming no payload line moved
@@ -166,7 +166,7 @@ _memory:
 - [x] CHK-FIX-004 [P0] Adversarial case covered by the seeded-blocker negative control
 - [x] CHK-FIX-005 [P1] Matrix axes listed: gate by document class
 - [x] CHK-FIX-006 [P1] The fixture exemption is decided by path rather than by content
-- [x] CHK-FIX-007 [P1] Evidence pinned to `c1b3b780c3`, `9ae247d772`, `d87e8dd162` and `d229b0a24d`
+- [x] CHK-FIX-007 [P1] Evidence pinned to `02f1ec6170`, `2f4b9a481d`, `2912ce44a8` and `71f1c2f9bc`
 <!-- /ANCHOR:fix-completeness -->
 
 ---

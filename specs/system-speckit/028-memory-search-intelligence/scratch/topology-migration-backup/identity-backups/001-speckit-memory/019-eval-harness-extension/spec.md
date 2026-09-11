@@ -251,7 +251,7 @@ Per-candidate seams above. Production code under `.opencode/skills/system-spec-k
 <!-- ANCHOR:status -->
 ## 14. CANDIDATE STATUS
 
-> Cross-checked against the Wave-0 shipped record and the Wave-0 commit range (`git log --oneline 1ecc531431..ab5459fb6d`): **none of these candidates shipped in Wave-0.** The Wave-0 ships a candidate it labels "C9", that is the *embedder-degrade* candidate (recall degrades to lexical + `embedder_available:false`), a different C9 namespace from these C9-1/C9-2/C9-3 metric lanes. This phase now implements C9-1/C9-2/C9-3 as code + deterministic tests. A8 remains pending under the no-schema/no-live-benchmark constraint.
+> Cross-checked against the Wave-0 shipped record and the Wave-0 commit range (`git log --oneline 2e17fdbe32..5ed284319b`): **none of these candidates shipped in Wave-0.** The Wave-0 ships a candidate it labels "C9", that is the *embedder-degrade* candidate (recall degrades to lexical + `embedder_available:false`), a different C9 namespace from these C9-1/C9-2/C9-3 metric lanes. This phase now implements C9-1/C9-2/C9-3 as code + deterministic tests. A8 remains pending under the no-schema/no-live-benchmark constraint.
 
 | # | Candidate | Status | Gate | 030 evidence | Notes |
 |---|-----------|--------|------|--------------|-------|

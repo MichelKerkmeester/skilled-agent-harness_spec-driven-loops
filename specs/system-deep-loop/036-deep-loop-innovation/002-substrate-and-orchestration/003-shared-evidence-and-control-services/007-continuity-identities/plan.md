@@ -35,7 +35,7 @@ _memory:
 |--------|-------|
 | **Surface** | `.opencode/skills/system-deep-loop/runtime/` shared identity, state-reduction, ledger, and mode-boundary adapters |
 | **Change class** | Additive dark runtime service + typed ledger contract |
-| **Execution** | Isolated worktree pinned to `d1a3f0323c3635f24c3560feaeda839522ececf0`; legacy paths remain authoritative |
+| **Execution** | Isolated worktree pinned to `f3ae3672a0a3f046204658dcccaeda2d7b8dee14`; legacy paths remain authoritative |
 
 ### Overview
 Add one shared continuity-identity service that mints opaque typed IDs for lineages, claims, candidates, and logical mode sessions, persists identity events through the transition-authorized ledger, and restores the same references from resume and handover state. The service separates stable logical identity from attempts, iterations, labels, paths, timestamps, and content fingerprints. Existing identifiers are observed as namespaced aliases in the dark path. Cross-mode consumers carry typed references to the original entity instead of generating a local replacement. Design evidence comes from `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/continuity-thread.cjs`, `.opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs`, `.opencode/skills/system-deep-loop/runtime/lib/council/session-state-hierarchy.cjs`, `.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs`, `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/jsonl-repair.ts`, `.opencode/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-db.ts`, the parent program `spec.md`, `manifest/phase-tree.json`, and the run-2 `research-modes.md`.

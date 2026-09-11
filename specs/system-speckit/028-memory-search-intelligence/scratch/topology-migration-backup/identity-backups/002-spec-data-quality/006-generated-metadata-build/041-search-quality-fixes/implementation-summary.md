@@ -102,7 +102,7 @@ The keystone (Fix 1) and the telemetry fix (Fix 3) share `memory-search.ts` and 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-- **Commit hygiene.** A concurrent session sharing the git index swept this packet's code changes into an unrelated pushed commit (`bbb2f539f4`, a 2333-file skill-doc corpus commit). The code is committed, correct, and safe. The commit is pushed and dominated by another session's work, so it was left as-is rather than rewritten. Remaining doc updates are committed scoped.
+- **Commit hygiene.** A concurrent session sharing the git index swept this packet's code changes into an unrelated pushed commit (`4f4e52ba4b`, a 2333-file skill-doc corpus commit). The code is committed, correct, and safe. The commit is pushed and dominated by another session's work, so it was left as-is rather than rewritten. Remaining doc updates are committed scoped.
 - **The determinism flag is unproven for recall.** It ships default-off. Graduating it to default-on needs a recall benchmark to confirm removing recency does not hurt ranking, a later decision not this packet.
 - **The aligned-query cap is conservative.** The Stage-4 gap detector fires on the ambiguous one-word `graph` query and caps it to `weak`, banner and verdict in agreement. Whether the threshold should be that conservative on aligned one-word queries is a tuning question for a later packet.
 - **Fix 3 is envelope-only in the dashboard.** The new `retrievalProfileWeightsEnabled` field is in the envelope for programmatic consumers, the text dashboard does not render it, which is expected.

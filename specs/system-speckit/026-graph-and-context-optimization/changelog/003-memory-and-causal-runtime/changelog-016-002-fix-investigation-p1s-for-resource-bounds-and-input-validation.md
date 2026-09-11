@@ -22,7 +22,7 @@ contextType: "implementation"
 
 ### Summary
 
-Four P1 security findings (F48, F85, F86, F87) from the arc-010 deep-research investigation left the sidecar subsystem with predictable request IDs plus unbounded health payload accumulation and embed input arrays. Commit `f3013f199a` replaced the sequential request-ID counter in `sidecar-client.ts` with a cryptographically random 32-bit integer. It added a 64KB accumulation cap to the health payload handler in `ensure-rerank-sidecar.cjs` then enforced a 500-item input cap with a typed `SidecarClientError` in `SidecarClient.embed()`. F87 was verified closed by phase 001's F47 fix which already added the matching worker-side cap. Five new tests across two suites confirm all four contracts.
+Four P1 security findings (F48, F85, F86, F87) from the arc-010 deep-research investigation left the sidecar subsystem with predictable request IDs plus unbounded health payload accumulation and embed input arrays. Commit `e6658798ed` replaced the sequential request-ID counter in `sidecar-client.ts` with a cryptographically random 32-bit integer. It added a 64KB accumulation cap to the health payload handler in `ensure-rerank-sidecar.cjs` then enforced a 500-item input cap with a typed `SidecarClientError` in `SidecarClient.embed()`. F87 was verified closed by phase 001's F47 fix which already added the matching worker-side cap. Five new tests across two suites confirm all four contracts.
 
 ### Added
 
@@ -43,7 +43,7 @@ Four P1 security findings (F48, F85, F86, F87) from the arc-010 deep-research in
 - F48: predictable sequential request IDs in `sidecar-client.ts` allowed spoofed reply matching. Crypto-strong random IDs close this attack surface.
 - F85: `healthPayload` accumulation in `ensure-rerank-sidecar.cjs` had no byte cap. A spoofed localhost listener could exhaust process memory. The 64KB cap with immediate `req.destroy()` closes this path.
 - F86: `SidecarClient.embed()` accepted arbitrarily large input arrays. The 500-item cap with typed error closes the client-side path and matches the worker-side cap from phase 001.
-- F87: worker-side embed input cap verified closed by arc-010-002-001 commit `4fbc4098db`. No additional changes needed.
+- F87: worker-side embed input cap verified closed by arc-010-002-001 commit `719610899f`. No additional changes needed.
 
 ### Verification
 

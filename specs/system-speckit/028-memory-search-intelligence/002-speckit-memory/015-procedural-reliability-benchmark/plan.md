@@ -120,7 +120,7 @@ recall hit / task signal → feedback-ledger → recordAdaptiveSignal('outcome',
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
-> Safe-core phases shipped default-off at 8f8776e329 (outcome emitter, f64 Beta primitive, procedural-reliability recall fold), candidate promotion stays benchmark-gated.
+> Safe-core phases shipped default-off at 508af65780 (outcome emitter, f64 Beta primitive, procedural-reliability recall fold), candidate promotion stays benchmark-gated.
 
 ### Phase A: Outcome/usefulness emitter (shared prerequisite)
 - [ ] Confirm `feedback-ledger.ts` `FeedbackEventType` can be the canonical `'outcome'` source (or add a call site)

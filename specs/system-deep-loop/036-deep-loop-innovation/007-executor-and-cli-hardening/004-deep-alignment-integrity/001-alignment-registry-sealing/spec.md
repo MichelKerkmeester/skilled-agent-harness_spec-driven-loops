@@ -124,7 +124,7 @@ Make the registry self-identify whether it is authoritative, and keep it current
 ## 5. SUCCESS CRITERIA
 
 - `reducer-seal-state.test.cjs` passes all 5 cases [TESTED: reducer-seal-state.test.cjs].
-- The reducer-relevant suite is green with no new failures vs the pre-change baseline [VERIFIED: stash baseline — the 4 `command-*` failures are pre-existing on 28d9c4a81a].
+- The reducer-relevant suite is green with no new failures vs the pre-change baseline [VERIFIED: stash baseline — the 4 `command-*` failures are pre-existing on 368915881b].
 - Re-reducing the packet-012 log (unsealed) yields `PASS, sealed:false`; with `--seal`, `PASS, sealed:true` [VERIFIED: in-tree reduceAlignmentState run].
 
 <!-- /ANCHOR:success-criteria -->

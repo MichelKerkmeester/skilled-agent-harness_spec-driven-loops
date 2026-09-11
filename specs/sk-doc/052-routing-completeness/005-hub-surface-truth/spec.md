@@ -133,14 +133,14 @@ The hub documents agree with the registries, and a check fails when they stop ag
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skills/sk-doc/ROUTER.md` | Modify | `FULL_INVENTORY` completed from 128 to 252 leaves (`98a327edf9`, 128 lines) |
-| `.opencode/skills/sk-doc/README.md` | Modify | Description, trigger phrases and at-a-glance table on the current mode set (`98a327edf9`) |
-| `.opencode/commands/doctor/scripts/parent-skill-check.cjs` | Modify | Invariant 6c, the command column check (`98a327edf9`, 22 lines) |
-| `.../parent-skill-check-command-column.test.cjs` | Create | The four failure modes plus the restore case (`98a327edf9`, 285 lines) |
-| `.opencode/skills/sk-doc/SKILL.md` | Modify | The hidden command restored to the mode table (`08eb67a0de`) |
-| `.opencode/skills/sk-doc/sk-create-frontmatter/SKILL.md` | Modify | Keyword-triggers line the hub contract requires (`08eb67a0de`) |
-| `.opencode/skills/sk-doc/sk-create-repo-rule/SKILL.md` | Modify | Keyword-triggers line the hub contract requires (`08eb67a0de`) |
-| `research/findings-register.md` | Modify | Five findings recorded closed, and the check that keeps them closed (`8bb9011584`) |
+| `.opencode/skills/sk-doc/ROUTER.md` | Modify | `FULL_INVENTORY` completed from 128 to 252 leaves (`90ea7ecb09`, 128 lines) |
+| `.opencode/skills/sk-doc/README.md` | Modify | Description, trigger phrases and at-a-glance table on the current mode set (`90ea7ecb09`) |
+| `.opencode/commands/doctor/scripts/parent-skill-check.cjs` | Modify | Invariant 6c, the command column check (`90ea7ecb09`, 22 lines) |
+| `.../parent-skill-check-command-column.test.cjs` | Create | The four failure modes plus the restore case (`90ea7ecb09`, 285 lines) |
+| `.opencode/skills/sk-doc/SKILL.md` | Modify | The hidden command restored to the mode table (`aa11c2b622`) |
+| `.opencode/skills/sk-doc/sk-create-frontmatter/SKILL.md` | Modify | Keyword-triggers line the hub contract requires (`aa11c2b622`) |
+| `.opencode/skills/sk-doc/sk-create-repo-rule/SKILL.md` | Modify | Keyword-triggers line the hub contract requires (`aa11c2b622`) |
+| `research/findings-register.md` | Modify | Five findings recorded closed, and the check that keeps them closed (`ca9e3885b8`) |
 <!-- /ANCHOR:scope -->
 
 ---

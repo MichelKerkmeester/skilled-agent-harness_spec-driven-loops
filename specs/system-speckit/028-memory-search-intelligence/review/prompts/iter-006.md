@@ -16,7 +16,7 @@ Retry; registry counts in prompt.
 Review Iteration: 6 of 10
 Mode: review
 Dimension: traceability
-Review Target: .opencode/specs/system-speckit/028-memory-search-intelligence — SESSION SCOPE: Documentation-alignment review of the 028 Phase R remediation + 017-023 reconciliation merge (origin tip 8d52813080): spec-folder docs for children 006-016 (template conformance, evidence quality, status coherence per sk-doc standards); mcp_server READMEs (handlers/, lib/search/, lib/storage/) vs merged code; ENV_REFERENCE.md truthfulness; system-spec-kit SKILL.md/reference alignment for touched surfaces; comment hygiene; doc drift introduced by the merge. Alignment authorities: sk-doc create-quality-control standards, sk-code surface doctrine.
+Review Target: .opencode/specs/system-speckit/028-memory-search-intelligence — SESSION SCOPE: Documentation-alignment review of the 028 Phase R remediation + 017-023 reconciliation merge (origin tip 535c75da34): spec-folder docs for children 006-016 (template conformance, evidence quality, status coherence per sk-doc standards); mcp_server READMEs (handlers/, lib/search/, lib/storage/) vs merged code; ENV_REFERENCE.md truthfulness; system-spec-kit SKILL.md/reference alignment for touched surfaces; comment hygiene; doc drift introduced by the merge. Alignment authorities: sk-doc create-quality-control standards, sk-code surface doctrine.
 Review Scope Files: .opencode/skills/system-spec-kit/mcp_server/lib/search/README.md and lib/storage/README.md vs merged code (memory-drift-healing.ts, memory-drift-processing-sweep.ts, incremental-index.ts, channel-exceptions.ts, hybrid-search telemetry, active-row-predicate.ts) — slice 6 RETRY
 Prior Findings: P0=0 P1=10 P2=5
 

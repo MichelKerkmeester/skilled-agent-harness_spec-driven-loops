@@ -72,7 +72,7 @@ All 10 deep-review findings closed. Four P0 code hardening fixes + one P2 + one 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Dispatched a GPT-5.6-SOL implementer via `opencode run` in an isolated worktree off origin `b25ee5c370`, driven by the 005 spec/plan/tasks. Severity order: P0 code hardening first, then P2 + operator surface, then evidence corrections. Verified independently by the orchestrator.
+Dispatched a GPT-5.6-SOL implementer via `opencode run` in an isolated worktree off origin `5cf96719ba`, driven by the 005 spec/plan/tasks. Severity order: P0 code hardening first, then P2 + operator surface, then evidence corrections. Verified independently by the orchestrator.
 <!-- /ANCHOR:how-delivered -->
 
 ---

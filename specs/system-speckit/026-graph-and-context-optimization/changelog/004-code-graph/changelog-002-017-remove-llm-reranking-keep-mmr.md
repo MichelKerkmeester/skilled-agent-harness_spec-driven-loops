@@ -22,7 +22,7 @@ contextType: "implementation"
 
 ### Summary
 
-Packet 014/003 (commit `b564013c0e`) already removed the core inactive LLM-model reranking path: the cross-encoder modules, local GGUF reranker sidecar, conditional rerank gate, Stage 3 Step 1 cross-encoder step plus seven related tests. After that removal, residual confidence scoring vestiges, explainability signals, audit metrics, active documentation claims plus test assertions still referenced the dead reranker path. The live pipeline no longer assigned `rerankerScore`, so all of those references were inert noise.
+Packet 014/003 (commit `c99f990897`) already removed the core inactive LLM-model reranking path: the cross-encoder modules, local GGUF reranker sidecar, conditional rerank gate, Stage 3 Step 1 cross-encoder step plus seven related tests. After that removal, residual confidence scoring vestiges, explainability signals, audit metrics, active documentation claims plus test assertions still referenced the dead reranker path. The live pipeline no longer assigned `rerankerScore`, so all of those references were inert noise.
 
 This packet is the 39-file cleanup layer. It removed every inactive LLM-model reranker vestige from confidence scoring, explainability, audit, feature flags, documentation plus tests. MMR (Maximal Marginal Relevance) diversity reranking was explicitly preserved because it is algorithmic vector math in Stage 3, not a separate LLM model sidecar. The result is that active memory-search surfaces now accurately describe the MMR-only Stage 3 pipeline.
 

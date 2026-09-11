@@ -19,7 +19,7 @@ contextType: "implementation"
 
 ### Summary
 
-Executed the 11-step runbook phase 002 designed. The canonical spec-kit tree moved from `.opencode/specs/` to `specs/` at repo root; `.opencode/specs` is now a relative symlink (`.opencode/specs -> ../specs`). Landed the atomic flip plus the required `.gitignore` rebase in one commit (`606e55cb8a`, 49,891 renames), then propagated the direction change across the registry, CI, docs, and the Memory MCP index.
+Executed the 11-step runbook phase 002 designed. The canonical spec-kit tree moved from `.opencode/specs/` to `specs/` at repo root; `.opencode/specs` is now a relative symlink (`.opencode/specs -> ../specs`). Landed the atomic flip plus the required `.gitignore` rebase in one commit (`416ef56527`, 49,891 renames), then propagated the direction change across the registry, CI, docs, and the Memory MCP index.
 
 ### Changed
 

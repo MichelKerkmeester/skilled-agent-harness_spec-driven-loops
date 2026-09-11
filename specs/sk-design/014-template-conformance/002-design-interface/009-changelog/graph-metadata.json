@@ -38,8 +38,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/skills/sk-doc/shared/assets/changelog-template.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -64,12 +63,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "changelog-template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/shared/assets/changelog-template.md",
         "source": "derived"
       },
       {
@@ -185,11 +178,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`changelog/` holds exactly 2 files: `v1.0.0.0.md` (65 lines, titled \"interface v1.0.0.0 - Data-backed and Claude Design parity\", genuinely about `design-interface`) and `v1.0.0.0-foundations.md` (21 lines, titled \"foundations v1.0.0.0 - Initial Release\")",
     "created_at": "2026-07-27T14:56:09.053Z",
-    "last_save_at": "2026-08-30T15:39:13.049Z",
+    "last_save_at": "2026-09-11T16:41:57.253Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d27d305061ffa7325e6b25588f4158d56e8067d2526af865557dc0a09fab169f",
+    "source_fingerprint": "sha256:e74f202de6bf4628b095198a1af0054450dab90e7bd15a264ef0d89aedb8c45e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "eec73461aeaf69f79a5df05cda8a063ac7e95486b115aa0160bd214752a23f47",
       "plan.md": "921f5582a00ea8501a5cc2add8e2000b7626498ed4f2de37a740d19849286353",
       "tasks.md": "760b46cde91c7d36e60e90bc2a39e83511d9aaad58d66d1cb42b06e1cb8d0417",
-      "implementation-summary.md": "94ce6c8e77db4ac935d8f7a13e0d09fe15e5f10361572409a2390ac24e2a8144"
+      "implementation-summary.md": "1682c771fbbde6536b43398bdedad89f867e9dc1637673c609459c90fed716b3"
     },
     "last_active_child_id": null,
     "last_active_at": null

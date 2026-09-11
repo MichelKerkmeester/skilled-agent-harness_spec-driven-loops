@@ -49,7 +49,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Confirm `origin/main` HEAD = `75cfec1700` and enumerate the session commit range (`git log`)
+- [x] T001 Confirm `origin/main` HEAD = `ce22801ff5` and enumerate the session commit range (`git log`)
 - [x] T002 Establish code ground truth for the 7 change-areas: 37 MCP tools, single `MANIFESTS` entry, `CLOUD_CANONICAL` retention, MMR presence, owner-lease path, flag-doc renumbering
 - [x] T003 Create the review packet skeleton (`spec.md`, `description.json`, `graph-metadata.json`, `review/`)
 - [x] T004 Pre-filter `feature_catalog/**` and `manual_testing_playbook/**` by topical grep; compose 10 bounded review briefs (`/tmp/docs-drift-review/brief-*.md`)

@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: sk-code advisor-routing discovery + Lane-C D3 proxy fix"
-description: "Retrospective Level 2 plan for the sk-code-local routing discovery increment, D3 empty-gold scoring fix, stale parent-hub schema doc refresh, playbook expected-asset repairs, and benchmark report regeneration shipped in commit ec014f95c6."
+description: "Retrospective Level 2 plan for the sk-code-local routing discovery increment, D3 empty-gold scoring fix, stale parent-hub schema doc refresh, playbook expected-asset repairs, and benchmark report regeneration shipped in commit cdc51fc894."
 trigger_phrases:
   - "phase 24 plan"
   - "sk-code advisor routing discovery plan"
@@ -13,7 +13,7 @@ _memory:
     packet_pointer: "sk-code/001-sk-code-parent/024-sk-code-advisor-routing-and-discovery"
     last_updated_at: "2026-07-06T12:00:00.000Z"
     last_updated_by: "gpt-5.5"
-    recent_action: "Retrospective plan recorded for shipped commit ec014f95c6"
+    recent_action: "Retrospective plan recorded for shipped commit cdc51fc894"
     next_safe_action: "None; implementation packet is shipped and pushed"
 ---
 # Implementation Plan: sk-code advisor-routing discovery + Lane-C D3 proxy fix
@@ -36,7 +36,7 @@ _memory:
 | **Testing** | sk-code parent-skill-check STRICT, vocab-sync, router drift-guards, skill-benchmark vitest suite, markdown link checks, JSON example parsing, benchmark delta reports |
 
 ### Overview
-This phase completed the sk-code-local, advisor-scorer-independent Layer 1 routing increment in commit `ec014f95c6`. It fixed discovery gaps by adding CWV and accessibility vocabulary to existing smart-routing resource maps, constrained short CWV acronyms to word-boundary matching in router replay, changed D3 efficiency scoring so empty positive-resource gold is not applicable instead of zero, refreshed the stale sk-code parent-hub schema example, repaired dead expected-asset paths in two cross-stack playbooks, and regenerated benchmark reports without overwriting frozen baselines.
+This phase completed the sk-code-local, advisor-scorer-independent Layer 1 routing increment in commit `cdc51fc894`. It fixed discovery gaps by adding CWV and accessibility vocabulary to existing smart-routing resource maps, constrained short CWV acronyms to word-boundary matching in router replay, changed D3 efficiency scoring so empty positive-resource gold is not applicable instead of zero, refreshed the stale sk-code parent-hub schema example, repaired dead expected-asset paths in two cross-stack playbooks, and regenerated benchmark reports without overwriting frozen baselines.
 
 <!-- /ANCHOR:summary -->
 ---
@@ -45,7 +45,7 @@ This phase completed the sk-code-local, advisor-scorer-independent Layer 1 routi
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [x] Phase 024 scope was bounded to sk-code-local, advisor-scorer-independent changes shipped in commit `ec014f95c6`.
+- [x] Phase 024 scope was bounded to sk-code-local, advisor-scorer-independent changes shipped in commit `cdc51fc894`.
 - [x] Root cause was identified: missing keyword coverage for existing RESOURCE_MAP references, not missing reference paths.
 - [x] D3 scoring issue was identified: scenarios with no positive-resource gold were treated as waste instead of not-applicable.
 - [x] Downstream advisor-scorer and projection-vocabulary work was explicitly excluded from this packet.
@@ -146,7 +146,7 @@ Prompt text enters smart routing through intent keywords. CWV vocabulary now tri
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: sk-code discovery benchmark regresses, router drift guards fail, D3 null handling misnormalizes scores, schema examples fail to parse, markdown links break, or benchmark artifacts overwrite frozen baselines.
-- **Procedure**: Revert commit `ec014f95c6`, restore the affected smart-routing, router replay, scoring, schema doc, playbook, and benchmark artifact paths from the previous branch tip, then re-run parent-skill-check STRICT, vocab-sync, router drift-guards, skill-benchmark vitests, markdown-links, schema JSON parsing, and benchmark report generation before attempting a smaller patch.
+- **Procedure**: Revert commit `cdc51fc894`, restore the affected smart-routing, router replay, scoring, schema doc, playbook, and benchmark artifact paths from the previous branch tip, then re-run parent-skill-check STRICT, vocab-sync, router drift-guards, skill-benchmark vitests, markdown-links, schema JSON parsing, and benchmark report generation before attempting a smaller patch.
 
 <!-- /ANCHOR:rollback -->
 ---
@@ -187,7 +187,7 @@ Prompt text enters smart routing through intent keywords. CWV vocabulary now tri
 - [x] Confirm sk-design and deep-loop-workflows `baseline/` directories are frozen comparison anchors.
 
 ### Rollback Procedure
-1. Revert commit `ec014f95c6`.
+1. Revert commit `cdc51fc894`.
 2. Restore smart-routing vocabulary, router replay keyword matching, D3 scoring, schema documentation, playbook expected assets, and benchmark artifacts from the previous branch tip.
 3. Remove sibling `after-d3-proxy/` reports if reverting the D3 proxy fix.
 4. Re-run parent-skill-check STRICT, vocab-sync, router drift-guards, skill-benchmark vitests, markdown-links, schema JSON parsing, and benchmark generation before re-promotion.

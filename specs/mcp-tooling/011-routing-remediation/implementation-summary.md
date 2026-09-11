@@ -57,7 +57,7 @@ The mcp-tooling hub router now routes every committed scenario to its intended i
 
 ### Phase 0: adjudication and regression freeze
 
-ADR-001 (fallback-only `defaultResource`) and ADR-002 (route-gold gate scope) are Accepted in `decision-record.md`. The `regression/` folder holds `pre-fix-replay-hub.json` (6/13 intent, 2/13 resource), `pre-fix-replay-packets.json` (38/49 intent), and `pre-fix-gates.md` (package check PASS, parent-skill-check PASS, advisor ratchet 7/7 with baseline numbers), all captured at repo HEAD `1508a744d3`.
+ADR-001 (fallback-only `defaultResource`) and ADR-002 (route-gold gate scope) are Accepted in `decision-record.md`. The `regression/` folder holds `pre-fix-replay-hub.json` (6/13 intent, 2/13 resource), `pre-fix-replay-packets.json` (38/49 intent), and `pre-fix-gates.md` (package check PASS, parent-skill-check PASS, advisor ratchet 7/7 with baseline numbers), all captured at repo HEAD `d840fa8339`.
 
 ### WS1: deterministic hub routing (F001-F005)
 
@@ -143,7 +143,7 @@ Producer-and-gold first, consumer next: every vocabulary and policy edit was ver
 1. **Advisor probe outputs were not captured in the Phase 0 baseline.** Recorded as open in `regression/pre-fix-gates.md`; capture them with the Phase 5 regression delta.
 2. **Other hub-type skills' NEXT benchmark runs will newly enforce route gold** (per ADR-002 this is the intended default): sk-code's corpus currently carries 10 route-gold recall violations that would block an auto-mode run — true positives for that owner to triage (or run with `--route-gold off` during triage); its frozen baseline stays valid.
 3. **19 pre-existing harness test failures** (missing sk-design-dispatch fixture files; sk-code corpus-count drift from concurrent sessions) fail identically before and after this workstream (stash A/B) and are outside this packet's write authority.
-4. **Phase 2 evidence is pinned to the working tree over base `1508a744d3`** (WS1+WS2 are uncommitted in this session); pin final SHAs at the workstream commit.
+4. **Phase 2 evidence is pinned to the working tree over base `d840fa8339`** (WS1+WS2 are uncommitted in this session); pin final SHAs at the workstream commit.
 <!-- /ANCHOR:limitations -->
 
 ---

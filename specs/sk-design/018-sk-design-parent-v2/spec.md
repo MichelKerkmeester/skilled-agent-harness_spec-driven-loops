@@ -65,7 +65,7 @@ _memory:
 ### This packet reverses a deliberate decision, and says so first
 
 `sk-design` **was** a parent hub. It was dismantled on purpose on 19 August 2026 by
-`016-deprecate-sk-design-interface`, commit `4edf582436`, which retired the hub and the
+`016-deprecate-sk-design-interface`, commit `4ac89951ca`, which retired the hub and the
 `sk-design-interface` mode and graduated `sk-design-md-generator` to standalone, carrying the
 `styles/` corpus with it.
 

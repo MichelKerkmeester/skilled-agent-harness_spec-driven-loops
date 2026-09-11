@@ -53,7 +53,7 @@ The Spec-Kit Memory MCP routes every query through two orthogonal classifiers (c
 
 **Key Decisions**: C2-A is built first as the gating classifier (a new additive axis on `RouteResult`, never replacing the two existing axes). C2-C extends the existing graph-preservation primitive. C2-B lands as a default-off profile-weight mechanism because tuned ranking weights still need corpus calibration. The recall-shape family remains a separate intelligence-class build behind future default-off flags. Packet 030 remains untouched.
 
-**Critical Dependencies**: C2-B's research-stated blocker (C-X1, the `{bonusOverChannels}` fusion option, "so zeroing channels doesn't distort survivors' convergence bonus") is **already SATISFIED**. C-X1 shipped in packet 030 (commit `65cfcea513`, the `bonusOverChannels` option now lives in `shared/algorithms/rrf-fusion.ts`). No candidate here has a measured before/after benefit number. All leverage/effort are structural inference (028 §6 GO-evidence caveats), and the per-class weight VALUES need re-calibration on the ~1000-memory corpus.
+**Critical Dependencies**: C2-B's research-stated blocker (C-X1, the `{bonusOverChannels}` fusion option, "so zeroing channels doesn't distort survivors' convergence bonus") is **already SATISFIED**. C-X1 shipped in packet 030 (commit `84c532114d`, the `bonusOverChannels` option now lives in `shared/algorithms/rrf-fusion.ts`). No candidate here has a measured before/after benefit number. All leverage/effort are structural inference (028 §6 GO-evidence caveats), and the per-class weight VALUES need re-calibration on the ~1000-memory corpus.
 
 ---
 <!-- ANCHOR:metadata -->
@@ -68,7 +68,7 @@ The Spec-Kit Memory MCP routes every query through two orthogonal classifiers (c
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
 | **Parent Packet** | system-speckit/028-memory-search-intelligence/001-speckit-memory |
 | **Source research** | `../research/research.md`, `../../research/roadmap.md` (§3 Query-Class Routing + MEMORY-SYSTEMS ADDENDUM), `../../research/synthesis/{01,03,06}` |
-| **Shipped-record (done-candidate evidence)** | Wave-0 record + commits `1ecc531431..HEAD` |
+| **Shipped-record (done-candidate evidence)** | Wave-0 record + commits `2e17fdbe32..HEAD` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -156,7 +156,7 @@ Give recall a retrieval-shape axis: classify each query's shape (single-hop / mu
 |----|-------------|---------------------|
 | REQ-001 | C2-A adds a retrieval-class axis without disturbing the two existing axes | `RouteResult` gains `retrievalClass` (SingleHop/MultiHop/Temporal/Entity/Quote), `tier` and `classification` (intent) values are byte-identical to baseline for all existing fixtures, the classifier is a pure function with a neutral default class for unmatched queries [research: `query-router.ts:46-52`] |
 | REQ-002 | C2-C turns graph expansion OFF for single-hop, ON for multi-hop, via the existing primitive | For a SingleHopFactual class, `preserved=false`/`includeDegree=false` even when intent/density would otherwise preserve, for MultiHop the existing preserve behavior is retained, no new gating mechanism is introduced (the `preserved`/`includeDegree` primitive is *extended*, not replaced) [research: `query-router.ts:238-254`] |
-| REQ-003 | C2-B injects per-class channel weights at the pre-fusion seam, honoring `weight:0` | A per-class `RetrievalProfile` maps to `RankedList.weight`, a profile that zeroes a channel does NOT distort surviving channels' convergence bonus because fusion runs with the live `bonusOverChannels` option (C-X1, shipped 030 `65cfcea513`), with the neutral/default profile, fused output is byte-identical to baseline [research: `rrf-fusion.ts:83-86, :99-102, :350`] |
+| REQ-003 | C2-B injects per-class channel weights at the pre-fusion seam, honoring `weight:0` | A per-class `RetrievalProfile` maps to `RankedList.weight`, a profile that zeroes a channel does NOT distort surviving channels' convergence bonus because fusion runs with the live `bonusOverChannels` option (C-X1, shipped 030 `84c532114d`), with the neutral/default profile, fused output is byte-identical to baseline [research: `rrf-fusion.ts:83-86, :99-102, :350`] |
 
 ### P1 - Required (complete OR user-approved deferral)
 
@@ -186,7 +186,7 @@ Give recall a retrieval-shape axis: classify each query's shape (single-hop / mu
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | C-X1 `bonusOverChannels` fusion option (C2-B blocker per research) | C2-B per-class zero-weights would distort survivors' convergence bonus | **Already SATISFIED**, shipped 030 `65cfcea513`, confirmed live in `rrf-fusion.ts:99-102, :336` |
+| Dependency | C-X1 `bonusOverChannels` fusion option (C2-B blocker per research) | C2-B per-class zero-weights would distort survivors' convergence bonus | **Already SATISFIED**, shipped 030 `84c532114d`, confirmed live in `rrf-fusion.ts:99-102, :336` |
 | Dependency | C2-A classifier (gates C2-B + C2-C) | C2-C/C2-B cannot route by class without it | Build C2-A first, it is the critical path for the whole cluster |
 | Risk | Per-class `RetrievalProfile` weight VALUES are un-calibrated | Wrong weights could demote good results | Land the mechanism with a neutral/identity default, defer tuned values to a benchmark follow-up (explicitly out of scope) |
 | Risk | CG-iterative-context-extension loops unboundedly | Synchronous recall hot-path hang / cost blowup | Hard iteration cap + convergence stop + default-off flag (the one net-new algorithm) |

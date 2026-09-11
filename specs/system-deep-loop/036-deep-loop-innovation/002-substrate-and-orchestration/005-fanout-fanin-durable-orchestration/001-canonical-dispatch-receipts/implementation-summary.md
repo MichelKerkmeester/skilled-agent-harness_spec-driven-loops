@@ -41,7 +41,7 @@ _memory:
 | **Completed** | 2026-07-21 |
 | **Level** | 2 |
 | **Status** | Complete |
-| **Execution Base** | `012652b479dee08455de574574c5e7a8971a8b0b` |
+| **Execution Base** | `68b518ab0d8ee5b2bce3a8f1938a7944a1d5945e` |
 | **Event Contract** | `lineage_dispatch_resolved` logical name; `lineage.dispatch.resolved` wire type; version 1 |
 | **Inherited Interfaces** | Envelope v1; versioned type registry; authorized single-use gateway; append-only ledger; phase-007 authorized evidence writer |
 <!-- /ANCHOR:metadata -->

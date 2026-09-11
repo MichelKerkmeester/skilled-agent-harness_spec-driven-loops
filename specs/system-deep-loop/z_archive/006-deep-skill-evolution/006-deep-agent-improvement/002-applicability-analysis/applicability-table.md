@@ -25,7 +25,7 @@ After iter-3 verify + iter-7 adjudication: 0 false-positives + 2 outdated + 1 mi
 | Convergence-transparency (uncovered surfacing) | 121/DR-003 | DAI 5-dim "unscored" surfacing | P1 | M |
 | Content-hash dedup | 122/DR-005 | DAI candidate proposal dedup | P1 | S |
 | YAML script-path verifier | 122/C-008 | DAI workflow YAML | P2 | S |
-| Folder naming compliance (25-40 char) | 5fe6cc4c1e | DAI spec folders (if any drift) | P2 | S |
+| Folder naming compliance (25-40 char) | 74e215b582 | DAI spec folders (if any drift) | P2 | S |
 | sk-doc canonical companions standard | 118 | DAI feature_catalog/playbook/references | P1 | M |
 | Numeric sort on iter filenames | 120/DR-006 | DAI iter file ordering (if applicable) | P2 | S |
 

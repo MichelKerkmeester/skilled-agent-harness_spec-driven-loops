@@ -95,7 +95,7 @@ The parser change is two surgical blocks (a helper plus a fallback expression) v
 | Decision | Why |
 |----------|-----|
 | Inject the table read only into the spec.md status, not the whole precedence chain | The ranked chain already reads spec.md status last, so populating that one field is the single load-bearing change and avoids redesigning precedence |
-| Resolve both E3 packets to Complete rather than flip impl-summaries to in-progress | The actual remediation shipped for 009 (validate strict passes) and the 016 source is committed (commit 79cb4e4d21) with the local-first resolver live in factory.ts |
+| Resolve both E3 packets to Complete rather than flip impl-summaries to in-progress | The actual remediation shipped for 009 (validate strict passes) and the 016 source is committed (commit f92a7d5e01) with the local-first resolver live in factory.ts |
 | De-list the 027 placeholder child instead of scaffolding it | The folder is a hollow shell with no trio and the parent OPEN QUESTIONS frames it as an indefinite placeholder |
 | Compact the pre-existing 026 context-index recent_action | It was the lone --strict blocker on the 026 parent I own for E1/E9; the fix is a safe one-field length trim |
 | Defer dist rebuild + global backfill to central | The backfill needs the rebuilt parser and a global run would clobber peer edits; E7 makes the E3/E6 hand-edits durable against a later re-derive |

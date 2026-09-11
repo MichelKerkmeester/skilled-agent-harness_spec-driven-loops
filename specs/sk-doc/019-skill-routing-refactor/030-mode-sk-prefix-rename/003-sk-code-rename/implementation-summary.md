@@ -33,7 +33,7 @@ _memory:
 | **Spec Folder** | 003-sk-code-rename |
 | **Completed** | 2026-07-28 |
 | **Level** | 1 |
-| **Commits** | dad347226d (+219995d668 hygiene consumers) |
+| **Commits** | 01fe81c9aa (+0f137a8a28 hygiene consumers) |
 <!-- /ANCHOR:metadata -->
 
 ---

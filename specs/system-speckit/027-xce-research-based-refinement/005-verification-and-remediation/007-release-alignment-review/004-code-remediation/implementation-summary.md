@@ -43,7 +43,7 @@ trigger_phrases:
 | **Spec Folder** | 004-code-remediation |
 | **Completed** | 2026-06-18 |
 | **Level** | 2 |
-| **Commit** | `83f36b8050` (3 dists rebuilt) |
+| **Commit** | `9c5d509038` (3 dists rebuilt) |
 
 
 <!-- /ANCHOR:metadata -->
@@ -72,7 +72,7 @@ False positives left untouched: `// Feature catalog:` comments (allowed), TSDoc 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The confirmed findings were filtered into C1–C4 briefs and dispatched to file-disjoint general + `sk-code` fixer seats (gpt-5.5-fast `--variant high`, pool 10, staggered, run in an isolated git worktree-B — never against the live tree). Each seat got an explicit allowed-write file list, a binding DO-NOT-FIX list, and a confirm-then-fix contract that skipped and logged any finding that did not reproduce. After the seats reported, the orchestrator diff-reviewed worktree-B, re-ran the whole gate baseline-and-delta, merged, committed scoped (`83f36b8050`), and rebuilt the 3 dists. Confidence came from the comment-hygiene gate reporting 0 violations across 87 changed files, tsc staying clean across all three packages, and the retrieval-rescue suite passing on the most-edited search file.
+The confirmed findings were filtered into C1–C4 briefs and dispatched to file-disjoint general + `sk-code` fixer seats (gpt-5.5-fast `--variant high`, pool 10, staggered, run in an isolated git worktree-B — never against the live tree). Each seat got an explicit allowed-write file list, a binding DO-NOT-FIX list, and a confirm-then-fix contract that skipped and logged any finding that did not reproduce. After the seats reported, the orchestrator diff-reviewed worktree-B, re-ran the whole gate baseline-and-delta, merged, committed scoped (`9c5d509038`), and rebuilt the 3 dists. Confidence came from the comment-hygiene gate reporting 0 violations across 87 changed files, tsc staying clean across all three packages, and the retrieval-rescue suite passing on the most-edited search file.
 <!-- /ANCHOR:how-delivered -->
 ---
 

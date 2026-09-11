@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Fourteen confirmed mismatches in the system-spec-kit playbook, catalog and references send readers to paths that moved, describe warnings as strict-mode failures, present retired vector search, decay and re-indexing as live, and name four validator rule scripts that do not exist",
     "created_at": "2026-09-06T08:18:04Z",
-    "last_save_at": "2026-09-08T18:23:47.804Z",
+    "last_save_at": "2026-09-11T16:42:48.058Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +212,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:672b5d3e01a6ec8327e83e027c4c6981ceb4e50064b9251fa198ab3e2e29ff28",
+    "source_fingerprint": "sha256:2166c42efab97d5d5b80250fea707488751e7f294c8e326c1523d3a8cd1c0e0b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a30f71feb19c79d80fd94a1c1d11978a168c9fa43d3128d69cea569e4905954d",
       "plan.md": "96fb0b4ca684f848d1b9c1fb47beed38f2dfe028add2812e3d9065b03296c71c",
       "tasks.md": "0bbd71d6ea598f4178d718a3a412b8270bbc0f03d2b8ac0fcbe9e45e805e2acb",
-      "implementation-summary.md": "5d1706ffecc0b7a5c8216ee4a54dc846c5c341d5160f9c1d0b3c8b486ccb6d09"
+      "implementation-summary.md": "233d4307918fd4c4f89da171c00ebbe5a48a772ed90dea2b79b65c223328921b"
     },
     "last_active_at": null
   }

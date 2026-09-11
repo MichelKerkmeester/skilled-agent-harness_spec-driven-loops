@@ -79,7 +79,7 @@ The opencode-go ox row was removed from both skills; an `openrouter/stealth/ox-a
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The opencode-go route was shipped first (commit `b83bff8de9` on v4). The operator then redirected: drop opencode-go, use the zen provider — but a live check proved zen has no ox model (`opencode/ox-alpha-free` and `opencode/ox-alpha` both returned `Model not found`), while `openrouter/stealth/ox-alpha` dispatched a real `PONG` on both opencode and pi. With that ground truth, the opencode-go entries were removed and the OpenRouter route added across the rosters, provider map, docs, and guard tests, and the cli-pi OpenRouter policy was relaxed to two models. The fanout builder probe confirms the constructed command is `pi -p --offline --model openrouter/stealth/ox-alpha`.
+The opencode-go route was shipped first (commit `fabfd898b3` on v4). The operator then redirected: drop opencode-go, use the zen provider — but a live check proved zen has no ox model (`opencode/ox-alpha-free` and `opencode/ox-alpha` both returned `Model not found`), while `openrouter/stealth/ox-alpha` dispatched a real `PONG` on both opencode and pi. With that ground truth, the opencode-go entries were removed and the OpenRouter route added across the rosters, provider map, docs, and guard tests, and the cli-pi OpenRouter policy was relaxed to two models. The fanout builder probe confirms the constructed command is `pi -p --offline --model openrouter/stealth/ox-alpha`.
 <!-- /ANCHOR:how-delivered -->
 
 ---

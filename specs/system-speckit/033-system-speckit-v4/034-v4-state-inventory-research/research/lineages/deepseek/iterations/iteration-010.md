@@ -10,7 +10,7 @@ Walk CHANGELOG-v4.0.0.0.md section by section; for every checkable claim record 
 | Intro (L7) | "Seven hubs now share the same two-axis form" | STALE | Six hubs (cli-external-orchestration, mcp-tooling, sk-code, sk-design, sk-doc, system-deep-loop); sk-prompt is standalone | hub scan (it.1) |
 | Intro (L7) | "routes correctly all thirteen times out of thirteen" | UNVERIFIED | Router-replay claim; not executable here | — |
 | Intro (L11) | "memory_search, memory_save ... behave as before" | FALSE | No memory commands; /speckit:search is the retrieval front door | commands/speckit (it.2) |
-| Intro (L11) | "/interface:* families ... behave as before" | FALSE | /interface:* deprecated (commit 4edf5824369); /design:{chart,diagram,extract} today | git log (it.9) |
+| Intro (L11) | "/interface:* families ... behave as before" | FALSE | /interface:* deprecated (commit 4ac89951ca1); /design:{chart,diagram,extract} today | git log (it.9) |
 | Intro (L11) | "a symlink and a deliberately tolerant gate keep the old paths alive" | TRUE | .opencode/specs → ../specs symlink exists | ls -la .opencode/specs |
 | Glance (L21) | "joined by a new alignment (conformance-audit) mode" | FALSE | No alignment mode/command/schema anywhere | mode-registry; rg (it.3) |
 | Glance (L23) | "authoritative record for all eight loop modes" | STALE | Seven ledger modes; alignment absent; deep-improvement-common present | append-mode-event.cjs (it.3) |
@@ -34,15 +34,15 @@ Walk CHANGELOG-v4.0.0.0.md section by section; for every checkable claim record 
 | Orchestration (L196) | "gated fail-closed on its own binary being present" | TRUE | Readiness gates per leaf; executor-config binary checks | it.6 |
 | Orchestration (L207) | "DeepSeek V4 Flash on the roster" (pi) | TRUE | PI_SUPPORTED_MODELS + default deepseek-v4-flash-vision-exp | executor-config.ts:182-214 |
 | Hooks/Goals (L226) | "Devin goal hooks ... decommissioned" | TRUE | No devin/ in hooks/goal/ | it.8 |
-| Hooks/Goals (L232) | "Pi subagent dispatch uses pi-subagents" | STALE | pi-subagents directive + injector hook REMOVED (commit 6c8c76faf92); native subagents by absence | git log (it.9) |
+| Hooks/Goals (L232) | "Pi subagent dispatch uses pi-subagents" | STALE | pi-subagents directive + injector hook REMOVED (commit 1f382f64a49); native subagents by absence | git log (it.9) |
 | Hooks/Goals (L246) | "around ninety-six of them" (hook symlinks) | STALE | 102 symlinks | it.8 |
 | Hooks/Goals (L247) | "twenty concerns beneath it" | STALE | 21 concern dirs | it.8 |
 | Hooks/Goals (L248) | "hook-flags.env ... missing file fails open" | TRUE | hook-flags.env + .example present | ls |
 | Hooks/Goals (L250) | "Gate-3 spec question now stays quiet on read-only turns" | TRUE | gate-3-classifier.ts ships | ls shared/ |
 | Design (L260) | "1,290 Refero styles ... 129 MB across 7,744 files" | STALE (approx) | styles/ = 135M with database+library; exact counts unverified | du (it.7) |
 | Design (L266) | "A shared nine-stage contract under /interface:*" | FALSE | /interface:* deprecated; design commands chart/diagram/extract | it.9 |
-| Design (L272) | "private layer of fourteen procedure cards" | UNVERIFIED | Not checked; design hub reinstated (112d5471f43) | git log |
-| Design (L278) | "Open Design ... removed end to end" | TRUE | Breaking retire commit 80dce88a7db | git log |
+| Design (L272) | "private layer of fourteen procedure cards" | UNVERIFIED | Not checked; design hub reinstated (08c9d0605d6) | git log |
+| Design (L278) | "Open Design ... removed end to end" | TRUE | Breaking retire commit a38f8d7da78 | git log |
 | Code (L293) | "All 128 relocated files were repointed" | UNVERIFIED | Not countable statically without the commit; mode/surface shape confirmed | — |
 | Code (L293) | "router benchmark rose from 44 to 71" | UNVERIFIED | Benchmark not runnable here | — |
 | Code (L305) | "Rust ... first-class on the opencode surface" | UNVERIFIED | No rust reference docs found under sk-code-opencode/references in this pass | it.7 |
@@ -68,7 +68,7 @@ Walk CHANGELOG-v4.0.0.0.md section by section; for every checkable claim record 
 |---|---|---|---|---|---|---|
 | L11 | "a symlink ... keeps the old paths alive" | TRUE | .opencode/specs → ../specs symlink present | — | Confirmed | ls -la .opencode/specs |
 | L139 | "every run lands in one dated folder grammar under benchmark/reports/" | MISSING | No benchmark/ tree at repo root; per-skill benchmark/ dirs only | P2 | Reports grammar not found at the claimed root | find benchmark/ |
-| L232 | "Pi subagent dispatch uses pi-subagents unless you explicitly name a cli-* mode" | STALE | pi-subagents directive and injector hook were removed (6c8c76faf92); native subagents are now the default by absence | P1 | Remove the pi-subagents mention; default is native by removal | git log 6c8c76faf92 |
+| L232 | "Pi subagent dispatch uses pi-subagents unless you explicitly name a cli-* mode" | STALE | pi-subagents directive and injector hook were removed (1f382f64a49); native subagents are now the default by absence | P1 | Remove the pi-subagents mention; default is native by removal | git log 1f382f64a49 |
 | L444 | "resource paths moved to hyphen-case" | TRUE | Kebab guard + hyphenated command paths | — | Confirmed | creation-workflow.md:304 |
 
 ## Sources Consulted

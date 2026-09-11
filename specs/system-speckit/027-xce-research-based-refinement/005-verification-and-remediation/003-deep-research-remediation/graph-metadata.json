@@ -51,9 +51,6 @@
       "L8-command-adherence/disposition.md",
       "final-review/deep-review-report.md",
       "shared/parsing/secret-scrubber.ts",
-      "scripts/core/workflow.ts",
-      "tests/db-instance-lock.vitest.ts",
-      "tests/launcher-db-lock-exit.vitest.ts",
       "L8-command-adherence/probe.sh",
       "ai-council/council-report.md"
     ],
@@ -110,24 +107,6 @@
         "name": "secret-scrubber.ts",
         "kind": "code",
         "path": "shared/parsing/secret-scrubber.ts",
-        "source": "derived"
-      },
-      {
-        "name": "workflow.ts",
-        "kind": "code",
-        "path": "scripts/core/workflow.ts",
-        "source": "derived"
-      },
-      {
-        "name": "db-instance-lock.vitest.ts",
-        "kind": "test",
-        "path": "tests/db-instance-lock.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "launcher-db-lock-exit.vitest.ts",
-        "kind": "test",
-        "path": "tests/launcher-db-lock-exit.vitest.ts",
         "source": "derived"
       },
       {
@@ -201,11 +180,29 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Pattern Orchestrator",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The tri-system deep-research program (`../028-tri-system-deep-research`) and the command-adherence research (`../011-command-presentation-workflow-separation/006-presentation-adherence-research`) produced 239 findings",
     "created_at": "2026-06-12T11:12:59.644Z",
-    "last_save_at": "2026-08-30T15:39:34.292Z",
+    "last_save_at": "2026-09-11T16:42:38.272Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,14 +212,14 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:c103c5e8ace90e0761a532e34c9aa91c156f709d0c9aa36907e5a8e3a9c726d2",
+    "source_fingerprint": "sha256:f654f42d1cb2d501e8ed2c9f3bbc52a4cca302509d971abeaaa29db56353ae70",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7527c1f2ccb692087a208b1c5abb4d6a6601661810b9a72ab7ec24acdd071a07",
       "plan.md": "a5a894d9826675a8ee5eb92e2e33b4d34aea58f846c84228c5dc80b288f47277",
       "tasks.md": "f52d62819cbf3a7526a022b0096fe0b90180cae60d2c0127dccc829aef6a8ebf",
       "implementation-summary.md": "43b20974923e9cb5774e521a8d44f8d8015710d130d0c97a181d9eff5438017a",
-      "handover.md": "bc7cb6949ebb0af92b301455b43dc6d8f3bc66041488f4a33b641c5198134b80"
+      "handover.md": "ce92358b7cffe62f965471a8e0bc256180bc3b9b93bb7011df513bc4e85fd761"
     },
     "last_active_child_id": null,
     "last_active_at": null

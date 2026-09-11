@@ -65,10 +65,10 @@ _memory:
 
 - [x] T004 Sweep every declared signal through the daemon CLI, one reply file per signal, exit status in a separate file. Evidence: 444 replies at baseline, 381 on the re-run, all exit 0.
 - [x] T005 Classify each reply into exactly one of five buckets from `recommendations[0]`. Evidence: `research/gate-a-raw.tsv`, 445 lines including its header, every row carrying a bucket.
-- [x] T006 Publish the per-hub distribution beside the total. Evidence: `research/gate-a-measurement.md` created in `dbc8678c9d`, 315 lines, with the executor hub at 7 of 115.
-- [x] T007 Audit each unresolved signal before retiring it. Evidence: `08eb67a0de` retired 67, of which 41 returned nothing, 6 went elsewhere and 20 landed on their hub and dropped. None was resolving.
-- [x] T008 Give stage-one signals a stage-two class in the executor hub router. Evidence: `08eb67a0de` touched `hub-router.json` and `mode-registry.json`, moving that hub from 7 of 115 to 66.
-- [x] T009 Correct the run-time override so it lifts the hub instead of inserting a routeless entry at rank one. Evidence: `lib/scorer/executor-delegation.ts` in `08eb67a0de`, with accuracy metrics byte-identical to the committed baseline.
+- [x] T006 Publish the per-hub distribution beside the total. Evidence: `research/gate-a-measurement.md` created in `12aa10504a`, 315 lines, with the executor hub at 7 of 115.
+- [x] T007 Audit each unresolved signal before retiring it. Evidence: `aa11c2b622` retired 67, of which 41 returned nothing, 6 went elsewhere and 20 landed on their hub and dropped. None was resolving.
+- [x] T008 Give stage-one signals a stage-two class in the executor hub router. Evidence: `aa11c2b622` touched `hub-router.json` and `mode-registry.json`, moving that hub from 7 of 115 to 66.
+- [x] T009 Correct the run-time override so it lifts the hub instead of inserting a routeless entry at rank one. Evidence: `lib/scorer/executor-delegation.ts` in `aa11c2b622`, with accuracy metrics byte-identical to the committed baseline.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -77,7 +77,7 @@ _memory:
 ## Phase 3: Verification
 
 - [x] T010 Tally the raw replies twice by independent methods. Evidence: a Python pass and a `jq` pass both returned 234 RESOLVED of 444 and agreed per hub.
-- [x] T011 Re-run the sweep and confirm no signal sits in an unresolved bucket without a decision. Evidence: re-swept at HEAD `fe1ec30fe8` on 2026-09-03 over 389 declared signals, `research/gate-a-rerun-2026-09-03.tsv`, all 389 calls exit 0. Holding the stale sk-doc pin aside, the unresolved set is the same 50 signals as the 2026-09-02 capture, member for member. `research/unresolved-signal-decisions.md` records a decision for all 50 in twelve groups, and an exact-set check confirms one group per signal with no duplicate and no gap.
+- [x] T011 Re-run the sweep and confirm no signal sits in an unresolved bucket without a decision. Evidence: re-swept at HEAD `8cab525c27` on 2026-09-03 over 389 declared signals, `research/gate-a-rerun-2026-09-03.tsv`, all 389 calls exit 0. Holding the stale sk-doc pin aside, the unresolved set is the same 50 signals as the 2026-09-02 capture, member for member. `research/unresolved-signal-decisions.md` records a decision for all 50 in twelve groups, and an exact-set check confirms one group per signal with no duplicate and no gap.
 - [x] T012 Re-run the regression suites after the fix. Evidence: 444 signals, 180 realistic prompts and 224 controls on the five hubs outside scope, with no hub losing a prompt it owned.
 - [x] T013 Apply the seven fixes the decision table names, each in the file it names. Evidence: two hub-identity keywords in `.opencode/skills/sk-code/hub-router.json`, one retirement and one raised phrase in `system-deep-loop/graph-metadata.json`, and one raised phrase each in the `sk-doc`, `sk-code`, `cli-external-orchestration` and `mcp-tooling` metadata, three of them in mcp-tooling.
 - [x] T014 Re-measure every declared signal before and after, one call per signal with its exit status in its own file. Evidence: `research/gate-a-fix-before-2026-09-04.tsv` at 389 rows and `research/gate-a-fix-after-2026-09-04.tsv` at 388, all calls exit 0, RESOLVED 338 to 345 and NO_RECOMMENDATION 13 to 6.
@@ -162,7 +162,7 @@ _memory:
 - [x] CHK-FIX-004 [P0] Adversarial cases covered. Canary fixtures caught two real regressions mid-flight, both reverted.
 - [x] CHK-FIX-005 [P1] Matrix axes and row count listed. Five hubs by five buckets, published as the distribution table.
 - [x] CHK-FIX-006 [P1] Hostile env variant executed. The re-run measured a live daemon whose registries had changed underneath the baseline.
-- [x] CHK-FIX-007 [P1] Evidence pinned to a fix SHA. `dbc8678c9d` and `08eb67a0de`.
+- [x] CHK-FIX-007 [P1] Evidence pinned to a fix SHA. `12aa10504a` and `aa11c2b622`.
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -235,7 +235,7 @@ _memory:
 <!-- ANCHOR:deploy-ready -->
 ## L3+: Deployment Readiness
 
-- [x] CHK-120 [P0] Rollback procedure documented. `git revert 08eb67a0de` restores the earlier routing files together. Undoing the 2026-09-04 pass means reverting the six vocabulary edits, re-running the manifest refresh for sk-code, and rebuilding the graph, which is exactly the sequence the baseline capture used.
+- [x] CHK-120 [P0] Rollback procedure documented. `git revert aa11c2b622` restores the earlier routing files together. Undoing the 2026-09-04 pass means reverting the six vocabulary edits, re-running the manifest refresh for sk-code, and rebuilding the graph, which is exactly the sequence the baseline capture used.
 - [x] CHK-121 [P0] Feature flag configured. Not applicable, since routing files carry no toggle.
 - [x] CHK-122 [P1] Monitoring/alerting configured. Canary fixtures serve that role during a fix.
 - [x] CHK-123 [P1] Runbook created. The reproduction commands in `research/gate-a-measurement.md`.

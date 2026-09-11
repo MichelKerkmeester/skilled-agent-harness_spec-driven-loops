@@ -1,6 +1,6 @@
 ---
 title: "Handover: 033 Identity and Lock Ownership Hardening — LANDED (third attempt)"
-description: "Postmortem of the first two reverted 033 attempts (451-test regression) plus the third attempt that landed as 4446839af8 with the full per-mode matrix green."
+description: "Postmortem of the first two reverted 033 attempts (451-test regression) plus the third attempt that landed as 53d977fcae with the full per-mode matrix green."
 trigger_phrases:
   - "033 remediation landed"
   - "identity lock hardening handover"
@@ -11,10 +11,10 @@ contextType: "handover"
 parent: "system-deep-loop/036-deep-loop-innovation/011-identity-and-lock-ownership-hardening"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/011-identity-and-lock-ownership-hardening"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/011-identity-and-lock-ownership-hardening"
     last_updated_at: "2026-08-17T04:04:40Z"
     last_updated_by: "claude"
-    recent_action: "Landed all 5 findings as 4446839af8 on skilled/v4.0.0.0; FULL 32/32 matrix green"
+    recent_action: "Landed all 5 findings as 53d977fcae on skilled/v4.0.0.0; FULL 32/32 matrix green"
     next_safe_action: "None — all findings landed"
     blockers: []
     key_files:
@@ -31,14 +31,14 @@ _memory:
 
 ## STATUS: LANDED (third attempt)
 
-The 033 remediation landed as `4446839af8` on `skilled/v4.0.0.0`, passing the FULL per-mode
+The 033 remediation landed as `53d977fcae` on `skilled/v4.0.0.0`, passing the FULL per-mode
 matrix (32/32 files: 8 modes x certificates/rollback-gate/resume-adapter/shadow-parity) that
 the first two attempts' verification gate omitted. The postmortem below (why attempts one and
 two were reverted, and the hard lesson) is preserved as historical record — it describes the
 regression the third attempt's mandatory full-matrix gate was built to catch, and it did.
 
 **Landed end state:**
-- Commit `4446839af8` on `skilled/v4.0.0.0`: all 5 findings (F001-F005), 2 live lock-regression
+- Commit `53d977fcae` on `skilled/v4.0.0.0`: all 5 findings (F001-F005), 2 live lock-regression
   restores (atomic-state's removed append lock, loop-lock's TOCTOU release), and a recovered
   broken test-helper (`authorized-ledger-test-helper.ts`, imported by 11 suites).
 - `tsc --noEmit -p tsconfig.json` → **rc 0**.
@@ -51,7 +51,7 @@ regression the third attempt's mandatory full-matrix gate was built to catch, an
   in-flight fenced-append feature.
 
 The first two attempts' verified-reverted end state (`runtime/lib`+`runtime/tests` ==
-landed-024 `5c98e4654e`, `tsc` rc 0, `agent-improvement-certificates` 14/14 pass) is preserved
+landed-024 `0c5c966015`, `tsc` rc 0, `agent-improvement-certificates` 14/14 pass) is preserved
 below as the historical record of what was tried and rolled back before the third attempt.
 
 ---
@@ -179,7 +179,7 @@ set `sandboxMode: read-only` (it blocks the loop's own state writes). Output lan
 ## Next steps
 
 1. **024** — landed + clean. No action.
-2. **033** — landed as `4446839af8` following the mandatory conditions above (root-cause
+2. **033** — landed as `53d977fcae` following the mandatory conditions above (root-cause
    isolation first, full per-mode matrix as the verification gate). No further action.
 3. **F007** (024 doc-metadata reconciliation) — separate light doc-only task, still deferred.
 4. **WS1 036 runtime chain** (026-032, 019, 020) — 026/027/028/029/030/031/032 also landed;

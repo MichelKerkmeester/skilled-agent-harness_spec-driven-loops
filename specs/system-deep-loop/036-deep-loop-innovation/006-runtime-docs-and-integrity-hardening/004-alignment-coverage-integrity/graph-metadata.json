@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Three mechanisms invalidate alignment coverage",
     "created_at": "2026-07-31T01:25:20.480Z",
-    "last_save_at": "2026-08-30T15:39:21.694Z",
+    "last_save_at": "2026-09-11T16:42:25.232Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,14 +203,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:85ad8c5a7939340d925c9f53681d8e7c7802ece3df4e52ca230cee447ab7541a",
+    "source_fingerprint": "sha256:312bc4682989f322e7c85fa174b9486e747c64c5543c7233da1b7c1b6a806fe5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5291d51bddf91e372c580aa269a5e3cf38ac83c363730ebcc72cef296eee9925",
-      "plan.md": "fba6cecd1b31103a6ee416f65e19bbe887402cb70de11e375e4b57f3d7fffbfe",
-      "tasks.md": "92bf5e90e4247edfed8d25f690ac7ced9d63829a47741a87244bfcf59ab80efc",
+      "spec.md": "d883b2be8b81442f1c68529eaa99af2cac9c8b9b6db3567315a6619dbc0c1404",
+      "plan.md": "69c789e9d5d545c2dbf1f1c36a14acecde5a784c2eb8f6776fd3e311a82e2e1e",
+      "tasks.md": "a4050163919c12f52f734929421390a27f0e2daa0789f426a0f1b48d8dfb4b5e",
       "decision-record.md": "b9b11587fd8484fda6486c92e5beaf72341d6569e20365787533932f900ea2dc",
-      "implementation-summary.md": "48b6df7b1e946f4f9752fdb97a0d2f8c70d3c1483c2732553f3bd27527d93d1d"
+      "implementation-summary.md": "ed2d5fdb947051744cbb98a6cdb59e8c065707f822334691a64428c4032b0d9c"
     },
     "last_active_child_id": null,
     "last_active_at": null

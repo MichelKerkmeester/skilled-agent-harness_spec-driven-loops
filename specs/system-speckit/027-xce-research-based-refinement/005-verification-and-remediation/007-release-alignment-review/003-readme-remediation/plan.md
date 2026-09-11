@@ -158,7 +158,7 @@ Required inventories:
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: A fix corrupts a correct value or edits a false-positive cluster.
-- **Procedure**: Revert the scoped commit(s) (`83f36b8050`, `4fd438323e`); re-run confirm-then-fix on the affected file only.
+- **Procedure**: Revert the scoped commit(s) (`9c5d509038`, `865888ee49`); re-run confirm-then-fix on the affected file only.
 
 
 <!-- /ANCHOR:rollback -->
@@ -205,7 +205,7 @@ Phase 1 (Brief Build) ──> Phase 2 (Fix Pass) ──> Phase 3 (Verification)
 
 ### Rollback Procedure
 1. **Immediate**: Identify the offending file from the per-seat fixed/refuted table.
-2. **Revert code**: `git revert` the scoped commit(s) `83f36b8050` / `4fd438323e`.
+2. **Revert code**: `git revert` the scoped commit(s) `9c5d509038` / `865888ee49`.
 3. **Re-fix**: Re-run confirm-then-fix on the affected file only.
 4. **Verify**: Re-grep + accuracy spot-check the reverted file.
 

@@ -88,7 +88,7 @@ and findings belong here.
 |------|-------|----------|
 | Research input | Done | `../006-legacy-memory-surface-inventory/research/lineages/luna-max/research.md` sections 3, 5, 8, 9 and 11 |
 | Spec, plan, tasks and acceptance amended | Done | tree census corrected, 41 tools listed, worklist W1 to W4, preserve set, five seams, AC-001 to AC-014; validate --strict 0 errors |
-| Package prune | Done | 1,482 tracked files at `cc6a50271e` to 333, 453,964 lines to about 68,270, 20.3 MB to 2.8 MB; import-closed at 99 modules with 2 intentional orphans |
+| Package prune | Done | 1,482 tracked files at `c3fea783ba` to 333, 453,964 lines to about 68,270, 20.3 MB to 2.8 MB; import-closed at 99 modules with 2 intentional orphans |
 | Deregistration and runtime removal | Done | grep count 0 in all five runtime config roots; both bins, the plugin and its test and `.opencode/hooks/spec-memory/` deleted; `/memory:learn` and `/memory:manage` gone from all four command roots |
 | Seam edits | Done | `workflow.ts`, the three cleanup scripts, the shared embedding and IPC files, the deep-loop YAML and the three producers each edited at source; AC-010 to AC-014 Met |
 | Documentation and env prune | Done | 265 catalog and playbook pages, both install guides; `.env.example` 409 to 220 names; `ENV-REFERENCE.md` 351 to 146 variables; env-reference-drift test 5 pass |
@@ -100,9 +100,9 @@ and findings belong here.
 |------|------|
 | Flag count not reproducible | The 373-flag figure matches neither the target-tree scope of 410 nor the external scope of 872; both include shared advisor aliases, so flags are removed by owner, never by count |
 | The removal is partial under option A | The operator kept the package as the spec-kit engine, so D1's deletion set became everything unreachable from the surviving entry points rather than the whole tree |
-| Delivered as six pruning waves, not four stage commits | The wave boundaries carry the stage gates the tasks describe, and nothing is committed: the before state is `cc6a50271e` on `branches/017-memory-decommission` |
+| Delivered as six pruning waves, not four stage commits | The wave boundaries carry the stage gates the tasks describe, and nothing is committed: the before state is `c3fea783ba` on `branches/017-memory-decommission` |
 | The sweep's `mcp-server` exclusion was retired here | Phase 002 excluded the tree because the engine was still in it; the closing sweep covers the surviving package, and its test was updated with it, 29 pass |
 | opencode's cold boot exits 124 | It booted and created its session, then hit a provider stream error from the flash model. No MCP error, no memory process, so AC-002's negatives hold |
-| Test baseline reconciled rather than repaired | 41 files fail from the final state; 38 fail identically at `cc6a50271e` in a fresh worktree, and the remaining 3 were fixed after the run and pass now |
+| Test baseline reconciled rather than repaired | 41 files fail from the final state; 38 fail identically at `c3fea783ba` in a fresh worktree, and the remaining 3 were fixed after the run and pass now |
 | Three decisions handed up to the parent | The shared model server's default spawner, the eight unimported dependencies and the fate of `lib/description/repair.ts` are operator calls, recorded in the parent `goal.md` LOG |
 <!-- /ANCHOR:log -->

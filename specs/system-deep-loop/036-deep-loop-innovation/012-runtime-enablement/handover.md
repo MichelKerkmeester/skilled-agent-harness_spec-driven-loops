@@ -85,7 +85,7 @@ same ordered chain, described in section 3.2. The chain's first link was cleared
 | Compose `AuthorityFlipCoordinator` in production | The plan assumed the pilot had wired it. Counting callers refuted that: its only assembly is a test file. | 003 gains real composition work it did not budget for |
 | Build the effect producer inside this epic | Without it the certificate's coverage check runs over an empty list, and an empty list passes every predicate. | 002 cannot close until a real producer exists |
 | Retire legacy writers unattended once the gate is green | The operator pre-authorized it rather than gating on a second confirmation. | 004 proceeds without a stop, but only after an independent read |
-| Validate the compare-and-swap writer | The recovery path was stricter than the path that writes the record. | Shipped as `09f68833d4` |
+| Validate the compare-and-swap writer | The recovery path was stricter than the path that writes the record. | Shipped as `e2b8daaeac` |
 
 ### 2.2 Blockers Encountered
 
@@ -93,7 +93,7 @@ same ordered chain, described in section 3.2. The chain's first link was cleared
 
 | Blocker | Status | Resolution/Workaround |
 | --- | --- | --- |
-| Six upcaster suites emptied by a bulk WIP sync | resolved | Restored verbatim from `aa66365e78`; `20bcddfb3d` |
+| Six upcaster suites emptied by a bulk WIP sync | resolved | Restored verbatim from `8a49bc4703`; `9115fce887` |
 | Gateway denies without an identity resolver | resolved | Copied the surviving suites' resolver block into all six |
 | Three captured-log fixtures unresolvable | resolved | Two repointed after a re-nest; the third never existed and was rehomed |
 | Nothing writes effect intent or confirmation records | open | Root blocker. A producer must sit where real external acts happen |

@@ -30,7 +30,7 @@ _memory:
 - **To Session:** Optional — the packet is complete and pushed; remaining items are opt-in, not blocking
 - **Phase Completed:** 010 through 017. The packet grew from 7 phases to 17.
 - **Handover Time:** 2026-07-24
-- **Recent action:** All work committed and pushed to `origin/skilled/v4.0.0.0` (HEAD `0c9a43195d`, 0 ahead / 0 behind). Packet validates `--recursive --strict` at **18/18 folders, 0 errors, 0 warnings**.
+- **Recent action:** All work committed and pushed to `origin/skilled/v4.0.0.0` (HEAD `52e3b97e94`, 0 ahead / 0 behind). Packet validates `--recursive --strict` at **18/18 folders, 0 errors, 0 warnings**.
 
 ### What changed, in one line each
 
@@ -134,7 +134,7 @@ Nothing is blocking. The packet is complete, pushed, and validating clean. Pick 
 ## 4. Validation Checklist
 
 - [x] `validate.sh 030-cli-cursor-creation --recursive --strict` → **18/18 PASSED, 0 errors, 0 warnings**
-- [x] All work committed and pushed; `origin/skilled/v4.0.0.0` at `0c9a43195d`, 0 ahead / 0 behind
+- [x] All work committed and pushed; `origin/skilled/v4.0.0.0` at `52e3b97e94`, 0 ahead / 0 behind
 - [x] Discovery mirrors confirmed on the **remote** as mode `120000` (real symlinks, not path-text files)
 - [x] `.codex/hooks.json` and `.claude/settings.json` confirmed byte-identical (never touched)
 - [x] Every newly wired Cursor hook live-fire confirmed against a real dispatch, not inferred

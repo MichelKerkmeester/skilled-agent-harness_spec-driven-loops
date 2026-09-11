@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The 124 cutover merged the sk-code parent hub with a workflow-only decomposition: implement, quality, debug, verify, and review",
     "created_at": "2026-07-05T04:34:33.874Z",
-    "last_save_at": "2026-08-30T15:39:10.851Z",
+    "last_save_at": "2026-09-11T16:41:50.827Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4b802b3841c1157cf2d598f4362d7740df437a1a0f7cfc587cd44e393f9429a1",
+    "source_fingerprint": "sha256:0d81a796b005fd9efe4da47477e6557c9bab836e167b719031aadd0c590c893e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "feb1d4d8cf5e248fe92a098c7a535dafe0e700c5456c4870bafb9c427a684b94",
-      "plan.md": "ca9b03ffbdd4d730051b228d478ca368f00dac3a9194f928d143257643b66d5a",
-      "tasks.md": "535fc2ededbbb222a30a27e858fbf45151f9290395e9d0c99d8f3a9c8af2b32c",
-      "implementation-summary.md": "7d503a784058d5fbec4b9f1de0fb41f54e62a7970a4f7f071419a574a569abe8"
+      "spec.md": "617acc2eca283cbe5f6c0a3ad1c52ea7de532aa86771d57c3c37812a53943513",
+      "plan.md": "d5818b9c4731bcd7bc71b193a285d9224916b4487b74f6633684876dfae7f998",
+      "tasks.md": "f076ba6a0670415ccec50e0d5bd1729f36417e8cd92fc61bba80418120be0d03",
+      "implementation-summary.md": "2c43b9fb28ba51f8661352d596dceba917cfb7750c7b07d6f2fa886756f04953"
     },
     "last_active_child_id": null,
     "last_active_at": null

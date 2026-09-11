@@ -215,7 +215,7 @@ Required inventories:
 | Contract-library relocation (Phase 2) | Internal | Not started | The router rewrite should land in the shared location, not the sk-doc path |
 | Unified taxonomy (Phase 3) | Internal | Not started | The router core has nothing authoritative to score against |
 | 012 contract library + manifest + `smart_routing.md` | Internal | On origin | The taxonomy substrate reused and relocated |
-| Shipped 5-class scorer taxonomy | Internal | On origin (`88c02440ac`) | Fed typed gold in Phase 7; keeps hub telemetry dims |
+| Shipped 5-class scorer taxonomy | Internal | On origin (`900b58f139`) | Fed typed gold in Phase 7; keeps hub telemetry dims |
 | Independent holdout author/reviewers | Process | Not started | The corpus is only credible if authored without taxonomy sight |
 | `system-deep-loop` skill-benchmark harness | Internal | Shared, concurrently active | Pathspec-limited commits; baseline before each phase |
 <!-- /ANCHOR:dependencies -->

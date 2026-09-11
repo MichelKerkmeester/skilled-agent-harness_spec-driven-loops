@@ -142,14 +142,14 @@
     ],
     "causal_summary": "Six modes emit frontmatter",
     "created_at": "2026-09-01T08:42:55Z",
-    "last_save_at": "2026-09-06T06:39:02.137Z",
+    "last_save_at": "2026-09-11T16:42:12.218Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:9d961ac9fb83af1e128c0f6871dfdf084045596281a69024b79878de60224314",
+    "source_fingerprint": "sha256:732a67ae1aaca0e48ddca356f718f75f1352f18500ed49f4c8537fa95bc7a65b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "662783d51819ec6273101aa2c707ae414ee560d9d67958d236079f29efaf36c4"

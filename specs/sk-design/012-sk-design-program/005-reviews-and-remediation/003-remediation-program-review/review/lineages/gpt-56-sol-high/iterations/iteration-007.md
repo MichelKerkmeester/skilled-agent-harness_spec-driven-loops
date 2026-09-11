@@ -10,7 +10,7 @@ trigger_phrases: []
 - Session: `fanout-gpt-56-sol-high-1784650021792-031fvi`
 - Generation / lineage: `1` / `new`
 - Budget profile: `verify`
-- Scope: validated 118-file `goal-file-manifest.txt` at pinned HEAD `7b9d3b6b71`
+- Scope: validated 118-file `goal-file-manifest.txt` at pinned HEAD `6432665a68`
 - Structural caveat: Code Graph was unavailable by dispatch contract; direct manifest-scoped reads, exact assertion searches, and focused executable tests were used.
 
 ## Files Reviewed
@@ -67,7 +67,7 @@ None.
 
 ## Integration Evidence
 
-- Pinned Git evidence: `HEAD` resolved to `7b9d3b6b71`.
+- Pinned Git evidence: `HEAD` resolved to `6432665a68`.
 - Executable evidence: manifest/schema plus four corpus suites passed 75/75.
 - Assertion inventory: 21 manifest-listed test files searched; production-digest helper had five hits, stale-generation had 19 hits, and operational docs, parent status, and generated metadata had zero hits.
 - Blocked execution: `.opencode/skills/sk-design/design-md-generator/backend/node_modules/.bin/vitest` does not exist, so the md-generator TypeScript suite remains blocked by absent dependencies rather than counted as missing assertions.

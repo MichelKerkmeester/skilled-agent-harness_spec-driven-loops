@@ -137,7 +137,7 @@ Restore `cli-devin` through bounded phases grounded in the *current* Devin CLI p
 
 <!-- ANCHOR:questions -->
 ## 4. OPEN QUESTIONS
-- No documented technical/reliability reason was found for the 2026-06-08 deprecation (commit `17ee3bb83ab`) — it reads as a pure operator-directed retirement, not a failure response. Confirm the reversal is still desired knowing this (answered informally by this task's request, but worth an explicit record).
+- No documented technical/reliability reason was found for the 2026-06-08 deprecation (commit `ff4e1a5efb9`) — it reads as a pure operator-directed retirement, not a failure response. Confirm the reversal is still desired knowing this (answered informally by this task's request, but worth an explicit record).
 - Are the separate Devin IDE-runtime hooks (the deleted D5 surface) in scope for this revival, or strictly the `cli-devin` CLI-dispatch mode? Scoped **out** by default (see §3).
 - Is the "Devin-as-MCP-host" surface (`.devin/config.json` in `INSTALL_GUIDE`s) in scope? Scoped **out** by default (see §3), matching the original deprecation's own boundary.
 - `mk-goal.js` and `mk-speckit-completion.js` (2 of the 15 OpenCode plugins from the hooks-portability research) have no hook-based Devin target at all — no phase currently owns an alternative for either. Not solved by inventing a speculative new phase; recorded here so it isn't silently dropped. See `008-devin-hook-parity/spec.md` §3 Out of Scope.

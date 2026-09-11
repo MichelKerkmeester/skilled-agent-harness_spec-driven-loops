@@ -136,7 +136,7 @@ Run every gate before changing anything, so the same command later proves the ch
 - `validate-playbook-package.cjs` on the playbook: recorded `FAIL_CLOSED, violations=84, operator=7, routing_gold_excluded=0`
 - `extract_structure.py` across assets, `code-standards.md`, `quality/`: recorded per-file DQI
 - grep counts: `design-reference` 12 hits outside its own directory, `dqi-baseline` 5 hits
-- `git ls-files` + `git rev-parse HEAD`: confirmed all deletion targets tracked, rollback anchor `856c17d5ed`
+- `git ls-files` + `git rev-parse HEAD`: confirmed all deletion targets tracked, rollback anchor `5a4bd90bd0`
 
 ### Phase 2: Parallel authoring (Lanes A, B, C)
 
@@ -195,9 +195,9 @@ Re-run every Phase 1 gate from the final tree, plus a manifest resolution check 
 
 - **Trigger**: Any lane's edits are found to drop a technical assertion, regress a DQI score, fail the
   playbook validator, or leave `leaf-manifest.json` pointing at a path that no longer resolves.
-- **Procedure**: All targets were tracked and the tree was clean at `856c17d5ed`. Full restore:
+- **Procedure**: All targets were tracked and the tree was clean at `5a4bd90bd0`. Full restore:
   ```bash
-  git checkout 856c17d5ed -- .opencode/skills/sk-code/sk-code-mobile-cli/ .opencode/skills/sk-code/leaf-manifest.json
+  git checkout 5a4bd90bd0 -- .opencode/skills/sk-code/sk-code-mobile-cli/ .opencode/skills/sk-code/leaf-manifest.json
   ```
   This is a working-tree removal only. No history is rewritten, no branch or reflog is touched.
 <!-- /ANCHOR:rollback -->
@@ -240,14 +240,14 @@ per-lane gate pass/fail in `tasks.md` (T001-T024), not by a time budget.
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [x] Backup created (if data changes) — not applicable to data; the git history at `856c17d5ed` is the
+- [x] Backup created (if data changes) — not applicable to data; the git history at `5a4bd90bd0` is the
   recovery point, and T004 confirmed the tree was clean and every deletion target tracked
 - [ ] Feature flag configured — not applicable; no runtime feature flag governs a documentation packet
 - [ ] Monitoring alerts set — not applicable; no runtime/monitoring surface exists for this change
 
 ### Rollback Procedure
 1. Stop editing and identify which lane's output regressed a gate.
-2. `git checkout 856c17d5ed -- .opencode/skills/sk-code/sk-code-mobile-cli/ .opencode/skills/sk-code/leaf-manifest.json` to restore the pre-change tree.
+2. `git checkout 5a4bd90bd0 -- .opencode/skills/sk-code/sk-code-mobile-cli/ .opencode/skills/sk-code/leaf-manifest.json` to restore the pre-change tree.
 3. Re-run the Phase 1 baseline commands (playbook validator, DQI sweep, grep counts) and confirm the restored tree matches the recorded baseline.
 4. No stakeholder notification required — this is an internal documentation packet with no user-facing surface.
 

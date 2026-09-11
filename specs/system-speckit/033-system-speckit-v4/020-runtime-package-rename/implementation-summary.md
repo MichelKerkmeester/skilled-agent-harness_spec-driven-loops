@@ -153,7 +153,7 @@ Verification ran from the repository root against the new paths only.
 | Drop `chokidar` after first keeping it | The advisor names this package's copy only as a second resolution candidate behind its own installed copy, so the trace never reaches here. The review pass raised it as an unowned dependency and the manifest, path mapping and lockfile were pruned. |
 | Drop `@huggingface/transformers` although the model server loads it | The resolution trace lands in the skill-root `node_modules`, which two other manifests populate. Verified after the prune: the server still resolves it. |
 | Drop `configs` from the dist-freshness watch list | The build could not complete without it. The directory has never existed in this repository's history, so the entry was stale before the move and sat directly on the rebuild path this packet has to prove. |
-| Leave packet 052's stale fingerprint alone | It was staled by commit `b960584085`, which edited a 052 doc without regenerating derived metadata. The fix belongs to that commit's owner, not inside a rename. |
+| Leave packet 052's stale fingerprint alone | It was staled by commit `92683c97c2`, which edited a 052 doc without regenerating derived metadata. The fix belongs to that commit's owner, not inside a rename. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -180,7 +180,7 @@ Verification ran from the repository root against the new paths only.
 | `cd runtime && npx vitest run tests` | INCONCLUSIVE - stopped past the 20-minute cap at 98 files, 669 passing and 24 failing; every failure attributed below |
 | HF model server boot from the new path | PASS - `defaultDbDir()` resolves to `runtime/database`, the socket listens, `importTransformers()` returns, and it closes cleanly |
 | `rg` and `git grep` for the old path and npm name over live surfaces | PASS - 0 hits each; no symlink targets the old path |
-| Ten-iteration review on the moved tree, gpt-5.6-luna max fast | PASS - lineage `luna-max-pass3`, 0 P0, 0 P1, 2 P2 fixed; the earlier CONDITIONAL attempt's 2 P1 and 2 P2 fixed at `c2898fbad8` and `ad541ce059` |
+| Ten-iteration review on the moved tree, gpt-5.6-luna max fast | PASS - lineage `luna-max-pass3`, 0 P0, 0 P1, 2 P2 fixed; the earlier CONDITIONAL attempt's 2 P1 and 2 P2 fixed at `90ca479473` and `1b0e512425` |
 | `scripts/doctor.sh --strict` | PASS after it stopped probing the removed MCP SDK and sqlite-vec |
 <!-- /ANCHOR:verification -->
 

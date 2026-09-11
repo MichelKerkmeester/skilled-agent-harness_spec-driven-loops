@@ -58,7 +58,7 @@ FAILURE MODES:
 
 ### Planning (pre-checked, done in this re-plan)
 - [x] T-001 Pull each candidate's seam file:line + [CONFIRMED]/[INFERRED] evidence from `../research/research.md` (Candidate Catalog + Q1-Q7), evidence: spec.md §3 scope table
-- [x] T-002 Confirm 030 Wave-0 shipped NONE of the reliability cluster, evidence: `030/spec.md` §14 (only Q6-anchor `738e118751`, Deep-Loop trio, Q4-C1 are Deep-Loop/adjacent Done rows, no D1/D2/D3/D4/Q2/Q7)
+- [x] T-002 Confirm 030 Wave-0 shipped NONE of the reliability cluster, evidence: `030/spec.md` §14 (only Q6-anchor `61fe63b24d`, Deep-Loop trio, Q4-C1 are Deep-Loop/adjacent Done rows, no D1/D2/D3/D4/Q2/Q7)
 - [x] T-003 Record the REFUTED 001-reuse claim → D-orderhelper is BUILD-new (extract-first), evidence: synthesis `03` §27, spec.md C1 row
 - [x] T-004 Confirm D2 is a wholly-absent net-new build (every input r=0.5, D3 not-a-no-op, Q2 NO-GO until D2), evidence: roadmap BROADENING §1, synthesis `01` "Needs validation / benchmark BEFORE go"
 

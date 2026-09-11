@@ -272,6 +272,6 @@ Blockers hit during this packet and their disposition:
 | Blocker | Disposition |
 |---|---|
 | Hollow `mcp-server/node_modules` in the main tree breaks `validate.sh` there | Surfaced to the operator rather than repaired; no lockfile exists, so a repair would resolve fresh versions. Validation ran from the tree that has the dependency |
-| Root framework doc pointer and CI wiring | Resolved by `2fa9fc480c`; `AGENTS.md:450` points directly to the canonical contract and `.github/workflows/routing-registry-drift.yml:99-108` runs both fleet gates. No blocker remains; post-ship audit 2026-07-28 confirmed the direct pointer and active 11-root gate |
+| Root framework doc pointer and CI wiring | Resolved by `c4b5f27ae8`; `AGENTS.md:450` points directly to the canonical contract and `.github/workflows/routing-registry-drift.yml:99-108` runs both fleet gates. No blocker remains; post-ship audit 2026-07-28 confirmed the direct pointer and active 11-root gate |
 
 ---

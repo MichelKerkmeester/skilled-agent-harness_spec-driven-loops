@@ -66,7 +66,7 @@ _memory:
 ## Phase 3: Verification
 
 - [x] T008 [P1] Verify tsc (spec-kit/advisor/code-graph) + node/py syntax + spot-test — all clean; retrieval-rescue 6 passed
-- [x] T009 [P1] Commit scoped + dist rebuild + push — `83f36b8050`; 3 dists rebuilt
+- [x] T009 [P1] Commit scoped + dist rebuild + push — `9c5d509038`; 3 dists rebuilt
 
 
 <!-- /ANCHOR:phase-3 -->

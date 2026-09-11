@@ -10,7 +10,7 @@ trigger_phrases: []
 - Session: `fanout-gpt-56-sol-high-1784650021792-031fvi`
 - Generation / lineage: `1` / `new`
 - Budget profile: `verify`
-- Scope: validated 118-file `goal-file-manifest.txt` at pinned HEAD `7b9d3b6b71`
+- Scope: validated 118-file `goal-file-manifest.txt` at pinned HEAD `6432665a68`
 - Structural caveat: Code Graph was unavailable by dispatch contract; direct manifest-scoped reads and focused executable tests were used.
 
 ## Files Reviewed
@@ -58,7 +58,7 @@ None.
 
 ## Integration Evidence
 
-- Pinned Git evidence: `HEAD` resolved to `7b9d3b6b71`.
+- Pinned Git evidence: `HEAD` resolved to `6432665a68`.
 - Executable evidence: adapter, retrieval, operator, and all four manifest-listed mode-corpus suites passed 76/76.
 - Exact integration surfaces reviewed: `style-library.mjs`, `persistent-adapter.mjs`, database `retrieval.mjs` and `operator.mjs`, md-generator `study-prepare.ts`, and the four production corpus fallback classifiers.
 

@@ -55,7 +55,7 @@ After 010/001 shipped the pluggable EmbedderAdapter layer, the read path in `ski
 | Full skill-advisor vitest suite | No new regressions vs task 49 baseline (4 pre-existing failures unrelated to this packet) |
 | `npm run build` | Exit 0 (one TS strict-null error caught and fixed during implementation) |
 | Strict-validate (`validate.sh --strict`) | Exit 0. Zero errors. Zero warnings. |
-| Post-impl deep-review (5-iter cli-devin SWE-1.6) | PASS-with-advisories. 0 P0. 1 P1. 2 P2. All three advisories closed in commit `ab0c7de71b`. |
+| Post-impl deep-review (5-iter cli-devin SWE-1.6) | PASS-with-advisories. 0 P0. 1 P1. 2 P2. All three advisories closed in commit `79bdbabbd0`. |
 
 ### Files Changed
 

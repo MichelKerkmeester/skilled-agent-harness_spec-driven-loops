@@ -6,7 +6,7 @@ trigger_phrases: []
 
 ## Focus
 
-Single converging iteration (maxIterations=1) over phase 006 `command-contract-structural`. The shipped deliverables (per `implementation-summary.md` and commit `eac1eb5ef8`) are:
+Single converging iteration (maxIterations=1) over phase 006 `command-contract-structural`. The shipped deliverables (per `implementation-summary.md` and commit `2d425de43f`) are:
 
 1. `§0 ARGUMENT RESOLUTION` deterministic shell header in `.opencode/commands/memory/search.md` (computes `ARGS_PRESENT` + joined `QUERY`).
 2. Salience inversion: section order `RETRIEVAL (§3) → ANALYSIS (§4) → STARTUP (§5)`.

@@ -198,7 +198,7 @@
     ],
     "causal_summary": "An eight-iteration, three-model research loop found that the cache extension cannot tell a real",
     "created_at": "2026-09-09T12:46:42Z",
-    "last_save_at": "2026-09-10T05:06:55.398Z",
+    "last_save_at": "2026-09-11T16:41:51.050Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,14 +209,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:907ca0c1fff5b588f4ff309598017ca6b76ebad5d7d8c1f8fde9ddd556711002",
+    "source_fingerprint": "sha256:2078b2bf3b47e3423379144198d147b5f4cedbd1106e710d88923e9d5816253f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "34b1399da83741dbd4f3156b8e1ff92281658a5be1c0fb6d8ffe0e9d34b7251e",
       "plan.md": "01a4756748366dd74175a5e175fef2e8b12e5a09270369702a7c8e97ee49aa20",
       "tasks.md": "bfcd167c60d86c3bb448df7147c56bc934f3c1614be5477f65cec4fdfaf4bf96",
       "decision-record.md": "637f03b706eae97f3f1b8acaec80ef895a602e0e92796d049d6ebd6afe47df04",
-      "implementation-summary.md": "473e5c90e10fdf36261d49d67b3b90ba9928baf0c1dc3cc4fc310fedb7b7006a"
+      "implementation-summary.md": "7570eb9dc86e32dc5060b0fe458944c161b74be8ef107ad93dd8d76849377cfb"
     },
     "last_active_at": null
   }

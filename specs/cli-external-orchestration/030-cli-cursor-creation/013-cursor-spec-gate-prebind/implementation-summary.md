@@ -131,7 +131,7 @@ The process suite runs both real adapter entrypoints in isolated workspaces with
 | OpenCode alignment | PASS: 3/3 drift guards |
 | Changed document validation | PASS: 21/21 affected documents, zero issues |
 | Strict phase and recursive packet validation | PASS: phase 018 and packet 030 recursive runs report 0 errors and 0 warnings; parent verifies all 18 phase links |
-| Implementation commit | PASS: `348b644283` |
+| Implementation commit | PASS: `bc9ccca5ba` |
 <!-- /ANCHOR:verification -->
 
 ---

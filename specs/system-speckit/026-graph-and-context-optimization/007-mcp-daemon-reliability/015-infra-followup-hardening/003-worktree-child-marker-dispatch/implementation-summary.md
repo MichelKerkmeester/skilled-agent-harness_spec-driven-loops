@@ -71,7 +71,7 @@ Each rule states the why (a dispatched child is a sub-session, not a new top-lev
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Confirmed the bin/README contract was already present (035, c657219dd9) and mapped each skill's ALWAYS-rule structure before editing, so each addition slotted in just before the NEVER header as the next numbered rule. Each edit is a single additive hunk (+2/-1). Verified by grep (both present, both cross-ref the README) and a comment-hygiene audit (0 violations).
+Confirmed the bin/README contract was already present (035, ec02cd1875) and mapped each skill's ALWAYS-rule structure before editing, so each addition slotted in just before the NEVER header as the next numbered rule. Each edit is a single additive hunk (+2/-1). Verified by grep (both present, both cross-ref the README) and a comment-hygiene audit (0 violations).
 <!-- /ANCHOR:how-delivered -->
 
 ---

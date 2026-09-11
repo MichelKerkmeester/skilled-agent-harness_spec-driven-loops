@@ -69,7 +69,7 @@ Add a retrieval-shape axis to the Memory MCP and route/size recall by it. The C2
 ### Definition of Ready
 - [ ] Problem statement clear and scope documented (spec.md §2-3)
 - [ ] Success criteria measurable (spec.md §5)
-- [ ] Dependencies identified, C-X1 confirmed satisfied (030 `65cfcea513`), C2-A is the internal critical-path dep
+- [ ] Dependencies identified, C-X1 confirmed satisfied (030 `84c532114d`), C2-A is the internal critical-path dep
 
 ### Definition of Done
 - [x] All P0 acceptance criteria met (REQ-001..003)
@@ -165,7 +165,7 @@ Required inventories:
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| C-X1 `bonusOverChannels` fusion option | Internal (shared) | Green, shipped 030 `65cfcea513`, live in `rrf-fusion.ts` | C2-B per-class zero-weights would distort convergence bonus |
+| C-X1 `bonusOverChannels` fusion option | Internal (shared) | Green, shipped 030 `84c532114d`, live in `rrf-fusion.ts` | C2-B per-class zero-weights would distort convergence bonus |
 | C2-A classifier | Internal (this packet) | Green, built in this slice | C2-C and C2-B route by class |
 | Per-class weight calibration corpus (~1000 memories) | Internal data | Deferred (benchmark follow-up) | Mechanism ships, tuned VALUES wait |
 | Convergence/saturation primitive (CG-iterative-context-extension) | Internal (net-new) | To build | Iterative strategy cannot stop safely |

@@ -13,7 +13,7 @@ _memory:
     last_updated_at: "2026-07-26T08:12:44Z"
     last_updated_by: "opencode"
     recent_action: "Captured completed delivery state and an independent audit brief."
-    next_safe_action: "Audit commits 348b644283 and 1580cd2852 without modifying code."
+    next_safe_action: "Audit commits bc9ccca5ba and aede4dd387 without modifying code."
     blockers:
       - "Memory indexing awaits release of the SQLite single-writer lock."
     key_files:
@@ -40,7 +40,7 @@ This handover gives a new AI enough evidence to independently analyze the comple
 <!-- ANCHOR:when-to-use -->
 ## WHEN TO USE THIS TEMPLATE
 
-Open this handover to review or extend the Cursor `sessionStart` Gate-3 prebind adapter, which establishes enforceable spec-gate state for a top-level Cursor CLI session that never receives a `beforeSubmitPrompt` event. The phase is complete: implementation `348b644283` and closeout `1580cd2852` are committed locally and unpushed, and the intended next step is an independent audit of those two commits rather than further code changes.
+Open this handover to review or extend the Cursor `sessionStart` Gate-3 prebind adapter, which establishes enforceable spec-gate state for a top-level Cursor CLI session that never receives a `beforeSubmitPrompt` event. The phase is complete: implementation `bc9ccca5ba` and closeout `aede4dd387` are committed locally and unpushed, and the intended next step is an independent audit of those two commits rather than further code changes.
 <!-- /ANCHOR:when-to-use -->
 
 ---
@@ -57,8 +57,8 @@ Open this handover to review or extend the Cursor `sessionStart` Gate-3 prebind 
 - **Spec folder:** `.opencode/specs/cli-external-orchestration/030-cli-cursor-creation/013-cursor-spec-gate-prebind`
 - **Parent packet:** `.opencode/specs/cli-external-orchestration/030-cli-cursor-creation`
 - **Branch:** `skilled/v4.0.0.0`, five commits ahead of `origin/skilled/v4.0.0.0` when this handover was written
-- **Implementation commit:** `348b644283 feat(spec-gate): activate Cursor session-start prebinding`
-- **Closeout commit:** `1580cd2852 docs(specs): close Cursor Gate-3 prebind phase`
+- **Implementation commit:** `bc9ccca5ba feat(spec-gate): activate Cursor session-start prebinding`
+- **Closeout commit:** `aede4dd387 docs(specs): close Cursor Gate-3 prebind phase`
 - **Remote state:** Neither commit was pushed in this session
 <!-- /ANCHOR:handover-summary -->
 
@@ -118,24 +118,24 @@ The solution adds a fail-open `sessionStart` adapter. It validates a declared sp
 
 | File | Change Summary | Status |
 |---|---|---|
-| `.opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-prebind.mjs` | New fail-open startup producer with folder validation, opt-in open state, verbatim IDs, and terminal-state preservation | Committed in `348b644283` |
-| `.opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-prebind.test.mjs` | New nine-row isolated process and consumer matrix | Committed in `348b644283` |
-| `.opencode/skills/system-spec-kit/runtime/lib/spec-gate/spec-gate-core.mjs` | Complete `AI_SESSION_CHILD=1` no-op before state reads, questions, telemetry, or denial | Committed in `348b644283` |
-| `.opencode/skills/system-spec-kit/runtime/lib/spec-gate/spec-gate-core.test.mjs` | Shared child no-op and pre-existing-state regression coverage | Committed in `348b644283` |
-| `.opencode/plugins/tests/mk-spec-gate.test.cjs` | OpenCode consumer proof for no question, state, telemetry, or denial | Committed in `348b644283` |
-| `.cursor/hooks.json` | Registers the real startup adapter under `sessionStart` | Committed in `348b644283` |
-| `.cursor/hooks/spec-gate-prebind.mjs` | Discovery-only relative symlink to the real adapter | Committed in `348b644283` |
+| `.opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-prebind.mjs` | New fail-open startup producer with folder validation, opt-in open state, verbatim IDs, and terminal-state preservation | Committed in `bc9ccca5ba` |
+| `.opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-prebind.test.mjs` | New nine-row isolated process and consumer matrix | Committed in `bc9ccca5ba` |
+| `.opencode/skills/system-spec-kit/runtime/lib/spec-gate/spec-gate-core.mjs` | Complete `AI_SESSION_CHILD=1` no-op before state reads, questions, telemetry, or denial | Committed in `bc9ccca5ba` |
+| `.opencode/skills/system-spec-kit/runtime/lib/spec-gate/spec-gate-core.test.mjs` | Shared child no-op and pre-existing-state regression coverage | Committed in `bc9ccca5ba` |
+| `.opencode/plugins/tests/mk-spec-gate.test.cjs` | OpenCode consumer proof for no question, state, telemetry, or denial | Committed in `bc9ccca5ba` |
+| `.cursor/hooks.json` | Registers the real startup adapter under `sessionStart` | Committed in `bc9ccca5ba` |
+| `.cursor/hooks/spec-gate-prebind.mjs` | Discovery-only relative symlink to the real adapter | Committed in `bc9ccca5ba` |
 
 **Primary documentation and continuity files:**
 
 | File or group | Change Summary | Status |
 |---|---|---|
-| Cursor hook READMEs and hook contract | Describe active startup wiring, partial event delivery, and shared editor configuration | Committed in `348b644283` |
-| CLI Claude/OpenCode guidance and worktree README | Describe the complete child-session no-op and defense-in-depth enforcement neutralization | Committed in `348b644283` |
-| Cursor feature catalog and manual playbook | Replace the unreviewed scenario with executable `9/9` evidence | Committed in `348b644283` |
-| Phase 017 continuity | Links phase 018 as the successor | Committed in `348b644283` |
-| Phase 018 canonical documents | Capture requirements, plan, tasks, evidence, decisions, limitations, and completion state | Created in `348b644283`, completed in `1580cd2852` |
-| Parent packet spec and metadata | Records all 18 phases as complete and removes ghost child metadata | Closed in `1580cd2852` |
+| Cursor hook READMEs and hook contract | Describe active startup wiring, partial event delivery, and shared editor configuration | Committed in `bc9ccca5ba` |
+| CLI Claude/OpenCode guidance and worktree README | Describe the complete child-session no-op and defense-in-depth enforcement neutralization | Committed in `bc9ccca5ba` |
+| Cursor feature catalog and manual playbook | Replace the unreviewed scenario with executable `9/9` evidence | Committed in `bc9ccca5ba` |
+| Phase 017 continuity | Links phase 018 as the successor | Committed in `bc9ccca5ba` |
+| Phase 018 canonical documents | Capture requirements, plan, tasks, evidence, decisions, limitations, and completion state | Created in `bc9ccca5ba`, completed in `aede4dd387` |
+| Parent packet spec and metadata | Records all 18 phases as complete and removes ghost child metadata | Closed in `aede4dd387` |
 | `handover.md` | Transfers the completed state and independent analysis brief | Created after both commits; not committed unless the operator requests it |
 
 ### 2.6 Verification Evidence
@@ -179,8 +179,8 @@ The solution adds a fail-open `sessionStart` adapter. It validates a declared sp
 ### 3.1 Recommended Starting Point
 
 - **File:** `.opencode/specs/cli-external-orchestration/030-cli-cursor-creation/013-cursor-spec-gate-prebind/implementation-summary.md:57`
-- **Next safe action:** Perform an independent read-only audit of commits `348b644283` and `1580cd2852`; do not modify code until findings are verified against actual behavior
-- **Cold-read order:** 1. `handover.md` -> 2. `implementation-summary.md` -> 3. `spec.md` -> 4. `checklist.md` -> 5. `spec-gate-prebind.mjs` -> 6. `spec-gate-core.mjs` -> 7. both test files -> 8. `.cursor/hooks.json` -> 9. `git show 348b644283` and `git show 1580cd2852`
+- **Next safe action:** Perform an independent read-only audit of commits `bc9ccca5ba` and `aede4dd387`; do not modify code until findings are verified against actual behavior
+- **Cold-read order:** 1. `handover.md` -> 2. `implementation-summary.md` -> 3. `spec.md` -> 4. `checklist.md` -> 5. `spec-gate-prebind.mjs` -> 6. `spec-gate-core.mjs` -> 7. both test files -> 8. `.cursor/hooks.json` -> 9. `git show bc9ccca5ba` and `git show aede4dd387`
 - **Context:** Focus on correctness, fail-open safety, producer-consumer state-key agreement, cross-runtime effects of the shared child no-op, and whether the tests discriminate against plausible regressions
 
 ### 3.2 Priority Tasks Remaining
@@ -200,7 +200,7 @@ The solution adds a fail-open `sessionStart` adapter. It validates a declared sp
 - [x] Runtime producer: `.opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-prebind.mjs`
 - [x] Shared policy: `.opencode/skills/system-spec-kit/runtime/lib/spec-gate/spec-gate-core.mjs`
 - [x] Consumer wiring: `.cursor/hooks.json` and `.opencode/plugins/tests/mk-spec-gate.test.cjs`
-- [x] Commit evidence: `348b644283` and `1580cd2852`
+- [x] Commit evidence: `bc9ccca5ba` and `aede4dd387`
 
 ### 3.4 Independent Analysis Questions
 
@@ -221,7 +221,7 @@ The solution adds a fail-open `sessionStart` adapter. It validates a declared sp
 <!-- ANCHOR:validation-checklist -->
 ## 4. Validation Checklist
 
-- [x] All implementation work owned by this phase is committed in `348b644283` and `1580cd2852`
+- [x] All implementation work owned by this phase is committed in `bc9ccca5ba` and `aede4dd387`
 - [x] Unrelated concurrent worktree changes were left untouched and unstaged
 - [x] Current context is captured in canonical phase documents and this handover
 - [x] No breaking change is left mid-implementation
@@ -242,7 +242,7 @@ The solution adds a fail-open `sessionStart` adapter. It validates a declared sp
 
 The two task commits are local on `skilled/v4.0.0.0`. At handover creation, the branch is five commits ahead of its remote. The repository contains extensive unrelated modifications, deletions, generated artifacts, and untracked directories from other work. Do not reset, clean, stash, stage, or reinterpret those paths as part of this phase.
 
-The scoped implementation paths were clean after `1580cd2852`. Creating this handover and refreshing its packet metadata introduces new uncommitted documentation-only changes unless the operator later requests another commit.
+The scoped implementation paths were clean after `aede4dd387`. Creating this handover and refreshing its packet metadata introduces new uncommitted documentation-only changes unless the operator later requests another commit.
 
 ### Known Limitations
 
@@ -263,7 +263,7 @@ Start by reading:
 3. .opencode/specs/cli-external-orchestration/030-cli-cursor-creation/013-cursor-spec-gate-prebind/spec.md
 4. .opencode/specs/cli-external-orchestration/030-cli-cursor-creation/013-cursor-spec-gate-prebind/checklist.md
 
-Then inspect implementation commit 348b644283 and closeout commit 1580cd2852. Review the actual code and tests, especially:
+Then inspect implementation commit bc9ccca5ba and closeout commit aede4dd387. Review the actual code and tests, especially:
 - .opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-prebind.mjs
 - .opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-prebind.test.mjs
 - .opencode/skills/system-spec-kit/runtime/lib/spec-gate/spec-gate-core.mjs

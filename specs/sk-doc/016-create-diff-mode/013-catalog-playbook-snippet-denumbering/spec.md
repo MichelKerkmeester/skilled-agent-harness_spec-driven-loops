@@ -121,7 +121,7 @@ Drop the numeric prefix from every per-feature snippet **filename** (`NNN-featur
 | 005 | `005-migrate-remaining-skills/` | Migrated 310 files across 12 skills (system-code-graph, cli-*, sk-*, mcp-*). | complete |
 | 006 | `006-reference-sweep-validation-guard/` | Global ref sweep (765 files, 6430 edits, 0 conflicts); merged worktree→main; root docs validate; 0 numbered/stale refs remain. | complete |
 
-**Outcome:** 1,562 snippet files de-numbered across 20 skills; numbered category folders kept; rename history preserved (100% similarity); merged to `main` (HEAD `60aeb5762f`). The 9 actively-WIP'd `027` deep-research files were handed back to their session (refs left numbered, exempt).
+**Outcome:** 1,562 snippet files de-numbered across 20 skills; numbered category folders kept; rename history preserved (100% similarity); merged to `main` (HEAD `4e73eb80f2`). The 9 actively-WIP'd `027` deep-research files were handed back to their session (refs left numbered, exempt).
 
 ### Phase Transition Rules
 - Each phase MUST pass `validate.sh` independently before the next phase begins.

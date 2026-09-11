@@ -232,7 +232,7 @@ Phase 1.5 (Config) ───┘
 |-----------|-------------|------------------|--------|
 | M1 | Dispatch returned | four files VALID | 2026-09-11, done |
 | M2 | Queries proven | three queries return the stamped commit | 2026-09-11, done |
-| M3 | Committed | `98be1cebc2` | 2026-09-11, done |
+| M3 | Committed | `9cb5e9c4a4` | 2026-09-11, done |
 <!-- /ANCHOR:milestones -->
 
 ---

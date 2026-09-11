@@ -79,7 +79,7 @@ _memory:
 - [x] T022 Annotate 003-deep-review resource-map reducer-gap terminal states
 - [x] T023 generate-description + graph-metadata; strict validate exit 0
 - [x] T024 Fill implementation-summary.md
-- [x] T025 Scope-strict commit + push (commit dfd5449f89, pushed to origin/main)
+- [x] T025 Scope-strict commit + push (commit 73bc07c600, pushed to origin/main)
 <!-- /ANCHOR:phase-3 -->
 
 ---

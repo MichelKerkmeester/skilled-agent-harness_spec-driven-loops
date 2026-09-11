@@ -9,7 +9,7 @@ _memory:
     packet_pointer: "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/002-deprecate-numbered-snippet-filenames/002-generator-alignment"
     last_updated_at: "2026-07-17T14:36:44Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Generator emits slug filenames + stage default; commit 69638f96a4"
+    recent_action: "Generator emits slug filenames + stage default; commit 28a2569b4c"
     next_safe_action: "Complete"
     blockers: []
     completion_pct: 100
@@ -46,7 +46,7 @@ behavior — output directory, frontmatter contents, dedupe — is unchanged.
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 A surgical filename-shape change only: the last live emitter of the numbered-filename anti-pattern now matches
-the sk-doc bare-slug convention and the number-agnostic loader's stage-aware shape. Commit `69638f96a4`.
+the sk-doc bare-slug convention and the number-agnostic loader's stage-aware shape. Commit `28a2569b4c`.
 <!-- /ANCHOR:how-delivered -->
 
 <!-- ANCHOR:decisions -->

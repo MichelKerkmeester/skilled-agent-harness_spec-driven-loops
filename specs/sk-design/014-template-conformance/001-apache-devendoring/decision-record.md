@@ -13,7 +13,7 @@ _memory:
     packet_pointer: "sk-design/014-template-conformance/001-apache-devendoring"
     last_updated_at: "2026-07-27T19:00:00Z"
     last_updated_by: "spec-reconciler"
-    recent_action: "Moved ADR-001 from Accepted to Implemented by commit 8fa4752968"
+    recent_action: "Moved ADR-001 from Accepted to Implemented by commit 4ac59d21c5"
     next_safe_action: "None; the ordering decision is discharged and needs no follow-up"
     blockers: []
     key_files:
@@ -40,7 +40,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted — implemented in commit `8fa4752968` |
+| **Status** | Accepted — implemented in commit `4ac59d21c5` |
 | **Date** | 2026-07-27 |
 | **Deciders** | Operator |
 
@@ -66,7 +66,7 @@ _memory:
 
 **How it works**: Phase 1 (rewrite + verify) is a hard gate on Phase 2 (delete). The ordering itself is the safety mechanism — there is no valid execution path where the license is removed before the rewrite is confirmed to preserve intent.
 
-**As executed**: both phases landed inside the single commit `8fa4752968`, with the rewrite and the removal ordered within it. The commit message states the constraint explicitly: "The licence could only go once the text it covered was genuinely replaced; removing it first would have left borrowed wording shipping without its terms." No intermediate commit shipped Apache-2.0 wording without its licence, because no intermediate commit existed.
+**As executed**: both phases landed inside the single commit `4ac59d21c5`, with the rewrite and the removal ordered within it. The commit message states the constraint explicitly: "The licence could only go once the text it covered was genuinely replaced; removing it first would have left borrowed wording shipping without its terms." No intermediate commit shipped Apache-2.0 wording without its licence, because no intermediate commit existed.
 <!-- /ANCHOR:adr-001-decision -->
 
 ---

@@ -115,7 +115,7 @@ Route first, code second. A direct `pi` dispatch proved the gateway answers befo
 
 The whole runtime suite was not run. The targeted suites cover the changed surface, but a full run is the only thing that would establish no distant regression, and it is left open in `tasks.md` as T014.
 
-`combo-matrix.vitest.ts` fails on a touched file and is **not** caused by this change: it expects `opencode-go/deepseek-v4-flash` and receives `opencode-go/deepseek-v4-flash-vision-exp`, which is commit `5aae5f0bc8` making Vision the catalogued default. It belongs to whoever made that change.
+`combo-matrix.vitest.ts` fails on a touched file and is **not** caused by this change: it expects `opencode-go/deepseek-v4-flash` and receives `opencode-go/deepseek-v4-flash-vision-exp`, which is commit `77c0cf1cf0` making Vision the catalogued default. It belongs to whoever made that change.
 
 `PI_SUPPORTED_MODELS` in the `.ts` and `PI_ALLOWED_MODELS` in the `.cjs` remain two hand-synced copies of one list. A literal added to one and missed in the other fails closed at dispatch with a message that names the allowlist rather than the drift.
 

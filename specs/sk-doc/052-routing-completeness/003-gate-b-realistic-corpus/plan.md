@@ -118,8 +118,8 @@ the scope of the phase its result invalidated.
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
 | `assets/realistic-corpus.tsv` | The committed corpus | Created, 181 lines including the header | A scan for a row naming its own mode returns zero |
-| `research/gate-b-measurement.md` | The measurement record | Created at 498 lines, then extended with the denominator correction | `4a5de9e52b` and `8c6d6fd455` |
-| `../004-cross-hub-vocabulary/spec.md` | The next phase's scope | Re-scoped, since keyword work cannot move this number | `4a5de9e52b`, 42 lines touched |
+| `research/gate-b-measurement.md` | The measurement record | Created at 498 lines, then extended with the denominator correction | `b3de2effda` and `54eecf457a` |
+| `../004-cross-hub-vocabulary/spec.md` | The next phase's scope | Re-scoped, since keyword work cannot move this number | `b3de2effda`, 42 lines touched |
 | The semantic lane | The only lane that could match meaning | Unchanged, and recorded as the structural cause | Weight `0.05` shadow-only, zero embedded nodes |
 
 Required inventories:
@@ -187,7 +187,7 @@ sqlite3 .opencode/skills/system-skill-advisor/mcp-server/database/skill-graph.sq
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: The corpus turns out to encode a preference rather than a realistic phrasing, or the hit rule is wrong.
-- **Procedure**: The corpus and the measurement are additive documents with no runtime effect, so reverting `4a5de9e52b` and `8c6d6fd455` removes them cleanly. The re-scope of phase 004 rides in the same commit and would revert with it.
+- **Procedure**: The corpus and the measurement are additive documents with no runtime effect, so reverting `b3de2effda` and `54eecf457a` removes them cleanly. The re-scope of phase 004 rides in the same commit and would revert with it.
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -234,7 +234,7 @@ Write corpus ──► Measure ──► Classify misses ──► Correct denom
 - [x] Monitoring alerts set (not applicable, since no runtime behaviour changed)
 
 ### Rollback Procedure
-1. Revert `4a5de9e52b` and `8c6d6fd455` to remove the corpus and the measurement.
+1. Revert `b3de2effda` and `54eecf457a` to remove the corpus and the measurement.
 2. Confirm phase 004 returns to its earlier scope, since the re-scope rides in the same commit.
 3. Re-read the parent findings register, where findings 9, 10 and 11 point at this phase.
 4. Notify the phase 004 owner, since their scope depends on this result.
@@ -295,9 +295,9 @@ Write corpus ──► Measure ──► Classify misses ──► Correct denom
 
 | Milestone | Description | Success Criteria | Target |
 |-----------|-------------|------------------|--------|
-| M1 | Corpus committed | 180 rows, none naming its own mode | `4a5de9e52b` |
-| M2 | Rate recorded | 8 of 180 top-only, 20 of 180 any-position | `4a5de9e52b` |
-| M3 | Denominator corrected | 8 of 172 published beside 8 of 180 | `8c6d6fd455` |
+| M1 | Corpus committed | 180 rows, none naming its own mode | `b3de2effda` |
+| M2 | Rate recorded | 8 of 180 top-only, 20 of 180 any-position | `b3de2effda` |
+| M3 | Denominator corrected | 8 of 172 published beside 8 of 180 | `54eecf457a` |
 <!-- /ANCHOR:milestones -->
 
 ---

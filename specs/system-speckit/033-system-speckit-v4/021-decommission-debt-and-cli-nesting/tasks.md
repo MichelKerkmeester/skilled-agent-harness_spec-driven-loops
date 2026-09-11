@@ -47,13 +47,13 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T004 Freshness: exclude the generator fixtures from the scripts sources; walker test (`1200c71f22`)
-- [x] T005 Fan-out: retain bounded lineage stderr and write `logs/fanout-lineage.err`; runner test (`1200c71f22`)
-- [x] T006 Review leaf: contract rule to resolve review paths against the dispatched artifact directory, all agent mirrors in sync (`c34ccfeb47`)
-- [x] T007 Delete the rollback runbook with its README, alias and manifest entries; drop the unused MCP response type; rename the stale test (`1200c71f22`, `c34ccfeb47`)
-- [x] T008 Move the trigger index to `runtime/data/`, remove the retired search-decisions file, rewrite every reference and the architecture topology (`1200c71f22`, `c34ccfeb47`)
-- [x] T009 Align `runtime/` and `scripts/` with `sk-code-opencode` and write or refresh every code README: five Sonnet agents on disjoint folder sets (`9e759d06cf`, `588be3fc00`, `923f4e966d`, `e5b414cbae`); 87 code READMEs, 0 validator issues, no code folder without one
-- [x] T009a Restore the eleven session-lifecycle hook registrations and mirror links the memory sweep dropped (`273767431d`); repair the two stale session-stop tests and the stdout scan exclusions (`6698bcc80b`)
+- [x] T004 Freshness: exclude the generator fixtures from the scripts sources; walker test (`184ccd38d9`)
+- [x] T005 Fan-out: retain bounded lineage stderr and write `logs/fanout-lineage.err`; runner test (`184ccd38d9`)
+- [x] T006 Review leaf: contract rule to resolve review paths against the dispatched artifact directory, all agent mirrors in sync (`fe7f59e652`)
+- [x] T007 Delete the rollback runbook with its README, alias and manifest entries; drop the unused MCP response type; rename the stale test (`184ccd38d9`, `fe7f59e652`)
+- [x] T008 Move the trigger index to `runtime/data/`, remove the retired search-decisions file, rewrite every reference and the architecture topology (`184ccd38d9`, `fe7f59e652`)
+- [x] T009 Align `runtime/` and `scripts/` with `sk-code-opencode` and write or refresh every code README: five Sonnet agents on disjoint folder sets (`f248d161d1`, `f8d961670f`, `f29790ad34`, `3a45311c1f`); 87 code READMEs, 0 validator issues, no code folder without one
+- [x] T009a Restore the eleven session-lifecycle hook registrations and mirror links the memory sweep dropped (`9bca36ef52`); repair the two stale session-stop tests and the stdout scan exclusions (`9b583a048f`)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -62,10 +62,10 @@ contextType: "general"
 ## Phase 3: Verification
 
 - [x] T010 Typecheck shared, scripts and runtime exit 0; touched suites unchanged or improved per agent report; 87 READMEs validated
-- [x] T011 Gates at `e0ae6d7063`: freshness stays green across two index runs without a re-stamp; sweep live 0; doctor routes 9; audits 14 of 14; routing guard fresh; validate strict PASSED on 052, 053 and this packet
-- [x] T014 Act on the Grok lineage: remove the code that still targeted the retired store (extractor storage half, transaction manager, shared row types, folder-detector session-learning lookup, three-arm parity harness, importer-less better-sqlite3 and sqlite-vec, tests bound to deleted modules, absent-playbook allowlist) at `159c036502` and `9141353b0d`; validate.sh fails closed when its freshness helper cannot run (`171465b256`); Devin fallback text and a retired doctor path fixed (`4333c4d7b4`)
-- [x] T013 Two-executor review-angle deep research under `research/`: Grok 20 of 20 fulfilled (16 min), LUNA 20 of 20 with synthesis (88 min; runner rejected the lineage for a leaf write outside its directory, now fixed at `deb1c487a6`); 10 and 59 findings triaged against HEAD
-- [x] T015 Act on the LUNA lineage: gate and residue rows fixed (`a3dab29283`, `171465b256`), projection nesting fixed (`deb1c487a6`), skipped suites restored and two production bugs they hid fixed (`1d97495a5f`, `4621813b96`), sweep vocabulary widened (`255c932f9f`)
+- [x] T011 Gates at `1989b5f1a3`: freshness stays green across two index runs without a re-stamp; sweep live 0; doctor routes 9; audits 14 of 14; routing guard fresh; validate strict PASSED on 052, 053 and this packet
+- [x] T014 Act on the Grok lineage: remove the code that still targeted the retired store (extractor storage half, transaction manager, shared row types, folder-detector session-learning lookup, three-arm parity harness, importer-less better-sqlite3 and sqlite-vec, tests bound to deleted modules, absent-playbook allowlist) at `6bd60162c1` and `2a43c091ba`; validate.sh fails closed when its freshness helper cannot run (`bc9bab126e`); Devin fallback text and a retired doctor path fixed (`d3f4038d65`)
+- [x] T013 Two-executor review-angle deep research under `research/`: Grok 20 of 20 fulfilled (16 min), LUNA 20 of 20 with synthesis (88 min; runner rejected the lineage for a leaf write outside its directory, now fixed at `f555203563`); 10 and 59 findings triaged against HEAD
+- [x] T015 Act on the LUNA lineage: gate and residue rows fixed (`1cd09214a0`, `bc9bab126e`), projection nesting fixed (`f555203563`), skipped suites restored and two production bugs they hid fixed (`6fb26ba1ee`, `9afbcf7d39`), sweep vocabulary widened (`0531cb29a1`)
 - [x] T016 Decompose the remaining findings into seven remediation phases (001 to 007) under this packet; all validate strict
 - [x] T012 Close this packet and record the outcome in packet 052's goal log — parent and seven phases validate strict PASSED; outcome, passes and deviations logged in 052's goal
 <!-- /ANCHOR:phase-3 -->
@@ -110,7 +110,7 @@ contextType: "general"
 
 - [x] CHK-001 [P0] Requirements documented in spec.md — REQ-001 to REQ-004 in `spec.md`; the seven remediation phases each carry their own requirements table
 - [x] CHK-002 [P0] Technical approach defined in plan.md — `plan.md` §3 plus each phase's plan
-- [x] CHK-003 [P1] Dependencies identified and available — `plan.md` §6; the CLI workspace installs under the hoisted strategy (`57ef5fe600`), `npm ci --dry-run` up to date
+- [x] CHK-003 [P1] Dependencies identified and available — `plan.md` §6; the CLI workspace installs under the hoisted strategy (`76d1585e59`), `npm ci --dry-run` up to date
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -118,7 +118,7 @@ contextType: "general"
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [x] CHK-010 [P0] Code passes lint/format checks — `npm run typecheck` (shared, runtime, cli) exit 0 at `072da7777c`; deep-loop runtime `tsc --noEmit` 0 errors at `75fc0c7713`
+- [x] CHK-010 [P0] Code passes lint/format checks — `npm run typecheck` (shared, runtime, cli) exit 0 at `6e109c913d`; deep-loop runtime `tsc --noEmit` 0 errors at `9c962fe7a3`
 - [x] CHK-011 [P0] No console errors or warnings — `dist-freshness.cjs check-all` fresh; CLI project 1568 of 1589 tests green, the one red file targets the operator's in-flight 036 packet
 - [x] CHK-012 [P1] Error handling implemented — fail-closed paths kept: validate.sh exits 3 when its freshness helper cannot run (phase 001); the council guard and the changelog output override reject out-of-root writes with named errors
 - [x] CHK-013 [P1] Code follows project patterns — every code folder under `runtime/` and `runtime/cli/` carries a README at 0 issues (T009); comment hygiene gate passed on every commit
@@ -130,7 +130,7 @@ contextType: "general"
 ## Testing Checklist
 
 - [x] CHK-020 [P0] All acceptance criteria met — AC-001 to AC-007 Met in `acceptance-criteria.md`; each phase's criteria closed in its own packet
-- [x] CHK-021 [P0] Manual testing complete — gates rerun at `072da7777c`: route-validate 9 routes, compiled-route-guard fresh, skill-root audit 14 of 14, derived freshness 14 of 14, codex hooks OK, runtime mirrors 169 of 169, agent mirrors 12 of 12, contract drift OK for 3 commands, hook-path parity 100 of 100, residue sweep live 0
+- [x] CHK-021 [P0] Manual testing complete — gates rerun at `6e109c913d`: route-validate 9 routes, compiled-route-guard fresh, skill-root audit 14 of 14, derived freshness 14 of 14, codex hooks OK, runtime mirrors 169 of 169, agent mirrors 12 of 12, contract drift OK for 3 commands, hook-path parity 100 of 100, residue sweep live 0
 - [x] CHK-022 [P1] Edge cases tested — containment tests for a not-yet-created council root, an absolute and a `..` changelog override, and a symlinked parent; prune prediction versus apply; second-run byte stability
 - [x] CHK-023 [P1] Error scenarios validated — out-of-root writes throw; a missing strategy anchor surfaces a warning without withholding output; malformed JSONL still fails closed (reducer suite)
 <!-- /ANCHOR:testing -->
@@ -154,7 +154,7 @@ contextType: "general"
 <!-- ANCHOR:security -->
 ## Security
 
-- [x] CHK-030 [P0] No hardcoded secrets — none introduced; two helpers that hardcoded a workstation path were removed at `c0254f4a8c`
+- [x] CHK-030 [P0] No hardcoded secrets — none introduced; two helpers that hardcoded a workstation path were removed at `525659ef78`
 - [x] CHK-031 [P0] Input validation implemented — `--output` and the council payload path are validated against their roots before any write
 - [x] CHK-032 [P1] Auth/authz working correctly — not applicable: no authentication surface in scope
 <!-- /ANCHOR:security -->
@@ -164,7 +164,7 @@ contextType: "general"
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [x] CHK-040 [P1] Spec/plan/tasks synchronized — parent and all seven phases validate `--strict` PASSED at `072da7777c`
+- [x] CHK-040 [P1] Spec/plan/tasks synchronized — parent and all seven phases validate `--strict` PASSED at `6e109c913d`
 - [x] CHK-041 [P1] Code comments adequate — every new comment states the durable why; the comment-hygiene gate passed on each commit
 - [x] CHK-042 [P2] README updated (if applicable) — skill, runtime, CLI and 87 code-folder READMEs describe the `runtime/cli` topology
 <!-- /ANCHOR:docs -->

@@ -66,7 +66,7 @@ Each entry is a packet's first commit. The outcome names what the packet left be
 
 **2026-08-31:** `015-apply-path-and-candidate-filter-fixes` (was `047-review-remediation`) started; 5 commits over 0 nested phases. Outcome: Three P1 findings survived four deep-review iterations across three models: an apply path that treated an omitted enable decision as permission, a candidate filter that judged from a stale snapshot, a. Status Complete; last commit 2026-09-01.
 
-**2026-08-31:** `016-sequential-thinking-residue-removal` (was `048-decommissioned-server-residue`) started; 2 commits over 0 nested phases. Outcome: The doctor command family still probes, reports on, and offers to reinstall the Sequential Thinking MCP server that was decommissioned in commit 7673da6bc24, and specs/sk-doc carries an empty false-st. Status Complete; last commit 2026-09-02.
+**2026-08-31:** `016-sequential-thinking-residue-removal` (was `048-decommissioned-server-residue`) started; 2 commits over 0 nested phases. Outcome: The doctor command family still probes, reports on, and offers to reinstall the Sequential Thinking MCP server that was decommissioned in commit edff3a4c161, and specs/sk-doc carries an empty false-st. Status Complete; last commit 2026-09-02.
 
 **2026-09-02:** `017-memory-database-decommission` (was `049-memory-decommission`) started; 19 commits over 7 nested phases. Outcome: Phase parent for removing the system-spec-memory MCP database subsystem and replacing it with grep-first retrieval. Status Complete; last commit 2026-09-05.
 
@@ -224,226 +224,226 @@ Up to five per packet, the earliest and the latest, excluding the consolidation 
 
 **1. 001-plan-preflight-track-packets**
 
-- `08a79be94d` 2026-08-15 fix(speckit-preflight): honor explicit SPECIFY_FEATURE for nested packets
-- `a5c314fe8a` 2026-08-29 fix(graph): trust declared key files, and repair the packets the layout bug degraded
-- `0ee9a2ab5e` 2026-08-30 fix(system-speckit): make the drift gate compare every packet that carries a digest
-- `6fb5a7181e` 2026-09-04 docs(specs): retrofit the grep convention across the active spec corpus
+- `5e5721ed24` 2026-08-15 fix(speckit-preflight): honor explicit SPECIFY_FEATURE for nested packets
+- `3f6242a924` 2026-08-29 fix(graph): trust declared key files, and repair the packets the layout bug degraded
+- `52946a6f66` 2026-08-30 fix(system-speckit): make the drift gate compare every packet that carries a digest
+- `2f58acfb6e` 2026-09-04 docs(specs): retrofit the grep convention across the active spec corpus
 
 **2. 002-daemon-reaper-orphan-classification**
 
-- `d2d627a447` 2026-08-22 fix(spec-kit): correct reaper external-MCP classification for daemons under mcp-server/
-- `aeb94c58e1` 2026-08-29 fix(specs): give every checklist the title its template asks for
-- `27100df785` 2026-08-29 fix(graph): resolve repo-relative key files again, and restore what was dropped
-- `6fb5a7181e` 2026-09-04 docs(specs): retrofit the grep convention across the active spec corpus
-- `0ee9a2ab5e` 2026-08-30 fix(system-speckit): make the drift gate compare every packet that carries a digest
+- `66abf03b05` 2026-08-22 fix(spec-kit): correct reaper external-MCP classification for daemons under mcp-server/
+- `291f609872` 2026-08-29 fix(specs): give every checklist the title its template asks for
+- `b5823f8a26` 2026-08-29 fix(graph): resolve repo-relative key files again, and restore what was dropped
+- `2f58acfb6e` 2026-09-04 docs(specs): retrofit the grep convention across the active spec corpus
+- `52946a6f66` 2026-08-30 fix(system-speckit): make the drift gate compare every packet that carries a digest
 
 **3. 003-spec-doc-template-reduction**
 
-- `40d9002f09` 2026-08-26 docs(system-speckit): add packets 036 template-reduction + 037 memory-redesign
-- `5f45bcb009` 2026-08-26 docs(system-speckit): record the tasks+checklist merge blocker in 036/002
-- `a83eddf607` 2026-08-27 chore(specs): refresh generated packet metadata
-- `2f21545e3e` 2026-09-06 refactor(skills): finish adopting the shared frontmatter parser across deep-loop and spec-kit
-- `144897ba5d` 2026-09-04 chore(merge): bring skilled/v4.0.0.0 into the decommission branch
+- `4dec059bcd` 2026-08-26 docs(system-speckit): add packets 036 template-reduction + 037 memory-redesign
+- `ffc6980535` 2026-08-26 docs(system-speckit): record the tasks+checklist merge blocker in 036/002
+- `5819896820` 2026-08-27 chore(specs): refresh generated packet metadata
+- `bedf5691b7` 2026-09-06 refactor(skills): finish adopting the shared frontmatter parser across deep-loop and spec-kit
+- `6b06d6c892` 2026-09-04 chore(merge): bring skilled/v4.0.0.0 into the decommission branch
 
 **4. 004-decisions-and-notes-system**
 
-- `40d9002f09` 2026-08-26 docs(system-speckit): add packets 036 template-reduction + 037 memory-redesign
-- `a138859862` 2026-08-26 docs(system-speckit): re-scope 037 to deprecate constitutional layer without a replacement surface
-- `ad6d27c1c3` 2026-08-26 docs(system-speckit): const-memory deprecation-completeness audit (037/004)
-- `6fb5a7181e` 2026-09-04 docs(specs): retrofit the grep convention across the active spec corpus
-- `0ee9a2ab5e` 2026-08-30 fix(system-speckit): make the drift gate compare every packet that carries a digest
+- `4dec059bcd` 2026-08-26 docs(system-speckit): add packets 036 template-reduction + 037 memory-redesign
+- `adbe0beda7` 2026-08-26 docs(system-speckit): re-scope 037 to deprecate constitutional layer without a replacement surface
+- `0b977e9c1d` 2026-08-26 docs(system-speckit): const-memory deprecation-completeness audit (037/004)
+- `2f58acfb6e` 2026-09-04 docs(specs): retrofit the grep convention across the active spec corpus
+- `52946a6f66` 2026-08-30 fix(system-speckit): make the drift gate compare every packet that carries a digest
 
 **5. 005-skills-runtime-state-consolidation**
 
-- `714611df81` 2026-08-28 refactor(skills): consolidate the seven runtime-state directories under .state
-- `b492b08549` 2026-08-29 fix(graph): finish the key-file repair against the derivation itself
-- `0ee9a2ab5e` 2026-08-30 fix(system-speckit): make the drift gate compare every packet that carries a digest
+- `2d010dde24` 2026-08-28 refactor(skills): consolidate the seven runtime-state directories under .state
+- `7b3ca055ce` 2026-08-29 fix(graph): finish the key-file repair against the derivation itself
+- `52946a6f66` 2026-08-30 fix(system-speckit): make the drift gate compare every packet that carries a digest
 
 **6. 006-derived-metadata-repair-tool**
 
-- `98db362206` 2026-08-28 feat(spec-kit): repair the packet failures that are recomputable
-- `85a974bf4c` 2026-08-28 feat(spec-kit): harden, test, document and wire the derived-packet repair
-- `867b983a79` 2026-08-29 docs(spec): reconcile the repair packet against what was actually verified
-- `0ee9a2ab5e` 2026-08-30 fix(system-speckit): make the drift gate compare every packet that carries a digest
-- `4570677ec7` 2026-08-30 refactor(system-speckit): retire the standalone verification checklist
+- `75cab027d5` 2026-08-28 feat(spec-kit): repair the packet failures that are recomputable
+- `9788c0c05b` 2026-08-28 feat(spec-kit): harden, test, document and wire the derived-packet repair
+- `5167c2d84e` 2026-08-29 docs(spec): reconcile the repair packet against what was actually verified
+- `52946a6f66` 2026-08-30 fix(system-speckit): make the drift gate compare every packet that carries a digest
+- `7e7da2f6b0` 2026-08-30 refactor(system-speckit): retire the standalone verification checklist
 
 **7. 007-completion-gate-coherence**
 
-- `d643545742` 2026-08-29 docs(spec): untick what was never tested, and record the gate's verdict flip
-- `f1142998b8` 2026-08-29 docs(spec): record what the measurements forced the plan to change
-- `d02ca59a85` 2026-08-29 fix(spec-validation): close the review's remaining findings
-- `0ee9a2ab5e` 2026-08-30 fix(system-speckit): make the drift gate compare every packet that carries a digest
-- `4570677ec7` 2026-08-30 refactor(system-speckit): retire the standalone verification checklist
+- `43cc2e6b59` 2026-08-29 docs(spec): untick what was never tested, and record the gate's verdict flip
+- `44ee1bff32` 2026-08-29 docs(spec): record what the measurements forced the plan to change
+- `b5beef4d84` 2026-08-29 fix(spec-validation): close the review's remaining findings
+- `52946a6f66` 2026-08-30 fix(system-speckit): make the drift gate compare every packet that carries a digest
+- `7e7da2f6b0` 2026-08-30 refactor(system-speckit): retire the standalone verification checklist
 
 **8. 008-template-contracts-and-acceptance-criteria**
 
-- `154d3564f6` 2026-08-29 docs(playbooks): bring the manual-testing corpus to the operator-scenario contract
-- `e5a96897bf` 2026-08-29 docs(specs): include the straggler written during the previous commit
-- `27100df785` 2026-08-29 fix(graph): resolve repo-relative key files again, and restore what was dropped
-- `144897ba5d` 2026-09-04 chore(merge): bring skilled/v4.0.0.0 into the decommission branch
-- `6fb5a7181e` 2026-09-04 docs(specs): retrofit the grep convention across the active spec corpus
+- `27afe6d8a8` 2026-08-29 docs(playbooks): bring the manual-testing corpus to the operator-scenario contract
+- `bbc90e9dba` 2026-08-29 docs(specs): include the straggler written during the previous commit
+- `b5823f8a26` 2026-08-29 fix(graph): resolve repo-relative key files again, and restore what was dropped
+- `6b06d6c892` 2026-09-04 chore(merge): bring skilled/v4.0.0.0 into the decommission branch
+- `2f58acfb6e` 2026-09-04 docs(specs): retrofit the grep convention across the active spec corpus
 
 **9. 009-validation-rule-reduction**
 
-- `203e619815` 2026-08-29 feat(spec-validation): a warning stops being a failure
-- `5bd9178c70` 2026-08-29 feat(spec-validation): a track directory is not a packet
-- `1e144e9cdd` 2026-08-29 feat(spec-validation): the scaffold passes the gate it ships with
-- `822ac55300` 2026-09-01 fix(routing): break the rebuild deadlock, and move the voice standard to its owner
-- `0ee9a2ab5e` 2026-08-30 fix(system-speckit): make the drift gate compare every packet that carries a digest
+- `590aa61819` 2026-08-29 feat(spec-validation): a warning stops being a failure
+- `c27e7a6635` 2026-08-29 feat(spec-validation): a track directory is not a packet
+- `d15a55808d` 2026-08-29 feat(spec-validation): the scaffold passes the gate it ships with
+- `5641fa8aeb` 2026-09-01 fix(routing): break the rebuild deadlock, and move the voice standard to its owner
+- `52946a6f66` 2026-08-30 fix(system-speckit): make the drift gate compare every packet that carries a digest
 
 **10. 010-goal-file-addon**
 
-- `fada2779d2` 2026-08-29 docs(specs): open the nested-goal packet with its verified research
-- `3fbc4265b0` 2026-08-29 docs(specs): plan the nested-goal addon as four verified phases
-- `8d0b4443e9` 2026-08-29 feat(system-spec-kit): add a goal document to the documentation-level contract
-- `144897ba5d` 2026-09-04 chore(merge): bring skilled/v4.0.0.0 into the decommission branch
-- `6fb5a7181e` 2026-09-04 docs(specs): retrofit the grep convention across the active spec corpus
+- `aff3dd8ef6` 2026-08-29 docs(specs): open the nested-goal packet with its verified research
+- `bbc04c0793` 2026-08-29 docs(specs): plan the nested-goal addon as four verified phases
+- `ac2e741171` 2026-08-29 feat(system-spec-kit): add a goal document to the documentation-level contract
+- `6b06d6c892` 2026-09-04 chore(merge): bring skilled/v4.0.0.0 into the decommission branch
+- `2f58acfb6e` 2026-09-04 docs(specs): retrofit the grep convention across the active spec corpus
 
 **11. 011-graph-metadata-write-containment**
 
-- `6d21ed9c96` 2026-08-30 fix(system-speckit): prove workspace membership in the graph-metadata write guard
-- `368531405d` 2026-08-30 fix(system-speckit): measure write containment against the destination's workspace
-- `ec0f8a7deb` 2026-08-30 docs(system-speckit): record what two closed packets actually proved
-- `d229b0a24d` 2026-09-02 fix(sk-doc): make the validators look where they were not looking
+- `9f21bce3e2` 2026-08-30 fix(system-speckit): prove workspace membership in the graph-metadata write guard
+- `908811cd8f` 2026-08-30 fix(system-speckit): measure write containment against the destination's workspace
+- `eca9571f9d` 2026-08-30 docs(system-speckit): record what two closed packets actually proved
+- `71f1c2f9bc` 2026-09-02 fix(sk-doc): make the validators look where they were not looking
 
 **12. 012-repair-write-symlink-refusal**
 
-- `b6e8ff121b` 2026-08-30 fix(system-speckit): refuse symlink traversal in the graph-metadata repair write
-- `f9cdb8b0c1` 2026-08-30 fix(system-speckit): actually land the symlink refusal, and test the shipped code
-- `ec0f8a7deb` 2026-08-30 docs(system-speckit): record what two closed packets actually proved
-- `7626af0db1` 2026-08-30 chore(system-speckit): restore two authored descriptions and checkpoint runtime state
-- `d229b0a24d` 2026-09-02 fix(sk-doc): make the validators look where they were not looking
+- `43cec9537f` 2026-08-30 fix(system-speckit): refuse symlink traversal in the graph-metadata repair write
+- `cf20b918d0` 2026-08-30 fix(system-speckit): actually land the symlink refusal, and test the shipped code
+- `eca9571f9d` 2026-08-30 docs(system-speckit): record what two closed packets actually proved
+- `e614dd1105` 2026-08-30 chore(system-speckit): restore two authored descriptions and checkpoint runtime state
+- `71f1c2f9bc` 2026-09-02 fix(sk-doc): make the validators look where they were not looking
 
 **13. 013-repair-handle-containment**
 
-- `29fbbebdbd` 2026-08-30 docs(system-speckit): open a packet for the two path-containment gaps left open
-- `23283338e6` 2026-08-30 refactor(system-speckit): remove the containment branch that decided nothing
-- `7289a5173f` 2026-08-30 fix(system-speckit): prove the repair write reaches the file the scan classified
-- `822ac55300` 2026-09-01 fix(routing): break the rebuild deadlock, and move the voice standard to its owner
+- `019291bb14` 2026-08-30 docs(system-speckit): open a packet for the two path-containment gaps left open
+- `7960b82ada` 2026-08-30 refactor(system-speckit): remove the containment branch that decided nothing
+- `f8071b06cb` 2026-08-30 fix(system-speckit): prove the repair write reaches the file the scan classified
+- `5641fa8aeb` 2026-09-01 fix(routing): break the rebuild deadlock, and move the voice standard to its owner
 
 **14. 014-daemon-and-test-harness-hardening**
 
-- `c10772713e` 2026-08-30 docs(specs): add the daemon and test-harness hardening packet
-- `2dcc38963a` 2026-08-30 fix(system-spec-kit): make production-database isolation unbypassable in tests
-- `7d10eddf5f` 2026-08-30 feat(system-spec-kit): reap orphaned launchers instead of leaking them
-- `6fb5a7181e` 2026-09-04 docs(specs): retrofit the grep convention across the active spec corpus
-- `822ac55300` 2026-09-01 fix(routing): break the rebuild deadlock, and move the voice standard to its owner
+- `000382d650` 2026-08-30 docs(specs): add the daemon and test-harness hardening packet
+- `3f41fe8d22` 2026-08-30 fix(system-spec-kit): make production-database isolation unbypassable in tests
+- `a697be01f2` 2026-08-30 feat(system-spec-kit): reap orphaned launchers instead of leaking them
+- `2f58acfb6e` 2026-09-04 docs(specs): retrofit the grep convention across the active spec corpus
+- `5641fa8aeb` 2026-09-01 fix(routing): break the rebuild deadlock, and move the voice standard to its owner
 
 **15. 015-apply-path-and-candidate-filter-fixes**
 
-- `2571e9f0e4` 2026-08-31 fix(system-spec-kit): require an explicit decision to reap, and judge from fresh evidence
-- `dbe8584c33` 2026-08-31 fix(system-spec-kit): stop test isolation depending on environment inheritance alone
-- `0a28bb353c` 2026-08-31 fix(system-spec-kit): make orphan termination opt-in instead of on by default
-- `bcd97f2c41` 2026-08-31 docs(specs): resolve the sweep dry-run question with a stubbed live probe
-- `822ac55300` 2026-09-01 fix(routing): break the rebuild deadlock, and move the voice standard to its owner
+- `87c79b03a4` 2026-08-31 fix(system-spec-kit): require an explicit decision to reap, and judge from fresh evidence
+- `4cdb12b418` 2026-08-31 fix(system-spec-kit): stop test isolation depending on environment inheritance alone
+- `8bf322ab89` 2026-08-31 fix(system-spec-kit): make orphan termination opt-in instead of on by default
+- `a96537fc05` 2026-08-31 docs(specs): resolve the sweep dry-run question with a stubbed live probe
+- `5641fa8aeb` 2026-09-01 fix(routing): break the rebuild deadlock, and move the voice standard to its owner
 
 **16. 016-sequential-thinking-residue-removal**
 
-- `98f966c3c8` 2026-08-31 fix(doctor): stop reinstalling a server that was decommissioned in August
-- `d229b0a24d` 2026-09-02 fix(sk-doc): make the validators look where they were not looking
+- `8b3046ab09` 2026-08-31 fix(doctor): stop reinstalling a server that was decommissioned in August
+- `71f1c2f9bc` 2026-09-02 fix(sk-doc): make the validators look where they were not looking
 
 **17. 017-memory-database-decommission**
 
-- `e4a80ed973` 2026-09-02 docs(specs): plan memory DB decommission as phased packet 049
-- `d229b0a24d` 2026-09-02 fix(sk-doc): make the validators look where they were not looking
-- `6102eb9d2e` 2026-09-02 docs(specs): plan the memory decommission from research instead of estimates
-- `b4c2484696` 2026-09-05 refactor(spec-kit): nest the CLI workspace under runtime and move continuity out of memory
-- `d56a0db7a1` 2026-09-04 chore(merge): bring the DevPass and thinking-tier commits from skilled/v4.0.0.0 into the branch
+- `e5f663f6db` 2026-09-02 docs(specs): plan memory DB decommission as phased packet 049
+- `71f1c2f9bc` 2026-09-02 fix(sk-doc): make the validators look where they were not looking
+- `43701c3328` 2026-09-02 docs(specs): plan the memory decommission from research instead of estimates
+- `f65b8f1e5b` 2026-09-05 refactor(spec-kit): nest the CLI workspace under runtime and move continuity out of memory
+- `8509a66fc7` 2026-09-04 chore(merge): bring the DevPass and thinking-tier commits from skilled/v4.0.0.0 into the branch
 
 **18. 018-single-segment-packet-pointer**
 
-- `d005e856de` 2026-09-02 docs(specs): record the single-segment pointer change
+- `967cd1f185` 2026-09-02 docs(specs): record the single-segment pointer change
 
 **19. 019-memory-decommission-branch-landing**
 
-- `d2416a69c6` 2026-09-04 docs(specs): open packet 052 for the decommission landing and its verification loop
-- `4b55fe1ed1` 2026-09-04 docs(specs): name the landed surfaces the review loop must cover
-- `f4656be7c2` 2026-09-04 docs(specs): record the landing evidence and the validator class defects in the 052 goal log
-- `0eeecf720f` 2026-09-06 docs(specs): log the second adoption lane and the specs deletion recovery
-- `e726ca8799` 2026-09-06 docs(specs): log the regeneration and parser-edge packet in the landing goal
+- `df0763d616` 2026-09-04 docs(specs): open packet 052 for the decommission landing and its verification loop
+- `772c37405d` 2026-09-04 docs(specs): name the landed surfaces the review loop must cover
+- `858db15696` 2026-09-04 docs(specs): record the landing evidence and the validator class defects in the 052 goal log
+- `92a78c6ee2` 2026-09-06 docs(specs): log the second adoption lane and the specs deletion recovery
+- `ff01ab459b` 2026-09-06 docs(specs): log the regeneration and parser-edge packet in the landing goal
 
 **20. 020-runtime-package-rename**
 
-- `237091ed8f` 2026-09-04 docs(specs): open packet 053 for the runtime rename and log iteration five's findings
-- `aef7852400` 2026-09-04 refactor(spec-kit): move the engine package to runtime and drop its MCP identity
-- `c65d188abb` 2026-09-04 docs(specs): bound the rename review to the 453 content-changed files
-- `a62d933281` 2026-09-05 docs(specs): stamp completion fingerprints on the closed packets and refresh their metadata
-- `b4c2484696` 2026-09-05 refactor(spec-kit): nest the CLI workspace under runtime and move continuity out of memory
+- `435acd1fe9` 2026-09-04 docs(specs): open packet 053 for the runtime rename and log iteration five's findings
+- `0db44e44c0` 2026-09-04 refactor(spec-kit): move the engine package to runtime and drop its MCP identity
+- `f80c7e709e` 2026-09-04 docs(specs): bound the rename review to the 453 content-changed files
+- `3f09046278` 2026-09-05 docs(specs): stamp completion fingerprints on the closed packets and refresh their metadata
+- `f65b8f1e5b` 2026-09-05 refactor(spec-kit): nest the CLI workspace under runtime and move continuity out of memory
 
 **21. 021-decommission-debt-and-cli-nesting**
 
-- `209b1c5770` 2026-09-05 docs(specs): open the decommission debt-fixes packet with the landed fixes recorded
-- `3ec9ccb359` 2026-09-05 docs(specs): record the alignment, the restored session hooks and the gates in the debt packet
-- `28a4aae761` 2026-09-05 docs(specs): record the residue removal and the Grok lineage's disposition
-- `7d923c169d` 2026-09-05 docs(specs): add the Sonnet 5 integration research lineage and log its synthesis
-- `03c5ebfc94` 2026-09-05 docs(specs): close the decommission debt packet and mark the landing criteria met
+- `4db399a32a` 2026-09-05 docs(specs): open the decommission debt-fixes packet with the landed fixes recorded
+- `20baf6f6cb` 2026-09-05 docs(specs): record the alignment, the restored session hooks and the gates in the debt packet
+- `64bab00589` 2026-09-05 docs(specs): record the residue removal and the Grok lineage's disposition
+- `3172269a47` 2026-09-05 docs(specs): add the Sonnet 5 integration research lineage and log its synthesis
+- `bcf36f6ad9` 2026-09-05 docs(specs): close the decommission debt packet and mark the landing criteria met
 
 **22. 022-shared-containment-helper**
 
-- `3b11a51fb2` 2026-09-05 docs(specs): open and close the path-containment seam packet
+- `d5332ad1b9` 2026-09-05 docs(specs): open and close the path-containment seam packet
 
 **23. 023-trigger-index-root-and-drift-fixes**
 
-- `a0dec0823b` 2026-09-06 docs(specs): close phase 001 of the integration research remediation
-- `8cbdbdf47e` 2026-09-06 docs(specs): close phase 002 of the integration research remediation
-- `00e4ddc28e` 2026-09-06 docs(specs): close phase 003 and add the execution protocol to the first two phases
-- `ac9433076e` 2026-09-06 docs(specs): close phase 004 and the integration research remediation parent
+- `44e1968cfc` 2026-09-06 docs(specs): close phase 001 of the integration research remediation
+- `34a6d25444` 2026-09-06 docs(specs): close phase 002 of the integration research remediation
+- `6e1d3b494a` 2026-09-06 docs(specs): close phase 003 and add the execution protocol to the first two phases
+- `ec3ec28985` 2026-09-06 docs(specs): close phase 004 and the integration research remediation parent
 
 **24. 024-metadata-regeneration-and-shared-parser**
 
-- `7afeebfdb7` 2026-09-06 docs(specs): open and close the metadata regeneration and parser edges packet
-- `95eb7848a5` 2026-09-06 docs(specs): extend and close the parser-edges packet with the second adoption lane
+- `d61a46d1e9` 2026-09-06 docs(specs): open and close the metadata regeneration and parser edges packet
+- `4dfc09697f` 2026-09-06 docs(specs): extend and close the parser-edges packet with the second adoption lane
 
 **25. 025-docs-reality-alignment-research**
 
-- `520b63b21b` 2026-09-06 docs(specs): open the two reality-alignment research lanes under the v4 parent
+- `6449995303` 2026-09-06 docs(specs): open the two reality-alignment research lanes under the v4 parent
 
 **26. 026-runtime-code-standards-research**
 
-- `520b63b21b` 2026-09-06 docs(specs): open the two reality-alignment research lanes under the v4 parent
+- `6449995303` 2026-09-06 docs(specs): open the two reality-alignment research lanes under the v4 parent
 
 **27. 027-doc-path-strict-mode-and-retired-capability-fixes**
 
-- `fc71f4d121` 2026-09-06 docs(spec-kit): fix the fourteen confirmed mismatches between the skill docs and the runtime
+- `c0576610e6` 2026-09-06 docs(spec-kit): fix the fourteen confirmed mismatches between the skill docs and the runtime
 
 **28. 028-header-tags-hook-catch-and-script-test-fixes**
 
-- `ee8a17b5b1` 2026-09-06 fix(spec-kit): align runtime headers, hooks and script tests with the sk-code standards
+- `d76672f145` 2026-09-06 fix(spec-kit): align runtime headers, hooks and script tests with the sk-code standards
 
 **29. 029-goal-operator-resync-rule**
 
-- `dc65cb895e` 2026-09-06 feat(spec-kit): make the goal addon tell the agent to resend the parent goal when it changes
+- `1c7f901c54` 2026-09-06 feat(spec-kit): make the goal addon tell the agent to resend the parent goal when it changes
 
 **30. 030-spec-kit-simplification-research**
 
-- `ffbd8cd304` 2026-09-06 docs(specs): open the spec-kit simplification research program with nested goals
-- `e4f9b9254b` 2026-09-06 fix(spec-kit): close the ripgrep research lane and remediate the retrieval drift it found
-- `3f161d2ee9` 2026-09-06 refactor(spec-kit): remove the CLI package residue and wire its check gate into CI
-- `bff4bbd091` 2026-09-07 feat(spec-kit): let the acceptance-coverage gate enforce, and retrofit the program's criteria
-- `5518bf5751` 2026-09-07 fix(spec-kit): close the cross-session operator items and the routed advisor fixes
+- `2ca9d87cd6` 2026-09-06 docs(specs): open the spec-kit simplification research program with nested goals
+- `c0183f0ed5` 2026-09-06 fix(spec-kit): close the ripgrep research lane and remediate the retrieval drift it found
+- `3adaabf626` 2026-09-06 refactor(spec-kit): remove the CLI package residue and wire its check gate into CI
+- `8478e336e8` 2026-09-07 feat(spec-kit): let the acceptance-coverage gate enforce, and retrofit the program's criteria
+- `ef99a217a0` 2026-09-07 fix(spec-kit): close the cross-session operator items and the routed advisor fixes
 
 **31. 031-ci-shared-package-resolution**
 
-- `f62d8bbc78` 2026-09-07 ci: install the spec-kit workspace before checkers that import its shared package
-- `e773415510` 2026-09-07 ci: install sk-doc before the checkers that live under it
-- `d4bc61da91` 2026-09-07 docs(specs): record the workflow outcome of the CI resolution fix
+- `305a588d46` 2026-09-07 ci: install the spec-kit workspace before checkers that import its shared package
+- `15c5e3254f` 2026-09-07 ci: install sk-doc before the checkers that live under it
+- `8842f5d3ad` 2026-09-07 docs(specs): record the workflow outcome of the CI resolution fix
 
 **32. 032-recorded-findings-closure**
 
-- `c431a8c6da` 2026-09-07 docs(specs): open the recorded findings closure program with sixteen planned children
-- `667cfadff1` 2026-09-07 refactor(spec-kit): run the spec-gate orchestration once in the core
-- `f49317f9bb` 2026-09-07 refactor(spec-kit): give each canonical-save registry row its own rule script
-- `37f3ad5a81` 2026-09-07 docs(specs): close the recorded-findings program with all sixteen children complete
-- `ed7faf6b60` 2026-09-07 docs(specs): record the green workflows that close the last criteria of the program
+- `de2e9ef27c` 2026-09-07 docs(specs): open the recorded findings closure program with sixteen planned children
+- `4bd3d57e81` 2026-09-07 refactor(spec-kit): run the spec-gate orchestration once in the core
+- `c8aa182431` 2026-09-07 refactor(spec-kit): give each canonical-save registry row its own rule script
+- `d23a668fab` 2026-09-07 docs(specs): close the recorded-findings program with all sixteen children complete
+- `eb977eb4da` 2026-09-07 docs(specs): record the green workflows that close the last criteria of the program
 
 **33. 033-ci-dependency-hardening**
 
-- `4478de62d2` 2026-09-07 chore(deps): lift fast-uri, qs and toml past their advisories and record the CI hardening packet
+- `016c162f5a` 2026-09-07 chore(deps): lift fast-uri, qs and toml past their advisories and record the CI hardening packet
 
 **34. 034-v4-state-inventory-research**
 
-- `d1f75a15f6` 2026-09-08 refactor(specs): nest the last four system-speckit packets under the v4 parent
-- `e4b8fa56ec` 2026-09-08 docs(specs): close the v4 state inventory research with the merged drift table
+- `e48074e6e0` 2026-09-08 refactor(specs): nest the last four system-speckit packets under the v4 parent
+- `fd82dd633d` 2026-09-08 docs(specs): close the v4 state inventory research with the merged drift table
 
 **35. 035-v4-changelog-draft-update**
 

@@ -88,7 +88,7 @@ copies with `--extra` while keeping them out of the stock gallery and catalog.
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The implementation was built after phase 15 was confirmed at commit `416827fd10`. The applicator
+The implementation was built after phase 15 was confirmed at commit `6d4ef47150`. The applicator
 was syntax-checked, exercised by `node --test` and run against Stripe for `bar-columns` and
 `daily-line`; that exact run wrote both files and ended with `RESULT: PASSED`. The outside scan
 reported 38 files, 156 `design-md` assertions and zero errors; the in-package scan reported 36

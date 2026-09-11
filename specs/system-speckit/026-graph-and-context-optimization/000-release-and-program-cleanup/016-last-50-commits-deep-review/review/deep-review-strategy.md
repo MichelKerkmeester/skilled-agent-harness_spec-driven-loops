@@ -5,9 +5,9 @@ trigger_phrases: []
 # Deep Review Strategy — last 50 commits
 
 ## Review Target
-- **Range:** `a9e9bdb0a5^..HEAD` (50 commits, HEAD `12de3d3a7e`). Target type: files (diff surface).
+- **Range:** `fd67ede05f^..HEAD` (50 commits, HEAD `3923a65db1`). Target type: files (diff surface).
 - **Reviewable code:** ~57 source + 64 test + ~195 config files; docs/changelogs (1314) + spec-metadata (183) under the docs angle. Concentration: `system-spec-kit/mcp_server/**`, `.opencode/bin/lib/*.cjs` + `*-launcher.cjs`, `shared/ipc/socket-server.ts`, `shared/embeddings/**`, advisor, code-graph, deep-loop-runtime, doctor scripts.
-- Resolve per-angle files with: `git diff --name-only a9e9bdb0a5^..HEAD -- <angle path globs>`.
+- Resolve per-angle files with: `git diff --name-only fd67ede05f^..HEAD -- <angle path globs>`.
 
 ## Convergence
 maxIterations 20, convergenceThreshold 0.10 (weighted P0=10/P1=5/P2=1 newFindingsRatio). Read-only — findings only, NO fixes. Every P0/P1 MUST carry file:line evidence tied to a verified code fact; adversarially verify P0s before reporting.

@@ -58,7 +58,7 @@ The capture script (no `--write`) reproduced the drop against a corpus whose has
 
 ### Root cause
 
-`loadFilesystemAliasData` in `lib/scorer/executor-delegation.ts` read the small-model registry from a hardcoded path `sk-prompt/prompt-models/assets/model-profiles.json`. Commit `9efb3fc5612` renamed that mode packet directory to `sk-prompt-models` without updating the scorer, so at HEAD `existsSync` was false, the model-alias table was empty, and `MiniMax-M3` and `Kimi` stopped routing to their `cli-opencode` executor. Exactly two prompts moved — no four-cancelling-to-two.
+`loadFilesystemAliasData` in `lib/scorer/executor-delegation.ts` read the small-model registry from a hardcoded path `sk-prompt/prompt-models/assets/model-profiles.json`. Commit `33294851882` renamed that mode packet directory to `sk-prompt-models` without updating the scorer, so at HEAD `existsSync` was false, the model-alias table was empty, and `MiniMax-M3` and `Kimi` stopped routing to their `cli-opencode` executor. Exactly two prompts moved — no four-cancelling-to-two.
 
 ### The fix
 
@@ -104,7 +104,7 @@ Reproduce → enumerate → bisect the two surfaces independently → attribute 
 | Reproduce regression (capture, no `--write`) | `holdout_top1` 51/72, `holdout_top3` 53/72, delegation 8/11 — matched the spec figures |
 | Corpus hashes vs pin | corpus `9f30cc..`, holdout `88a7f7..`, ambiguity `07cd2c..` — byte-identical, comparison valid |
 | Changed prompts enumerated | Exactly two: `MiniMax-M3` and `Kimi`, both expected `cli-opencode` |
-| Attribution | `executor-delegation.ts` stale path (rename `9efb3fc5612`); metadata surface contributed zero |
+| Attribution | `executor-delegation.ts` stale path (rename `33294851882`); metadata surface contributed zero |
 | Post-fix capture (native worktree dist) | `holdout_top1` 53/72, `holdout_top3` 55/72, delegation 10/11; full/ambiguity/review/memory_save unchanged |
 | No other metric regressed | full 151/195, full-top3 176/195, ambiguity 17/24, review 24/31, memory_save 27/32 — all held |
 | `002-baseline-capture/` untouched | `git status` clean for that folder; no `--write` ever run |

@@ -1,6 +1,6 @@
 ---
 title: Deep Review Strategy — post-implementation review of the 008 doc-evolution ship
-description: Live strategy for the scoped cli-devin SWE-1.6 post-implementation deep-review of the 5 deep-* skills' docs shipped in 5f3e0a2f53. Reducer maintains the ANCHOR-wrapped sections; analyst owns the rest.
+description: Live strategy for the scoped cli-devin SWE-1.6 post-implementation deep-review of the 5 deep-* skills' docs shipped in fb8d560443. Reducer maintains the ANCHOR-wrapped sections; analyst owns the rest.
 ---
 
 # Deep Review Strategy — post-implementation review of the 008 doc-evolution ship
@@ -13,7 +13,7 @@ Persistent brain for the post-implementation deep-review of the 008 doc-evolutio
 
 ## 2. TOPIC
 
-Post-implementation deep-review of the 008 deep-skill doc-evolution ship (commit 5f3e0a2f53): the 5 deep-* skills' SKILL.md routers, READMEs, references (subfoldered), feature_catalog, manual_testing_playbook, and changelogs. The 009 deep-research backstop already confirmed 0 structural gaps (links/structure/orphans); this review adds correctness re-confirmation plus the traceability and maintainability dimensions 009 did not deeply assess.
+Post-implementation deep-review of the 008 deep-skill doc-evolution ship (commit fb8d560443): the 5 deep-* skills' SKILL.md routers, READMEs, references (subfoldered), feature_catalog, manual_testing_playbook, and changelogs. The 009 deep-research backstop already confirmed 0 structural gaps (links/structure/orphans); this review adds correctness re-confirmation plus the traceability and maintainability dimensions 009 did not deeply assess.
 
 ---
 
@@ -84,7 +84,7 @@ Iteration 5 of 5: D5 structural completeness — final dimension to verify the 0
 ## 10. KNOWN CONTEXT
 
 ### 008 ship (under review)
-Commit 5f3e0a2f53: references subfoldering (4 skills; deep-loop-runtime flat by design), sk-doc 1:1 conformance (DQI 94-99), README rewrites (9-section), feature_catalog/playbook conformance, deep-review SKILL.md trimmed under the 500-line house rule, 3 oversized refs split (preserving 11 test-asserted tokens), thin-ref consolidation, dead-link fixes, sk-doc validator fix.
+Commit fb8d560443: references subfoldering (4 skills; deep-loop-runtime flat by design), sk-doc 1:1 conformance (DQI 94-99), README rewrites (9-section), feature_catalog/playbook conformance, deep-review SKILL.md trimmed under the 500-line house rule, 3 oversized refs split (preserving 11 test-asserted tokens), thin-ref consolidation, dead-link fixes, sk-doc validator fix.
 
 009 deep-research backstop: CONVERGED NEGATIVE — 0 residual structural gaps (2 passes incl. adversarial concrete grep). Do not re-litigate structural gaps.
 

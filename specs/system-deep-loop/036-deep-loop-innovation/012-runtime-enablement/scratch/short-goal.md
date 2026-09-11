@@ -5,7 +5,7 @@ Finish 036/012-runtime-enablement on a DELETION-FIRST switch (2026-08-23). You O
 
 MISSION: the ledger loop IS the system. Delete the over-engineered rollback/migration/back-compat machinery that was never needed and dragged the epic out (~45-50k LOC, ~1/4 of runtime). Honest SIMPLIFICATION — remove ceremony, never fabricate a closed safety window.
 
-STATE: committed f2d4d01d08 (projection contracts + flip), 5511e4eac2 (U1 window-free finalize CAS + phase 010). Verified-but-uncommitted: U3+U4 in 005/scratch/run-gate.mjs (authority-state accepts final; real negative-controlled reader-contracts). NOT run: U2 finalize (8 records still reversible, backed up). Authority live: all 8 on ledger.
+STATE: committed dd0cca0f77 (projection contracts + flip), fd0bd2df92 (U1 window-free finalize CAS + phase 010). Verified-but-uncommitted: U3+U4 in 005/scratch/run-gate.mjs (authority-state accepts final; real negative-controlled reader-contracts). NOT run: U2 finalize (8 records still reversible, backed up). Authority live: all 8 on ledger.
 
 DEFECT DISCIPLINE (in force): every green guilty until a perturbation turns it red; check WHY; recorded blockers decay, re-measure. For deletion: never assume unused — prove by import graph, sever live-loop imports first, re-run typecheck+suite after each wave.
 

@@ -42,7 +42,7 @@ _memory:
 ## Phase 1: Setup
 
 - [x] T1.1 Create `runtime/lib/deep-loop/leaf-artifact-writer.ts`: extract JSON object from a final message, validate required audit fields, author narrative + state record + delta, inject route-proof fields, return a fail-closed result on malformed input.
-  - Evidence: `leaf-artifact-writer.ts` (627 lines) committed in `ac98561cf7`.
+  - Evidence: `leaf-artifact-writer.ts` (627 lines) committed in `a2fc4878f9`.
 - [x] T1.2 Create `runtime/tests/unit/leaf-artifact-writer.vitest.ts`: valid → 3 artifacts; malformed → failure, no partial writes; route-proof always wrapper-authored; golden-record shape.
   - Evidence: `leaf-artifact-writer.vitest.ts` (351 lines); `vitest` run → 25 passed (25) on 2026-08-18.
 

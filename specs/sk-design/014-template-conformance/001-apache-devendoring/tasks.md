@@ -13,7 +13,7 @@ _memory:
     packet_pointer: "sk-design/014-template-conformance/001-apache-devendoring"
     last_updated_at: "2026-07-27T19:00:00Z"
     last_updated_by: "spec-reconciler"
-    recent_action: "Marked T001-T019 delivered against commit 8fa4752968 and re-run checks"
+    recent_action: "Marked T001-T019 delivered against commit 4ac59d21c5 and re-run checks"
     next_safe_action: "None; all 19 tasks are closed with on-disk evidence"
     blockers: []
     key_files:
@@ -52,7 +52,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup [de-vendor rewrite, load-bearing gate, ~2h]
 
-**Delivered** in commit `8fa4752968`.
+**Delivered** in commit `4ac59d21c5`.
 
 - [x] T001 Read `design-interface/references/design-process/design-principles.md` in full and list every guidance point (`design-principles.md`) [30m]
 - [x] T002 Draft an original-words rewrite preserving each point's intent (`design-principles.md`) [1h]
@@ -65,7 +65,7 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation [delete license + citations, blocked on Phase 1 passing, ~1h]
 
-**Delivered** in commit `8fa4752968`.
+**Delivered** in commit `4ac59d21c5`.
 
 - [x] T005 `git rm .opencode/skills/sk-design/design-interface/LICENSE.txt` (`LICENSE.txt`) [5m]
 - [x] T006 [P] Remove `license: Apache-2.0; see LICENSE.txt` frontmatter line (`SKILL.md:9`) [5m]
@@ -77,7 +77,7 @@ _memory:
 - [x] T012 Delete or invert manual-testing scenario ID-007 (`manual-testing-playbook/licensing-and-provenance/licensing-and-provenance-integrity.md`) [15m] — deleted (93 lines)
 - [x] T013 Update ID-007 summary references (`manual-testing-playbook/manual-testing-playbook.md:68,349,355`) [10m] — counts reconciled 31/20 to 30/19
 - [x] T014 Author new `changelog/` entry recording the de-vendor (`design-interface/changelog/`) [15m] — `v1.1.0.0.md`
-- [x] T015 Confirm `.gitignore` unchanged (no path) [2m] — `git show --stat 8fa4752968 -- .gitignore` returns nothing
+- [x] T015 Confirm `.gitignore` unchanged (no path) [2m] — `git show --stat 4ac59d21c5 -- .gitignore` returns nothing
 <!-- /ANCHOR:phase-2 -->
 
 ---

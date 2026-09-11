@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Phase 016 sk-code content coherence and reference integrity"
-description: "Executed summary: phase 016 closed by verification. The 143-finding content-coherence audit predated the 013 two-axis restructure and re-verified as already-satisfied (0 broken refs, STRICT 0/0, vocab-sync 0/0/0); the one shipped change dropped 3 stale merger placeholder fields from sk-code metadata (af1170c663)."
+description: "Executed summary: phase 016 closed by verification. The 143-finding content-coherence audit predated the 013 two-axis restructure and re-verified as already-satisfied (0 broken refs, STRICT 0/0, vocab-sync 0/0/0); the one shipped change dropped 3 stale merger placeholder fields from sk-code metadata (907027032b)."
 trigger_phrases:
   - "sk-code content coherence summary"
   - "sk-code reference integrity summary"
@@ -22,7 +22,7 @@ _memory:
     open_questions: []
     answered_questions:
       - question: "Is this phase executed?"
-        answer: "Yes, done by verification. The audit predated the 013 restructure; re-check found sk-code already coherent (0 broken refs, STRICT 0/0, vocab-sync 0/0/0). The one concrete change (af1170c663) dropped 3 stale merger placeholder fields."
+        answer: "Yes, done by verification. The audit predated the 013 restructure; re-check found sk-code already coherent (0 broken refs, STRICT 0/0, vocab-sync 0/0/0). The one concrete change (907027032b) dropped 3 stale merger placeholder fields."
       - question: "Did phase 017 metadata vocabulary block phase 016?"
         answer: "No. sk-code metadata already satisfies the two-axis canon (parent-skill-check 3d-canon/5f pass); no vocabulary decision was required."
 ---
@@ -42,7 +42,7 @@ _memory:
 | **Spec Folder** | 016-sk-code-content-coherence |
 | **Status** | Complete |
 | **Level** | 3 |
-| **Actual Effort** | Done by verification; one metadata-cleanup commit (af1170c663) shipped |
+| **Actual Effort** | Done by verification; one metadata-cleanup commit (907027032b) shipped |
 
 <!-- /ANCHOR:metadata -->
 ---
@@ -52,7 +52,7 @@ _memory:
 
 Phase 016 closed **done-by-verification**. Its ~35 planned tasks were scoped from a 143-finding content-coherence audit that **predated the 013 two-axis restructure and is stale**. The audit claimed ~30 broken references plus useless/duplicate references, stale playbook and benchmark bodies, and sub-skill sk-doc-alignment defects. Re-verification against the current tree found none of those live: sk-code has **0 broken references**, `parent-skill-check` STRICT is **0 failures / 0 warnings**, and `parent-hub-vocab-sync` reports **0 orphan aliases / 0 collisions / 0 ownership drift**. The 013 restructure already re-anchored the paths the audit flagged, so the audit-driven repair tasks were dispositioned **verified already-satisfied**, not newly executed.
 
-The one concrete change shipped in commit **`af1170c663`** ("chore(124/016): drop stale merger placeholder fields from sk-code metadata"): it removed 3 stale internal-design-note placeholder fields — `merger_spec_folder` from `sk-code/description.json`, and `merger_packet` + `motion_dev_packet` from `sk-code/graph-metadata.json`. That is the only residual staleness the audit surfaced that was still real after the 013 restructure.
+The one concrete change shipped in commit **`907027032b`** ("chore(124/016): drop stale merger placeholder fields from sk-code metadata"): it removed 3 stale internal-design-note placeholder fields — `merger_spec_folder` from `sk-code/description.json`, and `merger_packet` + `motion_dev_packet` from `sk-code/graph-metadata.json`. That is the only residual staleness the audit surfaced that was still real after the 013 restructure.
 
 <!-- /ANCHOR:what-built -->
 ---
@@ -60,7 +60,7 @@ The one concrete change shipped in commit **`af1170c663`** ("chore(124/016): dro
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Closure ran the phase's own verification gates against the live sk-code hub and read the results as the source of truth, rather than re-executing repairs the 013 restructure had already made. `check-markdown-links.cjs` returned 0 broken references under `.opencode/skills/sk-code`. `parent-skill-check` STRICT passed every hard invariant (3d-canon, 5a–5f router, 6a, 7a, 8a, 9a, 9b) with 0 warnings. `parent-hub-vocab-sync --skill .opencode/skills/sk-code` reported `driftDetected: false` with empty orphan/collision/drift sets. The single real remnant — 3 placeholder metadata fields left over from the pre-013 merger design notes — was removed in `af1170c663`.
+Closure ran the phase's own verification gates against the live sk-code hub and read the results as the source of truth, rather than re-executing repairs the 013 restructure had already made. `check-markdown-links.cjs` returned 0 broken references under `.opencode/skills/sk-code`. `parent-skill-check` STRICT passed every hard invariant (3d-canon, 5a–5f router, 6a, 7a, 8a, 9a, 9b) with 0 warnings. `parent-hub-vocab-sync --skill .opencode/skills/sk-code` reported `driftDetected: false` with empty orphan/collision/drift sets. The single real remnant — 3 placeholder metadata fields left over from the pre-013 merger design notes — was removed in `907027032b`.
 
 <!-- /ANCHOR:how-delivered -->
 ---
@@ -72,7 +72,7 @@ Closure ran the phase's own verification gates against the live sk-code hub and 
 |----------|-----------|-------|
 | Treat the audit as stale and re-verify before repairing | The 143-finding audit predated the 013 two-axis restructure; re-check found sk-code already coherent | master plan phase 016; audit digest |
 | Disposition audit-driven tasks as verified already-satisfied | 0 broken refs, STRICT 0/0, vocab-sync 0/0/0 — the flagged drift no longer exists on disk | live verification runs |
-| Ship only the placeholder-field removal | The 3 merger placeholder fields were the sole residual staleness that survived 013 | af1170c663 |
+| Ship only the placeholder-field removal | The 3 merger placeholder fields were the sole residual staleness that survived 013 | 907027032b |
 | Do not perform the hooks relocation | sk-code link check is clean (0 broken hooks refs); the relocation was an audit-era ownership preference, not a live defect | audit speckit-relocation finding; ADR-002 superseded |
 
 <!-- /ANCHOR:decisions -->
@@ -94,7 +94,7 @@ None. The phase-017 metadata-vocabulary dependency dissolved: sk-code metadata a
 | `check-markdown-links.cjs` (sk-code) | Pass | 0 broken references under `.opencode/skills/sk-code` |
 | `parent-skill-check` STRICT (sk-code) | Pass | All hard invariants pass, 0 warnings, exit 0 (3d-canon, 5a–5f, 6a, 7a, 8a, 9a, 9b) |
 | `parent-hub-vocab-sync` (sk-code) | Pass | `driftDetected: false`; orphanAliases 0 / aliasCollisions 0 / ownershipDrift 0 |
-| Stale placeholder-field removal | Pass | `af1170c663` dropped `merger_spec_folder`, `merger_packet`, `motion_dev_packet` (3 fields across 2 files) |
+| Stale placeholder-field removal | Pass | `907027032b` dropped `merger_spec_folder`, `merger_packet`, `motion_dev_packet` (3 fields across 2 files) |
 | sk-code metadata two-axis canon | Pass | parent-skill-check 3d-canon (packetKind + toolSurface + grandfatheredFolderMismatch) and 5f (surfaceBundle) pass |
 
 <!-- /ANCHOR:verification -->
@@ -106,7 +106,7 @@ None. The phase-017 metadata-vocabulary dependency dissolved: sk-code metadata a
 | Planned | Actual | Reason |
 |---------|--------|--------|
 | Repair ~30 broken references, useless/duplicate refs, and stale playbook/benchmark bodies | No repairs performed; verified already-satisfied | The audit predated the 013 two-axis restructure; re-check found 0 broken refs, STRICT 0/0, vocab-sync 0/0/0 — the flagged drift no longer exists on disk |
-| Refresh `description.json` / `graph-metadata.json` prose to the two-axis model | Metadata already two-axis coherent; only stale placeholder fields removed | parent-skill-check 3d-canon/5f already pass; the sole residual staleness was 3 merger placeholder fields, removed in `af1170c663` |
+| Refresh `description.json` / `graph-metadata.json` prose to the two-axis model | Metadata already two-axis coherent; only stale placeholder fields removed | parent-skill-check 3d-canon/5f already pass; the sole residual staleness was 3 merger placeholder fields, removed in `907027032b` |
 | Relocate `opencode/references/shared/hooks.md` to system-spec-kit and repoint | Not performed; ADR-002 superseded | sk-code link check is clean (0 broken hooks refs); no live ownership defect forced the move |
 | Add-only benchmark baseline re-derivation | Not needed | parent-skill-check 9b confirms an intact baseline; no stale post-013 paths remained to re-derive |
 

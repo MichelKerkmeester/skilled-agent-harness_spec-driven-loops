@@ -77,8 +77,8 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Corpus committed and measured | Done | `4a5de9e52b` records 8 of 180, 20 counting the mode anywhere in the list |
-| Denominator corrected | Done | `8c6d6fd455` removes the two command-surface modes |
+| Corpus committed and measured | Done | `b3de2effda` records 8 of 180, 20 counting the mode anywhere in the list |
+| Denominator corrected | Done | `54eecf457a` removes the two command-surface modes |
 | Structural cause located | Done | 94 of 180 return nothing; the semantic lane carries weight 0.05 and zero of 14 nodes are embedded |
 
 ### Deviations and findings

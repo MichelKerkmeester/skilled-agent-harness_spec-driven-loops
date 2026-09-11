@@ -67,7 +67,7 @@ metadata files, and (b) three advisor scorer sources
 - **`scorer/executor-delegation.ts`** — **the cause.** Its
   `loadFilesystemAliasData` reads the small-model registry from a hardcoded path
   `.opencode/skills/sk-prompt/prompt-models/assets/model-profiles.json`. Commit
-  `9efb3fc5612` ("rename both mode packets and keys to the sk- prefix") renamed
+  `33294851882` ("rename both mode packets and keys to the sk- prefix") renamed
   that mode packet directory `prompt-models` → `sk-prompt-models` but did not
   update the scorer's path. At HEAD `existsSync(modelProfilesPath)` is false, the
   model-alias table is empty, and bare model mentions (`MiniMax-M3`, `Kimi`)
@@ -80,7 +80,7 @@ No movement was left unattributed; nothing is UNKNOWN (REQ-021/CHK-021).
 **Caused, not inherited.** The pin was captured directly at sha `1e0ad1d9ba`
 (`capturedAtSha` in `../002-baseline-capture/baseline/capture-scorer-eval-baseline.stdout.txt`)
 and recorded `holdout_top1` 53/72, delegation 10/11 — i.e. the baseline sha
-already measured a *healthy* number, not 51/72. The rename commit `9efb3fc5612`
+already measured a *healthy* number, not 51/72. The rename commit `33294851882`
 lands after that pin and before HEAD, and reverting its effect on the scorer path
 restores the pinned numbers exactly. A literal re-checkout-and-rebuild of
 `1e0ad1d9ba` is infeasible (the mcp-server `package.json` is gitignored and not

@@ -53,7 +53,7 @@ All prior reranker comparisons were made on a broken retrieval pipeline (mirror 
 | Lane D (jina-v3) hit rate | 14/18. Winner. |
 | A+B smoke subset | BLOCKED: daemon smoke did not complete reliably in sandbox. Invalid partial artifacts removed. |
 | Lane A (no-rerank ablation) | DEFERRED: 32-sec/probe timeout bug in rerank-disabled dispatch path. Follow-on packet 020. |
-| Strict validation | PASSED (commit `38d4e2d627`) |
+| Strict validation | PASSED (commit `31cfb00569`) |
 
 ### Files Changed
 

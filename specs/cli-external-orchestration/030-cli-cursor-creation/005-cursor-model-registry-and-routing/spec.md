@@ -100,7 +100,7 @@ Add a Composer prompt-craft profile grounded in phase 001's confirmed facts plus
 ## 6. RISKS & DEPENDENCIES
 - **Fabricated model specs**: guessing Composer's context window or pricing would ship false data. Mitigation: REQ-002 mandates TBD placeholders — confirmed applied (§5 SC-001).
 - **CI gate array drift**: adding `cli-cursor` to one array but not another in `check-prompt-quality-card-sync.sh` would leave the card partially gated. Mitigation: edited all 3 coverage points (`cli_cards`, `cli_skills`, `CLI_EXECUTOR_HUB_METADATA`) in one pass and ran the gate immediately — `GUARD PASS`.
-- **Dependency — phase 003**: `cli-cursor/assets/prompt-quality-card.md` must exist (phase 003) for the sync gate to have something to check. Resolved — phase 003 landed first (committed `11024cc893`), so the gate had a real card to check from the start.
+- **Dependency — phase 003**: `cli-cursor/assets/prompt-quality-card.md` must exist (phase 003) for the sync gate to have something to check. Resolved — phase 003 landed first (committed `b5926f2a45`), so the gate had a real card to check from the start.
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->

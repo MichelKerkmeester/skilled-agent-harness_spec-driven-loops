@@ -197,7 +197,7 @@
     ],
     "causal_summary": "`collectSupersessionEdges` emits `contradicts` for predecessor->successor, and `collectLineageEdges` emits `caused` for the SAME directed pair because lineage is reciprocal (`A.supersededby=B` AND `B.predecessor=A`)",
     "created_at": "2026-06-04T14:30:00Z",
-    "last_save_at": "2026-09-11T04:39:45.358Z",
+    "last_save_at": "2026-09-11T16:42:34.712Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,14 +207,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a395b9d6ed3a82498cdc1f2d502a2da10a0bb57f10415a05a138854897984b93",
+    "source_fingerprint": "sha256:c89f068578df01ea8ed3eed341b3cfbc0a693a707e788e635f6f55399e17f9f6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9bdc24c6231d41b045f5dd96e92af176f02e4e7035ce3e61923a003cb7fdbd05",
       "plan.md": "6fc2b1aeaa77f73fa61134bac0fe1e9914b08b5e31a04f740bf7c534230f927c",
       "tasks.md": "0f3cb7e4c97d025be1b77547bed39d4683b5f2d4f953d6c2d454f309f1a0ed54",
       "decision-record.md": "8023dc8b0a283e8e8689dc56052575decb01a8832c321689d95d8f5eeb9dc4d9",
-      "implementation-summary.md": "87a9a4e4f1e7a4b8947eb2811b5d295dd1a673aa303bbe42cfe49095f5f47a66"
+      "implementation-summary.md": "4882fb194a91a4be817224de87c5433f5580f6156ea9c0497421322cd0929809"
     },
     "last_active_child_id": null,
     "last_active_at": null

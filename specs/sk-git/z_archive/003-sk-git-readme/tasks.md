@@ -48,7 +48,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Confirm the README is the phase-001 golden example — unchanged since `70fb02a46c`
+- [x] T001 Confirm the README is the phase-001 golden example — unchanged since `feb82bb5f6`
 <!-- /ANCHOR:phase-1 -->
 
 ---

@@ -40,7 +40,7 @@ _memory:
 | **Spec Folder** | 001-fanout-live-tools-unblock |
 | **Completed** | 2026-07-20 |
 | **Level** | 2 |
-| **Prompt Base** | `fe6ca3030917073f3b478bc044e10034dcc4394b` |
+| **Prompt Base** | `573a44951386fab3556b53b39c6008ec74b22304` |
 | **Execution Base** | `952060126baa2758ac6048049af2828985b9a8f8` |
 | **Dependency** | Phase 004 child contracts complete at `2429f4c`, `64eb3a9`, and `9520601` |
 <!-- /ANCHOR:metadata -->

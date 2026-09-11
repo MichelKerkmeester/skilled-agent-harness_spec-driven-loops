@@ -9,7 +9,7 @@ trigger_phrases: []
 - **Mode:** review (read-only — findings only, no code modification)
 - **Dimension:** correctness | **Angle:** A2 (memory-write & async enrichment)
 - **Budget profile:** verify (target 11-13 tool calls; used 10)
-- **Review target:** git range `a9e9bdb0a5^..HEAD`, A2 surface in `system-spec-kit/mcp_server`
+- **Review target:** git range `fd67ede05f^..HEAD`, A2 surface in `system-spec-kit/mcp_server`
 - **Session:** `2026-06-05T11:16:17Z` (generation 1, lineageMode new)
 - **Parallel-safety:** wrote ONLY `iterations/iteration-003.md` + `deltas/iter-003.jsonl`. Did NOT touch state.jsonl, strategy.md, findings-registry.json, or config.json.
 

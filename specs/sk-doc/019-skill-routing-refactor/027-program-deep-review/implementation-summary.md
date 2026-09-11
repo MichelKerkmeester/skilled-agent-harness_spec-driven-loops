@@ -1,6 +1,6 @@
 ---
 title: "Review Outcome: Skill-Metadata Program Deep Review"
-description: "Two-model deep review (SOL-high + GLM-high, 5 iterations each, no early convergence) of the skill-metadata program landed at a39e6ea716; CONDITIONAL verdict, one P1 CI-trigger gap fixed inline, ten P2 findings recorded as an operator-gated backlog."
+description: "Two-model deep review (SOL-high + GLM-high, 5 iterations each, no early convergence) of the skill-metadata program landed at c573706cfe; CONDITIONAL verdict, one P1 CI-trigger gap fixed inline, ten P2 findings recorded as an operator-gated backlog."
 trigger_phrases:
   - "skill metadata program review outcome"
   - "deep review verdict metadata program"
@@ -42,7 +42,7 @@ _memory:
 |-------|-------|
 | **Status** | Complete |
 | **Delivered** | 2026-07-29 |
-| **Reviewed tree** | skilled/v4.0.0.0 @ a39e6ea716 (range 2fa9fc480c..a39e6ea716) |
+| **Reviewed tree** | skilled/v4.0.0.0 @ c573706cfe (range c4b5f27ae8..c573706cfe) |
 | **Lineages** | sol-high (GPT-5.6-SOL high, 5 iters) + glm-high (GLM-5.2 high, 5 iters), max-iterations |
 | **Verdict** | CONDITIONAL — 0 P0, 1 P1 (fixed), 10 P2 (backlog) |
 <!-- /ANCHOR:metadata -->

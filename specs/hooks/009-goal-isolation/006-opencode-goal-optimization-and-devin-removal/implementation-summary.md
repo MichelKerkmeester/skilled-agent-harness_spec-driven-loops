@@ -79,7 +79,7 @@ Active goal-specific Devin implementation references and stale runtime-mirror ex
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The initial digest-key implementation was test-driven from the reproduced long-filename failure and was published previously through aggregate commit `ee501b2ec7982b28dfa338ee2f8008fbecd0c981`. This post-review repair treated each finding as a hypothesis, reproduced all six in isolated temporary state, added failing adversarial regressions, and changed one producer at a time. The current repair remains an uncommitted shared-checkout diff because this task did not authorize a commit or push.
+The initial digest-key implementation was test-driven from the reproduced long-filename failure and was published previously through aggregate commit `7f01e6211dac18ebfabe144804d4b92b2f2938b1`. This post-review repair treated each finding as a hypothesis, reproduced all six in isolated temporary state, added failing adversarial regressions, and changed one producer at a time. The current repair remains an uncommitted shared-checkout diff because this task did not authorize a commit or push.
 <!-- /ANCHOR:how-delivered -->
 
 ---

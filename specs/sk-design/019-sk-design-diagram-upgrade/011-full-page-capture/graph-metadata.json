@@ -205,7 +205,7 @@
     ],
     "causal_summary": "`render-screenshots.cjs` captures every form at a fixed `1280x900` Chrome window with no full-page option (confirmed empirically in this authoring pass: two-pass measurement shows Chrome's `--screenshot` flag always outputs exactly the requested `--window-size`, never auto-trimmed to content)",
     "created_at": "2026-09-11T03:52:48Z",
-    "last_save_at": "2026-09-11T07:58:18.992Z",
+    "last_save_at": "2026-09-11T16:42:00.662Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +216,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dfddf2d5247e354e7c790849ae51ef42dd231b37512d45cc9053049ee7eb30ae",
+    "source_fingerprint": "sha256:eba6483cec22eab7fad51659face6cab73f9c0d3f81769ff8f3b0b895fc1735f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "71c1a0d57373ca84114a91aa0214f42ba53a2771cf042602326c9106a023ab0a",
       "plan.md": "18f96213621ff977c9b82b191f25a33e3dfa3bd7b6dbf75e72fd9ba7c1c6e729",
-      "tasks.md": "4b4b6d934255bce3043b8355d7fd39ac3f5f4a7bf1bd4082d49431faace292fa",
-      "implementation-summary.md": "341ed17ed1acede861108eb81ebe697c12aaf9ec1117a0a1789d613e54c28078"
+      "tasks.md": "22b8f1632554d5e1166018fc0e540d7660206447dd1e6f4869af24fb7e81e93d",
+      "implementation-summary.md": "5208c869f76295086cf52f50a9cc0b27c4506bbd31d0c97ef269a60fa5e371d6"
     },
     "last_active_at": null
   }

@@ -28,7 +28,7 @@ Single iteration covers all four dimensions in breadth (maxIterations=1).
 | `mcp_server/lib/search/trigger-embedding-backfill.ts` | Trigger phrase sync | Whole-corpus transaction → `syncPhraseChunk` 200-row chunks with between-chunk yields; `isCancelled?` option; cache-hit-path yield; `cancelled` status |
 | `mcp_server/tests/trigger-embedding-backfill.vitest.ts` | Unit tests | cancel-immediate, cancel-at-chunk-boundary, cooperative-yield cases |
 
-Authoritative diff: commit `372bb0f2cd`.
+Authoritative diff: commit `da09d7c69e`.
 
 ## Cross-Reference Status
 

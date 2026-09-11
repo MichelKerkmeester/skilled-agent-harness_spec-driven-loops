@@ -15,7 +15,7 @@ _memory:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/007-improvement-promotion-authority"
     last_updated_at: "2026-08-18T23:59:00Z"
     last_updated_by: "orchestrator"
-    recent_action: "Recorded adversarial TOCTOU fix c897dcf294 re-binding candidate to approval at consumption"
+    recent_action: "Recorded adversarial TOCTOU fix 25158f20c7 re-binding candidate to approval at consumption"
     next_safe_action: "Pass the additive-dark acceptance review before promotion enforcement goes live"
     blockers:
       - "Additive-dark acceptance review must pass before promotion goes live (CHK-018)"
@@ -28,7 +28,7 @@ _memory:
     completion_pct: 95
     open_questions: []
     answered_questions:
-      - "All 13 findings landed additive-dark under 0d1827eef50, f6cdf604a25 and a28a39354b7; reconciled ab6aae0a714"
+      - "All 13 findings landed additive-dark under 9d258a879ef, 700cb920447 and fdb8216e9b4; reconciled 1642dcaed9b"
       - "CALIBRATION: these eight P0s are severity-inflated. The actor is the operator or a stale local file, not a remote attacker. Read them as cutover-readiness and robustness risk."
       - "The receipt format and approval model are a design decision requiring a decision record, not a patch"
       - "Promotion copies bytes into canonical targets, so a mistake here overwrites shipped files"
@@ -68,7 +68,7 @@ Eight P0 findings share one mechanism: mutable local JSON is treated as authorit
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P0 |
-| **Status** | In Progress — code landed additive-dark + adversarially hardened; go-live gated behind acceptance review. All 13 findings landed under `0d1827eef50`, `f6cdf604a25` and `a28a39354b7` (status reconciled `ab6aae0a714`), and an independent adversarial pass then found and fixed a Medium candidate-rebind TOCTOU gap under `c897dcf294` (CHK-005). Promotion enforcement stays dark until the additive-dark acceptance review (CHK-018) passes. |
+| **Status** | In Progress — code landed additive-dark + adversarially hardened; go-live gated behind acceptance review. All 13 findings landed under `9d258a879ef`, `700cb920447` and `fdb8216e9b4` (status reconciled `1642dcaed9b`), and an independent adversarial pass then found and fixed a Medium candidate-rebind TOCTOU gap under `25158f20c7` (CHK-005). Promotion enforcement stays dark until the additive-dark acceptance review (CHK-018) passes. |
 | **Created** | 2026-07-30 |
 | **Branch** | `system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/007-improvement-promotion-authority` |
 | **Parent** | `system-deep-loop/036-deep-loop-innovation` |

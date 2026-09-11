@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The additive-dark Agent Improvement typed ledger extends the shared Deep Improvement Common Services schema with typed AgentIR, change-contract, mutation, causal-experiment, manifest, transfer, and behavioral-classification events.",
     "created_at": "2026-07-16T03:43:37.523Z",
-    "last_save_at": "2026-08-30T15:39:21.222Z",
+    "last_save_at": "2026-09-11T16:42:23.195Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +206,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c03373a02bc50d532265e0ccfd25a88ef55c79bfcca0d09815e9bd9077c4f340",
+    "source_fingerprint": "sha256:bfab31eb3786c04f24b33ea53d1afb8186c8004d4b8c2abc4f1e026cd4888e03",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "787e743d41deb1cc78841319a390e1ff2c77808292f0a75e030d8b360caca567",
       "plan.md": "a5a6d4b4cefb494b111dd81bd5f94d99e18e8e18d4e7742245da721fde3ce42b",
       "tasks.md": "93148545eaa6b9791a4b347194ba9a6131259d4b72a96129098ed5a97b896034",
-      "implementation-summary.md": "b421527fb4fe09fba037f7c21761d9415ee230c4e1fbe985857d1cd57aef4222"
+      "implementation-summary.md": "7895989ca846cea4c74d7021cf78c15766b7c7f483f8f1a73b31697a19e67ba3"
     },
     "last_active_child_id": null,
     "last_active_at": null

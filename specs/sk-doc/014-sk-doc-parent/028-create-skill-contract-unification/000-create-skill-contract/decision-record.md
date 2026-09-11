@@ -169,7 +169,7 @@ The audit confirmed the create-skill contract is declared in three drifting plac
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted (operator resolved to ≤130 soft; shipped WU1b `0f2c601f9f`) |
+| **Status** | Accepted (operator resolved to ≤130 soft; shipped WU1b `440f41a05b`) |
 | **Date** | 2026-07-13 |
 | **Deciders** | Operator (pending) |
 

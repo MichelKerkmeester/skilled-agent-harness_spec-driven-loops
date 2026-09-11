@@ -16,7 +16,7 @@ Convergence: CONTINUE; final matrix reconciliation and formal question closure r
 Current final refinement set: 003, 006, 007, 010, 011, 012, 013, 016. Still valid: 004, 005, 008, 009, 014, 015, 017. Invalidated: none. Clean control: 004.
 Next focus: convergence-ready final 15-row matrix.
 
-Research Topic: Revalidate packet 036 phases 003-017 against `0ce43ff589..HEAD`, with no unknown phase and explicit verdict, commit SHA, path:line evidence, first-order/second-order classification, positive controls, negative control, packet-033 dependency, and mode-count resolution.
+Research Topic: Revalidate packet 036 phases 003-017 against `60b9ed8bc2..HEAD`, with no unknown phase and explicit verdict, commit SHA, path:line evidence, first-order/second-order classification, positive controls, negative control, packet-033 dependency, and mode-count resolution.
 Iteration: 7 of 10
 Focus Area: Reconcile iterations 1-6 into one final evidence table for all phases 003-017. Verify internal consistency, current HEAD and baseline-to-HEAD commit count, non-runtime commit triage method, refinement reasons, and source diversity. This is the convergence candidate.
 

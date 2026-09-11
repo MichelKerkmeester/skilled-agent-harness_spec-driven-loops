@@ -67,8 +67,8 @@ trigger_phrases: []
 | Phase 010 deltas match 20 iterations | 010/research/deltas/ (20 files) | ✅ PASS | 20 iteration files confirmed via `ls | wc -l` |
 | Phase 011 honest about salvage | 011/spec.md:3-4, 011/impl-summary:43 | ✅ PASS | Status: "Complete, salvaged, partial coverage (222 of 471)" |
 | Phase 012 cluster evidence | 012/impl-summary.md:53-80+ | ✅ PASS | 8 clusters A-H with per-cluster test counts and commit hashes |
-| Phase 003 commit reference | 003/impl-summary.md:41,93 | ✅ PASS | commit bb038e19ab; "14 docs aligned" |
-| Phase 006 commit reference | 006/impl-summary.md:41,50 | ✅ PASS | commit 818db21c54; "19 docs reviewed" |
+| Phase 003 commit reference | 003/impl-summary.md:41,93 | ✅ PASS | commit 2229a24c7e; "14 docs aligned" |
+| Phase 006 commit reference | 006/impl-summary.md:41,50 | ✅ PASS | commit 7239e3d2bd; "19 docs reviewed" |
 | Parent PHASE MAP vs actual children | spec.md:100-113 vs graph-metadata.json:6-18 | ❌ GAP | 9 documented, 12 exist — already F-001-001 (P1) |
 | Phase 003 "of 009" stale | 003/spec.md:50 | ❌ GAP | "Phase: 003 of 009" — already F-001-002 (P1) |
 | Phase 006 "of 009" stale | 006/spec.md:50 | ❌ GAP | "Phase: 006 of 009" — already F-001-002 (P1) |

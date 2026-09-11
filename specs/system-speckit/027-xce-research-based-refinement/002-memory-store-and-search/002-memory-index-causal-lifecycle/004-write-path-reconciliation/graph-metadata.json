@@ -44,11 +44,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      "lib/storage/statediff.ts",
-      "handlers/memory-index.ts",
-      "handlers/memory-save.ts",
-      "tests/statediff.vitest.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -73,30 +69,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "statediff.ts",
-        "kind": "code",
-        "path": "lib/storage/statediff.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-index.ts",
-        "kind": "code",
-        "path": "handlers/memory-index.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-save.ts",
-        "kind": "code",
-        "path": "handlers/memory-save.ts",
-        "source": "derived"
-      },
-      {
-        "name": "statediff.vitest.ts",
-        "kind": "test",
-        "path": "tests/statediff.vitest.ts",
         "source": "derived"
       },
       {
@@ -194,11 +166,35 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Research Evidence",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`memoryindexscan` and `memorysave` currently reconcile state through scattered handler branches and post-mutation hooks",
     "created_at": "2026-05-13T09:00:48Z",
-    "last_save_at": "2026-08-30T15:39:33.366Z",
+    "last_save_at": "2026-09-11T16:42:36.880Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,10 +203,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:222a427366354217b94b38808900c3062e51a013f0796ad1b52f5cfd8e2b4c2b",
+    "source_fingerprint": "sha256:dab6aef2df1c33576844c4b93c18d40d0c5833bce7c414f8e5ad273629bb3631",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a0388da336bc63410b72dbb8899832a28d314d4548360b7e5bb14167502bca9d",
+      "spec.md": "f4ff74421d25219fe7c54eb6497631e3a573f8e0751eb564ca11536c16c3bb70",
       "plan.md": "8a23d780fa20d98e2fc6f04ea96947ddcde2b9b83f40d267446730125ffc3727",
       "tasks.md": "16ba743142d7e95aad86fc73a4835f2214f8aa8bdb89691ebe44b8b2cc660785",
       "implementation-summary.md": "051442174219f7d4d6ec6584aaa85af76d88c882ad61fed40ac0a43a8e1f6669"

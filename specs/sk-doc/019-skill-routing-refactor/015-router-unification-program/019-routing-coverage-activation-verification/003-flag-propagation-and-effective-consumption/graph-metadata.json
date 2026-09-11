@@ -198,7 +198,7 @@
     ],
     "causal_summary": "With the flag on and a hub compiled-serving, `SPECKITCOMPILEDROUTING` today changes zero routing decisions AND surfaces nothing, for two structural reasons this phase is scoped to fix:",
     "created_at": "2026-07-20T21:51:27.075Z",
-    "last_save_at": "2026-08-30T15:39:15.223Z",
+    "last_save_at": "2026-09-11T16:42:05.064Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,14 +208,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a0141d93c48fccb146a46d9f95e3e1194709c2e15d0632873885d36f3bedaa25",
+    "source_fingerprint": "sha256:9fa4ae20598111a695765a9a83f97a02e58159a98c4222d9649500df3a573aac",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a6092d771c8436548b3689020b48acb86881e13fd45d2dcb77f87a869641e1c7",
+      "spec.md": "2ac44b30c8c6195aa39e8c5e281385b8039d13d5b08e3ecae3bc47879d4b4b84",
       "plan.md": "03600d871342c6fbe713d66672c933f9fdbf217e3bf607c5df0756184c5e12ac",
       "tasks.md": "95fe9485c87a4854a9beed374ea56f7ea28fed4708645f3e4ed827790882023e",
       "decision-record.md": "94745aa26d637cead4f5df97bcf7b5f6690ea30e4c8700f3e8403df2dee428e5",
-      "implementation-summary.md": "78ea7d3ac6086c466fd5f0f8ff90c2c11f34a199af9b0c2af47734e260218ea2"
+      "implementation-summary.md": "6c0e6612b4b08b2d4cf5846161e24e5722506c9245f58b7a215862caafdd49dd"
     },
     "last_active_child_id": null,
     "last_active_at": null

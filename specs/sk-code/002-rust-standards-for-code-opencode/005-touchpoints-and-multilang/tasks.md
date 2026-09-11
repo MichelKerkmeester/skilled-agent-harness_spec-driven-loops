@@ -51,7 +51,7 @@ _memory:
 - [x] T003 [P] `hub-router.json`: extend the code-opencode-runtime vocabulary with Rust terms — +10 terms (`rust`, `.rs`, `cargo.toml`, `napi-rs`, `wasm-bindgen`, `wasi`, `cdylib`, …); still valid JSON
 - [x] T004 [P] `verify_stack_folders.py`: add `rust` to KNOWN_LANGUAGES — verifier exits 0: "6 language folder(s) all resolve — config, javascript, python, rust, shell, typescript" (clears the phase-002 orphan)
 - [x] T005 `verify_alignment_drift.py`: add `.rs -> rust` + Rust checks; update its test — `.rs`→rust + `check_rust` (`RUST-UNSAFE-NO-SAFETY` ERROR, `RUST-PANIC-BOUNDARY` WARN) + 4 tests; `python3 -m unittest` 15/15 pass
-- [x] T006 `router-replay.cjs`: surface regex, OPENCODE_LANGUAGES, Rust detection + fixtures — `.rs` added to `detectSurface`; `OPENCODE_LANGUAGES += rust`; `detectOpencodeLanguage`→`detectOpencodeLanguages` (Set) with the napi-rs/wasm-bindgen/WASI/cdylib marker regex; landed atomically in commit `d5bf1513b5`
+- [x] T006 `router-replay.cjs`: surface regex, OPENCODE_LANGUAGES, Rust detection + fixtures — `.rs` added to `detectSurface`; `OPENCODE_LANGUAGES += rust`; `detectOpencodeLanguage`→`detectOpencodeLanguages` (Set) with the napi-rs/wasm-bindgen/WASI/cdylib marker regex; landed atomically in commit `784e256c2b`
 - [x] T007 [P] shared trio: Rust in `universal_patterns.md` + `code_organization.md` — `universal_patterns.md` Rust scope + trio link + determinism-contracts block; `code_organization.md` `references/rust/` layout + Rust module/test conventions
 - [x] T008 Change first-match selection to a touched-language set; add Rust+TypeScript fixtures — scalar→Set filter keyed on `ocLangs.has`; golden diff over 14 probes shows every single-language + parity prompt byte-identical and multi-language tasks gaining their second trio; 8 parent-level fixtures added to `surface-slice-sync.vitest.ts`
 <!-- /ANCHOR:phase-2 -->
@@ -70,7 +70,7 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [x] All six touchpoints recognize Rust — all six done; the `router-replay.cjs` touchpoint landed in commit `d5bf1513b5`
+- [x] All six touchpoints recognize Rust — all six done; the `router-replay.cjs` touchpoint landed in commit `784e256c2b`
 - [x] No `[B]` blocked tasks remaining — T006, T008, T010 all complete
 - [x] Touched-language set works; no regression — golden diff proves single-language + parity prompts byte-identical; multi-language tasks gain their second trio by design
 

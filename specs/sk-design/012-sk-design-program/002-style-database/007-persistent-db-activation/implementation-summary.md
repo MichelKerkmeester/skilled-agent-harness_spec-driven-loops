@@ -41,7 +41,7 @@ _memory:
 |-------|-------|
 | **Spec Folder** | 007-persistent-db-activation |
 | **Status** | IMPLEMENTED — build + parity + perf proven; cutover human-gated |
-| **Shipped** | commit `c4bfba4359` on `skilled/v4.0.0.0` |
+| **Shipped** | commit `af95cf8d67` on `skilled/v4.0.0.0` |
 | **Level** | 2 |
 | **Verification** | shadow parity 10/10, DB aggregator 69/69, §9 perf 95.3%/1097 ms MET |
 <!-- /ANCHOR:metadata -->

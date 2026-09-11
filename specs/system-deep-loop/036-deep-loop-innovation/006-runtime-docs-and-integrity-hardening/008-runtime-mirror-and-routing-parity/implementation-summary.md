@@ -47,15 +47,15 @@ _memory:
 | **Updated** | 2026-08-07 |
 | **Level** | 2 |
 | **Status** | Complete (7/8 findings landed; F-028-01 deferred) |
-| **Candidate SHA** | `9229cb8f3e281c9291e6d631237528bc755e6f4b` |
-| **Landed Commit** | `2f84f78bf7` on `skilled/v4.0.0.0` |
-| **Rollback** | Restore touched implementation and test files from `5c98e4654e4bcaf2c7002412d6da2b92f1793942`; do not reset unrelated worktree changes. |
+| **Candidate SHA** | `2d12dfc5f5f365f396c51a7dea1c7cb825f5501b` |
+| **Landed Commit** | `e45e786cd5` on `skilled/v4.0.0.0` |
+| **Rollback** | Restore touched implementation and test files from `0c5c966015760b053edc39722b06fa3f121a4cfa`; do not reset unrelated worktree changes. |
 | **Auth gateway touched** | No |
 <!-- /ANCHOR:metadata -->
 
 ## T001 Confirm-First Record
 
-The eight cited findings were re-read at HEAD `9229cb8f3e281c9291e6d631237528bc755e6f4b` before implementation edits. All eight were `CONFIRMED`; none were `REFUTED`, `MOVED`, or `ALREADY-FIXED`. The required calibration remains: **operator/stale-local robustness and cutover-readiness risk, NOT remote-attacker breach risk.**
+The eight cited findings were re-read at HEAD `2d12dfc5f5f365f396c51a7dea1c7cb825f5501b` before implementation edits. All eight were `CONFIRMED`; none were `REFUTED`, `MOVED`, or `ALREADY-FIXED`. The required calibration remains: **operator/stale-local robustness and cutover-readiness risk, NOT remote-attacker breach risk.**
 
 | Finding | Status | HEAD probe and disposition |
 |---------|--------|----------------------------|
@@ -93,7 +93,7 @@ The deep-review runtime matrix and review-mode contract now cover OpenCode, Clau
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The cited files were confirmed before edits. Negative probes were added before their corresponding fixes, then the focused suites were rerun per changed surface. The 7 landed findings shipped as `2f84f78bf7` on `skilled/v4.0.0.0`; F-028-01 was reverted before landing (see T001 table) and remains deferred.
+The cited files were confirmed before edits. Negative probes were added before their corresponding fixes, then the focused suites were rerun per changed surface. The 7 landed findings shipped as `e45e786cd5` on `skilled/v4.0.0.0`; F-028-01 was reverted before landing (see T001 table) and remains deferred.
 
 Runtime mirror inventory was checked before editing:
 
@@ -117,10 +117,10 @@ The focused `check-agent-mirror-sync.cjs` receipt reports two required Markdown 
 
 | Defect class | Red-before receipt | Green receipt |
 |--------------|--------------------|---------------|
-| Mirror order and tool surface | The added reordered-sequence and missing-`detect_changes` probes failed in the pre-fix run; the preserved mirror/parity baseline was green before the new probes. | `mirror-sync-verify.vitest.ts` plus `promote-candidate-mirror-sync.vitest.ts`: 8 tests passed, rc 0. Suite digests `021303aecc616a6a0face9d634d9b21425607587e87e0152f288b084d4992a0e` and `5209bd40d7df01460dbc95661020daa012cb2c5cfe6cc3ced2a46f415d2d131c`; candidate SHA `9229cb8f3e281c9291e6d631237528bc755e6f4b`. |
-| Packet and leaf identity | The pre-fix compiler accepted string identities before the disk-resolution guard was added. | `deep-loop-registry-compiler.vitest.ts`: 5 tests passed, including packet, leaf, combined-invalid-identity, launcher-vocabulary, and three-mode probes. Suite digest `5248651d3fe402251ffdedb94bb997e517d8fa8355a0c93f88b39b941ef8c5e4`; candidate SHA `9229cb8f3e281c9291e6d631237528bc755e6f4b`. |
-| ai-council authority parity | The pre-fix parity run found Markdown authority drift and the mirror parity assertion was skipped; the red assertion was activated before the fix. | `multi-ai-council-runtime-parity.vitest.ts`: 2 tests passed; `multi-ai-council-mirror-parity.vitest.ts`: 1 test passed. Suite digests `b4e89a0d3911ab27c4dd12a180a493fddcaa6d623b7778cb8380b3a25aefe74b` and `aa2d8d9569b5d4fe9d8061ffbab84158a2efa2442fef2dfc2ee57db4ef5a2bac`; candidate SHA `9229cb8f3e281c9291e6d631237528bc755e6f4b`. |
-| Capability matrix parity | The pre-fix deep-review capability tests expected only OpenCode and Claude. | `deep-review-contract-parity.vitest.ts`: 12 tests passed; runtime capability conformance plus resolver tests: 24 tests passed. Suite digests `e989dd11d3f74dd55fc4314149e204e92fa290f986859b6ccf3e741fcef2b179`, `aa69779fcfd8ac1f194972c39a440aa2fcdbc2458747f93a639e9ad9ce5dd9b4`, and `d9885d0000987541d760bbb11f8ae5a321da2c16a0bca7e6f7d15409ae90fbd0`; candidate SHA `9229cb8f3e281c9291e6d631237528bc755e6f4b`. |
+| Mirror order and tool surface | The added reordered-sequence and missing-`detect_changes` probes failed in the pre-fix run; the preserved mirror/parity baseline was green before the new probes. | `mirror-sync-verify.vitest.ts` plus `promote-candidate-mirror-sync.vitest.ts`: 8 tests passed, rc 0. Suite digests `021303aecc616a6a0face9d634d9b21425607587e87e0152f288b084d4992a0e` and `5209bd40d7df01460dbc95661020daa012cb2c5cfe6cc3ced2a46f415d2d131c`; candidate SHA `2d12dfc5f5f365f396c51a7dea1c7cb825f5501b`. |
+| Packet and leaf identity | The pre-fix compiler accepted string identities before the disk-resolution guard was added. | `deep-loop-registry-compiler.vitest.ts`: 5 tests passed, including packet, leaf, combined-invalid-identity, launcher-vocabulary, and three-mode probes. Suite digest `5248651d3fe402251ffdedb94bb997e517d8fa8355a0c93f88b39b941ef8c5e4`; candidate SHA `2d12dfc5f5f365f396c51a7dea1c7cb825f5501b`. |
+| ai-council authority parity | The pre-fix parity run found Markdown authority drift and the mirror parity assertion was skipped; the red assertion was activated before the fix. | `multi-ai-council-runtime-parity.vitest.ts`: 2 tests passed; `multi-ai-council-mirror-parity.vitest.ts`: 1 test passed. Suite digests `b4e89a0d3911ab27c4dd12a180a493fddcaa6d623b7778cb8380b3a25aefe74b` and `aa2d8d9569b5d4fe9d8061ffbab84158a2efa2442fef2dfc2ee57db4ef5a2bac`; candidate SHA `2d12dfc5f5f365f396c51a7dea1c7cb825f5501b`. |
+| Capability matrix parity | The pre-fix deep-review capability tests expected only OpenCode and Claude. | `deep-review-contract-parity.vitest.ts`: 12 tests passed; runtime capability conformance plus resolver tests: 24 tests passed. Suite digests `e989dd11d3f74dd55fc4314149e204e92fa290f986859b6ccf3e741fcef2b179`, `aa69779fcfd8ac1f194972c39a440aa2fcdbc2458747f93a639e9ad9ce5dd9b4`, and `d9885d0000987541d760bbb11f8ae5a321da2c16a0bca7e6f7d15409ae90fbd0`; candidate SHA `2d12dfc5f5f365f396c51a7dea1c7cb825f5501b`. |
 
 <!-- ANCHOR:verification -->
 ## Verification

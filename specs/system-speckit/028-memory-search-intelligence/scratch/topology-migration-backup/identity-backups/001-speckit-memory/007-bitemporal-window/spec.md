@@ -32,7 +32,7 @@ _memory:
       - "Is the C3-B four-timestamp window additive against active_memory_projection (no migration spec exists to verify)?"
       - "Does lineage already carry valid_from/valid_to/ingested_at, missing only expired_at?"
     answered_questions:
-      - "skip-closed-in-sweep is SHIPPED (030 commit e1c6a3c793)"
+      - "skip-closed-in-sweep is SHIPPED (030 commit 672d8a9187)"
       - "MEM-fact-invalidation-event-time is the H/S reader-transparent spearhead (single-site invalidateEdge change)"
 ---
 
@@ -98,7 +98,7 @@ Make the causal + lineage temporal model bi-temporally correct: close superseded
 - **C3-B** (Memory, M, BUILD-new additive), **DONE for schema foundation**: four-timestamp window (event-time `valid_from`/`valid_to` + txn-time `ingested_at`/`expired_at`) added to causal edges and lineage, with UP + BACKFILL + DOWN helpers and default-off recall consumption.
 - **C3-D** (Memory, S, decision note): document tombstone-sweep ("off-state forgetting") vs temporal-close ("not current") as separate concerns. Ship the `AND invalid_at IS NULL` guard as cheap defensive hardening, NOT a data-loss gate.
 - **`GR-temporal-ordering-invalidation`** (Memory, H/S, NEW, Wave-1): when two edges on the same pair conflict, auto-invalidate the chronologically-earlier `valid_at`, scoped to conflicting/superseding relation pairs only.
-- **`skip-closed-in-sweep`** (Memory causal, S): **SHIPPED** (030 commit `e1c6a3c793`). `AND invalid_at IS NULL` on the promoter cleanup so already-closed generated edges are not re-touched. Referenced here for completeness.
+- **`skip-closed-in-sweep`** (Memory causal, S): **SHIPPED** (030 commit `672d8a9187`). `AND invalid_at IS NULL` on the promoter cleanup so already-closed generated edges are not re-touched. Referenced here for completeness.
 
 ### Out of Scope
 - **C3-A** (edge-presence currentness as the live retirement path): read-side build + store reconciliation, depends on C3-B + skip-closed, lives in a later phase. It is not a flag flip (the flag is already ON) and needs the four-timestamp window first.
@@ -129,7 +129,7 @@ Make the causal + lineage temporal model bi-temporally correct: close superseded
 |----|-------------|---------------------|
 | REQ-001 | `MEM-fact-invalidation-event-time`: `invalidateEdge()` stamps the close timestamp with the superseding fact's lineage event-time, not `new Date().toISOString()`. | Unit test asserts that closing an edge with a known event-time writes that timestamp into the close column. A missing event-time falls back to `now()` (fail-open). Seam confirmed at `temporal-edges.ts:81,86,94`. |
 | REQ-002 | Reader-transparency: no `WHERE invalid_at < now()` reader is added. All current-edge readers keep the binary `IS NULL` test. | grep shows the three readers (`getValidEdgesForNode` `temporal-edges.ts:108-138`, `contradiction-detection.ts:75-77,99-110`, frontmatter-promoter `openEdgeClause`) still use `IS NULL`. |
-| REQ-003 | skip-closed-in-sweep stays intact: the promoter cleanup keeps the `AND invalid_at IS NULL` open-edge clause. | `frontmatter-promoter.ts` `openEdgeClause` present (SHIPPED `e1c6a3c793`). A closed-edge fixture test proves a closed generated edge is not re-touched. |
+| REQ-003 | skip-closed-in-sweep stays intact: the promoter cleanup keeps the `AND invalid_at IS NULL` open-edge clause. | `frontmatter-promoter.ts` `openEdgeClause` present (SHIPPED `672d8a9187`). A closed-edge fixture test proves a closed generated edge is not re-touched. |
 
 ### P1 - Required (complete OR user-approved deferral)
 
@@ -255,4 +255,4 @@ Make the causal + lineage temporal model bi-temporally correct: close superseded
 - **Verification Checklist**: See `checklist.md`
 - **Decision Records**: See `decision-record.md`
 - **Research (PRIMARY)**: `../research/research.md`, `../../research/roadmap.md` (BROADENING + 027-REVISIT + MEMORY-SYSTEMS addenda), `../../research/synthesis/01-go-candidates.md`, `../../research/synthesis/06-memory-systems-findings.md`, `../research/cross-packet-027-reconciliation/research.md`.
-- **Wave-0 shipped record**: Wave-0 record (skip-closed-in-sweep = `e1c6a3c793`).
+- **Wave-0 shipped record**: Wave-0 record (skip-closed-in-sweep = `672d8a9187`).

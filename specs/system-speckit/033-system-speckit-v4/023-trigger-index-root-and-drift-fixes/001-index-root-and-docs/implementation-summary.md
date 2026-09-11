@@ -69,7 +69,7 @@ The trigger-index generator counted five parent hops to find the repository root
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-A GLM 5.3 Flash lane through OpenRouter made the edits from a prompt naming each finding, its fix and its verification command; every claim was rerun here before commit `d1fae9e15c`.
+A GLM 5.3 Flash lane through OpenRouter made the edits from a prompt naming each finding, its fix and its verification command; every claim was rerun here before commit `fa50b259c0`.
 <!-- /ANCHOR:how-delivered -->
 
 ---

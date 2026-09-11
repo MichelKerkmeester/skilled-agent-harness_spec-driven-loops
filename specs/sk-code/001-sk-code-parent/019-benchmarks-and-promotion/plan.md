@@ -45,14 +45,14 @@ This phase is the final gate for the 124 parent-hub canon program. It waits for 
 
 ### Definition of Ready
 - [x] Phases 015, 016, 017, 018a, and 018b have landed. Trace: all validate STRICT 0/0.
-- [x] Deep-loop registry, router, and changelog files are no longer in a live-agent collision state. Trace: registry returned git-clean; 018b shipped in `e1a266b07c`.
+- [x] Deep-loop registry, router, and changelog files are no longer in a live-agent collision state. Trace: registry returned git-clean; 018b shipped in `14b8472c17`.
 - [x] `sk-code`, `sk-design`, and `deep-loop-workflows` each pass parent-skill-check strict before validator promotion. Trace: three STRICT 0/0 runs.
 - [x] Historical benchmark folders are inventoried so add-only behavior can be verified. Trace: read-only inventory; historical runs preserved.
 
 ### Definition of Done
-- [x] Fresh Lane-C benchmark baselines exist for sk-design and deep-loop as add-only packages; the sk-code re-baseline is deferred to the rename follow-up with its stale-gold root cause recorded. Trace: `fc4644a98a`, `50fbe53094`; sk-code deferral in implementation-summary.
+- [x] Fresh Lane-C benchmark baselines exist for sk-design and deep-loop as add-only packages; the sk-code re-baseline is deferred to the rename follow-up with its stale-gold root cause recorded. Trace: `78294ba516`, `59d000eb8e`; sk-code deferral in implementation-summary.
 - [x] Cross-hub benchmark comparison is recorded. Trace: tasks.md T012; sk-design 69 / deep-loop 71 / sk-code 48-stale-gold; D5 100 across all three.
-- [x] parent-skill-check checks 5-9 are promoted from WARN to FAIL after the 3-hub strict pass gate. Trace: `769845c5a8`.
+- [x] parent-skill-check checks 5-9 are promoted from WARN to FAIL after the 3-hub strict pass gate. Trace: `3c06bda2eb`.
 - [x] 124 parent graph metadata children, active child, and parent status are rolled up. Trace: parent `graph-metadata.json` children 001-019, active child 019, status complete.
 - [x] `validate.sh --strict` passes 0/0 for every phase this program built (010-019); the 124 parent rollup lands Errors: 0 (a pre-existing PHASE_LINKS phase-adjacency warning remains, non-blocking); 001-009 carry pre-existing pre-program drift. Trace: recursive validate.
 

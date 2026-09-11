@@ -95,7 +95,7 @@ Objective tertiary: confirm the 4 `/speckit:*` presentation/router/YAML surfaces
 - **Presentation files** (4): `.opencode/commands/speckit/assets/speckit_{plan,complete,implement,resume}_presentation.txt` — latest mtime `2026-06-15T20:42:05`.
 - **Routers** (4 command `.md` files): `plan.md`, `complete.md`, `implement.md`, `resume.md` — latest mtime `2026-06-28T21:58:31` (plan/implement/complete); `resume.md` `2026-06-27T13:35:06`.
 - **YAML assets** (8 auto/confirm pairs): latest `2026-06-28T21:58:31` (`speckit_complete_auto.yaml`); earliest `2026-05-25T12:10:43`.
-- **Last git commit touching `.opencode/commands/speckit/`:** `7c218ee33d 2026-06-28 22:06:49 +0200` — 3 days before this review.
+- **Last git commit touching `.opencode/commands/speckit/`:** `512e70b875 2026-06-28 22:06:49 +0200` — 3 days before this review.
 - **`find -newer iteration-3.md` over `.opencode/commands/speckit/`:** empty.
 
 **Verdict: ZERO DRIFT.** All 16 cited surfaces pre-date the review (let alone iteration 3). D3's BUILDABLE-BUT-UNAUTHORED verdict holds unchanged — handover §3's cited target files still exist, still match the description, and the plan gap (`rg mk_goal` over speckit commands = 0) is still genuinely open. No re-litigation needed.

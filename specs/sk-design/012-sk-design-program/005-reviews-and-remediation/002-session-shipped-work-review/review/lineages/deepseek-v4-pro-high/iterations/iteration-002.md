@@ -78,6 +78,6 @@ None.
 
 ## Recommended Next Focus
 
-D3 Traceability — Execute spec_code protocol: verify REQ-001 through REQ-005 claims against shipped code, check comment hygiene in all reviewed files, verify no spec/phase/ADR/REQ IDs in code comments, and confirm the sk-doc/020 naming commit (`dc7fdfb0a7`) has consistent phase adjacency and no fabricated content.
+D3 Traceability — Execute spec_code protocol: verify REQ-001 through REQ-005 claims against shipped code, check comment hygiene in all reviewed files, verify no spec/phase/ADR/REQ IDs in code comments, and confirm the sk-doc/020 naming commit (`6a2127a51e`) has consistent phase adjacency and no fabricated content.
 
 Review verdict: CONDITIONAL

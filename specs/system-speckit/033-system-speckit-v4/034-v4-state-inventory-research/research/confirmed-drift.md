@@ -10,7 +10,7 @@ contextType: "research"
 ---
 # Confirmed drift: v4 changelog draft versus the repository
 
-Reproduced 2026-09-08 on `skilled/v4.0.0.0` at `d1f75a15f6`. A row is kept only when the command below showed the drift; the two lane findings that did not reproduce are listed at the end.
+Reproduced 2026-09-08 on `skilled/v4.0.0.0` at `e48074e6e0`. A row is kept only when the command below showed the drift; the two lane findings that did not reproduce are listed at the end.
 
 ---
 
@@ -21,7 +21,7 @@ Reproduced 2026-09-08 on `skilled/v4.0.0.0` at `d1f75a15f6`. A row is kept only 
 | 1 | P0 | `memory_search` / `memory_save` daily commands | `rg -l 'memory_search\|memory_save' .opencode/commands .opencode/skills/*/SKILL.md` | 1 hit, a scoring label `memory_saved` in `speckit-complete.yaml:477`; no command | FALSE |
 | 2 | P0 | `/interface:*` family | `ls .opencode/commands/interface; ls .opencode/commands/design/` | no such directory; `chart.md diagram.md extract.md` | FALSE |
 | 3 | P0 | `/create:diagram`, `sk-create-diagram` | `ls .opencode/commands/create/diagram.md .opencode/skills/sk-doc/sk-create-diagram` | both missing | FALSE |
-| 4 | P0 | alignment deep-loop mode, eight ledger modes | `git log --oneline -S'deep-alignment'`; `ls .opencode/commands/deep/` | `8849444aa61 refactor(deep-loop): remove deep-alignment mode and conformance-benchmark`; six command files | FALSE |
+| 4 | P0 | alignment deep-loop mode, eight ledger modes | `git log --oneline -S'deep-alignment'`; `ls .opencode/commands/deep/` | `94ab276bfdf refactor(deep-loop): remove deep-alignment mode and conformance-benchmark`; six command files | FALSE |
 | 5 | P0 | sk-prompt two-mode hub; `/prompt-improve` | `ls .opencode/skills/sk-prompt/mode-registry.json; ls .opencode/commands/prompt/` | no registry; `improve.md` only | FALSE |
 | 6 | P0 | goals in every tool | `ls .opencode/hooks/goal/` | `cursor opencode pi` (+ bin, lib, docs) | FALSE |
 | 7 | P1 | seven hubs | `ls .opencode/skills/*/mode-registry.json \| wc -l` | 6 | STALE |
@@ -30,7 +30,7 @@ Reproduced 2026-09-08 on `skilled/v4.0.0.0` at `d1f75a15f6`. A row is kept only 
 | 10 | P1 | sk-code = webflow + opencode surfaces | registry length | 6 modes | STALE |
 | 11 | P1 | mcp-tooling roster | registry length | 9 modes | STALE |
 | 12 | P1 | `pi-subagents` directive | `rg -il pi-subagents cli-pi .pi` (excluding changelog/playbook) | 0 | STALE |
-| 13 | P1 | phase map ends at 29 | parent `spec.md` rows | 34 rows after commit `d1f75a15f6` | STALE |
+| 13 | P1 | phase map ends at 29 | parent `spec.md` rows | 34 rows after commit `e48074e6e0` | STALE |
 | 14 | P2 | templates 1,314 lines; ~96 symlinks; 20 concern dirs | `cat templates/core/*.tmpl \| wc -l`; `find .opencode/hooks -type l \| wc -l`; `ls -d .opencode/hooks/*/ \| wc -l` | 1275; 102; 22 | STALE |
 | 15 | P2 | Level-1 research doc 175 lines | `wc -l templates/addons/research.md.tmpl` + IF-level markers | 946-line gated source | TRUE (gated) |
 | 16 | P2 | benchmark exits 3 on blocks | `rg -n 'return 3' run-skill-benchmark.cjs` | lines 691-694, four BLOCKED-BY-* verdicts | TRUE |

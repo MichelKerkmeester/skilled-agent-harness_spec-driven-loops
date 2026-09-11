@@ -55,8 +55,8 @@ _memory:
 Update tasks — dispatched in waves of >=5 (fresh LUNA MAX per file):
 
 - [x] T003 [P] LUNA MAX update `mcp-code-mode` SKILL.md to contract (`.opencode/skills/mcp-code-mode/SKILL.md`) [EVIDENCE: already conformant at baseline; no edit]
-- [x] T004 [P] LUNA MAX update `sk-git` SKILL.md to contract (`.opencode/skills/sk-git/SKILL.md`) [EVIDENCE: `f0a35dc9e2`; gate PASS + Sonnet-5 verify PASS]
-- [x] T005 [P] LUNA MAX update `system-code-graph` SKILL.md to contract (`.opencode/skills/system-code-graph/SKILL.md`) [EVIDENCE: `f0a35dc9e2`; gate PASS + Sonnet-5 verify PASS]
+- [x] T004 [P] LUNA MAX update `sk-git` SKILL.md to contract (`.opencode/skills/sk-git/SKILL.md`) [EVIDENCE: `60122f4e75`; gate PASS + Sonnet-5 verify PASS]
+- [x] T005 [P] LUNA MAX update `system-code-graph` SKILL.md to contract (`.opencode/skills/system-code-graph/SKILL.md`) [EVIDENCE: `60122f4e75`; gate PASS + Sonnet-5 verify PASS]
 - [x] T006 [P] LUNA MAX update `system-skill-advisor` SKILL.md to contract (`.opencode/skills/system-skill-advisor/SKILL.md`) [EVIDENCE: already conformant at baseline; no edit]
 - [x] T007 [P] LUNA MAX update `system-spec-kit` SKILL.md to contract (`.opencode/skills/system-spec-kit/SKILL.md`) [EVIDENCE: already conformant at baseline; no edit]
 <!-- /ANCHOR:phase-2 -->
@@ -69,8 +69,8 @@ Update tasks — dispatched in waves of >=5 (fresh LUNA MAX per file):
 Verify + gate tasks — a fresh Sonnet-5 xhigh agent per file, then the validator:
 
 - [x] T008 [P] fresh Sonnet-5 xhigh verify `mcp-code-mode` + validator gate (`.opencode/skills/mcp-code-mode/`) [EVIDENCE: already conformant at baseline; no edit]
-- [x] T009 [P] fresh Sonnet-5 xhigh verify `sk-git` + validator gate (`.opencode/skills/sk-git/`) [EVIDENCE: `f0a35dc9e2`; gate PASS + Sonnet-5 verify PASS]
-- [x] T010 [P] fresh Sonnet-5 xhigh verify `system-code-graph` + validator gate (`.opencode/skills/system-code-graph/`) [EVIDENCE: `f0a35dc9e2`; gate PASS + Sonnet-5 verify PASS]
+- [x] T009 [P] fresh Sonnet-5 xhigh verify `sk-git` + validator gate (`.opencode/skills/sk-git/`) [EVIDENCE: `60122f4e75`; gate PASS + Sonnet-5 verify PASS]
+- [x] T010 [P] fresh Sonnet-5 xhigh verify `system-code-graph` + validator gate (`.opencode/skills/system-code-graph/`) [EVIDENCE: `60122f4e75`; gate PASS + Sonnet-5 verify PASS]
 - [x] T011 [P] fresh Sonnet-5 xhigh verify `system-skill-advisor` + validator gate (`.opencode/skills/system-skill-advisor/`) [EVIDENCE: already conformant at baseline; no edit]
 - [x] T012 [P] fresh Sonnet-5 xhigh verify `system-spec-kit` + validator gate (`.opencode/skills/system-spec-kit/`) [EVIDENCE: already conformant at baseline; no edit]
 

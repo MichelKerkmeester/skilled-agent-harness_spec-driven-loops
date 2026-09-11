@@ -13,7 +13,7 @@ _memory:
     packet_pointer: "sk-design/014-template-conformance/001-apache-devendoring"
     last_updated_at: "2026-07-27T19:00:00Z"
     last_updated_by: "spec-reconciler"
-    recent_action: "Marked all three plan phases delivered by commit 8fa4752968"
+    recent_action: "Marked all three plan phases delivered by commit 4ac59d21c5"
     next_safe_action: "None; plan fully executed and verified against files on disk"
     blockers: []
     key_files:
@@ -47,7 +47,7 @@ _memory:
 | **Testing** | Manual grep sweep + `package_skill.py --check` |
 
 ### Overview
-**Delivered** — all three phases landed in commit `8fa4752968`. This is a two-phase, strictly ordered change. Phase 1 rewrites `design-principles.md`'s guidance in original words and verifies the rewrite preserves intent — this is load-bearing: until it lands, the Apache-2.0 license may not be removed. Phase 2 removes `LICENSE.txt` via `git rm` and every site that cites it (SKILL.md, README.md, the manual-testing playbook), then records the change in `changelog/`. If Phase 1 cannot genuinely preserve intent in original words, the packet halts before Phase 2 and escalates.
+**Delivered** — all three phases landed in commit `4ac59d21c5`. This is a two-phase, strictly ordered change. Phase 1 rewrites `design-principles.md`'s guidance in original words and verifies the rewrite preserves intent — this is load-bearing: until it lands, the Apache-2.0 license may not be removed. Phase 2 removes `LICENSE.txt` via `git rm` and every site that cites it (SKILL.md, README.md, the manual-testing playbook), then records the change in `changelog/`. If Phase 1 cannot genuinely preserve intent in original words, the packet halts before Phase 2 and escalates.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -143,7 +143,7 @@ Read current `design-principles.md` in full -> draft original-words rewrite pres
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Status**: Not exercised. The change shipped in commit `8fa4752968` and remains revertible from there.
+- **Status**: Not exercised. The change shipped in commit `4ac59d21c5` and remains revertible from there.
 - **Trigger**: Rewrite is later found to have dropped guidance, or a citing site was missed and the skill still claims Apache-2.0 without the license.
 - **Procedure**: Revert the de-vendor commit(s); `LICENSE.txt` and its citations return via git history; re-attempt Phase 1 with the missing guidance restored.
 <!-- /ANCHOR:rollback -->

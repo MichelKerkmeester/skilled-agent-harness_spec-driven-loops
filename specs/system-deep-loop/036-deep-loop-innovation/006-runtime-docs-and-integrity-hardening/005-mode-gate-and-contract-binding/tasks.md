@@ -69,9 +69,9 @@ The clone drift is the reason four local patches would not hold. Documenting it 
 
 - [x] T001 **CONFIRM BEFORE BUILD.** For each of the 9 finding IDs in scope, re-read the cited `file:line` at current HEAD and record `CONFIRMED` / `REFUTED` / `MOVED` / `ALREADY-FIXED` with a cited probe. (`spec.md` §3 scope table) [3h]
 - [x] T002 Diff the research and review gates against the model and skill reference implementation; document the behavior gap [4h] {deps: T001}
-  - **Evidence**: `accepts the exact event, reducer, and projection versions carried by parity receipts`; suite digest `0a073327036223edc791e73b80fd111f381c6f78ff88fcd3552c1feab7764883`; candidate SHA `9229cb8f3e281c9291e6d631237528bc755e6f4b`.
+  - **Evidence**: `accepts the exact event, reducer, and projection versions carried by parity receipts`; suite digest `0a073327036223edc791e73b80fd111f381c6f78ff88fcd3552c1feab7764883`; candidate SHA `2d12dfc5f5f365f396c51a7dea1c7cb825f5501b`.
 - [x] T003 Choose and record the reference implementation for version-binding comparison [1h] {deps: T002}
-  - **Evidence**: `rejects a token-valid version tuple that does not name the installed common contract`; suite digest `b34b6b69a5510021aa2485977cefe109c275754bc07faf7234b8ae0e573e2383`; candidate SHA `9229cb8f3e281c9291e6d631237528bc755e6f4b`.
+  - **Evidence**: `rejects a token-valid version tuple that does not name the installed common contract`; suite digest `b34b6b69a5510021aa2485977cefe109c275754bc07faf7234b8ae0e573e2383`; candidate SHA `2d12dfc5f5f365f396c51a7dea1c7cb825f5501b`.
 - [x] T004 Cite the `021` baseline; confirm `024` fence primitives and `025` certificate binding are available [1h] {deps: T001}
 
 ### T001 confirmation record
@@ -101,10 +101,10 @@ Per-finding red-before and green-after receipts are in `implementation-summary.m
 ### Shared strict validator [M2]
 
 - [x] T005 Decide and record the validator's home module [1h] {deps: T002}
-  - **Evidence**: `shares strict installed-version, artifact, and authorization binding predicates`; suite digest `77b85242ee1c706bca93f2af6975a0b5b8691d19522556afded3a635537d7f24`; candidate SHA `9229cb8f3e281c9291e6d631237528bc755e6f4b`.
+  - **Evidence**: `shares strict installed-version, artifact, and authorization binding predicates`; suite digest `77b85242ee1c706bca93f2af6975a0b5b8691d19522556afded3a635537d7f24`; candidate SHA `2d12dfc5f5f365f396c51a7dea1c7cb825f5501b`.
 - [x] T006 Build the validator: prepared-request comparison, artifact-claim binding, version-binding comparison [8h] {deps: T005}
 - [x] T007 Define blocked-disposition reason codes, shared across families with a per-family detail field [3h] {deps: T006}
-  - **Evidence**: `returns a typed blocked result for a null top-level caller value`; suite digest `6946b891156053e0b368862511272d24de5b3bcf74761eb8c3a95ebb9c79c411`; candidate SHA `9229cb8f3e281c9291e6d631237528bc755e6f4b`.
+  - **Evidence**: `returns a typed blocked result for a null top-level caller value`; suite digest `6946b891156053e0b368862511272d24de5b3bcf74761eb8c3a95ebb9c79c411`; candidate SHA `2d12dfc5f5f365f396c51a7dea1c7cb825f5501b`.
 
 ### Gate family adoption [M3]
 
@@ -131,7 +131,7 @@ Per-finding red-before and green-after receipts are in `implementation-summary.m
 
 - [x] T017 Re-run typecheck and the affected suites per file; report the delta against the `021` baseline [2h] {deps: T008, T009, T010, T012, T014, T015, T016}
 - [x] T018 Independent adversarial verification pass targeted at whether any gate still accepts unbound evidence [5h] {deps: T017}
-  - **Evidence**: `rejects a post-authorization configuration-version claim change through the evidence digest`; suite digest `8acac59d23e598e3b15c10048ad34d612fe37e0797c7d840f3a51f046a368c51`; candidate SHA `9229cb8f3e281c9291e6d631237528bc755e6f4b`.
+  - **Evidence**: `rejects a post-authorization configuration-version claim change through the evidence digest`; suite digest `8acac59d23e598e3b15c10048ad34d612fe37e0797c7d840f3a51f046a368c51`; candidate SHA `2d12dfc5f5f365f396c51a7dea1c7cb825f5501b`.
 - [x] T019 `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-deep-loop/036-deep-loop-innovation/005-mode-gate-and-contract-binding --strict` exits 0; hand the shared validator to `032` for its P2 riders [2h] {deps: T018}
 <!-- /ANCHOR:phase-3 -->
 

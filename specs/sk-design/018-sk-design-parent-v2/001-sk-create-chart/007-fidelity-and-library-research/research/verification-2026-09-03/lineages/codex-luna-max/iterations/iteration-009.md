@@ -17,7 +17,7 @@ Verify WCAG 2.1 Understanding 1.4.3 and 1.4.11, the CSS-Tricks SVG-title compari
 - **Resolves:** Yes; current W3C WAI Understanding page.
 - **Documented version:** WCAG 2.1, Level AA; the page itself says Understanding Docs are informative explanations rather than the conformance text.
 - **Evidence:** The success criterion requires text and images of text to reach at least `4.5:1`, with large text at least `3:1`; it lists incidental text, decoration, invisible text, and logos as exceptions. The page also says the ratios are thresholds and must not be rounded down from a failing value.
-- **Corpus verdict:** The pinned palette source defines `textOnSurface: 4.5` and `markOnSurface: 3.0`, and the validator uses the palette gate machinery. This supports the baseline's WCAG mapping for text and large/mark-level contrast, but it does not make every chart shape text or make the Understanding page itself normative. `[CORPUS@756a7fcd4c: .opencode/skills/sk-doc/sk-create-chart/assets/color/palettes.json:18-26; .opencode/skills/sk-doc/sk-create-chart/scripts/check-corpus.cjs:163-189]`
+- **Corpus verdict:** The pinned palette source defines `textOnSurface: 4.5` and `markOnSurface: 3.0`, and the validator uses the palette gate machinery. This supports the baseline's WCAG mapping for text and large/mark-level contrast, but it does not make every chart shape text or make the Understanding page itself normative. `[CORPUS@3ce648be44: .opencode/skills/sk-doc/sk-create-chart/assets/color/palettes.json:18-26; .opencode/skills/sk-doc/sk-create-chart/scripts/check-corpus.cjs:163-189]`
 
 ### 2. WCAG 2.1 Success Criterion 1.4.11
 
@@ -26,7 +26,7 @@ Verify WCAG 2.1 Understanding 1.4.3 and 1.4.11, the CSS-Tricks SVG-title compari
 - **Resolves:** Yes; current W3C WAI Understanding page.
 - **Documented version:** WCAG 2.1, Level AA; the page's explanatory content is informative.
 - **Evidence:** The criterion requires at least `3:1` against adjacent colours for visual information required to identify user-interface components/states and parts of graphics required to understand content, with inactive/agent-controlled and essential-presentation exceptions. The guidance explicitly discusses charts/infographics, gradients, dynamic pop-up text, and equivalent information in a table.
-- **Corpus verdict:** The pinned source distinguishes `markOnSurface: 3.0` from the deliberately ungated structural `rule` role, and explains the exception in the palette source. The contract separately requires a data table and accessible SVG labeling, which is the equivalent-information path the WCAG guidance recognizes. `[CORPUS@756a7fcd4c: .opencode/skills/sk-doc/sk-create-chart/assets/color/palettes.json:18-26; .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:163-167]`
+- **Corpus verdict:** The pinned source distinguishes `markOnSurface: 3.0` from the deliberately ungated structural `rule` role, and explains the exception in the palette source. The contract separately requires a data table and accessible SVG labeling, which is the equivalent-information path the WCAG guidance recognizes. `[CORPUS@3ce648be44: .opencode/skills/sk-doc/sk-create-chart/assets/color/palettes.json:18-26; .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:163-167]`
 
 ### 3. CSS-Tricks SVG `<title>` versus HTML `title`
 
@@ -36,7 +36,7 @@ Verify WCAG 2.1 Understanding 1.4.3 and 1.4.11, the CSS-Tricks SVG-title compari
 - **Documented version:** No library or standards version could be established.
 - **Failure mode:** Access denied by the site; no public page content was available to compare with the claim.
 - **Nearest authoritative coverage:** MDN's current SVG `<title>` reference says browsers usually display title text as a tooltip and that it provides an accessible short description; the W3C accessible-SVG draft covers title/desc accessible-name behavior. Those sources support a cautious fallback claim, not any CSS-Tricks-specific statement about touch behavior. `[SOURCE: https://developer.mozilla.org/en-US/docs/Web/SVG/Reference/Element/title; https://w3c.github.io/writing-accessible-svg/accessible-svg.html]`
-- **Corpus verdict:** The corpus's visible labels, rule-10 table, and T1 native titles are present; no claim about touch tooltip delivery is needed to satisfy the contract. `[CORPUS@756a7fcd4c: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:163-167; .opencode/skills/sk-doc/sk-create-chart/assets/templates/scatter.html:139-146,187-190]`
+- **Corpus verdict:** The corpus's visible labels, rule-10 table, and T1 native titles are present; no claim about touch tooltip delivery is needed to satisfy the contract. `[CORPUS@3ce648be44: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:163-167; .opencode/skills/sk-doc/sk-create-chart/assets/templates/scatter.html:139-146,187-190]`
 
 ### 4. MDN browser-compat-data issue 16831 and Chromium bug 829352
 
@@ -47,7 +47,7 @@ Verify WCAG 2.1 Understanding 1.4.3 and 1.4.11, the CSS-Tricks SVG-title compari
 - **What `research.md` said:** It called keyboard-focus tooltips “browser-inconsistent” and cited issue 16831 as the Chromium 829352 caveat.
 - **What the sources say:** Issue 16831 labels the item as missing compatibility data, says it concerns tooltip display on focus, and links Chromium 829352 titled “Make the `title` attribute visible on keyboard focus”; it notes the SVG bug was marked duplicate. The issue contains no test results and no completed cross-browser compatibility table. The Chromium tracker did not expose readable details in the live fetch.
 - **Corrected wording:** “Keyboard-focus tooltip behavior is not a verified cross-browser contract: MDN issue 16831 requests missing compatibility data and points to Chromium 829352. Treat SVG titles as a hover/accessible-name enhancement, and keep visible labels plus the data table as the keyboard/touch fallback.”
-- **Corpus verdict:** T1 titles are shipped in the selected forms, while the contract's resolving SVG label and data table remain the robust non-hover path. The corpus does not add `tabindex` or promise focus-triggered tooltips. `[CORPUS@756a7fcd4c: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:163-167; .opencode/skills/sk-doc/sk-create-chart/assets/templates/scatter.html:74-83,139-146,187-190]`
+- **Corpus verdict:** T1 titles are shipped in the selected forms, while the contract's resolving SVG label and data table remain the robust non-hover path. The corpus does not add `tabindex` or promise focus-triggered tooltips. `[CORPUS@3ce648be44: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:163-167; .opencode/skills/sk-doc/sk-create-chart/assets/templates/scatter.html:74-83,139-146,187-190]`
 
 ### 5. colorarchive.org data-visualization colour guide
 
@@ -58,7 +58,7 @@ Verify WCAG 2.1 Understanding 1.4.3 and 1.4.11, the CSS-Tricks SVG-title compari
 - **What `research.md` said:** It used the guide for the claim that a sequential palette should preserve ordering in grayscale and for the recommendation that single-hue ramps are reliable and colour-blind-safe.
 - **What the source says:** The page explicitly recommends a grayscale ordering test, single-hue sequential palettes, and Okabe-Ito/viridis/cividis defaults. However, it is a commercial curated color-library guide with no visible author, method, citations, or independent validation in the retrieved page.
 - **Corrected wording:** “ColorArchive offers a useful practical heuristic—check sequential ordering in grayscale and do not rely on hue alone—but it is secondary guidance, not sufficient authority for a normative palette claim. Use W3C WCAG for contrast obligations, Okabe and Ito's Color Universal Design material for the qualitative palette rationale, and Paul Tol's technical notes for palette construction and grayscale/color-vision considerations.” Better sources: https://jfly.uni-koeln.de/color/ and https://sronpersonalpages.nl/~pault/.
-- **Corpus verdict:** The pinned corpus has stronger local evidence than this guide for its actual delivery contract: explicit contrast thresholds, ramp step separation, and luminance monotonicity are encoded in the palette source and validator. F4.1 is therefore closed for the shipped palette gates; the external guide should not be the sole rationale. `[CORPUS@756a7fcd4c: .opencode/skills/sk-doc/sk-create-chart/assets/color/palettes.json:18-26; .opencode/skills/sk-doc/sk-create-chart/scripts/check-corpus.cjs:163-189]`
+- **Corpus verdict:** The pinned corpus has stronger local evidence than this guide for its actual delivery contract: explicit contrast thresholds, ramp step separation, and luminance monotonicity are encoded in the palette source and validator. F4.1 is therefore closed for the shipped palette gates; the external guide should not be the sole rationale. `[CORPUS@3ce648be44: .opencode/skills/sk-doc/sk-create-chart/assets/color/palettes.json:18-26; .opencode/skills/sk-doc/sk-create-chart/scripts/check-corpus.cjs:163-189]`
 
 ## Assessment
 
@@ -93,7 +93,7 @@ Both WCAG citations support the stated AA thresholds, with the important scope d
 
 ## Questions Remaining
 
-- Does the final corpus audit show every T1-T10 and C1-C3 status consistently at commit `756a7fcd4c`?
+- Does the final corpus audit show every T1-T10 and C1-C3 status consistently at commit `3ce648be44`?
 - Which uncited ECharts renderer, responsive, touch, and tooltip claims can be supported by current official documentation?
 - What final verdict totals and ranked corrections should phase synthesis report?
 

@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: sk-code advisor-routing discovery + Lane-C D3 proxy fix"
-description: "Executed summary for the sk-code-local routing discovery increment shipped in commit ec014f95c6: CWV and accessibility smart-routing coverage, router replay acronym boundaries, D3 empty-gold not-applicable scoring, schema doc refresh, playbook path repairs, benchmark reports, limitations, and downstream boundaries."
+description: "Executed summary for the sk-code-local routing discovery increment shipped in commit cdc51fc894: CWV and accessibility smart-routing coverage, router replay acronym boundaries, D3 empty-gold not-applicable scoring, schema doc refresh, playbook path repairs, benchmark reports, limitations, and downstream boundaries."
 trigger_phrases:
   - "phase 24 implementation summary"
   - "sk-code advisor routing discovery summary"
@@ -12,7 +12,7 @@ _memory:
     packet_pointer: "sk-code/001-sk-code-parent/024-sk-code-advisor-routing-and-discovery"
     last_updated_at: "2026-07-06T12:00:00.000Z"
     last_updated_by: "gpt-5.5"
-    recent_action: "Close-out recorded for ec014f95c6"
+    recent_action: "Close-out recorded for cdc51fc894"
     next_safe_action: "None; implementation packet is shipped and pushed"
     blockers: []
     key_files:
@@ -29,7 +29,7 @@ _memory:
     open_questions: []
     answered_questions:
       - question: "Is this packet complete?"
-        answer: "Yes. The sk-code-local routing discovery increment and D3 proxy fix shipped and were pushed in commit ec014f95c6."
+        answer: "Yes. The sk-code-local routing discovery increment and D3 proxy fix shipped and were pushed in commit cdc51fc894."
       - question: "What remains deferred?"
         answer: "Shared advisor-scorer root fixes, advisor projection-vocabulary work, CS-007 JavaScript trigger expansion, and sk-design's resource-gold measurement gap remain downstream or out of scope."
 ---
@@ -48,7 +48,7 @@ _memory:
 | **Spec Folder** | 024-sk-code-advisor-routing-and-discovery |
 | **Status** | Complete |
 | **Level** | 2 |
-| **Actual Effort** | One pushed implementation increment in commit `ec014f95c6`; retrospective close-out docs record the shipped scope and evidence |
+| **Actual Effort** | One pushed implementation increment in commit `cdc51fc894`; retrospective close-out docs record the shipped scope and evidence |
 
 <!-- /ANCHOR:metadata -->
 ---
@@ -56,21 +56,21 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Phase 024 shipped the sk-code-local, advisor-scorer-independent Layer 1 routing increment in commit `ec014f95c6`. It expanded smart-routing intent coverage so CWV and accessibility prompts fire existing RESOURCE_MAP references, constrained short CWV acronyms in router replay to word-boundary matching, made D3 not-applicable when a scenario has no positive-resource gold, refreshed the parent-hub router schema doc to the current sk-code four-mode surface-primary model, repaired dead expected-asset paths in two cross-stack playbooks, regenerated sk-code `router-final`, and wrote new sibling benchmark reports for sk-design and deep-loop-workflows.
+Phase 024 shipped the sk-code-local, advisor-scorer-independent Layer 1 routing increment in commit `cdc51fc894`. It expanded smart-routing intent coverage so CWV and accessibility prompts fire existing RESOURCE_MAP references, constrained short CWV acronyms in router replay to word-boundary matching, made D3 not-applicable when a scenario has no positive-resource gold, refreshed the parent-hub router schema doc to the current sk-code four-mode surface-primary model, repaired dead expected-asset paths in two cross-stack playbooks, regenerated sk-code `router-final`, and wrote new sibling benchmark reports for sk-design and deep-loop-workflows.
 
 ### Files Changed
 
 | File | Action | Purpose | Commit |
 |------|--------|---------|--------|
-| `.opencode/skills/sk-code/shared/references/smart_routing.md` | Updated | Add CWV PERFORMANCE vocabulary, new ACCESSIBILITY intent, and MOTION_DEV cross-listing against existing RESOURCE_MAP references | `ec014f95c6` |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/router-replay.cjs` | Updated | Add `lcp`, `inp`, and `cls` to WORD_BOUNDARY_KEYWORDS so short acronyms match only on word boundaries | `ec014f95c6` |
-| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs` | Updated | Return null/not-applicable D3 for scenarios with no positive-resource gold and exclude null D3 from mode A weighted normalization | `ec014f95c6` |
-| `.opencode/skills/sk-doc/references/skill_creation/parent_hub_router_schema.md` | Updated | Refresh stale sk-code worked example to workflow modes `quality` and `code-review`, surface packets `code-webflow` and `code-opencode`, and `defaultMode: null` | `ec014f95c6` |
-| `.opencode/skills/sk-code/manual_testing_playbook/cross-stack-routing/cwv-gates-animation-heavy.md` | Updated | Reconcile dead expected-asset paths to real on-disk homes | `ec014f95c6` |
-| `.opencode/skills/sk-code/manual_testing_playbook/cross-stack-routing/prefers-reduced-motion.md` | Updated | Reconcile dead expected-asset paths to real on-disk homes | `ec014f95c6` |
-| `.opencode/skills/sk-code/benchmark/reports/2026-06-01--router-final--router/` | Regenerated | Record current/regenerable sk-code router-mode benchmark after routing discovery and D3 changes | `ec014f95c6` |
-| `.opencode/skills/sk-design/benchmark/reports/2026-07-06--after-d3-proxy--router/` | Added | Record sibling benchmark report after D3 proxy fix while preserving frozen `baseline/` | `ec014f95c6` |
-| `.opencode/skills/deep-loop-workflows/benchmark/2026-07-06--after-d3-proxy--router/` | Added | Record sibling benchmark report after D3 proxy fix while preserving frozen `baseline/` | `ec014f95c6` |
+| `.opencode/skills/sk-code/shared/references/smart_routing.md` | Updated | Add CWV PERFORMANCE vocabulary, new ACCESSIBILITY intent, and MOTION_DEV cross-listing against existing RESOURCE_MAP references | `cdc51fc894` |
+| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/router-replay.cjs` | Updated | Add `lcp`, `inp`, and `cls` to WORD_BOUNDARY_KEYWORDS so short acronyms match only on word boundaries | `cdc51fc894` |
+| `.opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs` | Updated | Return null/not-applicable D3 for scenarios with no positive-resource gold and exclude null D3 from mode A weighted normalization | `cdc51fc894` |
+| `.opencode/skills/sk-doc/references/skill_creation/parent_hub_router_schema.md` | Updated | Refresh stale sk-code worked example to workflow modes `quality` and `code-review`, surface packets `code-webflow` and `code-opencode`, and `defaultMode: null` | `cdc51fc894` |
+| `.opencode/skills/sk-code/manual_testing_playbook/cross-stack-routing/cwv-gates-animation-heavy.md` | Updated | Reconcile dead expected-asset paths to real on-disk homes | `cdc51fc894` |
+| `.opencode/skills/sk-code/manual_testing_playbook/cross-stack-routing/prefers-reduced-motion.md` | Updated | Reconcile dead expected-asset paths to real on-disk homes | `cdc51fc894` |
+| `.opencode/skills/sk-code/benchmark/reports/2026-06-01--router-final--router/` | Regenerated | Record current/regenerable sk-code router-mode benchmark after routing discovery and D3 changes | `cdc51fc894` |
+| `.opencode/skills/sk-design/benchmark/reports/2026-07-06--after-d3-proxy--router/` | Added | Record sibling benchmark report after D3 proxy fix while preserving frozen `baseline/` | `cdc51fc894` |
+| `.opencode/skills/deep-loop-workflows/benchmark/2026-07-06--after-d3-proxy--router/` | Added | Record sibling benchmark report after D3 proxy fix while preserving frozen `baseline/` | `cdc51fc894` |
 | `spec.md` | Added | Record retrospective specification for packet 024 | close-out doc |
 | `plan.md` | Added | Record retrospective implementation plan, gates, dependencies, rollback, and effort for packet 024 | close-out doc |
 | `tasks.md` | Added | Record completed task ledger and completion criteria with evidence | close-out doc |
@@ -83,7 +83,7 @@ Phase 024 shipped the sk-code-local, advisor-scorer-independent Layer 1 routing 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The packet shipped in commit `ec014f95c6` on branch `system-speckit/028-memory-search-intelligence`. The sk-code smart-routing block was updated first so CWV and accessibility vocabulary fired existing RESOURCE_MAP references rather than inventing new resource paths. Router replay then received word-boundary matching for `lcp`, `inp`, and `cls`, and the skill benchmark scorer was updated so D3 is null/not-applicable when positive-resource gold is empty.
+The packet shipped in commit `cdc51fc894` on branch `system-speckit/028-memory-search-intelligence`. The sk-code smart-routing block was updated first so CWV and accessibility vocabulary fired existing RESOURCE_MAP references rather than inventing new resource paths. Router replay then received word-boundary matching for `lcp`, `inp`, and `cls`, and the skill benchmark scorer was updated so D3 is null/not-applicable when positive-resource gold is empty.
 
 The documentation and artifact layer was reconciled in the same increment. The sk-doc parent-hub schema example was refreshed to the current sk-code surface-primary model, two cross-stack playbooks were repaired to point at real expected-asset paths, sk-code `benchmark/2026-06-01--router-final--router` was regenerated as its README-documented current folder, and sk-design plus deep-loop-workflows wrote `after-d3-proxy/` sibling reports instead of overwriting frozen baselines.
 
@@ -108,7 +108,7 @@ The documentation and artifact layer was reconciled in the same increment. The s
 <!-- ANCHOR:blockers -->
 ## Blockers
 
-None for this packet. Commit `ec014f95c6` shipped and pushed the sk-code-local routing discovery updates, D3 scoring fix, schema doc refresh, playbook path repairs, and benchmark reports. Remaining items are scoped downstream or pre-existing findings: the shared advisor-scorer root fix and advisor projection-vocabulary work are planned for a separate packet, CS-007 remains 6/7 by deliberate blast-radius control, sk-design resource gold is a measurement gap, and two sk-design-lane failures were isolated as pre-existing outside this packet.
+None for this packet. Commit `cdc51fc894` shipped and pushed the sk-code-local routing discovery updates, D3 scoring fix, schema doc refresh, playbook path repairs, and benchmark reports. Remaining items are scoped downstream or pre-existing findings: the shared advisor-scorer root fix and advisor projection-vocabulary work are planned for a separate packet, CS-007 remains 6/7 by deliberate blast-radius control, sk-design resource gold is a measurement gap, and two sk-design-lane failures were isolated as pre-existing outside this packet.
 
 <!-- /ANCHOR:blockers -->
 ---

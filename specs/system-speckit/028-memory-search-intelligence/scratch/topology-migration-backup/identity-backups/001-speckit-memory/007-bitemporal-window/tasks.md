@@ -1,6 +1,6 @@
 ---
 title: "Task Breakdown: Bi-temporal Window for Spec-Kit Memory Causal + Lineage"
-description: "Per-candidate task breakdown, skip-closed-in-sweep pre-checked as SHIPPED (030 e1c6a3c793). MEM-fact-invalidation-event-time spearhead, C3-B four-timestamp window, GR-temporal-ordering-invalidation and C3-D note pending."
+description: "Per-candidate task breakdown, skip-closed-in-sweep pre-checked as SHIPPED (030 672d8a9187). MEM-fact-invalidation-event-time spearhead, C3-B four-timestamp window, GR-temporal-ordering-invalidation and C3-D note pending."
 trigger_phrases:
   - "bitemporal window memory tasks"
   - "event-time invalidation tasks"
@@ -46,7 +46,7 @@ _memory:
 
 **Task Format**: `T### [P?] Description (file path)`
 
-**Candidate status legend**: `skip-closed-in-sweep` = SHIPPED (030 `e1c6a3c793`). `C3-B` schema-migration foundation = DONE in this implementation. `MEM-fact-invalidation-event-time`, `GR-temporal-ordering-invalidation` and behavior consumers remain PENDING/deferred.
+**Candidate status legend**: `skip-closed-in-sweep` = SHIPPED (030 `672d8a9187`). `C3-B` schema-migration foundation = DONE in this implementation. `MEM-fact-invalidation-event-time`, `GR-temporal-ordering-invalidation` and behavior consumers remain PENDING/deferred.
 <!-- /ANCHOR:notation -->
 
 ---
@@ -65,9 +65,9 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-### Candidate: skip-closed-in-sweep, SHIPPED (030 `e1c6a3c793`)
-- [x] T005 Add `AND invalid_at IS NULL` (`openEdgeClause`) to the promoter cleanup query so already-closed generated edges are skipped (`lib/causal/frontmatter-promoter.ts`), SHIPPED `e1c6a3c793` (030 §14 row 9)
-- [x] T006 Schema-aware guard: clause only applied when `columns.has('invalid_at')` (fixtures without the column stay compatible), SHIPPED `e1c6a3c793`
+### Candidate: skip-closed-in-sweep, SHIPPED (030 `672d8a9187`)
+- [x] T005 Add `AND invalid_at IS NULL` (`openEdgeClause`) to the promoter cleanup query so already-closed generated edges are skipped (`lib/causal/frontmatter-promoter.ts`), SHIPPED `672d8a9187` (030 §14 row 9)
+- [x] T006 Schema-aware guard: clause only applied when `columns.has('invalid_at')` (fixtures without the column stay compatible), SHIPPED `672d8a9187`
 
 ### Candidate: MEM-fact-invalidation-event-time (H/S, spearhead), PENDING
 - [ ] T010 Change `invalidateEdge()` to accept/derive the close timestamp from lineage event-time instead of `new Date().toISOString()` (`lib/graph/temporal-edges.ts:81,86,94`)
@@ -122,5 +122,5 @@ _memory:
 - **Plan**: See `plan.md`
 - **Checklist**: See `checklist.md`
 - **Decision Records**: See `decision-record.md`
-- **Shipped evidence**: Wave-0 record (skip-closed-in-sweep = `e1c6a3c793`)
+- **Shipped evidence**: Wave-0 record (skip-closed-in-sweep = `672d8a9187`)
 <!-- /ANCHOR:cross-refs -->

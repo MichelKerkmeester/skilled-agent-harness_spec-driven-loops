@@ -68,7 +68,7 @@ All tasks below are complete. Evidence is named per task rather than summarised 
 - [x] Fleet gate class H, no forbidden file
 - [x] Two design phrases at or above baseline
 - [x] `sk-design-fundamentals` resolves with a non-empty leaf set
-- [x] One commit, `112d5471f4`
+- [x] One commit, `08c9d0605d`
 - [x] 28 renames, verified before committing
 <!-- /ANCHOR:completion -->
 

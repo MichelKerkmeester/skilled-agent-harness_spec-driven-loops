@@ -12,7 +12,7 @@ _memory:
     packet_pointer: "sk-design/014-template-conformance/009-aesthetics-retirement"
     last_updated_at: "2026-07-27T17:17:23.686Z"
     last_updated_by: "spec-author"
-    recent_action: "Committed c10ded2ab8, 10 files; reverify found 2 residual citing-site gaps"
+    recent_action: "Committed a4b707cddd, 10 files; reverify found 2 residual citing-site gaps"
     next_safe_action: "Flag hub-router.json and real-ui-loop.md gaps to operator for fix"
     blockers: []
     key_files:
@@ -38,7 +38,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 009-aesthetics-retirement |
-| **Completed** | 2026-07-27 (commit `c10ded2ab8`) |
+| **Completed** | 2026-07-27 (commit `a4b707cddd`) |
 | **Level** | 2 |
 | **Status** | Complete (core) — 2 residual citing-site gaps open, see Known Limitations |
 | **Completion Pct** | 90% |
@@ -49,7 +49,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-`design-interface/references/aesthetics/` (5 hand-written look files: `README.md`, `apple-bento.md`, `brutalist.md`, `minimalist.md`, `soft.md`) was deleted via `git rm` so it cannot return from HEAD. The `AESTHETICS` entry was removed from both `INTENT_SIGNALS` and `RESOURCE_MAP` in `design-interface/SKILL.md`, the `AESTHETICS` task lane was removed from `command-metadata.json`, and `aesthetic` was removed from `commands/interface/design.md`'s argument-hint (frontmatter and the selectable-lanes prose row) and from both the `argumentHint` and `argumentGrammar.render` fields in `command-metadata.json` (drift-checked against the command doc). The ON_DEMAND row in `design-interface/SKILL.md`'s Resource Loading Levels table and `references/design-process/resource-loading-notes.md` were repointed at the `styles/` corpus — one real shipped exemplar from 1,290 beats prose about brutalism. `leaf-manifest.json` was regenerated via the canonical generator; aesthetics leaves went 5 → 0. `design-interface/procedures/aesthetic-direction.md` (a private procedure card for greenfield direction work, unrelated to the retired folder despite the similar name) was correctly left untouched. Landed as a single commit, `c10ded2ab8` (10 files, +298/-365).
+`design-interface/references/aesthetics/` (5 hand-written look files: `README.md`, `apple-bento.md`, `brutalist.md`, `minimalist.md`, `soft.md`) was deleted via `git rm` so it cannot return from HEAD. The `AESTHETICS` entry was removed from both `INTENT_SIGNALS` and `RESOURCE_MAP` in `design-interface/SKILL.md`, the `AESTHETICS` task lane was removed from `command-metadata.json`, and `aesthetic` was removed from `commands/interface/design.md`'s argument-hint (frontmatter and the selectable-lanes prose row) and from both the `argumentHint` and `argumentGrammar.render` fields in `command-metadata.json` (drift-checked against the command doc). The ON_DEMAND row in `design-interface/SKILL.md`'s Resource Loading Levels table and `references/design-process/resource-loading-notes.md` were repointed at the `styles/` corpus — one real shipped exemplar from 1,290 beats prose about brutalism. `leaf-manifest.json` was regenerated via the canonical generator; aesthetics leaves went 5 → 0. `design-interface/procedures/aesthetic-direction.md` (a private procedure card for greenfield direction work, unrelated to the retired folder despite the similar name) was correctly left untouched. Landed as a single commit, `a4b707cddd` (10 files, +298/-365).
 
 **Re-verification on 2026-07-27 found the retirement is not fully closed.** Two citing sites named in the original spec were never actually touched by the commit: `hub-router.json:121` still lists `"aesthetic"` in its vocabulary, and `references/design-process/real-ui-loop.md:119` still has a dangling reference to the deleted folder ("The illustrative cues in `../aesthetics/` are reference material..."). Both are real, unresolved gaps — not covered by `011-retirement-residue`'s current scope (which targets a different, already-confirmed set of `audit`/`foundations` residue sites). See `spec.md` REQ-006/REQ-007 and `checklist.md` CHK-022/CHK-031/CHK-060.
 
@@ -78,7 +78,7 @@ _memory:
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Delivered as a single commit, `c10ded2ab8` (10 files, +298/-365): the 5 file deletions (via `git rm`), the lane removal across `SKILL.md`/`command-metadata.json`/`design.md`, the manifest regeneration, and one of the two planned citation updates (`resource-loading-notes.md`; `real-ui-loop.md` was not actually touched — see Deviations below). An intent/lane parity check caught an earlier error mid-consolidation (an intent added without its matching lane) before the commit landed.
+Delivered as a single commit, `a4b707cddd` (10 files, +298/-365): the 5 file deletions (via `git rm`), the lane removal across `SKILL.md`/`command-metadata.json`/`design.md`, the manifest regeneration, and one of the two planned citation updates (`resource-loading-notes.md`; `real-ui-loop.md` was not actually touched — see Deviations below). An intent/lane parity check caught an earlier error mid-consolidation (an intent added without its matching lane) before the commit landed.
 <!-- /ANCHOR:how-delivered -->
 
 ---

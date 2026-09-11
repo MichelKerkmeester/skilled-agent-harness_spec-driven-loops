@@ -68,7 +68,7 @@ This is **Phase 1** of the Align sk-doc subskill routing triggers, sibling hando
 **Scope Boundary**: Read-only audit and packet documentation; no sk-doc router source edits in this phase.
 
 **Dependencies**:
-- Workstream-A commit `3048a662e9` and its benchmark vocabulary.
+- Workstream-A commit `8179eb714b` and its benchmark vocabulary.
 - Existing packet `SKILL.md` contracts and both hub JSON files.
 
 **Deliverables**:

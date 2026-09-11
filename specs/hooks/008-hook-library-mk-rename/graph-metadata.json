@@ -208,7 +208,7 @@
     ],
     "causal_summary": "Every runtime hook entry point is named `mk-<concern>` (e.g",
     "created_at": "2026-08-20T00:00:00.000Z",
-    "last_save_at": "2026-08-30T15:39:09.275Z",
+    "last_save_at": "2026-09-11T16:41:50.494Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,14 +218,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2933baeaafcea098b4346795797c62174f3e717143ef9100da2a0e4806618636",
+    "source_fingerprint": "sha256:bedc3999d813fbb9da9fc80bebbce2afd9a5fed9568a39166e880ed8e30b2b65",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5ce5b55d0736e441def3e3c739b01ed0ad65ed7917cea9b9565bf1fc3429d672",
       "plan.md": "5433760b08e3d984943a6faf22dc51981b88b8803d3701d8afc24090ea9d32a5",
-      "tasks.md": "0f2284c1aeec29044423eca7c707ef389ae35738d8a1d75e7b92de9f69d14959",
+      "tasks.md": "d9e51e1ec76ea62ec8c598110b9e13a968d11c053ecc89d2db52116230e6d720",
       "decision-record.md": "4f5f19c0f722e44fd4cbce25334dcfb12e29c563bcf7df6765976853772577eb",
-      "implementation-summary.md": "54b50442d94918b17c0a9eb3b40cfbcb63e6c02aca29a648723d3e7859b38e47"
+      "implementation-summary.md": "add97092f7fa95dd2fd61deb5d46a50593794ebd81b2d301e84db0493565e6f9"
     },
     "last_active_child_id": null,
     "last_active_at": null

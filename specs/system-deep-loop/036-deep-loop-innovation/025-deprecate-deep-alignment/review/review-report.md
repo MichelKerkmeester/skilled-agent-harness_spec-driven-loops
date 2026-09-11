@@ -10,7 +10,7 @@ Spec packet: `specs/system-deep-loop/036-deep-loop-innovation/025-deprecate-deep
 
 - **Overall verdict: PASS** (hasAdvisories: true)
 - Active findings: **P0=0, P1=0, P2=15** (deduped from 15 delta-emitted findings across 10 iterations; zero duplicates, zero upgrades, zero false positives after adversarial close-out)
-- Review scope: seven commits (e41aa1878ad, d1a5981b58c, 8849444aa61, 766b59d6bc3, 6303c12ad27, 69d5c223668, b955f937fc9) — 154 existing files touched + 182 deleted paths; full union in `review/scope-files.txt`
+- Review scope: seven commits (6342c5822f7, 3029aad3c34, 94ab276bfdf, 1c8dd172a3f, e0d726c6de5, ef0a30b94fb, 7104df72f4c) — 154 existing files touched + 182 deleted paths; full union in `review/scope-files.txt`
 - Headline results, per the four operator audit questions:
   - **Removal correctness/completeness**: the deep-alignment / conformance-benchmark removal is complete on every active surface — zero orphaned references or dangling mirrors across `.opencode/.claude/.codex/.cursor/.pi/.devin` + README (mechanically swept in iteration 5); the six surviving deep-loop modes and the behavior/model/skill benchmark families are structurally intact (iteration 9: runners, harnesses, fixtures all resolve); generated metadata is consistent with its sources (iteration 8: canary-cases + registry-compiler + command-bridges coherent triple; `deprecatedModes: []`; the spec's 8→7 census claim is accurate). 15 advisory P2s remain: 7 stale-doc references, 3 cross-packet observations, 2 guard-coverage advisories, 3 pre-existing executor-yaml drifts.
   - **Executor single-dispatch routing soundness**: sound — `buildLineageCommand` throws (fail closed) on missing binary or off-allowlist model; no else-fallthrough silently degrades a requested CLI executor to native in review/research; parity confirmed for cursor/devin/pi across both (P2-009/P2-010/P2-003 are pre-existing cosmetic drifts, not fallback paths).
@@ -72,14 +72,14 @@ Spec packet: `specs/system-deep-loop/036-deep-loop-innovation/025-deprecate-deep
 ### P2-001 — Orphan authority-state file for deleted deep-alignment mode
 - Severity: P2 (advisory) · Dimension: unassigned · Disposition: active (adjudicated P2 in iteration 10; 0 upgrades, 0 false positives)
 - Location: `.opencode/skills/.authority-state/authority-deep-alignment.json:1:?`
-- Detail: P2-001 Orphan authority-state file for deleted deep-alignment mode - **File:** `.opencode/skills/.authority-state/authority-deep-alignment.json:1` - **Evidence:** The `deep-alignment` mode was removed in commit 8849444aa61 (mode packet, agents, commands, prompts all deleted). The authority-state directory still contains `authority-deep-alignment.json` with `"mode":"deep-alignme
+- Detail: P2-001 Orphan authority-state file for deleted deep-alignment mode - **File:** `.opencode/skills/.authority-state/authority-deep-alignment.json:1` - **Evidence:** The `deep-alignment` mode was removed in commit 94ab276bfdf (mode packet, agents, commands, prompts all deleted). The authority-state directory still contains `authority-deep-alignment.json` with `"mode":"deep-alignme
 - Remediation: WS2 cross-packet owner follow-ups · update or remove the stale reference; re-run the drift sweep after
 - scopeProof: file exists on the reviewed HEAD · affectedSurfaceHints: skills
 
 ### P2-002 — Phase-0 gate retirement reduced defense-in-depth (advisory)
 - Severity: P2 (advisory) · Dimension: unassigned · Disposition: active (adjudicated P2 in iteration 10; 0 upgrades, 0 false positives)
 - Location: `.opencode/commands/deep/review.md:14:?`
-- Detail: P2-002 Phase-0 gate retirement reduced defense-in-depth (advisory) - **File:** `.opencode/commands/deep/review.md` (diff in e41aa1878ad) — removed `PHASE 0: DISPATCH-CONTEXT CHECK`; surviving deterministic guard at `.opencode/hooks/task-dispatch/lib/dispatch-guard.cjs:142` (`isCommandDrivenIteration`) and `:557` (Check 2 wiring) - **Claim:** Retiring the Phase-0 dispatch-contex
+- Detail: P2-002 Phase-0 gate retirement reduced defense-in-depth (advisory) - **File:** `.opencode/commands/deep/review.md` (diff in 6342c5822f7) — removed `PHASE 0: DISPATCH-CONTEXT CHECK`; surviving deterministic guard at `.opencode/hooks/task-dispatch/lib/dispatch-guard.cjs:142` (`isCommandDrivenIteration`) and `:557` (Check 2 wiring) - **Claim:** Retiring the Phase-0 dispatch-contex
 - Remediation: WS3 guard-coverage advisories · coordinate with the owning packet/surface; advisory only
 - scopeProof: file exists on the reviewed HEAD · affectedSurfaceHints: commands
 
@@ -107,7 +107,7 @@ Spec packet: `specs/system-deep-loop/036-deep-loop-innovation/025-deprecate-deep
 ### P2-006 — Stale alignment mode reference in runtime README
 - Severity: P2 (advisory) · Dimension: unassigned · Disposition: active (adjudicated P2 in iteration 10; 0 upgrades, 0 false positives)
 - Location: `.opencode/skills/system-deep-loop/runtime/README.md:15:?`
-- Detail: P2-006 Stale "alignment mode" reference in system-deep-loop runtime README - **File:** `.opencode/skills/system-deep-loop/runtime/README.md:15` - **Claim:** The runtime README still lists the removed `alignment` mode as a live runtime consumer, so the documentation no longer matches the code after the 8849444aa61 removal. The hub-level `system-deep-loop/{README,ROUTER,SKILL}.md
+- Detail: P2-006 Stale "alignment mode" reference in system-deep-loop runtime README - **File:** `.opencode/skills/system-deep-loop/runtime/README.md:15` - **Claim:** The runtime README still lists the removed `alignment` mode as a live runtime consumer, so the documentation no longer matches the code after the 94ab276bfdf removal. The hub-level `system-deep-loop/{README,ROUTER,SKILL}.md
 - Remediation: WS1 doc-drift sweep · update or remove the stale reference; re-run the drift sweep after
 - scopeProof: file exists on the reviewed HEAD · affectedSurfaceHints: skills
 
@@ -149,7 +149,7 @@ Spec packet: `specs/system-deep-loop/036-deep-loop-innovation/025-deprecate-deep
 ### P2-012 — Frozen census edit contract-correct but handoff-manifest sha256 stale and unenforced
 - Severity: P2 (advisory) · Dimension: unassigned · Disposition: active (adjudicated P2 in iteration 10; 0 upgrades, 0 false positives)
 - Location: `specs/system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/003-baseline-taxonomy-and-state-census/phase-004-handoff-manifest.json:23:?`
-- Detail: P2-012 — Frozen census edit was contract-correct, but the handoff-manifest sha256 is now stale and unenforced - **Claim:** The 3-row removal from frozen packet-001 `state-backend-census.json` (8849444aa6) was contract-CORRECT for the evidence-exists invariant: `validate-evidence.cjs:388,408,419` calls `assertEvidencePath` on every census row's `evidence`, and the removed rows (
+- Detail: P2-012 — Frozen census edit was contract-correct, but the handoff-manifest sha256 is now stale and unenforced - **Claim:** The 3-row removal from frozen packet-001 `state-backend-census.json` (94ab276bfd) was contract-CORRECT for the evidence-exists invariant: `validate-evidence.cjs:388,408,419` calls `assertEvidencePath` on every census row's `evidence`, and the removed rows (
 - Remediation: WS2 cross-packet owner follow-ups · update or remove the stale reference; re-run the drift sweep after
 - scopeProof: file exists on the reviewed HEAD · affectedSurfaceHints: system-deep-loop
 
@@ -202,8 +202,8 @@ P2 advisories are separated from blocking work: there are no P0/P1 items; nothin
 - `checklist_evidence`: **partial** — 21/21 boxes checked with evidence, but the Verification Summary prose is stale re CHK-024 (P2-004)
 
 **Overlay protocols**
-- `skill_agent`: **pass** — system-deep-loop hub docs vs the removed mode coherent after 766b59d6bc3 (residuals tracked as WS1)
-- `agent_cross_runtime`: **pass** — all six runtime mirrors clean; the four orphan prompt mirrors from 766b59d6bc3 confirmed deleted with no siblings pointing at them; symlink mirrors resolve (b955f937fc9)
+- `skill_agent`: **pass** — system-deep-loop hub docs vs the removed mode coherent after 1c8dd172a3f (residuals tracked as WS1)
+- `agent_cross_runtime`: **pass** — all six runtime mirrors clean; the four orphan prompt mirrors from 1c8dd172a3f confirmed deleted with no siblings pointing at them; symlink mirrors resolve (7104df72f4c)
 - `feature_catalog_code`: **pass** — no active catalog references the deleted alignment feature-catalog
 - `playbook_capability`: **pass** — no active playbook capability references the removed mode
 

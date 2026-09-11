@@ -5,7 +5,7 @@ trigger_phrases: []
 # Iteration 1: Full-spectrum review — 007-output-surface-parity contract
 
 ## Focus
-All four dimensions in one pass (maxIterations=1 fan-out lineage). Target: spec folder `007-output-surface-parity`, whose shipped deliverable is contract/markdown edits to `.opencode/commands/memory/search.md` and `.opencode/commands/memory/assets/search_presentation.txt` (committed `254289251a`). Scope: verify the contract is internally consistent and that `implementation-summary.md` claims resolve to shipped behavior.
+All four dimensions in one pass (maxIterations=1 fan-out lineage). Target: spec folder `007-output-surface-parity`, whose shipped deliverable is contract/markdown edits to `.opencode/commands/memory/search.md` and `.opencode/commands/memory/assets/search_presentation.txt` (committed `3a289d732d`). Scope: verify the contract is internally consistent and that `implementation-summary.md` claims resolve to shipped behavior.
 
 ## Scorecard
 - Dimensions covered: correctness, security, traceability, maintainability
@@ -26,7 +26,7 @@ All four dimensions in one pass (maxIterations=1 fan-out lineage). Target: spec 
 
 - **F001**: Spec/plan/tasks remain unfilled template scaffolds while the phase is shipped — `spec.md:84-157` (problem/scope/requirements/success-criteria all `[placeholder]`), `plan.md:46-160` (template defaults), `tasks.md:53-77` (`T001 Create project structure` etc.). The only real, accurate documentation of what was built is `implementation-summary.md`. Effect: the `spec_code` core protocol has no normative REQ/SC in `spec.md` to anchor the shipped contract mandates (one-score, core-slot, surface-parity). Tolerated at Level 1 (these files need only exist) and validate.sh --strict passed per impl-summary, but it is a real traceability gap — a future reader cannot trace the mandates back to a requirement. Dimension: traceability.
 
-- **F002**: Completion-metadata mismatch across the packet control files. `graph-metadata.json` reports `Status: planned` and lists `Key Files: spec.md, plan.md, tasks.md` (omits the two changed contract files and implementation-summary.md); `description.json` carries `memorySequence: 0` with no completion signal; `spec.md:51` METADATA Status is still the unfilled `[Draft/In Progress/Review/Complete]`. Meanwhile `implementation-summary.md` continuity reports `completion_pct: 100` and the work is committed (`254289251a`). The framework COMPLETION VERIFICATION RULE step 3 requires reconciling completion metadata so packet docs do not claim conflicting states; `planned` vs `100% + committed` is a live conflict visible to graph traversal and `/speckit:resume`. Non-blocking for the shipped contract. Dimension: maintainability.
+- **F002**: Completion-metadata mismatch across the packet control files. `graph-metadata.json` reports `Status: planned` and lists `Key Files: spec.md, plan.md, tasks.md` (omits the two changed contract files and implementation-summary.md); `description.json` carries `memorySequence: 0` with no completion signal; `spec.md:51` METADATA Status is still the unfilled `[Draft/In Progress/Review/Complete]`. Meanwhile `implementation-summary.md` continuity reports `completion_pct: 100` and the work is committed (`3a289d732d`). The framework COMPLETION VERIFICATION RULE step 3 requires reconciling completion metadata so packet docs do not claim conflicting states; `planned` vs `100% + committed` is a live conflict visible to graph traversal and `/speckit:resume`. Non-blocking for the shipped contract. Dimension: maintainability.
 
 ## Cross-Reference Results
 | Protocol | Status | Gate | Evidence | Notes |
@@ -42,7 +42,7 @@ All four dimensions in one pass (maxIterations=1 fan-out lineage). Target: spec 
 - "Surface-parity clause" → `search.md:74` and `search_presentation.txt:98-100`: core slots + scale mandatory across `--command`, direct prompt, conversation. CONFIRMED.
 - "Named optional trailing fields" → `search.md:76` + `§7` boundary `search.md:140`; render placement `search_presentation.txt:102-116` (between scored block and terminal STATUS footer). CONFIRMED — STATUS stays terminal/parseable.
 - "COSTAR register note" → `search.md:11` and `search_presentation.txt:5`. CONFIRMED; explicitly framed as the contract's own register, not a global framework.
-- "O1 §0 header + salience + startup gating untouched" → `search.md:13,17,21-22,116-120` present and structurally intact. CONFIRMED via git log (O1 `eac1eb5ef8` → O2 `254289251a`).
+- "O1 §0 header + salience + startup gating untouched" → `search.md:13,17,21-22,116-120` present and structurally intact. CONFIRMED via git log (O1 `2d425de43f` → O2 `3a289d732d`).
 - "Constitutional-rows-excluded preserved" → `search_presentation.txt:130-132` unchanged. CONFIRMED.
 
 ## Assessment

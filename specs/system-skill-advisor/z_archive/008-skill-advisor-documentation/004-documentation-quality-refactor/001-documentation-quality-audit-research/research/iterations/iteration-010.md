@@ -13,14 +13,14 @@ What is the root cause of the missing 05 slot in feature_catalog/? Is this histo
 - Root catalog OVERVIEW table lists groups 01, 02, 03, 04, 06, 07, 08 - skipping 05 in the directory references <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/feature_catalog/feature_catalog.md" lines="40-48" />
 
 **Evidence 2: Initial scaffold design documentation**
-- Commit fbb251acd7 (initial scaffold) feature_catalog.md states: "Expected groups after full population: daemon-and-freshness, auto-indexing, lifecycle-routing, scorer-fusion, mcp-surface, hooks-and-plugin, python-compat" <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/feature_catalog/feature_catalog.md" lines="50-58" />
+- Commit b74c893184 (initial scaffold) feature_catalog.md states: "Expected groups after full population: daemon-and-freshness, auto-indexing, lifecycle-routing, scorer-fusion, mcp-surface, hooks-and-plugin, python-compat" <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/feature_catalog/feature_catalog.md" lines="50-58" />
 - Initial scaffold explicitly documented 05 as skipped in the expected groups list <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/feature_catalog/feature_catalog.md" lines="50-58" />
 - Scaffold stated this was the "initial scaffold" with "full population happens in child 003" <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/feature_catalog/feature_catalog.md" lines="18-22" />
-- Git show of fbb251acd7 reveals the initial feature_catalog/ directory only contained mcp-surface/ and feature_catalog.md <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/feature_catalog/" />
+- Git show of b74c893184 reveals the initial feature_catalog/ directory only contained mcp-surface/ and feature_catalog.md <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/feature_catalog/" />
 
 **Evidence 3: Git history of feature_catalog population**
-- Git log shows feature_catalog directories were added in commit e0eec76b74 (docs(013/009/012): align advisor docs with sk-doc + ARCHITECTURE rewrite + READMEs) <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/feature_catalog/" />
-- Prior commit 62fa08ef47 (refactor(skill-advisor,013/009/003): finalize move + rename packets to 008/013) also touched feature_catalog/ <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/feature_catalog/" />
+- Git log shows feature_catalog directories were added in commit 7c7ea6e5f1 (docs(013/009/012): align advisor docs with sk-doc + ARCHITECTURE rewrite + READMEs) <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/feature_catalog/" />
+- Prior commit 46783f38b3 (refactor(skill-advisor,013/009/003): finalize move + rename packets to 008/013) also touched feature_catalog/ <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/feature_catalog/" />
 - Neither commit message nor git history shows any 05 directory being created or deleted <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/feature_catalog/" />
 - The sequence 01, 02, 03, 04, 06, 07, 08 has been stable since the initial population <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/feature_catalog/" />
 
@@ -40,9 +40,9 @@ What is the root cause of the missing 05 slot in feature_catalog/? Is this histo
 ## Findings (numbered, severity-tagged P0|P1|P2, impact-ranked 1-10, sub-phase-targeted 002|003|004|005)
 
 **Finding 1: Missing 05 slot is intentional reservation from initial design (P2, impact-rank 3, sub-phase-target: 004)**
-- Initial scaffold commit fbb251acd7 explicitly documented expected groups as 01, 02, 03, 04, 06, 07, 08 - skipping 05 <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/feature_catalog/feature_catalog.md" lines="50-58" />
+- Initial scaffold commit b74c893184 explicitly documented expected groups as 01, 02, 03, 04, 06, 07, 08 - skipping 05 <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/feature_catalog/feature_catalog.md" lines="50-58" />
 - This was not an oversight or absorbed work - the gap was designed into the initial structure <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/feature_catalog/feature_catalog.md" lines="50-58" />
-- Git history shows the 01-04, 06-08 sequence has been stable since initial population in commit e0eec76b74 <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/feature_catalog/" />
+- Git history shows the 01-04, 06-08 sequence has been stable since initial population in commit 7c7ea6e5f1 <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/feature_catalog/" />
 - No changelog entry mentions any 05 directory being created, deleted, or renumbered <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/changelog/" />
 
 **Finding 2: Root catalog TOC numbering creates mismatch with directory structure (P1, impact-rank 6, sub-phase-target: 004)**

@@ -49,7 +49,7 @@ contextType: "general"
 - [x] T004 324 files moved under `git mv`; manifest renamed `@spec-kit/runtime` and cut from 12 dependencies to 4; `npm install` at the workspace root removed 126 packages and `npm ci --dry-run` exits 0
 - [x] T005 379 files rewritten in place plus 84 symlinks repointed; `rg` and `git grep` both return zero live hits for the old path and the old npm name
 - [x] T006 `npm run rebuild` exits 0 and records both freshness entries; shared, scripts and runtime typecheck clean; all 19 registered adapters exit 0 with no missing module; the HF model server boots from the new path, resolves `runtime/database` and closes cleanly
-- [x] T007 One commit `aef7852400` of 708 files; `main` fast-forwarded to it and both `main` and `skilled/v4.0.0.0` sit at it on origin
+- [x] T007 One commit `0db44e44c0` of 708 files; `main` fast-forwarded to it and both `main` and `skilled/v4.0.0.0` sit at it on origin
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -57,8 +57,8 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T008 053 and 049 recursive pass; residue sweep `counts.live` 0; doctor routes, command references, skill-root audit and derived freshness pass; routing guard green after the `cli-external-orchestration` re-mint. 052 fails on a fingerprint staled by commit `b960584085`, which is not this packet's change
-- [x] T009 Four attempts: stalled launch, Codex usage limit, CONDITIONAL (2 P1, 2 P2 fixed at `c2898fbad8` and `ad541ce059`), then PASS with 0 P0, 0 P1 and 2 P2 fixed at `85d9791eb3`
+- [x] T008 053 and 049 recursive pass; residue sweep `counts.live` 0; doctor routes, command references, skill-root audit and derived freshness pass; routing guard green after the `cli-external-orchestration` re-mint. 052 fails on a fingerprint staled by commit `92683c97c2`, which is not this packet's change
+- [x] T009 Four attempts: stalled launch, Codex usage limit, CONDITIONAL (2 P1, 2 P2 fixed at `90ca479473` and `1b0e512425`), then PASS with 0 P0, 0 P1 and 2 P2 fixed at `a4e85f6ad4`
 - [x] T010 `implementation-summary.md` and `acceptance-criteria.md` carry the move, the audit table and the gate results
 <!-- /ANCHOR:phase-3 -->
 

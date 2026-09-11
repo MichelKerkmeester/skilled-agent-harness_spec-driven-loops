@@ -37,7 +37,7 @@ _memory:
 
 ### Overview
 
-This phase records a completed manual verification-and-fixes arc. GPT-5.5-fast ran four parallel `cli-opencode` jobs over the runnable Fable-5-refined `008` scenarios. The run produced 25 PASS, 2 FAIL, and 3 BLOCKED outcomes. The two real defects were fixed in commits `bda7f57879` and `e4fcccc320`; the three blocked code-graph scenarios were unblocked by a `code_graph_scan` that restored fresh/ready/live graph status.
+This phase records a completed manual verification-and-fixes arc. GPT-5.5-fast ran four parallel `cli-opencode` jobs over the runnable Fable-5-refined `008` scenarios. The run produced 25 PASS, 2 FAIL, and 3 BLOCKED outcomes. The two real defects were fixed in commits `4313a2dfbc` and `32c1aea94f`; the three blocked code-graph scenarios were unblocked by a `code_graph_scan` that restored fresh/ready/live graph status.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -54,8 +54,8 @@ This phase records a completed manual verification-and-fixes arc. GPT-5.5-fast r
 ### Definition of Done
 
 - [x] Manual verification outcomes recorded: 25 PASS, 2 FAIL, 3 BLOCKED.
-- [x] Gold-battery path defect recorded as fixed in commit `bda7f57879`.
-- [x] BM25 scoped fill-limit regression recorded as fixed in commit `e4fcccc320`.
+- [x] Gold-battery path defect recorded as fixed in commit `4313a2dfbc`.
+- [x] BM25 scoped fill-limit regression recorded as fixed in commit `32c1aea94f`.
 - [x] Code-graph stale blockers recorded as unblocked by `code_graph_scan`.
 - [x] Open/deferred FTS5 lexical-overlap finding recorded without claiming a fix.
 <!-- /ANCHOR:quality-gates -->
@@ -100,8 +100,8 @@ Verification-to-fix closure: manual scenarios produce evidence, real defects bec
 
 ### Phase 2: Defect Fixes Already Shipped
 
-- [x] Fix gold-battery path in commit `bda7f57879` by changing `GOLD_BATTERY_RELATIVE_PATH` to the normalized `system-speckit/026-...` path.
-- [x] Fix BM25 scoped fill-limit regression in commit `e4fcccc320` by restoring corpus-bounded `candidateLimit` for scoped/database searches while preserving incremental metadata resolution.
+- [x] Fix gold-battery path in commit `4313a2dfbc` by changing `GOLD_BATTERY_RELATIVE_PATH` to the normalized `system-speckit/026-...` path.
+- [x] Fix BM25 scoped fill-limit regression in commit `32c1aea94f` by restoring corpus-bounded `candidateLimit` for scoped/database searches while preserving incremental metadata resolution.
 - [x] Fix stress-test drift in `bm25-scope-then-limit-stress.vitest.ts` for the `deleted_at` column and intercept string.
 
 ### Phase 3: Recovery and Follow-Up Classification

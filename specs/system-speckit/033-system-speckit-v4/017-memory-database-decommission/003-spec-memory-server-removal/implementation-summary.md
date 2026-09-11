@@ -69,7 +69,7 @@ returns a scored recommendation over the shared socket.
 
 ### The package after the prune
 
-Tracked files went from 1,482 at the phase-002 commit `cc6a50271e` to 333, lines from 453,964 to
+Tracked files went from 1,482 at the phase-002 commit `c3fea783ba` to 333, lines from 453,964 to
 about 68,270, and the tree from 20.3 MB to 2.8 MB. What is left is import-closed rather than merely
 smaller: 99 modules are reachable from the surviving entry points and exactly two orphans are
 intentional, `lib/test-helpers/env-snapshot.ts` for the dist-freshness test and
@@ -133,7 +133,7 @@ comments, C5 the test reconciliation. Five documentation agents ran behind them,
 the root and skill docs, the catalog and playbook prune, the reaper docs, `ENV-REFERENCE.md` and the
 package structural docs. One agent was killed by a network outage mid-suite and resumed from its
 transcript rather than restarted. The orchestrator verified every result on disk and made the small
-seam edits itself. Nothing is committed: the before state is the phase-002 commit `cc6a50271e` and
+seam edits itself. Nothing is committed: the before state is the phase-002 commit `c3fea783ba` and
 the phase sits in the worktree on `branches/017-memory-decommission`.
 <!-- /ANCHOR:how-delivered -->
 
@@ -149,7 +149,7 @@ the phase sits in the worktree on `branches/017-memory-decommission`.
 | The residue sweep's `mcp-server` exclusion was removed in this phase | The exclusion existed because the engine was still there; leaving it would have let the surviving package hide residue behind the thing that was supposed to prove its absence |
 | Mixed rows got source-level edits, never token deletions | A search that comes back clean after a line drop proves nothing about whether the surviving owner still works |
 | The eight now-unimported dependencies stay for now | Removing them regenerates the lockfile, and `node_modules` is shared with the main checkout, so the cost lands outside this phase's blast radius |
-| The 41 failing test files were reconciled against the phase-002 commit rather than fixed | 38 fail identically at `cc6a50271e` in a fresh worktree with the same dependency layout, so treating them as this phase's regressions would have been fixing someone else's bug under scope lock |
+| The 41 failing test files were reconciled against the phase-002 commit rather than fixed | 38 fail identically at `c3fea783ba` in a fresh worktree with the same dependency layout, so treating them as this phase's regressions would have been fixing someone else's bug under scope lock |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -173,7 +173,7 @@ the phase sits in the worktree on `branches/017-memory-decommission`.
 | Environment surface | `.env.example` 409 to 220 names, every remaining `SPECKIT` row with a live reader or shared owner; `ENV-REFERENCE.md` 351 to 146 variables and 856 to 480 lines; env-reference-drift test 5 pass, exit 0 |
 | Deep-loop runtime suite, final state | 153 files, 2,534 tests, exit 0 |
 | Builds | Package build, workspace build from a wiped dist and typecheck each exit 0; `finalize-dist` previously passed on stale dist residue and now checks real artifacts |
-| Spec-kit kept suites (`mcp-server/tests` plus `scripts/tests`), final state | 41 failing files, 71 failing tests, 2,646 passed. 38 of the 41 fail identically at `cc6a50271e` in a fresh worktree with the same dependency layout (58 of 67 rerun there failed); the other 3 were fixed after the run — dist rebuilt, the deleted CLI's test removed, a registry pointer given its line range — and pass now. Zero regressions attributable to this phase |
+| Spec-kit kept suites (`mcp-server/tests` plus `scripts/tests`), final state | 41 failing files, 71 failing tests, 2,646 passed. 38 of the 41 fail identically at `c3fea783ba` in a fresh worktree with the same dependency layout (58 of 67 rerun there failed); the other 3 were fixed after the run — dist rebuilt, the deleted CLI's test removed, a registry pointer given its line range — and pass now. Zero regressions attributable to this phase |
 | Nine early regression candidates | All closed: three tests of deleted migrations and the plugin bridge deleted with their subjects, one flag-docs test deleted with its documents, four launcher, IPC, sweeper and handback tests reconciled to the surviving contract with no subject fix needed, one live-spawn test was a load flake |
 <!-- /ANCHOR:verification -->
 
@@ -187,6 +187,6 @@ the phase sits in the worktree on `branches/017-memory-decommission`.
 3. **`lib/description/repair.ts` is now test-only.** It should either fold into `repair-derived.cjs` or go; nothing in production reaches it.
 4. **The model-server supervisor's maintenance-marker read path is unreachable.** Only the deleted engine ever wrote that marker, so the read survives with no writer.
 5. **About twenty live script-runner variables are still undocumented in `ENV-REFERENCE.md`.** They sit outside the drift gate, so the gate passes while the gap remains.
-6. **Pre-existing failures left alone under scope lock:** sk-doc's frozen durable-directory manifest test, which fails identically at `cc6a50271e` and is stale; the memory-roadmap-flags database-directory cases, which throw `ProductionDatabaseResolutionError` from `shared/paths.ts` in this layout; the `repair-derived` fixture cases already on the HEAD failure list; and `deep-model-benchmark-confirm.yaml`, which does not parse at HEAD either.
+6. **Pre-existing failures left alone under scope lock:** sk-doc's frozen durable-directory manifest test, which fails identically at `c3fea783ba` and is stale; the memory-roadmap-flags database-directory cases, which throw `ProductionDatabaseResolutionError` from `shared/paths.ts` in this layout; the `repair-derived` fixture cases already on the HEAD failure list; and `deep-model-benchmark-confirm.yaml`, which does not parse at HEAD either.
 7. **Frontmatter version fields were not bumped** on the documents this phase edited, matching the phase-002 convention.
 <!-- /ANCHOR:limitations -->

@@ -44,7 +44,7 @@ _memory:
 |-------|-------|
 | **Packet** | system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering |
 | **Status** | Complete |
-| **Commits** | `90df8cfa67`, `376aec67b3`, `20665c8d98`, `f3a42a2af3`, `8371855fbb`, `947467ecc7` on `worktrees/022-012-runtime-enablement-build`, not pushed |
+| **Commits** | `80259accd7`, `e359b0b79b`, `0f76861864`, `f19c515933`, `bc5b4fbb80`, `211aacf462` on `worktrees/022-012-runtime-enablement-build`, not pushed |
 | **Completed** | Rollback ceremony, migration scaffolding, and the modules they orphaned removed; live ledger loop verified intact |
 | **Lines** | 312 files changed, 319 insertions, 180,014 deletions across the phase |
 <!-- /ANCHOR:metadata -->
@@ -60,11 +60,11 @@ inflight-state classification it used to orchestrate were ceremony around a deci
 
 **41 lib module directories and 47 unit suites were deleted** across five commits, in import-graph order:
 
-- `90df8cfa67` — the 8 `*-rollback-gate/` modules and `rollback-drills` (leaf modules; test-only importers), −30,194 LOC.
-- `376aec67b3` — the per-mode authority-flip cutover ceremony (preflight, cutover-coordinator, coordinator-factory, ledger-event, authority-flip-policy, manifest-order), keeping the selector, registry, and window-free finalize CAS.
-- `20665c8d98` — 38 dead unit suites, the `enable-modes.cjs` sever from the observation/parity gate, the `enable-modes-cli`/`spawn-cjs` suite trims, and doc hygiene.
-- `f3a42a2af3` — the migration scaffolding batch 1/2 (100 files): `*-certificates`, `*-resume-adapter`, `*-shadow-parity`, `cutover-certificate`, `deep-research-cutover-evidence`, `inflight-state-classification`.
-- `8371855fbb` — batch 2/2 (59 files): the `shadow-parity` harness, `restart-observation`, the model/skill-benchmark emitters, `inflight-state-migration`, and `mixed-version-fixtures` last, plus the one-time pilot drill script.
+- `80259accd7` — the 8 `*-rollback-gate/` modules and `rollback-drills` (leaf modules; test-only importers), −30,194 LOC.
+- `e359b0b79b` — the per-mode authority-flip cutover ceremony (preflight, cutover-coordinator, coordinator-factory, ledger-event, authority-flip-policy, manifest-order), keeping the selector, registry, and window-free finalize CAS.
+- `0f76861864` — 38 dead unit suites, the `enable-modes.cjs` sever from the observation/parity gate, the `enable-modes-cli`/`spawn-cjs` suite trims, and doc hygiene.
+- `f19c515933` — the migration scaffolding batch 1/2 (100 files): `*-certificates`, `*-resume-adapter`, `*-shadow-parity`, `cutover-certificate`, `deep-research-cutover-evidence`, `inflight-state-classification`.
+- `bc5b4fbb80` — batch 2/2 (59 files): the `shadow-parity` harness, `restart-observation`, the model/skill-benchmark emitters, `inflight-state-migration`, and `mixed-version-fixtures` last, plus the one-time pilot drill script.
 
 **The live loop was preserved and never touched**: the `per-mode-authority-flip` selector, registry, and
 window-free finalize CAS; the `mode-append-gateway`; the event ledger and envelope; and the
@@ -76,7 +76,7 @@ observation gate — was severed and the build re-greened before the module was 
 kept checks are `tree-clean`, `candidate-frozen`, `authority-state`, `runtime-suite`,
 `consumer-reachability`, `reader-contracts`, and `fanout-real-run`.
 
-**Wave 3 — the orphan cleanup** (`947467ecc7`, +4/−5,383, 38 files). Removing the scaffolding left three
+**Wave 3 — the orphan cleanup** (`211aacf462`, +4/−5,383, 38 files). Removing the scaffolding left three
 modules with zero importers, whose only consumers had themselves been deleted:
 `certificate-binding-core` (cutover-certificate core), `compatibility-shadow` (the dual-read / versioned-upcaster
 comparison harness the shadow-parity cutover used), and `cross-mode-closures` (a speculative shared-implementation
@@ -177,7 +177,7 @@ provenance string, not an import of the deleted module.
 
 **The three orphaned modules were removed in Wave 3; `mode-contracts` is now orphaned in turn.** The
 `certificate-binding-core`, `compatibility-shadow`, and `cross-mode-closures` modules that the scaffolding
-removal orphaned were deleted in `947467ecc7` after a worktree-wide import scan proved them dead. Because
+removal orphaned were deleted in `211aacf462` after a worktree-wide import scan proved them dead. Because
 `cross-mode-closures` was the sole importer of `mode-contracts`, that module now has zero importers — it was
 left in place as the next follow-up candidate rather than cascaded, since the operator scoped this wave to the
 three named modules. Whether `mode-contracts` (and any speculative subtree that only its now-removed importer

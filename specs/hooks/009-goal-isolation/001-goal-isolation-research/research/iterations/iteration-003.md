@@ -213,7 +213,7 @@ All P0 and P1 requirements from `spec.md` are addressed by this iteration's deli
 | **REQ-002** (current vs historical) | All findings cite current source files, function line numbers, git history, or test evidence. Historical claims from packets 032 and 034 were verified and reconciled (Devin decommissioned, hypothesized paths absent). |
 | **REQ-003** (session identity) | Finding 1: Architecture proposal resolves this. When no runtime exposes a hook-accessible session ID (Finding 2.4), the operator supplies it via `--session`. Every runtime gets a scoped file; the `runtime` label becomes functional for path resolution. |
 | **REQ-004** (migration contract) | Finding 2: Full migration strategy with scope key, opaque filename rule, legacy quarantine, resume/fork semantics, and backward-compatible defaults. |
-| **REQ-005** (Devin truth) | Resolved in iteration 2, Finding 2.3: Devin adapter was explicitly decommissioned in commit `cac19bbfa5e`. Should NOT be restored. |
+| **REQ-005** (Devin truth) | Resolved in iteration 2, Finding 2.3: Devin adapter was explicitly decommissioned in commit `a2241041b09`. Should NOT be restored. |
 | **REQ-006** (proof plan) | Finding 3: 4-stage verification plan with 13 test assertions across positive controls, negative controls, regression controls, and a 7-point final gate. |
 
 [SOURCE: spec.md:128-141 — requirements REQ-001 through REQ-006]

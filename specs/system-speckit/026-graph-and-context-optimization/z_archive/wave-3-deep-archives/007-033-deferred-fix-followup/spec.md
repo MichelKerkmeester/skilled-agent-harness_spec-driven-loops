@@ -54,7 +54,7 @@ _memory:
 
 Packet 018 fixed 14 of 17 actionable findings from the 017 deep-review, deferring 5 (F001, F006/F011, F012, F017, F018) with documented rationale. The user requested all deferred items be addressed. This packet closes them.
 
-The reconstruction of `architecture.md` is the load-bearing piece — the original 26KB content from packet `1fcc5a1f5` (later rebased to `81f28435af`) was wiped by a parallel-session force-push, leaving an empty file. Reconstructing it lets F006/F011 close cleanly and restores a critical architectural reference.
+The reconstruction of `architecture.md` is the load-bearing piece — the original 26KB content from packet `1fcc5a1f5` (later rebased to `2490a69840`) was wiped by a parallel-session force-push, leaving an empty file. Reconstructing it lets F006/F011 close cleanly and restores a critical architectural reference.
 <!-- /ANCHOR:problem -->
 
 ---

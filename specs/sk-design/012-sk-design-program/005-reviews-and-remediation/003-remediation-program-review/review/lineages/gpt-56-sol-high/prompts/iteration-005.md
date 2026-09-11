@@ -11,7 +11,7 @@ Resolved route: mode=review; target_agent=@deep-review; execution=single_review_
 
 Iteration 5/10, forced max-iterations. Initial dimensions 4/4 covered. Active P0=0 P1=5 P2=0; claim adjudication passed.
 Dimension: correctness, second-pass integration breadth.
-Target: `.opencode/specs/sk-design/017-remediation-program-review`; frozen scope is its validated 118-file manifest at pinned HEAD `7b9d3b6b71`.
+Target: `.opencode/specs/sk-design/017-remediation-program-review`; frozen scope is its validated 118-file manifest at pinned HEAD `6432665a68`.
 Focus: packet-level consumer closure across runtime entry points and regeneration boundaries. Enumerate manifest-scoped consumers of `lib/paths.mjs`, `style-library.mjs`, `persistent-adapter.mjs`, generated graph metadata, command metadata, the four design-mode corpus consumers, and md-generator `study-prepare.ts`. Verify no runtime consumer reconstructs retired paths, mismatches the moved manifests, or silently depends on stale generated state. Distinguish historical docs and fixture overrides from active consumers.
 
 ## Required Bindings

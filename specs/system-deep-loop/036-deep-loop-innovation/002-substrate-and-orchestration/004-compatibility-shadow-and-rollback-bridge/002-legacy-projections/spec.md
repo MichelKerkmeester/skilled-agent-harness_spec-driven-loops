@@ -40,7 +40,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/004-compatibility-shadow-and-rollback-bridge/002-legacy-projections |
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Implemented and verified (additive-dark); landed in branch history at `012652b479` |
+| **Status** | Implemented and verified (additive-dark); landed in branch history at `68b518ab0d` |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop |
 | **Origin** | Legacy-projection child of the phase-008 compatibility, shadow, and rollback bridge |

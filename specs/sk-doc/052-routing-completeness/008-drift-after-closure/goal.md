@@ -82,7 +82,7 @@ and findings belong here.
 |------|-------|----------|
 | Gate B re-run | Done | `research/gate-b-rerun-2026-09-05.tsv`, generation 593 |
 | Gate A re-run | Done | `research/gate-a-rerun-2026-09-05.tsv`, two rows moved |
-| Scaffold loader paths | Done | Three literals, suite 9 of 9, scratch packet eleven documents. The same edit landed concurrently in `743e626543` from packet 054 phase 002 |
+| Scaffold loader paths | Done | Three literals, suite 9 of 9, scratch packet eleven documents. The same edit landed concurrently in `ccbff09cfb` from packet 054 phase 002 |
 | Signal retirement | Done | Mint `already-exists`, guard fresh, live replay on `system-spec-kit` |
 | Parity pin | Recorded | ADR-002, three readings across two regimes, file unedited |
 | `trigger_phrases` | Recorded | ADR-003, owner `system-skill-advisor` |

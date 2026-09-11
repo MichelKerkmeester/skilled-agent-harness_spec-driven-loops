@@ -48,7 +48,7 @@ _memory:
 | **Testing** | vitest (`mcp_server/tests/*.vitest.ts`), `tsc` + build, `validate.sh --strict` on this folder |
 
 ### Overview
-This sub-phase lands the highest-stakes spine - write → recall → prompt - plus two same-boundary recall-correctness candidates. The center of gravity is one coherent **recall-trust spine**: the C8 `source_kind`-labeled render escaper at the recall content formatter, its non-destructive capture-side injection-marker filter at the shared indexing core reached by `indexSingleFile` and focused poison/injection vitests. The Constitutional-CAS-guard was already DONE in 030 (`e1c6a3c793`), this phase finishes its P2 polish and the additive residual-retention field. M-system-kind-exclusion remains gated because no safe substrate-only signal or live-DB validation input is available here. No candidate has a benchmarked benefit number - every change ships for correctness and reversibility (campaign caveat).
+This sub-phase lands the highest-stakes spine - write → recall → prompt - plus two same-boundary recall-correctness candidates. The center of gravity is one coherent **recall-trust spine**: the C8 `source_kind`-labeled render escaper at the recall content formatter, its non-destructive capture-side injection-marker filter at the shared indexing core reached by `indexSingleFile` and focused poison/injection vitests. The Constitutional-CAS-guard was already DONE in 030 (`672d8a9187`), this phase finishes its P2 polish and the additive residual-retention field. M-system-kind-exclusion remains gated because no safe substrate-only signal or live-DB validation input is available here. No candidate has a benchmarked benefit number - every change ships for correctness and reversibility (campaign caveat).
 <!-- /ANCHOR:summary -->
 
 ---
@@ -212,7 +212,7 @@ Phase 1 (Setup: seams + fixtures + live-DB snapshot) ──> Phase 2 (Implementa
 |-----------|-----------------|--------|
 | C8 source_kind-gated render escaper | M (reference-impl backed) | DONE |
 | M-write-time-injection-filter | M (co-built with C8) | DONE |
-| Constitutional-CAS-guard | S | DONE (`e1c6a3c793`) |
+| Constitutional-CAS-guard | S | DONE (`672d8a9187`) |
 | Constitutional-CAS-P2-polish | S (cleanup) | DONE |
 | M-system-kind-exclusion | S→ real build (re-scoped) | PENDING - gated on substrate signal + live-DB validation |
 | M-residual-retention-report | S (additive field) | DONE |

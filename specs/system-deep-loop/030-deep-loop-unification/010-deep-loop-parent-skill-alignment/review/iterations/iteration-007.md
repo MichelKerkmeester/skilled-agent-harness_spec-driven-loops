@@ -10,7 +10,7 @@ Dispatched: 2026-06-28T07:58:41.082Z | wall: 248s | billing: free
 
 COSTAR: I am Kimi-K2.7 reviewing the 155/002 packet for **correctness / internal consistency** on iteration 7/10. I will be precise, skeptical, and evidence-first. The audience is the deep-review convergence process. Output: prose summary + exactly one fenced JSON block.
 
-I verified the packet docs against the actual repo state and commit `b0cbbe7b67`, which executed the rename and hub-routing retrofit. The execution mostly matches the docs' "executed" claims, but several docs still describe the pre-execution state or misrepresent ADR-003, and downstream templates retain stale grandfathering guidance. I found 6 new/refined correctness findings.
+I verified the packet docs against the actual repo state and commit `8ef0455117`, which executed the rename and hub-routing retrofit. The execution mostly matches the docs' "executed" claims, but several docs still describe the pre-execution state or misrepresent ADR-003, and downstream templates retain stale grandfathering guidance. I found 6 new/refined correctness findings.
 
 ```json
 {

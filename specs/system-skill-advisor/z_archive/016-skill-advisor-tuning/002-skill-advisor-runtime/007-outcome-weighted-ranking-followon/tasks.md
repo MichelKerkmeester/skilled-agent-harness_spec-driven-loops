@@ -46,7 +46,7 @@ _memory:
 
 **Task Format**: `T### [P?] Description (file path)`
 
-> **Candidate status (vs 030 Wave-0 shipped record):** ALL three candidates in this sub-phase are PENDING. `030/spec.md §14` ships none of them, its 13 shipped rows are Q6-anchor, C9, ANN tie-stable, C5-B, C-X1/C6-A, two-primitive-content-id, gauges, skip-closed, Constitutional-CAS, Deep-Loop trio, Code-Graph Q4-C1 (plus DEFERRED C4-A, M-system-kind). No advisor outcome-ranking / ambient-tick / bm25-calibration commit exists in `git log 1ecc531431..ab5459fb6d`. Therefore no task below is pre-checked `[x]` with a commit, every task is `[ ]` PENDING.
+> **Candidate status (vs 030 Wave-0 shipped record):** ALL three candidates in this sub-phase are PENDING. `030/spec.md §14` ships none of them, its 13 shipped rows are Q6-anchor, C9, ANN tie-stable, C5-B, C-X1/C6-A, two-primitive-content-id, gauges, skip-closed, Constitutional-CAS, Deep-Loop trio, Code-Graph Q4-C1 (plus DEFERRED C4-A, M-system-kind). No advisor outcome-ranking / ambient-tick / bm25-calibration commit exists in `git log 2e17fdbe32..5ed284319b`. Therefore no task below is pre-checked `[x]` with a commit, every task is `[ ]` PENDING.
 <!-- /ANCHOR:notation -->
 
 ---

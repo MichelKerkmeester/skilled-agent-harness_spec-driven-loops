@@ -6,7 +6,7 @@ trigger_phrases: []
 
 **Verdict:** FAIL
 
-Scope: Async background enrichment safety (0060a097b3). `setImmediate` runs DB writes (entities, summaries, causal edges, marker) after the save response returned and after the spec-folder lock released.
+Scope: Async background enrichment safety (7504112605). `setImmediate` runs DB writes (entities, summaries, causal edges, marker) after the save response returned and after the spec-folder lock released.
 
 ## Findings
 

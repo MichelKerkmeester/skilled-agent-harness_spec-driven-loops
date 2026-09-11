@@ -42,7 +42,7 @@ _memory:
 |-------|-------|
 | **Packet** | system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/010-full-enablement-finalize |
 | **Status** | Complete |
-| **Commits** | `46346369d2` (verify-authority final-tier) on `worktrees/022-012-runtime-enablement-build`, not pushed; finalize CAS / flip path / gate widening / reader-contract check pre-existed in earlier commits |
+| **Commits** | `1ea38b6247` (verify-authority final-tier) on `worktrees/022-012-runtime-enablement-build`, not pushed; finalize CAS / flip path / gate widening / reader-contract check pre-existed in earlier commits |
 | **Completed** | All eight modes finalized; legacy shadow dropped; whole-system gate literal PASS with a proven negative control |
 | **Lines** | 1 runtime file changed (verify-authority.cjs); the authority records are gitignored runtime state |
 <!-- /ANCHOR:metadata -->
@@ -72,7 +72,7 @@ accepts both the reversible and final tiers (dark writer, stored record) as on-l
 runtime code change of the phase.
 
 **The whole-system gate was re-measured to a literal PASS.** The gate reads captured suite logs against a
-frozen tree ref; that ref (`5511e4eac2`) and its candidate log predated the deletion mission, so they
+frozen tree ref; that ref (`fd0bd2df92`) and its candidate log predated the deletion mission, so they
 described a superseded test set and the candidate log no longer existed. The full runtime suite was re-run on
 the current finalized tree, the fresh log was captured into the gate's own directory, and `SUITE_TREE_REF`
 was repointed to the shipped commit — an honest re-measurement, never a repoint without re-running. The gate
@@ -125,8 +125,8 @@ row red and the verdict to FAIL — before the green run was accepted as evidenc
 `verify-authority.cjs` reports all eight on `new_authoritative_final`, `dark`, `stored`, `allOnLedger: true`,
 exit 0.
 
-**Gate PASS.** `run-gate.mjs --candidate 46346369d2 --baseline 8c9f0b6944` returns **verdict PASS**,
-candidateSha `46346369d243dc2865a76a39971502d7d30a98fb`, with every check passing and none not-run:
+**Gate PASS.** `run-gate.mjs --candidate 1ea38b6247 --baseline 6d055545b3` returns **verdict PASS**,
+candidateSha `1ea38b6247cd120cacddd513cbd9ef4a10a5c66c`, with every check passing and none not-run:
 `tree-clean` pass; `candidate-frozen` identical; `authority-state` — 8 modes on `new_authoritative_final`, 8
 from a stored record, 0 from the absent-record default; `runtime-suite` — failed 14 vs 19 baseline (Δ−5);
 `consumer-reachability` — all 7 scripts exist and spawn; `reader-contracts` — all 8 modes read cleanly via

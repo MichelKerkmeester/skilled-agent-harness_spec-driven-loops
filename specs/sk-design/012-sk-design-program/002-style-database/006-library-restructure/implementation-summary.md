@@ -41,7 +41,7 @@ _memory:
 |-------|-------|
 | **Spec Folder** | 006-library-restructure |
 | **Status** | COMPLETE (restructure G1-G3; Checkpoint B deferred) |
-| **Completed** | 2026-07-21 — commits `02481e1ec3`, `b8732ba436`, `cee62570e4`, `3cd7d67fb8` |
+| **Completed** | 2026-07-21 — commits `1d7e5a3ce8`, `e953099b0e`, `c5056f15fe`, `17a8f8663c` |
 | **Level** | 2 |
 | **Verification** | styles aggregators 89/89 + four mode suites 22/25/21/23 green; manifests byte-identical |
 <!-- /ANCHOR:metadata -->

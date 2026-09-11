@@ -85,7 +85,7 @@ The phase defines a two-axis model where every packet is represented in `modes[]
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The core phase shipped in remote commit `b6fe2f31b1` and local commit `deab5a3853`; the tail shipped in remote commit `d1b545e4b6`. The tail hardened vocab sync missing-metadata behavior, upgraded the parent-hub scaffolder to emit the canonical two-axis file set, and added the doctor two-axis invariant.
+The core phase shipped in remote commit `f35597ffd8` and local commit `deab5a3853`; the tail shipped in remote commit `a0bbe9f063`. The tail hardened vocab sync missing-metadata behavior, upgraded the parent-hub scaffolder to emit the canonical two-axis file set, and added the doctor two-axis invariant.
 
 <!-- /ANCHOR:how-delivered -->
 ---
@@ -109,7 +109,7 @@ The core phase shipped in remote commit `b6fe2f31b1` and local commit `deab5a385
 
 | Test Type | Status | Coverage | Notes |
 |-----------|--------|----------|-------|
-| vocab-sync vitests | Pass | 5/5 | Includes missing router/registry fail-loud fixtures from `d1b545e4b6` |
+| vocab-sync vitests | Pass | 5/5 | Includes missing router/registry fail-loud fixtures from `a0bbe9f063` |
 | drift guard | Pass | 7/7 | Advisor projection compatibility stayed green |
 | deep-improvement vitests | Partial pass | 414 pass | 2 failures were pre-existing and unrelated per phase facts |
 | strict-gap inventory | Complete | sk-code 6, deep-loop 27, sk-design 10 | Migration-gated inventory for later promotion |

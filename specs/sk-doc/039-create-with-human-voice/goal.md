@@ -104,7 +104,7 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | The mode packet ships | Done | `.opencode/skills/sk-doc/sk-create-with-human-voice/` carries `SKILL.md`, `README.md`, three references, one asset, the scanner and a nine-scenario playbook |
-| 001 utilization review | Done | `validate.sh --strict` on the phase prints `Summary: Errors: 0  Warnings: 0`, `RESULT: PASSED`. Committed as `f92c84a673` and `710f2171d6`, both 2026-09-02 |
+| 001 utilization review | Done | `validate.sh --strict` on the phase prints `Summary: Errors: 0  Warnings: 0`, `RESULT: PASSED`. Committed as `f4cd27a29e` and `6bce47b5e8`, both 2026-09-02 |
 | Findings from 001 | Pending | Ten items re-checked open on 2026-09-02 and listed with evidence in `001-utilization-review/goal.md` |
 
 ### Deviations and findings

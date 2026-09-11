@@ -36,8 +36,8 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Merge `skilled/v4.0.0.0` into the branch and resolve 34 conflicts (`144897ba5d`)
-- [x] T002 Merge the operator's four later commits and regenerate 049 metadata (`d56a0db7a1`)
+- [x] T001 Merge `skilled/v4.0.0.0` into the branch and resolve 34 conflicts (`6b06d6c892`)
+- [x] T002 Merge the operator's four later commits and regenerate 049 metadata (`8509a66fc7`)
 - [x] T003 [P] Rebuild the validation engine in the worktree after the merge
 <!-- /ANCHOR:phase-1 -->
 
@@ -46,7 +46,7 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T004 Validate the 187 changed reference and README documents by class; fix the two real failures (`f651137d3c`)
+- [x] T004 Validate the 187 changed reference and README documents by class; fix the two real failures (`e1c1e03df8`)
 - [x] T005 Fast-forward `skilled/v4.0.0.0` in the main checkout and `main` to it
 - [x] T006 Two passes under this packet (lineages `luna-max`, `luna-max-pass2`), then the rename phase's own pass under 053
 - [x] T007 Eleven P1s fixed at source across the passes; the final pass reports 0 P0 and 0 P1

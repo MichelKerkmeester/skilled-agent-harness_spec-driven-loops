@@ -8,7 +8,7 @@ Adjudicated 15 P1 findings from iterations 1-8. Results: 13 confirmed, 1 false-p
 
 ### F-001 [Missing path validation on CLI args]
 - **Status**: CONFIRMED
-- **Evidence**: `const specFolder = ensureString(args, 'specFolder');` (convergence.cjs:231) - no path validation before use in database operations. The ENV_ALLOWLIST hardening added in commit f8f3bdcac6 addresses executor environment variables but does not validate CLI argument paths.
+- **Evidence**: `const specFolder = ensureString(args, 'specFolder');` (convergence.cjs:231) - no path validation before use in database operations. The ENV_ALLOWLIST hardening added in commit e5368e1448 addresses executor environment variables but does not validate CLI argument paths.
 - **Action**: Keep as P1
 
 ### F-002 [DB lifecycle pattern deviates from ADR-001 contract]

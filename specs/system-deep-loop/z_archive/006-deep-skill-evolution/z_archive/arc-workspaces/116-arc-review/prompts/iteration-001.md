@@ -8,7 +8,7 @@ You are a deep-review LEAF agent performing the FIRST iteration of a 10-iteratio
 
 ## CONTEXT (RCAF)
 
-The arc just shipped (10 commits ending `e2cc6d238f`) a v2 review-depth contract: `reviewDepthSchemaVersion`, `reviewDepthApplicability`, `targetSelection`, `searchCoverage`, `searchLedger`, new STOP gates (`candidateCoverageGate`, `graphlessFallbackGate`), graph vocabulary extension (`BUG_CLASS`, `INVARIANT`, `PRODUCER`, `CONSUMER`, `TEST`), and a manual testing playbook category 08--. This deep-review session is dogfooding the new logic on the very arc that shipped it.
+The arc just shipped (10 commits ending `d30b9d7f70`) a v2 review-depth contract: `reviewDepthSchemaVersion`, `reviewDepthApplicability`, `targetSelection`, `searchCoverage`, `searchLedger`, new STOP gates (`candidateCoverageGate`, `graphlessFallbackGate`), graph vocabulary extension (`BUG_CLASS`, `INVARIANT`, `PRODUCER`, `CONSUMER`, `TEST`), and a manual testing playbook category 08--. This deep-review session is dogfooding the new logic on the very arc that shipped it.
 
 Review Iteration: 1 of 10
 Mode: review

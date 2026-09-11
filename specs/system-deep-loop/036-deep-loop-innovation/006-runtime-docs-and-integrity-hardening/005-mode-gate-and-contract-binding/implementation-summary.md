@@ -13,7 +13,7 @@ _memory:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/005-mode-gate-and-contract-binding"
     last_updated_at: "2026-08-17T04:04:40Z"
     last_updated_by: "codex"
-    recent_action: "Landed as c6957eac3c on skilled/v4.0.0.0 (9/9 findings)"
+    recent_action: "Landed as 2e89392a91 on skilled/v4.0.0.0 (9/9 findings)"
     next_safe_action: "None — all findings landed"
     blockers: []
     key_files:
@@ -127,34 +127,34 @@ The version-binding reference is the installed constants imported by each mode's
 
 ### Red-before / green-after evidence
 
-The focused negative tests were run before production edits and failed at the defect boundary. The corresponding direct suites were rerun after the fixes and passed. The candidate SHA for all receipts is the worktree HEAD at the start of implementation: `9229cb8f3e281c9291e6d631237528bc755e6f4b`.
+The focused negative tests were run before production edits and failed at the defect boundary. The corresponding direct suites were rerun after the fixes and passed. The candidate SHA for all receipts is the worktree HEAD at the start of implementation: `2d12dfc5f5f365f396c51a7dea1c7cb825f5501b`.
 
 | Finding | Red-before test | Green-after test and receipt |
 |---|---|---|
-| F-013-01 | `shares strict installed-version, artifact, and authorization binding predicates` failed before the shared validator export and artifact binding adoption. | `rejects certificate references that are unrelated to fixture evidence`; suite digest `77b85242ee1c706bca93f2af6975a0b5b8691d19522556afded3a635537d7f24`; candidate SHA `9229cb8f3e281c9291e6d631237528bc755e6f4b`. Research direct suite: 78 passed, rc 0. |
-| F-013-02 | `shares strict installed-version, artifact, and authorization binding predicates` failed before the prepared-decision predicate was exported; switch negative cases were also red in the focused pre-fix run. | `rejects a post-authorization configuration-version claim change through the evidence digest`; suite digest `77b85242ee1c706bca93f2af6975a0b5b8691d19522556afded3a635537d7f24`; candidate SHA `9229cb8f3e281c9291e6d631237528bc755e6f4b`. Research, review, council, and alignment direct suites all passed. |
-| F-013-03 | `copies and freezes identity-bearing inputs before exposing the closure context` failed because caller mutation changed the exposed budget scope. | Same named test; suite digest `1a091ae4936a82860c5dd88587e22bfcfbacf4fa30ab8f6453a3520b43238c8d`; candidate SHA `9229cb8f3e281c9291e6d631237528bc755e6f4b`; cross-mode suite: 16 passed, rc 0. |
-| F-013-04 | `rejects a reducer result bound to an event outside the fixture` failed because the fixture acceptance path ignored `appliedEventId`. | Same named test; suite digest `77b85242ee1c706bca93f2af6975a0b5b8691d19522556afded3a635537d7f24`; candidate SHA `9229cb8f3e281c9291e6d631237528bc755e6f4b`; mode-contract suite: 36 passed, rc 0. |
-| F-013-05 | `rejects certificate references that are unrelated to fixture evidence` failed because unrelated non-empty references were accepted. | Same named test; suite digest `77b85242ee1c706bca93f2af6975a0b5b8691d19522556afded3a635537d7f24`; candidate SHA `9229cb8f3e281c9291e6d631237528bc755e6f4b`; mode-contract suite: 36 passed, rc 0. |
-| F-013-06 | Research and review `returns a typed blocked result for a null top-level caller value` both failed with a null dereference. | Research named test; suite digest `0a073327036223edc791e73b80fd111f381c6f78ff88fcd3552c1feab7764883`; review named test; suite digest `6946b891156053e0b368862511272d24de5b3bcf74761eb8c3a95ebb9c79c411`; candidate SHA `9229cb8f3e281c9291e6d631237528bc755e6f4b`; research 78 passed and review 83 passed, rc 0. |
-| F-024-02 | Common and agent stale-but-token-shaped version tests failed in the focused pre-fix run. | Common `rejects a token-valid version tuple that does not name the installed common contract`; digest `b34b6b69a5510021aa2485977cefe109c275754bc07faf7234b8ae0e573e2383`; agent corresponding test; digest `de4e65839f9986ab0d10051890af1bd0180513a05eb612deb9c5f28efbf38a82`; candidate SHA `9229cb8f3e281c9291e6d631237528bc755e6f4b`; common 37 passed and agent 255 passed, rc 0. |
-| F-005-02 | `does not count execution rows without matching authenticated evidence` was red because fabricated execution rows earned credit. | Same named test; suite digest `6946b891156053e0b368862511272d24de5b3bcf74761eb8c3a95ebb9c79c411`; candidate SHA `9229cb8f3e281c9291e6d631237528bc755e6f4b`; review suite 83 passed, rc 0. |
-| F-004-04 | `classifies no receipt, receipt-only, caller result evidence, and desired-fingerprint conflict` was red because the caller result was labeled ledger-authoritative. | Same named test; suite digest `6c7a444e2984b98498d26580066d3b2bee54597a2aea8a12680140782879c509`; candidate SHA `9229cb8f3e281c9291e6d631237528bc755e6f4b`; dispatch suite 26 passed, rc 0. |
+| F-013-01 | `shares strict installed-version, artifact, and authorization binding predicates` failed before the shared validator export and artifact binding adoption. | `rejects certificate references that are unrelated to fixture evidence`; suite digest `77b85242ee1c706bca93f2af6975a0b5b8691d19522556afded3a635537d7f24`; candidate SHA `2d12dfc5f5f365f396c51a7dea1c7cb825f5501b`. Research direct suite: 78 passed, rc 0. |
+| F-013-02 | `shares strict installed-version, artifact, and authorization binding predicates` failed before the prepared-decision predicate was exported; switch negative cases were also red in the focused pre-fix run. | `rejects a post-authorization configuration-version claim change through the evidence digest`; suite digest `77b85242ee1c706bca93f2af6975a0b5b8691d19522556afded3a635537d7f24`; candidate SHA `2d12dfc5f5f365f396c51a7dea1c7cb825f5501b`. Research, review, council, and alignment direct suites all passed. |
+| F-013-03 | `copies and freezes identity-bearing inputs before exposing the closure context` failed because caller mutation changed the exposed budget scope. | Same named test; suite digest `1a091ae4936a82860c5dd88587e22bfcfbacf4fa30ab8f6453a3520b43238c8d`; candidate SHA `2d12dfc5f5f365f396c51a7dea1c7cb825f5501b`; cross-mode suite: 16 passed, rc 0. |
+| F-013-04 | `rejects a reducer result bound to an event outside the fixture` failed because the fixture acceptance path ignored `appliedEventId`. | Same named test; suite digest `77b85242ee1c706bca93f2af6975a0b5b8691d19522556afded3a635537d7f24`; candidate SHA `2d12dfc5f5f365f396c51a7dea1c7cb825f5501b`; mode-contract suite: 36 passed, rc 0. |
+| F-013-05 | `rejects certificate references that are unrelated to fixture evidence` failed because unrelated non-empty references were accepted. | Same named test; suite digest `77b85242ee1c706bca93f2af6975a0b5b8691d19522556afded3a635537d7f24`; candidate SHA `2d12dfc5f5f365f396c51a7dea1c7cb825f5501b`; mode-contract suite: 36 passed, rc 0. |
+| F-013-06 | Research and review `returns a typed blocked result for a null top-level caller value` both failed with a null dereference. | Research named test; suite digest `0a073327036223edc791e73b80fd111f381c6f78ff88fcd3552c1feab7764883`; review named test; suite digest `6946b891156053e0b368862511272d24de5b3bcf74761eb8c3a95ebb9c79c411`; candidate SHA `2d12dfc5f5f365f396c51a7dea1c7cb825f5501b`; research 78 passed and review 83 passed, rc 0. |
+| F-024-02 | Common and agent stale-but-token-shaped version tests failed in the focused pre-fix run. | Common `rejects a token-valid version tuple that does not name the installed common contract`; digest `b34b6b69a5510021aa2485977cefe109c275754bc07faf7234b8ae0e573e2383`; agent corresponding test; digest `de4e65839f9986ab0d10051890af1bd0180513a05eb612deb9c5f28efbf38a82`; candidate SHA `2d12dfc5f5f365f396c51a7dea1c7cb825f5501b`; common 37 passed and agent 255 passed, rc 0. |
+| F-005-02 | `does not count execution rows without matching authenticated evidence` was red because fabricated execution rows earned credit. | Same named test; suite digest `6946b891156053e0b368862511272d24de5b3bcf74761eb8c3a95ebb9c79c411`; candidate SHA `2d12dfc5f5f365f396c51a7dea1c7cb825f5501b`; review suite 83 passed, rc 0. |
+| F-004-04 | `classifies no receipt, receipt-only, caller result evidence, and desired-fingerprint conflict` was red because the caller result was labeled ledger-authoritative. | Same named test; suite digest `6c7a444e2984b98498d26580066d3b2bee54597a2aea8a12680140782879c509`; candidate SHA `2d12dfc5f5f365f396c51a7dea1c7cb825f5501b`; dispatch suite 26 passed, rc 0. |
 
 ### Direct suite receipts
 
 | Check | Result |
 |---|---|
 | TypeScript | `/opt/homebrew/bin/node ../../system-spec-kit/node_modules/.bin/tsc --noEmit -p tsconfig.json`; rc 0. |
-| Mode contracts | 36 passed, rc 0; digest `77b85242ee1c706bca93f2af6975a0b5b8691d19522556afded3a635537d7f24`; candidate SHA `9229cb8f3e281c9291e6d631237528bc755e6f4b`. |
-| Cross-mode closures | 16 passed, rc 0; digest `1a091ae4936a82860c5dd88587e22bfcfbacf4fa30ab8f6453a3520b43238c8d`; candidate SHA `9229cb8f3e281c9291e6d631237528bc755e6f4b`. |
-| Dispatch receipts | 26 passed, rc 0; digest `6c7a444e2984b98498d26580066d3b2bee54597a2aea8a12680140782879c509`; candidate SHA `9229cb8f3e281c9291e6d631237528bc755e6f4b`. |
-| Deep research gate | 78 passed, rc 0; digest `0a073327036223edc791e73b80fd111f381c6f78ff88fcd3552c1feab7764883`; candidate SHA `9229cb8f3e281c9291e6d631237528bc755e6f4b`. |
-| Deep review gate | 83 passed, rc 0 with a 60-second per-test timeout; digest `6946b891156053e0b368862511272d24de5b3bcf74761eb8c3a95ebb9c79c411`; candidate SHA `9229cb8f3e281c9291e6d631237528bc755e6f4b`. |
-| Common gate | 37 passed, rc 0; digest `b34b6b69a5510021aa2485977cefe109c275754bc07faf7234b8ae0e573e2383`; candidate SHA `9229cb8f3e281c9291e6d631237528bc755e6f4b`. |
-| Agent gate | 255 passed, rc 0; digest `de4e65839f9986ab0d10051890af1bd0180513a05eb612deb9c5f28efbf38a82`; candidate SHA `9229cb8f3e281c9291e6d631237528bc755e6f4b`. |
-| Council rollback switch | 31 passed, rc 0; digest `6bb12349641eff40552a6cdb1455fb8a296950d891613e701eea985f4fa1441b`; candidate SHA `9229cb8f3e281c9291e6d631237528bc755e6f4b`. |
-| Alignment rollback switch | 86 passed, rc 0; digest `8acac59d23e598e3b15c10048ad34d612fe37e0797c7d840f3a51f046a368c51`; candidate SHA `9229cb8f3e281c9291e6d631237528bc755e6f4b`. |
+| Mode contracts | 36 passed, rc 0; digest `77b85242ee1c706bca93f2af6975a0b5b8691d19522556afded3a635537d7f24`; candidate SHA `2d12dfc5f5f365f396c51a7dea1c7cb825f5501b`. |
+| Cross-mode closures | 16 passed, rc 0; digest `1a091ae4936a82860c5dd88587e22bfcfbacf4fa30ab8f6453a3520b43238c8d`; candidate SHA `2d12dfc5f5f365f396c51a7dea1c7cb825f5501b`. |
+| Dispatch receipts | 26 passed, rc 0; digest `6c7a444e2984b98498d26580066d3b2bee54597a2aea8a12680140782879c509`; candidate SHA `2d12dfc5f5f365f396c51a7dea1c7cb825f5501b`. |
+| Deep research gate | 78 passed, rc 0; digest `0a073327036223edc791e73b80fd111f381c6f78ff88fcd3552c1feab7764883`; candidate SHA `2d12dfc5f5f365f396c51a7dea1c7cb825f5501b`. |
+| Deep review gate | 83 passed, rc 0 with a 60-second per-test timeout; digest `6946b891156053e0b368862511272d24de5b3bcf74761eb8c3a95ebb9c79c411`; candidate SHA `2d12dfc5f5f365f396c51a7dea1c7cb825f5501b`. |
+| Common gate | 37 passed, rc 0; digest `b34b6b69a5510021aa2485977cefe109c275754bc07faf7234b8ae0e573e2383`; candidate SHA `2d12dfc5f5f365f396c51a7dea1c7cb825f5501b`. |
+| Agent gate | 255 passed, rc 0; digest `de4e65839f9986ab0d10051890af1bd0180513a05eb612deb9c5f28efbf38a82`; candidate SHA `2d12dfc5f5f365f396c51a7dea1c7cb825f5501b`. |
+| Council rollback switch | 31 passed, rc 0; digest `6bb12349641eff40552a6cdb1455fb8a296950d891613e701eea985f4fa1441b`; candidate SHA `2d12dfc5f5f365f396c51a7dea1c7cb825f5501b`. |
+| Alignment rollback switch | 86 passed, rc 0; digest `8acac59d23e598e3b15c10048ad34d612fe37e0797c7d840f3a51f046a368c51`; candidate SHA `2d12dfc5f5f365f396c51a7dea1c7cb825f5501b`. |
 
 The user-mandated whole 168-file one-process Vitest run was not invoked because it hangs on append-lock. Verification used the affected suites per file. The pre-fix deep-review baseline had one existing 30-second timeout; the final sequential direct run passed all 83 tests. No new failures were observed. The requested `git checkout -- database/` pre-test cleanup could not run because the linked worktree index lock was denied by the environment; no database files were changed.
 
@@ -223,7 +223,7 @@ The independent verification pass was a separate final adversarial Codex verific
 <!-- ANCHOR:follow-up -->
 ## Follow-Up Items
 
-Rollback is per gate family: restore the family files to clean anchor `5c98e4654e` if a legitimate valid input is blocked and the defect cannot be repaired while preserving green direct suites. The shared validator can remain for other families, or the whole 027 runtime set can be restored from that anchor if the orchestrator requires an all-or-nothing rollback. No durable data migration occurred.
+Rollback is per gate family: restore the family files to clean anchor `0c5c966015` if a legitimate valid input is blocked and the defect cannot be repaired while preserving green direct suites. The shared validator can remain for other families, or the whole 027 runtime set can be restored from that anchor if the orchestrator requires an all-or-nothing rollback. No durable data migration occurred.
 
 The `032` riders should import `matchesInstalledVersionBindings`, `matchesArtifactClaimSet`, and `matchesPreparedAuthorizationDecision` from `mode-contracts/index.ts`; they should not copy validation logic into their gate modules.
 

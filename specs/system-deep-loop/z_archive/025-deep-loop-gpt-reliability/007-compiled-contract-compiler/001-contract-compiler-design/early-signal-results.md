@@ -184,7 +184,7 @@ The second samples (context + council, fix and fallback arms) completed the N≥
 
 ## Council-stall fix + N=3 re-probe — runner correct but the executor won't invoke it
 
-Follow-up to the N=2 council split. Built the missing mechanical bound (commit `233e6a32f3`, Sonnet-CONFIRMED): `orchestrate-session.cjs` gained a CLI entrypoint + a per-seat subprocess `dispatchSeat` + a runner-owned heartbeat (a `progress_record` appended to `session-state.jsonl` every 45s) that deterministically bounds the 480s watchdog dark window. The heartbeat write is a real fsync'd append under the fixture's `ai-council/` dir; the seat return shape is compatible with `adjudicateRound`; `orchestrateSession` is byte-unchanged.
+Follow-up to the N=2 council split. Built the missing mechanical bound (commit `e73ff7d0ec`, Sonnet-CONFIRMED): `orchestrate-session.cjs` gained a CLI entrypoint + a per-seat subprocess `dispatchSeat` + a runner-owned heartbeat (a `progress_record` appended to `session-state.jsonl` every 45s) that deterministically bounds the 480s watchdog dark window. The heartbeat write is a real fsync'd append under the fixture's `ai-council/` dir; the seat return shape is compatible with `adjudicateRound`; `orchestrateSession` is byte-unchanged.
 
 ### N=3 fix re-probe (ACB-005, gpt-fast-med) — with runner-engagement capture
 

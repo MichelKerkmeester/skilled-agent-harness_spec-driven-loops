@@ -61,15 +61,15 @@ Closed the tail of the sk-code parent program with three pushed commits. The pha
 
 ### Review identity cleanup
 
-Commit `027882bfd0` changed the review mode identity from `code-review` to `review` in `.opencode/skills/sk-code/review/SKILL.md`. It also replaced 77 stale `sk-code-review` identity labels with `review` across 24 files under `.opencode/skills/sk-code/review/manual_testing_playbook/`, while keeping the intentional `sk-code-review` search keyword.
+Commit `cc239ec964` changed the review mode identity from `code-review` to `review` in `.opencode/skills/sk-code/review/SKILL.md`. It also replaced 77 stale `sk-code-review` identity labels with `review` across 24 files under `.opencode/skills/sk-code/review/manual_testing_playbook/`, while keeping the intentional `sk-code-review` search keyword.
 
 ### Advisor scorer repair
 
-Commit `ea689d84e0` fixed three advisor scorer failures. Two were stale tests from the pre-fold two-skill world and now assert `sk-code`, because the hub owns review. The real routing regression was the prompt `Use cli-opencode to delegate this coding task through OpenCode CLI`; the explicit lane penalty was widened to `-3.0` so repeated bare `opencode` tokens no longer saturate `sk-code` and hide the explicit orchestrator intent.
+Commit `0ea2d1be9c` fixed three advisor scorer failures. Two were stale tests from the pre-fold two-skill world and now assert `sk-code`, because the hub owns review. The real routing regression was the prompt `Use cli-opencode to delegate this coding task through OpenCode CLI`; the explicit lane penalty was widened to `-3.0` so repeated bare `opencode` tokens no longer saturate `sk-code` and hide the explicit orchestrator intent.
 
 ### Rename-invariant repair
 
-Commit `dd9487d65d` fixed a committed parse error in `.opencode/skills/system-skill-advisor/mcp_server/tests/rename-invariants.vitest.ts`. The test once again reads `.codex/config.toml` for TOML assertions instead of pointing them at JSON config.
+Commit `5f69124e19` fixed a committed parse error in `.opencode/skills/system-skill-advisor/mcp_server/tests/rename-invariants.vitest.ts`. The test once again reads `.codex/config.toml` for TOML assertions instead of pointing them at JSON config.
 
 ### Files Changed
 
@@ -89,7 +89,7 @@ Commit `dd9487d65d` fixed a committed parse error in `.opencode/skills/system-sk
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The code work shipped as remote commits `027882bfd0`, `ea689d84e0`, and `dd9487d65d`. The verification path was target-first: review cleanup gates, advisor target suites and parity report, full-suite baseline delta, and rename-invariant target suite were checked before the remaining failures were classified as unrelated concurrent work.
+The code work shipped as remote commits `cc239ec964`, `0ea2d1be9c`, and `5f69124e19`. The verification path was target-first: review cleanup gates, advisor target suites and parity report, full-suite baseline delta, and rename-invariant target suite were checked before the remaining failures were classified as unrelated concurrent work.
 
 <!-- /ANCHOR:how-delivered -->
 ---
@@ -114,11 +114,11 @@ The code work shipped as remote commits `027882bfd0`, `ea689d84e0`, and `dd9487d
 
 | Test Type | Status | Coverage | Notes |
 |-----------|--------|----------|-------|
-| Review identity cleanup | Pass | `027882bfd0` | `parent-skill-check` strict exit 0, `check-rule-copies` plus test exit 0, review-tree links clean |
-| Advisor target suites | Pass | `ea689d84e0` | Three target suites 39/39 green |
-| Full advisor suite delta | Pass | `ea689d84e0` | Stashed baseline 13 failures to 9 failures, zero new failures |
-| Advisor parity report | Pass | `ea689d84e0` | 197-prompt advisor-parity-report byte-identical |
-| Rename invariants | Pass | `dd9487d65d` | Target suite 4/4 green |
+| Review identity cleanup | Pass | `cc239ec964` | `parent-skill-check` strict exit 0, `check-rule-copies` plus test exit 0, review-tree links clean |
+| Advisor target suites | Pass | `0ea2d1be9c` | Three target suites 39/39 green |
+| Full advisor suite delta | Pass | `0ea2d1be9c` | Stashed baseline 13 failures to 9 failures, zero new failures |
+| Advisor parity report | Pass | `0ea2d1be9c` | 197-prompt advisor-parity-report byte-identical |
+| Rename invariants | Pass | `5f69124e19` | Target suite 4/4 green |
 | Phase docs strict validation | Pass | Phase 014 docs | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/sk-code/001-sk-code-parent/014-close-out-and-tail --strict` |
 
 ### Test Coverage Summary

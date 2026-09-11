@@ -23,7 +23,7 @@ contextType: "implementation"
 
 Packet 019 corrected `memory_causal_stats` to honestly report that no command balances relation coverage (`backfillJob.implemented:false`, `command:null`). The honest stat was correct but the underlying capability was missing. There was no safe, auditable way to raise typed relation coverage (`caused`/`supports`) without manual `memory_causal_link` calls, even though the system carried strong structural signals (spec-document chains, lineage version links) that already encode causal relationships.
 
-This packet built the missing piece, a bounded, safe, reversible relation-inference backfill that promotes existing deterministic structural signals into typed `created_by='auto'` causal edges, then made the honest stat true. The two inference signals are deterministic and reuse recorded structure, so they are auditable and unit-testable without sqlite-vec. Default `dryRun=true` keeps the recovered production DB safe. Committed and deployed as `d32d90c3f1`.
+This packet built the missing piece, a bounded, safe, reversible relation-inference backfill that promotes existing deterministic structural signals into typed `created_by='auto'` causal edges, then made the honest stat true. The two inference signals are deterministic and reuse recorded structure, so they are auditable and unit-testable without sqlite-vec. Default `dryRun=true` keeps the recovered production DB safe. Committed and deployed as `6512b45e86`.
 
 ### Added
 

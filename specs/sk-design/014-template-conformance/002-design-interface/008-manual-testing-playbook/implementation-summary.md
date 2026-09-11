@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary [design-interface manual-testing-playbook conformance]"
-description: "Root cause confirmed (foundations retirement, commit b217d74b819); the foundations-*/motion-* residue hypothesis itself is DISPROVEN. Fixed a stale scenario count and a dead cross-reference. One real, unresolved 9-column-format gap in 18 relocated files recorded for operator decision."
+description: "Root cause confirmed (foundations retirement, commit 562074ad7c5); the foundations-*/motion-* residue hypothesis itself is DISPROVEN. Fixed a stale scenario count and a dead cross-reference. One real, unresolved 9-column-format gap in 18 relocated files recorded for operator decision."
 trigger_phrases:
   - "manual-testing-playbook implementation summary"
 importance_tier: "normal"
@@ -24,7 +24,7 @@ _memory:
     open_questions:
       - "Should the 18 relocated foundations/motion scenario files be reformatted into the 9-column template, or is 'relocated intact' an accepted permanent exception?"
     answered_questions:
-      - "Was foundations a standalone mode later merged into design-interface? YES — git show --stat b217d74b819 confirms it."
+      - "Was foundations a standalone mode later merged into design-interface? YES — git show --stat 562074ad7c5 confirms it."
 ---
 
 # Implementation Summary
@@ -50,7 +50,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-- **Confirmed root cause via git history**: `git show --stat b217d74b819` ("refactor(sk-design): retire the audit and foundations commands... Flatten foundations into the interface mode") proves `foundations` was a real, separate mode later consolidated into `design-interface`. REQ-001 satisfied with hard evidence, not circumstantial inference.
+- **Confirmed root cause via git history**: `git show --stat 562074ad7c5` ("refactor(sk-design): retire the audit and foundations commands... Flatten foundations into the interface mode") proves `foundations` was a real, separate mode later consolidated into `design-interface`. REQ-001 satisfied with hard evidence, not circumstantial inference.
 - **Disproved the `foundations-*` residue hypothesis itself**: despite the root cause being real, the 3 `foundations-`-prefixed `procedure-card-contract/` files are **not stale residue** to rename/merge/remove. Root `manual-testing-playbook.md` §23 already documents the naming rationale ("renamed with a `foundations-` prefix to avoid colliding with ID-018/019/020... these three cover the three foundations-owned procedure cards instead"), and the tree now also has a parallel `motion-*` trio (§24) added later by the motion merge following the **identical** naming pattern — strong evidence this is an established, intentional convention for disambiguating procedure-card families, not an oversight. Confirmed the 3 procedure cards the `foundations-*` files reference (`tweakable-design-controls.md`, `component-system-inventory.md`, `hierarchy-rhythm-review.md`) genuinely exist in `design-interface/procedures/`. **Disposition: keep all 6 prefixed files as-is.**
 - **Recount, corrected**: the tree now has **25** category subdirectories (not 20 as `spec.md` measured, since the motion merge added `strategy`, `presence`, `reduced-motion`, `micro-interactions`, `decision`, `advanced-craft`) and **43** total scenario files (not measured in the original spec). Root doc's own OVERVIEW line said "30 deterministic scenarios across 19 categories" — both numbers were stale (pre-dated the motion merge's own additions being fully reconciled); corrected to "43 deterministic scenarios across 25 categories."
 - **Fixed one dead cross-reference**: `color/contrast-pair-inventory-before-audit.md`'s Failure Triage cell cited `../../assets/contrast-pair-inventory.md`, missing the `foundations/` segment present everywhere else in the same file (frontmatter, body text, Source Files table) — a leftover from the "8 scenarios repointed" pass. Fixed to `../../assets/foundations/contrast-pair-inventory.md`.
@@ -88,7 +88,7 @@ Ran `git show --stat` on the commit hash from the task's own background context 
 |-------|--------|
 | Category directory count | 25 (was 20 at spec-authoring time, pre-motion-merge) |
 | Total scenario file count | 43 (`find -mindepth 2 -name "*.md" \| wc -l`) |
-| `foundations-*`/`motion-*` root cause | Confirmed via `git show --stat b217d74b819` |
+| `foundations-*`/`motion-*` root cause | Confirmed via `git show --stat 562074ad7c5` |
 | `foundations-*` residue hypothesis | Disproven — kept as-is |
 | `ID-007`/licensing-and-provenance | Confirmed already removed by sibling `001-apache-devendoring` |
 | Cross-reference resolution (whole tree) | 0 broken after 1 fix |

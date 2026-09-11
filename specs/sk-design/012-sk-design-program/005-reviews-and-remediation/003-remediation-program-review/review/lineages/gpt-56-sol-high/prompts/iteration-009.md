@@ -11,7 +11,7 @@ Resolved route: mode=review; target_agent=@deep-review; execution=single_review_
 
 Iteration 9/10, forced max-iterations. Active JSONL findings: P0=0 P1=8 P2=0; reducer currently shows 7 because `P1-007` and `P1-008` were incorrectly emitted with the same content hash. Latest claim adjudication passed.
 Dimension: correctness, third-pass adversarial parity/performance.
-Frozen scope: validated 118 files for `.opencode/specs/sk-design/017-remediation-program-review`, pinned HEAD `7b9d3b6b71`.
+Frozen scope: validated 118 files for `.opencode/specs/sk-design/017-remediation-program-review`, pinned HEAD `6432665a68`.
 Focus A: independently challenge the shadow-parity 10/10 and p95 1150→53 ms claims. Inspect query set, relevance/oracle fixtures, comparison semantics, sample counts, warm/cold treatment, timing boundaries, output fields, and packet claims. Reproduce what is feasible without mutating target/database state; treat human relevance and cutover as intentionally open.
 Focus B: re-read `P1-007` and `P1-008`, retain both stable IDs as refinements, and emit distinct canonical `content_hash` values computed from `file_path + U+001F + line_range + U+001F + finding_type + U+001F + normalized_description_first_80`. Use snake-case `content_hash` in findingDetails. Do not reuse a source-file hash.
 

@@ -10,7 +10,7 @@ trigger_phrases: []
 - Session: `fanout-gpt-56-sol-high-1784650021792-031fvi`
 - Generation / lineage: `1` / `new`
 - Budget profile: `scan`
-- Scope: validated 118-file `goal-file-manifest.txt` at pinned HEAD `7b9d3b6b71`
+- Scope: validated 118-file `goal-file-manifest.txt` at pinned HEAD `6432665a68`
 - Structural caveat: Code Graph was unavailable by dispatch contract; direct reads, manifest-scoped exact search, pinned Git evidence, and an executable command-contract test were used.
 
 ## Files Reviewed
@@ -67,7 +67,7 @@ None.
 
 ## Integration Evidence
 
-- Pinned Git evidence: `HEAD` is `7b9d3b6b71`; `git diff --check` was clean.
+- Pinned Git evidence: `HEAD` is `6432665a68`; `git diff --check` was clean.
 - Executable evidence: `.opencode/skills/sk-design/shared/scripts/interface-command-contract.test.mjs` passed 12/12.
 - Exact integration surfaces reviewed: `styles/lib/database/operator.mjs`, its module README, packet `graph-metadata.json` consumers, `/interface:design`, and `interface-design-presentation.txt`.
 

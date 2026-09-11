@@ -172,7 +172,7 @@ Required inventories:
 |------------|------|--------|-------------------|
 | Gate-zero corpus reindex (028/001 `001-corpus-reindex-gate-zero`) | Sibling (shared-infra) | Red (precondition) | Cannot benchmark recall lift, substrate can still be built behind flags, but no promotion |
 | Existing vector-store port (`ports/vector-store.ts`) | Internal | Green | Lose the established embedding plumbing, would need a parallel stack (avoid) |
-| Edge-vector schema migration | Internal | Green (built) | Additive v41 migration shipped in 5308401d95: nullable `fact_text` on `causal_edges` + `edge_vector_embeddings` collection |
+| Edge-vector schema migration | Internal | Green (built) | Additive v41 migration shipped in 478bebf387: nullable `fact_text` on `causal_edges` + `edge_vector_embeddings` collection |
 | Embed provider availability at consolidation | Internal | Yellow | Embedding pass degrades to un-embedded edges, sync path unaffected (flag-off) |
 | No episode model in the memory-ID graph | Constraint | Documented | Layer must stay consolidation-time/async, episode adoption out of scope |
 <!-- /ANCHOR:dependencies -->

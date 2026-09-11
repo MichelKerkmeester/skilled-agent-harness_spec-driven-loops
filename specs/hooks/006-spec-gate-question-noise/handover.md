@@ -36,7 +36,7 @@ _memory:
 ---
 # Session Handover Document
 
-Handover for 2026-08-02 late-evening state. Three threads: **036 (committed fdd295981a)**, **037 (implemented, verified, validated, committed e251617bef, merged to main 5ed153eaeb)**, **038 (proposed, not started)**.
+Handover for 2026-08-02 late-evening state. Three threads: **036 (committed b70167711f)**, **037 (implemented, verified, validated, committed 9d1f0fffb8, merged to main a2cfec7e93)**, **038 (proposed, not started)**.
 
 ---
 
@@ -53,11 +53,11 @@ Written because: session compaction occurred; two data-loss incidents hit the ma
 
 - **From Session:** 2026-08-02 late-evening (pi session 019fc20d-0946-76c3-997b-d8ba7b1bef09 lineage, continued into the implementation session that wrote this refresh)
 - **To Session:** next pi/opencode session in this repo
-- **Phase Completed:** 036 committed (`fdd295981a`); 037 implemented, verified (core 71/0, runtime suites 47/47, live pi smoke), agent-validated (3× GPT 5.6 LUNA MAX FAST `APPROVED_WITH_NOTES`), packet validated (Errors 0; one evidence warning fixed in this refresh); 038 proposed
+- **Phase Completed:** 036 committed (`b70167711f`); 037 implemented, verified (core 71/0, runtime suites 47/47, live pi smoke), agent-validated (3× GPT 5.6 LUNA MAX FAST `APPROVED_WITH_NOTES`), packet validated (Errors 0; one evidence warning fixed in this refresh); 038 proposed
 - **Handover Time:** 2026-08-02 evening local
 - **Recent action**: implemented 037 end-to-end in worktree 0130; committed 036 after a third concurrent wipe
 
-**HEAD state (main checkout):** `skilled/v4.0.0.0` with 036 commit `fdd295981a` on top. Worktree: `.worktrees/0130-system-spec-kit-spec-gate-question-noise` on branch `system-spec-kit/0130-spec-gate-question-noise` (holds 037 changes, uncommitted at refresh time).
+**HEAD state (main checkout):** `skilled/v4.0.0.0` with 036 commit `b70167711f` on top. Worktree: `.worktrees/0130-system-spec-kit-spec-gate-question-noise` on branch `system-spec-kit/0130-spec-gate-question-noise` (holds 037 changes, uncommitted at refresh time).
 <!-- /ANCHOR:handover-summary -->
 
 ---
@@ -91,7 +91,7 @@ Written because: session compaction occurred; two data-loss incidents hit the ma
 ### 2.3 Files Modified
 **Key files**: see per-thread tables below.
 
-**Thread A - 036 (COMPLETE — committed `fdd295981a` on `skilled/v4.0.0.0`, pushed):**
+**Thread A - 036 (COMPLETE — committed `b70167711f` on `skilled/v4.0.0.0`, pushed):**
 
 | File        | Change Summary | Status                 |
 | ----------- | -------------- | ---------------------- |
@@ -114,7 +114,7 @@ Post-push refinement (SOL FAST review): `.opencode/plugins/mk-skill-advisor.js`,
 
 | File        | Change Summary | Status                 |
 | ----------- | -------------- | ---------------------- |
-| `hooks/lib/spec-gate/spec-gate-core.mjs` | question semantics (silent read-only, answer-attempt, path-over-skip, E=skip letter, `resolveSessionKey`, `sanitizePromptForClassify`) | committed `e251617bef`, merged, pushed; refinement edits applied on top |
+| `hooks/lib/spec-gate/spec-gate-core.mjs` | question semantics (silent read-only, answer-attempt, path-over-skip, E=skip letter, `resolveSessionKey`, `sanitizePromptForClassify`) | committed `9d1f0fffb8`, merged, pushed; refinement edits applied on top |
 | `hooks/lib/spec-gate/spec-gate-core.test.mjs` | corpus + semantics tests (72 pass) | same |
 | `hooks/pi/spec-gate-classify.ts` | history/advisor strip via shared sanitizer + stable session key | same |
 | `hooks/pi/spec-gate-enforce.ts` | same key derivation + session-file guard | same |
@@ -185,8 +185,8 @@ Input-path verdict (036 final): cold ~1.3s documented limitation shared by all r
 ## 4. Validation Checklist
 
 Before handover, verify:
-- [x] All in-progress work committed or stashed — 036 committed `fdd295981a`; 037 changes staged in the worktree branch (commit pending)
-  - **Evidence**: `git log --oneline -2` on main shows `fdd295981a`.
+- [x] All in-progress work committed or stashed — 036 committed `b70167711f`; 037 changes staged in the worktree branch (commit pending)
+  - **Evidence**: `git log --oneline -2` on main shows `b70167711f`.
 - [x] Current context saved via `generate-context.js` or `_memory.continuity` in `implementation-summary.md` — continuity blocks refreshed across all five docs + this handover; description.json + graph-metadata.json regenerated
   - **Evidence**: `generate-description.js` + `backfill-graph-metadata.js` run; `validate.sh --strict` Errors 0.
 - [x] No breaking changes left mid-implementation — 037 verified (core 71 pass, runtime suites 47/47, live pi smoke, 3 validator verdicts)

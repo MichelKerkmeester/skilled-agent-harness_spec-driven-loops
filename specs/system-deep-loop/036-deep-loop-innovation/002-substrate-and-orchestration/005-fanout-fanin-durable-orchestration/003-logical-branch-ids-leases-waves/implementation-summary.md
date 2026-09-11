@@ -39,7 +39,7 @@ _memory:
 | **Completed** | 2026-07-21 |
 | **Level** | 2 |
 | **Status** | Complete (additive-dark) |
-| **Candidate** | Uncommitted leaf delta on base `012652b479dee08455de574574c5e7a8971a8b0b` |
+| **Candidate** | Uncommitted leaf delta on base `68b518ab0d8ee5b2bce3a8f1938a7944a1d5945e` |
 | **Identity derivation** | Version 1, canonical coordinates, 128-bit SHA-256 prefix |
 | **Wave policy / plan** | Version 1 / version 1 |
 | **Authority** | Legacy execution, status, and checkpoints remain authoritative |

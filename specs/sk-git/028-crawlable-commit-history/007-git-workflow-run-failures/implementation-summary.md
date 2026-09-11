@@ -72,7 +72,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The analysis ran on a frozen tree, as the delegation rule now requires, and left throwaway repositories under its scratch that had to be stripped before the evidence could be committed. The three dispatches ran serially on cli-pi with DeepSeek V4.1 Flash after the operating system had killed three concurrent children earlier in the day. The conductor re-ran every harness and re-reproduced two failures by hand before and after. Commits: `53a7e2f008`, `48f06d6bc8`, `c934677956`.
+The analysis ran on a frozen tree, as the delegation rule now requires, and left throwaway repositories under its scratch that had to be stripped before the evidence could be committed. The three dispatches ran serially on cli-pi with DeepSeek V4.1 Flash after the operating system had killed three concurrent children earlier in the day. The conductor re-ran every harness and re-reproduced two failures by hand before and after. Commits: `ab8458c250`, `debfaf217d`, `f83952c3a9`.
 <!-- /ANCHOR:how-delivered -->
 
 ---

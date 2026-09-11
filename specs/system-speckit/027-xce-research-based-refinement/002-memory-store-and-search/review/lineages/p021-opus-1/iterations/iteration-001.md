@@ -5,7 +5,7 @@ trigger_phrases: []
 # Iteration 1: All dimensions — correctness, security, traceability, maintainability
 
 ## Focus
-Single-iteration review (maxIterations=1) of packet `021-cooperative-heavy-phases`. Covered all four dimensions over the three changed source/test files from commit `372bb0f2cd`:
+Single-iteration review (maxIterations=1) of packet `021-cooperative-heavy-phases`. Covered all four dimensions over the three changed source/test files from commit `da09d7c69e`:
 - `mcp_server/handlers/memory-index.ts` (lag sampler, `timedPhase`, `isCancelled` threading)
 - `mcp_server/lib/search/trigger-embedding-backfill.ts` (chunked phrase sync, cancel, cache-hit yield, `cancelled` status)
 - `mcp_server/tests/trigger-embedding-backfill.vitest.ts` (3 new cancel/yield cases)

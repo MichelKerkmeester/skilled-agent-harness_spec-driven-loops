@@ -37,7 +37,7 @@ _memory:
 |-------|-------|
 | **Packet** | system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/001-append-gateway-and-projection |
 | **Status** | Complete |
-| **Commit** | `a980092ffe`, then `b0137b9504` for a post-completion defect repair, on `worktrees/022-012-runtime-enablement-build`, not pushed |
+| **Commit** | `55002cc5ed`, then `8c0b8d231b` for a post-completion defect repair, on `worktrees/022-012-runtime-enablement-build`, not pushed |
 | **Completed** | 2026-08-19 |
 | **Lines** | 1894 added across 7 files |
 <!-- /ANCHOR:metadata -->
@@ -130,7 +130,7 @@ A synthetic directory is not sufficient. The scaffold needs the retained legacy 
 file and the strategy file, the latter built from the shipped template asset because the reducer
 requires its anchor sections.
 
-**Suite delta.** Baseline at `e6f17e1cbf5`: 35 failed / 4074 passed / 39 skipped of 4148, across 20
+**Suite delta.** Baseline at `fa72662d239`: 35 failed / 4074 passed / 39 skipped of 4148, across 20
 files, in 2h 47m. The targeted delta over every affected file reproduced exactly those failures,
 identical by name, and added 10 passing tests. Zero regressions.
 **A mode the CLI could not write, found after completion.** The fleet phase recorded that one of the

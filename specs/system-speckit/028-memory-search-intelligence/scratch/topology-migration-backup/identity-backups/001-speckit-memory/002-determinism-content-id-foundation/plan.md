@@ -119,13 +119,13 @@ Inventories were scoped to candidate seams. Consumer inventories cover the share
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Foundation keystone (shipped in Wave-0 / packet 030)
-- [x] Centralize the two content-id primitives into `lib/content-id.ts`, prove byte-identical (commit `18c8582e33`).
-- [x] Add the content-derived comparator + RRF-output tiebreak (C5-B), primary order unchanged (commit `bec0eed27f`).
-- [x] Add `, m.id ASC` COALESCE tie-stability to the 4 ranked ANN queries (commit `bec0eed27f`).
+- [x] Centralize the two content-id primitives into `lib/content-id.ts`, prove byte-identical (commit `0113515f43`).
+- [x] Add the content-derived comparator + RRF-output tiebreak (C5-B), primary order unchanged (commit `5c0a966df3`).
+- [x] Add `, m.id ASC` COALESCE tie-stability to the 4 ranked ANN queries (commit `5c0a966df3`).
 
 ### Phase 2: Byte-identical-by-default seams (shipped in Wave-0 / packet 030)
-- [x] Add the `bonusOverChannels` param with the `'active'` byte-identical default (C-X1), arithmetic byte-identity trace (commit `65cfcea513`).
-- [x] Add the caller-`nowMs` rank-time decay clock (C6-A) with the restored no-timestamp skip guard so it is a pure refactor (commit `65cfcea513`).
+- [x] Add the `bonusOverChannels` param with the `'active'` byte-identical default (C-X1), arithmetic byte-identity trace (commit `84c532114d`).
+- [x] Add the caller-`nowMs` rank-time decay clock (C6-A) with the restored no-timestamp skip guard so it is a pure refactor (commit `84c532114d`).
 
 ### Phase 3: Residue (PENDING, gated, NOT built this sub-phase)
 - [ ] C-X1-true-multichannel (`'configured'` mode), build alongside the Wave-1 C2-B per-class weight consumer, after the fusion-bonus unit test lands.
@@ -172,7 +172,7 @@ Inventories were scoped to candidate seams. Consumer inventories cover the share
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: A shipped seam re-orders default output for a sibling subsystem byte-compare, or the content-id parity test fails.
-- **Procedure**: Revert the candidate commit listed in `spec.md` section 13. Candidates 2+3 (ANN + C5-B) share commit `bec0eed27f`, candidates 4+5 (C-X1 `'active'` + C6-A) share commit `65cfcea513`, the content-id module is `18c8582e33`. Each is an independent revert.
+- **Procedure**: Revert the candidate commit listed in `spec.md` section 13. Candidates 2+3 (ANN + C5-B) share commit `5c0a966df3`, candidates 4+5 (C-X1 `'active'` + C6-A) share commit `84c532114d`, the content-id module is `0113515f43`. Each is an independent revert.
 - **Data reversal**: None, no shipped candidate in this foundation adds a schema migration. Rollback is code + test revert only. The PENDING residue is not built, so there is nothing to roll back there.
 <!-- /ANCHOR:rollback -->
 
@@ -196,9 +196,9 @@ Inventories were scoped to candidate seams. Consumer inventories cover the share
 
 | Candidate Group | Complexity | Actual Outcome |
 |-----------------|------------|----------------|
-| two-content-id-primitives | S→M | Shipped `18c8582e33` |
-| ANN + C5-B tiebreaks | S | Shipped `bec0eed27f` |
-| C-X1 `'active'` + C6-A | S→M | Shipped `65cfcea513` |
+| two-content-id-primitives | S→M | Shipped `0113515f43` |
+| ANN + C5-B tiebreaks | S | Shipped `5c0a966df3` |
+| C-X1 `'active'` + C6-A | S→M | Shipped `84c532114d` |
 | C-X1 `'configured'` (residue) | S→M | Pending, gated on C2-B + unit test |
 | C5-A render stage (residue) | M | Pending, render-build + golden re-baseline |
 | dual-class / clock-skew (residue) | M/S | Pending, single-tenant-refuted, documented-NO-GO |
@@ -212,7 +212,7 @@ Inventories were scoped to candidate seams. Consumer inventories cover the share
 
 | Candidate | Rollback |
 |-----------|----------|
-| 1 two-content-id-primitives | Inline previous hashing call sites or revert `18c8582e33`. |
+| 1 two-content-id-primitives | Inline previous hashing call sites or revert `0113515f43`. |
 | 2 ANN-tie-stable-order | Remove `, m.id ASC` COALESCE from the 4 ranked ANN queries. |
 | 3 C5-B | Remove content-hash comparator + RRF output tiebreaks. |
 | 4 C-X1 `'active'` | Remove the `bonusOverChannels` param (revert to inline active-channel denominator). |
@@ -253,8 +253,8 @@ The critical path was not implementation volume, it was preserving byte-identity
 
 | Milestone | Evidence |
 |-----------|----------|
-| M1 Keystone landed | content-id module `18c8582e33`, C5-B + ANN tiebreaks `bec0eed27f` |
-| M2 Byte-identical seams landed | C-X1 `'active'` + C6-A `65cfcea513`, default-identity traced |
+| M1 Keystone landed | content-id module `0113515f43`, C5-B + ANN tiebreaks `5c0a966df3` |
+| M2 Byte-identical seams landed | C-X1 `'active'` + C6-A `84c532114d`, default-identity traced |
 | M3 Residue gated | C-X1 `'configured'`, C5-A, dual-class/clock-skew recorded PENDING with gates in `spec.md` §13 |
 | M4 Cross-subsystem contract held | `'active'` default keeps consumers 002/003/004 byte-stable |
 | M5 Docs closed | Level-3 docs authored, strict validation run |

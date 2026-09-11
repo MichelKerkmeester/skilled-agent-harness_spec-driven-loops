@@ -16,7 +16,7 @@ Reducer-generated observability surface for the active review packet.
 <!-- /ANCHOR:overview -->
 <!-- ANCHOR:status -->
 ## 2. STATUS
-- Review Target: 027/017 BM25 warmup churn reduction (commit 573904538b): no-copy chunked packed postings, Uint8/16/32 width promotion, free-after-pack, re-enabled hard RSS gate (files)
+- Review Target: 027/017 BM25 warmup churn reduction (commit 01ac9e2508): no-copy chunked packed postings, Uint8/16/32 width promotion, free-after-pack, re-enabled hard RSS gate (files)
 - Started: 2026-06-11T09:00:00Z
 - Status: IN-PROGRESS
 - Iteration: 5 of 5
@@ -106,7 +106,7 @@ No corrupt JSONL lines detected.
 - iteration 5 edge-case (ruled_out): The reviewed degenerate cases do not produce a reachable crash, NaN, or stale posting from these code paths.; evidence=.opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts:530
 - iteration 5 edge-case (ruled_out): No reachable truncation or empty-result bug was found for posting growth within the implemented width bounds.; evidence=.opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts:1074
 - iteration 5 engine-interaction (ruled_out): No packed field-weight regression was found.; evidence=.opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts:1277
-- iteration 5 scope (ruled_out): No unrelated runtime scope drift or scoring-math edit was found.; evidence=commit 573904538b
+- iteration 5 scope (ruled_out): No unrelated runtime scope drift or scoring-math edit was found.; evidence=commit 01ac9e2508
 
 ### Clean Search Proof
 - iteration 4 fixture-drift (ruled_out): The assertion is a useful guard against accidental corpus shrinkage, not a brittle unrelated check.; evidence=tests/bm25-packed-inmemory.vitest.ts:130
@@ -115,7 +115,7 @@ No corrupt JSONL lines detected.
 - iteration 5 edge-case (ruled_out): The reviewed degenerate cases do not produce a reachable crash, NaN, or stale posting from these code paths.; evidence=.opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts:530
 - iteration 5 edge-case (ruled_out): No reachable truncation or empty-result bug was found for posting growth within the implemented width bounds.; evidence=.opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts:1074
 - iteration 5 engine-interaction (ruled_out): No packed field-weight regression was found.; evidence=.opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts:1277
-- iteration 5 scope (ruled_out): No unrelated runtime scope drift or scoring-math edit was found.; evidence=commit 573904538b
+- iteration 5 scope (ruled_out): No unrelated runtime scope drift or scoring-math edit was found.; evidence=commit 01ac9e2508
 
 <!-- /ANCHOR:search-debt -->
 <!-- ANCHOR:next-focus -->

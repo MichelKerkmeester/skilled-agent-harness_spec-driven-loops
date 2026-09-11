@@ -21,7 +21,7 @@ contextType: "implementation"
 
 ### Summary
 
-This read-only packet reviewed user-facing docs against the shipped changes from packets 013 through 016 and the v3.5.0.0 release on `origin/main` HEAD `75cfec1700`. The verdict is CONDITIONAL PASS. The report records 21 consolidated findings: 1 P0, 8 P1 and 12 P2. No reviewed documentation was edited. The strongest findings are doc-internal tool-count contradictions and single-manifest embedder registry drift, while roughly 45 raw candidates were rejected as false positives after code verification.
+This read-only packet reviewed user-facing docs against the shipped changes from packets 013 through 016 and the v3.5.0.0 release on `origin/main` HEAD `ce22801ff5`. The verdict is CONDITIONAL PASS. The report records 21 consolidated findings: 1 P0, 8 P1 and 12 P2. No reviewed documentation was edited. The strongest findings are doc-internal tool-count contradictions and single-manifest embedder registry drift, while roughly 45 raw candidates were rejected as false positives after code verification.
 
 ### Added
 

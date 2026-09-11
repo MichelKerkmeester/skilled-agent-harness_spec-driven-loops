@@ -121,7 +121,7 @@ why the other four prompts land. The gap is the plain phrasing a newcomer reache
 
 | Item | Note |
 |------|------|
-| The phase is committed, contrary to its own summary | `implementation-summary.md` says nothing is committed. `git log --oneline` on this folder shows `f92c84a673` and `710f2171d6`, both 2026-09-02, and `git status --porcelain` on the packet and the mode is empty. The summary sentence is stale, not wrong about what it did |
+| The phase is committed, contrary to its own summary | `implementation-summary.md` says nothing is committed. `git log --oneline` on this folder shows `f4cd27a29e` and `6bce47b5e8`, both 2026-09-02, and `git status --porcelain` on the packet and the mode is empty. The summary sentence is stale, not wrong about what it did |
 | The worked example is accurate right now | The phase already resynced it. What stays open is durability, not correctness, so this criterion can close on a written deferral under D1 through D5 rather than an edit |
 | The document validator sits outside the mode | It is in `sk-doc/scripts`, so closing it means either a one-line fix in a file this packet does not own or a recorded deferral. Both satisfy the criterion, and neither is assumed. Closed as a recorded deferral |
 | The template fix is not a sweep | Across the 50 template-detected documents under `.opencode/`, hard blockers fall from 594 to 520 and the files carrying one from 41 to 38. Every drop sits inside a code-tagged fence, a frontmatter block or an inline code span, all three of which a non-template scan already masks. The largest single drop, `sk-create-skill/assets/skill/skill-readme-template.md` from 43 to 0, is one `rg` command listing the blocked words |

@@ -103,7 +103,7 @@ _memory:
 
 - [x] T010 Author `spec.md` from the system-spec-kit Level-2 template (3-candidate set, per-candidate PENDING status with research-cited acceptance criteria).
 - [x] T011 Author `plan.md`, `tasks.md`, `checklist.md` from the system-spec-kit Level-2 templates.
-- [x] T012 Re-confirm against `030` section 14 that NO advisor RRF candidate shipped, and record the dependency commit `65cfcea513` (the Memory-side `fuseResultsMulti` API extension this import consumes).
+- [x] T012 Re-confirm against `030` section 14 that NO advisor RRF candidate shipped, and record the dependency commit `84c532114d` (the Memory-side `fuseResultsMulti` API extension this import consumes).
 - [x] T013 Run `validate.sh --strict` on this sub-phase and fix structure issues.
 <!-- /ANCHOR:closeout -->
 
@@ -113,7 +113,7 @@ _memory:
 ## Completion Criteria
 
 - [x] All 3 candidates have a final status in `spec.md` section 13 (all PENDING-with-gate, 0 DONE, nothing shipped in Wave-0/030).
-- [x] The shared `fuseResultsMulti` dependency is traced to its Wave-0 commit (`65cfcea513`, `030` §14 cand 5), and confirmed NO advisor candidate shipped.
+- [x] The shared `fuseResultsMulti` dependency is traced to its Wave-0 commit (`84c532114d`, `030` §14 cand 5), and confirmed NO advisor candidate shipped.
 - [x] C2 is recorded as folding into C3 (one change), and the conflict carrier is scoped distinct from the full (dormant) C1.
 - [x] The RRF import is implemented default-off. The routing-agreement baseline gate remains pending before any live/default flip.
 - [x] Strict validation passes for this sub-phase.

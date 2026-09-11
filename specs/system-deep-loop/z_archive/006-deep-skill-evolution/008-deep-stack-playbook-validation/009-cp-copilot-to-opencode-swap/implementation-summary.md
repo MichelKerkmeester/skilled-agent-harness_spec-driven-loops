@@ -54,7 +54,7 @@ The 18 copilot-driven CP/discipline stress scenarios across three deep-loop skil
 |------|--------|---------|
 | 18 CP scenario `.md` (deep-review 052-057, deep-research 046-051, deep-agent-improvement 013-018) | Modified | `copilot -p` → `opencode run` (deepseek-direct); 30 invocations |
 | 2 of those (056, 057) | Modified again | newline-prepend fix for `---`-leading agent-body messages |
-| `.opencode/skills/deep-agent-improvement/test-fixtures/060-stress-test/**` | Restored | 4 runtime fixture forms recovered from git `e917f76347^` |
+| `.opencode/skills/deep-agent-improvement/test-fixtures/060-stress-test/**` | Restored | 4 runtime fixture forms recovered from git `ebe7d6bb3c^` |
 | `007-.../00{3,4,5}-*/checklist.md` | Modified | CP SKIP rows flipped to PASS/PARTIAL; summary lines re-tallied |
 | `007-.../006-.../release-readiness-matrix.md` | Modified | rollup + verdict-class + lineage + rationale re-tallied (SKIP 19→1) |
 <!-- /ANCHOR:what-built -->
@@ -65,7 +65,7 @@ The 18 copilot-driven CP/discipline stress scenarios across three deep-loop skil
 ## How It Was Delivered
 
 1. **Prototype** — confirmed `opencode run "/deep:start-review-loop:auto ..." --model deepseek/deepseek-v4-pro --dangerously-skip-permissions --dir <sandbox> </dev/null` (NO `--pure`) natively expands `/deep:*` and drives the full loop, creating the exact artifacts each scenario greps.
-2. **Fixture restore** — `git show e917f76347^:<path>` for the 4 `cp-improve-target` forms → current plural paths; the deep-agent-improvement setup then runs clean.
+2. **Fixture restore** — `git show ebe7d6bb3c^:<path>` for the 4 `cp-improve-target` forms → current plural paths; the deep-agent-improvement setup then runs clean.
 3. **Bulk swap** — a sed transform applied the copilot→opencode change to all 18 files (30 invocations), preserving every prompt, capture, and grep-checkable verification.
 4. **Sequential re-run** (operator chose single-dispatch) — each scenario's authored bash block run via opencode, the orchestrator verifying each against the produced `/tmp/cp-*` artifacts + git tripwire (not the transcript alone).
 5. **Reconcile** — flipped the 003/004/005 CP SKIP rows + summary lines; re-tallied the matrix.

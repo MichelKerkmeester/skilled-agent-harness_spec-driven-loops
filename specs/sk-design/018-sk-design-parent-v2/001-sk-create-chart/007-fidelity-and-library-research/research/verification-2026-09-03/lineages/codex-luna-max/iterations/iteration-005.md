@@ -17,7 +17,7 @@ Verify the Vega scheme catalog, Vega configuration description model, the cited 
 - **Resolves:** Yes; official Vega documentation.
 - **Documented version:** Current Vega documentation; the page does not state a package semver, but its current scheme list includes version-introduced markers such as `≥5.0` and `≥5.15`.
 - **Evidence:** Vega defines named palettes for discrete and continuous color encodings. It distinguishes discrete schemes for ordinal/quantize/quantile scales from continuous schemes for linear/log/sqrt scales, supports a `count` and `extent`, and warns that multi-hue sequential ramps can make viewers perceive false clusters. The page lists categorical `tableau10`, sequential `blues`, and multi-hue `viridis` schemes. This supports the baseline's scheme and multi-hue caveat.
-- **Corpus verdict:** The corpus uses a local pasted palette and checks lightness/contrast rather than importing Vega schemes. That is compatible with the no-remote/no-runtime rule and preserves a stable declared color system. `[CORPUS@756a7fcd4c: .opencode/skills/sk-doc/sk-create-chart/references/color-system.md:1-12,155-168; .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:157-160]`
+- **Corpus verdict:** The corpus uses a local pasted palette and checks lightness/contrast rather than importing Vega schemes. That is compatible with the no-remote/no-runtime rule and preserves a stable declared color system. `[CORPUS@3ce648be44: .opencode/skills/sk-doc/sk-create-chart/references/color-system.md:1-12,155-168; .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:157-160]`
 
 ### 2. Vega configuration page: description model
 
@@ -28,7 +28,7 @@ Verify the Vega scheme catalog, Vega configuration description model, the cited 
 - **What the baseline said:** Vega's config `description` model demonstrates the pattern for a text description attached to the view's ARIA label.
 - **What the authoritative page says:** The current config docs say a config object supplies default visual values and that the view `description` is the default text description for visualizations; it determines the `aria-label` for the container element of a Vega view. Axis, legend, and mark descriptions are separate accessibility properties in current docs.
 - **Corrected wording:** “Use the canonical current Vega config page (`https://vega.github.io/vega/docs/config/`) for the description model; the branch-sensitive GitHub `master` URL is not a stable citation target. Vega's description model demonstrates view-level and guide-level ARIA labels, but it does not generate the corpus's data table.”
-- **Corpus verdict:** The pinned templates provide a resolving `aria-labelledby` figure label and a `data-chart-table`; they do not use Vega's generated per-guide description model. `[CORPUS@756a7fcd4c: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:161-164]`
+- **Corpus verdict:** The pinned templates provide a resolving `aria-labelledby` figure label and a `data-chart-table`; they do not use Vega's generated per-guide description model. `[CORPUS@3ce648be44: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:161-164]`
 
 ### 3. Vega v5.11.0 release note about ARIA
 
@@ -37,7 +37,7 @@ Verify the Vega scheme catalog, Vega configuration description model, the cited 
 - **Resolves:** The live fetch returned a GitHub cache miss, and alternate query forms also returned cache misses. The page's exact release-note body could not be inspected today.
 - **Documented version:** The URL names Vega `v5.11.0`, but no release-note text was available from the URL during this retrieval.
 - **Failure mode and nearest authoritative source:** This is a public-source availability failure, not evidence that the tag is absent. The current official Vega config page explicitly marks view descriptions as `≥5.10` and axis/legend/mark `aria` and `description` properties as `≥5.11`; the current mark docs also say Vega generates ARIA roles/role descriptions for SVG mark groups. Use those pages instead of attributing a precise ARIA-bloat statement to the unavailable release page. `[SOURCE: https://vega.github.io/vega/docs/config/, https://vega.github.io/vega/docs/marks/]`
-- **Corpus verdict:** The pinned contract's figure label and data table are present; per-mark ARIA generation is intentionally not used. `[CORPUS@756a7fcd4c: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:161-167]`
+- **Corpus verdict:** The pinned contract's figure label and data table are present; per-mark ARIA generation is intentionally not used. `[CORPUS@3ce648be44: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:161-167]`
 
 ### 4. Plotly JavaScript tick-formatting page
 
@@ -46,7 +46,7 @@ Verify the Vega scheme catalog, Vega configuration description model, the cited 
 - **Resolves:** Yes; current Plotly JavaScript documentation (copyright footer 2026; no explicit plotly.js package semver on the page).
 - **Documented version:** Current Plotly JavaScript docs; the page is not a version-pinned API reference.
 - **Evidence:** The page documents `tickmode` (`auto`, `linear`, `array`), `tick0`, `dtick`, and `nticks`; `tickformat` uses D3 formatting mini-languages; `tickformatstops` selects formats by `dtickrange`/zoom level; and `exponentformat` accepts `none`, `e`, `E`, `power`, `SI`, or `B`. The page's linear example states that `tick0` and `dtick` determine tick placement. It does not document `tickangle`, which is covered by the Python axes page below.
-- **Corpus verdict:** The fixed SVG corpus has no zoom-level state or Plotly axis object; it uses a local tick ladder and `fmt` helper, which covers deterministic static output without the interactive machinery. `[CORPUS@756a7fcd4c: .opencode/skills/sk-doc/sk-create-chart/assets/templates/bar-columns.html:112-160; .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:159-166]`
+- **Corpus verdict:** The fixed SVG corpus has no zoom-level state or Plotly axis object; it uses a local tick ladder and `fmt` helper, which covers deterministic static output without the interactive machinery. `[CORPUS@3ce648be44: .opencode/skills/sk-doc/sk-create-chart/assets/templates/bar-columns.html:112-160; .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:159-166]`
 
 ### 5. Plotly Python axes page and hover defaults
 
@@ -56,7 +56,7 @@ Verify the Vega scheme catalog, Vega configuration description model, the cited 
 - **Documented version:** The page includes features marked new in Plotly `5.6`, `5.14`, `5.19`, `5.23`, and later; it is current but not a single pinned package release.
 - **Evidence:** The page documents `nticks` as an approximate tick count; `tick0` and `dtick` as exact start/interval controls; `tickangle` and `autotickangles`; and says the default `tickangle` is `auto`, rotating to 30 or 90 degrees when needed. It also says cartesian-axis `automargin` is true in the Plotly template for axis-title fitting. These support the axis portion of the baseline.
 - **Correction to the baseline:** The axes page does not establish that hover labels are enabled by default. The nearest authoritative Plotly page is https://plotly.com/python/hover-text-and-formatting/, which says `layout.hovermode='closest'` is the default and that a hover label appears for the point under the cursor. Corrected wording: “Plotly provides the listed axis controls and interactive hover labels; cite the dedicated hover page for the `closest` default, not the axes page.” `[SOURCE: https://plotly.com/python/hover-text-and-formatting/]`
-- **Corpus verdict:** No hover state is shipped; the corpus relies on visible labels plus the accessible data table. It also avoids Plotly's auto-rotation because the templates are fixed-layout SVG with per-form label budgets. `[CORPUS@756a7fcd4c: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:161-172; .opencode/skills/sk-doc/sk-create-chart/references/catalog.md:71-76]`
+- **Corpus verdict:** No hover state is shipped; the corpus relies on visible labels plus the accessible data table. It also avoids Plotly's auto-rotation because the templates are fixed-layout SVG with per-form label budgets. `[CORPUS@3ce648be44: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:161-172; .opencode/skills/sk-doc/sk-create-chart/references/catalog.md:71-76]`
 
 ## Assessment
 
@@ -86,7 +86,7 @@ Vega's scheme and configuration behaviors are supported by current official page
 
 ## Ruled Out
 
-- **Adding Vega or Plotly runtime code to the templates:** Their runtime/responsive/interactive benefits conflict with the no-remote-resource, no-build single-file contract. `[CORPUS@756a7fcd4c: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:154-160]`
+- **Adding Vega or Plotly runtime code to the templates:** Their runtime/responsive/interactive benefits conflict with the no-remote-resource, no-build single-file contract. `[CORPUS@3ce648be44: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:154-160]`
 - **Using the unavailable v5.11.0 release note as proof of a precise ARIA-bloat statement:** Current docs cover the supported behavior; the release-note body was not observable.
 
 ## Questions Remaining

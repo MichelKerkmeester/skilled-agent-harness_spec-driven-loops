@@ -9,7 +9,7 @@ _memory:
     packet_pointer: "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/001-deprecate-numbered-category-prefix/002-validator-and-guard"
     last_updated_at: "2026-07-17T14:36:44Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Structural leaf classifier + no-new-numbers guard; commit cc422d6037"
+    recent_action: "Structural leaf classifier + no-new-numbers guard; commit db0c0490e9"
     next_safe_action: "Complete"
     blockers: []
     completion_pct: 100
@@ -48,7 +48,7 @@ excluded. Added a standalone opt-in no-new-numbers guard (`check_no_numbered_cat
 ## How It Was Delivered
 Replaced the `^\d{2}--` parent test with the structural grandparent test so a catalog/playbook leaf classifies
 by *being a subfolder* of the typed root rather than by its numeric prefix; added the standalone opt-in guard
-and its `scripts/` symlink, and covered both with a new classification + guard suite. Commit `cc422d6037`.
+and its `scripts/` symlink, and covered both with a new classification + guard suite. Commit `db0c0490e9`.
 <!-- /ANCHOR:how-delivered -->
 
 <!-- ANCHOR:decisions -->

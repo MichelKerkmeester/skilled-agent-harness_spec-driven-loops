@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 016 sk-code content coherence and reference integrity"
-description: "Executed Level 3 closeout for sk-code content coherence: the 143-finding audit predated the 013 two-axis restructure and re-verified as already-satisfied (0 broken refs, STRICT 0/0, vocab-sync 0/0/0); the one shipped change dropped 3 stale merger placeholder fields from sk-code metadata (af1170c663)."
+description: "Executed Level 3 closeout for sk-code content coherence: the 143-finding audit predated the 013 two-axis restructure and re-verified as already-satisfied (0 broken refs, STRICT 0/0, vocab-sync 0/0/0); the one shipped change dropped 3 stale merger placeholder fields from sk-code metadata (907027032b)."
 trigger_phrases:
   - "sk-code content coherence"
   - "sk-code reference integrity"
@@ -25,7 +25,7 @@ _memory:
 
 ## EXECUTIVE SUMMARY
 
-Phase 016 was the headline sk-code coherence phase after the two-axis restructure. It **closed done-by-verification**: the 143-finding content-coherence audit that scoped it predated the 013 restructure and re-verified as stale. Re-checking the live hub found sk-code already coherent — 0 broken references, `parent-skill-check` STRICT 0/0, `parent-hub-vocab-sync` 0/0/0 — so the audit-driven repair, playbook, benchmark, and relocation tasks were dispositioned **verified already-satisfied** rather than newly executed. The one real remnant was removed in commit `af1170c663`, which dropped 3 stale merger placeholder fields from sk-code metadata.
+Phase 016 was the headline sk-code coherence phase after the two-axis restructure. It **closed done-by-verification**: the 143-finding content-coherence audit that scoped it predated the 013 restructure and re-verified as stale. Re-checking the live hub found sk-code already coherent — 0 broken references, `parent-skill-check` STRICT 0/0, `parent-hub-vocab-sync` 0/0/0 — so the audit-driven repair, playbook, benchmark, and relocation tasks were dispositioned **verified already-satisfied** rather than newly executed. The one real remnant was removed in commit `907027032b`, which dropped 3 stale merger placeholder fields from sk-code metadata.
 
 **Key Decisions**: Treat the pre-013 audit as stale and read the live verification gates as the source of truth; ship only the placeholder-field removal; supersede the hooks relocation (ADR-002) because the sk-code link check is already clean.
 
@@ -130,8 +130,8 @@ Restore sk-code as the trustworthy canon example for parent hubs by making its r
 
 - **SC-001** — MET: sk-code markdown link check reports 0 broken references. The audit's "30 broken-ref" set predated the 013 restructure and no longer exists on disk. Evidence: `check-markdown-links.cjs`.
 - **SC-002** — MET: Router and vocabulary coverage is non-vacuous. `parent-skill-check` 5b matches routerSignals to the 8-mode registry and 5c resolves 21 vocabulary classes; `parent-hub-vocab-sync` reports 0 orphan / 0 collision / 0 drift.
-- **SC-003** — MET: `parent-skill-check` STRICT is green for sk-code (all hard invariants pass, 0 warnings, exit 0), including after the `af1170c663` metadata cleanup.
-- **SC-004** — MET: Playbook bodies, benchmark baseline, `description.json`, and `graph-metadata.json` describe current nested workflow/surface packet paths. The 013 restructure re-anchored the paths; `af1170c663` removed the last stale placeholder fields; 3d-canon/5f/9b pass.
+- **SC-003** — MET: `parent-skill-check` STRICT is green for sk-code (all hard invariants pass, 0 warnings, exit 0), including after the `907027032b` metadata cleanup.
+- **SC-004** — MET: Playbook bodies, benchmark baseline, `description.json`, and `graph-metadata.json` describe current nested workflow/surface packet paths. The 013 restructure re-anchored the paths; `907027032b` removed the last stale placeholder fields; 3d-canon/5f/9b pass.
 - **SC-005** — MET (by disposition): sk-code carries 0 broken hooks references, so no live reference points at a stale location. The physical relocation to system-spec-kit (ADR-002) was superseded as an audit-era preference with no live defect to fix.
 
 ### Acceptance Scenarios
@@ -249,7 +249,7 @@ Restore sk-code as the trustworthy canon example for parent hubs by making its r
 <!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
-- RESOLVED: Phase 017 metadata vocabulary did not need to gate phase 016. sk-code metadata already satisfies the two-axis canon (`parent-skill-check` 3d-canon and 5f pass), so no vocabulary decision was required before the `af1170c663` cleanup.
+- RESOLVED: Phase 017 metadata vocabulary did not need to gate phase 016. sk-code metadata already satisfies the two-axis canon (`parent-skill-check` 3d-canon and 5f pass), so no vocabulary decision was required before the `907027032b` cleanup.
 
 <!-- /ANCHOR:questions -->
 ---

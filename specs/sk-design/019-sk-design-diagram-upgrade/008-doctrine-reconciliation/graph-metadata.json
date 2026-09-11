@@ -206,7 +206,7 @@
     ],
     "causal_summary": "The manual review found nine systemic patterns (S1-S9) where a document and the corpus disagree, or the corpus itself is internally inconsistent, and named a direction for each rather than leaving the contradiction open",
     "created_at": "2026-09-11T03:52:46Z",
-    "last_save_at": "2026-09-11T08:31:28.478Z",
+    "last_save_at": "2026-09-11T16:42:00.154Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +217,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:67168bbaac7eb62afb98ba0f39b7533d4dd55c0805c1a4767048b35184d69f2a",
+    "source_fingerprint": "sha256:e49373e1c5063d3ee65a3ca6e27a371e068b7e0899261a9bb81b018886f2fd76",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "fefb20d3eb1af5125e1fe5b73234ca2e6daa44d73f6b5d12b7610b7585b51191",
       "plan.md": "8a24e2f131f293f041460918850f98a541fe6ee37e950c2fe776e98b2a71b342",
-      "tasks.md": "e29a41bd94b7e5be9139d3528a8cfe5287d2d8b0b239c0644af679acc4451169",
-      "implementation-summary.md": "e44f80bda7d141edae474bb85d813d8cfc87aad19d27a9e2bb41b9da465b0329"
+      "tasks.md": "491f8526fbc4f08ed01367760087b79e582acdfaa038666e97269560b32dffcf",
+      "implementation-summary.md": "ebeb47e91be7227355e31991e0dc6ca081e5693791498f65ff587ca2292694dc"
     },
     "last_active_at": null
   }

@@ -6,7 +6,7 @@ trigger_phrases: []
 
 > Consolidated across two independent lineages (`sol` = gpt-5.6-sol-fast @ high, `glm` = glm-5.2 @ max),
 > 7 iterations each, merged via `fanout-merge.cjs` (2 lineages, 14 key findings).
-> Baseline `0ce43ff589` (2026-07-16). Census executed 2026-07-19.
+> Baseline `60b9ed8bc2` (2026-07-16). Census executed 2026-07-19.
 
 ---
 
@@ -35,7 +35,7 @@ the *starting point* for several phases — shipped substrate now overlaps work 
 
 | Phase | Merged verdict | Class | Evidence |
 |-------|---------------|-------|----------|
-| **003** baseline/taxonomy | **REFINE** (unanimous) | First-order, two engines | `cc77a1e550a` renamed `state_format.md`→`state-format.md`, `integration_points.md`→`integration-points.md`, and `behavior_benchmark/`→`behavior-benchmark/` (old glob: zero matches). `7f3216fc502` rebound "033": `003/spec.md:57,119` now points at `033-post-sync-verification-fixes`, a different packet |
+| **003** baseline/taxonomy | **REFINE** (unanimous) | First-order, two engines | `b052f329a73` renamed `state_format.md`→`state-format.md`, `integration_points.md`→`integration-points.md`, and `behavior_benchmark/`→`behavior-benchmark/` (old glob: zero matches). `69aee63cb8a` rebound "033": `003/spec.md:57,119` now points at `033-post-sync-verification-fixes`, a different packet |
 | **004** architecture/ledger | **VALID** (unanimous) | — | Locked negative control. Zero `runtime/` citations; all 3 children resolve; no in-range commit touches its surfaces |
 | **005** fan-out unblock | **VALID** (unanimous) | — | All cited paths resolve; `fanout-run.cjs:1382-1401` confirms the premise. Typed `liveTools`/`webSearch`/fingerprints remain unshipped |
 | **006** ledger core | **REFINE** (sol) / valid (glm) | Second-order | Observability envelopes + status producers are reusable substrate (`observability-events.cjs:89-140`); authoritative replay and fail-closed transition authorization remain absent. One malformed `../../002-` link **predates the baseline** — plan defect, not drift |
@@ -44,7 +44,7 @@ the *starting point* for several phases — shipped substrate now overlaps work 
 | **009** durable fan-out/fan-in | **VALID** (unanimous) | — | Flat pool + checkpoints + salvage are acknowledged substrate (`fanout-run.cjs:331-411`); ledger envelopes, leases, waves, conditional fan-in remain |
 | **010** novelty/claims | **REFINE** (sol) / valid (glm) | Second-order | Graph novelty, claim verification, contradiction density, conflict IDs already ship (`coverage-graph-signals.ts:580-629,715-783`). Semantic communities, durable claim lifecycle, typed focus, atomic projections remain |
 | **011** convergence/health | **REFINE** (sol) / valid (glm) | Second-order | **The council-only premise is false** — generic graph-backed convergence already shipped (`convergence.cjs:723-825`). Cycle detection, separate clocks, adaptive allocation, degeneration health remain |
-| **012** shared mode contracts | **REFINE** (unanimous) | Second-order | The shared boundary this phase must freeze grew by 5 components: `resourceContractVersion`, `defaultMode: null`, model/skill-benchmark signal restriction, `shared/references/smart_routing.md`, `leaf-manifest.json`. Commits `708d25acf04`, `908efde8d8f`, `6cd8ab14e4e` |
+| **012** shared mode contracts | **REFINE** (unanimous) | Second-order | The shared boundary this phase must freeze grew by 5 components: `resourceContractVersion`, `defaultMode: null`, model/skill-benchmark signal restriction, `shared/references/smart_routing.md`, `leaf-manifest.json`. Commits `fa74e868615`, `4b2c351cc1e`, `d60cc2c7553` |
 | **013** mode/lane migrations | **REFINE** (unanimous) | Second-order | Mode count **UNCHANGED**. But `defaultMode` flipped research→null, `hub-identity` dropped from all 7 modes, benchmark signals restricted to command-bridge-only. Hits route-gold fixtures and shadow-parity tests, **not** the migration substrate |
 | **014** authority cutover | **VALID** (unanimous) | — | Route authority + local rollback are not canonical authority epochs, cutover certificates, or monitored rollback windows |
 | **015** legacy retirement | **VALID** (unanimous) | — | Dependencies resolve post-renumber. Transitive dependency on 003's refinement is documented, not blocking |
@@ -111,7 +111,7 @@ backbone** (`deep-improvement-common`), which is reached internally by its three
 routing identity. The three commits changed defaults and signal restrictions, not the count.
 
 **B. Does the packet-033 benchmark dependency survive? YES, with a reference rebase.**
-`7f3216fc502` moved it to `z_archive/027-deep-loop-behavior-benchmarks/`, which remains the provenance and
+`69aee63cb8a` moved it to `z_archive/027-deep-loop-behavior-benchmarks/`, which remains the provenance and
 prior-result authority. Active execution now belongs to `shared/behavior-benchmark/behavior-bench-run.cjs` and
 `<mode>/behavior-benchmark/`. Phase 003's literal "Packet 033" string now resolves to an unrelated packet.
 
@@ -141,7 +141,7 @@ Three defects affect confidence and are recorded rather than smoothed over:
 |--------|--------|
 | **Forced depth did not apply.** `stopPolicy` was passed inside the fan-out config JSON, but `fanoutConfigSchema` has no such key and zod stripped it silently; `fanout-run.cjs:1512` reads it only from the `--stop-policy` CLI flag. Both lineages ran 7/10 and stopped on `converged` | **sol: none.** Its convergence was legitimate — composite stop score 0.70 > 0.60, question coverage 1.00, all guards passed, newInfoRatio 0.90→0.12 monotonic. **glm: material.** It stopped at a self-reported 0.85, i.e. still finding new information |
 | **glm fabricated every iteration timestamp.** Records claim 14:30→15:18 in even 8-minute steps; the actual window was 12:22→13:15. The runtime's `timestamp_anomaly` detector flagged 9 records `after_window` | glm's findings carry real `path:line` evidence and stand on their own, but its **self-reported** fields are untrustworthy — including the 0.85 that would otherwise argue it was cut off mid-discovery |
-| **The lineages pinned different HEADs.** sol compared against `e4b242c3940c` (211 commits, 27 deep-loop); glm pinned `739b85ac57` (205 commits, 25 deep-loop) | Neither triage is wrong — the branch moved *during the census*. This is itself live confirmation of the plan-decay risk the packet names, observed within a single ~1h run |
+| **The lineages pinned different HEADs.** sol compared against `3620a11d8fbf` (211 commits, 27 deep-loop); glm pinned `739b85ac57` (205 commits, 25 deep-loop) | Neither triage is wrong — the branch moved *during the census*. This is itself live confirmation of the plan-decay risk the packet names, observed within a single ~1h run |
 
 The supplied 204-commit figure was already stale at census time. Both lineages detected and corrected it
 independently, which is a mild positive signal on their range triage.
@@ -172,7 +172,7 @@ holds the machinery (BASE-pin at 003, re-census/reopen at 017) to absorb it.
 
 | Sev | Coupling | What 036 must do |
 |-----|----------|------------------|
-| significant | 020's early phases already shipped onto this hub — `908efde8d8f`, `6cd8ab14e4e`, `708d25acf04` touch `hub-router.json` / `mode-registry.json` / `SKILL.md`; 036 has not executed | 003 pins BASE downstream of them; 012/013/018 treat `defaultMode:null`, dropped `hub-identity`, command-bridge signals as pre-existing baseline |
+| significant | 020's early phases already shipped onto this hub — `4b2c351cc1e`, `d60cc2c7553`, `fa74e868615` touch `hub-router.json` / `mode-registry.json` / `SKILL.md`; 036 has not executed | 003 pins BASE downstream of them; 012/013/018 treat `defaultMode:null`, dropped `hub-identity`, command-bridge signals as pre-existing baseline |
 | significant | 036/012's frozen boundary grew by 5 components (`resourceContractVersion`, `defaultMode:null`, benchmark-signal restriction, `smart-routing.md`, `leaf-manifest.json`) | Extend the 012 freeze to include all five before authoring 013 — already the §2 REFINE verdict for 012 |
 | latent | 020's compiled-policy **live-activation** (phase-010, `SPECKIT_COMPILED_ROUTING`, default-off) would make the runtime read a compiled policy instead of the registry directly | Nothing today; do not interleave it with 036's 013/014 cutover unannounced. Registered as a 003 drift dependency for 017 |
 | minor | 020 hash-pins 4 parent-hub files (`SKILL.md`, `mode-registry.json`, `smart-routing.md`, `leaf-manifest.json`) in its shadow snapshot | 013's per-mode migrations must stay inside per-mode trees; touching a pinned parent-hub file forces a 020 recompile before its activation |

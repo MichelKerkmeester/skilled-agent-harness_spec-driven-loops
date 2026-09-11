@@ -170,7 +170,7 @@ Beyond conformance, this program's later children (009-012) also carry a live mo
 |------|-----|----------|--------------|
 | 001 de-vendor | Program complete | `design-principles.md`'s guidance is genuinely rewritten in original words, `LICENSE.txt` and all six citing sites are removed, and the de-vendor is recorded in `changelog/` | `checklist.md` in 001 + `rg -n "Apache\|LICENSE.txt" design-interface/**` returns nothing outside the changelog history |
 | 008 anomalies | Program complete | The three actionable items are resolved or explicitly left Planned with the tradeoff stated; the two legitimate absences are recorded without a fix | `checklist.md` in 008 |
-| 009 aesthetics retirement | 010 motion merge | All 5 `references/aesthetics/*` files removed, the `--mode aesthetic` lane removed hub-wide, `leaf-manifest.json` regenerated | `checklist.md` in 009 (commit `c10ded2ab8`) |
+| 009 aesthetics retirement | 010 motion merge | All 5 `references/aesthetics/*` files removed, the `--mode aesthetic` lane removed hub-wide, `leaf-manifest.json` regenerated | `checklist.md` in 009 (commit `a4b707cddd`) |
 <!-- /ANCHOR:phase-map -->
 
 ---

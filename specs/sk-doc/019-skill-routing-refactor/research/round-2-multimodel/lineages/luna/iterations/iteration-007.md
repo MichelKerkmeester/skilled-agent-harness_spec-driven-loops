@@ -16,7 +16,7 @@ All direct children and nested descendants, with emphasis on parent phase-map st
 ## Findings
 
 ### P1: PRE-EXISTING — the parent phase map overstates nested program lifecycle relative to machine status
-Evidence: parent `spec.md:115-116` labels Group E (`020-router-unification-program`) Active and Group F (`021-documentation-quality-program`) In Progress. Their own phase-parent `graph-metadata.json` files say `planned` at `020/graph-metadata.json:41` and `021/graph-metadata.json:41`, while their descendants include active/in-progress work (`020/001.../graph-metadata.json:51`, `020/004.../graph-metadata.json:41`, and `021/011-review-remediation/graph-metadata.json:42`). The parent lifecycle rule says child graph metadata is the machine-authoritative status and parent prose must reconcile to it (`context-index.md:113-118`). This is pre-existing; `140266be3e` did not change either nested parent graph.
+Evidence: parent `spec.md:115-116` labels Group E (`020-router-unification-program`) Active and Group F (`021-documentation-quality-program`) In Progress. Their own phase-parent `graph-metadata.json` files say `planned` at `020/graph-metadata.json:41` and `021/graph-metadata.json:41`, while their descendants include active/in-progress work (`020/001.../graph-metadata.json:51`, `020/004.../graph-metadata.json:41`, and `021/011-review-remediation/graph-metadata.json:42`). The parent lifecycle rule says child graph metadata is the machine-authoritative status and parent prose must reconcile to it (`context-index.md:113-118`). This is pre-existing; `3c94775856` did not change either nested parent graph.
 
 ## Questions Answered
 - The matrix confirms the direct 019 drift and nested 009/013 drift already reported; they are not isolated cases.

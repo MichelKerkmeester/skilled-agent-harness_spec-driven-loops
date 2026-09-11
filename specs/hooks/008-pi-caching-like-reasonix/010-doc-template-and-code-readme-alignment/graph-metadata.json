@@ -42,14 +42,7 @@
       "tasks.md",
       "implementation-summary.md",
       ".pi/extensions/pi-cache-optimizer/CHANGES-FROM-UPSTREAM.md",
-      ".pi/extensions/deep-pi/CHANGES-FROM-UPSTREAM.md",
-      ".pi/extensions/shared/README.md",
-      ".pi/extensions/shared/composition/README.md",
-      ".pi/extensions/pi-cache-optimizer/tests/ownership-composition.test.ts",
-      ".pi/extensions/deep-pi/extensions/deeppi.ts",
-      ".pi/extensions/deep-pi/scripts/live-benchmark.mjs",
       ".pi/extensions/pi-cache-optimizer/index.ts",
-      ".pi/extensions/shared/composition/one-owner.ts",
       ".opencode/skills/sk-code/SKILL.md",
       ".opencode/skills/sk-doc/sk-create-readme/SKILL.md",
       ".opencode/skills/sk-code/sk-code-opencode/SKILL.md"
@@ -86,39 +79,9 @@
         "source": "derived"
       },
       {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".pi/extensions/shared/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "ownership-composition.test.ts",
-        "kind": "test",
-        "path": ".pi/extensions/pi-cache-optimizer/tests/ownership-composition.test.ts",
-        "source": "derived"
-      },
-      {
-        "name": "deeppi.ts",
-        "kind": "code",
-        "path": ".pi/extensions/deep-pi/extensions/deeppi.ts",
-        "source": "derived"
-      },
-      {
-        "name": "live-benchmark.mjs",
-        "kind": "file",
-        "path": ".pi/extensions/deep-pi/scripts/live-benchmark.mjs",
-        "source": "derived"
-      },
-      {
         "name": "index.ts",
         "kind": "code",
         "path": ".pi/extensions/pi-cache-optimizer/index.ts",
-        "source": "derived"
-      },
-      {
-        "name": "one-owner.ts",
-        "kind": "code",
-        "path": ".pi/extensions/shared/composition/one-owner.ts",
         "source": "derived"
       },
       {
@@ -198,11 +161,41 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Evidence Record",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Related Resources",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Files",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria All",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Both `CHANGES-FROM-UPSTREAM.md` files were authored as free-form prose sections (Upstream / What Changed / Why / Verification) without following any `sk-doc` document template, so they read differently from every other authored doc in this repo",
     "created_at": "2026-08-08T12:24:19.875Z",
-    "last_save_at": "2026-08-30T15:39:09.489Z",
+    "last_save_at": "2026-09-11T16:41:50.119Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8d1fbb34215c4b913984e88b1bb952fb2e26dab1bb577ba1de19f73210362606",
+    "source_fingerprint": "sha256:10779eae44fee4c6a3bbc0b5c6867baacf6eb561b86d4baa3c31e4c0698543ae",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "20b12ac18a6de6ad13ba4a1672bdb91391ec9355aeaa715be97f21006442bf6c",
       "plan.md": "d773c597ac6ecc539adea8cbef5000a5ac647ed16b997f7b4c2021aa6e9e024c",
-      "tasks.md": "996fb896e2adbb9ad00c39a31cfda3208428b2b1fe6c6e19e94d68fbdec257ae",
-      "implementation-summary.md": "ee24405db0eccca19292dca3b6ce7ca20c2408f1e2c0a8001b2d45aa04ca1472"
+      "tasks.md": "35f4c79929cb03d564397b751a97f4a2db60fab16e1db7780ca2f47e30df427c",
+      "implementation-summary.md": "6508bccd8c172d4b8d4565cb572bc252013bd0cdff9082b1f4ebf4d28dda3eb5"
     },
     "last_active_child_id": null,
     "last_active_at": null

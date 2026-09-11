@@ -45,176 +45,176 @@ _memory:
 
 ~~~
 Epoch one  --  origin & rename
- c0ee8517181  chore(sk-doc)       recover behavior-benchmark work + scaffold packet specs
- a516a891318  docs(sk-doc)        add packet-smart-routing-conformance spec docs
- 0e86ffdce37  docs(sk-doc)        add benchmark-authoring-centralization spec docs
- 1ee623a5bc8  fix(sk-doc)         remediate model-benchmark template findings
- ae8c36ea4f1  chore(sk-doc)       finalize benchmark-packet metadata and continuity
- 424f7c47a1a  docs(sk-doc)        add Smart Routing N/A notes to six flat-resource packets
- 36bba13758a  docs(sk-doc)        add alignment doc sets for packets 017 and 019
- 3048a662e9b  feat(sk-doc)        group create-benchmark resources by family and vocab
- c6f9c6e7ac8  feat(sk-doc)        align subskill triggers and regenerate the hub registry
- 356d92c3ff3  feat(create-benchmark) complete benchmark-authoring centralization
- ae7b74951a1  refactor(sk-doc)    merge 017 and 018 routing packets into parent 016
- 05f53263ea1  fix(sk-doc)         add hub keyword coverage for agent and changelog prompts
- 778a08b051d  fix(sk-doc)         route create a benchmark package through the alias swap
- 5d7407b8e17  refactor(sk-doc)    renumber the router-alignment packet 016 to 019
- cebc9846cac  docs(sk-doc)        re-nest packets 018 and 015 under topical parents
- 0868fccb19a  fix(create-benchmark) reconcile authoring docs and close runtime gaps
- f925c1366af  fix(skill-benchmark) make BLOCKED-BY-REGISTRY reachable and repair the suite
- d7c150b4071  fix(deep-improvement) repair the sk-design command-surface validator
- 3de9f7366c5  docs(sk-doc)        renumber the router-alignment packet 019 to 015
- 418edf13d87  refactor(deep-loop) remove the ai-system-improvement Lane D mode
- a35c86b9918  refactor(deep-loop) complete the Lane D removal and verification-gap fix
- c212f89c20b  refactor(specs)     consolidate sk-doc documentation packets into the sk-doc track
- 9860de9720a  docs(sk-doc)        document routing research and scaffold fix phases
- 146f9d0c882  docs(sk-doc)        ratify fixture ownership and the routing-quality decision
- 1da0074b7d2  docs(sk-doc)        check off the first advisor-routing task block
- 0c733c7fe90  docs(sk-doc)        check off the second advisor-routing task block
- ce0641e6f87  docs(sk-doc)        record the four create-quality-control aliases
- 065f2e07f78  docs(sk-doc)        scaffold benchmark-harness typed wiring
- 6a12d07f2cc  docs(sk-doc)        wire typed benchmark wiring into the phase sequence
- a66c800da22  docs(sk-doc)        replan the benchmark packet around one classifier
- f5a6c690025  test(sk-doc)        record the benchmark packet regression baseline
- d20ec0ab7ff  docs(sk-doc)        record the 8/8 LLM-routing generalization finding
- 72bb0bc0c70  feat(skill-benchmark) add typed-pair gold for index-table skills
- f82b319a136  docs(sk-doc)        add Wave 2 routing research and the routing-JSON reference
- 63f6f785148  chore(wip)          snapshot concurrent work before the v4 merge
- c2b11679360  merge               merge origin/skilled/v4.0.0.0 into the packet branch
- 72c36121201  refactor(skill-benchmark) de-skill the classifier and add manifest freshness
- a05e87bf111  docs(fleet-routing) record the route-gold full-fix milestone
- 904ac78090f  chore(specs)        renumber the 031 router-alignment packet to 019
+ 438105c3da3  chore(sk-doc)       recover behavior-benchmark work + scaffold packet specs
+ 646c75f9edf  docs(sk-doc)        add packet-smart-routing-conformance spec docs
+ 00f02dd04f6  docs(sk-doc)        add benchmark-authoring-centralization spec docs
+ dbc3300ac7e  fix(sk-doc)         remediate model-benchmark template findings
+ f321a81c276  chore(sk-doc)       finalize benchmark-packet metadata and continuity
+ cc0c7d38c7b  docs(sk-doc)        add Smart Routing N/A notes to six flat-resource packets
+ b932569d739  docs(sk-doc)        add alignment doc sets for packets 017 and 019
+ 8179eb714b6  feat(sk-doc)        group create-benchmark resources by family and vocab
+ 3efa252285a  feat(sk-doc)        align subskill triggers and regenerate the hub registry
+ 1780843994e  feat(create-benchmark) complete benchmark-authoring centralization
+ 80d19980643  refactor(sk-doc)    merge 017 and 018 routing packets into parent 016
+ ebffc559996  fix(sk-doc)         add hub keyword coverage for agent and changelog prompts
+ d610693063a  fix(sk-doc)         route create a benchmark package through the alias swap
+ a5423ca184b  refactor(sk-doc)    renumber the router-alignment packet 016 to 019
+ 72f139f5ae0  docs(sk-doc)        re-nest packets 018 and 015 under topical parents
+ 33955df5e5c  fix(create-benchmark) reconcile authoring docs and close runtime gaps
+ 528316e0d4f  fix(skill-benchmark) make BLOCKED-BY-REGISTRY reachable and repair the suite
+ 8e093afd038  fix(deep-improvement) repair the sk-design command-surface validator
+ 6fdf3677b75  docs(sk-doc)        renumber the router-alignment packet 019 to 015
+ 8f9cb5bf0b3  refactor(deep-loop) remove the ai-system-improvement Lane D mode
+ 3a0f0646944  refactor(deep-loop) complete the Lane D removal and verification-gap fix
+ 658a80dae40  refactor(specs)     consolidate sk-doc documentation packets into the sk-doc track
+ 62a1c15c800  docs(sk-doc)        document routing research and scaffold fix phases
+ 5d6e5470c21  docs(sk-doc)        ratify fixture ownership and the routing-quality decision
+ d5f68a2ac29  docs(sk-doc)        check off the first advisor-routing task block
+ 787a909b82b  docs(sk-doc)        check off the second advisor-routing task block
+ 45780f287a6  docs(sk-doc)        record the four create-quality-control aliases
+ 9b89bc39e1b  docs(sk-doc)        scaffold benchmark-harness typed wiring
+ 5ae02b65271  docs(sk-doc)        wire typed benchmark wiring into the phase sequence
+ 24e043adc94  docs(sk-doc)        replan the benchmark packet around one classifier
+ e975723ba5e  test(sk-doc)        record the benchmark packet regression baseline
+ bdc603f6833  docs(sk-doc)        record the 8/8 LLM-routing generalization finding
+ 536484dc28d  feat(skill-benchmark) add typed-pair gold for index-table skills
+ eaae464f708  docs(sk-doc)        add Wave 2 routing research and the routing-JSON reference
+ 1f5c22c4c62  chore(wip)          snapshot concurrent work before the v4 merge
+ 7a38fbbbd45  merge               merge origin/skilled/v4.0.0.0 into the packet branch
+ 37c589e08e4  refactor(skill-benchmark) de-skill the classifier and add manifest freshness
+ b43e66a081f  docs(fleet-routing) record the route-gold full-fix milestone
+ 29faa31144e  chore(specs)        renumber the 031 router-alignment packet to 019
 
 Epoch two  --  A–F workstream builds
- 891f3346e05  fix(specs)          apply missed 031-to-019 reference edits
- b129835139b  fix(specs)          repoint the tracked deep-research lock
- 6a650641034  docs(routing)       add the routing before-and-after explainer
- a6dffc3ebaf  docs(fleet-routing) record the route-gold teeth-proof and live-mode check
- a07b7422e66  docs(default-mode-research) synthesize the parent-hub default-mode study
- b02f3b7ef94  docs(default-mode-research) refine the null fallback to load the routing helper
- 399e2c531cf  docs(default-mode-research) add the second divergent multi-model deep dive
- 908efde8d8f  feat(routing)       flip four hubs to defaultMode null and fix sk-design emission
- 93ce7d15c4c  docs(create-skill)   canonize the defer-routed hub archetype
- 76e0633eeee  docs(sk-doc)        scaffold the unified-router implementation phases
- 27c4488b2b6  docs(sk-doc)        add default-mode research and implementation packets
- 3446995c899  refactor(sk-doc)    consolidate router-alignment packets into the 020 program
- cc77a1e550a  refactor(sk-doc)    migrate the 020 filesystem names to kebab-case
- a274a7aafec  feat(router-refactor) build phase 000 contract schemas and canonical hashing
- c3ff87577f5  feat(router-refactor) build phase 001 shadow compiler and N=1 compile
- db976e37602  feat(router-refactor) build phase 002 decision evaluator
- 9a4d0a6318c  feat(router-refactor) build phase 003 execution plane and idempotency
- 28efcff2aac  feat(router-refactor) build phase 004 recovery ladder and shared budget
- 5a277366460  feat(router-refactor) build phase 005/001 calibration corpus and governance
- aeba31eb806  feat(router-refactor) build phase 005/002 calibrated route contract
- ad8f76d612c  feat(router-refactor) build phase 005/003 selective-classification controller
- 9c6b234489f  feat(router-refactor) build phase 006/001 sk-code canary and evidence fence
- 6d0f4d8f0f4  feat(router-refactor) build phase 006/002 deep-loop canary without collapse
- 658da8163dc  feat(router-refactor) build phase 006/003 mcp-tooling canary and judgment fence
- b47378710bc  feat(router-refactor) build the gated reversible learning overlay
- 0882b9b2cf1  feat(router-refactor) retire legacy dual-read behind EffectivePolicy
- 2e7b938b3b4  fix(router-refactor) preserve learning-overlay base identity through replay
- 2cc9cfce226  fix(router-refactor) conform calibration to the frozen decision shape
- ed4189719b5  fix(router-refactor) bind idempotency to effective policy and one owner
- e2821ea2146  fix(router-refactor) derive deep-loop route gold from the compatibility projector
- 2f14f66b381  fix(router-refactor) bind fleet-cleanup readiness to rollout evidence
- 16b36c0c13a  fix(router-refactor) route the sk-code canary through the certificate gate
- 8fa5eb2e23a  fix(router-refactor) reject empty-adjustments overlay candidates
- b1e26d9d42a  docs(router-program) add the live-activation goal and parallelization
- be0775a2f13  feat(router-refactor) make the deep-loop canary real-green
- 342c7e37c89  chore(router-refactor) align route-gold and scorer pins
- bb414f070c8  feat(router-rollout) complete the parent-hub and non-hub rollout
- 78adee01eec  chore(router-rollout) re-baseline mcp-tooling and sk-design canaries
- 850f9beda16  feat(router-activation) activate all seven hubs with fenced CAS
- 052f8a7ba8b  feat(router-activation) record T9 real-model routing verification
- d7da0fca432  feat(router-activation) build the compiled-routing runtime engine
- 2fa3357f800  feat(router-activation) activate sk-code compiled routing live
- 337ca43cfa8  feat(router-activation) activate compiled routing on six more hubs
- 28d9c4a81ad  docs(router-activation) reconcile the completed cutover docs
- e9cda965ff2  test(router-activation) record the post-flip real-model sweep
- 7a029e99ca7  fix(router-refactor) fix three compiled-routing P1s and re-bind deep-loop
- c118758b3c2  test(router-refactor) add the committed runtime regression suite
- caa910c97ae  fix(router-hardening) remediate nine deep-review cutover findings
- fadd6d29eaf  fix(router-hardening) add mkdir locking and a write-ahead journal
- ee9ee9161cb  fix(router-hardening) self-heal a deleted serving-flip audit record
- 3f7a8c3b4e3  docs(router-impl) conform the unified-router tree to spec-kit templates
- a8c151f6c5a  docs(router-program) conform the first implementation children to templates
- d78839c2c74  docs(router-program) conform the remaining implementation children to templates
- b00bebe6775  chore(specs)        adopt inactive-session work for create-diff, 016, 032, and 019
- 8312af6d7c9  docs(specs)         add compiled-routing default-on decision and alignment phases
- 04b646da72f  docs(specs)         settle the default-on ruling and reconcile packet 012
- a179c8d5e9f  feat(specs)         add routing coverage, activation, and verification research
- 1455dcbd26a  feat(specs)         author the routing-program children and continuity docs
- 4153cbebd80  feat(runtime)       implement the P0 compiled-routing foundation behind a flag
- a1cdb65d90a  feat(runtime)       implement flag propagation, drift guards, and rollback
- 8532c4b64b5  feat                implement the Lane C benchmark, catalogs, and templates
- 2a39ecb9a03  feat(benchmark)     implement durable archiving and serving snapshots
- d590af12bea  feat(benchmark)     implement playbooks and LUNA-HIGH acceptance
- 3d08302771a  feat(sk-doc)        add the P4 cutover controller and kill-switch drill
- bace87337a7  docs(sk-doc)        reconcile packet 015 docs to implemented state
- f72003829e7  docs(sk-doc)        add the P3 canonical-minter foundation spec
- 2d0cf5f022a  docs(sk-doc)        add the findings-traceability matrix
- f6accfddcd6  feat(runtime)       implement the P3 canonical-minter foundation
- 665a3116c00  feat(sk-doc)        implement create-skill routing and Lane C alignment
- 72d1b7961c6  test(sk-doc)        add the seven-hub LUNA-HIGH sweep evidence
- f19ee171790  feat(compiled-routing) add the sk-code routing recipe and manifest refresh
- f9f639674bd  feat(compiled-routing) add compiled serving for sk-design, deep-loop, and mcp-tooling
- 7dfffa0c934  feat(compiled-routing) enable compiled routing by default for all seven hubs
- 85a5876dc87  docs(compiled-routing) reconcile phases 011 and 013 to shipped state
- 2eaac22e958  docs(compiled-routing) close the alignment gate and MD conformance
- b5e8e4dacf8  feat(compiled-routing) flip advisor enrichment to the seven-hub cohort
- 2b9ea4418ce  chore(compiled-routing) regenerate phase 013 metadata
- 0c588aa9572  merge               merge origin/v4 into the compiled-routing cutover
- 8c8126cf8a3  fix(compiled-routing) re-bind three stale manifests after the v4 merge
- ed8f3e20d0e  fix(compiled-routing) reconcile four spec-tree manifests to fresh copies
- 56714fa8bc7  fix(sk-doc)         remediate eight compiled-routing deep-review findings
- 335a194c75c  docs(sk-doc)        record the unnecessary fleet-wide expansion
- 7d8f7c6497a  docs(sk-doc)        author documentation-quality phase 001
- c8d268a9254  docs(sk-doc)        author documentation-quality phase 002
- 81722e6f365  docs(sk-doc)        author documentation-quality phase 003
- a4c3d5f0d94  docs(sk-doc)        add phase-chain navigation links
- b2881cbb061  docs(sk-doc)        overhaul skill and mode READMEs
- 6f716420267  docs(sk-doc)        update code READMEs, infrastructure, and sk batch
- c5aa2f0b0f3  docs(sk-doc)        update code READMEs for design, prompt, and spec-kit
- ce7e75a95f4  docs(sk-doc)        update system-deep-loop READMEs and catalogs
- 6860866ff06  docs(sk-doc)        author the existing-README cleanup spec set
- 1d843009367  docs(sk-doc)        author the title-case and config closeout
- b1c9917d592  docs(sk-doc)        compact the closeout continuity fields
- c2a482ce9a0  docs(sk-doc)        clear the evidence-cited closeout warning
- e09be7e59b4  docs(sk-doc)        add backtick references to closeout checklist items
- b7ccadcdc0c  docs(sk-doc)        author deferred code and checker fixes
- b3452814db7  docs(sk-doc)        record the documentation-quality deep-review outcome
- 7cafba35da3  fix(sk-doc)         remediate documentation-quality P0 blockers
- 04b085f183b  fix(sk-doc)         harden uppercase-section validation
- e0ec90ba649  docs(sk-doc)        correct the parent phase map and README count
- 24c8d914588  docs(sk-doc)        record the code-README triage
- c7bc662bf0e  docs(sk-doc)        correct stale phase counts and a resolved limitation
- 114475bc887  chore(sk-doc)       refresh documentation-quality metadata
- 28ae7dce6c6  refactor(sk-doc)    rename 019 router-alignment to skill-routing-refactor
+ b1e73db34da  fix(specs)          apply missed 031-to-019 reference edits
+ 591276aa09c  fix(specs)          repoint the tracked deep-research lock
+ ce0f71f8f19  docs(routing)       add the routing before-and-after explainer
+ 7ca29e01abc  docs(fleet-routing) record the route-gold teeth-proof and live-mode check
+ c1c6e4396f9  docs(default-mode-research) synthesize the parent-hub default-mode study
+ f2d03c87a23  docs(default-mode-research) refine the null fallback to load the routing helper
+ 8b227c14ef0  docs(default-mode-research) add the second divergent multi-model deep dive
+ 4b2c351cc1e  feat(routing)       flip four hubs to defaultMode null and fix sk-design emission
+ a3fdf0707a8  docs(create-skill)   canonize the defer-routed hub archetype
+ f1297285068  docs(sk-doc)        scaffold the unified-router implementation phases
+ 5a49a90ef66  docs(sk-doc)        add default-mode research and implementation packets
+ 1acac15e0fb  refactor(sk-doc)    consolidate router-alignment packets into the 020 program
+ b052f329a73  refactor(sk-doc)    migrate the 020 filesystem names to kebab-case
+ 46e61ac4ae6  feat(router-refactor) build phase 000 contract schemas and canonical hashing
+ 68b2b5b6ba1  feat(router-refactor) build phase 001 shadow compiler and N=1 compile
+ 717897e2668  feat(router-refactor) build phase 002 decision evaluator
+ 09924c07521  feat(router-refactor) build phase 003 execution plane and idempotency
+ f8df62cdf3d  feat(router-refactor) build phase 004 recovery ladder and shared budget
+ 6236175c55e  feat(router-refactor) build phase 005/001 calibration corpus and governance
+ 6a347af5228  feat(router-refactor) build phase 005/002 calibrated route contract
+ 4d0af5441dc  feat(router-refactor) build phase 005/003 selective-classification controller
+ 8f3815e29ac  feat(router-refactor) build phase 006/001 sk-code canary and evidence fence
+ 0c222cd31c4  feat(router-refactor) build phase 006/002 deep-loop canary without collapse
+ debbbecf32f  feat(router-refactor) build phase 006/003 mcp-tooling canary and judgment fence
+ 61db654f98e  feat(router-refactor) build the gated reversible learning overlay
+ 9e479169f40  feat(router-refactor) retire legacy dual-read behind EffectivePolicy
+ 67d7466d131  fix(router-refactor) preserve learning-overlay base identity through replay
+ 97ea7dee69a  fix(router-refactor) conform calibration to the frozen decision shape
+ 4f66587cd70  fix(router-refactor) bind idempotency to effective policy and one owner
+ 181a7a8de86  fix(router-refactor) derive deep-loop route gold from the compatibility projector
+ 0090e6a3b5d  fix(router-refactor) bind fleet-cleanup readiness to rollout evidence
+ 5842a45ddab  fix(router-refactor) route the sk-code canary through the certificate gate
+ c7382b9c45c  fix(router-refactor) reject empty-adjustments overlay candidates
+ 4f92aa3a359  docs(router-program) add the live-activation goal and parallelization
+ f81468ed4cd  feat(router-refactor) make the deep-loop canary real-green
+ 190474111aa  chore(router-refactor) align route-gold and scorer pins
+ 785e119747d  feat(router-rollout) complete the parent-hub and non-hub rollout
+ 8c29e36a060  chore(router-rollout) re-baseline mcp-tooling and sk-design canaries
+ 5a7ba20c55e  feat(router-activation) activate all seven hubs with fenced CAS
+ 91f5dfc3625  feat(router-activation) record T9 real-model routing verification
+ 4aa00aa9592  feat(router-activation) build the compiled-routing runtime engine
+ ffb752f10bc  feat(router-activation) activate sk-code compiled routing live
+ d84dc4bfc2e  feat(router-activation) activate compiled routing on six more hubs
+ 368915881b5  docs(router-activation) reconcile the completed cutover docs
+ fcc0887e644  test(router-activation) record the post-flip real-model sweep
+ 969089b3a6f  fix(router-refactor) fix three compiled-routing P1s and re-bind deep-loop
+ bce84ac03ef  test(router-refactor) add the committed runtime regression suite
+ e7b27034dd7  fix(router-hardening) remediate nine deep-review cutover findings
+ 322fe67a75d  fix(router-hardening) add mkdir locking and a write-ahead journal
+ cd2da445e65  fix(router-hardening) self-heal a deleted serving-flip audit record
+ de764c9dd15  docs(router-impl) conform the unified-router tree to spec-kit templates
+ d49e386d1e7  docs(router-program) conform the first implementation children to templates
+ fa7d2b68b6d  docs(router-program) conform the remaining implementation children to templates
+ 5ca94c640c9  chore(specs)        adopt inactive-session work for create-diff, 016, 032, and 019
+ fa93ff6e304  docs(specs)         add compiled-routing default-on decision and alignment phases
+ 0e72d01fc24  docs(specs)         settle the default-on ruling and reconcile packet 012
+ 10ee0c850d4  feat(specs)         add routing coverage, activation, and verification research
+ 545c54b2a49  feat(specs)         author the routing-program children and continuity docs
+ 6b81fde29ee  feat(runtime)       implement the P0 compiled-routing foundation behind a flag
+ c926b255060  feat(runtime)       implement flag propagation, drift guards, and rollback
+ bb2fcbbd272  feat                implement the Lane C benchmark, catalogs, and templates
+ beca825aa47  feat(benchmark)     implement durable archiving and serving snapshots
+ c0d98bf07b4  feat(benchmark)     implement playbooks and LUNA-HIGH acceptance
+ 8293d894136  feat(sk-doc)        add the P4 cutover controller and kill-switch drill
+ e853c2c054b  docs(sk-doc)        reconcile packet 015 docs to implemented state
+ 22b1ef53c55  docs(sk-doc)        add the P3 canonical-minter foundation spec
+ a453f1ee51b  docs(sk-doc)        add the findings-traceability matrix
+ e341e457db7  feat(runtime)       implement the P3 canonical-minter foundation
+ a6038e31f7f  feat(sk-doc)        implement create-skill routing and Lane C alignment
+ adfd7fcd853  test(sk-doc)        add the seven-hub LUNA-HIGH sweep evidence
+ b6f96379512  feat(compiled-routing) add the sk-code routing recipe and manifest refresh
+ a381edc1f8e  feat(compiled-routing) add compiled serving for sk-design, deep-loop, and mcp-tooling
+ 4cd19370da1  feat(compiled-routing) enable compiled routing by default for all seven hubs
+ 3992517b19c  docs(compiled-routing) reconcile phases 011 and 013 to shipped state
+ 6ccb6b43024  docs(compiled-routing) close the alignment gate and MD conformance
+ f48ee1a6750  feat(compiled-routing) flip advisor enrichment to the seven-hub cohort
+ 830fdcf94ed  chore(compiled-routing) regenerate phase 013 metadata
+ 5c74d2610ca  merge               merge origin/v4 into the compiled-routing cutover
+ f306ce44819  fix(compiled-routing) re-bind three stale manifests after the v4 merge
+ 5b09575bba9  fix(compiled-routing) reconcile four spec-tree manifests to fresh copies
+ 7aedee6133a  fix(sk-doc)         remediate eight compiled-routing deep-review findings
+ 3f10def104d  docs(sk-doc)        record the unnecessary fleet-wide expansion
+ ed65063a375  docs(sk-doc)        author documentation-quality phase 001
+ 2a871e4e8ac  docs(sk-doc)        author documentation-quality phase 002
+ 4ea7c7b1b17  docs(sk-doc)        author documentation-quality phase 003
+ d06b58f1dca  docs(sk-doc)        add phase-chain navigation links
+ eec5509ca83  docs(sk-doc)        overhaul skill and mode READMEs
+ a80bc2cb6a4  docs(sk-doc)        update code READMEs, infrastructure, and sk batch
+ f70b1f43735  docs(sk-doc)        update code READMEs for design, prompt, and spec-kit
+ 2477aefe5ac  docs(sk-doc)        update system-deep-loop READMEs and catalogs
+ 672ea4ecf8b  docs(sk-doc)        author the existing-README cleanup spec set
+ d007d208e1a  docs(sk-doc)        author the title-case and config closeout
+ 71008ddb6b3  docs(sk-doc)        compact the closeout continuity fields
+ 287e6ff4962  docs(sk-doc)        clear the evidence-cited closeout warning
+ a5624303d6d  docs(sk-doc)        add backtick references to closeout checklist items
+ 9b48a7a5274  docs(sk-doc)        author deferred code and checker fixes
+ 8a38eab89d5  docs(sk-doc)        record the documentation-quality deep-review outcome
+ c7f0275dd94  fix(sk-doc)         remediate documentation-quality P0 blockers
+ b4627549816  fix(sk-doc)         harden uppercase-section validation
+ d163b8c90d1  docs(sk-doc)        correct the parent phase map and README count
+ 1cac0103f66  docs(sk-doc)        record the code-README triage
+ 3f7d1609b0e  docs(sk-doc)        correct stale phase counts and a resolved limitation
+ 9c10096217b  chore(sk-doc)       refresh documentation-quality metadata
+ 3b69dda4a0b  refactor(sk-doc)    rename 019 router-alignment to skill-routing-refactor
 
 Epoch three  --  second-pass luna+sol audit remediation
- 04390310d87  fix(compiled-routing) re-bind five stale activation manifests
- 99942211064  docs(sk-doc)        update 019 references to the renamed path
- 053c50a7275  docs(sk-doc)        rewrite the parent to skill-wide scope
- 1919593c074  chore(sk-doc)       remove stale canonical-save locks
- 75eb0fdc93b  docs(sk-doc)        fix four pre-existing 019 doc-drift findings
- 140266be3e5  docs(sk-doc)        fix seventeen deep-research audit findings
- 2cc0787dcb7  docs(sk-doc)        remediate four new audit findings in waves A and B
- 9f7aeebc3df  docs(sk-doc)        correct stale operator-gated claims to default-on
- a3f5b74e997  docs(sk-doc)        fix the research frontmatter and smart-routing paths
- c415be56af6  chore(sk-doc)       refresh fingerprints after the audit edits
- 0c7d26900fd  docs(sk-doc)        fix advisor paths and phase-map pointers
- 99f0c6c2fc0  docs(sk-doc)        add the second-pass remediation plan
- 247d82a7796  docs(sk-doc)        reconcile advisor packet progress and add its summary
- 7534f7021d5  docs(sk-doc)        reconcile the sk-code packet to in-progress state
- 941771772c9  docs(sk-doc)        clarify the router-program context-index path base
+ f2734e080ed  fix(compiled-routing) re-bind five stale activation manifests
+ ce363ce498b  docs(sk-doc)        update 019 references to the renamed path
+ 8584bff524c  docs(sk-doc)        rewrite the parent to skill-wide scope
+ a0adade2194  chore(sk-doc)       remove stale canonical-save locks
+ 28b6847df0b  docs(sk-doc)        fix four pre-existing 019 doc-drift findings
+ 3c94775856e  docs(sk-doc)        fix seventeen deep-research audit findings
+ b50ab613521  docs(sk-doc)        remediate four new audit findings in waves A and B
+ 933992c6d93  docs(sk-doc)        correct stale operator-gated claims to default-on
+ 16308ed4fcc  docs(sk-doc)        fix the research frontmatter and smart-routing paths
+ 878ce0dcddf  chore(sk-doc)       refresh fingerprints after the audit edits
+ 21576d36e7d  docs(sk-doc)        fix advisor paths and phase-map pointers
+ fd50e46f332  docs(sk-doc)        add the second-pass remediation plan
+ d1997f1fd0b  docs(sk-doc)        reconcile advisor packet progress and add its summary
+ 6ba6a42af0d  docs(sk-doc)        reconcile the sk-code packet to in-progress state
+ fa80851321f  docs(sk-doc)        clarify the router-program context-index path base
 
 Epoch four  --  research consolidation + renumber
- 9796369bc29  refactor(sk-doc)    consolidate research into 001-research and renumber 002–016
- abc50ff76a3  refactor(sk-doc)    rewrite cross-references for the research consolidation
+ 426c4706b77  refactor(sk-doc)    consolidate research into 001-research and renumber 002–016
+ 17f48291918  refactor(sk-doc)    rewrite cross-references for the research consolidation
 
 Epoch five  --  ungroup 015 + extract sk-code research
- 4b57c99c095  refactor(sk-doc)    promote seventeen 015/003 children to direct 015 phases
- cbdb1dbeaca  refactor(sk-doc)    rewrite ungroup cross-references and author 011 sk-code research
+ 1f595b2a5a0  refactor(sk-doc)    promote seventeen 015/003 children to direct 015 phases
+ 5d189390bd4  refactor(sk-doc)    rewrite ungroup cross-references and author 011 sk-code research
 ~~~
 
 The code block includes 162 commits. The early source-path entries are retained because
@@ -227,18 +227,18 @@ names to the current phases.
 The first work was narrow: make the sk-doc create-* packets describe routing consistently
 and give the benchmark and packet-conformance work a real spec surface. The earliest current
 phase folder by first spec.md appearance is 010-create-packet-routing-conformance at
-c0ee8517181. The next source-phase creation was 006-create-skill-smart-routing-notes at
-424f7c47a1a, followed by the router-audit group 002–005 created together at c6f9c6e7ac8.
+438105c3da3. The next source-phase creation was 006-create-skill-smart-routing-notes at
+cc0c7d38c7b, followed by the router-audit group 002–005 created together at 3efa252285a.
 The marker-gap, keyword-coverage, and benchmark-routing phases followed in the same
 source-path build, then the advisor, typed-pair, and per-hub research phases were added
 to the 031 packet.
 
-The git graph contains temporary branch-local numbering moves: 016→019 at 5d7407b8e17
-and 019→015 at 3de9f7366c5. The canonical rename history recorded by context-index.md
-is the later 031→019 move at 904ac78090f, followed by the missed-reference and lock
-repairs at 891f3346e05 and b129835139b. That distinction matters: the temporary moves
+The git graph contains temporary branch-local numbering moves: 016→019 at a5423ca184b
+and 019→015 at 6fdf3677b75. The canonical rename history recorded by context-index.md
+is the later 031→019 move at 29faa31144e, followed by the missed-reference and lock
+repairs at b1e73db34da and 591276aa09c. That distinction matters: the temporary moves
 are real commits in the source-path ledger, but the durable packet identity is
-sk-doc/019-sk-doc-router-alignment until the scope rename in 28ae7dce6c6.
+sk-doc/019-sk-doc-router-alignment until the scope rename in 3b69dda4a0b.
 
 ## B. Epoch two: the A–F workstream builds
 
@@ -263,24 +263,24 @@ documented kill-switch, and recorded real-model post-flip evidence.
 Group F ran alongside that router work. Its documentation-quality phases repaired metadata,
 templates, navigation, skill and mode READMEs, code READMEs, tooling, validators, and
 closeout evidence. The quality program's own deep-review blockers were fixed before the
-019 scope rename. The rename at 28ae7dce6c6 made the packet name match the actual fleet-wide
+019 scope rename. The rename at 3b69dda4a0b made the packet name match the actual fleet-wide
 program rather than the original create-* slice.
 
 The direct phase creation order is therefore not the numeric order shown in spec.md:
 
 | First spec.md appearance | Current phase |
 |---|---|
-| 2026-07-12 12:11 — c0ee8517181 | 010-create-packet-routing-conformance |
-| 2026-07-12 16:18 — 424f7c47a1a | 006-create-skill-smart-routing-notes |
-| 2026-07-13 07:30 — c6f9c6e7ac8 | 002-router-audit-and-fix-map; 003-router-collision-fixes; 004-trigger-scoping-and-handoffs; 005-router-standardization-and-regen |
-| 2026-07-13 14:24 — ae7b74951a1 | 007-create-skill-router-marker-gap |
-| 2026-07-13 15:12 — 05f53263ea1 / 778a08b051d | 008-hub-intent-keyword-coverage; 009-create-benchmark-routing-fix |
-| 2026-07-16 10:36 — 9860de9720a | 011-sk-doc-routing-fixes; 012-skill-advisor-routing-fixes |
-| 2026-07-16 16:15 — 065f2e07f78 | 013-benchmark-harness-typed-wiring |
-| 2026-07-16 22:11 — 72bb0bc0c70 | 014-sk-code-router-alignment |
-| 2026-07-18 17:02 — 3446995c899 | 015-router-unification-program |
-| 2026-07-22 11:00 — 7d8f7c6497a | 016-documentation-quality-program |
-| 2026-07-24 13:15 — abc50ff76a3 | 001-research |
+| 2026-07-12 12:11 — 438105c3da3 | 010-create-packet-routing-conformance |
+| 2026-07-12 16:18 — cc0c7d38c7b | 006-create-skill-smart-routing-notes |
+| 2026-07-13 07:30 — 3efa252285a | 002-router-audit-and-fix-map; 003-router-collision-fixes; 004-trigger-scoping-and-handoffs; 005-router-standardization-and-regen |
+| 2026-07-13 14:24 — 80d19980643 | 007-create-skill-router-marker-gap |
+| 2026-07-13 15:12 — ebffc559996 / d610693063a | 008-hub-intent-keyword-coverage; 009-create-benchmark-routing-fix |
+| 2026-07-16 10:36 — 62a1c15c800 | 011-sk-doc-routing-fixes; 012-skill-advisor-routing-fixes |
+| 2026-07-16 16:15 — 9b89bc39e1b | 013-benchmark-harness-typed-wiring |
+| 2026-07-16 22:11 — 536484dc28d | 014-sk-code-router-alignment |
+| 2026-07-18 17:02 — 1acac15e0fb | 015-router-unification-program |
+| 2026-07-22 11:00 — ed65063a375 | 016-documentation-quality-program |
+| 2026-07-24 13:15 — 17f48291918 | 001-research |
 
 That makes 010 the oldest current phase folder by filesystem-history creation and
 001-research the newest current phase parent. The latter is a structural fact only:
@@ -307,11 +307,11 @@ what was false positive, and what still requires a different packet.
 
 ## D. Epoch four: research consolidation and direct-tree renumbering
 
-9796369bc29 performed the structural pass. All research was moved under a new
+426c4706b77 performed the structural pass. All research was moved under a new
 001-research phase parent, and the implementation/program tree was renumbered into
 direct phases 002–016. The old-to-new mappings in context-index.md are the attribution
 layer for this move: 020 became 015, 021 became 016, and each earlier A–C phase was
-shifted to its current number. abc50ff76a3 then rewrote the cross-references so the
+shifted to its current number. 17f48291918 then rewrote the cross-references so the
 new topology was navigable without rewriting the research evidence itself.
 
 The result is a lean parent with one research phase parent, fifteen numbered direct
@@ -322,11 +322,11 @@ performed at the time of the move.
 ## E. Epoch five: ungroup 015 and extract the sk-code research
 
 The final pass dissolved 015/003-unified-refactor-implementation as a grouping node.
-4b57c99c095 promoted its seventeen children to direct 015 phases 003–019 and resolved
+1f595b2a5a0 promoted its seventeen children to direct 015 phases 003–019 and resolved
 the duplicate-012 naming collision during the promotion. The work preserved the
 children's internal evidence while changing their parentage and direct numbering.
 
-cbdb1dbeaca completed the cross-reference repair and extracted 014's research into
+5d189390bd4 completed the cross-reference repair and extracted 014's research into
 001-research/011-sk-code-routing-research. The current tree consequently separates
 shared research from implementation phases while keeping the fleet router-unification
 program flat and chronologically legible. This is the newest structural state on

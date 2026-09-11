@@ -60,13 +60,13 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T010 Cluster A schema drift: guard the source_kind select on narrow schemas, align the adaptive insert to query_hash, add the merge-contract and schema-contract tests (commit `adbcc65e83`)
-- [x] T011 Cluster B wiring: wire scoring observability, LLM backfill registration, llm-reformulation, query-surrogates and the contextual-tree header into the runtime (commit `e5b4735c4b`)
-- [x] T012 Cluster C retrievalLevel: honor local, global and auto end to end, add the strict input schema field, key the cache by level (commit `f0e063eed4`)
-- [x] T013 Cluster D ordering: folder rank primary sort plus guaranteed top-k channel representation (commit `cbf4f4d111`)
-- [x] T014 [P] Cluster E advisor persistence: routing, sanitizer, scorer, rollback, bench and force-native, the F1 through F6 fixes (commit `917ad633a3`)
-- [x] T015 [P] Cluster F DB lifecycle: db-path standardization plus a new end-to-end test over the pre-existing cross-process rebind, embedding-retry e2e (commit `f27945593e`)
-- [x] T016 [P] Clusters G and H code-graph and quality: write-local refresh, duplicate helper, stale tests, entity dedup, 7-layer metadata (commit `3291c05389`)
+- [x] T010 Cluster A schema drift: guard the source_kind select on narrow schemas, align the adaptive insert to query_hash, add the merge-contract and schema-contract tests (commit `27a1477f7e`)
+- [x] T011 Cluster B wiring: wire scoring observability, LLM backfill registration, llm-reformulation, query-surrogates and the contextual-tree header into the runtime (commit `390f04bddb`)
+- [x] T012 Cluster C retrievalLevel: honor local, global and auto end to end, add the strict input schema field, key the cache by level (commit `750424c739`)
+- [x] T013 Cluster D ordering: folder rank primary sort plus guaranteed top-k channel representation (commit `2d68d3109a`)
+- [x] T014 [P] Cluster E advisor persistence: routing, sanitizer, scorer, rollback, bench and force-native, the F1 through F6 fixes (commit `c00e9e21c6`)
+- [x] T015 [P] Cluster F DB lifecycle: db-path standardization plus a new end-to-end test over the pre-existing cross-process rebind, embedding-retry e2e (commit `c777df3865`)
+- [x] T016 [P] Clusters G and H code-graph and quality: write-local refresh, duplicate helper, stale tests, entity dedup, 7-layer metadata (commit `beacce4c07`)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -76,8 +76,8 @@ _memory:
 
 - [x] T020 Run the per-cluster vitest blast-radius sweep, typecheck, comment hygiene and alignment drift for each cluster
 - [x] T021 Mutation-check the risky fixes: schema, security, rollback, ordering and DB lifecycle, confirm the distinguishing test goes red when reverted
-- [x] T022 Add the follow-up tests for B4 surrogate index-time, B5 contextual-tree header and the C strict-schema assertion (commit `374ca93caa`)
-- [x] T023 Re-parent the post-phase-6 phases under their relevant parents (commit `64d064d868`)
+- [x] T022 Add the follow-up tests for B4 surrogate index-time, B5 contextual-tree header and the C strict-schema assertion (commit `ea6b2ba179`)
+- [x] T023 Re-parent the post-phase-6 phases under their relevant parents (commit `bd2c8e4085`)
 - [ ] T024 Run the whole suite across all clusters together before the 028 review branch merges to main (NOT RUN, held open as the next safe action)
 <!-- /ANCHOR:phase-3 -->
 

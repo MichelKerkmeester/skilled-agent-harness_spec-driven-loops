@@ -21,7 +21,7 @@ trigger_phrases: []
 - Exact maintainability searches covered all 163 configured Markdown path entries (160 resolved document targets) for tautological `When to Use` prose, duplicated split-description suffixes, and unresolved `TODO`/`TBD`/`FIXME`/`PLACEHOLDER`/`XXX` markers.
 - Direct maintainability evidence: `.opencode/skills/sk-code/code-webflow/references/implementation/third_party_integrations/best_practices_and_summary.md:20-32`, `.opencode/skills/sk-code/code-webflow/references/implementation/performance_patterns/budgets_and_anti_patterns.md:20-32`, `.opencode/skills/sk-code/code-webflow/references/implementation/form_upload_workflows/mime_troubleshooting_and_deployment.md:20-32`, and `.opencode/skills/sk-doc/create-skill/assets/skill/skill_reference_template.md:98-109`.
 - Narrow active-finding counterevidence: `.opencode/skills/sk-code/code-opencode/references/rust/style_guide/interop_errors_and_parity.md:13-21`, `.opencode/skills/sk-code/code-webflow/references/implementation/security_patterns/overview_and_checklist.md:89-98`, `:247-258`, `.opencode/skills/sk-code/code-webflow/references/implementation/third_party_integrations/best_practices_and_summary.md:34-55`, `.opencode/skills/sk-code/code-opencode/references/workflow_debug.md:14-20`, and `.opencode/skills/sk-code/code-webflow/references/css/quality_standards/patterns_and_naming_enforcement.md:17-27`.
-- Narrow read-only history: rename commits `dd9e700477384f2b4312f3236428e300b29e840e` and `1922cffed797c62b96e8cf862308232b3f6ba7a8` for two representative transformed references.
+- Narrow read-only history: rename commits `2705b1794ae0e04d2a1fbe32cf962977bb6037d8` and `5ee70a6870e549f7140f14ee38bc3cd951970d39` for two representative transformed references.
 
 ## Findings - New
 
@@ -50,7 +50,7 @@ None.
 ## Integration Evidence
 
 - `.opencode/skills/sk-doc/create-skill/assets/skill/skill_reference_template.md:98-109` is the named authoring authority reviewed for actionable `When to Use` structure.
-- Git commits `dd9e700477384f2b4312f3236428e300b29e840e` and `1922cffed797c62b96e8cf862308232b3f6ba7a8` establish rename lineage and representative structural-only diffs for the content-preservation debt; they do not establish corpus-wide proof.
+- Git commits `2705b1794ae0e04d2a1fbe32cf962977bb6037d8` and `5ee70a6870e549f7140f14ee38bc3cd951970d39` establish rename lineage and representative structural-only diffs for the content-preservation debt; they do not establish corpus-wide proof.
 - Existing active findings were reread only at their evidence and counterevidence ranges. All four remain active; no duplicate finding was emitted.
 
 ## Edge Cases

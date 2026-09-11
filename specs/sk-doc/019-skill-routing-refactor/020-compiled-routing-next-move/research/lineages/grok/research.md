@@ -79,7 +79,7 @@ Adopt a **derived dual-location** activation-manifest contract; fix **live-input
 
 | Side | Argument |
 |------|----------|
-| Keep | Historical `rmSync(RUNTIME_ROOT)` then copy was crash-unsafe [SOURCE: 4153cbebd8]; current sibling staging/rename + retained rollback covers post-publish gates [SOURCE: sync.cjs:746-895,924,938] |
+| Keep | Historical `rmSync(RUNTIME_ROOT)` then copy was crash-unsafe [SOURCE: 6b81fde29e]; current sibling staging/rename + retained rollback covers post-publish gates [SOURCE: sync.cjs:746-895,924,938] |
 | Against full bulk | Closure is git-tracked (~74 paths); single-operator; nested `_testFailRename` recovery is oversized relative to need [SOURCE: tests:870+; wc -l ~1086/1372] |
 
 **Prune later:** test-injection-only nested rename recovery, only after lifecycle tests can run (blocked by Q2).

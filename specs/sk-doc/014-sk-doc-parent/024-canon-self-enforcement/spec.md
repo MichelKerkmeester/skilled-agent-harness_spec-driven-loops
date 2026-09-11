@@ -36,7 +36,7 @@ _memory:
 
 ## EXECUTIVE SUMMARY
 
-The parent-hub program (022 review, 023 remediation) restored a 4/4 canon-clean fleet and closed 18 findings. A Fable-5 pass then caught a P1 — the `sk-hub` family reached only 3 of 7 enum sites because a stale SQLite CHECK wedged the scan — which was fixed (`177b63c8dc`), plus P2s (`8497bf4b38`). All of that is shipped baseline.
+The parent-hub program (022 review, 023 remediation) restored a 4/4 canon-clean fleet and closed 18 findings. A Fable-5 pass then caught a P1 — the `sk-hub` family reached only 3 of 7 enum sites because a stale SQLite CHECK wedged the scan — which was fixed (`c11b8c5f0e`), plus P2s (`756e2ccdb0`). All of that is shipped baseline.
 
 This packet addresses the deeper pattern those incidents exposed: **canon enforcement is anchored to the last fire, not the failure class.** Truth is declared once (`mode-registry.json`) but hand-transcribed into roughly twelve consumer dialects (TS unions, SQL CHECKs, Python sets, JSON-schema enums, CJS arrays, a markdown template), and every automated guard watches deep-loop ONLY. The transport incident and the `sk-hub` incident were the same class of bug — a dialect drifted and nothing caught it.
 

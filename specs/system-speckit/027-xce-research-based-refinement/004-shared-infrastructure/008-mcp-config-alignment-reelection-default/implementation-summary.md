@@ -35,7 +35,7 @@ _memory:
 | **Level** | 1 |
 | **Parent** | `../spec.md` (004-shared-infrastructure phase parent) |
 | **Branch** | `028-mcp-to-cli-tool-transition` |
-| **Implementation Commit** | `c67a972b88` |
+| **Implementation Commit** | `429272e8fe` |
 | **Completed** | 2026-06-14 |
 
 <!-- /ANCHOR:metadata -->
@@ -56,7 +56,7 @@ The four MCP runtime configs were sorted, cleaned, and aligned 1:1. `.mcp.json` 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Parallel exploration mapped the four configs, the single flag read site, and the embedding-provider selection. User decisions set the scope: notes (initially "strip all", corrected on follow-up to "trim only the drift-prone trivia, restore the rest" in commit `645bd69fb2`) and embeddings (leave as-is). The reelection flip was a one-line change plus a comment rewrite; before touching the configs, the two durability stress tests were checked to confirm they set the flag explicitly (`spawnOwner(enabled)` / `startSession(…, enabled)` both write `'1'`/`'0'`), so the default flip could not silently break them. The three real configs were rewritten cleanly rather than edited in place, which also removed the JSON syntax error and the trailing commas. A python3 (`json` + `tomllib`) parse-and-compare script proved all four parse and each server's env block is identical across files with no banned keys. The implementation landed as a single scoped commit `c67a972b88` (10 files, none under `.opencode/specs/027`) using `git commit --only` so it could not sweep in a concurrent session's large in-flight 027 restructure. This spec-folder documentation was authored afterward, once that restructure committed and the tree settled.
+Parallel exploration mapped the four configs, the single flag read site, and the embedding-provider selection. User decisions set the scope: notes (initially "strip all", corrected on follow-up to "trim only the drift-prone trivia, restore the rest" in commit `5c3f38c058`) and embeddings (leave as-is). The reelection flip was a one-line change plus a comment rewrite; before touching the configs, the two durability stress tests were checked to confirm they set the flag explicitly (`spawnOwner(enabled)` / `startSession(…, enabled)` both write `'1'`/`'0'`), so the default flip could not silently break them. The three real configs were rewritten cleanly rather than edited in place, which also removed the JSON syntax error and the trailing commas. A python3 (`json` + `tomllib`) parse-and-compare script proved all four parse and each server's env block is identical across files with no banned keys. The implementation landed as a single scoped commit `429272e8fe` (10 files, none under `.opencode/specs/027`) using `git commit --only` so it could not sweep in a concurrent session's large in-flight 027 restructure. This spec-folder documentation was authored afterward, once that restructure committed and the tree settled.
 
 <!-- /ANCHOR:how-delivered -->
 

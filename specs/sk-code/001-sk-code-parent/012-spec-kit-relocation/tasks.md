@@ -85,7 +85,7 @@ _memory:
 - [x] T019 Confirm remaining `{skill,agent,command,mcp_server}` authoring checklists intentionally remain in sk-code [5m]
 
 ### Documentation
-- [x] T020 Record shipped commit `85a0c2c9ac` in phase documentation [5m]
+- [x] T020 Record shipped commit `44c5d98179` in phase documentation [5m]
 - [x] T021 Backfill Level 2 docs in this phase folder (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md`) [30m]
 
 <!-- /ANCHOR:phase-3 -->
@@ -96,7 +96,7 @@ _memory:
 
 - [x] All tasks marked `[x]`.
 - [x] No `[B]` blocked tasks remaining.
-- [x] Shipped commit recorded: `85a0c2c9ac`.
+- [x] Shipped commit recorded: `44c5d98179`.
 - [x] `sk-code-router-sync` vitest passed 4/4.
 - [x] Touched-file broken-link check passed.
 - [x] Dead-reference sweep passed.

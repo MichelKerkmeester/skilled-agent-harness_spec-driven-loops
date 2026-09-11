@@ -73,7 +73,7 @@ _memory:
 - [x] T206 [P] Benign-corpus zero-FP vitest for the marker list, CI-gated (`mcp_server/tests/redaction-gate.vitest.ts`)
 
 ### Constitutional-CAS-guard, P1 (DONE) + P2 polish
-- [x] T210 Constitutional-CAS-guard: unconditional `E_CONSTITUTIONAL_SELF_EDIT` + opt-in `expectedHash` `E_STALE_CONSTITUTIONAL_UPDATE` precondition, non-constitutional path byte-identical, **DONE commit `e1c6a3c793`** (030 §14 #10, opus review SHIP) (`mcp_server/handlers/memory-crud-update.ts:118-142,269-275`)
+- [x] T210 Constitutional-CAS-guard: unconditional `E_CONSTITUTIONAL_SELF_EDIT` + opt-in `expectedHash` `E_STALE_CONSTITUTIONAL_UPDATE` precondition, non-constitutional path byte-identical, **DONE commit `672d8a9187`** (030 §14 #10, opus review SHIP) (`mcp_server/handlers/memory-crud-update.ts:118-142,269-275`)
 - [x] T211 Constitutional-CAS-P2-polish: remove the now-dead downgrade-audit branch (unreachable under the unconditional self-edit block) (`mcp_server/handlers/memory-crud-update.ts`, CAS tests pass)
 - [x] T212 Constitutional-CAS-P2-polish: decide + document the opt-in-vs-always-on CAS posture (SELF_EDIT always-on, `expectedHash` compare opt-in) (`mcp_server/handlers/memory-crud-update.ts`, `spec.md` §4 REQ-004)
 
@@ -124,5 +124,5 @@ _memory:
 - **Plan**: See `plan.md`
 - **Checklist**: See `checklist.md`
 - **Research**: `../research/research.md`, `../../research/roadmap.md`, `../../research/synthesis/{01,03,04}-*.md`
-- **Shipped record (historical evidence)**: Wave-0 record (`e1c6a3c793`)
+- **Shipped record (historical evidence)**: Wave-0 record (`672d8a9187`)
 <!-- /ANCHOR:cross-refs -->

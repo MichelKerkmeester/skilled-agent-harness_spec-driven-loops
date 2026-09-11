@@ -52,7 +52,7 @@ _memory:
 - [x] T001 Reproduce the exact symptom [evidence: `npx vitest run` — `fanout-run.vitest.ts:1541` AssertionError, `openrouter/z-ai/glm-5.3-flash --thinking` expected `max`, received `xhigh`]
 - [x] T002 Capture the pre-edit baseline [evidence: both suites = `Test Files 1 failed | 1 passed (2)`, `Tests 1 failed | 203 passed (204)`]
 - [x] T003 Establish the ground truth from live provider data [evidence: `opencode models --verbose` — openrouter `z-ai/glm-5.3-flash` and opencode-go `glm-5.3-flash` both `low`/`high`/`max`, no `xhigh`; llmgateway carries both]
-- [x] T004 Locate the producer and blame it [evidence: `pinReasoningEffortForModel` short-circuits on `isGlmFlashXhighPinnedModel`; `git log -S` gives `d47d73f8bb`, 2026-08-29]
+- [x] T004 Locate the producer and blame it [evidence: `pinReasoningEffortForModel` short-circuits on `isGlmFlashXhighPinnedModel`; `git log -S` gives `c523722c38`, 2026-08-29]
 - [x] T005 Inventory every consumer of the symbol before deleting [evidence: 2 definitions, 2 call sites, 1 import + 2 assertions in `executor-config.vitest.ts`; nothing outside the runtime]
 <!-- /ANCHOR:phase-1 -->
 

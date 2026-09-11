@@ -55,7 +55,7 @@ The deep-research init step pre-created `{state_paths.archive_root}` alongside t
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [x] Root cause confirmed (research init eager mkdir; introduced in commit `537cd82d26`)
+- [x] Root cause confirmed (research init eager mkdir; introduced in commit `62465eeeca`)
 - [x] Independent cross-check via cli-opencode `openai/gpt-5.5-fast` read-only deep-trace
 - [x] Restart-safety reasoned through (lazy creation required after init change)
 

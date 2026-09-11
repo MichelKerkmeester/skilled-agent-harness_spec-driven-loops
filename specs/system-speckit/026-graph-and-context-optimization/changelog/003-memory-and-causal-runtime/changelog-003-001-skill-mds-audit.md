@@ -22,7 +22,7 @@ contextType: "review"
 
 ### Summary
 
-After the 016-019 work flipped embedding defaults from EmbeddingGemma to jina-embeddings-v3 (mk-spec-memory) and jina-embeddings-v2-base-code (CocoIndex), skill documentation still claimed gemma as the active default. An Explore agent (Sonnet) swept all skill SKILL.md, README.md, references plus assets files against an explicit severity rubric, producing a 14-row audit CSV with 1 P0, 7 P1, 5 P2 plus 1 intentional-historical-skip finding. The P0 (CocoIndex SKILL.md default claim breaking new-user setup) and three clear-P1 fixes were applied inline in commit `d3c8996338`. Four deferred P1s covering legacy cascade-ordering in mk-spec-memory shared docs were logged to `evidence/remediation-tracker.md` pending architecture verification, as the audit agent had recommended jina-v3 inside llama-cpp which conflicted with the actual Ollama HTTP delivery path.
+After the 016-019 work flipped embedding defaults from EmbeddingGemma to jina-embeddings-v3 (mk-spec-memory) and jina-embeddings-v2-base-code (CocoIndex), skill documentation still claimed gemma as the active default. An Explore agent (Sonnet) swept all skill SKILL.md, README.md, references plus assets files against an explicit severity rubric, producing a 14-row audit CSV with 1 P0, 7 P1, 5 P2 plus 1 intentional-historical-skip finding. The P0 (CocoIndex SKILL.md default claim breaking new-user setup) and three clear-P1 fixes were applied inline in commit `bb1b3d907d`. Four deferred P1s covering legacy cascade-ordering in mk-spec-memory shared docs were logged to `evidence/remediation-tracker.md` pending architecture verification, as the audit agent had recommended jina-v3 inside llama-cpp which conflicted with the actual Ollama HTTP delivery path.
 
 ### Added
 
@@ -43,10 +43,10 @@ None. Review-only phase.
 | `evidence/skill-docs-audit.csv` | 14 rows (1 P0, 7 P1, 5 P2, 1 SKIP) |
 | `evidence/audit-summary.md` | Rollup with priority recommendations and fix-effort estimates per file |
 | `evidence/remediation-tracker.md` | Per-finding status: 4 FIXED, 9 deferred, 1 SKIP |
-| P0 fix (`mcp-coco-index/SKILL.md:268`) | Fixed in commit `d3c8996338` |
-| P1 fix (`mcp-coco-index/SKILL.md:272`) | Fixed in commit `d3c8996338` |
-| P1 fix (`mcp-coco-index/README.md:80`) | Fixed in commit `d3c8996338` |
-| P1 fix (`system-spec-kit/README.md:295`) | Fixed in commit `d3c8996338` |
+| P0 fix (`mcp-coco-index/SKILL.md:268`) | Fixed in commit `bb1b3d907d` |
+| P1 fix (`mcp-coco-index/SKILL.md:272`) | Fixed in commit `bb1b3d907d` |
+| P1 fix (`mcp-coco-index/README.md:80`) | Fixed in commit `bb1b3d907d` |
+| P1 fix (`system-spec-kit/README.md:295`) | Fixed in commit `bb1b3d907d` |
 | Deferred P1 root cause documented | Cascade-ordering arch verification required before fix |
 
 ### Files Changed

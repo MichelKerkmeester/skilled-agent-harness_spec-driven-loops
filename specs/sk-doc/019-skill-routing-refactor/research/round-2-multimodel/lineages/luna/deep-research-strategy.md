@@ -54,14 +54,14 @@ When an inbox row targets an existing registry question but carries different te
 ---
 
 ## 2. TOPIC
-Second-pass, expand-do-not-converge deep audit of the sk-doc/019-skill-routing-refactor parent packet AND its full 21-child tree, going BEYOND the first audit which only covered the parent-level docs; find what the first pass missed or could not reach. Investigate at minimum: (1) each child packet internal consistency and completion-truthfulness (spec.md status vs implementation-summary vs graph-metadata vs checklist), including the two known committed child errors 012-sk-doc-routing-fixes (missing a required Level-3 file plus LEVEL_MATCH inconsistency) and 017-system-code-graph-routing-research (frontmatter _memory-block violation), and whether similar defects exist in other children; (2) drift between the parent routing-reference docs (routing-config-and-advisor-reference.md, routing-before-after.md, context-index.md, spec.md) and the ACTUAL live state of the compiled-routing runtime at .opencode/bin/lib/compiled-routing/ and all 7 hubs hub-router.json / mode-registry.json / leaf-manifest.json / shared/references/smart-routing.md; (3) whether the just-landed parent-doc fixes in commit 140266be3e introduced any NEW inconsistency, stale cross-reference, wrong metric, or broken link; (4) lifecycle-status truthfulness parent-vs-child across the whole tree, and correctness of derived.last_active_child_id and children_ids; (5) any broken, stale, or non-repo-rooted cross-document link anywhere in the tree; (6) resume-safety and nested-topology gaps (the 020/007 duplicate-012 prefix collision and the 14-child 015 sub-parent). For EVERY finding give file:line evidence, a severity (P1 or P2), state whether it is NEW (introduced by the recent fixes) or PRE-EXISTING, and verify the claim against the real file before reporting. Do NOT treat frozen historical artifacts as defects; EXCLUDE research/**, benchmark/**, lineages/**, *.out, *.log, and run-record artifacts.
+Second-pass, expand-do-not-converge deep audit of the sk-doc/019-skill-routing-refactor parent packet AND its full 21-child tree, going BEYOND the first audit which only covered the parent-level docs; find what the first pass missed or could not reach. Investigate at minimum: (1) each child packet internal consistency and completion-truthfulness (spec.md status vs implementation-summary vs graph-metadata vs checklist), including the two known committed child errors 012-sk-doc-routing-fixes (missing a required Level-3 file plus LEVEL_MATCH inconsistency) and 017-system-code-graph-routing-research (frontmatter _memory-block violation), and whether similar defects exist in other children; (2) drift between the parent routing-reference docs (routing-config-and-advisor-reference.md, routing-before-after.md, context-index.md, spec.md) and the ACTUAL live state of the compiled-routing runtime at .opencode/bin/lib/compiled-routing/ and all 7 hubs hub-router.json / mode-registry.json / leaf-manifest.json / shared/references/smart-routing.md; (3) whether the just-landed parent-doc fixes in commit 3c94775856 introduced any NEW inconsistency, stale cross-reference, wrong metric, or broken link; (4) lifecycle-status truthfulness parent-vs-child across the whole tree, and correctness of derived.last_active_child_id and children_ids; (5) any broken, stale, or non-repo-rooted cross-document link anywhere in the tree; (6) resume-safety and nested-topology gaps (the 020/007 duplicate-012 prefix collision and the 14-child 015 sub-parent). For EVERY finding give file:line evidence, a severity (P1 or P2), state whether it is NEW (introduced by the recent fixes) or PRE-EXISTING, and verify the claim against the real file before reporting. Do NOT treat frozen historical artifacts as defects; EXCLUDE research/**, benchmark/**, lineages/**, *.out, *.log, and run-record artifacts.
 
 ---
 
 <!-- ANCHOR:key-questions -->
 ## 3. KEY QUESTIONS (remaining)
 - [ ] Do all 21 child packets agree internally on status, required files, metadata, checklists, and completion truthfulness?
-- [ ] Does the parent documentation match the compiled-routing runtime and all seven hub manifests after commit 140266be3e?
+- [ ] Does the parent documentation match the compiled-routing runtime and all seven hub manifests after commit 3c94775856?
 - [ ] Are lifecycle metadata, links, duplicate prefixes, nested topology, and resume paths safe across the entire tree?
 
 <!-- /ANCHOR:key-questions -->
@@ -256,10 +256,10 @@ Second-pass, expand-do-not-converge deep audit of the sk-doc/019-skill-routing-r
 <!-- ANCHOR:carried-forward-open-questions -->
 ## 11A. CARRIED-FORWARD OPEN QUESTIONS
 - Are the parent graph children_ids and last_active_child_id correct across nested 020/007 and 015 topology? (iteration 1)
-- Which cross-document links are broken after 140266be3e? (iteration 1)
+- Which cross-document links are broken after 3c94775856? (iteration 1)
 - Does compiled-routing match the four parent reference documents and seven live hubs? (iteration 1)
 - Do parent and nested graph metadata agree with the actual 21-child and nested topology? (iteration 2)
-- Does `140266be3e` leave any new wrong metric, stale link, or changed claim beyond these pre-existing contradictions? (iteration 2)
+- Does `3c94775856` leave any new wrong metric, stale link, or changed claim beyond these pre-existing contradictions? (iteration 2)
 - Which cross-document links are broken or non-rooted after excluding frozen artifacts? (iteration 2)
 - Do parent and nested graph metadata have complete, unique, and resumable child topology? (iteration 3)
 - Do duplicate `012` prefixes and the 14-child `015` sub-parent cause actual graph or resume ambiguity? (iteration 3)

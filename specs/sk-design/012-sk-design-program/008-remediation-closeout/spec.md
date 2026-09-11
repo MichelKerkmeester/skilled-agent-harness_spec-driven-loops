@@ -135,7 +135,7 @@ Carried forward from 007, still not re-litigated: restoring `/interface:audit` o
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Restore the eleven `clean.html`/`tell.html` fixture pairs, `ai-fingerprint-registry.json`, `ai-fingerprint-self-defect-card.md`, and the two parity scripts (`ai-fingerprint-fixture-check.mjs`, `ai-fingerprint-registry-check.mjs`) deleted at `b217d74b81`, without restoring the `/20` rubric or severity model? The recommendation already on record (carried from 007) is yes — fixtures are the cheap half and the only half that produces evidence. This packet does not execute that restoration; it records the decision point and waits.
+- Restore the eleven `clean.html`/`tell.html` fixture pairs, `ai-fingerprint-registry.json`, `ai-fingerprint-self-defect-card.md`, and the two parity scripts (`ai-fingerprint-fixture-check.mjs`, `ai-fingerprint-registry-check.mjs`) deleted at `562074ad7c`, without restoring the `/20` rubric or severity model? The recommendation already on record (carried from 007) is yes — fixtures are the cheap half and the only half that produces evidence. This packet does not execute that restoration; it records the decision point and waits.
 <!-- /ANCHOR:questions -->
 
 ---
@@ -143,4 +143,4 @@ Carried forward from 007, still not re-litigated: restoring `/interface:audit` o
 ## RELATED DOCUMENTS
 - **Predecessor packet, source of four of the five items:** `../007-consolidation-remediation/` — see its `checklist.md` CHK-028, CHK-029, CHK-043 and `implementation-summary.md` Known Limitations #1-3.
 - **Consolidation packet the deferred items trace back to:** `../006-design-mode-consolidation/`.
-- **Deletion commit for the Phase 5 fixtures:** `b217d74b81` ("refactor(sk-design): retire the audit and foundations commands"); all deleted paths recoverable from `b217d74b81^`.
+- **Deletion commit for the Phase 5 fixtures:** `562074ad7c` ("refactor(sk-design): retire the audit and foundations commands"); all deleted paths recoverable from `562074ad7c^`.

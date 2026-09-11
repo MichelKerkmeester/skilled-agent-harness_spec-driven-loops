@@ -27,7 +27,7 @@ Scope: repo-wide sweep of ~41 manual-testing-playbooks and ~1498 feature-catalog
 |---|-----------|-----------------|-----------------|----------|
 | F2/F6 | `.opencode/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/spec-mutation-gate-enforce.md:57-63` | Step-2 expected signal: `# tests 67`, `# pass 67` for `spec-gate-core.test.mjs` | Live suite reports `ℹ tests 87 / ℹ pass 87 / ℹ fail 0` (verified twice under `env -u AI_SESSION_CHILD -u MK_SPEC_GATE_ENFORCE -u MK_SPEC_GATE_DISABLED`) | **P1 must-fix** |
 
-The step-1 count (`# tests 11` for `mk-spec-gate.test.cjs`) is still arithmetically correct; a WS4 sub-test import path drift (`mk-spec-gate.test.cjs:362-371` pointing at the consolidated-away `runtime/lib/spec-gate/`) is a PRE-EXISTING worktree issue from commit `57c3ed338ca`, out of scope for this change-derived sweep.
+The step-1 count (`# tests 11` for `mk-spec-gate.test.cjs`) is still arithmetically correct; a WS4 sub-test import path drift (`mk-spec-gate.test.cjs:362-371` pointing at the consolidated-away `runtime/lib/spec-gate/`) is a PRE-EXISTING worktree issue from commit `5fe604fc28f`, out of scope for this change-derived sweep.
 
 The same playbook step-2 should neutralize the three gate env vars (as step 1 already does) so a child-dispatched operator does not observe a false failure.
 
@@ -71,7 +71,7 @@ Matched-but-accurate catalog entries (verified, NOT stale): `cli-dispatch-author
 4. `feature-flag-reference/` catalog + playbook layers — add the four spec-gate env rows (mirroring `ENV-REFERENCE.md`).
 
 ### Out of scope (pre-existing, NOT change-derived)
-- `mk-spec-gate.test.cjs:362-371` WS4 import path (`runtime/lib/spec-gate/spec-gate-core.mjs`) — consolidated away by `57c3ed338ca`; a pre-existing test-path drift unrelated to the injection-bloat change.
+- `mk-spec-gate.test.cjs:362-371` WS4 import path (`runtime/lib/spec-gate/spec-gate-core.mjs`) — consolidated away by `5fe604fc28f`; a pre-existing test-path drift unrelated to the injection-bloat change.
 
 ---
 
@@ -83,7 +83,7 @@ Matched-but-accurate catalog entries (verified, NOT stale): `cli-dispatch-author
 | Flag the cli-cursor CU-014 dormant-adapter claim | The adapter is still dormant (`spec-gate-classify.mjs:5`); the post-emission observer code does not change delivery status | read of adapter + catalog | 1 |
 | Flag `codex-hook-parity.md` classify/enforce envelopes | Post-emission observer fires after stdout write and does not alter the emitted envelope | read of codex adapter + playbook | 3 |
 | Flag the shadow-delta-sink playbook (NC-010) | shadow-DELTA sink is a separate feature from shadow-DELIVERY; assertions accurate | read of NC-010 + advisor-recommend catalog | 3 |
-| Treat the WS4 import-path failure as injection-bloat-caused | Introduced by hooks consolidation `57c3ed338ca`, an ancestor of HEAD; not the changed behavior | git ancestry + test read | 8 |
+| Treat the WS4 import-path failure as injection-bloat-caused | Introduced by hooks consolidation `5fe604fc28f`, an ancestor of HEAD; not the changed behavior | git ancestry + test read | 8 |
 | Flag suppression as active anywhere | No catalog/playbook describes suppression as active | grep for suppression + shadow id → zero | 6-7 |
 
 ---

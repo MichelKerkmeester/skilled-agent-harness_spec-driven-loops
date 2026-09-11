@@ -101,7 +101,7 @@ Confirm current-state conformance across the 163 tracked Markdown paths under th
 - Behavior claims: required metadata and four-part version; snake_case basenames; H1/intro/Overview ordering; mode-specific Overview content; contiguous numbering; terminal Related Resources; renamed-file link integrity.
 - Authority: `skill_reference_template.md`, `skill_asset_template.md`, and `validate_document.py`.
 - Current-state evidence before iteration 1: generic validation is 163/163; no hyphenated basename; no missing metadata/version; no Overview-order, numbering, Related Resources, lowercase-trigger, or intro/Purpose-containment defect; one illustrative absolute `/specs/005-example.com/...` link remains documented out of scope.
-- Historical risks: earlier lineages found a misplaced Rust Overview, one containment duplicate, one stale whole-hub link claim, and one uppercase trigger. Commit `ee512bc348` records those remediations. Sibling packet 020/commit `7ef09c7a83` records the security-example and generic When-to-Use remediations.
+- Historical risks: earlier lineages found a misplaced Rust Overview, one containment duplicate, one stale whole-hub link claim, and one uppercase trigger. Commit `f9977d915c` records those remediations. Sibling packet 020/commit `32df12d5ca` records the security-example and generic When-to-Use remediations.
 - Context gaps: the packet has no source `resource-map.md`; memory retrieval was unavailable; current evidence controls over prior review narratives.
 
 ## 14. CROSS-REFERENCE STATUS

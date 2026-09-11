@@ -44,7 +44,7 @@ The review **converged**: round-2 downgraded every escalated P1 except one and n
 
 ## Post-remediation (3 adversarial waves, ~9 claude2-opus seats — all on origin/027)
 
-The CONDITIONAL conditions are now **met**: the 3 original P1s fixed (failing sk-doc test, stale 155 key_files, 152 metadata reconciled), the operator-requested **sk-doc dissection** shipped, the **B1 council-graph probe built + verified**, and the dead-path sweep completed. Three further waves on the post-remediation code + the genuinely-uncovered surface found **1 P1 + ~12 P2** (commits `7dd2792a58`, `df37d442e4`, `22b65aaffd`):
+The CONDITIONAL conditions are now **met**: the 3 original P1s fixed (failing sk-doc test, stale 155 key_files, 152 metadata reconciled), the operator-requested **sk-doc dissection** shipped, the **B1 council-graph probe built + verified**, and the dead-path sweep completed. Three further waves on the post-remediation code + the genuinely-uncovered surface found **1 P1 + ~12 P2** (commits `8eb70ac74a`, `57d1d5b2dc`, `b7ceab1734`):
 
 - **Wave 1** — review of the shipped remediation: 3 P2, all fixed.
 - **Wave 2** — 152 tree / 155 fidelity / 153 installers: **1 P1** (parent `152/spec.md` claimed EPIC COMPLETE while `009` = 6/18 — reconciled) + real installer safety bugs (`--dry-run` global npx-cache wipe; a "read-only" doctor connecting to every approved MCP server) — 6 fixed, 3 flagged.

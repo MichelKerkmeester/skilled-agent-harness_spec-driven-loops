@@ -44,8 +44,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      "tools/memory-tools.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -70,12 +69,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "memory-tools.ts",
-        "kind": "code",
-        "path": "tools/memory-tools.ts",
         "source": "derived"
       },
       {
@@ -183,7 +176,7 @@
     ],
     "causal_summary": "The Spec-Kit Memory MCP retains and recalls memories with no diversity or eligibility shaping at the result-set boundary",
     "created_at": "2026-06-19T05:40:37.446Z",
-    "last_save_at": "2026-08-30T15:39:34.968Z",
+    "last_save_at": "2026-09-11T16:42:41.730Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -192,12 +185,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a428b95e8bb5cc52d567016ce72cb06541c64a0456af182ff10c6ad267e67219",
+    "source_fingerprint": "sha256:e77ffa1f814d9748e34f1a5e090fafcda812a0596992b626d1efe72e2fccb316",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "fe09b59ef265bb4c9b332fec917ccb2bae579ccedf77933d85e2494d4d0f20ad",
+      "spec.md": "7ac3820e6bd6f475a83a68e04ab66b77e01c1e605d02954f4eda3743957e0156",
       "plan.md": "0c4730107ca25e9d7272d8de861e73f67eaf84a402525dac5cb644308d9a868d",
-      "tasks.md": "f0bdc486a910e726274b4897c74458880f15d3a2999f4b28c0807d2ac234bcc3",
+      "tasks.md": "28ce641d0db39fef5452db87353e20e1c40ceb7d0f6eb288e04189838de10b34",
       "implementation-summary.md": "eb951c4f7339af151df0519c0c7bebe048d04a21f378bff0347c2a1bb8cbdbea"
     },
     "last_active_child_id": null,

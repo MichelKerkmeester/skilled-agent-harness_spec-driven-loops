@@ -125,7 +125,7 @@ Implement in dependency order; run independent phases concurrently.
 ## 4. Validation Checklist
 
 Before handover, verified:
-- [x] All work committed and pushed to `origin/skilled/v4.0.0.0` (`ff4e341c2b`)
+- [x] All work committed and pushed to `origin/skilled/v4.0.0.0` (`fc71476e5f`)
 - [x] Context saved in each child's `_memory.continuity`
 - [x] No breaking changes mid-implementation (scaffolds are planning-only; no runtime touched)
 - [x] Packet validates `--strict --recursive` at 0/0 across all 11 folders

@@ -12,7 +12,7 @@ _memory:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/010-docs-drift-and-p2-batch"
     last_updated_at: "2026-08-18T23:59:00Z"
     last_updated_by: "orchestrator"
-    recent_action: "Reconciled packet docs to Complete against landed commit bf4f280ce7"
+    recent_action: "Reconciled packet docs to Complete against landed commit f476b45fe4"
     next_safe_action: "None — T014 re-landed; packet deferrals closed"
     blockers: []
     key_files:
@@ -44,9 +44,9 @@ completion_pct: 100
 
 <!-- ANCHOR:what-built -->
 
-Lane A now points duplicated facts at `mode-registry.json` and the playbook indices, derives the registry counts in `scripts/check-documentation-drift.cjs`, scans local links, checks benchmark report folders against the index, and derives command help from `COMMANDS` and `LEAF_BY_LOOP`. Lane B now uses code-unit ordering and frozen wave arrays without mutable casts, and persists convergence snapshots. All 29 findings are landed: 27 shipped in `bf4f280ce7`, and the two that adopt shared strict-gate helpers in the legacy research/review rollback gates (`F-031-01`, `F-031-02`) were re-landed on 2026-08-18 (see Known Limitations item 1).
+Lane A now points duplicated facts at `mode-registry.json` and the playbook indices, derives the registry counts in `scripts/check-documentation-drift.cjs`, scans local links, checks benchmark report folders against the index, and derives command help from `COMMANDS` and `LEAF_BY_LOOP`. Lane B now uses code-unit ordering and frozen wave arrays without mutable casts, and persists convergence snapshots. All 29 findings are landed: 27 shipped in `f476b45fe4`, and the two that adopt shared strict-gate helpers in the legacy research/review rollback gates (`F-031-01`, `F-031-02`) were re-landed on 2026-08-18 (see Known Limitations item 1).
 
-Landed as `bf4f280ce7` on `skilled/v4.0.0.0`. The completion evidence below uses candidate SHA `9229cb8f3e281c9291e6d631237528bc755e6f4b`, the worktree HEAD at the start of implementation used for the focused checks.
+Landed as `f476b45fe4` on `skilled/v4.0.0.0`. The completion evidence below uses candidate SHA `2d12dfc5f5f365f396c51a7dea1c7cb825f5501b`, the worktree HEAD at the start of implementation used for the focused checks.
 
 ### T001 confirmation and per-finding evidence
 
@@ -90,7 +90,7 @@ Merge groups collapsed: runtime scripts link; sk-doc-command adapter; family/lan
 ## How It Was Delivered
 
 <!-- ANCHOR:how-delivered -->
-The implementation was kept in the assigned worktree, then landed as `bf4f280ce7` on `skilled/v4.0.0.0`. Red probes were run before each grouped fix, focused per-file suites and tsc were run after the fixes, and the drift checks were exercised against deliberate mismatches. The mode-gate shared-validator adoption (`F-031-01`, `F-031-02`) did not ship in `bf4f280ce7`; it was re-landed separately on 2026-08-18 on branch `worktrees/015-036-mode-gate-strict-validator` after the regression was reproduced as a negative control and fixed at the root.
+The implementation was kept in the assigned worktree, then landed as `f476b45fe4` on `skilled/v4.0.0.0`. Red probes were run before each grouped fix, focused per-file suites and tsc were run after the fixes, and the drift checks were exercised against deliberate mismatches. The mode-gate shared-validator adoption (`F-031-01`, `F-031-02`) did not ship in `f476b45fe4`; it was re-landed separately on 2026-08-18 on branch `worktrees/015-036-mode-gate-strict-validator` after the regression was reproduced as a negative control and fixed at the root.
 <!-- /ANCHOR:how-delivered -->
 
 ## Key Decisions

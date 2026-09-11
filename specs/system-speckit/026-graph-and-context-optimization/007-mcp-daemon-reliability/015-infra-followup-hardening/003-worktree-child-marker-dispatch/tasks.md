@@ -48,7 +48,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Confirm bin/README "Worktree session isolation" contract present (035, c657219dd9) and both cli-* skills clean vs HEAD
+- [x] T001 Confirm bin/README "Worktree session isolation" contract present (035, ec02cd1875) and both cli-* skills clean vs HEAD
 - [x] T002 Map ALWAYS-rule structure: cli-codex ends at rule 12, cli-opencode at rule 14 (add 13 / 15 respectively before the NEVER header)
 <!-- /ANCHOR:phase-1 -->
 

@@ -55,7 +55,7 @@ A 3-wave cli-codex dispatch pattern resolved the suite. Wave 1 addressed 17 mech
 | Check | Result |
 |-------|--------|
 | Full vitest suite (`npx vitest run --no-coverage` in `mcp_server`) | Test Files 600 passed, 21 skipped (621). Tests 11037 passed, 252 skipped (11289). Duration 418s. 0 failed. |
-| Commit `56d1e70196` ships 41 test files plus `lib/errors/recovery-hints.ts` plus 6 `scripts/tests/` files | PASS |
+| Commit `5ef54e4e85` ships 41 test files plus `lib/errors/recovery-hints.ts` plus 6 `scripts/tests/` files | PASS |
 | All `.skip` annotations carry inline contract-drift comment | PASS (grep confirmed per implementation summary) |
 | No production code changed outside `lib/errors/recovery-hints.ts` and allowlist entries | PASS |
 | Strict packet validation (`validate.sh --strict`) | PASSED per commit message |

@@ -74,7 +74,7 @@ Commands run (read-only): `git log/show --name-status`, `git status --short` (pa
 | # | Seeded claim (strategy.md:102) | Re-derived result | Verdict |
 |---|---|---|---|
 | a | packet git status clean except `review/` | CONFIRMED — `git status --short` (032 packet AND phase-009 scoped) returns only `?? .../review/` | ✓ matches |
-| b | exactly ONE commit (`540fac01e4`) ever touched phase 009 | CONFIRMED — `git log --oneline -- <phase-009>` = single entry; `--name-status` shows folder files added in that broad checkpoint | ✓ matches |
+| b | exactly ONE commit (`1746a34a5b`) ever touched phase 009 | CONFIRMED — `git log --oneline -- <phase-009>` = single entry; `--name-status` shows folder files added in that broad checkpoint | ✓ matches |
 | c | mtimes many hours stale vs wall-clock | CONFIRMED — spec/plan/tasks/impl-summary=06:47:26; graph-metadata=11:40:36; handover=06:50:17; description=07:32:33 (all 2026-07-01 +0200). Wall clock 21:05 local → oldest 14h18m stale. (Brief's "~14-16h" bracket was an overstatement at session start 18:47 — only reaches ~14h for the oldest now; minor, not filed.) | ✓ matches |
 | d | no lock/pid files referencing phase 009 under `.opencode` | CONFIRMED — repo-wide `find *.lock/*.pid` lists ~28 deep-loop locks/pids across OTHER packets; the ONLY one under phase 009 is `review/.deep-review.lock`, and it is THIS review session's (see below). No implementation-session lock. | ✓ matches |
 | e | reflog (30) no 009 reset/stash | CONFIRMED — `git reflog -30` has no entry naming phase 009; packet-032 commits present are remediation phases 010-014, not 009 | ✓ matches |
@@ -96,7 +96,7 @@ Commands run (read-only): `git log/show --name-status`, `git status --short` (pa
 
 ### Ownership-claim verdict: **UNVERIFIABLE-FROM-THIS-MACHINE** (leaning: no actively-editing LOCAL session; cannot rule out remote/detached)
 
-- **On the local machine, right now:** confidence **~0.78** that NO session is actively editing phase 009. Every local channel that could betray an active editor is silent and independently re-verified: clean packet git status (only this review's `review/` untracked), a single broad checkpoint commit (`540fac01e4`, 2026-07-01 16:35:25 +0200) with no later touch, file mtimes 9h25m–14h18m stale, zero phase-009 implementation locks/pids anywhere, zero observability events, zero reflog/stash entries, zero cross-packet corroboration. The only lock under phase 009 is this review's own `.deep-review.lock`.
+- **On the local machine, right now:** confidence **~0.78** that NO session is actively editing phase 009. Every local channel that could betray an active editor is silent and independently re-verified: clean packet git status (only this review's `review/` untracked), a single broad checkpoint commit (`1746a34a5b`, 2026-07-01 16:35:25 +0200) with no later touch, file mtimes 9h25m–14h18m stale, zero phase-009 implementation locks/pids anywhere, zero observability events, zero reflog/stash entries, zero cross-packet corroboration. The only lock under phase 009 is this review's own `.deep-review.lock`.
 - **BUT the claim cannot be REFUTED**, for three honest reasons (the seeded counter-consideration holds):
   1. **Implementation work has no lock convention** in this repo — so absence of an impl lock is weakly probative at best, unlike deep-loop work which does leave `.deep-*.lock` artifacts.
   2. **A remote / other-machine / detached-backgrounded session** is invisible to this machine's git, lock, mtime, and `ps` state. OpenCode sessions do not register a machine-wide ownership token.

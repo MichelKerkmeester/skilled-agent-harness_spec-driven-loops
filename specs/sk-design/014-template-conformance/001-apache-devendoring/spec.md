@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: De-vendor design-interface's Apache-2.0 dependency"
-description: "design-interface carried a committed Apache-2.0 LICENSE.txt for guidance vendored verbatim from Anthropic's frontend-design skill. This packet rewrote that guidance in original words first, then removed the license and every citing site, in that order. Shipped as commit 8fa4752968."
+description: "design-interface carried a committed Apache-2.0 LICENSE.txt for guidance vendored verbatim from Anthropic's frontend-design skill. This packet rewrote that guidance in original words first, then removed the license and every citing site, in that order. Shipped as commit 4ac59d21c5."
 trigger_phrases:
   - "apache devendoring"
   - "design-interface license removal"
@@ -13,7 +13,7 @@ _memory:
     packet_pointer: "sk-design/014-template-conformance/001-apache-devendoring"
     last_updated_at: "2026-07-27T19:00:00Z"
     last_updated_by: "spec-reconciler"
-    recent_action: "Reconciled packet docs against the shipped de-vendor commit 8fa4752968"
+    recent_action: "Reconciled packet docs against the shipped de-vendor commit 4ac59d21c5"
     next_safe_action: "None; packet complete and verified against design-interface on disk"
     blockers: []
     key_files:
@@ -44,7 +44,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Complete — shipped as commit `8fa4752968` |
+| **Status** | Complete — shipped as commit `4ac59d21c5` |
 | **Created** | 2026-07-27 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Packet** | `sk-design/014-template-conformance` |
@@ -57,7 +57,7 @@ _memory:
 
 ### Problem Statement
 
-`.opencode/skills/sk-design/design-interface/LICENSE.txt` was the full Apache-2.0 text, committed in the skill's first commit (`c9c2d381c34`) as the compliance artefact for content vendored verbatim from Anthropic's `frontend-design` skill. Nothing regenerated it — there was no script, postinstall hook, or download step — so it persisted purely because it was a tracked git object: any checkout, branch switch, or new worktree restored it. As long as `references/design-process/design-principles.md` was genuinely vendored Apache-2.0 text, the license was legally required and could not simply be deleted.
+`.opencode/skills/sk-design/design-interface/LICENSE.txt` was the full Apache-2.0 text, committed in the skill's first commit (`536db0c217e`) as the compliance artefact for content vendored verbatim from Anthropic's `frontend-design` skill. Nothing regenerated it — there was no script, postinstall hook, or download step — so it persisted purely because it was a tracked git object: any checkout, branch switch, or new worktree restored it. As long as `references/design-process/design-principles.md` was genuinely vendored Apache-2.0 text, the license was legally required and could not simply be deleted.
 
 ### Purpose
 
@@ -65,7 +65,7 @@ Remove the Apache-2.0 obligation honestly by de-vendoring the guidance first —
 
 ### Outcome
 
-Both steps shipped in that order inside a single commit, `8fa4752968` ("refactor(sk-design): re-author the interface design guidance in original words"). All six sections of `design-principles.md` were re-authored, `LICENSE.txt` was removed with `git rm`, every citing site was cleared, the licensing-and-provenance manual-testing scenario was deleted, and `changelog/v1.1.0.0.md` records the change. `design-interface` no longer carries any Apache-2.0 obligation.
+Both steps shipped in that order inside a single commit, `4ac59d21c5` ("refactor(sk-design): re-author the interface design guidance in original words"). All six sections of `design-principles.md` were re-authored, `LICENSE.txt` was removed with `git rm`, every citing site was cleared, the licensing-and-provenance manual-testing scenario was deleted, and `changelog/v1.1.0.0.md` records the change. `design-interface` no longer carries any Apache-2.0 obligation.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -91,7 +91,7 @@ Both steps shipped in that order inside a single commit, `8fa4752968` ("refactor
 
 ### Files to Change
 
-Delivered exactly as scoped, in commit `8fa4752968` (9 files, +80/-332). The `git show --stat` file list matches this table row for row; the only two resolutions the plan left open are noted in the Description column.
+Delivered exactly as scoped, in commit `4ac59d21c5` (9 files, +80/-332). The `git show --stat` file list matches this table row for row; the only two resolutions the plan left open are noted in the Description column.
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|

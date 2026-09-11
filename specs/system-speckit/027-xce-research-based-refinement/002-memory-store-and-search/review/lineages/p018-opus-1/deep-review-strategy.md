@@ -34,7 +34,7 @@ All four dimensions covered in iteration 001 because the change is small (4 file
 
 ## What Worked
 
-- Reading the implementation commit diff (`f1dbb676f2`) end-to-end, then verifying current file state against it.
+- Reading the implementation commit diff (`a48325ab74`) end-to-end, then verifying current file state against it.
 - Tracing every job terminal path (`completeJob`, `setJobState('failed')`, `resetRunningJobsForKind`) against the Set add/delete sites.
 
 ## What Failed

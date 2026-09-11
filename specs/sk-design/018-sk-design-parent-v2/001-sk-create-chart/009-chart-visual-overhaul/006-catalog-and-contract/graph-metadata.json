@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Five separate defects, one theme",
     "created_at": "2026-09-03T08:01:46.458Z",
-    "last_save_at": "2026-09-06T14:59:18.654Z",
+    "last_save_at": "2026-09-11T16:41:58.111Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,12 +209,12 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8a662f343b6bb2d91060a945612e108dd7ee57c4717a8bd67371cb5efb4f034d",
+    "source_fingerprint": "sha256:bfa39fc4271a161daaade073d76bc7365f7a15295fadae8cd014ec4f7e2c8208",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "cf7d16b0898b1fd6f983b88d7e17cee39cce70d76ed0eb7a194b6461dd6f4ab3",
       "plan.md": "540491bdfece32892626340e80e657f5eca9be5709ad06cb015feaaa8ac04aa6",
-      "tasks.md": "aae2c7677c1077acac7594d0b563e3a2b576b0f6ca70c2ed7b5138b53959ae2e",
+      "tasks.md": "b36070a8b3f1b7188ab00d91b48ec7089a77d9f8669cb2b0ed1c0bf298023681",
       "decision-record.md": "f89f7b5a1f79021fc26a00b4706c5f80b283280e09cbf5a540646399733bfb99",
       "implementation-summary.md": "eef95febdc38e7b1104f09a345c6286e405338f4b9a4c92686b248cd4eead6de"
     },

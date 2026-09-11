@@ -45,27 +45,27 @@ The suite shipped with 43 tests passing and 3 skipped (platform-specific). All 1
 
 | Check | Result |
 |-------|--------|
-| `npx vitest run mcp_server/tests/local-llm-features` at ship time | 40 passed, 3 skipped (commit `fce970add6`) |
+| `npx vitest run mcp_server/tests/local-llm-features` at ship time | 40 passed, 3 skipped (commit `0f7a2431ac`) |
 | Strict-validate on packet scaffold | Passed at scaffold creation |
 
 ### Files Changed
 
 | File | Action |
 |------|--------|
-| `mcp_server/tests/local-llm-features/cascade-resolution.vitest.ts` (NEW) | Created Group 1 provider resolution tests. Removed in commit `138d2e9320` when llama-cpp surface was purged. |
+| `mcp_server/tests/local-llm-features/cascade-resolution.vitest.ts` (NEW) | Created Group 1 provider resolution tests. Removed in commit `8a170071f5` when llama-cpp surface was purged. |
 | `mcp_server/tests/local-llm-features/default-model-selection.vitest.ts` (NEW) | Created Group 2 model and profile slug assertions. Updated for nomic default and HTTP server rewrite. |
-| `mcp_server/tests/local-llm-features/embedding-shape.vitest.ts` (NEW) | Created Group 3 shape and dtype behavior. Removed in commit `138d2e9320`. |
+| `mcp_server/tests/local-llm-features/embedding-shape.vitest.ts` (NEW) | Created Group 3 shape and dtype behavior. Removed in commit `8a170071f5`. |
 | `mcp_server/tests/local-llm-features/prefix-system.vitest.ts` (NEW) | Created Group 4 prefix registry behavior. |
-| `mcp_server/tests/local-llm-features/auto-migration.vitest.ts` (NEW) | Created Group 5 auto-migration with isolated fixtures. Removed in commit `138d2e9320`. |
-| `mcp_server/tests/local-llm-features/health-reporting.vitest.ts` (NEW) | Created Group 6 health reporting. Updated in commit `eb21410aba`. |
-| `mcp_server/tests/local-llm-features/native-modules.vitest.ts` (NEW) | Created Group 7 native compatibility. Removed in commit `138d2e9320`. |
+| `mcp_server/tests/local-llm-features/auto-migration.vitest.ts` (NEW) | Created Group 5 auto-migration with isolated fixtures. Removed in commit `8a170071f5`. |
+| `mcp_server/tests/local-llm-features/health-reporting.vitest.ts` (NEW) | Created Group 6 health reporting. Updated in commit `0d3d3f341a`. |
+| `mcp_server/tests/local-llm-features/native-modules.vitest.ts` (NEW) | Created Group 7 native compatibility. Removed in commit `8a170071f5`. |
 | `mcp_server/tests/local-llm-features/profile-db-filename.vitest.ts` (NEW) | Created Group 8 profile-keyed sqlite filename assertions. |
-| `mcp_server/tests/local-llm-features/cross-platform.vitest.ts` (NEW) | Created Group 9 darwin/arm64 and Linux fallback behavior. Removed in commit `138d2e9320`. |
+| `mcp_server/tests/local-llm-features/cross-platform.vitest.ts` (NEW) | Created Group 9 darwin/arm64 and Linux fallback behavior. Removed in commit `8a170071f5`. |
 | `mcp_server/tests/local-llm-features/offline-degradation.vitest.ts` (NEW) | Created Group 10 covering cache hit, FTS5 fallback. Retry-manager behavior was also covered. |
 | `mcp_server/tests/local-llm-features/performance/embedding-latency.bench.ts` (NEW) | Latency benchmark. |
 | `mcp_server/tests/local-llm-features/performance/throughput.bench.ts` (NEW) | Throughput benchmark. |
 | `mcp_server/tests/local-llm-features/performance/cold-start.bench.ts` (NEW) | Cold-start benchmark. |
-| `mcp_server/tests/local-llm-features/performance/migration-throughput.bench.ts` (NEW) | Migration benchmark. Removed in commit `138d2e9320`. |
+| `mcp_server/tests/local-llm-features/performance/migration-throughput.bench.ts` (NEW) | Migration benchmark. Removed in commit `8a170071f5`. |
 | `mcp_server/tests/local-llm-features/README.md` (NEW) | Suite runbook documenting command lines, skips. Baseline interpretation guidance was included. |
 
 ### Follow-Ups

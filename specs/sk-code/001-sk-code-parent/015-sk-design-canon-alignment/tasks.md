@@ -57,7 +57,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Record completed packetKind repair for all five sk-design modes (`.opencode/skills/sk-design/mode-registry.json`) [EVIDENCE: commit f8673ff0db]
+- [x] T001 Record completed packetKind repair for all five sk-design modes (`.opencode/skills/sk-design/mode-registry.json`) [EVIDENCE: commit 8820b8963d]
 - [x] T002 Confirm `.opencode/skills/sk-design/` has no direct edit conflict before execution [EVIDENCE: `git status` collision check run before every edit batch; only self-authored paths modified]
 - [x] T003 Read sk-design hub files before editing: `SKILL.md`, `mode-registry.json`, `hub-router.json`, changelog entries, and `design-interface/README.md` [EVIDENCE: read-first honored across all edit batches this phase]
 - [x] T004 Confirm the five audited changelog entries are symlinks, not real packet changelog directories (`.opencode/skills/sk-design/changelog/`) [EVIDENCE: confirmed prior to deletion; packet changelogs verified intact inside packets]
@@ -69,19 +69,19 @@ _memory:
 ## Phase 2: Implementation
 
 ### Strict P0 Parent-Hub Fixes
-- [x] T005 Delete hub symlink `changelog/design-audit` and preserve packet changelog directory [EVIDENCE: commit 4f00dd262c; parent-skill-check 7a PASS]
-- [x] T006 Delete hub symlink `changelog/design-foundations` and preserve packet changelog directory [EVIDENCE: commit 4f00dd262c; 7a PASS]
-- [x] T007 Delete hub symlink `changelog/design-interface` and preserve packet changelog directory [EVIDENCE: commit 4f00dd262c; 7a PASS]
-- [x] T008 Delete hub symlink `changelog/design-md-generator` and preserve packet changelog directory [EVIDENCE: commit 4f00dd262c; 7a PASS]
-- [x] T009 Delete hub symlink `changelog/design-motion` and preserve packet changelog directory [EVIDENCE: commit 4f00dd262c; 7a PASS]
-- [x] T010 Author sk-design hub `description.json` from parent skill description template (`.opencode/skills/sk-design/description.json`) [EVIDENCE: commit 0898f9bba3; 8a PASS with required fields]
-- [x] T011 Scaffold hub `manual_testing_playbook/` for mode classification and transform-verb framing (`.opencode/skills/sk-design/manual_testing_playbook/`) [EVIDENCE: commit b9abf16b31 — 22 files / 21 scenarios across 5 categories; 260 referenced paths existence-verified; semantic claims spot-checked against registry+router; 9a PASS]
-- [x] T012 Produce hub `benchmark/` Lane-C baseline (`.opencode/skills/sk-design/benchmark/`) [EVIDENCE: commit fc4644a98a — router-mode run, CONDITIONAL 69/100, 15/15 scored scenarios passed, D5 100/100; 9b PASS]
+- [x] T005 Delete hub symlink `changelog/design-audit` and preserve packet changelog directory [EVIDENCE: commit 0c76ded15f; parent-skill-check 7a PASS]
+- [x] T006 Delete hub symlink `changelog/design-foundations` and preserve packet changelog directory [EVIDENCE: commit 0c76ded15f; 7a PASS]
+- [x] T007 Delete hub symlink `changelog/design-interface` and preserve packet changelog directory [EVIDENCE: commit 0c76ded15f; 7a PASS]
+- [x] T008 Delete hub symlink `changelog/design-md-generator` and preserve packet changelog directory [EVIDENCE: commit 0c76ded15f; 7a PASS]
+- [x] T009 Delete hub symlink `changelog/design-motion` and preserve packet changelog directory [EVIDENCE: commit 0c76ded15f; 7a PASS]
+- [x] T010 Author sk-design hub `description.json` from parent skill description template (`.opencode/skills/sk-design/description.json`) [EVIDENCE: commit 70c33d7806; 8a PASS with required fields]
+- [x] T011 Scaffold hub `manual_testing_playbook/` for mode classification and transform-verb framing (`.opencode/skills/sk-design/manual_testing_playbook/`) [EVIDENCE: commit 6f05a18a4f — 22 files / 21 scenarios across 5 categories; 260 referenced paths existence-verified; semantic claims spot-checked against registry+router; 9a PASS]
+- [x] T012 Produce hub `benchmark/` Lane-C baseline (`.opencode/skills/sk-design/benchmark/`) [EVIDENCE: commit 78294ba516 — router-mode run, CONDITIONAL 69/100, 15/15 scored scenarios passed, D5 100/100; 9b PASS]
 
 ### P1/P2 Canon Alignment
-- [x] T013 Declare `transform-verbs` in the registry extension block (`.opencode/skills/sk-design/mode-registry.json`) [EVIDENCE: commit 5a6765c9b1 — extensions.transform-verbs activates the in-place transformVerbRouting block per canon (no relocation); 3f PASS]
-- [x] T014 Convert prose Bundle Rule to declarative `bundleRules` (`.opencode/skills/sk-design/hub-router.json`) [EVIDENCE: unblocked by phase 017 canon reconciliation; ui-build-bundle whenAll interface+foundations → orderedBundle, commit 5a6765c9b1; 5f PASS]
-- [x] T015 Fix broken `design-interface/README.md` link to `../sk-code/README.md` (`.opencode/skills/sk-design/design-interface/README.md`) [EVIDENCE: commit 4f00dd262c (3 README links); plus 4 mode-SKILL sk-doc link depths in 0898f9bba3]
+- [x] T013 Declare `transform-verbs` in the registry extension block (`.opencode/skills/sk-design/mode-registry.json`) [EVIDENCE: commit ed338dab02 — extensions.transform-verbs activates the in-place transformVerbRouting block per canon (no relocation); 3f PASS]
+- [x] T014 Convert prose Bundle Rule to declarative `bundleRules` (`.opencode/skills/sk-design/hub-router.json`) [EVIDENCE: unblocked by phase 017 canon reconciliation; ui-build-bundle whenAll interface+foundations → orderedBundle, commit ed338dab02; 5f PASS]
+- [x] T015 Fix broken `design-interface/README.md` link to `../sk-code/README.md` (`.opencode/skills/sk-design/design-interface/README.md`) [EVIDENCE: commit 0c76ded15f (3 README links); plus 4 mode-SKILL sk-doc link depths in 70c33d7806]
 
 <!-- /ANCHOR:phase-2 -->
 ---

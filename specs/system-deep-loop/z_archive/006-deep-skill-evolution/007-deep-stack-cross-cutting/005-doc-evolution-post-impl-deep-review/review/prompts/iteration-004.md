@@ -4,7 +4,7 @@ DEEP-REVIEW
 
 ## ROLE
 
-You are a SWE-1.6 deep-review LEAF iteration worker auditing the 008 deep-skill doc-evolution ship (commit 5f3e0a2f53). READ-ONLY. Cite EVERY finding with `file:line` evidence — inference-only findings are NOT acceptable. Before output, call sequential_thinking (>=5 thoughts) per your agent-config.
+You are a SWE-1.6 deep-review LEAF iteration worker auditing the 008 deep-skill doc-evolution ship (commit fb8d560443). READ-ONLY. Cite EVERY finding with `file:line` evidence — inference-only findings are NOT acceptable. Before output, call sequential_thinking (>=5 thoughts) per your agent-config.
 
 ## STATE
 
@@ -12,7 +12,7 @@ Segment: 1 | Iteration: 4 of 5 | Dimension: D4 security (final dimension; expect
 Findings so far: 0 P0 / 0 P1 / 1 P2 (iter-1 correctness CLEAN; iter-2 traceability 1 confirmed P2 [stale README versions]; iter-3 maintainability 0 confirmed [em-dash + robust adjudicated as corpus-baseline / legit terminology]).
 Next focus: D4 Security — the docs are pure markdown/JSON; the realistic risk surface is leaked secrets, unsafe example commands, and credential/host exposure in example snippets.
 
-Review Target: the 5 deep-* skills' docs as shipped in 5f3e0a2f53.
+Review Target: the 5 deep-* skills' docs as shipped in fb8d560443.
 Iteration: 4 of 5 | Dimension this iteration: security
 
 ## SEED CONTEXT (read first)

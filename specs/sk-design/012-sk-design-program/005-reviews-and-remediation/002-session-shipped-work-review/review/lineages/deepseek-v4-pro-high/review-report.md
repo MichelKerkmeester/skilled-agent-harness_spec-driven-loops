@@ -17,9 +17,9 @@ trigger_phrases: []
 ## Executive Summary
 
 A 4-iteration autonomous review of three commits shipped to `skilled/v4.0.0.0`:
-- `bf0986cecd` — 015 Phase-0 styles-DB foundation (core database + oracle modules)
-- `9a42aedae4` — command-namespace dedup (deletion of `commands/design/`, registry updates)
-- `dc7fdfb0a7` — sk-doc/020 hyphen-naming convention (180+ spec-doc files)
+- `7e67a7bb3a` — 015 Phase-0 styles-DB foundation (core database + oracle modules)
+- `5dd5547949` — command-namespace dedup (deletion of `commands/design/`, registry updates)
+- `6a2127a51e` — sk-doc/020 hyphen-naming convention (180+ spec-doc files)
 
 **Result:** No correctness failures, no security vulnerabilities, no fabricated content. Two P1 findings require attention before the shipped state can be fully relied upon. Four P2 advisories are recorded for follow-up.
 

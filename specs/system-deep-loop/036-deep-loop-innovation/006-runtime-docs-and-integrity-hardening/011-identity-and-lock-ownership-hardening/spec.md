@@ -15,7 +15,7 @@ _memory:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/011-identity-and-lock-ownership-hardening"
     last_updated_at: "2026-08-17T04:04:40Z"
     last_updated_by: "codex-gpt-5"
-    recent_action: "Landed all 5 findings as 4446839af8 on skilled/v4.0.0.0; FULL 32/32 matrix green"
+    recent_action: "Landed all 5 findings as 53d977fcae on skilled/v4.0.0.0; FULL 32/32 matrix green"
     next_safe_action: "None — all findings landed"
     blockers: []
     key_files:
@@ -39,7 +39,7 @@ _memory:
 
 > Phase adjacency under the `036-deep-loop-innovation` parent (grouping order, not a runtime dependency): predecessor `010-docs-drift-and-p2-batch`; successor `001-cli-adapter-stress-and-playbooks`.
 
-> **STATUS: LANDED.** All five findings (F001-F005) landed as `4446839af8` on
+> **STATUS: LANDED.** All five findings (F001-F005) landed as `53d977fcae` on
 > `skilled/v4.0.0.0` on the third attempt. The first two attempts produced a 451-test
 > per-mode regression that could not be isolated within budget and were reverted; the
 > postmortem, hard lesson, and the conditions that let the third attempt succeed are in
@@ -68,7 +68,7 @@ The remediation makes identity and policy state explicit, adds process-shared si
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P0 |
-| **Status** | Complete (5/5 findings landed as `4446839af8`) |
+| **Status** | Complete (5/5 findings landed as `53d977fcae`) |
 | **Created** | 2026-08-05 |
 | **Branch** | `system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/011-identity-and-lock-ownership-hardening` |
 <!-- /ANCHOR:metadata -->

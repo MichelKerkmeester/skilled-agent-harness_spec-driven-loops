@@ -76,7 +76,7 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Findings closed | Done | `8bb9011584` records the hub surface findings closed |
+| Findings closed | Done | `ca9e3885b8` records the hub surface findings closed |
 | Command column check added | Done | Proven to fail on the dash form, a wrong command string, and a deleted row |
 | Two findings still owned | Done | Register 20 and 25 read Planned against this phase |
 

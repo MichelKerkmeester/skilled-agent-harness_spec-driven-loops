@@ -79,7 +79,7 @@ Each confirmed row was replaced by an asserted exact-text edit, so a stale ancho
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-One Python pass with an assertion per row, a ripgrep sweep for every retired name across the three doc trees, the sk-doc validator over each touched file, and a trigger-index regeneration with zero malformed documents. Committed as fc71f4d121 and the later wave commits.
+One Python pass with an assertion per row, a ripgrep sweep for every retired name across the three doc trees, the sk-doc validator over each touched file, and a trigger-index regeneration with zero malformed documents. Committed as c0576610e6 and the later wave commits.
 <!-- /ANCHOR:how-delivered -->
 
 ---

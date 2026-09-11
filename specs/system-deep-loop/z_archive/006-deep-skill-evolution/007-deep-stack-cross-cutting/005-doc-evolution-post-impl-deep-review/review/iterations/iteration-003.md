@@ -2,7 +2,7 @@
 
 ## Focus
 
-D3 Maintainability audit of the 5 deep-* skills' documentation as shipped in commit 5f3e0a2f53. This iteration examined HVR mechanical compliance (em dashes, AI-filler tokens), clarity of rewritten READMEs, coherence of the 3 deep-review split files, and reference organization quality.
+D3 Maintainability audit of the 5 deep-* skills' documentation as shipped in commit fb8d560443. This iteration examined HVR mechanical compliance (em dashes, AI-filler tokens), clarity of rewritten READMEs, coherence of the 3 deep-review split files, and reference organization quality.
 
 ## Actions Taken
 

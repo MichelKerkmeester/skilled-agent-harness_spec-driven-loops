@@ -12,7 +12,7 @@ _memory:
     packet_pointer: "sk-design/014-template-conformance/010-motion-merge"
     last_updated_at: "2026-07-27T19:00:00Z"
     last_updated_by: "spec-reconciler"
-    recent_action: "Marked T001-T036 against commit c1981d2b91 with T032 left open"
+    recent_action: "Marked T001-T036 against commit c52071edb6 with T032 left open"
     next_safe_action: "Close T032 by clearing 4 design-motion path references in 3 files"
     blockers: []
     key_files:
@@ -50,9 +50,9 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup [decide ordering mechanism, load-bearing gate, ~1h]
 
-**Delivered** in commit `c1981d2b91`.
+**Delivered** in commit `c52071edb6`.
 
-- [x] T001 Read commit `b217d74b819`'s diff in full (no path) [20m]
+- [x] T001 Read commit `562074ad7c5`'s diff in full (no path) [20m]
 - [x] T002 Compare `DEFAULT_RESOURCE` vs. preflight §10 row for mechanical enforceability (`design-interface/SKILL.md`, `interface-preflight-card.md`) [20m] — both judged necessary but neither sufficient alone
 - [x] T003 Record the chosen mechanism and rationale (`implementation-summary.md`) [10m] — three redundant mechanisms, recorded in Key Decisions
 - [x] T004 HARD STOP CHECK: confirm the mechanism is genuinely enforceable; if not, halt and escalate before Phase 2 [10m] — not triggered; enforceability confirmed at `design-interface/SKILL.md:148-153`, where all six `MOTION_*` `RESOURCE_MAP` entries open with `references/motion/animation-decision-framework.md`
@@ -63,7 +63,7 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation [move content + rewire surface, blocked on Phase 1, ~4h]
 
-**Delivered** in commit `c1981d2b91`.
+**Delivered** in commit `c52071edb6`.
 
 ### Move content
 

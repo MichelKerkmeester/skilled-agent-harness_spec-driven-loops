@@ -203,7 +203,7 @@
     ],
     "causal_summary": "Phase 008 proved why `EMBEDDINGSPROVIDER=auto` silently degrades to the unhealthy `hf-local` fallback even though ollama is up and owns the active vector shard: `factory.ts` reads the active-embedder metadata by shelling out to a bare `sqlite3` binary (`querySqliteScalar` → `execFileSync('sqlite3', …)`), and that helper returns `null` on any error, including `ENOENT`",
     "created_at": "2026-05-27T13:26:56.638Z",
-    "last_save_at": "2026-09-03T22:52:49.143Z",
+    "last_save_at": "2026-09-11T16:42:33.985Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,7 +214,7 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:f87aaa7bf05fd7958441375496b61768f4524bbd66cb774556f5a3f34af7267d",
+    "source_fingerprint": "sha256:ddf858441532aa7ab7d7ae4b3a4deb1f8d0b1445c21399ee24302c4f5890452b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "94eef99e1c12327d743bc48fad08cb0b0718b3b3061018c64b4729ca27a4b2f0",
@@ -222,7 +222,7 @@
       "tasks.md": "cf15d7585ec999c97d5010cb9d27e4770d2cdf24c9ebfa7172f04e504dac690f",
       "decision-record.md": "aca7ccbbf0d743cb764dbed7afb4a7ac60cb42d90f5fa1a2a4ea52bfa890dfea",
       "implementation-summary.md": "d78eef67fda83a0d92c2eb335c0afd8d8b6743ef6077f54d33973679c131d0e5",
-      "handover.md": "2868c58ed408a68592d21f5d58ea159ba6d2d47adee7c2e279ef53df03b50bac"
+      "handover.md": "0ee04c6629003809310247f2c85de22bad97d43f76994b7fc7ae36a7f5d22e57"
     },
     "last_active_child_id": null,
     "last_active_at": null

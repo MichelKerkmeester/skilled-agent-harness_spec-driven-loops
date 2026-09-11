@@ -47,8 +47,7 @@
       "implementation-summary.md",
       "research/research.md",
       "CLAUDE.md",
-      "AGENTS.md",
-      "BARTER.md"
+      "AGENTS.md"
     ],
     "entities": [
       {
@@ -91,12 +90,6 @@
         "name": "AGENTS.md",
         "kind": "doc",
         "path": "AGENTS.md",
-        "source": "derived"
-      },
-      {
-        "name": "BARTER.md",
-        "kind": "doc",
-        "path": "BARTER.md",
         "source": "derived"
       },
       {
@@ -194,11 +187,17 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Deleting the constitutional folder naively breaks dangling `See …md` links in CLAUDE.md/AGENTS.md/BARTER.md and any skill doc that cites a rule as its authority",
     "created_at": "2026-08-26T05:34:13Z",
-    "last_save_at": "2026-09-07T16:19:08.365Z",
+    "last_save_at": "2026-09-11T16:42:45.779Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,14 +207,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:0b614ffb1f79757ffbcf6b76a8bf17421c9b67b79e7910467050c485b980664e",
+    "source_fingerprint": "sha256:960166ff03d5060319f8a89ec23afd18f6ccbcbda7370a69bc2eeea3d0c1ad96",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1b97d50b216bce7160e27ffa20a3da3a49099debff5363cbbc7a324462426c45",
       "plan.md": "95a303c01f0b99199247c87049f360900053b04c5595bca5690d3f949bfbb99d",
       "tasks.md": "f8224b2ca1ec44df928e077602bdc092b4fc5a5e94ad2bbdc6cf49ddc20437cd",
       "implementation-summary.md": "f0a0c61ab4ecb6965b8d08f160dd7e7e92e4108a92f539b80e72fe080c8d04ba",
-      "research/research.md": "65d60affc61c68b5c0fa65864e378abc1572d0a9bee5b181c487e105b590c0a9"
+      "research/research.md": "cf3b5c2c0ccabc06c1a0e51f269b025dc2c006344f35188721249658dc50d35e"
     },
     "last_active_child_id": null,
     "last_active_at": null

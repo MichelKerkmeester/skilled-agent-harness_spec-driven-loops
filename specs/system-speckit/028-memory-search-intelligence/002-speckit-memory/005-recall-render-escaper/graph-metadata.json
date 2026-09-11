@@ -44,13 +44,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      "formatters/search-results.ts",
-      "tests/injection-marker-capture.vitest.ts",
-      "lib/governance/memory-retention-sweep.ts",
-      "tests/search-results-format.vitest.ts",
-      "tests/redaction-gate.vitest.ts",
-      "tests/memory-retention-sweep.vitest.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -75,42 +69,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "search-results.ts",
-        "kind": "code",
-        "path": "formatters/search-results.ts",
-        "source": "derived"
-      },
-      {
-        "name": "injection-marker-capture.vitest.ts",
-        "kind": "test",
-        "path": "tests/injection-marker-capture.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-retention-sweep.ts",
-        "kind": "code",
-        "path": "lib/governance/memory-retention-sweep.ts",
-        "source": "derived"
-      },
-      {
-        "name": "search-results-format.vitest.ts",
-        "kind": "test",
-        "path": "tests/search-results-format.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "redaction-gate.vitest.ts",
-        "kind": "test",
-        "path": "tests/redaction-gate.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-retention-sweep.vitest.ts",
-        "kind": "test",
-        "path": "tests/memory-retention-sweep.vitest.ts",
         "source": "derived"
       },
       {
@@ -196,11 +154,29 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "What Was Built This",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The Memory MCP captures arbitrary content via `memorysave` and later renders recalled bodies directly into the consuming agent's prompt loop, with no untrusted-content boundary at either end",
     "created_at": "2026-06-19T05:40:47.073Z",
-    "last_save_at": "2026-08-30T15:39:34.865Z",
+    "last_save_at": "2026-09-11T16:42:41.297Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +185,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b72c3f0b2c31e9d5f4ec78b9ef712b3c65ee15222b32ba77cf1a265847d20fe9",
+    "source_fingerprint": "sha256:2f6c64fb3e30c55de755f0e1f257f6a91d04cedcfc777a67827a2e7d243e9d51",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5001e6f0e5ada2dbfce1e3619beba4732e126327263e65ad87fbc730a95a1360",
-      "plan.md": "3a7a9f7724b861f95ad554246795c5a2b7fad270ae5f1ebbffca47505e8b79d8",
-      "tasks.md": "2be5756dc6e2bc38cfa7bd0ae3f4b70b6aabab8db257899af37f6800077a75d7",
-      "implementation-summary.md": "be5a90583b2452f21a87da95823c36441e7aeb05381ff8f71bfee5518a402bc5"
+      "spec.md": "f242a7e97621b02218be6d718edde87f4bd0edd8071af6f40d74ee343cdd4d0b",
+      "plan.md": "b0c6000a3d64a0c0db6b648da4f4519ab4fcb5680c45ca134ad211391e72af1f",
+      "tasks.md": "61c424038de43f2e3e0a80cf91bd9ec282e197446214d9ee3c9b2a3fc4de720c",
+      "implementation-summary.md": "127f6b559f28d47bde77447912d9fc24c7988e138d712ccd47a837d4c923f1ae"
     },
     "last_active_child_id": null,
     "last_active_at": null

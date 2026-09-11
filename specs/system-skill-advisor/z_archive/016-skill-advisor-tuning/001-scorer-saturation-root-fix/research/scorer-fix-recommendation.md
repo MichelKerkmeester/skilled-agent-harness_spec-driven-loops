@@ -9,7 +9,7 @@ created: 2026-07-05
 
 **Method:** two focused GPT-5.5-fast research rounds. Round 1 = diagnosis (6 dimensions, 4 P0 / 18 P1 / 3 P2). Round 2 = fix design for the same 6 areas (6 P0 / 18 P1 / 1 P2). R1↔R2 pair 1:1, so each problem has a designed remedy.
 
-**Verdict:** the shipped `-3.0` cli-opencode explicit-lane widening (`ea689d84e0`) is a **band-aid on an architectural class**, not a fix. Penalties are pre-clamp additive offsets (`Math.min(score,1)`), and fusion floors net-negative lane matches to zero (`Math.max(existing.rawScore, match.score)`) — so a penalty can never survive as durable negative evidence, and any saturating positive support erases it. Six workstreams follow, leverage-ordered.
+**Verdict:** the shipped `-3.0` cli-opencode explicit-lane widening (`0ea2d1be9c`) is a **band-aid on an architectural class**, not a fix. Penalties are pre-clamp additive offsets (`Math.min(score,1)`), and fusion floors net-negative lane matches to zero (`Math.max(existing.rawScore, match.score)`) — so a penalty can never survive as durable negative evidence, and any saturating positive support erases it. Six workstreams follow, leverage-ordered.
 
 ---
 

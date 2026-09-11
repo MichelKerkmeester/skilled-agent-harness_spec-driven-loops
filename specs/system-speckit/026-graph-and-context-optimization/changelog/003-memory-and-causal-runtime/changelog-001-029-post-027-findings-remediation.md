@@ -55,7 +55,7 @@ The 027 deep-review surfaced 21 P1 and 16 P2 findings against the post-014 local
 
 | Check | Result |
 |-------|--------|
-| `npx vitest run tests/embeddings.vitest.ts` | Evidence from commit `fce970add6`: test suite updated to dtype-inclusive cloud filename assertions |
+| `npx vitest run tests/embeddings.vitest.ts` | Evidence from commit `0f7a2431ac`: test suite updated to dtype-inclusive cloud filename assertions |
 | `grep -nE 'speckit_memory\.db' shared/README.md` | 0 matches post-fix per commit evidence |
 | `grep -nE "process\.env\.EMBEDDINGS_PROVIDER = 'hf-local'" context-server.ts` | 0 matches post-fix per commit evidence |
 | `grep -nE 'pre-restore-context-index\.sqlite' restore-checkpoint.ts` | 0 matches post-fix per commit evidence |

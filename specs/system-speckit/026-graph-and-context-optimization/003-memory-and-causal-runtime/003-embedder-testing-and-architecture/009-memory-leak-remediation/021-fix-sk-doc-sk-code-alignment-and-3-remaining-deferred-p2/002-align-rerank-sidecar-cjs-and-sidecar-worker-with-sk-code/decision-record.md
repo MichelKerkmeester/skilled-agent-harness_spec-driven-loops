@@ -40,7 +40,7 @@ Align the two target files by adding documentation artifacts only: a CommonJS mo
 
 ### Rationale
 - The drift is documentation/style alignment, not behavior.
-- Recent predecessor commits (`fbb8a23cda`, `e5113fedc4`, `8dfafc7189`, `f081112aab`) establish the same pattern: docblocks, module headers, section dividers, and verifier-backed closure.
+- Recent predecessor commits (`5a9ecbead3`, `98b6199c1b`, `002dfa1e7a`, `28f5bd32cc`) establish the same pattern: docblocks, module headers, section dividers, and verifier-backed closure.
 - Keeping source edits comment-only avoids re-opening sidecar lifecycle risk while improving maintainability and drift-tool compliance.
 
 ### Alternatives Considered

@@ -16,7 +16,7 @@ contextType: "implementation"
 
 > Spec folder: `.opencode/specs/deep-loops/032-goal-opencode-plugin/013-design-fidelity-and-polish` (Level 1)
 > Parent packet: `.opencode/specs/deep-loops/032-goal-opencode-plugin`
-> Commit: `ea9a45d649` feat(mk-goal): wire usage_limited detector + fingerprint/observability polish
+> Commit: `563541d3d0` feat(mk-goal): wire usage_limited detector + fingerprint/observability polish
 
 ### Summary
 

@@ -143,10 +143,10 @@ The sweep uses five sequential batches so each skill family can be reviewed and 
 
 | Batch | Commit | Scope | Verification |
 |---|---|---|---|
-| A | `da1a5b48e1` | CLI executor descriptions plus packet scaffold/audit | 4/4 `quick_validate.py` PASS |
-| B | `2f2cbe8378` | Deep-loop skills | 4/4 `quick_validate.py` PASS; changed docs validate |
-| C | `18ddb4294d` | MCP integration skills | 3/3 `quick_validate.py` PASS; primary and changed docs validate |
-| D | `e336331efa` | sk-* skills | 5/5 `quick_validate.py` PASS; changed docs validate |
+| A | `762a3664ce` | CLI executor descriptions plus packet scaffold/audit | 4/4 `quick_validate.py` PASS |
+| B | `a6512e558a` | Deep-loop skills | 4/4 `quick_validate.py` PASS; changed docs validate |
+| C | `b6f3f0fab5` | MCP integration skills | 3/3 `quick_validate.py` PASS; primary and changed docs validate |
+| D | `d5c6143a54` | sk-* skills | 5/5 `quick_validate.py` PASS; changed docs validate |
 | E | `fb25d433e` | system-* skills and root READMEs | 3/3 `quick_validate.py` PASS; changed docs validate |
 | Close-out | Pending final commit | Final grep cleanup and packet completion metadata | Final `quick_validate`, README validation, stale grep and strict packet validation PASS |
 
@@ -165,7 +165,7 @@ The sweep uses five sequential batches so each skill family can be reviewed and 
 ```text
 AGENT_RECEIVED=all-skills-alignment-sweep
 RESULT=PASS
-COMMITS=da1a5b48e1,2f2cbe8378,18ddb4294d,e336331efa,fb25d433e,<close-out-commit>
+COMMITS=762a3664ce,a6512e558a,b6f3f0fab5,d5c6143a54,fb25d433e,<close-out-commit>
 PACKET_SCAFFOLDED=YES
 PACKET_NUMBER=015
 SKILLS_AUDITED=19

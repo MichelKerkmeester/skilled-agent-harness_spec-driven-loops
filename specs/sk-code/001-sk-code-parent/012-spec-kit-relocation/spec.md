@@ -107,7 +107,7 @@ Move the spec-folder authoring recipe and checklist into `system-spec-kit/refere
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: Shipped commit `85a0c2c9ac` contains the relocation and inbound reference repoints.
+- **SC-001**: Shipped commit `44c5d98179` contains the relocation and inbound reference repoints.
 - **SC-002**: `sk-code-router-sync` vitest reports 4/4 passing.
 - **SC-003**: Broken-link checking among touched files is clean.
 - **SC-004**: Dead-reference sweep is clean.

@@ -37,7 +37,7 @@ GOAL: Constitutional-memory DEPRECATION-COMPLETENESS audit across the ENTIRE rep
 ---
 
 ## 4. NON-GOALS
-- Do NOT re-derive confirmed grounding (three-memory taxonomy, enforcement location, owner direction, committed a1d2b84a1e search flip).
+- Do NOT re-derive confirmed grounding (three-memory taxonomy, enforcement location, owner direction, committed b635afdcf4 search flip).
 - Do NOT rewrite spec history (~420 raw refs, most in spec history).
 - Do NOT implement fixes; report findings only.
 - Do NOT modify anything outside the lineage artifact dir.
@@ -93,7 +93,7 @@ COMPLETE — synthesis at `research.md`. No further iterations (maxIterationsRea
 - THREE memory systems; only (A) constitutional in scope. (A) = 20 static rule files in `.opencode/skills/system-spec-kit/constitutional/`, indexed as a DB tier (alwaysSurface, 3x boost, decay:false; 21 rows). (B) spec-folder continuity = KEEP untouched. (C) DB learned-triggers = 30-day TTL, verified 0 rows, dead.
 - Enforcement NOT in rule files (hooks + classifiers enforce hygiene/Gate-3/dispatch); 3 every-turn directives HARDCODED in advisor render.ts, not read from constitutional/*.md; tier decorative; cold-start injection DEAD CODE; shouldAlwaysSurface has NO production callers; includeConstitutional (not alwaysSurface) is the lever.
 - OWNER DIRECTION: deprecate constitutional LAYER completely; KEEP rules as plain docs (rehome unique long-forms into root docs or keep few as unindexed reference docs); NO new DECISIONS.md surface; memory-system-spec-kit-only rule STAYS (native-memory ban intact); spec-kit memory MCP + continuity STAY.
-- ALREADY DONE (committed a1d2b84a1e): includeConstitutional default flipped to false at 3 search sites (memory-search.ts, memory-context.ts x2, vector-index-queries.ts).
+- ALREADY DONE (committed b635afdcf4): includeConstitutional default flipped to false at 3 search sites (memory-search.ts, memory-context.ts x2, vector-index-queries.ts).
 
 ### Bounded Context Snapshot (pointer-based)
 - Constitutional folder: `.opencode/skills/system-spec-kit/constitutional/` — README.md + 20 rule files (confirmed by ls).
@@ -105,7 +105,7 @@ COMPLETE — synthesis at `research.md`. No further iterations (maxIterationsRea
 - Research lineage artifact root: `specs/system-speckit/037-decisions-memory-redesign/004-rehome-rules-content/research/lineages/deepseek-flash-audit/` (ONLY write surface).
 
 ### Integration Points
-- Search sites already flipped: memory-search.ts, memory-context.ts (x2), vector-index-queries.ts (commit a1d2b84a1e).
+- Search sites already flipped: memory-search.ts, memory-context.ts (x2), vector-index-queries.ts (commit b635afdcf4).
 - Advisor render.ts: 3 every-turn directives hardcoded.
 - Hooks: `.opencode/skills/system-spec-kit/mcp-server/hooks/` + `hooks/injection-contract.md` (stale cold-start claim).
 - DB: constitutional tier rows (21), learned-triggers tier (0 rows, 30-day TTL).

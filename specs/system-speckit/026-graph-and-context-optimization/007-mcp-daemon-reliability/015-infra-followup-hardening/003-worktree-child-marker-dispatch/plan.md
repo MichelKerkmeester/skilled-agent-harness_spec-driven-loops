@@ -132,7 +132,7 @@ Required inventories:
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| bin/README worktree section | Internal | Green (035, c657219dd9) | Cross-ref target |
+| bin/README worktree section | Internal | Green (035, ec02cd1875) | Cross-ref target |
 | worktree-session.sh AI_SESSION_CHILD read | Internal | Green (035) | The enforcement the docs describe |
 <!-- /ANCHOR:dependencies -->
 

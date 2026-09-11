@@ -125,7 +125,7 @@ The wording standard has one home, `sk-doc/shared/references/hvr-rules.md`, appl
 | Risk | A new reference file would need a `leaf-manifest.json` regeneration | Low | Avoided. The new text went into `SKILL.md`, which the skill's own router already treats as the projection lane's only resource |
 | Risk | The `.claude` command mirrors drift from `.opencode` | Low | They are per-file symlinks, verified with `readlink` and `diff` after the edits |
 | Risk | Five agents write the same tree concurrently | High | Every edit scoped to the two commands and two `sk-communication` files. Git index untouched, nothing committed |
-| Dependency | Wave A commit `60212f5292` | The mode and its scope gate must exist before anything can route to them | Confirmed present before the first edit |
+| Dependency | Wave A commit `ced970a2c7` | The mode and its scope gate must exist before anything can route to them | Confirmed present before the first edit |
 <!-- /ANCHOR:risks -->
 
 ---

@@ -16,7 +16,7 @@ Reducer-generated observability surface for the active review packet.
 <!-- /ANCHOR:overview -->
 <!-- ANCHOR:status -->
 ## 2. STATUS
-- Review Target: 027/020 vector-resilience durability (commit 1ee9e1e767): repair-pending sentinel at quarantine, boot resume in attachActiveVectorShard, clear stuck-degraded on non-repair reindex (files)
+- Review Target: 027/020 vector-resilience durability (commit 059407c047): repair-pending sentinel at quarantine, boot resume in attachActiveVectorShard, clear stuck-degraded on non-repair reindex (files)
 - Started: 2026-06-11T09:10:00Z
 - Status: IN-PROGRESS
 - Iteration: 5 of 5

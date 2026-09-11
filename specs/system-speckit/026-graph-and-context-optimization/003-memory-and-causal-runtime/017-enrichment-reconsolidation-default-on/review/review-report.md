@@ -8,18 +8,18 @@ trigger_phrases: []
 
 **Verdict: CONDITIONAL** — P0=0, P1=18 (17 confirmed, 1 refuted), P2=6.
 
-Scope: commits c0bb8aefd6, e93acb8e24, deee30b319, 637f83ad36, 15d2e4988d, 0060a097b3.
+Scope: commits 3dcd0c79ae, 426606a39c, f6f95062ed, e9c6d2b2d0, e1165bcef8, 7504112605.
 
 ---
 
 ## P1 — Confirmed (17)
 
-### A. E081 classification incomplete (commit c0bb8aefd6)
+### A. E081 classification incomplete (commit 3dcd0c79ae)
 - **A1** Pre-index setup throws escape unclassified — `validateFilePathLocal` (path-traversal "Access denied") throws *before* the index try/catch, so it still flattens to generic E081. The fix classified the not-found/non-canonical/governance throws but not the path-validation/`checkDatabaseUpdated`/`requireDb` setup block.
 - **A2** Handler-produced `status:'error'` messages fall through `classifySaveErrorCode` to E081 — e.g. "Save-time reconsolidation failed: …", "Save aborted before commit: candidate_changed" match none of E085–E089.
 - **A3** *(design debate)* Rejected saves (quality/template/sufficiency) return a **success** envelope with `rejectionCode` and no classified error code. This is the intended "clear structured rejection" behavior — flagged as a contract question, not necessarily a bug.
 
-### B. Async enrichment correctness/safety (commit 0060a097b3) — highest-value
+### B. Async enrichment correctness/safety (commit 7504112605) — highest-value
 - **B1** Background enrichment can mutate a **superseded** row — the `setImmediate` job runs outside the spec-folder lock and never re-checks the row is still current, so a concurrent supersede racing the deferred run repopulates stale entities/causal edges for a deprecated row (supersede logic at 2662-2664 explicitly purges those).
 - **B2/B3** Unbounded background work / no concurrency bound or backpressure — one `setImmediate(runPostInsertEnrichment)` per save with no cap; a save burst schedules unbounded concurrent enrichment (each doing entity extraction + a summary embedding + graph lifecycle).
 - **B4** The async task captures the module-singleton DB handle; if the daemon recycles/swaps the DB before the background run finishes, it writes against a stale/closed handle.
@@ -56,7 +56,7 @@ Scope: commits c0bb8aefd6, e93acb8e24, deee30b319, 637f83ad36, 15d2e4988d, 0060a
 
 ---
 
-## Remediation Status — DONE (commit a2d1a9bc9e + quality-loop test fix)
+## Remediation Status — DONE (commit 0ec82e44d7 + quality-loop test fix)
 
 All P1-confirmed + actioned P2 findings remediated; verdict cleared from CONDITIONAL.
 
@@ -73,7 +73,7 @@ All P1-confirmed + actioned P2 findings remediated; verdict cleared from CONDITI
 | **F2** (async behavior) | New `enrichment-async-deferred.vitest.ts` asserts every lane deferred + `async_background` reason. |
 | **P2** | `edgeId` schema → positive-int; async lanes reason `async_background`; R3 field `postInsertEnrichment.status`. |
 
-**D3 / SC-003 (overclaim) — now verified:** affected-area suite **green** (1331 passed) except **2 pre-existing** `handler-memory-index` scan-fixture failures — definitively unrelated (root-caused to `203fb19cbc`'s `markEnrichmentPending` call site against a fixture lacking `memory_index`; my session never touched that test, `enrichment-state.ts`, or the call site). `quality-loop.vitest.ts` 52/52 after isolating its 2 advisory tests to the no-auto-fix path (auto-fix-default-on fallout).
+**D3 / SC-003 (overclaim) — now verified:** affected-area suite **green** (1331 passed) except **2 pre-existing** `handler-memory-index` scan-fixture failures — definitively unrelated (root-caused to `06bf89895c`'s `markEnrichmentPending` call site against a fixture lacking `memory_index`; my session never touched that test, `enrichment-state.ts`, or the call site). `quality-loop.vitest.ts` 52/52 after isolating its 2 advisory tests to the no-auto-fix path (auto-fix-default-on fallout).
 
 **Open follow-up:** **F3** (backfill-failure-mode regression test) deferred as a small follow-up — B5 fixes the root cause and F2/existing tests cover the deferred-lane behavior.
 

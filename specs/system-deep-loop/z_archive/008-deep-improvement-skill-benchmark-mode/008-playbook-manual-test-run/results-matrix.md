@@ -1,7 +1,7 @@
 # deep-improvement Playbook — Manual Test Run
 
 - Date: 2026-05-31
-- Commit tested: b77f459c3f (session start) / 89ada5188b (session end — commits occurred mid-run)
+- Commit tested: 52013b0fbb (session start) / 6b9cf4ac6d (session end — commits occurred mid-run)
 - Runner: claude-sonnet-4-6 (Claude Code session)
 - Provider used for dispatch scenarios: deepseek/deepseek-v4-pro (CP-032..037, E2E loops)
 

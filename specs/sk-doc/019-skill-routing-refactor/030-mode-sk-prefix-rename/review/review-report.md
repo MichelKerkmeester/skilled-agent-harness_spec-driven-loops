@@ -34,12 +34,12 @@ trigger_phrases: []
 
 | Finding | Resolution |
 |---------|------------|
-| skill_advisor.py composed the old sk-prompt/prompt-models path via os.path.join; the OSError was silently swallowed, leaving small-model dispatch with empty profiles (P1, swe-1-7) | Path renamed; profiles verified loading (8 models). Commit 2b10e6907e |
-| sk-design shared creation-contract envelope example used workflowMode "interface" (swe-1-7) | Renamed to sk-design-interface. Commit 2b10e6907e |
-| Open-design CLI pairing example listed pre-rename packet name (swe-1-7) | Renamed. Commit 2b10e6907e |
-| Playbook FAIL-criteria listed renamed judgment modes by old names (swe-1-7) | The two renamed modes updated; the dead trio predates the rename. Commit 2b10e6907e |
-| Holdout-leak test fixture used old md-generator identifiers (swe-1-7) | Fixture renamed and its prompt updated to leak the renamed token so the leak detector still fires. Commit 2b10e6907e |
-| Parent spec.md Status stayed Planned after closeout (composer-2-5-r2) | Status set to Complete; child continuity blocks added, flipping every child's derived graph status to complete. Commit c6c8d38ffb |
+| skill_advisor.py composed the old sk-prompt/prompt-models path via os.path.join; the OSError was silently swallowed, leaving small-model dispatch with empty profiles (P1, swe-1-7) | Path renamed; profiles verified loading (8 models). Commit c201e8e50b |
+| sk-design shared creation-contract envelope example used workflowMode "interface" (swe-1-7) | Renamed to sk-design-interface. Commit c201e8e50b |
+| Open-design CLI pairing example listed pre-rename packet name (swe-1-7) | Renamed. Commit c201e8e50b |
+| Playbook FAIL-criteria listed renamed judgment modes by old names (swe-1-7) | The two renamed modes updated; the dead trio predates the rename. Commit c201e8e50b |
+| Holdout-leak test fixture used old md-generator identifiers (swe-1-7) | Fixture renamed and its prompt updated to leak the renamed token so the leak detector still fires. Commit c201e8e50b |
+| Parent spec.md Status stayed Planned after closeout (composer-2-5-r2) | Status set to Complete; child continuity blocks added, flipping every child's derived graph status to complete. Commit d05ea36e69 |
 
 ### Kept deliberately (not defects)
 
@@ -53,14 +53,14 @@ trigger_phrases: []
 ### Pre-existing (reproduced at the pre-rename base commit)
 
 - create-benchmark family-registry test failure (missing 'agent-improvement' resource key) fails
-  identically at f8399bf5a0.
+  identically at 89568f95f8.
 
 ## 4. Verification
 
 - All four Lane C hub gates reproduce after every remediation: sk-prompt PASS 100, sk-design
   BLOCKED-BY-ROUTE-GOLD 91, sk-code BLOCKED-BY-ROUTE-GOLD 91, sk-doc PASS 98.
 - validate.sh --recursive --strict: Errors 0 on all nine packet folders.
-- Remediation commits: 2b10e6907e, c6c8d38ffb.
+- Remediation commits: c201e8e50b, d05ea36e69.
 
 ## 5. Verdict
 
@@ -70,7 +70,7 @@ placeholders, or pre-existing failures. Effective post-remediation verdict: **PA
 
 ## 6. Post-Remediation Update
 
-Phase 009 closed the four deferred lanes (commits 9bbd2c1acb, a1426210ef, e095152fac, 265adfbf23).
+Phase 009 closed the four deferred lanes (commits a5f7531576, 1b96e3ad18, bc1b24c0f0, 25d30d9e39).
 The route-gold refresh falsified the stale-gold hypothesis: both BLOCKED verdicts are byte-stable at
 91 after the rename-complete fixtures, caused by two genuine sk-design router misses and ten sk-code
 scenarios lacking typed gold — follow-up router work, tracked outside this packet.

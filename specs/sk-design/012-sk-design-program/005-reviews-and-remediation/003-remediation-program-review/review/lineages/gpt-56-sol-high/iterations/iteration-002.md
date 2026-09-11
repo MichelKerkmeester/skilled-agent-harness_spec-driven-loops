@@ -10,7 +10,7 @@ trigger_phrases: []
 - Session: `fanout-gpt-56-sol-high-1784650021792-031fvi`
 - Generation / lineage: `1` / `new`
 - Budget profile: `scan`
-- Scope: validated 118-file `goal-file-manifest.txt` at pinned HEAD `7b9d3b6b71`
+- Scope: validated 118-file `goal-file-manifest.txt` at pinned HEAD `6432665a68`
 - Structural caveat: Code Graph was unavailable by dispatch contract; direct reads, exact searches, and focused tests were used.
 
 ## Files Reviewed

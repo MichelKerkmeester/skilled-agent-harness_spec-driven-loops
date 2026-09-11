@@ -39,7 +39,7 @@ _memory:
 | **Spec Folder** | 004-value-of-computation-allocation |
 | **Completed** | 2026-07-21 |
 | **Level** | 2 |
-| **Baseline** | `012652b479dee08455de574574c5e7a8971a8b0b` |
+| **Baseline** | `68b518ab0d8ee5b2bce3a8f1938a7944a1d5945e` |
 | **Branch** | `system-deep-loop/0091-036-execution` |
 | **Status** | Complete |
 | **Authority** | Additive-DARK; uniform/static allocation and shipped conditional-fan-in defaults remain authoritative |

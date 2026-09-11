@@ -1,12 +1,12 @@
 # Iteration 4: Session-lifecycle registrations and hook identity
 
 ## Focus
-Angle 2. Whether the eleven session-lifecycle registrations restored at `273767431d` still resolve, and whether hook configs, CI or doctor assets still name a retired surface.
+Angle 2. Whether the eleven session-lifecycle registrations restored at `9bca36ef52` still resolve, and whether hook configs, CI or doctor assets still name a retired surface.
 
 ## Findings
 
 ### F-I4-001 — The eleven restored registrations are still live and resolve. CONFIRMED. P2 (negative)
-`273767431d` restored 11 command registrations: Claude session-prime / session-stop / compact-inject, Codex session-start / session-stop / compact-inject, Cursor session-start / session-end / precompact, Devin session-start / session-stop.
+`9bca36ef52` restored 11 command registrations: Claude session-prime / session-stop / compact-inject, Codex session-start / session-stop / compact-inject, Cursor session-start / session-end / precompact, Devin session-start / session-stop.
 Those commands still sit in the live configs and still point at `runtime/dist/hooks/<runtime>/`. [SOURCE: .claude/settings.json:102] [SOURCE: .codex/hooks.json:8] [SOURCE: .cursor/hooks.json:6] [SOURCE: .devin/hooks.v1.json:8]
 The `.claude/hooks/*.js`, `.codex/hooks/*.js`, `.cursor/hooks/*.js`, `.devin/hooks/*.js` and `.opencode/hooks/session-lifecycle/<runtime>/*.js` files are relative symlinks to those dist targets. A broken-symlink scan of those trees returned empty.
 Pi was not in the restore commit. Its session adapters live as `.pi/extensions/*.ts` → `runtime/hooks/pi/*.ts` and were already present.
@@ -40,7 +40,7 @@ This checkout's hook trees have working browsability symlinks and no broken link
 Smallest fix: none in this tree. Treat the LOG row as checkout-local, not as live debt.
 
 ## Sources Consulted
-- git show --stat 273767431d
+- git show --stat 9bca36ef52
 - .claude/settings.json:102,144,197
 - .codex/hooks.json:8,127,151
 - .cursor/hooks.json:6,43,100

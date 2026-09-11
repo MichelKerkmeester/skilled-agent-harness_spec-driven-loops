@@ -72,7 +72,7 @@ Three write-boundary checks became one. `assertPathInsideRoot(root, target, labe
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Direct edit after the nesting review's fifth and sixth passes named the duplication. Committed in one refactor commit, `8fe341ead0`.
+Direct edit after the nesting review's fifth and sixth passes named the duplication. Committed in one refactor commit, `6e20a1b467`.
 <!-- /ANCHOR:how-delivered -->
 
 ---

@@ -42,8 +42,7 @@
       "tasks.md",
       "decision-record.md",
       "implementation-summary.md",
-      "specs/cli-external-orchestration/029-cli-devin-revival/001-devin-contract-pin/implementation-summary.md",
-      "api/indexing.ts"
+      "specs/cli-external-orchestration/029-cli-devin-revival/001-devin-contract-pin/implementation-summary.md"
     ],
     "entities": [
       {
@@ -74,12 +73,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "indexing.ts",
-        "kind": "code",
-        "path": "api/indexing.ts",
         "source": "derived"
       },
       {
@@ -189,11 +182,17 @@
         "kind": "proper_noun",
         "path": "decision-record.md",
         "source": "derived"
+      },
+      {
+        "name": "Context The",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 002's plan names WHAT needs to change (7 registry entries, a new function, a `.gitignore` rebase, a reindex) but not the exact HOW — the literal commands, the exact order, the exact checks between steps",
     "created_at": "2026-08-06T17:53:46Z",
-    "last_save_at": "2026-08-30T15:39:36.427Z",
+    "last_save_at": "2026-09-11T16:42:45.157Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,14 +202,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:51885ab7206d4c24760276d656db019a59e8e15d23df13eedf14ef26912f4949",
+    "source_fingerprint": "sha256:58ac1a4cc40a10e008901e0f489363f95cf35504b0ceb7523bb5454ffb556a5c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "68569e538190bed53fbf6c673730f091803b295076f7c58fb4c20a50e91f2a5d",
+      "spec.md": "f53e6792eb5e7ae3b27109a0a2b04556f5f695f9f0ca26e8d813746f94e04dde",
       "plan.md": "10c1525c19eac727352ae132cdf1877a22a2303d2246e89a6dd2527ae69dfed8",
-      "tasks.md": "fa242b9d7d4cf74fbb2481827b57b381de92e82bd62c3944002c9c9bb827b19d",
+      "tasks.md": "fa8c73475ca14de86a9f046c7d0924aeb2753c997eb75620f03157cbeb08554a",
       "decision-record.md": "19b77eb2a25746d482bfeb3227458ac9902c977b10744be5b4594e60a3eac972",
-      "implementation-summary.md": "50d30f296f3752f3264d7a54a037a51938b7ac9c273b2fdef2e3559d517579a9"
+      "implementation-summary.md": "78b68a30754cf6132f8a80f4b5976c6bfbf544139008f74fea90b4f2f29f31d9"
     },
     "last_active_child_id": null,
     "last_active_at": null

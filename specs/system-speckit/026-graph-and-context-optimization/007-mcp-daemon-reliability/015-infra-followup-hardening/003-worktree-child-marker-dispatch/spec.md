@@ -25,7 +25,7 @@ _memory:
     completion_pct: 90
     open_questions: []
     answered_questions:
-      - "bin/README already documents the worktree child contract (committed c657219dd9); 003 adds the actionable dispatch-site rule to the two cli-* skills that actually spawn children."
+      - "bin/README already documents the worktree child contract (committed ec02cd1875); 003 adds the actionable dispatch-site rule to the two cli-* skills that actually spawn children."
 ---
 # Feature Specification: Worktree child-marker dispatch documentation
 
@@ -120,7 +120,7 @@ Add an ALWAYS rule to the two cli-* skills that spawn child sessions, so dispatc
 |------|------|--------|------------|
 | Risk | Dispatchers ignore the rule | Child nests its own worktree | The structural `git --git-common-dir` backstop in worktree-session.sh catches the common case (child already inside the parent's tree) even without the env var |
 | Risk | Doc-only; no enforcement | Drift | The wrapper's behavior is the enforcement; this doc just makes the dispatcher's part explicit |
-| Dependency | bin/README "Worktree session isolation" section | Cross-ref target | Already committed in 035 (c657219dd9); verified present |
+| Dependency | bin/README "Worktree session isolation" section | Cross-ref target | Already committed in 035 (ec02cd1875); verified present |
 
 <!-- /ANCHOR:risks -->
 ---

@@ -5,7 +5,7 @@ dimension: correctness-completeness
 executor: cli-devin
 model: swe-1.6
 recipe: agent-config-deep-review-iter.json
-review_target_commit: ba6816a490b1a20d4f74135179c10096c5348921
+review_target_commit: e2d258eae532ac09b00dc6944e07fe4c57c2ad6c
 write_mode: main_agent_persisted_from_stdout
 write_mode_reason: "loop-manager sub-agent stalled after iter 1; main agent took over and extracted iter 2 content from /tmp/devin-iter-008-002-2.output"
 trigger_phrases: []

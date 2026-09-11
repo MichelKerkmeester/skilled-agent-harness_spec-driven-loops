@@ -88,7 +88,7 @@ Minimal spec delta implied by findings (for a remediation packet under 017):
 
 | Protocol | Level | Status | Gate | Evidence | Notes |
 |----------|-------|--------|------|----------|-------|
-| `spec_code` | core | partial | hard | `spec.md:114-128`; `search.md:17` | spec.md has no populated requirements; shipped behavior traced to `implementation-summary.md` + commit `eac1eb5ef8` instead. Drives F002. |
+| `spec_code` | core | partial | hard | `spec.md:114-128`; `search.md:17` | spec.md has no populated requirements; shipped behavior traced to `implementation-summary.md` + commit `2d425de43f` instead. Drives F002. |
 | `checklist_evidence` | core | N/A | hard | — | Level 1 packet; no `checklist.md` required. |
 | `feature_catalog_code` | overlay | N/A | advisory | — | No catalog claim in scope. |
 | `playbook_capability` | overlay | N/A | advisory | — | No playbook scenario in scope. |
@@ -110,7 +110,7 @@ Core hard gate `spec_code` is **partial** (not fail): the implementation is inte
 ### Coverage
 - Dimensions: 4/4 covered in a single converging pass (correctness, security, traceability, maintainability).
 - Files: `.opencode/commands/memory/search.md`, `.opencode/commands/memory/assets/search_presentation.txt`, and the four 006 packet docs.
-- Scope isolation: O1/006 deliverables separated from working-tree O2/007 content via `git show eac1eb5ef8`.
+- Scope isolation: O1/006 deliverables separated from working-tree O2/007 content via `git show 2d425de43f`.
 
 ### Convergence replay
 - Stop reason: maxIterations (1) reached. Single full-dimension pass; `newFindingsRatio=1.0` (all findings new on first iteration). No rolling-average/MAD votes applicable to a single iteration.

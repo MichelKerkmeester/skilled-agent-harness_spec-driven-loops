@@ -1,7 +1,7 @@
 ---
 trigger_phrases: []
 ---
-Adversarial deep-review worker, iteration 9 of 10 (gpt-5.5 xhigh). Review the committed fix (commit 25587fa412), read-only:
+Adversarial deep-review worker, iteration 9 of 10 (gpt-5.5 xhigh). Review the committed fix (commit 86f08e62cd), read-only:
 - .opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts (scheduleBackgroundEnrichment + recordEnrichmentResult)
 
 CONVERGED PRIOR (iters 1-6, DO NOT re-derive): slot invariant proven; atomic gate; no re-entrancy; dist mirrors source. Known P2s: queue retention; stale-handle (comment fixed); idle-monitor; possible hung-run slot-exhaustion.

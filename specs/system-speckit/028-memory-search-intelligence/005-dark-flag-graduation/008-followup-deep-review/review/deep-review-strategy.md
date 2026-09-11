@@ -24,13 +24,13 @@ trigger_phrases: []
 
 ## Known Context
 
-- Commit 420c4734f3 is the 010 graduation follow-ups, all behind default-off flags
+- Commit 38b998353b is the 010 graduation follow-ups, all behind default-off flags
 - Deep-loop gauge defaults committed at 0; production values (30s, 1500ms) proven externally
 - The cli executor pass was 6/7 green on first run, 14/14 on rerun
 - Sub-phase 003 implementation-summary shows completion_pct: 90 (cli test pass pending)
 
 ## Review Boundaries
 
-- Scope: Only the changes in commit 420c4734f3
+- Scope: Only the changes in commit 38b998353b
 - Out: Pre-existing issues, unrelated files, broader subsystem concerns
 - The committed defaults are 0 for gauges; review covers what IS committed, not proposed values

@@ -103,7 +103,7 @@ Beyond the P1/P2/P3 presentation fixes above, this packet also owns the eight Ph
 - T027: `tools/types.ts` completes the eight previously-lagging dispatch-arg interfaces and adds compile-time `Assert<HasExactSchemaKeys<...>>` parity checks.
 - T028: `includeConstitutional` is now consistent across the Zod schema, public schema, and `ContextArgs`.
 
-Landed in commit `f9afa7a76c` ("fix(spec-kit): 028 Phase R audit remediation — 72 tasks swarm-implemented, adversarially verified"), which touches `context-server.ts`, `handlers/memory-context.ts`, `schemas/tool-input-schemas.ts`, `tests/mcp-tool-dispatch.vitest.ts`, `tests/memory-context-token-budget.vitest.ts`, `tool-schemas.ts`, and `tools/types.ts`.
+Landed in commit `859e9dc9b2` ("fix(spec-kit): 028 Phase R audit remediation — 72 tasks swarm-implemented, adversarially verified"), which touches `context-server.ts`, `handlers/memory-context.ts`, `schemas/tool-input-schemas.ts`, `tests/mcp-tool-dispatch.vitest.ts`, `tests/memory-context-token-budget.vitest.ts`, `tool-schemas.ts`, and `tools/types.ts`.
 <!-- /ANCHOR:what-built -->
 
 ---

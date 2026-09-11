@@ -78,7 +78,7 @@ The Dependabot side was mostly transitive: `fast-uri`, `qs` and `toml` under fou
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The gate was exercised by invoking the hook directly against four tree shapes, with array-based path lists because the harness runs under zsh and the hook under bash. Clean passed; a staged source with stale mirrors, regenerated-but-untracked mirrors, and a new command without catalog rows each blocked with the message CI prints. Residue was removed and the staged set re-checked before the commit. The hardening commit `328accca03` went to `skilled/v4.0.0.0` and `main`, and Spec-Kit Check passed on both.
+The gate was exercised by invoking the hook directly against four tree shapes, with array-based path lists because the harness runs under zsh and the hook under bash. Clean passed; a staged source with stale mirrors, regenerated-but-untracked mirrors, and a new command without catalog rows each blocked with the message CI prints. Residue was removed and the staged set re-checked before the commit. The hardening commit `e40302c123` went to `skilled/v4.0.0.0` and `main`, and Spec-Kit Check passed on both.
 
 Each bumped package was reinstalled from its new lockfile. The advisor suite ran green at 880 tests with the new lockfile and at 880 with the HEAD lockfile as a negative control; a transient four-test failure between the two runs traced to another session's in-flight fixture edits, not the dependency bump.
 <!-- /ANCHOR:how-delivered -->
@@ -107,7 +107,7 @@ Each bumped package was reinstalled from its new lockfile. The advisor suite ran
 | Four-shape hook harness | PASS: clean 0; unregenerated 1; untracked 1; missing catalog rows 1 |
 | Six mirror checks on a clean tree | PASS: all exit 0 |
 | Workflow YAML parse | PASS: ten paths in each trigger block |
-| Spec-Kit Check on `328accca03` | PASS on `main` and `skilled/v4.0.0.0` |
+| Spec-Kit Check on `e40302c123` | PASS on `main` and `skilled/v4.0.0.0` |
 | `npm audit --omit=dev` in four packages | PASS: total 0 in each |
 | Advisor vitest, new lockfile | PASS: 880 passed, 7 skipped |
 | Advisor vitest, HEAD lockfile control | PASS: 880 passed, 7 skipped |

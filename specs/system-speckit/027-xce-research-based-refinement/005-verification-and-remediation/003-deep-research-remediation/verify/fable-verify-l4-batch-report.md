@@ -143,7 +143,7 @@ trigger_phrases: []
 ### tri-187 (P2) — code-index changelog still says there is no manifest to drift — STILL-REAL
 
 - `system-code-graph/changelog/v1.2.0.0.md:11`: "all eight tools … are CLI commands with **no manifest to drift**." Current code: `mcp_server/code-index-cli-manifest.ts:10-19` defines `EXPECTED_TOOL_NAMES` and `assertCodeIndexCliManifest()` (`:23-37`) hard-fails on mismatch.
-- Git history shows the manifest (added 2026-06-09, `4870a6b3f8`) **predates** the changelog (added 2026-06-10, `3b3b14fbf8`) — so this was wrong at publication, not later drift; the "add a later-hardening note" framing in the banked fix_sketch is the wrong shape. Correct the sentence itself.
+- Git history shows the manifest (added 2026-06-09, `ed1db05bfa`) **predates** the changelog (added 2026-06-10, `a251e9aff0`) — so this was wrong at publication, not later drift; the "add a later-hardening note" framing in the banked fix_sketch is the wrong shape. Correct the sentence itself.
 - **Risk:** misleads maintainers investigating parity failures or adding a ninth tool (they'd miss the manifest assert).
 - **Fix class:** doc-only.
 

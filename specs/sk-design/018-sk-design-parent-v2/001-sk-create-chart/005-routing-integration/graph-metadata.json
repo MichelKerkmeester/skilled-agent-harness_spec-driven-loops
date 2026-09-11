@@ -202,7 +202,7 @@
     ],
     "causal_summary": "A registry entry is not a route",
     "created_at": "2026-09-02T07:56:51Z",
-    "last_save_at": "2026-09-06T14:59:16.721Z",
+    "last_save_at": "2026-09-11T16:41:57.925Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +212,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e8ed7af60f8f1de210b83d1ea750aeb3ed47002f3f4682172156637dfee6bab5",
+    "source_fingerprint": "sha256:bbb8ec3307aa52008922b6b01baaed8d289d1960e8bc84ec37fc5752bee50faa",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "143b70fa24af542c0c6178452d40b18dd6d4f139bfe7e07804bed1dfed19bd6e",
       "plan.md": "2bef2b67ea779e1ba2869c81a45e9767d9875f784240b36d1a153b83d675a156",
       "tasks.md": "e4f0db4435551bc9e4691344b0cb8dd9d80cb85c1b500145786a7b97d2e5f13e",
-      "implementation-summary.md": "cb402941c472f7c9f5097b7e79e723e14897a9846ea3666162a51ba7cf78c0a1"
+      "implementation-summary.md": "cfd9799bceb581d93055a5ad6752f8edafad28a602a29f025713ffc3ba77d899"
     },
     "last_active_child_id": null,
     "last_active_at": null

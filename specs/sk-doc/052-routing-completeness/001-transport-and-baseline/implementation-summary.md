@@ -46,7 +46,7 @@ _memory:
 | **Level** | 3 |
 | **Status** | Complete |
 | **Delivery** | Shipped. The parent goal LOG records this phase Done |
-| **Date** | 2026-09-02 (git author date of `03f5db4876` and `4e66155b6c`) |
+| **Date** | 2026-09-02 (git author date of `ab1881aeaf` and `628a60157c`) |
 | **Register findings** | 1, 2 and 3, all reading Fixed |
 <!-- /ANCHOR:metadata -->
 
@@ -75,7 +75,7 @@ off the routing path.
 
 The Python scorer is still real and still has a caller. The repository's own Gate 2 told a
 person to run it by hand when no hook brief appeared, which meant the written instruction and
-the automation gave different routing for the same words. Commit `4e66155b6c` repointed that
+the automation gave different routing for the same words. Commit `628a60157c` repointed that
 fallback at the daemon CLI and said in the gate text why the Python scorer is not a routing
 fallback. The change was verified by stopping the daemon and making one call, which
 self-started it and answered from the same scorer the hook consults.
@@ -98,9 +98,9 @@ count from 7 to 44 on tied scores. Reading `lib/scorer/fusion.ts` and re-derivin
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `research/transport-finding.md` | Created (`03f5db4876`) | The dispatch-path read, the floor caveat and the rank rule, in one citable document |
-| `AGENTS.md` | Modified (`4e66155b6c`, 2 insertions, 2 deletions) | Gate 2 manual fallback repointed from the Python scorer to the daemon CLI |
-| `spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md` | Created (`03f5db4876`) | Phase scaffold, authored with the rest of the packet |
+| `research/transport-finding.md` | Created (`ab1881aeaf`) | The dispatch-path read, the floor caveat and the rank rule, in one citable document |
+| `AGENTS.md` | Modified (`628a60157c`, 2 insertions, 2 deletions) | Gate 2 manual fallback repointed from the Python scorer to the daemon CLI |
+| `spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md` | Created (`ab1881aeaf`) | Phase scaffold, authored with the rest of the packet |
 <!-- /ANCHOR:what-built -->
 
 ---

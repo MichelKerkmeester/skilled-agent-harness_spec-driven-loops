@@ -91,10 +91,10 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Hook whitelist | Done | `43f727bc1b`, harness 9/9 |
-| Allocator | Done | `cda76b4ad9`, harness 35/35 |
-| Skill docs | Done | `e5a85ced55`, VALID x4, package PASS |
-| Stamper | Done | `3bfb4619c6`, harness 43/43 |
+| Hook whitelist | Done | `3f5db4c543`, harness 9/9 |
+| Allocator | Done | `a9e6bac519`, harness 35/35 |
+| Skill docs | Done | `5554bdc821`, VALID x4, package PASS |
+| Stamper | Done | `7df69e9b6a`, harness 43/43 |
 
 ### Deviations and findings
 

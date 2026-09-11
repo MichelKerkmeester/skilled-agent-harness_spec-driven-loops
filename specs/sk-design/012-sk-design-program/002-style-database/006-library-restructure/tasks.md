@@ -52,7 +52,7 @@ _memory:
 ## Phase 1: Setup
 
 - [x] T001 Confirmed the predecessor entry gate (`001-foundation` shipped, reconciled to built) and captured the green G0 baseline. [TESTED: `node --test` styles aggregators = 89/89 pre-move; `001-foundation` 69/69]
-- [x] T002 Added `lib/paths.mjs` (STYLES_ROOT, BUNDLE_ROOT, crawl/retrieval manifest paths + filenames, DATABASE_ROOT) at old locations; sourced engine + indexer defaults from it — MIXED A, aggregators green. [SOURCE: commit `02481e1ec3`] [TESTED: aggregators 89/89]
+- [x] T002 Added `lib/paths.mjs` (STYLES_ROOT, BUNDLE_ROOT, crawl/retrieval manifest paths + filenames, DATABASE_ROOT) at old locations; sourced engine + indexer defaults from it — MIXED A, aggregators green. [SOURCE: commit `1d7e5a3ce8`] [TESTED: aggregators 89/89]
 <!-- /ANCHOR:phase-1 -->
 ---
 
@@ -61,13 +61,13 @@ _memory:
 
 ### G2 relocation (MIXED B)
 
-- [x] T003 Moved the 17 production modules via `git mv` — `_engine/` (9) → `lib/engine/`, `_db/` core (8) → `lib/database/`; filenames + exports preserved; `_db` never moved wholesale. [SOURCE: commit `b8732ba436`] [TESTED: engine 20/20 + database 69/69]
-- [x] T004 [P] Moved tests, oracle, harness, docs — `_engine/__tests__`→`tests/engine/`, `_db/__tests__`→`tests/database/`, oracle→`tests/oracle/`, `_harness/extract-refero.mjs`→`scripts/`, module READMEs + playbook→`docs/`/`lib`/`scripts`. [SOURCE: 57 git-mv renames in `b8732ba436`]
-- [x] T005 [P] Updated bidirectional imports, the four mode-corpus consumers/tests, and the md-generator generator (`study-prepare.ts` + `corpus-baseline-v3.test.ts`) — MIXED B green vs old bundles/manifests. [SOURCE: commits `b8732ba436`, `3cd7d67fb8`] [TESTED: 4 mode suites 22/25/21/23]
+- [x] T003 Moved the 17 production modules via `git mv` — `_engine/` (9) → `lib/engine/`, `_db/` core (8) → `lib/database/`; filenames + exports preserved; `_db` never moved wholesale. [SOURCE: commit `e953099b0e`] [TESTED: engine 20/20 + database 69/69]
+- [x] T004 [P] Moved tests, oracle, harness, docs — `_engine/__tests__`→`tests/engine/`, `_db/__tests__`→`tests/database/`, oracle→`tests/oracle/`, `_harness/extract-refero.mjs`→`scripts/`, module READMEs + playbook→`docs/`/`lib`/`scripts`. [SOURCE: 57 git-mv renames in `e953099b0e`]
+- [x] T005 [P] Updated bidirectional imports, the four mode-corpus consumers/tests, and the md-generator generator (`study-prepare.ts` + `corpus-baseline-v3.test.ts`) — MIXED B green vs old bundles/manifests. [SOURCE: commits `e953099b0e`, `17a8f8663c`] [TESTED: 4 mode suites 22/25/21/23]
 
 ### G3 bundle move + Checkpoint A
 
-- [x] T006 `git mv` of the 1,290 bundles → `library/bundles/`, crawl manifest co-located → `library/bundles/crawl-manifest.json`, retrieval manifest → `library/manifests/retrieval-manifest.json`; flipped centralized defaults + kebab names; added the `database/*` ignore except `README.md`; decoupled the default retrieval load. [SOURCE: commit `cee62570e4`] [TESTED: byte-parity MATCH both manifests; `runQuery` default → 5 cards]
+- [x] T006 `git mv` of the 1,290 bundles → `library/bundles/`, crawl manifest co-located → `library/bundles/crawl-manifest.json`, retrieval manifest → `library/manifests/retrieval-manifest.json`; flipped centralized defaults + kebab names; added the `database/*` ignore except `README.md`; decoupled the default retrieval load. [SOURCE: commit `c5056f15fe`] [TESTED: byte-parity MATCH both manifests; `runQuery` default → 5 cards]
 
 ### Checkpoint B consolidation
 

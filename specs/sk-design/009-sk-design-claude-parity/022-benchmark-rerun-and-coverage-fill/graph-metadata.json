@@ -44,8 +44,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/skills/sk-design/README.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -70,12 +69,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/README.md",
         "source": "derived"
       },
       {
@@ -195,7 +188,7 @@
     ],
     "causal_summary": "Phase 021 rewrote `design-command-surface-check.mjs` and fixed the remaining 020 deep-research findings, but the Lane C skill-benchmark had not been re-run since before that work, so there was no fresh evidence it didn't regress anything",
     "created_at": "2026-07-07T13:00:00.167Z",
-    "last_save_at": "2026-08-30T15:39:12.310Z",
+    "last_save_at": "2026-09-11T16:41:54.374Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,11 +197,11 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:12897027b1646f444ea3c4705f8a7b9a5fd3774c800e47c8c336ef7013371698",
+    "source_fingerprint": "sha256:8288281d034222c4659d7091993980c45dd4d47d7f0364ca6398869a251fb548",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "aa5ca2b46a0d3179534459647c5ac6e9394f2b68d6bdf75ba7db917589ab9e12",
-      "plan.md": "c2f66903439ee73acc9b49c197ccc8b4349db5484f2e01984c15a26b5e454efb",
+      "plan.md": "1dfcff2656e5810ce7ef604e73e70fd75711ff055e2565780fc527c72889409f",
       "tasks.md": "df04e02615551c1ff355b9ebb2b903fab63f90e1b2a2637205250f592d299fc7",
       "implementation-summary.md": "fa72e8031570f144a6e82e6d69f3116d1ac41d026a837ec926223274b55a345a"
     },

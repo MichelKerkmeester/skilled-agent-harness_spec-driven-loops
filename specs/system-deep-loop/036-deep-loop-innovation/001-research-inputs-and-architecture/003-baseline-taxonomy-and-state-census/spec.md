@@ -149,9 +149,9 @@ SQLite files. The controlling sources are the 036 parent and phase tree, the shi
 
 **Concurrent-lane coupling — the router-unification program (`sk-doc/019/020-router-unification-program`).** A
 separate fleet-wide router refactor has already landed three commits on this hub, and they are *inside* the BASE
-this phase pins, not deltas 036 introduces: `908efde8d8f` (`hub-router.json` `defaultMode` research→null),
-`6cd8ab14e4e` (`hub-router.json` mode-routing fix + `hub-identity` drop + benchmark signals restricted to
-command-bridge), and `708d25acf04` (`SKILL.md` + `mode-registry.json` typed-pair / `resourceContractVersion`
+this phase pins, not deltas 036 introduces: `4b2c351cc1e` (`hub-router.json` `defaultMode` research→null),
+`d60cc2c7553` (`hub-router.json` mode-routing fix + `hub-identity` drop + benchmark signals restricted to
+command-bridge), and `fa74e868615` (`SKILL.md` + `mode-registry.json` typed-pair / `resourceContractVersion`
 surface). When pinning BASE, record these as pre-existing so no later phase misattributes them as 036 changes; the
 registered-mode count is unchanged at 7 (verified by the 018 drift census). One forward dependency for 017's
 re-census: that program's compiled-router **live-activation** (its phase-010, gated behind default-off

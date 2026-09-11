@@ -116,7 +116,7 @@ Active-docs sweep, grep gates, and the post-sweep correctness audit.
 - [x] T034 15 stale `mk-*.js` `opencode/` entry symlinks renamed + retargeted; `verify-no-mk.sh` hardened to scan symlink name/target
 
 ### Wave G — Ship + post-merge verification
-- [x] T035 Landed on `skilled/v4.0.0.0` (`4c902d24ee`); rebuilt all 3 `dist` packages (BUILD_RC=0); dist-backed hooks wired
+- [x] T035 Landed on `skilled/v4.0.0.0` (`e119e139e0`); rebuilt all 3 `dist` packages (BUILD_RC=0); dist-backed hooks wired
 - [x] T036 Cheap-model live smokes across 6 runtimes; codex re-smoke `SessionStart` failures 3→1, Stop 1→0
 - [x] T037 Advisor vitest 868 pass / 6 suites fail — proven **pre-existing** eval-ratchet/parity/graph-health gates (my rename commit touched none of the failing files)
 - [ ] T038 [B] **On next fresh session**: daemon cutover (T024) completes; residual codex SessionStart hook resolves post-cutover

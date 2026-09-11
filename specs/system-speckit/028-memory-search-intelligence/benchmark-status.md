@@ -157,7 +157,7 @@ Executed: 001, 002, 003, 004, 005, 006, 007, 008, 009. All nine children ran the
 branch. Two file-subsets stay deferred to the concurrent session that owns those files, not
 whole-phase gaps:
 - 006-commands: the command docs executed with one route-drift fix in doctor/speckit.md (commit
-  818db21c54). The deep-research command-router and agent_router.md stay deferred to that session.
+  7239e3d2bd). The deep-research command-router and agent_router.md stay deferred to that session.
 - 003's deep-research subset: the same session owns those SKILL.md, references and assets, so the
   agent's overstep edits there were left for reconciliation, not swept in.
 

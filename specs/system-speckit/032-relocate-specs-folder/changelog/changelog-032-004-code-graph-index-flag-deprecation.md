@@ -18,7 +18,7 @@ contextType: "implementation"
 
 ### Summary
 
-A self-contained cleanup discovered mid-flight during phase 003's `scripts/` cleanup, not the relocation itself: `setup-maintainer-filters.sh`, a git clean/smudge filter that kept five `SPECKIT_CODE_GRAPH_INDEX_*` flags `"true"` locally while committing `"false"`, was dead infrastructure — none of its four target config files had carried those keys in a while. Landed in commit `af6e1b98a9`.
+A self-contained cleanup discovered mid-flight during phase 003's `scripts/` cleanup, not the relocation itself: `setup-maintainer-filters.sh`, a git clean/smudge filter that kept five `SPECKIT_CODE_GRAPH_INDEX_*` flags `"true"` locally while committing `"false"`, was dead infrastructure — none of its four target config files had carried those keys in a while. Landed in commit `386ee7dc97`.
 
 ### Removed
 

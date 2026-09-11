@@ -70,7 +70,7 @@ The graph-metadata writer unioned derived children and never pruned, so a rename
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-A GLM 5.3 Flash lane through OpenRouter, prompted with the finding, the fix sketch and verification commands; every claim rerun here before commit `5a74f07c88`.
+A GLM 5.3 Flash lane through OpenRouter, prompted with the finding, the fix sketch and verification commands; every claim rerun here before commit `b793d8c89c`.
 <!-- /ANCHOR:how-delivered -->
 
 ---

@@ -6,7 +6,7 @@ trigger_phrases: []
 
 ## Focus
 
-All four dimensions (correctness, security, traceability, maintainability) in a single comprehensive pass — the change is small and well-bounded (4 files, +35/-3 LOC; commit `f1dbb676f2`), and the fan-out lineage runs at maxIterations=1.
+All four dimensions (correctness, security, traceability, maintainability) in a single comprehensive pass — the change is small and well-bounded (4 files, +35/-3 LOC; commit `a48325ab74`), and the fan-out lineage runs at maxIterations=1.
 
 Files reviewed:
 - `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts`
@@ -60,7 +60,7 @@ None.
 - **REQ-001** (event-loop yields in tail loops): `memory-index.ts:1176` (`++promoterYieldCount % 200 === 0` → `setImmediate`), `memory-index.ts:1311` (`++chainYieldCount % 50 === 0` → `setImmediate`). PASS.
 - **REQ-002** (cancelled run stops promptly): `batch-processor.ts:150` (`if (retryOptions.shouldAbort?.()) break;`), wired at `memory-index.ts:1034`; tail loops return `cancelledScanEnvelope` on `isCancelled` at `1178`/`1207`/`1313`. PASS.
 - **REQ-003** (deliverable without DB contention): `job-store.ts:319` (`cancelledJobIds.add` first in `requestCancel`), `job-store.ts:338-340` (`isCancelRequestedFast` reads only the Set), routed at `memory-index.ts:1506`. PASS.
-- **REQ-004** (no test-surface regression): implementation-summary.md and commit `f1dbb676f2` state 68 tests pass across batch-processor, job-store, job-queue, job-queue-state-edge, handler-memory-index-scan-jobs. NOT independently re-run this session — `npx vitest run ...` was blocked by the Bash approval sandbox. Documented claim, evidence-backed but unverified here.
+- **REQ-004** (no test-surface regression): implementation-summary.md and commit `a48325ab74` state 68 tests pass across batch-processor, job-store, job-queue, job-queue-state-edge, handler-memory-index-scan-jobs. NOT independently re-run this session — `npx vitest run ...` was blocked by the Bash approval sandbox. Documented claim, evidence-backed but unverified here.
 - **Files to Change** (spec §3): all 4 listed files match the commit diff exactly. PASS.
 
 ## Assessment

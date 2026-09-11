@@ -11,7 +11,7 @@ Resolved route: mode=review; target_agent=@deep-review; execution=single_review_
 
 Iteration 6/10, forced max-iterations. All dimensions have initial coverage; active P0=0 P1=5 P2=0. Iteration 5 found no new issues and consumer path closure was clean.
 Dimension: security, second-pass integration.
-Scope: validated 118-file manifest for `.opencode/specs/sk-design/017-remediation-program-review`, pinned HEAD `7b9d3b6b71`.
+Scope: validated 118-file manifest for `.opencode/specs/sk-design/017-remediation-program-review`, pinned HEAD `6432665a68`.
 Focus: error propagation and trust-boundary closure across `style-library.mjs`, `persistent-adapter.mjs`, database retrieval/operator code, md-generator `study-prepare.ts` child-process handling, and the four corpus fallback classifiers. Test malformed output, nonzero child exit, sync/async adapter failures, stale-generation responses, path escape, and fallback classification. Do not retry the publication-digest finding unless new counterevidence changes it.
 
 ## Required Bindings

@@ -25,7 +25,7 @@ _memory:
 
 ## 1. What was done (verified + committed)
 
-- **SKILL.md → three lanes**: WHEN-TO-USE table + triggers, lane-awareness note, smart router (new `SKILL_BENCHMARK` intent + RESOURCE_MAP + RUNTIME_ASSETS), and Lane C pointers to `references/skill-benchmark/`. Verified: the in-skill router parses (9 intents; skill-benchmark → its 3 references). Dangling section references were corrected (commit `65ca09a0b8`).
+- **SKILL.md → three lanes**: WHEN-TO-USE table + triggers, lane-awareness note, smart router (new `SKILL_BENCHMARK` intent + RESOURCE_MAP + RUNTIME_ASSETS), and Lane C pointers to `references/skill-benchmark/`. Verified: the in-skill router parses (9 intents; skill-benchmark → its 3 references). Dangling section references were corrected (commit `3f809a8550`).
 - **README.md → three lanes**: lanes table + Lane C row/command, mode-location note, layout summary with the `skill-benchmark/` subdir split. No "two-lane" stragglers remain.
 - **feature_catalog.md → three lanes**: lane legend, category row ("Skill-benchmark mode | 6 features | Lane C"), the full §6 SKILL-BENCHMARK MODE section (6 features), and the intro enumeration.
 - **Advisor routing verified**: `skill_advisor.py` routes a skill-benchmark prompt to `deep-improvement`; the skill-benchmark advisor phrases were added during the Phase 003 rename and route correctly.

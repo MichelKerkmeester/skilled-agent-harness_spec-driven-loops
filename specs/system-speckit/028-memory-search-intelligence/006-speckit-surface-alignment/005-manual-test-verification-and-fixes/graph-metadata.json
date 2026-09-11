@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The Fable-5-refined surface-alignment features needed a manual verification pass after documentation remediation and automated stress coverage",
     "created_at": "2026-07-05T16:13:22.892Z",
-    "last_save_at": "2026-08-30T15:39:36.313Z",
+    "last_save_at": "2026-09-11T16:42:44.907Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,14 +205,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7c39c64389493f8487b8c01e60a4fc6fcf91088a01cf9f3c69b6df4f01607c1d",
+    "source_fingerprint": "sha256:246a9f86c589a6baf87a8aef54baa1bf667a5416d5287c5beaed86652ff1a8ae",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "cc85bff17ed11741c933a52adb21e31be5b3422e9226fd27052888d3525c83b6",
-      "plan.md": "adb0d3a740d2fae942c5b176acd3672c352cd83019f544d553a21e6c305df448",
-      "tasks.md": "700ec491a93e772f24006617f56c556e1e67a8d575cfdcf6fab0df1289744dbb",
-      "decision-record.md": "d59a268b086ca66d60e839bb75db3598d29021a6a8ca9fe2358c0fb4fb830c42",
-      "implementation-summary.md": "aee5804b31ae9d5bab9da40de09eb864897d28d72ee281ee00975d488ff28c5b"
+      "spec.md": "09cb8daa43794951cc26c3335c96bf9d40fb3cbed7bea0e3139e74c305e3a004",
+      "plan.md": "4276dd4df66be720502da9c124ad134c5cd9c3cdf0e743bec2b876b04bf00a75",
+      "tasks.md": "6a237dd9bc674862470b7a61de8fcba1413b17ff63682826b2b3fc35a53830eb",
+      "decision-record.md": "2e74910f2446b8c5f9d932c9a73a0451b8591f2a384a86dff694ff68e1328ed2",
+      "implementation-summary.md": "f19f8c087dc3012b7b3f7082d21e336e52feefc030994e52b075ade88a3cd7fa"
     },
     "last_active_child_id": null,
     "last_active_at": null

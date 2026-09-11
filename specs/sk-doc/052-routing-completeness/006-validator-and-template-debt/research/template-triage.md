@@ -84,22 +84,22 @@ reproduce.
 
 | Measurement | Files detected | Files with a blocker | Blockers |
 |---|---|---|---|
-| Under `.opencode/`, before `82938b3e1c` | 50 | 41 | 594 |
+| Under `.opencode/`, before `6c90ef079b` | 50 | 41 | 594 |
 | Under `.opencode/`, today | 50 | 38 | 520 |
-| Tracked repo-wide, before `82938b3e1c` | 53 | 44 | 606 |
+| Tracked repo-wide, before `6c90ef079b` | 53 | 44 | 606 |
 | Tracked repo-wide, today | 53 | 41 | 530 |
 
 The 53 is repo-wide and the 50 is the `.opencode/` subset. The three extra targets are one archived
 advisor template and two `iter-template.md` files under `specs/`. No template was added, removed or
-renamed between `d229b0a24d` and today, and detection is byte-identical across that range, so the
+renamed between `71f1c2f9bc` and today, and detection is byte-identical across that range, so the
 denominator did not move at all. Only the scope of the sentence quoting it moved.
 
-The numerator moved for a real reason. `82938b3e1c` gave a detected template the same masking every
+The numerator moved for a real reason. `6c90ef079b` gave a detected template the same masking every
 other target gets, so a `TypeScript` sample, an inline code span and a frontmatter block stopped
 reading as prose. Three files under `.opencode/` fell to zero and 74 occurrences went with them.
 
 One figure does not reproduce. The record says 45 of 53. Re-running the pre-fix scanner gives 44 of 53, one file
-lower. Holding the rule set at `d229b0a24d` returns the same 41 under `.opencode/` that today's rule
+lower. Holding the rule set at `71f1c2f9bc` returns the same 41 under `.opencode/` that today's rule
 set returns, so the rule set is not the difference either. Treat 45 as unverified and 44 as the
 measured baseline.
 
@@ -284,7 +284,7 @@ The scanner has no mechanism for either. Today an exemption lives in a voice rep
 scanner run has never read. Two options, cheapest first. A marker comment the scanner honors on the
 following line, in the shape the validators already use, keeps the reason next to the span. A path
 and term allowlist parsed from `scope-and-exemptions.md` keeps every exemption in one reviewable
-place and matches how the fixture-tree exemption was shared between the two gates in `d229b0a24d`.
+place and matches how the fixture-tree exemption was shared between the two gates in `71f1c2f9bc`.
 The second is the better fit for a term like `harness` that recurs across files.
 
 ---

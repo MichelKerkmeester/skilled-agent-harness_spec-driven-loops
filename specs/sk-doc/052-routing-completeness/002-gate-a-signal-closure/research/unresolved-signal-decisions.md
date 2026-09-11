@@ -5,7 +5,7 @@ unexamined. This document is the answer: one recorded decision per signal that l
 RESOLVED, grouped by the mechanism that put it there, with the evidence that identified the
 mechanism rather than a guess at it.
 
-Measured at HEAD `fe1ec30fe8` on 2026-09-03, against the vocabulary the five hubs declare today.
+Measured at HEAD `8cab525c27` on 2026-09-03, against the vocabulary the five hubs declare today.
 
 ---
 
@@ -97,10 +97,10 @@ The other four hubs report `compiled-serving` and `fresh`.
 identity: the snapshot it routes through must be the exact generation the activation manifest
 selected, or it fails safe to legacy. The sk-doc snapshot's inputs include every mode packet's
 `SKILL.md`, gathered by `sourceBytes()` in
-`009-parent-hub-rollout/007-sk-doc/harness/build-artifacts.cjs`. Commit `756a7fcd4c` edited
+`009-parent-hub-rollout/007-sk-doc/harness/build-artifacts.cjs`. Commit `3ce648be44` edited
 `.opencode/skills/sk-doc/sk-create-chart/SKILL.md` without re-pinning
 `013-live-activation/activation/sk-doc/manifest.json`, so the hash moved and the pin did not.
-That was the first commit after `8a9c5af8a3` to touch a sk-doc routing input, and five later
+That was the first commit after `3dbc1536f3` to touch a sk-doc routing input, and five later
 commits touched the same file again.
 
 **Blast radius.** The advisor still puts sk-doc at rank one for its own vocabulary, so a human
@@ -192,7 +192,7 @@ measurement.
 
 ## What this document does not claim
 
-The fifty decisions describe stage-one and stage-two behaviour at `fe1ec30fe8`. They do not
+The fifty decisions describe stage-one and stage-two behaviour at `8cab525c27`. They do not
 predict what a fix would score, because a vocabulary change is measured after it ships and not
 before.
 
@@ -212,7 +212,7 @@ decision, and both signals land in the same group either way.
 ## The fixes, applied on 2026-09-04
 
 The table above says where each change lands. This section says what happened when it was made,
-measured at HEAD `81d439f764` against a baseline taken the same afternoon.
+measured at HEAD `a142b60019` against a baseline taken the same afternoon.
 
 ### How the before and after were measured
 

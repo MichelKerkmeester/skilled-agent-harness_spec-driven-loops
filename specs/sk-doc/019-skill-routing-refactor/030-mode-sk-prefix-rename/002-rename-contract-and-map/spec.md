@@ -66,7 +66,7 @@ amendments instead of silent drift.
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- Contract and map committed (6645d48d6a) before the first hub commit; every later phase cites them; execution falsified three assumptions and recorded them as amendments 8.1-8.3 rather than deviating silently.
+- Contract and map committed (60a653f136) before the first hub commit; every later phase cites them; execution falsified three assumptions and recorded them as amendments 8.1-8.3 rather than deviating silently.
 <!-- /ANCHOR:success-criteria -->
 
 ---

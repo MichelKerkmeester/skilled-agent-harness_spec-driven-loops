@@ -147,7 +147,7 @@ Required inventories:
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
 | `opencode` CLI | Internal runtime | Green for mk_code_index smoke | Without it, only static config checks would be available. |
-| Local `50cfabb6e2` commit | Git history | Green | Establishes canonical rename because requested SHA is absent. |
+| Local `a0c46439dd` commit | Git history | Green | Establishes canonical rename because requested SHA is absent. |
 | Vitest dependency under system-spec-kit | Internal test tooling | Green | Focused helper test verifies routing change. |
 <!-- /ANCHOR:dependencies -->
 

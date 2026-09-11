@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Standalone Skills Contract Conformance"
-description: "Shipped: 2 of 5 standalone SKILL.md files conformed to the create-skill contract (sk-git, system-code-graph; fresh LUNA MAX update + fresh Sonnet-5 xhigh verify); 3 already passed. Commit f0a35dc9e2."
+description: "Shipped: 2 of 5 standalone SKILL.md files conformed to the create-skill contract (sk-git, system-code-graph; fresh LUNA MAX update + fresh Sonnet-5 xhigh verify); 3 already passed. Commit 60122f4e75."
 trigger_phrases:
   - "006-standalones implementation summary"
   - "conformance batch status"
@@ -42,7 +42,7 @@ _memory:
 
 2 conformed (system-code-graph re-trimmed after a Sonnet-5 review restored the 'structural' keyword); 3 already passed.
 
-Breakdown: **2 conformed** (fresh GPT-5.6 LUNA MAX update + fresh Sonnet-5 xhigh verify), **3 already passing** at baseline (no edit), **0 exempt**. Shipped commit: `f0a35dc9e2`.
+Breakdown: **2 conformed** (fresh GPT-5.6 LUNA MAX update + fresh Sonnet-5 xhigh verify), **3 already passing** at baseline (no edit), **0 exempt**. Shipped commit: `60122f4e75`.
 
 Conformed:
 - `sk-git`

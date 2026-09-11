@@ -47,7 +47,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Create isolated git worktree from HEAD for all remediation edits (`/Users/michelkerkmeester/MEGA/Development/Code_Environment/028-drift-remediation-wt` @ `aca0f7eb8b`)
+- [x] T001 Create isolated git worktree from HEAD for all remediation edits (`/Users/michelkerkmeester/MEGA/Development/Code_Environment/028-drift-remediation-wt` @ `3b0497f812`)
 - [x] T002 Scaffold this 045-drift-audit-remediation spec folder inside the worktree (spec.md, plan.md, tasks.md, checklist.md)
 <!-- /ANCHOR:phase-1 -->
 

@@ -145,7 +145,7 @@ Bring deep-agent-improvement's documentation to canonical companion standard by:
 
 || Type | Item | Impact | Mitigation |
 ||------|------|--------|------------|
-|| Dependency | Packet 124 completion | Reference docs may depend on 124 fixes | Packet 124 already shipped (commit 4da12a780c) |
+|| Dependency | Packet 124 completion | Reference docs may depend on 124 fixes | Packet 124 already shipped (commit 587c562bdd) |
 || Risk | sk-doc validation failure | New docs don't meet DQI standards | Follow deep-loop-runtime reference structure |
 || Risk | strict-validate failure | Level 2 spec docs missing required anchors | Use system-spec-kit Level 2 templates |
 || Risk | graph-metadata.json syntax error | JSON invalid breaks tooling | Validate JSON before commit |

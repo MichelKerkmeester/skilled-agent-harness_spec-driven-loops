@@ -16,7 +16,7 @@ Convergence: CONTINUE; rolling average remains above 0.05 and verdict coverage i
 Completed: phase 003 controls/dependency, first-order census 004-017, clean control phase 004, mode taxonomy, and phase 005 capability premise.
 Next focus: Build the explicit phase-by-phase verdict matrix for 003-017 from iterations 1-3 and isolate unsupported second-order verdicts.
 
-Research Topic: Revalidate packet 036 phases 003-017 against `0ce43ff589..HEAD`, with explicit verdict, commit SHA, and path:line evidence for every phase.
+Research Topic: Revalidate packet 036 phases 003-017 against `60b9ed8bc2..HEAD`, with explicit verdict, commit SHA, and path:line evidence for every phase.
 Iteration: 4 of 10
 Focus Area: Produce a complete provisional 15-row verdict matrix for phases 003-017 by reconciling iterations 1-3 with each phase's current purpose. Every row must say `still valid`, `needs refinement`, or `invalidated`, cite a post-baseline commit or the verified no-drift comparison commit, and cite current path:line evidence. Flag the smallest unresolved second-order evidence gap for each low-confidence row.
 

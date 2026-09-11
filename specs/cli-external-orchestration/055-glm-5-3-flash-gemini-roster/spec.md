@@ -47,7 +47,7 @@ _memory:
 | **Created** | 2026-08-27 |
 | **Branch** | `skilled/v4.0.0.0` |
 
-> **Retroactive documentation.** This packet documents work already implemented, committed, live-verified, and pushed (feat commit `125d22ffaf`; on `origin/skilled/v4.0.0.0` and merged to `origin/main`). It supersedes the Ox Alpha additions of `052-opencode-go-ox-alpha-free-roster` (OpenRouter route) and `053-cline-ox-alpha-cli-pi-roster` (Cline route): both are retired here in favor of GLM-5.3-Flash.
+> **Retroactive documentation.** This packet documents work already implemented, committed, live-verified, and pushed (feat commit `215ff4b3b4`; on `origin/skilled/v4.0.0.0` and merged to `origin/main`). It supersedes the Ox Alpha additions of `052-opencode-go-ox-alpha-free-roster` (OpenRouter route) and `053-cline-ox-alpha-cli-pi-roster` (Cline route): both are retired here in favor of GLM-5.3-Flash.
 <!-- /ANCHOR:metadata -->
 
 ---

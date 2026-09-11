@@ -141,7 +141,7 @@ Close the five findings with bounded public API compatibility, one-release depre
 | Risk | Public response-shape changes can break consumers | High | Emit both old and new fields for one release cycle; warning only on legacy access |
 | Risk | Alias warning implementation can alter serialization | Medium | Use own properties/getters only where tests prove both names are present and readable |
 | Risk | F99 type refactor may propagate to sibling files | High | Halt and DEFERRED-AGAIN if consumer files outside scope must change |
-| Dependency | Predecessor bucket edits | Medium | Start from `ac54fd1062` sidecar-client env changes and preserve tests |
+| Dependency | Predecessor bucket edits | Medium | Start from `a54ca01d50` sidecar-client env changes and preserve tests |
 <!-- /ANCHOR:risks -->
 
 ---

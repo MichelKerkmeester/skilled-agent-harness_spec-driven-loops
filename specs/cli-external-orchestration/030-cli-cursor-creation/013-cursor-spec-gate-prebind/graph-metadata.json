@@ -46,7 +46,9 @@
       "tasks.md",
       "implementation-summary.md",
       "handover.md",
+      ".opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-prebind.mjs",
       ".cursor/hooks.json",
+      ".opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-prebind.test.mjs",
       ".cursor/hooks/spec-gate-prebind.mjs"
     ],
     "entities": [
@@ -81,15 +83,21 @@
         "source": "derived"
       },
       {
+        "name": "spec-gate-prebind.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-prebind.mjs",
+        "source": "derived"
+      },
+      {
         "name": "hooks.json",
         "kind": "config",
         "path": ".cursor/hooks.json",
         "source": "derived"
       },
       {
-        "name": "spec-gate-prebind.mjs",
+        "name": "spec-gate-prebind.test.mjs",
         "kind": "file",
-        "path": ".cursor/hooks/spec-gate-prebind.mjs",
+        "path": ".opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-prebind.test.mjs",
         "source": "derived"
       },
       {
@@ -187,17 +195,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "Activated Cursor",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Cursor's deny-capable `preToolUse` adapter is wired, but it only enforces when session gate state is already `open`",
     "created_at": "2026-07-25T13:39:58Z",
-    "last_save_at": "2026-08-30T15:39:07.577Z",
+    "last_save_at": "2026-09-11T16:41:47.150Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,14 +209,14 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:a82cee8605f0c1fb3522fee054f1507fa6cbafcd8b6fb9c64853c41dcc96026a",
+    "source_fingerprint": "sha256:206b9f6bcd5e66cd31bb5b38a8ff3a65a3dca95fa44a97718eed425dc88ba768",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "57034755f0153111b3b72e2b9b626069582604fc9798c68bf4bd7a6cf173a785",
       "plan.md": "b661cadb8df56a327b74f5f38a4876dd7ab32c7e94f22707e8266ac09b62677b",
-      "tasks.md": "efb9cdcaae12cffc3c2f2627244f4645e2eff2ed75d4b3979be3620c408a8562",
-      "implementation-summary.md": "20ac16bfe23f307d952d1e7a36f51b4014199646739120b4ec099daddac83dc0",
-      "handover.md": "f1f2ec4e900dd24a29ffa58a694a9bef43aa5cd6c09b89b03ca81f405eb45013"
+      "tasks.md": "f4bbf4b8f265eefb76b4079baa7c695c0d2910de7f604b4f4841dcf773c0e0cf",
+      "implementation-summary.md": "ab1d679459e49235d9ab52d05545be4febb915e77e136e798ccf354f695e9670",
+      "handover.md": "6bef6a3aa2ee68f15c2f11c1498dab27f629e3738b674dfbb473de8b5cde1035"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -39,7 +39,7 @@ trigger_phrases:
 
 - **Packet:** system-deep-loop/036-deep-loop-innovation/004-deep-alignment-integrity/001-alignment-registry-sealing
 - **Level:** 2
-- **Worktree:** `.worktrees/0084-system-deep-loop-alignment-registry-sealing` off origin `28d9c4a81a`
+- **Worktree:** `.worktrees/0084-system-deep-loop-alignment-registry-sealing` off origin `368915881b`
 - **State:** Complete pending strict validation + commit.
 
 <!-- /ANCHOR:metadata -->
@@ -87,7 +87,7 @@ Read-first root-cause investigation confirmed the reducer was correct and the st
 
 - `reducer-seal-state.test.cjs` — 5/5 pass [TESTED].
 - `reducer-fail-closed.test.cjs`, `state-machine-wiring.test.cjs` — pass (no reducer regression) [TESTED].
-- No-regression delta: 4 failing `command-*`/`sk-doc-command-adapter` tests fail identically on base `28d9c4a81a` with changes stashed — pre-existing, unrelated [VERIFIED: stash baseline].
+- No-regression delta: 4 failing `command-*`/`sk-doc-command-adapter` tests fail identically on base `368915881b` with changes stashed — pre-existing, unrelated [VERIFIED: stash baseline].
 - End-to-end: re-reducing the packet-012 log unsealed → `PASS, sealed:false`; `--seal` → `PASS, sealed:true` [VERIFIED].
 - Both YAMLs `yaml.safe_load` clean; reducer `node -c` clean [VERIFIED].
 

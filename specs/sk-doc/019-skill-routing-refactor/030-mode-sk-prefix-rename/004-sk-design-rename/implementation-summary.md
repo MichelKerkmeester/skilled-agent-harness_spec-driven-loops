@@ -33,7 +33,7 @@ _memory:
 | **Spec Folder** | 004-sk-design-rename |
 | **Completed** | 2026-07-28 |
 | **Level** | 1 |
-| **Commits** | 0aea994055 (adjuncts 22934f0c49, 9597bf683f) |
+| **Commits** | 3d56b8b831 (adjuncts b48a564e7e, 311514bd18) |
 <!-- /ANCHOR:metadata -->
 
 ---

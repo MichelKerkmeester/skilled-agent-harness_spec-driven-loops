@@ -54,7 +54,7 @@ Both branches carry the decommission with no memory surface left, every changed 
 
 ### In Scope
 - The branch merged into `skilled/v4.0.0.0` and fast-forwarded into `main`, with every conflict resolved toward v4's command contract and the memory removal.
-- Every reference, README and command asset changed since `5220257bf7` validated against its sk-create-skill template class, with failures fixed at source.
+- Every reference, README and command asset changed since `576c37b72e` validated against its sk-create-skill template class, with failures fixed at source.
 - A `/deep:review` loop of ten iterations on the landed tree, its findings fixed and re-verified, recorded under this packet.
 
 ### Out of Scope
@@ -73,7 +73,7 @@ Both branches carry the decommission with no memory surface left, every changed 
 
 ### Review Scope
 
-The review reads a bounded list, never a tree. The change set is the diff `5220257bf7..HEAD` outside `specs/`, and its reviewable part is the 438 added or modified files listed one per line in `scratch/review-scope.txt`, grouped as follows. The 1,836 deleted files are verified by absence checks and the commands below, not by reading anything.
+The review reads a bounded list, never a tree. The change set is the diff `576c37b72e..HEAD` outside `specs/`, and its reviewable part is the 438 added or modified files listed one per line in `scratch/review-scope.txt`, grouped as follows. The 1,836 deleted files are verified by absence checks and the commands below, not by reading anything.
 
 | Group in the list | Count | What to verify |
 |-------------------|-------|----------------|
@@ -116,7 +116,7 @@ Out of the review's write scope: everything in decision D5's preserved set, and 
 
 | ID | Requirement |
 |----|-------------|
-| REQ-003 | Every document changed since `5220257bf7` under references, README files and command assets passes `validate_document.py` for its class, or the failure is a recorded validator class defect with an owner |
+| REQ-003 | Every document changed since `576c37b72e` under references, README files and command assets passes `validate_document.py` for its class, or the failure is a recorded validator class defect with an owner |
 | REQ-004 | A ten-iteration `/deep:review` with gpt-5.6-luna at max reasoning reports no P0 or P1, each earlier finding naming its fix commit |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,

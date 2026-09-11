@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/011-chart-command-surface"
+    packet_pointer: "sk-design/018-sk-design-parent-v2/001-sk-create-chart/011-chart-command-surface"
     last_updated_at: "2026-09-04T12:55:00Z"
     last_updated_by: "implementation"
     recent_action: "All 39 command documents validate clean; every router conforms to its contract"

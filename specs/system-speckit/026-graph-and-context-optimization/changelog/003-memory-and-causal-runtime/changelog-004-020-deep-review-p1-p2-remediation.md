@@ -24,7 +24,7 @@ contextType: "implementation"
 
 The 019 combined deep-review (cli-devin plus cli-codex, 19 iterations) returned a FAIL verdict with nine P1 findings and 31 P2 findings across the mcp-coco-index retrieval pipeline. The defects covered a stale fresh-install default that bypassed nomic promotion, rollback docs that named wrong env-var prefixes, unbounded Jina max-doc-chars parsing that could crash on malformed env, an index-failure path that silently returned `success=True`, a smoke harness that unconditionally overwrote the embedder env, overpowering hybrid boosts that swamped empirical RRF calibration. Operator docs still described hybrid and rerank as default-off.
 
-All nine P1 findings were fixed in commit `7eba2a4535` and all 31 P2 findings were fixed in commit `5060f6f031`, both landing on 2026-05-19. Every code change has a targeted regression test. The mcp-coco-index full pytest suite (172 tests) passed. Ruff reported no violations. Strict packet validation exited clean.
+All nine P1 findings were fixed in commit `d4ca904a54` and all 31 P2 findings were fixed in commit `e18ecb8029`, both landing on 2026-05-19. Every code change has a targeted regression test. The mcp-coco-index full pytest suite (172 tests) passed. Ruff reported no violations. Strict packet validation exited clean.
 
 ### Added
 

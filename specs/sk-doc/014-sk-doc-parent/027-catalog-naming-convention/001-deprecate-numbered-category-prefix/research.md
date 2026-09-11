@@ -27,7 +27,7 @@ trigger_phrases: []
 
 Four `openai/gpt-5.6-sol-fast --variant xhigh` agents ran in parallel, each on a disjoint question, followed by
 a repo re-count to confirm every number the agents reported. Findings below are stated as **confirmed**
-(re-verified against the tree at HEAD `37fc5f789a`) or **inferred**.
+(re-verified against the tree at HEAD `a17ee0bc23`) or **inferred**.
 
 ## A — Inventory & collisions (confirmed)
 

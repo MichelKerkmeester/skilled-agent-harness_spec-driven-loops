@@ -11,7 +11,7 @@ Resolved route: mode=review; target_agent=@deep-review; execution=single_review_
 
 Final forced iteration 10/10. JSONL has ten substantive active P1 claims, but the reducer shows nine because first-seen iteration 8 gave `P1-007` and `P1-008` the same hash; later same-ID refinements cannot change reducer identity.
 Dimension: correctness, final adversarial stabilization/replay.
-Frozen target: `.opencode/specs/sk-design/017-remediation-program-review`; validated 118-file manifest; pinned HEAD `7b9d3b6b71`.
+Frozen target: `.opencode/specs/sk-design/017-remediation-program-review`; validated 118-file manifest; pinned HEAD `6432665a68`.
 
 ## Required Work
 

@@ -66,7 +66,7 @@ Built artifacts:
 
 ### Status snapshot
 
-Every candidate is PENDING. None was implemented in the flat Wave-0 (packet 030), confirmed absent from `030.../spec.md` §14 and from `git log 1ecc531431..HEAD`. The one related shipped item is the dependency C-X1 (`bonusOverChannels`), which landed in 030 (commit `65cfcea513`) and unblocks C2-B.
+Every candidate is PENDING. None was implemented in the flat Wave-0 (packet 030), confirmed absent from `030.../spec.md` §14 and from `git log 2e17fdbe32..HEAD`. The one related shipped item is the dependency C-X1 (`bonusOverChannels`), which landed in 030 (commit `84c532114d`) and unblocks C2-B.
 
 | Candidate | Status | Gate |
 |-----------|--------|------|
@@ -98,7 +98,7 @@ The recall-shape family and C-G2 were intentionally left pending because their a
 |----------|-----|
 | Build C2-A first as a standalone additive axis | The research treats retrieval-shape as an orthogonal THIRD axis and makes C2-C/C2-B its consumers, so building it first keeps existing routing byte-identical until a consumer reads the new axis |
 | Ship C2-B's weight MECHANISM with a neutral default, defer calibrated VALUES | 028 has zero measured benefit numbers and flags per-class weight values as needing re-calibration on the ~1000-memory corpus, and un-calibrated values could demote good results |
-| Treat C-X1 as a satisfied prerequisite, not in-scope work | `bonusOverChannels` already shipped in 030 (`65cfcea513`) and is live in `rrf-fusion.ts`, and it unblocks C2-B's `weight:0` handling |
+| Treat C-X1 as a satisfied prerequisite, not in-scope work | `bonusOverChannels` already shipped in 030 (`84c532114d`) and is live in `rrf-fusion.ts`, and it unblocks C2-B's `weight:0` handling |
 | Gate C-G2 behind a keep-or-cut check | The research rates it low-leverage and overlapping with `contextType` + the C2-A axis, so cut it if it does not earn keep |
 <!-- /ANCHOR:decisions -->
 

@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The root `AGENTS.md` (555 lines, 47,110 bytes) carries internal redundancy (the same rule stated in 2–3 places), distilled duplication of authoritative files whose pointers are broken or verbose, over-long prose blocks, and low-value boilerplate (emoji decoration, inline mechanics)",
     "created_at": "2026-08-07T14:53:51.256Z",
-    "last_save_at": "2026-09-10T20:42:57.451Z",
+    "last_save_at": "2026-09-11T16:41:47.106Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:6632d24d28eed1b067c1906fb7fff362536831321594d95170e2d44d3e6b7853",
+    "source_fingerprint": "sha256:84449db51e9e0c8f67a02deaea52616e8140181312539cb3780b6a13a075e074",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a22d95210b766572415c127ea1ace6bf32039356c1f49fa4feeaec8f1c28aed2",
       "plan.md": "6353d16b6df9ae4e89b917b080aa0d94394a84809800c7fc169f689ed0d21b07",
       "tasks.md": "eb57f4a9de1a8a60986e04baf11047608e4ba6c240b22501866bad63232aa71b",
-      "implementation-summary.md": "efb8238f04cc9b5e987cae47a89c69b4d8ad7537840a507e43d8afb095aeabfe",
+      "implementation-summary.md": "f5bfed10f5be6b9b1fa9cb333830302b59449fecbd3b7a820fa9eeb011647e49",
       "research/research.md": "c8c52fe44f3e8ef63547355a90279bc6b6de6c06389b0e62a74c4797a4420e0f"
     },
     "last_active_child_id": null,

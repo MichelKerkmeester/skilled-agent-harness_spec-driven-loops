@@ -166,7 +166,7 @@ separate commits leaves the shared branch broken in between, and other sessions 
 | Risk | One hub edited without the other | High: a signal naming an absent packet fails a hub on the shared branch | One commit, both sides, verified before staging |
 | Risk | The chart corpus checker breaks on the new path | High: it is the proof that a night of chart work still stands | Run it from the new location before committing |
 | Risk | A runtime hook keeps a dead path | Medium: post-edit quality routing would silently stop matching | The hook is in the sixteen and is rewritten with them |
-| Dependency | `003-md-generator-as-mode` | The hub these packets join | Complete, commit `fa35e09653` |
+| Dependency | `003-md-generator-as-mode` | The hub these packets join | Complete, commit `01874dbf92` |
 <!-- /ANCHOR:risks -->
 
 ---

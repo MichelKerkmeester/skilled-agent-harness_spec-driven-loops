@@ -30,17 +30,17 @@ _memory:
 ---
 # Handover — 029 Deep-Research Remediation (careful-queue tail)
 
-> **Read this first, then STOP and confirm understanding before acting** (per the project compaction/handover protocol). State as of commit `e4f19478e5`, pushed.
+> **Read this first, then STOP and confirm understanding before acting** (per the project compaction/handover protocol). State as of commit `e3da7ab22d`, pushed.
 
 ## 0. WHERE THE PROGRAM STANDS
 
 Both original goals are RESOLVED:
 
-- **Goal A (dashboard adherence)** — resolved as a measurement artifact, not a model limitation: raw slash text in an `opencode run` message never invokes the command runtime; with `--command <family>/<name>` dispatch, gpt-5.5 medium renders the envelope 3/3. Protocol codified in commit `41cd6907c7`; see `L8-command-adherence/disposition.md` and memory `natural-behavior-command-tests`.
+- **Goal A (dashboard adherence)** — resolved as a measurement artifact, not a model limitation: raw slash text in an `opencode run` message never invokes the command runtime; with `--command <family>/<name>` dispatch, gpt-5.5 medium renders the envelope 3/3. Protocol codified in commit `3f2ab01180`; see `L8-command-adherence/disposition.md` and memory `natural-behavior-command-tests`.
 - **Goal B (verify-first remediation)** — seven code waves shipped, each adversarially Fable-verified pre-commit: ~184 of 198 findings CLOSED. The single-writer DB lock is live (a second daemon exits 86 naming the holder; the launcher bridges it) — the corruption class that opened this program is structurally eliminated and has not recurred since.
 - **15-seat deep review (round-2, 2026-06-13)** — a multi-model review of this program's OWN fixes surfaced 18 P1 + 33 P2. All are now CLOSED across Waves A–F plus follow-ons (each implemented and verified with gpt-5.5-fast xhigh; Fable retired), and the verdict moved CONDITIONAL PASS → PASS — see `final-review/deep-review-report.md`. The L5 advisor carefuls (tri-033/036/040/041/083/156/173/180) all shipped or were adjudicated by-design; the **L5 code queue is empty** (only tri-138 deferred by design). This is a distinct track from the original-backlog careful tail in §3 below, whose L7/L2/L4/L9 lanes remain open.
 
-Branch `028-mcp-to-cli-tool-transition` is pushed and current on GitHub (the push gate was opened by the operator; the remote repo was renamed to `opencode--skilled-agent-loops-with-spec-kit-memory`). The root README was restored to the spec-memory-first framing and aligned with all 027 features (`9fea79bbbc`).
+Branch `028-mcp-to-cli-tool-transition` is pushed and current on GitHub (the push gate was opened by the operator; the remote repo was renamed to `opencode--skilled-agent-loops-with-spec-kit-memory`). The root README was restored to the spec-memory-first framing and aligned with all 027 features (`e9288e22e6`).
 
 ## 1. HARD CONSTRAINTS (unchanged, non-negotiable)
 
@@ -53,25 +53,25 @@ Branch `028-mcp-to-cli-tool-transition` is pushed and current on GitHub (the pus
 
 ## 2. WHAT SHIPPED (commit trail, newest first)
 
-- `e4f19478e5` wave 7 — priming slims before results truncation (tri-140); review-report.md + iteration-pack metadata become retrievable, one coherent index policy (tri-189/191); code-graph scope labels expose glob narrowing (tri-161).
-- `4913ddf6f9` wave 6 — opt-in shadow-delta sink (tri-168); memory_save metadataRefresh advisory (tri-015); phase-parent resume redirect, escape-safe both pointer shapes (tri-020); promoter + BM25 scope-then-limit stress floors (tri-130/132).
-- `fb419dedbc` wave 5 — dual-margin ambiguity renders in brief/render/bridge (tri-037/089); init-skill-graph rebuilds the runtime SQLite (tri-086); CLI manifest parity suite (tri-098); derived-freshness validation warnings (tri-172).
-- `b8c6371669` wave 4 — validation suites on the tracked test path with regenerated strict-green fixtures (tri-065/066/067 + 18-case shell-suite repair); boundary-aware keyword routers (tri-169); python advisor alias + OR-composed dual-margin ambiguity (tri-034/174); age-haircut generated_at (tri-035); lane-weights env allowlisted (tri-038); Claude hook timeout threading (tri-088).
-- `9fea79bbbc` README restoration (operator-requested).
+- `e3da7ab22d` wave 7 — priming slims before results truncation (tri-140); review-report.md + iteration-pack metadata become retrievable, one coherent index policy (tri-189/191); code-graph scope labels expose glob narrowing (tri-161).
+- `4f5237d4fb` wave 6 — opt-in shadow-delta sink (tri-168); memory_save metadataRefresh advisory (tri-015); phase-parent resume redirect, escape-safe both pointer shapes (tri-020); promoter + BM25 scope-then-limit stress floors (tri-130/132).
+- `ff916d2b25` wave 5 — dual-margin ambiguity renders in brief/render/bridge (tri-037/089); init-skill-graph rebuilds the runtime SQLite (tri-086); CLI manifest parity suite (tri-098); derived-freshness validation warnings (tri-172).
+- `5192cf811d` wave 4 — validation suites on the tracked test path with regenerated strict-green fixtures (tri-065/066/067 + 18-case shell-suite repair); boundary-aware keyword routers (tri-169); python advisor alias + OR-composed dual-margin ambiguity (tri-034/174); age-haircut generated_at (tri-035); lane-weights env allowlisted (tri-038); Claude hook timeout threading (tri-088).
+- `e9288e22e6` README restoration (operator-requested).
 - Earlier waves/sessions: the single-writer lock (live-237), shared secret scrubber + fail-closed CLI save lane (tri-016), idempotency receipts flag-ON correctness, LIKE-escape hardening (tri-006), apply-pipeline safety packet (L2, 7/7), exit-taxonomy smoke + bare-apply guard (tri-145/186), L8 `--command` protocol, and the program-wide doc class.
 
 ## 2.5. THIS SESSION (original-backlog tail grind, 2026-06-13 — newest first)
 
-- `c86424df8a` tri-105 — vector surface divergence health (reconcile deferred to follow-on).
-- `4630de6c4b` tri-115 — surface feedback-retention report in the sweep MCP response.
-- `c5b2777530` tri-072/073 — causal-reducer dry-run guards + feedback dedup gate.
-- `5dc32c2ee1` tri-012/133 — feedback-retention active reachability + shadow criteria (doc).
-- `9804341ce2` tri-119 — trust-validate sessionId in memory_validate (IDOR + regression test).
-- `a4d3f2d5e6` tri-011 — shadow retention mode adjudicated by-design + ENV clarity.
-- `94cadd0c06` tri-010 — verify_integrity checks the active vector surface.
-- `6cbb7b457c` tri-007/008/009 — honest typed skip when no shadow replay pool exists.
-- `cb5bad82a4` tri-080 — count files skipped for unsupported language during scan.
-- `cab4ab1c1c` doc-wave — vector table roles, launcher lease, consumption telemetry honesty.
+- `57423f16b1` tri-105 — vector surface divergence health (reconcile deferred to follow-on).
+- `01dba6d6e1` tri-115 — surface feedback-retention report in the sweep MCP response.
+- `2a7def548e` tri-072/073 — causal-reducer dry-run guards + feedback dedup gate.
+- `3412534905` tri-012/133 — feedback-retention active reachability + shadow criteria (doc).
+- `021f1ae74e` tri-119 — trust-validate sessionId in memory_validate (IDOR + regression test).
+- `5761ea7932` tri-011 — shadow retention mode adjudicated by-design + ENV clarity.
+- `821e32ed21` tri-010 — verify_integrity checks the active vector surface.
+- `bf01babb5c` tri-007/008/009 — honest typed skip when no shadow replay pool exists.
+- `45cab6a3e3` tri-080 — count files skipped for unsupported language during scan.
+- `a421e68551` doc-wave — vector table roles, launcher lease, consumption telemetry honesty.
 
 Verify-first found tri-107/081/139 + L2-F4 ALREADY-CORRECT (no edit needed). The AI Council report (`ai-council/council-report.md`) set the roadmap; the operator routed the 3 packet-scale builds + the defer-by-design bucket to a dedicated follow-on.
 

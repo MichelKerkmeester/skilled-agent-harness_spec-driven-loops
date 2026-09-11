@@ -207,7 +207,7 @@
     ],
     "causal_summary": "Pi and Cursor currently share one repository-level `active-goal.json`",
     "created_at": "2026-08-10T11:33:28Z",
-    "last_save_at": "2026-09-10T20:43:31.749Z",
+    "last_save_at": "2026-09-11T16:41:50.390Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,14 +217,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:92710dafb5c676eac6073f4748bd981bba3eaee9765dab1a899545c3204e93aa",
+    "source_fingerprint": "sha256:7dad2a6cf9f9ef1501babb4e94ce364778b7c967a11710920791b36e259fb9ef",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0e1c21091959bbc27016a5080a86b3dad0ab55e57dc1839da6a22e8794449e32",
+      "spec.md": "76c353ab17c118aba55f686e5fabac9d8a9e9bc28598c026864c9eb01fdca22a",
       "plan.md": "9fb81336228ffaddeb00b5d0921ac93306b1d7b9de681f87a2e702c738cba881",
       "tasks.md": "ad0f032f43c55371c0c853a22f80a5cbdcd880d82ce13554f9babf1633ae47bb",
       "implementation-summary.md": "6add425c65111db2a5b79d80472e8810143ca65eb1a5e1001dc5bb8f695db177",
-      "research/research.md": "20bb5bdd0a23d0eba06a5f97333a1366275c9ca3c25d25a8e956803d550d652f"
+      "research/research.md": "6f10cdb2c0a091fe3c9e9525c8ad1b5dd3e83ebf1eeada7aee9a078fa71a210f"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -28,7 +28,7 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions:
-      - "Which sandbox_mode is intended for the Codex orchestrate runtime: the generator's read-only, or the workspace-write the committed TOML carried since ace6d0ee66? Answered 2026-09-02 - workspace-write; the generator table was corrected to match. See Known Limitations 4."
+      - "Which sandbox_mode is intended for the Codex orchestrate runtime: the generator's read-only, or the workspace-write the committed TOML carried since 50a9bec6f7? Answered 2026-09-02 - workspace-write; the generator table was corrected to match. See Known Limitations 4."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary
@@ -161,13 +161,13 @@ together with this packet.
    `sandbox_mode = "workspace-write"` to `sandbox_mode = "read-only"`. That is a pre-existing drift this
    packet surfaced rather than caused: the generator's own table has said
    `orchestrate: { sandboxMode: 'read-only' }` since 2026-07-13 (`8e292e451`), while the committed TOML
-   was hand-set to `workspace-write` on 2026-08-31 by `ace6d0ee66`, and `8a68a106` later touched the
+   was hand-set to `workspace-write` on 2026-08-31 by `50a9bec6f7`, and `8a68a106` later touched the
    same file. The value has been out of step with its generator ever since. The diff therefore carries a
    real runtime-behaviour change for the Codex runtime - a read-only orchestrator cannot write - and its
    direction was chosen by the generator, not by this work. **Resolved 2026-09-02: the operator chose
    `workspace-write`, and the generator's table was corrected to say it, so generator and mirror now
    agree.** Regeneration no longer moves `sandbox_mode`, and the Codex orchestrate runtime keeps the
-   write access it has held since `ace6d0ee66`.
+   write access it has held since `50a9bec6f7`.
 
 5. **Rule 7 is documentation, so nothing enforces it mechanically.** No script checks that a dispatch
    named an executor the user asked for; the rule binds the reading agent, not a gate.

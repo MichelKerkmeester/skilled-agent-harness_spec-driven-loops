@@ -36,7 +36,7 @@ A long multi-task session on branch `system-speckit/028-memory-search-intelligen
 - **028 epic**: keep-5/delete-10 flag resolution, eval-v2, reranker research. Done.
 - **028 spec-tree reorg**: `005-release-cleanup` to `000-release-cleanup`, `007/008/009` nested under `001-speckit-memory` as children `022/023/024`, and the old `031-spec-data-quality` moved in as `028/003-spec-data-quality`. Validated, HEAD-verified.
 - **Missing track-root JSONs**: added `description.json` + `graph-metadata.json` to the `ai-systems`, `anobel.com`, `barter` track roots (ai-systems and barter are gitignored, on-disk only).
-- **THE DATA-QUALITY DEEP-RESEARCH**: re-run via the OFFICIAL deep-research workflow (`fanout-run.cjs` driving the command YAML), opus-via-claude2/account2, 5 distinct lineages, 37 substantive iterations, synthesized into `research/research.md` (DQI 94, validate 0). Last research commit `6047df6cc8`.
+- **THE DATA-QUALITY DEEP-RESEARCH**: re-run via the OFFICIAL deep-research workflow (`fanout-run.cjs` driving the command YAML), opus-via-claude2/account2, 5 distinct lineages, 37 substantive iterations, synthesized into `research/research.md` (DQI 94, validate 0). Last research commit `1550e36bb7`.
 
 ## 3. COMPLETED SCAFFOLD
 

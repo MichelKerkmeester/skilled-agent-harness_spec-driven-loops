@@ -21,9 +21,9 @@ contextType: "implementation"
 
 ### Summary
 
-`memory_causal_unlink` was a registered MCP tool (added by commit `deee30b319`, defined in `tool-schemas.ts` with the description prefix `[L6:Analysis]`), but it was missing from the `TOOL_LAYER_MAP` source in `lib/architecture/layer-definitions.ts`. The map is derived by iterating `LAYER_DEFINITIONS[*].tools`, and the tool name was never added to any layer's `tools` array, so it had no layer entry. This broke two parity tests on the clean baseline: "every registered tool has a layer definition" and "tool definition prefixes stay aligned with TOOL_LAYER_MAP."
+`memory_causal_unlink` was a registered MCP tool (added by commit `f6f95062ed`, defined in `tool-schemas.ts` with the description prefix `[L6:Analysis]`), but it was missing from the `TOOL_LAYER_MAP` source in `lib/architecture/layer-definitions.ts`. The map is derived by iterating `LAYER_DEFINITIONS[*].tools`, and the tool name was never added to any layer's `tools` array, so it had no layer entry. This broke two parity tests on the clean baseline: "every registered tool has a layer definition" and "tool definition prefixes stay aligned with TOOL_LAYER_MAP."
 
-This packet added `'memory_causal_unlink'` to the L6 (Analysis) `tools` array, immediately after its causal siblings `'memory_causal_link'` and `'memory_causal_stats'`, keeping the causal trio together. The target layer was confirmed in code first, not assumed. One-line change, tsc clean. Committed as `23ba7ea08e`.
+This packet added `'memory_causal_unlink'` to the L6 (Analysis) `tools` array, immediately after its causal siblings `'memory_causal_link'` and `'memory_causal_stats'`, keeping the causal trio together. The target layer was confirmed in code first, not assumed. One-line change, tsc clean. Committed as `04472f5b16`.
 
 ### Added
 

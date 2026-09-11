@@ -40,16 +40,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".pi/extensions/deep-pi/extensions/deeppi/telemetry.ts",
-      ".pi/extensions/deep-pi/extensions/deeppi.ts",
-      ".pi/extensions/deep-pi/extensions/deeppi/stats.ts",
-      ".pi/extensions/deep-pi/tests/telemetry.test.ts",
-      ".pi/extensions/deep-pi/tests/stats.test.ts",
-      ".pi/extensions/deep-pi/tests/report.test.ts",
-      ".pi/extensions/deep-pi/benchmarks/before-provider-request.mjs",
-      ".pi/extensions/deep-pi/extensions/deeppi/hashlines.ts",
-      ".pi/extensions/deep-pi/extensions/deeppi/stability.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -74,60 +65,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "telemetry.ts",
-        "kind": "code",
-        "path": ".pi/extensions/deep-pi/extensions/deeppi/telemetry.ts",
-        "source": "derived"
-      },
-      {
-        "name": "deeppi.ts",
-        "kind": "code",
-        "path": ".pi/extensions/deep-pi/extensions/deeppi.ts",
-        "source": "derived"
-      },
-      {
-        "name": "stats.ts",
-        "kind": "code",
-        "path": ".pi/extensions/deep-pi/extensions/deeppi/stats.ts",
-        "source": "derived"
-      },
-      {
-        "name": "telemetry.test.ts",
-        "kind": "test",
-        "path": ".pi/extensions/deep-pi/tests/telemetry.test.ts",
-        "source": "derived"
-      },
-      {
-        "name": "stats.test.ts",
-        "kind": "test",
-        "path": ".pi/extensions/deep-pi/tests/stats.test.ts",
-        "source": "derived"
-      },
-      {
-        "name": "report.test.ts",
-        "kind": "test",
-        "path": ".pi/extensions/deep-pi/tests/report.test.ts",
-        "source": "derived"
-      },
-      {
-        "name": "before-provider-request.mjs",
-        "kind": "file",
-        "path": ".pi/extensions/deep-pi/benchmarks/before-provider-request.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "hashlines.ts",
-        "kind": "code",
-        "path": ".pi/extensions/deep-pi/extensions/deeppi/hashlines.ts",
-        "source": "derived"
-      },
-      {
-        "name": "stability.ts",
-        "kind": "code",
-        "path": ".pi/extensions/deep-pi/extensions/deeppi/stability.ts",
         "source": "derived"
       },
       {
@@ -195,11 +132,65 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "schemaVersion",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "both",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "5",
     "created_at": "2026-08-08T07:01:48.090Z",
-    "last_save_at": "2026-08-30T15:39:09.457Z",
+    "last_save_at": "2026-09-11T16:41:50.144Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fdd86ad4a495bf4df730bff745fa58c7844476de3c86935450b172ec442581bd",
+    "source_fingerprint": "sha256:37aef157a904b32d468c4eb544674d0ec6ec9fdd43098b9865a3f8e9ec19a2d8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "18f6252f0c478e9daddce78c2b953120d659ce4089b532f43ec51ab7f9262c8a",
       "plan.md": "954e07f43b47a1c9fa50f6f5e0b240e3e3b3da8aa1c7b06c3afe5533e837d947",
       "tasks.md": "381e0b302d78bc0171510d9f4c9082bf217b5275796245225a7b084ed6d295c5",
-      "implementation-summary.md": "3b2e472f5da823575928b12e30bb947f7d32491aa93558f016e42bceb7af9a62"
+      "implementation-summary.md": "a6e260abce66c0372a7841a6f069981f5fe048cca5ffa57eac7ad25d8ccbf201"
     },
     "last_active_child_id": null,
     "last_active_at": null

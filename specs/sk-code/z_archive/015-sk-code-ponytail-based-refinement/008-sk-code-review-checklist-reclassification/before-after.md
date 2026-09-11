@@ -12,7 +12,7 @@ contextType: "general"
 # Before / After — Phase 008: sk-code-review Checklist Reclassification
 
 > **Scope**: move six review checklists `references/ → assets/`, align them to the asset template, re-path every consumer.
-> **Commits**: `7be787b5b8` (move + alignment) and `a46b4afa4b` (version bump).
+> **Commits**: `73675304ee` (move + alignment) and `74ed061d66` (version bump).
 > **Standard conformed to**: `sk-doc` `skill_asset_template.md`.
 > This is a **supplementary** doc (no `_memory:` block, no template markers) so it is not structure-validated by `validate.sh --strict`.
 

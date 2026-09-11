@@ -97,14 +97,14 @@ waiver is treated as an unmet criterion rather than as a pass.
 **Closeable:** Yes
 
 All fourteen criteria are `Met`. The merge shipped across three commits, not one:
-`9f03950aba` (the directory merge itself — 38 forms, 141 files touched, every move a `git mv`),
-`c1f109bfe4` and `9a4b60e0ed` (an operator-directed scope extension landed during the phase, moving
+`59d5aef373` (the directory merge itself — 38 forms, 141 files touched, every move a `git mv`),
+`8031ccc387` and `c2b442f827` (an operator-directed scope extension landed during the phase, moving
 the palette source and icon specimen into one `assets/style-reference/` bundle alongside the Style
 Reference). Every AC row was re-verified directly during this closeout pass — the checker
 (`RESULT: PASSED`, 0 errors), the mutation suite (16/16), both applicators reproducing the corpus
 byte for byte with no exception needed, `git log --follow` reaching each pre-move commit, the
 tree-wide `rg` sweep returning zero matches, and the live CI run (`gh run view 34571238552`,
-head `f3bf733cf4`) showing all three gates green.
+head `08e8051eaf`) showing all three gates green.
 
 Two deviations from the plan are worth naming even though they do not block closure: REQ-003's
 applicator dispatch keys off palette-block presence, not a basename match, and REQ-014's

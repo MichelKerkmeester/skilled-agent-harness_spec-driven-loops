@@ -136,7 +136,7 @@ and findings belong here.
 |------|-------|----------|
 | Packet opened | Done | this file |
 | Lane 001 ran, reproduced, remediated | Done | `001-ripgrep-search-system/research/confirmed-findings.md`; child `006-retrieval-drift-remediation` complete |
-| Lane 002 ran, censused, remediated | Done | `002-cli-runtime-utilization/research/confirmed-findings.md`; child `007-cli-package-residue-removal` complete, commit `3f161d2ee9` on both branches |
+| Lane 002 ran, censused, remediated | Done | `002-cli-runtime-utilization/research/confirmed-findings.md`; child `007-cli-package-residue-removal` complete, commit `3adaabf626` on both branches |
 | Operator observation: env template dead flags | Done | child `008-env-example-dead-flags` complete; 13 variables removed, drift guard repaired |
 | Lane 003 ran, censused, remediated | Done | `003-shared-package-utilization/research/confirmed-findings.md`; child `009-shared-package-dead-half-removal` complete |
 | Lane 004 ran, censused, remediated | Done | `004-template-system-and-acceptance-criteria/research/confirmed-findings.md`; child `010-template-contract-alignment` complete |
@@ -169,7 +169,7 @@ and findings belong here.
 | Child 016 appended to the binding | Lane 004 round two censused; the runtime test project repaired with it; durable slice changed, parent resent in chat. |
 | Child 017 appended to the binding | Lane 005 round two censused; durable slice changed, parent resent in chat. |
 | Round two closed | Five second lineages ran 10/10 on DevPass DeepSeek; children 013 to 017 closed every confirmed row; program validates 18/18 strict; trigger index regenerated identically on a second run; criteria ticked. |
-| Round three opened | Operator asked for five more iterations per lane on expanded angles with GLM 5.3 Flash max; objective, D1 and criteria amended, parent resent in chat; charters give each lane eight new angles; runner started 10:37 in worktree 046 on `fdca32368e`. |
+| Round three opened | Operator asked for five more iterations per lane on expanded angles with GLM 5.3 Flash max; objective, D1 and criteria amended, parent resent in chat; charters give each lane eight new angles; runner started 10:37 in worktree 046 on `83130a9f20`. |
 | Round three re-scoped and parallelized | First attempt spent 19 calls building a harness in one iteration; charters rebound to one angle per iteration with a twelve-call cap. Turns still took six to seven minutes at max reasoning, so the operator chose to keep max and run the five lanes in parallel; D1 and D2 amended, parent resent in chat; relaunch 11:35 and 12:03. |
 | Round three switched to DeepSeek | At 14:30 the GLM pace projected a finish near 22:00; the operator switched lanes 002 to 005 to DeepSeek V4 Flash max through DevPass. Their one to two GLM iterations each are parked for the census; lane 001 continues on GLM at 4 of 5. D1 amended, parent resent in chat. |
 | Children 018 to 021 appended to the binding | Lanes 004, 002, 005 and 003 censused from their DeepSeek syntheses and parked GLM iterations; lane 001 finished on GLM at 15:07; durable slice changed, parent resent in chat. |

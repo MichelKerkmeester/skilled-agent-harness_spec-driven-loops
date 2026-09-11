@@ -31,7 +31,7 @@ Alignment verdict: **gap** — should be a named constant (e.g., in `policy-plan
 - `.opencode/skills/system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.mjs:1387` — `// See classifyIntent()'s matching comment (fix 2): normalization here is a`
 - `.opencode/plugins/mk-spec-gate.js:59` — `// different state files, so once classify starts (P1 fix) enforce would`
 
-`(fix 2)`, `(fix 3)`, `(P1 fix)` are ephemeral remediation-round / finding-severity labels that rot (provenance: pre-commit `57c3ed338ca` / `a62929d9c54`, pre-existing in files this commit touched). Comment hygiene is a hard constitutional gate for code comments. The durable WHY is already present in each comment — the parenthetical label should be dropped.
+`(fix 2)`, `(fix 3)`, `(P1 fix)` are ephemeral remediation-round / finding-severity labels that rot (provenance: pre-commit `5fe604fc28f` / `2c387fc2867`, pre-existing in files this commit touched). Comment hygiene is a hard constitutional gate for code comments. The durable WHY is already present in each comment — the parenthetical label should be dropped.
 
 Alignment verdict: **gap** (comment hygiene).
 

@@ -48,7 +48,7 @@ _memory:
 | **Spec Folder** | 022-collapse-to-four-subskills |
 | **Status** | Complete |
 | **Level** | 2 |
-| **Actual Effort** | Two pushed stages completed: structural sk-code collapse in `2cd3b3f7a9`, then playbook gold and Lane-C benchmark re-baseline in `6c0d9959b9`; live-mode re-baseline deferred by scope |
+| **Actual Effort** | Two pushed stages completed: structural sk-code collapse in `531cf1a0c8`, then playbook gold and Lane-C benchmark re-baseline in `3a6fae70e1`; live-mode re-baseline deferred by scope |
 
 <!-- /ANCHOR:metadata -->
 ---
@@ -62,18 +62,18 @@ Phase 022 completed the sk-code parent hub collapse from eight sub-skills to exa
 
 | File | Action | Purpose | Commit |
 |------|--------|---------|--------|
-| `.opencode/skills/sk-code/code-{implement,debug,verify}/` | Deleted after relocation | Dissolve near-empty workflow-mode sub-skills after doctrine, scripts, and checklists were preserved | `2cd3b3f7a9` |
-| `.opencode/skills/sk-code/code-animation/` | Folded into Webflow and removed as a skill | Move animation references/assets under `code-webflow` and drop the separate animation surface | `2cd3b3f7a9` |
-| `.opencode/skills/sk-code/shared/references/workflow_{implement,debug,verify}.md` | Added | Preserve generic implement/debug/verify doctrine once in shared references | `2cd3b3f7a9` |
-| `.opencode/skills/sk-code/code-{opencode,webflow}/references/` | Updated | Symlink shared workflow doctrine into both surviving surface skills | `2cd3b3f7a9` |
-| `.opencode/skills/sk-code/code-opencode/assets/scripts/` | Updated | Preserve dissolved verify scripts under the opencode surface assets | `2cd3b3f7a9` |
-| `.opencode/skills/sk-code/code-webflow/{references,assets}/animation/` | Added | Preserve folded animation references and assets as Webflow-owned non-skill resources | `2cd3b3f7a9` |
-| `.opencode/skills/sk-code/{hub-router.json,mode-registry.json}` | Updated | Drop dissolved-mode and animation-skill routing and trim tie-breaks to surviving skills | `2cd3b3f7a9` |
-| `.opencode/skills/sk-code/shared/references/smart_routing.md` | Updated | Repoint animation resources to Webflow and remove dissolved-mode routes from RESOURCE_MAP | `2cd3b3f7a9` |
-| `.opencode/agents/*` and specs/docs references | Updated | Repoint external references off dissolved sub-skills while preserving code-review wiring | `2cd3b3f7a9` |
-| `.opencode/skills/sk-code/manual_testing_playbook/**` | Updated | Re-translate gold paths for folded animation and dissolved verify-mode script/checklist moves | `6c0d9959b9` |
-| `.opencode/skills/sk-code/benchmark/reports/2026-06-01--router-final--router/` | Regenerated | Record deterministic router-final baseline after the four-sub-skill collapse | `6c0d9959b9` |
-| Benchmark harness vitests | Updated | Repoint surface-slice sync, code-surface path parse, and skill-benchmark routing expectations to the two-axis model | `6c0d9959b9` |
+| `.opencode/skills/sk-code/code-{implement,debug,verify}/` | Deleted after relocation | Dissolve near-empty workflow-mode sub-skills after doctrine, scripts, and checklists were preserved | `531cf1a0c8` |
+| `.opencode/skills/sk-code/code-animation/` | Folded into Webflow and removed as a skill | Move animation references/assets under `code-webflow` and drop the separate animation surface | `531cf1a0c8` |
+| `.opencode/skills/sk-code/shared/references/workflow_{implement,debug,verify}.md` | Added | Preserve generic implement/debug/verify doctrine once in shared references | `531cf1a0c8` |
+| `.opencode/skills/sk-code/code-{opencode,webflow}/references/` | Updated | Symlink shared workflow doctrine into both surviving surface skills | `531cf1a0c8` |
+| `.opencode/skills/sk-code/code-opencode/assets/scripts/` | Updated | Preserve dissolved verify scripts under the opencode surface assets | `531cf1a0c8` |
+| `.opencode/skills/sk-code/code-webflow/{references,assets}/animation/` | Added | Preserve folded animation references and assets as Webflow-owned non-skill resources | `531cf1a0c8` |
+| `.opencode/skills/sk-code/{hub-router.json,mode-registry.json}` | Updated | Drop dissolved-mode and animation-skill routing and trim tie-breaks to surviving skills | `531cf1a0c8` |
+| `.opencode/skills/sk-code/shared/references/smart_routing.md` | Updated | Repoint animation resources to Webflow and remove dissolved-mode routes from RESOURCE_MAP | `531cf1a0c8` |
+| `.opencode/agents/*` and specs/docs references | Updated | Repoint external references off dissolved sub-skills while preserving code-review wiring | `531cf1a0c8` |
+| `.opencode/skills/sk-code/manual_testing_playbook/**` | Updated | Re-translate gold paths for folded animation and dissolved verify-mode script/checklist moves | `3a6fae70e1` |
+| `.opencode/skills/sk-code/benchmark/reports/2026-06-01--router-final--router/` | Regenerated | Record deterministic router-final baseline after the four-sub-skill collapse | `3a6fae70e1` |
+| Benchmark harness vitests | Updated | Repoint surface-slice sync, code-surface path parse, and skill-benchmark routing expectations to the two-axis model | `3a6fae70e1` |
 | `plan.md` | Added | Record retrospective implementation plan, gates, dependencies, rollback, and effort for packet 022 | close-out doc |
 | `tasks.md` | Added | Record completed task ledger and completion criteria with evidence | close-out doc |
 | `checklist.md` | Added | Record Level 2 verification checklist and scoped deferrals/deviations | close-out doc |
@@ -85,9 +85,9 @@ Phase 022 completed the sk-code parent hub collapse from eight sub-skills to exa
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The packet shipped in two pushed stages on branch `system-speckit/028-memory-search-intelligence`. Stage A (`2cd3b3f7a9`) performed the structural collapse: dissolved `code-implement`, `code-debug`, and `code-verify`; consolidated shared workflow doctrine; symlinked doctrine into both surviving surfaces; relocated verify scripts and preserved checklists; folded animation into `code-webflow`; reconciled hub routing and smart-routing maps; repointed external references; restored the verify Iron Law; and repointed rule-copy and verify-script references.
+The packet shipped in two pushed stages on branch `system-speckit/028-memory-search-intelligence`. Stage A (`531cf1a0c8`) performed the structural collapse: dissolved `code-implement`, `code-debug`, and `code-verify`; consolidated shared workflow doctrine; symlinked doctrine into both surviving surfaces; relocated verify scripts and preserved checklists; folded animation into `code-webflow`; reconciled hub routing and smart-routing maps; repointed external references; restored the verify Iron Law; and repointed rule-copy and verify-script references.
 
-Stage B (`6c0d9959b9`) re-baselined the benchmark layer against the new hub shape. The manual testing playbook gold was re-translated across 17 files, the router-replay surface-slicer was updated so Motion.dev animation is a cross-stack MOTION overlay rather than a Webflow surface leak, three benchmark harness vitests were repointed off dissolved modes, and `benchmark/2026-06-01--router-final--router/` was regenerated. The result held the prior deterministic gate at CONDITIONAL 71.
+Stage B (`3a6fae70e1`) re-baselined the benchmark layer against the new hub shape. The manual testing playbook gold was re-translated across 17 files, the router-replay surface-slicer was updated so Motion.dev animation is a cross-stack MOTION overlay rather than a Webflow surface leak, three benchmark harness vitests were repointed off dissolved modes, and `benchmark/2026-06-01--router-final--router/` was regenerated. The result held the prior deterministic gate at CONDITIONAL 71.
 
 <!-- /ANCHOR:how-delivered -->
 ---
@@ -167,7 +167,7 @@ None. The structural collapse, zero-loss preservation, routing reconciliation, e
 
 | Planned | Actual | Reason |
 |---------|--------|--------|
-| Ship the collapse as one implementation unit | Delivered in two pushed stages: structural collapse in `2cd3b3f7a9`, then playbook and benchmark re-baseline in `6c0d9959b9` | Coherent, blast-radius-gated units were safer on a shared actively-pushed branch and matched the spec's staging risk mitigation |
+| Ship the collapse as one implementation unit | Delivered in two pushed stages: structural collapse in `531cf1a0c8`, then playbook and benchmark re-baseline in `3a6fae70e1` | Coherent, blast-radius-gated units were safer on a shared actively-pushed branch and matched the spec's staging risk mitigation |
 | Keep the pre-existing harness `intents` routing test out of scope | Updated one dissolved-mode gold reference in `skill-benchmark.vitest.ts` during Stage B | Leaving it red would have failed the full suite; this was an in-scope re-baseline of dissolved-mode gold and is recorded as a scoped deviation |
 | Include live-mode benchmark re-baseline | Deferred | Router mode is the deterministic CI gate; live mode needs configured provider access and was explicitly out of scope |
 

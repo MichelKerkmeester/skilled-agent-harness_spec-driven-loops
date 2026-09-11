@@ -139,4 +139,4 @@ None. The next action is operational: run the editable pipx repair where `~/.loc
 <!-- /ANCHOR:questions -->
 
 
-Dispatch A scope reconciliation: this packet is complete for diagnosis only. The pipx repair is intentionally split to a separate follow-on packet scaffolded by Dispatch B; harness/guide edits shipped in commit `339387694a`.
+Dispatch A scope reconciliation: this packet is complete for diagnosis only. The pipx repair is intentionally split to a separate follow-on packet scaffolded by Dispatch B; harness/guide edits shipped in commit `b046214c89`.

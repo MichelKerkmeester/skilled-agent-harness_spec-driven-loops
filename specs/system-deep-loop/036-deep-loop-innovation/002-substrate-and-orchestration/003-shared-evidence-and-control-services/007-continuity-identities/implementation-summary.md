@@ -40,8 +40,8 @@ _memory:
 | **Completed** | 2026-07-21 |
 | **Level** | 2 |
 | **Status** | Complete |
-| **BASE SHA** | `d1a3f0323c3635f24c3560feaeda839522ececf0` |
-| **Candidate SHA** | `d1a3f0323c3635f24c3560feaeda839522ececf0` plus the uncommitted, path-scoped additive overlay below |
+| **BASE SHA** | `f3ae3672a0a3f046204658dcccaeda2d7b8dee14` |
+| **Candidate SHA** | `f3ae3672a0a3f046204658dcccaeda2d7b8dee14` plus the uncommitted, path-scoped additive overlay below |
 | **Runtime overlay digest** | `sha256:53c2c88cfd99d24f8f0539e82d324b4757afc93f0eca334162c065ced5ca1340` |
 | **Identity fixture digest** | `sha256:8c2fd8200cfb261bf6843d113148729b2163e7c96b5afd6c0473bfc31d116c3c` |
 | **Event registry digest** | `e054a11a94e704585a30fcbb6b43469afbaef7f12d3752081a068cc94df0fe46` |

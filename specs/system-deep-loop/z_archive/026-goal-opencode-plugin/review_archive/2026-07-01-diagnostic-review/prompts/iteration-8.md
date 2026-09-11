@@ -5,7 +5,7 @@ Resolved route: mode=review; target_agent=@deep-review; execution=single_review_
 
 LEAF deep-review iteration agent, iteration 8 of 10, DIAGNOSTIC-ONLY (stop_policy=max-iterations -- keep broadening). Read before writing:
   - `.opencode/specs/deep-loops/032-goal-opencode-plugin/009-speckit-command-goal-prompt-offer/review/deep-review-strategy.md` in FULL
-  - Iteration 7 (`review/iterations/iteration-7.md`), especially its "Next Focus for iteration 8" section: it found commit `8405ba4f57`'s author message references "a concurrent session" performing a rename, and that commit's trailer includes `Claude-Session: https://claude.ai/code/session_01MaduKvU39V7TZ4qrdB8b5k`. Iteration 7 flagged this as a "concrete handle" worth checking for uniqueness.
+  - Iteration 7 (`review/iterations/iteration-7.md`), especially its "Next Focus for iteration 8" section: it found commit `2086c70c42`'s author message references "a concurrent session" performing a rename, and that commit's trailer includes `Claude-Session: https://claude.ai/code/session_01MaduKvU39V7TZ4qrdB8b5k`. Iteration 7 flagged this as a "concrete handle" worth checking for uniqueness.
 
 ## Objective
 
@@ -13,7 +13,7 @@ LEAF deep-review iteration agent, iteration 8 of 10, DIAGNOSTIC-ONLY (stop_polic
 
 1. Run `git log --all -p | grep -c "Claude-Session: https://claude.ai/code/session_01MaduKvU39V7TZ4qrdB8b5k"` (and a non-piped variant to see actual commit hashes: `git log --all --format="%H %s" -S "session_01MaduKvU39V7TZ4qrdB8b5k" --pickaxe-regex`) to determine: does this EXACT session id string appear on ONE commit only, or on MANY commits across the repo's history (which would prove it is generic/non-unique template text, not a real distinguishing session handle)?
 2. If it appears on many commits spanning clearly-unrelated work (different packets, different dates, different authors/topics), revise iteration 7's finding: state explicitly that the "Claude-Session:" trailer is NOT usable as session-attribution evidence in this repo, and that iteration 7's optimistic reading of it as "a concrete handle" was likely an error worth correcting (self-correction is a legitimate and expected outcome of adversarial re-review -- do not be reluctant to downgrade a very recent finding if the evidence demands it).
-3. Regardless of the outcome of #1-2, the PROSE of commit `8405ba4f57`'s message ("already renamed... by a concurrent session") is separate evidence from the trailer URL -- re-assess whether that prose claim alone (without relying on the URL as a fingerprint) still supports iteration 7's "past-tense concurrent session existed" reading at ~0.90 confidence, or whether that confidence should also be revised downward now that the URL-based corroboration may be invalidated.
+3. Regardless of the outcome of #1-2, the PROSE of commit `2086c70c42`'s message ("already renamed... by a concurrent session") is separate evidence from the trailer URL -- re-assess whether that prose claim alone (without relying on the URL as a fingerprint) still supports iteration 7's "past-tense concurrent session existed" reading at ~0.90 confidence, or whether that confidence should also be revised downward now that the URL-based corroboration may be invalidated.
 4. Also sweep `Co-Authored-By:` trailers the same way, for the same uniqueness question.
 5. Do NOT modify anything under the 009 phase folder outside `review/`.
 

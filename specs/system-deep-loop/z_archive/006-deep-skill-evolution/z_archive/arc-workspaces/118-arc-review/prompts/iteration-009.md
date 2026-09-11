@@ -16,7 +16,7 @@ For EACH P1 finding (F-001, F-002, F-005, F-006, F-010, F-011, F-014, F-015, F-0
 2. Verify the issue described in the finding is actually present
 3. Classify as:
    - **CONFIRMED**: issue is real, fix is needed
-   - **OUTDATED**: issue may have existed but is now resolved (e.g. F-001 path validation — was an ENV_ALLOWLIST added in commit f8f3bdcac6 that addresses this?)
+   - **OUTDATED**: issue may have existed but is now resolved (e.g. F-001 path validation — was an ENV_ALLOWLIST added in commit e5368e1448 that addresses this?)
    - **MISCATEGORIZED**: actually P2 not P1 (or vice versa)
    - **FALSE-POSITIVE**: not a real issue
 

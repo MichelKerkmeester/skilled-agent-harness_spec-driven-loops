@@ -6,7 +6,7 @@ trigger_phrases: []
 
 <!-- SPECKIT_TEMPLATE_SOURCE: handover | v2.2 -->
 
-**Status:** Complete. The docs-drift + P2 batch landed against `bf4f280ce7`. The one reverted item (T014) was re-landed on 2026-08-18; the packet has no open deferred ends.
+**Status:** Complete. The docs-drift + P2 batch landed against `f476b45fe4`. The one reverted item (T014) was re-landed on 2026-08-18; the packet has no open deferred ends.
 
 **Handover Time:** 2026-08-18 · **From:** orchestrator
 
@@ -30,7 +30,7 @@ The re-land splits the concerns:
 - **Four added negative tests** (two per gate) prove the new rejection behaviour is real: each fails against the unfixed lib and passes after. Full receipts in `scratch/t014-verification-evidence.md`.
 
 ## 3. Landing state
-Committed on branch `worktrees/015-036-mode-gate-strict-validator` (worktree `.worktrees/015-036-mode-gate-strict-validator`, base `11d87179e5`). **Not merged into `skilled/v4.0.0.0`** — the main checkout carries unrelated in-flight sibling-lane state (048→049 rename, 039/040 deletions, sk-vision edits), so the merge is left to the operator once those lanes settle.
+Committed on branch `worktrees/015-036-mode-gate-strict-validator` (worktree `.worktrees/015-036-mode-gate-strict-validator`, base `f85d53e9ab`). **Not merged into `skilled/v4.0.0.0`** — the main checkout carries unrelated in-flight sibling-lane state (048→049 rename, 039/040 deletions, sk-vision edits), so the merge is left to the operator once those lanes settle.
 
 ## 4. Guardrail (still applies)
 The point is a **single** shared validator. If future work tempts a local copy in either gate, stop — that reintroduces the drift this item removed.

@@ -42,8 +42,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      "handlers/memory-context.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -68,12 +67,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "memory-context.ts",
-        "kind": "code",
-        "path": "handlers/memory-context.ts",
         "source": "derived"
       },
       {
@@ -189,11 +182,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Discovery Discovery",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The every manual testing playbook document across skills and repo-level packages needs a release-readiness cleanup contract before any document edits begin",
     "created_at": "2026-06-19T00:00:00Z",
-    "last_save_at": "2026-08-30T15:39:34.504Z",
+    "last_save_at": "2026-09-11T16:42:40.318Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0bba7a46c4ef4c649b4790a93f35e4e00d74865dcb3cc793f5d103834ab9bc2a",
+    "source_fingerprint": "sha256:fc0e48fe52933b7b84bb2309b1daebba9763d5c07a0f0c337722097fbdce8739",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c4613dd522c4c248c8ee028bd31bd6e86112ce6551d06710e41db1f7c39996f8",
       "plan.md": "6c66a8480f085f8f1391a515d4126508874b17535eb9d365aa62be999de5a081",
       "tasks.md": "03561d2c681dbe7a9ea51699b38f39626851361209e83ebbc95cca335282d3e0",
-      "implementation-summary.md": "13b4f9e98c504be5216d54f97e86234886e099d0ecc5561ed43a1944f8946a01"
+      "implementation-summary.md": "7b4ad346a107a03e5c5dc19253c301322ffc0715b13fd4658f84eda5328e3712"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -11,7 +11,7 @@ Resolved route: mode=review; target_agent=@deep-review; execution=single_review_
 
 Iteration 8/10, forced max-iterations. Active P0=0 P1=6 P2=0; latest adjudication passed. All dimensions have prior coverage.
 Dimension: maintainability, operator/API parity.
-Frozen target/scope: `.opencode/specs/sk-design/017-remediation-program-review`, validated 118 files, pinned HEAD `7b9d3b6b71`.
+Frozen target/scope: `.opencode/specs/sk-design/017-remediation-program-review`, validated 118 files, pinned HEAD `6432665a68`.
 Focus: compare database operator commands/options/defaults/error exits/output JSON and adapter/retrieval public result fields against the current manifest-listed README, playbook, specs, and tests. Search for semantic drift beyond known stale paths: option names, default mode, cutover/rollback preconditions, status fields, repair semantics, absent-generation behavior, and performance/parity output claims. Carry existing path findings without duplicating them.
 
 ## Required Bindings

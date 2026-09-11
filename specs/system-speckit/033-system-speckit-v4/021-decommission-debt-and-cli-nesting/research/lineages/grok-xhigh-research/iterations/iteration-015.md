@@ -6,7 +6,7 @@ Re-check the 052 Deviations table against 054 T004-T008. Confirm which deferred 
 ## Findings
 
 ### F-I15-001 — Three sk-doc validator class defects remain unabsorbed. CONFIRMED. P2
-052 lists three class defects, each failing identically at `5220257bf7`, owners sk-doc or the deep-loop contract compiler: playbook folder-index READMEs classified as scenarios; compiled deep-loop contracts failing the command template; `install-guides/install-scripts/README.md` classified as an install_guide. [SOURCE: specs/system-speckit/052-memory-decommission-landing/goal.md:197-200]
+052 lists three class defects, each failing identically at `576c37b72e`, owners sk-doc or the deep-loop contract compiler: playbook folder-index READMEs classified as scenarios; compiled deep-loop contracts failing the command template; `install-guides/install-scripts/README.md` classified as an install_guide. [SOURCE: specs/system-speckit/052-memory-decommission-landing/goal.md:197-200]
 054 T004-T008 do not name them. [SOURCE: .opencode/specs/system-speckit/054-decommission-debt-fixes/tasks.md:47-51]
 This lineage did not re-run the validators (write-surface ban on validate.sh). Status is still "owner: sk-doc / not fixed here".
 Smallest fix: not a 054 code task. Track under sk-doc.

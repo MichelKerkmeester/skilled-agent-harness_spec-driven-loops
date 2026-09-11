@@ -50,7 +50,7 @@ _memory:
 
 ### Problem Statement
 
-A concurrent refactor retired the code-graph skill (`5a2aab0d37b`, "stop routing to the retired code-graph skill", on origin). It left the advisor scorer dereferencing a now-absent skill `id`: `skillNameVariants(undefined)` threw `Cannot read properties of undefined (reading 'toLowerCase')`, taking down four semantic-lane-promotion tests. The initial hypothesis — that all 36 red tests were one code-graph reconciliation — proved wrong: a guardrailed investigation confirmed only the crash cluster was retirement fallout; the rest are unrelated concurrent drift or need corpus authoring.
+A concurrent refactor retired the code-graph skill (`af2d543bf1d`, "stop routing to the retired code-graph skill", on origin). It left the advisor scorer dereferencing a now-absent skill `id`: `skillNameVariants(undefined)` threw `Cannot read properties of undefined (reading 'toLowerCase')`, taking down four semantic-lane-promotion tests. The initial hypothesis — that all 36 red tests were one code-graph reconciliation — proved wrong: a guardrailed investigation confirmed only the crash cluster was retirement fallout; the rest are unrelated concurrent drift or need corpus authoring.
 
 ### Purpose
 
@@ -89,7 +89,7 @@ Harden the scorer so a retired / malformed projection entry can never crash it, 
 <!-- ANCHOR:evidence -->
 ## 4. VERIFIED EVIDENCE
 
-Baseline on HEAD `8b34c7adc2`: `36 failed | 839 passed | 7 skipped` (full suite, but it hangs at teardown — see risks).
+Baseline on HEAD `05e6feb5ec`: `36 failed | 839 passed | 7 skipped` (full suite, but it hangs at teardown — see risks).
 
 ### The crash was the only clean retirement fallout
 
@@ -145,7 +145,7 @@ A guardrailed SOL-HIGH pass regenerated `holdout-prompts.jsonl` via its own tool
 | Risk | The full advisor `vitest run` hangs at teardown | Medium | `tests/launcher-bootstrap.vitest.ts` spawns a real npm install that empties `node_modules`; verified via focused runs instead — flagged as a separate test-infra bug |
 | Risk | Auto-authoring corpus to pass bm25 / review-floor bakes in a bug | High | Left red and flagged for an owner decision rather than fabricated |
 | Risk | The unrelated drift belongs to other in-flight sessions | Medium | Triaged and left to owners, not force-fixed |
-| Dependency | The code-graph retirement `5a2aab0d37b` | Green | On origin; this packet reconciles only its crash fallout |
+| Dependency | The code-graph retirement `af2d543bf1d` | Green | On origin; this packet reconciles only its crash fallout |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -160,5 +160,5 @@ A guardrailed SOL-HIGH pass regenerated `holdout-prompts.jsonl` via its own tool
 
 ## RELATED DOCUMENTS
 
-- **Trigger commit**: `5a2aab0d37b`
+- **Trigger commit**: `af2d543bf1d`
 - **Sibling packet**: `017-advisor-audit-and-state-containment`

@@ -78,7 +78,7 @@ Each guard adapter is a thin sibling of the existing Claude adapter under a new 
 - [x] Every Claude hook / OpenCode plugin has a Codex adapter, a documented native equivalent, or a documented gap — all verified. 11-row coverage map in `implementation-summary.md`.
 - [x] Every adapter passes fixture smoke and fails open on empty / malformed stdin. `fixture-smoke` 33/33.
 - [x] The representative set is confirmed live under `codex exec` (or the gap is documented as owed).
-- [x] The six neutral cores, all Claude hooks, and all OpenCode plugins remain byte-unchanged. Landed diff `cae68c0d44` adds only new `codex/` files.
+- [x] The six neutral cores, all Claude hooks, and all OpenCode plugins remain byte-unchanged. Landed diff `3469f43b91` adds only new `codex/` files.
 - [x] `validate.sh --strict` green; `checklist.md` verified with evidence.
 <!-- /ANCHOR:completion -->
 <!-- ANCHOR:cross-refs -->

@@ -190,7 +190,7 @@
     ],
     "causal_summary": "`sk-prompt/prompt-models` is this repo's canonical registry of per-model prompt-craft profiles (`assets/model-profiles.json` + `references/models/.md`), consumed when dispatching to a specific model through any executor",
     "created_at": "2026-07-24T04:49:31.694Z",
-    "last_save_at": "2026-08-30T15:39:07.454Z",
+    "last_save_at": "2026-09-11T16:41:47.115Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,11 +199,11 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:85d3a5a69a96b33308bcc5f4cf3075a944d4e47906e2849ba3d889c2a73391ad",
+    "source_fingerprint": "sha256:f623d6362a3ac06b07bf85ba0393795946c3bdb6e98a9a55fc9d1a6c47ce4af2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7eb1fc89356939ea23afd4a81c8043fc2bca8d46502e52f1bddd3ea63e04432d",
-      "plan.md": "d181100b194f86a7fccd3a9f9a5ddb0c83710d968319781f08f7fdb581c2d14f",
+      "spec.md": "8f4432bebef767e8cb8ee2d108d9d1045f0badff8c1dccd3034ee1d0b90a0c17",
+      "plan.md": "d94d441af3b51e62392f473602b2415dc09e0f75f47c9570ea2c3d414493273f",
       "tasks.md": "1ac11ad713b488c95a8dfb5b9771ffcb60d2ff4acb8af2d0f608cec2da05de21",
       "implementation-summary.md": "fbe6b200867e54962bea76e85a10ed85435029d7e285ead0412f95a8d11ce3e9"
     },

@@ -187,9 +187,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "A concurrent refactor retired the code-graph skill (`5a2aab0d37b`, \"stop routing to the retired code-graph skill\", on origin)",
+    "causal_summary": "A concurrent refactor retired the code-graph skill (`af2d543bf1d`, \"stop routing to the retired code-graph skill\", on origin)",
     "created_at": "2026-08-15T13:46:11.095Z",
-    "last_save_at": "2026-08-30T15:39:26.159Z",
+    "last_save_at": "2026-09-11T16:42:30.273Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,10 +198,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:77d82716183ad001fee74061275052dbd61f2b66cf9941f5fc4fbdc379388cd9",
+    "source_fingerprint": "sha256:3b68214c1172f28397d1980b9d520a3e72c14864cd920d42a1848706b7f408f3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "efdfd78ba30c8cad9990d96af402636cf7734e1176357e28bdf8d40e0415b668",
+      "spec.md": "223a1dba26f915c64ad21fdd4d43d6b784863c484f4339c0bc9a7383275c0aac",
       "plan.md": "976f13981f451eac86009a825d2630a3f34640aaf264904d7c129ece5ad3a305",
       "tasks.md": "b381fd857123a01b033c155f53d3e26cef40d6ee816f1b379ab4ea0f41ee7408",
       "implementation-summary.md": "efb345e432dcbab2d8eb4e6936301ce10ca9b370aea3955ade50e0abc9cbf6cb"

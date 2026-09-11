@@ -352,7 +352,7 @@ The research recommended stamping through `git interpret-trailers`. The review r
 <!-- ANCHOR:adr-004-context -->
 ### Context
 
-The research cascade assigns 4,250 commits to a packet because they touch exactly one. The review found real misassignments: commit `4951165d23` regenerates deep-loop contracts and touches one spec file, a rolling `goal.md` under a memory-decommission packet, so rule 3 files a deep-loop commit under system-speckit. Generated files such as `graph-metadata.json`, `description.json` and manifests under `activation/` behave the same way.
+The research cascade assigns 4,250 commits to a packet because they touch exactly one. The review found real misassignments: commit `517f57c491` regenerates deep-loop contracts and touches one spec file, a rolling `goal.md` under a memory-decommission packet, so rule 3 files a deep-loop commit under system-speckit. Generated files such as `graph-metadata.json`, `description.json` and manifests under `activation/` behave the same way.
 
 ### Constraints
 
@@ -410,7 +410,7 @@ The research cascade assigns 4,250 commits to a packet because they touch exactl
 
 | # | Check | Result | Evidence |
 |---|-------|--------|----------|
-| 1 | **Necessary?** | PASS | Real misassignment shown on `4951165d23` |
+| 1 | **Necessary?** | PASS | Real misassignment shown on `517f57c491` |
 | 2 | **Beyond Local Maxima?** | PASS | Three variants scored |
 | 3 | **Sufficient?** | PASS | Exclusion list and one consistency check |
 | 4 | **Fits Goal?** | PASS | A wrong `Spec:` defeats the packet query |

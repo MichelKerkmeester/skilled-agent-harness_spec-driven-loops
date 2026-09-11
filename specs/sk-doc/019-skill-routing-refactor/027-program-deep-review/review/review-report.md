@@ -4,7 +4,7 @@ trigger_phrases: []
 ---
 # Consolidated Review Report — Skill-Metadata Program Deep Review
 
-**Reviewed tree:** `skilled/v4.0.0.0` @ `a39e6ea716` (program range `2fa9fc480c..a39e6ea716`).
+**Reviewed tree:** `skilled/v4.0.0.0` @ `c573706cfe` (program range `c4b5f27ae8..c573706cfe`).
 **Lineages:** `sol-high` (GPT-5.6-SOL, high, cli-opencode, 5 iters) and `glm-high` (GLM-5.2, high, cli-devin, 5 iters), max-iterations, no early convergence. External CLIs converged early by operator instruction after both reached 5/5.
 
 **Consolidated verdict: CONDITIONAL — 0 P0, 1 P1, 10 distinct P2.** Both lineages returned CONDITIONAL independently. No finding blocks release; the single P1 is a one-line CI trigger-path gap, fixed in this packet (see §4).
@@ -27,7 +27,7 @@ Both models, reviewing independently, landed on the same headline defect and the
 
 **CI trigger-path gap** — `.github/workflows/routing-registry-drift.yml` `push.paths` and `pull_request.paths`.
 
-The workflow runs `ci-skill-root-metadata.cjs` (line 109) as its fleet gate, and its `paths:` filter lists `leaf-manifest.json`, `leaf-manifest.config.json`, `leaf-aliases.json`, `description.json`, and `graph-metadata.json` — but **not** `command-metadata.json` (`grep -c command-metadata` → 0). Root cause: those path entries were added in the 021 enforcement follow-up (`d65d352d63`), when `command-metadata.json` was still an sk-design-only overlay; packet 022 promoted it to a class-H requirement and the filter was never backfilled. Net effect: a push or PR touching only a hub's `command-metadata.json` does not start the workflow, so the authoritative fleet gate never runs in CI for exactly the file the newest standard added.
+The workflow runs `ci-skill-root-metadata.cjs` (line 109) as its fleet gate, and its `paths:` filter lists `leaf-manifest.json`, `leaf-manifest.config.json`, `leaf-aliases.json`, `description.json`, and `graph-metadata.json` — but **not** `command-metadata.json` (`grep -c command-metadata` → 0). Root cause: those path entries were added in the 021 enforcement follow-up (`4a18c255a7`), when `command-metadata.json` was still an sk-design-only overlay; packet 022 promoted it to a class-H requirement and the filter was never backfilled. Net effect: a push or PR touching only a hub's `command-metadata.json` does not start the workflow, so the authoritative fleet gate never runs in CI for exactly the file the newest standard added.
 
 Counter-evidence weighed and rejected as sufficient: the pre-push hook (`pre-push:178-190`) does invoke the same gate for any `.opencode/skills` diff, catching this on local push — but it is bypassable (`SPECKIT_SKIP_PREPUSH_SKILL_GATE=1`) and cannot enroll a pull request whose path filter prevents the workflow from starting.
 

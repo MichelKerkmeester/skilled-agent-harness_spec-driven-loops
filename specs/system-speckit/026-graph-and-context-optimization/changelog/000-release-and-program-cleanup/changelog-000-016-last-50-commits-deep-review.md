@@ -21,7 +21,7 @@ contextType: "implementation"
 
 ### Summary
 
-This read-only packet ran a 20-iteration deep review of the last 50 commits over the range `a9e9bdb0a5^..HEAD`. The review covered 9 research angles: launcher and IPC concurrency, memory-write and async enrichment, causal and relation inference, shutdown and lifecycle, security and input, test integrity, MCP contract, config and gemini removal, and docs and changelog accuracy. It ran as a native `@deep-review` workflow with parallel fan-out plus an adversarial-verification round. The verdict is CONDITIONAL with 0 P0, 3 actionable P1 and roughly 17 P2. Many seeded P0 hypotheses were adversarially refuted against the actual code. No source was changed.
+This read-only packet ran a 20-iteration deep review of the last 50 commits over the range `fd67ede05f^..HEAD`. The review covered 9 research angles: launcher and IPC concurrency, memory-write and async enrichment, causal and relation inference, shutdown and lifecycle, security and input, test integrity, MCP contract, config and gemini removal, and docs and changelog accuracy. It ran as a native `@deep-review` workflow with parallel fan-out plus an adversarial-verification round. The verdict is CONDITIONAL with 0 P0, 3 actionable P1 and roughly 17 P2. Many seeded P0 hypotheses were adversarially refuted against the actual code. No source was changed.
 
 ### Added
 

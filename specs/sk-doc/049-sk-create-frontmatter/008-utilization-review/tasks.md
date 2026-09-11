@@ -142,7 +142,7 @@ contextType: "general"
 - [x] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases. no security, path, parser or redaction fix in this phase
 - [x] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed. eleven prompts plus four out-of-domain phrases, section 7
 - [x] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state. no process-wide state read by the tests
-- [x] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range. evidence pinned to commits 8ad1f98d09 and 8a9c5af8a3
+- [x] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range. evidence pinned to commits 80a4f2036f and 3dbc1536f3
 <!-- /ANCHOR:fix-completeness -->
 
 ---

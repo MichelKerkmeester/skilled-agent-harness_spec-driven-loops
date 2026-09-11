@@ -19,7 +19,7 @@ contextType: "implementation"
 
 ### Summary
 
-The orphan sweep can now catch up and the corpus identity is repaired. The sweep cursor is persisted in the config table and fed back on each scan, so the sweep advances through the whole index instead of re-checking the same lowest-id rows forever. A corpus-repair migration then ran against the live index under an atomic backup. It drained 11,129 file-absent dead-path rows. It healed 4,313 rows from the old `system-spec-kit` track to `system-speckit`. It deprecated 4,991 duplicate-content losers plus 7 old-track twins. The index went from 33,728 to 22,599 rows with zero active old-track spec rows left. Shipped in `4ae4ae1e96`.
+The orphan sweep can now catch up and the corpus identity is repaired. The sweep cursor is persisted in the config table and fed back on each scan, so the sweep advances through the whole index instead of re-checking the same lowest-id rows forever. A corpus-repair migration then ran against the live index under an atomic backup. It drained 11,129 file-absent dead-path rows. It healed 4,313 rows from the old `system-spec-kit` track to `system-speckit`. It deprecated 4,991 duplicate-content losers plus 7 old-track twins. The index went from 33,728 to 22,599 rows with zero active old-track spec rows left. Shipped in `3d8507329c`.
 
 ### Added
 

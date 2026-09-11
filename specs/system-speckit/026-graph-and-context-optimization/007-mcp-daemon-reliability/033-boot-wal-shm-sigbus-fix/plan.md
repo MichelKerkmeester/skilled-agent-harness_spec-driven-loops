@@ -63,7 +63,7 @@ undoing them.
 
 ### Definition of Ready
 - [x] Problem statement clear and scope documented (spec.md, grounded in `git show`/`git log -L`
-  verification of commit `8807393bea` plus direct re-reads of all cited line numbers against the
+  verification of commit `9063556fc8` plus direct re-reads of all cited line numbers against the
   live tree)
 - [x] Success criteria measurable
 - [x] Dependencies identified (the July 5 DELETE-mode writers, confirmed unchanged and correctly
@@ -91,7 +91,7 @@ Narrow a startup health check's failure condition; no new abstraction, no new ca
 
 ### Key Components
 - **`context-server.ts`'s post-`initializeDb()` health check** (`:2207-2213`): today, a leftover
-  "T076-era" WAL-assertion check (unchanged since before commit `8807393bea`, confirmed via
+  "T076-era" WAL-assertion check (unchanged since before commit `9063556fc8`, confirmed via
   `git log -L 2204,2213:.../context-server.ts`) that predates the DELETE-mode decision and was
   never updated to reflect it. This plan updates its condition only — the surrounding
   `registerInitTasks` flow, `checkSqliteVersion()` call, and everything downstream are untouched.
@@ -136,7 +136,7 @@ Required inventories:
 - [ ] Re-confirm the current call graph (`journal_mode` writers/readers) against the working
   tree immediately before implementation, in case a concurrent session has touched
   `context-server.ts` or `vector-index-store.ts` since this plan was written
-- [ ] Re-confirm commit `8807393bea`'s intent and diff via `git show 8807393bea` (already done
+- [ ] Re-confirm commit `9063556fc8`'s intent and diff via `git show 9063556fc8` (already done
   at plan time; re-verify only if the file has since changed)
 
 ### Phase 2: Core Implementation
@@ -178,7 +178,7 @@ Required inventories:
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Commit `8807393bea` DELETE-mode writers | Internal | Green | This packet is moot without them; confirmed present and unchanged at plan time |
+| Commit `9063556fc8` DELETE-mode writers | Internal | Green | This packet is moot without them; confirmed present and unchanged at plan time |
 | `context-server.vitest.ts` databaseMock harness | Internal | Green | Reused unchanged as the test scaffold for the new regression case |
 <!-- /ANCHOR:dependencies -->
 

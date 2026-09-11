@@ -17,7 +17,7 @@ user
 Independent code review (READ-ONLY). You may run git, read files, run `python3`/`node` for validation only (no writes). Do NOT modify any file.
 
 # Task
-Audit git commit `1e58d845af` (TOC + `<!-- ANCHOR -->` removal across skill docs + standards/config/template/command edits). Find anything broken **by accident**.
+Audit git commit `e5ee6609c2` (TOC + `<!-- ANCHOR -->` removal across skill docs + standards/config/template/command edits). Find anything broken **by accident**.
 
 This is **Iteration 3 of 10**. Focus: **standards/config + `/create` command consistency** (correctness + maintainability).
 
@@ -544,7 +544,7 @@ exec
 .opencode/commands/memory/README.txt
 
 exec
-/bin/zsh -lc 'git show --stat --name-only --format=fuller 1e58d845af' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'git show --stat --name-only --format=fuller e5ee6609c2' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
 /bin/zsh -lc "python3 -c \"import json;json.load(open('.opencode/skills/sk-doc/assets/template_rules.json'))\"" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
@@ -564,7 +564,7 @@ git: warning: confstr() failed with code 5: couldn't get path of DARWIN_USER_TEM
 git: error: couldn't create cache file '/tmp/xcrun_db-5mV0SZ3m' (errno=Operation not permitted)
 2026-05-26 12:50:40.984 xcodebuild[94683:53755180]  DVTFilePathFSEvents: Failed to start fs event stream.
 2026-05-26 12:50:41.118 xcodebuild[94683:53755177] [MT] DVTDeveloperPaths: Failed to get length of DARWIN_USER_CACHE_DIR from confstr(3), error = Error Domain=NSPOSIXErrorDomain Code=5 "Input/output error". Using NSCachesDirectory instead.
-commit 1e58d845af44255e32e071b3d69d1c19e76d4ac6
+commit e5ee6609c2b83108535c9b42befe8f88c3b879f0
 Author:     MichelKerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
 AuthorDate: Tue May 26 11:55:15 2026 +0200
 Commit:     MichelKerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
@@ -6438,7 +6438,7 @@ exec
 .opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/scripts/generate_report.py:378:<!-- /ANCHOR:related-resources -->
 
 exec
-/bin/zsh -lc 'git diff 1e58d845af''^ 1e58d845af -- .opencode/commands/create/README.txt .opencode/commands/create/assets/create_folder_readme_auto.yaml .opencode/commands/create/assets/create_folder_readme_confirm.yaml | sed -n '"'1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'git diff e5ee6609c2''^ e5ee6609c2 -- .opencode/commands/create/README.txt .opencode/commands/create/assets/create_folder_readme_auto.yaml .opencode/commands/create/assets/create_folder_readme_confirm.yaml | sed -n '"'1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 1305ms:
 2026-05-26 12:51:27.426 xcodebuild[97524:53759984]  DVTFilePathFSEvents: Failed to start fs event stream.
 2026-05-26 12:51:27.526 xcodebuild[97524:53759983] [MT] DVTDeveloperPaths: Failed to get length of DARWIN_USER_CACHE_DIR from confstr(3), error = Error Domain=NSPOSIXErrorDomain Code=5 "Input/output error". Using NSCachesDirectory instead.
@@ -6939,7 +6939,7 @@ exec
    190	    - subagent_utilization_ledger.md
 
 exec
-/bin/zsh -lc 'git diff 1e58d845af''^ 1e58d845af -- .opencode/commands/create/assets/create_feature_catalog_auto.yaml .opencode/commands/create/assets/create_feature_catalog_confirm.yaml .opencode/commands/create/assets/create_testing_playbook_auto.yaml .opencode/commands/create/assets/create_testing_playbook_confirm.yaml .opencode/commands/create/folder_readme.md | sed -n '"'1,320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'git diff e5ee6609c2''^ e5ee6609c2 -- .opencode/commands/create/assets/create_feature_catalog_auto.yaml .opencode/commands/create/assets/create_feature_catalog_confirm.yaml .opencode/commands/create/assets/create_testing_playbook_auto.yaml .opencode/commands/create/assets/create_testing_playbook_confirm.yaml .opencode/commands/create/folder_readme.md | sed -n '"'1,320p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 1452ms:
 2026-05-26 12:51:37.513 xcodebuild[98105:53760961]  DVTFilePathFSEvents: Failed to start fs event stream.
 2026-05-26 12:51:37.623 xcodebuild[98105:53760959] [MT] DVTDeveloperPaths: Failed to get length of DARWIN_USER_CACHE_DIR from confstr(3), error = Error Domain=NSPOSIXErrorDomain Code=5 "Input/output error". Using NSCachesDirectory instead.
@@ -7733,7 +7733,7 @@ exec
 .opencode/skills/sk-doc/scripts/tests/valid_readme.md:17:- Has TABLE OF CONTENTS section
 
 exec
-/bin/zsh -lc 'git diff 1e58d845af''^ 1e58d845af -- .opencode/skills/sk-doc/assets/skill/skill_asset_template.md .opencode/skills/sk-doc/README.md .opencode/skills/sk-doc/assets/template_rules.json | sed -n '"'1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'git diff e5ee6609c2''^ e5ee6609c2 -- .opencode/skills/sk-doc/assets/skill/skill_asset_template.md .opencode/skills/sk-doc/README.md .opencode/skills/sk-doc/assets/template_rules.json | sed -n '"'1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 1533ms:
 2026-05-26 12:52:00.372 xcodebuild[99417:53763149]  DVTFilePathFSEvents: Failed to start fs event stream.
 2026-05-26 12:52:00.527 xcodebuild[99417:53763148] [MT] DVTDeveloperPaths: Failed to get length of DARWIN_USER_CACHE_DIR from confstr(3), error = Error Domain=NSPOSIXErrorDomain Code=5 "Input/output error". Using NSCachesDirectory instead.
@@ -7989,7 +7989,7 @@ exec
    334	**`package_skill.py` fails**
 
 exec
-/bin/zsh -lc 'git diff 1e58d845af''^ 1e58d845af -- .opencode/skills/sk-doc/references/global/validation.md .opencode/skills/sk-doc/README.md | sed -n '"'1,240p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'git diff e5ee6609c2''^ e5ee6609c2 -- .opencode/skills/sk-doc/references/global/validation.md .opencode/skills/sk-doc/README.md | sed -n '"'1,240p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 1652ms:
 2026-05-26 12:52:11.721 xcodebuild[360:53764402]  DVTFilePathFSEvents: Failed to start fs event stream.
 2026-05-26 12:52:11.864 xcodebuild[360:53764401] [MT] DVTDeveloperPaths: Failed to get length of DARWIN_USER_CACHE_DIR from confstr(3), error = Error Domain=NSPOSIXErrorDomain Code=5 "Input/output error". Using NSCachesDirectory instead.

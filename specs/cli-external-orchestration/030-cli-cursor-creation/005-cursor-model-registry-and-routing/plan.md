@@ -75,7 +75,7 @@ Run `check-prompt-quality-card-sync.sh` as the primary gate — `GUARD PASS`. St
 ## 6. DEPENDENCIES
 | Dependency | Type | Status | Impact if Blocked |
 |---|---|---|---|
-| Phase 003 (skill packet) | Internal | Green (committed `11024cc893`) | `cli-cursor/assets/prompt-quality-card.md` must exist for the sync gate to check |
+| Phase 003 (skill packet) | Internal | Green (committed `b5926f2a45`) | `cli-cursor/assets/prompt-quality-card.md` must exist for the sync gate to check |
 | `cursor-agent login` (auth) | External | Green — operator completed login | Version slug now live-confirmed; context window/pricing stay TBD (CLI never exposed them, even authenticated) |
 | `sk-prompt/prompt-models` structure | Internal | Green (live) | Wrong profile shape if not mirrored |
 <!-- /ANCHOR:dependencies -->

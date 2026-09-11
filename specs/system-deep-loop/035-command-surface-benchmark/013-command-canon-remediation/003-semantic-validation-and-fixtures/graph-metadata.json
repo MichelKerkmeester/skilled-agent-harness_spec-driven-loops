@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Backlog W1/W2/W6: enforce the command contract's behavioral invariants, not just section presence. Add a gate-obligation check for required-input routers, a mode-completeness check that a declared :auto/:confirm mode has both its workflow YAML and an EXECUTION TARGETS row, and close the reference-coverage omission that skips speckit/memory/doctor — each guarded by an independent mutation fixture. Canonize the new rules before enforcing them.",
     "created_at": "2026-07-16T11:52:03.667Z",
-    "last_save_at": "2026-09-11T04:38:02.373Z",
+    "last_save_at": "2026-09-11T16:42:16.781Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:127a3b234ca7790700acaa9facdb501fa0592413b62de141d55a829bd93663bf",
+    "source_fingerprint": "sha256:acc119be296643b6271e451e501bc0a941e94c2f48d74c7e28923b7be1afd7f7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "18d6e13e0e1df1d3a88baf90798ed9faf4fbb1e5e71ebd9aca9c55d44cba2cbe",
       "plan.md": "f669a59b31ab37cbefd1c8cd36b62480789aa19c9df1cf83b5239a33c13fc8f9",
       "tasks.md": "b1028fb41087af0ec14e85473143dcd5dbbc43b28f30da102ee37b57b1da9d24",
-      "implementation-summary.md": "5c99aa8e91822688659f45ce581f1463df24bb3d6d9dc3989679d498116f867d"
+      "implementation-summary.md": "0ba3f5e151eee669483a4a1c1ca38f87c867588565f63674e07cefa4203b98a3"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -380,7 +380,7 @@ After Phases 1-7 shipped review-clean, live verification on the production datab
 
 ### Implementation
 
-**What changes**: `lib/storage/checkpoints.ts` `hasMainVectorPayloadTables` queries `name = 'vec_memories'` only; `tests/checkpoints-v2-create.vitest.ts` adds the daemon-post-slim regression test. Commit `cce4fe931d`.
+**What changes**: `lib/storage/checkpoints.ts` `hasMainVectorPayloadTables` queries `name = 'vec_memories'` only; `tests/checkpoints-v2-create.vitest.ts` adds the daemon-post-slim regression test. Commit `0cdbcc0170`.
 
 **How to roll back**: Re-add `vec_metadata` to the gate's name set; v2 selection reverts to inert (not recommended).
 

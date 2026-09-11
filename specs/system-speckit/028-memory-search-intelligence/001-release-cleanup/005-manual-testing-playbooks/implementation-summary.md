@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Manual Testing Playbook Cleanup"
-description: "Execution summary for the Manual Testing Playbook Cleanup release-cleanup phase. The packet-028 playbook anchors were aligned to shipped state (commit ab405fa052), 14 stale source anchors fixed across 10 scenario files."
+description: "Execution summary for the Manual Testing Playbook Cleanup release-cleanup phase. The packet-028 playbook anchors were aligned to shipped state (commit 7b74ddfbe5), 14 stale source anchors fixed across 10 scenario files."
 trigger_phrases:
   - "005-manual-testing-playbooks implementation summary"
   - "028 release cleanup 005-manual-testing-playbooks"
@@ -104,7 +104,7 @@ Each fix was confirmed against the live tree before editing: the successor path 
 
 | Check | Result |
 |-------|--------|
-| Cleanup execution | Executed at ab405fa052, 14 anchors fixed across 10 scenario files |
+| Cleanup execution | Executed at 7b74ddfbe5, 14 anchors fixed across 10 scenario files |
 | Count self-check | Reproduced against the live tree, all hard-coded counts match |
 | Strict validation | PASSED, 0 errors and 0 warnings via `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-speckit/028-memory-search-intelligence/000-release-cleanup/005-manual-testing-playbooks --strict` |
 <!-- /ANCHOR:verification -->

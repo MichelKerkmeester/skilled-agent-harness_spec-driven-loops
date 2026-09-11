@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Relation-Inference Backfill"
-description: "Built a bounded, safe, reversible relation-inference backfill that infers typed causal edges from spec-document chains + lineage predecessor links (created_by='auto', default dryRun, transactional, idempotent), flipped the honest stat to implemented:true with a callable command, and invalidates the entity-density cache after writes. Tests green; tsc clean; committed d32d90c3f1, deployed, and the production backfill has since run."
+description: "Built a bounded, safe, reversible relation-inference backfill that infers typed causal edges from spec-document chains + lineage predecessor links (created_by='auto', default dryRun, transactional, idempotent), flipped the honest stat to implemented:true with a callable command, and invalidates the entity-density cache after writes. Tests green; tsc clean; committed 6512b45e86, deployed, and the production backfill has since run."
 importance_tier: "important"
 contextType: "general"
 _memory:
@@ -8,7 +8,7 @@ _memory:
     packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/021-relation-inference-backfill"
     last_updated_at: "2026-06-04T12:30:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "Committed d32d90c3f1 + deployed; verify green (tsc + 343 tests)"
+    recent_action: "Committed 6512b45e86 + deployed; verify green (tsc + 343 tests)"
     next_safe_action: "Done; shipped + deployed. Actual backfill run stays user-gated"
     blockers: []
     completion_pct: 100

@@ -51,8 +51,8 @@ The parent-dispatched doc-accuracy fixes are executed against committed code. Th
 
 ### What Was Fixed
 
-- **P1-6 (`changelog-001-root.md`):** rows 009 (Complete, default-off), 011, 017, 018 and 020 (Partial) reclassified from Planned, each traced to `ed53661043`, `5308401d95` or `8f8776e329` plus its child implementation-summary. Rows 008 and 010 left as no-code-shipped because their own children agree.
-- **`timeline.md`:** the epochs diagram extended past commit 30 (`b1d6ab80cd`) with the schema cluster, the release-cleanup executions, the criterion-4 benchmark and the packet-030 deletion. A new Section D2 narrates that continuation. Section E reframed shipped-behind-flag versus held. The "last code wave" label corrected. The dangling 030 pointer repointed to the per-track changelogs.
+- **P1-6 (`changelog-001-root.md`):** rows 009 (Complete, default-off), 011, 017, 018 and 020 (Partial) reclassified from Planned, each traced to `a00803e724`, `478bebf387` or `508af65780` plus its child implementation-summary. Rows 008 and 010 left as no-code-shipped because their own children agree.
+- **`timeline.md`:** the epochs diagram extended past commit 30 (`76ea97a548`) with the schema cluster, the release-cleanup executions, the criterion-4 benchmark and the packet-030 deletion. A new Section D2 narrates that continuation. Section E reframed shipped-behind-flag versus held. The "last code wave" label corrected. The dangling 030 pointer repointed to the per-track changelogs.
 - **`before-vs-after.md`:** intro and CURRENT STATE advanced past commit 30. Section 6 release-cleanup corrected from all-PENDING to all-executed. The benchmark present-tense and the "no measured benefit number" framing reconciled to the criterion-4 run that produced channel deltas with no flag flip.
 - **`benchmark-status.md`:** the default-off flag inventory completed with `SPECKIT_CODE_GRAPH_SEEDED_PPR_RANKING`, `SPECKIT_CODE_GRAPH_EDGE_BITEMPORAL_READS` and `SPECKIT_CODE_GRAPH_EDGE_GOVERNANCE_VOCAB`, layered on phase 001's criterion-4 text without reverting it.
 
@@ -82,7 +82,7 @@ Three scaffold items fall outside the parent-dispatched scope (P1-6 plus the thr
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Phase 001 first committed its `benchmark-status.md` criterion-4 re-run at `885f0c662e`, so this phase layered on top of it. Each doc claim was checked against `git log main..HEAD` and the relevant child implementation-summary before editing, then the four surfaces were corrected to match committed code. The edits keep each surface's house voice and add no em-dashes or semicolons.
+Phase 001 first committed its `benchmark-status.md` criterion-4 re-run at `62394395fb`, so this phase layered on top of it. Each doc claim was checked against `git log main..HEAD` and the relevant child implementation-summary before editing, then the four surfaces were corrected to match committed code. The edits keep each surface's house voice and add no em-dashes or semicolons.
 <!-- /ANCHOR:how-delivered -->
 
 ---

@@ -90,5 +90,5 @@ _memory:
 
 - `../spec.md` for the 021 parent packet.
 - `../001-identify-and-close-3-remaining-deferred-p2/implementation-summary.md` for Arc 021 predecessor closure.
-- `fbb8a23cda`, `e5113fedc4`, `8dfafc7189`, and `f081112aab` for style precedents.
+- `5a9ecbead3`, `98b6199c1b`, `002dfa1e7a`, and `28f5bd32cc` for style precedents.
 <!-- /ANCHOR:cross-refs -->

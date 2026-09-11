@@ -154,7 +154,7 @@ Required inventories:
 | C3-B four-timestamp window | Internal | Yellow (additivity unverified) | Gates C3-A live retirement (later phase) + Code-Graph Q1-C1 column shape (sibling), spearhead independent |
 | lineage canonical event-time writer | Internal | Green (decision recorded) | Spearhead sources the wrong time if not lineage |
 | `SPECKIT_TEMPLATE_EDGES` flag | Internal | Green (already ON) | None - spearhead does not depend on a flip |
-| skip-closed-in-sweep | Internal | Green (SHIPPED `e1c6a3c793`) | Defensive hardening only, not a gate |
+| skip-closed-in-sweep | Internal | Green (SHIPPED `672d8a9187`) | Defensive hardening only, not a gate |
 <!-- /ANCHOR:dependencies -->
 
 ---

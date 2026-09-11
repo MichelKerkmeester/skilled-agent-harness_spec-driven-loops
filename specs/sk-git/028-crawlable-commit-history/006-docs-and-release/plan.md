@@ -236,8 +236,8 @@ Phase 1.5 (Config) ───┘
 
 | Milestone | Description | Success Criteria | Target |
 |-----------|-------------|------------------|--------|
-| M1 | Release docs | VALID x3, package PASS, `d6ca91f853` | 2026-09-11, done |
-| M2 | Vocabulary and manifests | gate checked 13 passed 13 fixed 1, `a8135ef83c` | 2026-09-11, done |
+| M1 | Release docs | VALID x3, package PASS, `dcdf2f8441` | 2026-09-11, done |
+| M2 | Vocabulary and manifests | gate checked 13 passed 13 fixed 1, `8d5acf93d5` | 2026-09-11, done |
 | M3 | Rule edits and closeout | validator green, parent recursive PASSED | 2026-09-11 |
 <!-- /ANCHOR:milestones -->
 

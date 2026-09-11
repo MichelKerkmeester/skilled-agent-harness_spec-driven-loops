@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: TOOL_LAYER_MAP Drift Fix (memory_causal_unlink L6)"
-description: "memory_causal_unlink is a registered MCP tool (commit deee30b319) but is missing from TOOL_LAYER_MAP in lib/architecture/layer-definitions.ts, breaking 2 layer-definitions vitest tests on the clean baseline. Add it to the L6 (Analysis) group beside its siblings memory_causal_link and memory_causal_stats."
+description: "memory_causal_unlink is a registered MCP tool (commit f6f95062ed) but is missing from TOOL_LAYER_MAP in lib/architecture/layer-definitions.ts, breaking 2 layer-definitions vitest tests on the clean baseline. Add it to the L6 (Analysis) group beside its siblings memory_causal_link and memory_causal_stats."
 trigger_phrases:
   - "tool layer map drift"
   - "memory_causal_unlink missing layer"
@@ -54,7 +54,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-`memory_causal_unlink` is a registered MCP tool (added by commit `deee30b319`, defined in
+`memory_causal_unlink` is a registered MCP tool (added by commit `f6f95062ed`, defined in
 `tool-schemas.ts` with the description prefix `[L6:Analysis]`), but it is MISSING from the
 `TOOL_LAYER_MAP` source in `lib/architecture/layer-definitions.ts`. The map is derived from
 `LAYER_DEFINITIONS[*].tools`, and the tool name was never added to any layer's `tools` array.
@@ -131,7 +131,7 @@ belongs in the L6 group alongside its causal siblings.
 |------|------|--------|------------|
 | Risk | Picking the wrong layer | Map/prefix mismatch test still fails | Verified the registered prefix `[L6:Analysis]` in `tool-schemas.ts` before editing |
 | Risk | Scope creep into adjacent layers/tools | Unintended map churn | Single one-line array addition; scope locked to L6 group |
-| Dependency | Commit `deee30b319` registered the tool without a layer entry | — | This packet closes the parity gap it opened |
+| Dependency | Commit `f6f95062ed` registered the tool without a layer entry | — | This packet closes the parity gap it opened |
 <!-- /ANCHOR:risks -->
 
 ---

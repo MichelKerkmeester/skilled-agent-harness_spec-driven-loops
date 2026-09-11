@@ -12,7 +12,7 @@ _memory:
     packet_pointer: "sk-doc/019-skill-routing-refactor/032-sk-design-recall-investigation"
     last_updated_at: "2026-07-29T03:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Wired two recall intents; sk-design PASS 95; committed 8cb2e8dfdc"
+    recent_action: "Wired two recall intents; sk-design PASS 95; committed 3dd5e19efb"
     next_safe_action: "None; all four hubs PASS. PB-007 D3 precision is a separate future item"
     blockers: []
     completion_pct: 100
@@ -33,7 +33,7 @@ _memory:
 | **Spec Folder** | 032-sk-design-recall-investigation |
 | **Completed** | 2026-07-29 |
 | **Level** | 2 |
-| **Commits** | 8cb2e8dfdc |
+| **Commits** | 3dd5e19efb |
 <!-- /ANCHOR:metadata -->
 
 ---

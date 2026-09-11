@@ -17,7 +17,7 @@ the receipt operations, and a real before/after on whole-promotion wall clock.
 `--approve` used to be a bare boolean flag. It now takes a path to an
 HMAC-authenticated receipt that binds candidate, target, report, config, and
 manifest, and promotion verifies it before touching anything. The pre-binding
-side was obtained by checking out `d0d8623ddf` — the parent of `0d1827eef50`,
+side was obtained by checking out `de9ce00df4` — the parent of `9d258a879ef`,
 the commit that turned the flag into a receipt — in a separate worktree and
 running the same fixture there. It is a real historical arm, not the current
 code with a feature switched off.
@@ -52,7 +52,7 @@ the two passes.
 
 | Arm | pass 1 mean | pass 2 mean | median | p95 |
 |---|---|---|---|---|
-| Before — bare `--approve` at `d0d8623ddf` | 86.31 ms | 90.22 ms | 90.37 / 94.53 ms | 102.58 / 152.48 ms |
+| Before — bare `--approve` at `de9ce00df4` | 86.31 ms | 90.22 ms | 90.37 / 94.53 ms | 102.58 / 152.48 ms |
 | After — authenticated receipt at HEAD | 64.07 ms | 66.59 ms | 63.98 / 63.54 ms | 67.72 / 100.25 ms |
 
 Adding the ~5 ms receipt issuance the caller performs before invoking promote,

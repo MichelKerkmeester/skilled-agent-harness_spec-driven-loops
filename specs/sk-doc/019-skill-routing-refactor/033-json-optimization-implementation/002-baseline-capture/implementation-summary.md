@@ -54,7 +54,7 @@ A single read-only measurement pass that produces one hash-pinned baseline artif
 
 ### Corpus hash pin
 
-The three routing-accuracy corpus files (`labeled-prompts.jsonl`, `holdout-prompts.jsonl`, `ambiguity-prompts.jsonl`) get exact SHA-256 hashes recorded at capture time. These files were edited as recently as 2026-07-27 (git commit `5a2aab0d37b`), and the checked-in `scorer-eval-baseline.json` was captured 2026-07-17 against a different corpus size (200/78 rows recorded vs. 195/72 rows present today) — so an unpinned baseline would silently drift.
+The three routing-accuracy corpus files (`labeled-prompts.jsonl`, `holdout-prompts.jsonl`, `ambiguity-prompts.jsonl`) get exact SHA-256 hashes recorded at capture time. These files were edited as recently as 2026-07-27 (git commit `af2d543bf1d`), and the checked-in `scorer-eval-baseline.json` was captured 2026-07-17 against a different corpus size (200/78 rows recorded vs. 195/72 rows present today) — so an unpinned baseline would silently drift.
 
 ### Top-1 and top-3 capture
 

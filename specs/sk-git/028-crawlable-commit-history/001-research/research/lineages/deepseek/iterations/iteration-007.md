@@ -11,12 +11,12 @@ For the existing history: how each commit is assigned a packet and an identifier
 ## What was read
 
 - No new contract files; the measurement uses the packet-path grammar `specs/<track>/<packet>/...` and the trailer/scope signals established in iterations 2, 4, and 5.
-- Live-drift note: `skilled/v4.0.0.0` moved from `440e5dc15c` (9,108) to `9371f99938` (9,112) while this lineage ran — four commits in one session. All mapping counts are pinned at the run shown below.
+- Live-drift note: `skilled/v4.0.0.0` moved from `6106f88ccd` (9,108) to `1b57a90d73` (9,112) while this lineage ran — four commits in one session. All mapping counts are pinned at the run shown below.
 
 ## What was measured
 
 ```text
-PIN: tip 9371f99938, commits 9112 (hashes/subjects/bodies read at 9111; path map re-read live)
+PIN: tip 1b57a90d73, commits 9112 (hashes/subjects/bodies read at 9111; path map re-read live)
 
 Rule cascade over the commit set (each commit picks the first applicable source):
 refs (Refs: specs/<track>/<packet>)   297
@@ -41,9 +41,9 @@ Supporting numbers:
   token in the subject (weak, human-reviewable only)
 
 Archetypes:
-  cddd84f9f8 fix(sk-design-diagram): ...        -> .opencode/skills/sk-design/sk-design-diagram/...
-  06b28f6749 perf(spec-kit): batch the spec re-mint -> .opencode/scripts/git-hooks/...
-  9dddd683cb chore(system-plugins): vendor ...      -> skill-tree/tooling, no specs/ path
+  d0e81566ed fix(sk-design-diagram): ...        -> .opencode/skills/sk-design/sk-design-diagram/...
+  c04def0cb7 perf(spec-kit): batch the spec re-mint -> .opencode/scripts/git-hooks/...
+  d6660e83a1 chore(system-plugins): vendor ...      -> skill-tree/tooling, no specs/ path
 ```
 
 ## Findings

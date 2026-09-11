@@ -15,7 +15,7 @@ Security: executable change, credential exposure, unsafe content, and trust-boun
 
 ## Files Reviewed
 
-- The 13 packet implementation/remediation commits from `2d24db2619` through `babefb0586`
+- The 13 packet implementation/remediation commits from `568eef6f39` through `983a4d6ef7`
 - `.opencode/specs/sk-doc/032-split-doc-template-alignment/checklist.md:65-68`
 - Representative Markdown code examples and links in each target surface
 

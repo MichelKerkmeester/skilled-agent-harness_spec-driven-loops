@@ -103,9 +103,9 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Agent-facing usage layer and corrected command surface | Done | `f140793f3a`, `486eb2cb64` and `bb31baa048` across the usage reference, the command index and the router keywords |
-| Surface comparison and the default | Done | `dcd2fa62b5 feat(mcp-obsidian): measure the CLI against the MCP server, and pick a default` |
-| Follow-up edits landed after the comparison | Done | `10ec4d8b5f docs(mcp-obsidian): land the three edits made after the comparison was committed` |
+| Agent-facing usage layer and corrected command surface | Done | `e3084476cf`, `7c04fe370f` and `3dd1117f81` across the usage reference, the command index and the router keywords |
+| Surface comparison and the default | Done | `b2b1f6e86d feat(mcp-obsidian): measure the CLI against the MCP server, and pick a default` |
+| Follow-up edits landed after the comparison | Done | `853e899140 docs(mcp-obsidian): land the three edits made after the comparison was committed` |
 | Phase 001 open criteria | In Progress | The stale package pin and the voice-blocker count stay open. See `001-cli-versus-mcp/goal.md` |
 
 ### Deviations and findings

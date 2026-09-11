@@ -12,7 +12,7 @@ trigger_phrases: []
   `.opencode/specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/009-titlecase-config-and-closeout/implementation-summary.md:52`  
   `.opencode/skills/sk-prompt/prompt-models/references/vision-audit-benchmark.md:36`
 
-  Evidence: The summary claims code spans were preserved. The base-to-HEAD diff instead changes ``opencode `--file` `` to `opencode \0 0\0`, leaving literal NUL bytes (`00 30 00`) in the heading. `git diff --text` confirms this corruption was introduced by commit `a09f3f050e7`.
+  Evidence: The summary claims code spans were preserved. The base-to-HEAD diff instead changes ``opencode `--file` `` to `opencode \0 0\0`, leaving literal NUL bytes (`00 30 00`) in the heading. `git diff --text` confirms this corruption was introduced by commit `bd93938817c`.
 
   Fix: Restore `` `--file` ``, remove the NUL bytes, and harden the transform so protected spans use collision-safe reversible placeholders. Re-scan every transformed heading before retaining the exempt-preservation completion claim.
 
@@ -20,7 +20,7 @@ trigger_phrases: []
 
   `.opencode/specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/context-index.md:15`
 
-  Evidence: Phase 009 repeatedly claims 270 headers across 58 files. For implementation commit `a09f3f050e7`, `git diff-tree` lists 57 changed Markdown files. Its textual diff contains 251 changed H2s across 56 files; forcing the NUL-containing benchmark file through `--text` adds four H2s, producing 255 changed headers across 57 files—not 270/58.
+  Evidence: Phase 009 repeatedly claims 270 headers across 58 files. For implementation commit `bd93938817c`, `git diff-tree` lists 57 changed Markdown files. Its textual diff contains 251 changed H2s across 56 files; forcing the NUL-containing benchmark file through `--text` adds four H2s, producing 255 changed headers across 57 files—not 270/58.
 
   Fix: Recompute the authoritative count from the commit diff and replace 270/58 throughout phase 009’s `spec.md`, `checklist.md`, `implementation-summary.md`, and the parent `context-index.md`.
 

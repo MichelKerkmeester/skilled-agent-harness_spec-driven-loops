@@ -5,18 +5,18 @@ trigger_phrases: []
 # Handover — 027/005/006 deep-review remediation (broaden round DEPLOYED; #1/#3/#4 done — only soft-delete remains)
 
 ## Continuation prompt (paste into the new chat)
-> 027/005/006 follow-ups #1 (deploy live), #3 (agent CLI-fallback) and #4 (doc-currency) are DONE, committed and pushed on `system-speckit/027-xce-research-based-refinement` (`61b5aab102` agent-fallback, `73518a2983` doc-currency; broaden fixes `55b977951d`, synthesis `0ac83c99ce`). The ONLY remaining open item is **#2 soft-delete tombstone completion**, which is a dedicated packet (NOT a batch fix) — `SPECKIT_SOFT_DELETE_TOMBSTONES` stays default-off until `deleted_at IS NULL` filters land across ~8 recall/list/dedup paths + tombstone child cascade + tests. Daemon/MCP may flap on resume — use the CLI front doors (`node .opencode/bin/spec-memory.cjs …`) not MCP if it hangs; a `/mcp reconnect` re-binds native tools by adopting the warm daemon.
+> 027/005/006 follow-ups #1 (deploy live), #3 (agent CLI-fallback) and #4 (doc-currency) are DONE, committed and pushed on `system-speckit/027-xce-research-based-refinement` (`e199410030` agent-fallback, `b402cf149b` doc-currency; broaden fixes `3a86923dee`, synthesis `bf7869aa68`). The ONLY remaining open item is **#2 soft-delete tombstone completion**, which is a dedicated packet (NOT a batch fix) — `SPECKIT_SOFT_DELETE_TOMBSTONES` stays default-off until `deleted_at IS NULL` filters land across ~8 recall/list/dedup paths + tombstone child cascade + tests. Daemon/MCP may flap on resume — use the CLI front doors (`node .opencode/bin/spec-memory.cjs …`) not MCP if it hangs; a `/mcp reconnect` re-binds native tools by adopting the warm daemon.
 
 ## State
 - **Branch:** `system-speckit/027-xce-research-based-refinement` — in sync with origin (everything pushed).
 - **Recent commits (newest first):**
-  - `73518a2983` — doc-currency refresh (timeline regen, changelog 2026-06-18 section, before-after §5 + CURRENT STATE)
-  - `61b5aab102` — wedged-daemon CLI-fallback baked into 8 daemon-using agents × 3 runtime mirrors (24 files)
-  - `0ac83c99ce` — broaden-round synthesis + scope briefs
-  - `55b977951d` — 9 broaden-round fixes + P0 regression test (search scope leaks, folderBoost, schema, infra hygiene)
-  - `2b64f293b2` — round-2 (017-021) gpt-5.5 verify fixes (cancel-delay guard, bounded-read note, vec-quirk doc)
-  - `cf2e49b2c4` — doc-currency sweep (timeline + system-spec-kit README/SKILL)
-  - `4faff94927` / `4c14606d66` / `973de49faf` — original 017-021 remediation + docs
+  - `b402cf149b` — doc-currency refresh (timeline regen, changelog 2026-06-18 section, before-after §5 + CURRENT STATE)
+  - `e199410030` — wedged-daemon CLI-fallback baked into 8 daemon-using agents × 3 runtime mirrors (24 files)
+  - `bf7869aa68` — broaden-round synthesis + scope briefs
+  - `3a86923dee` — 9 broaden-round fixes + P0 regression test (search scope leaks, folderBoost, schema, infra hygiene)
+  - `6af7315cf2` — round-2 (017-021) gpt-5.5 verify fixes (cancel-delay guard, bounded-read note, vec-quirk doc)
+  - `5711c971a9` — doc-currency sweep (timeline + system-spec-kit README/SKILL)
+  - `f43c05c38a` / `f1eaca915f` / `ffbbf00d2d` — original 017-021 remediation + docs
 
 ## Done this session
 1. **017-021 remediation** + round-1 gpt-5.5 re-verify (4 P2 fixes) — committed.
@@ -27,8 +27,8 @@ trigger_phrases: []
 ## Follow-ups (status — 2026-06-18 session)
 - ✅ **#1 Deploy the broaden fixes live** — `mcp_server` dist rebuilt (`npm run build`; scope-fix confirmed present in compiled `retrieval-rescue.js`) and the live spec-memory daemon recycled onto it (now PID-supervised on fresh dist). The recycle was NOT transparent — see Gotchas; recovered via a CLI front-door cold-start.
 - ⏳ **#2 Soft-delete tombstone completion** — **THE ONLY REMAINING ITEM.** Dedicated packet, not a batch fix. `SPECKIT_SOFT_DELETE_TOMBSTONES` stays default-OFF until `deleted_at IS NULL` filters land across ~8 recall/list/dedup paths + tombstone child cascade + tests.
-- ✅ **#3 Durable wedged-daemon CLI-fallback** (`61b5aab102`) — baked into 8 daemon-using agents × 3 runtime mirrors. Bash-enabled (deep-review, deep-research, review, debug, deep-improvement) → CLI-front-door variant; Bash-denied (context, deep-context, ai-council) → Grep/Read-only variant. No shared inheritance point exists (convention is inline-per-agent, like the efficiency governor), so it's inline. The `agent-mirror-sync` pre-commit gate confirmed all mirrors in sync.
-- ✅ **#4 Doc-currency refresh** (`73518a2983`) — timeline regenerated, `changelog-005-006` gained a 2026-06-18 section, `before-vs-after.md` §5 + CURRENT STATE updated. Feature-catalog deliberately untouched: the 005-verification track is not cataloged by convention (no sibling remediation phase has an entry).
+- ✅ **#3 Durable wedged-daemon CLI-fallback** (`e199410030`) — baked into 8 daemon-using agents × 3 runtime mirrors. Bash-enabled (deep-review, deep-research, review, debug, deep-improvement) → CLI-front-door variant; Bash-denied (context, deep-context, ai-council) → Grep/Read-only variant. No shared inheritance point exists (convention is inline-per-agent, like the efficiency governor), so it's inline. The `agent-mirror-sync` pre-commit gate confirmed all mirrors in sync.
+- ✅ **#4 Doc-currency refresh** (`b402cf149b`) — timeline regenerated, `changelog-005-006` gained a 2026-06-18 section, `before-vs-after.md` §5 + CURRENT STATE updated. Feature-catalog deliberately untouched: the 005-verification track is not cataloged by convention (no sibling remediation phase has an entry).
 
 ## Gotchas (load-bearing)
 - **dist is gitignored** — source fixes don't reach the live daemon until `npm run build` + recycle.

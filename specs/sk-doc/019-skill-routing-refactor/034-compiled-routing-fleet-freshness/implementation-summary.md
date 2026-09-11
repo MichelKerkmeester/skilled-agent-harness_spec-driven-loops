@@ -71,7 +71,7 @@ Months of individually-gated fleet evolution had turned all seven rollout-child 
 
 ### The fleet re-mint
 
-The seven serving manifests were synced to the policy identities the current authored inputs compile to — the same authored+runtime manifest sync lane as the previous re-mint (`e215751429c`), after the shadow-era `activate-hub` CAS correctly refused to re-activate already-graduated hubs. `compiled-route-sync` then rebuilt the promoted mirror (62 closure files) from the repaired authored tree, `--verify` confirmed all seven hubs resolve with zero reads under the spec tree, and `--finalize` retired the rollback only after the full gate battery came back exact.
+The seven serving manifests were synced to the policy identities the current authored inputs compile to — the same authored+runtime manifest sync lane as the previous re-mint (`5372f4d032c`), after the shadow-era `activate-hub` CAS correctly refused to re-activate already-graduated hubs. `compiled-route-sync` then rebuilt the promoted mirror (62 closure files) from the repaired authored tree, `--verify` confirmed all seven hubs resolve with zero reads under the spec tree, and `--finalize` retired the rollback only after the full gate battery came back exact.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -92,7 +92,7 @@ Verdict recorded identically across three environments first; each swallowed `co
 | Fix at the authored source, not the promoted mirror | The mirror is a build product; patching it would be overwritten by the next sync and hide the real defect |
 | Reconstruct the lost modules with committed pins instead of reverting the ceremony | The originals existed only on one machine; the rebuild makes the freeze contract reproducible from the repo alone |
 | Adjudicate behavioral canary deltas in writing before re-pinning | The canaries protect against silent routing drift; re-pinning without adjudication would turn them into rubber stamps |
-| Re-mint via the shipped sync lane, not the shadow-era activate-hub driver | The driver's CAS correctly refuses graduated hubs; the precedent re-mint (`e215751429c`) established the manifest-sync lane |
+| Re-mint via the shipped sync lane, not the shadow-era activate-hub driver | The driver's CAS correctly refuses graduated hubs; the precedent re-mint (`5372f4d032c`) established the manifest-sync lane |
 | Repoint stale validator gates at the authored design's true invariants | Restoring the dropped selective controller would reintroduce the under-routing regression the remediation fixed |
 <!-- /ANCHOR:decisions -->
 
@@ -110,7 +110,7 @@ Verdict recorded identically across three environments first; each swallowed `co
 | Corpus gate (CI floors) | `overall_pass: true` |
 | Vitest gates | golden prompts, registry + command-bridges drift guards, parity deep-skills/deep-council, scorer-eval ratchet — 6 files, 42 tests, all green |
 | CI structural steps | parent-skill-check ×7, root-metadata, leaf-manifest, derived-freshness, skill-graph — all pass locally |
-| Live CI | Routing Registry Drift Guard green on `38c76ce64e` (run 30564608871) |
+| Live CI | Routing Registry Drift Guard green on `c907a0df6c` (run 30564608871) |
 | `validate.sh <folder> --strict` | Errors: 0 |
 <!-- /ANCHOR:verification -->
 

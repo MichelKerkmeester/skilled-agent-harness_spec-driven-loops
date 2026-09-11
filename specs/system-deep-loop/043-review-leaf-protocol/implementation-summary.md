@@ -69,7 +69,7 @@ The three determinism tests that had been read as environment-dependent were spa
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Direct edits after the sixth nesting review pass; committed at `9f6b2dc2ae` (prompt, contract, mirrors) and the determinism-test commit that follows it.
+Direct edits after the sixth nesting review pass; committed at `266debc441` (prompt, contract, mirrors) and the determinism-test commit that follows it.
 <!-- /ANCHOR:how-delivered -->
 
 ---

@@ -83,7 +83,7 @@ Runtime scale: **565 files / ~256k LOC** in `lib/`.
 
 ## 6. State snapshot at the switch
 
-- Committed: `f2d4d01d08` (012 projection contracts + fleet flip), `5511e4eac2` (U1 window-free finalize CAS +
+- Committed: `dd0cca0f77` (012 projection contracts + fleet flip), `fd0bd2df92` (U1 window-free finalize CAS +
   phase 010 scaffold).
 - Uncommitted, verified: U3+U4 in `005/scratch/run-gate.mjs` (authority-state accepts final; real
   negative-controlled reader-contracts).

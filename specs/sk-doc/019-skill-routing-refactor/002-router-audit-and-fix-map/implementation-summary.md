@@ -59,7 +59,7 @@ All ten packet contracts, the hub contract, and both router projections were rea
 
 ### Audit Evidence
 
-Branch `wt/goalAB-skdoc` and workstream-A commit `3048a662e9` were confirmed. The advisor measurements used the local Python fallback because native dist reported `NATIVE_DIST_MISSING`; hub-internal outcomes were therefore analyzed directly from the router JSON.
+Branch `wt/goalAB-skdoc` and workstream-A commit `8179eb714b` were confirmed. The advisor measurements used the local Python fallback because native dist reported `NATIVE_DIST_MISSING`; hub-internal outcomes were therefore analyzed directly from the router JSON.
 
 <!-- /ANCHOR:what-built -->
 

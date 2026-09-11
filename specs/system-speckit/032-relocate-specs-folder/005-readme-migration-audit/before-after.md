@@ -10,7 +10,7 @@ contextType: "reference"
 
 # Before vs After: README Migration Audit
 
-Every row below is the literal text that changed, pulled from `git show` on the two commits that shipped this phase — not a paraphrase. Commits: `bbb156b7e7b` (18/20 findings, F001-F019) and `8cb906322c` (the remaining F012 and F020, fixed on request after an initial deferral).
+Every row below is the literal text that changed, pulled from `git show` on the two commits that shipped this phase — not a paraphrase. Commits: `bbb156b7e7b` (18/20 findings, F001-F019) and `b5032f24a9` (the remaining F012 and F020, fixed on request after an initial deferral).
 
 **Context**: `003-migration-execution` flipped the specs-root topology — `specs/` is now the canonical physical tree, `.opencode/specs` is a relative symlink (`.opencode/specs -> ../specs`) kept for backward compatibility. This audit found 20 places where docs and two guard scripts still described or enforced the *pre-flip* layout.
 
@@ -190,4 +190,4 @@ The review's "research angle" mandate meant checking prose and diagrams beyond t
 
 ---
 
-*Source commits: reachable `1e8606cef9` (the rebased/superseded `bbb156b7e7b`, F001-F019), `8cb906322c` (F012, F020). Full finding registry: `review/lineages/deepseek-flash/review-report.md`. Task-level evidence: `tasks.md`. Narrative summary: `implementation-summary.md`.*
+*Source commits: reachable `851041efbd` (the rebased/superseded `bbb156b7e7b`, F001-F019), `b5032f24a9` (F012, F020). Full finding registry: `review/lineages/deepseek-flash/review-report.md`. Task-level evidence: `tasks.md`. Narrative summary: `implementation-summary.md`.*

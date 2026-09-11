@@ -71,7 +71,7 @@ C5 cross-lineage-contradiction-record  (CONTRADICTS/_conflicts marker; confirm n
 
 C6 progress-heartbeat  (periodic in-lineage liveness event; default 0/configurable until benchmarked)   [independent]
 
-C7 shutdown-summary-heartbeat  ── ALREADY SHIPPED (030 graceful-self-stop, 46812f12a8) — NOT re-built
+C7 shutdown-summary-heartbeat  ── ALREADY SHIPPED (030 graceful-self-stop, ba632c340c) — NOT re-built
 ```
 
 C1 through C6 are implemented in deep-loop-runtime with deterministic tests. The live behavior gates remain **NEEDS-BENCHMARK**: novelty floor/tolerance, fanout `lag_ceiling`, keep-both leverage and heartbeat cadence all need calibration before any default-on behavior.
@@ -94,7 +94,7 @@ C1 through C6 are implemented in deep-loop-runtime with deterministic tests. The
 - [x] C2 backward-safe no-op fixture is byte-identical. The gaming fixture does NOT STOP
 - [x] `node --check` + deep-loop-runtime focused tests green
 - [x] `validate.sh --strict` on this sub-phase passes
-- [x] C7 reconciled as already-shipped (commit `46812f12a8`), not re-implemented
+- [x] C7 reconciled as already-shipped (commit `ba632c340c`), not re-implemented
 
 <!-- /ANCHOR:quality-gates -->
 ---
@@ -153,7 +153,7 @@ Additive, surgical edits to the existing convergence / cost-guards / fan-out mer
 - [x] Unit test: heartbeat fires at cadence on a long lineage. `0` disables (regression-equivalent). A fast lineage emits no spurious heartbeat
 
 ### Phase 5: Verification + DONE reconciliation
-- [x] Reconcile C7 (shutdown-summary) as already shipped (commit `46812f12a8`, `fanout-run.cjs:510-541`), record evidence, do NOT re-implement
+- [x] Reconcile C7 (shutdown-summary) as already shipped (commit `ba632c340c`, `fanout-run.cjs:510-541`), record evidence, do NOT re-implement
 - [x] `node --check` on every touched `.cjs`
 - [x] deep-loop-runtime focused test suite green (capture baseline first per regression-baseline rule)
 - [x] `validate.sh --strict` on this sub-phase
@@ -180,8 +180,8 @@ Additive, surgical edits to the existing convergence / cost-guards / fan-out mer
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| 030 pool gauges (`46812f12a8`) | Internal (shipped) | Green | C3 enforces against the shipped `lag`/`pending`/`failed` gauges. Confirmed present |
-| 030 graceful-self-stop (`46812f12a8`) | Internal (shipped) | Green | C7 IS this work, recorded DONE, not re-built (`fanout-run.cjs:510-541`) |
+| 030 pool gauges (`ba632c340c`) | Internal (shipped) | Green | C3 enforces against the shipped `lag`/`pending`/`failed` gauges. Confirmed present |
+| 030 graceful-self-stop (`ba632c340c`) | Internal (shipped) | Green | C7 IS this work, recorded DONE, not re-built (`fanout-run.cjs:510-541`) |
 | `convergence.cjs` snapshot load/persist (`:338,:390-399`) | Internal | Green | C1's delta substrate. Confirmed present |
 | 001 total-comparator + content-derived-id discipline | Internal | INFERRED call site | C4 ordering. Confirm the exact 001 helper before the tie-break |
 | `coverage-graph-query.ts:221` CONTRADICTS primitive | Internal | Green | C5's write primitive. Confirmed real |
@@ -238,7 +238,7 @@ Phase 5 (Verify + C7 DONE reconciliation)
 | C4 cross-lineage-contradiction (keep-both) | M | reuse the existing content-comparator. Retain both vs first-seen-wins |
 | C5 cross-lineage-contradiction-record | M | CONTRADICTS marker. Unlocated keep-both anchor / dedup-clobber confirm first |
 | C6 progress-heartbeat | S | thin periodic emitter. Default-off until benchmarked |
-| C7 shutdown-summary-heartbeat | S | **already shipped** (`46812f12a8`), zero new effort |
+| C7 shutdown-summary-heartbeat | S | **already shipped** (`ba632c340c`), zero new effort |
 
 > Effort tags are structural inference. Remaining live gates are NEEDS-BENCHMARK (the floor/tolerance, `lag_ceiling`, keep-both leverage and heartbeat cadence need calibration). The cluster is Level 2 (100-499 LOC band) but each candidate is independently small. The risk on C2 (STOP-gate correctness) and C5 (dedup-clobber) is the reason for the adversarial verify gate, not LOC.
 

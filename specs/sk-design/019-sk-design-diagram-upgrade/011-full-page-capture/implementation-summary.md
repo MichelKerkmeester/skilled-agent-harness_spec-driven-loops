@@ -92,12 +92,12 @@ closeout pass.
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skills/sk-design/shared/scripts/render-screenshots.cjs` | Modified (`08ae181702`) | Added `--full-page`, `measureContentHeight`/`measureOnce` with retry, and threaded the measured height into `capture`/`captureOnce` |
-| `.opencode/skills/sk-design/sk-design-diagram/screenshots/diagrams/*.png` (38 files) | Modified (`08ae181702`, re-shot again in `76ad403c52`) | Every form re-captured at its own content height; no crop |
-| `.opencode/skills/sk-design/sk-design-diagram/assets/diagrams/swimlane.html` | Modified (`76ad403c52`) | HANDOFF and REVISE arrow labels moved clear of their connectors; DEPLOY TRIGGER's label removed rather than relocated |
-| `.opencode/skills/sk-design/sk-design-diagram/assets/diagrams/dp-integration.html`, `venn.html`, `starter-full.html` | Modified (`76ad403c52`) | The three focal-balance findings the second CAP-001 run still found open, closed |
-| `.opencode/skills/sk-design/sk-design-diagram/SKILL.md`, `README.md`, `changelog/v1.1.0.0.md` | Modified (`76ad403c52`) | Skill released at 1.2.0.0 |
-| `.opencode/skills/sk-design/sk-design-diagram/benchmark/reports/2026-09-11--manual-testing-playbook--capture-review-2/*` | Created (`6012ec5c7d`) | The second, dated CAP-001 report, runner-generated |
+| `.opencode/skills/sk-design/shared/scripts/render-screenshots.cjs` | Modified (`a69ce8b77c`) | Added `--full-page`, `measureContentHeight`/`measureOnce` with retry, and threaded the measured height into `capture`/`captureOnce` |
+| `.opencode/skills/sk-design/sk-design-diagram/screenshots/diagrams/*.png` (38 files) | Modified (`a69ce8b77c`, re-shot again in `7bf1c3af7d`) | Every form re-captured at its own content height; no crop |
+| `.opencode/skills/sk-design/sk-design-diagram/assets/diagrams/swimlane.html` | Modified (`7bf1c3af7d`) | HANDOFF and REVISE arrow labels moved clear of their connectors; DEPLOY TRIGGER's label removed rather than relocated |
+| `.opencode/skills/sk-design/sk-design-diagram/assets/diagrams/dp-integration.html`, `venn.html`, `starter-full.html` | Modified (`7bf1c3af7d`) | The three focal-balance findings the second CAP-001 run still found open, closed |
+| `.opencode/skills/sk-design/sk-design-diagram/SKILL.md`, `README.md`, `changelog/v1.1.0.0.md` | Modified (`7bf1c3af7d`) | Skill released at 1.2.0.0 |
+| `.opencode/skills/sk-design/sk-design-diagram/benchmark/reports/2026-09-11--manual-testing-playbook--capture-review-2/*` | Created (`5334c913d6`) | The second, dated CAP-001 report, runner-generated |
 | `.opencode/skills/sk-design/sk-design-diagram/manual-testing-playbook/capture-review/capture-review.md` | Not modified | REQ-008's S10 note was never added — see Known Limitations |
 <!-- /ANCHOR:what-built -->
 
@@ -106,7 +106,7 @@ closeout pass.
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Implementation shipped across three commits (`08ae181702`, `76ad403c52`, `6012ec5c7d`), in that
+Implementation shipped across three commits (`a69ce8b77c`, `7bf1c3af7d`, `5334c913d6`), in that
 chronological order: the flag and reshoot landed first, then a CAP-001 rerun against the full-page
 captures found the swimlane label defects and the still-open focal-balance findings, then the fix
 landed, then the report documenting that rerun's findings was committed — so the report on disk
@@ -133,7 +133,7 @@ JSON, Markdown and CSV outputs end to end; and opened three of the regenerated s
 | Measure on a temp copy, capture the pristine original | The probe script has to modify the DOM to report its height back; capturing that modified copy would risk the injected `<meta>` tag or its timing perturbing the very layout being measured. Keeping capture on the untouched original removes that risk entirely rather than arguing it away |
 | Retry measurement the same way capture already retries (amendment) | Not written into REQ-002 or T005. Raised during implementation: a lost Chrome spawn under load is not evidence a page cannot be measured, and without the retry one unlucky spawn would silently fall back to the fixed 900px height — reintroducing a smaller version of the exact bug this phase exists to close. Accepted rather than absorbed silently |
 | Remove DEPLOY TRIGGER's label rather than relocate it | Colour and the legend already said what the label said (a critical handoff, carried by the orange connector). The label was the element doing the colliding with the Approve merge box; deleting it left the diagram correct without inventing a new position that a future edit could re-collide |
-| Close three of the second report's own carried-forward findings inside this phase | `spec.md`'s Out of Scope assigned dp-integration/venn/starter-full's focal-balance fixes to 007. The CAP-001 rerun this phase ran found them still open and one new defect of its own; `76ad403c52` closed all of it rather than leaving a phase-011 report point at open work another phase might not pick up soon. A real deviation from the written scope boundary — named here rather than left silent |
+| Close three of the second report's own carried-forward findings inside this phase | `spec.md`'s Out of Scope assigned dp-integration/venn/starter-full's focal-balance fixes to 007. The CAP-001 rerun this phase ran found them still open and one new defect of its own; `7bf1c3af7d` closed all of it rather than leaving a phase-011 report point at open work another phase might not pick up soon. A real deviation from the written scope boundary — named here rather than left silent |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -148,9 +148,9 @@ JSON, Markdown and CSV outputs end to end; and opened three of the regenerated s
 | `sk-design-chart` byte-identity (REQ-003) | PASS — fresh unflagged render into scratch, `diff -rq` against committed `sk-design-chart/screenshots/` empty (re-run this closeout session; also proved at implementation time by instrumenting every browser spawn: 39 unflagged, 0 measurement calls) |
 | Full corpus reproducibility (REQ-005) | PASS — fresh `--full-page` render of `assets/` into scratch, `diff -rq` against committed `screenshots/diagrams/` and `screenshots/style-reference/` both empty — every committed PNG's height is exactly what today's measurement pipeline derives |
 | Crop signature check | PASS — 0/38 PNGs at exactly 900px; 11/38 exceed 900px (import-drawio 929, import-mermaid 921, loop 964, loop-terminal 1039, org-chart 940, quadrant-consultant 1342, sequence-oauth 1004, sequence-oauth-dark 1004, sequence-oauth-full 1399, starter-full 1561, starter-terminal 979) |
-| `screenshots/examples/`, `screenshots/templates/` absence | PASS — both confirmed absent, though removed by phase 009's merge (`9f03950aba`), ahead of this phase's own commits |
+| `screenshots/examples/`, `screenshots/templates/` absence | PASS — both confirmed absent, though removed by phase 009's merge (`59d5aef373`), ahead of this phase's own commits |
 | Second CAP-001 report read in full | PASS — `benchmark/reports/2026-09-11--manual-testing-playbook--capture-review-2/`; `scenarioId: "CAP-001"`, verdict `FAIL`, reason names all five prior findings; the one `SKIP` (playwright import) carries a non-empty reason with the install command |
-| Visual spot-check (T016) | PASS — `starter-full.png` (1561px) shows header, diagram, legend and all three info cards with an intact footer; `bar.png` (813px) reads cleanly with no wasted space; `swimlane.png` confirms `76ad403c52`'s label fix |
+| Visual spot-check (T016) | PASS — `starter-full.png` (1561px) shows header, diagram, legend and all three info cards with an intact footer; `bar.png` (813px) reads cleanly with no wasted space; `swimlane.png` confirms `7bf1c3af7d`'s label fix |
 | `acceptance-criteria.md` | 8/10 rows `Met` (AC-001–AC-007, AC-009); AC-008 and AC-010 `Unmet` |
 | `tasks.md` | 15/16 tasks `[x]`; T012 undone |
 <!-- /ANCHOR:verification -->
@@ -166,7 +166,7 @@ JSON, Markdown and CSV outputs end to end; and opened three of the regenerated s
    `grep -rln "S10\|full-page" manual-testing-playbook/`, which finds nothing. A future reviewer of
    `CAP-001` has no written pointer to why full-page images matter; the fix is a short addition and
    sits outside this closeout's write authority.
-2. **No third CAP-001 run confirms the swimlane fix.** `76ad403c52` fixed the three label-clearance
+2. **No third CAP-001 run confirms the swimlane fix.** `7bf1c3af7d` fixed the three label-clearance
    defects and the DEPLOY TRIGGER overpaint the second report's own run found, and a visual
    spot-check this session confirms the fix is on disk, but the corrected render has not itself been
    through the judged six-reads process. `benchmark/reports/` still holds only the pre-fix `-2`
@@ -179,8 +179,8 @@ JSON, Markdown and CSV outputs end to end; and opened three of the regenerated s
    field and the report's prose names and addresses all five prior findings by content, but the
    machine-readable supersession link is missing.
 4. **The README's `--full-page` snippet update landed via a different phase's commit.** `T011`/`REQ-009`
-   are satisfied on disk (`sk-design-diagram/README.md:163`), but the line was added in `9a4b60e0ed4`
-   (phase 010's "one bundle" work), not by this phase's own `08ae181702`/`76ad403c52`/`6012ec5c7d`.
+   are satisfied on disk (`sk-design-diagram/README.md:163`), but the line was added in `c2b442f827f`
+   (phase 010's "one bundle" work), not by this phase's own `a69ce8b77c`/`7bf1c3af7d`/`5334c913d6`.
 5. **The measurement-failure fallback path was not exercised with evidence.** `measureOnce` falls
    back to the fixed height on any `catch`, and the code was read to confirm this, but no run this
    phase left a record of actually triggered it — every corpus file measures cleanly today, so the

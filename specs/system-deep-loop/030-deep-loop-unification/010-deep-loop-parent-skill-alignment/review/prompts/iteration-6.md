@@ -39,7 +39,7 @@ FINDINGS ALREADY RECORDED IN EARLIER ITERATIONS (do NOT repeat these; either add
 - [P1/traceability] ADR-003 status 'Accepted (executed)' claims completion but no feature-catalog removal occurred (.opencode/specs/skilled-agent-orchestration/119-parent-skill-native-invocability/002-deep-loop-alignment/decision-record.md:line 199 (ADR-003 Status) vs lines 260-265 (Implementation) vs plan.md:132)
 - [P1/traceability] implementation-summary.md internally contradicts itself on R3/ADR-003 outcome (.opencode/specs/skilled-agent-orchestration/119-parent-skill-native-invocability/002-deep-loop-alignment/implementation-summary.md:line 54 vs line 78)
 - [P1/traceability] deep-loop-workflows graph-metadata.json carries stale pre-rename source_docs path that does not resolve (.opencode/skills/deep-loop-workflows/graph-metadata.json:line 160 (source_docs) vs line 128 (key_files))
-- [P1/traceability] plan.md was never reconciled with the execution — all phases remain unchecked post-execution (.opencode/specs/skilled-agent-orchestration/119-parent-skill-native-invocability/002-deep-loop-alignment/plan.md:lines 123-133 (phase checkboxes) vs commit b0cbbe7b67)
+- [P1/traceability] plan.md was never reconciled with the execution — all phases remain unchecked post-execution (.opencode/specs/skilled-agent-orchestration/119-parent-skill-native-invocability/002-deep-loop-alignment/plan.md:lines 123-133 (phase checkboxes) vs commit 8ef0455117)
 
 RULES:
 - READ-ONLY. Do not modify any file.

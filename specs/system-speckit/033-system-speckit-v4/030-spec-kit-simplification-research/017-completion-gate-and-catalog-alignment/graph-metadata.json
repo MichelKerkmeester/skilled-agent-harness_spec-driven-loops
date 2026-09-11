@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Child 011 aligned the command assets to the acceptance-criteria closure but the mechanical backstop never learned it: `check-completion.sh` read the checklist only, so the sentinel could pass a packet whose criteria were all `Unmet`",
     "created_at": "2026-09-07T07:19:38.329Z",
-    "last_save_at": "2026-09-08T15:47:14.338Z",
+    "last_save_at": "2026-09-11T16:42:48.241Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,12 +221,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9e3b15e9407f497a71e9761587b3ab9b4c4654eebafda0aa3b137f940518790f",
+    "source_fingerprint": "sha256:eff099eb32b1cacb87adb43d54df8ae2fae5934efe57935d19b679c8f25000df",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "65cbac2e6a9e6f7277e98663a7c5fe371b179ff162ee9ff462ad73141e6648fe",
+      "spec.md": "f6c49b2b48be4c0223f98db428a25d080cf959e1c14c1c945aa1a135730c325a",
       "plan.md": "2ba9ffa67b00ce3ff1f0e22429276225de427dd7db21b93776edd90db3e3fbfd",
-      "tasks.md": "ac28d1b1652ea43ab18c1971affc825c0b49c24c4e6d29f35e8182f5dfdad860",
+      "tasks.md": "f4ad5201cdbd30f2a79073fac96cbeb1315b7948f9ff7eca502db45ef6fa3788",
       "implementation-summary.md": "f28dafdde185182d82a9025a3f47ab20d775533ba54ef10a1d06593333a03aa6"
     },
     "last_active_child_id": null,

@@ -12,7 +12,7 @@ _memory:
     packet_pointer: "sk-design/014-template-conformance/010-motion-merge"
     last_updated_at: "2026-07-27T19:00:00Z"
     last_updated_by: "spec-reconciler"
-    recent_action: "Recorded the shipped motion merge c1981d2b91 and its post-merge residue"
+    recent_action: "Recorded the shipped motion merge c52071edb6 and its post-merge residue"
     next_safe_action: "Clear the 4 remaining design-motion path references in 3 hub files"
     blockers: []
     key_files:
@@ -42,7 +42,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 010-motion-merge |
-| **Completed** | 2026-07-27 (commit `c1981d2b91`) |
+| **Completed** | 2026-07-27 (commit `c52071edb6`) |
 | **Level** | 2 |
 | **Status** | Complete — implementation shipped and verification closed |
 | **Completion Pct** | 95% |
@@ -111,11 +111,11 @@ Nine, resolved with the convention the foundations merge established — a `moti
 
 ### Cost
 
-`design-interface/SKILL.md` came out of the merge at **5,234 words against a 5,000-word hard cap** (`package_skill.py:95`, `MAX_SKILL_MD_WORDS`) — over the limit as committed. A follow-up trim in `140fdab23d` (`+6/-15`) brought it to **4,991 words: nine words of headroom**. The trim bought no clarity; it existed purely to clear the cap. `package_skill.py --check` now returns `Result: PASS` with an advisory warning that 4,991 is well past the 3,000-word recommendation.
+`design-interface/SKILL.md` came out of the merge at **5,234 words against a 5,000-word hard cap** (`package_skill.py:95`, `MAX_SKILL_MD_WORDS`) — over the limit as committed. A follow-up trim in `15eaa6acf9` (`+6/-15`) brought it to **4,991 words: nine words of headroom**. The trim bought no clarity; it existed purely to clear the cap. `package_skill.py --check` now returns `Result: PASS` with an advisory warning that 4,991 is well past the 3,000-word recommendation.
 
 ### Files Changed
 
-92 files, `+759/-2390`, per `git show --stat c1981d2b91`. Six of those files are `009-aesthetics-retirement` and `014-template-conformance` spec docs reconciled in the same commit; the rest is the merge.
+92 files, `+759/-2390`, per `git show --stat c52071edb6`. Six of those files are `009-aesthetics-retirement` and `014-template-conformance` spec docs reconciled in the same commit; the rest is the merge.
 
 | Area | Action | Notes |
 |------|--------|-------|
@@ -139,7 +139,7 @@ Nine, resolved with the convention the foundations merge established — a `moti
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-As a single commit, `c1981d2b91` ("refactor(sk-design): merge the motion mode into interface"), reusing the foundations-merge sequence from `b217d74b819` rather than inventing a fresh one — with one step added that foundations never needed, because foundations was declarative and motion was not.
+As a single commit, `c52071edb6` ("refactor(sk-design): merge the motion mode into interface"), reusing the foundations-merge sequence from `562074ad7c5` rather than inventing a fresh one — with one step added that foundations never needed, because foundations was declarative and motion was not.
 
 The implementing session reported: contract 8/8, surface 7/7, surface checker zero invalid zero drift, parent-hub invariants clean, procedure-card schema pass, transport 37/37, relocated corpus 70/70, and the styles library byte-identical at 7,812 files.
 
@@ -149,7 +149,7 @@ Re-run in this reconciliation against the current working tree: `design-command-
 
 Two things the merge itself missed, found afterwards:
 
-1. **Sibling-discriminator blocks still routed to a deleted command.** `.opencode/commands/interface/design.md` and `design-reference.md` each carried a "Prefer `/interface:motion` when the request is temporal design" bullet after the command was gone. Fixed later, in `7bc93174d7`: `design.md` now reads "This command owns temporal design directly: animation choreography, transitions, micro-interactions, and reduced-motion behavior, via the `motion-*` task lanes", and `design-reference.md` folds temporal design into its existing `/interface:design` row instead of keeping a separate line.
+1. **Sibling-discriminator blocks still routed to a deleted command.** `.opencode/commands/interface/design.md` and `design-reference.md` each carried a "Prefer `/interface:motion` when the request is temporal design" bullet after the command was gone. Fixed later, in `2e240ac45f`: `design.md` now reads "This command owns temporal design directly: animation choreography, transitions, micro-interactions, and reduced-motion behavior, via the `motion-*` task lanes", and `design-reference.md` folds temporal design into its existing `/interface:design` row instead of keeping a separate line.
 2. **Four stale `design-motion/` path references survive.** See Known Limitations.
 <!-- /ANCHOR:how-delivered -->
 
@@ -167,7 +167,7 @@ Two things the merge itself missed, found afterwards:
 | Delete the motion `changelog/` rather than suffix it | A retired mode's release history is packet ceremony a merged sub-area does not carry. Deviates from the plan's `v1.0.0.0-motion.md` proposal |
 | Keep `'motion'` in `ALLOWED_INFLUENCE_AXES` | It names a design axis, not a mode id. Collapsing it with `PAIRED_MODES` would have removed a legitimate influence dimension from the Open Design transport |
 | Trim `SKILL.md` to clear the word cap, nothing more | The merge left it at 5,234 words against a 5,000 hard cap. The follow-up trim removed 243 words to reach 4,991 — a cap-clearing edit, not an editorial improvement |
-| Reuse `b217d74b819`'s sequence | Proven mode-into-mode merge in this hub; re-deriving it risks missing a step |
+| Reuse `562074ad7c5`'s sequence | Proven mode-into-mode merge in this hub; re-deriving it risks missing a step |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -199,7 +199,7 @@ Two things the merge itself missed, found afterwards:
 3. **`shared/register.md` still describes motion as a mode.** Lines 28 and 76 refer to "each mode (interface, motion, md-generator)" and "**motion** reads the motion-budget dial". Stale after this merge. Not counted in item 1 because the token there is `motion`, not `design-motion`, and a bare-`motion` sweep would flood with legitimate design-axis uses. Outside this packet's declared scope; recorded here so it is not lost.
 4. **`SKILL.md` sits nine words under a hard cap.** Any future addition to `design-interface/SKILL.md` will breach 5,000 words and fail `package_skill.py --check`. The next contributor inherits a forced trim.
 5. **`graph-metadata.json` derives `status: in_progress`, and that is correct.** The derivation reads checklist completion, and CHK-060 is open. Every functional requirement of this merge is met and shipped; one P0 verification sweep is not. The two statements are both true and the metadata is not stale.
-6. **Reverting this commit would also revert `009`'s spec docs.** `c1981d2b91` carries six `009-aesthetics-retirement` and `014-template-conformance` doc files alongside the merge. The skill-tree change is cleanly separable from `011`, but a blanket `git revert` is not as surgical as CHK-061 implies.
+6. **Reverting this commit would also revert `009`'s spec docs.** `c52071edb6` carries six `009-aesthetics-retirement` and `014-template-conformance` doc files alongside the merge. The skill-tree change is cleanly separable from `011`, but a blanket `git revert` is not as surgical as CHK-061 implies.
 <!-- /ANCHOR:limitations -->
 
 ---
@@ -213,7 +213,7 @@ Two things the merge itself missed, found afterwards:
 | Add "5-6 motion intents" | Six | The retired mode's capability split cleanly into six lanes |
 | Resolve the motion `changelog/` collision as `v1.0.0.0-motion.md` | Deleted it | A retired mode's release history is ceremony the merged sub-area does not carry |
 | `rg -n "design-motion"` returns nothing | 4 occurrences in 3 files remain | Sweep incomplete; CHK-060 left open rather than reinterpreted |
-| Sibling-discriminator blocks updated with the merge | Corrected afterwards in `7bc93174d7` | Post-merge residue the merge missed |
-| `SKILL.md` sized within budget at merge time | 5,234 words at `c1981d2b91`, over the 5,000 cap; trimmed to 4,991 in `140fdab23d` | The merge shipped a `SKILL.md` that would have failed `package_skill.py --check`; the follow-up trim was corrective, not editorial |
+| Sibling-discriminator blocks updated with the merge | Corrected afterwards in `2e240ac45f` | Post-merge residue the merge missed |
+| `SKILL.md` sized within budget at merge time | 5,234 words at `c52071edb6`, over the 5,000 cap; trimmed to 4,991 in `15eaa6acf9` | The merge shipped a `SKILL.md` that would have failed `package_skill.py --check`; the follow-up trim was corrective, not editorial |
 
 <!-- /ANCHOR:deviations -->

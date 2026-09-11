@@ -4,7 +4,7 @@ trigger_phrases: []
 ---
 # Broaden Round — gpt-5.5 Deep Review (Synthesis)
 
-Independent broaden-scope review beyond the 017-021 fixes, run as 30 gpt-5.5-fast xhigh passes across three code-area scopes (10 each), then triaged by 8 refute-first verifiers and remediated. Remediation committed at `55b977951d`.
+Independent broaden-scope review beyond the 017-021 fixes, run as 30 gpt-5.5-fast xhigh passes across three code-area scopes (10 each), then triaged by 8 refute-first verifiers and remediated. Remediation committed at `3a86923dee`.
 
 ## Scopes (10 passes each, ~6-wide parallel)
 - **A — Search & retrieval** (`lib/search/*`: pipeline, fusion, confidence, calibration, retrieval, rescue)
@@ -16,7 +16,7 @@ Independent broaden-scope review beyond the 017-021 fixes, run as 30 gpt-5.5-fas
 
 ## Disposition
 
-### Fixed (9) — committed `55b977951d`, tsc clean, 448 affected tests pass + new P0 test, 0 new failures vs baseline
+### Fixed (9) — committed `3a86923dee`, tsc clean, 448 affected tests pass + new P0 test, 0 new failures vs baseline
 | # | Finding | Fix |
 |---|---|---|
 | 1 (P0) | retrieval-rescue injects unscoped Stage-2 backfill/sibling rows after Stage-1 scoping (default-on cross-tenant/cross-scope leak; lone injection path skipping the re-filter the constitutional + community paths perform) | re-apply governance + spec_folder prefix boundary to injected rows (`retrieval-rescue.ts`, `stage2-fusion.ts`) + regression test |

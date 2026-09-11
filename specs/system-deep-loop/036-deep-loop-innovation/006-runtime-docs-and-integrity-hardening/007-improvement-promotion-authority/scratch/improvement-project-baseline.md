@@ -8,15 +8,15 @@ Captured 2026-08-18. The landed work is additive-dark, so the pre-edit side was
 obtained by checking out the pre-landing commit in a throwaway worktree and
 running the same command there — not by relabelling a current run as a baseline.
 
-- **Pre-edit SHA**: `d0d8623ddf` — the parent of `0d1827eef50`, the first
+- **Pre-edit SHA**: `de9ce00df4` — the parent of `9d258a879ef`, the first
   promotion-authority landing commit.
-- **Post-landing SHA**: `df4259a4a2` (branch `worktrees/019-036-open-item-closeout`).
+- **Post-landing SHA**: `7e5eb8de66` (branch `worktrees/019-036-open-item-closeout`).
 - **Command**: `vitest run --no-coverage --config ./vitest.config.mjs`, run from
   `deep-improvement/scripts/`.
 
 ## Full improvement project
 
-| | Pre-edit `d0d8623ddf` | Post-landing | Delta |
+| | Pre-edit `de9ce00df4` | Post-landing | Delta |
 |---|---|---|---|
 | Files discovered | 48 | 53 | +5 |
 | Files failed | 17 | **13** | **-4** |

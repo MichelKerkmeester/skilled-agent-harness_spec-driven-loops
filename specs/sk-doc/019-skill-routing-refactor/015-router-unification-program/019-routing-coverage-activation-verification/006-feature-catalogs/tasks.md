@@ -37,7 +37,7 @@ contextType: "implementation"
 - [x] T003 Resolve and record the topology decision — Option A (6 root catalogs + 7 leaves) or Option B (centralized `system-skill-advisor` entry) — with rationale. (REQ-001; `implementation-summary.md`)
 - [x] T004 Pin the exact phase-gated wording block against all 7 hubs' current `SKILL.md` compiled-routing directives. (REQ-003; per-hub `SKILL.md`)
 
-**Evidence**: `002`/`003` are committed on this branch at the durable `.opencode/bin/**` paths (git log `4153cbebd8`, `a1cdb65d90`; their own `implementation-summary.md`s are stale "Planned" docs — code is ahead of docs, confirmed by direct inspection, not assumed). Inventory re-verify matched spec.md's snapshot exactly (only `sk-design` had a root catalog). Topology: **Option A**, recorded below. Wording pinned: all 7 hubs share one identical (hub-name-parametrized) `SKILL.md` directive block, read directly from source before authoring each leaf.
+**Evidence**: `002`/`003` are committed on this branch at the durable `.opencode/bin/**` paths (git log `6b81fde29e`, `c926b25506`; their own `implementation-summary.md`s are stale "Planned" docs — code is ahead of docs, confirmed by direct inspection, not assumed). Inventory re-verify matched spec.md's snapshot exactly (only `sk-design` had a root catalog). Topology: **Option A**, recorded below. Wording pinned: all 7 hubs share one identical (hub-name-parametrized) `SKILL.md` directive block, read directly from source before authoring each leaf.
 <!-- /ANCHOR:phase-1 -->
 
 ---

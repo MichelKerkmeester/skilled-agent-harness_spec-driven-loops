@@ -124,7 +124,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: the landed tree fails a gate the branch passed.
-- **Procedure**: `git update-ref` v4 and main back to `5d222c0032` and `4c1fb6b3d5` respectively; nothing was pushed.
+- **Procedure**: `git update-ref` v4 and main back to `1704c039c1` and `4c1fb6b3d5` respectively; nothing was pushed.
 <!-- /ANCHOR:rollback -->
 
 ---

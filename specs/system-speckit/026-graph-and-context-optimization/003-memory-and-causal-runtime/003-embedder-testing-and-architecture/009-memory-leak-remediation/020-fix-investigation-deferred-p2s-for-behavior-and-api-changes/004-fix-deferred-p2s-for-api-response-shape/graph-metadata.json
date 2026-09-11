@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Five deferred P2 findings remain in the `sidecar-client.ts` API and response-shape surface",
     "created_at": "2026-05-26T16:49:55.587Z",
-    "last_save_at": "2026-08-30T15:39:31.486Z",
+    "last_save_at": "2026-09-11T16:42:32.936Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,12 +206,12 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5b40ff9d1296b598830f2639aeeafee747faf9ab4f09db2f98e91240b176eca8",
+    "source_fingerprint": "sha256:f0c176ea193c3568cd499d87816a61277a6d46cab4fe560603cda6e4b002792a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0afc4e7e8e1530fa381a1cbc29750be8b38103f52877719678f82c152c4d92d9",
-      "plan.md": "a9722d3f59fbbe9b34cfd5702f50948037d62284b097ef158b6f1c34b402ac3e",
-      "tasks.md": "21372407601713748bcb0156e6297dd7099408b20b69b8278ab7528016d33fce",
+      "spec.md": "055f2db57560bc47259984bf42426bd7c37b559e0661c4ec90a7e93c7ce936f0",
+      "plan.md": "55554d92cc32edde810000dc69a01282b94f2ed9bd3f313b4cca99bd612abe07",
+      "tasks.md": "83ae0a5c9d6d4b19f6c482e2b3d7f4a5484d027dd6cee87d59d6865ac1943185",
       "decision-record.md": "a25c7ef0203dd284adde65385fbc911048c48f72826badf45a6b107a6033ce12",
       "implementation-summary.md": "e12e58c4e11b1504fef6352f73e48ff708544c8c2ca08fb8b6255120303fb646"
     },

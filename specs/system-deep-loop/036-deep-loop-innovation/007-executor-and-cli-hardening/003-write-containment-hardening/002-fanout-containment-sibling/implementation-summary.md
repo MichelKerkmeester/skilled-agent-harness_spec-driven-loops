@@ -66,9 +66,9 @@ The worker computes `siblingLineageDirs` from every other lineage label and fold
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `runtime/lib/deep-loop/write-containment.ts` | Modified | Added `unattributableDirs` option, repo-relative resolution, and exclusion in snapshot + detect (`a3c9f03c51`, `568aa17a40`) |
-| `runtime/scripts/fanout-run.cjs` | Modified | Compute `siblingLineageDirs`/`containmentUnattributableDirs`; pass on snapshot and enforce (`a3c9f03c51`, `568aa17a40`) |
-| `runtime/tests/unit/write-containment.vitest.ts` | Modified | Concurrent-sibling regression block, 4 cases (`568aa17a40`) |
+| `runtime/lib/deep-loop/write-containment.ts` | Modified | Added `unattributableDirs` option, repo-relative resolution, and exclusion in snapshot + detect (`29f6a06058`, `0947953081`) |
+| `runtime/scripts/fanout-run.cjs` | Modified | Compute `siblingLineageDirs`/`containmentUnattributableDirs`; pass on snapshot and enforce (`29f6a06058`, `0947953081`) |
+| `runtime/tests/unit/write-containment.vitest.ts` | Modified | Concurrent-sibling regression block, 4 cases (`0947953081`) |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -76,7 +76,7 @@ The worker computes `siblingLineageDirs` from every other lineage label and fold
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The fix landed in two commits: `a3c9f03c51` introduced the sibling-exclusion option and worker wiring, and `568aa17a40` restored the preserve-never-delete behavior and made containment uniform across dispatch kinds. Verification is the `write-containment.vitest.ts` suite, which adds a dedicated `concurrent sibling lineages` block asserting that a sibling write is not reported, that a completed sibling's `research.md` survives a leaf tripping containment, that genuine out-of-scope repository writes are still caught, and that a non-repo-relative exclusion is ignored. The full suite runs green (`vitest run tests/unit/write-containment.vitest.ts` → 22/22 passing).
+The fix landed in two commits: `29f6a06058` introduced the sibling-exclusion option and worker wiring, and `0947953081` restored the preserve-never-delete behavior and made containment uniform across dispatch kinds. Verification is the `write-containment.vitest.ts` suite, which adds a dedicated `concurrent sibling lineages` block asserting that a sibling write is not reported, that a completed sibling's `research.md` survives a leaf tripping containment, that genuine out-of-scope repository writes are still caught, and that a non-repo-relative exclusion is ignored. The full suite runs green (`vitest run tests/unit/write-containment.vitest.ts` → 22/22 passing).
 <!-- /ANCHOR:how-delivered -->
 
 ---

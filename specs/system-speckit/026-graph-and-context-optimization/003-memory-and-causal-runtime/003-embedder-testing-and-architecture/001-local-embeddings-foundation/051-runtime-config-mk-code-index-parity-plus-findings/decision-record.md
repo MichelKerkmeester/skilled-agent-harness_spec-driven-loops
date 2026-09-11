@@ -48,7 +48,7 @@ _memory:
 <!-- ANCHOR:adr-001-context -->
 ### Context
 
-The rename commit present locally is `50cfabb6e2 fix(010): rename MCP server system_code_graph -> mk-code-index`. Its body states that the runtime server is now `mk-code-index`, the client config key is `mk_code_index`, and tool names such as `code_graph_scan` remain unchanged.
+The rename commit present locally is `a0c46439dd fix(010): rename MCP server system_code_graph -> mk-code-index`. Its body states that the runtime server is now `mk-code-index`, the client config key is `mk_code_index`, and tool names such as `code_graph_scan` remain unchanged.
 
 ### Constraints
 

@@ -132,7 +132,7 @@ The implementation reused the already-landed default-off RRF spine instead of ch
 2. **C1 still needs live data evidence.** This task did not query the live SQLite graph or metadata arrays because live checks were out of scope.
 3. **QCR's taxonomy and multipliers need benchmark validation.** The current values are an opt-in seam, not a calibrated default.
 4. **C6 needs benchmark/recall evidence before any default flip.** The code proves deterministic bounded rerank behavior, not a live routing-quality improvement.
-5. **Committed at `657a0f6a3e`.** Evidence is pinned to command output and the build commit diff (conflict-rerank fusion + semantic-shadow lane + conflict-query-rerank vitest).
+5. **Committed at `a4bcf4bf16`.** Evidence is pinned to command output and the build commit diff (conflict-rerank fusion + semantic-shadow lane + conflict-query-rerank vitest).
 <!-- /ANCHOR:limitations -->
 
 ---

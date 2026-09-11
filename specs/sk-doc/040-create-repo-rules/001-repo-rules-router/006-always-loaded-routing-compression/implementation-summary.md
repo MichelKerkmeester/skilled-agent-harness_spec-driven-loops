@@ -59,7 +59,7 @@ defects**, not bloat.
 ### A command dead for six weeks
 
 The Quick Reference table named `/deep:ai-system-improvement`. That command was deleted on
-2026-07-15 by `48c3b2e8374`, and `AGENTS.md` had been its only live reference outside
+2026-07-15 by `f9f8a7e548c`, and `AGENTS.md` had been its only live reference outside
 `specs/` ever since.
 
 ### A search table naming tools that do not exist

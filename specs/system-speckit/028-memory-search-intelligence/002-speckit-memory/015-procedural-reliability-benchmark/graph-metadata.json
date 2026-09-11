@@ -46,16 +46,7 @@
       "tasks.md",
       "decision-record.md",
       "implementation-summary.md",
-      "lib/feedback/feedback-ledger.ts",
-      "lib/cognitive/adaptive-ranking.ts",
-      "handlers/checkpoints.ts",
-      "tests/feedback-ledger.vitest.ts",
-      "tests/adaptive-ranking.vitest.ts",
-      "tests/search-flags.vitest.ts",
-      "tests/flag-ceiling.vitest.ts",
-      "handlers/memory-save.ts",
-      "lib/storage/causal-edges.ts",
-      "lib/search/vector-index-schema.ts"
+      "tests/flag-ceiling.vitest.ts"
     ],
     "entities": [
       {
@@ -89,63 +80,9 @@
         "source": "derived"
       },
       {
-        "name": "feedback-ledger.ts",
-        "kind": "code",
-        "path": "lib/feedback/feedback-ledger.ts",
-        "source": "derived"
-      },
-      {
-        "name": "adaptive-ranking.ts",
-        "kind": "code",
-        "path": "lib/cognitive/adaptive-ranking.ts",
-        "source": "derived"
-      },
-      {
-        "name": "checkpoints.ts",
-        "kind": "code",
-        "path": "handlers/checkpoints.ts",
-        "source": "derived"
-      },
-      {
-        "name": "feedback-ledger.vitest.ts",
-        "kind": "test",
-        "path": "tests/feedback-ledger.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "adaptive-ranking.vitest.ts",
-        "kind": "test",
-        "path": "tests/adaptive-ranking.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "search-flags.vitest.ts",
-        "kind": "test",
-        "path": "tests/search-flags.vitest.ts",
-        "source": "derived"
-      },
-      {
         "name": "flag-ceiling.vitest.ts",
         "kind": "test",
         "path": "tests/flag-ceiling.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-save.ts",
-        "kind": "code",
-        "path": "handlers/memory-save.ts",
-        "source": "derived"
-      },
-      {
-        "name": "causal-edges.ts",
-        "kind": "code",
-        "path": "lib/storage/causal-edges.ts",
-        "source": "derived"
-      },
-      {
-        "name": "vector-index-schema.ts",
-        "kind": "code",
-        "path": "lib/search/vector-index-schema.ts",
         "source": "derived"
       },
       {
@@ -201,11 +138,65 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Internal Memory",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Milestone Reference",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "commit",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Alternatives Considered",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Why Chosen",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The Spec-Kit Memory MCP treats `procedural` as a decay-only classification label, there is no track-record machinery on a stored procedure [CONFIRMED: `memory-types.ts:93-98` (decay-only label, no success/failure counters), `research/iterations/iteration-015.md:9`]",
     "created_at": "2026-06-19T05:40:37.447Z",
-    "last_save_at": "2026-08-30T15:39:35.002Z",
+    "last_save_at": "2026-09-11T16:42:41.979Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,11 +206,11 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:929d9fc7b5fd8c7192a0fbb693c404ee285653890937cdb4b333c2b68b9ecd47",
+    "source_fingerprint": "sha256:3c669fce460ba246a57b961e12c132163c0ff9ad44eebfd2ceee6c9393f9f97a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "60e468c76dc3bb7df010abab7e69902d8f092d87ea0576545f39d24aa9ce7e8c",
-      "plan.md": "a3284aa1c13abf028bdb5534a183b29ec1c5a6fa5671794d6575c3cb13bd75b8",
+      "plan.md": "1a354b590e10d0cd11f034fd7919ced045daaaf2d98d1d1d64ab80a31af7c604",
       "tasks.md": "10c78e5884bde42b930ea35c3fd7a85c58c88a6993bc906104ba291cab727701",
       "decision-record.md": "4c278c4150a17133d165441ffc3c612105dc826e52c27e3f71e33796563cd2c9",
       "implementation-summary.md": "fda36632a2b38a175d460ad50d7d56345c3ab609e17cb58c14d59573f5be984e"

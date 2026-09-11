@@ -45,10 +45,7 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      "handlers/save/README.md",
-      "lib/search/search-flags.ts",
-      "handlers/save/post-insert.ts",
-      "handlers/memory-save.ts"
+      "handlers/save/README.md"
     ],
     "entities": [
       {
@@ -79,24 +76,6 @@
         "name": "README.md",
         "kind": "doc",
         "path": "handlers/save/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "search-flags.ts",
-        "kind": "code",
-        "path": "lib/search/search-flags.ts",
-        "source": "derived"
-      },
-      {
-        "name": "post-insert.ts",
-        "kind": "code",
-        "path": "handlers/save/post-insert.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-save.ts",
-        "kind": "code",
-        "path": "handlers/memory-save.ts",
         "source": "derived"
       },
       {
@@ -194,11 +173,29 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`handlers/save/README.md` predates packet 017's shipped behavior",
     "created_at": "2026-06-04T10:50:21.307Z",
-    "last_save_at": "2026-08-30T15:39:31.964Z",
+    "last_save_at": "2026-09-11T16:42:34.383Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a4fec93c950fe7b39c17e05662f4331216f132e2a9d6959272d239dbeae05f6a",
+    "source_fingerprint": "sha256:7d415e50c5dc374153c30a87fd35a92dc4b68f92436bc0788868032c2bb48bac",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3fb7025028b9782fb01467f9af17b4a46059c9a7648b55961bc8ccb2d03fa2e6",
       "plan.md": "a7c18bd813b0082e47d72d26da1df13a6781e655c8159ae006b949420c0b9f8d",
       "tasks.md": "cff24a7dba33dbf7674003079c77e0d6822eb658a3594cbaef63c280b5d961aa",
-      "implementation-summary.md": "e045114306821769543666f49d8309400bc81825825ac46082a9e60b9bab57d7"
+      "implementation-summary.md": "f40e359e221208e2f24348102c40931a6f53b9f5b83a64e918083050720e125d"
     },
     "last_active_child_id": null,
     "last_active_at": null

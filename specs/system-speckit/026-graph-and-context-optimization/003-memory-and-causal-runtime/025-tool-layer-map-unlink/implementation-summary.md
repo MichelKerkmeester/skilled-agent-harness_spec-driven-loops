@@ -50,7 +50,7 @@ _memory:
 ## What Was Built
 
 The 7-layer tool architecture now knows about `memory_causal_unlink`. The tool was registered
-as an MCP tool (commit `deee30b319`) with the description prefix `[L6:Analysis]`, but its name
+as an MCP tool (commit `f6f95062ed`) with the description prefix `[L6:Analysis]`, but its name
 was never added to any layer's `tools` array. Because `TOOL_LAYER_MAP` is derived by iterating
 those arrays, the tool had no layer entry, and two parity tests failed on the clean baseline.
 

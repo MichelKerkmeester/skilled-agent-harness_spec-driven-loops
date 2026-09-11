@@ -45,7 +45,7 @@ The commit message captured the full Setup A profile (EmbeddingGemma 768-dim hf-
 |-------|---------|--------|
 | Commit message authored | `wc -c scratch/commit-message.txt` | Present. Commit body exceeds 1 KB with full sub-phase coverage. |
 | Post-merge checklist authored | `ls scratch/post-merge-checks.md` | Present. Eight verification steps documented. |
-| Files shipped in bundled commit | `git log --oneline -- scratch/commit-message.txt` | `5a9fb96e61 feat(embeddings,014): migrate from Voyage to local Setup A` |
+| Files shipped in bundled commit | `git log --oneline -- scratch/commit-message.txt` | `601cc1d9b1 feat(embeddings,014): migrate from Voyage to local Setup A` |
 | Deep-review state captured | `review/deep-review-state.jsonl` present | One iteration recorded. |
 
 ### Files Changed

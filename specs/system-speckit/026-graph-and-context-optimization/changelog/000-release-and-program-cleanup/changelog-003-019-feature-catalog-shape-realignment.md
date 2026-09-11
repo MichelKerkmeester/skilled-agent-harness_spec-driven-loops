@@ -24,7 +24,7 @@ contextType: "implementation"
 
 Per-feature catalog snippets across the six real catalog roots had drifted from the canonical sk-doc four-section shape. The `skill_advisor` catalog used PURPOSE, TEST COVERAGE and RELATED headings. The `code_graph` catalog used SURFACE, TRIGGER, CLASS, CAVEATS and CROSS-REFS headings. The `sk-deep-review` catalog had redundant per-file TOC blocks. Additional lint drift was found in the `system-spec-kit` catalog beyond the original inventory.
 
-All four affected catalog roots were brought to the canonical OVERVIEW, CURRENT REALITY, SOURCE FILES and SOURCE METADATA shape in a single commit (c2b99f5a3d). The realignment was content-preserving: legacy sections were renamed or moved, not discarded. A six-root drift audit confirmed zero DRIFT lines after the work landed.
+All four affected catalog roots were brought to the canonical OVERVIEW, CURRENT REALITY, SOURCE FILES and SOURCE METADATA shape in a single commit (e81b2266c7). The realignment was content-preserving: legacy sections were renamed or moved, not discarded. A six-root drift audit confirmed zero DRIFT lines after the work landed.
 
 ### Added
 

@@ -15,7 +15,7 @@ Reducer-generated observability surface for the active review packet.
 <!-- /ANCHOR:overview -->
 <!-- ANCHOR:status -->
 ## 2. STATUS
-- Review Target: 008 deep-skill doc-evolution ship — the 5 deep-* skills (deep-loop-runtime, deep-research, deep-review, deep-ai-council, deep-agent-improvement) docs as committed in 5f3e0a2f53 (track)
+- Review Target: 008 deep-skill doc-evolution ship — the 5 deep-* skills (deep-loop-runtime, deep-research, deep-review, deep-ai-council, deep-agent-improvement) docs as committed in fb8d560443 (track)
 - Started: 2026-05-25T19:05:00Z
 - Status: COMPLETE
 - Iteration: 4 of 5

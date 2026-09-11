@@ -9,7 +9,7 @@ trigger_phrases: []
 - **Mode:** review (read-only — findings only, no code modification)
 - **Dimension:** inventory (map-building pass; no findings required)
 - **Budget profile:** scan (target 9-11 tool calls)
-- **Review target:** git range `a9e9bdb0a5^..HEAD` (HEAD `12de3d3a7e`, base `f05bdac2cf`)
+- **Review target:** git range `fd67ede05f^..HEAD` (HEAD `3923a65db1`, base `a61a3f3b85`)
 - **Session:** `2026-06-05T11:16:17Z` (generation 1, lineageMode new)
 
 ## Files Reviewed
@@ -53,7 +53,7 @@ This is an inventory enumeration, not a content review. Tool actions used:
 ## Traceability Checks
 - **Iteration number:** JSONL had 1 line (`type:"config"`, 0 `type:"iteration"`). Derived iteration = 1. Matches dispatch. No mismatch.
 - **Lineage:** sessionId `2026-06-05T11:16:17Z`, generation 1, lineageMode new, releaseReadinessState in-progress — consistent across config.json + state.jsonl config line + registry.
-- **Range integrity verified:** `git rev-parse` confirms HEAD `12de3d3a7e` and base `a9e9bdb0a5^` = `f05bdac2cf`.
+- **Range integrity verified:** `git rev-parse` confirms HEAD `3923a65db1` and base `fd67ede05f^` = `a61a3f3b85`.
 
 ## Integration Evidence
 - None inspected this pass beyond the diff surface. Socket-server copies verified by line-count + numstat only (see drift note); deferred to A1 content pass.

@@ -12,7 +12,7 @@ Spec folder: `specs/system-spec-kit/027-xce-research-based-refinement` (pre-appr
 
 ## CONTEXT
 - 027 Phase 008/001-aggregator planned a bounded feedback aggregator reading SQLite `feedback_events` from a feedback ledger.
-- The 2026-06-05 audit said: `batch-learning.ts:195-241` ALREADY does overlapping bounded aggregation (`aggregateEvents`/`weightedScore`; `f05bdac2cf` refined its formula) → 001 should REUSE/EXTRACT, not duplicate. Also `STATE_LIMITS` (needed by 008/004 retention reducer) is NOT exported — only `__testables`. VERIFY both against live code.
+- The 2026-06-05 audit said: `batch-learning.ts:195-241` ALREADY does overlapping bounded aggregation (`aggregateEvents`/`weightedScore`; `a61a3f3b85` refined its formula) → 001 should REUSE/EXTRACT, not duplicate. Also `STATE_LIMITS` (needed by 008/004 retention reducer) is NOT exported — only `__testables`. VERIFY both against live code.
 - Reminder: iteration 061 already determined 008/002-coco-rerank-consumer is DELETE and the surviving family is 001 → {003,004} → 005. Do NOT re-cover the coco purge.
 
 ## FOCUS — answer only this

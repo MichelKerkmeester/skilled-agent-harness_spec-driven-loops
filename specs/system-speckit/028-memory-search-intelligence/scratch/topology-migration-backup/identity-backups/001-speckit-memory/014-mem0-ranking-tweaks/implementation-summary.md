@@ -33,7 +33,7 @@ _memory:
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core + level2-verify | v2.2 -->
 
-> **Status: PARTIAL IMPLEMENTATION.** Candidate 4 (declarative regex entity config) shipped always-on with a parity test. Candidate 2 (entity-cardinality penalty) shipped behind the default-off `SPECKIT_CARDINALITY_PENALTY` flag with byte-identical default. Candidate 8 closed NO-TRANSFER because changed content already re-enters the save and indexing path. Candidates 1, 3, 5, 6 and 7 remain PENDING on their benchmark, dependency and schema gates. Shipped via commit `0cf96409d8`.
+> **Status: PARTIAL IMPLEMENTATION.** Candidate 4 (declarative regex entity config) shipped always-on with a parity test. Candidate 2 (entity-cardinality penalty) shipped behind the default-off `SPECKIT_CARDINALITY_PENALTY` flag with byte-identical default. Candidate 8 closed NO-TRANSFER because changed content already re-enters the save and indexing path. Candidates 1, 3, 5, 6 and 7 remain PENDING on their benchmark, dependency and schema gates. Shipped via commit `8bb56a549e`.
 
 ---
 

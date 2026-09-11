@@ -84,7 +84,7 @@ All actionable findings were then fixed (operator directive "fix all with gpt-5.
 
 **Deferred / not-applicable:** `dispatch-model.cjs` 677-line split (gpt-5.5 deferred as higher-risk than a behavior-preserving fix); scoring_contract.md programmatic-validation tooling (P2 idea, larger). `scoring_contract.md:15` "refs may not exist" was a **false positive** (both referenced research docs exist).
 
-> **Correction:** an earlier draft deferred the README count to "the parallel session's doc-accuracy commit." That commit (`1663527f79`) was **system-spec-kit's** work (its `026/.../013` + `014` packets) — it never touched deep-improvement's README/SKILL.md. The README count was unhandled; it is now fixed here.
+> **Correction:** an earlier draft deferred the README count to "the parallel session's doc-accuracy commit." That commit (`c41dcff894`) was **system-spec-kit's** work (its `026/.../013` + `014` packets) — it never touched deep-improvement's README/SKILL.md. The README count was unhandled; it is now fixed here.
 <!-- /ANCHOR:what-built -->
 
 ---

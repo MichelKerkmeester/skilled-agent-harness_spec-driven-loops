@@ -100,7 +100,7 @@ here are invisible to whatever judges completion.
 
 - [x] All sixteen children are Complete with every acceptance criterion Met (one criterion, 011 AC-002, Waived by ADR-001 and its four routed failures fixed in 014 and 016)
 - [x] validate.sh --strict --recursive prints RESULT: PASSED for this parent and every child
-- [x] The spec-kit check, command-tree-parity and routing-registry-drift workflows pass on a push after the last child (`328accca03`, both branches)
+- [x] The spec-kit check, command-tree-parity and routing-registry-drift workflows pass on a push after the last child (`e40302c123`, both branches)
 - [x] The trigger index regenerates identically with zero malformed documents
 - [x] This goal was resent in chat after every change to its durable slice (final resend with the closeout report)
 <!-- /ANCHOR:completion -->
@@ -119,10 +119,10 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Packet scaffolded with sixteen planned children | Done | `spec.md` Phase Documentation Map |
-| Children 001 to 016 implemented in order, each tested, validated strict and committed with its own goal log | Done | commits `667cfadff1` through the 016 commit on `skilled/v4.0.0.0` and `main` |
+| Children 001 to 016 implemented in order, each tested, validated strict and committed with its own goal log | Done | commits `4bd3d57e81` through the 016 commit on `skilled/v4.0.0.0` and `main` |
 | Recursive strict validation of the parent and sixteen children | Done | 17 RESULT: PASSED |
 | Trigger index regenerated twice, byte-identical, zero malformed documents | Done | `generation-diagnostics.json` malformedDocuments 0; the regenerated pair is committed with the closeout |
-| Workflows after the last child | Done | closeout push `37f3ad5a81` failed only the mirrors job on a command-catalog row the design session's rename had left stale; that session's `328accca03` regenerated the catalog, and on it Spec-Kit Check, Command Tree Parity and Routing Registry Drift Guard all completed green on `skilled/v4.0.0.0` and `main` |
+| Workflows after the last child | Done | closeout push `d23a668fab` failed only the mirrors job on a command-catalog row the design session's rename had left stale; that session's `e40302c123` regenerated the catalog, and on it Spec-Kit Check, Command Tree Parity and Routing Registry Drift Guard all completed green on `skilled/v4.0.0.0` and `main` |
 
 ### Deviations and findings
 

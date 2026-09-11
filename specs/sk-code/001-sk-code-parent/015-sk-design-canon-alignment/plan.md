@@ -32,7 +32,7 @@ _memory:
       - "Whether declarative bundleRules should ship in this phase after phase 017, or remain as prose-only routing with a TODO."
     answered_questions:
       - question: "Can packetKind work be skipped?"
-        answer: "Yes. It is already done and pushed in commit f8673ff0db."
+        answer: "Yes. It is already done and pushed in commit 8820b8963d."
 ---
 # Implementation Plan: Phase 15 sk-design canon alignment
 
@@ -146,7 +146,7 @@ Execution updates sk-design hub artifacts, then strict parent-hub validation rea
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Commit `f8673ff0db` packetKind repair | Internal | Complete | Progress remains below 15% if absent; do not redo it in this phase |
+| Commit `8820b8963d` packetKind repair | Internal | Complete | Progress remains below 15% if absent; do not redo it in this phase |
 | Parent description template | Internal | Available | `description.json` cannot be canon-shaped without it |
 | sk-code benchmark reference shape | Internal | Available | Lane-C baseline shape lacks local exemplar if unavailable |
 | Phase 017 bundleRules reconciliation | Internal | Blocked for this phase | Declarative bundleRules conversion cannot safely proceed |

@@ -9,8 +9,8 @@ trigger_phrases: []
   `tests/unit/authorized-ledger.vitest.ts`); weakening or rewriting existing tests explicitly banned.
 - **L2 (isolation):** `--dir` = `.worktrees/016-036-torn-tail-marker-ordering`
   (branch `worktrees/016-036-torn-tail-marker-ordering`, allocated by `sk-git/scripts/worktree-naming.sh`).
-- **L3 (recovery baseline):** worktree base commit `409e2346c0a78b4e2f1af458ccd47de642ade35d`.
-  A concurrent operator session advanced `skilled/v4.0.0.0` from `11d87179e5` to this commit mid-session;
+- **L3 (recovery baseline):** worktree base commit `d0e91360777676503f889cb40936063abed5c077`.
+  A concurrent operator session advanced `skilled/v4.0.0.0` from `f85d53e9ab` to this commit mid-session;
   the sibling lanes it carries are untouched here.
 - **L4 (record):** this file. Executor `cline-pass/cline-pass/deepseek-v4-flash --variant xhigh`
   (primary `opencode-go` is quota-exhausted: `Monthly usage limit reached. Resets in 19 days`, and it

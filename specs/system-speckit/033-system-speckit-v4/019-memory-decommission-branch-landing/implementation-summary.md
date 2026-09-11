@@ -118,11 +118,11 @@ The landing was merged from the branch side so the release branch only ever fast
 | `validate.sh --strict` 049 recursive, 052, 053 | PASSED |
 | Doctor routes, command references, catalog mirror, agent mirrors, skill-root audit, derived freshness, routing guard | all green on the landed tree |
 | Review pass one | ten iterations, CONDITIONAL, 0 P0, 5 P1, 5 P2; every P1 fixed with a named commit |
-| Drift Guard workflow | green on origin at `a9ab17ea3f` after the vocabulary fix |
+| Drift Guard workflow | green on origin at `5b6fc075d0` after the vocabulary fix |
 | Review pass two | ten iterations, CONDITIONAL, 4 P1 and 5 P2; every P1 fixed with a named commit |
 | Runtime rename | packet 053 complete: `system-spec-kit/runtime`, three dependencies, no MCP identity in live docs or code |
 | Review pass three on the renamed tree | attempt 3 CONDITIONAL with 2 P1 fixed; attempt 4 PASS, 0 P0, 0 P1, 2 P2 fixed |
-| Final gates at `85d9791eb3` | sweep live 0; trigger index identical twice; 049 recursive, 052, 053 PASSED; doctor routes, both audits, routing guard, dist freshness green; no codex, zg or model-server process |
+| Final gates at `a4e85f6ad4` | sweep live 0; trigger index identical twice; 049 recursive, 052, 053 PASSED; doctor routes, both audits, routing guard, dist freshness green; no codex, zg or model-server process |
 <!-- /ANCHOR:verification -->
 
 ---

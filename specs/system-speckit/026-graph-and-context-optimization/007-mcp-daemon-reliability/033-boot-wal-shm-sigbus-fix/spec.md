@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Boot-Time journal_mode Force-WAL SIGBUS Regression"
-description: "A T076-era startup health check in context-server.ts silently reverts the deliberate journal_mode=DELETE fix (commit 8807393bea) back to WAL on every daemon boot, re-exposing the WAL/mmap'd -shm SIGBUS class that fix was written to close."
+description: "A T076-era startup health check in context-server.ts silently reverts the deliberate journal_mode=DELETE fix (commit 9063556fc8) back to WAL on every daemon boot, re-exposing the WAL/mmap'd -shm SIGBUS class that fix was written to close."
 trigger_phrases:
   - "boot wal shm sigbus fix"
   - "journal_mode force wal regression"
@@ -64,9 +64,9 @@ block; 034 is an error-handling/sentinel-design gap spanning three files. They a
 as separate packets rather than merged (see 034's spec.md Background section for the full
 non-overlap rationale).
 
-**Commit `8807393bea`** (2026-07-05, "fix(spec-memory): use rollback journal to stop WAL -shm
+**Commit `9063556fc8`** (2026-07-05, "fix(spec-memory): use rollback journal to stop WAL -shm
 SIGBUS") set `journal_mode = DELETE` on the main DB and the attached vector shard specifically
-to avoid a WAL-mode `-shm` mmap fault. Confirmed via `git show --stat 8807393bea`: it touched
+to avoid a WAL-mode `-shm` mmap fault. Confirmed via `git show --stat 9063556fc8`: it touched
 only `lib/search/vector-index-store.ts` (+8/-3 lines) and its commit message states verbatim:
 *"WAL mode memory-maps a -shm index that intermittently faults (SIGBUS, FS pagein error 22) in
 walIndexReadHdr on this macOS + better-sqlite3 build, crashing the daemon stochastically during
@@ -79,7 +79,7 @@ and `:819`/`:2134` set a plain (non-`-shm`) `mmap_size`.
 ### Problem Statement
 A boot-time health check in context-server.ts silently reverts the deliberate journal-mode-DELETE fix back to WAL on every daemon restart, re-exposing the WAL/mmap'd -shm SIGBUS class that fix was written to close.
 
-This older, unrelated startup health check — confirmed unchanged by commit `8807393bea` via
+This older, unrelated startup health check — confirmed unchanged by commit `9063556fc8` via
 `git log -L 2204,2213:.../context-server.ts` (its logic predates that commit and was never
 touched by it) — runs immediately after `initializeDb()` and **unconditionally reverts
 `journal_mode` back to `WAL`** whenever it finds anything other than `wal`:
@@ -219,8 +219,8 @@ codebase fixes this bug and then undoes its own fix on every restart.
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
 | Risk | Verification of the actual crash-fix outcome is inherently observational — "no new SIGBUS reports" can only be confirmed over subsequent days of real usage, not in the same implementation session. | Med | State explicitly as inferred/ongoing in `implementation-summary.md`; do not claim SC-003 closed without a dated observation window. |
-| Risk | An undiscovered code path elsewhere still assumes WAL mode and silently degrades under DELETE. | Low | DELETE has been the active init-time choice for the main DB + vector shard since 2026-07-05 (`8807393bea`); this fix only stops something else from reverting it, it does not change what mode is chosen at init. |
-| Dependency | Commit `8807393bea`'s DELETE-mode writers (`vector-index-store.ts:817`,`:1575`,`:2130`) must remain in place and unchanged. | Low | Out of scope for this packet to modify; confirmed present and correctly placed at spec time. |
+| Risk | An undiscovered code path elsewhere still assumes WAL mode and silently degrades under DELETE. | Low | DELETE has been the active init-time choice for the main DB + vector shard since 2026-07-05 (`9063556fc8`); this fix only stops something else from reverting it, it does not change what mode is chosen at init. |
+| Dependency | Commit `9063556fc8`'s DELETE-mode writers (`vector-index-store.ts:817`,`:1575`,`:2130`) must remain in place and unchanged. | Low | Out of scope for this packet to modify; confirmed present and correctly placed at spec time. |
 | Risk | This packet and `context-server.ts`'s boot sequence are shared with an already-shipped neighbor (`032-boot-integrity-rebuild-maintenance-marker`) and an extensive launcher test suite. | Low | Re-run the full boot-path test suite (`context-server.vitest.ts`, `launcher-*.vitest.ts`) as the regression gate for this change, not just the new/changed test. |
 <!-- /ANCHOR:risks -->
 

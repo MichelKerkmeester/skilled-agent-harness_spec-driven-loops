@@ -63,7 +63,7 @@ Twelve findings across the sealed-artifact store and four certificate emitters s
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P0 |
-| **Status** | Complete — 12/12 findings BUILT + verified + adversarially clean + landed on `origin/skilled/v4.0.0.0`, across 4 fix commits (`8b2e49931f8` sealed store, `d30321b98e` common certs, `59e0040d33` per-mode emitters, `89067fe46e` reducers) plus a required companion fix (`a232835611`, shadow-parity harness escape-hatch). Final adversarial verdict: 11/12 fully clean; 1 low-sev residual (`F-011-01` restore-authorization under-binds to `qualified_digest` only) + 2 documented scope residuals (`F-015-02` content-digest binds 3 of the relevant kinds; `F-007-02` external-authorship caveat), all recorded as accepted deferrals in `implementation-summary.md`. |
+| **Status** | Complete — 12/12 findings BUILT + verified + adversarially clean + landed on `origin/skilled/v4.0.0.0`, across 4 fix commits (`cdfb150ffce` sealed store, `86b36c5414` common certs, `20857a8536` per-mode emitters, `2fc9efe6a8` reducers) plus a required companion fix (`9b68d42963`, shadow-parity harness escape-hatch). Final adversarial verdict: 11/12 fully clean; 1 low-sev residual (`F-011-01` restore-authorization under-binds to `qualified_digest` only) + 2 documented scope residuals (`F-015-02` content-digest binds 3 of the relevant kinds; `F-007-02` external-authorship caveat), all recorded as accepted deferrals in `implementation-summary.md`. |
 | **Created** | 2026-07-30 |
 | **Branch** | `system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/003-artifact-certificate-binding` |
 | **Parent** | `system-deep-loop/036-deep-loop-innovation` |

@@ -16,7 +16,7 @@ Convergence: CONTINUE; authority, retirement, and gate gaps remain.
 Current refinement set: 003, 006, 007, 010, 011, 012, 013. No phase invalidated. Clean control: 004.
 Next focus: phases 014-016 authority/cutover, legacy-writer retirement, and executable whole-system gate assumptions.
 
-Research Topic: Revalidate packet 036 phases 003-017 against `0ce43ff589..HEAD`, with final verdict, commit SHA, and path:line evidence for every phase.
+Research Topic: Revalidate packet 036 phases 003-017 against `60b9ed8bc2..HEAD`, with final verdict, commit SHA, and path:line evidence for every phase.
 Iteration: 6 of 10
 Focus Area: Inspect current runtime authority selectors/state migration, legacy writers and archival readers, and whole-system gate/benchmark inventory to finalize second-order verdicts for phases 014, 015, and 016. Also verify phase 017's integrate-latest premise against the moving HEAD contract.
 

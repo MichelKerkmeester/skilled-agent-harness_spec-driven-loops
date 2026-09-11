@@ -108,7 +108,7 @@ Make sk-code a two-axis parent hub. Workflow modes continue to act, while read-o
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: Shipped commit `90e8833411` contains the combined restructure, wiring, review rename, and link repair.
+- **SC-001**: Shipped commit `6f9b16b908` contains the combined restructure, wiring, review rename, and link repair.
 - **SC-002**: `parent-hub-vocab-sync` flips from 13 orphan aliases, 4 collisions, and 1 ownership drift to 0, 0, and 0.
 - **SC-003**: `parent-skill-check` passes in default mode and strict mode with 23/23 strict checks green.
 - **SC-004**: Router replay confirms the two-axis bundle for `review my webflow animation` with `missingResources: 0`.

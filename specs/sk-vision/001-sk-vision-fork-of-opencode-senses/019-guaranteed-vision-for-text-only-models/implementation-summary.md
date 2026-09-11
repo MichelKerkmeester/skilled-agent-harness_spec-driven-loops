@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/019-guaranteed-vision-for-text-only-models"
+    packet_pointer: "sk-vision/001-sk-vision-fork-of-opencode-senses/019-guaranteed-vision-for-text-only-models"
     last_updated_at: "2026-08-18T13:00:00.000Z"
     last_updated_by: "claude"
     recent_action: "Fixed a P0 OCR-guard regression; live GLM Cursor/Devin tests PASS."

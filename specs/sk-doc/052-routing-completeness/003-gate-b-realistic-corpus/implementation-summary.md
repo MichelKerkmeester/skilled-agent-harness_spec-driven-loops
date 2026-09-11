@@ -46,7 +46,7 @@ _memory:
 | **Level** | 3 |
 | **Status** | Complete |
 | **Delivery** | Shipped. The parent goal LOG records this phase Done |
-| **Date** | 2026-09-02 (git author date of `4a5de9e52b` and `8c6d6fd455`) |
+| **Date** | 2026-09-02 (git author date of `b3de2effda` and `54eecf457a`) |
 | **Register findings** | 11 Fixed, 10 closed by decision, 9 owned by this phase |
 | **Gate** | `assets/realistic-corpus.tsv`, 180 rows, no row naming its own mode |
 <!-- /ANCHOR:metadata -->
@@ -104,7 +104,7 @@ and zero of its 14 nodes hold an embedding.
 Two measured modes route by command surface. Their registry entries carry
 `routingClass: command-bridge`, so a request reaches them by naming a command rather than by
 describing a need, and the eight corpus rows targeting them could never hit through this
-channel. Commit `8c6d6fd455` took them out of the denominator.
+channel. Commit `54eecf457a` took them out of the denominator.
 
 | Reading | Result |
 |---------|--------|
@@ -116,7 +116,7 @@ rows were never the problem, and removing them shows how little of the gap they 
 
 ### What the follow-up fix moved
 
-Commit `08eb67a0de` records **Gate B moving from 8 to 21 of 180**. Its own message says to
+Commit `aa11c2b622` records **Gate B moving from 8 to 21 of 180**. Its own message says to
 read that as one mechanism removed rather than routing improved, since the legacy-duplicate
 shadow accounts for almost all of it and the structural cause is untouched.
 
@@ -124,11 +124,11 @@ shadow accounts for almost all of it and the structural cause is untouched.
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `assets/realistic-corpus.tsv` | Created (`4a5de9e52b`, 181 lines) | 180 prompts, at least four per mode across 43 modes in five hubs, none naming its own mode |
-| `research/gate-b-measurement.md` | Created (`4a5de9e52b`, 498 lines) | The number, per-hub and per-mode rates, miss mechanisms, boundary rows and the reproduction recipe |
-| `research/gate-b-measurement.md` | Modified (`8c6d6fd455`) | Denominator correction appended, with both readings side by side |
-| `spec.md` | Modified (`4a5de9e52b`) | Scope narrowed to what the corpus showed |
-| `004-cross-hub-vocabulary/spec.md` | Modified (`4a5de9e52b`) | The next phase re-scoped, because this measurement invalidated its premise |
+| `assets/realistic-corpus.tsv` | Created (`b3de2effda`, 181 lines) | 180 prompts, at least four per mode across 43 modes in five hubs, none naming its own mode |
+| `research/gate-b-measurement.md` | Created (`b3de2effda`, 498 lines) | The number, per-hub and per-mode rates, miss mechanisms, boundary rows and the reproduction recipe |
+| `research/gate-b-measurement.md` | Modified (`54eecf457a`) | Denominator correction appended, with both readings side by side |
+| `spec.md` | Modified (`b3de2effda`) | Scope narrowed to what the corpus showed |
+| `004-cross-hub-vocabulary/spec.md` | Modified (`b3de2effda`) | The next phase re-scoped, because this measurement invalidated its premise |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -206,6 +206,6 @@ all, so the word was doing the damage rather than the intent being ambiguous.
 
 **Reproduction is expected to land within a few rows rather than exactly.** The daemon is
 deterministic per prompt while the underlying registries are unchanged, and the registries
-have since changed under `08eb67a0de`. Re-running the corpus today measures the post-fix
+have since changed under `aa11c2b622`. Re-running the corpus today measures the post-fix
 state, not this baseline.
 <!-- /ANCHOR:limitations -->

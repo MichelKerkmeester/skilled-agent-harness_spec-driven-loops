@@ -59,10 +59,10 @@ This phase delivered the foundation layer: the ledger v2 schema with owner ident
 
 | File | Action | What changed |
 |------|--------|--------------|
-| `.opencode/skills/system-rerank-sidecar/scripts/sidecar_ledger.py` | Modified | V2 owner identity dataclasses, ADR-shaped v2 writes, v1 read compatibility, identity parser, identity-verified liveness, locked owner registration and pruning and `should_reap_row`. Commit `3788c7f807`. |
-| `.opencode/skills/system-rerank-sidecar/tests/test_sidecar_ledger.py` | Modified | Reworked pytest coverage into classes for v2 schema, identity liveness, owner prune and register, v1 compatibility and fixture matrix assertions. Commit `3788c7f807`. |
-| `.opencode/skills/system-rerank-sidecar/tests/fixtures/reaper-ledger-cases.json` (NEW) | Created | 9 cross-runtime fixture cases for alive, ESRCH, recycled PID, mixed owners, PID 1, EPERM, empty legacy owners and unknown errno. Commit `3788c7f807`. |
-| `.opencode/skills/system-rerank-sidecar/tests/__init__.py` (NEW) | Created | Package marker added because it was absent. Commit `3788c7f807`. |
+| `.opencode/skills/system-rerank-sidecar/scripts/sidecar_ledger.py` | Modified | V2 owner identity dataclasses, ADR-shaped v2 writes, v1 read compatibility, identity parser, identity-verified liveness, locked owner registration and pruning and `should_reap_row`. Commit `c3e2a0ae5d`. |
+| `.opencode/skills/system-rerank-sidecar/tests/test_sidecar_ledger.py` | Modified | Reworked pytest coverage into classes for v2 schema, identity liveness, owner prune and register, v1 compatibility and fixture matrix assertions. Commit `c3e2a0ae5d`. |
+| `.opencode/skills/system-rerank-sidecar/tests/fixtures/reaper-ledger-cases.json` (NEW) | Created | 9 cross-runtime fixture cases for alive, ESRCH, recycled PID, mixed owners, PID 1, EPERM, empty legacy owners and unknown errno. Commit `c3e2a0ae5d`. |
+| `.opencode/skills/system-rerank-sidecar/tests/__init__.py` (NEW) | Created | Package marker added because it was absent. Commit `c3e2a0ae5d`. |
 
 ### Follow-Ups
 
@@ -72,4 +72,4 @@ This phase delivered the foundation layer: the ledger v2 schema with owner ident
 
 ## Later Update (2026-06-04)
 
-The rerank-sidecar runtime files referenced in this changelog were later removed in cleanup commits 74b9677494, b564013c0e and 696c889887. This entry records the work as it shipped at the time. The parent packet status is now Shipped then removed.
+The rerank-sidecar runtime files referenced in this changelog were later removed in cleanup commits b8a866de2f, c99f990897 and ada2c51ee8. This entry records the work as it shipped at the time. The parent packet status is now Shipped then removed.

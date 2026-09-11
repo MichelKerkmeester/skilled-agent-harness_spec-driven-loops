@@ -65,16 +65,16 @@ All implemented and committed on `sk-doc/0089-default-routing-cutover`, behind t
 | Child | Status |
 |-------|--------|
 | 001-research | Complete — 25 iterations, fresh-Opus synthesis + Sonnet adversarial verification + orchestrator review |
-| 002-runtime-promotion-and-status-foundation (L3, P0) | Implemented + committed `4153cbebd8` — the P0 foundation everything consumes |
-| 003-flag-propagation-and-effective-consumption (L3, P1) | Implemented + committed `a1cdb65d90` |
-| 004-benchmark-compiled-lane-c (L2, P1) | Implemented + committed `8532c4b64b` |
-| 005-playbooks-and-luna-acceptance (L2, P2) | Implemented + committed `d590af12be` — real GPT-5.6-LUNA-HIGH routing evidence archived |
-| 006-feature-catalogs (L2, P3) | Implemented + committed `8532c4b64b` |
-| 007-durable-archiving-and-serving-snapshot (L2, P2) | Implemented + committed `2a39ecb9a0` |
-| 008-sk-code-alignment-and-drift-guards (L2, P3) | Implemented + committed `a1cdb65d90` |
-| 009-sk-doc-template-alignment (L2, P3) | Implemented + committed `8532c4b64b` |
-| 010-rollback-audit-and-non-hub-policy (L2, P1) | Implemented + committed `a1cdb65d90` |
-| 011-activation-cutover-p4 (L3, P4) | Implemented (controller) + committed `3d08302771` — dry-run-proven; P3 join gate reports all 7 hubs BLOCKED (honest, gated on 013/014); repo default NOT flipped |
+| 002-runtime-promotion-and-status-foundation (L3, P0) | Implemented + committed `6b81fde29e` — the P0 foundation everything consumes |
+| 003-flag-propagation-and-effective-consumption (L3, P1) | Implemented + committed `c926b25506` |
+| 004-benchmark-compiled-lane-c (L2, P1) | Implemented + committed `bb2fcbbd27` |
+| 005-playbooks-and-luna-acceptance (L2, P2) | Implemented + committed `c0d98bf07b` — real GPT-5.6-LUNA-HIGH routing evidence archived |
+| 006-feature-catalogs (L2, P3) | Implemented + committed `bb2fcbbd27` |
+| 007-durable-archiving-and-serving-snapshot (L2, P2) | Implemented + committed `beca825aa4` |
+| 008-sk-code-alignment-and-drift-guards (L2, P3) | Implemented + committed `c926b25506` |
+| 009-sk-doc-template-alignment (L2, P3) | Implemented + committed `bb2fcbbd27` |
+| 010-rollback-audit-and-non-hub-policy (L2, P1) | Implemented + committed `c926b25506` |
+| 011-activation-cutover-p4 (L3, P4) | Implemented (controller) + committed `8293d89413` — dry-run-proven; P3 join gate reports all 7 hubs BLOCKED (honest, gated on 013/014); repo default NOT flipped |
 
 ## Exact next action (autonomous build DONE — remainder is operator-gated)
 

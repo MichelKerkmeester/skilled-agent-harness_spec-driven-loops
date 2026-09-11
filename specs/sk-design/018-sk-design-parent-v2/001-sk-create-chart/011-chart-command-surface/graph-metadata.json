@@ -46,21 +46,21 @@
       "tasks.md",
       "acceptance-criteria.md",
       "implementation-summary.md",
-      ".opencode/commands/create/chart.md",
-      ".opencode/commands/create/assets/create-chart-presentation.txt",
-      ".opencode/commands/create/assets/create-chart-auto.yaml",
-      ".opencode/commands/create/assets/create-chart-confirm.yaml",
       ".opencode/skills/sk-doc/mode-registry.json",
       ".opencode/skills/sk-doc/SKILL.md",
       ".opencode/skills/sk-doc/command-metadata.json",
       ".opencode/skills/sk-doc/README.md",
-      ".claude/commands/create/chart.md",
-      ".cursor/commands/create-chart.md",
-      ".codex/prompts/create-chart.md",
       ".opencode/bin/lib/compiled-routing/013-live-activation/activation/sk-doc/manifest.json",
       ".opencode/skills/system-skill-advisor/mcp-server/scripts/command-bridges/command-bridges.generated.json",
       ".opencode/skills/system-skill-advisor/mcp-server/lib/scorer/projection.ts",
-      ".opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py"
+      ".opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py",
+      ".opencode/skills/system-skill-advisor/mcp-server/tests/command-metadata-e2e.vitest.ts",
+      ".opencode/commands/create/assets/tests/fixtures/emitted-name-contract.json",
+      ".opencode/commands/create/assets/tests/test_emitted_name_contract.py",
+      ".opencode/commands/create/diff.md",
+      ".opencode/commands/create/repo-rule.md",
+      ".opencode/agents/markdown.md",
+      ".claude/agents/markdown.md"
     ],
     "entities": [
       {
@@ -94,30 +94,6 @@
         "source": "derived"
       },
       {
-        "name": "chart.md",
-        "kind": "doc",
-        "path": ".opencode/commands/create/chart.md",
-        "source": "derived"
-      },
-      {
-        "name": "create-chart-presentation.txt",
-        "kind": "file",
-        "path": ".opencode/commands/create/assets/create-chart-presentation.txt",
-        "source": "derived"
-      },
-      {
-        "name": "create-chart-auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/create/assets/create-chart-auto.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "create-chart-confirm.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/create/assets/create-chart-confirm.yaml",
-        "source": "derived"
-      },
-      {
         "name": "mode-registry.json",
         "kind": "config",
         "path": ".opencode/skills/sk-doc/mode-registry.json",
@@ -142,12 +118,6 @@
         "source": "derived"
       },
       {
-        "name": "create-chart.md",
-        "kind": "doc",
-        "path": ".cursor/commands/create-chart.md",
-        "source": "derived"
-      },
-      {
         "name": "manifest.json",
         "kind": "config",
         "path": ".opencode/bin/lib/compiled-routing/013-live-activation/activation/sk-doc/manifest.json",
@@ -169,6 +139,42 @@
         "name": "skill_advisor.py",
         "kind": "file",
         "path": ".opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py",
+        "source": "derived"
+      },
+      {
+        "name": "command-metadata-e2e.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-skill-advisor/mcp-server/tests/command-metadata-e2e.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "emitted-name-contract.json",
+        "kind": "config",
+        "path": ".opencode/commands/create/assets/tests/fixtures/emitted-name-contract.json",
+        "source": "derived"
+      },
+      {
+        "name": "test_emitted_name_contract.py",
+        "kind": "file",
+        "path": ".opencode/commands/create/assets/tests/test_emitted_name_contract.py",
+        "source": "derived"
+      },
+      {
+        "name": "diff.md",
+        "kind": "doc",
+        "path": ".opencode/commands/create/diff.md",
+        "source": "derived"
+      },
+      {
+        "name": "repo-rule.md",
+        "kind": "doc",
+        "path": ".opencode/commands/create/repo-rule.md",
+        "source": "derived"
+      },
+      {
+        "name": "markdown.md",
+        "kind": "doc",
+        "path": ".opencode/agents/markdown.md",
         "source": "derived"
       },
       {
@@ -200,17 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "In Scope",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`sk-doc` routes fifteen workflow packets, and fourteen of them have their own slash command",
     "created_at": "2026-09-04T08:51:34Z",
-    "last_save_at": "2026-09-06T14:59:16.421Z",
+    "last_save_at": "2026-09-11T16:41:58.307Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d565aaf9b6590e9e63d9cb759618654fdd4191e5d4bff5d0866131bc1d4dd8c1",
+    "source_fingerprint": "sha256:4dc1a9e9cc59e93595a91949a88fef627ea95614a485fd5a634b67a6ef066af4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "db9c740100446b82edf11add831e030fa2a6a9b814e9efc17c3833f659235ef3",
       "plan.md": "a39256d335a37952e1ce917d56bbf91f3090962438a1320477e6ee2b0c7c160c",
-      "tasks.md": "56dcf283346cb23a85bf35a1b8ad91fab171208dbfada833ec923063bff90db1",
-      "implementation-summary.md": "e5941028fd7af494d19b9ca33604e4068d330f759e32e9a6718ec83af7b9ae44"
+      "tasks.md": "72db3b5fe1cb5f17b8f9f438c7e391d739a1e7e634a287b396a996c84115afa0",
+      "implementation-summary.md": "4b74c87d282793c6a4f36f608595644788e998dbefab65183b39ef7325ad0f7e"
     },
     "last_active_child_id": null,
     "last_active_at": null

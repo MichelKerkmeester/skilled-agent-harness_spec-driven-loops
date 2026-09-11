@@ -132,7 +132,7 @@ Advisor or user intent selects a workflow mode, then surface vocabulary can bund
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: Deterministic gates fail after the restructure, or the remote commit needs reversal.
-- **Procedure**: Revert shipped commit `90e8833411`, restoring the prior workflow-only layout and `code-review` contract paths, then re-run parent-skill-check and router/vocab sync gates.
+- **Procedure**: Revert shipped commit `6f9b16b908`, restoring the prior workflow-only layout and `code-review` contract paths, then re-run parent-skill-check and router/vocab sync gates.
 
 <!-- /ANCHOR:rollback -->
 ---
@@ -172,7 +172,7 @@ Advisor or user intent selects a workflow mode, then surface vocabulary can bund
 - [x] Deferred add-only work separated into phase 014.
 
 ### Rollback Procedure
-1. Revert commit `90e8833411` if the shipped restructure must be backed out.
+1. Revert commit `6f9b16b908` if the shipped restructure must be backed out.
 2. Re-run parent-skill-check default and strict.
 3. Re-run vocab-sync and router-sync vitests.
 4. Re-run link and dead-path sweeps for the sk-code tree.

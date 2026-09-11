@@ -60,7 +60,7 @@ The dedup store is `compactShadowStore()` on `globalThis` (persists within one p
 
 ### 2.3 [SYS] runtimes (needs live verification)
 
-`decideDirectiveLifecycleDelivery` **is wired** in `hooks/claude/user-prompt-submit.ts` (durable file store, default-on via `isDirectiveLifecycleDedupEnabled`). It is shared by Claude/Codex/Cursor/Devin and mirrored by the OpenCode plugin. Earlier the route-only *activation* was retired (`5a7f00fd64`). This session shows directives on nearly every Claude turn, which suggests the [SYS] dedup may also not be suppressing live — to be confirmed per runtime (see plan §Testing). The `reducedContext` path still returns a brief that may retain the directive block; the durable store also depends on a runnable Python helper.
+`decideDirectiveLifecycleDelivery` **is wired** in `hooks/claude/user-prompt-submit.ts` (durable file store, default-on via `isDirectiveLifecycleDedupEnabled`). It is shared by Claude/Codex/Cursor/Devin and mirrored by the OpenCode plugin. Earlier the route-only *activation* was retired (`59e0b4faa2`). This session shows directives on nearly every Claude turn, which suggests the [SYS] dedup may also not be suppressing live — to be confirmed per runtime (see plan §Testing). The `reducedContext` path still returns a brief that may retain the directive block; the durable store also depends on a runnable Python helper.
 
 ---
 

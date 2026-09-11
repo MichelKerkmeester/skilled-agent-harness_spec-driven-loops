@@ -44,7 +44,7 @@ current-state references with every rewritten path resolving, and no shipped cod
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Confirmed the 4 target files unchanged between review HEAD `7b9d3b6b71` and origin tip; created the fresh worktree at origin. [SOURCE: `git diff --quiet` = unchanged; `.worktrees/0095-sk-design-018-post-review-remediation`]
+- [x] T001 Confirmed the 4 target files unchanged between review HEAD `6432665a68` and origin tip; created the fresh worktree at origin. [SOURCE: `git diff --quiet` = unchanged; `.worktrees/0095-sk-design-018-post-review-remediation`]
 <!-- /ANCHOR:phase-1 -->
 
 ---

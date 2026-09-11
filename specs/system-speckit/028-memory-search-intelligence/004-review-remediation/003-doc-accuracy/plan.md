@@ -88,7 +88,7 @@ Each doc claim is checked against `git log` and the relevant implementation-summ
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| `changelog-001-root.md:36` | Mislabels shipped rows as Planned | Reclassify against commits | Rows trace to `ed53661043`, `5308401d95`, `8f8776e329` |
+| `changelog-001-root.md:36` | Mislabels shipped rows as Planned | Reclassify against commits | Rows trace to `a00803e724`, `478bebf387`, `508af65780` |
 | `timeline.md` | Frozen at commit 30 | Refresh diagram and Section E | Covers the shipped schema cluster |
 | `before-vs-after.md` | CURRENT STATE at commit 30 | Advance and correct cleanup claims | Matches changelog-003-root |
 | `benchmark-status.md` | Incomplete flag inventory | Add missing flag(s) | `SPECKIT_CODE_GRAPH_SEEDED_PPR_RANKING` listed |

@@ -197,7 +197,7 @@
     ],
     "causal_summary": "A deeper audit of the command tree after the presentation/router split found two consistency defects",
     "created_at": "2026-06-12T13:01:21Z",
-    "last_save_at": "2026-09-07T16:18:01.841Z",
+    "last_save_at": "2026-09-11T16:42:37.715Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +206,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fa858c503b0cac106cfac9717d51ab79baddbf2ca9e3de1f3608e3a824abbcb5",
+    "source_fingerprint": "sha256:8523244b0b46cfc6968873de861a3c0e657d6805986690987328ab79517fed04",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8199d670da130ec47b62d420fd7c159c65f7660bda69bbb9c08d003eb9824b18",
-      "plan.md": "63a41a759d8f9122ad1e504af7ba67a338f48d0d3fc616a04da9cec75977e89b",
-      "tasks.md": "fe89c4edf1957ff7ca34d1c5cabcbf90a0762292aa95b11f59a597739706f505",
-      "implementation-summary.md": "e61db717fcc44bfc20a6ab42d2509176700fbf75562f68a5a39822473631f2f1"
+      "spec.md": "0567a47b08bca001ffc7552d19cbfbbbb111cf8a64ff74d06e53ed8080eeef4a",
+      "plan.md": "1ec1ac25573b29cabaf6a85bcb953b7537db335ac271356c8b6526b2c22eb828",
+      "tasks.md": "3a241bc3628128142cc4a276cb01ba0455a7256c4565768cd0fec6fea3055d8f",
+      "implementation-summary.md": "5035d1a4c113d193f0365ac3fbc7178a094be0a2484f3f659f118d61151f44d7"
     },
     "last_active_child_id": null,
     "last_active_at": null

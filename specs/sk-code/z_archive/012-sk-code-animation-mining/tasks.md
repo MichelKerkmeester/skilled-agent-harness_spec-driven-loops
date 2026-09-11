@@ -40,7 +40,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T-101 Recorded HEAD baseline `b697b0a1d1` (RM-8 L3); created `wt/0006-sk-code-animation` off it (sk-git method).
+- [x] T-101 Recorded HEAD baseline `c16171b893` (RM-8 L3); created `wt/0006-sk-code-animation` off it (sk-git method).
 - [x] T-102 Composed the RM-8-scoped prompt (BANNED/ALLOWED + additive-delta mandate + output contract + Gate-3 pre-answer for the non-interactive agent).
 <!-- /ANCHOR:phase-1 -->
 

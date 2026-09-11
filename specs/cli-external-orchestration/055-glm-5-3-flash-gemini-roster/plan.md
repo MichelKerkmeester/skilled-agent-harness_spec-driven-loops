@@ -152,7 +152,7 @@ Fan-out reads `z-ai/glm-5.3-flash` → checks `PI_ALLOWED_MODELS` → looks up `
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: fan-out mis-routes, a guard test regresses, or a live dispatch fails.
-- **Procedure**: `git revert 125d22ffaf` (the feature commit is self-contained across the 9 files) and revert the `.pi` edits. No persistent state to unwind.
+- **Procedure**: `git revert 215ff4b3b4` (the feature commit is self-contained across the 9 files) and revert the `.pi` edits. No persistent state to unwind.
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -165,7 +165,7 @@ Fan-out reads `z-ai/glm-5.3-flash` → checks `PI_ALLOWED_MODELS` → looks up `
 - [x] `.pi` config edit points identified (models.json block, settings default + enabledModels)
 
 ### Rollback Procedure
-1. `git revert 125d22ffaf` (restores Ox Alpha across all 9 files)
+1. `git revert 215ff4b3b4` (restores Ox Alpha across all 9 files)
 2. `npx vitest run tests/unit/executor-config.vitest.ts tests/unit/fanout-run.vitest.ts`
 3. No data reversal (config/docs only)
 <!-- /ANCHOR:enhanced-rollback -->

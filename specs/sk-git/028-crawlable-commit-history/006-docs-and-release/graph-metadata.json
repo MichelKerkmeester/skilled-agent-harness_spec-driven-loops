@@ -202,7 +202,7 @@
     ],
     "causal_summary": "sk-git's README says nothing about commit identity, its changelog stops at 1.5.2.0, the advisor cannot route commit-id vocabulary, and the two rule surfaces still lack the freeze paragraph and the identity row",
     "created_at": "2026-09-11T07:16:31Z",
-    "last_save_at": "2026-09-11T11:32:46.385Z",
+    "last_save_at": "2026-09-11T16:42:15.932Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +213,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6a7a55f713331c87958af5c8783a991229722d1830e0b44d67fb2bee921b8fdb",
+    "source_fingerprint": "sha256:92e7447f0fcda13b9021b74192d4fba5ffccc11f4e5e08d250b13a76be7323c4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7afcdef90daa57e16bb3d108e2e3f959ed02f21d95c73e270902db80e4062428",
-      "plan.md": "8947f20dd4f0699c33ef02dee9c8a4be58cd3a85da4b841e83db46f37ab44ce8",
+      "plan.md": "edc955912efbc26f8f4b7837a1231b6e30f837ba18d16102c559b1fc6401c326",
       "tasks.md": "4359383c80a990d73d6ed3599d0f695e32bef9b30c79e60ba82aae577bceffc7",
-      "implementation-summary.md": "2895f78f992303e6ecec4e530bc18276c14ae1799bb5a83a97e6bb17986b9bc8"
+      "implementation-summary.md": "bb1aadaa487e9f9d4a032540e52c8e33cf608f3a198d8b26af0bed13664c8598"
     },
     "last_active_at": null
   }

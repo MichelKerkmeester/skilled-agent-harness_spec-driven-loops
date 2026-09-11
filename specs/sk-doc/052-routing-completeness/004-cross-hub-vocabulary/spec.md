@@ -151,13 +151,13 @@ the part that keyword ownership cannot reach is stated plainly rather than absor
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skills/sk-code/graph-metadata.json` | Modify | Three bare tokens qualified to the code sense they meant (`f8c2595ce0`) |
-| `.opencode/skills/sk-doc/graph-metadata.json` | Modify | Documentation-hub phrasings people actually use (`f8c2595ce0`) |
-| `.opencode/skills/sk-doc/hub-router.json` | Modify | Stage-two classes for phrases that reached the hub and dropped (`461ef9261f`, `08eb67a0de`) |
-| `.opencode/skills/cli-external-orchestration/hub-router.json` | Modify | Executor routing rebuilt around the compiled route (`08eb67a0de`) |
-| `.opencode/skills/cli-external-orchestration/mode-registry.json` | Modify | Mode declarations aligned with the router (`08eb67a0de`) |
-| `.../system-skill-advisor/mcp-server/lib/scorer/executor-delegation.ts` | Modify | The override lifts the hub rather than inserting a routeless entry (`08eb67a0de`) |
-| `.../scripts/routing-accuracy/holdout-prompts.jsonl` | Modify | Gold labels re-captured after the override change (`08eb67a0de`) |
+| `.opencode/skills/sk-code/graph-metadata.json` | Modify | Three bare tokens qualified to the code sense they meant (`e96760aa3b`) |
+| `.opencode/skills/sk-doc/graph-metadata.json` | Modify | Documentation-hub phrasings people actually use (`e96760aa3b`) |
+| `.opencode/skills/sk-doc/hub-router.json` | Modify | Stage-two classes for phrases that reached the hub and dropped (`add6602050`, `aa11c2b622`) |
+| `.opencode/skills/cli-external-orchestration/hub-router.json` | Modify | Executor routing rebuilt around the compiled route (`aa11c2b622`) |
+| `.opencode/skills/cli-external-orchestration/mode-registry.json` | Modify | Mode declarations aligned with the router (`aa11c2b622`) |
+| `.../system-skill-advisor/mcp-server/lib/scorer/executor-delegation.ts` | Modify | The override lifts the hub rather than inserting a routeless entry (`aa11c2b622`) |
+| `.../scripts/routing-accuracy/holdout-prompts.jsonl` | Modify | Gold labels re-captured after the override change (`aa11c2b622`) |
 | `.../013-live-activation/activation/*/manifest.json` | Modify | Compiled-route manifests regenerated with each routing edit |
 <!-- /ANCHOR:scope -->
 

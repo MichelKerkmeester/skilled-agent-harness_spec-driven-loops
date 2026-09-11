@@ -6,7 +6,7 @@ trigger_phrases: []
 
 **Verdict:** CONDITIONAL
 
-Adversarial correctness review (gpt-5.5-fast high) of `memory_causal_unlink` exposure (commit deee30b319). Scope: consistent registration across all layers — `ToolDefinition` descriptor + `TOOL_DEFINITIONS` in `tool-schemas.ts`; `MEMORY_RUNTIME_TOOL_NAMES` in `context-server.ts`; import + `TOOL_NAMES` + dispatch case in `tools/causal-tools.ts`; input schema + required `edgeId` in `tool-input-schemas.ts`. The wiring is present across all layers; the single finding is a schema-contract tightness mismatch, not a missing layer.
+Adversarial correctness review (gpt-5.5-fast high) of `memory_causal_unlink` exposure (commit f6f95062ed). Scope: consistent registration across all layers — `ToolDefinition` descriptor + `TOOL_DEFINITIONS` in `tool-schemas.ts`; `MEMORY_RUNTIME_TOOL_NAMES` in `context-server.ts`; import + `TOOL_NAMES` + dispatch case in `tools/causal-tools.ts`; input schema + required `edgeId` in `tool-input-schemas.ts`. The wiring is present across all layers; the single finding is a schema-contract tightness mismatch, not a missing layer.
 
 ## Findings
 

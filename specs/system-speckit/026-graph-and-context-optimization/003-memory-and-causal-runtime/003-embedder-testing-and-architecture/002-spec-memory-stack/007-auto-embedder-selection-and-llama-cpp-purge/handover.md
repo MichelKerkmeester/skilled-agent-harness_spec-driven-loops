@@ -34,7 +34,7 @@ _memory:
 This is the top recovery document for the active session as of **2026-05-18 21:50 PM local**. Three backgrounds are running:
 
 1. **CocoIndex 4-candidate re-baseline bench** (PID 96873) — code-embedder re-bench against the corrected post-install-hygiene pipeline; ETA ~22:58 PM
-2. **cli-codex MCP-disconnect RCA** (PID 11517) — read-only investigation into why mk_code_index + mk-spec-memory disconnected from Claude after the 75b4391e38 commit; will write `mcp-disconnect-rca.md` to the install-hygiene packet's scratch dir
+2. **cli-codex MCP-disconnect RCA** (PID 11517) — read-only investigation into why mk_code_index + mk-spec-memory disconnected from Claude after the c0aae9a446 commit; will write `mcp-disconnect-rca.md` to the install-hygiene packet's scratch dir
 3. **cli-codex 007 auto-embedder-selection + llama-cpp purge** (PID 20832, just dispatched) — end-to-end implementation of this packet; will return a Commit Handoff for main agent to apply
 
 User has been adding 5-min cron status checks (`*/5 * * * *`, job ID `83ae8204`) since 21:00 PM. Cron prompt references stale paths from the prior single-candidate bench; the *meaning* is "give me a tight status of bench + parallel work + daemon state every 5 min".
@@ -65,7 +65,7 @@ User has been adding 5-min cron status checks (`*/5 * * * *`, job ID `83ae8204`)
 - **Output target:** `016/005-cross-cutting-quality/005-cocoindex-install-hygiene/scratch/mcp-disconnect-rca.md`
 - **Read-only:** investigation only; no code changes
 - **Status at 21:50:** ~10 min elapsed; reading launcher internals
-- **What it's diagnosing:** `mk_code_index` and `mk-spec-memory` MCP servers returned `-32000` JSON-RPC errors at session reconnect. Hypothesis: stale dist build vs source after 75b4391e38, OR launcher zombie pattern not fixed (skill-advisor got the fix in 65761c8fb3 but spec-memory + code-index may not have).
+- **What it's diagnosing:** `mk_code_index` and `mk-spec-memory` MCP servers returned `-32000` JSON-RPC errors at session reconnect. Hypothesis: stale dist build vs source after c0aae9a446, OR launcher zombie pattern not fixed (skill-advisor got the fix in b3f67c2e51 but spec-memory + code-index may not have).
 - **When done:** main agent reviews `mcp-disconnect-rca.md` and applies the recommended fix (separately from the 007 packet)
 
 ### cli-codex 007 auto-embedder-selection (THE primary in-flight work)

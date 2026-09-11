@@ -17,7 +17,7 @@ user
 Independent code review (READ-ONLY). You may run git and read files. Do NOT modify any file.
 
 # Task
-Audit git commit `1e58d845af` ("docs(117): remove TOC blocks + HTML anchor comments from skill docs") in this repo. The commit removed Table-of-Contents blocks and `<!-- ANCHOR -->` HTML comment delimiters from ~857 skill markdown files plus 20 standards/config/template/command files. Your job: find anything the cleanup broke **by accident**.
+Audit git commit `e5ee6609c2` ("docs(117): remove TOC blocks + HTML anchor comments from skill docs") in this repo. The commit removed Table-of-Contents blocks and `<!-- ANCHOR -->` HTML comment delimiters from ~857 skill markdown files plus 20 standards/config/template/command files. Your job: find anything the cleanup broke **by accident**.
 
 This is **Iteration 1 of 10**. Focus dimension: **CORRECTNESS — TOC-removal content safety on high-risk files**.
 
@@ -29,9 +29,9 @@ It must NOT have removed or altered prose, real section headings (other than the
 
 # This iteration — inspect these high-TOC-risk files in the commit
 Sample broadly across the removed-TOC files (READMEs, manual_testing_playbook roots, feature_catalog roots). Suggested commands:
-- `git show --stat 1e58d845af | head -40`
-- `git show 1e58d845af -- .opencode/skills/cli-gemini/README.md .opencode/skills/cli-codex/manual_testing_playbook/manual_testing_playbook.md .opencode/skills/deep-research/feature_catalog/feature_catalog.md .opencode/skills/system-skill-advisor/README.md .opencode/skills/deep-loop-runtime/README.md`
-- Pick ~10 more removed-TOC files of your choosing from `git show --stat 1e58d845af --name-only` and inspect their diffs.
+- `git show --stat e5ee6609c2 | head -40`
+- `git show e5ee6609c2 -- .opencode/skills/cli-gemini/README.md .opencode/skills/cli-codex/manual_testing_playbook/manual_testing_playbook.md .opencode/skills/deep-research/feature_catalog/feature_catalog.md .opencode/skills/system-skill-advisor/README.md .opencode/skills/deep-loop-runtime/README.md`
+- Pick ~10 more removed-TOC files of your choosing from `git show --stat e5ee6609c2 --name-only` and inspect their diffs.
 - For each, confirm every `-` (removed) line is ONLY: a TOC heading, a TOC `[...](#...)` link bullet, an `<!-- ANCHOR -->` comment, a blank line, or a `---` rule. Flag any removed line that is real prose, a non-TOC heading, a table row, code, or a real list item — that is content loss.
 - Spot-check that the post-removal file still reads coherently (no orphaned intro like "see the table below" pointing at a deleted TOC; first real section follows the title/tagline cleanly).
 
@@ -513,9 +513,9 @@ Smart Router pseudocode (full implementation): see [`references/smart_routing.md
 codex
 I’ve loaded the relevant skill guidance. Now I’m pulling the commit’s file list and the named diffs, then I’ll pick additional high-risk roots rather than scanning only the suggested examples.
 exec
-/bin/zsh -lc 'git show --stat 1e58d845af | head -40' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'git show --stat e5ee6609c2 | head -40' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc 'git show --name-only --format= 1e58d845af' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'git show --name-only --format= e5ee6609c2' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
 /bin/zsh -lc 'git show --format=short --find-renames=0 -- .opencode/skills/cli-gemini/README.md .opencode/skills/cli-codex/manual_testing_playbook/manual_testing_playbook.md .opencode/skills/deep-research/feature_catalog/feature_catalog.md .opencode/skills/system-skill-advisor/README.md .opencode/skills/deep-loop-runtime/README.md' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 2216ms:
@@ -525,7 +525,7 @@ git: warning: confstr() failed with code 5: couldn't get path of DARWIN_USER_TEM
 git: error: couldn't create cache file '/tmp/xcrun_db-N8aqckkk' (errno=Operation not permitted)
 2026-05-26 12:40:25.013 xcodebuild[49418:53674280]  DVTFilePathFSEvents: Failed to start fs event stream.
 2026-05-26 12:40:25.139 xcodebuild[49418:53674277] [MT] DVTDeveloperPaths: Failed to get length of DARWIN_USER_CACHE_DIR from confstr(3), error = Error Domain=NSPOSIXErrorDomain Code=5 "Input/output error". Using NSCachesDirectory instead.
-commit 1e58d845af44255e32e071b3d69d1c19e76d4ac6
+commit e5ee6609c2b83108535c9b42befe8f88c3b879f0
 Author: MichelKerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
 
     docs(117): remove TOC blocks + HTML anchor comments from skill docs
@@ -1914,7 +1914,7 @@ git: warning: confstr() failed with code 5: couldn't get path of DARWIN_USER_TEM
 git: error: couldn't create cache file '/tmp/xcrun_db-Q1MJwM8x' (errno=Operation not permitted)
 2026-05-26 12:40:25.013 xcodebuild[49416:53674281]  DVTFilePathFSEvents: Failed to start fs event stream.
 2026-05-26 12:40:25.139 xcodebuild[49416:53674276] [MT] DVTDeveloperPaths: Failed to get length of DARWIN_USER_CACHE_DIR from confstr(3), error = Error Domain=NSPOSIXErrorDomain Code=5 "Input/output error". Using NSCachesDirectory instead.
-commit 1e58d845af44255e32e071b3d69d1c19e76d4ac6
+commit e5ee6609c2b83108535c9b42befe8f88c3b879f0
 Author: MichelKerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
 Date:   Tue May 26 11:55:15 2026 +0200
 
@@ -1956,10 +1956,10 @@ Date:   Tue May 26 11:55:15 2026 +0200
  .../manual_testing_playbook.md                     |  31 ---
 
 exec
-/bin/zsh -lc "git show --name-only --format= 1e58d845af | rg '("'^'"\\.opencode/skills/(README|["'^/]+/README|[''^/]+/INSTALL_GUIDE|[''^/]+/ARCHITECTURE)'"\\.md"'$|manual_testing_playbook/manual_testing_playbook'"\\.md"'$|feature_catalog/(FEATURE_CATALOG|feature_catalog)'"\\.md"'$|'"\\.opencode/commands/create/|\\.opencode/skills/sk-doc/assets/)'
+/bin/zsh -lc "git show --name-only --format= e5ee6609c2 | rg '("'^'"\\.opencode/skills/(README|["'^/]+/README|[''^/]+/INSTALL_GUIDE|[''^/]+/ARCHITECTURE)'"\\.md"'$|manual_testing_playbook/manual_testing_playbook'"\\.md"'$|feature_catalog/(FEATURE_CATALOG|feature_catalog)'"\\.md"'$|'"\\.opencode/commands/create/|\\.opencode/skills/sk-doc/assets/)'
 " in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc 'git show --format= --unified=0 1e58d845af -- .opencode/skills/README.md .opencode/skills/cli-claude-code/README.md .opencode/skills/cli-opencode/manual_testing_playbook/manual_testing_playbook.md .opencode/skills/deep-ai-council/feature_catalog/FEATURE_CATALOG.md .opencode/skills/deep-review/feature_catalog/feature_catalog.md .opencode/skills/mcp-code-mode/INSTALL_GUIDE.md .opencode/skills/sk-doc/assets/readme/readme_template.md .opencode/skills/sk-doc/assets/feature_catalog/feature_catalog_template.md .opencode/skills/system-code-graph/ARCHITECTURE.md .opencode/commands/create/assets/create_folder_readme_auto.yaml' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'git show --format= --unified=0 e5ee6609c2 -- .opencode/skills/README.md .opencode/skills/cli-claude-code/README.md .opencode/skills/cli-opencode/manual_testing_playbook/manual_testing_playbook.md .opencode/skills/deep-ai-council/feature_catalog/FEATURE_CATALOG.md .opencode/skills/deep-review/feature_catalog/feature_catalog.md .opencode/skills/mcp-code-mode/INSTALL_GUIDE.md .opencode/skills/sk-doc/assets/readme/readme_template.md .opencode/skills/sk-doc/assets/feature_catalog/feature_catalog_template.md .opencode/skills/system-code-graph/ARCHITECTURE.md .opencode/commands/create/assets/create_folder_readme_auto.yaml' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 1520ms:
 2026-05-26 12:40:35.057 xcodebuild[50143:53675487]  DVTFilePathFSEvents: Failed to start fs event stream.
 2026-05-26 12:40:35.174 xcodebuild[50143:53675484] [MT] DVTDeveloperPaths: Failed to get length of DARWIN_USER_CACHE_DIR from confstr(3), error = Error Domain=NSPOSIXErrorDomain Code=5 "Input/output error". Using NSCachesDirectory instead.
@@ -2470,7 +2470,7 @@ git: error: couldn't create cache file '/tmp/xcrun_db-v7hGywJr' (errno=Operation
 codex
 The named README/playbook/catalog diffs look clean so far: removed lines are TOC entries, anchor comments, blank lines, or separators. One thing I’m checking carefully is the standards/template side, because those diffs intentionally changed TOC-generation rules and can look like content loss unless the surrounding command contract changed with them.
 exec
-/bin/zsh -lc "git show --format= --unified=0 1e58d845af -- .opencode/skills/cli-gemini/README.md .opencode/skills/cli-codex/manual_testing_playbook/manual_testing_playbook.md .opencode/skills/deep-research/feature_catalog/feature_catalog.md .opencode/skills/system-skill-advisor/README.md .opencode/skills/deep-loop-runtime/README.md .opencode/skills/README.md .opencode/skills/cli-claude-code/README.md .opencode/skills/cli-opencode/manual_testing_playbook/manual_testing_playbook.md .opencode/skills/deep-ai-council/feature_catalog/FEATURE_CATALOG.md .opencode/skills/deep-review/feature_catalog/feature_catalog.md .opencode/skills/mcp-code-mode/INSTALL_GUIDE.md .opencode/skills/sk-doc/assets/readme/readme_template.md .opencode/skills/sk-doc/assets/feature_catalog/feature_catalog_template.md .opencode/skills/system-code-graph/ARCHITECTURE.md .opencode/commands/create/assets/create_folder_readme_auto.yaml | perl -ne '
+/bin/zsh -lc "git show --format= --unified=0 e5ee6609c2 -- .opencode/skills/cli-gemini/README.md .opencode/skills/cli-codex/manual_testing_playbook/manual_testing_playbook.md .opencode/skills/deep-research/feature_catalog/feature_catalog.md .opencode/skills/system-skill-advisor/README.md .opencode/skills/deep-loop-runtime/README.md .opencode/skills/README.md .opencode/skills/cli-claude-code/README.md .opencode/skills/cli-opencode/manual_testing_playbook/manual_testing_playbook.md .opencode/skills/deep-ai-council/feature_catalog/FEATURE_CATALOG.md .opencode/skills/deep-review/feature_catalog/feature_catalog.md .opencode/skills/mcp-code-mode/INSTALL_GUIDE.md .opencode/skills/sk-doc/assets/readme/readme_template.md .opencode/skills/sk-doc/assets/feature_catalog/feature_catalog_template.md .opencode/skills/system-code-graph/ARCHITECTURE.md .opencode/commands/create/assets/create_folder_readme_auto.yaml | perl -ne '
   if (/"'^diff --git a'"\\/(.*?) b\\//) { "'$f=$1; next }
   if (/''^@@/) { $h=$_; chomp $h; next }
   next unless /''^-/ && !/''^---/;
@@ -2533,11 +2533,11 @@ git: error: couldn't create cache file '/tmp/xcrun_db-HnJMPmF3' (errno=Operation
   | Table of contents | READMEs longer than 150 lines | Link only top-level sections |
 
 exec
-/bin/zsh -lc "git show 1e58d845af:.opencode/skills/mcp-code-mode/INSTALL_GUIDE.md | sed -n '1,90p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "git show e5ee6609c2:.opencode/skills/mcp-code-mode/INSTALL_GUIDE.md | sed -n '1,90p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "git show 1e58d845af:.opencode/skills/sk-doc/assets/readme/readme_template.md | sed -n '55,95p;145,180p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "git show e5ee6609c2:.opencode/skills/sk-doc/assets/readme/readme_template.md | sed -n '55,95p;145,180p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "git show 1e58d845af:.opencode/commands/create/assets/create_folder_readme_auto.yaml | sed -n '520,590p;1200,1225p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "git show e5ee6609c2:.opencode/commands/create/assets/create_folder_readme_auto.yaml | sed -n '520,590p;1200,1225p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 1421ms:
 2026-05-26 12:41:01.209 xcodebuild[51682:53677912]  DVTFilePathFSEvents: Failed to start fs event stream.
 2026-05-26 12:41:01.328 xcodebuild[51682:53677909] [MT] DVTDeveloperPaths: Failed to get length of DARWIN_USER_CACHE_DIR from confstr(3), error = Error Domain=NSPOSIXErrorDomain Code=5 "Input/output error". Using NSCachesDirectory instead.
@@ -2827,7 +2827,7 @@ git: error: couldn't create cache file '/tmp/xcrun_db-Ecz3bdmO' (errno=Operation
     | Feature | [This Project] | [Alternative 1] | [Alternative 2] |
 
 exec
-/bin/zsh -lc "git show 1e58d845af:.opencode/skills/mcp-code-mode/INSTALL_GUIDE.md | nl -ba | sed -n '38,62p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "git show e5ee6609c2:.opencode/skills/mcp-code-mode/INSTALL_GUIDE.md | nl -ba | sed -n '38,62p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 1164ms:
 2026-05-26 12:41:12.660 xcodebuild[52511:53679256]  DVTFilePathFSEvents: Failed to start fs event stream.
 2026-05-26 12:41:12.761 xcodebuild[52511:53679255] [MT] DVTDeveloperPaths: Failed to get length of DARWIN_USER_CACHE_DIR from confstr(3), error = Error Domain=NSPOSIXErrorDomain Code=5 "Input/output error". Using NSCachesDirectory instead.
@@ -2862,11 +2862,11 @@ git: error: couldn't create cache file '/tmp/xcrun_db-IeHJEnOm' (errno=Operation
     62	Code Mode MCP is a TypeScript execution environment that provides unified access to 159 MCP tools across 6 manuals through progressive disclosure. Instead of exposing all tools to your AI context (causing token exhaustion), Code Mode provides a single execution environment where tools are accessed programmatically and loaded on-demand.
 
 exec
-/bin/zsh -lc "git grep -n -i 'table of contents\\|## Table of Contents\\|## TABLE OF CONTENTS' 1e58d845af -- .opencode/skills .opencode/commands/create | head -80" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "git grep -n -i 'table of contents\\|## Table of Contents\\|## TABLE OF CONTENTS' e5ee6609c2 -- .opencode/skills .opencode/commands/create | head -80" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "git grep -n '"'^0'"\\. \\[AI-First Install Guide\\](#0-ai-first-install-guide)' 1e58d845af -- .opencode/skills" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "git grep -n '"'^0'"\\. \\[AI-First Install Guide\\](#0-ai-first-install-guide)' e5ee6609c2 -- .opencode/skills" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "git grep -n '"'^1'"\\. \\[Overview\\](#1-overview)' 1e58d845af -- .opencode/skills | head -80" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "git grep -n '"'^1'"\\. \\[Overview\\](#1-overview)' e5ee6609c2 -- .opencode/skills | head -80" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 1533ms:
 2026-05-26 12:41:20.858 xcodebuild[52781:53679745]  DVTFilePathFSEvents: Failed to start fs event stream.
 2026-05-26 12:41:20.967 xcodebuild[52781:53679740] [MT] DVTDeveloperPaths: Failed to get length of DARWIN_USER_CACHE_DIR from confstr(3), error = Error Domain=NSPOSIXErrorDomain Code=5 "Input/output error". Using NSCachesDirectory instead.
@@ -2874,8 +2874,8 @@ git: warning: confstr() failed with code 5: couldn't get path of DARWIN_USER_TEM
 git: error: couldn't create cache file '/tmp/xcrun_db-Aoxl9VCa' (errno=Operation not permitted)
 2026-05-26 12:41:21.343 xcodebuild[52825:53679818]  DVTFilePathFSEvents: Failed to start fs event stream.
 2026-05-26 12:41:21.454 xcodebuild[52825:53679816] [MT] DVTDeveloperPaths: Failed to get length of DARWIN_USER_CACHE_DIR from confstr(3), error = Error Domain=NSPOSIXErrorDomain Code=5 "Input/output error". Using NSCachesDirectory instead.
-1e58d845af:.opencode/skills/mcp-chrome-devtools/INSTALL_GUIDE.md:53:0. [AI-First Install Guide](#0-ai-first-install-guide)
-1e58d845af:.opencode/skills/mcp-code-mode/INSTALL_GUIDE.md:46:0. [AI-First Install Guide](#0-ai-first-install-guide)
+e5ee6609c2:.opencode/skills/mcp-chrome-devtools/INSTALL_GUIDE.md:53:0. [AI-First Install Guide](#0-ai-first-install-guide)
+e5ee6609c2:.opencode/skills/mcp-code-mode/INSTALL_GUIDE.md:46:0. [AI-First Install Guide](#0-ai-first-install-guide)
 
  succeeded in 1519ms:
 2026-05-26 12:41:20.858 xcodebuild[52783:53679748]  DVTFilePathFSEvents: Failed to start fs event stream.
@@ -2884,8 +2884,8 @@ git: warning: confstr() failed with code 5: couldn't get path of DARWIN_USER_TEM
 git: error: couldn't create cache file '/tmp/xcrun_db-aDarLvzt' (errno=Operation not permitted)
 2026-05-26 12:41:21.343 xcodebuild[52826:53679819]  DVTFilePathFSEvents: Failed to start fs event stream.
 2026-05-26 12:41:21.454 xcodebuild[52826:53679815] [MT] DVTDeveloperPaths: Failed to get length of DARWIN_USER_CACHE_DIR from confstr(3), error = Error Domain=NSPOSIXErrorDomain Code=5 "Input/output error". Using NSCachesDirectory instead.
-1e58d845af:.opencode/skills/mcp-chrome-devtools/INSTALL_GUIDE.md:54:1. [Overview](#1-overview)
-1e58d845af:.opencode/skills/mcp-code-mode/INSTALL_GUIDE.md:47:1. [Overview](#1-overview)
+e5ee6609c2:.opencode/skills/mcp-chrome-devtools/INSTALL_GUIDE.md:54:1. [Overview](#1-overview)
+e5ee6609c2:.opencode/skills/mcp-code-mode/INSTALL_GUIDE.md:47:1. [Overview](#1-overview)
 
  succeeded in 1552ms:
 2026-05-26 12:41:20.858 xcodebuild[52782:53679744]  DVTFilePathFSEvents: Failed to start fs event stream.
@@ -2894,79 +2894,79 @@ git: warning: confstr() failed with code 5: couldn't get path of DARWIN_USER_TEM
 git: error: couldn't create cache file '/tmp/xcrun_db-enljNc4A' (errno=Operation not permitted)
 2026-05-26 12:41:21.343 xcodebuild[52827:53679817]  DVTFilePathFSEvents: Failed to start fs event stream.
 2026-05-26 12:41:21.454 xcodebuild[52827:53679814] [MT] DVTDeveloperPaths: Failed to get length of DARWIN_USER_CACHE_DIR from confstr(3), error = Error Domain=NSPOSIXErrorDomain Code=5 "Input/output error". Using NSCachesDirectory instead.
-1e58d845af:.opencode/commands/create/assets/create_feature_catalog_auto.yaml:163:    - numbered all-caps H2 sections (no Table of Contents)
-1e58d845af:.opencode/commands/create/assets/create_feature_catalog_confirm.yaml:177:    - numbered all-caps H2 sections (no Table of Contents)
-1e58d845af:.opencode/commands/create/assets/create_testing_playbook_auto.yaml:165:    - numbered all-caps H2 sections (no Table of Contents)
-1e58d845af:.opencode/commands/create/assets/create_testing_playbook_confirm.yaml:179:    - numbered all-caps H2 sections (no Table of Contents)
-1e58d845af:.opencode/commands/create/folder_readme.md:471:├─ MUST NOT include a Table of Contents or <!-- ANCHOR --> comments
-1e58d845af:.opencode/commands/create/folder_readme.md:477:├─ MUST confirm no Table of Contents was added
-1e58d845af:.opencode/skills/cli-claude-code/manual_testing_playbook/manual_testing_playbook.md:482:Verify `--agent write` writes a sk-doc template-driven README to a temp path with at least 3 emoji-prefixed H2 headers and no table of contents.
-1e58d845af:.opencode/skills/cli-claude-code/manual_testing_playbook/manual_testing_playbook.md:486:Prompt: As an external-AI conductor wanting a template-driven README for a small skill, dispatch `claude -p --agent write` to generate `/tmp/cc-025-readme/README.md` for a fictional skill. Verify the file is written, has at least 3 emoji-prefixed H2 headers, and contains no table of contents. Return a verdict naming the file path and the H2 emoji count.
-1e58d845af:.opencode/skills/cli-claude-code/manual_testing_playbook/manual_testing_playbook.md:488:Expected signals: Dispatch exits 0. README file exists at the requested path. README contains no table of contents section. H2 headers include emojis (per sk-doc template enforcement).
-1e58d845af:.opencode/skills/cli-opencode/manual_testing_playbook/manual_testing_playbook.md:419:Prompt summary: As an external-AI conductor wanting a template-driven README for a small documentation skill, dispatch --agent write to generate /tmp/co-016-readme/README.md for a fictional skill called Demo Skill. Verify the dispatch loads sk-doc, applies readme_template.md, writes the README file with emoji-prefixed H2 sections and no table of contents.
-1e58d845af:.opencode/skills/deep-review/changelog/v1.9.0.0.md:43:The root playbook claimed 32 scenarios across 6 categories but actually carried 45 files across 8 categories. The two stress-test categories (command-flow stress tests CP-052 through CP-057 and the review-depth v2 rollout DRV-058 through DRV-063) had no body sections and were not listed in the index. The rewrite adds section 15 and section 16 with per-scenario summaries, updates the table of contents and the section 14 index, and corrects the overview count. Filename collisions in the convergence-and-recovery directory (where files 015 and 021 through 023 collided with files in sibling directories under the same numbers but mapping to different DRV IDs) were renamed to match their DRV IDs (030, 032 through 034). Fourteen cross-references in other files that pointed to the old filenames were patched in the same commit.
-1e58d845af:.opencode/skills/sk-code/assets/webflow/integrations/lenis_patterns.js:15: * - Table of contents: scroll to anchor with offset
-1e58d845af:.opencode/skills/sk-code/references/webflow/implementation/observer_patterns.md:144:- Scroll-based active states (Table of Contents, navigation highlighting)
-1e58d845af:.opencode/skills/sk-code/references/webflow/implementation/third_party_integrations.md:200:- Table of Contents smooth scrolling: `src/javascript/cms/table_of_content.js:363`
-1e58d845af:.opencode/skills/sk-doc/assets/feature_catalog/feature_catalog_template.md:217:- Use numbered all-caps H2 section headers in the root catalog. Do not add a Table of Contents.
-1e58d845af:.opencode/skills/sk-doc/assets/feature_catalog/feature_catalog_template.md:229:- [ ] Root catalog uses numbered all-caps H2 section headers (no Table of Contents)
-1e58d845af:.opencode/skills/sk-doc/assets/skill/skill_md_template.md:59:- ✅ No table of contents (forbidden in SKILL.md)
-1e58d845af:.opencode/skills/sk-doc/assets/skill/skill_md_template.md:1078:□ No table of contents (forbidden in SKILL.md)
-1e58d845af:.opencode/skills/sk-doc/assets/skill/skill_md_template.md:1128:| **TOC**               | Forbidden in SKILL.md      | ❌ No table of contents                                                                             |
-1e58d845af:.opencode/skills/sk-doc/assets/template_rules.json:562:    "tocHeader": "## TABLE OF CONTENTS",
-1e58d845af:.opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_template.md:482:- [ ] Main playbook has frontmatter and H1 intro (no Table of Contents)
-1e58d845af:.opencode/skills/sk-doc/references/feature_catalog_creation.md:25:- no Table of Contents and no `<!-- ANCHOR -->` navigation comments
-1e58d845af:.opencode/skills/sk-doc/references/global/core_standards.md:80:- ❌ **NEVER** add a Table of Contents to any document type. Tables of Contents and `<!-- ANCHOR -->` navigation comments are not used in skill documentation.
-1e58d845af:.opencode/skills/sk-doc/references/global/validation.md:116:- ✅ `no_toc` - No table of contents section
-1e58d845af:.opencode/skills/sk-doc/references/readme_creation.md:188:**Table of Contents**: Do not add a Table of Contents. READMEs rely on their numbered H2 heading hierarchy for navigation; no TOC block and no `<!-- ANCHOR -->` navigation comments are used.
-1e58d845af:.opencode/skills/sk-doc/references/readme_creation.md:315:- [ ] No Table of Contents and no `<!-- ANCHOR -->` navigation comments
-1e58d845af:.opencode/skills/sk-doc/scripts/extract_structure.py:673:    ('no_toc', 'No table of contents', lambda fm, h, c: not any('TABLE OF CONTENTS' in heading['text'].upper() or 'TOC' == heading['text'].upper() for heading in h)),
-1e58d845af:.opencode/skills/sk-doc/scripts/extract_structure.py:682:    ('has_toc', 'Has TABLE OF CONTENTS section', lambda fm, h, c: any('TABLE OF CONTENTS' in heading['text'].upper() or heading['text'].upper() == 'TOC' for heading in h)),
-1e58d845af:.opencode/skills/sk-doc/scripts/extract_structure.py:683:    ('h2_numbered', 'H2s have number prefix', lambda fm, h, c: all(heading['has_number'] for heading in h if heading['level'] == 2 and 'TABLE OF CONTENTS' not in heading['text'].upper()) if any(heading['level'] == 2 for heading in h) else True),
-1e58d845af:.opencode/skills/sk-doc/scripts/tests/missing_emojis.md:7:## TABLE OF CONTENTS
-1e58d845af:.opencode/skills/sk-doc/scripts/tests/missing_toc.md:3:> README missing TABLE OF CONTENTS section (blocking error)
-1e58d845af:.opencode/skills/sk-doc/scripts/tests/missing_toc.md:9:This README is missing the TABLE OF CONTENTS section.
-1e58d845af:.opencode/skills/sk-doc/scripts/tests/single_dash_anchors.md:7:## TABLE OF CONTENTS
-1e58d845af:.opencode/skills/sk-doc/scripts/tests/valid_install_guide.md:7:## TABLE OF CONTENTS
-1e58d845af:.opencode/skills/sk-doc/scripts/tests/valid_readme.md:7:## TABLE OF CONTENTS
-1e58d845af:.opencode/skills/sk-doc/scripts/tests/valid_readme.md:17:- Has TABLE OF CONTENTS section
-1e58d845af:.opencode/skills/sk-doc/scripts/validate_document.py:233:    """Validate TABLE OF CONTENTS section."""
-1e58d845af:.opencode/skills/sk-doc/scripts/validate_document.py:240:    # Pattern: ## [optional emoji] TABLE OF CONTENTS
-1e58d845af:.opencode/skills/sk-doc/scripts/validate_document.py:242:        r'## (?:[^\w\s]\s+)?TABLE OF CONTENTS\s*\n(.*?)(?=\n---|\n## |\Z)',
-1e58d845af:.opencode/skills/sk-doc/scripts/validate_document.py:251:            'message': 'Missing TABLE OF CONTENTS section',
-1e58d845af:.opencode/skills/sk-doc/scripts/validate_document.py:252:            'fix_hint': 'Add "## TABLE OF CONTENTS" section with linked entries'
-1e58d845af:.opencode/skills/sk-git/changelog/CHANGELOG.md:50:- Removed table of contents from README.md (forbidden by sk-doc standards)
-1e58d845af:.opencode/skills/system-spec-kit/SKILL.md:455:19. **Enforce ToC policy from validation rules** - Only `research/research.md` may include a Table of Contents section; remove ToC headings from standard spec artifacts
-1e58d845af:.opencode/skills/system-spec-kit/mcp_server/.github/hooks/README.md:16:## TABLE OF CONTENTS
-1e58d845af:.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/scripts/generate_report.py:134:## TABLE OF CONTENTS
-1e58d845af:.opencode/skills/system-spec-kit/mcp_server/lib/routing/content-router.ts:421:      /recovery scenarios|diagnostic commands|table of contents|placeholder|auto-truncated/.test(normalized),
-1e58d845af:.opencode/skills/system-spec-kit/mcp_server/lib/routing/content-router.ts:435:const HARD_DROP_WRAPPER_CUES = /\b(conversation transcript|generic recovery hints|tool telemetry|table of contents|raw tool|repository state|assistant:|user:|tool:|recovery scenarios|diagnostic commands)\b/u;
-1e58d845af:.opencode/skills/system-spec-kit/mcp_server/lib/routing/content-router.ts:1070:  if (/\brecovery scenarios|diagnostic commands|table of contents\b/.test(normalizedText)) {
-1e58d845af:.opencode/skills/system-spec-kit/mcp_server/lib/routing/routing-prototypes.json:262:        "label": "table of contents wrapper",
-1e58d845af:.opencode/skills/system-spec-kit/mcp_server/lib/routing/routing-prototypes.json:266:        "chunk": "Table of contents continue session, project state snapshot, overview, detailed changes, decisions, conversation, recovery hints, memory metadata. The chunk exists only to help a human scan a long legacy memory file and carries almost no semantic retrieval value by itself."
-1e58d845af:.opencode/skills/system-spec-kit/references/templates/template_guide.md:726:11. **Apply ToC policy consistently** - Only `research/research.md` may include a Table of Contents section; keep standard spec artifacts ToC-free
-1e58d845af:.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:240:  { pattern: /^(to promote a memory|epistemic state captured at session start|table of contents)\b/i, label: 'template instructional heading' },
-1e58d845af:.opencode/skills/system-spec-kit/scripts/rules/check-toc-policy.sh:11:# Description: Enforces that Table of Contents sections appear only in research/research.md.
-1e58d845af:.opencode/skills/system-spec-kit/scripts/rules/check-toc-policy.sh:37:    local toc_heading_pattern='^[[:space:]]*#{1,6}[[:space:]]*([0-9]+[.)][[:space:]]+)?(table of contents|toc)[[:space:]]*$'
-1e58d845af:.opencode/skills/system-spec-kit/scripts/rules/check-toc-policy.sh:63:        RULE_REMEDIATION="Remove '## TABLE OF CONTENTS' / '## TOC' sections from spec.md, plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md, handover.md, and debug-delegation.md. Only research/research.md may include a TOC."
-1e58d845af:.opencode/skills/system-spec-kit/scripts/spec/progressive-validate.sh:573:            echo "Add or update the Table of Contents using the spec-kit TOC format with anchor links."
-1e58d845af:.opencode/skills/system-spec-kit/scripts/tests/fixtures/memory-quality/F-AC1-truncation.json:3:  "sessionSummary": "Phase 1 foundation work focused on two narrow repairs that improve memory quality without widening the remediation packet into unrelated metadata or reviewer behavior. The first repair aligned the OVERVIEW anchor identity so the table of contents, the HTML anchor, and the internal comment marker all point to the same destination. The second repair extracted a shared truncation helper so long session summaries stop at a clean word boundary and carry the canonical Unicode ellipsis instead of drifting between punctuation styles. The fixture describes a realistic verification pass where the helper was reused by the observation summary path, the OVERVIEW owner adopted the same contract, the compiled CLI replay was exercised with explicit JSON input, and the temporary replay artifacts were removed immediately after the check so the packet memory store stayed clean for the real documentation workflow.",
-1e58d845af:.opencode/skills/system-spec-kit/scripts/tests/fixtures/memory-quality/F-AC8-clean.json:28:    "## Table of Contents",
-1e58d845af:.opencode/skills/system-spec-kit/scripts/tests/fixtures/memory-quality/F-broken-D1.json:28:    "## Table of Contents",
-1e58d845af:.opencode/skills/system-spec-kit/scripts/tests/fixtures/memory-quality/F-broken-D4.json:28:    "## Table of Contents",
-1e58d845af:.opencode/skills/system-spec-kit/scripts/tests/fixtures/memory-quality/F-broken-D7.json:28:    "## Table of Contents",
-1e58d845af:.opencode/skills/system-spec-kit/scripts/tests/fixtures/memory-quality/F-broken-D8.json:28:    "## Table of Contents",
-1e58d845af:.opencode/skills/system-spec-kit/scripts/tests/memory-template-contract.vitest.ts:141:          '## TABLE OF CONTENTS',
-1e58d845af:.opencode/skills/system-spec-kit/scripts/utils/slug-utils.ts:32:  /^table of contents\b/i,
-1e58d845af:.opencode/skills/system-spec-kit/templates/README.md:14:## TABLE OF CONTENTS
-1e58d845af:.opencode/skills/system-spec-kit/templates/README.md:17:  - [TABLE OF CONTENTS](#table-of-contents)
-1e58d845af:.opencode/skills/system-spec-kit/templates/changelog/README.md:13:## TABLE OF CONTENTS
-1e58d845af:.opencode/skills/system-spec-kit/templates/examples/README.md:15:## TABLE OF CONTENTS
-1e58d845af:.opencode/skills/system-spec-kit/templates/manifest/README.md:13:## TABLE OF CONTENTS
-1e58d845af:.opencode/skills/system-spec-kit/templates/stress_test/README.md:11:## TABLE OF CONTENTS
+e5ee6609c2:.opencode/commands/create/assets/create_feature_catalog_auto.yaml:163:    - numbered all-caps H2 sections (no Table of Contents)
+e5ee6609c2:.opencode/commands/create/assets/create_feature_catalog_confirm.yaml:177:    - numbered all-caps H2 sections (no Table of Contents)
+e5ee6609c2:.opencode/commands/create/assets/create_testing_playbook_auto.yaml:165:    - numbered all-caps H2 sections (no Table of Contents)
+e5ee6609c2:.opencode/commands/create/assets/create_testing_playbook_confirm.yaml:179:    - numbered all-caps H2 sections (no Table of Contents)
+e5ee6609c2:.opencode/commands/create/folder_readme.md:471:├─ MUST NOT include a Table of Contents or <!-- ANCHOR --> comments
+e5ee6609c2:.opencode/commands/create/folder_readme.md:477:├─ MUST confirm no Table of Contents was added
+e5ee6609c2:.opencode/skills/cli-claude-code/manual_testing_playbook/manual_testing_playbook.md:482:Verify `--agent write` writes a sk-doc template-driven README to a temp path with at least 3 emoji-prefixed H2 headers and no table of contents.
+e5ee6609c2:.opencode/skills/cli-claude-code/manual_testing_playbook/manual_testing_playbook.md:486:Prompt: As an external-AI conductor wanting a template-driven README for a small skill, dispatch `claude -p --agent write` to generate `/tmp/cc-025-readme/README.md` for a fictional skill. Verify the file is written, has at least 3 emoji-prefixed H2 headers, and contains no table of contents. Return a verdict naming the file path and the H2 emoji count.
+e5ee6609c2:.opencode/skills/cli-claude-code/manual_testing_playbook/manual_testing_playbook.md:488:Expected signals: Dispatch exits 0. README file exists at the requested path. README contains no table of contents section. H2 headers include emojis (per sk-doc template enforcement).
+e5ee6609c2:.opencode/skills/cli-opencode/manual_testing_playbook/manual_testing_playbook.md:419:Prompt summary: As an external-AI conductor wanting a template-driven README for a small documentation skill, dispatch --agent write to generate /tmp/co-016-readme/README.md for a fictional skill called Demo Skill. Verify the dispatch loads sk-doc, applies readme_template.md, writes the README file with emoji-prefixed H2 sections and no table of contents.
+e5ee6609c2:.opencode/skills/deep-review/changelog/v1.9.0.0.md:43:The root playbook claimed 32 scenarios across 6 categories but actually carried 45 files across 8 categories. The two stress-test categories (command-flow stress tests CP-052 through CP-057 and the review-depth v2 rollout DRV-058 through DRV-063) had no body sections and were not listed in the index. The rewrite adds section 15 and section 16 with per-scenario summaries, updates the table of contents and the section 14 index, and corrects the overview count. Filename collisions in the convergence-and-recovery directory (where files 015 and 021 through 023 collided with files in sibling directories under the same numbers but mapping to different DRV IDs) were renamed to match their DRV IDs (030, 032 through 034). Fourteen cross-references in other files that pointed to the old filenames were patched in the same commit.
+e5ee6609c2:.opencode/skills/sk-code/assets/webflow/integrations/lenis_patterns.js:15: * - Table of contents: scroll to anchor with offset
+e5ee6609c2:.opencode/skills/sk-code/references/webflow/implementation/observer_patterns.md:144:- Scroll-based active states (Table of Contents, navigation highlighting)
+e5ee6609c2:.opencode/skills/sk-code/references/webflow/implementation/third_party_integrations.md:200:- Table of Contents smooth scrolling: `src/javascript/cms/table_of_content.js:363`
+e5ee6609c2:.opencode/skills/sk-doc/assets/feature_catalog/feature_catalog_template.md:217:- Use numbered all-caps H2 section headers in the root catalog. Do not add a Table of Contents.
+e5ee6609c2:.opencode/skills/sk-doc/assets/feature_catalog/feature_catalog_template.md:229:- [ ] Root catalog uses numbered all-caps H2 section headers (no Table of Contents)
+e5ee6609c2:.opencode/skills/sk-doc/assets/skill/skill_md_template.md:59:- ✅ No table of contents (forbidden in SKILL.md)
+e5ee6609c2:.opencode/skills/sk-doc/assets/skill/skill_md_template.md:1078:□ No table of contents (forbidden in SKILL.md)
+e5ee6609c2:.opencode/skills/sk-doc/assets/skill/skill_md_template.md:1128:| **TOC**               | Forbidden in SKILL.md      | ❌ No table of contents                                                                             |
+e5ee6609c2:.opencode/skills/sk-doc/assets/template_rules.json:562:    "tocHeader": "## TABLE OF CONTENTS",
+e5ee6609c2:.opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_template.md:482:- [ ] Main playbook has frontmatter and H1 intro (no Table of Contents)
+e5ee6609c2:.opencode/skills/sk-doc/references/feature_catalog_creation.md:25:- no Table of Contents and no `<!-- ANCHOR -->` navigation comments
+e5ee6609c2:.opencode/skills/sk-doc/references/global/core_standards.md:80:- ❌ **NEVER** add a Table of Contents to any document type. Tables of Contents and `<!-- ANCHOR -->` navigation comments are not used in skill documentation.
+e5ee6609c2:.opencode/skills/sk-doc/references/global/validation.md:116:- ✅ `no_toc` - No table of contents section
+e5ee6609c2:.opencode/skills/sk-doc/references/readme_creation.md:188:**Table of Contents**: Do not add a Table of Contents. READMEs rely on their numbered H2 heading hierarchy for navigation; no TOC block and no `<!-- ANCHOR -->` navigation comments are used.
+e5ee6609c2:.opencode/skills/sk-doc/references/readme_creation.md:315:- [ ] No Table of Contents and no `<!-- ANCHOR -->` navigation comments
+e5ee6609c2:.opencode/skills/sk-doc/scripts/extract_structure.py:673:    ('no_toc', 'No table of contents', lambda fm, h, c: not any('TABLE OF CONTENTS' in heading['text'].upper() or 'TOC' == heading['text'].upper() for heading in h)),
+e5ee6609c2:.opencode/skills/sk-doc/scripts/extract_structure.py:682:    ('has_toc', 'Has TABLE OF CONTENTS section', lambda fm, h, c: any('TABLE OF CONTENTS' in heading['text'].upper() or heading['text'].upper() == 'TOC' for heading in h)),
+e5ee6609c2:.opencode/skills/sk-doc/scripts/extract_structure.py:683:    ('h2_numbered', 'H2s have number prefix', lambda fm, h, c: all(heading['has_number'] for heading in h if heading['level'] == 2 and 'TABLE OF CONTENTS' not in heading['text'].upper()) if any(heading['level'] == 2 for heading in h) else True),
+e5ee6609c2:.opencode/skills/sk-doc/scripts/tests/missing_emojis.md:7:## TABLE OF CONTENTS
+e5ee6609c2:.opencode/skills/sk-doc/scripts/tests/missing_toc.md:3:> README missing TABLE OF CONTENTS section (blocking error)
+e5ee6609c2:.opencode/skills/sk-doc/scripts/tests/missing_toc.md:9:This README is missing the TABLE OF CONTENTS section.
+e5ee6609c2:.opencode/skills/sk-doc/scripts/tests/single_dash_anchors.md:7:## TABLE OF CONTENTS
+e5ee6609c2:.opencode/skills/sk-doc/scripts/tests/valid_install_guide.md:7:## TABLE OF CONTENTS
+e5ee6609c2:.opencode/skills/sk-doc/scripts/tests/valid_readme.md:7:## TABLE OF CONTENTS
+e5ee6609c2:.opencode/skills/sk-doc/scripts/tests/valid_readme.md:17:- Has TABLE OF CONTENTS section
+e5ee6609c2:.opencode/skills/sk-doc/scripts/validate_document.py:233:    """Validate TABLE OF CONTENTS section."""
+e5ee6609c2:.opencode/skills/sk-doc/scripts/validate_document.py:240:    # Pattern: ## [optional emoji] TABLE OF CONTENTS
+e5ee6609c2:.opencode/skills/sk-doc/scripts/validate_document.py:242:        r'## (?:[^\w\s]\s+)?TABLE OF CONTENTS\s*\n(.*?)(?=\n---|\n## |\Z)',
+e5ee6609c2:.opencode/skills/sk-doc/scripts/validate_document.py:251:            'message': 'Missing TABLE OF CONTENTS section',
+e5ee6609c2:.opencode/skills/sk-doc/scripts/validate_document.py:252:            'fix_hint': 'Add "## TABLE OF CONTENTS" section with linked entries'
+e5ee6609c2:.opencode/skills/sk-git/changelog/CHANGELOG.md:50:- Removed table of contents from README.md (forbidden by sk-doc standards)
+e5ee6609c2:.opencode/skills/system-spec-kit/SKILL.md:455:19. **Enforce ToC policy from validation rules** - Only `research/research.md` may include a Table of Contents section; remove ToC headings from standard spec artifacts
+e5ee6609c2:.opencode/skills/system-spec-kit/mcp_server/.github/hooks/README.md:16:## TABLE OF CONTENTS
+e5ee6609c2:.opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/scripts/generate_report.py:134:## TABLE OF CONTENTS
+e5ee6609c2:.opencode/skills/system-spec-kit/mcp_server/lib/routing/content-router.ts:421:      /recovery scenarios|diagnostic commands|table of contents|placeholder|auto-truncated/.test(normalized),
+e5ee6609c2:.opencode/skills/system-spec-kit/mcp_server/lib/routing/content-router.ts:435:const HARD_DROP_WRAPPER_CUES = /\b(conversation transcript|generic recovery hints|tool telemetry|table of contents|raw tool|repository state|assistant:|user:|tool:|recovery scenarios|diagnostic commands)\b/u;
+e5ee6609c2:.opencode/skills/system-spec-kit/mcp_server/lib/routing/content-router.ts:1070:  if (/\brecovery scenarios|diagnostic commands|table of contents\b/.test(normalizedText)) {
+e5ee6609c2:.opencode/skills/system-spec-kit/mcp_server/lib/routing/routing-prototypes.json:262:        "label": "table of contents wrapper",
+e5ee6609c2:.opencode/skills/system-spec-kit/mcp_server/lib/routing/routing-prototypes.json:266:        "chunk": "Table of contents continue session, project state snapshot, overview, detailed changes, decisions, conversation, recovery hints, memory metadata. The chunk exists only to help a human scan a long legacy memory file and carries almost no semantic retrieval value by itself."
+e5ee6609c2:.opencode/skills/system-spec-kit/references/templates/template_guide.md:726:11. **Apply ToC policy consistently** - Only `research/research.md` may include a Table of Contents section; keep standard spec artifacts ToC-free
+e5ee6609c2:.opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts:240:  { pattern: /^(to promote a memory|epistemic state captured at session start|table of contents)\b/i, label: 'template instructional heading' },
+e5ee6609c2:.opencode/skills/system-spec-kit/scripts/rules/check-toc-policy.sh:11:# Description: Enforces that Table of Contents sections appear only in research/research.md.
+e5ee6609c2:.opencode/skills/system-spec-kit/scripts/rules/check-toc-policy.sh:37:    local toc_heading_pattern='^[[:space:]]*#{1,6}[[:space:]]*([0-9]+[.)][[:space:]]+)?(table of contents|toc)[[:space:]]*$'
+e5ee6609c2:.opencode/skills/system-spec-kit/scripts/rules/check-toc-policy.sh:63:        RULE_REMEDIATION="Remove '## TABLE OF CONTENTS' / '## TOC' sections from spec.md, plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md, handover.md, and debug-delegation.md. Only research/research.md may include a TOC."
+e5ee6609c2:.opencode/skills/system-spec-kit/scripts/spec/progressive-validate.sh:573:            echo "Add or update the Table of Contents using the spec-kit TOC format with anchor links."
+e5ee6609c2:.opencode/skills/system-spec-kit/scripts/tests/fixtures/memory-quality/F-AC1-truncation.json:3:  "sessionSummary": "Phase 1 foundation work focused on two narrow repairs that improve memory quality without widening the remediation packet into unrelated metadata or reviewer behavior. The first repair aligned the OVERVIEW anchor identity so the table of contents, the HTML anchor, and the internal comment marker all point to the same destination. The second repair extracted a shared truncation helper so long session summaries stop at a clean word boundary and carry the canonical Unicode ellipsis instead of drifting between punctuation styles. The fixture describes a realistic verification pass where the helper was reused by the observation summary path, the OVERVIEW owner adopted the same contract, the compiled CLI replay was exercised with explicit JSON input, and the temporary replay artifacts were removed immediately after the check so the packet memory store stayed clean for the real documentation workflow.",
+e5ee6609c2:.opencode/skills/system-spec-kit/scripts/tests/fixtures/memory-quality/F-AC8-clean.json:28:    "## Table of Contents",
+e5ee6609c2:.opencode/skills/system-spec-kit/scripts/tests/fixtures/memory-quality/F-broken-D1.json:28:    "## Table of Contents",
+e5ee6609c2:.opencode/skills/system-spec-kit/scripts/tests/fixtures/memory-quality/F-broken-D4.json:28:    "## Table of Contents",
+e5ee6609c2:.opencode/skills/system-spec-kit/scripts/tests/fixtures/memory-quality/F-broken-D7.json:28:    "## Table of Contents",
+e5ee6609c2:.opencode/skills/system-spec-kit/scripts/tests/fixtures/memory-quality/F-broken-D8.json:28:    "## Table of Contents",
+e5ee6609c2:.opencode/skills/system-spec-kit/scripts/tests/memory-template-contract.vitest.ts:141:          '## TABLE OF CONTENTS',
+e5ee6609c2:.opencode/skills/system-spec-kit/scripts/utils/slug-utils.ts:32:  /^table of contents\b/i,
+e5ee6609c2:.opencode/skills/system-spec-kit/templates/README.md:14:## TABLE OF CONTENTS
+e5ee6609c2:.opencode/skills/system-spec-kit/templates/README.md:17:  - [TABLE OF CONTENTS](#table-of-contents)
+e5ee6609c2:.opencode/skills/system-spec-kit/templates/changelog/README.md:13:## TABLE OF CONTENTS
+e5ee6609c2:.opencode/skills/system-spec-kit/templates/examples/README.md:15:## TABLE OF CONTENTS
+e5ee6609c2:.opencode/skills/system-spec-kit/templates/manifest/README.md:13:## TABLE OF CONTENTS
+e5ee6609c2:.opencode/skills/system-spec-kit/templates/stress_test/README.md:11:## TABLE OF CONTENTS
 
 exec
-/bin/zsh -lc "git show --format= --unified=0 1e58d845af -- .opencode/skills/mcp-chrome-devtools/INSTALL_GUIDE.md .opencode/skills/mcp-code-mode/INSTALL_GUIDE.md && printf '\\nPOST mcp-chrome lines:\\n' && git show 1e58d845af:.opencode/skills/mcp-chrome-devtools/INSTALL_GUIDE.md | nl -ba | sed -n '45,68p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "git show --format= --unified=0 e5ee6609c2 -- .opencode/skills/mcp-chrome-devtools/INSTALL_GUIDE.md .opencode/skills/mcp-code-mode/INSTALL_GUIDE.md && printf '\\nPOST mcp-chrome lines:\\n' && git show e5ee6609c2:.opencode/skills/mcp-chrome-devtools/INSTALL_GUIDE.md | nl -ba | sed -n '45,68p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 2443ms:
 2026-05-26 12:41:25.680 xcodebuild[53015:53680188]  DVTFilePathFSEvents: Failed to start fs event stream.
 2026-05-26 12:41:25.778 xcodebuild[53015:53680187] [MT] DVTDeveloperPaths: Failed to get length of DARWIN_USER_CACHE_DIR from confstr(3), error = Error Domain=NSPOSIXErrorDomain Code=5 "Input/output error". Using NSCachesDirectory instead.
@@ -3024,7 +3024,7 @@ git: error: couldn't create cache file '/tmp/xcrun_db-RsqkqKh3' (errno=Operation
     68	
 
 exec
-/bin/zsh -lc 'for f in $(git show --name-only --format= 1e58d845af | rg '"'INSTALL_GUIDE\\.md"'$'"'); do echo \"--- "'$f"; git show "1e58d845af:$f" | nl -ba | sed -n '"'40,70p' | rg '"'^'"\\s*[0-9]+\\s+(## Table of Contents|[0-9]+\\. \\[)'; done" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'for f in $(git show --name-only --format= e5ee6609c2 | rg '"'INSTALL_GUIDE\\.md"'$'"'); do echo \"--- "'$f"; git show "e5ee6609c2:$f" | nl -ba | sed -n '"'40,70p' | rg '"'^'"\\s*[0-9]+\\s+(## Table of Contents|[0-9]+\\. \\[)'; done" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 7178ms:
 2026-05-26 12:41:32.084 xcodebuild[53564:53681076]  DVTFilePathFSEvents: Failed to start fs event stream.
 2026-05-26 12:41:32.189 xcodebuild[53564:53681075] [MT] DVTDeveloperPaths: Failed to get length of DARWIN_USER_CACHE_DIR from confstr(3), error = Error Domain=NSPOSIXErrorDomain Code=5 "Input/output error". Using NSCachesDirectory instead.
@@ -3112,7 +3112,7 @@ git: error: couldn't create cache file '/tmp/xcrun_db-XMEBjynE' (errno=Operation
     52	11. [RESOURCES](#11-resources)
 
 exec
-/bin/zsh -lc "git show --format= --unified=0 1e58d845af -- .opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md | sed -n '1,80p' && git show 1e58d845af:.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md | nl -ba | sed -n '34,58p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "git show --format= --unified=0 e5ee6609c2 -- .opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md | sed -n '1,80p' && git show e5ee6609c2:.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md | nl -ba | sed -n '34,58p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 2449ms:
 2026-05-26 12:41:42.517 xcodebuild[54069:53682021] [MT] DVTDeveloperPaths: Failed to get length of DARWIN_USER_CACHE_DIR from confstr(3), error = Error Domain=NSPOSIXErrorDomain Code=5 "Input/output error". Using NSCachesDirectory instead.
 git: warning: confstr() failed with code 5: couldn't get path of DARWIN_USER_TEMP_DIR; using /tmp instead
@@ -3161,7 +3161,7 @@ git: error: couldn't create cache file '/tmp/xcrun_db-vB9DEWYb' (errno=Operation
     58	Spec Kit Memory is an MCP (Model Context Protocol) server that gives AI assistants semantic memory and context retrieval. It indexes markdown documentation and conversation memories to surface relevant information during AI interactions.
 
 exec
-/bin/zsh -lc "git show --format= --unified=0 1e58d845af | perl -ne 'if (/"'^diff --git a'"\\/(.*?) b\\//){"'$f=$1} if (/''^@@/){$h=$_; chomp $h} if (/''^-##'"\\s+TABLE OF CONTENTS|-##\\s+Table of Contents/i){print \""'$f $h $_"}'"'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "git show --format= --unified=0 e5ee6609c2 | perl -ne 'if (/"'^diff --git a'"\\/(.*?) b\\//){"'$f=$1} if (/''^@@/){$h=$_; chomp $h} if (/''^-##'"\\s+TABLE OF CONTENTS|-##\\s+Table of Contents/i){print \""'$f $h $_"}'"'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 1432ms:
 2026-05-26 12:41:49.222 xcodebuild[54773:53683144]  DVTFilePathFSEvents: Failed to start fs event stream.
 2026-05-26 12:41:49.329 xcodebuild[54773:53683143] [MT] DVTDeveloperPaths: Failed to get length of DARWIN_USER_CACHE_DIR from confstr(3), error = Error Domain=NSPOSIXErrorDomain Code=5 "Input/output error". Using NSCachesDirectory instead.
@@ -3563,7 +3563,7 @@ Files inspected:
 - `.opencode/commands/create/assets/create_folder_readme_auto.yaml`
 
 Method:
-- Reviewed `git show --stat 1e58d845af`.
+- Reviewed `git show --stat e5ee6609c2`.
 - Inspected named high-risk diffs plus additional README/manual-playbook/feature-catalog/install-guide/template diffs.
 - Classified removed `-` lines against the allowed removal set.
 - Spot-checked post-commit rendered source around removed TOC blocks for orphaned TOC bodies or incoherent transitions.
@@ -3606,7 +3606,7 @@ Files inspected:
 - `.opencode/commands/create/assets/create_folder_readme_auto.yaml`
 
 Method:
-- Reviewed `git show --stat 1e58d845af`.
+- Reviewed `git show --stat e5ee6609c2`.
 - Inspected named high-risk diffs plus additional README/manual-playbook/feature-catalog/install-guide/template diffs.
 - Classified removed `-` lines against the allowed removal set.
 - Spot-checked post-commit rendered source around removed TOC blocks for orphaned TOC bodies or incoherent transitions.

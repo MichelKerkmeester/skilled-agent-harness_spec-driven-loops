@@ -73,7 +73,7 @@ advisory-checks, agent-mirror-sync, changed-packet-validation, command-tree-pari
 |---|---|---|---|---|---|
 | 1 | "memory_search, memory_save ... behave as before" (L11) | FALSE | P0 | Memory DB decommissioned; /speckit:search is the retrieval front door; retrieval is lexical (trigger-index + ripgrep) | iteration-002 |
 | 2 | "the Spec-Kit Memory engine ... retrieval-shape axis ... BM25/FTS fallback ... bi-temporal edges" (L69-74) | STALE | P0 | Memory engine gone; no embedder/FTS in the retrieval lane | iteration-002 |
-| 3 | "a set of /interface: commands" / "nine-stage contract under /interface:*" (L11, L266) | FALSE | P0 | /interface:* deprecated (commit 4edf5824369); /design:{chart,diagram,extract} today | iteration-009 |
+| 3 | "a set of /interface: commands" / "nine-stage contract under /interface:*" (L11, L266) | FALSE | P0 | /interface:* deprecated (commit 4ac89951ca1); /design:{chart,diagram,extract} today | iteration-009 |
 | 4 | "joined by a new alignment (conformance-audit) mode" (L21, L155) | FALSE | P0 | No alignment mode/command/ledger-schema/adapters anywhere on the branch | iteration-003 |
 | 5 | "/create:diagram ... 27 types" (L26, L126) | FALSE | P0 | No sk-create-diagram leaf; no /create:diagram; diagram is /design:diagram (chart catalog: 26 forms) | iteration-005 |
 | 6 | "sk-prompt ... two modes over one shared structure" + "sk-prompt-models is a mode now" (L345, L361, L440) | FALSE | P0 | sk-prompt is standalone v3.0.0.0, single leaf; zero prompt-models artifacts | iteration-001/007 |
@@ -84,7 +84,7 @@ advisory-checks, agent-mirror-sync, changed-packet-validation, command-tree-pari
 | 11 | "/prompt is now /prompt-improve" (L345) | FALSE | P1 | Command is /prompt:improve | iteration-001 |
 | 12 | "New branches use the owner-first form `<skill>/{NNNN}-{slug}`" (L333, L443) | STALE | P1 | Grammar is worktrees/NNN-slug or branches/NNN-slug; owner-first names are explicitly rejected | iteration-007 |
 | 13 | "the GitKraken MCP was wired in" (L335) | FALSE | P1 | Zero gitkraken references in skills/commands | iteration-007 |
-| 14 | "Pi subagent dispatch uses pi-subagents" (L232) | STALE | P1 | pi-subagents directive + injector hook removed (commit 6c8c76faf92); native subagents by absence | iteration-009/010 |
+| 14 | "Pi subagent dispatch uses pi-subagents" (L232) | STALE | P1 | pi-subagents directive + injector hook removed (commit 1f382f64a49); native subagents by absence | iteration-009/010 |
 | 15 | "the deep router agent is now deep-loop" (L441) | STALE | P1 | Router agent retired; no deep-loop agent exists | iteration-009 |
 | 16 | "sk-code ... webflow and opencode surfaces" (L290-291) | STALE | P1 | 6 modes: + sk-code-mobile-cli, sk-code-obsidian surfaces added since draft | iteration-007 |
 | 17 | "core template source 2,931 → 1,314 lines" (L86) | STALE | P2 | 1,275 lines today (further reduction); direction holds | iteration-002 |
@@ -101,13 +101,13 @@ TRUE rows worth keeping (not drift): specs/ symlink compat, kebab-case guard, @m
 ## 3. UPGRADE-NOTES CANDIDATE LIST (confirmed by code)
 
 1. **Memory commands are gone.** `memory_search` / `memory_save` do not exist; use `/speckit:search` (trigger-index + ripgrep). Memory DB, spec-memory MCP server and their daemon are decommissioned; retrieval is lexical.
-2. **Design commands moved and renamed.** `/interface:*` family is deprecated (commit 4edf5824369); use `/design:chart`, `/design:diagram`, `/design:extract` (extract was renamed from design-reference, commit 6d52daa916c).
-3. **Runtime renamed and nested.** system-spec-kit's engine now lives at `.opencode/skills/system-spec-kit/runtime/cli/` (spec/validate.sh, spec/create.sh, spec/repair-derived.cjs, spec/recommend-level.sh, continuity/generate-context.ts, spec-folder/generate-description.ts); old `scripts/` and `mcp-server/` identities are gone (commits aef7852400a, c7986c870b9).
+2. **Design commands moved and renamed.** `/interface:*` family is deprecated (commit 4ac89951ca1); use `/design:chart`, `/design:diagram`, `/design:extract` (extract was renamed from design-reference, commit 7ef698947aa).
+3. **Runtime renamed and nested.** system-spec-kit's engine now lives at `.opencode/skills/system-spec-kit/runtime/cli/` (spec/validate.sh, spec/create.sh, spec/repair-derived.cjs, spec/recommend-level.sh, continuity/generate-context.ts, spec-folder/generate-description.ts); old `scripts/` and `mcp-server/` identities are gone (commits 0db44e44c02, 945ded30d94).
 4. **sk-prompt is standalone, not a hub.** There is no prompt-models mode; the command is `/prompt:improve` (not `/prompt-improve`); agent `@prompt-improver`.
 5. **No deep-alignment mode.** The draft's conformance-audit mode never shipped; deep-loop ledger modes are 7, not 8.
 6. **cli-claude-code is not a dispatchable deep-loop executor.** The kind is reserved in executor-config.ts but unwired (ExecutorNotWiredError); the five wired kinds are cli-opencode, cli-codex, cli-cursor, cli-devin, cli-pi.
 7. **Branch grammar is `worktrees/NNN-slug` / `branches/NNN-slug`.** Owner-first `<skill>/NNNN-slug` names are rejected by is_valid_branch; only `skilled/v*` release lanes keep the owner prefix.
-8. **Pi's `pi-subagents` directive was removed** (commit 6c8c76faf92); native subagents are the default by absence; name a `cli-*` mode to force an external executor.
+8. **Pi's `pi-subagents` directive was removed** (commit 1f382f64a49); native subagents are the default by absence; name a `cli-*` mode to force an external executor.
 9. **GitKraken MCP is not wired** on this branch (zero references); the draft's claim should be dropped.
 10. **/create:diagram does not exist** — diagram authoring is `/design:diagram`; `/create:diff` does exist.
 11. **/doc:quality alias is gone** — sk-create-quality-control is the leaf; no command file.

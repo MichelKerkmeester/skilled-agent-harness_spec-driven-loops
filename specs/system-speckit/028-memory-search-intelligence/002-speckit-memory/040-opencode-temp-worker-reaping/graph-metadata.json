@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Investigation found chronic accumulation of orphaned `context-server.js` (spec-memory daemon) processes - 51 live at investigation time, start times spanning Jul 8-9 - plus a wedged embedder subsystem that makes `memoryindexscan` hang while pure SQLite reads stay healthy",
     "created_at": "2026-06-30T07:44:28Z",
-    "last_save_at": "2026-08-30T15:39:35.284Z",
+    "last_save_at": "2026-09-11T16:42:43.168Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +208,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:992d010d65924a181abeb960747a22063cd79a9c2234109b4186d809bc682eb9",
+    "source_fingerprint": "sha256:5aa285605bd46c90831c08f2a0af8ceec73314271d094f1425977ca8e65f9f55",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1b5ba9d32594aa41d1ca85ba1ec5e4c574eb4774ebe75c0886e04bf2cb6a1705",
-      "plan.md": "f7d4b9ac752ecb5b8ec80e5702b9702b3fa8787d178e50d2575211cc8c59d7aa",
-      "tasks.md": "1b7ede9600515fe10744f379527e335907156b3318e90b8d621546f81a67205c",
-      "implementation-summary.md": "a92115e6158d64f9596e4ec63c4ed82a0836fe9f08dde2432e1849edac0e867b"
+      "spec.md": "7dfd89d547c1a13a8c3a7c8fc048ef4ea315361eef2e75023b3dd6e0d8674841",
+      "plan.md": "401067174bbc5a05ad2234dd5b8ee0e104d03727619b981b6377627144f2c5a2",
+      "tasks.md": "e00f7a5a61f8a5d1581af85039fd6cb6c96021af26648e45531a61377a1b79f7",
+      "implementation-summary.md": "7d7b9d61893b8d3c90b645ee6de5f5b0b22df6aff63b5dcbb63c03a60ebcc9d2"
     },
     "last_active_child_id": null,
     "last_active_at": null

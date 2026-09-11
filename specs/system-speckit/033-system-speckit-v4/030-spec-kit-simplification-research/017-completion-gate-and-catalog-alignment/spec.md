@@ -133,7 +133,7 @@ The Stop hook checks a completion claim against the same contract the workflow a
 |------|------|--------|------------|
 | Risk | `AC_UNMET` ranks after the checklist statuses | A packet with both problems sees the checklist one first | The JSON carries the acceptance counts on every status, so a consumer can read both |
 | Risk | The malformed class warns on 27 closed packets | Strict runs with the freshness flag on see new warnings there | The flag is opt-in and the warning names the value; that visibility is the fix |
-| Dependency | Child 016's sentinel gate | The closure read only matters if the checker runs | Landed first in `549a0dc8c7` |
+| Dependency | Child 016's sentinel gate | The closure read only matters if the checker runs | Landed first in `737926c666` |
 <!-- /ANCHOR:risks -->
 
 ---

@@ -52,7 +52,7 @@ _memory:
 ## Phase 2: Implementation
 
 - [x] T-04 Set the ratchet baseline from the upstream disposition, never from a blind regeneration [evidence: re-pinned via capture against the 013-fixed build → holdout 53/72, delegation 10/11, capturedAtSha `f0a9574664` (the fix commit)]
-- [x] T-05 Resolve the corpus hash pin, recording the previous hashes so a corpus change stays distinguishable from a scorer change [evidence: new pin corpus `9f30cc..`/holdout `88a7f7..`/ambiguity `07cd2c..`; prior pin (corpus `529f65..`, holdout `90dbee..`, ambiguity `e07cac..`, sha `37ebd31720`) recorded in the impl-summary]
+- [x] T-05 Resolve the corpus hash pin, recording the previous hashes so a corpus change stays distinguishable from a scorer change [evidence: new pin corpus `9f30cc..`/holdout `88a7f7..`/ambiguity `07cd2c..`; prior pin (corpus `529f65..`, holdout `90dbee..`, ambiguity `e07cac..`, sha `6b7feeee16`) recorded in the impl-summary]
 - [x] T-06 Resolve the review bucket condition per the decision above [evidence: `REVIEW_MIN_N` set to 31 with a rationale comment at the constant]
 - [x] T-07 Add the ratchet suite to the routing workflow alongside the existing suites [evidence: a "Scorer-eval baseline ratchet" step added to the `golden-prompt-gate` job in `routing-registry-drift.yml`, after the golden-prompt suite]
 <!-- /ANCHOR:phase-2 -->

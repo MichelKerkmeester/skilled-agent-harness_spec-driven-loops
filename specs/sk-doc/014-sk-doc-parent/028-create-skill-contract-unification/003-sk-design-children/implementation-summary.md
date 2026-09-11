@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: sk-design Children Contract Conformance"
-description: "Shipped: 5 of 6 sk-design SKILL.md files conformed to the create-skill contract (fresh LUNA MAX update + fresh Sonnet-5 xhigh verify); design-foundations already passed. Commit b01e4e29ca."
+description: "Shipped: 5 of 6 sk-design SKILL.md files conformed to the create-skill contract (fresh LUNA MAX update + fresh Sonnet-5 xhigh verify); design-foundations already passed. Commit cb44db13f5."
 trigger_phrases:
   - "003-sk-design-children implementation summary"
   - "conformance batch status"
@@ -42,7 +42,7 @@ _memory:
 
 5 conformed; design-foundations already passed.
 
-Breakdown: **5 conformed** (fresh GPT-5.6 LUNA MAX update + fresh Sonnet-5 xhigh verify), **1 already passing** at baseline (no edit), **0 exempt**. Shipped commit: `b01e4e29ca`.
+Breakdown: **5 conformed** (fresh GPT-5.6 LUNA MAX update + fresh Sonnet-5 xhigh verify), **1 already passing** at baseline (no edit), **0 exempt**. Shipped commit: `cb44db13f5`.
 
 Conformed:
 - `sk-design/design-audit`

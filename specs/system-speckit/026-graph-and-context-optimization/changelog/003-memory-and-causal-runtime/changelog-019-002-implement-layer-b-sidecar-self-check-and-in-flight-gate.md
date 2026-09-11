@@ -71,4 +71,4 @@ Layer B owner self-check, Layer A idle backstop, a shared `InFlightGate` plus st
 
 ## Later Update (2026-06-04)
 
-The rerank-sidecar runtime files referenced in this changelog were later removed in cleanup commits 74b9677494, b564013c0e and 696c889887. This entry records the work as it shipped at the time. The parent packet status is now Shipped then removed.
+The rerank-sidecar runtime files referenced in this changelog were later removed in cleanup commits b8a866de2f, c99f990897 and ada2c51ee8. This entry records the work as it shipped at the time. The parent packet status is now Shipped then removed.

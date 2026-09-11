@@ -18,7 +18,7 @@ Do not recommend deleting these in a debt packet.
 ### F-I19-002 — Absorbed 052 rows that are not live misses. CONFIRMED. P2 (negative)
 T004 fixture freshness, T005 fan-out stderr, T006 review-leaf paths, T007 rollback-runbook + MCPResponse + stale test name, T008 trigger-index move. [SOURCE: .opencode/specs/system-speckit/054-decommission-debt-fixes/tasks.md:47-51]
 053 pass-3 P2s cited in iteration 1 as already gone live (README stress-test/runtime).
-Eleven session-lifecycle registrations from `273767431d` still resolve (F-I4-001).
+Eleven session-lifecycle registrations from `9bca36ef52` still resolve (F-I4-001).
 zvec lane and `system-plugins` absent (F-I3-001).
 No spec-memory plugin (F-I10-004).
 

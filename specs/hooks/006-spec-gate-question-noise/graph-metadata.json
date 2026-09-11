@@ -46,12 +46,8 @@
       "tasks.md",
       "implementation-summary.md",
       "handover.md",
-      ".opencode/skills/system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.mjs",
-      ".opencode/skills/system-spec-kit/mcp-server/hooks/pi/spec-gate-classify.ts",
-      ".opencode/skills/system-spec-kit/mcp-server/hooks/pi/spec-gate-enforce.ts",
       "hooks/lib/spec-gate/spec-gate-core.mjs",
       "hooks/pi/spec-gate-classify.ts",
-      ".opencode/skills/system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.test.mjs",
       ".claude/settings.json",
       ".codex/hooks.json",
       ".cursor/hooks.json",
@@ -60,7 +56,11 @@
       ".opencode/specs/hooks/006-spec-gate-question-noise/spec.md",
       ".opencode/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts",
       ".opencode/skills/system-skill-advisor/mcp-server/lib/skill-advisor-brief.ts",
-      ".opencode/skills/system-skill-advisor/mcp-server/lib/render.ts"
+      ".opencode/skills/system-skill-advisor/mcp-server/lib/render.ts",
+      ".opencode/skills/system-skill-advisor/mcp-server/tsconfig.build.json",
+      ".pi/extensions/README.md",
+      ".pi/extensions/lib/README.md",
+      "hooks/lib/spec-gate/spec-gate-core.test.mjs"
     ],
     "entities": [
       {
@@ -96,25 +96,13 @@
       {
         "name": "spec-gate-core.mjs",
         "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.mjs",
+        "path": "hooks/lib/spec-gate/spec-gate-core.mjs",
         "source": "derived"
       },
       {
         "name": "spec-gate-classify.ts",
         "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp-server/hooks/pi/spec-gate-classify.ts",
-        "source": "derived"
-      },
-      {
-        "name": "spec-gate-enforce.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp-server/hooks/pi/spec-gate-enforce.ts",
-        "source": "derived"
-      },
-      {
-        "name": "spec-gate-core.test.mjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.test.mjs",
+        "path": "hooks/pi/spec-gate-classify.ts",
         "source": "derived"
       },
       {
@@ -136,6 +124,12 @@
         "source": "derived"
       },
       {
+        "name": "spec-gate-enforce.ts",
+        "kind": "code",
+        "path": "hooks/pi/spec-gate-enforce.ts",
+        "source": "derived"
+      },
+      {
         "name": "prompt-advisor.ts",
         "kind": "code",
         "path": ".opencode/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts",
@@ -151,6 +145,24 @@
         "name": "render.ts",
         "kind": "code",
         "path": ".opencode/skills/system-skill-advisor/mcp-server/lib/render.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tsconfig.build.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-skill-advisor/mcp-server/tsconfig.build.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".pi/extensions/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-gate-core.test.mjs",
+        "kind": "file",
+        "path": "hooks/lib/spec-gate/spec-gate-core.test.mjs",
         "source": "derived"
       },
       {
@@ -194,23 +206,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "The Gate",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The SPEC FOLDER QUESTION is injected on nearly every user turn in the pi CLI, and re-asks every turn in every runtime once the gate has opened",
     "created_at": "2026-08-02T13:16:09.194Z",
-    "last_save_at": "2026-08-30T15:39:09.159Z",
+    "last_save_at": "2026-09-11T16:41:47.178Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,14 +220,14 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:e80ef120edd42a777a1437c8fa1745faeaf669efd9502680500008649c94fc43",
+    "source_fingerprint": "sha256:bb5b0b6238f80cefbe76018a8417d6c0d1d0573a34bb559d77ba5238791d989b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "086f154d28f5be1814657bab55414d01dc3ed8fa4c2ae0a68109bc2a1a183511",
       "plan.md": "9cbcd0b1affca5dfd221344d98b01e2272288aa44b5f8f68b8ade360ce69c5f8",
       "tasks.md": "6941e972be486d14e8f64e3640300f5b1fda9565dd71e0d7b6934cb6d9636f81",
-      "implementation-summary.md": "046bfc6e8aaf85d359edf25542083eb619f4c2e84968043fc3080ae19db5a979",
-      "handover.md": "b6a3af5937dfca468ecb7a8e282c928db21e9951984c3ba87366e9a962d40445"
+      "implementation-summary.md": "98f802643d5ef46d52f544ee3dfb95fccc244eea14e96ade6df0cd2a5cf0ef23",
+      "handover.md": "638eed66a18eaf995c59f69443fdb027f8da4a21c85952a768e6f6803465787c"
     },
     "last_active_child_id": null,
     "last_active_at": null

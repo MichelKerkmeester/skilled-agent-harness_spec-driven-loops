@@ -4,7 +4,7 @@ trigger_phrases: []
 ---
 # 021 Review Synthesis
 
-**Phase reviewed:** `027/002/021-cooperative-heavy-phases` (commit `372bb0f2cd`)
+**Phase reviewed:** `027/002/021-cooperative-heavy-phases` (commit `da09d7c69e`)
 **Scope:** Daemon-responsiveness instrumentation + the cooperative-heavy-phases changes shipped in three files:
 - `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts`
 - `.opencode/skills/system-spec-kit/mcp_server/lib/search/trigger-embedding-backfill.ts`
@@ -14,7 +14,7 @@ trigger_phrases: []
 **Per-lineage verdicts as filed:** 5× PASS, 5× CONDITIONAL. Raw tally: 0 P0, 4 P1, 19 P2 across all lineages.
 **Coverage caveat:** `p021-mimo-1` reviewed only the spec/plan/tasks/impl-summary docs (it states it could not access source); its findings are doc-level, not code-verified.
 
-All findings below were re-verified by the synthesizer against the actual shipped code at `372bb0f2cd` (READ-ONLY). A finding is reported as CONFIRMED only when the cited code was opened and the claim matched.
+All findings below were re-verified by the synthesizer against the actual shipped code at `da09d7c69e` (READ-ONLY). A finding is reported as CONFIRMED only when the cited code was opened and the claim matched.
 
 ---
 
@@ -52,7 +52,7 @@ The verdict is PASS rather than CONDITIONAL because the only P1-filed code findi
 | **B7 — chunk-transaction mid-failure recovery untested** | mimo-1 (docs-only) | **NOTED, low value** | The "next scan reconciles" claim rests on idempotent upserts + per-memory-id deletes, which ARE structurally verified (see cross-cutting confirmations). A failure-injection test would add confidence but is not gating; the existing 6/6 unit suite covers cancel-immediate, cancel-at-boundary, and cooperative-yield. |
 | Yield-inside-transaction corruption | all source-reading lineages | **RULED OUT (true negative)** | `await setImmediate` is strictly BETWEEN self-contained `syncPhraseChunk` transactions (:253-258); the `database.transaction()` body (:169-245) contains no `await`. REQ-002's central risk is correctly mitigated. |
 | Foreground/sync-path regression | all source-reading lineages | **RULED OUT (true negative)** | All instrumentation logging + the lag `setInterval` are gated on `instrument = typeof ctx.onPhase === 'function'` (:501) — absent on the synchronous foreground path (the sole exception being the inert microtask in A3). |
-| Lag-timer leak / double trigger-backfill / launcher change (REQ-004) / security | various | **RULED OUT (true negatives)** | Lag timer cleared+unref'd in `finally` (:1477-1481). The two trigger-backfill sites (:802 vs :1256) are in mutually-exclusive branches. `git show 372bb0f2cd --stat` shows no launcher/supervision file changed (REQ-004 honored). No new input surface; parameterized SQL; logs emit only numeric ms + phase labels. |
+| Lag-timer leak / double trigger-backfill / launcher change (REQ-004) / security | various | **RULED OUT (true negatives)** | Lag timer cleared+unref'd in `finally` (:1477-1481). The two trigger-backfill sites (:802 vs :1256) are in mutually-exclusive branches. `git show da09d7c69e --stat` shows no launcher/supervision file changed (REQ-004 honored). No new input surface; parameterized SQL; logs emit only numeric ms + phase labels. |
 | **B1-B6, B9, B10** (singletons) | 1 lineage each | **NOTED (P2 cleanup backlog)** | Dual `releaseScanLease` call but idempotent (B1); `console.error` for diagnostics — consistent with file convention (B2); `LOOP_LAG_WARN_MS=1000` tuning suggestion (B3); lag-sampler drift self-corrects + is conservative, cannot mask a block (B4); no TTL-exceeded WARN in `timedPhase` (B5); cache-hit yield lacks a cancel re-check, ≤49 bounded extra iterations (B6); duplicated `isCancelled` thunk (B9); redundant trailing `setImmediate` after final chunk (B10). None correctness-blocking. |
 
 ---

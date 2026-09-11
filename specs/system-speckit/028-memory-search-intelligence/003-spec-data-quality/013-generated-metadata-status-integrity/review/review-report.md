@@ -1,6 +1,6 @@
 ---
 title: Deep Review Report — gpt-followup-audit
-description: 10-iteration adversarial review (executor cli-opencode, openai/gpt-5.5-fast, reasoningEffort=xhigh) of two targets — create.sh parent-packet description.json corruption bug and independent audit of the shipped deriveStatus completion-evidence fix (phase 010, commits ea2bb09b7a/ca9bea9f78/b70a441388)
+description: 10-iteration adversarial review (executor cli-opencode, openai/gpt-5.5-fast, reasoningEffort=xhigh) of two targets — create.sh parent-packet description.json corruption bug and independent audit of the shipped deriveStatus completion-evidence fix (phase 010, commits 4f1f64c20a/c02b2a2f39/f9724f9e2d)
 trigger_phrases:
   - "gpt followup audit review report"
   - "create.sh parent packet corruption review"
@@ -22,7 +22,7 @@ Session: `gpt-followup-audit-20260702T104647Z` | Executor: cli-opencode (`openai
 - No P0 (blocker) findings on either target.
 - Review scope: two independent targets in system-spec-kit's generated-metadata subsystem —
   1. **Target 1**: `create.sh --phase --phase-parent` scaffolding bug that corrupts the PARENT packet's `description.json` (root-cause, determinism, blast-radius, minimal-fix review).
-  2. **Target 2**: independent adversarial audit of the shipped `deriveStatus` completion-evidence fix (system-speckit/028 phase 010, commits `ea2bb09b7a`, `ca9bea9f78`, `b70a441388`) against `spec.md` REQ-001..REQ-005.
+  2. **Target 2**: independent adversarial audit of the shipped `deriveStatus` completion-evidence fix (system-speckit/028 phase 010, commits `4f1f64c20a`, `c02b2a2f39`, `f9724f9e2d`) against `spec.md` REQ-001..REQ-005.
 - All 10 iterations produced valid artifacts (iteration narrative + state.jsonl append + delta file); reducer ran clean after each with `--create-missing-anchors`.
 
 ## 2. Planning Trigger
@@ -201,7 +201,7 @@ Representative ruled-out candidates (full list in `deep-review-findings-registry
 - `.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts`, `mcp_server/lib/validation/generated-metadata-integrity.ts`, `mcp_server/lib/validation/orchestrator.ts`, `mcp_server/lib/config/capability-flags.ts`, `scripts/validation/generated-metadata-integrity.ts`
 - `.opencode/skills/system-spec-kit/mcp_server/tests/graph-metadata-schema.vitest.ts`, `mcp_server/tests/generated-metadata-integrity.vitest.ts`
 - `.opencode/specs/system-speckit/028-memory-search-intelligence/002-spec-data-quality/047-generated-metadata-status-integrity/spec.md`, `implementation-summary.md`
-- `git show ea2bb09b7a`, `git show ca9bea9f78`
+- `git show 4f1f64c20a`, `git show c02b2a2f39`
 - `.opencode/specs/system-speckit/028-memory-search-intelligence/001-speckit-memory/description.json` and `spec.md` (both `.opencode/specs/` and legacy `specs/` roots) — the confirmed corrupted packet
 
 ### Adversarial Verdicts (iteration 10, final)

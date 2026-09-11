@@ -53,7 +53,7 @@ This phase moved spec-folder authoring guidance out of the sk-code surface and i
 - [x] Both spec-folder authoring docs moved to system-spec-kit workflows.
 - [x] Named inbound references repointed.
 - [x] sk-code and system-spec-kit versions bumped with changelog entries.
-- [x] Verification evidence recorded: shipped commit `85a0c2c9ac`, `sk-code-router-sync` 4/4, touched-file links clean, dead-reference sweep clean.
+- [x] Verification evidence recorded: shipped commit `44c5d98179`, `sk-code-router-sync` 4/4, touched-file links clean, dead-reference sweep clean.
 
 <!-- /ANCHOR:quality-gates -->
 ---
@@ -96,7 +96,7 @@ Spec-folder completion or authoring intent routes through system-spec-kit COMPLE
 - [x] Ran `sk-code-router-sync` vitest with 4/4 passing.
 - [x] Checked touched-file markdown links with no broken links found.
 - [x] Ran dead-reference sweep with clean result.
-- [x] Shipped as remote commit `85a0c2c9ac`.
+- [x] Shipped as remote commit `44c5d98179`.
 
 <!-- /ANCHOR:phases -->
 ---
@@ -109,7 +109,7 @@ Spec-folder completion or authoring intent routes through system-spec-kit COMPLE
 | Router synchronization | Moved filesystem paths and smart-routing machine block | `sk-code-router-sync` vitest |
 | Link integrity | Touched markdown and metadata references | Broken-link check among touched files |
 | Reference integrity | Old moved paths and inbound references | Dead-reference sweep |
-| Shipment evidence | Remote commit containing phase work | Commit `85a0c2c9ac` |
+| Shipment evidence | Remote commit containing phase work | Commit `44c5d98179` |
 
 <!-- /ANCHOR:testing -->
 ---
@@ -130,7 +130,7 @@ Spec-folder completion or authoring intent routes through system-spec-kit COMPLE
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: Router-sync or reference sweeps fail because the move creates stale or unresolved paths.
-- **Procedure**: Revert commit `85a0c2c9ac`, then reapply the relocation with corrected inbound references and rerun the same verification gates.
+- **Procedure**: Revert commit `44c5d98179`, then reapply the relocation with corrected inbound references and rerun the same verification gates.
 
 <!-- /ANCHOR:rollback -->
 ---
@@ -170,7 +170,7 @@ Spec-folder completion or authoring intent routes through system-spec-kit COMPLE
 - [x] Verification gates selected before shipment.
 
 ### Rollback Procedure
-1. Revert shipped commit `85a0c2c9ac` if relocation breaks routing or links.
+1. Revert shipped commit `44c5d98179` if relocation breaks routing or links.
 2. Restore the two original sk-code doc paths if needed during rollback.
 3. Re-run `sk-code-router-sync` and reference sweeps after the rollback or corrected relocation.
 

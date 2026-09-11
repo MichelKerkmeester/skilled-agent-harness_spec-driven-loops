@@ -20,7 +20,7 @@ _memory:
 
 # Phase 0 Baseline: Deep-Loop Divergent Convergence Mode
 
-Captured inside isolated worktree `wt/0026-deep-loop-divergent-mode` at commit `37fc5f789a` (`feat(058): benchmark mcp-tooling + cli-external hubs and act on the findings`), before any implementation edit for packet 055.
+Captured inside isolated worktree `wt/0026-deep-loop-divergent-mode` at commit `a17ee0bc23` (`feat(058): benchmark mcp-tooling + cli-external hubs and act on the findings`), before any implementation edit for packet 055.
 
 ## 1. Runtime test suite baseline
 
@@ -30,7 +30,7 @@ Captured inside isolated worktree `wt/0026-deep-loop-divergent-mode` at commit `
 
 | Test | Failure | Cause |
 |---|---|---|
-| `tests/unit/check-contract-drift.vitest.ts > passes against the real current compiled contracts` | `STALE_SOURCE_DIGEST` for command `deep/ai-council`: `recordedSha256` in the compiled contract no longer matches the live digest of `.opencode/skills/system-deep-loop/mode-registry.json` | Pre-existing drift from the just-landed `37fc5f789a` commit (unrelated `058` benchmark work touched `mode-registry.json` without regenerating compiled contracts). Not caused by, or in scope for, packet 055. |
+| `tests/unit/check-contract-drift.vitest.ts > passes against the real current compiled contracts` | `STALE_SOURCE_DIGEST` for command `deep/ai-council`: `recordedSha256` in the compiled contract no longer matches the live digest of `.opencode/skills/system-deep-loop/mode-registry.json` | Pre-existing drift from the just-landed `a17ee0bc23` commit (unrelated `058` benchmark work touched `mode-registry.json` without regenerating compiled contracts). Not caused by, or in scope for, packet 055. |
 | `tests/unit/executor-provenance-mismatch.vitest.ts > skips the check when the actual model cannot be extracted for Claude Code` | Expected a `'start'` state-log event, received `'dispatch_failure'` | Pre-existing test-ordering/fixture issue in an unrelated executor-provenance module. Not touched by this packet. |
 
 This is the reference point for "no behavioral change outside pinned expected deltas" (spec.md REQ-001, checklist.md CHK-010): after Phase 5, the runtime suite must show the same 657/659 baseline (these exact 2 pre-existing failures allowed to persist untouched) plus all new divergent-mode tests passing.

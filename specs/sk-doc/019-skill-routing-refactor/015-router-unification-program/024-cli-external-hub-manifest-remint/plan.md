@@ -51,7 +51,7 @@ Work in a detached worktree at `origin/main` so the failing state is the shipped
 local approximation. Reproduce the legacy fallback first, re-mint through the `refresh` verb, mirror
 the result into the authored copy, then re-run every check that showed the failure. Land the same
 two-line change on `main`, and on `v4` behind the source edits that produce the hash. Both branches
-received exactly that change in `3a61fa96ac` while this ran, so the plan closed as verification.
+received exactly that change in `54ca8d7825` while this ran, so the plan closed as verification.
 <!-- /ANCHOR:summary -->
 
 ---

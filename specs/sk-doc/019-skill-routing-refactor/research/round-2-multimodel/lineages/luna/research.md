@@ -14,17 +14,17 @@ trigger_phrases: []
 
 This detached lineage audited the parent packet, all 21 direct children, nested descendants under 020/007/015, the four parent routing-reference documents, the compiled-routing runtime, and all seven hub surfaces. The loop ran all ten configured iterations; convergence telemetry was not used as a stop condition.
 
-Result: 15 verified findings — 10 P1 and 5 P2. One is NEW relative to `140266be3e`; fourteen are PRE-EXISTING. Frozen `research/**`, `benchmark/**`, `lineages/**`, `*.out`, `*.log`, and run-record artifacts were excluded.
+Result: 15 verified findings — 10 P1 and 5 P2. One is NEW relative to `3c94775856`; fourteen are PRE-EXISTING. Frozen `research/**`, `benchmark/**`, `lineages/**`, `*.out`, `*.log`, and run-record artifacts were excluded.
 
 ## Findings
 
 ### F01 — P1 — PRE-EXISTING — 012 is missing a required Level-3 file
 
-`012-sk-doc-routing-fixes/spec.md:36` and `checklist.md:32` declare Level 3, but `implementation-summary.md` is absent. The strict validator reports the required-file failure. The child packet was not changed by `140266be3e`.
+`012-sk-doc-routing-fixes/spec.md:36` and `checklist.md:32` declare Level 3, but `implementation-summary.md` is absent. The strict validator reports the required-file failure. The child packet was not changed by `3c94775856`.
 
 ### F02 — P1 — PRE-EXISTING — 012 fails the Level-3 consistency check
 
-The Level-3 declaration appears at `012-sk-doc-routing-fixes/spec.md:36`, `plan.md:33`, `tasks.md:32`, `checklist.md:32`, and `decision-record.md:33`; strict validation still reports `LEVEL_MATCH` for the packet. No child file was changed by `140266be3e`.
+The Level-3 declaration appears at `012-sk-doc-routing-fixes/spec.md:36`, `plan.md:33`, `tasks.md:32`, `checklist.md:32`, and `decision-record.md:33`; strict validation still reports `LEVEL_MATCH` for the packet. No child file was changed by `3c94775856`.
 
 ### F03 — P2 — PRE-EXISTING — 017 violates the frontmatter memory-block field contract
 
@@ -40,7 +40,7 @@ The Level-3 declaration appears at `012-sk-doc-routing-fixes/spec.md:36`, `plan.
 
 ### F06 — P1 — PRE-EXISTING — the parent contradicts itself about surface-router coverage
 
-`routing-config-and-advisor-reference.md:136` and `:184` say only `sk-code` and `sk-doc` carry the surface router, while `:199` and `:202` describe all seven hubs and a 7-of-7 collapse. Direct inspection found `shared/references/smart-routing.md` and populated manifests for all seven named hubs. The contradictory parent wording predates `140266be3e`.
+`routing-config-and-advisor-reference.md:136` and `:184` say only `sk-code` and `sk-doc` carry the surface router, while `:199` and `:202` describe all seven hubs and a 7-of-7 collapse. Direct inspection found `shared/references/smart-routing.md` and populated manifests for all seven named hubs. The contradictory parent wording predates `3c94775856`.
 
 ### F07 — P1 — PRE-EXISTING — the parent calls hub-router selection telemetry-only while the live runtime serves compiled policy
 
@@ -48,11 +48,11 @@ The Level-3 declaration appears at `012-sk-doc-routing-fixes/spec.md:36`, `plan.
 
 ### F08 — P2 — PRE-EXISTING — route-gold hub denominator is inconsistent
 
-`routing-before-after.md:154` reports `7/7 hubs PASS`, while the non-frozen verification report at `020-router-unification-program/001-3-tier-consistency-standard/verification-report.md:32-55` covers six hubs and reports `6/6 PASS`; `routing-before-after.md:161` also says six hubs are applicable. The child implementation summary repeats `7/7` at `.../implementation-summary.md:54,111`, although its arithmetic contains six hub rows. The 91/106 scenario count is not itself rejected; the hub denominator is ambiguous. This wording predates `140266be3e`.
+`routing-before-after.md:154` reports `7/7 hubs PASS`, while the non-frozen verification report at `020-router-unification-program/001-3-tier-consistency-standard/verification-report.md:32-55` covers six hubs and reports `6/6 PASS`; `routing-before-after.md:161` also says six hubs are applicable. The child implementation summary repeats `7/7` at `.../implementation-summary.md:54,111`, although its arithmetic contains six hub rows. The 91/106 scenario count is not itself rejected; the hub denominator is ambiguous. This wording predates `3c94775856`.
 
 ### F09 — P1 — NEW — the commit's new root pointer leaves nested resume stranded at 020
 
-`019/graph-metadata.json:122` now points to `020-router-unification-program`; that line changed in `140266be3e`. The resume contract at `.opencode/skills/system-spec-kit/README.md:198` requires nested redirects, but `020/graph-metadata.json:109` is null and `020/007-unified-refactor-implementation/graph-metadata.json:111` is also null. Read-only execution of the real resolver reaches 020 and stops before active descendants. The null nested fields predate the commit; exposing that incomplete chain through the new root pointer is the NEW behavior.
+`019/graph-metadata.json:122` now points to `020-router-unification-program`; that line changed in `3c94775856`. The resume contract at `.opencode/skills/system-spec-kit/README.md:198` requires nested redirects, but `020/graph-metadata.json:109` is null and `020/007-unified-refactor-implementation/graph-metadata.json:111` is also null. Read-only execution of the real resolver reaches 020 and stops before active descendants. The null nested fields predate the commit; exposing that incomplete chain through the new root pointer is the NEW behavior.
 
 ### F10 — P1 — PRE-EXISTING — the 14-child 015 parent points resume at stale work
 
@@ -68,7 +68,7 @@ The Level-3 declaration appears at `012-sk-doc-routing-fixes/spec.md:36`, `plan.
 
 ### F13 — P2 — PRE-EXISTING — 012 retains the removed `smart_routing.md` filename
 
-`012-sk-doc-routing-fixes/spec.md:90,124,149` and `plan.md:102` retain `smart_routing.md`, while the live file is `.opencode/skills/sk-doc/shared/references/smart-routing.md`. The parent spelling was corrected by `140266be3e`, but the child was not, leaving a stale cross-document path contract.
+`012-sk-doc-routing-fixes/spec.md:90,124,149` and `plan.md:102` retain `smart_routing.md`, while the live file is `.opencode/skills/sk-doc/shared/references/smart-routing.md`. The parent spelling was corrected by `3c94775856`, but the child was not, leaving a stale cross-document path contract.
 
 ### F14 — P1 — PRE-EXISTING — parent phase-map lifecycle is ahead of nested graph state
 
@@ -76,7 +76,7 @@ The parent phase map labels Group E and Group F Active/In Progress at `019/spec.
 
 ### F15 — P1 — PRE-EXISTING — sk-code's live typed resource contract resolves no routed resources
 
-Live replay of `sk-code` returns `resourceContractVersion: 1`, `pairs: []`, and seven unresolved paths for a task selecting implementation and debugging resources. `router-replay.cjs:235-261` shows that the contract dual-reads each raw path and rejects paths absent from the declared manifest. The source emits unqualified paths at `sk-code/shared/references/smart-routing.md:317-322`, `:347-350`, `:399-409`, and `:411-417`, while `sk-code/leaf-manifest.json:4-72` registers mode-qualified leaves such as `code-opencode/...` and `code-webflow/...`. The source's relative links to `./stack-detection.md` and `./phase-detection.md` at `smart-routing.md:17,29,40-41` also have no corresponding hub-root files. This contradicts the parent path/coverage claim at `routing-config-and-advisor-reference.md:122-138`. The router, manifest, and parent lines were not changed by `140266be3e`; the defect is PRE-EXISTING.
+Live replay of `sk-code` returns `resourceContractVersion: 1`, `pairs: []`, and seven unresolved paths for a task selecting implementation and debugging resources. `router-replay.cjs:235-261` shows that the contract dual-reads each raw path and rejects paths absent from the declared manifest. The source emits unqualified paths at `sk-code/shared/references/smart-routing.md:317-322`, `:347-350`, `:399-409`, and `:411-417`, while `sk-code/leaf-manifest.json:4-72` registers mode-qualified leaves such as `code-opencode/...` and `code-webflow/...`. The source's relative links to `./stack-detection.md` and `./phase-detection.md` at `smart-routing.md:17,29,40-41` also have no corresponding hub-root files. This contradicts the parent path/coverage claim at `routing-config-and-advisor-reference.md:122-138`. The router, manifest, and parent lines were not changed by `3c94775856`; the defect is PRE-EXISTING.
 
 ## Clean checks and ruled-out directions
 

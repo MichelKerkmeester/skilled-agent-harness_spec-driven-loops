@@ -10,8 +10,8 @@ trigger_phrases: []
 - **Dimension:** correctness
 - **Angle:** A1-verify (refute-or-confirm F-002, F-004)
 - **Budget profile:** adjudicate (target 8-10 tool calls; referee work on two prior findings)
-- **Review target:** git range `a9e9bdb0a5^..HEAD` (HEAD `12de3d3a7e`, base `f05bdac2cf`)
-- **Working-file parity:** `git diff 12de3d3a7e -- .opencode/bin/mk-spec-memory-launcher.cjs` → empty (exit 0); the working file IS the reviewed blob, so direct Reads are canonical.
+- **Review target:** git range `fd67ede05f^..HEAD` (HEAD `3923a65db1`, base `a61a3f3b85`)
+- **Working-file parity:** `git diff 3923a65db1 -- .opencode/bin/mk-spec-memory-launcher.cjs` → empty (exit 0); the working file IS the reviewed blob, so direct Reads are canonical.
 - **Session:** `2026-06-05T11:16:17Z` (generation 1, lineageMode new)
 
 ## Files Reviewed
@@ -33,7 +33,7 @@ None confirmed. **F-002 is DOWNGRADED out of P1** (see verdict below).
 
 1. **[F-002 — re-adjudicated] EPERM owner lease bypasses both reclaim routes — real but narrow edge-case hardening gap, NOT a must-fix gate bug** -- `.opencode/bin/mk-spec-memory-launcher.cjs:339` (early return) `+:346-348` (unreachable staleness gate) `+:361` (bucketed with live-owner) `+:643-644` (respawn route also refuses) -- The *structural* claim is CONFIRMED with exact evidence: `classifyOwnerLease` returns `'unknown-eperm'` at :339 before the 2×TTL heartbeat-staleness gate at :346-348, `acquireOwnerLeaseFile` buckets `'unknown-eperm'` with `'live-owner'` at :361 (`{acquired:false}`), and the dead-socket respawn route `reapOwnerBeforeRespawn` independently refuses at :643-644 (`owner-liveness-unknown-eperm`). Both documented reclaim escapes are therefore unreachable for an EPERM-resolving owner PID. **However, the failure is narrow and the severity is corrected to P2** because: (a) the EPERM-as-immortal-live-lease behavior is a deliberate, RCA-confirmed design decision (changelog-006-009): EPERM arises when a *different sandbox session* probes the owner, and in that case the owner is genuinely alive — bridging to it (not stealing ownership) is the correct, single-owner-preserving behavior; (b) a *dead* owner PID yields ESRCH → `'stale-pid'` (fully reclaimable, tested at launcher-lease.vitest.ts:360-367), NOT EPERM — EPERM-on-a-dead-owner requires PID reuse into a *foreign-uid* process, which contradicts the documented same-user multi-sandbox deployment (one shared checkout, all sessions same user); (c) the non-reclaim outcome is a *bridge/report*, not a hang: while the EPERM owner's socket is live, secondaries bridge and MCP keeps working; the genuinely-wedged corner (dead owner + EPERM probe + dead socket + no manual deletion) is the foreign-uid PID-reuse edge only. F-002's own `downgradeTrigger` ("if deployment guarantees same-uid owner, drop to P2") is effectively satisfied by the documented deployment.
    - Finding class: defect (concurrency/liveness, edge-case hardening)
-   - Scope proof: all cited lines in-range (`3419e0a3e9` added the classification ordering; `git log -S "stale-heartbeat-reclaim"`); EPERM branch + parity rationale documented in in-range changelog-006-009; working file == reviewed HEAD blob.
+   - Scope proof: all cited lines in-range (`9efd1652bc` added the classification ordering; `git log -S "stale-heartbeat-reclaim"`); EPERM branch + parity rationale documented in in-range changelog-006-009; working file == reviewed HEAD blob.
    - Affected surface hints: let an EPERM lease still age out via a (longer, EPERM-specific) TTL on the heartbeat gate, OR document the cross-uid PID-reuse corner as accepted-risk; add the EPERM-mock vitest the changelog itself lists as a follow-up.
 
    ```json
@@ -53,7 +53,7 @@ None confirmed. **F-002 is DOWNGRADED out of P1** (see verdict below).
 
 2. **[F-004 — re-adjudicated] Reclaim/heartbeat owner-lease write skips fsync, unlike the exclusive fresh-acquire writer — durability asymmetry CONFIRMED at P2** -- `.opencode/bin/mk-spec-memory-launcher.cjs:281-285` (`writeOwnerLeaseFile`: tmp `writeFileSync` + `renameSync`, NO fsync), used by reclaim at `:382` and heartbeat refresh at `:399`/:402, vs `:288-302` (`writeOwnerLeaseFileExclusive`: `openSync('wx')` + `fsyncSync` at `:294`) -- The asymmetry is verified exactly as F-004 claimed. On crash/power-loss immediately after the reclaim `renameSync` (:285), the reclaimed lease's dirent/data may not be durable and the lease can be lost. **Confirmed at P2 (not higher)** because: `renameSync` is atomic so no torn lease is possible — the only loss mode is *total* loss of the dirent, which reopens a clean no-owner state (reclaimable by the next exclusive acquire at :369), NOT a double-owner; the in-memory re-read serialization (:383-384) already prevents concurrent double-owner; and the heartbeat refresh every ttl/2 = 30s (`startOwnerLeaseHeartbeat` :420-421, ttl 60s) re-writes the lease, so a lost reclaim self-heals on the next interval. This is a durability-hardening gap, correctly advisory.
    - Finding class: durability gap
-   - Scope proof: both writers in-range (`3419e0a3e9`); fsync present at :294, absent in :281-285; reclaim caller :382, heartbeat caller :399. Working file == reviewed HEAD blob.
+   - Scope proof: both writers in-range (`9efd1652bc`); fsync present at :294, absent in :281-285; reclaim caller :382, heartbeat caller :399. Working file == reviewed HEAD blob.
    - Affected surface hints: add `fsyncSync` (file fd + parent dir fd) to `writeOwnerLeaseFile`'s rename path for parity with the exclusive writer, OR document that reclaim durability is intentionally weaker because the lease self-heals via heartbeat + exclusive re-acquire.
 
    ```json
@@ -73,8 +73,8 @@ None confirmed. **F-002 is DOWNGRADED out of P1** (see verdict below).
 
 ## Traceability Checks
 - **Iteration number:** JSONL `deep-review-state.jsonl` is the orchestrator log; this parallel-safe verify pass writes ONLY `iterations/iteration-011.md` + `deltas/iter-011.jsonl` and does NOT append to state.jsonl/strategy.md/registry (per dispatch parallel-safety contract). Dispatch ITERATION=11 honored.
-- **Range integrity:** HEAD `12de3d3a7e`, base `a9e9bdb0a5^` = `f05bdac2cf` (re-confirmed via `git rev-parse`). Working file byte-identical to reviewed blob (`git diff 12de3d3a7e` empty).
-- **Provenance:** F-002 ordering added by in-range `3419e0a3e9`; EPERM branch + parity rationale in in-range `changelog-006-009`. Both findings reside in in-range code.
+- **Range integrity:** HEAD `3923a65db1`, base `fd67ede05f^` = `a61a3f3b85` (re-confirmed via `git rev-parse`). Working file byte-identical to reviewed blob (`git diff 3923a65db1` empty).
+- **Provenance:** F-002 ordering added by in-range `9efd1652bc`; EPERM branch + parity rationale in in-range `changelog-006-009`. Both findings reside in in-range code.
 - **Canonical IDs:** registry/strategy track F-002 (P1) and F-004 (P2); iteration-002 labeled the F-004 finding as bullet "3" but the strategy Progress Log and delta IDs confirm F-004 = the reclaim-durability finding. Verified against strategy.md:42.
 
 ## Integration Evidence

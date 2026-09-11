@@ -123,7 +123,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: the gate blocks legitimate commits it should not, or a lockfile bump breaks a package.
-- **Procedure**: `SPECKIT_SKIP_MIRROR_PARITY=1` bypasses the gate for one commit; `git revert 328accca03` restores the old hook and triggers; each lockfile reverts independently with `git checkout HEAD~1 -- <lockfile>` followed by `npm install`.
+- **Procedure**: `SPECKIT_SKIP_MIRROR_PARITY=1` bypasses the gate for one commit; `git revert e40302c123` restores the old hook and triggers; each lockfile reverts independently with `git checkout HEAD~1 -- <lockfile>` followed by `npm install`.
 <!-- /ANCHOR:rollback -->
 
 ---

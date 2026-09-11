@@ -1,6 +1,6 @@
 ---
 title: "Review Record: Deep Review of the sk-design Remediation Program (Packets A/B/C)"
-description: "Independent 10-iteration GPT-5.6-SOL review of the three implementation packets shipped this session (interface-command rewrite, styles library restructure, persistent DB activation) plus the packet-doc reconciliations, read at pinned HEAD 7b9d3b6b71. Read-only; verdict CONDITIONAL, 0 P0."
+description: "Independent 10-iteration GPT-5.6-SOL review of the three implementation packets shipped this session (interface-command rewrite, styles library restructure, persistent DB activation) plus the packet-doc reconciliations, read at pinned HEAD 6432665a68. Read-only; verdict CONDITIONAL, 0 P0."
 trigger_phrases:
   - "sk-design remediation program review"
   - "packet A B C deep review session shipped"
@@ -63,7 +63,7 @@ applied here and no default was flipped; the persistent-DB read path stays `lega
 ## 3. SCOPE
 
 - **Target:** the curated changed-file surface of the three packets, read at the pinned worktree
-  `HEAD 7b9d3b6b71` (this session's tip, on `origin/skilled/v4.0.0.0`).
+  `HEAD 6432665a68` (this session's tip, on `origin/skilled/v4.0.0.0`).
 - **Scope files:** the 118-entry `goal-file-manifest.txt` — the meaningful code / doc / config / test
   surface only.
 - **Excluded:** the 7,741 mechanically-moved bundle data files under `styles/library/bundles/**` (verify

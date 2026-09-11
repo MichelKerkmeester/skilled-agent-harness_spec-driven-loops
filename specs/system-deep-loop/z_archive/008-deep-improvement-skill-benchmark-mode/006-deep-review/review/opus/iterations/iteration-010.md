@@ -7,7 +7,7 @@ FINAL iteration. Ingest all 9 MiniMax breadth-pass iterations + structured delta
 Ground-truth checks performed this pass:
 - Re-ran the suite from `.opencode/skills/deep-improvement/scripts/`: **208 passed (20 files), exit 0** (1.18s). Confirms the verified count and that "no test files found" is a wrong-cwd artifact.
 - Confirmed the actual Lane C filenames: `router-replay.cjs`, `score-skill-benchmark.cjs`, `run-skill-benchmark.cjs`, `build-report.cjs`, `_args.cjs`, `advisor-probe.cjs`, `contamination-lint.cjs`, `d5-connectivity.cjs`. **Iteration 1's entire premise (`scorer.cjs` at line 1000, `parseIntentSignals` at line 59 using a flat `[^}]*` regex) targets files/lines that DO NOT EXIST** — the real parser is a brace-depth scanner.
-- Confirmed both packet commits are in HEAD history: `caf072e39e` (rename) and `40d1ca5543` (Lane C build). This invalidates the iter-8 "uncommitted rename" P1s as *code* findings (they survive only as a stale-doc note).
+- Confirmed both packet commits are in HEAD history: `123ef15261` (rename) and `44d2129ea1` (Lane C build). This invalidates the iter-8 "uncommitted rename" P1s as *code* findings (they survive only as a stale-doc note).
 
 ---
 
@@ -62,8 +62,8 @@ Ground-truth checks performed this pass:
 
 ### P2 — 003 implementation-summary "Not committed yet" is now stale
 - **file:** `.opencode/specs/.../003-skill-rename-deep-improvement/implementation-summary.md:60`
-- **issue:** Doc still flags the rename as "Not committed yet … parallel-session-revert hazard." The rename landed at commit `caf072e39e` (in HEAD). The note is stale and would mislead a future resume into thinking the rename is at risk. source: iter8 f-hs-i8-01/02 (severity REVISED P1→P2, and re-scoped from "spec overclaims Complete" to "impl-summary note is stale" — the spec's "Complete" status is now CORRECT because the commit exists)
-- **one-line fix:** Update the impl-summary line to "Committed at `caf072e39e`" and drop the hazard caveat; `completion_pct:100` is now accurate.
+- **issue:** Doc still flags the rename as "Not committed yet … parallel-session-revert hazard." The rename landed at commit `123ef15261` (in HEAD). The note is stale and would mislead a future resume into thinking the rename is at risk. source: iter8 f-hs-i8-01/02 (severity REVISED P1→P2, and re-scoped from "spec overclaims Complete" to "impl-summary note is stale" — the spec's "Complete" status is now CORRECT because the commit exists)
+- **one-line fix:** Update the impl-summary line to "Committed at `123ef15261`" and drop the hazard caveat; `completion_pct:100` is now accurate.
 
 ---
 
@@ -91,7 +91,7 @@ Ground-truth checks performed this pass:
 - `build-report.cjs:35` already uses `dd.status == null ? 'unscored' : dd.status` (nullish-safe); the `||`-vs-`??` nit (i2-08) is moot. The contamination blank-line (i2-09) and 2-char-threshold (i2-10) notes are real-but-trivial hardening suggestions on an opt-in linter with a 2-char floor that is a deliberate false-positive guard. Collapsed to "no action; defensible as-is."
 
 ### REJECTED — iter3: all 8 findings are PASS-restatements
-- iter3 correctly verified loop-host additivity but filed 8 "no fix needed; additive" entries as `severity:P2`. These are NOT findings; they are PASS evidence. Independently re-verified: `git show --stat 40d1ca5543` touches NO Lane A/B module; `LANE_A`/`LANE_MODEL_BENCHMARK`/`LANE_SKILL_BENCHMARK` sets are disjoint; `parseArgs`/`resolveMode` unchanged; the loop-host non-regression tests (skill-benchmark.vitest.ts:29-54) pass. Lane A/B byte-identical plan confirmed. **NOT FINDINGS (PASS confirmed).**
+- iter3 correctly verified loop-host additivity but filed 8 "no fix needed; additive" entries as `severity:P2`. These are NOT findings; they are PASS evidence. Independently re-verified: `git show --stat 44d2129ea1` touches NO Lane A/B module; `LANE_A`/`LANE_MODEL_BENCHMARK`/`LANE_SKILL_BENCHMARK` sets are disjoint; `parseArgs`/`resolveMode` unchanged; the loop-host non-regression tests (skill-benchmark.vitest.ts:29-54) pass. Lane A/B byte-identical plan confirmed. **NOT FINDINGS (PASS confirmed).**
 
 ### REVISED (down to non-finding) — iter4 f-hs-i4-01 + iter6-codex: `command-deep-agent-improvement` "routes nowhere at skill_advisor.py:1789"
 - Line 1789 IS the `command-deep-agent-improvement` command-bridge dict entry (verified). iter4's "routes nowhere / inert" claim is FALSE: the bare/slash phrase `deep-agent-improvement` and `/deep-agent-improvement` ARE routed to `deep-improvement` (weight 3.2) by the routing-weight table at `skill_advisor.py:1589-1590`, and the legacy id aliases at 251-254 also map to `deep-improvement`. So the rename is functionally complete and the old phrases route correctly. The ONE true sub-observation iter4 made — this entry lacks an `owning_skill` key that its sibling command-bridges (e.g. `command-memory-save`, `command-spec-kit-resume`) carry — is real but it is (a) explicitly documented as an intentional SCOPE-LOCK keep in `003/implementation-summary.md` ("a `command-deep-agent-improvement` command-bridge key … [is an] intentional keep"), (b) pre-existing tech debt the packet deliberately did not churn, and (c) inert-by-design: its slash_markers point at the still-valid `/deep:start-agent-improvement-loop` command. NOT a packet-122 defect; NOT filed as a finding. The "routes nowhere" framing is the FALSE-POSITIVE.
@@ -132,6 +132,6 @@ Final deduplicated, adversarially-verified finding list (ranked P0 → P1 → P2
 7. `references/skill-benchmark/{scoring_contract,operator_guide,scenario_authoring}.md` + `assets/skill-benchmark/{default_profile,remediation_taxonomy}.json` — inconsistent with the skill's OWN Lane A/B reference convention (those have `title/type/status` frontmatter + `## 1. OVERVIEW` + numbered ALL-CAPS H2s; Lane C docs have none). template_rules.json marks these `recommended`/`optional`, not required, and raw-JSON assets are a repo-wide pattern — so this is consistency polish, not a structural violation. Fix: add frontmatter + numbered OVERVIEW to the 3 reference docs.
 8. `.opencode/skills/deep-improvement/scripts/skill-benchmark/d5-connectivity.cjs:48` — missing-SKILL.md early-return `score:0` vs penalty-formula `60` for the same condition (verdict unaffected; gateFailed set both ways). Fix: return `score:60` or fall through to shared penalty.
 9. `.opencode/skills/deep-improvement/scripts/tests/skill-benchmark.vitest.ts:188-200` — e2e asserts schema/artifacts only (zero-scenario cli-codex run); plus uncleaned temp dir + uncovered ambiguity/negative-fixture cases. Fix: assert `scenarioRows.length>0` via the deep-improvement skill (ships a real fixture); add afterAll cleanup + the two edge-case rows.
-10. `.opencode/specs/.../003-skill-rename-deep-improvement/implementation-summary.md:60` — stale "Not committed yet" note; rename landed at `caf072e39e`. Fix: update to "Committed at caf072e39e," drop the hazard caveat.
+10. `.opencode/specs/.../003-skill-rename-deep-improvement/implementation-summary.md:60` — stale "Not committed yet" note; rename landed at `123ef15261`. Fix: update to "Committed at 123ef15261," drop the hazard caveat.
 
 Review verdict: CONDITIONAL

@@ -11,7 +11,7 @@ Resolved route: mode=review; target_agent=@deep-review; execution=single_review_
 
 Iteration 4 of 10; forced max-iterations policy. Dimensions covered: correctness, security, traceability. Active findings: P0=0 P1=3 P2=0. Latest claim adjudication passed.
 Dimension: maintainability.
-Target/scope: `.opencode/specs/sk-design/017-remediation-program-review`, validated 118-file manifest, pinned HEAD `7b9d3b6b71`.
+Target/scope: `.opencode/specs/sk-design/017-remediation-program-review`, validated 118-file manifest, pinned HEAD `6432665a68`.
 Focus: stale path/reference closure, centralized path authority, generated metadata integrity, command authority consistency, comments/docs accuracy, file-format warning follow-up, and safe follow-on change cost. Search only the manifest for hardcoded `_engine`, `_db`, old manifest/database paths, compatibility aliases, stale presentation-authority claims, and mismatched metadata. Revisit active findings only when new evidence refines them.
 
 ## Required Bindings

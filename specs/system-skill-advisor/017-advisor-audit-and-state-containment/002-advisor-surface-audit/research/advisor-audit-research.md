@@ -945,7 +945,7 @@ The final pass is separating retained-but-broken measurement assets from genuine
 [0m✱ [0mGrep "shadow-deltas\.jsonl"[90m in .opencode/skills/system-skill-advisor/mcp-server/tests · 5 matches[0m
 [0m
 [0m$ [0mgit log --oneline --all -- '.opencode/skills/system-skill-advisor/mcp-server/tests/.tmp-resident-service-31202-1781868482214-e27892e065ba1/shadow-deltas.jsonl'
-cc77a1e550a refactor(sk-doc): migrate filesystem names to kebab-case (020, squashed)
+b052f329a73 refactor(sk-doc): migrate filesystem names to kebab-case (020, squashed)
 e6f1fc1a305 refactor(sk-doc): migrate filesystem names to kebab-case (020, squashed)
 250c3bf2a4d refactor(sk-doc): rename snake_case filesystem names to kebab-case (020 execution)
 [0m

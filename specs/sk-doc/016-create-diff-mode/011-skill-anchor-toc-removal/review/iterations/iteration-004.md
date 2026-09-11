@@ -17,7 +17,7 @@ user
 Independent code review (READ-ONLY). You may run git/rg/python3/node for inspection only. Do NOT modify any file.
 
 # Task
-Audit git commit `1e58d845af` (TOC + `<!-- ANCHOR -->` removal). Find anything broken **by accident**.
+Audit git commit `e5ee6609c2` (TOC + `<!-- ANCHOR -->` removal). Find anything broken **by accident**.
 
 This is **Iteration 4 of 10**. Focus: **carve-out integrity + traceability + security**.
 
@@ -29,7 +29,7 @@ Find OTHER issues.
 
 # This iteration — inspect
 1. **Carve-out integrity (over-removal check):** the cleanup was supposed to PRESERVE anchors in `.opencode/skills/system-spec-kit/templates/**` and TOCs in `.opencode/skills/sk-doc/scripts/tests/**`. Confirm the commit did NOT touch/strip those:
-   - `git show --stat 1e58d845af -- .opencode/skills/system-spec-kit/templates | head` — expect NO template files in the diff.
+   - `git show --stat e5ee6609c2 -- .opencode/skills/system-spec-kit/templates | head` — expect NO template files in the diff.
    - `rg -l '<!-- ANCHOR' .opencode/skills/system-spec-kit/templates --glob '*.md' | wc -l` — expect > 0 (anchors preserved).
    - `rg -l -i 'table of contents' .opencode/skills/sk-doc/scripts/tests` — expect the fixtures still have TOCs.
    Flag if a carve-out was wrongly stripped (that would be a real regression).
@@ -827,7 +827,7 @@ exec
       26
 
 exec
-/bin/zsh -lc 'git show --stat 1e58d845af -- .opencode/skills/system-spec-kit/templates | head' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'git show --stat e5ee6609c2 -- .opencode/skills/system-spec-kit/templates | head' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 1589ms:
 2026-05-26 12:54:01.320 xcodebuild[10431:53780494]  DVTFilePathFSEvents: Failed to start fs event stream.
 2026-05-26 12:54:01.451 xcodebuild[10431:53780491] [MT] DVTDeveloperPaths: Failed to get length of DARWIN_USER_CACHE_DIR from confstr(3), error = Error Domain=NSPOSIXErrorDomain Code=5 "Input/output error". Using NSCachesDirectory instead.
@@ -1422,7 +1422,7 @@ exec
 .opencode/skills/sk-doc/scripts/tests/README.md:137:<!-- /ANCHOR:related-documents -->
 
 exec
-/bin/zsh -lc "git show --name-only --format='' 1e58d845af" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "git show --name-only --format='' e5ee6609c2" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 1796ms:
 2026-05-26 12:54:10.231 xcodebuild[10978:53781424]  DVTFilePathFSEvents: Failed to start fs event stream.
 2026-05-26 12:54:10.366 xcodebuild[10978:53781423] [MT] DVTDeveloperPaths: Failed to get length of DARWIN_USER_CACHE_DIR from confstr(3), error = Error Domain=NSPOSIXErrorDomain Code=5 "Input/output error". Using NSCachesDirectory instead.
@@ -2356,7 +2356,7 @@ exec
 /bin/zsh -lc "rg -n '"'^#{1,6}'"\\s+.*TABLE OF CONTENTS' .opencode/skills --glob '*.md' | rg -v '"'^'"\\.opencode/skills/system-spec-kit/templates/' | rg -v '"'^'"\\.opencode/skills/sk-doc/scripts/tests/' || true" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 exec
-/bin/zsh -lc "git show --name-only --format='' 1e58d845af 2>/dev/null | rg -v '"'^$'"' | rg -v '\\.md"'$'"'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "git show --name-only --format='' e5ee6609c2 2>/dev/null | rg -v '"'^$'"' | rg -v '\\.md"'$'"'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 1405ms:
 .opencode/commands/create/README.txt
 .opencode/commands/create/assets/create_feature_catalog_auto.yaml
@@ -3013,14 +3013,14 @@ specs/sk-doc/011-skill-anchor-toc-removal/002-toc-removal/implementation-summary
 specs/sk-doc/011-skill-anchor-toc-removal/002-toc-removal/implementation-summary.md:99:<!-- /ANCHOR:limitations -->
 
 exec
-/bin/zsh -lc 'git show --unified=0 --no-ext-diff 1e58d845af -- $(git show --name-only --format='"'' 1e58d845af 2>/dev/null | rg -v '"'^$'"' | rg -v '\\.md"'$'"') 2>/dev/null | rg -n -i 'api[_-]?key|secret|token|password|passwd|credential|private key|BEGIN .*PRIVATE|/Users/|/home/|chmod|permission|allowlist|denylist|shell|exec|eval|subprocess|os\\.system|child_process|dangerously|innerHTML|\\"'$'"\\{|\\{\\{|"'!!|write|delete|remove|rm -rf|curl|http://'"'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'git show --unified=0 --no-ext-diff e5ee6609c2 -- $(git show --name-only --format='"'' e5ee6609c2 2>/dev/null | rg -v '"'^$'"' | rg -v '\\.md"'$'"') 2>/dev/null | rg -n -i 'api[_-]?key|secret|token|password|passwd|credential|private key|BEGIN .*PRIVATE|/Users/|/home/|chmod|permission|allowlist|denylist|shell|exec|eval|subprocess|os\\.system|child_process|dangerously|innerHTML|\\"'$'"\\{|\\{\\{|"'!!|write|delete|remove|rm -rf|curl|http://'"'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc 'git show --stat --oneline 1e58d845af -- .opencode/skills/system-spec-kit/templates 2>/dev/null | head' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'git show --stat --oneline e5ee6609c2 -- .opencode/skills/system-spec-kit/templates 2>/dev/null | head' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "git show --stat --oneline 1e58d845af 2>/dev/null | sed -n '1,80p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "git show --stat --oneline e5ee6609c2 2>/dev/null | sed -n '1,80p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 1451ms:
  succeeded in 1605ms:
-1e58d845af docs(117): remove TOC blocks + HTML anchor comments from skill docs
+e5ee6609c2 docs(117): remove TOC blocks + HTML anchor comments from skill docs
  .opencode/commands/create/README.txt               |  18 --
  .../create/assets/create_feature_catalog_auto.yaml |   3 +-
  .../assets/create_feature_catalog_confirm.yaml     |   3 +-
@@ -3746,11 +3746,11 @@ exec
 .opencode/skills/deep-research/README.md:28:11. [RELATED DOCUMENTS](#11--related-documents)
 
 exec
-/bin/zsh -lc "git show --unified=80 --no-ext-diff 1e58d845af -- .opencode/skills/sk-doc/assets/template_rules.json .opencode/skills/sk-doc/scripts/tests/test_validator.py .opencode/commands/create/README.txt .opencode/commands/create/assets/create_feature_catalog_auto.yaml .opencode/commands/create/assets/create_feature_catalog_confirm.yaml .opencode/commands/create/assets/create_folder_readme_auto.yaml .opencode/commands/create/assets/create_folder_readme_confirm.yaml .opencode/commands/create/assets/create_testing_playbook_auto.yaml .opencode/commands/create/assets/create_testing_playbook_confirm.yaml 2>/dev/null | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "git show --unified=80 --no-ext-diff e5ee6609c2 -- .opencode/skills/sk-doc/assets/template_rules.json .opencode/skills/sk-doc/scripts/tests/test_validator.py .opencode/commands/create/README.txt .opencode/commands/create/assets/create_feature_catalog_auto.yaml .opencode/commands/create/assets/create_feature_catalog_confirm.yaml .opencode/commands/create/assets/create_folder_readme_auto.yaml .opencode/commands/create/assets/create_folder_readme_confirm.yaml .opencode/commands/create/assets/create_testing_playbook_auto.yaml .opencode/commands/create/assets/create_testing_playbook_confirm.yaml 2>/dev/null | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "git show --unified=0 --no-ext-diff 1e58d845af -- .opencode/specs/sk-doc/011-skill-anchor-toc-removal 2>/dev/null | rg '"'^'"\\+' | rg -n -i 'api[_-]?key|secret|token|password|passwd|credential|private key|BEGIN .*PRIVATE|/Users/|/home/|chmod|permission|allowlist|denylist|shell|exec|eval|subprocess|os\\.system|child_process|dangerously|innerHTML|curl|http://' || true" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "git show --unified=0 --no-ext-diff e5ee6609c2 -- .opencode/specs/sk-doc/011-skill-anchor-toc-removal 2>/dev/null | rg '"'^'"\\+' | rg -n -i 'api[_-]?key|secret|token|password|passwd|credential|private key|BEGIN .*PRIVATE|/Users/|/home/|chmod|permission|allowlist|denylist|shell|exec|eval|subprocess|os\\.system|child_process|dangerously|innerHTML|curl|http://' || true" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "git show --unified=0 --no-ext-diff 1e58d845af -- .opencode/commands/create/README.txt .opencode/commands/create/assets/create_feature_catalog_auto.yaml .opencode/commands/create/assets/create_feature_catalog_confirm.yaml .opencode/commands/create/assets/create_folder_readme_auto.yaml .opencode/commands/create/assets/create_folder_readme_confirm.yaml .opencode/commands/create/assets/create_testing_playbook_auto.yaml .opencode/commands/create/assets/create_testing_playbook_confirm.yaml .opencode/skills/sk-doc/assets/template_rules.json .opencode/skills/sk-doc/scripts/tests/test_validator.py 2>/dev/null | rg '"'^'"\\+' | rg -n -i 'api[_-]?key|secret|token|password|passwd|credential|private key|BEGIN .*PRIVATE|/Users/|/home/|chmod|permission|allowlist|denylist|shell|exec|eval|subprocess|os\\.system|child_process|dangerously|innerHTML|curl|http://' || true" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "git show --unified=0 --no-ext-diff e5ee6609c2 -- .opencode/commands/create/README.txt .opencode/commands/create/assets/create_feature_catalog_auto.yaml .opencode/commands/create/assets/create_feature_catalog_confirm.yaml .opencode/commands/create/assets/create_folder_readme_auto.yaml .opencode/commands/create/assets/create_folder_readme_confirm.yaml .opencode/commands/create/assets/create_testing_playbook_auto.yaml .opencode/commands/create/assets/create_testing_playbook_confirm.yaml .opencode/skills/sk-doc/assets/template_rules.json .opencode/skills/sk-doc/scripts/tests/test_validator.py 2>/dev/null | rg '"'^'"\\+' | rg -n -i 'api[_-]?key|secret|token|password|passwd|credential|private key|BEGIN .*PRIVATE|/Users/|/home/|chmod|permission|allowlist|denylist|shell|exec|eval|subprocess|os\\.system|child_process|dangerously|innerHTML|curl|http://' || true" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 1767ms:
 1309:+# TOC heading: H1-H6, optional leading emoji/symbol token, "TABLE OF CONTENTS" | "CONTENTS" | "TOC"
 2523:+| Treat the Devin permission block as non-fatal | Deterministic verification fully covers the content-safety claim |
@@ -3761,7 +3761,7 @@ exec
 3123:+> This spec uses phased decomposition. Each phase is an independently executable child spec folder. All implementation details live inside the phase children.
 
  succeeded in 1773ms:
-commit 1e58d845af44255e32e071b3d69d1c19e76d4ac6
+commit e5ee6609c2b83108535c9b42befe8f88c3b879f0
 Author: MichelKerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
 Date:   Tue May 26 11:55:15 2026 +0200
 
@@ -4027,7 +4027,7 @@ codex
 ## Iteration 4 — Carve-outs + traceability + security
 
 Inspected/read-only:
-- `git show --stat 1e58d845af -- .opencode/skills/system-spec-kit/templates | head`: no template files shown in the diff.
+- `git show --stat e5ee6609c2 -- .opencode/skills/system-spec-kit/templates | head`: no template files shown in the diff.
 - `rg -l '<!-- ANCHOR' .opencode/skills/system-spec-kit/templates --glob '*.md' | wc -l`: `26`, so spec-kit template anchors are preserved.
 - `rg -l -i 'table of contents' .opencode/skills/sk-doc/scripts/tests`: `5` fixtures still contain TOC text.
 - Under-removal scan, excluding carve-outs:
@@ -4045,7 +4045,7 @@ tokens used
 ## Iteration 4 — Carve-outs + traceability + security
 
 Inspected/read-only:
-- `git show --stat 1e58d845af -- .opencode/skills/system-spec-kit/templates | head`: no template files shown in the diff.
+- `git show --stat e5ee6609c2 -- .opencode/skills/system-spec-kit/templates | head`: no template files shown in the diff.
 - `rg -l '<!-- ANCHOR' .opencode/skills/system-spec-kit/templates --glob '*.md' | wc -l`: `26`, so spec-kit template anchors are preserved.
 - `rg -l -i 'table of contents' .opencode/skills/sk-doc/scripts/tests`: `5` fixtures still contain TOC text.
 - Under-removal scan, excluding carve-outs:

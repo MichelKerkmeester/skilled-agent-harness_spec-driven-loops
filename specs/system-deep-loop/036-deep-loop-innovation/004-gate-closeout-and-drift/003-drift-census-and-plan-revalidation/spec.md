@@ -25,7 +25,7 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions:
-      - "Baseline = 0ce43ff589 (2026-07-16), the merge that landed the normalized packet on v4"
+      - "Baseline = 60b9ed8bc2 (2026-07-16), the merge that landed the normalized packet on v4"
       - "Placement = a new additive phase child 018 under 036; additive numbering cannot re-trigger the renumber-corruption class"
       - "Method = /deep:research, 20 iterations, two independent lineages split 50/50, forced depth"
       - "Q3 resolved: no phase is fully redundant, but the 009 cutover path supersedes abstract phases 015 and 017; 016 whole-system gate is kept"
@@ -50,7 +50,7 @@ _memory:
 | **Created** | 2026-07-19 |
 | **Branch** | `system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift/003-drift-census-and-plan-revalidation` |
 | **Parent** | `system-deep-loop/036-deep-loop-innovation` |
-| **Baseline** | `0ce43ff589` (2026-07-16) — the merge that landed the normalized 036 packet on v4 |
+| **Baseline** | `60b9ed8bc2` (2026-07-16) — the merge that landed the normalized 036 packet on v4 |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -62,7 +62,7 @@ _memory:
 Packet 036 authored 445 planning documents across 17 phases against a tree state frozen on 2026-07-16, and has
 never been executed. Since that baseline, 204 commits have landed on `skilled/v4.0.0.0` — 183 of them
 AI-co-authored by concurrent sessions, 22 of them inside the `system-deep-loop` runtime the program intends to
-modify. Plan decay is not hypothetical here: the squashed kebab-case migration (`cc77a1e550a`) renamed the two
+modify. Plan decay is not hypothetical here: the squashed kebab-case migration (`b052f329a73`) renamed the two
 runtime reference files that phase 003 names as its starting points, two days after 003 was authored and before
 a single line of the program ran. The program's own drift-handling mechanism sits in phase **017**, at the very
 end, where it can only reopen phases after all the work is done.
@@ -79,7 +79,7 @@ carrying the specific commit and `path:line` that justifies it.
 ## 3. SCOPE
 
 ### In Scope
-- The full commit range `0ce43ff589..HEAD` (204 commits), not pre-filtered to `system-deep-loop/` paths — the
+- The full commit range `60b9ed8bc2..HEAD` (204 commits), not pre-filtered to `system-deep-loop/` paths — the
   one confirmed drift hit to date originated outside the runtime.
 - A per-phase verdict for all 15 implementation phases (003-017) with commit-level and `path:line` evidence.
 - The runtime contracts 036 pins: mode registries, event/state shapes, the fan-out scripts, the behavior-benchmark
@@ -199,8 +199,8 @@ carrying the specific commit and `path:line` that justifies it.
 
 ## 10. OPEN QUESTIONS
 
-- **RESOLVED (Q-A).** The `packet-033` benchmark dependency survives its renumber under `z_archive/027-deep-loop-behavior-benchmarks` as provenance authority; active execution rebases onto `shared/behavior-benchmark/`. Phase 003's literal "Packet 033" string now resolves to an unrelated packet (`7f3216fc502`). Detail in `research/research.md` §5-B.
-- **RESOLVED (Q-B).** The routing commits (`908efde8d8f`, `6cd8ab14e4e`) did NOT change the registered-mode count. It stays at 7 routing modes at both baseline and HEAD (`mode-registry.json:1-22`); phase 013's "eight" is 7 routing modes + 1 shared backbone. Detail in `research/research.md` §5-A.
+- **RESOLVED (Q-A).** The `packet-033` benchmark dependency survives its renumber under `z_archive/027-deep-loop-behavior-benchmarks` as provenance authority; active execution rebases onto `shared/behavior-benchmark/`. Phase 003's literal "Packet 033" string now resolves to an unrelated packet (`69aee63cb8a`). Detail in `research/research.md` §5-B.
+- **RESOLVED (Q-B).** The routing commits (`4b2c351cc1e`, `d60cc2c7553`) did NOT change the registered-mode count. It stays at 7 routing modes at both baseline and HEAD (`mode-registry.json:1-22`); phase 013's "eight" is 7 routing modes + 1 shared backbone. Detail in `research/research.md` §5-A.
 - **RESOLVED (Q-C).** No planned phase is fully redundant, but shipped substrate shrinks the remaining work of five phases (006, 007, 010, 011, 016 — second-order). The operator additionally resolved a structural overlap the in-tree plans never stated: two phase paths both claimed legacy-writer retirement plus final acceptance. See §11 SUPERSESSION VERDICT.
 
 ---

@@ -49,8 +49,8 @@ _memory:
 ## Phase 1: Setup
 
 ### Prerequisite infra (SHIPPED in 030, pre-checked, not re-implemented)
-- [x] T001 030 Wave-0 Deep-Loop trio shipped: pool gauges (`lag`/`pending`/`failed`) + deterministic merge total-order + graceful-self-stop (`fanout-pool.cjs`, `fanout-merge.cjs`, `fanout-run.cjs`) [commit `46812f12a8`, 58 fanout tests pass, §14 cand 12]
-- [x] T002 Confirmed 030 did NOT ship failure-class before this phase: `settleItem` returned `error:{name,message}` only and `buildPoolSummary` emitted no per-class rollup, so C1 and everything gated on it was genuinely pending before implementation [verified current source + commit `46812f12a8` body]
+- [x] T001 030 Wave-0 Deep-Loop trio shipped: pool gauges (`lag`/`pending`/`failed`) + deterministic merge total-order + graceful-self-stop (`fanout-pool.cjs`, `fanout-merge.cjs`, `fanout-run.cjs`) [commit `ba632c340c`, 58 fanout tests pass, §14 cand 12]
+- [x] T002 Confirmed 030 did NOT ship failure-class before this phase: `settleItem` returned `error:{name,message}` only and `buildPoolSummary` emitted no per-class rollup, so C1 and everything gated on it was genuinely pending before implementation [verified current source + commit `ba632c340c` body]
 - [x] T003 Source seams re-confirmed against current code: class computed-then-discarded (`fanout-run.cjs:639-654`), dispatch-once pump (`fanout-pool.cjs:171-212`), started-without-terminal ledger (`:82-126`), resume status default `initialized` (`reduce-state.cjs:434`), resumed/restarted-only events (`:344,:393`) [verified, all spec seams accurate]
 
 ### Implementation setup
@@ -131,6 +131,6 @@ _memory:
 - **Plan**: See `plan.md`
 - **Parent research**: `../research/research.md`, resilience detail in `../research/iterations/iteration-007.md`, `iteration-012.md`, `iteration-013.md`
 - **Cross-cutting roadmap / synthesis**: `../../research/roadmap.md`, `../../research/synthesis/01-go-candidates.md` (Deep-Loop recovery/resilience cluster, lines 91-101)
-- **Shipped record (Wave-0)**: Wave-0 record (commit `46812f12a8`, gauges/merge/graceful-self-stop, explicitly NOT failure-class)
+- **Shipped record (Wave-0)**: Wave-0 record (commit `ba632c340c`, gauges/merge/graceful-self-stop, explicitly NOT failure-class)
 
 <!-- /ANCHOR:cross-refs -->

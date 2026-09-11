@@ -51,9 +51,9 @@ _memory:
 ### 018a SAFE-NOW: Absent Files, Collision-Free
 
 ### Additive Hub Artifacts
-- [x] T001 [P] Author deep-loop parent hub description (`.opencode/skills/deep-loop-workflows/description.json`) [medium] [trace: master plan 018a; audit P0-4] — `e1a266b07c`
-- [x] T002 [P] Author hub-level manual testing playbook package (`.opencode/skills/deep-loop-workflows/manual_testing_playbook/`) [medium] [trace: master plan 018a; audit P0-5] — `2b03b419a6` (20 scenarios / 5 categories)
-- [x] T003 [P] Freeze hub-level benchmark baseline package (`.opencode/skills/deep-loop-workflows/benchmark/`) [medium] [trace: master plan 018a; audit P0-6] — `50fbe53094` (Lane-C router CONDITIONAL 71/100)
+- [x] T001 [P] Author deep-loop parent hub description (`.opencode/skills/deep-loop-workflows/description.json`) [medium] [trace: master plan 018a; audit P0-4] — `14b8472c17`
+- [x] T002 [P] Author hub-level manual testing playbook package (`.opencode/skills/deep-loop-workflows/manual_testing_playbook/`) [medium] [trace: master plan 018a; audit P0-5] — `7dd373b017` (20 scenarios / 5 categories)
+- [x] T003 [P] Freeze hub-level benchmark baseline package (`.opencode/skills/deep-loop-workflows/benchmark/`) [medium] [trace: master plan 018a; audit P0-6] — `59d000eb8e` (Lane-C router CONDITIONAL 71/100)
 
 ### 018a Verification
 - [x] T004 Run parent-skill-check strict and confirm 8a/9a/9b pass for deep-loop-workflows [low] [trace: master plan verify; audit P0-4, P0-5, P0-6]
@@ -65,18 +65,18 @@ _memory:
 Gate cleared: the registry returned git-clean and the seven-mode set settled, so the following opened and shipped.
 
 ### Registry Canon Fields
-- [x] T007 Add `packetKind: "workflow"` to each of the seven workflow modes (`.opencode/skills/deep-loop-workflows/mode-registry.json`) [medium] [trace: master plan 018b; audit P0-2] — `e1a266b07c`
-- [x] T008 Add `grandfatheredFolderMismatch: false` to each of the seven workflow modes (`.opencode/skills/deep-loop-workflows/mode-registry.json`) [medium] [trace: master plan 018b; audit P0-2] — `e1a266b07c`
-- [x] T009 Add `toolSurface` to each of the seven workflow modes (`.opencode/skills/deep-loop-workflows/mode-registry.json`) [medium] [trace: master plan 018b; audit P0-2] — `e1a266b07c`
+- [x] T007 Add `packetKind: "workflow"` to each of the seven workflow modes (`.opencode/skills/deep-loop-workflows/mode-registry.json`) [medium] [trace: master plan 018b; audit P0-2] — `14b8472c17`
+- [x] T008 Add `grandfatheredFolderMismatch: false` to each of the seven workflow modes (`.opencode/skills/deep-loop-workflows/mode-registry.json`) [medium] [trace: master plan 018b; audit P0-2] — `14b8472c17`
+- [x] T009 Add `toolSurface` to each of the seven workflow modes (`.opencode/skills/deep-loop-workflows/mode-registry.json`) [medium] [trace: master plan 018b; audit P0-2] — `14b8472c17`
 
 ### Registry Extensions
-- [x] T010 Add `extensions.runtime-loop` to the registry (`.opencode/skills/deep-loop-workflows/mode-registry.json`) [medium] [trace: master plan 018b; audit P0-3] — `e1a266b07c`
-- [x] T011 Add `extensions.advisor-projection` with the driftGuard path (`.opencode/skills/deep-loop-workflows/mode-registry.json`) [medium] [trace: master plan 018b; audit P0-3] — `e1a266b07c`
-- [x] T012 Declare deprecated modes via top-level `deprecatedModes: []` (no `extensions.deprecated-modes` needed — zero deprecated modes) (`.opencode/skills/deep-loop-workflows/mode-registry.json`) [medium] [trace: master plan 018b; audit P0-3] — `e1a266b07c`
+- [x] T010 Add `extensions.runtime-loop` to the registry (`.opencode/skills/deep-loop-workflows/mode-registry.json`) [medium] [trace: master plan 018b; audit P0-3] — `14b8472c17`
+- [x] T011 Add `extensions.advisor-projection` with the driftGuard path (`.opencode/skills/deep-loop-workflows/mode-registry.json`) [medium] [trace: master plan 018b; audit P0-3] — `14b8472c17`
+- [x] T012 Declare deprecated modes via top-level `deprecatedModes: []` (no `extensions.deprecated-modes` needed — zero deprecated modes) (`.opencode/skills/deep-loop-workflows/mode-registry.json`) [medium] [trace: master plan 018b; audit P0-3] — `14b8472c17`
 
 ### Router and Changelog
-- [x] T013 Author `hub-router.json` after the settled seven-mode set satisfies bidirectional check 5b (`.opencode/skills/deep-loop-workflows/hub-router.json`) [medium] [trace: master plan 018b; audit P0-7] — `e1a266b07c`
-- [x] T014 Remove dangling `changelog/deep-context` symlink (with the other four hub changelog symlinks) under the real-files-only policy (`.opencode/skills/deep-loop-workflows/changelog/deep-context`) [low] [trace: master plan 018b; audit P0-8] — `a5e81198c9`
+- [x] T013 Author `hub-router.json` after the settled seven-mode set satisfies bidirectional check 5b (`.opencode/skills/deep-loop-workflows/hub-router.json`) [medium] [trace: master plan 018b; audit P0-7] — `14b8472c17`
+- [x] T014 Remove dangling `changelog/deep-context` symlink (with the other four hub changelog symlinks) under the real-files-only policy (`.opencode/skills/deep-loop-workflows/changelog/deep-context`) [low] [trace: master plan 018b; audit P0-8] — `a3bffc3626`
 
 <!-- /ANCHOR:phase-2 -->
 ---

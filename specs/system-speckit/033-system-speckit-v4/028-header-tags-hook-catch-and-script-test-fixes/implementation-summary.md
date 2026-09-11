@@ -86,7 +86,7 @@ Line-three substitutions across 38 files, one deletion, one comment rewrite, one
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Substitutions verified by a tag census, the two tests run under the CLI vitest project, the CLI typecheck run after the deletion, the CLI dist rebuilt and reported fresh, the hook syntax-checked. Committed as ee8a17b5b1.
+Substitutions verified by a tag census, the two tests run under the CLI vitest project, the CLI typecheck run after the deletion, the CLI dist rebuilt and reported fresh, the hook syntax-checked. Committed as d76672f145.
 <!-- /ANCHOR:how-delivered -->
 
 ---

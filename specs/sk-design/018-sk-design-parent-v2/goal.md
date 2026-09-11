@@ -131,7 +131,7 @@ step does.
 
 | Step | Phase | State |
 |------|-------|-------|
-| 1 | `002-hub-and-fundamentals` | Done, `112d5471f4` |
+| 1 | `002-hub-and-fundamentals` | Done, `08c9d0605d` |
 | 2 | `003-md-generator-as-mode` | Done |
 | 3 | `004-chart-and-diagram-cutover` | Done |
 | 4 | `001-sk-create-chart` | Done: 1,528 renames, 35 spec folders green |

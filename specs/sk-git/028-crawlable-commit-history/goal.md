@@ -131,10 +131,10 @@ and findings belong here.
 | Packet scaffolded | Done | `create.sh --track sk-git --phase --phases 6 --level 3 --with-goal` |
 | Phase 001 research | Done |
 | Deep review, 4 iterations on cli-pi deepseek max | Done | CONDITIONAL: 2 P1 and 13 P2; 14 fixed in the two review-fix commits, F005 (machine-wide hooks execute a repository path) deferred as pre-existing and systemic |
-| Phase 006 docs and release | Done | `d6ca91f853`, `a8135ef83c`, `d4d6096ac1`; advisor probe after the merge |
+| Phase 006 docs and release | Done | `dcdf2f8441`, `8d5acf93d5`, `581e2862a5`; advisor probe after the merge |
 | Phase 007 run failures | Done | ten producers fixed, four runtime seams named, proof lineage succeeded 1 |
 | Phase 005 history rewrite | Rehearsed | tooling committed, two full-scale rehearsals PASS, push waits for the window |
-| Phase 004 search surface | Done | `98be1cebc2`, queries proven on a stamped fixture commit |
+| Phase 004 search surface | Done | `9cb5e9c4a4`, queries proven on a stamped fixture commit |
 | Phase 003 contract and hook | Done | four commits, three harnesses 9/35/43, drift guards PASSED, docs VALID |
 | Phase 002 format decision | Done | decision-record.md, five ADRs approved 2026-09-11; identifier is a repository-wide ordinal, Spec: carries the full packet path | lineage `research/lineages/deepseek`: 10 iterations, synthesis stopReason maxIterationsReached, 16 state records |
 

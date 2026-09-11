@@ -12,7 +12,7 @@ _memory:
     packet_pointer: "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/008-router-consistency-hardening"
     last_updated_at: "2026-06-12T14:15:00Z"
     last_updated_by: "orchestrator-session"
-    recent_action: "Committed 0c6c2bf897; render re-test 4/4 PASS under --command"
+    recent_action: "Committed b83dad898d; render re-test 4/4 PASS under --command"
     next_safe_action: "None; phase complete"
 ---
 # Feature Specification: Router Consistency Hardening
@@ -41,7 +41,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-A deeper audit of the command tree after the presentation/router split found two consistency defects. First, commit `493b3c822f` (#44) decided the canonical `allowed-tools` form is the fully-qualified `mcp__<server>__<tool>` prefix and applied it to `resume.md` + `search.md`, but seven routers still carry the same bare or mixed MCP names it fixed. Second, the sk-doc `command_template.md` §11 router standard claims all five split families use an identical six-section shape and own `_auto.yaml`/`_confirm.yaml`, which is false: `memory` and `doctor` have no workflow YAML and use different section vocabularies.
+A deeper audit of the command tree after the presentation/router split found two consistency defects. First, commit `6a8efb7c73` (#44) decided the canonical `allowed-tools` form is the fully-qualified `mcp__<server>__<tool>` prefix and applied it to `resume.md` + `search.md`, but seven routers still carry the same bare or mixed MCP names it fixed. Second, the sk-doc `command_template.md` §11 router standard claims all five split families use an identical six-section shape and own `_auto.yaml`/`_confirm.yaml`, which is false: `memory` and `doctor` have no workflow YAML and use different section vocabularies.
 
 ### Purpose
 Finish the #44 normalization across every router and make the command standard accurately describe the two router variants, so the documented standard matches shipped reality and future commands inherit the correct convention.

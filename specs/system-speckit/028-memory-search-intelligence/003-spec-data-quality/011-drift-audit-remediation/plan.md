@@ -39,7 +39,7 @@ _memory:
 |--------|-------|
 | **Executor (fix)** | `opencode run --model xiaomi/mimo-v2.5-pro-ultraspeed --variant high` |
 | **Executor (verify)** | `opencode run --model openai/gpt-5.5-fast --variant high` |
-| **Isolation** | git worktree cut from HEAD (`aca0f7eb8b`), not the live repo root |
+| **Isolation** | git worktree cut from HEAD (`3b0497f812`), not the live repo root |
 | **Sync-back** | file copy of touched paths only, left uncommitted in the live tree |
 
 ### Overview
@@ -181,7 +181,7 @@ Phase 1 (Setup) ──► Phase 2 (Investigate + Fix + Verify) ──► Phase 3
 
 ### Pre-deployment Checklist
 - [x] Worktree isolation in place (no live-tree exposure during fix dispatch)
-- [x] Recovery baseline commit recorded: `aca0f7eb8b`
+- [x] Recovery baseline commit recorded: `3b0497f812`
 
 ### Rollback Procedure
 1. Do not commit the synced-back diff.

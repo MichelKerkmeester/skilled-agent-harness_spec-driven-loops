@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Documentation-Drift Review vs Session Changes (013-016 + release)"
-description: "A read-only deep review that audits user-facing docs (root README, skill READMEs/SKILL.md, MCP server READMEs, feature_catalog, manual_testing_playbook) for staleness introduced by this session's shipped changes (packets 013/014/015/016 + v3.5.0.0 release) on origin/main HEAD 75cfec1700. Output is a P0/P1/P2 findings report with the exact correction each doc needs."
+description: "A read-only deep review that audits user-facing docs (root README, skill READMEs/SKILL.md, MCP server READMEs, feature_catalog, manual_testing_playbook) for staleness introduced by this session's shipped changes (packets 013/014/015/016 + v3.5.0.0 release) on origin/main HEAD ce22801ff5. Output is a P0/P1/P2 findings report with the exact correction each doc needs."
 trigger_phrases:
   - "documentation drift review"
   - "docs stale versus shipped code"
@@ -55,7 +55,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-This session shipped packets 013 (comprehensive-audit-remediation), 014/015 (launcher-overlap fix), 016 (mk-spec-memory launcher-ownership hardening), and a pre-existing-failure remediation, all now on `origin/main` (HEAD `75cfec1700`). User-facing documentation (root README, skill READMEs/SKILL.md, MCP server READMEs, the feature_catalog, and the manual_testing_playbook) may now describe behavior that was removed, renamed, or changed by those packets, so a reader following the docs could trust a removed feature or run a command that fails.
+This session shipped packets 013 (comprehensive-audit-remediation), 014/015 (launcher-overlap fix), 016 (mk-spec-memory launcher-ownership hardening), and a pre-existing-failure remediation, all now on `origin/main` (HEAD `ce22801ff5`). User-facing documentation (root README, skill READMEs/SKILL.md, MCP server READMEs, the feature_catalog, and the manual_testing_playbook) may now describe behavior that was removed, renamed, or changed by those packets, so a reader following the docs could trust a removed feature or run a command that fails.
 
 ### Purpose
 Produce a read-only P0/P1/P2 drift report that names each stale doc file:section, the exact stale claim, the change it conflicts with, and the precise correction, without editing any reviewed doc.

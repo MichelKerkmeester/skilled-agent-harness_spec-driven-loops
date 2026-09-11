@@ -50,7 +50,7 @@ _memory:
 | **Parent Packet** | system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure |
 | **Predecessor** | 007-ipc-client-cap-hardening |
 | **Successor** | None |
-| **Implementation Commit** | `c67a972b88` |
+| **Implementation Commit** | `429272e8fe` |
 <!-- /ANCHOR:metadata -->
 
 ---

@@ -17,7 +17,7 @@ _memory:
     packet_pointer: "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/002-deprecate-numbered-snippet-filenames/003-migration-tooling"
     last_updated_at: "2026-07-17T14:36:44Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "denumber-snippet-filenames.mjs authored; dry-run clean; commit 69638f96a4"
+    recent_action: "denumber-snippet-filenames.mjs authored; dry-run clean; commit 28a2569b4c"
     next_safe_action: "Complete"
     blockers: []
     completion_pct: 100
@@ -54,7 +54,7 @@ excluded-surface summary. `--apply` (Phase 004 only) performs the git mv + front
 Adapted the proven archived-108 engine, but replaced its generic per-tree scan with a scoped enumeration so it
 cannot touch out-of-scope files, and corrected 108's stale `999-sk-doc-parent` self-exclusion to the real
 `014-sk-doc-parent` path. A `--stage-scope=all|tokened` flag was added so the apply phase can choose how wide to
-stamp `stage:`. Commit `69638f96a4`.
+stamp `stage:`. Commit `28a2569b4c`.
 <!-- /ANCHOR:how-delivered -->
 
 <!-- ANCHOR:decisions -->

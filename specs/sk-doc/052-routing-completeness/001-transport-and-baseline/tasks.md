@@ -61,10 +61,10 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T004 Record the dispatch-path read as a citable finding (`research/transport-finding.md`). Evidence: created in `03f5db4876`, 65 lines.
+- [x] T004 Record the dispatch-path read as a citable finding (`research/transport-finding.md`). Evidence: created in `ab1881aeaf`, 65 lines.
 - [x] T005 Record the confidence-floor rule, that 0.8200 is the floor for anything surfaced and `score` is the discriminator. Evidence: across the 381 declared-signal replies re-measured on 2026-09-02, 555 recommendations carry a minimum confidence of exactly 0.82, 166 sit exactly at the floor, and the lowest score among those floor rows is 0.10213.
 - [x] T006 Record the rank rule, that rank is the returned array order. Evidence: `fusion.ts:749` sorts on `score` plus command, intent and conflict adjustments the reply does not expose.
-- [x] T007 Repoint the Gate 2 manual fallback at the daemon CLI (`AGENTS.md`). Evidence: `4e66155b6c`, 2 insertions and 2 deletions.
+- [x] T007 Repoint the Gate 2 manual fallback at the daemon CLI (`AGENTS.md`). Evidence: `628a60157c`, 2 insertions and 2 deletions.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -153,7 +153,7 @@ _memory:
 - [x] CHK-FIX-004 [P0] Adversarial table tests. Not applicable, since no path, parser or redaction code changed.
 - [x] CHK-FIX-005 [P1] Matrix axes and row count listed. Three transports by three claims, in plan.md.
 - [x] CHK-FIX-006 [P1] Hostile env variant executed. The cold-daemon case stands in for it.
-- [x] CHK-FIX-007 [P1] Evidence pinned to a fix SHA. `03f5db4876` and `4e66155b6c`.
+- [x] CHK-FIX-007 [P1] Evidence pinned to a fix SHA. `ab1881aeaf` and `628a60157c`.
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -226,7 +226,7 @@ _memory:
 <!-- ANCHOR:deploy-ready -->
 ## L3+: Deployment Readiness
 
-- [x] CHK-120 [P0] Rollback procedure documented and tested. `git revert 4e66155b6c` is the whole procedure.
+- [x] CHK-120 [P0] Rollback procedure documented and tested. `git revert 628a60157c` is the whole procedure.
 - [x] CHK-121 [P0] Feature flag configured. Not applicable.
 - [x] CHK-122 [P1] Monitoring/alerting configured. Not applicable.
 - [x] CHK-123 [P1] Runbook created. The verification commands in plan.md section 5 serve as one.

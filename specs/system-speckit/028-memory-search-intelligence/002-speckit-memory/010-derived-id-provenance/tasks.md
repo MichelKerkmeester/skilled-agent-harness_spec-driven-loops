@@ -68,7 +68,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Two-primitive content-id module exists and exposes `hashCanonicalJson` (`lib/content-id.ts`) [Done, shipped in 030 commit `18c8582e33`, `hashContentBody` + `hashCanonicalJson` confirmed present at `lib/content-id.ts:14,19`].
+- [x] T001 Two-primitive content-id module exists and exposes `hashCanonicalJson` (`lib/content-id.ts`) [Done, shipped in 030 commit `0113515f43`, `hashContentBody` + `hashCanonicalJson` confirmed present at `lib/content-id.ts:14,19`].
 - [x] T002 Read the legacy anchor-inclusive UNIQUE + migration transaction shape (`vector-index-schema.ts`) and confirm the derived vs manual write split in `causal-edges.ts`. Evidence: v40 extends the existing idempotent helper/migration pattern, manual rows keep `derived_id = NULL`.
 - [x] T003 Decide the canonical-field order, derived-artifact kind-tag, `source` definition and the legacy `rule_version` sentinel. Evidence: `decision-record.md` ADR-002 / ADR-003 accepted, helper freezes `kind, source_id, target_id, relation, source_anchor, target_anchor, source, rule_version`.
 <!-- /ANCHOR:phase-1 -->
@@ -120,6 +120,6 @@ _memory:
 - **Plan**: `plan.md`.
 - **Checklist**: `checklist.md`.
 - **Decision record**: `decision-record.md`.
-- **Shipped dependency**: 030 commit `18c8582e33` (two-primitive content-id module).
+- **Shipped dependency**: 030 commit `0113515f43` (two-primitive content-id module).
 - **Source research**: `../research/research.md`, `../../research/synthesis/01-go-candidates.md`, `../../research/synthesis/04-sibling-and-cross-cutting.md`.
 <!-- /ANCHOR:cross-refs -->

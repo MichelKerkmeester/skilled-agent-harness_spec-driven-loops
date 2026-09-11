@@ -13,7 +13,7 @@ Iteration: 2 of 10. Stop policy is max-iterations; convergence is telemetry only
 Dimension: security.
 Prior findings: P0=0 P1=0 P2=0. Correctness inventory is covered.
 Review target: `.opencode/specs/sk-design/017-remediation-program-review`.
-Review scope: the validated 118-file `goal-file-manifest.txt` at pinned HEAD `7b9d3b6b71`.
+Review scope: the validated 118-file `goal-file-manifest.txt` at pinned HEAD `6432665a68`.
 Focus: persistent publication pointers and flat-artifact hydration trust boundaries. Trace pointer parsing/open behavior, symlink and containment handling, generation/digest binding, cutover/rollback inputs, missing-generation failure, and relevant adversarial tests. Seek counterevidence before severity calls.
 
 ## Required Setup Bindings

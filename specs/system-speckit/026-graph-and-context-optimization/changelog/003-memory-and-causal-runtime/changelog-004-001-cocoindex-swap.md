@@ -59,7 +59,7 @@ Two changes shipped in commit `8f909d229`: `_DEFAULT_MODEL` was flipped to `sber
 
 | File | What changed |
 |---|---|
-| `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/config.py` | `_DEFAULT_MODEL` flipped to jina-code. `_resolve_device()` helper added with CUDA, MPS, CPU fallback chain. (Note: file moved to `config/config.py` in a later refactor commit `29f412f31e`.) |
+| `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/config.py` | `_DEFAULT_MODEL` flipped to jina-code. `_resolve_device()` helper added with CUDA, MPS, CPU fallback chain. (Note: file moved to `config/config.py` in a later refactor commit `729d7a45c8`.) |
 | `.opencode/skills/mcp-coco-index/mcp_server/tests/test_config.py` (NEW) | 7-case test suite covering device resolution matrix and default model identity. |
 | `evidence/swap-runbook.md` (NEW) | Operator runbook for daemon restart, jina-code first-use download, reindex trigger, smoke tests, rollback. |
 | `evidence/reindex-execution-results.md` (NEW) | Captured reindex wall-clock, chunk counts, language breakdown, resource peaks, verdict table for both repos. |
@@ -67,4 +67,4 @@ Two changes shipped in commit `8f909d229`: `_DEFAULT_MODEL` was flipped to `sber
 ### Follow-Ups
 
 - Complete 018/003 benchmark measurement and ratify ADR-001 comparing jina-code against gemma-300m on recall metrics. Deferred per operator discretion at time of ship.
-- Verify behavior after the `mcp-coco-index` skill removal (commit `400e7c075b`) to confirm the embedder logic was migrated to its replacement location before the skill was deleted.
+- Verify behavior after the `mcp-coco-index` skill removal (commit `549a8d1e3a`) to confirm the embedder logic was migrated to its replacement location before the skill was deleted.

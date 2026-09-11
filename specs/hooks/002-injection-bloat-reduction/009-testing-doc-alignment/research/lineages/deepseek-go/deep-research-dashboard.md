@@ -35,7 +35,7 @@ Lineage: `fanout-deepseek-go-1786120169844-ep05xl` · Executor: `cli-opencode` m
 - **P0**: 0
 - **P1 (must-fix)**: 1 — `spec-mutation-gate-enforce.md:57-63` core-suite count 67→87
 - **P2 (optional)**: 4 — cursor + claude-hook catalog delivery-observation omissions (2 entries), feature-flag-reference spec-gate env rows
-- **Out of scope**: 1 — `mk-spec-gate.test.cjs` WS4 import path (pre-existing `57c3ed338ca` drift)
+- **Out of scope**: 1 — `mk-spec-gate.test.cjs` WS4 import path (pre-existing `5fe604fc28f` drift)
 
 ## Questions
 

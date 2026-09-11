@@ -13,7 +13,7 @@ trigger_phrases:
 - **Last completed**: iter-1 (cli-devin SWE-1.6) — 47 changes catalogued, 11 types, 18 bilateral
 - **In progress**: iter-2 about to dispatch (cli-devin SWE-1.6) — applicability mapping
 - **Pending**: iters 3-8 (cli-devin SWE-1.6), iters 9-10 (cli-codex gpt-5.5 high fast)
-- **Last commit on main**: `b19289c984`
+- **Last commit on main**: `77101c4831`
 
 ## Resume Path
 

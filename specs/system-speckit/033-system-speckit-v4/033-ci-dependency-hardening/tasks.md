@@ -138,7 +138,7 @@ contextType: "general"
 - [x] CHK-FIX-004 [P0] Adversarial table: not applicable, no path, parser, redaction or security logic
 - [x] CHK-FIX-005 [P1] Matrix: 4 shapes × pass/block = 4 rows, all executed
 - [x] CHK-FIX-006 [P1] Hostile env variant: harness run under zsh, hook under bash; array iteration agrees in both
-- [x] CHK-FIX-007 [P1] Evidence pinned to `328accca03`
+- [x] CHK-FIX-007 [P1] Evidence pinned to `e40302c123`
 <!-- /ANCHOR:fix-completeness -->
 
 ---

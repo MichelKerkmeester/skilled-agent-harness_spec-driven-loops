@@ -39,7 +39,7 @@ _memory:
 | Status | Complete |
 | Runtime surface | Shipped OpenCode/Node deep-loop TypeScript runtime |
 | Delivery mode | Additive and dark; no authority transfer |
-| Verified worktree base | `e2776ed165df938892840edefaab9ed301aa1392` |
+| Verified worktree base | `878ffc7794ac39494b15c1ba3f8d8fdc00af782d` |
 | Covered test fixture | Ledger `ledger-main`, inclusive sequence range `1..3`, attestation at sequence `4` |
 | Fingerprint contract | Current version `1`, SHA-256, `deep-loop.replay-fingerprint.canonical.v1` |
 | Replay contract | Registered envelope/upcaster/reducer/projection identities exercised by the unit matrix |

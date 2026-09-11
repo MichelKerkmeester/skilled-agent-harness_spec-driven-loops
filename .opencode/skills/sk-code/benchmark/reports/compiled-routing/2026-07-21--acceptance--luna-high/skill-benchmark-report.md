@@ -40,7 +40,7 @@ _Repo-relative provenance — this archived report carries no absolute checkout 
 | CLI version | v22.23.1 |
 | Flag state | `unset` |
 | Runtime digest | `3d869dc47be0ae15dd19959c9853036790db2359b43447cc79d214e8edfed708` |
-| Run revision | 2a39ecb9a0 |
+| Run revision | beca825aa4 |
 | Scenario IDs | LUNA-CB-R, LUNA-CB-H |
 
 ## Funnel

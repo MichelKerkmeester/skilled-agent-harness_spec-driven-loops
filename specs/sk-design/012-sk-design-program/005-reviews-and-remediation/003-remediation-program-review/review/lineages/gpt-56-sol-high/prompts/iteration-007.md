@@ -11,7 +11,7 @@ Resolved route: mode=review; target_agent=@deep-review; execution=single_review_
 
 Iteration 7/10; max-iterations forced. Active P0=0 P1=6 P2=0. The latest claim-adjudication gate failed only because `P1-006` used string confidence instead of a number.
 Dimension: traceability, second-pass evidence quality.
-Frozen target: `.opencode/specs/sk-design/017-remediation-program-review`, validated 118-file manifest, HEAD `7b9d3b6b71`.
+Frozen target: `.opencode/specs/sk-design/017-remediation-program-review`, validated 118-file manifest, HEAD `6432665a68`.
 Focus: map every active P1 to executable assertions or explicit missing/blocked coverage. Audit whether reported green test counts actually exercise each claim, especially production digest binding, stale-generation requery semantics, operational docs, parent status, and generated metadata. Distinguish missing tests from tests blocked by absent md-generator dependencies. Re-read `P1-006` and emit a stable-ID refinement with the same hash and a complete typed adjudication whose confidence is a numeric value in `[0,1]`.
 
 ## Required Bindings

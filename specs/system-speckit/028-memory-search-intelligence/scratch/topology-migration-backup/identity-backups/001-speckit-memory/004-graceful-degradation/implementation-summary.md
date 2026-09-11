@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Memory MCP C9: Graceful Embedder-Degrade to Lexical"
-description: "Memory recall now degrades to lexical (BM25/FTS) and reports embedder_available:false when the embedder is unavailable, instead of throwing. The happy path is byte-identical. Shipped in 030 commit 484b77b589. This record tracks done-state in the 028 impl tree."
+description: "Memory recall now degrades to lexical (BM25/FTS) and reports embedder_available:false when the embedder is unavailable, instead of throwing. The happy path is byte-identical. Shipped in 030 commit fa62d04fd0. This record tracks done-state in the 028 impl tree."
 trigger_phrases:
   - "C9 implementation summary embedder degrade"
   - "memory recall lexical fallback shipped"
@@ -12,7 +12,7 @@ _memory:
     packet_pointer: "system-speckit/028-memory-search-intelligence/001-speckit-memory/004-graceful-degradation"
     last_updated_at: "2026-07-06T19:16:28.740Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Record C9 done-state (030 commit 484b77b589) in the 028 impl tree"
+    recent_action: "Record C9 done-state (030 commit fa62d04fd0) in the 028 impl tree"
     next_safe_action: "None. C9 shipped and verified"
     blockers: []
     key_files:
@@ -46,7 +46,7 @@ _memory:
 | **Completed** | 2026-06-18 |
 | **Level** | 1 |
 | **Candidates** | C9 (Done) |
-| **Shipped In** | 030 commit `484b77b589` |
+| **Shipped In** | 030 commit `fa62d04fd0` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -78,7 +78,7 @@ A documented scope addition came with it (benign, zero live blast radius, every 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Shipped as a single self-contained, reversible commit (`484b77b589`) on the work branch, one candidate at a time per the Wave-0 discipline: read the seam, implement, unit-test, build, run the suite, then an independent adversarial review. `tsc` and the build pass. 440 search/pipeline tests pass (2 pre-existing unrelated failures confirmed identical on baseline via stash). An independent opus adversarial review returned SHIP, the degrade was traced to BM25, the happy path proven byte-identical via `git diff -w` and the new metadata confirmed plumbed through the cache.
+Shipped as a single self-contained, reversible commit (`fa62d04fd0`) on the work branch, one candidate at a time per the Wave-0 discipline: read the seam, implement, unit-test, build, run the suite, then an independent adversarial review. `tsc` and the build pass. 440 search/pipeline tests pass (2 pre-existing unrelated failures confirmed identical on baseline via stash). An independent opus adversarial review returned SHIP, the degrade was traced to BM25, the happy path proven byte-identical via `git diff -w` and the new metadata confirmed plumbed through the cache.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -114,6 +114,6 @@ Shipped as a single self-contained, reversible commit (`484b77b589`) on the work
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Old-contract callers.** Any caller that previously caught the embedder-unavailable exception to detect an outage must now read `embedder_available:false` instead. The behavior is reversible (revert `484b77b589`).
+1. **Old-contract callers.** Any caller that previously caught the embedder-unavailable exception to detect an outage must now read `embedder_available:false` instead. The behavior is reversible (revert `fa62d04fd0`).
 2. **Degrade quality is lexical-only.** During an embedder outage, recall runs on BM25/FTS/graph without the dense channel, so semantic recall quality is reduced until the embedder returns. This is the intended downgrade, not a defect.
 <!-- /ANCHOR:limitations -->

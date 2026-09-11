@@ -154,8 +154,8 @@ Required inventories:
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| tri-105 divergence health (shipped `c86424df8a`) | Internal | Green | Unit A loses its measurement baseline |
-| tri-007/008/009 honesty half (shipped `6cbb7b457c`) | Internal | Green | Unit B loses its integration point |
+| tri-105 divergence health (shipped `57423f16b1`) | Internal | Green | Unit A loses its measurement baseline |
+| tri-007/008/009 honesty half (shipped `bf01babb5c`) | Internal | Green | Unit B loses its integration point |
 | spec-memory packet-140 supervision scaffold | Internal | Green | Unit C loses its reference implementation |
 | Live-daemon adoption test harness | Internal | Yellow | Unit C cannot prove no-flap; falls back to document-the-asymmetry |
 | Operator escalation decisions (3 questions) | External | Yellow | Units A/B/C cannot start their builds |

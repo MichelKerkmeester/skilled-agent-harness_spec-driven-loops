@@ -43,7 +43,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Pinned a fresh worktree at `7b9d3b6b71`; authored `spec.md` + a 118-file `goal-file-manifest.txt`. [SOURCE: `.worktrees/0094-sk-design-017-remediation-review`; manifest 118 lines]
+- [x] T001 Pinned a fresh worktree at `6432665a68`; authored `spec.md` + a 118-file `goal-file-manifest.txt`. [SOURCE: `.worktrees/0094-sk-design-017-remediation-review`; manifest 118 lines]
 - [x] T002 Configured a single SOL lineage and cleared two launch faults (missing `zod`; dot-in-label). [TESTED: `zod` resolvable OK; label `gpt-56-sol-high`]
 <!-- /ANCHOR:phase-1 -->
 

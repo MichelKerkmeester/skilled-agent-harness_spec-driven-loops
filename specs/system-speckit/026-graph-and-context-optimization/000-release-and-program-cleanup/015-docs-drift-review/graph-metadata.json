@@ -187,9 +187,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This session shipped packets 013 (comprehensive-audit-remediation), 014/015 (launcher-overlap fix), 016 (mk-spec-memory launcher-ownership hardening), and a pre-existing-failure remediation, all now on `origin/main` (HEAD `75cfec1700`)",
+    "causal_summary": "This session shipped packets 013 (comprehensive-audit-remediation), 014/015 (launcher-overlap fix), 016 (mk-spec-memory launcher-ownership hardening), and a pre-existing-failure remediation, all now on `origin/main` (HEAD `ce22801ff5`)",
     "created_at": "2026-06-05T06:53:42.412Z",
-    "last_save_at": "2026-08-30T15:39:29.058Z",
+    "last_save_at": "2026-09-11T16:42:30.895Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,13 +198,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ecb56c58f12ab22e7844625c603319d05a6ca17eb5c2cf6038199418838ba07d",
+    "source_fingerprint": "sha256:03b310d5590d2ea862eaae7c40e6ee592000ecdf93808958b509a6647a4c574b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "03cb5de73de363c8817f9405379fbb7af25165243c7eba94456201cee9594fa3",
-      "plan.md": "3ddd51dbbe39e138ac2fcde1a404b71a18d6c0317e8dd6b4bec9ddc460852c5c",
-      "tasks.md": "8462bf71e6560cf384efe2f61fba51419cacf04e34a8c1de49fb2c9049194aea",
-      "implementation-summary.md": "a9124ad5735a25f64ea988824b07fde969cb4a05f8df4cb92d4fc54dd2b9c430"
+      "spec.md": "f4533da489a0e54b185e35baf888e44e2f087bfdbccb10091e79be8f8a45f4b2",
+      "plan.md": "6692a4d88b72b565d59ab647be35c051f9a3cdc0a1e001ac8b50dfaf22c669b4",
+      "tasks.md": "e040ad35c7751af3e1210434f875401b3b76b8f511b41700e29ae53176758411",
+      "implementation-summary.md": "c4644a7c1b61cd281f844af27d5cb192a7225aa730954fd7f2766ff174cb64c8"
     },
     "last_active_child_id": null,
     "last_active_at": null

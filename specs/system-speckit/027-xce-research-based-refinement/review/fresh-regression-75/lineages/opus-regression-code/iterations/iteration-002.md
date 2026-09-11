@@ -13,7 +13,7 @@ I have traced the complete delete/tombstone-sweep path and the rollback behavior
 
 ## Analysis
 
-**The remediation (commit `ef0eb88a4a`):** `deleteAncillaryMemoryRows` previously had a blanket `catch (_error) {}` that swallowed *all* sweep failures, letting a memory hard-delete commit without its causal-edge tombstone. It was narrowed to:
+**The remediation (commit `45ebcb5d65`):** `deleteAncillaryMemoryRows` previously had a blanket `catch (_error) {}` that swallowed *all* sweep failures, letting a memory hard-delete commit without its causal-edge tombstone. It was narrowed to:
 
 ```ts
 } catch (error: unknown) {                                  // vector-index-mutations.ts:193-201

@@ -45,8 +45,8 @@ _memory:
 | **Spec Folder** | 008-hook-library-mk-rename |
 | **Level** | 3 |
 | **Status** | Functionally shipped; daemon cutover deferred |
-| **Shipped** | `skilled/v4.0.0.0` @ `4c902d24ee` |
-| **Rename baseline** | `b4f136e801` (rollback point) |
+| **Shipped** | `skilled/v4.0.0.0` @ `e119e139e0` |
+| **Rename baseline** | `f6a8c1f6af` (rollback point) |
 | **Scope** | ~40 file renames + ~2,435 reference edits across 6 runtimes + 2 live MCP daemons |
 | **Source of truth** | `name-mapping.md` (frozen token map) |
 

@@ -57,9 +57,9 @@ _memory:
 |-----------|-------|------|--------|
 | M1 | T001-T004 | Field lists and historical corpus enumerated | T001/T002/T004 done; T003 (historical corpus) deferred |
 | M2 | T005-T007 | Binding validator with per-emitter field lists | Done — validator built and adopted by 1 of 4 emitters (see T006 note) |
-| M3 | T008-T010 | Sealed store and creation evidence bound | Done (`8b2e49931f8`); 1 low-sev residual on T008 (see note) |
-| M4 | T011-T015 | Four certificate emitters bound | Done (`59e0040d33`, `d30321b98e`) |
-| M5 | T016-T017 | Reducers bound | Done (`89067fe46e` + companion `a232835611`) |
+| M3 | T008-T010 | Sealed store and creation evidence bound | Done (`cdfb150ffce`); 1 low-sev residual on T008 (see note) |
+| M4 | T011-T015 | Four certificate emitters bound | Done (`20857a8536`, `86b36c5414`) |
+| M5 | T016-T017 | Reducers bound | Done (`2fc9efe6a8` + companion `9b68d42963`) |
 | M6 | T018-T021 | Twelve decoy tests; delta clean | T018/T020/T021 done; T019 (corpus re-verify) deferred |
 <!-- /ANCHOR:milestones -->
 
@@ -73,9 +73,9 @@ _memory:
 Enumerating the historical certificate corpus first is what separates "tightening rejected a forgery" from "tightening rejected a genuine certificate".
 
 - [x] T001 **CONFIRM BEFORE BUILD.** For each of the 12 finding IDs in scope, re-read the cited `file:line` at current HEAD and record `CONFIRMED` / `REFUTED` / `MOVED` / `ALREADY-FIXED` with a cited probe. (`spec.md` §3 scope table) [3h]
-  - **Done**: `t001-disposition.md` (`a5f89f15872`) — 12/12 `CONFIRMED-REAL`, `GO-to-build`, none `REFUTED`.
+  - **Done**: `t001-disposition.md` (`80bcceba5e9`) — 12/12 `CONFIRMED-REAL`, `GO-to-build`, none `REFUTED`.
 - [x] T002 Enumerate the load-bearing identity fields per certificate emitter [4h] {deps: T001}
-  - **Done, partially formal**: the field list exists as shipped data driving `certificate-binding-core.ts` for `F-011-03` (~15 fields, named in `d30321b98e`'s commit message); the 3 Group C emitters each carry an inline per-kind field switch rather than an enumerated field-list document — see T006 note.
+  - **Done, partially formal**: the field list exists as shipped data driving `certificate-binding-core.ts` for `F-011-03` (~15 fields, named in `86b36c5414`'s commit message); the 3 Group C emitters each carry an inline per-kind field switch rather than an enumerated field-list document — see T006 note.
 - [Deferred: historical corpus never enumerated; the build has landed, so NFR-C01 was validated indirectly by unchanged regression tallies instead] T003 Enumerate the historical certificate corpus that must continue to verify [3h] {deps: T001}
   - **Deferral rationale**: No corpus-enumeration artifact exists in the 5 landed commits or elsewhere in this child. NFR-C01 compatibility was validated indirectly by the per-file regression tallies staying "unchanged"; deferred as an accepted process gap (see `checklist.md` CHK-011).
 - [x] T004 Cite the `021` baseline and confirm the `024` receipt and proof primitives are available [1h] {deps: T001}
@@ -90,40 +90,40 @@ Enumerating the historical certificate corpus first is what separates "tightenin
 ### Binding validator [M2]
 
 - [x] T005 Build one validator that compares a claim against values re-derived from the verified typed payload [8h] {deps: T002}
-  - **Done**: `certificate-binding-core.ts`'s `firstBoundFieldMismatch`, landed `d30321b98e`.
+  - **Done**: `certificate-binding-core.ts`'s `firstBoundFieldMismatch`, landed `86b36c5414`.
 - [x] T006 Express per-emitter load-bearing field lists as data driving the validator [3h] {deps: T005}
   - **Done for 1 of 4 emitters.** `firstBoundFieldMismatch` is called only by `deep-improvement-common-certificates.ts` (`F-011-03`) — confirmed via `git grep certificate-binding-core` across all 5 landed commits. The 3 Group C emitters (`F-015-02`, `F-011-04`, `F-006-04`) each ship a local inline comparison instead of routing through this validator. Not a defect in any individual fix (each has its own decoy test), but ADR-001's "one shared validator for all four emitters" goal is only 1/4 realized. See `implementation-summary.md` Known Limitations #6.
 - [x] T007 Decide and record the issuer-versus-verifier fix order for `F-007-01` so no value is invented on one side and re-derived on the other [2h] {deps: T004}
-  - **Done**: both issuer (`unsignedSharedReceipt`) and verifier bind to `frame.sequence` together, landed in the same commit `d30321b98e`, per ADR-002. Recorded in `implementation-summary.md` Key Decisions (not in `decision-record.md`'s ADR-002 implementation notes, which was left untouched — out of this reconciliation pass's scope).
+  - **Done**: both issuer (`unsignedSharedReceipt`) and verifier bind to `frame.sequence` together, landed in the same commit `86b36c5414`, per ADR-002. Recorded in `implementation-summary.md` Key Decisions (not in `decision-record.md`'s ADR-002 implementation notes, which was left untouched — out of this reconciliation pass's scope).
 
 ### Sealed store and events [M3]
 
 - [x] T008 Resolve `deleteAuthorized` and `restoreAuthorized` authorization against the ledger (`F-011-01`) (`.opencode/skills/system-deep-loop/runtime/lib/sealed-reference-artifacts/sealed-artifact-store.ts`) [6h] {deps: T006}
-  - **Done, with a documented residual**: landed `8b2e49931f8` — both methods now take `AppendOnlyLedger` and resolve against a verified ledger frame. Residual: `resolveLifecycleAuthorization` compares only `qualified_digest`, not the full `sameReference` used elsewhere in the same file — low-sev, near-zero production exposure (only the base `InitialArtifactKinds` store, not any domain store). See `implementation-summary.md` Known Limitations #1.
+  - **Done, with a documented residual**: landed `cdfb150ffce` — both methods now take `AppendOnlyLedger` and resolve against a verified ledger frame. Residual: `resolveLifecycleAuthorization` compares only `qualified_digest`, not the full `sameReference` used elsewhere in the same file — low-sev, near-zero production exposure (only the base `InitialArtifactKinds` store, not any domain store). See `implementation-summary.md` Known Limitations #1.
 - [x] T009 [P] Run the registered canonicalizer on verified sealed reads (`F-011-02`) (`.opencode/skills/system-deep-loop/runtime/lib/sealed-reference-artifacts/sealed-artifact-store.ts`) [3h] {deps: T006}
-  - **Done**: landed `8b2e49931f8` — reads now re-derive the canonical encoding and reject a mismatch.
+  - **Done**: landed `cdfb150ffce` — reads now re-derive the canonical encoding and reject a mismatch.
 - [x] T010 Compare the complete reference in creation-evidence lookup (`F-015-01`) (`.opencode/skills/system-deep-loop/runtime/lib/sealed-reference-artifacts/artifact-events.ts`) [5h] {deps: T006}
-  - **Done**: landed `8b2e49931f8` — via the new shared `sameReference` primitive.
+  - **Done**: landed `cdfb150ffce` — via the new shared `sameReference` primitive.
 
 ### Certificate emitters [M4]
 
 - [x] T011 Deep-review: bind artifacts to events by content digest, not metadata (`F-015-02`) (`.opencode/skills/system-deep-loop/runtime/lib/deep-review-certificates/deep-review-certificates.ts`) [6h] {deps: T006}
-  - **Done, partial scope**: landed `59e0040d33` — content digest bound for `CONVERGENCE_WITNESS`/`SYNTHESIS_VIEW`/`SYNTHESIS_REPORT` (3 kinds); `TARGET_SNAPSHOT`/`SCOPE_REFERENCE_SET`/`REVIEW_CONTRACT` deliberately left unbound by content digest (their `materialDigest` already points at a required backing-blob per `validateBackedMaterialReference`). See `implementation-summary.md` Known Limitations #2.
+  - **Done, partial scope**: landed `20857a8536` — content digest bound for `CONVERGENCE_WITNESS`/`SYNTHESIS_VIEW`/`SYNTHESIS_REPORT` (3 kinds); `TARGET_SNAPSHOT`/`SCOPE_REFERENCE_SET`/`REVIEW_CONTRACT` deliberately left unbound by content digest (their `materialDigest` already points at a required backing-blob per `validateBackedMaterialReference`). See `implementation-summary.md` Known Limitations #2.
 - [x] T012 Common: compare every emitted semantic body field (`F-011-03`) and add scoped identity binding to artifact origin validation (`F-007-02`) (`.opencode/skills/system-deep-loop/runtime/lib/deep-improvement-common-certificates/deep-improvement-common-certificates.ts`) [7h] {deps: T006}
-  - **Done**: landed `d30321b98e`.
+  - **Done**: landed `86b36c5414`.
 - [x] T013 Common: stop fabricating `result_head.sequence` and transition heads; read them from the ledger (`F-007-01`) (`.opencode/skills/system-deep-loop/runtime/lib/deep-improvement-common-certificates/deep-improvement-common-certificates.ts`) [6h] {deps: T007, T012}
-  - **Done**: landed `d30321b98e`, same commit as T012.
+  - **Done**: landed `86b36c5414`, same commit as T012.
 - [x] T014 [P] Alignment: require a lane or digest match for provenance (`F-011-04`) (`.opencode/skills/system-deep-loop/runtime/lib/deep-alignment-certificates/deep-alignment-certificates.ts`) [4h] {deps: T006}
-  - **Done**: landed `59e0040d33` — `lane_completed` removed from the unconditional 4-stem bypass.
+  - **Done**: landed `20857a8536` — `lane_completed` removed from the unconditional 4-stem bypass.
 - [x] T015 Council: bind artifact `scope.runId`/`scope.roundId` (`F-006-04`) and include `roundId` in source references (`F-006-03`) — serialize the reducer edit with `022` (`.opencode/skills/system-deep-loop/runtime/lib/deep-ai-council-certificates/`, `.opencode/skills/system-deep-loop/runtime/lib/deep-ai-council-reducers/`) [6h] {deps: T006}
-  - **Done, as two separate commits rather than one**: `F-006-04` (certificates) landed `59e0040d33`; `F-006-03` (reducer) landed `89067fe46e` (Group D), not the same commit T015 implies. Both confirmed independently by direct read.
+  - **Done, as two separate commits rather than one**: `F-006-04` (certificates) landed `20857a8536`; `F-006-03` (reducer) landed `2fc9efe6a8` (Group D), not the same commit T015 implies. Both confirmed independently by direct read.
 
 ### Reducers [M5]
 
 - [x] T016 [P] Model: ownership-bind score references to the target trial (`F-007-03`) (`.opencode/skills/system-deep-loop/runtime/lib/model-benchmark-reducers/model-benchmark-reducer.ts`) [4h] {deps: T006}
-  - **Done**: landed `89067fe46e`.
+  - **Done**: landed `2fc9efe6a8`.
 - [x] T017 [P] Research: reject replay sequence gaps when no checkpoint explains them (`F-005-01`) (`.opencode/skills/system-deep-loop/runtime/lib/deep-research-reducers/deep-research-reducer.ts`) [4h] {deps: T006}
-  - **Done, with a flagged-and-closed downstream residual**: landed `89067fe46e`. This default-on stricter check broke `deep-research-shadow-parity`'s reorder-fault test (named and root-caused in `89067fe46e`'s own commit message, `48/49`, flagged rather than fixed inline under SCOPE LOCK); the companion commit `a232835611` (1-line, `harness-adapter.ts`, `requireContiguousTail: false`) applied the flagged fix.
+  - **Done, with a flagged-and-closed downstream residual**: landed `2fc9efe6a8`. This default-on stricter check broke `deep-research-shadow-parity`'s reorder-fault test (named and root-caused in `2fc9efe6a8`'s own commit message, `48/49`, flagged rather than fixed inline under SCOPE LOCK); the companion commit `9b68d42963` (1-line, `harness-adapter.ts`, `requireContiguousTail: false`) applied the flagged fix.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -170,6 +170,6 @@ Acceptance per finding is the decoy contrast: the decoy satisfies today's predic
 - **Plan**: See `plan.md`
 - **Checklist**: See `checklist.md`
 - **Decisions**: See `decision-record.md`
-- **Confirm-before-build disposition**: `t001-disposition.md` (`a5f89f15872`; not present under `.opencode/specs/` in this worktree — read via `git show a5f89f15872:<path>`)
+- **Confirm-before-build disposition**: `t001-disposition.md` (`80bcceba5e9`; not present under `.opencode/specs/` in this worktree — read via `git show 80bcceba5e9:<path>`)
 - **Source register**: `../001-whole-system-gate/review/findings-register.md` and `review/deep-review-findings-registry.json`
 <!-- /ANCHOR:cross-refs -->

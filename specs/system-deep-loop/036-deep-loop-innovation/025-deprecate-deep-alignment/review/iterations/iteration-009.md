@@ -34,7 +34,7 @@ None.
 
 #### P2-013 — framework.md mode enum and budget policy still reference deleted `alignment` mode
 - **File**: `.opencode/skills/system-deep-loop/shared/behavior-benchmark/framework.md:74,215-219`
-- **Claim**: The authoritative behavior-benchmark framework still lists `alignment` as a valid `mode` enum value (line 74: `context | research | review | ai-council | improvement | alignment`) and references `alignment` scenarios in the budget cap policy (lines 215-219: "`ai-council`, `improvement`, and `alignment` scenarios cap at `1500000` ms ... `alignment` because it runs autonomous multi-cell workloads"). This is internally inconsistent: the same file's ID prefix table (lines 337-340) was correctly cleaned to remove `DAB` (only ACB, IMB, RSB, RVB remain). The `alignment` mode and its deep-alignment packet were deleted by commit 8849444aa6.
+- **Claim**: The authoritative behavior-benchmark framework still lists `alignment` as a valid `mode` enum value (line 74: `context | research | review | ai-council | improvement | alignment`) and references `alignment` scenarios in the budget cap policy (lines 215-219: "`ai-council`, `improvement`, and `alignment` scenarios cap at `1500000` ms ... `alignment` because it runs autonomous multi-cell workloads"). This is internally inconsistent: the same file's ID prefix table (lines 337-340) was correctly cleaned to remove `DAB` (only ACB, IMB, RSB, RVB remain). The `alignment` mode and its deep-alignment packet were deleted by commit 94ab276bfd.
 - **Evidence refs**: [SOURCE: framework.md:74], [SOURCE: framework.md:215-219], [SOURCE: framework.md:337-340] (prefix table cleaned)
 - **Counterevidence sought**: Checked whether `alignment` is still a valid mode elsewhere — mode-registry.json and shipped-census.ts were verified clean in prior iterations (SL-005, SL-007). No surviving mode packet exists for alignment.
 - **Alternative explanation**: None — the prefix table cleaning proves the removal was intended to reach this file but the enum/budget sections were missed.
@@ -56,7 +56,7 @@ None.
 - **File**: `.opencode/skills/sk-doc/sk-create-benchmark/assets/behavior-benchmark/behavior-benchmark-scenario-template.md:7,36,99,157,190`
 - **Claim**: The active authoring template (a fillable scaffold authors copy per scenario) contains five stale references to deleted entities:
   - Line 7: trigger phrase `"DAB scenario scaffold"` (DAB/alignment deleted)
-  - Line 36: `"SCHEMA V2 for command, direct-tool/plugin, and conformance families"` (conformance-benchmark family deleted by 8849444aa6)
+  - Line 36: `"SCHEMA V2 for command, direct-tool/plugin, and conformance families"` (conformance-benchmark family deleted by 94ab276bfd)
   - Line 99: `"Schema v2 (command / direct-tool / conformance families ..."` (same stale conformance reference)
   - Line 157: `"mode: ... or a declared extension such as alignment"` (alignment deleted)
   - Line 190: `"1500000 ms (ai-council/improvement/alignment)"` (alignment in budget policy)

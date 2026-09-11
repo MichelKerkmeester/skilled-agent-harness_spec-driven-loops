@@ -6,7 +6,7 @@ trigger_phrases: []
 
 ## Dimension
 
-**Traceability** — broadened mechanical drift-confirmation pass. Focus (per iteration-5 guidance): (1) run the repo's own read-only drift checker; (2) exhaustive case-insensitive grep sweep across ACTIVE surfaces for compound tokens `deep-alignment`, `deep:alignment`, `deep_alignment`, `alignment-mode`, `DAB-`, `run-alignment`, `alignment loop` — classify every hit as active-reference vs archival; (3) check `.codex`/`.pi`/`.devin` prompt mirrors and `.cursor`/`.claude` command mirrors for any file still referencing deleted commands (`alignment.md`, `command-benchmark.md`) including symlink targets; (4) verify the four orphan prompt mirrors deleted by 766b59d6bc3 are gone and no sibling mirror points at them.
+**Traceability** — broadened mechanical drift-confirmation pass. Focus (per iteration-5 guidance): (1) run the repo's own read-only drift checker; (2) exhaustive case-insensitive grep sweep across ACTIVE surfaces for compound tokens `deep-alignment`, `deep:alignment`, `deep_alignment`, `alignment-mode`, `DAB-`, `run-alignment`, `alignment loop` — classify every hit as active-reference vs archival; (3) check `.codex`/`.pi`/`.devin` prompt mirrors and `.cursor`/`.claude` command mirrors for any file still referencing deleted commands (`alignment.md`, `command-benchmark.md`) including symlink targets; (4) verify the four orphan prompt mirrors deleted by 1c8dd172a3f are gone and no sibling mirror points at them.
 
 ## Files Reviewed
 
@@ -23,7 +23,7 @@ trigger_phrases: []
 - `.opencode/skills/system-deep-loop/runtime/README.md:15` (P2-006 confirmed still present)
 - `.opencode/skills/system-deep-loop/shared/progress/README.md:12` (P2-007 confirmed still present)
 - `.opencode/skills/sk-doc/sk-create-benchmark/SKILL.md:32` (P2-008 confirmed still present)
-- `specs/system-deep-loop/032-deep-alignment-mode/` directory listing (still exists on disk — 16 children + behavior-benchmark; historical spec packet, NOT deleted by 8849444aa61)
+- `specs/system-deep-loop/032-deep-alignment-mode/` directory listing (still exists on disk — 16 children + behavior-benchmark; historical spec packet, NOT deleted by 94ab276bfdf)
 - Prior iteration-004 narrative (P2-006/007/008 context)
 
 ## Findings by Severity
@@ -63,9 +63,9 @@ None (new this iteration). The three prior P2 advisories (P2-006, P2-007, P2-008
 
 Grep for `deep-alignment|deep:alignment|deep_alignment|alignment-mode|run-alignment|alignment loop|command-benchmark|conformance-benchmark` across all five mirror surfaces: **0 hits**. All five surfaces are completely clean of deleted-command references. [SOURCE: grep output, 0 matches per surface]
 
-### 4. Orphan prompt mirrors (766b59d6bc3)
+### 4. Orphan prompt mirrors (1c8dd172a3f)
 
-The four orphaned prompt mirrors deleted by 766b59d6bc3 are confirmed GONE:
+The four orphaned prompt mirrors deleted by 1c8dd172a3f are confirmed GONE:
 - `.codex/prompts/deep-alignment.md` — absent from `.codex/prompts/` (33 files listed, none matching)
 - `.codex/prompts/deep-command-benchmark.md` — absent
 - `.pi/prompts/deep-alignment.md` — absent from `.pi/prompts/` (35 files listed, none matching)
@@ -73,7 +73,7 @@ The four orphaned prompt mirrors deleted by 766b59d6bc3 are confirmed GONE:
 
 No sibling mirror file in either directory points at them (confirmed by the 0-hit grep on `.codex/` and `.pi/`). [SOURCE: ls output + grep output]
 
-### 5. Command-mirror symlinks (b955f937fc9)
+### 5. Command-mirror symlinks (7104df72f4c)
 
 `.claude/commands/deep/` — 6 symlinks (agent-improvement, ai-council, model-benchmark, research, review, skill-benchmark). No `alignment.md` or `command-benchmark.md` symlink. All 6 targets resolve to existing `.opencode/commands/deep/` files.
 `.cursor/commands/` — 37 entries. No `deep-alignment.md` or `deep-command-benchmark.md`. All symlinks resolve to existing `.opencode/commands/` files.
@@ -101,7 +101,7 @@ All three are observation-only confirmed (review does not modify reviewed files)
 | `spec_code` | core | pass (carried) | No new spec-code contradiction found. 032-deep-alignment-mode spec packet preserved as historical record (not in scope-files.txt — intentionally not deleted). |
 | `checklist_evidence` | core | pass (carried) | Drift checker mechanically confirms 4-family/4-packet roster with no alignment. |
 | `skill_agent` | overlay | pass (mechanical) | All five mirror surfaces (.claude/.codex/.cursor/.pi/.devin) return 0 hits for deleted-command tokens. Agent dirs have no deep-alignment agent. |
-| `agent_cross_runtime` | overlay | pass (mechanical) | Orphan prompt mirrors confirmed gone (766b59d6bc3). Command-mirror symlinks confirmed clean (b955f937fc9). No sibling points at deleted files. |
+| `agent_cross_runtime` | overlay | pass (mechanical) | Orphan prompt mirrors confirmed gone (1c8dd172a3f). Command-mirror symlinks confirmed clean (7104df72f4c). No sibling points at deleted files. |
 | `feature_catalog_code` | overlay | pass (carried) | No new feature-catalog references found in mechanical sweep. |
 | `playbook_capability` | overlay | pass (carried) | P2-008 confirmed still present (carried). No new playbook references found. |
 

@@ -207,7 +207,7 @@
     ],
     "causal_summary": "Once retrieval is ripgrep, retrieval quality is a property of the corpus rather than of a ranking",
     "created_at": "2026-09-02T11:04:54Z",
-    "last_save_at": "2026-09-06T07:09:13.000Z",
+    "last_save_at": "2026-09-11T16:42:47.556Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,13 +218,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:629494563e55cb49feb255bc09f68c8a2fc9465640d147fc82f3ee257bfcbffe",
+    "source_fingerprint": "sha256:2c83491575798325a5393435178f0292e000bcab63506814dcf11ee38e1b2e7e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "08d6d3f2f342bcd8093d3bd2de87f622771da699a12f028ff081e9f305e0042a",
       "plan.md": "f79ec3818bcc9087f22ba5f1778e0eb26eaf29b6203cf7d69a936ba34faf1d7a",
-      "tasks.md": "d2e5003807470285c432757d5b0426573a508825796e306d3ad1332e17869143",
-      "implementation-summary.md": "3f5f15d8c3a3236e53cda644f589b4d7618b0d5244736d46ce7926f424ca2812"
+      "tasks.md": "f7dbee70836ea9a4245cb86559b1a2dc36853da6b3070ad3ff154688df22a419",
+      "implementation-summary.md": "5ab4a1844326e3117029b54b96aeb102787005568cc9d31a89aa4c9953047b83"
     },
     "last_active_child_id": null,
     "last_active_at": null

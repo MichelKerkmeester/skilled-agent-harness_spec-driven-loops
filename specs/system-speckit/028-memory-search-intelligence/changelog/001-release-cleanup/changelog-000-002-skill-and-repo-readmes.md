@@ -19,7 +19,7 @@ contextType: "implementation"
 
 ### Summary
 
-This child phase executed (commit 6754d3a133). The skill READMEs and the root repository README were aligned to current shipped state, fixing factual drift across stale references, counts and paths while preserving each document's deliberate house structure. No README was added or deleted and every corrected path was verified to resolve.
+This child phase executed (commit ed06dcdc21). The skill READMEs and the root repository README were aligned to current shipped state, fixing factual drift across stale references, counts and paths while preserving each document's deliberate house structure. No README was added or deleted and every corrected path was verified to resolve.
 
 ### Added
 
@@ -40,7 +40,7 @@ This child phase executed (commit 6754d3a133). The skill READMEs and the root re
 
 | Check | Result |
 |-------|--------|
-| Cleanup execution | Executed at 6754d3a133, 3 READMEs aligned, 0 added or deleted |
+| Cleanup execution | Executed at ed06dcdc21, 3 READMEs aligned, 0 added or deleted |
 | Task completion | PASS, all tasks done, 0 open |
 | Strict validation | PASS, 0 errors and 0 warnings |
 

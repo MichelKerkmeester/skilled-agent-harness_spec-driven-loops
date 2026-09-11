@@ -75,8 +75,8 @@ Record the completed manual verification arc, the shipped fixes for the gold-bat
 ### In Scope
 
 - Record the manual verification results: 25 PASS, 2 FAIL, 3 BLOCKED across approximately 30 runnable items.
-- Record the shipped gold-battery path fix in commit `bda7f57879`.
-- Record the shipped BM25 scoped fill-limit regression fix in commit `e4fcccc320`.
+- Record the shipped gold-battery path fix in commit `4313a2dfbc`.
+- Record the shipped BM25 scoped fill-limit regression fix in commit `32c1aea94f`.
 - Record the code-graph scan action that moved the graph from stale to fresh/ready/live and unblocked the three code-graph scenarios.
 - Record the spec-memory daemon cold-start and real search-hit evidence.
 - Record open/deferred findings honestly, including the lexical-overlap-quality-gate FTS5 failure.
@@ -112,8 +112,8 @@ Record the completed manual verification arc, the shipped fixes for the gold-bat
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-001 | Manual verification results are recorded. | `implementation-summary.md` records 25 PASS, 2 FAIL, 3 BLOCKED and the category breakdown. |
-| REQ-002 | Gold-battery fix is recorded. | `implementation-summary.md` cites commit `bda7f57879` and `system-code-graph/mcp_server/lib/gold-query-verifier.ts`. |
-| REQ-003 | BM25 scoped fill-limit fix is recorded. | `implementation-summary.md` cites commit `e4fcccc320`, `system-spec-kit/mcp_server/lib/search/hybrid-search.ts`, and the verification commands/results. |
+| REQ-002 | Gold-battery fix is recorded. | `implementation-summary.md` cites commit `4313a2dfbc` and `system-code-graph/mcp_server/lib/gold-query-verifier.ts`. |
+| REQ-003 | BM25 scoped fill-limit fix is recorded. | `implementation-summary.md` cites commit `32c1aea94f`, `system-spec-kit/mcp_server/lib/search/hybrid-search.ts`, and the verification commands/results. |
 | REQ-004 | Open/deferred findings are not overstated. | `implementation-summary.md` and `checklist.md` record the lexical-overlap-quality-gate failure as pre-existing and deferred. |
 
 ### P1 - Required (complete OR user-approved deferral)

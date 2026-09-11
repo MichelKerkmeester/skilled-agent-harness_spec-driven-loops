@@ -10,7 +10,7 @@ trigger_phrases: []
 ## Confirmed symptom
 `tests/unit/authorized-ledger.vitest.ts › locked ordering and immutable integrity ›
 serializes concurrent processes into one contiguous unambiguous head` fails at the worktree base
-commit `409e2346c0a`, with T015 absent. The test spawns six real writer processes.
+commit `d0e91360777`, with T015 absent. The test spawns six real writer processes.
 
 ```
 Error: Writer 3 exited 1: .../lib/authorized-ledger/immutable-frame-store.ts:590

@@ -73,7 +73,7 @@ This is a **maintenance phase** under packet 121, fixing a cross-cutting deep-lo
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The deep-research command init step `step_create_directories` ran `mkdir -p … {state_paths.archive_root}` on every fresh/resume run, but the archive root is only used on a `restart` move (rare) — so it almost always stayed empty, littering packets with empty `research_archive/`. Git archaeology (introduced in commit `537cd82d26`) plus an independent `openai/gpt-5.5-fast` read-only trace confirmed deep-review's init never created it; its empties are historical/orphaned restart artifacts.
+The deep-research command init step `step_create_directories` ran `mkdir -p … {state_paths.archive_root}` on every fresh/resume run, but the archive root is only used on a `restart` move (rare) — so it almost always stayed empty, littering packets with empty `research_archive/`. Git archaeology (introduced in commit `62465eeeca`) plus an independent `openai/gpt-5.5-fast` read-only trace confirmed deep-review's init never created it; its empties are historical/orphaned restart artifacts.
 
 ### Purpose
 A `{mode}_archive/` directory is created only when content is actually archived (a real `restart` move), never eagerly at init.

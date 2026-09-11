@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Nineteen server registrations span six configuration files",
     "created_at": "2026-08-28T16:11:21Z",
-    "last_save_at": "2026-08-30T15:39:10.547Z",
+    "last_save_at": "2026-09-11T16:41:50.636Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +204,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:75910672200aaeadd7f38fb3c401fbb3fef8522f635136c6a66352e5c3ef1884",
+    "source_fingerprint": "sha256:0d36d799a379b6174500d03a6e1f6262d9b9bac448de0de14d7515e8adfc2c5e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "53d12237813e05d0c82bdf6dbd079866237151125a77981d86a6ff2a2c275aa8",
       "plan.md": "b3507b18873aa90fde6b32d34555bc64bf6ddea1188c655140b5ec9f005d8038",
-      "tasks.md": "2a461987592c3ea099557a3b1b243f76d3af20b954236c1c3abc03053d1d1c07",
+      "tasks.md": "6950a1c0a159a7d4bbe2937898e2bd37486510a80f6297c63df9c91e8d642441",
       "implementation-summary.md": "1d70d606813d74ac5cf11c83b14fe5cc9289b801a4843d7360bfed6aafb247cb"
     },
     "last_active_child_id": null,

@@ -13,7 +13,7 @@ trigger_phrases: []
 ## 1. Executive Summary
 
 The 021 packet hardens the reindex scan so the daemon stays *responsive* (not merely un-reaped)
-through its heavy tail phases. Three changes were reviewed against commit `372bb0f2cd`:
+through its heavy tail phases. Three changes were reviewed against commit `da09d7c69e`:
 (1) an event-loop lag sampler plus per-phase wall-clock timing, gated to the background path;
 (2) the trigger-embedding-backfill whole-corpus transaction chunked into 200-row transactions that
 yield between chunks and honor an `isCancelled` signal; (3) a maintenance-marker refresh on entry to

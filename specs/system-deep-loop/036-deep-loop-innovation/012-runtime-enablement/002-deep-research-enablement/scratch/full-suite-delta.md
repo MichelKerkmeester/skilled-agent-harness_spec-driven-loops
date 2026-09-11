@@ -6,7 +6,7 @@ trigger_phrases: []
 
 Both phases deferred this on cost, not on a blocker. It was run.
 
-Command: `npx vitest run` over the whole runtime suite, at `b3a9b1e2e4`.
+Command: `npx vitest run` over the whole runtime suite, at `367faf2e8b`.
 Duration `7405.77s` (2h 3m). vitest exit `1`, because the suite has
 pre-existing failures.
 
@@ -21,7 +21,7 @@ pre-existing failures.
 | Files failed | 17 | 16 | −1 |
 | Files total | 182 | 186 | +4 |
 
-Baseline is the captured run at `8c9f0b6944`.
+Baseline is the captured run at `6d055545b3`.
 
 ## The added tests account for the growth exactly
 

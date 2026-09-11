@@ -32,9 +32,9 @@ executed as a detached fan-out lineage under `executor=cli-opencode model=minima
 
 Review the three commits on `skilled/v4.0.0.0`:
 
-1. `bf0986cecd` — 015 Phase-0 styles-DB foundation (`sk-design/styles/_db/*`).
-2. `9a42aedae4` — command-namespace dedup (delete `/design:*`; sole `/interface:*`).
-3. `dc7fdfb0a7` — sk-doc/020 naming (180 spec docs; mechanical edits).
+1. `7e67a7bb3a` — 015 Phase-0 styles-DB foundation (`sk-design/styles/_db/*`).
+2. `5dd5547949` — command-namespace dedup (delete `/design:*`; sole `/interface:*`).
+3. `6a2127a51e` — sk-doc/020 naming (180 spec docs; mechanical edits).
 
 The charter is read-only; findings only, no remediation in this packet.
 
@@ -146,7 +146,7 @@ The charter is read-only; findings only, no remediation in this packet.
 Pointer-based, scoped to declared review target only.
 
 - Target pointers:
-  - 015/001 commit `bf0986cecd`: `.opencode/skills/sk-design/styles/_db/generation-manifest.mjs`,
+  - 015/001 commit `7e67a7bb3a`: `.opencode/skills/sk-design/styles/_db/generation-manifest.mjs`,
     `.opencode/skills/sk-design/styles/_db/stage-telemetry.mjs`,
     `.opencode/skills/sk-design/styles/_db/canonical.mjs`,
     `.opencode/skills/sk-design/styles/_db/oracle/differential-oracle.mjs`,
@@ -159,14 +159,14 @@ Pointer-based, scoped to declared review target only.
     `.opencode/skills/sk-design/styles/_db/{indexer,operator,retrieval,schema}.mjs`,
     `.opencode/skills/sk-design/styles/_db/README.md`,
     `.opencode/skills/sk-design/styles/_db/__tests__/index.mjs`.
-  - 012/006 commit `9a42aedae4`: `.opencode/skills/sk-design/shared/scripts/design-command-surface-check.mjs`,
+  - 012/006 commit `5dd5547949`: `.opencode/skills/sk-design/shared/scripts/design-command-surface-check.mjs`,
     `.opencode/skills/sk-design/shared/scripts/__tests__/interface-command-contract.test.mjs`,
     `.opencode/skills/sk-design/command-metadata.json`,
     `.opencode/skills/sk-design/hub-router.json`,
     `.opencode/skills/sk-design/mode-registry.json`,
     `.opencode/skills/sk-design/{README,SKILL}.md`,
     deletion of `.opencode/commands/design/**`.
-  - sk-doc/020 commit `dc7fdfb0a7`: `.opencode/specs/sk-doc/020-hyphen-naming-convention/**` (180 files, 0 code).
+  - sk-doc/020 commit `6a2127a51e`: `.opencode/specs/sk-doc/020-hyphen-naming-convention/**` (180 files, 0 code).
 - Behavior claims to verify:
   - REQ-001: manifest publishes atomically (single fsynced pointer flip), rolls back correctly,
     retention never prunes current or sole rollback generation.

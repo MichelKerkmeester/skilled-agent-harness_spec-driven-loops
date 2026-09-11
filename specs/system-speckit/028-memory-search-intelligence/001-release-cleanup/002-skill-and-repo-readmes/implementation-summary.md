@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Skill And Repo README Cleanup"
-description: "Execution summary for the Skill And Repo README Cleanup release-cleanup phase. The skill READMEs and root README were aligned to shipped state (commit 6754d3a133), edits only with house structure preserved."
+description: "Execution summary for the Skill And Repo README Cleanup release-cleanup phase. The skill READMEs and root README were aligned to shipped state (commit ed06dcdc21), edits only with house structure preserved."
 trigger_phrases:
   - "002-skill-and-repo-readmes implementation summary"
   - "028 release cleanup 002-skill-and-repo-readmes"
@@ -23,7 +23,7 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions:
-      - "This summary records the executed Level-2 cleanup (commit 6754d3a133)."
+      - "This summary records the executed Level-2 cleanup (commit ed06dcdc21)."
       - "Skill READMEs and root README aligned, edits only, strict validation 0/0."
 ---
 
@@ -38,7 +38,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 002-skill-and-repo-readmes |
-| **Completed** | 2026-06-19 (commit 6754d3a133) |
+| **Completed** | 2026-06-19 (commit ed06dcdc21) |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -47,7 +47,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-The skill and repo README cleanup executed on this branch (commit 6754d3a133). The skill-level READMEs and the root repository README were aligned to current shipped state, fixing factual drift across stale references, counts and paths while preserving each document's deliberate house structure. No README was added or deleted and every corrected path was verified to resolve.
+The skill and repo README cleanup executed on this branch (commit ed06dcdc21). The skill-level READMEs and the root repository README were aligned to current shipped state, fixing factual drift across stale references, counts and paths while preserving each document's deliberate house structure. No README was added or deleted and every corrected path was verified to resolve.
 
 ### Files Changed
 
@@ -88,7 +88,7 @@ Discovery enumerated the skill-level and repo-level README surfaces. Each candid
 
 | Check | Result |
 |-------|--------|
-| Cleanup execution | Executed at 6754d3a133, 3 READMEs aligned, 0 added or deleted |
+| Cleanup execution | Executed at ed06dcdc21, 3 READMEs aligned, 0 added or deleted |
 | Path resolution | All corrected paths resolve |
 | Strict validation | PASSED, 0 errors and 0 warnings via `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-speckit/028-memory-search-intelligence/000-release-cleanup/002-skill-and-repo-readmes --strict` |
 <!-- /ANCHOR:verification -->

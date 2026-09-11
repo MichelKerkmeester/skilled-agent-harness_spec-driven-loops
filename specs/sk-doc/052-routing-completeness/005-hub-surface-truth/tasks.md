@@ -59,13 +59,13 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T004 Complete `FULL_INVENTORY` from 128 leaves to 252 (`.opencode/skills/sk-doc/ROUTER.md`) - evidence: `98a327edf9`, 128 lines added
-- [x] T005 Rewrite the readme description inside its budget rather than appending to it (`.opencode/skills/sk-doc/README.md`) - evidence: `98a327edf9`
-- [x] T006 Bring trigger phrases and the at-a-glance table onto the current mode set (`.opencode/skills/sk-doc/README.md`) - evidence: `98a327edf9`
-- [x] T007 Add invariant 6c, the command column check (`.opencode/commands/doctor/scripts/parent-skill-check.cjs`) - evidence: `98a327edf9`, 22 lines
-- [x] T008 Write the five-case test file for the invariant (`.../parent-skill-check-command-column.test.cjs`) - evidence: `98a327edf9`, 285 lines
-- [x] T009 Restore the hidden command to the hub mode table (`.opencode/skills/sk-doc/SKILL.md`) - evidence: `08eb67a0de`, line 35
-- [x] T010 [P] Give two packets the keyword-triggers line the hub contract requires - evidence: `08eb67a0de`
+- [x] T004 Complete `FULL_INVENTORY` from 128 leaves to 252 (`.opencode/skills/sk-doc/ROUTER.md`) - evidence: `90ea7ecb09`, 128 lines added
+- [x] T005 Rewrite the readme description inside its budget rather than appending to it (`.opencode/skills/sk-doc/README.md`) - evidence: `90ea7ecb09`
+- [x] T006 Bring trigger phrases and the at-a-glance table onto the current mode set (`.opencode/skills/sk-doc/README.md`) - evidence: `90ea7ecb09`
+- [x] T007 Add invariant 6c, the command column check (`.opencode/commands/doctor/scripts/parent-skill-check.cjs`) - evidence: `90ea7ecb09`, 22 lines
+- [x] T008 Write the five-case test file for the invariant (`.../parent-skill-check-command-column.test.cjs`) - evidence: `90ea7ecb09`, 285 lines
+- [x] T009 Restore the hidden command to the hub mode table (`.opencode/skills/sk-doc/SKILL.md`) - evidence: `aa11c2b622`, line 35
+- [x] T010 [P] Give two packets the keyword-triggers line the hub contract requires - evidence: `aa11c2b622`
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -78,7 +78,7 @@ _memory:
 - [x] T013 Prove invariant 6c passes on restore - evidence: the fifth case in the same test file
 - [x] T014 Run invariant 6c on the live tree at ship time - evidence: exited non-zero on the one real instance, by design
 - [x] T015 Re-check the manifest line after the routing commit - evidence: `grep -n 'sk-create-diff' .opencode/skills/sk-doc/SKILL.md` shows `/create:diff` at line 35, re-run 2026-09-02
-- [x] T016 Record the five closed findings and the new check in the register (`research/findings-register.md`) - evidence: `8bb9011584`
+- [x] T016 Record the five closed findings and the new check in the register (`research/findings-register.md`) - evidence: `ca9e3885b8`
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -158,7 +158,7 @@ _memory:
 - [x] CHK-FIX-004 [P0] Adversarial cases covered: three defect shapes plus a restore
 - [x] CHK-FIX-005 [P1] Matrix axes listed: surface by defect shape
 - [x] CHK-FIX-006 [P1] The check reads committed files and writes nothing
-- [x] CHK-FIX-007 [P1] Evidence pinned to `98a327edf9`, `08eb67a0de` and `8bb9011584`
+- [x] CHK-FIX-007 [P1] Evidence pinned to `90ea7ecb09`, `aa11c2b622` and `ca9e3885b8`
 <!-- /ANCHOR:fix-completeness -->
 
 ---

@@ -14,7 +14,7 @@ trigger_phrases: []
 
 Two packets that were two halves of one effort are now a single packet under `033`, named `033-spec-template-context-optimization`.
 
-- **Former `033-spec-templates-and-context-reducer`** — the deep-research phase. By merge time it was an empty stub: its findings had already been absorbed into the 034 implementation packet (commit `b904dc578a`), leaving only gitignored raw run-logs.
+- **Former `033-spec-templates-and-context-reducer`** — the deep-research phase. By merge time it was an empty stub: its findings had already been absorbed into the 034 implementation packet (commit `5d0c06d767`), leaving only gitignored raw run-logs.
 - **Former `034-spec-template-context-optimizations`** — the implementation phase, complete at 100%.
 
 What the merge did, mechanically:
@@ -25,7 +25,7 @@ What the merge did, mechanically:
 - Updated the two external references: `manual-testing-playbook/tooling-and-scripts/scope-adherence-advisory-rule.md` and the skill `changelog/v3.9.0.0.md`.
 - Left the historical `research/` and `review/` run-artifacts and the `session_id` fields unchanged, as an immutable audit trail. Some therefore still name the original `033`/`034` paths — by design.
 
-Commits: `1f4958ac4f` (local) -> `4a6901096a` (on origin/skilled/v4.0.0.0).
+Commits: `1f4958ac4f` (local) -> `ac2b4d3757` (on origin/skilled/v4.0.0.0).
 
 ---
 
@@ -33,7 +33,7 @@ Commits: `1f4958ac4f` (local) -> `4a6901096a` (on origin/skilled/v4.0.0.0).
 
 **Question:** do the two `context/*.md` source concepts — *Reducer Engineering* and the *$1.2M Agent Engineering harness* — yield concrete in-repo improvements to system-speckit's templates, documentation logic, and context/memory system, for (a) context/token reduction, (b) AI plan adherence, and (c) general optimization?
 
-**Method:** a deep-research loop of 10 iterations across 4 lineages (`pi-flash-a`, `pi-flash-b`, `grok`, `composer`) spanning 3 model families, run with `--stop-policy max-iterations` so convergence was telemetry only and never triggered an early stop. Two original cli-devin lineages (GLM 5.2, SWE 1.7) were replaced after a structural failure. Commit: `43aee5e5ec`.
+**Method:** a deep-research loop of 10 iterations across 4 lineages (`pi-flash-a`, `pi-flash-b`, `grok`, `composer`) spanning 3 model families, run with `--stop-policy max-iterations` so convergence was telemetry only and never triggered an early stop. Two original cli-devin lineages (GLM 5.2, SWE 1.7) were replaced after a structural failure. Commit: `9eb947019e`.
 
 ---
 
@@ -69,13 +69,13 @@ The research produced a durable refutation list — attractive-looking ideas tha
 
 ## 5. IMPLEMENTATION PHASE — THE FOUR PHASES (FORMERLY 034)
 
-The six accepted gaps shipped as four independently-shippable phases, each with its own tests and regression gate. Main commit: `c8c4e79139` (plan `b0d5096bb1`).
+The six accepted gaps shipped as four independently-shippable phases, each with its own tests and regression gate. Main commit: `613d04dd61` (plan `49656f2a25`).
 
 **Phase 1 — research-template level-gating (REQ-001).** Restructured `research.md.tmpl` from a single always-true gate into per-level sections. Level 1 now renders 175 lines (was 944); Level 3 / 3+ / phase renders stay byte-identical to baseline. Added `research-template-gating.vitest.ts` (54 lines, new).
 
 **Phase 2 — template consolidation + read safety (REQ-002, REQ-003).** Consolidated `spec.md.tmpl`, `plan.md.tmpl`, `tasks.md.tmpl`, and `implementation-summary.md.tmpl` to one shared core plus per-level gated addenda: 2,931 -> 1,314 source lines, with byte-identical rendered output at every level. `template-guide.md` gained a "Reading a Template (Agents)" read-guard directing agents to the rendered view rather than the raw `.tmpl`.
 
-**Phase 3 — plan-adherence validation gates (REQ-004, REQ-005).** Flipped `check-ac-coverage.sh` to default-on as a non-blocking advisory and updated `validation-rules.md`. Added a new advisory `check-scope-adherence.sh` (166 lines) and registered it in `validator-registry.json`. A follow-up (`cb39cdfd66`) added the `scope-adherence-advisory-rule.md` playbook and formalized the changed-files contract (`MK_SCOPE_CHANGED_FILES` / `MK_SCOPE_BASE`) with a packet-folder-scoped canonical-doc exception.
+**Phase 3 — plan-adherence validation gates (REQ-004, REQ-005).** Flipped `check-ac-coverage.sh` to default-on as a non-blocking advisory and updated `validation-rules.md`. Added a new advisory `check-scope-adherence.sh` (166 lines) and registered it in `validator-registry.json`. A follow-up (`798cddabaf`) added the `scope-adherence-advisory-rule.md` playbook and formalized the changed-files contract (`MK_SCOPE_CHANGED_FILES` / `MK_SCOPE_BASE`) with a packet-folder-scoped canonical-doc exception.
 
 **Phase 4 — memory_search token budget (REQ-006).** Added search-envelope token-budget enforcement to `memory-search.ts` (mirroring the memory-context handler), with a new 5-test `memory-search-token-budget.vitest.ts` suite.
 
@@ -122,7 +122,7 @@ The primary writer was deepseek-v4-flash (via the opencode-go provider) under st
 Two independent adversarial reviews ran against the implementation:
 
 - **`pi-flash-review`** — a 10-iteration deep-review (deepseek-v4-flash) returned CONDITIONAL: P0=0, P1=8, P2=8. Artifacts under `review/lineages/pi-flash-review/`.
-- **`grok46-review`** — a second review lineage (commit `478d350256`) whose deferred findings were resolved in `cb39cdfd66`.
+- **`grok46-review`** — a second review lineage (commit `b428e66e71`) whose deferred findings were resolved in `798cddabaf`.
 
 Findings remediated:
 
@@ -167,12 +167,12 @@ Complete (100%). All six optimizations shipped and verified; see `implementation
 
 | Commit | What |
 |--------|------|
-| `43aee5e5ec` | Deep-research packet (the six gaps + refutation list) |
-| `b0d5096bb1` | Phased plan for the six recs |
-| `c8c4e79139` | Implementation: optimize templates + add validation and budget gates |
-| `4da8e091f4` | Before/after comparison + skill changelog `v3.9.0.0` |
-| `478d350256` | Fix: folder-scope SCOPE_ADHERENCE + reconcile packet docs (+ grok46 review) |
-| `cb39cdfd66` | Fix: resolve deferred grok findings (scope rule, AC, playbook) |
-| `b904dc578a` | Absorb the 033 research packet into 034 |
-| `0194a38521`, `13328c971d`, `947f8a6b58`, `e3a66403df` | Cross-session restore / WIP-sync churn around the packet |
-| `1f4958ac4f` / `4a6901096a` | This consolidation (033 + 034 -> 033) |
+| `9eb947019e` | Deep-research packet (the six gaps + refutation list) |
+| `49656f2a25` | Phased plan for the six recs |
+| `613d04dd61` | Implementation: optimize templates + add validation and budget gates |
+| `8d2c4f3765` | Before/after comparison + skill changelog `v3.9.0.0` |
+| `b428e66e71` | Fix: folder-scope SCOPE_ADHERENCE + reconcile packet docs (+ grok46 review) |
+| `798cddabaf` | Fix: resolve deferred grok findings (scope rule, AC, playbook) |
+| `5d0c06d767` | Absorb the 033 research packet into 034 |
+| `4240407f5a`, `452437291d`, `daa9b0c92b`, `4d52fff993` | Cross-session restore / WIP-sync churn around the packet |
+| `1f4958ac4f` / `ac2b4d3757` | This consolidation (033 + 034 -> 033) |

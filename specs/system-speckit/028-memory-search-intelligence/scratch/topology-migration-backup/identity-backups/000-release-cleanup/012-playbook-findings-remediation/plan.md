@@ -91,28 +91,28 @@ Each cluster groups findings that share a failure mode and a blast radius. The f
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Cluster A schema drift (P0)
-Guard the source_kind select on narrow schemas, align the adaptive consumption insert to query_hash. Add the reconsolidation merge-contract and the schema-contract tests. Commit `adbcc65e83`.
+Guard the source_kind select on narrow schemas, align the adaptive consumption insert to query_hash. Add the reconsolidation merge-contract and the schema-contract tests. Commit `27a1477f7e`.
 
 ### Phase 2: Cluster B wiring (P1, dominant theme)
-Wire five implemented-but-dead features into the runtime: scoring observability, LLM backfill registration, llm-reformulation, query-surrogates and the contextual-tree header. Commit `e5b4735c4b`.
+Wire five implemented-but-dead features into the runtime: scoring observability, LLM backfill registration, llm-reformulation, query-surrogates and the contextual-tree header. Commit `390f04bddb`.
 
 ### Phase 3: Cluster C retrievalLevel (P1)
-Honor retrievalLevel local, global and auto end to end, add the missing strict public input schema field, key the cache by level. Commit `f0e063eed4`.
+Honor retrievalLevel local, global and auto end to end, add the missing strict public input schema field, key the cache by level. Commit `750424c739`.
 
 ### Phase 4: Cluster D ordering (P1)
-Make folder rank the primary sort key and reserve a top-k slot per active channel below the floor. Commit `cbf4f4d111`.
+Make folder rank the primary sort key and reserve a top-k slot per active channel below the floor. Commit `2d68d3109a`.
 
 ### Phase 5: Cluster E advisor persistence (P0/P1)
-Re-map routing to leaf skills, sanitize the skill_nodes index path, fix the validate-scorer, clear lifecycle fields on rollback, surface the F5 warm-latency gate (the bench already exits non-zero on failure, so no source fix was needed there), error force-native when the hook is disabled. Commit `917ad633a3`.
+Re-map routing to leaf skills, sanitize the skill_nodes index path, fix the validate-scorer, clear lifecycle fields on rollback, surface the F5 warm-latency gate (the bench already exits non-zero on failure, so no source fix was needed there), error force-native when the hook is disabled. Commit `c00e9e21c6`.
 
 ### Phase 6: Cluster F DB lifecycle (P2)
-Standardize db-path resolution in `core/config.ts`, add a new end-to-end test that exercises the pre-existing cross-process rebind machinery, and fix the embedding-retry e2e. Commit `f27945593e`.
+Standardize db-path resolution in `core/config.ts`, add a new end-to-end test that exercises the pre-existing cross-process rebind machinery, and fix the embedding-retry e2e. Commit `c777df3865`.
 
 ### Phase 7: Clusters G and H code-graph and quality (P2)
-Recompute stale files on write-local refresh, extract the duplicate scope helper, update the two stale tests, fix entity dedup normalization and confirm the 7-layer metadata surface. Commit `3291c05389`.
+Recompute stale files on write-local refresh, extract the duplicate scope helper, update the two stale tests, fix entity dedup normalization and confirm the 7-layer metadata surface. Commit `beacce4c07`.
 
 ### Phase 8: Follow-up tests and re-parenting
-Add the dedicated B4 surrogate index-time, B5 contextual-tree header and C strict-schema tests. Commit `374ca93caa`. Re-parent the post-phase-6 phases under their relevant parents. Commit `64d064d868`.
+Add the dedicated B4 surrogate index-time, B5 contextual-tree header and C strict-schema tests. Commit `ea6b2ba179`. Re-parent the post-phase-6 phases under their relevant parents. Commit `bd2c8e4085`.
 <!-- /ANCHOR:phases -->
 
 ---

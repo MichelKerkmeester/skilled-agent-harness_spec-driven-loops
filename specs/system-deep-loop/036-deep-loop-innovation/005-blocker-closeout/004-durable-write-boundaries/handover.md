@@ -8,7 +8,7 @@ trigger_phrases: []
 
 **Status:** Closed. The code is implemented, hardened, and adversarially verified; the aggregate gate ran to completion with every failure attributed away from this work; and all six previously-accepted deferrals were closed on 2026-08-18. `tasks.md` and `checklist.md` are both at zero open items and strict validation exits 0. One unrelated finding stays tracked: the writer-lock reclaim race, which reproduces at base.
 
-Worktree: `.worktrees/0129-system-deep-loop-036-remediation-execution`, branch `system-deep-loop/0129-036-remediation-execution`, on top of origin tip `9229cb8f3e`.
+Worktree: `.worktrees/0129-system-deep-loop-036-remediation-execution`, branch `system-deep-loop/0129-036-remediation-execution`, on top of origin tip `2d12dfc5f5`.
 
 ---
 
@@ -45,7 +45,7 @@ The 021 RED baseline is `148 files / 3,992 tests / 3,986 pass / 6 fail in 3 file
 - `tests/unit/render-command-contract.vitest.ts` (4 fail) — 031.
 - `tests/unit/check-contract-drift.vitest.ts` (1 fail) — 031.
 - `tests/unit/legacy-projections.test.ts` (1 fail) — the "state-census disposition" test, a `sk-prompt/prompt-models` vs `sk-prompt/sk-prompt-models` path assertion, 031. (Its OTHER 14 tests pass; the appendAuthorized migration there is DONE.)
-- `tests/integration/review-depth-convergence.vitest.ts` (1 fail) — review-workflow content drift (a `searchLedger` prose assertion) from a concurrent doc change at HEAD `9229cb8f3e`. Not 024.
+- `tests/integration/review-depth-convergence.vitest.ts` (1 fail) — review-workflow content drift (a `searchLedger` prose assertion) from a concurrent doc change at HEAD `2d12dfc5f5`. Not 024.
 
 A "no new failures vs baseline" claim = the final failing set is exactly these 4 files.
 
@@ -82,7 +82,7 @@ Also still open in the broader program (sk-doc, not runtime): 022/003 (full stru
 ---
 
 ## 6. Session ledger (what landed to origin/skilled/v4.0.0.0 THIS session)
-All adversarially verified pre-land: 025/002 `c6a07b226c` · 022/001 `98f2e639b3` · 022/002 `07e008dee9` · 025/003 `65db3ed73c` · 025/004 `0df71a042d` (025 skill-doc-currency family COMPLETE). Plus the standing goal prompt was rewritten to drop the stale STEP 0 (scaffold is done).
+All adversarially verified pre-land: 025/002 `9307faa895` · 022/001 `79d5d0b62a` · 022/002 `8a68a760f2` · 025/003 `9d18d3f44b` · 025/004 `40fc8a83a0` (025 skill-doc-currency family COMPLETE). Plus the standing goal prompt was rewritten to drop the stale STEP 0 (scaffold is done).
 
 ---
 

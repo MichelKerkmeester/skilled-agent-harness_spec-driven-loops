@@ -16,7 +16,7 @@ trigger_phrases: []
 
 **Verdict: CONDITIONAL** · active P0=0, P1=6, P2=11 · `hasAdvisories=false` · `releaseReadinessState=in-progress`
 
-The four implementation phases are committed (`c8c4e79139`) and the packet's own `validate.sh --strict` exits 0. Focused vitest for golden snapshots, research gating, and memory-search token budget is green. Packet docs still contradict that machine state: tasks remain open, Status still says uncommitted, implementation-summary still reports snapshot failures that do not exist, REQ-006 still names a shared helper ADR-005 rejected, and open plan/task text would regress AC_COVERAGE back to warn. SCOPE_ADHERENCE's canonical-doc skip matches basename only.
+The four implementation phases are committed (`613d04dd61`) and the packet's own `validate.sh --strict` exits 0. Focused vitest for golden snapshots, research gating, and memory-search token budget is green. Packet docs still contradict that machine state: tasks remain open, Status still says uncommitted, implementation-summary still reports snapshot failures that do not exist, REQ-006 still names a shared helper ADR-005 rejected, and open plan/task text would regress AC_COVERAGE back to warn. SCOPE_ADHERENCE's canonical-doc skip matches basename only.
 
 Scope: packet docs plus Files to Change surfaces (manifest templates, renderer, AC_COVERAGE, scope-adherence, memory_search). Sibling `pi-flash-review` findings were re-verified, not copied.
 
@@ -126,7 +126,7 @@ Primary work: (a) make packet completion claims match the committed tree and gre
 |----|-----|-----|-------|----------|--------------|------------|--------|
 | F001 | P1 | correctness | Packet completion state is internally contradictory | tasks.md:47 — T004 and T010–T053 `[ ]`; checklist CHK-011..019 `[x]`; spec Status Complete; validate.sh --strict exit 0 | spec-code-contradiction | 1/5 | active |
 | F002 | P1 | correctness | implementation-summary reports golden-snapshot failures that do not exist | implementation-summary.md:87 vs :97; vitest scaffold-golden-snapshots + research-template-gating 10/10 pass | stale-verification-claim | 1/5 | active |
-| F003 | P1 | correctness | Status still says uncommitted / awaiting commit after the feat commit landed | spec.md:47; git log `c8c4e79139`; plan.md continuity completion_pct 5 / implement Phase 1 | stale-current-state | 1/5 | active |
+| F003 | P1 | correctness | Status still says uncommitted / awaiting commit after the feat commit landed | spec.md:47; git log `613d04dd61`; plan.md continuity completion_pct 5 / implement Phase 1 | stale-current-state | 1/5 | active |
 | F006 | P1 | security | SCOPE_ADHERENCE treats any basename-matching canonical doc as in-scope | check-scope-adherence.sh:136 `changed_file##*/`; vitest locks it in at check-scope-adherence.vitest.ts:64 | control-bypass | 2/5 | active |
 | F009 | P1 | traceability | REQ-006 still requires shared enforceTokenBudget after ADR-005 rejected sharing | spec.md:113; decision-record.md ADR-005; memory-search.ts:2384 `enforceSearchTokenBudget` | spec-code-contradiction | 3/5 | active |
 | F013 | P1 | maintainability | Open plan/task text still prescribes warn-severity AC_COVERAGE | plan.md:84; tasks.md:65 T030 `[ ]`; validator-registry.json:78 severity info; check-ac-coverage.sh:172 RULE_STATUS=pass | regression-footgun | 4/5 | active |

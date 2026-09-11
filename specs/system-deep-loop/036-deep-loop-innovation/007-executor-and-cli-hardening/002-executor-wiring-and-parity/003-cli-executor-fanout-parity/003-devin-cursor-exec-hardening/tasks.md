@@ -1,6 +1,6 @@
 ---
 title: "Tasks: devin + cursor Fan-out Exec Hardening"
-description: "Task tracker for the devin and cursor fan-out lineage builder re-map: live-probe both CLIs, re-map both builders and the cursor resolver, lock unit tests, verify with vitest plus live probes and a SOL review, landed in commit b1d36b1741."
+description: "Task tracker for the devin and cursor fan-out lineage builder re-map: live-probe both CLIs, re-map both builders and the cursor resolver, lock unit tests, verify with vitest plus live probes and a SOL review, landed in commit 35a3951784."
 trigger_phrases:
   - "devin cursor exec hardening tasks"
   - "fanout builder re-map tasks"
@@ -25,7 +25,7 @@ _memory:
 
 <!-- ANCHOR:notation -->
 ## Task Notation
-`[ ]` open · `[x]` done. Status: Complete — code implemented, gated, and SOL-reviewed (P1-002 fixed; two ambient-config P1s tracked forward), landed in `b1d36b1741`.
+`[ ]` open · `[x]` done. Status: Complete — code implemented, gated, and SOL-reviewed (P1-002 fixed; two ambient-config P1s tracked forward), landed in `35a3951784`.
 <!-- /ANCHOR:notation -->
 
 <!-- ANCHOR:phase-1 -->
@@ -54,7 +54,7 @@ _memory:
 ## Completion Criteria
 - [x] Read-only leaves of both kinds are genuinely read-only.
 - [x] Workspace-write leaves of both kinds never stall on a permission/trust prompt.
-- [x] SOL review dispositioned (P1-002 fixed; P1-001/P1-003 tracked forward) and landed in `b1d36b1741` with strict validation.
+- [x] SOL review dispositioned (P1-002 fixed; P1-001/P1-003 tracked forward) and landed in `35a3951784` with strict validation.
 <!-- /ANCHOR:completion -->
 
 <!-- ANCHOR:cross-refs -->

@@ -40,7 +40,7 @@ _memory:
 | **Completed** | 2026-07-20 |
 | **Level** | 2 |
 | **Status** | Complete |
-| **Base Commit** | `fe6ca3030917073f3b478bc044e10034dcc4394b` |
+| **Base Commit** | `573a44951386fab3556b53b39c6008ec74b22304` |
 | **Classification Reviewer** | Codex, acting under the leaf's conservative safety-first triage authority |
 <!-- /ANCHOR:metadata -->
 

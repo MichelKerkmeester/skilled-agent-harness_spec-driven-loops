@@ -46,10 +46,10 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-A reviewed remediation of all 28 findings (0 P0, 8 P1, 20 P2) from the MiMo deep review of `skill:deep-improvement`. gpt-5.5-fast (high, cli-opencode) applies the fixes in the isolated `wt/0007-d4r-remediation` worktree against committed HEAD `b697b0a1d1`, grouped into five workstreams (grader fidelity, answer fairness, doc↔code sync, hardening, maintainability). The operator reviews the diff and integrates only the 11 target files into main, then validates with the full vitest suite + the router drift guard.
+A reviewed remediation of all 28 findings (0 P0, 8 P1, 20 P2) from the MiMo deep review of `skill:deep-improvement`. gpt-5.5-fast (high, cli-opencode) applies the fixes in the isolated `wt/0007-d4r-remediation` worktree against committed HEAD `c16171b893`, grouped into five workstreams (grader fidelity, answer fairness, doc↔code sync, hardening, maintainability). The operator reviews the diff and integrates only the 11 target files into main, then validates with the full vitest suite + the router drift guard.
 
 ### Files Changed (this build)
-11 files integrated to main (all clean at HEAD `b697b0a1d1`, no parallel-session collisions):
+11 files integrated to main (all clean at HEAD `c16171b893`, no parallel-session collisions):
 - **harness.cjs** — `dimId` threaded through compose/parser/cache; `normalizeParsedPayload` + `dimensionInstruction` helpers; fallbacks stamp/normalize dim (new `*_dim_mismatch` statuses, confidence capped); real dispatch → `--append-system-prompt` (flag verified).
 - **live-executor.cjs** — `GRADED_RESPONSE_MAX_CHARS=8000`; `model || DEFAULT_MODEL`; string-aware `collectBraceBalancedObjects` (exported) replaces the bare-object regex.
 - **dispatch-model.cjs** — `shellQuote` POSIX-escapes the resume-hint paths; `loadConfig` warns on parse error, stays silent on ENOENT.

@@ -53,7 +53,7 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T003 Restored the 5 routers + 5 presentations + the contract test to the conformant router base. [SOURCE: `git checkout d0e838c73c~1`]
+- [x] T003 Restored the 5 routers + 5 presentations + the contract test to the conformant router base. [SOURCE: `git checkout 17d8c387ca~1`]
 - [x] T004 Added exactly one `@`-include of the shared contract per router. [TESTED: `@-include=1` for all 5]
 - [x] T005 Refreshed `command-contract.json` to the live `/interface:*` surface. [TESTED: 0 stale `/design` refs; valid JSON]
 <!-- /ANCHOR:phase-2 -->
@@ -83,5 +83,5 @@ _memory:
 ## Cross-References
 
 - Research: `research/research.md` (+ the 3 passes).
-- Router base: `d0e838c73c~1`. Standard: `.opencode/skills/sk-doc/create-command/`.
+- Router base: `17d8c387ca~1`. Standard: `.opencode/skills/sk-doc/create-command/`.
 <!-- /ANCHOR:cross-refs -->

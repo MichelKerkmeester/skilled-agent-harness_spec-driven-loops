@@ -43,7 +43,7 @@ Conclusion: **the shipped R1–R5 doc fixes work when the command is actually de
 <!-- ANCHOR:shipped -->
 ## Shipped (committed) — historical record
 
-Doc-only edits across `.opencode/commands/`, two commits (`c3911dfe2f`, plus the filled-examples commit):
+Doc-only edits across `.opencode/commands/`, two commits (`1e5b282fa5`, plus the filled-examples commit):
 - `memory/search.md`: numbered Execution Order (read the asset first), inlined the compact `MEMORY:SEARCH … STATUS` render contract marked "MUST emit exactly this shape", header/STATUS self-check line, and a Presentation Boundary section.
 - `memory/save.md`, `memory/manage.md`, `memory/learn.md` and the `create/` + `deep/` routers that lacked one: Presentation Boundary sections mirroring `doctor/`.
 - `memory/assets/search_presentation.md`: top-of-file template index + a filled example and a tool-field→slot mapping table for the retrieval template.

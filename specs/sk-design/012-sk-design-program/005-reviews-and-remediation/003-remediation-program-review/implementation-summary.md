@@ -51,9 +51,9 @@ _memory:
 
 A 10-iteration deep review of the Packet A/B/C shipped surface, executed by `openai/gpt-5.6-sol` (normal speed, high effort, forced depth), followed by an independent human verification pass over every finding.
 
-- **Review run:** single cli-opencode SOL lineage under `fanout-run.cjs`, 10/10 forced iterations (`stop-policy max-iterations`), all four dimensions covered, ~1h39m, 0 retries/failures. Pinned worktree at HEAD `7b9d3b6b71`; 118-file curated manifest.
+- **Review run:** single cli-opencode SOL lineage under `fanout-run.cjs`, 10/10 forced iterations (`stop-policy max-iterations`), all four dimensions covered, ~1h39m, 0 retries/failures. Pinned worktree at HEAD `6432665a68`; 118-file curated manifest.
 - **Verified verdict:** **0 P0.** The SOL lineage raised 10 P1s; verification confirmed **5 actionable** (P1-002/003/004/005 doc-metadata-honesty + P1-006 code-edge), downgraded **3 to P3 nits** (P1-001/009/011), kept **1 valid-but-self-disclosed** evidence gap (P1-010), and **refuted 1** (P1-012, disproven by running `operator.mjs status` on a clean checkout).
-- **Root theme:** the restructure moved `_db → lib/database` / `_engine → lib/engine`, but the parent phase-map, three `graph-metadata.json` files, the manual-testing playbook, and the database README still reference the old paths / stale status — a real gap in the reconciliation commits (`61a62a0c40`, `7b9d3b6b71`) that updated only the child packet docs.
+- **Root theme:** the restructure moved `_db → lib/database` / `_engine → lib/engine`, but the parent phase-map, three `graph-metadata.json` files, the manual-testing playbook, and the database README still reference the old paths / stale status — a real gap in the reconciliation commits (`d8563d547e`, `6432665a68`) that updated only the child packet docs.
 
 ### Files Changed
 
@@ -69,7 +69,7 @@ A 10-iteration deep review of the Packet A/B/C shipped surface, executed by `ope
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Claude orchestrated cross-runtime (the correct topology for a single cli-opencode executor); `fanout-run.cjs` spawned one detached SOL lineage. A fresh worktree pinned at `7b9d3b6b71` isolated the reviewed code from concurrent branch churn and satisfied the RM-8 fresh-worktree rule. Two fast-fail launch issues were fixed before the run took hold (missing `zod` in the fresh worktree → symlinked runtime deps; a dot in the lineage label → dir-safe rename). Every finding was then re-checked against the actual file:line, with `operator.mjs` run directly to reproduce or refute the two operator-CLI claims.
+Claude orchestrated cross-runtime (the correct topology for a single cli-opencode executor); `fanout-run.cjs` spawned one detached SOL lineage. A fresh worktree pinned at `6432665a68` isolated the reviewed code from concurrent branch churn and satisfied the RM-8 fresh-worktree rule. Two fast-fail launch issues were fixed before the run took hold (missing `zod` in the fresh worktree → symlinked runtime deps; a dot in the lineage label → dir-safe rename). Every finding was then re-checked against the actual file:line, with `operator.mjs` run directly to reproduce or refute the two operator-CLI claims.
 <!-- /ANCHOR:how-delivered -->
 
 ---

@@ -234,7 +234,7 @@ Per-candidate seams above. Production code under `.opencode/skills/system-spec-k
 <!-- ANCHOR:status -->
 ## 14. CANDIDATE STATUS
 
-> Cross-checked against the Wave-0 shipped record and the Wave-0 commit range (`git log --oneline 1ecc531431..ab5459fb6d`): **none of these five candidates shipped in Wave-0** (zero temporal/history/unforget/currentness commits in range). Current working-tree status: C3-A is **DONE**, the other four candidates remain **PENDING**.
+> Cross-checked against the Wave-0 shipped record and the Wave-0 commit range (`git log --oneline 2e17fdbe32..5ed284319b`): **none of these five candidates shipped in Wave-0** (zero temporal/history/unforget/currentness commits in range). Current working-tree status: C3-A is **DONE**, the other four candidates remain **PENDING**.
 
 | # | Candidate | Status | Gate | 030 evidence | Notes |
 |---|-----------|--------|------|--------------|-------|

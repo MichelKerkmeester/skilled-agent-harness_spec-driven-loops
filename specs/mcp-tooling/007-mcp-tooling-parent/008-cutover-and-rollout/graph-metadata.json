@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The fold-in is functionally complete and benchmarked, but it is not canon-clean until the strict parent-hub check passes with zero warnings, the whole track validates recursively, and a final sweep confirms no stale reference survived",
     "created_at": "2026-07-09T20:18:26Z",
-    "last_save_at": "2026-08-30T15:39:09.791Z",
+    "last_save_at": "2026-09-11T16:41:50.486Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:38d3f94fe59db4bcac965ba1377c2ea2357084bcfbd98d138c3b4c52cf2d4ce6",
+    "source_fingerprint": "sha256:eee134928f9465ca11aaf9da7ddd84be3359313f164c79891d67b86560eeac81",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8d1e1f56a1f49aa6e51b4a6830119da3cfc1ed540be07545296d434b7530d2e7",
       "plan.md": "69e92630b99e9ddb6dba592f4c558f54abf844ad0e315ef8f05ca11721d89fbe",
-      "tasks.md": "0812204cbe8922eb6ba214008e67b8632ec5ec2537142d2c2af00ff09fd02546",
-      "implementation-summary.md": "872b9f64a65a834cb13a33e1a9e6d44c4dbcee7d433ecd964305049708b67f81"
+      "tasks.md": "fdd262a6873fd76719e319a164b716358aa0875443cf1c2bbb77b52392c79375",
+      "implementation-summary.md": "74920fd975836a832ef7919fe5b0d20791a6ab9d67cbe7d50dd1d1744c974ff0"
     },
     "last_active_child_id": null,
     "last_active_at": null

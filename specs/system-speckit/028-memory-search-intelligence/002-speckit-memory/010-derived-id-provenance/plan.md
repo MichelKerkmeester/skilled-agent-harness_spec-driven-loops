@@ -145,7 +145,7 @@ Consumer inventory is scoped to the derived-edge identity surface: the causal-ed
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Two-primitive content-id module (`lib/content-id.ts`) | Internal (shipped 030 `18c8582e33`) | Green | Without it C4-B would have to author a forbidden third hash |
+| Two-primitive content-id module (`lib/content-id.ts`) | Internal (shipped 030 `0113515f43`) | Green | Without it C4-B would have to author a forbidden third hash |
 | `causal_edges` schema + migration transaction | Internal | Green (additive) | Required for the column, index and backfill |
 | Legacy anchor-inclusive UNIQUE | Internal constraint | Green | Drives the anchor-inclusion requirement on the derived-id input |
 | Canonical-field order / source / rule_version sentinel decisions | Design | Green (ADR-002/003 accepted) | Wrong choices would break cross-process reproducibility |

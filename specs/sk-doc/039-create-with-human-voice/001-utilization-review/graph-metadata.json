@@ -208,7 +208,7 @@
     ],
     "causal_summary": "The mode ships a nine-scenario manual-testing playbook that nobody had ever run, so no claim it makes about the workflow had been tested against the workflow",
     "created_at": "2026-09-02T18:52:03Z",
-    "last_save_at": "2026-09-02T22:02:37.299Z",
+    "last_save_at": "2026-09-11T16:42:11.985Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,13 +219,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cac45db55b4271c4006c2970e8cec627f0ceb88619889391b7adf3a8ce0a6d26",
+    "source_fingerprint": "sha256:bd1b4c9d26c3023063292233c057b467ca356455a8f0ef381431b8cbaf3aec03",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "09be8e75a023768c1fecf576b31e0114b85d18aac05f64bd7037087ce337ffc5",
       "plan.md": "5585965071b299f77718e6f90c2b9c4032a824a2b4610564ec4df76f753d3108",
       "tasks.md": "fd5d6fa132c4731fcca38d3e50c0fe3c132629f900bf79774621ad7073ec335f",
-      "implementation-summary.md": "c0943a6b2abd89bd4b9dd6e1fca4aff4148e5c5ff3f5eb33752a144acbbd8f5a"
+      "implementation-summary.md": "d40815dfce18634f41fe42dca6050edbd3894db971ab22d1629b7d85ef61f9e2"
     },
     "last_active_child_id": null,
     "last_active_at": null

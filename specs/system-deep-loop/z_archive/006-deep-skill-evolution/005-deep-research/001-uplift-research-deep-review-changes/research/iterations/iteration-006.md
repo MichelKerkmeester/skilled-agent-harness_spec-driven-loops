@@ -2,7 +2,7 @@
 
 ## Summary
 
-Adversarial check of `deep-research/changelog/v1.12.0.0.md` (just shipped in commit `56456514ce`) against actual arc 118 changes. **Verdict: PASS** — zero factual errors, exaggerated claims, or missing items. Devin wrote iteration-006.md + iter-006.jsonl to `.claude/skills/deep-research/review/` instead of the 119 packet path — captured here from log.
+Adversarial check of `deep-research/changelog/v1.12.0.0.md` (just shipped in commit `3850237631`) against actual arc 118 changes. **Verdict: PASS** — zero factual errors, exaggerated claims, or missing items. Devin wrote iteration-006.md + iter-006.jsonl to `.claude/skills/deep-research/review/` instead of the 119 packet path — captured here from log.
 
 ## Findings
 

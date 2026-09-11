@@ -19,7 +19,7 @@ contextType: "implementation"
 
 ### Summary
 
-This child phase executed (commit 818db21c54). All 19 command docs under `.opencode/commands` were reviewed against shipped state and the one factual drift found, a fable-mode route reference in `doctor/speckit.md`, was fixed. The `.claude/commands` mirror is a symlink so the same edit covers it. The deep-research command-router and `agent_router.md` stay deferred to the concurrent session that owns them.
+This child phase executed (commit 7239e3d2bd). All 19 command docs under `.opencode/commands` were reviewed against shipped state and the one factual drift found, a fable-mode route reference in `doctor/speckit.md`, was fixed. The `.claude/commands` mirror is a symlink so the same edit covers it. The deep-research command-router and `agent_router.md` stay deferred to the concurrent session that owns them.
 
 ### Added
 
@@ -40,7 +40,7 @@ This child phase executed (commit 818db21c54). All 19 command docs under `.openc
 
 | Check | Result |
 |-------|--------|
-| Cleanup execution | Executed at 818db21c54, one route-drift fix, concurrent subset deferred |
+| Cleanup execution | Executed at 7239e3d2bd, one route-drift fix, concurrent subset deferred |
 | Task completion | PASS, all tasks done, 0 open |
 | Strict validation | PASS, 0 errors and 0 warnings |
 

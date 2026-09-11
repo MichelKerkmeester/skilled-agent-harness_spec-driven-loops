@@ -188,7 +188,7 @@
     ],
     "causal_summary": "`manual-testing-playbook/` has 20 category subdirectories (a `find -maxdepth 1 -type d` count; the dispatching brief cited 21 — corrected here to the measured count)",
     "created_at": "2026-07-27T14:56:08.891Z",
-    "last_save_at": "2026-08-30T15:39:13.041Z",
+    "last_save_at": "2026-09-11T16:41:57.098Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:50c35382985be2dff21c45308c033903c3f4b6c7448c8be24dcfa4349f8a940e",
+    "source_fingerprint": "sha256:106e5ad96f623e43f4c7b037c2363922d11bd22d1c2ef36c663b402c5152b0f0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2837445f4973661e99e49164b13de3e77da0d54e71369dd7513ddd7ce4a35d76",
       "plan.md": "2638f3a98dec7a1701020db2c12c2a13299d388ae002e9acd7e01d505e29f679",
       "tasks.md": "bc82aa48fcde399c8d216fa48ccf6b993aed6cd26ce7e94192a3a5e711d372f8",
-      "implementation-summary.md": "73038a33c0a3e6699a2efb34920d34bf394e77b368259152c4aada553511d03c"
+      "implementation-summary.md": "727908f5df7b80fc57ba59d1bda2d8422444cc244eace366269cf6c04ee34fe7"
     },
     "last_active_child_id": null,
     "last_active_at": null

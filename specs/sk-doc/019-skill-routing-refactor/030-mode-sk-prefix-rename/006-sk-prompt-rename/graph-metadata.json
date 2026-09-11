@@ -184,7 +184,7 @@
     ],
     "causal_summary": "Move prompt-improve and prompt-models to sk-prompt-improve and sk-prompt-models across directories, routing keys, gold and consumers, holding the Lane C verdict at PASS 100.",
     "created_at": "2026-07-28T05:34:11.011Z",
-    "last_save_at": "2026-08-30T15:39:15.752Z",
+    "last_save_at": "2026-09-11T16:42:08.307Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -193,13 +193,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e15bcbc07cc3f08ed6c782d8e7d6765b21261e1dde885de88c4728a67a8f2257",
+    "source_fingerprint": "sha256:5eba7ca8f19ba3851627f42d9ef970bb6ac0af98b687b223c134eb85c523df40",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "40ee7f53d3a3060ba005197551cb3e4a88d990c0ee34a4f4bbc6c08b7c8e8da0",
       "plan.md": "b376baf0fe51e7f20dbaecb7903b769d7d14540ac60c76b31229d579b71fc3dc",
-      "tasks.md": "770520b0763218e9737419fa71f27c24f386f97c2ea255554190a38c934d0c46",
-      "implementation-summary.md": "0692681b77e8ba627fe3ccdee90644b606ee6df38a387c111f846357ced65d61"
+      "tasks.md": "0225463142f8854f7652f4f344ca6eda70ed93b0402fb5eca87f124e9c2fc155",
+      "implementation-summary.md": "7e04585f641e010e5ac931279e1822db8dd3d6e89f3fefab253f93888e07d106"
     },
     "last_active_child_id": null,
     "last_active_at": null

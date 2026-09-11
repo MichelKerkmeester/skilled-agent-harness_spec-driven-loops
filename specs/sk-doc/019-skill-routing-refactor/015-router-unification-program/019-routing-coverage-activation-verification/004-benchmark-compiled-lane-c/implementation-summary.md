@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Benchmark — Compiled Lane C Parity"
-description: "Completion record for the non-frozen compiled Lane C parity harness. Implemented and committed in 8532c4b64b: compiled-routing-parity.cjs, the orchestrator hooks, the qualifiedIdToLeaf shape bridge, the vacuous-parity guard, and the flag-state/verdict-substate matrices — the frozen scorer trio untouched (SHA-256 unchanged)."
+description: "Completion record for the non-frozen compiled Lane C parity harness. Implemented and committed in bb2fcbbd27: compiled-routing-parity.cjs, the orchestrator hooks, the qualifiedIdToLeaf shape bridge, the vacuous-parity guard, and the flag-state/verdict-substate matrices — the frozen scorer trio untouched (SHA-256 unchanged)."
 trigger_phrases:
   - "compiled lane c parity implementation summary"
   - "benchmark parity delivered build record"
@@ -11,7 +11,7 @@ _memory:
     packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/004-benchmark-compiled-lane-c"
     last_updated_at: "2026-07-21T03:58:44Z"
     last_updated_by: "codex-gpt-5.6"
-    recent_action: "Reconciled delivery evidence to commit 8532c4b64b"
+    recent_action: "Reconciled delivery evidence to commit bb2fcbbd27"
     next_safe_action: "P4/011 operator-gated cutover remains pending"
     blockers: []
     key_files:
@@ -25,7 +25,7 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions:
-      - "Lane C parity is implemented in the non-frozen harness at 8532c4b64b"
+      - "Lane C parity is implemented in the non-frozen harness at bb2fcbbd27"
 ---
 # Implementation Summary: Benchmark — Compiled Lane C Parity
 
@@ -39,7 +39,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Implemented — landed in `8532c4b64b`. The non-frozen `compiled-routing-parity.cjs` harness, its orchestrator hooks, the `qualifiedIdToLeaf` bridge, the vacuous-parity guard, and the flag-state/verdict-substate matrices are built; the three frozen scorer files stayed byte-identical (SHA-256 unchanged) and routing stays identical to legacy |
+| **Status** | Implemented — landed in `bb2fcbbd27`. The non-frozen `compiled-routing-parity.cjs` harness, its orchestrator hooks, the `qualifiedIdToLeaf` bridge, the vacuous-parity guard, and the flag-state/verdict-substate matrices are built; the three frozen scorer files stayed byte-identical (SHA-256 unchanged) and routing stays identical to legacy |
 | **Date** | 2026-07-20 |
 | **Level** | 2 |
 | **Serving authority** | Not applicable — this child never changes serving authority; it is a benchmark/CI diagnostic that reads it |
@@ -52,7 +52,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-**Implemented and committed in `8532c4b64b`.** The non-frozen `compiled-routing-parity.cjs` harness now exercises the promoted compiled-routing closure and calls the frozen `evaluateRouteGold` evaluator without re-implementing it. It hard-fails vacuous parity unless the promoted hub manifest is compiled-serving, translates `targetQualifiedIds` through the shared `qualifiedIdToLeaf` boundary, preserves distinct compiled-serving/drifted/broken sub-verdicts, covers the full unset/`0`/`1`/invalid flag matrix, and names this lane as the single blocking drift-gate owner.
+**Implemented and committed in `bb2fcbbd27`.** The non-frozen `compiled-routing-parity.cjs` harness now exercises the promoted compiled-routing closure and calls the frozen `evaluateRouteGold` evaluator without re-implementing it. It hard-fails vacuous parity unless the promoted hub manifest is compiled-serving, translates `targetQualifiedIds` through the shared `qualifiedIdToLeaf` boundary, preserves distinct compiled-serving/drifted/broken sub-verdicts, covers the full unset/`0`/`1`/invalid flag matrix, and names this lane as the single blocking drift-gate owner.
 
 ### Files Delivered
 
@@ -103,14 +103,14 @@ The harness reads the promoted hub manifest first and returns `vacuous` before c
 | Verdict sub-state | Covered for compiled-serving, legacy-fallback-drifted, and broken-compiled-path without OR-collapse |
 | Report rendering | Covered for a populated JSON-derived block and omission when parity did not run |
 | Default-off behavior | Covered: parity is disabled unless the operator opts in |
-| Commit evidence | All implementation and tests above landed in `8532c4b64b` |
+| Commit evidence | All implementation and tests above landed in `bb2fcbbd27` |
 
 ## Milestone Status
 
 | Milestone | Status | Evidence |
 |-----------|--------|----------|
-| M0 readiness | Done | Promoted runtime and frozen-scorer pins available before `8532c4b64b` |
-| M1 harness + bridge | Done | Parity harness and `qualifiedIdToLeaf` landed in `8532c4b64b` |
+| M0 readiness | Done | Promoted runtime and frozen-scorer pins available before `bb2fcbbd27` |
+| M1 harness + bridge | Done | Parity harness and `qualifiedIdToLeaf` landed in `bb2fcbbd27` |
 | M2 orchestration | Done | Row attach, rollup, blocking verdict, report renderer, and loop-host forwarding landed |
 | M3 verification | Done | Comprehensive parity Vitest file landed with the implementation |
 
@@ -130,7 +130,7 @@ The harness reads the promoted hub manifest first and returns `vacuous` before c
 <!-- ANCHOR:follow-up -->
 ## Follow-ups
 
-- [x] Harness, orchestrator integration, shared shape bridge, renderer, and verification suite landed in `8532c4b64b`.
+- [x] Harness, orchestrator integration, shared shape bridge, renderer, and verification suite landed in `bb2fcbbd27`.
 - [ ] Exercise the opt-in lane during the operator-gated P4/011 canary after the coverage-closure join gate is green.
 - [ ] Keep the repository default off until that operator decision; this packet provides evidence but never performs the flip.
 

@@ -1,6 +1,6 @@
-# Iteration 001 — Wave 1: adversarial review of the remediation + B1 (post-commit `001ec9c8c8`)
+# Iteration 001 — Wave 1: adversarial review of the remediation + B1 (post-commit `f6c8d81058`)
 
-Three claude2-opus read-only seats reviewed the work shipped in `001ec9c8c8` (sk-doc dissection, the 152-merge dead-path sweep, and the B1 council-graph probe + 009 reconciliation). Result: **0 P0, 0 P1, 3 P2** — the bulk verified clean (content fidelity, anchor repoints, repoint targets, 6/18 gate honesty, council smokes all independently reproduced by the seats). All three P2s remediated in this session.
+Three claude2-opus read-only seats reviewed the work shipped in `f6c8d81058` (sk-doc dissection, the 152-merge dead-path sweep, and the B1 council-graph probe + 009 reconciliation). Result: **0 P0, 0 P1, 3 P2** — the bulk verified clean (content fidelity, anchor repoints, repoint targets, 6/18 gate honesty, council smokes all independently reproduced by the seats). All three P2s remediated in this session.
 
 ## Findings + disposition
 

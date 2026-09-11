@@ -45,6 +45,8 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
+      ".opencode/skills/sk-design/command-metadata.json",
+      ".opencode/skills/sk-design/hub-router.json",
       ".opencode/skills/sk-design/leaf-manifest.json",
       ".opencode/specs/sk-design/014-template-conformance/spec.md"
     ],
@@ -71,6 +73,18 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "command-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/command-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/hub-router.json",
         "source": "derived"
       },
       {
@@ -180,23 +194,11 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup [confirm citing sites, ~15m]",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`design-interface/references/aesthetics/` holds 5 hand-written look descriptions (`minimalist.md`, `brutalist.md`, `soft.md`, `apple-bento.md`, `README.md`, ~290 lines total) and a paired `--mode aesthetic` argument lane wired through `SKILL.md`'s `AESTHETICS` intent, `command-metadata.json`'s task-lane table, `commands/interface/design.md`'s lane row and `argument-hint`, its 2 YAML assets, and `hub-router.json`'s vocabulary",
     "created_at": "2026-07-27T16:52:20.774Z",
-    "last_save_at": "2026-08-30T15:39:13.388Z",
+    "last_save_at": "2026-09-11T16:41:57.276Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:386f97f39ec57e17dc47f6f8e1d18ecbcfee12a7b1177fde37f72fc0bd0fe2b3",
+    "source_fingerprint": "sha256:13cac164171eb01a088c6f15bda7ea2423dcf42392cbeec4146f02daa9ba17b9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "250e452c0de961859501a468458d5e17113e00bc40a5ff98fd3f0d5c82ce6e25",
+      "spec.md": "75a555afa659c0555b5c48fa772d6619f75aba8470d53a090e47def8fb6967cf",
       "plan.md": "73d494b69eefe60d475dc4e7c766a9275dfe20c80012662489f7224a5e2e11da",
-      "tasks.md": "0bbcec4ed489ca2ca4a8c4abef03636ea3eba8d82438c66eb95cb4e4d911c03f",
-      "implementation-summary.md": "2d246fc0f274b1a2b692a46a05b418c95f9e6f18a4c6fc4e84847083ced79f32"
+      "tasks.md": "c81523930c529258f77e1176f6507a28f43b7bb4ebbe7337231b2f269770dac7",
+      "implementation-summary.md": "3989679a89828fd0f811e08fe842690d8fda5c558e856258cb418d0741ead782"
     },
     "last_active_child_id": null,
     "last_active_at": null

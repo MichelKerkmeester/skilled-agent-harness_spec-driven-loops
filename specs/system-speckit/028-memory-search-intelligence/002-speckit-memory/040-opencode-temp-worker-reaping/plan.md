@@ -109,9 +109,9 @@ Test spawns launcher -> launcher spawns daemon detached+unref'd -> with re-elect
 - [x] Root cause B traced: embedder wedge via `hf-model-server` sidecar + demand-listener ownership gap (`mk-spec-memory-launcher.cjs:1781`, `hf-local.ts:501-504,718-785`)
 
 ### Phase 2: Core Implementation (shipped)
-- [x] Layer 0: default `SPECKIT_DAEMON_REELECTION=0` in `spawnLauncher` test helper (commit `90a2462721`)
-- [x] Layer 0: `afterEach` hard-kill of lease-recorded `childPid`/`modelServerPid` (commit `90a2462721`)
-- [x] Layer 1: `orphan-mcp-sweeper.sh` classifies `hf-model-server`, extends busy-preserve rule to `hf-embed.sock` (commit `d4be07abbc`)
+- [x] Layer 0: default `SPECKIT_DAEMON_REELECTION=0` in `spawnLauncher` test helper (commit `65f05f37b9`)
+- [x] Layer 0: `afterEach` hard-kill of lease-recorded `childPid`/`modelServerPid` (commit `65f05f37b9`)
+- [x] Layer 1: `orphan-mcp-sweeper.sh` classifies `hf-model-server`, extends busy-preserve rule to `hf-embed.sock` (commit `2dbd92b8f8`)
 - [x] Operational: killed 32 accumulated zombie daemons (manual, this session, not a repo change)
 - [x] Operational: restarted the wedged daemon and rebuilt native `better-sqlite3` to the Node-22/MODULE_VERSION-127 ABI (manual, this session)
 
@@ -162,7 +162,7 @@ Test spawns launcher -> launcher spawns daemon detached+unref'd -> with re-elect
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: The `afterEach` hard-kill or default-off re-election regresses another test relying on cross-test daemon adoption, or the sweeper's `hf-model-server` classification wrongly reaps a busy production sidecar.
-- **Procedure**: Revert `90a2462721` and/or `d4be07abbc`; if a specific test needs cross-test adoption, re-enable `SPECKIT_DAEMON_REELECTION` per-test rather than reverting the harness default globally.
+- **Procedure**: Revert `65f05f37b9` and/or `2dbd92b8f8`; if a specific test needs cross-test adoption, re-enable `SPECKIT_DAEMON_REELECTION` per-test rather than reverting the harness default globally.
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -204,8 +204,8 @@ Investigation ──┬──> Layer 0 fix ──┐
 | Phase | Complexity | Estimated Effort |
 |-------|------------|-------------------|
 | Investigation (process census + root-cause tracing) | Medium | This session |
-| Layer 0 fix + verification | Low-Medium | This session (commit `90a2462721`) |
-| Layer 1 fix + verification | Low | This session (commit `d4be07abbc`) |
+| Layer 0 fix + verification | Low-Medium | This session (commit `65f05f37b9`) |
+| Layer 1 fix + verification | Low | This session (commit `2dbd92b8f8`) |
 | Operational cleanup | Low | This session |
 | Remaining: activation | Low | Follow-up, operator-staged |
 | Remaining: sweeper hardening | Medium | Follow-up |
@@ -225,7 +225,7 @@ Investigation ──┬──> Layer 0 fix ──┐
 
 ### Rollback Procedure
 1. **Immediate**: None required in production - both shipped fixes are test-harness/shell-script scoped; no deployed runtime service was changed.
-2. **Revert code**: `git revert d4be07abbc 90a2462721`
+2. **Revert code**: `git revert 2dbd92b8f8 65f05f37b9`
 3. **Verify**: Re-run `launcher-lease.vitest.ts` and confirm it returns to the pre-fix 6/11 (documents the regression, does not itself fix anything).
 4. **Notify**: N/A - no deployed service was touched by the shipped layers.
 

@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The 029 deep-research traced the vague-query benchmark findings to six fixable causes in the live memory-search pipeline",
     "created_at": "2026-06-27T17:15:43.628Z",
-    "last_save_at": "2026-09-07T16:18:34.119Z",
+    "last_save_at": "2026-09-11T16:42:43.740Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2b7b90ea31c8c742c3ada6deceaf8f7f5ab1b0797b65998991167bdf890b9199",
+    "source_fingerprint": "sha256:45c807983fab6179dd5885765f7dc9c4a6c5dddcc04f21a83f6d072b74cf0a94",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d4f8bb9a17ecbf7f5a2f7934fa9e45119c06f514ef4ae1457cb429cf2a598b8d",
       "plan.md": "3fff298499dd062d67f9929ca5c13d7bd4db6e6b230794310490fab140f5a07e",
       "tasks.md": "ce03c42ae4d890a8ce5784f3122dfd6e8d5f82375bd812e2863374803504acfa",
-      "implementation-summary.md": "1e2795a901dc4b3c324d7a2515c08057785d8422f34dcf3db1463931a384c8a3"
+      "implementation-summary.md": "9c2ca36b956687600fff2e8ffd2b40a7dd3581c9253f7f92f4e3f8818a9af28a"
     },
     "last_active_child_id": null,
     "last_active_at": null

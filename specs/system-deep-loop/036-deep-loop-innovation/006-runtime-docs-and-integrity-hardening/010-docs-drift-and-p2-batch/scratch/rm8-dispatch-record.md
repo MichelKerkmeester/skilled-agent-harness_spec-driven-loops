@@ -9,7 +9,7 @@ trigger_phrases: []
   test edits explicitly banned.
 - **L2 (isolation):** `--dir` = `.worktrees/015-036-mode-gate-strict-validator`
   (branch `worktrees/015-036-mode-gate-strict-validator`, allocated by `sk-git/scripts/worktree-naming.sh`).
-- **L3 (recovery baseline):** worktree base commit `11d87179e5a568fa3fe34fa4f58c2d732e8c2a5d`.
+- **L3 (recovery baseline):** worktree base commit `f85d53e9ab04db007b8288e4f26680a9bb5f67a5`.
   Main checkout carries unrelated sibling-lane dirt (048→049 rename, 039/040 deletions, sk-vision edits)
   left untouched per scope lock; the worktree is cut from the commit, so that dirt is outside the blast radius.
 - **L4 (record):** this file. Executor `opencode-go/deepseek-v4-flash --variant max`,

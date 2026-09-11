@@ -38,8 +38,8 @@ Refs: specs/sk-git/028-crawlable-commit-history      # final contiguous block pa
 $ message text is not unique in this history:
 duplicated distinct subjects: 413 | commits sharing a duplicated subject: 1002
 
-$ git show 8649953e01 | git patch-id --stable
-90bb5766000c140d335296d8e7b184acb03fb8b0 8649953e01f35ec4d7e21d2e5ed6dfaadf77db80
+$ git show 2d356893a8 | git patch-id --stable
+90bb5766000c140d335296d8e7b184acb03fb8b0 2d356893a847d5facc8c1ac2a632fcfbc7b02eae
 ```
 
 ## Findings

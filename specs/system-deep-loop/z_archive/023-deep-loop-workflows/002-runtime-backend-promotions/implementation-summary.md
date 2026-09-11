@@ -45,7 +45,7 @@ _memory:
 | **Status** | Complete (in `dlw-build` worktree; merges to `027` after the deep-review gate) |
 | **Date** | 2026-06-15 |
 | **Depends on** | phase 001 |
-| **Worktree** | `dlw-build` (off `a39e618f2e`) |
+| **Worktree** | `dlw-build` (off `bec79df479`) |
 
 <!-- /ANCHOR:metadata -->
 ---

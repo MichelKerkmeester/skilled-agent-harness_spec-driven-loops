@@ -45,7 +45,7 @@ _memory:
 | **Testing** | `validate.sh --strict` on this packet; per-finding code verification |
 
 ### Overview
-A read-only review comparing user-facing docs against seven shipped change-areas (packets 013/014/015/016 + release) on `origin/main` HEAD `75cfec1700`. Ten bounded review passes were dispatched (one doc area each) to stay under gpt-5.5-fast's broad-audit timeout; every candidate finding was then adversarially verified by the orchestrator against the real code before inclusion, since the model passes systematically over-applied the advisor-scoped embedder/reranker removal to mk-spec-memory.
+A read-only review comparing user-facing docs against seven shipped change-areas (packets 013/014/015/016 + release) on `origin/main` HEAD `ce22801ff5`. Ten bounded review passes were dispatched (one doc area each) to stay under gpt-5.5-fast's broad-audit timeout; every candidate finding was then adversarially verified by the orchestrator against the real code before inclusion, since the model passes systematically over-applied the advisor-scoped embedder/reranker removal to mk-spec-memory.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -101,7 +101,7 @@ The review is a one-way comparison: docs (read-only) vs shipped code (ground tru
 |------------|-------|
 | `opencode` CLI + OpenAI auth | gpt-5.5-fast high dispatch; provider pre-flight confirmed |
 | `gtimeout` | bounded dispatch (600-1200s per pass) |
-| Repo code on `origin/main` `75cfec1700` | ground truth for verification |
+| Repo code on `origin/main` `ce22801ff5` | ground truth for verification |
 <!-- /ANCHOR:dependencies -->
 
 ---

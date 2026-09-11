@@ -47,7 +47,7 @@ _memory:
 | **Completed** | 2026-07-20 |
 | **Level** | 2 |
 | **Status** | Complete |
-| **Requested base** | `fe6ca3030917073f3b478bc044e10034dcc4394b` |
+| **Requested base** | `573a44951386fab3556b53b39c6008ec74b22304` |
 | **Source candidate** | `401c7c0ac35bd81c2fdb75a63e30beb8da579593` |
 | **Change class** | Documentation-only ratification |
 <!-- /ANCHOR:metadata -->

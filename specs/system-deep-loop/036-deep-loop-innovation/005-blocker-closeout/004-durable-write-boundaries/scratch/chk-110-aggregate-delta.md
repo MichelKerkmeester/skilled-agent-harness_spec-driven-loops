@@ -5,7 +5,7 @@ trigger_phrases: []
 # CHK-004 / CHK-110 / T022 — whole-suite aggregate and delta
 
 **Run:** full `runtime` suite, serial (`fileParallelism:false`), single process, no competing dispatch.
-Worktree `016-036-torn-tail-marker-ordering` at base `409e2346c0a` **plus T015**.
+Worktree `016-036-torn-tail-marker-ordering` at base `d0e91360777` **plus T015**.
 Prerequisite: `npm rebuild better-sqlite3` (the pre-existing binding was ABI 127 against node ABI 141
 and failed `ERR_DLOPEN_FAILED`; this is the blocker the `021` baseline recorded as dominant).
 
@@ -26,7 +26,7 @@ in full below. Neither cause is `024`.
 ## Attribution of all 23 failing files
 
 ### Cause A — six ledger-schema suites truncated to imports-only (6 files, ~96 tests missing)
-`2666012cfe` ("chore(repo): commit accumulated spec/skill WIP, finalize system-code-graph
+`b49a891634` ("chore(repo): commit accumulated spec/skill WIP, finalize system-code-graph
 decommission") cut every one of these to 11 lines:
 
 | suite | before | after |
@@ -39,8 +39,8 @@ decommission") cut every one of these to 11 lines:
 | deep-ai-council-ledger-schema | 909 | 11 |
 
 7,127 lines of test code removed; each file now fails with `No test suite found in file`.
-NOT `024`: at `5c98e4654e` (the gateway-only fenced ledger mutation) deep-research-ledger-schema was
-still 995 lines, and at `aa66365e78` it was 1019. The loss happens only at `2666012cfe`.
+NOT `024`: at `0c5c966015` (the gateway-only fenced ledger mutation) deep-research-ledger-schema was
+still 995 lines, and at `8a49bc4703` it was 1019. The loss happens only at `b49a891634`.
 `agent-improvement-ledger-schema` (14 tests) and `model-benchmark-ledger-schema` (15 tests) survived.
 
 ### Cause B — stale state-census path (5 collection failures + 5 test failures)

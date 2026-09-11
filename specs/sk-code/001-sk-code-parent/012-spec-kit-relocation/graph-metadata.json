@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Two spec-folder authoring docs lived under sk-code, but spec-folder authoring is system-spec-kit's domain, not a code surface",
     "created_at": "2026-07-05T04:34:33.564Z",
-    "last_save_at": "2026-08-30T15:39:10.842Z",
+    "last_save_at": "2026-09-11T16:41:50.876Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,13 +200,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b96b28a1e7129a0e997dcbdfe535ff88c7a7df63eafead9b9cbd0ebd61b05c51",
+    "source_fingerprint": "sha256:1fe1b65eded81c0547f51bbceee4998a73f4319e3f490f7237a9af1711557eb2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7d99265ebdc94ae2be71023fdaff4e414ae89c79c7be95c4595805b73b102eb5",
-      "plan.md": "b49090e742b832ce2d550c4bca9ea82741b4987c3d3eec95e7a7ae60b6c66c3c",
-      "tasks.md": "6b41c3152e19bd273f844b8a35636516012f6876533ca4ea0637fa73d00d59d0",
-      "implementation-summary.md": "c45d4a3483f4c5ae60d4be3af3d9459e9be85f4212ac364d44d93423c25ee7ba"
+      "spec.md": "d202dd3ce64ae36a913979e786b6f21dc199f93bca902707fbb9303f27348880",
+      "plan.md": "5df8a4efc31ba3826bbecf509008deb2c1ef0badd026e2709fbff473b75b94d1",
+      "tasks.md": "e14d1ad057cd981409d1d01b37c06a9ecded432b5fa43d2175a50d07b08d16dd",
+      "implementation-summary.md": "2998bb831d68de1b143794c3265aa115b79b707b0c3dee20fe7fdf5be5a8f2c7"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -44,7 +44,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T-001 Create a detached worktree at `origin/main`. Evidence: worktree at `790c3dfc1c5`.
+- [x] T-001 Create a detached worktree at `origin/main`. Evidence: worktree at `d474140721b`.
 - [x] T-002 Read the guard's true exit status without a pipe. Evidence: `GUARD EXIT=1`, `cli-external-orchestration stale-manifest`.
 - [x] T-003 Capture both hashes. Evidence: selected `84e253d5…` generation 5, current `d307e097…`.
 - [x] T-004 Reproduce the user-visible failure. Evidence: `resolve.cjs` returned `{"servingAuthority":"legacy","hubId":"cli-external-orchestration"}`.
@@ -72,7 +72,7 @@ _memory:
 - [x] T-012 Run the regression suites. Evidence: `compiled-route-manifest.test.cjs` 42 pass / 0 fail; bin vitest 34 pass, exit 0.
 - [x] T-013 Negative-control the canary. Evidence: it fails identically on pristine `origin/main`, asserting rollout-frozen source digests.
 - [x] T-014 Prove the final state is clean. Evidence: build residue removed; `git status` shows exactly the two manifests.
-- [x] T-015 Reconcile against the branch state. Evidence: `3a61fa96ac` landed the same repair on `main` and `skilled/v4.0.0.0`; rebasing onto it left no manifest diff, and the guard exits 0 with five hubs fresh on that commit.
+- [x] T-015 Reconcile against the branch state. Evidence: `54ca8d7825` landed the same repair on `main` and `skilled/v4.0.0.0`; rebasing onto it left no manifest diff, and the guard exits 0 with five hubs fresh on that commit.
 <!-- /ANCHOR:phase-3 -->
 
 ---

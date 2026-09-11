@@ -46,8 +46,6 @@
       "tasks.md",
       "decision-record.md",
       "implementation-summary.md",
-      "lib/content-id.ts",
-      "formatters/search-results.ts",
       "shared/algorithms/rrf-fusion.ts"
     ],
     "entities": [
@@ -79,18 +77,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "content-id.ts",
-        "kind": "code",
-        "path": "lib/content-id.ts",
-        "source": "derived"
-      },
-      {
-        "name": "search-results.ts",
-        "kind": "code",
-        "path": "formatters/search-results.ts",
         "source": "derived"
       },
       {
@@ -194,11 +180,23 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "commits",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The Memory MCP fuses ranked signals and renders a result set the downstream agent loop caches against, but its ordering is not reproducible: the candidate-merge comparators sort score-only with non-content tie-breaks (input-order or clock-derived `updatedat`), the four ranked ANN `ORDER BY distance` queries have no tie-break so which rows survive the LIMIT into fusion is run-to-run unstable, and recall serialization is a bare `JSON.stringify` with no content-derived render-order stage (`research.md` Internal Baseline, `001` iter-3 Q5)",
     "created_at": "2026-06-19T05:40:47.071Z",
-    "last_save_at": "2026-08-30T15:39:34.829Z",
+    "last_save_at": "2026-09-11T16:42:40.739Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,14 +206,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:219b155c3ba750f031b2bf1bc192a4b34d30eae171db7b2ea99a6f949114394e",
+    "source_fingerprint": "sha256:85f42f4342dd84609e1afda9915218cb1f694328d800bcab3893f20d9b1c7f29",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6839c48707ba91ba3e94173df25e04452535556b736333727075f21bf85d6335",
-      "plan.md": "4a385023300140594f009e210a1c61d17d6b747041787ab77c26855eab51cddd",
-      "tasks.md": "5f3b3979c69413abc74120b8b1639b3222a3442d57c3d82f1bc781c870c0f203",
-      "decision-record.md": "1dfe1e8e20971dda7035025f3b77d6f8dcbc9397aa75f6c4cc445228d429d9c1",
-      "implementation-summary.md": "6b3685a520758ea5a16d4f40074f75dc53cb4ffb7331397010078858186d975a"
+      "spec.md": "e328d686dc2cc908488872008abfe7808f83dda4c184245e734953c02783a0d0",
+      "plan.md": "b972fcde5a30c860c44fdabea0aef822cc6798b4ab97595bf7e3b5768aa373c0",
+      "tasks.md": "75834d2bd7389f2760e8473428a2f324e73526be2462199b669eb9534b33a1ae",
+      "decision-record.md": "f4a222a1c97cb1a7f33b3873a4a488e5c2d0d9ca2bb8e23f7653f379c2578e68",
+      "implementation-summary.md": "5a72bc9aef0246731e6bcab292c17e5ace9401bdeba5c53ea70cf394d74a24fc"
     },
     "last_active_child_id": null,
     "last_active_at": null

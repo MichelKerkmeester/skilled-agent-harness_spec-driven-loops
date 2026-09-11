@@ -93,7 +93,7 @@ Worker response arrives at `handleMessage`, pending entry is looked up and narro
 
 ### Phase 1: Setup
 - Validate scaffold.
-- Read predecessor docs, F37 precedent, current source/tests, and `ac54fd1062` sidecar diff.
+- Read predecessor docs, F37 precedent, current source/tests, and `a54ca01d50` sidecar diff.
 - Grep consumer surface for `buildSidecarEnv`.
 
 ### Phase 2: Core Implementation
@@ -130,7 +130,7 @@ Worker response arrives at `handleMessage`, pending entry is looked up and narro
 |------------|-----|
 | 020 parent spec | Halt-on-first-regression and bucket contract |
 | F37 precedent | Production/test interface separation pattern |
-| Bucket 1 commit `ac54fd1062` | Current sidecar env baseline |
+| Bucket 1 commit `a54ca01d50` | Current sidecar env baseline |
 | Findings registry | Source evidence for F9/F32/F39/F97/F99 |
 <!-- /ANCHOR:dependencies -->
 

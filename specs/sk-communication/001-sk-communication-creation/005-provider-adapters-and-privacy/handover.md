@@ -54,7 +54,7 @@ Open this handover when starting Phase 006. Phase 005 is complete at checkpoint 
 - **Phase completed**: Model records, conservative discovery, privacy-first routing, four provider families, bounded execution, and content-free evidence
 - **Handover time**: 2026-08-12T04:14:38Z
 - **Recent action**: Passed the 89-test package gate, 19-test focused matrix, dependency audit, package dry run, and 30-run routing benchmark.
-- **Implementation checkpoint**: `d8e5dc4791b1d4cc22500800650ed589248423dc`
+- **Implementation checkpoint**: `3452672fa4906ec45844385825914ebbe3b670ef`
 <!-- /ANCHOR:handover-summary -->
 
 ---

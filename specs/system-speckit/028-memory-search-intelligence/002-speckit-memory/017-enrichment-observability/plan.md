@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Enrichment Observability - read-side gauges (028/001 impl)"
-description: "Approach + sequencing for the decoupled enrichment-backlog gauges: pending/failed shipped at e1c6a3c793, gauge-lag (oldest-pending age) now extends the same health backlog query with no schema migration and no shared-infra dependency."
+description: "Approach + sequencing for the decoupled enrichment-backlog gauges: pending/failed shipped at 672d8a9187, gauge-lag (oldest-pending age) now extends the same health backlog query with no schema migration and no shared-infra dependency."
 trigger_phrases:
   - "enrichment observability plan"
   - "gauge lag implementation plan"
@@ -49,7 +49,7 @@ _memory:
 | **Testing** | vitest (handler-scoped unit test alongside the changed handler) |
 
 ### Overview
-Two read-side gauges over the background post-insert enrichment backlog. `gauge-pending-failed` already shipped - the pending/failed distribution is computed from the existing health backlog query and folded into `getBackgroundEnrichmentStats`. `gauge-lag` shipped at b18c077311: extends that same backlog query to read the oldest-pending `created_at` and derive an age/lag gauge. No new background state, no schema migration, no dependency on the C4-C consolidation cursor - the research is explicit that lag is decoupled and rides the existing columns.
+Two read-side gauges over the background post-insert enrichment backlog. `gauge-pending-failed` already shipped - the pending/failed distribution is computed from the existing health backlog query and folded into `getBackgroundEnrichmentStats`. `gauge-lag` shipped at 6864cc6a1d: extends that same backlog query to read the oldest-pending `created_at` and derive an age/lag gauge. No new background state, no schema migration, no dependency on the C4-C consolidation cursor - the research is explicit that lag is decoupled and rides the existing columns.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -110,7 +110,7 @@ Required inventories:
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
-### Phase 1: gauge-pending-failed (DONE - `e1c6a3c793`)
+### Phase 1: gauge-pending-failed (DONE - `672d8a9187`)
 - [x] Read-side pending/failed distribution computed from the backlog query
 - [x] Folded into `getBackgroundEnrichmentStats` (`pending`, `failed` fields)
 - [x] Catch-block leaves the distribution empty on a schema edge
@@ -135,7 +135,7 @@ Required inventories:
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
 | Unit | `memory-crud-health` lag computation: known-age fixture, empty backlog neutral, column-absent neutral | vitest |
-| Regression | pending/failed gauge values unchanged from the `e1c6a3c793` baseline | vitest (existing health test) |
+| Regression | pending/failed gauge values unchanged from the `672d8a9187` baseline | vitest (existing health test) |
 | Build | typecheck + dist build of the MCP server | `tsc` / package build |
 <!-- /ANCHOR:testing -->
 
@@ -148,7 +148,7 @@ Required inventories:
 |------------|------|--------|-------------------|
 | `memory_index.created_at` column | Internal (schema) | Green - CONFIRMED present (`lib/search/vector-index-schema.ts:368`) | gauge-lag has no age basis, degrade to neutral |
 | `memory_index.post_insert_enrichment_status` column | Internal (schema) | Green - CONFIRMED present (`lib/search/vector-index-schema.ts:1884-1885`) | Backlog query empty, lag neutral (existing catch-block path) |
-| gauge-pending-failed backlog query (`e1c6a3c793`) | Internal (this packet) | Green - shipped | lag extends this exact query, sequences directly after |
+| gauge-pending-failed backlog query (`672d8a9187`) | Internal (this packet) | Green - shipped | lag extends this exact query, sequences directly after |
 | C4-C consolidation cursor / Wave-1 shared infra | Internal | N/A - **decoupled** | No dependency, lag rides existing columns only [`../../research/roadmap.md:295`, `../../research/synthesis/01-go-candidates.md:32`] |
 
 **Sequencing**: gauge-pending-failed → gauge-lag (lag extends the same backlog query the pending/failed gauges introduced, no other ordering constraint). **Gate**: needs-benchmark only (structural-inference effort, no measured delta) - NOT schema-migration, NOT shared-infra-dep. Ships for correctness/reversibility per the 028 broadening doctrine.
@@ -160,5 +160,5 @@ Required inventories:
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: lag arithmetic skews on legacy timestamp formats, the new field breaks a health-response consumer or build/tests regress.
-- **Procedure**: branch-only, additive read-side field - revert the single `memory-crud-health.ts` hunk (and the optional `memory-save.ts` field). The pending/failed gauges (`e1c6a3c793`) are untouched and remain live, no schema or state to undo.
+- **Procedure**: branch-only, additive read-side field - revert the single `memory-crud-health.ts` hunk (and the optional `memory-save.ts` field). The pending/failed gauges (`672d8a9187`) are untouched and remain live, no schema or state to undo.
 <!-- /ANCHOR:rollback -->

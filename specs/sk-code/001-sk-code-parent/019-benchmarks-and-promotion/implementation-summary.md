@@ -61,11 +61,11 @@ The final 124 parent-hub gate shipped. Two of the three hubs received fresh add-
 
 | File | Action | Purpose | Commit |
 |------|--------|---------|--------|
-| `.opencode/skills/sk-design/benchmark/` | Added (prior phase) | sk-design Lane-C router-mode baseline (CONDITIONAL 69/100, D5 100/100) + README | `fc4644a98a` |
-| `.opencode/skills/deep-loop-workflows/benchmark/` | Added (prior phase) | deep-loop Lane-C router-mode baseline (CONDITIONAL 71/100, D5 100/100) + README | `50fbe53094` |
-| `.opencode/commands/doctor/scripts/parent-skill-check.cjs` | Updated | Promote checks 5-9 (+ 3d-canon fields) WARN->FAIL by default; `PARENT_HUB_CHECK_STRICT=0` WIP opt-out | `769845c5a8` |
-| `.opencode/commands/doctor/assets/doctor_parent-skill.yaml` | Updated | Severity language "migration-gated (WARN)" -> "canon (FAIL by default)" | `769845c5a8` |
-| `.opencode/commands/create/assets/create_parent_skill_{auto,confirm}.yaml` | Updated | Scaffolder guidance: checks 5-9 now block by default (canon-promoted) | `769845c5a8` |
+| `.opencode/skills/sk-design/benchmark/` | Added (prior phase) | sk-design Lane-C router-mode baseline (CONDITIONAL 69/100, D5 100/100) + README | `78294ba516` |
+| `.opencode/skills/deep-loop-workflows/benchmark/` | Added (prior phase) | deep-loop Lane-C router-mode baseline (CONDITIONAL 71/100, D5 100/100) + README | `59d000eb8e` |
+| `.opencode/commands/doctor/scripts/parent-skill-check.cjs` | Updated | Promote checks 5-9 (+ 3d-canon fields) WARN->FAIL by default; `PARENT_HUB_CHECK_STRICT=0` WIP opt-out | `3c06bda2eb` |
+| `.opencode/commands/doctor/assets/doctor_parent-skill.yaml` | Updated | Severity language "migration-gated (WARN)" -> "canon (FAIL by default)" | `3c06bda2eb` |
+| `.opencode/commands/create/assets/create_parent_skill_{auto,confirm}.yaml` | Updated | Scaffolder guidance: checks 5-9 now block by default (canon-promoted) | `3c06bda2eb` |
 | `.opencode/specs/sk-code/001-sk-code-parent/graph-metadata.json` | Updated | Parent rollup: `children_ids` 001-019, `last_active_child_id` 019, status complete | this close-out |
 | `.opencode/specs/sk-code/001-sk-code-parent/spec.md` | Updated | Parent status Active->Complete; phase map extended to 019 | this close-out |
 
@@ -133,7 +133,7 @@ None. Every gate this phase depended on cleared: deep-loop 018b landed, and all 
 |--------|--------|--------|--------|
 | NFR-P01 | Benchmark runtime recorded, no needless reruns | Baselines reused from 015/018; no redundant reruns | Pass |
 | NFR-S01 | No secrets in benchmark artifacts | Reports/data reviewed; none present | Pass |
-| NFR-R01 | Validator promotion reversible | Revert `769845c5a8` or set `PARENT_HUB_CHECK_STRICT=0` | Pass |
+| NFR-R01 | Validator promotion reversible | Revert `3c06bda2eb` or set `PARENT_HUB_CHECK_STRICT=0` | Pass |
 | NFR-R02 | Parent rollup preserves existing child refs | 001-009 retained; 010-019 added | Pass |
 
 <!-- /ANCHOR:nfr-verify -->

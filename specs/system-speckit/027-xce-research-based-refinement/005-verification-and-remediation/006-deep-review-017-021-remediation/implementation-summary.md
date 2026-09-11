@@ -121,7 +121,7 @@ This authoring step produced the remediation packet only — no reviewed code or
 
 1. **The P1 severity is unresolved by design** — T001 (renderer `$ARGUMENTS` behavior) must be verified in the implementation step before T002 can be classified as a code fix or a doc-note. This packet deliberately leaves it open.
 2. **No fixes applied** — every finding is a pending task; `completion_pct` is 0 and status is `not-started`.
-3. **Line numbers may drift** — cited `file:line` values are from the syntheses (commit-time for 021 = `372bb0f2cd`); each code task re-confirms its cite against the live file before editing.
+3. **Line numbers may drift** — cited `file:line` values are from the syntheses (commit-time for 021 = `da09d7c69e`); each code task re-confirms its cite against the live file before editing.
 4. **Optional cosmetic nits are deferred** — 017 c001/c005, 019/020 marker dedup/log, 021 backlog singletons are carried as `[P2-opt]` and may be bundled or dropped with documented reason.
 5. **Out-of-scope follow-ons remain** — the launcher lease-heartbeat mid-scan re-election and synchronous-path cancellability are the phases' own documented follow-ons, not carried here.
 <!-- /ANCHOR:limitations -->

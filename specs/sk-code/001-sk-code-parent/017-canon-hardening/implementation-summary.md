@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Phase 17 canon hardening"
-description: "Executed summary for phase 017: the parent-hub bundleRules vocabulary was reconciled to one canonical shape and sk-code registry/router hygiene shipped in 3a76f99ccb; the placeholder-tail cleanup was resolved by the 016 metadata refresh; sk-code parent-skill-check STRICT is 0/0."
+description: "Executed summary for phase 017: the parent-hub bundleRules vocabulary was reconciled to one canonical shape and sk-code registry/router hygiene shipped in b3364e230f; the placeholder-tail cleanup was resolved by the 016 metadata refresh; sk-code parent-skill-check STRICT is 0/0."
 trigger_phrases:
   - "phase 017 implementation summary"
   - "canon hardening executed summary"
@@ -31,9 +31,9 @@ _memory:
     open_questions: []
     answered_questions:
       - question: "Is this phase executed?"
-        answer: "Yes. bundleRules canon + sk-code registry/router hygiene shipped in 3a76f99ccb; sk-code parent-skill-check STRICT is 0/0."
+        answer: "Yes. bundleRules canon + sk-code registry/router hygiene shipped in b3364e230f; sk-code parent-skill-check STRICT is 0/0."
       - question: "Was the placeholder-tail cleanup done in 017?"
-        answer: "No. It was resolved by the 016 metadata refresh (af1170c663); 017 does not re-do it."
+        answer: "No. It was resolved by the 016 metadata refresh (907027032b); 017 does not re-do it."
 ---
 # Implementation Summary
 
@@ -52,7 +52,7 @@ _memory:
 | **Level** | 3 |
 | **Completion** | 100% |
 | **Created** | 2026-07-05 |
-| **Shipped In** | `3a76f99ccb` (placeholder-tail resolved by `af1170c663`) |
+| **Shipped In** | `b3364e230f` (placeholder-tail resolved by `907027032b`) |
 
 <!-- /ANCHOR:metadata -->
 ---
@@ -60,18 +60,18 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Phase 017 reconciled the parent-hub `bundleRules[]` vocabulary to one canonical shape and tidied the sk-code reference hub. The template and the validator (`parent-skill-check.cjs` check 5f) previously disagreed with the schema — the template used `when`/`primary`/`surfaces` and the validator read `modes`/`primary`/`evidence`, so a real bundle rule's mode references were invisible to the checker. Both moved to the schema's canonical `name`/`whenPrimary`/`includeSurfaces`/`whenAll`/`outcome` shape. sk-code's `surface-axis` packet list was renamed `surfacePackets` -> `surfaces`, and its registry and router versions were bumped from the 3-part `1.1.0` to the 4-part `4.1.0.0` (aligning with the hub identity). Shipped in `3a76f99ccb`.
+Phase 017 reconciled the parent-hub `bundleRules[]` vocabulary to one canonical shape and tidied the sk-code reference hub. The template and the validator (`parent-skill-check.cjs` check 5f) previously disagreed with the schema — the template used `when`/`primary`/`surfaces` and the validator read `modes`/`primary`/`evidence`, so a real bundle rule's mode references were invisible to the checker. Both moved to the schema's canonical `name`/`whenPrimary`/`includeSurfaces`/`whenAll`/`outcome` shape. sk-code's `surface-axis` packet list was renamed `surfacePackets` -> `surfaces`, and its registry and router versions were bumped from the 3-part `1.1.0` to the 4-part `4.1.0.0` (aligning with the hub identity). Shipped in `b3364e230f`.
 
 ### Files Changed
 
 | File | Action | Purpose | Commit |
 |------|--------|---------|--------|
-| `.opencode/commands/doctor/scripts/parent-skill-check.cjs` | Updated | Check 5f collects bundle-rule mode refs from the canonical `whenPrimary`/`includeSurfaces`/`whenAll` fields; absent fields are not punished | `3a76f99ccb` |
-| `.opencode/skills/sk-doc/assets/skill/parent_skill_hub_router_template.json` | Updated | `bundleRules` example rewritten to the canonical shape; ships one surfaceBundle and one orderedBundle example | `3a76f99ccb` |
-| `.opencode/skills/sk-code/mode-registry.json` | Updated | `extensions.surface-axis.surfacePackets` -> `surfaces`; version `1.1.0` -> `4.1.0.0` | `3a76f99ccb` |
-| `.opencode/skills/sk-code/hub-router.json` | Updated | Version `1.1.0` -> `4.1.0.0` | `3a76f99ccb` |
+| `.opencode/commands/doctor/scripts/parent-skill-check.cjs` | Updated | Check 5f collects bundle-rule mode refs from the canonical `whenPrimary`/`includeSurfaces`/`whenAll` fields; absent fields are not punished | `b3364e230f` |
+| `.opencode/skills/sk-doc/assets/skill/parent_skill_hub_router_template.json` | Updated | `bundleRules` example rewritten to the canonical shape; ships one surfaceBundle and one orderedBundle example | `b3364e230f` |
+| `.opencode/skills/sk-code/mode-registry.json` | Updated | `extensions.surface-axis.surfacePackets` -> `surfaces`; version `1.1.0` -> `4.1.0.0` | `b3364e230f` |
+| `.opencode/skills/sk-code/hub-router.json` | Updated | Version `1.1.0` -> `4.1.0.0` | `b3364e230f` |
 
-The planned schema-doc edit needed no change: the canonical shape was chosen to match `parent_hub_router_schema.md`, which already used `whenPrimary`/`includeSurfaces` — so only the template and validator moved to it. The planned placeholder-tail cleanup (three stale `"internal design notes"` fields in sk-code `description.json`/`graph-metadata.json`) was resolved by the 016 metadata refresh (`af1170c663`), so 017 does not re-do it.
+The planned schema-doc edit needed no change: the canonical shape was chosen to match `parent_hub_router_schema.md`, which already used `whenPrimary`/`includeSurfaces` — so only the template and validator moved to it. The planned placeholder-tail cleanup (three stale `"internal design notes"` fields in sk-code `description.json`/`graph-metadata.json`) was resolved by the 016 metadata refresh (`907027032b`), so 017 does not re-do it.
 
 <!-- /ANCHOR:what-built -->
 ---
@@ -79,7 +79,7 @@ The planned schema-doc edit needed no change: the canonical shape was chosen to 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The three bundleRules authorities were read first, then the canonical shape was settled on the schema's already-documented `whenPrimary`/`includeSurfaces` fields. The template and validator were edited to that shape, keeping the validator additive: check 5f collects references only from the canonical fields and does not fail on absent bundleRules. sk-code's `surfaces` rename and 4-part version bumps landed alongside, and JSON validity plus both parent-skill-check runs were confirmed before commit `3a76f99ccb`. No deep-loop-workflows files were touched.
+The three bundleRules authorities were read first, then the canonical shape was settled on the schema's already-documented `whenPrimary`/`includeSurfaces` fields. The template and validator were edited to that shape, keeping the validator additive: check 5f collects references only from the canonical fields and does not fail on absent bundleRules. sk-code's `surfaces` rename and 4-part version bumps landed alongside, and JSON validity plus both parent-skill-check runs were confirmed before commit `b3364e230f`. No deep-loop-workflows files were touched.
 
 <!-- /ANCHOR:how-delivered -->
 ---
@@ -91,7 +91,7 @@ The three bundleRules authorities were read first, then the canonical shape was 
 |----------|-----|
 | Adopt the schema's `whenPrimary`/`includeSurfaces` shape as canonical | It is the clearest public contract and already documented; the template and validator moved to it rather than inventing a fourth shape |
 | Keep check 5f additive/tolerant | The shared validator serves sk-code, sk-design, and deep-loop; 5f collects refs only from canonical fields and never fails on absent bundleRules, so deep-loop's 26 known failures did not increase |
-| Leave the placeholder-tail to phase 016 | The 016 metadata refresh (`af1170c663`) had already dropped the three stale `"internal design notes"` fields; re-doing it in 017 would be redundant |
+| Leave the placeholder-tail to phase 016 | The 016 metadata refresh (`907027032b`) had already dropped the three stale `"internal design notes"` fields; re-doing it in 017 would be redundant |
 | Reconcile only the generic canon shape, not concrete hub rules | Declarative sk-code/sk-design surfaceBundle rules are left to later phases; 017 shipped the shape, not the hub-specific rules |
 
 <!-- /ANCHOR:decisions -->
@@ -106,7 +106,7 @@ The three bundleRules authorities were read first, then the canonical shape was 
 | deep-loop STRICT collision guard | Pass | deep-loop STRICT held at 26 failures — no regression from the validator change |
 | Changed JSON validity | Pass | template, `mode-registry.json`, and `hub-router.json` parse as valid JSON |
 | vocab-sync (sk-code) | Pass | drift false, 0/0 |
-| Placeholder cleanup | Pass | zero `"internal design notes"` hits in the three named sk-code fields (removed by `af1170c663`) |
+| Placeholder cleanup | Pass | zero `"internal design notes"` hits in the three named sk-code fields (removed by `907027032b`) |
 
 <!-- /ANCHOR:verification -->
 ---
@@ -125,7 +125,7 @@ The three bundleRules authorities were read first, then the canonical shape was 
 
 | Planned | Actual | Reason |
 |---------|--------|--------|
-| Edit `parent_hub_router_schema.md` to the canonical shape | No schema edit | The schema already used `whenPrimary`/`includeSurfaces`; the canonical choice matched it, so only the template + validator moved (`3a76f99ccb`) |
-| Remove the three stale placeholder fields in this phase | Done by phase 016 | The 016 metadata refresh (`af1170c663`) dropped the stale merger/motion placeholders; 017 does not re-do it |
+| Edit `parent_hub_router_schema.md` to the canonical shape | No schema edit | The schema already used `whenPrimary`/`includeSurfaces`; the canonical choice matched it, so only the template + validator moved (`b3364e230f`) |
+| Remove the three stale placeholder fields in this phase | Done by phase 016 | The 016 metadata refresh (`907027032b`) dropped the stale merger/motion placeholders; 017 does not re-do it |
 
 <!-- /ANCHOR:deviations -->

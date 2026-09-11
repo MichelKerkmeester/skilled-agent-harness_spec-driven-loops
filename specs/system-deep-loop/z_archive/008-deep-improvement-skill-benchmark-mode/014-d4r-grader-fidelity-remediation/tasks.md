@@ -40,7 +40,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T-101 Recorded HEAD baseline `b697b0a1d1` (RM-8 L3); created `wt/0007-d4r-remediation` off it.
+- [x] T-101 Recorded HEAD baseline `c16171b893` (RM-8 L3); created `wt/0007-d4r-remediation` off it.
 - [x] T-102 Composed the RM-8-scoped per-finding remediation prompt (BANNED/ALLOWED + 28 fixes + behavior-preserving + hygiene + Gate-3 pre-answer).
 <!-- /ANCHOR:phase-1 -->
 
@@ -61,7 +61,7 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T-301 Reviewed the worktree diff (all 28 fixes, behavior-preserving, hygiene-clean, `--append-system-prompt` flag verified); integrated the 11 files to main — all 11 clean at HEAD `b697b0a1d1`, no collisions with the parallel session.
+- [x] T-301 Reviewed the worktree diff (all 28 fixes, behavior-preserving, hygiene-clean, `--append-system-prompt` flag verified); integrated the 11 files to main — all 11 clean at HEAD `c16171b893`, no collisions with the parallel session.
 - [x] T-302 Full suite `npx vitest run` 358/358 + drift guard 4/4 green on main; gpt-5.5 report copied to `proposals/REMEDIATION.md`; worktree + branch removed.
 <!-- /ANCHOR:phase-3 -->
 

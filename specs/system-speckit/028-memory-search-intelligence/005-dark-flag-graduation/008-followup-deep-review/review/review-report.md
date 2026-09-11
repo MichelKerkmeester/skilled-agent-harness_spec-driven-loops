@@ -4,7 +4,7 @@ verdict: "FAIL"
 severityCounts: { "P0": 3, "P1": 8, "P2": 4 }
 model: "claude-opus-4-8"
 method: "ten iterative opus passes, loop-until-dry, rotating review lenses"
-target: "028/005-dark-flag-graduation/007-graduation-follow-ups (commit 420c4734f3)"
+target: "028/005-dark-flag-graduation/007-graduation-follow-ups (commit 38b998353b)"
 trigger_phrases: []
 ---
 # Review Report: Graduation Follow-Ups, Opus Deep Review
@@ -48,7 +48,7 @@ Three P0 blockers, all in the code-graph bitemporal wiring, which corrupts live 
 
 ## Re-Review Outcome: PASS
 
-A second opus re-review (loop-until-dry) verified the fixes against the committed code (b8a7a07b17 + b542901459). New verdict: PASS, zero P0 and zero P1 remaining. All three prior bitemporal P0s are explicitly resolved, every cluster passes (bitemporal, search-budget, density, advisor-alias, deep-loop-gauges, dedup), and the live-read path is confirmed correct because queryEdgesFrom/queryEdgesTo filter on invalid_at IS NULL independent of the generation bump.
+A second opus re-review (loop-until-dry) verified the fixes against the committed code (039a7bd036 + 5417d9eb36). New verdict: PASS, zero P0 and zero P1 remaining. All three prior bitemporal P0s are explicitly resolved, every cluster passes (bitemporal, search-budget, density, advisor-alias, deep-loop-gauges, dedup), and the live-read path is confirmed correct because queryEdgesFrom/queryEdgesTo filter on invalid_at IS NULL independent of the generation bump.
 
 Two residual P2s remain, both as-of-only window-integrity issues in the as-of surface that P1-10 deliberately de-scoped. They are invisible to live reads and only surface through as-of reads under the bitemporal flag, so they are tracked for when the public as-of reader graduates rather than fixed now:
 
@@ -58,7 +58,7 @@ Two residual P2s remain, both as-of-only window-integrity issues in the as-of su
 
 ## Second Follow-Up Batch: Re-Review PASS
 
-After the PASS above, the user asked to fix every remaining finding, rec, and follow-up. Seven items shipped (commit 6f12d0641c) and a third opus re-review confirmed them: PASS, zero P0/P1/P2, all six code fixes verified sound against source and tests.
+After the PASS above, the user asked to fix every remaining finding, rec, and follow-up. Seven items shipped (commit 505f58cb9d) and a third opus re-review confirmed them: PASS, zero P0/P1/P2, all six code fixes verified sound against source and tests.
 
 - ensure-ready-bump: the auto-index path bumps the generation under the flag, so as-of windows are non-zero-width. Sound, byte-identical off.
 - lineage-validity: recordSupersedesLineage stamps valid_at, so SUPERSEDES lineage edges are as-of readable. Sound, byte-identical off.

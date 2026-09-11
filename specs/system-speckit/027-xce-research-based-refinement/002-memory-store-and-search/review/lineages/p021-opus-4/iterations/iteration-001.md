@@ -7,7 +7,7 @@ trigger_phrases: []
 ## Focus
 maxIterations=1 fan-out lineage (p021-opus-4). The target is a Level 1 packet with a 3-file blast radius, so all four dimensions were covered in one breadth pass rather than one-dimension-per-iteration.
 
-Files under review (shipped diff `372bb0f2cd`):
+Files under review (shipped diff `da09d7c69e`):
 - `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts` (lag sampler, `timedPhase`, `isCancelled` threading)
 - `.opencode/skills/system-spec-kit/mcp_server/lib/search/trigger-embedding-backfill.ts` (chunked phrase sync, cancel, cache-hit yield, `cancelled` status)
 - `.opencode/skills/system-spec-kit/mcp_server/tests/trigger-embedding-backfill.vitest.ts` (3 new cancel/yield cases)
@@ -46,7 +46,7 @@ _None._
 - REQ-001 (lag sampler + per-phase wall-clock, foreground unchanged): `LOOP_LAG_SAMPLE_MS=250`/`LOOP_LAG_WARN_MS=1000` (memory-index.ts:240-241); drift sampler logs `event-loop blocked ~<ms>` (line ~514) and `max-event-loop-lag ms=<ms>` in `finally` (line ~1480); `timedPhase` logs `phase=<label> ms=<elapsed>`; logging gated on `instrument`. **PASS** (logging gated; see F001 for the wrapper nit).
 - REQ-002 (chunk the unbounded transaction, never block): `syncPhraseChunk` over `PHRASE_SYNC_CHUNK_ROWS=200` slices (trigger-embedding-backfill.ts:169,247), `await setImmediate` strictly BETWEEN chunk transactions (line 258, comment 254-257), `isCancelled` at each chunk boundary (line 248) and each embedding row (line 275) returning `status:'cancelled'`, cache-hit fast-path yield every 50 rows (line 282). **PASS**.
 - REQ-003 (each un-yielded tail phase carries a full TTL): `timedPhase` fires `ctx.onPhase?.(phase)` (line ~1229) for orphan-sweep, enrichment-repair, trigger-backfill, near-dup-repair (lines 1239,1246,1256,1259). **PASS** for the full-scan tail (see F002 for the incremental path asymmetry).
-- REQ-004 (launcher root-cause resolved, no launcher change): `git show 372bb0f2cd --stat` lists no launcher/supervision file; working tree clean for `mk-spec-memory-launcher.cjs` / `model-server-supervision.cjs`. **PASS** (read-only investigation, no code change — verified by diff absence).
+- REQ-004 (launcher root-cause resolved, no launcher change): `git show da09d7c69e --stat` lists no launcher/supervision file; working tree clean for `mk-spec-memory-launcher.cjs` / `model-server-supervision.cjs`. **PASS** (read-only investigation, no code change — verified by diff absence).
 
 ## Assessment
 - New findings ratio: 0.40 (two P2 advisories; no correctness/security defects)

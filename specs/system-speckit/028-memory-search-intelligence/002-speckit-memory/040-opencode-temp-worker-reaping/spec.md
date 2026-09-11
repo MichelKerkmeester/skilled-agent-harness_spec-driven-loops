@@ -134,8 +134,8 @@ Eliminate the specific test-lifecycle leak that caused ~97% of the accumulation,
 
 | File Path | Change Type | Description |
 |-----------|-------------|--------------|
-| `.opencode/skills/system-spec-kit/mcp_server/tests/launcher-lease.vitest.ts` | Modified | Done - default `SPECKIT_DAEMON_REELECTION=0` in `spawnLauncher`, plus `afterEach` hard-kill of lease-recorded `childPid`/`modelServerPid` before temp-root removal (commit `90a2462721`) |
-| `.opencode/scripts/orphan-mcp-sweeper.sh` | Modified | Done - classify `hf-model-server` and extend the busy-preserve rule to count `hf-embed.sock` connections (commit `d4be07abbc`) |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/launcher-lease.vitest.ts` | Modified | Done - default `SPECKIT_DAEMON_REELECTION=0` in `spawnLauncher`, plus `afterEach` hard-kill of lease-recorded `childPid`/`modelServerPid` before temp-root removal (commit `65f05f37b9`) |
+| `.opencode/scripts/orphan-mcp-sweeper.sh` | Modified | Done - classify `hf-model-server` and extend the busy-preserve rule to count `hf-embed.sock` connections (commit `2dbd92b8f8`) |
 | `.opencode/scripts/session-cleanup.sh` | Config only, no code change | Remaining - flip `SPECKIT_STOP_HOOK_ORPHAN_SWEEP` from `off` to `dry-run` then `live` (line 30 gate) |
 | `.opencode/scripts/launchagents/com.michelkerkmeester.orphan-sweep.plist` | Install, no code change | Remaining - `launchctl load` (template exists, currently `--dry-run`, not installed) |
 | `.opencode/scripts/orphan-mcp-sweeper.sh` | Modify (follow-up) | Remaining - maintenance-marker respect, singleton rule, pid-reuse re-check before SIGKILL |
@@ -152,8 +152,8 @@ Eliminate the specific test-lifecycle leak that caused ~97% of the accumulation,
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Eliminate the launcher-lease vitest suite's detached-daemon leak (root cause A) | Suite's `afterEach` leaves zero orphaned stub `context-server.js` processes after a run, verified non-regressing against a captured baseline. **DONE** - commit `90a2462721`, suite 6/11 -> 10/11, zero stub leaks confirmed. |
-| REQ-002 | Classify and safely preserve the `hf-model-server` embedder sidecar in the orphan sweeper (root cause B mitigation) | Dry-run preserves an actively-connected sidecar (>1 unix-socket FD) and flags only genuinely orphaned idle ones. **DONE** - commit `d4be07abbc`, unit tests pass, live `--dry-run --verbose` verified against the real daemon. |
+| REQ-001 | Eliminate the launcher-lease vitest suite's detached-daemon leak (root cause A) | Suite's `afterEach` leaves zero orphaned stub `context-server.js` processes after a run, verified non-regressing against a captured baseline. **DONE** - commit `65f05f37b9`, suite 6/11 -> 10/11, zero stub leaks confirmed. |
+| REQ-002 | Classify and safely preserve the `hf-model-server` embedder sidecar in the orphan sweeper (root cause B mitigation) | Dry-run preserves an actively-connected sidecar (>1 unix-socket FD) and flags only genuinely orphaned idle ones. **DONE** - commit `2dbd92b8f8`, unit tests pass, live `--dry-run --verbose` verified against the real daemon. |
 
 ### P1 - Required (complete OR user-approved deferral)
 

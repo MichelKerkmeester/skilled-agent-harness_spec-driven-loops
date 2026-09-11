@@ -40,7 +40,7 @@ trigger_phrases:
 
 - [x] T001 Read `resolveMode` + `COMMANDS` in `scripts/render-command-contract.cjs`
 - [x] T002 Find what selects `fix` vs `fallback` (env, manifest, constant)
-- [x] T003 Check git history / rollout config for the intended deep/* default (`1904d343ea9`, `bce47507b6d`)
+- [x] T003 Check git history / rollout config for the intended deep/* default (`20d55ed8d6a`, `c753fa493af`)
 - [x] T004 Confirm the stale source docs are the current intended content (`compile-command-contracts.cjs`)
 - [x] T005 Decide `fix` or `fallback` with the cited source of truth (`fallback`; `validate-rollout.cjs` governance)
 

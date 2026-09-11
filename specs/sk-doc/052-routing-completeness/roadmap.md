@@ -34,7 +34,7 @@ contextType: "general"
 ## 2. PHASES: NOW / NEXT / LATER
 
 **Now:** The packet is closed. Phase `008-drift-after-closure` re-measured both gates on
-2026-09-05 against the tree as it stands after `b4c2484696` nested the spec-kit CLI under
+2026-09-05 against the tree as it stands after `f65b8f1e5b` nested the spec-kit CLI under
 `runtime/` and after `specs/system-speckit/049-memory-decommission` closed and removed
 `mcp-server/`. Gate A reads 343 of 388, two rows off its 2026-09-04 recording, both ruled.
 Gate B reads 20 of 180, one prompt off. The scaffolder the nesting had broken renders a full
@@ -53,22 +53,22 @@ fleet sweep.
 
 Chart fidelity and library research sits at
 `specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/007-fidelity-and-library-research/goal.md`. Its packet
-last moved in `abf77df9d0`. Exit signal: the research question is answered against a named
+last moved in `4e0968b4d8`. Exit signal: the research question is answered against a named
 library rather than an impression.
 
 Human-voice utilization review sits at
 `specs/sk-doc/039-create-with-human-voice/001-utilization-review/goal.md`. Its packet last
-moved in `f92c84a673`, which made the mode hold itself to its own standard. Exit signal: the
+moved in `f4cd27a29e`, which made the mode hold itself to its own standard. Exit signal: the
 review reports how often the mode is actually reached, with a number.
 
 Frontmatter utilization review sits at
 `specs/sk-doc/049-sk-create-frontmatter/008-utilization-review/goal.md`. Its packet last
-moved in `8ad1f98d09`, the first run of its own playbook. Exit signal: the same, a
+moved in `80a4f2036f`, the first run of its own playbook. Exit signal: the same, a
 utilization number rather than an assumption.
 
 The fleet template sweep has no folder yet. Phase 006 measured 24 of 40 templates in this
 tree hiding voice blockers inside their own fenced payload. Across the fleet the figure is
-45 of 53 once the payload is scanned, and `cb9fdb44f3` swept thirty-seven of them. This is a
+45 of 53 once the payload is scanned, and `318620c23d` swept thirty-seven of them. This is a
 decision per template rather than a bulk rewrite, because a template's fenced block is the
 deliverable and some of those characters are load-bearing. Exit signal: every one of the 53
 templates has a recorded decision, fix or keep with the reason.
@@ -93,29 +93,29 @@ while these numbers stand.
 ## 3. MILESTONES & TARGETS
 
 **Packet planned and transport settled:** phase Now, target 2026-09-02. Status: Done.
-Evidence: `03f5db4876`, "plan routing completeness, and settle which scorer governs it".
+Evidence: `ab1881aeaf`, "plan routing completeness, and settle which scorer governs it".
 
 **Gate A measured across five hubs:** phase Now, target 2026-09-02. Status: Done. Evidence:
-`dbc8678c9d` records 234 of 444; `08eb67a0de` resolves half the vocabulary that reached
-nothing; `726af58b4c` closes the signal audit at 345 of 388.
+`12aa10504a` records 234 of 444; `aa11c2b622` resolves half the vocabulary that reached
+nothing; `f26f92cff3` closes the signal audit at 345 of 388.
 
 **Gate B measured on a realistic corpus:** phase Now, target 2026-09-02. Status: Done.
-Evidence: `4a5de9e52b` records 8 of 180; `8c6d6fd455` fixes the denominator to 172.
+Evidence: `b3de2effda` records 8 of 180; `54eecf457a` fixes the denominator to 172.
 
-**Every finding owned:** phase Now, target 2026-09-02. Status: Done. Evidence: `d7f70069b9`,
+**Every finding owned:** phase Now, target 2026-09-02. Status: Done. Evidence: `cbab717dc9`,
 "give every finding an owner and every phase a runnable gate", and
 `research/findings-register.md`, forty-five rows on 2026-09-05.
 
 **Hub surfaces reconciled with a check behind them:** phase Now, target 2026-09-02. Status:
-Done. Evidence: `8bb9011584`.
+Done. Evidence: `ca9e3885b8`.
 
-**Suite completes:** phase Now, target 2026-09-02. Status: Done. Evidence: `59a597e37d`,
+**Suite completes:** phase Now, target 2026-09-02. Status: Done. Evidence: `7e93c9ae79`,
 "the suite never completed because of an infinite loop on the save path".
 
 **Residue decisions closed against 049:** phase Now, target on 049 phase 003 landing. Status:
-Done. Evidence: `0467949fc8` and `4be7058385`; nine rulings in
+Done. Evidence: `39427c3c8b` and `6e0f119db1`; nine rulings in
 `007-spec-kit-residue/decision-record.md`, and 049 has since closed with the tree removed in
-`aef7852400`.
+`0db44e44c0`.
 
 **Both gates re-measured after the tree moved:** phase Now, target 2026-09-05. Status: Done.
 Evidence: `008-drift-after-closure/research/`, two artifacts with the recorded bucket beside
@@ -127,10 +127,10 @@ of the three phases has run yet.
 
 **Fleet template sweep decided:** phase Next, target after the follow-up phases. Status:
 Planned. Evidence: the 45 of 53 count from phase 006 payload scanning, and the thirty-seven
-swept in `cb9fdb44f3`.
+swept in `318620c23d`.
 
 **Semantic lane packet planned:** phase Later, target 2026-09-03. Status: Done. Evidence:
-`specs/system-skill-advisor/023-semantic-lane-enablement` at commit `c0ab5103fd`, six folders
+`specs/system-skill-advisor/023-semantic-lane-enablement` at commit `c0c20756fd`, six folders
 validating strict and recursive at zero errors.
 <!-- /ANCHOR:milestones-targets -->
 

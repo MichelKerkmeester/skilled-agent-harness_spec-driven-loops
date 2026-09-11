@@ -41,34 +41,34 @@ ENV-CONDITIONAL breakdown: 14 daemon-down / warm-only refusals (the sandbox runs
 
 | Defect | Fix commit |
 |--------|-----------|
-| `query_text` resolution threw on the PII-clean consumption_log schema (validation resolver + shadow-evaluation query pool) | `cbd59062f4` |
-| Stale test fixtures: subscriber-summary hint rename unasserted; raw `query_text` inserts | `cbd59062f4` |
-| Module headers missing on two storage modules; deploy script lacked full strict mode; phase-workflow test asserted prose that moved into workflow assets | `b510f37cec` |
-| BM25 engine-selection log wrote to stdout (JSON-RPC purity) | `ea857be10c` |
-| Search UX-hook test mock missing the session-trust export | `2ce26d094f` |
-| Advisor: sk-git outranked owning skills on memory-save and PR-review prompts (gold regression dataset 100/100 after fix) | `28c2fb7178` |
-| Advisor: age haircut decayed by projection build time, never by per-skill freshness; local fallback results carried no source tag | `0504582b0e`, `9b1fc48904` |
+| `query_text` resolution threw on the PII-clean consumption_log schema (validation resolver + shadow-evaluation query pool) | `bb2dcc1704` |
+| Stale test fixtures: subscriber-summary hint rename unasserted; raw `query_text` inserts | `bb2dcc1704` |
+| Module headers missing on two storage modules; deploy script lacked full strict mode; phase-workflow test asserted prose that moved into workflow assets | `975b3e1a87` |
+| BM25 engine-selection log wrote to stdout (JSON-RPC purity) | `37ce42ddf7` |
+| Search UX-hook test mock missing the session-trust export | `8eb78e87d1` |
+| Advisor: sk-git outranked owning skills on memory-save and PR-review prompts (gold regression dataset 100/100 after fix) | `dd0bc08058` |
+| Advisor: age haircut decayed by projection build time, never by per-skill freshness; local fallback results carried no source tag | `3015a8da01`, `4cce45b076` |
 
 **Scenario/doc drift fixed (the playbook asserted surfaces that never shipped or had moved) (12):**
 
 | Scenario | Drift | Fix commit |
 |----------|-------|-----------|
-| hybrid-search-pipeline | `useGraph` is an internal option, not a `memory_search` parameter | `891310e726` |
-| semantic-and-lexical-search | `citationPolicy` is a string enum; `responsePolicy` absent on good queries | `891310e726` |
-| retention-sweep-dry-run | tool accepts only `dryRun` | `891310e726` |
-| runtime-family-count-census | plural agents dir; equality invariant (now 12) | `ea857be10c` |
-| feature-flag-governance | asserted invented age/cadence columns | `ea857be10c` |
-| comment-hygiene hook | hook wired in `.claude/settings.json`, not the personal local file | `ea857be10c` |
-| tool-routing-enforcement | Codex chain reads root `AGENTS.md` | `ea857be10c` |
-| tool-call-shape-validation | `code_graph_apply` has no required fields by design | `268ee4effc` |
-| specificity-ladder | free-text `code_graph_query` shape no longer exists; ladder targets `memory_search` | `9b1fc48904` |
-| provenance-and-trust-lanes | provenance is block-level (`provenance_fingerprint` + `trust_lane`) | `2c69e21741` |
-| projection | lane attribution exposes the strict laneBreakdown fields only | `2c69e21741` |
-| ambiguity | OR-margin cluster, every member tagged `ambiguousWith` | `2c69e21741` |
+| hybrid-search-pipeline | `useGraph` is an internal option, not a `memory_search` parameter | `7df66c708a` |
+| semantic-and-lexical-search | `citationPolicy` is a string enum; `responsePolicy` absent on good queries | `7df66c708a` |
+| retention-sweep-dry-run | tool accepts only `dryRun` | `7df66c708a` |
+| runtime-family-count-census | plural agents dir; equality invariant (now 12) | `37ce42ddf7` |
+| feature-flag-governance | asserted invented age/cadence columns | `37ce42ddf7` |
+| comment-hygiene hook | hook wired in `.claude/settings.json`, not the personal local file | `37ce42ddf7` |
+| tool-routing-enforcement | Codex chain reads root `AGENTS.md` | `37ce42ddf7` |
+| tool-call-shape-validation | `code_graph_apply` has no required fields by design | `1a62938758` |
+| specificity-ladder | free-text `code_graph_query` shape no longer exists; ladder targets `memory_search` | `4cce45b076` |
+| provenance-and-trust-lanes | provenance is block-level (`provenance_fingerprint` + `trust_lane`) | `3b1e04ee39` |
+| projection | lane attribution exposes the strict laneBreakdown fields only | `3b1e04ee39` |
+| ambiguity | OR-margin cluster, every member tagged `ambiguousWith` | `3b1e04ee39` |
 
 **Infrastructure defects fixed without a commit (build artifacts) (1):** ten orphaned dist outputs (deleted sidecar/gemini-hook/migration sources) removed and dist rebuilt; the source-dist alignment checker reports zero violations.
 
-**Validator fixtures (2 scenarios + 1 shared root cause):** the valid-phase children and both template-compliant fixtures were regenerated to current template compliance (`dca74a8e7b`); valid-phase validates recursively, both compliant fixtures pass strict, phase-workflow tests 89/0, template-structure suite 8/8.
+**Validator fixtures (2 scenarios + 1 shared root cause):** the valid-phase children and both template-compliant fixtures were regenerated to current template compliance (`fbc343b7e6`); valid-phase validates recursively, both compliant fixtures pass strict, phase-workflow tests 89/0, template-structure suite 8/8.
 
 Two re-verifier REAL-DEFECT calls were overturned on direct recheck: the hooks-barrel README accurately describes the shipped `postMutationHooks` response field (the seat grepped the wrong file), and `npm run lint` exists in `mcp_server` (the seat ran it from the wrong directory).
 
@@ -83,7 +83,7 @@ Baseline: 31 stress files / 113 tests green via `vitest.stress.config.ts`. Cover
 | `stress_test/durability/shard-repair-persistence-stress.vitest.ts` | persisted repair intent dedupes 10 concurrent repair requests across a simulated restart |
 | `stress_test/substrate/idempotency-receipt-race-stress.vitest.ts` | 12 concurrent identical stores: one immutable winner, losers replay it |
 
-Full stress config green twice — once by the authoring seat, once independently in this session: **35 files / 118 tests** (`2ce26d094f`). All temp-dir and sandbox-socket scoped; the vitest setup's production-DB isolation guard was verified fail-closed.
+Full stress config green twice — once by the authoring seat, once independently in this session: **35 files / 118 tests** (`8eb78e87d1`). All temp-dir and sandbox-socket scoped; the vitest setup's production-DB isolation guard was verified fail-closed.
 
 ## 6. Incident discovered during the stress stage
 

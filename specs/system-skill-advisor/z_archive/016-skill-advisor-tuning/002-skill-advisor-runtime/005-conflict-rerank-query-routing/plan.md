@@ -149,7 +149,7 @@ Required invariant: when a candidate's gate is unmet it is ABSENT from the score
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| 001 RRF determinism spine (sibling `001-rrf-determinism-spine`, C3) | Sibling 028/003 sub-phase | Shipped default-off (`ce858fa165`, not in 030 Wave-0) | HARD - all three ride it, C6 cannot ship byte-stable without C3's rank-based survivor set [CONFIRMED: research.md C3, iter-004 F9] |
+| 001 RRF determinism spine (sibling `001-rrf-determinism-spine`, C3) | Sibling 028/003 sub-phase | Shipped default-off (`c49470a44a`, not in 030 Wave-0) | HARD - all three ride it, C6 cannot ship byte-stable without C3's rank-based survivor set [CONFIRMED: research.md C3, iter-004 F9] |
 | Reciprocal `conflicts_with` skill edge | Data / authoring decision | Absent (0 live edges, all metadata `[]`) | HARD for C1 - C1 changes zero routing until an edge exists, do NOT fabricate edges [CONFIRMED: iter-010, verified live 2026-06-19] |
 | Held-out routing-quality benchmark + QCR class taxonomy + per-class multipliers | Internal (this track, gate) | Pending | HARD for QCR - no demonstrated mis-routing, the costly error is a misrouted class demoting the right skill [CONFIRMED: roadmap.md:75,193] |
 | aionforge query-class router + dense exact-rerank reference | External doc | Green | Reference pattern only, not a code dep [CONFIRMED: retrieval.md:107-143, :25-31] |

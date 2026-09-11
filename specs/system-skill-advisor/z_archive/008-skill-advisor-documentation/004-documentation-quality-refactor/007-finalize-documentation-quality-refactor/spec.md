@@ -41,7 +41,7 @@ _memory:
 | **Status** | In Progress |
 | **Created** | 2026-05-16 |
 | **Branch** | `main` |
-| **Recovery baseline** | git HEAD `956595dbdbe9a76297b50257be7e0a6feb13de7a` at dispatch time |
+| **Recovery baseline** | git HEAD `3b98be7153038ceac2f04354f9a0ba484496f637` at dispatch time |
 <!-- /ANCHOR:metadata -->
 
 ---

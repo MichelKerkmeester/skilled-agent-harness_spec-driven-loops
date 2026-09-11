@@ -201,7 +201,7 @@ Deep-research completed. The canonical findings live in `research/research.md`; 
 - OpenCode (`mk-goal` plugin): already uses per-session files keyed by hex session ID — the pattern to replicate.
 - Pi (`goal-context.ts`): input, session-start, and turn-end handlers currently ignore the stable id available from `ctx.sessionManager.getSessionId()` and write back to the shared singleton.
 - Cursor: Goal management menu reads/writes the shared singleton without session awareness.
-- Devin adapter: Decommissioned via commit `cac19bbfa5e`. Should NOT be restored.
+- Devin adapter: Decommissioned via commit `a2241041b09`. Should NOT be restored.
 - Claude Code: Symlinks to mk-goal plugin (no dedicated adapter).
 - Codex: No goal adapter registered.
 

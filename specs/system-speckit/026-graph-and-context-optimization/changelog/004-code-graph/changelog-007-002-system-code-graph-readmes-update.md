@@ -74,4 +74,4 @@ Eight authored README files were audited and rewritten. The root README was conv
 ### Follow-Ups
 
 - Stage and commit the eight edited README files and the packet docs when git index writes are permitted in the operator environment.
-- Verify that the database README at `mcp_server/database/README.md` was correctly carried forward after the subsequent database relocation fix in commit `69e7bf12d1`.
+- Verify that the database README at `mcp_server/database/README.md` was correctly carried forward after the subsequent database relocation fix in commit `2bfa312b12`.

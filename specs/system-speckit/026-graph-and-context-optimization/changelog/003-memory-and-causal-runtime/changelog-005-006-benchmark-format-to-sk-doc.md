@@ -26,7 +26,7 @@ The benchmark format mechanics for MCP skill-local benchmark folders were split 
 
 The two source documents were merged into a single `benchmark_creation.md` reference (~450 LOC, 10 sections) following the `*_creation.md` pattern. A fillable `source_template.md` scaffold was added to the benchmark assets folder. The FORMAT.md symlinks were dropped from sibling skills and all cross-link references were updated to point to the new canonical path.
 
-The consolidation shipped in commit `99c0aa08ef` on 2026-05-19. All seven success criteria passed. sk-doc is now the single source of truth for benchmark folder mechanics.
+The consolidation shipped in commit `e76b578fc4` on 2026-05-19. All seven success criteria passed. sk-doc is now the single source of truth for benchmark folder mechanics.
 
 ### Added
 

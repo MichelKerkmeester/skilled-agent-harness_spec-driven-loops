@@ -57,7 +57,7 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T010 Flip four hubs to `defaultMode: null` + routing-helper `defaultResource` `commit 908efde8d8`
+- [x] T010 Flip four hubs to `defaultMode: null` + routing-helper `defaultResource` `commit 4b2c351cc1`
 - [x] T011 Keep sk-prompt's `prompt-improve` default (it anchors the `hub-identity` catch-all) `unchanged`
 - [x] T012 Remove `hub-identity` from sk-design's six modes' `classes`, keep it discovery-only `six modes`
 - [x] T013 Add the defer-routed archetype to create-skill `parent_hub_router_schema.md` `third archetype`

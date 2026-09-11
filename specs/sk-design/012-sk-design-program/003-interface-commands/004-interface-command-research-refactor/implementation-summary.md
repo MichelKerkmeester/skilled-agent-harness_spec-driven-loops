@@ -58,7 +58,7 @@ and encode brand as constraints.
 
 **Phase 2 — refactor to conformant thin routers** (operator-chosen topology). Restored the five
 `/interface:*` commands + their presentation assets + the contract test to the pre-012/008 conformant
-router base (`d0e838c73c~1`), added **exactly one `@`-include** of `creation-contract.md` per router, and
+router base (`17d8c387ca~1`), added **exactly one `@`-include** of `creation-contract.md` per router, and
 refreshed the stale create-command machine contract from the retired `/design:*` surface to the live
 `/interface:*` surface.
 

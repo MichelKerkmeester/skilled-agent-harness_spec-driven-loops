@@ -13,7 +13,7 @@ This artifact records the advisor-package corpus from its committed Vitest confi
 | Command | `(cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/mcp-server && npx vitest run --reporter=dot)` |
 | Package root | `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/mcp-server` |
 | Vitest config | `vitest.config.ts` in the package root; `tests/**/*.vitest.ts` included, benches excluded unless `SPECKIT_RUN_BENCHES=true` |
-| Git commit | `99661d468fc19a9a26335a52045f7e1c07e2bae9` |
+| Git commit | `dc3734aa161f8aa3b497e183654a9a85a69c23cc` |
 | Start / end (UTC) | `2026-08-04T22:38:29Z` / `2026-08-04T22:39:46Z` |
 | Wall duration | 77 seconds (wrapper measurement) |
 | Vitest duration | 76.42 seconds (`transform 747ms`, `setup 342ms`, `import 3.81s`, `tests 63.35s`, `environment 4ms`) |
@@ -73,7 +73,7 @@ The canonical command was rerun after the Phase 007 Pi factory test update. The 
 |---|---|
 | Command | `(cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/mcp-server && npx vitest run --reporter=dot)` |
 | Package root | `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/mcp-server` |
-| Git commit | `99661d468fc19a9a26335a52045f7e1c07e2bae9` |
+| Git commit | `dc3734aa161f8aa3b497e183654a9a85a69c23cc` |
 | Start / end (UTC) | `2026-08-04T22:49:53Z` / `2026-08-04T22:51:09Z` |
 | Wall duration | 76 seconds (wrapper measurement) |
 | Vitest duration | 76.04 seconds (`transform 722ms`, `setup 372ms`, `import 3.81s`, `tests 63.04s`, `environment 4ms`) |

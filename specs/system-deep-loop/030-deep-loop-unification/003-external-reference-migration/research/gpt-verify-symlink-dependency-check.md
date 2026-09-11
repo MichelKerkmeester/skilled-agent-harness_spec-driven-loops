@@ -11,7 +11,7 @@ trigger_phrases: []
 **Live-Code-Path Hits**
 Static docs/spec/changelog/manual-playbook mentions were excluded unless they feed an executable command/config/test path.
 
-All live hits found are **OLD references**, not new symlink-created dependencies. Evidence: the symlinks were introduced in `6323b84342 refactor(system-deep-loop): merge deep-loop-runtime into deep-loop-workflows`; representative hit files predate that commit, or were moved from the old tree in that commit.
+All live hits found are **OLD references**, not new symlink-created dependencies. Evidence: the symlinks were introduced in `dea9dccbf3 refactor(system-deep-loop): merge deep-loop-runtime into deep-loop-workflows`; representative hit files predate that commit, or were moved from the old tree in that commit.
 
 - `.github/workflows/agent-mirror-sync.yml:17` uses `.opencode/skills/deep-loop-workflows/...` as `CHECKER`, then `-f` and `node "$CHECKER"` at `:20`, `:34`. OLD.
 - `.opencode/plugins/mk-deep-loop-guard.js:35` sets `.opencode/skills/deep-loop-workflows/mode-registry.json`; runtime read occurs through `readFileSync` at `:77`. OLD.

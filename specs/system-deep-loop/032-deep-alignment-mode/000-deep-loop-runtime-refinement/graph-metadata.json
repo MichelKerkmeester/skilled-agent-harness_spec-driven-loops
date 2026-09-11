@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Packet `052-deep-loop-unification/008-divergent-mode-dogfood` ran two real, evidence-heavy 10-iteration loops (`/deep:research`, `/deep:review`) against `system-deep-loop`'s own runtime, four subskills, `deep/` commands, and agent definitions — discovery-only by design, so nothing found was fixed",
     "created_at": "2026-07-11T10:45:36.945Z",
-    "last_save_at": "2026-08-30T15:39:20.053Z",
+    "last_save_at": "2026-09-11T16:42:16.180Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:44e4d43bdb38e8749a21439c52c058057cab205460f612ecc6fe62bc7e01cebc",
+    "source_fingerprint": "sha256:98d67d063722d3794252ba98785529a3e4174a5fe6c547150d2d85851dea62c0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "76e5a34561b25d88ea1d55d6ca07f2e7b8ebb8439f598f5c92a38a16d26e94bd",
+      "spec.md": "5ed4b909425bb20f53c54b9f13be278d4502af05d418f252eedf5b501ea3d9eb",
       "plan.md": "b7d6145824280db067ba0a186428486efca3249f4c4b14a2caacb34a526a5e10",
       "tasks.md": "10bfacb444ef802ea5072da28d1a1200c2c4b94784ed098cc751778b9fc96559",
-      "implementation-summary.md": "037ddd98d8f2d06e49eddfdd4cb2eed4d3070f9fc7e374a37c58842ebaa37b3f"
+      "implementation-summary.md": "10675bbadad89762a665c9d466b4aa479062cd6e11b811419e781062bd9fc8bb"
     },
     "last_active_child_id": null,
     "last_active_at": null

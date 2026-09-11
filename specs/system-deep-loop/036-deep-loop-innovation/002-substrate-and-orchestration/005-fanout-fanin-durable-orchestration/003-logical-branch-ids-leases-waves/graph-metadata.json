@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Stable logical branch identities, fenced worker leases, and ordered wave scheduling over the existing capped pool, with canonical ledger records that make fan-out deterministic, durable, and resumable.",
     "created_at": "2026-07-16T03:43:50.306Z",
-    "last_save_at": "2026-08-30T15:39:20.659Z",
+    "last_save_at": "2026-09-11T16:42:20.095Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a646941b646744cfc8e3c9199934cbbb40c7645e3dc81227d3d7a09950846723",
+    "source_fingerprint": "sha256:1a1c4188f43e485fbeb729e290b9c5aeca8c3b1f27cabae223c17891c32c1a60",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3e8f025fb743ec011447fd67126de96d3e5aa3d9b77f7caf909a87ef8db318aa",
       "plan.md": "ebdbed1fe62ad37f6948c5c53fd0c6708d26df7e0b7a79080b76e367d64fd15b",
       "tasks.md": "196d87bf20ef80b2f09f02c680adad43131003d0931c77e5159d12e1d9e1e554",
-      "implementation-summary.md": "31ee0449864f88faba0f54fa79d470a3ee2814bd3eb8f3e0bc13cb30b81a61cc"
+      "implementation-summary.md": "0b3833634dbb84a1f78a658048c8819e4651f215a287bfd55ea5b829e1fe9365"
     },
     "last_active_child_id": null,
     "last_active_at": null

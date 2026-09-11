@@ -49,7 +49,7 @@ _memory:
 ## Phase 1: Setup
 
 - [x] T001 Prototype CP-046 Call B via opencode deepseek-direct; confirm `/deep:*` expands + artifacts created
-- [x] T002 Restore `060-stress-test` fixture (4 runtime forms) from `e917f76347^`; deep-agent-improvement setup runs clean
+- [x] T002 Restore `060-stress-test` fixture (4 runtime forms) from `ebe7d6bb3c^`; deep-agent-improvement setup runs clean
 <!-- /ANCHOR:phase-1 -->
 
 ---

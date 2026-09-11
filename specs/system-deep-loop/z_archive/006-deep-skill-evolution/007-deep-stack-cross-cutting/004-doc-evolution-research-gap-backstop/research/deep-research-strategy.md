@@ -40,7 +40,7 @@ Hunt for residual documentation and reference-structure gaps across the 5 deep-*
 ## 4. NON-GOALS
 
 - Implementing the discovered fixes (this packet records a DEFERRED backlog only — read-only backstop).
-- Re-reporting the already-fixed deep-research loop-driver stale-path bug (`system-spec-kit/mcp_server/lib/deep-loop/` → `deep-loop-runtime/lib/deep-loop/`, committed 273ae52e30).
+- Re-reporting the already-fixed deep-research loop-driver stale-path bug (`system-spec-kit/mcp_server/lib/deep-loop/` → `deep-loop-runtime/lib/deep-loop/`, committed 326ba40d57).
 - Re-litigating 008's accepted deferrals (word soft-caps, `.cjs` validator allowlist noise already addressed) unless a NEW concrete instance surfaces.
 - Auditing skills outside the 5 deep-* set.
 
@@ -197,7 +197,7 @@ Full audit + completion record: `008-deep-skill-doc-evolution/001-spec-and-resou
 
 ### Pre-iteration finding (P0, ALREADY FIXED)
 
-The deep-research loop driver referenced the deleted `system-spec-kit/mcp_server/lib/deep-loop/` path (the 003 isolation migrated deep-review's YAMLs/scripts but missed deep-research's). Fixed to `deep-loop-runtime/lib/deep-loop/` across 2 YAMLs + 2 .md citations (commit 273ae52e30). OUT OF SCOPE for this loop.
+The deep-research loop driver referenced the deleted `system-spec-kit/mcp_server/lib/deep-loop/` path (the 003 isolation migrated deep-review's YAMLs/scripts but missed deep-research's). Fixed to `deep-loop-runtime/lib/deep-loop/` across 2 YAMLs + 2 .md citations (commit 326ba40d57). OUT OF SCOPE for this loop.
 
 ### Prior research
 

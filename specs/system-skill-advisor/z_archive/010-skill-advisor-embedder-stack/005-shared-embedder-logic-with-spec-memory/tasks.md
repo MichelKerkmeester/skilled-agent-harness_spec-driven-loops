@@ -53,8 +53,8 @@ _memory:
 - [x] T007 [P0] Step 3: add `contentType: 'text' | 'code'` parameter (default `'text'`) to shared `auto-select.ts`. Shipped in `5d1ed78ae1`.
 - [x] T008 [P0] Step 3: flip skill-advisor `DEFAULT_ACTIVE_EMBEDDER` to `{ name: 'auto', dim: 0 }` and add `ensureActiveEmbedder()`. Shipped in `5d1ed78ae1`; hardened further in Round 2 (T019 below).
 - [x] T009 [P0] Step 4: wire `advisor-server.ts` bootstrap to call `ensureActiveEmbedder()` then `refreshSkillEmbeddings()` if the pointer just flipped. Shipped in `5d1ed78ae1`; confirmed at `advisor-server.ts` `main()` between `initSkillGraphDb()` and `startupSkillGraphScan()`.
-- [x] T010 [P0] Step 5: update skill-advisor `INSTALL_GUIDE.md` section 12 and `README.md`'s pluggable-layer subsection. Shipped in `5d1ed78ae1`; the section 12.6 cascade-ordering contradiction (P1-2) was fixed in the same-day remediation commit `12a322aa45`.
-- [x] T011 [P0] Add `shared-factory-parity.vitest.ts` regression test. Shipped in remediation commit `12a322aa45` — 9 cases covering MANIFESTS reference identity, manifest lookups, adapter shape parity for jina-v3 and nomic, listManifests/listSupportedDimensions identity, and unknown-name plus purged-baseline negative cases.
+- [x] T010 [P0] Step 5: update skill-advisor `INSTALL_GUIDE.md` section 12 and `README.md`'s pluggable-layer subsection. Shipped in `5d1ed78ae1`; the section 12.6 cascade-ordering contradiction (P1-2) was fixed in the same-day remediation commit `23e7b6b6b3`.
+- [x] T011 [P0] Add `shared-factory-parity.vitest.ts` regression test. Shipped in remediation commit `23e7b6b6b3` — 9 cases covering MANIFESTS reference identity, manifest lookups, adapter shape parity for jina-v3 and nomic, listManifests/listSupportedDimensions identity, and unknown-name plus purged-baseline negative cases.
 - [x] T012 [P0] Add `ensure-active-embedder.vitest.ts` covering cascade idempotency, pointer persistence, and the content-type parameter. Shipped in `5d1ed78ae1` (5 cases); extended in Round 2 (T019 below).
 <!-- /ANCHOR:phase-2 -->
 
@@ -63,12 +63,12 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T013 [P0] Run `npm run typecheck` and `npm run build` in both `system-spec-kit/mcp_server` and `system-skill-advisor/mcp_server`. Passed at `5d1ed78ae1`/`12a322aa45` per implementation-summary.md; re-confirmed clean in this doc pass (2026-07-08) including Round 2 changes.
-- [x] T014 [P0] Run `npx vitest run` in both skills, confirming existing `vi.mock('@spec-kit/shared/embeddings/factory')` calls still pass. 415/423 passed at `12a322aa45` (3 pre-existing unrelated failures) per implementation-summary.md; re-run in this doc pass alongside Round 2 changes, see T024 below.
+- [x] T013 [P0] Run `npm run typecheck` and `npm run build` in both `system-spec-kit/mcp_server` and `system-skill-advisor/mcp_server`. Passed at `5d1ed78ae1`/`23e7b6b6b3` per implementation-summary.md; re-confirmed clean in this doc pass (2026-07-08) including Round 2 changes.
+- [x] T014 [P0] Run `npx vitest run` in both skills, confirming existing `vi.mock('@spec-kit/shared/embeddings/factory')` calls still pass. 415/423 passed at `23e7b6b6b3` (3 pre-existing unrelated failures) per implementation-summary.md; re-run in this doc pass alongside Round 2 changes, see T024 below.
 - [x] T015 [P0] Parity grep: `git grep -l 'llama-cpp\|LlamaCppProvider\|embeddinggemma' .opencode/skills/system-skill-advisor/` returns empty. Confirmed in implementation-summary.md — only comment/parity-assertion hits remain.
-- [x] T016 [P0] Run strict-validate on this packet folder. Passed 0 errors/0 warnings at `12a322aa45` per implementation-summary.md. Re-run at the end of this doc pass (2026-07-08); see `implementation-summary.md` Round 2 Verification for the exact output.
+- [x] T016 [P0] Run strict-validate on this packet folder. Passed 0 errors/0 warnings at `23e7b6b6b3` per implementation-summary.md. Re-run at the end of this doc pass (2026-07-08); see `implementation-summary.md` Round 2 Verification for the exact output.
 - [x] T017 [P1] Live daemon smoke: cold start, observe pointer flip via sqlite3 probe, run 3 semantic-shadow queries, confirm sane top-3. **Scope executed differently, not as literally scoped** — no cold-daemon-observed cascade run was ever captured. Round 2 instead found the DB had no provider row at all and hand-repaired it via `sqlite3` INSERT (T021), cross-checked against `getManifest().backend` and a live Ollama `/api/tags` probe, which is not equivalent evidence to a cold-start cascade observation. See `spec.md` Round 2 Open Questions for the honest gap; a true cold-start-observed cascade run against a clean DB remains unverified.
-- [x] T018 [P1] Post-implementation 5-iteration deep-review via cli-devin SWE-1.6, scoped to the cross-skill import boundary, cascade idempotency, pointer persistence, legacy-path correctness, and INSTALL_GUIDE truth-check. Executed as `review/` (iter-001, early convergence, CONDITIONAL then PASS after remediation `12a322aa45`). See `review/review-report.md` and `review/resource-map.md`.
+- [x] T018 [P1] Post-implementation 5-iteration deep-review via cli-devin SWE-1.6, scoped to the cross-skill import boundary, cascade idempotency, pointer persistence, legacy-path correctness, and INSTALL_GUIDE truth-check. Executed as `review/` (iter-001, early convergence, CONDITIONAL then PASS after remediation `23e7b6b6b3`). See `review/review-report.md` and `review/resource-map.md`.
 <!-- /ANCHOR:phase-3 -->
 
 ---

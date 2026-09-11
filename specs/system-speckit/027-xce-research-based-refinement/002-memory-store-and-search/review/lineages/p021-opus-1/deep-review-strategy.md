@@ -34,7 +34,7 @@ Single-pass (maxIterations=1) fan-out review of packet `021-cooperative-heavy-ph
 
 <!-- ANCHOR:what-worked -->
 ## What Worked
-- Reading the feat commit diff (`372bb0f2cd`) plus the full transaction body pinned the delete scoping as per-memory-id, confirming chunk safety without running the suite.
+- Reading the feat commit diff (`da09d7c69e`) plus the full transaction body pinned the delete scoping as per-memory-id, confirming chunk safety without running the suite.
 - Walking both scan exit paths (no-files early return vs main tail) surfaced the REQ-003 coverage gap that the diff alone hid.
 <!-- /ANCHOR:what-worked -->
 

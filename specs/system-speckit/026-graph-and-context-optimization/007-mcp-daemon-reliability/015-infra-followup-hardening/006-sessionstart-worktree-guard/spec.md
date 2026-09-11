@@ -25,7 +25,7 @@ _memory:
     completion_pct: 90
     open_questions: []
     answered_questions:
-      - "worktree-guard.sh already exists (035, c657219dd9) but was never wired into a live hook chain; 006 wires it into the Claude SessionStart chain as a non-fatal second step after session-prime."
+      - "worktree-guard.sh already exists (035, ec02cd1875) but was never wired into a live hook chain; 006 wires it into the Claude SessionStart chain as a non-fatal second step after session-prime."
 ---
 # Feature Specification: Wire worktree-guard into the Claude SessionStart hook chain
 
@@ -119,7 +119,7 @@ Wire `worktree-guard.sh` into the Claude `SessionStart` hook chain as a second, 
 |------|------|--------|------------|
 | Risk | Malformed JSON breaks all hooks | Session startup hooks fail | Verified valid JSON after edit; change is a single additive object |
 | Risk | Guard noise on every main session | Operator annoyance | The guard is silenceable via `SPECKIT_WORKTREE_GUARD=off` and only warns on main/master top-level sessions |
-| Dependency | `.opencode/bin/worktree-guard.sh` | The script being wired | Present since 035 (c657219dd9); non-fatal by design |
+| Dependency | `.opencode/bin/worktree-guard.sh` | The script being wired | Present since 035 (ec02cd1875); non-fatal by design |
 
 <!-- /ANCHOR:risks -->
 ---

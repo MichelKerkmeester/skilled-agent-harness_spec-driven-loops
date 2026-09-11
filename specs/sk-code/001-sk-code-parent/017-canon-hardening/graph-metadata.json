@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The parent-hub canon is defined, but its live router template, schema reference, and validator do not speak one `bundleRules` vocabulary",
     "created_at": "2026-07-05T05:46:26.440Z",
-    "last_save_at": "2026-08-30T15:39:10.893Z",
+    "last_save_at": "2026-09-11T16:41:50.918Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,14 +210,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f676084c78e04ba17eb3cf832784332701472d81be4997dd5ba179c476367423",
+    "source_fingerprint": "sha256:eea929f41fc13ec22ed615e570fcaa6b3527ff634497ba32d925bb5498f8f381",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4d7703de8909f7f0ab94bffe09795536888bbc46baccddb55eef4a84802caa1e",
+      "spec.md": "265d8632ecbb5a841a1967c1283723f7d1a735d79445682dd3a4e8aff67132b4",
       "plan.md": "6839f22e78d5596347244a51e5a041aaa00d0a13c4fc805d2ea9185e93ca64be",
-      "tasks.md": "f7600ce2267e7fb3a910a51f48d2063a145767705f116dc0b2d0066bc5c97083",
+      "tasks.md": "653161ba1c99943accb6f424631a7ff9060884ba272f33a48699da7e9a377777",
       "decision-record.md": "0f026ad3a0ce6bc9d31c4bd17c859bfb6f92e966182de92a7a547afa0a7fc91b",
-      "implementation-summary.md": "3ad6d3a9ed09eaba7aa6a49d7957bb07b8184fbd44f471b5ad17ef2ebc1e937f"
+      "implementation-summary.md": "c30d6baa7e883b30a35003b1def97767794505da9ecd1838223182f2ba2d15ce"
     },
     "last_active_child_id": null,
     "last_active_at": null

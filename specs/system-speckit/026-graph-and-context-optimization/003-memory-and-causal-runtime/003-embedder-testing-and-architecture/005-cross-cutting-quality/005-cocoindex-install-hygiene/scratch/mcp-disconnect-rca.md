@@ -42,7 +42,7 @@ Evidence:
 - `.opencode/bin/mk-code-index-launcher.cjs:166-175` has the same `ESRCH`-only branch.
 - `.opencode/bin/mk-skill-advisor-launcher.cjs:171-180` handles both `ESRCH` and `EPERM`; `EPERM` returns `{ held: true }`.
 - `.opencode/skills/system-skill-advisor/mcp_server/lib/daemon/lease.ts:226-254` also treats `EPERM` as a live held lease.
-- Commit `65761c8fb3 feat(006/007): close skill-advisor zombie launcher root cause` changed only skill-advisor launcher/test files, so this EPERM behavior was not propagated to spec-memory or code-index.
+- Commit `b3f67c2e51 feat(006/007): close skill-advisor zombie launcher root cause` changed only skill-advisor launcher/test files, so this EPERM behavior was not propagated to spec-memory or code-index.
 
 The duplicate-launcher smoke is the cleanest proof:
 
@@ -58,7 +58,7 @@ This also explains why a launcher can look "alive" while the current Claude sess
 
 ### Recent Ollama commit / stale dist
 
-Commit `75b4391e38 feat(016/002/006): wire OllamaAdapter into shared/embeddings factory` did change the spec-memory embedding path:
+Commit `c0aae9a446 feat(016/002/006): wire OllamaAdapter into shared/embeddings factory` did change the spec-memory embedding path:
 
 - `.opencode/skills/system-spec-kit/shared/embeddings/factory.ts:19-25` imports `providers/ollama.js`.
 - `.opencode/skills/system-spec-kit/shared/dist/embeddings/factory.js:12` contains the compiled Ollama import.

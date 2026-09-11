@@ -45,6 +45,7 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
+      ".opencode/skills/sk-design/hub-router.json",
       "feature-catalog/feature-catalog.md",
       "manual-testing-playbook/manual-testing-playbook.md",
       ".opencode/specs/sk-design/014-template-conformance/spec.md"
@@ -72,6 +73,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/hub-router.json",
         "source": "derived"
       },
       {
@@ -187,17 +194,11 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "evidence",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "`design-motion` (39 files, 4,175 lines — confirmed by `git ls-tree -r c1981d2b91^`) was a standalone mode with its own `SKILL.md`, `README.md`, and `/interface:motion` command",
+    "causal_summary": "`design-motion` (39 files, 4,175 lines — confirmed by `git ls-tree -r c52071edb6^`) was a standalone mode with its own `SKILL.md`, `README.md`, and `/interface:motion` command",
     "created_at": "2026-07-27T16:52:20.903Z",
-    "last_save_at": "2026-08-30T15:39:13.398Z",
+    "last_save_at": "2026-09-11T16:41:57.363Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c8987dc8907078729026829e184ff08653f21efbedb97580a949b92c0b94307e",
+    "source_fingerprint": "sha256:14a0b14b759d0168afb587bfa8982757ebdbd01773300f671cf10b5091a05284",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1a8f7444104233c6cdcd54546acdfc5b203528df55f68f4d7d15e80e5edbd313",
-      "plan.md": "23a4a0c6f77d487ce7fae7ee06a7f7c6ddb36f195b14856f80e57b87d0e3542a",
-      "tasks.md": "b6cfa865403bbf932af8e8aa5e0e75e5da554293b936bce26fd80d24a94d168b",
-      "implementation-summary.md": "abdb8ab761f6ece4cb9fb94b79dd19b8de2b6ab99968fca856f87854fc8ab044"
+      "spec.md": "f157a8b3d090cc09354370ffa47c5cf728c82ee345841f604333380283ea41c7",
+      "plan.md": "d45ae0b149d2410cb4bf5e5ab79d47f5e1fdeea56925dd4f4800e6233ca452b0",
+      "tasks.md": "718a2ff1c4da3dc9cb440d5bfebd20274b3ba5f1fe6a583ce70ff13dfba20abc",
+      "implementation-summary.md": "1eeb3441ffc1fc1444a63aa1b41037b810747687e4627a9265657340191f8908"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -100,7 +100,7 @@ Not a fix packet, but the baseline re-capture heals a pre-existing failing gate 
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| `scorer-eval-baseline.json` (producer: capture script) | Fixture the ratchet compares against | Re-captured via `--write`; never hand-edited | `capturedAt: 2026-07-16`, `capturedAtSha: 2146dee114` in the fixture |
+| `scorer-eval-baseline.json` (producer: capture script) | Fixture the ratchet compares against | Re-captured via `--write`; never hand-edited | `capturedAt: 2026-07-16`, `capturedAtSha: 36f7e4c1d2` in the fixture |
 | `scorer-eval-baseline-ratchet.vitest.ts` (consumer) | Fixture-hash + metric gate | Unchanged; re-run | `Tests 7 passed (7)` |
 | `labeled-prompts.jsonl` (input) | 200-row labeled corpus | 7 rows appended, none modified | 200-of-200 lines parse; ids rr-hub6-201..207 present at lines 194-200 |
 | `hub_routing/holdout_*.md` (input) | Blind holdout suite | 4 created, 1 extended | `holdoutSha256` refreshed in the fixture; 6-of-6 modes covered |

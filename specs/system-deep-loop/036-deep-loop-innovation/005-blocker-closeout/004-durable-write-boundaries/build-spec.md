@@ -12,7 +12,7 @@ trigger_phrases: []
 > below remain valid; §1/§4's B5/B6 gradings do not.
 
 > Produced by a read-only prep pass grounded against origin `skilled/v4.0.0.0` tip
-> `5410a4bfcb` (the code state), not the stale worktree HEAD. **Every finding here is a
+> `5324ea0d91` (the code state), not the stale worktree HEAD. **Every finding here is a
 > hypothesis until T001 re-confirms it at the build-time HEAD** — the last build of this
 > packet was fabricated when rushed, so confirm-before-build is mandatory (spec.md §"no
 > fix may be built against an unconfirmed finding").
@@ -20,10 +20,10 @@ trigger_phrases: []
 ## 0. Environment (read first — it changes WHERE you build)
 
 - Build from a **fresh worktree/clone cut at the current origin tip** (or the clean anchor
-  `5c98e4654e`), NOT a stale tree. The `0129` worktree's committed HEAD is ~191 commits
+  `0c5c966015`), NOT a stale tree. The `0129` worktree's committed HEAD is ~191 commits
   behind origin, its `specs/` copies are partial-checkout near-empty stubs, and it carries
   a large uncommitted divergence — all hazards for a globally-serializing atomic migration.
-- Verify changes with `git diff` against the real ancestor `5c98e4654e`, **never**
+- Verify changes with `git diff` against the real ancestor `0c5c966015`, **never**
   `git diff FETCH_HEAD` (the leak-guard leaves the local index stale → false deletions).
 - 036 is a **shared branch** — other sessions edit `047/048/049`. Confirm ownership before
   touching anything outside 024's own surface.
@@ -65,7 +65,7 @@ biggest re-fabrication guard: confirm-or-refute each with a cited probe first.
 
 ## 2. Caller census (migration checklist)
 
-Confirmed at `5410a4bfcb` via `git grep`: **33 lib files**, **46 test files**, **32 actual
+Confirmed at `5324ea0d91` via `git grep`: **33 lib files**, **46 test files**, **32 actual
 `.appendAuthorized(` call-expressions** in lib (matches ADR-005 "32 production callers").
 The "~109 caller files" figure elsewhere is stale noise — use 33/32.
 
@@ -174,7 +174,7 @@ Net: ~3 genuine build targets (B5, B6, F-018-03-via-B1); 5 refuted-pending-T001.
    shadow-parity/certificate suites HANG on append-lock — run the per-mode matrix per-file, tsc
    from `runtime/`, `git checkout -- database/` before isolation runs, never `--fileParallelism`.
 7. **Evidence (REQ-U05):** every completion claim cites test name + suite-content digest +
-   candidate SHA. The last fabrication cited SHA `9229cb8f3e` (an unrelated `037-spec-gate`
+   candidate SHA. The last fabrication cited SHA `2d12dfc5f5` (an unrelated `037-spec-gate`
    docs commit) ~20×; a bare SHA or "N/N passing" string is a hard fail.
 
 ## 6. Codemod plan
@@ -208,7 +208,7 @@ tsc is the completeness oracle: demoting to `#private` breaks every un-migrated 
 **Must be TRUE before B1 lands:** STEP-0 P0 reconciliation recorded (this doc) + T001
 classification of all 18 findings at HEAD; baseline suite numbers captured (028's residual was
 an unrecoverable missing baseline — do not repeat); the §2 call-site inventory frozen; clean
-anchor recovered from `5c98e4654e`.
+anchor recovered from `0c5c966015`.
 
 **Sequence (= plan.md Phases 1-6):** 1 T001 + inventory (read-only, fan-out-able). 2 B1 atomic
 core (gateway-only + `#appendAuthorized` + `FenceCapability` + STALE_FENCE + high-water + codemod

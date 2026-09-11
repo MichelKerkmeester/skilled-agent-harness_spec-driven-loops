@@ -43,11 +43,11 @@ Verify the D3 `d3-scale`, `d3-array`, `d3-format`, and `d3-scale-chromatic` cita
 - **Documented version:** The D3 site identifies release `7.9.0`; the module page does not separately state its package semver.
 - **Evidence:** The page says the module supplies sequential, diverging, and categorical color schemes designed for `d3-scale`, with most schemes derived from ColorBrewer and sequential/diverging schemes interpolated from discrete schemes. The linked categorical page lists `schemeCategory10`, `schemeTableau10`, and other named arrays. The baseline's description of the module is accurate.
 
-## Corpus at commit `756a7fcd4c228b1faeddbf10f449cfbc2409656f`
+## Corpus at commit `3ce648be44c3a4ef02da1562e74d500a77ccf5a9`
 
-- **Tick ladder:** The corpus has a deliberately finer local ladder `[1, 1.25, 1.5, 2, 2.5, 3, 4, 5, 6, 8, 10]` and derives the ceiling from `niceStep`; `bar-columns.html` uses it at lines 132-150 and prints ticks by integer index at lines 156-160. This matches the human-readable/niced outcome but is not D3 code. `[CORPUS@756a7fcd4c: .opencode/skills/sk-doc/sk-create-chart/assets/templates/bar-columns.html:132-160]`
-- **Auto-precision and dust protection:** `bar-columns.html` defines `fmt` with fixed six-decimal cleanup, comma grouping, and an em dash for non-finite values at lines 112-130; `candlestick.html` uses `floor + step * t` rather than repeated addition at lines 172-181. T2 is closed in the shipped commit. `[CORPUS@756a7fcd4c: .opencode/skills/sk-doc/sk-create-chart/assets/templates/bar-columns.html:112-130; .opencode/skills/sk-doc/sk-create-chart/assets/templates/candlestick.html:172-181]`
-- **D3 color schemes:** The corpus does not import `d3-scale-chromatic`; its color choices are pasted into the local palette source and validated by the corpus gates. This is a deliberate contract-compatible equivalent, not a missing runtime dependency. `[CORPUS@756a7fcd4c: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:157-160; .opencode/skills/sk-doc/sk-create-chart/references/color-system.md:1-12]`
+- **Tick ladder:** The corpus has a deliberately finer local ladder `[1, 1.25, 1.5, 2, 2.5, 3, 4, 5, 6, 8, 10]` and derives the ceiling from `niceStep`; `bar-columns.html` uses it at lines 132-150 and prints ticks by integer index at lines 156-160. This matches the human-readable/niced outcome but is not D3 code. `[CORPUS@3ce648be44: .opencode/skills/sk-doc/sk-create-chart/assets/templates/bar-columns.html:132-160]`
+- **Auto-precision and dust protection:** `bar-columns.html` defines `fmt` with fixed six-decimal cleanup, comma grouping, and an em dash for non-finite values at lines 112-130; `candlestick.html` uses `floor + step * t` rather than repeated addition at lines 172-181. T2 is closed in the shipped commit. `[CORPUS@3ce648be44: .opencode/skills/sk-doc/sk-create-chart/assets/templates/bar-columns.html:112-130; .opencode/skills/sk-doc/sk-create-chart/assets/templates/candlestick.html:172-181]`
+- **D3 color schemes:** The corpus does not import `d3-scale-chromatic`; its color choices are pasted into the local palette source and validated by the corpus gates. This is a deliberate contract-compatible equivalent, not a missing runtime dependency. `[CORPUS@3ce648be44: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:157-160; .opencode/skills/sk-doc/sk-create-chart/references/color-system.md:1-12]`
 
 ## Assessment
 
@@ -73,7 +73,7 @@ The D3 behaviors are current and well supported. The only correction is citation
 
 ## Ruled Out
 
-- **Adding D3 as a runtime dependency:** The corpus contract forbids remote resources and package-manager delivery; the local ladder and formatter already provide the required static behavior. `[CORPUS@756a7fcd4c: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:159-160]`
+- **Adding D3 as a runtime dependency:** The corpus contract forbids remote resources and package-manager delivery; the local ladder and formatter already provide the required static behavior. `[CORPUS@3ce648be44: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:159-160]`
 
 ## Questions Remaining
 

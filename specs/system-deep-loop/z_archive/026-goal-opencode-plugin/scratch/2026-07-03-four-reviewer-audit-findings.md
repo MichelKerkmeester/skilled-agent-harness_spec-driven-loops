@@ -205,9 +205,9 @@ keep them that way).
   "7 of 7", 008 spec.md:57 "8 of 8", 009 spec.md:54 "9 of 9", 010 spec.md:47 "10 of 13",
   011 "11 of 13", 012 "12 of 13", 013 "13 of 13" + 013 spec.md:50 "Successor: None (final phase)"
   contradicted by 014+. Durable fix: drop totals — "Phase N" only; fix 013's successor.
-- **PKT-5** — Rename-history FALSEHOOD in narrative docs. Git truth: `goal.md` added c5087e0955 →
-  renamed `goal_opencode.md` 4be33488ea → back to `goal.md` 303902e631 → `goal_opencode.md`
-  8405ba4f57. `opencode_goal.md` was NEVER a committed path; goal.md WAS the shipped name.
+- **PKT-5** — Rename-history FALSEHOOD in narrative docs. Git truth: `goal.md` added a992d6d3bd →
+  renamed `goal_opencode.md` 384aad52b0 → back to `goal.md` 815eb035b3 → `goal_opencode.md`
+  2086c70c42. `opencode_goal.md` was NEVER a committed path; goal.md WAS the shipped name.
   Locations repeating the false "opencode_goal.md → goal_opencode.md" story: 011
   implementation-summary.md:54,128; timeline.md:30 + §6; before-vs-after.md:193 (also claims
   goal.md "never actually shipped" — false). Also internal wobble: before-vs-after §3 says
@@ -219,7 +219,7 @@ keep them that way).
   timeline.md:20, all 009 docs, 010-014 docs. Fix: correct the wording AND recompute real
   fingerprints for 009-021 using the same mechanism 013 used for 001-008 (read 013's
   implementation-summary for the mechanism).
-- **PKT-7** — Dangling cross-references after review/research archival (commit 731291a833):
+- **PKT-7** — Dangling cross-references after review/research archival (commit f660130760):
   010 spec.md:58,104 + tasks.md:108 cite `review/review-report.md §3 (DR-…)` — that path now holds
   the doc-staleness report; correct target: `review_archive/2026-07-01-plugin-implementation-review/
   review-report.md`. 011 tasks.md:120 and 012 tasks.md:116 cite `../research/iterations/…` F-series

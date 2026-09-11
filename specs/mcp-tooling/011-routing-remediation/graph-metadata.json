@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The phase-007 deep review (`.opencode/specs/mcp-tooling/007-mcp-tooling-parent/007-routing-benchmark-and-review/review-report.md`) issued a FAIL, release-blocking verdict on the mcp-tooling hub routing surface",
     "created_at": "2026-07-16T16:50:35Z",
-    "last_save_at": "2026-08-30T15:39:10.026Z",
+    "last_save_at": "2026-09-11T16:41:51.030Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,14 +221,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:90b087126f7bab6eb73f5404ecd439278ee8aed6c487287c021edd2c3badfbd4",
+    "source_fingerprint": "sha256:cd8b61e5379dc7cc91652ccf7194c5dc9479650bd98557cdfd87b7be9f1278a8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d0227008d01e780b2243cb8b1fe3c86ae81922a32de607a9a43fbca55d83167f",
       "plan.md": "5459aa56e2a1d35a7d7e09c9ff5161b8d1c826229cb2ac93b69326c0a675dfe1",
-      "tasks.md": "521a4ece0d9299be3ee43264931fb13257e5c91275db993ea2989c1b69e4ee89",
+      "tasks.md": "0f7c19be967765769a40daf7d36d2b52f09c571cdac35ee2039155740228f265",
       "decision-record.md": "78a5b8aa91d57a004d6f160aa0c1f954290654639b00110e66dd10da7353b5c2",
-      "implementation-summary.md": "c74ac64f8065f5851f30bb029553c73835083296579b68f869663726f1d145eb",
+      "implementation-summary.md": "7450f65e7b10dd1100faf07c3d7a9cd86c4963e96bb12e11ffb86593c4d1b64a",
       "research/research.md": "37553967cbf2d1055e925cbdaab944a29d0af99021e68ae04d2ed87c575be9a0"
     },
     "last_active_child_id": null,

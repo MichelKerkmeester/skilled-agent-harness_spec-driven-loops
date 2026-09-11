@@ -4,7 +4,7 @@ trigger_phrases: []
 ---
 # Deep Review: Playbook-Findings Remediation
 
-Twenty-iteration adversarial review (ran 12 iterations before a session limit; 583 agents, skeptic-verified). Confirmed: 14 P0, 69 P1, 84 P2. The synthesis agent died on the session limit, so this report is hand-synthesized from the verified findings. The review targeted only the remediation commits f2cc2fc843..be9fdab279.
+Twenty-iteration adversarial review (ran 12 iterations before a session limit; 583 agents, skeptic-verified). Confirmed: 14 P0, 69 P1, 84 P2. The synthesis agent died on the session limit, so this report is hand-synthesized from the verified findings. The review targeted only the remediation commits 4ca42aa21c..c4c80df8af.
 
 ## Verdict
 

@@ -12,7 +12,7 @@ contextType: "general"
 # Before / After — Phase 007: sk-code Asset-Template + Smart-Router Alignment
 
 > **Scope**: `sk-code/SKILL.md §2` router conformance + five `*_authoring.md` asset fixes + two reference label cleanups.
-> **Commits**: `6ec94ed17e` (feature) and `a46b4afa4b` (version bump).
+> **Commits**: `dae3b6d4ed` (feature) and `74ed061d66` (version bump).
 > **Standard conformed to**: `sk-doc` `skill_asset_template.md`, `skill_smart_router.md`, `skill_md_template.md`.
 > This is a **supplementary** doc (no `_memory:` block, no template markers) so it is not structure-validated by `validate.sh --strict`.
 
@@ -137,7 +137,7 @@ Labels now match their targets, duplicates removed, each link gained a one-line 
 
 ## Collateral Changes Carried in the Same Commit
 
-Two edits rode along in `6ec94ed17e` that were **outside** 007's stated additive scope. Recorded here for transparency; both are reversible and lost no information.
+Two edits rode along in `dae3b6d4ed` that were **outside** 007's stated additive scope. Recorded here for transparency; both are reversible and lost no information.
 
 | Change | Detail | Disposition |
 |--------|--------|-------------|

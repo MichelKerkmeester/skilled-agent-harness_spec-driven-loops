@@ -16,7 +16,7 @@ Audit lifecycle metadata across `019 → 020 → 007 → 015`, including parent 
 ## Ruled Out
 - A mismatch between the claimed and actual `015` child count: both metadata and the filesystem expose 14 children; the defect is the 12-row canonical map, not the count.
 - Ambiguity when a complete canonical `last_active_child_id` is stored: exact full-path and basename resolution distinguish both `012-*` siblings.
-- Classification as NEW from `140266be3e`: `git cat-file -e 140266be3e^:<path>` confirmed all three audited parent metadata files existed before that commit.
+- Classification as NEW from `3c94775856`: `git cat-file -e 3c94775856^:<path>` confirmed all three audited parent metadata files existed before that commit.
 - Historical/frozen `research/**`, `benchmark/**`, `lineages/**`, `*.out`, `*.log`, and run-record artifacts were not considered defect candidates.
 
 ## Dead Ends
@@ -42,7 +42,7 @@ None. Broad recursive validation was not retried; narrow metadata, canonical pha
 
 ## Assessment
 - New information ratio: 1.0
-- Novelty justification: All four lifecycle/topology findings are new to this lineage, although every defect or risk predates commit `140266be3e`.
+- Novelty justification: All four lifecycle/topology findings are new to this lineage, although every defect or risk predates commit `3c94775856`.
 - Questions addressed: q5 lifecycle and nested topology truthfulness; q6 resume safety.
 - Questions answered: q5 nested `019/020/007/015` scope; q6 basename/prefix and stale-pointer scope.
 

@@ -44,7 +44,7 @@ The CHK-036 remediation updated `create-benchmark/SKILL.md` §10 and `create-man
 
 ### 2.4 CHK-019 — captured transcripts restored
 
-CHK-019's evidence (`git checkout e16382d845 -- <folder>` for all 78 folders) is a one-time restoration that predates the remediation. The remediation did not touch any captured transcript. CHK-019 holds.
+CHK-019's evidence (`git checkout 33ccd17bcc -- <folder>` for all 78 folders) is a one-time restoration that predates the remediation. The remediation did not touch any captured transcript. CHK-019 holds.
 
 ### 2.5 This lineage's write-containment boundary
 

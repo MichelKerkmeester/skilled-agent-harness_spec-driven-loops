@@ -10,7 +10,7 @@ trigger_phrases: []
 
 ## Executive Summary
 
-A fan-out deep review (2 cli-opencode lineages at `--variant high` max reasoning: **MiMo v2.5 Pro ×5 iterations** + **DeepSeek v4 Pro ×4 iterations**, 9 substantive passes across all 4 dimensions) was run to verify the six-track consolidation (`ebc1178844`) and the reference-integrity fixes (`57b41d7929`).
+A fan-out deep review (2 cli-opencode lineages at `--variant high` max reasoning: **MiMo v2.5 Pro ×5 iterations** + **DeepSeek v4 Pro ×4 iterations**, 9 substantive passes across all 4 dimensions) was run to verify the six-track consolidation (`82962574b8`) and the reference-integrity fixes (`e0b9326616`).
 
 **VERDICT: CONDITIONAL** (strongest-restriction merge; 0 FAIL across all 9 iterations → no confirmed active P0).
 
@@ -35,7 +35,7 @@ The CONDITIONAL verdict is driven entirely by **metadata-freshness** items — n
 ## Active Finding Registry (deduped, adversarially verified)
 
 ### P1 — Required
-- **R1 — `004-shared-infrastructure` omits child `008-mcp-config-alignment-reelection-default`.** The phase map, frontmatter `key_files`, and `changelog/README.md` for track 004 list only `001-007`, but `008` exists on disk. **Root cause: a concurrent session added `008` (commits `a85f3cc759`, `c67a972b88`, `59cc46dea2`) *after* the reorg** — not a reorg defect. Fix: add `008` to the `004` phase map + key_files + changelog index. *(MiMo F002/F008; verified: `004-shared-infrastructure/008-…/` present, 0 mentions in `004/spec.md`.)*
+- **R1 — `004-shared-infrastructure` omits child `008-mcp-config-alignment-reelection-default`.** The phase map, frontmatter `key_files`, and `changelog/README.md` for track 004 list only `001-007`, but `008` exists on disk. **Root cause: a concurrent session added `008` (commits `0ec7e5744d`, `429272e8fe`, `94eaab9aef`) *after* the reorg** — not a reorg defect. Fix: add `008` to the `004` phase map + key_files + changelog index. *(MiMo F002/F008; verified: `004-shared-infrastructure/008-…/` present, 0 mentions in `004/spec.md`.)*
 
 ### P2 — Advisory (metadata polish)
 - **R2 — root `description.json:36` `description` is stale**: literally "Residual 029 design units: vector reconcile, launcher front-proxy port…" (030's text). Pre-existing (the reorg never wrote `description`); low impact (memory search keys on title/triggers, not `description`). *(MiMo F003 + DeepSeek F003.)*

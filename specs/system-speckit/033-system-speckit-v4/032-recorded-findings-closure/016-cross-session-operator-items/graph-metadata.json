@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The simplification-research program's own report named five items that live on surfaces this program's children never had write authority over, because another session or another packet owns them",
     "created_at": "2026-09-07T15:05:57Z",
-    "last_save_at": "2026-09-08T15:47:17.092Z",
+    "last_save_at": "2026-09-11T16:42:48.773Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +208,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:059944d534bfbc45923fb5e3150a3d499c9500d1c4ae0e509f8be9ddb94e2bb1",
+    "source_fingerprint": "sha256:dc6acd14e6609ce068baa1e49f94ec44c4a00a020ee6d7e7b103615b98c111ad",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "71522054c49ec7823c095e8b0a67e1c0f2d038b2115f84e777992d05a4b625de",
-      "plan.md": "639dd47116f43e55f7788007425a23eb6e79a8c10672088d914ed207eea1605d",
-      "tasks.md": "36b74d287f2c8e2a57fe03fa4b2e5799a2bc821f34349ee5a1f61240f0a0a6b6",
-      "implementation-summary.md": "7224d16e828eb263b166d864bd7c779f959e2aea4fe6ef9f5e2a3abd89c068cf"
+      "spec.md": "df971161c7d8959149c6f23f75d46822d9c1791430130f544464330732aa372b",
+      "plan.md": "f31180739588f40345e953fd0d7bcaddc9846825236e5a601205ebeba2b2ae21",
+      "tasks.md": "ee0f8d9185c2190508df596cf51a6a0c01f9a0ac96aa1e438a54e0542dcf650b",
+      "implementation-summary.md": "b9a10644077151eeb8dfb774f641732872767d491fb39a1bd95a2bbed988a49b"
     },
     "last_active_at": null
   }

@@ -42,8 +42,8 @@ recursively `--strict` with zero errors.
 
 ## Where it lives (confirmed)
 
-- **v4** `skilled/v4.0.0.0` @ `19499c0521` — commit `feat(deep-loop): add 036 innovation-gap-remediation phased packet`.
-- **main** @ `b0fe35acee` — same commit cherry-picked (`-x`); scoped content byte-identical to the v4 commit.
+- **v4** `skilled/v4.0.0.0` @ `ec7e5e0b2c` — commit `feat(deep-loop): add 036 innovation-gap-remediation phased packet`.
+- **main** @ `2fb1b3aae5` — same commit cherry-picked (`-x`); scoped content byte-identical to the v4 commit.
 - Path: `specs/system-deep-loop/036-deep-loop-innovation/009-innovation-gap-remediation/`.
 - Registered in the 036 parent: PHASE MAP + PHASE DOCUMENTATION MAP row 9, `children_ids` = 9, and the
   embedded child manifest in `validate.sh` (`load_child_manifest`) bumped to 9 entries, sha256

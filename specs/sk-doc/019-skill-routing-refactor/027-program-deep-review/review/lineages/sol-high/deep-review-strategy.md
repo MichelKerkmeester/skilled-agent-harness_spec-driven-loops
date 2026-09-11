@@ -5,7 +5,7 @@ trigger_phrases: []
 # Deep Review Strategy: Skill-Metadata Program
 
 ## 2. TOPIC
-Review the skill-metadata program in commit range `2fa9fc480c..a39e6ea716` against the six scoped surfaces in the target `spec.md`.
+Review the skill-metadata program in commit range `c4b5f27ae8..c573706cfe` against the six scoped surfaces in the target `spec.md`.
 
 ## 3. REVIEW DIMENSIONS (remaining)
 <!-- MACHINE-OWNED: START -->
@@ -88,7 +88,7 @@ Review the skill-metadata program in commit range `2fa9fc480c..a39e6ea716` again
 ### Bounded Context Snapshot
 - Target pointer: `.opencode/specs/sk-doc/019-skill-routing-refactor/027-program-deep-review/spec.md:48-60`.
 - Behavior claims: H/S class metadata requirements, core command schema, generated manifest freshness, watcher ingestion, authored-template fidelity, doctrine honesty, and CI/hook wiring.
-- Commit range: `2fa9fc480c..a39e6ea716`.
+- Commit range: `c4b5f27ae8..c573706cfe`.
 - Resource map: `resource-map.md not present; skipping coverage gate`.
 - Missing packet artifacts: no `plan.md`, `tasks.md`, `checklist.md`, or `implementation-summary.md`; checklist evidence protocol is therefore expected to be notApplicable.
 

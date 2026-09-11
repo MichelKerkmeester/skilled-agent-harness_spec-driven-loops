@@ -24,7 +24,7 @@ contextType: "implementation"
 
 The 014 deprecation renamed code-graph's handlers and tools to their own identifiers (`status.ts`, `scan.ts`, `verify.ts`, `code_graph_*` tools, tree-sitter engine) but the skill's documentation was never updated. Docs still referenced phantom `ccc-status.ts`, `ccc-reindex.ts`, `ccc-feedback.ts` handlers, a deleted `lib/ccc/` adapter, a deleted `07--ccc-integration` catalog section, dead schema fields, ghost test names. The 013 post-deprecation deep-review (iterations 5 to 7) surfaced this class. Exact grep verification confirmed the scope.
 
-Thirteen system-code-graph docs were edited in a single commit (`bc047a4264`). Beyond the literal `ccc` cleanup, the scope expanded to cover the botched `ccc to "structural search"` find-replace residue left by the original deprecation pass: false "structural search bridge/binary/CLI" prose, a phantom `code_graph_* and detect_changes` tool name, the broken identifier `getstructural searchBinaryPath`, plus a false "separate semantic-index runtime" claim. The code was confirmed clean before editing, so all changes are documentation-only. Every system-code-graph doc now describes the real tree-sitter skill with no phantom handlers, no deleted cross-refs, no external-binary fiction.
+Thirteen system-code-graph docs were edited in a single commit (`8a33bdffba`). Beyond the literal `ccc` cleanup, the scope expanded to cover the botched `ccc to "structural search"` find-replace residue left by the original deprecation pass: false "structural search bridge/binary/CLI" prose, a phantom `code_graph_* and detect_changes` tool name, the broken identifier `getstructural searchBinaryPath`, plus a false "separate semantic-index runtime" claim. The code was confirmed clean before editing, so all changes are documentation-only. Every system-code-graph doc now describes the real tree-sitter skill with no phantom handlers, no deleted cross-refs, no external-binary fiction.
 
 ### Added
 
@@ -56,7 +56,7 @@ Thirteen system-code-graph docs were edited in a single commit (`bc047a4264`). B
 | Replacement targets exist (status/scan/verify/classify-query-intent handlers, real context test, code-graph-tools.ts) | PASS |
 | Code leakage check (`structural search` and `getstructural` in `*.ts`) | PASS. 0 (docs-only) |
 | ToC to heading numbering (feature_catalog 1-8, playbook 1-17) | PASS. Gap-free, consistent |
-| `validate.sh` strict on packet | PASS. See commit `bc047a4264` |
+| `validate.sh` strict on packet | PASS. See commit `8a33bdffba` |
 
 ### Files Changed
 

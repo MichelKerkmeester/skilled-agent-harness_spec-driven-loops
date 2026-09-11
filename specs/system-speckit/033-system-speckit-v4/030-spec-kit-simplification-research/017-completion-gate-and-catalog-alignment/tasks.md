@@ -100,7 +100,7 @@ contextType: "implementation"
 
 - [x] CHK-001 [P0] Requirements documented in spec.md [EVIDENCE: spec.md §4]
 - [x] CHK-002 [P0] Technical approach defined in plan.md [EVIDENCE: plan.md §3]
-- [x] CHK-003 [P1] Dependencies identified and available [EVIDENCE: plan.md §6; commit 549a0dc8c7]
+- [x] CHK-003 [P1] Dependencies identified and available [EVIDENCE: plan.md §6; commit 737926c666]
 <!-- /ANCHOR:pre-impl -->
 
 ---

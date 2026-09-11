@@ -1,6 +1,6 @@
 # Deep Review Report — 027/019 skill-advisor cross-session reconnect
 
-**Target:** commit `2f106976f3` — owner-lease + reconnecting session-proxy in `mk-skill-advisor-launcher.cjs`.
+**Target:** commit `c85302ef1d` — owner-lease + reconnecting session-proxy in `mk-skill-advisor-launcher.cjs`.
 **Method:** 5 narrow-lens seats (cli-opencode gpt-5.5-fast, xhigh) → Fable 5 adversarial adjudication → gpt-5.5-xhigh remediation (R1–R6) → Fable 5 re-verify → commit.
 
 ## Seat coverage (5 iterations)

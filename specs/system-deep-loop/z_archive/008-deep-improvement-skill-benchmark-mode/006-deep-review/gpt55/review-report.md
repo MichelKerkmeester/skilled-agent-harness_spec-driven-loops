@@ -7,7 +7,7 @@ model: "gpt-5.5 reasoning=xhigh service_tier=fast"
 severity_summary: "raw 0 P0 / 3 P1 / 11 P2  ->  VERIFIED 0 P0 / 0 P1 / (P2 = pre-known/minor)"
 iterations: 4
 execution_mode: "report-only (no fixes applied; operator decides)"
-note: "Independent cross-model re-review of the remediation applied in commit 60030d7278."
+note: "Independent cross-model re-review of the remediation applied in commit 444917ace9."
 ---
 
 # Deep Review Report — Packet 122 (cross-model remediation confirm)
@@ -17,7 +17,7 @@ note: "Independent cross-model re-review of the remediation applied in commit 60
 Target: the remediated deep-improvement Lane C (skill-benchmark), the
 `deep-agent-improvement → deep-improvement` rename, and the three-lane docs. This is a light
 4-iteration **cross-model confirmation** (GPT-5.5) that the prior session's remediation
-(commit `60030d7278`, 4 P1 + 6 P2 fixed) held — not a fresh full review.
+(commit `444917ace9`, 4 P1 + 6 P2 fixed) held — not a fresh full review.
 
 ## 1. Executive Summary
 
@@ -29,7 +29,7 @@ present** — the model reviewed the change as if unapplied:
 
 - **P1 "`SKILL_BENCHMARK_RUN_OPTIONS` still lists `profile`/`state-log`/`label`/`grader`/`k-runs`"**
   → FALSE. On disk **and in HEAD**, the array is exactly `['fixtures-dir','output','trace-mode','advisor-mode']`
-  (the dead options were trimmed in `60030d7278`).
+  (the dead options were trimmed in `444917ace9`).
 - **P1 "d5 early-return score differs from the penalty path" (`d5-connectivity.cjs:48`)** → FALSE.
   Line 48 is `score: 60` on disk and in HEAD — already aligned with the one-P0 penalty path.
 - **P1 "`WEIGHTS` hardcoded; `default_profile.json` weights unused"** → already-addressed / by-design.
@@ -74,6 +74,6 @@ kill-between. Salvaged from stdout (read-only sandbox). Same packet-local pool a
 
 **Cross-model verification (Opus-4.8).** All 3 P1s re-read against disk + `git show HEAD`. Result:
 **0 of 3 survive** — two were fixes the model failed to notice were already applied, one is a
-known by-design annotation. Confirms remediation `60030d7278` is intact.
+known by-design annotation. Confirms remediation `444917ace9` is intact.
 
 **Execution mode.** report-only — no fixes applied (operator decides).

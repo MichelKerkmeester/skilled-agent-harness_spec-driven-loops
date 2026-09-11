@@ -4,7 +4,7 @@ trigger_phrases: []
 ---
 # Deep Review Report — 027/017 BM25 Warmup Churn Reduction
 
-**Target:** commit `573904538b` — no-copy chunked packed postings + Uint8/16/32 typed-array width promotion + free-after-pack in `bm25-index.ts`, with the hard RSS gate re-enabled.
+**Target:** commit `01ac9e2508` — no-copy chunked packed postings + Uint8/16/32 typed-array width promotion + free-after-pack in `bm25-index.ts`, with the hard RSS gate re-enabled.
 **Method:** 5 independent narrow-lens seats (cli-opencode gpt-5.5-fast, xhigh), then a fresh Fable 5 adversarial synthesis-check, then remediation.
 
 ## Seat coverage (5 iterations)

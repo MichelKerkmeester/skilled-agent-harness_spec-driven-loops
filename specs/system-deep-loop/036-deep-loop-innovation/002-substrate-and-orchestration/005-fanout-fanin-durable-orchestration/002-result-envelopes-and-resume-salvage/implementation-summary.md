@@ -39,7 +39,7 @@ _memory:
 | **Completed** | 2026-07-21 |
 | **Level** | 2 |
 | **Status** | Complete (additive-dark) |
-| **Candidate** | Uncommitted leaf delta on base `012652b479dee08455de574574c5e7a8971a8b0b` |
+| **Candidate** | Uncommitted leaf delta on base `68b518ab0d8ee5b2bce3a8f1938a7944a1d5945e` |
 | **Event versions** | Result 1, salvage 1, recovery link 1 |
 | **Reducer** | `result-resume-reducer@1` |
 | **Registry digest** | `4a91f98466577639d7cd2c188d315dcad7c6a91c640b8d9a2ef34172db8a5844` |

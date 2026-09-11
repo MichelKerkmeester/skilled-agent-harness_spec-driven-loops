@@ -40,7 +40,7 @@ Doing it in that order is the whole plan. Editing twenty-nine files against a ch
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [x] Phase 002 closed at `28d3defea8`, so the light chrome the dark twin answers is settled
+- [x] Phase 002 closed at `74bc17ccaf`, so the light chrome the dark twin answers is settled
 - [x] The operator answered the contract amendment on 2026-09-03
 - [x] Baseline corpus check captured before any edit: 18 checks, 0 failures, `RESULT: PASSED`
 
@@ -315,7 +315,7 @@ This phase carries one decision that is not the operator's, and it names the ope
 ### Pre-Task Checklist
 - [x] The operator answered on 2026-09-03, before the first edit.
 - [x] The baseline was captured with `--render` before any edit and its `RESULT:` line read.
-- [x] Phase 002 closed at `28d3defea8`, with 003 and 004 landed after it.
+- [x] Phase 002 closed at `74bc17ccaf`, with 003 and 004 landed after it.
 
 ### Execution Rules
 

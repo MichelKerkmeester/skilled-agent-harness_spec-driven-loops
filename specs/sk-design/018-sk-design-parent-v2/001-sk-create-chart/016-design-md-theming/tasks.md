@@ -36,7 +36,7 @@ contextType: "general"
 
 - [x] T001 Read `design-md-format.md` sections 3 to 5 and the four bundled example Style References; record the headings and columns the parser keys on in `scratch/parse-contract.md`. Evidence: `scratch/parse-contract.md` records the three v3 heading/table contracts and all four fixtures.
 - [x] T002 Read `check-corpus.cjs` palette-source families, `canonicalBlock`, `canonicalDarkBlock` and `checkPaletteSource`; record the gate names and the exact byte-equality path in `scratch/checker-notes.md`. Evidence: `scratch/checker-notes.md` lists all six gate keys and the separate design-md branch.
-- [x] T003 [P] Confirm phase 15 is committed (`git log -1 -- .opencode/skills/sk-design/sk-design-chart` is the phase 15 commit) before editing any template-derived file. Evidence: `416827fd10 feat(sk-design): bring the chart corpus to the shadcn visual register and plan DESIGN.md theming`.
+- [x] T003 [P] Confirm phase 15 is committed (`git log -1 -- .opencode/skills/sk-design/sk-design-chart` is the phase 15 commit) before editing any template-derived file. Evidence: `6d4ef47150 feat(sk-design): bring the chart corpus to the shadcn visual register and plan DESIGN.md theming`.
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -139,7 +139,7 @@ contextType: "general"
 - [x] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases — local-only input, URL refusal, output-root guard, no-write refusal and `--extra` are covered.
 - [x] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed — fixture by theme by role and internal versus extra corpus counts are recorded in the packet evidence.
 - [x] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state — no process-wide mutable state is used; each CLI run reads local inputs and gates afresh.
-- [x] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range — phase 15 is pinned to `416827fd10` and final commands are recorded by path.
+- [x] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range — phase 15 is pinned to `6d4ef47150` and final commands are recorded by path.
 <!-- /ANCHOR:fix-completeness -->
 
 ---

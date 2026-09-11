@@ -51,7 +51,6 @@
       ".opencode/skills/sk-doc/graph-metadata.json",
       ".opencode/skills/sk-design/mode-registry.json",
       ".opencode/skills/sk-doc/mode-registry.json",
-      ".opencode/commands/create/chart.md",
       ".opencode/hooks/post-edit-quality/lib/post-edit-router.cjs"
     ],
     "entities": [
@@ -101,12 +100,6 @@
         "name": "mode-registry.json",
         "kind": "config",
         "path": ".opencode/skills/sk-design/mode-registry.json",
-        "source": "derived"
-      },
-      {
-        "name": "chart.md",
-        "kind": "doc",
-        "path": ".opencode/commands/create/chart.md",
         "source": "derived"
       },
       {
@@ -198,11 +191,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`sk-create-chart` and `sk-create-diagram` live in a documentation hub whose other thirteen modes",
     "created_at": "2026-09-06T13:52:16Z",
-    "last_save_at": "2026-09-06T15:26:02.765Z",
+    "last_save_at": "2026-09-11T16:41:59.647Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +212,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c1fa55f913ce3d1c005705df09e476081f27ad71ad423a447d015cb9d78ba4c2",
+    "source_fingerprint": "sha256:a0288560fa693f7e966d326cb90fc1845ff55d0ac082bdc3f85a09709d6c28ee",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e1c0830248893d3eb44f7b307ccc11e803210292f163969c3b0cd9f685271903",
-      "plan.md": "c0b54a3cdc0f785d5fa518c9b0ba036fce69c8f351d16da3646c44cfb6a4324d",
-      "tasks.md": "26d1b046f17873fae023e5110836ff225b5c7b8549aed1f9b2d84f954450213c",
-      "implementation-summary.md": "be8549b649b870c6ad5df85800ad874b49ab2245eea68a53d4d719d8b3e1cb24"
+      "spec.md": "f519e2dd2370261cc3c5b60b983e58ffba34d6a181d455b430593dfa05adcd86",
+      "plan.md": "f0a88a1027b67ac235bd1716a2e461e108ce62bcfe0116d76bc648f50e5e6ff7",
+      "tasks.md": "03bfc02689fa9bc4cd67bf9c57c1f43588ae5edec1ba01f47827b9b908fdd3df",
+      "implementation-summary.md": "ad62865e316dad4e51df0fb9e9906b9bd7951d807e69fca52cf7f1cfb1c30988"
     },
     "last_active_at": null
   }

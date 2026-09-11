@@ -39,7 +39,7 @@ _memory:
 - **Recent action:** Repaired all six reproduced findings and reran the complete goal suites and mirror checks.
 - **Verdict:** In progress. Code, focused documentation, generated metadata, mirror validation, wrapper separation, and the scoped-diff receipt are reconciled. Default strict validation still rejects the required uncommitted packet paths, so delivery completion is not claimed.
 
-The earlier isolation implementation landed in `1fa14a9153f` and its first Phase 6 closeout was published through `ee501b2ec7982b28dfa338ee2f8008fbecd0c981`. The post-review repair described here remains an uncommitted diff in the shared checkout; this task did not authorize committing or pushing it.
+The earlier isolation implementation landed in `4ac639b7c28` and its first Phase 6 closeout was published through `7f01e6211dac18ebfabe144804d4b92b2f2938b1`. The post-review repair described here remains an uncommitted diff in the shared checkout; this task did not authorize committing or pushing it.
 <!-- /ANCHOR:handover-summary -->
 
 ---

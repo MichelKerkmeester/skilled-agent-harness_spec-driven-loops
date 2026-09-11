@@ -42,7 +42,7 @@ _memory:
 - [x] T005 code-opencode assets — checklists/scripts [Test: `validate_document.py assets VALID`]
 - [x] T006 code-webflow references — animation/css/html/debugging/deployment/performance/verification/js/shared/implementation (recursive) [Test: `validate_document.py 95/95 VALID`]
 - [x] T007 code-webflow assets [Test: `validate_document.py assets VALID`]
-- [x] T008 Cross-surface reference-link repair (whole-hub staging fix after per-surface staging dropped cross-refs) [Commit: `babefb0586 whole-hub stage`]
+- [x] T008 Cross-surface reference-link repair (whole-hub staging fix after per-surface staging dropped cross-refs) [Commit: `983a4d6ef7 whole-hub stage`]
 <!-- /ANCHOR:phase-2 -->
 
 ---

@@ -34,7 +34,7 @@ _memory:
     answered_questions:
       - "scripts/tests/: wrote a real 46-test suite + scoped coverage exception (see Follow-Up Closure)"
       - "18 non-conformant scenario files: all 18 reformatted to the 9-column contract"
-      - "foundations mode-consolidation root cause: confirmed via git show --stat b217d74b819"
+      - "foundations mode-consolidation root cause: confirmed via git show --stat 562074ad7c5"
       - "foundations-*/motion-* procedure-card-contract files: disproven as residue, kept as-is (008/009)"
       - "v1.0.0.0-foundations.md disposition: kept as historical record (009)"
 ---
@@ -166,7 +166,7 @@ The two questions this packet deliberately left open were delegated back with de
 
 The premise was checked first, because two plausible readings would have made reformatting wrong:
 
-- *"The relocated scenarios have their own contract."* Partly true but not load-bearing. §23/§24 do give the relocated sets their own preconditions, evidence requirements, and release-readiness rules, and the root §5 checklist scopes its structural sweep to "all 20 files" (the interface-owned set). But none of that speaks to body format. The decisive counterexample is `color/contrast-pair-inventory-before-audit.md` (FOUND-COLOR-002): same category folder, same relocation, same `trigger_phrases`/`importance_tier` frontmatter lineage as the non-conformant FOUND-COLOR-001, added in the *same commit* (`4bf29688aa`) — and it carries a full 9-column table with a real command sequence. Same lineage, two formats, is drift, not a parallel contract.
+- *"The relocated scenarios have their own contract."* Partly true but not load-bearing. §23/§24 do give the relocated sets their own preconditions, evidence requirements, and release-readiness rules, and the root §5 checklist scopes its structural sweep to "all 20 files" (the interface-owned set). But none of that speaks to body format. The decisive counterexample is `color/contrast-pair-inventory-before-audit.md` (FOUND-COLOR-002): same category folder, same relocation, same `trigger_phrases`/`importance_tier` frontmatter lineage as the non-conformant FOUND-COLOR-001, added in the *same commit* (`7488c4c60f`) — and it carries a full 9-column table with a real command sequence. Same lineage, two formats, is drift, not a parallel contract.
 - *"The format is one style among several."* Disproven by the owning authority. sk-doc owns `create-manual-testing-playbook`, and its per-feature snippet template (`assets/manual-testing-playbook-snippet-template.md`, v1.8.0.11) lists under **Required uses**: "One file per feature ID / **One primary 9-column scenario row per file**". No exemption for relocated scenarios. Since this program is `014-template-conformance`, the template is the authority.
 
 The `foundations-*` / `motion-*` filename prefixes documented in §23/§24 are an intentional collision-avoidance convention, entirely orthogonal to body format — no file was renamed.
@@ -189,7 +189,7 @@ The ruling was to file an exception and not scaffold, with an explicit flip cond
 
 - **Zero coverage anywhere.** A repo-wide search for `naming_doc_check` / `baseline_rhythm_check` / `contrast_check` returns 10 non-worktree files, none of which is a test, CI config, or doctor check. The only recorded executions are manual one-offs.
 - **Highly testable.** All three expose pure functions over strings (`check(text) -> dict`, `evaluate(fg, bg) -> dict`) with filesystem IO confined to `main`. `contrast_check.py` is pure stdlib with zero IO.
-- **A real bug shipped.** `naming_doc_check.py` and `baseline_rhythm_check.py` both built their `sys.path` entry for the shared `md_table` import with three `..` instead of two. That is not a subtle failure — it raised `ModuleNotFoundError` on *every* invocation of both scripts, and it survived from `b217d74b81` until `140fdab23d9f` purely because nothing ever ran them.
+- **A real bug shipped.** `naming_doc_check.py` and `baseline_rhythm_check.py` both built their `sys.path` entry for the shared `md_table` import with three `..` instead of two. That is not a subtle failure — it raised `ModuleNotFoundError` on *every* invocation of both scripts, and it survived from `562074ad7c` until `15eaa6acf950` purely because nothing ever ran them.
 
 An empty `tests/` directory would have been ceremony, and a pure exception would have documented away a gap that had already cost a shipped defect. The middle path is the honest one: 46 tests across three files (`test_naming_doc_check.py`, `test_baseline_rhythm_check.py`, `test_contrast_check.py`, matching the template's `test_[script_name].py` convention), running in 0.4s with no network and no new fixtures.
 

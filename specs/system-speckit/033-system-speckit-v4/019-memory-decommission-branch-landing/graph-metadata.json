@@ -207,7 +207,7 @@
     ],
     "causal_summary": "Packets 049, 050 and 051 removed the memory database, replaced it with the trigger index and ripgrep, added a semantic lane and vendored its engine, all on a side branch",
     "created_at": "2026-09-04T17:48:43Z",
-    "last_save_at": "2026-09-08T18:23:44.324Z",
+    "last_save_at": "2026-09-11T16:42:47.836Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,13 +218,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:96e673020d349e15b1f99e9d4cc94bd808b21643f2e37c90fb831d76e4375aa1",
+    "source_fingerprint": "sha256:4aedb8d75d45f10f5d54f463c7750629b1ca5cc910168e122d0a894be99d9054",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6383e347a118f4ca59ef0e0b9c8d11ee74677c62ec78e27fc6deedbb70639370",
-      "plan.md": "256921f88b9744af9fcaa879db0dfc3b6d5ab6322a3846b43359213576e801f6",
-      "tasks.md": "b845174f0cb6639fe32ed73c0bc1486d7e365ff80a71fb13df38ff78fe3d1453",
-      "implementation-summary.md": "202253d8301904f0e8dda717e842e31d9a79541adef5092dad87dd45103de6ca"
+      "spec.md": "1f2d2b1548c52bfaf6acc7b5a28dc39342aff388c6250781d218de62c606faea",
+      "plan.md": "1dedc2b4cb8949f434079cc63524b515bf825614992b6bc7e6bdb324c423e957",
+      "tasks.md": "f861c8c7e1c75705ae1cd470cc253b1d1b8a7b33b36b7f085661c26db7f058db",
+      "implementation-summary.md": "4bdd86db02f6e76766ab7d42a32b786199e52b9745d241a0a8a0a4b565514bb5"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -8,7 +8,7 @@ Dispatched: 2026-06-28T07:45:45.285Z | wall: 243s | billing: free
 
 ---
 
-I checked the security dimension against the actual repo state. The implementation was in fact executed (commit `b0cbbe7b67`), so I was able to inspect the real tool-permission contracts, secrets exposure, and path handling. No secrets or path-traversal issues were found, but the hub’s `allowed-tools` grant is in tension with the packet’s own NFR-S01 no-widening claim.
+I checked the security dimension against the actual repo state. The implementation was in fact executed (commit `8ef0455117`), so I was able to inspect the real tool-permission contracts, secrets exposure, and path handling. No secrets or path-traversal issues were found, but the hub’s `allowed-tools` grant is in tension with the packet’s own NFR-S01 no-widening claim.
 
 ```json
 {

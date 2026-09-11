@@ -4,7 +4,7 @@ trigger_phrases: []
 ---
 # Deep Review Report — 011 Command Presentation / Workflow Separation
 
-Review target: `system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation` (4 command families: memory, speckit, create, doctor — presentation/router separation, shipped in commits 059284c35b / 1ffc9d12cd / 6d51b894b9 / 1e8715c5e2).
+Review target: `system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation` (4 command families: memory, speckit, create, doctor — presentation/router separation, shipped in commits 961e136c88 / 8bb23b4247 / 5603b16644 / de4e8d3357).
 Mode: autonomous fan-out (`/deep:start-review-loop` via `fanout-run.cjs`), 3× cli-opencode `gpt-5.5-fast --variant high` lineages, strongest-restriction merge.
 
 ---
@@ -21,7 +21,7 @@ Three independent gpt-5.5-fast-high lineages (gpt-1: 4 iterations / 4 dimensions
 
 - **P1-1 · traceability · `011/spec.md`** — The phase-parent `spec.md` still reports `Status: Planned`, `completion_pct: 0`, and `recent_action: "Scaffold phase-parent and family leaves; no implementation"` even though all four family parents (memory, speckit, create, doctor) are implemented and committed. Parent-doc drift. **Fix:** reconcile the parent `spec.md` status (→ Complete), continuity block (`completion_pct`, `recent_action`, `next_safe_action`), and the Phase Documentation Map statuses (Planned → Complete) + refresh `description.json`/`graph-metadata.json` derived status.
 - **P1-2 · traceability · `011/spec.md`** — The Purpose/Scope prose promises that *each* command file becomes "a thin router to **two** explicit assets: the existing owned workflow file and a dedicated Markdown presentation file." The memory family legitimately has only a presentation asset: `commands/memory/{save,search,learn,manage}.md` explicitly document "_No memory workflow YAML exists in this checkout — Missing upstream asset_" and deliberately keep workflow routing inline (creating a workflow YAML was out of scope). The speckit family, by contrast, has full `*_auto.yaml`/`*_confirm.yaml` workflow assets + presentation. **Fix:** refine the parent `spec.md` Purpose/Scope to acknowledge families that route to presentation-only with a documented missing-upstream workflow placeholder (memory case), rather than claiming universal two-asset separation. Implementation is correct; the spec prose overstates it.
-- **P1-3 · maintainability · `011/spec.md:128`** — Phase-transition instructions reference the stale `/spec_kit:resume` command spelling; the live command is `/speckit:resume` (`commands/speckit/resume.md`; the `commands/spec_kit/` → `commands/speckit/` rename landed in 576624ada8). **Fix:** correct the spelling to `/speckit:resume`.
+- **P1-3 · maintainability · `011/spec.md:128`** — Phase-transition instructions reference the stale `/spec_kit:resume` command spelling; the live command is `/speckit:resume` (`commands/speckit/resume.md`; the `commands/spec_kit/` → `commands/speckit/` rename landed in 1eaaf25983). **Fix:** correct the spelling to `/speckit:resume`.
 
 ---
 

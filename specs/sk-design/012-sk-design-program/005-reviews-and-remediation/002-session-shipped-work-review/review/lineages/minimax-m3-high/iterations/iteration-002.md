@@ -75,7 +75,7 @@ Live verification: surface checker executed; 015-P0 test suites re-run from iter
 
 **What this is**: the spec packet's frontmatter continuity says the work is at AUTHOR-SPEC
 stage with 0% completion and a placeholder fingerprint, but the work shipped in commit
-`9a42aedae4` (the same commit that *added* this packet). The commit message says
+`5dd5547949` (the same commit that *added* this packet). The commit message says
 "Verified: design-command-surface-check.mjs exits 0 ... validate.sh --strict on 012/006
 = 0/0" — the spec packet's own metadata contradicts that.
 
@@ -87,7 +87,7 @@ reads `completion_pct`), and the all-zero `session_dedup.fingerprint` would brea
 dedup logic that treats zero hashes as authoritative. This is in scope of REQ-005
 ("completion/metadata claims match reality") and the comment-hygiene / honesty guard.
 
-**Repro**: read the frontmatter; compare against `git show 9a42aedae4 -- <packet>`. The
+**Repro**: read the frontmatter; compare against `git show 5dd5547949 -- <packet>`. The
 packet was authored and shipped in the same commit; the frontmatter was never updated
 post-implementation.
 
@@ -113,7 +113,7 @@ post-implementation.
 - `.opencode/specs/sk-design/012-style-database-and-interface-commands/006-retire-design-alias-namespace/implementation-summary.md:111`:
   `| All tasks [x] with evidence; the surface checker exits 0; ... validate.sh --strict = 0 errors. | PENDING`
 
-**What this is**: the implementation-summary.md was added by commit `9a42aedae4` in
+**What this is**: the implementation-summary.md was added by commit `5dd5547949` in
 AUTHOR-SPEC state. Its body says "Planned change — not yet implemented" and the status
 column shows PENDING for every executable-contract row. But the actual code state is:
 
@@ -180,7 +180,7 @@ consumers (memory search, graph traversal, completion gates). The graph says
   commands | Backward compatibility preserved | \`commands/design/*.md\` |`
   (references the deleted tree).
 
-**What this is**: commit `9a42aedae4` updated `SKILL.md` (line 288) and `README.md`
+**What this is**: commit `5dd5547949` updated `SKILL.md` (line 288) and `README.md`
 (line 70) to state that the namespace is "retired" and `/interface:*` is the sole
 surface, BUT left four feature-catalog/playbook/changelog files claiming the aliases
 "remain" and (in two places) referencing the deleted `commands/design/` directory.

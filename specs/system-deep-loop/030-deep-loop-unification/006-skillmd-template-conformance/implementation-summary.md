@@ -88,7 +88,7 @@ Audited all 5 SKILL.md files under `.opencode/skills/system-deep-loop/` (the hub
 
 9. **Independent verification found 2 real gaps the fix agents missed**: a stale directory-tree example in a README, stale prose in `routing_precision.md`, and a missing `version` field on `routing_precision.md` itself (a file the frontmatter-adding step touched but that wasn't one of the "4 changelog files" the version-fix task was scoped to — a genuine scope-boundary miss between two of the parallel fix agents). All 3 fixed directly after verification, plus 1 cosmetic test-comment reference.
 
-10. **Verification also confirmed 2 pre-existing vitest failures were NOT a regression**, via `git stash` against clean HEAD `381729834a` and re-running the identical test command — same 2 failures, same assertion diffs, in both states. Re-confirmed a second time after the final 4 small fixes: still the same 44/46 baseline.
+10. **Verification also confirmed 2 pre-existing vitest failures were NOT a regression**, via `git stash` against clean HEAD `614f14736e` and re-running the identical test command — same 2 failures, same assertion diffs, in both states. Re-confirmed a second time after the final 4 small fixes: still the same 44/46 baseline.
 <!-- /ANCHOR:how-delivered -->
 
 ---

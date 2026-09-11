@@ -45,7 +45,7 @@ _memory:
 | **Testing** | `validate.sh --strict` on this packet; per-finding `file:line` code verification |
 
 ### Overview
-A read-only review of the 50-commit range `a9e9bdb0a5^..HEAD` (HEAD `12de3d3a7e`). Twenty iterations fan out across nine research angles, each producing candidate findings backed by direct code reads. Every candidate P1 then passes through an adversarial verification round whose explicit job is to disprove it by re-reading HEAD, so the report only keeps findings with a verified failure trace. The verdict converges to CONDITIONAL: no P0 is active, but multiple active P1s block an unconditional PASS.
+A read-only review of the 50-commit range `fd67ede05f^..HEAD` (HEAD `3923a65db1`). Twenty iterations fan out across nine research angles, each producing candidate findings backed by direct code reads. Every candidate P1 then passes through an adversarial verification round whose explicit job is to disprove it by re-reading HEAD, so the report only keeps findings with a verified failure trace. The verdict converges to CONDITIONAL: no P0 is active, but multiple active P1s block an unconditional PASS.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -69,7 +69,7 @@ A read-only review of the 50-commit range `a9e9bdb0a5^..HEAD` (HEAD `12de3d3a7e`
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
-The review is a one-way comparison: code at HEAD `12de3d3a7e` (read-only) is the ground truth; nothing is modified. The pipeline is: inventory the 50-commit range (iter-1) -> parallel angle passes that read the actual source (iter-2 to iter-10) -> adversarial verification of every candidate P1 (iter-11 to iter-15) -> deepen latent items (iter-16 to iter-18) -> cross-cutting synthesis (iter-19) -> completeness critic (iter-20). The angle passes are candidate generators; the adversarial verification round is authoritative and overrides any candidate it cannot reproduce in code. The only writes land inside this packet (`spec/plan/tasks/implementation-summary` + `review/**` + metadata).
+The review is a one-way comparison: code at HEAD `3923a65db1` (read-only) is the ground truth; nothing is modified. The pipeline is: inventory the 50-commit range (iter-1) -> parallel angle passes that read the actual source (iter-2 to iter-10) -> adversarial verification of every candidate P1 (iter-11 to iter-15) -> deepen latent items (iter-16 to iter-18) -> cross-cutting synthesis (iter-19) -> completeness critic (iter-20). The angle passes are candidate generators; the adversarial verification round is authoritative and overrides any candidate it cannot reproduce in code. The only writes land inside this packet (`spec/plan/tasks/implementation-summary` + `review/**` + metadata).
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -92,7 +92,7 @@ This packet is findings-only and edits no reviewed surface. The table records wh
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [x] Confirm the range `a9e9bdb0a5^..HEAD` (HEAD `12de3d3a7e`) and inventory the 50 commits (iter-1)
+- [x] Confirm the range `fd67ede05f^..HEAD` (HEAD `3923a65db1`) and inventory the 50 commits (iter-1)
 - [x] Define the 9 research angles (A1-A9) and seed candidate hypotheses per angle
 - [x] Configure the native `@deep-review` (opus) parallel fan-out
 
@@ -128,7 +128,7 @@ This packet is findings-only and edits no reviewed surface. The table records wh
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
 | Native `@deep-review` (opus) | Internal | Green | No parallel angle fan-out / adversarial round |
-| Repo code at HEAD `12de3d3a7e` | Internal | Green | No ground truth for verification |
+| Repo code at HEAD `3923a65db1` | Internal | Green | No ground truth for verification |
 | `review/deep-review-state.jsonl` + `review/iterations/` | Internal | Green | No iteration evidence to cite |
 <!-- /ANCHOR:dependencies -->
 

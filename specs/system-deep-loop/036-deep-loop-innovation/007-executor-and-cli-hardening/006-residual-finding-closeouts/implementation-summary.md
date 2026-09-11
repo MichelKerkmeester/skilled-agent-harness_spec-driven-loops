@@ -25,7 +25,7 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions:
-      - "Is REQ-001 (022 REQ-005 full-surface fixtures) closed? Yes — six per-mode commits (deep-review e69bbd1150, council e0b4e902c5, agent-improvement a9dbf88154, model-benchmark 46310b9c45, skill-benchmark 7ec622f1be, deep-alignment 1109a40925), each suite re-run first-hand, with a formal per-mode closeout note."
+      - "Is REQ-001 (022 REQ-005 full-surface fixtures) closed? Yes — six per-mode commits (deep-review 676e702a5b, council 590a8bc619, agent-improvement 283eef0c5a, model-benchmark 8bdffb4d1e, skill-benchmark 5d154654e4, deep-alignment 6f50d710cc), each suite re-run first-hand, with a formal per-mode closeout note."
       - "Are the deep-alignment finding-chain fields a coverage gap? Yes and it is surfaced: six fields covered only by structural-limit proof (MAX_JSON_NODES=10000), a candidate future harness improvement, not hidden."
       - "Is REQ-002 (F-011-01) closed? Yes, landed as commit 484076e32f with red-before/green-after plus a positive control."
       - "Is the 028 bar met? Yes — substantive negative tests plus packet-hygiene (whole-gate delta 215/0, inventories, rollback, 028 freshness-warning dispositioned)."
@@ -100,12 +100,12 @@ The build executor was DeepSeek-V4-Flash (max) in a fresh isolated worktree; the
 
 | Mode | Commit | Suite (orchestrator re-run) | Accepted exclusions (reason) |
 |------|--------|------------------------------|-------------------------------|
-| deep-review | `e69bbd1150` | 26 passed / 2 skipped | pre-comparator gate + structurally-null |
-| deep-ai-council | `e0b4e902c5` | 57 passed / 2 skipped | pre-comparator gate + structurally-null |
-| agent-improvement | `a9dbf88154` | 48 passed / 10 skipped | reducer-schema-gap (ablation digests, causal locus-ids, denied-promotion veto codes) + structural-limit (5 fields, flip-run proven) + gate/null |
-| model-benchmark | `46310b9c45` | 63 passed / 5 skipped | always-empty (common-anchor / adaptive-diagnostic / shared-service refs) + gate/null |
-| skill-benchmark | `7ec622f1be` | 41 passed / 5 skipped | constant `generation`, always-empty certificate digests, structural-limit (negative-transfer, flip-run proven), gate/null |
-| deep-alignment | `1109a40925` | 31 passed / 8 skipped | structural-limit finding-chain (6 fields, flip-run proven) + gate/null |
+| deep-review | `676e702a5b` | 26 passed / 2 skipped | pre-comparator gate + structurally-null |
+| deep-ai-council | `590a8bc619` | 57 passed / 2 skipped | pre-comparator gate + structurally-null |
+| agent-improvement | `283eef0c5a` | 48 passed / 10 skipped | reducer-schema-gap (ablation digests, causal locus-ids, denied-promotion veto codes) + structural-limit (5 fields, flip-run proven) + gate/null |
+| model-benchmark | `8bdffb4d1e` | 63 passed / 5 skipped | always-empty (common-anchor / adaptive-diagnostic / shared-service refs) + gate/null |
+| skill-benchmark | `5d154654e4` | 41 passed / 5 skipped | constant `generation`, always-empty certificate digests, structural-limit (negative-transfer, flip-run proven), gate/null |
+| deep-alignment | `6f50d710cc` | 31 passed / 8 skipped | structural-limit finding-chain (6 fields, flip-run proven) + gate/null |
 
 **Exclusion classes** (each documented in the mode's test file, never faked):
 - *Reducer-schema-gap* — the reducer never persists the raw field, so it is empty on both the ledger and legacy path and no mutation can make the two digests diverge.
@@ -137,12 +137,12 @@ These are P2 dispositions: the operator directed this closeout to drive REQ-004 
 | `.opencode/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts` | Modified (truncation + out-of-worktree) | `ed26cf274b` |
 | `.opencode/skills/system-deep-loop/runtime/tests/unit/observability-events.vitest.ts` | Modified (nested redaction) | `52da064126` |
 | `.opencode/skills/system-deep-loop/runtime/tests/unit/executor-audit.vitest.ts` | Modified (audit distinguishability) | `888fab793a` |
-| `.opencode/skills/system-deep-loop/runtime/tests/unit/deep-review-shadow-parity.vitest.ts` | Modified (REQ-001 full-surface fixtures) | `e69bbd1150` |
-| `.opencode/skills/system-deep-loop/runtime/tests/unit/deep-ai-council-shadow-parity.vitest.ts` | Modified (REQ-001 full-surface fixtures) | `e0b4e902c5` |
-| `.opencode/skills/system-deep-loop/runtime/tests/unit/agent-improvement-shadow-parity.vitest.ts` | Modified (REQ-001 full-surface fixtures) | `a9dbf88154` |
-| `.opencode/skills/system-deep-loop/runtime/tests/unit/model-benchmark-shadow-parity.vitest.ts` | Modified (REQ-001 full-surface fixtures) | `46310b9c45` |
-| `.opencode/skills/system-deep-loop/runtime/tests/unit/skill-benchmark-shadow-parity.vitest.ts` | Modified (REQ-001 full-surface fixtures) | `7ec622f1be` |
-| `.opencode/skills/system-deep-loop/runtime/tests/unit/deep-alignment-shadow-parity.vitest.ts` | Modified (REQ-001 full-surface fixtures) | `1109a40925` |
+| `.opencode/skills/system-deep-loop/runtime/tests/unit/deep-review-shadow-parity.vitest.ts` | Modified (REQ-001 full-surface fixtures) | `676e702a5b` |
+| `.opencode/skills/system-deep-loop/runtime/tests/unit/deep-ai-council-shadow-parity.vitest.ts` | Modified (REQ-001 full-surface fixtures) | `590a8bc619` |
+| `.opencode/skills/system-deep-loop/runtime/tests/unit/agent-improvement-shadow-parity.vitest.ts` | Modified (REQ-001 full-surface fixtures) | `283eef0c5a` |
+| `.opencode/skills/system-deep-loop/runtime/tests/unit/model-benchmark-shadow-parity.vitest.ts` | Modified (REQ-001 full-surface fixtures) | `8bdffb4d1e` |
+| `.opencode/skills/system-deep-loop/runtime/tests/unit/skill-benchmark-shadow-parity.vitest.ts` | Modified (REQ-001 full-surface fixtures) | `5d154654e4` |
+| `.opencode/skills/system-deep-loop/runtime/tests/unit/deep-alignment-shadow-parity.vitest.ts` | Modified (REQ-001 full-surface fixtures) | `6f50d710cc` |
 
 The REQ-002 and 028 closeout fixes and the REQ-001 fixtures landed on runtime/test surfaces only; no source sibling (`022`/`025`/`028`) file was modified. The tracker-doc reconciliation edited only `006-residual-finding-closeouts/` docs and metadata (`spec.md`, `tasks.md`, `checklist.md`, `implementation-summary.md`, `description.json`, `graph-metadata.json`).
 <!-- /ANCHOR:what-built -->

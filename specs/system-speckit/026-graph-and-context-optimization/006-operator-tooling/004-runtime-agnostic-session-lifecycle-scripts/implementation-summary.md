@@ -33,7 +33,7 @@ _memory:
 | **Spec Folder** | 004-runtime-agnostic-session-lifecycle-scripts |
 | **Completed** | 2026-05-30 |
 | **Level** | 2 |
-| **Commit** | `b9a4b74962` |
+| **Commit** | `3342859880` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -74,7 +74,7 @@ Cleanup is wired into each runtime's real session-end mechanism (Claude Stop, Ge
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Implemented in increasing-risk order (messaging → sweeper → rename/shim → per-runtime wiring → docs) with `bash -n` / `node --check` / `preserve_reason` unit-test gates between phases. After a parallel session repeatedly reverted operator-sensitive script edits, all changes were re-applied and committed atomically with a scoped pathspec (`b9a4b74962`), and HEAD content was re-verified after the commit. `git mv` preserved the cleanup script's history. The OpenCode dispose path shipped as a dedicated `session-cleanup.js` plugin after confirming the originally-planned target plugin did not exist.
+Implemented in increasing-risk order (messaging → sweeper → rename/shim → per-runtime wiring → docs) with `bash -n` / `node --check` / `preserve_reason` unit-test gates between phases. After a parallel session repeatedly reverted operator-sensitive script edits, all changes were re-applied and committed atomically with a scoped pathspec (`3342859880`), and HEAD content was re-verified after the commit. `git mv` preserved the cleanup script's history. The OpenCode dispose path shipped as a dedicated `session-cleanup.js` plugin after confirming the originally-planned target plugin did not exist.
 <!-- /ANCHOR:how-delivered -->
 
 ---

@@ -87,14 +87,14 @@ Current audit spot-check with `memory_search(..., profile: "quick", rerank: fals
 
 The 8/10 threshold was authored in commit:
 
-`837f7e0d82 test(playbook,014/028): add local-llm-query-intelligence operator scenarios`
+`63e799efb8 test(playbook,014/028): add local-llm-query-intelligence operator scenarios`
 
 The commit message describes 10 operator-driven scenarios for the post-014 local-LLM stack and says they complement mechanical tests with human-verifiable pass/fail criteria. It does not cite a known-good system achieving 8/10 on cat-24/409. The threshold appears aspirational/operator-defined, not empirically calibrated.
 
 Relevant commit evidence:
 
-- `git log --all --oneline -- .opencode/skills/system-spec-kit/manual_testing_playbook/local-llm-query-intelligence/409-llm-made-memory-recall.md` returns only `837f7e0d82`.
-- `git show --format=fuller --no-patch 837f7e0d82` contains no benchmark calibration note.
+- `git log --all --oneline -- .opencode/skills/system-spec-kit/manual_testing_playbook/local-llm-query-intelligence/409-llm-made-memory-recall.md` returns only `63e799efb8`.
+- `git show --format=fuller --no-patch 63e799efb8` contains no benchmark calibration note.
 - Current scenario lines encode the threshold directly: `.opencode/skills/system-spec-kit/manual_testing_playbook/local-llm-query-intelligence/409-llm-made-memory-recall.md:23-25`.
 
 ## Realistic Max Score

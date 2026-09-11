@@ -44,9 +44,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      "lib/architecture/layer-definitions.ts",
-      "tests/layer-definitions.vitest.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -71,18 +69,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "layer-definitions.ts",
-        "kind": "code",
-        "path": "lib/architecture/layer-definitions.ts",
-        "source": "derived"
-      },
-      {
-        "name": "layer-definitions.vitest.ts",
-        "kind": "test",
-        "path": "tests/layer-definitions.vitest.ts",
         "source": "derived"
       },
       {
@@ -192,11 +178,23 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "`memorycausalunlink` is a registered MCP tool (added by commit `deee30b319`, defined in",
+    "causal_summary": "`memorycausalunlink` is a registered MCP tool (added by commit `f6f95062ed`, defined in",
     "created_at": "2026-06-04T00:00:00.000Z",
-    "last_save_at": "2026-08-30T15:39:31.984Z",
+    "last_save_at": "2026-09-11T16:42:34.582Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:db8479c26617606996b71d6b701efdd358f4a481768dbbd34acc5b93aea1c623",
+    "source_fingerprint": "sha256:29e4d83e5f7fe9a59d2c4bd1ed442096daef31d5ef5544bee53a351402c6640f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c30b75a8a8fac23b50282545635b80e94cb6073ba18bd67cf7402095b68f62d1",
-      "plan.md": "3149943f41af87eb296ace69d78da7b4b3cdbc8131529f2b24b9cbe0934245dd",
+      "spec.md": "7be15d2af6199dc915ded65b48545416bbb122607ad3b4d10bdf8e8f9ab9b0da",
+      "plan.md": "05d9b2d3ff388bab7ef3fa027962ea65fed37620937aa041c94f590edacd5745",
       "tasks.md": "c0d2bc086cf0b64d37f68e1e43a7d59eca31ffc602fe3d607c67aee8fc125fb5",
-      "implementation-summary.md": "d812d434b02fac533d8ec6ff5a843d194b2f6d7e59a5b7c745639f72ab6c088a"
+      "implementation-summary.md": "c4ba653c994cf87434625860aef78fa749bf7f8acc8f0164250dd9b19c9088fc"
     },
     "last_active_child_id": null,
     "last_active_at": null

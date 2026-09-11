@@ -14,7 +14,7 @@ _memory:
     packet_pointer: "sk-code/001-sk-code-parent/014-close-out-and-tail"
     last_updated_at: "2026-07-05T00:00:00Z"
     last_updated_by: "gpt-5.5"
-    recent_action: "Backfilled Level 2 docs for shipped close-out commits 027882bfd0, ea689d84e0, and dd9487d65d"
+    recent_action: "Backfilled Level 2 docs for shipped close-out commits cc239ec964, 0ea2d1be9c, and 5f69124e19"
     next_safe_action: "Run strict validation for phase 014"
 ---
 # Feature Specification: Close-out and tail
@@ -88,10 +88,10 @@ Finish the close-out tail without widening scope: retire stale `sk-code-review` 
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Review mode identity no longer advertises stale `sk-code-review` skill-name labels | Commit `027882bfd0` updates review identity and manual-testing-playbook labels while retaining intentional search keyword coverage |
-| REQ-002 | Advisor scorer expectations match the folded review mode model | Commit `ea689d84e0` retargets stale tests to `sk-code` where review is now owned by the hub |
-| REQ-003 | Explicit OpenCode CLI delegation routes to `cli-opencode` | Commit `ea689d84e0` widens the disambiguation penalty and keeps the 197-prompt parity report byte-identical |
-| REQ-004 | Rename-invariant tests parse and read the correct TOML source | Commit `dd9487d65d` restores `.codex/config.toml` reads and the target suite is 4/4 green |
+| REQ-001 | Review mode identity no longer advertises stale `sk-code-review` skill-name labels | Commit `cc239ec964` updates review identity and manual-testing-playbook labels while retaining intentional search keyword coverage |
+| REQ-002 | Advisor scorer expectations match the folded review mode model | Commit `0ea2d1be9c` retargets stale tests to `sk-code` where review is now owned by the hub |
+| REQ-003 | Explicit OpenCode CLI delegation routes to `cli-opencode` | Commit `0ea2d1be9c` widens the disambiguation penalty and keeps the 197-prompt parity report byte-identical |
+| REQ-004 | Rename-invariant tests parse and read the correct TOML source | Commit `5f69124e19` restores `.codex/config.toml` reads and the target suite is 4/4 green |
 
 ### P1 - Required (complete OR user-approved deferral)
 

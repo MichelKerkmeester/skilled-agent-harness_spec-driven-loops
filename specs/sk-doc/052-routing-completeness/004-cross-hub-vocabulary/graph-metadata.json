@@ -201,7 +201,7 @@
     ],
     "causal_summary": "This phase was scoped before either gate was measured, on the belief that a cross-hub",
     "created_at": "2026-09-02T16:34:06Z",
-    "last_save_at": "2026-09-02T22:06:43.054Z",
+    "last_save_at": "2026-09-11T16:42:13.236Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +212,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:43e2a8faa26b6407e4832331001a2f8285185e61ce52b69d0052e32a967b4293",
+    "source_fingerprint": "sha256:aece266b5dc27c06c171e10a5077fff6b78a4fa3fc14211e5ed74c41b2bffd95",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1f9b8878e1fda106bc4ec5a51f9cbcf752f667ee08bd382673fb95c116fdbd3b",
-      "plan.md": "6fd4aa7ea8f781b111073d7f6f50ad56c2f90a37621e772ec85202a22b9110da",
-      "tasks.md": "d194b3f3f815120ead9b3775d29dcb53618fe2eb26891453d38bf292c0fb12ec",
-      "implementation-summary.md": "a7b03624b77b12675cacdc8a82ee3c48fad327dfe7bd385ca81b71925dd005e4"
+      "spec.md": "9946edce922bab22b31dc06e230873bded27943a0695fb5701ad8bdbb88700d9",
+      "plan.md": "62c01c0ad24065a691c56a0f193f7352c47cebb874f82139a5846875e9777068",
+      "tasks.md": "ee67f9e6219b49e89707729bc59a59fd1e0939e57718d49a937f541918b47e9f",
+      "implementation-summary.md": "373fbef9b7e66dfae2adb44257455e8b3bc0357218871503583d878e646704b9"
     },
     "last_active_child_id": null,
     "last_active_at": null

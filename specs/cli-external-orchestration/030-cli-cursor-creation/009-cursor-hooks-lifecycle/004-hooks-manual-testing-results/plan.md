@@ -81,7 +81,7 @@ This phase IS the testing -- real `cursor-agent -p` dispatches against isolated 
 | Dependency | Type | Status | Impact if Blocked |
 |---|---|---|---|
 | `cursor-agent` binary, authenticated | External | Green (Pro tier, confirmed) | All 4 scenarios require real dispatch |
-| Phase 011's `task-dispatch-guard.mjs` wiring | Internal | Green (committed `bad9262a65`) | `CU-021`'s subject under test |
+| Phase 011's `task-dispatch-guard.mjs` wiring | Internal | Green (committed `b867677f73`) | `CU-021`'s subject under test |
 <!-- /ANCHOR:dependencies -->
 
 <!-- ANCHOR:rollback -->

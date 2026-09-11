@@ -50,7 +50,6 @@
       ".opencode/commands/rewrite/response-by-external-agent.md",
       ".opencode/skills/sk-communication/references/visual-explanation.md",
       "repo-rules/communication.md",
-      ".opencode/skills/sk-doc/shared/references/hvr-rules.md",
       "scratch/baseline-validate-commands.txt",
       "scratch/baseline-package-skill.txt",
       "scratch/baseline-hvr-selftest.txt",
@@ -60,7 +59,8 @@
       "scratch/after-hvr-targets.txt",
       "scratch/final-gates.txt",
       "scratch/path-resolution.txt",
-      "scratch/scoped-diff.txt"
+      "scratch/scoped-diff.txt",
+      "scratch/final-validate.txt"
     ],
     "entities": [
       {
@@ -115,12 +115,6 @@
         "name": "communication.md",
         "kind": "doc",
         "path": "repo-rules/communication.md",
-        "source": "derived"
-      },
-      {
-        "name": "hvr-rules.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/shared/references/hvr-rules.md",
         "source": "derived"
       },
       {
@@ -184,6 +178,12 @@
         "source": "derived"
       },
       {
+        "name": "final-validate.txt",
+        "kind": "file",
+        "path": "scratch/final-validate.txt",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "`sk-communication` rewrites agent output into \"plain English\" and never says what that means",
     "created_at": "2026-08-31T20:29:05.884Z",
-    "last_save_at": "2026-08-31T20:29:23.090Z",
+    "last_save_at": "2026-09-11T16:42:12.670Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,11 +219,11 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:868026880ba5b904f1a6f67349ab3d77d6d9316be68efba92fe7943592d4eda8",
+    "source_fingerprint": "sha256:03cac90e6572417b5b902a35c711d433465fe5dbac004266a7c4dbfe56fac5b3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "63abf290c9a16d20bb08d71ec00b1e3ab4b7e161141e8b9c997dcaffa985e6d2",
-      "plan.md": "7f5db308075662948e19c8534d7705ef0c0d7aa8f9de9ff078b9f1725d3ce2e8",
+      "spec.md": "e983ea16f40cf09d3810a0d32f77057a8f6a83fbaa745e6b5d8351d3035a4444",
+      "plan.md": "027410fe567dee6c62775b59edc53e17184903997ca7801ec830e2286067cf82",
       "tasks.md": "26646d666c5781d8a34c167568aa1fd901aead91ea402e88fb92f902370a64c9",
       "implementation-summary.md": "8db8e9d07eb3f3f86ceb8b2c9071408ebd72ce096ccf61f08453d0e04460283d"
     },

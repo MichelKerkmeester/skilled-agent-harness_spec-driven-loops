@@ -30,7 +30,7 @@ _memory:
     open_questions:
       - "Is the C3-B four-timestamp window additive against active_memory_projection?"
     answered_questions:
-      - "skip-closed-in-sweep is SHIPPED (030 e1c6a3c793)"
+      - "skip-closed-in-sweep is SHIPPED (030 672d8a9187)"
 ---
 # Implementation Summary
 
@@ -61,7 +61,7 @@ Status is **complete** at the schema-foundation level: the C3-B migration shippe
 
 ### skip-closed-in-sweep (SHIPPED)
 
-Closed generated causal edges are now skipped during frontmatter-promoter cleanup. The promoter's stale-edge query gained an `AND invalid_at IS NULL` open-edge clause (`openEdgeClause`), applied only when the schema actually has the column, so already-closed edges are left intact and fixtures without the column stay compatible. This shipped in 030 commit `e1c6a3c793` (030 spec §14 row 9) as cheap defensive hardening ahead of the live edge-presence retirement path, not as a data-loss gate (the collision it guards is theoretical and tombstone-recoverable, per 005 iter-032).
+Closed generated causal edges are now skipped during frontmatter-promoter cleanup. The promoter's stale-edge query gained an `AND invalid_at IS NULL` open-edge clause (`openEdgeClause`), applied only when the schema actually has the column, so already-closed edges are left intact and fixtures without the column stay compatible. This shipped in 030 commit `672d8a9187` (030 spec §14 row 9) as cheap defensive hardening ahead of the live edge-presence retirement path, not as a data-loss gate (the collision it guards is theoretical and tombstone-recoverable, per 005 iter-032).
 
 ### MEM-fact-invalidation-event-time (PENDING, the spearhead)
 
@@ -118,7 +118,7 @@ The schema foundation was delivered as a coordinated v38 migration in `lib/searc
 
 | Check | Result |
 |-------|--------|
-| skip-closed-in-sweep shipped + tested | PASS (030 `e1c6a3c793`, closed-edge fixture) |
+| skip-closed-in-sweep shipped + tested | PASS (030 `672d8a9187`, closed-edge fixture) |
 | MEM-fact-invalidation-event-time | PENDING (planned, seam confirmed `temporal-edges.ts:81,86,94`) |
 | C3-B four-timestamp window | PASS (v38 UP/BACKFILL/DOWN, fresh-init and idempotency tests) |
 | `npm run typecheck` | PASS (exit 0) |

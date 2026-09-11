@@ -50,7 +50,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Complete (7/8 findings landed as `2f84f78bf7`; F-028-01 deferred) |
+| **Status** | Complete (7/8 findings landed as `e45e786cd5`; F-028-01 deferred) |
 | **Created** | 2026-07-30 |
 | **Branch** | `system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/008-runtime-mirror-and-routing-parity` |
 | **Parent** | `system-deep-loop/036-deep-loop-innovation` |

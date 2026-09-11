@@ -54,10 +54,10 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given a standalone `sk-design`, When the root is converted, Then the fleet metadata gate classifies it class H with every hub-required file present and no hub-forbidden file | Fleet metadata audit, class H pass; `description.json`, `mode-registry.json`, `hub-router.json` added and `leaf-manifest.config.json` deleted in `112d5471f4` | Met | - |
+| AC-001 | REQ-001 | Given a standalone `sk-design`, When the root is converted, Then the fleet metadata gate classifies it class H with every hub-required file present and no hub-forbidden file | Fleet metadata audit, class H pass; `description.json`, `mode-registry.json`, `hub-router.json` added and `leaf-manifest.config.json` deleted in `08c9d0605d` | Met | - |
 | AC-002 | REQ-002 | Given the recorded baseline, When the two design phrases are replayed, Then both score at or above their baseline | `what padding should this have` and `contrast ratio failure on this button` at or above 0.82 and 0.95 in the replay beside `scratch/routing-baseline.txt` | Met | - |
 | AC-003 | REQ-003 | Given the hub router, When stage two resolves, Then `sk-design-fundamentals` returns a non-empty leaf set | `mode-registry.json` and the regenerated `leaf-manifest.json` at `.opencode/skills/sk-design/` | Met | - |
-| AC-004 | REQ-004 | Given a shared branch, When the conversion lands, Then it is one commit and no intermediate state shows a hub root without its `SKILL.md` | Commit `112d5471f4`, single commit covering the root rewrite and the 28 moves | Met | - |
+| AC-004 | REQ-004 | Given a shared branch, When the conversion lands, Then it is one commit and no intermediate state shows a hub root without its `SKILL.md` | Commit `08c9d0605d`, single commit covering the root rewrite and the 28 moves | Met | - |
 | AC-005 | REQ-005 | Given the moved content, When the index is inspected before commit, Then git records renames rather than delete-plus-add | `git diff --cached --name-status -M` showing 28 `R100` entries | Met | - |
 
 ### Status values

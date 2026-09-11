@@ -47,7 +47,7 @@ Fresh evidence collected on 2026-07-05:
 
 | Evidence | Result |
 |----------|--------|
-| Current HEAD | `ba8906743c1b1e327ff4d4a758bb9d67e9d6c8ed` |
+| Current HEAD | `914bc78c295d33edd3c09ec8c94b43472a20fbf5` |
 | Scoped status | `git status --short -- ".opencode/skills/sk-design"` returned no output |
 | Scoped diff | `git diff --name-status -- ".opencode/skills/sk-design"` returned no output |
 | Scoped diff stat | `git diff --stat -- ".opencode/skills/sk-design"` returned no output |
@@ -94,7 +94,7 @@ Fresh evidence collected on 2026-07-05:
 
 ### Decision 4: Rollback is non-destructive first; destructive checkout requires explicit confirmation
 
-**Decision**: Rollback starts with inspection using `git diff` against current `HEAD` `ba8906743c1b1e327ff4d4a758bb9d67e9d6c8ed`. Destructive checkout, reset, stash, cleanup, or commit actions require explicit user confirmation and are not part of Phase 001 execution.
+**Decision**: Rollback starts with inspection using `git diff` against current `HEAD` `914bc78c295d33edd3c09ec8c94b43472a20fbf5`. Destructive checkout, reset, stash, cleanup, or commit actions require explicit user confirmation and are not part of Phase 001 execution.
 
 **Rationale**: The workspace may contain concurrent user or agent changes outside this phase. Non-destructive inspection preserves unrelated work and keeps ownership legible.
 

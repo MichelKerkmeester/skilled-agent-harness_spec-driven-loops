@@ -97,7 +97,7 @@ reference doc was being scored against the README contract solely because of its
 ## How It Was Delivered
 
 Every gate ran once before any edit (Phase 1 baseline: playbook validator, per-file DQI, grep counts on
-the two names being removed, and a confirmed rollback anchor `856c17d5ed`), so the same command could
+the two names being removed, and a confirmed rollback anchor `5a4bd90bd0`), so the same command could
 later prove the change. Five lanes then touched disjoint file sets — three authoring lanes (A, B, C) and
 two orchestrator lanes (D, E) — so they could proceed without write conflicts. Lanes A, B, D, and E
 closed on their respective gates (DQI parity, grep-to-zero, manifest resolution). Lane C (playbook

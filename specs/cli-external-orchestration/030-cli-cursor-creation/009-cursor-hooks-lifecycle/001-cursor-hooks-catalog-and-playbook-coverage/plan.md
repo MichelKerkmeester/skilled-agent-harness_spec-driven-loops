@@ -81,8 +81,8 @@ Structural validation via each sk-doc sub-skill's own validator (`validate_docum
 ## 6. DEPENDENCIES
 | Dependency | Type | Status | Impact if Blocked |
 |---|---|---|---|
-| Phase 004 (hook adapter layer) | Internal | Green (committed `5bd90b42c1`) | Source of the 4 confirmed adapters + event-delivery table |
-| Phase 006 (manual-testing playbook) | Internal | Green (committed `78ab7a573d`/`4b6bf6fc10`) | The `hooks/` category this phase extends |
+| Phase 004 (hook adapter layer) | Internal | Green (committed `71a4b485cd`) | Source of the 4 confirmed adapters + event-delivery table |
+| Phase 006 (manual-testing playbook) | Internal | Green (committed `393951e480`/`b267401755`) | The `hooks/` category this phase extends |
 | `spec-gate-prebind.mjs` | External (concurrent session) | Yellow — still uncommitted, unreviewed (confirmed unchanged at implementation time) | Documented with explicit hedging; 21 hedged mentions across both new docs |
 | `gpt-5.6-luna` via `cli-codex` | External | Green — documented in `cli-codex/SKILL.md`'s model table | Dispatch mechanism for Phase 2 |
 <!-- /ANCHOR:dependencies -->

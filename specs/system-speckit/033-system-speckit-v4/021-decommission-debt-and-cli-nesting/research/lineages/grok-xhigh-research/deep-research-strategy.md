@@ -10,7 +10,7 @@ Review-angle research over the memory-database decommission programme: what did 
 Generated from the reducer registry.
 
 - [x] Q1. What live code or config still serves or describes a retired surface (memory database, memory MCP tools, spec-memory launcher, zvec lane, system-plugins, mcp-server identity of system-spec-kit/runtime)?
-- [x] Q2. Which registrations, symlinks, hook configs, CI workflows and doctor assets were dropped or left dangling by the sweeps, including the eleven session-lifecycle registrations restored at 273767431d?
+- [x] Q2. Which registrations, symlinks, hook configs, CI workflows and doctor assets were dropped or left dangling by the sweeps, including the eleven session-lifecycle registrations restored at 9bca36ef52?
 - [x] Q3. Which dependencies lack an importer, and which importers lack a declared dependency, across the system-spec-kit workspace (shared, scripts, runtime)?
 - [x] Q4. Which tests pass only because they test a surface that no longer exists, or that were weakened rather than fixed?
 - [x] Q5. Which documentation claims a behavior the code no longer has, across system-spec-kit, install-guides, README.md, AGENTS.md and the runtime mirrors?
@@ -83,7 +83,7 @@ Generated from the reducer registry.
 ## 10. RULED OUT DIRECTIONS
 - Live memory MCP / spec-memory plugin / zvec lane still serving operators.
 - Dropping advisor SDK or HF `runtime/database` directory as D8 residue.
-- Eleven hook registrations dropped again after 273767431d.
+- Eleven hook registrations dropped again after 9bca36ef52.
 - `/doctor memory` and `/memory:save`+`/memory:search` as dangling retired commands.
 - T004–T007 still open.
 - Escalating the leftover set to a hidden P0 server.
@@ -144,7 +144,7 @@ resource-map.md not present; skipping coverage gate.
 - D8 moved `system-spec-kit/mcp-server` to `runtime` and dropped MCP SDK plus importer-less dependencies.
 - D11 retired the zvec lane, packets 050 and 051 and the `system-plugins` home.
 - 054 still has T009 (code alignment and code READMEs) and T010-T012 (verification and packet close) unchecked.
-- 053 pass-3 PASS left two P2s (stale `[mcp-server/]` label, dependency arithmetic). Goal log says those were fixed at `85d9791eb3`. This lineage must re-check rather than trust the log.
+- 053 pass-3 PASS left two P2s (stale `[mcp-server/]` label, dependency arithmetic). Goal log says those were fixed at `a4e85f6ad4`. This lineage must re-check rather than trust the log.
 
 ---
 

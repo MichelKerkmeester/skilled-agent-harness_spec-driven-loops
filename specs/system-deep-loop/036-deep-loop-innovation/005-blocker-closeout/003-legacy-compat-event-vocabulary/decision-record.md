@@ -280,5 +280,5 @@ Map only records with a lossless typed target. Pin every live stem without one, 
 
 ### Rollback
 
-Restore the six touched ledger-schema files from clean anchor `5c98e4654e4bcaf2c7002412d6da2b92f1793942` and rerun the affected ledger-schema suite. This rollback was not executed because all gates remained green.
+Restore the six touched ledger-schema files from clean anchor `0c5c966015760b053edc39722b06fa3f121a4cfa` and rerun the affected ledger-schema suite. This rollback was not executed because all gates remained green.
 <!-- /ANCHOR:adr-003 -->

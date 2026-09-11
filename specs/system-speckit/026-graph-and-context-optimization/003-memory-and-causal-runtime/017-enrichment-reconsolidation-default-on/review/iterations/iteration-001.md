@@ -8,7 +8,7 @@ trigger_phrases: []
 
 **Verdict:** FAIL
 
-**Scope:** memory_save error classification (commit c0bb8aefd6) — verify every reachable failure in `handleMemorySave` returns a CLASSIFIED `createMCPErrorResponse` (E085/E086/E087/E088/E089) and that no reachable bare `throw new Error(...)` escapes to the dispatcher's generic E081 catch-all. Files reviewed: `handlers/memory-save.ts`, `handlers/save/response-builder.ts`.
+**Scope:** memory_save error classification (commit 3dcd0c79ae) — verify every reachable failure in `handleMemorySave` returns a CLASSIFIED `createMCPErrorResponse` (E085/E086/E087/E088/E089) and that no reachable bare `throw new Error(...)` escapes to the dispatcher's generic E081 catch-all. Files reviewed: `handlers/memory-save.ts`, `handlers/save/response-builder.ts`.
 
 ## Findings
 

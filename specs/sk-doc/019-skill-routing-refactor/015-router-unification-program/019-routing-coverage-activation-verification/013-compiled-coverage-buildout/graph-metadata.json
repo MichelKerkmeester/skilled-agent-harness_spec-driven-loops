@@ -204,7 +204,7 @@
     ],
     "causal_summary": "A real parity run (`SPECKITCOMPILEDROUTING=1`, route-gold on) shows the compiled router mechanism works and is byte-identical to legacy on covered prompts, but compiled routing coverage was only built out for sk-design",
     "created_at": "2026-07-21T09:34:21.815Z",
-    "last_save_at": "2026-08-30T15:39:15.348Z",
+    "last_save_at": "2026-09-11T16:42:06.886Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,15 +215,15 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:d3193b6d547ce3ccf78d1a9bef09cf7c3719a3e9c273a7b2648a63953dce42f2",
+    "source_fingerprint": "sha256:607e2bd5aecb9c5e03656b84d4334ba83cecb54b854d2f348b91687c868aaab1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8025703a4e05fb57682bbdb239ca5e67d95060466cc7df862c01ca7aed95be50",
+      "spec.md": "59863550619af65f5e3a5b050501dfb028a090c4cad7f29272a115c88dcdd0d6",
       "plan.md": "de98c6ee1725551a4803f4c8b1bb34adc8e8ce895984a87dd67aa071ea452ad0",
       "tasks.md": "77ffe00823fc9fab5576a39399d82c70bb59ebc0c3d585ff89111546e79c5f4f",
       "decision-record.md": "846abaf5fb962cd71b62f31cd1c5aee87ab850c5c2896b8e3af7b7311c40ca8f",
-      "implementation-summary.md": "82f22a7eb156f4ef17447a68ba2053b09c417614d4100369ba1cc97e0f3df89f",
-      "handover.md": "b1461bb13edb2e127b7f43675cd2f35298619edc805abd61016610456ca2b199"
+      "implementation-summary.md": "edf1ad30ecc23bcbae685372153c2722517b92267f6ad259474ffe844a100deb",
+      "handover.md": "1c85160e3e6fd06f630f7df412b96aaf351e1f1f241c61da9e26dda3add5c47e"
     },
     "last_active_child_id": null,
     "last_active_at": null

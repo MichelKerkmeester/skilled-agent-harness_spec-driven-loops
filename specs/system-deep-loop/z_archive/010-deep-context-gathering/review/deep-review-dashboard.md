@@ -15,7 +15,7 @@ Reducer-generated observability surface for the active review packet.
 <!-- /ANCHOR:overview -->
 <!-- ANCHOR:status -->
 ## 2. STATUS
-- Review Target: git commit 531dd53028 work across 005-runtime-mirror-parity, 006-native-default-executor-pool, 007-deep-command-gate-hardening (spec-folder)
+- Review Target: git commit 331aa7ece2 work across 005-runtime-mirror-parity, 006-native-default-executor-pool, 007-deep-command-gate-hardening (spec-folder)
 - Started: 2026-06-07T11:00:50Z
 - Status: COMPLETE
 - Iteration: 10 of 10

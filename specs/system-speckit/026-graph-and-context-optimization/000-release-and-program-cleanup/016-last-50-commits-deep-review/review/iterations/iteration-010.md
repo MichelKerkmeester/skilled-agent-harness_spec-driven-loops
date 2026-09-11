@@ -8,9 +8,9 @@ trigger_phrases: []
 - **Run:** 10 of 20
 - **Mode:** review (read-only — findings only, no code/doc modification)
 - **Dimension:** traceability
-- **Angle:** A9 — accuracy of THIS SESSION's 33 AI-authored changelogs (committed `12de3d3a7e`) vs the code/packet facts they describe; + NEW user-facing doc-drift in the range.
+- **Angle:** A9 — accuracy of THIS SESSION's 33 AI-authored changelogs (committed `3923a65db1`) vs the code/packet facts they describe; + NEW user-facing doc-drift in the range.
 - **Budget profile:** verify (target 11-13 tool calls; used 11 analysis calls)
-- **Review target:** git range `a9e9bdb0a5^..HEAD` (HEAD `12de3d3a7e`); changelog set under `026/changelog/000-release-and-program-cleanup/` + `026/changelog/003-memory-and-causal-runtime/`.
+- **Review target:** git range `fd67ede05f^..HEAD` (HEAD `3923a65db1`); changelog set under `026/changelog/000-release-and-program-cleanup/` + `026/changelog/003-memory-and-causal-runtime/`.
 - **Session:** `2026-06-05T11:16:17Z` (generation 1, lineageMode new)
 - **Parallel-safety:** wrote ONLY `iterations/iteration-010.md` + `deltas/iter-010.jsonl`. Did NOT touch state.jsonl / strategy.md / findings-registry / config.
 
@@ -24,12 +24,12 @@ Changelogs sampled (9 of 33), each cross-checked against its packet `implementat
 6. `changelog-019-causal-relation-coverage-honesty.md` — vs `mcp_server/lib/causal/relation-coverage.ts` (+ git history) + 2 test files.
 7. `changelog-000-014-pre-existing-failure-remediation.md` — vs advisor test corpus + `advisor/.../lib/render.ts`.
 8. `changelog-008-002-changelog-backfill-and-audit.md` — vs live changelog-corpus counts + symlink count.
-9. (root counts) verified 33 new changelogs added in `12de3d3a7e`.
+9. (root counts) verified 33 new changelogs added in `3923a65db1`.
 
 User-facing docs spot-checked (NEW-drift task; complements packet 015):
-- `.opencode/skills/README.md` (tool-count lines, gemini refs) — changed by `a8e180a222`.
-- `mcp_server/README.md` (embedder cascade, lines 44-51) — changed by `a8e180a222`.
-- `system-spec-kit/README.md` (root tool table) — changed by `a8e180a222`.
+- `.opencode/skills/README.md` (tool-count lines, gemini refs) — changed by `20e03b8cc1`.
+- `mcp_server/README.md` (embedder cascade, lines 44-51) — changed by `20e03b8cc1`.
+- `system-spec-kit/README.md` (root tool table) — changed by `20e03b8cc1`.
 - `install_guides/README.md` (gemini provider refs).
 - `feature_catalog/**` (Voyage model name).
 
@@ -66,18 +66,18 @@ None. Every numeric and verdict claim spot-checked is TRUE against packet facts 
 
 ## Traceability Checks
 - **Iteration number:** dispatch says iter 10. JSONL-derived count is parallel-loop-managed (other agents write iters 3-9 concurrently); dispatch explicitly assigns iter 10 / A9 and instructs me NOT to read/modify shared state.jsonl. I write `iteration-010.md` + `deltas/iter-010.jsonl` only. Reducer reconciles ordering. No HARD BLOCK: `iteration-010.md` and `iter-010.jsonl` did not pre-exist.
-- **Range integrity:** 33 changelogs confirmed added in `12de3d3a7e` (`git show --name-status | grep -c changelog` = 33). Matches charter A9 ("33 AI-authored changelogs").
+- **Range integrity:** 33 changelogs confirmed added in `3923a65db1` (`git show --name-status | grep -c changelog` = 33). Matches charter A9 ("33 AI-authored changelogs").
 - **016 launcher "11 of 11":** ACCURATE. `tests/launcher-lease.vitest.ts` has exactly 11 `it()` cases; impl-summary.md:75 confirms "11/11 pass (orchestrator-confirmed first-hand)". Changelog honestly marks "Live recycle: Not performed".
 - **013 rollup "478 tests / 7 files", "595 pass / 1 skip", "15 tests":** ALL ACCURATE vs `central-verification-record.md:25` (478 / 7 files), `:28` (595 pass / 1 skip / 1 pre-existing env-fail), `:32` (job-queue 15/15). Changelog honestly tags the code-index env-fail as "unrelated ... classified outside 013".
 - **014 "452 passed / 4 skipped / 66 files", "code-index security 2 of 2":** advisor test corpus = 66 `.vitest.ts` files (matches). `render.ts` hygiene-directive-within-cap change present (HYGIENE_DIRECTIVE + capText, lines 51/64). Changelog honestly flags "reversible judgment calls" + "activates after dist rebuild + daemon recycle".
 - **018 "54 passed / 16 skipped", "18 passed / 3 new cold-start", "120→30 (~176s→41s)":** ALL ACCURATE vs impl-summary.md:78-79 (7 files / 54 tests / 16 skipped; 18 passed incl 3 cold-start) and code: `launcher-session-proxy.cjs:17` `DEFAULT_MAX_COLD_START_ATTEMPTS = 30`, `:199` `resolveColdStartAttempts()`; proxy test:478-499 cold-start describe. context-server.ts throw-instead-of-exit present (`:1737`, `:1778`, `:1796`). Changelog honestly marks Deploy + Post-deploy connectivity "Pending".
-- **019 "5 tests across 2 files", "backfillJob.implemented ... null command":** test count ACCURATE (relation-coverage-unit 4 + causal-stats-output 1 = 5 / 2 files). The `implemented:false` claim was TRUE at 019's commit `c7eb1f6454`; see Ruled Out F-A9-R1.
+- **019 "5 tests across 2 files", "backfillJob.implemented ... null command":** test count ACCURATE (relation-coverage-unit 4 + causal-stats-output 1 = 5 / 2 files). The `implemented:false` claim was TRUE at 019's commit `192c6f4d1e`; see Ruled Out F-A9-R1.
 - **012 root "produced findings, not shipped code", Added/Changed/Fixed = None:** ACCURATE — read-only audit rollup, faithfully claims no code modified; defers detail to 9 child changelogs (Included Phases table matches).
 - **008-002 "0 dangling symlinks remain":** ACCURATE (live `find -type l` = 0). The "696 final" count is point-in-time; see Ruled Out F-A9-R2.
 
 ## Integration Evidence
-- **Git history adjudication (`code-graph MCP disconnected`, used `git log`):** `relation-coverage.ts` history in-range = `c7eb1f6454` (019, honest contract) → `d32d90c3f1` (021, "bounded dryRun-default relation-inference backfill") → `b834150fe5` (023, "opt-in similarity + supersession") → `19ca25ce0a` (023 deep-review). Confirms 019's `implemented:false` was superseded by LATER in-range commits 021/023, which carry their own spec packets and changelogs. This is legitimate supersession, not a 019 inaccuracy.
-- **Remediation commit `a8e180a222`** ("remediate docs/config drift flagged by 015") is the LAST commit in range and already corrected 015's F1/F9/F10/F23: mcp_server/README.md:44 now nomic-only (F9), skills/README.md:28/46 reframed to "public" surface (F23-accepted fix), voyage-4→voyage-code-3 (F10, no stale hits). No NEW drift introduced by the remediation.
+- **Git history adjudication (`code-graph MCP disconnected`, used `git log`):** `relation-coverage.ts` history in-range = `192c6f4d1e` (019, honest contract) → `6512b45e86` (021, "bounded dryRun-default relation-inference backfill") → `5a09f033e3` (023, "opt-in similarity + supersession") → `9867783c2f` (023 deep-review). Confirms 019's `implemented:false` was superseded by LATER in-range commits 021/023, which carry their own spec packets and changelogs. This is legitimate supersession, not a 019 inaccuracy.
+- **Remediation commit `20e03b8cc1`** ("remediate docs/config drift flagged by 015") is the LAST commit in range and already corrected 015's F1/F9/F10/F23: mcp_server/README.md:44 now nomic-only (F9), skills/README.md:28/46 reframed to "public" surface (F23-accepted fix), voyage-4→voyage-code-3 (F10, no stale hits). No NEW drift introduced by the remediation.
 
 ## Edge Cases
 1. **Parallel-loop iteration numbering:** iter 3-9 run concurrently in other agents; I cannot trust a JSONL-derived number and am instructed not to read/modify shared state. Resolution: trust dispatch assignment (iter 10 / A9), write only my two owned files, let the reducer reconcile. Recorded per the agent contract's ambiguity rule.
@@ -91,15 +91,15 @@ None. Every numeric and verdict claim spot-checked is TRUE against packet facts 
 - **skills/README.md tool counts:** "8 public / four public skill_graph_*" matches 015 F23's accepted resolution; not new drift.
 
 ## Ruled Out
-- **F-A9-R1 (019 `implemented:false` "contradicted" by HEAD `implemented:true`):** REFUTED as a finding. HEAD `relation-coverage.ts:113-114` shows `implemented:true`, `command:BACKFILL_COMMAND` — but git history proves 019's commit `c7eb1f6454` set `implemented:false` (correct then), and LATER in-range commits `d32d90c3f1` (021) + `b834150fe5` (023) re-implemented the backfill. The 019 changelog accurately describes 019's shipped state; HEAD reflects legitimate supersession by 021/023 (their own packets). Skeptic pass caught this; not a changelog inaccuracy.
+- **F-A9-R1 (019 `implemented:false` "contradicted" by HEAD `implemented:true`):** REFUTED as a finding. HEAD `relation-coverage.ts:113-114` shows `implemented:true`, `command:BACKFILL_COMMAND` — but git history proves 019's commit `192c6f4d1e` set `implemented:false` (correct then), and LATER in-range commits `6512b45e86` (021) + `5a09f033e3` (023) re-implemented the backfill. The 019 changelog accurately describes 019's shipped state; HEAD reflects legitimate supersession by 021/023 (their own packets). Skeptic pass caught this; not a changelog inaccuracy.
 - **F-A9-R2 (008-002 "696 final" vs live 759):** REFUTED. 696 is a completion-time snapshot of the 008 backfill effort; the tree grew afterward (this very commit added 33; session changelogs 015/016/etc. added more). Point-in-time audit figure, not a fabrication. The falsifiable "0 dangling symlinks" claim still holds (live = 0).
-- **F-A9-R3 (skills/README.md 8-vs-9 tool count as NEW drift):** REFUTED. The "8 public" / "four public skill_graph_*" wording is exactly 015 F23's accepted fix (label the count "public surface"); remediation a8e180a222 applied it. Not new drift.
+- **F-A9-R3 (skills/README.md 8-vs-9 tool count as NEW drift):** REFUTED. The "8 public" / "four public skill_graph_*" wording is exactly 015 F23's accepted fix (label the count "public surface"); remediation 20e03b8cc1 applied it. Not new drift.
 - **F-A9-R4 (install_guides Gemini refs as A8 dangling):** REFUTED. Refs are to Gemini LLM provider / cli-gemini binary (supported), not the deleted `.gemini/` agent-mirror runtime.
 
 ## Next Focus
 - **Dimension:** maintainability
 - **Focus area:** A6 test integrity & verification honesty (iters 12-13) — un-skipped launcher-lease socket-listen timing raciness (`tests/launcher-lease.vitest.ts`, now 11/11 but verify determinism), auto-fix-default coverage reduction (`tests/quality-loop.vitest.ts`), contradiction-cycle test gap (`relation-backfill-conflict.vitest.ts`), deep-loop fan-out non-zero-exit-counted-as-success (`fanout-run.cjs`).
-- **Reason:** A9 traceability is now well-covered and clean (changelog batch is honest; remediation a8e180a222 closed 015's doc findings). Highest remaining open risk is test-honesty, which under-pins every "X/Y passed" claim the changelogs rely on — A6 validates whether those green suites are themselves trustworthy (e.g. fan-out exit-code accounting, racy un-skipped tests).
+- **Reason:** A9 traceability is now well-covered and clean (changelog batch is honest; remediation 20e03b8cc1 closed 015's doc findings). Highest remaining open risk is test-honesty, which under-pins every "X/Y passed" claim the changelogs rely on — A6 validates whether those green suites are themselves trustworthy (e.g. fan-out exit-code accounting, racy un-skipped tests).
 - **Rotation status:** traceability A9 complete (this iter). A7/A8 dispatched to sibling iters 8/9. Entering maintainability rotation.
 - **Blocked/productive carry-forward:** Productive — A9 confirms the changelog corpus does not over-claim, so A6's job is to verify the underlying suites (not re-audit prose). The 015-report P0-count inconsistency (F-A9-01) is a report-level item for a 015 follow-on, NOT a code/changelog blocker.
 - **Required evidence (A6):** for each "N passed" suite cited by 016/018/014/019 changelogs, confirm the test count is deterministic (no skip-on-timing, no exit-code-as-success); verify fan-out non-zero-exit accounting in `fanout-run.cjs`.

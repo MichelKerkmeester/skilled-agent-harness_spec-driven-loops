@@ -75,8 +75,8 @@ Land the deep-loop **resilience GO cluster**, the cleanest reliability group sti
 ### Critical context (from the 028 research, authoritative)
 
 - **This cluster does NOT depend on the absent D2 reliability signal.** D2 (`metadata.reliability`) is wholly absent on both read and write sides, every input is `r=0.5` today [CONFIRMED iter-13 F13-01]. The reliability-weighted-learning cluster (D2/D3/Q2) is therefore NO-GO until built and benchmarked, and is OUT OF SCOPE here. This cluster is resilience/recovery, keyed only on exit-code/timeout/ledger state.
-- **030 did NOT ship failure-class.** The 030 Wave-0 "Deep-Loop trio" (commit `46812f12a8`) shipped pool gauges (`lag`/`pending`/`failed`), the deterministic merge total-order and graceful-self-stop, and both its commit body and §14 note explicitly state it "does NOT duplicate the upstream failure classification." So the failure-class taxonomy and everything gated on it remain open. [CONFIRMED against `030/spec.md` §14 candidate 12, commit `46812f12a8` body, and current `fanout-pool.cjs:108-126`, which still returns `error:{name,message}` only, and `buildPoolSummary:236-250`, which emits no per-class rollup.]
-  - **Disambiguation:** synthesis `01-go-candidates.md:95` phrases the DL-graceful-self-stop GO as if "its sibling failure-class-taxonomy already shipped in the Deep-Loop trio." That phrasing was imprecise against the authoritative pre-implementation code: what shipped (`46812f12a8`) was only the UPSTREAM computation of `timedOut`/`exitCode`/`salvage` in `fanout-run.cjs:639-654`. The pool still discarded that class. This sub-phase implements the bounded label + rollup. [Logic-Sync resolved against `030/spec.md` §14, the commit body and current source.]
+- **030 did NOT ship failure-class.** The 030 Wave-0 "Deep-Loop trio" (commit `ba632c340c`) shipped pool gauges (`lag`/`pending`/`failed`), the deterministic merge total-order and graceful-self-stop, and both its commit body and §14 note explicitly state it "does NOT duplicate the upstream failure classification." So the failure-class taxonomy and everything gated on it remain open. [CONFIRMED against `030/spec.md` §14 candidate 12, commit `ba632c340c` body, and current `fanout-pool.cjs:108-126`, which still returns `error:{name,message}` only, and `buildPoolSummary:236-250`, which emits no per-class rollup.]
+  - **Disambiguation:** synthesis `01-go-candidates.md:95` phrases the DL-graceful-self-stop GO as if "its sibling failure-class-taxonomy already shipped in the Deep-Loop trio." That phrasing was imprecise against the authoritative pre-implementation code: what shipped (`ba632c340c`) was only the UPSTREAM computation of `timedOut`/`exitCode`/`salvage` in `fanout-run.cjs:639-654`. The pool still discarded that class. This sub-phase implements the bounded label + rollup. [Logic-Sync resolved against `030/spec.md` §14, the commit body and current source.]
 - **No candidate has a measured before/after benefit number.** All leverage/effort are structural inference. Ship for correctness/reversibility, not a promised delta.
 - The transient/fatal retry is the iteration-13 **CAUTION** item: the re-dispatch is net-new pool logic that MUST NOT double-count `summary.failed` nor mask a retry-success. [CONFIRMED iter-13 F13-03.]
 - Orphan auto-redispatch is **CAUTION pending a lease/heartbeat**. The GO half is detect + marker. [CONFIRMED synthesis `01` Deep-Loop recovery cluster.]
@@ -104,7 +104,7 @@ Land the deep-loop **resilience GO cluster**, the cleanest reliability group sti
 - **Reliability-weighted learning (D2 / D3 / Q2)**, NO-GO until built AND benchmarked. D2 is a wholly-absent net-new build (every input `r=0.5`). Q2-quarantine's "lower-trust side" is undefined without D2, and D3's cap+gate is unmeasured. [CONFIRMED iter-13.] Lives in a sibling impl sub-phase of `004-deep-loop`, not here.
 - **DL-progress-heartbeat** (periodic progress WITHIN a long single lineage), NEEDS-BENCHMARK. The shutdown-summary half already shipped via 030 graceful-self-stop. [CONFIRMED iter-12 E12-04.]
 - **DL-idempotent-self-resume**, NO-GO, wrong substrate (the runtime is fire-and-exit batch, not a self-prompting daemon). [CONFIRMED iter-12 E12-01.]
-- **DL-graceful-self-stop**, **pool gauges**, **deterministic merge total-order**, already SHIPPED in 030 (commit `46812f12a8`), not re-implemented here.
+- **DL-graceful-self-stop**, **pool gauges**, **deterministic merge total-order**, already SHIPPED in 030 (commit `ba632c340c`), not re-implemented here.
 - **DL-newInfoRatio non-consumption**, a known structured-module residual, not part of the resilience cluster.
 - Modifying the external reference systems under `028.../external/`.
 
@@ -164,7 +164,7 @@ Land the deep-loop **resilience GO cluster**, the cleanest reliability group sti
 | Risk | `settleItem` error-shape change touches the shared settle contract | Other pool consumers break | Additive field only, existing `{name,message}` preserved, full fanout test suite green |
 | Risk | Orphan auto-redispatch without a lease re-runs live work | Duplicate dispatch | Scope C4 to detect + marker (GO), defer auto-redispatch behind a lease/heartbeat (CAUTION) |
 | Risk | recover-vs-fresh gate refuses a legitimate fresh start | Resume regressions | Gate applies ONLY in validate-existing-state mode, fresh start path unchanged |
-| Dependency | 030 pool gauges + graceful-self-stop (`46812f12a8`) | C1 builds on the same `buildPoolSummary` | Confirmed shipped, this sub-phase extends, does not re-implement |
+| Dependency | 030 pool gauges + graceful-self-stop (`ba632c340c`) | C1 builds on the same `buildPoolSummary` | Confirmed shipped, this sub-phase extends, does not re-implement |
 | Dependency | D2 reliability signal | NONE, explicitly independent | Cluster keyed on exit-code/timeout/ledger only |
 
 <!-- /ANCHOR:risks -->
@@ -231,6 +231,6 @@ Land the deep-loop **resilience GO cluster**, the cleanest reliability group sti
 - **Task Breakdown**: See `tasks.md`
 - **Parent research**: `../research/research.md` (Deep Loop external-mining synthesis), resilience cluster detail in `../research/iterations/iteration-007.md`, `iteration-009.md`, `iteration-012.md`, `iteration-013.md` + `../research/deltas/iter-007.jsonl`, `iter-012.jsonl`.
 - **Cross-cutting roadmap**: `../../research/roadmap.md` (Graceful Degradation + Idempotent Async Consolidation spines), `../../research/synthesis/01-go-candidates.md` (Deep-Loop recovery/resilience cluster), `03-corrections-caveats-and-residuals.md`, `04-sibling-and-cross-cutting.md`.
-- **Shipped record (Wave-0)**: Wave-0 record (commit `46812f12a8`, gauges/merge/graceful-self-stop, explicitly NOT failure-class).
+- **Shipped record (Wave-0)**: Wave-0 record (commit `ba632c340c`, gauges/merge/graceful-self-stop, explicitly NOT failure-class).
 
 <!-- /ANCHOR:related-docs -->

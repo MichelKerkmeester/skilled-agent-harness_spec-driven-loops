@@ -75,7 +75,7 @@ The freshness walker ignores the generator's fixtures and dangling links, so a t
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-My lane landed as two commits (`1200c71f22` code, `c34ccfeb47` docs) after typecheck, the touched suites, the retrieval suites, two identical trigger-index runs and the skill-root audits. The alignment lane runs as five agents on disjoint folder sets with before-and-after evidence; it is committed after review.
+My lane landed as two commits (`184ccd38d9` code, `fe7f59e652` docs) after typecheck, the touched suites, the retrieval suites, two identical trigger-index runs and the skill-root audits. The alignment lane runs as five agents on disjoint folder sets with before-and-after evidence; it is committed after review.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -104,9 +104,9 @@ My lane landed as two commits (`1200c71f22` code, `c34ccfeb47` docs) after typec
 | Agent mirror sync | OK, 3 agents |
 | Alignment lane | PASS - five agents, four commits, typecheck exit 0 each, suites unchanged or improved, 87 READMEs at 0 issues |
 | Session hooks | PASS - eleven adapters run clean from dist; runtime hook suites 16 of 16 and 1 of 1 after the test repairs |
-| Grok research lineage (20 iterations) | 10 key findings; confirmed and fixed at `159c036502`, `9141353b0d`, `171465b256`, `4333c4d7b4`; set aside as false positives after checking: the doctor-update snapshot paths (they are the skill advisor's own), the leftover `mcp-server/` tree (exists only in the review worktree, untracked build residue), and the eleven session registrations (restored by design) |
+| Grok research lineage (20 iterations) | 10 key findings; confirmed and fixed at `6bd60162c1`, `2a43c091ba`, `bc9bab126e`, `d3f4038d65`; set aside as false positives after checking: the doctor-update snapshot paths (they are the skill advisor's own), the leftover `mcp-server/` tree (exists only in the review worktree, untracked build residue), and the eleven session registrations (restored by design) |
 | Continuity freshness tightening | REVERTED - reporting a fingerprint-less completion claim as stale would flag every closed packet, because claims are read from the spec status table while fingerprints live in the summary continuity block; recorded for the rule's owner |
-| Gates at `e0ae6d7063` | PASS - freshness, sweep, doctor, audits, routing guard, validate strict on three packets |
+| Gates at `1989b5f1a3` | PASS - freshness, sweep, doctor, audits, routing guard, validate strict on three packets |
 | Seven remediation phases | Complete - each validates strict PASSED; phase 002 carries six review passes with every reproducible finding fixed |
 | Gates at the closing head | PASS - typecheck (shared, runtime, cli) exit 0, deep-loop typecheck 0 errors, dist fresh, residue sweep live 0, route-validate 9 routes, compiled-route-guard fresh, skill-root audit 14 of 14, derived freshness 14 of 14, codex hooks OK, runtime mirrors 169 of 169, agent mirrors 12 of 12, contract drift OK, hook parity 100 of 100, CLI project 1568 of 1589 (one file follows the operator's in-flight 036 packet), legacy harness 316 of 316 |
 <!-- /ANCHOR:verification -->
@@ -116,7 +116,7 @@ My lane landed as two commits (`1200c71f22` code, `c34ccfeb47` docs) after typec
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The seven remediation phases are closed.** Continuity freshness claim binding (`787547dfc4`), the scripts nesting under `runtime/cli` with its review passes (`b4c2484696` through `714eaf2649`), retrieval coverage alignment (`3f0731e828`), save and resume freshness (`e378565f27`), the hook fallback failure signal (`b01d82e412`), orphaned types and dead modules (`1dab6e9e05`), and the command family rename (`9419e38e6b`, code paths with phase 002).
+1. **The seven remediation phases are closed.** Continuity freshness claim binding (`3a9d374c9b`), the scripts nesting under `runtime/cli` with its review passes (`f65b8f1e5b` through `d08508264d`), retrieval coverage alignment (`426fff2771`), save and resume freshness (`322fb7161e`), the hook fallback failure signal (`2fa9210f46`), orphaned types and dead modules (`fe1a5f60c6`), and the command family rename (`d6a5df774a`, code paths with phase 002).
 2. **One CLI test file stays red on purpose:** `recursive-child-manifest.vitest.ts` asserts a goal-file manifest inside the operator's in-flight 036 packet and follows that packet.
 3. **Nine deep-loop runtime suite files are environment-dependent** (locale and collation child-process tests) and fail identically before and after every change here; recorded in packet 042 with the typecheck fix.
 4. **Continuity freshness binds a completion claim to the summary's fingerprint** since phase 001; a claim in a document without a fingerprint is reported as skipped by design, never as fresh.

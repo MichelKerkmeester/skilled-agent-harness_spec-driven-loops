@@ -38,7 +38,7 @@ _memory:
 | **Completed** | 2026-07-21 |
 | **Level** | 2 |
 | **Status** | Complete |
-| **Original pre-hardening baseline** | `d1a3f0323c3635f24c3560feaeda839522ececf0` |
+| **Original pre-hardening baseline** | `f3ae3672a0a3f046204658dcccaeda2d7b8dee14` |
 | **Original scoped runtime/test tree** | `sha256:6826b361ae3e9d60118e0be05709a6b576e39e7fb6f013c36c26877b6e136303` |
 | **Identity versions** | descriptor `1`; reference `1`; tombstone `1`; canonicalization `deep-loop-json@1`; digest `sha256` |
 <!-- /ANCHOR:metadata -->

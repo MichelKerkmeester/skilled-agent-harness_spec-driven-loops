@@ -23,7 +23,7 @@ token occurrences (10-40 hex chars): 33,455 | unique tokens: 7,260
 length distribution: 10:2040  13:2310  12:813  40:294  11:295  16:492  17:531  18:154 ...
 unique tokens matching a commit prefix: 1,700 | not matching any commit: 5,560
 >=40-hex tokens: 294 — all 294 match a commit exactly
-most-cited token: 1e58d845af (4,287 occurrences; verified `git cat-file -t` = commit)
+most-cited token: e5ee6609c2 (4,287 occurrences; verified `git cat-file -t` = commit)
 10-hex prefix collisions among the 9,112 commits: 0  (deterministic remap key)
 
 === other locations ===
@@ -46,7 +46,7 @@ Claude-Session links in messages: 3,836 (unaffected by rewrite)
 
 ## Findings
 
-1. **The citation corpus is smaller and more tractable than the raw token count suggests.** 7,260 unique tokens reduce to 1,700 that actually match a commit prefix, plus 294 full 40-hex citations that all match commits exactly. The remaining 5,560 are timestamps (13-digit epoch millis), digests, and other hex — they must be left untouched. One token (`1e58d845af`) accounts for 4,287 occurrences. [SOURCE: command:citation token analysis]
+1. **The citation corpus is smaller and more tractable than the raw token count suggests.** 7,260 unique tokens reduce to 1,700 that actually match a commit prefix, plus 294 full 40-hex citations that all match commits exactly. The remaining 5,560 are timestamps (13-digit epoch millis), digests, and other hex — they must be left untouched. One token (`e5ee6609c2`) accounts for 4,287 occurrences. [SOURCE: command:citation token analysis]
 2. **The remap key is deterministic: zero 10-hex prefix collisions across 9,112 commits.** A prefix-match replace against the commit map is unambiguous at the length citations actually use. [SOURCE: command:prefix collision check → 0]
 3. **Outside `specs/`, commit citations are rare but present: 31 markdown files under `.opencode/skills`, none in changelogs, none in root docs.** The 1,119 non-markdown "hits" are noise (CSS hex colors, lockfile digests, benchmark data) and must be excluded by extension policy rather than by pattern. [SOURCE: command:location scans]
 4. **Commit messages cite hashes (460 messages, 551 tokens) — a layer the commit-map cannot reach in the first rewrite pass.** During the rewrite the new SHAs do not exist yet, so a message-callback cannot rewrite these citations. Options: a second filter-repo pass driven by the (cumulative) commit-map, or accept message-internal citations as dangling historical notes. This must be an explicit decision. [SOURCE: command:message citation count]

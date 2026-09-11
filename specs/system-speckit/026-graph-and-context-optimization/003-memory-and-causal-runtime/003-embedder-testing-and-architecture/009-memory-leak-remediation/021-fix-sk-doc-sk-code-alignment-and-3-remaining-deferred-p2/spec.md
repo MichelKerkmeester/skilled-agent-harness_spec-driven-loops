@@ -47,7 +47,7 @@ _memory:
 | **Created** | 2026-05-23 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` (009 memory-leak remediation arc) |
-| **Predecessor** | `../020-fix-investigation-deferred-p2s-for-behavior-and-api-changes/` (commit 793d9ce5d3 — closed 31 of 34 deferred-P2) |
+| **Predecessor** | `../020-fix-investigation-deferred-p2s-for-behavior-and-api-changes/` (commit 993151d9a2 — closed 31 of 34 deferred-P2) |
 | **Handoff Criteria** | All 3 child packets pass validate + sk-code verifier + sk-doc structure check independently |
 <!-- /ANCHOR:metadata -->
 
@@ -136,8 +136,8 @@ Close the last 3 P2 findings (or document DEFERRED-AGAIN where operator sign-off
 
 ## RELATED DOCUMENTS
 
-- **Predecessor**: `../020-fix-investigation-deferred-p2s-for-behavior-and-api-changes/spec.md` (commit 793d9ce5d3)
+- **Predecessor**: `../020-fix-investigation-deferred-p2s-for-behavior-and-api-changes/spec.md` (commit 993151d9a2)
 - **Source registry**: `../015-deep-research-drift-and-simplification/research/findings-registry.json`
 - **Parent arc**: `../spec.md`
-- **Recent sk-code alignment exemplars**: commits `fbb8a23cda`, `e5113fedc4`, `8dfafc7189`, `f081112aab`.
+- **Recent sk-code alignment exemplars**: commits `5a9ecbead3`, `98b6199c1b`, `002dfa1e7a`, `28f5bd32cc`.
 - **Memory note**: `[[project-arc-021-sk-doc-sk-code-alignment]]`

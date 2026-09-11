@@ -26,23 +26,23 @@ The daemon-skills playbook validation (packet 011) plus the core memory-search r
 - Added the schema-contract and merge-contract tests for cluster A.
 - Added the dedicated wiring-invocation tests for cluster B at five call sites.
 - Added the metadata-sanitizer boundary test for cluster E F2.
-- Added the follow-up B4 surrogate index-time, B5 contextual-tree header and C strict-schema tests in commit `374ca93caa`.
+- Added the follow-up B4 surrogate index-time, B5 contextual-tree header and C strict-schema tests in commit `ea6b2ba179`.
 
 ### Changed
 
-- Re-parented the post-phase-6 phases under their relevant parents in commit `64d064d868`.
+- Re-parented the post-phase-6 phases under their relevant parents in commit `bd2c8e4085`.
 - Routing re-mapped so deep-research and deep-review go to leaf skills and `:review:auto` to the review leaf, measured top-1 back to 0.92 to 0.95 against the 0.92 gate.
 - DB-path resolution standardized through one env-respecting helper across the runtime and migration entry points.
 
 ### Fixed
 
-- Cluster A schema drift, the F11 source_kind select guarded on narrow schemas and the F12 consumption_log insert aligned to query_hash (commit `adbcc65e83`, 80 passed).
-- Cluster B wiring, five implemented-but-dead memory-search features wired into the runtime, scoring observability, LLM backfill registration, llm-reformulation, query-surrogates and the contextual-tree header (commit `e5b4735c4b`, 1165 passed across 47 files).
-- Cluster C retrievalLevel honored local, global and auto end to end with the missing strict input-schema field added (commit `f0e063eed4`, 155 passed).
-- Cluster D ordering, folder rank primary sort plus a guaranteed top-k slot per active channel (commit `cbf4f4d111`, 98 passed).
-- Cluster E advisor persistence hardening F1 through F6, routing, the skill-metadata sanitizer, the validate-scorer, the rollback lifecycle-field cleanup, the non-zero bench exit and the disabled force-native error (commit `917ad633a3`, 61 passed).
-- Cluster F DB lifecycle, the cross-process rebind, the db-path standardization and the embedding-retry e2e (commit `f27945593e`, 63 passed, retry-manager 60/60).
-- Clusters G and H code-graph write-local refresh plus quality cleanup, the duplicate scope helper, two stale tests, entity dedup normalization and the 7-layer metadata (commit `3291c05389`, 421 passed on spec-kit plus 17 on code-graph).
+- Cluster A schema drift, the F11 source_kind select guarded on narrow schemas and the F12 consumption_log insert aligned to query_hash (commit `27a1477f7e`, 80 passed).
+- Cluster B wiring, five implemented-but-dead memory-search features wired into the runtime, scoring observability, LLM backfill registration, llm-reformulation, query-surrogates and the contextual-tree header (commit `390f04bddb`, 1165 passed across 47 files).
+- Cluster C retrievalLevel honored local, global and auto end to end with the missing strict input-schema field added (commit `750424c739`, 155 passed).
+- Cluster D ordering, folder rank primary sort plus a guaranteed top-k slot per active channel (commit `2d68d3109a`, 98 passed).
+- Cluster E advisor persistence hardening F1 through F6, routing, the skill-metadata sanitizer, the validate-scorer, the rollback lifecycle-field cleanup, the non-zero bench exit and the disabled force-native error (commit `c00e9e21c6`, 61 passed).
+- Cluster F DB lifecycle, the cross-process rebind, the db-path standardization and the embedding-retry e2e (commit `c777df3865`, 63 passed, retry-manager 60/60).
+- Clusters G and H code-graph write-local refresh plus quality cleanup, the duplicate scope helper, two stale tests, entity dedup normalization and the 7-layer metadata (commit `beacce4c07`, 421 passed on spec-kit plus 17 on code-graph).
 
 ### Verification
 

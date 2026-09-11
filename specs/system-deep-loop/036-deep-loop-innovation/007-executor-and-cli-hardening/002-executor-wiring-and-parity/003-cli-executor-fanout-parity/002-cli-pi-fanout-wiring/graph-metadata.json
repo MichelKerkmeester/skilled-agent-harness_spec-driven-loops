@@ -197,7 +197,7 @@
     ],
     "causal_summary": "`buildPiLineageCommand` in `fanout-run.cjs` was a hard stub that threw (\"command construction is unavailable until its headless",
     "created_at": "2026-07-29T09:17:18.172Z",
-    "last_save_at": "2026-08-30T15:39:21.864Z",
+    "last_save_at": "2026-09-11T16:42:26.604Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,12 +206,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:30807e3fe43435656290cde724b92dcd3fed00c26e20ed9a45dc1edd817d981d",
+    "source_fingerprint": "sha256:3c8388ffca48b94e187dc5d1c524f5b1d8bc47989bea3a56fd8ae96782adb7dd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "50766a039d02bdbc6f784af3cff48c7bd9814b7f6173fb32128b2c8b049d7424",
       "plan.md": "38f71d63c50cfebeb714eb4edaeccf7784010f68919e8b27b3dc034f66b00d29",
-      "tasks.md": "3b5f575282d00db44a259037c1f4837c1d66dfa9e14434edaa4a6162816c555f",
+      "tasks.md": "5b53a8848214f7ba6103bd8035258600c9baf315c8b5b0eef742c8b450218822",
       "implementation-summary.md": "7c0c45050e54ca1c18d7efa2726b451af6beca321723a7f85a34d62bb47b468e"
     },
     "last_active_child_id": null,

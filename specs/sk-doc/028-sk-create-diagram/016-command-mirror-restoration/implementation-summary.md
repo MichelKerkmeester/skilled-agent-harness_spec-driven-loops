@@ -48,7 +48,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Two problems, found in the same audit pass, fixed together. First, an earlier bulk-sync commit on this branch (`e3a66403df`, from a much earlier turn in this session) had deleted 61 symlinks as part of a 902-file commit; two prior repair commits fixed the hooks-tree symlinks but missed 3 outside that tree — `.claude/commands` (blocking every `/create:*` command for Claude Code) and two Pi extension symlinks. Second, and unrelated to that incident: `/create:diagram` never had Codex, Pi, or Cursor mirrors at all, unlike every sibling `/create:*` command — a phase-005 gap that predates this session.
+Two problems, found in the same audit pass, fixed together. First, an earlier bulk-sync commit on this branch (`4d52fff993`, from a much earlier turn in this session) had deleted 61 symlinks as part of a 902-file commit; two prior repair commits fixed the hooks-tree symlinks but missed 3 outside that tree — `.claude/commands` (blocking every `/create:*` command for Claude Code) and two Pi extension symlinks. Second, and unrelated to that incident: `/create:diagram` never had Codex, Pi, or Cursor mirrors at all, unlike every sibling `/create:*` command — a phase-005 gap that predates this session.
 
 | Area | Result |
 |---|---|
@@ -107,7 +107,7 @@ Diagnosed via `git reflog` and `git show --diff-filter=D --summary` on the origi
 <!-- ANCHOR:follow-up -->
 ## Follow-Up Items
 
-- [ ] Audit the remaining ~841 deletions from commit `e3a66403df` for further undiscovered regressions outside this phase's scope.
+- [ ] Audit the remaining ~841 deletions from commit `4d52fff993` for further undiscovered regressions outside this phase's scope.
 - [ ] Rebuild `better-sqlite3` in `system-skill-advisor/mcp-server`'s `node_modules` so `command-bridges-drift-guard.vitest.ts` can load again.
 <!-- /ANCHOR:follow-up -->
 

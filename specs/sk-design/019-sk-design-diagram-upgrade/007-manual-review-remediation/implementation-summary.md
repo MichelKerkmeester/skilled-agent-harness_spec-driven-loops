@@ -62,13 +62,13 @@ moving a file.
 ### Phase 7: manual-review-remediation
 
 Every F1-F34 finding is now fixed in its shipped file with evidence a reader can check, at today's
-paths. The work shipped in two rounds, both already committed. Round one (`77898f7776`) dispatched
+paths. The work shipped in two rounds, both already committed. Round one (`9f5dcdf94f`) dispatched
 one fix per file against the review's own stated "Fix:" text, closing all 34 findings on paper.
 A fresh reader then rendered every one of the 31 changed forms from a clean checkout and looked at
 each — not trusting the commit message — and found 32 of 34 closed clean, 2 not landed at all
 (F11, F26), and 9 of the 32 "closed" findings had introduced a new, previously-absent defect in the
 process (two as severe as what they replaced: a connector routed through the node it points at, and
-a guard label whose own mask erased the transition it qualified). Round two (`c0f1ad041c`) closed
+a guard label whose own mask erased the transition it qualified). Round two (`aa784beac7`) closed
 all 18 of those items. Three of them needed a decision the review's own text could not settle
 arithmetically or logically — each was decided once by the conductor rather than reversed or passed
 down (see Key Decisions).
@@ -104,7 +104,7 @@ a few pixels, and wrote `scratch/fix-verification.md` — the evidence this phas
 cite. Round two closed everything that pass found.
 
 This closeout pass (Claude Opus 5, agent `@markdown`) re-verified rather than re-stated: it pinned a
-git worktree to the pre-remediation commit (`7b97ce1a16`) to re-confirm the baseline `check-diagram-corpus.cjs`
+git worktree to the pre-remediation commit (`2dc62a071b`) to re-confirm the baseline `check-diagram-corpus.cjs`
 result, the cited line numbers and the pre-fix palette role counts; computed every colour-lane
 contrast figure directly through `color-gates.cjs` rather than trusting the review's own numbers;
 diffed both commits file by file against the manual review's exact "Fix:" wording; and rendered 14 of
@@ -137,10 +137,10 @@ landed and nothing new had broken since.
 | `node --test scripts/tests/` | PASS — 16/16 |
 | `node scripts/apply-diagram-tokens.cjs --default --all --out <tmp>` vs `assets/diagrams` | PASS — `diff -rq` empty (byte-identical); `--examples` flag this phase's own docs cite no longer exists post-merge, `--all` is the current equivalent |
 | `node scripts/apply-design-md.cjs --default --all --out <tmp>` vs `assets/diagrams` | PASS — `diff -rq` empty (byte-identical) |
-| `grid-baseline.json`'s 24 per-file counts vs the pre-fix (`7b97ce1a16`) snapshot | PASS — byte-identical; this phase's own commits never touch the file |
-| Pre-fix baseline re-check (`7b97ce1a16` worktree) | PASS — `RESULT: PASSED` (10 families, 0 errors); cited line numbers and role counts all matched spec.md's stated facts |
+| `grid-baseline.json`'s 24 per-file counts vs the pre-fix (`2dc62a071b`) snapshot | PASS — byte-identical; this phase's own commits never touch the file |
+| Pre-fix baseline re-check (`2dc62a071b` worktree) | PASS — `RESULT: PASSED` (10 families, 0 errors); cited line numbers and role counts all matched spec.md's stated facts |
 | `color-gates.cjs` contrast, computed directly (not trusted from the review) | PASS — F17/F22 `#4f5d75`/paper 6.11:1; F23 TB/LS 6.66:1/12.89:1; F30 terminal muted/paper 6.55:1; all ≥4.5:1 (F23's process.html DB chip 4.56:1; data-flow.html's DB chip 4.44:1, see Known Limitations) |
-| CI (`.github/workflows/diagram-corpus.yml`) | PASS — both `77898f7776` and `c0f1ad041c` show `completed / success` on `main` and `skilled/v4.0.0.0` |
+| CI (`.github/workflows/diagram-corpus.yml`) | PASS — both `9f5dcdf94f` and `aa784beac7` show `completed / success` on `main` and `skilled/v4.0.0.0` |
 | Fresh renders (this closeout pass) | 14 of round two's 18 files re-rendered from today's working tree and viewed: `state`, `import-mermaid`, `tree`, `swimlane`, `venn`, `quadrant-consultant`, `gantt`, `line`, `nested`, `org-chart`, `dp-integration`, `process`, `timeline`, `starter-full` — 13 confirmed clean, 1 (`swimlane`) surfaced a new defect (see Known Limitations) |
 | Comment hygiene | PASS — `grep -rnE '<!--.*(\bF[0-9]{1,2}\b\|\bT0[0-9]{2}\b\|007-manual-review\|manual-review-remediation).*-->' assets/diagrams/*.html` reports 0 matches |
 | `acceptance-criteria.md` | 37/37 rows `Met` |
@@ -169,7 +169,7 @@ landed and nothing new had broken since.
    "Fix:" line named only the TB and LS chips (both now well clear); the DB chip's 4.44:1 reading is
    in the review's body table, not its instruction. `example-process.html`'s equivalent chip was
    corrected in round two; `example-data-flow.html`'s was not, and was closed only later by an
-   unrelated, out-of-scope commit (`f3bf733cf47`) belonging to a different phase's own new checker
+   unrelated, out-of-scope commit (`08e8051eafb`) belonging to a different phase's own new checker
    family.
 4. **`template-full.html`'s two other dead tokens stay dead.** `--color-rule-solid` and
    `--color-accent-tint`, flagged in F32's own body text, are referenced nowhere in the file. F32's

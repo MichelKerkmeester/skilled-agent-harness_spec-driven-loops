@@ -47,7 +47,7 @@ The five sk-code-local touchpoints (landed earlier this session):
 4. **`verify_alignment_drift.py`** (+ its test) — a `.rs -> rust` extension mapping and a `check_rust` dispatch with two boundary-contract checks: `RUST-UNSAFE-NO-SAFETY` (ERROR) and `RUST-PANIC-BOUNDARY` (WARN). Four new tests (`python3 -m unittest` 15/15).
 5. **Shared trio** — `universal_patterns.md` gains Rust scope, a trio link, and a Cross-Language Determinism Contracts block; `code_organization.md` gains the `references/rust/` layout and Rust module/test conventions.
 
-The sixth touchpoint (`router-replay.cjs`), un-deferred and completed in commit `d5bf1513b5`:
+The sixth touchpoint (`router-replay.cjs`), un-deferred and completed in commit `784e256c2b`:
 
 6. **`router-replay.cjs`** — `detectSurface` recognizes `.rs`; `OPENCODE_LANGUAGES` gains `rust`; `detectOpencodeLanguage` (first-match scalar) became `detectOpencodeLanguages` (a touched-language **Set**) with the napi-rs/wasm-bindgen/WASI/cdylib marker regex; the language filter keys on set membership (`!ocLangs.has`). Cargo/napi/wasm are language selectors **within** the already-resolved OpenCode surface, not surface establishers — only `.rs` joins the surface regex. The change is atomic: the Set swap and `OPENCODE_LANGUAGES += rust` must land together, or single-language parity prompts would drop the Rust trio and regress.
 
@@ -85,7 +85,7 @@ Two reconciliations required by the touched-language contract:
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The five sk-code-local touchpoints were applied and verified first with tooling that runs without `node_modules` (pure Python). The sixth touchpoint and its drift guards were authored and verified in an isolated `git worktree` pinned to the origin tip, the same race-safe pattern used after an earlier operator `git reset` silently dropped staged edits on this shared branch. Non-regression was proven **before** editing by capturing a golden `routeSkillResources` snapshot over 14 probes, then diffing after: every single-language + non-opencode + cargo-only prompt is byte-identical, the Rust+TypeScript parity prompt is byte-identical (both trios retained), and only multi-language tasks gain their second trio (by design). The full skill-benchmark vitest showed an identical pre-existing failure set (11, all from the unrelated `cli-opencode`→`cli-external` move) with 116 pass unchanged. The commit was rebased onto the advancing origin tip and pushed without force (`d5bf1513b5`).
+The five sk-code-local touchpoints were applied and verified first with tooling that runs without `node_modules` (pure Python). The sixth touchpoint and its drift guards were authored and verified in an isolated `git worktree` pinned to the origin tip, the same race-safe pattern used after an earlier operator `git reset` silently dropped staged edits on this shared branch. Non-regression was proven **before** editing by capturing a golden `routeSkillResources` snapshot over 14 probes, then diffing after: every single-language + non-opencode + cargo-only prompt is byte-identical, the Rust+TypeScript parity prompt is byte-identical (both trios retained), and only multi-language tasks gain their second trio (by design). The full skill-benchmark vitest showed an identical pre-existing failure set (11, all from the unrelated `cli-opencode`→`cli-external` move) with 116 pass unchanged. The commit was rebased onto the advancing origin tip and pushed without force (`784e256c2b`).
 
 <!-- /ANCHOR:how-delivered -->
 ---

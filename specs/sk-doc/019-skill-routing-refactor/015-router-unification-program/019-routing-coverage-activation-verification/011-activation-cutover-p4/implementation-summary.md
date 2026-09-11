@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Compiled Routing Staged Activation Cutover (P4)"
-description: "SUPERSEDED by 013-compiled-coverage-buildout. Execution record for the terminal P4 cutover attempt: the coverage-closure join gate was GREEN, but the real Lane C compiled-routing parity run classified the first hub, sk-prompt, as legacy-fallback-drifted (5/5 rows red), so stop-on-first-failure correctly halted the staged flip before any mutation. That drift was a parity-harness classification bug plus thin compiled coverage on 4 hubs, both root-caused and fixed in 013. As of commit 7dfffa0c93, all 7 hubs are compiled-serving (0 drift each) and DEFAULT_ON_HUBS lists all 7 in both resolver copies."
+description: "SUPERSEDED by 013-compiled-coverage-buildout. Execution record for the terminal P4 cutover attempt: the coverage-closure join gate was GREEN, but the real Lane C compiled-routing parity run classified the first hub, sk-prompt, as legacy-fallback-drifted (5/5 rows red), so stop-on-first-failure correctly halted the staged flip before any mutation. That drift was a parity-harness classification bug plus thin compiled coverage on 4 hubs, both root-caused and fixed in 013. As of commit 4cd19370da, all 7 hubs are compiled-serving (0 drift each) and DEFAULT_ON_HUBS lists all 7 in both resolver copies."
 trigger_phrases:
   - "compiled routing p4 cutover controller implemented"
   - "staged activation controller dry-run proven"
@@ -12,7 +12,7 @@ _memory:
     last_updated_at: "2026-07-21T12:30:00Z"
     last_updated_by: "claude"
     recent_action: "Reconciled: halt was correct; 013 fixed root cause, flipped all 7"
-    next_safe_action: "None — superseded by 013 (7dfffa0c93); no further action here"
+    next_safe_action: "None — superseded by 013 (4cd19370da); no further action here"
     blockers:
       - "None — the parity-harness bug and thin coverage that halted this attempt were fixed in 013"
     key_files:
@@ -29,8 +29,8 @@ _memory:
     answered_questions:
       - "Fleet-wide unset=on or per-hub cohort staging? Per-hub cohort staging; all 7 manifests are already servingAuthority: compiled."
       - "Coverage-closure join gate status? GREEN before the execution attempt."
-      - "Was the sk-prompt drift real routing breakage? No — a parity-harness classification bug; sk-prompt reached compiled-serving (5/0) from the harness fix alone (013, e56361ee53)."
-      - "How did the fleet actually reach default-on? 013 hand-implemented a single reconciling commit (7dfffa0c93) once all 7 hubs independently cleared parity — not a live run of this packet's own staged persister."
+      - "Was the sk-prompt drift real routing breakage? No — a parity-harness classification bug; sk-prompt reached compiled-serving (5/0) from the harness fix alone (013, b903b8af9a)."
+      - "How did the fleet actually reach default-on? 013 hand-implemented a single reconciling commit (4cd19370da) once all 7 hubs independently cleared parity — not a live run of this packet's own staged persister."
 ---
 # Implementation Summary: Compiled Routing Staged Activation Cutover (P4)
 
@@ -45,11 +45,11 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | SUPERSEDED by `013-compiled-coverage-buildout`. This packet's own authorized attempt correctly halted at the first real parity gate: the coverage-closure join gate was GREEN, but `sk-prompt` classified `legacy-fallback-drifted` (5/5 rows red), so stop-on-first-failure halted before any staged mutation and zero hubs were cut over BY THIS PACKET. That drift was later root-caused in 013 to a parity-harness bug plus thin coverage on 4 hubs, both fixed; all 7 hubs are now `compiled-serving` and flipped default-on via `7dfffa0c93`. |
+| **Status** | SUPERSEDED by `013-compiled-coverage-buildout`. This packet's own authorized attempt correctly halted at the first real parity gate: the coverage-closure join gate was GREEN, but `sk-prompt` classified `legacy-fallback-drifted` (5/5 rows red), so stop-on-first-failure halted before any staged mutation and zero hubs were cut over BY THIS PACKET. That drift was later root-caused in 013 to a parity-harness bug plus thin coverage on 4 hubs, both fixed; all 7 hubs are now `compiled-serving` and flipped default-on via `4cd19370da`. |
 | **Date** | 2026-07-21 |
 | **Level** | 3 |
 | **Runtime change** | None FROM THIS PACKET's staged-flip attempt — the authored/promoted `DEFAULT_ON_HUBS` sets stayed empty and byte-identical at the time it ran. The eventual runtime change (all 7 hubs added to `DEFAULT_ON_HUBS` in both resolver copies) landed via sibling 013's hand-implemented persistence, not this packet's controller. |
-| **Repository default** | Now default-ON for all 7 hubs (as of `7dfffa0c93`, delivered by 013). With the flag unset all seven hubs resolve compiled; explicit `SPECKIT_COMPILED_ROUTING=0` resolves all seven legacy (the kill-switch this packet proved still holds). |
+| **Repository default** | Now default-ON for all 7 hubs (as of `4cd19370da`, delivered by 013). With the flag unset all seven hubs resolve compiled; explicit `SPECKIT_COMPILED_ROUTING=0` resolves all seven legacy (the kill-switch this packet proved still holds). |
 | **Frozen scorer** | Byte-identical before and after this packet's own attempt (three SHA-256 digests match the pins); re-confirmed byte-identical live during this reconciliation pass; never opened for write. |
 | **Verification** | This packet's own real Lane C classification (2026-07-21, pre-013-fix): all seven hubs reported `legacy-fallback-drifted`; first ordered hub `sk-prompt` blocked with 0 matches / 5 drifts. Post-013 (re-confirmed live during this reconciliation pass): all seven hubs `compiled-serving`, 0 drift each; `compiled-route-status.cjs` reports `fresh: true` for all 7; full skill-benchmark suite 18 files / 258 tests PASS. |
 <!-- /ANCHOR:metadata -->
@@ -65,7 +65,7 @@ Every hub classified `legacy-fallback-drifted`. In the fixed ascending-blast-rad
 
 Stop-on-first-failure halted the run before the authored resolver, promoted mirror, hub documentation, catalogs, or shared parent templates were changed. `DEFAULT_ON_HUBS` remained empty in both copies at the time. The explicit `=0` kill-switch remained intact, the frozen scorer hashes remained pinned, and the full 18-file / 247-test benchmark suite stayed green. The correct outcome of this attempt was zero flips and an upstream parity blocker, not a forced default-on cohort — and that caution was validated: the drift was real (as measured), but its CAUSE was a defect in the measuring instrument, not in the routing being measured.
 
-**Resolution (superseded by 013).** Sibling packet `013-compiled-coverage-buildout` root-caused the fleet-wide drift to two independent problems, both fixed: (a) three parity-harness classification bugs — a `selectionKind` label bug that misclassified ties, a both-fail-gold conflation that required gold-achievability instead of pure behavioral parity, and a resource-projection namespace/granularity mismatch (commit `e56361ee53`), plus a fourth harness refinement exempting matched non-route decisions from gold (SD-015, `6ba5f2957f`); and (b) genuinely thin compiled coverage on 4 hubs — sk-design, sk-doc, system-deep-loop, and mcp-tooling — built out across commits `f9f639674b` and `b03b1dd882`. `sk-prompt`, the hub that blocked this packet's attempt, reached `compiled-serving` (5/0) from the harness fix alone — its underlying routing was never broken. Once all 7 hubs independently cleared parity (sk-code 23, sk-design 38, sk-doc 32, sk-prompt 5, mcp-tooling 14, system-deep-loop 21, cli-ext 8; 0 drift each), 013 hand-implemented the actual default-on flip in a single reconciling commit, `7dfffa0c93`: `DEFAULT_ON_HUBS` now lists all 7 hubs in both the authored and promoted resolver copies (confirmed byte-identical during this reconciliation pass), all 7 `SKILL.md` directives and both create-skill parent templates carry default-on + `SPECKIT_COMPILED_ROUTING=0` kill-switch wording, and the 3 frozen scorer SHA-256 digests remain unchanged. This packet's own controller and verification harness never executed a real persist — they stayed dry-run-only exactly as built; the eventual state this packet's plan targeted was reached through 013's separate, hand-implemented path.
+**Resolution (superseded by 013).** Sibling packet `013-compiled-coverage-buildout` root-caused the fleet-wide drift to two independent problems, both fixed: (a) three parity-harness classification bugs — a `selectionKind` label bug that misclassified ties, a both-fail-gold conflation that required gold-achievability instead of pure behavioral parity, and a resource-projection namespace/granularity mismatch (commit `b903b8af9a`), plus a fourth harness refinement exempting matched non-route decisions from gold (SD-015, `7c323e90a9`); and (b) genuinely thin compiled coverage on 4 hubs — sk-design, sk-doc, system-deep-loop, and mcp-tooling — built out across commits `a381edc1f8` and `66d179b023`. `sk-prompt`, the hub that blocked this packet's attempt, reached `compiled-serving` (5/0) from the harness fix alone — its underlying routing was never broken. Once all 7 hubs independently cleared parity (sk-code 23, sk-design 38, sk-doc 32, sk-prompt 5, mcp-tooling 14, system-deep-loop 21, cli-ext 8; 0 drift each), 013 hand-implemented the actual default-on flip in a single reconciling commit, `4cd19370da`: `DEFAULT_ON_HUBS` now lists all 7 hubs in both the authored and promoted resolver copies (confirmed byte-identical during this reconciliation pass), all 7 `SKILL.md` directives and both create-skill parent templates carry default-on + `SPECKIT_COMPILED_ROUTING=0` kill-switch wording, and the 3 frozen scorer SHA-256 digests remain unchanged. This packet's own controller and verification harness never executed a real persist — they stayed dry-run-only exactly as built; the eventual state this packet's plan targeted was reached through 013's separate, hand-implemented path.
 <!-- /ANCHOR:exec-summary -->
 
 ---
@@ -106,7 +106,7 @@ The real benchmark command ran once per hub with `--route-gold on --compiled-rou
 
 ### Resolution: the same seven hubs, post-013 (current state)
 
-013 root-caused every one of the above rows to a mix of harness bugs and thin coverage (see Executive Summary), fixed both, and the fleet was flipped default-on in `7dfffa0c93`. Re-run/re-probed live during this reconciliation pass:
+013 root-caused every one of the above rows to a mix of harness bugs and thin coverage (see Executive Summary), fixed both, and the fleet was flipped default-on in `4cd19370da`. Re-run/re-probed live during this reconciliation pass:
 
 | Hub | Compiled sub-verdict (now) | Matches / drifts (now) | `DEFAULT_ON_HUBS` |
 |-----|-----------------------------|--------------------------|--------------------|
@@ -128,7 +128,7 @@ The real benchmark command ran once per hub with `--route-gold on --compiled-rou
 
 The join gate was re-evaluated live and returned GREEN. The real Lane C benchmark then classified every hub from its current playbook and compiled front door. The ordered execution stopped at `sk-prompt` before entering the persistence step, so the committed cohort and all lockstep documentation surfaces remained unchanged BY THIS PACKET.
 
-Sibling `013-compiled-coverage-buildout` subsequently fixed the parity-harness bugs this stop had surfaced and built out the thin coverage on the four hubs that genuinely needed it, then hand-implemented the persistence step itself — a single reconciling commit (`7dfffa0c93`) rather than a live re-run of this packet's staged, one-hub-at-a-time loop. That commit's own follow-ups line explicitly flagged this packet's docs as needing reconciliation, which this pass performs.
+Sibling `013-compiled-coverage-buildout` subsequently fixed the parity-harness bugs this stop had surfaced and built out the thin coverage on the four hubs that genuinely needed it, then hand-implemented the persistence step itself — a single reconciling commit (`4cd19370da`) rather than a live re-run of this packet's staged, one-hub-at-a-time loop. That commit's own follow-ups line explicitly flagged this packet's docs as needing reconciliation, which this pass performs.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -195,9 +195,9 @@ The full context, alternatives, and consequences remain authoritative in `decisi
 | Milestone | Status (this packet's own attempt) | Status (post-013, current) | Evidence Boundary |
 |-----------|--------------------------------------|-------------------------------|-------------------|
 | M0 join gate | PASS | PASS (unchanged) | Controller evaluates it live; all inputs GREEN |
-| M1 first hub | BLOCKED | RESOLVED | `sk-prompt`'s drift was a parity-harness bug (013, `e56361ee53`); now `compiled-serving` 5/0 |
-| M2 fleet advancing | Not executed; mechanism dry-run-proven | RESOLVED — via 013, not this packet's mechanism | All 7 hubs `compiled-serving`; `DEFAULT_ON_HUBS` on-disk lists all 7 (`7dfffa0c93`) |
-| M3 `sk-code` landed | Not executed | RESOLVED, but not "last" as planned | `sk-code` was among the FIRST hubs fixed (`e56361ee53`); the final flip added all 7 simultaneously, not in ascending-blast-radius order |
+| M1 first hub | BLOCKED | RESOLVED | `sk-prompt`'s drift was a parity-harness bug (013, `b903b8af9a`); now `compiled-serving` 5/0 |
+| M2 fleet advancing | Not executed; mechanism dry-run-proven | RESOLVED — via 013, not this packet's mechanism | All 7 hubs `compiled-serving`; `DEFAULT_ON_HUBS` on-disk lists all 7 (`4cd19370da`) |
+| M3 `sk-code` landed | Not executed | RESOLVED, but not "last" as planned | `sk-code` was among the FIRST hubs fixed (`b903b8af9a`); the final flip added all 7 simultaneously, not in ascending-blast-radius order |
 | M4 effective default | Not reached | RESOLVED | Repository default is now ON for all 7 hubs; `SPECKIT_COMPILED_ROUTING=0` remains the fleet kill-switch; both create-skill templates carry fleet-default-on wording |
 <!-- /ANCHOR:milestones -->
 
@@ -207,7 +207,7 @@ The full context, alternatives, and consequences remain authoritative in `decisi
 ## Known Limitations
 
 1. ~~No hub is cleanly compiled-serving under the requested Lane C gate.~~ **RESOLVED by 013.** The first ordered hub's 5/5 drift rows were a parity-harness classification bug, not real routing drift; all 7 hubs are now `compiled-serving` (0 drift each), confirmed live during this reconciliation pass.
-2. **The controller's dry-run parity check is weaker than the real gate.** Still true as a standing property of this packet's own mechanism — it confirms harness presence and frozen hashes but does not execute scenario comparisons; it never substituted for real Lane C classification, and never ran one for a real persist. The real persist that eventually shipped (`7dfffa0c93`) was hand-implemented in 013, not run through this controller.
+2. **The controller's dry-run parity check is weaker than the real gate.** Still true as a standing property of this packet's own mechanism — it confirms harness presence and frozen hashes but does not execute scenario comparisons; it never substituted for real Lane C classification, and never ran one for a real persist. The real persist that eventually shipped (`4cd19370da`) was hand-implemented in 013, not run through this controller.
 3. **No per-hub rollback mutation was exercised by this packet's own controller.** Still true — zero hubs were ever flipped through this packet's own code path, so there was no new per-hub state for its rollback to remove; the committed rollback drill remains the byte-exact proof this packet produced. The real, shipped default-on state was written by 013's separate hand-implemented persistence, and per-hub cohort removal from that state is drilled and documented in 013, not here.
 4. **The LUNA-HIGH archived evidence is still a bounded sample.** Still true — as of this reconciliation pass, `luna-high-acceptance-*` runs are archived for 2 of 7 hubs (`sk-code`, `sk-doc`); the full seven-hub real-model sweep remains an open follow-up, tracked separately per the operator.
 <!-- /ANCHOR:limitations -->
@@ -217,9 +217,9 @@ The full context, alternatives, and consequences remain authoritative in `decisi
 <!-- ANCHOR:follow-up -->
 ## Follow-ups
 
-- [x] Repair the Lane C resource-projection failures beginning with `sk-prompt`; re-run all seven classifications and require `compiled-serving` before restarting persistence. — DONE in 013 (`e56361ee53`, `f9f639674b`, `b03b1dd882`, `6ba5f2957f`); all 7 now `compiled-serving`.
+- [x] Repair the Lane C resource-projection failures beginning with `sk-prompt`; re-run all seven classifications and require `compiled-serving` before restarting persistence. — DONE in 013 (`b903b8af9a`, `a381edc1f8`, `66d179b023`, `7c323e90a9`); all 7 now `compiled-serving`.
 - [x] Re-mint the stale `system-deep-loop` and `sk-doc` activation manifests before any later cutover attempt. — DONE; both confirmed `manifestFreshness.fresh: true` live during this reconciliation pass.
-- [~] After the first hub is clean, restart the staged loop from `sk-prompt` in the recorded order and stop at the next failure. — SUPERSEDED, not literally executed: 013 verified each hub independently across several commits, then hand-implemented a single reconciling commit (`7dfffa0c93`) that added all 7 to `DEFAULT_ON_HUBS` together, rather than a live restart of this packet's one-hub-at-a-time loop.
+- [~] After the first hub is clean, restart the staged loop from `sk-prompt` in the recorded order and stop at the next failure. — SUPERSEDED, not literally executed: 013 verified each hub independently across several commits, then hand-implemented a single reconciling commit (`4cd19370da`) that added all 7 to `DEFAULT_ON_HUBS` together, rather than a live restart of this packet's one-hub-at-a-time loop.
 - [x] Reconcile the two create-skill parent templates at fleet completion and run the normalized-parity fixture. — DONE; both templates list all 7 hubs plus the kill-switch (confirmed live), and the live cross-hub parity assertion is part of the 258/258-passing suite.
 - [ ] Extend the LUNA-HIGH acceptance run from the bounded sample to the full seven-hub sweep. — STILL OPEN. 2/7 hubs (`sk-code`, `sk-doc`) have an archived `luna-high-acceptance-*` run; the remaining 5 are tracked as a separate, in-flight effort per the operator.
 <!-- /ANCHOR:follow-up -->
@@ -236,5 +236,5 @@ Three, all documented rather than silent:
 
 The later authorized execution attempt introduced no scope deviation: it ran the specified real parity gate and obeyed stop-on-first-failure. The actual outcome at the time differed from the earlier dry-run expectation because every live Lane C sub-verdict was drifted; the docs recorded that result instead of treating harness presence as parity proof. That drift has since been root-caused and fixed (see Executive Summary / Resolution), and this reconciliation pass records the closed-out state.
 
-3. **The eventual real flip was delivered by sibling 013, not by this packet's own controller in a "real" (persisting) mode.** Neither `cutover-controller.cjs` nor `verify-cutover.cjs` was ever extended to write a real persist — both remain exactly the dry-run provers described in "What Was Built." Once 013 fixed the harness and coverage gaps, it hand-implemented the actual `DEFAULT_ON_HUBS` write, directive/catalog/template rewrite, and manifest re-mint itself, landing in a single commit (`7dfffa0c93`) rather than as a live run of this packet's staged, stop-on-first-failure loop. The delivered end-state matches this packet's plan (per-hub parity proven, lockstep docs, kill-switch, byte-exact rollback); the mechanism that produced it does not match this packet's own code, and that is recorded here rather than implied.
+3. **The eventual real flip was delivered by sibling 013, not by this packet's own controller in a "real" (persisting) mode.** Neither `cutover-controller.cjs` nor `verify-cutover.cjs` was ever extended to write a real persist — both remain exactly the dry-run provers described in "What Was Built." Once 013 fixed the harness and coverage gaps, it hand-implemented the actual `DEFAULT_ON_HUBS` write, directive/catalog/template rewrite, and manifest re-mint itself, landing in a single commit (`4cd19370da`) rather than as a live run of this packet's staged, stop-on-first-failure loop. The delivered end-state matches this packet's plan (per-hub parity proven, lockstep docs, kill-switch, byte-exact rollback); the mechanism that produced it does not match this packet's own code, and that is recorded here rather than implied.
 <!-- /ANCHOR:deviations -->

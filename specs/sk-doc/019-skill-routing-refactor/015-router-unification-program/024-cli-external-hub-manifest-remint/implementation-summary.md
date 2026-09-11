@@ -43,7 +43,7 @@ _memory:
 | **Level** | 2 |
 | **Status** | Complete |
 | **Date** | 2026-08-29 |
-| **Files Changed** | 0 in this packet; the 2 manifests were repaired by `3a61fa96ac` |
+| **Files Changed** | 0 in this packet; the 2 manifests were repaired by `54ca8d7825` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -59,7 +59,7 @@ generation stays 5, because `refresh` selects the generation the compiled policy
 than an incremented one.
 
 The repair reached both branches independently. While this diagnosis was running, commit
-`3a61fa96ac` — "re-mint the cli hub after its skills changed" — landed on `main` and
+`54ca8d7825` — "re-mint the cli hub after its skills changed" — landed on `main` and
 `skilled/v4.0.0.0`, which now sit at the same commit. Its two manifests are byte-identical to the
 re-mint performed and verified here: rebasing this work onto the new `main` made the manifest edits
 disappear from `git status` entirely, because there was no longer any difference to record. Two
@@ -73,8 +73,8 @@ coupling that caused it, and the verification that the shipped repair restores c
 
 | File | Change |
 |------|--------|
-| `.opencode/bin/lib/compiled-routing/013-live-activation/activation/cli-external-orchestration/manifest.json` | Selected policy hash re-minted to the current source hash — landed in `3a61fa96ac` |
-| `specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/cli-external-orchestration/manifest.json` | Authored copy mirrored byte-identically — landed in `3a61fa96ac` |
+| `.opencode/bin/lib/compiled-routing/013-live-activation/activation/cli-external-orchestration/manifest.json` | Selected policy hash re-minted to the current source hash — landed in `54ca8d7825` |
+| `specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/cli-external-orchestration/manifest.json` | Authored copy mirrored byte-identically — landed in `54ca8d7825` |
 <!-- /ANCHOR:what-built -->
 
 ---

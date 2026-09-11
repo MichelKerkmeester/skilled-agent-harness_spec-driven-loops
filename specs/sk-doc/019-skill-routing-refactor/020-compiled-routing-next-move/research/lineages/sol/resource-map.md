@@ -38,7 +38,7 @@ trigger_phrases: []
 | command: cmp authored/runtime manifests for seven hubs | Cited | MISSING | Citations=1; Iterations=1 |
 | command: direct authored/runtime resolveRoute comparison | Cited | MISSING | Citations=1; Iterations=1 |
 | command: git ls-files .opencode/bin/compiled-route-sync.cjs .opencode/bin/lib/compiled-routing | Cited | MISSING | Citations=1; Iterations=1 |
-| command: git show 19b87f67a1 -- .opencode/bin/compiled-route-sync.cjs \| rg -n -C 10 "rmSync/(RUNTIME_ROOT" | Cited | MISSING | Citations=1; Iterations=1 |
+| command: git show 4c0336cb65 -- .opencode/bin/compiled-route-sync.cjs \| rg -n -C 10 "rmSync/(RUNTIME_ROOT" | Cited | MISSING | Citations=1; Iterations=1 |
 | command: node .opencode/bin/compiled-route-guard.cjs --json | Cited | MISSING | Citations=3; Iterations=3 |
 | command: node .opencode/bin/compiled-route-sync.cjs --verify | Cited | MISSING | Citations=1; Iterations=1 |
 

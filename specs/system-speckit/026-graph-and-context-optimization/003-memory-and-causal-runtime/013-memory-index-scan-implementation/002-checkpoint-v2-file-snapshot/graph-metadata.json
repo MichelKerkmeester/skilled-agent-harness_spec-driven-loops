@@ -49,14 +49,7 @@
       "decision-record.md",
       "implementation-summary.md",
       "handover.md",
-      "lib/storage/checkpoints.ts",
-      "lib/search/vector-index-store.ts",
-      "lib/search/vector-index-schema.ts",
-      "handlers/checkpoints.ts",
-      "lib/search/db-shard-migration.ts",
-      "tests/checkpoints-v2-create.vitest.ts",
-      "shared/embeddings/factory.ts",
-      "dist/context-server.js"
+      "shared/embeddings/factory.ts"
     ],
     "entities": [
       {
@@ -96,45 +89,9 @@
         "source": "derived"
       },
       {
-        "name": "checkpoints.ts",
-        "kind": "code",
-        "path": "lib/storage/checkpoints.ts",
-        "source": "derived"
-      },
-      {
-        "name": "vector-index-store.ts",
-        "kind": "code",
-        "path": "lib/search/vector-index-store.ts",
-        "source": "derived"
-      },
-      {
-        "name": "vector-index-schema.ts",
-        "kind": "code",
-        "path": "lib/search/vector-index-schema.ts",
-        "source": "derived"
-      },
-      {
-        "name": "db-shard-migration.ts",
-        "kind": "code",
-        "path": "lib/search/db-shard-migration.ts",
-        "source": "derived"
-      },
-      {
-        "name": "checkpoints-v2-create.vitest.ts",
-        "kind": "test",
-        "path": "tests/checkpoints-v2-create.vitest.ts",
-        "source": "derived"
-      },
-      {
         "name": "factory.ts",
         "kind": "code",
         "path": "shared/embeddings/factory.ts",
-        "source": "derived"
-      },
-      {
-        "name": "context-server.js",
-        "kind": "code",
-        "path": "dist/context-server.js",
         "source": "derived"
       },
       {
@@ -202,11 +159,47 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Records",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Alternatives Considered",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Five Checks Evaluation",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`checkpointcreate` takes a full rollback snapshot before risky migrations by serializing the entire database with one `JSON.stringify(snapshot)` call (`lib/storage/checkpoints.ts:1604`)",
     "created_at": "2026-06-01T16:00:00.000Z",
-    "last_save_at": "2026-08-30T15:39:31.765Z",
+    "last_save_at": "2026-09-11T16:42:34.007Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,15 +210,15 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:e659a764f26c1d43a0dadba75345f6bc1979021d014f74634ae8e7416e6fa527",
+    "source_fingerprint": "sha256:f2e5b7d79856a94c7f391af1dd18f77e43b84d57659ce6b77742504b014994e3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b5f0220fbfaac563e75b7378c3605eff5b1fc57488aabf63c6c0c80d64a142c4",
+      "spec.md": "065b120b12548deca957ae63f8c5858f989a37e47d8d9eb075ce3acd088ce6c5",
       "plan.md": "50ab3d72dcce07df35de12dc54d5c038e10e94678c23564c41e64911e014223c",
       "tasks.md": "d7b0f87254087c4f5a2593b8497f3e87361921a9f0f4d5b78c9176510da0c354",
-      "decision-record.md": "6013ec9a8154a9881c014b7e7c6a8d8206bd4a04722ebf8607058f0b4a183135",
-      "implementation-summary.md": "d67a32e18f79823efeb4c9584964e635029c4eb0e4211d9daa90344cac0b9af1",
-      "handover.md": "b0f9cbce24a23c2dd7b37bd75d43dc8f20dafa28fb37e03a0fd3fa2d291dcf69"
+      "decision-record.md": "143e86fee2a9281f62a6de069f2fc34d34dee2d35b928a7a83347ac1fb11b8be",
+      "implementation-summary.md": "1c656dcc183ec8be0544d8d7d35695291ebec2aa49d0ecb5a43d01a42b8777bb",
+      "handover.md": "a1311d24763bc52cbbf0ae178fda087f07aa11a37a192aee287beffd4a60cc7e"
     },
     "last_active_child_id": null,
     "last_active_at": null

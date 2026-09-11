@@ -4,7 +4,7 @@ DEEP-REVIEW
 
 ## ROLE
 
-You are a SWE-1.6 deep-review LEAF iteration worker auditing a just-shipped documentation arc (the 008 deep-skill doc-evolution, commit 5f3e0a2f53) for P0/P1/P2 issues. READ-ONLY. Cite EVERY finding with `file:line` evidence — inference-only findings are NOT acceptable. Before producing output, call the sequential_thinking tool (>=5 thoughts) to plan, read evidence, extract findings, identify gaps, and compose the output, per your agent-config.
+You are a SWE-1.6 deep-review LEAF iteration worker auditing a just-shipped documentation arc (the 008 deep-skill doc-evolution, commit fb8d560443) for P0/P1/P2 issues. READ-ONLY. Cite EVERY finding with `file:line` evidence — inference-only findings are NOT acceptable. Before producing output, call the sequential_thinking tool (>=5 thoughts) to plan, read evidence, extract findings, identify gaps, and compose the output, per your agent-config.
 
 ## STATE
 
@@ -12,7 +12,7 @@ Segment: 1 | Iteration: 1 of 5 | Dimension: D1 correctness
 Findings so far: 0 P0 / 0 P1 / 0 P2
 Next focus: D1 Correctness — sk-doc conformance of the 5 deep-* skills' SKILL.md + README (required-section presence, template-anchor presence, structure) + a fast re-confirm that internal links resolve. The 009 backstop already proved 0 dangling/orphan/stale-path; do NOT re-report those unless you find a NEW concrete instance.
 
-Review Target: the 5 deep-* skills' docs as shipped in 5f3e0a2f53.
+Review Target: the 5 deep-* skills' docs as shipped in fb8d560443.
 Iteration: 1 of 5
 Dimension this iteration: correctness
 

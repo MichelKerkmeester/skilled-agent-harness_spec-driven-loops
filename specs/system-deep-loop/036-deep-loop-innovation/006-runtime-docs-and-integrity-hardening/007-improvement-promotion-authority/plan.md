@@ -15,7 +15,7 @@ _memory:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/007-improvement-promotion-authority"
     last_updated_at: "2026-08-18T23:59:00Z"
     last_updated_by: "orchestrator"
-    recent_action: "Recorded adversarial TOCTOU fix c897dcf294 re-binding candidate to approval at consumption"
+    recent_action: "Recorded adversarial TOCTOU fix 25158f20c7 re-binding candidate to approval at consumption"
     next_safe_action: "Pass the additive-dark acceptance review before promotion enforcement goes live"
     blockers:
       - "Additive-dark acceptance review must pass before promotion goes live (CHK-018)"
@@ -47,7 +47,7 @@ _memory:
 ### Overview
 Design the acceptance receipt before touching promotion, because everything else binds to it. Capture baselines for both vitest projects first, since a red baseline is known to be possible in this area. Then bind promotion, ship and rollback to the receipt, replace candidate-controlled evaluator identity, contain every write boundary, and confine council persistence.
 
-**Current state (2026-08-18)**: Phases 2-5 are implemented and landed additive-dark under commits `0d1827eef50`, `f6cdf604a25` and `a28a39354b7` (status reconciled `ab6aae0a714`), and their affected suites are green. An independent actor then ran the adversarial verification (CHK-005) and found and fixed a Medium candidate-rebind TOCTOU gap under `c897dcf294`, with a red-before/green-after negative test. Phase 6 remains partial and go-live stays gated: the full improvement-project pre-edit baseline was not captured, and the additive-dark acceptance review (CHK-018) has not passed. The immutable candidate-SHA evidence that was previously pending now exists in those landed commits.
+**Current state (2026-08-18)**: Phases 2-5 are implemented and landed additive-dark under commits `9d258a879ef`, `700cb920447` and `fdb8216e9b4` (status reconciled `1642dcaed9b`), and their affected suites are green. An independent actor then ran the adversarial verification (CHK-005) and found and fixed a Medium candidate-rebind TOCTOU gap under `25158f20c7`, with a red-before/green-after negative test. Phase 6 remains partial and go-live stays gated: the full improvement-project pre-edit baseline was not captured, and the additive-dark acceptance review (CHK-018) has not passed. The immutable candidate-SHA evidence that was previously pending now exists in those landed commits.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -66,7 +66,7 @@ Design the acceptance receipt before touching promotion, because everything else
 - [x] Every write boundary contained; council persistence confined to an authorized root
 - [x] Non-finite and absent numerics fail closed
 - [x] Whole gate re-run and reported as a delta against the captured baseline (council 109/2 -> 118/0; promotion suites 44 -> 48; full-project baseline still open at CHK-002/CHK-010)
-- [x] Independent adversarial verification pass complete (`c897dcf294`; two LOW residuals deferred)
+- [x] Independent adversarial verification pass complete (`25158f20c7`; two LOW residuals deferred)
 - [ ] `validate.sh --strict` exits 0 for this child
 <!-- /ANCHOR:quality-gates -->
 
@@ -151,7 +151,7 @@ Required inventories (run before implementation, record the output):
 
 ### Phase 6: Delta and gate
 - [x] Re-run both vitest projects; report deltas against the captured baselines (council + promotion-authority suites; full improvement-project baseline still open at CHK-002/CHK-010)
-- [x] Independent adversarial verification pass (`c897dcf294`; found and fixed a Medium candidate-rebind TOCTOU gap)
+- [x] Independent adversarial verification pass (`25158f20c7`; found and fixed a Medium candidate-rebind TOCTOU gap)
 <!-- /ANCHOR:phases -->
 
 ---

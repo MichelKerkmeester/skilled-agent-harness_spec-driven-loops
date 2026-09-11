@@ -40,7 +40,7 @@ _memory:
 |-------|-------|
 | **Packet** | `006-spec-gate-question-noise` |
 | **Status** | In Progress |
-| **Completion** | 98% (implemented, verified, validated, committed `e251617bef`, merged to main `5ed153eaeb`; formal packet close pending operator review) |
+| **Completion** | 98% (implemented, verified, validated, committed `9d1f0fffb8`, merged to main `a2cfec7e93`; formal packet close pending operator review) |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:what-built -->
@@ -94,5 +94,5 @@ Implemented in worktree 0130 (branch `system-spec-kit/0130-spec-gate-question-no
 - **Harness session identity**: this environment spawns a fresh pi session file per invocation, so cross-turn answer persistence cannot work even with the stable key; the key helps normal interactive pi (`/resume`). Documented, not fixed here.
 - **Question withheld ≠ gate closed**: users may not see the question again after a read-only turn; the enforce deny/advise path and `GATE_3_DENY_DETAIL` remain the reminder at write time.
 - **Sibling-injection stripping is label-coupled**: the classify adapter cuts at the advisor's `\nDirectives:` label; if that label ever changes in the advisor renderer, the cut silently stops working (the `[user]` history strip remains). The label is a deliberate 036-introduced structural constant.
-- **Incident note**: the initial untracked copy of this packet, authored in the main checkout, disappeared between validation (14:54) and worktree creation (14:59) — mechanism not identified (no destructive git hook exists in this repo; concurrent sessions operate in the main checkout). The packet was regenerated in the isolated worktree, where it lives with the branch. **Second incident**: the restored 036 code deliverable in the main checkout was wiped again after the handover (3rd wipe); re-restored from session-transcript pickles and committed as `fdd295981a` on `skilled/v4.0.0.0`.
+- **Incident note**: the initial untracked copy of this packet, authored in the main checkout, disappeared between validation (14:54) and worktree creation (14:59) — mechanism not identified (no destructive git hook exists in this repo; concurrent sessions operate in the main checkout). The packet was regenerated in the isolated worktree, where it lives with the branch. **Second incident**: the restored 036 code deliverable in the main checkout was wiped again after the handover (3rd wipe); re-restored from session-transcript pickles and committed as `b70167711f` on `skilled/v4.0.0.0`.
 <!-- /ANCHOR:limitations -->

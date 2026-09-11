@@ -62,7 +62,7 @@ Remediated the four verified doc/metadata findings from the `017` review and ref
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Worked on a fresh worktree at origin tip `ed8f3e20d0` (the primary tree was concurrently dirty + behind).
+Worked on a fresh worktree at origin tip `5b09575bba` (the primary tree was concurrently dirty + behind).
 Path edits were scoped to current-state pointers and user-facing docs; historical "Files Changed" tables,
 scope statements, and evidence citations across the `003`/`001`/`004` docs were deliberately preserved as
 accurate records. Every finding was checked against the actual code before acting — which converted P1-006

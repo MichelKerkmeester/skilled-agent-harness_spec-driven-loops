@@ -49,7 +49,7 @@ _memory:
 | **Status** | Complete |
 | **Authority** | Additive-dark evidence only; legacy writers and authority are unchanged |
 | **Candidate SHA** | `e4aee609f3957f7bd9255d0b7c2e491c7b4dee90` |
-| **BASE SHA** | `efb524964bc60ef8df7ef2ad4d4c6beff20c0448` |
+| **BASE SHA** | `7d0eddafd3d63b6e4879717a53703f29ca0a8f5f` |
 | **Fixture manifest SHA-256** | N/A - the focused suite constructs typed fixtures in memory |
 <!-- /ANCHOR:metadata -->
 

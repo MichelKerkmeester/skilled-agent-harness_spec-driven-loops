@@ -67,9 +67,9 @@ Setup for this phase was investigation: tracing both root causes to specific lin
 ## Phase 2: Implementation
 
 ### Shipped this session
-- [x] T004 Default `SPECKIT_DAEMON_REELECTION=0` in the `spawnLauncher` test helper (`.opencode/skills/system-spec-kit/mcp_server/tests/launcher-lease.vitest.ts`) [~20m] - commit `90a2462721`
-- [x] T005 Hard-kill each workspace's lease-recorded `childPid`/`modelServerPid` in `afterEach` before temp-root removal (same file) [~20m] - commit `90a2462721`
-- [x] T006 Extend `orphan-mcp-sweeper.sh` classification to count `hf-embed.sock` in the busy-preserve rule (`.opencode/scripts/orphan-mcp-sweeper.sh`) [~15m] - commit `d4be07abbc`
+- [x] T004 Default `SPECKIT_DAEMON_REELECTION=0` in the `spawnLauncher` test helper (`.opencode/skills/system-spec-kit/mcp_server/tests/launcher-lease.vitest.ts`) [~20m] - commit `65f05f37b9`
+- [x] T005 Hard-kill each workspace's lease-recorded `childPid`/`modelServerPid` in `afterEach` before temp-root removal (same file) [~20m] - commit `65f05f37b9`
+- [x] T006 Extend `orphan-mcp-sweeper.sh` classification to count `hf-embed.sock` in the busy-preserve rule (`.opencode/scripts/orphan-mcp-sweeper.sh`) [~15m] - commit `2dbd92b8f8`
 - [x] T007 Operational: kill 32 accumulated zombie daemons, confirmed via `ps aux` (manual, this session, not a repo change) [~15m]
 - [x] T008 Operational: restart the wedged daemon and rebuild native `better-sqlite3` to the Node-22/MODULE_VERSION-127 ABI (manual, this session) [~20m]
 

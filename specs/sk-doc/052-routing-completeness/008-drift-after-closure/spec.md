@@ -67,7 +67,7 @@ not observe. A number that moved is in scope. A number that could move is not.
 
 **Dependencies**:
 - The advisor daemon at generation 593 to 597 on 2026-09-05, live, with the scorer unchanged
-- The `b4c2484696` nesting of the spec-kit CLI workspace under `runtime/`, which is the
+- The `f65b8f1e5b` nesting of the spec-kit CLI workspace under `runtime/`, which is the
   cause of the scaffold break and the reason phase 007's continuity paths are stale
 
 **Deliverables**:
@@ -125,7 +125,7 @@ or written down as moved with an owner.
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer.sh` | Modify, landed in `743e626543` | Resolve the tsx loader from the skill root, three levels up, not one |
+| `.opencode/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer.sh` | Modify, landed in `ccbff09cfb` | Resolve the tsx loader from the skill root, three levels up, not one |
 | `.opencode/skills/system-spec-kit/runtime/cli/spec/create.sh` | Modify | Same root for the graph-metadata backfill loader |
 | `.opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh` | Modify | Same root for the TypeScript orchestrator lane |
 | `.opencode/skills/cli-external-orchestration/graph-metadata.json` | Modify | Retire `spec kit runtime` from both intent-signal lists |

@@ -56,9 +56,9 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 |-------|-----|---------------------|--------------|--------|--------|
 | AC-001 | REQ-001 | Given the chart and diagram phrases that reached `sk-doc` at baseline, When they are replayed after the cutover, Then they reach `sk-design` above the 0.8 bar | `create a chart`, `chart template`, `sk-create-chart` and `make a diagram` naming `sk-design` at generation 628 | Met | - |
 | AC-002 | REQ-002 | Given the same replay, When the `sk-doc` controls are read, Then `sk-doc` no longer claims chart or diagram and its own three controls are unchanged | `write a readme`, `build a feature catalog` and `create a repo rule file` unchanged at generation 628 | Met | - |
-| AC-003 | REQ-003 | Given two hubs edited together, When the fleet gate runs, Then both pass in the same commit | Fleet metadata audit, both class H, commit `e34e225517` | Met | - |
+| AC-003 | REQ-003 | Given two hubs edited together, When the fleet gate runs, Then both pass in the same commit | Fleet metadata audit, both class H, commit `a131f628bc` | Met | - |
 | AC-004 | REQ-004 | Given the relocated skill, When the corpus checker runs from the new path, Then it prints `RESULT: PASSED` | `node scripts/check-corpus.cjs --render` from `.opencode/skills/sk-design/sk-create-chart`, 26 forms, errors: 0 | Met | - |
-| AC-005 | REQ-005 | Given both moved packets, When the index is inspected before commit, Then git records renames | 249 rename entries in `e34e225517` | Met | - |
+| AC-005 | REQ-005 | Given both moved packets, When the index is inspected before commit, Then git records renames | 249 rename entries in `a131f628bc` | Met | - |
 | AC-006 | REQ-006 | Given a daemon that serves its previous generation until rebuilt, When any routing claim is made, Then the rebuild happened first and the generation was observed to move | Generation 628, observed after an explicit rebuild | Met | - |
 
 ### Status values

@@ -128,9 +128,9 @@ These six have no branch and therefore no snapshot ancestry classification:
 wt-stage1-recover          @ 907a189dd6
 wt-v4-current              @ 607c32219e
 wt-028                     @ 6ff2546493
-.worktrees/0024-028-extract  @ 7dae42fc8a
-.worktrees/0025-028-renumber @ 8b5f4167b7
-.worktrees/view-latest-v4    @ 5535ad58f6
+.worktrees/0024-028-extract  @ 35a2db47d4
+.worktrees/0025-028-renumber @ b739eddf1b
+.worktrees/view-latest-v4    @ 3aa1b1c516
 ```
 
 Each is active/uncertain until its HEAD containment, dirty state, and owner are checked.

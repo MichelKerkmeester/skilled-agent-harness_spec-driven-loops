@@ -24,7 +24,7 @@ contextType: "implementation"
 
 The cocoindex pipeline hard-coded CHUNK_SIZE=1000 and CHUNK_OVERLAP=150 with no runtime override path. At 741-char average chunk size the corpus was well below the 512-1024 token optimum confirmed by Wu et al. 2026 and NVIDIA 2024. Operators had no way to tune chunking without editing source.
 
-A 3-iteration deep-research phase (cli-devin SWE-1.6 and Kimi-k2.6) converged on conservative Stage A defaults: raise CHUNK_SIZE to 1500 chars and CHUNK_OVERLAP to 200. The research estimated a 4-6 percentage-point lift on the 18-pair retrieval fixture. Stage A shipped in commit `e0560b0a96`.
+A 3-iteration deep-research phase (cli-devin SWE-1.6 and Kimi-k2.6) converged on conservative Stage A defaults: raise CHUNK_SIZE to 1500 chars and CHUNK_OVERLAP to 200. The research estimated a 4-6 percentage-point lift on the 18-pair retrieval fixture. Stage A shipped in commit `ac62e15d0e`.
 
 `config.py` gained a `_parse_int_env` helper mirroring the existing warn-on-invalid pattern. Three bounded environment variables now allow operators to override chunk parameters at runtime. `indexer.py` now reads chunk params from the Config object. Six new test cases cover defaults, env overrides, invalid-input fallback and out-of-bounds parametrized cases.
 
@@ -64,7 +64,7 @@ Stage B (raise to 2000 chars, per-language overrides) and cAST/tree-sitter integ
 | `.opencode/skills/mcp-coco-index/mcp_server/cocoindex_code/indexer.py` | Modified | CHUNK_SIZE 1000 to 1500, CHUNK_OVERLAP 150 to 200. Splitter call reads from Config rather than module constants. |
 | `.opencode/skills/mcp-coco-index/mcp_server/tests/test_config.py` | Modified | New `TestChunkConfigValidation` class with 6 test cases. Total suite 16 passing. |
 
-Note: The `mcp-coco-index` skill was subsequently removed in a later packet (`chore(014/005): remove mcp-coco-index skill`). File paths reflect the state at time of shipping commit `e0560b0a96`.
+Note: The `mcp-coco-index` skill was subsequently removed in a later packet (`chore(014/005): remove mcp-coco-index skill`). File paths reflect the state at time of shipping commit `ac62e15d0e`.
 
 ### Follow-Ups
 

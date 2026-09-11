@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: sk-code / cli / mcp / sk-prompt Children Contract Conformance"
-description: "Shipped: 5 of 12 code/cli/mcp/prompt SKILL.md files conformed to the create-skill contract (fresh LUNA MAX update + fresh Sonnet-5 xhigh verify); 5 already passed; code-opencode + code-webflow exempt (packetKind: surface). Commit a38c06d3a4."
+description: "Shipped: 5 of 12 code/cli/mcp/prompt SKILL.md files conformed to the create-skill contract (fresh LUNA MAX update + fresh Sonnet-5 xhigh verify); 5 already passed; code-opencode + code-webflow exempt (packetKind: surface). Commit 9b9935dc6c."
 trigger_phrases:
   - "005-code-cli-mcp-prompt-children implementation summary"
   - "conformance batch status"
@@ -42,7 +42,7 @@ _memory:
 
 5 conformed; 5 already passed; code-opencode + code-webflow EXEMPT (packetKind: surface — the validator does not branch on packetKind; a follow-up should teach it).
 
-Breakdown: **5 conformed** (fresh GPT-5.6 LUNA MAX update + fresh Sonnet-5 xhigh verify), **5 already passing** at baseline (no edit), **2 exempt**. Shipped commit: `a38c06d3a4`.
+Breakdown: **5 conformed** (fresh GPT-5.6 LUNA MAX update + fresh Sonnet-5 xhigh verify), **5 already passing** at baseline (no edit), **2 exempt**. Shipped commit: `9b9935dc6c`.
 
 Conformed:
 - `sk-code/code-quality`

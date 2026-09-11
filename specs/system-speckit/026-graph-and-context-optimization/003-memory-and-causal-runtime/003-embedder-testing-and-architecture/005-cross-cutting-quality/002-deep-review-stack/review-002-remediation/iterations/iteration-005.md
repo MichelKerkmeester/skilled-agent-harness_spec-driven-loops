@@ -5,7 +5,7 @@ dimension: p1-group-4-architecture
 executor: cli-devin
 model: swe-1.6
 recipe: agent-config-deep-review-iter.json
-review_target_commit: ba6816a490b1a20d4f74135179c10096c5348921
+review_target_commit: e2d258eae532ac09b00dc6944e07fe4c57c2ad6c
 trigger_phrases: []
 ---
 

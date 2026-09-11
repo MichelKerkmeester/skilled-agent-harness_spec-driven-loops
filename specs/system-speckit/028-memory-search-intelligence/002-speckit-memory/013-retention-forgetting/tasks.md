@@ -48,7 +48,7 @@ _memory:
 
 **Task Format**: `T### [P?] Description (file path)`
 
-> STATUS NOTE: None of the 8 candidates shipped in 030 Wave-0 (verified against `030/spec.md` §14 + `git log 1ecc531431..HEAD`). Current task state below reflects this implementation pass: retention spare-only and live-edge allowlist are done. Benchmark-gated recall shaping and shared-infra quarantine remain pending.
+> STATUS NOTE: None of the 8 candidates shipped in 030 Wave-0 (verified against `030/spec.md` §14 + `git log 2e17fdbe32..HEAD`). Current task state below reflects this implementation pass: retention spare-only and live-edge allowlist are done. Benchmark-gated recall shaping and shared-infra quarantine remain pending.
 <!-- /ANCHOR:notation -->
 
 ---

@@ -110,7 +110,7 @@ Loop completed (max_iterations). Follow-up recommended: resolve the missing `aut
 
 resource-map.md not present; skipping coverage gate
 
-The gate ran at a frozen candidate SHA `81949212b7c94c6f094b77b6bc24739fc0ed14ca` against baseline `8c9f0b6944ac4e43e99d26f9cf61dab74b600640` and recorded a FAIL verdict.
+The gate ran at a frozen candidate SHA `c6dc78a61e5b33cbfcad54c5ad53545d55056a2c` against baseline `6d055545b3df576ac9f02f5ace10022474da8d60` and recorded a FAIL verdict.
 - `authority-state` failed: `Cannot find module '.../per-mode-authority-flip/authority-registry.js'` imported from `.../per-mode-authority-flip/index.ts`. Only TypeScript source (`authority-registry.ts`, `authority-selector.ts`, `cutover-coordinator.ts`) exists; no compiled `.js` artifact is present at runtime.
 - authority-selector.ts enumerates states `legacy_authoritative`, `new_authoritative_reversible`, `new_authoritative_final`.
 - `reader-contracts` and `fanout-real-run` were recorded as `not-run`, not `fail`: reader-contract requires an enabled mode (none is), and fan-out was skipped because the authority verdict was already determined.

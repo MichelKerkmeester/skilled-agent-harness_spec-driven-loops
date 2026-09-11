@@ -112,7 +112,7 @@ Land the reliability-weighted-learning cluster as a sequenced, off-by-default, b
 ### Out of Scope (documented, NOT built this sub-phase)
 
 - **The resilience cluster (failure-class taxonomy, transient/fatal retry, orphan reset, recover-vs-fresh gate)**, lives in the sibling sub-phase `003-fanout-failure-recovery`. That cluster is independent of D2 and is keyed only on exit-code/timeout/ledger state. Not re-implemented here.
-- **Q6-anchor FIX**, already SHIPPED in 030 Wave-0 (commit `738e118751`). The reducer-anchor template bug is closed. Not in this cluster.
+- **Q6-anchor FIX**, already SHIPPED in 030 Wave-0 (commit `61fe63b24d`). The reducer-anchor template bug is closed. Not in this cluster.
 - **DL-newInfoRatio non-consumption**, a known structured-module residual (`convergence.cjs:285,378-381`): `newInfoRatio` is computed but never ingested into the structured stop/continue decision. Tracked as a residual, NOT part of this cluster (it is not reliability-weighted).
 - **A reliability WRITE-PATH (a writer that populates `metadata.reliability` to something other than 0.5)**, out of scope. D2 is read-only by design (the scoring layer reads reliability, never writes it, per aionforge `attestation-and-promotion.md:60-67`). Without a writer, every input stays 0.5 and the benchmark measures the prior-mean regime only. The write-path is a separate follow-on.
 - Modifying the external reference systems under `028.../external/`.

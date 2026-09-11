@@ -85,7 +85,7 @@ Give each of the nine `z_archive` roots a container-level `description.json` and
 - Re-touching the archived spec folders' own `description.json`/`graph-metadata.json` - already present and already indexed; this phase never opens those files.
 - The global `.opencode/specs/descriptions.json` - regenerated later via a separate reindex, coordinated with the parked reindex track noted in the packet's continuity memory.
 - Registering `system-skill-advisor` (the track itself, currently unregistered) or `sk-design/008-sk-design-parent/external` (an unregistered intermediate container) as new graph nodes in their own right - out of scope beyond what is strictly needed to wire the two roots that sit inside them.
-- Changing the archived-tier recall mechanism itself. The shared active-row predicate and the one-time 6,090-row archived-tier backfill already shipped (`016/002-archived-tier-and-tombstone-read-exclusions`, `8142e1dae3`). This phase reuses that mechanism; it does not redesign it.
+- Changing the archived-tier recall mechanism itself. The shared active-row predicate and the one-time 6,090-row archived-tier backfill already shipped (`016/002-archived-tier-and-tombstone-read-exclusions`, `91b9cbb7b5`). This phase reuses that mechanism; it does not redesign it.
 
 ### Files to Change
 

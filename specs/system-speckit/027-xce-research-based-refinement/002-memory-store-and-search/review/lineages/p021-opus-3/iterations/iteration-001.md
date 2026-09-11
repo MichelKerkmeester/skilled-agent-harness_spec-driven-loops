@@ -6,7 +6,7 @@ trigger_phrases: []
 
 **Target:** `027/002/021-cooperative-heavy-phases` (spec-folder, Level 1)
 **Executor:** cli-claude-code / claude-opus-4-8 · **Iteration:** 1 of 1 · **Dimensions:** correctness + security + traceability + maintainability (breadth pass)
-**Authoritative source:** commit `372bb0f2cd` (`feat(027/021): cooperative heavy phases`).
+**Authoritative source:** commit `da09d7c69e` (`feat(027/021): cooperative heavy phases`).
 
 ---
 
@@ -49,7 +49,7 @@ Observation-only change; no new input surface, no credential handling, no path/I
 | REQ-001 | Lag sampler + per-phase wall-clock, foreground path unchanged (gated on `ctx.onPhase`) | `:501` gate, `:513-525` sampler, `:522` block warning, `:1480` max-lag, `:1239` per-phase timing via `timedPhase` | **pass** |
 | REQ-002 | `syncPhraseRows`→chunked 200-row txns, yield between (never inside), `isCancelled`→`cancelled`, cache-hit yield | `trigger-backfill.ts:55,247-259,249,276,282` | **pass** |
 | REQ-003 | Each un-yielded tail phase enters via `timedPhase`→`onPhase`→`maintenance.refresh()` (full 180s TTL) | `:1239,1248,1257,1262` wrap 4 phases; consumer `:1505-1511` calls `maintenance.refresh()` | **pass** |
-| REQ-004 | Launcher adopt/reap confirmed correct, no launcher change | Documented investigation (T009); no diff to launcher `.cjs` in commit `372bb0f2cd` | **pass (documented, not re-derived)** |
+| REQ-004 | Launcher adopt/reap confirmed correct, no launcher change | Documented investigation (T009); no diff to launcher `.cjs` in commit `da09d7c69e` | **pass (documented, not re-derived)** |
 
 `checklist_evidence`: Level 1 packet, no `checklist.md` required. tasks.md T001-T012 reconciled: T001-T011 map to shipped code/tests/investigation; T012 (live deploy read) is explicitly the deploy-time check, marked complete via the isolated-clone read (max lag 634ms, no block). Verification table in `implementation-summary.md` lists typecheck PASS, unit 6/6, scan-job suite PASS, adoption harness 6/6.
 

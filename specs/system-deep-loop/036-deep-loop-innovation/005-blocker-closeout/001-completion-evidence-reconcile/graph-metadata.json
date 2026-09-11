@@ -42,8 +42,6 @@
       "tasks.md",
       "decision-record.md",
       "implementation-summary.md",
-      ".opencode/.gitignore",
-      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
       ".opencode/skills/system-deep-loop/shared/rollout/command-injection-rollout.json",
       ".opencode/skills/system-deep-loop/shared/rollout/promotion-rule.md",
       "spec/validate.sh"
@@ -80,18 +78,6 @@
         "source": "derived"
       },
       {
-        "name": ".gitignore",
-        "kind": "file",
-        "path": ".opencode/.gitignore",
-        "source": "derived"
-      },
-      {
-        "name": "validate.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
-        "source": "derived"
-      },
-      {
         "name": "command-injection-rollout.json",
         "kind": "config",
         "path": ".opencode/skills/system-deep-loop/shared/rollout/command-injection-rollout.json",
@@ -101,6 +87,12 @@
         "name": "promotion-rule.md",
         "kind": "doc",
         "path": ".opencode/skills/system-deep-loop/shared/rollout/promotion-rule.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": "spec/validate.sh",
         "source": "derived"
       },
       {
@@ -192,11 +184,17 @@
         "kind": "proper_noun",
         "path": "decision-record.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Checked completion items across the 013 migration program cite evidence that cannot be reproduced",
     "created_at": "2026-07-30T19:43:41.044Z",
-    "last_save_at": "2026-08-30T15:39:21.605Z",
+    "last_save_at": "2026-09-11T16:42:23.762Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,14 +204,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3e6889d1de05b0c5bb6461256dced27a3a90fadba287a9d693a76e54982748b5",
+    "source_fingerprint": "sha256:9e5b210bb7bd98dee0a4b4cd52d01ff45ddc972d8110f739842f5de7c45b8d86",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "81039272af872dcecbfe4a2371e0c6f4b8b39b89777de91c99ff44874092d35c",
       "plan.md": "2e452af4cf5d776bcb529a37e232b402567dbfbf152e61b36dd64bf3ca68994a",
-      "tasks.md": "87b2ed184d2ecd76f9671a8f520785ce86ecc324a680f0a71ed7b5b5b8cd79ba",
+      "tasks.md": "c850e0fc43713c6c4ee78d04f83875ae6899f0b1894709b4f17ab3c3c0d2ce1e",
       "decision-record.md": "90d0ff65da22c3bf8a6455dd37fef8a3d59b7ad83bca8884b0f9605b9e2b8256",
-      "implementation-summary.md": "527a5d5d052fafcc9fc339f8ab00e6cc8f1b21e80b6799a2d76c72c64632ea6f"
+      "implementation-summary.md": "eabb77a5d550b500779b7e71f1a67549fe9ad8c124948d12a1528b7174e8443f"
     },
     "last_active_child_id": null,
     "last_active_at": null

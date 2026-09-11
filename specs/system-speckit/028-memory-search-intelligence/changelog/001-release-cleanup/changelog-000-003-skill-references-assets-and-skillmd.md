@@ -19,7 +19,7 @@ contextType: "implementation"
 
 ### Summary
 
-This child phase executed (commit bb038e19ab). Fourteen skill `SKILL.md`, reference and asset docs were aligned to current shipped state, fixing factual drift across stale references, counts and paths. Every committed corrected path was verified to resolve. The deep-research and deep-loop-workflows skill docs stay deferred to the concurrent session that owns them.
+This child phase executed (commit 2229a24c7e). Fourteen skill `SKILL.md`, reference and asset docs were aligned to current shipped state, fixing factual drift across stale references, counts and paths. Every committed corrected path was verified to resolve. The deep-research and deep-loop-workflows skill docs stay deferred to the concurrent session that owns them.
 
 ### Added
 
@@ -40,7 +40,7 @@ This child phase executed (commit bb038e19ab). Fourteen skill `SKILL.md`, refere
 
 | Check | Result |
 |-------|--------|
-| Cleanup execution | Executed at bb038e19ab, 14 docs aligned, deep-research subset deferred |
+| Cleanup execution | Executed at 2229a24c7e, 14 docs aligned, deep-research subset deferred |
 | Task completion | PASS, all tasks done, 0 open |
 | Strict validation | PASS, 0 errors and 0 warnings |
 

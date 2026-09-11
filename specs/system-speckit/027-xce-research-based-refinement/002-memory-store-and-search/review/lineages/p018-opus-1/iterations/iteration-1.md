@@ -9,7 +9,7 @@ All artifacts are in place and well-formed. The review loop is complete.
 - **Findings: P0=0, P1=0, P2=1**
 - **Dimension coverage: 4/4** (correctness, security, traceability, maintainability) in one comprehensive pass (maxIterations=1)
 
-What I reviewed: the Level 1 fix making the background `memory_index_scan` cooperative and cancellable (commit `f1dbb676f2`, 4 files). I verified each requirement against shipped code:
+What I reviewed: the Level 1 fix making the background `memory_index_scan` cooperative and cancellable (commit `a48325ab74`, 4 files). I verified each requirement against shipped code:
 - REQ-001 → 200-row / 50-folder `setImmediate` yields (`memory-index.ts:1176`, `:1311`) ✓
 - REQ-002 → `shouldAbort` break (`batch-processor.ts:150`) + cancelled-envelope returns ✓
 - REQ-003 → in-memory `cancelledJobIds` Set + `isCancelRequestedFast` (`job-store.ts:319/340`) ✓

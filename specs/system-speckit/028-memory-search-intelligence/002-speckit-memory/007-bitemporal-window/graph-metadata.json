@@ -45,11 +45,7 @@
       "plan.md",
       "tasks.md",
       "decision-record.md",
-      "implementation-summary.md",
-      "lib/search/vector-index-schema.ts",
-      "lib/graph/temporal-edges.ts",
-      "lib/search/search-flags.ts",
-      "lib/causal/frontmatter-promoter.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -80,30 +76,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "vector-index-schema.ts",
-        "kind": "code",
-        "path": "lib/search/vector-index-schema.ts",
-        "source": "derived"
-      },
-      {
-        "name": "temporal-edges.ts",
-        "kind": "code",
-        "path": "lib/graph/temporal-edges.ts",
-        "source": "derived"
-      },
-      {
-        "name": "search-flags.ts",
-        "kind": "code",
-        "path": "lib/search/search-flags.ts",
-        "source": "derived"
-      },
-      {
-        "name": "frontmatter-promoter.ts",
-        "kind": "code",
-        "path": "lib/causal/frontmatter-promoter.ts",
         "source": "derived"
       },
       {
@@ -195,11 +167,35 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context The",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Alternatives Considered",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The Memory MCP's causal-edge currentness machinery records the wrong time and the wrong number of times",
     "created_at": "2026-06-19T05:40:37.444Z",
-    "last_save_at": "2026-08-30T15:39:34.891Z",
+    "last_save_at": "2026-09-11T16:42:41.550Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,14 +205,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ae902ec3499081922f8b57516e861f9cc7df4e4a8e88130ba45d03408388e6db",
+    "source_fingerprint": "sha256:5f74f9013531bd0d3ac0e139c7d415e95a62dc405d719138207d47d47f0fc514",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9a067eb5d7b0c397ca60b142d818cd9ffe52cb34c6cebfb62fd473b376dee057",
-      "plan.md": "aeeb8f06828efbbf72fc50df223577a878454f2adf0efb02f523703c7fa16aec",
-      "tasks.md": "09dfd16137e37172a845cff3747015859a28373f47c78f1b44776ec8f9687a44",
-      "decision-record.md": "a3d3b13d2a9dbe640fc45d02614708bf92cc23d622e8d301903d529b63052fef",
-      "implementation-summary.md": "8f8d1f78668cde04236b58ac1981ebc7181e7b08195640b7a5de5c7656133398"
+      "spec.md": "9c5e634b34cd2369a7a97b5f2bf149f0ac801c557c79539152bbaa2659ff04f6",
+      "plan.md": "7ae0644eaea330b735b72473ee3932e954a8fadc61097d68c8cd3140d9ebe611",
+      "tasks.md": "bc055f82224a43bec64fc43f9c8e63c2c06c38001cc6cc5b7dd1214780202255",
+      "decision-record.md": "e941927ce39dfb05fd2ce3e7c2787f5f7b16ea2989a04e6a321fccdecfd13f98",
+      "implementation-summary.md": "1506802ae227fb48b29fac5f6ed04202095c584f5ca3a2df16c3c16537cf12ef"
     },
     "last_active_child_id": null,
     "last_active_at": null

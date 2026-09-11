@@ -13,7 +13,7 @@ Executor: cli-claude-code / claude-opus-4-8 · Mode: review · Iterations: 1 (ma
 **Verdict: PASS** (`hasAdvisories: true`)
 
 - Active findings: **P0 = 0, P1 = 0, P2 = 1**
-- Scope: the Level 1 fix making the background `memory_index_scan` cooperative and cancellable — tail-loop event-loop yields, a `processBatches` early-abort, and an in-process cancel flag. 4 files, +35/-3 LOC (commit `f1dbb676f2`).
+- Scope: the Level 1 fix making the background `memory_index_scan` cooperative and cancellable — tail-loop event-loop yields, a `processBatches` early-abort, and an in-process cancel flag. 4 files, +35/-3 LOC (commit `a48325ab74`).
 - Dimension coverage: 4/4 (correctness, security, traceability, maintainability) in a single comprehensive pass.
 - Convergence: maxIterations=1 reached; no P0/P1 found; all required gates green. Release readiness state advanced to `converged`.
 
@@ -66,7 +66,7 @@ No spec change required for PASS. Optional addendum for a follow-on hardening pa
 | Core | checklist_evidence | **N/A** | hard | Level 1 folder, no `checklist.md` (exempt). |
 | Overlay | feature_catalog_code | **N/A** | advisory | Internal daemon fix, no feature-catalog claim. |
 
-**REQ-004 caveat:** the "68 tests pass" claim (SC-001) is recorded in `implementation-summary.md` and commit `f1dbb676f2` but was **not independently re-run in this review session** — `npx vitest run` was blocked by the Bash approval sandbox. Treated as an evidence-backed but unverified claim, not a gate failure.
+**REQ-004 caveat:** the "68 tests pass" claim (SC-001) is recorded in `implementation-summary.md` and commit `a48325ab74` but was **not independently re-run in this review session** — `npx vitest run` was blocked by the Bash approval sandbox. Treated as an evidence-backed but unverified claim, not a gate failure.
 
 ---
 

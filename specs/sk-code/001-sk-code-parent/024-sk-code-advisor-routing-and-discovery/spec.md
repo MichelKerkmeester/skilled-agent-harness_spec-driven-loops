@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: sk-code advisor-routing discovery + Lane-C D3 proxy fix"
-description: "Layer 1 sk-code-local, advisor-scorer-independent routing increment: smart-routing discovery vocabulary for CWV and accessibility prompts, router replay acronym boundaries, Lane-C D3 not-applicable scoring, parent-hub router schema correction, playbook expected-asset path repairs, and regenerated benchmark reports. Shipped and pushed in commit ec014f95c6."
+description: "Layer 1 sk-code-local, advisor-scorer-independent routing increment: smart-routing discovery vocabulary for CWV and accessibility prompts, router replay acronym boundaries, Lane-C D3 not-applicable scoring, parent-hub router schema correction, playbook expected-asset path repairs, and regenerated benchmark reports. Shipped and pushed in commit cdc51fc894."
 trigger_phrases:
   - "sk-code advisor routing discovery"
   - "Lane-C D3 proxy fix"
@@ -13,7 +13,7 @@ _memory:
     packet_pointer: "sk-code/001-sk-code-parent/024-sk-code-advisor-routing-and-discovery"
     last_updated_at: "2026-07-06T00:00:00.000Z"
     last_updated_by: "gpt-5.5"
-    recent_action: "Retrospective scope authored for pushed commit ec014f95c6"
+    recent_action: "Retrospective scope authored for pushed commit cdc51fc894"
     next_safe_action: "None; packet implementation is complete and pushed"
 ---
 # Feature Specification: sk-code advisor-routing discovery + Lane-C D3 proxy fix
@@ -44,7 +44,7 @@ _memory:
 Two sk-code discovery scenarios failed because the references they needed already existed in `sk-code/shared/references/smart_routing.md` RESOURCE_MAP, but the prompts did not fire the intents that map to those references. The PERFORMANCE intent lacked CWV acronyms and phrase vocabulary (`lcp`, `inp`, `cls`, `web vitals`, `interaction to next paint`, `cumulative layout shift`), and there was no ACCESSIBILITY intent for reduced-motion and a11y vocabulary. In parallel, Lane-C D3 efficiency scoring treated scenarios with no positive-resource gold as if every routed resource were waste, producing spurious 0 scores for empty expectations.
 
 ### Purpose
-Ship the sk-code-local, advisor-scorer-independent Layer 1 routing increment in commit `ec014f95c6`: expand smart-routing discovery vocabulary for CWV and accessibility prompts, make short CWV acronyms match on word boundaries in router replay, make D3 not-applicable when a scenario has no positive-resource gold, refresh stale parent-hub router schema documentation to the current four-mode surface-primary model, repair dead expected-asset paths in two sk-code playbook scenarios, and regenerate benchmark reports in the documented current or sibling result folders.
+Ship the sk-code-local, advisor-scorer-independent Layer 1 routing increment in commit `cdc51fc894`: expand smart-routing discovery vocabulary for CWV and accessibility prompts, make short CWV acronyms match on word boundaries in router replay, make D3 not-applicable when a scenario has no positive-resource gold, refresh stale parent-hub router schema documentation to the current four-mode surface-primary model, repair dead expected-asset paths in two sk-code playbook scenarios, and regenerate benchmark reports in the documented current or sibling result folders.
 
 <!-- /ANCHOR:problem -->
 ---
@@ -114,7 +114,7 @@ Ship the sk-code-local, advisor-scorer-independent Layer 1 routing increment in 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: sk-code router-mode benchmark improves from aggregate 71 / CONDITIONAL to aggregate 84 / PASS, with D1intra 87 to 91, D2 79 to 85, D3 47 to 68, D5 100 unchanged, CS-006 D2 recall 0.375 to 1.0, CS-007 D2 recall 0.43 to 0.86, and zero scenarios regressed below 50. [EVIDENCE: commit `ec014f95c6` benchmark report]
+- **SC-001**: sk-code router-mode benchmark improves from aggregate 71 / CONDITIONAL to aggregate 84 / PASS, with D1intra 87 to 91, D2 79 to 85, D3 47 to 68, D5 100 unchanged, CS-006 D2 recall 0.375 to 1.0, CS-007 D2 recall 0.43 to 0.86, and zero scenarios regressed below 50. [EVIDENCE: commit `cdc51fc894` benchmark report]
 - **SC-002**: D3 empty-gold proxy removal is reflected by sibling reports: sk-design 69 to 100 and deep-loop-workflows 71 to 100. [EVIDENCE: `sk-design/benchmark/reports/2026-07-06--after-d3-proxy--router`, `deep-loop-workflows/benchmark/2026-07-06--after-d3-proxy--router`]
 - **SC-003**: Gates are green. [EVIDENCE: sk-code parent-skill-check STRICT 0; vocab-sync exit 0; router drift-guards 8/8; skill-benchmark vitest suite 106/107; markdown-links clean on all four changed docs; all six JSON examples in the refreshed schema doc parse; validate.sh --strict exit 0]
 
@@ -188,7 +188,7 @@ Ship the sk-code-local, advisor-scorer-independent Layer 1 routing increment in 
 ## RELATED DOCUMENTS
 
 - **Parent hub**: `.opencode/skills/sk-code/`
-- **Commit**: `ec014f95c6`
+- **Commit**: `cdc51fc894`
 - **Downstream packet**: `028/003-skill-advisor/010-scorer-saturation-root-fix`
 
 <!-- /ANCHOR:related-docs -->

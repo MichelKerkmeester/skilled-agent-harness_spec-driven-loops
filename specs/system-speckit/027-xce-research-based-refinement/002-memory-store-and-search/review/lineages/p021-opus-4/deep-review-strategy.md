@@ -34,7 +34,7 @@ Review the 021-cooperative-heavy-phases packet: scan event-loop lag instrumentat
 
 <!-- ANCHOR:what-worked -->
 ## What Worked
-- Iter 1: reading the shipped diff (`git show 372bb0f2cd`) plus the four spec docs side-by-side made REQ→code mapping direct.
+- Iter 1: reading the shipped diff (`git show da09d7c69e`) plus the four spec docs side-by-side made REQ→code mapping direct.
 - Iter 1: grepping the two `runTriggerEmbeddingBackfill` call sites + branch guards settled the "double-run?" question by static scope analysis.
 <!-- /ANCHOR:what-worked -->
 
@@ -64,7 +64,7 @@ None — coverage complete, verdict stable at PASS. Loop stopped at maxIteration
 ## Known Context
 - Level 1 packet, 3-file blast radius; predecessor 020-maintenance-grace-background-embedding.
 - `resource-map.md` not present. Skipping coverage gate.
-- Branch `system-speckit/027-xce-research-based-refinement`; shipped commit `372bb0f2cd`.
+- Branch `system-speckit/027-xce-research-based-refinement`; shipped commit `da09d7c69e`.
 <!-- /ANCHOR:known-context -->
 
 <!-- ANCHOR:cross-reference-status -->

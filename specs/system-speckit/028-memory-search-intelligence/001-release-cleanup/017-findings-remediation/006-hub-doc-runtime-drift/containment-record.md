@@ -1,8 +1,8 @@
 ---
-title: "Containment record — commit 2140e8740d"
+title: "Containment record — commit 995e435374"
 trigger_phrases: []
 ---
-# Containment record — commit 2140e8740d
+# Containment record — commit 995e435374
 
 Phase 006's commit contains 155 files that were not part of this phase. This records what happened,
 why it is harmless, and why repairing it would cost more than leaving it.
@@ -31,7 +31,7 @@ someone else. That is the defect: the check verified the wrong surface.
 
 ## Why it is harmless
 
-The concurrent session's own commit `bab4b988e6` carries 565 files including 321 renames — the
+The concurrent session's own commit `7050c1e144` carries 565 files including 321 renames — the
 remainder of the same operation, plus its content edits. Their reorganization completed intact. Every
 renamed file exists at its new path and all 14 `reports/` directories are present.
 
@@ -52,17 +52,17 @@ commits on a branch with a live writer to correct an attribution that costs noth
 
 ## Why repair was declined
 
-Repair means rewriting `2140e8740d`. By the time the breach was diagnosed, history had become
+Repair means rewriting `995e435374`. By the time the breach was diagnosed, history had become
 interleaved:
 
 ```
-2140e8740d  phase 006          (mine, breached)
-bab4b988e6  benchmark refactor (theirs)
-f5da80e1b5  benchmark docs     (theirs)
-1039aa5d82  phase 007          (mine)
-649b51bc16  phase 008          (mine)
-e819b38bc2  phase 009          (mine)
-763f7f6e6f  benchmark paths    (theirs)
+995e435374  phase 006          (mine, breached)
+7050c1e144  benchmark refactor (theirs)
+8fb7a1eaec  benchmark docs     (theirs)
+1d107e8f58  phase 007          (mine)
+d134b713e4  phase 008          (mine)
+905b3d6c64  phase 009          (mine)
+a1528e1e5a  benchmark paths    (theirs)
 ```
 
 Rewriting the breached commit requires rebasing six commits, three of which belong to a session that
@@ -80,9 +80,9 @@ paths regardless of index state. All three are verifiably clean:
 
 | Commit | Files | Renames |
 |--------|-------|---------|
-| `1039aa5d82` | 8 | 0 |
-| `649b51bc16` | 3 | 0 |
-| `e819b38bc2` | 2 | 0 |
+| `1d107e8f58` | 8 | 0 |
+| `d134b713e4` | 3 | 0 |
+| `905b3d6c64` | 2 | 0 |
 
 Phases 002 through 005 were audited after the fact and are also clean — every file in each commit is
 accounted for. Phase 006 is the only breach, because it is the only phase during which the concurrent

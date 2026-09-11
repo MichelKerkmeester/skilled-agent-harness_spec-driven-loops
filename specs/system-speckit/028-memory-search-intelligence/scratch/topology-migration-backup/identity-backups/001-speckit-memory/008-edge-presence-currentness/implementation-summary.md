@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Edge-Presence Currentness & Temporal Recall (028/001 impl phase)"
-description: "Implementation summary for the five temporal candidates. C3-A edge-presence currentness shipped default-off behind SPECKIT_EDGE_PRESENCE_CURRENTNESS with a focused test (commit cb92f2f211) then was kept off and removed in the flag-resolution reckoning (reconciliation repaired 0 rows, integrity-only). The remaining four candidates (C3-C, memory_history, CG-temporal-query-extraction, M-unforget-channel-disjointness) stay pending their schema, benchmark and shared-infra gates."
+description: "Implementation summary for the five temporal candidates. C3-A edge-presence currentness shipped default-off behind SPECKIT_EDGE_PRESENCE_CURRENTNESS with a focused test (commit 8cc41ae155) then was kept off and removed in the flag-resolution reckoning (reconciliation repaired 0 rows, integrity-only). The remaining four candidates (C3-C, memory_history, CG-temporal-query-extraction, M-unforget-channel-disjointness) stay pending their schema, benchmark and shared-infra gates."
 trigger_phrases:
   - "implementation summary edge presence currentness"
   - "temporal recall replan summary"
@@ -47,7 +47,7 @@ _memory:
 | **Level** | 3 |
 | **Scope** | Five temporal candidates, C3-A shipped and four pending |
 | **Branch** | system-speckit/028-memory-search-intelligence |
-| **HEAD** | cb92f2f211 shipped C3-A (temporal-edges, vector-index-schema, search-flags, 241-line test) |
+| **HEAD** | 8cc41ae155 shipped C3-A (temporal-edges, vector-index-schema, search-flags, 241-line test) |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -55,7 +55,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-C3-A edge-presence currentness shipped behind `SPECKIT_EDGE_PRESENCE_CURRENTNESS` (default-off), committed at `cb92f2f211`. The candidate adds the read-side currentness reconciliation in `temporal-edges.ts`, the schema migration in `vector-index-schema.ts` and the flag in `search-flags.ts`, verified by a 241-line passing test (`tests/edge-presence-currentness.vitest.ts`, 3 pass). When the flag is off the reconciliation is a no-op, so default recall stays byte-identical. The phase also carries the Level-3 planning set (spec, plan, tasks, checklist, decision-record) that sequenced the gate-aware plan for all five candidates.
+C3-A edge-presence currentness shipped behind `SPECKIT_EDGE_PRESENCE_CURRENTNESS` (default-off), committed at `8cc41ae155`. The candidate adds the read-side currentness reconciliation in `temporal-edges.ts`, the schema migration in `vector-index-schema.ts` and the flag in `search-flags.ts`, verified by a 241-line passing test (`tests/edge-presence-currentness.vitest.ts`, 3 pass). When the flag is off the reconciliation is a no-op, so default recall stays byte-identical. The phase also carries the Level-3 planning set (spec, plan, tasks, checklist, decision-record) that sequenced the gate-aware plan for all five candidates.
 
 **Phase disposition (status nuance for re-derive):** the phase is **complete** as a concluded decision, not as five shipped features. C3-A was built and shipped default-off, then **kept off and removed** in the flag-resolution reckoning because the reconciliation pass repaired 0 rows on the live graph, an integrity pass and not a recall lever (see `../../007-kept-off-flag-resolution/`). The other four candidates (C3-C, memory_history, CG-temporal-query-extraction, M-unforget-channel-disjointness) are **deferred by decision** behind their schema, benchmark and shared-infra gates, none was started. The clean phase enum is `complete` (the decision concluded with a no-go on C3-A as a recall lever plus four gated deferrals). The default-off, benchmark-gated, shadow/integrity-only and per-candidate breakdown detail lives in this body and in §Candidate Status below so the enum stays closed on a future re-derive.
 
@@ -65,7 +65,7 @@ The remaining four candidates stay **PENDING** behind their schema, benchmark an
 
 | # | Candidate | Status | Gate | Evidence |
 |---|-----------|--------|------|----------|
-| 1 | C3-A edge-presence currentness | DONE, default-off | flag-gated (SPECKIT_EDGE_PRESENCE_CURRENTNESS) | shipped at cb92f2f211: temporal-edges.ts + vector-index-schema.ts + search-flags.ts + 241-line test (3 pass) |
+| 1 | C3-A edge-presence currentness | DONE, default-off | flag-gated (SPECKIT_EDGE_PRESENCE_CURRENTNESS) | shipped at 8cc41ae155: temporal-edges.ts + vector-index-schema.ts + search-flags.ts + 241-line test (3 pass) |
 | 2 | C3-C TemporalMode | PENDING | schema (AsKnownAt needs C3-B), Current/AsOf/History buildable now | not started |
 | 3 | memory_history as-of tool | PENDING | shared-infra (C3-A read path for currentness-correct chains) | not started |
 | 4 | CG-temporal-query-extraction | PENDING | needs-benchmark (range-filter precision) | not started |
@@ -81,7 +81,7 @@ The remaining four candidates stay **PENDING** behind their schema, benchmark an
 
 The planning set was authored from the authoritative 028 research: the cross-cutting `research/roadmap.md` (BROADENING + 027-REVISIT + MEMORY-SYSTEMS addenda), the `research/synthesis/01-go-candidates.md` + `03-corrections-caveats-and-residuals.md`, the phase-local `001-speckit-memory/research/research.md` and the per-candidate iteration/delta evidence (001 iters 012/016/027/037/038, 005-revisit Q9, 007 iters 008/013/014). Each candidate's seam, `[CONFIRMED]`/`[INFERRED]` evidence, effort/leverage and roadmap corrections were pulled forward into the spec scope table and the decision record.
 
-C3-A is implemented and committed at `cb92f2f211`. The `description.json` and `graph-metadata.json` are regenerated separately by `generate-context.js`.
+C3-A is implemented and committed at `8cc41ae155`. The `description.json` and `graph-metadata.json` are regenerated separately by `generate-context.js`.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -119,8 +119,8 @@ C3-A is implemented and committed at `cb92f2f211`. The `description.json` and `g
 | Item | Command | Result |
 |------|---------|--------|
 | Packet docs | `validate.sh --strict` on this phase | Target: PASS (0 errors, 0 warnings) |
-| Wave-0 done-evidence | `git log --oneline 1ecc531431..ab5459fb6d` filtered for temporal/history/unforget | 0 Wave-0 matches. C3-A shipped later in the 028 phase at cb92f2f211 |
-| Code verification | edge-presence-currentness test (3 pass), typecheck 0 at cb92f2f211 | C3-A shipped default-off, four candidates not started |
+| Wave-0 done-evidence | `git log --oneline 2e17fdbe32..5ed284319b` filtered for temporal/history/unforget | 0 Wave-0 matches. C3-A shipped later in the 028 phase at 8cc41ae155 |
+| Code verification | edge-presence-currentness test (3 pass), typecheck 0 at 8cc41ae155 | C3-A shipped default-off, four candidates not started |
 
 ### Commands
 
@@ -128,7 +128,7 @@ C3-A is implemented and committed at `cb92f2f211`. The `description.json` and `g
 bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
   .opencode/specs/system-speckit/028-memory-search-intelligence/001-speckit-memory/008-edge-presence-currentness --strict
 
-git log --oneline 1ecc531431..ab5459fb6d | grep -iE "temporal|history|unforget|currentness|C3"
+git log --oneline 2e17fdbe32..5ed284319b | grep -iE "temporal|history|unforget|currentness|C3"
 ```
 <!-- /ANCHOR:verification -->
 

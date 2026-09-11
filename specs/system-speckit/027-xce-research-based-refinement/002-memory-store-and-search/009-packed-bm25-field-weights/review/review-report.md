@@ -4,7 +4,7 @@ trigger_phrases: []
 ---
 # Deep Review Report — 014 Packed BM25 + Field Weights
 
-Review target: `system-spec-kit/027-xce-research-based-refinement/014-packed-bm25-field-weights` (packed in-memory BM25 engine + BM25F field weights; commit e78430e7d2).
+Review target: `system-spec-kit/027-xce-research-based-refinement/014-packed-bm25-field-weights` (packed in-memory BM25 engine + BM25F field weights; commit 0381b25fa7).
 Mode: autonomous fan-out (`/deep:start-review-loop` via `fanout-run.cjs`), 3× cli-opencode `gpt-5.5-fast --variant high`, strongest-restriction merge.
 
 ---

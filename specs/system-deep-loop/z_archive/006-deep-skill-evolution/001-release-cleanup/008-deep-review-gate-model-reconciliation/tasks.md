@@ -82,7 +82,7 @@ _memory:
 - [x] T023 generate-description.js + graph-metadata for spec folder; parent children_ids updated
 - [x] T024 Strict validate exit 0
 - [x] T025 Fill implementation-summary.md (no placeholders)
-- [x] T026 Scope-strict commit + push (commit 057b672a11, pushed to origin/main)
+- [x] T026 Scope-strict commit + push (commit fc01efd95e, pushed to origin/main)
 <!-- /ANCHOR:phase-3 -->
 
 ---

@@ -190,9 +190,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Independent 10-iteration GPT-5.6-SOL review of the three implementation packets shipped this session (interface-command rewrite, styles library restructure, persistent DB activation) plus the packet-doc reconciliations, read at pinned HEAD 7b9d3b6b71. Read-only; verdict CONDITIONAL, 0 P0.",
+    "causal_summary": "Independent 10-iteration GPT-5.6-SOL review of the three implementation packets shipped this session (interface-command rewrite, styles library restructure, persistent DB activation) plus the packet-doc reconciliations, read at pinned HEAD 6432665a68. Read-only; verdict CONDITIONAL, 0 P0.",
     "created_at": "2026-07-21T17:55:36.529Z",
-    "last_save_at": "2026-08-30T15:39:12.915Z",
+    "last_save_at": "2026-09-11T16:41:56.396Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b448c106944216d067e0ba958cc70336a45ae847c82f8cb0e3a9f7a77413ca78",
+    "source_fingerprint": "sha256:6e3e7686bc6719b61afe1002be7cc8d5bc348b2ca71b66b5bfdced4be1a3e69a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "155cc5f8cf281bef74abef640cb81db71d038ab414f51df8de1f5e2560c18feb",
-      "plan.md": "947dbd178c376464f0f7225523c8fdec51862dd0b894f1379a689bd827a4ac8f",
-      "tasks.md": "5c9ab84439efb9d5c288f9b11c01e8b5e9097151cc006170ccbcfae867d02bb9",
-      "implementation-summary.md": "9757d4e03cf0ec51f57ef8758d78ad9e2a510f5826dfbb14a79b93ed92f830fb"
+      "spec.md": "9cfff377c28f444cac7685502480a6b2d9dc9bc6f20f090753df4a82e00b3f2b",
+      "plan.md": "86e7956fe9b4850cc7b12c02d5d331d69dff5c1b6c7884bb2867d9586503c736",
+      "tasks.md": "4cf5fe37f9402e6d8ef5656067cee20ed5cf8ec880794988c1a3fa150054c8a0",
+      "implementation-summary.md": "312e5114ef84fd1db84bb1cf63ee3949774d2b77f005b68adf58bc1329fe7ffa"
     },
     "last_active_child_id": null,
     "last_active_at": null

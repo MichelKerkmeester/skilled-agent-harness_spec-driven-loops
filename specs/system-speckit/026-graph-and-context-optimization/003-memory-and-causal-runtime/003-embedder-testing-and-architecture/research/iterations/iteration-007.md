@@ -12,7 +12,7 @@ Iteration 7 audited arc `006-mcp-launcher-concurrency`, especially the late 010-
 3. Listed the arc's child docs and read phase 011 and 012 `spec.md`, `tasks.md`, and `implementation-summary.md` because those are the latest committed follow-ons in the path history.
 4. Spot-checked source files referenced by the docs: `.opencode/bin/mk-skill-advisor-launcher.cjs`, `.opencode/bin/mk-code-index-launcher.cjs`, `.opencode/bin/mk-spec-memory-launcher.cjs`, `.opencode/skills/system-skill-advisor/mcp_server/lib/daemon/lease.ts`, `.opencode/plugins/mk-skill-advisor.js`, and the plugin bridge.
 5. Ran grep probes for `SPECKIT_IPC_SOCKET_DIR`, `LEASE_HELD_BY`, `no-bridge-socket`, `skill_graph_daemon_lease`, `DEFAULT_BRIDGE_TIMEOUT_MS`, `ADVISOR_MCP_TIMEOUT_MS`, and proposed follow-on slug `013-plugin-bridge-timeout-tune`.
-6. Compared arc history with `git log --oneline -- <arc path>`; the path includes commits through `d5dbd39bc2 feat(016/006/012): daemon-side bridge socket for skill-advisor + code-index`.
+6. Compared arc history with `git log --oneline -- <arc path>`; the path includes commits through `e5633648aa feat(016/006/012): daemon-side bridge socket for skill-advisor + code-index`.
 7. Checked current git status for arc/source divergence; source docs under this arc are clean, while runtime DB/lease files are dirty from active local state and were not treated as source findings.
 
 ## Findings

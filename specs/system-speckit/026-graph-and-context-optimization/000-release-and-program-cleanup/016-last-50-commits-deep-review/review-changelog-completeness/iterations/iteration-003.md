@@ -14,6 +14,6 @@ Read .opencode/changelog/system-spec-kit/v3.5.0.0.md sections 'Checkpoint-v2' (~
 ## Executor output (gpt-5.5-fast high)
 
 [P2] Phase 2 line-count wording drifts
-  evidence: `.opencode/changelog/system-spec-kit/v3.5.0.0.md:63`; commit `f86a80ca65`
+  evidence: `.opencode/changelog/system-spec-kit/v3.5.0.0.md:63`; commit `8148f5f834`
   detail: The commit exists and matches file-based v2 CREATE, but `git show --numstat` shows `checkpoints.ts` as 413 additions/25 deletions plus a separate 192-line create suite. The “single 605-line change in the checkpoint storage layer” wording appears to use total insertions, not the storage-layer file size.
   confidence: 0.92

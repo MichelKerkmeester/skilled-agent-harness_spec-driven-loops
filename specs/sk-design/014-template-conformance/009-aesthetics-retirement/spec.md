@@ -13,7 +13,7 @@ _memory:
     packet_pointer: "sk-design/014-template-conformance/009-aesthetics-retirement"
     last_updated_at: "2026-07-27T17:17:23.686Z"
     last_updated_by: "spec-author"
-    recent_action: "Committed c10ded2ab8; core retirement done, 2 residual gaps found on reverify"
+    recent_action: "Committed a4b707cddd; core retirement done, 2 residual gaps found on reverify"
     next_safe_action: "Flag hub-router.json and real-ui-loop.md gaps to operator for follow-up fix"
     blockers: []
     key_files:
@@ -45,7 +45,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Complete — executed and committed (`c10ded2ab8`, 10 files, +298/-365); 2 residual citing-site gaps found on re-verification (REQ-006, REQ-007), not covered by any planned sibling |
+| **Status** | Complete — executed and committed (`a4b707cddd`, 10 files, +298/-365); 2 residual citing-site gaps found on re-verification (REQ-006, REQ-007), not covered by any planned sibling |
 | **Created** | 2026-07-27 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Packet** | `sk-design/014-template-conformance` |
@@ -67,7 +67,7 @@ _memory:
 
 Retire the folder and the lane together, in the same commit, this is not a doc delete: `aesthetic` is a selectable mode argument with wiring across five separate files, and command task lanes must match the owning mode's `INTENT_SIGNALS` exactly (a checker enforces this, and it already broke once this session when an intent was added without its matching lane). This packet takes the hub from its post-008 state one step toward the session's fourth reduction: `/interface:design` and `/interface:design-reference` becoming the entire public design surface.
 
-**Executed.** Committed as `c10ded2ab8` (10 files, +298/-365). The folder, the `AESTHETICS` intent, the command task lane, and the argument-hint wiring were all removed together; an intent/lane parity check caught an earlier error in this consolidation (an intent added without its matching lane) before it landed, confirming the checker referenced above does fire. Re-verification on 2026-07-27 found the core retirement is real and clean, but surfaced two citing sites the commit did not reach: `hub-router.json`'s `"aesthetic"` vocabulary entry, and a dangling `../aesthetics/` reference in `real-ui-loop.md`. See REQ-006/REQ-007 in §4 for status.
+**Executed.** Committed as `a4b707cddd` (10 files, +298/-365). The folder, the `AESTHETICS` intent, the command task lane, and the argument-hint wiring were all removed together; an intent/lane parity check caught an earlier error in this consolidation (an intent added without its matching lane) before it landed, confirming the checker referenced above does fire. Re-verification on 2026-07-27 found the core retirement is real and clean, but surfaced two citing sites the commit did not reach: `hub-router.json`'s `"aesthetic"` vocabulary entry, and a dangling `../aesthetics/` reference in `real-ui-loop.md`. See REQ-006/REQ-007 in §4 for status.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -132,7 +132,7 @@ Retire the folder and the lane together, in the same commit, this is not a doc d
 | ID | Requirement | Acceptance Criteria | Status |
 |----|-------------|---------------------|--------|
 | REQ-005 | Both YAML assets' `argument-hint` mirrors drop `aesthetic` | `rg -n "aesthetic" .opencode/commands/interface/assets/interface-design-auto.yaml .opencode/commands/interface/assets/interface-design-confirm.yaml` returns nothing | **N/A, verified 2026-07-27** — neither YAML asset has an `argument-hint`/`argumentHint` field at all; the only `aesthetic` hits in both are the legitimate `procedures/aesthetic-direction.md` reference. Nothing needed removal here; the commit correctly left these files untouched |
-| REQ-006 | `hub-router.json`'s vocabulary list drops `"aesthetic"` | `rg -n "aesthetic" .opencode/skills/sk-design/hub-router.json` returns nothing | **OPEN — not done.** Re-verified 2026-07-27: `hub-router.json:121` still lists `"aesthetic"`. Not touched by commit `c10ded2ab8` (file not in its diff). Genuine residual gap, not covered by any planned sibling child; needs a follow-up fix or an amendment to `011-retirement-residue`'s scope |
+| REQ-006 | `hub-router.json`'s vocabulary list drops `"aesthetic"` | `rg -n "aesthetic" .opencode/skills/sk-design/hub-router.json` returns nothing | **OPEN — not done.** Re-verified 2026-07-27: `hub-router.json:121` still lists `"aesthetic"`. Not touched by commit `a4b707cddd` (file not in its diff). Genuine residual gap, not covered by any planned sibling child; needs a follow-up fix or an amendment to `011-retirement-residue`'s scope |
 | REQ-007 | Both citing reference docs (`resource-loading-notes.md`, `real-ui-loop.md`) no longer point at the retired folder | `rg -n "aesthetics/" design-interface/references/design-process/resource-loading-notes.md design-interface/references/design-process/real-ui-loop.md` returns nothing | **Partially done.** `resource-loading-notes.md` was repointed at the `styles/` corpus (confirmed in commit diff). `real-ui-loop.md:119` was NOT updated — re-verified 2026-07-27 it still reads "The illustrative cues in `../aesthetics/` are reference material..." pointing at the now-deleted folder. Genuine residual gap |
 <!-- /ANCHOR:requirements -->
 

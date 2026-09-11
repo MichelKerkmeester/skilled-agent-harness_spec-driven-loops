@@ -128,11 +128,11 @@ Execute a narrow canon hardening pass that makes the parent-hub template, schema
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001** — MET: The canon exposes one `bundleRules[]` vocabulary (`name`/`whenPrimary`/`includeSurfaces`/`whenAll`/`outcome`) across template, schema, and validator (`3a76f99ccb`).
-- **SC-002** — MET: sk-code stays the strict-green reference hub after the `surfaces` rename and 4-part version bump; parent-skill-check STRICT 0/0 (`3a76f99ccb`).
+- **SC-001** — MET: The canon exposes one `bundleRules[]` vocabulary (`name`/`whenPrimary`/`includeSurfaces`/`whenAll`/`outcome`) across template, schema, and validator (`b3364e230f`).
+- **SC-002** — MET: sk-code stays the strict-green reference hub after the `surfaces` rename and 4-part version bump; parent-skill-check STRICT 0/0 (`b3364e230f`).
 - **SC-003** — MET: deep-loop-workflows gained no new parent-skill-check failures; its STRICT count held at 26 (no regression).
-- **SC-004** — MET: All three stale `"internal design notes"` placeholders are gone from sk-code metadata (resolved by the 016 metadata refresh, `af1170c663`).
-- **SC-005** — MET: The template, schema, and validator speak the same surface-bundle terminology (`3a76f99ccb`).
+- **SC-004** — MET: All three stale `"internal design notes"` placeholders are gone from sk-code metadata (resolved by the 016 metadata refresh, `907027032b`).
+- **SC-005** — MET: The template, schema, and validator speak the same surface-bundle terminology (`b3364e230f`).
 
 ### Acceptance Scenarios
 - **Scenario 1**: Given a surface bundle rule for `review`, when the template, schema, and validator are checked, then all three accept the same fields: `name`, `whenPrimary`, `includeSurfaces`, optional `whenAll`, and `outcome`.
@@ -234,7 +234,7 @@ Execute a narrow canon hardening pass that makes the parent-hub template, schema
 <!-- ANCHOR:questions -->
 ## 12. OPEN QUESTIONS
 
-- RESOLVED: Phase 017 reconciled only the generic canon shape across the template, schema, and validator (`3a76f99ccb`); it added no new declarative sk-code bundleRules (the shipped `hub-router.json` change was the 4-part version bump only). Concrete hub rules stay with later phases.
+- RESOLVED: Phase 017 reconciled only the generic canon shape across the template, schema, and validator (`b3364e230f`); it added no new declarative sk-code bundleRules (the shipped `hub-router.json` change was the 4-part version bump only). Concrete hub rules stay with later phases.
 
 <!-- /ANCHOR:questions -->
 ---

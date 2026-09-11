@@ -252,17 +252,17 @@ The ten-iteration nesting review (`review/lineages/luna-max-review/review-report
 
 | Finding | Severity | What was wrong | Fix | Commit |
 |---------|----------|----------------|-----|--------|
-| F001 | P0 | `runtime/cli/package.json` absent from the tree; root scripts and lockfile still named `@spec-kit/scripts` | Force-tracked the manifest past the `.opencode/.gitignore` rule that swallowed it; renamed the package to `@spec-kit/cli`; regenerated the lockfile | `6166bbc6df`, `e354f144b5` |
-| F002 | P1 | Execution handoff pointed at the retired `dist/memory/generate-context.js` | Handoff corrected to `dist/continuity/generate-context.js` | `e354f144b5` |
-| F003 | P1 | Root Vitest discovery omitted `runtime/cli/tests` | Skill-root config rewritten as `test.projects` with a `runtime/cli`-rooted project | `e354f144b5` |
+| F001 | P0 | `runtime/cli/package.json` absent from the tree; root scripts and lockfile still named `@spec-kit/scripts` | Force-tracked the manifest past the `.opencode/.gitignore` rule that swallowed it; renamed the package to `@spec-kit/cli`; regenerated the lockfile | `015a946df8`, `069c223966` |
+| F002 | P1 | Execution handoff pointed at the retired `dist/memory/generate-context.js` | Handoff corrected to `dist/continuity/generate-context.js` | `069c223966` |
+| F003 | P1 | Root Vitest discovery omitted `runtime/cli/tests` | Skill-root config rewritten as `test.projects` with a `runtime/cli`-rooted project | `069c223966` |
 | F004 | P1 | Level, status, and execution state disagreed across spec, acceptance criteria, plan, and summary | Level reconciled to the authored Level 2 document set with the recommend-level score recorded as a note; status rows reconciled | this commit |
-| F005 | P1 | Moved-package READMEs kept the `scripts/` and `memory/` topology and invalid `npm --prefix` commands | 31 live documents corrected; recorded-output lines deliberately kept | `e354f144b5` |
-| F006 | P1 | Script registry advertised twelve absent `scripts/...` paths | `scripts-registry.json` repointed; every path verified on disk | `e354f144b5` |
-| F007 | P1 | Two CI workflows ran `npm ci` from the deleted scripts workspace | Dead install step removed; root `npm ci` provisions all three workspaces | `e354f144b5` |
-| F008 | P1 | Spec-root resolver registry kept twelve retired entries; its test checked shape only | Entries repointed; existence assertion added to the test | `e354f144b5` |
-| F009 | P1 | Moved test harnesses kept retired roots and a doubled generated-output segment | Three harness path bugs fixed | `e354f144b5` |
+| F005 | P1 | Moved-package READMEs kept the `scripts/` and `memory/` topology and invalid `npm --prefix` commands | 31 live documents corrected; recorded-output lines deliberately kept | `069c223966` |
+| F006 | P1 | Script registry advertised twelve absent `scripts/...` paths | `scripts-registry.json` repointed; every path verified on disk | `069c223966` |
+| F007 | P1 | Two CI workflows ran `npm ci` from the deleted scripts workspace | Dead install step removed; root `npm ci` provisions all three workspaces | `069c223966` |
+| F008 | P1 | Spec-root resolver registry kept twelve retired entries; its test checked shape only | Entries repointed; existence assertion added to the test | `069c223966` |
+| F009 | P1 | Moved test harnesses kept retired roots and a doubled generated-output segment | Three harness path bugs fixed | `069c223966` |
 
-The install strategy that made the nested workspace uninstallable was switched to hoisted in `57ef5fe600`. Two spec-root registry entries that predate this move and never existed under their recorded paths are handed to the spec-kit red-test lane in the parent packet.
+The install strategy that made the nested workspace uninstallable was switched to hoisted in `76d1585e59`. Two spec-root registry entries that predate this move and never existed under their recorded paths are handed to the spec-kit red-test lane in the parent packet.
 
 ### Second review pass, salvaged findings
 
@@ -270,96 +270,96 @@ The second pass (GPT-5.6 LUNA max through DevPass) was rejected by the runner af
 
 | Finding | Severity | What was wrong | Fix | Commit |
 |---------|----------|----------------|-----|--------|
-| F001 | P1 | The CLI package's `test` script ran Vitest through the runtime config instead of the skill-root projects config the root test claim relies on | `test` now runs `--config ../../vitest.config.ts --project cli` | `c0254f4a8c` |
-| F003 | P1 | The shared package-root resolver required a sibling `scripts/` directory and a pre-existing `runtime/database/`, so it returned null in the live tree | Landmarks are `runtime/cli` and `shared`; the derived database folder is no longer a precondition | `c0254f4a8c` |
-| F005 | P1 | Acceptance criteria said Planned, the plan left Definition of Done unchecked, and the summary carried a Level 3 marker beside a Level 2 table | Status, checkboxes and marker reconciled to the authored Level 2 document set | `c0254f4a8c` |
-| F006 | P1 | The skill doc, the root README and the changelog template still linked or invoked `scripts/` paths | Three links and one command repointed to `runtime/cli/` | `c0254f4a8c` |
-| F007 | P1 | Two committed scan helpers hardcoded one workstation's absolute repository path | Removed; nothing referenced them | `c0254f4a8c` |
+| F001 | P1 | The CLI package's `test` script ran Vitest through the runtime config instead of the skill-root projects config the root test claim relies on | `test` now runs `--config ../../vitest.config.ts --project cli` | `525659ef78` |
+| F003 | P1 | The shared package-root resolver required a sibling `scripts/` directory and a pre-existing `runtime/database/`, so it returned null in the live tree | Landmarks are `runtime/cli` and `shared`; the derived database folder is no longer a precondition | `525659ef78` |
+| F005 | P1 | Acceptance criteria said Planned, the plan left Definition of Done unchecked, and the summary carried a Level 3 marker beside a Level 2 table | Status, checkboxes and marker reconciled to the authored Level 2 document set | `525659ef78` |
+| F006 | P1 | The skill doc, the root README and the changelog template still linked or invoked `scripts/` paths | Three links and one command repointed to `runtime/cli/` | `525659ef78` |
+| F007 | P1 | Two committed scan helpers hardcoded one workstation's absolute repository path | Removed; nothing referenced them | `525659ef78` |
 
-The embeddings harness the root test invokes was CommonJS under an ESM package and failed on `require`; it is now `test-embeddings-factory.cjs` (`de9a2301e1`) and runs clean.
+The embeddings harness the root test invokes was CommonJS under an ESM package and failed on `require`; it is now `test-embeddings-factory.cjs` (`2ab5ffedb7`) and runs clean.
 
 ### Third review pass
 
-Ten iterations of GPT-5.6 LUNA Max Fast (cli-cursor) over the widened scope at `3647a161cf` returned FAIL: 0 P0, 11 P1, 4 P2. Each finding was verified against the tree before it was acted on.
+Ten iterations of GPT-5.6 LUNA Max Fast (cli-cursor) over the widened scope at `5cf7884d1e` returned FAIL: 0 P0, 11 P1, 4 P2. Each finding was verified against the tree before it was acted on.
 
 | Finding | Severity | Verified | Fix | Commit |
 |---------|----------|----------|-----|--------|
-| F001 | P1 | Yes: planning prose still said the move would run elsewhere | Spec, plan and tasks now state that execution ran in this folder by operator instruction | `3a7e457c02` |
-| F002 | P1 | Yes: CLI README topology named `scripts/` and `memory/`; spec-folder README named `scripts/spec-folder/` | Both READMEs describe `runtime/cli/` and `continuity/` | `3a7e457c02`, `cda184165f` |
-| F003 | P1 | Yes: level-score evidence cited the pre-move path | Path noted as historical; score replayed from `runtime/cli/spec/recommend-level.sh` with the same result | `3a7e457c02`, `cda184165f` |
-| F004 | P1 | Yes: runbook resolved the Vitest config one level too deep | Runbook uses the skill-root projects config | `3a7e457c02` |
+| F001 | P1 | Yes: planning prose still said the move would run elsewhere | Spec, plan and tasks now state that execution ran in this folder by operator instruction | `1239bd0513` |
+| F002 | P1 | Yes: CLI README topology named `scripts/` and `memory/`; spec-folder README named `scripts/spec-folder/` | Both READMEs describe `runtime/cli/` and `continuity/` | `1239bd0513`, `2e913aa947` |
+| F003 | P1 | Yes: level-score evidence cited the pre-move path | Path noted as historical; score replayed from `runtime/cli/spec/recommend-level.sh` with the same result | `1239bd0513`, `2e913aa947` |
+| F004 | P1 | Yes: runbook resolved the Vitest config one level too deep | Runbook uses the skill-root projects config | `1239bd0513` |
 | F005 | P2 | No: the named test carries no config path; the root config comment already describes the layout | None | — |
-| F006 | P2 | Yes: stress config excluded the retired `scripts/tests` | Excludes `runtime/cli/tests` | `3a7e457c02` |
-| F007 | P1 | Yes: an explicit `--output` path reached the write sink unchecked | Override must resolve inside the project root; regression test added | `cda184165f` |
-| F008 | P1 | Yes: three manifest paths no longer existed after remediation | Manifest refreshed to 450 existing paths | `3a7e457c02` |
+| F006 | P2 | Yes: stress config excluded the retired `scripts/tests` | Excludes `runtime/cli/tests` | `1239bd0513` |
+| F007 | P1 | Yes: an explicit `--output` path reached the write sink unchecked | Override must resolve inside the project root; regression test added | `2e913aa947` |
+| F008 | P1 | Yes: three manifest paths no longer existed after remediation | Manifest refreshed to 450 existing paths | `1239bd0513` |
 | F009 | P2 | Yes, as recorded history: `scratch/path-map.json` is the execution plan as drafted | Kept as written; scratch is recorded evidence | — |
-| F010 | P2 | Yes: two registry dependency entries named `scripts/` | Repointed to `runtime/cli/` | `3a7e457c02` |
-| F011 | P1 | Yes: test README commands ran Vitest from the wrong directory | Commands enter `runtime/cli` and use the projects config | `3a7e457c02` |
-| F012 | P1 | Yes: the CLI test lane ran before the build its dist-dependent tests need | `pretest` builds first | `3a7e457c02` |
-| F013 | P1 | Yes: dist-alignment eval omitted `runtime/cli/dist` and could not find the package root after the move | Target added; root landmarks are `runtime` and `shared`; eval passes, 183 files aligned | `cda184165f`, `8b5b9dcfc9` |
+| F010 | P2 | Yes: two registry dependency entries named `scripts/` | Repointed to `runtime/cli/` | `1239bd0513` |
+| F011 | P1 | Yes: test README commands ran Vitest from the wrong directory | Commands enter `runtime/cli` and use the projects config | `1239bd0513` |
+| F012 | P1 | Yes: the CLI test lane ran before the build its dist-dependent tests need | `pretest` builds first | `1239bd0513` |
+| F013 | P1 | Yes: dist-alignment eval omitted `runtime/cli/dist` and could not find the package root after the move | Target added; root landmarks are `runtime` and `shared`; eval passes, 183 files aligned | `2e913aa947`, `6dd4fa0a18` |
 | F014 | P1 | No: the deployed stop hook is a symlink into the built dist and its candidates match the source | None | — |
-| F015 | P1 | Yes: four workflow assets instructed `scripts/spec/create.sh` | Repointed to `runtime/cli/spec/create.sh`; mirrors in sync | `3a7e457c02` |
+| F015 | P1 | Yes: four workflow assets instructed `scripts/spec/create.sh` | Repointed to `runtime/cli/spec/create.sh`; mirrors in sync | `1239bd0513` |
 
 The runner marked this lineage fatal because the leaf recorded no stop reason, although all ten iterations, state records and the report landed. That is deep-loop leaf-protocol debt and is recorded in packet 042.
 
 ### Fourth review pass
 
-Ten iterations were requested at `8b5b9dcfc9` on cursor's GPT-5.6 LUNA Max Fast; the cursor account ran out of usage after seven state records and the leaf then wrote to a mistyped track path, so the runner rejected the lineage with six iterations on disk and eleven open findings. Each was verified against the fixed tree. The lineage directory itself was removed while the review worktree was reset for the next pass, before it had been copied into this packet; the findings survive in this table and in the goal log.
+Ten iterations were requested at `6dd4fa0a18` on cursor's GPT-5.6 LUNA Max Fast; the cursor account ran out of usage after seven state records and the leaf then wrote to a mistyped track path, so the runner rejected the lineage with six iterations on disk and eleven open findings. Each was verified against the fixed tree. The lineage directory itself was removed while the review worktree was reset for the next pass, before it had been copied into this packet; the findings survive in this table and in the goal log.
 
 | Finding | Severity | Verified | Fix | Commit |
 |---------|----------|----------|-----|--------|
-| Packet scope and completion evidence disagree | P1 | Yes: a risk row and the open-questions note still said this folder would not execute the move | Both reconciled to the execution that ran here | `09aaac49e1` |
+| Packet scope and completion evidence disagree | P1 | Yes: a risk row and the open-questions note still said this folder would not execute the move | Both reconciled to the execution that ran here | `a19d08b16b` |
 | Moved CLI READMEs still name `scripts/*` roots | P1 | No: no README under `runtime/cli` names a `scripts/` source root after the third-pass fixes | None | — |
 | Verification instructions invoke the pre-move level script | P1 | No: the plan cites the current path; the task line records the historical path as history | None | — |
-| Root Vitest comment misdescribes the CLI tsconfig | P2 | Yes: the comment claimed `nodenext`; the CLI resolves under `node` | Comment describes the actual reason for the projects split | `09aaac49e1` |
-| Changelog `--output` can escape through a symlinked parent | P1 | Yes: the check was lexical | Existing prefix canonicalized through the filesystem before containment; test plants an escaping link at the project root | `09aaac49e1`, `56e17a9d3a` |
+| Root Vitest comment misdescribes the CLI tsconfig | P2 | Yes: the comment claimed `nodenext`; the CLI resolves under `node` | Comment describes the actual reason for the projects split | `a19d08b16b` |
+| Changelog `--output` can escape through a symlinked parent | P1 | Yes: the check was lexical | Existing prefix canonicalized through the filesystem before containment; test plants an escaping link at the project root | `a19d08b16b`, `9d7767d11a` |
 | Execution path map keeps the retired package identity | P2 | Yes, as recorded history under `scratch/` | Kept as written | — |
-| Root smoke test runs the CLI dist before any build | P1 | Yes | `pretest:root` builds shared, runtime and cli first | `09aaac49e1` |
-| Test documentation lists a suite that does not exist | P2 | Yes: `completion-state.test.mjs` | Entry removed from the lib README | `09aaac49e1` |
-| Dist-alignment regression test omits the CLI target | P2 | Yes | `runtime/cli` added to the expected subtrees | `09aaac49e1` |
-| Native-module rebuild resolves the wrong root | P1 | Yes: `../..` landed on `runtime/` | Resolves the skill root like its sibling check script | `09aaac49e1` |
-| Phase-parent classification diverges between CLI entrypoint and runtime | P1 | Yes: the CLI copy ignored the generator-hardening default | CLI mirrors the runtime rule and its opt-out spellings; fixture folders classify the same | `56e17a9d3a`, `072da7777c` |
+| Root smoke test runs the CLI dist before any build | P1 | Yes | `pretest:root` builds shared, runtime and cli first | `a19d08b16b` |
+| Test documentation lists a suite that does not exist | P2 | Yes: `completion-state.test.mjs` | Entry removed from the lib README | `a19d08b16b` |
+| Dist-alignment regression test omits the CLI target | P2 | Yes | `runtime/cli` added to the expected subtrees | `a19d08b16b` |
+| Native-module rebuild resolves the wrong root | P1 | Yes: `../..` landed on `runtime/` | Resolves the skill root like its sibling check script | `a19d08b16b` |
+| Phase-parent classification diverges between CLI entrypoint and runtime | P1 | Yes: the CLI copy ignored the generator-hardening default | CLI mirrors the runtime rule and its opt-out spellings; fixture folders classify the same | `9d7767d11a`, `6e109c913d` |
 
 ### Fifth review pass
 
-Ten iterations of GPT-5.6 LUNA at max reasoning through DevPass (cli-opencode) at `072da7777c`, accepted by the runner with a recorded stop reason. Verdict CONDITIONAL: 0 P0, 10 P1, 8 P2. Five of the P1s are the reviewer noting that it could not replay a command from its read-only seat; each was replayed here.
+Ten iterations of GPT-5.6 LUNA at max reasoning through DevPass (cli-opencode) at `6e109c913d`, accepted by the runner with a recorded stop reason. Verdict CONDITIONAL: 0 P0, 10 P1, 8 P2. Five of the P1s are the reviewer noting that it could not replay a command from its read-only seat; each was replayed here.
 
 | Finding | Severity | Verified | Fix or replay | Commit |
 |---------|----------|----------|---------------|--------|
 | F001 workspace install and build not replayed | P1 | Replayed: `npm ci --dry-run` up to date; shared, runtime and cli build; freshness fresh | — | — |
-| F002 runtime tsconfig keeps `scripts` include and exclude | P2 | Yes | Both entries removed; runtime holds no TypeScript under `scripts/` | `714eaf2649` |
+| F002 runtime tsconfig keeps `scripts` include and exclude | P2 | Yes | Both entries removed; runtime holds no TypeScript under `scripts/` | `d08508264d` |
 | F003 path containment not replayed | P1 | Replayed: containment suites pass (council 28, changelog 3, path boundary tests green) | — | — |
 | F004 containment logic duplicated across CLI consumers | P2 | Yes, pre-existing | Recorded under Known Limitations as a follow-up | — |
-| F005 packet scope contradicts the shipped state | P1 | Yes: the problem statement and two out-of-scope lines were still planning-era | Reconciled; the original bounds kept as record | `714eaf2649` |
+| F005 packet scope contradicts the shipped state | P1 | Yes: the problem statement and two out-of-scope lines were still planning-era | Reconciled; the original bounds kept as record | `d08508264d` |
 | F006 inventory package-name guidance unbounded | P2 | Yes, as recorded history under `scratch/` | Kept as written | — |
-| F007 CLI READMEs keep `scripts/` topology | P1 | Yes: twelve subordinate READMEs still named `scripts/<folder>/` roots | Swept to `runtime/cli/<folder>/`; 28 READMEs re-validated with no errors | `714eaf2649` |
-| F008 registry entry keeps memory vocabulary | P2 | Yes | Continuity entry's outputs and gate renamed | `714eaf2649` |
-| F009 shipped-path harness skips when dist is missing | P1 | Yes | Fails instead; the lane builds first so a missing module is a broken build. Harness 316 of 316 | `714eaf2649` |
+| F007 CLI READMEs keep `scripts/` topology | P1 | Yes: twelve subordinate READMEs still named `scripts/<folder>/` roots | Swept to `runtime/cli/<folder>/`; 28 READMEs re-validated with no errors | `d08508264d` |
+| F008 registry entry keeps memory vocabulary | P2 | Yes | Continuity entry's outputs and gate renamed | `d08508264d` |
+| F009 shipped-path harness skips when dist is missing | P1 | Yes | Fails instead; the lane builds first so a missing module is a broken build. Harness 316 of 316 | `d08508264d` |
 | F010 embeddings harness comments keep scripts naming | P2 | No: the cited comment names shared/, not scripts/ | — | — |
 | F011 import policy and handler-root checks not replayed | P1 | Replayed: import-policy suite and the AST handler-cycle eval pass | — | — |
-| F012 API boundary comments keep scripts topology | P2 | Yes | Comments name the CLI workspace | `714eaf2649` |
+| F012 API boundary comments keep scripts topology | P2 | Yes | Comments name the CLI workspace | `d08508264d` |
 | F013 external consumer paths not replayed | P1 | Replayed: both workflows parse and name no `scripts` path | — | — |
 | F014 worktree artifact ownership undocumented | P2 | Observation, out of this phase's scope | Recorded under Known Limitations | — |
 | F015 fixture classification not replayed | P1 | Replayed: workflow-invariance suite passes | — | — |
 | F016 historical fixture vocabulary lacks guidance | P2 | Observation | Recorded under Known Limitations | — |
-| F017 generated metadata names the retired package identity | P1 | Yes: the causal summary derived from the planning-era problem statement | Regenerated from the reconciled statement, which names the retired identity only as history | `714eaf2649` and the metadata commit that follows |
-| F018 completion claims beside scaffold placeholders | P1 | Yes: a generator counts block with placeholder markers | Block removed | `714eaf2649` |
+| F017 generated metadata names the retired package identity | P1 | Yes: the causal summary derived from the planning-era problem statement | Regenerated from the reconciled statement, which names the retired identity only as history | `d08508264d` and the metadata commit that follows |
+| F018 completion claims beside scaffold placeholders | P1 | Yes: a generator counts block with placeholder markers | Block removed | `d08508264d` |
 
 ### Sixth review pass
 
-Ten iterations of GPT-5.6 LUNA at max reasoning through DevPass at `f507e63f8d`, accepted by the runner. Verdict CONDITIONAL: 0 P0, 9 P1, 8 P2. Six P1s are again the read-only seat's unreplayed commands; the gates were replayed on the landed tree once more (install, typecheck, build, freshness, containment suites, import-policy suite, AST eval, workflow parse, fixture suite, shipped-path harness 316 of 316).
+Ten iterations of GPT-5.6 LUNA at max reasoning through DevPass at `be8c4712b9`, accepted by the runner. Verdict CONDITIONAL: 0 P0, 9 P1, 8 P2. Six P1s are again the read-only seat's unreplayed commands; the gates were replayed on the landed tree once more (install, typecheck, build, freshness, containment suites, import-policy suite, AST eval, workflow parse, fixture suite, shipped-path harness 316 of 316).
 
 | Finding | Severity | Verified | Fix or replay | Commit |
 |---------|----------|----------|---------------|--------|
-| F005 planning-era scope reads as current state | P1 | Yes | Scope split into what stays out of scope and the planning-time exclusions that were executed here | `747d60d6ff` |
-| F017 completion claim beside a zero fingerprint | P1 | Yes | Completion fingerprint stamped through the continuity metadata helper on this summary and on every closed packet in the program; the acceptance-criteria block keeps its placeholder because the freshness rule binds the claim to the summary | `747d60d6ff`, program-wide stamp commit |
-| F007 registry has no declared resolution root | P1 | Yes | `resolutionRoot` and `pathSemantics` declared at the top of the registry; the loader reads only `.scripts` | `1a3a5487d3` |
+| F005 planning-era scope reads as current state | P1 | Yes | Scope split into what stays out of scope and the planning-time exclusions that were executed here | `b494f742e2` |
+| F017 completion claim beside a zero fingerprint | P1 | Yes | Completion fingerprint stamped through the continuity metadata helper on this summary and on every closed packet in the program; the acceptance-criteria block keeps its placeholder because the freshness rule binds the claim to the summary | `b494f742e2`, program-wide stamp commit |
+| F007 registry has no declared resolution root | P1 | Yes | `resolutionRoot` and `pathSemantics` declared at the top of the registry; the loader reads only `.scripts` | `704d23f598` |
 | F001, F003, F010, F012, F013, F015 not replayed | P1 | Replayed here, all green | — | — |
 | F002 runtime tsconfig retains scripts exclusions | P2 | No: removed in the fifth-pass fix | — | — |
-| F008 continuity README diagrams name `scripts/` | P2 | Yes | Diagrams name `runtime/cli/` | `1a3a5487d3` |
-| F009 API comments name old consumers | P2 | Yes | Comments name `runtime/cli/` consumers | `1a3a5487d3` |
-| F011 runtime scripts boundary unexplained | P2 | Yes | Comment at the freshness source list explains `runtime/scripts` versus `runtime/cli` | `1a3a5487d3` |
-| F016 fixture vocabulary unlabeled | P2 | Yes | Fixtures README labels pre-move vocabulary as recorded data | `1a3a5487d3` |
+| F008 continuity README diagrams name `scripts/` | P2 | Yes | Diagrams name `runtime/cli/` | `704d23f598` |
+| F009 API comments name old consumers | P2 | Yes | Comments name `runtime/cli/` consumers | `704d23f598` |
+| F011 runtime scripts boundary unexplained | P2 | Yes | Comment at the freshness source list explains `runtime/scripts` versus `runtime/cli` | `704d23f598` |
+| F016 fixture vocabulary unlabeled | P2 | Yes | Fixtures README labels pre-move vocabulary as recorded data | `704d23f598` |
 | F004, F006, F014 | P2 | Observations | Recorded under Known Limitations | — |
 <!-- /ANCHOR:verification -->
 

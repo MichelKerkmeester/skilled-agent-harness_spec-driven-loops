@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Skill References Assets And SKILL Cleanup"
-description: "Execution summary for the Skill References Assets And SKILL Cleanup release-cleanup phase. The SKILL.md, references and assets docs were aligned to shipped state (commit bb038e19ab). The deep-research and deep-loop-workflows skill docs stay deferred to the concurrent session that owns them."
+description: "Execution summary for the Skill References Assets And SKILL Cleanup release-cleanup phase. The SKILL.md, references and assets docs were aligned to shipped state (commit 2229a24c7e). The deep-research and deep-loop-workflows skill docs stay deferred to the concurrent session that owns them."
 trigger_phrases:
   - "003-skill-references-assets-and-skillmd implementation summary"
   - "028 release cleanup 003-skill-references-assets-and-skillmd"
@@ -23,7 +23,7 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions:
-      - "This summary records the executed Level-2 cleanup (commit bb038e19ab)."
+      - "This summary records the executed Level-2 cleanup (commit 2229a24c7e)."
       - "14 docs aligned, deep-research subset deferred, strict validation 0/0."
 ---
 
@@ -38,7 +38,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 003-skill-references-assets-and-skillmd |
-| **Completed** | 2026-06-19 (commit bb038e19ab) |
+| **Completed** | 2026-06-19 (commit 2229a24c7e) |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -47,7 +47,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-The skill SKILL.md, references and assets cleanup executed on this branch (commit bb038e19ab). Fourteen docs across the cli-opencode, sk-code, sk-design-interface, sk-prompt-models, system-skill-advisor and system-spec-kit skills were aligned to current shipped state, fixing factual drift across stale references, counts and paths. Every committed corrected path was verified to resolve.
+The skill SKILL.md, references and assets cleanup executed on this branch (commit 2229a24c7e). Fourteen docs across the cli-opencode, sk-code, sk-design-interface, sk-prompt-models, system-skill-advisor and system-spec-kit skills were aligned to current shipped state, fixing factual drift across stale references, counts and paths. Every committed corrected path was verified to resolve.
 
 ### Deferred Subset
 
@@ -90,7 +90,7 @@ Discovery enumerated the SKILL.md, references and assets docs across the in-scop
 
 | Check | Result |
 |-------|--------|
-| Cleanup execution | Executed at bb038e19ab, 14 docs aligned, deep-research subset deferred |
+| Cleanup execution | Executed at 2229a24c7e, 14 docs aligned, deep-research subset deferred |
 | Path resolution | All committed corrected paths resolve |
 | Strict validation | PASSED, 0 errors and 0 warnings via `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-speckit/028-memory-search-intelligence/000-release-cleanup/003-skill-references-assets-and-skillmd --strict` |
 <!-- /ANCHOR:verification -->

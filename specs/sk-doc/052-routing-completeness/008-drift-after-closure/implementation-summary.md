@@ -70,13 +70,13 @@ where its own reconciliation had overstated the tree, which are fixed too.
 `graph-metadata.json`, and `scratch/`, and printed a template's text where the created-file
 tree belongs. The render wrapper resolves its skill root one directory above itself, which
 was correct when the wrapper lived under `scripts/` and stopped being correct when
-`b4c2484696` moved it under `runtime/cli/`. With no tsx loader at that root the wrapper falls
+`f65b8f1e5b` moved it under `runtime/cli/`. With no tsx loader at that root the wrapper falls
 into an inline renderer that writes to stdout and honours no output directory, so the batch
 render produced text, not files. The same one-level-short spelling sat in the scaffolder's
 metadata backfill, in the validator's TypeScript lane, and in the renderer's own test file.
 
 All four now resolve the root three levels up, the spelling their sibling library already
-used. The first three landed concurrently in `743e626543`, from
+used. The first three landed concurrently in `ccbff09cfb`, from
 `specs/system-speckit/054-decommission-debt-fixes/002-scripts-into-runtime-nesting`, while
 this phase was open, so this tree carries no diff for them. The fourth is this phase's diff.
 A scratch Level 3 packet renders eleven documents. The scaffold suite is 9 of 9 from the
@@ -86,7 +86,7 @@ final tree, where it was 1 failed before the fix, and the renderer test is 12 of
 
 `trigger_phrases`, declared by `sk-doc`, resolved at 0.488 on 2026-09-04 and returned
 nothing from both scorers on 2026-09-05. A fresh investigation with no write authority found
-the chain. Spec-kit's keyword line gained `trigger-phrases` in `cf6a635703`, which reached
+the chain. Spec-kit's keyword line gained `trigger-phrases` in `0969611e24`, which reached
 this branch through a merge after the sweep tree was measured. The scorer expands a keyword
 into its hyphen, space and underscore forms, so spec-kit acquired explicit evidence
 byte-identical to sk-doc's. Identical evidence ties the confidence at 0.82, the tie forms an
@@ -122,7 +122,7 @@ Gate A over the 388 declared signals: 343 resolved before the fixes and 344 afte
 345 on 2026-09-04. `spec kit runtime` is won by `system-spec-kit` at 0.93, which is right,
 and is retired from the CLI hub. Gate B over the 180 realistic prompts: 20 landed on the
 intended mode as the top pick and 93 returned nothing, against 21 and 95 recorded at
-`c328d601d8`. Phase 003's reading stands: the structural cause is untouched, and the
+`a25af73c11`. Phase 003's reading stands: the structural cause is untouched, and the
 numbers say so within one prompt and two empties.
 
 ### The review of this phase
@@ -143,9 +143,9 @@ prompts, the seventh spelling fixed, and the validator gap given its own decisio
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer.sh` | Modified, landed in `743e626543` | Skill root three levels up, so the tsx loader is found and the batch render writes files |
-| `.opencode/skills/system-spec-kit/runtime/cli/spec/create.sh` | Modified, landed in `743e626543` | Same root for the graph-metadata backfill loader |
-| `.opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh` | Modified, landed in `743e626543` | Same root for the TypeScript orchestrator lane |
+| `.opencode/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer.sh` | Modified, landed in `ccbff09cfb` | Skill root three levels up, so the tsx loader is found and the batch render writes files |
+| `.opencode/skills/system-spec-kit/runtime/cli/spec/create.sh` | Modified, landed in `ccbff09cfb` | Same root for the graph-metadata backfill loader |
+| `.opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh` | Modified, landed in `ccbff09cfb` | Same root for the TypeScript orchestrator lane |
 | `.opencode/skills/system-spec-kit/runtime/cli/tests/inline-gate-renderer.vitest.ts` | Modified | The fourth one-level-short loader spelling, found by the review |
 | `.opencode/skills/system-spec-kit/SKILL.md` | Modified | `trigger-phrases` removed from the keyword line, ending the collision |
 | `.opencode/skills/cli-external-orchestration/graph-metadata.json` | Modified | `spec kit runtime` removed from both intent-signal lists |

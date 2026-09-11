@@ -62,7 +62,7 @@ native Opus-4.8 web research.
 
 The create-command standard classifies this family as a mode-pair **router**: a thin `.md` dispatcher that
 owns a presentation asset (the normative prompt) + paired `_auto`/`_confirm` workflows. The 012/008 rewrite
-had inverted this to literal bodies; Phase 2 restores the router topology (base `d0e838c73c~1`) and layers
+had inverted this to literal bodies; Phase 2 restores the router topology (base `17d8c387ca~1`) and layers
 the one `@`-include + the machine-contract refresh. Design taste stays in the sk-design modes.
 <!-- /ANCHOR:architecture -->
 
@@ -92,7 +92,7 @@ verified by dispatching `/interface:design` and confirming router output + `@`-i
 ## 6. DEPENDENCIES
 
 - The `sk-doc` create-command standard (authoring contract + template-rules + machine contract).
-- The pre-012/008 router base (`d0e838c73c~1`).
+- The pre-012/008 router base (`17d8c387ca~1`).
 <!-- /ANCHOR:dependencies -->
 
 ---

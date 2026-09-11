@@ -18,7 +18,7 @@ trigger_phrases: []
 - **Active findings:** P0=0, P1=10, P2=0
 - **Advisories:** `hasAdvisories=false`
 - **Stop reason:** `maxIterationsReached` after 10/10 forced iterations
-- **Scope:** 118 unique existing files declared by `goal-file-manifest.txt`, reviewed at pinned HEAD `7b9d3b6b71`
+- **Scope:** 118 unique existing files declared by `goal-file-manifest.txt`, reviewed at pinned HEAD `6432665a68`
 - **Coverage:** correctness, security, traceability, and maintainability all received full passes; six additional breadth/stabilization passes followed
 
 The implementation retained strong containment around path traversal, generation identity, legacy-by-default behavior, absent persistent-query generations, and stale-source hydration. The interface-command contract and the principal engine/database suites were repeatedly green. Release reliance is nevertheless conditional because ten required findings remain across publication integrity, stale operational/current-state authorities, stale-generation recovery semantics, operator boundary handling, and overstated parity/performance evidence.

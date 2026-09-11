@@ -21,7 +21,7 @@ Ambiguity resolved: "session-identity surfaces" was interpreted as the runtime-p
    [SOURCE: goal-core.cjs:99-126, 1-14]
 
 3. **The Devin goal adapter was decommissioned — files removed, registration reverted.**
-   The Devin adapter (3 files: `goal-inject.mjs`, `goal-session-start.mjs`, `goal-verify.mjs`, plus test suite) was committed in `e97fb01786a` and live-verified per the 032-003 `implementation-summary.md`. However, a subsequent breaking-change commit `cac19bbfa5e` (`feat(goal)!: decommission Devin commands + goal hook`) removed the `.opencode/hooks/goal/devin/` directory and reverted the registration from `.devin/hooks.v1.json`. The current filesystem confirms: no `devin/` subdirectory exists under `.opencode/hooks/goal/`; `.devin/hooks.v1.json` contains zero goal-hook references; `goal-plugin.md` §8 states "Codex and Devin have no goal hook and therefore no goal command." The adapter should **not** be restored — it was explicitly decommissioned, and the current system's documentation and capability matrix are consistent with its absence.
+   The Devin adapter (3 files: `goal-inject.mjs`, `goal-session-start.mjs`, `goal-verify.mjs`, plus test suite) was committed in `26dcc23fc29` and live-verified per the 032-003 `implementation-summary.md`. However, a subsequent breaking-change commit `a2241041b09` (`feat(goal)!: decommission Devin commands + goal hook`) removed the `.opencode/hooks/goal/devin/` directory and reverted the registration from `.devin/hooks.v1.json`. The current filesystem confirms: no `devin/` subdirectory exists under `.opencode/hooks/goal/`; `.devin/hooks.v1.json` contains zero goal-hook references; `goal-plugin.md` §8 states "Codex and Devin have no goal hook and therefore no goal command." The adapter should **not** be restored — it was explicitly decommissioned, and the current system's documentation and capability matrix are consistent with its absence.
    [SOURCE: .opencode/hooks/goal/ directory listing (ls); .devin/hooks.v1.json:1-178; git log --diff-filter=D -- .opencode/hooks/goal/devin/; goal-plugin.md:140]
 
 4. **Session-identity surfaces: no runtime provides a hook-accessible session ID usable for automated per-session goal file scoping without user input.**
@@ -54,7 +54,7 @@ None for this iteration. The focus was productive and all questions yielded conc
 ## Edge Cases
 
 - Ambiguous input: The phrase "session-identity surfaces [...] usable for automated goal scoping without a user-supplied id" was interpreted as runtime-provided identifiers accessible to hook code at execution time, not user-supplied workspace labels or manual naming. Deferred: whether a process-level PID or parent-process inspection could serve as a weak proxy (out of scope for current adapter design).
-- Contradictory evidence: The 032-003 `implementation-summary.md` claims Devin adapters shipped and live-verified; the current filesystem shows they are absent. This apparent contradiction is resolved by git history: the adapter was deliberately decommissioned in commit `cac19bbfa5e` after being built.
+- Contradictory evidence: The 032-003 `implementation-summary.md` claims Devin adapters shipped and live-verified; the current filesystem shows they are absent. This apparent contradiction is resolved by git history: the adapter was deliberately decommissioned in commit `a2241041b09` after being built.
 - Missing dependencies: None.
 - Partial success: None — all research actions completed successfully with target evidence found.
 
@@ -79,7 +79,7 @@ None for this iteration. The focus was productive and all questions yielded conc
 - Questions answered: 3 — all remaining key questions now resolved
   - Q1 (file ownership for Devin/Claude/Codex): Devin adapter decommissioned (no files), Claude Code uses mk-goal plugin symlink (no dedicated adapter), Codex has no adapter
   - Q2 (session-identity surfaces): No runtime exposes a hook-accessible session ID usable for automated per-instance goal file scoping; per-runtime breakdown in Finding 4
-  - Q3 (Devin adapter status): Decommissioned in commit `cac19bbfa5e`; should NOT be restored
+  - Q3 (Devin adapter status): Decommissioned in commit `a2241041b09`; should NOT be restored
 
 ## Reflection
 

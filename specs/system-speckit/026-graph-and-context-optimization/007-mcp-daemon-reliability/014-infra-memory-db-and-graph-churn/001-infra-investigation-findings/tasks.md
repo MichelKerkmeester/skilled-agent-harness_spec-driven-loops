@@ -61,7 +61,7 @@ _memory:
 - [x] T011 Preserve chronology pointer fields across re-derive — declared `last_active_child_id` + `last_active_at` in `graphMetadataDerivedSchema`; carried through `deriveGraphMetadata` + `mergeGraphMetadata` (Zod was stripping them)
 - [x] T012 Stop status downgrade — `deriveStatus` now falls back to the existing status before returning `planned` for lean phase parents (no implementation-summary.md)
 - [x] T006 Build + targeted vitest — `npm run build` clean; 4 new round-trip/churn-kill tests + 50 existing graph-metadata tests pass; live 026 probe + 7/7 real-packet sample confirm preservation + zero churn
-- [x] T005 Save-time refresh is already scoped to the single touched folder at HEAD (verified c657219dd9 + independently re-checked): workflow.ts calls refreshGraphMetadata(validatedSpecFolderPath); the parser writes exactly one graph-metadata.json with no tree walk; the broad walker in backfill-graph-metadata.ts is CLI-entrypoint-gated and never imported by the save path. Global backfill stays explicit opt-in. No code change needed.
+- [x] T005 Save-time refresh is already scoped to the single touched folder at HEAD (verified ec02cd1875 + independently re-checked): workflow.ts calls refreshGraphMetadata(validatedSpecFolderPath); the parser writes exactly one graph-metadata.json with no tree walk; the broad walker in backfill-graph-metadata.ts is CLI-entrypoint-gated and never imported by the save path. Global backfill stays explicit opt-in. No code change needed.
 - [x] T007 [B] Memory-DB repair via /doctor memory / FTS runbook (operator-gated; DB-copy probe first)
 
 <!-- /ANCHOR:phase-2 -->

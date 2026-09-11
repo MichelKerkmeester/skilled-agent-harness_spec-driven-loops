@@ -54,17 +54,17 @@ _memory:
 
 Update tasks — dispatched in waves of >=5 (fresh LUNA MAX per file):
 
-- [x] T003 [P] LUNA MAX update `sk-doc/create-agent` SKILL.md to contract (`.opencode/skills/sk-doc/create-agent/SKILL.md`) [EVIDENCE: `85cc0d5efd`; gate PASS + Sonnet-5 verify PASS]
-- [x] T004 [P] LUNA MAX update `sk-doc/create-benchmark` SKILL.md to contract (`.opencode/skills/sk-doc/create-benchmark/SKILL.md`) [EVIDENCE: `85cc0d5efd`; gate PASS + Sonnet-5 verify PASS]
-- [x] T005 [P] LUNA MAX update `sk-doc/create-changelog` SKILL.md to contract (`.opencode/skills/sk-doc/create-changelog/SKILL.md`) [EVIDENCE: `85cc0d5efd`; gate PASS + Sonnet-5 verify PASS]
-- [x] T006 [P] LUNA MAX update `sk-doc/create-command` SKILL.md to contract (`.opencode/skills/sk-doc/create-command/SKILL.md`) [EVIDENCE: `85cc0d5efd`; gate PASS + Sonnet-5 verify PASS]
-- [x] T007 [P] LUNA MAX update `sk-doc/create-diff` SKILL.md to contract (`.opencode/skills/sk-doc/create-diff/SKILL.md`) [EVIDENCE: `85cc0d5efd`; gate PASS + Sonnet-5 verify PASS]
-- [x] T008 [P] LUNA MAX update `sk-doc/create-feature-catalog` SKILL.md to contract (`.opencode/skills/sk-doc/create-feature-catalog/SKILL.md`) [EVIDENCE: `85cc0d5efd`; gate PASS + Sonnet-5 verify PASS]
+- [x] T003 [P] LUNA MAX update `sk-doc/create-agent` SKILL.md to contract (`.opencode/skills/sk-doc/create-agent/SKILL.md`) [EVIDENCE: `45400ec088`; gate PASS + Sonnet-5 verify PASS]
+- [x] T004 [P] LUNA MAX update `sk-doc/create-benchmark` SKILL.md to contract (`.opencode/skills/sk-doc/create-benchmark/SKILL.md`) [EVIDENCE: `45400ec088`; gate PASS + Sonnet-5 verify PASS]
+- [x] T005 [P] LUNA MAX update `sk-doc/create-changelog` SKILL.md to contract (`.opencode/skills/sk-doc/create-changelog/SKILL.md`) [EVIDENCE: `45400ec088`; gate PASS + Sonnet-5 verify PASS]
+- [x] T006 [P] LUNA MAX update `sk-doc/create-command` SKILL.md to contract (`.opencode/skills/sk-doc/create-command/SKILL.md`) [EVIDENCE: `45400ec088`; gate PASS + Sonnet-5 verify PASS]
+- [x] T007 [P] LUNA MAX update `sk-doc/create-diff` SKILL.md to contract (`.opencode/skills/sk-doc/create-diff/SKILL.md`) [EVIDENCE: `45400ec088`; gate PASS + Sonnet-5 verify PASS]
+- [x] T008 [P] LUNA MAX update `sk-doc/create-feature-catalog` SKILL.md to contract (`.opencode/skills/sk-doc/create-feature-catalog/SKILL.md`) [EVIDENCE: `45400ec088`; gate PASS + Sonnet-5 verify PASS]
 - [x] T009 [P] LUNA MAX update `sk-doc/create-flowchart` SKILL.md to contract (`.opencode/skills/sk-doc/create-flowchart/SKILL.md`) [EVIDENCE: already conformant at baseline; no edit]
-- [x] T010 [P] LUNA MAX update `sk-doc/create-manual-testing-playbook` SKILL.md to contract (`.opencode/skills/sk-doc/create-manual-testing-playbook/SKILL.md`) [EVIDENCE: `85cc0d5efd`; gate PASS + Sonnet-5 verify PASS]
-- [x] T011 [P] LUNA MAX update `sk-doc/create-quality-control` SKILL.md to contract (`.opencode/skills/sk-doc/create-quality-control/SKILL.md`) [EVIDENCE: `85cc0d5efd`; gate PASS + Sonnet-5 verify PASS]
-- [x] T012 [P] LUNA MAX update `sk-doc/create-readme` SKILL.md to contract (`.opencode/skills/sk-doc/create-readme/SKILL.md`) [EVIDENCE: `85cc0d5efd`; gate PASS + Sonnet-5 verify PASS]
-- [x] T013 [P] LUNA MAX update `sk-doc/create-skill` SKILL.md to contract (`.opencode/skills/sk-doc/create-skill/SKILL.md`) [EVIDENCE: `85cc0d5efd`; gate PASS + Sonnet-5 verify PASS]
+- [x] T010 [P] LUNA MAX update `sk-doc/create-manual-testing-playbook` SKILL.md to contract (`.opencode/skills/sk-doc/create-manual-testing-playbook/SKILL.md`) [EVIDENCE: `45400ec088`; gate PASS + Sonnet-5 verify PASS]
+- [x] T011 [P] LUNA MAX update `sk-doc/create-quality-control` SKILL.md to contract (`.opencode/skills/sk-doc/create-quality-control/SKILL.md`) [EVIDENCE: `45400ec088`; gate PASS + Sonnet-5 verify PASS]
+- [x] T012 [P] LUNA MAX update `sk-doc/create-readme` SKILL.md to contract (`.opencode/skills/sk-doc/create-readme/SKILL.md`) [EVIDENCE: `45400ec088`; gate PASS + Sonnet-5 verify PASS]
+- [x] T013 [P] LUNA MAX update `sk-doc/create-skill` SKILL.md to contract (`.opencode/skills/sk-doc/create-skill/SKILL.md`) [EVIDENCE: `45400ec088`; gate PASS + Sonnet-5 verify PASS]
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -74,17 +74,17 @@ Update tasks — dispatched in waves of >=5 (fresh LUNA MAX per file):
 
 Verify + gate tasks — a fresh Sonnet-5 xhigh agent per file, then the validator:
 
-- [x] T014 [P] fresh Sonnet-5 xhigh verify `sk-doc/create-agent` + validator gate (`.opencode/skills/sk-doc/create-agent/`) [EVIDENCE: `85cc0d5efd`; gate PASS + Sonnet-5 verify PASS]
-- [x] T015 [P] fresh Sonnet-5 xhigh verify `sk-doc/create-benchmark` + validator gate (`.opencode/skills/sk-doc/create-benchmark/`) [EVIDENCE: `85cc0d5efd`; gate PASS + Sonnet-5 verify PASS]
-- [x] T016 [P] fresh Sonnet-5 xhigh verify `sk-doc/create-changelog` + validator gate (`.opencode/skills/sk-doc/create-changelog/`) [EVIDENCE: `85cc0d5efd`; gate PASS + Sonnet-5 verify PASS]
-- [x] T017 [P] fresh Sonnet-5 xhigh verify `sk-doc/create-command` + validator gate (`.opencode/skills/sk-doc/create-command/`) [EVIDENCE: `85cc0d5efd`; gate PASS + Sonnet-5 verify PASS]
-- [x] T018 [P] fresh Sonnet-5 xhigh verify `sk-doc/create-diff` + validator gate (`.opencode/skills/sk-doc/create-diff/`) [EVIDENCE: `85cc0d5efd`; gate PASS + Sonnet-5 verify PASS]
-- [x] T019 [P] fresh Sonnet-5 xhigh verify `sk-doc/create-feature-catalog` + validator gate (`.opencode/skills/sk-doc/create-feature-catalog/`) [EVIDENCE: `85cc0d5efd`; gate PASS + Sonnet-5 verify PASS]
+- [x] T014 [P] fresh Sonnet-5 xhigh verify `sk-doc/create-agent` + validator gate (`.opencode/skills/sk-doc/create-agent/`) [EVIDENCE: `45400ec088`; gate PASS + Sonnet-5 verify PASS]
+- [x] T015 [P] fresh Sonnet-5 xhigh verify `sk-doc/create-benchmark` + validator gate (`.opencode/skills/sk-doc/create-benchmark/`) [EVIDENCE: `45400ec088`; gate PASS + Sonnet-5 verify PASS]
+- [x] T016 [P] fresh Sonnet-5 xhigh verify `sk-doc/create-changelog` + validator gate (`.opencode/skills/sk-doc/create-changelog/`) [EVIDENCE: `45400ec088`; gate PASS + Sonnet-5 verify PASS]
+- [x] T017 [P] fresh Sonnet-5 xhigh verify `sk-doc/create-command` + validator gate (`.opencode/skills/sk-doc/create-command/`) [EVIDENCE: `45400ec088`; gate PASS + Sonnet-5 verify PASS]
+- [x] T018 [P] fresh Sonnet-5 xhigh verify `sk-doc/create-diff` + validator gate (`.opencode/skills/sk-doc/create-diff/`) [EVIDENCE: `45400ec088`; gate PASS + Sonnet-5 verify PASS]
+- [x] T019 [P] fresh Sonnet-5 xhigh verify `sk-doc/create-feature-catalog` + validator gate (`.opencode/skills/sk-doc/create-feature-catalog/`) [EVIDENCE: `45400ec088`; gate PASS + Sonnet-5 verify PASS]
 - [x] T020 [P] fresh Sonnet-5 xhigh verify `sk-doc/create-flowchart` + validator gate (`.opencode/skills/sk-doc/create-flowchart/`) [EVIDENCE: already conformant at baseline; no edit]
-- [x] T021 [P] fresh Sonnet-5 xhigh verify `sk-doc/create-manual-testing-playbook` + validator gate (`.opencode/skills/sk-doc/create-manual-testing-playbook/`) [EVIDENCE: `85cc0d5efd`; gate PASS + Sonnet-5 verify PASS]
-- [x] T022 [P] fresh Sonnet-5 xhigh verify `sk-doc/create-quality-control` + validator gate (`.opencode/skills/sk-doc/create-quality-control/`) [EVIDENCE: `85cc0d5efd`; gate PASS + Sonnet-5 verify PASS]
-- [x] T023 [P] fresh Sonnet-5 xhigh verify `sk-doc/create-readme` + validator gate (`.opencode/skills/sk-doc/create-readme/`) [EVIDENCE: `85cc0d5efd`; gate PASS + Sonnet-5 verify PASS]
-- [x] T024 [P] fresh Sonnet-5 xhigh verify `sk-doc/create-skill` + validator gate (`.opencode/skills/sk-doc/create-skill/`) [EVIDENCE: `85cc0d5efd`; gate PASS + Sonnet-5 verify PASS]
+- [x] T021 [P] fresh Sonnet-5 xhigh verify `sk-doc/create-manual-testing-playbook` + validator gate (`.opencode/skills/sk-doc/create-manual-testing-playbook/`) [EVIDENCE: `45400ec088`; gate PASS + Sonnet-5 verify PASS]
+- [x] T022 [P] fresh Sonnet-5 xhigh verify `sk-doc/create-quality-control` + validator gate (`.opencode/skills/sk-doc/create-quality-control/`) [EVIDENCE: `45400ec088`; gate PASS + Sonnet-5 verify PASS]
+- [x] T023 [P] fresh Sonnet-5 xhigh verify `sk-doc/create-readme` + validator gate (`.opencode/skills/sk-doc/create-readme/`) [EVIDENCE: `45400ec088`; gate PASS + Sonnet-5 verify PASS]
+- [x] T024 [P] fresh Sonnet-5 xhigh verify `sk-doc/create-skill` + validator gate (`.opencode/skills/sk-doc/create-skill/`) [EVIDENCE: `45400ec088`; gate PASS + Sonnet-5 verify PASS]
 
 - [x] T025 Owning-hub regression check green; `validate.sh --strict` Errors 0; reconcile packet docs
 <!-- /ANCHOR:phase-3 -->

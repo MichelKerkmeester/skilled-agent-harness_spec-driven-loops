@@ -45,7 +45,7 @@ _memory:
 |-------|-------|
 | **Spec Folder** | 004-chart-and-diagram-cutover |
 | **Completed** | 2026-09-06 |
-| **Commit** | `e34e225517` |
+| **Commit** | `a131f628bc` |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->
 
@@ -101,7 +101,7 @@ packet to tune thresholds.
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-One commit, `e34e225517`, covering both hubs. Renames verified before committing.
+One commit, `a131f628bc`, covering both hubs. Renames verified before committing.
 
 Two silent windows were closed by name rather than assumed: the advisor daemon keeps serving its
 previous generation until rebuilt, and `sk-doc` keeps serving legacy compiled routing until its

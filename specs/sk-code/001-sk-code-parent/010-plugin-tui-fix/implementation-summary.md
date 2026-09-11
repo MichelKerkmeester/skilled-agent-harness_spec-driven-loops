@@ -27,7 +27,7 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions:
-      - "Shipped commit evidence: remote 711b019eb1, local 42677fac58."
+      - "Shipped commit evidence: remote bbced8128b, local 42677fac58."
       - "Verification evidence: plugin test suite green; live smoke confirmed zero TUI writes when validate.sh ran through bash."
 ---
 # Implementation Summary: plugin TUI-overlay fix
@@ -73,7 +73,7 @@ The shipped fix stops `mk-dist-freshness-guard` from painting stale-dist warning
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The implementation reused the proven `experimental.chat.system.transform` pattern from existing OpenCode plugins, added append-only log evidence for operators, and kept the plugin's single default export and never-throw behavior. The regression test suite was retargeted from console capture to the new channels, then the fix shipped with commit evidence at remote `711b019eb1` and local `42677fac58`.
+The implementation reused the proven `experimental.chat.system.transform` pattern from existing OpenCode plugins, added append-only log evidence for operators, and kept the plugin's single default export and never-throw behavior. The regression test suite was retargeted from console capture to the new channels, then the fix shipped with commit evidence at remote `bbced8128b` and local `42677fac58`.
 
 <!-- /ANCHOR:how-delivered -->
 ---
@@ -99,7 +99,7 @@ The implementation reused the proven `experimental.chat.system.transform` patter
 | Plugin regression suite | Pass | Seven behavioral cases | `node .opencode/plugins/tests/mk-dist-freshness-guard.test.cjs` green |
 | Console trap | Pass | stdout/stderr write prevention | Tests assert zero `console.warn`, `console.error`, and `console.log` calls |
 | Live smoke | Pass | OpenCode TUI output channel | Running `validate.sh` through `bash` produced zero TUI writes |
-| Shipped commit evidence | Pass | Remote/local commit tracking | Remote `711b019eb1`; local `42677fac58` |
+| Shipped commit evidence | Pass | Remote/local commit tracking | Remote `bbced8128b`; local `42677fac58` |
 
 ### Test Coverage Summary
 

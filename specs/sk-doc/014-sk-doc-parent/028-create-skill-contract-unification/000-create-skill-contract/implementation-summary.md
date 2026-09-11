@@ -51,13 +51,13 @@ The nine audit findings from `../../create-skill-findings.md` are resolved. The 
 
 ### The seven work units (finding mapping + commit)
 
-1. **WU1 (P0)** `7a2acf34f4` (+`0f2c601f9f` WU1b) — one machine-readable contract at `sk-doc/shared/assets/skill_contract.json` (section order, description budget, RULES subsections, tool rules, packet kinds) with `.py`/`.cjs` degrade-on-error loaders; budget unified to ≤130 soft; dissolves findings 2, 4, 7.
-2. **WU2 (P1)** `bebde560c4` — `package_skill.py --check --strict` promotes documented requirements to failures; warning mode stays default; finding 3.
-3. **WU3 (P1)** `d68f66e218` — kind-aware completion dispatcher `validate_skill_package.py` (standalone → package check; parent → package check + `parent-skill-check.cjs`); documented gate repointed; finding 5.
-4. **WU5 (P2)** `932bdd522c` + `aa951f1139` — structured YAML frontmatter parse (regex fallback), real `allowed-tools` array, packet `name`-vs-`packetSkillName`, `tieBreak` exact permutation; findings 6, 8.
-5. **WU4 (P0)** `2ca7a9f4b2` (WU4a) + `5cbb31f2a3` (WU4b) — render `init_skill.py` from a canonical asset (stops example-file seeding) + `--kind parent` scaffolding a checker-passing minimal hub; findings 1, 2.
-6. **WU6 (P2)** `f7525b9575` — parent templates: computed tool union + conditional `surfaceBundle`; finding 7.
-7. **WU7 (P1)** `01978caa01` (+`3bedd7fb11` exemption follow-up) — contract + packaging fixtures and the two ZIP edge-case fixes; findings 3, 6, 8, 9.
+1. **WU1 (P0)** `22ca1789b9` (+`440f41a05b` WU1b) — one machine-readable contract at `sk-doc/shared/assets/skill_contract.json` (section order, description budget, RULES subsections, tool rules, packet kinds) with `.py`/`.cjs` degrade-on-error loaders; budget unified to ≤130 soft; dissolves findings 2, 4, 7.
+2. **WU2 (P1)** `4bad028f9b` — `package_skill.py --check --strict` promotes documented requirements to failures; warning mode stays default; finding 3.
+3. **WU3 (P1)** `59842a2b6b` — kind-aware completion dispatcher `validate_skill_package.py` (standalone → package check; parent → package check + `parent-skill-check.cjs`); documented gate repointed; finding 5.
+4. **WU5 (P2)** `0aace18233` + `81aaacc46a` — structured YAML frontmatter parse (regex fallback), real `allowed-tools` array, packet `name`-vs-`packetSkillName`, `tieBreak` exact permutation; findings 6, 8.
+5. **WU4 (P0)** `be1171baa3` (WU4a) + `7796cde486` (WU4b) — render `init_skill.py` from a canonical asset (stops example-file seeding) + `--kind parent` scaffolding a checker-passing minimal hub; findings 1, 2.
+6. **WU6 (P2)** `8e0e2ef974` — parent templates: computed tool union + conditional `surfaceBundle`; finding 7.
+7. **WU7 (P1)** `c6f78d0b16` (+`9a4d2eacdd` exemption follow-up) — contract + packaging fixtures and the two ZIP edge-case fixes; findings 3, 6, 8, 9.
 
 A twelfth commit adds the contract loader-parity + template-order guard test.
 <!-- /ANCHOR:what-built -->
@@ -77,7 +77,7 @@ Each of the nine audit findings was independently re-verified at file:line again
 
 - **ADR-001**: one machine-readable contract as the single source — dissolves the triplicated-contract root cause rather than patching each validator.
 - **ADR-002**: strict mode opt-in, then required — promotes documented requirements to failures without redding the fleet on day one.
-- **ADR-003 (resolved)**: operator confirmed the ≤130-char soft target (retiring `package_skill.py`'s 150-300 recommendation, 1,536 hard cap retained); shipped in WU1b (`0f2c601f9f`).
+- **ADR-003 (resolved)**: operator confirmed the ≤130-char soft target (retiring `package_skill.py`'s 150-300 recommendation, 1,536 hard cap retained); shipped in WU1b (`440f41a05b`).
 - **ADR-004**: a kind-aware completion dispatcher so a parent hub proves its parent invariants, not just the standalone gate.
 <!-- /ANCHOR:decisions -->
 
@@ -108,7 +108,7 @@ Each of the nine audit findings was independently re-verified at file:line again
 - **WU5 H2 matching** — kept SUBSTRING + normalization, not exact equality: 43 legitimate fleet heading forms (e.g. `REFERENCES AND RELATED RESOURCES`) would hard-fail on `==`.
 - **WU5 alias-lowercase** — DEFERRED: sk-doc uses capitalized proper-noun aliases; lowercasing needs a synced multi-surface migration.
 - **WU6 phantom-README** — the plan's "drop the unrequired root README" was REFUTED: real hubs (sk-code, sk-doc) carry a hub-root README and reference it in graph-metadata, so it is legitimate and was left intact.
-- **Resource-doc exemption** (`3bedd7fb11`) — an unplanned follow-up: WU4a's scaffold asset (skill frontmatter) was wrongly flagged as a resource doc; skill-template-signature files are now exempt from the 5-field resource-doc check.
+- **Resource-doc exemption** (`9a4d2eacdd`) — an unplanned follow-up: WU4a's scaffold asset (skill frontmatter) was wrongly flagged as a resource doc; skill-template-signature files are now exempt from the 5-field resource-doc check.
 
 **Remaining follow-ups (not blocking completion):**
 - **Parent negative-fixture corpus (T004/T010, partial)** — the surface/transport-parent and duplicate-`tieBreak` NEGATIVE fixtures are not committed. The rules are exercised by WU5b's change and WU4b's generated hub is a verified golden workflow-only parent, but a standalone negative corpus remains.

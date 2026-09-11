@@ -2,20 +2,20 @@
 > build · mimo-v2.5-pro-ultraspeed
 [0m
 [0m$ [0mgit log --oneline -4
-48b6cf15e9 feat(sk-design): land enforcement-spine Stage B (loading proof + pairing gate + route corpus)
-bc06798143 docs(158): close out sk-prompt-models-rename packet (executed + verified)
-bf79923bdb refactor(skills): rename sk-prompt-small-model -> sk-prompt-models
-d5a5080dcb chore(155): deep-review final artifacts
+f3d26c610e feat(sk-design): land enforcement-spine Stage B (loading proof + pairing gate + route corpus)
+a202ddf47b docs(158): close out sk-prompt-models-rename packet (executed + verified)
+7ffdbe0225 refactor(skills): rename sk-prompt-small-model -> sk-prompt-models
+2c4c0caea8 chore(155): deep-review final artifacts
 [0m
-[0m$ [0mgit show --stat bf79923bdb | tail -5
+[0m$ [0mgit show --stat 7ffdbe0225 | tail -5
 .../lineages/dq-skilldoc-cmd-ctx/research.md       |   2 +-
  .../007-advisor-rrf-fusion/results/metrics.json    |   8 +-
  .../scripts/labeled-routing-set.mjs                |   2 +-
  AGENTS.md                                          |   2 +-
  731 files changed, 3102 insertions(+), 3074 deletions(-)
 [0m
-[0m$ [0mgit show --stat bf79923bdb | head -20
-commit bf79923bdb0e59b710e78d58ac9d15858439ee04
+[0m$ [0mgit show --stat 7ffdbe0225 | head -20
+commit 7ffdbe02257f77d717cd379968061a14a67ca084
 Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
 Date:   Sun Jun 28 16:26:46 2026 +0200
 
@@ -36,8 +36,8 @@ Date:   Sun Jun 28 16:26:46 2026 +0200
     
     Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>
 [0m
-[0m$ [0mgit show --stat bf79923bdb | grep -v "sk-prompt-models\|sk-prompt-small-model\|sk-small-model\|AGENTS.md\|description.json\|graph-metadata.json\|\.opencode/specs\|z_archive\|changelog\|\.claude/\|\.codex/\|\.agents/" | head -30
-commit bf79923bdb0e59b710e78d58ac9d15858439ee04
+[0m$ [0mgit show --stat 7ffdbe0225 | grep -v "sk-prompt-models\|sk-prompt-small-model\|sk-small-model\|AGENTS.md\|description.json\|graph-metadata.json\|\.opencode/specs\|z_archive\|changelog\|\.claude/\|\.codex/\|\.agents/" | head -30
+commit 7ffdbe02257f77d717cd379968061a14a67ca084
 Author: Michel Kerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
 Date:   Sun Jun 28 16:26:46 2026 +0200
 
@@ -68,7 +68,7 @@ Date:   Sun Jun 28 16:26:46 2026 +0200
  .../cli-claude-code/assets/prompt_quality_card.md  |   6 +-
  .opencode/skills/cli-codex/README.md               |   2 +-
 [0m
-[0m$ [0mgit diff --name-only bf79923bdb^..bf79923bdb | grep -iv "sk-prompt-models\|sk-prompt-small-model\|sk-small-model" | grep -iv "z_archive\|changelog\|\.claude/\|\.codex/\|\.agents/\|\.opencode/specs\|158-" | head -40
+[0m$ [0mgit diff --name-only 7ffdbe0225^..7ffdbe0225 | grep -iv "sk-prompt-models\|sk-prompt-small-model\|sk-small-model" | grep -iv "z_archive\|changelog\|\.claude/\|\.codex/\|\.agents/\|\.opencode/specs\|158-" | head -40
 .github/workflows/prompt-card-sync.yml
 .opencode/agents/deep-context.md
 .opencode/commands/deep/assets/deep_context_auto.yaml
@@ -110,7 +110,7 @@ Date:   Sun Jun 28 16:26:46 2026 +0200
 .opencode/skills/sk-prompt/README.md
 .opencode/skills/system-skill-advisor/mcp_server/scripts/check-prompt-quality-card-sync.sh
 [0m
-[0m$ [0mgit diff bf79923bdb^..bf79923bdb -- .opencode/skills/README.md | head -30
+[0m$ [0mgit diff 7ffdbe0225^..7ffdbe0225 -- .opencode/skills/README.md | head -30
 diff --git a/.opencode/skills/README.md b/.opencode/skills/README.md
 index 0db6334632..e44c30ecf4 100644
 --- a/.opencode/skills/README.md
@@ -131,7 +131,7 @@ index 0db6334632..e44c30ecf4 100644
 -| [`sk-prompt-small-model/README.md`](sk-prompt-small-model/README.md) | Per-model prompt-craft profiles for small-model dispatch |
 +| [`sk-prompt-models/README.md`](sk-prompt-models/README.md) | Per-model prompt-craft profiles for small-model dispatch |
 [0m
-[0m$ [0mgit diff bf79923bdb^..bf79923bdb -- .opencode/scripts/git-hooks/pre-commit
+[0m$ [0mgit diff 7ffdbe0225^..7ffdbe0225 -- .opencode/scripts/git-hooks/pre-commit
 diff --git a/.opencode/scripts/git-hooks/pre-commit b/.opencode/scripts/git-hooks/pre-commit
 index 635d57f581..eeceb178fe 100755
 --- a/.opencode/scripts/git-hooks/pre-commit
@@ -158,19 +158,19 @@ index 635d57f581..eeceb178fe 100755
        exit 1
      fi
 [0m
-[0m$ [0mgit diff --name-only bf79923bdb^..bf79923bdb | wc -l
+[0m$ [0mgit diff --name-only 7ffdbe0225^..7ffdbe0225 | wc -l
 731
 [0m
-[0m$ [0mgit diff bf79923bdb^..bf79923bdb --numstat | awk '{added+=$1; deleted+=$2} END {print "total added:", added, "total deleted:", deleted}'
+[0m$ [0mgit diff 7ffdbe0225^..7ffdbe0225 --numstat | awk '{added+=$1; deleted+=$2} END {print "total added:", added, "total deleted:", deleted}'
 total added: 3102 total deleted: 3074
 [0m
-[0m$ [0mgit diff bf79923bdb^..bf79923bdb -- ".opencode/specs/158-sk-prompt-models-rename/lineages/dq-skilldoc-cmd-ctx/research.md"
+[0m$ [0mgit diff 7ffdbe0225^..7ffdbe0225 -- ".opencode/specs/158-sk-prompt-models-rename/lineages/dq-skilldoc-cmd-ctx/research.md"
 (no output)
 [0m
-[0m$ [0mgit diff bf79923bdb^..bf79923bdb -- ".opencode/specs/158-sk-prompt-models-rename/007-advisor-rrf-fusion/results/metrics.json"
+[0m$ [0mgit diff 7ffdbe0225^..7ffdbe0225 -- ".opencode/specs/158-sk-prompt-models-rename/007-advisor-rrf-fusion/results/metrics.json"
 (no output)
 [0m
-[0m$ [0mgit diff bf79923bdb^..bf79923bdb --numstat | grep -E "research\.md|metrics\.json" | head -10
+[0m$ [0mgit diff 7ffdbe0225^..7ffdbe0225 --numstat | grep -E "research\.md|metrics\.json" | head -10
 8	8	.opencode/specs/design/008-sk-design-parent/029-design-context-loading/research/lineages/gpt55x/research.md
 9	9	.opencode/specs/design/008-sk-design-parent/029-design-context-loading/research/research.md
 2	2	.opencode/specs/design/008-sk-design-parent/037-design-routing-and-integration-research/research/research.md
@@ -182,7 +182,7 @@ total added: 3102 total deleted: 3074
 1	1	.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/research/lineages/dq-skilldoc-cmd-ctx/research.md
 4	4	.opencode/specs/system-spec-kit/028-memory-search-intelligence/007-dark-flag-graduation/007-advisor-rrf-fusion/results/metrics.json
 [0m
-[0m$ [0mgit diff bf79923bdb^..bf79923bdb -- ".opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/research/lineages/dq-skilldoc-cmd-ctx/research.md"
+[0m$ [0mgit diff 7ffdbe0225^..7ffdbe0225 -- ".opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/research/lineages/dq-skilldoc-cmd-ctx/research.md"
 diff --git a/.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/research/lineages/dq-skilldoc-cmd-ctx/research.md b/.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/research/lineages/dq-skilldoc-cmd-ctx/research.md
 index 2683359a2a..ac97210f80 100644
 --- a/.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/research/lineages/dq-skilldoc-cmd-ctx/research.md
@@ -196,7 +196,7 @@ index 2683359a2a..ac97210f80 100644
  
  ## 3. The Most-Automated Architecture
 [0m
-The commit `bf79923bdb` is clean. All 731 file changes are string-level reference renames (`sk-prompt-small-model` → `sk-prompt-models` across docs, scripts, YAML, specs, and agent configs). The net delta (~28 lines) is consistent with a rename. No unrelated content was bundled.
+The commit `7ffdbe0225` is clean. All 731 file changes are string-level reference renames (`sk-prompt-small-model` → `sk-prompt-models` across docs, scripts, YAML, specs, and agent configs). The net delta (~28 lines) is consistent with a rename. No unrelated content was bundled.
 
 ```json
 {"pass":"scope-adherence","findings":[]}

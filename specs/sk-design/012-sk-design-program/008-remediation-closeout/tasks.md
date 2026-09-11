@@ -85,7 +85,7 @@ _memory:
 
 ### Item 5 — AI-Tell Fixture Restoration (OPERATOR-GATED)
 - [ ] T017 [B] Record the operator's decision against the Open Question in `spec.md` §7 — no further task in this item proceeds without it
-- [ ] T018 [B] If approved: restore the 11 fixture pairs, `ai-fingerprint-registry.json`, and `ai-fingerprint-self-defect-card.md` from `b217d74b81^` to their new `design-interface/assets/` landing paths — blocked on T017
+- [ ] T018 [B] If approved: restore the 11 fixture pairs, `ai-fingerprint-registry.json`, and `ai-fingerprint-self-defect-card.md` from `562074ad7c^` to their new `design-interface/assets/` landing paths — blocked on T017
 - [ ] T019 [B] If approved: restore and repoint the two parity scripts (`ai-fingerprint-fixture-check.mjs`, `ai-fingerprint-registry-check.mjs`) at the restored paths, then re-run them — blocked on T018
 <!-- /ANCHOR:phase-2 -->
 

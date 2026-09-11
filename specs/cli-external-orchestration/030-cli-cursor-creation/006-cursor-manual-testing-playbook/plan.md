@@ -74,9 +74,9 @@ Structural validation only (no scenario execution — execution is auth-gated). 
 ## 6. DEPENDENCIES
 | Dependency | Type | Status | Impact if Blocked |
 |---|---|---|---|
-| Phase 003 (skill packet) | Internal | Green (committed `11024cc893`) | SKILL.md cross-reference target exists |
-| Phase 004 (hook adapters) | Internal | Green (committed `5bd90b42c1`) | `hooks` category cites the live delivery table |
-| Phase 005 (Composer profile) | Internal | Green (committed `4914f2bea3`) | model-roster note cites `composer-2.5.md` |
+| Phase 003 (skill packet) | Internal | Green (committed `b5926f2a45`) | SKILL.md cross-reference target exists |
+| Phase 004 (hook adapters) | Internal | Green (committed `71a4b485cd`) | `hooks` category cites the live delivery table |
+| Phase 005 (Composer profile) | Internal | Green (committed `65f01f929c`) | model-roster note cites `composer-2.5.md` |
 | `cursor-agent login` | External | Green — completed | Unblocks scenario EXECUTION |
 | cli-codex playbook | Internal | Green (live) | Structural template |
 <!-- /ANCHOR:dependencies -->

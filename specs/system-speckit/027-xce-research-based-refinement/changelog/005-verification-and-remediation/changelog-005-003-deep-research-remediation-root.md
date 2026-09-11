@@ -24,22 +24,22 @@ Round-2 remediation of the 15-seat multi-model deep review is complete. All 18 P
 
 | Wave | Closed | Commit | Result |
 |------|--------|--------|--------|
-| tri-022 shadow telemetry | yes | `e8dbf7c65e` | Durable semantic-trigger shadow telemetry, held out of the review snapshot and committed after. |
-| A secret-scrubber leak | yes | `101bfc1d57` | Five vulnerable key patterns moved to a negative-lookahead boundary so trailing-character keys redact. Error-log sanitize and the `SecretScrubberError` prototype shipped with it. |
-| B finish-the-edge | yes | `16b9a291ea` | B1 through B8 completed the launcher allowlist, sanitizer-version warning, review-report path and doc type, identifier-aware advisor matching, sk-git null-safety, index-scope label, and apply required-action. |
-| C advisor corruption interlock | yes | `0ff0bfef45` | C1 through C5 fixed the integrity-probe resolver, recommend-path integrity check, descriptor-manifest threshold parity, bridge threading, and code-graph scope-mismatch detection. |
-| D apply-pipeline honesty | yes | `d4e9b7d3de` | D1 through D3 hoisted the prune refusal pre-snapshot, reported rollback-failed on failed recovery, and rewrote repair-nodes to honest triage. |
-| E idempotency flag-on | yes | `553aa93145` | E1 gated replay on the live-index content hash and E2 narrowed the conflict payload to fingerprint fields. The dead reconciler was removed. |
-| F1 gold-query battery | yes | `b22bf1e613` | Replaced vestigial probe machinery with working symbol-presence enforcement and a broken-query control test. |
+| tri-022 shadow telemetry | yes | `e1b8940ae2` | Durable semantic-trigger shadow telemetry, held out of the review snapshot and committed after. |
+| A secret-scrubber leak | yes | `b474120729` | Five vulnerable key patterns moved to a negative-lookahead boundary so trailing-character keys redact. Error-log sanitize and the `SecretScrubberError` prototype shipped with it. |
+| B finish-the-edge | yes | `6415111ba0` | B1 through B8 completed the launcher allowlist, sanitizer-version warning, review-report path and doc type, identifier-aware advisor matching, sk-git null-safety, index-scope label, and apply required-action. |
+| C advisor corruption interlock | yes | `4f3c1f055d` | C1 through C5 fixed the integrity-probe resolver, recommend-path integrity check, descriptor-manifest threshold parity, bridge threading, and code-graph scope-mismatch detection. |
+| D apply-pipeline honesty | yes | `0582b4e766` | D1 through D3 hoisted the prune refusal pre-snapshot, reported rollback-failed on failed recovery, and rewrote repair-nodes to honest triage. |
+| E idempotency flag-on | yes | `01618aa199` | E1 gated replay on the live-index content hash and E2 narrowed the conflict payload to fingerprint fields. The dead reconciler was removed. |
+| F1 gold-query battery | yes | `e92dec23ca` | Replaced vestigial probe machinery with working symbol-presence enforcement and a broken-query control test. |
 
 ### Follow-Ons
 
 | Item | Closed | Commit | Result |
 |------|--------|--------|--------|
-| Comment-hygiene sweep | yes | `f33369d54d`, `88afbeedd1` | Stripped roughly 104 ephemeral tracking labels across 12 code-graph and 37 spec-kit files, plus an honest fingerprint privacy note. |
-| P2 minors | yes | `2beaad69f9` | Prune-confirm doc, read-only skill-graph status, and config-defaults hygiene. |
-| Command-md header alignment | yes | `d35a3f9b44` | Deep and speckit command-md headers aligned to the sk-doc ALL-CAPS convention. |
-| Doc restructure | yes | `082b2bec6f` | Before-vs-after restructured by subsystem with a search-intelligence verdict and a CLI explainer. |
+| Comment-hygiene sweep | yes | `84ae635ec1`, `863f26ef24` | Stripped roughly 104 ephemeral tracking labels across 12 code-graph and 37 spec-kit files, plus an honest fingerprint privacy note. |
+| P2 minors | yes | `93bbca7baa` | Prune-confirm doc, read-only skill-graph status, and config-defaults hygiene. |
+| Command-md header alignment | yes | `54a7caef1a` | Deep and speckit command-md headers aligned to the sk-doc ALL-CAPS convention. |
+| Doc restructure | yes | `159c752234` | Before-vs-after restructured by subsystem with a search-intelligence verdict and a CLI explainer. |
 
 ### Verification
 

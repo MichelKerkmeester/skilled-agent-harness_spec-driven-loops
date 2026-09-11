@@ -84,8 +84,8 @@ trigger_phrases:
 <!-- ANCHOR:cross-refs -->
 ## Cross-References
 
-- Findings source: `../review/lineages/sol/iterations/iteration-005.md` (deep review `955d58f898`).
+- Findings source: `../review/lineages/sol/iterations/iteration-005.md` (deep review `5d9ff293ec`).
 - Target code: `../003-style-database/` implementation (`styles/_db/`, `styles/_engine/`).
-- Already reconciled (#5/#6, partial #8): commit `955d58f898`.
+- Already reconciled (#5/#6, partial #8): commit `5d9ff293ec`.
 
 <!-- /ANCHOR:cross-refs -->

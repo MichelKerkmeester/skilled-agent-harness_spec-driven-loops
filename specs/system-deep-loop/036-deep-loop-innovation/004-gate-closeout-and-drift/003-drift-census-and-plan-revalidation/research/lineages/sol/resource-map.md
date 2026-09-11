@@ -1,5 +1,5 @@
 ---
-title: "Resource Map — Drift census over packet 036-deep-loop-innovation: revalidate all 15 planned implementation phases 003-017 against commits after baseline 0ce43ff589, separating first-order path drift from second-order premise drift and resolving the required controls and dependencies."
+title: "Resource Map — Drift census over packet 036-deep-loop-innovation: revalidate all 15 planned implementation phases 003-017 against commits after baseline 60b9ed8bc2, separating first-order path drift from second-order premise drift and resolving the required controls and dependencies."
 description: "Auto-generated research resource map from convergence evidence."
 trigger_phrases: []
 ---

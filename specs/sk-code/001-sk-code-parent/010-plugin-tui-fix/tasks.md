@@ -81,7 +81,7 @@ _memory:
 
 ### Manual Verification
 - [x] T018 Live-smoke `validate.sh` through `bash` and confirm zero TUI writes [15m]
-- [x] T019 Record shipped commit evidence (remote `711b019eb1`, local `42677fac58`) [5m]
+- [x] T019 Record shipped commit evidence (remote `bbced8128b`, local `42677fac58`) [5m]
 
 ### Documentation
 - [x] T020 Backfill strict Level-2 spec docs (`010-plugin-tui-fix/`) [30m]

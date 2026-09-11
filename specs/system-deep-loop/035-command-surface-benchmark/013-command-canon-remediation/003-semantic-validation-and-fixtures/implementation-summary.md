@@ -61,7 +61,7 @@ Both classifiers read the shared `command_contract.json` so the production adapt
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skills/sk-doc/create-command/SKILL.md` | Done (`37fafc727e`) | Mode-completeness rule written into Step 10 before enforcement |
+| `.opencode/skills/sk-doc/create-command/SKILL.md` | Done (`6db409a9b9`) | Mode-completeness rule written into Step 10 before enforcement |
 | `.opencode/commands/scripts/validate-command-references.cjs` | Done | Family set derived from the tree; hard-coded omission removed; runtime doctor artifacts skipped |
 | `.opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-doc-command.cjs` | Done | Contract-driven gate-obligation and mode-completeness checks added |
 | `002-deterministic-fixtures-oracle/oracle/reference-oracle.cjs` | Done | Independent invariant implementations; `EXPECTED_PUBLIC_DEFECTS` 8 → 10 |
@@ -101,7 +101,7 @@ Delivered in the intended order: canonize (Step 10) → coverage fix → oracle 
 | Reference coverage reports all six families | PASS — `[create, deep, design, doctor, memory, speckit]`, 69 asset files, doctor misses 0, `--self-test` 3/3 |
 | One mutation fixture fails per new invariant; adapter and oracle agree | PASS — differential test `PASS fixtures=15`; oracle `--verify` `PASS all=15` |
 | No false positives on the conformant real corpus | PASS — adapter `check .opencode/commands` emits zero new-code findings |
-| Step 10 canon precedes enforcement | PASS — Mode completeness paragraph committed `37fafc727e` before the check was built |
+| Step 10 canon precedes enforcement | PASS — Mode completeness paragraph committed `6db409a9b9` before the check was built |
 | Strict packet validation | PASS — `validate.sh --strict` on this folder, Errors:0 |
 <!-- /ANCHOR:verification -->
 

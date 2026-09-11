@@ -6,7 +6,7 @@ trigger_phrases: []
 
 # T001 — Confirm-Before-Build Disposition (Packet 025: Artifact & Certificate Binding)
 
-> **AUTHORITATIVE build gate.** This document is grounded against origin `38dea5f1a5`
+> **AUTHORITATIVE build gate.** This document is grounded against origin `dfea683815`
 > (`skilled/v4.0.0.0` tip; the 024 fence/receipt primitives 025 depends on are present). It is a
 > **read-only** confirm-first pass: no code was edited. Where this table and the `spec.md` §3
 > "Findings in Scope" list disagree on a location or status, **this table governs** — it re-resolves

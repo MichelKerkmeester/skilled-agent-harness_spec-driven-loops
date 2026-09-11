@@ -8,24 +8,24 @@ Expert researcher cataloging recent updates (arcs 117-122) shipped for deep-revi
 This is ITERATION 1 of 10 on: **which recent updates to deep-review + deep-research should propagate to the deep-agent-improvement skill?**
 
 The packets to survey (origin/main commits, most recent first):
-- `156c514989` chore(119): memory:save metadata refresh
-- `5fe6cc4c1e` chore(119+121+122): folder rename + path-ref update
-- `21a9a9ad73` feat(121+122): DR-003 uncovered-questions + hygiene fix-pack
-- `d35834d321` fix(120): DR-006 numeric sort
-- `f02c9425c8` research(119): 10-iter deep-research complete
-- `56456514ce` fix(118): deep-review fix-pack — close P1/P2 advisories
-- `aa593eb897` review(118): cli-devin deep-review iters 3-10 + synthesis
-- `f8f3bdcac6` review(118): cli-devin SWE-1.6 deep-review iters 1-2
-- `d485837718` chore(118): deferred-items closure
-- `14b40f23b3` chore(118/008): closeout
-- `71042e1a33` chore(118): sk-doc canonical companions
-- `1a32678e7b` chore(118): sk-doc conformance pass on SKILL.md + README.md
-- `be2e777a4f` feat(118/007): split tests by responsibility
-- `e590c12e19` feat(118/006): /doctor + system-code-graph collateral updates
-- `107c522599` feat(118/002-005): deep-loop FULL_ISOLATE transition
-- `954702a8f4` feat(118/001): scaffold deep-loop-runtime/ skeleton
-- `bd77886d0a` feat(118): scaffold deep-loop FULL_ISOLATE_NO_MCP phased arc
-- `1e35680075` decision(117): AI Council SPLIT ruling
+- `42790c7124` chore(119): memory:save metadata refresh
+- `74e215b582` chore(119+121+122): folder rename + path-ref update
+- `7cf0b80185` feat(121+122): DR-003 uncovered-questions + hygiene fix-pack
+- `57c44410b6` fix(120): DR-006 numeric sort
+- `ecc91b18e9` research(119): 10-iter deep-research complete
+- `3850237631` fix(118): deep-review fix-pack — close P1/P2 advisories
+- `6a2f5c5732` review(118): cli-devin deep-review iters 3-10 + synthesis
+- `e5368e1448` review(118): cli-devin SWE-1.6 deep-review iters 1-2
+- `3cc85ccfc0` chore(118): deferred-items closure
+- `ee78835faf` chore(118/008): closeout
+- `07a159bac2` chore(118): sk-doc canonical companions
+- `c46c431a1b` chore(118): sk-doc conformance pass on SKILL.md + README.md
+- `300bfe603a` feat(118/007): split tests by responsibility
+- `243369d358` feat(118/006): /doctor + system-code-graph collateral updates
+- `35503d4b78` feat(118/002-005): deep-loop FULL_ISOLATE transition
+- `8e09f1ec6b` feat(118/001): scaffold deep-loop-runtime/ skeleton
+- `f41f5c9a5d` feat(118): scaffold deep-loop FULL_ISOLATE_NO_MCP phased arc
+- `20527ff8a1` decision(117): AI Council SPLIT ruling
 
 Target skill to potentially uplift:
 - `.opencode/skills/deep-agent-improvement/SKILL.md` — Evaluator-first 5-dim agent scoring with guarded promotion
@@ -101,7 +101,7 @@ Note: what does deep-agent-improvement DO? Iterative? Single-shot? Scored? Per-i
 
 `.../research/deltas/iter-001.jsonl`:
 ```jsonl
-{"iter":1,"pattern_id":"P-001","arc":"117","type":"...","description":"...","evidence":"commit 1e35680075","sibling_applicability_hint":"unknown"}
+{"iter":1,"pattern_id":"P-001","arc":"117","type":"...","description":"...","evidence":"commit 20527ff8a1","sibling_applicability_hint":"unknown"}
 ...
 ```
 

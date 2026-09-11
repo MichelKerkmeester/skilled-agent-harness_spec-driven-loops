@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Commit `790c3dfc1c5` added a machine-checkable stdin-redirect rule to five `cli-` packet",
+    "causal_summary": "Commit `d474140721b` added a machine-checkable stdin-redirect rule to five `cli-` packet",
     "created_at": "2026-08-29T20:46:06.689Z",
-    "last_save_at": "2026-08-30T15:39:15.477Z",
+    "last_save_at": "2026-09-11T16:42:07.177Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0d92ec19d7a9eea4969f55dd3555fbeb3aa2a6250909ec2c6020c09d438d4816",
+    "source_fingerprint": "sha256:e755064eac44f0255c77054a0b23648c644f39bd3f9b95fdb0a875ebcfc0357b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "547a9f147b2cdb82c398cb782d98d6c06b08fe42f0474a56484f686a25e3f9a3",
-      "plan.md": "4272f3da7aeeed984345378591a3d28932a6381ed4460eafd740787aeb09ce68",
-      "tasks.md": "31d490b6586d105e87e4c2e66b626128a66cde96f9a02b4a4c1fc9a4ff701dee",
-      "implementation-summary.md": "81d737d413b9a1c47b6b4c5cef270844488eb6ae0f781cc2c3e2e5dcb3a1a41c"
+      "spec.md": "bbdc28e1a87a18589f45b6b6304e21f9b03fc14ece2217abf34264826d32267e",
+      "plan.md": "95a23ab0329fd11fc072b9974c834cf6917c7eed5373681674309d43d5d96b08",
+      "tasks.md": "bfaf6f2ebb22de49d3dd6e915196f8aa7fb2ffbad51db8e634b470d9d022fe95",
+      "implementation-summary.md": "66a89e6b800b71a728ef504127fb2b2ba915631eba3bab54f27b33195fbab875"
     },
     "last_active_child_id": null,
     "last_active_at": null

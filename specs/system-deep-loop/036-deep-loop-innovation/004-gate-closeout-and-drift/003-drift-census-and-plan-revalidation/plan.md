@@ -30,7 +30,7 @@ _memory:
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
-Run a forced-depth, two-lineage `/deep:research` loop over the commit range `0ce43ff589..HEAD` and return a
+Run a forced-depth, two-lineage `/deep:research` loop over the commit range `60b9ed8bc2..HEAD` and return a
 per-phase drift verdict for the 15 implementation phases of packet 036. The loop is command-owned: `/deep:research`
 owns state, dispatch, convergence telemetry, and synthesis. Two independent lineages run the same charter under
 different models so their findings can be reconciled rather than averaged.
@@ -83,8 +83,8 @@ Drift is triaged in two classes, kept separate throughout:
 | Surface | Why it is in the census |
 |---------|------------------------|
 | `system-deep-loop/runtime/**` | 22 commits since baseline; the substrate every phase modifies |
-| Mode registries and routing | `6cd8ab14e4e`, `708d25acf04`, `908efde8d8f` all touched routing after the plan froze |
-| Runtime reference docs | Renamed wholesale by `cc77a1e550a`; phase 003 names two of them |
+| Mode registries and routing | `d60cc2c7553`, `fa74e868615`, `4b2c351cc1e` all touched routing after the plan froze |
+| Runtime reference docs | Renamed wholesale by `b052f329a73`; phase 003 names two of them |
 | Behavior-benchmark harness | The 003 baseline and 016 gate both depend on it; `packet-033` has been renumbered |
 | Fan-out scripts | Phases 005 and 009 modify them additively; `fanout-run.cjs` has changed since baseline |
 <!-- /ANCHOR:affected-surfaces -->
@@ -95,11 +95,11 @@ Drift is triaged in two classes, kept separate throughout:
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- Pin the exact HEAD SHA and record it alongside the baseline `0ce43ff589` in the research config, so every verdict is stated against a known tree state.
+- Pin the exact HEAD SHA and record it alongside the baseline `60b9ed8bc2` in the research config, so every verdict is stated against a known tree state.
 - Confirm both executors dispatch and the fan-out spec-gate injection is present before spending iteration budget.
 
 ### Phase 2: Implementation
-- Triage all 204 commits in `0ce43ff589..HEAD` into touches-036-dependency versus not; no commit is silently dropped.
+- Triage all 204 commits in `60b9ed8bc2..HEAD` into touches-036-dependency versus not; no commit is silently dropped.
 - Resolve every runtime path, file, and symbol named across phase plans 003-017 against pinned HEAD to detect first-order drift.
 - Test each phase's stated premise against current runtime behavior, registries, and shipped capability to detect second-order drift.
 - Determine whether any shipped work since the baseline already delivers part of a planned phase, making that phase partly redundant.

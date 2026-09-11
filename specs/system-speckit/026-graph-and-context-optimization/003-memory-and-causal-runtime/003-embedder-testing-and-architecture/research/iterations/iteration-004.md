@@ -11,7 +11,7 @@ Iteration 4 audited arc `003-skill-advisor-stack`, covering the phase parent plu
 2. Read child implementation summaries for `001`, `002`, `003`, and `004`, plus `002/evidence/swap-runbook.md`.
 3. Spot-checked source implementation in `mcp_server/lib/embedders/schema.ts`, `mcp_server/lib/embedders/registry.ts`, `mcp_server/lib/skill-graph/skill-graph-db.ts`, `mcp_server/lib/scorer/lanes/semantic-shadow.ts`, `INSTALL_GUIDE.md`, and `README.md`.
 4. Ran exact grep probes for `setActiveEmbedder`, `active_embedder_name`, `DEFAULT_ACTIVE_EMBEDDER`, `DEFAULT_EMBEDDER_NAME`, `jina-embeddings-v3`, `embeddinggemma-300m`, and skill-advisor env vars.
-5. Compared arc/source history with `git log -- .opencode/specs/.../003-skill-advisor-stack` and `git log -- .opencode/skills/system-skill-advisor/...`; relevant commits include `ed5eb0e567` (001 pluggable layer), `e5daebb03f` (003 docs), `c0ec765f4b` (004 writer cross-wire), `ab0c7de71b` (004 review advisories), and `fbf4b7b2b5` (stack changelog).
+5. Compared arc/source history with `git log -- .opencode/specs/.../003-skill-advisor-stack` and `git log -- .opencode/skills/system-skill-advisor/...`; relevant commits include `fe335e4fec` (001 pluggable layer), `3910b7211c` (003 docs), `1bbeea9769` (004 writer cross-wire), `79bdbabbd0` (004 review advisories), and `55ce3b185d` (stack changelog).
 6. Attempted CocoIndex semantic search for the implementation surface; the MCP call was cancelled/unavailable, so this pass used `rg` + direct source reads.
 
 ## Findings

@@ -12,7 +12,7 @@ _memory:
     packet_pointer: "system-speckit/028-memory-search-intelligence/002-speckit-memory/004-graceful-degradation"
     last_updated_at: "2026-07-04T17:50:57.895Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Author C9 impl plan (DONE-record for 030 484b77b589)"
+    recent_action: "Author C9 impl plan (DONE-record for 030 fa62d04fd0)"
     next_safe_action: "None. C9 shipped"
     blockers: []
     key_files:
@@ -151,5 +151,5 @@ Required invariant: the embedder-success path stays byte-identical. Only a genui
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: A caller relied on the embedder-unavailable throw to detect an outage and now mis-reads the degraded result, or the happy path regresses.
-- **Procedure**: Revert commit `484b77b589` (branch-only, never pushed to main or deployed without explicit go). The change is a self-contained, reversible single-file-seam edit.
+- **Procedure**: Revert commit `fa62d04fd0` (branch-only, never pushed to main or deployed without explicit go). The change is a self-contained, reversible single-file-seam edit.
 <!-- /ANCHOR:rollback -->

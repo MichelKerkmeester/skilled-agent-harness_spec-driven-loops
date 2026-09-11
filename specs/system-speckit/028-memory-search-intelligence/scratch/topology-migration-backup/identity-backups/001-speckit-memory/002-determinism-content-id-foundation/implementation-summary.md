@@ -46,7 +46,7 @@ _memory:
 | **Level** | 3 |
 | **Scope** | Determinism + content-id foundation: 5 shipped (Wave-0), 4 gated residue |
 | **Branch** | system-speckit/028-memory-search-intelligence |
-| **Shipped via** | packet 030 (Wave-0), commits `738e118751..ab5459fb6d` |
+| **Shipped via** | packet 030 (Wave-0), commits `61fe63b24d..5ed284319b` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -60,11 +60,11 @@ This sub-phase is the determinism keystone of the Spec-Kit Memory MCP retrieval-
 
 | # | Candidate | Commit | Result |
 |---|-----------|--------|--------|
-| 1 | two-content-id-primitives | `18c8582e33` | Centralized `hashContentBody` (content-body) + `hashCanonicalJson` (canonical-field) into `lib/content-id.ts`, byte-identical parity proven, no behavior change. |
-| 2 | ANN-tie-stable-order | `bec0eed27f` | `, m.id ASC` (COALESCE) on the 4 ranked ANN `ORDER BY distance`, LIMIT-survival into fusion now run-stable. |
-| 3 | C5-B content-derived tiebreak | `bec0eed27f` | `content_hash`-asc tiebreak (COALESCE id) in the deterministic comparator + all 5 RRF output sorts, primary order unchanged (verified). |
-| 4 | C-X1 (`'active'`) | `65cfcea513` | `bonusOverChannels` param defaulting to `'active'`, byte-identical traced arithmetically, opus SHIP. |
-| 5 | C6-A rank-time decay clock | `65cfcea513` | Caller-`nowMs` rank-time decay, restored no-timestamp skip guard so it is a pure refactor, reinforcement stays a separate event. |
+| 1 | two-content-id-primitives | `0113515f43` | Centralized `hashContentBody` (content-body) + `hashCanonicalJson` (canonical-field) into `lib/content-id.ts`, byte-identical parity proven, no behavior change. |
+| 2 | ANN-tie-stable-order | `5c0a966df3` | `, m.id ASC` (COALESCE) on the 4 ranked ANN `ORDER BY distance`, LIMIT-survival into fusion now run-stable. |
+| 3 | C5-B content-derived tiebreak | `5c0a966df3` | `content_hash`-asc tiebreak (COALESCE id) in the deterministic comparator + all 5 RRF output sorts, primary order unchanged (verified). |
+| 4 | C-X1 (`'active'`) | `84c532114d` | `bonusOverChannels` param defaulting to `'active'`, byte-identical traced arithmetically, opus SHIP. |
+| 5 | C6-A rank-time decay clock | `84c532114d` | Caller-`nowMs` rank-time decay, restored no-timestamp skip guard so it is a pure refactor, reinforcement stays a separate event. |
 
 ### Gated Residue (PENDING, documented, not built)
 
@@ -121,7 +121,7 @@ No code was written in this re-plan: the shipped work already exists in packet 0
 
 | Item | Command | Result |
 |------|---------|--------|
-| Shipped commits traced | `git log --oneline 1ecc531431..HEAD` | The 5 candidate commits (`18c8582e33`, `bec0eed27f`, `65cfcea513`) present in the Wave-0 range. |
+| Shipped commits traced | `git log --oneline 2e17fdbe32..HEAD` | The 5 candidate commits (`0113515f43`, `5c0a966df3`, `84c532114d`) present in the Wave-0 range. |
 | Content-id parity | `content-hash-dedup.vitest.ts` (Wave-0 closeout) | PASS, byte-identical hash outputs (per `030` §14 cand 7). |
 | Determinism seams | Memory focused suite (`stage2-fusion`, `rrf-fusion`, `unit-rrf-fusion`) (Wave-0) | PASS, primary order unchanged, default byte-identical (per `030` §14 cand 3-5). |
 | Sub-phase docs | `validate.sh --strict` on this folder | PASS, Level-3 structure, anchors, frontmatter, required files. |
@@ -129,7 +129,7 @@ No code was written in this re-plan: the shipped work already exists in packet 0
 ### Commands
 
 ```bash
-git log --oneline 1ecc531431..HEAD
+git log --oneline 2e17fdbe32..HEAD
 bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
   .opencode/specs/system-speckit/028-memory-search-intelligence/001-speckit-memory/002-determinism-content-id-foundation --strict
 ```

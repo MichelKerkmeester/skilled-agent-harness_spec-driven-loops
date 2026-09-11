@@ -4,7 +4,7 @@ trigger_phrases: []
 ---
 # L2 Apply-Pipeline Safety Packet — Adversarial Fix Verification
 
-**Commit under verification:** `1cd7d104e5` (fix(029/L2): apply-pipeline safety packet)
+**Commit under verification:** `465aec11ba` (fix(029/L2): apply-pipeline safety packet)
 **Verifier:** fresh Fable 5 adversarial pass, 2026-06-12
 **Method:** full read of both changed lib files + new test suite, control-flow enumeration of every path to `snapshotKnownGoodTriplet`/`dispatchOperation`, caller sweep for bypass entry points, test execution (4 files / 30 tests), `tsc --noEmit`, doc/playbook reconciliation. Worktree verified clean against the commit for `mcp_server/` (`git status --porcelain` empty).
 

@@ -24,7 +24,7 @@ contextType: "implementation"
 
 Five deferred P2 lifecycle findings in `reindex.ts` and `execution-router.ts` had left runtime behavior implicit and error-prone. The reindex startup path silently skipped vector shard creation when the database had no file-backed directory. Test-only paused startup was reachable from production code. Duplicate shutdown signal re-entry could recurse. Direct provider credential caches persisted across active adapter rotation.
 
-All five findings shipped in commit `e189ecde5b`. Reindex startup now validates the database directory and throws `InvalidDatabaseDirError` before constructing any job. Paused startup moved to `reindex.testables.ts` and is no longer reachable from production. Shutdown signal handlers register once and warn on re-entry without replaying. Adapter rotation clears the direct provider cache and emits a structured invalidation event. Regression fixtures cover all five findings across two vitest files.
+All five findings shipped in commit `611f8dac47`. Reindex startup now validates the database directory and throws `InvalidDatabaseDirError` before constructing any job. Paused startup moved to `reindex.testables.ts` and is no longer reachable from production. Shutdown signal handlers register once and warn on re-entry without replaying. Adapter rotation clears the direct provider cache and emits a structured invalidation event. Regression fixtures cover all five findings across two vitest files.
 
 ### Added
 

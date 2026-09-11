@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Skill-Metadata Program Deep Review"
-description: "Two-model deep review (SOL-high + GLM-high, 5 iterations each, no early convergence) of the complete skill-metadata program landed at a39e6ea716, covering the H/S class contract, fleet gate, command-metadata standard, JSON templates, creation-journey fixes, doctrine sweep, and advisor ingestion-seam watcher."
+description: "Two-model deep review (SOL-high + GLM-high, 5 iterations each, no early convergence) of the complete skill-metadata program landed at c573706cfe, covering the H/S class contract, fleet gate, command-metadata standard, JSON templates, creation-journey fixes, doctrine sweep, and advisor ingestion-seam watcher."
 trigger_phrases:
   - "skill metadata program deep review"
   - "review the metadata contract program"
@@ -53,7 +53,7 @@ _memory:
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-The skill-metadata program (commit range `2fa9fc480c..a39e6ea716`) landed six packets of contract, gate, template, journey, doctrine, and watcher work across many sessions and two writer models. Before the program is considered settled it needs an independent, adversarial read: does the code do what the docs claim, are there silent-failure paths, and is the enforcement actually wired. This packet runs that review with two models at high effort and no early convergence, then records the verdict and remediation.
+The skill-metadata program (commit range `c4b5f27ae8..c573706cfe`) landed six packets of contract, gate, template, journey, doctrine, and watcher work across many sessions and two writer models. Before the program is considered settled it needs an independent, adversarial read: does the code do what the docs claim, are there silent-failure paths, and is the enforcement actually wired. This packet runs that review with two models at high effort and no early convergence, then records the verdict and remediation.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -93,7 +93,7 @@ Consolidated verdict recorded with cross-lineage convergence marked; the P1 CI-t
 |------|------|------------|
 | Risk | Graphless review (Spec Memory MCP was down) could miss structural issues | Findings rest on direct source reads + passing scoped tests; noted as a caveat in the report |
 | Risk | SOL killed before writing its own report | Terminal synthesis reconstructed from its five iteration files, which carry the full JSON finding records |
-| Dependency | The program under review (packets 021-026) | Reviewed at the exact landed tip a39e6ea716 |
+| Dependency | The program under review (packets 021-026) | Reviewed at the exact landed tip c573706cfe |
 <!-- /ANCHOR:risks -->
 
 ---

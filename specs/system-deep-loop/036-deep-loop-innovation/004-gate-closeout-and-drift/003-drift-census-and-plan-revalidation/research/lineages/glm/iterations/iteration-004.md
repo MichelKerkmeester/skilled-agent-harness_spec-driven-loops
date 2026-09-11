@@ -6,7 +6,7 @@ trigger_phrases: []
 
 ## Focus
 
-Iteration 4's focus was Q-004: drift over phases 007 (shared evidence + control services — flagged medium risk in iter 1 due to skill-benchmark typed-pair series), 008 (compatibility shadow + rollback bridge — flagged low risk), and 009 (fanout fan-in durable orchestration — touched by `739b85ac57` and `9259c23e313`, flagged medium risk). Resolve every runtime path each phase names; verify phase 009's premise that the shipped `fanout-run.cjs` flat-pool guard rejects wave assignment.
+Iteration 4's focus was Q-004: drift over phases 007 (shared evidence + control services — flagged medium risk in iter 1 due to skill-benchmark typed-pair series), 008 (compatibility shadow + rollback bridge — flagged low risk), and 009 (fanout fan-in durable orchestration — touched by `739b85ac57` and `1accee48991`, flagged medium risk). Resolve every runtime path each phase names; verify phase 009's premise that the shipped `fanout-run.cjs` flat-pool guard rejects wave assignment.
 
 ## Actions Taken
 
@@ -30,7 +30,7 @@ Phase 007's spec.md cites only intra-packet paths:
 
 All seven children resolve at HEAD: `001-receipts-and-effect-recovery`, `002-sealed-reference-artifacts`, `003-blinded-adjudication-service`, `004-hierarchical-typed-budgets`, `005-stream-fold-gauges`, `006-locks-and-fencing`, `007-continuity-identities`.
 
-Phase 007's shared services (receipts, sealed artifacts, blinded adjudication, typed budgets, stream-fold gauges, locks/fencing, continuity identities) are NOT touched by the routing commits (`6cd8ab14e4e`, `708d25acf04`, `908efde8d8f`) — those touch `mode-registry.json` and `hub-router.json`. The skill-benchmark typed-pair series flagged in iter 1 (`b5f26ecedc6`, `c067920890a`, `72bb0bc0c70`) touch the skill-benchmark harness, NOT phase 007's shared services. Iter 1's "low-medium" risk rating was over-cautious.
+Phase 007's shared services (receipts, sealed artifacts, blinded adjudication, typed budgets, stream-fold gauges, locks/fencing, continuity identities) are NOT touched by the routing commits (`d60cc2c7553`, `fa74e868615`, `4b2c351cc1e`) — those touch `mode-registry.json` and `hub-router.json`. The skill-benchmark typed-pair series flagged in iter 1 (`05d309d0d96`, `268fa65a558`, `536484dc28d`) touch the skill-benchmark harness, NOT phase 007's shared services. Iter 1's "low-medium" risk rating was over-cautious.
 
 **Phase 007 = still valid.** Joins phases 004 and 006 as a negative-control candidate. [SOURCE: `007/spec.md:52,54`; all seven children resolve at HEAD; routing commits' diffs do not touch shared-services surfaces.]
 
@@ -62,9 +62,9 @@ Phase 009's stated premise — "the shipped `fanout-run.cjs` already drives a ca
 
 The wave planner interface exists (`createWavePlannerInterface` at line 418) but is gated behind the flat-pool guard. Phase 009's reason for existing — turning the proven flat pool into durable orchestration with canonical dispatch receipts, typed result envelopes, resumable branch IDs/leases/waves, conditional budget-aware fan-in, partial-failure policy, and provenance-balanced reduction — is intact. The deliverables are unshipped (grep for canonical-dispatch-receipt, result-envelope, logical-branch-id in `fanout-run.cjs` would return only the existing pool/retry/budget primitives, not the planned contracts).
 
-`739b85ac57`'s 17-line dispatch-env fix is orthogonal to phase 009's persistence contracts (the commit injects `MK_SPEC_GATE_DISABLED=1` and drops `--pure`; phase 009 plans canonical receipt/envelope writes). `9259c23e313` (goal_opencode → goal-opencode rename) touches command files in `.opencode/commands/`, not fan-out orchestration.
+`739b85ac57`'s 17-line dispatch-env fix is orthogonal to phase 009's persistence contracts (the commit injects `MK_SPEC_GATE_DISABLED=1` and drops `--pure`; phase 009 plans canonical receipt/envelope writes). `1accee48991` (goal_opencode → goal-opencode rename) touches command files in `.opencode/commands/`, not fan-out orchestration.
 
-**Phase 009 = still valid.** [SOURCE: `009/spec.md:46,52,54`; `fanout-run.cjs:331-334,394,418`; `git show --stat 739b85ac57` and `git show --stat 9259c23e313` — neither touches wave/receipt/envelope contracts.]
+**Phase 009 = still valid.** [SOURCE: `009/spec.md:46,52,54`; `fanout-run.cjs:331-334,394,418`; `git show --stat 739b85ac57` and `git show --stat 1accee48991` — neither touches wave/receipt/envelope contracts.]
 
 ## Questions Answered
 
@@ -82,7 +82,7 @@ The wave planner interface exists (`createWavePlannerInterface` at line 418) but
 - `git cat-file -e 739b85ac57:<path>` for 15 cited paths across phases 007/008/009 — all resolve
 - `fanout-run.cjs:331-334` (flat-pool vs wave constants and rejection reasons)
 - `fanout-run.cjs:394,418` (flat-pool guard enforced, wave planner interface exists but gated)
-- `git show --stat 739b85ac57` and `git show --stat 9259c23e313` (orthogonal scopes)
+- `git show --stat 739b85ac57` and `git show --stat 1accee48991` (orthogonal scopes)
 
 ## Assessment
 
@@ -104,8 +104,8 @@ The wave planner interface exists (`createWavePlannerInterface` at line 418) but
 
 ### Ruled out
 
-- _Approach:_ "Carry iter 1's 'low-medium' risk rating for phase 007 into a 'needs refinement' verdict." _Reason ruled out:_ iter 1's rating was a hypothesis from the commit bucket; the per-phase read shows the typed-pair series touches the skill-benchmark harness (phase 016/003 surface), not phase 007's shared services. _Evidence:_ `git show --stat b5f26ecedc6`, `c067920890a`, `72bb0bc0c70` — all touch `.opencode/skills/system-deep-loop/deep-improvement/` or `shared/behavior-benchmark/`, not phase 007 surfaces.
+- _Approach:_ "Carry iter 1's 'low-medium' risk rating for phase 007 into a 'needs refinement' verdict." _Reason ruled out:_ iter 1's rating was a hypothesis from the commit bucket; the per-phase read shows the typed-pair series touches the skill-benchmark harness (phase 016/003 surface), not phase 007's shared services. _Evidence:_ `git show --stat 05d309d0d96`, `268fa65a558`, `536484dc28d` — all touch `.opencode/skills/system-deep-loop/deep-improvement/` or `shared/behavior-benchmark/`, not phase 007 surfaces.
 
 ## Recommended Next Focus
 
-Iteration 5: Phases 010-012 drift. Phase 010 (novelty claims + continuity + projections — touched by `cc77a1e550a`'s continuity-reference renames and `71e18c224c3`), 011 (convergence + termination + health — touched by `cc77a1e550a`'s convergence-reference renames), 012 (shared mode contracts + fixtures — flagged HIGH risk from `6cd8ab14e4e`, `708d25acf04`, `908efde8d8f` and the skill-benchmark typed-pair series). This is the iteration most likely to surface additional drift beyond the already-confirmed phase 003 and 013 hits.
+Iteration 5: Phases 010-012 drift. Phase 010 (novelty claims + continuity + projections — touched by `b052f329a73`'s continuity-reference renames and `fe261503031`), 011 (convergence + termination + health — touched by `b052f329a73`'s convergence-reference renames), 012 (shared mode contracts + fixtures — flagged HIGH risk from `d60cc2c7553`, `fa74e868615`, `4b2c351cc1e` and the skill-benchmark typed-pair series). This is the iteration most likely to surface additional drift beyond the already-confirmed phase 003 and 013 hits.

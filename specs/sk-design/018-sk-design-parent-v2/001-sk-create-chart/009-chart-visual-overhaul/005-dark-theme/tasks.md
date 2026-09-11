@@ -36,7 +36,7 @@ contextType: "implementation"
 - [x] T001 The operator answered yes on 2026-09-03. The sentence is in the contract and in ADR-002, and the phase log carries the answer beside the draft it was answering
 - [x] T002 Baseline captured before the first edit: 29 files, 18 checks, 0 failures, `RESULT: PASSED`, exit 0, taken with `--render`
 - [x] T003 Before-state inventory taken from `HEAD` rather than from a mutated tree: 286 six-digit hex values across `assets/` and `references/`, and no eight-digit value anywhere
-- [x] T004 Phase 002 closed at `28d3defea8` and phases 003 and 004 landed after it, so the light values the dark twin answers were final before a single dark value was derived
+- [x] T004 Phase 002 closed at `74bc17ccaf` and phases 003 and 004 landed after it, so the light values the dark twin answers were final before a single dark value was derived
 
 <!-- /ANCHOR:phase-1 -->
 
@@ -132,7 +132,7 @@ contextType: "implementation"
 - [x] CHK-001 [P0] Requirements documented in spec.md
 - [x] CHK-002 [P0] Technical approach defined in plan.md
 - [x] CHK-003 [P0] The operator answered yes on 2026-09-03, before the first edit. ADR-002 records the answer and the sentence
-- [x] CHK-004 [P1] Phase 002 closed at `28d3defea8`, with 003 and 004 landed after it
+- [x] CHK-004 [P1] Phase 002 closed at `74bc17ccaf`, with 003 and 004 landed after it
 <!-- /ANCHOR:pre-impl -->
 
 ---

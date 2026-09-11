@@ -76,7 +76,7 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Phase re-scoped after measurement | Done | `4a5de9e52b` narrows the phase the Gate B number invalidated |
+| Phase re-scoped after measurement | Done | `b3de2effda` narrows the phase the Gate B number invalidated |
 | Single-word swallowing fixed | Done | Register findings 16, 17 and 18 read Fixed |
 | Remaining collisions owned | Done | Register findings 12 to 15 read Planned against this phase |
 

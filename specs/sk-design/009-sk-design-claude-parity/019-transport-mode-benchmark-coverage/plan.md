@@ -147,7 +147,7 @@ Required inventories:
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Phase 018's transport integration | Prerequisite | Complete, pushed as `f1b5c08e9f` | Blocks any benchmark of the new mode |
+| Phase 018's transport integration | Prerequisite | Complete, pushed as `7b21f6ffaf` | Blocks any benchmark of the new mode |
 | `run-skill-benchmark.cjs` | Verification tool | Available | Would need manual routing verification only |
 <!-- /ANCHOR:dependencies -->
 

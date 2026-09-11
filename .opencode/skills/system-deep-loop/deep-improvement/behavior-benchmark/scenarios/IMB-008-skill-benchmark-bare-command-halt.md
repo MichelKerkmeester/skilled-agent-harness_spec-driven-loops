@@ -22,4 +22,4 @@ The dedicated command fixes the skill-benchmark lane. A pass asks for the
 target skill and output location before dispatch. Running against an inferred
 skill or writing to an inferred destination is a setup misbind.
 
-BASE: `fe6ca3030917073f3b478bc044e10034dcc4394b`.
+BASE: `573a44951386fab3556b53b39c6008ec74b22304`.

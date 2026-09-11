@@ -37,14 +37,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/commands/memory/search.md",
-      ".claude/commands/memory/search.md",
-      "schemas/tool-input-schemas.ts",
-      "tests/mcp-tool-dispatch.vitest.ts",
-      "tools/types.ts",
-      "handlers/memory-context.ts",
-      "tests/memory-context-token-budget.vitest.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -69,42 +62,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "search.md",
-        "kind": "doc",
-        "path": ".opencode/commands/memory/search.md",
-        "source": "derived"
-      },
-      {
-        "name": "tool-input-schemas.ts",
-        "kind": "code",
-        "path": "schemas/tool-input-schemas.ts",
-        "source": "derived"
-      },
-      {
-        "name": "mcp-tool-dispatch.vitest.ts",
-        "kind": "test",
-        "path": "tests/mcp-tool-dispatch.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "types.ts",
-        "kind": "code",
-        "path": "tools/types.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-context.ts",
-        "kind": "code",
-        "path": "handlers/memory-context.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-context-token-budget.vitest.ts",
-        "kind": "test",
-        "path": "tests/memory-context-token-budget.vitest.ts",
         "source": "derived"
       },
       {
@@ -182,7 +139,7 @@
     ],
     "causal_summary": "P1 — breadcrumb suppression is a deliberate rule, not a data gap",
     "created_at": "2026-07-09T06:20:00.567Z",
-    "last_save_at": "2026-08-30T15:39:36.325Z",
+    "last_save_at": "2026-09-11T16:42:44.858Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -191,13 +148,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:79611d23277f0ff1e6fbbc7a7b8b8ee35b571967a75c0779d8da38b3d4b3366b",
+    "source_fingerprint": "sha256:629c5b2931669525cfde58c7f467d16bfcae76654569f0beffccfe9b0dc3327f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "af35381d612b103afd9f144bf83e3624186498fdc809f2f51df23f93b42063d7",
+      "spec.md": "50d33b2a1ce545f1466ebbc858d472d0fe3e1a65a060dcda75df5b1ab9b4b678",
       "plan.md": "6b8e103ba43a8ba212bfad33f5580b9f05797099e2f7c039d9f773351c5dbe9f",
       "tasks.md": "59a1527de75b9eec7630f4d484bb0e92a0c43cac6888fd65dfb589681d56dff3",
-      "implementation-summary.md": "c2cf823b13c26d131a8acf36705f810c03a7ca6beee39358a7358644ea6b89ff"
+      "implementation-summary.md": "61ee30d6b3f8b5de5780503eef5941dc942e663667685463e6a640267679c757"
     },
     "last_active_child_id": null,
     "last_active_at": null

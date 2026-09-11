@@ -22,7 +22,7 @@ Dimension: correctness (replay) + security (F006 replay) + traceability (overlay
 ### P1, Required
 - **F001** (replay, still active): `tasks.md:47` T004 and T010–T053 remain `[ ]` while checklist/spec claim Complete.
 - **F002** (refined): `implementation-summary.md:87` still reports 4 golden-snapshot failures, while `implementation-summary.md:97` says those snapshots were regenerated. Current vitest is green (iter 1 evidence).
-- **F003** (replay, still active): `spec.md:47` still says Complete (uncommitted) / awaiting commit go-ahead after feat `c8c4e79139`.
+- **F003** (replay, still active): `spec.md:47` still says Complete (uncommitted) / awaiting commit go-ahead after feat `613d04dd61`.
 - **F006** (refined): `check-scope-adherence.sh:136` basename skip is locked in by `check-scope-adherence.vitest.ts:64` (`specs/x/spec.md` treated as canonical). No negative test for an unrelated `other/spec.md`. Any `spec.md` anywhere is in-scope.
 - **F009** (replay, still active): `spec.md:113` still requires shared `enforceTokenBudget`; ADR-005 + code keep `enforceSearchTokenBudget`.
 - **F013** (replay, still active): `plan.md:84` / `tasks.md:65` still prescribe warn-severity AC_COVERAGE.

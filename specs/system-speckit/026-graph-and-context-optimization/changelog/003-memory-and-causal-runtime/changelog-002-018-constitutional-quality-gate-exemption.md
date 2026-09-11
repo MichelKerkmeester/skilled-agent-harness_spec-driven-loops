@@ -52,7 +52,7 @@ A 5-line patch widened the `useWarnOnly` OR chain in `handlers/memory-index.ts:4
 
 | File | Action | What changed |
 |------|--------|--------------|
-| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts` | Modified | OR `isConstitutional` into `useWarnOnly` plus a rationale comment block (commit `8abbb954bd`) |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts` | Modified | OR `isConstitutional` into `useWarnOnly` plus a rationale comment block (commit `628752cd7d`) |
 
 ### Follow-Ups
 

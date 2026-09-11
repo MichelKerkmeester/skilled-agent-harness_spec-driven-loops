@@ -38,7 +38,7 @@ _memory:
 | **Implementation Date** | 2026-07-21 |
 | **Level** | 2 |
 | **Status** | Complete |
-| **Candidate Base Commit** | `d1a3f0323c3635f24c3560feaeda839522ececf0` with this leaf uncommitted |
+| **Candidate Base Commit** | `f3ae3672a0a3f046204658dcccaeda2d7b8dee14` with this leaf uncommitted |
 | **Runtime Surface** | OpenCode Node/TypeScript |
 | **Authority Posture** | Additive-dark; legacy remains canonical until phase 014 |
 <!-- /ANCHOR:metadata -->

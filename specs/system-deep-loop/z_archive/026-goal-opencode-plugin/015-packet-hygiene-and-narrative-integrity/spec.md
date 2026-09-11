@@ -82,7 +82,7 @@ This is **Phase 15** of packet 032, the first of eight remediation phases (015-0
 - Parent packet graph metadata regenerated after the doc fixes
 
 **Git-verified rename lineage (ground truth for PKT-5 corrections)**:
-`.opencode/commands/goal.md` added `c5087e0955` (2026-06-28) -> renamed to `.opencode/commands/goal_opencode.md` at `4be33488ea` (2026-07-01, concurrent phase-009 session) -> renamed back to `.opencode/commands/goal.md` at `303902e631` (2026-07-01, phase 011) -> renamed to `.opencode/commands/goal_opencode.md` at `8405ba4f57` (2026-07-01, phase-009 session amendment). Three renames total. `opencode_goal.md` was never a committed path at any point; `goal.md` WAS the shipped name for two separate intervals.
+`.opencode/commands/goal.md` added `a992d6d3bd` (2026-06-28) -> renamed to `.opencode/commands/goal_opencode.md` at `384aad52b0` (2026-07-01, concurrent phase-009 session) -> renamed back to `.opencode/commands/goal.md` at `815eb035b3` (2026-07-01, phase 011) -> renamed to `.opencode/commands/goal_opencode.md` at `2086c70c42` (2026-07-01, phase-009 session amendment). Three renames total. `opencode_goal.md` was never a committed path at any point; `goal.md` WAS the shipped name for two separate intervals.
 
 **Changelog**:
 - When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.

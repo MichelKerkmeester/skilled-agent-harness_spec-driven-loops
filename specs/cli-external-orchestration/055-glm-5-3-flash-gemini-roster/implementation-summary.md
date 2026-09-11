@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: GLM-5.3-Flash + Gemini 3.7 Flash on the CLI OpenRouter roster"
-description: "Retired Ox Alpha and routed Z.AI GLM-5.3-Flash across OpenRouter/opencode-go/Cline plus Google Gemini 3.7 Flash on OpenRouter, in both CLI docs, .pi config, and the deep-loop cli-pi fan-out roster (two synced points + provider map + flash max-pin) with guard tests. Every slug live-verified; committed 125d22ffaf and pushed to origin/v4 + origin/main; live-verified (PONG)."
+description: "Retired Ox Alpha and routed Z.AI GLM-5.3-Flash across OpenRouter/opencode-go/Cline plus Google Gemini 3.7 Flash on OpenRouter, in both CLI docs, .pi config, and the deep-loop cli-pi fan-out roster (two synced points + provider map + flash max-pin) with guard tests. Every slug live-verified; committed 215ff4b3b4 and pushed to origin/v4 + origin/main; live-verified (PONG)."
 trigger_phrases:
   - "implementation summary"
   - "glm-5.3-flash gemini roster"
@@ -44,8 +44,8 @@ _memory:
 | **Completed** | 2026-08-27 |
 | **Level** | 2 |
 | **Status** | Complete |
-| **Feature commit** | `125d22ffaf` |
-| **On remotes** | `origin/skilled/v4.0.0.0` (`4f53f4a2b6`); `origin/main` (`26b253b22c`, v4→main merge) |
+| **Feature commit** | `215ff4b3b4` |
+| **On remotes** | `origin/skilled/v4.0.0.0` (`eec4f77e11`); `origin/main` (`b3b203222a`, v4→main merge) |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -69,7 +69,7 @@ The CLI OpenRouter allowlist — through both **cli-opencode** and **cli-pi** �
 ### The one code constraint (collision)
 OpenRouter and Cline both use the id string `z-ai/glm-5.3-flash`, and a `modelId→provider` map holds one provider per id. The fan-out therefore routes the shared literal via **OpenRouter**; the Cline GLM-5.3-Flash stays a **direct-dispatch** route (which is how the operator already runs it), documented as such.
 
-### Files Changed (feature commit `125d22ffaf`, 9 files)
+### Files Changed (feature commit `215ff4b3b4`, 9 files)
 
 | File | Action | Purpose |
 |------|--------|---------|
@@ -89,7 +89,7 @@ OpenRouter and Cline both use the id string `z-ai/glm-5.3-flash`, and a `modelId
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Verification-first, not a text swap. Before any edit, every slug and tier was confirmed live via `opencode models openrouter|opencode-go|cline-pass`. The one non-mechanical step was the Cline id: `opencode models cline-pass` lists only `glm-5.2`/`glm-5.3` (no `-flash`), so the id looked absent — but the operator's running Cline session proved otherwise, and their `~/.cline` runtime logs gave the exact working id `z-ai/glm-5.3-flash`. The nine surfaces were then edited to retire Ox Alpha and add the two new models, keeping the two byte-mirrored fan-out rosters and their guard tests in sync. The work was committed (`125d22ffaf`), pushed to `origin/skilled/v4.0.0.0` (after merging 10 concurrent incoming deep-loop commits, `fanout-run.cjs` auto-merged clean), and merged v4→main (only 2 generated-JSON conflicts, resolved to v4's versions) so `origin/main` carries it too.
+Verification-first, not a text swap. Before any edit, every slug and tier was confirmed live via `opencode models openrouter|opencode-go|cline-pass`. The one non-mechanical step was the Cline id: `opencode models cline-pass` lists only `glm-5.2`/`glm-5.3` (no `-flash`), so the id looked absent — but the operator's running Cline session proved otherwise, and their `~/.cline` runtime logs gave the exact working id `z-ai/glm-5.3-flash`. The nine surfaces were then edited to retire Ox Alpha and add the two new models, keeping the two byte-mirrored fan-out rosters and their guard tests in sync. The work was committed (`215ff4b3b4`), pushed to `origin/skilled/v4.0.0.0` (after merging 10 concurrent incoming deep-loop commits, `fanout-run.cjs` auto-merged clean), and merged v4→main (only 2 generated-JSON conflicts, resolved to v4's versions) so `origin/main` carries it too.
 <!-- /ANCHOR:how-delivered -->
 
 ---

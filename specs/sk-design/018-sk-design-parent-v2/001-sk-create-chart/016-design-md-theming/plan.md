@@ -117,7 +117,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
 | `design-md-format.md` v3 and the four bundled examples | Internal | Green | The parse contract and fixtures |
-| Phase 15 committed | Internal | Green | `git log` returned commit `416827fd10` before the applicator run |
+| Phase 15 committed | Internal | Green | `git log` returned commit `6d4ef47150` before the applicator run |
 | A local Chrome for `--render` | Environment | Blocked in sandbox | The render command exits 1 because Chrome returns no document; the conductor must rerun it elsewhere |
 <!-- /ANCHOR:dependencies -->
 

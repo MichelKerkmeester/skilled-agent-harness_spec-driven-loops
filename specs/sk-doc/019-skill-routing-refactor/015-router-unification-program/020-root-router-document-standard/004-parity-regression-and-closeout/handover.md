@@ -58,7 +58,7 @@ Open this handover to independently check the committed Phase 020 root-router wo
 | Blocker | Status | Resolution/Workaround |
 | --- | --- | --- |
 | `validate.sh .../015-router-unification-program --recursive --strict` exits 2 under the current primary runtime | Open | Phase 020 structural checks pass, but the updated validator reports older-packet warnings and a phase-019 frontmatter error. Phase 020 explicitly forbids repairing unrelated packets without a new scope decision. |
-| Both target branches advanced after the integration rebase | Open | Fetch again and integrate separately. Current tips at handover: `origin/main=fa5bccf54d…`, `origin/skilled/v4.0.0.0=f9ffe76319…`. |
+| Both target branches advanced after the integration rebase | Open | Fetch again and integrate separately. Current tips at handover: `origin/main=556f2bb5b8…`, `origin/skilled/v4.0.0.0=cc27cb94f8…`. |
 | Twenty-two unrelated compatibility symlinks are being rewritten in the isolated worktree after restoration | Open/external | Do not stage them. They are under `.opencode/changelog/{sk-code,sk-design,sk-doc}/` and `specs/system-speckit/z_archive/022-hybrid-rag-fusion/`. Restore from `HEAD` immediately before a scoped commit if necessary. |
 | Final searchable-index freshness was not reconfirmed after earlier retryable daemon timeouts | Deferred/external | Do not start a second SQLite writer or stop the live daemon merely to close this handover. |
 
@@ -155,7 +155,7 @@ Open this handover to independently check the committed Phase 020 root-router wo
 - [x] Closeout plan: `004-parity-regression-and-closeout/plan.md`
 - [x] Closeout evidence: `004-parity-regression-and-closeout/scratch/closeout/`
 - [x] Integration commits: `ee42e2ef9c`, `5690cbad86`
-- [ ] New remote commits after `fa5bccf54d` and `f9ffe76319`
+- [ ] New remote commits after `556f2bb5b8` and `cc27cb94f8`
 <!-- /ANCHOR:next-session -->
 
 ---

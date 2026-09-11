@@ -24,7 +24,7 @@ This reproduces F6 exactly. The authoritative Gate-3 playbook's step-2 expected 
 
 ### F30 — Step-1 suite (mk-spec-gate.test.cjs) count is still 11, but the WS4 test's import path is a PRE-EXISTING drift, not injection-bloat-caused
 
-Re-run of step 1: `ℹ tests 11`, but **6 fail** in this worktree. Root cause: the WS4 test block (`mk-spec-gate.test.cjs:362-371`) imports `spec-gate-core.mjs` from `skills/system-spec-kit/runtime/lib/spec-gate/spec-gate-core.mjs` — a path that was consolidated away by `57c3ed338ca` ("refactor(hooks): consolidate spec-kit runtime/ hooks"). That commit is an ancestor of HEAD; the test was never updated. The real core lives at `mcp-server/hooks/lib/spec-gate/spec-gate-core.mjs`.
+Re-run of step 1: `ℹ tests 11`, but **6 fail** in this worktree. Root cause: the WS4 test block (`mk-spec-gate.test.cjs:362-371`) imports `spec-gate-core.mjs` from `skills/system-spec-kit/runtime/lib/spec-gate/spec-gate-core.mjs` — a path that was consolidated away by `5fe604fc28f` ("refactor(hooks): consolidate spec-kit runtime/ hooks"). That commit is an ancestor of HEAD; the test was never updated. The real core lives at `mcp-server/hooks/lib/spec-gate/spec-gate-core.mjs`.
 
 This is NOT staleness against the changed injection-bloat behavior — it is a pre-existing test-path drift from the earlier hooks consolidation. The playbook's step-1 count assertion (`# tests 11`) is still arithmetically correct; whether the suite passes in this worktree depends on the pre-existing broken import. I record it as an OUT-OF-SCOPE note (the sweep targets change-derived staleness), not a must-fix.
 
@@ -36,7 +36,7 @@ After 8 iterations, the only change-derived stale playbook assertion in the repo
 
 - [SOURCE: independent re-run spec-gate-core.test.mjs → 87/87]
 - [SOURCE: re-run mk-spec-gate.test.cjs → 11 tests, 6 fail from WS4 import path]
-- [SOURCE: .opencode/plugins/tests/mk-spec-gate.test.cjs:362-371; git 57c3ed338ca]
+- [SOURCE: .opencode/plugins/tests/mk-spec-gate.test.cjs:362-371; git 5fe604fc28f]
 - [SOURCE: .opencode/skills/system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.test.mjs run count]
 
 ## Assessment

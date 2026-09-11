@@ -71,7 +71,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Two cli-pi dispatches on DeepSeek V4.1 Flash at high effort, one for the release documents and one for the rule surfaces, and one conductor edit for the vocabulary with the metadata gate regenerating the derived files. Every validator was re-run by the conductor. The rule diff was read in full. Commits: `d6ca91f853`, `a8135ef83c`, `d4d6096ac1`.
+Two cli-pi dispatches on DeepSeek V4.1 Flash at high effort, one for the release documents and one for the rule surfaces, and one conductor edit for the vocabulary with the metadata gate regenerating the derived files. Every validator was re-run by the conductor. The rule diff was read in full. Commits: `dcdf2f8441`, `8d5acf93d5`, `581e2862a5`.
 <!-- /ANCHOR:how-delivered -->
 
 ---

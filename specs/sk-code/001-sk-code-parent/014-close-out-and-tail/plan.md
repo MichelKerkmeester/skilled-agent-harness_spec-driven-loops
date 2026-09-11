@@ -45,7 +45,7 @@ This phase closed the tail of the sk-code parent program after the two-axis rest
 
 ### Definition of Ready
 - [x] Phase scope limited to close-out tail work.
-- [x] Shipped commits identified: `027882bfd0`, `ea689d84e0`, `dd9487d65d`.
+- [x] Shipped commits identified: `cc239ec964`, `0ea2d1be9c`, `5f69124e19`.
 - [x] Existing parent context read from `124-sk-code-parent/spec.md` and sibling summaries.
 - [x] Deferred gated work identified and excluded from completion claims.
 
@@ -88,7 +88,7 @@ The shipped commits first align identity text with the current review mode model
 - [x] Verify parent-skill-check strict, check-rule-copies plus its test, and review-tree links.
 
 ### Phase 2: Advisor scorer repair
-- [x] Root-cause three failures through git history to commit `298bf11eb0`.
+- [x] Root-cause three failures through git history to commit `414befdf6d`.
 - [x] Retarget stale pure-review and ambiguous-code-problem scorer expectations to `sk-code`.
 - [x] Widen cli-opencode disambiguation penalty to `-3.0` so explicit OpenCode CLI delegation wins.
 - [x] Verify three target suites, full advisor-suite delta, and 197-prompt parity report.
@@ -166,9 +166,9 @@ The shipped commits first align identity text with the current review mode model
 
 | Phase | Complexity | Estimated Effort |
 |-------|------------|------------------|
-| Review identity cleanup | Medium | Shipped in commit `027882bfd0` |
-| Advisor scorer repair | Medium | Shipped in commit `ea689d84e0` |
-| Rename-invariant repair | Low | Shipped in commit `dd9487d65d` |
+| Review identity cleanup | Medium | Shipped in commit `cc239ec964` |
+| Advisor scorer repair | Medium | Shipped in commit `0ea2d1be9c` |
+| Rename-invariant repair | Low | Shipped in commit `5f69124e19` |
 | Documentation backfill | Low | Current phase-doc task |
 | **Total** | | **Already shipped plus doc backfill** |
 
@@ -185,7 +185,7 @@ The shipped commits first align identity text with the current review mode model
 - [x] Deferred work separated from completion claims.
 
 ### Rollback Procedure
-1. Revert only the affected commit: `027882bfd0`, `ea689d84e0`, or `dd9487d65d`.
+1. Revert only the affected commit: `cc239ec964`, `0ea2d1be9c`, or `5f69124e19`.
 2. Re-run the target suite tied to that commit.
 3. Compare full advisor-suite failure ownership before claiming regression status.
 4. Leave other sessions' dirty files untouched unless separately authorized.

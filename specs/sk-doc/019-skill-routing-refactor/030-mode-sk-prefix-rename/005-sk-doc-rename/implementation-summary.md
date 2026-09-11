@@ -33,7 +33,7 @@ _memory:
 | **Spec Folder** | 005-sk-doc-rename |
 | **Completed** | 2026-07-28 |
 | **Level** | 1 |
-| **Commits** | 3bce9ac233 |
+| **Commits** | 7b903b8826 |
 <!-- /ANCHOR:metadata -->
 
 ---

@@ -5,7 +5,7 @@ trigger_phrases: []
 # Pre-014 Clearance Verdict v2 — Post-024/025 Re-Confirmation
 
 **Supersedes `pre-014-clearance-verdict.md` for the four cutover blockers.** The prior verdict
-ran at an older candidate SHA (`4c133e8aab`) and left three 024 residuals (F001/F002/F005)
+ran at an older candidate SHA (`482f927a30`) and left three 024 residuals (F001/F002/F005)
 conditionally-open. This v2 re-confirms at the current tip, incorporating the 024 fencing build
 and the 025 certificate-binding build that both landed after the prior verdict.
 
@@ -16,8 +16,8 @@ doc-hygiene, not unaddressed code blockers.
 
 ## Candidate SHA
 
-`f44c5ad782117d91140619ba4497550bb73b0bb9` (origin/skilled/v4.0.0.0), confirmed a descendant of
-the landed-024 clean anchor `5c98e4654e`. All task-cited landing commits confirmed present and
+`c039a4dc7158ca5fe938d7239e61a36c18f65587` (origin/skilled/v4.0.0.0), confirmed a descendant of
+the landed-024 clean anchor `0c5c966015`. All task-cited landing commits confirmed present and
 ancestors of this tip. All code evidence below was read via `origin/skilled/v4.0.0.0` refs.
 
 **This record is verification-only. No runtime code was modified; no commits to code.**

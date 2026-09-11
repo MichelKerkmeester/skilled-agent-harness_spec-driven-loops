@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The `mk-code-index` rename had landed in source and `.claude/mcp.json`, but `opencode.json`, `.codex/config.toml`, and `.gemini/settings.json` still used the legacy `systemcodegraph` config key and launcher path",
     "created_at": "2026-05-14T19:23:26Z",
-    "last_save_at": "2026-08-30T15:39:30.051Z",
+    "last_save_at": "2026-09-11T16:42:30.822Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,14 +207,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:18e98a6b922a1b1ff3d473958901271734104336b6e6688fe644eea7a982e75e",
+    "source_fingerprint": "sha256:8e4bbd1e1553b6916db0674274792c625f9a3817f4741f3380d48fe713235fa8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "913f51cec99a0e9d7852f805b6f982cf92ae64168a3024e57953609125034ef7",
-      "plan.md": "1824a28bfc34473ca57c795ba1eac0bd23f3218ed0e15c1dc747e82dd58957bf",
-      "tasks.md": "199a24f906cd181a088070b42623713b256689315a6eecd0af0933603cda469b",
-      "decision-record.md": "83970ed217bf2950dff175933b3503e1352bc936c8424e65c1fd4e6686d89c96",
-      "implementation-summary.md": "816455e281f8e14227b9dd4a0f5581a7590bcd50c8c8dcf45d6dd7fd5bf2724c"
+      "spec.md": "736149805386610a34c376af12bb4d8c5a79fc71030a7b4008ad4c1fcd8321be",
+      "plan.md": "c6e37b3a466e3be384f4047a476873c81c4c8d5e7e13dcc2fc04bc2fa7734a4d",
+      "tasks.md": "326dc95a73288c7b5de26e4dffc5c61b9dd1191da202272a436964c915c66f33",
+      "decision-record.md": "04c582ce5fc938c2213c3832c25e52e193e35fbd083825f014b10146d96b0d18",
+      "implementation-summary.md": "03b7ebadc89e73e5f1dda9811dd27a970fddecac08105d021153732d9e70a0bd"
     },
     "last_active_child_id": null,
     "last_active_at": null

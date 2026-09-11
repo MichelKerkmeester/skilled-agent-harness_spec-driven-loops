@@ -26,7 +26,7 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions:
-      - "Cleanup executed against 12 system-spec-kit feature_catalog files (commit ab405fa052)."
+      - "Cleanup executed against 12 system-spec-kit feature_catalog files (commit 7b74ddfbe5)."
       - "Edits only, no entry added or removed, count self-checks hold, strict validation 0/0."
 ---
 

@@ -46,7 +46,7 @@ _memory:
 |-------|-------|
 | **Spec Folder** | 003-md-generator-as-mode |
 | **Completed** | 2026-09-06 |
-| **Commit** | `fa35e09653` |
+| **Commit** | `01874dbf92` |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->
 
@@ -103,7 +103,7 @@ cli-orchestration contracts, and one genuine runtime path in `dist-freshness.cjs
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-One commit, `fa35e09653`. Renames verified before committing. The generator's own test suite was run
+One commit, `01874dbf92`. Renames verified before committing. The generator's own test suite was run
 from the new location rather than trusted from the old one.
 
 The routing numbers were taken after an explicit daemon rebuild at generation 618. The rebuild is

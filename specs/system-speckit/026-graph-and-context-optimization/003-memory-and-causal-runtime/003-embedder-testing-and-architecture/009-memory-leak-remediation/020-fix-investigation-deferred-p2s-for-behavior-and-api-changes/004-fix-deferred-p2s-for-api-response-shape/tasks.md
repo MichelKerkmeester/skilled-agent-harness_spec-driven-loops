@@ -91,5 +91,5 @@ _memory:
 - `../spec.md` for phase parent and halt-on-first-regression rule.
 - `../001-fix-deferred-p2s-for-test-only-and-shared-exports/decision-record.md` for export-surface cleanup pattern.
 - `../../015-deep-research-drift-and-simplification/research/findings-registry.json` for deferred finding evidence.
-- `ac54fd1062` for Bucket 1 sidecar-client baseline.
+- `a54ca01d50` for Bucket 1 sidecar-client baseline.
 <!-- /ANCHOR:cross-refs -->

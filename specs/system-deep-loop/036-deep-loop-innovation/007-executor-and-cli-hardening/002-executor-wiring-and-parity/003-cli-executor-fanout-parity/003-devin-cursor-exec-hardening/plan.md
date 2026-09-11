@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: devin + cursor Fan-out Exec Hardening"
-description: "Plan to re-map the devin and cursor fan-out lineage builders from live CLI behavior so read-only leaves are genuinely read-only, workspace-write leaves never stall and stay write-confined, and every non-interactive leaf clears its trust gate; verified by unit tests over exact arg-vectors plus live probes, landed in commit b1d36b1741."
+description: "Plan to re-map the devin and cursor fan-out lineage builders from live CLI behavior so read-only leaves are genuinely read-only, workspace-write leaves never stall and stay write-confined, and every non-interactive leaf clears its trust gate; verified by unit tests over exact arg-vectors plus live probes, landed in commit 35a3951784."
 trigger_phrases:
   - "devin cursor exec hardening plan"
   - "fanout builder re-map plan"

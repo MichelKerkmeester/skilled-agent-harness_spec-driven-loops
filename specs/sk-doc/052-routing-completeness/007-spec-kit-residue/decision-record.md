@@ -89,7 +89,7 @@ when `ENABLE_BM25` is unset. Two tests still assert it returns `true`:
 `mcp-server/tests/search-extended.vitest.ts:98-102` (BM01) and
 `mcp-server/tests/bm25-index.vitest.ts:413-416` (T037.2).
 
-Commit `9f2efd7ae8d` (2026-07-02), `031 remediation wave 7 (final) — BM25 default
+Commit `87cb8fc5fef` (2026-07-02), `031 remediation wave 7 (final) — BM25 default
 flip, strict-schemas flag wiring`, made the change. Its entire code delta is one
 line: `if (!value) return true; // enabled by default` became `if (!value) return
 false;`. The commit body gives the reason: the old default contradicted the
@@ -102,7 +102,7 @@ the breakage.
 - `ENABLE_BM25` is overloaded. It gates the in-memory JS engine **and** the
   FTS5-backed keyword lane. `mcp-server/lib/search/hybrid-search.ts:480` returns `[]`
   *before* the `shouldUseSqliteLexicalEngine(db)` branch at `:488`, so the flip also
-  removed the FTS5-fed `bm25` channel from RRF fusion, a lane commit `7659ec57789`
+  removed the FTS5-fed `bm25` channel from RRF fusion, a lane commit `800c6cf2982`
   had deliberately preserved when it introduced the opt-in posture through a
   different variable, `SPECKIT_BM25_ENGINE`.
 - The bm25 lane carries base weight 0.6 against FTS5's 0.3, per
@@ -269,10 +269,10 @@ No test anywhere asserts the current filter-first behavior.
 
 ### Constraints
 
-- The pair has already been reversed twice. `cbf4f4d111c` (2026-06-25) removed the
-  floor gate deliberately and updated the tests in the same commit. `01ec95899fd`
+- The pair has already been reversed twice. `2d68d3109ab` (2026-06-25) removed the
+  floor gate deliberately and updated the tests in the same commit. `4587036bb7a`
   (2026-06-26) rewrote the constant's docstring to call the floor *"a calibration
-  anchor, not an active promotion gate"*. `9958975f40c` (2026-07-02) reversed both
+  anchor, not an active promotion gate"*. `5bf2ffda642` (2026-07-02) reversed both
   and left the six tests untouched, verified by *"git-diff-verified against each
   dispatch's own self-reported file scope"*, a diff read and not a run.
 - The tests contradict themselves. `tests/channel-representation.vitest.ts:248` is
@@ -398,10 +398,10 @@ The history is the finding:
 
 | sha | date | what |
 |---|---|---|
-| `c8c4e79139e` | 2026-08-12 19:48 | added the enforcer and its test, with an ADR and a deep-review remediation reordering feedback telemetry after truncation |
-| `e3a66403df2` | 2026-08-13 07:38 | a sync commit that **excluded** `memory-search.ts`, saying its staged diff *"deleted the whole token-budget-enforcement block … and independently looked like a real regression, not just a style violation"* |
-| `0194a385218` | 2026-08-13 08:30 | restored the **test** file but not the handler code |
-| `947f8a6b58e` | 2026-08-13 12:42 | landed the excluded deletion under the subject *"chore: land accumulated cross-session WIP (additive, no deletions)"* |
+| `613d04dd613` | 2026-08-12 19:48 | added the enforcer and its test, with an ADR and a deep-review remediation reordering feedback telemetry after truncation |
+| `4d52fff993e` | 2026-08-13 07:38 | a sync commit that **excluded** `memory-search.ts`, saying its staged diff *"deleted the whole token-budget-enforcement block … and independently looked like a real regression, not just a style violation"* |
+| `4240407f5a9` | 2026-08-13 08:30 | restored the **test** file but not the handler code |
+| `daa9b0c92b7` | 2026-08-13 12:42 | landed the excluded deletion under the subject *"chore: land accumulated cross-session WIP (additive, no deletions)"* |
 
 That subject's additivity claim is file-level: 1109 new files, zero file deletions. It
 says nothing about content removed inside the 1032 modified files, and
@@ -411,7 +411,7 @@ says nothing about content removed inside the 1032 modified files, and
 
 - There is a dispatch-level cap, but it is not a replacement.
   `context-server.ts:1212` calls `enforceEnvelopeResultBudget` against a 3500-token
-  budget, and `git show c8c4e79139e~1` proves it already existed before the handler
+  budget, and `git show 613d04dd613~1` proves it already existed before the handler
   enforcer was added, so nothing was moved. The two coexisted by design, and that
   commit's ADR-005 says the handler enforcer was *"kept independent after verifying it
   uses a different truncation strategy."*
@@ -429,7 +429,7 @@ says nothing about content removed inside the 1032 modified files, and
 
 **We chose**: restore the code and keep the test unchanged.
 
-**How it works**: revert the `handlers/memory-search.ts` portion of `947f8a6b58e`.
+**How it works**: revert the `handlers/memory-search.ts` portion of `daa9b0c92b7`.
 That re-adds `enforceSearchTokenBudget`, its `layer-definitions` and `estimateTokens`
 imports, its `__testables` entry, and the call before the
 `isImplicitFeedbackLogEnabled()` block at what is now `:2273`.
@@ -442,7 +442,7 @@ imports, its `__testables` entry, and the call before the
 
 | Option | Pros | Cons | Score |
 |--------|------|------|-------|
-| **Restore the code** | Completes the restore `0194a385218` intended, and a prior commit already called the deletion a regression on the record | Re-adds ~100 lines to a large handler | 9/10 |
+| **Restore the code** | Completes the restore `4240407f5a9` intended, and a prior commit already called the deletion a regression on the record | Re-adds ~100 lines to a large handler | 9/10 |
 | Delete the test | Smallest diff | Writes an accidental deletion down as the specification, and `memory_search` keeps silently exceeding its budget | 2/10 |
 
 **Why this one**: the deletion was identified as a regression by the commit that
@@ -467,7 +467,7 @@ content.
 
 | Risk | Impact | Mitigation |
 |------|--------|------------|
-| The restored code has drifted from the surrounding handler in three weeks | M | Restore from `git show c8c4e79139e` and run the five tests as the gate |
+| The restored code has drifted from the surrounding handler in three weeks | M | Restore from `git show 613d04dd613` and run the five tests as the gate |
 | Double truncation with the dispatch enforcer | L | Different strategies by design, and ADR-005 of the original commit already examined this |
 <!-- /ANCHOR:adr-003-consequences -->
 
@@ -555,7 +555,7 @@ behind the schema rather than ahead of it.
   `PRAGMA table_info(memory_index)` and is the established precedent in this same
   file. The scope columns were added to the SELECT later without extending it.
 - Git archaeology is unavailable. Both files' histories collapse to the squashed
-  `cc77a1e550a` kebab-case migration, so the commit that added the scope columns
+  `b052f329a73` kebab-case migration, so the commit that added the scope columns
   cannot be dated on this branch.
 <!-- /ANCHOR:adr-004-context -->
 
@@ -678,10 +678,10 @@ The affected files, and what each imports:
 | `session-isolation.vitest.ts:18-21` | `coverage-graph-db.js` **and** `handlers/coverage-graph/{query,status,convergence}.js` | none |
 
 The decisive fact: **the subject was never deleted, it was moved.** Commit
-`107c522599d` (2026-05-22), `deep-loop FULL_ISOLATE transition — lib mv + script
+`35503d4b789` (2026-05-22), `deep-loop FULL_ISOLATE transition — lib mv + script
 shims + MCP removal + YAML cutover`, shows `R098`/`R099`/`R100` renames of the three
 `lib/coverage-graph/*.ts` modules out of the memory server, and `D` deletions of five
-`handlers/coverage-graph/*.ts`. `6323b843425` (2026-07-08) moved them again to their
+`handlers/coverage-graph/*.ts`. `dea9dccbf3f` (2026-07-08) moved them again to their
 current home, `system-deep-loop/runtime/lib/coverage-graph/`. Every symbol the three
 `lib`-importing files need is still exported there.
 
@@ -849,7 +849,7 @@ suite unchanged at `Tests 42 passed (42)`, exit 0.
 
 ### Resolution (2026-09-02)
 
-**Already shipped in `59a597e37d`, before the 049 question arose.** Its subject,
+**Already shipped in `7e93c9ae79`, before the 049 question arose.** Its subject,
 `mcp-server/lib/enrichment/retry-budget.ts`, is inside the tree 049 phase 003 deletes, so the
 fix is short-lived, but it was the reason the suite could not complete, and it was already
 landed when this packet re-read the ADRs against 049. Nothing further to do.

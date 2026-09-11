@@ -1,6 +1,6 @@
 ---
 title: "Tasks: Phase 016 sk-code content coherence and reference integrity"
-description: "Executed task list: audit-driven content-coherence tasks dispositioned verified already-satisfied (stale audit predated the 013 restructure); the one concrete change dropped 3 stale merger placeholder fields (af1170c663)."
+description: "Executed task list: audit-driven content-coherence tasks dispositioned verified already-satisfied (stale audit predated the 013 restructure); the one concrete change dropped 3 stale merger placeholder fields (907027032b)."
 trigger_phrases:
   - "sk-code content coherence tasks"
   - "sk-code reference repair tasks"
@@ -76,8 +76,8 @@ _memory:
 - [x] T020 [P] Close shared P1 reference-layer findings and non-vacuous router-sync coverage (`.opencode/skills/sk-code/shared/`) [medium] — verified already-satisfied: parent-skill-check 5b covers 8 modes / 21 vocab classes; non-vacuous
 
 ### Canon Metadata and Relocation
-- [x] T021 Refresh sk-code `description.json` prose to the two-axis model with mode-registry, hub-router, workflowMode, packetKind, and surfaceBundle tokens (`.opencode/skills/sk-code/description.json`) [medium] — executed via `af1170c663` (dropped stale `merger_spec_folder`); two-axis prose verified already-canonical (3d-canon/5f pass)
-- [x] T022 Refresh sk-code `graph-metadata.json` prose and causal summary to name the three surface packets and surfaceBundle canon (`.opencode/skills/sk-code/graph-metadata.json`) [medium] — executed via `af1170c663` (dropped stale `merger_packet` + `motion_dev_packet`); surface/canon prose verified already-current
+- [x] T021 Refresh sk-code `description.json` prose to the two-axis model with mode-registry, hub-router, workflowMode, packetKind, and surfaceBundle tokens (`.opencode/skills/sk-code/description.json`) [medium] — executed via `907027032b` (dropped stale `merger_spec_folder`); two-axis prose verified already-canonical (3d-canon/5f pass)
+- [x] T022 Refresh sk-code `graph-metadata.json` prose and causal summary to name the three surface packets and surfaceBundle canon (`.opencode/skills/sk-code/graph-metadata.json`) [medium] — executed via `907027032b` (dropped stale `merger_packet` + `motion_dev_packet`); surface/canon prose verified already-current
 - [x] T023 Relocate the misfiled spec-kit hooks document to system-spec-kit references (`.opencode/skills/sk-code/opencode/references/shared/hooks.md`, `.opencode/skills/system-spec-kit/references/`) [medium] — verified already-satisfied / superseded (ADR-002): 0 broken hooks refs; no live ownership defect forcing the move
 - [x] T024 Repoint all live references to the relocated hooks document (`.opencode/skills/sk-code/`, `.opencode/skills/system-spec-kit/`) [medium] — verified already-satisfied: no relocation performed; 0 broken hooks refs remain
 
@@ -95,11 +95,11 @@ _memory:
 ### Integration Tests
 - [x] T028 Run sk-code markdown link checker and confirm 0 broken live references [verified] — check-markdown-links.cjs: 0 broken references under sk-code
 - [x] T029 Run parent-skill-check strict for sk-code and confirm 0 failures [verified] — all hard invariants pass, 0 warnings, exit 0
-- [x] T030 Run stale-path grep across sk-code playbook and benchmark baseline for flat-era path strings [verified] — 0 broken refs; af1170c663 removed the remaining stale metadata fields
+- [x] T030 Run stale-path grep across sk-code playbook and benchmark baseline for flat-era path strings [verified] — 0 broken refs; 907027032b removed the remaining stale metadata fields
 
 ### Manual Verification
 - [x] T031 Review manual-testing playbook scenario bodies for semantic path correctness after re-derivation [verified] — playbook paths resolve post-013; 0 broken refs
-- [x] T032 Review `description.json` and `graph-metadata.json` for two-axis canon prose and no stale placeholder fields [verified] — af1170c663 removed the 3 merger placeholder fields; 3d-canon/5f pass
+- [x] T032 Review `description.json` and `graph-metadata.json` for two-axis canon prose and no stale placeholder fields [verified] — 907027032b removed the 3 merger placeholder fields; 3d-canon/5f pass
 - [x] T033 Review relocated hooks doc ownership and references from both old and new locations [verified] — relocation superseded (ADR-002); 0 broken hooks refs
 
 ### Documentation

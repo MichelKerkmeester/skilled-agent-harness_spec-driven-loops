@@ -66,7 +66,7 @@ The deep-loop fan-out reaches GLM-5.3-Flash on the operator's flat-price plan, a
 ### Out of Scope
 - **Adding a second selector scheme** (a `provider:model` literal, or a per-lineage provider override) so both routes could stay fan-out reachable. That is a command-builder change for a benefit no current requirement asks for: nothing dispatches GLM through opencode-go in a fan-out today.
 - **The duplicated allowlist.** `PI_SUPPORTED_MODELS` in the `.ts` and `PI_ALLOWED_MODELS` in the `.cjs` are two hand-synced copies of the same list. Real drift hazard, recorded in section 6, not fixed here.
-- **The pre-existing `combo-matrix.vitest.ts` failure**, which expects `opencode-go/deepseek-v4-flash` and receives `opencode-go/deepseek-v4-flash-vision-exp`. It comes from commit `5aae5f0bc8` making Vision the catalogued default and is unrelated to this change.
+- **The pre-existing `combo-matrix.vitest.ts` failure**, which expects `opencode-go/deepseek-v4-flash` and receives `opencode-go/deepseek-v4-flash-vision-exp`. It comes from commit `77c0cf1cf0` making Vision the catalogued default and is unrelated to this change.
 
 ### Files to Change
 

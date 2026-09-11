@@ -149,17 +149,17 @@
     ],
     "causal_summary": "`sk-design` is a hub of four coherent modes, every request that reached a mode before still reaches",
     "created_at": "2026-09-06T13:52:15Z",
-    "last_save_at": "2026-09-10T20:50:32.555Z",
+    "last_save_at": "2026-09-11T16:41:57.565Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:5754d850cfe5663309d4d099398d02e7a54dff4ad04b955393b8f835f23fc623",
+    "source_fingerprint": "sha256:ec49f8800ad879e87f10f262f3c26cdba93df306e2dfcf82e730facafda0dafd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3d96b0d0cce4f15902666e4cead43d4ea2cfcd39d007bd6f7ed70b6f0acec56a"
+      "spec.md": "262bac3c49d4837b5644bd02c35ae2cc11aa526d833f3d0085c054275ab5f552"
     },
     "last_active_child_id": null,
     "last_active_at": "2026-09-07T16:02:27.763Z"

@@ -80,7 +80,7 @@ All tasks below are complete. Evidence is named per task rather than summarised 
 - [x] `check-corpus.cjs --render` prints `RESULT: PASSED`, 26 forms
 - [x] 249 renames, verified before committing
 - [x] Daemon rebuilt and generation 628 observed before any routing claim
-- [x] One commit, `e34e225517`
+- [x] One commit, `a131f628bc`
 <!-- /ANCHOR:completion -->
 
 ---

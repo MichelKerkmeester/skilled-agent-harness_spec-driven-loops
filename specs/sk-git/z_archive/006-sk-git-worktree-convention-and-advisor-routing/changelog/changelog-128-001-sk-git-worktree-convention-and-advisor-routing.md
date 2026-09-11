@@ -20,7 +20,7 @@ contextType: "implementation"
 
 ### Summary
 
-Adopted one named-feature-worktree convention for sk-git — branch `wt/{NNNN}-{name}` (groups under `wt/` in Git UIs, mirroring `system-speckit/`) and directory `<repo>/.worktrees/{NNNN}-{name}` (gitignored), with a 4-digit global `max+1` counter. Sharpened sk-git's skill-advisor routing so git/worktree/branch/commit/PR/merge/finish intent reliably lands on sk-git (and not system-spec-kit or sk-code), and restructured all existing worktrees into the scheme. The ephemeral per-session wrapper (`worktree-session.sh`) keeps its auto-managed `work/{runtime}/{slug}` lane — documented as a distinct lane, intentionally not renumbered (the reaper keys on the `.worktrees/` dir, and the wrapper is live shared infra). Committed `fb6b3b132f`.
+Adopted one named-feature-worktree convention for sk-git — branch `wt/{NNNN}-{name}` (groups under `wt/` in Git UIs, mirroring `system-speckit/`) and directory `<repo>/.worktrees/{NNNN}-{name}` (gitignored), with a 4-digit global `max+1` counter. Sharpened sk-git's skill-advisor routing so git/worktree/branch/commit/PR/merge/finish intent reliably lands on sk-git (and not system-spec-kit or sk-code), and restructured all existing worktrees into the scheme. The ephemeral per-session wrapper (`worktree-session.sh`) keeps its auto-managed `work/{runtime}/{slug}` lane — documented as a distinct lane, intentionally not renumbered (the reaper keys on the `.worktrees/` dir, and the wrapper is live shared infra). Committed `58dc634577`.
 
 ### Added
 

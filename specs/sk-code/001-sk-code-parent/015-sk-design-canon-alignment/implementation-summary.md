@@ -64,16 +64,16 @@ sk-design is now fully aligned to the parent-hub canon: `PARENT_HUB_CHECK_STRICT
 
 | File | Action | Evidence |
 |------|--------|----------|
-| `mode-registry.json` | `packetKind: "workflow"` on all 5 modes | commit `f8673ff0db` |
-| `changelog/design-{audit,foundations,interface,md-generator,motion}` | 5 symlinks deleted (real-files-only policy); packet changelogs preserved in packets | commit `4f00dd262c`; check 7a PASS |
-| `design-interface/README.md` | 3 cross-skill link depths repaired | commit `4f00dd262c` |
-| `description.json` | Created with required canon fields + modes + trigger examples | commit `0898f9bba3`; check 8a PASS |
-| `design-{audit,foundations,md-generator,motion}/SKILL.md` | sk-doc smart-router template link depth fixed (`../` → `../../`) | commit `0898f9bba3`; zero broken sk-design links |
-| `manual_testing_playbook/` | 22 files / 21 scenarios across 5 categories (mode routing, advisor integration, transform-verb framing, md-generator pipeline, shared-reference-base) | commit `b9abf16b31`; check 9a PASS |
-| `benchmark/` | First Lane-C baseline (router mode) + README with re-run command | commit `fc4644a98a`; check 9b PASS |
-| `hub-router.json` | `references/design_proof_token.md` wired into `defaultResource` (orphan surfaced by the benchmark's connectivity gate) + declarative `ui-build-bundle` bundleRule | commits `fc4644a98a`, `5a6765c9b1`; D5 97→100; check 5f PASS |
-| `mode-registry.json` | `extensions.transform-verbs` declared — activates the in-place `transformVerbRouting` block without relocating it | commit `5a6765c9b1`; check 3f PASS |
-| `SKILL.md` + `description.json` + `changelog/v1.1.0.0.md` | Version event 1.0.0.3 → 1.1.0.0 consolidating the canon alignment | commit `5a6765c9b1` |
+| `mode-registry.json` | `packetKind: "workflow"` on all 5 modes | commit `8820b8963d` |
+| `changelog/design-{audit,foundations,interface,md-generator,motion}` | 5 symlinks deleted (real-files-only policy); packet changelogs preserved in packets | commit `0c76ded15f`; check 7a PASS |
+| `design-interface/README.md` | 3 cross-skill link depths repaired | commit `0c76ded15f` |
+| `description.json` | Created with required canon fields + modes + trigger examples | commit `70c33d7806`; check 8a PASS |
+| `design-{audit,foundations,md-generator,motion}/SKILL.md` | sk-doc smart-router template link depth fixed (`../` → `../../`) | commit `70c33d7806`; zero broken sk-design links |
+| `manual_testing_playbook/` | 22 files / 21 scenarios across 5 categories (mode routing, advisor integration, transform-verb framing, md-generator pipeline, shared-reference-base) | commit `6f05a18a4f`; check 9a PASS |
+| `benchmark/` | First Lane-C baseline (router mode) + README with re-run command | commit `78294ba516`; check 9b PASS |
+| `hub-router.json` | `references/design_proof_token.md` wired into `defaultResource` (orphan surfaced by the benchmark's connectivity gate) + declarative `ui-build-bundle` bundleRule | commits `78294ba516`, `ed338dab02`; D5 97→100; check 5f PASS |
+| `mode-registry.json` | `extensions.transform-verbs` declared — activates the in-place `transformVerbRouting` block without relocating it | commit `ed338dab02`; check 3f PASS |
+| `SKILL.md` + `description.json` + `changelog/v1.1.0.0.md` | Version event 1.0.0.3 → 1.1.0.0 consolidating the canon alignment | commit `ed338dab02` |
 
 ### Playbook verification method
 
@@ -85,7 +85,7 @@ The GPT-authored playbook was verified before push, not trusted: all 260 referen
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Five scratch-index increments pushed to the shared branch, each seeded from the live remote tip and blast-radius-gated pre-push (`git diff --stat REMOTE COMMIT` must show exactly the intended files): `0898f9bba3` (5 files), `b9abf16b31` (22), `fc4644a98a` (4), `5a6765c9b1` (5), plus the earlier `4f00dd262c` / `f8673ff0db`. Playbook authoring was delegated to GPT-5.5-fast via cli-opencode with Gate-3 pre-answered in the prompt; Claude verified every deliverable before commit.
+Five scratch-index increments pushed to the shared branch, each seeded from the live remote tip and blast-radius-gated pre-push (`git diff --stat REMOTE COMMIT` must show exactly the intended files): `70c33d7806` (5 files), `6f05a18a4f` (22), `78294ba516` (4), `ed338dab02` (5), plus the earlier `0c76ded15f` / `8820b8963d`. Playbook authoring was delegated to GPT-5.5-fast via cli-opencode with Gate-3 pre-answered in the prompt; Claude verified every deliverable before commit.
 
 <!-- /ANCHOR:how-delivered -->
 ---

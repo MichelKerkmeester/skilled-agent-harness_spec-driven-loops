@@ -73,8 +73,8 @@ On the operational side (not a code change, just cleanup): killed the 32 zombie 
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skills/system-spec-kit/mcp_server/tests/launcher-lease.vitest.ts` | Modified | Default off daemon re-election in the test's `spawnLauncher` helper; `afterEach` hard-kill of lease-recorded daemon/model-server pids before temp-root cleanup (commit `90a2462721`) |
-| `.opencode/scripts/orphan-mcp-sweeper.sh` | Modified | Classify the `hf-model-server` sidecar; extend the busy-preserve rule to count `hf-embed.sock` connections (commit `d4be07abbc`) |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/launcher-lease.vitest.ts` | Modified | Default off daemon re-election in the test's `spawnLauncher` helper; `afterEach` hard-kill of lease-recorded daemon/model-server pids before temp-root cleanup (commit `65f05f37b9`) |
+| `.opencode/scripts/orphan-mcp-sweeper.sh` | Modified | Classify the `hf-model-server` sidecar; extend the busy-preserve rule to count `hf-embed.sock` connections (commit `2dbd92b8f8`) |
 
 No production runtime file was modified this pass - both fixes are test-harness and shell-script scoped. The operational cleanup (zombie kill, daemon restart, native module rebuild) touched running processes and the on-disk native module cache, not source files.
 <!-- /ANCHOR:what-built -->

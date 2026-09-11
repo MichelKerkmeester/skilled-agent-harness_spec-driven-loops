@@ -41,7 +41,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Pin the implementation worktree to the phase-003 BASE and record the phase-004 transition-policy digest. [evidence: BASE `576a7401b1d2f8b328b7713ead428599894a03d4`; policy SHA-256 `329ad7ad1c4f8eaedb531887b00ed29c3413fef00e7c8532941ad07f033b634d`; verification receipt: targeted Vitest 56/56 passed.]
+- [x] T001 Pin the implementation worktree to the phase-003 BASE and record the phase-004 transition-policy digest. [evidence: BASE `ca626625bca213d2a884ff3864f31ca27c33cdad`; policy SHA-256 `329ad7ad1c4f8eaedb531887b00ed29c3413fef00e7c8532941ad07f033b634d`; verification receipt: targeted Vitest 56/56 passed.]
 - [x] T002 Inventory representative observability, council, iteration/audit, fan-out status, and generic JSONL writer records without modifying authoritative runtime files. [evidence: five census-derived fixtures cover the required four families plus iteration state; final git status contains no modified legacy file; verification receipt: targeted Vitest 56/56 passed.]
 - [x] T003 Freeze contract tests for outer fields, event namespace, version semantics, canonical bytes, typed errors, registry invariants, and sibling API ownership. [evidence: `runtime/tests/unit/event-envelope.vitest.ts` discovers 56 passing tests; verification receipt: targeted Vitest 56/56 passed.]
 <!-- /ANCHOR:phase-1 -->

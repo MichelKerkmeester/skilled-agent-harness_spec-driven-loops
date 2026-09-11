@@ -46,7 +46,7 @@ _memory:
 |-------|-------|
 | **Spec Folder** | 002-hub-and-fundamentals |
 | **Completed** | 2026-09-06 |
-| **Commit** | `112d5471f4` |
+| **Commit** | `08c9d0605d` |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->
 
@@ -55,7 +55,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-`sk-design` is a parent hub again. It was one until 19 August 2026, when `4edf582436` dismantled it
+`sk-design` is a parent hub again. It was one until 19 August 2026, when `4ac89951ca` dismantled it
 on purpose — it routed exactly two modes, they were unevenly coupled to the shared `styles` corpus,
 and that packet was explicit that deleting it was a routing decision rather than housekeeping. That
 reasoning was sound for the shape it described. This reinstates the hub for a different shape: four
@@ -95,7 +95,7 @@ shrank to 69 lines of routing only.
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-One commit, `112d5471f4`, because a hub root without its `SKILL.md` is a broken tree and other
+One commit, `08c9d0605d`, because a hub root without its `SKILL.md` is a broken tree and other
 sessions write to this branch. The 28 moves were verified as `R100` renames with
 `git diff --cached --name-status -M` before committing, not after.
 

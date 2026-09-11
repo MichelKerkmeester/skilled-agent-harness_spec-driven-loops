@@ -30,7 +30,7 @@ _memory:
     answered_questions:
       - "The two live activation manifests are the whole fix; the 009-parent-hub-rollout compiled/ artifacts are a frozen rollout record already divergent at 78723d28 before this change, so they are left alone"
       - "generation stays 5 because refresh selects the generation the compiled policy itself carries, not newGeneration"
-      - "The repair shipped in 3a61fa96ac on both main and skilled/v4.0.0.0 while this diagnosis ran; that commit's manifests are byte-identical to the re-mint verified here, so this packet is the record and the evidence rather than the delivery"
+      - "The repair shipped in 54ca8d7825 on both main and skilled/v4.0.0.0 while this diagnosis ran; that commit's manifests are byte-identical to the re-mint verified here, so this packet is the record and the evidence rather than the delivery"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
@@ -52,7 +52,7 @@ _memory:
 | **Scope** | The `cli-external-orchestration` live activation manifest, in both its promoted and authored copies |
 | **Constraint** | Serving state only. No skill source, no compiler, and no frozen rollout artifact is touched |
 | **Evidence** | The failure reproduced on pristine `origin/main` before the fix and gone after it, by the same command |
-| **Delivered by** | `3a61fa96ac`, on `main` and `skilled/v4.0.0.0`; byte-identical to the re-mint verified here |
+| **Delivered by** | `54ca8d7825`, on `main` and `skilled/v4.0.0.0`; byte-identical to the re-mint verified here |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -61,7 +61,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-Commit `790c3dfc1c5` added a machine-checkable stdin-redirect rule to five `cli-*` packet
+Commit `d474140721b` added a machine-checkable stdin-redirect rule to five `cli-*` packet
 `SKILL.md` files. Those files are not documentation to the routing engine: the hub's build harness
 reads all seven `cli-external-orchestration` `SKILL.md` files as `sourceBytes` and folds them into the
 compiled policy, so editing any one of them changes the hub's `effectivePolicyHash`. The commit

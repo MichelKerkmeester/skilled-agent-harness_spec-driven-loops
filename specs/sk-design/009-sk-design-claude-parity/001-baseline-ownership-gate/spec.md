@@ -98,7 +98,7 @@ Create a hard ownership gate that records the current baseline, inventories touc
 | Current `sk-design` diff inventory | `git diff --name-status -- ".opencode/skills/sk-design"` returned no output on 2026-07-05 | Yes |
 | Benchmark baseline | Fresh artifact `/tmp/skd-bench-phase001/report.json` from the canonical router benchmark | Yes |
 | Ownership decision | `PRESERVE` the committed parent-hub baseline; no pending `sk-design` paths require absorb/revert/defer/block | Yes |
-| Rollback path | Compare with `git diff`; destructive checkout against `ba8906743c1b1e327ff4d4a758bb9d67e9d6c8ed` only after explicit confirmation | Yes |
+| Rollback path | Compare with `git diff`; destructive checkout against `914bc78c295d33edd3c09ec8c94b43472a20fbf5` only after explicit confirmation | Yes |
 
 <!-- /ANCHOR:scope -->
 ---
@@ -114,7 +114,7 @@ Create a hard ownership gate that records the current baseline, inventories touc
 | REQ-002 | Baseline snapshot captured | Closed: fresh benchmark artifact `/tmp/skd-bench-phase001/report.json`, verdict `CONDITIONAL`, aggregate `69`, scenario count `21` |
 | REQ-003 | Touched-file inventory captured | Closed: inventory is empty because scoped status and diff both returned no output |
 | REQ-004 | Ownership decision recorded | Closed: committed parent-hub baseline is preserved; no pending paths require ownership classification |
-| REQ-005 | Rollback plan named | Closed: inspect with `git diff`; checkout against `ba8906743c1b1e327ff4d4a758bb9d67e9d6c8ed` only after explicit confirmation |
+| REQ-005 | Rollback plan named | Closed: inspect with `git diff`; checkout against `914bc78c295d33edd3c09ec8c94b43472a20fbf5` only after explicit confirmation |
 | REQ-006 | Parent invariants documented | Closed: invariants are recorded below and in `decision-record.md` |
 
 ### P1 - Required (complete OR user-approved deferral)

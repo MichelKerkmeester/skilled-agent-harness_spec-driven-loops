@@ -37,7 +37,7 @@ _memory:
 |--------|-------|
 | **Executor (fix)** | `opencode run --model openai/gpt-5.5-fast --variant high` |
 | **Executor (verify)** | `opencode run --model openai/gpt-5.5-fast --variant high` (independent read-back) |
-| **Isolation** | git worktree `028-deep-research-wt`, cut from HEAD `aca0f7eb8b`, carrying pass 1's uncommitted fixes forward |
+| **Isolation** | git worktree `028-deep-research-wt`, cut from HEAD `3b0497f812`, carrying pass 1's uncommitted fixes forward |
 
 ### Overview
 Five correction items, each bundled by target directory to avoid concurrent-write collisions, dispatched sequentially, then independently re-verified.
@@ -166,7 +166,7 @@ Phase 1 (Setup) --> Phase 2 (Correct + Verify) --> Phase 3 (Sync + Validate)
 
 ### Pre-deployment Checklist
 - [x] Worktree isolation in place
-- [x] Recovery baseline commit recorded: `aca0f7eb8b`
+- [x] Recovery baseline commit recorded: `3b0497f812`
 
 ### Rollback Procedure
 1. Do not commit the synced-back diff without review.

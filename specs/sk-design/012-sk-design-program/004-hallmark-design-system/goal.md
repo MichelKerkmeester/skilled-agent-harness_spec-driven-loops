@@ -51,19 +51,19 @@ _memory:
 
 | Lane | Delivered | Commit | Verify verdict |
 |---|---|---|---|
-| **1 · surgical-fixes** | 5 clean-room heuristics into 9 existing design-mode reference files; preserves evidence-first P0-P3, forbids Hallmark's all-or-nothing gate | `b986789b8c` | PASS (fixed an honesty-framing defect; ai-fingerprint checkers pass) |
-| **2 · evidence-envelopes** | Owned-asset manifest + motionCharacter handoff + evidence-gated measured Motion section through the design-md-generator backend | `0d62a3c5f2` | PASS · vitest 171/171 (tests proven non-vacuous) |
-| **3 · authored-cards** | 7 distinct abstract structural-fingerprint cards + load-one index + Lane-2 stamp reuse | `13c2613d39` | PASS · zero defects · zero Hallmark leakage |
-| **4 · brand-first** | Hard authored/measured boundary + provenance + signed-review gate, nested under `shared/` | `01a3bfd53c` | PASS · 26-vector attack + guard-removal mutation testing · boundary suite 7/7 |
-| **5 · measured-composition** | Measured deterministic `compositionDNA` + opt-in retrieval facets in the style DB (additive, backward-compat) | `525a4cca7a` | PASS · DB suite 73/73 (+4, zero regressions) · byte-compat hash-verified |
+| **1 · surgical-fixes** | 5 clean-room heuristics into 9 existing design-mode reference files; preserves evidence-first P0-P3, forbids Hallmark's all-or-nothing gate | `6837453a4c` | PASS (fixed an honesty-framing defect; ai-fingerprint checkers pass) |
+| **2 · evidence-envelopes** | Owned-asset manifest + motionCharacter handoff + evidence-gated measured Motion section through the design-md-generator backend | `615f80e106` | PASS · vitest 171/171 (tests proven non-vacuous) |
+| **3 · authored-cards** | 7 distinct abstract structural-fingerprint cards + load-one index + Lane-2 stamp reuse | `a4bbe1b68c` | PASS · zero defects · zero Hallmark leakage |
+| **4 · brand-first** | Hard authored/measured boundary + provenance + signed-review gate, nested under `shared/` | `b452b49f8a` | PASS · 26-vector attack + guard-removal mutation testing · boundary suite 7/7 |
+| **5 · measured-composition** | Measured deterministic `compositionDNA` + opt-in retrieval facets in the style DB (additive, backward-compat) | `9b4cee6814` | PASS · DB suite 73/73 (+4, zero regressions) · byte-compat hash-verified |
 
 Phase-0 cross-ref fixes (stale `014-`/`016-` refs the merge left) folded into Lane 1.
 
 ## 4. Quality pass over the build
 
-1. **Deep-alignment framework fix** — `a17df48298`, packet `system-deep-loop/036-deep-loop-innovation/049-deep-alignment-integrity/002-deep-alignment-multi-executor`. Enabled cli-opencode alignment leaves + `--convergence-mode=off` + reconciled a doc contradiction (which had also left the shipped cli-codex path unreachable). Contained; no shared-runtime edits; Sonnet-verified guard-for-guard.
+1. **Deep-alignment framework fix** — `61ac737580`, packet `system-deep-loop/036-deep-loop-innovation/049-deep-alignment-integrity/002-deep-alignment-multi-executor`. Enabled cli-opencode alignment leaves + `--convergence-mode=off` + reconciled a doc contradiction (which had also left the shipped cli-codex path unreachable). Contained; no shared-runtime edits; Sonnet-verified guard-for-guard.
 2. **Deep review** — 3 models × 3 iters (GLM 5.2 · MiniMax-M3 · LUNA-xhigh), 14 findings (P0=2, P1=5, P2=7), cross-lineage adjudicated.
-3. **Remediation** — `ef5157ca72`, all 14 fixed:
+3. **Remediation** — `442eebdbe3`, all 14 fixed:
    - **P0 · symlink boundary hole closed** — the Lane-4 allowlist checked only the basename; a symlink could redirect a permitted write into measured data. Now realpath+lstat-rejects symlink destinations; **independently probe-confirmed** (write refused, measured file intact). This was the gap the per-lane verification missed.
    - Atomic authored-export refresh (temp+rename).
    - **Doc-honesty reconcile** — the parent theme spec (Planned→Complete, 4→5 lanes) and the program retrospective (hallmark Planned→Shipped) now truthfully reflect the built lanes.
@@ -102,7 +102,7 @@ Phase-0 cross-ref fixes (stale `014-`/`016-` refs the merge left) folded into La
 
 ## 8. Key artifacts
 
-- Commits on v4: `b986789b8c` · `0d62a3c5f2` · `13c2613d39` · `01a3bfd53c` · `525a4cca7a` (5 lanes) · `a17df48298` (fix) · `ef5157ca72` (remediation).
+- Commits on v4: `6837453a4c` · `615f80e106` · `a4bbe1b68c` · `b452b49f8a` · `9b4cee6814` (5 lanes) · `61ac737580` (fix) · `442eebdbe3` (remediation).
 - Review findings registry: `004-hallmark-design-system/review/deep-review-findings-registry.json`.
 - Alignment record: `004-hallmark-design-system/006-deep-alignment-and-review/alignment/`.
 - Correct alignment lane-config: `scratchpad/hallmark-align-lanes-v2.json`.

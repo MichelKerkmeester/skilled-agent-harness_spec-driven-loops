@@ -54,10 +54,10 @@
       ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/loop-lock.ts",
       ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/atomic-state.ts",
       ".opencode/skills/system-deep-loop/runtime/tests/unit/authorized-ledger.vitest.ts",
+      "runtime/vitest.config.ts",
       "scratch/chk-120-rollback-rehearsal.md",
-      "scratch/t015-verification-evidence.md",
-      "scratch/chk-110-aggregate-delta.md",
-      "specs/descriptions.json"
+      "runtime/package.json",
+      "scratch/t015-verification-evidence.md"
     ],
     "entities": [
       {
@@ -157,27 +157,27 @@
         "source": "derived"
       },
       {
+        "name": "vitest.config.ts",
+        "kind": "code",
+        "path": "runtime/vitest.config.ts",
+        "source": "derived"
+      },
+      {
         "name": "chk-120-rollback-rehearsal.md",
         "kind": "doc",
         "path": "scratch/chk-120-rollback-rehearsal.md",
         "source": "derived"
       },
       {
+        "name": "package.json",
+        "kind": "config",
+        "path": "runtime/package.json",
+        "source": "derived"
+      },
+      {
         "name": "t015-verification-evidence.md",
         "kind": "doc",
         "path": "scratch/t015-verification-evidence.md",
-        "source": "derived"
-      },
-      {
-        "name": "chk-110-aggregate-delta.md",
-        "kind": "doc",
-        "path": "scratch/chk-110-aggregate-delta.md",
-        "source": "derived"
-      },
-      {
-        "name": "descriptions.json",
-        "kind": "config",
-        "path": "specs/descriptions.json",
         "source": "derived"
       },
       {
@@ -207,7 +207,7 @@
     ],
     "causal_summary": "(Resolved — historical problem statement.) The defects below describe the pre-fix state that this packet closed; they are retained for provenance",
     "created_at": "2026-07-31T01:25:20.017Z",
-    "last_save_at": "2026-09-03T22:20:50.601Z",
+    "last_save_at": "2026-09-11T16:42:25.139Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,15 +218,15 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:d807df2ee25eeb5d49ddc59d4532df055a86fd7c0cd1fd7c1cccebe26ecb3db0",
+    "source_fingerprint": "sha256:9dbc4a0242d475889d7277ee61d6e3658492ca7fba0f5cebfcc6dbc3436981ad",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "cafaddc540e78e29593c987003b54ce62a1c3183cc2f88cc48f22d33388e21f7",
-      "plan.md": "1e66c89dc94dec605d18e207fb8c67d47fd6d3d90449e15ea0f19789682ce7d5",
-      "tasks.md": "de9a5ed315bdb8c31cb56f259be428a578675e6de2507201d9e1af89f2368f6c",
-      "decision-record.md": "4a3f267522520f46a690a420402a3158ec15a662194e3a23bd5044c70482fbe6",
-      "implementation-summary.md": "d7274620ad58dfba974820123c3c34bd55757c45f90de678b92542280929c0fa",
-      "handover.md": "10dbefba3490edb9ac420fd6411a7fe98c532c0d69c0fbe740b8694c7d0768da"
+      "spec.md": "18124fd47baf2ec0ad9d1e61e72b4603beaf3e9fed377421075c08a98462dbf7",
+      "plan.md": "d26f06b395eb970cfbebe6c536d943cf3d4234fab416b090a6a578e90e604d15",
+      "tasks.md": "ecde06f69bf94b4e4c394c83e482f7e0c4c822fd742d971842487391e68ea77c",
+      "decision-record.md": "2ee80f7ba3a6c69f41e02e6dd2c00bfdfb9ed90b2f2f9ab93056333806ea4241",
+      "implementation-summary.md": "c1a6f89c8e9ad1e8ebcca5d7ef3b012655a600608a5c5b400780ac0d1786cf12",
+      "handover.md": "85baad06769ee59160a49636fe647a42c5f369f066f1fe4e6a423ade5c1abf3c"
     },
     "last_active_child_id": null,
     "last_active_at": null

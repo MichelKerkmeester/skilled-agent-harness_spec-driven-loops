@@ -15,7 +15,7 @@ Edit count: 12
 > Multi-agent AI development framework with cognitive memory, structured documentation, 11 agents, 20 skills, 22 command entry points, and standalone MCP servers...
 
 ### Verification
-`git diff README.md` shows one-token replacement on this line; cli-devin's addition (`df8395f7e2`) is now reflected numerically.
+`git diff README.md` shows one-token replacement on this line; cli-devin's addition (`04580ca3bf`) is now reflected numerically.
 
 ---
 

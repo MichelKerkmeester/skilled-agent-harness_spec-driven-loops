@@ -160,7 +160,7 @@ Required inventories:
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Phase 023's dispatch recipe + grading discipline | Prerequisite | Complete, committed `9207bd3454` | This phase's entire verification method depends on it |
+| Phase 023's dispatch recipe + grading discipline | Prerequisite | Complete, committed `29b589859d` | This phase's entire verification method depends on it |
 | `openai/gpt-5.5-fast` model availability via `cli-opencode` | External | Available throughout | A dispatch failure would need to be distinguished from a genuine behavior regression |
 <!-- /ANCHOR:dependencies -->
 

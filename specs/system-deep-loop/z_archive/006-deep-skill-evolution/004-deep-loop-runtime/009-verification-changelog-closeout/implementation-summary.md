@@ -273,7 +273,7 @@ Parent 118 spec.md status: "Complete; 8/8 children shipped".
 graph-metadata.json derived.status: complete.
 
 Arc 118 closed. 118-specific committed spine through phase 007:
-bd77886d0a..be2e777a4f; closeout commit to follow from this handoff.
+f41f5c9a5d..300bfe603a; closeout commit to follow from this handoff.
 
 Co-Authored-By: GPT-5.5 via cli-codex (118/008 closeout dispatch)
 ```

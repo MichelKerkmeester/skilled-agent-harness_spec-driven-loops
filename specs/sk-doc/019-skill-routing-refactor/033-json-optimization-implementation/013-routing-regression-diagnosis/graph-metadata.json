@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Diagnose the reproduced -2 routing regression on holdout top-1, holdout top-3 and the delegation bucket, attribute it to a commit, and decide fix-versus-accept — before any re-pin, status flip, or metadata regeneration is allowed to run.",
     "created_at": "2026-07-30T08:10:27.110Z",
-    "last_save_at": "2026-08-30T15:39:15.950Z",
+    "last_save_at": "2026-09-11T16:42:10.164Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,14 +203,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:73f8b41bef0d4c94aef9f8f6c3e374dcb7d5ad69898df83c226f1f5e9f1c8be0",
+    "source_fingerprint": "sha256:13dfcf16ada7afb4ae35159475b2a6722d6aa8747db1bf071df7dcbaba0492a7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "847f3aa6fc0876eee0f34ac570dea505a69eb2ead9ffc0b0cc58d2727a6d503e",
+      "spec.md": "f330facfd5d49ee3c39d6adaddbddc4faf6aafb9d15e9f7392501977ac5c8f67",
       "plan.md": "513f3ed56b8225b65c752aa0ebff434ff7349f580138f22929b43f3d51648054",
       "tasks.md": "bb6fa9cc17b8635becadc5b40595d922924945bc3eb9a7fd92c5bd3dd6d3cac6",
       "decision-record.md": "8d65142083eabde2b3efd9fb0c052748b169c6fee4ebad24f0b228f86d93fd89",
-      "implementation-summary.md": "6fa77e28cae71243bfa7cc7b82e549fba6b100b9d1f929d7a2c8c9c17a32538a"
+      "implementation-summary.md": "3c1ea3a8c5e4bd5e63417114368871a1160d3d89c0c51d017b829580bd9a7354"
     },
     "last_active_child_id": null,
     "last_active_at": null

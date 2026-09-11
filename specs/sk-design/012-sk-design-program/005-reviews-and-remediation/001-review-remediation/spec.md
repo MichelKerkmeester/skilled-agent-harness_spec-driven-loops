@@ -47,7 +47,7 @@ _memory:
 | **Predecessor** | `004-interface-commands` |
 | **Successor** | None |
 | **Phase** | 5 of 5 |
-| **Source** | Deep review `955d58f898` — `../review/lineages/sol/iterations/iteration-005.md` (stabilized P0=0, P1=9, P2=1) |
+| **Source** | Deep review `5d9ff293ec` — `../review/lineages/sol/iterations/iteration-005.md` (stabilized P0=0, P1=9, P2=1) |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -57,7 +57,7 @@ _memory:
 
 ### Problem Statement
 
-The GPT-5.6-SOL deep review over packet 012 stabilized **0 P0, 9 P1, 1 P2**. Four P1s are real code issues in the persistent style-DB path (verified against the shipped code), one P2 is a hash-identity issue, two P1s are process/evidence overclaims, and three P1s are doc-traceability overclaims (already reconciled in `955d58f898`). No production bug exists today — the `styles/_engine` adapter defaults to `legacy` (flat files authoritative), so the code findings are **latent, pre-activation hardening**. They MUST be closed before anyone enables `persistent` mode.
+The GPT-5.6-SOL deep review over packet 012 stabilized **0 P0, 9 P1, 1 P2**. Four P1s are real code issues in the persistent style-DB path (verified against the shipped code), one P2 is a hash-identity issue, two P1s are process/evidence overclaims, and three P1s are doc-traceability overclaims (already reconciled in `5d9ff293ec`). No production bug exists today — the `styles/_engine` adapter defaults to `legacy` (flat files authoritative), so the code findings are **latent, pre-activation hardening**. They MUST be closed before anyone enables `persistent` mode.
 
 ### Purpose
 
@@ -78,8 +78,8 @@ Document every finding and its verification, and plan a remediation that (a) har
 | 2 | P1 | Persistent query ignores a caller-requested generation (only cursor generation is checked; request pin neither compared nor fingerprinted) | `_db/retrieval.mjs:338-363`, `_engine/persistent-adapter.mjs:176-201` | **Open (verified)** |
 | 3 | P1 | Pointer resolves with no realpath containment; `generationHash` not bound to the opened DB | `_db/schema.mjs:23-48`, `_db/retrieval.mjs:338-347` | **Open (verified)** |
 | 4 | P1 | Synchronous query accepts + duplicates an unbounded caller `queryVector` | `_db/retrieval.mjs:81-96,210-230` | **Open (verified)** |
-| 5 | P1 | 001 tasks claim a completed 10-iteration run (ran 7 + stall) | `001-.../tasks.md` | **✅ Reconciled `955d58f898`** |
-| 6 | P1 | 002 tasks claim SOL+GLM converged (GLM ran 0, out of quota) | `002-.../tasks.md` | **✅ Reconciled `955d58f898`** |
+| 5 | P1 | 001 tasks claim a completed 10-iteration run (ran 7 + stall) | `001-.../tasks.md` | **✅ Reconciled `5d9ff293ec`** |
+| 6 | P1 | 002 tasks claim SOL+GLM converged (GLM ran 0, out of quota) | `002-.../tasks.md` | **✅ Reconciled `5d9ff293ec`** |
 | 7 | P1 | 003 checklist overstates a 20-style relative timing test as proof vs the 1,290-style SLO baseline | `003-.../checklist.md:58-64`, `spec.md:115-131` | **Open** |
 | 8 | P1 | Parent `Complete`/verified unsupported while child evidence contradicted | `spec.md:43-55` | **⚠️ Partially reconciled** — closes when 5/6/7 hold |
 | 9 | P1 | Persistent build/cutover/rollback/vector-repair are library-only (no operator surface); no generation retention/prune | `_db/indexer.mjs:1047-1174`, `_db/README.md` | **Open** |

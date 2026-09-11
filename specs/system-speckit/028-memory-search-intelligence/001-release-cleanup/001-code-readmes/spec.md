@@ -26,7 +26,7 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions:
-      - "Cleanup executed against 12 per-directory code READMEs (commit a3621ebe33)."
+      - "Cleanup executed against 12 per-directory code READMEs (commit 1455cf6062)."
       - "Edits only, every corrected path verified, strict validation 0/0."
 ---
 

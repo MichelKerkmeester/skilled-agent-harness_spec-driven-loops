@@ -89,7 +89,7 @@ The route coverage guard derives its expected set from the live registry rather 
 
 ### Five Canaries Were Already Red
 
-Before any edit, all five hub canaries failed on a stale `router-replay.cjs` pin left behind by commit `5bb2253daa`, which changed that scorer without following it. The shared pin at `005-decision-evaluator/harness/protected-digests.json` and the sk-doc copy were both moved to the current committed content. Ten of the sixteen authored hub digests were stale in the same way, on files this phase never touched. The four sibling canaries still fail, byte-identically to their baseline, because each keeps its own copy of the stale pin.
+Before any edit, all five hub canaries failed on a stale `router-replay.cjs` pin left behind by commit `6528bfd2c2`, which changed that scorer without following it. The shared pin at `005-decision-evaluator/harness/protected-digests.json` and the sk-doc copy were both moved to the current committed content. Ten of the sixteen authored hub digests were stale in the same way, on files this phase never touched. The four sibling canaries still fail, byte-identically to their baseline, because each keeps its own copy of the stale pin.
 
 ### Files Changed
 

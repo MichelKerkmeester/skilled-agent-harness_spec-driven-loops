@@ -63,9 +63,9 @@ Refuted: the 002 retention-sweep options claim; the 007 replayed-marker code com
 
 | Round | Commit | Scope |
 |-------|--------|-------|
-| 1 — doc truth | `ba3dddad1d` | 11 files: statuses, catalog, playbook, changelog claims |
-| 2a — code | `ef0eb88a4a` | 12 files: scrubber gaps, tombstone rollback, cache generation, stdout, maintenance errors, mirror templates |
-| 2b — continuity + lock | `7c17b07e01` | 8 files: restore budget, snapshot preservation, path detection, save-lock liveness (+28 regression tests) |
-| 3 — tail | `8bf4c89813` | 9 files: shard-rename detach, repair persistence, provenance heuristic, 013/014/022/023 doc truth |
+| 1 — doc truth | `b50c24c35e` | 11 files: statuses, catalog, playbook, changelog claims |
+| 2a — code | `45ebcb5d65` | 12 files: scrubber gaps, tombstone rollback, cache generation, stdout, maintenance errors, mirror templates |
+| 2b — continuity + lock | `6aab9d31b1` | 8 files: restore budget, snapshot preservation, path detection, save-lock liveness (+28 regression tests) |
+| 3 — tail | `a37c2821cd` | 9 files: shard-rename detach, repair persistence, provenance heuristic, 013/014/022/023 doc truth |
 
 Machine-readable detail: [`findings-registry.json`](./findings-registry.json) (per-finding proofs, per-phase seat verdicts, batch attribution).

@@ -47,7 +47,7 @@ _memory:
 | **Level** | 3 |
 | **Status** | Complete |
 | **Delivery** | Shipped. The parent goal LOG records this phase Done |
-| **Date** | 2026-09-02 (git author dates of `98a327edf9`, `08eb67a0de` and `8bb9011584`) |
+| **Date** | 2026-09-02 (git author dates of `90ea7ecb09`, `aa11c2b622` and `ca9e3885b8`) |
 | **Register findings** | 19, 21, 22, 23 and 24 read Fixed. 20 and 25 remain Planned |
 | **Gate** | Invariant 6c in `.opencode/commands/doctor/scripts/parent-skill-check.cjs` |
 <!-- /ANCHOR:metadata -->
@@ -88,21 +88,21 @@ string, on a deleted row, and green again on restore. It shipped exiting non-zer
 real instance it was written to catch. That was deliberate. Shipping it as a warning would
 have made it another check that has only ever passed, which is the shape of every finding in
 this packet. The one-line manifest fix it pointed at landed with the routing pass that owns
-that file, `08eb67a0de`, which also gave two packets the keyword-triggers line the hub says
+that file, `aa11c2b622`, which also gave two packets the keyword-triggers line the hub says
 every packet carries.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skills/sk-doc/ROUTER.md` | Modified (`98a327edf9`, 128 lines added) | `FULL_INVENTORY` completed from 128 to 252 leaves |
-| `.opencode/skills/sk-doc/README.md` | Modified (`98a327edf9`) | Description, trigger phrases and at-a-glance table brought onto the current mode set |
-| `.opencode/commands/doctor/scripts/parent-skill-check.cjs` | Modified (`98a327edf9`, 22 lines) | Invariant 6c, the command column check |
-| `.../parent-skill-check-command-column.test.cjs` | Created (`98a327edf9`, 285 lines) | The four failure modes the invariant must catch, plus the restore case |
-| `.opencode/skills/sk-doc/SKILL.md` | Modified (`08eb67a0de`) | The hidden command restored to the mode table, which closes the failing check |
-| `.opencode/skills/sk-doc/sk-create-frontmatter/SKILL.md` | Modified (`08eb67a0de`) | Keyword-triggers line the hub contract requires |
-| `.opencode/skills/sk-doc/sk-create-repo-rule/SKILL.md` | Modified (`08eb67a0de`) | Keyword-triggers line the hub contract requires |
-| `research/findings-register.md` | Modified (`8bb9011584`) | Five findings recorded closed, and the check that keeps them closed added to the checks table |
+| `.opencode/skills/sk-doc/ROUTER.md` | Modified (`90ea7ecb09`, 128 lines added) | `FULL_INVENTORY` completed from 128 to 252 leaves |
+| `.opencode/skills/sk-doc/README.md` | Modified (`90ea7ecb09`) | Description, trigger phrases and at-a-glance table brought onto the current mode set |
+| `.opencode/commands/doctor/scripts/parent-skill-check.cjs` | Modified (`90ea7ecb09`, 22 lines) | Invariant 6c, the command column check |
+| `.../parent-skill-check-command-column.test.cjs` | Created (`90ea7ecb09`, 285 lines) | The four failure modes the invariant must catch, plus the restore case |
+| `.opencode/skills/sk-doc/SKILL.md` | Modified (`aa11c2b622`) | The hidden command restored to the mode table, which closes the failing check |
+| `.opencode/skills/sk-doc/sk-create-frontmatter/SKILL.md` | Modified (`aa11c2b622`) | Keyword-triggers line the hub contract requires |
+| `.opencode/skills/sk-doc/sk-create-repo-rule/SKILL.md` | Modified (`aa11c2b622`) | Keyword-triggers line the hub contract requires |
+| `research/findings-register.md` | Modified (`ca9e3885b8`) | Five findings recorded closed, and the check that keeps them closed added to the checks table |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -148,7 +148,7 @@ Every check below was run and its output read. The rows map to AC-001 through AC
 | Readme summary surfaces against the mode registry | Description, trigger phrases and at-a-glance table each name all six previously missing domains. This satisfies AC-003 |
 | Invariant 6c negative controls, `parent-skill-check-command-column.test.cjs` | Fails on the dash form, on a wrong command string and on a deleted row, passes on restore. This satisfies AC-004 |
 | Invariant 6c on the live tree at ship time | Exited non-zero on the one real instance, by design |
-| Invariant 6c after `08eb67a0de` | The manifest line it pointed at is fixed, so the check has both failed and passed on real data |
+| Invariant 6c after `aa11c2b622` | The manifest line it pointed at is fixed, so the check has both failed and passed on real data |
 | `validate.sh specs/sk-doc/052-routing-completeness --strict --recursive` | PASS for this folder, Errors 0 |
 | `hvr_scan.py` on this document | 0 hard blockers |
 <!-- /ANCHOR:verification -->
@@ -170,7 +170,7 @@ appears in its own row. A hub document can still disagree with its registry in e
 respect without failing anything, which is the same class of gap this phase was created to
 close.
 
-**The 252 figure was not independently recounted here.** It comes from `98a327edf9` and from
+**The 252 figure was not independently recounted here.** It comes from `90ea7ecb09` and from
 AC-001, both of which report the count matching the leaf manifest with each path resolving on
 disk. This summary cites that evidence rather than re-deriving it.
 <!-- /ANCHOR:limitations -->

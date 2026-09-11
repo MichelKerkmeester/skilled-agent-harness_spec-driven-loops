@@ -56,7 +56,7 @@ Phase 013's disposition was fix, so the ratchet baseline was re-pinned to the re
 
 ### Corpus hash pin resolved, prior hashes recorded
 
-The old baseline was pinned to a stale 200/78/25-row corpus. The new pin is corpus `sha256:9f30cc..`, holdout `sha256:88a7f7..`, ambiguity `sha256:07cd2c..`. The **prior** hashes are recorded here so a corpus change stays distinguishable from a scorer change: corpus `sha256:529f658f..`, holdout `sha256:90dbee17..`, ambiguity `sha256:e07cacdf..`, captured 2026-07-17 at sha `37ebd31720`.
+The old baseline was pinned to a stale 200/78/25-row corpus. The new pin is corpus `sha256:9f30cc..`, holdout `sha256:88a7f7..`, ambiguity `sha256:07cd2c..`. The **prior** hashes are recorded here so a corpus change stays distinguishable from a scorer change: corpus `sha256:529f658f..`, holdout `sha256:90dbee17..`, ambiguity `sha256:e07cacdf..`, captured 2026-07-17 at sha `6b7feeee16`.
 
 ### Review-bucket minimum
 

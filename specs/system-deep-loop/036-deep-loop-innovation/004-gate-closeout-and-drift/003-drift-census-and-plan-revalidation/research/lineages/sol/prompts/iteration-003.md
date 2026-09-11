@@ -16,9 +16,9 @@ Last 2 ratios: 0.90 -> 0.78 | Stuck count: 0
 Resolved evidence: phase 004 is the clean first-order negative control. Do not repeat that search.
 Next focus: second-order premise drift in phase 013 taxonomy and phase 005 live-tools capability.
 
-Research Topic: Revalidate packet 036 phases 003-017 against `0ce43ff589..HEAD`, separating first-order path drift from second-order premise drift and producing an explicit evidence-backed verdict for every phase.
+Research Topic: Revalidate packet 036 phases 003-017 against `60b9ed8bc2..HEAD`, separating first-order path drift from second-order premise drift and producing an explicit evidence-backed verdict for every phase.
 Iteration: 3 of 10
-Focus Area: Resolve the registered-mode/workstream taxonomy assumed by phase 013 and test whether phase 005's planned live-tools capability already shipped. Independently inspect commits `6cd8ab14e4e`, `708d25acf04`, and `908efde8d8f`, current mode registries/defaultMode routing, and current `fanout-run.cjs` behavior.
+Focus Area: Resolve the registered-mode/workstream taxonomy assumed by phase 013 and test whether phase 005's planned live-tools capability already shipped. Independently inspect commits `d60cc2c7553`, `fa74e868615`, and `4b2c351cc1e`, current mode registries/defaultMode routing, and current `fanout-run.cjs` behavior.
 Remaining Key Questions:
 - Which phase premises are now false because registered-mode counts, routing defaults, taxonomy, or planned capabilities changed or already shipped?
 - What is the explicit verdict for each phase 003-010, with commit SHA and path:line evidence?

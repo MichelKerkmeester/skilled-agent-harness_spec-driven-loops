@@ -155,7 +155,7 @@ C2-B injects per-class channel weights into `RankedList.weight` at the pre-fusio
 ### Constraints
 
 - No measured justification exists for any specific weight value.
-- C2-B's research-stated blocker (C-X1, the `bonusOverChannels` fusion option) is already satisfied (030 `65cfcea513`), so the mechanism can land safely.
+- C2-B's research-stated blocker (C-X1, the `bonusOverChannels` fusion option) is already satisfied (030 `84c532114d`), so the mechanism can land safely.
 - A zero-weight channel must not distort surviving channels' convergence bonus.
 <!-- /ANCHOR:adr-002-context -->
 

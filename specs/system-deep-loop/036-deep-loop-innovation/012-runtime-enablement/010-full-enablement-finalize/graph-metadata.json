@@ -193,7 +193,7 @@
     ],
     "causal_summary": "The reversible flip moved all eight modes to `newauthoritativereversible`, which already routes every",
     "created_at": "2026-08-23T17:06:54.597Z",
-    "last_save_at": "2026-08-30T15:39:22.217Z",
+    "last_save_at": "2026-09-11T16:42:27.934Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2edfa7fb6bc929b4cf629cae260e78cef55ea70c2d8fbe048ae59e25a8a68fd2",
+    "source_fingerprint": "sha256:9e6ec964b28f5d0aecaa36ee4ef4cbde02c46dda5d00719b54164663da67e377",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "67392ceb0141568d3bd434560a66c1a3efbcab4f1dbccfa6f3c01332a5b42e02",
       "plan.md": "343a7afbbc50a495fb53498f42dcc2673033c79d3356b5a84ab6402b5b377de9",
       "tasks.md": "29ac93d2722c7f805bb73b577a9a1e0eeb0e222040028130ed0faf87daee3d8d",
-      "implementation-summary.md": "b668bef9d76b38be915135fa269085bc83dc5073fa7d53264bb26e4d0d1b59f6"
+      "implementation-summary.md": "15604a314abb23eb397d8d75bd6d6bd1e9da03bf326941840fe166879c74020a"
     },
     "last_active_child_id": null,
     "last_active_at": null

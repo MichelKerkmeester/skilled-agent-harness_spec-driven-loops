@@ -12,9 +12,9 @@ trigger_phrases: []
 
 ## Scope reviewed
 
-- `bf0986cecd` — 015 Phase-0 styles-DB foundation (`styles/_db/` code, oracle, telemetry, manifest)
-- `9a42aedae4` — command-namespace dedup (delete `commands/design/`, checker + registry rewrite)
-- `dc7fdfb0a7` — sk-doc/020 hyphen-naming (180 spec-doc files, 0 code)
+- `7e67a7bb3a` — 015 Phase-0 styles-DB foundation (`styles/_db/` code, oracle, telemetry, manifest)
+- `5dd5547949` — command-namespace dedup (delete `commands/design/`, checker + registry rewrite)
+- `6a2127a51e` — sk-doc/020 hyphen-naming (180 spec-doc files, 0 code)
 
 ## Headline
 
@@ -28,7 +28,7 @@ completion-honesty gaps left by the command-dedup commit**, not code defects.
 
 ### P1-A — 012/006 packet metadata claims "planned / not-implemented" for SHIPPED work
 - **Source:** MiniMax (DeepSeek missed it). **Status: CONFIRMED.**
-- The `006-retire-design-alias-namespace` packet shipped in `9a42aedae4`, but its metadata still says it is unbuilt:
+- The `006-retire-design-alias-namespace` packet shipped in `5dd5547949`, but its metadata still says it is unbuilt:
   - `spec.md` — `recent_action: "…(AUTHOR-SPEC stage)"`, `completion_pct: 0`, placeholder all-zeros fingerprint.
   - `implementation-summary.md:42/52` — `Status | Planned (AUTHOR-SPEC stage — not yet implemented)`, "Nothing in the runtime has changed yet".
   - `graph-metadata.json:42` — `"status": "planned"`.

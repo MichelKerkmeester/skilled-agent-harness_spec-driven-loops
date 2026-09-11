@@ -54,7 +54,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given the drift census, When the regeneration runs, Then every clean drifted packet is refreshed and the dirty one is named | 113 regenerated, `specs/sk-doc/051-sk-create-chart` skipped; commit `f704455e2b` | Met | - |
+| AC-001 | REQ-001 | Given the drift census, When the regeneration runs, Then every clean drifted packet is refreshed and the dirty one is named | 113 regenerated, `specs/sk-doc/051-sk-create-chart` skipped; commit `c38aa31117` | Met | - |
 | AC-002 | REQ-002 | Given six sampled regenerated packets, When validated strict, Then every failure predates the pass | four PASSED; two failures reproduce at HEAD (missing referenced file; `parent_id` already `"null"`) | Met | - |
 | AC-003 | REQ-003 | Given each adopting package root, When the shared parser is imported from there, Then it resolves | ESM and CommonJS probes from the deep-loop runtime; ESM probe from sk-doc's scripts | Met | - |
 | AC-004 | REQ-004 | Given the two skills, When their JavaScript parsers are inventoried after adoption, Then each remaining one has a reason | 7 adopted; 38 sites in 26 files remain: 16 in deep-loop directories without a dependency edge, 16 spec-kit internals owned by the parser's own skill, 1 advisor checker, spec-kit test helpers; Python parsers listed | Met | - |

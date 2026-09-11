@@ -33,7 +33,7 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
-> DELETED, superseded by measurement. The `SPECKIT_ADVISOR_OUTCOME_WEIGHTED_RERANK` flag and its code were built at `03d0b01eb6`, wired live-adjacent at `09626fc921`, and removed at `8efcde0e6b` in the flag-resolution reckoning because the measured MRR delta was +0.005 to +0.008 versus the metric's own noise band of SD 0.0237, and right-skill@3 = 0.000 across all 90 runs. See [`../../001-speckit-memory/022-kept-off-flag-resolution/`](../../001-speckit-memory/022-kept-off-flag-resolution/). The ADRs below are retained as the design-of-record.
+> DELETED, superseded by measurement. The `SPECKIT_ADVISOR_OUTCOME_WEIGHTED_RERANK` flag and its code were built at `3682ec59da`, wired live-adjacent at `f3a1231c66`, and removed at `6b99eb68d2` in the flag-resolution reckoning because the measured MRR delta was +0.005 to +0.008 versus the metric's own noise band of SD 0.0237, and right-skill@3 = 0.000 across all 90 runs. See [`../../001-speckit-memory/022-kept-off-flag-resolution/`](../../001-speckit-memory/022-kept-off-flag-resolution/). The ADRs below are retained as the design-of-record.
 
 ---
 

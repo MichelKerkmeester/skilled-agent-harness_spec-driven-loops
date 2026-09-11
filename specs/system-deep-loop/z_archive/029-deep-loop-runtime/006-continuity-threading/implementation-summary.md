@@ -120,5 +120,5 @@ The implementation kept the continuity carrier on the two confirmed paths: a red
 ## Known Limitations
 
 1. **No measured benefit number exists.** This was implemented for continuity correctness, not a quantified retrieval delta.
-2. **Committed at `99bfa4427d`.** The code shipped in that first-wave 028 build commit (continuity-thread module + vitest).
+2. **Committed at `b3a07f8de5`.** The code shipped in that first-wave 028 build commit (continuity-thread module + vitest).
 <!-- /ANCHOR:limitations -->

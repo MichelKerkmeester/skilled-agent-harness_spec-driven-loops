@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Deep Loop STOP-Input Corroboration"
-description: "Runtime implementation summary for the STOP-input corroboration cluster. C1 through C6 are implemented in deep-loop-runtime with deterministic tests. Live benchmark calibration, workflow reported-novelty forwarding and namespace-aware graph-edge persistence remain explicit gates. C7 was already shipped in packet 030 commit 46812f12a8."
+description: "Runtime implementation summary for the STOP-input corroboration cluster. C1 through C6 are implemented in deep-loop-runtime with deterministic tests. Live benchmark calibration, workflow reported-novelty forwarding and namespace-aware graph-edge persistence remain explicit gates. C7 was already shipped in packet 030 commit ba632c340c."
 trigger_phrases:
   - "stop input corroboration implementation summary"
   - "newInfoRatio audit status"
@@ -53,7 +53,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-C1 through C6 were implemented in `.opencode/skills/deep-loop-runtime` with deterministic tests. C7 remains already-shipped via packet 030 commit `46812f12a8` and was not re-implemented. The cluster is complete as a runtime-scoped ship: every candidate landed behind a conservative default-off or benchmark-gated guard, so the live behavior gates (novelty floor/tolerance calibration, fanout lag ceiling, heartbeat cadence), the workflow reported-novelty forwarding and namespace-aware graph-edge persistence remain explicit downstream gates recorded under Known Limitations rather than incomplete core work.
+C1 through C6 were implemented in `.opencode/skills/deep-loop-runtime` with deterministic tests. C7 remains already-shipped via packet 030 commit `ba632c340c` and was not re-implemented. The cluster is complete as a runtime-scoped ship: every candidate landed behind a conservative default-off or benchmark-gated guard, so the live behavior gates (novelty floor/tolerance calibration, fanout lag ceiling, heartbeat cadence), the workflow reported-novelty forwarding and namespace-aware graph-edge persistence remain explicit downstream gates recorded under Known Limitations rather than incomplete core work.
 
 | Candidate | Outcome |
 |-----------|---------|
@@ -101,7 +101,7 @@ The implementation stayed inside deep-loop-runtime. C1 and C2 harden structured 
 | Keep C3 additive and default-off in fanout | The existing cost-guard return remains advisory, while live tripwire defaults need benchmark calibration. |
 | Rewrite divergent same-id records to content-derived ids | Downstream id-scoped upsert would clobber same-id bodies. Unique ids preserve both sides. |
 | Keep C6 default disabled until measured | The heartbeat cadence can add ledger noise if the default is wrong. |
-| Do not rebuild C7 | Packet 030 commit `46812f12a8` already shipped the shutdown-summary half. |
+| Do not rebuild C7 | Packet 030 commit `ba632c340c` already shipped the shutdown-summary half. |
 <!-- /ANCHOR:decisions -->
 
 ---

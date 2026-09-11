@@ -33,7 +33,7 @@ _memory:
 | **Spec Folder** | 007-consumer-and-gold-realignment |
 | **Completed** | 2026-07-28 |
 | **Level** | 1 |
-| **Commits** | 2092be246b, dc625440f4 |
+| **Commits** | 5b23104dd4, 436f4ca719 |
 <!-- /ANCHOR:metadata -->
 
 ---

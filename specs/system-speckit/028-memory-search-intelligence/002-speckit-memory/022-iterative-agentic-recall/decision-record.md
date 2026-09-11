@@ -46,7 +46,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted - gate-zero governor implemented default-off (16ee739b08), promotion pending |
+| **Status** | Accepted - gate-zero governor implemented default-off (22ad4ab05b), promotion pending |
 | **Date** | 2026-06-19 |
 | **Deciders** | Operator, 028 research (iters 11/17/20/22) |
 

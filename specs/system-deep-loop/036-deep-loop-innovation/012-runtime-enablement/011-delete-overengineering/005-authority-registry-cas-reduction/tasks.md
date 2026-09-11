@@ -41,7 +41,7 @@ the `flipAuthority()` survivor fix (T2) and the mutator removal (T4) travel toge
 ### T0 — Gate on Phase 004 (orchestrator, read-only)
 - [x] `scripts/enable-modes.cjs` gone (phase 004). `scripts/flip-authority.cjs` still present at wave start —
   F4 was resequenced into THIS phase, so this phase deletes it (see spec.md §2).
-- [x] Phase `004-rollout-flip-tooling` landed green (`07cba092ec`, integrated to v4/main).
+- [x] Phase `004-rollout-flip-tooling` landed green (`4eff1311a0`, integrated to v4/main).
 
 ### T1 — Re-confirm callers, repo-wide (read-only)
 - [x] `rg` for `prepareCutover` / `.compareAndSwap(` / `compareAndSwapRollback` / `compareAndSwapFinalize` —

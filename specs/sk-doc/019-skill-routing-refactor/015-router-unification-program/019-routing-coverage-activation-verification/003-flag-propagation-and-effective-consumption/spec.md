@@ -12,10 +12,10 @@ _memory:
     packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/003-flag-propagation-and-effective-consumption"
     last_updated_at: "2026-07-21T03:58:44Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Reconciled to the implemented+committed state (code landed in a1cdb65d90)"
+    recent_action: "Reconciled to the implemented+committed state (code landed in c926b25506)"
     next_safe_action: "P4/011 operator-gated cutover remains pending"
     blockers:
-      - "None for this child (implemented in a1cdb65d90); the program-level default-on cutover stays operator-gated (P4/011)."
+      - "None for this child (implemented in c926b25506); the program-level default-on cutover stays operator-gated (P4/011)."
     key_files:
       - "spec.md"
       - "decision-record.md"
@@ -27,7 +27,7 @@ _memory:
     open_questions:
       - "None blocking — the child scope is complete; cutover timing is an operator decision (P4/011)."
     answered_questions:
-      - "Thread the full compiledRoute object or a top-level metadata.compiledRouteSummary? Settled: a top-level metadata.compiledRouteSummary (implemented in a1cdb65d90)."
+      - "Thread the full compiledRoute object or a top-level metadata.compiledRouteSummary? Settled: a top-level metadata.compiledRouteSummary (implemented in c926b25506)."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->
 <!-- SPECKIT_LEVEL: 3 -->
@@ -61,7 +61,7 @@ This phase makes the flag **reachable** and the decision **consumable**. It adds
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P0 (P1 in the 015 P0→P4 DAG; the effectiveness prerequisite) |
-| **Status** | Implemented — landed in `a1cdb65d90`, behind the still-off `SPECKIT_COMPILED_ROUTING` flag. Both allowlists updated and the compiled decision threaded through the native brief, the CLI `subprocess.ts` interface, and the hook render; routing byte-identical to legacy. The staged default-on cutover stays operator-gated (P4/011). |
+| **Status** | Implemented — landed in `c926b25506`, behind the still-off `SPECKIT_COMPILED_ROUTING` flag. Both allowlists updated and the compiled decision threaded through the native brief, the CLI `subprocess.ts` interface, and the hook render; routing byte-identical to legacy. The staged default-on cutover stays operator-gated (P4/011). |
 | **Created** | 2026-07-20 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Migration stage** | P1 — un-strip the flag in both child-env allowlists; un-drop the compiled decision through bridge + CLI + hook; still behind the default-off flag |

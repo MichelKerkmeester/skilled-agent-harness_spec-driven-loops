@@ -42,7 +42,7 @@ _memory:
 ## Phase 1: Setup
 
 - [x] T001 Pin BASE and inventory the typed-ledger writer, transition gateway, replay fingerprint, projection watermark, and current-focus seams
-  - [EVIDENCE: BASE `012652b479`; frozen contracts read before implementation]
+  - [EVIDENCE: BASE `68b518ab0d`; frozen contracts read before implementation]
 - [x] T002 Capture protected behavior from `runtime/lib/deep-loop/pivot-candidates.ts`, `runtime/lib/deep-loop/divergent-pivot.ts`, and the phase placement in `manifest/phase-tree.json`
   - [EVIDENCE: pivot 4/4 and divergent-pivot 14/14 fixtures pass]
 <!-- /ANCHOR:phase-1 -->

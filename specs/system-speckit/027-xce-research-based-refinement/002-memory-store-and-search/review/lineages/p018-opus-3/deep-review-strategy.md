@@ -27,7 +27,7 @@ Review of `018-reindex-scan-responsiveness-and-cancellation`: the fix that makes
 - P2: 2 (Δ+2) — F001 (test coverage), F002 (post-terminal Set-leak edge)
 
 ## What Worked
-- Reading the focused commit diff (`f1dbb676f2`) then confirming against current source gave fast, high-confidence correctness verification.
+- Reading the focused commit diff (`a48325ab74`) then confirming against current source gave fast, high-confidence correctness verification.
 - Static `grep` over `tests/` surfaced the untested new paths (F001) when the suite itself could not be run.
 
 ## What Failed

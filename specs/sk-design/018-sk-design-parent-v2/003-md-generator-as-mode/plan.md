@@ -145,7 +145,7 @@ runtime path in `dist-freshness.cjs`, and one boundary playbook inside `sk-desig
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-Revert `fa35e09653`. The move, the identity deletions, the vocabulary fold and the 44 rewrites are
+Revert `01874dbf92`. The move, the identity deletions, the vocabulary fold and the 44 rewrites are
 one commit, so a revert restores the standalone skill and reopens the regression phase 002 created.
 The 30 historical records were never touched and need no reversal.
 <!-- /ANCHOR:rollback -->
@@ -190,7 +190,7 @@ The file count is dominated by a corpus that is not the subject of the change.
 - [x] The daemon rebuilt explicitly before any routing number is quoted
 
 ### Rollback Procedure
-1. `git revert fa35e09653`
+1. `git revert 01874dbf92`
 2. Rebuild the advisor daemon and observe its generation move
 3. Expect `validate this design.md` to return nothing again: that is phase 002's open regression
 

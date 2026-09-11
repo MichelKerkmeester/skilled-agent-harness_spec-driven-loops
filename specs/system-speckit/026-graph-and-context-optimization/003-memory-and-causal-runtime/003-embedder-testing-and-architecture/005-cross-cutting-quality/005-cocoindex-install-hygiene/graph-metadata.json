@@ -196,7 +196,7 @@
     ],
     "causal_summary": "`ccc` from a normal shell resolves to `/Users/michelkerkmeester/.local/bin/ccc`, which points into the pipx venv at `/Users/michelkerkmeester/.local/pipx/venvs/cocoindex-code/`",
     "created_at": "2026-05-18T19:05:18.860Z",
-    "last_save_at": "2026-08-30T15:39:30.862Z",
+    "last_save_at": "2026-09-11T16:42:32.386Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f4a6909f2415ae1437d2afafe73797b11839a84166b7c2adfa755b251c39b4e8",
+    "source_fingerprint": "sha256:34aadd463741072b220088697f178508379fb421851e750b0b8230da44eda72a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "dff15c6abd27b28a9f571208c2c2b3c050ac21b3b7078f081f5256478186af11",
+      "spec.md": "8cd6040ac9c851512768a3a662a4271155fdec54f75ffebeeaee0068fac9f8e8",
       "plan.md": "43fef0b286b1916ae4475f7c0d25a960bd59797c35a1cb05aa69a033ddd11f36",
-      "tasks.md": "d647cbf6d58f4e8a1ad2e0b85c76f54c6478a410cf1a18310f04706265fb6edd",
-      "implementation-summary.md": "534ec282cba51db4cab3c54f6075a11f6dbf8610585633d7d0b9494e08de0a4a"
+      "tasks.md": "c41cf4b507b2ad7524a2ec988ed501cba3a4948cdf8e32c84d5a7da4cf4bbcfe",
+      "implementation-summary.md": "0c15b91afcd013b2bef1faa46cbf9858f02586ca09370630fc780943fabf9c12"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -39,7 +39,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Status** | Complete |
-| **Delivered** | Yes — shadow hardening `452fbc0e64` + live cutover `dffe5a06c0`, all routing gates green |
+| **Delivered** | Yes — shadow hardening `8abf251585` + live cutover `ae8f287fbc`, all routing gates green |
 | **Track** | sk-doc |
 | **Opportunities addressed** | O7 (command-metadata ingestion) + O10 (denser command-metadata/leaf-aliases e2e tests), per 029 research §3 |
 | **Blast radius** | High — live rewire of `projection.ts` (advisor's hottest file) and `skill_advisor.py`'s `COMMAND_BRIDGES` |
@@ -58,7 +58,7 @@ A single canonical command-bridge projection derived from the fleet's 7 `command
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The cutover shipped as two separate commits per the program parent's guarded-rollout rule, after three earlier attempts had been corpus-gated and reverted (ownedSignals overreach, `/memory:save` identity loss, description false-fires). The shadow-hardening commit (`452fbc0e64`, prepared by GPT-5.6-SOL via cli-codex and verified independently by the orchestrator) closed those three failure modes: generated entries without a live hand-authored counterpart are excluded from scoring, each active bridge carries an exact live-field compatibility snapshot (`scoring-compatibility.json`), and inactive-entry descriptions are kept out of the lexical inputs — landing both GENERATED blocks while live routing still bound the hand-authored arrays. Only after the shadow-state capture equalled every pin exactly and the corpus gate passed at CI floors did the cutover commit (`dffe5a06c0`) swap the three live bindings (TS `COMMAND_BRIDGES`, Python `COMMAND_BRIDGES` + owner normalization) to the generated blocks. The Python CLI flags (`--emit-command-bridges`, `--check-command-bridges`, `--dump-command-bridges`) mirror the script's existing routing-projection machinery. Two latent test defects found en route were fixed: the command-namespace sanity list still expected the retired `design/` namespace (now `interface/`), and the drift-guard's post-cutover branch keyed on a `count` field the generated inventory never had, so it could never flip — its live-vs-generated assertion is now unconditional.
+The cutover shipped as two separate commits per the program parent's guarded-rollout rule, after three earlier attempts had been corpus-gated and reverted (ownedSignals overreach, `/memory:save` identity loss, description false-fires). The shadow-hardening commit (`8abf251585`, prepared by GPT-5.6-SOL via cli-codex and verified independently by the orchestrator) closed those three failure modes: generated entries without a live hand-authored counterpart are excluded from scoring, each active bridge carries an exact live-field compatibility snapshot (`scoring-compatibility.json`), and inactive-entry descriptions are kept out of the lexical inputs — landing both GENERATED blocks while live routing still bound the hand-authored arrays. Only after the shadow-state capture equalled every pin exactly and the corpus gate passed at CI floors did the cutover commit (`ae8f287fbc`) swap the three live bindings (TS `COMMAND_BRIDGES`, Python `COMMAND_BRIDGES` + owner normalization) to the generated blocks. The Python CLI flags (`--emit-command-bridges`, `--check-command-bridges`, `--dump-command-bridges`) mirror the script's existing routing-projection machinery. Two latent test defects found en route were fixed: the command-namespace sanity list still expected the retired `design/` namespace (now `interface/`), and the drift-guard's post-cutover branch keyed on a `count` field the generated inventory never had, so it could never flip — its live-vs-generated assertion is now unconditional.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -83,7 +83,7 @@ All run post-cutover, by exit code:
 | `score-routing-corpus.py` at CI floors | exit 0 — accuracy 0.5333, gate3 F1 0.9843, overall_pass true, historical clean |
 | Nine-suite battery (ratchet, golden prompts, drift-guard, command e2e, binding, resolution, registry drift, both parity suites) | 53/53 pass |
 | `--check-command-bridges` | exit 0 — status agreement, generated blocks fresh |
-| Two-commit rollback structure | `452fbc0e64` shadow / `dffe5a06c0` cutover-only; single revert restores hand-authored routing |
+| Two-commit rollback structure | `8abf251585` shadow / `ae8f287fbc` cutover-only; single revert restores hand-authored routing |
 | `validate.sh <folder> --strict` | Errors: 0 |
 
 <!-- /ANCHOR:verification -->

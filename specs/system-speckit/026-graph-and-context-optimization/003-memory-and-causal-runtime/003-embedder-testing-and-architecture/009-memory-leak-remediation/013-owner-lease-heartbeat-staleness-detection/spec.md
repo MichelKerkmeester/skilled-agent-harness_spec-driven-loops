@@ -57,7 +57,7 @@ _memory:
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is phase 013 of the memory-leak remediation arc. Gap discovered during arc 009 closure (commit `8b84612f12`) when mk_code_index MCP reconnect failed with `-32000`. Investigation:
+This is phase 013 of the memory-leak remediation arc. Gap discovered during arc 009 closure (commit `cba5abb09a`) when mk_code_index MCP reconnect failed with `-32000`. Investigation:
 
 - Existing launcher (PID 88931) + server (PID 89094) were alive but their parent (the previous Claude Code MCP client) had disconnected.
 - `lastHeartbeatIso: 2026-05-22T14:10:47.910Z` against `ttlMs: 60000` = 22 minutes stale.

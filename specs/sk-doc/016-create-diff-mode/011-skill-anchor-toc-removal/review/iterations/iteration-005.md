@@ -17,7 +17,7 @@ user
 Independent code review (READ-ONLY). git/rg/python3/node for inspection only. Do NOT modify any file.
 
 # Task
-Audit git commit `1e58d845af` (TOC + `<!-- ANCHOR -->` removal). This is **Iteration 5 of 10**. Focus: **MAINTAINABILITY — exhaustive stale-guidance/contradiction enumeration**.
+Audit git commit `e5ee6609c2` (TOC + `<!-- ANCHOR -->` removal). This is **Iteration 5 of 10**. Focus: **MAINTAINABILITY — exhaustive stale-guidance/contradiction enumeration**.
 
 # ALREADY KNOWN (do not re-report; these are being remediated)
 - P1: orphaned numbered-TOC link lists (~8 files).
@@ -506,7 +506,7 @@ INTENT_SIGNALS = {
 codex
 The relevant skill guidance is straightforward here: findings-first, evidence by `file:line`, and doc-template/resource awareness. I’m pulling the commit context plus the exact grep set now, then I’ll separate known items, carve-outs, correct no-policy text, and genuinely new stale guidance.
 exec
-/bin/zsh -lc 'git show --stat --oneline --decorate --no-renames 1e58d845af && git show --name-only --format=fuller --no-renames 1e58d845af' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'git show --stat --oneline --decorate --no-renames e5ee6609c2 && git show --name-only --format=fuller --no-renames e5ee6609c2' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
 /bin/zsh -lc "rg -n -i 'table of contents|\\bTOC\\b|<"'!-- ?ANCHOR|anchor link|section anchor|require_toc|tocRequired|optional anchor|anchors help'"' .opencode --glob '*.md' --glob '*.yaml' --glob '*.json' --glob '*.txt'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 440ms:
@@ -2256,7 +2256,7 @@ git: warning: confstr() failed with code 5: couldn't get path of DARWIN_USER_TEM
 git: error: couldn't create cache file '/tmp/xcrun_db-lLo4Leic' (errno=Operation not permitted)
 2026-05-26 12:57:22.793 xcodebuild[25747:53806805]  DVTFilePathFSEvents: Failed to start fs event stream.
 2026-05-26 12:57:22.909 xcodebuild[25747:53806804] [MT] DVTDeveloperPaths: Failed to get length of DARWIN_USER_CACHE_DIR from confstr(3), error = Error Domain=NSPOSIXErrorDomain Code=5 "Input/output error". Using NSCachesDirectory instead.
-1e58d845af docs(117): remove TOC blocks + HTML anchor comments from skill docs
+e5ee6609c2 docs(117): remove TOC blocks + HTML anchor comments from skill docs
  .opencode/commands/create/README.txt               |  18 --
  .../create/assets/create_feature_catalog_auto.yaml |   3 +-
  .../assets/create_feature_catalog_confirm.yaml     |   3 +-
@@ -3163,7 +3163,7 @@ git: warning: confstr() failed with code 5: couldn't get path of DARWIN_USER_TEM
 git: error: couldn't create cache file '/tmp/xcrun_db-9P7CnsKR' (errno=Operation not permitted)
 2026-05-26 12:57:24.467 xcodebuild[25791:53806911]  DVTFilePathFSEvents: Failed to start fs event stream.
 2026-05-26 12:57:24.579 xcodebuild[25791:53806910] [MT] DVTDeveloperPaths: Failed to get length of DARWIN_USER_CACHE_DIR from confstr(3), error = Error Domain=NSPOSIXErrorDomain Code=5 "Input/output error". Using NSCachesDirectory instead.
-commit 1e58d845af44255e32e071b3d69d1c19e76d4ac6
+commit e5ee6609c2b83108535c9b42befe8f88c3b879f0
 Author:     MichelKerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
 AuthorDate: Tue May 26 11:55:15 2026 +0200
 Commit:     MichelKerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
@@ -5418,7 +5418,7 @@ warning: in-process app-server event stream lagged; dropped 258 events
 .opencode/specs/system-spec-kit/027-xce-research-based-refinement/research/027-xce-research-pt-01/iterations/iteration-007.md:208:**RQ8 — Token Reduction Validation**: XCE claims ~20% token reduction with steering (external/README.md:188). Is this measurable for us via existing `prompt-cache.ts` + `budget-allocator.ts`? Build the baseline-vs-after measurement protocol without implementing the harness (harness is DEFER to `028`). Instrumentation layer design: what hooks exist in the token budget pipeline for measuring per-session token usage?
 .opencode/specs/system-spec-kit/027-xce-research-based-refinement/research/027-xce-research-pt-01/iterations/iteration-008.md:224:- XCE's ~20% measurement methodology is a black box. README:188 states the claim but provides zero methodology (no confidence interval, no task set description, no measurement protocol description). We cannot ADOPT their methodology because it's undocumented.
 .opencode/specs/system-spec-kit/027-xce-research-based-refinement/research/027-xce-research-pt-01/iterations/iteration-008.md:256:- **RQ8 — Token Reduction Validation**: Fully answered. XCE claims ~20% token reduction with steering (F-043: external/README.md:188). Our system has zero per-session token measurement in its MCP server instrumentation layer (F-044): `prompt-cache.ts` is a cache with input-side token caps (lines 10-12), `budget-allocator.ts` is a pre-allocation planner (lines 52-117), `code-graph-context.ts` reports single-response `budgetUsed` via heuristic (line 199), and `compact-merger.ts` uses chars/4 estimation (lines 53-55). Actual session-level token counting EXISTS but OUTSIDE our MCP server — in `session-analytics-db.ts` (prompt_tokens, completion_tokens, total_tokens at lines 100-104; per-turn breakdown at lines 125-129) populated by `session-stop.ts` from LLM API usage envelopes (F-045). Measurement protocol: baseline-vs-after with N ≥ 10 sessions per condition, query `session-analytics-db.ts` `getSessionRow()` for `total_tokens` post-session-stop, compute paired delta (F-046). Verdict: ADAPT — measurement is deferrable to sub-packet 028 eval harness + 029 token instrumentation (~80 LOC total). Cannot ADOPT XCE's black-box methodology. Expected effect: 5-15% reduction (lower than XCE's 20% due to dynamic firing and different tool output format) (F-047).
-.opencode/specs/sk-doc/011-skill-anchor-toc-removal/review/iterations/iteration-5.raw.txt:16:Audit git commit `1e58d845af` (TOC + `<!-- ANCHOR -->` removal). This is **Iteration 5 of 10**. Focus: **MAINTAINABILITY — exhaustive stale-guidance/contradiction enumeration**.
+.opencode/specs/sk-doc/011-skill-anchor-toc-removal/review/iterations/iteration-5.raw.txt:16:Audit git commit `e5ee6609c2` (TOC + `<!-- ANCHOR -->` removal). This is **Iteration 5 of 10**. Focus: **MAINTAINABILITY — exhaustive stale-guidance/contradiction enumeration**.
 .opencode/specs/sk-doc/011-skill-anchor-toc-removal/review/iterations/iteration-5.raw.txt:26:- `rg -n -i 'table of contents|\bTOC\b|<!-- ?ANCHOR|anchor link|section anchor|require_toc|tocRequired|optional anchor|anchors help' .opencode --glob '*.md' --glob '*.yaml' --glob '*.json' --glob '*.txt'`
 .opencode/specs/sk-doc/011-skill-anchor-toc-removal/review/iterations/iteration-5.raw.txt:507:/bin/zsh -lc "rg -n -i 'table of contents|\\bTOC\\b|<"'!-- ?ANCHOR|anchor link|section anchor|require_toc|tocRequired|optional anchor|anchors help'"' .opencode --glob '*.md' --glob '*.yaml' --glob '*.json' --glob '*.txt'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 .opencode/specs/sk-doc/011-skill-anchor-toc-removal/review/iterations/iteration-5.raw.txt:547:.opencode/specs/skilled-agent-orchestration/z_archive/082-sk-doc-skill-readme-and-structure/005-deep-review-p1-p2-remediation/evidence/codex-remediation-dispatch.txt:961:<!-- ANCHOR:protocol -->

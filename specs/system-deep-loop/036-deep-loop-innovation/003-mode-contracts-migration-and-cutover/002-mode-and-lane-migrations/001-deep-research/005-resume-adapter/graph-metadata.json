@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The Deep Research resume adapter rebuilds interrupted live state from the sealed typed ledger through the frozen reducers, maps continuity to typed lifecycle state, and re-enters idempotently without replaying semantic work.",
     "created_at": "2026-07-16T03:43:31.450Z",
-    "last_save_at": "2026-08-30T15:39:20.952Z",
+    "last_save_at": "2026-09-11T16:42:22.192Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,14 +205,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e93043f98fd1fe1f4d2500c979d6a1fd7bdae64a70397a9503e967cc4d6ea143",
+    "source_fingerprint": "sha256:69b2492e789a2c75f8b87bb85a845bb13298c7e0726873e8421239bb9fd603cc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e7b2a6fdf98258025108d8b7b7985d3d526f0a905293270ea0372b659bad1f95",
       "plan.md": "cba320f80e09626ee042db2f87878627f70094f638e99a637f5e8e0b087b2da4",
       "tasks.md": "23f66d38be32485c0667f526ad62267bd28856abf405573691ea3aeedafbf730",
       "decision-record.md": "1cf246d1890bd73e0cf3cbf1a2b82f0aaf3daaedb8f6571a00e5fe937e47a197",
-      "implementation-summary.md": "7705769824e795cf03260520b40fe602f9e2cd2c9ca65f728a93cc1b3ed0c5b5"
+      "implementation-summary.md": "dd03b675cb45a811d8e07ef4901f9642115b25ada9cbc64a7c00cd6a03b734d4"
     },
     "last_active_child_id": null,
     "last_active_at": null

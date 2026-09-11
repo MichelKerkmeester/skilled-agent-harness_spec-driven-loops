@@ -50,8 +50,7 @@
       ".opencode/bin/check-no-spec-imports.cjs",
       ".github/workflows/runtime-no-spec-import.yml",
       ".opencode/bin/compiled-route-status.cjs",
-      ".opencode/bin/compiled-route.cjs",
-      ".opencode/skills/system-spec-kit/mcp-server/ENV-REFERENCE.md"
+      ".opencode/bin/compiled-route.cjs"
     ],
     "entities": [
       {
@@ -112,12 +111,6 @@
         "name": "compiled-route.cjs",
         "kind": "file",
         "path": ".opencode/bin/compiled-route.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "ENV-REFERENCE.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/mcp-server/ENV-REFERENCE.md",
         "source": "derived"
       },
       {
@@ -197,11 +190,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Requirement Coverage",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The compiled router is shipped but held inert",
     "created_at": "2026-07-20T21:51:24.395Z",
-    "last_save_at": "2026-08-30T15:39:15.211Z",
+    "last_save_at": "2026-09-11T16:42:04.859Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,14 +210,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:30afad595064632eeee2aa4d0b6f4ed3cfc4b4ec5297e3cb1d7a534c9db48255",
+    "source_fingerprint": "sha256:1f8dbbc1c8cde1454466f25aecd6a3842ee09b2bf1ca760656bdb33b7abe0bb6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "04da9a10082b559b02469c89149c97e9dce424f954097d62436c540c2a334b0c",
+      "spec.md": "d03c80b9fb00d44785a8326a39421e1a4ef07142d4d31271070353fff41d44e4",
       "plan.md": "210877132a4912489dcfd61da32c7b8bfe4c44c9aa75dd0ca8a5b4c847697c3e",
-      "tasks.md": "d2a478c5a24433329c553e72aa5bda1d511484d1504c74e71d0cbac348d91ee4",
+      "tasks.md": "93672945960988758efdbf0458f5bbf1b3345794320ca371c780746f09540b64",
       "decision-record.md": "3d0966187b456dbb6881301d56c9964c878d09f7ce31954fc3bc301bebeba923",
-      "implementation-summary.md": "2f60e783e0d44b8be41571d92cb2992a9170d7cf59543f4f952928982d1e379d"
+      "implementation-summary.md": "cf10379a9e7f8021ce782344b865349db658d30641caa564303a346a2fae9062"
     },
     "last_active_child_id": null,
     "last_active_at": null

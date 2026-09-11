@@ -48,7 +48,7 @@ trigger_phrases: []
 
 **Required gate/mitigation:** Block all authority operations until a clean, isolated worktree at one recorded candidate SHA has zero unexpected paths; all imports resolve; no-emit TypeScript, unit, integration, crash, and package gates pass on that exact SHA; and every certificate records that SHA and tree digest. Land the additive build first, then create a new clean execution candidate—do not cut over from this 421-path working set.
 
-**Evidence:** observed `git status --short | wc -l` = `421`; `HEAD=9229cb8f3e281c9291e6d631237528bc755e6f4b`, `origin/skilled/v4.0.0.0=d76f84439ae94c3cc5f5dd70ee38c0462131c5e1`, `main=9c5c7c5bde4dbb468fdb11df3c5afdbaa87443e3`; no-emit TypeScript failed with TS2305 in `cutover-certificate/certificate.ts:5`, `inflight-state-migration/migration-dispositions.ts:7`, and `per-mode-authority-flip/ledger-event.ts:5`; `.opencode/skills/system-deep-loop/runtime/lib/locks-and-fencing/fenced-ledger-writer.ts:1-79`; `/tmp/ks/036-epic-briefing.md:5,49-57`.
+**Evidence:** observed `git status --short | wc -l` = `421`; `HEAD=2d12dfc5f5f365f396c51a7dea1c7cb825f5501b`, `origin/skilled/v4.0.0.0=151d4c416395d07405ac6c4a0aecf80c13d89d90`, `main=b61fd133f2316cb83829fc5e81ae271c21e3f67b`; no-emit TypeScript failed with TS2305 in `cutover-certificate/certificate.ts:5`, `inflight-state-migration/migration-dispositions.ts:7`, and `per-mode-authority-flip/ledger-event.ts:5`; `.opencode/skills/system-deep-loop/runtime/lib/locks-and-fencing/fenced-ledger-writer.ts:1-79`; `/tmp/ks/036-epic-briefing.md:5,49-57`.
 
 ### 6. `BLOCKED` in-flight rows are accepted despite the frozen spec saying they deny cutover — P0
 

@@ -46,7 +46,7 @@ _memory:
 | **Level** | 2 |
 | **Scope** | Advisor RRF determinism spine: C3 (import) + C2 (folded) + conflict-suppression carrier - implemented default-off |
 | **Branch** | system-speckit/027-xce-research-based-refinement |
-| **Shipped via** | Commit `ce858fa165` (feat 028 build 003-skill-advisor/001-rrf-determinism-spine, touched `fusion.ts` + `graph-causal.ts` + the rrf-determinism-spine vitest). No packet 030 changes. Dependency commit `65cfcea513` remains the Memory-side `fuseResultsMulti` API extension |
+| **Shipped via** | Commit `c49470a44a` (feat 028 build 003-skill-advisor/001-rrf-determinism-spine, touched `fusion.ts` + `graph-causal.ts` + the rrf-determinism-spine vitest). No packet 030 changes. Dependency commit `84c532114d` remains the Memory-side `fuseResultsMulti` API extension |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -117,4 +117,4 @@ The implementation follows the authoritative 028 research and the already-author
 - **Tasks**: `tasks.md`.
 - **Checklist**: `checklist.md`.
 - **Source research**: `../research/research.md`, `../../research/roadmap.md`, `../../research/synthesis/01-go-candidates.md` + `03`, deltas `iter-002.jsonl` / `iter-006.jsonl` / `iter-010.jsonl`.
-- **Shipped record (historical evidence)**: Wave-0 record (dependency commit `65cfcea513`).
+- **Shipped record (historical evidence)**: Wave-0 record (dependency commit `84c532114d`).

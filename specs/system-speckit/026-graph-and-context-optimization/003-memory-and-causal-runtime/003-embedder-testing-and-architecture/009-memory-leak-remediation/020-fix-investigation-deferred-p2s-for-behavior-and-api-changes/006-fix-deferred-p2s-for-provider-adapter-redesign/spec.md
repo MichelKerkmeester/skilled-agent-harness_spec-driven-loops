@@ -48,7 +48,7 @@ _memory:
 | **Created** | 2026-05-23 |
 | **Branch** | `main` |
 | **Parent** | `../spec.md` (020 deferred P2 bucket parent) |
-| **Predecessors** | Buckets 001 through 005, ending at commit `e189ecde5b`; F61 dimension validation baseline in arc 017/002 |
+| **Predecessors** | Buckets 001 through 005, ending at commit `611f8dac47`; F61 dimension validation baseline in arc 017/002 |
 | **Handoff Criteria** | F10/F23/F63/F64/F71/F75 closed or explicitly deferred again; embedders vitest green; mcp-server typecheck green; packet + parent strict validation exit 0 |
 <!-- /ANCHOR:metadata -->
 

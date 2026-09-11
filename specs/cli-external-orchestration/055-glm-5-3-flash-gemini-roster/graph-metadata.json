@@ -225,7 +225,7 @@
     ],
     "causal_summary": "The Ox Alpha stealth model (`stealth/ox-alpha` on OpenRouter, `x-ai/ox-alpha` on Cline) was the operator's small-model workhorse across cli-opencode and cli-pi",
     "created_at": "2026-08-27T06:45:48.119Z",
-    "last_save_at": "2026-08-30T15:39:08.235Z",
+    "last_save_at": "2026-09-11T16:41:47.250Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -234,13 +234,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d2e1c23195dcf072ab8622050e30280aded2c7acd1bae8e5536e79a84aab2c78",
+    "source_fingerprint": "sha256:124898c573a63e4bba69734b819f7de8f2859c78807c2012794b1a65e18b6418",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "269df5f7ec6f96703735d9dd6b1e3dc101f53f230873248fbbcc603ae8f6b4a9",
-      "plan.md": "4b01cbd4f502ae40d8a32a9c152716e9465629be8b314912b7c0086034e30df2",
+      "spec.md": "c068d297dff35b4bc6689d18fd7820899d12dbdfd59762623a2bb00d85613183",
+      "plan.md": "a5062589f1b2e59d888b9ba5ac0b6bea5a63368c035b4cd69c7f0c311b4ae735",
       "tasks.md": "856f7c1e05d84edc46ff15dcd2d70dd7bcce3284ef6a180a029870a70d08d919",
-      "implementation-summary.md": "517bb10884dd484cace3aab38e16c7e9d6ab3417e5d15550a753ebd796c84023"
+      "implementation-summary.md": "d02d25bef77d48e142a51ad77fc3080a2253f561f1de90d847b440e759dbbb3f"
     },
     "last_active_child_id": null,
     "last_active_at": null

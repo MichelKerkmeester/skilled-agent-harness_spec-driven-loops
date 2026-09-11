@@ -49,7 +49,7 @@ _memory:
 ## Phase 1: Setup
 
 - [x] T001 Read all ten packet `SKILL.md` files, hub `SKILL.md`, `mode-registry.json`, and `hub-router.json`. [EVIDENCE: source audit]
-- [x] T002 Confirm branch `wt/goalAB-skdoc` and workstream-A commit `3048a662e9`. [EVIDENCE: git branch/log commands]
+- [x] T002 Confirm branch `wt/goalAB-skdoc` and workstream-A commit `8179eb714b`. [EVIDENCE: git branch/log commands]
 - [x] T003 Capture the six-query advisor and hub-internal routing baseline. [EVIDENCE: `plan.md` Before-State Routing]
 <!-- /ANCHOR:phase-1 -->
 

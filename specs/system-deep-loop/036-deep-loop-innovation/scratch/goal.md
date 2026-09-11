@@ -13,11 +13,11 @@ trigger_phrases: []
 >
 > **Autonomous execution (2026-08-12):** this tail is driven by Claude as orchestrator dispatching two external models —
 > GPT-5.6-SOL HIGH (cli-codex) and DeepSeek-v4-flash (cli-opencode / opencode-go) — as alternating implementer/checker.
-> Work runs in an isolated worktree (`0144` at `ced5fe53cc1`, tsc rc0 baseline); nothing lands to the moving `skilled/v4`
+> Work runs in an isolated worktree (`0144` at `3b4c36071f5`, tsc rc0 baseline); nothing lands to the moving `skilled/v4`
 > and no irreversible step runs until a fresh review returns APPROVE and the operator clears the frontier. The short
 > operational contract is `goal-prompt.md`.
 >
-> **Re-grounding (2026-08-12):** the 13 review findings were re-verified at `ced5fe53cc1`. F5 is already fixed; the six
+> **Re-grounding (2026-08-12):** the 13 review findings were re-verified at `3b4c36071f5`. F5 is already fixed; the six
 > P0s are PARTIAL. F6's residual is a *deliberately-deferred design change* (permanent-lock census rows must become a
 > distinct verified PIN disposition, not overloaded `BLOCK`); a one-line denial gate is an over-denial that makes cutover
 > unreachable — it was tried, caught by cross-model review against the packet's `hardening-notes.md`, and reverted. Treat
@@ -34,8 +34,8 @@ measured zero use.
 
 | Field | Durable value |
 |---|---|
-| Latest observed branch tip | `HEAD == origin/skilled/v4.0.0.0 == 414936c3151f` on 2026-08-11; this dirty documentation checkout is not an acceptance candidate |
-| Historical phase-014 anchors | 014/001 `a677adb195`; 014/002 `d76f84439a` plus hardening through `cf26cf5309`, `a37ab143d0`, and `75dbe65e09`; 014/003 `eaf0a79024` |
+| Latest observed branch tip | `HEAD == origin/skilled/v4.0.0.0 == bf4db588d217` on 2026-08-11; this dirty documentation checkout is not an acceptance candidate |
+| Historical phase-014 anchors | 014/001 `9c7c3e4daf`; 014/002 `151d4c4163` plus hardening through `9760f4b267`, `b662bc39a1`, and `538f90dd8a`; 014/003 `1b902baf9c` |
 | Branch destination | `skilled/v4.0.0.0`, then an explicitly approved merge to `main` |
 | Current program shape | The 001–013 substrate and all three dark 014 components are landed. No mode has been proved live on the new authority path. Phase 015 is Planned at 0/29 checklist items; 016 Stage B and 017 are unstarted |
 | Independent review | `goal-plan-review.md` is `REQUEST_CHANGES`: seven P0 findings block the first irreversible authority transition and six P1 findings block their consuming phases or final closeout |

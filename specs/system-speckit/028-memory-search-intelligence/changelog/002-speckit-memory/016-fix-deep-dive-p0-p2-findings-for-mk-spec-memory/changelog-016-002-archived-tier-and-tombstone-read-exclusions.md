@@ -19,7 +19,7 @@ contextType: "implementation"
 
 ### Summary
 
-Non-active memory rows no longer leak into search. Read exclusion used to differ in every channel, so deprecated, archived and soft-deleted rows re-entered results through whichever channel forgot to exclude them. There is now one shared active-row predicate and all eleven read channels call it. The `archived` tier is real end to end. The live `memory_index` CHECK constraint only permitted six tiers, so a migration rebuilt the table with an archived-inclusive CHECK while preserving all 41 indexes, the three FTS5 sync triggers and every row id. A data pass then marked 6,090 z_archive rows archived and demoted their inflated tiers. Shipped in `8142e1dae3`.
+Non-active memory rows no longer leak into search. Read exclusion used to differ in every channel, so deprecated, archived and soft-deleted rows re-entered results through whichever channel forgot to exclude them. There is now one shared active-row predicate and all eleven read channels call it. The `archived` tier is real end to end. The live `memory_index` CHECK constraint only permitted six tiers, so a migration rebuilt the table with an archived-inclusive CHECK while preserving all 41 indexes, the three FTS5 sync triggers and every row id. A data pass then marked 6,090 z_archive rows archived and demoted their inflated tiers. Shipped in `91b9cbb7b5`.
 
 ### Added
 

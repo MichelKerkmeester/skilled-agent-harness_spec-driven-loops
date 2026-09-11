@@ -54,10 +54,10 @@ _memory:
 
 ### Delivered now
 
-- **Phase 1 — codify:** sk-git ALWAYS #4 rewritten to the owner-first grammar and a new ALWAYS #17 (reap-before-delete ordering + wrapper-only proven-inactive reap + pre-push contract); references, advisor keywords/`Owns:`, `graph-metadata.json`, and a `v1.2.0.0` changelog updated; the README worktree example + cleanup FAQ rewritten off the forbidden hand-computed counter. (`2eb1bf2974`)
-- **Phase 2 — allocator/validator:** `worktree-naming.sh` — a locked, clone-wide high-water-mark allocator plus owner/slug/branch/pair validators and `create`/`create-detached` helpers, with a 31-case hermetic harness. (`bdb31a31db`)
-- **Phase 3 — wrapper/reaper hardening:** `worktree-session.sh` gains runtime-input validation and an active-session `.pid` marker; `worktree-reaper.sh` resolves the integration tip from the primary checkout's live `HEAD` (not a stale `main`), auto-reaps ONLY clean+merged+marker-dead wrapper pairs, treats human/detached/marker-ambiguous worktrees as report-only, and never `--force`s. 9-case harness. (`925ca3c738`)
-- **Phase 4 — enforcement:** a migration-tolerant `pre-push` hook that gates only brand-new remote branch names against the allocator's validators, fails open on a broken validator, never blocks `skilled/v*`, and carries a `SPECKIT_SKIP_PREPUSH_NAMING=1` bypass; wired into the installer with an 8-case harness. (`6e6fdfb57d`)
+- **Phase 1 — codify:** sk-git ALWAYS #4 rewritten to the owner-first grammar and a new ALWAYS #17 (reap-before-delete ordering + wrapper-only proven-inactive reap + pre-push contract); references, advisor keywords/`Owns:`, `graph-metadata.json`, and a `v1.2.0.0` changelog updated; the README worktree example + cleanup FAQ rewritten off the forbidden hand-computed counter. (`960f121f21`)
+- **Phase 2 — allocator/validator:** `worktree-naming.sh` — a locked, clone-wide high-water-mark allocator plus owner/slug/branch/pair validators and `create`/`create-detached` helpers, with a 31-case hermetic harness. (`252b7302b2`)
+- **Phase 3 — wrapper/reaper hardening:** `worktree-session.sh` gains runtime-input validation and an active-session `.pid` marker; `worktree-reaper.sh` resolves the integration tip from the primary checkout's live `HEAD` (not a stale `main`), auto-reaps ONLY clean+merged+marker-dead wrapper pairs, treats human/detached/marker-ambiguous worktrees as report-only, and never `--force`s. 9-case harness. (`f64a08df63`)
+- **Phase 4 — enforcement:** a migration-tolerant `pre-push` hook that gates only brand-new remote branch names against the allocator's validators, fails open on a broken validator, never blocks `skilled/v*`, and carries a `SPECKIT_SKIP_PREPUSH_NAMING=1` bypass; wired into the installer with an 8-case harness. (`e328a758e6`)
 - **Cleanup slice:** six merged, not-checked-out branches deleted with live re-checks and a recovery record.
 - **Design of record:** a frozen decision record (ADR-001..004) resolving the `wt/`-vs-`<skill>/` contradiction and fixing the cleanup posture.
 
@@ -99,7 +99,7 @@ Per-branch merge/archive decisions on the 11 preserved unmerged branches (KEEP/R
 2. Independently verified SOL's load-bearing claims: the reaper tested `merge-base --is-ancestor "$branch" main` (a base ~1400 commits behind v4), the skill dir is `system-spec-kit` (so `system-speckit/*` is a wrong ID), and the six deletion candidates are ancestors of v4 and not checked out.
 3. Executed the six branch deletions with per-branch live re-checks (ancestor + not-checked-out + tip-unchanged), recording OIDs; no working tree was touched.
 4. Built Phases 1-4 under a sonnet-5 sub-agent workflow (one implementer per phase + three adversarial verifiers — runs-green, safety, conformance — that re-ran the harnesses rather than trusting self-reports). Verifier-found blockers were fixed before landing: the `pre-push` errexit fail-safe (`set +e`/capture/`set -e` around `source`), removal of the `backup/*` bypass wildcard, and doc drift.
-5. Reconciled all packet docs to the shipped state with commit + test evidence, repaired the provenance links the concurrent spec reorg (`a2817e2c33`) broke by moving `137` into the `sk-git` track, and regenerated metadata last.
+5. Reconciled all packet docs to the shipped state with commit + test evidence, repaired the provenance links the concurrent spec reorg (`bea28397c9`) broke by moving `137` into the `sk-git` track, and regenerated metadata last.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -123,7 +123,7 @@ Per-branch merge/archive decisions on the 11 preserved unmerged branches (KEEP/R
 - **Harnesses (re-run at close):** `worktree-naming.test.sh` 31/31, `worktree-reaper.test.sh` 9/9, `pre-push.test.sh` 8/8; `bash -n` clean on all four shell files.
 - **Design claims verified against source/live state:** reaper base bug (`.opencode/bin/worktree-reaper.sh`, since corrected to the live primary `HEAD`), wrong skill ID (`system-spec-kit` exists, `system-speckit` does not), and all six delete candidates confirmed ancestor-of-v4 + not-checked-out.
 - **Cleanup safety:** each deletion re-checked live; OIDs recorded; ref-only deletes reachable from `origin/skilled/v4.0.0.0` (nothing orphaned); dirty primary untouched.
-- **Structural:** `validate.sh --recursive --strict` → this packet Errors 0. The concurrent reorg (`a2817e2c33`) moved `137-parallel-session-git-autosync` into the `sk-git` track; its broken provenance links into this packet were repaired and its moved auto-metadata regenerated so the whole-track recursive gate is clean.
+- **Structural:** `validate.sh --recursive --strict` → this packet Errors 0. The concurrent reorg (`bea28397c9`) moved `137-parallel-session-git-autosync` into the `sk-git` track; its broken provenance links into this packet were repaired and its moved auto-metadata regenerated so the whole-track recursive gate is clean.
 <!-- /ANCHOR:verification -->
 
 ---

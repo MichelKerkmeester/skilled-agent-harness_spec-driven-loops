@@ -4,7 +4,7 @@ trigger_phrases: []
 ---
 # Deep-Review Strategy — 028 docs-alignment (10 iterations, stop_policy=max-iterations)
 
-Scope authority: verify documentation completeness + alignment with sk-doc/sk-code standards for the Phase R remediation + 017-023 reconciliation merge (origin tip 8d52813080).
+Scope authority: verify documentation completeness + alignment with sk-doc/sk-code standards for the Phase R remediation + 017-023 reconciliation merge (origin tip 535c75da34).
 
 ## Iteration slice plan
 1. Packet-root navigation: spec.md phase map, graph-metadata children, context-index migration bridge — VERIFY-OR-REFUTE seed findings S1-S4 below.

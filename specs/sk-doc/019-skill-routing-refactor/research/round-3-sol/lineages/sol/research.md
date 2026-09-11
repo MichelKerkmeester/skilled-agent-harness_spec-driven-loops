@@ -6,7 +6,7 @@ trigger_phrases: []
 
 ## 1. Executive Summary
 
-The ten-iteration max-depth audit found **27 canonical defects: 22 P1 and 5 P2; 4 NEW from commit `140266be3e` and 23 PRE-EXISTING**. The recent parent-doc fix introduced four defects: an internal 2/7-versus-7/7 rollout contradiction, a stale operator-gated-default claim, broken parent handoff paths, and a false 7/7 route-gold denominator. The deeper pre-existing defects cluster around child packet required files, lifecycle truth, resume pointers, stale maps/paths, and an incomplete seven-hub hard-invariant closure.
+The ten-iteration max-depth audit found **27 canonical defects: 22 P1 and 5 P2; 4 NEW from commit `3c94775856` and 23 PRE-EXISTING**. The recent parent-doc fix introduced four defects: an internal 2/7-versus-7/7 rollout contradiction, a stale operator-gated-default claim, broken parent handoff paths, and a false 7/7 route-gold denominator. The deeper pre-existing defects cluster around child packet required files, lifecycle truth, resume pointers, stale maps/paths, and an incomplete seven-hub hard-invariant closure.
 
 Terminal verification resolved **62/62 canonical source anchors**, found all ten iteration and delta artifacts, and reproduced the severity/provenance totals. [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/research/round-3-sol/lineages/sol/iterations/iteration-010.md:6-12]
 
@@ -14,7 +14,7 @@ Terminal verification resolved **62/62 canonical source anchors**, found all ten
 
 - Audited the parent packet, all 21 direct children, selected nested trees under 020 and 021, the full 020/005 eight-child subtree, and the 019→020→007→015 resume chain.
 - Compared parent routing canon with `.opencode/bin/lib/compiled-routing/` and all seven live hubs.
-- Reviewed every canonical non-frozen hunk changed by `140266be3e`.
+- Reviewed every canonical non-frozen hunk changed by `3c94775856`.
 - Excluded frozen `research/**`, `benchmark/**`, `lineages/**`, `*.out`, `*.log`, and run-record artifacts as defect candidates.
 
 ## 3. Method
@@ -23,7 +23,7 @@ The loop used direct canonical-file reads, strict packet validation, exact targe
 
 ## 4. Parent-Level Regressions
 
-Four defects were introduced by `140266be3e`:
+Four defects were introduced by `3c94775856`:
 
 - **P1 · NEW:** mixed 2/7 and 7/7 typed-resource rollout claims.
 - **P1 · NEW:** `context-index.md` says fleet default remains operator-gated although the resolver is default-on.

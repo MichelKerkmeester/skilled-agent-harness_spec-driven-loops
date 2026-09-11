@@ -83,16 +83,16 @@ Correct the changelog rollup so it reflects committed code, and refresh the stal
 
 | ID | Location | Finding (quoted from review-report.md) |
 |----|----------|----------------------------------------|
-| P1-6 | `001-speckit-memory/changelog/changelog-001-root.md:36` | "The Memory rollup marks shipped phases as `Planned / No production code shipped`. Rows 009/011/017/018/020 say Planned or no code shipped, but each child implementation-summary says Implemented and the branch commits `ed53661043`, `5308401d95`, `8f8776e329` shipped tested `lib/` code ... default-off gating is not the same as no code shipped, so the rollup is factually wrong against committed code." |
+| P1-6 | `001-speckit-memory/changelog/changelog-001-root.md:36` | "The Memory rollup marks shipped phases as `Planned / No production code shipped`. Rows 009/011/017/018/020 say Planned or no code shipped, but each child implementation-summary says Implemented and the branch commits `a00803e724`, `478bebf387`, `508af65780` shipped tested `lib/` code ... default-off gating is not the same as no code shipped, so the rollup is factually wrong against committed code." |
 
 ### Doc Staleness Cluster (iteration 9, fix-now)
 
 | # | Location | Contradiction (quoted / paraphrased from review-report.md) |
 |---|----------|------------------------------------------------------------|
-| 1 | `timeline.md:41` | "`timeline.md` is frozen at commit 30/57: the two epochs literal-sequence diagram (L41-77) ends at `b1d6ab80cd`, omitting 27 later commits including the entire shipped schema cluster." |
+| 1 | `timeline.md:41` | "`timeline.md` is frozen at commit 30/57: the two epochs literal-sequence diagram (L41-77) ends at `76ea97a548`, omitting 27 later commits including the entire shipped schema cluster." |
 | 2 | `timeline.md:203` | "Section E classifies bitemporal/derived-id/semantic-edge/code-edge-bitemporal/edge-governance as gated/`held`, but all shipped as code on this branch." |
 | 3 | `before-vs-after.md:137` | "says all nine release-cleanup phases are PENDING with no surface cleaned yet, but `changelog-003-root` marks three Complete with evidence." |
-| 4 | `before-vs-after.md:151` | "CURRENT STATE stops at commit 30: it describes 23 phases ending at `b1d6ab80cd` ... omitting 26 commits that landed after its last refresh." |
+| 4 | `before-vs-after.md:151` | "CURRENT STATE stops at commit 30: it describes 23 phases ending at `76ea97a548` ... omitting 26 commits that landed after its last refresh." |
 | 5 | `before-vs-after.md:155` | "carries the same false `wait rather than shipped` framing" as the timeline Section E classification. |
 | 6 | `benchmark-status.md:41` | "Default-off flag inventory omits `SPECKIT_CODE_GRAPH_SEEDED_PPR_RANKING` ... The gating inventory is incomplete, understating the set of flags that must stay default-off until benchmarked." |
 | 7 | `changelog/changelog-028-root.md:46` | "Packet root changelog records zero verification, files-changed and follow-up evidence for the whole 028 program." |

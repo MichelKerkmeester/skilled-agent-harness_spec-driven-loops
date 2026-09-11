@@ -203,7 +203,7 @@ Make the typed routing contract flow through the real dispatch path (not just re
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
 | 012's typed-pair contract library and manifest | Internal | Shipped | Reused as-is (relocated); the foundation this packet wires through |
-| The shipped 5-class scorer taxonomy (`88c02440ac`) | Internal | On origin | Fed typed gold in Phase 2; already unit-tested and dormant until wired |
+| The shipped 5-class scorer taxonomy (`900b58f139`) | Internal | On origin | Fed typed gold in Phase 2; already unit-tested and dormant until wired |
 | `smart_routing.md` (012) | Internal | Shipped | The authored router the topology join and offline gate validate against |
 | An independent author/reviewer for the holdout corpus | Process | Not started | The corpus is only credible if authored without router sight; blocks REQ-006 |
 <!-- /ANCHOR:risks -->

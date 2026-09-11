@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Derive both the TS COMMAND_BRIDGES array (projection.ts) and the Python COMMAND_BRIDGES dict (skill_advisor.py) from the fleet's 7 command-metadata.json files instead of two hand-maintained, already-drifted authorities; add a drift-guard asserting all three sources agree, plus denser command-metadata/leaf-aliases e2e tests. High-blast: live routing rewire on the advisor's hottest file, shipped shadow-mode-first with a documented rollback.",
     "created_at": "2026-07-29T08:00:35.400Z",
-    "last_save_at": "2026-08-30T15:39:15.935Z",
+    "last_save_at": "2026-09-11T16:42:09.376Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9fb1f0e1438f5f27315cc1eadef68dc924597c6593d77973d7d7a59b0a60a620",
+    "source_fingerprint": "sha256:8d2ffe6431062e0d7a8b11284c898a17f692d0f8af86a95f8dd79152d5c614f5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "54e9d50cb9453f0df38be119e49d3fc4a7ccab160e545484121480c0955c5ba0",
       "plan.md": "d14591148caa6deca6999f90c2415103ecdc84ba57214086bb239ba6f1e53705",
-      "tasks.md": "60764a07dbe90bb332d13c94b7ac790229f3df15922d0b8b27d359c6dea13a9e",
-      "implementation-summary.md": "6ccdd60b1d215c715a7168cad368ac1956ea17139748cb101d6e2d6b79c29e5f"
+      "tasks.md": "0e599cdfcca3e00d32e94813a19324f3ce93f773df12f1b1cc608abe908b361f",
+      "implementation-summary.md": "2880e366c4863ce041a21afec0bb8f4e84cc92f6352c2af34eee42174296c8a7"
     },
     "last_active_child_id": null,
     "last_active_at": null

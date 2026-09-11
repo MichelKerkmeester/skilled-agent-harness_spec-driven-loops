@@ -41,8 +41,8 @@ _memory:
 ## Phase 1: Setup
 
 - [x] **T-001** Audit the import graph and confirm the rollback gates and drills are leaf modules (test-only importers). [EVIDENCE: `../scratch/direction-switch-delete-overengineering.md`; rollback-gates imported only by their own tests]
-- [x] **T-002** Delete the 8 `*-rollback-gate/` modules and `rollback-drills` with their test files. [EVIDENCE: commit `90df8cfa67`; −30,194 LOC; feature-catalog/playbook doc ripples cleaned]
-- [x] **T-003** Remove the per-mode authority-flip cutover ceremony (preflight, cutover-coordinator, coordinator-factory, ledger-event, authority-flip-policy, manifest-order), keeping the selector, registry, and window-free finalize CAS. [EVIDENCE: commit `376aec67b3`; `per-mode-authority-flip` stays type-clean; `per-mode-authority-flip.vitest.ts` trimmed to selector/registry tests, 36/36]
+- [x] **T-002** Delete the 8 `*-rollback-gate/` modules and `rollback-drills` with their test files. [EVIDENCE: commit `80259accd7`; −30,194 LOC; feature-catalog/playbook doc ripples cleaned]
+- [x] **T-003** Remove the per-mode authority-flip cutover ceremony (preflight, cutover-coordinator, coordinator-factory, ledger-event, authority-flip-policy, manifest-order), keeping the selector, registry, and window-free finalize CAS. [EVIDENCE: commit `e359b0b79b`; `per-mode-authority-flip` stays type-clean; `per-mode-authority-flip.vitest.ts` trimmed to selector/registry tests, 36/36]
 <!-- /ANCHOR:phase-1 -->
 
 <!-- ANCHOR:phase-2 -->
@@ -50,11 +50,11 @@ _memory:
 
 The migration scaffolding is removed in importer-before-importee order so no commit leaves a dangling import; live-loop imports are severed before the modules they point at are deleted.
 
-- [x] **T-004** Sever `enable-modes.cjs` from the deleted observation/parity gate so the CLI flips each mode directly through the authority registry; trim the `enable-modes-cli` and `spawn-cjs` suites to the kept live path. [EVIDENCE: commit `20665c8d98`; the resume-guard test re-anchored on an unreadable-record stop; `enable-modes-cli` 19/19, `spawn-cjs` 4/4]
-- [x] **T-005** Delete the 38 unit suites that only exercised the removed machinery, plus doc hygiene across runtime/lib/tests READMEs. [EVIDENCE: commit `20665c8d98`; 38 test files removed; `tests/unit/README.md` −28 rows, `lib/README.md` −4 rows, runtime `README.md` prose corrected]
-- [x] **T-006** Delete the first module batch — `*-certificates`, `*-resume-adapter`, `*-shadow-parity` (partial), `cutover-certificate`, `deep-research-cutover-evidence`, `inflight-state-classification`. [EVIDENCE: commit `f3a42a2af3`; 100 files; `mixed-version-fixtures` deliberately withheld to the next commit]
-- [x] **T-007** Delete the remaining modules — `shadow-parity`, `restart-observation`, the model/skill-benchmark emitters, `inflight-state-migration`, and `mixed-version-fixtures` last (after its only importers) — and the one-time pilot drill script. [EVIDENCE: commit `8371855fbb`; 59 files; `mixed-version-fixtures` removed after `inflight-state-classification` and `shadow-parity`, so no dangling import in the chain]
-- [x] **T-008** Refresh the runtime, lib, and cross-referencing module READMEs so no doc names a deleted module or test; de-reference the one stale code comment. [EVIDENCE: commit `20665c8d98`; `certificate-binding-core`/`compatibility-shadow`/`legacy-projections`/`replay-fingerprint`/`sealed-reference-artifacts` READMEs corrected; `fanout-effect-dispatch.ts` comment de-referenced]
+- [x] **T-004** Sever `enable-modes.cjs` from the deleted observation/parity gate so the CLI flips each mode directly through the authority registry; trim the `enable-modes-cli` and `spawn-cjs` suites to the kept live path. [EVIDENCE: commit `0f76861864`; the resume-guard test re-anchored on an unreadable-record stop; `enable-modes-cli` 19/19, `spawn-cjs` 4/4]
+- [x] **T-005** Delete the 38 unit suites that only exercised the removed machinery, plus doc hygiene across runtime/lib/tests READMEs. [EVIDENCE: commit `0f76861864`; 38 test files removed; `tests/unit/README.md` −28 rows, `lib/README.md` −4 rows, runtime `README.md` prose corrected]
+- [x] **T-006** Delete the first module batch — `*-certificates`, `*-resume-adapter`, `*-shadow-parity` (partial), `cutover-certificate`, `deep-research-cutover-evidence`, `inflight-state-classification`. [EVIDENCE: commit `f19c515933`; 100 files; `mixed-version-fixtures` deliberately withheld to the next commit]
+- [x] **T-007** Delete the remaining modules — `shadow-parity`, `restart-observation`, the model/skill-benchmark emitters, `inflight-state-migration`, and `mixed-version-fixtures` last (after its only importers) — and the one-time pilot drill script. [EVIDENCE: commit `bc5b4fbb80`; 59 files; `mixed-version-fixtures` removed after `inflight-state-classification` and `shadow-parity`, so no dangling import in the chain]
+- [x] **T-008** Refresh the runtime, lib, and cross-referencing module READMEs so no doc names a deleted module or test; de-reference the one stale code comment. [EVIDENCE: commit `0f76861864`; `certificate-binding-core`/`compatibility-shadow`/`legacy-projections`/`replay-fingerprint`/`sealed-reference-artifacts` READMEs corrected; `fanout-effect-dispatch.ts` comment de-referenced]
 <!-- /ANCHOR:phase-2 -->
 
 <!-- ANCHOR:phase-3 -->
@@ -73,8 +73,8 @@ The migration scaffolding is removed in importer-before-importee order so no com
 ## Phase 4: Orphan cleanup (Wave 3)
 
 - [x] **T-018** Re-audit the import graph worktree-wide; confirm `certificate-binding-core`, `compatibility-shadow`, and `cross-mode-closures` have zero importers. [EVIDENCE: worktree-wide `import|require|from` scan → 0 import sites for each; the three do not import one another; `cross-mode-closures` was `mode-contracts`' sole importer]
-- [x] **T-019** Delete the three modules (25 files) and their two unit suites (47 tests). [EVIDENCE: commit `947467ecc7`; 27 staged deletions, all in scope]
-- [x] **T-020** Clear the stale references from nine kept module READMEs and `tests/unit/README.md`; drop the dead `dependency-seams` seam-test that guarded the deleted barrel. [EVIDENCE: `947467ecc7`; CHK-013 re-scan clean except a pre-existing `shipped-census.ts` spec-contract path, left out of scope]
+- [x] **T-019** Delete the three modules (25 files) and their two unit suites (47 tests). [EVIDENCE: commit `211aacf462`; 27 staged deletions, all in scope]
+- [x] **T-020** Clear the stale references from nine kept module READMEs and `tests/unit/README.md`; drop the dead `dependency-seams` seam-test that guarded the deleted barrel. [EVIDENCE: `211aacf462`; CHK-013 re-scan clean except a pre-existing `shipped-census.ts` spec-contract path, left out of scope]
 - [x] **T-021** Re-verify the wave. [EVIDENCE: dangling-import scan 0; `tsc` unchanged 57 errors / 11 files (transient `--ignoreDeprecations 6.0` for the pre-existing config drift); `verify-authority.cjs` all 8 on ledger, exit 0; live-path suites 7 files / 100 tests; full suite 161 files (152 pass, 9 fail) / 2717 tests (2697 pass, 13 fail, 7 skip), failing set unchanged by name]
 - [x] **T-022** Flag `mode-contracts` (now orphaned by the closures removal) as a follow-up candidate rather than cascading it into this wave. [EVIDENCE: `implementation-summary.md` §6; `spec.md` §7]
 <!-- /ANCHOR:phase-4 -->

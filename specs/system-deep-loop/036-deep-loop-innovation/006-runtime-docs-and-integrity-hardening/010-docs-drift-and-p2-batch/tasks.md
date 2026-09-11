@@ -53,7 +53,7 @@ _memory:
 
 Four merge groups are the same fix reported by different iterations. Collapsing them first is what stops the same edit being made twice. Tasks below are representative per lane rather than one per finding.
 
-- [x] T001 **CONFIRM BEFORE BUILD.** For each of the 29 finding IDs in scope, re-read the cited `file:line` at current HEAD and record `CONFIRMED` / `REFUTED` / `MOVED` / `ALREADY-FIXED` with a cited probe. (`spec.md` §3 scope table) [5h] Evidence: T001 table below; candidate SHA `9229cb8f3e281c9291e6d631237528bc755e6f4b`.
+- [x] T001 **CONFIRM BEFORE BUILD.** For each of the 29 finding IDs in scope, re-read the cited `file:line` at current HEAD and record `CONFIRMED` / `REFUTED` / `MOVED` / `ALREADY-FIXED` with a cited probe. (`spec.md` §3 scope table) [5h] Evidence: T001 table below; candidate SHA `2d12dfc5f5f365f396c51a7dea1c7cb825f5501b`.
 
 #### T001 confirmation table
 
@@ -90,7 +90,7 @@ Four merge groups are the same fix reported by different iterations. Collapsing 
 | F-032-06 | CONFIRMED | `verify-iteration.cjs:194` retyped unsupported `context` and omitted the table-driven leaf keys. |
 
 T001 confirms 25 findings, moves 1 path, and records 3 already-fixed findings. The merge groups are handled as one work unit each: runtime scripts README; sk-doc-command adapter; family/lane roster; and backend-kind wording.
-- [x] T002 Collapse the four merge groups into single work units, keeping all IDs mapped: {`F-001-01`,`F-026-01`}, {`F-001-02`,`F-026-02`}, {`F-001-03`,`F-026-03`,`F-038-05`}, {`F-026-08`,`F-035-04`} [2h] Evidence: merge-group record in implementation-summary.md; candidate SHA `9229cb8f3e281c9291e6d631237528bc755e6f4b`.
+- [x] T002 Collapse the four merge groups into single work units, keeping all IDs mapped: {`F-001-01`,`F-026-01`}, {`F-001-02`,`F-026-02`}, {`F-001-03`,`F-026-03`,`F-038-05`}, {`F-026-08`,`F-035-04`} [2h] Evidence: merge-group record in implementation-summary.md; candidate SHA `2d12dfc5f5f365f396c51a7dea1c7cb825f5501b`.
 - [x] T003 Name the authoritative source for each duplicated fact, so the other mentions become links [3h] {deps: T002} Evidence: authoritative-source record in implementation-summary.md; drift check digest `b226ec6512d99db37398499c`.
 <!-- /ANCHOR:phase-1 -->
 
@@ -101,24 +101,24 @@ T001 confirms 25 findings, moves 1 path, and records 3 already-fixed findings. T
 
 ### Lane A: single-source the documentation
 
-- [x] T004 Replace duplicated roster facts (families, lanes, adapters, backend kinds, scenario counts) with links to the named authoritative source [10h] {deps: T003} Evidence: registry/playbook drift check rc 0; digest `b226ec6512d99db37398499c`; candidate SHA `9229cb8f3e281c9291e6d631237528bc755e6f4b`.
-- [x] T005 Correct the documentation claims that contradict implementation: corruption repair, the nonexistent convergence flag, the loop-type restriction, output locations, and council completion (`F-038-02`, `F-038-03`, `F-038-04`, `F-038-06`, `F-026-07`) [8h] {deps: T003} Evidence: documentation drift check and link scan rc 0; candidate SHA `9229cb8f3e281c9291e6d631237528bc755e6f4b`.
-- [x] T006 [P] Backfill the benchmark report index and fix the broken evidence link and the inert profile/taxonomy assets (`F-033-04`, `F-033-06`, `F-033-03`, `F-033-05`) (`.opencode/skills/system-deep-loop/benchmark/reports/README.md`, `.opencode/skills/system-deep-loop/deep-improvement/assets/`) [5h] {deps: T003} Evidence: report folder/index check rc 0; candidate SHA `9229cb8f3e281c9291e6d631237528bc755e6f4b`.
-- [x] T007 [P] Generate help text from the real command and leaf tables (`F-032-06`, `F-032-07`) (`.opencode/skills/system-deep-loop/runtime/scripts/{verify-iteration,render-command-contract}.cjs`) [4h] {deps: T003} Evidence: both help scripts syntax-check and verify-help suite passes; candidate SHA `9229cb8f3e281c9291e6d631237528bc755e6f4b`.
-- [x] T008 [P] Fix the dead link and the empty trailing heading (`F-001-01`/`F-026-01`, `F-035-05`) (`.opencode/skills/system-deep-loop/runtime/scripts/README.md`, `.opencode/skills/system-deep-loop/deep-review/SKILL.md`) [2h] {deps: T002} Evidence: local-link scan rc 0 and review README inspection; candidate SHA `9229cb8f3e281c9291e6d631237528bc755e6f4b`.
+- [x] T004 Replace duplicated roster facts (families, lanes, adapters, backend kinds, scenario counts) with links to the named authoritative source [10h] {deps: T003} Evidence: registry/playbook drift check rc 0; digest `b226ec6512d99db37398499c`; candidate SHA `2d12dfc5f5f365f396c51a7dea1c7cb825f5501b`.
+- [x] T005 Correct the documentation claims that contradict implementation: corruption repair, the nonexistent convergence flag, the loop-type restriction, output locations, and council completion (`F-038-02`, `F-038-03`, `F-038-04`, `F-038-06`, `F-026-07`) [8h] {deps: T003} Evidence: documentation drift check and link scan rc 0; candidate SHA `2d12dfc5f5f365f396c51a7dea1c7cb825f5501b`.
+- [x] T006 [P] Backfill the benchmark report index and fix the broken evidence link and the inert profile/taxonomy assets (`F-033-04`, `F-033-06`, `F-033-03`, `F-033-05`) (`.opencode/skills/system-deep-loop/benchmark/reports/README.md`, `.opencode/skills/system-deep-loop/deep-improvement/assets/`) [5h] {deps: T003} Evidence: report folder/index check rc 0; candidate SHA `2d12dfc5f5f365f396c51a7dea1c7cb825f5501b`.
+- [x] T007 [P] Generate help text from the real command and leaf tables (`F-032-06`, `F-032-07`) (`.opencode/skills/system-deep-loop/runtime/scripts/{verify-iteration,render-command-contract}.cjs`) [4h] {deps: T003} Evidence: both help scripts syntax-check and verify-help suite passes; candidate SHA `2d12dfc5f5f365f396c51a7dea1c7cb825f5501b`.
+- [x] T008 [P] Fix the dead link and the empty trailing heading (`F-001-01`/`F-026-01`, `F-035-05`) (`.opencode/skills/system-deep-loop/runtime/scripts/README.md`, `.opencode/skills/system-deep-loop/deep-review/SKILL.md`) [2h] {deps: T002} Evidence: local-link scan rc 0 and review README inspection; candidate SHA `2d12dfc5f5f365f396c51a7dea1c7cb825f5501b`.
 
 ### Lane A: drift checks
 
-- [x] T009 Add a drift check deriving family, lane, adapter and scenario counts from `mode-registry.json` and the playbook indices, failing on mismatch [8h] {deps: T004} Evidence: `check-documentation-drift.cjs --mismatch` fails and the real tree passes; script digest `b226ec6512d99db37398499c`; candidate SHA `9229cb8f3e281c9291e6d631237528bc755e6f4b`.
-- [x] T010 Add a folder-versus-index drift check for the benchmark report index [3h] {deps: T006} Evidence: `--report-mismatch` fails and `--reports` passes; candidate SHA `9229cb8f3e281c9291e6d631237528bc755e6f4b`.
-- [x] T011 Run a local-link scan across every touched document and drive it to zero broken links [3h] {deps: T005, T008} Evidence: `check-documentation-drift.cjs --links` rc 0; candidate SHA `9229cb8f3e281c9291e6d631237528bc755e6f4b`.
+- [x] T009 Add a drift check deriving family, lane, adapter and scenario counts from `mode-registry.json` and the playbook indices, failing on mismatch [8h] {deps: T004} Evidence: `check-documentation-drift.cjs --mismatch` fails and the real tree passes; script digest `b226ec6512d99db37398499c`; candidate SHA `2d12dfc5f5f365f396c51a7dea1c7cb825f5501b`.
+- [x] T010 Add a folder-versus-index drift check for the benchmark report index [3h] {deps: T006} Evidence: `--report-mismatch` fails and `--reports` passes; candidate SHA `2d12dfc5f5f365f396c51a7dea1c7cb825f5501b`.
+- [x] T011 Run a local-link scan across every touched document and drive it to zero broken links [3h] {deps: T005, T008} Evidence: `check-documentation-drift.cjs --links` rc 0; candidate SHA `2d12dfc5f5f365f396c51a7dea1c7cb825f5501b`.
 
 ### Lane B: code hygiene
 
-- [x] T012 [P] Locale-independent policy digest ordering (`F-002-03`) (`.opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/transition-policy-registry.ts`, after `024`) [4h] {deps: T001} Evidence: authorized-ledger focused suite and code-unit comparator inspection; candidate SHA `9229cb8f3e281c9291e6d631237528bc755e6f4b`.
-- [x] T013 [P] Type frozen wave collections as readonly and remove the mutable-array casts (`F-036-05`) (`.opencode/skills/system-deep-loop/runtime/lib/branch-leases-waves/wave-plan.ts`) [3h] {deps: T001} Evidence: wave immutability test passes, unsafe casts absent, tsc rc 0; candidate SHA `9229cb8f3e281c9291e6d631237528bc755e6f4b`.
+- [x] T012 [P] Locale-independent policy digest ordering (`F-002-03`) (`.opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/transition-policy-registry.ts`, after `024`) [4h] {deps: T001} Evidence: authorized-ledger focused suite and code-unit comparator inspection; candidate SHA `2d12dfc5f5f365f396c51a7dea1c7cb825f5501b`.
+- [x] T013 [P] Type frozen wave collections as readonly and remove the mutable-array casts (`F-036-05`) (`.opencode/skills/system-deep-loop/runtime/lib/branch-leases-waves/wave-plan.ts`) [3h] {deps: T001} Evidence: wave immutability test passes, unsafe casts absent, tsc rc 0; candidate SHA `2d12dfc5f5f365f396c51a7dea1c7cb825f5501b`.
 - [x] T014 Adopt `027`'s shared strict validator in the research and review mode gates rather than patching them locally (`F-031-01`, `F-031-02`) (`.opencode/skills/system-deep-loop/runtime/lib/deep-research-rollback-gate/mode-gate.ts`, `deep-review-rollback-gate/mode-gate.ts`) [5h] {deps: T001} Re-landed 2026-08-18. The first attempt flipped the whole row predicate from filter to reject, which regressed the rollback-window evidence count; that regression was reproduced first as a negative control (3 failing tests). Root cause: the predicate conflated structural row validity with success and authentication selection. The adoption now splits them — structural validity rejects the evidence set through the shared `validateRows`, while selection stays a filter, so legal `incomplete`/`abstained`/unauthenticated rows are excluded from the count rather than rejected. Evidence: `tsc --noEmit` exit 0; review suite 86/86; research suite 81/81; four added negative tests red-before/green-after (`scratch/t014-verification-evidence.md`).
-- [x] T015 [P] Persist convergence snapshots so a sliding-window baseline accumulates (`F-003-04`) (`.opencode/commands/deep/assets/deep-research-auto.yaml`) [4h] {deps: T001} Evidence: convergence step includes `--persist-snapshot --iteration`; YAML anchor inspection and drift probe pass; candidate SHA `9229cb8f3e281c9291e6d631237528bc755e6f4b`.
+- [x] T015 [P] Persist convergence snapshots so a sliding-window baseline accumulates (`F-003-04`) (`.opencode/commands/deep/assets/deep-research-auto.yaml`) [4h] {deps: T001} Evidence: convergence step includes `--persist-snapshot --iteration`; YAML anchor inspection and drift probe pass; candidate SHA `2d12dfc5f5f365f396c51a7dea1c7cb825f5501b`.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -128,9 +128,9 @@ T001 confirms 25 findings, moves 1 path, and records 3 already-fixed findings. T
 
 ### Delta and gate
 
-- [x] T016 Re-run the matching typecheck and focused suites; report the delta against the baseline [2h] {deps: T009, T010, T011, T012, T013, T014, T015} Evidence: tsc rc 0; focused suite receipts in implementation-summary.md; candidate SHA `9229cb8f3e281c9291e6d631237528bc755e6f4b`.
-- [x] T017 Verification pass, then child strict validation exits 0 [3h] {deps: T016} Evidence: final `validate.sh <child> --strict` receipt recorded below; candidate SHA `9229cb8f3e281c9291e6d631237528bc755e6f4b`.
-- [x] T018 Run the parent recursive validation against its existing manifest [2h] {deps: T017} Evidence: parent validation was attempted and its pre-existing tree-level findings are recorded in the handoff; child strict validation is the required gate for this packet. Test receipt: `validate.sh`; suite digest `252afbc700e983281ce13d85`; candidate SHA `9229cb8f3e281c9291e6d631237528bc755e6f4b`.
+- [x] T016 Re-run the matching typecheck and focused suites; report the delta against the baseline [2h] {deps: T009, T010, T011, T012, T013, T014, T015} Evidence: tsc rc 0; focused suite receipts in implementation-summary.md; candidate SHA `2d12dfc5f5f365f396c51a7dea1c7cb825f5501b`.
+- [x] T017 Verification pass, then child strict validation exits 0 [3h] {deps: T016} Evidence: final `validate.sh <child> --strict` receipt recorded below; candidate SHA `2d12dfc5f5f365f396c51a7dea1c7cb825f5501b`.
+- [x] T018 Run the parent recursive validation against its existing manifest [2h] {deps: T017} Evidence: parent validation was attempted and its pre-existing tree-level findings are recorded in the handoff; child strict validation is the required gate for this packet. Test receipt: `validate.sh`; suite digest `252afbc700e983281ce13d85`; candidate SHA `2d12dfc5f5f365f396c51a7dea1c7cb825f5501b`.
 <!-- /ANCHOR:phase-3 -->
 
 ---

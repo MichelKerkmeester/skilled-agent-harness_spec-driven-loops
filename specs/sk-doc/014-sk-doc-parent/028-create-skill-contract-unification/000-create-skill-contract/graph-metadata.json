@@ -193,7 +193,7 @@
     ],
     "causal_summary": "The create-skill creation/validation path does not enforce its documented contract",
     "created_at": "2026-07-14T04:26:32.723Z",
-    "last_save_at": "2026-08-30T15:39:13.875Z",
+    "last_save_at": "2026-09-11T16:42:01.733Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,14 +203,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c8b292d0738b8d898cd8490091216576f1f0ff7f56fb5a09ab0dabad30008343",
+    "source_fingerprint": "sha256:34ca683bbe8595333cf183f1bcb8e8fe9af79a4a95ed66efe8fd567e9a71b795",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6e25443713f5ac05deeea9982dc05b0bed8173fe3fe569c448ac5de0021a13ec",
-      "plan.md": "c2ee98bd4eed2f255bd2c0fcfc120ce6c565b36c6542367c331700b87c0f23d3",
-      "tasks.md": "969d39c7189faa9cd56c8182eb394d0b6f093349a10b27bde0f2c51b0f331556",
-      "decision-record.md": "3cb1cc2b9194db50f3570ebb16413e494c6fc771a04f9c5302e95ad055635419",
-      "implementation-summary.md": "0b7aa0c89166e19e84232451b3c9a488bc26f8717d89723c162485f34430b577"
+      "spec.md": "0b9f732cf0daaa1e93ea8bc2f42dc194db93466ba6d7913d37b7ac579a60a006",
+      "plan.md": "c8443fb6392a68610c984a0bdbed5bb75c21571b1c44c2a0464771dd621c7a71",
+      "tasks.md": "56a941b78a4cd70c0b9a6ae48b64874cb11962d289ae691084af31004facb1ff",
+      "decision-record.md": "b7c836cfd0ce7d210ce62b4b091ea35738e63c388f9ca01874625b43765d7159",
+      "implementation-summary.md": "8c139d8a98c55c7247e1c3a64c7518c1f5574875a81c6a8bb025d96bccba6556"
     },
     "last_active_child_id": null,
     "last_active_at": null

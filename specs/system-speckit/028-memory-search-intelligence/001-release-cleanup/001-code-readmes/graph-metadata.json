@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The every per-directory code README across code-heavy skill folders needs a release-readiness cleanup contract before any document edits begin",
     "created_at": "2026-06-19T00:00:00Z",
-    "last_save_at": "2026-08-30T15:39:34.473Z",
+    "last_save_at": "2026-09-11T16:42:39.399Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:98b43502f6e47dbcdd20ed5d7f2dbef08add936d3d51b756fdd7a7de54ecb127",
+    "source_fingerprint": "sha256:2225649d98491e4aed2d03f4282149651e5b16fc44d6e5ab09b9878177f1df18",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c33f48c697809546d32f7d0549a6c8bf8f8a2564694e86c23f82d855e036d70a",
+      "spec.md": "3d1ff09d7f2831407571a51e8c96dc864891f3f3eded9a7fff11f55a3a1aaf34",
       "plan.md": "bc6eeb19a3b96d079ccb3236f9ca410bf5337f283f603343002dafc49de7a832",
       "tasks.md": "6d84d5b69f645fd3810fefad18a773dd53b79912c2252dd6227237f4a2227c2b",
-      "implementation-summary.md": "cbcd137e80991d0584d6ffe2cc27d4d2c1905808b520022f403b1c8559b856ce"
+      "implementation-summary.md": "d53ee5bce3c53e9dfc9b69c92b49ead134c3eedb020a6f51d5fe13fd888ddc3f"
     },
     "last_active_child_id": null,
     "last_active_at": null

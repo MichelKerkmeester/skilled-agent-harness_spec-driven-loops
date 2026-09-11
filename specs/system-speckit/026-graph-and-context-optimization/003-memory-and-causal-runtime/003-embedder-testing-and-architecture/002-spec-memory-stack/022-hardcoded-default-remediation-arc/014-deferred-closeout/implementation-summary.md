@@ -9,7 +9,7 @@ _memory:
     packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/014-deferred-closeout"
     last_updated_at: "2026-05-23T22:45:00Z"
     last_updated_by: "main_agent"
-    recent_action: "Post-014 fixes pushed (6acd845dfd)"
+    recent_action: "Post-014 fixes pushed (8cbce5ae85)"
     next_safe_action: "n/a — arc 022 closed"
     blockers: []
     key_files:
@@ -29,7 +29,7 @@ _memory:
     open_questions: []
     answered_questions:
       - "R1-R5 all pass; 3 deferred items closed; 1 no-op; 1 deferred"
-      - "Post-014 closeout: 2 more deferred items closed (test fixture rename + cross-language sidecar parity test) in commit 6acd845dfd. 53/53 scorer + 4/4 parity tests pass."
+      - "Post-014 closeout: 2 more deferred items closed (test fixture rename + cross-language sidecar parity test) in commit 8cbce5ae85. 53/53 scorer + 4/4 parity tests pass."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 1 -->

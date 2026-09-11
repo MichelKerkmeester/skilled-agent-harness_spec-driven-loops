@@ -78,16 +78,16 @@
     ],
     "causal_summary": "Spec: Deep Review of Session-Shipped Work (3 commits on skilled/v4.0.0.0)",
     "created_at": "2026-07-21T05:00:17.645Z",
-    "last_save_at": "2026-09-03T22:52:30.840Z",
+    "last_save_at": "2026-09-11T16:41:55.972Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:c1c632f5d12c90fa444739f480480ca5911c0163b44dec2b61dca7704f562db3",
+    "source_fingerprint": "sha256:f73b54a5a5a856075f98cdcfc51cbb67baebaf93fb38edf113632cdeaee9ebf3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "eddfb4e42ae95470738c9095502f75a242599e5165832d6c320d03acc18585b2"
+      "spec.md": "0b19328bc0bfcddfc63231ac0654621f3321d2446705ecca6561b686881c0fe9"
     },
     "last_active_child_id": null,
     "last_active_at": null

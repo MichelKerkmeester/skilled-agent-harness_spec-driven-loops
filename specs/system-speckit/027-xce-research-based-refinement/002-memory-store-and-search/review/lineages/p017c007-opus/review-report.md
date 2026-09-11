@@ -9,7 +9,7 @@ trigger_phrases: []
 **Verdict: PASS** (hasAdvisories: true)
 
 - Active findings: **P0=0, P1=0, P2=2**
-- Scope: spec folder `007-output-surface-parity` — a Level 1, contract-only (markdown) phase whose shipped deliverable is edits to `.opencode/commands/memory/search.md` and `.opencode/commands/memory/assets/search_presentation.txt`, committed at `254289251a`.
+- Scope: spec folder `007-output-surface-parity` — a Level 1, contract-only (markdown) phase whose shipped deliverable is edits to `.opencode/commands/memory/search.md` and `.opencode/commands/memory/assets/search_presentation.txt`, committed at `3a289d732d`.
 - Convergence reason: maxIterations (1) reached; all 4 review dimensions covered in a single comprehensive pass; no P0/P1 after re-reading cited evidence; evidence, scope, and coverage gates pass.
 - Release readiness: converged.
 
@@ -80,7 +80,7 @@ No spec-vs-code **contradiction** was found; the contract behavior the docs desc
 - Adversarial replay: no P0 to replay. Both P2 findings re-checked at source — F001 (scaffold placeholders) and F002 (`graph-metadata` Status=planned vs committed/100%) are directly observable, not inferred.
 
 ### Security note
-Markdown contract; no new executable surface introduced this phase. The §0 `bash -c` argument-join in `search.md:17` is prior O1 work (commit `eac1eb5ef8`), unchanged here, and out of this phase's deliverable scope. No injectable/untrusted-input path added by O2.
+Markdown contract; no new executable surface introduced this phase. The §0 `bash -c` argument-join in `search.md:17` is prior O1 work (commit `2d425de43f`), unchanged here, and out of this phase's deliverable scope. No injectable/untrusted-input path added by O2.
 
 ### File coverage matrix
 | File | Dimension(s) | Result |

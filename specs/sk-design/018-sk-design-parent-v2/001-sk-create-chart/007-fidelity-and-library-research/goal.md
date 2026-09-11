@@ -93,7 +93,7 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| The phase as shipped | Done | `abf77df9d0` on 2026-09-02, the only commit touching this folder besides `08eb67a0de` |
+| The phase as shipped | Done | `4e0968b4d8` on 2026-09-02, the only commit touching this folder besides `aa11c2b622` |
 | T1 per-mark hover titles | Done | `parallel-axes.html:118-120` documents the native tooltip, and `scatter.html` builds one `title` per mark |
 | T4 measured legend labels | Done | Recorded at `implementation-summary.md` with legend x values of `59`, `150.92`, `243.35` |
 | T2 number formatter | Done | Every template defines `fmt` and routes each printed figure through it. Label diff over the corpus: nine ticks gained a comma, the candlestick ladder now reads `87.5 · 100.0 · 112.5 · 125.0 · 137.5 · 150.0`. A 0.2 step printed `0.6000000000000001` before and `0.6` after |

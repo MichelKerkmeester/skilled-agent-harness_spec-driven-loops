@@ -57,7 +57,7 @@ The audit's nine findings share one root: the create-skill contract is declared 
 ### Definition of Ready
 - [x] All nine findings verified at file:line against HEAD (source audit + this plan's re-check)
 - [x] The single root cause (triplicated contract) identified
-- [x] The description-budget fork resolved (see §6 / ADR-003) — operator chose ≤130 soft; shipped WU1b `0f2c601f9f`
+- [x] The description-budget fork resolved (see §6 / ADR-003) — operator chose ≤130 soft; shipped WU1b `440f41a05b`
 
 ### Definition of Done (the "single-source" bar)
 - [ ] One machine-readable contract declares section order, description budget, required rules, tool rules, and packet kinds

@@ -32,7 +32,7 @@ contextType: "implementation"
 ## Phase 1: Setup
 
 - [x] T001 Record the attach behavior of all nineteen registrations as the pre-change baseline — evidence: 15 named `node`, 4 named an absolute interpreter (6 code_mode across the files, plus memory and advisor in the Codex config)
-- [x] T002 Record the revert for each of the six files before editing any of them — evidence: all six were tracked and clean at `48196a45e2`, so `git checkout -- <file>` restores each
+- [x] T002 Record the revert for each of the six files before editing any of them — evidence: all six were tracked and clean at `b6dfeeaf9a`, so `git checkout -- <file>` restores each
 - [x] T003 [P] Confirm the launcher is executable from a working directory other than the repository root — evidence: the launcher derives its own repository root from `__dirname` rather than the caller's working directory
 <!-- /ANCHOR:phase-1 -->
 

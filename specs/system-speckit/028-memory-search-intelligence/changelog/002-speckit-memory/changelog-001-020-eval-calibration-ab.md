@@ -19,7 +19,7 @@ contextType: "implementation"
 
 ### Summary
 
-This phase shipped observe-only confidence calibration and shipped-lever A/B utilities. The calibration fitter gains a real eval caller through the ablation harness, a three-way held-out shadow returns a promote-or-wait decision without flipping flags and the lever A/B emits measured S5 and S3 descriptors. Both candidates stay pending promotion until 019 supplies held-out ECE and golden-set delta evidence. Default behavior stays byte-identical because no flag default was flipped. Commit `8f8776e329` carried the utilities with a 232-line passing test.
+This phase shipped observe-only confidence calibration and shipped-lever A/B utilities. The calibration fitter gains a real eval caller through the ablation harness, a three-way held-out shadow returns a promote-or-wait decision without flipping flags and the lever A/B emits measured S5 and S3 descriptors. Both candidates stay pending promotion until 019 supplies held-out ECE and golden-set delta evidence. Default behavior stays byte-identical because no flag default was flipped. Commit `508af65780` carried the utilities with a 232-line passing test.
 
 ### Added
 

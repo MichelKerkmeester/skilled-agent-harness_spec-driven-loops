@@ -53,7 +53,7 @@ _memory:
 ### Overview
 This sub-phase makes the single highest-leverage foundational change to the Skill Advisor fusion scorer: replace the raw-score weighted SUM (which mixes a hint-inflated lexical overlap, a `[0.2,1]` cosine and a signed `[-1,1]` graph propagation on one incomparable axis) with rank-based deterministic RRF, by importing Memory's already-shipped `fuseResultsMulti` (`shared/algorithms/rrf-fusion.ts`) and passing the advisor's OWN smaller `k`. The byte-stable tiebreak (C2) is C3's mechanism and folds in. The one mandatory caveat is that `fuseResultsMulti` is positive-only and elides zero/negative-weight lanes, so the `graph_causal` `conflicts_with = -0.35` conflict suppression is preserved via a post-fusion re-rank rather than fed to RRF.
 
-Nothing in this sub-phase shipped in the flat Wave-0 implementation record (030) - 030 shipped only the Memory-side `fuseResultsMulti` API extension (`bonusOverChannels`, `65cfcea513`) that this import depends on. So C3/C2/the conflict carrier are net-new here, they shipped default-off in this sub-phase (`ce858fa165`), with only the live-flip benchmark still pending. The plan's discipline mirrors packet 030's one-candidate-at-a-time method (read the seam, smallest reversible change, focused test, prove the property, commit independently) but adds a gate the Wave-0 tiebreaks did not need: because the RRF import *changes the fused ordering* (it is not byte-identical-by-default like the Memory tiebreaks), it is **needs-benchmark** - a top-1/top-3 routing-agreement baseline against the current weighted sum is captured before any live flip.
+Nothing in this sub-phase shipped in the flat Wave-0 implementation record (030) - 030 shipped only the Memory-side `fuseResultsMulti` API extension (`bonusOverChannels`, `84c532114d`) that this import depends on. So C3/C2/the conflict carrier are net-new here, they shipped default-off in this sub-phase (`c49470a44a`), with only the live-flip benchmark still pending. The plan's discipline mirrors packet 030's one-candidate-at-a-time method (read the seam, smallest reversible change, focused test, prove the property, commit independently) but adds a gate the Wave-0 tiebreaks did not need: because the RRF import *changes the fused ordering* (it is not byte-identical-by-default like the Memory tiebreaks), it is **needs-benchmark** - a top-1/top-3 routing-agreement baseline against the current weighted sum is captured before any live flip.
 
 The conflict re-rank ships as a *carrier* only: the post-fusion re-rank seam exists so the import is conflict-safe, but the full C1 (a populated split-conflict signal) is out of scope because `conflicts_with` is DORMANT in production (zero reciprocal declarations).
 <!-- /ANCHOR:summary -->
@@ -67,7 +67,7 @@ The conflict re-rank ships as a *carrier* only: the post-fusion re-rank seam exi
 - [x] 028 research treated as roadmap input, not implementation authority. Evidence: `spec.md` sections 2 and 13.
 - [x] Scope limited to the RRF spine (C3 + C2-folded + conflict carrier), C5/C4/QCR and the full C1 excluded. Evidence: `spec.md` section 3 Out of Scope.
 - [x] Candidate seams identified from `../research/research.md` Internal Baseline + the per-iteration delta detail (iter-2/6/10) before edits.
-- [x] The shared `fuseResultsMulti` dependency is confirmed shipped (`030` §14 cand 5, `65cfcea513`) and shape-compatible (`001` iter-2 F17). Evidence: `spec.md` METADATA + section 6.
+- [x] The shared `fuseResultsMulti` dependency is confirmed shipped (`030` §14 cand 5, `84c532114d`) and shape-compatible (`001` iter-2 F17). Evidence: `spec.md` METADATA + section 6.
 - [x] The signed-score conflict-suppression caveat is named as REQ-003 before any import. Evidence: `spec.md` REQ-003.
 
 ### Definition of Done
@@ -106,7 +106,7 @@ The five lane scorers run as today and emit `LaneMatch[]`, the adapter converts 
 |---------|--------------|--------|--------------|
 | `system-skill-advisor/.../lib/scorer/fusion.ts` | Raw-score weighted-SUM fusion + float tiebreak (`:366,:372,:409,:425-433`) | DONE DEFAULT-OFF - add a `fuseResultsMulti` call over per-lane `RankedList`s, pass advisor `k`, use RRF rank tiebreak, add the post-fusion conflict re-rank in the comparator | advisor scorer/fusion Vitest suite passed, routing-agreement baseline pending |
 | `system-skill-advisor/.../lib/scorer/lanes/graph-causal.ts` | Signed BFS propagation, `conflicts_with = -0.35` emitted negative (`:18,:70-103`) | DONE - split the emit: positive propagation → RRF lane, `conflicts_with` negative mass → the post-fusion re-rank, not the RRF lane | graph-causal lane Vitest + conflict-suppression fixture passed |
-| `shared/algorithms/rrf-fusion.ts` | Shared RRF primitive (`fuseResultsMulti`, `FuseMultiOptions.k`, `RankedList`, `compareFusionResults`) | Import-only - consumed, NOT modified or forked, already extended in Wave-0 (`65cfcea513`) | `rrf-fusion.vitest.ts` (unchanged), advisor import-shape check |
+| `shared/algorithms/rrf-fusion.ts` | Shared RRF primitive (`fuseResultsMulti`, `FuseMultiOptions.k`, `RankedList`, `compareFusionResults`) | Import-only - consumed, NOT modified or forked, already extended in Wave-0 (`84c532114d`) | `rrf-fusion.vitest.ts` (unchanged), advisor import-shape check |
 
 Inventory scoped to the advisor fusion seam + the graph-causal lane emit + the shared primitive import. The shared `fuseResultsMulti` signature is the cross-subsystem contract (also consumed by Memory 001 and Code Graph 002 with an adapter), the advisor adds a consumer, it does not change the signature.
 <!-- /ANCHOR:affected-surfaces -->
@@ -161,7 +161,7 @@ Inventory scoped to the advisor fusion seam + the graph-causal lane emit + the s
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Shared `fuseResultsMulti` (`bonusOverChannels` extension) | Cross-subsystem (shipped) | Green (`030` §14 cand 5, `65cfcea513`) | The whole import, primitive is shape-compatible (`001` iter-2 F17) and exposes `FuseMultiOptions.k` |
+| Shared `fuseResultsMulti` (`bonusOverChannels` extension) | Cross-subsystem (shipped) | Green (`030` §14 cand 5, `84c532114d`) | The whole import, primitive is shape-compatible (`001` iter-2 F17) and exposes `FuseMultiOptions.k` |
 | `conflicts_with` edge data in `skill-graph.sqlite` | Data | DORMANT (`003` iter-10 O10-01) | Gates only the re-rank's LIVE effect, not the carrier code, carrier ships regardless |
 | Routing-agreement baseline harness | Verification | Pending | Gates the live flip (the import changes fused ordering, needs-benchmark) |
 | Downstream C1 (full split-conflict) / C6 / QCR | Downstream sub-phases | Out of scope | This spine unblocks them, they are sequenced after |
@@ -226,4 +226,4 @@ Inventory scoped to the advisor fusion seam + the graph-causal lane emit + the s
 - **Task Breakdown**: See `tasks.md`.
 - **Verification Checklist**: See `checklist.md`.
 - **Source research**: `../research/research.md`, `../../research/roadmap.md`, `../../research/synthesis/01-go-candidates.md` + `03`.
-- **Shipped record (historical evidence)**: Wave-0 record (dependency commit `65cfcea513`).
+- **Shipped record (historical evidence)**: Wave-0 record (dependency commit `84c532114d`).

@@ -187,7 +187,7 @@ chose when ruling that it moves in rather than staying a sibling.
 | Risk | The regression does not close | High: it would mean the cause was diagnosed wrong, not merely unfixed | It is a blocker here; if merging identities does not restore the phrase, tune hub vocabulary before closing |
 | Risk | A rewrite hits a historical record | Medium: it would corrupt the account of the decision this packet supersedes | The three groups are separated by path before any rewrite runs |
 | Risk | 7,946 files record as delete-plus-add | High: the history of the whole corpus would be lost | Pure move carries no content edit on the same path; rename status checked before commit |
-| Dependency | `002-hub-and-fundamentals` | The hub this mode joins | Complete, commit `112d5471f4` |
+| Dependency | `002-hub-and-fundamentals` | The hub this mode joins | Complete, commit `08c9d0605d` |
 <!-- /ANCHOR:risks -->
 
 ---

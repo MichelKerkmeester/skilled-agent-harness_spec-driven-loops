@@ -55,8 +55,8 @@ This documentation phase records the completed manual verification-and-fixes arc
 
 | Fix | Commit | Files | Runtime/Test Effect |
 |-----|--------|-------|---------------------|
-| Gold-battery path normalization | `bda7f57879` | `system-code-graph/mcp_server/lib/gold-query-verifier.ts` | `GOLD_BATTERY_RELATIVE_PATH` no longer points at pre-normalization `system-spec-kit/026-...`; it points at normalized `system-speckit/026-...`, where the gold file exists at 10.8KB. Source fix shipped; dist is gitignored; runtime effect waits for code-graph daemon reload. |
-| BM25 scoped fill-limit regression | `e4fcccc320` | `system-spec-kit/mcp_server/lib/search/hybrid-search.ts`; `bm25-scope-then-limit-stress.vitest.ts` | Restores corpus-bounded `candidateLimit = (specFolder||db) ? index.getStats().documentCount : limit`; preserves performance saving through rank-ordered 500-id metadata batches with early exit at `limit` survivors; preserves fail-closed guards. |
+| Gold-battery path normalization | `4313a2dfbc` | `system-code-graph/mcp_server/lib/gold-query-verifier.ts` | `GOLD_BATTERY_RELATIVE_PATH` no longer points at pre-normalization `system-spec-kit/026-...`; it points at normalized `system-speckit/026-...`, where the gold file exists at 10.8KB. Source fix shipped; dist is gitignored; runtime effect waits for code-graph daemon reload. |
+| BM25 scoped fill-limit regression | `32c1aea94f` | `system-spec-kit/mcp_server/lib/search/hybrid-search.ts`; `bm25-scope-then-limit-stress.vitest.ts` | Restores corpus-bounded `candidateLimit = (specFolder||db) ? index.getStats().documentCount : limit`; preserves performance saving through rank-ordered 500-id metadata batches with early exit at `limit` survivors; preserves fail-closed guards. |
 
 ### BM25 Verification Evidence
 
@@ -121,8 +121,8 @@ The manual verification and code/test fixes completed before this documentation 
 | Check | Status | Evidence |
 |-------|--------|----------|
 | Manual runnable scenarios | Pass with recorded failures/blockers | 25 PASS / 2 FAIL / 3 BLOCKED across approximately 30 runnable items. |
-| Gold-battery failure | Fixed at source | Commit `bda7f57879`; `system-code-graph/mcp_server/lib/gold-query-verifier.ts`; runtime effect pending daemon reload. |
-| BM25 scoped fill-limit | Fixed and verified | Commit `e4fcccc320`; `stress:harness` 45/45; `hybrid-search.vitest` 102/102; `tsc` clean. |
+| Gold-battery failure | Fixed at source | Commit `4313a2dfbc`; `system-code-graph/mcp_server/lib/gold-query-verifier.ts`; runtime effect pending daemon reload. |
+| BM25 scoped fill-limit | Fixed and verified | Commit `32c1aea94f`; `stress:harness` 45/45; `hybrid-search.vitest` 102/102; `tsc` clean. |
 | Code-graph blockers | Unblocked | `code_graph_scan` restored fresh/ready/live graph status; `blast_radius` BLOCKED to ok. |
 | Spec-memory daemon search | Pass | Cold-started and served `memory_search "surface alignment remediation"` with 3 hits. |
 | Lexical-overlap-quality-gate | Deferred | 18/20 FAIL, pre-existing, origin parity delta 0, fails alone; deferred to FTS/016 owner. |
@@ -136,7 +136,7 @@ The manual verification and code/test fixes completed before this documentation 
 
 | NFR ID | Target | Actual | Status |
 |--------|--------|--------|--------|
-| NFR-E01 | Evidence cites commits and files | Commits `bda7f57879` and `e4fcccc320` plus source file paths recorded | Pass |
+| NFR-E01 | Evidence cites commits and files | Commits `4313a2dfbc` and `32c1aea94f` plus source file paths recorded | Pass |
 | NFR-E02 | No false completion claims | Lexical-overlap-quality-gate remains explicitly deferred | Pass |
 | NFR-S01 | Runtime readiness separated from product fixes | Code-graph scan and spec-memory daemon recovery recorded separately | Pass |
 <!-- /ANCHOR:nfr-verify -->

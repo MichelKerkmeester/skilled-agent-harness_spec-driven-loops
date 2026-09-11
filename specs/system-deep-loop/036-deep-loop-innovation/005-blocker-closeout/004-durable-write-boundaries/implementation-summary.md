@@ -24,7 +24,7 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions:
-      - "Blocker 3 discharged? Yes — 39015ed14c, hard-private #appendAuthorized + FenceCapability."
+      - "Blocker 3 discharged? Yes — 039fc180f9, hard-private #appendAuthorized + FenceCapability."
       - "B5/B6 real gaps? No — T001-REFUTED, already fixed in the tree before this build."
       - "B2 event_version caveat blocking? No — the fix fails closed (rejects, never silently trusts); recorded as an accepted availability caveat, not an integrity risk."
 ---
@@ -42,7 +42,7 @@ _memory:
 | **Landed on** | `origin/skilled/v4.0.0.0` |
 | **Verified** | 2026-08-08 |
 | **Prior claimed status (2026-08-03, superseded)** | "COMPLETION LEAF — GAPS CLOSED", 100% — later found fabricated: the fencing mechanism did not exist in code and several checklist evidence citations pointed at an unrelated commit. |
-| **Re-verification finding (2026-08-08 03:30, superseded by this build)** | Confirmed the fabrication: `appendAuthorized` had zero fencing logic, the cited SHA `9229cb8f3e` touched only an unrelated packet's docs, and `branch-leases-waves.vitest.ts` failed live on a missing `fence_token` field. That finding is what triggered `build-spec.md` and `t001-disposition.md`, and is now resolved by the build described below. |
+| **Re-verification finding (2026-08-08 03:30, superseded by this build)** | Confirmed the fabrication: `appendAuthorized` had zero fencing logic, the cited SHA `2d12dfc5f5` touched only an unrelated packet's docs, and `branch-leases-waves.vitest.ts` failed live on a missing `fence_token` field. That finding is what triggered `build-spec.md` and `t001-disposition.md`, and is now resolved by the build described below. |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -50,25 +50,25 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-This build followed a confirm-first gate: `build-spec.md` produced an initial finding-by-finding grading, and `t001-disposition.md` (authoritative over `build-spec.md`) re-graded every finding directly against live code at origin tip `596495262287`, correcting two of the build-spec's gradings before any code was touched. The GO-to-build set that resulted was B1, B2, B3, B4, `F-018-03` (folds into B1), and B7 (this metadata reconciliation). Everything below that is marked "built" was built against that confirmed set — nothing was built against an unconfirmed finding.
+This build followed a confirm-first gate: `build-spec.md` produced an initial finding-by-finding grading, and `t001-disposition.md` (authoritative over `build-spec.md`) re-graded every finding directly against live code at origin tip `df317a33431f`, correcting two of the build-spec's gradings before any code was touched. The GO-to-build set that resulted was B1, B2, B3, B4, `F-018-03` (folds into B1), and B7 (this metadata reconciliation). Everything below that is marked "built" was built against that confirmed set — nothing was built against an unconfirmed finding.
 
-### B1 — append-boundary fence + F-018-03 fence_token persistence (landed `39015ed14c`)
+### B1 — append-boundary fence + F-018-03 fence_token persistence (landed `039fc180f9`)
 
-Built as `f6f9f0e2cc` (hard-private append fence + fence_token persistence), then `cd894f1e81` (a harness-lease fix: the test harness had a never-released council lease), then `de98bdf299` (a forgery fix found by adversarial review, folded into the same landed commit `39015ed14c`).
+Built as `f6f9f0e2cc` (hard-private append fence + fence_token persistence), then `cd894f1e81` (a harness-lease fix: the test harness had a never-released council lease), then `de98bdf299` (a forgery fix found by adversarial review, folded into the same landed commit `039fc180f9`).
 
 `appendAuthorized` is now hard-private `#appendAuthorized` on `append-only-ledger.ts`, reachable only through a coordinator-minted `FenceCapability` passed as a closure argument. The capability is re-checked at call time against `coordinator.peekCurrentLease(fence.resource)` — the durable current lease, not a value captured once at mint time — so a superseded writer holding an unexpired authorization proof is rejected `STALE_FENCE` before any frame commits. All 32 production `.appendAuthorized(` call sites across the 33-file caller census, plus the 5 idempotent-replay sites that must short-circuit to a rebuilt receipt rather than being mechanically wrapped, were migrated. `tsc` clean compilation is the completeness proof for the migration: a missed caller would be a compile error, not a silent gap. The persisted `AuthorizationReference` now carries the numeric `fence_token` field (`authorized-ledger-types.ts`, the closed `AUTHORIZATION_REFERENCE_FIELDS` set, `authorizationReference()`), which is what F-018-03's previously-failing test (`branch-leases-waves.vitest.ts > persists the held ledger fence on a committed branch mutation`) asserts on. REQ-001 and REQ-002 are met by this mechanism.
 
 **Independent adversarial pass found and this build closed a real hole**: a no-op-reassert bypass, where a capability could be re-asserted without the token being re-checked for currency. The fix adds token-currency validation to `#appendAuthorized`'s capability check, with a permanent regression test, `rejects a capability minted outside any coordinator, holding no lease at all`, added to `authorized-ledger.vitest.ts`. This is a real, closed gap found by verification — not a re-fabrication risk, because the test and the fix are both present in the landed commit and were independently re-confirmed against the diff.
 
-### B2 — gateway identity fail-closed (landed `27e6c2b5a9`)
+### B2 — gateway identity fail-closed (landed `82299e2b0a`)
 
 `transition-authorization-gateway.ts` now records `actor_id_verified` / `capability_id_verified` / `evidence_digest_verified` booleans on every persisted `AuthorizationDecisionRecord`. Each is `true` only when a configured `identityResolver` positively pins that field and the request's value matches; a forged or unpinned field is still recorded (the record is not dropped) but marked unverified. The verdict logic itself — allow/deny — is unchanged, so all 102 existing no-resolver caller sites keep working exactly as before. The new fields are purely additive evidence. Regression test: `records a forged identity as allowed but NOT verified when no resolver can confirm it`.
 
-### B3 — policy-identity digest covers captured state (landed `5b6d9e86b9`)
+### B3 — policy-identity digest covers captured state (landed `3c616bd514`)
 
 `transition-policy-registry.ts`'s `implementationDigest` previously hashed only `Function.prototype.toString.call(definition.evaluate)` — source text alone, so a closure-captured allowlist could change under an unchanged policy identity. It now hashes `{evaluatorSource, authorizationState}` together via `canonicalBytes`, with a canonical `null` placeholder when no captured state is declared, so identical evaluator source with different captured authorization state now produces different digests. REQ-004 is met.
 
-### B4 — loop-lock atomic publish (landed `ff3a574014`)
+### B4 — loop-lock atomic publish (landed `2ccb5cc6f7`)
 
 `writeLoopLockExclusive` in `loop-lock.ts` previously created the lock file with `openSync(path,'wx')` and then wrote its content in a *separate* `writeFileSync` call, leaving an observable empty-file window. A concurrent acquirer landing in that window read an existing-but-empty file, `JSON.parse('')` threw, the null holder skipped the staleness check, and `tryReclaimStaleLoopLock` renamed the creator's in-flight file aside — letting both acquirers return `acquired:true`. The fix writes the complete serialized record to a private temp file, `fsync`s it, then publishes with a single `linkSync` into the target path, preserving `openSync('wx')`'s `EEXIST` exclusivity while eliminating the empty-file window entirely: the target path is now only ever observably absent or complete. A deterministic regression test mocks `node:fs` to interleave a concurrent acquirer at the exact instant the path first becomes observable; it was verified RED against the pre-fix code (via a `git stash` of the change alone) and GREEN after restoring the fix. The pre-existing real two-process single-winner test and the dead-owner-reclaim test stayed green and unmodified.
 
@@ -117,14 +117,14 @@ Sequence: (1) `build-spec.md` — a read-only prep pass grounding an initial per
 
 | Check | Result |
 |-------|--------|
-| `git show --stat` on all four landed commits (`39015ed14c`, `27e6c2b5a9`, `5b6d9e86b9`, `ff3a574014`) | All four exist, touch the claimed files, and carry the claimed commit messages. Confirmed directly during this reconciliation pass. |
+| `git show --stat` on all four landed commits (`039fc180f9`, `82299e2b0a`, `3c616bd514`, `2ccb5cc6f7`) | All four exist, touch the claimed files, and carry the claimed commit messages. Confirmed directly during this reconciliation pass. |
 | `git branch -r --contains <sha>` for all four landed commits | All four report `origin/skilled/v4.0.0.0`. Confirmed directly during this reconciliation pass. |
-| `#appendAuthorized` hard-private + `FenceCapability` param, at `39015ed14c` | Confirmed by reading `append-only-ledger.ts` at that commit: `async #appendAuthorized(event, proof, capability)`, invoked only via a closure from the public bridge. |
-| `fence_token` persisted field, at `39015ed14c` | Confirmed: `fence_token` is in the closed `AUTHORIZATION_REFERENCE_FIELDS` set, the type, and the `authorizationReference()` builder; validated as a positive integer. |
-| `records a forged identity as allowed but NOT verified when no resolver can confirm it`, at `27e6c2b5a9` | Confirmed present in the commit's diff to `authorized-ledger.vitest.ts`. |
-| `implementationDigest` hashes `{evaluatorSource, authorizationState}`, at `5b6d9e86b9` | Confirmed by reading the diff: replaces a source-only digest with a `canonicalBytes({evaluatorSource, authorizationState})` digest. |
-| `writeLoopLockExclusive` temp-file + `fsync` + `linkSync` atomic publish, at `ff3a574014` | Confirmed by reading the diff to `loop-lock.ts`: adds `linkSync` import, replaces the `openSync('wx')` + separate `writeFileSync` sequence. |
-| `rejects a capability minted outside any coordinator, holding no lease at all`, at `39015ed14c` | Confirmed present in the commit's diff to `authorized-ledger.vitest.ts`. |
+| `#appendAuthorized` hard-private + `FenceCapability` param, at `039fc180f9` | Confirmed by reading `append-only-ledger.ts` at that commit: `async #appendAuthorized(event, proof, capability)`, invoked only via a closure from the public bridge. |
+| `fence_token` persisted field, at `039fc180f9` | Confirmed: `fence_token` is in the closed `AUTHORIZATION_REFERENCE_FIELDS` set, the type, and the `authorizationReference()` builder; validated as a positive integer. |
+| `records a forged identity as allowed but NOT verified when no resolver can confirm it`, at `82299e2b0a` | Confirmed present in the commit's diff to `authorized-ledger.vitest.ts`. |
+| `implementationDigest` hashes `{evaluatorSource, authorizationState}`, at `3c616bd514` | Confirmed by reading the diff: replaces a source-only digest with a `canonicalBytes({evaluatorSource, authorizationState})` digest. |
+| `writeLoopLockExclusive` temp-file + `fsync` + `linkSync` atomic publish, at `2ccb5cc6f7` | Confirmed by reading the diff to `loop-lock.ts`: adds `linkSync` import, replaces the `openSync('wx')` + separate `writeFileSync` sequence. |
+| `rejects a capability minted outside any coordinator, holding no lease at all`, at `039fc180f9` | Confirmed present in the commit's diff to `authorized-ledger.vitest.ts`. |
 | `peekCurrentLease` public method backing the re-check | Confirmed present and public on `FencedLeaseCoordinator` (`fenced-lease-coordinator.ts`) — this is also the basis of the documented token-replay residual below. |
 | Load-bearing suite re-runs in the final adversarial re-run (per the task brief supplying this reconciliation; suite identities cross-checked against the commits above) | `authorized-ledger.vitest.ts` 34/34, `locks-and-fencing.vitest.ts` 28/28, `loop-lock.vitest.ts` 16/16, `branch-leases-waves.vitest.ts` 16/16, plus others — 132 tests total in the final adversarial re-run. This reconciliation pass did not re-execute these suites itself; it verified the underlying commits, diffs, and test names directly instead (see the rows above). |
 | Remaining ~6 slower shadow-parity / mode-family suites | Rest on `tsc`-completeness (a missed caller is a compile error) plus the per-commit diff evidence above, not on an individual re-run in the final adversarial pass. Recorded as an inference, not a confirmed run — see Known Limitations. |

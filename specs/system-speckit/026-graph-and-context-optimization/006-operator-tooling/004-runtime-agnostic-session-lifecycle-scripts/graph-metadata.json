@@ -44,7 +44,6 @@
       ".opencode/scripts/session-cleanup.sh",
       ".opencode/scripts/git-hooks/post-commit",
       ".opencode/scripts/claude-session-cleanup.sh",
-      ".claude/settings.local.json",
       ".opencode/plugins/session-cleanup.js",
       ".opencode/scripts/README.md",
       ".claude/settings.json"
@@ -96,12 +95,6 @@
         "name": "claude-session-cleanup.sh",
         "kind": "script",
         "path": ".opencode/scripts/claude-session-cleanup.sh",
-        "source": "derived"
-      },
-      {
-        "name": "settings.local.json",
-        "kind": "config",
-        "path": ".claude/settings.local.json",
         "source": "derived"
       },
       {
@@ -193,11 +186,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The session-lifecycle shell scripts under `.opencode/scripts/` were written for Claude Code only",
     "created_at": "2026-05-30T10:12:02.933Z",
-    "last_save_at": "2026-08-30T15:39:32.198Z",
+    "last_save_at": "2026-09-11T16:42:34.576Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:85d55fc6e60aadcca9ae4c42e608e1a8741c8692d7a2c3370a7202facc0e7aec",
+    "source_fingerprint": "sha256:9f8ae2e0982c664436d14f4105a70a4ee471363c90dcb171bca9c74f9411af79",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c4e11a44fda99f0d687ef7669accf832d19cb8051136a02b75b15c71e37e27aa",
       "plan.md": "99dda2cc5a11d520f5ffaea909df51920e56155fe8a19692bbb26308b7183781",
       "tasks.md": "b44a0173515e0d7e631a2ecfe8eb37dd86faa7fca3f3f212b681362727562831",
-      "implementation-summary.md": "236f2b79d2c7944de8dc84bcf5554e7a0eec37cbc5f53a92640f1756d8133955"
+      "implementation-summary.md": "9863212eb91a9e7bca4710631d83cf1300084f05a63ed9d429a0d4c3bf2c85a4"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -34,7 +34,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Packet** | `system-deep-loop/036-deep-loop-innovation/003-shared-evidence-and-control-services/006-locks-and-fencing` |
-| **Baseline HEAD** | `d1a3f0323c3635f24c3560feaeda839522ececf0` |
+| **Baseline HEAD** | `f3ae3672a0a3f046204658dcccaeda2d7b8dee14` |
 | **Status** | Implemented and focused-verification green |
 | **Authority** | Additive-dark; shipped legacy writers remain canonical and unchanged |
 | **Atomicity domain** | Single-host filesystem only; every other topology fails closed |

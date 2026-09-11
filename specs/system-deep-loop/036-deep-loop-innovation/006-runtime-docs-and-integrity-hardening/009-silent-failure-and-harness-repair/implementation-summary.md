@@ -47,7 +47,7 @@ _memory:
 
 Twenty-three findings across three lanes shared one shape: unmeasured or invalid input presenting as fine. Lane A made malformed input fail loudly instead of becoming a null placeholder, an empty array, or a `NaN` that reaches array slicing with `status ok`. Lane B repaired the harnesses producing the evidence: three rollback aggregates were side-effect-importing executable suites that Vitest also discovered independently, registering ~100+ tests twice each and inflating the counts `021` reconciles. Lane C repaired asset and playbook resolution, including fourteen manual scenarios that `cd` into a path that did not exist and a contract-snapshot verifier that could not accept its own output. 22 of 23 findings landed across three commits on `skilled/v4.0.0.0`; the skill-benchmark half of F-034-02 was attempted and reverted (see Known Limitations).
 
-### Lane A — fail-loudly input validation (12 findings, landed as `8fc33832c9`)
+### Lane A — fail-loudly input validation (12 findings, landed as `afcbbea714`)
 
 | Finding | Landed | Disposition |
 |---------|--------|-------------|
@@ -64,7 +64,7 @@ Twenty-three findings across three lanes shared one shape: unmeasured or invalid
 | `F-036-02` | Landed | `divergent-pivot.ts:528` — pivot events are validated with real runtime checks, not cast after generic-only validation. |
 | `F-036-03` | Landed | `divergent-pivot.ts:995` — persisted pivot config is validated, not asserted as a closed shape after shallow checks. |
 
-### Lane B — harness self-integrity (3 findings, landed as `8b887bef5f`)
+### Lane B — harness self-integrity (3 findings, landed as `9b99be4b26`)
 
 | Finding | Landed | Disposition |
 |---------|--------|-------------|
@@ -72,7 +72,7 @@ Twenty-three findings across three lanes shared one shape: unmeasured or invalid
 | `F-034-02` | PARTIAL — model-benchmark landed, skill-benchmark DEFERRED (not landed) | `model-benchmark-resume-adapter`'s file-wide timeout override is now scoped and reset. The equivalent `skill-benchmark-resume-adapter` change introduced a hang and was reverted; see Known Limitations. |
 | `F-034-03` | Landed | The shared spawn helper (`tests/helpers/spawn-cjs.ts`) now settles when a child ignores SIGTERM, escalating to SIGKILL. A new test spawns a SIGTERM-ignoring child and asserts the helper still resolves. |
 
-### Lane C — benchmark/playbook/contract truth (8 findings, landed as `5611f21a15`)
+### Lane C — benchmark/playbook/contract truth (8 findings, landed as `8761d976a0`)
 
 | Finding | Landed | Disposition |
 |---------|--------|-------------|
@@ -91,7 +91,7 @@ Not in Lane C scope: the five pre-existing command-contract reds `021` recorded 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The three lanes landed as three separate commits on `skilled/v4.0.0.0`. Lane A (`8fc33832c9`) passed tsc rc0, the branch-leases-waves/fanout-merge/fanout-run/verify-iteration unit suites (174 tests), the divergent-pivot/query-script/upsert-script integration suites (30 tests), and the reduce-state fallback test, with zero new failures. Lane B (`8b887bef5f`) passed tsc rc0 and the agent/model/skill rollback-gate suites (61/58/80), the model-benchmark-resume-adapter suite (22), and the spawn-cjs suite (6), each run per file. Lane C (`5611f21a15`) passed tsc rc0 and the behavior-bench-run, render-contract-snapshot, playbook-mode, and load-playbook-typed-derivation suites. The skill-benchmark half of F-034-02 was implemented, found to hang the suite (it only fails, not hangs, at origin), and reverted before landing rather than shipped with a new failure mode.
+The three lanes landed as three separate commits on `skilled/v4.0.0.0`. Lane A (`afcbbea714`) passed tsc rc0, the branch-leases-waves/fanout-merge/fanout-run/verify-iteration unit suites (174 tests), the divergent-pivot/query-script/upsert-script integration suites (30 tests), and the reduce-state fallback test, with zero new failures. Lane B (`9b99be4b26`) passed tsc rc0 and the agent/model/skill rollback-gate suites (61/58/80), the model-benchmark-resume-adapter suite (22), and the spawn-cjs suite (6), each run per file. Lane C (`8761d976a0`) passed tsc rc0 and the behavior-bench-run, render-contract-snapshot, playbook-mode, and load-playbook-typed-derivation suites. The skill-benchmark half of F-034-02 was implemented, found to hang the suite (it only fails, not hangs, at origin), and reverted before landing rather than shipped with a new failure mode.
 <!-- /ANCHOR:how-delivered -->
 
 <!-- ANCHOR:decisions -->

@@ -61,27 +61,27 @@ Every round-2 wave and follow-on shipped on branch `028-mcp-to-cli-tool-transiti
 
 | Item | Status | Commit | Result |
 |------|--------|--------|--------|
-| tri-022 — durable shadow telemetry | CLOSED | `e8dbf7c65e` | Durable semantic-trigger shadow telemetry (held out of the review snapshot, committed after). |
-| Wave A — secret-scrubber leak (A1+A2) | CLOSED | `101bfc1d57` | Five vulnerable patterns now use a negative-lookahead boundary; the leak was broader than opus-2 scoped (variable-length `-`-bearing patterns leak at minimum length too). A2 error-log sanitize + `SecretScrubberError` prototype shipped with it. 30 scrubber + 88 error tests green. |
-| Wave B — finish-the-edge (B1–B8) | CLOSED | `16b9a291ea` | Launcher shadow-weights allowlist; missing/non-string `sanitizer_version` warning; review-report path resolution + `review_report` doc type; advisor phrase-boundary identifier-aware; sk-git `noisy_hits` null-safe; index-scope label discloses the named-skill allowlist; apply emits `requiredAction` on missing artifact. |
-| Wave C — advisor corruption interlock (C1–C5) | CLOSED | `0ff0bfef45` | Integrity probe via the writer's live resolver; cached integrity on recommend; descriptor+manifest threshold parity + parity test; bridge threads thresholds; `code_graph_status` `scopeMismatch` vs resolved policy + `resolvedScope`. |
-| Wave D — apply-pipeline honesty (D1–D3) | CLOSED | `d4e9b7d3de` | Prune confirm/opt-in refusal hoisted pre-snapshot; `rollback-failed` on failed recovery at both sites; repair-nodes honest triage, `scan` dropped. |
-| Wave E — idempotency flag-ON (E1+E2) | CLOSED | `553aa93145` | Replay gated on live-index `content_hash` (E1); semantic-only conflict payload (E2); dead `classifyRetryVsContent` removed. |
-| Wave F / F1 — gold-query battery honesty | CLOSED | `b22bf1e613` | Vestigial probe machinery removed, working symbol-presence enforcement kept, broken-query control test added. |
-| P2 comment-hygiene sweep | CLOSED | `f33369d54d`, `88afbeedd1` | ~104 ephemeral tracking labels stripped (code-graph 12 files + spec-kit 37 files) + honest fingerprint privacy note. |
-| P2 minors cluster | CLOSED | `2beaad69f9` | Prune-confirm doc, read-only `skill_graph_status`, config-defaults hygiene. |
-| Command-md header alignment | CLOSED | `d35a3f9b44` | Deep + speckit command-md headers aligned to sk-doc ALL-CAPS. |
-| Doc restructure | CLOSED | `082b2bec6f` | Before-vs-after restructured by subsystem + search-intelligence verdict + CLI explainer. |
+| tri-022 — durable shadow telemetry | CLOSED | `e1b8940ae2` | Durable semantic-trigger shadow telemetry (held out of the review snapshot, committed after). |
+| Wave A — secret-scrubber leak (A1+A2) | CLOSED | `b474120729` | Five vulnerable patterns now use a negative-lookahead boundary; the leak was broader than opus-2 scoped (variable-length `-`-bearing patterns leak at minimum length too). A2 error-log sanitize + `SecretScrubberError` prototype shipped with it. 30 scrubber + 88 error tests green. |
+| Wave B — finish-the-edge (B1–B8) | CLOSED | `6415111ba0` | Launcher shadow-weights allowlist; missing/non-string `sanitizer_version` warning; review-report path resolution + `review_report` doc type; advisor phrase-boundary identifier-aware; sk-git `noisy_hits` null-safe; index-scope label discloses the named-skill allowlist; apply emits `requiredAction` on missing artifact. |
+| Wave C — advisor corruption interlock (C1–C5) | CLOSED | `4f3c1f055d` | Integrity probe via the writer's live resolver; cached integrity on recommend; descriptor+manifest threshold parity + parity test; bridge threads thresholds; `code_graph_status` `scopeMismatch` vs resolved policy + `resolvedScope`. |
+| Wave D — apply-pipeline honesty (D1–D3) | CLOSED | `0582b4e766` | Prune confirm/opt-in refusal hoisted pre-snapshot; `rollback-failed` on failed recovery at both sites; repair-nodes honest triage, `scan` dropped. |
+| Wave E — idempotency flag-ON (E1+E2) | CLOSED | `01618aa199` | Replay gated on live-index `content_hash` (E1); semantic-only conflict payload (E2); dead `classifyRetryVsContent` removed. |
+| Wave F / F1 — gold-query battery honesty | CLOSED | `e92dec23ca` | Vestigial probe machinery removed, working symbol-presence enforcement kept, broken-query control test added. |
+| P2 comment-hygiene sweep | CLOSED | `84ae635ec1`, `863f26ef24` | ~104 ephemeral tracking labels stripped (code-graph 12 files + spec-kit 37 files) + honest fingerprint privacy note. |
+| P2 minors cluster | CLOSED | `93bbca7baa` | Prune-confirm doc, read-only `skill_graph_status`, config-defaults hygiene. |
+| Command-md header alignment | CLOSED | `54a7caef1a` | Deep + speckit command-md headers aligned to sk-doc ALL-CAPS. |
+| Doc restructure | CLOSED | `159c752234` | Before-vs-after restructured by subsystem + search-intelligence verdict + CLI explainer. |
 
 ## Round-2 remediation plan — COMPLETE
 
 All waves below are done; see the table above for commit hashes and results.
 
-1. ~~**Wave A — secret leak.**~~ DONE (`101bfc1d57`).
-2. ~~**Wave B — finish-the-edge (B1–B8).**~~ DONE (`16b9a291ea`).
-3. ~~**Wave C — advisor surface/interlock (C1–C5).**~~ DONE (`0ff0bfef45`).
-4. ~~**Wave D — apply-pipeline honesty (D1–D3 + pipeline-safety tests).**~~ DONE (`d4e9b7d3de`).
-5. ~~**Wave E — idempotency flag-ON (E1/E2 + handler-level tests).**~~ DONE (`553aa93145`).
-6. ~~**Wave F — comment-hygiene sweep + battery semantics (F1).**~~ DONE (`b22bf1e613` battery; `f33369d54d` + `88afbeedd1` hygiene sweep).
+1. ~~**Wave A — secret leak.**~~ DONE (`b474120729`).
+2. ~~**Wave B — finish-the-edge (B1–B8).**~~ DONE (`6415111ba0`).
+3. ~~**Wave C — advisor surface/interlock (C1–C5).**~~ DONE (`4f3c1f055d`).
+4. ~~**Wave D — apply-pipeline honesty (D1–D3 + pipeline-safety tests).**~~ DONE (`0582b4e766`).
+5. ~~**Wave E — idempotency flag-ON (E1/E2 + handler-level tests).**~~ DONE (`01618aa199`).
+6. ~~**Wave F — comment-hygiene sweep + battery semantics (F1).**~~ DONE (`e92dec23ca` battery; `84ae635ec1` + `863f26ef24` hygiene sweep).
 
-Follow-ons beyond the wave plan also landed: P2 minors (`2beaad69f9`), command-md header alignment (`d35a3f9b44`), and the before-vs-after doc restructure (`082b2bec6f`). The held tri-022 (durable shadow telemetry) committed ahead of Wave A at `e8dbf7c65e`.
+Follow-ons beyond the wave plan also landed: P2 minors (`93bbca7baa`), command-md header alignment (`54a7caef1a`), and the before-vs-after doc restructure (`159c752234`). The held tri-022 (durable shadow telemetry) committed ahead of Wave A at `e1b8940ae2`.

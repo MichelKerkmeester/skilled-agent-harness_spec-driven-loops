@@ -55,7 +55,7 @@ _memory:
 <!-- ANCHOR:adr-001-context -->
 ### Context
 
-Pass-1 ranked C3-A as Ship-First #3, a "clean reversible flag flip" to make edge-presence currentness live. The 028 broadening pass refuted that: `SPECKIT_TEMPORAL_EDGES` is **already ON** (`ENV_REFERENCE.md:296`, `search-flags.ts:706`). The bi-temporal substrate (`temporal-edges.ts`, `contradiction-detection.ts:75-77, 99-110`) now carries the read-side wiring: the read-side filter plus store reconciliation shipped at cb92f2f211.
+Pass-1 ranked C3-A as Ship-First #3, a "clean reversible flag flip" to make edge-presence currentness live. The 028 broadening pass refuted that: `SPECKIT_TEMPORAL_EDGES` is **already ON** (`ENV_REFERENCE.md:296`, `search-flags.ts:706`). The bi-temporal substrate (`temporal-edges.ts`, `contradiction-detection.ts:75-77, 99-110`) now carries the read-side wiring: the read-side filter plus store reconciliation shipped at 8cc41ae155.
 
 ### Constraints
 
@@ -69,7 +69,7 @@ Pass-1 ranked C3-A as Ship-First #3, a "clean reversible flag flip" to make edge
 <!-- ANCHOR:adr-001-decision -->
 ### Decision
 
-**We chose**: Implement C3-A as a read-side `getValidEdges` filter (`AND invalid_at IS NULL`) on the recall path plus a lineage↔causal-edge store reconciliation, a BUILD (medium, med-high risk). Shipped at cb92f2f211 with a 241-line passing test.
+**We chose**: Implement C3-A as a read-side `getValidEdges` filter (`AND invalid_at IS NULL`) on the recall path plus a lineage↔causal-edge store reconciliation, a BUILD (medium, med-high risk). Shipped at 8cc41ae155 with a 241-line passing test.
 
 **How it works**: Recall derives currentness from edge presence on the read side, the reconciliation keeps lineage canonical and the causal `invalid_at` projection derived, so there is exactly one supersede writer.
 <!-- /ANCHOR:adr-001-decision -->

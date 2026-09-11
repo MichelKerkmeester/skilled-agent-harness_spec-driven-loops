@@ -56,7 +56,7 @@ The manual review named nine systemic patterns (S1-S9) where a reference documen
 corpus disagreed, or the corpus disagreed with itself, each with a stated direction. A first closeout
 pass (2026-09-11, earlier the same day) found nine of sixteen acceptance criteria `Met` and seven
 `Unmet`, because six of the nine S-items had been drafted as tasks in `tasks.md` but never executed
-against the live files. Four further commits (`ed3f26aaf5`, `cddd84f9f8`, `67a8c88de5`, `76ad403c52`)
+against the live files. Four further commits (`a1d4dcdb15`, `d0e81566ed`, `c24b56de46`, `7bf1c3af7d`)
 then executed that remaining work. This is a second closeout pass: it re-verified each of the seven
 previously-`Unmet` rows against the live tree rather than trusting either the prior closeout or the
 commit messages, and found five flip to `Met` and one genuine gap remains.
@@ -77,21 +77,21 @@ applicator's byte-identity check already catches what a stale pin would.
 
 **What landed since the first closeout.** `dp-integration.html`'s `--custom-red`/`--custom-blue`
 properties are renamed to `--identity-rust`/`--logging-blue`, matching what they actually paint — S1's
-second half (`76ad403c52`). `high-level.html`'s two markerless legend lines now carry `marker-end`,
-matching their real connectors — the second of S3's three sub-fixes (`ed3f26aaf5`). Four files'
+second half (`7bf1c3af7d`). `high-level.html`'s two markerless legend lines now carry `marker-end`,
+matching their real connectors — the second of S3's three sub-fixes (`a1d4dcdb15`). Four files'
 legend entry typography converges on sentence-case Geist sans (`import-drawio.html`,
-`import-mermaid.html`, `org-chart.html` via `76ad403c52`; `it-state.html` via `67a8c88de5`) — S4.
+`import-mermaid.html`, `org-chart.html` via `7bf1c3af7d`; `it-state.html` via `c24b56de46`) — S4.
 `er.html` and `high-level.html`'s legend rules are corrected to their own content's bounding box, and
 the other four audited files are confirmed unchanged where `40`/`960` already matched — S5
-(`76ad403c52`). `style-guide.md`'s dot-pattern sentence now names all eight opt-out forms by
-description — S6's remaining half (`ed3f26aaf5`). Eighty literals across the four starter templates
+(`7bf1c3af7d`). `style-guide.md`'s dot-pattern sentence now names all eight opt-out forms by
+description — S6's remaining half (`a1d4dcdb15`). Eighty literals across the four starter templates
 now reference their palette role by name instead of by value, so repainting a starter's palette block
 repaints its drawing (renders confirmed byte-identical before and after) — most of S9
-(`cddd84f9f8`).
+(`d0e81566ed`).
 
 **S3's third sub-fix, resolved by measurement rather than by change.** The manual review's third legend
 complaint — three keyed node-type fills in `starter-full.html`/`architecture.html` measuring as one
-grey — was investigated rather than patched. `ed3f26aaf5` measured the three fills at within ~4% of
+grey — was investigated rather than patched. `a1d4dcdb15` measured the three fills at within ~4% of
 each other and added a paragraph to `style-guide.md` §4 explaining that the stroke, not the fill, is
 what separates these node types by design, and that a legend swatch inheriting the same near-identical
 fill is faithful rather than a defect. The fill values themselves are unchanged, and the node-type
@@ -119,12 +119,12 @@ closeout (T020).
 |------|--------|---------|
 | `.opencode/skills/sk-design/sk-design-diagram/references/foundations/style-guide.md` | Modified | S1 scope widened; S6 default stated and all eight opt-outs named; S7 `rule-solid` row + `#f7591f` citation corrected; the S3 fill-measurement paragraph added |
 | `.opencode/skills/sk-design/sk-design-diagram/references/foundations/derivation-record.md` | Modified | S7 `rule-solid` row corrected; PINS table (§6) deleted with a documented rationale |
-| `.opencode/skills/sk-design/sk-design-diagram/assets/diagrams/dp-integration.html` | Modified | S1 custom-property rename (`76ad403c52`); S2 text-fill repoint; S8's 52px mask fix |
-| `.opencode/skills/sk-design/sk-design-diagram/assets/diagrams/high-level.html` | Modified | S3 marker-end added to two legend lines (`ed3f26aaf5`); S5 legend rule widened to `x2="972"` (`76ad403c52`) |
-| `.opencode/skills/sk-design/sk-design-diagram/assets/diagrams/er.html` | Modified | S5 legend rule widened to `x2="980"` (`76ad403c52`) |
-| `.opencode/skills/sk-design/sk-design-diagram/assets/diagrams/{import-drawio,import-mermaid,org-chart}.html` | Modified | S4 legend typography converged (`76ad403c52`) |
-| `.opencode/skills/sk-design/sk-design-diagram/assets/diagrams/it-state.html` | Modified | S4 legend typography converged (`67a8c88de5`) |
-| `.opencode/skills/sk-design/sk-design-diagram/assets/diagrams/starter-{light,dark,terminal,full}.html` | Modified | S9 chrome roles wired via `var(--color-*)`; three ship as documented empty placeholders; `starter-full.html` wires 8 of 9 required roles, `paper-2` still open (`cddd84f9f8`) |
+| `.opencode/skills/sk-design/sk-design-diagram/assets/diagrams/dp-integration.html` | Modified | S1 custom-property rename (`7bf1c3af7d`); S2 text-fill repoint; S8's 52px mask fix |
+| `.opencode/skills/sk-design/sk-design-diagram/assets/diagrams/high-level.html` | Modified | S3 marker-end added to two legend lines (`a1d4dcdb15`); S5 legend rule widened to `x2="972"` (`7bf1c3af7d`) |
+| `.opencode/skills/sk-design/sk-design-diagram/assets/diagrams/er.html` | Modified | S5 legend rule widened to `x2="980"` (`7bf1c3af7d`) |
+| `.opencode/skills/sk-design/sk-design-diagram/assets/diagrams/{import-drawio,import-mermaid,org-chart}.html` | Modified | S4 legend typography converged (`7bf1c3af7d`) |
+| `.opencode/skills/sk-design/sk-design-diagram/assets/diagrams/it-state.html` | Modified | S4 legend typography converged (`c24b56de46`) |
+| `.opencode/skills/sk-design/sk-design-diagram/assets/diagrams/starter-{light,dark,terminal,full}.html` | Modified | S9 chrome roles wired via `var(--color-*)`; three ship as documented empty placeholders; `starter-full.html` wires 8 of 9 required roles, `paper-2` still open (`d0e81566ed`) |
 | `.opencode/skills/sk-design/sk-design-diagram/assets/diagrams/README.md` | Modified | Documents the three-starters-are-empty-by-design decision |
 | `.opencode/skills/sk-design/sk-design-diagram/scripts/families/legend-fidelity.cjs` | Created | S3's checkable half: a legend swatch's dash array must equal some drawing element's dash array in the same file |
 | `.opencode/skills/sk-design/sk-design-diagram/scripts/families/short-connector-labels.cjs` | Created | S8's checkable half: no label mask over a connector under ~60px |
@@ -137,11 +137,11 @@ closeout (T020).
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The first closeout's evidence (three commits, `62d4e1e293`/`c0f1ad041c`/`f3bf733cf4`, plus a fourth
-found by tracing git history, `c1f109bfe4`) is unchanged and not re-litigated here. The remaining work
-landed in four further commits, all on the same day: `ed3f26aaf5` (the two legend markers plus the
-dot-pattern naming plus the S3 fill-measurement documentation), `cddd84f9f8` (S9's starter-token
-wiring), `67a8c88de5` (`it-state.html`'s legend typography), and `76ad403c52` (a larger closing sweep —
+The first closeout's evidence (three commits, `1f46850345`/`aa784beac7`/`08e8051eaf`, plus a fourth
+found by tracing git history, `8031ccc387`) is unchanged and not re-litigated here. The remaining work
+landed in four further commits, all on the same day: `a1d4dcdb15` (the two legend markers plus the
+dot-pattern naming plus the S3 fill-measurement documentation), `d0e81566ed` (S9's starter-token
+wiring), `c24b56de46` (`it-state.html`'s legend typography), and `7bf1c3af7d` (a larger closing sweep —
 the custom-property rename, both legend-rule bounding-box corrections, three more files' legend
 typography, and the skill's 1.2.0.0 release).
 
@@ -162,7 +162,7 @@ are recorded as judgment calls with the reasoning stated, not silently ticked.
 
 | Decision | Why |
 |----------|-----|
-| Marked AC-004 `Met` even though REQ-003's fill-alpha step was never executed | `ed3f26aaf5` measured the three legend-swatch fills and found them within ~4% of each other by design (the stroke, not the fill, separates these node types); it documented that in `style-guide.md` §4 rather than stepping the values, and left the node-type-treatment table untouched as REQ-003 required. Read against the criterion's purpose — a swatch must match what the drawing actually uses to distinguish the type — the finding was investigated and shown not to be a defect, which is a resolution, not a skip. |
+| Marked AC-004 `Met` even though REQ-003's fill-alpha step was never executed | `a1d4dcdb15` measured the three legend-swatch fills and found them within ~4% of each other by design (the stroke, not the fill, separates these node types); it documented that in `style-guide.md` §4 rather than stepping the values, and left the node-type-treatment table untouched as REQ-003 required. Read against the criterion's purpose — a swatch must match what the drawing actually uses to distinguish the type — the finding was investigated and shown not to be a defect, which is a resolution, not a skip. |
 | Marked AC-008 `Met` even though the eight opt-out files are named by description, not by REQ-007's literal `example-*.html` filenames | The corpus dropped the `example-`/`template-` prefixes in a later directory-merge; those literal filenames no longer exist on disk, so quoting them verbatim would itself be a stale-value violation of the same doctrine this phase exists to close. `style-guide.md:169`'s eight descriptive phrases ("the security matrix, both import examples, the IT current-state, medallion, org chart, consultant quadrant and venn") identify all eight files unambiguously. |
 | Kept AC-011 (and AC-016) `Unmet` despite S9's large, real progress | Three of the four templates' `ink`/`soft`/`accent-tint` gaps are a documented design decision (they ship as empty placeholders), which this closeout accepts as legitimate. `starter-full.html`'s `paper-2` gap has no such documentation, and `paper-2` is an actively-used role elsewhere in the corpus — nothing distinguishes it from a role that simply never got wired. REQ-010 is a P0 MUST for every declared role; one undocumented gap keeps the row `Unmet`. |
 | Did not mark AC-011 `Waived` or `Superseded` | The acceptance-criteria.md status rules require a `decision-record.md` ADR for either value. This packet still has none, so an unbacked waiver would be treated as unmet anyway — leaving the row honestly `Unmet` is both the correct call and the only one the document's own rules permit. |

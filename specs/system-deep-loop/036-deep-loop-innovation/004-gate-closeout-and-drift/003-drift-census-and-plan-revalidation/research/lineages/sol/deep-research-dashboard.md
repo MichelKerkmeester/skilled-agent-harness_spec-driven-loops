@@ -16,7 +16,7 @@ Reducer-generated observability surface for the active research packet.
 <!-- /ANCHOR:overview -->
 <!-- ANCHOR:status -->
 ## 2. STATUS
-- Topic: Drift census over packet 036-deep-loop-innovation: revalidate all 15 planned implementation phases 003-017 against commits after baseline 0ce43ff589, separating first-order path drift from second-order premise drift and resolving the required controls and dependencies.
+- Topic: Drift census over packet 036-deep-loop-innovation: revalidate all 15 planned implementation phases 003-017 against commits after baseline 60b9ed8bc2, separating first-order path drift from second-order premise drift and resolving the required controls and dependencies.
 - Started: 2026-07-19T12:24:36.609Z
 - Status: COMPLETE
 - Iteration: 7 of 10

@@ -19,7 +19,7 @@ contextType: "implementation"
 
 ### Summary
 
-The benchmark can finally measure the real system. Eval reporting and ablation used to run a legacy `hybridSearch` path, so any ranking conclusion came from a composition the daemon never runs. Eval and ablation now execute the production `executePipeline` with the real channels, co-activation and render-floor truncation. This parity harness is the prerequisite that unblocks phases 007 and 008. The retrieval-rescue score rewrite became a selectable mode behind `SPECKIT_RETRIEVAL_RESCUE_MODE` so the ranking authority can be A/B/C benchmarked instead of argued. The ADR-002 authority decision was deferred by the operator because the current numbers are confounded by sparse vectors and stale eval ground truth. Shipped in `9d5e4901b9`.
+The benchmark can finally measure the real system. Eval reporting and ablation used to run a legacy `hybridSearch` path, so any ranking conclusion came from a composition the daemon never runs. Eval and ablation now execute the production `executePipeline` with the real channels, co-activation and render-floor truncation. This parity harness is the prerequisite that unblocks phases 007 and 008. The retrieval-rescue score rewrite became a selectable mode behind `SPECKIT_RETRIEVAL_RESCUE_MODE` so the ranking authority can be A/B/C benchmarked instead of argued. The ADR-002 authority decision was deferred by the operator because the current numbers are confounded by sparse vectors and stale eval ground truth. Shipped in `a41fb67ca3`.
 
 ### Added
 

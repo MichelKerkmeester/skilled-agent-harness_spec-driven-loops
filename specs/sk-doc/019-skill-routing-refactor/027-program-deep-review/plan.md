@@ -87,7 +87,7 @@ The review itself is the test: two independent adversarial models at max iterati
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-The deep-loop runtime (fan-out driver), the two external CLIs (cli-opencode, cli-devin), and the program under review at tip a39e6ea716.
+The deep-loop runtime (fan-out driver), the two external CLIs (cli-opencode, cli-devin), and the program under review at tip c573706cfe.
 <!-- /ANCHOR:dependencies -->
 
 ---

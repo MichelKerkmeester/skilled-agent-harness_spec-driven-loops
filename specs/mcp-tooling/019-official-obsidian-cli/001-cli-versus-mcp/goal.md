@@ -83,7 +83,7 @@ and findings belong here.
 
 ### Progress
 
-The measurement shipped as `dcd2fa62b5 feat(mcp-obsidian): measure the CLI against the MCP server, and pick a default`, followed by `10ec4d8b5f docs(mcp-obsidian): land the three edits made after the comparison was committed`. The readiness probe was repaired earlier, in `f140793f3a fix(mcp-obsidian): stop the readiness probe passing on an app that cannot answer`. Everything below was re-confirmed against the working tree on 2026-09-02.
+The measurement shipped as `b2b1f6e86d feat(mcp-obsidian): measure the CLI against the MCP server, and pick a default`, followed by `853e899140 docs(mcp-obsidian): land the three edits made after the comparison was committed`. The readiness probe was repaired earlier, in `e3084476cf fix(mcp-obsidian): stop the readiness probe passing on an app that cannot answer`. Everything below was re-confirmed against the working tree on 2026-09-02.
 
 | Item | State | Evidence |
 |------|-------|----------|
@@ -106,6 +106,6 @@ The measurement shipped as `dcd2fa62b5 feat(mcp-obsidian): measure the CLI again
 | The MCP measurement needed a plugin the operator keeps off | The comparison therefore describes what the MCP server can do, not what it does in this vault. As configured it does nothing, and the plugin was switched back to disabled |
 | Three daily-note writers were not exercised | `daily:append`, `daily:prepend` and a bare mutating command write to the operator's vault outside a scratch note. Whether the appenders also create the note is untested |
 | Where `delete` without `permanent` puts the file is unresolved | It reported `Moved to trash` and the file was in neither the vault `.trash` nor `~/.Trash`. The vault count is back to baseline, so it left the vault |
-| A concurrent session moved HEAD mid-run | It reverted uncommitted edits to six tracked skill files, which were re-applied and re-staged, and its commit `08eb67a0de` swept this packet's scaffold into itself. No history was rewritten to correct that |
+| A concurrent session moved HEAD mid-run | It reverted uncommitted edits to six tracked skill files, which were re-applied and re-staged, and its commit `aa11c2b622` swept this packet's scaffold into itself. No history was rewritten to correct that |
 | The two documentation validators disagree on spec docs | `validate_document.py` types them as general and objects to the anchors that `validate.sh` requires. Pre-existing, reproduced on untouched files, and the spec gate is the authority |
 <!-- /ANCHOR:log -->

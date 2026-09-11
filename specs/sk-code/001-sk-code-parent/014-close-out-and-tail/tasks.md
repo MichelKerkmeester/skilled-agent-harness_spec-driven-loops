@@ -40,9 +40,9 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Update review skill name from `code-review` to `review` (`.opencode/skills/sk-code/review/SKILL.md`) [shipped: `027882bfd0`]
-- [x] T002 Replace stale `sk-code-review` identity labels in review playbooks (`.opencode/skills/sk-code/review/manual_testing_playbook/`) [shipped: `027882bfd0`]
-- [x] T003 Preserve intentional `sk-code-review` search keyword coverage (`.opencode/skills/sk-code/review/SKILL.md`) [shipped: `027882bfd0`]
+- [x] T001 Update review skill name from `code-review` to `review` (`.opencode/skills/sk-code/review/SKILL.md`) [shipped: `cc239ec964`]
+- [x] T002 Replace stale `sk-code-review` identity labels in review playbooks (`.opencode/skills/sk-code/review/manual_testing_playbook/`) [shipped: `cc239ec964`]
+- [x] T003 Preserve intentional `sk-code-review` search keyword coverage (`.opencode/skills/sk-code/review/SKILL.md`) [shipped: `cc239ec964`]
 - [x] T004 Verify review cleanup gates (`parent-skill-check`, `check-rule-copies`, review-tree links) [evidence: strict exit 0 and checks green]
 
 <!-- /ANCHOR:phase-1 -->
@@ -52,11 +52,11 @@ _memory:
 ## Phase 2: Implementation
 
 ### Stale Test Repairs
-- [x] T005 Retarget pure-review scorer expectation to `sk-code` (`advisor-quality-049-003.vitest.ts`) [shipped: `ea689d84e0`]
-- [x] T006 Retarget ambiguous-code-problem scorer expectation to `sk-code` (`native-scorer.vitest.ts`) [shipped: `ea689d84e0`]
+- [x] T005 Retarget pure-review scorer expectation to `sk-code` (`advisor-quality-049-003.vitest.ts`) [shipped: `0ea2d1be9c`]
+- [x] T006 Retarget ambiguous-code-problem scorer expectation to `sk-code` (`native-scorer.vitest.ts`) [shipped: `0ea2d1be9c`]
 
 ### Routing Regression Repair
-- [x] T007 Widen cli-opencode disambiguation penalty to `-3.0` (`explicit.ts`) [shipped: `ea689d84e0`]
+- [x] T007 Widen cli-opencode disambiguation penalty to `-3.0` (`explicit.ts`) [shipped: `0ea2d1be9c`]
 - [x] T008 Confirm the explicit OpenCode CLI delegation prompt routes to `cli-opencode` [evidence: target suites green]
 
 ### Baseline Classification
@@ -70,7 +70,7 @@ _memory:
 ## Phase 3: Verification
 
 ### Unit Tests
-- [x] T011 Restore `.codex/config.toml` reads (`rename-invariants.vitest.ts`) [shipped: `dd9487d65d`]
+- [x] T011 Restore `.codex/config.toml` reads (`rename-invariants.vitest.ts`) [shipped: `5f69124e19`]
 
 ### Integration Tests
 - [x] T012 Verify advisor target suites 39/39 green [evidence: phase facts]

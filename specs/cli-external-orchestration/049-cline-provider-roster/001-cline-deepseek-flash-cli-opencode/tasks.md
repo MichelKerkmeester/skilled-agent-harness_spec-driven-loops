@@ -50,7 +50,7 @@ _memory:
 
 - [x] T001 Confirm `cline-pass` authenticated and model id via `opencode models cline-pass`
 - [x] T002 Confirm reasoning tiers (none→xhigh, no max) via `opencode models cline-pass --verbose`
-- [x] T003 Read packet-047 OpenRouter diff to locate exact edit points (`git show 621f8276ad`)
+- [x] T003 Read packet-047 OpenRouter diff to locate exact edit points (`git show 9f86031cdf`)
 <!-- /ANCHOR:phase-1 -->
 
 ---

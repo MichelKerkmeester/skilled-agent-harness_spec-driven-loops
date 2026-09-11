@@ -63,9 +63,9 @@ Phase 017 shipped 25 commits across 4 waves on 2026-04-17. The H-56-1 `workflow.
 | Wave B cross-lane sweep: code-graph + hooks + handler-save | PASSED (145 of 145) |
 | Wave D targeted vitest (117 files) | PASSED |
 | H-56-1 live proof: `/memory:save` cascaded `lastUpdated` refresh across 38 folders | PASSED (commit `8859da9cd`) |
-| EVIDENCE marker audit: 1962 markers across 16 folders | PASSED (0 malformed after rewrap, commit `0acbe7bcce`) |
+| EVIDENCE marker audit: 1962 markers across 16 folders | PASSED (0 malformed after rewrap, commit `39e9559b6c`) |
 | `validate.sh --strict` on Phase 017 spec folder | PASSED (exit 0) |
-| 16 pre-existing sibling folders refreshed to fresh `description.json.lastUpdated` | PASSED (commits `dcbdf20075` plus `176bad2b2f`) |
+| 16 pre-existing sibling folders refreshed to fresh `description.json.lastUpdated` | PASSED (commits `9a4cde9c8a` plus `176bad2b2f`) |
 
 ### Files Changed
 

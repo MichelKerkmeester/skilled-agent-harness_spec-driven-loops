@@ -13,7 +13,7 @@ _memory:
     packet_pointer: "sk-code/001-sk-code-parent/024-sk-code-advisor-routing-and-discovery"
     last_updated_at: "2026-07-06T12:00:00.000Z"
     last_updated_by: "gpt-5.5"
-    recent_action: "Task ledger recorded for shipped commit ec014f95c6"
+    recent_action: "Task ledger recorded for shipped commit cdc51fc894"
     next_safe_action: "None; retrospective close-out docs record shipped work"
 ---
 # Tasks: sk-code advisor-routing discovery + Lane-C D3 proxy fix
@@ -41,7 +41,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Confirm phase-024 scope and out-of-scope boundaries [small] — scope is the sk-code-local, advisor-scorer-independent increment in commit `ec014f95c6`; downstream advisor-scorer and projection-vocabulary work is excluded
+- [x] T001 Confirm phase-024 scope and out-of-scope boundaries [small] — scope is the sk-code-local, advisor-scorer-independent increment in commit `cdc51fc894`; downstream advisor-scorer and projection-vocabulary work is excluded
 - [x] T002 Confirm discovery root cause [small] — every reference needed by the two failing discovery scenarios already existed in RESOURCE_MAP; the gap was keyword coverage
 - [x] T003 Inventory missing PERFORMANCE vocabulary [small] — CWV terms `lcp`, `inp`, `cls`, `web vitals`, `interaction to next paint`, and `cumulative layout shift` needed to fire PERFORMANCE
 - [x] T004 Inventory missing ACCESSIBILITY vocabulary [small] — reduced-motion and a11y vocabulary needed a new ACCESSIBILITY intent
@@ -108,8 +108,8 @@ _memory:
 
 - [x] T025 Verify sk-code parent and vocab gates [small] — sk-code parent-skill-check STRICT 0 and vocab-sync exit 0 with sk-code `hub-router.json` unchanged
 - [x] T026 Verify router and benchmark gates [medium] — router drift-guards passed 8/8 and skill-benchmark vitest suite passed 106/107
-- [x] T027 Record verification evidence in checklist.md [small] — every checklist item is checked with evidence from commit `ec014f95c6` and provided gate results
-- [x] T028 Record Files Changed and Deviations in implementation-summary.md [medium] — includes commit `ec014f95c6`, benchmark deltas, known limitations, downstream boundary, and frozen-baseline deviation
+- [x] T027 Record verification evidence in checklist.md [small] — every checklist item is checked with evidence from commit `cdc51fc894` and provided gate results
+- [x] T028 Record Files Changed and Deviations in implementation-summary.md [medium] — includes commit `cdc51fc894`, benchmark deltas, known limitations, downstream boundary, and frozen-baseline deviation
 
 <!-- /ANCHOR:phase-5 -->
 ---
@@ -120,7 +120,7 @@ _memory:
 - [x] sk-code smart routing fires CWV PERFORMANCE and ACCESSIBILITY intents against existing RESOURCE_MAP paths.
 - [x] Router replay handles `lcp`, `inp`, and `cls` on word boundaries.
 - [x] D3 is null/not-applicable for scenarios with no positive-resource gold and excluded from mode A normalization.
-- [x] Parent-hub schema docs, cross-stack playbook expected assets, and benchmark artifact folders match the shipped state in commit `ec014f95c6`.
+- [x] Parent-hub schema docs, cross-stack playbook expected assets, and benchmark artifact folders match the shipped state in commit `cdc51fc894`.
 - [x] All recorded gates pass: parent-skill-check STRICT, vocab-sync, router drift-guards, skill-benchmark vitests, markdown links, schema JSON parsing, and benchmark reports.
 
 <!-- /ANCHOR:completion -->

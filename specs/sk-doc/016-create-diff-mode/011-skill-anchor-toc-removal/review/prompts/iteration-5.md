@@ -5,7 +5,7 @@ trigger_phrases: []
 Independent code review (READ-ONLY). git/rg/python3/node for inspection only. Do NOT modify any file.
 
 # Task
-Audit git commit `1e58d845af` (TOC + `<!-- ANCHOR -->` removal). This is **Iteration 5 of 10**. Focus: **MAINTAINABILITY — exhaustive stale-guidance/contradiction enumeration**.
+Audit git commit `e5ee6609c2` (TOC + `<!-- ANCHOR -->` removal). This is **Iteration 5 of 10**. Focus: **MAINTAINABILITY — exhaustive stale-guidance/contradiction enumeration**.
 
 # ALREADY KNOWN (do not re-report; these are being remediated)
 - P1: orphaned numbered-TOC link lists (~8 files).

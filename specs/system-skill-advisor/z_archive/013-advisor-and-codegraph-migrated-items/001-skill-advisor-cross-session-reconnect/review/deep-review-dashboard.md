@@ -15,7 +15,7 @@ Reducer-generated observability surface for the active review packet.
 <!-- /ANCHOR:overview -->
 <!-- ANCHOR:status -->
 ## 2. STATUS
-- Review Target: 027/019 skill-advisor cross-session reconnect (commit 2f106976f3): owner-lease + reconnecting proxy in mk-skill-advisor-launcher.cjs, shared launcher-session-proxy.cjs change, 3 new launcher tests (files)
+- Review Target: 027/019 skill-advisor cross-session reconnect (commit c85302ef1d): owner-lease + reconnecting proxy in mk-skill-advisor-launcher.cjs, shared launcher-session-proxy.cjs change, 3 new launcher tests (files)
 - Started: 2026-06-11T09:05:00Z
 - Status: IN-PROGRESS
 - Iteration: 5 of 5

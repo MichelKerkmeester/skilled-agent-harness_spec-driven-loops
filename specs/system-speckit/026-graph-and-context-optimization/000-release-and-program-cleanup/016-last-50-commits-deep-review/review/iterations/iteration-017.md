@@ -8,9 +8,9 @@ trigger_phrases: []
 - **Run:** 17 (dispatch slot — parallel fan-out). Per the established parallel-safety pattern (see iter-009 §Dispatcher / Edge Case 1), this leaf wrote ONLY `iterations/iteration-017.md` + `deltas/iter-017.jsonl`. Did NOT append to/modify `deep-review-state.jsonl`, `deep-review-strategy.md`, `deep-review-findings-registry.json`, or `deep-review-config.json`.
 - **Mode:** review (READ-ONLY — settle/refine prior findings, no code modification).
 - **Dimension:** traceability
-- **Angle:** A8-deepen — settle F-A8-01 (dangling `.gemini/agents/` refs in Claude/Codex mirrors after gemini-removal commit `8683890935`) and re-assess F-A8-02 (`_NOTE_HF_EMBED_SOCKET` single-owner-invariant note missing from `.codex/config.toml` + `.devin/config.json`).
+- **Angle:** A8-deepen — settle F-A8-01 (dangling `.gemini/agents/` refs in Claude/Codex mirrors after gemini-removal commit `1711954c95`) and re-assess F-A8-02 (`_NOTE_HF_EMBED_SOCKET` single-owner-invariant note missing from `.codex/config.toml` + `.devin/config.json`).
 - **Budget profile:** adjudicate (target 8-10 tool calls; used ~9).
-- **Review target:** current live tree + `git show 8683890935 --name-only` (gemini-removal commit), within the `a9e9bdb0a5^..HEAD` range.
+- **Review target:** current live tree + `git show 1711954c95 --name-only` (gemini-removal commit), within the `fd67ede05f^..HEAD` range.
 - **Read first (per dispatch):** `iterations/iteration-009.md` (F-A8-01, F-A8-02 originals — both filed P2 there).
 
 ## Files Reviewed
@@ -18,7 +18,7 @@ trigger_phrases: []
 - `.claude/agents/{orchestrate,deep-review,prompt-improver}.md` + `.codex/agents/{deep-review,prompt-improver}.toml` + `README.txt` — exact `.gemini/agents` hit enumeration (grep).
 - `.codex/agents/orchestrate.toml` — checked for the same dangling line (it has NONE).
 - Consumption surfaces: grepped all `*.cjs|*.js|*.ts|*.sh|*.json|*.toml` for any code that reads/parses/loads `.claude/agents/*.md` as routing data or resolves an agent dir by profile, and for any reader of `.gemini/agents`.
-- `git show 8683890935 --name-only` filtered to `.claude/agents/` / `.codex/agents/` (empty = mirrors not re-synced).
+- `git show 1711954c95 --name-only` filtered to `.claude/agents/` / `.codex/agents/` (empty = mirrors not re-synced).
 - `.gemini` directory existence (gone) + any Gemini agent-runtime/profile registration in configs.
 - MCP configs `opencode.json`, `.claude/mcp.json`, `.codex/config.toml`, `.devin/config.json` — `_NOTE_HF_EMBED_SOCKET` presence AND the actual `HF_EMBED_SERVER_URL` socket values for mk-spec-memory vs mk_skill_advisor.
 
@@ -44,7 +44,7 @@ Reachability adjudication (Hunter → Skeptic → Referee):
    - `[SOURCE: grep "\.claude/agents" across code = only test/playbook + frontmatter reads]`
    - `[SOURCE: grep "\.gemini/agents" across code = 0 code hits; only the 7 mirror/doc lines]`
 
-2. **Could an LLM orchestrator (reading line 21 as an instruction) ever SELECT the Gemini branch?** — NO, under any non-Gemini runtime. Line 21's own rule is *"Choose the active runtime directory once per workflow."* When `.claude/agents/orchestrate.md` is the loaded definition, the active runtime is Claude → the LLM selects `.claude/agents/`. The Gemini clause is a dead branch that only a live Gemini agent harness loading `.gemini/agents/orchestrate.md` could select — and that file, the entire `.gemini/` dir, and any Gemini harness no longer exist (`ls .gemini` → "No such file or directory"; commit `8683890935` deleted it).
+2. **Could an LLM orchestrator (reading line 21 as an instruction) ever SELECT the Gemini branch?** — NO, under any non-Gemini runtime. Line 21's own rule is *"Choose the active runtime directory once per workflow."* When `.claude/agents/orchestrate.md` is the loaded definition, the active runtime is Claude → the LLM selects `.claude/agents/`. The Gemini clause is a dead branch that only a live Gemini agent harness loading `.gemini/agents/orchestrate.md` could select — and that file, the entire `.gemini/` dir, and any Gemini harness no longer exist (`ls .gemini` → "No such file or directory"; commit `1711954c95` deleted it).
    - `[SOURCE: .claude/agents/orchestrate.md:21 — "Choose the active runtime directory once per workflow"]`
    - `[SOURCE: ls .gemini → No such file or directory]`
 
@@ -74,7 +74,7 @@ New decisive evidence beyond iter-009: the prose note is absent, BUT the operati
 **Disposition:** F-A8-02 stays **P2** (advisory `_NOTE_` parity gap). Severity unchanged; risk now characterized as low because the invariant holds in the actual config values. Recommendation: fan the canonical `_NOTE_HF_EMBED_SOCKET` (and `_NOTE_TOTAL_MCP_BUDGET`) into the codex/devin configs during MCP-config maintenance for parity + future-edit protection. Promote to P1 ONLY if the two socket values were ever found diverged (they are not).
 
 ## Traceability Checks
-- **gemini-removal completeness (re-confirmed):** `.gemini/` fully deleted; commit `8683890935 --name-only` touched no `.claude/agents/`|`.codex/agents/` files → 7 mirror/doc refs are confirmed un-resynced drift. Canonical machine source (`runtime_capabilities.json`) confirmed clean in iter-009 (not re-walked here — adjudicate scope).
+- **gemini-removal completeness (re-confirmed):** `.gemini/` fully deleted; commit `1711954c95 --name-only` touched no `.claude/agents/`|`.codex/agents/` files → 7 mirror/doc refs are confirmed un-resynced drift. Canonical machine source (`runtime_capabilities.json`) confirmed clean in iter-009 (not re-walked here — adjudicate scope).
 - **Reachability proof (new):** No code resolves agent dir by profile; no code reads `.gemini/agents`; no Gemini agent-runtime/profile is registered. Line 21 Gemini branch is unselectable.
 - **Config-value invariant (new):** `HF_EMBED_SERVER_URL` identical for mk-spec-memory and skill-advisor in BOTH codex + devin configs → single-owner invariant satisfied in fact despite the missing prose note.
 

@@ -48,11 +48,8 @@
       "goal.md",
       "decision-record.md",
       "implementation-summary.md",
-      "lib/coverage-graph-convergence.cjs",
       "templates/core/plan.md.tmpl",
       "graph/backfill-graph-metadata.ts",
-      ".opencode/skills/system-spec-kit/runtime/cli/tests/coverage-graph-cross-layer.vitest.ts",
-      ".opencode/skills/system-spec-kit/runtime/cli/lib/coverage-graph-convergence.cjs",
       ".opencode/skills/system-spec-kit/runtime/cli/continuity/generate-context.ts",
       ".opencode/skills/system-spec-kit/runtime/cli/tests/generate-context-cli-authority.vitest.ts",
       ".opencode/skills/system-spec-kit/runtime/cli/tests/tree-thinning.vitest.ts",
@@ -60,7 +57,10 @@
       "specs/sk-doc/052-routing-completeness/007-spec-kit-residue/decision-record.md",
       "specs/sk-doc/052-routing-completeness/007-spec-kit-residue/tasks.md",
       "specs/sk-doc/052-routing-completeness/007-spec-kit-residue/acceptance-criteria.md",
-      "specs/sk-doc/052-routing-completeness/007-spec-kit-residue/spec.md"
+      "specs/sk-doc/052-routing-completeness/007-spec-kit-residue/spec.md",
+      "specs/sk-doc/052-routing-completeness/007-spec-kit-residue/implementation-summary.md",
+      "specs/sk-doc/052-routing-completeness/007-spec-kit-residue/goal.md",
+      "specs/descriptions.json"
     ],
     "entities": [
       {
@@ -90,7 +90,7 @@
       {
         "name": "goal.md",
         "kind": "doc",
-        "path": "goal.md",
+        "path": "specs/sk-doc/052-routing-completeness/007-spec-kit-residue/goal.md",
         "source": "derived"
       },
       {
@@ -102,13 +102,7 @@
       {
         "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "coverage-graph-convergence.cjs",
-        "kind": "file",
-        "path": "lib/coverage-graph-convergence.cjs",
+        "path": "specs/sk-doc/052-routing-completeness/007-spec-kit-residue/implementation-summary.md",
         "source": "derived"
       },
       {
@@ -121,12 +115,6 @@
         "name": "backfill-graph-metadata.ts",
         "kind": "code",
         "path": "graph/backfill-graph-metadata.ts",
-        "source": "derived"
-      },
-      {
-        "name": "coverage-graph-cross-layer.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/runtime/cli/tests/coverage-graph-cross-layer.vitest.ts",
         "source": "derived"
       },
       {
@@ -151,6 +139,12 @@
         "name": "progressive-validation.vitest.ts",
         "kind": "test",
         "path": ".opencode/skills/system-spec-kit/runtime/cli/tests/progressive-validation.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "descriptions.json",
+        "kind": "config",
+        "path": "specs/descriptions.json",
         "source": "derived"
       },
       {
@@ -206,11 +200,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The suite does not complete",
     "created_at": "2026-09-02T16:34:09Z",
-    "last_save_at": "2026-09-05T14:40:46.444Z",
+    "last_save_at": "2026-09-11T16:42:14.414Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,13 +222,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8ce277f5bc23e11657a408281cbc9ec9f3dfceb05d32ced100dd82124ae39015",
+    "source_fingerprint": "sha256:5adf9c4b9839dbc46bf83a78c9b10f1b05760e05864b5e141aab8d134b4b6ae2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b6734f01c178774f03857b3ed9bb64339b8f2a408f4b9e9f20ba54dcc1faa346",
       "plan.md": "017cabcfcce310bc1e0e12be8caa0b239171e0ec38141cb3421b8cae68efed47",
-      "tasks.md": "f15cfb970d6f498203d82f55409f65e44242e74ed6f007e27f2556c00ed6b94b",
-      "decision-record.md": "94fb031f45c8c3ad697e48ef07f0ce288591193ed679227d2ea070cacf7c4a53",
+      "tasks.md": "7d3f7e25c3eaf584f965726906d1138abac67d31392a1b00e7bb420e54cd5dc7",
+      "decision-record.md": "0ac17dc5b3d45b09057408bfa6cdc11e154bedbcd516156010849c6b66b02b54",
       "implementation-summary.md": "30c36de8899046f8be425774fa7d3ca852204d9a7ba701a1ad69658ada00941f"
     },
     "last_active_child_id": null,

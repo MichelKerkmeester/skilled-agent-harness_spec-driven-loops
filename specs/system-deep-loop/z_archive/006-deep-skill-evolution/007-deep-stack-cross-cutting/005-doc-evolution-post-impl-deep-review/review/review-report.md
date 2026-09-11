@@ -4,11 +4,11 @@
 
 ## Verdict: PASS
 
-The 008 deep-skill doc-evolution ship (commit `5f3e0a2f53`) is sound. After four review dimensions over the 5 deep-* skills' documentation, the review found **0 P0, 0 P1, and 2 P2** (both fixed). No blocking or major issues. Both minor issues were stale README metadata left by the 008 ship — the README version fields and the deep-loop-runtime README changelog references — and both have been corrected in this packet. Two further agent-raised findings were adjudicated as non-issues with evidence.
+The 008 deep-skill doc-evolution ship (commit `fb8d560443`) is sound. After four review dimensions over the 5 deep-* skills' documentation, the review found **0 P0, 0 P1, and 2 P2** (both fixed). No blocking or major issues. Both minor issues were stale README metadata left by the 008 ship — the README version fields and the deep-loop-runtime README changelog references — and both have been corrected in this packet. Two further agent-raised findings were adjudicated as non-issues with evidence.
 
 ## Scope
 
-- **Target:** the 5 deep-* skills' SKILL.md, README, references (subfoldered), feature_catalog, manual_testing_playbook, and changelogs, as committed in `5f3e0a2f53`.
+- **Target:** the 5 deep-* skills' SKILL.md, README, references (subfoldered), feature_catalog, manual_testing_playbook, and changelogs, as committed in `fb8d560443`.
 - **Executor:** cli-devin SWE-1.6, one iteration per dimension, one-at-a-time with SIGKILL between.
 - **Not in scope:** structural gaps (covered + cleared by the 009 deep-research backstop, converged negative), application code (this ship is docs only).
 

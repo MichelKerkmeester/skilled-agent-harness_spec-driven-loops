@@ -46,9 +46,7 @@
       "tasks.md",
       "decision-record.md",
       "implementation-summary.md",
-      "handover.md",
-      "handlers/memory-save.ts",
-      "handlers/memory-crud-health.ts"
+      "handover.md"
     ],
     "entities": [
       {
@@ -85,18 +83,6 @@
         "name": "handover.md",
         "kind": "doc",
         "path": "handover.md",
-        "source": "derived"
-      },
-      {
-        "name": "memory-save.ts",
-        "kind": "code",
-        "path": "handlers/memory-save.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-crud-health.ts",
-        "kind": "code",
-        "path": "handlers/memory-crud-health.ts",
         "source": "derived"
       },
       {
@@ -194,11 +180,23 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`scheduleBackgroundEnrichment` (`memory-save.ts`) caps concurrency but pushes overflow to an unbounded queue; a live-save flood grows it (and each entry's retained `parsed`) without bound (F-007)",
     "created_at": "2026-06-15T06:00:22Z",
-    "last_save_at": "2026-08-30T15:39:32.270Z",
+    "last_save_at": "2026-09-11T16:42:34.832Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,7 +207,7 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:df87116fdb97985425b022c1a4b0e02455c80f5c7bc7d3d6a96edab0bef9e200",
+    "source_fingerprint": "sha256:1bca58a3bdcd5985d0e6ddd4437bc73e72bee1a33503771d5a35fd758d6a6336",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4df2d9e80b9e28fb26db197360e01cbc9277e407fa3f5a436ee0721a8bf4251e",
@@ -217,7 +215,7 @@
       "tasks.md": "c633051426b5009ef09b5d21db653ab9a13867d5bfd2a907181cb7cd3fe07663",
       "decision-record.md": "bff745ace57d38d24a8f9cdc73afe6ad101dd33a19e97d9e440e6f4654ddd762",
       "implementation-summary.md": "eb6ac72fb6f84d8b02e76b34045085200edd737a773c467efd4db67354a930c9",
-      "handover.md": "af5c58436c494ad3b08ab0eaea5875171bc3c81bf4f84d9c02aa7379c2e1b0ad"
+      "handover.md": "a96f62ece5ba569adcbdb40e2f1ec673f94658f5bcdcad6f31c3cc19c79cf25b"
     },
     "last_active_child_id": null,
     "last_active_at": null

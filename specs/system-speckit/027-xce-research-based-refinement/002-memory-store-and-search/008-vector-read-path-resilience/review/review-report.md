@@ -4,7 +4,7 @@ trigger_phrases: []
 ---
 # Deep Review Report — 013 Vector Read-Path Resilience
 
-Review target: `system-spec-kit/027-xce-research-based-refinement/013-vector-read-path-resilience` (shard probe/quarantine, auto-rebuild repair, `recallDegradation.degradedVector`, dimension-source precedence; commit 157b95c213).
+Review target: `system-spec-kit/027-xce-research-based-refinement/013-vector-read-path-resilience` (shard probe/quarantine, auto-rebuild repair, `recallDegradation.degradedVector`, dimension-source precedence; commit cc428b66c4).
 Mode: autonomous fan-out (`/deep:start-review-loop` via `fanout-run.cjs`), 3× cli-opencode `gpt-5.5-fast --variant high`, strongest-restriction merge.
 
 ---

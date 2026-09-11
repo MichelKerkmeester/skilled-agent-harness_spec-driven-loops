@@ -805,14 +805,14 @@ index 0e3a82822..5bc241bed 100644
  
 exec
 /bin/zsh -lc 'git blame -L 1960,1972 .opencode/skills/system-spec-kit/scripts/core/workflow.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 663ms:
-c43a8021ea (michelkerkmeester-barter 2026-02-11 19:40:41 +0100 1960) 
+64ce0e68b3 (michelkerkmeester-barter 2026-02-11 19:40:41 +0100 1960) 
 0feb292a1b (michelkerkmeester-barter 2026-02-28 14:54:41 +0100 1961)     preExtractedTriggers = ensureMinTriggerPhrases(preExtractedTriggers, effectiveFiles, specFolderName);
-c43a8021ea (michelkerkmeester-barter 2026-02-11 19:40:41 +0100 1962)     log(`   Pre-extracted ${preExtractedTriggers.length} trigger phrases`);
-c43a8021ea (michelkerkmeester-barter 2026-02-11 19:40:41 +0100 1963)   } catch (e: unknown) {
-c43a8021ea (michelkerkmeester-barter 2026-02-11 19:40:41 +0100 1964)     const errMsg = e instanceof Error ? e.message : String(e);
-c43a8021ea (michelkerkmeester-barter 2026-02-11 19:40:41 +0100 1965)     warn(`   Warning: Pre-extraction of trigger phrases failed: ${errMsg}`);
-c43a8021ea (michelkerkmeester-barter 2026-02-11 19:40:41 +0100 1966)   }
-c43a8021ea (michelkerkmeester-barter 2026-02-11 19:40:41 +0100 1967) 
+64ce0e68b3 (michelkerkmeester-barter 2026-02-11 19:40:41 +0100 1962)     log(`   Pre-extracted ${preExtractedTriggers.length} trigger phrases`);
+64ce0e68b3 (michelkerkmeester-barter 2026-02-11 19:40:41 +0100 1963)   } catch (e: unknown) {
+64ce0e68b3 (michelkerkmeester-barter 2026-02-11 19:40:41 +0100 1964)     const errMsg = e instanceof Error ? e.message : String(e);
+64ce0e68b3 (michelkerkmeester-barter 2026-02-11 19:40:41 +0100 1965)     warn(`   Warning: Pre-extraction of trigger phrases failed: ${errMsg}`);
+64ce0e68b3 (michelkerkmeester-barter 2026-02-11 19:40:41 +0100 1966)   }
+64ce0e68b3 (michelkerkmeester-barter 2026-02-11 19:40:41 +0100 1967) 
 689147e76e (michelkerkmeester-barter 2026-03-18 18:04:56 +0100 1968)   const keyFiles = buildKeyFiles(enhancedFiles, specFolder);
 5857911b93 (michelkerkmeester-barter 2026-03-16 22:29:10 +0100 1969)   const memoryClassification = buildMemoryClassificationContext(collectedData, sessionData);
 5857911b93 (michelkerkmeester-barter 2026-03-16 22:29:10 +0100 1970)   const sessionDedup = buildSessionDedupContext(collectedData, sessionData, memoryTitle);

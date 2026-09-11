@@ -14,7 +14,7 @@ Traceability: comment hygiene across Phase R and 017-023 merge sources, plus doc
 - `.opencode/specs/system-speckit/028-memory-search-intelligence/019-validation-enforce-graduation/implementation-summary.md:59-75,100-126,158-185`
 - `.opencode/specs/system-speckit/028-memory-search-intelligence/022-drift-marker-native-consolidation/implementation-summary.md:1-4,51-80,108-123`
 - `.opencode/specs/system-speckit/028-memory-search-intelligence/023-self-healing-model-consolidation/implementation-summary.md:53-84,113-122`
-- `git diff --name-only 5afd2f6522..HEAD` for Phase R, 019, 022, and 023 changed-source inventory
+- `git diff --name-only 365d795d4e..HEAD` for Phase R, 019, 022, and 023 changed-source inventory
 
 ## Findings by Severity
 

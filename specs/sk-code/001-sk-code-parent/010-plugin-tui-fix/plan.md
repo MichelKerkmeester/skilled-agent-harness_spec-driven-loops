@@ -100,7 +100,7 @@ OpenCode plugin output routing: user/agent-visible messages use system-context i
 ### Phase 3: Verification
 - [x] Run the plugin test suite.
 - [x] Run live smoke for `validate.sh` through `bash` and confirm zero TUI writes.
-- [x] Record shipped commit evidence: remote `711b019eb1`, local `42677fac58`.
+- [x] Record shipped commit evidence: remote `bbced8128b`, local `42677fac58`.
 
 <!-- /ANCHOR:phases -->
 ---
@@ -134,7 +134,7 @@ OpenCode plugin output routing: user/agent-visible messages use system-context i
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: The plugin no longer surfaces stale-dist guidance to the agent, throws during command execution, or reintroduces terminal writes.
-- **Procedure**: Revert the shipped fix commits from remote `711b019eb1` / local `42677fac58`, then reapply only the smallest passing channel fix and rerun the plugin suite plus live smoke.
+- **Procedure**: Revert the shipped fix commits from remote `bbced8128b` / local `42677fac58`, then reapply only the smallest passing channel fix and rerun the plugin suite plus live smoke.
 
 <!-- /ANCHOR:rollback -->
 ---
@@ -174,7 +174,7 @@ OpenCode plugin output routing: user/agent-visible messages use system-context i
 - [x] Plugin test suite green before shipping.
 
 ### Rollback Procedure
-1. Revert the shipped plugin/test/docs/rule changes from remote `711b019eb1` or local `42677fac58` if the fix regresses.
+1. Revert the shipped plugin/test/docs/rule changes from remote `bbced8128b` or local `42677fac58` if the fix regresses.
 2. Re-run `node .opencode/plugins/tests/mk-dist-freshness-guard.test.cjs`.
 3. Re-run the live smoke that executes `validate.sh` through `bash` and observe zero TUI writes before re-shipping.
 

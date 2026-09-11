@@ -133,6 +133,6 @@ See the per-family map in `plan.md` §AFFECTED SURFACES. Touch points: `.opencod
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Timing of the precondition gate: confirm the code-graph launcher WIP (commits 6bd1d7045e / 8943837b2f) is settled before Family-3.
+- Timing of the precondition gate: confirm the code-graph launcher WIP (commits 0d27d07712 / 6286820635) is settled before Family-3.
 
 <!-- /ANCHOR:questions -->

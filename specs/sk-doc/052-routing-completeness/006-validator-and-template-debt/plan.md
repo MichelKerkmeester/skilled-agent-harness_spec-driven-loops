@@ -272,10 +272,10 @@ Read both gates ────┘
 
 | Milestone | Description | Success Criteria | Target |
 |-----------|-------------|------------------|--------|
-| M1 | Rule template corrected | The verbatim binding line matches all nine shipped rules | `c1b3b780c3` |
-| M2 | Plan template corrected | Golden snapshots re-captured and passing | `9ae247d772` |
-| M3 | Overview sections added | Fourteen fixed, two left exempt, every citation still resolves | `d87e8dd162` |
-| M4 | Gates aligned and payload scanned | 45 of 53 recorded, 485 files released, 56 documents rewritten | `d229b0a24d` |
+| M1 | Rule template corrected | The verbatim binding line matches all nine shipped rules | `02f1ec6170` |
+| M2 | Plan template corrected | Golden snapshots re-captured and passing | `2f4b9a481d` |
+| M3 | Overview sections added | Fourteen fixed, two left exempt, every citation still resolves | `2912ce44a8` |
+| M4 | Gates aligned and payload scanned | 45 of 53 recorded, 485 files released, 56 documents rewritten | `71f1c2f9bc` |
 <!-- /ANCHOR:milestones -->
 
 ---

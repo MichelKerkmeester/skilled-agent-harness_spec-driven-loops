@@ -173,7 +173,7 @@ Evidence-first governance gate: collect read-only facts, classify ownership, rec
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: Any implementation write begins before preserving this gate, a later benchmark drops below the accepted thresholds, a read-only mode gains mutating tool requirements, the committed baseline is overwritten, or ownership authority changes.
-- **Procedure**: Stop implementation; inspect `git diff`; compare against `HEAD` `ba8906743c1b1e327ff4d4a758bb9d67e9d6c8ed`; request explicit confirmation before any checkout, revert, stash, reset, or cleanup. No commits are allowed without an explicit user request.
+- **Procedure**: Stop implementation; inspect `git diff`; compare against `HEAD` `914bc78c295d33edd3c09ec8c94b43472a20fbf5`; request explicit confirmation before any checkout, revert, stash, reset, or cleanup. No commits are allowed without an explicit user request.
 
 <!-- /ANCHOR:rollback -->
 ---
@@ -219,7 +219,7 @@ Status Inventory ──> Baseline Snapshot ──> Ownership Decision ──> Ga
 - [x] Touched-file inventory reviewed: empty scoped status and diff.
 - [x] No unowned `sk-design` file remains unresolved.
 - [x] Non-destructive rollback path named: inspect `git diff` first.
-- [x] Destructive rollback requires explicit confirmation: checkout against `ba8906743c1b1e327ff4d4a758bb9d67e9d6c8ed` only if approved.
+- [x] Destructive rollback requires explicit confirmation: checkout against `914bc78c295d33edd3c09ec8c94b43472a20fbf5` only if approved.
 
 ### Rollback Procedure
 1. **Immediate**: Stop implementation work and keep the worktree unchanged.

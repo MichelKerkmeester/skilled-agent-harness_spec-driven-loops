@@ -92,7 +92,7 @@ Also cross-checked: `tests/batch-processor.vitest.ts`, `tests/job-store.vitest.t
 - **REQ-004** (no regression in job/scan test surface): UNVERIFIED in this lineage —
   suite execution requires interactive approval not available to this autonomous
   fan-out agent. The implementation-summary records "68 tests pass" and the commit
-  message repeats it (`f1dbb676f2`); the test mock parity required by the change is
+  message repeats it (`a48325ab74`); the test mock parity required by the change is
   present (`handler-memory-index-scan-jobs.vitest.ts:107`). Operator-verifiable.
 
 ## Assessment

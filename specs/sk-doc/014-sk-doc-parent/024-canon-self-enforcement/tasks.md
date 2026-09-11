@@ -68,18 +68,18 @@ _memory:
 ## Phase 2: Implementation
 
 **Foundational trio (lead)**
-- [x] T006 WU1 [P1] Widen CI gate to `skills/*/mode-registry.json` + per-hub checker loop; fix CWD rule-4a — `f8924b0495` (proven from /tmp)
-- [x] T007 WU3 [P] Defuse `edge_type` CHECK + self-heal migration + vitest — `8934e37d4f` (live DB carried the twin; heals clean)
-- [x] T008 WU12(a) [P] Patch template `sk-hub` family line — `5c61c13f5d`→`84924bd848`
-- [x] T009 WU2 Cross-language vocabulary-agreement battery; 2 gated sites subset-flagged — `5c61c13f5d`→`84924bd848` (5/5, RED-proven)
+- [x] T006 WU1 [P1] Widen CI gate to `skills/*/mode-registry.json` + per-hub checker loop; fix CWD rule-4a — `e3d9c00b14` (proven from /tmp)
+- [x] T007 WU3 [P] Defuse `edge_type` CHECK + self-heal migration + vitest — `c00eff3c71` (live DB carried the twin; heals clean)
+- [x] T008 WU12(a) [P] Patch template `sk-hub` family line — `5c61c13f5d`→`71fc01d7ed`
+- [x] T009 WU2 Cross-language vocabulary-agreement battery; 2 gated sites subset-flagged — `5c61c13f5d`→`71fc01d7ed` (5/5, RED-proven)
 
 **DO-NOW hardening batch**
-- [x] T010 WU4 [P] [D1] Command-binding existence gate; /doc:quality allowlisted (tracked) — `f900e902d3` (RED-proven)
-- [x] T011 WU5 [P] [D2] Read-only doctor freshness panel (names zombie/ghost/family-stall) — `a0efc35c3c`
-- [x] T012 WU6 [P] Checker fixture harness (golden + 6 mutants); deleted dead `VALID_BACKEND_KINDS` — `0f6b6b280a`
-- [x] T013 WU7 [P] Discovery-pipeline parity (TS vs Python; nested divergence locked) — `c476e28b47`
-- [x] T014 WU9 [P] description.json guard rule 8b — `bc96286894`
-- [x] T015 WU12(b,d) 3k command⊆toolSurface rule (RED-proven) + ADR-005 family fork — `7047b9fd0e`. WU12(a) template `84924bd848`. WU12(c) importance_tier → [B] below (docTierWeight reader = scoring shift)
+- [x] T010 WU4 [P] [D1] Command-binding existence gate; /doc:quality allowlisted (tracked) — `faf9c67aca` (RED-proven)
+- [x] T011 WU5 [P] [D2] Read-only doctor freshness panel (names zombie/ghost/family-stall) — `6d17af87a1`
+- [x] T012 WU6 [P] Checker fixture harness (golden + 6 mutants); deleted dead `VALID_BACKEND_KINDS` — `988ec18f41`
+- [x] T013 WU7 [P] Discovery-pipeline parity (TS vs Python; nested divergence locked) — `19c209fa50`
+- [x] T014 WU9 [P] description.json guard rule 8b — `386b045159`
+- [x] T015 WU12(b,d) 3k command⊆toolSurface rule (RED-proven) + ADR-005 family fork — `6317453bb3`. WU12(a) template `71fc01d7ed`. WU12(c) importance_tier → [B] below (docTierWeight reader = scoring shift)
 
 **Gate-adjacent (deferred — advisor scorer lane + 193-row re-baseline)**
 - [B] T016 WU8-fix Flatten object entities (`metadata-sanitizer.ts:60-68`) — shifts scoring; co-lands with re-baseline

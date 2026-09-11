@@ -50,7 +50,7 @@ _memory:
 
 ## 1. Initial Research Scaffold (2026-06-30)
 
- 95e8a384d5  chore(repo): land 028 workspace snapshot
+ 701e93712b  chore(repo): land 028 workspace snapshot
 
 This commit created the packet root and the original flat `001-deep-agent-router-and-orchestration`, now `002-routing-dispatch-and-identity/001-deep-agent-router-and-orchestration`. That 6-iteration deep-research loop answered 10/10 key questions and decomposed the first routing and identity fixes.
 
@@ -58,7 +58,7 @@ This commit created the packet root and the original flat `001-deep-agent-router
 
 ## 2. Main Routing, Identity, Benchmark and Checkpoint Wave (2026-07-01, 16:35)
 
- 540fac01e4  checkpoint: land 031 GPT deep-loop hardening (phases 008-013) + broader WIP
+ 1746a34a5b  checkpoint: land 031 GPT deep-loop hardening (phases 008-013) + broader WIP
 
 This bundled checkpoint spanned several current tracks:
 
@@ -73,7 +73,7 @@ Also bundled: orchestrate.md bloat reduction on both runtime mirrors and an agen
 
 ## 3. Plugin Rename (2026-07-01, 16:59)
 
- 3706f0c76f  refactor(system-deep-loop/031): rename deep-route-guard plugin to mk-deep-loop-guard
+ a39a0f5c83  refactor(system-deep-loop/031): rename deep-route-guard plugin to mk-deep-loop-guard
 
 This renamed the guard plugin from `deep-route-guard.js` to `mk-deep-loop-guard.js` for naming-convention parity, including env var and log-prefix changes. It belongs to current `003-guard-and-enforcement/001-deep-route-guard-plugin`.
 
@@ -81,9 +81,9 @@ This renamed the guard plugin from `deep-route-guard.js` to `mk-deep-loop-guard.
 
 ## 4. Skill-Doc Hygiene and Loop-Guard Research (2026-07-01, 17:45-19:24)
 
- 86cbd4c464  feat(system-deep-loop/031): add skill-doc drift audit phase 014, confirm 6 real findings
- a3c983639e  fix(system-deep-loop/031): remediate all 6 confirmed skill-doc drift clusters
- c9f97a0029  fix(system-deep-loop/031): adversarial review of phase 015 + phase 016 research
+ e8fd73d455  feat(system-deep-loop/031): add skill-doc drift audit phase 014, confirm 6 real findings
+ 8ac65c61b8  fix(system-deep-loop/031): remediate all 6 confirmed skill-doc drift clusters
+ 408dbfac00  fix(system-deep-loop/031): adversarial review of phase 015 + phase 016 research
 
 This epoch maps to current `005-skill-doc-hygiene` plus `003-guard-and-enforcement/002-mk-deep-loop-guard-hardening`.
 
@@ -93,8 +93,8 @@ The skill-doc work ran a 20-iteration dual fan-out, confirmed 6 real drift clust
 
 ## 5. Loop-Guard Implementation (2026-07-01, 19:43-19:55)
 
- 171fbd7972  feat(system-deep-loop/031): harden mk-deep-loop-guard with loop-repeat detection
- 8c3408c687  docs(system-deep-loop/031): sync plugins README with mk-deep-loop-guard's two-check design
+ 89be68d40f  feat(system-deep-loop/031): harden mk-deep-loop-guard with loop-repeat detection
+ cd2104b665  docs(system-deep-loop/031): sync plugins README with mk-deep-loop-guard's two-check design
 
 This maps to current `003-guard-and-enforcement/003-loop-guard-implementation`. It implemented prompt-text-first identity resolution and session-scoped loop-repeat detection, then synchronized plugin documentation.
 
@@ -102,7 +102,7 @@ This maps to current `003-guard-and-enforcement/003-loop-guard-implementation`. 
 
 ## 6. Cross-Packet Shared Test Directory Rename (2026-07-01, 20:05)
 
- 8bfbffc433  refactor(plugins): rename __tests__ to tests, complete goal-plugin doc sweep
+ 1f20ab5e1a  refactor(plugins): rename __tests__ to tests, complete goal-plugin doc sweep
 
 A concurrent packet 032 session renamed the shared plugin test directory and repointed references across packets, including this packet's phase 011 and phase 017 docs. This remains a cross-packet note, not one of the current packet's own tracks.
 

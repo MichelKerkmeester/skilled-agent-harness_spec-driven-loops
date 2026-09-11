@@ -64,7 +64,7 @@ _memory:
 - [x] T005 Add `DEVIN_SUPPORTED_MODELS`, `DEVIN_DEFAULT_MODEL`, `isDevinModelAllowed()` at `executor-config.ts:314`
 - [x] T006 Add `buildDevinLineageCommand()` and `isDevinBinaryAvailable()`, registered and exported in `fanout-run.cjs:1994`
 - [x] T007 Extend audit tables with binary, state-env, home-dir, and env-prefix entries at `executor-audit.ts:57`
-- [x] T008 Repair fan-out dispatch for the current devin CLI in commit `88ffed2893`
+- [x] T008 Repair fan-out dispatch for the current devin CLI in commit `569e54b914`
 <!-- /ANCHOR:phase-2 -->
 
 ---

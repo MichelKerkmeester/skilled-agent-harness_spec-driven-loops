@@ -47,7 +47,7 @@ Changelog entries present:
 - File `scripts/mutation-coverage.cjs` exists ✓
 - File `scripts/reduce-state.cjs` exists ✓
 - File `manual_testing_playbook/07--runtime-truth/034-replay-consumer.md` exists ✓
-- Changelog authored in commit `81894a5b27` ✓
+- Changelog authored in commit `b976d113e0` ✓
 
 **Status**: ACCURATE
 
@@ -161,18 +161,18 @@ SKILL.md `version: 1.2.2.0` should be `version: 1.6.0.0` to match latest changel
 ## Step 5: Reverse Check — Recent Commits vs Changelog
 
 Recent commits touching deep-agent-improvement:
-- `e40c454235` feat(renames): ship 007 sk-prompt-models + 115 sk-ai-council/ai-council arcs
-- `656542344e` chore(workspace): commit autonomous overnight 016 parallel work + session artifacts
-- `5232a21c0d` refactor(006): refine 17 skill READMEs via cli-devin (zero §1 tables, zero em dashes)
-- `9150e9c6b9` 111 W3.B: renumber 008-skill-advisor/001-skill-graph/022-system-skill-advisor-extraction -> 006-system-skill-advisor-extraction
-- `81894a5b27` docs(108+110-program): author 6 component changelogs + 2 sk-doc compliance fixes
-- `b296404961` feat(110/004): M-3 mutation signature dedup in mutation-coverage.json + reducer update (council §10.6)
+- `604e2e4648` feat(renames): ship 007 sk-prompt-models + 115 sk-ai-council/ai-council arcs
+- `9f024f2ba3` chore(workspace): commit autonomous overnight 016 parallel work + session artifacts
+- `95683996d1` refactor(006): refine 17 skill READMEs via cli-devin (zero §1 tables, zero em dashes)
+- `5dcdc9a715` 111 W3.B: renumber 008-skill-advisor/001-skill-graph/022-system-skill-advisor-extraction -> 006-system-skill-advisor-extraction
+- `b976d113e0` docs(108+110-program): author 6 component changelogs + 2 sk-doc compliance fixes
+- `5e472e61a8` feat(110/004): M-3 mutation signature dedup in mutation-coverage.json + reducer update (council §10.6)
 
 **Analysis**:
-- `b296404961` → covered by v1.6.0.0 changelog ✓
-- `81894a5b27` → changelog authoring commit, not a feature change ✓
-- `5232a21c0d` → README refinement, likely minor, no changelog required ✓
-- `e40c454235` → sk-prompt-models work, may not require DAI changelog ✓
+- `5e472e61a8` → covered by v1.6.0.0 changelog ✓
+- `b976d113e0` → changelog authoring commit, not a feature change ✓
+- `95683996d1` → README refinement, likely minor, no changelog required ✓
+- `604e2e4648` → sk-prompt-models work, may not require DAI changelog ✓
 
 **Finding**: No missing changelog entries for recent substantive changes.
 

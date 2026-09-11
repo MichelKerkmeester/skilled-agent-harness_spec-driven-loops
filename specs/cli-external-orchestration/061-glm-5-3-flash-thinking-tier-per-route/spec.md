@@ -56,7 +56,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-Commit `d47d73f8bb` (2026-08-29), *"fix(deep-loop): pin GLM-5.3-Flash to xhigh, its real top tier, not max"*, added `isGlmFlashXhighPinnedModel` to `executor-config.ts` and its mirror in `fanout-run.cjs`, forcing every model literal matching `glm-5.3-flash` to dispatch at `--thinking xhigh`.
+Commit `c523722c38` (2026-08-29), *"fix(deep-loop): pin GLM-5.3-Flash to xhigh, its real top tier, not max"*, added `isGlmFlashXhighPinnedModel` to `executor-config.ts` and its mirror in `fanout-run.cjs`, forcing every model literal matching `glm-5.3-flash` to dispatch at `--thinking xhigh`.
 
 The premise is wrong for both routes that reach that code. Live `opencode models <provider> --verbose` on 2026-09-04:
 
@@ -91,7 +91,7 @@ Restore `max` on the two routes that have it, keep `xhigh` where it is genuinely
 - **`fanout-run.vitest.ts`.** Deliberately untouched. It already asserted the correct answer, so leaving it alone makes it the negative control: it was red before the fix and green after, without being edited.
 - **Adding provider-aware branching.** Unnecessary. Both literals reaching the pin are route-bound — the bare one is opencode-go's, the vendor-prefixed one is OpenRouter's — so removing the override *is* the per-route outcome. Cline's ceiling already lives in `.pi/models.json`'s `thinkingLevelMap`, which maps `max` to null and `xhigh` to `xhigh` and is correct as written.
 - **The DevPass `llmgateway` GLM route.** It has both tiers and belongs to packet `060`, which is not yet implemented.
-- **Reverting `d47d73f8bb` wholesale.** Its DeepSeek half is correct; only the GLM generalization is wrong.
+- **Reverting `c523722c38` wholesale.** Its DeepSeek half is correct; only the GLM generalization is wrong.
 
 ### Files to Change
 
@@ -158,5 +158,5 @@ Restore `max` on the two routes that have it, keep `xhigh` where it is genuinely
 - **Task Breakdown**: See `tasks.md`
 - **Implementation Summary**: See `implementation-summary.md`
 - **Origin**: `060-devpass-roster-vision-gemini-3-8` — its pre-edit baseline exposed this
-- **Superseded commit**: `d47d73f8bb` (2026-08-29), GLM half only
+- **Superseded commit**: `c523722c38` (2026-08-29), GLM half only
 <!-- /ANCHOR:related-docs -->

@@ -72,7 +72,7 @@ H exists because packet registries and routers are consumed as a coupled declara
 | `leaf-manifest.config.json` | no writer; explicit standalone input | authored |
 | `leaf-aliases.json` | no writer; explicit compatibility mapping | authored |
 | `leaf-manifest.json` | `generate-leaf-manifest.cjs --write` | deterministic generated output; safely backfillable |
-| `command-metadata.json` | hand-authored in introduction commit `2aa5fcff4a` | authored `sk-design` extension |
+| `command-metadata.json` | hand-authored in introduction commit `f1a234b43e` | authored `sk-design` extension |
 
 The parent scaffold writes description, graph, registry, and router together. The manifest generator is the sole deterministic writer among the eight file types. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/init_skill.py:528-553] [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs:173-240]
 

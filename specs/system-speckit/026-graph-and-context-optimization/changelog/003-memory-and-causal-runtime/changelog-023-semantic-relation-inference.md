@@ -23,7 +23,7 @@ contextType: "implementation"
 
 Packet 021 built the bounded relation-inference backfill with two deterministic collectors (spec-document chains plus lineage `caused` links) and explicitly deferred the similarity `supports` and `contradicts` signals as best-effort extensions. Both signals already existed in the DB (`memory_index.related_memories` cached cosine neighbours, `memory_lineage.superseded_by_memory_id`) but neither was promoted into the causal graph.
 
-This packet shipped those two as OPT-IN collectors (default false) that reuse the same safety envelope: `dryRun` default true, bounded by `limit`, every edge `created_by='auto'` so it inherits `insertEdge`'s runtime guards. The similarity collector reads ONLY the pre-computed `related_memories` column, no live `vector_search`/sqlite-vec scan and no O(n^2) all-pairs work, so it is deterministic and unit-testable. The `contradicts` collector is driven by structural supersession, never embedding similarity, to avoid semantic false positives. Committed as `b834150fe5`.
+This packet shipped those two as OPT-IN collectors (default false) that reuse the same safety envelope: `dryRun` default true, bounded by `limit`, every edge `created_by='auto'` so it inherits `insertEdge`'s runtime guards. The similarity collector reads ONLY the pre-computed `related_memories` column, no live `vector_search`/sqlite-vec scan and no O(n^2) all-pairs work, so it is deterministic and unit-testable. The `contradicts` collector is driven by structural supersession, never embedding similarity, to avoid semantic false positives. Committed as `5a09f033e3`.
 
 ### Added
 

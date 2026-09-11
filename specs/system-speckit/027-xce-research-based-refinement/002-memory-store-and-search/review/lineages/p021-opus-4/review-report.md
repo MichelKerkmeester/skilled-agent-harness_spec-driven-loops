@@ -11,7 +11,7 @@ trigger_phrases: []
 | Iterations | 1 of 1 (maxIterations cap) |
 | Verdict | **PASS** (hasAdvisories=true) |
 | Stop reason | max_iterations_reached |
-| Shipped commit | `372bb0f2cd` |
+| Shipped commit | `da09d7c69e` |
 
 ---
 

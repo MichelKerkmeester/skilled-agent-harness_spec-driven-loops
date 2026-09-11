@@ -65,7 +65,7 @@ Kept `deep/research`, `deep/review`, and `deep/ai-council` in the governance-int
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-A first attempt (via ox-alpha) misread the git history and flipped the rollout config to a bare `"fix"` string, believing `bce47507b6d` had *accidentally* demoted the entries. That passed the vitest gate but broke `validate-rollout.test.cjs` — a **node:test** the vitest run does not execute — which the pre-push hook surfaced. Reading `bce47507b6d`'s message ("demotes the four rollout entries that lacked their evidence mechanism and adds the validator that keeps them honest") showed the demotion was deliberate and evidence-gated, and `validate-rollout`'s own `testLegacyFixStringFails` proves a bare `"fix"` string is invalid. The fix was reverted to `fallback`, the stale `render-command-contract` expectation was corrected to `fallback`, and the recompiled contracts (which do not depend on the rollout mode) were kept. Verification then ran BOTH gates: the runtime vitest suite and `run-node-tests.mjs`.
+A first attempt (via ox-alpha) misread the git history and flipped the rollout config to a bare `"fix"` string, believing `c753fa493af` had *accidentally* demoted the entries. That passed the vitest gate but broke `validate-rollout.test.cjs` — a **node:test** the vitest run does not execute — which the pre-push hook surfaced. Reading `c753fa493af`'s message ("demotes the four rollout entries that lacked their evidence mechanism and adds the validator that keeps them honest") showed the demotion was deliberate and evidence-gated, and `validate-rollout`'s own `testLegacyFixStringFails` proves a bare `"fix"` string is invalid. The fix was reverted to `fallback`, the stale `render-command-contract` expectation was corrected to `fallback`, and the recompiled contracts (which do not depend on the rollout mode) were kept. Verification then ran BOTH gates: the runtime vitest suite and `run-node-tests.mjs`.
 
 <!-- /ANCHOR:how-delivered -->
 ---
@@ -75,8 +75,8 @@ A first attempt (via ox-alpha) misread the git history and flipped the rollout c
 
 | Decision | Why |
 |----------|-----|
-| Intended mode is **`fallback`** | `fix` requires an evidence object that does not exist; `validate-rollout.cjs` enforces it and `bce47507b6d` demoted deliberately. Promoting to `fix` would need genuine evidence, which is out of scope. |
-| Fix the test, not the config | With `fallback` intended, `render-command-contract`'s `fix` expectation was the stale artifact; `bce47507b6d` demoted the config but never updated that test, leaving it red. |
+| Intended mode is **`fallback`** | `fix` requires an evidence object that does not exist; `validate-rollout.cjs` enforces it and `c753fa493af` demoted deliberately. Promoting to `fix` would need genuine evidence, which is out of scope. |
+| Fix the test, not the config | With `fallback` intended, `render-command-contract`'s `fix` expectation was the stale artifact; `c753fa493af` demoted the config but never updated that test, leaving it red. |
 | Verify with BOTH runners | The wrong turn passed a vitest-only gate but broke a node:test. Completion now requires `run-node-tests.mjs` green too. |
 | Recompile `deep-alignment` too | `check-contract-drift` scans every contract; `deep-alignment` was also stale. Digest-only, no mode or body change. |
 

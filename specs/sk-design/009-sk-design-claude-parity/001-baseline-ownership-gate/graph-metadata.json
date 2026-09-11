@@ -47,6 +47,7 @@
       "decision-record.md",
       "implementation-summary.md",
       ".opencode/skills/sk-design/SKILL.md",
+      ".opencode/skills/sk-design/mode-registry.json",
       ".opencode/skills/sk-design/graph-metadata.json",
       ".opencode/skills/sk-design/benchmark/README.md"
     ],
@@ -85,6 +86,12 @@
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-design/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/mode-registry.json",
         "source": "derived"
       },
       {
@@ -188,17 +195,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Acceptance Thresholds",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The sk-design parity refactor must not begin while existing or uncommitted `sk-design` changes have unclear ownership",
     "created_at": "2026-07-05T00:00:00.000Z",
-    "last_save_at": "2026-08-30T15:39:12.111Z",
+    "last_save_at": "2026-09-11T16:41:54.438Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,14 +209,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:436b32a94d3330f72be87bb00d2c20d90ff779e20b9e112e02288c5b81d1c1ab",
+    "source_fingerprint": "sha256:ce337690bfb17fc979cdf16d35295117ab9281dcba0b77e91f4a32d39a32f30b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1b4d4a3a661b20b45509f0ebd9a1aeff559d40642398dc71666fcdcc22f05d1a",
-      "plan.md": "4d4a5d57f6dcd616e294210a55cf7237f491bb69c70e12de7345c3fd653aa3be",
-      "tasks.md": "b942a492e3cdb28de140a9b65b880d7da986d74791bec32343e1d5db9d1b3c95",
-      "decision-record.md": "ca15f63a1a9bd3758bb2e884e12cf969f002ae2d56349bd3cb7bee02be27a3d6",
-      "implementation-summary.md": "22d8a9374ccc9b31f7ff50ab12f2f59bbf92cd1f0732f9b230791d26237ceff1"
+      "spec.md": "c6306dbf6ab0c325a8c0343329e9a9dbe962264e4502d83929ae38f18adfb61a",
+      "plan.md": "a13f06c79c2a9c518aa704be5e86695aec0cb10e6dc360b70a2617a8389fd92b",
+      "tasks.md": "a51680be3a865901f747f279ad139ff4b3cdca2d4a6aaf1094fcf9ccf8bf9f35",
+      "decision-record.md": "f80cd2893797354dfd8f724bf3fa104e63c840813cff2cd757854782b9db44ec",
+      "implementation-summary.md": "22410f3ab56d99eaefe0c0e7954b7565e20302db8cb1ce6a5347e3951572d0ea"
     },
     "last_active_child_id": null,
     "last_active_at": null

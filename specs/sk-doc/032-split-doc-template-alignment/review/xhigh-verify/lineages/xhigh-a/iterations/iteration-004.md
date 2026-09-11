@@ -18,7 +18,7 @@ Maintainability plus final cross-dimension stabilization under `stopPolicy=max-i
 - Current evidence for F001-F004
 - Complete 163-file semantic matrix and generic-validator results
 - Strict Level 2 validation output
-- Relevant Git blame/history and the `babefb0586` remediation diff
+- Relevant Git blame/history and the `983a4d6ef7` remediation diff
 
 ## Findings - New
 

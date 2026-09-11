@@ -38,7 +38,7 @@ trigger_phrases: []
 - **Docs (L1, 3) + tests (L2, 2):** residual version/tool-count prose; enrichment stress asserts a self-built index mirror not the real constant; README row-4 slightly overstates per-request -32001 emission.
 
 ## What's clean (independently confirmed)
-- Remediation `1663527f79` correct on every claim it touched; the `includeEmbeddings` false-positive rightly left unchanged.
+- Remediation `c41dcff894` correct on every claim it touched; the `includeEmbeddings` false-positive rightly left unchanged.
 - Stress isolation hermetic (mkdtemp/`:memory:`, injected reopen, no production DB/socket access); snapshotFormat now a hard assertion; recycle re-scoping honest.
 - Checkpoint two-phase journal write + swap-pending boot recovery, sentinel atomic write/clear, DB-consumer rebind, VACUUM busy-retry, v2 gate, table allowlist; serverInfo 1.8.0 + SPECKIT_BACKEND_ONLY gate; keepalive id-reservation + -32002 fail-closed.
 

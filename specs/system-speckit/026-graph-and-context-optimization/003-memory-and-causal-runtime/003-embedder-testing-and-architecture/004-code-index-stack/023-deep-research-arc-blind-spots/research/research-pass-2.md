@@ -67,12 +67,12 @@ Search-first enterprise retrieval is a serious alternative. Sourcegraph Cody's F
 ## Time-Machine: Undocumented Decisions
 The git history shows rapid default churn:
 
-- `8f909d2299`: Jina-code default plus Metal auto-detect.
-- `4ec84cec26`: hybrid and rerank promoted default-on.
-- `c6a6493e6c`: GTE default swapped to BGE because GTE was broken on Apple Silicon MPS.
-- `38d4e2d627`: Jina-v3 locked as production reranker default.
-- `8364bdd5b7`: Nomic CodeRankEmbed promoted as production embedder default.
-- `ee788254d1`: RRF described as no-op and locked for latency.
+- `f514200503`: Jina-code default plus Metal auto-detect.
+- `6c208a86f5`: hybrid and rerank promoted default-on.
+- `9040d3a86b`: GTE default swapped to BGE because GTE was broken on Apple Silicon MPS.
+- `31cfb00569`: Jina-v3 locked as production reranker default.
+- `46f61e1017`: Nomic CodeRankEmbed promoted as production embedder default.
+- `e41a21591a`: RRF described as no-op and locked for latency.
 
 The missing ADRs are: quality default versus commercial-safe default, RRF no-op/latency lock criteria, and the invariant "fix code/pipeline before model swap." Future remediation arcs should also keep a machine-readable finding-to-file or finding-to-commit map.
 

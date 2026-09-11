@@ -124,7 +124,7 @@ parity + prefix-alignment checks pass.
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Commit `deee30b319` (registered the tool) | Internal | Green | None - already merged; this closes the parity gap |
+| Commit `f6f95062ed` (registered the tool) | Internal | Green | None - already merged; this closes the parity gap |
 <!-- /ANCHOR:dependencies -->
 
 ---

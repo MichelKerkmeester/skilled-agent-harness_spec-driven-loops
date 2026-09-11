@@ -38,7 +38,7 @@ _memory:
 | **Spec Folder** | 004-conditional-budget-aware-fanin |
 | **Completed** | 2026-07-21 |
 | **Level** | 2 |
-| **Candidate** | Uncommitted leaf delta on base `012652b479dee08455de574574c5e7a8971a8b0b` |
+| **Candidate** | Uncommitted leaf delta on base `68b518ab0d8ee5b2bce3a8f1938a7944a1d5945e` |
 | **Policy / decision version** | 1 / 1 |
 | **Decision event** | `fanout.fanin.decision-finalized` version 1 |
 | **Authority** | Current `fanout-run.cjs` wait-for-all path remains authoritative |

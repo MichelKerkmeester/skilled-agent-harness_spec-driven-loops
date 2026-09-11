@@ -10,7 +10,7 @@ trigger_phrases: []
 - **Dimension:** correctness
 - **Angle:** A4-verify — settle F-A4-01 (P1 vs P2) by tracing shutdown end-to-end for ANY supervisor/boot/cleanup path that stops or fences the ingest worker before `closeDb`.
 - **Budget profile:** adjudicate (target 8-10 tool calls; used 9)
-- **Review target:** git range `a9e9bdb0a5^..HEAD` (HEAD `12de3d3a7e` — confirmed unchanged since iter-005)
+- **Review target:** git range `fd67ede05f^..HEAD` (HEAD `3923a65db1` — confirmed unchanged since iter-005)
 - **Parallel-safety:** wrote ONLY `iterations/iteration-012.md` + `deltas/iter-012.jsonl`. Did NOT touch `deep-review-state.jsonl`, strategy, registry, or config.
 
 ## Files Reviewed
@@ -69,7 +69,7 @@ The `downgradeTrigger` ("a separate shutdown path stops the ingest worker before
 
 ## Traceability Checks
 - **Iteration number:** dispatch says 12; honored per parallel-safety contract (writing only iteration-012.md + iter-012.jsonl). Main-state/JSONL reconciliation is the reducer's job.
-- **Range integrity:** all five files resolve inside the diff range; HEAD `12de3d3a7e` matches iter-005, so the iter-005 anchors are still valid line-for-line (verified against current file contents, not stale).
+- **Range integrity:** all five files resolve inside the diff range; HEAD `3923a65db1` matches iter-005, so the iter-005 anchors are still valid line-for-line (verified against current file contents, not stale).
 - **Anchor re-verification (all iter-5 anchors re-read at current HEAD):** context-server.ts:1586-1592 (file-watcher-first drain + reopen comment) ✓; context-server.ts:1563-1610 (cleanup list, no job-queue) ✓; job-queue.ts:746-752 (`setImmediate(() => void drainQueue())`) ✓ (now at 747-751); job-queue.ts:694-722 (no shuttingDown guard) ✓; vector-index-store.ts:1706-1708 (`get_db -> initialize_db`) ✓; vector-index-store.ts:1562 (marker write on open) ✓; vector-index-store.ts:1644-1664 (close_db TRUNCATE + marker removal) ✓.
 
 ## Integration Evidence

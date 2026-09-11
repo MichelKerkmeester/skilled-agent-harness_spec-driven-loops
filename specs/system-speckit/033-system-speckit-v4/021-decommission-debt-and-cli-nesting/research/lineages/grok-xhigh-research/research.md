@@ -82,7 +82,7 @@ Public `specs/system-speckit/052-memory-decommission-landing/goal.md` holds D1�
 ### 5.2 Leftover directory and doctor registrations (angle 2)
 
 - Untracked `.opencode/skills/system-spec-kit/mcp-server/` exists; `git ls-files` empty; `node_modules` symlink target missing (F-I10-001/002). Breaks skill-wide `rg`.
-- Eleven session-lifecycle registrations from `273767431d` still resolve to `runtime/dist/hooks/<runtime>/` (F-I4-001). Not dropped again.
+- Eleven session-lifecycle registrations from `9bca36ef52` still resolve to `runtime/dist/hooks/<runtime>/` (F-I4-001). Not dropped again.
 - `.devin/hooks.v1.json` fallbacks still say `run npm run build in mcp-server` (F-I4-002).
 - `doctor-update.yaml` phase 3 still VACUUM-snapshots `mcp-server/database/*.sqlite` (F-I14-001). Step name `context-index` now runs `generate-trigger-index.mjs` (F-I14-002).
 - Doctor assets still list ignored D5 sqlite files; `validate-command-references.cjs` `existsSync` fails on a fresh worktree (F-I14-003). 052 logged this; 054 did not absorb it.
@@ -198,7 +198,7 @@ Tests that stay green on a gone surface:
 | Treat advisor MCP / fixture phrases / `runtime/database` as a still-running memory MCP | D5 preserved set; no spec-memory in configs | F-I2-005, F-I2-006 | 2 |
 | Treat advisor hook TARGET_REL mcp-server paths as runtime MCP identity | Those paths are the advisor package | F-I3-002, F-I9-005 | 3, 9 |
 | Claim the eleven session-lifecycle registrations were dropped again | All eleven resolve to runtime/dist/hooks | F-I4-001 | 4 |
-| Claim Pi was missed by the 273767431d restore | Pi uses `.pi/extensions` → runtime/hooks/pi | F-I4-001 | 4 |
+| Claim Pi was missed by the 9bca36ef52 restore | Pi uses `.pi/extensions` → runtime/hooks/pi | F-I4-001 | 4 |
 | Drop `@modelcontextprotocol/sdk` from shared as D8 residue | Advisor IPC imports it (D5) | F-I5-004 | 5 |
 | Treat sweep-memory-residue tests as live memory-server tests | They assert residue is gone | iteration 6 | 6 |
 | Treat `/doctor memory` as a dangling memory-server command | It diagnoses the trigger index | F-I7-005 | 7 |

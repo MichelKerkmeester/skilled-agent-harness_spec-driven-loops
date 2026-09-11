@@ -10,7 +10,7 @@ trigger_phrases: []
 - **Dimension:** correctness
 - **Angle:** A4 shutdown durability & resource lifecycle
 - **Budget profile:** verify (target 11-13 tool calls; used 12)
-- **Review target:** git range `a9e9bdb0a5^..HEAD` (HEAD `12de3d3a7e`)
+- **Review target:** git range `fd67ede05f^..HEAD` (HEAD `3923a65db1`)
 - **Parallel-safety:** wrote ONLY `iterations/iteration-005.md` + `deltas/iter-005.jsonl`. Did NOT touch `deep-review-state.jsonl`, strategy, registry, or config. Iters 3/4 run concurrently; JSONL iteration-count derivation deferred to the orchestrator/reducer.
 
 ## Files Reviewed

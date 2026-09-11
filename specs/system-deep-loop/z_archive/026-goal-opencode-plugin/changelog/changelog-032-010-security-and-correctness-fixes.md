@@ -16,7 +16,7 @@ contextType: "implementation"
 
 > Spec folder: `.opencode/specs/deep-loops/032-goal-opencode-plugin/010-security-and-correctness-fixes` (Level 1)
 > Parent packet: `.opencode/specs/deep-loops/032-goal-opencode-plugin`
-> Commit: `3cb6d1bff9` fix(mk-goal): land phase 010 security + correctness fixes
+> Commit: `9fe9685db6` fix(mk-goal): land phase 010 security + correctness fixes
 
 ### Summary
 

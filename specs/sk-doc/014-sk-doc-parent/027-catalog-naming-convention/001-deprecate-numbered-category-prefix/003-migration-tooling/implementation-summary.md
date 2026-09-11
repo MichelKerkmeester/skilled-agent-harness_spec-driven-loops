@@ -9,7 +9,7 @@ _memory:
     packet_pointer: "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/001-deprecate-numbered-category-prefix/003-migration-tooling"
     last_updated_at: "2026-07-17T14:36:44Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "denumber-categories.mjs authored; dry-run clean; commit dd5a30e826"
+    recent_action: "denumber-categories.mjs authored; dry-run clean; commit d614672a48"
     next_safe_action: "Complete"
     blockers: []
     completion_pct: 100
@@ -48,7 +48,7 @@ are frozen by the deny-list.
 ## How It Was Delivered
 Adapted the proven `z_archive/108` engine: built the rename map from the live tree, collision-checked it, and
 swept references with boundary-safe matching plus a frontmatter pass, all behind a dry-run default. Mutation is
-gated so only Phase 004 runs it against the tree. Commit `dd5a30e826`.
+gated so only Phase 004 runs it against the tree. Commit `d614672a48`.
 <!-- /ANCHOR:how-delivered -->
 
 <!-- ANCHOR:decisions -->

@@ -51,7 +51,7 @@ _memory:
 ## Phase 1: Setup
 
 - [x] T001 Scaffold Level 3 packet 016 under `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/`.
-- [x] T002 Read local rename commit `50cfabb6e2` after requested SHA was absent.
+- [x] T002 Read local rename commit `a0c46439dd` after requested SHA was absent.
 - [x] T003 Read both review reports and bucket P1/P2 findings.
 - [x] T004 Read runtime configs and launcher state.
 <!-- /ANCHOR:phase-1 -->

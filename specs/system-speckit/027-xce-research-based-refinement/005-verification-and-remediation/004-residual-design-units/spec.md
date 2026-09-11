@@ -71,8 +71,8 @@ This is **Phase 30** of the 027 XCE epic: the dedicated follow-on for the residu
 
 **Dependencies**:
 - 029 deep-review round-2 PASS (closed) is the predecessor state.
-- The vector-surface divergence HEALTH (tri-105 health half) already shipped in commit `c86424df8a`; Unit A consumes it.
-- The shadow-evaluation typed `no-replay-pool` skip (tri-007/008/009 honesty half) already shipped in commit `6cbb7b457c`; Unit B consumes it.
+- The vector-surface divergence HEALTH (tri-105 health half) already shipped in commit `57423f16b1`; Unit A consumes it.
+- The shadow-evaluation typed `no-replay-pool` skip (tri-007/008/009 honesty half) already shipped in commit `bf01babb5c`; Unit B consumes it.
 - The spec-memory packet-140 supervision scaffold is the reference implementation Unit C ports from.
 
 **Deliverables**:
@@ -177,8 +177,8 @@ Ship the three residual design units, each gated by its own safety contract, so 
 | Risk | Unit B leaks raw query text into a replay corpus | High | Hard invariant: hash-class only; privacy test gates the corpus |
 | Risk | Unit C reintroduces the SIGTERM/relaunch flap + DB corruption | High | Replicate the full packet-140 scaffold; live-adoption harness gates the land; document-the-asymmetry is the lean alternative |
 | Risk | Stale dispositions cause rework on the L9/L2 tail | Medium | Verify-first each item; several are likely already-fixed |
-| Dependency | tri-105 divergence HEALTH (shipped `c86424df8a`) | Unit A measurement baseline | Consume the shipped health surface |
-| Dependency | tri-007/008/009 honesty half (shipped `6cbb7b457c`) | Unit B integration point | Build the corpus on the typed-skip contract |
+| Dependency | tri-105 divergence HEALTH (shipped `57423f16b1`) | Unit A measurement baseline | Consume the shipped health surface |
+| Dependency | tri-007/008/009 honesty half (shipped `bf01babb5c`) | Unit B integration point | Build the corpus on the typed-skip contract |
 | Dependency | spec-memory packet-140 supervision scaffold | Unit C reference | Port (not reinvent) the proven scaffold |
 <!-- /ANCHOR:risks -->
 

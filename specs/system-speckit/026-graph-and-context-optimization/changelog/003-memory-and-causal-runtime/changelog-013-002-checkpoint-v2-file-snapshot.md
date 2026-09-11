@@ -34,8 +34,8 @@ Shipped checkpoint-v2 — a `VACUUM INTO` file-snapshot checkpoint/restore — a
 
 ### Fixed
 
-- **v2-selection gate bug (`cce4fe931d`)**: `hasMainVectorPayloadTables()` required BOTH `vec_memories` AND `vec_metadata` in the main DB; on sharded runtimes `vec_metadata` lives in the attached `active_vec` shard, so the check failed and v2 silently never activated (the feature was inert in production). Changed the gate to require `vec_memories` only — v2 now activates on sharded runtimes. Found by post-deploy live verification.
-- P2 crash-safety: `fsyncDirectoryIfPossible` on the live/shard dirs after the stale-`.bak` removal and before the journal write (`83e0661e5f`); the post-swap-done failure path now re-writes the restore journal (demote to swap-pending) before the in-process revert so a crash there is recoverable (`29160c0e50`).
+- **v2-selection gate bug (`0cdbcc0170`)**: `hasMainVectorPayloadTables()` required BOTH `vec_memories` AND `vec_metadata` in the main DB; on sharded runtimes `vec_metadata` lives in the attached `active_vec` shard, so the check failed and v2 silently never activated (the feature was inert in production). Changed the gate to require `vec_memories` only — v2 now activates on sharded runtimes. Found by post-deploy live verification.
+- P2 crash-safety: `fsyncDirectoryIfPossible` on the live/shard dirs after the stale-`.bak` removal and before the journal write (`501e50b662`); the post-swap-done failure path now re-writes the restore journal (demote to swap-pending) before the in-process revert so a crash there is recoverable (`d6ec6f5167`).
 
 ### Verification
 
@@ -49,7 +49,7 @@ Shipped checkpoint-v2 — a `VACUUM INTO` file-snapshot checkpoint/restore — a
 | `mcp_server/lib/storage/checkpoints.ts` | Modify — VACUUM INTO create, v2 restore, gate-fix, swapFn fsync, post-swap-done journal demote |
 | `mcp_server/lib/search/vector-index-store.ts` · `vector-index-schema.ts` | Modify — schema v29, shard-attach handling |
 | `mcp_server/tests/checkpoints-v2-create.vitest.ts` (+ restore) | Create — round-trip coverage |
-| `.gitignore` | Modify — ignore `.unclean-shutdown` marker (`94069f63e5`) |
+| `.gitignore` | Modify — ignore `.unclean-shutdown` marker (`3f5e26639a`) |
 
 ### Follow-Ups
 

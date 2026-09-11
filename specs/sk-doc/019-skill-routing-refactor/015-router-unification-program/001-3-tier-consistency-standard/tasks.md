@@ -51,7 +51,7 @@ _memory:
 
 - [x] T001 Define route-gold gate semantics: exact mode set + exact leaf set per scenario `sameSet(observed, expected)`
 - [x] T002 Establish the anti-circularity rule: derive the answer from scenario prose, fix the router, then set gold `intent-derived`
-- [x] T003 Prove the recipe directly on sk-prompt (proof-of-recipe) `commit 5dd0a330a4`
+- [x] T003 Prove the recipe directly on sk-prompt (proof-of-recipe) `commit d1af47f281`
 - [x] T004 Encode the gate semantics + scope-lock into an airtight fan-out brief `brief-validated`
 <!-- /ANCHOR:phase-1 -->
 
@@ -61,10 +61,10 @@ _memory:
 ## Phase 2: Implementation
 
 - [x] T010 Fan out mcp-tooling as a single brief-validation dispatch `13/13 route-gold`
-- [x] T011 [P] Fix cli-external-orchestration route-gold defects `7/7, commit 691418d967`
-- [x] T012 [P] Fix system-deep-loop frontmatter/prose intent mismatches `20/20, commit 6cd8ab14e4`
-- [x] T013 [P] Fix sk-code surface RESOURCE_MAP completeness (2 shared refs) `15/15, commit 0e3528cb32`
-- [x] T014 [P] Fix sk-doc catch-all over-emission (8-mode fan-out) `32/32, commit 023b974b12`
+- [x] T011 [P] Fix cli-external-orchestration route-gold defects `7/7, commit e4696f771e`
+- [x] T012 [P] Fix system-deep-loop frontmatter/prose intent mismatches `20/20, commit d60cc2c755`
+- [x] T013 [P] Fix sk-code surface RESOURCE_MAP completeness (2 shared refs) `15/15, commit dfc57cf4f8`
+- [x] T014 [P] Fix sk-doc catch-all over-emission (8-mode fan-out) `32/32, commit f3c7ce0ec3`
 - [x] T015 Remove the generic catch-all vocabulary class from specialized modes `over-emission root cause`
 <!-- /ANCHOR:phase-2 -->
 

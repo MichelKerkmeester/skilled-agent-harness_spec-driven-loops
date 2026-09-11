@@ -1,7 +1,7 @@
 ---
 trigger_phrases: []
 ---
-Adversarial deep-review worker, iteration 7 of 10 (gpt-5.5 xhigh). Review the committed fix (commit 25587fa412), read-only:
+Adversarial deep-review worker, iteration 7 of 10 (gpt-5.5 xhigh). Review the committed fix (commit 86f08e62cd), read-only:
 - .opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts (scheduleBackgroundEnrichment ~2931-2978)
 - compiled: .opencode/skills/system-spec-kit/mcp_server/dist/handlers/memory-save.js (the ACTUALLY-RUN artifact)
 

@@ -106,11 +106,11 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Phases 001 to 006, mode built and closed out | Done | `7589536feb feat(sk-doc): give the frontmatter contract an owner, and every mode a playbook` |
-| Phase 007, voice playbook | Done | Planned in `c8eda6a356`, shipped with the same sweep |
-| Phase 008, utilization review | Done | `8ad1f98d09` ran the playbook and fixed four defects. `8a9c5af8a3` closed the five open criteria: eight aliases in the hub, the `--help` fix, the fixtures, the index tables and the canary re-pin |
+| Phases 001 to 006, mode built and closed out | Done | `ad9d93df3b feat(sk-doc): give the frontmatter contract an owner, and every mode a playbook` |
+| Phase 007, voice playbook | Done | Planned in `af44f4d60f`, shipped with the same sweep |
+| Phase 008, utilization review | Done | `80a4f2036f` ran the playbook and fixed four defects. `3dbc1536f3` closed the five open criteria: eight aliases in the hub, the `--help` fix, the fixtures, the index tables and the canary re-pin |
 | Phase 010, newcomer reachability | Done | Ten plain-language phrases on all five routing surfaces, one dropped for over-capture. Newcomer prompts resolving to the mode moved from 0 of 10 to 6 of 10, the sk-doc canary is green at 23 of 23 after the re-pin, and the tool-digest drift the canaries had carried since a benchmark commit was re-pinned |
-| Validator repairs the packet exposed | Done | `d229b0a24d fix(sk-doc): make the validators look where they were not looking` |
+| Validator repairs the packet exposed | Done | `71f1c2f9bc fix(sk-doc): make the validators look where they were not looking` |
 | Phase 009, contract drift remediation | Done | Working tree at the close of the 2026-09-05 session. The contract's section 1, 4 and 5 enforcement claims corrected to what the validators do, the engine usage text lists `gate`, the spaced alias and `version field` in both routing stages, the hub description trimmed to 130 characters with the compiled-routing refresh carried, and this file, the parent `spec.md` and phase 008's documents reconciled |
 
 ### Deviations and findings

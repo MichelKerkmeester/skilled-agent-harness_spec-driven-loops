@@ -425,10 +425,10 @@ The complete ordered scope is the validated 118-entry `.opencode/specs/sk-design
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: Path-escape bypass: direct guards and focused tests support fail-closed behavior.
 
-### Pinned range: `HEAD` resolved to `7b9d3b6b71`. `git diff --check` reported one blank-line-at-EOF warning in `styles/tests/engine/fixtures.mjs`; it is carried as an out-of-dimension maintainability follow-up rather than converted into a correctness finding. -- BLOCKED (iteration 1, 1 attempts)
-- What was tried: Pinned range: `HEAD` resolved to `7b9d3b6b71`. `git diff --check` reported one blank-line-at-EOF warning in `styles/tests/engine/fixtures.mjs`; it is carried as an out-of-dimension maintainability follow-up rather than converted into a correctness finding.
+### Pinned range: `HEAD` resolved to `6432665a68`. `git diff --check` reported one blank-line-at-EOF warning in `styles/tests/engine/fixtures.mjs`; it is carried as an out-of-dimension maintainability follow-up rather than converted into a correctness finding. -- BLOCKED (iteration 1, 1 attempts)
+- What was tried: Pinned range: `HEAD` resolved to `6432665a68`. `git diff --check` reported one blank-line-at-EOF warning in `styles/tests/engine/fixtures.mjs`; it is carried as an out-of-dimension maintainability follow-up rather than converted into a correctness finding.
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Pinned range: `HEAD` resolved to `7b9d3b6b71`. `git diff --check` reported one blank-line-at-EOF warning in `styles/tests/engine/fixtures.mjs`; it is carried as an out-of-dimension maintainability follow-up rather than converted into a correctness finding.
+- Do NOT retry: Pinned range: `HEAD` resolved to `6432665a68`. `git diff --check` reported one blank-line-at-EOF warning in `styles/tests/engine/fixtures.mjs`; it is carried as an out-of-dimension maintainability follow-up rather than converted into a correctness finding.
 
 ### Pointer path traversal and escaping symlinks: rejected by basename validation plus realpath containment; adversarial schema/hydration tests passed. -- BLOCKED (iteration 2, 1 attempts)
 - What was tried: Pointer path traversal and escaping symlinks: rejected by basename validation plus realpath containment; adversarial schema/hydration tests passed.

@@ -26,7 +26,7 @@ Determine what the v1 and v4 URL paths actually document, whether they are suita
 - **Resolves:** Yes; the page explicitly says “This website is for Vega-Lite v4.”
 - **Documented version:** Vega-Lite v4.
 - **Evidence:** The page says encoded x/y fields automatically create axes. It documents `labelAngle:-90` for nominal and ordinal fields, `labelLimit:180` pixels, and `labelOverlap` strategies: `true`/`"parity"` removes every other label; `"greedy"` removes labels that overlap the last visible label; defaults are `true` for non-nominal non-log scales, `"greedy"` for log scales, and `false` otherwise. This directly supports the baseline's parity/greedy comparison.
-- **Corpus verdict:** The pinned corpus manually applies fixed label thinning and edge retention, with no generic runtime overlap resolver. Representative code keeps every seventh daily label plus the first, every fourth stacked-area label plus the last, and selected calendar labels. `[CORPUS@756a7fcd4c: .opencode/skills/sk-doc/sk-create-chart/assets/templates/daily-line.html:201-204; .opencode/skills/sk-doc/sk-create-chart/assets/templates/stacked-area.html:233-237; .opencode/skills/sk-doc/sk-create-chart/assets/templates/calendar-grid.html:219-224]`
+- **Corpus verdict:** The pinned corpus manually applies fixed label thinning and edge retention, with no generic runtime overlap resolver. Representative code keeps every seventh daily label plus the first, every fourth stacked-area label plus the last, and selected calendar labels. `[CORPUS@3ce648be44: .opencode/skills/sk-doc/sk-create-chart/assets/templates/daily-line.html:201-204; .opencode/skills/sk-doc/sk-create-chart/assets/templates/stacked-area.html:233-237; .opencode/skills/sk-doc/sk-create-chart/assets/templates/calendar-grid.html:219-224]`
 
 ### 3. Vega-Lite v4 scale page
 
@@ -35,7 +35,7 @@ Determine what the v1 and v4 URL paths actually document, whether they are suita
 - **Resolves:** Yes; the page explicitly says “This website is for Vega-Lite v4.”
 - **Documented version:** Vega-Lite v4.
 - **Evidence:** The page says Vega-Lite automatically creates scales for position and mark-property channels. It documents default color ranges by field type: nominal uses the categorical range with `tableau10`, ordinal uses `blues`, and quantitative/temporal uses `viridis` for rect heatmaps and `blues` for other marks. It also documents that quantitative x/y scales include zero by default when unbinned and no custom domain is supplied. This supports the baseline's color-default comparison.
-- **Corpus verdict:** No Vega-Lite scale is shipped or executed. The corpus uses a local declared palette and static SVG mapping, with local contrast and lightness checks; that is intentional and contract-compatible. `[CORPUS@756a7fcd4c: .opencode/skills/sk-doc/sk-create-chart/references/color-system.md:1-12; .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:157-160]`
+- **Corpus verdict:** No Vega-Lite scale is shipped or executed. The corpus uses a local declared palette and static SVG mapping, with local contrast and lightness checks; that is intentional and contract-compatible. `[CORPUS@3ce648be44: .opencode/skills/sk-doc/sk-create-chart/references/color-system.md:1-12; .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:157-160]`
 
 ### 4. Current Vega-Lite axis page (supplemental replacement)
 

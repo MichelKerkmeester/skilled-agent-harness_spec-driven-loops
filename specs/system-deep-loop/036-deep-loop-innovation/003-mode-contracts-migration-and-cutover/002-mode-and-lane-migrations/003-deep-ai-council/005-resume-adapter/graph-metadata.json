@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Plan the Deep AI Council resume adapter for the typed event-ledger migration. The adapter reconstructs interrupted multi-seat deliberations from the sealed ledger through deterministic reducers, maps the continuity ladder to derived runtime state, and makes re-entry idempotent without double-applying, losing, or replaying events.",
     "created_at": "2026-07-16T03:43:34.996Z",
-    "last_save_at": "2026-08-30T15:39:21.107Z",
+    "last_save_at": "2026-09-11T16:42:22.775Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f9b3d23272b6d633454fa86073e1e74e92f863ebd474e1197352a849dfefd1e1",
+    "source_fingerprint": "sha256:886407d834d1c3897d2b6a21d86dfd8c9a25d7ba0ba45f6cd3e548e315713a0b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "863ade5037c6dc0d652037298c2e1e9a7bbdfa057f4f0c8c69bc3c6e37a2e313",
       "plan.md": "583e28f5af2366f65f5bac94014b4e50a0c22141512b410f4bb067e1601284fc",
       "tasks.md": "5f8293c02f164ba26f4e448ab891e539b70aa1c1c6ff2a5a81c06209175714ad",
-      "implementation-summary.md": "8afc592cb44df4fa997f505301c5efc3294c992a05d298bc6a153766f39bbac5"
+      "implementation-summary.md": "fdd7281da0287a54f9a402f91d91d4a0c83b646cac87a61a8a96bd2628991158"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -4,13 +4,13 @@ trigger_phrases: []
 ---
 # Pre-Fix Gate Baselines (Phase 0 regression freeze)
 
-Captured: 2026-07-16, repo HEAD `1508a744d3` (branch `skilled/v4.0.0.0`), BEFORE any WS1 edit.
+Captured: 2026-07-16, repo HEAD `d840fa8339` (branch `skilled/v4.0.0.0`), BEFORE any WS1 edit.
 
 ## One-line gate results
 
 - `package_skill.py .opencode/skills/mcp-tooling --check` -> **PASS** (exit 0; 5 warnings: description length, 3 recommended sections, smart-router markers — pre-existing, not remediation targets)
 - `validate_skill_package.py .opencode/skills/mcp-tooling` (parent-skill-check path) -> **PASS**: `package_skill.py --check: PASS (exit 0)` + `parent-skill-check.cjs: PASS (exit 0)`
-- Advisor ratchet (`system-skill-advisor/mcp_server tests/parity/scorer-eval-baseline-ratchet.vitest.ts`) -> **PASS 7/7** (3.31s). Committed baseline `scripts/routing-accuracy/scorer-eval-baseline.json` @ `2146dee114`: full_corpus_top1 153/200 (0.765), holdout_top1 57/78 (0.7308), ambiguity_top1 16/25 (0.64), unknown_count 13, gold_none_false_fire 5.
+- Advisor ratchet (`system-skill-advisor/mcp_server tests/parity/scorer-eval-baseline-ratchet.vitest.ts`) -> **PASS 7/7** (3.31s). Committed baseline `scripts/routing-accuracy/scorer-eval-baseline.json` @ `36f7e4c1d2`: full_corpus_top1 153/200 (0.765), holdout_top1 57/78 (0.7308), ambiguity_top1 16/25 (0.64), unknown_count 13, gold_none_false_fire 5.
 
 ## Deterministic replay freeze (fixtures in this folder)
 

@@ -81,4 +81,4 @@ Four open findings from the 023-arc investigation were closed: prompt names beca
 
 - Stale generated copies may remain in `build/lib`. The source-level duplicate prompt registry test intentionally ignores build output. A clean build or `build/lib` purge would remove the stale copies.
 - Unknown custom models still bypass registry policy in compatibility paths that previously tolerated unknown models. A follow-on packet could extend accessor coverage to those paths with an explicit allow-list pattern.
-- No git commit was created for the implementation per a user constraint. The changes are reflected in commit `263e669a26` which consolidated them with prior session work.
+- No git commit was created for the implementation per a user constraint. The changes are reflected in commit `443a7dd68c` which consolidated them with prior session work.

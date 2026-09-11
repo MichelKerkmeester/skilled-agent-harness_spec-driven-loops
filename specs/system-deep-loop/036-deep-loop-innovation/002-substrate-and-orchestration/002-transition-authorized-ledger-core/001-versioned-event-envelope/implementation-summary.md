@@ -38,7 +38,7 @@ _memory:
 | **Spec Folder** | 001-versioned-event-envelope |
 | **Completed** | 2026-07-21 |
 | **Level** | 2 |
-| **Pinned BASE / branch tip** | `576a7401b1d2f8b328b7713ead428599894a03d4` |
+| **Pinned BASE / branch tip** | `ca626625bca213d2a884ff3864f31ca27c33cdad` |
 | **Transition-policy SHA-256** | `329ad7ad1c4f8eaedb531887b00ed29c3413fef00e7c8532941ad07f033b634d` |
 <!-- /ANCHOR:metadata -->
 

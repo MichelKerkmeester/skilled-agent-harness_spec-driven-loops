@@ -84,13 +84,13 @@ and findings belong here.
 
 ### Progress
 
-The review itself shipped as `8ad1f98d09 fix(sk-create-frontmatter): run its playbook for the first time, and fix what that found`, the only commit touching this phase folder. Everything below was re-confirmed against the working tree on 2026-09-02, after that commit.
+The review itself shipped as `80a4f2036f fix(sk-create-frontmatter): run its playbook for the first time, and fix what that found`, the only commit touching this phase folder. Everything below was re-confirmed against the working tree on 2026-09-02, after that commit.
 
 | Item | State | Evidence |
 |------|-------|----------|
 | Eleven playbook scenarios executed | Done | `implementation-summary.md` section 3 records 11 of 11 PASS, including a negative control on `FMC-001` |
 | Reachability measured | Done | Section 4: 6 of 8 newcomer prompts return nothing, 8 of 17 declared triggers return nothing |
-| Four documentation defects corrected | Done | Six files modified in `8ad1f98d09`, each correction carrying its measurement |
+| Four documentation defects corrected | Done | Six files modified in `80a4f2036f`, each correction carrying its measurement |
 | Eight aliases added to the hub | Done | All eight are in `intent_signals` and `derived.trigger_phrases`. Advisor before: all eight returned nothing. After: `frontmatter template` 0.8828, `frontmatter fields` 0.8777, `missing frontmatter` 0.8777, `frontmatter contract` 0.8777, and `trigger_phrases`, `importance_tier`, `contextType`, `X.Y.Z.W` at the 0.82 floor, every one on `sk-doc` |
 | `--help` on the versioning engine | Done | `parseArgs` now scans the whole argv for the flag before the mode is derived. `--help`, `-h`, `--help --skill sk-vision` and no arguments each print usage and exit 0 with no git pass. `bogus` still exits 64 after discovery, unchanged. Engine tests 23 of 23, up from 21, the two new ones covering this |
 | `SKILL.md` inflation claim | Done | The three-to-five-times claim is replaced by the measured 1.06 to 1.09 times over 1,214 documents, with the corpus and the date, matching the reference. The edit made the hub stale and the activation manifests were re-minted for it |

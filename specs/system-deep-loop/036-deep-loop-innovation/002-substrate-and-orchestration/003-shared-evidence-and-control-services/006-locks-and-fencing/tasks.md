@@ -42,7 +42,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Pin the candidate baseline (`d1a3f0323c3635f24c3560feaeda839522ececf0`) and inventory protected shipped writers in the frozen manifest [evidence: `protected-resource-registry.ts` exports the frozen manifest against the recorded baseline]
+- [x] T001 Pin the candidate baseline (`f3ae3672a0a3f046204658dcccaeda2d7b8dee14`) and inventory protected shipped writers in the frozen manifest [evidence: `protected-resource-registry.ts` exports the frozen manifest against the recorded baseline]
 - [x] T002 Freeze canonical resource-key rules, the single-host filesystem domain, lock ordering, bounded timeouts/renewal, and unsupported topology behavior [evidence: focused Vitest `locks-and-fencing.vitest.ts` passed 28/28]
 - [x] T003 Consume the existing authorized append/head/receipt interfaces and accept an opaque continuity identity plus verified replay identity [evidence: `fenced-ledger-writer.ts`, `fenced-state-store.ts`, and `replay-identity.ts` compile under tsc]
 <!-- /ANCHOR:phase-1 -->

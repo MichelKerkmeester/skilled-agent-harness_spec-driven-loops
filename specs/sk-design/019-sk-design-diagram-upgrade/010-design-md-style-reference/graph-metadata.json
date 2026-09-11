@@ -206,7 +206,7 @@
     ],
     "causal_summary": "The diagram skill has one colour system: `assets/color/diagram-palette.json`, applied by `apply-diagram-tokens.cjs`",
     "created_at": "2026-09-11T03:52:48Z",
-    "last_save_at": "2026-09-11T08:09:53.580Z",
+    "last_save_at": "2026-09-11T16:42:00.340Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +217,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d114fc7de0c57ff0d1619d709642b535772dfda00ad6b713082bbbb51d8d2d42",
+    "source_fingerprint": "sha256:2125aee49c02229f1b51ef18cd97c53f6ca69f22e2626b035112799d87d45957",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0d8f77ddc8728f0b50b3deb88378e5eae83c2f6f4bf3a5ccc7cc4b8809ea66d5",
       "plan.md": "1363e65f9d95fa4ca10139da4027a23ef37efd2dfe30a6d86e8c5ecf5b5820a9",
-      "tasks.md": "75c49d7e6ea239fda127c6a204ea312cb67851e1d317ccddc6f0b351090bceb0",
-      "implementation-summary.md": "ca738384f461c0375be5509cdc1cc75d53cde1a1c7c309f8f7f5d745395e23fb"
+      "tasks.md": "8c614c8a3aff11497811ce870be3024488841065b32db7724f05752c92bc63a8",
+      "implementation-summary.md": "31f66195c068419ec989769e867c6836873ea8ea985443a4269b113b225ce694"
     },
     "last_active_at": null
   }

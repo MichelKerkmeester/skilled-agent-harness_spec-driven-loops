@@ -43,7 +43,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Confirm phase 012 landed [EVIDENCE: commit `97036ca885`, `.pi/prompts/` (36) + `.pi/agents/` (13) + `.pi/extensions/` (7) all present and live-verified]
+- [x] T001 Confirm phase 012 landed [EVIDENCE: commit `74f5988ba2`, `.pi/prompts/` (36) + `.pi/agents/` (13) + `.pi/extensions/` (7) all present and live-verified]
 - [x] T002 [P] Re-read `010-pi-manual-testing-playbook/spec.md` §9 verbatim [EVIDENCE: all 19 rows reproduced verbatim in the LUNA dispatch brief and executed against exactly that scope, no redesign]
 - [x] T003 [P] Re-read `cli-cursor/manual-testing-playbook/manual-testing-playbook.md` in full [EVIDENCE: root file mirrors its 17-section shape plus one disclosed addition]
 <!-- /ANCHOR:phase-1 -->

@@ -114,7 +114,7 @@ This layer sits on top of the closed record parser `024` owns. Do not restructur
 
 - [x] T020 Register alignment against the convergence backend it actually uses (`F-026-04`) (`.opencode/skills/system-deep-loop/mode-registry.json`, `.opencode/skills/system-deep-loop/SKILL.md`) [3h] {deps: T001}
 - [x] T021 Unearned-credit test: a leaf claiming the full canonical corpus with no per-artifact evidence earns zero coverage [4h] {deps: T016}
-  - **Evidence**: `coverage-integrity.test.cjs`, full-corpus claim without per-artifact evidence, 38/38 after the failed-delta regressions, candidate SHA `9229cb8f3e281c9291e6d631237528bc755e6f4b`.
+  - **Evidence**: `coverage-integrity.test.cjs`, full-corpus claim without per-artifact evidence, 38/38 after the failed-delta regressions, candidate SHA `2d12dfc5f5f365f396c51a7dea1c7cb825f5501b`.
 - [x] T022 Re-run `node --test .opencode/skills/system-deep-loop/deep-alignment/scripts/tests/*.test.cjs` and `cd .opencode/skills/system-deep-loop/runtime && npm run typecheck && npm test`; report deltas against the `021` baselines, excluding the 5 pre-existing command-contract failures [3h] {deps: T015, T019, T020, T021}
 - [x] T023 Independent adversarial verification pass, then `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-deep-loop/036-deep-loop-innovation/004-alignment-coverage-integrity --strict` exits 0; record the alignment-lane gate for `014` [6h] {deps: T022}
 <!-- /ANCHOR:phase-3 -->

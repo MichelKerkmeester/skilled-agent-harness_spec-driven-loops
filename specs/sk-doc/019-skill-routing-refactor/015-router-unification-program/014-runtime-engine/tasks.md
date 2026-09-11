@@ -100,7 +100,7 @@ _memory:
 - [x] T016 Flip all seven hubs' serving authority `legacy → compiled` (complete; each canary-green via the real scorer, route-gold byte-identical, byte-exact rollback retained); post-flip real-model re-verification treated as satisfied by the P4a T9 result plus flag-off inertness.
 - [x] Strict Level-2 packet validation on this phase folder.
 
-**Evidence**: The P4b runtime engine, its `sk-code` end-to-end proof, the hub `SKILL.md` wiring (T015), and the seven-hub `legacy → compiled` flip (T016) are all complete — landed in commits engine `d7da0fca43`, sk-code cutover `2fa3357f80`, remaining-6 cutover `337ca43cfa` (pushed on v4), held inert behind the default-off `SPECKIT_COMPILED_ROUTING` flag. The advisor-hook machine-enforcement layer remains in progress and is NOT claimed done.
+**Evidence**: The P4b runtime engine, its `sk-code` end-to-end proof, the hub `SKILL.md` wiring (T015), and the seven-hub `legacy → compiled` flip (T016) are all complete — landed in commits engine `4aa00aa959`, sk-code cutover `ffb752f10b`, remaining-6 cutover `d84dc4bfc2` (pushed on v4), held inert behind the default-off `SPECKIT_COMPILED_ROUTING` flag. The advisor-hook machine-enforcement layer remains in progress and is NOT claimed done.
 
 <!-- /ANCHOR:completion -->
 

@@ -45,7 +45,7 @@ _memory:
 ## Phase 1: Setup
 
 - [x] T001 Froze the facade — the four corpus consumers call `runQuery`/`runHydrate`; only the adapter behind the facade imports the DB. [SOURCE: `design-*/corpus/*.mjs` → `lib/engine/style-library.mjs`]
-- [x] T002 Confirmed distribution (install-time/prewarm; no committed binary; `database/` git-ignored; default `legacy`), the `001-foundation` plane (69/69), and that `005-library-restructure` landed. [TESTED: 69/69; commit `cee62570e4`]
+- [x] T002 Confirmed distribution (install-time/prewarm; no committed binary; `database/` git-ignored; default `legacy`), the `001-foundation` plane (69/69), and that `005-library-restructure` landed. [TESTED: 69/69; commit `c5056f15fe`]
 <!-- /ANCHOR:phase-1 -->
 ---
 

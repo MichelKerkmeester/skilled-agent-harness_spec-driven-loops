@@ -47,9 +47,9 @@ _Readiness: unblock, re-baseline, and make the parity gate honest before touchin
 - [ ] T002 Land Layer 1b vocab on sk-code [medium] — add `code audit`, `code review loop`, `findings-first review`, `release readiness`, `audit`, `findings`, `security`, `correctness` to graph-metadata + SKILL frontmatter
 - [ ] T003 Land Layer 1b vocab on deep-loop-workflows [small] — drop bare `code audit` and `severity weighted findings`; keep loop/convergence identity
 - [ ] T004 Capture a fresh 193-row baseline [medium] — PID-scoped native rebuild via `rebuild-native-modules.sh` if the corpus scan SIGBUSes; record tsCorrect, pythonCorrect, regressions, holdout
-- [x] T005 WS3 ledger the five named regressions [medium] — superseded via commit e2711fb580: rr-iter3-100 and rr-iter3-104 were resolved and dropped; the surviving divergences were accepted as fusion-level / labeling-edge losses
-- [x] T006 WS3 rename the legacy "197-prompt" suite to 193 [small] — corrected via commit e2711fb580; the projection is the true 193-row corpus
-- [x] T007 WS3 keep force-local parity in CI and re-point evaluation to SQLite/source metadata [medium] — superseded: the parity outcome this packet targeted landed via commit e2711fb580's audit-phrase calibration rather than this packet's re-pointing plan
+- [x] T005 WS3 ledger the five named regressions [medium] — superseded via commit 875884b80a: rr-iter3-100 and rr-iter3-104 were resolved and dropped; the surviving divergences were accepted as fusion-level / labeling-edge losses
+- [x] T006 WS3 rename the legacy "197-prompt" suite to 193 [small] — corrected via commit 875884b80a; the projection is the true 193-row corpus
+- [x] T007 WS3 keep force-local parity in CI and re-point evaluation to SQLite/source metadata [medium] — superseded: the parity outcome this packet targeted landed via commit 875884b80a's audit-phrase calibration rather than this packet's re-pointing plan
 
 <!-- /ANCHOR:phase-1 -->
 ---
@@ -60,7 +60,7 @@ _Readiness: unblock, re-baseline, and make the parity gate honest before touchin
 _The scorer code: root demotion first, then the executor resolver, then the isolated correctness and hardening gaps._
 
 - [x] T008 WS1 implement Design A post-cap demotion [large] — implemented, measured, and reverted; falsified (net -2 on the 193-row corpus, fixed 0 of 6 target regressions, broke 2)
-- [x] T009 WS1 add the verbose-saturation fixture set [medium] — moot: WS1 Design A was measured and reverted (falsified), so this fixture work did not persist; parity landed via commit e2711fb580 instead
+- [x] T009 WS1 add the verbose-saturation fixture set [medium] — moot: WS1 Design A was measured and reverted (falsified), so this fixture work did not persist; parity landed via commit 875884b80a instead
 - [x] T010 WS1 escalate to Design B only if required [medium] — not pursued: with the saturation thesis falsified there is no ranking-by-negative-evidence case to justify a first-class disambiguationPenalty channel
 - [ ] T011 WS2 create `executor-delegation.ts` [large] — detect delegation verbs (`use`, `delegate to`, `ask`, `run`, `invoke`, `second opinion`) near an executor alias
 - [ ] T012 WS2 build the alias table from metadata [medium] — `graph-metadata.json` (`family:'cli'`/`category:'cli-orchestrator'`) + `model_profiles.json`; MiniMax/Kimi resolve to cli-opencode

@@ -37,8 +37,8 @@ _memory:
 | Packet | `system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/004-compatibility-shadow-and-rollback-bridge/003-shadow-parity-harness` |
 | Status | Complete |
 | Delivery mode | Additive and dark; legacy remains authoritative |
-| Oracle BASE | `fe6ca3030917073f3b478bc044e10034dcc4394b` |
-| Worktree target | `origin/skilled/v4.0.0.0` at `b2c06667cc9ab226a56edde8f08247eb70c18624` when verified |
+| Oracle BASE | `573a44951386fab3556b53b39c6008ec74b22304` |
+| Worktree target | `origin/skilled/v4.0.0.0` at `af8e383484ccfb7487c68f63b6109f3743eb9e9d` when verified |
 | Candidate source digest | `c32f0552e96fb7b8cb7ff8f1530bf5c03a6f9b83f57c19b2a3ffd8226d8dc9ba` over the runtime shadow-parity module |
 | Runtime surface | Node/TypeScript deep-loop runtime |
 <!-- /ANCHOR:metadata -->

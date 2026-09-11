@@ -62,7 +62,7 @@ before any code moves. Inside the delete means superseded, not implemented.
 - [x] T002 ADR-002 channel representation. Superseded: all three subject files under `mcp-server/`
 - [x] T003 ADR-003 `enforceSearchTokenBudget`. Superseded: handler and test under `mcp-server/`
 - [x] T004 ADR-004 `anchor_id` fixture. Superseded: fixture and module under `mcp-server/`
-- [x] T005 ADR-006 `clearBudget` loop. Accepted, and shipped earlier in `59a597e37d`
+- [x] T005 ADR-006 `clearBudget` loop. Accepted, and shipped earlier in `7e93c9ae79`
 - [x] T006 ADR-007 database resolver. Split, and nothing survives: the five tests are under `mcp-server/`, and `shared/paths.ts` survives with no surviving subject
 - [x] T007 Daemon recycle. Superseded: 049 phase 003 deletes the launcher, the plugin and `.opencode/hooks/spec-memory/`
 <!-- /ANCHOR:phase-1 -->
@@ -194,7 +194,7 @@ either measured or recorded. ADR-009 holds the ruling.
 - [x] CHK-FIX-004 [P0] Not applicable: no security, path-parsing or redaction surface changed. The write guard itself is untouched
 - [x] CHK-FIX-005 [P1] Not a matrix fix. The two axes are the two ADRs and their named files
 - [x] CHK-FIX-006 [P1] The ADR-008 tests read and mutate `process.argv` and `CONFIG`. Each test builds and removes its own temp root
-- [x] CHK-FIX-007 [P1] The packet is committed at `0467949fc8`, so the evidence is that commit rather than a working-tree diff
+- [x] CHK-FIX-007 [P1] The packet is committed at `39427c3c8b`, so the evidence is that commit rather than a working-tree diff
 - [x] CHK-FIX-008 [P0] The two reference fixes are type-only. Interfaces, a type-only import and a definite-assignment marker all erase before runtime, so no behavior changes
 - [x] CHK-FIX-009 [P0] Both edited files were re-run inside the sharded run after the edits landed, `tree-thinning` 28 tests in shard 10 and `progressive-validation` 52 tests in shard 11
 <!-- /ANCHOR:fix-completeness -->

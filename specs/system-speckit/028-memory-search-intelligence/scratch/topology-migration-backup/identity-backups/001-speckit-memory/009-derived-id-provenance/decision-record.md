@@ -442,7 +442,7 @@ The research specifies a content-addressed `TEXT` identity, NOT `AUTOINCREMENT`,
 <!-- ANCHOR:adr-005-context -->
 ### Context
 
-The roadmap's original `memory-index.ts:281` sha256 citation was a **mis-citation** (`:281` is `createScanKey`, a scan-options hash). The real, shipped bases are the two `lib/content-id.ts` primitives, `hashContentBody` (content-body) and `hashCanonicalJson` (canonical-field), landed in 030 commit `18c8582e33` (roadmap §027-REVISIT edit #1, `lib/content-id.ts:14,19`). The synthesis stresses: centralize the formula, parameterize the identity, do NOT fork a third hash (`01-go-candidates.md:64`).
+The roadmap's original `memory-index.ts:281` sha256 citation was a **mis-citation** (`:281` is `createScanKey`, a scan-options hash). The real, shipped bases are the two `lib/content-id.ts` primitives, `hashContentBody` (content-body) and `hashCanonicalJson` (canonical-field), landed in 030 commit `0113515f43` (roadmap §027-REVISIT edit #1, `lib/content-id.ts:14,19`). The synthesis stresses: centralize the formula, parameterize the identity, do NOT fork a third hash (`01-go-candidates.md:64`).
 
 ### Constraints
 

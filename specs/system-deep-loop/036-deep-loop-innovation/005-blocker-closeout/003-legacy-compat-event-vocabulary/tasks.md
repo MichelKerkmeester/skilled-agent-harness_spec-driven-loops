@@ -69,7 +69,7 @@ The census is evidence for the mapping work. The operator has ruled that this ch
 
 - [x] T001 **CONFIRM BEFORE BUILD.** For each of the 6 finding IDs in scope, re-read the cited `file:line` at current HEAD and record `CONFIRMED` / `REFUTED` / `MOVED` / `ALREADY-FIXED` with a cited probe. (`spec.md` §3 scope table) [2h] [Evidence: `tasks.md`]
 
-  **T001 confirmation table (HEAD `9229cb8f3e281c9291e6d631237528bc755e6f4b`):**
+  **T001 confirmation table (HEAD `2d12dfc5f5f365f396c51a7dea1c7cb825f5501b`):**
 
   | Finding | Classification | HEAD evidence |
   |---------|----------------|---------------|
@@ -89,7 +89,7 @@ The census is evidence for the mapping work. The operator has ruled that this ch
   Evidence: `legacy-state-census.md` was authored before mapping edits and records the selected real logs, complete inventory, and must-survive disposition.
 - [x] T004 Cite the `021` `runtime` baseline and re-run the scoped verification gate. [1h] {deps: T001} [Evidence: `implementation-summary.md`]
 
-  Evidence: pre-fix HEAD `9229cb8f3e281c9291e6d631237528bc755e6f4b`, red real-log replay probes, final `tsc` rc 0, and the serial per-mode/per-file matrix are recorded in `implementation-summary.md`; the prohibited shared-process run is not used because it hangs on the shared SQLite append lock.
+  Evidence: pre-fix HEAD `2d12dfc5f5f365f396c51a7dea1c7cb825f5501b`, red real-log replay probes, final `tsc` rc 0, and the serial per-mode/per-file matrix are recorded in `implementation-summary.md`; the prohibited shared-process run is not used because it hangs on the shared SQLite append lock.
 <!-- /ANCHOR:phase-1 -->
 
 ---

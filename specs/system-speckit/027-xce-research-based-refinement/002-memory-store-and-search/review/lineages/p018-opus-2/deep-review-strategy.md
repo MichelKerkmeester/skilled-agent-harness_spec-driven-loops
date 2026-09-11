@@ -24,7 +24,7 @@ All four dimensions covered in iteration 1. No P0/P1; 2 P2 advisories.
 - P2: 2 (F001 test-coverage of new paths, F002 requestCancel Set growth) — deltas: +2 from init
 
 ## What Worked
-- Reading the commit diff (`f1dbb676f2`) plus the surrounding loop context pinned every
+- Reading the commit diff (`a48325ab74`) plus the surrounding loop context pinned every
   REQ to a concrete line and confirmed the stated transaction-safety risk is mitigated.
 - Cross-referencing the two unit suites (`batch-processor.vitest.ts`, `job-store.vitest.ts`)
   against the new exports surfaced the untested-new-path gap cleanly.

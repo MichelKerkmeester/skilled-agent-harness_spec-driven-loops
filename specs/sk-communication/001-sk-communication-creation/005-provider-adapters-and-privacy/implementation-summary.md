@@ -99,7 +99,7 @@ The implementation consumes Phase 004 `ProtectedDocument.encodedText`, retains t
 | Package dry run | PASS: 209 files, 118,135 packed bytes, no bundled dependency |
 | Privacy routing performance | PASS: warm 5/30 run, p50 0.033 ms, p95 0.094 ms, maximum 0.267 ms |
 | Strict packet validation | PASS: Phase 005 strict and parent recursive strict, zero errors and zero warnings |
-| Implementation checkpoint | `d8e5dc4791b1d4cc22500800650ed589248423dc` |
+| Implementation checkpoint | `3452672fa4906ec45844385825914ebbe3b670ef` |
 | Phase 004 predecessor | PASS: 70-test package gate, 23 focused tests and exact-original handover are available |
 <!-- /ANCHOR:verification -->
 

@@ -146,7 +146,7 @@ The implementation followed the planned C1 -> C2 -> C3 dependency chain, then ad
 
 | Planned | Actual | Reason |
 |---------|--------|--------|
-| One commit per candidate | Shipped together in commit `c1f2466811` | The 028 build batched this phase (fanout-pool + fanout-run + cli-guards) into one commit |
+| One commit per candidate | Shipped together in commit `ee3c41a80c` | The 028 build batched this phase (fanout-pool + fanout-run + cli-guards) into one commit |
 | External adversarial review seat | Skipped | User constrained this run to code + unit tests, local adversarial tests cover retry-success, retry-exhaustion, fatal no-retry, durable budget, salvage-miss retry and all-fatal behavior |
 
 <!-- /ANCHOR:deviations -->

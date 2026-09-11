@@ -52,7 +52,7 @@ _memory:
 ## Phase 1: Setup
 
 - [x] T001 Enumerate all `*_archive` dirs and classify empty vs populated
-- [x] T002 Git-archaeology: confirm research init introduced `archive_root` (commit `537cd82d26`); review init never had it
+- [x] T002 Git-archaeology: confirm research init introduced `archive_root` (commit `62465eeeca`); review init never had it
 - [x] T003 [P] cli-opencode `openai/gpt-5.5-fast --variant high` read-only deep-trace + patch proposal
 <!-- /ANCHOR:phase-1 -->
 

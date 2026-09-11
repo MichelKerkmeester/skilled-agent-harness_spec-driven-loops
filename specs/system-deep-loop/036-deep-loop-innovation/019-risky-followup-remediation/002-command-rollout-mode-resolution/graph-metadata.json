@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The compiled command contracts for `deep/review`, `deep/research`, and `deep/ai-council` are stale — their source digest no longer matches the compiled artifact (`STALESOURCEDIGEST`), so `check-contract-drift` fails",
     "created_at": "2026-08-26T11:00:43.034Z",
-    "last_save_at": "2026-09-11T04:38:32.551Z",
+    "last_save_at": "2026-09-11T16:42:28.348Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3a1cbfe2af93425c538352851f9a396b991ba56faac39a30669614a06b9fad8d",
+    "source_fingerprint": "sha256:2ea28aa0b52615c871eb6599057eaa9641361c4b839b9f3c918ea74210607afb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5a212e57ba6e4ba987a6709fa3ffc44f11fdcb5d9390f59cf17785c6ae6d2c34",
-      "plan.md": "527c3febc5566983716becf1d397bd90bb72420bb76496d1967dac9903b7b261",
-      "tasks.md": "c80f9319cfff0ddfeb6b38055c1d99a91d33fd12e93364e8008680fbb68d35b6",
-      "implementation-summary.md": "fedb50a0a6d874e6a61bff0f230fde20882acef6c7ffe9f23a3bb374956d3fa9"
+      "spec.md": "2d399be718b3cf8a16a3ac3c290579509d7653677d0b23d74aadbf5262e8e9dd",
+      "plan.md": "2a4fcf2e1328ac474d999350e9ac4b90be46495d02a3a394d49653b2aba97e71",
+      "tasks.md": "e5b2a79eca71b17015b19f557ef290d6bc691801d8019f157a48a75a521006b1",
+      "implementation-summary.md": "40ef9d9bdaa60a32789f2b11037401de2c7fcc80ee202c0636e9cf3190be2ecc"
     },
     "last_active_child_id": null,
     "last_active_at": null

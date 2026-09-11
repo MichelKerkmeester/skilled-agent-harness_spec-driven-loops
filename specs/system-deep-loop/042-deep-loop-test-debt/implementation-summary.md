@@ -109,8 +109,8 @@ A GLM lane took the first pass and reversed two committed decisions to make test
 | The three CLI-tree tests (`--project cli`) | 13 of 13 pass |
 | Full CLI project | 1568 of 1589 pass; the one red file targets the operator's in-flight 036 packet |
 | Runtime mirrors, agent mirrors | 169 of 169 and 12 of 12 in sync |
-| Deep-loop runtime typecheck | 0 errors at `75fc0c7713` (was 53: 34 assignability, 15 index-signature, 2 missing sqlite types, 2 missing gateway field), no compiler option changed |
-| Deep-loop runtime suite | Baseline and post-fix totals identical: 9 files red out of 154, all environment-dependent or contract-drift; contracts regenerated at `26c6746225`, drift check OK for 3 commands |
+| Deep-loop runtime typecheck | 0 errors at `9c962fe7a3` (was 53: 34 assignability, 15 index-signature, 2 missing sqlite types, 2 missing gateway field), no compiler option changed |
+| Deep-loop runtime suite | Baseline and post-fix totals identical: 9 files red out of 154, all environment-dependent or contract-drift; contracts regenerated at `2fc15dbf00`, drift check OK for 3 commands |
 <!-- /ANCHOR:verification -->
 
 ---

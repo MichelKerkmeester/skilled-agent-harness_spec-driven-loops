@@ -4,7 +4,7 @@ trigger_phrases: []
 ---
 # Deep Review Report — 027/020 vector-resilience durability
 
-**Target:** commit `1ee9e1e767` — repair-pending sentinel at quarantine, boot resume, clear-stuck-degraded on non-repair reindex.
+**Target:** commit `059407c047` — repair-pending sentinel at quarantine, boot resume, clear-stuck-degraded on non-repair reindex.
 **Method:** 5 narrow-lens seats (cli-opencode gpt-5.5-fast, xhigh) → Fable 5 adversarial adjudication → gpt-5.5-xhigh remediation (3 coherent pieces) → Fable 5 re-verify → commit.
 
 ## Seat coverage (5 iterations)

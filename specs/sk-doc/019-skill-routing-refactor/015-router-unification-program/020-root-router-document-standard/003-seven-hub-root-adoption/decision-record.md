@@ -142,7 +142,7 @@ Seven hubs must reach the same target shape, but they differ in maturity: mcp-to
 
 ### Context
 
-The move relocates the stage-two router, not its policy. Four legacy hubs can preserve their machine fences byte-for-byte. sk-code requires a root-location repair: remove its router self-reference, normalize ten legacy-file-relative hub-shared paths to explicit `shared/...` paths, and declare the eight mapped paths as non-leaf shared controls. sk-prompt also carries a pre-existing route to `design-generation-patterns.md`, deleted by commit `80dce88a7db`; the closest live generic owner is `sk-prompt-improve/references/patterns-evaluation.md`. Root `ROUTER.md` remains a control-plane companion, not a leaf or advisor identity.
+The move relocates the stage-two router, not its policy. Four legacy hubs can preserve their machine fences byte-for-byte. sk-code requires a root-location repair: remove its router self-reference, normalize ten legacy-file-relative hub-shared paths to explicit `shared/...` paths, and declare the eight mapped paths as non-leaf shared controls. sk-prompt also carries a pre-existing route to `design-generation-patterns.md`, deleted by commit `a38f8d7da78`; the closest live generic owner is `sk-prompt-improve/references/patterns-evaluation.md`. Root `ROUTER.md` remains a control-plane companion, not a leaf or advisor identity.
 
 ### Decision
 

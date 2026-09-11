@@ -45,7 +45,7 @@ _memory:
 | **Created** | 2026-05-23 |
 | **Branch** | `main` |
 | **Parent** | `../spec.md` (021 sk-doc/sk-code alignment parent) |
-| **Predecessors** | `../001-identify-and-close-3-remaining-deferred-p2/implementation-summary.md`; `fbb8a23cda`; `e5113fedc4`; `8dfafc7189`; `f081112aab` |
+| **Predecessors** | `../001-identify-and-close-3-remaining-deferred-p2/implementation-summary.md`; `5a9ecbead3`; `98b6199c1b`; `002dfa1e7a`; `28f5bd32cc` |
 | **Handoff Criteria** | Documentation-only source edits; both sk-code drift verifiers pass; embedders vitest passes; launcher vitest passes; mcp-server typecheck passes; strict validate exit 0 |
 <!-- /ANCHOR:metadata -->
 

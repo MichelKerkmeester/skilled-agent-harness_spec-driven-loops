@@ -5,7 +5,7 @@ dimension: regression-risk
 executor: cli-devin
 model: swe-1.6
 recipe: agent-config-deep-review-iter.json
-review_target_commit: ba6816a490b1a20d4f74135179c10096c5348921
+review_target_commit: e2d258eae532ac09b00dc6944e07fe4c57c2ad6c
 write_mode: loop_manager_persisted_from_stdout
 write_mode_reason: "agent-config Write scope allows <packet-root>/review/iterations/* but this re-review writes to review-002-remediation/iterations/*; loop manager harvests iter content from devin stdout"
 trigger_phrases: []

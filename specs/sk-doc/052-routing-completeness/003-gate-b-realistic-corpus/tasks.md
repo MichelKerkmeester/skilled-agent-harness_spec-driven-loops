@@ -52,7 +52,7 @@ _memory:
 ## Phase 1: Setup
 
 - [x] T001 Enumerate every mode across the five hubs from each `mode-registry.json`. Evidence: 43 modes, which is the corpus denominator before the command-surface correction.
-- [x] T002 Write at least four realistic prompts per mode by hand (`assets/realistic-corpus.tsv`). Evidence: 181 lines including the header, created in `4a5de9e52b`.
+- [x] T002 Write at least four realistic prompts per mode by hand (`assets/realistic-corpus.tsv`). Evidence: 181 lines including the header, created in `b3de2effda`.
 - [x] T003 [P] Mark the eight boundary rows with a one-line reason for which mode should win. Evidence: the `boundary_reason` column on those rows.
 <!-- /ANCHOR:phase-1 -->
 
@@ -66,7 +66,7 @@ _memory:
 - [x] T006 Compute the strict and loose hit counts from the same JSON. Evidence: 8 of 180 top-only and 20 of 180 any-position at the time of the baseline.
 - [x] T007 Classify every miss by mechanism. Evidence: 94 with no recommendation, 40 wrong hub, 15 floor noise, 12 shadowed by a legacy duplicate, 11 deferred, and 0 right-hub-wrong-mode.
 - [x] T008 Read the structural cause rather than inferring it. Evidence: `advisor_status` reports `semantic_shadow: 0.05`, and `select count(*) from skill_nodes where embedding is not null` returns 0. Both re-checked 2026-09-02.
-- [x] T009 Correct the denominator for command-surface modes. Evidence: `8c6d6fd455` names `model-benchmark` and `skill-benchmark` with `routingClass: command-bridge` and publishes 8 of 172 beside 8 of 180.
+- [x] T009 Correct the denominator for command-surface modes. Evidence: `54eecf457a` names `model-benchmark` and `skill-benchmark` with `routingClass: command-bridge` and publishes 8 of 172 beside 8 of 180.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -75,8 +75,8 @@ _memory:
 ## Phase 3: Verification
 
 - [x] T010 Re-run the corpus and confirm the rate reproduces. Evidence: the second run returned 8 of 180 again, with several rows showing `cache.hit: true` on a verbatim repeat.
-- [x] T011 Re-measure after the follow-up routing fix and record the new number. Evidence: a 180-row re-run on 2026-09-02 at HEAD `c328d601d8` returns 21 top-only and 24 any-position, with 95 empty replies. That matches the 21 of 180 recorded in `08eb67a0de`, and it measures the post-fix state rather than this baseline.
-- [x] T012 Re-scope the phase this result invalidated (`../004-cross-hub-vocabulary/spec.md`). Evidence: `4a5de9e52b`, 42 lines touched.
+- [x] T011 Re-measure after the follow-up routing fix and record the new number. Evidence: a 180-row re-run on 2026-09-02 at HEAD `a25af73c11` returns 21 top-only and 24 any-position, with 95 empty replies. That matches the 21 of 180 recorded in `aa11c2b622`, and it measures the post-fix state rather than this baseline.
+- [x] T012 Re-scope the phase this result invalidated (`../004-cross-hub-vocabulary/spec.md`). Evidence: `b3de2effda`, 42 lines touched.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -155,7 +155,7 @@ _memory:
 - [x] CHK-FIX-004 [P0] Adversarial cases covered. Boundary rows were written specifically to be hard, and all eight failed the strict check.
 - [x] CHK-FIX-005 [P1] Matrix axes and row count listed. Five hubs by 43 modes, at least four prompts each, 180 rows.
 - [x] CHK-FIX-006 [P1] Hostile env variant executed. The post-fix re-run measured a daemon whose registries had changed underneath the baseline.
-- [x] CHK-FIX-007 [P1] Evidence pinned to a fix SHA. `4a5de9e52b`, `8c6d6fd455` and `c328d601d8` for the re-run.
+- [x] CHK-FIX-007 [P1] Evidence pinned to a fix SHA. `b3de2effda`, `54eecf457a` and `a25af73c11` for the re-run.
 <!-- /ANCHOR:fix-completeness -->
 
 ---

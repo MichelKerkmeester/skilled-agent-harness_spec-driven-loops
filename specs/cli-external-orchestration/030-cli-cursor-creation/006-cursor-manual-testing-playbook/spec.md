@@ -119,8 +119,8 @@ Author a Cursor-native manual-testing playbook mirroring the confirmed cli-codex
 ## 6. RISKS & DEPENDENCIES
 | Type | Item | Impact | Mitigation |
 |---|---|---|---|
-| Dependency | Phase 003 `cli-cursor` skill packet (SKILL.md cross-reference target) | Green (committed `11024cc893`) | Cross-reference added once phase 003 shipped. |
-| Dependency | Phase 004 hook adapter layer (adapter paths for the `hooks` category) | Green (committed `5bd90b42c1`) | `hooks` scenarios cite phase 004's live-confirmed event delivery table exactly. |
+| Dependency | Phase 003 `cli-cursor` skill packet (SKILL.md cross-reference target) | Green (committed `b5926f2a45`) | Cross-reference added once phase 003 shipped. |
+| Dependency | Phase 004 hook adapter layer (adapter paths for the `hooks` category) | Green (committed `71a4b485cd`) | `hooks` scenarios cite phase 004's live-confirmed event delivery table exactly. |
 | Dependency | `cursor-agent login` (operator-only OAuth) | Green — completed | Confirmed Pro-tier account; unblocks scenario EXECUTION (this phase's authoring was never blocked by it). |
 | Risk | Blind port of sibling categories fabricates coverage for capabilities Cursor lacks in that shape | High if unmitigated | Reframe `execution-modes`/`approvals-and-sandbox` per grounded facts (REQ-007/REQ-008); explicit Out-of-Scope against verbatim porting. |
 | Risk | worktree-isolation / cloud-worker scenarios mutate the operator's repo/account if executed live | Medium | Note the dry-run / real-registration caveat in-scenario (Open Questions); default to non-destructive framing. |

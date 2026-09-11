@@ -9,7 +9,7 @@ trigger_phrases: []
 
 ## Workspace
 - **Worktree:** `.worktrees/0144-system-deep-loop-036-p0-remediation`, branch `system-deep-loop/0144-036-p0-remediation`,
-  based at origin/skilled/v4.0.0.0 tip `ced5fe53cc1` (tsc rc0 baseline). NOTHING landed to `skilled/v4`; all work is local
+  based at origin/skilled/v4.0.0.0 tip `3b4c36071f5` (tsc rc0 baseline). NOTHING landed to `skilled/v4`; all work is local
   commits in 0144. Isolated from the moving shared branch and from worktrees 0091/0100/0101 and lanes 047-050 (other sessions).
 - **Design artifact:** `<scratch>/036-run/design-f721-FINAL.md` (the F7/F2/F1 coupled architecture; if scratch is gone,
   it is summarized below and re-derivable from the packet design docs). Should be promoted into the packet as a decision-record at closeout.

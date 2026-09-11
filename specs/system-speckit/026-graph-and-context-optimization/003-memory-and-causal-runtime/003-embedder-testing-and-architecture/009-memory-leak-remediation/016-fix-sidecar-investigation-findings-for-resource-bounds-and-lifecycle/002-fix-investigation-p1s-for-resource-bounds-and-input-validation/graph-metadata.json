@@ -182,7 +182,7 @@
     ],
     "causal_summary": "The registry's P1 resource-bound keyword selection contains F48, F85, F86, and F87",
     "created_at": "2026-05-23T03:50:22.751Z",
-    "last_save_at": "2026-08-30T15:39:31.332Z",
+    "last_save_at": "2026-09-11T16:42:32.680Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -191,13 +191,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:930232e65433b1b0cd44984a58ee15df5dda23dbc22df890bd9d7ef7a826e4a3",
+    "source_fingerprint": "sha256:c011ff7bd35a0e7a32ad07b64363e112adf41ac42430b9125bb923aff61f5461",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6b95ec2618e31d8fb7e06fbc6e24da0247b3aef70ea1dc2f609de9721b061de4",
       "plan.md": "4297c39b7eec996eda1803cadbad8a8d99333f089938f740a8f57a5dd82fa8f0",
       "tasks.md": "68dbf06c601ee06c73f1a08b25c3a72a1608f5e03353e579b5f324350a3b4855",
-      "implementation-summary.md": "26fdaf7f0a34afc68e563de67e4611a50fa9b28d8a5471d78f534ee31853ab73"
+      "implementation-summary.md": "a5eae0563d020e7d3b7baf1e354aec305c904c98a3cf6aa85584f31424210fa5"
     },
     "last_active_child_id": null,
     "last_active_at": null

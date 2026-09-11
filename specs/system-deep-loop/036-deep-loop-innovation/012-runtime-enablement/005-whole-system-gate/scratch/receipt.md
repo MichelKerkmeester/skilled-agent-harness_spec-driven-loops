@@ -4,8 +4,8 @@ trigger_phrases: []
 ---
 # Whole-System Gate Receipt
 
-- Candidate SHA: `07c1bd5f22f0831de1bebdc822b7394ded7884b8`
-- Baseline SHA: `8c9f0b6944ac4e43e99d26f9cf61dab74b600640`
+- Candidate SHA: `16e7d828cb1d247a69574cb4945668b53a8c4302`
+- Baseline SHA: `6d055545b3df576ac9f02f5ace10022474da8d60`
 - Generated: 2026-08-24T08:15:22.796Z
 
 | Check | Status | Detail |

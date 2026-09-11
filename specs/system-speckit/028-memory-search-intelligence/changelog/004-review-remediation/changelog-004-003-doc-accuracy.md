@@ -31,7 +31,7 @@ This phase executed the parent-dispatched doc-accuracy fixes against committed c
 - `benchmark-status.md` completed the default-off flag inventory layered on phase 001's criterion-4 text without reverting it.
 
 ### Fixed
-- P1-6 changelog shipped-vs-Planned mislabel. Rows 009, 011, 017, 018 and 020 in `changelog-001-root.md` were reclassified from Planned to shipped-default-off, each traced to commit `ed53661043`, `5308401d95` or `8f8776e329` plus its child implementation-summary. Rows 008 and 010 stayed as no-code because their own children agree.
+- P1-6 changelog shipped-vs-Planned mislabel. Rows 009, 011, 017, 018 and 020 in `changelog-001-root.md` were reclassified from Planned to shipped-default-off, each traced to commit `a00803e724`, `478bebf387` or `508af65780` plus its child implementation-summary. Rows 008 and 010 stayed as no-code because their own children agree.
 - The doc staleness cluster across timeline, before-vs-after and benchmark-status was reconciled to committed code.
 
 ### Verification

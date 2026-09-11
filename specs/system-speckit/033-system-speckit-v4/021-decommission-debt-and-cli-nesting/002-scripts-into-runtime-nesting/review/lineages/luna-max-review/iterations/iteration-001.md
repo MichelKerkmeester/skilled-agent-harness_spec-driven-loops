@@ -40,8 +40,8 @@ Correctness of the selected `runtime/cli/` topology, workspace membership, packa
     ".opencode/skills/system-spec-kit/package.json:6-25",
     ".opencode/skills/system-spec-kit/package-lock.json:11-15",
     ".opencode/skills/system-spec-kit/package-lock.json:1124-1131",
-    "git show b4c24846964:.opencode/skills/system-spec-kit/scripts/package.json (absent)",
-    "git ls-tree b4c24846964 .opencode/skills/system-spec-kit/runtime/cli/package.json (absent)"
+    "git show f65b8f1e5b3:.opencode/skills/system-spec-kit/scripts/package.json (absent)",
+    "git ls-tree f65b8f1e5b3 .opencode/skills/system-spec-kit/runtime/cli/package.json (absent)"
   ],
   "counterevidenceSought": [
     "runtime/cli/package.json",

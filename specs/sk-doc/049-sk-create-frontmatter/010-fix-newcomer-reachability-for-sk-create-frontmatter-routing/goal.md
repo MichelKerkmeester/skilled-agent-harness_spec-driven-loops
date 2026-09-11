@@ -103,7 +103,7 @@ and findings belong here.
 | Ten phrases on five surfaces | Done | Parity check empty at 28 entries |
 | Over-capture dropped | Done | `missing a field` replaced, the form prompt returns nothing |
 | Compile refresh | Done | Manifest `9b9fc1f0...`, three authored digests re-pinned, guard fresh, sync verify OK |
-| Tool digests | Done | Two scripts moved at HEAD in `2f21545e3e`, re-pinned in six files, sk-doc canary `REAL-GREEN` 23 of 23 |
+| Tool digests | Done | Two scripts moved at HEAD in `bedf5691b7`, re-pinned in six files, sk-doc canary `REAL-GREEN` 23 of 23 |
 | After replay | Done | Six of ten resolve to the mode at 0.85 to 0.94 |
 
 ### Deviations and findings

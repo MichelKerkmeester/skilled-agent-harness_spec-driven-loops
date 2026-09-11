@@ -6,7 +6,7 @@ trigger_phrases: []
 
 <!-- SPECKIT_TEMPLATE_SOURCE: handover | v2.2 -->
 
-**Status:** All 13 promotion-authority findings landed **additive-dark** (`0d1827eef50`, `f6cdf604a25`, `a28a39354b7`; reconciled `ab6aae0a714`). An independent adversarial pass found and fixed a **Medium candidate-rebind TOCTOU** gap — the approval receipt binds the approved candidate bytes but they were not re-hashed at the copy/accept consumption boundary; fixed with a shared `assertCandidateMatchesApproval` guard that fails closed (`c897dcf294`). The code is live but **dark** (no behavior change). One deferred end remains, and it is the go-live gate.
+**Status:** All 13 promotion-authority findings landed **additive-dark** (`9d258a879ef`, `700cb920447`, `fdb8216e9b4`; reconciled `1642dcaed9b`). An independent adversarial pass found and fixed a **Medium candidate-rebind TOCTOU** gap — the approval receipt binds the approved candidate bytes but they were not re-hashed at the copy/accept consumption boundary; fixed with a shared `assertCandidateMatchesApproval` guard that fails closed (`25158f20c7`). The code is live but **dark** (no behavior change). One deferred end remains, and it is the go-live gate.
 
 **Handover Time:** 2026-08-18 · **From:** orchestrator · completion 95%
 

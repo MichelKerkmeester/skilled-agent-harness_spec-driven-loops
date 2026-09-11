@@ -92,7 +92,7 @@ and findings belong here.
 |------|-------|----------|
 | Dispatch | Done | four files VALID |
 | Query proof | Done | fixture commit 24f46cd returned by all three queries |
-| Commit | Done | `98be1cebc2` |
+| Commit | Done | `9cb5e9c4a4` |
 
 ### Deviations and findings
 

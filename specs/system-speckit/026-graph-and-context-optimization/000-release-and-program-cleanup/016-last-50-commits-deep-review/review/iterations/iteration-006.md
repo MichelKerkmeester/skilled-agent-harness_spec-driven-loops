@@ -10,15 +10,15 @@ trigger_phrases: []
 - **Dimension:** security
 - **Angle:** A5 security & input robustness
 - **Budget profile:** verify (target 11-13 tool calls; evidence rereads + adversarial P0 testing)
-- **Review target:** git range `a9e9bdb0a5^..HEAD` (HEAD `12de3d3a7e`, base `f05bdac2cf`)
+- **Review target:** git range `fd67ede05f^..HEAD` (HEAD `3923a65db1`, base `a61a3f3b85`)
 - **Session:** `2026-06-05T11:16:17Z` (generation 1, lineageMode new)
 - **Parallel-safety:** wrote ONLY `iterations/iteration-006.md` + `deltas/iter-006.jsonl`. Did NOT touch `deep-review-state.jsonl`, `deep-review-strategy.md`, findings-registry, or config.
 
 ## Files Reviewed
 - `.opencode/skills/system-spec-kit/mcp_server/lib/validation/orchestrator.ts` — CLI entry-guard (lines 459-473), `validateFolder` export (line 365), `collectKnownSessionIds` filesystem walk (lines 292-321), `detectLevel`/`readIfExists` (lines 66-93). Verified by direct Read. **In-range** (`git diff --name-only`).
-- `.opencode/skills/system-spec-kit/shared/ipc/socket-server.ts` — `canonicalizePath` (lines 77-99), `isWithinRoot` (101-110), `resolveIpcSocketPath` (130-141), `canUnlinkExistingSocket` (143-179), dir uid/mode hardening + bind sequence (235-359). Verified by direct Read. **In-range** (added/hardened by `3d1667dd68`).
+- `.opencode/skills/system-spec-kit/shared/ipc/socket-server.ts` — `canonicalizePath` (lines 77-99), `isWithinRoot` (101-110), `resolveIpcSocketPath` (130-141), `canUnlinkExistingSocket` (143-179), dir uid/mode hardening + bind sequence (235-359). Verified by direct Read. **In-range** (added/hardened by `795cfb8a07`).
 - `.opencode/skills/system-code-graph/mcp_server/lib/ipc/socket-server.ts` — full 402-line fork (the F-003 copy). `diff -q` vs shared = **BYTE-IDENTICAL**; shares every A5 posture below. **In-range.**
-- `.opencode/skills/system-spec-kit/mcp_server/api/index.ts` — re-exports `validateFolder` (lines 78-83). Read for the entry-guard-bypass reachability question. **NOT in-range** as a content change (export predates range; last touched by the `6647661f32` plural-rename). Treated as read-only context.
+- `.opencode/skills/system-spec-kit/mcp_server/api/index.ts` — re-exports `validateFolder` (lines 78-83). Read for the entry-guard-bypass reachability question. **NOT in-range** as a content change (export predates range; last touched by the `f14c8c591d` plural-rename). Treated as read-only context.
 - `.opencode/skills/system-spec-kit/shared/utils/path-security.ts` — `validateFilePath` (lines 18-108). Read for coverage. **NOT in-range** (unchanged by the 50 commits). Treated as read-only context; no in-range finding asserted against it.
 
 ## Findings — New
@@ -30,7 +30,7 @@ None. The charter's A5 P0 candidate — "validator entry-guard bypass via progra
 
 1. **Socket bind path is never canonicalized before `listen()`/`chmod` — a symlink planted at the resolved socket tail is followed, defeating the unlink-hijack fence (tail-symlink TOCTOU)** -- `.opencode/skills/system-spec-kit/shared/ipc/socket-server.ts:238` (with `:355`, `:130-141`, `:147-179`) and the byte-identical fork `system-code-graph/mcp_server/lib/ipc/socket-server.ts:238` -- The bind path is computed as `path.resolve(options.socketPath)` (line 238) — `path.resolve` normalizes `..` and `.` but does **not** dereference symlinks. `resolveIpcSocketPath` (130-141) canonicalizes only the socket **directory** via `canonicalizePath`, and `canonicalizePath` itself (77-99) realpaths only the nearest *existing ancestor* and re-appends the **raw, un-canonicalized tail** (`SOCKET_FILE_NAME = daemon-ipc.sock`, line 16). So if an attacker (or a benign racing process) plants a symlink at `<socketDir>/daemon-ipc.sock` pointing outside the allowed root, three things follow it: (a) the bind itself — `net.Server.listen(socketPath)` on a symlinked path; (b) `fs.chmodSync(socketPath, 0o600)` at line 355 — **chmod follows symlinks**, so the daemon chmods the symlink *target*; (c) the close-path `fs.unlinkSync(socketPath)` (378) — unlink does NOT follow, so it removes the symlink, not the target, leaving the chmod'd target altered. The `canUnlinkExistingSocket` fence (147-179) DOES `lstatSync` (line 163, no-follow) and rejects non-sockets / foreign-uid nodes — but that fence is only consulted on the **EADDRINUSE reclaim branch** (335). On a clean first bind (no pre-existing node, the common case the planted symlink targets) the fence never runs, and the dir uid/mode check (249-256) guards the *directory* not the *tail node*. Net: the documented anti-hijack hardening protects the directory and the stale-reclaim path but leaves the fresh-bind socket-tail unprotected against a symlink swap between `resolveIpcSocketPath` and `listen()`/`chmod`.
    - Finding class: defect (TOCTOU / symlink-following on a privileged fs op)
-   - Scope proof: `socket-server.ts` is in-range (`git log a9e9bdb0a5^..HEAD` → hardened by `3d1667dd68`); line 238 uses `path.resolve` (no realpath); line 355 `chmodSync(socketPath,...)` follows symlinks; `lstatSync` exists only at line 163 inside `canUnlinkExistingSocket`, gated behind the EADDRINUSE branch (335). code-graph fork `diff -q` BYTE-IDENTICAL → same defect in both consumers (compounds F-003).
+   - Scope proof: `socket-server.ts` is in-range (`git log fd67ede05f^..HEAD` → hardened by `795cfb8a07`); line 238 uses `path.resolve` (no realpath); line 355 `chmodSync(socketPath,...)` follows symlinks; `lstatSync` exists only at line 163 inside `canUnlinkExistingSocket`, gated behind the EADDRINUSE branch (335). code-graph fork `diff -q` BYTE-IDENTICAL → same defect in both consumers (compounds F-003).
    - Affected surface hints: canonicalize the *full* socket path (realpath/lstat the tail) before `listen()`; or `lstatSync(socketPath)` + reject `isSymbolicLink()` on the fresh-bind path too (not only on reclaim); or use `fs.lchmod`-style no-follow semantics / open-then-fchmod for the 0o600 step; or bind into an `O_NOFOLLOW`-protected dir the daemon exclusively owns.
 
    ```json
@@ -92,8 +92,8 @@ None. The charter's A5 P0 candidate — "validator entry-guard bypass via progra
 
 ## Traceability Checks
 - **Iteration number:** JSONL has 2 `type:"iteration"` lines on disk (runs 1-2); iters 3-5 are in-flight in parallel slots. Dispatch pre-assigned run 6 + `iteration-006.md` + `deltas/iter-006.jsonl`. Honored the dispatch slot assignment (parallel-safety contract) rather than the JSONL-derived number (3); recorded as Edge Case 1.
-- **Range integrity:** HEAD `12de3d3a7e`, base `a9e9bdb0a5^` = `f05bdac2cf` (consistent with iters 1-2).
-- **Provenance:** `socket-server.ts` hardening (F-A5-01, F-A5-03) added in-range by `3d1667dd68`; `orchestrator.ts` collectKnownSessionIds (F-A5-02) in-range. `path-security.ts` + `api/index.ts validateFolder` export are NOT in-range content changes (out of scope as in-range findings; cited only as context for reachability).
+- **Range integrity:** HEAD `3923a65db1`, base `fd67ede05f^` = `a61a3f3b85` (consistent with iters 1-2).
+- **Provenance:** `socket-server.ts` hardening (F-A5-01, F-A5-03) added in-range by `795cfb8a07`; `orchestrator.ts` collectKnownSessionIds (F-A5-02) in-range. `path-security.ts` + `api/index.ts validateFolder` export are NOT in-range content changes (out of scope as in-range findings; cited only as context for reachability).
 - **Lineage:** sessionId `2026-06-05T11:16:17Z`, generation 1, lineageMode new — consistent across config/state.
 
 ## Integration Evidence

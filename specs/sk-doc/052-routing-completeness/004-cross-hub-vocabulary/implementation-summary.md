@@ -48,7 +48,7 @@ _memory:
 | **Level** | 3 |
 | **Status** | Complete |
 | **Delivery** | Shipped. The parent goal LOG records this phase Done |
-| **Date** | 2026-09-02 (git author dates of `f8c2595ce0`, `461ef9261f`, `4a5de9e52b` and `08eb67a0de`) |
+| **Date** | 2026-09-02 (git author dates of `e96760aa3b`, `add6602050`, `b3de2effda` and `aa11c2b622`) |
 | **Register findings** | 16, 17 and 18 read Fixed. 12, 13, 14 and 15 remain Planned |
 <!-- /ANCHOR:metadata -->
 
@@ -62,7 +62,7 @@ Gate B proved that half right, and the honest half is the more useful one. The c
 real and three of them are now fixed. They are also not what is holding the number down,
 because 94 of 180 realistic prompts match no declared word in any hub in any form.
 
-Commit `4a5de9e52b` re-scoped the phase to match, on the same day the measurement landed.
+Commit `b3de2effda` re-scoped the phase to match, on the same day the measurement landed.
 
 ### The code hub was swallowing the documentation hub
 
@@ -71,7 +71,7 @@ written inside one of those. Those tokens also matched every request to create o
 a different hub's entire purpose. Asking to scaffold a new skill returned the code hub at
 `0.84` with the documentation hub absent from the results altogether.
 
-Commit `f8c2595ce0` qualified all three to what they meant. Measured before and after:
+Commit `e96760aa3b` qualified all three to what they meant. Measured before and after:
 
 | Phrasing | Before | After |
 |---|---|---|
@@ -88,14 +88,14 @@ nothing. Stage one and stage two draw from different files, so a phrase declared
 absent from the other lands the request on the hub and then drops it, which reads as a
 routing success everywhere except at the point of use. Three of the five were introduced by
 this session's own vocabulary pass, which is the same union-rule mistake the session had been
-finding elsewhere. Commit `461ef9261f` gave four of them a stage-two class.
+finding elsewhere. Commit `add6602050` gave four of them a stage-two class.
 
 ### The executor hub had no leftover data at all
 
 The brief assumed duplicate uncompiled entries sat in a data file. They did not. Bare
 executor names were synthesized at run time by a deliberate, tested override in
 `executor-delegation.ts` that inserted them at rank one carrying no compiled route, which
-contradicted the hub doctrine beside it. Commit `08eb67a0de` made the override lift the hub
+contradicted the hub doctrine beside it. Commit `aa11c2b622` made the override lift the hub
 instead, re-captured every gold label, and reported the accuracy metrics coming out
 byte-identical to the committed baseline.
 
@@ -107,15 +107,15 @@ routing improved.
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skills/sk-code/graph-metadata.json` | Modified (`f8c2595ce0`) | The three bare tokens qualified to the code sense they meant |
-| `.opencode/skills/sk-doc/graph-metadata.json` | Modified (`f8c2595ce0`, 21 lines) | The documentation hub given the phrasings people use rather than the labels it had |
-| `.opencode/skills/sk-doc/hub-router.json` | Modified (`461ef9261f`, `08eb67a0de`) | Stage-two classes for phrases that reached the hub and dropped |
-| `.opencode/skills/cli-external-orchestration/hub-router.json` | Modified (`08eb67a0de`, 47 lines) | Executor routing rebuilt around the compiled route |
-| `.opencode/skills/cli-external-orchestration/mode-registry.json` | Modified (`08eb67a0de`) | Mode declarations aligned with the router |
-| `.../mcp-server/lib/scorer/executor-delegation.ts` | Modified (`08eb67a0de`) | The override lifts the hub instead of inserting a routeless rank-one entry |
-| `.../scripts/routing-accuracy/holdout-prompts.jsonl` and `scorer-eval-baseline.json` | Modified (`08eb67a0de`) | Gold labels re-captured, accuracy metrics byte-identical to baseline |
-| `.../013-live-activation/activation/*/manifest.json` | Modified (`f8c2595ce0`, `461ef9261f`, `08eb67a0de`) | Compiled-route manifests regenerated in the same commit as each routing edit |
-| `004-cross-hub-vocabulary/spec.md` | Modified (`4a5de9e52b`, 42 lines) | Phase re-scoped after the Gate B measurement invalidated its premise |
+| `.opencode/skills/sk-code/graph-metadata.json` | Modified (`e96760aa3b`) | The three bare tokens qualified to the code sense they meant |
+| `.opencode/skills/sk-doc/graph-metadata.json` | Modified (`e96760aa3b`, 21 lines) | The documentation hub given the phrasings people use rather than the labels it had |
+| `.opencode/skills/sk-doc/hub-router.json` | Modified (`add6602050`, `aa11c2b622`) | Stage-two classes for phrases that reached the hub and dropped |
+| `.opencode/skills/cli-external-orchestration/hub-router.json` | Modified (`aa11c2b622`, 47 lines) | Executor routing rebuilt around the compiled route |
+| `.opencode/skills/cli-external-orchestration/mode-registry.json` | Modified (`aa11c2b622`) | Mode declarations aligned with the router |
+| `.../mcp-server/lib/scorer/executor-delegation.ts` | Modified (`aa11c2b622`) | The override lifts the hub instead of inserting a routeless rank-one entry |
+| `.../scripts/routing-accuracy/holdout-prompts.jsonl` and `scorer-eval-baseline.json` | Modified (`aa11c2b622`) | Gold labels re-captured, accuracy metrics byte-identical to baseline |
+| `.../013-live-activation/activation/*/manifest.json` | Modified (`e96760aa3b`, `add6602050`, `aa11c2b622`) | Compiled-route manifests regenerated in the same commit as each routing edit |
+| `004-cross-hub-vocabulary/spec.md` | Modified (`b3de2effda`, 42 lines) | Phase re-scoped after the Gate B measurement invalidated its premise |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -167,8 +167,8 @@ Every check below was run and its output read.
 | Canary digest re-pinning | Recomputed from the files, and restoring a stale digest still fails, so the tripwire still works |
 | Compiled-route manifest freshness | `.../013-live-activation/activation/*/manifest.json` regenerated in the same commit as every routing edit. This is what AC-003 asks for |
 | Scorer accuracy after the override change | Metrics byte-identical to the committed baseline, with gold labels re-captured |
-| Gate A re-measurement | 234 to 328 of 444, recorded in `08eb67a0de` |
-| Gate B re-measurement | 8 to 21 of 180, recorded in `08eb67a0de` |
+| Gate A re-measurement | 234 to 328 of 444, recorded in `aa11c2b622` |
+| Gate B re-measurement | 8 to 21 of 180, recorded in `aa11c2b622` |
 | `validate.sh specs/sk-doc/052-routing-completeness --strict --recursive` | PASS for this folder, Errors 0 |
 | `hvr_scan.py` on this document | 0 hard blockers |
 <!-- /ANCHOR:verification -->
@@ -180,7 +180,7 @@ Every check below was run and its output read.
 
 **The three acceptance criteria rows still read Unmet.** AC-001, AC-002 and AC-003 in
 `acceptance-criteria.md` were written before the fixes landed, and the work each one names
-shipped in `08eb67a0de`. The rows are stale rather than the work being incomplete, and they
+shipped in `aa11c2b622`. The rows are stale rather than the work being incomplete, and they
 are left as written here because updating them belongs to whoever re-runs the gates.
 
 **Findings 12 to 15 remain Planned in the register.** The duplicate-entry finding is

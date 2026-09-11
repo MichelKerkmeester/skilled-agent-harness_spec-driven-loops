@@ -5,7 +5,7 @@ trigger_phrases: []
 # Iteration 1: Full-surface review (correctness + security + traceability + maintainability)
 
 ## Focus
-Single-pass review of packet 021's entire change surface (commit `372bb0f2cd`):
+Single-pass review of packet 021's entire change surface (commit `da09d7c69e`):
 - `mcp_server/handlers/memory-index.ts` — event-loop lag sampler, `timedPhase` wrapper, two tail-phase execution paths, `isCancelled` threading.
 - `mcp_server/lib/search/trigger-embedding-backfill.ts` — whole-corpus transaction chunking, between-chunk yield, cancel checks, `cancelled` status.
 - `mcp_server/tests/trigger-embedding-backfill.vitest.ts` — 3 new cancel/yield cases.
@@ -66,7 +66,7 @@ Evaluated against REQ-001..REQ-004 and SC-001/SC-002.
 - REQ-001 (lag sampler + per-phase wall-clock, gated on onPhase): PARTIAL — lag sampler global (:503-519, :1474-1479); per-phase wall-clock only on files.length>0 path (F001).
 - REQ-002 (chunk transaction, yield between chunks, isCancelled→cancelled, cache-hit yield): PASS — trigger-embedding-backfill.ts:247-259 (chunk+yield outside transaction), :248-252 (cancel→cancelled), :273-284 (cache-hit-path yield + cancel). Yield is strictly between self-contained chunk transactions (:253 then :258), never inside `database.transaction()`.
 - REQ-003 (each un-yielded tail phase refreshes marker on entry): PARTIAL — true on files.length>0 path (:1239-1261 via :1510); not on files.length===0 path (F001).
-- REQ-004 (launcher adopt/reap confirmed correct, no change): PASS — read-only investigation recorded; no launcher diff in commit 372bb0f2cd (verified via `git show --stat`).
+- REQ-004 (launcher adopt/reap confirmed correct, no change): PASS — read-only investigation recorded; no launcher diff in commit da09d7c69e (verified via `git show --stat`).
 
 ## Assessment
 - New findings ratio: 0.30 (1 P1 + 3 P2 across a small, well-scoped surface).

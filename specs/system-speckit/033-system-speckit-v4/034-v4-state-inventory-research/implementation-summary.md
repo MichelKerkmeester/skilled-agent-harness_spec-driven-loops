@@ -49,7 +49,7 @@ _memory:
 
 - `scratch/launch-research.sh` started `fanout-run.cjs` detached with the charter in `scratch/topic.txt`; orchestration log at `research/orchestration-status.log`.
 - Leaves spawned 16:15Z (codex `--sandbox workspace-write`; devin `--permission-mode dangerous --respect-workspace-trust false`). `deepseek` finished at 16:25Z, `luna` at 16:45Z.
-- Both lineages ended in a write-containment "violation": the guard saw this session's uncommitted consolidation edits outside the lineage directories and restored them to HEAD. Neither leaf wrote outside its directory; the edits were replayed and committed as `d1f75a15f6`. Lesson recorded in the parent: commit before fanning out.
+- Both lineages ended in a write-containment "violation": the guard saw this session's uncommitted consolidation edits outside the lineage directories and restored them to HEAD. Neither leaf wrote outside its directory; the edits were replayed and committed as `e48074e6e0`. Lesson recorded in the parent: commit before fanning out.
 <!-- /ANCHOR:what-ran -->
 
 ---
@@ -60,7 +60,7 @@ _memory:
 - `research/lineages/luna/research.md` (132 lines, 29 cites, 14-row ranked drift table) and `research/lineages/deepseek/research.md` (144 lines, 22-row table, 14 upgrade notes).
 - `research/research.md`: merged inventory (13 skills, 6 hubs, 37 commands, 12 agents, 22 hook dirs / 102 symlinks, 15 workflows), a 19-row ranked drift table, 12 upgrade-note candidates, and 7 lane disagreements settled.
 - `research/confirmed-drift.md`: 17 rows reproduced by command; 3 lane findings dropped (cli-claude-code "unwired", GitKraken "zero references", 39-rule count); 3 numeric claims left open for the rewrite.
-- Both lanes agree on all six P0s: memory commands and engine gone, `/interface:*` gone, `/create:diagram` never shipped, alignment mode removed (`8849444aa61`), sk-prompt standalone, goals in three runtimes only.
+- Both lanes agree on all six P0s: memory commands and engine gone, `/interface:*` gone, `/create:diagram` never shipped, alignment mode removed (`94ab276bfdf`), sk-prompt standalone, goals in three runtimes only.
 <!-- /ANCHOR:results -->
 
 ---

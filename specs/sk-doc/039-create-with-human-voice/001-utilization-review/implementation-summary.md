@@ -273,7 +273,7 @@ prompts still miss. The vocabulary the hub needs is recorded in `goal.md`.
 
 ### Files Changed
 
-First pass, committed in `f92c84a673`:
+First pass, committed in `f4cd27a29e`:
 
 | File | Action | Purpose |
 |------|--------|---------|
@@ -328,8 +328,8 @@ File modification times show all nine of them rewritten inside a three-second wi
 the lost content and `git fsck --unreachable` finds no dangling blob, so nothing was
 recoverable and every fix was re-applied by hand and re-verified by content rather than
 trusted from memory. All of it is committed and pushed. The five edited packet files and the
-phase folder landed in `f92c84a673` at 21:17 on 2026-09-02, and the description index followed
-in `710f2171d6` at 21:39. Both commits are contained in `origin/skilled/v4.0.0.0`. The second pass, which closed the
+phase folder landed in `f4cd27a29e` at 21:17 on 2026-09-02, and the description index followed
+in `6bce47b5e8` at 21:39. Both commits are contained in `origin/skilled/v4.0.0.0`. The second pass, which closed the
 six write-ups, is uncommitted in the working tree at the time of writing.
 <!-- /ANCHOR:how-delivered -->
 

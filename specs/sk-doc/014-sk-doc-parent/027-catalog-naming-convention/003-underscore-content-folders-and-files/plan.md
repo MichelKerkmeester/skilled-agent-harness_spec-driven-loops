@@ -72,7 +72,7 @@ command directory names, spec phase-folder names, `z_archive`, and changelogs.
 ### Component Disposition
 - **Content folders + per-feature files** → renamed hyphen→underscore.
 - **Root index tables + `category:` frontmatter + cross-ref links** → rewritten in lockstep.
-- **`create-*` generators** → emit `category_name` / `feature_name.md` (shipped as 027 commit `7cc369f2ed`).
+- **`create-*` generators** → emit `category_name` / `feature_name.md` (shipped as 027 commit `76541f6833`).
 - **Skill/agent/command names, phase folders, z_archive, changelogs** → untouched (deny-list).
 <!-- /ANCHOR:architecture -->
 
@@ -86,7 +86,7 @@ command directory names, spec phase-folder names, `z_archive`, and changelogs.
 - [x] Fan out across parallel agent branches by skill family: `git mv` folders + files; rewrite references in lockstep
 
 ### Phase 3: Merge + Verify
-- [x] Merge branches path-scoped (`b5afa1206c`, `0659149d08`); residual-hyphen grep gate; strict validate
+- [x] Merge branches path-scoped (`44dc909a76`, `f2f94fe364`); residual-hyphen grep gate; strict validate
 <!-- /ANCHOR:phases -->
 
 <!-- ANCHOR:testing -->
@@ -114,7 +114,7 @@ command directory names, spec phase-folder names, `z_archive`, and changelogs.
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: a broken reference or a mis-typed leaf surfaces post-merge
-- **Procedure**: `git revert` the migration merge commits (`0659149d08`, `b5afa1206c`); the transform is a pure
+- **Procedure**: `git revert` the migration merge commits (`f2f94fe364`, `44dc909a76`); the transform is a pure
   path-segment rename, so revert is lossless
 <!-- /ANCHOR:rollback -->
 
@@ -152,7 +152,7 @@ Phase 1 (Prepare) ──> Phase 2 (Execute) ──> Phase 3 (Merge + Verify)
 - [x] Executed in isolated worktrees; commits path-scoped
 
 ### Rollback Procedure
-1. `git revert 0659149d08 b5afa1206c` → restores hyphen-case content + references
+1. `git revert f2f94fe364 44dc909a76` → restores hyphen-case content + references
 2. Re-run `validate.sh --strict` to confirm the reverted tree is clean
 
 ### Data Reversal

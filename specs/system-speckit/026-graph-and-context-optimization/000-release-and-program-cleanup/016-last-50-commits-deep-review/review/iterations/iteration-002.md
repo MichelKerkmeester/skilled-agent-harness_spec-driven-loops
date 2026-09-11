@@ -10,7 +10,7 @@ trigger_phrases: []
 - **Dimension:** correctness
 - **Angle:** A1 launcher/IPC concurrency
 - **Budget profile:** verify (target 11-13 tool calls; evidence rereads + cross-launcher parity)
-- **Review target:** git range `a9e9bdb0a5^..HEAD` (HEAD `12de3d3a7e`, base `f05bdac2cf`)
+- **Review target:** git range `fd67ede05f^..HEAD` (HEAD `3923a65db1`, base `a61a3f3b85`)
 - **Session:** `2026-06-05T11:16:17Z` (generation 1, lineageMode new)
 
 ## Files Reviewed
@@ -28,9 +28,9 @@ None. The charter's lease-CAS-TOCTOU and stdout-collision P0 hypotheses were adv
 
 ### P1 Findings
 
-1. **EPERM owner-lease is permanently un-reclaimable — heartbeat-staleness safety net is structurally unreachable** -- `.opencode/bin/mk-spec-memory-launcher.cjs:339` (with `:346-348`, consumed at `:361`) -- `classifyOwnerLease` returns `'unknown-eperm'` at line 339 **before** the heartbeat-staleness gate at lines 346-348 (`Date.now() - heartbeatMs > ttlMs * 2`). In `acquireOwnerLeaseFile` (line 361) `'unknown-eperm'` is bucketed with `'live-owner'` → `{ acquired: false }`, with no fall-through to the staleness check. Therefore any owner lease whose recorded `ownerPid` now resolves to `EPERM` (`process.kill(pid,0)` throws EPERM) is treated as a perpetually-live owner: the 2×TTL heartbeat reclaim — the intended escape for a dead/PID-reused owner — can never fire for it. The launcher wedges (every new launcher bridges/reports instead of taking ownership) until the `.spec-memory-owner.json` file is manually deleted. EPERM is a real precondition the code itself documents ("EPERM means the process exists but we lack permission (e.g. sandbox)", line 480) and is reachable in sandboxed runtimes (this review session runs sandboxed). Introduced in-range by `3419e0a3e9` (feat(016) launcher-ownership hardening O6). Real defect, not style: an availability/liveness bug where the documented reclaim path is dead code for the EPERM case.
+1. **EPERM owner-lease is permanently un-reclaimable — heartbeat-staleness safety net is structurally unreachable** -- `.opencode/bin/mk-spec-memory-launcher.cjs:339` (with `:346-348`, consumed at `:361`) -- `classifyOwnerLease` returns `'unknown-eperm'` at line 339 **before** the heartbeat-staleness gate at lines 346-348 (`Date.now() - heartbeatMs > ttlMs * 2`). In `acquireOwnerLeaseFile` (line 361) `'unknown-eperm'` is bucketed with `'live-owner'` → `{ acquired: false }`, with no fall-through to the staleness check. Therefore any owner lease whose recorded `ownerPid` now resolves to `EPERM` (`process.kill(pid,0)` throws EPERM) is treated as a perpetually-live owner: the 2×TTL heartbeat reclaim — the intended escape for a dead/PID-reused owner — can never fire for it. The launcher wedges (every new launcher bridges/reports instead of taking ownership) until the `.spec-memory-owner.json` file is manually deleted. EPERM is a real precondition the code itself documents ("EPERM means the process exists but we lack permission (e.g. sandbox)", line 480) and is reachable in sandboxed runtimes (this review session runs sandboxed). Introduced in-range by `9efd1652bc` (feat(016) launcher-ownership hardening O6). Real defect, not style: an availability/liveness bug where the documented reclaim path is dead code for the EPERM case.
    - Finding class: defect (concurrency/liveness)
-   - Scope proof: in-range diff (`git log -S "stale-heartbeat-reclaim"` → `3419e0a3e9`); both the EPERM return (line 339) and the heartbeat gate (346-348) are inside `classifyOwnerLease`, consumed at the line-361 branch in `acquireOwnerLeaseFile`.
+   - Scope proof: in-range diff (`git log -S "stale-heartbeat-reclaim"` → `9efd1652bc`); both the EPERM return (line 339) and the heartbeat gate (346-348) are inside `classifyOwnerLease`, consumed at the line-361 branch in `acquireOwnerLeaseFile`.
    - Affected surface hints: owner-lease classification ordering; `unknown-eperm` handling in `acquireOwnerLeaseFile`; consider letting an EPERM lease still age out via the 2×TTL heartbeat gate (or a longer EPERM-specific TTL) instead of treating it as immortal.
 
    ```json
@@ -50,7 +50,7 @@ None. The charter's lease-CAS-TOCTOU and stdout-collision P0 hypotheses were adv
 
 2. **code-graph keeps a full 402-line fork of the `shared` socket-server that the consolidation's own contract says "cannot drift" — no shim, no shared import, no sync guard** -- `.opencode/skills/system-code-graph/mcp_server/lib/ipc/socket-server.ts:1-402` (vs canonical `.opencode/skills/system-spec-kit/shared/ipc/socket-server.ts`) -- The consolidation collapsed `mcp_server` and `skill-advisor` to 22-line re-export shims that `export ... from '@spec-kit/shared/ipc/socket-server.js'`, and the spec-kit shim header explicitly states the bind/reclaim/serve behaviour "is shared across every daemon launcher so the security contract cannot drift between services." code-graph did NOT get a shim: it holds a full byte-identical copy whose header even claims to be the "Canonical bridge logic shared by every daemon launcher." Today `diff -u` is clean (exit 0), so this is not a current behavioural defect — but it is a real latent correctness/security defect: any future fix to the race-safe stale-socket fence or dir-ownership hardening in `shared/` will silently NOT propagate to code-graph, violating the stated invariant for 1 of 3 consumers. No sync/check guard was found under `.opencode/skills/*/scripts`. All four files are in-range.
    - Finding class: defect (consolidation invariant violation / drift hazard)
-   - Scope proof: all four socket-server files appear in `git diff --name-only a9e9bdb0a5^..HEAD`; `diff -u shared code-graph` exits 0 (identical now); the two shim files re-export `@spec-kit/shared/...`; code-graph does not.
+   - Scope proof: all four socket-server files appear in `git diff --name-only fd67ede05f^..HEAD`; `diff -u shared code-graph` exits 0 (identical now); the two shim files re-export `@spec-kit/shared/...`; code-graph does not.
    - Affected surface hints: code-graph socket-server should be a re-export shim like the other two, OR a CI drift guard should assert byte-equality of the code-graph copy against `shared`. Header comment in code-graph mislabels a fork as "canonical."
 
    ```json
@@ -72,7 +72,7 @@ None. The charter's lease-CAS-TOCTOU and stdout-collision P0 hypotheses were adv
 
 3. **Reclaim-path owner-lease write skips fsync, unlike the exclusive fresh-acquire writer — durability asymmetry** -- `.opencode/bin/mk-spec-memory-launcher.cjs:281-285` (`writeOwnerLeaseFile`, used by reclaim at `:382` and heartbeat refresh at `:399`) vs `:288-302` (`writeOwnerLeaseFileExclusive`, fsyncs at `:294`) -- The fresh-acquire path CAS-writes the lease with `openSync('wx')` + `fsyncSync` (durable). The reclaim path and the heartbeat refresh use `writeOwnerLeaseFile` which writes a tmp then `renameSync` with **no fsync of the file data or the parent dir**. On crash/power-loss immediately after rename, the reclaimed lease can be lost (dirent/data not yet durable), reopening the very double-owner window the exclusive path closes. Narrow window and the re-read at line 383-384 already serializes the in-memory winner, so this is a durability hardening gap (P2), not an active double-owner bug.
    - Finding class: durability gap
-   - Scope proof: both writers are in-range (`3419e0a3e9`); fsync present at line 294, absent in lines 281-285.
+   - Scope proof: both writers are in-range (`9efd1652bc`); fsync present at line 294, absent in lines 281-285.
    - Affected surface hints: add `fsyncSync` (file + parent dir) to `writeOwnerLeaseFile`'s rename path for parity with the exclusive writer; or document why reclaim durability is intentionally weaker.
 
 4. **`processLiveness` is duplicated verbatim in `mk-code-index-launcher.cjs` instead of importing the shared `model-server-supervision.cjs` copy — silent drift risk** -- `.opencode/bin/mk-code-index-launcher.cjs:296-306` vs `.opencode/bin/lib/model-server-supervision.cjs:274-284` -- spec-memory imports `processLiveness` from the shared lib (`mk-spec-memory-launcher.cjs:35`); code-index defines its own byte-identical local copy. Currently in sync (verified by side-by-side read), but the ESRCH/EPERM liveness contract — which directly drives lease reclaim correctness (see F-002) — can now diverge between the two launchers with no guard. P2 maintainability/drift; not a current defect.
@@ -82,8 +82,8 @@ None. The charter's lease-CAS-TOCTOU and stdout-collision P0 hypotheses were adv
 
 ## Traceability Checks
 - **Iteration number:** JSONL had 1 `type:"iteration"` line (run 1). Derived iteration = 2. Matches dispatch. No mismatch.
-- **Range integrity:** HEAD `12de3d3a7e`, base `a9e9bdb0a5^` = `f05bdac2cf` (re-confirmed via `git rev-parse`).
-- **Provenance of F-002 / F-003 / F-004:** all reside in code present in the diff range; F-002's classification ordering was added by in-range commit `3419e0a3e9` (`git log -S "stale-heartbeat-reclaim"`).
+- **Range integrity:** HEAD `3923a65db1`, base `fd67ede05f^` = `a61a3f3b85` (re-confirmed via `git rev-parse`).
+- **Provenance of F-002 / F-003 / F-004:** all reside in code present in the diff range; F-002's classification ordering was added by in-range commit `9efd1652bc` (`git log -S "stale-heartbeat-reclaim"`).
 - **Lineage:** sessionId `2026-06-05T11:16:17Z`, generation 1, lineageMode new — consistent across config/state/registry.
 
 ## Integration Evidence

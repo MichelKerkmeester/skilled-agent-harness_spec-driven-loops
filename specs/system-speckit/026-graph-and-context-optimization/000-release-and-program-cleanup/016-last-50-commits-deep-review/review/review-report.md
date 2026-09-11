@@ -1,5 +1,5 @@
 ---
-title: "Deep Review: last 50 commits (a9e9bdb0a5^..HEAD)"
+title: "Deep Review: last 50 commits (fd67ede05f^..HEAD)"
 description: "20-iteration deep review across 9 research angles of the last 50 commits. Verdict CONDITIONAL: 0 P0, 3 actionable P1 (all recoverable), ~17 P2 advisories. Many seeded P0 hypotheses adversarially refuted."
 trigger_phrases:
   - "last 50 commits deep review"
@@ -12,7 +12,7 @@ contextType: "implementation"
 
 # Deep Review Report — last 50 commits
 
-> Target: git range `a9e9bdb0a5^..HEAD` (50 commits, HEAD `12de3d3a7e`). Read-only. 20 iterations, 9 research angles, native `@deep-review` (opus), parallel fan-out.
+> Target: git range `fd67ede05f^..HEAD` (50 commits, HEAD `3923a65db1`). Read-only. 20 iterations, 9 research angles, native `@deep-review` (opus), parallel fan-out.
 
 ## Verdict: CONDITIONAL (hasAdvisories=true)
 

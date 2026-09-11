@@ -3,7 +3,7 @@
 **Run:** 10 of 10  
 **Session:** `fanout-codex-luna-max-1788404469193-3b2771`  
 **Retrieved:** 2026-09-03  
-**Scope:** final uncited upstream behaviours, the two colour-guidance citations, and a complete T1–T10/C1–C3 corpus audit at commit `756a7fcd4c`.
+**Scope:** final uncited upstream behaviours, the two colour-guidance citations, and a complete T1–T10/C1–C3 corpus audit at commit `3ce648be44`.
 
 ## Focus
 
@@ -60,7 +60,7 @@ This pass closes the citation inventory without synthesizing early. Convergence 
 - **Verdict:** `CORRECTED` — change “ECharts tooltips are on by default” to “ECharts supports tooltips; a chart can enable/configure the tooltip component explicitly.”
 - **Template consequence:** The corpus’s static visible labels and tables remain the reliable no-runtime fallback; no tooltip dependency or implicit default should be added.
 
-## Corpus audit at commit `756a7fcd4c`
+## Corpus audit at commit `3ce648be44`
 
 The following verdicts are against the shipped files, not against a later working-tree interpretation. Line references are to the pinned corpus snapshot.
 

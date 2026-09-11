@@ -64,7 +64,7 @@ _memory:
 
 ### F87 — Worker-side embed input array validation
 
-**Status**: Already closed by phase 001 (commit 4fbc4098db)
+**Status**: Already closed by phase 001 (commit 719610899f)
 
 - Phase 001's F47 fix added `MAX_INPUT_ITEMS = 500` constant at sidecar-worker.ts:50-51
 - Added validation in `parseRequest()` at sidecar-worker.ts:131-133

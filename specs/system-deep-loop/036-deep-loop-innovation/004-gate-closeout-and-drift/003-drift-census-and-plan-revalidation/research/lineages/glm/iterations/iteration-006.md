@@ -6,7 +6,7 @@ trigger_phrases: []
 
 ## Focus
 
-Iteration 6's focus was Q-007: drift over phases 014 (staged state migration + authority cutover — flagged low-medium risk from `9259c23e313` path refs and mode-routing churn) and 015 (legacy writer retirement — flagged low risk; verify writer paths still exist). After iteration 6, only phases 016-017 + open question B remain before synthesis.
+Iteration 6's focus was Q-007: drift over phases 014 (staged state migration + authority cutover — flagged low-medium risk from `1accee48991` path refs and mode-routing churn) and 015 (legacy writer retirement — flagged low risk; verify writer paths still exist). After iteration 6, only phases 016-017 + open question B remain before synthesis.
 
 ## Actions Taken
 
@@ -29,11 +29,11 @@ Phase 014's six cited paths all resolve at HEAD:
 - `008-.../004-inflight-state-classification/spec.md` — RESOLVES
 - `008-.../005-rollback-drills/spec.md` — RESOLVES
 
-Phase 014's scope (per-mode authority flip, cutover certificate, monitored rollback window) is the ONLY phase that moves canonical authority. None of the routing commits (`6cd8ab14e4e`, `708d25acf04`, `908efde8d8f`) touch authority-cutover surfaces. The transitive dependency on phase 013's per-mode migrations carries phase 013's second-order routing-default drift forward, but only into phase 014's TEST FIXTURES (shadow-parity harness inputs), not into the cutover mechanics.
+Phase 014's scope (per-mode authority flip, cutover certificate, monitored rollback window) is the ONLY phase that moves canonical authority. None of the routing commits (`d60cc2c7553`, `fa74e868615`, `4b2c351cc1e`) touch authority-cutover surfaces. The transitive dependency on phase 013's per-mode migrations carries phase 013's second-order routing-default drift forward, but only into phase 014's TEST FIXTURES (shadow-parity harness inputs), not into the cutover mechanics.
 
-`9259c23e313` (goal_opencode → goal-opencode rename) touches `.opencode/commands/`, not authority-cutover paths. Iter 1's "low-medium" risk rating was over-cautious.
+`1accee48991` (goal_opencode → goal-opencode rename) touches `.opencode/commands/`, not authority-cutover paths. Iter 1's "low-medium" risk rating was over-cautious.
 
-**Phase 014 = still valid.** [SOURCE: `014/spec.md:46,52,54,56,67,68`; all six cited paths resolve at HEAD; routing commits don't touch authority-cutover; `git show --stat 9259c23e313` scope is `.opencode/commands/`.]
+**Phase 014 = still valid.** [SOURCE: `014/spec.md:46,52,54,56,67,68`; all six cited paths resolve at HEAD; routing commits don't touch authority-cutover; `git show --stat 1accee48991` scope is `.opencode/commands/`.]
 
 ### F6.2 — Phase 015 zero drift in plan; transitive dependency on phase-003 path refinement documented
 
@@ -64,7 +64,7 @@ This is **transitive dependency documentation, not phase-015 drift**. Phase 015'
 - `015/spec.md:50,52,58,60,79,116,146,149,161-162,91`
 - `git cat-file -e 739b85ac57:<path>` for 8 cited paths across phases 014/015 — all resolve
 - Grep for snake_case paths in `014/**` and `015/**` — 0 hits each
-- `git show --stat 9259c23e313` (goal_opencode rename scope)
+- `git show --stat 1accee48991` (goal_opencode rename scope)
 - `git cat-file -e 739b85ac57:.opencode/specs/.../013/008-deep-alignment/spec.md` (resolves)
 
 ## Assessment
@@ -91,4 +91,4 @@ This is **transitive dependency documentation, not phase-015 drift**. Phase 015'
 
 ## Recommended Next Focus
 
-Iteration 7: Phases 016-017 drift + OPEN QUESTION B (packet-033 renumber). Phase 016 (whole-system gate — touched by `72c36121201` which de-skill-specific the harness classifier). Phase 017 (integrate latest + closeout — drift-handling charter; touched by `1a5963e6b9d` and `71e18c224c3`). Resolve OPEN QUESTION B: does the packet-033 benchmark dependency survive its renumber, or must 003 rebase onto `z_archive/027-deep-loop-behavior-benchmarks`? After iteration 7, all 15 phases will carry verdicts and synthesis can run.
+Iteration 7: Phases 016-017 drift + OPEN QUESTION B (packet-033 renumber). Phase 016 (whole-system gate — touched by `37c589e08e4` which de-skill-specific the harness classifier). Phase 017 (integrate latest + closeout — drift-handling charter; touched by `d5db5ecad3d` and `fe261503031`). Resolve OPEN QUESTION B: does the packet-033 benchmark dependency survive its renumber, or must 003 rebase onto `z_archive/027-deep-loop-behavior-benchmarks`? After iteration 7, all 15 phases will carry verdicts and synthesis can run.

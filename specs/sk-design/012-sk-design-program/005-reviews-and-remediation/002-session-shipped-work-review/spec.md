@@ -29,7 +29,7 @@ The artifacts under review are the changed files of these three commits, read at
 state in THIS worktree. For each, inspect the introduced diff (`git show <sha> -- <path>`) AND the
 current file content. This charter (`spec.md`) is the review's brief, NOT the thing being reviewed.
 
-**2a. `bf0986cecd` — 015 Phase-0 styles-DB foundation (HIGHEST VALUE — real logic).**
+**2a. `7e67a7bb3a` — 015 Phase-0 styles-DB foundation (HIGHEST VALUE — real logic).**
 All under `.opencode/skills/sk-design/styles/_db/`:
 - NEW: `generation-manifest.mjs`, `stage-telemetry.mjs`, `canonical.mjs`,
   `oracle/differential-oracle.mjs`, `oracle/query-set.mjs`, `oracle/replay-fixtures.mjs`,
@@ -38,13 +38,13 @@ All under `.opencode/skills/sk-design/styles/_db/`:
 - MODIFIED: `indexer.mjs`, `operator.mjs`, `retrieval.mjs`, `schema.mjs`, `README.md`,
   `__tests__/index.mjs`.
 
-**2b. `9a42aedae4` — command-namespace dedup.**
+**2b. `5dd5547949` — command-namespace dedup.**
 - MODIFIED: `sk-design/shared/scripts/design-command-surface-check.mjs` (~2,944 lines, the authority)
   + its test + `interface-command-contract.test.mjs`; the 3 registries
   `sk-design/{command-metadata.json,hub-router.json,mode-registry.json}`; `sk-design/{README.md,SKILL.md}`.
 - DELETED: `.opencode/commands/design/` (5 wrappers + 15 assets).
 
-**2c. `dc7fdfb0a7` — sk-doc/020 naming (180 files, 0 code — all spec docs).**
+**2c. `6a2127a51e` — sk-doc/020 naming (180 files, 0 code — all spec docs).**
 All under `.opencode/specs/sk-doc/020-hyphen-naming-convention/`. Lower priority; verify the
 mechanical edits did not fabricate content (esp. the added `REQ-005` rows) and that PHASE_LINKS
 adjacency + the parent phase map are internally consistent.
@@ -99,4 +99,4 @@ adjacency + the parent phase map are internally consistent.
 ## 7. Related Documents
 
 - `review/review-report.md` — synthesized findings (written by the fanout lineages).
-- Source commits: `bf0986cecd`, `9a42aedae4`, `dc7fdfb0a7` on `skilled/v4.0.0.0`.
+- Source commits: `7e67a7bb3a`, `5dd5547949`, `6a2127a51e` on `skilled/v4.0.0.0`.

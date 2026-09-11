@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Trigger ownership was inconsistent across packet source files and router projections",
     "created_at": "2026-07-13T04:45:46Z",
-    "last_save_at": "2026-08-30T15:39:14.790Z",
+    "last_save_at": "2026-09-11T16:42:04.461Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,14 +203,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0135953a6644f3648e4a092b743dd4bd29ba0af385afe35b7d19c951adac9463",
+    "source_fingerprint": "sha256:1bb13c59448b6e4eef7bfb898a2d0b4c946b67df53263cddc43e7b9c69ab53ed",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ad2ccca66dc0656017ccd17d3ec1fa4d1db47ee6220f6dc5bd991e554164b199",
+      "spec.md": "226429c91f8f797ec21293499c1ed373b533c73862b3482a43d7d28e6a6a5888",
       "plan.md": "5413770d85e99dc0d5c02d9228533e56da046f06c39a61fc7d06326be3448e59",
-      "tasks.md": "8b44d76f2b61d4229c61fd72e7fe566bb645db512a77e607143e0f15ad2fff02",
+      "tasks.md": "36f3a435d7421309c553dec3c56954b8aac762bc8352846482b8b5fb156144be",
       "decision-record.md": "49e5fdeb0785d20dae78068abe954a398404b2085611cd09abbb8b093c969b3d",
-      "implementation-summary.md": "c9ec57551d47b6cab95f716637aa48be77369f194dc8d81d25f45539e1fe1db0"
+      "implementation-summary.md": "8d1ec5c0f83523b80d5a35a37dc21507178a8e98d3910448857d112cf184c63e"
     },
     "last_active_child_id": null,
     "last_active_at": null

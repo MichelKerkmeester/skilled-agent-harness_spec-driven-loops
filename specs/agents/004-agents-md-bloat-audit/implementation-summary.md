@@ -11,7 +11,7 @@ _memory:
     packet_pointer: "agents/004-agents-md-bloat-audit"
     last_updated_at: "2026-08-09T07:26:53Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "§9 template→pointer + advisor-metadata fix; landed 1be805c0af"
+    recent_action: "§9 template→pointer + advisor-metadata fix; landed 2714a9756b"
     next_safe_action: "Packet complete; no further action pending"
     blockers: []
     key_files:
@@ -56,7 +56,7 @@ This packet was scoped read-only; implementation was flagged as a separate follo
 - **Fixed all 7 broken `constitutional/*.md` links** (finding F1-1) → real path under `.opencode/skills/system-spec-kit/constitutional/`.
 - **Applied 3 verified duplicate-removal trims** (memory_search note, §5 daemon-CLI subsection, §9 validate.sh block) — each removed fact preserved elsewhere; −9 net lines.
 - The remaining Tier 1/2/3 candidates were **held** after verification (unique content or preserve-set conflicts), not cut.
-These edits landed on `skilled/v4.0.0.0` (commit `c20561d5d0`), not in this packet.
+These edits landed on `skilled/v4.0.0.0` (commit `8c52ec2738`), not in this packet.
 
 ### Correction: obsolete Dispatch Rules rows removed
 
@@ -79,7 +79,7 @@ A three-model cross-review re-audited `AGENTS.md` for further pointer-izable blo
 
 Two baseline rationales from the first pass were also found factually wrong (the §3 Documentation Levels table *is* mirrored in `level-decision-matrix.md` / README; the §6 Daemon CLI Fallback *is* owned) — but their KEEP verdicts stand for the sounder reason that both are prompt-time gate/recovery inputs the AI must have inline. No further cut exists.
 
-Landed on `skilled/v4.0.0.0` as commit `1be805c0af`, not in this packet.
+Landed on `skilled/v4.0.0.0` as commit `2714a9756b`, not in this packet.
 
 ### Files Changed (this packet)
 

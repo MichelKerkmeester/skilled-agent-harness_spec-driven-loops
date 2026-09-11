@@ -181,7 +181,7 @@ Document and later execute a split phase: complete only collision-free deep-loop
 <!-- ANCHOR:questions -->
 ## 9. OPEN QUESTIONS
 
-- RESOLVED: `mode-registry.json` returned git-clean after the live refactor settled; 018b opened and executed (`e1a266b07c`).
+- RESOLVED: `mode-registry.json` returned git-clean after the live refactor settled; 018b opened and executed (`14b8472c17`).
 - RESOLVED: the settled registry confirmed the seven-mode set; bidirectional hub-router check 5b passes (router signals == registry modes).
 
 <!-- /ANCHOR:questions -->

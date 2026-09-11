@@ -22,7 +22,7 @@ contextType: "implementation"
 This phase benchmarked the removed dark mechanism `SPECKIT_CODE_GRAPH_SEEDED_PPR_RANKING` against the flat reverse impact walk on 20 labeled change-impact queries over the live code graph. The mechanism was reconstructed in-harness from its recorded constants without touching the serving path. Both rankers ranked the same shared multi-hop candidate pool to isolate ranking quality from reachability. PPR ties the flat walk on precision, recall and nDCG at every K with a delta of 0.0 across all cells, and the damping sweep shows no value beats flat while 0.95 makes PPR worse. The root cause is uniform edges: all 18,851 CALLS edges carry identical weight so PPR centrality collapses onto the flat walk hop ordering. Verdict: CUT, confirmed by measurement. The flag and its code stay deleted.
 
 ### Added
-- `scripts/seeded-ppr-impact-benchmark.mjs`: read-only benchmark harness that backs up the live code graph, derives the labeled change-impact set and shared multi-hop pool from real reverse edges, reconstructs the flat pool ranker and bounded seeded PPR from the constants recorded at commit 657a0f6a3e, and writes per-query and aggregate metrics plus the damping calibration sweep.
+- `scripts/seeded-ppr-impact-benchmark.mjs`: read-only benchmark harness that backs up the live code graph, derives the labeled change-impact set and shared multi-hop pool from real reverse edges, reconstructs the flat pool ranker and bounded seeded PPR from the constants recorded at commit a4bcf4bf16, and writes per-query and aggregate metrics plus the damping calibration sweep.
 - `results/metrics.json`: per-query rows for 20 labeled change-impact queries, aggregate precision, recall and nDCG at K of 3, 5 and 8 for both rankers, the damping calibration sweep and the byte-identity record.
 - `benchmark-results.md`: full data tables and the graduation verdict.
 
@@ -30,7 +30,7 @@ This phase benchmarked the removed dark mechanism `SPECKIT_CODE_GRAPH_SEEDED_PPR
 - Nothing in the serving path was changed. The harness is additive and read-only.
 
 ### Fixed
-- The prior CUT recorded in commit 277c35344c rested on an asserted claim rather than a reproducible per-query measurement. This phase replaces that inherited assertion with measured evidence: the verdict now traces every claim to a value in `results/metrics.json`.
+- The prior CUT recorded in commit 9af8cca8cb rested on an asserted claim rather than a reproducible per-query measurement. This phase replaces that inherited assertion with measured evidence: the verdict now traces every claim to a value in `results/metrics.json`.
 
 ### Verification
 - Benchmark run: PASS, `node scripts/seeded-ppr-impact-benchmark.mjs` exits 0 with stable aggregate numbers across runs.

@@ -50,7 +50,7 @@ _memory:
 | **Level** | 3 |
 | **Status** | Complete |
 | **Delivery** | Shipped. The parent goal LOG records this phase Done |
-| **Date** | 2026-09-03 (closure re-sweep at HEAD `fe1ec30fe8`) |
+| **Date** | 2026-09-03 (closure re-sweep at HEAD `8cab525c27`) |
 | **Register findings** | 3 reads Fixed. 4, 5, 6, 7 and 8 are owned by this phase |
 | **Gate** | `research/gate-a-rerun-2026-09-03.tsv`, 389 rows, one bucket per row |
 <!-- /ANCHOR:metadata -->
@@ -90,7 +90,7 @@ at the point of use.
 
 ### What the follow-up fix moved
 
-Commit `08eb67a0de` acted on the sweep against the same frozen corpus. Its message records
+Commit `aa11c2b622` acted on the sweep against the same frozen corpus. Its message records
 **Gate A moving from 234 to 328 of 444**, with the executor hub going from 7 of 115 to 66 and
 no signal left surfacing nothing at all. Sixty-seven signals were retired, each audited
 first: forty-one returned nothing, six went elsewhere, twenty landed on their hub and
@@ -105,7 +105,7 @@ re-captured to match.
 
 ### What the closure re-sweep found
 
-The phase closed on 2026-09-03 by re-sweeping all 389 declared signals at HEAD `fe1ec30fe8`
+The phase closed on 2026-09-03 by re-sweeping all 389 declared signals at HEAD `8cab525c27`
 and writing a decision for every signal outside RESOLVED. Two findings came out of it.
 
 **The fifty are the same fifty.** Holding the sk-doc defect below aside, the unresolved set
@@ -123,7 +123,7 @@ contract behaving as written.
 
 **`sk-doc` is serving legacy.** `compiled-route-status.cjs --all` reports it at
 `causeCode: stale-manifest`, with a pinned policy hash of `60f98f69…` against a current hash
-of `d3d026c8…`. Commit `756a7fcd4c` edited `sk-create-chart/SKILL.md`, one of the byte sources
+of `d3d026c8…`. Commit `3ce648be44` edited `sk-create-chart/SKILL.md`, one of the byte sources
 the sk-doc snapshot hashes, without re-pinning the activation manifest, and five later commits
 touched the same file. The advisor still ranks sk-doc first for its own vocabulary, so nothing
 looks wrong at the recommendation, but no `compiledRoute` is attached and no mode is named.
@@ -135,7 +135,7 @@ compiled-routing change this phase does not own.
 ### What the fixes did
 
 The decision table named seven fixes and the file each one lands in. They were applied on
-2026-09-04 at HEAD `81d439f764`, with the full declared-signal sweep run on both sides of the
+2026-09-04 at HEAD `a142b60019`, with the full declared-signal sweep run on both sides of the
 change so the claim is a measurement rather than a prediction.
 
 Seven signals moved from NO_RECOMMENDATION to exactly one mode: `dqi score` to
@@ -185,17 +185,17 @@ reports five hubs fresh, and all five canaries were rebuilt and re-pinned green.
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `research/gate-a-measurement.md` | Created (`dbc8678c9d`, 315 lines) | Method, per-hub distribution, every non-resolved signal and the reproduction commands |
-| `research/gate-a-raw.tsv` | Created (`dbc8678c9d`, 445 lines) | One row per declared signal with its bucket, so the number can be re-derived |
+| `research/gate-a-measurement.md` | Created (`12aa10504a`, 315 lines) | Method, per-hub distribution, every non-resolved signal and the reproduction commands |
+| `research/gate-a-raw.tsv` | Created (`12aa10504a`, 445 lines) | One row per declared signal with its bucket, so the number can be re-derived |
 | `research/gate-a-rerun-2026-09-03.tsv` | Created (390 lines) | The closure re-sweep, with an engine-direct column that separates a stale serving pin from a signal that reaches no mode |
 | `research/declared-signals-2026-09-03.tsv` | Created (390 lines) | The denominator behind that sweep, so 389 is re-derivable rather than asserted |
 | `research/unresolved-signal-decisions.md` | Created | A decision for each of the 50 unresolved signals, grouped by mechanism, with the fix and its file where one exists |
-| `spec.md` | Modified (`dbc8678c9d`) | Scope narrowed to what the measurement showed |
-| `.opencode/skills/cli-external-orchestration/hub-router.json` | Modified (`08eb67a0de`) | Stage-two classes for signals that reached the hub and dropped |
-| `.opencode/skills/cli-external-orchestration/mode-registry.json` | Modified (`08eb67a0de`) | Mode declarations aligned with the router |
-| `.opencode/skills/cli-external-orchestration/graph-metadata.json` | Modified (`08eb67a0de`, 68 lines touched) | Retired vocabulary removed from the advisor projection |
-| `.../mcp-server/lib/scorer/executor-delegation.ts` | Modified (`08eb67a0de`) | The run-time override now lifts the hub instead of inserting a routeless entry |
-| `.../scripts/routing-accuracy/scorer-eval-baseline.json` and the holdout corpus | Modified (`08eb67a0de`) | Gold labels re-captured after the override change |
+| `spec.md` | Modified (`12aa10504a`) | Scope narrowed to what the measurement showed |
+| `.opencode/skills/cli-external-orchestration/hub-router.json` | Modified (`aa11c2b622`) | Stage-two classes for signals that reached the hub and dropped |
+| `.opencode/skills/cli-external-orchestration/mode-registry.json` | Modified (`aa11c2b622`) | Mode declarations aligned with the router |
+| `.opencode/skills/cli-external-orchestration/graph-metadata.json` | Modified (`aa11c2b622`, 68 lines touched) | Retired vocabulary removed from the advisor projection |
+| `.../mcp-server/lib/scorer/executor-delegation.ts` | Modified (`aa11c2b622`) | The run-time override now lifts the hub instead of inserting a routeless entry |
+| `.../scripts/routing-accuracy/scorer-eval-baseline.json` and the holdout corpus | Modified (`aa11c2b622`) | Gold labels re-captured after the override change |
 | `.opencode/skills/sk-code/hub-router.json` | Modified (2026-09-04) | `sk-code hub` and `language-specific verification commands` named in the `hub-identity` class |
 | `.opencode/skills/sk-doc/graph-metadata.json` | Modified (2026-09-04) | `dqi score` declared in the hub's top-level `intent_signals` |
 | `.opencode/skills/sk-code/graph-metadata.json` | Modified (2026-09-04) | `ink-on-parchment retint` declared in the hub's top-level `intent_signals` |
@@ -257,12 +257,12 @@ Every command below was run and its output read.
 | Per-signal measurement, `node .opencode/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<signal>"}' --format json --timeout-ms 60000` | 444 replies captured, one file each, exit status read from a `.exit` file rather than a pipe |
 | Independent double tally of `gate-a-raw.tsv`, one Python pass and one `jq` pass over the same raw replies | Both returned 234 RESOLVED of 444 and agreed per hub. This satisfies AC-002 |
 | Bucket completeness in `gate-a-raw.tsv` | 444 rows, every row carrying one of the five bucket values. This satisfies AC-001 |
-| Post-fix re-measurement recorded in `08eb67a0de` | 328 of 444, executor hub 7 to 66, no signal surfacing nothing |
-| Regression control across three suites in `08eb67a0de` | 444 signals, 180 realistic prompts and 224 controls on the five hubs outside scope. No hub lost a prompt it owned |
+| Post-fix re-measurement recorded in `aa11c2b622` | 328 of 444, executor hub 7 to 66, no signal surfacing nothing |
+| Regression control across three suites in `aa11c2b622` | 444 signals, 180 realistic prompts and 224 controls on the five hubs outside scope. No hub lost a prompt it owned |
 | Canary fixtures during the fix | Caught two real regressions mid-flight, both reverted |
 | `validate.sh specs/sk-doc/052-routing-completeness --strict --recursive` | PASS for this folder, Errors 0 |
 | `hvr_scan.py` on this document | 0 hard blockers |
-| Closure re-sweep, 389 signals at HEAD `fe1ec30fe8` | 243 RESOLVED as served, 339 with the sk-doc pin held aside, all 389 calls exit 0 after 51 back-pressure failures were re-run at 4 concurrent |
+| Closure re-sweep, 389 signals at HEAD `8cab525c27` | 243 RESOLVED as served, 339 with the sk-doc pin held aside, all 389 calls exit 0 after 51 back-pressure failures were re-run at 4 concurrent |
 | Exact-set check over the decision groups | 50 unresolved signals, 50 claimed, twelve groups summing to 50, no duplicate member and no ungrouped signal |
 | Unresolved set compared against the 2026-09-02 capture as `hub` plus `signal` plus `bucket` triples | Identical, with `comm` reporting nothing on either side |
 | `node .opencode/bin/compiled-route-status.cjs --all --pretty` | Four hubs `compiled-serving` and `fresh`, with sk-doc `legacy` on `causeCode: stale-manifest` |
@@ -296,7 +296,7 @@ Whoever owns the scorer owns these four.
 
 **The 328 figure comes from a commit message, not from a committed corpus file.** The 234
 baseline is re-derivable from `research/gate-a-raw.tsv`. The post-fix total is recorded in
-`08eb67a0de` and was not written back into the raw file, so reproducing it means re-running
+`aa11c2b622` and was not written back into the raw file, so reproducing it means re-running
 the sweep.
 
 **`score` cannot reconstruct rank from outside the process.** The daemon's sort key adds

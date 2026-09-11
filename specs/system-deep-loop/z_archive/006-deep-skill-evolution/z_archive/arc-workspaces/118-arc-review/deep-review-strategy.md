@@ -29,7 +29,7 @@ description: "10-iter cli-devin SWE-1.6 review of the new deep-loop-runtime skil
 
 - 117 council deliberation ruled SPLIT (4-seat sk-ai-council via cli-codex gpt-5.5 xhigh + high; advocate split 3-way, Seat D independent SPLIT ruling 92/100). Superseded by user-directive FULL_ISOLATE_NO_MCP for 118.
 - 118 arc shipped in 8 phases: scaffold → 001 skeleton → 002-005 bundled (lib mv + script shims + MCP removal + YAML cutover) → 006 collateral → 007 test split → 008 closeout → sk-doc canonical companions
-- 8 commits on main: `bd77886d0a 71042e1a33 d485837718 14b40f23b3 be2e777a4f e590c12e19 107c522599 954702a8f4`
+- 8 commits on main: `f41f5c9a5d 07a159bac2 3cc85ccfc0 ee78835faf 300bfe603a 243369d358 35503d4b78 8e09f1ec6b`
 - Known caveat: full mcp_server vitest sweep hangs on unrelated infrastructure issue (not a deep-loop-runtime regression). Targeted vitest on deep-loop-runtime/tests/unit/loop-lock.vitest.ts PASS (7/7).
 
 ## Convergence Rule

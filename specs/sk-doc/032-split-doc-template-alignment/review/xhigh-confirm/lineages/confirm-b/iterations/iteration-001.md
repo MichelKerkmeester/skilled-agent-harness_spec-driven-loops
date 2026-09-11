@@ -56,7 +56,7 @@ None.
 - `validate_document.py` returned exit 0 for 163/163 files when each reference/asset path was forced to its matching type.
 - Independent current-state matrix: zero non-README hyphenated basenames, missing metadata/version fields, uppercase trigger sets, Overview-order defects, missing mode content after accepting semantic heading variants, numbering gaps, misplaced Related Resources sections, or intro/Purpose equality/containment duplicates.
 - Link scan found one known illustrative absolute path (`/specs/005-example.com/...`) and no broken relative navigational link to or among the renamed target corpus.
-- `ee512bc348` contains only Markdown/JSON changes and records the four structural remediations; the current direct reads confirm each fix remains present.
+- `f9977d915c` contains only Markdown/JSON changes and records the four structural remediations; the current direct reads confirm each fix remains present.
 
 ## Edge Cases
 

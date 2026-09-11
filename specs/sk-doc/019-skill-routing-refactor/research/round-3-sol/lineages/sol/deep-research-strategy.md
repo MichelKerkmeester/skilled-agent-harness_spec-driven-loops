@@ -12,7 +12,7 @@ Second-pass, expand-do-not-converge audit of the parent packet and its full 21-c
 - [x] Are all 21 direct child packets internally consistent and truthful about status and completion?
 - [x] Do defects analogous to the known 012 and 017 failures exist in other direct children?
 - [x] Do parent routing references match the live compiled-routing runtime and all seven hub routing surfaces?
-- [x] Did commit 140266be3e introduce any new inconsistency, stale cross-reference, wrong metric, or broken link?
+- [x] Did commit 3c94775856 introduce any new inconsistency, stale cross-reference, wrong metric, or broken link?
 - [x] Are parent/child lifecycle metadata, children_ids, and derived.last_active_child_id truthful across nested topology?
 - [x] Are links repo-rooted and valid, and are the 020/007 duplicate-012 collision and 015 sub-parent resume-safe?
 <!-- /ANCHOR:key-questions -->
@@ -31,7 +31,7 @@ Second-pass, expand-do-not-converge audit of the parent packet and its full 21-c
 ## 6. ANSWERED QUESTIONS
 - Direct-child consistency: four PRE-EXISTING P1 defects verified in 012, 015, 017, and 019.
 - Analogues beyond known defects: 015 and 019 have lifecycle/continuity contradictions; 013/014 and phase parents 020/021 were ruled out as false analogues.
-- Commit impact at direct-child depth: `140266be3e` changed no canonical direct-child packet file, so none of these defects is NEW.
+- Commit impact at direct-child depth: `3c94775856` changed no canonical direct-child packet file, so none of these defects is NEW.
 - Nested resume topology: null pointers at 020 and 020/007 block deterministic descent; 020/007/015 has a stale phase map and stale pointer.
 - Duplicate phase prefix: full canonical IDs disambiguate the two `012-*` siblings, but numeric-only selection is ambiguous.
 - Parent/runtime conformance: live routing is compiled-authoritative and default-on for all seven hubs; parent canon contains new and pre-existing contradictions.
@@ -39,7 +39,7 @@ Second-pass, expand-do-not-converge audit of the parent packet and its full 21-c
 - Fleet claims: 7/7 route-gold framing is NEW and wrong in denominator scope; nested 009 and 013 overclaim completion; fleet activation is real but hard-invariant closure is incomplete.
 - Nested sampling: 021 parent metadata is stale; 020/004 and 020/006 are Level-2 packets missing required canonical files, with 004 also splitting lifecycle truth.
 - 020/005 subtree: all eight Level-2 children miss required files; completion and graph claims conflict; parent lifecycle/pointer metadata is stale.
-- Commit regression inventory: every canonical non-frozen hunk in `140266be3e` was reviewed; no additional finding survived deduplication.
+- Commit regression inventory: every canonical non-frozen hunk in `3c94775856` was reviewed; no additional finding survived deduplication.
 - Finding reconciliation: 27 canonical findings remain after merges, splits, downgrades, and provenance-limit exclusions.
 <!-- /ANCHOR:answered-questions -->
 
@@ -73,7 +73,7 @@ Second-pass, expand-do-not-converge audit of the parent packet and its full 21-c
 ## 10. RULED OUT DIRECTIONS
 - Treating planned 013/014 implementation-summary absence as analogous to 012.
 - Treating lean phase-parent 020/021 heavy-doc absence as a required-file defect.
-- Classifying direct-child defects as NEW from `140266be3e`.
+- Classifying direct-child defects as NEW from `3c94775856`.
 - Treating the 015 child-count claim as wrong; the count is 14, while its phase map exposes only 12.
 - Treating complete canonical `last_active_child_id` values as ambiguous across duplicate numeric prefixes.
 - Treating generic backticked filenames or logical `children_ids` as broken filesystem links without contextual/schema resolution.
@@ -91,7 +91,7 @@ Research complete. Use `research.md` as the canonical synthesis for remediation 
 <!-- MACHINE-OWNED: END -->
 
 ## 12. KNOWN CONTEXT
-- The first audit covered parent-level docs only and commit `140266be3e` applied its findings.
+- The first audit covered parent-level docs only and commit `3c94775856` applied its findings.
 - Known child defects to verify: `012-sk-doc-routing-fixes` required-file/LEVEL_MATCH inconsistency and `017-system-code-graph-routing-research` `_memory` frontmatter violation.
 - The code graph is empty, so direct file evidence is authoritative for this run.
 - No packet root `resource-map.md` exists.

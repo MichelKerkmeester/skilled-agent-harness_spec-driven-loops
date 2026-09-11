@@ -78,7 +78,7 @@ The surviving risks are concrete enough to keep the verdict from becoming ROBUST
 | FINDING-016-D | Cursor-like indexing status would improve operator confidence. | Cursor codebase-index docs; local `protocol.py:122-140`. | Extend `ccc status` and daemon status. |
 | FINDING-017-C | Upstream removed a dimensions knob; local design should not add a naive one. | GitHub API release `v0.2.30`. | Treat dimensions as provider/model metadata. |
 | FINDING-017-D | Upstream language support should inform fixture expansion. | GitHub API release `v0.2.32` added Svelte/Vue. | Add language-shape probes after upstream spike. |
-| FINDING-018-B | RRF no-op/latency lock needs ADR criteria. | Git log `ee788254d1`; benchmark prose. | ADR with quality/latency/fixture criteria. |
+| FINDING-018-B | RRF no-op/latency lock needs ADR criteria. | Git log `e41a21591a`; benchmark prose. | ADR with quality/latency/fixture criteria. |
 | FINDING-018-C | Pipeline-before-model invariant should be durable. | Git log Jina-code -> Nomic; benchmark report pipeline arc. | ADR: fix code first, keep losing adapters opt-in. |
 | FINDING-019-B | 023A should be phased, not single-packet. | Core files include `daemon.py 1055`, `query.py 854`, `config.py 749`; schema/index migration risk. | Split 023A1/2/3. |
 | FINDING-019-C | Observability should precede broad calibration. | Current logs lack fanout/candidate/rerank counters. | Run 023C before 023B. |

@@ -9,7 +9,7 @@ _memory:
     packet_pointer: "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/002-deprecate-numbered-snippet-filenames/001-loader-and-guard"
     last_updated_at: "2026-07-17T14:36:44Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Content-gate loader + stage parse + guard shipped; commit 69638f96a4"
+    recent_action: "Content-gate loader + stage parse + guard shipped; commit 28a2569b4c"
     next_safe_action: "Complete"
     blockers: []
     completion_pct: 100
@@ -50,7 +50,7 @@ a guard that fails when a numbered per-scenario file exists under a catalog/play
 Number gate → content gate so numbered and bare-slug files load identically; the same change closes a latent
 bug where single-digit / generator-output playbooks never matched the 3-digit gate and were silently dropped
 from the corpus. The guard mirrors the sibling numbered-category-folder check in style and CLI shape. Commit
-`69638f96a4`.
+`28a2569b4c`.
 <!-- /ANCHOR:how-delivered -->
 
 <!-- ANCHOR:decisions -->

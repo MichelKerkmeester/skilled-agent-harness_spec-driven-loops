@@ -5,7 +5,7 @@ trigger_phrases: []
 Independent code review (READ-ONLY). You may run git and read files. Do NOT modify any file.
 
 # Task
-Audit git commit `1e58d845af` ("docs(117): remove TOC blocks + HTML anchor comments from skill docs") in this repo. The commit removed Table-of-Contents blocks and `<!-- ANCHOR -->` HTML comment delimiters from ~857 skill markdown files plus 20 standards/config/template/command files. Your job: find anything the cleanup broke **by accident**.
+Audit git commit `e5ee6609c2` ("docs(117): remove TOC blocks + HTML anchor comments from skill docs") in this repo. The commit removed Table-of-Contents blocks and `<!-- ANCHOR -->` HTML comment delimiters from ~857 skill markdown files plus 20 standards/config/template/command files. Your job: find anything the cleanup broke **by accident**.
 
 This is **Iteration 1 of 10**. Focus dimension: **CORRECTNESS — TOC-removal content safety on high-risk files**.
 
@@ -17,9 +17,9 @@ It must NOT have removed or altered prose, real section headings (other than the
 
 # This iteration — inspect these high-TOC-risk files in the commit
 Sample broadly across the removed-TOC files (READMEs, manual_testing_playbook roots, feature_catalog roots). Suggested commands:
-- `git show --stat 1e58d845af | head -40`
-- `git show 1e58d845af -- .opencode/skills/cli-gemini/README.md .opencode/skills/cli-codex/manual_testing_playbook/manual_testing_playbook.md .opencode/skills/deep-research/feature_catalog/feature_catalog.md .opencode/skills/system-skill-advisor/README.md .opencode/skills/deep-loop-runtime/README.md`
-- Pick ~10 more removed-TOC files of your choosing from `git show --stat 1e58d845af --name-only` and inspect their diffs.
+- `git show --stat e5ee6609c2 | head -40`
+- `git show e5ee6609c2 -- .opencode/skills/cli-gemini/README.md .opencode/skills/cli-codex/manual_testing_playbook/manual_testing_playbook.md .opencode/skills/deep-research/feature_catalog/feature_catalog.md .opencode/skills/system-skill-advisor/README.md .opencode/skills/deep-loop-runtime/README.md`
+- Pick ~10 more removed-TOC files of your choosing from `git show --stat e5ee6609c2 --name-only` and inspect their diffs.
 - For each, confirm every `-` (removed) line is ONLY: a TOC heading, a TOC `[...](#...)` link bullet, an `<!-- ANCHOR -->` comment, a blank line, or a `---` rule. Flag any removed line that is real prose, a non-TOC heading, a table row, code, or a real list item — that is content loss.
 - Spot-check that the post-removal file still reads coherently (no orphaned intro like "see the table below" pointing at a deleted TOC; first real section follows the title/tagline cleanly).
 

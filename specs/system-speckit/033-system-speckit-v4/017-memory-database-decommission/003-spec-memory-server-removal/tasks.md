@@ -50,7 +50,7 @@ the advisor embedder proof in T028. The file-level steps live in Phase 4.
 
 Delivered as six pruning waves rather than four stage commits, and left uncommitted at operator
 instruction; the wave boundaries carry the stage gates, and the before state is the phase-002 commit
-`cc6a50271e`.
+`c3fea783ba`.
 
 - [x] T004 Stage 1: the server tree and its package wiring (W1, detail T011-T013) (done: the package went from 1,482 tracked files, 453,964 lines and 20.3 MB to 333 files, about 68,270 lines and 2.8 MB, and still builds)
 - [x] T005 Stage 2: launchers, plugin and hooks (W2, detail T014-T016) (done: both memory bins, `.opencode/plugins/system-spec-memory.js` with its test, and `.opencode/hooks/spec-memory/` are gone; the hook adapters the five runtime hook configs name survive under `mcp-server/hooks`)
@@ -185,7 +185,7 @@ work that happened.
 - [x] CHK-020 [P0] All acceptance criteria met — AC-001 to AC-014 are Met in `acceptance-criteria.md`
 - [x] CHK-021 [P0] Manual testing complete — five cold runtime boots (T029) and a live advisor call on the pruned code (T028)
 - [x] CHK-022 [P1] Edge cases tested — the trigger index regenerates byte-identical twice with no deleted path in the manifest, a sample lookup returns 20 candidates with no daemon, retrieval suites 71 tests pass
-- [x] CHK-023 [P1] Error scenarios validated — opencode's exit 124 traced to a provider stream error rather than MCP; 38 of the 41 failing spec-kit files reproduce identically at `cc6a50271e` in a fresh worktree
+- [x] CHK-023 [P1] Error scenarios validated — opencode's exit 124 traced to a provider stream error rather than MCP; 38 of the 41 failing spec-kit files reproduce identically at `c3fea783ba` in a fresh worktree
 <!-- /ANCHOR:testing -->
 
 ---
@@ -199,7 +199,7 @@ work that happened.
 - [x] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases. — N/A: no security, path, parser or redaction logic changed; the removal retires a local transport rather than editing one
 - [x] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed. — N/A: no fix matrix; the census (1,482 to 333 tracked files) and the sweep (3,171 paths) are the stated counts
 - [x] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state. — the env surface is gated by the drift test, 5 pass, and the five cold boots each read process-wide state in a different runtime
-- [x] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range. — the before state is pinned to the phase-002 commit `cc6a50271e`; the after state is the uncommitted worktree at operator instruction, so no fix SHA exists yet and the pin lands with the commit
+- [x] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range. — the before state is pinned to the phase-002 commit `c3fea783ba`; the after state is the uncommitted worktree at operator instruction, so no fix SHA exists yet and the pin lands with the commit
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -272,7 +272,7 @@ work that happened.
 <!-- ANCHOR:deploy-ready -->
 ## L3+: Deployment Readiness
 
-- [x] CHK-120 [P0] Rollback procedure documented and tested — rollback is the git history per D1: the before state is `cc6a50271e` and the phase is uncommitted on `branches/017-memory-decommission`, so reverting is a checkout rather than a migration
+- [x] CHK-120 [P0] Rollback procedure documented and tested — rollback is the git history per D1: the before state is `c3fea783ba` and the phase is uncommitted on `branches/017-memory-decommission`, so reverting is a checkout rather than a migration
 - [x] CHK-121 [P0] Feature flag configured (if applicable) — N/A: the removal is unconditional and no flag gates it
 - [x] CHK-122 [P1] Monitoring/alerting configured — N/A: the phase removes the only background service there was to monitor (NFR-R01)
 - [x] CHK-123 [P1] Runbook created — N/A: nothing survives to operate; the five cold boots are the operational proof

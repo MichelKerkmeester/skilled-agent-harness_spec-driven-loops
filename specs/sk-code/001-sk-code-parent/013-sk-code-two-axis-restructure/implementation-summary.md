@@ -30,7 +30,7 @@ _memory:
     open_questions: []
     answered_questions:
       - question: "Did the phase ship?"
-        answer: "Yes, remote commit 90e8833411 shipped the combined restructure."
+        answer: "Yes, remote commit 6f9b16b908 shipped the combined restructure."
       - question: "What remains outside this phase?"
         answer: "Phase 014 owns gated reindex, Lane-C re-baseline, worktree decision, and parent roll-up."
 ---
@@ -57,7 +57,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Shipped sk-code as a two-axis parent hub in remote commit `90e8833411`. Workflow modes now stay focused on action contracts, while Webflow, OpenCode, and animation evidence live in read-only surface packets that the router can bundle with the selected workflow.
+Shipped sk-code as a two-axis parent hub in remote commit `6f9b16b908`. Workflow modes now stay focused on action contracts, while Webflow, OpenCode, and animation evidence live in read-only surface packets that the router can bundle with the selected workflow.
 
 ### Files Changed
 
@@ -78,7 +78,7 @@ Shipped sk-code as a two-axis parent hub in remote commit `90e8833411`. Workflow
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The work landed as one combined remote commit, `90e8833411`, covering 200 files and 148 renames. The commit intentionally combined the move, wiring, content, and rename repoints so the pushed state never exposed a half-moved router or a half-renamed review workflow.
+The work landed as one combined remote commit, `6f9b16b908`, covering 200 files and 148 renames. The commit intentionally combined the move, wiring, content, and rename repoints so the pushed state never exposed a half-moved router or a half-renamed review workflow.
 
 <!-- /ANCHOR:how-delivered -->
 ---
@@ -145,7 +145,7 @@ The work landed as one combined remote commit, `90e8833411`, covering 200 files 
 
 | Planned | Actual | Reason |
 |---------|--------|--------|
-| Separate move, wiring, and content commits | One combined remote commit `90e8833411` | The push gate required a green remote state with no broken intermediate layout |
+| Separate move, wiring, and content commits | One combined remote commit `6f9b16b908` | The push gate required a green remote state with no broken intermediate layout |
 | Include reindex and Lane-C baseline in close-out | Deferred to phase 014 | Advisor daemon and stored gold state made those add-only tasks unsafe for this phase |
 
 <!-- /ANCHOR:deviations -->

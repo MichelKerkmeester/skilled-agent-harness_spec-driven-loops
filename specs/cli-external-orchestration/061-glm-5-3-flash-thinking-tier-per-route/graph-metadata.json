@@ -198,9 +198,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Commit `d47d73f8bb` (2026-08-29), \"fix(deep-loop): pin GLM-5.3-Flash to xhigh, its real top tier, not max\", added `isGlmFlashXhighPinnedModel` to `executor-config.ts` and its mirror in `fanout-run.cjs`, forcing every model literal matching `glm-5.3-flash` to dispatch at `--thinking xhigh`",
+    "causal_summary": "Commit `c523722c38` (2026-08-29), \"fix(deep-loop): pin GLM-5.3-Flash to xhigh, its real top tier, not max\", added `isGlmFlashXhighPinnedModel` to `executor-config.ts` and its mirror in `fanout-run.cjs`, forcing every model literal matching `glm-5.3-flash` to dispatch at `--thinking xhigh`",
     "created_at": "2026-09-04T13:36:21.999Z",
-    "last_save_at": "2026-09-04T13:47:04.220Z",
+    "last_save_at": "2026-09-11T16:41:47.189Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,12 +209,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:180c1ff620a25c088a08b437c44bdaf74902507ceec81c48e45dc3fcd80f879c",
+    "source_fingerprint": "sha256:e5639f93a0dcc14e87f90b59e80a2eb6d322db08832862dc2521cd24f996d59d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ea86a0dba80ca8e98fe7a3d2f5241b7bac95a2170ed387cf824c65d01aff161a",
+      "spec.md": "751d30fa2b7b7c5d5c23f393214f234efa4ac8b06925fec86e8068c06997f5bc",
       "plan.md": "7335ad813e6e4fea30758274de223c4bb9fdc3c23c17d09db7c074e885dea9bd",
-      "tasks.md": "b03be3632b4231cf56dac165103f4612336b0079ba352dea3edb0a3533db69b0",
+      "tasks.md": "d332d04b5b76435b10dc1cf2d2d8cd513cb95d1b5f7bb6e7366ae502fd51c465",
       "implementation-summary.md": "f796cb9e510bf3239b52bab1348ea0bbc1a7bd8b04bc88041b0deda46d17a238"
     },
     "last_active_child_id": null,

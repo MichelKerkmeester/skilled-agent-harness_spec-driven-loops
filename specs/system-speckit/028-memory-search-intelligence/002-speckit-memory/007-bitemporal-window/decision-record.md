@@ -249,7 +249,7 @@ The four-timestamp window (C3-B) is shared by causal edges, lineage and (in the 
 C3-D is the separation-of-concerns note for the bi-temporal program. Two distinct lifecycle operations are easy to conflate: tombstone-sweep ("off-state forgetting", `lib/causal/sweep.ts:68-100`) physically retires edges, while temporal-close ("not current", `lib/graph/temporal-edges.ts:64-80`) marks an edge closed but readable. The original framing treated the `skip-closed-in-sweep` guard as a hard gate that C3-A (the live edge-presence retirement path) depended on. Adversarial verification (005 iter-032) downgraded that: no automatic producer creates the `contradicts`-on-a-frontmatter-pair collision the guard protects against, and the sweep tombstones before deleting, so the fork is theoretical and tombstone-recoverable.
 
 ### Constraints
-- The `skip-closed-in-sweep` guard (`frontmatter-promoter.ts` `openEdgeClause`, `AND invalid_at IS NULL`) is already SHIPPED (030 commit `e1c6a3c793`).
+- The `skip-closed-in-sweep` guard (`frontmatter-promoter.ts` `openEdgeClause`, `AND invalid_at IS NULL`) is already SHIPPED (030 commit `672d8a9187`).
 - It must ship as cheap defensive hardening *before* C3-A, but must not be treated as a data-loss blocker.
 <!-- /ANCHOR:adr-003-context -->
 
@@ -317,8 +317,8 @@ C3-D is the separation-of-concerns note for the bi-temporal program. Two distinc
 ### Implementation
 
 **What changes**:
-- No new code, the `skip-closed-in-sweep` guard is SHIPPED (`e1c6a3c793`). This ADR records its classification and the separation note.
+- No new code, the `skip-closed-in-sweep` guard is SHIPPED (`672d8a9187`). This ADR records its classification and the separation note.
 
-**How to roll back**: N/A, classification + an already-shipped guard. Reverting the guard is `git revert e1c6a3c793` but is not recommended (cheap, harmless hardening).
+**How to roll back**: N/A, classification + an already-shipped guard. Reverting the guard is `git revert 672d8a9187` but is not recommended (cheap, harmless hardening).
 <!-- /ANCHOR:adr-003-impl -->
 <!-- /ANCHOR:adr-003 -->

@@ -43,7 +43,7 @@ Identical to the hashes cited in the same-day `sk-code/benchmark/reports/compile
 
 ### Lane C cross-check
 
-- **Archived source**: `.opencode/skills/sk-doc/benchmark/reports/compiled-routing/2026-07-21--benchmark-sweep--r3/hub-reports/cli-external-orchestration.json` (committed `23ba6f5f32f`, captured same day ~1h50m before this sweep)
+- **Archived source**: `.opencode/skills/sk-doc/benchmark/reports/compiled-routing/2026-07-21--benchmark-sweep--r3/hub-reports/cli-external-orchestration.json` (committed `01a7247efe2`, captured same day ~1h50m before this sweep)
 - **Archived figure**: `compiledRouting.scored=8, match=8, drift=0, subVerdict=compiled-serving` — Lane C parity **8/0**, covering exactly the same 8 scenario IDs this sweep enumerates (CE-P01, CE-P02, CE-003, CE-002, CE-H01, CE-H02, CE-001, CE-CR-001)
 - **Corroboration**: **EXACT MATCH.** This sweep independently re-derived routing decisions by hand (direct `resolve.cjs`/`router-replay.cjs` invocations per scenario, not by re-invoking the Lane C harness itself) and found 8/8 agreement with the archived report's per-row `frontDoorOutcome`/`status`. 0 drift confirmed independently, via a fully separate execution path.
 - **Verdict**: **CORROBORATED**

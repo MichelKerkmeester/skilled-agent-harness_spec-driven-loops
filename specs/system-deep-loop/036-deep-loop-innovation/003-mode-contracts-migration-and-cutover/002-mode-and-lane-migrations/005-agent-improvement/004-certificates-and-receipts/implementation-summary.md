@@ -46,8 +46,8 @@ _memory:
 | **Level** | 2 |
 | **Status** | Complete |
 | **Authority** | Additive-dark evidence only; legacy writers and authority are unchanged |
-| **Candidate SHA** | `fbf3c7291eb432ca541666397b95bf5da7bc500b` |
-| **BASE SHA** | `9c5c7c5bde4dbb468fdb11df3c5afdbaa87443e3` |
+| **Candidate SHA** | `73d07301b0e18de7ddc105448f96cd9be8a1aaaa` |
+| **BASE SHA** | `b61fd133f2316cb83829fc5e81ae271c21e3f67b` |
 | **Fixture manifest SHA-256** | `6cf23b23aadd53368b9cbb632c89c5d2fd67a6c27f647d654065f519a9cfba57` |
 <!-- /ANCHOR:metadata -->
 

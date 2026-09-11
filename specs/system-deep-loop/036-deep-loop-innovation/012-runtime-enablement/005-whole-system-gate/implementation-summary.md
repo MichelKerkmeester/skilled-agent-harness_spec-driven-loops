@@ -91,7 +91,7 @@ reports all 8 modes on `new_authoritative_final`, epoch 3, `source: stored`, `al
 each read from a stored record, not the absent-record default. This is the decisive check for a gate ordered to
 run after authority has moved, and it holds at the terminal tier.
 
-The gate's most recent full receipt (`scratch/receipt.md`) records the check set at candidate `07c1bd5f22`,
+The gate's most recent full receipt (`scratch/receipt.md`) records the check set at candidate `16e7d828cb`,
 the finalized tree carrying the direct-append guard forward-fix and the closeout doc corrections:
 
 | Check | Status | What it found |

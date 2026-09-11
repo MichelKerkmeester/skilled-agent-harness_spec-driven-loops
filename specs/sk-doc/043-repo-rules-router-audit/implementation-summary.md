@@ -140,7 +140,7 @@ and it is already built correctly for that category.
 An em-dash removal sweep had passed over `REPO RULES.md` and the nine rule files, leaving
 zero em dashes, and left the sentences the dashes had punctuated broken.
 
-The producer is identified, not guessed: commit `104d65f001`, "refactor(repo-rules): rename
+The producer is identified, not guessed: commit `2ab72cbc79`, "refactor(repo-rules): rename
 three rules, ban the em dash, brief the next program". Its diff shows the substitution
 directly, and `scratch/damage-provenance-diff.txt` holds the 311 changed lines:
 

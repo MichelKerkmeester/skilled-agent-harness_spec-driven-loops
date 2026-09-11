@@ -47,7 +47,7 @@ This sub-phase is the determinism keystone of the Spec-Kit Memory MCP (the PRIMA
 
 **Key Decisions**: Build the total-comparator + content-id formula once and reuse N (the keystone, per `synthesis/01` Shared-infrastructure). Ship the byte-identical-by-default seams (C-X1 `'active'`, C6-A clock) and the cheap tiebreaks (ANN, C5-B) first. Leave the render-stage and the multi-writer identity hardening documented but unbuilt because they are either fuller-parity follow-ups or single-tenant-refuted.
 
-**Critical Dependencies**: The two-primitive content-id module (shipped `18c8582e33`) is the shared dependency for C5-B, the ANN tiebreak COALESCE fallback and the eventual C5-A render stage. The C-X1 `'active'` default (shipped `65cfcea513`) is the de-risking prerequisite for the Wave-1 per-class zero-weighting (C2-B) that the `'configured'` residue exists to serve.
+**Critical Dependencies**: The two-primitive content-id module (shipped `0113515f43`) is the shared dependency for C5-B, the ANN tiebreak COALESCE fallback and the eventual C5-A render stage. The C-X1 `'active'` default (shipped `84c532114d`) is the de-risking prerequisite for the Wave-1 per-class zero-weighting (C2-B) that the `'configured'` residue exists to serve.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -61,7 +61,7 @@ This sub-phase is the determinism keystone of the Spec-Kit Memory MCP (the PRIMA
 | **Branch** | `system-speckit/028-memory-search-intelligence` |
 | **Parent Packet** | system-speckit/028-memory-search-intelligence/002-speckit-memory |
 | **Source research** | `../research/research.md`, `../../research/roadmap.md`, `../../research/synthesis/01-go-candidates.md` + `03` |
-| **Shipped record** | Wave-0 record (Wave-0 commits `738e118751..ab5459fb6d`) |
+| **Shipped record** | Wave-0 record (Wave-0 commits `61fe63b24d..5ed284319b`) |
 | **Parent Spec** | ../spec.md |
 | **Predecessor** | ../001-corpus-reindex-gate-zero/spec.md |
 | **Successor** | ../003-retrieval-class-routing/spec.md |
@@ -118,10 +118,10 @@ Establish the determinism + content-id foundation, one total comparator, two SHA
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.../mcp_server/lib/content-id.ts` | Create (DONE `18c8582e33`) | Centralized `hashContentBody` + `hashCanonicalJson` (the two primitives) |
-| `.../mcp_server/lib/search/vector-index-queries.ts` | Modify (DONE `bec0eed27f`) | `, m.id ASC` COALESCE on the 4 ranked ANN `ORDER BY distance` |
-| `.../shared/algorithms/rrf-fusion.ts` | Modify (DONE `bec0eed27f` + `65cfcea513`) | content_hash tiebreak in output sorts, `bonusOverChannels` param (`'active'` default) |
-| `.../mcp_server/lib/search/pipeline/stage2-fusion.ts` | Modify (DONE `65cfcea513`) | rank-time decay clock vs caller `nowMs`, no-timestamp skip guard preserved |
+| `.../mcp_server/lib/content-id.ts` | Create (DONE `0113515f43`) | Centralized `hashContentBody` + `hashCanonicalJson` (the two primitives) |
+| `.../mcp_server/lib/search/vector-index-queries.ts` | Modify (DONE `5c0a966df3`) | `, m.id ASC` COALESCE on the 4 ranked ANN `ORDER BY distance` |
+| `.../shared/algorithms/rrf-fusion.ts` | Modify (DONE `5c0a966df3` + `84c532114d`) | content_hash tiebreak in output sorts, `bonusOverChannels` param (`'active'` default) |
+| `.../mcp_server/lib/search/pipeline/stage2-fusion.ts` | Modify (DONE `84c532114d`) | rank-time decay clock vs caller `nowMs`, no-timestamp skip guard preserved |
 | `.../mcp_server/lib/response/envelope.ts` + `formatters/search-results.ts` | Modify (PENDING C5-A) | content-derived serialization-order render stage |
 | `.../shared/algorithms/rrf-fusion.ts` | Modify (PENDING C-X1 `'configured'`) | second bonus-denominator mode for per-class zero-weighting |
 <!-- /ANCHOR:scope -->
@@ -135,11 +135,11 @@ Establish the determinism + content-id foundation, one total comparator, two SHA
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Two SHA-256 content-id primitives centralized into one module, formula-identical to the legacy call sites | DONE, `lib/content-id.ts` (`hashContentBody` content-body + `hashCanonicalJson` canonical-field), byte-identical hash outputs proven by parity test, no behavior change (`030` §14 cand 7, commit `18c8582e33`) |
-| REQ-002 | The 4 ranked ANN `ORDER BY distance` queries are run-stable on tie | DONE, `, m.id ASC` (COALESCE) appended to all 4, which rows survive the LIMIT into fusion is now deterministic (`030` §14 cand 3, commit `bec0eed27f`) |
-| REQ-003 | Score-tie ordering at the comparator and RRF output sorts is content-derived, primary order unchanged | DONE, `content_hash`-asc tiebreak (COALESCE id) in the deterministic comparator + all 5 RRF output sorts, primary order unchanged (verified), 3 broad-batch failures confirmed pre-existing on baseline (`030` §14 cand 4, commit `bec0eed27f`) |
-| REQ-004 | The active-channel bonus denominator is a named param defaulting to byte-identical behavior | DONE, `bonusOverChannels` param defaults to `'active'` (byte-identical traced arithmetically), opus review SHIP (`030` §14 cand 5, commit `65cfcea513`) |
-| REQ-005 | Rank-time decay reads a caller-supplied `nowMs` clock, clock-less query stays byte-identical, reinforcement stays a separate event | DONE, rank-time decay clock added, restored the no-timestamp skip guard so C6-A is a pure refactor (`030` §14 cand 5, commit `65cfcea513`) |
+| REQ-001 | Two SHA-256 content-id primitives centralized into one module, formula-identical to the legacy call sites | DONE, `lib/content-id.ts` (`hashContentBody` content-body + `hashCanonicalJson` canonical-field), byte-identical hash outputs proven by parity test, no behavior change (`030` §14 cand 7, commit `0113515f43`) |
+| REQ-002 | The 4 ranked ANN `ORDER BY distance` queries are run-stable on tie | DONE, `, m.id ASC` (COALESCE) appended to all 4, which rows survive the LIMIT into fusion is now deterministic (`030` §14 cand 3, commit `5c0a966df3`) |
+| REQ-003 | Score-tie ordering at the comparator and RRF output sorts is content-derived, primary order unchanged | DONE, `content_hash`-asc tiebreak (COALESCE id) in the deterministic comparator + all 5 RRF output sorts, primary order unchanged (verified), 3 broad-batch failures confirmed pre-existing on baseline (`030` §14 cand 4, commit `5c0a966df3`) |
+| REQ-004 | The active-channel bonus denominator is a named param defaulting to byte-identical behavior | DONE, `bonusOverChannels` param defaults to `'active'` (byte-identical traced arithmetically), opus review SHIP (`030` §14 cand 5, commit `84c532114d`) |
+| REQ-005 | Rank-time decay reads a caller-supplied `nowMs` clock, clock-less query stays byte-identical, reinforcement stays a separate event | DONE, rank-time decay clock added, restored the no-timestamp skip guard so C6-A is a pure refactor (`030` §14 cand 5, commit `84c532114d`) |
 
 ### P1 - Required (complete OR user-approved deferral)
 
@@ -168,7 +168,7 @@ Establish the determinism + content-id foundation, one total comparator, two SHA
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Risk | Centralizing the content-id formula diverges from legacy bare-hex hashes | High, breaks dedup / receipt keying | Parameterize identity, prove byte-identical with a parity test (DONE, `18c8582e33`) |
+| Risk | Centralizing the content-id formula diverges from legacy bare-hex hashes | High, breaks dedup / receipt keying | Parameterize identity, prove byte-identical with a parity test (DONE, `0113515f43`) |
 | Risk | C-X1 `'active'` / C6-A clock silently change fusion math | High, breaks the cross-subsystem byte-compare contract | Default `'active'`, arithmetic/traced byte-identity proof, restored no-timestamp skip guard (DONE) |
 | Risk | C5-A render stage re-baselines golden files | Med, one-time snapshot churn | Do C5-B first (shipped), C5-A is the superseding render stage, re-baseline once |
 | Dependency | Wave-1 C2-B per-class weight injection | Blocks REQ-006 | C-X1 `'configured'` is built here but only consumed by C2-B, sequence with that sub-phase |
@@ -274,11 +274,11 @@ Establish the determinism + content-id foundation, one total comparator, two SHA
 
 | # | Candidate | Status | Commit | Gate / Notes |
 |---|-----------|--------|--------|--------------|
-| 1 | two-content-id-primitives | **DONE** | `18c8582e33` | Centralized into `lib/content-id.ts` (`hashContentBody` + `hashCanonicalJson`), byte-identical proven by parity test, no behavior change (`030` §14 cand 7) |
-| 2 | ANN-tie-stable-order | **DONE** | `bec0eed27f` | `, m.id ASC` (COALESCE) on the 4 ranked ANN `ORDER BY distance`, LIMIT-survival into fusion now run-stable (`030` §14 cand 3) |
-| 3 | C5-B | **DONE** | `bec0eed27f` | `content_hash`-asc tiebreak in deterministic comparator + all 5 RRF output sorts, primary order unchanged (verified), a reorder-of-ties for content-derived *stability*, not a stabilization (`030` §14 cand 4) |
-| 4 | C-X1 (`'active'`) | **DONE** | `65cfcea513` | `bonusOverChannels` param defaults to `'active'` (byte-identical traced arithmetically), opus SHIP (`030` §14 cand 5) |
-| 5 | C6-A | **DONE** | `65cfcea513` | Rank-time decay clock vs caller `nowMs`, restored no-timestamp skip guard so it is a pure refactor, reinforcement stays a separate event (`030` §14 cand 5) |
+| 1 | two-content-id-primitives | **DONE** | `0113515f43` | Centralized into `lib/content-id.ts` (`hashContentBody` + `hashCanonicalJson`), byte-identical proven by parity test, no behavior change (`030` §14 cand 7) |
+| 2 | ANN-tie-stable-order | **DONE** | `5c0a966df3` | `, m.id ASC` (COALESCE) on the 4 ranked ANN `ORDER BY distance`, LIMIT-survival into fusion now run-stable (`030` §14 cand 3) |
+| 3 | C5-B | **DONE** | `5c0a966df3` | `content_hash`-asc tiebreak in deterministic comparator + all 5 RRF output sorts, primary order unchanged (verified), a reorder-of-ties for content-derived *stability*, not a stabilization (`030` §14 cand 4) |
+| 4 | C-X1 (`'active'`) | **DONE** | `84c532114d` | `bonusOverChannels` param defaults to `'active'` (byte-identical traced arithmetically), opus SHIP (`030` §14 cand 5) |
+| 5 | C6-A | **DONE** | `84c532114d` | Rank-time decay clock vs caller `nowMs`, restored no-timestamp skip guard so it is a pure refactor, reinforcement stays a separate event (`030` §14 cand 5) |
 | 6 | C-X1-true-multichannel (`'configured'`) | **PENDING** | - | **Gate: shared-infra-dep**, built only alongside the Wave-1 C2-B per-class weight consumer, conditioned on the still-open fusion-bonus unit test, default stays `'active'` (`roadmap.md` Sequencing Notes, `001` iter-7 #10/#13/#31 H31-02 confirms C-X1 is from-scratch, aionforge has no bonus term, agreement is emergent) |
 | 7 | C5-A | **PENDING** | - | **Gate: render-build**, content-derived serialization-order render stage (`serializationId = sha256(canonical fields)`), fuller aionforge-parity successor to the shipped C5-B stopgap, golden-file rebaseline once, render tiebreak separate from fusion tiebreak (`001` iter-3 C5-A, iter-31 H31-04) |
 | 8 | M-dual-class-identity | **PENDING** | - | **Gate: multi-writer (single-tenant-refuted)**, iter-14 PROMOTE → iter-23 PARTIAL/NO-GO: the capture-vs-content distinction already exists informally (autoincrement id + contentHash dedup), formalizing pays off only for distributed/multi-writer merge. Documented, not built |

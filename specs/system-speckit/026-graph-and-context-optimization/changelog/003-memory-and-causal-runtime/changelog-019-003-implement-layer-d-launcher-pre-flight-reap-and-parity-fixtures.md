@@ -68,8 +68,8 @@ Both detached rerank sidecar launchers could reuse or spawn sidecars without fir
 - The exact Vitest path `node_modules/vitest/vitest.mjs` under `.opencode/skills/system-spec-kit` was not present in this checkout. The equivalent installed runner under `skills/system-spec-kit/scripts/node_modules` passed instead.
 - Python pre-flight uses private ledger lock and read helpers because `sidecar_ledger.py` does not expose a public raw-row locked read that preserves missing-owner debug rows. This keeps the change inside the approved launcher file.
 - Later phases still own `start.sh`, README, SKILL.md and operator-facing env forwarding docs.
-- The three implementation files were subsequently removed in a later cleanup commit (`696c889887`). The changelog records the state at ship time.
+- The three implementation files were subsequently removed in a later cleanup commit (`ada2c51ee8`). The changelog records the state at ship time.
 
 ## Later Update (2026-06-04)
 
-The rerank-sidecar runtime files referenced in this changelog were later removed in cleanup commits 74b9677494, b564013c0e and 696c889887. This entry records the work as it shipped at the time. The parent packet status is now Shipped then removed.
+The rerank-sidecar runtime files referenced in this changelog were later removed in cleanup commits b8a866de2f, c99f990897 and ada2c51ee8. This entry records the work as it shipped at the time. The parent packet status is now Shipped then removed.

@@ -20,7 +20,7 @@ trigger_phrases: []
 | `001-code-readmes/spec.md` | P1 re-verification: "of 009" at line 50; continuity completeness |
 | `006-commands/spec.md` | Deep-dive: metadata (lines 42-52), "of 009" count, continuity |
 | `006-commands/checklist.md` | Traceability: all items [x], inline evidence at CHK-060, CHK-022 |
-| `006-commands/implementation-summary.md` | Traceability: commit `818db21c54` at line 41, Files Changed table |
+| `006-commands/implementation-summary.md` | Traceability: commit `7239e3d2bd` at line 41, Files Changed table |
 | `007-agents/spec.md` | Deep-dive: metadata (lines 42-52), vague answered_questions |
 | `007-agents/checklist.md` | Traceability: all items [x], less specific evidence than 006 |
 | `007-agents/implementation-summary.md` | Traceability: NO git commit reference; `Completed: 2026-06-19` only (line 41) |
@@ -39,10 +39,10 @@ None. (All 3 existing P1 findings re-verified as active — see P1 Re-Verificati
 
 ### P2 Findings
 
-1. **Phases 007, 008, 009 implementation-summary.md lack git commit references** — 007-agents/implementation-summary.md:41, 008-agents-md/implementation-summary.md:41, 009-changelogs-constitutional-and-templates/implementation-summary.md:41 — The `Completed` field in the Metadata section carries only a date (`2026-06-19`) with no commit hash. By contrast, phases 001 (commit a3621ebe33), 003 (commit bb038e19ab), and 006 (commit 818db21c54) include explicit commit references in their implementation-summary.md Completed field, providing verifiable git traceability. The absence of commit hashes in 007-009 weakens auditability and prevents automated release-readiness tools from confirming that the documented changes were actually landed.
+1. **Phases 007, 008, 009 implementation-summary.md lack git commit references** — 007-agents/implementation-summary.md:41, 008-agents-md/implementation-summary.md:41, 009-changelogs-constitutional-and-templates/implementation-summary.md:41 — The `Completed` field in the Metadata section carries only a date (`2026-06-19`) with no commit hash. By contrast, phases 001 (commit 1455cf6062), 003 (commit 2229a24c7e), and 006 (commit 7239e3d2bd) include explicit commit references in their implementation-summary.md Completed field, providing verifiable git traceability. The absence of commit hashes in 007-009 weakens auditability and prevents automated release-readiness tools from confirming that the documented changes were actually landed.
 
    **Finding class**: instance-only (affects 3 of 12 phases)
-   **Scope proof**: 007-agents/implementation-summary.md:41 (`Completed: 2026-06-19`); 006-commands/implementation-summary.md:41 (`Completed: 2026-06-19 (commit 818db21c54)`)
+   **Scope proof**: 007-agents/implementation-summary.md:41 (`Completed: 2026-06-19`); 006-commands/implementation-summary.md:41 (`Completed: 2026-06-19 (commit 7239e3d2bd)`)
    **Affected surface hints**: ["Phase 007-009 implementation-summary.md Metadata", "Automated commit-verification in release-readiness gates", "Parent graph-metadata derived status derivation from child commit evidence"]
 
 2. **Phase 008 spec.md problem statement has "The the" duplicate-article typo** — 008-agents-md/spec.md:60 — Line 60 reads `The the root AGENTS.md plus CLAUDE.md runtime-routing mirrors needs a release-readiness cleanup contract...` The duplicated "The" is a proofreading error carried from template generation.
@@ -121,7 +121,7 @@ All 3 P1 findings remain active. Zero files in the review target have been modif
 | `playbook_capability` | notApplicable | Spec-folder target |
 
 ## Integration Evidence
-- Phase 006 implementation-summary.md: commit 818db21c54, 19 docs reviewed, deferred subset documented — strong traceability.
+- Phase 006 implementation-summary.md: commit 7239e3d2bd, 19 docs reviewed, deferred subset documented — strong traceability.
 - Phase 007 implementation-summary.md: Files Changed table lists 5 specific files with actions and purposes. Substantive documentation but missing git commit for audit trail.
 - Phase 008 implementation-summary.md: single fix documented (mk-spec-memory tool count 37→39), verified three ways. Missing git commit.
 - Phase 009 implementation-summary.md: 4 factual drifts across 3 surfaces, changelog archive scope correctly scoped. Missing git commit.

@@ -213,7 +213,7 @@ Medium. High breadth (templates + initializer + three validators) but low per-ed
 
 ## 12. OPEN QUESTIONS
 
-- One operator fork: which description budget wins (see decision-record ADR-003) — the workflow's ≤130 soft target, or `package_skill.py`'s 150-300 recommendation. RESOLVED by the operator to the recommended default (≤130 soft, 1,536 hard cap retained); shipped in WU1b (`0f2c601f9f`).
+- One operator fork: which description budget wins (see decision-record ADR-003) — the workflow's ≤130 soft target, or `package_skill.py`'s 150-300 recommendation. RESOLVED by the operator to the recommended default (≤130 soft, 1,536 hard cap retained); shipped in WU1b (`440f41a05b`).
 <!-- /ANCHOR:questions -->
 
 ---

@@ -5,7 +5,7 @@ trigger_phrases: []
 # Deep Research Strategy: Packet 036 Drift Census
 
 ## 1. Research Topic
-Revalidate phases 003-017 of packet 036 against `0ce43ff589..HEAD`, separating first-order path/symbol drift from second-order premise drift and producing a fully evidenced verdict for every phase.
+Revalidate phases 003-017 of packet 036 against `60b9ed8bc2..HEAD`, separating first-order path/symbol drift from second-order premise drift and producing a fully evidenced verdict for every phase.
 
 <!-- ANCHOR:key-questions -->
 ## 3. KEY QUESTIONS (remaining)
@@ -103,10 +103,10 @@ Revalidate phases 003-017 of packet 036 against `0ce43ff589..HEAD`, separating f
 <!-- MACHINE-OWNED: END -->
 
 ## 13. Known Context
-- Baseline: `0ce43ff589` dated 2026-07-16.
+- Baseline: `60b9ed8bc2` dated 2026-07-16.
 - Operator reports 204 commits after baseline, 183 AI-co-authored, and 22 touching `.opencode/skills/system-deep-loop`.
-- Required positive controls: commit `cc77a1e550a` renamed two runtime reference files named by phase 003, and phase 003's `behavior_benchmark/` glob should match zero directories.
-- Required mode-count commits: `6cd8ab14e4e`, `708d25acf04`, and `908efde8d8f`.
+- Required positive controls: commit `b052f329a73` renamed two runtime reference files named by phase 003, and phase 003's `behavior_benchmark/` glob should match zero directories.
+- Required mode-count commits: `d60cc2c7553`, `fa74e868615`, and `4b2c351cc1e`.
 - Root packet says eight research workstreams but distinguishes them from public workflow modes.
 - No packet-local resource map exists; coverage must come from the phase docs, commit range, and current tree.
 

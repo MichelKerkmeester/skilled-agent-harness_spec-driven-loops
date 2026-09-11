@@ -47,6 +47,7 @@
       "implementation-summary.md",
       ".opencode/skills/sk-design/SKILL.md",
       ".opencode/skills/sk-design/graph-metadata.json",
+      ".opencode/skills/sk-design/description.json",
       ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/verdict-matrix.md"
     ],
     "entities": [
@@ -84,6 +85,12 @@
         "name": "graph-metadata.json",
         "kind": "config",
         "path": ".opencode/skills/sk-design/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/description.json",
         "source": "derived"
       },
       {
@@ -187,17 +194,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "Files Changed",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phase 023's first-ever full manual execution of sk-design's `manualtestingplaybook` (56 real dispatches through `cli-opencode`, `openai/gpt-5.5-fast --variant medium`) produced a genuine `NOT READY` release verdict and catalogued 8 real bugs in `023-full-manual-playbook-execution/verdict-matrix.md`'s \"Real bugs found\" section — routing misses, a skipped ALWAYS-marked resource load, an unenforced excluded-alias rule, a router-precedence loss on a brief-only authoring-boundary scenario, an intake-before-routing violation, a weak-signal transform-verb prompt producing zero skill routing, and a",
     "created_at": "2026-07-07T19:18:48.068Z",
-    "last_save_at": "2026-08-30T15:39:12.426Z",
+    "last_save_at": "2026-09-11T16:41:54.536Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,11 +207,11 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5e19ac64f2e630bbb74dc2a52355e99f1ae14f7fd7f59e8e753432209fd6689e",
+    "source_fingerprint": "sha256:fad3e48317037ffdeb05eac9e34ff3b840ace60c1526d836a5cdcbf3d029534c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "74a22bd6aef795168ef3ce08460af96d745a787a84ed49f210162220ffda742f",
-      "plan.md": "cb27d72eb1f7f72342a4f6d0fa29b868f13d3def7ef79dd4b4495064a29f702e",
+      "plan.md": "5059b38784d39f4eea0b72974a812ed826efb8e4f4eb97024927c690b1772a80",
       "tasks.md": "6451382d46ae1bdad8087365b340e03b9fc732c1ff6d5f72a48186893ec16459",
       "implementation-summary.md": "3dea8ff143e6a1f4406a33aa148d4a8d3fe2aa90fe5d001dcb38db7cbece1cb2"
     },

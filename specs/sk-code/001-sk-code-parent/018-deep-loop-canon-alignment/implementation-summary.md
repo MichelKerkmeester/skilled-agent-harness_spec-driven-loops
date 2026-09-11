@@ -27,7 +27,7 @@ _memory:
       - question: "Is this phase executed?"
         answer: "Yes. Both 018a additive artifacts and the once-gated 018b registry/router/changelog work shipped; deep-loop STRICT is 0."
       - question: "Did the 018b gate clear?"
-        answer: "Yes. mode-registry.json returned git-clean; 018b executed in e1a266b07c (registry canon fields + extensions + hub-router) and a5e81198c9 (changelog symlink removal)."
+        answer: "Yes. mode-registry.json returned git-clean; 018b executed in 14b8472c17 (registry canon fields + extensions + hub-router) and a3bffc3626 (changelog symlink removal)."
 ---
 # Implementation Summary
 
@@ -58,12 +58,12 @@ The deep-loop parent hub now satisfies the parent-hub canon: all 8 P0 findings c
 
 | File | Action | Purpose | Commit |
 |------|--------|---------|--------|
-| `.opencode/skills/deep-loop-workflows/description.json` | Created | Advisor-facing parent-hub description (name, description, version, keywords, trigger examples, 7 modes, 3 backend kinds) | `e1a266b07c` |
-| `.opencode/skills/deep-loop-workflows/manual_testing_playbook/` | Created | Hub-level manual validation package: 20 scenarios across 5 categories, every route grounded in `mode-registry.json` | `2b03b419a6` |
-| `.opencode/skills/deep-loop-workflows/benchmark/` | Created | Lane-C router-mode baseline package (CONDITIONAL 71/100, D5 hard gate 100/100) + README | `50fbe53094` |
-| `.opencode/skills/deep-loop-workflows/mode-registry.json` | Updated | Per-mode `packetKind`/`grandfatheredFolderMismatch`/`toolSurface` + `extensions.{runtime-loop, advisor-projection}`; top-level `deprecatedModes: []`; `advisorRouting.*` byte-preserved | `e1a266b07c` |
-| `.opencode/skills/deep-loop-workflows/hub-router.json` | Created | Router with one `routerSignals` entry per registry mode, `<mode>-aliases` vocab classes, `tieBreak` over all seven modes | `e1a266b07c` |
-| `.opencode/skills/deep-loop-workflows/changelog/` (5 symlinks) | Removed | Real-files-only changelog policy; the dangling `deep-context` symlink removed with the rest | `a5e81198c9` |
+| `.opencode/skills/deep-loop-workflows/description.json` | Created | Advisor-facing parent-hub description (name, description, version, keywords, trigger examples, 7 modes, 3 backend kinds) | `14b8472c17` |
+| `.opencode/skills/deep-loop-workflows/manual_testing_playbook/` | Created | Hub-level manual validation package: 20 scenarios across 5 categories, every route grounded in `mode-registry.json` | `7dd373b017` |
+| `.opencode/skills/deep-loop-workflows/benchmark/` | Created | Lane-C router-mode baseline package (CONDITIONAL 71/100, D5 hard gate 100/100) + README | `59d000eb8e` |
+| `.opencode/skills/deep-loop-workflows/mode-registry.json` | Updated | Per-mode `packetKind`/`grandfatheredFolderMismatch`/`toolSurface` + `extensions.{runtime-loop, advisor-projection}`; top-level `deprecatedModes: []`; `advisorRouting.*` byte-preserved | `14b8472c17` |
+| `.opencode/skills/deep-loop-workflows/hub-router.json` | Created | Router with one `routerSignals` entry per registry mode, `<mode>-aliases` vocab classes, `tieBreak` over all seven modes | `14b8472c17` |
+| `.opencode/skills/deep-loop-workflows/changelog/` (5 symlinks) | Removed | Real-files-only changelog policy; the dangling `deep-context` symlink removed with the rest | `a3bffc3626` |
 
 <!-- /ANCHOR:what-built -->
 ---

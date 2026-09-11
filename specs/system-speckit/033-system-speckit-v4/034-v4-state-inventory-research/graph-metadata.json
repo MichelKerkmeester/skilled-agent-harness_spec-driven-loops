@@ -49,7 +49,6 @@
       "research/research.md",
       "scratch/launch-research.sh",
       "scratch/topic.txt",
-      "research/orchestration-status.log",
       "research/lineages/luna/research.md",
       "research/lineages/deepseek/research.md",
       "research/confirmed-drift.md",
@@ -107,12 +106,6 @@
         "name": "topic.txt",
         "kind": "file",
         "path": "scratch/topic.txt",
-        "source": "derived"
-      },
-      {
-        "name": "orchestration-status.log",
-        "kind": "file",
-        "path": "research/orchestration-status.log",
         "source": "derived"
       },
       {
@@ -204,11 +197,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`CHANGELOG-v4.0.0.0.md` in the parent folder was drafted before the memory-database decommission, the runtime rename, the simplification program, the recorded-findings closure and the CI hardening landed",
     "created_at": "2026-09-08T16:16:33.826Z",
-    "last_save_at": "2026-09-08T18:23:53.438Z",
+    "last_save_at": "2026-09-11T16:42:48.984Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,14 +218,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:8c49bd85d185b4965c0f473202f11298c2496958b34992ff4bf316464120448a",
+    "source_fingerprint": "sha256:e229b175375bc9d0c73de6ee7071ca6694f42a604f914fb4fe3efa81847949c0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8e512a5d65dbf13a3290a90a688e68b3c6b9da1884a4c5f81d16f59e744f2a06",
       "plan.md": "eb7172c74466adff66e6ef191ce03d41609d0ff15da4d2dacc6c01ecea91a42a",
       "tasks.md": "b4b3cfffcf281cfa2b2dc95ec7e3e17324f7addca1ea909487f954105214a1ff",
-      "implementation-summary.md": "68430131d58c0c2d98a58a9398e2869da072ba052b4c19665d7e476419480f2d",
-      "research/research.md": "88086f18a1446b91da4566297feb1f009301abb07f50e2a73aeff28d80df989e"
+      "implementation-summary.md": "230f9662ddb78c0d8b61f66721bc82161b8e029e4054ba5df74472b34548fb95",
+      "research/research.md": "c54a554685c31d1649b1932bf1a4d52c746e59cdd877170f46fc9c7b6e7cf023"
     },
     "last_active_child_id": null,
     "last_active_at": null

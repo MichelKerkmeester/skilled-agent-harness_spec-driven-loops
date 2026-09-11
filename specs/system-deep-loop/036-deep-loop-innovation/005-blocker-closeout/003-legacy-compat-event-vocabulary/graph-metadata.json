@@ -46,7 +46,8 @@
       ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-research-ledger-schema.vitest.ts",
       ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-review-ledger-schema.vitest.ts",
       ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-ai-council-ledger-schema.vitest.ts",
-      ".opencode/skills/system-deep-loop/runtime/tests/unit/skill-benchmark-ledger-schema.vitest.ts"
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/skill-benchmark-ledger-schema.vitest.ts",
+      "runtime/vitest.config.ts"
     ],
     "entities": [
       {
@@ -107,6 +108,12 @@
         "name": "skill-benchmark-ledger-schema.vitest.ts",
         "kind": "test",
         "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/skill-benchmark-ledger-schema.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vitest.config.ts",
+        "kind": "code",
+        "path": "runtime/vitest.config.ts",
         "source": "derived"
       },
       {
@@ -186,17 +193,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Five per-mode upcasters plus skill-benchmark reject ordinary lifecycle records",
     "created_at": "2026-07-31T01:25:19.803Z",
-    "last_save_at": "2026-08-30T15:39:21.629Z",
+    "last_save_at": "2026-09-11T16:42:24.866Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,14 +207,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:69f0af98ba4d5c969fe9cc45f3ba7660bd08b94c9ef71166a8a4553377b24941",
+    "source_fingerprint": "sha256:74574b364f19fa8136be618bae24230f9a1b699c70d80fd982bf81bf8132d031",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "cb5b3c8deda70f56e075d92b835ac0a288ab0016fbcc66dc12edfe3849d4cc65",
       "plan.md": "5dcf2c2ed598d2920bf1c279d37e35aa9437d8d4e16351ab1822f61332cb2fe5",
-      "tasks.md": "7d9d7efb8d618a8b37c73283839bdac1478e7674c34466a271ef8ff7fb10b4ad",
-      "decision-record.md": "5e7d0023376c4ca49d122724dec68e7e0797718216274cd512d73ae0380f601d",
-      "implementation-summary.md": "0f21c3e4ff16815506b7cb98ab76047bba7f671f7ad98224c5e86a76eb916736"
+      "tasks.md": "4825f757eca5b94652849b589a15df0ff368488fe8683d2e4767b74bce5fee4e",
+      "decision-record.md": "7fa16866983d07bce4070a086edbeb8632f0159248ee55906c434c92b259f717",
+      "implementation-summary.md": "d50e3a482d6cc26ab054d82f8e8df942ab131ac3b1ecad569236495df7fa593c"
     },
     "last_active_child_id": null,
     "last_active_at": null

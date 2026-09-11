@@ -76,7 +76,7 @@ Decide-then-regenerate. The rollout mode is a deliberate config, not an accident
 ### Phase 1: Investigate & decide
 - [x] Read `resolveMode` + the `COMMANDS` map in `render-command-contract.cjs`; find what selects `fix` vs `fallback`
 - [x] Check git history / the rollout config + `validate-rollout.cjs` for the intended default
-- [x] Confirm the demotion in `bce47507b6d` was deliberate (evidence for `fix` never existed)
+- [x] Confirm the demotion in `c753fa493af` was deliberate (evidence for `fix` never existed)
 - [x] **Decide**: `fallback` (legacy body), sourced to the evidence-governance rule
 
 ### Phase 2: Implement

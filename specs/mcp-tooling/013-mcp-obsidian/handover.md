@@ -49,12 +49,12 @@ Read this to continue mcp-obsidian work: to finalize the deferred completion fin
 - **To Session:** next mcp-obsidian continuation
 - **Phase Completed:** BUILD + EXPANSION + VALIDATION + FIXES (all shipped)
 - **Handover Time:** 2026-08-03
-- **Recent action:** Applied validation-driven doc fixes (mode → v1.1.0.1) and pushed to `origin/skilled/v4.0.0.0` as `ef61926475`.
+- **Recent action:** Applied validation-driven doc fixes (mode → v1.1.0.1) and pushed to `origin/skilled/v4.0.0.0` as `9e0a52d688`.
 
 **What shipped to v4 (3 pushed commits, all confirmed on origin):**
-1. `0dbad2848c` — `mcp-obsidian` mode (dual CLI + MCP, mirrors `mcp-click-up`) + hub registration.
-2. `cc6edc98d0` — expansion: 3 community-plugin references deepened + hub reconciled to 7 modes + advisor discoverability.
-3. `ef61926475` — live playbook validation packet (`010-playbook-validation`) + 2 doc fixes (mode v1.1.0.1) + Mode-A routing benchmark (PASS 98).
+1. `da8dd1e322` — `mcp-obsidian` mode (dual CLI + MCP, mirrors `mcp-click-up`) + hub registration.
+2. `c7ed47bfaf` — expansion: 3 community-plugin references deepened + hub reconciled to 7 modes + advisor discoverability.
+3. `9e0a52d688` — live playbook validation packet (`010-playbook-validation`) + 2 doc fixes (mode v1.1.0.1) + Mode-A routing benchmark (PASS 98).
 <!-- /ANCHOR:handover-summary -->
 
 ---
@@ -102,7 +102,7 @@ Read this to continue mcp-obsidian work: to finalize the deferred completion fin
 ## 3. For Next Session
 
 ### 3.1 Recommended Starting Point
-Confirm origin state: `git merge-base --is-ancestor ef61926475 origin/skilled/v4.0.0.0` (should be true). The mode is live at v1.1.0.1 with the validation packet on v4. Nothing is mid-edit.
+Confirm origin state: `git merge-base --is-ancestor 9e0a52d688 origin/skilled/v4.0.0.0` (should be true). The mode is live at v1.1.0.1 with the validation packet on v4. Nothing is mid-edit.
 
 ### 3.2 Priority Tasks Remaining
 1. **Finalize 009 + 010 completion fingerprints** once the spec-memory daemon is healthy — run `memory_save` (or `/memory:save`) on each packet's `implementation-summary.md`, then `validate.sh <folder> --strict` should reach Errors:0.
@@ -119,7 +119,7 @@ Confirm origin state: `git merge-base --is-ancestor ef61926475 origin/skilled/v4
 <!-- ANCHOR:validation-checklist -->
 ## 4. Validation Checklist
 
-- [ ] All three commits (`0dbad2848c`, `cc6edc98d0`, `ef61926475`) confirmed on `origin/skilled/v4.0.0.0`.
+- [ ] All three commits (`da8dd1e322`, `c7ed47bfaf`, `9e0a52d688`) confirmed on `origin/skilled/v4.0.0.0`.
 - [ ] Mode at v1.1.0.1 with the search + MCP-surface fixes present on origin.
 - [ ] `010-playbook-validation` (33 files) on origin.
 - [ ] Context saved via `generate-context.js` or `_memory.continuity` — DEFERRED (spec-memory daemon down).

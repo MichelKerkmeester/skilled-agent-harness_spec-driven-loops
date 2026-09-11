@@ -51,7 +51,7 @@ The memory daemon's `checkpoint_create` safety feature is broken on the producti
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Implemented — live-verified (gate fix `cce4fe931d`) |
+| **Status** | Implemented — live-verified (gate fix `0cdbcc0170`) |
 | **Created** | 2026-06-01 |
 | **Branch** | `main` |
 <!-- /ANCHOR:metadata -->

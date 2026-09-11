@@ -26,7 +26,7 @@ contextType: "implementation"
 - **tri-124** — `mcp_server/tests/flag-ceiling.vitest.ts:195-213` now has a drift guard that derives live tokens from `search-flags.ts` source and fails on unknowns; the static array was honestly relabeled "original core flags."
 - **tri-142** — `.opencode/bin/cli-offline-smoke.cjs:105-135 runCwdIndependenceCheck` spawns each shim's `list-tools` from an unrelated `mkdtemp` dir and asserts offline success + tool count.
 
-(All three were closed in commit `ac22c52fde`; the L9 `disposition.md` "Code queue (open)" line at L28 had not been reconciled.)
+(All three were closed in commit `d7aa665711`; the L9 `disposition.md` "Code queue (open)" line at L28 had not been reconciled.)
 
 **Genuinely OPEN (verified present in current code), grouped by value:**
 

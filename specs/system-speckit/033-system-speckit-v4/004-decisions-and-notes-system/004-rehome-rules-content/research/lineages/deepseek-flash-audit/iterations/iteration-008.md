@@ -9,7 +9,7 @@ Consolidate Iter 1-7 findings into ONE deduped inventory table (touchpoint | fil
 
 ## Findings
 
-### F8.1 MASTER INVENTORY (deduped; classes: DONE = already flipped by a1d2b84a1e, TODO = change needed, KEEP-AS-DOC = stays as unindexed doc, DELETE = remove)
+### F8.1 MASTER INVENTORY (deduped; classes: DONE = already flipped by b635afdcf4, TODO = change needed, KEEP-AS-DOC = stays as unindexed doc, DELETE = remove)
 
 #### A. CODE — search/pipeline
 | # | Touchpoint | file:line | Class | Action |

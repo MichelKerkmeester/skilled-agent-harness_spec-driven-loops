@@ -108,5 +108,5 @@ The chart record sits with the chart skill, and nothing points at the path it le
 |------|------|--------|------------|
 | Risk | Metadata fingerprints attest documents at a path that no longer exists | High: validation fails across 300 folders | Repair derived metadata immediately after the move, before validating |
 | Risk | The trigger index silently keeps the old path | Medium: retrieval misses the packet with no error | Regenerate it as part of this step, not later |
-| Dependency | `004-chart-and-diagram-cutover` | The skill must move before its spec does | Complete, commit `e34e225517` |
+| Dependency | `004-chart-and-diagram-cutover` | The skill must move before its spec does | Complete, commit `a131f628bc` |
 <!-- /ANCHOR:risks -->

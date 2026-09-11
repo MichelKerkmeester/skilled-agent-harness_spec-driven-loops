@@ -66,9 +66,9 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## PHASE 2: IMPLEMENTATION
 
-- [x] T004 Harden existing package entry points, exports, supported engines, evidence-backed presets, and the tiered support matrix (`package.json`) [evidence: 10 subpath exports; `src/release/support-matrix.ts` dated rows; commit 7888273014]
-- [x] T005 [P] Implement doctor checks for versions, capabilities, endpoints, presentation tiers, and privacy-fact expiry; revalidate OpenCode Go privacy and retention facts before 2026-08-31 and at release (`src/doctor/`) [evidence: `src/doctor/checks.ts`, `doctor.ts`; OpenCode Go expiry blocks hosted routing; commit fba44ebe75]
-- [x] T006 Implement release gates, typed aborts, cancellation and timeout handling, evidence manifests, and exact-original rollback coordination (`src/release/`) [evidence: `src/release/release-gate.ts`, `evidence.ts`, `rollback.ts`; provisional evidence blocks; commit 763f19ee02]
+- [x] T004 Harden existing package entry points, exports, supported engines, evidence-backed presets, and the tiered support matrix (`package.json`) [evidence: 10 subpath exports; `src/release/support-matrix.ts` dated rows; commit 2cbaf8c6fe]
+- [x] T005 [P] Implement doctor checks for versions, capabilities, endpoints, presentation tiers, and privacy-fact expiry; revalidate OpenCode Go privacy and retention facts before 2026-08-31 and at release (`src/doctor/`) [evidence: `src/doctor/checks.ts`, `doctor.ts`; OpenCode Go expiry blocks hosted routing; commit 5ca2db2851]
+- [x] T006 Implement release gates, typed aborts, cancellation and timeout handling, evidence manifests, and exact-original rollback coordination (`src/release/`) [evidence: `src/release/release-gate.ts`, `evidence.ts`, `rollback.ts`; provisional evidence blocks; commit 28c9c75751]
 - [x] T007 Write install, configuration, privacy, support, upgrade, rollback, and operator runbooks with content-free diagnostics (`docs/`) [evidence: `docs/install.md`, `configuration.md`, `privacy.md`, `support-matrix.md`, `rollback.md`, `runbook.md`]
 - [x] T008 [P] Run clean-install, six-runtime, privacy, negative-control, upgrade, downgrade, and rollback rehearsals (`test/release/`) [evidence: `test/release/rehearsal.test.ts`, `package-exports.test.ts`; injected six-runtime smoke; local-only zero-hosted-calls]
 <!-- /ANCHOR:phase-2 -->

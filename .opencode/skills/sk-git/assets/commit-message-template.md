@@ -145,7 +145,7 @@ Commit-Id: 0009023
 ```
 
 These examples are tightened versions of real commits in this repository's
-own history (`5baf52ff74`, `cf639da725`, `bd693dfc37`), grounded in what
+own history (`8701343331`, `e6f9a97b8b`, `ed1c269ee6`), grounded in what
 actually gets committed here, not generic auth/API scaffolding.
 
 ---

@@ -24,7 +24,7 @@ contextType: "general"
 | Aspect | Value |
 |--------|-------|
 | **Language/Stack** | Markdown under `.opencode/commands/rewrite/` and `.opencode/skills/sk-communication/` |
-| **Framework** | sk-doc command contract, and the `sk-create-with-human-voice` mode shipped by Wave A at `60212f5292` |
+| **Framework** | sk-doc command contract, and the `sk-create-with-human-voice` mode shipped by Wave A at `ced970a2c7` |
 | **Storage** | Filesystem only. The `.claude` command mirrors are per-file symlinks, so no mirror regeneration is involved |
 | **Testing** | `sk-doc/shared/scripts/validate_document.py`, `sk-create-skill/scripts/package_skill.py`, `sk-create-with-human-voice/scripts/hvr_scan.py` |
 
@@ -122,7 +122,7 @@ Three gates plus a residue scan, all captured to `scratch/`.
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-- Wave A commit `60212f5292`, which shipped `sk-create-with-human-voice`, its scope gate and `hvr_scan.py`.
+- Wave A commit `ced970a2c7`, which shipped `sk-create-with-human-voice`, its scope gate and `hvr_scan.py`.
 - `sk-doc/shared/references/hvr-rules.md`, unmoved and unmodified. Wave A left it in place deliberately and this packet depends on that decision holding.
 - Nothing from streams 4 or 5. Section 9 of spec.md records that no hub-root or repo-rule change is needed.
 <!-- /ANCHOR:dependencies -->

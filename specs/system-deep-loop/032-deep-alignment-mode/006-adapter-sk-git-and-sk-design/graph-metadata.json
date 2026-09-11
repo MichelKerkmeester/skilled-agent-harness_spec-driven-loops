@@ -195,7 +195,7 @@
     ],
     "causal_summary": "`deep-alignment` needs one adapter per standard authority so a lane scoped to `authority=sk-git` or `authority=sk-design` can run",
     "created_at": "2026-07-11T06:10:54.136Z",
-    "last_save_at": "2026-08-30T15:39:20.112Z",
+    "last_save_at": "2026-09-11T16:42:16.395Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1d4a645209db19305de12c48a2a58e466b5be7059a4b706f597ebd286fc34889",
+    "source_fingerprint": "sha256:d74f397df1a8a04839cd3f4b74b91e6033872f433aff5c6cea768b2779975e53",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e0fffd0213ba3a925481fbf088dabca9e2966099ba6a624bb736fe4a37b7f727",
-      "plan.md": "3bda1856d49f4ee87c7baa048573aebfa04aa921dc40f0e5c2dbff52373b3a63",
-      "tasks.md": "4de048e96d50bb179b02d638c8d98454c27624baae57206ee846f4e87f97ccbf",
-      "implementation-summary.md": "4868e20c7fb9cf822b3747ff7b6741cc398e9fa9ba511e1cb5cf8780a739c245"
+      "spec.md": "d035f2a9eaeff9928c39786aa4a61e28b8ecd285fe51330d626936da306408ae",
+      "plan.md": "7be348805c2f92da4e1bf34bbdd6dbfccde201358dc5e50a4f907a477c075258",
+      "tasks.md": "5ab98aaffe4ecf8cbc02d3d2dedccef762bc118933b1202759700d56ceb6261c",
+      "implementation-summary.md": "2dae3703b20db5b48c8abe52aeeef6efbfc4b8e0a9583c898bde592c10bcb5de"
     },
     "last_active_child_id": null,
     "last_active_at": null

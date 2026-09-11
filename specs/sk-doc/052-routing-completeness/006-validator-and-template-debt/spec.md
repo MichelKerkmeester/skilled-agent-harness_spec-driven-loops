@@ -137,14 +137,14 @@ fixture is.
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skills/sk-doc/sk-create-repo-rule/assets/repo-rule-template.md` | Modify | Banned character removed from the verbatim binding line (`c1b3b780c3`), overview section added (`d87e8dd162`) |
-| `.opencode/skills/sk-doc/sk-create-repo-rule/references/rule-anatomy.md` | Modify | Measured table re-derived after five of nine rows drifted (`c1b3b780c3`) |
-| `.../sk-create-with-human-voice/references/scope-and-exemptions.md` | Modify | Scanning a template with `--include-code`, and reading a zero without it as unmeasured (`c1b3b780c3`) |
-| `.opencode/skills/system-spec-kit/templates/core/plan.md.tmpl` | Modify | Scaffold line stripped of a semicolon and a serial comma (`9ae247d772`) |
-| `.../tests/__snapshots__/scaffold-golden-snapshots.vitest.ts.snap` | Modify | Golden snapshots re-captured against the corrected template (`9ae247d772`) |
-| Thirteen reference and readme files under three modes | Modify | Overview sections added, ten promoted from existing prose and five authored (`d87e8dd162`) |
-| Fifty-six `plan.md` files across `specs/` | Modify | The superseded scaffold line replaced, each dropping exactly one blocker (`d229b0a24d`) |
-| The document validator and the voice scanner | Modify | Fixture-tree exemption added, and template payload scanning enabled by name and location (`d229b0a24d`) |
+| `.opencode/skills/sk-doc/sk-create-repo-rule/assets/repo-rule-template.md` | Modify | Banned character removed from the verbatim binding line (`02f1ec6170`), overview section added (`2912ce44a8`) |
+| `.opencode/skills/sk-doc/sk-create-repo-rule/references/rule-anatomy.md` | Modify | Measured table re-derived after five of nine rows drifted (`02f1ec6170`) |
+| `.../sk-create-with-human-voice/references/scope-and-exemptions.md` | Modify | Scanning a template with `--include-code`, and reading a zero without it as unmeasured (`02f1ec6170`) |
+| `.opencode/skills/system-spec-kit/templates/core/plan.md.tmpl` | Modify | Scaffold line stripped of a semicolon and a serial comma (`2f4b9a481d`) |
+| `.../tests/__snapshots__/scaffold-golden-snapshots.vitest.ts.snap` | Modify | Golden snapshots re-captured against the corrected template (`2f4b9a481d`) |
+| Thirteen reference and readme files under three modes | Modify | Overview sections added, ten promoted from existing prose and five authored (`2912ce44a8`) |
+| Fifty-six `plan.md` files across `specs/` | Modify | The superseded scaffold line replaced, each dropping exactly one blocker (`71f1c2f9bc`) |
+| The document validator and the voice scanner | Modify | Fixture-tree exemption added, and template payload scanning enabled by name and location (`71f1c2f9bc`) |
 <!-- /ANCHOR:scope -->
 
 ---

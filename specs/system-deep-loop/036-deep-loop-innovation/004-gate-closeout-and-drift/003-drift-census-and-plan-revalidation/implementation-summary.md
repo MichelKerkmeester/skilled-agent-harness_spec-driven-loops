@@ -22,7 +22,7 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions:
-      - "Baseline = 0ce43ff589 (2026-07-16)"
+      - "Baseline = 60b9ed8bc2 (2026-07-16)"
       - "Forced depth is expressed as stop-policy max-iterations, not a lowered threshold"
       - "009 cutover path supersedes abstract phases 015 and 017; 016 whole-system gate kept"
 ---
@@ -40,7 +40,7 @@ _memory:
 | **Stage** | Census done; Tier-1 + Tier-2 reference repairs applied (2026-07-19, 380 audited); Q-C supersession verdict recorded (009 track supersedes abstract phases 015/017, 016 kept); Tier-3 plan amendments recorded as an out-of-scope deferral to a scoped operator planning pass |
 | **Level** | 2 |
 | **Started** | 2026-07-19 |
-| **Baseline** | `0ce43ff589` (2026-07-16) |
+| **Baseline** | `60b9ed8bc2` (2026-07-16) |
 | **Range under census** | supplied as 204/22; both lineages corrected it independently — sol 211/27, glm 205/25 |
 <!-- /ANCHOR:metadata -->
 
@@ -52,7 +52,7 @@ _memory:
 **Complete:**
 - The census phase scaffold: `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, and this summary, registered as
   child 018 of the 036 phase parent.
-- Baseline determination: `0ce43ff589` identified as the merge that landed the normalized 036 packet on v4, with
+- Baseline determination: `60b9ed8bc2` identified as the merge that landed the normalized 036 packet on v4, with
   204 commits since — 183 AI-co-authored by concurrent sessions, 22 inside the `system-deep-loop` runtime.
 - Executor verification: both dispatch paths confirmed working before any budget was spent.
 

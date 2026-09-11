@@ -16,7 +16,7 @@ contextType: "implementation"
 
 > Spec folder: `.opencode/specs/deep-loops/032-goal-opencode-plugin/014-goal-state-cleanup-and-archive` (Level 1)
 > Parent packet: `.opencode/specs/deep-loops/032-goal-opencode-plugin`
-> Commit: `cba2d1e7fc` feat(mk-goal): archive-then-prune goal state, sweep orphaned sessions
+> Commit: `870da2e9e5` feat(mk-goal): archive-then-prune goal state, sweep orphaned sessions
 
 ### Summary
 

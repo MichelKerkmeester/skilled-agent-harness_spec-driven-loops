@@ -6,7 +6,7 @@
 **Retrieved:** 2026-09-03  
 **Iterations:** 10 of 10, with `stopPolicy: max-iterations`  
 **Baseline:** `specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/007-fidelity-and-library-research/research/lineages/deepseek-flash-max/research.md`  
-**Corpus snapshot:** commit `756a7fcd4c`
+**Corpus snapshot:** commit `3ce648be44`
 
 ## Executive result
 
@@ -29,7 +29,7 @@ Convergence was observed only as telemetry. The configured maximum of ten main-l
 
 Each baseline URL was checked for liveness, semantic support, and current API/default/version context. A source was marked `VERIFIED` only when its live text supported the attributed claim; a source was marked `CORRECTED` when it resolved but the baseline wording, URL, attribution, or scope needed adjustment; and a source was marked `UNVERIFIABLE` when the claim could not be checked from the public page reached.
 
-The corpus check used the shipped files at `756a7fcd4c`, the T1–T10/C1–C3 checklist, and the named skill/reference files. The review did not inspect or use any reference-implementation clone under scratch, tmp, or vendor. No package was installed and no repository generation, validation, checkout, commit, or other out-of-scope write was run.
+The corpus check used the shipped files at `3ce648be44`, the T1–T10/C1–C3 checklist, and the named skill/reference files. The review did not inspect or use any reference-implementation clone under scratch, tmp, or vendor. No package was installed and no repository generation, validation, checkout, commit, or other out-of-scope write was run.
 
 Every recommendation below is reconciled with the template contract: one self-contained HTML file opened by double-click, no build step, no package manager, no remote dependency, inline vector graphics, and accessible visible/table fallbacks. Runtime-library behavior is evidence about the upstream library, not permission to add that library to the corpus.
 
@@ -155,7 +155,7 @@ These are not additional baseline URL rows, so they do not change the 31/10/2 co
 
 ## Shipped-corpus checklist
 
-| Item | Verdict at `756a7fcd4c` | File:line evidence |
+| Item | Verdict at `3ce648be44` | File:line evidence |
 |---|---|---|
 | T1 — accessible SVG title/description helpers and calls | **CLOSED** for the eight detached-key forms | `assets/templates/box-plot.html:135,177`; `calendar-grid.html:186,211`; `candlestick.html:144,192`; `heat-matrix.html:147,201`; `parallel-axes.html:146,185`; `scatter.html:142,188`; `treemap.html:150,197`; `waterfall.html:137,194` |
 | T2 — display-ready number formatting and sensible ticks | **CLOSED** in the targeted bar and candlestick forms | `assets/templates/bar-columns.html:120-160` (`fmt`, `niceStep`, and ticks); `assets/templates/candlestick.html:129-139,172-181` |

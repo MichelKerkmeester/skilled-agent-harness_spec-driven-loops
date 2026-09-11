@@ -26,7 +26,7 @@ The mk-spec-memory embedder cascade previously preferred cloud APIs over local o
 
 ADR-014 reversed the probe order to `[ollama, hf-local, openai, voyage]`. On a fresh `vec_metadata`, the daemon now walks local providers first and only escalates to cloud APIs when nothing local is reachable. The hf-local fallback model was aligned to `nomic-ai/nomic-embed-text-v1.5` (768d), matching the within-Ollama default, so cascade fallthrough no longer fragments the production characteristic profile across two unrelated text-embedding families.
 
-A two-line code change in `auto-select.ts` and a one-line regex flip in the matching vitest file carried the functional change. A 14-file documentation sweep then aligned every operator-facing surface to describe the same local-first flow, including a new recommended new-user setup section published in INSTALL_GUIDE and both READMEs. Commit `8bc0d7c0b6` shipped the full packet.
+A two-line code change in `auto-select.ts` and a one-line regex flip in the matching vitest file carried the functional change. A 14-file documentation sweep then aligned every operator-facing surface to describe the same local-first flow, including a new recommended new-user setup section published in INSTALL_GUIDE and both READMEs. Commit `ea5dbaada4` shipped the full packet.
 
 ### Added
 

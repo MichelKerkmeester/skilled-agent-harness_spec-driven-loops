@@ -50,57 +50,57 @@ Epoch five runs on 2026-07-02, follow-up remediation. The two active fan-out rev
 
 ### Scaffold and research
 
- 9e9945a424  feat(156-agent-loops): scaffold loop-systems implementation roadmap
+ 9c8ceb52df  feat(156-agent-loops): scaffold loop-systems implementation roadmap
 
 ### Deep-loop-runtime: state safety, locking and lifecycle
 
- db5be2c0f1  feat(deep-loop-runtime): hermetic test isolation helper
- 25e73ba869  feat(deep-loop-runtime): atomic-state write-only-on-change
- 6ce2c88031  feat(deep-loop-runtime): atomic-state SHA-256 integrity helpers
- 8b44aafff6  feat(deep-loop-runtime): atomic-state deferred/debounced writer
- 3854d662c9  feat(deep-loop-runtime): abortable chunked sleep primitive
- c844ea42a0  feat(deep-loop-runtime): lifecycle taxonomy + transition guards
- ecb0a55682  feat(deep-loop-runtime): JSONL lock-held merge for fan-out salvage
- 05a5ffeb34  feat(deep-loop-runtime): loop-lock heartbeat hardening
- 156c27f441  feat(deep-loop-runtime): loop-lock single-flight decision
+ 9585327371  feat(deep-loop-runtime): hermetic test isolation helper
+ 36babe1042  feat(deep-loop-runtime): atomic-state write-only-on-change
+ 83eb93729b  feat(deep-loop-runtime): atomic-state SHA-256 integrity helpers
+ 8d6e0535b8  feat(deep-loop-runtime): atomic-state deferred/debounced writer
+ 27400b4697  feat(deep-loop-runtime): abortable chunked sleep primitive
+ b494f621a7  feat(deep-loop-runtime): lifecycle taxonomy + transition guards
+ 83e62e2088  feat(deep-loop-runtime): JSONL lock-held merge for fan-out salvage
+ 8fba8e3e73  feat(deep-loop-runtime): loop-lock heartbeat hardening
+ 146f0183ae  feat(deep-loop-runtime): loop-lock single-flight decision
 
 ### Convergence, coverage-graph and fan-out resilience
 
- 5361706c4b  feat(deep-loop-runtime): shared convergence-profile schema + parity pin (ADR)
- 364a95bbcb  feat(deep-loop): byte-offset log regions (stamp + dashboard surfacing)
- e617c8a34c  feat(deep-loop-runtime): fixed-rate overrun accounting
- 34919c1339  feat(deep-loop-runtime): convergence score-delta signal
- c69d7c8521  feat(deep-loop-runtime): observation-threshold guard for convergence
- cfb7b475ce  feat(deep-loop-runtime): coverage-graph time decay
- 8b7f80f461  feat(deep-loop-runtime): coverage-graph fuzzy merge
- c04648fa66  feat(deep-loop-runtime): typed fallback-router reroute + graph preflight
- 8fd95112e7  feat(deep-loop-runtime): LLM-judge hardening (retry, fallback, quarantine)
- 01e4825272  feat(deep-loop-runtime): persisted-wait crash resume for fan-out
- 03a04cb54f  feat(deep-loop-runtime): fanout stall watchdog
- 1b37fdbe0a  feat(deep-loop): code-graph to coverage-graph seed bridge
+ cb818ac9d1  feat(deep-loop-runtime): shared convergence-profile schema + parity pin (ADR)
+ 35badfab42  feat(deep-loop): byte-offset log regions (stamp + dashboard surfacing)
+ f93a1183e7  feat(deep-loop-runtime): fixed-rate overrun accounting
+ a507542e75  feat(deep-loop-runtime): convergence score-delta signal
+ cf0bd85c8d  feat(deep-loop-runtime): observation-threshold guard for convergence
+ c97871d12e  feat(deep-loop-runtime): coverage-graph time decay
+ ee99f52e18  feat(deep-loop-runtime): coverage-graph fuzzy merge
+ d87b047903  feat(deep-loop-runtime): typed fallback-router reroute + graph preflight
+ 42a4faac7c  feat(deep-loop-runtime): LLM-judge hardening (retry, fallback, quarantine)
+ b9b24a3c21  feat(deep-loop-runtime): persisted-wait crash resume for fan-out
+ 6e11e30577  feat(deep-loop-runtime): fanout stall watchdog
+ be608e8124  feat(deep-loop): code-graph to coverage-graph seed bridge
 
 ### Deep-loop-workflows and observability
 
- d181c79c6a  feat(deep-loop-workflows): dashboard sparkline trend section
- 64ca699a6b  feat(deep-loop-workflows): run-now sentinel control in auto research loop
- 5b330f614a  feat(deep-loop): single-loop telemetry heartbeat + no-change suppression
- cf34c21462  feat(deep-loop-workflows): injection inbox provenance
- 0eb6b96e76  feat(deep-loop-workflows): anti-convergence min-iteration floor
- f879af051d  feat(deep-loop-workflows): anchor-ownership conflict resolution
- 0894cc7c9f  feat(deep-loop-workflows): loop-wide --dry-run mode
- 5c618d628f  feat(deep-loop): cross-mode anti-convergence contract (fail-closed stopPolicy)
- df96c09d3c  feat(deep-loop-workflows): rejected-pattern cache with fuzzy suppression
- 97beb2e364  feat(deep-loop-workflows): ideas-backlog observe-promote-reject lifecycle
- f8be972a2f  feat(deep-loop-runtime): unified observability event envelope
- ea049f6080  feat(deep-loop-workflows): per-iteration memory upsert
- a78e877ca9  feat(deep-loop-runtime): push-wave fan-out schema (flat_pool default, wave planner stub)
+ c5ce0bde8f  feat(deep-loop-workflows): dashboard sparkline trend section
+ 86b4fd5e04  feat(deep-loop-workflows): run-now sentinel control in auto research loop
+ 84e57abf2d  feat(deep-loop): single-loop telemetry heartbeat + no-change suppression
+ 84cbfc3a19  feat(deep-loop-workflows): injection inbox provenance
+ bd4a696f42  feat(deep-loop-workflows): anti-convergence min-iteration floor
+ 3bcc071ef4  feat(deep-loop-workflows): anchor-ownership conflict resolution
+ 855c716077  feat(deep-loop-workflows): loop-wide --dry-run mode
+ 5bbeac5cfc  feat(deep-loop): cross-mode anti-convergence contract (fail-closed stopPolicy)
+ 27bb0296bf  feat(deep-loop-workflows): rejected-pattern cache with fuzzy suppression
+ 4cd042d07b  feat(deep-loop-workflows): ideas-backlog observe-promote-reject lifecycle
+ bfc77f0da6  feat(deep-loop-runtime): unified observability event envelope
+ c2256a2b5d  feat(deep-loop-workflows): per-iteration memory upsert
+ 8d9a08b401  feat(deep-loop-runtime): push-wave fan-out schema (flat_pool default, wave planner stub)
 
 ### Deep-improvement, speckit autopilot and advisor projection
 
- 7c218ee33d  feat(system-spec-kit): speckit :autopilot/:unattended lifecycle
- c92390d8ec  feat(skill-advisor): registry-projection drift guard + workflowMode
- 356c92f0bb  feat(deep-improvement): loop-quality benchmark (outcome score-delta) 91e04a892b  feat(deep-loop-runtime): record-replay cassette harness
- 1b3a721a31  feat(deep-improvement): accepted-vs-shipped promotion split + rollback
+ 512e70b875  feat(system-spec-kit): speckit :autopilot/:unattended lifecycle
+ 6ca0ad2246  feat(skill-advisor): registry-projection drift guard + workflowMode
+ 1d2fd4c2dc  feat(deep-improvement): loop-quality benchmark (outcome score-delta) 3d581e1d5f  feat(deep-loop-runtime): record-replay cassette harness
+ 0e10c42275  feat(deep-improvement): accepted-vs-shipped promotion split + rollback
 
 ---
 
@@ -108,24 +108,24 @@ Epoch five runs on 2026-07-02, follow-up remediation. The two active fan-out rev
 
 ### Phase docs finalized and tree restructured
 
- 7e3a1d6597  chore(156-agent-loops): refresh phase-parent metadata after completion
- 8f19f7f618  refactor(156-agent-loops): ungroup 002-implementation, promote children to root phases 002-008
- 5107cd8ac7  fix(156-agent-loops): restore promoted phase content at new paths (002-008)
+ 8f96003863  chore(156-agent-loops): refresh phase-parent metadata after completion
+ 06fd1b0e50  refactor(156-agent-loops): ungroup 002-implementation, promote children to root phases 002-008
+ f85b9c538c  fix(156-agent-loops): restore promoted phase content at new paths (002-008)
 
 ### Deep review
 
- 411f512947  docs(deep-review): 20-iter review packet for 156 loop-systems
- f3638fca98  docs(deep-review): finalize review-report, 8 clusters fixed (P0 + ~20 P1)
- bb33403ffa  test(deep-review): MiMo-V2.5-Pro runs all 41 new-feature playbook scenarios, 41/41 PASS
+ 179717a3ed  docs(deep-review): 20-iter review packet for 156 loop-systems
+ 49f05b827f  docs(deep-review): finalize review-report, 8 clusters fixed (P0 + ~20 P1)
+ 331ce58026  test(deep-review): MiMo-V2.5-Pro runs all 41 new-feature playbook scenarios, 41/41 PASS
 
 ### Loop-systems remediation track
 
- dc677807fb  docs(009-remediation): handover + remediation phase scaffolds
- 16516de0dd  fix(deep-loop): promotion mirror-sync gate uses current-canonical baseline (009 remediation: 002)
- 8966e04255  docs(deep-loop): require EXIT 0 test runs in high-risk playbook pass criteria (009 remediation: 005)
- 8ed78a19c5  docs(deep-loop): adversarial regression scenarios for fixed loop-system bugs (009 remediation: 004)
- 50ae3e9a63  test(deep-loop): genuinely concurrent JSONL append harness (009 remediation: 006)
- a9aac0a805  docs(009-remediation): finalize 001 rollback-hash-guard to Complete
+ 50b0369c82  docs(009-remediation): handover + remediation phase scaffolds
+ 3a80e8acda  fix(deep-loop): promotion mirror-sync gate uses current-canonical baseline (009 remediation: 002)
+ aee61002f9  docs(deep-loop): require EXIT 0 test runs in high-risk playbook pass criteria (009 remediation: 005)
+ 45b5daab78  docs(deep-loop): adversarial regression scenarios for fixed loop-system bugs (009 remediation: 004)
+ 13f5e15dab  test(deep-loop): genuinely concurrent JSONL append harness (009 remediation: 006)
+ 4513f3e659  docs(009-remediation): finalize 001 rollback-hash-guard to Complete
 
 ---
 

@@ -39,7 +39,7 @@ _memory:
 | **Completed** | 2026-07-21 |
 | **Level** | 2 |
 | **Status** | Complete (additive-dark) |
-| **Candidate base SHA** | `d1a3f0323c3635f24c3560feaeda839522ececf0` |
+| **Candidate base SHA** | `f3ae3672a0a3f046204658dcccaeda2d7b8dee14` |
 | **Authority** | Legacy paths remain canonical until a later migration phase |
 <!-- /ANCHOR:metadata -->
 

@@ -40,7 +40,7 @@ parent: "sk-doc/019-skill-routing-refactor"
 
 - [x] T101 LUNA xhigh read-only investigation (cli-pi); orchestrator verify against files + router-replay
 - [x] T102 Resolve the SR-004 disagreement (wire, not trim) with the operator
-- [x] T103 Add PREFLIGHT_OWNERSHIP and VARIATION_DIVERSITY intents to smart-routing.md; commit 8cb2e8dfdc
+- [x] T103 Add PREFLIGHT_OWNERSHIP and VARIATION_DIVERSITY intents to smart-routing.md; commit 3dd5e19efb
 <!-- /ANCHOR:phase-2 -->
 
 ---

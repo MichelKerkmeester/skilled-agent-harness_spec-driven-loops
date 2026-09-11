@@ -45,6 +45,9 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
+      ".opencode/skills/sk-design/command-metadata.json",
+      ".opencode/skills/sk-design/hub-router.json",
+      ".opencode/skills/sk-design/mode-registry.json",
       ".opencode/skills/sk-design/SKILL.md"
     ],
     "entities": [
@@ -70,6 +73,24 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "command-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/command-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/mode-registry.json",
         "source": "derived"
       },
       {
@@ -173,29 +194,11 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phase 004 shipped the five `/interface:` creation commands but kept a full `/design:` alias layer for backward compatibility: five thin alias wrappers under `.opencode/commands/design/`, fifteen alias assets, `canonicalCommand` + `compatibilityAliases` fields across the command registries, and alias-reconciliation machinery in the surface checker",
     "created_at": "2026-07-20T18:20:43.509Z",
-    "last_save_at": "2026-08-30T15:39:12.815Z",
+    "last_save_at": "2026-09-11T16:41:54.537Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a3844d11f1192128e3986fa31a7522f58bc3b8e1e4288427fd9ab80a7a5da992",
+    "source_fingerprint": "sha256:d1bd3a2aa0870525eba998509b8f182e8bb7d931e75a12f9372fb38f4017afd4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6f4ebecfecead38d6e8ddc77e1fa49ed06c98c87b611bd6217b0cc795c9beb4f",
-      "plan.md": "02f4702cd34c55679fa25b8eec84eeb5678174911fb0baa058ffee5934fbcb1e",
-      "tasks.md": "29cc8df55e0be49568033cf7d4c2c1fd3ff7a33f84a5faa5f08ecfcd91e54632",
-      "implementation-summary.md": "e4ef866f15fe51be79b4dac2a6db6728e9917dfc903e4ebf8fa48741b23d7fca"
+      "spec.md": "f4d3e84c30b50ec5afe08aaa35171b1827d145cef446990b9f794bb8297687ff",
+      "plan.md": "8a09bbcffba57018b7ee3330e4f0b28f5998a97be58bfef426cc60fea30cd483",
+      "tasks.md": "35db4ddb11790815199cbf874287f36400220cafa967ed7a50f4a385a65b75f6",
+      "implementation-summary.md": "4d54c14802f238afcc0204aebadc543a1bc42974205595c99a94c4bbe5754235"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -23,7 +23,7 @@ I have enough high-confidence evidence. Let me record my analysis.
 
 1. **Actor slugs — CLEAN.** All 13 distinct `last_updated_by` values (`gpt-5.5-fast`, `claude-fable`, `claude-opus-4-8`, `orchestrator-session`, `scaffold-author`, etc.) satisfy the actor-slug regex (lowercase-alnum start, ≤64 chars). No violations.
 
-2. **Field length — CLEAN.** Consistent with the recursive `--strict` green state (commits `0d7519c909` / `5d636c1ff4`); structural validation enforces the 96-char/non-narrative cap and would have failed otherwise.
+2. **Field length — CLEAN.** Consistent with the recursive `--strict` green state (commits `8abe9d03a4` / `35bf0b8003`); structural validation enforces the 96-char/non-narrative cap and would have failed otherwise.
 
 3. **Fingerprint format — one real defect.** Of 139 fingerprints, 132 are the zero sentinel and 6 are genuine-looking sha256 digests. **One value, `sha256:1111…1111`, in `000-release-cleanup/005-mcp-cli-stress-tests/spec.md:25`, is a fabricated placeholder.** I confirmed via `grep` that `1111…` appears in code only inside `scripts/test-fixtures/00{2,3,4}-valid-levelN/*` — it is a *test-fixture* placeholder, not a runtime-recognized sentinel (no code treats it specially; only all-zeros is skipped).
 

@@ -14,7 +14,7 @@ _memory:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation"
     last_updated_at: "2026-08-09T05:14:58Z"
     last_updated_by: "claude-opus"
-    recent_action: "014 AUTHORIZED (operator Go); 014/003 cutover-cert built+verified+landed eaf0a79024"
+    recent_action: "014 AUTHORIZED (operator Go); 014/003 cutover-cert built+verified+landed 1b902baf9c"
     next_safe_action: "Close the goal.md P0 cutover gates."
     blockers:
       - "Per-mode authority cutover remains blocked until the goal.md P0 acceptance gates and a mode-specific rollback drill pass."
@@ -51,7 +51,7 @@ rollback windows. A **remediation tree (018-033)** was spawned by the validation
 > The entire remaining BUILD of the epic is done + adversarially clean (022, 024, 025, 029). Only the
 > operator-gated cutover (014/015/017/merge) and the reorg-LAST 034 remain.
 
-- **016 pre-cutover gate — CLEARED-FOR-014.** A read-only Opus audit at origin tip `f44c5ad782`
+- **016 pre-cutover gate — CLEARED-FOR-014.** A read-only Opus audit at origin tip `c039a4dc71`
   independently code-verified the register: all 4 named blockers' mechanisms genuinely closed at the
   code level (022/023/024 fully confirmed by reading the code; 021 mechanism done — see below); 025
   certificate-binding present (spot-checked 3/12); a ~28-finding cross-child, cross-P0 sample turned
@@ -74,23 +74,23 @@ rollback windows. A **remediation tree (018-033)** was spawned by the validation
   to main. Per-mode 014 preconditions from the verdict: wire an identityResolver (F001, opt-in today);
   024 `event_version` backward-compat caveat (B2); 025 low-sev residuals accepted.
 
-## Session update — 2026-08-08 (LATEST): state corrected to origin `3ae10c0111` + speed/parallelization plan
+## Session update — 2026-08-08 (LATEST): state corrected to origin `59d7a0c000` + speed/parallelization plan
 
 > This block is the CURRENT truth and **supersedes** the "Pending (inferred)", "Completion path
 > (sequenced)", and "Immediate next action" sections lower in this file wherever they conflict. Those
 > older sections are kept for their reasoning trail, but their WS1 build list (026→032, re-attempt 033)
-> is DONE. Everything here is grounded against origin `skilled/v4.0.0.0` tip `3ae10c0111` (`git rev-parse`
-> + `git ls-tree` + per-child `spec.md` Status lines) on 2026-08-08. Worktree local HEAD `9229cb8f3e` is
+> is DONE. Everything here is grounded against origin `skilled/v4.0.0.0` tip `59d7a0c000` (`git rev-parse`
+> + `git ls-tree` + per-child `spec.md` Status lines) on 2026-08-08. Worktree local HEAD `2d12dfc5f5` is
 > BEHIND origin — read state from origin tip, not the working tree.
 
 ### SINCE this block (2026-08-08, later): 029 closed + 024 build-spec ready
 
 - **029 improvement-promotion-authority — CLOSED 13/13.** The 3 tail findings landed: code
-  `f6cdf604a2` (F-017-04 rollback-hash forgery + F-019-01 council-root traversal + F-019-03
-  payload symlink-follow — all confirmed-real, red-before/green-after), status doc `ab6aae0a71`.
+  `700cb92044` (F-017-04 rollback-hash forgery + F-019-01 council-root traversal + F-019-03
+  payload symlink-follow — all confirmed-real, red-before/green-after), status doc `1642dcaed9`.
   Residual: F-019-01 is a calibrated closure; ADR-003 full config-resolved root stays Proposed.
 - **024 build spec is WRITTEN** at `004-durable-write-boundaries/build-spec.md` (grounded at
-  origin `5410a4bfcb`). P0 sets reconciled (complementary; B1-B7 canonical set; 5 findings
+  origin `5324ea0d91`). P0 sets reconciled (complementary; B1-B7 canonical set; 5 findings
   LUNA-REFUTED → T001-gate before any fix — the anti-fabrication guard). Execute it in a FRESH
   worktree at origin tip (this tree is too messy for the atomic migration). Do NOT rush it.
 - **024 T001 confirm-first DONE** (`024/t001-disposition.md` — AUTHORITATIVE over build-spec).
@@ -102,7 +102,7 @@ rollback windows. A **remediation tree (018-033)** was spawned by the validation
   persistence) + identity/policy digest + loop-lock atomic publish + honest metadata. F-002-01 =
   benign, operator-elected. The concurrency-defect surface ~halved; the highest-fabrication-risk
   "two-process single-winner" tests for already-correct code are GONE.
-- **024 B1 + F-018-03 fencing keystone — BUILT + ADVERSARY-HARDENED + LANDED `39015ed14c`** (3 commits:
+- **024 B1 + F-018-03 fencing keystone — BUILT + ADVERSARY-HARDENED + LANDED `039fc180f9`** (3 commits:
   keystone `f6f9f0e2cc` + harness-lease fix `cd894f1e81` + forgery fix `de98bdf299`; 73 files, +652/-130).
   `appendAuthorized` is now hard-private `#appendAuthorized`, reachable only via a coordinator-minted
   `FenceCapability` whose token is re-checked against the durable current lease (`peekCurrentLease`); all
@@ -120,9 +120,9 @@ rollback windows. A **remediation tree (018-033)** was spawned by the validation
   proof (deeper design — operator decision).
 - **024 fencing GO-set — ALL 4 INCREMENTS BUILT + VERIFIED + ADVERSARIALLY CLEAN + LANDED** (built in
   worktree `.worktrees/0134-skilled-024-fencing`, node_modules symlinked from the main checkout; each
-  rebased onto fresh origin + pushed): B1 append-fence + F-018-03 fence_token `39015ed14c`, B2 gateway
-  identity fail-closed `27e6c2b5a9`, B3 policy-identity digest `5b6d9e86b9`, B4 loop-lock atomic publish
-  `ff3a574014`. A final independent Opus adversarial pass could NOT refute B1–B4 (132 tests green, tsc rc0,
+  rebased onto fresh origin + pushed): B1 append-fence + F-018-03 fence_token `039fc180f9`, B2 gateway
+  identity fail-closed `82299e2b0a`, B3 policy-identity digest `3c616bd514`, B4 loop-lock atomic publish
+  `2ccb5cc6f7`. A final independent Opus adversarial pass could NOT refute B1–B4 (132 tests green, tsc rc0,
   caller-migration tsc-proven, no hollow/ghost tests). B7 metadata reconciliation in flight.
   **Residual (elective): token-replay** — bounded by exclusive-lock + prior-head CAS + single-use dedup
   (no double-commit / content-forgery; out of threat model; genuinely untested — not claimed closed).
@@ -136,9 +136,9 @@ rollback windows. A **remediation tree (018-033)** was spawned by the validation
   SHA) → **014/015** staged cutover + legacy retirement (IRREVERSIBLE, operator-gated) → **017** integrate +
   parent rollup → **merge to main**.
 - **025 artifact-certificate-binding — T001 CONFIRM-FIRST DONE** (`025/t001-disposition.md`, landed
-  `a5f89f1587`): **12/12 findings CONFIRMED-REAL** (none refuted). **BUILD DONE + adversarially CLEAN + LANDED** in 4
-  groups (`8b2e49931f` sealed-store · `d30321b98e` deep-improvement certs · `59e0040d33` per-mode emitters ·
-  `a232835611` reducers + shadow-parity ripple-fix), each finding with a decoy/forgery negative test; the
+  `80bcceba5e`): **12/12 findings CONFIRMED-REAL** (none refuted). **BUILD DONE + adversarially CLEAN + LANDED** in 4
+  groups (`cdfb150ffc` sealed-store · `86b36c5414` deep-improvement certs · `20857a8536` per-mode emitters ·
+  `9b68d42963` reducers + shadow-parity ripple-fix), each finding with a decoy/forgery negative test; the
   final independent adversarial pass returned CLEAN (11/12; residuals: F-011-01/restore compares
   `qualified_digest` not full `sameReference` — low-sev hardening, near-zero exposure; F-015-02 binds 3/14
   deep-review kinds — the load-bearing ledger-anchored outputs; F-007-02 origin authored externally so
@@ -158,13 +158,13 @@ rollback windows. A **remediation tree (018-033)** was spawned by the validation
   `.opencode/specs/` twin over the `specs/` stub first, then verify line-count / diff-vs-origin
   before landing.
 
-### State corrected to origin tip `3ae10c0111`
+### State corrected to origin tip `59d7a0c000`
 
-- **022 shadow-parity (Blocker 1): DISCHARGED 6/6.** deep-alignment landed `11f3535212`, deep-review
-  landed `e168c1a1f4`; the epic handover was reconciled at tip `3ae10c0111`.
+- **022 shadow-parity (Blocker 1): DISCHARGED 6/6.** deep-alignment landed `053bf3aaa9`, deep-review
+  landed `5d148f1bf1`; the epic handover was reconciled at tip `59d7a0c000`.
 - **WS1 remediation siblings — ALL Complete on origin** (per-child `spec.md` Status, verified this pass):
   `026` Completed · `027` Complete · `028` Complete (10/12, residual QA) · `030` Complete (7/8) ·
-  `031` Complete (22/23) · `032` Complete · **`033` Complete (5/5, `4446839af8`)**. ⇒ the goal-prompt
+  `031` Complete (22/23) · `032` Complete · **`033` Complete (5/5, `53d977fcae`)**. ⇒ the goal-prompt
   PATH line "build+land remaining 026,027,028,029,030,031,032; then re-attempt 033" is **STALE** — landed.
 - **`029` improvement-promotion-authority — In Progress (10/13).** Tail findings F-017-04 / F-019-01 /
   F-019-03 in `persist-artifacts.cjs`, `promote-candidate.cjs`, `rollback-candidate.cjs`. 029 references
@@ -227,9 +227,9 @@ the decision before building — never build against an unreconciled set. Also r
 cited `file:line` at HEAD, mark CONFIRMED / REFUTED / MOVED / ALREADY-FIXED (only 13 of the 166 register
 findings carry a verified mark; the rest are single-leaf hypotheses).
 
-**STEP 1 — recover the clean anchor.** `git checkout 5c98e4654e -- runtime/lib runtime/tests` +
+**STEP 1 — recover the clean anchor.** `git checkout 0c5c966015 -- runtime/lib runtime/tests` +
 `git clean -fd -- runtime/lib runtime/tests` (see Key mechanics). Verify all later diffs against
-`5c98e4654e`, NEVER `git diff FETCH_HEAD`.
+`0c5c966015`, NEVER `git diff FETCH_HEAD`.
 
 **STEP 2 — red-before proof (the negative control).** Write the failing test proving a SUPERSEDED writer
 holding an unexpired proof CAN append today (F-014-01 / F-002-01, the exact bypass). This is the control
@@ -292,15 +292,15 @@ origin showed **026/027/028/030/032 as stale "Planned" scaffolds** despite lande
 was under-landed (3 of 9 files) carrying hard-link/`linkSync` mechanism claims that never shipped.
 
 Fixed + verified on `origin/skilled/v4.0.0.0` this session:
-- **033 (`1876f27e97`)** — corrected every doc to the real code: `atomic-state.ts` F004 = rename-aside
+- **033 (`a0937145fa`)** — corrected every doc to the real code: `atomic-state.ts` F004 = rename-aside
   claim + `existsSync`-guarded `renameSync` CAS (NO `linkSync`); `loop-lock.ts` F005 = `openSync(...,'wx')`
   create-then-write, partial-record window **still OPEN** (a 014 precondition). F001/F002/F005 = per-mode
   014 preconditions; F003/F004 cleared. Landed the full honest 9-file set; post-land verified clean.
-- **026/027/030/032 (`085baf6d29`)** — landed their completed docs; each validates --strict Errors 0.
+- **026/027/030/032 (`cdc065463f`)** — landed their completed docs; each validates --strict Errors 0.
   **030's** impl-summary had a real fabrication (the REVERTED F-028-01 sandbox-derivation described as
   landed) — corrected (sync-agents keeps `HISTORICAL_SETTINGS`, ai-council stays `workspace-write`,
   F-028-01 deferred). ⇒ the **"030 DEFERRED (minimax)"** and **"033 DEFERRED"** lines below are OBSOLETE.
-- **028** — code landed (`d0d8623ddf`, 10/12; F-016-01/F-016-06 deferred) but spec was still "Planned"
+- **028** — code landed (`de9ce00df4`, 10/12; F-016-01/F-016-06 deferred) but spec was still "Planned"
   and checklist 0/51 template; finalization (status flip + honest checklist run) is in progress —
   the ONLY remaining WS1 doc-land item.
 
@@ -308,15 +308,15 @@ Lesson: a subagent "clean" is a hypothesis — the first correction agent's own 
 (caught on my re-read), and the verification agent's `030` fabrication finding was re-confirmed against
 code before acting. When landing a child, name ALL its docs, not just the code. 014 stays operator-gated.
 
-### 028 P0 completion + a VERIFIED data-loss regression fixed (operator-directed, `568aa17a40`)
+### 028 P0 completion + a VERIFIED data-loss regression fixed (operator-directed, `0947953081`)
 
 Finalizing 028 uncovered that it was NOT honestly Complete (its own P0 bar unmet) AND a real safety
 regression in landed code. Escalated; operator chose "restore preserve + guard tests" and "build real
-uniform containment", "complete the P0 work". Landed `568aa17a40`:
+uniform containment", "complete the P0 work". Landed `0947953081`:
 - **Data-loss fix:** `write-containment.ts` no longer `rmSync`-deletes unattributable untracked
-  out-of-scope files (preserved as non-fatal advisories). This restores `6d762f4393` — made after a
-  fan-out irreversibly deleted 12 untracked files (8 from unrelated work) — which `3372513722` (packet
-  020, mislabeled "behavior-preserving") silently reverted and `d0d8623ddf` (028) cemented by INVERTING
+  out-of-scope files (preserved as non-fatal advisories). This restores `7899f70e25` — made after a
+  fan-out irreversibly deleted 12 untracked files (8 from unrelated work) — which `95823480a8` (packet
+  020, mislabeled "behavior-preserving") silently reverted and `de9ce00df4` (028) cemented by INVERTING
   the guard tests. Guard tests restored (red-before/green-after).
 - **REQ-010:** post-dispatch containment now runs for ALL dispatch kinds (was cli-codex-only), safe
   because unattributable writes are advisories not deletions; per-kind legit-write dirs excluded.
@@ -332,7 +332,7 @@ NOT a clean Complete. `016` gate (PATH step 2) should account for these residual
 
 ### WS1 doc-reconciliation debt — GROUNDED, larger than the 5 fixed (2026-08-08)
 
-Confirmed against origin `baf22b0ec3`: the code-landed WS1 + spine children carry a systematic
+Confirmed against origin `d35ebcbe8c`: the code-landed WS1 + spine children carry a systematic
 DOC debt — the same "code landed, docs not reconciled" gap fixed for 026/027/030/032. Two classes:
 - **Missing impl-summary on origin** (would FAIL the closeout `validate --recursive --strict`):
   022, 024, 025 (confirmed). 024 is the landed durable-write-boundaries foundation — its completion
@@ -350,12 +350,12 @@ session, so do NOT trust a build's "complete"). This is real PATH-1 closeout wor
 Code-verification this session caught FOUR children whose docs claimed findings landed that the
 code contradicts: **030** (a reverted F-028-01 sandbox-derivation described as landed), **033**
 (a hard-link lock design that never shipped; real code is rename+O_EXCL), **028** (not honestly
-complete + a live data-loss regression), and **029** (F-017-04 claimed "Landed as 0d1827eef5 at
+complete + a live data-loss regression), and **029** (F-017-04 claimed "Landed as 9d258a879e at
 `shared/rollback-candidate.cjs:177`" but that commit's diff for that file is EMPTY — the guard
 at HEAD still returns both `preAcceptTargetHash` AND `candidateHash` as valid rollback sources,
 the exact bypass the finding names; corrected 029 → In Progress 10/13). Every one was found only
 by cross-checking cited commits/diffs against code, never by trusting the doc.
-**IMPLICATION for 014:** the pre-014 clearance verdict (`010d145b9a`) and every child's self-
+**IMPLICATION for 014:** the pre-014 clearance verdict (`965d70af29`) and every child's self-
 reported "complete" CANNOT be trusted at face value. The **016 whole-system gate MUST independently
 code-verify each of the 166 register findings' actual discharge** (cited-commit-touches-file +
 code-matches-claim), not accept child impl-summaries. This is the real gate before any 014 GO.
@@ -371,7 +371,7 @@ The four named 014-cutover blockers are 021/022/023/024. Code-verified this sess
   Originally zero-built (harness adapters diff-identical to HEAD; both projections shared one derivation, so the
   harness could not fail). Now all six modes (council, agent-improvement, model-benchmark, skill-benchmark,
   deep-alignment, deep-review) derive their ledger and legacy sides by genuinely different code paths, each with a
-  red-before/green-after divergence-injection test. deep-review landed `e168c1a1f4` (removed exception-laundering,
+  red-before/green-after divergence-injection test. deep-review landed `5d148f1bf1` (removed exception-laundering,
   built `deepReviewProjectionFromReducerState`, deleted ~230 lines wrong-schema dead code; 10/10). Residual:
   REQ-005 full-surface fixture coverage across all modes (thoroughness, not divergence-detectability).
 - **024 (Blocker 3, append-boundary fencing): NOT DISCHARGED + FABRICATED evidence.** The core fencing
@@ -383,10 +383,10 @@ The four named 014-cutover blockers are 021/022/023/024. Code-verified this sess
   "In Progress — Blocker 3 NOT discharged"; 022/025 given honest Planned impl-summaries.
 
 **CONCLUSION: 014 authority cutover CANNOT proceed — now blocked on 024 only.** Blocker 1 (022) is
-DISCHARGED (6/6 modes, verified + landed `e168c1a1f4`). Blocker 3 (024) remains genuinely UNBUILT — real
+DISCHARGED (6/6 modes, verified + landed `5d148f1bf1`). Blocker 3 (024) remains genuinely UNBUILT — real
 gateway-only fencing (private appendAuthorized + fence capability + superseded-writer rejection). This is fresh
 BUILD work, not doc reconciliation.
-The pre-014 verdict `010d145b9a` (and any "WS1 cleared the blockers" claim) is REFUTED by code.
+The pre-014 verdict `965d70af29` (and any "WS1 cleared the blockers" claim) is REFUTED by code.
 
 **Concrete remaining PATH-1 build scope (grounded 2026-08-08):**
 - **024 — the largest blast radius in the tree, security-critical, atomic.** REQ-001: make
@@ -400,17 +400,17 @@ The pre-014 verdict `010d145b9a` (and any "WS1 cleared the blockers" claim) is R
   red-before (superseded writer CAN append today) → green-after (it CANNOT); prove no cast-reachable
   `appendAuthorized`. NOTE 024's own LUNA review lists a DIFFERENT P0 triple (F001 gateway identity /
   F002 policy-closure-state / F005 loop-lock) — reconcile which finding set is authoritative before building.
-- **022 — DISCHARGED: 6/6 modes built + verified + LANDED.** council (`8b6b7b1f7e`), agent-improvement
-  (`16b13faecf`), model-benchmark + skill-benchmark (`f4a4cbe335`) all derive the ledger side independently
+- **022 — DISCHARGED: 6/6 modes built + verified + LANDED.** council (`13c7f1f999`), agent-improvement
+  (`5ca500873c`), model-benchmark + skill-benchmark (`cb1b6c69bd`) all derive the ledger side independently
   with red-before/green-after divergence tests (39/39, 19/19 etc.). The model-benchmark/skill-benchmark
   reducer-lossiness design decision was RESOLVED by GPT-5.6-SOL: 4 model-benchmark service fields are
   incidental (scoped out of the comparator); skill-benchmark evidence digests are load-bearing (reducer
-  fixed to persist them, `54ba83e7a3` — a real cutover-safety improvement, the reducer was dropping audit
+  fixed to persist them, `5479825471` — a real cutover-safety improvement, the reducer was dropping audit
   digests). Honest residual: skill-benchmark `certificateEvidenceDigests` still unrecoverable (reducer never
-  persists it; out of scope; not fixture-exercised). **deep-alignment — DONE + landed (`11f3535212`):** built the
+  persists it; out of scope; not fixture-exercised). **deep-alignment — DONE + landed (`053bf3aaa9`):** built the
   from-scratch legacy oracle `deepAlignmentLegacyOracleProjection` (switch-fold over all 40 event stems, never
   imports the reducer fold); tsc rc0, 10/10; also fixed a real replay-fingerprint key-ordering bug. **deep-review —
-  DONE + landed (`e168c1a1f4`):** removed reducer-exception-laundering + success-path laundering; built
+  DONE + landed (`5d148f1bf1`):** removed reducer-exception-laundering + success-path laundering; built
   `deepReviewProjectionFromReducerState`; strengthened the legacy oracle to a complete independent impl; deleted
   ~230 lines of wrong-schema dead code; red-before blind → green-after ok:false/projection-semantic/refused; 10/10.
   Design fork resolved scope-out (receiptRefs/reportOrder incidental, normalized to [] on both paths). **All 6
@@ -427,14 +427,14 @@ verify-against-code discipline that caught all 5 fabrications this session. 022 
   contracts (012), and the 8 per-mode migrations (013).
 - **014 authority cutover — BLOCKED** by the validation-gate review. The epic crux; WS1 de-risks it.
 - **Remediation WS1 — landed on `origin/skilled/v4.0.0.0`:** 018, 021, 022/001-002, 024
-  (`5c98e4654e`), 025/002-004. **Autonomous-loop additions:** Step-0 033-manifest (`79870daa10`),
-  **019** runtime-code-readmes (`44cc6cdfc2`, 56 READMEs + 14 repairs), **020** sk-code-opencode-alignment
-  (`3372513722`, 13 comment-only MODULE headers), **023** legacy-compat-event-vocabulary
-  (`aa66365e78`, 6 upcasters + real-capture fixtures, T001 all confirmed + 1 sub-claim refuted).
-  **026** alignment coverage/seal/lane (`ca64df3f55`+`ee8c4dd67a`+`c83c53d44c`+`1578d8533e`),
-  **027** mode-gate & contract binding (`c6957eac3c`, 9 findings), **028** fanout-dispatch-integrity
-  (`d0d8623ddf`, 10/12; F-016-01 yaml-argv + F-016-06 codex-env DEFERRED), **029** promotion/rollback/
-  council receipts (`0d1827eef5`, 10/11; persist-artifacts cwd-confinement DEFERRED).
+  (`0c5c966015`), 025/002-004. **Autonomous-loop additions:** Step-0 033-manifest (`5f35a1ea27`),
+  **019** runtime-code-readmes (`edce8eb629`, 56 READMEs + 14 repairs), **020** sk-code-opencode-alignment
+  (`95823480a8`, 13 comment-only MODULE headers), **023** legacy-compat-event-vocabulary
+  (`8a49bc4703`, 6 upcasters + real-capture fixtures, T001 all confirmed + 1 sub-claim refuted).
+  **026** alignment coverage/seal/lane (`ed8eb5d4cf`+`5e078ce498`+`2cd3eec4d8`+`46e806286e`),
+  **027** mode-gate & contract binding (`2e89392a91`, 9 findings), **028** fanout-dispatch-integrity
+  (`de9ce00df4`, 10/12; F-016-01 yaml-argv + F-016-06 codex-env DEFERRED), **029** promotion/rollback/
+  council receipts (`9d258a879e`, 10/11; persist-artifacts cwd-confinement DEFERRED).
 - **030 runtime-mirror/routing — DEFERRED (minimax build reverted):** mirror-sync-verify wrongly
   added `codex` to the checked-runtime set (broke 4 tests incl. a landed 029 test); hub-router
   mis-routed `/deep:command-benchmark` under alignment-aliases; sync-agents sandbox derivation
@@ -444,7 +444,7 @@ verify-against-code discipline that caught all 5 fabrications this session. 022 
   GPT-5.6-LUNA max/fast** (contention cleared). NOT cli-opencode/deepseek, NOT minimax. Verify-then-land
   per child stays mandatory (each codex/opencode build so far shipped ≥1 bad finding caught + deferred).
 - **033 identity/lock hardening — DEFERRED** (3 non-converged passes; the last hung on the full
-  aggregate's shared-graph SQLite append-lock). Design docs + postmortem landed (`2c39edddd1`,
+  aggregate's shared-graph SQLite append-lock). Design docs + postmortem landed (`14d051a4c5`,
   status Blocked). Launch brief: `/tmp/ks/build-036-033-reattempt.md` (root-cause-first; the
   regen brief is ephemeral — reconstruct from `033/handover.md` if `/tmp` is gone).
 
@@ -503,13 +503,13 @@ build+verify+land cycle and a mid-flight halt just leaves partial state.
   `--fileParallelism`; `git checkout -- database/` before isolation runs; better-sqlite3 ABI 141.
   **The full 168-file aggregate can hang on append-lock contention — run the per-mode matrix
   per-mode, not the whole suite in one process** (this is what killed the last 033 pass).
-- **Landed-024 clean anchor + verification baseline:** commit `5c98e4654e`. Recover runtime with
-  `git checkout 5c98e4654e -- runtime/lib runtime/tests` + `git clean -fd -- runtime/lib runtime/tests`.
-  **VERIFY a build's changes against `5c98e4654e` (a real ancestor), NEVER `git diff FETCH_HEAD`** —
+- **Landed-024 clean anchor + verification baseline:** commit `0c5c966015`. Recover runtime with
+  `git checkout 0c5c966015 -- runtime/lib runtime/tests` + `git clean -fd -- runtime/lib runtime/tests`.
+  **VERIFY a build's changes against `0c5c966015` (a real ancestor), NEVER `git diff FETCH_HEAD`** —
   the leak-guard lands via commit-tree without updating the local index, so origin-tracked files
   (landed READMEs, 024 code) false-report as spurious deletions/additions vs FETCH_HEAD (this
   false-alarmed a whole 020 verification pass before I traced it). A child's runtime `.ts`/fixture
-  diff vs `5c98e4654e`, minus prior-child files, isolates its true change.
+  diff vs `0c5c966015`, minus prior-child files, isolates its true change.
 - **Shadow-parity/certificate suites HANG even in small groups** (append-lock), not just the full
   aggregate — but the ledger-schema/reducer/direct suites run fine. So verify a code child via its
   DIRECT suites + tsc + scoped diff; for the hang-prone shadow-parity/certificate suites you cannot

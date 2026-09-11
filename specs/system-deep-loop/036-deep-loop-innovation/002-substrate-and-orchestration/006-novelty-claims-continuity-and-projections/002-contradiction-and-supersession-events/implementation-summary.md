@@ -116,8 +116,8 @@ gateway is called, while exact event retries recover the original durable proof 
 
 | Identity | Value |
 |----------|-------|
-| Working-tree parent HEAD | `012652b479dee08455de574574c5e7a8971a8b0b` |
-| Merge-base SHA | `9c5c7c5bde4dbb468fdb11df3c5afdbaa87443e3` |
+| Working-tree parent HEAD | `68b518ab0d8ee5b2bce3a8f1938a7944a1d5945e` |
+| Merge-base SHA | `b61fd133f2316cb83829fc5e81ae271c21e3f67b` |
 | Candidate SHA | `UNCOMMITTED` (no commit requested) |
 | Event-registry digest | `e778bcdd5d8af3d70a5636010fcff277aa0eb3a7d050a64ab98f2c6ff7f493ed` |
 | Reference-fixture digest | `c6f04a7d2bd6e979b991e6f4f8c5d5bee8cf5ddf146dd1dff9760ba7d52c5395` |

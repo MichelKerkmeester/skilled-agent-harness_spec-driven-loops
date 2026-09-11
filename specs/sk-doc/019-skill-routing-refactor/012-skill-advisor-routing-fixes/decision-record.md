@@ -577,7 +577,7 @@ Research left this decision open by design: "decide: skipped/fail-open returns `
 
 ### Decision
 
-**We chose**: Adopt the governance fallback directive as the no-brief output contract. `renderAdvisorFallbackDirective()` (`.opencode/skills/system-skill-advisor/mcp_server/lib/render.ts:204`) already reaches the model on every prompt in production today, confirmed live. `git blame` on the `brief ?? renderAdvisorFallbackDirective()` line (`hooks/claude/user-prompt-submit.ts:243`) shows it landed as an intentional, review-hardened change in commit 7adbd30db9f (2026-07-10), not accidental drift. The implementation is the intended behavior, the 4 red tests are stale.
+**We chose**: Adopt the governance fallback directive as the no-brief output contract. `renderAdvisorFallbackDirective()` (`.opencode/skills/system-skill-advisor/mcp_server/lib/render.ts:204`) already reaches the model on every prompt in production today, confirmed live. `git blame` on the `brief ?? renderAdvisorFallbackDirective()` line (`hooks/claude/user-prompt-submit.ts:243`) shows it landed as an intentional, review-hardened change in commit 63d34c31daf (2026-07-10), not accidental drift. The implementation is the intended behavior, the 4 red tests are stale.
 
 **How it works**: `renderAdvisorFallbackDirective()` returns the comment-hygiene directive plus the Fable-5 governor directive whenever the hook runs but produces no brief. Skip-eligible and fail-open paths still return `{}` unchanged, only the ran-but-produced-no-brief path emits the directive. Phase 1 aligns the 4 stale hook tests and `references/hooks/skill_advisor_hook.md` to this directive, the implementation itself does not change. Path correction for Phase 1: the real hook lives at `.opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts`, not the `mcp_server/hooks/...` path shown in this packet's Files to Change table in spec.md.
 
@@ -590,7 +590,7 @@ Research left this decision open by design: "decide: skipped/fail-open returns `
 | Align implementation to `{}`, fix the drift | Matches what the tests already expect, smaller diff if no consumer depends on the governance directive | Wrong choice if a production consumer already relies on the governance directive shipping today | Rejected |
 | Align tests to the governance directive, adopt it as the new contract | Correct choice if the governance directive already reached production and is providing value | Wrong choice if it was an unintentional drift with no real consumer, in which case this locks in an accidental behavior | Chosen |
 
-**Why this one**: The consumer check confirmed the governance directive already reaches production on every prompt (`render.ts:204`, confirmed live), and `git blame` confirmed the change was intentional and review-hardened, commit 7adbd30db9f, not accidental drift. That makes the 4 red tests stale, not the implementation.
+**Why this one**: The consumer check confirmed the governance directive already reaches production on every prompt (`render.ts:204`, confirmed live), and `git blame` confirmed the change was intentional and review-hardened, commit 63d34c31daf, not accidental drift. That makes the 4 red tests stale, not the implementation.
 
 ---
 
@@ -615,7 +615,7 @@ Research left this decision open by design: "decide: skipped/fail-open returns `
 | # | Check | Result | Evidence |
 |---|-------|--------|----------|
 | 1 | **Necessary?** | PASS | 4 of 11 hook tests are red right now because of this exact ambiguity |
-| 2 | **Beyond Local Maxima?** | PASS | The choice traces to a live production check (`render.ts:204`) and a `git blame` confirmation (commit 7adbd30db9f), not a guess between two equally plausible shapes |
+| 2 | **Beyond Local Maxima?** | PASS | The choice traces to a live production check (`render.ts:204`) and a `git blame` confirmation (commit 63d34c31daf), not a guess between two equally plausible shapes |
 | 3 | **Sufficient?** | PASS | Aligning the 4 stale tests and the reference doc to the directive resolves the drift completely, no implementation change is required |
 | 4 | **Fits Goal?** | PASS | Directly blocks REQ-001, resolving it unblocks the rest of Phase 1 |
 | 5 | **Open Horizons?** | PASS | The directive stays reusable governance infrastructure for any future no-brief path, not a one-off carve-out |

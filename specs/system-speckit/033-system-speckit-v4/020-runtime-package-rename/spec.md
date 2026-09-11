@@ -89,7 +89,7 @@ The engine lives at `system-spec-kit/runtime` with the shape of `system-deep-loo
 
 ### Review Scope
 
-The review reads a bounded list, never a tree. The change set is the rename commit's diff `0d7586d849..aef7852400` outside `specs/`, with pure renames excluded: the 453 files whose content changed, listed one per line in `scratch/review-scope.txt`, grouped as follows. The 260 files moved without a content change are verified by the commands below, not by reading anything.
+The review reads a bounded list, never a tree. The change set is the rename commit's diff `fc71409a6f..0db44e44c0` outside `specs/`, with pure renames excluded: the 453 files whose content changed, listed one per line in `scratch/review-scope.txt`, grouped as follows. The 260 files moved without a content change are verified by the commands below, not by reading anything.
 
 | Group in the list | Count | What to verify |
 |-------------------|-------|----------------|

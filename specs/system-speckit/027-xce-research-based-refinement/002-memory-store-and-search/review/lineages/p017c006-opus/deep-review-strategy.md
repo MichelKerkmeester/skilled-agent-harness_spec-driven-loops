@@ -33,7 +33,7 @@ Review of phase 006 `command-contract-structural`: the `/memory:search` determin
 
 ## What Worked
 
-- Isolating the O1/006 diff via `git show eac1eb5ef8` separated phase-006 deliverables from the layered phase-007/O2 surface-parity content present in the working tree, keeping the review in scope.
+- Isolating the O1/006 diff via `git show 2d425de43f` separated phase-006 deliverables from the layered phase-007/O2 surface-parity content present in the working tree, keeping the review in scope.
 - Tracing the shell header's root cause through the impl-summary's own word-split caveat (#7) surfaced the unaddressed sibling expansions (glob, command-substitution) from the same outer-shell phase.
 
 ## What Failed

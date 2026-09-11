@@ -49,7 +49,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Inventory the 50-commit range `a9e9bdb0a5^..HEAD` (HEAD `12de3d3a7e`) and seed the 9 angles (`review/iterations/iteration-001.md`)
+- [x] T001 Inventory the 50-commit range `fd67ede05f^..HEAD` (HEAD `3923a65db1`) and seed the 9 angles (`review/iterations/iteration-001.md`)
 <!-- /ANCHOR:phase-1 -->
 
 ---

@@ -17,7 +17,7 @@ Verify the first five Observable Plot citations: marks as the visual vocabulary,
 - **Resolves:** Yes; it redirects to the official project documentation at https://observablehq.github.io/plot/features/marks, not an unrelated site.
 - **Documented version:** The page identifies Observable Plot `0.6.17`.
 - **Evidence:** The page explicitly says Plot has no chart types and that charts are constructed by layering marks. It calls marks the “visual vocabulary” and gives the geometric distinctions: `barX` for horizontal bars, `barY` for vertical bars, and `cell`/`rect` for different data shapes. It also says Plot automatically creates axes and legends to document scale encodings.
-- **Corpus verdict:** The corpus is hand-authored SVG rather than a mark runtime, but its catalog still encodes data-shape decisions and the templates use explicit mark geometry. This is a conceptual match, not an imported Plot API. `[CORPUS@756a7fcd4c: .opencode/skills/sk-doc/sk-create-chart/references/catalog.md:42-63,99-110; .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:154-163]`
+- **Corpus verdict:** The corpus is hand-authored SVG rather than a mark runtime, but its catalog still encodes data-shape decisions and the templates use explicit mark geometry. This is a conceptual match, not an imported Plot API. `[CORPUS@3ce648be44: .opencode/skills/sk-doc/sk-create-chart/references/catalog.md:42-63,99-110; .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:154-163]`
 
 ### 2. Default width 640, responsive max-width, and margins
 
@@ -26,7 +26,7 @@ Verify the first five Observable Plot citations: marks as the visual vocabulary,
 - **Resolves:** Yes; it redirects to https://observablehq.github.io/plot/features/plots, the official Plot docs.
 - **Documented version:** Observable Plot `0.6.17`.
 - **Evidence:** The page states that the default width is `640`, that Observable's standard width can make plots responsive, and that the returned plot has `max-width:100%`. It says default margins depend on the maximum margins of constituent marks and explicitly warns that Plot does not automatically enlarge margins for long tick labels; the author must increase `marginLeft` or format labels more compactly.
-- **Corpus verdict:** The pinned templates use a static SVG `viewBox`, CSS width behavior, and horizontal overflow/minimum-width guards; they do not have Plot's JavaScript layout calculation or automatic responsive re-render. The long-label strategy is bounded input plus explicit local positioning, not automatic margin fitting. `[CORPUS@756a7fcd4c: .opencode/skills/sk-doc/sk-create-chart/assets/templates/bar-rows.html:31-49; .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:159-172]`
+- **Corpus verdict:** The pinned templates use a static SVG `viewBox`, CSS width behavior, and horizontal overflow/minimum-width guards; they do not have Plot's JavaScript layout calculation or automatic responsive re-render. The long-label strategy is bounded input plus explicit local positioning, not automatic margin fitting. `[CORPUS@3ce648be44: .opencode/skills/sk-doc/sk-create-chart/assets/templates/bar-rows.html:31-49; .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:159-172]`
 
 ### 3. Invalid values interrupt lines
 
@@ -35,7 +35,7 @@ Verify the first five Observable Plot citations: marks as the visual vocabulary,
 - **Resolves:** Yes; it redirects to https://observablehq.github.io/plot/marks/line, the official Plot docs.
 - **Documented version:** Observable Plot `0.6.17`.
 - **Evidence:** The line-mark page says that if x or y is `undefined`, `null`, or `NaN`, the line is interrupted and the break divides the line into multiple segments. It separately warns that filtering invalid data is not equivalent because filtering can interpolate between the remaining points.
-- **Corpus verdict:** The pinned commit closed T3 for the applicable daily-line, daily-range, and stacked-area path builders by filtering non-finite values and showing an in-figure notice. This matches the observable visual outcome for missing readings while keeping the data block and drawing code local. `[CORPUS@756a7fcd4c: .opencode/skills/sk-doc/sk-create-chart/assets/templates/daily-line.html:145-154; .opencode/skills/sk-doc/sk-create-chart/assets/templates/daily-range.html:145-155; .opencode/skills/sk-doc/sk-create-chart/assets/templates/stacked-area.html:183-192]`
+- **Corpus verdict:** The pinned commit closed T3 for the applicable daily-line, daily-range, and stacked-area path builders by filtering non-finite values and showing an in-figure notice. This matches the observable visual outcome for missing readings while keeping the data block and drawing code local. `[CORPUS@3ce648be44: .opencode/skills/sk-doc/sk-create-chart/assets/templates/daily-line.html:145-154; .opencode/skills/sk-doc/sk-create-chart/assets/templates/daily-range.html:145-155; .opencode/skills/sk-doc/sk-create-chart/assets/templates/stacked-area.html:183-192]`
 
 ### 4. `tip:true` and the pointer transform
 
@@ -44,7 +44,7 @@ Verify the first five Observable Plot citations: marks as the visual vocabulary,
 - **Resolves:** Yes; it redirects to https://observablehq.github.io/plot/features/interactions, the official Plot docs.
 - **Documented version:** Observable Plot `0.6.17`.
 - **Evidence:** The page says the pointer transform dynamically filters to the datum closest to the pointer and is often paired with the tip mark for interactive tooltips. Its example uses `tip:true`. The marks documentation further says a truthy `tip` option derives a tip mark with the pointer transform, places it above other marks, and offers details on demand.
-- **Corpus verdict:** No pointer or hover runtime exists in the shipped templates. The static fallback is the visible chart, native SVG titles where T1 applies, and the required data table. Adding Plot's interaction runtime would violate the corpus's no-remote/no-build delivery boundary. `[CORPUS@756a7fcd4c: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:159-164; .opencode/skills/sk-doc/sk-create-chart/assets/templates/scatter.html:139-146,187-190]`
+- **Corpus verdict:** No pointer or hover runtime exists in the shipped templates. The static fallback is the visible chart, native SVG titles where T1 applies, and the required data table. Adding Plot's interaction runtime would violate the corpus's no-remote/no-build delivery boundary. `[CORPUS@3ce648be44: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:159-164; .opencode/skills/sk-doc/sk-create-chart/assets/templates/scatter.html:139-146,187-190]`
 
 ### 5. `legend:true`, swatches, and ramp legends
 
@@ -53,7 +53,7 @@ Verify the first five Observable Plot citations: marks as the visual vocabulary,
 - **Resolves:** Yes; it redirects to https://observablehq.github.io/plot/features/legends, the official Plot docs.
 - **Documented version:** Observable Plot `0.6.17`.
 - **Evidence:** The page says Plot can generate legends for color, opacity, and symbol scales. `color:{legend:true}` produces a legend; ordinal color uses swatches, while a continuous color scale generates a ramp with a smooth gradient. It also says redundant color and symbol legends can improve accessibility for readers with color-vision deficiency.
-- **Corpus verdict:** The corpus has explicit swatch rows and accessible text labels. T8 is only partial at the pinned commit: the discrete stepped ramp/text treatment is present, but the exact requested SVG `<linearGradient>` ramp is absent. `[CORPUS@756a7fcd4c: .opencode/skills/sk-doc/sk-create-chart/assets/templates/calendar-grid.html:180-197; .opencode/skills/sk-doc/sk-create-chart/assets/templates/heat-matrix.html:176-192]`
+- **Corpus verdict:** The corpus has explicit swatch rows and accessible text labels. T8 is only partial at the pinned commit: the discrete stepped ramp/text treatment is present, but the exact requested SVG `<linearGradient>` ramp is absent. `[CORPUS@3ce648be44: .opencode/skills/sk-doc/sk-create-chart/assets/templates/calendar-grid.html:180-197; .opencode/skills/sk-doc/sk-create-chart/assets/templates/heat-matrix.html:176-192]`
 
 ## Assessment
 
@@ -84,7 +84,7 @@ All five Observable Plot citations resolve to the official Plot documentation (w
 
 ## Ruled Out
 
-- **Copying Plot's runtime pointer/tip implementation:** It is not needed for a double-click, static HTML artifact and would introduce runtime/dependency surface forbidden by the contract. `[CORPUS@756a7fcd4c: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:154-160]`
+- **Copying Plot's runtime pointer/tip implementation:** It is not needed for a double-click, static HTML artifact and would introduce runtime/dependency surface forbidden by the contract. `[CORPUS@3ce648be44: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:154-160]`
 - **Calling Plot's swatch/ramp legend behavior a shipped dependency:** The corpus has local SVG/text legend code and no Plot bundle.
 
 ## Questions Remaining

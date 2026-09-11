@@ -58,15 +58,15 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T004 WU1 [P0] Canonize the transport axis; allowlist feature_catalog; restore 4/4 canon-clean (PS-01) — `f788c86932`
-- [x] T005 WU2 surfaceBundle → conditional + base-outcome check 5g (PS-02) — `7fa386544b`
-- [x] T006 [P] WU3 One-identity ingestion guard + node_modules skip; RED/GREEN fixture (PS-03) — `4c33c79b0f`
-- [x] T007 [P] WU4 sk-code tool contracts: D2 keep-false+annotate + drop Task + checker 3i/3j (PS-04, PS-05) — `4ba60fb0cd`
+- [x] T004 WU1 [P0] Canonize the transport axis; allowlist feature_catalog; restore 4/4 canon-clean (PS-01) — `2beea3be18`
+- [x] T005 WU2 surfaceBundle → conditional + base-outcome check 5g (PS-02) — `4f7daf5205`
+- [x] T006 [P] WU3 One-identity ingestion guard + node_modules skip; RED/GREEN fixture (PS-03) — `c70f1dc9ad`
+- [x] T007 [P] WU4 sk-code tool contracts: D2 keep-false+annotate + drop Task + checker 3i/3j (PS-04, PS-05) — `450dbd3ba0`
 - [B] T008 WU5 Command-bridge lane under contract + drift guard; refresh dead ids (PS-06, PS-07) — GATED on the operator-owned system-skill-advisor scorer track (projection.ts/explicit.ts/skill_advisor.py + the gated 193-row parity re-baseline). Dead ids CONFIRMED as evidence.
-- [x] T009 WU6 sk-design one-file truth pass (PS-08, PS-09, PS-10, PS-17-case) — `045d748511`
-- [x] T010 [P] WU7 Doctrine refresh sweep (PS-11, PS-12, PS-13, PS-17, PS-18) — `f192cdb688`
-- [x] T011 [P] WU8 Checker hardening batch, 5 rules RED/GREEN-proven (PS-14) — `c968b04771`
-- [x] T012 [P] WU9 Metadata dialect convergence, sk-hub family (PS-15, PS-16) — `1fc620e83e`
+- [x] T009 WU6 sk-design one-file truth pass (PS-08, PS-09, PS-10, PS-17-case) — `66aa405e0c`
+- [x] T010 [P] WU7 Doctrine refresh sweep (PS-11, PS-12, PS-13, PS-17, PS-18) — `0ff37fc8e8`
+- [x] T011 [P] WU8 Checker hardening batch, 5 rules RED/GREEN-proven (PS-14) — `ef7cd80fe2`
+- [x] T012 [P] WU9 Metadata dialect convergence, sk-hub family (PS-15, PS-16) — `c409b3b6db`
 <!-- /ANCHOR:phase-2 -->
 
 ---

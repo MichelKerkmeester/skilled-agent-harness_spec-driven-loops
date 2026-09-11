@@ -26,7 +26,7 @@ This document is the structured plan of record for the next program. A condensed
 | **fleet cleanup** (008) | `PREFLIGHT_BLOCKED` (correctly refuses; nothing rolled out) | n/a until hubs live |
 
 ### 1.3 The 20 pre-existing benchmark failures (P2 scope)
-Reproduce identically at branch base `4ac2bdd02c` on a clean tree, so they are **pre-existing and unrelated to the shadow refactor**. They test **live** routing/surface config:
+Reproduce identically at branch base `9f326c1ee6` on a clean tree, so they are **pre-existing and unrelated to the shadow refactor**. They test **live** routing/surface config:
 | Test file | Failing | Concern |
 |---|---|---|
 | `design-token-lint.vitest.ts` | 4 | sk-design token/route lint |

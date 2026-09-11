@@ -96,7 +96,7 @@ The failing steps were read from the run logs, the first failing run after the l
 | Parity checker `--quiet` | Exit 0 after the mirror sync linked 4 and removed 4 of 169 |
 | Playbook validator `--strict` | PASS, 83 scenarios, 0 violations |
 | Parent-skill check and skill-root metadata check | OK; 13 of 13 |
-| Workflow runs for the push | Second push `e773415510`: Advisory Checks, Command Tree Parity, Naming Standard Guard, Playbook Operator Contract and the drift guard's Gate-2 job green on both branches; the drift guard's lean job still fails, on six sk-design hub invariants, not on resolution |
+| Workflow runs for the push | Second push `15c5e3254f`: Advisory Checks, Command Tree Parity, Naming Standard Guard, Playbook Operator Contract and the drift guard's Gate-2 job green on both branches; the drift guard's lean job still fails, on six sk-design hub invariants, not on resolution |
 <!-- /ANCHOR:verification -->
 
 ---

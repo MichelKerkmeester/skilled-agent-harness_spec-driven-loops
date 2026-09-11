@@ -25,7 +25,7 @@ grep -E '^Related: '    -> 0              %(trailers:key=Related)    -> 0
 grep -E '^Change-Id: '  -> 0              %(trailers:key=Change-Id)  -> 0
 grep -E '^Issue: '      -> 0
 
-Example of the 81-vs-2 gap (a0d6c1d647, a system-speckit commit):
+Example of the 81-vs-2 gap (74cf0154ed, a system-speckit commit):
   ...prose...
   Spec: specs/system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement
 
@@ -35,10 +35,10 @@ Example of the 81-vs-2 gap (a0d6c1d647, a system-speckit commit):
 
 === a live packet query, for query mechanics ===
 $ git log --format='%h %s | %(trailers:key=Refs,valueonly)' --grep='Refs: specs/hooks/016' skilled/v4.0.0.0
-8649953e01 chore(pi): retire ... |
-a6f6c5e58d feat(pi-cache): refuse an edit ... |
-ad96de49cd feat(pi-cache): stop a failing turn ... |
-1aae02e835 feat(pi-cache): cover every model ... |
+2d356893a8 chore(pi): retire ... |
+79b3a616a1 feat(pi-cache): refuse an edit ... |
+91a0929852 feat(pi-cache): stop a failing turn ... |
+12fa8c335d feat(pi-cache): cover every model ... |
 # four grep hits, all with EMPTY trailer extraction: search and structure diverge.
 
 === body word budget baseline over 8,205 non-empty bodies ===

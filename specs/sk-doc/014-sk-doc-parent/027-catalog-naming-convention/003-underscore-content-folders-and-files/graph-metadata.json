@@ -182,7 +182,7 @@
     ],
     "causal_summary": "Catalog/playbook content was named in hyphen-case: category folders (`featurecatalog/mcp-tool-surface/`),",
     "created_at": "2026-07-12T00:00:00.000Z",
-    "last_save_at": "2026-08-30T15:39:13.852Z",
+    "last_save_at": "2026-09-11T16:42:01.374Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -191,13 +191,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7803a62a2e84c49e36c6cad4249e74011a427d5475e707030cac0162c47b8dbf",
+    "source_fingerprint": "sha256:3e17f3bc8481ebd938acf96cb2a3f6410473acd212c59835e4f581343d7d8867",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4ae13171aa8036cfc0e02c52a9fd9861a4ae04304e5394223ca7091cb1c18685",
-      "plan.md": "3c498bf175a06484d171a519ca62118bbb0c007900d3fedc16f68b9922c1f2f2",
-      "tasks.md": "b2c691408e0d984dc72d9618acb1d8cedac0adc443227325b7bae65b941273a9",
-      "implementation-summary.md": "78351cfc7bcf40179c1ddf41bded18ef2e67310220ffe84a9964c0283fe0b5f7"
+      "spec.md": "40ddca721471a3e1174cee34e27b223fba3bceb5126b40e488c1e46a7ac05f86",
+      "plan.md": "1d2311d38f9a532eb5b175dca964f58c2a06fdc4002661b65c00b10962647552",
+      "tasks.md": "38e05ca5a26f0acdb14b068751da67ef3f8c4076658a74aaa3abaddd1dd3b163",
+      "implementation-summary.md": "9840e2510257451545d380c5b5d5394cfd6901ac0269958ebf49c89e3de13626"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -12,7 +12,7 @@ _memory:
     packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/020-lease-socket-path"
     last_updated_at: "2026-06-04T13:00:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "Shipped: committed 1f1e52ca8e; lease.socketPath + bridge prefer-fallback, tests green"
+    recent_action: "Shipped: committed 821c296fa1; lease.socketPath + bridge prefer-fallback, tests green"
     next_safe_action: "Done. .cjs change activates on next launcher spawn (no daemon recycle needed)"
     blockers: []
     key_files:

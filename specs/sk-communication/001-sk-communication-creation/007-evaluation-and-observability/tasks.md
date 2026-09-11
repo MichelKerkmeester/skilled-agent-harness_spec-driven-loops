@@ -66,10 +66,10 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## PHASE 2: IMPLEMENTATION
 
-- [x] T004 Build the versioned corpus, reference/original baselines, three-sample variance pilot, and reproducible run manifest (`src/evaluation/`) [evidence: `corpus.ts`, `baselines.ts`, `pilot.ts`, `run-manifest.ts`; commit 65e814fae1]
-- [x] T005 Freeze release-critical strata, the powered sample plan, reviewer assignment, randomization, per-dimension margins, and stop rules before candidate scoring (`src/evaluation/`) [evidence: `preregistration.ts` (digest-stamped, tamper-refused), `power.ts` sized for the margin; commit a8149a8d2c]
+- [x] T004 Build the versioned corpus, reference/original baselines, three-sample variance pilot, and reproducible run manifest (`src/evaluation/`) [evidence: `corpus.ts`, `baselines.ts`, `pilot.ts`, `run-manifest.ts`; commit 0987f8ab79]
+- [x] T005 Freeze release-critical strata, the powered sample plan, reviewer assignment, randomization, per-dimension margins, and stop rules before candidate scoring (`src/evaluation/`) [evidence: `preregistration.ts` (digest-stamped, tamper-refused), `power.ts` sized for the margin; commit 6ff2bd7d01]
 - [x] T006 Implement deterministic fidelity vetoes, masked review packets, confidence intervals, and per-dimension non-inferiority decisions (`src/evaluation/`) [evidence: `fidelity-veto.ts`, `blinding.ts`, `noninferiority.ts`, `gate.ts`]
-- [x] T007 Implement aggregation and export over earlier lifecycle events using rotating keyed digests and content-free allowlists (`src/observability/`) [evidence: `aggregation.ts`, `correlation.ts`, `export.ts`, `redaction.ts`; commit d2d4adb1e4]
+- [x] T007 Implement aggregation and export over earlier lifecycle events using rotating keyed digests and content-free allowlists (`src/observability/`) [evidence: `aggregation.ts`, `correlation.ts`, `export.ts`, `redaction.ts`; commit 0f5ee6f3ea]
 - [x] T008 [P] Test pilot/release separation, statistical decisions, presentation-tier stratification, identity masking, sample-cap failure, and redaction canaries (`test/evaluation/`) [evidence: focused evaluation and observability suites; end-to-end integration test]
 <!-- /ANCHOR:phase-2 -->
 

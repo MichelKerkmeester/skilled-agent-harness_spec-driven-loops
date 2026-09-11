@@ -16,9 +16,9 @@ Correctness: TARGET 2 ONLY - REQ-BY-REQ AUDIT of the shipped `deriveStatus` comp
 | `.opencode/skills/system-spec-kit/scripts/validation/generated-metadata-integrity.ts` | validate.sh bridge wiring at lines 81-101 |
 | `.opencode/skills/system-spec-kit/mcp_server/tests/graph-metadata-schema.vitest.ts` | deriveStatus branch tests at lines 383-439, status-precedence tests at lines 496-520 |
 | `.opencode/skills/system-spec-kit/mcp_server/tests/generated-metadata-integrity.vitest.ts` | validator report/enforced tests at lines 221-232 and flag tests at lines 296-313 |
-| `git show ea2bb09b7a` | confirmed the code diff patched only the no-checklist fallback and added validator logic |
-| `git show ca9bea9f78` | confirmed closure-doc changes only; no additional code fix for the bypass |
-| `git show b70a441388` | no relevant changes to the reviewed Target 2 code paths |
+| `git show 4f1f64c20a` | confirmed the code diff patched only the no-checklist fallback and added validator logic |
+| `git show c02b2a2f39` | confirmed closure-doc changes only; no additional code fix for the bypass |
+| `git show f9724f9e2d` | no relevant changes to the reviewed Target 2 code paths |
 
 ## Requirements Extracted Verbatim
 

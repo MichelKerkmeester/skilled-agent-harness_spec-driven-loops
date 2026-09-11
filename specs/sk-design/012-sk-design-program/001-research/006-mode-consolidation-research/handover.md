@@ -40,7 +40,7 @@ A five-iteration `/deep:research` run investigating how to consolidate the `sk-d
 |-------|-------|
 | **Packet** | `.opencode/specs/sk-design/012-sk-design-program/001-research/006-mode-consolidation-research/` |
 | **Worktree** | `.worktrees/0103-sk-design-structure-naming-cleanup` |
-| **Branch** | `sk-design/0103-structure-naming-cleanup` @ `0c4bfed57d` (0 ahead of `origin/skilled/v4.0.0.0`) |
+| **Branch** | `sk-design/0103-structure-naming-cleanup` @ `f992843c8f` (0 ahead of `origin/skilled/v4.0.0.0`) |
 | **Executor** | `cli-codex` · `gpt-5.6-sol` · `xhigh` · `standard` tier · `workspace-write` |
 | **Iterations** | 5 of 5 complete (forced via `--stop-policy=max-iterations`) |
 | **Synthesis** | Complete — `research/research.md` (280 lines) and `research/resource-map.md` (120 lines) |

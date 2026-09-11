@@ -12,7 +12,7 @@ _memory:
     packet_pointer: "system-speckit/028-memory-search-intelligence/001-release-cleanup/015-manual-playbook-execution-sweep/001-findings-remediation"
     last_updated_at: "2026-07-06T19:16:27.470Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Fixed T-0381 (empty deep-loop convergence graph) via a graphEvents prompt-pack contract correction, end-to-end proven through upsert.cjs; closed T-0208 as a confirmed false positive; committed (8967d20e37 fix, fa49443a7c docs) and pushed to origin/system-speckit/028-memory-search-intelligence (local == origin)"
+    recent_action: "Fixed T-0381 (empty deep-loop convergence graph) via a graphEvents prompt-pack contract correction, end-to-end proven through upsert.cjs; closed T-0208 as a confirmed false positive; committed (6748426fb7 fix, 0391927855 docs) and pushed to origin/system-speckit/028-memory-search-intelligence (local == origin)"
     next_safe_action: "All sweep findings resolved and landed on origin. The only outstanding item is pre-existing packet-wide --strict doc-hygiene debt (template headers/anchors/frontmatter blocks across the older docs), which would need its own dedicated cleanup pass — not a findings issue"
     blockers: []
     key_files:
@@ -65,7 +65,7 @@ The headline late fix is **T-0381** — the `doctor` deep-loop convergence diagn
 | `tasks.md` | Modified | Marked T-0381 fixed + T-0208 closed with full root-cause/verification evidence; reconciled all prior-round findings |
 | `implementation-summary.md` | Created | This record |
 
-> Prior rounds touched dozens of source/test/doc files across the three subsystems; those are recorded per-finding in `tasks.md` and landed in commits `2e8638071b`, `04abbf4434`, `d9acc6ecb9`, and `8967d20e37`.
+> Prior rounds touched dozens of source/test/doc files across the three subsystems; those are recorded per-finding in `tasks.md` and landed in commits `84ac55d590`, `857134ae8d`, `8fce735897`, and `6748426fb7`.
 
 <!-- /ANCHOR:what-built -->
 ---

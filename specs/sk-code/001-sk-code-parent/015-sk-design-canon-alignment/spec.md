@@ -30,9 +30,9 @@ _memory:
     open_questions: []
     answered_questions:
       - question: "Is packetKind still in scope?"
-        answer: "No. packetKind on all five sk-design modes is already done and pushed in commit f8673ff0db; this phase records it as completed evidence only."
+        answer: "No. packetKind on all five sk-design modes is already done and pushed in commit 8820b8963d; this phase records it as completed evidence only."
       - question: "Ship prose-only transform-verb routing before phase 017, or wait for declarative bundleRules?"
-        answer: "Waited: phase 017 landed the canon shape first, then ui-build-bundle was encoded declaratively (whenAll interface+foundations, orderedBundle) in commit 5a6765c9b1; check 5f validates it."
+        answer: "Waited: phase 017 landed the canon shape first, then ui-build-bundle was encoded declaratively (whenAll interface+foundations, orderedBundle) in commit ed338dab02; check 5f validates it."
 ---
 # Feature Specification: Phase 15 sk-design canon alignment
 
@@ -61,7 +61,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The master plan reports that `parent-skill-check` strict mode leaves sk-design with four remaining parent-hub invariant failures after the five-mode `packetKind` repair was already pushed in commit `f8673ff0db`. The audit digest confirms the unresolved strict failures are symlinked hub changelog entries, missing hub `description.json`, missing hub `manual_testing_playbook/`, and missing hub `benchmark/` baseline, with additional P1/P2 canon alignment work around transform verbs and a broken interface README link.
+The master plan reports that `parent-skill-check` strict mode leaves sk-design with four remaining parent-hub invariant failures after the five-mode `packetKind` repair was already pushed in commit `8820b8963d`. The audit digest confirms the unresolved strict failures are symlinked hub changelog entries, missing hub `description.json`, missing hub `manual_testing_playbook/`, and missing hub `benchmark/` baseline, with additional P1/P2 canon alignment work around transform verbs and a broken interface README link.
 
 ### Purpose
 Plan the remaining safe-now sk-design canon alignment work so execution can close the sk-design hub gaps without touching unrelated phases, while explicitly sequencing declarative `bundleRules` after the phase 017 canon reconciliation.
@@ -82,7 +82,7 @@ Plan the remaining safe-now sk-design canon alignment work so execution can clos
 ## 3. SCOPE
 
 ### In Scope
-- Record the already-completed five-mode `packetKind` work from commit `f8673ff0db` as completed evidence only.
+- Record the already-completed five-mode `packetKind` work from commit `8820b8963d` as completed evidence only.
 - Delete the five sk-design hub changelog symlinks while preserving real per-mode changelog directories in their packet folders.
 - Author sk-design hub `description.json` from the parent skill description template with a four-part version, SKILL keyword harvesting, and trigger examples.
 - Scaffold a hub-level `manual_testing_playbook/` for mode classification and transform-verb framing, mirroring the design-audit packet playbook without colliding with it.
@@ -124,7 +124,7 @@ Plan the remaining safe-now sk-design canon alignment work so execution can clos
 
 | ID | Requirement | Acceptance Criteria | Trace |
 |----|-------------|---------------------|-------|
-| REQ-001 | Preserve the already-pushed `packetKind` repair as completed evidence only | Five sk-design modes retain `packetKind`; no duplicate packetKind work is planned | User note; master line 19; commit `f8673ff0db` |
+| REQ-001 | Preserve the already-pushed `packetKind` repair as completed evidence only | Five sk-design modes retain `packetKind`; no duplicate packetKind work is planned | User note; master line 19; commit `8820b8963d` |
 | REQ-002 | Remove hub changelog symlinks | `parent-skill-check` check 7a no longer reports symlinked sk-design changelog entries | audit P0-9 lines 124-128; master line 20 |
 | REQ-003 | Add hub `description.json` | `parent-skill-check` check 8a passes and file contains name, description, four-part version, keywords, and trigger examples | audit P0-10 lines 129-133; master line 21 |
 | REQ-004 | Add hub `manual_testing_playbook/` | `parent-skill-check` check 9a passes and playbook covers mode classification plus transform-verb framing | audit P0-11 lines 134-138; master line 22 |

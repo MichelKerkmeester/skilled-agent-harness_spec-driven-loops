@@ -46,7 +46,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 002/003 both report their own exit gates green (002 committed as `6323b84342`, 003's `implementation-summary.md`/`checklist.md` document its own full pass). 004 remains deliberately deferred (optional, operator-gated per its own spec; 001's research already recommended against building it — the real fanout run never needed the GLM→MiMo fallback it would wire).
+- [x] T001 002/003 both report their own exit gates green (002 committed as `dea9dccbf3`, 003's `implementation-summary.md`/`checklist.md` document its own full pass). 004 remains deliberately deferred (optional, operator-gated per its own spec; 001's research already recommended against building it — the real fanout run never needed the GLM→MiMo fallback it would wire).
 <!-- /ANCHOR:phase-1 -->
 
 ---

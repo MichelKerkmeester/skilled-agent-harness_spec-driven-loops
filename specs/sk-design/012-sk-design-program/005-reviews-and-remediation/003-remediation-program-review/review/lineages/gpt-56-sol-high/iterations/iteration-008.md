@@ -10,7 +10,7 @@ trigger_phrases: []
 - Session: `fanout-gpt-56-sol-high-1784650021792-031fvi`
 - Generation / lineage: `1` / `new`
 - Budget profile: `verify`
-- Scope: validated 118-file `goal-file-manifest.txt` at pinned HEAD `7b9d3b6b71`
+- Scope: validated 118-file `goal-file-manifest.txt` at pinned HEAD `6432665a68`
 - Structural caveat: Code Graph was unavailable by dispatch contract; direct manifest-scoped reads, focused tests, and read-only CLI probes were used.
 
 ## Files Reviewed
@@ -71,7 +71,7 @@ None.
 ## Integration Evidence
 
 - Exact surfaces: `runStyleDatabaseOperator`, `getStyleDatabaseStatus`, `queryPersistentStyles`, `dispatchStyleQuery`, `resolveStyleDatabaseMode`, database README, playbook, and packet 015/006.
-- HEAD: `7b9d3b6b71`; operator/retrieval suites: 13/13 passed.
+- HEAD: `6432665a68`; operator/retrieval suites: 13/13 passed.
 - Malformed-option and absent-directory probes reproduced both findings; `operator.mjs` hash is `sha256:33c4f2929b9d12ee42b20ad37477562ba79232be927747e521aa6323c6543df9`.
 
 ## Edge Cases

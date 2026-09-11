@@ -15,8 +15,8 @@ contextType: "implementation"
 
 | Finding | Fix | Verdict | Commit |
 |---|---|---|---|
-| tri-003 (P0) | reindex-retire source-kind guard with manual-tier carry | CLOSED (prior session) | `61b529fde3` |
-| tri-004 (P0) | auto-promotion source-kind guard, TOCTOU-safe atomic predicate | CLOSED (prior session) | `61b529fde3` |
+| tri-003 (P0) | reindex-retire source-kind guard with manual-tier carry | CLOSED (prior session) | `e57fbbfed3` |
+| tri-004 (P0) | auto-promotion source-kind guard, TOCTOU-safe atomic predicate | CLOSED (prior session) | `e57fbbfed3` |
 | live-237 (P0) | single-writer kernel fcntl lock at DB-open (sidecar SQLite, EXCLUSIVE + BEGIN IMMEDIATE), exit-86 launcher bridge contract, adoption in 6 standalone RW openers | INCOMPLETE → launcher self-bridge defect fixed exactly as the verdict prescribed (pure decision helper + unit tests); corruption core verified sound | this lane |
 | tri-016 (P0) | secret scrubber promoted byte-identical to `@spec-kit/shared/parsing/secret-scrubber`; CLI save lane scrubs all payload fields fail-closed before persistence | CLOSED | this lane |
 | tri-050 (P1) | hash-only query fingerprints (no retained prefix) + legacy-row purge in initConsumptionLog | INCOMPLETE → legacy 204-row purge shipped; live DB verified 0 prefix rows post-recycle | this lane |

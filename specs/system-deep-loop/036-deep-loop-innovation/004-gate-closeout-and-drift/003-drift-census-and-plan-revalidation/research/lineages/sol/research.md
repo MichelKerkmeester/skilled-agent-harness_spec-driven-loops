@@ -6,7 +6,7 @@ trigger_phrases: []
 
 ## 1. Executive Summary
 
-Packet 036 remains executable in concept, but not as written. Against baseline `0ce43ff589` and comparison HEAD `e4b242c3940c26b47950534e1a149c7e037e71fd`, eight phases need refinement and seven remain valid; none is invalidated.
+Packet 036 remains executable in concept, but not as written. Against baseline `60b9ed8bc2` and comparison HEAD `3620a11d8fbf2ca185ed8120112bb9daee788cc7`, eight phases need refinement and seven remain valid; none is invalidated.
 
 - **Needs refinement:** 003, 006, 007, 010, 011, 012, 013, 016.
 - **Still valid:** 004, 005, 008, 009, 014, 015, 017.
@@ -18,7 +18,7 @@ The supplied 204-commit count was stale by the convergence pass. The live range 
 
 ## 2. Research Question
 
-Determine whether work landed after `0ce43ff589` invalidated or degraded any planned implementation phase 003-017, with an explicit verdict for every phase and separate treatment of:
+Determine whether work landed after `60b9ed8bc2` invalidated or degraded any planned implementation phase 003-017, with an explicit verdict for every phase and separate treatment of:
 
 - first-order drift: named paths, files, globs, symbols, or dependencies no longer resolve;
 - second-order drift: paths resolve but routing, taxonomy, authority, or capability premises changed or were partially delivered.
@@ -27,7 +27,7 @@ Determine whether work landed after `0ce43ff589` invalidated or degraded any pla
 
 Seven fresh-context iterations combined four evidence classes:
 
-1. Rename-aware Git history over `0ce43ff589..HEAD`.
+1. Rename-aware Git history over `60b9ed8bc2..HEAD`.
 2. Current phase specifications and their named implementation surfaces.
 3. Current runtime, registry, router, fan-out, convergence, benchmark, writer, and compatibility implementations.
 4. Acceptance-contract comparison, which distinguishes reusable substrate from full phase completion.
@@ -38,8 +38,8 @@ Path-scoped triage reduced the 211-commit range to 29 commits touching the activ
 
 | Measure | Result | Evidence |
 |---|---:|---|
-| Baseline | `0ce43ff589` | Packet 018 metadata and iteration history |
-| Comparison HEAD | `e4b242c3940c26b47950534e1a149c7e037e71fd` | `iterations/iteration-007.md:7-11` |
+| Baseline | `60b9ed8bc2` | Packet 018 metadata and iteration history |
+| Comparison HEAD | `3620a11d8fbf2ca185ed8120112bb9daee788cc7` | `iterations/iteration-007.md:7-11` |
 | Commits in live range | 211 | `iterations/iteration-007.md:9-11` |
 | Commits touching active deep-loop skill | 27 | `iterations/iteration-007.md:11` |
 | Additional packet-036 commits | 2 | `iterations/iteration-007.md:11` |
@@ -59,30 +59,30 @@ No phase's full core purpose already shipped, and no phase premise was contradic
 
 | Phase | Verdict | First-order drift | Second-order drift | Commit evidence | Current evidence |
 |---|---|---|---|---|---|
-| 003 | **needs refinement** | `state_format.md`, `integration_points.md`, and `behavior_benchmark/` are stale; packet 033 moved. | Census premise survives, but active benchmark execution moved to kebab-case skill surfaces. | `cc77a1e550a8dcd45c3b287ac604138987aea94e`; `7f3216fc502420cb8aade4bbb639f9efe78b1ada` | `.opencode/specs/system-deep-loop/036-deep-loop-innovation/003-baseline-taxonomy-and-state-census/spec.md:60-65,92-95`; `.opencode/skills/system-deep-loop/runtime/references/state-format.md:15-29`; `.opencode/skills/system-deep-loop/runtime/references/integration-points.md:14-29` |
-| 004 | **still valid** | Clean: relative parent, manifest, children, predecessor, successor, and corpus targets survived renumbering. | No contrary premise drift found. | `7f3216fc502420cb8aade4bbb639f9efe78b1ada`; `8d3b5b21d571153b92dfb02c04c231509d36c9b2`; comparison `e4b242c3940c26b47950534e1a149c7e037e71fd` | `.opencode/specs/system-deep-loop/036-deep-loop-innovation/004-architecture-coverage-and-transition-contract/spec.md:44-68` |
-| 005 | **still valid** | Named runtime sources, tests, prototype, and `buildLineageCommand` resolve. | Partial cli-opencode fan-out support did not ship typed live-tool policy, Cartesian compilation, fingerprints, or `cli-codex --search exec`. | `e4b242c3940c26b47950534e1a149c7e037e71fd` | `.opencode/specs/system-deep-loop/036-deep-loop-innovation/001-fanout-live-tools-unblock/spec.md:60-65,77-103`; `.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1382-1401` |
-| 006 | **needs refinement** | A malformed `../../002-...` link predates the baseline. | Existing observability envelopes/status producers are reusable, but authoritative replay and fail-closed transition authorization remain missing. | `3022e02d6b62a4121d00a1b8f62932aca5ada257`; `fcade7e2cd58238d52fc5c56d3347d7868362c8a`; comparison `e4b242c3940c26b47950534e1a149c7e037e71fd` | `.opencode/specs/system-deep-loop/036-deep-loop-innovation/002-transition-authorized-ledger-core/spec.md:52-67`; `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/observability-events.cjs:89-140` |
-| 007 | **needs refinement** | No missing planned target. | Receipts, caps, gauges, locks, and continuity exist; effect recovery, sealing, blinded adjudication, and ledger-fold authority remain. | Comparison `e4b242c3940c26b47950534e1a149c7e037e71fd`; receipt introduction `a1de03dd59c1` | `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/receipt-crypto.ts:22-33`; `.opencode/specs/system-deep-loop/036-deep-loop-innovation/003-shared-evidence-and-control-services/spec.md:50-70` |
-| 008 | **still valid** | No missing planned target. | Local aliases and lifecycle normalization do not satisfy shared upcasting, dual-read/single-write, shadow parity, state disposition, or rollback drills. | Comparison `e4b242c3940c26b47950534e1a149c7e037e71fd`; taxonomy introduction `c844ea42a00b` | `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/lifecycle-taxonomy.cjs:24-49`; `.opencode/specs/system-deep-loop/036-deep-loop-innovation/004-compatibility-shadow-and-rollback-bridge/spec.md:50-70` |
-| 009 | **still valid** | No missing planned target. | The existing flat pool/checkpoints/salvage are acknowledged substrate; canonical ledger envelopes, leases, waves, conditional fan-in, and durable policies remain. | Comparison `e4b242c3940c26b47950534e1a149c7e037e71fd`; pool guard `a78e877ca95e` | `.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:331-411`; `.opencode/specs/system-deep-loop/036-deep-loop-innovation/005-fanout-fanin-durable-orchestration/spec.md:50-69` |
-| 010 | **needs refinement** | No missing planned target. | Graph novelty, claim verification, contradiction density, and conflict IDs exist; semantic communities, durable claim lifecycle, typed focus, and atomic projections remain. | Comparison `e4b242c3940c26b47950534e1a149c7e037e71fd`; graph signals `9a413237f723` | `.opencode/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-signals.ts:580-629,715-783`; `.opencode/specs/system-deep-loop/036-deep-loop-innovation/006-novelty-claims-continuity-and-projections/spec.md:50-70` |
-| 011 | **needs refinement** | No missing planned target. | The council-only premise is false because generic graph-backed convergence exists; cycle detection, separate clocks, adaptive allocation, and degeneration health remain. | Comparison `e4b242c3940c26b47950534e1a149c7e037e71fd`; generic convergence `107c522599d6` | `.opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs:723-825`; `.opencode/specs/system-deep-loop/036-deep-loop-innovation/007-convergence-termination-and-health/spec.md:50-68` |
-| 012 | **needs refinement** | Packet-root shorthand resolves. | Shared registry/compiler and behavior fixtures exist; substrate interfaces, mixed-version ledger fixtures, and executable migration write-set graph do not. | `708d25acf04a240a5afbe7d43bf7b403549f4b85`; comparison `e4b242c3940c26b47950534e1a149c7e037e71fd` | `.opencode/skills/system-deep-loop/mode-registry.json:1-54`; `.opencode/specs/system-deep-loop/036-deep-loop-innovation/001-shared-mode-contracts-and-fixtures/spec.md:50-66` |
-| 013 | **needs refinement** | All eight authored workstream directories resolve. | Seven public modes, five implementation families, three improvement variants, and eight workstreams are distinct; zero-signal routing now defaults to null. | `6cd8ab14e4e7d757baf48fa67ec795ed5624514f`; `708d25acf04a240a5afbe7d43bf7b403549f4b85`; `908efde8d8f4316d89b9929743d32e2ed1848258` | `.opencode/skills/system-deep-loop/mode-registry.json:30-198`; `.opencode/specs/system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/spec.md:46-71`; `.opencode/skills/system-deep-loop/hub-router.json:4-13` |
-| 014 | **still valid** | No missing planned target. | Route authority and local rollback are not canonical per-mode authority epochs, cutover certificates, or monitored rollback windows. | `708d25acf04a240a5afbe7d43bf7b403549f4b85`; comparison `e4b242c3940c26b47950534e1a149c7e037e71fd` | `.opencode/skills/system-deep-loop/mode-registry.json:29-198`; `.opencode/specs/system-deep-loop/036-deep-loop-innovation/003-staged-state-migration-and-authority-cutover/spec.md:50-68` |
-| 015 | **still valid** | Dependencies resolve after renumbering. | Active writers and compatibility readers remain; no zero-use, closed-window, fail-closed delete/retain gate shipped. | Comparison `e4b242c3940c26b47950534e1a149c7e037e71fd` | `.opencode/skills/system-deep-loop/deep-ai-council/references/structure/folder-layout.md:64-71`; `.opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:1229-1286`; `.opencode/specs/system-deep-loop/036-deep-loop-innovation/004-legacy-writer-retirement/spec.md:114-125` |
-| 016 | **needs refinement** | Packet-033 evidence survives under archived packet 027; executable benchmark paths changed. | Five benchmark packages do not independently evidence seven public modes through eight workstreams, and component checks are not one exact-SHA gate. | `cc77a1e550a8dcd45c3b287ac604138987aea94e`; comparison `e4b242c3940c26b47950534e1a149c7e037e71fd` | `.opencode/skills/system-deep-loop/shared/behavior-benchmark/framework.md:321-341`; `.opencode/skills/system-deep-loop/shared/behavior-benchmark/behavior-bench-run.cjs:1-21`; `.opencode/specs/system-deep-loop/036-deep-loop-innovation/001-whole-system-gate/spec.md:75-95,111-124` |
-| 017 | **still valid** | Inputs resolve; final receipts are future outputs. | The 211-commit range confirms the need for recensus and a gate rerun against the future integrated final SHA. | Baseline `0ce43ff589`; comparison `e4b242c3940c26b47950534e1a149c7e037e71fd` | `.opencode/specs/system-deep-loop/036-deep-loop-innovation/002-integrate-latest-and-closeout/spec.md:48-91` |
+| 003 | **needs refinement** | `state_format.md`, `integration_points.md`, and `behavior_benchmark/` are stale; packet 033 moved. | Census premise survives, but active benchmark execution moved to kebab-case skill surfaces. | `b052f329a732853798db45471be7db03dad29d48`; `69aee63cb8a06d196de1d7a5ef557fcb70f387f3` | `.opencode/specs/system-deep-loop/036-deep-loop-innovation/003-baseline-taxonomy-and-state-census/spec.md:60-65,92-95`; `.opencode/skills/system-deep-loop/runtime/references/state-format.md:15-29`; `.opencode/skills/system-deep-loop/runtime/references/integration-points.md:14-29` |
+| 004 | **still valid** | Clean: relative parent, manifest, children, predecessor, successor, and corpus targets survived renumbering. | No contrary premise drift found. | `69aee63cb8a06d196de1d7a5ef557fcb70f387f3`; `fd59c76d80629473c866dab0dce043fcf5f94ec6`; comparison `3620a11d8fbf2ca185ed8120112bb9daee788cc7` | `.opencode/specs/system-deep-loop/036-deep-loop-innovation/004-architecture-coverage-and-transition-contract/spec.md:44-68` |
+| 005 | **still valid** | Named runtime sources, tests, prototype, and `buildLineageCommand` resolve. | Partial cli-opencode fan-out support did not ship typed live-tool policy, Cartesian compilation, fingerprints, or `cli-codex --search exec`. | `3620a11d8fbf2ca185ed8120112bb9daee788cc7` | `.opencode/specs/system-deep-loop/036-deep-loop-innovation/001-fanout-live-tools-unblock/spec.md:60-65,77-103`; `.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1382-1401` |
+| 006 | **needs refinement** | A malformed `../../002-...` link predates the baseline. | Existing observability envelopes/status producers are reusable, but authoritative replay and fail-closed transition authorization remain missing. | `c7d31d3b3d957dbe30dcc78432cd2e9a4796e172`; `402feaf18775c0bdc849efef6f98b258da916031`; comparison `3620a11d8fbf2ca185ed8120112bb9daee788cc7` | `.opencode/specs/system-deep-loop/036-deep-loop-innovation/002-transition-authorized-ledger-core/spec.md:52-67`; `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/observability-events.cjs:89-140` |
+| 007 | **needs refinement** | No missing planned target. | Receipts, caps, gauges, locks, and continuity exist; effect recovery, sealing, blinded adjudication, and ledger-fold authority remain. | Comparison `3620a11d8fbf2ca185ed8120112bb9daee788cc7`; receipt introduction `34d117fe559c` | `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/receipt-crypto.ts:22-33`; `.opencode/specs/system-deep-loop/036-deep-loop-innovation/003-shared-evidence-and-control-services/spec.md:50-70` |
+| 008 | **still valid** | No missing planned target. | Local aliases and lifecycle normalization do not satisfy shared upcasting, dual-read/single-write, shadow parity, state disposition, or rollback drills. | Comparison `3620a11d8fbf2ca185ed8120112bb9daee788cc7`; taxonomy introduction `b494f621a76e` | `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/lifecycle-taxonomy.cjs:24-49`; `.opencode/specs/system-deep-loop/036-deep-loop-innovation/004-compatibility-shadow-and-rollback-bridge/spec.md:50-70` |
+| 009 | **still valid** | No missing planned target. | The existing flat pool/checkpoints/salvage are acknowledged substrate; canonical ledger envelopes, leases, waves, conditional fan-in, and durable policies remain. | Comparison `3620a11d8fbf2ca185ed8120112bb9daee788cc7`; pool guard `8d9a08b4016a` | `.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:331-411`; `.opencode/specs/system-deep-loop/036-deep-loop-innovation/005-fanout-fanin-durable-orchestration/spec.md:50-69` |
+| 010 | **needs refinement** | No missing planned target. | Graph novelty, claim verification, contradiction density, and conflict IDs exist; semantic communities, durable claim lifecycle, typed focus, and atomic projections remain. | Comparison `3620a11d8fbf2ca185ed8120112bb9daee788cc7`; graph signals `712bfec6671d` | `.opencode/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-signals.ts:580-629,715-783`; `.opencode/specs/system-deep-loop/036-deep-loop-innovation/006-novelty-claims-continuity-and-projections/spec.md:50-70` |
+| 011 | **needs refinement** | No missing planned target. | The council-only premise is false because generic graph-backed convergence exists; cycle detection, separate clocks, adaptive allocation, and degeneration health remain. | Comparison `3620a11d8fbf2ca185ed8120112bb9daee788cc7`; generic convergence `35503d4b789c` | `.opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs:723-825`; `.opencode/specs/system-deep-loop/036-deep-loop-innovation/007-convergence-termination-and-health/spec.md:50-68` |
+| 012 | **needs refinement** | Packet-root shorthand resolves. | Shared registry/compiler and behavior fixtures exist; substrate interfaces, mixed-version ledger fixtures, and executable migration write-set graph do not. | `fa74e8686155d6ff7d865bdb1371ef57bd78e5a4`; comparison `3620a11d8fbf2ca185ed8120112bb9daee788cc7` | `.opencode/skills/system-deep-loop/mode-registry.json:1-54`; `.opencode/specs/system-deep-loop/036-deep-loop-innovation/001-shared-mode-contracts-and-fixtures/spec.md:50-66` |
+| 013 | **needs refinement** | All eight authored workstream directories resolve. | Seven public modes, five implementation families, three improvement variants, and eight workstreams are distinct; zero-signal routing now defaults to null. | `d60cc2c7553493a02a7cc1fe6e640aef38e74e50`; `fa74e8686155d6ff7d865bdb1371ef57bd78e5a4`; `4b2c351cc1ec72d477980597d786fc1b35693301` | `.opencode/skills/system-deep-loop/mode-registry.json:30-198`; `.opencode/specs/system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/spec.md:46-71`; `.opencode/skills/system-deep-loop/hub-router.json:4-13` |
+| 014 | **still valid** | No missing planned target. | Route authority and local rollback are not canonical per-mode authority epochs, cutover certificates, or monitored rollback windows. | `fa74e8686155d6ff7d865bdb1371ef57bd78e5a4`; comparison `3620a11d8fbf2ca185ed8120112bb9daee788cc7` | `.opencode/skills/system-deep-loop/mode-registry.json:29-198`; `.opencode/specs/system-deep-loop/036-deep-loop-innovation/003-staged-state-migration-and-authority-cutover/spec.md:50-68` |
+| 015 | **still valid** | Dependencies resolve after renumbering. | Active writers and compatibility readers remain; no zero-use, closed-window, fail-closed delete/retain gate shipped. | Comparison `3620a11d8fbf2ca185ed8120112bb9daee788cc7` | `.opencode/skills/system-deep-loop/deep-ai-council/references/structure/folder-layout.md:64-71`; `.opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:1229-1286`; `.opencode/specs/system-deep-loop/036-deep-loop-innovation/004-legacy-writer-retirement/spec.md:114-125` |
+| 016 | **needs refinement** | Packet-033 evidence survives under archived packet 027; executable benchmark paths changed. | Five benchmark packages do not independently evidence seven public modes through eight workstreams, and component checks are not one exact-SHA gate. | `b052f329a732853798db45471be7db03dad29d48`; comparison `3620a11d8fbf2ca185ed8120112bb9daee788cc7` | `.opencode/skills/system-deep-loop/shared/behavior-benchmark/framework.md:321-341`; `.opencode/skills/system-deep-loop/shared/behavior-benchmark/behavior-bench-run.cjs:1-21`; `.opencode/specs/system-deep-loop/036-deep-loop-innovation/001-whole-system-gate/spec.md:75-95,111-124` |
+| 017 | **still valid** | Inputs resolve; final receipts are future outputs. | The 211-commit range confirms the need for recensus and a gate rerun against the future integrated final SHA. | Baseline `60b9ed8bc2`; comparison `3620a11d8fbf2ca185ed8120112bb9daee788cc7` | `.opencode/specs/system-deep-loop/036-deep-loop-innovation/002-integrate-latest-and-closeout/spec.md:48-91` |
 
 ## 7. First-Order Drift
 
 Confirmed post-baseline first-order drift is concentrated in phase 003:
 
-- `cc77a1e550a` renamed `state_format.md` to `state-format.md`.
-- `cc77a1e550a` renamed `integration_points.md` to `integration-points.md`.
-- `cc77a1e550a` renamed benchmark package paths from `behavior_benchmark/` to `behavior-benchmark/`; the old glob returns zero directories.
-- `7f3216fc5024` moved packet 033 to `.opencode/specs/system-deep-loop/z_archive/027-deep-loop-behavior-benchmarks/`.
+- `b052f329a73` renamed `state_format.md` to `state-format.md`.
+- `b052f329a73` renamed `integration_points.md` to `integration-points.md`.
+- `b052f329a73` renamed benchmark package paths from `behavior_benchmark/` to `behavior-benchmark/`; the old glob returns zero directories.
+- `69aee63cb8a0` moved packet 033 to `.opencode/specs/system-deep-loop/z_archive/027-deep-loop-behavior-benchmarks/`.
 
 Phase 006 has a malformed relative link, but its history predates the baseline; it is a plan-quality defect rather than post-baseline drift. No genuinely missing current target was established for phases 004-005 or 007-017 after normalizing packet-root shorthand, planned future outputs, and authored child phases.
 
@@ -103,13 +103,13 @@ The census independently reproduced every required positive control:
 
 | Control | Result | Evidence |
 |---|---|---|
-| Phase-003 `state_format.md` seed | Renamed to `state-format.md` | `cc77a1e550a`; `003.../plan.md:81-82`; `runtime/references/state-format.md:15-29` |
-| Phase-003 `integration_points.md` seed | Renamed to `integration-points.md` | `cc77a1e550a`; `003.../plan.md:81-82`; `runtime/references/integration-points.md:14-29` |
-| Phase-003 `behavior_benchmark/` glob | Zero matches; live path is `behavior-benchmark/` | `cc77a1e550a`; `003.../plan.md:153`; `shared/behavior-benchmark/framework.md:18-27` |
+| Phase-003 `state_format.md` seed | Renamed to `state-format.md` | `b052f329a73`; `003.../plan.md:81-82`; `runtime/references/state-format.md:15-29` |
+| Phase-003 `integration_points.md` seed | Renamed to `integration-points.md` | `b052f329a73`; `003.../plan.md:81-82`; `runtime/references/integration-points.md:14-29` |
+| Phase-003 `behavior_benchmark/` glob | Zero matches; live path is `behavior-benchmark/` | `b052f329a73`; `003.../plan.md:153`; `shared/behavior-benchmark/framework.md:18-27` |
 
 ## 10. Packet-033 Dependency
 
-The dependency survives. Commit `7f3216fc502420cb8aade4bbb639f9efe78b1ada` moved packet 033 to `.opencode/specs/system-deep-loop/z_archive/027-deep-loop-behavior-benchmarks/`. That archive remains provenance and prior-result authority. Active execution for phases 003 and 016 belongs to:
+The dependency survives. Commit `69aee63cb8a06d196de1d7a5ef557fcb70f387f3` moved packet 033 to `.opencode/specs/system-deep-loop/z_archive/027-deep-loop-behavior-benchmarks/`. That archive remains provenance and prior-result authority. Active execution for phases 003 and 016 belongs to:
 
 - `.opencode/skills/system-deep-loop/shared/behavior-benchmark/behavior-bench-run.cjs`
 - `.opencode/skills/system-deep-loop/*/behavior-benchmark/`
@@ -125,7 +125,7 @@ Baseline and HEAD both expose seven public registered workflow modes. The correc
 - three improvement variants;
 - eight phase-013 migration workstreams because `deep-improvement-common` is shared infrastructure, not a public mode.
 
-Commit `6cd8ab14e4e` changed activation classes, `708d25acf04` added typed leaf-resource routing/resource-contract versioning, and `908efde8d8f` changed the zero-signal default from research to null. None changed the registered-mode count. Evidence: `.opencode/skills/system-deep-loop/mode-registry.json:1-22,30-198` and `.opencode/skills/system-deep-loop/hub-router.json:4-50`.
+Commit `d60cc2c7553` changed activation classes, `fa74e868615` added typed leaf-resource routing/resource-contract versioning, and `4b2c351cc1e` changed the zero-signal default from research to null. None changed the registered-mode count. Evidence: `.opencode/skills/system-deep-loop/mode-registry.json:1-22,30-198` and `.opencode/skills/system-deep-loop/hub-router.json:4-50`.
 
 ## 12. Recommendations
 
@@ -139,9 +139,9 @@ Commit `6cd8ab14e4e` changed activation classes, `708d25acf04` added typed leaf-
 
 | Approach | Reason Eliminated | Evidence | Iteration(s) |
 |---|---|---|---|
-| Treat packet 033 as deleted | Rename history and archived content prove continuity. | `7f3216fc5024`; archived packet 027 spec | 1, 7 |
+| Treat packet 033 as deleted | Rename history and archived content prove continuity. | `69aee63cb8a0`; archived packet 027 spec | 1, 7 |
 | Execute benchmarks from the archive | Current runner and packages live on active skill surfaces. | `shared/behavior-benchmark/**` | 1, 7 |
-| Count phase 006's malformed link as post-baseline drift | The bad depth predates `0ce43ff589`. | `3022e02d6b62`; `fcade7e2cd58` | 2, 4, 7 |
+| Count phase 006's malformed link as post-baseline drift | The bad depth predates `60b9ed8bc2`. | `c7d31d3b3d95`; `402feaf18775` | 2, 4, 7 |
 | Equate five benchmark packages, seven modes, and eight workstreams | They are separate taxonomies with different purposes. | mode registry; phase 013; benchmark framework | 3, 6, 7 |
 | Treat generic convergence as phase 011 completion | Cycle detection, clocks, adaptive allocation, and degeneration health remain absent. | convergence runtime vs phase-011 child map | 5, 7 |
 | Treat route authority or local rollback as phase 014 cutover | No canonical authority epoch, certificate, or rollback-window contract exists. | mode registry; phase-014 spec | 6, 7 |

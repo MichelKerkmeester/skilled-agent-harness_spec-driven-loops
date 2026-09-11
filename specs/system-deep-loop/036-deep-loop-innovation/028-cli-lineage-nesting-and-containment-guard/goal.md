@@ -84,7 +84,7 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Four fix streams plus concurrent-run attribution | Done | commits `2c2687e260` and `54e65e115a` on branches/017-memory-decommission |
+| Four fix streams plus concurrent-run attribution | Done | commits `fddefe53bf` and `dbcdd8b3ad` on branches/017-memory-decommission |
 | Whole runtime suite | Done | 153 files, 2531 tests passed, 0 failed |
 | Packet validation | Done | validate --strict 0 errors, AC-001 to AC-010 Met |
 

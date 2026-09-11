@@ -6,7 +6,7 @@ trigger_phrases: []
 
 Dispatch: `gpt-5.5-fast` (variant high) via cli-opencode. Real verdict returned (dispatchOk=true).
 
-Scope: async/deferred post-insert enrichment (commit `0060a097b3`) — `setImmediate` after commit, crash safety, error catching, deferred result shape, request-scoped state, entity-density cache invalidation timing.
+Scope: async/deferred post-insert enrichment (commit `7504112605`) — `setImmediate` after commit, crash safety, error catching, deferred result shape, request-scoped state, entity-density cache invalidation timing.
 
 **Verdict: CONDITIONAL**
 

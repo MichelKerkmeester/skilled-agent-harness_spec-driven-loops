@@ -22,7 +22,7 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions:
-      - "Migration merged via merge commits 0659149d08 + b5afa1206c, each merging parallel agent branches"
+      - "Migration merged via merge commits f2f94fe364 + 44dc909a76, each merging parallel agent branches"
       - "End-state verified: 0 tracked hyphenated content folders/files (excl z_archive); 2,032 tracked underscore .md content files present"
       - "50 hyphenated .md under system-deep-loop/deep-alignment/ are untracked concurrent-session files, not migration residue"
 ---
@@ -60,7 +60,7 @@ path-scoped reference sweep, not a gate-neutralization problem.
 | `feature_catalog/<category>/**` + `manual_testing_playbook/<category>/**` (all skills) | Renamed | hyphen→underscore on folder + `.md` basenames |
 | Root index tables (`feature_catalog.md` / `manual_testing_playbook.md`) | Modified | path rows rewritten in lockstep |
 | `category:` frontmatter + markdown cross-ref links | Modified | reference sweep, path-scoped and word-boundary-safe |
-| `create-feature-catalog` + `create-manual-testing-playbook` generators | Modified | emit `category_name` / `feature_name.md` (027 commit `7cc369f2ed`) |
+| `create-feature-catalog` + `create-manual-testing-playbook` generators | Modified | emit `category_name` / `feature_name.md` (027 commit `76541f6833`) |
 <!-- /ANCHOR:what-built -->
 
 <!-- ANCHOR:how-delivered -->
@@ -69,8 +69,8 @@ path-scoped reference sweep, not a gate-neutralization problem.
 A deterministic rename engine enumerated the in-scope hyphenated content folders + `.md` files via `git ls-files`,
 computed the `-`→`_` rename map on path segments only, and hard-aborted on any collision before writing. The work
 fanned out across three parallel agent branches partitioned by skill family, each rewriting its own cross-skill
-references in lockstep, then merged path-scoped: `b5afa1206c` (spec-kit/sk-code/cli-external/sk-prompt) and
-`0659149d08` (deep-loop/mcp-tooling/sk-design + 4 more). Confidence came from the verified end-state rather than a
+references in lockstep, then merged path-scoped: `44dc909a76` (spec-kit/sk-code/cli-external/sk-prompt) and
+`f2f94fe364` (deep-loop/mcp-tooling/sk-design + 4 more). Confidence came from the verified end-state rather than a
 rename count: `git ls-files` finds **0** tracked hyphenated content folders/files under the in-scope surfaces
 (excl `z_archive`) and **2,032** tracked underscore `.md` content files present, and the validator still types every
 leaf because it keys on the parent-dir name (`validate_document.py:129,137`).
@@ -116,7 +116,7 @@ leaf because it keys on the parent-dir name (`validate_document.py:129,137`).
    files created with the old convention. They are out of scope here; a no-new-hyphen guard (part of the original
    phase plan, not built in this reconcile) would catch them if committed, or that session will land them.
 2. **No standalone guard shipped** — the nominal `005` no-new-hyphen guard was not materialized as a separate phase;
-   the convention generators (`7cc369f2ed`) now emit the underscore form, which prevents the common re-introduction
+   the convention generators (`76541f6833`) now emit the underscore form, which prevents the common re-introduction
    path, but there is no CI gate yet.
 <!-- /ANCHOR:limitations -->
 
@@ -126,5 +126,5 @@ leaf because it keys on the parent-dir name (`validate_document.py:129,137`).
 | Planned | Actual | Reason |
 |---------|--------|--------|
 | 5 sub-phase folders (001-convention-docs … 005-validate-and-rebenchmark) | One fanned-out pass, no sub-phase folders | The deterministic `-`→`_` transform made a single parallel pass safe; sub-phase decomposition would have been ceremony without risk reduction |
-| No-new-hyphen guard (phase 005) | Generator rewrite only (`7cc369f2ed`) | Generators are the primary producer of new content names; a CI guard remains a documented follow-up |
+| No-new-hyphen guard (phase 005) | Generator rewrite only (`76541f6833`) | Generators are the primary producer of new content names; a CI guard remains a documented follow-up |
 <!-- /ANCHOR:deviations -->

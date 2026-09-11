@@ -13,7 +13,7 @@ trigger_phrases: []
 - Scope: commit message grammar, identifier minting, retrofit mapping, rewrite mechanics, citation remap, enforcement plan.
 - Generated from: ten mechanically verified iteration deltas.
 - Primary local authorities: the `commit-msg` hook, `sk-git` SKILL.md, the commit template, `worktree-naming.sh`, `filter-repo --help`, the retrieval conventions and trigger-index corpus, the live git history of `skilled/v4.0.0.0`.
-- Resource status is an evidence snapshot pinned to `skilled/v4.0.0.0` @ `9371f99938` (9,112 commits) plus commands' live output; git refs drift while the repo is written to.
+- Resource status is an evidence snapshot pinned to `skilled/v4.0.0.0` @ `1b57a90d73` (9,112 commits) plus commands' live output; git refs drift while the repo is written to.
 
 ## Local Repository Sources
 
@@ -53,6 +53,6 @@ trigger_phrases: []
 ## Verification Notes
 
 - The hook itself was executed against nine constructed fixture messages (`scratch/candidates/c1-c9`), with verbatim pass/block output recorded in iteration 4 and 5.
-- The iterator counts were re-measured at the cap: 9,112 commits at `9371f99938` (the tip moved 9,108→9,112 during the session).
+- The iterator counts were re-measured at the cap: 9,112 commits at `1b57a90d73` (the tip moved 9,108→9,112 during the session).
 - No network fetch was performed; GitHub search behavior is labeled local knowledge and remains unverified.
 - No write outside the lineage directory was performed by the research artifacts (one incidental shell temp file was created and removed; noted for audit completeness).

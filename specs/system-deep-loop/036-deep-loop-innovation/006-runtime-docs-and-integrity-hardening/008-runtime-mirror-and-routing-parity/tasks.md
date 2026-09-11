@@ -53,7 +53,7 @@ _memory:
 
 - [x] T001 **CONFIRM BEFORE BUILD.** For each of the 8 finding IDs in scope, re-read the cited `file:line` at current HEAD and record `CONFIRMED` / `REFUTED` / `MOVED` / `ALREADY-FIXED` with a cited probe. (`spec.md` §3 scope table) [3h]
 
-T001 confirmation was performed against HEAD `9229cb8f3e281c9291e6d631237528bc755e6f4b`, before implementation edits. All eight cited findings are `CONFIRMED`:
+T001 confirmation was performed against HEAD `2d12dfc5f5f365f396c51a7dea1c7cb825f5501b`, before implementation edits. All eight cited findings are `CONFIRMED`:
 
 | Finding | Status | HEAD probe |
 |---------|--------|------------|
@@ -66,15 +66,15 @@ T001 confirmation was performed against HEAD `9229cb8f3e281c9291e6d631237528bc75
 | F-027-01 | CONFIRMED | `hub-router.json:72` has no `/deep:command-benchmark`; the benchmark vocabulary contains only `/deep:model-benchmark` and `/deep:skill-benchmark`. |
 | F-027-02 | CONFIRMED | `registry-compiler.cjs:327-372` validates strings and registry equality but never resolves the packet or leaf path on disk before emitting resources. |
 - [x] T002 Enumerate the load-bearing instruction set per mirrored agent, so order sensitivity applies to sequences rather than to the whole body [4h] {deps: T001}
-  - **Evidence**: `mirror-sync-verify.vitest.ts`; suite digest `021303aecc616a6a0face9d634d9b21425607587e87e0152f288b084d4992a0e`; candidate SHA `9229cb8f3e281c9291e6d631237528bc755e6f4b`.
+  - **Evidence**: `mirror-sync-verify.vitest.ts`; suite digest `021303aecc616a6a0face9d634d9b21425607587e87e0152f288b084d4992a0e`; candidate SHA `2d12dfc5f5f365f396c51a7dea1c7cb825f5501b`.
 - [x] T003 Record the OD-2 status and gate REQ-008 on it [1h] {deps: T001}
-  - **Evidence**: `runtime-capabilities-matrix-conformance.vitest.ts`; suite digest `aa69779fcfd8ac1f194972c39a440aa2fcdbc2458747f93a639e9ad9ce5dd9b4`; candidate SHA `9229cb8f3e281c9291e6d631237528bc755e6f4b`.
+  - **Evidence**: `runtime-capabilities-matrix-conformance.vitest.ts`; suite digest `aa69779fcfd8ac1f194972c39a440aa2fcdbc2458747f93a639e9ad9ce5dd9b4`; candidate SHA `2d12dfc5f5f365f396c51a7dea1c7cb825f5501b`.
 
 T002 enumeration: the mirror gate treats the ordered markers `VALIDATE INPUTS`, `READ STATE`, `DETERMINE FOCUS`, `EXECUTE REVIEW`, `RESOLVE EDGES`, `CLASSIFY FINDINGS`, `WRITE FINDINGS`, `UPDATE STRATEGY`, `APPEND JSONL`, `WRITE DELTA`, `VERIFY OUTPUTS`, `RECEIVE`, `PREPARE`, `DIVERSIFY`, `DISPATCH`, `DELIBERATE`, `SYNTHESIZE`, `COMPOSE`, and `DELIVER` as load-bearing. Other body tokens remain set-compared so formatting-only changes do not become false drift.
 
 OD-2 position: Codex is covered only where a shipped `.toml` mirror exists. Markdown mirror bodies remain comparable across OpenCode and Claude; TOML tool surfaces are explicitly non-comparable. The deep-review capability matrix and parity contract include Codex, while the ai-council capability matrix retains only runtimes that can execute supported council seats; no nonexistent `.codex/*.md` mirror is treated as missing.
 
-Evidence: `runtime-capabilities-matrix-conformance.vitest.ts`; suite digest `aa69779fcfd8ac1f194972c39a440aa2fcdbc2458747f93a639e9ad9ce5dd9b4`; candidate SHA `9229cb8f3e281c9291e6d631237528bc755e6f4b`.
+Evidence: `runtime-capabilities-matrix-conformance.vitest.ts`; suite digest `aa69779fcfd8ac1f194972c39a440aa2fcdbc2458747f93a639e9ad9ce5dd9b4`; candidate SHA `2d12dfc5f5f365f396c51a7dea1c7cb825f5501b`.
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -89,11 +89,11 @@ Evidence: `runtime-capabilities-matrix-conformance.vitest.ts`; suite digest `aa6
 - [B] T006 Derive the Codex sandbox mode from the source agent deny list rather than hardcoding it (`F-028-01`) (`sync-agents.cjs`, `.codex/agents/ai-council.toml`) [5h] {deps: T004}
 - [x] T007 Choose exactly one ai-council writer authority and update every runtime mirror together (`F-028-03`) (`.opencode/agents/ai-council.md`, mirrors) [5h] {deps: T006}
 
-T006 deferred (`F-028-01`): the deny-Bash→`read-only` derivation was attempted and reverted because it wrongly flips the write-capable `ai-council` agent to `read-only`. `sync-agents.cjs` is unchanged and retains `HISTORICAL_SETTINGS`; `.codex/agents/ai-council.toml` stays `workspace-write`, and `.codex/agents/review.toml` remains stale because the environment denies writes under `.codex`. A correct write/edit-keyed derivation remains deferred; not in landed commit `2f84f78bf7`.
+T006 deferred (`F-028-01`): the deny-Bash→`read-only` derivation was attempted and reverted because it wrongly flips the write-capable `ai-council` agent to `read-only`. `sync-agents.cjs` is unchanged and retains `HISTORICAL_SETTINGS`; `.codex/agents/ai-council.toml` stays `workspace-write`, and `.codex/agents/review.toml` remains stale because the environment denies writes under `.codex`. A correct write/edit-keyed derivation remains deferred; not in landed commit `e45e786cd5`.
 
 T007 mirror inventory: ai-council bodies agree across `.opencode/agents/ai-council.md`, `.claude/agents/ai-council.md`, `.pi/agents/ai-council.md`, and the existing `.codex/agents/ai-council.toml`. The deep-review body already carried the structural preflight; its Claude allowlist now exposes `mcp__mk_code_index__detect_changes`. No `.codex/*.md` file is assumed.
 
-T007 evidence: the single-writer body landed to `.opencode/agents/ai-council.md`, `.claude/agents/ai-council.md`, and `.pi/agents/ai-council.md` in `2f84f78bf7`; `multi-ai-council-mirror-parity.vitest.ts` and `multi-ai-council-runtime-parity.vitest.ts` pass; suite digests `aa2d8d9569b5d4fe9d8061ffbab84158a2efa2442fef2dfc2ee57db4ef5a2bac` and `b4e89a0d3911ab27c4dd12a180a493fddcaa6d623b7778cb8380b3a25aefe74b`; candidate SHA `9229cb8f3e281c9291e6d631237528bc755e6f4b`.
+T007 evidence: the single-writer body landed to `.opencode/agents/ai-council.md`, `.claude/agents/ai-council.md`, and `.pi/agents/ai-council.md` in `e45e786cd5`; `multi-ai-council-mirror-parity.vitest.ts` and `multi-ai-council-runtime-parity.vitest.ts` pass; suite digests `aa2d8d9569b5d4fe9d8061ffbab84158a2efa2442fef2dfc2ee57db4ef5a2bac` and `b4e89a0d3911ab27c4dd12a180a493fddcaa6d623b7778cb8380b3a25aefe74b`; candidate SHA `2d12dfc5f5f365f396c51a7dea1c7cb825f5501b`.
 
 ### Routing
 

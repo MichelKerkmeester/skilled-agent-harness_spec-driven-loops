@@ -144,7 +144,7 @@ and `sk-create-chart/SKILL.md` takes over. Before this phase the same request sc
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-Revert `e34e225517`, then rebuild the daemon and re-mint the `sk-doc` compiled routing. The revert
+Revert `a131f628bc`, then rebuild the daemon and re-mint the `sk-doc` compiled routing. The revert
 alone is not enough: both the daemon generation and the compiled manifest are caches that keep
 serving the post-cutover shape until refreshed, which is the same pair of silent windows the forward
 change had to close.
@@ -186,7 +186,7 @@ change had to close.
 - [x] The `sk-doc` compiled routing re-minted rather than assumed fresh
 
 ### Rollback Procedure
-1. `git revert e34e225517`
+1. `git revert a131f628bc`
 2. Re-mint the `sk-doc` compiled routing manifest
 3. Rebuild the advisor daemon and observe its generation move
 4. Replay: chart and diagram should name `sk-doc` again
@@ -246,7 +246,7 @@ shape silently, so both must be refreshed by name before any claim is made.
 
 | Milestone | Evidence |
 |-----------|----------|
-| Both hubs green together | Fleet gate in commit `e34e225517` |
+| Both hubs green together | Fleet gate in commit `a131f628bc` |
 | Chart and diagram arrive | Replay at generation 628 |
 | `sk-doc` unharmed | Three control phrases unchanged |
 | Four dead phrases fixed | Above the bar after eleven intent signals |

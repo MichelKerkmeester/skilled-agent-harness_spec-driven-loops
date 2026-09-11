@@ -96,7 +96,7 @@ Dispatch attempt: `opencode run --model deepseek/deepseek-v4-pro --variant high 
 | 4 new ref docs exist + HVR-clean | PASS — all 4 + deferred-decisions.md (5 files), 0 em dashes, 0 semicolons, 0 Oxford commas, 0 hard-blocker words |
 | F33 SOURCE FILES added to 3 playbook scenarios | PASS — 007/008/009 each show `grep -c SOURCE FILES` = 1 |
 | F34 deviation notes added to 20 playbook files | PASS — `grep -rl "Structure deviation note (007-finalize-documentation-quality-refactor)"` returns 20 |
-| Scope-diff against recovery baseline `956595dbdbe9` | 30 files under skill-advisor or 007 packet modified; 5 out-of-skill files modified by parallel processes (not this session) — `.mcp.json`, `system-code-graph/` docs, code-graph readiness files |
+| Scope-diff against recovery baseline `3b98be715303` | 30 files under skill-advisor or 007 packet modified; 5 out-of-skill files modified by parallel processes (not this session) — `.mcp.json`, `system-code-graph/` docs, code-graph readiness files |
 | deferred-decisions.md contains all Tier D items | PASS — 8 sections covering F4, F6, F34, F35, F36, F37 |
 <!-- /ANCHOR:verification -->
 

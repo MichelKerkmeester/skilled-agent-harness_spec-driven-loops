@@ -206,7 +206,7 @@
     ],
     "causal_summary": "The `orchestrate` agent carries no documented policy for the six external CLI executor modes under",
     "created_at": "2026-09-02T11:03:33Z",
-    "last_save_at": "2026-09-10T20:42:57.451Z",
+    "last_save_at": "2026-09-11T16:41:47.112Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +216,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0fa12d550c4836d356b5c5dcb0565879f97a52e2346b77f1f588c405774db8a4",
+    "source_fingerprint": "sha256:b99064d0c7c74f201ee827959e521d91d8e1d90974277e095bfb159f0d020c59",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3e46155cf57314a11289ce79e0a089b7abc6a2851bee2cd8d9280e8dc13ed958",
       "plan.md": "9df6fe2c6a5339f7fa3ef21c06f0c947d02aa8339ddecb2f494c19808d1eae84",
       "tasks.md": "5a4fc525ba1b1833a10c82dfc02fab10dc300a8ce55194da83249a6da4494384",
-      "implementation-summary.md": "73c0c127de94b83cf11c2958f3e709a2b8782a869b58f82dd276d5f570a4fb68"
+      "implementation-summary.md": "191d5a7985b085e940b7667ea647d45d787ee63484fbf1802312a63f60e046db"
     },
     "last_active_child_id": null,
     "last_active_at": null

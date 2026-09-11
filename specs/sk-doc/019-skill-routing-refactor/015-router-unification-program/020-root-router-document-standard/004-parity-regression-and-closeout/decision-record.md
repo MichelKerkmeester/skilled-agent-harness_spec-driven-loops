@@ -340,7 +340,7 @@ Continuity, fingerprints, and parent pointers derive from the final authored doc
 
 ### Context
 
-The generic replay layer already prefers root `ROUTER.md`, but the system-deep-loop rollout compiler still reads `shared/references/smart-routing.md` directly in its `sourceBytes()` helper. Removing the legacy file therefore makes only this hub fail before compilation even though its root contract and parent doctor pass and its machine fence is byte-identical. After that path is repaired, compilation reaches a second pre-existing drift: `assertNoCollapse()` still expects alignment to use runtime discriminator `review`, while the current registry deliberately declares `backendKind: alignment-convergence` and `runtimeLoopType: null` (commit `1578d8533e`).
+The generic replay layer already prefers root `ROUTER.md`, but the system-deep-loop rollout compiler still reads `shared/references/smart-routing.md` directly in its `sourceBytes()` helper. Removing the legacy file therefore makes only this hub fail before compilation even though its root contract and parent doctor pass and its machine fence is byte-identical. After that path is repaired, compilation reaches a second pre-existing drift: `assertNoCollapse()` still expects alignment to use runtime discriminator `review`, while the current registry deliberately declares `backendKind: alignment-convergence` and `runtimeLoopType: null` (commit `46e806286e`).
 
 ### Decision
 

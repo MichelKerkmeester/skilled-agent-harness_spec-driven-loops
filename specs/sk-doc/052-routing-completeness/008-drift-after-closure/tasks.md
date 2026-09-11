@@ -46,8 +46,8 @@ contextType: "general"
 ## Phase 2: Implementation
 
 - [x] T005 Reproduce the scaffold failure in scratch: `create.sh --level 3 --with-lazy-addons` writes `description.json`, `graph-metadata.json`, `scratch/` and nothing else, and prints template text where the file tree should be (scratch run, 2026-09-05)
-- [x] T006 Name the mechanism: the wrapper resolves `SKILL_ROOT` one directory up from itself, which after `b4c2484696` is `runtime/cli`, a directory with no `node_modules`; the loader test fails and the inline fallback prints the last template to stdout, ignoring `--out-dir` (`inline-gate-renderer.sh:10`, loader present only at the skill root)
-- [x] T007 Fix the three loader spellings that were one level short (`runtime/cli/templates/inline-gate-renderer.sh:10`, `runtime/cli/spec/create.sh:1678`, `runtime/cli/spec/validate.sh:28`; the identical edit landed concurrently in `743e626543`, so no diff remains in this tree)
+- [x] T006 Name the mechanism: the wrapper resolves `SKILL_ROOT` one directory up from itself, which after `f65b8f1e5b` is `runtime/cli`, a directory with no `node_modules`; the loader test fails and the inline fallback prints the last template to stdout, ignoring `--out-dir` (`inline-gate-renderer.sh:10`, loader present only at the skill root)
+- [x] T007 Fix the three loader spellings that were one level short (`runtime/cli/templates/inline-gate-renderer.sh:10`, `runtime/cli/spec/create.sh:1678`, `runtime/cli/spec/validate.sh:28`; the identical edit landed concurrently in `ccbff09cfb`, so no diff remains in this tree)
 - [x] T008 Retire `spec kit runtime` from the CLI hub's two intent-signal lists, mint, and read the guard (`cli-external-orchestration/graph-metadata.json`, mint `already-exists`, guard `All hubs fresh or excused`)
 - [x] T009 Record the parity-pin movement under both regimes rather than re-pinning (`decision-record.md` ADR-002: 113/108/5 and 114/108/6 on consecutive local runs, 114/107/7 with the database directory pointed at an empty folder)
 - [x] T010 Record the `trigger_phrases` loss with the evidence and an owner (`decision-record.md` ADR-003)
@@ -145,7 +145,7 @@ contextType: "general"
 - [x] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests: not applicable, the write-inside-target guard is untouched and the suite's temp-root case exercises it
 - [x] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed (`plan.md` affected surfaces: level by add-ons)
 - [x] CHK-FIX-006 [P1] Hostile env/global-state variant executed: the parity suite was run with `SYSTEM_SKILL_ADVISOR_DB_DIR` pointed at an empty directory, which is the CI regime
-- [x] CHK-FIX-007 [P1] Evidence is pinned: the nesting commit is `b4c2484696`, the parity pin commit is `35721a4db7`, the Gate A recording is the 2026-09-04 artifact in phase 002
+- [x] CHK-FIX-007 [P1] Evidence is pinned: the nesting commit is `f65b8f1e5b`, the parity pin commit is `7bc5d546e3`, the Gate A recording is the 2026-09-04 artifact in phase 002
 <!-- /ANCHOR:fix-completeness -->
 
 ---

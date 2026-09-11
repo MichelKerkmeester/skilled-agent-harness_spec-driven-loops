@@ -1,7 +1,7 @@
 ---
 iteration: 1
 dimension: correctness
-focus: 015-P0 styles-DB foundation (commit bf0986cecd) — atomicity (REQ-001), telemetry residency (REQ-002), oracle parity (REQ-003)
+focus: 015-P0 styles-DB foundation (commit 7e67a7bb3a) — atomicity (REQ-001), telemetry residency (REQ-002), oracle parity (REQ-003)
 sessionId: fanout-minimax-m3-high-1784606267078-bpkeoi
 generation: 1
 lineageMode: new
@@ -32,7 +32,7 @@ trigger_phrases: []
 
 ## Scope
 
-Audit the 015 Phase-0 styles-DB foundation (`bf0986cecd`) for correctness against the three
+Audit the 015 Phase-0 styles-DB foundation (`7e67a7bb3a`) for correctness against the three
 acceptance requirements in the charter:
 
 - **REQ-001** — manifest publishes atomically (single fsynced pointer flip), rolls back

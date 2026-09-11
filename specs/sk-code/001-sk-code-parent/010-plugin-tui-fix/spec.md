@@ -108,7 +108,7 @@ Preserve the stale-dist safety signal without writing to the OpenCode TUI stdout
 - **SC-001**: `node .opencode/plugins/tests/mk-dist-freshness-guard.test.cjs` passes.
 - **SC-002**: Live smoke confirms `validate.sh` executed through `bash` produces zero plugin TUI writes.
 - **SC-003**: The stale-dist signal remains available to the agent through bounded system-context injection and to the operator through the append-only log.
-- **SC-004**: The shipped fix is recorded in commit evidence: remote `711b019eb1`, local `42677fac58`.
+- **SC-004**: The shipped fix is recorded in commit evidence: remote `bbced8128b`, local `42677fac58`.
 
 ### Acceptance Scenarios
 

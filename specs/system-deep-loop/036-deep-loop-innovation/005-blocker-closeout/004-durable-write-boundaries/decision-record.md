@@ -399,7 +399,7 @@ This makes single-winner semantics the default production behavior rather than a
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted (ruling) — IMPLEMENTED (B1 `39015ed14c`); see implementation-summary.md |
+| **Status** | Accepted (ruling) — IMPLEMENTED (B1 `039fc180f9`); see implementation-summary.md |
 | **Date** | 2026-08-03 |
 | **Deciders** | Operator ruling, packet owner |
 

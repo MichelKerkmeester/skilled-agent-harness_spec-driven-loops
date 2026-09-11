@@ -10,5 +10,5 @@ trigger_phrases: []
 ## Finding
 
 VERDICT: MAJOR-DRIFT
-DRIFT: Files Changed paths `.opencode/skills/system-rerank-sidecar/scripts/start.sh`, `.opencode/skills/system-rerank-sidecar/SKILL.md`, and `.opencode/skills/system-rerank-sidecar/README.md` do not exist on disk; spec folder and its `spec.md`/`implementation-summary.md` exist; no `decision-record.md` present; Level 2 matches; cleanup hash `696c889887` is real.
-NOTE: Claims look historically plausible at `696c889887^` including 340-line `SKILL.md` and env keys, but current shipped-file existence fails.
+DRIFT: Files Changed paths `.opencode/skills/system-rerank-sidecar/scripts/start.sh`, `.opencode/skills/system-rerank-sidecar/SKILL.md`, and `.opencode/skills/system-rerank-sidecar/README.md` do not exist on disk; spec folder and its `spec.md`/`implementation-summary.md` exist; no `decision-record.md` present; Level 2 matches; cleanup hash `ada2c51ee8` is real.
+NOTE: Claims look historically plausible at `ada2c51ee8^` including 340-line `SKILL.md` and env keys, but current shipped-file existence fails.

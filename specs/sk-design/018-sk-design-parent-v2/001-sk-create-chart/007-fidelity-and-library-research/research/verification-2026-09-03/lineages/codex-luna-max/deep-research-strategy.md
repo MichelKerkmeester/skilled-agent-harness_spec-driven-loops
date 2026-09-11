@@ -1,7 +1,7 @@
 # Deep Research Strategy - Session Tracking
 
 ## 2. TOPIC
-Re-verify every upstream library citation and claim in the DeepSeek research against live sources, then reconcile each claimed capability with the chart corpus at commit `756a7fcd4c`.
+Re-verify every upstream library citation and claim in the DeepSeek research against live sources, then reconcile each claimed capability with the chart corpus at commit `3ce648be44`.
 
 <!-- ANCHOR:key-questions -->
 ## 3. KEY QUESTIONS (remaining)
@@ -49,20 +49,20 @@ Re-verify every upstream library citation and claim in the DeepSeek research aga
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: **Adding a Plot transform or `ResizeObserver` runtime to the templates:** The shipped contract is a self-contained double-click HTML file with no remote dependency or runtime fetch; the static corpus already computes only auditable totals and drawing geometry.
 
-### **Adding D3 as a runtime dependency:** The corpus contract forbids remote resources and package-manager delivery; the local ladder and formatter already provide the required static behavior. `[CORPUS@756a7fcd4c: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:159-160]` -- BLOCKED (iteration 2, 1 attempts)
-- What was tried: **Adding D3 as a runtime dependency:** The corpus contract forbids remote resources and package-manager delivery; the local ladder and formatter already provide the required static behavior. `[CORPUS@756a7fcd4c: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:159-160]`
+### **Adding D3 as a runtime dependency:** The corpus contract forbids remote resources and package-manager delivery; the local ladder and formatter already provide the required static behavior. `[CORPUS@3ce648be44: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:159-160]` -- BLOCKED (iteration 2, 1 attempts)
+- What was tried: **Adding D3 as a runtime dependency:** The corpus contract forbids remote resources and package-manager delivery; the local ladder and formatter already provide the required static behavior. `[CORPUS@3ce648be44: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:159-160]`
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **Adding D3 as a runtime dependency:** The corpus contract forbids remote resources and package-manager delivery; the local ladder and formatter already provide the required static behavior. `[CORPUS@756a7fcd4c: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:159-160]`
+- Do NOT retry: **Adding D3 as a runtime dependency:** The corpus contract forbids remote resources and package-manager delivery; the local ladder and formatter already provide the required static behavior. `[CORPUS@3ce648be44: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:159-160]`
 
-### **Adding Vega or Plotly runtime code to the templates:** Their runtime/responsive/interactive benefits conflict with the no-remote-resource, no-build single-file contract. `[CORPUS@756a7fcd4c: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:154-160]` -- BLOCKED (iteration 5, 1 attempts)
-- What was tried: **Adding Vega or Plotly runtime code to the templates:** Their runtime/responsive/interactive benefits conflict with the no-remote-resource, no-build single-file contract. `[CORPUS@756a7fcd4c: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:154-160]`
+### **Adding Vega or Plotly runtime code to the templates:** Their runtime/responsive/interactive benefits conflict with the no-remote-resource, no-build single-file contract. `[CORPUS@3ce648be44: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:154-160]` -- BLOCKED (iteration 5, 1 attempts)
+- What was tried: **Adding Vega or Plotly runtime code to the templates:** Their runtime/responsive/interactive benefits conflict with the no-remote-resource, no-build single-file contract. `[CORPUS@3ce648be44: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:154-160]`
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **Adding Vega or Plotly runtime code to the templates:** Their runtime/responsive/interactive benefits conflict with the no-remote-resource, no-build single-file contract. `[CORPUS@756a7fcd4c: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:154-160]`
+- Do NOT retry: **Adding Vega or Plotly runtime code to the templates:** Their runtime/responsive/interactive benefits conflict with the no-remote-resource, no-build single-file contract. `[CORPUS@3ce648be44: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:154-160]`
 
-### **Adding Vega-Lite as a runtime dependency:** It would conflict with the contract's no-remote-resource/no-runtime-fetch rule and the double-click, no-build delivery model. `[CORPUS@756a7fcd4c: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:154-160]` -- BLOCKED (iteration 3, 1 attempts)
-- What was tried: **Adding Vega-Lite as a runtime dependency:** It would conflict with the contract's no-remote-resource/no-runtime-fetch rule and the double-click, no-build delivery model. `[CORPUS@756a7fcd4c: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:154-160]`
+### **Adding Vega-Lite as a runtime dependency:** It would conflict with the contract's no-remote-resource/no-runtime-fetch rule and the double-click, no-build delivery model. `[CORPUS@3ce648be44: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:154-160]` -- BLOCKED (iteration 3, 1 attempts)
+- What was tried: **Adding Vega-Lite as a runtime dependency:** It would conflict with the contract's no-remote-resource/no-runtime-fetch rule and the double-click, no-build delivery model. `[CORPUS@3ce648be44: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:154-160]`
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **Adding Vega-Lite as a runtime dependency:** It would conflict with the contract's no-remote-resource/no-runtime-fetch rule and the double-click, no-build delivery model. `[CORPUS@756a7fcd4c: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:154-160]`
+- Do NOT retry: **Adding Vega-Lite as a runtime dependency:** It would conflict with the contract's no-remote-resource/no-runtime-fetch rule and the double-click, no-build delivery model. `[CORPUS@3ce648be44: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:154-160]`
 
 ### **Calling fixed thinning a parity/greedy implementation:** The corpus has explicit per-form index rules, not a general bounding-box resolver; it should be described as a static approximation with budgets. -- BLOCKED (iteration 4, 1 attempts)
 - What was tried: **Calling fixed thinning a parity/greedy implementation:** The corpus has explicit per-form index rules, not a general bounding-box resolver; it should be described as a static approximation with budgets.
@@ -79,15 +79,15 @@ Re-verify every upstream library citation and claim in the DeepSeek research aga
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: **Calling Plot's swatch/ramp legend behavior a shipped dependency:** The corpus has local SVG/text legend code and no Plot bundle.
 
-### **Chart.js runtime/canvas implementation:** It would violate the self-contained no-remote-dependency delivery contract and would not improve the corpus's SVG/table accessibility boundary. `[CORPUS@756a7fcd4c: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:159,163-167]` -- BLOCKED (iteration 1, 1 attempts)
-- What was tried: **Chart.js runtime/canvas implementation:** It would violate the self-contained no-remote-dependency delivery contract and would not improve the corpus's SVG/table accessibility boundary. `[CORPUS@756a7fcd4c: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:159,163-167]`
+### **Chart.js runtime/canvas implementation:** It would violate the self-contained no-remote-dependency delivery contract and would not improve the corpus's SVG/table accessibility boundary. `[CORPUS@3ce648be44: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:159,163-167]` -- BLOCKED (iteration 1, 1 attempts)
+- What was tried: **Chart.js runtime/canvas implementation:** It would violate the self-contained no-remote-dependency delivery contract and would not improve the corpus's SVG/table accessibility boundary. `[CORPUS@3ce648be44: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:159,163-167]`
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **Chart.js runtime/canvas implementation:** It would violate the self-contained no-remote-dependency delivery contract and would not improve the corpus's SVG/table accessibility boundary. `[CORPUS@756a7fcd4c: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:159,163-167]`
+- Do NOT retry: **Chart.js runtime/canvas implementation:** It would violate the self-contained no-remote-dependency delivery contract and would not improve the corpus's SVG/table accessibility boundary. `[CORPUS@3ce648be44: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:159,163-167]`
 
-### **Copying Plot's runtime pointer/tip implementation:** It is not needed for a double-click, static HTML artifact and would introduce runtime/dependency surface forbidden by the contract. `[CORPUS@756a7fcd4c: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:154-160]` -- BLOCKED (iteration 6, 1 attempts)
-- What was tried: **Copying Plot's runtime pointer/tip implementation:** It is not needed for a double-click, static HTML artifact and would introduce runtime/dependency surface forbidden by the contract. `[CORPUS@756a7fcd4c: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:154-160]`
+### **Copying Plot's runtime pointer/tip implementation:** It is not needed for a double-click, static HTML artifact and would introduce runtime/dependency surface forbidden by the contract. `[CORPUS@3ce648be44: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:154-160]` -- BLOCKED (iteration 6, 1 attempts)
+- What was tried: **Copying Plot's runtime pointer/tip implementation:** It is not needed for a double-click, static HTML artifact and would introduce runtime/dependency surface forbidden by the contract. `[CORPUS@3ce648be44: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:154-160]`
 - Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: **Copying Plot's runtime pointer/tip implementation:** It is not needed for a double-click, static HTML artifact and would introduce runtime/dependency surface forbidden by the contract. `[CORPUS@756a7fcd4c: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:154-160]`
+- Do NOT retry: **Copying Plot's runtime pointer/tip implementation:** It is not needed for a double-click, static HTML artifact and would introduce runtime/dependency surface forbidden by the contract. `[CORPUS@3ce648be44: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:154-160]`
 
 ### **Treating “usually displays a tooltip” as keyboard or touch coverage:** The source does not make that guarantee; visible labels and the data table remain required fallbacks. -- BLOCKED (iteration 8, 1 attempts)
 - What was tried: **Treating “usually displays a tooltip” as keyboard or touch coverage:** The source does not make that guarantee; visible labels and the data table remain required fallbacks.
@@ -163,16 +163,16 @@ Re-verify every upstream library citation and claim in the DeepSeek research aga
 
 <!-- ANCHOR:ruled-out-directions -->
 ## 10. RULED OUT DIRECTIONS
-- **Chart.js runtime/canvas implementation:** It would violate the self-contained no-remote-dependency delivery contract and would not improve the corpus's SVG/table accessibility boundary. `[CORPUS@756a7fcd4c: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:159,163-167]` (iteration 1)
-- **Adding D3 as a runtime dependency:** The corpus contract forbids remote resources and package-manager delivery; the local ladder and formatter already provide the required static behavior. `[CORPUS@756a7fcd4c: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:159-160]` (iteration 2)
-- **Adding Vega-Lite as a runtime dependency:** It would conflict with the contract's no-remote-resource/no-runtime-fetch rule and the double-click, no-build delivery model. `[CORPUS@756a7fcd4c: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:154-160]` (iteration 3)
+- **Chart.js runtime/canvas implementation:** It would violate the self-contained no-remote-dependency delivery contract and would not improve the corpus's SVG/table accessibility boundary. `[CORPUS@3ce648be44: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:159,163-167]` (iteration 1)
+- **Adding D3 as a runtime dependency:** The corpus contract forbids remote resources and package-manager delivery; the local ladder and formatter already provide the required static behavior. `[CORPUS@3ce648be44: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:159-160]` (iteration 2)
+- **Adding Vega-Lite as a runtime dependency:** It would conflict with the contract's no-remote-resource/no-runtime-fetch rule and the double-click, no-build delivery model. `[CORPUS@3ce648be44: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:154-160]` (iteration 3)
 - **Using an unqualified numeric default width:** The current pages expose conflicting values; it cannot support a stable corpus rule without a pinned schema/version. (iteration 3)
 - **Calling fixed thinning a parity/greedy implementation:** The corpus has explicit per-form index rules, not a general bounding-box resolver; it should be described as a static approximation with budgets. (iteration 4)
 - **Using the v1 page as evidence for present-day defaults:** Its own banner limits it to v1. (iteration 4)
-- **Adding Vega or Plotly runtime code to the templates:** Their runtime/responsive/interactive benefits conflict with the no-remote-resource, no-build single-file contract. `[CORPUS@756a7fcd4c: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:154-160]` (iteration 5)
+- **Adding Vega or Plotly runtime code to the templates:** Their runtime/responsive/interactive benefits conflict with the no-remote-resource, no-build single-file contract. `[CORPUS@3ce648be44: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:154-160]` (iteration 5)
 - **Using the unavailable v5.11.0 release note as proof of a precise ARIA-bloat statement:** Current docs cover the supported behavior; the release-note body was not observable. (iteration 5)
 - **Calling Plot's swatch/ramp legend behavior a shipped dependency:** The corpus has local SVG/text legend code and no Plot bundle. (iteration 6)
-- **Copying Plot's runtime pointer/tip implementation:** It is not needed for a double-click, static HTML artifact and would introduce runtime/dependency surface forbidden by the contract. `[CORPUS@756a7fcd4c: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:154-160]` (iteration 6)
+- **Copying Plot's runtime pointer/tip implementation:** It is not needed for a double-click, static HTML artifact and would introduce runtime/dependency surface forbidden by the contract. `[CORPUS@3ce648be44: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:154-160]` (iteration 6)
 - **Adding a Plot transform or `ResizeObserver` runtime to the templates:** The shipped contract is a self-contained double-click HTML file with no remote dependency or runtime fetch; the static corpus already computes only auditable totals and drawing geometry. (iteration 7)
 - **Treating discussion 2105 as a versioned API guarantee:** It has no package-version declaration and is a maintainer recommendation, so it cannot establish a universal default. (iteration 7)
 - **Treating “usually displays a tooltip” as keyboard or touch coverage:** The source does not make that guarantee; visible labels and the data table remain required fallbacks. (iteration 8)
@@ -221,7 +221,7 @@ Re-verify every upstream library citation and claim in the DeepSeek research aga
 - Which final un-cited ECharts interaction/renderer claims need a current official source? (iteration 8)
 - Which WCAG contrast criteria and browser-tooltip caveats are supported by the cited standards and issue pages? (iteration 8)
 - Are colorarchive.org and figviz.com authoritative enough for normative palette recommendations? (iteration 8)
-- Does the final corpus audit show every T1-T10 and C1-C3 status consistently at commit `756a7fcd4c`? (iteration 9)
+- Does the final corpus audit show every T1-T10 and C1-C3 status consistently at commit `3ce648be44`? (iteration 9)
 - What final verdict totals and ranked corrections should phase synthesis report? (iteration 9)
 - Which uncited ECharts renderer, responsive, touch, and tooltip claims can be supported by current official documentation? (iteration 9)
 - T5 needs a separate decision about how much data-derived accessible prose can remain literal while preserving the data-block contract. (iteration 10)
@@ -237,7 +237,7 @@ Whether to implement T8, T9, T10, and C1 is a subsequent scoped change; this ver
 
 ## 12. KNOWN CONTEXT
 - Baseline source: `specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/007-fidelity-and-library-research/research/lineages/deepseek-flash-max/research.md`.
-- Corpus baseline: commit `756a7fcd4c228b1faeddbf10f449cfbc2409656f`.
+- Corpus baseline: commit `3ce648be44c3a4ef02da1562e74d500a77ccf5a9`.
 - Required packet-local contract: `.opencode/skills/sk-doc/sk-create-chart/references/template-contract.md`, sections 3-6.
 - The baseline research has 43 unique URL citations and the requested review must also cover uncited upstream assertions.
 - Resource map was absent at lineage initialization, so the coverage gate is skipped.

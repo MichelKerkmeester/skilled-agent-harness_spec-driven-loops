@@ -68,7 +68,7 @@ Each becomes its own implementation packet. Recommended order:
 
 ## 5. Also shipped this session (context, already on v4)
 
-- Deep review (DeepSeek + MiniMax, 10 iters) → 2 P1s found + fixed → `cb0ad1cc4b`, `72c4f8e57f`.
+- Deep review (DeepSeek + MiniMax, 10 iters) → 2 P1s found + fixed → `be136c9cc0`, `1485d0a16b`.
 - Main tree synced to v4 (clean, current). 020 deep-loop artifacts preserved outside the repo.
 
 ## 6. How to resume

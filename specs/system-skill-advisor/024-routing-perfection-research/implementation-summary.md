@@ -43,9 +43,9 @@ Routing runs in two stages that were never connected, and the disconnection was 
 
 | Commit | Change |
 |--------|--------|
-| `a5b553121b` | The reach gate fails closed and judges by rank |
-| `0ed06e1d1d` | `sk-design`'s six hub invariants closed |
-| `3975edd394` | Router-declared vocabulary carried into stage one |
+| `c2f49c7489` | The reach gate fails closed and judges by rank |
+| `bd77c72630` | `sk-design`'s six hub invariants closed |
+| `456df64554` | Router-declared vocabulary carried into stage one |
 
 **The gate first, deliberately.** `ci-router-vocabulary-reach.cjs` collapsed every probe failure into a result that classified as no-reach, which never failed the run, so a missing binary or a cold daemon printed a clean pass over an advisor that never answered. It also asked whether the declaring hub appeared above the confidence bar rather than whether it ranked first, hiding 18 phrases that were losing to another hub. Both had to be true before the generator ran, because otherwise the generator would have improved the metric while routing stayed wrong.
 

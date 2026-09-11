@@ -67,7 +67,7 @@ None yet.
 
 ## Known Context
 - Target packet claims all seven hubs are `compiled-serving`, default-on, reversible, and frozen-scorer clean.
-- Six commits define the implementation range: `f19ee17179`, `e56361ee53`, `f9f639674b`, `b03b1dd882`, `6ba5f2957f`, `7dfffa0c93`.
+- Six commits define the implementation range: `b6f9637951`, `b903b8af9a`, `a381edc1f8`, `66d179b023`, `7c323e90a9`, `4cd19370da`.
 - Canonical continuity is contradictory: `spec.md`, `checklist.md`, and `implementation-summary.md` claim completion, while `plan.md`, `tasks.md`, and `decision-record.md` retain planned or blocked metadata and unchecked work.
 - `resource-map.md` is absent, so the resource-map coverage gate is skipped.
 

@@ -75,7 +75,7 @@ All tasks below are complete. Evidence is named per task rather than summarised 
 - [x] No nested identity; `sk-design` class H
 - [x] All 44 live references resolve; all 30 historical records untouched
 - [x] 7,942 renames, verified before committing
-- [x] One commit, `fa35e09653`
+- [x] One commit, `01874dbf92`
 <!-- /ANCHOR:completion -->
 
 ---

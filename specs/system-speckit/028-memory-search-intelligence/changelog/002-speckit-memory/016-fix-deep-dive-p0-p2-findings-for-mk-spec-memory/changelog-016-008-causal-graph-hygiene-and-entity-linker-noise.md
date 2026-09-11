@@ -19,7 +19,7 @@ contextType: "implementation"
 
 ### Summary
 
-The causal graph is no longer 94 percent noise. Of 33,101 edges, 31,118 were auto-created entity-linker `supports` edges at full causal strength, so a real causal edge could never outrank the co-occurrence sludge. This phase down-weighted 31,644 `entity_linker` `supports` edges from strength 0.7 to 0.05 in place. That is a provenance-scoped UPDATE rather than a delete, so the default causal read is dominated by real edges while the history is preserved for opt-in consumers. `recomputeLocal` no longer ratchets toward 1.0. The causal-links resolver stops attaching a wrong memory with a confident polarity. Placeholder surrogate titles were regenerated for 3,787 rows. The community lifecycle and graph-signals correctness bugs were fixed. Two live migrations ran under an atomic backup. Shipped in `bf44d13752`.
+The causal graph is no longer 94 percent noise. Of 33,101 edges, 31,118 were auto-created entity-linker `supports` edges at full causal strength, so a real causal edge could never outrank the co-occurrence sludge. This phase down-weighted 31,644 `entity_linker` `supports` edges from strength 0.7 to 0.05 in place. That is a provenance-scoped UPDATE rather than a delete, so the default causal read is dominated by real edges while the history is preserved for opt-in consumers. `recomputeLocal` no longer ratchets toward 1.0. The causal-links resolver stops attaching a wrong memory with a confident polarity. Placeholder surrogate titles were regenerated for 3,787 rows. The community lifecycle and graph-signals correctness bugs were fixed. Two live migrations ran under an atomic backup. Shipped in `dce35e1b37`.
 
 ### Added
 

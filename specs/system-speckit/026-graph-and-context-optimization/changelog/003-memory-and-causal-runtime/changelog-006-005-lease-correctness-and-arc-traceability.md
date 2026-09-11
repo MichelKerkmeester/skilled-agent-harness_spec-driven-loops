@@ -63,7 +63,7 @@ All 13 P1 findings were closed in one remediation packet. The launcher lease bou
 | `npx vitest --run launcher-lease` (code-graph) | PASS, exit 0. 1 file passed. 7 tests passed. |
 | `npx vitest --run launcher-lease` (spec-kit) | PASS, exit 0. 1 file passed. 6 tests passed. |
 | Full skill-advisor `npx vitest --run` | 57 files passed. 3 pre-existing failures outside Phase 005 scope documented in implementation summary. |
-| Commit `bd8a907475` | `feat(012/005): close 13 P1 findings from 29-iter deep-review`. 24 files changed. 1319 insertions. 72 deletions. |
+| Commit `b5f8345754` | `feat(012/005): close 13 P1 findings from 29-iter deep-review`. 24 files changed. 1319 insertions. 72 deletions. |
 
 ### Files Changed
 

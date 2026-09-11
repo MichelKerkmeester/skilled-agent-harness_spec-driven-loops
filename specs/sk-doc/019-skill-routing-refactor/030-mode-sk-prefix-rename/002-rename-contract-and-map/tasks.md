@@ -32,7 +32,7 @@ parent: "sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename"
 - [x] T001 LUNA merges both research lineages into contract.md
 - [x] T002 Generate and freeze ../assets/rename-map.json (21 keys / 20 dirs / 1 shared packet)
 - [x] T003 Capture pre-rename gates (Lane C reports x4, 84-entry link baseline)
-- [x] T004 Commit before execution (6645d48d6a)
+- [x] T004 Commit before execution (60a653f136)
 <!-- /ANCHOR:phase-1 -->
 
 ---

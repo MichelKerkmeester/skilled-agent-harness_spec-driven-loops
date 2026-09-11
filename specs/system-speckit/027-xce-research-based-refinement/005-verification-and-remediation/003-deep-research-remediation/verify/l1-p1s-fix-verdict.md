@@ -41,7 +41,7 @@ Both fixes are correct as far as they go — neither is a regression. Both leave
 
 ## tri-005 — catalog write-ingress claim vs excluded paths: INCOMPLETE
 
-### What's right — the new claims are TRUE as written against the shipped guards (commit `61b529fde3`)
+### What's right — the new claims are TRUE as written against the shipped guards (commit `e57fbbfed3`)
 
 - **(a-1) Retirement carries the manual tier forward — it does not merely skip retirement.** `retirePredecessorForActiveReindex` reads the predecessor's `importance_tier` + `source_kind` (`lib/storage/lineage-state.ts:1373-1375`), still deprecates the row to free the active-row uniqueness slot (`:1397-1400`), and returns a `RetiredPredecessorCarry` for manual source kinds (`:1392-1395`); constitutional rows are exempted entirely (`:1382-1383`). The same-path reindex caller re-applies the carried tier to the successor and re-stamps `source_kind='human'` so protection survives (`handlers/memory-save.ts:2615-2617`, `:2649-2658`). Covered by new tests (`tests/source-kind-safety.vitest.ts:19-69`).
 - **(a-2) Auto-promotion refuses manual source kinds before and atomically at update time.** Pre-selection refusal: `checkAutoPromotion` returns `source_kind_not_promotable` for manual kinds (`lib/search/auto-promotion.ts:178-186`). Atomic predicate: the UPDATE carries `AND (source_kind IS NULL OR lower(source_kind) NOT IN (<manual kinds>))` inside a transaction and reports `concurrent_manual_guard` on zero changes (`:273-287`) — the TOCTOU race is genuinely closed.

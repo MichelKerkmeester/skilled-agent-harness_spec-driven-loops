@@ -19,7 +19,7 @@ contextType: "implementation"
 
 ### Summary
 
-Saving an unchanged document no longer churns the corpus. `content_hash` used to be a raw sha256 of the file bytes, so a CRLF flip, a trailing space or a bumped continuity timestamp read as new content. Every same-path re-save then retired its predecessor to deprecated and inserted a fresh row, accumulating snapshots without bound. `normalizeContentHashInput` now folds CRLF to LF, strips trailing whitespace and zeros the continuity fingerprint and timestamp lines before hashing. The dedup match path is dual-compare, so it accepts the normalized hash or the legacy raw hash without any stored-hash rewrite. The broken save-dedup lanes that should have absorbed re-saves work again. Shipped in `b9400b1d56`.
+Saving an unchanged document no longer churns the corpus. `content_hash` used to be a raw sha256 of the file bytes, so a CRLF flip, a trailing space or a bumped continuity timestamp read as new content. Every same-path re-save then retired its predecessor to deprecated and inserted a fresh row, accumulating snapshots without bound. `normalizeContentHashInput` now folds CRLF to LF, strips trailing whitespace and zeros the continuity fingerprint and timestamp lines before hashing. The dedup match path is dual-compare, so it accepts the normalized hash or the legacy raw hash without any stored-hash rewrite. The broken save-dedup lanes that should have absorbed re-saves work again. Shipped in `9ddc2f2802`.
 
 ### Added
 

@@ -22,7 +22,7 @@ _memory:
     open_questions: []
     answered_questions:
       - "Child 001: dependency-seams failure was a worktree symlink artifact; realpath fix, version bump deferred."
-      - "Child 002: intended deep/* rollout mode is fix (restored; accidentally demoted in bce47507b6d)."
+      - "Child 002: intended deep/* rollout mode is fix (restored; accidentally demoted in c753fa493af)."
 ---
 # Feature Specification: Risky Pre-Existing Failure Remediation (phase parent)
 

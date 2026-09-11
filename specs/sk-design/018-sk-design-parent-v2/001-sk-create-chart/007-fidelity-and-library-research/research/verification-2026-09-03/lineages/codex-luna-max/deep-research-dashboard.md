@@ -15,7 +15,7 @@ Reducer-generated observability surface for the active research packet.
 <!-- /ANCHOR:overview -->
 <!-- ANCHOR:status -->
 ## 2. STATUS
-- Topic: Re-verify every upstream library citation and claim in specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/007-fidelity-and-library-research/research/lineages/deepseek-flash-max/research.md against the live sources, using web search. Reconcile every claimed capability with the corpus as shipped at commit 756a7fcd4c.
+- Topic: Re-verify every upstream library citation and claim in specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/007-fidelity-and-library-research/research/lineages/deepseek-flash-max/research.md against the live sources, using web search. Reconcile every claimed capability with the corpus as shipped at commit 3ce648be44.
 - Started: 2026-09-03T03:07:18Z
 - Status: INITIALIZED
 - Iteration: 0 of 10
@@ -73,16 +73,16 @@ Reducer-generated observability surface for the active research packet.
 <!-- /ANCHOR:trend -->
 <!-- ANCHOR:dead-ends -->
 ## 6. DEAD ENDS
-- **Chart.js runtime/canvas implementation:** It would violate the self-contained no-remote-dependency delivery contract and would not improve the corpus's SVG/table accessibility boundary. `[CORPUS@756a7fcd4c: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:159,163-167]` (iteration 1)
-- **Adding D3 as a runtime dependency:** The corpus contract forbids remote resources and package-manager delivery; the local ladder and formatter already provide the required static behavior. `[CORPUS@756a7fcd4c: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:159-160]` (iteration 2)
-- **Adding Vega-Lite as a runtime dependency:** It would conflict with the contract's no-remote-resource/no-runtime-fetch rule and the double-click, no-build delivery model. `[CORPUS@756a7fcd4c: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:154-160]` (iteration 3)
+- **Chart.js runtime/canvas implementation:** It would violate the self-contained no-remote-dependency delivery contract and would not improve the corpus's SVG/table accessibility boundary. `[CORPUS@3ce648be44: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:159,163-167]` (iteration 1)
+- **Adding D3 as a runtime dependency:** The corpus contract forbids remote resources and package-manager delivery; the local ladder and formatter already provide the required static behavior. `[CORPUS@3ce648be44: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:159-160]` (iteration 2)
+- **Adding Vega-Lite as a runtime dependency:** It would conflict with the contract's no-remote-resource/no-runtime-fetch rule and the double-click, no-build delivery model. `[CORPUS@3ce648be44: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:154-160]` (iteration 3)
 - **Using an unqualified numeric default width:** The current pages expose conflicting values; it cannot support a stable corpus rule without a pinned schema/version. (iteration 3)
 - **Calling fixed thinning a parity/greedy implementation:** The corpus has explicit per-form index rules, not a general bounding-box resolver; it should be described as a static approximation with budgets. (iteration 4)
 - **Using the v1 page as evidence for present-day defaults:** Its own banner limits it to v1. (iteration 4)
-- **Adding Vega or Plotly runtime code to the templates:** Their runtime/responsive/interactive benefits conflict with the no-remote-resource, no-build single-file contract. `[CORPUS@756a7fcd4c: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:154-160]` (iteration 5)
+- **Adding Vega or Plotly runtime code to the templates:** Their runtime/responsive/interactive benefits conflict with the no-remote-resource, no-build single-file contract. `[CORPUS@3ce648be44: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:154-160]` (iteration 5)
 - **Using the unavailable v5.11.0 release note as proof of a precise ARIA-bloat statement:** Current docs cover the supported behavior; the release-note body was not observable. (iteration 5)
 - **Calling Plot's swatch/ramp legend behavior a shipped dependency:** The corpus has local SVG/text legend code and no Plot bundle. (iteration 6)
-- **Copying Plot's runtime pointer/tip implementation:** It is not needed for a double-click, static HTML artifact and would introduce runtime/dependency surface forbidden by the contract. `[CORPUS@756a7fcd4c: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:154-160]` (iteration 6)
+- **Copying Plot's runtime pointer/tip implementation:** It is not needed for a double-click, static HTML artifact and would introduce runtime/dependency surface forbidden by the contract. `[CORPUS@3ce648be44: .opencode/skills/sk-doc/sk-create-chart/references/template-contract.md:154-160]` (iteration 6)
 - **Adding a Plot transform or `ResizeObserver` runtime to the templates:** The shipped contract is a self-contained double-click HTML file with no remote dependency or runtime fetch; the static corpus already computes only auditable totals and drawing geometry. (iteration 7)
 - **Treating discussion 2105 as a versioned API guarantee:** It has no package-version declaration and is a maintainer recommendation, so it cannot establish a universal default. (iteration 7)
 - **Treating “usually displays a tooltip” as keyboard or touch coverage:** The source does not make that guarantee; visible labels and the data table remain required fallbacks. (iteration 8)

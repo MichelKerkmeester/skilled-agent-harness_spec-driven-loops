@@ -58,8 +58,8 @@ A documentation-only pass added the module header plus 10 section dividers plus 
 
 | File | Action | What changed |
 |------|--------|--------------|
-| `.opencode/bin/lib/ensure-rerank-sidecar.cjs` | Modified | Module header, 10 section dividers, 63 JSDoc blocks added. Removed in a later refactor commit (`74b9677494`). |
-| `.opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-worker.ts` | Modified | 22 TSDoc blocks added to internal helpers. Removed in a later refactor commit (`74b9677494`). |
+| `.opencode/bin/lib/ensure-rerank-sidecar.cjs` | Modified | Module header, 10 section dividers, 63 JSDoc blocks added. Removed in a later refactor commit (`b8a866de2f`). |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-worker.ts` | Modified | 22 TSDoc blocks added to internal helpers. Removed in a later refactor commit (`b8a866de2f`). |
 
 ### Follow-Ups
 

@@ -70,7 +70,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-One cli-pi dispatch on DeepSeek V4.1 Flash at high effort edited the four documents and ran the validators. The conductor re-ran validate_document.py on all four, ran both package validators, and proved the queries in a throwaway repository whose hooks path pointed at the worktree's hooks. Committed as `98be1cebc2`.
+One cli-pi dispatch on DeepSeek V4.1 Flash at high effort edited the four documents and ran the validators. The conductor re-ran validate_document.py on all four, ran both package validators, and proved the queries in a throwaway repository whose hooks path pointed at the worktree's hooks. Committed as `9cb5e9c4a4`.
 <!-- /ANCHOR:how-delivered -->
 
 ---

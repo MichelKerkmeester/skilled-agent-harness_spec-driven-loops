@@ -16,7 +16,7 @@ Last 2 ratios: N/A -> 0.90 | Stuck count: 0
 Resource map: absent.
 Next focus: Which phase can serve as a genuinely clean negative control?
 
-Research Topic: Revalidate packet 036 phases 003-017 against `0ce43ff589..HEAD`, separating first-order path drift from second-order premise drift and producing an explicit evidence-backed verdict for every phase.
+Research Topic: Revalidate packet 036 phases 003-017 against `60b9ed8bc2..HEAD`, separating first-order path drift from second-order premise drift and producing an explicit evidence-backed verdict for every phase.
 Iteration: 2 of 10
 Focus Area: Run a first-order path/file/symbol/glob resolution census over phases 004-017 and identify at least one genuinely clean negative-control phase. Do not repeat phase 003 controls except as comparison.
 Remaining Key Questions:

@@ -50,7 +50,7 @@ _memory:
 
 **Task Format**: `T### [P?] Description (file path) [effort]`
 
-**Candidate map**: C1 = DL-newInfoRatio-audit · C2 = DL-newInfoRatio-consumption · C3 = Q4-backpressure-enforcement · C4 = DL-cross-lineage-contradiction (keep-both) · C5 = DL-cross-lineage-contradiction-record · C6 = DL-progress-heartbeat · C7 = DL-shutdown-summary-heartbeat. **C1-C6 are runtime-implemented, benchmark/default-on and workflow/persistence gates remain pending where noted. C7 is DONE** (shipped via 030 graceful-self-stop, commit `46812f12a8`) and its tasks are pre-checked `[x]` with commit evidence.
+**Candidate map**: C1 = DL-newInfoRatio-audit · C2 = DL-newInfoRatio-consumption · C3 = Q4-backpressure-enforcement · C4 = DL-cross-lineage-contradiction (keep-both) · C5 = DL-cross-lineage-contradiction-record · C6 = DL-progress-heartbeat · C7 = DL-shutdown-summary-heartbeat. **C1-C6 are runtime-implemented, benchmark/default-on and workflow/persistence gates remain pending where noted. C7 is DONE** (shipped via 030 graceful-self-stop, commit `ba632c340c`) and its tasks are pre-checked `[x]` with commit evidence.
 
 <!-- /ANCHOR:notation -->
 ---
@@ -59,8 +59,8 @@ _memory:
 ## Phase 1: Setup
 
 ### Prerequisite infra (SHIPPED in 030 - pre-checked, not re-implemented)
-- [x] T001 030 Wave-0 Deep-Loop trio shipped: pool gauges (`lag`/`pending`/`failed`) + deterministic merge total-order + graceful-self-stop (`fanout-pool.cjs`, `fanout-merge.cjs`, `fanout-run.cjs`) [commit `46812f12a8`, 58 fanout tests pass, §14 cand 12]
-- [x] T002 **C7 DONE - DL-shutdown-summary-heartbeat shipped**: SIGINT/SIGTERM flushes a distinct `stopped`-marked partial summary (`fanout-run.cjs:510-541` - `writeStoppedSummary` emits `event:'stopped'` to the ledger + `writeOrchestrationSummary({stopped:true, status:'partial', ...gauges})`) [commit `46812f12a8`, verified current source]
+- [x] T001 030 Wave-0 Deep-Loop trio shipped: pool gauges (`lag`/`pending`/`failed`) + deterministic merge total-order + graceful-self-stop (`fanout-pool.cjs`, `fanout-merge.cjs`, `fanout-run.cjs`) [commit `ba632c340c`, 58 fanout tests pass, §14 cand 12]
+- [x] T002 **C7 DONE - DL-shutdown-summary-heartbeat shipped**: SIGINT/SIGTERM flushes a distinct `stopped`-marked partial summary (`fanout-run.cjs:510-541` - `writeStoppedSummary` emits `event:'stopped'` to the ledger + `writeOrchestrationSummary({stopped:true, status:'partial', ...gauges})`) [commit `ba632c340c`, verified current source]
 - [x] T003 Confirmed 030 did NOT ship newInfoRatio consumption: `convergence.cjs:285` STOP reason still reads "pending newInfoRatio agreement" and the decision args (`:298-322`) exclude any novelty input - so C1/C2 are genuinely PENDING [verified current source]
 - [x] T004 Source seams re-confirmed against current code: novelty non-consumption (`convergence.cjs:285,298-322,330-331,378-381`, snapshots `:338,390-399`), cost-guards advisory-only no `lag_ceiling` (`cost-guards.cjs:15-20,114-140`), merge first-seen-wins (`fanout-merge.cjs:66-82`), lock-TTL-only heartbeat (`loop-lock.cjs:24-26`) [verified - all spec seams accurate]
 
@@ -129,7 +129,7 @@ _memory:
 - [x] All runtime P0 acceptance criteria met: REQ-C1, REQ-C2, REQ-C3. Benchmark/default-on gates remain pending.
 - [x] Runtime P1 set met (REQ-C4, REQ-C5, REQ-C6). Namespace-aware graph-edge persistence and heartbeat/default calibration remain pending gates.
 - [x] C2 is byte-identical with `--reported-novelty` absent (SC-002), the gaming fixture does NOT STOP (SC-003)
-- [x] C7 (shutdown-summary) reconciled as already-shipped (commit `46812f12a8`), NOT re-implemented (SC-005)
+- [x] C7 (shutdown-summary) reconciled as already-shipped (commit `ba632c340c`), NOT re-implemented (SC-005)
 - [x] No new dependency on the absent D2 / reliability signal introduced anywhere (SC-004)
 - [x] `node --check` + deep-loop-runtime focused tests green vs baseline (SC-006)
 - [x] `validate.sh --strict` on this sub-phase passes (SC-006)
@@ -147,6 +147,6 @@ _memory:
 - **Parent research**: `../research/research.md`, STOP-corroboration detail in `../research/iterations/iteration-002.md`, `iteration-007.md`, `iteration-008.md`, `iteration-012.md`, `iteration-013.md`, `iteration-018.md`
 - **Cross-cutting roadmap / synthesis**: `../../research/roadmap.md` (§5 item 2 newInfoRatio audit net-new gap), `../../research/synthesis/01-go-candidates.md` (STOP-residuals, lines 99-101), `03-corrections-caveats-and-residuals.md` (line 47 prose-loop-does-consume precision)
 - **Sibling impl sub-phase**: `../003-fanout-failure-recovery/` (the resilience cluster complement)
-- **Shipped record (Wave-0)**: Wave-0 record (commit `46812f12a8` - gauges/merge/graceful-self-stop, the graceful-self-stop instance is C7 DONE here)
+- **Shipped record (Wave-0)**: Wave-0 record (commit `ba632c340c` - gauges/merge/graceful-self-stop, the graceful-self-stop instance is C7 DONE here)
 
 <!-- /ANCHOR:cross-refs -->

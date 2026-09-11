@@ -23,7 +23,7 @@ Verdict categories:
 - **APPLY**: clearly applicable to deep-research; an uplift packet should propagate this change. Cite evidence: which deep-research file would change.
 - **SKIP**: deep-review-specific; deep-research has no analog or doesn't need it.
 - **ADAPT**: applies in modified form (e.g. a deep-review test pattern translated to deep-research's research dimensions).
-- **ALREADY-DONE**: the change ALREADY shipped for deep-research (e.g. C-008 workflow YAML updated for BOTH deep-review_*.yaml AND deep-research_*.yaml in commit 107c522599; C-???: deep-research changelog v1.12.0.0).
+- **ALREADY-DONE**: the change ALREADY shipped for deep-research (e.g. C-008 workflow YAML updated for BOTH deep-review_*.yaml AND deep-research_*.yaml in commit 35503d4b78; C-???: deep-research changelog v1.12.0.0).
 
 For each verdict, cite evidence. **Verify with grep** before classifying — don't assume bilateral changes actually touched deep-research.
 

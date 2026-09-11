@@ -12,7 +12,7 @@ _memory:
     packet_pointer: "cli-external-orchestration/031-cli-pi-creation/016-fanout-cli-pi-executor"
     last_updated_at: "2026-07-29T10:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Superseded by mainline cli-pi fan-out d9e5678edd; adopted in v4 merge, 179 tests pass"
+    recent_action: "Superseded by mainline cli-pi fan-out 76c9ee944c; adopted in v4 merge, 179 tests pass"
     next_safe_action: "None — feature shipped via the mainline implementation; packet retained as record"
     blockers: []
     completion_pct: 100
@@ -41,8 +41,8 @@ _memory:
 ## What Was Built
 
 > **Superseded by the mainline implementation (2026-07-29).** The release branch
-> landed an equivalent cli-pi fan-out executor independently (commit `d9e5678edd`,
-> fixed forward by `2ddbe3c82e`). When that branch merged into this work, its version
+> landed an equivalent cli-pi fan-out executor independently (commit `76c9ee944c`,
+> fixed forward by `ec6bea5137`). When that branch merged into this work, its version
 > was adopted wholesale over the one described below — it is the more robust of the
 > two: a fail-closed `PI_MODEL_PROVIDERS` map (throws on an unknown model rather than
 > passing it through), `--offline`, `SPECKIT_PI_STATE_DIR` state integration, and a

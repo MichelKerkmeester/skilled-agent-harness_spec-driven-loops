@@ -19,7 +19,7 @@ contextType: "implementation"
 
 ### Summary
 
-This child phase executed (commit df7f733651). Four factual drifts were fixed across the constitutional docs and system-spec-kit templates, including the constitutional README rule-file count and a cli-dispatch model reference. The changelog entries were left historical as immutable archive records and every corrected path was verified to resolve.
+This child phase executed (commit d9b95ef9a6). Four factual drifts were fixed across the constitutional docs and system-spec-kit templates, including the constitutional README rule-file count and a cli-dispatch model reference. The changelog entries were left historical as immutable archive records and every corrected path was verified to resolve.
 
 ### Added
 
@@ -40,7 +40,7 @@ This child phase executed (commit df7f733651). Four factual drifts were fixed ac
 
 | Check | Result |
 |-------|--------|
-| Cleanup execution | Executed at df7f733651, four factual drifts fixed, changelogs left historical |
+| Cleanup execution | Executed at d9b95ef9a6, four factual drifts fixed, changelogs left historical |
 | Task completion | PASS, all tasks done, 0 open |
 | Strict validation | PASS, 0 errors and 0 warnings |
 

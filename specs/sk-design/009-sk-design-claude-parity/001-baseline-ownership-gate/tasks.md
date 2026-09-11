@@ -108,7 +108,7 @@ _memory:
 - [x] T018 Ensure docs do not claim implementation completion (`implementation-summary.md`) [5m]
   - Evidence: summary states this phase completed an evidence/decision gate and made no `sk-design` implementation changes.
 - [x] T019 Record rollback path and stop triggers (`plan.md`) [5m]
-  - Evidence: rollback path names `git diff` first and checkout against `ba8906743c1b1e327ff4d4a758bb9d67e9d6c8ed` only after explicit confirmation.
+  - Evidence: rollback path names `git diff` first and checkout against `914bc78c295d33edd3c09ec8c94b43472a20fbf5` only after explicit confirmation.
 
 <!-- /ANCHOR:phase-4 -->
 ---

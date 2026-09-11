@@ -56,7 +56,7 @@ _memory:
 
 **Scope Boundary**: Fix the command/advisor-relevant subset of an earlier bulk-sync commit's damage, plus close a pre-existing, unrelated gap in `/create:diagram`'s own cross-runtime reachability. No broader audit of that commit's other deletions.
 
-**Dependencies**: The "make sure diagram creation skill is properly integrated... check if we have related commands" audit that surfaced both issues; the earlier `e3a66403df` bulk-sync commit that caused the first.
+**Dependencies**: The "make sure diagram creation skill is properly integrated... check if we have related commands" audit that surfaced both issues; the earlier `4d52fff993` bulk-sync commit that caused the first.
 
 **Deliverables**: `.claude/commands` symlink restored; 2 Pi extension symlinks restored; `/create:diagram` Codex, Pi, and Cursor mirrors created (matching the pattern of every sibling `/create:*` command).
 <!-- /ANCHOR:phase-context -->
@@ -68,7 +68,7 @@ _memory:
 
 ### Problem Statement
 
-An earlier bulk-sync commit on this branch (`e3a66403df`) deleted the `.claude/commands` symlink and two Pi extension symlinks as part of a 902-file "land accumulated cross-session WIP" commit, blocking every `/create:*` command for Claude Code and both affected Pi extensions. Separately, and unrelated to that incident, `/create:diagram` never had Codex, Pi, or Cursor mirrors — every sibling `/create:*` command has all three; diagram had none, since phase 005 never wired them.
+An earlier bulk-sync commit on this branch (`4d52fff993`) deleted the `.claude/commands` symlink and two Pi extension symlinks as part of a 902-file "land accumulated cross-session WIP" commit, blocking every `/create:*` command for Claude Code and both affected Pi extensions. Separately, and unrelated to that incident, `/create:diagram` never had Codex, Pi, or Cursor mirrors — every sibling `/create:*` command has all three; diagram had none, since phase 005 never wired them.
 
 ### Purpose
 
@@ -96,7 +96,7 @@ Restore the dangling symlinks and bring `/create:diagram` to full cross-runtime 
 
 | File Path | Change Type | Description |
 |-----------|-------------|--------------|
-| `.claude/commands` | Restore | Symlink to `../.opencode/commands`, deleted by `e3a66403df` |
+| `.claude/commands` | Restore | Symlink to `../.opencode/commands`, deleted by `4d52fff993` |
 | `.pi/extensions/completion-evidence.ts`, `.pi/extensions/task-dispatch-guard.ts` | Restore | Symlinks deleted by the same commit; targets confirmed still present |
 | `.codex/prompts/create-diagram.md` | Create | Generated via `sync-prompts.cjs` |
 | `.pi/prompts/create-diagram.md` | Create | Generated via `sync-prompts-pi.cjs` |
@@ -162,4 +162,4 @@ None.
 - Tasks: `tasks.md`
 - Checklist: `checklist.md`
 - Packet root: `../spec.md`
-- Related incident: commit `e3a66403df` (bulk-sync that caused the regression)
+- Related incident: commit `4d52fff993` (bulk-sync that caused the regression)

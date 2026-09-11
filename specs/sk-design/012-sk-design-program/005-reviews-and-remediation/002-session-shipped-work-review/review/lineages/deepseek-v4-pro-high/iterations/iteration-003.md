@@ -24,7 +24,7 @@ D3 Traceability across all three commits:
 
 ### P2, Suggestion
 
-- **F005**: `changelog/v1.6.0.0.md:26` states `/design:*` commands "remain thin compatibility aliases" in a changelog that postdates the command-dedup deletion at `9a42aedae4`. While changelogs are historical records (not operational docs), the v1.6.0.0 entry describes a state that was true at the time of v1.6.0.0 but is now inaccurate. A reader consulting the most recent changelog for the current command surface state would be misled. Category: maintainability. [SOURCE: changelog/v1.6.0.0.md:26; feature-catalog/creation-command-surface/interface-creation-commands.md:20; feature-catalog/feature-catalog.md:201]
+- **F005**: `changelog/v1.6.0.0.md:26` states `/design:*` commands "remain thin compatibility aliases" in a changelog that postdates the command-dedup deletion at `5dd5547949`. While changelogs are historical records (not operational docs), the v1.6.0.0 entry describes a state that was true at the time of v1.6.0.0 but is now inaccurate. A reader consulting the most recent changelog for the current command surface state would be misled. Category: maintainability. [SOURCE: changelog/v1.6.0.0.md:26; feature-catalog/creation-command-surface/interface-creation-commands.md:20; feature-catalog/feature-catalog.md:201]
 
 ### Refined Findings
 

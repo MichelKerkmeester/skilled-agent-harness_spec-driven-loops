@@ -46,10 +46,7 @@
       "tasks.md",
       "decision-record.md",
       "implementation-summary.md",
-      "lib/graph/temporal-edges.ts",
-      "lib/graph/contradiction-detection.ts",
-      "tests/flag-ceiling.vitest.ts",
-      "lib/storage/lineage-state.ts"
+      "tests/flag-ceiling.vitest.ts"
     ],
     "entities": [
       {
@@ -83,27 +80,9 @@
         "source": "derived"
       },
       {
-        "name": "temporal-edges.ts",
-        "kind": "code",
-        "path": "lib/graph/temporal-edges.ts",
-        "source": "derived"
-      },
-      {
-        "name": "contradiction-detection.ts",
-        "kind": "code",
-        "path": "lib/graph/contradiction-detection.ts",
-        "source": "derived"
-      },
-      {
         "name": "flag-ceiling.vitest.ts",
         "kind": "test",
         "path": "tests/flag-ceiling.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "lineage-state.ts",
-        "kind": "code",
-        "path": "lib/storage/lineage-state.ts",
         "source": "derived"
       },
       {
@@ -195,11 +174,29 @@
         "kind": "proper_noun",
         "path": "decision-record.md",
         "source": "derived"
+      },
+      {
+        "name": "Context Pass",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Alternatives Considered",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Five Checks Evaluation",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The Memory MCP already ships the machinery for bi-temporal, edge-presence currentness, but it is build-side only and unwired on the read path",
     "created_at": "2026-06-19T05:40:37.444Z",
-    "last_save_at": "2026-08-30T15:39:34.915Z",
+    "last_save_at": "2026-09-11T16:42:41.531Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,14 +206,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0a238f189e0540b2803228cad6606b3ad190a5990c70bc69475921208d2d9b7e",
+    "source_fingerprint": "sha256:618834915434aaadeb9a9f8f084f3550d3638d760fe9e33ca75c906411882a49",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2c049a70425d6ad0af7402e228e0450a69f1d957f147f71ee9dc55ec12d8e992",
-      "plan.md": "c01a91232ee00e4c623c08c666abbed5cbe0c6c9b9f59bfeb247b3693192a3e5",
+      "spec.md": "fd2cb0f10d4e900e8639ff4673d25e5260f8c27e43cd68ef28d1282869f6cc3c",
+      "plan.md": "b5896ec6751c33791c6960755c5f461b0050003f200dd6ec1a011a6811a54924",
       "tasks.md": "2664c7509b876a4dd942340e59905ff52e7456d84f5054c6a8cd83baf45a913b",
-      "decision-record.md": "cf28145956a3ddf13e765a2ac9ebaea5e0e29492023982cccc934ea76946c86b",
-      "implementation-summary.md": "315e5f6abd6beb03091e81f6b2b5514333fcea77f7b39fe4fdec7f81f6516346"
+      "decision-record.md": "c4ac0aa8d7cedddce8f9ddb2a7610d3343e336528b6312b243ccfb5d561cc289",
+      "implementation-summary.md": "aedb9b4b47bd3907104dfdc77bac21217415b1241ce8347a3e9020bd9e53f1b1"
     },
     "last_active_child_id": null,
     "last_active_at": null

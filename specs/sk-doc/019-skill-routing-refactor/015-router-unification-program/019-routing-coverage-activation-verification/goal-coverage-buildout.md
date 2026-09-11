@@ -8,7 +8,7 @@ trigger_phrases: []
 
 ## 0. Current status + remaining work (updated 2026-07-21)
 
-**SHIPPED (committed in the worktree, checkpoints `f19ee17179` → `85a5876dc8`):** all 7 hubs `compiled-serving` == legacy; **enabled by default** (`DEFAULT_ON_HUBS` = all 7, both resolver copies byte-identical); `SPECKIT_COMPILED_ROUTING=0` fleet kill-switch + per-hub reversibility proven; verified via automated tests (258/258), the compiled Lane C parity (7/7), and a compiled-routing LUNA-HIGH sweep (14/14); `011`+`013` packet docs reconciled (`validate --strict` Errors:0). Frozen scorer SHAs untouched throughout; no legacy routing decision changed; **v4 merge NOT done (operator-gated).**
+**SHIPPED (committed in the worktree, checkpoints `b6f9637951` → `3992517b19`):** all 7 hubs `compiled-serving` == legacy; **enabled by default** (`DEFAULT_ON_HUBS` = all 7, both resolver copies byte-identical); `SPECKIT_COMPILED_ROUTING=0` fleet kill-switch + per-hub reversibility proven; verified via automated tests (258/258), the compiled Lane C parity (7/7), and a compiled-routing LUNA-HIGH sweep (14/14); `011`+`013` packet docs reconciled (`validate --strict` Errors:0). Frozen scorer SHAs untouched throughout; no legacy routing decision changed; **v4 merge NOT done (operator-gated).**
 
 **REMAINING WORK — to reach true END-TO-END:**
 

@@ -50,7 +50,8 @@
       ".opencode/skills/system-deep-loop/runtime/tests/unit/combo-matrix.vitest.ts",
       ".opencode/skills/system-deep-loop/runtime/scripts/codex-dispatch.cjs",
       ".opencode/skills/system-deep-loop/runtime/tests/executor-audit-receipts.test.ts",
-      ".opencode/skills/system-deep-loop/runtime/tests/executor-audit-cli-branch-receipts.test.ts"
+      ".opencode/skills/system-deep-loop/runtime/tests/executor-audit-cli-branch-receipts.test.ts",
+      "runtime/vitest.config.ts"
     ],
     "entities": [
       {
@@ -156,6 +157,12 @@
         "source": "derived"
       },
       {
+        "name": "vitest.config.ts",
+        "kind": "code",
+        "path": "runtime/vitest.config.ts",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -190,17 +197,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Fulfillment accepts a lineage when one non-empty top-level report exists, with no validation of state JSONL, iteration records, deltas, findings registry or terminal synthesis (`F-010-01`), and under the max-iterations policy trusts a single synthesis record's self-reported `totalIterations` and `stopReason` over the actual iteration files (`F-010-02`)",
     "created_at": "2026-07-31T01:25:20.924Z",
-    "last_save_at": "2026-08-30T15:39:21.722Z",
+    "last_save_at": "2026-09-11T16:42:25.661Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,14 +211,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:33a5a684afd830566cdbd0e5155aba0ac118c0da706a3daeaea6f69b198d1e60",
+    "source_fingerprint": "sha256:5306801bcac88790f1ff2bcff27ca2940b18b11d32a5a98b9bccfd2629e7e0e8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e44a6d5d6c89cdd3860e629ec44865330953fc3986b89e654ea872b71d2edb06",
-      "plan.md": "84a5f4931d29ddc0d80e154aa7a3d93d8652db8108b8bbd60ceae738b4d842a2",
-      "tasks.md": "ccc54a2ac68876a654940361b9cf3c859e1ec6f6f2d9faa46687f73d15a81f5a",
-      "decision-record.md": "c9989a3dae5eb2c5bfffcd44f7f4c6dc9e77074761c8e55fae9e8f9f2b9ff0ff",
-      "implementation-summary.md": "afb23dc80edaeeefb6805be2727cc08e575129bdda2051e65275764da9891db6"
+      "spec.md": "fe917637f40fdcf913723ea3003556797ffacee3793c66676bc8bdd2a987feaf",
+      "plan.md": "fd1a56dabbf30db085c992bd486d9c73c2b074ad8b590a97ef6d2536a963977e",
+      "tasks.md": "b0964f0d193722f2ce566b0ac04ed052a3d63c688a89def61adfcafac2c7ec3e",
+      "decision-record.md": "129e687af6c0ef3e10f04907a72dfe0b17c848a9751db743bf29ce9111727848",
+      "implementation-summary.md": "3ffb59aeef0f7c0b75b7f3b7f809cfc215e15e323ebef091d7452d26f2cde6e8"
     },
     "last_active_child_id": null,
     "last_active_at": null

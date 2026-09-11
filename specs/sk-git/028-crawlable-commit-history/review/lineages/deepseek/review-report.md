@@ -47,7 +47,7 @@ Verdict CONDITIONAL → route to `/speckit:plan` for the remediation workstreams
 | F011 | P2 | traceability | L3+ compliance checklist items checked without evidence in 006 and 007 | `006/tasks.md:224-227`; `007/tasks.md:224-227` |
 | F012 | P2 | traceability | Duplicate scaffold phase row says Pending beside the completed phase-7 row | `spec.md:137` vs `:139` |
 | F014 | P2 | maintainability | README "always-stamped" overstates the fail-open stamper | `README.md:28,155`; `prepare-commit-msg:191-194` |
-| F015 | P2 | maintainability | `feature-catalog.md last_updated` stale after this packet's edit | `feature-catalog.md:9`; commit `98be1cebc2` |
+| F015 | P2 | maintainability | `feature-catalog.md last_updated` stale after this packet's edit | `feature-catalog.md:9`; commit `9cb5e9c4a4` |
 
 Adjudication: every P0/P1 candidate carried a typed packet during its iteration; no finding was downgraded, upgraded, resolved or disproved, so original severities stand (registry `persistentSameSeverity`). F001 was replayed against `git interpret-trailers --parse` during iteration 4 and confirmed: a message with keys followed by prose parses to nothing.
 

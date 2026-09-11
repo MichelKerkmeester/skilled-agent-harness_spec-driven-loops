@@ -3,7 +3,7 @@
 **Retrieved:** 2026-09-03  
 **Lineage artifact root:** this directory  
 **Baseline:** `specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/007-fidelity-and-library-research/research/lineages/deepseek-flash-max/research.md`  
-**Corpus snapshot:** `756a7fcd4c`
+**Corpus snapshot:** `3ce648be44`
 
 ## Produced lineage artifacts
 

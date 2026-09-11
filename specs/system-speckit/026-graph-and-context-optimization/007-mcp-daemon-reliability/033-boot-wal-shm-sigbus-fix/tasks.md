@@ -50,7 +50,7 @@ _memory:
 ## Phase 1: Setup
 
 - [x] T001 Re-confirm `journal_mode` writers/readers against the working tree via `rg -n "journal_mode" .opencode/skills/system-spec-kit/mcp_server`, in case a concurrent session has touched either file since this plan was written (.opencode/skills/system-spec-kit/mcp_server) — confirmed unchanged: `:817`/`:1575`/`:2130` still DELETE writers, `:2208`/`:2211` still the target reader/mutator.
-- [x] T002 Re-read commit `8807393bea` (`git show 8807393bea`) and re-confirm the target block (`context-server.ts:2207-2213`) is still unchanged since that commit — confirmed via `git show --stat` (only `vector-index-store.ts` touched) and direct `Read` of the live block.
+- [x] T002 Re-read commit `9063556fc8` (`git show 9063556fc8`) and re-confirm the target block (`context-server.ts:2207-2213`) is still unchanged since that commit — confirmed via `git show --stat` (only `vector-index-store.ts` touched) and direct `Read` of the live block.
 <!-- /ANCHOR:phase-1 -->
 
 ---

@@ -42,7 +42,7 @@ _memory:
 - [x] T001 Scaffold 018 and register it in the parent `children_ids` plus the phase map
 - [x] T002 Generate `description.json` and `graph-metadata.json` for 018
 - [x] T003 Confirm both executors dispatch cleanly [evidence: minimal round-trip on each path returned its sentinel, `SOL_OK` and `GLM_OK`, 2/2 dispatching]
-- [x] T004 Pin the exact HEAD SHA and record it with the baseline `0ce43ff589` in the research config [evidence: each lineage pinned its own — sol `e4b242c3940c`, glm `739b85ac57`; branch moved mid-run]
+- [x] T004 Pin the exact HEAD SHA and record it with the baseline `60b9ed8bc2` in the research config [evidence: each lineage pinned its own — sol `3620a11d8fbf`, glm `739b85ac57`; branch moved mid-run]
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -65,7 +65,7 @@ _memory:
 ## Phase 3: Verification
 
 - [x] T012 Verify: all 15 implementation phases carry an explicit verdict with no "unknown" bucket [evidence: `research/research.md` §2]
-- [x] T013 Verify: the census independently rediscovered the confirmed phase-003 path breakage [evidence: both lineages, `cc77a1e550a`]
+- [x] T013 Verify: the census independently rediscovered the confirmed phase-003 path breakage [evidence: both lineages, `b052f329a73`]
 - [x] T014 Verify: at least one phase came back genuinely clean, proving the census discriminates [evidence: phase 004 locked by both — zero `runtime/` citations, all 3 children resolve at HEAD]
 - [x] T015 Reconcile the two lineages and surface disagreements rather than averaging them [evidence: `research/research.md` §3 adjudication]
 - [x] T016 Verify: strict validation on this folder reports Errors 0 [evidence: reconciliation `validate.sh <folder> --strict` → `Errors: 0`]

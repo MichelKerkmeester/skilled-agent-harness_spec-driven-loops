@@ -23,7 +23,7 @@ contextType: "implementation"
 
 `handlers/save/README.md` predated packet 017's shipped behavior. It still described post-insert enrichment as "optional" and as a step that ran inline during the save. In the live code, enrichment is default-on and runs async/deferred by default: the save returns immediately with `enrichmentStatus: deferred` (reason `async-background`), and a bounded background scheduler runs the steps after commit. A reader of the README would have formed the wrong mental model of when graph and entity data becomes available.
 
-This packet synced the README to the live code: enrichment is default-on and async/deferred by default, with `SPECKIT_POST_INSERT_ENRICHMENT_SYNC=true` as the forced-synchronous escape hatch. Before editing, the flag defaults were re-confirmed directly in code, not assumed. Docs-only, three surgical edits, no code touched. Committed as `01d666985c`.
+This packet synced the README to the live code: enrichment is default-on and async/deferred by default, with `SPECKIT_POST_INSERT_ENRICHMENT_SYNC=true` as the forced-synchronous escape hatch. Before editing, the flag defaults were re-confirmed directly in code, not assumed. Docs-only, three surgical edits, no code touched. Committed as `bcb82a1edd`.
 
 ### Added
 

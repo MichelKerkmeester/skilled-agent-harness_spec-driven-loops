@@ -26,7 +26,7 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions:
-      - "Cleanup executed against 14 SKILL.md, references and assets docs (commit bb038e19ab)."
+      - "Cleanup executed against 14 SKILL.md, references and assets docs (commit 2229a24c7e)."
       - "deep-research and deep-loop-workflows skill docs deferred to the concurrent session."
 ---
 

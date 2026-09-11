@@ -48,7 +48,7 @@ _memory:
 | **Level** | 3 |
 | **Status** | Complete |
 | **Delivery** | Shipped. The parent goal LOG records this phase Done |
-| **Date** | 2026-09-02 (git author dates of `c1b3b780c3`, `9ae247d772`, `d87e8dd162` and `d229b0a24d`) |
+| **Date** | 2026-09-02 (git author dates of `02f1ec6170`, `2f4b9a481d`, `2912ce44a8` and `71f1c2f9bc`) |
 | **Register findings** | 29 and 30 read Fixed. 26, 27 and 28 remain Planned |
 <!-- /ANCHOR:metadata -->
 
@@ -67,14 +67,14 @@ command and exactly wrong for a template whose entire output is a fence. **Twent
 forty templates in this tree scored clean while seeding blockers into everything authored
 from them.** One of them scores zero blockers and emits forty-three.
 
-Two seeded blockers were found and fixed at the template first. `c1b3b780c3` corrected a rule
+Two seeded blockers were found and fixed at the template first. `02f1ec6170` corrected a rule
 template that emitted the binding sentence with an em dash on the one line its own contract
 calls fixed and verbatim, which every rule authored from it would have inherited. All nine
-shipped rules use the other form. `9ae247d772` removed a semicolon and a serial comma from
+shipped rules use the other form. `2f4b9a481d` removed a semicolon and a serial comma from
 the plan template's scaffold line, which is why three files in one packet failed on the same
 line at the same column.
 
-`d229b0a24d` then made a template detectable by name and location so its payload is read.
+`71f1c2f9bc` then made a template detectable by name and location so its payload is read.
 Measured properly, **45 of 53 templates carry a real blocker**. That backlog is recorded
 rather than swept, because rewriting a payload changes what the template emits.
 
@@ -83,14 +83,14 @@ rather than swept, because rewriting a payload changes what the template emits.
 The document validator blocked on scanner fixtures whose bytes are pinned by tests asserting
 findings on specific line numbers. Padding a scanner input to satisfy a validator breaks the
 thing it exists to test, and the packaging gate already exempted fixture trees on exactly
-that reasoning. `d229b0a24d` moved the same exemption into the validator. Across every
+that reasoning. `71f1c2f9bc` moved the same exemption into the validator. Across every
 tracked markdown file it releases **485 files**, and every one of the 485 carries a
 fixture-tree reason checked by program rather than by eye.
 
 ### Sixteen documents with no overview section
 
 The shared validator blocks on a missing overview and the packaging gate passes the same
-files, so nothing caught this. `d87e8dd162` fixed fourteen and left two alone, both scanner
+files, so nothing caught this. `2912ce44a8` fixed fourteen and left two alone, both scanner
 fixtures covered by the exemption above.
 
 The obvious fix was wrong and got reverted. Renumbering each document to open on section one
@@ -112,14 +112,14 @@ grep for the phrase still returns one file today.
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skills/sk-doc/sk-create-repo-rule/assets/repo-rule-template.md` | Modified (`c1b3b780c3`, `d87e8dd162`) | Em dash removed from the verbatim binding line, and an overview section added |
-| `.opencode/skills/sk-doc/sk-create-repo-rule/references/rule-anatomy.md` | Modified (`c1b3b780c3`) | Measured table re-derived after five of nine rows drifted as the corpus grew |
-| `.../sk-create-with-human-voice/references/scope-and-exemptions.md` | Modified (`c1b3b780c3`) | The mode now says to scan a template with `--include-code`, and to read a zero without it as unmeasured |
-| `.opencode/skills/system-spec-kit/templates/core/plan.md.tmpl` | Modified (`9ae247d772`) | Scaffold line stripped of a semicolon and a serial comma |
-| `.../tests/__snapshots__/scaffold-golden-snapshots.vitest.ts.snap` | Modified (`9ae247d772`) | Golden snapshots re-captured against the corrected template |
-| Thirteen reference and readme files under `sk-create-chart`, `sk-create-repo-rule` and `sk-create-with-human-voice` | Modified (`d87e8dd162`) | Overview sections added, ten promoted from existing prose and five authored |
-| Fifty-six `plan.md` files across `specs/` | Modified (`d229b0a24d`) | The superseded scaffold line replaced, each dropping exactly one blocker |
-| The document validator and the voice scanner | Modified (`d229b0a24d`) | Fixture-tree exemption added, and template payload scanning enabled by name and location |
+| `.opencode/skills/sk-doc/sk-create-repo-rule/assets/repo-rule-template.md` | Modified (`02f1ec6170`, `2912ce44a8`) | Em dash removed from the verbatim binding line, and an overview section added |
+| `.opencode/skills/sk-doc/sk-create-repo-rule/references/rule-anatomy.md` | Modified (`02f1ec6170`) | Measured table re-derived after five of nine rows drifted as the corpus grew |
+| `.../sk-create-with-human-voice/references/scope-and-exemptions.md` | Modified (`02f1ec6170`) | The mode now says to scan a template with `--include-code`, and to read a zero without it as unmeasured |
+| `.opencode/skills/system-spec-kit/templates/core/plan.md.tmpl` | Modified (`2f4b9a481d`) | Scaffold line stripped of a semicolon and a serial comma |
+| `.../tests/__snapshots__/scaffold-golden-snapshots.vitest.ts.snap` | Modified (`2f4b9a481d`) | Golden snapshots re-captured against the corrected template |
+| Thirteen reference and readme files under `sk-create-chart`, `sk-create-repo-rule` and `sk-create-with-human-voice` | Modified (`2912ce44a8`) | Overview sections added, ten promoted from existing prose and five authored |
+| Fifty-six `plan.md` files across `specs/` | Modified (`71f1c2f9bc`) | The superseded scaffold line replaced, each dropping exactly one blocker |
+| The document validator and the voice scanner | Modified (`71f1c2f9bc`) | Fixture-tree exemption added, and template payload scanning enabled by name and location |
 | Thirty-seven templates across `sk-doc`, `cli-external-orchestration`, `sk-design-md-generator` and `sk-git` | Modified (2026-09-04) | The authorized sweep. 501 blockers under `.opencode/` fall to 14 exemptions, 354 of them guidance and 147 emitted |
 | `.../sk-create-skill/assets/parent-skill/scaffold/hub-skill-scaffold.md` | Modified (2026-09-04) | The compiled-routing directive is asserted byte-identical against the hub template, so it took the same edit |
 | `.../cli-opencode/manual-testing-playbook/prompt-templates/templates-inventory.md` | Modified (2026-09-04) | Its scenario greps for the template heading separator, which the sweep changed |
@@ -197,8 +197,8 @@ two heading identifiers hardcoded in a builder, and an HTML entity.
 
 **The recorded count moved four times, and one leg of it does not reproduce.** The 45 of 53 was
 repo-wide. Re-running the pre-fix scanner over the same file set returns 44 of 53, one file lower,
-with the rule set held fixed as a control. The masking fix in `82938b3e1c` took the fleet to 41
-of 53 repo-wide and 38 of 50 under `.opencode/`, the emitted-frontmatter ruling in `cac56b9082`
+with the rule set held fixed as a control. The masking fix in `6c90ef079b` took the fleet to 41
+of 53 repo-wide and 38 of 50 under `.opencode/`, the emitted-frontmatter ruling in `1fe528a98c`
 took the occurrence count from 530 to 509 without moving the file count, and the sweep then took
 it to 22 across 8.
 
@@ -215,7 +215,7 @@ triage names the two candidate mechanisms and argues for the allowlist.
 cell names the run that observed it.
 
 **Findings 26, 27 and 28 remain Planned in the register.** Finding 27, the fixture exemption,
-is closed by `d229b0a24d`. Finding 28's count was corrected from forty-eight to fifty-six and
+is closed by `71f1c2f9bc`. Finding 28's count was corrected from forty-eight to fifty-six and
 the rewrite shipped. Finding 26 is the live backlog. The register was not revised to match.
 
 **Two scanner fixtures still have no overview section, on purpose.** Their bytes are pinned

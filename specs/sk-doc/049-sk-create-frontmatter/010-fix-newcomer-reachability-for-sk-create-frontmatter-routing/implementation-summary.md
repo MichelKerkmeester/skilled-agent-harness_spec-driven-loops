@@ -136,7 +136,7 @@ reach `sk-doc` at 0.82 before any alias, and `bump the version number in package
 | Digest | Owner | State at HEAD | Action |
 |--------|-------|---------------|--------|
 | `SKILL.md`, `hub-router.json`, `mode-registry.json`, `packets/sk-create-frontmatter/SKILL.md` | This phase | Moved by this phase | Re-pinned |
-| `load-playbook-scenarios.cjs`, `score-skill-benchmark.cjs` | `system-deep-loop` benchmark | Moved in `2f21545e3e`, clean | Re-pinned in six pin files |
+| `load-playbook-scenarios.cjs`, `score-skill-benchmark.cjs` | `system-deep-loop` benchmark | Moved in `bedf5691b7`, clean | Re-pinned in six pin files |
 | Sibling hub sources | Other hubs | `system-deep-loop`, `mcp-tooling` and `cli-external-orchestration` hub `SKILL.md` files moved at HEAD | Not touched. Those canaries stay red on their own sources. `sk-code` reads `GREEN` |
 <!-- /ANCHOR:how-delivered -->
 

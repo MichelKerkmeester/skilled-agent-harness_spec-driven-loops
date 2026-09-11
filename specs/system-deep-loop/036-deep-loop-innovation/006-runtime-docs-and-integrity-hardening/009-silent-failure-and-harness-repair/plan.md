@@ -59,9 +59,9 @@ Capture the discovered-test count baseline first, because Lane B will legitimate
 - [ ] Consumers of the current exit codes enumerated
 
 ### Definition of Done
-- [x] Every Lane A case returns `INPUT_VALIDATION` with a distinct exit code (`8fc33832c9`)
-- [x] Lane B count reduction reported as a delta with unique-test evidence (`8b887bef5f`, `61/58/80`)
-- [x] Every prescribed playbook path resolves; snapshot `--check` exits 0 (`5611f21a15`)
+- [x] Every Lane A case returns `INPUT_VALIDATION` with a distinct exit code (`afcbbea714`)
+- [x] Lane B count reduction reported as a delta with unique-test evidence (`9b99be4b26`, `61/58/80`)
+- [x] Every prescribed playbook path resolves; snapshot `--check` exits 0 (`8761d976a0`)
 - [x] Whole gate re-run and reported as a delta against the captured baseline (`implementation-summary.md`)
 - [ ] Independent adversarial verification pass complete — Deferred: external sign-off pending (REQ-U04)
 - [x] `validate.sh --strict` exits 0 for this child

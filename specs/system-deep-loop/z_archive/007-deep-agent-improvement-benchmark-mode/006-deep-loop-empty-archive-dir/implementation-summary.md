@@ -72,7 +72,7 @@ The fix removes the archive root from research init and rewrites all four restar
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-1. **Investigated** every `*_archive` creator via git archaeology and an independent read-only `openai/gpt-5.5-fast` trace, converging on the research-init eager mkdir as the live root cause (introduced in commit `537cd82d26`).
+1. **Investigated** every `*_archive` creator via git archaeology and an independent read-only `openai/gpt-5.5-fast` trace, converging on the research-init eager mkdir as the live root cause (introduced in commit `62465eeeca`).
 2. **Edited** the four command YAMLs — dropped `{state_paths.archive_root}` from research init and rewrote all four restart branches to the guarded lazy form.
 3. **Locked** the invariant with regression assertions in both contract-parity suites.
 4. **Verified** with YAML parse, grep invariants, a fresh/restart simulation, and a 26-test vitest run; then **swept** the 5 empty untracked archive dirs.

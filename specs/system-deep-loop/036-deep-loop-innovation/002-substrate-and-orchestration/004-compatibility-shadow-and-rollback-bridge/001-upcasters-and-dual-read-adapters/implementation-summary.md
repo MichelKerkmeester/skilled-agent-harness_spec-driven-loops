@@ -39,8 +39,8 @@ _memory:
 | **Implemented** | 2026-07-21 |
 | **Status** | Complete |
 | **Level** | 2 |
-| **Candidate base** | `012652b479dee08455de574574c5e7a8971a8b0b` plus the source digests below |
-| **Immutable census base** | `fe6ca3030917073f3b478bc044e10034dcc4394b` |
+| **Candidate base** | `68b518ab0d8ee5b2bce3a8f1938a7944a1d5945e` plus the source digests below |
+| **Immutable census base** | `573a44951386fab3556b53b39c6008ec74b22304` |
 | **Authority posture** | Additive dark; legacy remains canonical and no authority state changes |
 <!-- /ANCHOR:metadata -->
 

@@ -10,8 +10,8 @@ trigger_phrases: []
 
 ## Current state (all shipped to `origin/skilled/v4.0.0.0`)
 
-- **Rename program (030)** + **LUNA review remediation (010)** — complete. R1-P1 (catalog parity + guard), R4-P2 (fail-closed freshness + tests), R3-P1 (current-state record) all closed; committed `943617d3d7`.
-- **Rename fallout (011)** — REQ-1 done: `sk-code-router-sync.vitest.ts` repointed to canonical `sk-*` names, suite 10/10; committed `98a8443d3f`.
+- **Rename program (030)** + **LUNA review remediation (010)** — complete. R1-P1 (catalog parity + guard), R4-P2 (fail-closed freshness + tests), R3-P1 (current-state record) all closed; committed `7e51e56265`.
+- **Rename fallout (011)** — REQ-1 done: `sk-code-router-sync.vitest.ts` repointed to canonical `sk-*` names, suite 10/10; committed `de6290ed6d`.
 
 Two items remain. **Neither is a live bug** — both are safe to defer.
 
@@ -67,7 +67,7 @@ deferred strict-validation gate.
 ## Housekeeping (optional)
 
 - Branch `sk-doc/0114-mode-sk-prefix-rename` is at `3d77decd9a`; its content is on origin as the
-  cherry-picked `943617d3d7`. Safe to delete.
+  cherry-picked `7e51e56265`. Safe to delete.
 - The primary checkout carries ~17 dirty files from a concurrent session (036/043 deep-loop metadata) —
   **not** part of this work; left untouched.
 

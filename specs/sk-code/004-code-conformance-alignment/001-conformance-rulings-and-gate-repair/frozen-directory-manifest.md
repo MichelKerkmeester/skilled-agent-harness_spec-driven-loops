@@ -5,7 +5,7 @@ trigger_phrases: []
 # Frozen directory manifest
 
 Status: frozen for child 001 execution; the orchestrator owns closure.
-Captured at HEAD: 719ad8f638c54084c3354ed53b0a0a8bfdafce56
+Captured at HEAD: cf5c8d5ec1bfbfdc9cead654c7957c2910739f53
 
 Generation command:
 

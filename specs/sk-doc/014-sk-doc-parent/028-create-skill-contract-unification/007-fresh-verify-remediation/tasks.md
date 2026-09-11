@@ -44,7 +44,7 @@ _memory:
 ## Phase 1: Setup
 
 - [x] T001 Fleet audit: 46 fresh Sonnet-5 xhigh agents, one per SKILL.md [EVIDENCE: workflow `wf_8d695f77-ad0`; 11 PASS / 24 CONCERN / 11 FAIL]
-- [x] T002 Confirm every FAIL is pre-existing, not a sweep regression [EVIDENCE: `git diff f454518df1^..f454518df1` + agents' git-blame notes]
+- [x] T002 Confirm every FAIL is pre-existing, not a sweep regression [EVIDENCE: `git diff 2699217c3f^..2699217c3f` + agents' git-blame notes]
 <!-- /ANCHOR:phase-1 -->
 
 ---

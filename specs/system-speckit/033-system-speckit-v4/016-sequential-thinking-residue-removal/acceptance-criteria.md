@@ -28,7 +28,7 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions:
-      - "Do the dangling sk-doc children_ids pre-date recent work? Yes — identical 17 entries present at 4cbff2d4b6~1."
+      - "Do the dangling sk-doc children_ids pre-date recent work? Yes — identical 17 entries present at 1c986ceaa7~1."
       - "Does a generator maintain specs/sk-doc/graph-metadata.json? No — backfill rejects it as not a spec folder."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: acceptance-criteria | v2.2 -->
@@ -67,7 +67,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-005 | REQ-004 | Given the doctor test surface, When re-run after the change, Then every check matches or beats its baseline | `bash -n` ×2 exit 0; `route-validate.sh` exit 0 (10 routes, 2 warnings — identical to baseline); `--self-test` exit 0; `check-mcp-mutation-class.sh` exit 0; `tests/*.test.cjs` 0/1/0 — identical to baseline | Met | - |
 | AC-006 | REQ-004 | Given the presentation display parity check, When `route-validate.sh` runs, Then J1 still passes after four rows were removed | `PASS: J1: _routes.yaml routes, speckit.md table, and all 3 presentation displays are in parity` | Met | - |
 | AC-007 | REQ-005 | Given `specs/sk-doc/039-create-repo-rules/`, When confirmed empty and unreferenced, Then it is removed | `find` returned 0 entries; `git ls-files` 0; `git log --all` empty; `rg "039-create-repo-rules"` no matches; `rmdir` succeeded and the path is gone | Met | - |
-| AC-008 | REQ-006 | Given both operator claims about the sk-doc track index, When verified independently, Then the decision to leave it alone is evidenced | Claim 1: identical 17 dangling entries at `4cbff2d4b6~1`. Claim 2: `backfill-graph-metadata.js --spec-folder specs/sk-doc` errors `target is not a spec folder (missing spec.md)`. Plus `check-graph-metadata-child-drift.sh` header documents dangling entries as deliberately unreported | Met | - |
+| AC-008 | REQ-006 | Given both operator claims about the sk-doc track index, When verified independently, Then the decision to leave it alone is evidenced | Claim 1: identical 17 dangling entries at `1c986ceaa7~1`. Claim 2: `backfill-graph-metadata.js --spec-folder specs/sk-doc` errors `target is not a spec folder (missing spec.md)`. Plus `check-graph-metadata-child-drift.sh` header documents dangling entries as deliberately unreported | Met | - |
 
 ### Status values
 

@@ -2,7 +2,7 @@
 
 ## Scope under review
 
-Commit `ed5eb0e567fc6b087b3c08e52dbea2b6c0510cb1` — "feat(016/010/001): skill-advisor pluggable embedder architecture mirroring 016". 11 files, +796 / -10.
+Commit `fe335e4fec18d5900871f5633795da000c335d0e` — "feat(016/010/001): skill-advisor pluggable embedder architecture mirroring 016". 11 files, +796 / -10.
 
 ## Scope files (review surface)
 

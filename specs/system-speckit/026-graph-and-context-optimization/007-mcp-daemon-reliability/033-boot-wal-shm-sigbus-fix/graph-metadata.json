@@ -50,12 +50,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      "tests/context-server.vitest.ts",
-      "dist/startup-checks.js",
-      "dist/context-server.js",
-      "lib/search/vector-index-store.ts",
-      "tests/startup-checks.vitest.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -80,36 +75,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "context-server.vitest.ts",
-        "kind": "test",
-        "path": "tests/context-server.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "startup-checks.js",
-        "kind": "code",
-        "path": "dist/startup-checks.js",
-        "source": "derived"
-      },
-      {
-        "name": "context-server.js",
-        "kind": "code",
-        "path": "dist/context-server.js",
-        "source": "derived"
-      },
-      {
-        "name": "vector-index-store.ts",
-        "kind": "code",
-        "path": "lib/search/vector-index-store.ts",
-        "source": "derived"
-      },
-      {
-        "name": "startup-checks.vitest.ts",
-        "kind": "test",
-        "path": "tests/startup-checks.vitest.ts",
         "source": "derived"
       },
       {
@@ -201,11 +166,41 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a DELETE-aware",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "A boot-time health check in context-server.ts silently reverts the deliberate journal-mode-DELETE fix back to WAL on every daemon restart, re-exposing the WAL/mmap'd -shm SIGBUS class that fix was written to close",
     "created_at": "2026-07-08T16:02:23Z",
-    "last_save_at": "2026-08-30T15:39:32.606Z",
+    "last_save_at": "2026-09-11T16:42:36.355Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +209,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:642addf0be42af3637fa90a28407bbe53122672e7ec4bdfbccc64ee38ccb4b1d",
+    "source_fingerprint": "sha256:4f120fe6f5848d9e69b6a3469c271a8347b6b14d581e523032c94e2804ee8ba6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b0ee7efd8382841893730c10efa8d01e8f7ce959d012a9de82104bcd74d1dd64",
-      "plan.md": "0492ac63955e37e62aec35bc059417d6b5914cb15648a1c02811badd6e1f318f",
-      "tasks.md": "f5ce2dc6e472bfa8b77a26c910f07b2e130a4ea65f5b4e2dbdad678a27344829",
-      "implementation-summary.md": "ce79044ab6460fe7fcccf86c2cfcf4044db4c61e49f6af2469759e00496f662a"
+      "spec.md": "862e1734f27e55c8ab00edbab165f3409fae3b11d5cf59ef9236f1d32356578b",
+      "plan.md": "210271830b8c589f74b41b4a7725da74fa0cf9d9631d2d931b620dd9464ea9a7",
+      "tasks.md": "ecfa23cd131d8ecca082bb0de0c7e86d5efbdf0990b9e961464c1b951d0ffd60",
+      "implementation-summary.md": "0df0478c3b7e5608411bf880d9b4a19cdbe5e8d6bcb37bb53d25ef4a6253fb85"
     },
     "last_active_child_id": null,
     "last_active_at": null

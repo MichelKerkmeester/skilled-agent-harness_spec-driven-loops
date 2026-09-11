@@ -13,13 +13,13 @@ trigger_phrases: []
 
 ## 1. EXECUTIVE VERDICT
 
-The constitutional-memory layer is **decorative but deeply wired**: 61 deduped touchpoints across code, commands, tests, docs, the folder, and the DB. Enforcement never lived in the rule files — it lives in the hardcoded directive capsule in `system-skill-advisor/mcp-server/lib/render.ts` (which STAYS) and in the hooks/classifiers (which STAY). The committed search flip (a1d2b84a1e) covered 3 of ~7 `includeConstitutional` default/hardcode sites; **4 production sites still pass `true`** (tools/memory-tools.ts:81, cli.ts:489, shadow-evaluation-runtime.ts:200, active-row-predicate.ts:61), **3 tool-schema defaults still say `true`** (tool-schemas.ts:221,267,761), the **indexer still defaults `include_constitutional = true`** (memory-index.ts:624), and the **compiled dist is mixed** (search flip present, indexer flip absent) — so the committed change has **no runtime effect until dist is rebuilt and the daemon restarted**. The 21 DB rows are exactly the 20 rule files + folder README, all in `spec_folder='system-spec-kit'`; learned-triggers confirmed 0 rows (system C, out of scope).
+The constitutional-memory layer is **decorative but deeply wired**: 61 deduped touchpoints across code, commands, tests, docs, the folder, and the DB. Enforcement never lived in the rule files — it lives in the hardcoded directive capsule in `system-skill-advisor/mcp-server/lib/render.ts` (which STAYS) and in the hooks/classifiers (which STAY). The committed search flip (b635afdcf4) covered 3 of ~7 `includeConstitutional` default/hardcode sites; **4 production sites still pass `true`** (tools/memory-tools.ts:81, cli.ts:489, shadow-evaluation-runtime.ts:200, active-row-predicate.ts:61), **3 tool-schema defaults still say `true`** (tool-schemas.ts:221,267,761), the **indexer still defaults `include_constitutional = true`** (memory-index.ts:624), and the **compiled dist is mixed** (search flip present, indexer flip absent) — so the committed change has **no runtime effect until dist is rebuilt and the daemon restarted**. The 21 DB rows are exactly the 20 rule files + folder README, all in `spec_folder='system-spec-kit'`; learned-triggers confirmed 0 rows (system C, out of scope).
 
 ---
 
 ## 2. DEDUPED INVENTORY (touchpoint | file:line | class | action)
 
-Classes: **DONE** = already flipped (a1d2b84a1e) · **TODO** = change required · **KEEP** = stays (enforcement/history/out-of-scope) · **KEEP-AS-DOC** = stays as unindexed plain doc · **DELETE** = remove.
+Classes: **DONE** = already flipped (b635afdcf4) · **TODO** = change required · **KEEP** = stays (enforcement/history/out-of-scope) · **KEEP-AS-DOC** = stays as unindexed plain doc · **DELETE** = remove.
 
 ### A. CODE — search & pipeline
 | # | Touchpoint | file:line | Class | Action |
@@ -190,7 +190,7 @@ Locked in Iter 10 F10.10; named-suite details in Iter 3. Summary:
 ## 7. DIST REBUILD + DAEMON RESTART (required for the committed flip)
 
 - `dist/` is MIXED: `dist/handlers/memory-search.js:905` + `dist/lib/search/vector-index-queries.js:293` carry `= false`; `dist/handlers/memory-index.js:323` still `= true`; `dist/handlers/memory-context.js:875,903` still forward the flag. [grep dist, Iter 9]
-- `.opencode/bin/spec-memory.cjs` runs `mcp-server/dist/spec-memory-cli.js` and **exits 69 when dist is stale** [.opencode/bin/README.md:105]. The committed a1d2b84a1e flip has NO runtime effect until `dist` is rebuilt and the daemon restarted.
+- `.opencode/bin/spec-memory.cjs` runs `mcp-server/dist/spec-memory-cli.js` and **exits 69 when dist is stale** [.opencode/bin/README.md:105]. The committed b635afdcf4 flip has NO runtime effect until `dist` is rebuilt and the daemon restarted.
 
 ---
 

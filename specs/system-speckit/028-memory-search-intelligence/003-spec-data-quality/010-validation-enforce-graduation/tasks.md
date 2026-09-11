@@ -115,7 +115,7 @@ The three sequential graduations, least-risky-first: status cross-doc, then meta
 - [x] T025 Flip the resolved default for `SPECKIT_CHILD_DRIFT_ENFORCE`; update its doc-comment {deps: T024} — CORRECTED FILE TARGET (same as Phases 1-2): not `capability-flags.ts` (zero references); all 3 `${SPECKIT_CHILD_DRIFT_ENFORCE:-false}` sites in `check-graph-metadata-child-drift.sh` flipped to `:-true` (including the new guard's own gating condition), graduation comment added
 - [x] T026 Add the currently-missing `SPECKIT_CHILD_DRIFT_ENFORCE` row to `ENV_REFERENCE.md` {deps: T025} — both tables updated
 - [x] T027 [P] Re-verify the guard's fail-closed behavior against a deliberately-broken fixture with the flag now truly enforcing {deps: T026} — Evidence: `check-graph-metadata-child-drift.sh` — verified with zero env override (relying purely on the new default) — real drift correctly warns
-- [x] T028 Commit Phase 3 independently {deps: T027} — Evidence: verified via `git log` after commit, matching Phase 1 (`3dceda7760`) and Phase 2 (`7544197691`)'s own independent-commit pattern
+- [x] T028 Commit Phase 3 independently {deps: T027} — Evidence: verified via `git log` after commit, matching Phase 1 (`bc0a665719`) and Phase 2 (`198a9d794e`)'s own independent-commit pattern
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -137,7 +137,7 @@ The three sequential graduations, least-risky-first: status cross-doc, then meta
 - [x] All tasks marked `[x]`
 - [x] No `[B]` blocked tasks remaining (T001/T002 unblocked once 017/015 confirmed landed)
 - [x] All milestones achieved
-- [x] Each flag flip committed independently (Phase 1 `3dceda7760`, Phase 2 `7544197691`, Phase 3 committed in this packet's own commit)
+- [x] Each flag flip committed independently (Phase 1 `bc0a665719`, Phase 2 `198a9d794e`, Phase 3 committed in this packet's own commit)
 - [x] Tree-wide `validate.sh --strict` sweep clean (Phase 3 / T029-T030)
 - [x] `checklist.md` fully verified
 <!-- /ANCHOR:completion -->

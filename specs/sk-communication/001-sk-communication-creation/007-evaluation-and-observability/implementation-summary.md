@@ -95,7 +95,7 @@ Implementation ran as dispatched worker packets on GPT-5.6 SOL through cli-codex
 | Live LLM-judge demo | PASS (provisional): a real DeepSeek judge scored blind comparisons; result stamped `llm-proxy` / provisional |
 | Deterministic gate | PASS: test files run serially so benchmarks measure without contention |
 | Strict packet validation | PASS: Phase 007 strict and parent recursive strict, zero errors |
-| Implementation checkpoint | `ffce7901a2` (series 65e814fae1 through ffce7901a2) |
+| Implementation checkpoint | `c5a57ccffa` (series 0987f8ab79 through c5a57ccffa) |
 <!-- /ANCHOR:verification -->
 
 ---

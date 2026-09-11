@@ -60,7 +60,7 @@
       ".opencode/scripts/session-cleanup.sh",
       ".opencode/commands/deep/assets/deep-research-auto.yaml",
       "data/trigger-index.json",
-      "shared/paths.ts"
+      "specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/006-legacy-memory-surface-inventory/research/lineages/luna-max/research.md"
     ],
     "entities": [
       {
@@ -166,12 +166,6 @@
         "source": "derived"
       },
       {
-        "name": "paths.ts",
-        "kind": "code",
-        "path": "shared/paths.ts",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -206,11 +200,17 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The subsystem's cost is structural, not incidental: a background service that flaps, 41 tools loaded",
     "created_at": "2026-09-02T11:04:52Z",
-    "last_save_at": "2026-09-06T07:09:13.332Z",
+    "last_save_at": "2026-09-11T16:42:47.118Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d722e2deaaee6bd237bf18ae9fbaece66222410034bef07d625d7fbaeba5dfa8",
+    "source_fingerprint": "sha256:e6f67cb647abbac1a72ef8a29eb2db718941ecb002601e1de5f6d3174f37f153",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6cc3f83002766484aeeccf2ad9d9508c1545427aa68c72fc4df24b88b4ee590c",
       "plan.md": "4f8c33e5786f60d781a7af8db78c2fc4e2e7b633fe56d382fc197977b56b9525",
-      "tasks.md": "49f8a1ded741a0d5ed45d59a69cf5a0c749fc40b968a74bd6b7c1bd54a8871c6",
-      "implementation-summary.md": "d9d9d98f2643d0df411877340a823508a79d6c2310db231e4269678c49cfffaf"
+      "tasks.md": "b1ae400af24bfece26945cc70640ec02e4e1e24c40250c1f0ddd92f9d16558a4",
+      "implementation-summary.md": "c533bed2c71664495a8a7c57bd65ddf2e10e8c45413138a8c20b28a39479eefc"
     },
     "last_active_child_id": null,
     "last_active_at": null

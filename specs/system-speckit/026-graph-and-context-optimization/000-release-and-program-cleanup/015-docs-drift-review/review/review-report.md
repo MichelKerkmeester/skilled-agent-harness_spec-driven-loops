@@ -4,7 +4,7 @@ trigger_phrases: []
 ---
 # Documentation-Drift Review Report
 
-> Read-only deep review of user-facing docs vs this session's shipped changes (packets 013 / 014 / 015 / 016 + v3.5.0.0 release), all on `origin/main` HEAD `75cfec1700`. Findings only — no reviewed doc was edited.
+> Read-only deep review of user-facing docs vs this session's shipped changes (packets 013 / 014 / 015 / 016 + v3.5.0.0 release), all on `origin/main` HEAD `ce22801ff5`. Findings only — no reviewed doc was edited.
 
 ---
 

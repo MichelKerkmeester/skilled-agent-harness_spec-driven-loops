@@ -53,7 +53,6 @@
       ".opencode/commands/doctor/assets/doctor-mcp-presentation.txt",
       ".opencode/commands/doctor/scripts/README.md",
       "specs/sk-doc/graph-metadata.json",
-      "specs/anobel.com/graph-metadata.json",
       ".opencode/scripts/session-cleanup.sh",
       ".opencode/scripts/orphan-mcp-sweeper.sh",
       "scripts/README.md",
@@ -205,9 +204,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Commit `7673da6bc24` decommissioned the Sequential Thinking MCP server: it deleted the install guide, deleted the installer script, and unregistered the server from `opencode.json`",
+    "causal_summary": "Commit `edff3a4c161` decommissioned the Sequential Thinking MCP server: it deleted the install guide, deleted the installer script, and unregistered the server from `opencode.json`",
     "created_at": "2026-08-31T13:24:32Z",
-    "last_save_at": "2026-09-08T18:23:44.004Z",
+    "last_save_at": "2026-09-11T16:42:46.952Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +216,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e9ef1f78c1fdc7196bb3148ef4c501cacb18b330af7205cb3ff5e01a22dea2f9",
+    "source_fingerprint": "sha256:10ae9979dad8566597abfc5b402799d0a9b373e407979ba487a415f4e04cc66b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d606d90b968c02d3257503b4747a7ab720ade4aadf0689515ad347814bf37a18",
+      "spec.md": "8485ff6d5d17f89b7274b60916887d1264868f3306ce2b440932ebc196967425",
       "plan.md": "6f559f8471549ec0894a9f386afed2d8688999810bb362ce1d91355b151d677e",
-      "tasks.md": "fb81993de76400ec1b44a878c94c8bd0fbd52456b281f4b9d85183535c1b2f56",
-      "implementation-summary.md": "d1e45e4dc14893b3834fb50271d103a7b1b581c1751f54687ae593c359c5ad81"
+      "tasks.md": "2db9c0ed878d7226bfc1bacaccefb29d51ac9066848601b74b1ac81c2aa36536",
+      "implementation-summary.md": "7a52c7e01fe5692d5d9d265b5096dcbbcb624d7304ba91d23dca745769f672a4"
     },
     "last_active_child_id": null,
     "last_active_at": null

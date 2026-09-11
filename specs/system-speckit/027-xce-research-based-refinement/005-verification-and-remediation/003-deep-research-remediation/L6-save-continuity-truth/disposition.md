@@ -11,7 +11,7 @@ contextType: "implementation"
 
 Batch verification 17/17 STILL-REAL (`../verify/l6-still-real-batch.md`); doc batch CLOSED (verdict `../verify/l6-l7-docs-verdict.md`, three INCOMPLETEs remedied in-commit — notably the handover-template label form that parsed to null). tri-139 (advertised 800 vs enforced 1000) fixed by aligning the four schema descriptions with layer-definitions.
 
-## Closed in code wave 6 (commit 4913ddf6f9, Fable-verified 5/5 with tri-168)
+## Closed in code wave 6 (commit 4f5237d4fb, Fable-verified 5/5 with tri-168)
 tri-015 (memory_save success responses carry a structured `metadataRefresh: refreshed=false` advisory + hint on mutating canonical-doc saves; the CLI front door inherits it through the same daemon handler; never on metadata/constitutional targets or non-mutating statuses). tri-020 (the resume ladder performs the documented phase-parent redirect — both pointer shapes, per-hop child validation, bounded depth, escape-safe; live-proven on the 026 parent, stale/crafted pointers refused). tri-130 + tri-132 (stress floors: promoter idempotency/tombstoning at volume against the real `promoteMetadataEdges`; BM25 scope-then-limit at a 2,250-candidate set forcing chunked metadata resolution through the production SQL, with adversarial oracle ordering).
 
 ## Code wave 7 (implemented, in verification)

@@ -10,7 +10,7 @@ trigger_phrases: []
 - **Dimension:** maintainability
 - **Angle:** A6 — test integrity & verification honesty (tests that pass WITHOUT asserting real behavior, reduced coverage, dishonest success accounting)
 - **Budget profile:** verify (target 11-13 tool calls; evidence rereads + source cross-check of test assertions vs production defaults)
-- **Review target:** git range `a9e9bdb0a5^..HEAD` (HEAD `12de3d3a7e`)
+- **Review target:** git range `fd67ede05f^..HEAD` (HEAD `3923a65db1`)
 - **Session:** `2026-06-05T11:16:17Z` (generation 1, lineageMode new)
 - **Parallel-safety:** wrote ONLY `iterations/iteration-007.md` + `deltas/iter-007.jsonl`. Did NOT touch `deep-review-state.jsonl`, `deep-review-strategy.md`, findings-registry, or config.
 

@@ -108,11 +108,11 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-selector-and-shared-socket/ | Swap the selector probe to `/api/health`, delete stale Python probe/docs, pin a shared `HF_EMBED_SERVER_URL` in `.mcp.json` + `opencode.json`, add `ECONNRESET`/`EPIPE` retry, and make the readiness-timeout message actionable | Complete (`910e87c429`) |
-| 2 | 002-server-liveness-supervision/ | Wedged-but-loading detection, inference-liveness health fields with a bounded dispose-drain, and a crash-loop give-up cooldown plus ENOSPC-resilient pid/lease/lock writes | Complete (`73ae557901`) |
+| 1 | 001-selector-and-shared-socket/ | Swap the selector probe to `/api/health`, delete stale Python probe/docs, pin a shared `HF_EMBED_SERVER_URL` in `.mcp.json` + `opencode.json`, add `ECONNRESET`/`EPIPE` retry, and make the readiness-timeout message actionable | Complete (`0551651d15`) |
+| 2 | 002-server-liveness-supervision/ | Wedged-but-loading detection, inference-liveness health fields with a bounded dispose-drain, and a crash-loop give-up cooldown plus ENOSPC-resilient pid/lease/lock writes | Complete (`5de82e13a9`) |
 | 3 | 003-observability-model-switch/ | Read-only `/doctor embeddings` + embedder_status surface, a safe model-switch path (allowlist + 404 loadedModel + dim-drift warn), and cold-start timeout alignment with first-embed download docs | Complete (`6781109b97`) |
 | 4 | 004-perf-instrumentation-batching/ | Instrument the embed path first, then real `/api/embed` batching, a ready-once latch, and cache-into-reindex — every win measure-gated | Complete (`47a01c7170`) — instrument + batching + latch shipped; cache-into-reindex + live perf numbers deferred (measure-gated) |
-| 5 | 005-live-validation-bench-hardening/ | Live two-launcher integration test that gates the advisor flag flip to default ON, q8-vs-fp16 bench, idle-eviction (default off), perimeter hardening, and staged deprecated-env removal | Complete (`40806392cb`) — perimeter + idle + live-test + cleanup shipped; flag-flip + dtype gated on a working onnxruntime tree |
+| 5 | 005-live-validation-bench-hardening/ | Live two-launcher integration test that gates the advisor flag flip to default ON, q8-vs-fp16 bench, idle-eviction (default off), perimeter hardening, and staged deprecated-env removal | Complete (`d75575a47e`) — perimeter + idle + live-test + cleanup shipped; flag-flip + dtype gated on a working onnxruntime tree |
 
 ### Phase Transition Rules
 

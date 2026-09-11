@@ -47,7 +47,6 @@
       "decision-record.md",
       "implementation-summary.md",
       "handover.md",
-      ".opencode/commands/memory/search.md",
       ".opencode/bin/lib/model-server-supervision.cjs",
       "review-r2/broaden-synthesis.md"
     ],
@@ -86,12 +85,6 @@
         "name": "handover.md",
         "kind": "doc",
         "path": "handover.md",
-        "source": "derived"
-      },
-      {
-        "name": "search.md",
-        "kind": "doc",
-        "path": ".opencode/commands/memory/search.md",
         "source": "derived"
       },
       {
@@ -195,11 +188,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Key Files",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The 027/002 phases 017-021 shipped working, tested code, but the 50-pass review surfaced a set of confirmed residual issues: one bounded shell-exposure P1 in the `/memory:search` command contract, several maintainability/observability/test-debt P2s in the search and reindex/maintenance code, and pervasive spec-folder doc drift where canonical docs still describe scaffold/planned state while the implementation-summaries record completed work",
     "created_at": "2026-06-17T20:05:00.777Z",
-    "last_save_at": "2026-09-03T22:23:32.081Z",
+    "last_save_at": "2026-09-11T16:42:38.335Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,15 +209,15 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:1927c82f941d3c32803ff9984b83587e8c2c88545705b0f0724803af685cb752",
+    "source_fingerprint": "sha256:013c9bf2ddc537e0bc87691b01990d07e327becf0feca5b0aed3a9cb963e1bc9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3309c2c7a4690bac7595d6b4aacfb4915d537dec49cd538f8a545a8bb8212d81",
       "plan.md": "3a7c43d0d89c94285d890f0f50c75bd60a68aadbeb8b9da7af5b07cf49a97298",
-      "tasks.md": "b918a4701d233c3c1640a620a91c7aa5747e95f3a5b539b4644c438909fc3ecd",
+      "tasks.md": "ddbf5cfa8580e60b702961e39b61fc31452a82a8a4bfd851e960b916556b9b86",
       "decision-record.md": "a7cdbc9bddac249dfeceafaa2c926ff0255d6d25951b6b080086630fb324c6e8",
-      "implementation-summary.md": "f46f0e99d700647fe0b9b102bc4248991ac12220156f8b09f2a61c5c48853631",
-      "handover.md": "758c53afb758be0fc4071f4b33a09d86ad0e7848f2fed02fb94e6942ef3f7103"
+      "implementation-summary.md": "b001403299074c797f8bf1937f0753cc2f6ecd239eb6025e16c7a3d11a93ff8b",
+      "handover.md": "9d67017c09ff403d02301e890a350c176f1f86ead29dca43f5aad05265e5de59"
     },
     "last_active_child_id": null,
     "last_active_at": null

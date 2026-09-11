@@ -152,7 +152,7 @@ that actually runs against it, and nothing in `references/` claims a state that 
 |------|------|--------|------------|
 | Risk | Restructuring a checklist silently drops a technical assertion | High - these gate real code changes | Checkbox-count parity plus a filtered diff proving paths and commands are byte-identical |
 | Risk | Typing the playbook routing-gold instead of operator-scenario | High - would create a silent coverage hole | Verified the topology gate cannot reach this leaf; chose the enforced contract |
-| Risk | Deleting files that something still loads | Medium | Grep for inbound references before deleting; all files tracked in git, restorable from `856c17d5ed` |
+| Risk | Deleting files that something still loads | Medium | Grep for inbound references before deleting; all files tracked in git, restorable from `5a4bd90bd0` |
 | Dependency | `extract_structure.py` | Scores every doc | Confirmed present via symlink; output shape verified against the source |
 | Dependency | `validate-playbook-package.cjs` | Governs the playbook | Read directly; the validator wins wherever it disagrees with the template |
 <!-- /ANCHOR:risks -->

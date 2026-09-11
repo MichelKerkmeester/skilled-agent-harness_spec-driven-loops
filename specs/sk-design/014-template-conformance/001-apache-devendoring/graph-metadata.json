@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "`.opencode/skills/sk-design/design-interface/LICENSE.txt` was the full Apache-2.0 text, committed in the skill's first commit (`c9c2d381c34`) as the compliance artefact for content vendored verbatim from Anthropic's `frontend-design` skill",
+    "causal_summary": "`.opencode/skills/sk-design/design-interface/LICENSE.txt` was the full Apache-2.0 text, committed in the skill's first commit (`536db0c217e`) as the compliance artefact for content vendored verbatim from Anthropic's `frontend-design` skill",
     "created_at": "2026-07-27T14:48:39.949Z",
-    "last_save_at": "2026-08-30T15:39:12.979Z",
+    "last_save_at": "2026-09-11T16:41:57.249Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,14 +206,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5a710b7d5c20fb957d5a845a7d046d939f22c4988000e1dcbcc4bb1c564ef8c7",
+    "source_fingerprint": "sha256:3b1c08102493052207bae6d46d64f4c0755c3bb0d06ba2c16abbb4141055c336",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "26d19b33dd682302d609efc6ad9bb6771d2ff23ab49c82aef26f269a3c200721",
-      "plan.md": "01d377e8c865fe963398543f8033eac06a9dc60d1a5c8a1224eb14e250d94490",
-      "tasks.md": "65018b5f63e68c12f2a9c5cad22fb1bcdc9efdc4ab9a93df0dc4a2ddf7fe53cf",
-      "decision-record.md": "55ce5d4f977a751c8c9c5743b8bb9f4d0aafdcedc191772364b24a6269b5267f",
-      "implementation-summary.md": "114f6c4868fe94a9f0198b26d6d5c7bd6bb00be406a9122b1967b292ce5f9b13"
+      "spec.md": "aef67611dd26fc61eab129989aa38b0f477fc31a477c6ea95b1986de09051cc4",
+      "plan.md": "3b6f891851c8202c13b70d802f6a3623ef2c749219392b2c50839eeeddd207e2",
+      "tasks.md": "0c04d918efd8460f4b6682a15a4120d2f05b89e6f9e53a3318316084307266f9",
+      "decision-record.md": "967e5c5ecc1e6a3293acc727898c6aec0ba32cc5cec4c13717894821469e9504",
+      "implementation-summary.md": "b251d6929e0fe2a3ea033fcc8bef9631f65e4a07a91c3e2e5295ee4753a59639"
     },
     "last_active_child_id": null,
     "last_active_at": null

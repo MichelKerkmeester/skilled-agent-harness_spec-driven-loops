@@ -73,4 +73,4 @@ After four HOLD verdicts across the rerank arc, including a bge-v2-m3 trial that
 
 - The full Vitest suite retains a 157-failure baseline below the <=168 ceiling. Investigate the remaining failures in a dedicated remediation packet if the count grows.
 - Retrieval and fixture quality were intentionally out of scope. Revisit the 011/004 audit work if spec-memory reranking is opted back in by an operator.
-- Confirm that the `system-rerank-sidecar` skill SKILL.md update from the original commit persists after the subsequent skill removal in commit `696c889887`.
+- Confirm that the `system-rerank-sidecar` skill SKILL.md update from the original commit persists after the subsequent skill removal in commit `ada2c51ee8`.

@@ -23,7 +23,7 @@ contextType: "implementation"
 
 The spawned-launcher lease integration suite (`tests/launcher-lease.vitest.ts`) sat behind `describe.skip` with the note "known launcher process lifecycle flake." The skip label was a misdiagnosis: the suite failed 100% of the time, not intermittently. The fixture copied `mk-spec-memory-launcher.cjs` into each temp workspace but not its `lib/` tree, so every spawned launcher crashed with `Cannot find module './lib/model-server-supervision.cjs'` before it could write a lease, surfacing downstream as a `waitForLeasePid` timeout that looked like a process race.
 
-This packet un-skipped the suite, fixed the real root cause (copy the whole `lib/` tree with `cpSync`, all builtin-only modules so no `node_modules` needed), isolated each test with its own socket dir, and added an end-to-end test proving packet 020's `lease.socketPath` bridges a divergent-env launcher to the owner's real socket. Test-only change, no production code touched, no daemon recycled. Committed as `d1183dc07d`.
+This packet un-skipped the suite, fixed the real root cause (copy the whole `lib/` tree with `cpSync`, all builtin-only modules so no `node_modules` needed), isolated each test with its own socket dir, and added an end-to-end test proving packet 020's `lease.socketPath` bridges a divergent-env launcher to the owner's real socket. Test-only change, no production code touched, no daemon recycled. Committed as `def03b53dd`.
 
 ### Added
 

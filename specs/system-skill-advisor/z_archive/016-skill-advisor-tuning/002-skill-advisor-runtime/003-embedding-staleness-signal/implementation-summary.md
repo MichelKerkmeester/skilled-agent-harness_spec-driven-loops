@@ -46,7 +46,7 @@ _memory:
 | **Status** | complete |
 | **Scope** | Advisor SA8 embedding-staleness: the staleness signal (signature capture + compare-on-load + `semantic_shadow` lane degrade) implemented, Memory-010 idempotent-async rebuild reuse pending |
 | **Branch** | system-speckit/027-xce-research-based-refinement |
-| **Shipped via** | Commit `f038ff140e` in `system-skill-advisor/mcp_server` (projection + semantic-shadow lane + staleness vitest). Packet 030 untouched |
+| **Shipped via** | Commit `d1a1a5ee41` in `system-skill-advisor/mcp_server` (projection + semantic-shadow lane + staleness vitest). Packet 030 untouched |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -105,7 +105,7 @@ The implementation followed the signal-first sequence. `types.ts` adds the proje
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-- **Committed at `f038ff140e`.** The code is implemented, verified and shipped in that 028 build commit.
+- **Committed at `d1a1a5ee41`.** The code is implemented, verified and shipped in that 028 build commit.
 - **No measured benefit number.** SA8 banked ZERO benchmarks, the M-H / S-M leverage/effort are structural inference (`synthesis/01:36` Wave-1, roadmap GO-evidence caveat). The value is detection + repair of a silent staleness hole, not a benchmarked routing-quality delta.
 - **The rebuild leg is gated on a sibling subsystem.** Facet #2 (`Advisor-embedding-staleness-signal`) cannot ship until Memory `010-consolidation-cursor-clock` lands the idempotent-async primitive. The signal (facet #1) is independent and implemented.
 - **Partial refresh detection is implemented at the stored-row summary level.** Mixed model ids produce a stale verdict rather than collapsing into a false fresh single signature.

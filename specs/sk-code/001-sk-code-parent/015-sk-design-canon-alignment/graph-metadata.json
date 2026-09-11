@@ -44,7 +44,10 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/sk-design/description.json",
+      ".opencode/skills/sk-design/mode-registry.json",
+      ".opencode/skills/sk-design/hub-router.json"
     ],
     "entities": [
       {
@@ -69,6 +72,24 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/hub-router.json",
         "source": "derived"
       },
       {
@@ -172,29 +193,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Contract Verification",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "The master plan reports that `parent-skill-check` strict mode leaves sk-design with four remaining parent-hub invariant failures after the five-mode `packetKind` repair was already pushed in commit `f8673ff0db`",
+    "causal_summary": "The master plan reports that `parent-skill-check` strict mode leaves sk-design with four remaining parent-hub invariant failures after the five-mode `packetKind` repair was already pushed in commit `8820b8963d`",
     "created_at": "2026-07-05T05:46:25.870Z",
-    "last_save_at": "2026-08-30T15:39:10.870Z",
+    "last_save_at": "2026-09-11T16:41:50.575Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +206,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d66f7c8313f0c4401b86974b6aec2c95b68c0045edbdd239c30d0230e89c8ba5",
+    "source_fingerprint": "sha256:66604690e7e10e05207275dc8db25396830a7a178bc1652e502ce4df273ca75c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6543c05bd32f8b825224ff5becd5be0e125d376e30406aed72d6817c04a56ee1",
-      "plan.md": "4f2384c0e86b3273d831621de3d9d96d73c25a5c7ee8d04a27553e98dc06d74a",
-      "tasks.md": "b2b5a4493ff4dad01fbc18f18b51b5702755fc936113304639512308533b4500",
-      "implementation-summary.md": "6f0adb00b2147977fc8897674fc73427628118f0daaccab64e63c7beab66667e"
+      "spec.md": "397f766c29b32d534a0159e51b8266a019563b4df9f0cb177bf3c7786a8dbf01",
+      "plan.md": "390085030dc30ed73483d6d58607e459d73b2faa8329e007c4569ca32041c757",
+      "tasks.md": "de8c8c0f4bef5d6b426791191325d66f26b6d688922bc8bfaaab35dbd083c785",
+      "implementation-summary.md": "3461e462d1b886d17fdcb287487667f8aee35a067491f2770cbccdf38b7ff8c0"
     },
     "last_active_child_id": null,
     "last_active_at": null

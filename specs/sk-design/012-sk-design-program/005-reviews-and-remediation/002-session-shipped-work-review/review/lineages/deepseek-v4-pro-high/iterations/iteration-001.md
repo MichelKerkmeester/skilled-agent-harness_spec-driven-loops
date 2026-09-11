@@ -7,8 +7,8 @@ trigger_phrases: []
 ## Focus
 
 D1 Correctness across two high-priority commits:
-- `bf0986cecd` (015 Phase-0 styles-DB foundation): generation-manifest atomicity, stage-telemetry residency honesty, differential oracle parity
-- `9a42aedae4` (command-namespace dedup): `commands/design/` deletion consistency, registry agreement, stale doc claims
+- `7e67a7bb3a` (015 Phase-0 styles-DB foundation): generation-manifest atomicity, stage-telemetry residency honesty, differential oracle parity
+- `5dd5547949` (command-namespace dedup): `commands/design/` deletion consistency, registry agreement, stale doc claims
 
 ## Scorecard
 
@@ -24,7 +24,7 @@ D1 Correctness across two high-priority commits:
 
 - **F001**: `writeManifestPointer` has a partial-atomicity gap when `afterRename` throws after the rename, `generation-manifest.mjs:259-260`, The atomic rename succeeds (`rename` is durable on most filesystems), but if the `afterRename` callback throws on line 260, the directory fsync on line 261-265 is skipped (control jumps to the finally block). The finally block only cleans up the temp file (already renamed, so a no-op). The caller sees an error but the pointer has already flipped — the published state transitioned without the caller's knowledge. This is exercised by the test at `__tests__/manifest.test.mjs:139-148` which asserts `assert.ok(['sha256:gen1', 'sha256:gen2'].includes(manifest.generationHash))`, acknowledging the non-deterministic outcome. For buildStyleDatabase (caller at `indexer.mjs:1110-1115`), when `afterRename` throws, the generation file is on disk under its immutable name, the pointer may or may not point to it, and the caller's catch block cannot deterministically roll back the pointer flip. Category: correctness. [SOURCE: generation-manifest.mjs:249-271]
 
-- **F002**: Stale doc claims across feature-catalog docs reference the deleted `commands/design/` directory as still active. The command-dedup commit `9a42aedae4` deleted `commands/design/` (5 wrappers + 15 assets) and updated SKILL.md/README.md to say "the former `/design:*` alias namespace is retired," but three files still claim the aliases "remain":
+- **F002**: Stale doc claims across feature-catalog docs reference the deleted `commands/design/` directory as still active. The command-dedup commit `5dd5547949` deleted `commands/design/` (5 wrappers + 15 assets) and updated SKILL.md/README.md to say "the former `/design:*` alias namespace is retired," but three files still claim the aliases "remain":
   - `feature-catalog/creation-command-surface/interface-creation-commands.md:43` — table row lists `.opencode/commands/design/*.md` as "Compatibility routers" that "Preserves the five `/design:*` aliases"
   - `feature-catalog/creation-command-surface/interface-creation-commands.md:20` — "The former `/design:*` commands remain thin compatibility aliases"
   - `feature-catalog/feature-catalog.md:201` — "The corresponding `/design:*` commands remain thin compatibility aliases"

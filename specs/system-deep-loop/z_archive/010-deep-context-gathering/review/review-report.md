@@ -2,7 +2,7 @@
 
 | Field | Value |
 |-------|-------|
-| **Review target** | git commit `531dd53028` work across `005-runtime-mirror-parity`, `006-native-default-executor-pool`, `007-deep-command-gate-hardening` |
+| **Review target** | git commit `331aa7ece2` work across `005-runtime-mirror-parity`, `006-native-default-executor-pool`, `007-deep-command-gate-hardening` |
 | **Executor** | `openai/gpt-5.5-fast --variant xhigh` (cli-opencode), 10 parallel READ-ONLY narrow-slice seats |
 | **Run shape** | Parallel fan-out (one slice/seat) → central reduce → adversarial verification of every P0/P1 |
 | **Date** | 2026-06-07 |

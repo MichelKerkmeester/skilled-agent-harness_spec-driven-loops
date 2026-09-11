@@ -48,7 +48,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-A read-only documentation-drift findings report comparing user-facing docs (root README, skill READMEs/SKILL.md, MCP server READMEs, `feature_catalog/**`, `manual_testing_playbook/**`, excluding sk-code/sk-git) against seven shipped change-areas from packets 013/014/015/016 + the v3.5.0.0 release, all on `origin/main` HEAD `75cfec1700`. Verdict: **CONDITIONAL PASS** — 2 P0, 8 P1, 12 P2 (consolidated). No reviewed doc was edited.
+A read-only documentation-drift findings report comparing user-facing docs (root README, skill READMEs/SKILL.md, MCP server READMEs, `feature_catalog/**`, `manual_testing_playbook/**`, excluding sk-code/sk-git) against seven shipped change-areas from packets 013/014/015/016 + the v3.5.0.0 release, all on `origin/main` HEAD `ce22801ff5`. Verdict: **CONDITIONAL PASS** — 2 P0, 8 P1, 12 P2 (consolidated). No reviewed doc was edited.
 
 ### Files Changed
 
@@ -68,7 +68,7 @@ A read-only documentation-drift findings report comparing user-facing docs (root
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-1. **Ground truth first.** Confirmed HEAD `75cfec1700` and verified each contested fact directly in code: 37 MCP tools (`tool-schemas.ts`), a single-entry `MANIFESTS` array with `CLOUD_CANONICAL` (voyage/openai) RETAINED in `@spec-kit/shared/embeddings/registry.ts`, algorithmic MMR PRESENT (`SPECKIT_MMR`, `INTENT_LAMBDA_MAP`), the 016 owner-lease at `.spec-memory-owner.json` with retryable JSON-RPC, and the renumbered flag-reference docs (`273-`/`283-`/`311-`).
+1. **Ground truth first.** Confirmed HEAD `ce22801ff5` and verified each contested fact directly in code: 37 MCP tools (`tool-schemas.ts`), a single-entry `MANIFESTS` array with `CLOUD_CANONICAL` (voyage/openai) RETAINED in `@spec-kit/shared/embeddings/registry.ts`, algorithmic MMR PRESENT (`SPECKIT_MMR`, `INTENT_LAMBDA_MAP`), the 016 owner-lease at `.spec-memory-owner.json` with retryable JSON-RPC, and the renumbered flag-reference docs (`273-`/`283-`/`311-`).
 2. **Partitioned dispatch.** Composed 10 bounded review briefs, pre-filtering the 319-file `feature_catalog` and 412-file `manual_testing_playbook` by topical grep so each pass read only files that could carry drift from the 7 changes. Dispatched `cli-opencode gpt-5.5-fast high` (`AI_SESSION_CHILD=1`, `</dev/null`, 2-3 concurrent on shared OpenAI quota). All 10 passes returned exit 0; none timed out.
 3. **Adversarial verification.** Every one of ~70 raw candidate findings was checked against the real code. ~45 were rejected — almost entirely one error class: the passes applied the *advisor-scoped* embedder/reranker removal to mk-spec-memory, which keeps its 4-provider cascade and MMR. The surviving findings each cite a quoted stale string plus a verified code fact.
 4. **Synthesis.** Wrote `review/review-report.md` with verdict, counts, per-finding correction grouped by doc area, a no-drift list, an explicit false-positive class, and coverage gaps.

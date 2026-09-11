@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: De-vendor design-interface's Apache-2.0 dependency"
-description: "Shipped record of the ordered de-vendor-then-delete change: the interface design guidance was re-authored in original words and the Apache-2.0 licence and every citing site were removed, in that order, as commit 8fa4752968."
+description: "Shipped record of the ordered de-vendor-then-delete change: the interface design guidance was re-authored in original words and the Apache-2.0 licence and every citing site were removed, in that order, as commit 4ac59d21c5."
 trigger_phrases:
   - "apache devendoring implementation summary"
   - "design-interface license removal summary"
@@ -13,7 +13,7 @@ _memory:
     packet_pointer: "sk-design/014-template-conformance/001-apache-devendoring"
     last_updated_at: "2026-07-27T19:00:00Z"
     last_updated_by: "spec-reconciler"
-    recent_action: "Recorded the shipped de-vendor commit 8fa4752968 and its two deviations"
+    recent_action: "Recorded the shipped de-vendor commit 4ac59d21c5 and its two deviations"
     next_safe_action: "None; packet complete and verified against design-interface on disk"
     blockers: []
     key_files:
@@ -42,7 +42,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 001-apache-devendoring |
-| **Completed** | 2026-07-27 (commit `8fa4752968`) |
+| **Completed** | 2026-07-27 (commit `4ac59d21c5`) |
 | **Level** | 2 |
 | **Status** | Complete |
 | **Completion Pct** | 100% |
@@ -63,7 +63,7 @@ One correction rode along: three documents claimed the live-read grounding polic
 
 ### Files Changed
 
-Nine files, `+80/-332`, per `git show --stat 8fa4752968`.
+Nine files, `+80/-332`, per `git show --stat 4ac59d21c5`.
 
 | File | Action | Purpose |
 |------|--------|---------|
@@ -83,7 +83,7 @@ Nine files, `+80/-332`, per `git show --stat 8fa4752968`.
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-As a single commit, `8fa4752968` ("refactor(sk-design): re-author the interface design guidance in original words"), with the rewrite and the removal ordered inside it. The plan anticipated a two-commit sequence — rewrite first, then `git rm` — and collapsing them to one is not a weakening of the gate: the rewrite still had to be complete before the removal was staged, and because no intermediate commit exists, there is no published state in which borrowed wording shipped without its terms.
+As a single commit, `4ac59d21c5` ("refactor(sk-design): re-author the interface design guidance in original words"), with the rewrite and the removal ordered inside it. The plan anticipated a two-commit sequence — rewrite first, then `git rm` — and collapsing them to one is not a weakening of the gate: the rewrite still had to be complete before the removal was staged, and because no intermediate commit exists, there is no published state in which borrowed wording shipped without its terms.
 
 Removal used `git rm`, not a plain `rm`, so the deletion is a tracked change rather than a working-tree edit that the next checkout would undo. `.gitignore` was never touched — an ignore rule would have hidden the compliance state instead of resolving it, which the decision record scores 1/10.
 
@@ -114,7 +114,7 @@ Verification after the fact, re-run against the current working tree: `grep -rn 
 |-----------|--------|----------|-------|
 | Grep sweep (`Apache\|LICENSE.txt`) | Pass | `design-interface/` excluding `changelog/` | Zero lines returned against the current working tree |
 | `package_skill.py --check` | Pass | `design-interface/` | `Skill is valid!` / `Result: PASS`; one advisory warning about `SKILL.md` word count, unrelated to licensing |
-| Deletion is tracked | Pass | `LICENSE.txt` | `git log --diff-filter=D` returns `8fa4752968`; the path does not resolve on disk |
+| Deletion is tracked | Pass | `LICENSE.txt` | `git log --diff-filter=D` returns `4ac59d21c5`; the path does not resolve on disk |
 | Contract / surface / transport suites | Pass | Reported in the commit message: contract 8/8, surface 7/7, transport 37/37, parent-hub invariants clean, procedure-card schema pass | Reported by the implementing session, not re-run in this reconciliation |
 | Rewrite fidelity comparison | Pass (inferred) | Six sections | Confirmed: the six H2 sections survive and `changelog/v1.1.0.0.md` §2 enumerates the preserved substance. Inferred: that no verbatim upstream sentence survives — no automated similarity check was run |
 | Checklist | Pass | 19/19 | See `checklist.md` |
@@ -137,9 +137,9 @@ Verification after the fact, re-run against the current working tree: `grep -rn 
 
 | Planned | Actual | Reason |
 |---------|--------|--------|
-| Rewrite commit precedes a separate `git rm` commit | Both landed in the single commit `8fa4752968` | Ordering held within the commit; a single commit removes any intermediate state where borrowed wording ships unlicensed |
+| Rewrite commit precedes a separate `git rm` commit | Both landed in the single commit `4ac59d21c5` | Ordering held within the commit; a single commit removes any intermediate state where borrowed wording ships unlicensed |
 | Rewrite the attribution line at `design-principles.md:17` | Removed it | No upstream source remained to attribute after the rewrite |
 | Delete **or invert** manual-testing scenario ID-007 | Deleted, with its `licensing-and-provenance/` directory | Inverting would have left a scenario with no subject |
-| Playbook index reads 30 scenarios / 19 categories | Reads 43 / 25 today | Not a deviation by this packet: it read 30/19 at `8fa4752968`; the later `010-motion-merge` relocated 13 motion scenarios into the same playbook |
+| Playbook index reads 30 scenarios / 19 categories | Reads 43 / 25 today | Not a deviation by this packet: it read 30/19 at `4ac59d21c5`; the later `010-motion-merge` relocated 13 motion scenarios into the same playbook |
 
 <!-- /ANCHOR:deviations -->

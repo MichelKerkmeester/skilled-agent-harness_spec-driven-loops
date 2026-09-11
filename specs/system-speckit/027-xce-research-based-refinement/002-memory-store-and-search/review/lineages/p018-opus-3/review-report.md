@@ -60,7 +60,7 @@ If a follow-on hardening packet is opened (optional):
 
 | Protocol | Level | Status | Gate | Evidence |
 |----------|-------|--------|------|----------|
-| spec_code | core | PASS | hard | REQ-001 (yields ≥ every 200 rows / 50 folders) → `memory-index.ts:1176-1181,1311-1316`; REQ-002 (abort + cancelled envelope) → `batch-processor.ts:150`, `memory-index.ts:1178,1206,1313`; REQ-003 (in-process flag, DB-free read) → `job-store.ts:317-320,335-338`; REQ-004 (no-regression) asserted by commit `f1dbb676f2` |
+| spec_code | core | PASS | hard | REQ-001 (yields ≥ every 200 rows / 50 folders) → `memory-index.ts:1176-1181,1311-1316`; REQ-002 (abort + cancelled envelope) → `batch-processor.ts:150`, `memory-index.ts:1178,1206,1313`; REQ-003 (in-process flag, DB-free read) → `job-store.ts:317-320,335-338`; REQ-004 (no-regression) asserted by commit `a48325ab74` |
 | checklist_evidence | core | N/A | hard | Level 1 packet, no checklist.md; tasks T001-T008 map to shipped code/verification |
 | feature_catalog_code | overlay | N/A | advisory | No catalog claim for this incident-fix packet |
 | playbook_capability | overlay | N/A | advisory | No playbook references this fix |

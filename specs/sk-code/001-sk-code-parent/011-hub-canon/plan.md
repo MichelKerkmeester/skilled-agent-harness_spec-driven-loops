@@ -116,7 +116,7 @@ Authoring starts from sk-doc parent hub templates, emits hub companion metadata,
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit/regression | parent-hub-vocab-sync missing router/registry behavior | Vitest fixtures in commit `d1b545e4b6` |
+| Unit/regression | parent-hub-vocab-sync missing router/registry behavior | Vitest fixtures in commit `a0bbe9f063` |
 | Drift guard | Advisor projection compatibility | Drift-guard suite, 7/7 pass |
 | Parent hub enforcement | Canon compliance and strict-gap inventory | `parent-skill-check.cjs` default and `PARENT_HUB_CHECK_STRICT=1` |
 | Scaffolder QA | Two-axis scratch hub output | `/create:sk-skill-parent` scratch scaffold plus parent-skill-check |
@@ -143,7 +143,7 @@ Authoring starts from sk-doc parent hub templates, emits hub companion metadata,
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: Canon enforcement blocks valid existing hubs or vocab sync produces false failures for complete hub metadata.
-- **Procedure**: Revert the shipped phase commits (`b6fe2f31b1`/local `deab5a3853` and tail `d1b545e4b6`), then rerun parent-skill-check and vocab-sync gates to confirm prior behavior is restored.
+- **Procedure**: Revert the shipped phase commits (`f35597ffd8`/local `deab5a3853` and tail `a0bbe9f063`), then rerun parent-skill-check and vocab-sync gates to confirm prior behavior is restored.
 
 <!-- /ANCHOR:rollback -->
 ---
@@ -180,7 +180,7 @@ Authoring starts from sk-doc parent hub templates, emits hub companion metadata,
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [x] Shipped commits identified: core remote `b6fe2f31b1`, local `deab5a3853`, tail remote `d1b545e4b6`.
+- [x] Shipped commits identified: core remote `f35597ffd8`, local `deab5a3853`, tail remote `a0bbe9f063`.
 - [x] Verification evidence captured for vocab sync, drift guard, deep-improvement vitests, and scratch scaffold parent-skill-check.
 - [x] Strict gaps kept migration-gated rather than forcing immediate failures.
 

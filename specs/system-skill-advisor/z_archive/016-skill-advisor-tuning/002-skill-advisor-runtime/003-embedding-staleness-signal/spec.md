@@ -197,7 +197,7 @@ Close the load-time staleness hole by stamping the embedder signature (provider/
 
 ## 10. CANDIDATE STATUS
 
-> Per-candidate disposition with research citation and gate. STATUS = DONE (shipped via its 028 commit) when implemented and verified, else PENDING with its gate. The signal candidate is DONE (shipped at `f038ff140e`), the rebuild-reuse candidate is PENDING on its Memory-010 gate. Neither candidate appeared in the packet 030 Wave-0 status table, the Wave-1 list scheduled "advisor embedding-staleness" as future work.
+> Per-candidate disposition with research citation and gate. STATUS = DONE (shipped via its 028 commit) when implemented and verified, else PENDING with its gate. The signal candidate is DONE (shipped at `d1a1a5ee41`), the rebuild-reuse candidate is PENDING on its Memory-010 gate. Neither candidate appeared in the packet 030 Wave-0 status table, the Wave-1 list scheduled "advisor embedding-staleness" as future work.
 
 | # | Candidate | Status | Gate | Evidence / Citation |
 |---|-----------|--------|------|---------------------|

@@ -19,7 +19,7 @@ contextType: "review"
 | Field | Value |
 |---|---|
 | Spec folder | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/005-cross-cutting-quality/002-deep-review-stack/review-002-remediation` |
-| Review target | git commit `ba6816a490b1a20d4f74135179c10096c5348921` (3 P0 + P1 groups 1/3/4 remediation of original 008 deep-review) |
+| Review target | git commit `e2d258eae532ac09b00dc6944e07fe4c57c2ad6c` (3 P0 + P1 groups 1/3/4 remediation of original 008 deep-review) |
 | Iterations completed | 7 of 7 (single-commit tier — single-commit remediation per `post-implementation-deep-review.md`) |
 | Stop reason | `MAX_ITER` — full single-commit re-review coverage achieved |
 | Executor | cli-devin (SWE-1.6) with `agent-config-deep-review-iter.json` recipe |

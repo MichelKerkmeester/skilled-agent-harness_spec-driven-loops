@@ -40,8 +40,8 @@ _memory:
 | Status | Complete |
 | Runtime surface | Shipped OpenCode/Node deep-loop TypeScript runtime |
 | Delivery mode | Additive and dark; legacy remains canonical |
-| Verified worktree base | `012652b479dee08455de574574c5e7a8971a8b0b` |
-| Frozen census | Schema `2`, BASE `fe6ca3030917073f3b478bc044e10034dcc4394b`, SHA-256 `e35a707bc969f075e1e4fb0558a9b211f48c526a47d7d0a121e8712d54bb9441`, `46` rows |
+| Verified worktree base | `68b518ab0d8ee5b2bce3a8f1938a7944a1d5945e` |
+| Frozen census | Schema `2`, BASE `573a44951386fab3556b53b39c6008ec74b22304`, SHA-256 `e35a707bc969f075e1e4fb0558a9b211f48c526a47d7d0a121e8712d54bb9441`, `46` rows |
 | Frozen policy | Revision `2026-07-20`, SHA-256 `329ad7ad1c4f8eaedb531887b00ed29c3413fef00e7c8532941ad07f033b634d` |
 | Rollback minimum | At least `14` days and at least `5` successful runs |
 <!-- /ANCHOR:metadata -->

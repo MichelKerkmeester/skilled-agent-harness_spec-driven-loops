@@ -14,7 +14,7 @@ _memory:
     last_updated_at: "2026-06-04T00:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Applied 3 surgical README edits (§5/§6/§7); validated strict"
-    next_safe_action: "Done. Committed 01d666985c"
+    next_safe_action: "Done. Committed bcb82a1edd"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/mcp_server/handlers/save/README.md"

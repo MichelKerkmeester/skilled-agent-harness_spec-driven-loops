@@ -48,9 +48,9 @@ This sub-phase is the single highest-leverage, lowest-risk foundational change t
 
 The one mandatory caveat the port MUST carry is the **graph_causal signed-score conflict-suppression gap**: `fuseResultsMulti` only adds positive rank terms and elides zero/negative-weight lanes, so a naive import would silently drop the `conflicts_with = -0.35` demotion that the weighted sum carries today (`graph-causal.ts:18`, `rrf-fusion.ts:304,310`). The conflict mass is preserved via a **post-fusion re-rank** that mirrors `primaryIntentBonus` (applied at sort time, outside the lane sum), deterministic, auditable and lane-weight-independent.
 
-**Key Decisions**: Import the shared primitive, do not re-implement RRF (avoids a second RRF drifting from Memory's). Pass the advisor's own smaller `k` via `FuseMultiOptions.k`. Keep the current weighted-sum path byte-stable by default. Relocate conflict demotion into a post-fusion comparator rather than feeding the negative term to RRF. **Status of this sub-phase: IMPLEMENTED DEFAULT-OFF with benchmark gate PENDING**, C3/C2/the conflict re-rank carrier are implemented behind `SPECKIT_ADVISOR_RRF_FUSION`. 030 remains untouched and still records only the Memory-side `fuseResultsMulti` API extension (`bonusOverChannels`, commit `65cfcea513`) that this import depends on.
+**Key Decisions**: Import the shared primitive, do not re-implement RRF (avoids a second RRF drifting from Memory's). Pass the advisor's own smaller `k` via `FuseMultiOptions.k`. Keep the current weighted-sum path byte-stable by default. Relocate conflict demotion into a post-fusion comparator rather than feeding the negative term to RRF. **Status of this sub-phase: IMPLEMENTED DEFAULT-OFF with benchmark gate PENDING**, C3/C2/the conflict re-rank carrier are implemented behind `SPECKIT_ADVISOR_RRF_FUSION`. 030 remains untouched and still records only the Memory-side `fuseResultsMulti` API extension (`bonusOverChannels`, commit `84c532114d`) that this import depends on.
 
-**Critical Dependencies**: The advisor import depends on the shared `fuseResultsMulti` being a stable, generic primitive, confirmed shape-compatible for the advisor (`LaneMatch{skillId}` → `RrfItem{id}`, zero schema friction, `001` iter-2 F17) and extended in Wave-0 with the `bonusOverChannels` option (030 §14 cand 5, `65cfcea513`). The conflict re-rank's live impact is gated by data, not code: `conflicts_with` is **DORMANT** in production (`003` iter-10 O10-01).
+**Critical Dependencies**: The advisor import depends on the shared `fuseResultsMulti` being a stable, generic primitive, confirmed shape-compatible for the advisor (`LaneMatch{skillId}` → `RrfItem{id}`, zero schema friction, `001` iter-2 F17) and extended in Wave-0 with the `bonusOverChannels` option (030 §14 cand 5, `84c532114d`). The conflict re-rank's live impact is gated by data, not code: `conflicts_with` is **DORMANT** in production (`003` iter-10 O10-01).
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -64,7 +64,7 @@ The one mandatory caveat the port MUST carry is the **graph_causal signed-score 
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
 | **Parent Packet** | system-skill-advisor/016-skill-advisor-tuning/002-skill-advisor-runtime |
 | **Source research** | `../research/research.md`, `../../research/roadmap.md`, `../../research/synthesis/01-go-candidates.md` |
-| **Shipped record** | Wave-0 record (Wave-0 commits `738e118751..ab5459fb6d`), the dependency `65cfcea513` (cand 5) ships the `fuseResultsMulti` API this import consumes. No advisor candidate shipped |
+| **Shipped record** | Wave-0 record (Wave-0 commits `61fe63b24d..5ed284319b`), the dependency `84c532114d` (cand 5) ships the `fuseResultsMulti` API this import consumes. No advisor candidate shipped |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -118,7 +118,7 @@ Replace the incomparable-scale weighted sum with rank-based deterministic RRF by
 |-----------|-------------|-------------|
 | `.../system-skill-advisor/mcp_server/lib/scorer/fusion.ts` | Modify (PENDING) | Replace the `weightedScore`-sum (`:366,:372`) with a `fuseResultsMulti` call over per-lane `RankedList`s, pass the advisor's own `k`, drop the `toFixed(6)` + `localeCompare` tiebreak (`:409,:425-433`) in favor of the RRF deterministic order and add the post-fusion conflict re-rank in the comparator |
 | `.../system-skill-advisor/mcp_server/lib/scorer/lanes/graph-causal.ts` | Modify (PENDING) | Split the emit so positive propagation feeds the RRF lane and the `conflicts_with` negative mass is surfaced to the post-fusion re-rank (not summed into the lane score fed to RRF) |
-| `.../shared/algorithms/rrf-fusion.ts` | Import-only (no change) | Consumed as the shared primitive (`fuseResultsMulti`, `FuseMultiOptions.k`, `RankedList`), already extended in Wave-0 (`65cfcea513`). MUST NOT fork or re-implement |
+| `.../shared/algorithms/rrf-fusion.ts` | Import-only (no change) | Consumed as the shared primitive (`fuseResultsMulti`, `FuseMultiOptions.k`, `RankedList`), already extended in Wave-0 (`84c532114d`). MUST NOT fork or re-implement |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -166,7 +166,7 @@ Replace the incomparable-scale weighted sum with rank-based deterministic RRF by
 | Risk | RRF import re-orders top-1/top-3 recommendations vs the weighted sum | Med, routing-quality regression if unbenchmarked | Capture a routing-agreement baseline first (needs-benchmark), keep `explicit_author` dominant (REQ-005) |
 | Risk | Advisor forks/re-implements RRF instead of importing, drifting from Memory's primitive | Med, two RRFs diverge over time | Import the shared `fuseResultsMulti`, MUST NOT re-implement (`003` iter-2 C3) |
 | Risk | Wrong `k` (using Memory's corpus-tuned `DEFAULT_K`) skews the rank curve for a small skill set | Med, over/under-flat fusion | Pass the advisor's own smaller `k` via `FuseMultiOptions.k`, justified against skill count (REQ-002) |
-| Dependency | Shared `fuseResultsMulti` API (the `bonusOverChannels` extension) | Blocks the import | Shipped in Wave-0 (`030` §14 cand 5, commit `65cfcea513`), the primitive is shape-compatible for the advisor (`001` iter-2 F17) |
+| Dependency | Shared `fuseResultsMulti` API (the `bonusOverChannels` extension) | Blocks the import | Shipped in Wave-0 (`030` §14 cand 5, commit `84c532114d`), the primitive is shape-compatible for the advisor (`001` iter-2 F17) |
 | Dependency | `conflicts_with` data in the skill graph | Gates the conflict re-rank's LIVE effect (not the carrier code) | DORMANT in production (`003` iter-10 O10-01), ship the carrier seam regardless so the import is conflict-safe. The full C1 build waits on real reciprocal declarations |
 <!-- /ANCHOR:risks -->
 
@@ -290,4 +290,4 @@ Replace the incomparable-scale weighted sum with rank-based deterministic RRF by
 - **Verification Checklist**: See `checklist.md`
 - **Source research**: `../research/research.md`, `../../research/roadmap.md`, `../../research/synthesis/01-go-candidates.md` + `03-corrections-caveats-and-residuals.md`
 - **Per-candidate detail**: `../research/deltas/iter-002.jsonl` (F14/F16/F17/F18, C1/C2/C3), `iter-006.jsonl` (F6-01/F6-02, C1-rerank reframe, O6-01), `iter-010.jsonl` (O10-01 dormant conflicts_with)
-- **Shipped record (historical evidence)**: Wave-0 record (dependency commit `65cfcea513`)
+- **Shipped record (historical evidence)**: Wave-0 record (dependency commit `84c532114d`)

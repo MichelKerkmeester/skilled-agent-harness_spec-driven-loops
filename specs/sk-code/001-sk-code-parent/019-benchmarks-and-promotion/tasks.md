@@ -41,7 +41,7 @@ _memory:
 ## Phase 1: Setup
 
 - [x] T001 Confirm phases 015, 016, 017, 018a, and 018b have landed [medium] — all landed; 018 STRICT 0/0
-- [x] T002 Confirm deep-loop 018b cleared the live-agent collision [medium] — registry returned git-clean; 018b executed (`e1a266b07c`)
+- [x] T002 Confirm deep-loop 018b cleared the live-agent collision [medium] — registry returned git-clean; 018b executed (`14b8472c17`)
 - [x] T003 Inventory existing sk-code benchmark folders to prove add-only behavior [small] — rich history (baseline/after/full/live*/router-final) preserved
 - [x] T004 Inventory existing sk-design benchmark folders to prove add-only behavior [small]
 - [x] T005 Inventory existing deep-loop benchmark folders to prove add-only behavior [small]
@@ -57,11 +57,11 @@ _memory:
 - [x] T007 Verify the sk-code router resolves nested `webflow/`, `opencode/`, `animation/` evidence paths [medium] — router resolves all paths (parent-skill-check 5d PASS); the stale gold is in the playbook expectations, not the router.
 
 ### sk-design Baseline
-- [x] T008 Produce sk-design Lane-C benchmark baseline [large] — CONDITIONAL 69/100, D5 100/100, frozen at `benchmark/baseline/` (`fc4644a98a`)
+- [x] T008 Produce sk-design Lane-C benchmark baseline [large] — CONDITIONAL 69/100, D5 100/100, frozen at `benchmark/baseline/` (`78294ba516`)
 - [x] T009 Verify the sk-design baseline is add-only [small] — historical runs untouched
 
 ### deep-loop Baseline
-- [x] T010 Produce deep-loop Lane-C benchmark baseline after 018b settled [large] — CONDITIONAL 71/100, D5 100/100, frozen at `benchmark/baseline/` (`50fbe53094`); the 018b gate cleared so this unblocked
+- [x] T010 Produce deep-loop Lane-C benchmark baseline after 018b settled [large] — CONDITIONAL 71/100, D5 100/100, frozen at `benchmark/baseline/` (`59d000eb8e`); the 018b gate cleared so this unblocked
 - [x] T011 Verify the deep-loop baseline is add-only and aligned to the settled hub-router [small]
 
 ### Comparison
@@ -79,7 +79,7 @@ _memory:
 - [x] T015 Run parent-skill-check strict for deep-loop and record 0-fail output [small] — STRICT 0/0 (unblocked once 018b landed)
 
 ### Severity Promotion
-- [x] T016 Promote parent-skill-check checks 5-9 from WARN to FAIL [medium] — `769845c5a8`; flipped STRICT_HUB_CANON default to FAIL with a PARENT_HUB_CHECK_STRICT=0 WIP opt-out; doctor + create assets updated
+- [x] T016 Promote parent-skill-check checks 5-9 from WARN to FAIL [medium] — `3c06bda2eb`; flipped STRICT_HUB_CANON default to FAIL with a PARENT_HUB_CHECK_STRICT=0 WIP opt-out; doctor + create assets updated
 - [x] T017 Re-run strict parent-skill-check for all three hubs after promotion [medium] — all three pass under the new FAIL-by-default gate (0 warnings)
 
 <!-- /ANCHOR:phase-3 -->

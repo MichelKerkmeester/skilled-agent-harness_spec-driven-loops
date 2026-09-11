@@ -19,7 +19,7 @@ frequently-referenced docs.
 [SOURCE: file:.opencode/skills/system-spec-kit/runtime/cli/retrieval/lib/corpus.mjs:29].
 
 The **currently published** `runtime/data/trigger-index.json` (regenerated
-today per `git log`, commit `3f0731e828`, "align what the trigger index and
+today per `git log`, commit `426fff2771`, "align what the trigger index and
 the ripgrep recipes cover") contains **11497 paths and 0 of them are under
 `.opencode/skills` or reference `SKILL.md`** -- verified by direct grep
 (`grep -c "opencode/skills"` and `grep -c "SKILL.md"` against the raw JSON
@@ -98,7 +98,7 @@ and calls it a clean corpus").
 - `.opencode/skills/system-spec-kit/runtime/cli/retrieval/lib/corpus.mjs`
 - `.opencode/skills/system-spec-kit/runtime/data/trigger-index.json` (live, published)
 - `.opencode/skills/system-spec-kit/runtime/cli/retrieval/fixtures/{corpus-manifest.json,generation-diagnostics.json}`
-- `git log`, `git show --stat 3f0731e828` (the commit that last regenerated the index)
+- `git log`, `git show --stat 426fff2771` (the commit that last regenerated the index)
 - Direct `fs.existsSync`/`path.resolve` reproduction of the generator's own root-resolution arithmetic
 - `readlink .opencode/specs`
 

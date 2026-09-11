@@ -24,7 +24,7 @@ _memory:
     answered_questions:
       - "Validator classifies catalog/playbook leaves by the feature_catalog/manual_testing_playbook parent-dir NAME, not the slug (validate_document.py:129,137) -> underscore slugs validate unchanged"
       - "Lane C loader selects scenario files by frontmatter, not filename shape (load-playbook-scenarios.cjs:306) -> underscore filenames load unchanged"
-      - "Shipped as one merged change (merge commits 0659149d08 + b5afa1206c, each merging parallel agent branches), not the 5 planned sub-phase folders"
+      - "Shipped as one merged change (merge commits f2f94fe364 + 44dc909a76, each merging parallel agent branches), not the 5 planned sub-phase folders"
       - "Verified end-state: git ls-files finds 0 tracked hyphenated content folders/files under catalog/playbook (excl z_archive); 2,032 tracked underscore .md content files present"
       - "50 untracked hyphenated .md files under system-deep-loop/deep-alignment/ are a concurrent live session's working files, not migration residue -> out of scope"
 ---
@@ -83,7 +83,7 @@ content is emitted in the underscore form.
   frontmatter values, and markdown cross-reference links pointing at in-scope paths.
 - **Convention docs**: `create-feature-catalog` + `create-manual-testing-playbook` generators rewritten from
   `category-name` / `feature-name.md` to `category_name` / `feature_name.md` (shipped separately as 027 parent commit
-  `7cc369f2ed`).
+  `76541f6833`).
 
 ### Out of Scope (deliberate)
 - **Skill / agent / command directory names** and **spec phase-folder names** (`^[0-9]{3}-[a-z0-9-]+$`) — hyphen-only
@@ -101,7 +101,7 @@ content is emitted in the underscore form.
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `feature_catalog/<category>/**` + `manual_testing_playbook/<category>/**` | Renamed | hyphen→underscore on folder + `.md` basenames, all skills |
-| `create-feature-catalog` + `create-manual-testing-playbook` generators | Modified | underscore canonical form (027 parent commit `7cc369f2ed`) |
+| `create-feature-catalog` + `create-manual-testing-playbook` generators | Modified | underscore canonical form (027 parent commit `76541f6833`) |
 <!-- /ANCHOR:scope -->
 
 <!-- ANCHOR:requirements -->
@@ -120,7 +120,7 @@ content is emitted in the underscore form.
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-005 | Convention generators emit underscore form | `create-*` generators use `category_name` / `feature_name.md` (027 commit `7cc369f2ed`) |
+| REQ-005 | Convention generators emit underscore form | `create-*` generators use `category_name` / `feature_name.md` (027 commit `76541f6833`) |
 | REQ-006 | Lane C benchmark corpus unchanged | Discovered-scenario count unchanged; no D1-D5 scoring regression (loader is separator-agnostic) |
 <!-- /ANCHOR:requirements -->
 
@@ -174,7 +174,7 @@ content is emitted in the underscore form.
 <!-- ANCHOR:questions -->
 ## 9. OPEN QUESTIONS
 
-None. Shipped as one merged change (merge commits `0659149d08` + `b5afa1206c`, each merging parallel agent branches),
+None. Shipped as one merged change (merge commits `f2f94fe364` + `44dc909a76`, each merging parallel agent branches),
 verified and merged onto `skilled/v4.0.0.0`; the nominal 5-phase decomposition was not materialized as folders because
 the deterministic transform made a single fanned-out pass safe.
 <!-- /ANCHOR:questions -->

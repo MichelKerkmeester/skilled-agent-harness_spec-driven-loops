@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Retire the decommissioned MCP server from the doctor tooling and clear stale spec residue"
-description: "The doctor command family still probes, reports on, and offers to reinstall the Sequential Thinking MCP server that was decommissioned in commit 7673da6bc24, and specs/sk-doc carries an empty false-start packet directory."
+description: "The doctor command family still probes, reports on, and offers to reinstall the Sequential Thinking MCP server that was decommissioned in commit edff3a4c161, and specs/sk-doc carries an empty false-start packet directory."
 trigger_phrases:
   - "sequential thinking residue removal"
   - "decommissioned server residue"
@@ -39,9 +39,9 @@ contextType: "general"
 
 ### Problem Statement
 
-Commit `7673da6bc24` decommissioned the Sequential Thinking MCP server: it deleted the install guide, deleted the installer script, and unregistered the server from `opencode.json`. It did not touch `.opencode/commands/doctor/`. The doctor family therefore still carried a full server definition for it — a live `npx` probe, a repair action that reinstalls the package, four report table rows, and a config-wiring check that flagged the deliberate absence as a warning. Running `/doctor:mcp install` would have reinstalled a server the repository had decided to remove.
+Commit `edff3a4c161` decommissioned the Sequential Thinking MCP server: it deleted the install guide, deleted the installer script, and unregistered the server from `opencode.json`. It did not touch `.opencode/commands/doctor/`. The doctor family therefore still carried a full server definition for it — a live `npx` probe, a repair action that reinstalls the package, four report table rows, and a config-wiring check that flagged the deliberate absence as a warning. Running `/doctor:mcp install` would have reinstalled a server the repository had decided to remove.
 
-Separately, `specs/sk-doc/` accumulated two pieces of stale state after the `4cbff2d4b6` renumber: an empty `039-create-repo-rules/` directory left behind when the packet moved to `040`, and 17 `children_ids` entries in the track-level `graph-metadata.json` that point at folders which no longer exist.
+Separately, `specs/sk-doc/` accumulated two pieces of stale state after the `1c986ceaa7` renumber: an empty `039-create-repo-rules/` directory left behind when the packet moved to `040`, and 17 `children_ids` entries in the track-level `graph-metadata.json` that point at folders which no longer exist.
 
 ### Purpose
 

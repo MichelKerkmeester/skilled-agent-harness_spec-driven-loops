@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Command Documentation Cleanup"
-description: "Executed cleanup summary for the Command Documentation Cleanup release-cleanup phase. The command docs were aligned to shipped state with a route-drift fix in doctor/speckit.md (commit 818db21c54). The deep-research command-router and agent_router.md stay deferred to the concurrent session that owns them."
+description: "Executed cleanup summary for the Command Documentation Cleanup release-cleanup phase. The command docs were aligned to shipped state with a route-drift fix in doctor/speckit.md (commit 7239e3d2bd). The deep-research command-router and agent_router.md stay deferred to the concurrent session that owns them."
 trigger_phrases:
   - "006-commands implementation summary"
   - "028 release cleanup 006-commands"
@@ -38,7 +38,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 006-commands |
-| **Completed** | 2026-06-19 (commit 818db21c54) |
+| **Completed** | 2026-06-19 (commit 7239e3d2bd) |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -47,7 +47,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-The command documentation cleanup executed on this branch (commit 818db21c54). All 19 command docs under `.opencode/commands` were reviewed against shipped state, and the one factual drift found, a fable-mode route reference in `doctor/speckit.md`, was fixed. The `.claude/commands` mirror is a symlink to `.opencode/commands`, so the same edit covers it, and no `.codex/commands` directory exists in this checkout.
+The command documentation cleanup executed on this branch (commit 7239e3d2bd). All 19 command docs under `.opencode/commands` were reviewed against shipped state, and the one factual drift found, a fable-mode route reference in `doctor/speckit.md`, was fixed. The `.claude/commands` mirror is a symlink to `.opencode/commands`, so the same edit covers it, and no `.codex/commands` directory exists in this checkout.
 
 ### Deferred Subset
 
@@ -90,7 +90,7 @@ Discovery globbed every command doc across `.opencode`, `.claude` and `.codex`, 
 
 | Check | Result |
 |-------|--------|
-| Cleanup execution | Executed at 818db21c54, one route-drift fix in doctor/speckit.md |
+| Cleanup execution | Executed at 7239e3d2bd, one route-drift fix in doctor/speckit.md |
 | Strict validation | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-speckit/028-memory-search-intelligence/000-release-cleanup/006-commands --strict` |
 <!-- /ANCHOR:verification -->
 

@@ -14,7 +14,7 @@ _memory:
     last_updated_at: "2026-07-22T16:57:27Z"
 
     last_updated_by: "review-remediation"
-    recent_action: "Shipped in commit 9a42aedae4; ungated docs reconciled; metadata brought to complete."
+    recent_action: "Shipped in commit 5dd5547949; ungated docs reconciled; metadata brought to complete."
     next_safe_action: "None — packet complete and verified."
     blockers: []
     key_files:

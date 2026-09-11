@@ -166,7 +166,7 @@ completion and automatic replay.
 
 | Check | Result |
 |-------|--------|
-| Targeted Vitest | PASS: 1 file, 36 tests; suite sha256 `288f03e29bbff2ca1f3dbf1c385106e84f7094d3b348265e3bda4ff879bdfb91`; candidate SHA `dd07cb1f52ed2ebaca7d152d0a088366b2958b32` |
+| Targeted Vitest | PASS: 1 file, 36 tests; suite sha256 `288f03e29bbff2ca1f3dbf1c385106e84f7094d3b348265e3bda4ff879bdfb91`; candidate SHA `1cdb86cfa06f78bb9247eab3bd4a2cb245f0590f` |
 | Mutation falsifier | Historical 31-test falsifier claim not rerun in this M2+M3 leaf |
 | Runtime TypeScript compile | Historical compile claim not rerun in this M2+M3 leaf |
 | Comment hygiene | PASS for the changed runtime module and targeted test |

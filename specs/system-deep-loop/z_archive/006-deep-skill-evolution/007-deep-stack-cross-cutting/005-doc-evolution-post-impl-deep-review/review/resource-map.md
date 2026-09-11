@@ -1,5 +1,5 @@
 ---
-title: "Resource Map — 008 deep-skill doc-evolution ship — the 5 deep-* skills (deep-loop-runtime, deep-research, deep-review, deep-ai-council, deep-agent-improvement) docs as committed in 5f3e0a2f53"
+title: "Resource Map — 008 deep-skill doc-evolution ship — the 5 deep-* skills (deep-loop-runtime, deep-research, deep-review, deep-ai-council, deep-agent-improvement) docs as committed in fb8d560443"
 description: "Auto-generated review resource map from convergence evidence."
 ---
 # Resource Map

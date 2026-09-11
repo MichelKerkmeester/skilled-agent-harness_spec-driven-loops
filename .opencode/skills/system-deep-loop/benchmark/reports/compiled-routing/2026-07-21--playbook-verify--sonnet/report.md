@@ -18,7 +18,7 @@
 
 The root `manual-testing-playbook.md` states "Total scenarios: 20" across 5 categories (`MO-001..005`, `IL-001..003`, `AI-001..004`, `RB-001..004`, `SC-001..004`). The `manual-testing-playbook/` directory tree actually contains a **21st** scenario file not listed in the root's Section 6/8 index: `compiled-routing/ordered-bundle-deep-mode-compiled-routing.md` (id `DL-CR-001`), which carries its own typed YAML frontmatter gold and Pass/Fail Criteria.
 
-21 is not a coincidence: `013-compiled-coverage-buildout/handover.md` records the system-deep-loop Lane C parity figure as **`compiled-serving (21/0)`** (line 23, landed in `f9f639674b`). This sweep therefore enumerates and runs **all 21** scenario files found on disk under `manual-testing-playbook/`, so the count lines up exactly with that recorded parity figure (see §5).
+21 is not a coincidence: `013-compiled-coverage-buildout/handover.md` records the system-deep-loop Lane C parity figure as **`compiled-serving (21/0)`** (line 23, landed in `a381edc1f8`). This sweep therefore enumerates and runs **all 21** scenario files found on disk under `manual-testing-playbook/`, so the count lines up exactly with that recorded parity figure (see §5).
 
 **Total scenarios enumerated: 21** (20 catalogued + `DL-CR-001`).
 
@@ -75,7 +75,7 @@ Multi-prompt scenarios (`AI-001`, `AI-002`, `AI-003`) are expanded one row per s
 
 ## 5. LANE C PARITY CROSS-CHECK (21/0)
 
-- **Recorded figure**: `system-deep-loop | compiled-serving (21/0) | f9f639674b` — `013-compiled-coverage-buildout/handover.md` line 23 (STATUS line 13 also cites `system-deep-loop 21`).
+- **Recorded figure**: `system-deep-loop | compiled-serving (21/0) | a381edc1f8` — `013-compiled-coverage-buildout/handover.md` line 23 (STATUS line 13 also cites `system-deep-loop 21`).
 - **This sweep**: 21 scenario files enumerated on disk (matches 21). 26 individual prompt checks executed (multi-prompt scenarios expand). **0 of 26 show `compiled != legacy`** — full agreement on every single probe, including the one that fails against its own doc expectation (AI-001/review — both sides independently `defer`, so it is agreement, not drift).
 - **Verdict: CORROBORATES the recorded 21/0 parity figure.** Compiled routing is byte-for-byte behaviorally identical to legacy routing across the entire live playbook corpus for this hub, re-confirmed independently by this manual sweep.
 

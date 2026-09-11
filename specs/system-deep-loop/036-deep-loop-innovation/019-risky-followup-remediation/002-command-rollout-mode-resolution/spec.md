@@ -38,7 +38,7 @@ _memory:
 | **Priority** | P2 |
 | **Status** | Complete |
 | **Created** | 2026-08-26 |
-| **Decision** | Intended default mode = `fallback` (governance: `fix` requires evidence that does not exist; `bce47507b6d` demoted deliberately and added the validator) |
+| **Decision** | Intended default mode = `fallback` (governance: `fix` requires evidence that does not exist; `c753fa493af` demoted deliberately and added the validator) |
 | **Failing tests** | `render-command-contract.vitest.ts`, `check-contract-drift.vitest.ts` — both now pass; `validate-rollout.test.cjs` kept green |
 | **Parent Spec** | ../spec.md |
 | **Predecessor** | 001-dependency-and-node-abi-alignment |
@@ -53,7 +53,7 @@ _memory:
 
 The compiled command contracts for `deep/review`, `deep/research`, and `deep/ai-council` are stale — their source digest no longer matches the compiled artifact (`STALE_SOURCE_DIGEST`), so `check-contract-drift` fails. Separately, `render-command-contract` fails because `resolveMode('deep/review')` expected `fix` while the rollout config held `fallback`. Rollout mode is not cosmetic: it decides which body the command renders at runtime (the compiled `fix` contract vs the `fallback` legacy body).
 
-The decisive governance constraint: a rollout entry set to `fix` MUST carry an evidence object (`captureManifest`, `fallbackHash`, `comparatorRuns`, `baselineDivergence`), enforced by `validate-rollout.cjs` and its node:test. `bce47507b6d` demoted these three entries to `fallback` **deliberately** — "demotes the four rollout entries that lacked their evidence mechanism and adds the validator that keeps them honest" — because the `fix` evidence never existed. A first attempt at this packet flipped the config back to a bare `"fix"` string; that reintroduced the exact violation the validator guards (a bare `fix` string is invalid) and broke `validate-rollout.test.cjs` — a node:test the vitest gate did not run. The correct, evidence-honest state is therefore `fallback`, and the stale expectation is `render-command-contract`'s assertion, not the config.
+The decisive governance constraint: a rollout entry set to `fix` MUST carry an evidence object (`captureManifest`, `fallbackHash`, `comparatorRuns`, `baselineDivergence`), enforced by `validate-rollout.cjs` and its node:test. `c753fa493af` demoted these three entries to `fallback` **deliberately** — "demotes the four rollout entries that lacked their evidence mechanism and adds the validator that keeps them honest" — because the `fix` evidence never existed. A first attempt at this packet flipped the config back to a bare `"fix"` string; that reintroduced the exact violation the validator guards (a bare `fix` string is invalid) and broke `validate-rollout.test.cjs` — a node:test the vitest gate did not run. The correct, evidence-honest state is therefore `fallback`, and the stale expectation is `render-command-contract`'s assertion, not the config.
 
 ### Purpose
 
@@ -95,7 +95,7 @@ Keep the deep commands in the governance-intended `fallback` mode, recompile the
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | The intended default rollout mode is decided with evidence | The decision is `fallback`, sourced to `validate-rollout.cjs` governance and `bce47507b6d`'s deliberate demotion. |
+| REQ-001 | The intended default rollout mode is decided with evidence | The decision is `fallback`, sourced to `validate-rollout.cjs` governance and `c753fa493af`'s deliberate demotion. |
 | REQ-002 | No rollout-evidence violation | `validate-rollout.test.cjs` passes; the config holds no bare `fix` string lacking its evidence object. |
 
 ### P1 - Required
@@ -134,6 +134,6 @@ Keep the deep commands in the governance-intended `fallback` mode, recompile the
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- `fix` vs `fallback` default — **RESOLVED: `fallback`.** Governance requires a `fix` entry to carry an evidence object (`validate-rollout.cjs`); that evidence never existed, so `bce47507b6d` deliberately demoted the entries and added the validator. Promoting to `fix` would need genuine evidence, which is out of scope. The contracts were recompiled to clear staleness and the stale `render-command-contract` expectation was corrected to `fallback`. (A first attempt wrongly flipped the config to a bare `fix` string; it was reverted after `validate-rollout.test.cjs` — a node:test — caught the violation.)
+- `fix` vs `fallback` default — **RESOLVED: `fallback`.** Governance requires a `fix` entry to carry an evidence object (`validate-rollout.cjs`); that evidence never existed, so `c753fa493af` deliberately demoted the entries and added the validator. Promoting to `fix` would need genuine evidence, which is out of scope. The contracts were recompiled to clear staleness and the stale `render-command-contract` expectation was corrected to `fallback`. (A first attempt wrongly flipped the config to a bare `fix` string; it was reverted after `validate-rollout.test.cjs` — a node:test — caught the violation.)
 
 <!-- /ANCHOR:questions -->

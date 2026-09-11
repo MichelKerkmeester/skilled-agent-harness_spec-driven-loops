@@ -273,10 +273,10 @@ Sweep declared signals ────┘
 
 | Milestone | Description | Success Criteria | Target |
 |-----------|-------------|------------------|--------|
-| M1 | Bare tokens qualified | Documentation hub reaches its own creation intents | `f8c2595ce0` |
-| M2 | Dropping phrases resolved | No declared signal reaches a hub and resolves to nothing | `461ef9261f` |
-| M3 | Executor override corrected | Gate A 234 to 328 of 444, metrics byte-identical to baseline | `08eb67a0de` |
-| M4 | Limit recorded | The 94-row bucket is stated with its number | `4a5de9e52b` |
+| M1 | Bare tokens qualified | Documentation hub reaches its own creation intents | `e96760aa3b` |
+| M2 | Dropping phrases resolved | No declared signal reaches a hub and resolves to nothing | `add6602050` |
+| M3 | Executor override corrected | Gate A 234 to 328 of 444, metrics byte-identical to baseline | `aa11c2b622` |
+| M4 | Limit recorded | The 94-row bucket is stated with its number | `b3de2effda` |
 <!-- /ANCHOR:milestones -->
 
 ---

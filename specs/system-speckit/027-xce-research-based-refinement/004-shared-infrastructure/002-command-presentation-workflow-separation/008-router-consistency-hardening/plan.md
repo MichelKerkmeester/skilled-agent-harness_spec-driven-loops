@@ -12,7 +12,7 @@ _memory:
     packet_pointer: "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/008-router-consistency-hardening"
     last_updated_at: "2026-06-12T14:15:00Z"
     last_updated_by: "orchestrator-session"
-    recent_action: "Committed 0c6c2bf897; render re-test 4/4 PASS under --command"
+    recent_action: "Committed b83dad898d; render re-test 4/4 PASS under --command"
     next_safe_action: "None; phase complete"
 ---
 # Implementation Plan: Router Consistency Hardening
@@ -44,7 +44,7 @@ Two surgical doc-consistency fixes. Finding A: qualify the bare/mixed MCP names 
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [x] Canonical tool-naming direction confirmed from #44 commit `493b3c822f` and `opencode.json` namespace.
+- [x] Canonical tool-naming direction confirmed from #44 commit `6a8efb7c73` and `opencode.json` namespace.
 - [x] Exact 7-router bare-name inventory captured; body-prose bare IDs identified as intentional.
 
 ### Definition of Done
@@ -109,7 +109,7 @@ The loader registers routers and grants the qualified MCP tools named in `allowe
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
 | `opencode.json` accepts `mcp__<server>__<tool>` | Internal | Green | If bare were required instead, the fix would invert |
-| #44 precedent (`493b3c822f`) | Internal | Green | Establishes the chosen direction |
+| #44 precedent (`6a8efb7c73`) | Internal | Green | Establishes the chosen direction |
 
 <!-- /ANCHOR:dependencies -->
 ---

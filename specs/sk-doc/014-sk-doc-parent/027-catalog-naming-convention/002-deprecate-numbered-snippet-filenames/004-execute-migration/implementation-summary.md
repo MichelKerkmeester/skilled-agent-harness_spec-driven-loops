@@ -9,7 +9,7 @@ _memory:
     packet_pointer: "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/002-deprecate-numbered-snippet-filenames/004-execute-migration"
     last_updated_at: "2026-07-17T14:36:44Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Applied migration (111 renames / 88 stage / 3 index); commit a61233bc01"
+    recent_action: "Applied migration (111 renames / 88 stage / 3 index); commit 8f1301e1e6"
     next_safe_action: "Complete"
     blockers: []
     completion_pct: 100
@@ -47,8 +47,8 @@ root-index tables rewritten (11 rows). Two review-driven doc corrections followe
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 Path-scoped staging captured only the 111 renames + 3 index tables and excluded concurrent-session dirt
-(feature_catalog and out-of-scope playbook files left untouched). Migration commit `a61233bc01`; the review-driven
-doc fixes commit `075b956014`.
+(feature_catalog and out-of-scope playbook files left untouched). Migration commit `8f1301e1e6`; the review-driven
+doc fixes commit `381c7a8642`.
 <!-- /ANCHOR:how-delivered -->
 
 <!-- ANCHOR:decisions -->

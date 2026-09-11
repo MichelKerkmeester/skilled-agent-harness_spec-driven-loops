@@ -46,21 +46,13 @@
       "tasks.md",
       "decision-record.md",
       "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/scripts/rules/check-status-cross-doc-consistency.sh",
-      ".opencode/skills/system-spec-kit/scripts/rules/check-metadata-disk-consistency.sh",
-      ".opencode/skills/system-spec-kit/scripts/rules/check-graph-metadata-child-drift.sh",
-      ".opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs",
-      "scripts/tests/check-graph-metadata-child-drift.sh",
       "scripts/regen-worker.sh",
       "scripts/fix-packet-pointer.mjs",
       "scripts/census-validation-rule.sh",
       "scripts/census-worker.sh",
       ".opencode/bin/worktree-session.sh",
-      "scripts/rules/check-status-cross-doc-consistency.sh",
-      "scripts/rules/check-metadata-disk-consistency.sh",
-      "scripts/rules/check-graph-metadata-child-drift.sh",
-      "scripts/dist/spec/is-phase-parent.js",
-      "scripts/spec/is-phase-parent.ts"
+      "dist/spec/is-phase-parent.js",
+      "dist/tsconfig.tsbuildinfo"
     ],
     "entities": [
       {
@@ -91,30 +83,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "check-status-cross-doc-consistency.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-status-cross-doc-consistency.sh",
-        "source": "derived"
-      },
-      {
-        "name": "check-metadata-disk-consistency.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-metadata-disk-consistency.sh",
-        "source": "derived"
-      },
-      {
-        "name": "check-graph-metadata-child-drift.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-graph-metadata-child-drift.sh",
-        "source": "derived"
-      },
-      {
-        "name": "dist-freshness.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs",
         "source": "derived"
       },
       {
@@ -150,13 +118,13 @@
       {
         "name": "is-phase-parent.js",
         "kind": "code",
-        "path": "scripts/dist/spec/is-phase-parent.js",
+        "path": "dist/spec/is-phase-parent.js",
         "source": "derived"
       },
       {
-        "name": "is-phase-parent.ts",
-        "kind": "code",
-        "path": "scripts/spec/is-phase-parent.ts",
+        "name": "tsconfig.tsbuildinfo",
+        "kind": "file",
+        "path": "dist/tsconfig.tsbuildinfo",
         "source": "derived"
       },
       {
@@ -206,11 +174,35 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Three validation rules exist, run on every `validate.sh --strict` invocation, and correctly detect real drift — but none of them can actually fail validation today, because each is gated by its own default-`false` enforce flag:",
     "created_at": "2026-07-09T20:32:08.332Z",
-    "last_save_at": "2026-08-30T15:39:35.980Z",
+    "last_save_at": "2026-09-11T16:42:44.049Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,14 +212,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:383103165784afd1f25912c297ad877a8e03eb01731c592e4317e5ea4c3ca9ad",
+    "source_fingerprint": "sha256:de2158000c5fd04cbc7094c8e531357c162c4df9aa995f27f0b32617c9de8df1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2d7e4fd6f71a1c92e6c83c3159b6129b83820474a460a7992cf90c12f22b9162",
       "plan.md": "9890286782000de9443d6a891811d18fcc74cd308fb84d669906ce3cac43dcb7",
-      "tasks.md": "32ea66390c05a08a85d929d5aae502f216890a3766b4c89e38b6b1f67b68bb68",
-      "decision-record.md": "12709c07b161dc7e8542e382b035babee440f6b877dc1caf085dce0b09677d8c",
-      "implementation-summary.md": "5d56cf97273e30089a8fc6dede31e840a5c42a4f965a54a75371d6f93b4a1f1c"
+      "tasks.md": "2a32ad628d257aab33a36e3d1c92555f7615376c32e1ec415393078c930b9a40",
+      "decision-record.md": "a21ec047ee7bf7e0e80898fa99041b31fe9fd04489b247b43f267b4e89ce2aad",
+      "implementation-summary.md": "b2dcc1a4c841518a01ad28b19da13a2f4c6d43b1da63bdcd8aa9adf111e09078"
     },
     "last_active_child_id": null,
     "last_active_at": null

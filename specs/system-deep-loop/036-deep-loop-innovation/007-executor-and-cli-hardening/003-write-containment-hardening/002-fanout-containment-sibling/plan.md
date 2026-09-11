@@ -159,7 +159,7 @@ Required inventories:
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: A genuine repository write escapes detection, or a real sibling regression appears.
-- **Procedure**: Revert `a3c9f03c51` and `568aa17a40`; the option is additive so removal restores prior behavior.
+- **Procedure**: Revert `29f6a06058` and `0947953081`; the option is additive so removal restores prior behavior.
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -209,7 +209,7 @@ Phase 1.5 (Config) ───┘
 
 ### Rollback Procedure
 1. Stop passing `unattributableDirs` from the worker (removes the exclusion).
-2. Revert `a3c9f03c51` and `568aa17a40` if the guard behavior itself must be restored.
+2. Revert `29f6a06058` and `0947953081` if the guard behavior itself must be restored.
 3. Re-run `vitest run tests/unit/write-containment.vitest.ts` to confirm state.
 4. No user-facing surface; no stakeholder notification needed.
 

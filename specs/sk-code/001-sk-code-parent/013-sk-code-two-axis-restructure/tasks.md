@@ -102,7 +102,7 @@ _memory:
 
 - [x] All tasks marked `[x]`.
 - [x] No `[B]` blocked tasks remaining.
-- [x] Shipped commit `90e8833411` recorded.
+- [x] Shipped commit `6f9b16b908` recorded.
 - [x] Deterministic verification gates passed.
 - [x] Checklist.md fully verified.
 

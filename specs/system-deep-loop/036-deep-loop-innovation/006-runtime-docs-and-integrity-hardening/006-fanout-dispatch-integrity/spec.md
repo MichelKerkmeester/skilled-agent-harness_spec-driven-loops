@@ -64,7 +64,7 @@ Fulfillment is the load-bearing half: a lineage is accepted when one non-empty t
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P0 |
-| **Status** | Complete (10/12 findings landed as `d0d8623ddf`; REQ-010 uniform containment + F-016-03 rejection + a write-containment data-loss safety fix delivered, code- and test-verified, landed as `568aa17a40` on skilled/v4.0.0.0; residual 028 QA and deferred items dispositioned in sibling `007/006` (Complete) — per-finding negative tests, per-kind containment (`f48b50be79`), and fulfillment tests (`90121aeed6`) landed there; F-016-01/F-016-06/per-mode artifact contract are accepted deferrals) |
+| **Status** | Complete (10/12 findings landed as `de9ce00df4`; REQ-010 uniform containment + F-016-03 rejection + a write-containment data-loss safety fix delivered, code- and test-verified, landed as `0947953081` on skilled/v4.0.0.0; residual 028 QA and deferred items dispositioned in sibling `007/006` (Complete) — per-finding negative tests, per-kind containment (`f48b50be79`), and fulfillment tests (`90121aeed6`) landed there; F-016-01/F-016-06/per-mode artifact contract are accepted deferrals) |
 | **Created** | 2026-07-30 |
 | **Branch** | `system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/006-fanout-dispatch-integrity` |
 | **Parent** | `system-deep-loop/036-deep-loop-innovation` |

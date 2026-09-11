@@ -193,7 +193,7 @@
     ],
     "causal_summary": "The every command doc in .opencode plus the .claude and .codex runtime mirrors needs a release-readiness cleanup contract before any document edits begin",
     "created_at": "2026-06-19T00:00:00Z",
-    "last_save_at": "2026-08-30T15:39:34.513Z",
+    "last_save_at": "2026-09-11T16:42:40.394Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:07382841071a79e6d04540172c0f6fb2c1c08bdc7db33909caf07080b44cba4d",
+    "source_fingerprint": "sha256:4089c7308361a16aea21645bddeccbf3d17b8c65d356065fc756e5276ce45358",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4b6060b90eb0856fb91f86fdb0c237b9f80f3fb83d2e9d55e7fa9183792f0fcb",
       "plan.md": "78d68b3b23297fbba668bab04f26ac67635b83799e48376b0ada79c5b71e4392",
       "tasks.md": "00a0af5f22dc509a9a13799944a870d28acf588d7b5956182362ab572af7d80e",
-      "implementation-summary.md": "184d0264f55945663ed2c41253d3ef6b02fd43caddf2c54ff0003cb30ff573ab"
+      "implementation-summary.md": "a32a23273a082f4859645b7948b2335c872ea8f662b6bf223fe21c748cb597fd"
     },
     "last_active_child_id": null,
     "last_active_at": null

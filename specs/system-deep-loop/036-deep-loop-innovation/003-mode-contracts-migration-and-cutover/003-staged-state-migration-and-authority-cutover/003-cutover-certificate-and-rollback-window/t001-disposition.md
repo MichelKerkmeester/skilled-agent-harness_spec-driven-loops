@@ -5,7 +5,7 @@ trigger_phrases: []
 # T001 — Confirm-First Disposition
 
 Re-graded every requirement (spec.md REQ-001..REQ-011) and checklist item against live
-code at the worktree's origin tip (`0bf6aa7957`), before writing anything. Evidence is
+code at the worktree's origin tip (`75b8b5e0e1`), before writing anything. Evidence is
 grep/read output from `.opencode/skills/system-deep-loop/runtime/lib/`, not assumption.
 
 ## Ground truth found in live code

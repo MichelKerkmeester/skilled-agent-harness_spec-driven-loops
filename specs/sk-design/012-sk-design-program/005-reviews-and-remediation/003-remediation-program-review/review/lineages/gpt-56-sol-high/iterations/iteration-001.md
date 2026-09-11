@@ -11,7 +11,7 @@ trigger_phrases: []
 - Dimension: correctness
 - Focus: inventory and behavioral invariants across the interface-command rewrite, styles-library restructure, and persistent-database activation
 - Budget profile: scan
-- Pinned target: `7b9d3b6b71` over `5772e0bfd3..7b9d3b6b71`
+- Pinned target: `6432665a68` over `555f99bfcc..6432665a68`
 
 ## Files Reviewed
 
@@ -38,7 +38,7 @@ None.
 
 - `spec_code`: **partial**. The sampled command, relocation, and database seams match their observable packet claims: wrappers carry one canonical shared include [SOURCE: `.opencode/commands/interface/design.md:21`]; the path authority centralizes bundle, manifest, and database roots [SOURCE: `.opencode/skills/sk-design/styles/lib/paths.mjs:13-32`]; the facade keeps legacy as the default while routing explicit persistent requests [SOURCE: `.opencode/skills/sk-design/styles/lib/engine/persistent-adapter.mjs:97-110`, `.opencode/skills/sk-design/styles/lib/engine/style-library.mjs:184-204`]. Full requirement replay remains for a later traceability pass.
 - `checklist_evidence`: deferred to the dedicated traceability dimension; no pass is inferred.
-- Pinned range: `HEAD` resolved to `7b9d3b6b71`. `git diff --check` reported one blank-line-at-EOF warning in `styles/tests/engine/fixtures.mjs`; it is carried as an out-of-dimension maintainability follow-up rather than converted into a correctness finding.
+- Pinned range: `HEAD` resolved to `6432665a68`. `git diff --check` reported one blank-line-at-EOF warning in `styles/tests/engine/fixtures.mjs`; it is carried as an out-of-dimension maintainability follow-up rather than converted into a correctness finding.
 
 ## Integration Evidence
 

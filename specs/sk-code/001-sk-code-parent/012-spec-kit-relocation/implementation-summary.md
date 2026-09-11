@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Phase 12 spec-kit relocation"
-description: "Moved two spec-folder authoring docs to system-spec-kit workflows, repointed inbound references, bumped sk-code and system-spec-kit versions, and shipped as remote commit 85a0c2c9ac."
+description: "Moved two spec-folder authoring docs to system-spec-kit workflows, repointed inbound references, bumped sk-code and system-spec-kit versions, and shipped as remote commit 44c5d98179."
 trigger_phrases:
   - "spec-kit relocation summary"
   - "spec-folder authoring docs relocation"
@@ -12,7 +12,7 @@ _memory:
     packet_pointer: "sk-code/001-sk-code-parent/012-spec-kit-relocation"
     last_updated_at: "2026-07-05T10:12:34.367Z"
     last_updated_by: "gpt-5.5"
-    recent_action: "Backfilled Level 2 docs for shipped commit 85a0c2c9ac"
+    recent_action: "Backfilled Level 2 docs for shipped commit 44c5d98179"
     next_safe_action: "Keep phase complete"
     blockers: []
     key_files:
@@ -82,7 +82,7 @@ The phase repointed `code-implement/SKILL.md`, `code-quality/SKILL.md`, `shared/
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The phase shipped as remote commit `85a0c2c9ac` (`85a0c2c9ac591c16f2def531cde401ea75779081` in the existing summary). The relocation was verified with `sk-code-router-sync` vitest 4/4, touched-file broken-link checking, and a clean dead-reference sweep.
+The phase shipped as remote commit `44c5d98179` (`44c5d98179cbc897e86c0ab423b52017db8fc873` in the existing summary). The relocation was verified with `sk-code-router-sync` vitest 4/4, touched-file broken-link checking, and a clean dead-reference sweep.
 
 <!-- /ANCHOR:how-delivered -->
 ---
@@ -105,7 +105,7 @@ The phase shipped as remote commit `85a0c2c9ac` (`85a0c2c9ac591c16f2def531cde401
 
 | Test Type | Status | Coverage | Notes |
 |-----------|--------|----------|-------|
-| Shipment | Pass | Phase work | Remote commit `85a0c2c9ac` |
+| Shipment | Pass | Phase work | Remote commit `44c5d98179` |
 | Router sync | Pass | sk-code moved filesystem and machine block agreement | `sk-code-router-sync` vitest 4/4 |
 | Link integrity | Pass | Touched files | No broken links among touched files |
 | Dead-reference sweep | Pass | Stale moved references | Clean result |
@@ -147,7 +147,7 @@ The phase shipped as remote commit `85a0c2c9ac` (`85a0c2c9ac591c16f2def531cde401
 
 | Planned | Actual | Reason |
 |---------|--------|--------|
-| Move spec-folder authoring docs to system-spec-kit | Completed and shipped in commit `85a0c2c9ac` | Matches the phase scope |
+| Move spec-folder authoring docs to system-spec-kit | Completed and shipped in commit `44c5d98179` | Matches the phase scope |
 | Repoint inbound references | Completed across the named sk-code, command YAML, and system-spec-kit references | Required to remove stale pre-hub paths |
 | Move all authoring checklists | Not done in this phase | Remaining authoring checklists intentionally stayed in sk-code for phase 013 |
 

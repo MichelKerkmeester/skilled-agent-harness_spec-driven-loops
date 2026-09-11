@@ -64,10 +64,10 @@ Use this handover to verify, in a fresh session, the daemon-blockage fix chain (
 ### 2.1 Key Decisions Made
 | Decision | Rationale | Impact |
 | --- | --- | --- |
-| 009 — probe before adopting a released daemon | Liveness ≠ "process exists"; a wedged daemon was adopted, never reaped | `mk-spec-memory-launcher.cjs` (commit `a17138b854`) |
-| 010 — reserve enrichment slot at schedule time + `setImmediate` re-arm | The defeated cap let a scan burst starve the event loop (the wedge trigger) | `memory-save.ts`, `context-server.ts` (`25587fa412`) |
-| 011 — fence enrichment scheduler + startup scan in `fatalShutdown` before `closeDb` | They reopen the DB via `requireDb()` → re-dirty WAL after the close checkpoint | `memory-save.ts`, `context-server.ts` (`81cba1fbd9`) |
-| 012 — cap the queue (drop→backfill) + expose scheduler state in `memory_health` | Unbounded queue under flood; a stuck scheduler was a silent outage | `memory-save.ts`, `memory-crud-health.ts`, `context-server.ts` (`c603bfdff9`) |
+| 009 — probe before adopting a released daemon | Liveness ≠ "process exists"; a wedged daemon was adopted, never reaped | `mk-spec-memory-launcher.cjs` (commit `560a7ed347`) |
+| 010 — reserve enrichment slot at schedule time + `setImmediate` re-arm | The defeated cap let a scan burst starve the event loop (the wedge trigger) | `memory-save.ts`, `context-server.ts` (`86f08e62cd`) |
+| 011 — fence enrichment scheduler + startup scan in `fatalShutdown` before `closeDb` | They reopen the DB via `requireDb()` → re-dirty WAL after the close checkpoint | `memory-save.ts`, `context-server.ts` (`616e2b1bbb`) |
+| 012 — cap the queue (drop→backfill) + expose scheduler state in `memory_health` | Unbounded queue under flood; a stuck scheduler was a silent outage | `memory-save.ts`, `memory-crud-health.ts`, `context-server.ts` (`4e128c3cb2`) |
 | F-006 (hung-run) — REFUTED, not fixed | Every embed provider already timeout-bounds the request → the run always settles + releases its slot | no code change |
 
 ### 2.2 Blockers Encountered
@@ -118,7 +118,7 @@ Use this handover to verify, in a fresh session, the daemon-blockage fix chain (
 ## 4. Validation Checklist
 
 Before relying on the fixes, verify:
-- [x] All work committed + pushed (009 `a17138b854`, 010 `25587fa412`, 011 `81cba1fbd9`, 012 `c603bfdff9`)
+- [x] All work committed + pushed (009 `560a7ed347`, 010 `86f08e62cd`, 011 `616e2b1bbb`, 012 `4e128c3cb2`)
 - [x] Tests passing locally (tsc 0; enrichment+scan+health 24/24; lifecycle-shutdown 4/4; shutdown-hooks 4/4; daemon-reelection 4/4)
 - [x] No breaking changes left mid-implementation
 - [x] Fresh-session runtime confirmation (Section 3.2) — DONE 2026-06-15: `memory_health` returns the `backgroundEnrichment` block (`max:4`, `maxQueued:2000`, drop/failure counters, `pendingByStatus`); vitest 36/36 (enrichment+health 24/24, lifecycle+shutdown 4/4 + 4/4, daemon-reelection-adoption-live 4/4 incl. the wedged-daemon "do NOT adopt" case)

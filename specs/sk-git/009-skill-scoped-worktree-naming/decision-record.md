@@ -94,7 +94,7 @@ Adopt an **owner-first** grammar: `<skill>/{NNNN}-{slug}` for skill-scoped work 
 <!-- ANCHOR:adr-001-impl -->
 ### Implementation
 
-Codify in sk-git SKILL.md ALWAYS #4 + references; back with `worktree-naming.sh`; enforce with a migration-tolerant `pre-push`. Shipped in commits `2eb1bf2974` (codify) / `bdb31a31db` (allocator) / `925ca3c738` (wrapper/reaper) / `6e6fdfb57d` (pre-push).
+Codify in sk-git SKILL.md ALWAYS #4 + references; back with `worktree-naming.sh`; enforce with a migration-tolerant `pre-push`. Shipped in commits `960f121f21` (codify) / `252b7302b2` (allocator) / `f64a08df63` (wrapper/reaper) / `e328a758e6` (pre-push).
 <!-- /ANCHOR:adr-001-impl -->
 <!-- /ANCHOR:adr-001 -->
 

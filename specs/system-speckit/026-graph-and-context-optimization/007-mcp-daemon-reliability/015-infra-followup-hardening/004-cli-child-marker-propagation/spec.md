@@ -123,7 +123,7 @@ Finish propagating the child-marker dispatch rule across the whole cli-* family 
 |------|------|--------|------------|
 | Risk | A CLI worker edits beyond scope | Out-of-scope churn | Worker dispatched edits-only (no git); Opus main loop scope-guards every commit with explicit pathspecs |
 | Risk | Wrong rule number / position | Malformed list | Verified each rule lands as the next number before the NEVER header, one additive hunk |
-| Dependency | bin/README "Worktree session isolation" | Cross-ref target | Present since 035 (c657219dd9) |
+| Dependency | bin/README "Worktree session isolation" | Cross-ref target | Present since 035 (ec02cd1875) |
 
 <!-- /ANCHOR:risks -->
 ---

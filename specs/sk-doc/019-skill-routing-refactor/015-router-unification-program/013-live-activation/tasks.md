@@ -102,7 +102,7 @@ _memory:
 - [x] T017 P4b — flip `servingAuthority` `legacy → compiled` one hub at a time with post-flip re-verification and proven rollback (all 7 hubs flipped via `011`; canary-green, route-gold byte-identical, byte-exact rollback retained).
 - [x] Strict Level-2 packet validation on this phase folder.
 
-**Evidence**: P4a design-faithful activation, T9 real-model verification (0 wrong-hub routes), and the P4b cutover (T016-T017) are all complete for the 7 hubs — the seven-hub `legacy → compiled` flip landed in `014-runtime-engine` (commits engine `d7da0fca43`, sk-code cutover `2fa3357f80`, remaining-6 cutover `337ca43cfa`, pushed on v4), held inert behind the default-off `SPECKIT_COMPILED_ROUTING` flag. The advisor-hook machine-enforcement layer remains in progress and is NOT claimed done.
+**Evidence**: P4a design-faithful activation, T9 real-model verification (0 wrong-hub routes), and the P4b cutover (T016-T017) are all complete for the 7 hubs — the seven-hub `legacy → compiled` flip landed in `014-runtime-engine` (commits engine `4aa00aa959`, sk-code cutover `ffb752f10b`, remaining-6 cutover `d84dc4bfc2`, pushed on v4), held inert behind the default-off `SPECKIT_COMPILED_ROUTING` flag. The advisor-hook machine-enforcement layer remains in progress and is NOT claimed done.
 
 <!-- /ANCHOR:completion -->
 

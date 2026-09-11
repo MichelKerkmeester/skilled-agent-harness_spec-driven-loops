@@ -5,7 +5,7 @@ trigger_phrases: []
 Independent code review (READ-ONLY). You may run git/rg/python3/node for inspection only. Do NOT modify any file.
 
 # Task
-Audit git commit `1e58d845af` (TOC + `<!-- ANCHOR -->` removal). Find anything broken **by accident**.
+Audit git commit `e5ee6609c2` (TOC + `<!-- ANCHOR -->` removal). Find anything broken **by accident**.
 
 This is **Iteration 4 of 10**. Focus: **carve-out integrity + traceability + security**.
 
@@ -17,7 +17,7 @@ Find OTHER issues.
 
 # This iteration — inspect
 1. **Carve-out integrity (over-removal check):** the cleanup was supposed to PRESERVE anchors in `.opencode/skills/system-spec-kit/templates/**` and TOCs in `.opencode/skills/sk-doc/scripts/tests/**`. Confirm the commit did NOT touch/strip those:
-   - `git show --stat 1e58d845af -- .opencode/skills/system-spec-kit/templates | head` — expect NO template files in the diff.
+   - `git show --stat e5ee6609c2 -- .opencode/skills/system-spec-kit/templates | head` — expect NO template files in the diff.
    - `rg -l '<!-- ANCHOR' .opencode/skills/system-spec-kit/templates --glob '*.md' | wc -l` — expect > 0 (anchors preserved).
    - `rg -l -i 'table of contents' .opencode/skills/sk-doc/scripts/tests` — expect the fixtures still have TOCs.
    Flag if a carve-out was wrongly stripped (that would be a real regression).

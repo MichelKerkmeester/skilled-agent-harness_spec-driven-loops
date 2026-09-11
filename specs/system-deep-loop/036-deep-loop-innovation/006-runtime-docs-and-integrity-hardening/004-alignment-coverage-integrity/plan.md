@@ -243,7 +243,7 @@ Phase 3 (Fail-closed coverage + seal) ──► Phase 4 (Evidence-bound credit)
 
 ### Pre-implementation Checklist
 - [x] Baseline captured for every runner this child touches, at a named SHA
-  - Evidence: RED receipts and the final per-file direct-suite receipts are recorded in `implementation-summary.md`; candidate SHA is `9229cb8f3e281c9291e6d631237528bc755e6f4b`.
+  - Evidence: RED receipts and the final per-file direct-suite receipts are recorded in `implementation-summary.md`; candidate SHA is `2d12dfc5f5f365f396c51a7dea1c7cb825f5501b`.
 - [x] Work runs in an isolated git worktree (a concurrent session moved the review target mid-run)
   - Evidence: execution root is `.worktrees/0129-system-deep-loop-036-remediation-execution`.
 - [x] The 5 pre-existing command-contract failures named and excluded from the delta

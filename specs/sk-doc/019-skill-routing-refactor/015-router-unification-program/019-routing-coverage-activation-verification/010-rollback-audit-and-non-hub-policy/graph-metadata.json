@@ -46,9 +46,7 @@
       "references/compiled-routing-canary-profile.md",
       "verification/rollback-audit-drill.cjs",
       "verification/non-hub-eligibility-fixtures.cjs",
-      ".opencode/skills/system-spec-kit/mcp-server/lib/session/session-snapshot.ts",
-      ".opencode/commands/speckit/assets/speckit-resume-auto.yaml",
-      ".opencode/skills/system-spec-kit/mcp-server/hooks/claude/session-prime.ts"
+      ".opencode/commands/speckit/assets/speckit-resume-auto.yaml"
     ],
     "entities": [
       {
@@ -94,21 +92,9 @@
         "source": "derived"
       },
       {
-        "name": "session-snapshot.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp-server/lib/session/session-snapshot.ts",
-        "source": "derived"
-      },
-      {
         "name": "speckit-resume-auto.yaml",
         "kind": "config",
         "path": ".opencode/commands/speckit/assets/speckit-resume-auto.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "session-prime.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp-server/hooks/claude/session-prime.ts",
         "source": "derived"
       },
       {
@@ -194,11 +180,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Three related integrity gaps sit at the P1 rollback/audit/policy layer of the activation program",
     "created_at": "2026-07-20T21:51:45.508Z",
-    "last_save_at": "2026-08-30T15:39:15.305Z",
+    "last_save_at": "2026-09-11T16:42:06.149Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4ed0ccc64515a4baf6a6ea1eef9d607947e35c03cf3ec1a3b829c7c5fdd9fbe6",
+    "source_fingerprint": "sha256:c8de546d5b95cfee72b02cce3391b0ca189abc79bdf119819d90ec09de3c4418",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "664d4f1d611307b5f4dfa830b3233cb14733495a02f4e3221e2935c1abed8a05",
+      "spec.md": "ef32e398519f83552fab12c9c2c599b802ada9665f45c5d2959a5415ae7b3cb4",
       "plan.md": "92c6d7318e4660ef5d6e5ad3845e24bd3d424f3ea79f446341aa58db2ff5ab94",
       "tasks.md": "031e5cb3727bd1ca6c35b62a3f677d0f1d7d2d4c441e94b997c0aa2f56af9983",
-      "implementation-summary.md": "1e5fe1bf3b9b5c275d656e6e6ef757f33cb23955af3ad0506c7ec19b7656534b"
+      "implementation-summary.md": "82467e91117b54864db5b3da3ac25f9d423bc53955e076f26aabcbe33c463bd1"
     },
     "last_active_child_id": null,
     "last_active_at": null

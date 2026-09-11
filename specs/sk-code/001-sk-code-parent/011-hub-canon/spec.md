@@ -193,7 +193,7 @@ Define one parent-hub method for the repo, publish the corresponding sk-doc temp
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-- None. The canonical method is settled by `design-contract.md` and shipped commits `b6fe2f31b1`, `deab5a3853`, and `d1b545e4b6`.
+- None. The canonical method is settled by `design-contract.md` and shipped commits `f35597ffd8`, `deab5a3853`, and `a0bbe9f063`.
 
 <!-- /ANCHOR:questions -->
 ---

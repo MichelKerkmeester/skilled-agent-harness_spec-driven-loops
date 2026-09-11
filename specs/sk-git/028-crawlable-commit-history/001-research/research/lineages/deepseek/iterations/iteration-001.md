@@ -12,7 +12,7 @@ Inventory every rule the current sk-git commit contract and `commit-msg` hook en
 
 - `.opencode/skills/sk-git/SKILL.md:352-519` — ALWAYS rules (356-373), "Commit Message Logic (Human-Clear and AI-Deterministic)" §1-7 (375-495), NEVER rules (497-508).
 - `.opencode/scripts/git-hooks/commit-msg:1-185` — the blocking hook in full (SUBJECT_RE 72, numeric-scope rejection 79-81, summary checks 83-100, PROCESS_LABEL_RE 102-105, length cap 110-113, TRAILER_RE 117, BREAKING footer 118/139-141, body separation 52-61, body gate 153-155).
-- `.opencode/skills/sk-git/assets/commit-message-template.md` — canonical contract pointer, AI author procedure, body template (`Refs:` at line 67), examples citing real hashes `5baf52ff74`, `cf639da725`, `bd693dfc37`.
+- `.opencode/skills/sk-git/assets/commit-message-template.md` — canonical contract pointer, AI author procedure, body template (`Refs:` at line 67), examples citing real hashes `8701343331`, `e6f9a97b8b`, `ed1c269ee6`.
 - `.opencode/skills/sk-git/references/commit-workflows.md:163-214` — Step 5 (write message) and Step 6 (readiness).
 - `.opencode/skills/sk-git/references/quick-reference.md:106-109,349` — commit command forms and the ≤80/100 length row.
 - `.opencode/scripts/git-hooks/post-commit`, `.opencode/scripts/git-hooks/post-rewrite` — both live hooks that a rewrite will exercise.

@@ -36,7 +36,7 @@ Auto-generated from JSONL, strategy, and registry state. Do not edit by hand.
 
 | Phase | Verdict | Class | Anchor |
 |-------|---------|-------|--------|
-| 003 | needs refinement | first-order (TWO engines: cc77a1e550a kebab + 7f3216fc502 renumber) | 003/plan.md:81,82; 003/spec.md:93,144; 003/plan.md:153; 003/spec.md:57,119 |
+| 003 | needs refinement | first-order (TWO engines: b052f329a73 kebab + 69aee63cb8a renumber) | 003/plan.md:81,82; 003/spec.md:93,144; 003/plan.md:153; 003/spec.md:57,119 |
 | 004 | still valid | no drift | **NEGATIVE CONTROL** - cleanest of 004/006/007 |
 | 005 | still valid | no drift | paths resolve; premise intact; deliverables unshipped |
 | 006 | still valid | no drift | negative-control runner-up |
@@ -46,7 +46,7 @@ Auto-generated from JSONL, strategy, and registry state. Do not edit by hand.
 | 010 | still valid | no drift | claim continuity != session continuity |
 | 011 | still valid | no drift | council/convergence.cjs anchor intact |
 | 012 | needs refinement | second-order | shared mode boundary grew by 5 components |
-| 013 | needs refinement | second-order | 908efde8d8f + 6cd8ab14e4e + 708d25acf04 (mode count unchanged) |
+| 013 | needs refinement | second-order | 4b2c351cc1e + d60cc2c7553 + fa74e868615 (mode count unchanged) |
 | 014 | still valid | no drift | transitive second-order bounded to test fixtures |
 | 015 | still valid | no drift (transitive documented) | depends on phase-003 refinement (not inherited drift) |
 | 016 | still valid | no drift (transitive documented) | depends on phase-003 refinement |

@@ -194,7 +194,7 @@
     ],
     "causal_summary": "029 ground the deep-research remediation down to its tail, but three residual builds were deliberately deferred because each mutates a high-blast-radius subsystem: the live production vector store (corruption history), the prompt-safety replay path (raw query text is permanently banned), and the code-index daemon lifecycle (3x historical dual-writer DB corruption)",
     "created_at": "2026-06-13T12:15:34Z",
-    "last_save_at": "2026-08-30T15:39:34.301Z",
+    "last_save_at": "2026-09-11T16:42:38.090Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fc2afe2fbab4a5bf5266087e522a19466ef484c97cc57b894cdbf469bf73a672",
+    "source_fingerprint": "sha256:b286075a117fa583770022967a251c1b9f421d4516868237c5eb1061b24ff5dc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9efb7de37a44cc86cfef5ba7d8a4cb63939eb4cdad368322bda57d7a0bc8df09",
-      "plan.md": "92e78f6f9bf990bff3e459db3744b76cbddd638b4e92ffb43b54a21f1611960e",
-      "tasks.md": "8054490edb7b3a44010455672b58a7b29a339a197adfd97ebf1c5a6e2f2a4c86",
-      "implementation-summary.md": "d014e70983b236ace0fb1dd6c8e87f9b83d01af99b2156031d916f2cf34731ac"
+      "spec.md": "396d79cc61563e681d049ae0512b8799f8425d824a4e82cd9784f72a11f1784e",
+      "plan.md": "c0a67b55f9258f44813fb1d039ffcf5de92fb37979d9d02e980d6527685f03a5",
+      "tasks.md": "1222875fd4083c315a0c34c8c63a71644bb2f1cb065e45362ebe75f081149930",
+      "implementation-summary.md": "ef83cd49db0644ffe15c106798df310123eb6c0f32d64428ddab3f6eb1733d5f"
     },
     "last_active_child_id": null,
     "last_active_at": null

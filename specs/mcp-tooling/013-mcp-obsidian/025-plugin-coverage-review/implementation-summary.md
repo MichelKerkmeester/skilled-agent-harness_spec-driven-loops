@@ -12,8 +12,8 @@ Three `/deep:review` cycles (cli-codex `gpt-5.6-luna` max/fast). Cycles 1 and 2 
 
 ## 2. Remediation shipped to v4
 
-- **`7b89342a3d`** — structural coverage: 11-plugin support + pre-1.0 version renumber + health-md router intent, generic PLUGINS fallback → 11, plugin-operation-logic overview → 11, playbook §12 → 11 scenarios, beancount throwaway isolation, git field grounding.
-- **`9d8b8307d8`** — deeper hardening: BRAT plugin-id path-traversal guard, Code Mode fail-safe read, loopback-only TLS caveat, human loading index → 11.
+- **`af70620714`** — structural coverage: 11-plugin support + pre-1.0 version renumber + health-md router intent, generic PLUGINS fallback → 11, plugin-operation-logic overview → 11, playbook §12 → 11 scenarios, beancount throwaway isolation, git field grounding.
+- **`8c13df6083`** — deeper hardening: BRAT plugin-id path-traversal guard, Code Mode fail-safe read, loopback-only TLS caveat, human loading index → 11.
 
 Findings intentionally NOT changed: the `VERIFY` honesty markers (resolving them would fabricate facts). Noise: a self-referential "packet lacks inputs" finding (the review pointed at its own scaffolding).
 

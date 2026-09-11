@@ -5,7 +5,7 @@ trigger_phrases: []
 # Iteration 8: Commit-Scoped Parent Canon Hunk Review
 
 ## Focus
-Reviewed every canonical, non-frozen hunk changed by commit `140266be3e` in the parent `spec.md`, `context-index.md`, `routing-before-after.md`, `routing-config-and-advisor-reference.md`, `description.json`, and `graph-metadata.json`. Each changed claim, path, metric, status, topology statement, child count, fingerprint, and resume pointer was checked against current canonical files or the live compiled-routing resolver. Historical research, lineage, benchmark, log, output, and run-record artifacts were not treated as defects. The exact route was `mode=research target_agent=deep-research`; the deep-research skill definition was loaded and no sub-dispatch occurred.
+Reviewed every canonical, non-frozen hunk changed by commit `3c94775856` in the parent `spec.md`, `context-index.md`, `routing-before-after.md`, `routing-config-and-advisor-reference.md`, `description.json`, and `graph-metadata.json`. Each changed claim, path, metric, status, topology statement, child count, fingerprint, and resume pointer was checked against current canonical files or the live compiled-routing resolver. Historical research, lineage, benchmark, log, output, and run-record artifacts were not treated as defects. The exact route was `mode=research target_agent=deep-research`; the deep-research skill definition was loaded and no sub-dispatch occurred.
 
 ## Findings
 1. **No new P1/P2 finding survived verification and deduplication.** The changed-hunk defects that remain real are already recorded in this lineage: the bad `020/spec.md` and `021/spec.md` handoff paths, the mixed 2/7-versus-7/7 surface/manifest population statements, the 7/7 route-gold denominator, the operator-gated/default-on contradiction, and the metric-provenance limitation. The remaining changed topology, metadata, default-mode, and repo-rooted consumer-path statements matched current files or live behavior. [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/research/round-3-sol/lineages/sol/iterations/iteration-003.md:6-19] [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/research/round-3-sol/lineages/sol/iterations/iteration-004.md:6-15] [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/research/round-3-sol/lineages/sol/iterations/iteration-005.md:6-18] [SOURCE: .opencode/bin/lib/compiled-routing/011-runtime-engine/lib/resolve.cjs:29-42]
@@ -30,7 +30,7 @@ Reviewed every canonical, non-frozen hunk changed by commit `140266be3e` in the 
 - Partial success: none; all changed hunks were classified, and mandatory route proof succeeded for all seven hubs.
 
 ## Sources Consulted
-- `git diff --unified=0 140266be3e^ 140266be3e` for all six requested parent files
+- `git diff --unified=0 3c94775856^ 3c94775856` for all six requested parent files
 - `.opencode/specs/sk-doc/019-skill-routing-refactor/spec.md:55,120,132-134,174`
 - `.opencode/specs/sk-doc/019-skill-routing-refactor/context-index.md:53-64,113-118`
 - `.opencode/specs/sk-doc/019-skill-routing-refactor/routing-before-after.md:17,84,129-163`

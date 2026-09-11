@@ -34,7 +34,7 @@ _memory:
 > measurability gate and built three more features default-off that a fresh-Opus gate held on the
 > append-not-displace truncation finding.
 >
-> **Where the truth lives.** The superseded 030 Wave-0 packet was deleted at `5ce5130b20`, so its
+> **Where the truth lives.** The superseded 030 Wave-0 packet was deleted at `bd66487db2`, so its
 > done-evidence now lives in the per-track `changelog-00N-root.md` rollups and the before-and-after
 > narrative rather than a standalone Wave-0 record. The per-subsystem phase rosters live in each
 > track's `changelog-00N-root.md` rollup. The before-and-after narrative is in
@@ -47,88 +47,88 @@ _memory:
 
 ```
 Epoch one  --  the flat 030 Wave-0 spearhead
- 738e118751  fix(deep-research)  reducer anchor markers (foundation)
- 484b77b589  feat(memory-search) graceful embedder degrade
- bec0eed27f  feat(memory-search) ANN + RRF deterministic tiebreaks
- e1c6a3c793  feat(memory)        constitutional CAS guard + enrichment gauges + skip-closed sweep
- 1c065566fa  docs(030)           reconcile status (candidate 11 dropped)
- 65cfcea513  feat(memory-search) RRF bonus-denominator option + rank-time decay clock
- 18c8582e33  refactor(memory)    centralized content-id module
- 46812f12a8  feat(deep-loop)     merge order + pool gauges + graceful self-stop
- e21caf5de6  feat(code-graph)    RRF-additive rank-time trust
- ab5459fb6d  docs(030)           full-scope Wave-0 implementation record docs + closeout
+ 61fe63b24d  fix(deep-research)  reducer anchor markers (foundation)
+ fa62d04fd0  feat(memory-search) graceful embedder degrade
+ 5c0a966df3  feat(memory-search) ANN + RRF deterministic tiebreaks
+ 672d8a9187  feat(memory)        constitutional CAS guard + enrichment gauges + skip-closed sweep
+ 31d5b8186a  docs(030)           reconcile status (candidate 11 dropped)
+ 84c532114d  feat(memory-search) RRF bonus-denominator option + rank-time decay clock
+ 0113515f43  refactor(memory)    centralized content-id module
+ ba632c340c  feat(deep-loop)     merge order + pool gauges + graceful self-stop
+ 05bd41520e  feat(code-graph)    RRF-additive rank-time trust
+ 5ed284319b  docs(030)           full-scope Wave-0 implementation record docs + closeout
 
 Bridge  --  Wave-0 cleanup on the 028 branch
- 9afbf97b75  docs(030)           027-style Wave-0 changelog/before-after/timeline + README alignment
- 1b87f90411  test(memory)        stress the graceful embedder-degrade path under a recall flood
- 019580f298  docs+fix(028)       align stale code READMEs + strip pre-existing artifact-ID comments
- e7ff843e1c  chore(028)          commit drifted spec-description metadata
+ 736a19b7f5  docs(030)           027-style Wave-0 changelog/before-after/timeline + README alignment
+ e903616f16  test(memory)        stress the graceful embedder-degrade path under a recall flood
+ 490da351a1  docs+fix(028)       align stale code READMEs + strip pre-existing artifact-ID comments
+ 43cac5accb  chore(028)          commit drifted spec-description metadata
 
 Epoch two  --  the phased 028 program
- 52e3060752  docs(028)           re-plan implementation as phased children inside 028
- 7db9013386  fix(028)            correct re-plan structure to a single-numbered four-phase tree
- a08f371e58  docs(028)           add the dependency-ordered build schedule
- 99bfa4427d  feat(028)           first wave: render escaper, generation watermark, lane-health, continuity
- b18c077311  feat(028)           wave two: doc-symbol lane, enrichment lag gauge
- 7e32c14d5d  feat(028)           residual-correctness (absolute-relevance avg + maintenance TTL)
- d210947626  feat(028)           gate-zero embedding-coverage guard + coverage finding
- cfcc0cd5b5  feat(028)           eval-harness extension (corpus metric lanes)
- c1f2466811  feat(028)           code-graph edge-staleness + deep-loop fanout-failure-recovery
- 47ed46dbdb  docs(028)           scaffold the release-cleanup phase parent (nine doc-surface children)
- ce858fa165  feat(028)           skill-advisor RRF determinism spine (default-off)
- f038ff140e  feat(028)           class-routing, walk-order determinism, embedding-staleness, stop-corroboration
- fd30af2cb6  feat(028)           redteam-probe, parser-resilience, provenance-drift, fanout-determinism
- 657a0f6a3e  feat(028)           summary-fusion, seeded-PPR, conflict-rerank (all default-off)
- cd6678a7a9  docs(028)           document the extended eval/benchmark harness + command access
- b1d6ab80cd  docs(028)           generate the linked per-phase changelogs
+ 25a657074b  docs(028)           re-plan implementation as phased children inside 028
+ 9737939a1d  fix(028)            correct re-plan structure to a single-numbered four-phase tree
+ b614fe3560  docs(028)           add the dependency-ordered build schedule
+ b3a07f8de5  feat(028)           first wave: render escaper, generation watermark, lane-health, continuity
+ 6864cc6a1d  feat(028)           wave two: doc-symbol lane, enrichment lag gauge
+ 7cdfd9cb0c  feat(028)           residual-correctness (absolute-relevance avg + maintenance TTL)
+ a6a4ac628d  feat(028)           gate-zero embedding-coverage guard + coverage finding
+ fb635fb2a4  feat(028)           eval-harness extension (corpus metric lanes)
+ ee3c41a80c  feat(028)           code-graph edge-staleness + deep-loop fanout-failure-recovery
+ ba3b698dce  docs(028)           scaffold the release-cleanup phase parent (nine doc-surface children)
+ c49470a44a  feat(028)           skill-advisor RRF determinism spine (default-off)
+ d1a1a5ee41  feat(028)           class-routing, walk-order determinism, embedding-staleness, stop-corroboration
+ 9ba960d67d  feat(028)           redteam-probe, parser-resilience, provenance-drift, fanout-determinism
+ a4bcf4bf16  feat(028)           summary-fusion, seeded-PPR, conflict-rerank (all default-off)
+ c35cf8fc2d  docs(028)           document the extended eval/benchmark harness + command access
+ 76ea97a548  docs(028)           generate the linked per-phase changelogs
 
 Epoch two continued  --  the schema cluster, release-cleanup and the benchmark
- 4aa6473b3f  docs(028)           refresh before-after + timeline + changelog index (last narrative refresh)
- 0cf96409d8  feat(028)           memory 014 mem0-ranking-tweaks (default-off)
- ab405fa052  docs(028)           execute release-cleanup 004 + 005
- 03d0b01eb6  feat(028)           advisor 007 outcome-weighted-ranking (default-off shadow)
- 04f45c8f7a  docs(028)           execute release-cleanup 008
- 03f93fef81  docs(028)           execute release-cleanup 007
- 10c5b61493  feat(028)           advisor 004 beta-posterior shadow seam (default-off)
- 16ee739b08  feat(028)           memory 007 bitemporal-window schema + 016 agentic-recall (default-off)
- 6754d3a133  docs(028)           execute release-cleanup 002
- 1c39235e36  feat(028)           code-graph 004 code-edge-bitemporal schema (default-off)
- bb038e19ab  docs(028)           execute release-cleanup 003 (deep-research deferred)
- cb92f2f211  feat(028)           memory 008 edge-presence-currentness schema (default-off)
- 725fb19d7b  feat(028)           code-graph 006 edge-governance-vocab schema (default-off)
- df7f733651  docs(028)           execute release-cleanup 009
- a3621ebe33  docs(028)           execute release-cleanup 001
- ed53661043  feat(028)           memory 009 derived-id-provenance schema (default-off)
- 5308401d95  feat(028)           memory 011 retention-forgetting + 017 semantic-edge-layer schema (default-off)
- 8f8776e329  feat(028)           memory 012 procedural + 018 sleeptime + 020 eval-calibration-ab (default-off)
- 818db21c54  docs(028)           execute release-cleanup 006 (deep/agent_router deferred)
- 0843d054f7  feat(028)           run the eval-harness benchmark (criterion 4, aligned golden set)
- 30958b1b0e  docs(028)           mark criterion 4 resolved (no flip on this pass, later reopened in Section G)
- 5ce5130b20  chore(028)          delete the superseded Wave-0 packet 030
+ 8b07538178  docs(028)           refresh before-after + timeline + changelog index (last narrative refresh)
+ 8bb56a549e  feat(028)           memory 014 mem0-ranking-tweaks (default-off)
+ 7b74ddfbe5  docs(028)           execute release-cleanup 004 + 005
+ 3682ec59da  feat(028)           advisor 007 outcome-weighted-ranking (default-off shadow)
+ 49235a9b66  docs(028)           execute release-cleanup 008
+ 9351779874  docs(028)           execute release-cleanup 007
+ 7cd16f70fa  feat(028)           advisor 004 beta-posterior shadow seam (default-off)
+ 22ad4ab05b  feat(028)           memory 007 bitemporal-window schema + 016 agentic-recall (default-off)
+ ed06dcdc21  docs(028)           execute release-cleanup 002
+ e9aab5204f  feat(028)           code-graph 004 code-edge-bitemporal schema (default-off)
+ 2229a24c7e  docs(028)           execute release-cleanup 003 (deep-research deferred)
+ 8cc41ae155  feat(028)           memory 008 edge-presence-currentness schema (default-off)
+ f63494b7c0  feat(028)           code-graph 006 edge-governance-vocab schema (default-off)
+ d9b95ef9a6  docs(028)           execute release-cleanup 009
+ 1455cf6062  docs(028)           execute release-cleanup 001
+ a00803e724  feat(028)           memory 009 derived-id-provenance schema (default-off)
+ 478bebf387  feat(028)           memory 011 retention-forgetting + 017 semantic-edge-layer schema (default-off)
+ 508af65780  feat(028)           memory 012 procedural + 018 sleeptime + 020 eval-calibration-ab (default-off)
+ 7239e3d2bd  docs(028)           execute release-cleanup 006 (deep/agent_router deferred)
+ c7f7b31f50  feat(028)           run the eval-harness benchmark (criterion 4, aligned golden set)
+ 38e387c30b  docs(028)           mark criterion 4 resolved (no flip on this pass, later reopened in Section G)
+ bd66487db2  chore(028)          delete the superseded Wave-0 packet 030
 
 Epoch three  --  the deep review and its remediation (after the build program)
- 3eca12c05b  docs(028)           deep-review report (tri-model 40-seat + 10-iteration, 0 P0 / 6 P1)
- 0076797859  docs(028)           phase-plan the remediation (003-review-remediation, 4 children)
- 885f0c662e  fix(028)            round-1: eval-driver fidelity + criterion-4 re-derived
- 642357af0c  fix(028)            round-1: memory schema identity + consolidation lock + retention re-validation
- f3cb9b5a41  fix(028)            round-1: doc accuracy vs committed code
- 378ace8459  fix(028)            round-1: benchmark-status em-dash + 003 continuity cleanup
- 20f37fb283  docs(028)           round-2: convergence re-review (0 P0 / 4 new P1)
- 0e3a224421  fix(028)            round-2: release-cleanup fork + 008 shipped-vs-no-code (doc)
- 85cede4363  fix(028)            round-2: eval coverage guard + edge-vector orphan (code)
- 228a320de2  docs(028)           round-3: gpt-5.5 xhigh parallel review (0 P0 / 8 P1)
- 43be836513  fix(028)            round-3: 2 fail-open governance/retention holes now fail closed
- ed420eeda4  docs(028)           round-3: reconcile leaf-changelog no-code-shipped forks
- 221813f404  fix(028)            round-3: 2 default-on gating violations gated / contract restored
- 9452523954  docs(028)           round-3: add feature-flags.md (37 env switches)
- 669ae88a8d  fix(028)            round-3: ENV_REFERENCE + embedder-degrade test follow-up
- 529e0af7bf  docs(028)           round-4: closing note (stale re-report, effectively converged)
- ad8b166e7a  docs(028)           release-cleanup focused review (10 claude2-opus iterations)
+ 23cd1f3df7  docs(028)           deep-review report (tri-model 40-seat + 10-iteration, 0 P0 / 6 P1)
+ 9357674936  docs(028)           phase-plan the remediation (003-review-remediation, 4 children)
+ 62394395fb  fix(028)            round-1: eval-driver fidelity + criterion-4 re-derived
+ fe7b13ada5  fix(028)            round-1: memory schema identity + consolidation lock + retention re-validation
+ 3c87c56e22  fix(028)            round-1: doc accuracy vs committed code
+ a6d39a219c  fix(028)            round-1: benchmark-status em-dash + 003 continuity cleanup
+ e4dec16d42  docs(028)           round-2: convergence re-review (0 P0 / 4 new P1)
+ 7b13820706  fix(028)            round-2: release-cleanup fork + 008 shipped-vs-no-code (doc)
+ a57c3c1784  fix(028)            round-2: eval coverage guard + edge-vector orphan (code)
+ a1363c10c8  docs(028)           round-3: gpt-5.5 xhigh parallel review (0 P0 / 8 P1)
+ b96734c649  fix(028)            round-3: 2 fail-open governance/retention holes now fail closed
+ 4edc9ad2c5  docs(028)           round-3: reconcile leaf-changelog no-code-shipped forks
+ f46a5d38d6  fix(028)            round-3: 2 default-on gating violations gated / contract restored
+ 72d5bbc5ad  docs(028)           round-3: add feature-flags.md (37 env switches)
+ 93ad31d97d  fix(028)            round-3: ENV_REFERENCE + embedder-degrade test follow-up
+ 5cdf63fd0a  docs(028)           round-4: closing note (stale re-report, effectively converged)
+ 4dda6cfe57  docs(028)           release-cleanup focused review (10 claude2-opus iterations)
 ```
 
-> Interleaved house-voice changelog-polish commits (`c415143c10`, `2ad1f7bc88`, `7fddf1cad3`,
-> `4e1e205481`) are omitted from this build view. The deep-review report and its remediation
-> (`3eca12c05b` onward) ran after the build program. They are listed in the Epoch three block above
+> Interleaved house-voice changelog-polish commits (`199df0585d`, `d73f77f25e`, `662ea302b4`,
+> `95694dbee4`) are omitted from this build view. The deep-review report and its remediation
+> (`23cd1f3df7` onward) ran after the build program. They are listed in the Epoch three block above
 > and narrated in Section F.
 
 ---
@@ -137,32 +137,32 @@ Epoch three  --  the deep review and its remediation (after the build program)
 
 The packet opened by shipping the ship-ready candidates the broadening pass confirmed were additive,
 reversible and safe without a schema migration or a measured baseline. Eleven of thirteen candidates
-landed as scoped commits from `738e118751` through `ab5459fb6d`. The reducer anchor fix came first as
+landed as scoped commits from `61fe63b24d` through `5ed284319b`. The reducer anchor fix came first as
 the foundation, then graceful embedder degrade, the ANN and RRF deterministic tiebreaks, the
 constitutional CAS guard with the enrichment gauges and skip-closed sweep, the RRF bonus and decay
 knobs, the centralized content-id module, the Deep Loop merge order with pool gauges and graceful
 self-stop and the Code Graph RRF-additive trust blend.
 
 Two candidates dropped mid-sequence once their evidence came in. The system-kind recall exclusion was
-pulled inside `e1c6a3c793` and recorded by `1c065566fa` after a live-database review found
+pulled inside `672d8a9187` and recorded by `31d5b8186a` after a live-database review found
 `source_kind='system'` is 9,592 canonical spec-docs including 29 constitutional rules rather than
 substrate noise. The idempotency default-on flip never committed at all because it broke eleven
 update-path tests. The full Wave-0 chronology and verification live in
 the Wave-0 implementation record.
 
-A short bridge followed on the 028 branch. `9afbf97b75` authored the 027-style Wave-0 changelog and
-before-after and timeline, `1b87f90411` stressed the embedder-degrade path under a recall flood,
-`019580f298` aligned stale code READMEs and stripped pre-existing artifact-ID comments and `e7ff843e1c`
+A short bridge followed on the 028 branch. `736a19b7f5` authored the 027-style Wave-0 changelog and
+before-after and timeline, `e903616f16` stressed the embedder-degrade path under a recall flood,
+`490da351a1` aligned stale code READMEs and stripped pre-existing artifact-ID comments and `43cac5accb`
 committed drifted spec-description metadata.
 
 ---
 
 ## B. The re-plan into a phased 028
 
-`52e3060752` re-planned the rest of the roadmap. Instead of one more flat wave, the remaining
+`25a657074b` re-planned the rest of the roadmap. Instead of one more flat wave, the remaining
 candidates became phased children under 028, organized into five tracks: Spec-Kit Memory MCP, Code
-Graph, Skill Advisor, Deep Loop and a release-cleanup track. `7db9013386` corrected the structure into a
-single-numbered four-subsystem tree, and `a08f371e58` added the dependency-ordered build schedule that
+Graph, Skill Advisor, Deep Loop and a release-cleanup track. `9737939a1d` corrected the structure into a
+single-numbered four-subsystem tree, and `b614fe3560` added the dependency-ordered build schedule that
 reads every implementation child spec and plan and orders the phases into tiers by what each one
 depends on. That schedule named the recommended first wave: run gate-zero first and start the
 low-dependency correctness work in parallel.
@@ -175,79 +175,79 @@ The build then ran in dependency order, one phase group per commit, each followi
 the seam, implement against it, add focused tests, run typecheck and the touched suite and reconcile the
 packet docs.
 
-### 1. `99bfa4427d` first wave
+### 1. `b3a07f8de5` first wave
 
 Four low-dependency phases landed together: the Memory recall-to-render trust escaper, the Code Graph
 generation watermark, the Skill Advisor runtime lane-health degrade and the Deep Loop continuity
 threading. This wave closed the highest-risk trust boundary and the hard advisor P0 in one pass.
 
-### 2. `b18c077311` wave two
+### 2. `6864cc6a1d` wave two
 
 The Code Graph doc-symbol lane and the Memory enrichment lag gauge. The doc lane became queryable
 heading and config-key nodes, and the enrichment health block gained an oldest-pending lag beside the
 shipped pending and failed gauges.
 
-### 3. `7e32c14d5d` residual correctness
+### 3. `7cdfd9cb0c` residual correctness
 
 The two always-on Memory correctness residuals: routing the search-score average through the calibrated
 absolute-relevance scale and deriving the maintenance-marker TTL from the owner-lease constants.
 
-### 4. `d210947626` gate-zero
+### 4. `a6a4ac628d` gate-zero
 
 The corpus-reindex embedding-coverage guard at the ablation pre-flight, fail-closed below full coverage
 of the unique golden parent IDs. This is the gate the whole recall-measurement chain depends on, so it
 landed before the harness that consumes it.
 
-### 5. `cfcc0cd5b5` eval-harness extension
+### 5. `fb635fb2a4` eval-harness extension
 
 The single-pass diagnostic emit, the three-way label tagging and the three corpus metric lanes for
 gate-verdict confusion, calibration and cold-tier precision. The per-class promotion gate was left
 pending behind its benchmark.
 
-### 6. `c1f2466811` edge-staleness and fanout-failure-recovery
+### 6. `ee3c41a80c` edge-staleness and fanout-failure-recovery
 
 Two phases across two subsystems: the Code Graph dependency-transitivity correctness fix with the
 additive SUPERSEDES rename-lineage edge, and the Deep Loop fanout failure recovery with its bounded
 failure class, transient and fatal classifier, durable retry budget and resume gate.
 
-### 7. `47ed46dbdb` release-cleanup scaffold
+### 7. `ba3b698dce` release-cleanup scaffold
 
 The fifth track landed as a phase-parent scaffold with nine documentation-surface child phases, all
 PENDING, defining cleanup scope only.
 
-### 8. `ce858fa165` advisor RRF spine
+### 8. `c49470a44a` advisor RRF spine
 
 The Skill Advisor RRF determinism spine, default-off behind its flag, importing the Memory fuser rather
 than forking RRF.
 
-### 9. `f038ff140e` four phases
+### 9. `d1a1a5ee41` four phases
 
 The Memory retrieval-class routing, the Code Graph walk-order determinism, the Skill Advisor
 embedding-staleness signal and the Deep Loop stop-input corroboration.
 
-### 10. `fd30af2cb6` four phases
+### 10. `9ba960d67d` four phases
 
 The Memory red-team probe gate, the Code Graph parser resilience, the Skill Advisor
 provenance self-boost guard and the Deep Loop fanout determinism Wave-1 tail.
 
-### 11. `657a0f6a3e` three default-off phases
+### 11. `a4bcf4bf16` three default-off phases
 
 The last wave of the first build epoch: the Memory summary-fusion shadow lane, the Code Graph
 seeded-PPR ranking and the Skill Advisor conflict re-rank, query-class routing and exact semantic
 rerank, all default-off.
 
-> Across `99bfa4427d` through `657a0f6a3e`, twenty-three implementation phases shipped code. Their
+> Across `b3a07f8de5` through `a4bcf4bf16`, twenty-three implementation phases shipped code. Their
 > always-on members are correctness fixes and their ranking-adjacent members ship default-off or
 > byte-identical-by-default, matching the Wave-0 discipline. This was not the end of the program: the
-> schema cluster and the remaining ranking phases landed after `657a0f6a3e`, as Section D2 records.
+> schema cluster and the remaining ranking phases landed after `a4bcf4bf16`, as Section D2 records.
 
 ---
 
 ## D. Documentation and changelog generation
 
-`cd6678a7a9` documented the extended eval and benchmark harness and how it is reached from the command
+`c35cf8fc2d` documented the extended eval and benchmark harness and how it is reached from the command
 surface, recording the corpus metric lanes, the coverage gate and the calibration measurement path that
-the eval phases added. `b1d6ab80cd` generated the linked per-phase changelogs in the 027 pattern: one
+the eval phases added. `76ea97a548` generated the linked per-phase changelogs in the 027 pattern: one
 leaf changelog per shipped phase under each track's `changelog/` directory, a per-track
 `changelog-00N-root.md` rollup and the packet root `changelog-028-root.md`. The index for that tree is
 [`changelog/README.md`](./changelog/README.md).
@@ -257,21 +257,21 @@ leaf changelog per shipped phase under each track's `changelog/` directory, a pe
 ## D2. The schema cluster, the release-cleanup executions and the benchmark
 
 The program continued past the changelog generation. The schema-foundation phases landed as code
-behind default-off flags: the Memory bitemporal window and iterative agentic recall at `16ee739b08`,
-the Code Graph code-edge bitemporal reads at `1c39235e36`, the Memory edge-presence currentness at
-`cb92f2f211`, the Code Graph edge-governance vocabulary at `725fb19d7b`, the Memory derived-id
-provenance at `ed53661043`, the retention-forgetting and semantic-edge layer at `5308401d95` and the
-procedural-benchmark, sleeptime and eval-calibration safe cores at `8f8776e329`. The mem0-ranking
-tweaks at `0cf96409d8` and the advisor outcome-weighted and beta-posterior shadow seams at
-`03d0b01eb6` and `10c5b61493` shipped alongside them, all default-off.
+behind default-off flags: the Memory bitemporal window and iterative agentic recall at `22ad4ab05b`,
+the Code Graph code-edge bitemporal reads at `e9aab5204f`, the Memory edge-presence currentness at
+`8cc41ae155`, the Code Graph edge-governance vocabulary at `f63494b7c0`, the Memory derived-id
+provenance at `a00803e724`, the retention-forgetting and semantic-edge layer at `478bebf387` and the
+procedural-benchmark, sleeptime and eval-calibration safe cores at `508af65780`. The mem0-ranking
+tweaks at `8bb56a549e` and the advisor outcome-weighted and beta-posterior shadow seams at
+`3682ec59da` and `7cd16f70fa` shipped alongside them, all default-off.
 
-The release-cleanup track then executed all nine child phases across `ab405fa052` through `818db21c54`,
+The release-cleanup track then executed all nine child phases across `7b74ddfbe5` through `7239e3d2bd`,
 with the deep-research SKILL surfaces and the command-router deferred to a concurrent session. Finally
-the eval-harness benchmark ran for criterion 4 at `0843d054f7` and resolved at `30958b1b0e`: the
+the eval-harness benchmark ran for criterion 4 at `c7f7b31f50` and resolved at `38e387c30b`: the
 aligned golden set produced channel-level Recall@20 deltas but no default-off flag earned a flip on
 that pass, so the conservative default-off posture held for the build epoch. That verdict was later
 superseded by the flag-resolution reckoning in Section G, which reopened the flags, kept five default-on
-on its own evidence and deleted ten along with their code. `5ce5130b20` then deleted the superseded
+on its own evidence and deleted ten along with their code. `bd66487db2` then deleted the superseded
 Wave-0 packet 030.
 
 ---
@@ -308,30 +308,30 @@ track, the `003-review-remediation` phase parent and its four children for eval-
 memory schema and concurrency, doc accuracy and P2 triage. This sequence sits after the build, not
 inside it, and it is the reason the shipped state is audited rather than only asserted.
 
-`3eca12c05b` opened with a tri-model report, forty seats split twenty on gpt-5.5, ten on
+`23cd1f3df7` opened with a tri-model report, forty seats split twenty on gpt-5.5, ten on
 deepseek-v4-pro and ten on mimo-v2.5-pro, claude adversarial verification across five dimensions and a
-ten-iteration deep-dive on top: zero P0, six P1, not converged. `0076797859` phase-planned the
-remediation, then `885f0c662e`, `642357af0c`, `f3cb9b5a41` and `378ace8459` fixed the six round-one
+ten-iteration deep-dive on top: zero P0, six P1, not converged. `9357674936` phase-planned the
+remediation, then `62394395fb`, `fe7b13ada5`, `3c87c56e22` and `a6d39a219c` fixed the six round-one
 P1, re-deriving the criterion-4 benchmark on a driver that measures the default routed path and closing
 a memory content-identity split, a consolidation-lock gap and a doc-accuracy cluster.
 
-`20f37fb283` re-reviewed for convergence and found four new P1 with no blocker. `0e3a224421` and
-`85cede4363` closed them, making the eval coverage guard fail closed on an empty relevance set and
+`e4dec16d42` re-reviewed for convergence and found four new P1 with no blocker. `7b13820706` and
+`a57c3c1784` closed them, making the eval coverage guard fail closed on an empty relevance set and
 fixing an edge-vector orphan-row hole and a release-cleanup status fork.
 
-`228a320de2` ran round three as a single parallel sweep, every lens concurrent and verified on
-gpt-5.5-fast at xhigh with no claude seat: zero P0, eight new P1. `43be836513` made a scope-governance
-path and a retention sweep fail closed, `221813f404` gated a default-on SingleHop graph-suppression
+`a1363c10c8` ran round three as a single parallel sweep, every lens concurrent and verified on
+gpt-5.5-fast at xhigh with no claude seat: zero P0, eight new P1. `b96734c649` made a scope-governance
+path and a retention sweep fail closed, `f46a5d38d6` gated a default-on SingleHop graph-suppression
 behind the new default-off `SPECKIT_RETRIEVAL_CLASS_ROUTING` flag and restored the always-included
-constitutional contract on the embedder-down path, `ed420eeda4` reconciled the leaf-changelog
-no-code-shipped forks, and `9452523954` and `669ae88a8d` added the feature-flags guide, the
+constitutional contract on the embedder-down path, `4edc9ad2c5` reconciled the leaf-changelog
+no-code-shipped forks, and `72d5bbc5ad` and `93ad31d97d` added the feature-flags guide, the
 ENV_REFERENCE entry and the embedder-degrade test follow-up.
 
-`529e0af7bf` re-ran the sweep a fourth time after the round-three fixes. Eight of nine candidates
+`5cdf63fd0a` re-ran the sweep a fourth time after the round-three fixes. Eight of nine candidates
 returned as real, but every one was a re-report of an exact round-three finding rather than a new
 defect, and host inspection confirmed each fix present in the committed code, so the loop closed
 effectively converged with eighteen P1 fixed across rounds one through three and zero P0 throughout.
-`ad8b166e7a` then ran a ten-seat release-cleanup focused review that read the cleanup tracking docs
+`4dda6cfe57` then ran a ten-seat release-cleanup focused review that read the cleanup tracking docs
 themselves, confirmed the work shipped and that [`benchmark-status.md`](./benchmark-status.md) records
 nine of nine executed, and flagged the repo-root README rule count for a live recount.
 
@@ -523,27 +523,27 @@ record is `feature-flags.md` and `benchmark-status.md` (a `keep-off-flag-roadmap
 
 On 2026-06-23 a test-infrastructure phase, `001-speckit-memory/029-substrate-sandbox-cleanup`, then stopped the substrate stress harness from leaving its `_sandbox/24--local-llm-query-intelligence/` scratch directory at the repo root. The harness now removes the throwaway code-graph DB on every run, a new `--clean` flag drops the whole sandbox for standalone runs, and the vitest runner clears it in `afterAll` once it has read the summary TSV. This is harness hygiene with no change to any served behavior.
 
-On 2026-06-23 a search-quality arc then ran under `002-spec-data-quality` as children 041 through 044, a fix wave followed by three benchmark-gated decisions. The 029 vague-query model benchmark had surfaced six search-quality findings, and `041-search-quality-fixes` landed all six. Its keystone was the one real bug, the graduated evidence-gap verdict cap was dead on the live path because the handler set the banner warning but never the boolean the cap reads, so 041 bridged the Stage-4 signal and the cap fires live, capping an off-corpus query from good to weak with the banner and verdict in agreement where it returned good beside the banner before, verified by a fast-subset rerun at 6 of 6 off-corpus cells capped and 0 good-beside-banner contradictions where the prior failure mode was 19 of 144. The other five fixes were a three-tier citeCorrect metric, an honest retrievalProfileWeightsEnabled envelope field, a resolved score on graph and degree rows, a default-off deterministic-ranking flag and a presentation-contract tightening. Three benchmark-gated decisions followed. `042-deterministic-ranking-benchmark` benchmarked the new deterministic-ranking flag against the real corpus, found flag-ON ranking reproducible at determinism 1.0 but materially divergent from the default on 5 of 12 queries (top-K overlap 0.69, Kendall tau 0.73) because removing wall-clock recency reorders the real-match queries, and returned STAY DEFAULT-OFF since recency is load-bearing and no ground-truth shows the deterministic order is better. Per the operator directive to remove benchmark-rejected stay-off flag code, `SPECKIT_DETERMINISTIC_RANKING` and its gated branches were then deleted (commit `2c43c60172`), reverting to the default recency-on ranking, with the always-on trigger id tie-break kept as the pure-win part, behavior-identical to the prior default. `043-gap-threshold-calibration-benchmark` then tested whether the evidence-gap detector's Z-score threshold of 1.3 was calibrated and found the gap detector measured the wrong thing, the Z-score reads peakedness not relevance, so it over-caps strong tight-cluster queries (should-good false-positive 0.67) and misses flat off-corpus ones (should-gap detection 0.33), no threshold separates them (optimal 0.8 reaching only 0.50), and the verdict was redesign relevance-aware not tune. `044-relevance-aware-evidence-gap` enacted that redesign behind a default-off `SPECKIT_RELEVANCE_AWARE_GAP` flag, replacing the gap decision with the verdict banding's noise-floor-subtracted relevance, `gapDetected = max(0, topRelevance - noiseFloor) < LOW_THRESHOLD`. The first graduation attempt almost shipped a regression, the relevance branch was fed `resolveEffectiveScore` (RRF-magnitude around 0.03) while its band expects absolute cosine, so it flagged every query with the evidence-gap banner, a bug the original 044 benchmark had masked by feeding hand-picked absolute-relevance scores and that a full-handler live dispatch caught. It was fixed by threading the verdict banding signal `resolveCalibrationScore` into the detector through a `relevanceScores` option, fail-closed to the Z-score path when absent, then re-benchmarked through the production `executePipeline` (graph and kubernetes return no-gap, only oauth returns gap) and confirmed by a full-handler live re-verify. `SPECKIT_RELEVANCE_AWARE_GAP` graduated to default-on (commit `7988a6639c`) with zero test collateral, 161 gap and pipeline tests passing. So the arc reads as a fix wave that exposed a deeper detector flaw, two benchmarks that deleted the determinism flag and named the gap detector mis-designed, and a relevance-aware redesign that hit a production-scoring bug the benchmark masked, was caught by a live dispatch, re-validated through the real pipeline and graduated to default-on.
+On 2026-06-23 a search-quality arc then ran under `002-spec-data-quality` as children 041 through 044, a fix wave followed by three benchmark-gated decisions. The 029 vague-query model benchmark had surfaced six search-quality findings, and `041-search-quality-fixes` landed all six. Its keystone was the one real bug, the graduated evidence-gap verdict cap was dead on the live path because the handler set the banner warning but never the boolean the cap reads, so 041 bridged the Stage-4 signal and the cap fires live, capping an off-corpus query from good to weak with the banner and verdict in agreement where it returned good beside the banner before, verified by a fast-subset rerun at 6 of 6 off-corpus cells capped and 0 good-beside-banner contradictions where the prior failure mode was 19 of 144. The other five fixes were a three-tier citeCorrect metric, an honest retrievalProfileWeightsEnabled envelope field, a resolved score on graph and degree rows, a default-off deterministic-ranking flag and a presentation-contract tightening. Three benchmark-gated decisions followed. `042-deterministic-ranking-benchmark` benchmarked the new deterministic-ranking flag against the real corpus, found flag-ON ranking reproducible at determinism 1.0 but materially divergent from the default on 5 of 12 queries (top-K overlap 0.69, Kendall tau 0.73) because removing wall-clock recency reorders the real-match queries, and returned STAY DEFAULT-OFF since recency is load-bearing and no ground-truth shows the deterministic order is better. Per the operator directive to remove benchmark-rejected stay-off flag code, `SPECKIT_DETERMINISTIC_RANKING` and its gated branches were then deleted (commit `364aacab12`), reverting to the default recency-on ranking, with the always-on trigger id tie-break kept as the pure-win part, behavior-identical to the prior default. `043-gap-threshold-calibration-benchmark` then tested whether the evidence-gap detector's Z-score threshold of 1.3 was calibrated and found the gap detector measured the wrong thing, the Z-score reads peakedness not relevance, so it over-caps strong tight-cluster queries (should-good false-positive 0.67) and misses flat off-corpus ones (should-gap detection 0.33), no threshold separates them (optimal 0.8 reaching only 0.50), and the verdict was redesign relevance-aware not tune. `044-relevance-aware-evidence-gap` enacted that redesign behind a default-off `SPECKIT_RELEVANCE_AWARE_GAP` flag, replacing the gap decision with the verdict banding's noise-floor-subtracted relevance, `gapDetected = max(0, topRelevance - noiseFloor) < LOW_THRESHOLD`. The first graduation attempt almost shipped a regression, the relevance branch was fed `resolveEffectiveScore` (RRF-magnitude around 0.03) while its band expects absolute cosine, so it flagged every query with the evidence-gap banner, a bug the original 044 benchmark had masked by feeding hand-picked absolute-relevance scores and that a full-handler live dispatch caught. It was fixed by threading the verdict banding signal `resolveCalibrationScore` into the detector through a `relevanceScores` option, fail-closed to the Z-score path when absent, then re-benchmarked through the production `executePipeline` (graph and kubernetes return no-gap, only oauth returns gap) and confirmed by a full-handler live re-verify. `SPECKIT_RELEVANCE_AWARE_GAP` graduated to default-on (commit `0da826685c`) with zero test collateral, 161 gap and pipeline tests passing. So the arc reads as a fix wave that exposed a deeper detector flaw, two benchmarks that deleted the determinism flag and named the gap detector mis-designed, and a relevance-aware redesign that hit a production-scoring bug the benchmark masked, was caught by a live dispatch, re-validated through the real pipeline and graduated to default-on.
 
-On 2026-06-25 a daemon-skills playbook validation ran every stress suite plus 222 of 471 manual-testing-playbook scenarios across three cli models against the three daemon-backed system skills, scored each run critically rather than trusting its verdict string, and documented fourteen real product findings with remediation plans, recorded as `000-release-cleanup/011-daemon-skills-playbook-validation`. That validation plus the core memory-search re-run surfaced about twenty-two real findings in total, and `000-release-cleanup/012-playbook-findings-remediation` then landed them. gpt-5.5-fast high fixed the findings in eight clusters A through H in an isolated worktree, each cluster verified by a vitest blast-radius sweep plus typecheck plus mutation checks on the risky fixes plus comment hygiene plus alignment drift, then committed one cluster per commit. The seven fix commits are `adbcc65e83` cluster A schema drift (the F11 source_kind select guard and the F12 consumption_log query_hash alignment, 80 passed), `e5b4735c4b` cluster B wiring (five implemented-but-dead memory-search features wired into the runtime, scoring observability, LLM backfill registration, llm-reformulation, query-surrogates and the contextual-tree header, 1165 passed across 47 files), `f0e063eed4` cluster C retrievalLevel honored local, global and auto end to end with the missing strict input-schema field added (155 passed), `cbf4f4d111` cluster D ordering (folder rank primary sort plus a guaranteed top-k slot per active channel, 98 passed), `917ad633a3` cluster E advisor persistence hardening F1 through F6 (routing re-mapped to leaf skills with measured top-1 back to 0.92 to 0.95, a new skill-metadata sanitizer, the validate-scorer, the rollback lifecycle-field cleanup, a non-zero bench exit and the disabled force-native error, 61 passed), `f27945593e` cluster F DB lifecycle (cross-process rebind, db-path standardization and the embedding-retry e2e, 63 passed), and `3291c05389` clusters G and H code-graph write-local refresh plus quality cleanup (the duplicate scope helper, two stale tests, entity dedup normalization and the 7-layer metadata, 421 plus 17 passed). A follow-up test commit `374ca93caa` then added the dedicated B4 surrogate index-time, B5 contextual-tree header and C strict-schema tests, and a migration commit `64d064d868` re-parented the post-phase-6 phases under their relevant parents. Six isolation and harness artifacts were excluded as not bugs. The fixes are verified per cluster and landed on the 028 review-branch mainline, authored in the worktree wt/0008. The validation and the remediation both record their before-and-after in [`before-vs-after.md`](./before-vs-after.md) Section 10.
+On 2026-06-25 a daemon-skills playbook validation ran every stress suite plus 222 of 471 manual-testing-playbook scenarios across three cli models against the three daemon-backed system skills, scored each run critically rather than trusting its verdict string, and documented fourteen real product findings with remediation plans, recorded as `000-release-cleanup/011-daemon-skills-playbook-validation`. That validation plus the core memory-search re-run surfaced about twenty-two real findings in total, and `000-release-cleanup/012-playbook-findings-remediation` then landed them. gpt-5.5-fast high fixed the findings in eight clusters A through H in an isolated worktree, each cluster verified by a vitest blast-radius sweep plus typecheck plus mutation checks on the risky fixes plus comment hygiene plus alignment drift, then committed one cluster per commit. The seven fix commits are `27a1477f7e` cluster A schema drift (the F11 source_kind select guard and the F12 consumption_log query_hash alignment, 80 passed), `390f04bddb` cluster B wiring (five implemented-but-dead memory-search features wired into the runtime, scoring observability, LLM backfill registration, llm-reformulation, query-surrogates and the contextual-tree header, 1165 passed across 47 files), `750424c739` cluster C retrievalLevel honored local, global and auto end to end with the missing strict input-schema field added (155 passed), `2d68d3109a` cluster D ordering (folder rank primary sort plus a guaranteed top-k slot per active channel, 98 passed), `c00e9e21c6` cluster E advisor persistence hardening F1 through F6 (routing re-mapped to leaf skills with measured top-1 back to 0.92 to 0.95, a new skill-metadata sanitizer, the validate-scorer, the rollback lifecycle-field cleanup, a non-zero bench exit and the disabled force-native error, 61 passed), `c777df3865` cluster F DB lifecycle (cross-process rebind, db-path standardization and the embedding-retry e2e, 63 passed), and `beacce4c07` clusters G and H code-graph write-local refresh plus quality cleanup (the duplicate scope helper, two stale tests, entity dedup normalization and the 7-layer metadata, 421 plus 17 passed). A follow-up test commit `ea6b2ba179` then added the dedicated B4 surrogate index-time, B5 contextual-tree header and C strict-schema tests, and a migration commit `bd2c8e4085` re-parented the post-phase-6 phases under their relevant parents. Six isolation and harness artifacts were excluded as not bugs. The fixes are verified per cluster and landed on the 028 review-branch mainline, authored in the worktree wt/0008. The validation and the remediation both record their before-and-after in [`before-vs-after.md`](./before-vs-after.md) Section 10.
 
-On 2026-06-26 the 012 playbook-findings remediation underwent a 20-iteration deep review that surfaced 14 P0, 69 P1 and 84 P2, where the 6 distinct P0 were fixed and committed earlier in the session. The operator then fixed the live memory-search under-surfacing the user reported, a query that returned 1 spec folder where many matched, plus the deep-review P1 backlog. The search fix landed in three commits, trigger-lane promotion into the surfaced results plus a display floor of 10 plus compact-overflow materialization plus a z_future exclusion in the folder-discovery listing plus empty-string-filter and retrievalLevel validation guards (`3b39f45e88`), an envelope-level floor that renders budget overflow as compact rows instead of deleting them (`ed523a2850`) and a gap-truncation test alignment to the new floor (`7868e35db6`). Live memory_search went from 1 result to 6, 1 full plus 5 compact, after a dist rebuild and daemon restart. The P1 backlog was then remediated per area with operator verification. Code-graph (6) were all already resolved by the committed gating. Advisor (14) sanitized the derived routing fields trigger_phrases key_topics and entities plus made writeBoundedJsonl an atomic bounded append plus guarded the fire-and-forget hook persists plus preserved rollback lifecycle fields (`ff01f38f6e`). Spec-kit (41) shipped the eval DB-path-by-value plus a BM25 sync guard plus the QUALITY_FLOOR doc honesty (`01ec95899f`) and three deferred fixes the operator re-did with tests after the gpt-5.5 dispatches timed out, storing query surrogates under their own SPECKIT_QUERY_SURROGATES gate (`47014af131`), reconciling re-parent moves so a reorg repoints rows instead of dropping embeddings (`3c8e9c7dec`) and making the retrievalLevel global branch honor the SPECKIT_DUAL_RETRIEVAL kill switch and archived-deny and constitutional injection (`579f9ecda6`). The specs-docs findings de-polluted parentChain in 11 description.json regenerated with the wrong basePath (`f0e803ffc0`) and corrected four false claims across the 012 remediation docs, the merge state and the E5/F5 bench misattribution and the F1c rebind misattribution and the sanitizer scope (`ec7adba84f`). A worthwhile-P2 pass restored the four missing children_ids 041 through 044 on the 002-spec-data-quality phase parent (`267c1468f6`). All commits landed on the 028 review-branch mainline and were pushed. Two pre-existing carry-overs stayed open, a degraded local embedding provider with its retry circuit breaker open that blocked the parentChain index refresh and a deferred validate.sh global-index-reconciliation preventive. This work and its corrections are recorded in [`before-vs-after.md`](./before-vs-after.md) Section 11.
+On 2026-06-26 the 012 playbook-findings remediation underwent a 20-iteration deep review that surfaced 14 P0, 69 P1 and 84 P2, where the 6 distinct P0 were fixed and committed earlier in the session. The operator then fixed the live memory-search under-surfacing the user reported, a query that returned 1 spec folder where many matched, plus the deep-review P1 backlog. The search fix landed in three commits, trigger-lane promotion into the surfaced results plus a display floor of 10 plus compact-overflow materialization plus a z_future exclusion in the folder-discovery listing plus empty-string-filter and retrievalLevel validation guards (`580a45c93b`), an envelope-level floor that renders budget overflow as compact rows instead of deleting them (`51b11a44d8`) and a gap-truncation test alignment to the new floor (`e648e45c24`). Live memory_search went from 1 result to 6, 1 full plus 5 compact, after a dist rebuild and daemon restart. The P1 backlog was then remediated per area with operator verification. Code-graph (6) were all already resolved by the committed gating. Advisor (14) sanitized the derived routing fields trigger_phrases key_topics and entities plus made writeBoundedJsonl an atomic bounded append plus guarded the fire-and-forget hook persists plus preserved rollback lifecycle fields (`e20cbc4865`). Spec-kit (41) shipped the eval DB-path-by-value plus a BM25 sync guard plus the QUALITY_FLOOR doc honesty (`4587036bb7`) and three deferred fixes the operator re-did with tests after the gpt-5.5 dispatches timed out, storing query surrogates under their own SPECKIT_QUERY_SURROGATES gate (`3f4e82c3bc`), reconciling re-parent moves so a reorg repoints rows instead of dropping embeddings (`326cc08764`) and making the retrievalLevel global branch honor the SPECKIT_DUAL_RETRIEVAL kill switch and archived-deny and constitutional injection (`e1b3e8336a`). The specs-docs findings de-polluted parentChain in 11 description.json regenerated with the wrong basePath (`4a3262c4cf`) and corrected four false claims across the 012 remediation docs, the merge state and the E5/F5 bench misattribution and the F1c rebind misattribution and the sanitizer scope (`890cc3a1b7`). A worthwhile-P2 pass restored the four missing children_ids 041 through 044 on the 002-spec-data-quality phase parent (`79e9bcea01`). All commits landed on the 028 review-branch mainline and were pushed. Two pre-existing carry-overs stayed open, a degraded local embedding provider with its retry circuit breaker open that blocked the parentChain index refresh and a deferred validate.sh global-index-reconciliation preventive. This work and its corrections are recorded in [`before-vs-after.md`](./before-vs-after.md) Section 11.
 
 On 2026-06-27 a 50-iteration multi-model drift audit of packet 028 converged 175 findings (6 P0, 91 P1, 78 P2), each an LLM hypothesis carrying file:line evidence, and a remediation pass then drove every one to a terminal state. gpt-5.5-fast high implemented the fixes while opus triaged each finding REAL-or-false-positive against the cited file and re-read the real file after every fix rather than trusting the implementer's self-report. The ledger reached 130 fixed-verified plus 45 false-positive, the false-positives caught before any wasted edit — generic test-fixture model ids in the frozen deep-loop runtime, historically-accurate changelogs, hallucinated references, and by-design states such as review-record packets waiving docs. The fixes spanned six phases: the P0 doctor-route, causal-graph DB-path and codex-pin corrections; the `context-index.sqlite` canonicalization and the 39/9/8 tool-count sweep; the opencode-go gateway purge down to its last straggler, the matrix-adapter default model; the agent and command tool-grant reconciliation across .claude/.opencode/.codex; the graph-metadata path normalization to the repo-relative invariant plus the phase-parent `migrated`/`level` metadata; and the env-var documentation, code/doc drift and CI drift-guard work. A captured baseline confirmed zero regressions — the one failing test was a pre-existing gate-3 case from the deep-loop merge. The drift-remediation packet was then nested under the release-cleanup track as `000/013-drift-remediation`, with the per-finding ledger as its source of truth, and the arc is recorded in [`before-vs-after.md`](./before-vs-after.md) Section 12 and the [013 changelog](./changelog/001-release-cleanup/changelog-000-013-drift-remediation.md).
 
 On 2026-06-29 the `mk_code_index` Code Graph MCP server failed to reconnect with `-32000`, and the investigation found a daemon-wedge class the launcher could not self-heal. The daemon had crashed uncleanly, leaving two orphaned processes alive at 0% CPU that had never re-created their IPC socket `/tmp/mk-code-index/daemon-ipc.sock`, a vanished owner-lease file, and a 17 MB orphaned WAL with no holder while the DB itself was integrity-ok. The root cause was bidimensional liveness — the launcher decides a daemon is healthy from `process.kill(pid,0)` plus a launcher-written heartbeat with zero socket-health correlation, so a PID-alive-but-socket-dead daemon classifies as a held owner and the no-bridge-socket branch reports inert instead of respawning. Manual recovery killed the orphans, ran `wal_checkpoint(TRUNCATE)` to drop the 17 MB stale WAL, and cleaned the socket dir, after which `/mcp` reconnected cleanly. A 10-iteration GLM-5.2 max-thinking deep research then converged a hardening design: make liveness tridimensional (PID-alive AND socket-serving AND heartbeat-fresh) by reusing the existing `probeDaemon({deepProbe:true})` UDS probe, add a `live-but-dead-socket` reclaimable state, route a socketless live owner into the existing reap-and-respawn pipeline past a startup grace window keyed on a new `childSpawnedAtIso` so a still-starting daemon is never killed, add startup WAL hygiene (an over-threshold `wal_checkpoint(TRUNCATE)` plus a `wal_autocheckpoint` cap), a crash-surviving daemon-pid registry with one-shot self-heal-on-acquire, uid and PID-identity guards so no foreign-owned or PID-reuse process is ever signalled, and a single `LAUNCHER_DIAGNOSTIC` line per failure exit. The design and its deterministic wedge-simulation test plan are captured in the new `system-code-graph/001-code-graph-core/009-daemon-reclaim-hardening` phase with its `research/research.md`, scoped to the launcher with no change to code-graph query or scan semantics.
 
-On 2026-07-01 a gpt-5.5-fast (high) cli-opencode drift audit of the whole 028-memory-search-intelligence packet surfaced 75 findings across 63 files, 24 confirmed high or critical drift and bug issues independently re-verified against real files plus 51 unverified medium and low findings from a single sweep pass, and phase `008-drift-audit-remediation` drove every one to a fixed state. The real edits ran inside a git worktree isolated from the live repo, `028-deep-research-wt` cut from HEAD `aca0f7eb8b`, MiMo v2.5 Pro Hyperspeed fixing and gpt-5.5-fast (high) independently re-verifying by reading the post-edit files fresh rather than trusting the fix report, and 42 unique directories were corrected this way with 36 resolved cleanly after one retry round. Six needed a direct manual finish because large multi-section docs repeated the same stale claim deeper in their acceptance-criteria, success-criteria or NFR sections that the automated pass missed the first time, and a verify-logic bug was caught along the way, the verify step had wrongly treated a fix agent's zero-files-changed report as automatically resolved even where confirmed findings still needed real edits, letting 11 directories silently slip through as false resolved until a cross-check against the original findings data caught them and gave them the same manual-fix treatment as the six genuinely-partial ones. Four of the findings were code-gap claims where docs claimed shipped code the audit could not find in the current tree, and 008 correctly verified all four as GENUINELY_ABSENT from the tree without yet having the fuller git history, the changes synced back to the live tree by rsync with a file-by-file diff confirming zero drift, 008 itself 100 percent documentation and metadata with zero application code touched. Phase `009-drift-audit-deep-history-correction` then went further at the operator's request and found the fuller truth behind those four GENUINELY_ABSENT verdicts, three Explore and two Plan deep-research agents with every commit hash and claim independently re-verified showing all four features had actually been built, shadow-shipped, benchmarked against real data and deliberately deleted for cause rather than simply never built. The summary and community fusion lane shipped as two shadow lanes then was rejected at Recall@20 -0.036 for being displacement-only, the seeded-PPR code-graph ranking is the one the operator chose to revisit in 010, the C4 shadow-weight promoter (`shadow-weight-promoter.ts`, 339 lines, committed `10c5b61493` alongside `beta-reliability.ts`) was deleted at `8efcde0e6b`, the same commit that removed its only consumer below, and sits blocked separately on an unresolved daemon-reload-semantics question independent of that deletion, and the outcome-weighted ranking store-and-rerank pair (`skill-outcome-store.ts` at 364 lines and `outcome-weighted-rerank.ts` at 124 lines, built `03d0b01eb6`, wired live-adjacent at `09626fc921`, deleted at that same `8efcde0e6b`) measured, in its own delete-commit, an MRR delta of +0.005 to +0.008 against a noise band with a standard deviation of 0.0237, four times larger, and a right-skill@3 of 0.000 across all 90 runs, structurally inert despite being fully wired and the strongest negative result of the four, with the operator explicitly deciding not to revive it. That correction also fixed two places where 008's own pass-1 notes had wrongly said the C4 and outcome-weighted code was never committed when git history shows both were committed then later deleted, and it caught two self-contradictions its own first automated correction pass had left behind, stale no-benchmark-exists and rollback-by-flag language in the seeded-PPR docs and stale never-delivered language in the outcome-weighted docs, both fixed by direct manual edit. Both phases are recorded in [`before-vs-after.md`](./before-vs-after.md) Section 14 and the [028 root changelog](./changelog/changelog-028-root.md). On 2026-07-04 both were re-nested under their data-quality subject parent and renumbered — `008` to `002-spec-data-quality/045-drift-audit-remediation` and `009` to `002-spec-data-quality/046-drift-audit-deep-history-correction`.
+On 2026-07-01 a gpt-5.5-fast (high) cli-opencode drift audit of the whole 028-memory-search-intelligence packet surfaced 75 findings across 63 files, 24 confirmed high or critical drift and bug issues independently re-verified against real files plus 51 unverified medium and low findings from a single sweep pass, and phase `008-drift-audit-remediation` drove every one to a fixed state. The real edits ran inside a git worktree isolated from the live repo, `028-deep-research-wt` cut from HEAD `3b0497f812`, MiMo v2.5 Pro Hyperspeed fixing and gpt-5.5-fast (high) independently re-verifying by reading the post-edit files fresh rather than trusting the fix report, and 42 unique directories were corrected this way with 36 resolved cleanly after one retry round. Six needed a direct manual finish because large multi-section docs repeated the same stale claim deeper in their acceptance-criteria, success-criteria or NFR sections that the automated pass missed the first time, and a verify-logic bug was caught along the way, the verify step had wrongly treated a fix agent's zero-files-changed report as automatically resolved even where confirmed findings still needed real edits, letting 11 directories silently slip through as false resolved until a cross-check against the original findings data caught them and gave them the same manual-fix treatment as the six genuinely-partial ones. Four of the findings were code-gap claims where docs claimed shipped code the audit could not find in the current tree, and 008 correctly verified all four as GENUINELY_ABSENT from the tree without yet having the fuller git history, the changes synced back to the live tree by rsync with a file-by-file diff confirming zero drift, 008 itself 100 percent documentation and metadata with zero application code touched. Phase `009-drift-audit-deep-history-correction` then went further at the operator's request and found the fuller truth behind those four GENUINELY_ABSENT verdicts, three Explore and two Plan deep-research agents with every commit hash and claim independently re-verified showing all four features had actually been built, shadow-shipped, benchmarked against real data and deliberately deleted for cause rather than simply never built. The summary and community fusion lane shipped as two shadow lanes then was rejected at Recall@20 -0.036 for being displacement-only, the seeded-PPR code-graph ranking is the one the operator chose to revisit in 010, the C4 shadow-weight promoter (`shadow-weight-promoter.ts`, 339 lines, committed `7cd16f70fa` alongside `beta-reliability.ts`) was deleted at `6b99eb68d2`, the same commit that removed its only consumer below, and sits blocked separately on an unresolved daemon-reload-semantics question independent of that deletion, and the outcome-weighted ranking store-and-rerank pair (`skill-outcome-store.ts` at 364 lines and `outcome-weighted-rerank.ts` at 124 lines, built `3682ec59da`, wired live-adjacent at `f3a1231c66`, deleted at that same `6b99eb68d2`) measured, in its own delete-commit, an MRR delta of +0.005 to +0.008 against a noise band with a standard deviation of 0.0237, four times larger, and a right-skill@3 of 0.000 across all 90 runs, structurally inert despite being fully wired and the strongest negative result of the four, with the operator explicitly deciding not to revive it. That correction also fixed two places where 008's own pass-1 notes had wrongly said the C4 and outcome-weighted code was never committed when git history shows both were committed then later deleted, and it caught two self-contradictions its own first automated correction pass had left behind, stale no-benchmark-exists and rollback-by-flag language in the seeded-PPR docs and stale never-delivered language in the outcome-weighted docs, both fixed by direct manual edit. Both phases are recorded in [`before-vs-after.md`](./before-vs-after.md) Section 14 and the [028 root changelog](./changelog/changelog-028-root.md). On 2026-07-04 both were re-nested under their data-quality subject parent and renumbered — `008` to `002-spec-data-quality/045-drift-audit-remediation` and `009` to `002-spec-data-quality/046-drift-audit-deep-history-correction`.
 
-On 2026-07-01 phase `system-code-graph/001-code-graph-core/010-edge-confidence-and-ppr-revisit` acted on the one explicit revisit signal in the packet's own record, the original seeded-PPR benchmark had called its cut not a refute of PPR as an algorithm but a verdict on this substrate because every CALLS edge carried identical confidence, 0.8 INFERRED heuristic, giving PPR nothing to differentiate on and leaving it tied exactly with the flat walk at delta 0.0000 on every metric at every K. The phase built real per-edge confidence differentiation for CALLS edges behind a new default-off flag, `SPECKIT_CODE_GRAPH_EDGE_CONFIDENCE_DIFFERENTIATION`, reusing the resolved, ambiguous-skipped and unresolved classification that `cross-file-edge-resolver.ts` already computed for every cross-file CALLS edge but had been discarding after using it only to rewrite target_id, cross-file resolved edges now scoring 0.9 EXTRACTED, cross-file ambiguous 0.3 AMBIGUOUS, same-file single-candidate 0.75 INFERRED and same-file multi-candidate 0.35 AMBIGUOUS, with the flag off every edge still landing on the same constant 0.8 INFERRED as before, proven byte-identical by the existing code-graph vitest suite passing identically via a genuine stash-and-pop comparison. The deleted seeded-PPR module, `computeBoundedPersonalizedPageRank` and its supporting code introduced at `657a0f6a3e` and deleted at `277c35344c`, was recovered byte-for-byte from git history and rewired through the existing `contextEdgeReliability` blend to consume the new differentiated confidence, catching one real deviation along the way, the first recovery pass had swapped the module's dynamic import of the Memory MCP's compiled walker for a local reimplementation because the dist output was missing from the isolation worktree, a violation of this packet's own ADR-001 against standing up a second graph-walk engine, caught by diffing imports against the pre-deletion original via `git show` and fixed by building the missing dist output and restoring the real shared-substrate import. A fresh full-repo reindex with the flag on landed four distinct confidence values in the live database in place of the uniform 0.8, 892 edges at 0.3, 2267 at 0.35, 16198 at 0.75 and 2838 at 0.9, and the original unmodified `seeded-ppr-impact-benchmark.mjs` harness was re-run against the same 20 labeled queries and the same 0.5-to-0.95 damping sweep with both flags on. The verdict widened rather than reversed the cut, with a real confidence gradient PPR no longer tied the flat walk, it now lost on every metric, precision@3 -0.10, precision@5 -0.04 to -0.06, precision@8 -0.031 to -0.038, recall@3 through recall@8 -0.01 to -0.05, nDCG@3 -0.057, nDCG@5 -0.04 and nDCG@8 -0.03, with the best damping value in the sweep only tying flat nDCG@5 and every other value tested worse, so giving PPR a real gradient to differentiate on made it perform worse than the uniform-weight tie rather than better. Both the new confidence flag and the recovered PPR flag stay default-off with no production behavior changed, verified by a clean `tsc --noEmit` before and after the ADR-001 fix, the existing code-graph vitest suite regression-proven at the same pre-existing baseline with zero new failures via a real stash-and-pop, the recovered module's own 9 unit tests across 2 files passing, and a real fresh reindex plus a real benchmark run rather than a simulated one. This closes the open question the original benchmark record left open, both 009 and 010 pass `validate.sh --strict` at 0 errors and 0 warnings, and nothing above is committed yet, every change is an uncommitted diff in the live tree pending operator review, recorded in [`before-vs-after.md`](./before-vs-after.md) Section 14 and the [010 changelog](../../system-code-graph/001-code-graph-core/010-edge-confidence-and-ppr-revisit/implementation-summary.md).
+On 2026-07-01 phase `system-code-graph/001-code-graph-core/010-edge-confidence-and-ppr-revisit` acted on the one explicit revisit signal in the packet's own record, the original seeded-PPR benchmark had called its cut not a refute of PPR as an algorithm but a verdict on this substrate because every CALLS edge carried identical confidence, 0.8 INFERRED heuristic, giving PPR nothing to differentiate on and leaving it tied exactly with the flat walk at delta 0.0000 on every metric at every K. The phase built real per-edge confidence differentiation for CALLS edges behind a new default-off flag, `SPECKIT_CODE_GRAPH_EDGE_CONFIDENCE_DIFFERENTIATION`, reusing the resolved, ambiguous-skipped and unresolved classification that `cross-file-edge-resolver.ts` already computed for every cross-file CALLS edge but had been discarding after using it only to rewrite target_id, cross-file resolved edges now scoring 0.9 EXTRACTED, cross-file ambiguous 0.3 AMBIGUOUS, same-file single-candidate 0.75 INFERRED and same-file multi-candidate 0.35 AMBIGUOUS, with the flag off every edge still landing on the same constant 0.8 INFERRED as before, proven byte-identical by the existing code-graph vitest suite passing identically via a genuine stash-and-pop comparison. The deleted seeded-PPR module, `computeBoundedPersonalizedPageRank` and its supporting code introduced at `a4bcf4bf16` and deleted at `9af8cca8cb`, was recovered byte-for-byte from git history and rewired through the existing `contextEdgeReliability` blend to consume the new differentiated confidence, catching one real deviation along the way, the first recovery pass had swapped the module's dynamic import of the Memory MCP's compiled walker for a local reimplementation because the dist output was missing from the isolation worktree, a violation of this packet's own ADR-001 against standing up a second graph-walk engine, caught by diffing imports against the pre-deletion original via `git show` and fixed by building the missing dist output and restoring the real shared-substrate import. A fresh full-repo reindex with the flag on landed four distinct confidence values in the live database in place of the uniform 0.8, 892 edges at 0.3, 2267 at 0.35, 16198 at 0.75 and 2838 at 0.9, and the original unmodified `seeded-ppr-impact-benchmark.mjs` harness was re-run against the same 20 labeled queries and the same 0.5-to-0.95 damping sweep with both flags on. The verdict widened rather than reversed the cut, with a real confidence gradient PPR no longer tied the flat walk, it now lost on every metric, precision@3 -0.10, precision@5 -0.04 to -0.06, precision@8 -0.031 to -0.038, recall@3 through recall@8 -0.01 to -0.05, nDCG@3 -0.057, nDCG@5 -0.04 and nDCG@8 -0.03, with the best damping value in the sweep only tying flat nDCG@5 and every other value tested worse, so giving PPR a real gradient to differentiate on made it perform worse than the uniform-weight tie rather than better. Both the new confidence flag and the recovered PPR flag stay default-off with no production behavior changed, verified by a clean `tsc --noEmit` before and after the ADR-001 fix, the existing code-graph vitest suite regression-proven at the same pre-existing baseline with zero new failures via a real stash-and-pop, the recovered module's own 9 unit tests across 2 files passing, and a real fresh reindex plus a real benchmark run rather than a simulated one. This closes the open question the original benchmark record left open, both 009 and 010 pass `validate.sh --strict` at 0 errors and 0 warnings, and nothing above is committed yet, every change is an uncommitted diff in the live tree pending operator review, recorded in [`before-vs-after.md`](./before-vs-after.md) Section 14 and the [010 changelog](../../system-code-graph/001-code-graph-core/010-edge-confidence-and-ppr-revisit/implementation-summary.md).
 
-On 2026-07-03 three standalone packets that belonged inside 028 were adopted as phase children. `030-validate-sh-dist-freshness-and-repo-remediation`, `031-manual-playbook-execution-sweep` and `032-deep-review-followup-hardening` were moved under the packet by `git mv` as children `013`, `014` and `015`, slugs preserved and only the numeric prefix changed, dispatched to gpt-5.5-fast (high) in the live tree with identity metadata regenerated, in-spec self-references repointed and the parent phase map extended, committed `32aae18dc7` over a recovery baseline `d759b15311` that first tracked the previously-untracked 032.
+On 2026-07-03 three standalone packets that belonged inside 028 were adopted as phase children. `030-validate-sh-dist-freshness-and-repo-remediation`, `031-manual-playbook-execution-sweep` and `032-deep-review-followup-hardening` were moved under the packet by `git mv` as children `013`, `014` and `015`, slugs preserved and only the numeric prefix changed, dispatched to gpt-5.5-fast (high) in the live tree with identity metadata regenerated, in-spec self-references repointed and the parent phase map extended, committed `1a9bb12f33` over a recovery baseline `e466586894` that first tracked the previously-untracked 032.
 
-On 2026-07-03 a deep dive into the spec-kit memory search and retrieval stack — live production probing of the daemon, the CLI and the 1.3 GB index read-only plus eight parallel code audits over roughly 96,000 lines — surfaced about 150 defects whose two systemic classes were corpus rot and signal theater. Corpus rot was 37 percent dead-path rows from an unhealed `system-spec-kit` to `system-speckit` track rename, about 12,000 duplicate-content rows, a third of the corpus archived material still ranked as active, 43 percent of rows vector-invisible, 45 percent of trigger-phrase occurrences single junk words and 94 percent of the causal graph entity-linker `supports` noise. Signal theater was a large fraction of the ranking stack computed, reported applied in telemetry, then discarded before it could influence order — the default-on rescue layer overwriting every final score with `0.03·base + 0.78·lexical`, gates that never fire and dead scoring subsystems. Every P0, P1 and P2 was then planned as phased specs under a new phase-parent child `016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory` with thirteen dependency-ordered children, seven Level 3 and six Level 2, absorbing the Group-A flag cluster and the 006/002 and 006/004 pending scopes by operator decision, committed `88c4fb97d1` at fourteen of fourteen folders passing `validate.sh --strict`, with the recommended execution order leading with `011` daemon freshness rather than the numeric first.
+On 2026-07-03 a deep dive into the spec-kit memory search and retrieval stack — live production probing of the daemon, the CLI and the 1.3 GB index read-only plus eight parallel code audits over roughly 96,000 lines — surfaced about 150 defects whose two systemic classes were corpus rot and signal theater. Corpus rot was 37 percent dead-path rows from an unhealed `system-spec-kit` to `system-speckit` track rename, about 12,000 duplicate-content rows, a third of the corpus archived material still ranked as active, 43 percent of rows vector-invisible, 45 percent of trigger-phrase occurrences single junk words and 94 percent of the causal graph entity-linker `supports` noise. Signal theater was a large fraction of the ranking stack computed, reported applied in telemetry, then discarded before it could influence order — the default-on rescue layer overwriting every final score with `0.03·base + 0.78·lexical`, gates that never fire and dead scoring subsystems. Every P0, P1 and P2 was then planned as phased specs under a new phase-parent child `016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory` with thirteen dependency-ordered children, seven Level 3 and six Level 2, absorbing the Group-A flag cluster and the 006/002 and 006/004 pending scopes by operator decision, committed `96e6909aaa` at fourteen of fourteen folders passing `validate.sh --strict`, with the recommended execution order leading with `011` daemon freshness rather than the numeric first.
 
-On 2026-07-03 the 016 plan was audited by five fresh Opus reviewers reading the plans against the source findings and the live code, about eighty file:line claims verified, returning three REWORK verdicts on `002`, `008` and `009`, one changes-required on `013` and nine go-with-changes, and a thirteen-agent remediation pass then drove every finding to a fix. The load-bearing catch was a stale-tracker cascade, the three absorbed 006/002 items P1-2, P1-4 and P1-5 already fixed in live code with P1-4's target symbols `runSemanticEdgeEmbeddingPass` and `embedEdgeText` no longer existing tree-wide and P1-2's twin-identity test already shipping, so the deep dive had carried the old tracker's PENDING status forward without re-reading the code and all three were reclassified from P0 fixes to verify-first-then-close. The 002 shared active-row predicate was corrected, its NULL-tier guard restored and constitutional exclusion retained and its false FTS-and-BM25-do-not-filter premise rewritten as an explicit logic-sync decision on the graduated flag, the 001-to-002 ordering inversion was resolved by relaxing 001's completion gate to the SQL-level one-active-row-per-logical-key invariant, and eleven silent-drop findings plus an orphaned working-memory P1, including a real llm-reformulation prompt-injection security item, were routed to owning phases through a finding-level completeness table in `013`. The remediation committed `3cbb0a2652` with all fourteen folders passing `validate.sh --strict` on the canonical validator, the full review captured in [`001-speckit-memory/031-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/research/plan-review-report.md`](./002-speckit-memory/041-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/research/plan-review-report.md). The 016 program is planned, reviewed and remediated but not yet implemented.
+On 2026-07-03 the 016 plan was audited by five fresh Opus reviewers reading the plans against the source findings and the live code, about eighty file:line claims verified, returning three REWORK verdicts on `002`, `008` and `009`, one changes-required on `013` and nine go-with-changes, and a thirteen-agent remediation pass then drove every finding to a fix. The load-bearing catch was a stale-tracker cascade, the three absorbed 006/002 items P1-2, P1-4 and P1-5 already fixed in live code with P1-4's target symbols `runSemanticEdgeEmbeddingPass` and `embedEdgeText` no longer existing tree-wide and P1-2's twin-identity test already shipping, so the deep dive had carried the old tracker's PENDING status forward without re-reading the code and all three were reclassified from P0 fixes to verify-first-then-close. The 002 shared active-row predicate was corrected, its NULL-tier guard restored and constitutional exclusion retained and its false FTS-and-BM25-do-not-filter premise rewritten as an explicit logic-sync decision on the graduated flag, the 001-to-002 ordering inversion was resolved by relaxing 001's completion gate to the SQL-level one-active-row-per-logical-key invariant, and eleven silent-drop findings plus an orphaned working-memory P1, including a real llm-reformulation prompt-injection security item, were routed to owning phases through a finding-level completeness table in `013`. The remediation committed `2f8ca3ff81` with all fourteen folders passing `validate.sh --strict` on the canonical validator, the full review captured in [`001-speckit-memory/031-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/research/plan-review-report.md`](./002-speckit-memory/041-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/research/plan-review-report.md). The 016 program is planned, reviewed and remediated but not yet implemented.
 
-On 2026-07-04 the 016 program was implemented end to end, all thirteen phases in the strict execution order `011` then `001` through `010` then `012` then `013`, one phase at a time through a three-model dispatch chain — GPT-5.5-fast (high) implements inside an isolated git worktree, GPT-5.5-fast (xhigh) adversarially verifies every requirement against real file:line evidence, and Opus 4.8 final-verifies each fix as real code before integrating to main. Every first pass landed partial, from 8 percent to 92 percent complete, so the verify-then-remediate cycle was load-bearing rather than ceremonial. Phase `011` restored daemon freshness and health truthfulness (`d6e79a333d`). Phase `001` drained and healed the corpus, running the orphan-sweep, identity-heal and dedup migration on the live 1.4 GB database under an atomic backup, 33,728 rows to 22,599 with the one-active-row invariant clean (`4ae4ae1e96`). Phase `002` implemented the archived tier and tombstone read-exclusions across every channel through one shared active-row predicate, which required a full `memory_index` table rebuild under backup after the CHECK constraint rejected the new tier, an operator-decided fork (`8142e1dae3`). Phases `003` through `007` shipped content-hash dedup lanes (`b9400b1d56`), embedding coverage and vector-shard consistency (`289f5d57b5`), trigger-phrase quality with matcher guards (`23f5583ad3`), the eval-production-parity harness and benchmarkable rescue authority (`9d5e4901b9`), and the ranking filter-bypass and score-scale unification (`ab4c46cd56`) — the last of which also caught and fixed a `db-state` circular-import temporal-dead-zone bug that would have crashed the daemon on its next restart, invisible to `tsc` and the unit suites because it only fires at real module-load time. Phase `008` down-weighted the 31,644 entity-linker `supports` edges that were 94 percent of the causal graph from strength 0.7 to 0.05 in place and regenerated 3,787 placeholder surrogate titles, both applied to the live corpus under backup after a full-clone copy-test (`bf44d13752`). Phase `009` repaired sixteen learning-feedback-loop defects and added two operator-gated maintenance tools, taking the MCP surface from 39 to 41 (`92bbca7a25`). Phase `010` batched and cached the search hot path (`d17b0d7b99`), phase `012` collapsed the double-cased envelope and closed a cursor-scope tenant leak while aligning the drifted command docs across both command trees behind a new byte-parity validate rule (`a24517e016`), and phase `013` closed the program's books, absorbing the 006/002, 006/004 and ex-031 trackers and reconstructing the unrecoverable 91-item P2 map (`64242b5e58`, `6e9132a6ec`).
+On 2026-07-04 the 016 program was implemented end to end, all thirteen phases in the strict execution order `011` then `001` through `010` then `012` then `013`, one phase at a time through a three-model dispatch chain — GPT-5.5-fast (high) implements inside an isolated git worktree, GPT-5.5-fast (xhigh) adversarially verifies every requirement against real file:line evidence, and Opus 4.8 final-verifies each fix as real code before integrating to main. Every first pass landed partial, from 8 percent to 92 percent complete, so the verify-then-remediate cycle was load-bearing rather than ceremonial. Phase `011` restored daemon freshness and health truthfulness (`40b26e3d9c`). Phase `001` drained and healed the corpus, running the orphan-sweep, identity-heal and dedup migration on the live 1.4 GB database under an atomic backup, 33,728 rows to 22,599 with the one-active-row invariant clean (`3d8507329c`). Phase `002` implemented the archived tier and tombstone read-exclusions across every channel through one shared active-row predicate, which required a full `memory_index` table rebuild under backup after the CHECK constraint rejected the new tier, an operator-decided fork (`91b9cbb7b5`). Phases `003` through `007` shipped content-hash dedup lanes (`9ddc2f2802`), embedding coverage and vector-shard consistency (`95843073c9`), trigger-phrase quality with matcher guards (`9d5d5380aa`), the eval-production-parity harness and benchmarkable rescue authority (`a41fb67ca3`), and the ranking filter-bypass and score-scale unification (`c9036ede84`) — the last of which also caught and fixed a `db-state` circular-import temporal-dead-zone bug that would have crashed the daemon on its next restart, invisible to `tsc` and the unit suites because it only fires at real module-load time. Phase `008` down-weighted the 31,644 entity-linker `supports` edges that were 94 percent of the causal graph from strength 0.7 to 0.05 in place and regenerated 3,787 placeholder surrogate titles, both applied to the live corpus under backup after a full-clone copy-test (`dce35e1b37`). Phase `009` repaired sixteen learning-feedback-loop defects and added two operator-gated maintenance tools, taking the MCP surface from 39 to 41 (`7b4c721f43`). Phase `010` batched and cached the search hot path (`51b63d8bcb`), phase `012` collapsed the double-cased envelope and closed a cursor-scope tenant leak while aligning the drifted command docs across both command trees behind a new byte-parity validate rule (`f064e40582`), and phase `013` closed the program's books, absorbing the 006/002, 006/004 and ex-031 trackers and reconstructing the unrecoverable 91-item P2 map (`2993c98725`, `872ac27994`).
 
 The verification model was the story of the run. Independent adversarial review caught, at every phase, defects that a green build and green tests hid — a non-working memoization that the test proved still made two embedding calls and an envelope single-serialization that was never implemented (phase `010`), a cursor tenant leak where the resolve path still trusted the client-supplied offset plus two genuinely failing suites the implementer's narrower self-report had masked (phase `012`), and FK-dangling plus index-loss that copy-testing the migrations on a full corpus clone caught before any live apply (phase `008`). Phases `010` and `012` used three parallel GPT-5.5 (xhigh) reviewers split by concern, gates then code-gaps then mechanism, which localized each surviving defect more precisely than one sequential pass would have. The whole program passed recursive `validate.sh --strict` at fourteen of fourteen, the 016 parent plus all thirteen children, and every phase was committed and pushed on branch `system-speckit/028-memory-search-intelligence`. The one honest caveat is deployment: the code effects for `001` through `012` and a set of live-measurement gates — the phase `010` sub-800ms p50 benchmark, the phase `012` sub-6KB envelope byte capture, the phase `004` embedding reconcile, the `006`/`007` eval deltas, the phase `009` trackAccess production-enablement decision, and the phase `013` memory-index of the closeout — are daemon-side captures that apply when the daemon next leases up, documented rather than faked, since the daemon socket was down during the run. The `028/006` and `028` parents were rolled up to the absorbed and complete state, and the per-phase changelogs, the module READMEs and this timeline were aligned to the shipped reality.
 

@@ -2,9 +2,9 @@
 
 **Date:** 2026-09-11
 **Verifier:** Opus 5 (`claude-opus-5`)
-**Under review:** `77898f7776` (34 findings, one dispatch per file) and `62d4e1e293` (doctrine pass,
+**Under review:** `9f5dcdf94f` (34 findings, one dispatch per file) and `1f46850345` (doctrine pass,
 46 text elements repointed off `soft`).
-**Baseline compared against:** `7b97ce1a16`.
+**Baseline compared against:** `2dc62a071b`.
 
 **How I rendered.** Every changed `.html` was rendered fresh from the working tree at HEAD:
 

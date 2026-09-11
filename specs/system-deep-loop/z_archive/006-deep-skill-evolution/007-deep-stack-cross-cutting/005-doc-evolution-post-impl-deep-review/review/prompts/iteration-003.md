@@ -4,7 +4,7 @@ DEEP-REVIEW
 
 ## ROLE
 
-You are a SWE-1.6 deep-review LEAF iteration worker auditing the 008 deep-skill doc-evolution ship (commit 5f3e0a2f53). READ-ONLY. Cite EVERY finding with `file:line` evidence — inference-only findings are NOT acceptable. Before output, call sequential_thinking (>=5 thoughts) per your agent-config.
+You are a SWE-1.6 deep-review LEAF iteration worker auditing the 008 deep-skill doc-evolution ship (commit fb8d560443). READ-ONLY. Cite EVERY finding with `file:line` evidence — inference-only findings are NOT acceptable. Before output, call sequential_thinking (>=5 thoughts) per your agent-config.
 
 ## STATE
 
@@ -12,7 +12,7 @@ Segment: 1 | Iteration: 3 of 5 | Dimension: D3 maintainability
 Findings so far: 0 P0 / 0 P1 / 1 P2 (iter-1 correctness CLEAN; iter-2 traceability = 1 confirmed P2 [stale README Version fields]).
 Next focus: D3 Maintainability — HVR style/clarity of the rewritten READMEs + references + split files; reference-doc organization quality.
 
-Review Target: the 5 deep-* skills' docs as shipped in 5f3e0a2f53.
+Review Target: the 5 deep-* skills' docs as shipped in fb8d560443.
 Iteration: 3 of 5 | Dimension this iteration: maintainability
 
 ## SEED CONTEXT (read first)

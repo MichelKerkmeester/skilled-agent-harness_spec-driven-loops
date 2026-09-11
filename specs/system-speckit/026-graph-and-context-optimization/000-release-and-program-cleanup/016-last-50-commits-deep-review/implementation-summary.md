@@ -50,7 +50,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-A read-only deep-review findings report over the last 50 commits (git range `a9e9bdb0a5^..HEAD`, HEAD `12de3d3a7e`). The review ran 20 iterations across 9 research angles using native `@deep-review` (opus) with parallel fan-out by angle and a dedicated adversarial verification round. The verdict is **CONDITIONAL**: 0 P0, 3 actionable P1 (all recoverable / process-level), and ~17 P2 advisories. No reviewed source code was modified.
+A read-only deep-review findings report over the last 50 commits (git range `fd67ede05f^..HEAD`, HEAD `3923a65db1`). The review ran 20 iterations across 9 research angles using native `@deep-review` (opus) with parallel fan-out by angle and a dedicated adversarial verification round. The verdict is **CONDITIONAL**: 0 P0, 3 actionable P1 (all recoverable / process-level), and ~17 P2 advisories. No reviewed source code was modified.
 
 ### Verdict and findings by severity
 
@@ -80,7 +80,7 @@ A fourth item, **F-CC-01**, is a recorded process/coverage gap (the security pas
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-1. **Inventory + angle seeding.** Confirmed the range `a9e9bdb0a5^..HEAD` (HEAD `12de3d3a7e`) and defined nine research angles: A1 launcher/IPC concurrency, A2 memory-write/async-enrichment, A3 causal/relation-inference, A4 shutdown/lifecycle, A5 security/input, A6 test-integrity, A7 MCP-contract, A8 config/gemini-removal, A9 docs/changelog accuracy (iter-1).
+1. **Inventory + angle seeding.** Confirmed the range `fd67ede05f^..HEAD` (HEAD `3923a65db1`) and defined nine research angles: A1 launcher/IPC concurrency, A2 memory-write/async-enrichment, A3 causal/relation-inference, A4 shutdown/lifecycle, A5 security/input, A6 test-integrity, A7 MCP-contract, A8 config/gemini-removal, A9 docs/changelog accuracy (iter-1).
 2. **Parallel angle passes.** Native `@deep-review` (opus) fanned out the angle passes (iter-2 to iter-10), each generating candidate findings backed by direct reads of HEAD source rather than inference.
 3. **Adversarial verification.** Every candidate P1 went through a skeptic round whose job was to disprove it by re-reading HEAD (iter-11 to iter-15). Round-2 passes downgraded 4 of 5 candidate P1s, and several seeded P0 hypotheses were refuted outright (lease-CAS reclaim TOCTOU, "no final WAL checkpoint," fan-out non-zero-exit-as-success, validator entry-guard "bypass," `backfillJob.implemented=false" dishonesty, launcher socketPath race, code-index missing owner-lease, and the async-enrichment cluster).
 4. **Deepen + synthesize.** Latent items were deepened (iter-16 to iter-18), cross-cutting synthesis raised the F-X19-01/02 keystone findings (iter-19), and a completeness critic closed the IDOR/scope coverage gap (iter-20, F-CC-01).

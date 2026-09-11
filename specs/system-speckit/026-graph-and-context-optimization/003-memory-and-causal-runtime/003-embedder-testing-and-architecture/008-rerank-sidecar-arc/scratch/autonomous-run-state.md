@@ -13,7 +13,7 @@ trigger_phrases: []
 - **Orchestrator**: Claude Code (main agent)
 - **Executor**: cli-codex (gpt-5.5 high fast, workspace-write, approval=never)
 - **Plan**: /Users/michelkerkmeester/.claude/plans/analyze-users-michelkerkmeester-mega-dev-shimmering-tome.md
-- **Baseline commit (pre-arc)**: `9d469b4e8c63875505d84db10b896fd8655462fa`
+- **Baseline commit (pre-arc)**: `61932e5c1704ec919f801b053e1f3c0eb9a67760`
 - **Baseline branch**: `main`
 
 ## Pre-flight verification (2026-05-20T14:45 — complete)

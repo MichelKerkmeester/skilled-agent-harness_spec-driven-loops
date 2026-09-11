@@ -19,7 +19,7 @@ contextType: "implementation"
 
 ### Summary
 
-The memory learning loop had sixteen ways to learn the wrong thing and this phase closes all of them. Cache-hit access tracking updates access metadata on the cached search path when a caller opts in, with the production default off. FSRS `last_review` is written in one ISO-8601 UTC format everywhere. The learned-term cap ignores expired terms so a memory whose eight terms are all stale can still learn. Batch learning aggregates in SQL, treats a `query_reformulated` signal as negative and is idempotent. Auto-promotion gained demotion with hysteresis, a per-memory throttle and batched negative-count fetches. All seven feedback ledgers gained age-based sweeps that are dry-run by default and never delete inside an active shadow window. Two new gated `/memory:manage` maintenance tools were added. Shipped in `92bbca7a25`.
+The memory learning loop had sixteen ways to learn the wrong thing and this phase closes all of them. Cache-hit access tracking updates access metadata on the cached search path when a caller opts in, with the production default off. FSRS `last_review` is written in one ISO-8601 UTC format everywhere. The learned-term cap ignores expired terms so a memory whose eight terms are all stale can still learn. Batch learning aggregates in SQL, treats a `query_reformulated` signal as negative and is idempotent. Auto-promotion gained demotion with hysteresis, a per-memory throttle and batched negative-count fetches. All seven feedback ledgers gained age-based sweeps that are dry-run by default and never delete inside an active shadow window. Two new gated `/memory:manage` maintenance tools were added. Shipped in `7b4c721f43`.
 
 ### Added
 

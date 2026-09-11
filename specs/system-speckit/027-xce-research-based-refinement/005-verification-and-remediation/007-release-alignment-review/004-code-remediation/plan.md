@@ -140,7 +140,7 @@ File-disjoint fixer fleet — only seats that own confirmed findings get a fixer
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: A merged edit changes behavior, or tsc/hygiene gate regresses vs baseline.
-- **Procedure**: Revert the scoped commit (`git revert 83f36b8050`); rebuild dist; re-run the gate to confirm clean baseline.
+- **Procedure**: Revert the scoped commit (`git revert 9c5d509038`); rebuild dist; re-run the gate to confirm clean baseline.
 
 
 <!-- /ANCHOR:rollback -->
@@ -186,7 +186,7 @@ Phase 1 (Setup + Baseline) ──> Phase 2 (Fixer Seats) ──> Phase 3 (Verify
 - [x] Diff-reviewed before merge
 
 ### Rollback Procedure
-1. **Immediate**: `git revert 83f36b8050` (scoped commit)
+1. **Immediate**: `git revert 9c5d509038` (scoped commit)
 2. **Rebuild**: `npm run build` to regenerate dist
 3. **Verify**: re-run tsc + hygiene gate to confirm clean baseline restored
 4. **Notify**: flag in the 027 epic handover if any regression surfaced

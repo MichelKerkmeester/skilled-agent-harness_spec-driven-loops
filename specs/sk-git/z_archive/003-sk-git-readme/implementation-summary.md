@@ -22,7 +22,7 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions:
-      - "No rewrite: the README is the phase-001 golden example, validates 0 issues, HVR-clean, all 9 cited paths resolve, unchanged since commit 70fb02a46c"
+      - "No rewrite: the README is the phase-001 golden example, validates 0 issues, HVR-clean, all 9 cited paths resolve, unchanged since commit feb82bb5f6"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary
