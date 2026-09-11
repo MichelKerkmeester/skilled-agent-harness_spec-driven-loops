@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Phase 2: format-decision"
-description: "[2-3 sentences: what this implements and the technical approach]"
+description: "Two lenses on one grammar: the research proposal, an adversarial review from a second model family, the repository as judge, and the operator as the final gate."
 trigger_phrases:
   - "implementation plan"
   - "technical approach"
@@ -23,13 +23,13 @@ contextType: "general"
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | Markdown decision record; git commands as evidence |
+| **Framework** | spec-kit decision-record template, five checks per decision |
+| **Storage** | decision-record.md |
+| **Testing** | Each reversed recommendation reproduced with a command by the conductor |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+The research grammar went to an Opus reviewer briefed to break it. Ten objections came back, each with a command or file line. The conductor wrote five decisions that keep what survived and replace what did not, and the operator approved them.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -38,14 +38,14 @@ contextType: "general"
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Tests passing (if applicable)
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -54,14 +54,15 @@ contextType: "general"
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Two lenses, one judge
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **Research synthesis**: the proposal
+- **Adversarial review**: the objections, with evidence
+- **Decision record**: what was kept, what was replaced, and why
 
 ### Data Flow
-[Brief description of how data moves through the system]
+Proposal in, objections in, repository measurements settle each, operator answers the two preference forks, decisions out.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -73,8 +74,7 @@ Use this section when `research_intent=fix_bug`, when planning from a deep-revie
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
+| none | decisions only | unchanged | no code changed |
 
 Required inventories:
 - Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
@@ -99,9 +99,9 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Unit | none | - |
+| Integration | none | - |
+| Manual | reversed recommendations reproduced | git, the commit-msg hook |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -111,7 +111,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| ../001-research/research/research.md | Internal | Green | No proposal to decide on |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -119,8 +119,8 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: a decision proves wrong in phase 003
+- **Procedure**: amend the decision record with a superseding entry; each decision names its own rollback
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -152,10 +152,10 @@ Phase 1.5 (Config) ───┘
 
 | Phase | Complexity | Estimated Effort |
 |-------|------------|------------------|
-| Setup | [Low/Med/High] | [e.g., 1-2 hours] |
-| Core Implementation | [Low/Med/High] | [e.g., 4-8 hours] |
-| Verification | [Low/Med/High] | [e.g., 1-2 hours] |
-| **Total** | | **[e.g., 6-12 hours]** |
+| Setup | Low | 10 minutes |
+| Core Implementation | Med | 1 hour |
+| Verification | Low | 20 minutes |
+| **Total** | | **about 90 minutes** |
 <!-- /ANCHOR:effort -->
 
 ---
@@ -164,19 +164,19 @@ Phase 1.5 (Config) ───┘
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Backup created (if data changes)
-- [ ] Feature flag configured
-- [ ] Monitoring alerts set
+- [x] Not applicable, no data changes
+- [x] Not applicable
+- [x] Not applicable
 
 ### Rollback Procedure
-1. [Immediate action - e.g., disable feature flag]
-2. [Revert code - e.g., git revert or redeploy previous version]
-3. [Verify rollback - e.g., smoke test critical paths]
-4. [Notify stakeholders - if user-facing]
+1. Add a superseding decision
+2. Nothing to revert in code
+3. Re-read the affected phase plan
+4. Resend the parent goal if a parent decision changed
 
 ### Data Reversal
-- **Has data migrations?** [Yes/No]
-- **Reversal procedure**: [Steps or "N/A"]
+- **Has data migrations?** No
+- **Reversal procedure**: N/A
 <!-- /ANCHOR:enhanced-rollback -->
 
 ---
@@ -203,10 +203,9 @@ Phase 1.5 (Config) ───┘
 
 | Component | Depends On | Produces | Blocks |
 |-----------|------------|----------|--------|
-| [Component A] | None | [Output] | B, C |
-| [Component B] | A | [Output] | D |
-| [Component C] | A | [Output] | D |
-| [Component D] | B, C | [Final] | None |
+| Research synthesis | 001 | proposal | Review |
+| Review | proposal | objections | Decisions |
+| Decisions | objections, measurements | decision-record.md | 003 |
 <!-- /ANCHOR:dependency-graph -->
 
 ---
@@ -214,15 +213,15 @@ Phase 1.5 (Config) ───┘
 <!-- ANCHOR:critical-path -->
 ## L3: CRITICAL PATH
 
-1. **[Phase/Task]** - [Duration estimate] - CRITICAL
-2. **[Phase/Task]** - [Duration estimate] - CRITICAL
-3. **[Phase/Task]** - [Duration estimate] - CRITICAL
+1. **Adversarial review** - 6 minutes - CRITICAL
+2. **Decision record** - 40 minutes - CRITICAL
+3. **Operator approval** - immediate - CRITICAL
 
-**Total Critical Path**: [Sum of durations]
+**Total Critical Path**: about 50 minutes
 
 **Parallel Opportunities**:
-- [Task A] and [Task B] can run simultaneously
-- [Task C] and [Task D] can run after Phase 1
+- The review and the template render ran together
+- Nothing else
 <!-- /ANCHOR:critical-path -->
 
 ---
@@ -232,29 +231,16 @@ Phase 1.5 (Config) ───┘
 
 | Milestone | Description | Success Criteria | Target |
 |-----------|-------------|------------------|--------|
-| M1 | [Setup Complete] | [All dependencies ready] | [Date/Phase] |
-| M2 | [Core Done] | [Main features working] | [Date/Phase] |
-| M3 | [Release Ready] | [All tests pass] | [Date/Phase] |
+| M1 | Review returned | ten objections with evidence | 2026-09-11, done |
+| M2 | Decisions drafted | five ADRs, five checks each | 2026-09-11, done |
+| M3 | Approved | operator answers recorded | 2026-09-11, done |
 <!-- /ANCHOR:milestones -->
 
 ---
 
 ## L3: ARCHITECTURE DECISION RECORD
 
-### ADR-001: [Decision Title]
-
-**Status**: [Proposed/Accepted/Deprecated]
-
-**Context**: [What problem we're solving]
-
-**Decision**: [What we decided]
-
-**Consequences**:
-- [Positive outcome 1]
-- [Negative outcome + mitigation]
-
-**Alternatives Rejected**:
-- [Option B]: [Why rejected]
+See `decision-record.md`. This phase's decisions live there, not here, because the record is the artifact.
 
 ---
 

@@ -90,7 +90,8 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Phase opened | Pending | |
+| Adversarial review | Done | 10 objections, 2 blocking, second model family |
+| Decision record | Done | 5 ADRs Accepted, operator approval 2026-09-11 |
 
 ### Deviations and findings
 

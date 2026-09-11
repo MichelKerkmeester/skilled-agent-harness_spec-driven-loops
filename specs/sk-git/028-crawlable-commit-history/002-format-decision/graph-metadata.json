@@ -11,10 +11,10 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature specification",
-      "problem statement",
-      "requirements and scope",
-      "success criteria",
+      "commit grammar decision",
+      "format decision phase",
+      "commit-id ordinal decision",
+      "operator approval grammar",
       "implementation plan",
       "technical approach",
       "architecture decisions",
@@ -25,28 +25,30 @@
       "task dependencies"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "problem",
-      "statement",
-      "requirements",
-      "scope",
-      "success",
-      "criteria",
+      "commit",
+      "grammar",
+      "decision",
+      "format",
+      "phase",
+      "commit-id",
+      "ordinal",
+      "operator",
+      "approval",
       "implementation",
       "plan",
-      "technical",
-      "approach"
+      "technical"
     ],
-    "importance_tier": "normal",
-    "status": "draft",
+    "importance_tier": "critical",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
-      "implementation-summary.md"
+      "decision-record.md",
+      "implementation-summary.md",
+      "repo-rules/delegation-and-orchestration.md"
     ],
     "entities": [
       {
@@ -80,9 +82,21 @@
         "source": "derived"
       },
       {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "delegation-and-orchestration.md",
+        "kind": "doc",
+        "path": "repo-rules/delegation-and-orchestration.md",
         "source": "derived"
       },
       {
@@ -134,7 +148,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Two",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -146,13 +166,7 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
+        "name": "Data Flow Proposal",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -180,23 +194,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "One model's design is one opinion",
     "created_at": "2026-09-11T07:16:25Z",
-    "last_save_at": "2026-09-11T07:22:48.082Z",
+    "last_save_at": "2026-09-11T08:24:21.255Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,15 +207,17 @@
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2ef910d3aec46ec1b4f36f83f4728541f51123ad8fa11b86e91995e736f5a5d7",
+    "source_fingerprint": "sha256:f11065a31df21049ea0d9b8ce0925206e16762c37ae6fdf230520f0616ea24bf",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "437348b67eb02569ada4dc17fa7953126ce692a07ced0ce8e0f69db390e8399a",
-      "plan.md": "680dac8edadbfc23cc821ad07f775bbb18c46c3990c2e4442a96db142757de8e",
-      "tasks.md": "b591d741833583a75eea45d5faa0a8a7a699c7879fb4477edbcda551cc38f457",
-      "implementation-summary.md": "e6fda3fd87615e7eac1514dce87350eaa521072282022e6e2afcc79b19f7994d"
+      "spec.md": "1cd44f7972895ac9bc3331482d79d8035dea93ee273eb73d4ed416d71fee57c3",
+      "plan.md": "ee9fd3c93027b36734a7330a0b54faf8730fa805dbd838adffedcb3297fb8acf",
+      "tasks.md": "417d5c79844228a76e302c4056ec8aa59a55540849fb91e165c6e01809f344d1",
+      "decision-record.md": "df213859dc0cecc9c573125a1a2a9c5f3c78bdb19f6f3c1fe687b35db83583b6",
+      "implementation-summary.md": "d1071ec4b41897c111c4afd81e97d0068c89094c0e6f2cdef37e02d2d467d294"
     },
     "last_active_at": null
   }

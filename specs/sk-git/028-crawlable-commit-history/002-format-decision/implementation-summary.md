@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+description: "Five approved decisions freeze the commit grammar: a repository-wide ordinal, the packet path in Spec:, a hook whitelist that lands first, a stamper that re-mints on cherry-pick, and no new repo rule."
 trigger_phrases:
   - "implementation summary"
   - "what shipped"
@@ -12,16 +12,16 @@ _memory:
   continuity:
     packet_pointer: "sk-git/028-crawlable-commit-history/002-format-decision"
     last_updated_at: "2026-09-11T07:16:26Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialized Level 3 template"
-    next_safe_action: "Replace continuity placeholders"
+    last_updated_by: "claude-fable-5-1"
+    recent_action: "Closed the decision phase with operator approval"
+    next_safe_action: "Open phase 003 with the hook whitelist and its tests"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-002-format-decision"
+      session_id: "2026-09-11-skgit-028"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -48,7 +48,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+The grammar phases 003 to 006 will build is now a contract, not a draft. It survived an adversarial review from a second model family, and the operator approved all five decisions on 2026-09-11.
 
 ### Phase 2: format-decision
 
@@ -59,7 +59,7 @@ Explain what the user gains, not what files you touched.]
 
 | File | Action | Purpose |
 |------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+| `decision-record.md` | Created | Five decisions, alternatives, consequences, five checks, operator approval |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -67,7 +67,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-[How was this tested, verified and shipped? What was the rollout approach?]
+An Opus reviewer was briefed with the proposal and told to break it, read-only. It returned ten objections, two of them design-blocking. The conductor accepted eight, wrote five decisions, and asked the operator only the two preference forks, bundling the rest. Every reversed recommendation was reproduced with a command before it entered the record.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -77,7 +77,10 @@ Explain what the user gains, not what files you touched.]
 
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| Repository-wide ordinal instead of a packet-derived key | 15 track-number prefixes already name two packets each, and one third of commits touch no packet |
+| Hook whitelist lands before the stamper | A body of machine keys satisfies the four-path gate today; the stamper would kill that gate everywhere |
+| Re-mint on cherry-pick | 210 repeated patch ids in 2,000 commits; git's own cherry-pick state detects the copy for free |
+| No new repo rule | REPO RULES.md keeps mechanics in skills; the one posture gap fits the delegation rule |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -87,7 +90,8 @@ Explain what the user gains, not what files you touched.]
 
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| Five decisions with status Accepted and an approval row | PASS |
+| validate.sh 002-format-decision --strict | PASS |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -95,7 +99,8 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **The allocator's cold start scans history.** About 0.15 seconds per mint without the cache. Phase 003 caches the high-water mark under the common Git directory.
+2. **A cherry-pick loses its source id.** `git cherry-pick -x` keeps the source hash, and the phase 005 remap keeps that hash valid.
 <!-- /ANCHOR:limitations -->
 
 ---
