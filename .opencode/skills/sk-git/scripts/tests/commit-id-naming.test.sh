@@ -94,6 +94,21 @@ else
   expect_eq "concurrent allocated persisted high-water" 0000010 "$(cat "$(_ci_highwater_file)")"
 fi
 
+# ── a lock left with no owner is reclaimed ─────────────────────
+# A kill between the lock directory's creation and its pid write leaves an empty lock the
+# dead-owner branch cannot see. It is treated as stale after a short grace, so later mints
+# are not wedged for the full timeout.
+LOCK_DIR="$(_ci_lock_dir)"
+rm -rf "$LOCK_DIR"
+mkdir -p "$LOCK_DIR"
+LOCK_START="$SECONDS"
+STALE_OUT="$(allocate_ordinal 2>/dev/null)"; STALE_RC=$?
+LOCK_ELAPSED=$((SECONDS - LOCK_START))
+expect_eq "no-pid lock reclaimed" 0 "$STALE_RC"
+expect_rc "no-pid lock minted a valid ordinal" 0 is_valid_commit_id "$STALE_OUT"
+expect_eq "no-pid lock reclaimed within five seconds" 1 "$([ "$LOCK_ELAPSED" -lt 5 ] && echo 1 || echo 0)"
+expect_rc "no-pid lock cleaned up after release" 1 test -d "$LOCK_DIR"
+
 # ── a deleted high-water is rebuilt from history ───────────────
 rm -f "$(_ci_highwater_file)"
 expect_eq "deleted cache resumes from history" 0000008 "$(allocate_ordinal)"

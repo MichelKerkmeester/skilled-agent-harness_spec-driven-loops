@@ -80,8 +80,20 @@ next_ordinal() {
   printf '%07d\n' "$((max + 1))"
 }
 
+# Epoch seconds of a path's last modification, or failure when no stat form is available.
+# GNU and macOS stat disagree on the flag, so try the unambiguous GNU form first and fall back
+# to the BSD one rather than let GNU's `-f` filesystem mode emit a non-numeric report.
+_ci_mtime() {
+  local p="${1:-}" ts
+  [ -n "$p" ] || return 1
+  ts="$(stat -c %Y "$p" 2>/dev/null || true)"
+  case "$ts" in ''|*[!0-9]*) ts="$(stat -f %m "$p" 2>/dev/null || true)" ;; esac
+  case "$ts" in ''|*[!0-9]*) return 1 ;; esac
+  printf '%s\n' "$ts"
+}
+
 _ci_acquire_lock() {
-  local ld pidf waited owner steal st stamp
+  local ld pidf waited owner steal st stamp stale lock_mtime
   # Fail fast outside a repository: the lock path can never be created, and the
   # retry loop below would otherwise burn its full timeout before reporting it.
   [ -n "$(_ci_common_dir)" ] || { echo "commit-id-naming: not in a git repository" >&2; return 1; }
@@ -105,7 +117,21 @@ _ci_acquire_lock() {
     # re-insert that could clobber a lock another contender legitimately
     # acquired in the meantime.
     owner="$(cat "$pidf" 2>/dev/null || true)"
-    if [ -n "$owner" ] && ! kill -0 "$owner" 2>/dev/null; then
+    # Stale when the recorded holder is dead, OR when the lock directory still has no readable
+    # owner after a short grace. The second case is a kill between `mkdir "$ld"` and the atomic
+    # pid write: there is no owner to test, so every contender would otherwise wait out the
+    # timeout and fail. Both are reclaimed through the same atomic rename below, which lets a
+    # pid that appears late win the confirmation and restore the lock in place.
+    stale=false
+    if [ -n "$owner" ]; then
+      kill -0 "$owner" 2>/dev/null || stale=true
+    else
+      lock_mtime="$(_ci_mtime "$ld" || true)"
+      if [ -n "$lock_mtime" ] && [ "$(( $(date +%s) - lock_mtime ))" -ge 2 ]; then
+        stale=true
+      fi
+    fi
+    if [ "$stale" = true ]; then
       steal="$ld.stale.$$.$RANDOM"
       if mv "$ld" "$steal" 2>/dev/null; then
         st="$(cat "$steal/pid" 2>/dev/null || true)"
