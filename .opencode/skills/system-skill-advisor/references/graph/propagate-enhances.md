@@ -1,6 +1,6 @@
 ---
 title: "Skill Graph Propagate Enhances Tool"
-description: "Internal MCP tool for detecting and optionally applying missing inbound enhances edges across skills."
+description: "Internal advisor command for detecting and optionally applying missing inbound enhances edges across skills."
 trigger_phrases:
   - "propagate enhances"
   - "missing enhances edges"
@@ -12,7 +12,7 @@ version: 0.8.0.6
 
 # Skill Graph Propagate Enhances Tool
 
-Internal MCP tool for detecting and optionally applying missing inbound enhances edges across skills.
+Internal advisor command for detecting and optionally applying missing inbound enhances edges across skills.
 
 ---
 
@@ -34,7 +34,7 @@ Enhance-edge propagation is a high-trust authoring helper: report first, write o
 
 ### Key Sources
 
-- `mcp-server/handlers/skill-graph/propagate-enhances.ts`
+- `runtime/handlers/skill-graph/propagate-enhances.ts`
 - [`tool-ids-reference.md`](../runtime/tool-ids-reference.md)
 - [Skill-root metadata contract](../../../sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md)
 
@@ -80,7 +80,7 @@ The tool enforces several invariants on every call:
 
 ## 5. WHEN IT RUNS
 
-The tool is invoked manually through MCP with a trusted caller context. It is not triggered automatically by other handlers or hooks.
+The command is invoked manually through the CLI with a trusted caller context. It is not triggered automatically by other handlers or hooks.
 
 Typical use cases:
 

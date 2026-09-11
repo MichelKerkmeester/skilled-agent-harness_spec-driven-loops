@@ -61,7 +61,7 @@ Prompt: `Add a helper to .opencode/skills/system-spec-kit/runtime/lib/util/uniqu
 
 1. **Advisor probe**:
    ```
-   bash: python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py "Add a helper to .opencode/skills/system-spec-kit/runtime/lib/util/unique.ts that removes duplicate strings from an array." --threshold 0.8 > /tmp/skc-DR001-advisor.txt
+   bash: python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "Add a helper to .opencode/skills/system-spec-kit/runtime/lib/util/unique.ts that removes duplicate strings from an array." --threshold 0.8 > /tmp/skc-DR001-advisor.txt
    ```
 2. **Verify**: top-1 == `sk-code`, score >= 0.80.
 3. **Invoke sk-code** with the exact prompt.

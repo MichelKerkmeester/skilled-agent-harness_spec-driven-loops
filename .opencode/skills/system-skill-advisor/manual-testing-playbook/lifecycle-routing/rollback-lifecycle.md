@@ -32,7 +32,7 @@ Validate that `lib/lifecycle/rollback.ts` can revert lifecycle changes (superses
 ## 2. SCENARIO CONTRACT
 
 - Disposable workspace copy.
-- MCP server built.
+- Advisor runtime built.
 - Known lifecycle checkpoint or pre-change snapshot captured before the mutation under test.
 
 ---
@@ -69,22 +69,22 @@ Validate that `lib/lifecycle/rollback.ts` can revert lifecycle changes (superses
   ```text
   No files found
   ```
-- Package entry point and build scripts observed in `.opencode/skills/system-skill-advisor/mcp-server/package.json`:
+- Package entry point and build scripts observed in `.opencode/skills/system-skill-advisor/runtime/package.json`:
   ```json
   {
     "name": "@spec-kit/system-skill-advisor",
     "private": true,
     "type": "module",
-    "main": "./dist/mcp-server/advisor-server.js",
+    "main": "./dist/runtime/advisor-server.js",
     "scripts": {
       "clean": "rm -rf dist",
       "build": "npm --prefix ../../system-spec-kit/shared run build && ../../system-spec-kit/node_modules/.bin/tsc -p tsconfig.build.json",
-      "postbuild": "mkdir -p dist/mcp-server/data && cp data/*.json dist/mcp-server/data/",
+      "postbuild": "mkdir -p dist/runtime/data && cp data/*.json dist/runtime/data/",
       "typecheck": "../../system-spec-kit/node_modules/.bin/tsc --noEmit --composite false -p tsconfig.build.json",
       "test": "vitest run"
     },
   ```
-- Referenced rollback source observed in `.opencode/skills/system-skill-advisor/mcp-server/lib/lifecycle/rollback.ts`:
+- Referenced rollback source observed in `.opencode/skills/system-skill-advisor/runtime/lib/lifecycle/rollback.ts`:
   ```ts
   export function rollbackGraphMetadataFile(graphMetadataPath: string): RollbackResult {
     const parsed: unknown = JSON.parse(readFileSync(graphMetadataPath, 'utf8'));
@@ -114,7 +114,7 @@ BLOCKED - Missing built MCP server output (`dist/**` returned `No files found`),
 
 - Scenario [LC-004](../../manual-testing-playbook/lifecycle-routing/schema-migration.md), schema migration rollback.
 - Feature [`lifecycle-routing/rollback.md`](../../feature-catalog/lifecycle-routing/rollback.md).
-- Source: `.opencode/skills/system-skill-advisor/mcp-server/lib/lifecycle/rollback.ts`.
+- Source: `.opencode/skills/system-skill-advisor/runtime/lib/lifecycle/rollback.ts`.
 
 ---
 

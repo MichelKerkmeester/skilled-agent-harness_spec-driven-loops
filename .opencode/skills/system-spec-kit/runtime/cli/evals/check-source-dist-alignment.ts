@@ -139,9 +139,9 @@ const DIST_TARGETS: DistTarget[] = [
     sourceRoot: path.join('runtime', 'lib'),
   },
   {
-    label: 'system-skill-advisor/mcp-server',
-    distRoot: path.join('mcp-server', 'dist', 'skill_advisor'),
-    sourceRoot: path.join('mcp-server', 'skill_advisor'),
+    label: 'system-skill-advisor/runtime',
+    distRoot: path.join('runtime', 'dist', 'skill_advisor'),
+    sourceRoot: path.join('runtime', 'skill_advisor'),
   },
   {
     label: 'runtime/handlers',

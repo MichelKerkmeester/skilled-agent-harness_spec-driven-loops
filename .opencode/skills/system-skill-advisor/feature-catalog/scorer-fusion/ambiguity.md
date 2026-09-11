@@ -37,15 +37,15 @@ If either gap is within margin, the response carries an ambiguity signal that th
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/mcp-server/lib/scorer/ambiguity.ts` | Library | Source reference |
-| `.opencode/skills/system-skill-advisor/mcp-server/lib/render.ts` | Library | Source reference |
+| `.opencode/skills/system-skill-advisor/runtime/lib/scorer/ambiguity.ts` | Library | Source reference |
+| `.opencode/skills/system-skill-advisor/runtime/lib/render.ts` | Library | Source reference |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/mcp-server/tests/scorer/native-scorer.vitest.ts` | Automated test | ambiguity window behavior |
-| `Playbook scenarios [SC-003](../../manual-testing-playbook/scorer-fusion/ambiguity.md) and [NC-004](../../manual-testing-playbook/native-mcp-tools/ambiguous-brief-rendering.md).` | Manual playbook | Source reference |
+| `.opencode/skills/system-skill-advisor/runtime/tests/scorer/native-scorer.vitest.ts` | Automated test | ambiguity window behavior |
+| `Playbook scenarios [SC-003](../../manual-testing-playbook/scorer-fusion/ambiguity.md) and [NC-004](../../manual-testing-playbook/native-cli-tools/ambiguous-brief-rendering.md).` | Manual playbook | Source reference |
 
 ---
 
@@ -59,4 +59,4 @@ Related references:
 
 - [01-five-lane-fusion.md](../../feature-catalog/scorer-fusion/five-lane-fusion.md).
 - [04-attribution.md](./attribution.md).
-- [`mcp-surface/advisor-recommend.md`](../../feature-catalog/mcp-surface/advisor-recommend.md).
+- [`cli-surface/advisor-recommend.md`](../../feature-catalog/cli-surface/advisor-recommend.md).

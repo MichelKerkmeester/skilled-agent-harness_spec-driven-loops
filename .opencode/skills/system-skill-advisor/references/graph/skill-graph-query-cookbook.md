@@ -30,7 +30,7 @@ Provides worked examples for every supported `skill_graph_query` query type.
 
 ### Core Principle
 
-Query examples should reflect live MCP semantics and remain tied to the package-local SQLite graph.
+Query examples should reflect live advisor semantics and remain tied to the package-local SQLite graph.
 
 ### Key Sources
 
@@ -350,4 +350,4 @@ Query examples should reflect live MCP semantics and remain tied to the package-
 - [`freshness-contract.md`](../runtime/freshness-contract.md), trust state must be `live` for reliable results
 - [`propagate-enhances.md`](./propagate-enhances.md), internal tool that detects missing reciprocal enhances edges
 - [`skill-graph-drift.md`](./skill-graph-drift.md), what to do when SQL graph diverges from graph-metadata.json source files
-- `mcp-server/handlers/skill-graph/query.ts`, handler source
+- `runtime/handlers/skill-graph/query.ts`, handler source

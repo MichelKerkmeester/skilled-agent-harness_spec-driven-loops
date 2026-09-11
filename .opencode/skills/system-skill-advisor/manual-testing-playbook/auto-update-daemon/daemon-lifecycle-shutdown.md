@@ -33,7 +33,7 @@ Validate graceful boot, health reporting, SIGTERM-based shutdown and launcher id
 
 ## 2. SCENARIO CONTRACT
 
-- Disposable workspace copy or isolated MCP server process.
+- Disposable workspace copy or isolated advisor daemon process.
 - Operator can send signals to the daemon PID.
 - `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED` unset.
 - Log capture enabled.
@@ -48,7 +48,7 @@ Validate graceful boot, health reporting, SIGTERM-based shutdown and launcher id
 1. Bring the daemon up:
 
 ```text
-advisor_status({"workspaceRoot":"/tmp/path-to-copy"})
+node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root /tmp/path-to-copy --format json
 ```
 
 2. Capture PID, generation, `skillCount` and `trustState` from the response.
@@ -77,7 +77,7 @@ kill -TERM <daemon_pid>
 | SIGTERM ignored | Process survives signal | Inspect `lib/daemon/lifecycle.ts` signal handlers. |
 | Fresh boot reports lower skillCount | Skills missing after restart | Confirm source discovery in `lifecycle.ts`. Check for source-cache corruption. |
 | Stack trace on shutdown | Stderr contains unhandled rejection | Block release. Investigate teardown path. |
-| Idle timeout kills active IPC client | Active secondary client exits during activity | Inspect `mcp-server/lib/ipc/socket-server.ts` activity callbacks. |
+| Idle timeout kills active IPC client | Active secondary client exits during activity | Inspect `runtime/lib/ipc/socket-server.ts` activity callbacks. |
 
 ### Evidence
 
@@ -129,8 +129,8 @@ BLOCKED - `/tmp/path-to-copy` does not exist, and `advisor_status({"workspaceRoo
 - Scenario [AU-002](../../manual-testing-playbook/auto-update-daemon/lease-single-writer.md), single-writer lease reclaim.
 - Scenario [OP-001](../../manual-testing-playbook/operator-h5/degraded-daemon.md), degraded state detection.
 - Feature [`daemon-and-freshness/lifecycle.md`](../../feature-catalog/daemon-and-freshness/lifecycle.md).
-- Source: `.opencode/skills/system-skill-advisor/mcp-server/lib/daemon/lifecycle.ts`.
-- Source: `.opencode/skills/system-skill-advisor/mcp-server/lib/ipc/launcher-idle-timeout.ts`.
+- Source: `.opencode/skills/system-skill-advisor/runtime/lib/daemon/lifecycle.ts`.
+- Source: `.opencode/skills/system-skill-advisor/runtime/lib/ipc/launcher-idle-timeout.ts`.
 
 ---
 

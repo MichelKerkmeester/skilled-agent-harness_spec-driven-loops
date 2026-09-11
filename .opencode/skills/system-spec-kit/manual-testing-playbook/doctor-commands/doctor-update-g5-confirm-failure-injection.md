@@ -78,7 +78,7 @@ The command loads `doctor-update.yaml`, snapshots the in-scope SQLite DBs, reach
 - The in-scope SQLite DBs exist in the active repository, but running `/doctor:update` here would mutate and roll back these production workspace DBs rather than a disposable copy.
 
   ```text
-  dcb47b324816dce37fe09d591666f9aecc6d278e1c9410efcef676578e99a863  .opencode/skills/system-skill-advisor/mcp-server/database/skill-graph.sqlite
+  dcb47b324816dce37fe09d591666f9aecc6d278e1c9410efcef676578e99a863  .opencode/skills/system-skill-advisor/runtime/database/skill-graph.sqlite
   f94ba30ef11a715e9c52df479b1cd303d533a33531e9aa1a150a43c856795190  .opencode/skills/system-deep-loop/runtime/database/deep-loop-graph.sqlite
   ```
 

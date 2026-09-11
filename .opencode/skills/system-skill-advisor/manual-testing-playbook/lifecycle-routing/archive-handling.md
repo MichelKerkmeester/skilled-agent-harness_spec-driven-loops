@@ -32,7 +32,7 @@ Validate that `lib/lifecycle/archive-handling.ts` keeps `z_archive/` and `z-futu
 ## 2. SCENARIO CONTRACT
 
 - Workspace containing at least one skill under `z_archive/` and one under `z-future/`.
-- MCP server built. Daemon reachable.
+- Advisor runtime built. Daemon reachable.
 
 ---
 
@@ -43,7 +43,7 @@ Validate that `lib/lifecycle/archive-handling.ts` keeps `z_archive/` and `z-futu
 1. Call `advisor_status` and capture `skillCount`:
 
 ```text
-advisor_status({"workspaceRoot":"/absolute/path/to/repo"})
+node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root /absolute/path/to/repo --format json
 ```
 
 2. Manually enumerate skills under `.opencode/skills/` plus any nested `z_archive/` and `z-future/` locations.
@@ -72,7 +72,7 @@ advisor_status({"workspaceRoot":"/absolute/path/to/repo"})
 - Scenario [AI-004](../../manual-testing-playbook/auto-indexing/corpus-df-idf.md), active-only corpus.
 - Scenario [LC-002](./supersession.md), supersession routing.
 - Feature [`lifecycle-routing/archive-handling.md`](../../feature-catalog/lifecycle-routing/archive-handling.md).
-- Source: `.opencode/skills/system-skill-advisor/mcp-server/lib/lifecycle/archive-handling.ts`.
+- Source: `.opencode/skills/system-skill-advisor/runtime/lib/lifecycle/archive-handling.ts`.
 
 ---
 

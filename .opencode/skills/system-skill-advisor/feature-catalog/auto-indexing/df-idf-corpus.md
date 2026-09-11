@@ -31,14 +31,14 @@ Feed the lexical lane with corpus-aware statistics so common tokens are discount
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/mcp-server/lib/corpus/df-idf.ts` | Library | Source reference |
-| `.opencode/skills/system-skill-advisor/mcp-server/lib/scorer/lanes/lexical.ts` | Library | Source reference |
+| `.opencode/skills/system-skill-advisor/runtime/lib/corpus/df-idf.ts` | Library | Source reference |
+| `.opencode/skills/system-skill-advisor/runtime/lib/scorer/lanes/lexical.ts` | Library | Source reference |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/mcp-server/tests/scorer/native-scorer.vitest.ts` | Automated test | lexical lane scoring against IDF |
+| `.opencode/skills/system-skill-advisor/runtime/tests/scorer/native-scorer.vitest.ts` | Automated test | lexical lane scoring against IDF |
 | `Playbook scenario [AI-004](../../manual-testing-playbook/auto-indexing/corpus-df-idf.md).` | Manual playbook | Source reference |
 
 ---

@@ -32,7 +32,7 @@ Validate that `scripts/skill_advisor_regression.py` runs the P0 regression datas
 ## 2. SCENARIO CONTRACT
 
 - Repo root. Python 3 available.
-- MCP server built so the shim has a native option to delegate to where relevant.
+- Advisor runtime built so the shim has a native option to delegate to where relevant.
 - Regression dataset present at the fixture path.
 
 ---
@@ -42,8 +42,8 @@ Validate that `scripts/skill_advisor_regression.py` runs the P0 regression datas
 1. Run the suite:
 
 ```bash
-python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor_regression.py \
-  --dataset .opencode/skills/system-skill-advisor/mcp-server/scripts/fixtures/skill-advisor-regression-cases.jsonl
+python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor_regression.py \
+  --dataset .opencode/skills/system-skill-advisor/runtime/scripts/fixtures/skill-advisor-regression-cases.jsonl
 ```
 
 2. Capture stdout and exit code.
@@ -70,9 +70,9 @@ python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor_r
 ## 4. SOURCE FILES
 
 - Scenario [PC-005](../../manual-testing-playbook/python-compat/bench-runner.md), bench runner.
-- Scenario [NC-003](../../manual-testing-playbook/native-mcp-tools/native-validate-slices.md), native validate.
+- Scenario [NC-003](../../manual-testing-playbook/native-cli-tools/native-validate-slices.md), native validate.
 - Feature [`python-compat/regression-suite.md`](../../feature-catalog/python-compat/regression-suite.md).
-- Source: `.opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor_regression.py` and `scripts/fixtures/skill-advisor-regression-cases.jsonl`.
+- Source: `.opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor_regression.py` and `scripts/fixtures/skill-advisor-regression-cases.jsonl`.
 
 ---
 
@@ -93,19 +93,19 @@ Precondition checks:
 $ python3 --version
 Python 3.9.6
 
-$ test -f ".opencode/skills/system-skill-advisor/mcp-server/scripts/fixtures/skill-advisor-regression-cases.jsonl"
+$ test -f ".opencode/skills/system-skill-advisor/runtime/scripts/fixtures/skill-advisor-regression-cases.jsonl"
 
-$ test -f ".opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor_regression.py"
+$ test -f ".opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor_regression.py"
 
-$ wc -l ".opencode/skills/system-skill-advisor/mcp-server/scripts/fixtures/skill-advisor-regression-cases.jsonl"
-      50 .opencode/skills/system-skill-advisor/mcp-server/scripts/fixtures/skill-advisor-regression-cases.jsonl
+$ wc -l ".opencode/skills/system-skill-advisor/runtime/scripts/fixtures/skill-advisor-regression-cases.jsonl"
+      50 .opencode/skills/system-skill-advisor/runtime/scripts/fixtures/skill-advisor-regression-cases.jsonl
 ```
 
 Executed command:
 
 ```bash
-python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor_regression.py \
-  --dataset .opencode/skills/system-skill-advisor/mcp-server/scripts/fixtures/skill-advisor-regression-cases.jsonl
+python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor_regression.py \
+  --dataset .opencode/skills/system-skill-advisor/runtime/scripts/fixtures/skill-advisor-regression-cases.jsonl
 ```
 
 Observed stdout and exit code:
@@ -113,7 +113,7 @@ Observed stdout and exit code:
 ```json
 Skill graph: loaded from SQLite
 {
-  "dataset": ".opencode/skills/system-skill-advisor/mcp-server/scripts/fixtures/skill-advisor-regression-cases.jsonl",
+  "dataset": ".opencode/skills/system-skill-advisor/runtime/scripts/fixtures/skill-advisor-regression-cases.jsonl",
   "mode": "both",
   "runner": "both",
   "runners_exercised": [

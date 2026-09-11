@@ -1,0 +1,15 @@
+ROLE: Migration analyst studying a completed MCP-to-CLI decommission for what it teaches, not for what is broken.
+
+CONTEXT: The same packet on branch worktrees/049-advisor-mcp-decommission. Its record is unusually complete: every phase goal carries findings, including several where a fix was worse than the bug it replaced. Known examples worth mining rather than repeating: a CLI helper that had never once reached the daemon because it probed a flat socket path, invisible for as long as it was only a fallback; a fast-fail fix that removed the daemon spawn instead of bounding the wait, leaving every cold session with no brief; an ambiguity flag dropped in translation so the brief silently stopped warning about near-ties; 26 tests of a deleted file and 7 asserting removed registrations, none of which any sampled suite caught.
+
+ACTION: Investigate three questions.
+1. Which failures were latent, and what made them latent? The recurring shape is a path that only runs after another has already failed. Characterise that class and how to detect it before promoting a fallback.
+2. What classes of residue does a transport removal leave? Config env that outlives its block, tests encoding the old contract, names that outlive referents, generated artifacts, cross-package hardcoded paths, documentation describing deleted harnesses. Which are found by tooling and which only by reading?
+3. What would a repeatable checklist for the next MCP-to-CLI migration contain, ordered so each step's failure is cheap?
+
+RULES:
+- Ground every claim in this packet's artifacts: goal logs, phase findings, commit messages, measured numbers. Cite file and line.
+- Prefer a mechanism over an anecdote. "The fallback was never exercised" is the finding; the socket path is the evidence.
+- Where the packet's own record is wrong or self-contradictory, say so.
+
+FORMAT: Ranked findings, each with mechanism, evidence citation, and generalisation. Close with the checklist as numbered steps, each naming what it catches and why it sits where it does.

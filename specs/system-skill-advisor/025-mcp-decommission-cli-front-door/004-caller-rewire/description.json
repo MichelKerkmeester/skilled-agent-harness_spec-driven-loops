@@ -1,0 +1,23 @@
+{
+  "level": "3",
+  "specFolder": "system-skill-advisor/025-mcp-decommission-cli-front-door/004-caller-rewire",
+  "description": "Callers reach the advisor three different ways today",
+  "keywords": [
+    "callers",
+    "reach",
+    "advisor",
+    "three",
+    "different",
+    "ways",
+    "today"
+  ],
+  "lastUpdated": "2026-09-11T09:27:47.491Z",
+  "specId": "004",
+  "folderSlug": "caller-rewire",
+  "parentChain": [
+    "system-skill-advisor",
+    "025-mcp-decommission-cli-front-door"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

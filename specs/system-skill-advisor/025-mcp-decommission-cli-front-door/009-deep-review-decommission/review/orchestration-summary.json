@@ -1,0 +1,22 @@
+{
+  "run_id": "1789148343059-q7g4rk",
+  "loop_type": "review",
+  "spec_folder": "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/009-deep-review-decommission",
+  "base_artifact_dir": "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/009-deep-review-decommission/review",
+  "total_cli_lineages": 1,
+  "orphaned_lineages": [],
+  "total": 1,
+  "succeeded": 0,
+  "failed": 1,
+  "all_failed": true,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 1
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 1,
+    "salvage_miss": 0
+  }
+}

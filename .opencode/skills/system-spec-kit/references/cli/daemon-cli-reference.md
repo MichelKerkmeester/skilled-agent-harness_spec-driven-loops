@@ -1,6 +1,6 @@
 ---
 title: Daemon CLI Reference
-description: The daemon-backed CLI shims, their warm-only policy, exit-code taxonomy, and when to use CLI transport instead of MCP.
+description: The daemon-backed advisor CLI front door, its warm-only policy, and its exit-code taxonomy.
 trigger_phrases:
   - "daemon cli reference"
   - "daemon-backed cli shims"
@@ -14,23 +14,23 @@ version: 3.6.0.8
 
 # Daemon CLI Reference
 
-The daemon CLI shim is an additive IPC client over the skill-advisor MCP daemon. It is not a replacement server, and MCP remains the primary in-session transport.
+The daemon CLI shim is the skill-advisor's front door: an IPC client over the advisor's resident daemon and its newline-delimited socket protocol.
 
-Use these CLIs when a runtime MCP transport is missing, failed, or not reconnecting while the daemon is expected to be warm, or when an operator needs shell diagnostics, CI checks, or scripted maintenance.
+Use it for shell diagnostics, CI checks, scripted maintenance, or any programmatic advisor call outside a prompt-time hook.
 
 Run the repo-relative examples from the repository root. If the caller is in another working directory, use an absolute path to the selected `.opencode/bin/*.cjs` shim instead.
 
 ## 1. OVERVIEW
 
-The skill-advisor daemon exposes a CLI front door over the same tool surface its MCP transport serves. This reference covers that surface, the invocation forms, the output and exit-code contracts, the warm-only policy, and the recovery path when a stale build refuses to run. It is the operator's map; the MCP transport remains the runtimes' route.
+The skill-advisor daemon exposes its tool surface through one CLI front door. This reference covers that surface, the invocation forms, the output and exit-code contracts, the warm-only policy, and the recovery path when a stale build refuses to run. It is the operator's map.
 
 ---
 
 ## 2. CLI SURFACES
 
-| CLI shim | MCP daemon | Tool count | Primary use |
+| CLI shim | Daemon service | Tool count | Primary use |
 | --- | --- | ---: | --- |
-| `node .opencode/bin/skill-advisor.cjs` | `system_skill_advisor` | 9 | Advisor recommendations, advisor health, skill graph diagnostics, and trusted maintainer mutations. |
+| `node .opencode/bin/skill-advisor.cjs` | `system-skill-advisor` | 9 | Advisor recommendations, advisor health, skill graph diagnostics, and trusted maintainer mutations. |
 
 The shim first sets a default socket directory when needed, checks its built CLI entrypoint for freshness, then runs the compiled CLI with inherited stdio. `list-tools` and `--help` are served from local definitions and do not contact or spawn a daemon.
 
@@ -38,10 +38,12 @@ The skill-advisor launcher mirrors child exit or signal state and expects the ow
 
 Spec-folder retrieval has no CLI on this page and no daemon behind it. It is two committed scripts under `system-spec-kit/runtime/cli/retrieval/` plus the ripgrep recipes in `../retrieval/retrieval-conventions.md`, and none of the exit codes, warm-only rules or recovery steps below apply to it.
 
-### CLI Versus MCP: When To Use Which
+### Transport
 
 
-Because the CLI already uses the same daemon IPC path and exposes a stable count-locked surface, a later evolution could make it the primary or sole transport, replacing the MCP server without breaking existing MCP workflows. Treat that as a possible direction, not a committed migration plan.
+The CLI front door is the advisor's only transport. Prompt-time hooks reach the advisor directly; every other caller — a shell, CI, a runtime without a hook — goes through this shim, which speaks the daemon's newline-delimited socket protocol.
+
+When the daemon cannot be reached, a prompt-time hook still answers from the degraded local path and the brief reads `Advisor: stale` rather than `Advisor: live`.
 
 ---
 
@@ -113,7 +115,7 @@ node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --wa
 
 Warm-only defaults can also come from env flags documented in `../config/environment-variables.md` and `../../runtime/ENV-REFERENCE.md`: per-CLI `*_CLI_WARM_ONLY`, per-CLI `*_CLI_PROMPT_TIME`, cross-CLI `SPECKIT_CLI_PROMPT_TIME`, and runtime prompt-time markers such as `OPENCODE_PROMPT_TIME` and `CLAUDE_CODE_PROMPT_TIME`.
 
-Non-prompt contexts such as explicit operator maintenance, CI, cron, or session startup may omit `--warm-only`; then a cold daemon can auto-spawn through the matching `mk-*-launcher.cjs`.
+Non-prompt contexts such as explicit operator maintenance, CI, cron, or session startup may omit `--warm-only`; then a cold daemon can auto-spawn through `.opencode/bin/system-skill-advisor-launcher.cjs`.
 
 ---
 
@@ -123,7 +125,7 @@ The shim refuses a stale or missing dist entrypoint with exit `69`. Rebuild befo
 
 | CLI | Shim stale/missing message | Build recovery |
 | --- | --- | --- |
-| `skill-advisor.cjs` | `Run the skill-advisor TypeScript build.` | `npm --prefix .opencode/skills/system-skill-advisor/mcp-server run build` |
+| `skill-advisor.cjs` | `Run the skill-advisor TypeScript build.` | `npm --prefix .opencode/skills/system-skill-advisor/runtime run build` |
 
 A development-only stale override exists for local loops, but should not be used in normal recovery: `SYSTEM_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE=1` or `SPECKIT_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE=1`.
 
@@ -159,11 +161,10 @@ The check is the executable parity check for the live manifests, not a separate 
 
 ## 9. SAFETY RULES
 
-- Keep MCP as the primary in-session transport today; use the CLI as an additive fallback and operator surface.
-- We may consider making the CLI the primary or sole transport later, but do not treat that as a decided plan.
+- The CLI front door is the advisor's transport. There is no MCP server to fall back to; a caller that cannot reach the daemon gets the degraded local answer, not a second transport.
 - Prefer read-only recovery commands when transport fails: advisor recommend and advisor status.
 - Prompt-time hooks must probe warm daemons only. They must not cold-spawn daemons from prompt-time paths.
-- Treat exit `75` as retryable daemon/IPC unavailability. Retry after MCP reconnect, daemon prewarm, or short backoff.
+- Treat exit `75` as retryable daemon/IPC unavailability. Retry after daemon prewarm or a short backoff.
 - Treat exit `69` as a stale/missing dist or protocol mismatch. Rebuild the matching package before retrying.
 - Skill-advisor CLI calls are untrusted by default. Mutations (`advisor_rebuild`, `skill_graph_scan`, and apply-mode `skill_graph_propagate_enhances`) require `--trusted` or `SYSTEM_SKILL_ADVISOR_CLI_TRUSTED=1`.
 - Do not use `jsonl` as a streaming automation contract; it is one complete JSON payload on one line.
@@ -172,5 +173,5 @@ The check is the executable parity check for the live manifests, not a separate 
 
 ## 10. SOURCE ANCHORS
 
-- Env flags: `runtime/ENV-REFERENCE.md` section `CLI FRONT DOOR (DUAL-STACK)`.
+- Env flags: `runtime/ENV-REFERENCE.md` section `CLI FRONT DOOR`.
 - Offline smoke: `.opencode/bin/cli-offline-smoke.cjs`.

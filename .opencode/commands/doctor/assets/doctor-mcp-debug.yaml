@@ -24,7 +24,7 @@ operating_mode:
 # ─────────────────────────────────────────────────────────────────
 mcp_debug_doctor_invariant: |
   MCP debug workflows run the mcp-doctor.sh diagnostic script against all
-  supported servers (skill-advisor, code-mode), cross-reference
+  supported servers (code-mode), cross-reference
   each failure with its install guide, and apply guided repairs ONLY when
   --fix is passed AND the user approves the proposed repair. No silent
   mutation: every config edit, env change, or build step requires explicit
@@ -39,7 +39,6 @@ upstream_assets:
     spec: "spec.md"
     decision_record: "decision-record.md"  # ADRs covering MCP server install + repair
   install_guides:
-    system_skill_advisor: ".opencode/skills/system-skill-advisor/INSTALL-GUIDE.md"
     code_mode: ".opencode/install-guides/MCP - Code Mode.md"
   scripts:
     diagnostic: ".opencode/commands/doctor/scripts/mcp-doctor.sh"
@@ -87,7 +86,6 @@ arguments:
 # REFERENCE: INSTALL GUIDES
 # ─────────────────────────────────────────────────────────────────
 install_guides:
-  system_skill_advisor: .opencode/skills/system-skill-advisor/INSTALL-GUIDE.md
   code_mode: .opencode/install-guides/MCP - Code Mode.md
 
 # ─────────────────────────────────────────────────────────────────
@@ -103,31 +101,6 @@ config_files:
 # REFERENCE: REPAIR ACTIONS
 # ─────────────────────────────────────────────────────────────────
 repair_actions:
-  # A launcher .cjs change is NOT picked up by a recycle; it needs a fresh
-  # session (SIGHUP is a shutdown signal, not a reload).
-  system_skill_advisor:
-    dist_missing:
-      command: "cd .opencode/skills/system-skill-advisor/mcp-server && npm install && npm run build"
-      description: "Install dependencies and rebuild advisor-server.js"
-    node_modules_missing:
-      command: "cd .opencode/skills/system-skill-advisor/mcp-server && npm install"
-      description: "Install node_modules"
-    shared_dependency_missing:
-      command: "cd .opencode/skills/system-skill-advisor/mcp-server && npm install && npm run build"
-      description: "Restore the local @spec-kit/shared file dependency and rebuild compiled imports"
-    launcher_missing:
-      command: "echo 'Launcher file .opencode/bin/system-skill-advisor-launcher.cjs is missing — restore from git: git checkout .opencode/bin/system-skill-advisor-launcher.cjs'"
-      description: "Restore launcher from git history"
-    db_dir_missing:
-      command: "mkdir -p .opencode/skills/system-skill-advisor/mcp-server/database"
-      description: "Create database directory"
-    dist_missing:
-      description: "Install dependencies and rebuild dist/index.js"
-    node_modules_missing:
-      description: "Install node_modules"
-    launcher_missing:
-      description: "Restore launcher from git history"
-    db_dir_missing:
   code_mode:
     dist_missing:
       command: "cd .opencode/skills/mcp-code-mode/mcp-server && npm install && npm run build"

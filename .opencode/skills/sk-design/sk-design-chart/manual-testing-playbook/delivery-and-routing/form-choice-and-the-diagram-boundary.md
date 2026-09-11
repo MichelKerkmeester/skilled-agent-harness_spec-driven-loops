@@ -47,7 +47,7 @@ Operators run the exact prompt and command sequence for `CHT-008` and confirm th
 
 ### Commands
 
-1. `bash: python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py "make a waterfall chart of the budget movement" --threshold 0.8 > stage-one.txt 2>&1`
+1. `bash: python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "make a waterfall chart of the budget movement" --threshold 0.8 > stage-one.txt 2>&1`
 2. `bash: node .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs --skill .opencode/skills/sk-doc --task "make a waterfall chart of the budget movement" > stage-two.txt 2>&1`
 3. `bash: node .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs --skill .opencode/skills/sk-doc --task "create a diagram of the checkout flow" > neighbour.txt 2>&1`
 4. `agent: Read references/catalog.md and name the row that answers a step by step movement from gross to net`

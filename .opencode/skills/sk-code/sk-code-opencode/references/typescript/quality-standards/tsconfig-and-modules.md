@@ -114,7 +114,7 @@ npm run typecheck      # often adds: --noEmit --composite false
 npm run test:cli       # verifies dist/ output runs correctly
 ```
 
-**Package-aware build rule**: Use the package script for the package you changed. The spec-kit root uses `tsc --build`; satellite packages with their own package boundary, such as `system-skill-advisor/mcp-server`, use `tsc -p tsconfig.build.json`. A satellite typecheck script may add `--noEmit --composite false` over that same overlay.
+**Package-aware build rule**: Use the package script for the package you changed. The spec-kit root uses `tsc --build`; satellite packages with their own package boundary, such as `system-skill-advisor/runtime`, use `tsc -p tsconfig.build.json`. A satellite typecheck script may add `--noEmit --composite false` over that same overlay.
 
 **Workspace build order**: `tsc --build` respects project references and builds in dependency order:
 1. `shared/` (no dependencies)

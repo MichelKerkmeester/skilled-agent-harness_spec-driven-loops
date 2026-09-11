@@ -48,7 +48,7 @@ Operators run the exact prompt and command sequence for `SKD-031` and confirm th
 
 ### Exact Command Sequence
 
-1. `bash: python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py "write the API client for this form" --threshold 0.5`
+1. `bash: python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "write the API client for this form" --threshold 0.5`
 2. `agent: issue the same prompt in a fresh session`
 3. `bash: rg -n "Route to .sk-code" .opencode/skills/sk-design/SKILL.md`
 
@@ -71,7 +71,7 @@ Read the When NOT to Use list in `SKILL.md` Section 1; a design answer here mean
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| SKD-031 | Implementation routes to the code skill | confirm a pure implementation request is not answered as a design question | `Write the API client for this form` | 1. `bash: python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py "write the API client for this form" --threshold 0.5` -> 2. `agent: issue the same prompt in a fresh session` -> 3. `bash: rg -n "Route to .sk-code" .opencode/skills/sk-design/SKILL.md` | The reply routes to `sk-code` and does not return CSS or design values. | Advisor JSON, the routing reply, and the grep proving the boundary is written into the skill. | PASS if the reply routes to `sk-code` and returns no design values; FAIL if the reply styles the form instead of routing, or proposes values for a request with no visual surface | Read the When NOT to Use list in `SKILL.md` Section 1; a design answer here means that boundary was skipped. |
+| SKD-031 | Implementation routes to the code skill | confirm a pure implementation request is not answered as a design question | `Write the API client for this form` | 1. `bash: python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "write the API client for this form" --threshold 0.5` -> 2. `agent: issue the same prompt in a fresh session` -> 3. `bash: rg -n "Route to .sk-code" .opencode/skills/sk-design/SKILL.md` | The reply routes to `sk-code` and does not return CSS or design values. | Advisor JSON, the routing reply, and the grep proving the boundary is written into the skill. | PASS if the reply routes to `sk-code` and returns no design values; FAIL if the reply styles the form instead of routing, or proposes values for a request with no visual surface | Read the When NOT to Use list in `SKILL.md` Section 1; a design answer here means that boundary was skipped. |
 
 ---
 

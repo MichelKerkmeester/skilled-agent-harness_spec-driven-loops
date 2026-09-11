@@ -1,0 +1,27 @@
+{
+  "level": "3",
+  "specFolder": "system-skill-advisor/025-mcp-decommission-cli-front-door/008-verification-and-closeout",
+  "description": "Each earlier phase proves its own claim at the moment it makes it, on a tree that later phases keep changing",
+  "keywords": [
+    "earlier",
+    "phase",
+    "proves",
+    "own",
+    "claim",
+    "moment",
+    "tree",
+    "later",
+    "phases",
+    "keep",
+    "changing"
+  ],
+  "lastUpdated": "2026-09-11T09:27:47.576Z",
+  "specId": "008",
+  "folderSlug": "verification-and-closeout",
+  "parentChain": [
+    "system-skill-advisor",
+    "025-mcp-decommission-cli-front-door"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

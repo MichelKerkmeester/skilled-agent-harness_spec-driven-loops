@@ -124,18 +124,18 @@ An untrusted mutation reaching IPC means `assertTrustedForMutation` lost a tool 
 | File | Role |
 |---|---|
 | `manual-testing-playbook.md` | Root directory page and scenario summary |
-| `../../../system-skill-advisor/feature-catalog/mcp-surface/skill-advisor-cli.md` | Feature-catalog source for the skill-advisor CLI |
+| `../../../system-skill-advisor/feature-catalog/cli-surface/skill-advisor-cli.md` | Feature-catalog source for the skill-advisor CLI |
 
 ### Implementation And Test Anchors
 
 | File | Role |
 |---|---|
-| `.opencode/skills/system-skill-advisor/mcp-server/skill-advisor-cli.ts` | `assertTrustedForMutation`, `isPropagateApply`, `callerMeta` authority tagging |
-| `.opencode/skills/system-skill-advisor/mcp-server/advisor-server.ts` | Daemon-side trust default (`SYSTEM_SKILL_ADVISOR_TRUST_DEFAULT`) |
-| `.opencode/skills/system-skill-advisor/mcp-server/tests/handlers/advisor-trust-gate.vitest.ts` | Daemon-side trust-gate regression coverage |
-| `.opencode/skills/system-skill-advisor/mcp-server/tools/skill-graph-tools.ts` | `skill_graph_propagate_enhances` schema with `dryRun` default true |
+| `.opencode/skills/system-skill-advisor/runtime/skill-advisor-cli.ts` | `assertTrustedForMutation`, `isPropagateApply`, `callerMeta` authority tagging |
+| `.opencode/skills/system-skill-advisor/runtime/advisor-server.ts` | Daemon-side trust default (`SYSTEM_SKILL_ADVISOR_TRUST_DEFAULT`) |
+| `.opencode/skills/system-skill-advisor/runtime/tests/handlers/advisor-trust-gate.vitest.ts` | Daemon-side trust-gate regression coverage |
+| `.opencode/skills/system-skill-advisor/runtime/tools/skill-graph-tools.ts` | `skill_graph_propagate_enhances` schema with `dryRun` default true |
 
-Provenance: .opencode/skills/system-skill-advisor/mcp-server/tests/handlers/advisor-trust-gate.vitest.ts
+Provenance: .opencode/skills/system-skill-advisor/runtime/tests/handlers/advisor-trust-gate.vitest.ts
 
 ---
 

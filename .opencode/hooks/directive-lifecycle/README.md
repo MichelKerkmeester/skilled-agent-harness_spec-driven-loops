@@ -56,7 +56,7 @@ The decision logic is the same `lib/directive-lifecycle.ts` everywhere it runs. 
 | **Codex** | — | — | `by-design`: embedded in the shared `user-prompt-submit` lifecycle (the advisor handler calls `decideDirectiveLifecycleDelivery` directly) |
 | **Cursor** | — | — | `by-design`: embedded in the shared `user-prompt-submit` lifecycle |
 | **Devin** | — | — | `by-design`: embedded in the shared `user-prompt-submit` lifecycle |
-| **OpenCode** | — | — | `by-design`: embedded in `system-skill-advisor` lifecycle state (the plugin bridge) |
+| **OpenCode** | — | — | `by-design`: embedded in `system-skill-advisor` lifecycle state (the OpenCode plugin) |
 | **Pi** | — | — | `by-design`: embedded in `prompt-advisor.ts` directive de-dup |
 
 Only Claude carries a separately indexed boundary adapter. The other runtimes reach the same decision function inside their existing prompt-submit path, so no standalone adapter is wired for them (see the hub coverage matrix).
@@ -123,7 +123,7 @@ Set a flag inline for one command, export it for a session, or persist it in `.o
 Build the advisor package (produces the compiled boundary target the bridge spawns):
 
 ```bash
-npm --prefix .opencode/skills/system-skill-advisor/mcp-server run build
+npm --prefix .opencode/skills/system-skill-advisor/runtime run build
 ```
 
 Expected result: build succeeds and `dist/hooks/claude/directive-lifecycle-boundary.js` is produced.
@@ -131,7 +131,7 @@ Expected result: build succeeds and `dist/hooks/claude/directive-lifecycle-bound
 Run the advisor package test suite (covers the directive-lifecycle decision core and store):
 
 ```bash
-npm --prefix .opencode/skills/system-skill-advisor/mcp-server test -- --reporter=default
+npm --prefix .opencode/skills/system-skill-advisor/runtime test -- --reporter=default
 ```
 
 Expected result: all tests pass.
@@ -140,7 +140,7 @@ Smoke-test the canonical boundary adapter (advances the store, exits 0):
 
 ```bash
 printf '%s' '{"session_id":"smoke","boundary":"startup"}' | \
-  node .opencode/skills/system-skill-advisor/mcp-server/dist/hooks/claude/directive-lifecycle-boundary.js
+  node .opencode/skills/system-skill-advisor/runtime/dist/hooks/claude/directive-lifecycle-boundary.js
 echo "exit: $?"
 ```
 

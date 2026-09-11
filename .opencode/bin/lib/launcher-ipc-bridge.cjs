@@ -92,10 +92,10 @@ function repoRoot() {
 function defaultDbDirForService(serviceName) {
   const root = repoRoot();
   if (serviceName === 'system-skill-advisor') {
-    const advisorOverride = process.env.SYSTEM_SKILL_ADVISOR_DB_DIR ?? process.env.SYSTEM_SKILL_ADVISOR_DB_DIR;
+    const advisorOverride = process.env.SYSTEM_SKILL_ADVISOR_DB_DIR;
     return advisorOverride
       ? path.resolve(advisorOverride)
-      : path.join(root, '.opencode', 'skills', 'system-skill-advisor', 'mcp-server', 'database');
+      : path.join(root, '.opencode', 'skills', 'system-skill-advisor', 'runtime', 'database');
   }
   throw new Error(`Unknown MCP service name: ${serviceName}`);
 }

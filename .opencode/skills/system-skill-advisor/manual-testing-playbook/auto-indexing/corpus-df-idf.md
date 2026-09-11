@@ -32,7 +32,7 @@ Validate that `lib/corpus/df-idf.ts` computes document-frequency and inverse-doc
 ## 2. SCENARIO CONTRACT
 
 - Disposable copy or read-only inspection.
-- MCP server built. Daemon reachable.
+- Advisor runtime built. Daemon reachable.
 - Workspace contains at least one `z_archive/` or `z-future/` skill in addition to active skills.
 
 ---
@@ -165,7 +165,7 @@ BLOCKED - The scenario cannot be executed under the provided write restrictions 
 - Scenario [LC-003](../../manual-testing-playbook/lifecycle-routing/archive-handling.md), archive indexing but not routing.
 - Scenario [SC-002](../scorer-fusion/projection.md), projection input for scorer.
 - Feature [`auto-indexing/df-idf-corpus.md`](../../feature-catalog/auto-indexing/df-idf-corpus.md).
-- Source: `.opencode/skills/system-skill-advisor/mcp-server/lib/corpus/df-idf.ts`.
+- Source: `.opencode/skills/system-skill-advisor/runtime/lib/corpus/df-idf.ts`.
 
 ---
 

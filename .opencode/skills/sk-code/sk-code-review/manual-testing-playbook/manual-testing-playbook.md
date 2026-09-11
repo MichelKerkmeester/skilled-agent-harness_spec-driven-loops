@@ -773,7 +773,7 @@ The current repository has no dedicated automated test module for `review/manual
 
 | Test Module | Coverage | Playbook Overlap |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/mcp-server/tests/python/test_skill_advisor.py` | Skill-advisor routing cases for `review`, `deep-review`, and review/write disambiguation | CR-016, CR-017, CR-018 |
+| `.opencode/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py` | Skill-advisor routing cases for `review`, `deep-review`, and review/write disambiguation | CR-016, CR-017, CR-018 |
 | Internal design notes | Stress fixture that maps review channel behavior to `review` | CR-016 |
 | Internal design notes | Earlier stress fixture for review channel expectations | CR-016 |
 

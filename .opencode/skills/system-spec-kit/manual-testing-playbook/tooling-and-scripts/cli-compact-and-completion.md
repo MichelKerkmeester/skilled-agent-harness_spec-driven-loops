@@ -112,10 +112,10 @@ If counts drift, rerun the list-tools parity scenario first. If schemas appear i
 | File | Role |
 |---|---|
 | `.opencode/bin/skill-advisor.cjs` | skill-advisor shim |
-| `.opencode/skills/system-skill-advisor/mcp-server/skill-advisor-cli.ts` | skill-advisor compact/names-only and completion implementation |
-| `.opencode/skills/system-skill-advisor/mcp-server/tests/skill-advisor-cli-help-aliases-errors.vitest.ts` | skill-advisor compact/names-only and completion tests |
+| `.opencode/skills/system-skill-advisor/runtime/skill-advisor-cli.ts` | skill-advisor compact/names-only and completion implementation |
+| `.opencode/skills/system-skill-advisor/runtime/tests/skill-advisor-cli-help-aliases-errors.vitest.ts` | skill-advisor compact/names-only and completion tests |
 
-Provenance: .opencode/skills/system-skill-advisor/mcp-server/tests/skill-advisor-cli-help-aliases-errors.vitest.ts
+Provenance: .opencode/skills/system-skill-advisor/runtime/tests/skill-advisor-cli-help-aliases-errors.vitest.ts
 
 ---
 

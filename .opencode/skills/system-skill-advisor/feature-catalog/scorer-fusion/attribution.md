@@ -34,17 +34,17 @@ The same opt-in response also includes `why_recommended`, a prompt-safe explanat
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/mcp-server/lib/scorer/attribution.ts` | Library | Source reference |
-| `.opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-recommend.ts` | Handler | Source reference |
-| `.opencode/skills/system-skill-advisor/mcp-server/lib/scorer/lanes/semantic-shadow.ts` | Library | semantic-lane attribution source |
-| `.opencode/skills/system-skill-advisor/mcp-server/schemas/advisor-tool-schemas.ts` | Schema | Source reference |
+| `.opencode/skills/system-skill-advisor/runtime/lib/scorer/attribution.ts` | Library | Source reference |
+| `.opencode/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts` | Handler | Source reference |
+| `.opencode/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts` | Library | semantic-lane attribution source |
+| `.opencode/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts` | Schema | Source reference |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/mcp-server/tests/handlers/advisor-recommend.vitest.ts` | Automated test | attribution shape and prompt-safe `why_recommended` gating |
-| `.opencode/skills/system-skill-advisor/mcp-server/tests/legacy/advisor-privacy.vitest.ts` | Automated test | no prompt leakage |
+| `.opencode/skills/system-skill-advisor/runtime/tests/handlers/advisor-recommend.vitest.ts` | Automated test | attribution shape and prompt-safe `why_recommended` gating |
+| `.opencode/skills/system-skill-advisor/runtime/tests/legacy/advisor-privacy.vitest.ts` | Automated test | no prompt leakage |
 | `Playbook scenario [SC-004](../../manual-testing-playbook/scorer-fusion/lane-attribution.md).` | Manual playbook | Source reference |
 
 ---
@@ -59,4 +59,4 @@ Related references:
 
 - [01-five-lane-fusion.md](../../feature-catalog/scorer-fusion/five-lane-fusion.md).
 - [05-ablation.md](./ablation.md).
-- [`mcp-surface/advisor-recommend.md`](../../feature-catalog/mcp-surface/advisor-recommend.md).
+- [`cli-surface/advisor-recommend.md`](../../feature-catalog/cli-surface/advisor-recommend.md).

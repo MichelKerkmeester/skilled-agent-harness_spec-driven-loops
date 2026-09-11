@@ -46,7 +46,7 @@ Validate the quarantine path for malformed skill metadata without damaging the l
 4. Detect:
 
 ```text
-advisor_status({"workspaceRoot":"/tmp/path-to-copy"})
+node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root /tmp/path-to-copy --format json
 ```
 
 5. Inspect quarantine table or daemon logs for the offending skill path.
@@ -72,8 +72,8 @@ advisor_status({"workspaceRoot":"/tmp/path-to-copy"})
 
 ## 4. SOURCE FILES
 
-- `.opencode/skills/system-skill-advisor/mcp-server/lib/daemon/watcher.ts`
-- `.opencode/skills/system-skill-advisor/mcp-server/schemas/daemon-status.ts`
+- `.opencode/skills/system-skill-advisor/runtime/lib/daemon/watcher.ts`
+- `.opencode/skills/system-skill-advisor/runtime/schemas/daemon-status.ts`
 
 ---
 

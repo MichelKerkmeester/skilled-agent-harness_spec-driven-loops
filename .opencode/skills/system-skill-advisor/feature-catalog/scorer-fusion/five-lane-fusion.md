@@ -49,21 +49,21 @@ On read-only audit and explainer prompts the scorer applies `auditRecsAdvisorPen
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/mcp-server/lib/scorer/fusion.ts` | Library | Weighted blend and the flag-gated RRF fusion path with its conflict-rerank seam, plus the self-recommendation penalty predicate over the canonical id set |
-| `.opencode/skills/system-skill-advisor/mcp-server/lib/scorer/scoring-constants.ts` | Library | Holds `auditRecsAdvisorPenalty` (-0.25) and the read-only explainer floor |
-| `.opencode/skills/system-skill-advisor/mcp-server/lib/scorer/weights-config.ts` | Library | Source reference |
-| `.opencode/skills/system-skill-advisor/mcp-server/lib/scorer/lanes/explicit.ts` | Library | Source reference |
-| `.opencode/skills/system-skill-advisor/mcp-server/lib/scorer/lanes/lexical.ts` | Library | Source reference |
-| `.opencode/skills/system-skill-advisor/mcp-server/lib/scorer/lanes/graph-causal.ts` | Library | Source reference |
-| `.opencode/skills/system-skill-advisor/mcp-server/lib/scorer/lanes/derived.ts` | Library | Source reference |
-| `.opencode/skills/system-skill-advisor/mcp-server/lib/scorer/lanes/semantic-shadow.ts` | Library | Source reference |
+| `.opencode/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts` | Library | Weighted blend and the flag-gated RRF fusion path with its conflict-rerank seam, plus the self-recommendation penalty predicate over the canonical id set |
+| `.opencode/skills/system-skill-advisor/runtime/lib/scorer/scoring-constants.ts` | Library | Holds `auditRecsAdvisorPenalty` (-0.25) and the read-only explainer floor |
+| `.opencode/skills/system-skill-advisor/runtime/lib/scorer/weights-config.ts` | Library | Source reference |
+| `.opencode/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts` | Library | Source reference |
+| `.opencode/skills/system-skill-advisor/runtime/lib/scorer/lanes/lexical.ts` | Library | Source reference |
+| `.opencode/skills/system-skill-advisor/runtime/lib/scorer/lanes/graph-causal.ts` | Library | Source reference |
+| `.opencode/skills/system-skill-advisor/runtime/lib/scorer/lanes/derived.ts` | Library | Source reference |
+| `.opencode/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts` | Library | Source reference |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/mcp-server/tests/scorer/native-scorer.vitest.ts` | Automated test | fusion arithmetic and lane weights |
-| `.opencode/skills/system-skill-advisor/mcp-server/tests/handlers/advisor-status.vitest.ts` | Automated test | `laneWeights` exposure |
+| `.opencode/skills/system-skill-advisor/runtime/tests/scorer/native-scorer.vitest.ts` | Automated test | fusion arithmetic and lane weights |
+| `.opencode/skills/system-skill-advisor/runtime/tests/handlers/advisor-status.vitest.ts` | Automated test | `laneWeights` exposure |
 | `Playbook scenario [SC-001](../../manual-testing-playbook/scorer-fusion/five-lane-fusion.md).` | Manual playbook | Source reference |
 
 ---

@@ -71,7 +71,7 @@ Prompt: this scenario runs the full P1-P15 / N1-N5 probe battery listed below th
 
 1. **For each prompt in the battery** (P1-P15, N1-N5):
    ```
-   bash: python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py "<prompt>" --threshold 0.8 >> /tmp/skc-SA001-advisor-results.jsonl
+   bash: python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "<prompt>" --threshold 0.8 >> /tmp/skc-SA001-advisor-results.jsonl
    ```
 2. **Parse aggregate** (use `jq` or a small Python script): count positive wins, negative false-positives, compute accuracy.
 3. **Compare to baseline**: 50% (per smart-router-measurement-results.jsonl). New accuracy should be measurably higher OR identical (no regression).
@@ -118,9 +118,9 @@ If negative FPR > 0:
 ## 4. SOURCE FILES
 
 - `../manual-testing-playbook.md` — Root directory page and scenario summary.
-- `.opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py` — advisor binary.
-- `.opencode/skills/system-skill-advisor/mcp-server/scripts/skill-graph.json` — sk-code signals + adjacency.
-- `.opencode/skills/system-skill-advisor/mcp-server/scripts/routing-accuracy/labeled-prompts.jsonl` — golden set source (used for P2-P10).
+- `.opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py` — advisor binary.
+- `.opencode/skills/system-skill-advisor/runtime/scripts/skill-graph.json` — sk-code signals + adjacency.
+- `.opencode/skills/system-skill-advisor/runtime/scripts/routing-accuracy/labeled-prompts.jsonl` — golden set source (used for P2-P10).
 - `.opencode/skills/system-spec-kit/runtime/cli/observability/smart-router-measurement-results.jsonl` — baseline accuracy reference (50% for sk-code per that file's own recorded measurement).
 
 ---

@@ -78,7 +78,7 @@ function runSourcedHarness(lines: string[], env: NodeJS.ProcessEnv = {}): string
 }
 
 const advisorCommand =
-  '/usr/local/bin/node /repo/.opencode/skills/system-skill-advisor/mcp-server/dist/advisor-server.js';
+  '/usr/local/bin/node /repo/.opencode/skills/system-skill-advisor/runtime/dist/advisor-server.js';
 
 type TerminationOptions = {
   currentCommand: string;

@@ -30,7 +30,7 @@ import pytest
 # so resolve through that skill rather than assuming the flat layout.
 SCRIPT_DIR = Path(__file__).resolve().parent
 SKILLS_ROOT = SCRIPT_DIR.parent.parent.parent
-ADVISOR_PATH = SKILLS_ROOT / 'system-skill-advisor' / 'mcp-server' / 'scripts' / 'skill_advisor.py'
+ADVISOR_PATH = SKILLS_ROOT / 'system-skill-advisor' / 'runtime' / 'scripts' / 'skill_advisor.py'
 
 if not ADVISOR_PATH.exists():
     raise RuntimeError(f"skill_advisor.py not found at expected path: {ADVISOR_PATH}")

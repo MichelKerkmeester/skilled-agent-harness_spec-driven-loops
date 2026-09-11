@@ -1,0 +1,270 @@
+{
+  "total": 22,
+  "matched": 7,
+  "allowlisted": 15,
+  "differed": 0,
+  "cases": [
+    {
+      "id": "recommend-code",
+      "command": "advisor_recommend",
+      "outcome": "allowlisted",
+      "diffPaths": [
+        "$.data.cache.hit"
+      ],
+      "allowlistIds": [
+        "cache-hit-run-order"
+      ],
+      "cliExit": 0
+    },
+    {
+      "id": "recommend-git",
+      "command": "advisor_recommend",
+      "outcome": "allowlisted",
+      "diffPaths": [
+        "$.data.cache.hit"
+      ],
+      "allowlistIds": [
+        "cache-hit-run-order"
+      ],
+      "cliExit": 0
+    },
+    {
+      "id": "recommend-doc",
+      "command": "advisor_recommend",
+      "outcome": "allowlisted",
+      "diffPaths": [
+        "$.data.cache.hit"
+      ],
+      "allowlistIds": [
+        "cache-hit-run-order"
+      ],
+      "cliExit": 0
+    },
+    {
+      "id": "recommend-ambiguous",
+      "command": "advisor_recommend",
+      "outcome": "allowlisted",
+      "diffPaths": [
+        "$.data.cache.hit"
+      ],
+      "allowlistIds": [
+        "cache-hit-run-order"
+      ],
+      "cliExit": 0
+    },
+    {
+      "id": "recommend-empty",
+      "command": "advisor_recommend",
+      "outcome": "allowlisted",
+      "diffPaths": [
+        "$.error",
+        "$.exitCode"
+      ],
+      "allowlistIds": [
+        "error-envelope-message",
+        "error-envelope-exit"
+      ],
+      "cliExit": 64
+    },
+    {
+      "id": "recommend-overlong",
+      "command": "advisor_recommend",
+      "outcome": "allowlisted",
+      "diffPaths": [
+        "$.error",
+        "$.exitCode"
+      ],
+      "allowlistIds": [
+        "error-envelope-message",
+        "error-envelope-exit"
+      ],
+      "cliExit": 64
+    },
+    {
+      "id": "recommend-missing-prompt",
+      "command": "advisor_recommend",
+      "outcome": "allowlisted",
+      "diffPaths": [
+        "$.error",
+        "$.exitCode"
+      ],
+      "allowlistIds": [
+        "error-envelope-message",
+        "error-envelope-exit"
+      ],
+      "cliExit": 64
+    },
+    {
+      "id": "status-plain",
+      "command": "advisor_status",
+      "outcome": "matched",
+      "diffPaths": [],
+      "allowlistIds": [],
+      "cliExit": 0
+    },
+    {
+      "id": "status-integrity",
+      "command": "advisor_status",
+      "outcome": "matched",
+      "diffPaths": [],
+      "allowlistIds": [],
+      "cliExit": 0
+    },
+    {
+      "id": "status-missing-root",
+      "command": "advisor_status",
+      "outcome": "allowlisted",
+      "diffPaths": [
+        "$.error",
+        "$.exitCode"
+      ],
+      "allowlistIds": [
+        "error-envelope-message",
+        "error-envelope-exit"
+      ],
+      "cliExit": 64
+    },
+    {
+      "id": "validate-default",
+      "command": "advisor_validate",
+      "outcome": "matched",
+      "diffPaths": [],
+      "allowlistIds": [],
+      "cliExit": 0
+    },
+    {
+      "id": "validate-unconfirmed",
+      "command": "advisor_validate",
+      "outcome": "allowlisted",
+      "diffPaths": [
+        "$.error",
+        "$.exitCode"
+      ],
+      "allowlistIds": [
+        "error-envelope-message",
+        "error-envelope-exit"
+      ],
+      "cliExit": 64
+    },
+    {
+      "id": "graph-query-skill",
+      "command": "skill_graph_query",
+      "outcome": "allowlisted",
+      "diffPaths": [
+        "$.error",
+        "$.exitCode"
+      ],
+      "allowlistIds": [
+        "error-envelope-message",
+        "error-envelope-exit"
+      ],
+      "cliExit": 64
+    },
+    {
+      "id": "graph-query-unknown",
+      "command": "skill_graph_query",
+      "outcome": "allowlisted",
+      "diffPaths": [
+        "$.error",
+        "$.exitCode"
+      ],
+      "allowlistIds": [
+        "error-envelope-message",
+        "error-envelope-exit"
+      ],
+      "cliExit": 64
+    },
+    {
+      "id": "graph-query-missing-type",
+      "command": "skill_graph_query",
+      "outcome": "allowlisted",
+      "diffPaths": [
+        "$.error",
+        "$.exitCode",
+        "$.tool"
+      ],
+      "allowlistIds": [
+        "error-envelope-message",
+        "error-envelope-exit",
+        "error-envelope-tool"
+      ],
+      "cliExit": 64
+    },
+    {
+      "id": "graph-status",
+      "command": "skill_graph_status",
+      "outcome": "matched",
+      "diffPaths": [],
+      "allowlistIds": [],
+      "cliExit": 0
+    },
+    {
+      "id": "graph-validate",
+      "command": "skill_graph_validate",
+      "outcome": "matched",
+      "diffPaths": [],
+      "allowlistIds": [],
+      "cliExit": 0
+    },
+    {
+      "id": "propagate-dry-run",
+      "command": "skill_graph_propagate_enhances",
+      "outcome": "matched",
+      "diffPaths": [],
+      "allowlistIds": [],
+      "cliExit": 0
+    },
+    {
+      "id": "rebuild",
+      "command": "advisor_rebuild",
+      "outcome": "allowlisted",
+      "diffPaths": [
+        "$.error",
+        "$.exitCode",
+        "$.code"
+      ],
+      "allowlistIds": [
+        "error-envelope-message",
+        "error-envelope-exit",
+        "error-envelope-code"
+      ],
+      "cliExit": 64
+    },
+    {
+      "id": "graph-scan",
+      "command": "skill_graph_scan",
+      "outcome": "allowlisted",
+      "diffPaths": [
+        "$.error",
+        "$.exitCode",
+        "$.code"
+      ],
+      "allowlistIds": [
+        "error-envelope-message",
+        "error-envelope-exit",
+        "error-envelope-code"
+      ],
+      "cliExit": 64
+    },
+    {
+      "id": "propagate-apply",
+      "command": "skill_graph_propagate_enhances",
+      "outcome": "matched",
+      "diffPaths": [],
+      "allowlistIds": [],
+      "cliExit": 0
+    },
+    {
+      "id": "unknown-command",
+      "command": "advisor_nonexistent",
+      "outcome": "allowlisted",
+      "diffPaths": [
+        "$"
+      ],
+      "allowlistIds": [
+        "error-envelope-root"
+      ],
+      "cliExit": 64
+    }
+  ]
+}

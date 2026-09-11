@@ -48,7 +48,7 @@ Operators run the exact prompt and command sequence for `SKD-002` and confirm th
 
 ### Exact Command Sequence
 
-1. `bash: python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py "review this component for accessibility issues" --threshold 0.5`
+1. `bash: python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "review this component for accessibility issues" --threshold 0.5`
 2. `agent: point the session at one component file and issue the same prompt`
 3. `bash: rg -n "ACCESSIBILITY, CRITICAL" .opencode/skills/sk-design/references/review-checklist.md`
 
@@ -71,7 +71,7 @@ Confirm `sk-design` appears in the advisor output at all; `sk-code` outranking i
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| SKD-002 | Review checklist entry on a code audit | confirm an accessibility review request produces severity-tiered findings rather than impressions | `Review this component for accessibility issues` | 1. `bash: python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py "review this component for accessibility issues" --threshold 0.5` -> 2. `agent: point the session at one component file and issue the same prompt` -> 3. `bash: rg -n "ACCESSIBILITY, CRITICAL" .opencode/skills/sk-design/references/review-checklist.md` | The reply is grouped by severity, every finding carries a file and line, and accessibility findings precede visual ones. | Advisor JSON, the grouped finding list, and the checklist grep proving the severity tiers are the documented ones. | PASS if findings are grouped critical, serious, moderate, each with a file, a line, a fix, and a WCAG criterion where one applies; FAIL if the reply returns ungrouped impressions, omits line numbers, or reports zero findings without stating the tier counts | Confirm `sk-design` appears in the advisor output at all; `sk-code` outranking it on a code-review prompt is expected, but absence is a routing defect. |
+| SKD-002 | Review checklist entry on a code audit | confirm an accessibility review request produces severity-tiered findings rather than impressions | `Review this component for accessibility issues` | 1. `bash: python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "review this component for accessibility issues" --threshold 0.5` -> 2. `agent: point the session at one component file and issue the same prompt` -> 3. `bash: rg -n "ACCESSIBILITY, CRITICAL" .opencode/skills/sk-design/references/review-checklist.md` | The reply is grouped by severity, every finding carries a file and line, and accessibility findings precede visual ones. | Advisor JSON, the grouped finding list, and the checklist grep proving the severity tiers are the documented ones. | PASS if findings are grouped critical, serious, moderate, each with a file, a line, a fix, and a WCAG criterion where one applies; FAIL if the reply returns ungrouped impressions, omits line numbers, or reports zero findings without stating the tier counts | Confirm `sk-design` appears in the advisor output at all; `sk-code` outranking it on a code-review prompt is expected, but absence is a routing defect. |
 
 ---
 

@@ -33,7 +33,7 @@ Validate that `lib/scorer/ablation.ts` supports ablation protocols where each la
 
 ## 2. SCENARIO CONTRACT
 
-- Repo root. MCP server built.
+- Repo root. Advisor runtime built.
 - `advisor_validate` exposes ablation slices or direct ablation entry is available via internal harness.
 - Capture the canonical full-corpus baseline (80.5%).
 
@@ -46,7 +46,7 @@ Validate that `lib/scorer/ablation.ts` supports ablation protocols where each la
 1. Capture baseline:
 
 ```text
-advisor_validate({"skillSlug":null})
+node .opencode/bin/skill-advisor.cjs advisor_validate --json '{"confirmHeavyRun":true,"skillSlug":null}' --format json
 ```
 
 2. Inspect the ablation slice in the response (or run ablation harness).
@@ -96,7 +96,7 @@ BLOCKED — `advisor_validate({"skillSlug":null})` did not return the baseline o
 
 - Scenario [SC-001](../../manual-testing-playbook/scorer-fusion/five-lane-fusion.md), fusion baseline.
 - Feature [`scorer-fusion/ablation.md`](../../feature-catalog/scorer-fusion/ablation.md).
-- Source: `.opencode/skills/system-skill-advisor/mcp-server/lib/scorer/ablation.ts`.
+- Source: `.opencode/skills/system-skill-advisor/runtime/lib/scorer/ablation.ts`.
 
 ---
 

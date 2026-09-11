@@ -36,6 +36,56 @@
   },
   {
     "workflowMode": "system-skill-advisor",
+    "leafResourceId": "feature-catalog/cli-surface/advisor-rebuild.md",
+    "diskPath": "feature-catalog/cli-surface/advisor-rebuild.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "feature-catalog/cli-surface/advisor-recommend.md",
+    "diskPath": "feature-catalog/cli-surface/advisor-recommend.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "feature-catalog/cli-surface/advisor-status.md",
+    "diskPath": "feature-catalog/cli-surface/advisor-status.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "feature-catalog/cli-surface/advisor-validate.md",
+    "diskPath": "feature-catalog/cli-surface/advisor-validate.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "feature-catalog/cli-surface/compat-entrypoint.md",
+    "diskPath": "feature-catalog/cli-surface/compat-entrypoint.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "feature-catalog/cli-surface/skill-advisor-cli.md",
+    "diskPath": "feature-catalog/cli-surface/skill-advisor-cli.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "feature-catalog/cli-surface/skill-graph-query.md",
+    "diskPath": "feature-catalog/cli-surface/skill-graph-query.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "feature-catalog/cli-surface/skill-graph-scan.md",
+    "diskPath": "feature-catalog/cli-surface/skill-graph-scan.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "feature-catalog/cli-surface/skill-graph-status.md",
+    "diskPath": "feature-catalog/cli-surface/skill-graph-status.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "feature-catalog/cli-surface/skill-graph-validate.md",
+    "diskPath": "feature-catalog/cli-surface/skill-graph-validate.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
     "leafResourceId": "feature-catalog/daemon-and-freshness/cache-invalidation.md",
     "diskPath": "feature-catalog/daemon-and-freshness/cache-invalidation.md"
   },
@@ -108,56 +158,6 @@
     "workflowMode": "system-skill-advisor",
     "leafResourceId": "feature-catalog/lifecycle-routing/supersession.md",
     "diskPath": "feature-catalog/lifecycle-routing/supersession.md"
-  },
-  {
-    "workflowMode": "system-skill-advisor",
-    "leafResourceId": "feature-catalog/mcp-surface/advisor-rebuild.md",
-    "diskPath": "feature-catalog/mcp-surface/advisor-rebuild.md"
-  },
-  {
-    "workflowMode": "system-skill-advisor",
-    "leafResourceId": "feature-catalog/mcp-surface/advisor-recommend.md",
-    "diskPath": "feature-catalog/mcp-surface/advisor-recommend.md"
-  },
-  {
-    "workflowMode": "system-skill-advisor",
-    "leafResourceId": "feature-catalog/mcp-surface/advisor-status.md",
-    "diskPath": "feature-catalog/mcp-surface/advisor-status.md"
-  },
-  {
-    "workflowMode": "system-skill-advisor",
-    "leafResourceId": "feature-catalog/mcp-surface/advisor-validate.md",
-    "diskPath": "feature-catalog/mcp-surface/advisor-validate.md"
-  },
-  {
-    "workflowMode": "system-skill-advisor",
-    "leafResourceId": "feature-catalog/mcp-surface/compat-entrypoint.md",
-    "diskPath": "feature-catalog/mcp-surface/compat-entrypoint.md"
-  },
-  {
-    "workflowMode": "system-skill-advisor",
-    "leafResourceId": "feature-catalog/mcp-surface/skill-advisor-cli.md",
-    "diskPath": "feature-catalog/mcp-surface/skill-advisor-cli.md"
-  },
-  {
-    "workflowMode": "system-skill-advisor",
-    "leafResourceId": "feature-catalog/mcp-surface/skill-graph-query.md",
-    "diskPath": "feature-catalog/mcp-surface/skill-graph-query.md"
-  },
-  {
-    "workflowMode": "system-skill-advisor",
-    "leafResourceId": "feature-catalog/mcp-surface/skill-graph-scan.md",
-    "diskPath": "feature-catalog/mcp-surface/skill-graph-scan.md"
-  },
-  {
-    "workflowMode": "system-skill-advisor",
-    "leafResourceId": "feature-catalog/mcp-surface/skill-graph-status.md",
-    "diskPath": "feature-catalog/mcp-surface/skill-graph-status.md"
-  },
-  {
-    "workflowMode": "system-skill-advisor",
-    "leafResourceId": "feature-catalog/mcp-surface/skill-graph-validate.md",
-    "diskPath": "feature-catalog/mcp-surface/skill-graph-validate.md"
   },
   {
     "workflowMode": "system-skill-advisor",
@@ -326,53 +326,53 @@
   },
   {
     "workflowMode": "system-skill-advisor",
-    "leafResourceId": "manual-testing-playbook/native-mcp-tools/advisor-status-rebuild-separation.md",
-    "diskPath": "manual-testing-playbook/native-mcp-tools/advisor-status-rebuild-separation.md"
+    "leafResourceId": "manual-testing-playbook/native-cli-tools/advisor-status-rebuild-separation.md",
+    "diskPath": "manual-testing-playbook/native-cli-tools/advisor-status-rebuild-separation.md"
   },
   {
     "workflowMode": "system-skill-advisor",
-    "leafResourceId": "manual-testing-playbook/native-mcp-tools/ambiguous-brief-rendering.md",
-    "diskPath": "manual-testing-playbook/native-mcp-tools/ambiguous-brief-rendering.md"
+    "leafResourceId": "manual-testing-playbook/native-cli-tools/ambiguous-brief-rendering.md",
+    "diskPath": "manual-testing-playbook/native-cli-tools/ambiguous-brief-rendering.md"
   },
   {
     "workflowMode": "system-skill-advisor",
-    "leafResourceId": "manual-testing-playbook/native-mcp-tools/lifecycle-redirect-metadata.md",
-    "diskPath": "manual-testing-playbook/native-mcp-tools/lifecycle-redirect-metadata.md"
+    "leafResourceId": "manual-testing-playbook/native-cli-tools/lifecycle-redirect-metadata.md",
+    "diskPath": "manual-testing-playbook/native-cli-tools/lifecycle-redirect-metadata.md"
   },
   {
     "workflowMode": "system-skill-advisor",
-    "leafResourceId": "manual-testing-playbook/native-mcp-tools/native-recommend-happy-path.md",
-    "diskPath": "manual-testing-playbook/native-mcp-tools/native-recommend-happy-path.md"
+    "leafResourceId": "manual-testing-playbook/native-cli-tools/native-recommend-happy-path.md",
+    "diskPath": "manual-testing-playbook/native-cli-tools/native-recommend-happy-path.md"
   },
   {
     "workflowMode": "system-skill-advisor",
-    "leafResourceId": "manual-testing-playbook/native-mcp-tools/native-status-transitions.md",
-    "diskPath": "manual-testing-playbook/native-mcp-tools/native-status-transitions.md"
+    "leafResourceId": "manual-testing-playbook/native-cli-tools/native-status-transitions.md",
+    "diskPath": "manual-testing-playbook/native-cli-tools/native-status-transitions.md"
   },
   {
     "workflowMode": "system-skill-advisor",
-    "leafResourceId": "manual-testing-playbook/native-mcp-tools/native-validate-slices.md",
-    "diskPath": "manual-testing-playbook/native-mcp-tools/native-validate-slices.md"
+    "leafResourceId": "manual-testing-playbook/native-cli-tools/native-validate-slices.md",
+    "diskPath": "manual-testing-playbook/native-cli-tools/native-validate-slices.md"
   },
   {
     "workflowMode": "system-skill-advisor",
-    "leafResourceId": "manual-testing-playbook/native-mcp-tools/shadow-delta-sink.md",
-    "diskPath": "manual-testing-playbook/native-mcp-tools/shadow-delta-sink.md"
+    "leafResourceId": "manual-testing-playbook/native-cli-tools/shadow-delta-sink.md",
+    "diskPath": "manual-testing-playbook/native-cli-tools/shadow-delta-sink.md"
   },
   {
     "workflowMode": "system-skill-advisor",
-    "leafResourceId": "manual-testing-playbook/native-mcp-tools/skill-graph-query.md",
-    "diskPath": "manual-testing-playbook/native-mcp-tools/skill-graph-query.md"
+    "leafResourceId": "manual-testing-playbook/native-cli-tools/skill-graph-query.md",
+    "diskPath": "manual-testing-playbook/native-cli-tools/skill-graph-query.md"
   },
   {
     "workflowMode": "system-skill-advisor",
-    "leafResourceId": "manual-testing-playbook/native-mcp-tools/skill-graph-status.md",
-    "diskPath": "manual-testing-playbook/native-mcp-tools/skill-graph-status.md"
+    "leafResourceId": "manual-testing-playbook/native-cli-tools/skill-graph-status.md",
+    "diskPath": "manual-testing-playbook/native-cli-tools/skill-graph-status.md"
   },
   {
     "workflowMode": "system-skill-advisor",
-    "leafResourceId": "manual-testing-playbook/native-mcp-tools/skill-graph-validate.md",
-    "diskPath": "manual-testing-playbook/native-mcp-tools/skill-graph-validate.md"
+    "leafResourceId": "manual-testing-playbook/native-cli-tools/skill-graph-validate.md",
+    "diskPath": "manual-testing-playbook/native-cli-tools/skill-graph-validate.md"
   },
   {
     "workflowMode": "system-skill-advisor",
@@ -468,6 +468,11 @@
     "workflowMode": "system-skill-advisor",
     "leafResourceId": "references/graph/skill-graph-query-cookbook.md",
     "diskPath": "references/graph/skill-graph-query-cookbook.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "references/runtime/cli-front-door-contract.md",
+    "diskPath": "references/runtime/cli-front-door-contract.md"
   },
   {
     "workflowMode": "system-skill-advisor",

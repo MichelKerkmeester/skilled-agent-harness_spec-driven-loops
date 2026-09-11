@@ -1,0 +1,19 @@
+ROLE: Release auditor for a completed transport decommission. You verify claims against the tree; you do not take a summary's word for anything.
+
+CONTEXT: Branch worktrees/049-advisor-mcp-decommission removed the skill advisor's MCP transport and made a daemon-backed CLI the single front door. Shipped across eight phases: the advisor's declaration deleted from all five runtime configs, the MCP SDK removed, the plugin bridge deleted, the daemon's wire replaced with the advisor's own newline-delimited protocol (initialize returns advisorProtocol "1", then advisor.call returns the payload directly), the package directory renamed mcp-server to runtime, two load-bearing env settings rehomed from the config blocks into the launcher, roughly 190 documents rewritten, 26 bridge tests retired and 7 contract tests inverted.
+
+ACTION: Find what is still wrong, in these classes:
+1. Any surviving skill advisor MCP reference, artifact, path, tool id or process on a live surface.
+2. Feature catalog, manual-testing playbook, references, assets and READMEs that describe something other than what ships.
+3. Interconnected surfaces outside the advisor package: the root README, install guides, command templates, other skills, spec-kit's own hook shim, and anything else that names the advisor.
+4. Commands printed in any document that would fail if a reader ran them. Run them.
+5. Tests that assert a contract this packet removed, and coverage silently lost when a test was retired.
+6. Names that outlived their referent: files, directories, variables, headers, comments.
+
+RULES, binding:
+- A green test proves nothing until you have read its output and exit status. A run that exits 0 without executing is a failure, not a pass.
+- Historical records keep their old names. Changelogs, benchmark reports, dated evidence and frozen fixtures record what was true when written; rewriting them is falsification. Live instruction surfaces must match what ships. Classify every hit into one bucket and say which.
+- Two accuracy gates, python-ts-parity and scorer-eval-baseline-ratchet, fail identically in an untouched checkout. They are pre-existing. Do not report them as regressions.
+- Verify the prompt-time brief still arrives in three daemon states: warm, cold where the call must start the daemon, and unreachable where a degraded line is required.
+
+FORMAT: P0/P1/P2 findings. Each carries file:line, the exact command whose output proves it, that output quoted, and whether it is live surface or historical record. No finding without a reproduction.

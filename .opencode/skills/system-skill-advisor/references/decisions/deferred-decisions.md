@@ -54,7 +54,7 @@ Deferred decisions stay visible until they are explicitly resolved, superseded o
 1. `UserPromptSubmit` pointing to `.opencode/skills/system-spec-kit/runtime/dist/system-spec-kit/runtime/hooks/devin/user-prompt-submit.js`
 2. `SessionStart` pointing to `.opencode/skills/system-spec-kit/runtime/dist/system-spec-kit/runtime/hooks/devin/session-start.js`
 
-Both paths point to the OLD `system-spec-kit` location. The NEW location at `.opencode/skills/system-skill-advisor/mcp-server/dist/system-skill-advisor/hooks/devin/` exists plus contains a compiled `user-prompt-submit.js` but lacks `session-start.js`.
+Both paths point to the OLD `system-spec-kit` location. The NEW location at `.opencode/skills/system-skill-advisor/runtime/dist/system-skill-advisor/hooks/devin/` exists plus contains a compiled `user-prompt-submit.js` but lacks `session-start.js`.
 
 ### Blocker
 
@@ -66,8 +66,8 @@ A complete migration of both hooks requires building `session-start.js` at the N
 
 1. Verify `.opencode/skills/system-skill-advisor/hooks/devin/session-start.ts` exists. If not, copy from system-spec-kit OLD location plus update import paths.
 2. Add it to the package build (typically `tsc -p tsconfig.build.json` will pick it up if it is in `include[]`).
-3. Run `npm --prefix .opencode/skills/system-skill-advisor/mcp-server run build`.
-4. Verify `.opencode/skills/system-skill-advisor/mcp-server/dist/system-skill-advisor/hooks/devin/session-start.js` exists.
+3. Run `npm --prefix .opencode/skills/system-skill-advisor/runtime run build`.
+4. Verify `.opencode/skills/system-skill-advisor/runtime/dist/system-skill-advisor/hooks/devin/session-start.js` exists.
 5. Edit `.devin/hooks.v1.json` to point both hooks to the NEW paths in one atomic edit.
 6. Restart Devin or have the operator restart their Devin session to pick up the new config.
 
@@ -101,8 +101,8 @@ Mid-window audit while preparing for the 2026-08-16 removal:
 - Cross-runtime grep for `system-spec-kit/runtime/hooks/`: zero hits in active runtime config files. Two hits in documentation (`README.md` lines 767, 769 and `DEPLOYMENT.md` line 7). Remaining hits are historical research/impl logs.
 
 **Compiled NEW dist is self-contained:**
-- Imports in `.opencode/skills/system-skill-advisor/mcp-server/dist/system-skill-advisor/hooks/devin/user-prompt-submit.js` only resolve to `../../mcp-server/lib/*.js` (skill-internal). No imports from OLD `system-spec-kit/runtime/hooks/` in the compiled output.
-- `grep -rE "system-spec-kit/runtime/hooks" .opencode/skills/system-skill-advisor/mcp-server/dist` returns zero hits.
+- Imports in `.opencode/skills/system-skill-advisor/runtime/dist/system-skill-advisor/hooks/devin/user-prompt-submit.js` only resolve to `../../runtime/lib/*.js` (skill-internal). No imports from OLD `system-spec-kit/runtime/hooks/` in the compiled output.
+- `grep -rE "system-spec-kit/runtime/hooks" .opencode/skills/system-skill-advisor/runtime/dist` returns zero hits.
 
 **OLD location contents that DO have non-hook consumers — must not be removed naively:**
 
@@ -133,7 +133,7 @@ A future packet (`006-skill-advisor/010-old-hooks-helper-migration` or similar) 
 Hooks exist at TWO locations:
 
 - OLD: `.opencode/skills/system-spec-kit/runtime/hooks/{claude,opencode,devin}/` with source TS plus compiled JS
-- NEW: `.opencode/skills/system-skill-advisor/hooks/{claude,opencode,devin}/` with source TS, plus `.opencode/skills/system-skill-advisor/mcp-server/dist/system-skill-advisor/hooks/{claude,opencode}/` with compiled JS (devin missing session-start.js per F4)
+- NEW: `.opencode/skills/system-skill-advisor/hooks/{claude,opencode,devin}/` with source TS, plus `.opencode/skills/system-skill-advisor/runtime/dist/system-skill-advisor/hooks/{claude,opencode}/` with compiled JS (devin missing session-start.js per F4)
 
 No README or doc explains which location is canonical or when OLD will deprecate.
 
@@ -195,7 +195,7 @@ None. Status quo. If a future sk-doc template revision broadens the canonical st
 
 ### Current state
 
-`feature-catalog/feature-catalog.md` TOC numbers sections 1-8 sequentially while directory layout uses 01, 02, 03, 04, 06, 07, 08 (gap at 05). Section 5 (SCORER FUSION) in the TOC maps to directory `scorer-fusion`, section 6 (MCP SURFACE) maps to `mcp-surface`, creating a mismatch.
+`feature-catalog/feature-catalog.md` TOC numbers sections 1-8 sequentially while directory layout uses 01, 02, 03, 04, 06, 07, 08 (gap at 05). Section 5 (SCORER FUSION) in the TOC maps to directory `scorer-fusion`, section 6 (COMMAND SURFACE) maps to `cli-surface`, creating a mismatch.
 
 ### Action already taken
 
@@ -242,7 +242,7 @@ Playbook root `manual-testing-playbook.md` now carries §17.5 "Catalog group ↔
 
 - Playbook `compat-and-disable` plus `operator-h5` have NO corresponding feature_catalog groups.
 - Catalog `daemon-and-freshness` has NO dedicated playbook category (split across `auto-update-daemon` plus `operator-h5`).
-- Catalog `mcp-surface` has NO dedicated playbook category (split across `native-mcp-tools` plus `cli-hooks-and-plugin`).
+- Catalog `cli-surface` has NO dedicated playbook category (split across `native-cli-tools` plus `cli-hooks-and-plugin`).
 
 ### Recommended action
 

@@ -34,8 +34,8 @@ Validate that the daemon watcher in `lib/daemon/watcher.ts` subscribes only to `
 ## 2. SCENARIO CONTRACT
 
 - Repo root is the working directory.
-- MCP server has been built with `npm --prefix .opencode/skills/system-spec-kit/runtime run build`.
-- The advisor daemon is running (either via MCP server startup or on-demand through `advisor_status`).
+- Advisor runtime has been built with `npm --prefix .opencode/skills/system-skill-advisor/runtime run build`.
+- The advisor daemon is running (started through the launcher or on-demand through `advisor_status`).
 - `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED` is unset.
 - Terminal capture is enabled so daemon stderr or structured logs are recorded.
 
@@ -48,19 +48,19 @@ Validate that the daemon watcher in `lib/daemon/watcher.ts` subscribes only to `
 1. Capture baseline generation:
 
 ```text
-advisor_status({"workspaceRoot":"/absolute/path/to/repo"})
+node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root /absolute/path/to/repo --format json
 ```
 
 2. Touch an unrelated file under `.opencode/`:
 
 ```bash
-touch .opencode/plugins/spec-kit-skill-advisor.js
+touch .opencode/plugins/system-skill-advisor.js
 ```
 
 3. Wait 3 seconds and recheck status:
 
 ```text
-advisor_status({"workspaceRoot":"/absolute/path/to/repo"})
+node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root /absolute/path/to/repo --format json
 ```
 
 4. Touch a tracked skill file:
@@ -93,7 +93,7 @@ touch .opencode/skills/sk-doc/SKILL.md
 - Scenario [AU-002](../../manual-testing-playbook/auto-update-daemon/lease-single-writer.md), single-writer lease semantics.
 - Scenario [AU-004](../../manual-testing-playbook/auto-update-daemon/generation-publication.md), generation bump publication.
 - Feature [`daemon-and-freshness/watcher.md`](../../feature-catalog/daemon-and-freshness/watcher.md).
-- Source: `.opencode/skills/system-skill-advisor/mcp-server/lib/daemon/watcher.ts`.
+- Source: `.opencode/skills/system-skill-advisor/runtime/lib/daemon/watcher.ts`.
 
 ---
 

@@ -31,17 +31,17 @@ Keep the canonical lane weights in exactly one place and expose them to callers 
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/mcp-server/lib/scorer/weights-config.ts` | Library | Source reference |
-| `.opencode/skills/system-skill-advisor/mcp-server/lib/scorer/lane-registry.ts` | Library | Source reference |
-| `.opencode/skills/system-skill-advisor/mcp-server/lib/scorer/fusion.ts` | Library | Source reference |
-| `.opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-status.ts` | Handler | Source reference |
+| `.opencode/skills/system-skill-advisor/runtime/lib/scorer/weights-config.ts` | Library | Source reference |
+| `.opencode/skills/system-skill-advisor/runtime/lib/scorer/lane-registry.ts` | Library | Source reference |
+| `.opencode/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts` | Library | Source reference |
+| `.opencode/skills/system-skill-advisor/runtime/handlers/advisor-status.ts` | Handler | Source reference |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/mcp-server/tests/scorer/native-scorer.vitest.ts` | Automated test | weight consumption |
-| `.opencode/skills/system-skill-advisor/mcp-server/tests/handlers/advisor-status.vitest.ts` | Automated test | weight exposure |
+| `.opencode/skills/system-skill-advisor/runtime/tests/scorer/native-scorer.vitest.ts` | Automated test | weight consumption |
+| `.opencode/skills/system-skill-advisor/runtime/tests/handlers/advisor-status.vitest.ts` | Automated test | weight exposure |
 | `Playbook scenario [SC-001](../../manual-testing-playbook/scorer-fusion/five-lane-fusion.md).` | Manual playbook | Source reference |
 
 ---

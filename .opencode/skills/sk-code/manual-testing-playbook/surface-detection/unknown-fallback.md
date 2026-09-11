@@ -56,7 +56,7 @@ Prompt: `Add a request-ID middleware to my Go HTTP server in cmd/api/main.go and
 
 1. **Advisor probe**:
    ```
-   bash: python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py "Add a request-ID middleware to my Go HTTP server in cmd/api/main.go and return it in the X-Request-ID response header." --threshold 0.8 > /tmp/skc-SD003-advisor.txt
+   bash: python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "Add a request-ID middleware to my Go HTTP server in cmd/api/main.go and return it in the X-Request-ID response header." --threshold 0.8 > /tmp/skc-SD003-advisor.txt
    ```
 2. **Verify advisor result**: sk-code MAY win (the prompt mentions "middleware" and "HTTP server" which align with code work generally) but SHOULD have a low confidence (closer to 0.50 than 0.90), OR another skill may win. EITHER outcome is acceptable for this scenario — what matters is the sk-code BEHAVIOR after invocation.
 3. **Invoke sk-code** with the prompt.

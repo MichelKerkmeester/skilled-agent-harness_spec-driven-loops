@@ -31,14 +31,14 @@ Guarantee the Python compatibility surface does not regress on hand-curated P0 c
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor_regression.py` | Script | Source reference |
-| `.opencode/skills/system-skill-advisor/mcp-server/scripts/fixtures/skill-advisor-regression-cases.jsonl` | Script | Source reference |
+| `.opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor_regression.py` | Script | Source reference |
+| `.opencode/skills/system-skill-advisor/runtime/scripts/fixtures/skill-advisor-regression-cases.jsonl` | Script | Source reference |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/mcp-server/tests/parity/` | Automated test | Python/TS parity harness consuming the same corpus |
+| `.opencode/skills/system-skill-advisor/runtime/tests/parity/` | Automated test | Python/TS parity harness consuming the same corpus |
 | `Playbook scenario [PC-004](../../manual-testing-playbook/python-compat/regression-suite.md).` | Manual playbook | Source reference |
 
 ---
@@ -53,4 +53,4 @@ Related references:
 
 - [01-cli-shim.md](../../feature-catalog/python-compat/cli-shim.md).
 - [03-bench-runner.md](../../feature-catalog/python-compat/bench-runner.md).
-- [`mcp-surface/advisor-validate.md`](../../feature-catalog/mcp-surface/advisor-validate.md).
+- [`cli-surface/advisor-validate.md`](../../feature-catalog/cli-surface/advisor-validate.md).

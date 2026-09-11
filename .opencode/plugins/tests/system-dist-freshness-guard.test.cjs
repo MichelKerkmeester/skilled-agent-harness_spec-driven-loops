@@ -289,24 +289,24 @@ test('keeps JSON build inputs watched and preserves checker mtime fallback', (t)
     '.opencode',
     'skills',
     'system-skill-advisor',
-    'mcp-server',
+    'runtime',
     'data',
     'routing-prototypes.json',
   );
   writeFileWithMtime(jsonPath, '{"value":1}\n', Date.now());
-  assert.equal(distFreshness.packageForSourceFile(jsonPath, { workspaceRoot: tmpDir }).id, 'system-skill-advisor/mcp-server');
+  assert.equal(distFreshness.packageForSourceFile(jsonPath, { workspaceRoot: tmpDir }).id, 'system-skill-advisor/runtime');
 
   const fallback = distFreshness.checkPackageFreshness('mcp-code-mode/mcp-server', { workspaceRoot: tmpDir });
   assert.equal(fallback.status, 'fresh');
   assert.equal(fallback.origin, 'checker');
 
   const options = { workspaceRoot: tmpDir };
-  assert.equal(distFreshness.preparePackageBuild('system-skill-advisor/mcp-server', options).status, 'prepared');
-  assert.equal(distFreshness.recordPackageBuild('system-skill-advisor/mcp-server', options).status, 'recorded');
+  assert.equal(distFreshness.preparePackageBuild('system-skill-advisor/runtime', options).status, 'prepared');
+  assert.equal(distFreshness.recordPackageBuild('system-skill-advisor/runtime', options).status, 'recorded');
   const oldMtime = fs.statSync(jsonPath).mtime;
   fs.writeFileSync(jsonPath, '{"value":2}\n');
   fs.utimesSync(jsonPath, oldMtime, oldMtime);
-  assert.equal(distFreshness.checkPackageFreshness('system-skill-advisor/mcp-server', options).status, 'stale');
+  assert.equal(distFreshness.checkPackageFreshness('system-skill-advisor/runtime', options).status, 'stale');
 });
 
 test('prunes only old matching cache temporaries', (t) => {

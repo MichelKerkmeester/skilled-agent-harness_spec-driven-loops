@@ -32,7 +32,7 @@ Validate that `lib/lifecycle/age-haircut.ts` applies age-based decay only to the
 ## 2. SCENARIO CONTRACT
 
 - Repo root with at least one older skill (modification timestamp >30 days) and one recently modified skill.
-- MCP server built. Daemon reachable.
+- Advisor runtime built. Daemon reachable.
 - Option flags for `advisor_recommend` include `includeAttribution: true`.
 
 ---
@@ -45,8 +45,8 @@ Validate that `lib/lifecycle/age-haircut.ts` applies age-based decay only to the
 2. Call `advisor_recommend` with prompts that match each:
 
 ```text
-advisor_recommend({"prompt":"<prompt matching old skill>","options":{"includeAttribution":true}})
-advisor_recommend({"prompt":"<prompt matching recent skill>","options":{"includeAttribution":true}})
+node .opencode/bin/skill-advisor.cjs advisor_recommend --prompt "<prompt matching old skill>" --options '{"includeAttribution":true}' --format json
+node .opencode/bin/skill-advisor.cjs advisor_recommend --prompt "<prompt matching recent skill>" --options '{"includeAttribution":true}' --format json
 ```
 
 3. For each recommendation, inspect `laneBreakdown` and record the contribution of every lane.
@@ -74,7 +74,7 @@ advisor_recommend({"prompt":"<prompt matching recent skill>","options":{"include
 - Scenario [LC-002](./supersession.md), supersession redirects.
 - Scenario [SC-001](../../manual-testing-playbook/scorer-fusion/five-lane-fusion.md), 5-lane fusion basics.
 - Feature [`lifecycle-routing/age-haircut.md`](../../feature-catalog/lifecycle-routing/age-haircut.md).
-- Source: `.opencode/skills/system-skill-advisor/mcp-server/lib/lifecycle/age-haircut.ts`.
+- Source: `.opencode/skills/system-skill-advisor/runtime/lib/lifecycle/age-haircut.ts`.
 
 ---
 

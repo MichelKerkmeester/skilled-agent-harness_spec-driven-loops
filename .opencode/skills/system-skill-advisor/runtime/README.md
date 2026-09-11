@@ -1,0 +1,327 @@
+---
+title: "System Skill Advisor Runtime"
+description: "Standalone package home for skill-advisor handlers, libraries, schemas, scripts, tests, benchmarks and database ownership."
+trigger_phrases:
+  - "system skill advisor runtime"
+  - "advisor cli"
+  - "advisor standalone package"
+---
+
+# System Skill Advisor Runtime
+
+> Standalone advisor runtime for skill recommendation routing, freshness tracking and skill graph relationship queries.
+
+---
+
+## 1. OVERVIEW
+
+`runtime/` owns the standalone advisor package: the daemon that serves the CLI, the scorer, the skill graph and the SQLite state. It exposes 9 public commands across two families: advisor routing (`advisor_*`) and skill graph queries (`skill_graph_*`).
+
+Current state:
+
+- `advisor-server.ts` is the advisor daemon entrypoint. It serves the IPC socket (`startIpcSocketServer`), dispatches command frames into `tools/`, manages daemon lifecycle and triggers skill metadata indexing on startup. Its caller-context builder resolves trust **fail-closed**: a caller that asserts no authority is untrusted, and only `SYSTEM_SKILL_ADVISOR_TRUST_DEFAULT=trusted` in the daemon's own environment (unforgeable by callers) restores a default-trusted posture for maintenance flows.
+- `skill-advisor-cli.ts` (with `skill-advisor-cli-manifest.ts`) is the daemon-backed CLI over the same 9 commands, fronted by the `.opencode/bin/skill-advisor.cjs` shim: the single front door. Calls are sent untrusted by default; `--trusted` / `SYSTEM_SKILL_ADVISOR_CLI_TRUSTED=1` marks maintainer mutations (`advisor_rebuild`, `skill_graph_scan`, apply-mode `skill_graph_propagate_enhances`), and the gate fails closed with a usage error (exit `64`) otherwise. Shared exit taxonomy `0`/`1`/`64`/`69`/`75`; `--warm-only` probes and exits `75` instead of cold-spawning the daemon.
+- `tools/` defines command descriptors and dispatches calls. `tools/index.ts` registers `TOOL_DEFINITIONS` with 4 advisor commands plus the spread of skill-graph commands.
+- `handlers/` owns orchestration for advisor tools (recommend, rebuild, status, validate) and skill-graph subhandlers (scan, query, status, validate, propagate_enhances).
+- `lib/` carries runtime helpers across active subdirectories including `scorer/`, `daemon/`, `freshness/`, `lifecycle/`, `derived/`, `compat/`, `auth/`, `corpus/`, `cross-skill-edges/`, `context/`, `shadow/`, `skill-graph/`, `embedders/`, `ipc/`, `shared/` and `utils/`, plus several flat modules.
+- `database/skill-graph.sqlite` stores skill metadata, relationships and derived signals. Schema initialization and prepared queries live in `lib/skill-graph/skill-graph-db.ts` and `lib/skill-graph/skill-graph-queries.ts`.
+- Packet 013/009/011 moved the skill graph DB/query library and startup lifecycle under this package. Extraction is complete.
+
+This package is local-first. It reads repository-local skill metadata, writes package-local SQLite state and serves callers over a unix-socket IPC bridge speaking the advisor's own protocol.
+
+---
+
+## 2. ARCHITECTURE
+
+```text
+╭──────────────────────────────────────────────────────────────────╮
+│                 SKILL ADVISOR DAEMON                             │
+╰──────────────────────────────────────────────────────────────────╯
+
+┌──────────────┐      ┌──────────────────┐      ┌─────────────────┐
+│ CLI callers  │ ───▶ │ advisor-server.ts│ ───▶ │ tools/          │
+│ hook plugin  │      │ daemon + IPC     │      │ tool dispatch   │
+└──────┬───────┘      └────────┬─────────┘      └────────┬────────┘
+       │                       │                         │
+       │                       ▼                         ▼
+       │              ┌──────────────────┐      ┌─────────────────┐
+       └───────────▶  │ handlers/        │ ───▶ │ lib/            │
+                      │ tool execution   │      │ runtime helpers │
+                      └────────┬─────────┘      └────────┬────────┘
+                               │                         │
+                               ▼                         ▼
+                      ┌──────────────────┐      ┌────────────────────┐
+                      │ lib/skill-graph/ │ ───▶ │ database/          │
+                      │ SQLite queries   │      │ skill-graph.sqlite │
+                      └──────────────────┘      └────────────────────┘
+
+Dependency direction:
+advisor-server.ts ───▶ tools/ ───▶ handlers/ ───▶ lib/* ───▶ database/
+handlers/ ───▶ schemas/ for contract validation
+lib/ ───▶ database/skill-graph.sqlite through lib/skill-graph/ adapters
+```
+
+---
+
+## 3. PACKAGE TOPOLOGY
+
+```text
+runtime/
++-- advisor-server.ts        # Daemon entrypoint: IPC socket and daemon lifecycle
++-- skill-advisor-cli.ts     # Daemon-backed CLI entrypoint (the front door)
++-- skill-advisor-cli-manifest.ts # CLI tool manifest
++-- tools/                   # Command descriptors and dispatch
++-- handlers/                # Tool handler orchestration
++-- lib/                     # Runtime helpers (scorer, daemon, freshness, skill-graph)
++-- schemas/                 # Zod and JSON contracts
++-- database/                # Local SQLite state
++-- data/                    # Package-local runtime data
++-- compat/                  # TypeScript bridge surface
++-- bench/                   # Benchmark harnesses
++-- tests/                   # Vitest and Python coverage
++-- scripts/                 # Python CLI and graph compiler utilities
+`-- README.md
+```
+
+Allowed dependency direction:
+
+```text
+advisor-server.ts → tools/ → handlers/ → lib/
+handlers/ → schemas/
+lib/ → database/
+scripts/ → lib/
+tests/ → lib/, handlers/, schemas/
+```
+
+Disallowed dependency direction:
+
+```text
+lib/ → tools/ (no tool registration in lib)
+lib/ → handlers/ (domain logic stays in lib)
+database/ → runtime modules
+schemas/ → handlers/ (schemas are contracts, not orchestration)
+```
+
+---
+
+## 4. DIRECTORY TREE
+
+```text
+runtime/
++-- advisor-server.ts              # Daemon entrypoint: IPC socket server and lifecycle
++-- skill-advisor-cli.ts           # Daemon-backed CLI entrypoint
++-- skill-advisor-cli-manifest.ts  # CLI tool manifest
++-- tools/                         # Command definitions and dispatch
+|   +-- advisor-recommend.ts
+|   +-- advisor-rebuild.ts
+|   +-- advisor-status.ts
+|   +-- advisor-validate.ts
+|   +-- skill-graph-tools.ts
+|   +-- advisor-contract-keys.ts
+|   +-- types.ts
+|   +-- index.ts
+|   `-- README.md
++-- handlers/                      # Command handlers
+|   +-- advisor-recommend.ts
+|   +-- advisor-rebuild.ts
+|   +-- advisor-status.ts
+|   +-- advisor-validate.ts
+|   +-- skill-graph/
+|   |   +-- scan.ts
+|   |   +-- query.ts
+|   |   +-- status.ts
+|   |   +-- validate.ts
+|   |   +-- propagate-enhances.ts
+|   |   +-- response-envelope.ts
+|   |   +-- index.ts
+|   |   `-- README.md
+|   +-- index.ts
+|   `-- README.md
++-- lib/                           # Runtime helpers and business logic
+|   +-- skill-graph/               # SQLite schema and prepared queries
+|   +-- scorer/                    # Lane attribution and fusion
+|   +-- daemon/                    # Daemon lifecycle and watcher
+|   +-- freshness/                 # Cache invalidation and trust state
+|   +-- lifecycle/                 # Status, supersession, rollback
+|   +-- derived/                   # Derived-metadata extraction and provenance
+|   +-- compat/                    # Daemon probe and redirect metadata
+|   +-- auth/                      # Trusted caller checks
+|   +-- corpus/                    # df-idf corpus utilities
+|   +-- cross-skill-edges/         # Inbound enhance-edge propagation
+|   +-- context/                   # Caller context helpers
+|   +-- shadow/                    # Shadow delta sink
+|   +-- utils/                     # Internal utilities
+|   +-- *.ts                       # Flat runtime modules (metrics, prompt-cache, render, etc.)
+|   `-- README.md
++-- schemas/                       # Zod and JSON contracts
+|   +-- advisor-tool-schemas.ts
+|   +-- compat-contract.json
+|   +-- daemon-status.ts
+|   +-- generation-metadata.ts
+|   +-- skill-derived-v2.ts
+|   `-- README.md
++-- database/                      # SQLite runtime state
+|   +-- skill-graph.sqlite
+|   +-- .system-skill-advisor-launcher.json
+|   `-- README.md
++-- data/                          # Runtime data (opt-in shadow deltas)
+|   +-- shadow-deltas.jsonl
+|   `-- README.md
++-- compat/                        # Package-level compatibility export
+|   +-- index.ts
+|   `-- README.md
++-- bench/                         # Benchmark suites and baselines
+|   +-- code-graph-parse-latency.bench.ts
+|   +-- scorer-bench.ts
+|   +-- scorer-calibration.bench.ts
+|   +-- watcher-benchmark.ts
+|   +-- latency-bench.ts
+|   `-- README.md
++-- tests/                         # Vitest and Python coverage
+|   +-- __shared__/
+|   +-- handlers/
+|   +-- scorer/
+|   +-- schemas/
+|   +-- python/
+|   +-- parity/
+|   `-- README.md
++-- scripts/                       # Python CLI and graph compiler
+|   +-- skill_advisor.py
+|   +-- skill_advisor_bench.py
+|   +-- skill_advisor_regression.py
+|   +-- skill_graph_compiler.py
+|   +-- routing-accuracy/
+|   `-- README.md
++-- README.md
++-- package.json
++-- tsconfig.json
+`-- vitest.config.ts
+```
+
+---
+
+## 5. KEY FILES
+
+| File | Responsibility |
+|---|---|
+| `advisor-server.ts` | Advisor daemon entrypoint: IPC socket server, command dispatch, daemon startup, skill graph indexing via `indexSkillMetadata`, and the fail-closed trusted-caller resolution (`resolveTrustedCaller` honors `SYSTEM_SKILL_ADVISOR_TRUST_DEFAULT=trusted` from the daemon env only). |
+| `skill-advisor-cli.ts` | Daemon-backed CLI over the same 9 tools (built to `dist/runtime/skill-advisor-cli.js`, fronted by `.opencode/bin/skill-advisor.cjs`). Untrusted-by-default `_meta` (`callerAuthority`), trusted-mutation gate for `advisor_rebuild` / `skill_graph_scan` / apply-mode `skill_graph_propagate_enhances`, warm-only probe support, launcher auto-spawn, exit taxonomy `0`/`1`/`64`/`69`/`75`. |
+| `skill-advisor-cli-manifest.ts` | Hand-maintained CLI tool manifest asserted at CLI startup and covered by the manifest parity suite so command schemas stay byte-identical to the tool registry. |
+| `tools/index.ts` (lines 1-70) | Tool descriptor registry (`TOOL_DEFINITIONS` at line 37) and dispatch router for 9 public tools. |
+| `tools/skill-graph-tools.ts` (lines 1-143) | Skill graph tool definitions for scan, query, status, validate and propagate_enhances. |
+| `handlers/index.ts` | Re-exports handler entrypoints for advisor and skill-graph operations. |
+| `lib/skill-graph/skill-graph-db.ts` | SQLite schema initialization, metadata indexing, stats and row mapping. |
+| `lib/skill-graph/skill-graph-queries.ts` | Prepared graph relationship queries (depends_on, dependents, enhances, hubs). |
+| `lib/scorer/` | Native scoring implementation with lane-based attribution and calibration. |
+| `lib/daemon/lifecycle.ts` | Advisor daemon startup, shutdown and lifecycle orchestration. |
+| `database/skill-graph.sqlite` | Local SQLite database for skill metadata and relationships. |
+
+---
+
+## 6. BOUNDARIES AND FLOW
+
+| Boundary | Rule |
+|---|---|
+| Public API | Commands are reached through the `skill-advisor` CLI and dispatched through `advisor-server.ts`, `tools/` and `handlers/`. |
+| Daemon → Tools | `advisor-server.ts` imports and dispatches through `tools/index.ts`. |
+| Handler logic | Handlers may call `lib/`, schemas and database adapters. |
+| Domain logic | `lib/` modules should not import handlers or tool registration code. |
+| Storage | SQLite access stays behind `lib/skill-graph/` adapters that own schema and migration rules. |
+| Schemas | `schemas/` are contracts only. They do not orchestrate handlers. |
+| Build output | `dist/` is generated output and is not a source dependency. |
+
+Tool invocation flow:
+
+```text
+╭──────────────────────────────────────────╮
+│ CLI caller (hook, plugin, shim)          │
+╰──────────────────────────────────────────╯
+                  │
+                  ▼
+┌──────────────────────────────────────────┐
+│ advisor-server.ts (daemon, IPC frames)   │
+└──────────────────────────────────────────┘
+                  │
+                  ▼
+┌──────────────────────────────────────────┐
+│ tools/index.ts (dispatch router)         │
+└──────────────────────────────────────────┘
+                  │
+                  ▼
+┌──────────────────────────────────────────┐
+│ handlers/* (orchestration)               │
+└──────────────────────────────────────────┘
+                  │
+                  ▼
+┌──────────────────────────────────────────┐
+│ lib/* (scorer, freshness, skill-graph)   │
+└──────────────────────────────────────────┘
+                  │
+                  ▼
+┌──────────────────────────────────────────┐
+│ database/skill-graph.sqlite              │
+└──────────────────────────────────────────┘
+                  │
+                  ▼
+╭──────────────────────────────────────────╮
+│ typed command response                   │
+╰──────────────────────────────────────────╯
+```
+
+---
+
+## 7. ENTRYPOINTS
+
+The runtime defines 9 public commands (4 advisor + 5 skill_graph) in `tools/index.ts:37-43` and `tools/skill-graph-tools.ts:22,35,55,61,67`; all nine are reached through the `skill-advisor` CLI.
+
+| Entrypoint | Type | Purpose |
+|---|---|---|
+| `advisor-server.ts` | Daemon | Advisor daemon entrypoint: serves the IPC socket, dispatches commands to `tools/`, manages daemon lifecycle. |
+| `advisor_recommend` | Tool | Returns skill recommendations for a given prompt. |
+| `advisor_rebuild` | Tool | Rebuilds the advisor index from skill metadata. |
+| `advisor_status` | Tool | Reports advisor health, daemon state, freshness, generation and trust status. |
+| `advisor_validate` | Tool | Validates advisor configuration and routing bundle. |
+| `skill_graph_scan` | Tool | Indexes or re-indexes skill metadata into SQLite. |
+| `skill_graph_query` | Tool | Queries skill graph relationships (dependencies, enhances, hubs). |
+| `skill_graph_status` | Tool | Reports skill graph health and counts. |
+| `skill_graph_validate` | Tool | Validates skill graph for schema drift, broken edges, cycles, weight bands, reciprocal symmetry, orphan skills and derived-freshness warnings. |
+| `skill_graph_propagate_enhances` | Tool | Detects and (opt-in) applies missing inbound enhance edges across skills. |
+| `node .opencode/bin/skill-advisor.cjs <command>` | CLI | Daemon-backed front door for all 9 commands (shim guards dist freshness, exit `69`; `SYSTEM_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE=1` dev override; `list-tools` answers offline; `--trusted` for maintainer mutations). |
+| `npm run build` | Command | Builds TypeScript into `dist/`. |
+| `npm test` | Command | Runs Vitest and Python test coverage. The tri-daemon CLI drill (`tests/tri-daemon-drill.vitest.ts`) is env-gated: it runs only with `SPECKIT_RUN_TRI_DAEMON_DRILL=1` and skips otherwise. |
+
+---
+
+## 8. VALIDATION
+
+Run from `runtime/` unless noted.
+
+```bash
+npm run build
+npm test
+# For serial execution (Vitest 4.x): npm test -- --no-file-parallelism --maxWorkers=1
+```
+
+Focused documentation checks from the repository root:
+
+```bash
+python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/system-skill-advisor/runtime/README.md
+python3 .opencode/skills/sk-doc/scripts/extract_structure.py .opencode/skills/system-skill-advisor/runtime/README.md
+```
+
+Expected result: build and tests exit 0, README validation reports no blocking issues and structure extraction returns a README document profile.
+
+---
+
+## 9. RELATED
+
+- [Skill README](../README.md)
+- [Architecture](../ARCHITECTURE.md)
+- [Tools](tools/README.md)
+- [Handlers](handlers/README.md)
+- [Library](lib/README.md)
+- [Schemas](schemas/README.md)
+- [Database](database/README.md)
+- [Tests](tests/README.md)
+- [Bench](bench/README.md)
+- [Skill-root metadata contract](../../sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md) - authority for skill metadata files this package indexes or mutates.

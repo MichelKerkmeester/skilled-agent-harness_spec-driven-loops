@@ -1,6 +1,6 @@
 ---
 title: "Tool IDs Reference"
-description: "Reference for the 9 unique system-skill-advisor MCP tool IDs with namespaces, purposes, input or output schemas and usage signals."
+description: "Reference for the nine stable system-skill-advisor command ids with purposes, input or output schemas and usage signals."
 trigger_phrases:
   - "advisor tool ids"
   - "skill graph tool ids"
@@ -13,7 +13,7 @@ version: 0.8.0.6
 
 # Tool IDs Reference
 
-Reference for the 9 unique system-skill-advisor MCP tool IDs with namespaces, purposes, input or output schemas and usage signals.
+Reference for the nine stable system-skill-advisor command ids with purposes, input or output schemas and usage signals.
 
 ---
 
@@ -21,22 +21,22 @@ Reference for the 9 unique system-skill-advisor MCP tool IDs with namespaces, pu
 
 ### Purpose
 
-Lists the 9 unique `system-skill-advisor` MCP tool IDs with namespaces, purposes and schema signals. The count is the live ListTools/parity result; the trust-gated propagation helper is already included in Section 3.
+Lists the nine stable `system-skill-advisor` command ids with purposes and schema signals. The count matches the live CLI command manifest and its parity suite; the trust-gated propagation helper is already included in Section 3.
 
 ### When to Use
 
-- Confirming the exact advisor or skill graph tool id to call.
+- Confirming the exact advisor or skill graph command id to call.
 - Updating routing docs, hooks or compatibility shims.
 - Reviewing whether a proposed rename would break public contracts.
 
 ### Core Principle
 
-The standalone server namespace may frame calls, but the per-tool ids are the compatibility contract.
+The CLI is the only front door, and the per-command ids are the compatibility contract.
 
 ### Key Sources
 
-- `mcp-server/tools/index.ts`
-- `mcp-server/tools/skill-graph-tools.ts`
+- `runtime/tools/index.ts`
+- `runtime/tools/skill-graph-tools.ts`
 - [`legacy-tool-bridge.md`](./legacy-tool-bridge.md)
 
 ---
@@ -74,19 +74,23 @@ Untrusted callers are rejected before detection runs. No separate internal-tool 
 
 ---
 
-## 5. MCP NAMESPACE CONVENTION
+## 5. CLI INVOCATION CONVENTION
 
-All tools follow the pattern `mcp__system_skill_advisor__<tool_name>` where `<tool_name>` matches the descriptor's `name` field in snake_case.
+Every id is invoked through the single CLI front door:
+
+```bash
+node .opencode/bin/skill-advisor.cjs <command> --format json
+```
 
 Worked examples:
 
-- `advisor_recommend` is reachable as `mcp__system_skill_advisor__advisor_recommend`.
-- `skill_graph_query` is reachable as `mcp__system_skill_advisor__skill_graph_query`.
-- `skill_graph_propagate_enhances` is reachable as `mcp__system_skill_advisor__skill_graph_propagate_enhances`.
+- `advisor_recommend` is invoked as `node .opencode/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<request>"}' --format json`.
+- `skill_graph_query` is invoked as `node .opencode/bin/skill-advisor.cjs skill_graph_query --json '{"queryType":"hub_skills"}' --format json`.
+- `skill_graph_propagate_enhances` is invoked as `node .opencode/bin/skill-advisor.cjs skill_graph_propagate_enhances --format json`; apply writes add `--trusted`.
 
-Stable IDs survive migrations. The MCP server namespace may rename across packets, but the per-tool IDs do not change. See [legacy_tool_bridge.md](./legacy-tool-bridge.md) for the bridge policy.
+Stable ids survive migrations: the invocation form is frozen and the per-command ids do not change.
 
-The same public tool ids are also invocable through the daemon-backed CLI shim `.opencode/bin/skill-advisor.cjs` (for example `skill-advisor advisor_status --workspace-root "$PWD" --format json`), which accepts snake_case, kebab-case, and camelCase aliases. The CLI is an additive dual-stack fallback over the same warm daemon: `--warm-only` probes the daemon socket without cold-spawning, exit `75` signals retryable daemon/IPC unavailability, and the mutation tools (`advisor_rebuild`, `skill_graph_scan`, apply-mode `skill_graph_propagate_enhances`) additionally require `--trusted`.
+The CLI accepts snake_case, kebab-case and camelCase aliases. Calls are sent untrusted by default, and the mutation commands (`advisor_rebuild`, `skill_graph_scan`, apply-mode `skill_graph_propagate_enhances`) additionally require `--trusted` or `SYSTEM_SKILL_ADVISOR_CLI_TRUSTED=1`. `--warm-only` probes the daemon socket without cold-spawning. Exit `75` signals retryable daemon/IPC unavailability; the CLI answers from the local Python scorer with a degraded result when the daemon stays unreachable. The retired bridge policy is recorded in [legacy-tool-bridge.md](./legacy-tool-bridge.md).
 
 ---
 
@@ -104,4 +108,4 @@ The same public tool ids are also invocable through the daemon-backed CLI shim `
 | `skill_graph_validate` | (none) | `HandlerResponse` envelope |
 | `skill_graph_propagate_enhances` | `PropagateEnhancesArgs` (inline interface) | `HandlerResponse` envelope |
 
-Advisor tools use Zod schemas under `mcp-server/schemas/`. Skill-graph tools use inline TypeScript interfaces and wrap responses in the shared `HandlerResponse` envelope.
+Advisor tools use Zod schemas under `runtime/schemas/`. Skill-graph tools use inline TypeScript interfaces and wrap responses in the shared `HandlerResponse` envelope.

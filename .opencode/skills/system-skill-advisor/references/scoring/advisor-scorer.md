@@ -36,7 +36,7 @@ Recommendations must be explainable through lane attribution without echoing raw
 
 ### Key Sources
 
-- `mcp-server/lib/scorer/`
+- `runtime/lib/scorer/`
 - [`lane-weight-tuning.md`](./lane-weight-tuning.md)
 - [`validation-baselines.md`](./validation-baselines.md)
 
@@ -54,59 +54,59 @@ Five lanes participate in scoring, and all five are live in the registry. Each c
 | derived_generated | 0.12 | 0.10 | Derived trigger metadata |
 | semantic_shadow | 0.05 | 0.05 | Embedding cosine similarity (live, lowest fusion weight) |
 
-Lane weights live in `mcp-server/lib/scorer/lane-registry.ts:7-19`. The derived-dominant check fires when derived lane evidence exceeds combined explicit plus lexical evidence, triggering a confidence ceiling (`mcp-server/lib/scorer/attribution.ts:26-34`).
+Lane weights live in `runtime/lib/scorer/lane-registry.ts:7-19`. The derived-dominant check fires when derived lane evidence exceeds combined explicit plus lexical evidence, triggering a confidence ceiling (`runtime/lib/scorer/attribution.ts:26-34`).
 
 ### Shadow vs live weight mechanics
 
-Shadow weights live alongside live weights as `DEFAULT_SHADOW_SCORER_LANE_WEIGHTS` in `mcp-server/lib/scorer/lane-registry.ts`. `SPECKIT_ADVISOR_SHADOW_MODE` is currently inert: it documents intended operator control, but the runtime has no reader for it and scoring does not branch on that variable. Effective shadow-only status is derived per lane from registry liveness in fusion (`shadowOnly = !isLiveScorerLane(lane)`), not from any per-match flag. Because `semantic_shadow` is live in the registry, its raw match tag is overridden to `shadowOnly:false`, so it contributes to both the live ranking (at weight 0.05) and dominant-lane detection.
+Shadow weights live alongside live weights as `DEFAULT_SHADOW_SCORER_LANE_WEIGHTS` in `runtime/lib/scorer/lane-registry.ts`. `SPECKIT_ADVISOR_SHADOW_MODE` is currently inert: it documents intended operator control, but the runtime has no reader for it and scoring does not branch on that variable. Effective shadow-only status is derived per lane from registry liveness in fusion (`shadowOnly = !isLiveScorerLane(lane)`), not from any per-match flag. Because `semantic_shadow` is live in the registry, its raw match tag is overridden to `shadowOnly:false`, so it contributes to both the live ranking (at weight 0.05) and dominant-lane detection.
 
 ---
 
 ## 3. LEXICAL LANE
 
-The lexical lane performs token-based matching between prompt text and skill metadata covering name, description, domains, keywords and intent signals. Tokens expand through a synonym map (e.g., `branch` expands to `git`, `worktree`, `merge`) and category hints add skill-specific boosts (`mcp-server/lib/scorer/lanes/lexical.ts:8-37`).
+The lexical lane performs token-based matching between prompt text and skill metadata covering name, description, domains, keywords and intent signals. Tokens expand through a synonym map (e.g., `branch` expands to `git`, `worktree`, `merge`) and category hints add skill-specific boosts (`runtime/lib/scorer/lanes/lexical.ts:8-37`).
 
-Category hints route well-known phrases. The phrase `deep research` maps to the deep-research skill with a 0.38 boost (`mcp-server/lib/scorer/lanes/lexical.ts:25-37`). Evidence tokens are capped at 5 hits per skill and the lane score is clamped to 1.0 (`mcp-server/lib/scorer/lanes/lexical.ts:73-86`).
+Category hints route well-known phrases. The phrase `deep research` maps to the deep-research skill with a 0.38 boost (`runtime/lib/scorer/lanes/lexical.ts:25-37`). Evidence tokens are capped at 5 hits per skill and the lane score is clamped to 1.0 (`runtime/lib/scorer/lanes/lexical.ts:73-86`).
 
 ---
 
 ## 4. SEMANTIC SHADOW LANE
 
-The semantic shadow lane computes cosine similarity between a prompt embedding and pre-computed skill embeddings. The lane is live in the registry (`live: true`, weight 0.05) so it contributes to the live fusion ranking at its low weight. Raw matches still tag `shadowOnly:true`, but fusion derives the effective value from registry liveness (`isLiveScorerLane`) and reports `shadowOnly:false` for this live lane (`mcp-server/lib/scorer/lanes/semantic-shadow.ts:154-171`).
+The semantic shadow lane computes cosine similarity between a prompt embedding and pre-computed skill embeddings. The lane is live in the registry (`live: true`, weight 0.05) so it contributes to the live fusion ranking at its low weight. Raw matches still tag `shadowOnly:true`, but fusion derives the effective value from registry liveness (`isLiveScorerLane`) and reports `shadowOnly:false` for this live lane (`runtime/lib/scorer/lanes/semantic-shadow.ts:154-171`).
 
-Cosine similarity below 0.2 is treated as no signal (`mcp-server/lib/scorer/lanes/semantic-shadow.ts:10, 147-150`). When embeddings are unavailable under `VITEST=true`, the lane falls back to token-overlap scoring so tests stay deterministic (`mcp-server/lib/scorer/lanes/semantic-shadow.ts:91-108`).
+Cosine similarity below 0.2 is treated as no signal (`runtime/lib/scorer/lanes/semantic-shadow.ts:10, 147-150`). When embeddings are unavailable under `VITEST=true`, the lane falls back to token-overlap scoring so tests stay deterministic (`runtime/lib/scorer/lanes/semantic-shadow.ts:91-108`).
 
 ---
 
 ## 5. GRAPH CAUSAL LANE
 
-The graph causal lane propagates scores through the skill graph using typed edges. Edge multipliers: `enhances` 0.55, `siblings` 0.35, `depends_on` 0.35, `prerequisite_for` 0.30, `conflicts_with` -0.35 (`mcp-server/lib/scorer/lanes/graph-causal.ts:13-19`).
+The graph causal lane propagates scores through the skill graph using typed edges. Edge multipliers: `enhances` 0.55, `siblings` 0.35, `depends_on` 0.35, `prerequisite_for` 0.30, `conflicts_with` -0.35 (`runtime/lib/scorer/lanes/graph-causal.ts:13-19`).
 
-Traversal uses BFS with `maxDepth=2` and `maxBreadth=4`, decaying signal by `1/(depth+1)` (`mcp-server/lib/scorer/lanes/graph-causal.ts:27-28, 70`). Negative contributions from `conflicts_with` edges pass through the emit filter so suppressive evidence reaches fusion (`mcp-server/lib/scorer/lanes/graph-causal.ts:89-103`).
+Traversal uses BFS with `maxDepth=2` and `maxBreadth=4`, decaying signal by `1/(depth+1)` (`runtime/lib/scorer/lanes/graph-causal.ts:27-28, 70`). Negative contributions from `conflicts_with` edges pass through the emit filter so suppressive evidence reaches fusion (`runtime/lib/scorer/lanes/graph-causal.ts:89-103`).
 
 ---
 
 ## 6. EXPLICIT AUTHOR LANE
 
-The explicit author lane uses curated `TOKEN_BOOSTS` and `PHRASE_BOOSTS` mappings for high-confidence routing, plus pattern-based disambiguation rules. Token boosts map single tokens to skill scores (e.g., `git` to sk-git at 1.0, `readme` to sk-doc at 0.95) defined in `mcp-server/lib/scorer/lanes/explicit.ts:8-90`.
+The explicit author lane uses curated `TOKEN_BOOSTS` and `PHRASE_BOOSTS` mappings for high-confidence routing, plus pattern-based disambiguation rules. Token boosts map single tokens to skill scores (e.g., `git` to sk-git at 1.0, `readme` to sk-doc at 0.95) defined in `runtime/lib/scorer/lanes/explicit.ts:8-90`.
 
-Phrase boosts handle multi-word patterns (e.g., `deep research` to deep-research at 1.3, `chrome devtools` to mcp-chrome-devtools at 1.0) defined in `mcp-server/lib/scorer/lanes/explicit.ts:92-186`. Review-plus-write disambiguation applies +3.0 to sk-code when both `review` and write verbs appear together, anchoring the explicit lane on the code hub so its router selects the implement mode rather than the code-review mode (`mcp-server/lib/scorer/lanes/explicit.ts:295-303`).
+Phrase boosts handle multi-word patterns (e.g., `deep research` to deep-research at 1.3, `chrome devtools` to mcp-chrome-devtools at 1.0) defined in `runtime/lib/scorer/lanes/explicit.ts:92-186`. Review-plus-write disambiguation applies +3.0 to sk-code when both `review` and write verbs appear together, anchoring the explicit lane on the code hub so its router selects the implement mode rather than the code-review mode (`runtime/lib/scorer/lanes/explicit.ts:295-303`).
 
 ---
 
 ## 7. DERIVED GENERATED LANE
 
-The derived generated lane scores against `derivedTriggers` and `derivedKeywords` from skill metadata. Phrase-specificity scoring weights direct triggers at 0.7x and affordance-derived triggers at 0.45x (`mcp-server/lib/scorer/lanes/derived.ts:38-53`).
+The derived generated lane scores against `derivedTriggers` and `derivedKeywords` from skill metadata. Phrase-specificity scoring weights direct triggers at 0.7x and affordance-derived triggers at 0.45x (`runtime/lib/scorer/lanes/derived.ts:38-53`).
 
-Age-policy haircut reduces derived scores based on projection age and skill lifecycle status (`mcp-server/lib/scorer/lanes/derived.ts:54-61`). A per-skill `derivedDemotion` factor scales scores further before emission (`mcp-server/lib/scorer/lanes/derived.ts:66`).
+Age-policy haircut reduces derived scores based on projection age and skill lifecycle status (`runtime/lib/scorer/lanes/derived.ts:54-61`). A per-skill `derivedDemotion` factor scales scores further before emission (`runtime/lib/scorer/lanes/derived.ts:66`).
 
 ---
 
 ## 8. SCORE FUSION AND CONFIDENCE CALIBRATION
 
-Fusion combines weighted lane contributions into a final score, then applies confidence assembly based on live normalization, direct evidence plus intent signals. Confidence uses `liveNormalized` (`score/liveTotal`) as the primary ramp with `baseConstant=0.52` plus `liveNormalizedRampCoefficient=0.43` (`mcp-server/lib/scorer/scoring-constants.ts:141-144`).
+Fusion combines weighted lane contributions into a final score, then applies confidence assembly based on live normalization, direct evidence plus intent signals. Confidence uses `liveNormalized` (`score/liveTotal`) as the primary ramp with `baseConstant=0.52` plus `liveNormalizedRampCoefficient=0.43` (`runtime/lib/scorer/scoring-constants.ts:141-144`).
 
-The derived-dominant short-circuit pins confidence to 0.72 when the derived lane dominates and `directScore < 0.2` (`mcp-server/lib/scorer/scoring-constants.ts:146-147`). A task-intent floor of 0.82 applies when `directScore >= 0.18` or `liveNormalized >= 0.2`, with a dispersion guard against token-stuffing (`mcp-server/lib/scorer/scoring-constants.ts:149-156`).
+The derived-dominant short-circuit pins confidence to 0.72 when the derived lane dominates and `directScore < 0.2` (`runtime/lib/scorer/scoring-constants.ts:146-147`). A task-intent floor of 0.82 applies when `directScore >= 0.18` or `liveNormalized >= 0.2`, with a dispersion guard against token-stuffing (`runtime/lib/scorer/scoring-constants.ts:149-156`).
 
 ### Confidence calibration constants (full reference)
 
@@ -129,20 +129,20 @@ The derived-dominant short-circuit pins confidence to 0.72 when the derived lane
 | `lowConfidencePenalty` | +0.08 | Penalty added to uncertainty when `confidence < 0.8`. |
 | `ambiguityMargin` | 0.05 | Score-gap and confidence-gap margin for cluster detection. |
 
-All 16 constants live in `mcp-server/lib/scorer/scoring-constants.ts:141-170` under the `ConfidenceCalibration` interface. Changes require measured evidence plus a synchronized update across this doc, the feature catalog, plus the manual playbook.
+All 16 constants live in `runtime/lib/scorer/scoring-constants.ts:141-170` under the `ConfidenceCalibration` interface. Changes require measured evidence plus a synchronized update across this doc, the feature catalog, plus the manual playbook.
 
 ---
 
 ## 9. UNCERTAINTY AND AMBIGUITY DETECTION
 
-Uncertainty is computed from evidence count and direct evidence. Uncertainty floors: no evidence 0.42, some evidence 0.30, medium evidence 0.22, high evidence 0.18 (`mcp-server/lib/scorer/scoring-constants.ts:160-165`).
+Uncertainty is computed from evidence count and direct evidence. Uncertainty floors: no evidence 0.42, some evidence 0.30, medium evidence 0.22, high evidence 0.18 (`runtime/lib/scorer/scoring-constants.ts:160-165`).
 
-Direct evidence discount of -0.06 applies when `directScore >= 0.75`. Low-confidence penalty of +0.08 applies when `confidence < 0.8` (`mcp-server/lib/scorer/scoring-constants.ts:167-170`). Ambiguity clusters use 0.05 margins for both score and confidence gaps, unioning the two conditions (`mcp-server/lib/scorer/ambiguity.ts:7-8, 22-36`).
+Direct evidence discount of -0.06 applies when `directScore >= 0.75`. Low-confidence penalty of +0.08 applies when `confidence < 0.8` (`runtime/lib/scorer/scoring-constants.ts:167-170`). Ambiguity clusters use 0.05 margins for both score and confidence gaps, unioning the two conditions (`runtime/lib/scorer/ambiguity.ts:7-8, 22-36`).
 
 ---
 
 ## 10. PROMPT ISOLATION SAFETY
 
-Lane attribution is safety-critical. It must provide explainable routing without exposing raw prompt text in advisor metadata or outputs. Attribution reason strings use lane identifiers and evidence labels (e.g., `lexical=0.85 (token:git; hint:worktree)`) instead of quoting prompt text (`mcp-server/lib/scorer/attribution.ts:13-24`).
+Lane attribution is safety-critical. It must provide explainable routing without exposing raw prompt text in advisor metadata or outputs. Attribution reason strings use lane identifiers and evidence labels (e.g., `lexical=0.85 (token:git; hint:worktree)`) instead of quoting prompt text (`runtime/lib/scorer/attribution.ts:13-24`).
 
-Evidence arrays contain structured labels (`token:`, `hint:`, `phrase:`, `explicit:`, `author:`, `derived:`, `edge:`) that reference match patterns rather than raw prompt substrings (`mcp-server/lib/scorer/lanes/lexical.ts:66-77`). The boundary is enforced at attribution assembly so downstream consumers receive only prompt-safe artifacts.
+Evidence arrays contain structured labels (`token:`, `hint:`, `phrase:`, `explicit:`, `author:`, `derived:`, `edge:`) that reference match patterns rather than raw prompt substrings (`runtime/lib/scorer/lanes/lexical.ts:66-77`). The boundary is enforced at attribution assembly so downstream consumers receive only prompt-safe artifacts.

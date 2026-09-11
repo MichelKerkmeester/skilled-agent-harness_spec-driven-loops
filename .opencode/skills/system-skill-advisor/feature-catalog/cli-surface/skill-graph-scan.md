@@ -1,0 +1,48 @@
+---
+title: "Skill graph scan"
+description: "Indexes skill graph metadata into the SQLite-backed skill graph."
+trigger_phrases:
+  - "skill graph scan"
+  - "skill_graph_scan"
+  - "index skill graph metadata"
+  - "sqlite-backed skill graph"
+  - "refresh skill relationships"
+version: 0.8.0.10
+---
+
+# Skill graph scan
+
+<!-- sk-doc-template: skill_asset_feature_catalog -->
+
+**Owned by**: the `system-skill-advisor` CLI front door and its daemon (since `013/009/008`).
+
+## 1. OVERVIEW
+
+`skill_graph_scan` indexes `.opencode/skills/*/graph-metadata.json` files into
+the SQLite skill graph. It is the maintenance entry point for refreshing skill
+relationships before structural skill queries.
+
+---
+
+## 2. HOW IT WORKS
+
+Current runtime behavior is documented in the source files below.
+
+---
+
+## 3. SOURCE FILES
+
+| File | Role |
+|------|------|
+| `system-skill-advisor/runtime/tools/skill-graph-tools.ts` | Public command descriptor |
+| `system-skill-advisor/runtime/handlers/skill-graph/scan.ts` | Handler |
+
+---
+
+## 4. SOURCE METADATA
+- Group: Context Preservation And Code Graph
+- Canonical catalog source: `feature-catalog.md`
+- Feature file path: `cli-surface/skill-graph-scan.md`
+Related references:
+- [advisor-rebuild.md](../../feature-catalog/cli-surface/advisor-rebuild.md) — advisor_rebuild Command
+- [skill-graph-query.md](../../feature-catalog/cli-surface/skill-graph-query.md) — Skill graph query

@@ -59,7 +59,7 @@ Every finding carries one severity level from `references/review-core.md`, share
 **Step 1: Invoke it.** Gate 2 routing fires on review keywords. You can also dispatch the `@review` agent directly. The dispatcher prepends `CODE-REVIEW` as the first line of the rendered prompt so the reviewer knows it is operating as the baseline.
 
 ```bash
-python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py "review my staged changes" --threshold 0.8
+python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "review my staged changes" --threshold 0.8
 ```
 
 The advisor prints the recommended skill route when confidence lands at or above 0.8. To read the runtime contract directly, open `.opencode/skills/sk-code/sk-code-review/SKILL.md`.

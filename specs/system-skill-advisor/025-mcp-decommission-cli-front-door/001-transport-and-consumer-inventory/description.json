@@ -1,0 +1,24 @@
+{
+  "level": "3",
+  "specFolder": "system-skill-advisor/025-mcp-decommission-cli-front-door/001-transport-and-consumer-inventory",
+  "description": "Later phases delete a transport, repoint callers and sweep documents",
+  "keywords": [
+    "later",
+    "phases",
+    "delete",
+    "transport",
+    "repoint",
+    "callers",
+    "sweep",
+    "documents"
+  ],
+  "lastUpdated": "2026-09-11T09:27:47.423Z",
+  "specId": "001",
+  "folderSlug": "transport-and-consumer-inventory",
+  "parentChain": [
+    "system-skill-advisor",
+    "025-mcp-decommission-cli-front-door"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -48,7 +48,7 @@ Operators run the exact prompt and command sequence for `SKD-003` and confirm th
 
 ### Exact Command Sequence
 
-1. `bash: python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py "what animation duration should this dropdown use" --threshold 0.5`
+1. `bash: python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "what animation duration should this dropdown use" --threshold 0.5`
 2. `agent: issue the same prompt in a fresh session`
 3. `bash: rg -n "180 to 260ms" .opencode/skills/sk-design/references/motion-principles.md`
 
@@ -71,7 +71,7 @@ Check `motion-principles.md` Section 5 for the three-way split; a reply citing a
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| SKD-003 | Motion band selection | confirm a duration question is answered from the motion bands with the consistency rule attached | `What animation duration should this dropdown use` | 1. `bash: python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py "what animation duration should this dropdown use" --threshold 0.5` -> 2. `agent: issue the same prompt in a fresh session` -> 3. `bash: rg -n "180 to 260ms" .opencode/skills/sk-design/references/motion-principles.md` | The answer sits in the 180-260ms state-change band and states that similar elements must share the value. | Advisor JSON, the returned duration with its band name, and the grep confirming the band is the documented one. | PASS if the returned duration falls in 180-260ms, is named as a state change, and the reply states the consistency rule; FAIL if the duration falls outside the band, no band is named, or the reply omits the consistency rule | Check `motion-principles.md` Section 5 for the three-way split; a reply citing a single 200ms or 300ms ceiling means the reconciliation was not read. |
+| SKD-003 | Motion band selection | confirm a duration question is answered from the motion bands with the consistency rule attached | `What animation duration should this dropdown use` | 1. `bash: python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "what animation duration should this dropdown use" --threshold 0.5` -> 2. `agent: issue the same prompt in a fresh session` -> 3. `bash: rg -n "180 to 260ms" .opencode/skills/sk-design/references/motion-principles.md` | The answer sits in the 180-260ms state-change band and states that similar elements must share the value. | Advisor JSON, the returned duration with its band name, and the grep confirming the band is the documented one. | PASS if the returned duration falls in 180-260ms, is named as a state change, and the reply states the consistency rule; FAIL if the duration falls outside the band, no band is named, or the reply omits the consistency rule | Check `motion-principles.md` Section 5 for the three-way split; a reply citing a single 200ms or 300ms ceiling means the reconciliation was not read. |
 
 ---
 

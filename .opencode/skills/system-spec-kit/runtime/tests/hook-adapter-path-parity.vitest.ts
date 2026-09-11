@@ -133,14 +133,6 @@ function piRegistrations(): Registration[] {
 function openCodeRegistrations(): Registration[] {
   return [
     { runtime: 'opencode', event: 'plugin', path: resolve(repoRoot, '.opencode/plugins/system-skill-advisor.js') },
-    {
-      runtime: 'opencode',
-      event: 'plugin',
-      path: resolve(
-        repoRoot,
-        '.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/system-skill-advisor-bridge.mjs',
-      ),
-    },
     { runtime: 'opencode', event: 'plugin', path: resolve(repoRoot, '.opencode/plugins/system-spec-gate.js') },
   ];
 }

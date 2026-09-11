@@ -36,18 +36,18 @@ Hook and plugin integrations use `--warm-only` so no prompt-time cold spawn occu
 | File | Layer | Role |
 |---|---|---|
 | `.opencode/bin/skill-advisor.cjs` | Script | Stable executable shim for the skill-advisor CLI |
-| `.opencode/skills/system-skill-advisor/mcp-server/skill-advisor-cli.ts` | CLI entrypoint | IPC command execution, output rendering, and warm-only behavior |
-| `.opencode/skills/system-skill-advisor/mcp-server/skill-advisor-cli-manifest.ts` | CLI manifest | Command definitions and trusted-mutation classification |
+| `.opencode/skills/system-skill-advisor/runtime/skill-advisor-cli.ts` | CLI entrypoint | IPC command execution, output rendering, and warm-only behavior |
+| `.opencode/skills/system-skill-advisor/runtime/skill-advisor-cli-manifest.ts` | CLI manifest | Command definitions and trusted-mutation classification |
 | `.opencode/plugins/system-skill-advisor.js` | Plugin bridge | OpenCode bridge using warm CLI fallback |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/mcp-server/tests/skill-advisor-cli-parity.vitest.ts` | Automated test | CLI/MCP parity coverage |
-| `.opencode/skills/system-skill-advisor/mcp-server/tests/skill-advisor-cli-job-semantics.vitest.ts` | Automated test | Job and trusted mutation semantics |
-| `.opencode/skills/system-skill-advisor/mcp-server/tests/skill-advisor-cli-dual-client.vitest.ts` | Automated test | MCP and CLI concurrent client coverage |
-| `.opencode/skills/system-skill-advisor/feature-catalog/mcp-surface/skill-advisor-cli.md` | Catalog | Owning system-skill-advisor feature entry |
+| `.opencode/skills/system-skill-advisor/runtime/tests/skill-advisor-cli-parity.vitest.ts` | Automated test | CLI/MCP parity coverage |
+| `.opencode/skills/system-skill-advisor/runtime/tests/skill-advisor-cli-job-semantics.vitest.ts` | Automated test | Job and trusted mutation semantics |
+| `.opencode/skills/system-skill-advisor/runtime/tests/skill-advisor-cli-dual-client.vitest.ts` | Automated test | MCP and CLI concurrent client coverage |
+| `.opencode/skills/system-skill-advisor/feature-catalog/cli-surface/skill-advisor-cli.md` | Catalog | Owning system-skill-advisor feature entry |
 
 ---
 

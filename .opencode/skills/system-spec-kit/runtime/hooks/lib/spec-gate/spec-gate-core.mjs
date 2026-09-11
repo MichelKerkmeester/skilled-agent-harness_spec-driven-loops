@@ -29,7 +29,7 @@ import {
   GATE_SPEC_FOLDER_QUESTION_ID,
   hashPolicyBlock as hashCanonicalPolicyBlock,
   recordObservedPolicyDelivery,
-} from '../../../../../system-skill-advisor/mcp-server/dist/mcp-server/lib/policy-plan.js';
+} from '../../../../../system-skill-advisor/runtime/dist/runtime/lib/policy-plan.js';
 import {
   appendFileSync,
   mkdirSync,

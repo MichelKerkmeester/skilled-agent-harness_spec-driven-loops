@@ -40,7 +40,6 @@ const CASES = [
   // Warm-only reads with no daemon must refuse retryably (75), never spawn.
   { name: 'skill-advisor warm-only read exits 75', shim: 'skill-advisor', args: ['advisor_recommend', '--json', '{"prompt":"taxonomy smoke"}', '--warm-only', '--format', 'json'], expectExit: 75, expectJsonStatus: 'error' },
   // Unknown commands are usage errors (64).
-  { name: 'code-index unknown command exits 64', shim: 'code-index', args: ['no_such_tool', '--format', 'json'], expectExit: 64 },
   { name: 'skill-advisor unknown command exits 64', shim: 'skill-advisor', args: ['no_such_tool', '--format', 'json'], expectExit: 64 },
   // Trust refusal: advisor mutations without --trusted fail closed (64)
   // before any IPC frame, so this stays daemon-free.

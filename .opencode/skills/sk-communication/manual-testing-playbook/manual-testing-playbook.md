@@ -244,7 +244,7 @@ The complete automated suite lives under [`.opencode/skills/sk-communication/cli
 
 | Coverage Area | Automated Test Anchor | Scenario IDs |
 |---|---|---|
-| Advisor routing | [Advisor compatibility entry point](../../system-skill-advisor/mcp-server/scripts/skill_advisor.py) | `COMM-001` |
+| Advisor routing | [Advisor compatibility entry point](../../system-skill-advisor/runtime/scripts/skill_advisor.py) | `COMM-001` |
 | Fidelity fallback | [Protected spans](../../../../.opencode/skills/sk-communication/cli-communication-projection/test/fidelity/protected-spans.test.ts), [fidelity validator](../../../../.opencode/skills/sk-communication/cli-communication-projection/test/fidelity/validator.test.ts) | `COMM-002` |
 | Privacy routing | [Privacy router tests](../../../../.opencode/skills/sk-communication/cli-communication-projection/test/providers/privacy.test.ts) | `COMM-003` |
 | External CLI provider | [External CLI provider tests](../../../../.opencode/skills/sk-communication/cli-communication-projection/test/providers/external-cli.test.ts), [external CLI transport tests](../../../../.opencode/skills/sk-communication/cli-communication-projection/test/transports/cli.test.ts) | `COMM-009` |

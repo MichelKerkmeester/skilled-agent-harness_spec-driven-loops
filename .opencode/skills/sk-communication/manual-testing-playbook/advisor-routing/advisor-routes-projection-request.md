@@ -37,13 +37,13 @@ The projection package cannot protect canonical bytes or apply privacy policy if
 
 ### Exact Command Sequence
 
-1. From the repository root, run `python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py "Rewrite terse agent status output into plain English without changing canonical bytes, and use privacy-first provider routing." --threshold 0.8`.
+1. From the repository root, run `python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "Rewrite terse agent status output into plain English without changing canonical bytes, and use privacy-first provider routing." --threshold 0.8`.
 2. Record the process exit status and the complete JSON recommendation array.
 3. Inspect the first recommendation's `skill`, `confidence`, and `passes_threshold` fields.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| COMM-001 | Advisor routes a projection request | Prove the advisor selects the owning skill for a projection-and-privacy request. | `Rewrite terse agent status output into plain English without changing canonical bytes, and use privacy-first provider routing.` | 1. `bash: python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py "Rewrite terse agent status output into plain English without changing canonical bytes, and use privacy-first provider routing." --threshold 0.8` -> 2. Capture exit status and JSON -> 3. Inspect the first recommendation. | Exit zero; first `skill` is `sk-communication`; `passes_threshold` is `true`; confidence is at least `0.8`. | Command transcript, exit status, and first recommendation fields. | PASS if all signals match; FAIL if the result is absent, under threshold, or another skill ranks first; SKIP only if Python or both advisor paths are unavailable. | 1. Run the script with `--help`; 2. inspect advisor freshness or fallback warnings; 3. compare the prompt with `SKILL.md` activation triggers; 4. rerun after restoring the advisor runtime. |
+| COMM-001 | Advisor routes a projection request | Prove the advisor selects the owning skill for a projection-and-privacy request. | `Rewrite terse agent status output into plain English without changing canonical bytes, and use privacy-first provider routing.` | 1. `bash: python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "Rewrite terse agent status output into plain English without changing canonical bytes, and use privacy-first provider routing." --threshold 0.8` -> 2. Capture exit status and JSON -> 3. Inspect the first recommendation. | Exit zero; first `skill` is `sk-communication`; `passes_threshold` is `true`; confidence is at least `0.8`. | Command transcript, exit status, and first recommendation fields. | PASS if all signals match; FAIL if the result is absent, under threshold, or another skill ranks first; SKIP only if Python or both advisor paths are unavailable. | 1. Run the script with `--help`; 2. inspect advisor freshness or fallback warnings; 3. compare the prompt with `SKILL.md` activation triggers; 4. rerun after restoring the advisor runtime. |
 
 ### Evidence Review
 
@@ -65,7 +65,7 @@ Do not treat a non-empty recommendation list alone as success. The owning skill 
 | File | Role |
 |---|---|
 | [sk-communication skill](../../SKILL.md) | Activation triggers and routing contract. |
-| [Advisor compatibility entry point](../../../system-skill-advisor/mcp-server/scripts/skill_advisor.py) | Executable advisor smoke surface. |
+| [Advisor compatibility entry point](../../../system-skill-advisor/runtime/scripts/skill_advisor.py) | Executable advisor smoke surface. |
 
 ---
 

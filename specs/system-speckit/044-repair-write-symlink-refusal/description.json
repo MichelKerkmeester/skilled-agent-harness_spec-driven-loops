@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/044-repair-write-symlink-refusal",
+  "description": "The repair script decides whether a candidate is a regular file while walking the tree, using the directory entry — which reports on the link itself,",
+  "keywords": [
+    "repair",
+    "script",
+    "decides",
+    "whether",
+    "candidate",
+    "regular",
+    "file",
+    "while",
+    "walking",
+    "tree",
+    "directory",
+    "entry",
+    "reports",
+    "link",
+    "itself"
+  ],
+  "lastUpdated": "2026-08-30T08:34:32.819Z",
+  "specId": "044",
+  "folderSlug": "repair-write-symlink-refusal",
+  "parentChain": [
+    "system-speckit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

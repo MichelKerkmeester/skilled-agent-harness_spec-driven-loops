@@ -32,7 +32,7 @@ Validate that `lib/lifecycle/schema-migration.ts` performs additive backfill fro
 ## 2. SCENARIO CONTRACT
 
 - Disposable workspace copy containing a v1 schema seed of `skill-graph.sqlite` or `graph-metadata.json` entries.
-- MCP server built.
+- Advisor runtime built.
 - Ability to invoke migration logic on startup or via the exposed management interface.
 
 ---
@@ -44,13 +44,13 @@ Validate that `lib/lifecycle/schema-migration.ts` performs additive backfill fro
 1. Snapshot the v1 state:
 
 ```bash
-cp /tmp/path-to-copy/.opencode/skills/system-skill-advisor/mcp-server/database/skill-graph.sqlite /tmp/pre-v1.sqlite
+cp /tmp/path-to-copy/.opencode/skills/system-skill-advisor/runtime/database/skill-graph.sqlite /tmp/pre-v1.sqlite
 ```
 
 2. Trigger migration by bringing up the daemon against the v1 workspace:
 
 ```text
-advisor_status({"workspaceRoot":"/tmp/path-to-copy"})
+node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root /tmp/path-to-copy --format json
 ```
 
 3. Inspect the post-migration state and verify new v2 fields are populated while v1 fields remain identical.
@@ -78,7 +78,7 @@ advisor_status({"workspaceRoot":"/tmp/path-to-copy"})
 - Scenario [LC-005](../../manual-testing-playbook/lifecycle-routing/rollback-lifecycle.md), lifecycle rollback.
 - Scenario [AU-005](../../manual-testing-playbook/auto-update-daemon/rebuild-from-source.md), rebuild-from-source.
 - Feature [`lifecycle-routing/schema-migration.md`](../../feature-catalog/lifecycle-routing/schema-migration.md).
-- Source: `.opencode/skills/system-skill-advisor/mcp-server/lib/lifecycle/schema-migration.ts`.
+- Source: `.opencode/skills/system-skill-advisor/runtime/lib/lifecycle/schema-migration.ts`.
 
 ---
 

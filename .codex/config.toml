@@ -1,22 +1,6 @@
 [features]
 hooks = true
 
-# Keep this runtime aligned with the installed better-sqlite3 native-module ABI:
-# the built addon here is compiled for one NODE_MODULE_VERSION, and a launcher
-# started on any other Node aborts in dlopen before the daemon comes up.
-[mcp_servers.system_skill_advisor]
-command = "/opt/homebrew/bin/node"
-args = [".opencode/bin/system-skill-advisor-launcher.cjs"]
-
-[mcp_servers.system_skill_advisor.env]
-HF_EMBED_SERVER_URL = "unix:///tmp/system-hf-embed/hf-embed.sock"
-SYSTEM_SKILL_ADVISOR_DB_DIR = ".opencode/skills/system-skill-advisor/mcp-server/database"
-SYSTEM_SKILL_ADVISOR_HOOK_DISABLED = "0"
-SYSTEM_SKILL_ADVISOR_TRUST_DEFAULT = "trusted"
-SPECKIT_ADVISOR_DOC_TRIGGERS = "true"
-SPECKIT_IPC_SOCKET_DIR = "/tmp/system-skill-advisor"
-SPECKIT_MAX_SECONDARY_CLIENTS = "64"
-
 # Unlike its siblings above, this server cannot run on just any Node: it bundles
 # isolated-vm, which has no Node 25+ build and segfaults at isolate creation
 # there. A segfault cannot be caught, so a wrong interpreter kills the whole MCP

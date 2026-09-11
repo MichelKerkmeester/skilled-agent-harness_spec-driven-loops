@@ -1,0 +1,383 @@
+{
+  "sessionId": "fanout-deepseek-review-1789148343059-q7g4rk",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "MCP install workflow for the advisor cannot succeed, and carries a keyless orphan server block",
+      "file": ".opencode/commands/doctor/assets/doctor-mcp-install.yaml",
+      "line": 114,
+      "firstSeen": 1,
+      "lastSeen": 6,
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ]
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Live doctor script still presents the advisor as an MCP server and permanently reports it unwired",
+      "file": ".opencode/commands/doctor/scripts/mcp-doctor.sh",
+      "line": 59,
+      "firstSeen": 1,
+      "lastSeen": 6,
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        },
+        {
+          "iteration": 6,
+          "from": "P1",
+          "to": "P1",
+          "reason": "Refinement during replay: .vscode/mcp.json does not exist, so one of the three declarations the check demands is unsatisfiable"
+        }
+      ]
+    },
+    {
+      "findingId": "F003",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "MCP debug workflow still enumerates the advisor as a supported MCP server",
+      "file": ".opencode/commands/doctor/assets/doctor-mcp-debug.yaml",
+      "line": 27,
+      "firstSeen": 1,
+      "lastSeen": 6,
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ]
+    },
+    {
+      "findingId": "F004",
+      "severity": "P1",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Launcher reports having built an MCP server, and its comments still name an MCP child under the deleted path",
+      "file": ".opencode/bin/system-skill-advisor-launcher.cjs",
+      "line": 1235,
+      "firstSeen": 2,
+      "lastSeen": 6,
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ]
+    },
+    {
+      "findingId": "F005",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Pi sync table and extension map describe a caller that no longer exists",
+      "file": ".pi/SYNC.md",
+      "line": 29,
+      "firstSeen": 2,
+      "lastSeen": 6,
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ]
+    },
+    {
+      "findingId": "F006",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "Caller-context module still names the retired MCP transport",
+      "file": ".opencode/skills/system-skill-advisor/runtime/lib/context/caller-context.ts",
+      "line": 7,
+      "firstSeen": 2,
+      "lastSeen": 6,
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ]
+    },
+    {
+      "findingId": "F007",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "Plugin status output and timeout env still speak the deleted bridge",
+      "file": ".opencode/plugins/system-skill-advisor.js",
+      "line": 1457,
+      "firstSeen": 2,
+      "lastSeen": 6,
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ]
+    },
+    {
+      "findingId": "F008",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Daemon CLI reference teaches that MCP is still the primary transport and prints a build command against the deleted directory",
+      "file": ".opencode/skills/system-spec-kit/references/cli/daemon-cli-reference.md",
+      "line": 25,
+      "firstSeen": 3,
+      "lastSeen": 6,
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ]
+    },
+    {
+      "findingId": "F009",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Spec-kit architecture ownership table names the advisor under mcp-server/ and calls it the only MCP daemon still running",
+      "file": ".opencode/skills/system-spec-kit/ARCHITECTURE.md",
+      "line": 157,
+      "firstSeen": 3,
+      "lastSeen": 6,
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ]
+    },
+    {
+      "findingId": "F010",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Env reference sources advisor variables from the deleted tree and documents hook-walk targets the live shim no longer uses",
+      "file": ".opencode/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+      "line": 193,
+      "firstSeen": 3,
+      "lastSeen": 6,
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        },
+        {
+          "iteration": 6,
+          "from": "P1",
+          "to": "P1",
+          "reason": "Refinement: adversarial replay widened the evidence to the whole advisor-owned env block (30 mcp-server hits) and showed the config-registration claims at :318/:366 are false, not merely path-stale"
+        }
+      ]
+    },
+    {
+      "findingId": "F011",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "Install guide validates the advisor inside the MCP-servers phase",
+      "file": ".opencode/install-guides/README.md",
+      "line": 661,
+      "firstSeen": 3,
+      "lastSeen": 6,
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ]
+    },
+    {
+      "findingId": "F012",
+      "severity": "P1",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "Bin entrypoint map describes a dual-stack MCP surface and prints a CLI dist path that does not exist",
+      "file": ".opencode/bin/README.md",
+      "line": 100,
+      "firstSeen": 4,
+      "lastSeen": 6,
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ]
+    },
+    {
+      "findingId": "F013",
+      "severity": "P2",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Advisor database-directory legacy fallback is a self-fallback and its README documents the alias as working",
+      "file": ".opencode/skills/system-skill-advisor/runtime/skill-advisor-cli.ts",
+      "line": 199,
+      "firstSeen": 4,
+      "lastSeen": 6,
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery; pre-existing at ed5f102287, raised not regressed"
+        }
+      ]
+    },
+    {
+      "findingId": "F014",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "Stress suite still carries the retired transport in its name and runs in no default suite",
+      "file": ".opencode/skills/system-skill-advisor/runtime/stress-test/skill-advisor/mcp-diagnostics-stress.vitest.ts",
+      "line": 2,
+      "firstSeen": 4,
+      "lastSeen": 6,
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ]
+    },
+    {
+      "findingId": "F015",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Packet completion state is unverifiable: gate phase unstarted, phase map placeholders, target packet an unpopulated scaffold, cross-skill residue unowned",
+      "file": "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/008-verification-and-closeout/implementation-summary.md",
+      "line": 51,
+      "firstSeen": 5,
+      "lastSeen": 6,
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ]
+    },
+    {
+      "findingId": "F016",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Phase 007 limitation block is stale against the current tree",
+      "file": "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/007-docs-and-residue-sweep/implementation-summary.md",
+      "line": 159,
+      "firstSeen": 5,
+      "lastSeen": 6,
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ]
+    },
+    {
+      "findingId": "F017",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Retired-coverage accounting lives only in a commit message, not in the packet",
+      "file": "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/spec.md",
+      "line": 1,
+      "firstSeen": 5,
+      "lastSeen": 6,
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 9,
+    "P2": 8
+  },
+  "openFindingsCount": 17,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.047,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "corruptionWarnings": [],
+  "lastUpdatedIteration": 6
+}

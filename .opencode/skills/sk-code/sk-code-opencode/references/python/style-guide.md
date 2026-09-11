@@ -30,7 +30,7 @@ Use when writing or reviewing Python scripts in the OpenCode development environ
 ### Scope
 
 Applies to all Python files in:
-- `.opencode/skills/system-skill-advisor/mcp-server/scripts/` - Skill routing scripts
+- `.opencode/skills/system-skill-advisor/runtime/scripts/` - Skill routing scripts
 - `.opencode/skills/*/scripts/` - Skill-specific scripts
 - `scripts/` - Project-level automation
 
@@ -38,7 +38,7 @@ Applies to all Python files in:
 
 | File | Evidence |
 |------|----------|
-| `.opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py` | Header format, naming conventions, docstrings |
+| `.opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py` | Header format, naming conventions, docstrings |
 | `.opencode/skills/sk-doc/scripts/package_skill.py` | Function structure, early returns, type hints |
 
 ---
@@ -53,7 +53,7 @@ Applies to all Python files in:
 #!/usr/bin/env python3
 ```
 
-**Evidence**: `.opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py:1`
+**Evidence**: `.opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:1`
 
 ### File Header
 
@@ -75,7 +75,7 @@ Use the box-style header for component identification:
 # ╚══════════════════════════════════════════════════════════════════════════╝
 ```
 
-**Evidence**: `.opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py:1-4`
+**Evidence**: `.opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:1-4`
 
 ### Module Docstring
 
@@ -94,7 +94,7 @@ Options:
 """
 ```
 
-**Evidence**: `.opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py:6-16`
+**Evidence**: `.opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:6-16`
 
 ### Import Order
 
@@ -116,7 +116,7 @@ import yaml
 from .utils import helper_function
 ```
 
-**Evidence**: `.opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py:17-22`, `.opencode/skills/sk-doc/scripts/package_skill.py:25-30`
+**Evidence**: `.opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:17-22`, `.opencode/skills/sk-doc/scripts/package_skill.py:25-30`
 
 ### Section Comments
 
@@ -137,7 +137,7 @@ def validate_something():
     pass
 ```
 
-**Evidence**: `.opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py:25-27`, `.opencode/skills/sk-doc/scripts/package_skill.py:32-34`
+**Evidence**: `.opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:25-27`, `.opencode/skills/sk-doc/scripts/package_skill.py:32-34`
 
 ---
 
@@ -161,7 +161,7 @@ file_path = Path("/some/path")
 is_valid = True
 ```
 
-**Evidence**: `.opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py`, `.opencode/skills/sk-doc/scripts/package_skill.py:87`
+**Evidence**: `.opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py`, `.opencode/skills/sk-doc/scripts/package_skill.py:87`
 
 ### Classes
 
@@ -185,7 +185,7 @@ REQUIRED_FRONTMATTER_FIELDS = ['name', 'description']
 MAX_SKILL_MD_WORDS = 5000
 ```
 
-**Evidence**: `.opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py:31-49`, `.opencode/skills/sk-doc/scripts/package_skill.py:37-81`
+**Evidence**: `.opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:31-49`, `.opencode/skills/sk-doc/scripts/package_skill.py:37-81`
 
 ### Private Functions
 

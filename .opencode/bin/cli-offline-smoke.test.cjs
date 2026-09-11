@@ -49,19 +49,3 @@ for (const row of payload.results) {
   assert.strictEqual(row.freshness, 'fresh', `${row.name} freshness mismatch`);
   assert.strictEqual(row.daemonFree, true, `${row.name} used a daemon socket`);
 }
-
-// ─────────────────────────────────────────────────────────────────────────────
-// 5. BRIDGE CLASSIFY ASSERTIONS
-// ─────────────────────────────────────────────────────────────────────────────
-
-(async () => {
-  const advisorBridge = await import('../skills/system-skill-advisor/mcp-server/plugin-bridges/system-skill-advisor-bridge.mjs');
-
-  const advisorStale = advisorBridge.classifyCliStaleDist(69, 'skill-advisor dist entrypoint is stale. Run a build.');
-  assert.strictEqual(advisorStale.state, 'dist_stale_rebuild_required');
-  assert.strictEqual(advisorStale.stderr, '[stderr-present]');
-  assert.strictEqual(advisorStale.rebuildRequired, true);
-})().catch((error) => {
-  process.stderr.write(`${error?.stack ?? error}\n`);
-  process.exit(1);
-});

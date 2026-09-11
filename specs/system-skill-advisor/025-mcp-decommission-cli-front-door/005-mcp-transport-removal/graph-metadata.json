@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/025-mcp-decommission-cli-front-door/005-mcp-transport-removal",
+  "spec_folder": "system-skill-advisor/025-mcp-decommission-cli-front-door/005-mcp-transport-removal",
+  "parent_id": "system-skill-advisor/025-mcp-decommission-cli-front-door",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "advisor mcp removal",
+      "advisor transport delete",
+      "advisor registration removal",
+      "advisor launcher supervisor",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies"
+    ],
+    "key_topics": [
+      "advisor",
+      "mcp",
+      "removal",
+      "transport",
+      "delete",
+      "registration",
+      "launcher",
+      "supervisor",
+      "implementation",
+      "plan",
+      "technical",
+      "approach"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".claude/mcp.json",
+      ".codex/config.toml",
+      ".cursor/mcp.json",
+      ".pi/mcp.json",
+      ".opencode/bin/system-skill-advisor-launcher.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".claude/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "system-skill-advisor-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/system-skill-advisor-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Clean Architecture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The MCP layer is a pass-through that costs a declaration in five runtime config roots, an SDK dependency, a bridge process for OpenCode, and an MCP-shaped JSON-RPC framing that the CLI has to speak to reach its own daemon",
+    "created_at": "2026-09-11T06:49:01Z",
+    "last_save_at": "2026-09-11T17:34:34.646Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ca737c4ae13f82a2720db79164f90cfce9d863e0df6223f37399152edb8a05f9",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "86f5461a3f09566fd3e874bdcfaceb7115539b932c050c8963f6371094163968",
+      "plan.md": "d2ae23464253bdb8a9eb16738a302c9d56fa72919329e2b8d8d66d3481ca3d76",
+      "tasks.md": "93787ff61e35675e5ceacebc9a11ec8114d9ca0a8b546ca9992dbf2316563d7f",
+      "implementation-summary.md": "97c5d3f7d1fbc97370ee56bd1732d9d87a677fecdc631aa237daedb1e8573272"
+    },
+    "last_active_at": null
+  }
+}

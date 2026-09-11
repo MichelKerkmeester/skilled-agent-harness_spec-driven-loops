@@ -31,14 +31,14 @@ Keep the advisor graph fresh without incurring the cost of watching the whole wo
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/mcp-server/lib/daemon/watcher.ts` | Daemon | Source reference |
-| `.opencode/skills/system-skill-advisor/mcp-server/lib/daemon/lifecycle.ts` | Daemon | Source reference |
+| `.opencode/skills/system-skill-advisor/runtime/lib/daemon/watcher.ts` | Daemon | Source reference |
+| `.opencode/skills/system-skill-advisor/runtime/lib/daemon/lifecycle.ts` | Daemon | Source reference |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/mcp-server/tests/daemon-freshness-foundation.vitest.ts` | Automated test | watcher bring-up, scope assertions, debounce checks |
+| `.opencode/skills/system-skill-advisor/runtime/tests/daemon-freshness-foundation.vitest.ts` | Automated test | watcher bring-up, scope assertions, debounce checks |
 | `Playbook scenario [AU-001](../../manual-testing-playbook/auto-update-daemon/watcher-narrow-scope.md)` | Manual playbook | manual scope validation |
 
 ---

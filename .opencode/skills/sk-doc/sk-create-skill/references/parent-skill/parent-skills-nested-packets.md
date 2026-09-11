@@ -254,7 +254,7 @@ Then replay both stages, because each can pass while the other is broken:
 ```bash
 node .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs \
   --skill .opencode/skills/<hub> --task "<a real request for the new mode>"
-python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py "<same request>" --threshold 0.5
+python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "<same request>" --threshold 0.5
 ```
 
 A stage-one hit with `surfaceIntents: []`, or a stage-two hit with `intents: [NONE]`, means

@@ -68,4 +68,4 @@ For type coverage after edits, run `npx tsc --noEmit -p tsconfig.json` from `run
 ## 6. RELATED
 
 - `../config/README.md`
-- `../../../system-skill-advisor/mcp-server/`
+- `../../../system-skill-advisor/runtime/`

@@ -91,7 +91,7 @@ An exit 0 means the call reached a daemon — check that `SPECKIT_IPC_SOCKET_DIR
 
 | File | Role |
 |---|---|
-| `.opencode/skills/system-skill-advisor/mcp-server/skill-advisor-cli.ts` | `ensureDaemonReady` warm-only branch throwing the retryable error |
+| `.opencode/skills/system-skill-advisor/runtime/skill-advisor-cli.ts` | `ensureDaemonReady` warm-only branch throwing the retryable error |
 | `.opencode/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts` | Hook helper relying on this contract |
 
 Provenance: manual only - run the scenario prompt: Validate that --warm-only CLI calls exit 75 with backend unavailable and never spawn a daemon when the socket directory is empty.

@@ -8,7 +8,7 @@ stage: routing
 expected_workflow_mode: system-skill-advisor
 expected_leaf_resources:
   - workflow_mode: system-skill-advisor
-    leaf_resource_id: feature-catalog/mcp-surface/skill-advisor-cli.md
+    leaf_resource_id: feature-catalog/cli-surface/skill-advisor-cli.md
 ---
 
 # CL-006 -- skill-advisor CLI Fallback Surface
@@ -27,10 +27,10 @@ The program-wide CLI scenarios live in the spec-kit playbook (427 parity, 428 wa
 ## 2. SCENARIO CONTRACT
 
 - Objective: Confirm list-tools parity (9), warm-only no-spawn (75), untrusted mutation refusal (64), and trusted pass-through.
-- User request: `If the advisor MCP transport drops, can I still query the advisor — and is mutation still impossible without an explicit trust grant?`
+- User request: `Can I still query the advisor without a warm daemon — and is mutation still impossible without an explicit trust grant?`
 - Expected execution process: Run the command block below in a fresh sandbox.
 - Expected signals: `ok 9`; exit 75 on the warm-only read; exit 64 with the trust-grant message on untrusted `advisor_rebuild`; exit 75 on the `--trusted` variant (gate passed, daemon absent).
-- Desired user-visible outcome: The CLI is a faithful, fail-closed stand-in for the MCP surface during transport-down windows.
+- Desired user-visible outcome: The CLI stays a faithful, fail-closed surface when the daemon is unreachable.
 - Pass/fail: PASS only when all four signals match.
 
 ---
@@ -92,12 +92,12 @@ Count drift means the manifest no longer tracks `TOOL_DEFINITIONS` — run the p
 | File | Role |
 |---|---|
 | `.opencode/bin/skill-advisor.cjs` | Stable shim with recursive source-mtime dist guard (exit 69) |
-| `mcp-server/skill-advisor-cli.ts` | Dispatcher, trusted-mutation gate, warm-only probe, exit taxonomy |
-| `mcp-server/skill-advisor-cli-manifest.ts` | Manifest generated from `TOOL_DEFINITIONS` |
-| `mcp-server/tests/skill-advisor-cli-parity.vitest.ts` | Parity fixture (local real-python3 vs native) |
-| `mcp-server/tests/skill-advisor-cli-dual-client.vitest.ts` | Dual-client MCP + CLI coverage |
-| `mcp-server/tests/handlers/advisor-trust-gate.vitest.ts` | Daemon-side trust-gate enforcement |
-| `../../feature-catalog/mcp-surface/skill-advisor-cli.md` | Feature-catalog source for this surface |
+| `runtime/skill-advisor-cli.ts` | Dispatcher, trusted-mutation gate, warm-only probe, exit taxonomy |
+| `runtime/skill-advisor-cli-manifest.ts` | Manifest generated from `TOOL_DEFINITIONS` |
+| `runtime/tests/skill-advisor-cli-parity.vitest.ts` | Parity fixture (local real-python3 vs native) |
+| `runtime/tests/skill-advisor-cli-dual-client.vitest.ts` | Two callers against one resident daemon |
+| `runtime/tests/handlers/advisor-trust-gate.vitest.ts` | Daemon-side trust-gate enforcement |
+| `../../feature-catalog/cli-surface/skill-advisor-cli.md` | Feature-catalog source for this surface |
 
 ---
 

@@ -41,7 +41,7 @@ Trip the skill-advisor dist-freshness guard reversibly, confirm exit 69 plus the
 ### Commands
 
 ```bash
-SRC=.opencode/skills/system-skill-advisor/mcp-server/skill-advisor-cli.ts
+SRC=.opencode/skills/system-skill-advisor/runtime/skill-advisor-cli.ts
 BAK=$(mktemp); cp "$SRC" "$BAK"                                  # exact content backup
 printf '\n// freshness probe: content change to trip the hash gate (reverted below)\n' >> "$SRC"
 

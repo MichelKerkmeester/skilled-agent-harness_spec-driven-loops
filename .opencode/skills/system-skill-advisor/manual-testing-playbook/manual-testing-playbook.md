@@ -1,6 +1,6 @@
 ---
 title: "Skill Advisor: Manual Testing Playbook"
-description: "Canonical sk-doc manual testing playbook for the Skill Advisor manual scenario corpus across native MCP tools, runtime hooks, compatibility, daemon state, indexing, lifecycle, scorer and Python compatibility workflows."
+description: "Canonical sk-doc manual testing playbook for the Skill Advisor manual scenario corpus across the native command surface, runtime hooks, compatibility, daemon state, indexing, lifecycle, scorer and Python compatibility workflows."
 version: 0.8.0.16
 ---
 
@@ -16,7 +16,7 @@ This playbook package follows the sk-doc manual testing playbook template. The c
 
 Canonical package artifacts:
 - `manual-testing-playbook.md`
-- `native-mcp-tools/`
+- `native-cli-tools/`
 - `cli-hooks-and-plugin/`
 - `compat-and-disable/`
 - `operator-h5/`
@@ -30,7 +30,7 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 47 deterministic scenario files across 9 categories validating the Skill Advisor surface. Scenario IDs use a multi-prefix scheme: `NC` for native MCP tools, `CL` for CLI hooks plus plugin behavior, `CP` for compatibility plus disable controls, `OP` for operator H5 states, `AU` for auto-update daemon behavior, `AI` for auto-indexing, `LC` for lifecycle routing, `SC` for scorer fusion, plus `PC` for Python compatibility.
+This playbook provides 47 deterministic scenario files across 9 categories validating the Skill Advisor surface. Scenario IDs use a multi-prefix scheme: `NC` for the native command surface, `CL` for CLI hooks plus plugin behavior, `CP` for compatibility plus disable controls, `OP` for operator H5 states, `AU` for auto-update daemon behavior, `AI` for auto-indexing, `LC` for lifecycle routing, `SC` for scorer fusion, plus `PC` for Python compatibility.
 
 > **Numbering note (gap-09).** The directory layout skips slot `09--*` between `scorer-fusion` and `python-compat`. This mirrors the `feature-catalog/` 05-gap pattern and is an intentional historical reservation from initial scaffold design. The gap is preserved to keep spec-folder cross-reference stability across packets. Do not renumber.
 
@@ -39,8 +39,8 @@ Coverage note (2026-05-07): the prior operator scenario corpus now lives under `
 ### Realistic Test Model
 
 1. A realistic user request is given to an operator or runtime.
-2. The operator decides whether to call the native MCP tool, run a prompt-time hook, execute compatibility shims or inspect daemon/indexing behavior.
-3. The operator captures command transcripts, MCP envelopes, hook stdout/stderr and final verdicts.
+2. The operator decides whether to call the native command through the CLI, run a prompt-time hook, execute compatibility shims or inspect daemon/indexing behavior.
+3. The operator captures command transcripts, CLI JSON envelopes, hook stdout/stderr and final verdicts.
 4. The scenario passes only when observed output is prompt-safe, user-visible and consistent with the documented feature contract.
 
 ### What Each Feature File Should Explain
@@ -57,14 +57,14 @@ Coverage note (2026-05-07): the prior operator scenario corpus now lives under `
 
 1. Working directory is the repository root.
 2. Node.js and Python 3 are available.
-3. The MCP server build is current:
+3. The advisor runtime build is current:
 
 ```bash
-npm --prefix .opencode/skills/system-spec-kit/runtime run build
+npm --prefix .opencode/skills/system-skill-advisor/runtime run build
 ```
 
 4. `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED` is unset unless a scenario explicitly sets it.
-5. Operators can call Skill Advisor MCP tools or run the documented Node/Python commands from the repo root.
+5. Operators can run the documented advisor CLI and Node/Python commands from the repo root.
 6. Destructive or stateful scenarios use a disposable workspace copy unless the scenario explicitly validates the live checkout.
 
 ---
@@ -73,7 +73,7 @@ npm --prefix .opencode/skills/system-spec-kit/runtime run build
 
 - Scenario ID and per-feature file path.
 - User request or operational condition used.
-- Exact command transcript or MCP call payload.
+- Exact command transcript or CLI call payload.
 - Full JSON output or a focused excerpt containing asserted fields.
 - Exit code for shell commands.
 - Hook stdout and stderr captured separately when hook scripts are involved.
@@ -85,7 +85,7 @@ npm --prefix .opencode/skills/system-spec-kit/runtime run build
 ## 4. DETERMINISTIC COMMAND NOTATION
 
 - CLI commands shown as `bash: <command>`.
-- MCP tool calls shown as `advisor_recommend({ key: value })` or the named advisor tool call.
+- CLI calls shown as `node .opencode/bin/skill-advisor.cjs <command> --format json`.
 - Hook stdin payloads shown as JSON piped into the compiled hook script.
 - `->` separates sequential steps inside one scenario contract.
 - File references use repo-root-relative paths unless otherwise stated.
@@ -139,17 +139,17 @@ This section records wave planning for the canonical Skill Advisor manual test p
 
 ### Operational Rules
 
-1. Probe build state first with the MCP server build command.
-2. Run native MCP scenarios before hook scenarios so runtime failures can be separated from scorer or tool failures.
+1. Probe build state first with the advisor runtime build command.
+2. Run native command-surface scenarios before hook scenarios so runtime failures can be separated from scorer or command failures.
 3. Run rebuild and daemon scenarios in disposable workspaces when validating repair or generated state.
 4. Assign explicit scenario IDs before parallel execution.
-5. Keep stdout, stderr and MCP JSON evidence in scenario-specific files under `/tmp/skill-advisor-playbook/`.
+5. Keep stdout, stderr and CLI JSON evidence in scenario-specific files under `/tmp/skill-advisor-playbook/`.
 6. After each wave, record verdicts and blockers before starting the next wave.
 
 ### Recommended Wave Plan
 
-- **Wave 1**: `NC-001..NC-010` native MCP behavior.
-- **Wave 2**: `CL-001`, `CL-004..CL-007` runtime hooks, plugin bridge, CLI fallback and goal plugin.
+- **Wave 1**: `NC-001..NC-010` native command-surface behavior.
+- **Wave 2**: `CL-001`, `CL-004..CL-007` runtime hooks, the OpenCode plugin, CLI fallback and the goal plugin.
 - **Wave 3**: `CP-001..CP-004` compatibility and disable controls.
 - **Wave 4**: `OP-001..OP-003` H5 operator states.
 - **Wave 5**: `AU-001..AU-005` auto-update daemon behavior.
@@ -160,22 +160,22 @@ This section records wave planning for the canonical Skill Advisor manual test p
 
 ---
 
-## 7. NATIVE MCP TOOLS
+## 7. NATIVE COMMAND SURFACE
 
-This category validates native mcp tools scenarios `NC-001..NC-010`.
+This category validates native command-surface scenarios `NC-001..NC-010`.
 
 | ID | Scenario | File |
 |---|---|---|
-| NC-001 | Native advisor_recommend Happy Path | [native-recommend-happy-path.md](native-mcp-tools/native-recommend-happy-path.md) |
-| NC-002 | Native advisor_status Transitions | [native-status-transitions.md](native-mcp-tools/native-status-transitions.md) |
-| NC-003 | Native advisor_validate Slice Bundle | [native-validate-slices.md](native-mcp-tools/native-validate-slices.md) |
-| NC-004 | Ambiguous Brief Rendering | [ambiguous-brief-rendering.md](native-mcp-tools/ambiguous-brief-rendering.md) |
-| NC-005 | Lifecycle Redirect Metadata | [lifecycle-redirect-metadata.md](native-mcp-tools/lifecycle-redirect-metadata.md) |
-| NC-006 | Advisor Status and Rebuild Separation | [advisor-status-rebuild-separation.md](native-mcp-tools/advisor-status-rebuild-separation.md) |
-| NC-007 | Skill Graph Status | [skill-graph-status.md](native-mcp-tools/skill-graph-status.md) |
-| NC-008 | Skill Graph Query | [skill-graph-query.md](native-mcp-tools/skill-graph-query.md) |
-| NC-009 | Skill Graph Validate | [skill-graph-validate.md](native-mcp-tools/skill-graph-validate.md) |
-| NC-010 | Shadow-Delta Sink Opt-In | [shadow-delta-sink.md](native-mcp-tools/shadow-delta-sink.md) |
+| NC-001 | Native advisor_recommend Happy Path | [native-recommend-happy-path.md](native-cli-tools/native-recommend-happy-path.md) |
+| NC-002 | Native advisor_status Transitions | [native-status-transitions.md](native-cli-tools/native-status-transitions.md) |
+| NC-003 | Native advisor_validate Slice Bundle | [native-validate-slices.md](native-cli-tools/native-validate-slices.md) |
+| NC-004 | Ambiguous Brief Rendering | [ambiguous-brief-rendering.md](native-cli-tools/ambiguous-brief-rendering.md) |
+| NC-005 | Lifecycle Redirect Metadata | [lifecycle-redirect-metadata.md](native-cli-tools/lifecycle-redirect-metadata.md) |
+| NC-006 | Advisor Status and Rebuild Separation | [advisor-status-rebuild-separation.md](native-cli-tools/advisor-status-rebuild-separation.md) |
+| NC-007 | Skill Graph Status | [skill-graph-status.md](native-cli-tools/skill-graph-status.md) |
+| NC-008 | Skill Graph Query | [skill-graph-query.md](native-cli-tools/skill-graph-query.md) |
+| NC-009 | Skill Graph Validate | [skill-graph-validate.md](native-cli-tools/skill-graph-validate.md) |
+| NC-010 | Shadow-Delta Sink Opt-In | [shadow-delta-sink.md](native-cli-tools/shadow-delta-sink.md) |
 
 ---
 
@@ -187,7 +187,7 @@ This category validates cli hooks and plugin scenarios `CL-001`, `CL-004..CL-007
 |---|---|---|
 | CL-001 | Claude Code UserPromptSubmit Hook | [001-claude-user-prompt-submit.md](cli-hooks-and-plugin/claude-user-prompt-submit.md) |
 | CL-004 | OpenCode Native Hooks And Wrapper Fallback | 004-opencode-hook-and-wrapper.md (not yet authored) |
-| CL-005 | OpenCode Plugin Bridge | [005-opencode-plugin-bridge.md](cli-hooks-and-plugin/opencode-plugin-bridge.md) |
+| CL-005 | OpenCode Plugin | [005-opencode-plugin-bridge.md](cli-hooks-and-plugin/opencode-plugin-bridge.md) |
 | CL-006 | skill-advisor CLI Fallback Surface (028) | [006-skill-advisor-cli-fallback.md](cli-hooks-and-plugin/skill-advisor-cli-fallback.md) |
 | CL-007 | Goal OpenCode Plugin | [goal-opencode-plugin.md](cli-hooks-and-plugin/goal-opencode-plugin.md) |
 
@@ -291,14 +291,14 @@ This category validates python compat scenarios `PC-001..PC-005`.
 
 ## 16. AUTOMATED TEST CROSS-REFERENCE
 
-The active inventory check lives at `.opencode/skills/system-skill-advisor/mcp-server/tests/manual-testing-playbook.vitest.ts`. It verifies the root playbook rows, the live per-feature file inventory and the scenario package count.
+The active inventory check lives at `.opencode/skills/system-skill-advisor/runtime/tests/manual-testing-playbook.vitest.ts`. It verifies the root playbook rows, the live per-feature file inventory and the scenario package count.
 
 | Area | Automated test anchors |
 |---|---|
-| Native MCP tools | `.opencode/skills/system-skill-advisor/mcp-server/tests/handlers/advisor-recommend.vitest.ts`; `.opencode/skills/system-spec-kit/runtime/tests/advisor-rebuild.vitest.ts` |
-| Hooks and plugin | `.opencode/skills/system-skill-advisor/mcp-server/tests/hooks/settings-driven-invocation-parity.vitest.ts`; `.opencode/skills/system-skill-advisor/mcp-server/tests/legacy/advisor-runtime-parity.vitest.ts`; `.opencode/plugins/tests/opencode-goal-state.test.cjs`; `.opencode/plugins/tests/opencode-goal-continuation.test.cjs` |
-| Compatibility and Python entrypoints | `.opencode/skills/system-skill-advisor/mcp-server/tests/manual-testing-playbook.vitest.ts`; `.opencode/skills/system-spec-kit/runtime/tests/tool-input-schema.vitest.ts` |
-| Scoring, lifecycle, indexing and daemon state | `.opencode/skills/system-skill-advisor/mcp-server/tests/handlers/advisor-recommend.vitest.ts`; `.opencode/skills/system-skill-advisor/mcp-server/tests/legacy/advisor-privacy.vitest.ts` |
+| Native command surface | `.opencode/skills/system-skill-advisor/runtime/tests/handlers/advisor-recommend.vitest.ts`; `.opencode/skills/system-spec-kit/runtime/tests/advisor-rebuild.vitest.ts` |
+| Hooks and plugin | `.opencode/skills/system-skill-advisor/runtime/tests/hooks/settings-driven-invocation-parity.vitest.ts`; `.opencode/skills/system-skill-advisor/runtime/tests/legacy/advisor-runtime-parity.vitest.ts`; `.opencode/plugins/tests/opencode-goal-state.test.cjs`; `.opencode/plugins/tests/opencode-goal-continuation.test.cjs` |
+| Compatibility and Python entrypoints | `.opencode/skills/system-skill-advisor/runtime/tests/manual-testing-playbook.vitest.ts`; `.opencode/skills/system-spec-kit/runtime/tests/tool-input-schema.vitest.ts` |
+| Scoring, lifecycle, indexing and daemon state | `.opencode/skills/system-skill-advisor/runtime/tests/handlers/advisor-recommend.vitest.ts`; `.opencode/skills/system-skill-advisor/runtime/tests/legacy/advisor-privacy.vitest.ts` |
 
 Validator limitation: `validate_document.py` validates this root document and per-feature documents individually, but it does not prove that every command can execute in the current sandbox. Operators must capture execution evidence during release review.
 
@@ -308,7 +308,7 @@ Validator limitation: `validate_document.py` validates this root document and pe
 
 | Scenario prefix | Category | Feature file directory |
 |---|---|---|
-| NC | Native MCP tools | `native-mcp-tools/` |
+| NC | Native command surface | `native-cli-tools/` |
 | CL | CLI hooks and plugin | `cli-hooks-and-plugin/` |
 | CP | Compat and disable | `compat-and-disable/` |
 | OP | Operator H5 | `operator-h5/` |
@@ -330,19 +330,19 @@ The catalog uses 7 groups; the playbook uses 9 categories. Mapping is intentiona
 | `auto-indexing` | `auto-indexing` | 1:1 mapping |
 | `lifecycle-routing` | `lifecycle-routing` | 1:1 mapping |
 | `scorer-fusion` | `scorer-fusion` | 1:1 mapping |
-| `mcp-surface` | `native-mcp-tools` plus `cli-hooks-and-plugin` | Catalog group split across 2 playbook categories: native MCP tool scenarios in 01, CLI hook plus plugin invocation scenarios in 02 |
+| `cli-surface` | `native-cli-tools` plus `cli-hooks-and-plugin` | Catalog group split across 2 playbook categories: native command-surface scenarios in 01, CLI hook plus plugin invocation scenarios in 02 |
 | `hooks-and-plugin` | `cli-hooks-and-plugin` (primary) plus `compat-and-disable` (rollback states) | Catalog group split across 2 playbook categories: happy-path hook behavior in 02, disable plus rollback flags in 03 |
 | `python-compat` | `python-compat` | 1:1 mapping (note gap-09 is intentional per playbook §1) |
 | (none) | `compat-and-disable` | Compat plus disable flags cut across multiple catalog groups; no single catalog group owns them |
 | (none) | `operator-h5` | H5 operator state scenarios cut across catalog groups; no single catalog group owns them |
 
-**Why asymmetric**: catalog groups model feature ownership (what the code does), while playbook categories model operator workflow (what an operator validates in one sitting). A single feature group can require multiple operator scenarios that span different runtime contexts (native MCP vs CLI hook vs compat shim). The asymmetry is documented here rather than removed by renumbering because renumbering would break checked-in inventory tests plus deep cross-references in earlier packets.
+**Why asymmetric**: catalog groups model feature ownership (what the code does), while playbook categories model operator workflow (what an operator validates in one sitting). A single feature group can require multiple operator scenarios that span different runtime contexts (native command surface vs CLI hook vs compat shim). The asymmetry is documented here rather than removed by renumbering because renumbering would break checked-in inventory tests plus deep cross-references in earlier packets.
 
 ---
 
 ## 18. LEGACY ID CROSS-REFERENCE
 
-- SAD-001 -> NC-001 (native-mcp-tools/native-recommend-happy-path.md)
-- SAD-002 -> NC-004 (native-mcp-tools/ambiguous-brief-rendering.md)
+- SAD-001 -> NC-001 (native-cli-tools/native-recommend-happy-path.md)
+- SAD-002 -> NC-004 (native-cli-tools/ambiguous-brief-rendering.md)
 - SAD-003 -> CL-001 (cli-hooks-and-plugin/claude-user-prompt-submit.md)
-- SAD-004 -> NC-006 (native-mcp-tools/advisor-status-rebuild-separation.md)
+- SAD-004 -> NC-006 (native-cli-tools/advisor-status-rebuild-separation.md)

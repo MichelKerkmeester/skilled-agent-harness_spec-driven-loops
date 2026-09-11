@@ -31,15 +31,15 @@ Keep lifecycle mutations reversible so operators can experiment with supersessio
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/mcp-server/lib/lifecycle/rollback.ts` | Library | Source reference |
-| `.opencode/skills/system-skill-advisor/mcp-server/lib/lifecycle/supersession.ts` | Library | Source reference |
-| `.opencode/skills/system-skill-advisor/mcp-server/lib/lifecycle/archive-handling.ts` | Library | Source reference |
+| `.opencode/skills/system-skill-advisor/runtime/lib/lifecycle/rollback.ts` | Library | Source reference |
+| `.opencode/skills/system-skill-advisor/runtime/lib/lifecycle/supersession.ts` | Library | Source reference |
+| `.opencode/skills/system-skill-advisor/runtime/lib/lifecycle/archive-handling.ts` | Library | Source reference |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/mcp-server/tests/lifecycle-derived-metadata.vitest.ts` | Automated test | rollback invariants |
+| `.opencode/skills/system-skill-advisor/runtime/tests/lifecycle-derived-metadata.vitest.ts` | Automated test | rollback invariants |
 | `Playbook scenario [LC-005](../../manual-testing-playbook/lifecycle-routing/rollback-lifecycle.md).` | Manual playbook | Source reference |
 
 ---

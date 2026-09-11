@@ -32,7 +32,7 @@ Validate that generation counter increments are atomic, persisted through temp-f
 ## 2. SCENARIO CONTRACT
 
 - Repo root as working directory.
-- MCP server built.
+- Advisor runtime built.
 - Daemon reachable via `advisor_status`.
 - Disposable workspace copy if destructive simulation is needed. Step 3 touches a live skill file.
 
@@ -45,7 +45,7 @@ Validate that generation counter increments are atomic, persisted through temp-f
 1. Capture baseline generation:
 
 ```text
-advisor_status({"workspaceRoot":"/absolute/path/to/repo"})
+node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root /absolute/path/to/repo --format json
 ```
 
 2. Touch the `SKILL.md` of an active skill in the workspace:
@@ -58,7 +58,7 @@ touch .opencode/skills/sk-git/SKILL.md
 4. Re-read status:
 
 ```text
-advisor_status({"workspaceRoot":"/absolute/path/to/repo"})
+node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root /absolute/path/to/repo --format json
 ```
 
 5. Call `advisor_recommend` with a prompt that maps to the touched skill and inspect `cache.generation` if present.
@@ -133,7 +133,7 @@ BLOCKED - Step 2 requires modifying `.opencode/skills/sk-git/SKILL.md`, but this
 - Scenario [AU-001](../../manual-testing-playbook/auto-update-daemon/watcher-narrow-scope.md), watcher scope.
 - Scenario [AU-005](../../manual-testing-playbook/auto-update-daemon/rebuild-from-source.md), recovery when snapshot unreadable.
 - Feature [`daemon-and-freshness/generation.md`](../../feature-catalog/daemon-and-freshness/generation.md).
-- Source: `.opencode/skills/system-skill-advisor/mcp-server/lib/freshness/generation.ts`.
+- Source: `.opencode/skills/system-skill-advisor/runtime/lib/freshness/generation.ts`.
 
 ---
 

@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/045-daemon-and-test-harness-hardening/002-orphan-daemon-reaping",
+  "spec_folder": "system-speckit/045-daemon-and-test-harness-hardening/002-orphan-daemon-reaping",
+  "parent_id": "system-speckit/045-daemon-and-test-harness-hardening",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "orphan daemon reaping",
+      "process sweep apply path",
+      "launcher stdin close exit",
+      "respawn lock staleness",
+      "orphan daemon reaping plan",
+      "sweep apply path",
+      "launcher self exit",
+      "orphan daemon reaping tasks",
+      "acceptance criteria",
+      "closure gate",
+      "ac traceability",
+      "waiver adr"
+    ],
+    "key_topics": [
+      "orphan",
+      "daemon",
+      "reaping",
+      "process",
+      "sweep",
+      "apply",
+      "path",
+      "launcher",
+      "stdin",
+      "close",
+      "exit",
+      "respawn"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".opencode/bin/system-spec-memory-launcher.cjs",
+      ".opencode/bin/lib/model-server-supervision.cjs",
+      ".opencode/skills/system-spec-kit/scripts/ops/process-sweep.ts",
+      ".opencode/skills/system-spec-kit/scripts/ops/process-memory-harness.ts",
+      "ops/README.md",
+      ".opencode/skills/system-spec-kit/scripts/ops/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "system-spec-memory-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/system-spec-memory-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "model-server-supervision.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/lib/model-server-supervision.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "process-sweep.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/ops/process-sweep.ts",
+        "source": "derived"
+      },
+      {
+        "name": "process-memory-harness.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/ops/process-memory-harness.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "ops/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Orphan Daemon Reaping",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Daemon Lifecycle",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Nothing",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Defence",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "An orphaned `system-spec-memory-launcher.cjs` survived at `ppid 1` for 2 days 14 hours with dangling stdio pipes and no child server",
+    "created_at": "2026-08-30T09:55:27Z",
+    "last_save_at": "2026-08-30T10:13:58.875Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:3a4b8f498a23daf1628f1f1eb4236d9a8d98ce82f45957ea0c5256dc46be817b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "1ac91c9af993d9d20cc3e2dc1a53099d83034d39e3294a2c18c7ec537f7a8d7c",
+      "plan.md": "f02fdad17f98fe3a5b9bc6093c77f8102e1085c69d52cfe169ed3935dc67e6fb",
+      "tasks.md": "5db217544c4337971b59e86743f889ec8a9b7bb751755bcdab5d99f33f6e6bb6",
+      "implementation-summary.md": "331c4faf6b32c077c629c329442b5a7cd49cb691133de1c8580e98aab189035e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

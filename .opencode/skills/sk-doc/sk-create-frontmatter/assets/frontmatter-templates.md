@@ -468,7 +468,7 @@ version: 1.7.0.0
 ---
 ```
 
-Verify with `.opencode/skills/system-skill-advisor/mcp-server/scripts/check-skill-doc-frontmatter.sh`. Two things about that checker decide what a green run means. Its default `--shape` mode fails only a document that carries a partial block, so a file with `title` and `description` alone, or with no block at all, passes. Pass `--coverage` to require the full block. And it walks `references/` and `assets/` directly under each top-level skill folder only, so the docs of a nested mode packet are never read by it. For those, `package_skill.py --check --strict` on the packet is the gate that reaches the block.
+Verify with `.opencode/skills/system-skill-advisor/runtime/scripts/check-skill-doc-frontmatter.sh`. Two things about that checker decide what a green run means. Its default `--shape` mode fails only a document that carries a partial block, so a file with `title` and `description` alone, or with no block at all, passes. Pass `--coverage` to require the full block. And it walks `references/` and `assets/` directly under each top-level skill folder only, so the docs of a nested mode packet are never read by it. For those, `package_skill.py --check --strict` on the packet is the gate that reaches the block.
 
 ### Skill README Frontmatter Template
 
@@ -503,7 +503,7 @@ version: 1.0.0.10
 
 - `importance_tier` and `contextType` are optional here. A minority of skill READMEs carry them. No validator asks for them.
 - READMEs deeper in a skill tree are a different class. Most carry no block at all. `sk-create-readme`'s own template treats frontmatter as optional for a normal project README, so add a block to one of those only when the document should be discoverable.
-- Nothing enforces the field set. The advisor's `check-skill-doc-frontmatter.sh`, under `system-skill-advisor/mcp-server/scripts/`, exempts `README.md`, so the version gate is the only automated check a README block faces.
+- Nothing enforces the field set. The advisor's `check-skill-doc-frontmatter.sh`, under `system-skill-advisor/runtime/scripts/`, exempts `README.md`, so the version gate is the only automated check a README block faces.
 - `trigger_phrases` lengths across skill READMEs run from 2 items to 13. The 3 to 8 range in Section 3 is the reference and asset rule, not a README rule.
 
 ### Feature Catalog Frontmatter Template

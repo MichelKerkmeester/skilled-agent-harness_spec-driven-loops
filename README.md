@@ -63,11 +63,11 @@ The framework adds three layers on top of the base platform:
                  │                           │
                  ▼                           ▼
          ┌──────────────────────────────────────────┐
-         │          NATIVE MCP TOPOLOGY             │
-         │  2 native servers - each one a separate  │
-         │  process and MCP boundary                │
+         │       ROUTING + MCP TOPOLOGY             │
+         │  code_mode MCP server, plus the advisor  │
+         │  daemon on its own socket protocol       │
          │                                          │
-         │  system_skill_advisor     skill routing      │
+         │  skill-advisor.cjs    skill routing      │
          │  code_mode            external tools     │
          │                                          │
          │  Shared contract: startup payload via    │
@@ -99,19 +99,21 @@ cd opencode--spec-kit-skilled-agent-orchestration
 # 2. Install root dependencies (file watcher + shared HTTP utilities)
 npm install
 
-# 3. Boot the native MCP servers via their committed launchers
-# Each launcher is a self-contained .cjs that vendors its own deps on first run.
-node .opencode/bin/system-skill-advisor-launcher.cjs --help
+# 3. Build the advisor runtime and check its CLI front door
+# The CLI spawns the resident daemon on demand; Code Mode boots from its launcher when a runtime needs it.
+npm --prefix .opencode/skills/system-skill-advisor/runtime install
+npm --prefix .opencode/skills/system-skill-advisor/runtime run build
+node .opencode/bin/skill-advisor.cjs list-tools --format json
 ```
 
 ### Verify Installation
 
 ```bash
-# Confirm the launcher binary responds
-node .opencode/bin/system-skill-advisor-launcher.cjs --help
+# Confirm the active runtime's MCP config references the Code Mode launcher
+grep -l mcp-code-mode-launcher opencode.json .claude/mcp.json .cursor/mcp.json .pi/mcp.json 2>/dev/null
 
-# Confirm the active runtime's MCP config references the launchers
-  opencode.json .claude/mcp.json .vscode/mcp.json 2>/dev/null
+# Confirm the advisor CLI enumerates all nine commands
+node .opencode/bin/skill-advisor.cjs list-tools --format json
 ```
 
 ### First Use
@@ -319,7 +321,7 @@ What the retired continuity server used to do is now split three ways. `/speckit
 
 ### 🎯 Skill Advisor
 
-The Skill Advisor matches what you type to the right skill before any tool runs. It is now a standalone MCP server named `system_skill_advisor`, packaged under `.opencode/skills/system-skill-advisor/mcp-server/`. The server registers nine tools: eight on the public surface (four `advisor_*` tools for routing, freshness, rebuild and validation, plus four `skill_graph_*` tools for scan, query, status and graph validation), plus one internal propagation tool. A small Python compatibility shim still works as a fallback when the native path is unavailable.
+The Skill Advisor matches what you type to the right skill before any tool runs. It runs as a resident daemon behind one CLI front door, `node .opencode/bin/skill-advisor.cjs`, which speaks the advisor's own newline-delimited protocol over a unix socket. The CLI exposes nine commands: eight on the public surface (four `advisor_*` commands for routing, freshness, rebuild and validation, plus four `skill_graph_*` commands for scan, query, status and graph validation), plus the trusted-caller-only `skill_graph_propagate_enhances`. The advisor registers no MCP server, in `opencode.json` or any other runtime config. When the daemon is unreachable the CLI answers from the Python scorer at `.opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py` and marks the response degraded, so the prompt-time brief reports `Advisor: stale` rather than claiming live.
 
 #### How It Works
 
@@ -361,24 +363,28 @@ The Skill Advisor matches what you type to the right skill before any tool runs.
                 RESULT:
            advisor_recommend -> list of skill recommendations
            hook adapter -> "Advisor: live, use ..."
-           shim fallback -> legacy JSON
+           local scorer fallback -> degraded, "Advisor: stale"
 ```
 
 &nbsp;
 #### Native Package Layout
 
 ```text
-.opencode/skills/system-skill-advisor/mcp-server/
+.opencode/skills/system-skill-advisor/runtime/
+├── advisor-server.ts      resident daemon behind the CLI socket protocol
+├── skill-advisor-cli.ts   the nine-command CLI implementation
 ├── bench/      benchmarks
-├── compat/     stable compatibility entry for runtimes
-├── handlers/   the nine MCP tool handlers (8 public + 1 internal)
+├── compat/     stable compatibility entry for compiled consumers and the Python shim
+├── config/     route exclusions and lane configuration
+├── database/   SQLite skill graph and doctor-update state
+├── handlers/   the nine command handlers (8 public + 1 trusted-only)
 ├── lib/        scorer, normalizer, freshness, cache
 ├── schemas/    JSON + Zod schemas
 ├── tests/      test suite
-└── tools/      tool registration
+└── tools/      command registration
 ```
 
-| Tool                   | What it does                                                                                                                                                                                                                               |
+| Command                | What it does                                                                                                                                                                                                                               |
 | ------------------------| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `advisor_recommend`    | Recommends skills for a prompt with lane breakdown, lifecycle redirects and a freshness trust signal. Returns the workspace root and the effective thresholds it used.                                                                     |
 | `advisor_rebuild`      | Rebuilds the advisor skill graph when `advisor_status` reports stale, absent or unavailable state. `force:true` rebuilds even when live.                                                                                                   |
@@ -393,19 +399,19 @@ The Skill Advisor matches what you type to the right skill before any tool runs.
 #### How Runtimes Talk To It
 
 - **Claude Code**: calls prompt-time hook adapters under `.opencode/skills/system-spec-kit/runtime/hooks/`.
-- **OpenCode**: uses `.opencode/plugins/system-skill-advisor.js` with `.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/system-skill-advisor-bridge.mjs`, which imports the stable compat entry under `.opencode/skills/system-skill-advisor/mcp-server/compat/index.ts`.
-- **Disable everywhere**: set `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1` to turn off all prompt-time advisor surfaces.
+- **OpenCode**: uses `.opencode/plugins/system-skill-advisor.js`, which spawns `.opencode/bin/skill-advisor.cjs` and renders the returned brief through the shared renderer.
+- **Disable everywhere**: set `SYSTEM_SKILL_ADVISOR_HOOK_DISABLED=1` (or `SYSTEM_SKILL_ADVISOR_PLUGIN_DISABLED=1` for the OpenCode plugin alone) to turn off prompt-time advisor surfaces; the legacy `SPECKIT_`-prefixed names still work.
 - **Threshold contract at the prompt**: confidence ≥ 0.8 and uncertainty ≤ 0.35 by default.
-- **CLI front door**: `skill-advisor.cjs` exposes the same 9 tools over the warm daemon for hooks, cron and shell diagnostics; mutation commands (`advisor_rebuild`, `skill_graph_scan`) are gated behind `--trusted`.
+- **CLI front door**: `skill-advisor.cjs` exposes the same nine commands over the warm daemon for hooks, cron and shell diagnostics; the mutation commands (`advisor_rebuild`, `skill_graph_scan`, apply-mode `skill_graph_propagate_enhances`) are gated behind `--trusted` or `SYSTEM_SKILL_ADVISOR_CLI_TRUSTED=1`.
 - **Launcher resilience**: the advisor launcher carries an owner lease and a reconnecting session proxy, and acts on dead-socket respawn decisions under a bootstrap lock: a hung daemon is reaped and replaced instead of stranding the session or spawning a second writer.
 
 &nbsp;
 #### Validation and Testing
 
-- `advisor_validate({"skillSlug":null})` returns measured corpus / holdout / parity / safety / latency slices plus prompt-safe outcome totals.
+- `node .opencode/bin/skill-advisor.cjs advisor_validate --json '{"confirmHeavyRun":true}' --format json` returns measured corpus / holdout / parity / safety / latency slices plus prompt-safe outcome totals.
 - Python compatibility regression harness: checked-in dataset and pass/fail totals are reported by `skill_advisor_regression.py`.
-- Native package: 23 advisor test files, 167 tests.
-- Manual testing playbook: 42 scenario files spanning native MCP tools, runtime hooks, the OpenCode plugin, compatibility controls, auto-indexing, lifecycle routing, scorer fusion and operator-state edge cases.
+- Native package: 121 advisor test files, 872 tests.
+- Manual testing playbook: 47 scenario files spanning the native command surface, runtime hooks, the OpenCode plugin, compatibility controls, auto-indexing, lifecycle routing, scorer fusion and operator-state edge cases.
 - Hook diagnostics write to bounded JSONL sinks under the temp metrics root. The validator reads those sinks back across processes.
 
 &nbsp;
@@ -553,8 +559,8 @@ For details, see the [Deep Loop Runtime README](.opencode/skills/system-deep-loo
 
 **system-skill-advisor**
 - Gate 2 skill-routing subsystem at `.opencode/skills/system-skill-advisor/`
-- Owns prompt-time skill routing, the `skill_graph_*` tools, freshness and lifecycle checks, plus the shared embedding model server
-- Current MCP server name: `system_skill_advisor`. Client namespace: `mcp__system_skill_advisor__*`
+- Owns prompt-time skill routing, the `skill_graph_*` commands, freshness and lifecycle checks, plus the shared embeddings stack
+- Front door: `node .opencode/bin/skill-advisor.cjs` over the resident daemon's socket protocol. No MCP registration, no client namespace
 
 &nbsp;
 #### CODE WORKFLOW
@@ -822,12 +828,12 @@ Three commands cover every spec-kit diagnostic surface. Run `/doctor` with no ta
 
 **`/doctor:mcp install|debug`**
 - MCP infrastructure repair (replaces the standalone `/doctor:mcp_install` and `/doctor:mcp_debug` from v3.4.0.0)
-- `install`. Fresh install or reinstall of the native MCP servers from their install guides. Handles old-conflicting-with-new (clean reinstall with venv/node_modules removal)
-- `debug`. Diagnoses the native MCP servers (System Skill Advisor, Code Mode) with PASS/WARN/FAIL per check. Supports `--fix` for guided repair
+- `install`. Fresh install or reinstall of the native MCP server and the Skill Advisor daemon from their install guides. Handles old-conflicting-with-new (clean reinstall with venv/node_modules removal)
+- `debug`. Diagnoses the Skill Advisor and Code Mode with PASS/WARN/FAIL per check. Supports `--fix` for guided repair
 
 **`/doctor:update`**
 - Multi-subsystem orchestrator: dependency-safe rebuild across trigger index → skill-graph → advisor → deep-loop
-- One lock (`system-skill-advisor/mcp-server/database/.doctor-update.flock`), one pre-mutation snapshot set, one dependency DAG, one rollback policy, one state log (`.doctor-update.last-run.json`)
+- One lock (`system-skill-advisor/runtime/database/.doctor-update.flock`), one pre-mutation snapshot set, one dependency DAG, one rollback policy, one state log (`.doctor-update.last-run.json`)
 - Tier-aware mid-run prompts: SHORT steps auto-acknowledge. The LONG-POLE trigger-index regeneration gets an explicit ETA prompt (Q-LONG, 1-5 min)
 - Additional gates: Q-PROBE (active MCP clients warning, NOT suppressed by `--force`), Q-LEGACY (per-file cleanup with `--cleanup-legacy`), Q-FAIL (step-failure recovery)
 - Use after upgrading spec-kit, after large packet moves or when multiple subsystem doctors would otherwise need to run by hand. Pass `--migrate` to handle schema migration (e.g. v3.3.0.0 → v3.4.1.0). Wall-clock 8-25 min
@@ -869,14 +875,11 @@ Code Mode MCP gives the AI access to external tools (Figma, GitHub, Chrome DevTo
 
 #### Native MCP Servers
 
-Canonical native server set:
+Canonical native server set: `code_mode` is the only registered MCP server. The Skill Advisor is deliberately not one; it runs as a resident daemon behind `node .opencode/bin/skill-advisor.cjs` and registers nothing.
 
-| Server                 | Tools | Purpose                                                                |
-| ---------------------- | ----- | ---------------------------------------------------------------------- |
-| `system_skill_advisor`     | 9     | Gate 2 advisor routing plus skill-graph scan/query/status/validation   |
-| `code_mode`            | 7     | External tool orchestration via TypeScript execution                   |
-| `sequential_thinking`  | 1     | Structured multi-step reasoning for complex problems                   |
-| **Total**              | **17** |                                                                        |
+| Server      | Tools | Purpose                                              |
+| ----------- | ----- | ---------------------------------------------------- |
+| `code_mode` | 7     | External tool orchestration via TypeScript execution |
 
 &nbsp;
 #### Code Mode Tools (7)
@@ -975,13 +978,7 @@ Nothing to configure. The trigger index is a committed file regenerated by `node
 ```json
 {
   "mcp": {
-    "system_skill_advisor": {
-      "type": "local"
-    },
     "code_mode": {
-      "type": "local"
-    },
-    "sequential_thinking": {
       "type": "local"
     }
   }
@@ -1040,7 +1037,7 @@ A: Define the agent in `.opencode/agents/` (the source of truth), then mirror th
 - **[→ Spec Kit README](.opencode/skills/system-spec-kit/README.md)** - Spec folder workflow, Level contract template set, validation rules
 - **[→ Spec-Kit Engine README](.opencode/skills/system-spec-kit/runtime/README.md)** - Validation, generated metadata and runtime hook adapters
 - **[→ Repo Scripts Runbook](.opencode/scripts/README.md)** - Dry-run orphan MCP sweeper, Claude cleanup, and LaunchAgent template guidance
-- **[→ Skill Advisor README](.opencode/skills/system-skill-advisor/README.md)** - Standalone `system_skill_advisor` server, nine advisor/skill-graph tools and routing docs
+- **[→ Skill Advisor README](.opencode/skills/system-skill-advisor/README.md)** - Daemon-backed CLI front door, nine advisor/skill-graph commands and routing docs
 - **[→ Architecture](.opencode/skills/system-spec-kit/ARCHITECTURE.md)** - API boundary contract
 - **[→ sk-doc Skill](.opencode/skills/sk-doc/SKILL.md)** - Documentation standards, DQI scoring
 - **[→ Skills Index](.opencode/skills/README.txt)** - Skills library and invocation patterns

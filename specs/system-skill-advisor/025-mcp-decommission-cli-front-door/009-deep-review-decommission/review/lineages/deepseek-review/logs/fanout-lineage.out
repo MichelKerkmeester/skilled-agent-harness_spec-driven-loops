@@ -1,0 +1,16 @@
+Lineage complete and verified.
+
+**Iteration 6 (adversarial replay) — executed inline, no dispatch**
+- One falsification attempt per active P1 (9 attempts): **0 falsified**. F002 strengthened (`.vscode/mcp.json` does not exist, so the doctor wiring check is unsatisfiable), F010 refined (30 `mcp-server` hits in `ENV-REFERENCE.md`; lines 318/366 make false "the configs carry the defaults" claims — `rg` over the three configs exits 1).
+- Gates re-run over the final set: evidence 17/17 with `file:line`, scope within target, coverage 4/4 dimensions + 2/2 core protocols, claim adjudication 9/9 packets with no `passed:false` event.
+- Stop decision: hard cap `iteration_count 6 >= maxIterations 6` → terminal `stopReason: maxIterationsReached`. Composite telemetry 0.70 ≥ 0.60 (rolling 0.0885 continue, MAD noise floor 0.284 ≥ 0.047 stop, coverage stop); all nine legal-stop gates passed, `blockedBy: []`.
+
+**Artifacts written (all inside the lineage dir)**
+- `iterations/iteration-006.md`, `deltas/iter-006.jsonl`, appended state record (state log now 7 lines: config + iterations 1–6)
+- `deep-review-findings-registry.json` → 17 active (P0 0 / P1 9 / P2 8), F015–F017 added, F010/F002 refinement transitions
+- `review-report.md` — 9 core sections + Dimension Expansion Map + Search Ledger + Audit Appendix + Planning Packet (`triggered: true`, 5 workstreams)
+- `deep-review-strategy.md`, `deep-review-dashboard.md`, `deep-review-config.json` (`status: complete`, `stopReason: maxIterationsReached`)
+
+**Final verification:** 12/12 checks pass (`review-report.md` 30 KB, state log parses 7/7, iterations 1–6 with no dupes, deltas 1–6, 11/11 report sections, registry counts, verdict lines 6/6, config complete) → `RESULT: LINEAGE COMPLETE`.
+
+**Verdict: CONDITIONAL** — the decommission's core (five-config deregistration, `runtime/` rename, CLI front door, rehomed env, fail-closed trust, working prompt hook) is verified from the final state; what fails is residue on live surfaces outside the advisor package (doctor install workflow prints a command against a deleted directory, spec-kit references still teach MCP-primary, `.pi` docs, `bin/` map) plus the unrun phase-008 gate. Remediation routes to `/speckit:plan`. Not run by design: `validate.sh`, the advisor CLI, and the test suites (write containment); those are recorded as owed evidence rather than claimed.

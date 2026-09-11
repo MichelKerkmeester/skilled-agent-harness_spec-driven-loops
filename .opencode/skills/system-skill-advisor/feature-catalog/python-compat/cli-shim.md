@@ -40,17 +40,17 @@ Keep pre-Phase-027 Python consumers working while moving routing to the native a
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py` | Script | Source reference |
-| `.opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor_runtime.py` | Script | Source reference |
-| `.opencode/skills/system-skill-advisor/mcp-server/lib/compat/daemon-probe.ts` | Library | Source reference |
+| `.opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py` | Script | Source reference |
+| `.opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor_runtime.py` | Script | Source reference |
+| `.opencode/skills/system-skill-advisor/runtime/lib/compat/daemon-probe.ts` | Library | Source reference |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/mcp-server/tests/compat/shim.vitest.ts` | Automated test | Validation reference |
-| `.opencode/skills/system-skill-advisor/mcp-server/tests/compat/daemon-probe.vitest.ts` | Automated test | Validation reference |
-| `.opencode/skills/system-skill-advisor/mcp-server/tests/python/` | Automated test | Python unit test |
+| `.opencode/skills/system-skill-advisor/runtime/tests/compat/shim.vitest.ts` | Automated test | Validation reference |
+| `.opencode/skills/system-skill-advisor/runtime/tests/compat/daemon-probe.vitest.ts` | Automated test | Validation reference |
+| `.opencode/skills/system-skill-advisor/runtime/tests/python/` | Automated test | Python unit test |
 | `Playbook scenarios [PC-001](../../manual-testing-playbook/python-compat/stdin-mode.md), [PC-002](../../manual-testing-playbook/python-compat/force-native-force-local.md), [PC-003](../../manual-testing-playbook/python-compat/threshold-flag.md) and [CP-001..CP-004](../../manual-testing-playbook/compat-and-disable).` | Manual playbook | Source reference |
 
 ---
@@ -65,4 +65,4 @@ Related references:
 
 - [02-regression-suite.md](../../feature-catalog/python-compat/regression-suite.md).
 - [03-bench-runner.md](../../feature-catalog/python-compat/bench-runner.md).
-- [`mcp-surface/compat-entrypoint.md`](../../feature-catalog/mcp-surface/compat-entrypoint.md).
+- [`cli-surface/compat-entrypoint.md`](../../feature-catalog/cli-surface/compat-entrypoint.md).

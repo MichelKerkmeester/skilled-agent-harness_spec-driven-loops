@@ -35,9 +35,9 @@ Validate the Claude Code `UserPromptSubmit` adapter returns `hookSpecificOutput.
 
 ## 2. SCENARIO CONTRACT
 
-- MCP server build is current.
+- Advisor runtime build is current.
 - `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED` is unset.
-- Claude hook script exists at `mcp-server/dist/hooks/claude/user-prompt-submit.js`.
+- Claude hook script exists at `runtime/dist/hooks/claude/user-prompt-submit.js`.
 
 ---
 
@@ -74,7 +74,7 @@ printf '%s' '{"prompt":"help me commit my changes","cwd":"'"$PWD"'","hook_event_
 
 | Symptom | Detection | Action |
 | --- | --- | --- |
-| Script missing | Node reports module not found | Rebuild MCP server. |
+| Script missing | Node reports module not found | Rebuild the advisor runtime. |
 | No brief for obvious prompt | `{}` with `status: "skipped"` or `fail_open` | Inspect diagnostic `freshness` and run `advisor_status`. |
 | Prompt text in stderr | Grep captured stderr for prompt literal | Treat as privacy failure. |
 

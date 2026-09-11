@@ -13,7 +13,7 @@ stage: routing
 expected_workflow_mode: system-skill-advisor
 expected_leaf_resources:
   - workflow_mode: system-skill-advisor
-    leaf_resource_id: feature-catalog/mcp-surface/advisor-rebuild.md
+    leaf_resource_id: feature-catalog/cli-surface/advisor-rebuild.md
 ---
 
 # AU-005 Rebuild From Source on Corrupt SQLite
@@ -35,7 +35,7 @@ Validate the rebuild-from-source recovery path in `lib/freshness/rebuild-from-so
 
 - Disposable workspace copy. Do not corrupt the live repo database.
 - Backup of the original `skill-graph.sqlite` captured before corruption.
-- MCP server reachable for the copy.
+- Advisor daemon reachable for the copy.
 - Operator has shell access to delete or mutate the copied database.
 
 ---
@@ -47,19 +47,19 @@ Validate the rebuild-from-source recovery path in `lib/freshness/rebuild-from-so
 1. In the disposable copy, replace `skill-graph.sqlite` with invalid bytes:
 
 ```bash
-printf 'corrupt' > /tmp/path-to-copy/.opencode/skills/system-skill-advisor/mcp-server/database/skill-graph.sqlite
+printf 'corrupt' > /tmp/path-to-copy/.opencode/skills/system-skill-advisor/runtime/database/skill-graph.sqlite
 ```
 
 2. Detect the failure:
 
 ```text
-advisor_status({"workspaceRoot":"/tmp/path-to-copy"})
+node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root /tmp/path-to-copy --format json
 ```
 
 3. Trigger rebuild via scan:
 
 ```text
-skill_graph_scan({})
+node .opencode/bin/skill-advisor.cjs skill_graph_scan --trusted --format json
 ```
 
 4. Re-check status and call `advisor_recommend` for a known-routable prompt.
@@ -85,7 +85,7 @@ BLOCKED before executing Step 1. The scenario contract requires:
 The scenario command uses an unresolved placeholder path:
 
 ```bash
-printf 'corrupt' > /tmp/path-to-copy/.opencode/skills/system-skill-advisor/mcp-server/database/skill-graph.sqlite
+printf 'corrupt' > /tmp/path-to-copy/.opencode/skills/system-skill-advisor/runtime/database/skill-graph.sqlite
 ```
 
 The task-level allowed write path is only:
@@ -94,7 +94,7 @@ The task-level allowed write path is only:
 .opencode/skills/system-skill-advisor/manual-testing-playbook/auto-update-daemon/rebuild-from-source.md
 ```
 
-No disposable workspace copy path or database backup path was provided, and creating or corrupting `/tmp/path-to-copy/.opencode/skills/system-skill-advisor/mcp-server/database/skill-graph.sqlite` would modify a file outside the allowed write path. Therefore Step 1, Step 2, Step 3, and Step 4 were not executed.
+No disposable workspace copy path or database backup path was provided, and creating or corrupting `/tmp/path-to-copy/.opencode/skills/system-skill-advisor/runtime/database/skill-graph.sqlite` would modify a file outside the allowed write path. Therefore Step 1, Step 2, Step 3, and Step 4 were not executed.
 
 ### Pass/Fail
 
@@ -115,7 +115,7 @@ BLOCKED - Missing disposable workspace copy and backup required by the scenario 
 - Scenario [OP-003](../../manual-testing-playbook/operator-h5/unavailable-daemon.md), operator recovery flow.
 - Scenario [AU-004](../../manual-testing-playbook/auto-update-daemon/generation-publication.md), generation publication after rebuild.
 - Feature [`daemon-and-freshness/rebuild-from-source.md`](../../feature-catalog/daemon-and-freshness/rebuild-from-source.md).
-- Source: `.opencode/skills/system-skill-advisor/mcp-server/lib/freshness/rebuild-from-source.ts`.
+- Source: `.opencode/skills/system-skill-advisor/runtime/lib/freshness/rebuild-from-source.ts`.
 
 ---
 

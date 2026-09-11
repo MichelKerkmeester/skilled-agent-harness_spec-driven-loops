@@ -67,7 +67,7 @@ Run a deep review of the current routing changes, iterate until findings converg
 
 1. **Advisor probe**:
    ```bash
-   python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py "Run a deep review of the current routing changes, iterate until findings converge, and report P0/P1/P2 issues with a verdict." --threshold 0.8 > /tmp/dlw-MO-002/advisor.txt
+   python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "Run a deep review of the current routing changes, iterate until findings converge, and report P0/P1/P2 issues with a verdict." --threshold 0.8 > /tmp/dlw-MO-002/advisor.txt
    ```
 2. **Invoke hub**: `Skill(system-deep-loop, "Run a deep review of the current routing changes, iterate until findings converge, and report P0/P1/P2 issues with a verdict.")`.
 3. **Capture route**: save the AI response to `/tmp/dlw-MO-002/response.txt`.

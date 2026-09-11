@@ -102,7 +102,7 @@ describe('check-source-dist-alignment orphan detection (F-020-D5-02)', () => {
     const expectedSubtrees = [
       'runtime/cli',
       'runtime/lib',
-      'system-skill-advisor/mcp-server',
+      'system-skill-advisor/runtime',
       'runtime/handlers',
       'runtime/formatters',
       'runtime/tools',

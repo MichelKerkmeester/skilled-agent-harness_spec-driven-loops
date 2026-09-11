@@ -48,7 +48,7 @@ Operators run the exact prompt and command sequence for `SKD-011` and confirm th
 
 ### Exact Command Sequence
 
-1. `bash: python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py "I need a slightly darker blue for the hover state" --threshold 0.5`
+1. `bash: python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "I need a slightly darker blue for the hover state" --threshold 0.5`
 2. `agent: issue the same prompt in a fresh session`
 3. `bash: rg -n "NEVER generate shades at runtime" .opencode/skills/sk-design/SKILL.md`
 
@@ -71,7 +71,7 @@ Check that the hard rules in `SKILL.md` Section 4 were loaded; the rule is in th
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| SKD-011 | Runtime shade generation is refused | confirm a request for a derived hover shade is answered from a defined ramp instead of a runtime function | `I need a slightly darker blue for the hover state` | 1. `bash: python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py "I need a slightly darker blue for the hover state" --threshold 0.5` -> 2. `agent: issue the same prompt in a fresh session` -> 3. `bash: rg -n "NEVER generate shades at runtime" .opencode/skills/sk-design/SKILL.md` | The reply names a numbered ramp step and explicitly declines to generate the shade at runtime. | The agent reply, and the grep proving the rule is stated as a hard rule rather than a preference. | PASS if the reply names an existing ramp step and declines runtime generation; FAIL if the reply proposes a lighten or darken call, or invents a hex outside the ramp | Check that the hard rules in `SKILL.md` Section 4 were loaded; the rule is in the NEVER list, not the scales. |
+| SKD-011 | Runtime shade generation is refused | confirm a request for a derived hover shade is answered from a defined ramp instead of a runtime function | `I need a slightly darker blue for the hover state` | 1. `bash: python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "I need a slightly darker blue for the hover state" --threshold 0.5` -> 2. `agent: issue the same prompt in a fresh session` -> 3. `bash: rg -n "NEVER generate shades at runtime" .opencode/skills/sk-design/SKILL.md` | The reply names a numbered ramp step and explicitly declines to generate the shade at runtime. | The agent reply, and the grep proving the rule is stated as a hard rule rather than a preference. | PASS if the reply names an existing ramp step and declines runtime generation; FAIL if the reply proposes a lighten or darken call, or invents a hex outside the ramp | Check that the hard rules in `SKILL.md` Section 4 were loaded; the rule is in the NEVER list, not the scales. |
 
 ---
 

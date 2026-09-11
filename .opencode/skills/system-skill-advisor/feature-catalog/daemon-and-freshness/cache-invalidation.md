@@ -31,14 +31,14 @@ Prevent stale cache reads after a graph reindex. Every cache entry is tagged wit
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/mcp-server/lib/freshness/cache-invalidation.ts` | Library | Source reference |
-| `.opencode/skills/system-skill-advisor/mcp-server/lib/prompt-cache.ts` | Library | Source reference |
+| `.opencode/skills/system-skill-advisor/runtime/lib/freshness/cache-invalidation.ts` | Library | Source reference |
+| `.opencode/skills/system-skill-advisor/runtime/lib/prompt-cache.ts` | Library | Source reference |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/mcp-server/tests/legacy/advisor-prompt-cache.vitest.ts` | Automated test | prompt cache TTL and invalidation |
+| `.opencode/skills/system-skill-advisor/runtime/tests/legacy/advisor-prompt-cache.vitest.ts` | Automated test | prompt cache TTL and invalidation |
 | `Playbook scenario [AU-004](../../manual-testing-playbook/auto-update-daemon/generation-publication.md).` | Manual playbook | Source reference |
 
 ---
@@ -53,4 +53,4 @@ Related references:
 
 - [04-generation.md](./generation.md).
 - [05-trust-state.md](../../feature-catalog/daemon-and-freshness/trust-state.md).
-- [`mcp-surface/advisor-recommend.md`](../../feature-catalog/mcp-surface/advisor-recommend.md).
+- [`cli-surface/advisor-recommend.md`](../../feature-catalog/cli-surface/advisor-recommend.md).

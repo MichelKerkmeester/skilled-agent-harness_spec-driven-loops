@@ -32,7 +32,7 @@ Validate that `lib/derived/anti-stuffing.ts` enforces cardinality caps on derive
 ## 2. SCENARIO CONTRACT
 
 - Disposable workspace copy.
-- MCP server built.
+- Advisor runtime built.
 - Pre-built adversarial fixtures under `scripts/fixtures/` or equivalent. Otherwise generate a SKILL.md with >500 repeated trigger phrases as an isolated fixture.
 
 ---
@@ -73,7 +73,7 @@ touch /tmp/path-to-copy/.opencode/skills/adversarial-fixture/SKILL.md
 
 - Scenario [AI-002](../../manual-testing-playbook/auto-indexing/sanitizer-boundaries.md), sanitizer at write boundaries.
 - Feature [`auto-indexing/anti-stuffing.md`](../../feature-catalog/auto-indexing/anti-stuffing.md).
-- Source: `.opencode/skills/system-skill-advisor/mcp-server/lib/derived/anti-stuffing.ts`.
+- Source: `.opencode/skills/system-skill-advisor/runtime/lib/derived/anti-stuffing.ts`.
 
 ---
 

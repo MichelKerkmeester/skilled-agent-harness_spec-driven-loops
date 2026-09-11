@@ -165,7 +165,7 @@ Builds the inventory of files and references that define an agent beyond its can
 
 #### How It Works
 
-`scan-integration.cjs` scans the canonical agent file, three runtime mirrors, improve command markdown, YAML workflow assets, skill references, global docs, and a skill-advisor path constant. That path now points at `.opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py`, so the consolidated skill-advisor surface is included in the integration map.
+`scan-integration.cjs` scans the canonical agent file, three runtime mirrors, improve command markdown, YAML workflow assets, skill references, global docs, and a skill-advisor path constant. That path now points at `.opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py`, so the consolidated skill-advisor surface is included in the integration map.
 
 #### Source Files
 

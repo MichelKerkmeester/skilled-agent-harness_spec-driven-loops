@@ -204,7 +204,7 @@ classify_command() {
     *"system-skill-advisor-launcher.cjs"*) printf '%s\n' "system-skill-advisor-launcher"; return 0 ;;
     *"mcp-code-mode-launcher.cjs"*) printf '%s\n' "mcp-code-mode-launcher"; return 0 ;;
     *"hf-model-server.cjs"*) printf '%s\n' "hf-model-server"; return 0 ;;
-    *"system-skill-advisor/mcp-server/dist/"*"advisor-server.js"*) printf '%s\n' "skill-advisor-server"; return 0 ;;
+    *"system-skill-advisor/runtime/dist/"*"advisor-server.js"*) printf '%s\n' "skill-advisor-server"; return 0 ;;
     *"mcp-code-mode/mcp-server/dist/index.js"*) printf '%s\n' "mcp-code-mode"; return 0 ;;
     *"npm exec @taazkareem/clickup-mcp-server"*) printf '%s\n' "clickup-mcp-wrapper"; return 0 ;;
     *"clickup-mcp-server"*) printf '%s\n' "clickup-mcp-server"; return 0 ;;

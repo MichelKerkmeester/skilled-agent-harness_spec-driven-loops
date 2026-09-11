@@ -18,7 +18,7 @@ trigger_phrases:
 Current state:
 
 - Each launcher loads project-local `.env.local` / `.env`, ensures the server's `dist/` artifacts are built and current, serializes concurrent starts with a filesystem bootstrap lock, then spawns the MCP child and bridges stdio to the running daemon.
-- The CLI shims run the built daemon-backed CLIs (`code-index` 8 tools, `skill-advisor` 9 tools) against the **same unchanged daemons** the MCP registrations use, a dual-stack surface, not a replacement. Each shim enforces a dist-freshness guard (exit `69` on missing/stale dist, with a per-CLI `*_DEV_ALLOW_STALE=1` override), defaults `SPECKIT_IPC_SOCKET_DIR` to the short `/tmp/<service>` directory, and refuses a socket path over the Darwin `sun_path` limit.
+- The CLI shim runs the built daemon-backed CLI (`skill-advisor`, 9 tools) against the resident daemon. It enforces a dist-freshness guard (exit `69` on missing/stale dist, with a per-CLI `*_DEV_ALLOW_STALE=1` override), defaults `SPECKIT_IPC_SOCKET_DIR` to the short `/tmp/<service>` directory, and refuses a socket path over the Darwin `sun_path` limit.
 - The freshness check itself is a shared module, not per-shim logic: every shim calls `checkPackageFreshness()` from [`system-spec-kit/runtime/cli/lib/dist-freshness.cjs`](../skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs), which also backs `validate.sh`'s hard staleness backstop, the `sk-code` PostToolUse hook, and the `system-dist-freshness-guard` OpenCode plugin, one source of truth for "is this package's dist current" across all four call sites. See §6 "Dist freshness" for the full package table and consumer list.
 - `hf-model-server.cjs` loads a transformers model and answers `/api/health` and `/api/embed` requests. It refuses any non-loopback bind unless the operator sets `HF_EMBED_ALLOW_REMOTE_BIND=1` and supplies `HF_EMBED_AUTH_TOKEN`, and it asserts ownership of the socket directory before listening.
 - Shared launcher behavior (model-server supervision, stdio-to-socket bridging, sidecar env allowlist) lives in `lib/`. The CLI shims' dist entrypoints reuse `lib/launcher-ipc-bridge.cjs` for socket-path resolution and warm-daemon probes.
@@ -61,7 +61,7 @@ Dependency direction: launchers ───▶ lib/ ───▶ hf-model-server.c
 
 ```text
 bin/
-+-- system-skill-advisor-launcher.cjs  # Launches system-skill-advisor MCP, optional model-server supervision
++-- system-skill-advisor-launcher.cjs  # Launches the system-skill-advisor daemon, optional model-server supervision
 +-- skill-advisor.cjs              # Daemon-backed CLI shim for system-skill-advisor (9 tools)
 +-- cli-offline-smoke.cjs          # Daemon-free smoke: list-tools counts, cwd-independent
 +-- cli-exit-taxonomy-smoke.cjs    # Daemon-free smoke: CLI failure contract (exit 64/69/75, parseable envelopes)
@@ -96,8 +96,8 @@ bin/
 
 | File | Responsibility |
 |---|---|
-| `system-skill-advisor-launcher.cjs` | Boots the system-skill-advisor MCP child. Loads model-server supervision when enabled, enforces a strict single-writer lease, and rebuilds `dist/` from `handlers`, `lib`, `schemas`, `tools` when stale. |
-| `skill-advisor.cjs` | CLI shim for system-skill-advisor. Same guard pattern (`SYSTEM_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE=1` override), runs `mcp-server/dist/mcp-server/skill-advisor-cli.js`. Mutation tools require `--trusted` or `SYSTEM_SKILL_ADVISOR_CLI_TRUSTED=1`. calls are sent untrusted by default. |
+| `system-skill-advisor-launcher.cjs` | Boots the system-skill-advisor daemon child. Loads model-server supervision when enabled, enforces a strict single-writer lease, and rebuilds `dist/` from `handlers`, `lib`, `schemas`, `tools` when stale. |
+| `skill-advisor.cjs` | CLI shim for system-skill-advisor. Same guard pattern (`SYSTEM_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE=1` override), runs `runtime/dist/runtime/skill-advisor-cli.js`. Mutation tools require `--trusted` or `SYSTEM_SKILL_ADVISOR_CLI_TRUSTED=1`. calls are sent untrusted by default. |
 | `hf-model-server.cjs` | Loads a transformers embedding model and serves `/api/health` and `/api/embed`. Enforces the loopback bind perimeter guard, socket-dir ownership, request size limits and inference timeouts. |
 
 
@@ -150,7 +150,7 @@ Main flow:
 
 | Entrypoint | Type | Purpose |
 |---|---|---|
-| `node .opencode/bin/system-skill-advisor-launcher.cjs` | CLI | Start the system-skill-advisor MCP server. |
+| `node .opencode/bin/system-skill-advisor-launcher.cjs` | CLI | Start the system-skill-advisor daemon. |
 | `node .opencode/bin/skill-advisor.cjs <tool> [flags]` | CLI | Call any of the 9 system-skill-advisor tools from a shell. pass `--trusted` for maintainer mutations. |
 | `node .opencode/bin/hf-model-server.cjs` | CLI | Start the local embedding server (via `main`). |
 | `createHfModelServer` | Function | Build an embedding server instance with `listen`, `close`, `dispose` and `inject` for tests. |
@@ -230,4 +230,4 @@ Expected result: each `.cjs` module loads without throwing. each CLI shim lists 
 
 - [`lib/`](lib/README.md)
 - [`system-spec-kit runtime engine`](../skills/system-spec-kit/runtime/)
-- [`system-skill-advisor MCP server`](../skills/system-skill-advisor/mcp-server/)
+- [`system-skill-advisor runtime package`](../skills/system-skill-advisor/runtime/)

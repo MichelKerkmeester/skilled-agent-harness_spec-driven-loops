@@ -10,13 +10,13 @@ import { createRequire } from 'node:module';
 import { performance } from 'node:perf_hooks';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { findAdvisorWorkspaceRoot } from '../../mcp-server/lib/utils/workspace-root.js';
+import { findAdvisorWorkspaceRoot } from '../../runtime/lib/utils/workspace-root.js';
 import {
   buildSkillAdvisorBrief,
   type AdvisorHookResult,
   type AdvisorHookStatus,
   type AdvisorHookFreshness,
-} from '../../mcp-server/lib/skill-advisor-brief.js';
+} from '../../runtime/lib/skill-advisor-brief.js';
 import {
   decideDirectiveLifecycleDelivery,
   defaultDirectiveLifecycleStore,
@@ -27,17 +27,14 @@ import {
   renderAdvisorBrief,
   renderAdvisorFallbackDirective,
   observeEmittedAdvisorPolicy,
-} from '../../mcp-server/lib/render.js';
-import type { ShadowDeliveryRenderOptions } from '../../mcp-server/lib/render.js';
+} from '../../runtime/lib/render.js';
+import type { ShadowDeliveryRenderOptions } from '../../runtime/lib/render.js';
 import {
   createAdvisorHookDiagnosticRecord,
   persistAdvisorHookDiagnosticRecord,
   serializeAdvisorHookDiagnosticRecord,
-} from '../../mcp-server/lib/metrics.js';
-import {
-  buildSkillAdvisorBriefFromCli,
-  shouldTrySkillAdvisorCliFallback,
-} from '../lib/skill-advisor-cli-fallback.js';
+} from '../../runtime/lib/metrics.js';
+import { buildSkillAdvisorBriefFromCli } from '../lib/skill-advisor-cli-fallback.js';
 
 const IS_CLI_ENTRY = process.argv[1]
   ? resolve(process.argv[1]) === fileURLToPath(import.meta.url)
@@ -271,24 +268,26 @@ export async function handleClaudeUserPromptSubmit(
       return {};
     }
 
-    const buildBrief = dependencies.buildBrief ?? buildSkillAdvisorBrief;
     const renderBrief = dependencies.renderBrief ?? renderAdvisorBrief;
-    let result = await buildBrief(prompt, {
-      runtime: 'claude',
-      workspaceRoot,
-      subprocessTimeoutMs: claudeHookTimeoutMs(),
-    });
-
-    const buildCliBrief = dependencies.buildCliBrief ?? (dependencies.buildBrief ? null : buildSkillAdvisorBriefFromCli);
-    if (buildCliBrief && shouldTrySkillAdvisorCliFallback(result)) {
-      result = await buildCliBrief(prompt, {
+    // The CLI is the single front door: it owns the warm-daemon probe and the
+    // local-scorer fallback, so an unreachable daemon degrades inside the CLI
+    // rather than needing a second hop here. An injected producer still wins
+    // over the real implementation so the hook stays testable without a daemon.
+    const injectedBrief = dependencies.buildBrief;
+    const buildCliBrief = dependencies.buildCliBrief ?? buildSkillAdvisorBriefFromCli;
+    let result = injectedBrief
+      ? await injectedBrief(prompt, {
         runtime: 'claude',
         workspaceRoot,
-        timeoutMs: Math.max(1, claudeHookTimeoutMs() - elapsed()),
+        subprocessTimeoutMs: claudeHookTimeoutMs(),
+      })
+      : await buildCliBrief(prompt, {
+        runtime: 'claude',
+        workspaceRoot,
+        timeoutMs: claudeHookTimeoutMs(),
       }, {
         now: dependencies.now,
       });
-    }
 
     result = {
       ...result,

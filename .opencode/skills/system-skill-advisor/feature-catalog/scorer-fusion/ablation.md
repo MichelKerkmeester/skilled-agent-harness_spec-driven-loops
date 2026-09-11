@@ -31,14 +31,14 @@ Quantify each lane's contribution to accuracy so lane weights can be reasoned ab
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/mcp-server/lib/scorer/ablation.ts` | Library | Source reference |
-| `.opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-validate.ts` | Handler | Source reference |
+| `.opencode/skills/system-skill-advisor/runtime/lib/scorer/ablation.ts` | Library | Source reference |
+| `.opencode/skills/system-skill-advisor/runtime/handlers/advisor-validate.ts` | Handler | Source reference |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/mcp-server/tests/handlers/advisor-validate.vitest.ts` | Automated test | ablation slices |
+| `.opencode/skills/system-skill-advisor/runtime/tests/handlers/advisor-validate.vitest.ts` | Automated test | ablation slices |
 | `Playbook scenario [SC-005](../../manual-testing-playbook/scorer-fusion/ablation.md).` | Manual playbook | Source reference |
 
 ---
@@ -52,4 +52,4 @@ Quantify each lane's contribution to accuracy so lane weights can be reasoned ab
 Related references:
 
 - [01-five-lane-fusion.md](../../feature-catalog/scorer-fusion/five-lane-fusion.md).
-- [`mcp-surface/advisor-validate.md`](../../feature-catalog/mcp-surface/advisor-validate.md).
+- [`cli-surface/advisor-validate.md`](../../feature-catalog/cli-surface/advisor-validate.md).

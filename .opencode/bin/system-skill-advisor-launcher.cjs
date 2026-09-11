@@ -2,7 +2,7 @@
 // ╔══════════════════════════════════════════════════════════════════════════╗
 // ║ COMPONENT: system-skill-advisor Launcher                                     ║
 // ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ PURPOSE: Prepares advisor state and launches the MCP server child.       ║
+// ║ PURPOSE: Prepares advisor state and launches the resident daemon child.  ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 
@@ -36,7 +36,7 @@ function loadModelServerSupervisionModule() {
   }
 }
 
-// Load project-local env overrides BEFORE spawning the MCP child. .env.local wins over
+// Load project-local env overrides BEFORE spawning the daemon child. .env.local wins over
 // .env, both are gitignored. Existing process.env wins over file values (do not override).
 // Minimal parser — no external dependency.
 function loadEnvFile(filePath) {
@@ -75,14 +75,29 @@ for (const fname of ['.env.local', '.env']) {
   }
 }
 
+// Repo policy defaults, applied only when the environment stays silent. These
+// are repo policy, not code policy: the advisor's code defaults are deliberately
+// the safer behavior (doc-frontmatter harvest off, mutation callers fail closed),
+// and the repository opts into its own values here. A live environment value or
+// a .env entry still wins, so an operator can override or disable either one.
+const REPO_ENV_DEFAULTS = {
+  SPECKIT_ADVISOR_DOC_TRIGGERS: 'true',
+  SYSTEM_SKILL_ADVISOR_TRUST_DEFAULT: 'trusted',
+};
+for (const [key, value] of Object.entries(REPO_ENV_DEFAULTS)) {
+  if (!(key in process.env)) {
+    process.env[key] = value;
+  }
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 4. MODULE STATE
 // ─────────────────────────────────────────────────────────────────────────────
 
 let skillsDir = path.join(opencodeDir, 'skills');
 let kitDir = path.join(skillsDir, 'system-skill-advisor');
-let mcpDir = path.join(kitDir, 'mcp-server');
-let dbDir = path.join(mcpDir, 'database');
+let runtimeDir = path.join(kitDir, 'runtime');
+let dbDir = path.join(runtimeDir, 'database');
 let lockDir = path.join(dbDir, '.system-skill-advisor-launcher.lockdir');
 const PID_FILE_NAME = '.system-skill-advisor-launcher.json';
 const OWNER_LEASE_FILE_NAME = '.skill-advisor-owner.json';
@@ -309,8 +324,8 @@ function createChildEnv(sourceEnv = process.env) {
 function refreshPaths() {
   skillsDir = path.join(opencodeDir, 'skills');
   kitDir = path.join(skillsDir, 'system-skill-advisor');
-  mcpDir = path.join(kitDir, 'mcp-server');
-  dbDir = path.join(mcpDir, 'database');
+  runtimeDir = path.join(kitDir, 'runtime');
+  dbDir = path.join(runtimeDir, 'database');
   lockDir = path.join(dbDir, '.system-skill-advisor-launcher.lockdir');
   stateFile = path.join(dbDir, PID_FILE_NAME);
   modelServerFilesDir = mss ? mss.DEFAULT_MODEL_SERVER_SOCKET_DIR : '/tmp/system-hf-embed';
@@ -340,7 +355,7 @@ function advisorDbPath() {
 }
 
 function resolvedAdvisorDbDir() {
-  const overrideDbDir = process.env.SYSTEM_SKILL_ADVISOR_DB_DIR ?? process.env.SYSTEM_SKILL_ADVISOR_DB_DIR;
+  const overrideDbDir = process.env.SYSTEM_SKILL_ADVISOR_DB_DIR;
   return overrideDbDir
     ? canonicalizePath(overrideDbDir)
     : canonicalizePath(dbDir);
@@ -881,7 +896,7 @@ async function checkStrictSingleWriter() {
   }
 
   try {
-    const daemonLeasePath = path.join(mcpDir, 'dist', 'mcp-server', 'lib', 'daemon', 'lease.js');
+    const daemonLeasePath = path.join(runtimeDir, 'dist', 'runtime', 'lib', 'daemon', 'lease.js');
     const leaseModule = require(daemonLeasePath);
     const leaseResult = leaseModule.isLeaseHeld(root);
     const legacyMarker = leaseResult.legacyPath ? ' (legacy path)' : '';
@@ -1147,7 +1162,7 @@ function run(command, args, options = {}) {
 }
 
 function serverEntrypoint() {
-  return path.join(mcpDir, 'dist', 'mcp-server', 'advisor-server.js');
+  return path.join(runtimeDir, 'dist', 'runtime', 'advisor-server.js');
 }
 
 function requiredArtifacts() {
@@ -1159,11 +1174,11 @@ function requiredArtifacts() {
 function latestSourceMtimeMs() {
   let latest = 0;
   const candidates = [
-    path.join(mcpDir, 'advisor-server.ts'),
-    path.join(mcpDir, 'package.json'),
-    path.join(mcpDir, 'tsconfig.json'),
-    path.join(mcpDir, 'tsconfig.build.json'),
-    ...SOURCE_DIRS.map((dir) => path.join(mcpDir, dir)),
+    path.join(runtimeDir, 'advisor-server.ts'),
+    path.join(runtimeDir, 'package.json'),
+    path.join(runtimeDir, 'tsconfig.json'),
+    path.join(runtimeDir, 'tsconfig.build.json'),
+    ...SOURCE_DIRS.map((dir) => path.join(runtimeDir, dir)),
   ];
 
   const visit = (candidate) => {
@@ -1209,7 +1224,7 @@ function buildIfNeeded(actions) {
   }
 
   // A live test run must never trigger the real `npm ci`, which deletes and
-  // reinstalls node_modules under the real mcp-server and hangs the whole suite.
+  // reinstalls node_modules under the real runtime package and hangs the whole suite.
   // Tests that need built artifacts pre-stage them in a temp dir via
   // configureLauncherPathsForTesting; reaching here under a test runner is a
   // mistake to surface, not a destructive install to run.
@@ -1217,10 +1232,10 @@ function buildIfNeeded(actions) {
     throw new Error('launcher artifact bootstrap is disabled under vitest; pre-stage build artifacts via configureLauncherPathsForTesting');
   }
 
-  actions.push('installed dependencies and built @spec-kit/system-skill-advisor MCP server');
-  const installCommand = exists(path.join(mcpDir, 'package-lock.json')) ? 'ci' : 'install';
-  run('npm', [installCommand, '--no-audit', '--no-fund', '--silent'], { cwd: mcpDir });
-  run('npm', ['run', 'build'], { cwd: mcpDir });
+  actions.push('installed dependencies and built the @spec-kit/system-skill-advisor daemon');
+  const installCommand = exists(path.join(runtimeDir, 'package-lock.json')) ? 'ci' : 'install';
+  run('npm', [installCommand, '--no-audit', '--no-fund', '--silent'], { cwd: runtimeDir });
+  run('npm', ['run', 'build'], { cwd: runtimeDir });
 
   const missing = requiredArtifacts().filter((artifact) => !exists(artifact));
   if (missing.length > 0) {
@@ -1491,10 +1506,23 @@ async function main() {
 // 16. TEST SUPPORT & EXPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
+const TESTING_PATH_KEYS = new Set([
+  'skillsDir', 'kitDir', 'runtimeDir', 'dbDir', 'lockDir', 'stateFile',
+  'modelServerFilesDir', 'systemSpecKitDbDir',
+]);
+
 function configureLauncherPathsForTesting(nextPaths) {
+  // An unknown key used to be ignored in silence, so renaming a path on this
+  // side left callers passing the old name and pointing the launcher at the
+  // real package instead of their temp one. The test still passed, because
+  // the real package was healthy. Fail loudly instead.
+  const unknown = Object.keys(nextPaths).filter((key) => !TESTING_PATH_KEYS.has(key));
+  if (unknown.length > 0) {
+    throw new Error(`configureLauncherPathsForTesting: unknown path key(s): ${unknown.join(', ')}`);
+  }
   if (nextPaths.skillsDir) skillsDir = nextPaths.skillsDir;
   if (nextPaths.kitDir) kitDir = nextPaths.kitDir;
-  if (nextPaths.mcpDir) mcpDir = nextPaths.mcpDir;
+  if (nextPaths.runtimeDir) runtimeDir = nextPaths.runtimeDir;
   if (nextPaths.dbDir) dbDir = nextPaths.dbDir;
   if (nextPaths.lockDir) lockDir = nextPaths.lockDir;
   if (nextPaths.stateFile) stateFile = nextPaths.stateFile;

@@ -31,15 +31,15 @@ Make reindex transitions observable and atomic. Every snapshot is tagged with a 
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/mcp-server/lib/freshness/generation.ts` | Library | Source reference |
-| `.opencode/skills/system-skill-advisor/mcp-server/lib/generation.ts` | Library | Source reference |
-| `.opencode/skills/system-skill-advisor/mcp-server/lib/freshness/cache-invalidation.ts` | Library | Source reference |
+| `.opencode/skills/system-skill-advisor/runtime/lib/freshness/generation.ts` | Library | Source reference |
+| `.opencode/skills/system-skill-advisor/runtime/lib/generation.ts` | Library | Source reference |
+| `.opencode/skills/system-skill-advisor/runtime/lib/freshness/cache-invalidation.ts` | Library | Source reference |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/mcp-server/tests/daemon-freshness-foundation.vitest.ts` | Automated test | generation bump atomicity |
+| `.opencode/skills/system-skill-advisor/runtime/tests/daemon-freshness-foundation.vitest.ts` | Automated test | generation bump atomicity |
 | `Playbook scenario [AU-004](../../manual-testing-playbook/auto-update-daemon/generation-publication.md).` | Manual playbook | Source reference |
 
 ---

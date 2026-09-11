@@ -32,7 +32,7 @@ Validate that `scripts/skill_advisor_bench.py` runs the performance bench, measu
 ## 2. SCENARIO CONTRACT
 
 - Repo root. Python 3 available.
-- MCP server built.
+- Advisor runtime built.
 - System load low enough for stable latency measurement (no heavy concurrent jobs).
 
 ---
@@ -42,8 +42,8 @@ Validate that `scripts/skill_advisor_bench.py` runs the performance bench, measu
 1. Run the bench:
 
 ```bash
-python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor_bench.py \
-  --dataset .opencode/skills/system-skill-advisor/mcp-server/scripts/fixtures/skill-advisor-regression-cases.jsonl \
+python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor_bench.py \
+  --dataset .opencode/skills/system-skill-advisor/runtime/scripts/fixtures/skill-advisor-regression-cases.jsonl \
   --runs 1 \
   --out /tmp/skill-advisor-bench.json
 ```
@@ -76,9 +76,9 @@ python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor_b
 ## 4. SOURCE FILES
 
 - Scenario [PC-004](../../manual-testing-playbook/python-compat/regression-suite.md), regression suite.
-- Scenario [NC-003](../../manual-testing-playbook/native-mcp-tools/native-validate-slices.md), native validate latency slice.
+- Scenario [NC-003](../../manual-testing-playbook/native-cli-tools/native-validate-slices.md), native validate latency slice.
 - Feature [`python-compat/bench-runner.md`](../../feature-catalog/python-compat/bench-runner.md).
-- Source: `.opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor_bench.py`.
+- Source: `.opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor_bench.py`.
 
 ---
 
@@ -96,8 +96,8 @@ python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor_b
 Command run from repo root:
 
 ```bash
-python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor_bench.py \
-  --dataset .opencode/skills/system-skill-advisor/mcp-server/scripts/fixtures/skill-advisor-regression-cases.jsonl \
+python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor_bench.py \
+  --dataset .opencode/skills/system-skill-advisor/runtime/scripts/fixtures/skill-advisor-regression-cases.jsonl \
   --runs 1 \
   --out /tmp/skill-advisor-bench.json
 ```
@@ -107,7 +107,7 @@ Stdout:
 ```json
 Skill graph: loaded from SQLite
 {
-  "dataset": ".opencode/skills/system-skill-advisor/mcp-server/scripts/fixtures/skill-advisor-regression-cases.jsonl",
+  "dataset": ".opencode/skills/system-skill-advisor/runtime/scripts/fixtures/skill-advisor-regression-cases.jsonl",
   "runs": 1,
   "prompts": 50,
   "threshold": 0.8,
@@ -161,7 +161,7 @@ Skill graph: loaded from SQLite
 
 ```json
 {
-  "dataset": ".opencode/skills/system-skill-advisor/mcp-server/scripts/fixtures/skill-advisor-regression-cases.jsonl",
+  "dataset": ".opencode/skills/system-skill-advisor/runtime/scripts/fixtures/skill-advisor-regression-cases.jsonl",
   "runs": 1,
   "prompts": 50,
   "threshold": 0.8,

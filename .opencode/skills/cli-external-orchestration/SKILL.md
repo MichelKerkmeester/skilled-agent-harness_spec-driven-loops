@@ -76,7 +76,7 @@ Stage 2 of routing lives in `ROUTER.md` at the hub root, next to `SKILL.md` and 
 
 ### Executor Delegation
 
-A prompt naming a specific executor (e.g. "use cli-opencode", "delegate to opencode", "get a claude code second opinion", "delegate to codex", "delegate to cursor", "delegate to devin", "delegate to pi", or a small model that dispatches through one) is resolved by the system-skill-advisor's executor-delegation scorer, which sources its alias table from THIS hub's `mode-registry.json` — keyed by each mode's `packetSkillName` — and resolves to `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, or `cli-pi`. See `system-skill-advisor/mcp-server/lib/scorer/executor-delegation.ts`.
+A prompt naming a specific executor (e.g. "use cli-opencode", "delegate to opencode", "get a claude code second opinion", "delegate to codex", "delegate to cursor", "delegate to devin", "delegate to pi", or a small model that dispatches through one) is resolved by the system-skill-advisor's executor-delegation scorer, which sources its alias table from THIS hub's `mode-registry.json` — keyed by each mode's `packetSkillName` — and resolves to `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, or `cli-pi`. See `system-skill-advisor/runtime/lib/scorer/executor-delegation.ts`.
 
 ---
 
@@ -194,6 +194,6 @@ Each mode's guard is runtime-signal-based (env var / process ancestry / lockfile
 - Skill graph identity: `graph-metadata.json`.
 - Workflow packets: `cli-opencode/SKILL.md`, `cli-claude-code/SKILL.md`, `cli-codex/SKILL.md`, `cli-cursor/SKILL.md`, `cli-devin/SKILL.md`, `cli-pi/SKILL.md`.
 - Per-mode provider/model/invocation catalogs: each mode's `references/providers-and-models.md` is the dedicated single-source index of that mode's providers, model ids, personas/effort tiers, and dispatch shapes.
-- Executor-delegation scorer (hub-aware, sources from this hub's registry): `../system-skill-advisor/mcp-server/lib/scorer/executor-delegation.ts`.
+- Executor-delegation scorer (hub-aware, sources from this hub's registry): `../system-skill-advisor/runtime/lib/scorer/executor-delegation.ts`.
 - Constitutional CLI dispatch skill-preload rule: the retired constitutional rule docs.
 - Persona-injection contract (canonical): `../sk-prompt/assets/cli-prompt-quality-card.md` "Persona Injection" — every mode attaches the resolved agent persona on dispatch.

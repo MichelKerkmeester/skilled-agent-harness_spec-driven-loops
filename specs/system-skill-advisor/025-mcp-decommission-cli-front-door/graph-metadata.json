@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/025-mcp-decommission-cli-front-door",
+  "spec_folder": "system-skill-advisor/025-mcp-decommission-cli-front-door",
+  "parent_id": null,
+  "children_ids": [
+    "system-skill-advisor/025-mcp-decommission-cli-front-door/001-transport-and-consumer-inventory",
+    "system-skill-advisor/025-mcp-decommission-cli-front-door/002-daemon-transport-decision",
+    "system-skill-advisor/025-mcp-decommission-cli-front-door/003-cli-front-door-parity",
+    "system-skill-advisor/025-mcp-decommission-cli-front-door/004-caller-rewire",
+    "system-skill-advisor/025-mcp-decommission-cli-front-door/005-mcp-transport-removal",
+    "system-skill-advisor/025-mcp-decommission-cli-front-door/006-runtime-package-rename",
+    "system-skill-advisor/025-mcp-decommission-cli-front-door/007-docs-and-residue-sweep",
+    "system-skill-advisor/025-mcp-decommission-cli-front-door/008-verification-and-closeout",
+    "system-skill-advisor/025-mcp-decommission-cli-front-door/009-deep-review-decommission",
+    "system-skill-advisor/025-mcp-decommission-cli-front-door/010-deep-research-residue"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill advisor mcp decommission",
+      "advisor cli front door",
+      "advisor transport removal",
+      "skill advisor without mcp",
+      "advisor daemon protocol",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
+    ],
+    "key_topics": [
+      "skill",
+      "advisor",
+      "mcp",
+      "decommission",
+      "cli",
+      "front",
+      "door",
+      "transport",
+      "removal",
+      "without",
+      "daemon",
+      "protocol"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "goal.md",
+      ".opencode/bin/skill-advisor.cjs",
+      "opencode.json",
+      ".opencode/plugins/system-skill-advisor.js",
+      ".claude/mcp.json",
+      ".codex/config.toml",
+      ".cursor/mcp.json",
+      ".pi/mcp.json",
+      ".opencode/bin/system-skill-advisor-launcher.cjs",
+      ".opencode/skills/cli-external-orchestration/cli-pi/SKILL.md",
+      "001-transport-and-consumer-inventory/inventory.md",
+      "009-deep-review-decommission/review/lineages/deepseek-review/review-report.md",
+      "010-deep-research-residue/research/lineages/deepseek-research/research.md",
+      "008-verification-and-closeout/latency-delta.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/skill-advisor.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "opencode.json",
+        "kind": "config",
+        "path": "opencode.json",
+        "source": "derived"
+      },
+      {
+        "name": "system-skill-advisor.js",
+        "kind": "code",
+        "path": ".opencode/plugins/system-skill-advisor.js",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".claude/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "system-skill-advisor-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/system-skill-advisor-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-pi/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "inventory.md",
+        "kind": "doc",
+        "path": "001-transport-and-consumer-inventory/inventory.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "009-deep-review-decommission/review/lineages/deepseek-review/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "latency-delta.md",
+        "kind": "doc",
+        "path": "008-verification-and-closeout/latency-delta.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Claude",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Advisor",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Python",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "convergence",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The skill advisor is the last subsystem in this framework's own runtime that ships an MCP server, and that server owns no behavior",
+    "created_at": "2026-09-11T06:48:54Z",
+    "last_save_at": "2026-09-11T18:19:17.582Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "goal.md"
+    ],
+    "source_fingerprint": "sha256:2ca7231392126b4539d4bb7911afd4a29c28a1a40e913af36171e17e8082346e",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "96c76b4b48ac8a24528334141405e5cadfcaa5788a88372bebd425b3345e05d7"
+    },
+    "last_active_at": null
+  }
+}

@@ -48,7 +48,7 @@ For a single planning pass, dispatch the `@ai-council` LEAF agent. It returns on
 
 ```bash
 # Auto-routing through the skill advisor
-python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py "run an ai council for the login refactor" --threshold 0.8
+python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "run an ai council for the login refactor" --threshold 0.8
 
 # Or dispatch the agent directly from an orchestrator
 @ai-council: Compare the streaming ingest plan against the batch ingest plan for <spec-folder>/ and persist the artifacts.

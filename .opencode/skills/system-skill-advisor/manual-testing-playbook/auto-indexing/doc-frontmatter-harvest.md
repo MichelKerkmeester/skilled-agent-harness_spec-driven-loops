@@ -31,8 +31,8 @@ Validate that with `SPECKIT_ADVISOR_DOC_TRIGGERS=true` the scan harvests referen
 
 ## 2. SCENARIO CONTRACT
 
-- MCP server built; daemon spawned by a launcher whose environment carries the flag (the launcher forwards only `CHILD_ENV_ALLOWLIST` keys — a daemon predating the flag flip must be respawned via a fresh session, never SIGTERM-recycled).
-- Trusted caller for the scan (`--trusted` on the CLI or a trusted MCP env block).
+- Advisor runtime built; daemon spawned by a launcher whose environment carries the flag (the launcher forwards only `CHILD_ENV_ALLOWLIST` keys — a daemon predating the flag flip must be respawned via a fresh session, never SIGTERM-recycled).
+- Trusted caller for the scan (`--trusted` on the CLI or `SYSTEM_SKILL_ADVISOR_TRUST_DEFAULT=trusted` in the daemon env).
 - Generated trigger index present at `.opencode/skills/system-spec-kit/runtime/data/trigger-index.json` for the negative boundary check.
 
 ---
@@ -50,10 +50,10 @@ node .opencode/bin/skill-advisor.cjs skill_graph_scan --trusted --format json
 2. Inspect `skill_docs` directly (counts should match the scan's `docs` counters):
 
 ```bash
-sqlite3 .opencode/skills/system-skill-advisor/mcp-server/database/skill-graph.sqlite "SELECT COUNT(*) FROM skill_docs;"
+sqlite3 .opencode/skills/system-skill-advisor/runtime/database/skill-graph.sqlite "SELECT COUNT(*) FROM skill_docs;"
 ```
 
-3. Call `advisor_recommend({ prompt: "coverage graph script exit codes" })` (MCP or CLI) and read the top candidate.
+3. Call `node .opencode/bin/skill-advisor.cjs advisor_recommend --prompt "coverage graph script exit codes" --format json` and read the top candidate.
 4. Negative boundary check: `node .opencode/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "coverage graph script exit codes"` must return spec-doc packets only, never a skill doc.
 5. Flag-off invariance probe: in an isolated workspace copy without the flag, rerun steps 1-3.
 
@@ -118,7 +118,7 @@ Observed output:
 Step 2 command:
 
 ```bash
-sqlite3 .opencode/skills/system-skill-advisor/mcp-server/database/skill-graph.sqlite "SELECT COUNT(*) FROM skill_docs;"
+sqlite3 .opencode/skills/system-skill-advisor/runtime/database/skill-graph.sqlite "SELECT COUNT(*) FROM skill_docs;"
 ```
 
 Observed output:
@@ -229,8 +229,8 @@ BLOCKED - The trusted scan prerequisite failed with `skill_id "cli-codex" does n
 
 - Scenario [AI-001](../../manual-testing-playbook/auto-indexing/derived-extraction.md), derived extraction baseline.
 - Feature [`auto-indexing/doc-frontmatter-harvest.md`](../../feature-catalog/auto-indexing/doc-frontmatter-harvest.md).
-- Source: `.opencode/skills/system-skill-advisor/mcp-server/lib/skill-graph/doc-frontmatter.ts`.
-- Tests: `.opencode/skills/system-skill-advisor/mcp-server/tests/skill-doc-harvest.vitest.ts`.
+- Source: `.opencode/skills/system-skill-advisor/runtime/lib/skill-graph/doc-frontmatter.ts`.
+- Tests: `.opencode/skills/system-skill-advisor/runtime/tests/skill-doc-harvest.vitest.ts`.
 
 ---
 

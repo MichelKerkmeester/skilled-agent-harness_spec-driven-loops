@@ -65,7 +65,7 @@ Coverage note: the playbook covers the hub's registry-driven routing at version 
 2. The hub skill is present at `.opencode/skills/system-deep-loop/`.
 3. `.opencode/skills/system-deep-loop/SKILL.md` states that `mode-registry.json` is the single source of truth and that the hub holds no per-mode convergence, state, or synthesis logic.
 4. `.opencode/skills/system-deep-loop/mode-registry.json` contains exactly 5 active modes in its `modes` array.
-5. The skill advisor at `.opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py` is callable when advisor scenarios are executed.
+5. The skill advisor at `.opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py` is callable when advisor scenarios are executed.
 6. The orchestrator runtime can invoke `Skill(system-deep-loop)` and can run `/deep:*` command prompts, or the operator can capture equivalent dry-run routing transcripts.
 7. Operator evidence is written under `/tmp/dlw-<SCENARIO-ID>/` and never into project source paths unless a scenario explicitly states the mode's real artifact-root contract.
 8. Multi-scenario waves cap at 5 parallel advisor probes. Command-bridge and state-discipline checks that may create artifacts run serially.
@@ -87,7 +87,7 @@ Coverage note: the playbook covers the hub's registry-driven routing at version 
 
 ## 4. DETERMINISTIC COMMAND NOTATION
 
-- Skill advisor probe: `python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py "<prompt>" --threshold 0.8`.
+- Skill advisor probe: `python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "<prompt>" --threshold 0.8`.
 - Skill hub invocation: `Skill(system-deep-loop, "<prompt>")`.
 - Command-surface invocation: enter the exact `/deep:*` command and prompt into the orchestrator runtime.
 - Registry check: read `.opencode/skills/system-deep-loop/mode-registry.json` and compare the selected mode to the matching `modes[]` entry.

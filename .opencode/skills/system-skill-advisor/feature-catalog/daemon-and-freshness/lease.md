@@ -31,14 +31,14 @@ Prevent duplicate daemon writers from corrupting the advisor graph by ensuring e
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/mcp-server/lib/daemon/lease.ts` | Daemon | Source reference |
-| `.opencode/skills/system-skill-advisor/mcp-server/lib/freshness/trust-state.ts` | Library | Source reference |
+| `.opencode/skills/system-skill-advisor/runtime/lib/daemon/lease.ts` | Daemon | Source reference |
+| `.opencode/skills/system-skill-advisor/runtime/lib/freshness/trust-state.ts` | Library | Source reference |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/mcp-server/tests/daemon-freshness-foundation.vitest.ts` | Automated test | lease acquire, heartbeat and reclaim paths |
+| `.opencode/skills/system-skill-advisor/runtime/tests/daemon-freshness-foundation.vitest.ts` | Automated test | lease acquire, heartbeat and reclaim paths |
 | `Playbook scenario [AU-002](../../manual-testing-playbook/auto-update-daemon/lease-single-writer.md).` | Manual playbook | Source reference |
 
 ---

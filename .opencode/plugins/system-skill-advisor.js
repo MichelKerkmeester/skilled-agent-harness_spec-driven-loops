@@ -32,7 +32,12 @@ import * as messageIdentity from './lib/opencode-message-identity.js';
 const PLUGIN_ID = 'system-skill-advisor';
 const DEFAULT_CACHE_TTL_MS = 5 * 60 * 1000;
 const DEFAULT_THRESHOLD_CONFIDENCE = 0.8;
+// Mirrors the compat contract's uncertainty ceiling. The CLI request and the
+// brief render must carry the same bound, or a recommendation can pass one and
+// fail the other.
+const DEFAULT_THRESHOLD_UNCERTAINTY = 0.35;
 const DEFAULT_MAX_TOKENS = 80;
+const AMBIGUOUS_TOKEN_CAP = 120;
 const DEFAULT_BRIDGE_TIMEOUT_MS = 2500;
 const OBSERVED_ADVISOR_POLICY_CANDIDATE = '004';
 const DEFAULT_NODE_BINARY = 'node';
@@ -166,19 +171,18 @@ export function renderCompiledRouteSummaryLine(summary, renderOptions = {}) {
   ].join(' ');
 }
 
-const BRIDGE_PATH = fileURLToPath(new URL('../skills/system-skill-advisor/mcp-server/plugin-bridges/system-skill-advisor-bridge.mjs', import.meta.url));
+const ADVISOR_CLI_PATH = fileURLToPath(new URL('../bin/skill-advisor.cjs', import.meta.url));
 // Cache-signature paths follow the standalone advisor package to ensure
-// consistent cache invalidation across bridge and MCP server builds.
-// The bridge now dispatches through system_skill_advisor instead of the old
-// memory-owned advisor compat path.
+// consistent cache invalidation across CLI and daemon builds. The CLI entry
+// belongs in the signature because it is the plugin's only advisor entrypoint.
 const ADVISOR_SOURCE_PATHS = [
-  BRIDGE_PATH,
+  ADVISOR_CLI_PATH,
   fileURLToPath(new URL('../bin/system-skill-advisor-launcher.cjs', import.meta.url)),
-  fileURLToPath(new URL('../skills/system-skill-advisor/mcp-server/advisor-server.ts', import.meta.url)),
-  fileURLToPath(new URL('../skills/system-skill-advisor/mcp-server/dist/mcp-server/advisor-server.js', import.meta.url)),
+  fileURLToPath(new URL('../skills/system-skill-advisor/runtime/advisor-server.ts', import.meta.url)),
+  fileURLToPath(new URL('../skills/system-skill-advisor/runtime/dist/runtime/advisor-server.js', import.meta.url)),
 ];
 const SKILL_ROOT_RELATIVE_PATH = join('.opencode', 'skills');
-const ADVISOR_ROOT_RELATIVE_PATH = join(SKILL_ROOT_RELATIVE_PATH, 'system-skill-advisor', 'mcp-server');
+const ADVISOR_ROOT_RELATIVE_PATH = join(SKILL_ROOT_RELATIVE_PATH, 'system-skill-advisor', 'runtime');
 const ADVISOR_JSON_RELATIVE_PATH = join(ADVISOR_ROOT_RELATIVE_PATH, 'scripts', 'skill-graph.json');
 const ADVISOR_SCRIPT_RELATIVE_PATHS = [
   join(ADVISOR_ROOT_RELATIVE_PATH, 'scripts', 'skill_advisor.py'),
@@ -186,7 +190,7 @@ const ADVISOR_SCRIPT_RELATIVE_PATHS = [
   join(ADVISOR_ROOT_RELATIVE_PATH, 'scripts', 'skill_graph_compiler.py'),
 ];
 const SHADOW_RENDERER_URL = new URL(
-  '../skills/system-skill-advisor/mcp-server/dist/mcp-server/lib/render.js',
+  '../skills/system-skill-advisor/runtime/dist/runtime/lib/render.js',
   import.meta.url,
 );
 let shadowRendererPromise;
@@ -396,7 +400,7 @@ function normalizeOptions(rawOptions) {
     sourceSignatureProvider: typeof options.sourceSignatureProvider === 'function'
       ? options.sourceSignatureProvider
       : advisorSourceSignature,
-    spawnBridge: typeof options.spawnOverride === 'function' ? options.spawnOverride : spawn,
+    spawnAdvisor: typeof options.spawnOverride === 'function' ? options.spawnOverride : spawn,
   };
 }
 
@@ -489,10 +493,6 @@ function normalizeWorkspaceRoot(workspaceRoot) {
   return resolvePath(process.cwd());
 }
 
-function statusSafePath(label) {
-  return `[${label}]`;
-}
-
 function statusSafeBinary(binary) {
   if (typeof binary === 'string' && (binary.includes('/') || binary.includes('\\'))) {
     return '[configured-node]';
@@ -553,42 +553,114 @@ function extractPrompt(input) {
   return null;
 }
 
-function promptSafeErrorCode(value) {
-  if (typeof value === 'string' && /^[A-Z0-9_]+$/.test(value)) {
-    return value;
+function cliRecommendations(data, options) {
+  if (!Array.isArray(data?.recommendations)) {
+    return [];
   }
-  return 'UNKNOWN';
+  return data.recommendations
+    .filter((recommendation) => recommendation && typeof recommendation.skillId === 'string')
+    .map((recommendation) => {
+      const confidence = Number.isFinite(recommendation.confidence) ? recommendation.confidence : 0;
+      const uncertainty = Number.isFinite(recommendation.uncertainty) ? recommendation.uncertainty : 1;
+      return {
+        skill: recommendation.skillId,
+        confidence,
+        uncertainty,
+        // The CLI's public recommendations carry no verdict field, so the caller
+        // decides it from the same thresholds the renderer enforces.
+        passes_threshold: confidence >= options.thresholdConfidence
+          && uncertainty <= DEFAULT_THRESHOLD_UNCERTAINTY,
+        ...(Array.isArray(recommendation.ambiguousWith)
+          ? { ambiguousWith: recommendation.ambiguousWith.filter((value) => typeof value === 'string') }
+          : {}),
+      };
+    });
 }
 
-function parseBridgeResponse(stdout) {
-  if (!stdout.trim()) {
+// Compact the served compiled decision the advisor attached to a recommendation.
+// Returns null when no recommendation carried a route, which keeps the injected
+// context byte-identical to the legacy brief.
+function compiledRouteSummary(data) {
+  if (!Array.isArray(data?.recommendations)) return null;
+  for (const recommendation of data.recommendations) {
+    const route = recommendation?.compiledRoute;
+    if (!route || typeof route !== 'object' || typeof route.action !== 'string') continue;
     return {
-      brief: null,
-      status: 'fail_open',
-      error: 'EMPTY_STDOUT',
-      metadata: {},
+      outcome: route.action,
+      hubId: typeof route.hubId === 'string' ? route.hubId : null,
+      targets: Array.isArray(route.targets) ? route.targets.filter((target) => typeof target === 'string') : [],
+      servingAuthority: 'compiled',
     };
+  }
+  return null;
+}
+
+/**
+ * Parse the advisor CLI's stdout and render its brief.
+ *
+ * @param {string} stdout - Raw CLI stdout text
+ * @param {Object} options - Normalized plugin options
+ * @returns {Promise<Object>} Response with `brief`, `status`, and `metadata`
+ */
+async function parseCliResponse(stdout, options) {
+  if (!stdout.trim()) {
+    return { brief: null, status: 'fail_open', error: 'EMPTY_STDOUT', metadata: {} };
   }
 
+  let parsed;
   try {
-    const parsed = JSON.parse(stdout.trim());
-    const status = ['ok', 'skipped', 'degraded', 'fail_open'].includes(parsed?.status)
-      ? parsed.status
-      : 'fail_open';
-    return {
-      brief: typeof parsed?.brief === 'string' && parsed.brief.trim() ? parsed.brief : null,
-      status,
-      metadata: parsed?.metadata && typeof parsed.metadata === 'object' ? parsed.metadata : {},
-      ...(typeof parsed?.error === 'string' ? { error: promptSafeErrorCode(parsed.error) } : {}),
-    };
+    parsed = JSON.parse(stdout.trim());
   } catch {
-    return {
-      brief: null,
-      status: 'fail_open',
-      error: 'PARSE_FAIL',
-      metadata: {},
-    };
+    return { brief: null, status: 'fail_open', error: 'PARSE_FAIL', metadata: {} };
   }
+
+  const data = parsed?.data && typeof parsed.data === 'object' ? parsed.data : null;
+  if (parsed?.status !== 'ok' || !data) {
+    return { brief: null, status: 'fail_open', error: 'UNEXPECTED_PAYLOAD', metadata: {} };
+  }
+
+  const recommendations = cliRecommendations(data, options);
+  const top = recommendations[0] ?? null;
+  // The CLI reports no freshness when it answered from the local scorer instead
+  // of the daemon; 'stale' keeps that brief renderable and honest.
+  const freshness = data.freshness === 'live' || data.freshness === 'stale'
+    ? data.freshness
+    : (parsed.degraded === true ? 'stale' : 'unavailable');
+  const tokenCap = data.ambiguous === true ? AMBIGUOUS_TOKEN_CAP : options.maxTokens;
+  const renderer = freshness === 'unavailable' ? null : await loadShadowRenderer();
+  const renderBrief = typeof renderer?.renderAdvisorBrief === 'function' ? renderer.renderAdvisorBrief : null;
+  const rendered = renderBrief
+    ? renderBrief({
+      status: 'ok',
+      freshness,
+      recommendations,
+      ambiguous: data.ambiguous === true,
+      metrics: { tokenCap },
+      sharedPayload: { metadata: { skillLabel: top?.skill ?? null } },
+    }, {
+      tokenCap,
+      thresholdConfig: {
+        confidenceThreshold: options.thresholdConfidence,
+        uncertaintyThreshold: DEFAULT_THRESHOLD_UNCERTAINTY,
+      },
+    })
+    : null;
+  const brief = typeof rendered === 'string' && rendered.trim() ? rendered : null;
+  const routeSummary = compiledRouteSummary(data);
+
+  return {
+    brief,
+    status: brief ? 'ok' : 'skipped',
+    metadata: {
+      route: parsed.degraded === true ? 'cli-local-scorer' : 'cli',
+      freshness,
+      recommendationCount: recommendations.length,
+      tokenCap,
+      skillLabel: top?.skill ?? null,
+      cacheHit: Boolean(data.cache?.hit),
+      ...(routeSummary ? { compiledRouteSummary: routeSummary } : {}),
+    },
+  };
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -651,20 +723,30 @@ function insertWithEviction(cache, key, value, maxEntries) {
   }
 }
 
-function bridgePayloadJson({ prompt, projectDir, options }) {
-  const basePayload = {
-    prompt: '',
-    workspaceRoot: projectDir,
-    runtime: 'opencode',
-    maxTokens: options.maxTokens,
-    thresholdConfidence: options.thresholdConfidence,
-  };
-  const payloadOverheadBytes = Buffer.byteLength(JSON.stringify(basePayload), 'utf8');
-  const promptBudgetBytes = Math.max(0, options.maxPromptBytes - payloadOverheadBytes);
-  return JSON.stringify({
-    ...basePayload,
-    prompt: clampPrompt(prompt, promptBudgetBytes),
+// Build the advisor CLI argument vector. The prompt is clamped so the whole
+// invocation stays inside the configured prompt-byte budget.
+function advisorCliArgs({ prompt, options }) {
+  const requestOptions = JSON.stringify({
+    // Three recommendations keep the two-target ambiguity line available without
+    // asking the advisor for a longer list than the brief can use.
+    topK: 3,
+    includeAttribution: false,
+    includeAbstainReasons: true,
+    confidenceThreshold: options.thresholdConfidence,
+    uncertaintyThreshold: DEFAULT_THRESHOLD_UNCERTAINTY,
   });
+  const args = (clampedPrompt) => [
+    ADVISOR_CLI_PATH,
+    'advisor_recommend',
+    '--prompt',
+    clampedPrompt,
+    '--options',
+    requestOptions,
+    '--format',
+    'json',
+  ];
+  const fixedBytes = args('').reduce((total, arg) => total + Buffer.byteLength(arg, 'utf8') + 1, 0);
+  return args(clampPrompt(prompt, Math.max(0, options.maxPromptBytes - fixedBytes)));
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -853,10 +935,10 @@ function deliverTransformContribution(decision, deliver) {
  * @param {number} [rawOptions.cacheTTLMs] - Advisor cache TTL in milliseconds
  * @param {number} [rawOptions.cacheTtlMs] - Advisor cache TTL alias in milliseconds
  * @param {number} [rawOptions.thresholdConfidence] - Minimum advisor confidence threshold
- * @param {number} [rawOptions.maxTokens] - Maximum advisor brief tokens requested from bridge
- * @param {string} [rawOptions.nodeBinaryOverride] - Node binary used for the bridge subprocess
- * @param {number} [rawOptions.bridgeTimeoutMs] - Bridge subprocess timeout in milliseconds
- * @param {number} [rawOptions.maxPromptBytes] - Maximum bridge prompt payload bytes
+ * @param {number} [rawOptions.maxTokens] - Maximum advisor brief tokens requested from the advisor CLI
+ * @param {string} [rawOptions.nodeBinaryOverride] - Node binary used for the advisor CLI subprocess
+ * @param {number} [rawOptions.bridgeTimeoutMs] - Advisor CLI subprocess timeout in milliseconds
+ * @param {number} [rawOptions.maxPromptBytes] - Maximum prompt bytes carried by the advisor CLI invocation
  * @param {number} [rawOptions.maxBriefChars] - Maximum injected advisor brief characters
  * @param {number} [rawOptions.maxCacheEntries] - Maximum advisor cache entries
  * @param {boolean} [rawOptions.boundedCompiledRouteSummary] - Bound long compiled-route target lists
@@ -873,7 +955,7 @@ export default async function MkSkillAdvisorPlugin(ctx, rawOptions) {
   // Per-instance state so two plugin instances loaded in the same process maintain independent caches/metrics.
   const state = {
     advisorCache: new Map(),
-    // In-flight promise dedup — concurrent identical-key requests share one bridge spawn.
+    // In-flight promise dedup: concurrent identical-key requests share one advisor CLI spawn.
     inFlight: new Map(),
     // Per-session record of the constant directive block last delivered in
     // full, keyed by normalized session id. Cleared on session lifecycle
@@ -899,20 +981,20 @@ export default async function MkSkillAdvisorPlugin(ctx, rawOptions) {
   };
 
   /**
-   * Run the skill-advisor bridge subprocess and parse its JSON response.
-   * The bridge receives stdin JSON from `bridgePayloadJson`, returns stdout JSON
-   * parsed by `parseBridgeResponse`, gets SIGTERM shortly before the deadline,
+   * Run the advisor CLI and render its JSON response.
+   * The CLI receives the prompt as argv from `advisorCliArgs`, returns stdout
+   * JSON parsed by `parseCliResponse`, gets SIGTERM shortly before the deadline,
    * and gets SIGKILL at the deadline if the process has not settled.
    *
-   * @param {Object} params - Bridge invocation parameters
-   * @param {string} params.projectDir - Working directory for the bridge subprocess
-   * @param {string} params.prompt - Prompt sent to the bridge over stdin JSON
+   * @param {Object} params - CLI invocation parameters
+   * @param {string} params.projectDir - Working directory for the advisor CLI subprocess
+   * @param {string} params.prompt - Prompt passed to the advisor CLI
    * @param {Object} params.options - Normalized plugin options
-   * @param {string} params.options.nodeBinary - Node binary used to spawn the bridge
+   * @param {string} params.options.nodeBinary - Node binary used to spawn the advisor CLI
    * @param {number} params.options.bridgeTimeoutMs - Timeout before SIGTERM is sent
-   * @returns {Promise<Object>} Parsed stdout JSON with `brief`, `status`, `error`, and `metadata`
+   * @returns {Promise<Object>} Rendered response with `brief`, `status`, and `metadata`
    */
-  function runBridge({ projectDir, prompt, options }) {
+  function runAdvisorCli({ projectDir, prompt, options }) {
     const startedAt = Date.now();
     state.bridgeInvocations += 1;
 
@@ -939,10 +1021,10 @@ export default async function MkSkillAdvisorPlugin(ctx, rawOptions) {
       };
 
       try {
-        child = options.spawnBridge(options.nodeBinary, [BRIDGE_PATH], {
+        child = options.spawnAdvisor(options.nodeBinary, advisorCliArgs({ prompt, options }), {
           cwd: projectDir,
           env: process.env,
-          stdio: ['pipe', 'pipe', 'ignore'],
+          stdio: ['ignore', 'pipe', 'ignore'],
         });
       } catch {
         finish({ brief: null, status: 'fail_open', error: 'SPAWN_ERROR', metadata: {} });
@@ -988,25 +1070,24 @@ export default async function MkSkillAdvisorPlugin(ctx, rawOptions) {
 
       child.on('close', (code) => {
         if (settled) return;
-
-        const response = timedOut
-          ? { brief: null, status: 'fail_open', error: 'TIMEOUT', metadata: {} }
-          : parseBridgeResponse(stdout);
-        if (!timedOut && code !== 0 && response.status !== 'fail_open') {
-          response.status = 'fail_open';
-          response.brief = null;
-          response.error = 'NONZERO_EXIT';
+        if (timedOut) {
+          finish({ brief: null, status: 'fail_open', error: 'TIMEOUT', metadata: {} });
+          return;
         }
 
-        finish(response);
+        parseCliResponse(stdout, options).then((response) => {
+          if (code !== 0 && response.status !== 'fail_open') {
+            response.status = 'fail_open';
+            response.brief = null;
+            response.error = 'NONZERO_EXIT';
+          }
+          finish(response);
+        }, () => {
+          // An unsettled promise would stall the host's prompt transform, so a
+          // failed parse still has to resolve the caller.
+          finish({ brief: null, status: 'fail_open', error: 'PARSE_FAIL', metadata: {} });
+        });
       });
-
-      try {
-        child.stdin?.end(bridgePayloadJson({ prompt, projectDir, options }));
-      } catch {
-        child.kill('SIGKILL');
-        finish({ brief: null, status: 'fail_open', error: 'STDIN_WRITE_ERROR', metadata: {} });
-      }
     });
   }
 
@@ -1014,7 +1095,7 @@ export default async function MkSkillAdvisorPlugin(ctx, rawOptions) {
    * Resolve advisor context for a prompt using cache and in-flight deduplication.
    *
    * @param {Object} params - Advisor lookup parameters
-   * @param {string} params.projectDir - Workspace root used by the advisor bridge
+   * @param {string} params.projectDir - Workspace root passed to the advisor CLI
    * @param {string} params.prompt - User prompt text for advisor matching
    * @param {string} params.sessionID - Session identifier included in the cache key
    * @param {Object} params.options - Normalized plugin options
@@ -1061,7 +1142,7 @@ export default async function MkSkillAdvisorPlugin(ctx, rawOptions) {
 
     state.cacheMisses += 1;
     const epochAtStart = state.epoch;
-    const promise = runBridge({ projectDir, prompt, options }).finally(() => {
+    const promise = runAdvisorCli({ projectDir, prompt, options }).finally(() => {
       if (state.inFlight.get(key) === promise) {
         state.inFlight.delete(key);
       }
@@ -1373,7 +1454,6 @@ export default async function MkSkillAdvisorPlugin(ctx, rawOptions) {
             `runtime_ready=${state.runtimeReady}`,
             `node_binary=${statusSafeBinary(options.nodeBinary)}`,
             `bridge_timeout_ms=${options.bridgeTimeoutMs}`,
-            `bridge_path=${statusSafePath('skill-advisor-bridge')}`,
             `last_bridge_status=${state.lastBridgeStatus}`,
             `last_runtime_status=${state.lastBridgeStatus}`,
             `last_error_code=${state.lastErrorCode ?? 'none'}`,

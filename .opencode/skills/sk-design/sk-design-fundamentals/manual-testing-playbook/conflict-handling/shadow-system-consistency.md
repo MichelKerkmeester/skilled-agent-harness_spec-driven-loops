@@ -48,7 +48,7 @@ Operators run the exact prompt and command sequence for `SKD-022` and confirm th
 
 ### Exact Command Sequence
 
-1. `bash: python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py "add a drop shadow to this card" --threshold 0.5`
+1. `bash: python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "add a drop shadow to this card" --threshold 0.5`
 2. `agent: issue the same prompt in a fresh session`
 3. `bash: rg -n "Three parallel systems, pick one" .opencode/skills/sk-design/references/depth-and-detail.md`
 
@@ -71,7 +71,7 @@ Compare the returned alpha against the system it claims; roughly .2 belongs to a
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| SKD-022 | One shadow system per project | confirm a shadow request names which of the three systems the project is on before giving values | `Add a drop shadow to this card` | 1. `bash: python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py "add a drop shadow to this card" --threshold 0.5` -> 2. `agent: issue the same prompt in a fresh session` -> 3. `bash: rg -n "Three parallel systems, pick one" .opencode/skills/sk-design/references/depth-and-detail.md` | The reply names a system, gives a value from it, and warns against mixing systems. | Advisor JSON, the agent reply, and the grep proving the three-system rule is documented. | PASS if the reply names a shadow system, gives a value from that system, and does not mix alphas between systems; FAIL if the reply gives a shadow with no system named, or combines a single-shadow alpha with a layered stack | Compare the returned alpha against the system it claims; roughly .2 belongs to a single shadow and .03 to .06 to a layered stack. |
+| SKD-022 | One shadow system per project | confirm a shadow request names which of the three systems the project is on before giving values | `Add a drop shadow to this card` | 1. `bash: python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "add a drop shadow to this card" --threshold 0.5` -> 2. `agent: issue the same prompt in a fresh session` -> 3. `bash: rg -n "Three parallel systems, pick one" .opencode/skills/sk-design/references/depth-and-detail.md` | The reply names a system, gives a value from it, and warns against mixing systems. | Advisor JSON, the agent reply, and the grep proving the three-system rule is documented. | PASS if the reply names a shadow system, gives a value from that system, and does not mix alphas between systems; FAIL if the reply gives a shadow with no system named, or combines a single-shadow alpha with a layered stack | Compare the returned alpha against the system it claims; roughly .2 belongs to a single shadow and .03 to .06 to a layered stack. |
 
 ---
 

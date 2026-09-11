@@ -1,0 +1,251 @@
+{
+  "note": "Frozen parity input set. Each case runs through the CLI front door and the MCP surface; payloads must match outside volatileFields. Mutation cases run only against an isolated database copy.",
+  "substitutions": {
+    "${WORKSPACE_ROOT}": "the harness replaces this with the absolute repository root before dispatching",
+    "${LONG_PROMPT_10001}": "the harness replaces this with a 10001-character string, one character over the schema maximum"
+  },
+  "volatileFields": [
+    "timestamp",
+    "generatedAt",
+    "durationMs",
+    "elapsedMs",
+    "latencyMs",
+    "pid",
+    "socketPath",
+    "workspaceRoot",
+    "cacheAge",
+    "uptimeMs",
+    "checkedAt",
+    "lastLiveAt",
+    "updatedAt",
+    "generation",
+    "cacheHitP95Ms",
+    "uncachedP95Ms"
+  ],
+  "cases": [
+    {
+      "id": "recommend-code",
+      "command": "advisor_recommend",
+      "mutates": false,
+      "args": {
+        "prompt": "refactor the authentication middleware and add tests"
+      },
+      "expect": "ranked recommendations with lane attribution"
+    },
+    {
+      "id": "recommend-git",
+      "command": "advisor_recommend",
+      "mutates": false,
+      "args": {
+        "prompt": "commit my changes and open a pull request"
+      },
+      "expect": "sk-git ranked first"
+    },
+    {
+      "id": "recommend-doc",
+      "command": "advisor_recommend",
+      "mutates": false,
+      "args": {
+        "prompt": "write documentation for this module"
+      },
+      "expect": "sk-doc ranked first"
+    },
+    {
+      "id": "recommend-ambiguous",
+      "command": "advisor_recommend",
+      "mutates": false,
+      "args": {
+        "prompt": "improve this"
+      },
+      "expect": "low confidence, ambiguity surfaced rather than a false confident route"
+    },
+    {
+      "id": "recommend-empty",
+      "command": "advisor_recommend",
+      "mutates": false,
+      "args": {
+        "prompt": ""
+      },
+      "expect": "minLength rejection, exit 64, identical error shape on both surfaces"
+    },
+    {
+      "id": "recommend-overlong",
+      "command": "advisor_recommend",
+      "mutates": false,
+      "args": {
+        "prompt": "${LONG_PROMPT_10001}"
+      },
+      "expect": "maxLength rejection at 10000, exit 64"
+    },
+    {
+      "id": "recommend-missing-prompt",
+      "command": "advisor_recommend",
+      "mutates": false,
+      "args": {},
+      "expect": "required-argument error for prompt, exit 64"
+    },
+    {
+      "id": "status-plain",
+      "command": "advisor_status",
+      "mutates": false,
+      "args": {
+        "workspaceRoot": "${WORKSPACE_ROOT}"
+      },
+      "expect": "trust state, generation counter, daemon reachability"
+    },
+    {
+      "id": "status-integrity",
+      "command": "advisor_status",
+      "mutates": false,
+      "args": {
+        "workspaceRoot": "${WORKSPACE_ROOT}",
+        "checkArtifactIntegrity": true
+      },
+      "expect": "status plus artifact integrity result"
+    },
+    {
+      "id": "status-missing-root",
+      "command": "advisor_status",
+      "mutates": false,
+      "args": {},
+      "expect": "required-argument error for workspaceRoot, exit 64"
+    },
+    {
+      "id": "validate-default",
+      "command": "advisor_validate",
+      "mutates": false,
+      "args": {
+        "confirmHeavyRun": true,
+        "workspaceRoot": "${WORKSPACE_ROOT}"
+      },
+      "expect": "threshold semantics and the telemetry outcomes block"
+    },
+    {
+      "id": "validate-unconfirmed",
+      "command": "advisor_validate",
+      "mutates": false,
+      "args": {
+        "workspaceRoot": "${WORKSPACE_ROOT}"
+      },
+      "expect": "required-argument error for confirmHeavyRun, exit 64"
+    },
+    {
+      "id": "graph-query-skill",
+      "command": "skill_graph_query",
+      "mutates": false,
+      "args": {
+        "queryType": "dependents",
+        "skillId": "sk-code"
+      },
+      "expect": "dependents of one skill"
+    },
+    {
+      "id": "graph-query-unknown",
+      "command": "skill_graph_query",
+      "mutates": false,
+      "args": {
+        "queryType": "dependents",
+        "skillId": "no-such-skill-xyz"
+      },
+      "expect": "empty result rather than an error"
+    },
+    {
+      "id": "graph-query-missing-type",
+      "command": "skill_graph_query",
+      "mutates": false,
+      "args": {
+        "skillId": "sk-code"
+      },
+      "expect": "required-argument error for queryType, exit 64"
+    },
+    {
+      "id": "graph-status",
+      "command": "skill_graph_status",
+      "mutates": false,
+      "args": {},
+      "expect": "row counts and generation"
+    },
+    {
+      "id": "graph-validate",
+      "command": "skill_graph_validate",
+      "mutates": false,
+      "args": {},
+      "expect": "validation verdict"
+    },
+    {
+      "id": "propagate-dry-run",
+      "command": "skill_graph_propagate_enhances",
+      "mutates": false,
+      "args": {
+        "dryRun": true
+      },
+      "expect": "candidate list with no write; dryRun keeps this case off the mutation path"
+    },
+    {
+      "id": "rebuild",
+      "command": "advisor_rebuild",
+      "mutates": true,
+      "args": {
+        "workspaceRoot": "${WORKSPACE_ROOT}",
+        "force": true
+      },
+      "expect": "generation bump; isolated database only"
+    },
+    {
+      "id": "graph-scan",
+      "command": "skill_graph_scan",
+      "mutates": true,
+      "args": {},
+      "expect": "scan summary; isolated database only"
+    },
+    {
+      "id": "propagate-apply",
+      "command": "skill_graph_propagate_enhances",
+      "mutates": true,
+      "args": {
+        "dryRun": false,
+        "applyAllHighConfidence": true
+      },
+      "expect": "propagation write; isolated database only"
+    },
+    {
+      "id": "unknown-command",
+      "command": "advisor_nonexistent",
+      "mutates": false,
+      "args": {},
+      "expect": "unknown command, exit 64, identical error shape"
+    }
+  ],
+  "allowlist": [
+    {
+      "id": "error-envelope-message",
+      "pathSuffix": ".error",
+      "reason": "The CLI formats its own error string for a caller that reads stderr; MCP returns a protocol error object. Neither can match without one impersonating the other."
+    },
+    {
+      "id": "error-envelope-exit",
+      "pathSuffix": ".exitCode",
+      "reason": "An exit code is a property of a process. The MCP surface has no exit status to report, so the field exists on one side only."
+    },
+    {
+      "id": "error-envelope-code",
+      "pathSuffix": ".code",
+      "reason": "Trust and capability refusals carry a machine code on the CLI side that the MCP error object expresses differently."
+    },
+    {
+      "id": "error-envelope-tool",
+      "pathSuffix": ".tool",
+      "reason": "The CLI names the rejected command back to the caller; the MCP schema error names it in its own message instead."
+    },
+    {
+      "id": "error-envelope-root",
+      "pathSuffix": "$",
+      "reason": "An unknown command fails before either surface builds a payload, so the two error documents differ at the root."
+    },
+    {
+      "id": "cache-hit-run-order",
+      "pathSuffix": ".cache.hit",
+      "reason": "Both surfaces share one daemon cache, so whichever runs second reports the hit the first one warmed. Two identical CLI calls reproduce it: false then true. This is evidence the surfaces share a daemon, not a divergence."
+    }
+  ]
+}

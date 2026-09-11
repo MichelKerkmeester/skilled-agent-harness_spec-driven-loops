@@ -1,0 +1,24 @@
+{
+  "level": "3",
+  "specFolder": "system-skill-advisor/025-mcp-decommission-cli-front-door/003-cli-front-door-parity",
+  "description": "The CLI works today but is not yet something the rest of the repository can be pointed at with confidence",
+  "keywords": [
+    "cli",
+    "works",
+    "today",
+    "something",
+    "rest",
+    "repository",
+    "pointed",
+    "confidence"
+  ],
+  "lastUpdated": "2026-09-11T09:27:47.484Z",
+  "specId": "003",
+  "folderSlug": "cli-front-door-parity",
+  "parentChain": [
+    "system-skill-advisor",
+    "025-mcp-decommission-cli-front-door"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

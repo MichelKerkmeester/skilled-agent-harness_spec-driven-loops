@@ -25,7 +25,7 @@ description: "Shared bind, reclaim and multi-client serve logic for every MCP da
 
 Each daemon's local `lib/ipc/socket-server.ts` is a thin re-export of this module via the `@spec-kit/shared/ipc/socket-server.js` package export, not a separate copy:
 
-- `.opencode/skills/system-skill-advisor/mcp-server/lib/ipc/socket-server.ts` and `mcp-server/advisor-server.ts`
+- `.opencode/skills/system-skill-advisor/runtime/lib/ipc/socket-server.ts` and `mcp-server/advisor-server.ts`
 
 ---
 

@@ -33,7 +33,7 @@ Validate `--force-local` and `--force-native` behavior in the compatibility shim
 
 - Repo root is the working directory.
 - Python 3 is available.
-- MCP server build is current.
+- Advisor runtime build is current.
 
 ---
 
@@ -42,19 +42,19 @@ Validate `--force-local` and `--force-native` behavior in the compatibility shim
 1. Force local:
 
 ```bash
-python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py --force-local "help me commit my changes"
+python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py --force-local "help me commit my changes"
 ```
 
 2. Force native:
 
 ```bash
-python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py --force-native "help me commit my changes"
+python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py --force-native "help me commit my changes"
 ```
 
 3. Invalid combination:
 
 ```bash
-python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py --force-local --force-native "help me commit my changes"
+python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py --force-local --force-native "help me commit my changes"
 ```
 
 ### Expected Signals
@@ -75,7 +75,7 @@ python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.p
 
 ## 4. SOURCE FILES
 
-- `.opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py`
+- `.opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py`
 
 ---
 
@@ -95,7 +95,7 @@ python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.p
 Command:
 
 ```bash
-python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py --force-local "help me commit my changes"
+python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py --force-local "help me commit my changes"
 ```
 
 Observed output:
@@ -122,7 +122,7 @@ EXIT_CODE=0
 Command:
 
 ```bash
-python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py --force-native "help me commit my changes"
+python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py --force-native "help me commit my changes"
 ```
 
 Observed output:
@@ -141,7 +141,7 @@ EXIT_CODE=2
 Command:
 
 ```bash
-python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py --force-local --force-native "help me commit my changes"
+python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py --force-local --force-native "help me commit my changes"
 ```
 
 Observed output:

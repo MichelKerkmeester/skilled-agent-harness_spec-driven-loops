@@ -32,7 +32,7 @@ The `install-guides/` directory is the central hub for all OpenCode setup and in
 |----------|-------|---------|
 | Guide files | 5 | 1 regular file + 4 symlinks in this directory |
 | Install scripts | 6 | 3 regular files + 3 symlinks in `install-scripts/` |
-| Registered MCP servers | 2 | Code Mode, Skill Advisor (Chrome DevTools is a Code Mode provider / CLI, not a registered native server) |
+| Registered MCP servers | 1 | Code Mode (Chrome DevTools is a Code Mode provider / CLI, not a registered native server) |
 | Platforms supported | 3 | macOS, Linux, Windows WSL |
 
 ### What this guide covers
@@ -51,7 +51,7 @@ All 4 `.md` guide entries in this directory (1 regular file + 3 symlinks), group
 | **MCP Guides** | | |
 | [MCP - Chrome Dev Tools.md](./MCP%20-%20Chrome%20Dev%20Tools.md) | Symlink | Chrome DevTools MCP server (bdg CLI) |
 | [MCP - Code Mode.md](./MCP%20-%20Code%20Mode.md) | Symlink | Code Mode orchestration MCP |
-| [Skill Advisor INSTALL_GUIDE](../skills/system-skill-advisor/INSTALL-GUIDE.md) | Skill-local | Standalone `system_skill_advisor` MCP server install + tuning |
+| [Skill Advisor INSTALL_GUIDE](../skills/system-skill-advisor/INSTALL-GUIDE.md) | Skill-local | Standalone advisor CLI front door install + tuning |
 | **Automation** | | |
 | [install-scripts/](./install-scripts/) | Directory | Automated install scripts (7 files) |
 
@@ -185,7 +185,7 @@ Some MCP servers use native Node.js modules that require compilation:
 2. Or run: `npm install --global windows-build-tools` (requires admin)
 
 This is needed for:
-- `better-sqlite3` (Skill Advisor MCP server)
+- `better-sqlite3` (Skill Advisor daemon)
 
 </details>
 
@@ -209,7 +209,7 @@ git checkout -- script.sh
 </details>
 
 ### Q4: Component Bundle
-- **Full** → All components (3 native MCP servers + CLI tools + plugins)
+- **Full** → All components (native MCP server + CLI tools + plugins)
 - **Minimal** → Code Mode + Skill Advisor (Skills are built-in)
 - **Custom** → Select specific components from matrix below
 
@@ -271,7 +271,7 @@ uname -s | grep -E "Darwin|Linux" && echo "✅ PASS" || echo "❌ FAIL"
 | ---------------------------------- | ---------- | -------------------------------------------------------------------------- | --------------------------------------- |
 | Code Mode                          | MCP Server | External tool orchestration (GitHub, your CMS, etc.)                       | Node.js 18+                             |
 | Trigger index + ripgrep            | Built-in   | Spec-folder retrieval and Gate 1 trigger lookup, no server                  | Node.js 20.11+, ripgrep 14+             |
-| Skill Advisor (`system_skill_advisor`) | MCP Server | Native advisor_recommend + skill_graph_* (9 tools)                         | Node.js 20.11+                          |
+| Skill Advisor | CLI daemon | Native advisor_recommend + skill_graph_* (9 commands, no MCP registration)                         | Node.js 20.11+                          |
 | Native Skills                      | Built-in   | Skill discovery from .opencode/skills/                                      | None (OpenCode v1.0.190+)               |
 | Chrome DevTools CLI                | CLI Tool   | Browser debugging & automation                                              | Node.js 18+                             |
 | Antigravity Auth                   | Plugin     | Google OAuth for Claude                                                     | Node.js 18+                             |
@@ -294,8 +294,9 @@ uname -s | grep -E "Darwin|Linux" && echo "✅ PASS" || echo "❌ FAIL"
          │                            │                            │
          ▼                            ▼                            ▼
     ┌─────────────────────────────────────────────────────────────────────┐
-    │                     2 NATIVE MCP SERVERS                            │
-    │                   (configured in opencode.json)                      │
+    │            1 NATIVE MCP SERVER  +  1 DAEMON-BACKED CLI              │
+    │        (the server is configured in opencode.json; the CLI          │
+    │         registers nothing and is reached by its front door)         │
     └─────────────────────────────────────────────────────────────────────┘
                                        │
          ┌─────────────────────────────┴──────────────────┐
@@ -303,6 +304,7 @@ uname -s | grep -E "Darwin|Linux" && echo "✅ PASS" || echo "❌ FAIL"
    ┌───────────┐                                   ┌───────────┐
    │   Code    │                                   │   Skill   │
    │   Mode    │                                   │  Advisor  │
+   │   (MCP)   │                                   │   (CLI)   │
    └─────┬─────┘                                   └───────────┘
          │
          ▼
@@ -332,7 +334,7 @@ Prerequisites → Code Mode → Skill Advisor
 
 **Custom Bundle** - Select from:
 - [ ] Code Mode (foundation for external tools)
-- [ ] Skill Advisor (native advisor_recommend + skill_graph_*, 8 tools)
+- [ ] Skill Advisor (native advisor_recommend + skill_graph_*, 9 commands, no MCP registration)
 - [ ] Chrome DevTools CLI (browser debugging)
 - [ ] Antigravity Auth (Google OAuth)
 - [ ] OpenAI Codex Auth (ChatGPT OAuth)
@@ -472,12 +474,12 @@ No separate local model service is required. Continue to Phase 3 for MCP server 
 
 ## 10. PHASE 3: MCP SERVERS
 
-> **Skip Check:** Run `grep -q '"code_mode"' opencode.json && grep -q '"system_skill_advisor"' opencode.json && echo "✅ All configured"`. If all configured, skip to Phase 4.
+> **Skip Check:** Run `grep -q '"code_mode"' opencode.json && echo "✅ Code Mode configured"`. If configured, skip to Phase 4; the Skill Advisor needs no server registration.
 
 ### Installation Order (Important!)
 
 1. **Code Mode** (foundation, install FIRST)
-2. Skill Advisor (native skill recommendation)
+2. Skill Advisor (CLI daemon, no server registration)
 
 Spec-folder retrieval is not on this list. It needs no server, see Section 10.2.
 
@@ -582,9 +584,9 @@ test -f .opencode/skills/system-spec-kit/runtime/data/trigger-index.json && \
 
 ---
 
-### 10.3 Skill Advisor (`system_skill_advisor`. Native Recommendation)
+### 10.3 Skill Advisor (CLI Front Door, Native Recommendation)
 
-The standalone `system_skill_advisor` MCP server registers 8 tools (`advisor_recommend/rebuild/status/validate`, `skill_graph_scan/query/status/validate`) for prompt-time skill recommendation and skill-graph queries.
+The Skill Advisor runs as a resident daemon reached through one CLI front door, `node .opencode/bin/skill-advisor.cjs`. It registers no MCP server and needs no `opencode.json` entry. The CLI exposes nine commands: the eight public ones (`advisor_recommend/rebuild/status/validate`, `skill_graph_scan/query/status/validate`) plus the trusted-caller-only `skill_graph_propagate_enhances`.
 
 > **Detailed Guide:** See [system-skill-advisor/INSTALL-GUIDE.md](../skills/system-skill-advisor/INSTALL-GUIDE.md) for full installation, configuration, rollback, and operator notes.
 > **Runtime Tuning:** See [system-skill-advisor INSTALL-GUIDE.md §14 Tuning the Advisor](../skills/system-skill-advisor/INSTALL-GUIDE.md#14-tuning-the-advisor) for post-install adjustments.
@@ -593,48 +595,33 @@ The standalone `system_skill_advisor` MCP server registers 8 tools (`advisor_rec
 
 **Check:**
 ```bash
-test -f .opencode/skills/system-skill-advisor/mcp-server/dist/mcp-server/advisor-server.js && echo "Installed" || echo "Needs build"
+test -f .opencode/skills/system-skill-advisor/runtime/dist/runtime/advisor-server.js && echo "Installed" || echo "Needs build"
 ```
 
 **Install if missing:**
 ```bash
-npm --prefix .opencode/skills/system-skill-advisor/mcp-server install
-npm --prefix .opencode/skills/system-skill-advisor/mcp-server run build
+npm --prefix .opencode/skills/system-skill-advisor/runtime install
+npm --prefix .opencode/skills/system-skill-advisor/runtime run build
 ```
 
-> **Build pipeline note:** `npm run build` builds `@spec-kit/shared`, compiles advisor hooks and MCP server code, then copies `data/*.json` into `dist/mcp-server/data`. Use `bash .opencode/scripts/copy-skill-advisor-dist-data.sh` only as a manual repair helper when dist data is missing or stale.
+> **Build pipeline note:** `npm run build` builds `@spec-kit/shared`, compiles the advisor hooks and runtime code, then copies `data/*.json` into `dist/runtime/data`. Use `bash .opencode/scripts/copy-skill-advisor-dist-data.sh` only as a manual repair helper when dist data is missing or stale.
 
-**Configure in `opencode.json`:**
-```json
-{
-  "mcp": {
-    "system_skill_advisor": {
-      "type": "local",
-      "command": ["node", ".opencode/bin/system-skill-advisor-launcher.cjs"],
-      "environment": {
-        "_NOTE_1_DB": "Database lives at .opencode/skills/system-skill-advisor/mcp-server/database/skill-graph.sqlite by default; SYSTEM_SKILL_ADVISOR_DB_DIR overrides.",
-        "_NOTE_2_TOOLS": "Registers 8 tools: advisor_recommend/rebuild/status/validate plus skill_graph_scan/query/status/validate. MCP namespace: mcp__system_skill_advisor__*",
-        "SYSTEM_SKILL_ADVISOR_DB_DIR": ".opencode/skills/system-skill-advisor/mcp-server/database",
-        "SYSTEM_SKILL_ADVISOR_TRUST_DEFAULT": "trusted",
-        "_NOTE_3_SHADOW_MODE": "SPECKIT_ADVISOR_SHADOW_MODE is currently inert: documented intent only, no runtime reader yet.",
-        "SPECKIT_ADVISOR_SHADOW_MODE": "0",
-        "SPECKIT_SKILL_ADVISOR_HOOK_DISABLED": "0"
-      }
-    }
-  }
-}
+**Verify:**
+```bash
+node .opencode/bin/skill-advisor.cjs list-tools --format json
+node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --format json
 ```
 
-### Validation: `system_skill_advisor_check`
+### Validation: `skill_advisor_check`
 
-- [ ] Launcher exists: `.opencode/bin/system-skill-advisor-launcher.cjs`
-- [ ] Built entry exists: `.opencode/skills/system-skill-advisor/mcp-server/dist/mcp-server/advisor-server.js`
-- [ ] Configuration added to opencode.json (key: `system_skill_advisor`)
+- [ ] Runtime dist entry exists: `.opencode/skills/system-skill-advisor/runtime/dist/runtime/advisor-server.js`
+- [ ] `node .opencode/bin/skill-advisor.cjs list-tools --format json` reports nine commands
+- [ ] `node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --format json` returns an envelope with `freshness`
 
 **Quick Verification:**
 ```bash
-test -f .opencode/bin/system-skill-advisor-launcher.cjs && \
-  grep -q '"system_skill_advisor"' opencode.json && \
+test -f .opencode/skills/system-skill-advisor/runtime/dist/runtime/advisor-server.js && \
+  node .opencode/bin/skill-advisor.cjs list-tools --format json >/dev/null && \
   echo "✅ PASS" || echo "❌ FAIL"
 ```
 
@@ -675,15 +662,18 @@ bdg --version >/dev/null 2>&1 && echo "✅ PASS" || echo "❌ FAIL"
 
 ### Phase 3 Complete Validation: `mcp_servers_check`
 
+The Skill Advisor is validated here for convenience, not because it is an MCP
+server. It registers nothing; the check runs its CLI front door.
+
 - [ ] Code Mode: npx utcp-mcp --version responds
-- [ ] Skill Advisor (`system_skill_advisor`): configured in opencode.json
+- [ ] Skill Advisor: `node .opencode/bin/skill-advisor.cjs list-tools --format json` reports nine commands
 - [ ] Trigger index present at `.opencode/skills/system-spec-kit/runtime/data/trigger-index.json`
 - [ ] (Optional) Chrome DevTools: bdg --version responds
 
 **Quick Verification:**
 ```bash
 grep -q '"code_mode"' opencode.json && \
-  grep -q '"system_skill_advisor"' opencode.json && \
+  node .opencode/bin/skill-advisor.cjs list-tools --format json >/dev/null && \
   test -f .opencode/skills/system-spec-kit/runtime/data/trigger-index.json && \
   echo "✅ PASS" || echo "❌ FAIL"
 ```
@@ -801,15 +791,6 @@ test -d .opencode/skills && [ $(ls -1 .opencode/skills | wc -l) -ge 1 ] && echo 
       "command": "npx",
       "args": ["utcp-mcp"],
       "env": {}
-    },
-    "system_skill_advisor": {
-      "type": "local",
-      "command": ["node", ".opencode/bin/system-skill-advisor-launcher.cjs"],
-      "environment": {
-        "SYSTEM_SKILL_ADVISOR_DB_DIR": ".opencode/skills/system-skill-advisor/mcp-server/database",
-        "SYSTEM_SKILL_ADVISOR_TRUST_DEFAULT": "trusted",
-        "SPECKIT_SKILL_ADVISOR_HOOK_DISABLED": "0"
-      }
     }
   },
   "plugins": [
@@ -895,7 +876,7 @@ After the static checks above pass, run the interactive doctor surface to verify
 
 - `/doctor` opens an 11-option menu. **Option 1** is "Update everything to match latest spec-kit release": the right pick after a fresh install (runs `/doctor:update --migrate`).
 - `/doctor:update` rebuilds the generated artifacts and the advisor database in dependency-safe order with snapshots + auto-rollback. Use it after upgrades or large packet moves.
-- `/doctor:mcp debug` checks the native MCP servers (Skill Advisor, Code Mode) and offers guided repair with `--fix`.
+- `/doctor:mcp debug` checks the native MCP servers (Code Mode) and offers guided repair with `--fix`.
 
 Full reference: `.opencode/commands/doctor/speckit.md` + `.opencode/commands/doctor/_routes.yaml`. Canonical subsystem targets: memory (the trigger index and ripgrep recipes), embeddings, deep-loop, skill-advisor, skill-budget, skill-graph-freshness, parent-skill, runtime-mirrors, fable-mode.
 
@@ -1029,12 +1010,14 @@ The `AGENTS (Universal).md` file is a template for AI agent behavior. Customize 
 
 ### 15.2 Skill Advisor Setup
 
-The Skill Advisor (`skill_advisor.py`) powers Gate 2 in AGENTS.md, routing requests to appropriate skills:
+The Skill Advisor powers Gate 2 in AGENTS.md, routing requests to appropriate skills. Call the CLI front door:
 
 ```bash
 # Verify skill advisor
-python .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py "help me write documentation"
+node .opencode/bin/skill-advisor.cjs advisor_recommend --prompt "help me write documentation" --format text
 ```
+
+The Python local scorer at `.opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py` answers `advisor_recommend` when the daemon is unreachable.
 
 If confidence > 0.8, the AI agent MUST use the recommended skill.
 
@@ -1118,7 +1101,7 @@ You have completed the installation. Here is your roadmap for getting started.
 | ---- | ---------------------- | ---------------------------------------------------------------- |
 | 1    | Verify installation    | Run health check script from Section 14.5                        |
 | 2    | Customize AGENTS.md    | Edit `AGENTS.md` for your project type                           |
-| 3    | Test skill invocation  | `python .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py "your task"`          |
+| 3    | Test skill invocation  | `node .opencode/bin/skill-advisor.cjs advisor_recommend --prompt "your task" --format text`          |
 | 4    | Save first continuity record | Use `/speckit:save` or "save context" in conversation       |
 
 ### 16.2 Common Workflows
@@ -1299,7 +1282,7 @@ Instead of manual troubleshooting, use the built-in diagnostic commands that che
 /doctor:mcp install
 
 # Diagnose or install a single server
-/doctor:mcp install --server system_skill_advisor
+/doctor:mcp install --server code_mode
 ```
 
 The doctor commands read the install guides, check system reality, and offer guided repair. Available across OpenCode, Claude Code, and Codex CLI.
@@ -1359,7 +1342,7 @@ bash .opencode/commands/doctor/scripts/mcp-doctor.sh --fix
 | [AGENTS.md](../../AGENTS.md) | AI agent behavior configuration and mandatory gates |
 | [Spec Kit Framework](../skills/system-spec-kit/README.md) | Spec folder and packet continuity documentation |
 | [sk-doc SKILL.md](../skills/sk-doc/SKILL.md) | Document creation standards and templates |
-| [system-skill-advisor INSTALL-GUIDE.md](../skills/system-skill-advisor/INSTALL-GUIDE.md) | Standalone `system_skill_advisor` MCP server bootstrap |
+| [system-skill-advisor INSTALL-GUIDE.md](../skills/system-skill-advisor/INSTALL-GUIDE.md) | Standalone advisor CLI front door bootstrap |
 
 ### External Resources
 

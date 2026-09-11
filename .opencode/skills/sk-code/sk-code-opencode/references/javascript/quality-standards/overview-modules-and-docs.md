@@ -43,7 +43,6 @@ contract. Do not force one JavaScript module style across all paths.
 | `.js/.cjs` Node utilities outside plugin loader paths | CommonJS with `'use strict'` | Default for legacy runtime helpers and standalone scripts |
 | `.mjs` files | ESM | The verifier skips `'use strict'` enforcement for `.mjs` |
 | `.opencode/plugins/*.{js,mjs,ts}` | ESM default export | Required by the OpenCode plugin loader |
-| `.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/*.{js,mjs,ts}` | ESM | Bridge helpers follow the plugin-loader contract |
 
 ### CommonJS Pattern
 

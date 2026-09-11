@@ -18,7 +18,7 @@ import {
   COMPILED_ROUTING_HUBS,
   DEFAULT_ON_HUBS as ADVISOR_DEFAULT_ON_HUBS,
   parseCompiledRoutingFlagMode,
-} from '../skills/system-skill-advisor/mcp-server/lib/compiled-routing-flag';
+} from '../skills/system-skill-advisor/runtime/lib/compiled-routing-flag';
 
 const requireCjs = createRequire(import.meta.url);
 const HERE = dirname(fileURLToPath(import.meta.url));
@@ -47,7 +47,7 @@ const REPO = join(HERE, '..', '..');
 const AUTHORED_RESOLVER = sync.AUTHORED_RESOLVER;
 const ADVISOR_DIST_FLAG = join(
   REPO,
-  '.opencode/skills/system-skill-advisor/mcp-server/dist/mcp-server/lib/compiled-routing-flag.js',
+  '.opencode/skills/system-skill-advisor/runtime/dist/runtime/lib/compiled-routing-flag.js',
 );
 
 // Extract the ordered DEFAULT_ON_HUBS members from a source file by text, so the

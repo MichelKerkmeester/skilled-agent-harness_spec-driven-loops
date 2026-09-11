@@ -34,7 +34,7 @@ Validate that `lib/scorer/projection.ts` projects `skill_nodes` and `skill_edges
 ## 2. SCENARIO CONTRACT
 
 - Read-only inspection against the live repo or disposable copy.
-- MCP server built. Daemon reachable.
+- Advisor runtime built. Daemon reachable.
 - Access to runtime diagnostics where projection output can be observed (for example via `advisor_validate` slices or internal test harness).
 - Deep-loop mode registry and generated projection constants are present.
 
@@ -47,7 +47,7 @@ Validate that `lib/scorer/projection.ts` projects `skill_nodes` and `skill_edges
 1. Trigger a recommend call that exercises the graph_causal lane:
 
 ```text
-advisor_recommend({"prompt":"help me commit my changes","options":{"includeAttribution":true}})
+node .opencode/bin/skill-advisor.cjs advisor_recommend --prompt "help me commit my changes" --options '{"includeAttribution":true}' --format json
 ```
 
 2. In the response, inspect the lane attribution: laneBreakdown entries expose exactly lane, rawScore, weightedScore, weight, and shadowOnly (the strict schema; projected node ids and edge types are not part of the shipped response).
@@ -55,13 +55,13 @@ advisor_recommend({"prompt":"help me commit my changes","options":{"includeAttri
 4. Run the routing drift guard:
 
 ```bash
-npm --prefix .opencode/skills/system-skill-advisor/mcp-server test -- routing-registry-drift-guard.vitest.ts
+npm --prefix .opencode/skills/system-skill-advisor/runtime test -- routing-registry-drift-guard.vitest.ts
 ```
 
 5. Trigger a generated deep-loop alias and verify `workflowMode` appears:
 
 ```text
-advisor_recommend({"prompt":"run a deep review loop","options":{"includeAttribution":true}})
+node .opencode/bin/skill-advisor.cjs advisor_recommend --prompt "run a deep review loop" --options '{"includeAttribution":true}' --format json
 ```
 
 6. Run `advisor_validate` and inspect the parity slice against Python fallback to confirm projection consistency.
@@ -80,7 +80,7 @@ advisor_recommend({"prompt":"run a deep review loop","options":{"includeAttribut
 | Symptom | Detection | Action |
 | --- | --- | --- |
 | Prompt fragment in projection | Grep for prompt substring hits | Block release as privacy failure. |
-| Unbounded projection | Graph_causal attribution grows with prompt length | Inspect traversal bounds in `mcp-server/lib/scorer/lanes/graph-causal.ts`; `projection.ts` only clamps stored edge weights. |
+| Unbounded projection | Graph_causal attribution grows with prompt length | Inspect traversal bounds in `runtime/lib/scorer/lanes/graph-causal.ts`; `projection.ts` only clamps stored edge weights. |
 | Stale generated projection | Drift guard hash mismatch | Run `skill_advisor.py --emit-routing-projection` after confirming the mode registry is correct. |
 | Missing workflowMode | Deep-loop alias response lacks field | Inspect `lib/scorer/aliases.ts`, `handlers/advisor-recommend.ts`, and `schemas/advisor-tool-schemas.ts`. |
 | Parity regression | Python-correct cases now fail | Audit projection logic for divergence from Python expectation. |
@@ -90,12 +90,12 @@ advisor_recommend({"prompt":"run a deep review loop","options":{"includeAttribut
 ## 4. SOURCE FILES
 
 - Scenario [SC-001](../../manual-testing-playbook/scorer-fusion/five-lane-fusion.md), fusion weights.
-- Scenario [NC-003](../../manual-testing-playbook/native-mcp-tools/native-validate-slices.md), validate slices.
+- Scenario [NC-003](../../manual-testing-playbook/native-cli-tools/native-validate-slices.md), validate slices.
 - Feature [`scorer-fusion/projection.md`](../../feature-catalog/scorer-fusion/projection.md).
-- Source: `.opencode/skills/system-skill-advisor/mcp-server/lib/scorer/projection.ts`.
-- Source: `.opencode/skills/system-skill-advisor/mcp-server/lib/scorer/aliases.ts`.
-- Source: `.opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-recommend.ts`.
-- Test: `.opencode/skills/system-skill-advisor/mcp-server/tests/routing-registry-drift-guard.vitest.ts`.
+- Source: `.opencode/skills/system-skill-advisor/runtime/lib/scorer/projection.ts`.
+- Source: `.opencode/skills/system-skill-advisor/runtime/lib/scorer/aliases.ts`.
+- Source: `.opencode/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts`.
+- Test: `.opencode/skills/system-skill-advisor/runtime/tests/routing-registry-drift-guard.vitest.ts`.
 
 ---
 

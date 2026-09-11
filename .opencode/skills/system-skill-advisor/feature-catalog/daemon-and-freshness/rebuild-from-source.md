@@ -31,14 +31,14 @@ Ensure the advisor never gets stuck in an unrecoverable state when SQLite storag
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/mcp-server/lib/freshness/rebuild-from-source.ts` | Library | Source reference |
-| `.opencode/skills/system-skill-advisor/mcp-server/lib/daemon/lifecycle.ts` | Daemon | Source reference |
+| `.opencode/skills/system-skill-advisor/runtime/lib/freshness/rebuild-from-source.ts` | Library | Source reference |
+| `.opencode/skills/system-skill-advisor/runtime/lib/daemon/lifecycle.ts` | Daemon | Source reference |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/mcp-server/tests/daemon-freshness-foundation.vitest.ts` | Automated test | rebuild trigger paths |
+| `.opencode/skills/system-skill-advisor/runtime/tests/daemon-freshness-foundation.vitest.ts` | Automated test | rebuild trigger paths |
 | `Playbook scenario [AU-005](../../manual-testing-playbook/auto-update-daemon/rebuild-from-source.md) and [OP-003](../../manual-testing-playbook/operator-h5/unavailable-daemon.md).` | Manual playbook | Source reference |
 
 ---

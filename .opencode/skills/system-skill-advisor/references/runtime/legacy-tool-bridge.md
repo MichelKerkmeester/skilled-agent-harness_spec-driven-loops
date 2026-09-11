@@ -1,6 +1,6 @@
 ---
 title: "Legacy Tool Bridge"
-description: "Compatibility policy for stable advisor_* tool ids during the standalone System Skill Advisor MCP migration."
+description: "Compatibility policy for stable advisor_* tool ids during the standalone system-skill-advisor migration."
 trigger_phrases:
   - "legacy advisor tool bridge"
   - "advisor_* compatibility"
@@ -12,7 +12,7 @@ version: 0.8.0.11
 
 # Legacy Tool Bridge
 
-Compatibility policy for stable advisor_* tool ids during the standalone System Skill Advisor MCP migration.
+Compatibility policy for stable advisor_* tool ids during the standalone system-skill-advisor migration.
 
 ---
 
@@ -20,7 +20,7 @@ Compatibility policy for stable advisor_* tool ids during the standalone System 
 
 ### Purpose
 
-Documents compatibility policy for preserving stable advisor tool ids during and after standalone MCP migration.
+Documents compatibility policy for preserving stable advisor tool ids during and after the standalone package migration.
 
 ### When to Use
 
@@ -48,7 +48,7 @@ Keep these public tool ids stable:
 - `advisor_status`
 - `advisor_validate`
 
-The MCP server namespace changes to `system_skill_advisor`. The tool ids do not change.
+The owning surface is now the CLI front door over the advisor daemon. The tool ids do not change.
 
 ---
 
@@ -58,10 +58,10 @@ Live consumers already call `advisor_*` ids from:
 
 - Prompt-time hooks.
 - Python compatibility shims.
-- OpenCode plugin bridge code.
+- OpenCode plugin code.
 - Doctor workflows.
 - Install guides and operator docs.
-- MCP test suites.
+- Advisor test suites.
 
 A public rename would force broad consumer churn at the same time as the process move. ADR-001 chooses compatibility first.
 
@@ -71,4 +71,4 @@ A public rename would force broad consumer churn at the same time as the process
 
 During that migration the former combined server kept deprecated proxy tools, or failed fast with a migration hint. The bridge existed only to protect callers while runtime configs and hooks moved.
 
-After child 006, advisor tool ownership belongs to the standalone server.
+After child 006, advisor tool ownership belongs to the standalone package.

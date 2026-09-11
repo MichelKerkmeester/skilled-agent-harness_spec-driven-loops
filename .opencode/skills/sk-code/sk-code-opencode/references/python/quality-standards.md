@@ -52,7 +52,7 @@ Every Python script must have the standard header:
 # ───────────────────────────────────────────────────────────────
 ```
 
-**Evidence**: `.opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py:1-4`
+**Evidence**: `.opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:1-4`
 
 ### Module Docstring
 
@@ -66,7 +66,7 @@ Usage: python script_name.py [arguments]
 """
 ```
 
-**Evidence**: `.opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py:6-16`
+**Evidence**: `.opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:6-16`
 
 ### snake_case Functions
 
@@ -85,7 +85,7 @@ def ValidateFrontmatter(content: str) -> bool:  # PascalCase
     pass
 ```
 
-**Evidence**: `.opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py`, `.opencode/skills/sk-doc/scripts/package_skill.py:87`
+**Evidence**: `.opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py`, `.opencode/skills/sk-doc/scripts/package_skill.py:87`
 
 ### UPPER_SNAKE_CASE Constants
 
@@ -101,7 +101,7 @@ maxFileSize = 5000  # camelCase
 required_fields = ['name', 'description']  # snake_case (looks like variable)
 ```
 
-**Evidence**: `.opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py:31-49`
+**Evidence**: `.opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:31-49`
 
 ### No Commented-Out Code
 

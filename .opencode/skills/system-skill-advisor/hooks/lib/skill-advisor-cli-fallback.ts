@@ -4,7 +4,6 @@
 
 import { spawn } from 'node:child_process';
 import { existsSync } from 'node:fs';
-import { createRequire } from 'node:module';
 import { dirname, join, resolve } from 'node:path';
 import { performance } from 'node:perf_hooks';
 
@@ -14,23 +13,14 @@ import type {
   AdvisorHookStatus,
   AdvisorRuntime,
   SkillAdvisorBriefOptions,
-} from '../../mcp-server/lib/skill-advisor-brief.js';
-import type { AdvisorRecommendation } from '../../mcp-server/lib/subprocess.js';
+} from '../../runtime/lib/skill-advisor-brief.js';
+import type { AdvisorRecommendation } from '../../runtime/lib/subprocess.js';
 
 interface CliFallbackPaths {
   readonly repoRoot: string;
   readonly cliPath: string;
   readonly bridgePath: string;
   readonly dbDir: string;
-}
-
-interface ProbeResult {
-  readonly status: string;
-  readonly reason?: string;
-}
-
-interface BridgeModule {
-  readonly probeDaemon: (socketPath: string, options?: { timeoutMs?: number; deepProbe?: boolean }) => Promise<ProbeResult>;
 }
 
 interface CliProcessResult {
@@ -47,6 +37,11 @@ interface CliRecommendData {
   readonly effectiveThresholds?: unknown;
   readonly cache?: unknown;
   readonly warnings?: unknown;
+  readonly ambiguous?: unknown;
+  // Envelope-level markers, folded into the data view by parseCliPayload so the
+  // freshness decision can tell a degraded local-scorer answer from a missing one.
+  readonly degraded?: unknown;
+  readonly source?: unknown;
 }
 
 export type WarmSkillAdvisorCliFallbackStatus = 'ok' | 'skipped' | 'fail_open';
@@ -79,13 +74,11 @@ interface SkillAdvisorCliFallbackDependencies {
 }
 
 const DEFAULT_CLI_FALLBACK_TIMEOUT_MS = 250;
-const DEFAULT_CLI_PROBE_TIMEOUT_MS = 50;
 const EXIT_RETRYABLE = 75;
 const EXIT_SETTLE_GRACE_MS = 25;
-const SOCKET_FILE_NAME = 'daemon-ipc.sock';
 const DEFAULT_SOCKET_DIR = '/tmp/system-skill-advisor';
 const MAX_STDOUT_BYTES = 1024 * 1024;
-const require = createRequire(import.meta.url);
+const LOCAL_SCORER_SOURCE = 'local-scorer';
 
 // Reason codes here are post-normalization and shared with the spec-kit warm
 // CLI fallback envelope; 'socket_absent' and 'timeout' are the canonical
@@ -153,14 +146,15 @@ export function resolveSkillAdvisorCliFallbackTimeoutMs(
   hookBudgetMs?: number,
   env: NodeJS.ProcessEnv = process.env,
 ): number {
-  const configured = positiveIntFromEnv(
-    env.SPECKIT_SKILL_ADVISOR_CLI_FALLBACK_TIMEOUT_MS,
-    DEFAULT_CLI_FALLBACK_TIMEOUT_MS,
-  );
-  if (!Number.isFinite(hookBudgetMs) || hookBudgetMs === undefined || hookBudgetMs <= 0) {
-    return configured;
+  if (hookBudgetMs === undefined || !Number.isFinite(hookBudgetMs) || hookBudgetMs <= 0) {
+    return positiveIntFromEnv(
+      env.SPECKIT_SKILL_ADVISOR_CLI_FALLBACK_TIMEOUT_MS,
+      DEFAULT_CLI_FALLBACK_TIMEOUT_MS,
+    );
   }
-  return Math.max(1, Math.min(configured, Math.floor(hookBudgetMs)));
+  // The caller budget is the hook's real deadline; clamping it to the fallback
+  // default would kill a warm CLI call inside its measured latency.
+  return Math.max(1, Math.floor(hookBudgetMs));
 }
 
 export function shouldTrySkillAdvisorCliFallback(result: AdvisorHookResult): boolean {
@@ -179,7 +173,7 @@ function findCliFallbackPaths(workspaceRoot: string, env: NodeJS.ProcessEnv): Cl
     const opencodeDir = join(current, '.opencode');
     const cliPath = join(opencodeDir, 'bin', 'skill-advisor.cjs');
     const bridgePath = join(opencodeDir, 'bin', 'lib', 'launcher-ipc-bridge.cjs');
-    const defaultDbDir = join(opencodeDir, 'skills', 'system-skill-advisor', 'mcp-server', 'database');
+    const defaultDbDir = join(opencodeDir, 'skills', 'system-skill-advisor', 'runtime', 'database');
     if (existsSync(cliPath) && existsSync(bridgePath)) {
       return {
         repoRoot: current,
@@ -195,53 +189,6 @@ function findCliFallbackPaths(workspaceRoot: string, env: NodeJS.ProcessEnv): Cl
     current = parent;
   }
   return null;
-}
-
-function loadBridgeModule(bridgePath: string): BridgeModule | null {
-  try {
-    const bridge = require(bridgePath) as Partial<BridgeModule>;
-    return typeof bridge.probeDaemon === 'function' ? bridge as BridgeModule : null;
-  } catch {
-    return null;
-  }
-}
-
-function resolveSocketPath(env: NodeJS.ProcessEnv): string {
-  const socketDir = env.SPECKIT_IPC_SOCKET_DIR;
-  if (socketDir?.startsWith('tcp://')) {
-    return socketDir;
-  }
-  // Hooks do not inherit SPECKIT_IPC_SOCKET_DIR; default to the same short
-  // /tmp directory the CLI shim uses so the probe targets the live socket.
-  return join(resolve(socketDir ?? DEFAULT_SOCKET_DIR), SOCKET_FILE_NAME);
-}
-
-function socketPathTooLong(socketPath: string): boolean {
-  if (socketPath.startsWith('tcp://')) return false;
-  return process.platform === 'darwin' && Buffer.byteLength(socketPath) > 103;
-}
-
-async function probeWarmDaemon(paths: CliFallbackPaths, env: NodeJS.ProcessEnv, timeoutMs: number): Promise<{ readonly ok: boolean; readonly socketPath?: string; readonly reason?: string }> {
-  const socketPath = resolveSocketPath(env);
-  if (socketPathTooLong(socketPath)) {
-    return { ok: false, socketPath, reason: 'CLI_SOCKET_PATH_TOO_LONG' };
-  }
-  if (!socketPath.startsWith('tcp://') && !existsSync(socketPath)) {
-    return { ok: false, socketPath, reason: 'socket_absent' };
-  }
-  const bridge = loadBridgeModule(paths.bridgePath);
-  if (!bridge) {
-    return { ok: false, socketPath, reason: 'CLI_BRIDGE_HELPER_UNAVAILABLE' };
-  }
-  const probeTimeoutMs = Math.max(1, Math.min(
-    timeoutMs,
-    positiveIntFromEnv(env.SPECKIT_SKILL_ADVISOR_CLI_PROBE_TIMEOUT_MS, DEFAULT_CLI_PROBE_TIMEOUT_MS),
-  ));
-  const probe = await bridge.probeDaemon(socketPath, { timeoutMs: probeTimeoutMs, deepProbe: true });
-  if (probe.status === 'alive') {
-    return { ok: true, socketPath };
-  }
-  return { ok: false, socketPath, reason: probe.reason ?? probe.status };
 }
 
 function childEnvForCli(env: NodeJS.ProcessEnv): NodeJS.ProcessEnv {
@@ -292,7 +239,11 @@ function runCliRecommend(args: {
       'json',
       '--timeout-ms',
       String(args.timeoutMs),
-      '--warm-only',
+      // The CLI owns daemon reachability now: it starts the daemon when the socket is
+      // cold and bounds that wait itself. Without this flag the child env's prompt-time
+      // marker makes the CLI default to warm-only, which refuses with exit 75 and never
+      // starts anything — leaving every cold session with no brief at all.
+      '--no-warm-only',
     ], {
       cwd: args.paths.repoRoot,
       env: childEnvForCli(args.env),
@@ -353,10 +304,14 @@ function runCliRecommend(args: {
   });
 }
 
-function freshnessFrom(value: unknown): AdvisorHookFreshness {
-  return value === 'live' || value === 'stale' || value === 'absent' || value === 'unavailable'
-    ? value
-    : 'unavailable';
+// A degraded answer is still an answer: the CLI spent its own local scorer because no
+// daemon answered, so the route is stale, not missing. Reporting it as unavailable is
+// what made the hook discard the payload and emit the directives alone.
+function freshnessFrom(value: unknown, degraded: boolean): AdvisorHookFreshness {
+  if (value === 'live' || value === 'stale' || value === 'absent' || value === 'unavailable') {
+    return value;
+  }
+  return degraded ? 'stale' : 'unavailable';
 }
 
 function thresholdsFrom(data: CliRecommendData, options: SkillAdvisorCliFallbackOptions): { readonly confidenceThreshold: number; readonly uncertaintyThreshold: number } {
@@ -370,7 +325,11 @@ function thresholdsFrom(data: CliRecommendData, options: SkillAdvisorCliFallback
   return { confidenceThreshold, uncertaintyThreshold };
 }
 
-function recommendationFromCli(value: unknown, thresholds: { readonly confidenceThreshold: number; readonly uncertaintyThreshold: number }): AdvisorRecommendation | null {
+type CliAdvisorRecommendation = AdvisorRecommendation & {
+  readonly ambiguousWith?: readonly string[];
+};
+
+function recommendationFromCli(value: unknown, thresholds: { readonly confidenceThreshold: number; readonly uncertaintyThreshold: number }): CliAdvisorRecommendation | null {
   if (!isRecord(value) || typeof value.skillId !== 'string') {
     return null;
   }
@@ -382,6 +341,9 @@ function recommendationFromCli(value: unknown, thresholds: { readonly confidence
     confidence,
     uncertainty,
     passes_threshold: confidence >= thresholds.confidenceThreshold && uncertainty <= thresholds.uncertaintyThreshold,
+    ...(Array.isArray(value.ambiguousWith)
+      ? { ambiguousWith: value.ambiguousWith.filter((skill): skill is string => typeof skill === 'string') }
+      : {}),
   };
 }
 
@@ -438,20 +400,26 @@ function failOpenResult(args: {
   }));
 }
 
+type CliFallbackHookResult = AdvisorHookResult & {
+  readonly ambiguous?: boolean;
+};
+
 function resultFromCliData(args: {
   readonly data: CliRecommendData;
   readonly options: SkillAdvisorCliFallbackOptions;
   readonly startedAt: number;
   readonly now: () => number;
 }): AdvisorHookResult {
-  const freshness = freshnessFrom(args.data.freshness);
+  const degraded = args.data.degraded === true || args.data.source === LOCAL_SCORER_SOURCE;
+  const freshness = freshnessFrom(args.data.freshness, degraded);
   const thresholds = thresholdsFrom(args.data, args.options);
   const recommendations = Array.isArray(args.data.recommendations)
     ? args.data.recommendations
       .map((recommendation) => recommendationFromCli(recommendation, thresholds))
-      .filter((recommendation): recommendation is AdvisorRecommendation => Boolean(recommendation?.passes_threshold))
+      .filter((recommendation): recommendation is CliAdvisorRecommendation => Boolean(recommendation?.passes_threshold))
     : [];
-  const tokenCap = Math.min(Math.max(1, Math.floor(args.options.maxTokens ?? 80)), 120);
+  const ambiguous = typeof args.data.ambiguous === 'boolean' ? args.data.ambiguous : undefined;
+  const tokenCap = Math.min(Math.max(1, Math.floor(args.options.maxTokens ?? (ambiguous === true ? 120 : 80))), 120);
   const status = resultStatus(freshness, recommendations);
   const warnings = Array.isArray(args.data.warnings)
     ? args.data.warnings.filter((value): value is string => typeof value === 'string')
@@ -459,11 +427,12 @@ function resultFromCliData(args: {
   const reason = status === 'ok'
     ? 'ok'
     : (freshness === 'absent' ? 'advisor_absent' : 'advisor_unavailable');
-  return withCliFallbackEnvelope({
+  const hookResult: CliFallbackHookResult = {
     status,
     freshness,
     brief: null,
     recommendations,
+    ...(ambiguous === undefined ? {} : { ambiguous }),
     diagnostics: status === 'ok'
       ? (freshness === 'stale' && warnings[0] ? { staleReason: warnings[0] } : null)
       : {
@@ -481,7 +450,8 @@ function resultFromCliData(args: {
     },
     generatedAt: new Date().toISOString(),
     sharedPayload: null,
-  }, skillAdvisorCliFallbackEnvelope({ status, reason, exitCode: 0 }));
+  };
+  return withCliFallbackEnvelope(hookResult, skillAdvisorCliFallbackEnvelope({ status, reason, exitCode: 0 }));
 }
 
 function parseCliPayload(stdout: string): CliRecommendData | null {
@@ -490,7 +460,13 @@ function parseCliPayload(stdout: string): CliRecommendData | null {
     if (!isRecord(parsed) || !isRecord(parsed.data)) {
       return null;
     }
-    return parsed.data as CliRecommendData;
+    // degraded and source sit on the envelope, not inside data; fold them in so the
+    // freshness decision downstream can still recognise the local-scorer answer.
+    return {
+      ...parsed.data,
+      degraded: parsed.degraded,
+      source: parsed.source,
+    } as CliRecommendData;
   } catch {
     return null;
   }
@@ -520,20 +496,9 @@ export async function buildSkillAdvisorBriefFromCli(
     });
   }
 
-  const probe = await probeWarmDaemon(paths, env, timeoutMs);
-  if (!probe.ok) {
-    return failOpenResult({
-      startedAt,
-      now,
-      runtime: options.runtime,
-      tokenCap,
-      errorMessage: `CLI_RETRYABLE_UNAVAILABLE exit 75: ${probe.reason ?? 'warm daemon unavailable'}`,
-      reason: probe.reason ?? 'warm_daemon_unavailable',
-      exitCode: EXIT_RETRYABLE,
-      subprocessInvoked: false,
-    });
-  }
-
+  // The CLI is the only component that starts the daemon, so it is asked in every daemon
+  // state: a cold socket is a call the CLI answers by spawning and waiting, not a reason
+  // to skip the CLI and emit directives alone.
   const remainingMs = Math.max(1, Math.floor(timeoutMs - (now() - startedAt)));
   const cli = await runCliRecommend({ paths, prompt, options, env, timeoutMs: remainingMs });
   if (cli.timedOut) {

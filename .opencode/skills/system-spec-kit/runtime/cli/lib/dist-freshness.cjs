@@ -96,14 +96,14 @@ const DIST_PACKAGES = Object.freeze([
     sourceCandidates: ['package.json', 'tsconfig.json', 'index.ts'],
   },
   {
-    id: 'system-skill-advisor/mcp-server',
+    id: 'system-skill-advisor/runtime',
     name: '@spec-kit/system-skill-advisor',
-    root: '.opencode/skills/system-skill-advisor/mcp-server',
+    root: '.opencode/skills/system-skill-advisor/runtime',
     distEntries: {
-      default: 'dist/mcp-server/advisor-server.js',
-      'skill-advisor-cli': 'dist/mcp-server/skill-advisor-cli.js',
+      default: 'dist/runtime/advisor-server.js',
+      'skill-advisor-cli': 'dist/runtime/skill-advisor-cli.js',
     },
-    rebuildCommand: 'cd .opencode/skills/system-skill-advisor/mcp-server && npm run build',
+    rebuildCommand: 'cd .opencode/skills/system-skill-advisor/runtime && npm run build',
     sourceCandidates: [
       'package.json',
       'tsconfig.json',

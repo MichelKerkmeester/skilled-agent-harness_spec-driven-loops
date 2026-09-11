@@ -45,19 +45,19 @@ Skill-graph edge propagation also records write provenance. The guarded apply pa
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/mcp-server/lib/derived/provenance.ts` | Library | Source reference |
-| `.opencode/skills/system-skill-advisor/mcp-server/lib/derived/trust-lanes.ts` | Library | Source reference |
-| `.opencode/skills/system-skill-advisor/mcp-server/lib/cross-skill-edges/apply-graph-metadata-patch.ts` | Library | derives `source_kind` and guards manual provenance |
-| `.opencode/skills/system-skill-advisor/mcp-server/lib/cross-skill-edges/index.ts` | Library | passes write intent into guarded edge apply |
-| `.opencode/skills/system-skill-advisor/mcp-server/lib/cross-skill-edges/types.ts` | Library | defines edge source and write-intent types |
-| `.opencode/skills/system-skill-advisor/mcp-server/handlers/skill-graph/propagate-enhances.ts` | Handler | forces automated server intent for propagation writes |
+| `.opencode/skills/system-skill-advisor/runtime/lib/derived/provenance.ts` | Library | Source reference |
+| `.opencode/skills/system-skill-advisor/runtime/lib/derived/trust-lanes.ts` | Library | Source reference |
+| `.opencode/skills/system-skill-advisor/runtime/lib/cross-skill-edges/apply-graph-metadata-patch.ts` | Library | derives `source_kind` and guards manual provenance |
+| `.opencode/skills/system-skill-advisor/runtime/lib/cross-skill-edges/index.ts` | Library | passes write intent into guarded edge apply |
+| `.opencode/skills/system-skill-advisor/runtime/lib/cross-skill-edges/types.ts` | Library | defines edge source and write-intent types |
+| `.opencode/skills/system-skill-advisor/runtime/handlers/skill-graph/propagate-enhances.ts` | Handler | forces automated server intent for propagation writes |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/mcp-server/tests/lifecycle-derived-metadata.vitest.ts` | Automated test | lane assignment and fingerprint stability |
-| `.opencode/skills/system-skill-advisor/mcp-server/tests/cross-skill-edges.vitest.ts` | Automated test | `source_kind`, manual protection, trusted update and legacy tolerance |
+| `.opencode/skills/system-skill-advisor/runtime/tests/lifecycle-derived-metadata.vitest.ts` | Automated test | lane assignment and fingerprint stability |
+| `.opencode/skills/system-skill-advisor/runtime/tests/cross-skill-edges.vitest.ts` | Automated test | `source_kind`, manual protection, trusted update and legacy tolerance |
 | `Playbook scenario [AI-003](../../manual-testing-playbook/auto-indexing/provenance-and-trust-lanes.md).` | Manual playbook | Source reference |
 
 ---

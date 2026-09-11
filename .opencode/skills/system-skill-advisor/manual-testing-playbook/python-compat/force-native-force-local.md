@@ -32,7 +32,7 @@ Validate `--force-native` (requires native. Fails if unavailable) and `--force-l
 ## 2. SCENARIO CONTRACT
 
 - Repo root. Python 3 available.
-- MCP server built (native available).
+- Advisor runtime built (native available).
 - Ability to disable native via `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1` to simulate unavailability for the `--force-native` failure branch.
 
 ---
@@ -42,19 +42,19 @@ Validate `--force-native` (requires native. Fails if unavailable) and `--force-l
 1. Run native-required:
 
 ```bash
-python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py --force-native "save this conversation context to memory" --threshold 0.8
+python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py --force-native "save this conversation context to memory" --threshold 0.8
 ```
 
 2. Run local-forced:
 
 ```bash
-python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py --force-local "save this conversation context to memory" --threshold 0.8
+python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py --force-local "save this conversation context to memory" --threshold 0.8
 ```
 
 3. Disable native and re-run `--force-native`:
 
 ```bash
-SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1 python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py --force-native "save this conversation context to memory"
+SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1 python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py --force-native "save this conversation context to memory"
 ```
 
 ### Expected Signals
@@ -79,7 +79,7 @@ SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1 python3 .opencode/skills/system-skill-advi
 - Scenario [CP-002](../../manual-testing-playbook/compat-and-disable/force-local-force-native.md), original toggles scenario.
 - Scenario [PC-003](../../manual-testing-playbook/python-compat/threshold-flag.md), threshold flag.
 - Feature [`python-compat/cli-shim.md`](../../feature-catalog/python-compat/cli-shim.md).
-- Source: `.opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py` and `scripts/skill_advisor_runtime.py`.
+- Source: `.opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py` and `scripts/skill_advisor_runtime.py`.
 
 ---
 
@@ -97,7 +97,7 @@ SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1 python3 .opencode/skills/system-skill-advi
 Command 1:
 
 ```bash
-python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py --force-native "save this conversation context to memory" --threshold 0.8
+python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py --force-native "save this conversation context to memory" --threshold 0.8
 ```
 
 Output:
@@ -113,7 +113,7 @@ Output:
 Command 2:
 
 ```bash
-python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py --force-local "save this conversation context to memory" --threshold 0.8
+python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py --force-local "save this conversation context to memory" --threshold 0.8
 ```
 
 Output:
@@ -157,7 +157,7 @@ Skill graph: loaded from SQLite
 Command 3:
 
 ```bash
-SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1 python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py --force-native "save this conversation context to memory"
+SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1 python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py --force-native "save this conversation context to memory"
 ```
 
 Output:

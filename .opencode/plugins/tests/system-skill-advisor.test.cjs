@@ -17,15 +17,6 @@ const { pathToFileURL } = require('node:url');
 
 const WORKSPACE_ROOT = path.resolve(__dirname, '..', '..', '..');
 const PLUGIN_PATH = path.join(WORKSPACE_ROOT, '.opencode', 'plugins', 'system-skill-advisor.js');
-const BRIDGE_PATH = path.join(
-  WORKSPACE_ROOT,
-  '.opencode',
-  'skills',
-  'system-skill-advisor',
-  'mcp-server',
-  'plugin-bridges',
-  'system-skill-advisor-bridge.mjs',
-);
 const MESSAGE_IDENTITY_PATH = path.join(
   WORKSPACE_ROOT,
   '.opencode',
@@ -38,7 +29,7 @@ const RENDERER_PATH = path.join(
   '.opencode',
   'skills',
   'system-skill-advisor',
-  'mcp-server',
+  'runtime',
   'lib',
   'render.ts',
 );
@@ -90,31 +81,68 @@ function bridgeEnvelope(
   });
 }
 
+const CLI_RECOMMENDATION = {
+  skillId: 'sk-code',
+  score: 0.26,
+  confidence: 0.82,
+  uncertainty: 0.2,
+};
+
+function cliEnvelope(data = {}, extras = {}) {
+  return JSON.stringify({
+    status: 'ok',
+    ...extras,
+    data: {
+      recommendations: [CLI_RECOMMENDATION],
+      effectiveThresholds: {
+        confidenceThreshold: 0.8,
+        uncertaintyThreshold: 0.35,
+        confidenceOnly: false,
+      },
+      ...data,
+    },
+  });
+}
+
 function fakeChild(options = {}) {
   const child = new EventEmitter();
   child.stdout = new EventEmitter();
   child.stdout.setEncoding = () => undefined;
   child.stdinPayload = null;
+
+  let emitted = false;
+  const emitResult = () => {
+    if (emitted || options.manual) return;
+    emitted = true;
+    const emit = () => {
+      if (options.stdout !== undefined) {
+        child.stdout.emit('data', options.stdout);
+      }
+      if (options.close !== false) {
+        child.emit('close', options.code ?? 0);
+      }
+    };
+    if (options.delayMs) {
+      setTimeout(emit, options.delayMs);
+    } else {
+      queueMicrotask(emit);
+    }
+  };
+
   child.stdin = {
     end(payload) {
       child.stdinPayload = String(payload ?? '');
-      if (!options.manual) {
-        const emitResult = () => {
-          if (options.stdout !== undefined) {
-            child.stdout.emit('data', options.stdout);
-          }
-          if (options.close !== false) {
-            child.emit('close', options.code ?? 0);
-          }
-        };
-        if (options.delayMs) {
-          setTimeout(emitResult, options.delayMs);
-        } else {
-          queueMicrotask(emitResult);
-        }
-      }
+      emitResult();
     },
   };
+  // A reused fake models a fresh process on each spawn: the CLI takes the
+  // prompt as argv and never writes stdin, so the spawn itself must produce
+  // output once. Manual children stay silent until the test drives them.
+  child.start = () => {
+    emitted = false;
+    emitResult();
+  };
+
   child.kills = [];
   child.kill = (signal) => {
     child.kills.push(signal);
@@ -127,6 +155,7 @@ function spawnSequence(children, calls = []) {
   return (binary, args, options) => {
     const child = children[Math.min(calls.length, children.length - 1)];
     calls.push({ binary, args, options, child });
+    child.start?.();
     return child;
   };
 }
@@ -166,7 +195,7 @@ function makeAdvisorFixture() {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'system-skill-advisor-signature-'));
   writeFixtureFile(path.join(root, '.opencode', 'skills', 'demo', 'SKILL.md'), '# Demo\n');
   writeFixtureFile(path.join(root, '.opencode', 'skills', 'demo', 'graph-metadata.json'), '{"name":"demo"}\n');
-  const advisorRoot = path.join(root, '.opencode', 'skills', 'system-skill-advisor', 'mcp-server');
+  const advisorRoot = path.join(root, '.opencode', 'skills', 'system-skill-advisor', 'runtime');
   writeFixtureFile(path.join(advisorRoot, 'scripts', 'skill_advisor.py'), 'print("advisor")\n');
   writeFixtureFile(path.join(advisorRoot, 'scripts', 'skill_advisor_runtime.py'), 'RUNTIME = 1\n');
   writeFixtureFile(path.join(advisorRoot, 'scripts', 'skill_graph_compiler.py'), 'COMPILER = 1\n');
@@ -253,7 +282,12 @@ test('flag-off route rendering and plugin delivery remain byte-identical to the 
   assert.equal(pluginModule.renderCompiledRouteSummaryLine(summary, { bounded: false }), baseline);
 
   const child = fakeChild({
-    stdout: bridgeEnvelope(undefined, { freshness: 'live', compiledRouteSummary: summary }),
+    stdout: cliEnvelope({
+      recommendations: [{
+        ...CLI_RECOMMENDATION,
+        compiledRoute: { action: summary.outcome, hubId: summary.hubId, targets: summary.targets },
+      }],
+    }),
   });
   const hooks = await makePlugin({
     boundedCompiledRouteSummary: false,
@@ -269,7 +303,12 @@ test('bounded flag selects the bounded line in the OpenCode transform', async ()
   const pluginModule = await loadPlugin();
   const summary = compiledRouteSummary(['quality', 'review', 'opencode', 'webflow', 'typescript']);
   const child = fakeChild({
-    stdout: bridgeEnvelope(undefined, { freshness: 'live', compiledRouteSummary: summary }),
+    stdout: cliEnvelope({
+      recommendations: [{
+        ...CLI_RECOMMENDATION,
+        compiledRoute: { action: summary.outcome, hubId: summary.hubId, targets: summary.targets },
+      }],
+    }),
   });
   const hooks = await makePlugin({
     boundedCompiledRouteSummary: true,
@@ -317,7 +356,7 @@ test('bounded rendering preserves the cap boundary and handles empty or malforme
 });
 
 test('no-brief turns retain hygiene and governor context with OpenCode runtime metadata', async () => {
-  const child = fakeChild({ stdout: bridgeEnvelope('') });
+  const child = fakeChild({ stdout: cliEnvelope({ recommendations: [] }) });
   const calls = [];
   const hooks = await makePlugin({ spawnOverride: spawnSequence([child], calls) });
 
@@ -325,8 +364,9 @@ test('no-brief turns retain hygiene and governor context with OpenCode runtime m
 
   assert.equal(output.system.length, 1);
   assert.match(output.system[0], new RegExp(HYGIENE_DIRECTIVE.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')));
-  assert.equal(JSON.parse(child.stdinPayload).runtime, 'opencode');
-  assert.deepEqual(calls[0].options.stdio, ['pipe', 'pipe', 'ignore']);
+  assert.equal(child.stdinPayload, null);
+  assert.equal(calls[0].args[calls[0].args.indexOf('--prompt') + 1], 'implement the plugin fix');
+  assert.deepEqual(calls[0].options.stdio, ['ignore', 'pipe', 'ignore']);
 });
 
 test('missing prompts retain constitutional context while disabled mode stays silent', async () => {
@@ -340,8 +380,11 @@ test('missing prompts retain constitutional context while disabled mode stays si
   assert.deepEqual(disabled.system, []);
 });
 
-test('bridge output is bounded and overflow terminates immediately', async () => {
-  const child = fakeChild({ stdout: 'x'.repeat(256 * 1024 + 1), close: false });
+test('CLI output is bounded and overflow terminates immediately', async () => {
+  const child = fakeChild({
+    stdout: cliEnvelope({ padding: 'x'.repeat(256 * 1024 + 1) }),
+    close: false,
+  });
   const hooks = await makePlugin({ spawnOverride: spawnSequence([child]) });
 
   const output = await runPrompt(hooks);
@@ -373,7 +416,7 @@ test('termination grace stays inside the configured timeout budget', async () =>
 test('multi-file freshness invalidates cache and ignores WAL-only mtime changes', async () => {
   const { root, advisorRoot } = makeAdvisorFixture();
   try {
-    const children = Array.from({ length: 8 }, () => fakeChild({ stdout: bridgeEnvelope() }));
+    const children = Array.from({ length: 8 }, () => fakeChild({ stdout: cliEnvelope({ freshness: 'live' }) }));
     const calls = [];
     const pluginModule = await loadPlugin();
     const hooks = await pluginModule.default({ directory: root }, {
@@ -439,11 +482,11 @@ test('session deletion prevents an in-flight completion from repopulating cache'
   assert.match(await status(hooks), /cache_entries=0/);
 });
 
-test('cache TTL starts when bridge work completes', async () => {
+test('cache TTL starts when CLI work completes', async () => {
   const calls = [];
   const children = [
-    fakeChild({ stdout: bridgeEnvelope(), delayMs: 40 }),
-    fakeChild({ stdout: bridgeEnvelope() }),
+    fakeChild({ stdout: cliEnvelope({ freshness: 'live' }), delayMs: 40 }),
+    fakeChild({ stdout: cliEnvelope({ freshness: 'live' }) }),
   ];
   const hooks = await makePlugin({
     cacheTTLMs: 60,
@@ -480,27 +523,6 @@ test('hostile output containers cannot make the transform fail closed', async ()
   await assert.doesNotReject(() => runPrompt(hooks, {}, output));
 
   assert.match(await status(hooks), /last_error_code=UNEXPECTED_HOOK_ERROR/);
-});
-
-test('bridge rendering includes the directive block and retains canonical renderer loading', async () => {
-  const bridge = await import(pathToFileURL(BRIDGE_PATH).href);
-  const rendered = bridge.renderAdvisorBrief({
-    status: 'ok',
-    freshness: 'live',
-    recommendations: [{
-      skill: 'sk-code',
-      confidence: 0.91,
-      uncertainty: 0.2,
-      passes_threshold: true,
-    }],
-    metrics: { tokenCap: 80 },
-    sharedPayload: { metadata: { skillLabel: 'sk-code' } },
-  });
-  const source = fs.readFileSync(BRIDGE_PATH, 'utf8');
-
-  assert.match(rendered, /Comment hygiene \[HARD BLOCK\]:/);
-  assert.match(source, /compat\.renderAdvisorBrief/);
-  assert.match(source, /loadCanonicalRenderer/);
 });
 
 test('Claude source clamps prompts, keeps fallback parity, and flushes fail-open output', () => {

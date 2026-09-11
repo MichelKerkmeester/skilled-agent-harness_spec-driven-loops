@@ -21,7 +21,7 @@ Keep latency visible from the Python surface so routing performance regressions 
 
 ## 2. HOW IT WORKS
 
-`scripts/skill_advisor_bench.py` drives the bench measurements. The design envelope is `cache-hit p95 <= 50 ms` and `uncached p95 <= 60 ms`, design ceilings rather than enforceable CI gates, since p95 timing varies with sandbox load. Current stable-workstation measurements are 6.989 ms (cache-hit p95) and 11.45 ms (uncached p95), well within the envelope. Daemon-side idle measurements are 0.031% CPU and 5.516 MB RSS. The CI wrapper at `mcp-server/stress-test/skill-advisor/python-bench-runner-stress.vitest.ts` verifies the subprocess surface and JSON envelope shape. Tightened p95 gating belongs in a stable benchmark environment, not the stress suite.
+`scripts/skill_advisor_bench.py` drives the bench measurements. The design envelope is `cache-hit p95 <= 50 ms` and `uncached p95 <= 60 ms`, design ceilings rather than enforceable CI gates, since p95 timing varies with sandbox load. Current stable-workstation measurements are 6.989 ms (cache-hit p95) and 11.45 ms (uncached p95), well within the envelope. Daemon-side idle measurements are 0.031% CPU and 5.516 MB RSS. The CI wrapper at `runtime/stress-test/skill-advisor/python-bench-runner-stress.vitest.ts` verifies the subprocess surface and JSON envelope shape. Tightened p95 gating belongs in a stable benchmark environment, not the stress suite.
 
 ---
 
@@ -31,8 +31,8 @@ Keep latency visible from the Python surface so routing performance regressions 
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor_bench.py` | Script | Source reference |
-| `.opencode/skills/system-skill-advisor/mcp-server/bench/` | Implementation | Source reference |
+| `.opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor_bench.py` | Script | Source reference |
+| `.opencode/skills/system-skill-advisor/runtime/bench/` | Implementation | Source reference |
 
 ### Validation And Tests
 
@@ -52,4 +52,4 @@ Related references:
 
 - [01-cli-shim.md](../../feature-catalog/python-compat/cli-shim.md).
 - [02-regression-suite.md](../../feature-catalog/python-compat/regression-suite.md).
-- [`mcp-surface/advisor-validate.md`](../../feature-catalog/mcp-surface/advisor-validate.md).
+- [`cli-surface/advisor-validate.md`](../../feature-catalog/cli-surface/advisor-validate.md).

@@ -1,7 +1,7 @@
 ---
 description: "Router for /doctor: dispatches subsystem diagnostics to a named target through _routes.yaml."
 argument-hint: "<target> [flags] | list | ?"
-allowed-tools: Read, Bash, Grep, Glob, Edit, Write, mcp__system_skill_advisor__advisor_recommend, mcp__system_skill_advisor__advisor_status, mcp__system_skill_advisor__advisor_validate, mcp__system_skill_advisor__advisor_rebuild, mcp__system_skill_advisor__skill_graph_scan, mcp__system_skill_advisor__skill_graph_validate, mcp__system_skill_advisor__skill_graph_query, mcp__system_skill_advisor__skill_graph_status
+allowed-tools: Read, Bash, Grep, Glob, Edit, Write
 ---
 <!-- skill_agent: system-spec-kit -->
 

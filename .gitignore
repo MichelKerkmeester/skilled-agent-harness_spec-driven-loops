@@ -60,14 +60,14 @@ dist/
 # ───────────────────────────────────────────
 # TypeScript compiler output: system-skill-advisor
 # ───────────────────────────────────────────
-.opencode/skills/system-skill-advisor/mcp-server/lib/**/*.js
-.opencode/skills/system-skill-advisor/mcp-server/lib/**/*.js.map
-.opencode/skills/system-skill-advisor/mcp-server/lib/**/*.d.ts
-.opencode/skills/system-skill-advisor/mcp-server/lib/**/*.d.ts.map
-.opencode/skills/system-skill-advisor/mcp-server/schemas/**/*.js
-.opencode/skills/system-skill-advisor/mcp-server/schemas/**/*.js.map
-.opencode/skills/system-skill-advisor/mcp-server/schemas/**/*.d.ts
-.opencode/skills/system-skill-advisor/mcp-server/schemas/**/*.d.ts.map
+.opencode/skills/system-skill-advisor/runtime/lib/**/*.js
+.opencode/skills/system-skill-advisor/runtime/lib/**/*.js.map
+.opencode/skills/system-skill-advisor/runtime/lib/**/*.d.ts
+.opencode/skills/system-skill-advisor/runtime/lib/**/*.d.ts.map
+.opencode/skills/system-skill-advisor/runtime/schemas/**/*.js
+.opencode/skills/system-skill-advisor/runtime/schemas/**/*.js.map
+.opencode/skills/system-skill-advisor/runtime/schemas/**/*.d.ts
+.opencode/skills/system-skill-advisor/runtime/schemas/**/*.d.ts.map
 
 # ───────────────────────────────────────────
 # TypeScript compiler output: system-spec-kit
@@ -124,21 +124,23 @@ dist/
 # ───────────────────────────────────────────
 # Database: system-skill-advisor
 # ───────────────────────────────────────────
-.opencode/skills/system-skill-advisor/mcp-server/database/*.db
-.opencode/skills/system-skill-advisor/mcp-server/database/*.db-*
-.opencode/skills/system-skill-advisor/mcp-server/database/*.sqlite
-.opencode/skills/system-skill-advisor/mcp-server/database/*.sqlite-*
-.opencode/skills/system-skill-advisor/mcp-server/database/*.sqlite.bak*
-.opencode/skills/system-skill-advisor/mcp-server/database/.system-skill-advisor-launcher.json
-.opencode/skills/system-skill-advisor/mcp-server/database/.system-skill-advisor-launcher.lockdir/
-.opencode/skills/system-skill-advisor/mcp-server/database/skill-graph.json
+.opencode/skills/system-skill-advisor/runtime/database/*.db
+.opencode/skills/system-skill-advisor/runtime/database/*.db-*
+.opencode/skills/system-skill-advisor/runtime/database/*.sqlite
+.opencode/skills/system-skill-advisor/runtime/database/*.sqlite-*
+.opencode/skills/system-skill-advisor/runtime/database/*.sqlite.bak*
+.opencode/skills/system-skill-advisor/runtime/database/.system-skill-advisor-launcher.json
+.opencode/skills/system-skill-advisor/runtime/database/.system-skill-advisor-launcher.lockdir/
+.opencode/skills/system-skill-advisor/runtime/database/skill-graph.json
 .opencode/skills/system-skill-advisor/mcp_server/
 
 # ───────────────────────────────────────────
 # Daemon ownership/lease files
 # ───────────────────────────────────────────
 .opencode/skills/*/mcp-server/database/.*-owner.json
+.opencode/skills/*/runtime/database/.*-owner.json
 .opencode/skills/*/mcp-server/database/.*-launcher.lockdir/
+.opencode/skills/*/runtime/database/.*-launcher.lockdir/
 **/database/.crash-probe-receipt
 
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -158,9 +160,9 @@ sweep-reports/
 # ───────────────────────────────────────────
 # Runtime: system-skill-advisor
 # ───────────────────────────────────────────
-.opencode/skills/system-skill-advisor/mcp-server/config/route-exclusions.local.json
-.opencode/skills/system-skill-advisor/mcp-server/data/shadow-deltas.jsonl
-.opencode/skills/system-skill-advisor/mcp-server/data/shadow-deltas.jsonl.*
+.opencode/skills/system-skill-advisor/runtime/config/route-exclusions.local.json
+.opencode/skills/system-skill-advisor/runtime/data/shadow-deltas.jsonl
+.opencode/skills/system-skill-advisor/runtime/data/shadow-deltas.jsonl.*
 
 # ───────────────────────────────────────────
 # Runtime: system-spec-kit

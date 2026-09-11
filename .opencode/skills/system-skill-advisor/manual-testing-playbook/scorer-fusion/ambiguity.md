@@ -33,7 +33,7 @@ Validate that `lib/scorer/ambiguity.ts` returns an ambiguous brief when the top 
 
 ## 2. SCENARIO CONTRACT
 
-- Repo root. MCP server built.
+- Repo root. Advisor runtime built.
 - A curated prompt known to produce near-tied candidates (from routing-accuracy corpus ambiguous set).
 - `includeAttribution: true` and `topK: 2`.
 
@@ -46,7 +46,7 @@ Validate that `lib/scorer/ambiguity.ts` returns an ambiguous brief when the top 
 1. Call `advisor_recommend` with the ambiguous prompt:
 
 ```text
-advisor_recommend({"prompt":"<ambiguous prompt from corpus>","options":{"topK":2,"includeAttribution":true}})
+node .opencode/bin/skill-advisor.cjs advisor_recommend --prompt "<ambiguous prompt from corpus>" --options '{"topK":2,"includeAttribution":true}' --format json
 ```
 
 2. Inspect the response: every member of the ambiguity cluster carries an `ambiguousWith` array listing the other members.
@@ -72,10 +72,10 @@ advisor_recommend({"prompt":"<ambiguous prompt from corpus>","options":{"topK":2
 
 ## 4. SOURCE FILES
 
-- Scenario [NC-004](../../manual-testing-playbook/native-mcp-tools/ambiguous-brief-rendering.md), ambiguous brief rendering.
+- Scenario [NC-004](../../manual-testing-playbook/native-cli-tools/ambiguous-brief-rendering.md), ambiguous brief rendering.
 - Scenario [SC-004](../../manual-testing-playbook/scorer-fusion/lane-attribution.md), lane attribution.
 - Feature [`scorer-fusion/ambiguity.md`](../../feature-catalog/scorer-fusion/ambiguity.md).
-- Source: `.opencode/skills/system-skill-advisor/mcp-server/lib/scorer/ambiguity.ts`.
+- Source: `.opencode/skills/system-skill-advisor/runtime/lib/scorer/ambiguity.ts`.
 
 ---
 

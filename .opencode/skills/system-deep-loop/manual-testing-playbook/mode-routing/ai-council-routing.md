@@ -67,7 +67,7 @@ Run an AI council planning deliberation with multiple seats to compare implement
 
 1. **Advisor probe**:
    ```bash
-   python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py "Run an AI council planning deliberation with multiple seats to compare implementation options, critique risks, converge on a recommendation, and write council artifacts." --threshold 0.8 > /tmp/dlw-MO-003/advisor.txt
+   python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "Run an AI council planning deliberation with multiple seats to compare implementation options, critique risks, converge on a recommendation, and write council artifacts." --threshold 0.8 > /tmp/dlw-MO-003/advisor.txt
    ```
 2. **Invoke hub**: `Skill(system-deep-loop, "Run an AI council planning deliberation with multiple seats to compare implementation options, critique risks, converge on a recommendation, and write council artifacts.")`.
 3. **Capture route**: save the AI response to `/tmp/dlw-MO-003/response.txt`.

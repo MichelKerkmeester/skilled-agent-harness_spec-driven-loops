@@ -34,7 +34,7 @@ Validate that `lib/scorer/fusion.ts` combines the five lanes with the canonical 
 ## 2. SCENARIO CONTRACT
 
 - Repo root working directory.
-- MCP server built. Daemon reachable.
+- Advisor runtime built. Daemon reachable.
 - `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED` unset.
 
 ---
@@ -46,13 +46,13 @@ Validate that `lib/scorer/fusion.ts` combines the five lanes with the canonical 
 1. Call status and capture `laneWeights`:
 
 ```text
-advisor_status({"workspaceRoot":"/absolute/path/to/repo"})
+node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root /absolute/path/to/repo --format json
 ```
 
 2. Call `advisor_recommend` with a prompt that hits multiple lanes and `includeAttribution: true`:
 
 ```text
-advisor_recommend({"prompt":"save this conversation context to memory","options":{"topK":3,"includeAttribution":true}})
+node .opencode/bin/skill-advisor.cjs advisor_recommend --prompt "save this conversation context to memory" --options '{"topK":3,"includeAttribution":true}' --format json
 ```
 
 3. For the top recommendation, record each lane's `rawScore`, `weight` and `weightedScore`.
@@ -80,7 +80,7 @@ advisor_recommend({"prompt":"save this conversation context to memory","options"
 
 - Scenario [SC-004](../../manual-testing-playbook/scorer-fusion/lane-attribution.md), lane attribution metadata.
 - Feature [`scorer-fusion/five-lane-fusion.md`](../../feature-catalog/scorer-fusion/five-lane-fusion.md).
-- Source: `.opencode/skills/system-skill-advisor/mcp-server/lib/scorer/fusion.ts` and `lib/scorer/weights-config.ts`.
+- Source: `.opencode/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts` and `lib/scorer/weights-config.ts`.
 
 ---
 

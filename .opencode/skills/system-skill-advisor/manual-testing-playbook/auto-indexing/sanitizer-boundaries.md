@@ -32,7 +32,7 @@ Validate that `lib/derived/sanitizer.ts` is invoked at every public write bounda
 ## 2. SCENARIO CONTRACT
 
 - Repo root working directory.
-- MCP server built.
+- Advisor runtime built.
 - Disposable copy if introducing a synthetic malformed skill label is needed.
 - Privacy-review mindset. Prompt text must never appear in envelope or diagnostic fields.
 
@@ -45,7 +45,7 @@ Validate that `lib/derived/sanitizer.ts` is invoked at every public write bounda
 1. Call `advisor_recommend` with a benign prompt that should match an active skill:
 
 ```text
-advisor_recommend({"prompt":"save this conversation context to memory","options":{"topK":2,"includeAttribution":true}})
+node .opencode/bin/skill-advisor.cjs advisor_recommend --prompt "save this conversation context to memory" --options '{"topK":2,"includeAttribution":true}' --format json
 ```
 
 2. Inspect `laneBreakdown`, `trustState`, `cache` and `warnings` for any non-slug skill labels.
@@ -153,7 +153,7 @@ BLOCKED - The advisor was unavailable (`freshness: "unavailable"`, `trustState.r
 - Scenario [AI-001](../../manual-testing-playbook/auto-indexing/derived-extraction.md), derived extraction correctness.
 - Scenario [AI-005](../../manual-testing-playbook/auto-indexing/anti-stuffing.md), repetition-density and adversarial rejection.
 - Feature [`auto-indexing/sanitizer.md`](../../feature-catalog/auto-indexing/sanitizer.md).
-- Source: `.opencode/skills/system-skill-advisor/mcp-server/lib/derived/sanitizer.ts`.
+- Source: `.opencode/skills/system-skill-advisor/runtime/lib/derived/sanitizer.ts`.
 
 ---
 

@@ -1,7 +1,7 @@
 ---
 description: Rebuild spec-kit runtime databases in dependency-safe order through the interactive confirm workflow.
 argument-hint: "[--force] [--no-snapshot] [--cleanup-legacy] [--migrate] [--keep-snapshots] [--resume-bootstrap]"
-allowed-tools: Read, Bash, Grep, Glob, mcp__system_skill_advisor__advisor_recommend, mcp__system_skill_advisor__advisor_status, mcp__system_skill_advisor__advisor_validate, mcp__system_skill_advisor__advisor_rebuild, mcp__system_skill_advisor__skill_graph_scan, mcp__system_skill_advisor__skill_graph_query, mcp__system_skill_advisor__skill_graph_status
+allowed-tools: Read, Bash, Grep, Glob
 ---
 <!-- skill_agent: system-spec-kit -->
 

@@ -72,7 +72,7 @@ Dispatch 2-4 parallel read-only CLI jobs (e.g. cli-opencode or cli-opencode) to 
 4. Memory files: filename slugs are sticky (preserve `[[wikilinks]]`); only edit body content.
 
 ### Phase D — Reindex
-1. Regenerate compiled `.opencode/skills/system-skill-advisor/mcp-server/scripts/skill-graph.json` via `python3 skill_graph_compiler.py --export-json --pretty` (per the `feedback_skill_graph_compiler_rebuild` memory note).
+1. Regenerate compiled `.opencode/skills/system-skill-advisor/runtime/scripts/skill-graph.json` via `python3 skill_graph_compiler.py --export-json --pretty` (per the `feedback_skill_graph_compiler_rebuild` memory note).
 2. If the compiler hits a pre-existing blocker (wrong category, asymmetric sibling, etc.), fix it incidentally — document as out-of-scope-but-on-critical-path.
 3. Run `advisor_recommend` MCP smoke on a canonical prompt for the renamed thing; expect new name in top-3 confidence ≥ 0.7.
 

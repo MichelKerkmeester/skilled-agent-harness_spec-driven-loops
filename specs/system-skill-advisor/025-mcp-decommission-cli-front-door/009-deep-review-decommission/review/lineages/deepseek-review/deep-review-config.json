@@ -1,0 +1,88 @@
+{
+  "topic": "Review: specs/system-skill-advisor/025-mcp-decommission-cli-front-door/009-deep-review-decommission",
+  "mode": "review",
+  "reviewTarget": "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/009-deep-review-decommission",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "resource_map_present": false,
+  "sessionId": "fanout-deepseek-review-1789148343059-q7g4rk",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "maxIterations": 6,
+  "convergenceThreshold": 0.1,
+  "stuckThreshold": 2,
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "overlay": [
+      "feature_catalog_code",
+      "playbook_capability"
+    ]
+  },
+  "qualityGateThreshold": true,
+  "releaseReadinessState": "converged",
+  "specFolder": "system-skill-advisor/025-mcp-decommission-cli-front-door/009-deep-review-decommission",
+  "createdAt": "2026-09-11T17:44:30Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "stopPolicy": "max-iterations",
+  "antiConvergence": {
+    "convergenceMode": "standard",
+    "divergent": {}
+  },
+  "executor": {
+    "kind": "cli-pi",
+    "model": "deepseek-v4.1-flash",
+    "reasoningEffort": "max",
+    "lineageLabel": "deepseek-review"
+  },
+  "fanout": {
+    "lineageLabel": "deepseek-review",
+    "artifactDirOverride": "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/009-deep-review-decommission/review/lineages/deepseek-review",
+    "detached": true,
+    "inProcessExecutor": true
+  },
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": [
+      "latestJSONLDelta",
+      "newIterationFile",
+      "priorReducedState"
+    ],
+    "outputs": [
+      "findingsRegistry",
+      "dashboardMetrics",
+      "strategyUpdates"
+    ],
+    "metrics": [
+      "dimensionsCovered",
+      "findingsBySeverity",
+      "openFindings",
+      "resolvedFindings",
+      "convergenceScore"
+    ]
+  },
+  "completedAt": "2026-09-11T19:53:00Z",
+  "stopReason": "maxIterationsReached",
+  "verdict": "CONDITIONAL"
+}

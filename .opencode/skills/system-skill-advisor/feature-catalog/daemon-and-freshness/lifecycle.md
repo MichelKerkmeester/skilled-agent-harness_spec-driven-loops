@@ -23,7 +23,7 @@ Give operators a predictable daemon lifecycle: graceful boot, graceful SIGTERM s
 
 `lib/daemon/lifecycle.ts` orchestrates daemon boot by acquiring the workspace lease, starting the watcher, warming freshness state and exposing `trustState` to readers. Shutdown responds to SIGTERM, flushes any pending reindex, releases the lease and drains the watcher. `advisor_status` returns `generation`, `skillCount`, `lastScanAt`, `trustState` and `laneWeights` regardless of whether the daemon has a live writer.
 
-The `system_skill_advisor` MCP server also participates in the shared launcher idle-timeout guardrail. `SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN` defaults to `30`, accepts fractional values for tests, and `0` disables the monitor. Stdio and IPC socket connect/data/write activity refresh the idle timer so active secondary clients keep the server alive.
+The advisor daemon also participates in the shared launcher idle-timeout guardrail. `SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN` defaults to `30`, accepts fractional values for tests, and `0` disables the monitor. Stdio and IPC socket connect/data/write activity refresh the idle timer so active secondary clients keep the server alive.
 
 ---
 
@@ -33,17 +33,17 @@ The `system_skill_advisor` MCP server also participates in the shared launcher i
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/mcp-server/lib/daemon/lifecycle.ts` | Daemon | Source reference |
-| `.opencode/skills/system-skill-advisor/mcp-server/lib/ipc/launcher-idle-timeout.ts` | IPC lifecycle | Shared idle-timeout monitor |
-| `.opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-status.ts` | Handler | Source reference |
+| `.opencode/skills/system-skill-advisor/runtime/lib/daemon/lifecycle.ts` | Daemon | Source reference |
+| `.opencode/skills/system-skill-advisor/runtime/lib/ipc/launcher-idle-timeout.ts` | IPC lifecycle | Shared idle-timeout monitor |
+| `.opencode/skills/system-skill-advisor/runtime/handlers/advisor-status.ts` | Handler | Source reference |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/mcp-server/tests/handlers/advisor-status.vitest.ts` | Automated test | status envelope assertions |
-| `.opencode/skills/system-skill-advisor/mcp-server/tests/daemon-freshness-foundation.vitest.ts` | Automated test | boot and shutdown sequence |
-| `.opencode/skills/system-skill-advisor/mcp-server/tests/launcher-idle-timeout.vitest.ts` | Automated test | idle timeout parsing and shutdown behavior |
+| `.opencode/skills/system-skill-advisor/runtime/tests/handlers/advisor-status.vitest.ts` | Automated test | status envelope assertions |
+| `.opencode/skills/system-skill-advisor/runtime/tests/daemon-freshness-foundation.vitest.ts` | Automated test | boot and shutdown sequence |
+| `.opencode/skills/system-skill-advisor/runtime/tests/launcher-idle-timeout.vitest.ts` | Automated test | idle timeout parsing and shutdown behavior |
 | `Playbook scenario [AU-003](../../manual-testing-playbook/auto-update-daemon/daemon-lifecycle-shutdown.md).` | Manual playbook | Source reference |
 
 ---

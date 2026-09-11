@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/045-daemon-and-test-harness-hardening/001-production-db-isolation",
+  "spec_folder": "system-speckit/045-daemon-and-test-harness-hardening/001-production-db-isolation",
+  "parent_id": "system-speckit/045-daemon-and-test-harness-hardening",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "production db isolation",
+      "vitest setupFiles bypass",
+      "context-index.sqlite guard",
+      "isolateProductionDatabase",
+      "production db isolation plan",
+      "vitest config reconcile",
+      "fail closed resolver",
+      "production db isolation tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
+    ],
+    "key_topics": [
+      "production",
+      "isolation",
+      "vitest",
+      "setupfiles",
+      "bypass",
+      "context-index",
+      "sqlite",
+      "guard",
+      "isolateproductiondatabase",
+      "plan",
+      "config",
+      "reconcile"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/vitest.config.ts",
+      ".opencode/skills/system-spec-kit/mcp-server/vitest.config.ts",
+      ".opencode/skills/system-spec-kit/mcp-server/tests/_support/vitest-setup.ts",
+      "mcp-server/vitest.config.ts",
+      "tests/_support/vitest-setup.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "vitest.config.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/vitest.config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vitest-setup.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp-server/tests/_support/vitest-setup.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Production Database Isolation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Daemon Lifecycle",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Defence",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`mcp-server/vitest.config.ts` loads `tests/support/vitest-setup.ts`, whose `isolateProductionDatabase()` exists to stop a test opening the live memory database",
+    "created_at": "2026-08-30T09:55:25Z",
+    "last_save_at": "2026-08-30T10:13:56.412Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:377a8c00e8c60b157baee4a8bdb24fef9429b68bc2a2e53ae6256e832af38a2d",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "af60d83a277b291c86de311eea63b92bbd1d3c34e09186b0cacb7a2011fe7571",
+      "plan.md": "d45763a90e98d0340cc2100d2c2dcf0fabf150fd8c7ea149d3f6ae157c5c394e",
+      "tasks.md": "30d884023fe50291f5f300419bc2408750f62e42b8728fb608e5c58d44a0894e",
+      "implementation-summary.md": "0d8f238467df1aa0fefe3889628e31cc739fd8796f14410ec5fa72456dae1744"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

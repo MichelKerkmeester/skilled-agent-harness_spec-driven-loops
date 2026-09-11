@@ -276,7 +276,7 @@ npm run test:cli
 
 **After editing `.ts` source files**: Always rebuild `dist/` — the MCP server and CLI scripts run from compiled `.js`, not `.ts` source.
 
-**Package-aware build rule**: The spec-kit root uses `tsc --build`. Satellite packages with their own package boundary, such as `system-skill-advisor/mcp-server`, use `tsc -p tsconfig.build.json`; their typecheck script may add `--noEmit --composite false` over that same overlay.
+**Package-aware build rule**: The spec-kit root uses `tsc --build`. Satellite packages with their own package boundary, such as `system-skill-advisor/runtime`, use `tsc -p tsconfig.build.json`; their typecheck script may add `--noEmit --composite false` over that same overlay.
 
 ---
 

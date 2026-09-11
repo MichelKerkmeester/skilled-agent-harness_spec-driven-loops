@@ -34,7 +34,7 @@ Only one advisor daemon may hold the workspace lease for a resolved database dir
 
 ### Key Sources
 
-- `mcp-server/lib/daemon/lease.ts`
+- `runtime/lib/daemon/lease.ts`
 - [`freshness-contract.md`](./freshness-contract.md)
 - [`db-path-policy.md`](../config/db-path-policy.md)
 
@@ -46,7 +46,7 @@ Only one advisor daemon may hold the workspace lease for a resolved database dir
 
 The `system-skill-advisor-launcher.cjs` script enforces single-writer semantics at process startup before opening the SQLite skill-graph database. It combines the owner-lease sidecar with the launcher PID lease and bridges secondary clients through `maybeBridgeLeaseHolder` when a live owner already exists:
 
-- If a live owner holds the lease: the launcher tries to bridge this client's stdio to the live owner's IPC socket through the session proxy. `LEASE_HELD_BY:<ownerPid>` is now only the fallback diagnostic when bridging is disabled or the socket cannot be used.
+- If a live owner holds the lease: the launcher tries to bridge this client to the live owner's IPC socket through the session proxy. `LEASE_HELD_BY:<ownerPid>` is now only the fallback diagnostic when bridging is disabled or the socket cannot be used.
 - If the socket is dead or refused while the owner can be reclaimed: the launcher enters the guarded respawn path instead of treating `LEASE_HELD_BY` as the normal outcome.
 - If `staleReclaimable === true`: the launcher logs `staleReclaimed: true` and continues normal bootstrap (the existing `acquireSkillGraphLease` call reclaims the lease).
 - If `held === false`: the launcher continues normal bootstrap.
@@ -57,7 +57,7 @@ This enforcement is gated by the `SYSTEM_SKILL_ADVISOR_STRICT_SINGLE_WRITER` env
 
 Daemon attempts lease acquisition on startup. The lease database lives next to the canonical skill graph database directory as `skill-graph-daemon-lease.sqlite`. Canonical means lexical `path.resolve()` followed by `fs.realpathSync.native()` when the path exists; if the directory did not exist yet, the daemon creates it and canonicalizes again before deriving the `workspace_key`.
 
-With the default configuration that directory is `.opencode/skills/system-skill-advisor/mcp-server/database/`. With `SYSTEM_SKILL_ADVISOR_DB_DIR` or `SYSTEM_SKILL_ADVISOR_DB_DIR`, the override relocates both `skill-graph.sqlite` and `skill-graph-daemon-lease.sqlite` together. On success the lease row records:
+With the default configuration that directory is `.opencode/skills/system-skill-advisor/runtime/database/`. With `SYSTEM_SKILL_ADVISOR_DB_DIR` or `SYSTEM_SKILL_ADVISOR_DB_DIR`, the override relocates both `skill-graph.sqlite` and `skill-graph-daemon-lease.sqlite` together. On success the lease row records:
 
 - holder PID
 - holder owner ID
@@ -72,7 +72,7 @@ The lease-holder updates the heartbeat timestamp every 30 seconds. Other daemon 
 
 ### Release
 
-On clean shutdown (SIGTERM, MCP server stop) the daemon releases the lease by deleting the lease record. Another waiting daemon then acquires.
+On clean shutdown (SIGTERM, daemon stop) the daemon releases the lease by deleting the lease record. Another waiting daemon then acquires.
 
 ### WAL and Busy Timeout Pragmas
 
@@ -84,7 +84,7 @@ Every skill-graph database open sets `PRAGMA journal_mode=WAL` and `PRAGMA busy_
 
 When two daemons start within the heartbeat window, both attempt acquisition. The lease database enforces a single row per canonical database-directory `workspace_key`, so only one owner can hold the lease for a given SQLite directory. The loser logs `lease-busy holder=<pid>` plus retries with exponential backoff: 1s, 2s, 4s, 8s, 16s, capped at 30s.
 
-If the lease holder responds with an MCP `advisor_status` call showing `live` trust state, the waiter accepts the holder as canonical plus exits without competing. If the holder is unresponsive past 3 retry cycles, the waiter inspects the heartbeat timestamp. If stale (>2x heartbeat interval), the waiter triggers stale-lease recovery (see §4).
+If the lease holder answers an `advisor_status` call showing `live` trust state, the waiter accepts the holder as canonical plus exits without competing. If the holder is unresponsive past 3 retry cycles, the waiter inspects the heartbeat timestamp. If stale (>2x heartbeat interval), the waiter triggers stale-lease recovery (see §4).
 
 ---
 
@@ -120,7 +120,7 @@ During the Phase 006 compatibility window, launcher startup also probes the old 
 | Legacy rolling-start owner still alive | New launcher reports `LEASE_HELD_BY:<pid> ... (legacy path)` for the legacy path that cannot be bridged through the current session proxy | Stop the old owner or wait for it to exit, then restart with the canonical lease path |
 | Filesystem locks the lease database | Stale-lease cleanup fails with EBUSY or EPERM | Check filesystem permissions on the resolved database directory. Verify no antivirus or backup process is holding the file open |
 | Two daemons acquire concurrently due to filesystem race | SQLite database shows corruption (rare on macOS APFS, possible on NFS) | Stop both daemons. Delete `skill-graph.sqlite{,-wal,-shm}`. Run `advisor_rebuild --force` |
-| Heartbeat thread dies but main daemon continues | Lease ages out, waiter triggers stale-lease recovery, kills the lease | Restart the daemon (MCP server restart). Investigate why heartbeat thread crashed |
+| Heartbeat thread dies but main daemon continues | Lease ages out, waiter triggers stale-lease recovery, kills the lease | Restart the daemon. Investigate why heartbeat thread crashed |
 | Lease database corruption | Daemon refuses to read the lease | Delete `skill-graph-daemon-lease.sqlite`. Re-acquire. The lease format is non-critical state |
 
 ---
@@ -151,4 +151,4 @@ The launcher keeps `process.on('exit', clearLeaseFile)` as a normal-exit backsto
 - [`validation-baselines.md`](../scoring/validation-baselines.md), latency baselines that depend on lease cleanliness
 - `feature-catalog/daemon-and-freshness/lease.md`, feature inventory entry
 - `manual-testing-playbook/auto-update-daemon/lease-single-writer.md`, operator scenario
-- `mcp-server/lib/daemon/lease.ts`, source-of-truth implementation
+- `runtime/lib/daemon/lease.ts`, source-of-truth implementation

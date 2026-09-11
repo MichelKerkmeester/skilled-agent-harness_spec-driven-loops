@@ -8,7 +8,7 @@ const TEST_DIR = dirname(fileURLToPath(import.meta.url));
 const RUNTIME_ROOT = resolve(TEST_DIR, '..');
 const WORKSPACE_ROOT = resolve(TEST_DIR, '../../../../../');
 const PLAYBOOK_ROOT = join(WORKSPACE_ROOT, '.opencode/skills/system-deep-loop/deep-ai-council/manual-testing-playbook');
-const SKILL_ADVISOR_TEST_ROOT = join(WORKSPACE_ROOT, '.opencode/skills/system-skill-advisor/mcp-server/tests');
+const SKILL_ADVISOR_TEST_ROOT = join(WORKSPACE_ROOT, '.opencode/skills/system-skill-advisor/runtime/tests');
 const DEEP_LOOP_RUNTIME_TEST_ROOT = join(WORKSPACE_ROOT, '.opencode/skills/system-deep-loop/runtime/tests');
 
 const RENAMED_TEST_REFERENCES: Record<string, string> = {

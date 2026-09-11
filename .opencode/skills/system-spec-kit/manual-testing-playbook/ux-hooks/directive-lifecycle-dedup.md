@@ -59,14 +59,14 @@ Validate directive-lifecycle delivery across the canonical core, every registere
 1. Build both runtime owners:
 
 ```bash
-cd .opencode/skills/system-skill-advisor/mcp-server && npm run build
+cd .opencode/skills/system-skill-advisor/runtime && npm run build
 cd ../../system-spec-kit/runtime && npm run build
 ```
 
 2. Run the canonical decision, store, boundary, Claude handler, and OpenCode plugin tests:
 
 ```bash
-cd .opencode/skills/system-skill-advisor/mcp-server
+cd .opencode/skills/system-skill-advisor/runtime
 npx vitest run \
   tests/hooks/directive-lifecycle.vitest.ts \
   tests/hooks/directive-lifecycle-boundary.vitest.ts \

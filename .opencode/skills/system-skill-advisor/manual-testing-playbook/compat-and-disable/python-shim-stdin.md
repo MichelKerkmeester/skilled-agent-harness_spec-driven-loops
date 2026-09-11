@@ -42,13 +42,13 @@ Validate that `skill_advisor.py --stdin` reads exactly one prompt from stdin and
 1. Run:
 
 ```bash
-printf '%s' "save this conversation context to memory" | python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py --stdin --threshold 0.8
+printf '%s' "save this conversation context to memory" | python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py --stdin --threshold 0.8
 ```
 
 2. Repeat with native required:
 
 ```bash
-printf '%s' "save this conversation context to memory" | python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py --stdin --force-native --threshold 0.8
+printf '%s' "save this conversation context to memory" | python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py --stdin --force-native --threshold 0.8
 ```
 
 ### Expected Signals
@@ -70,8 +70,8 @@ printf '%s' "save this conversation context to memory" | python3 .opencode/skill
 
 ## 4. SOURCE FILES
 
-- `.opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py`
-- `.opencode/skills/system-skill-advisor/mcp-server/tests/compat/shim.vitest.ts`
+- `.opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py`
+- `.opencode/skills/system-skill-advisor/runtime/tests/compat/shim.vitest.ts`
 
 ---
 
@@ -89,7 +89,7 @@ printf '%s' "save this conversation context to memory" | python3 .opencode/skill
 Command 1:
 
 ```bash
-printf '%s' "save this conversation context to memory" | python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py --stdin --threshold 0.8
+printf '%s' "save this conversation context to memory" | python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py --stdin --threshold 0.8
 ```
 
 Output:
@@ -133,7 +133,7 @@ Skill graph: loaded from SQLite
 Command 2:
 
 ```bash
-printf '%s' "save this conversation context to memory" | python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py --stdin --force-native --threshold 0.8
+printf '%s' "save this conversation context to memory" | python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py --stdin --force-native --threshold 0.8
 ```
 
 Output:

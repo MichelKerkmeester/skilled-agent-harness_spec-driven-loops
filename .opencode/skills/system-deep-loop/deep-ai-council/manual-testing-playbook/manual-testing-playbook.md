@@ -401,7 +401,7 @@ Feature file: [DAC-032](../manual-testing-playbook/council-graph-value-compariso
 | Test File | Scenario IDs |
 | --- | --- |
 | `.opencode/skills/system-spec-kit/runtime/tests/ai-council-runtime-parity.vitest.ts` | DAC-001 |
-| `.opencode/skills/system-skill-advisor/mcp-server/tests/scorer/native-scorer.vitest.ts` | DAC-002 |
+| `.opencode/skills/system-skill-advisor/runtime/tests/scorer/native-scorer.vitest.ts` | DAC-002 |
 | `.opencode/skills/system-spec-kit/runtime/tests/ai-council-permission-scope.vitest.ts` | DAC-003, DAC-004, DAC-011, DAC-012, DAC-017 |
 | `.opencode/skills/system-spec-kit/runtime/tests/ai-council-audit-trail.vitest.ts` | DAC-005, DAC-006, DAC-013 |
 | `.opencode/skills/system-spec-kit/runtime/tests/ai-council-rollback.vitest.ts` | DAC-010 |

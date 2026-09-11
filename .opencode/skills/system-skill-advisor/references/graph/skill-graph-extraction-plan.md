@@ -34,7 +34,7 @@ Extraction is complete; future work here is documentation alignment unless a new
 
 ### Key Sources
 
-- `mcp-server/lib/skill-graph/`
+- `runtime/lib/skill-graph/`
 - [SKILL.md](../../SKILL.md)
 
 ---
@@ -44,7 +44,7 @@ Extraction is complete; future work here is documentation alignment unless a new
 The `lib/skill-graph/` library resides inside the advisor skill package:
 
 ```text
-.opencode/skills/system-skill-advisor/mcp-server/lib/skill-graph/
+.opencode/skills/system-skill-advisor/runtime/lib/skill-graph/
 ```
 
 The directory contains three files:
@@ -53,7 +53,7 @@ The directory contains three files:
 - `skill-graph-db.ts` - SQLite schema initialization and indexer writes
 - `skill-graph-queries.ts` - Prepared relationship queries
 
-The library owns the SQLite schema, indexing logic and relationship query helpers used by the `skill_graph_*` MCP tools.
+The library owns the SQLite schema, indexing logic and relationship query helpers used by the `skill_graph_*` commands.
 
 ---
 
@@ -67,7 +67,7 @@ That statement is outdated. The extraction completed earlier and no `skill-graph
 
 ## 4. EXTRACTION STATUS
 
-Extraction is complete. `lib/skill-graph/` is fully migrated to `system-skill-advisor/mcp-server/lib/skill-graph/`.
+Extraction is complete. `lib/skill-graph/` is fully migrated to `system-skill-advisor/runtime/lib/skill-graph/`.
 
 No pending extraction work remains. The old cleanup reference is obsolete and SKILL.md drift is corrected by the realignment delta. Downstream code paths now import the library only from the advisor package.
 

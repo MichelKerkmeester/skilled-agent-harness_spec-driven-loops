@@ -65,7 +65,7 @@ Prompt: `Handle empty prompts in .opencode/skills/system-spec-kit/runtime/lib/sc
 
 1. **Advisor probe**:
    ```
-   bash: python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py "Handle empty prompts in .opencode/skills/system-spec-kit/runtime/lib/scorer/lanes/explicit.ts with a TypeScript console.error fallback." --threshold 0.8 > /tmp/skc-SD002-advisor.txt
+   bash: python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "Handle empty prompts in .opencode/skills/system-spec-kit/runtime/lib/scorer/lanes/explicit.ts with a TypeScript console.error fallback." --threshold 0.8 > /tmp/skc-SD002-advisor.txt
    ```
 2. **Verify**: top-1 == `sk-code`, score ≥ 0.80.
 3. **Invoke sk-code** with the same prompt.

@@ -584,7 +584,7 @@ test('Gate-3 delivery matrix keeps only unchanged repeated positive eligible for
 });
 
 test('Gate-3 observed emission rejects lifecycle epoch zero at the sink', async () => {
-  const policyPlan = await import('../../../../../system-skill-advisor/mcp-server/dist/mcp-server/lib/policy-plan.js');
+  const policyPlan = await import('../../../../../system-skill-advisor/runtime/dist/runtime/lib/policy-plan.js');
   policyPlan.clearPolicyObservationSink();
   core.resetGate3DeliveryShadow();
   core.observeGate3QuestionDelivery(observedGate3Request({

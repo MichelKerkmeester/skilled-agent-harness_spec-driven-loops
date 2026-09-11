@@ -56,8 +56,8 @@ The SQLite graph drifts from the source files when any of these happen:
 
 ### Via `skill_graph_status`
 
-```text
-mcp__system_skill_advisor__skill_graph_status({})
+```bash
+node .opencode/bin/skill-advisor.cjs skill_graph_status --format json
 ```
 
 Inspect:
@@ -70,8 +70,8 @@ If `dbStatus` is `stale` or `staleness.changedFiles[]` is non-empty, drift is pr
 
 ### Via `skill_graph_validate`
 
-```text
-mcp__system_skill_advisor__skill_graph_validate({})
+```bash
+node .opencode/bin/skill-advisor.cjs skill_graph_validate --format json
 ```
 
 Returns structural integrity checks:
@@ -88,7 +88,7 @@ A `false` for `isValid` plus broken-edge errors signal drift between SQLite grap
 find .opencode/skills -name 'graph-metadata.json' -exec sha256sum {} + | sort
 ```
 
-Compare against the daemon's recorded signature stored alongside `mcp-server/database/.skill-graph.sig`. Mismatches indicate drift.
+Compare against the daemon's recorded signature stored alongside `runtime/database/.skill-graph.sig`. Mismatches indicate drift.
 
 ---
 
@@ -96,8 +96,8 @@ Compare against the daemon's recorded signature stored alongside `mcp-server/dat
 
 ### Standard reconciliation
 
-```text
-mcp__system_skill_advisor__advisor_rebuild({ "force": true })
+```bash
+node .opencode/bin/skill-advisor.cjs advisor_rebuild --trusted --force true --format json
 ```
 
 Forces a full rebuild from source files. Generation counter bumps. Trust state transitions stale → live.
@@ -106,8 +106,8 @@ Forces a full rebuild from source files. Generation counter bumps. Trust state t
 
 If you only want to re-index without bumping generation (advanced):
 
-```text
-mcp__system_skill_advisor__skill_graph_scan({ "skillsRoot": ".opencode/skills" })
+```bash
+node .opencode/bin/skill-advisor.cjs skill_graph_scan --trusted --json '{"skillsRoot":".opencode/skills"}' --format json
 ```
 
 Re-indexes the graph from source plus updates the hash signature.
@@ -117,12 +117,12 @@ Re-indexes the graph from source plus updates the hash signature.
 If `advisor_rebuild` plus `skill_graph_scan` both fail:
 
 ```bash
-# Stop MCP server first to release lease
+# Stop the advisor daemon first to release the lease
 # Then:
-rm -f .opencode/skills/system-skill-advisor/mcp-server/database/skill-graph.sqlite{,-wal,-shm}
-rm -f .opencode/skills/system-skill-advisor/mcp-server/database/.skill-graph.sig
-rm -f .opencode/skills/system-skill-advisor/mcp-server/database/.skill-graph.lease
-# Restart MCP server. Daemon recreates from scratch.
+rm -f .opencode/skills/system-skill-advisor/runtime/database/skill-graph.sqlite{,-wal,-shm}
+rm -f .opencode/skills/system-skill-advisor/runtime/database/.skill-graph.sig
+rm -f .opencode/skills/system-skill-advisor/runtime/database/.skill-graph.lease
+# The next CLI call cold-starts the daemon, which recreates it from scratch.
 ```
 
 After hard reset, verify with `advisor_status` plus `skill_graph_validate` before trusting recommendations.
@@ -133,7 +133,7 @@ After hard reset, verify with `advisor_status` plus `skill_graph_validate` befor
 
 | Failure | Symptom | Recovery |
 |---|---|---|
-| Rebuild succeeds but trustState stays stale | Generation counter not bumping | Inspect `advisor_status.generation`. If frozen, kill MCP server plus restart. File a bug if reproducible |
+| Rebuild succeeds but trustState stays stale | Generation counter not bumping | Inspect `advisor_status.generation`. If frozen, stop the daemon and let the next CLI call cold-start it. File a bug if reproducible |
 | Source files unreadable (permission error) | `advisor_rebuild` errors with EACCES | Fix filesystem permissions on `.opencode/skills/*/graph-metadata.json`. The daemon needs read access |
 | SQLite corruption mid-rebuild | `dbStatus` flips to `absent` after rebuild | Run hard reset procedure (§4) |
 | Schema version mismatch (json v2, SQLite expects v1) | Validate reports schema-violation errors for new skills | Run `advisor_rebuild --force`. The rebuild applies any pending schema migrations |
@@ -151,4 +151,4 @@ After hard reset, verify with `advisor_status` plus `skill_graph_validate` befor
 - [`skill-graph-query-cookbook.md`](./skill-graph-query-cookbook.md), query the graph after reconciliation
 - [`tool-ids-reference.md`](../runtime/tool-ids-reference.md), `advisor_rebuild`, `skill_graph_scan`, `skill_graph_validate` schemas
 - `feature-catalog/daemon-and-freshness/rebuild-from-source.md`, feature inventory
-- `mcp-server/handlers/skill-graph/scan.ts`, `mcp-server/handlers/advisor-rebuild.ts`, source
+- `runtime/handlers/skill-graph/scan.ts`, `runtime/handlers/advisor-rebuild.ts`, source

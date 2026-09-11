@@ -35,14 +35,14 @@ Preserve historical and staged skills for inspection (audits, history, pre-activ
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/mcp-server/lib/lifecycle/archive-handling.ts` | Library | Source reference |
-| `.opencode/skills/system-skill-advisor/mcp-server/lib/corpus/df-idf.ts` | Library | Source reference |
+| `.opencode/skills/system-skill-advisor/runtime/lib/lifecycle/archive-handling.ts` | Library | Source reference |
+| `.opencode/skills/system-skill-advisor/runtime/lib/corpus/df-idf.ts` | Library | Source reference |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/mcp-server/tests/scorer/native-scorer.vitest.ts` | Automated test | archived-skill exclusion |
+| `.opencode/skills/system-skill-advisor/runtime/tests/scorer/native-scorer.vitest.ts` | Automated test | archived-skill exclusion |
 | `Playbook scenario [LC-003](../../manual-testing-playbook/lifecycle-routing/archive-handling.md).` | Manual playbook | Source reference |
 
 ---

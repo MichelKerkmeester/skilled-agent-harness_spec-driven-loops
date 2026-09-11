@@ -32,7 +32,7 @@ Validate that `lib/derived/provenance.ts` writes provenance fingerprints for eac
 ## 2. SCENARIO CONTRACT
 
 - Disposable workspace copy or read-only inspection against the live repo.
-- MCP server built. Daemon reachable.
+- Advisor runtime built. Daemon reachable.
 - A target skill with content spanning multiple lane sources (frontmatter, body, a fenced example and a local references/ or assets/ doc).
 
 ---
@@ -235,7 +235,7 @@ BLOCKED. The scenario requires `touch .opencode/skills/sk-doc/SKILL.md` to force
 - Scenario [AI-001](../../manual-testing-playbook/auto-indexing/derived-extraction.md), deterministic extraction.
 - Scenario [SC-004](../../manual-testing-playbook/scorer-fusion/lane-attribution.md), lane attribution on the read side.
 - Feature [`auto-indexing/provenance-and-trust-lanes.md`](../../feature-catalog/auto-indexing/provenance-and-trust-lanes.md).
-- Source: `.opencode/skills/system-skill-advisor/mcp-server/lib/derived/provenance.ts` and `lib/derived/trust-lanes.ts`.
+- Source: `.opencode/skills/system-skill-advisor/runtime/lib/derived/provenance.ts` and `lib/derived/trust-lanes.ts`.
 
 ---
 

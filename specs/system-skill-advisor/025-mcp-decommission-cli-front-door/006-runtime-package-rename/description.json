@@ -1,0 +1,25 @@
+{
+  "level": "3",
+  "specFolder": "system-skill-advisor/025-mcp-decommission-cli-front-door/006-runtime-package-rename",
+  "description": "The directory name is the last thing in the package still claiming an MCP server",
+  "keywords": [
+    "directory",
+    "name",
+    "last",
+    "thing",
+    "package",
+    "still",
+    "claiming",
+    "mcp",
+    "server"
+  ],
+  "lastUpdated": "2026-09-11T14:37:47.679Z",
+  "specId": "006",
+  "folderSlug": "runtime-package-rename",
+  "parentChain": [
+    "system-skill-advisor",
+    "025-mcp-decommission-cli-front-door"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

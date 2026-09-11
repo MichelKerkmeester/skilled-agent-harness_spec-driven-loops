@@ -97,7 +97,7 @@ All 13 carry `stage: holdout`: excluded from the fitted routing aggregate, score
 
 1. `.opencode/skills/sk-doc/SKILL.md` is at HEAD-of-main and contains the §2 Smart Routing block resolved through `mode-registry.json` / `hub-router.json` (UNKNOWN_FALLBACK_CHECKLIST, AMBIGUITY_DELTA, ON_DEMAND_KEYWORDS), and both `mode-registry.json` and `hub-router.json` resolve on disk.
 2. All `references/*.md`, `references/*.md`, `assets/skill/*.md`, `assets/readme/*.md`, `assets/flowcharts/*.md`, `assets/command/*.md`, and `assets/agent-template.md` resolve on disk.
-3. Skill advisor binary callable: `python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py --help` exits 0.
+3. Skill advisor binary callable: `python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py --help` exits 0.
 4. Each of the 2 CLI runtimes (cli-opencode, cli-claude-code) is installed and authenticated.
 5. Token-cost baselines (SD-013 → SD-014 → SD-015) MUST run in order on the same CLI to keep the floor/median/ceiling comparable.
 6. **Section 6 (Agent Dispatch) scenarios EXECUTE real work** — unlike sections 1–5, 7, and 8, which are routing-trace probes (`DO NOT execute the work below`, or the equivalent `stage: holdout` / `stage: routing` framing for §§07–08). SD-018 and SD-020 actually dispatch `@markdown` to scaffold a changelog (SD-019 has no separate on-disk scenario — see the §06 note). They MUST run sequentially (not in parallel) per the CLI-dispatch reliability constraint, and they MUST forbid installation of the stub skill into the `.opencode/skills/` tree.

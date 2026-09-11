@@ -67,7 +67,7 @@ Use deep research to investigate why our advisor sometimes routes iterative inve
 
 1. **Advisor probe**:
    ```bash
-   python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py "Use deep research to investigate why our advisor sometimes routes iterative investigation prompts incorrectly, compare the registry and advisor behavior, and write the findings as a research summary." --threshold 0.8 > /tmp/dlw-MO-001/advisor.txt
+   python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "Use deep research to investigate why our advisor sometimes routes iterative investigation prompts incorrectly, compare the registry and advisor behavior, and write the findings as a research summary." --threshold 0.8 > /tmp/dlw-MO-001/advisor.txt
    ```
 2. **Invoke hub**: `Skill(system-deep-loop, "Use deep research to investigate why our advisor sometimes routes iterative investigation prompts incorrectly, compare the registry and advisor behavior, and write the findings as a research summary.")`.
 3. **Capture route**: save the AI response to `/tmp/dlw-MO-001/response.txt`.

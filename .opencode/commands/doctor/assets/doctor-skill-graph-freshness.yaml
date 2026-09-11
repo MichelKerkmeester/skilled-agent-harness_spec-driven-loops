@@ -41,8 +41,8 @@ freshness_doctor_invariant: |
 upstream_assets:
   contract: "local command design contract"
   diagnostic_script: ".opencode/commands/doctor/scripts/skill-graph-freshness.cjs"
-  compiled_graph: ".opencode/skills/system-skill-advisor/mcp-server/scripts/skill-graph.json"
-  sqlite_graph: ".opencode/skills/system-skill-advisor/mcp-server/database/skill-graph.sqlite"
+  compiled_graph: ".opencode/skills/system-skill-advisor/runtime/scripts/skill-graph.json"
+  sqlite_graph: ".opencode/skills/system-skill-advisor/runtime/database/skill-graph.sqlite"
   disk_truth: ".opencode/skills/*/graph-metadata.json"
 
 # ─────────────────────────────────────────────────────────────────

@@ -44,7 +44,7 @@ The default-on/explicit-opt-out helper and its `SPECKIT_ROLLOUT_PERCENT` partial
 
 ### Compiled-Routing Flag (`SPECKIT_COMPILED_ROUTING`)
 
-`SPECKIT_COMPILED_ROUTING` is the tri-state gate for serving the compiled per-hub router contract instead of a hub's prose smart-router. The flag itself ships **unset**, never forced on. Parsing is single-sourced — `.opencode/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs` and `.opencode/skills/system-skill-advisor/mcp-server/lib/compiled-routing-flag.ts` share the same tri-state semantics:
+`SPECKIT_COMPILED_ROUTING` is the tri-state gate for serving the compiled per-hub router contract instead of a hub's prose smart-router. The flag itself ships **unset**, never forced on. Parsing is single-sourced — `.opencode/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs` and `.opencode/skills/system-skill-advisor/runtime/lib/compiled-routing-flag.ts` share the same tri-state semantics:
 
 | Value | Resolution |
 |---|---|
@@ -72,7 +72,7 @@ A governance target is not a runtime guardrail. Nothing in the runtime enforces 
 - `.env.example` - documents `SPECKIT_COMPILED_ROUTING` and `SPECKIT_COMPILED_ROUTING_DEBUG`; `runtime/ENV-REFERENCE.md` carries the other governed flags but not these two.
 - `.env.example` - The operator-facing copy of the same surface; a flag documented in one and missing from the other is drift.
 - `.opencode/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs` - Runtime tri-state flag parser and the manifest serving-authority gate.
-- `.opencode/skills/system-skill-advisor/mcp-server/lib/compiled-routing-flag.ts` - Advisor-side single-sourced tri-state parser, `COMPILED_ROUTING_HUBS` eligibility set, and `DEFAULT_ON_HUBS` cohort.
+- `.opencode/skills/system-skill-advisor/runtime/lib/compiled-routing-flag.ts` - Advisor-side single-sourced tri-state parser, `COMPILED_ROUTING_HUBS` eligibility set, and `DEFAULT_ON_HUBS` cohort.
 - `.opencode/bin/compiled-route-status.cjs` - Per-hub serving-status probe emitting the drift-vs-break `causeCode` contract.
 - `.opencode/bin/compiled-route.cjs` - The public front door callers use to resolve a hub's route; delegates to the runtime resolver.
 - `.opencode/bin/system-skill-advisor-launcher.cjs` - Child-process env allowlist that forwards `SPECKIT_COMPILED_ROUTING` to the spawned advisor daemon.
@@ -84,4 +84,4 @@ A governance target is not a runtime guardrail. Nothing in the runtime enforces 
 - Canonical catalog source: `feature-catalog.md`
 - Feature file path: `governance/feature-flag-governance.md`
 Related references:
-- [advisor-recommend.md](../../../system-skill-advisor/feature-catalog/mcp-surface/advisor-recommend.md) — the `advisor_recommend` consumption path that reads this same `SPECKIT_COMPILED_ROUTING` flag to attach or omit `compiledRoute`
+- [advisor-recommend.md](../../../system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md) — the `advisor_recommend` consumption path that reads this same `SPECKIT_COMPILED_ROUTING` flag to attach or omit `compiledRoute`

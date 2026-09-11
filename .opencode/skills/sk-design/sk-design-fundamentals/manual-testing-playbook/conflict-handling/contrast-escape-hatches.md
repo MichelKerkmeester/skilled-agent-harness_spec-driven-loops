@@ -48,7 +48,7 @@ Operators run the exact prompt and command sequence for `SKD-021` and confirm th
 
 ### Exact Command Sequence
 
-1. `bash: python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py "our brand green fails contrast on white" --threshold 0.5`
+1. `bash: python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "our brand green fails contrast on white" --threshold 0.5`
 2. `agent: issue the same prompt in a fresh session`
 3. `bash: rg -n "Escape hatch" .opencode/skills/sk-design/references/color-system.md`
 
@@ -71,7 +71,7 @@ Read `color-system.md` Section 6; a reply that only raises lightness has not rea
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| SKD-021 | Contrast failure offers both escape hatches | confirm a brand color that cannot reach its ratio produces two options and an escalation, not a silent recolor | `Our brand green fails contrast on white` | 1. `bash: python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py "our brand green fails contrast on white" --threshold 0.5` -> 2. `agent: issue the same prompt in a fresh session` -> 3. `bash: rg -n "Escape hatch" .opencode/skills/sk-design/references/color-system.md` | Both hatches are named, and the brand change is escalated rather than applied. | Advisor JSON, the agent reply listing both hatches, and the grep proving both are documented. | PASS if both escape hatches are named and the brand change is escalated to the operator; FAIL if only one hatch is offered, or the reply changes the brand color without escalating | Read `color-system.md` Section 6; a reply that only raises lightness has not read the hue-rotation hatch. |
+| SKD-021 | Contrast failure offers both escape hatches | confirm a brand color that cannot reach its ratio produces two options and an escalation, not a silent recolor | `Our brand green fails contrast on white` | 1. `bash: python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "our brand green fails contrast on white" --threshold 0.5` -> 2. `agent: issue the same prompt in a fresh session` -> 3. `bash: rg -n "Escape hatch" .opencode/skills/sk-design/references/color-system.md` | Both hatches are named, and the brand change is escalated rather than applied. | Advisor JSON, the agent reply listing both hatches, and the grep proving both are documented. | PASS if both escape hatches are named and the brand change is escalated to the operator; FAIL if only one hatch is offered, or the reply changes the brand color without escalating | Read `color-system.md` Section 6; a reply that only raises lightness has not read the hue-rotation hatch. |
 
 ---
 

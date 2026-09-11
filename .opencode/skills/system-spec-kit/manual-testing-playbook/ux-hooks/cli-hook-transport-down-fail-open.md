@@ -46,7 +46,7 @@ export SPECKIT_DAEMON_REELECTION=0
 BEFORE=$(pgrep -f "mk-skill-advisor-launcher" | wc -l)
 
 echo '{"session_id":"playbook-433","hook_event_name":"UserPromptSubmit","prompt":"hello"}' \
-  | gtimeout 20 node .opencode/skills/system-skill-advisor/mcp-server/dist/hooks/claude/user-prompt-submit.js >/dev/null; echo "advisor-hook exit=$?"
+  | gtimeout 20 node .opencode/skills/system-skill-advisor/runtime/dist/hooks/claude/user-prompt-submit.js >/dev/null; echo "advisor-hook exit=$?"
 
 AFTER=$(pgrep -f "mk-skill-advisor-launcher" | wc -l)
 echo "launchers before=$BEFORE after=$AFTER"
@@ -90,7 +90,7 @@ A timeout means the hook attempted a non-warm-only call or the probe timeout reg
 |---|---|
 | `.opencode/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts` | Shared warm-only skill-advisor CLI fallback helper |
 | `.opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts` | Claude advisor hook using the fallback |
-| `.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/system-skill-advisor-bridge.mjs` | OpenCode advisor bridge using the fallback |
+| `.opencode/plugins/system-skill-advisor.js` | OpenCode advisor plugin using the fallback |
 
 Provenance: manual only - run the scenario prompt: Validate hook transport-down fail-open: absent socket, exit 0, fast return, zero spawned launchers.
 

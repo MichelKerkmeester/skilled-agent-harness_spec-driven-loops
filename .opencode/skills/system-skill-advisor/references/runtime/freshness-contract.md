@@ -41,7 +41,7 @@ Separately, each skill's derived block carries **derived-content author-time fre
 
 ### Key Sources
 
-- `mcp-server/lib/freshness/`
+- `runtime/lib/freshness/`
 - [`daemon-lease-contract.md`](./daemon-lease-contract.md)
 - [`tool-ids-reference.md`](./tool-ids-reference.md)
 
@@ -56,9 +56,9 @@ The advisor reports one of four trust states in every response that touches the 
 | `live` | The index is fresh. Source SKILL.md plus graph-metadata.json files have not changed since the last build. The recommendation reflects current skill state. |
 | `stale` | The index is queryable but source files have changed since the last build. The recommendation may be wrong for skills modified after the last generation bump. |
 | `absent` | The index is missing. The SQLite database file does not exist or was deleted. No recommendation can be computed. |
-| `unavailable` | The advisor subsystem cannot be reached. Either the MCP server is down, the daemon failed or a hard error blocks all reads. |
+| `unavailable` | The advisor subsystem cannot be reached. Either the daemon is down or a hard error blocks all reads. |
 
-State source-of-truth: `mcp-server/lib/freshness/trust-state.ts` plus `mcp-server/lib/freshness/freshness-detector.ts`.
+State source-of-truth: `runtime/lib/freshness/trust-state.ts` plus `runtime/lib/freshness/freshness-detector.ts`.
 
 ---
 
@@ -89,7 +89,7 @@ Trust states transition based on three signals: a generation counter, a source-f
               | absent  |
               +---------+
 
-[any state] --[mcp server down OR daemon crash]--> [unavailable]
+[any state] --[daemon down OR crash]--> [unavailable]
 ```
 
 Trigger details:
@@ -98,7 +98,7 @@ Trigger details:
 - `stale → live`: `advisor_rebuild` completes successfully plus the generation counter advances.
 - `live → absent`: SQLite database file is deleted or fails integrity check.
 - `absent → live`: `advisor_rebuild` runs from scratch plus succeeds.
-- `* → unavailable`: MCP server connection refused, daemon process not running or unrecoverable internal error.
+- `* → unavailable`: daemon socket unreachable, daemon process not running or unrecoverable internal error.
 - `unavailable → *`: subsystem recovers, fresh `advisor_status` call returns a real state.
 
 ---
@@ -110,11 +110,11 @@ Every caller that uses an advisor response must inspect `trustState` plus act ac
 | Caller Type | live | stale | absent | unavailable |
 |---|---|---|---|---|
 | Hook adapter (Claude, OpenCode, OpenCode) | Use recommendation directly | Use with caveat, log staleness | Skip recommendation, defer to keyword matching against `trigger_phrases` | Skip recommendation, fall back to Python shim |
-| MCP client (direct call) | Use recommendation directly | Call `advisor_rebuild` first if confidence matters | Call `advisor_rebuild`. Do not act on empty result | Wait for subsystem recovery or use Python shim |
+| Direct CLI caller | Use recommendation directly | Call `advisor_rebuild` first if confidence matters | Call `advisor_rebuild`. Do not act on empty result | Wait for subsystem recovery or use the Python shim |
 | Python shim (`skill_advisor.py`) | Use native response | Pass through with stale annotation | Compute fallback locally | Compute fallback locally |
 | Validation harness (`advisor_validate`) | Run as configured | Trigger rebuild before measurement | Trigger rebuild before measurement | Fail the validate run with clear error |
 
-When `unavailable` is caused by the runtime's MCP transport (tools missing or failing to initialize) rather than a dead daemon, the daemon-backed CLI shim can still reach the warm daemon: `node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --warm-only --format json`. Exit `75` means the daemon itself is unavailable and the failure is retryable.
+Probe the daemon directly when `unavailable` is reported: `node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --warm-only --format json`. Exit `75` means the daemon itself is unavailable and the failure is retryable. When the daemon stays unreachable, the CLI answers from the local Python scorer and marks the result degraded.
 
 The caller must NOT:
 
@@ -127,20 +127,20 @@ The caller must NOT:
 
 ## 5. DAEMON RESPONSIBILITIES
 
-The freshness daemon (`mcp-server/lib/daemon/`) is responsible for:
+The freshness daemon (`runtime/lib/daemon/`) is responsible for:
 
 - Watching `.opencode/skills/*/SKILL.md` plus `.opencode/skills/*/graph-metadata.json` for mtime changes.
 - Recomputing the source-hash signature on any watched-file change.
 - Bumping the generation counter when the signature changes.
 - Invalidating the prompt cache when the generation bumps.
 - Announcing the new generation to subscribers via `advisor_status` response metadata.
-- Holding a single-writer lease (`mcp-server/lib/daemon/lease.ts`) so concurrent advisor processes do not race on the SQLite file.
+- Holding a single-writer lease (`runtime/lib/daemon/lease.ts`) so concurrent advisor processes do not race on the SQLite file.
 
 The daemon is NOT responsible for:
 
 - Rebuilding the index automatically. SQLite database writes happen through trusted maintenance paths such as `advisor_rebuild` and `skill_graph_scan`; corrupt-database recovery may also move aside and recreate the database during lazy initialization.
 - Validating skill content. Only `skill_graph_validate` checks edge integrity.
-- Caching MCP responses across processes. Each MCP server process maintains its own cache.
+- Caching responses across processes. Each daemon process maintains its own cache.
 
 ---
 
@@ -148,10 +148,10 @@ The daemon is NOT responsible for:
 
 | Failure | Symptom | Recovery |
 |---|---|---|
-| Daemon dies | `advisor_status.daemon = "down"`, trustState may stay `live` until next file change but freshness detection lags | Restart the MCP server (`system_skill_advisor` restarts the daemon on boot) |
+| Daemon dies | `advisor_status.daemon = "down"`, trustState may stay `live` until next file change but freshness detection lags | Restart the daemon (the next CLI call cold-starts it) |
 | Lease contention | `advisor_rebuild` fails with lease-busy error | Wait for current rebuild to finish, then retry. If stuck, kill the process holding the lease |
-| SQLite corruption | `advisor_status.trustState = "absent"` even after rebuild attempts | Delete `mcp-server/database/skill-graph.sqlite{,-wal,-shm}`, run `advisor_rebuild --force` |
-| File watcher overflow (too many files) | Daemon stops detecting changes | Restart MCP server. Long-term: prune `.opencode/skills/` excludes |
+| SQLite corruption | `advisor_status.trustState = "absent"` even after rebuild attempts | Delete `runtime/database/skill-graph.sqlite{,-wal,-shm}`, run `advisor_rebuild --force` |
+| File watcher overflow (too many files) | Daemon stops detecting changes | Restart the daemon. Long-term: prune `.opencode/skills/` excludes |
 | Cache poisoning (stale entry survives generation bump) | Recommendations return outdated skill names | Run `advisor_rebuild --force` to invalidate caches |
 | Source-hash regression (rebuild succeeds but state stays stale) | trustState stays `stale` after `advisor_rebuild` | File a bug. The hash computation is broken |
 
@@ -164,5 +164,5 @@ The daemon is NOT responsible for:
 - [`db-path-policy.md`](../config/db-path-policy.md), where the SQLite file lives.
 - [`feature-catalog/daemon-and-freshness/`](../../feature-catalog/daemon-and-freshness), feature inventory for daemon + freshness components.
 - [`manual-testing-playbook/auto-update-daemon/`](../../manual-testing-playbook/auto-update-daemon), operator scenarios for daemon validation.
-- `mcp-server/lib/freshness/`, trust-state source-of-truth.
-- `mcp-server/lib/daemon/`, daemon implementation.
+- `runtime/lib/freshness/`, trust-state source-of-truth.
+- `runtime/lib/daemon/`, daemon implementation.

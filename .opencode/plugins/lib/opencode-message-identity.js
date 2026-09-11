@@ -10,7 +10,7 @@
 import {
   hashPolicyBlock as hashCanonicalPolicyBlock,
   POLICY_BLOCK_IDS,
-} from '../../skills/system-skill-advisor/mcp-server/dist/mcp-server/lib/policy-plan.js';
+} from '../../skills/system-skill-advisor/runtime/dist/runtime/lib/policy-plan.js';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS

@@ -35,7 +35,7 @@ Canonical emitted shape, using content drawn from the live example:
 ```text
 feature-catalog/
 ├── feature-catalog.md        # root inventory + navigation
-├── mcp-surface/              # 10 per-feature files
+├── cli-surface/              # 10 per-feature files
 │   ├── advisor-recommend.md
 │   ├── advisor-status.md
 │   └── ...
@@ -47,9 +47,9 @@ feature-catalog/
 └── python-compat/
 ```
 
-The catalog groups a large MCP surface into category folders, each holding one file per feature. The root `feature-catalog.md` is the only navigation surface and owns the section order; the folder names do not encode ordering. Both the category folders and the per-feature files use bare descriptive kebab-case slugs with no numeric prefix.
+The catalog groups a large command surface into category folders, each holding one file per feature. The root `feature-catalog.md` is the only navigation surface and owns the section order; the folder names do not encode ordering. Both the category folders and the per-feature files use bare descriptive kebab-case slugs with no numeric prefix.
 
-One wrinkle worth copying only if you have the same reason: the directory layout skips a numeric slot between `scorer-fusion` and `mcp-surface`, and the root says so in a note that tells you not to renumber. A deliberate gap with a written reason beats a silent one.
+One wrinkle worth copying only if you have the same reason: the directory layout skips a numeric slot between `scorer-fusion` and `cli-surface`, and the root says so in a note that tells you not to renumber. A deliberate gap with a written reason beats a silent one.
 
 ---
 
@@ -63,7 +63,7 @@ The root `feature-catalog.md` opens with frontmatter carrying `title`, `descript
 <!-- sk-doc-template: skill_asset_feature_catalog -->
 
 This catalog is the current inventory for the skill advisor. The package source
-of truth is `.opencode/skills/system-skill-advisor/mcp-server/`, with adjacent
+of truth is `.opencode/skills/system-skill-advisor/runtime/`, with adjacent
 OpenCode plugin docs included where the same hook/plugin ownership model applies.
 Each group links to per-feature files that cite the real implementation and test
 anchors.
@@ -76,12 +76,12 @@ After the intro it uses numbered all-caps H2 sections — `## 1. OVERVIEW` first
 Inside each category section, the root stays a pure index. Every feature is one row pointing at its own file:
 
 ```markdown
-## 6. MCP SURFACE
+## 6. COMMAND SURFACE
 
 | Feature | File |
 | --- | --- |
-| Native recommendation tool | [mcp-surface/advisor-recommend.md](./mcp-surface/advisor-recommend.md) |
-| Advisor status and freshness | [mcp-surface/advisor-status.md](./mcp-surface/advisor-status.md) |
+| Native recommendation tool | [cli-surface/advisor-recommend.md](./cli-surface/advisor-recommend.md) |
+| Advisor status and freshness | [cli-surface/advisor-status.md](./cli-surface/advisor-status.md) |
 ```
 
 Note what the root does *not* do: it never dumps source-file tables, prose descriptions or scenario matrices. That depth lives one link away, in the per-feature file. A root that stays a table of links survives having features added to it.
@@ -90,12 +90,12 @@ Note what the root does *not* do: it never dumps source-file tables, prose descr
 
 ## 4. PER-FEATURE FILE ANATOMY
 
-The file `mcp-surface/advisor-recommend.md` is a good model for a full feature entry. It shows all four required sections and the sub-heading rule in action.
+The file `cli-surface/advisor-recommend.md` is a good model for a full feature entry. It shows all four required sections and the sub-heading rule in action.
 
 **Frontmatter** carries a stable `title`, a one-line `description`, five `trigger_phrases`, and a 4-part `version`. The `trigger_phrases` lead with the exact tool name, then add natural-language alternates and one field name a reader might search for:
 
 ```yaml
-title: "advisor_recommend MCP Tool"
+title: "advisor_recommend Command"
 trigger_phrases:
   - "advisor_recommend"
   - "mcp recommend tool"
@@ -107,28 +107,28 @@ trigger_phrases:
 **H1 and template marker** — the H1 names the tool, immediately followed by the catalog template marker:
 
 ```markdown
-# advisor_recommend MCP Tool
+# advisor_recommend Command
 
 <!-- sk-doc-template: skill_asset_feature_catalog -->
 ```
 
-**`## 1. OVERVIEW`** is one sentence: expose the native scoring pipeline as an MCP tool any runtime can call, with prompt-safe attribution and lifecycle-aware redirects. Written from the caller's side, not the implementation's. One sentence is enough when the sentence is the right one.
+**`## 1. OVERVIEW`** is one sentence: expose the native scoring pipeline as a command that any runtime can call through the CLI front door, with prompt-safe attribution and lifecycle-aware redirects. Written from the caller's side, not the implementation's. One sentence is enough when the sentence is the right one.
 
 **`## 2. HOW IT WORKS`** runs long, so it names the handler, the schema and the response envelope in prose, then breaks out `### Compiled-Routing Enrichment (compiledRoute)` as an H3 because that behavior has its own gate, its own failure mode and its own flag. This is the sub-heading rule the contract asks for: split when a sub-behavior needs its own navigation anchor, not on a paragraph count. The section is also unusually good at stating when a field is *absent* — flag off, hub ineligible, legacy sentinel, probe failure — which is the half most feature docs skip.
 
-**`## 3. SOURCE FILES`** carries two tables. The `### Implementation` table uses `File | Layer | Role` columns, with Handler / Schema / Shared / Script rows pointing at real `mcp-server/**` and `.opencode/bin/**` paths. The `### Validation And Tests` table uses `File | Type | Role` columns, mixing `Automated test` rows that point at real `*.vitest.ts` files with a `Manual playbook` row that links named scenarios in the testing playbook.
+**`## 3. SOURCE FILES`** carries two tables. The `### Implementation` table uses `File | Layer | Role` columns, with Handler / Schema / Shared / Script rows pointing at real `runtime/**` and `.opencode/bin/**` paths. The `### Validation And Tests` table uses `File | Type | Role` columns, mixing `Automated test` rows that point at real `*.vitest.ts` files with a `Manual playbook` row that links named scenarios in the testing playbook.
 
 **`## 4. SOURCE METADATA`** closes with the group, the canonical catalog source, the feature file path, and `Related references` links to neighboring features plus the one cross-skill page the behavior depends on:
 
 ```markdown
-- Group: MCP surface
+- Group: Command surface
 - Canonical catalog source: `feature-catalog.md`
-- Feature file path: `mcp-surface/advisor-recommend.md`
+- Feature file path: `cli-surface/advisor-recommend.md`
 
 Related references:
 
-- [advisor-status.md](../../feature-catalog/mcp-surface/advisor-status.md).
-- [advisor-validate.md](../../feature-catalog/mcp-surface/advisor-validate.md).
+- [advisor-status.md](../../feature-catalog/cli-surface/advisor-status.md).
+- [advisor-validate.md](../../feature-catalog/cli-surface/advisor-validate.md).
 ```
 
 ---

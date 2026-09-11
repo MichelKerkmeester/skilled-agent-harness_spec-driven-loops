@@ -76,7 +76,7 @@ sk-git does not write code or manage spec folders. `sk-code` owns the code that 
 
 ```bash
 # Auto-routing through the skill advisor
-python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py "commit my changes" --threshold 0.8
+python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "commit my changes" --threshold 0.8
 
 # Or read the runtime instructions
 Read(".opencode/skills/sk-git/SKILL.md")

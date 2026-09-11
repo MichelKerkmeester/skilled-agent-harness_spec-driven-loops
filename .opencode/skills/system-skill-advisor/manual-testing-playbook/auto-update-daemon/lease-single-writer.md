@@ -34,7 +34,7 @@ Validate that only one daemon holds the workspace lease at a time and that a sta
 ## 2. SCENARIO CONTRACT
 
 - Disposable workspace copy so concurrent launches do not pollute the real DB.
-- MCP server built.
+- Advisor runtime built.
 - Two shells available to launch separate daemon processes.
 - Operator can read `advisor_status` output without affecting the daemon lease.
 
@@ -44,10 +44,10 @@ Validate that only one daemon holds the workspace lease at a time and that a sta
 
 > **Structure deviation note (007-deferred-final).** This scenario uses a numbered-step plus Expected Signals plus Failure Modes shape instead of the canonical Prompt/Commands/Expected/Evidence/Pass-Fail/Failure-Triage subsections. The deviation is intentional for this skill playbook category to keep scenario semantics tightly bound to runtime output checks. See `references/decisions/deferred-decisions.md` §F34 for rationale.
 
-1. In shell A, trigger a daemon bring-up via an MCP status call:
+1. In shell A, trigger a daemon bring-up via a CLI status call:
 
 ```text
-advisor_status({"workspaceRoot":"/tmp/path-to-copy"})
+node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root /tmp/path-to-copy --format json
 ```
 
 2. Capture the `trustState` and `lastScanAt` timestamp.
@@ -92,7 +92,7 @@ BLOCKED - missing disposable workspace copy at `/tmp/path-to-copy`; scenario com
 - Scenario [AU-003](../../manual-testing-playbook/auto-update-daemon/daemon-lifecycle-shutdown.md), graceful shutdown and SIGTERM.
 - Scenario [OP-003](../../manual-testing-playbook/operator-h5/unavailable-daemon.md), recovery from unreadable DB.
 - Feature [`daemon-and-freshness/lease.md`](../../feature-catalog/daemon-and-freshness/lease.md).
-- Source: `.opencode/skills/system-skill-advisor/mcp-server/lib/daemon/lease.ts`.
+- Source: `.opencode/skills/system-skill-advisor/runtime/lib/daemon/lease.ts`.
 
 ---
 

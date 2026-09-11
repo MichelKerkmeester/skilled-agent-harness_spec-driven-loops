@@ -60,7 +60,7 @@ Update the TypeScript helper that formats CLI output so it trims trailing blank 
 
 1. **Advisor probe**:
    ```bash
-   python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py "Update the TypeScript helper that formats CLI output so it trims trailing blank lines and run the relevant tests." --threshold 0.8 > /tmp/dlw-AI-004/advisor.txt
+   python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "Update the TypeScript helper that formats CLI output so it trims trailing blank lines and run the relevant tests." --threshold 0.8 > /tmp/dlw-AI-004/advisor.txt
    ```
 2. **Inspect top skill**: save parsed result to `/tmp/dlw-AI-004/parsed.txt`.
 3. **Invoke orchestrator** with the exact prompt and capture which skill is loaded.

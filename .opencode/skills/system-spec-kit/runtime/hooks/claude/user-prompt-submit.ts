@@ -16,7 +16,7 @@ import { createHash } from 'node:crypto';
 // 1. CONSTANTS
 // ───────────────────────────────────────────────────────────────────
 
-const TARGET_REL = 'skills/system-skill-advisor/mcp-server/dist/hooks/claude/user-prompt-submit.js';
+const TARGET_REL = 'skills/system-skill-advisor/runtime/dist/hooks/claude/user-prompt-submit.js';
 const MAX_STDIN_BYTES = 1024 * 1024;
 const MAX_STDIO_BYTES = 1024 * 1024;
 const CHILD_TIMEOUT_MS = 2500;

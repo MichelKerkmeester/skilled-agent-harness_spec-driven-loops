@@ -20,7 +20,7 @@ Current hook registration, runtime vocabulary, lifecycle behavior, and fallback 
 
 ## 1. OVERVIEW
 
-The maintained native hook source set is `system-spec-kit/runtime/hooks/{claude,codex,cursor,devin,pi}/` plus the OpenCode spec-gate adapter `runtime/hooks/opencode/system-spec-gate.js`, with compiled twins under `system-spec-kit/runtime/dist/hooks/` for the TypeScript adapters. OpenCode prompt-time advisor delivery is the plugin bridge, not a source-hook tree.
+The maintained native hook source set is `system-spec-kit/runtime/hooks/{claude,codex,cursor,devin,pi}/` plus the OpenCode spec-gate adapter `runtime/hooks/opencode/system-spec-gate.js`, with compiled twins under `system-spec-kit/runtime/dist/hooks/` for the TypeScript adapters. OpenCode prompt-time advisor delivery is the plugin, which spawns the advisor CLI, not a source-hook tree.
 
 Prompt delivery, startup wiring, compaction, and shutdown handling differ by runtime, but all adapters use the same retrieval primitives and fail-open recovery path.
 
@@ -43,7 +43,7 @@ Claude Code registers the maintained compiled adapter in `.claude/settings.json`
 
 The other native registrations are `.codex/hooks.json`, `.cursor/hooks.json`, and `.devin/hooks.v1.json`. Each points at the maintained runtime directory under `system-spec-kit/runtime/`; the Codex prompt adapter is registered and present at `.opencode/skills/system-spec-kit/runtime/dist/hooks/codex/user-prompt-submit.js`.
 
-OpenCode prompt-time advisor delivery is registered through `.opencode/plugins/system-skill-advisor.js`, which calls `.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/system-skill-advisor-bridge.mjs`. There is no checked-in `.opencode/settings.json` hook template; the one native OpenCode source adapter in this tree is the spec gate at `runtime/hooks/opencode/system-spec-gate.js`, and the Pi adapters live under `runtime/hooks/pi/`.
+OpenCode prompt-time advisor delivery is registered through `.opencode/plugins/system-skill-advisor.js`, which spawns the advisor CLI at `.opencode/bin/skill-advisor.cjs` directly. There is no checked-in `.opencode/settings.json` hook template; the one native OpenCode source adapter in this tree is the spec gate at `runtime/hooks/opencode/system-spec-gate.js`, and the Pi adapters live under `runtime/hooks/pi/`.
 
 ---
 
@@ -55,15 +55,15 @@ OpenCode prompt-time advisor delivery is registered through `.opencode/plugins/s
 | Codex | `UserPromptSubmit` | `SessionStart` | `PreCompact` | `Stop` | Native command hooks |
 | Cursor | `beforeSubmitPrompt` | `sessionStart` | `preCompact` | `sessionEnd` | Native command hooks |
 | Devin | `UserPromptSubmit` | `SessionStart` | runtime-specific lifecycle event | `Stop` | Native command hooks |
-| OpenCode | `experimental.chat.system.transform` | plugin `event` handlers | plugin event handlers | plugin event handlers | Skill Advisor plugin bridge |
+| OpenCode | `experimental.chat.system.transform` | plugin `event` handlers | plugin event handlers | plugin event handlers | Skill Advisor plugin |
 
-When a runtime cannot deliver automatic advisor context, use `/speckit:resume`, then the explicit memory or advisor fallback. OpenCode's bridge probes the warm advisor CLI and treats exit `75` as retryable fail-open behavior.
+When a runtime cannot deliver automatic advisor context, use `/speckit:resume`, then the explicit memory or advisor fallback. The OpenCode plugin probes the warm advisor CLI and treats exit `75` as retryable fail-open behavior.
 
 ---
 
 ## 4. HOOK LIFECYCLE
 
-1. **Prompt-time advisor** — native `UserPromptSubmit`/`beforeSubmitPrompt` adapters in Claude, Codex, Cursor, and Devin; `experimental.chat.system.transform` in the OpenCode plugin bridge.
+1. **Prompt-time advisor** — native `UserPromptSubmit`/`beforeSubmitPrompt` adapters in Claude, Codex, Cursor, and Devin; `experimental.chat.system.transform` in the OpenCode plugin.
 2. **Compaction** — runtime-specific compact hooks where registered; stdout is not assumed to be a model-visible channel during precompute.
 3. **Session start** — runtime-specific startup adapters prime the session with the shared recovery payload.
 4. **Session cleanup** — runtime-specific stop/end adapters record cleanup evidence where supported.
@@ -78,7 +78,7 @@ When a runtime cannot deliver automatic advisor context, use `/speckit:resume`, 
 | Codex | `runtime/hooks/codex/*.ts` | `runtime/dist/hooks/codex/*.js` |
 | Cursor | `runtime/hooks/cursor/*.ts` | `runtime/dist/hooks/cursor/*.js` |
 | Devin | `runtime/hooks/devin/*.ts` | `runtime/dist/hooks/devin/*.js` |
-| OpenCode | `.opencode/plugins/system-skill-advisor.js` and `.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/system-skill-advisor-bridge.mjs` | Plugin bridge entrypoint |
+| OpenCode | `.opencode/plugins/system-skill-advisor.js` | Plugin entrypoint; spawns `.opencode/bin/skill-advisor.cjs` |
 
 ---
 
@@ -114,7 +114,7 @@ The command checks project registration and project adapter paths. A report abou
 
 ## 8. OPENCODE TIMEOUT FALLBACK
 
-The timeout flag's ownership is the `system-skill-advisor` hub because its live consumers are `mcp-server/lib/subprocess.ts`, `mcp-server/lib/skill-advisor-brief.ts`, `mcp-server/plugin-bridges/system-skill-advisor-bridge.mjs`, and `mcp-server/scripts/skill_advisor.py`. See the advisor hub's runtime contract for `SPECKIT_OPENCODE_HOOK_TIMEOUT_MS` and its default `3000` ms. This sibling reference is a pointer, not the owner of that flag.
+The timeout flag's ownership is the `system-skill-advisor` hub because its live consumers are `runtime/lib/subprocess.ts` and `runtime/scripts/skill_advisor.py`. See the advisor hub's runtime contract for `SPECKIT_OPENCODE_HOOK_TIMEOUT_MS` and its default `3000` ms. This sibling reference is a pointer, not the owner of that flag.
 
 ---
 
@@ -122,7 +122,7 @@ The timeout flag's ownership is the `system-skill-advisor` hub because its live 
 
 ```bash
 npm --prefix .opencode/skills/system-spec-kit/runtime run build
-npm --prefix .opencode/skills/system-skill-advisor/mcp-server run build
+npm --prefix .opencode/skills/system-skill-advisor/runtime run build
 ```
 
 The complete adapter matrix and smoke commands live in [`skill-advisor-hook.md`](../../../system-skill-advisor/hooks/skill-advisor-hook.md).

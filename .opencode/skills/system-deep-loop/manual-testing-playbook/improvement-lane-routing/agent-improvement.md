@@ -68,7 +68,7 @@ Evaluate and score the code agent candidate, compare it against the current base
 
 1. **Advisor probe**:
    ```bash
-   python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py "Evaluate and score the code agent candidate, compare it against the current baseline, and recommend whether to promote or roll back the agent change." --threshold 0.8 > /tmp/dlw-IL-001/advisor.txt
+   python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "Evaluate and score the code agent candidate, compare it against the current baseline, and recommend whether to promote or roll back the agent change." --threshold 0.8 > /tmp/dlw-IL-001/advisor.txt
    ```
 2. **Invoke hub**: `Skill(system-deep-loop, "Evaluate and score the code agent candidate, compare it against the current baseline, and recommend whether to promote or roll back the agent change.")`.
 3. **Capture route**: save the AI response to `/tmp/dlw-IL-001/response.txt`.

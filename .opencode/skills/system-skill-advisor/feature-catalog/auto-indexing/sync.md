@@ -31,14 +31,14 @@ Persist derived extraction so the scorer and rebuild-from-source pipeline can bo
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/mcp-server/lib/derived/sync.ts` | Library | Source reference |
-| `.opencode/skills/system-skill-advisor/mcp-server/lib/derived/sanitizer.ts` | Library | Source reference |
+| `.opencode/skills/system-skill-advisor/runtime/lib/derived/sync.ts` | Library | Source reference |
+| `.opencode/skills/system-skill-advisor/runtime/lib/derived/sanitizer.ts` | Library | Source reference |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/mcp-server/tests/lifecycle-derived-metadata.vitest.ts` | Automated test | sync correctness and non-derived preservation |
+| `.opencode/skills/system-skill-advisor/runtime/tests/lifecycle-derived-metadata.vitest.ts` | Automated test | sync correctness and non-derived preservation |
 | `Playbook scenario [AI-001](../../manual-testing-playbook/auto-indexing/derived-extraction.md).` | Manual playbook | Source reference |
 
 ---

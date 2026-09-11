@@ -48,7 +48,7 @@ Expected result: the command lists the source files summarized below.
 
 **Step 3: Verify changes.**
 
-Load this folder through the owning skill workflow or MCP server entrypoint.
+Load this folder through the owning skill workflow and run the package test command from `runtime/`.
 
 ---
 

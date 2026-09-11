@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "system-skill-advisor/025-mcp-decommission-cli-front-door",
+  "description": "The skill advisor is the last subsystem in this framework's own runtime that ships an MCP server, and that server owns no behavior",
+  "keywords": [
+    "skill",
+    "advisor",
+    "last",
+    "subsystem",
+    "framework",
+    "own",
+    "runtime",
+    "ships",
+    "mcp",
+    "server",
+    "owns",
+    "behavior"
+  ],
+  "lastUpdated": "2026-09-11T17:23:14.378Z",
+  "specId": "025",
+  "folderSlug": "mcp-decommission-cli-front-door",
+  "parentChain": [
+    "system-skill-advisor"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

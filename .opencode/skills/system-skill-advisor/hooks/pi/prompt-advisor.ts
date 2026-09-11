@@ -45,9 +45,9 @@ function sessionIdFromContext(ctx: { sessionManager?: { getSessionId?: () => unk
 // lifecycle code directly removes that stall and lets its module-level prompt
 // cache work.
 const ADVISOR_HOOK_MODULE =
-  "../../.opencode/skills/system-skill-advisor/mcp-server/dist/hooks/claude/user-prompt-submit.js";
+  "../../.opencode/skills/system-skill-advisor/runtime/dist/hooks/claude/user-prompt-submit.js";
 const ADVISOR_HOOK_FALLBACK_MODULE =
-  "../../mcp-server/dist/hooks/claude/user-prompt-submit.js";
+  "../../runtime/dist/hooks/claude/user-prompt-submit.js";
 
 // ── Pi-local advisor-brief de-duplication ──────────────────────────
 // The advisor brief Pi appends onto the visible prompt is a dynamic route line

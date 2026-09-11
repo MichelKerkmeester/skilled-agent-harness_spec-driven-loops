@@ -32,7 +32,7 @@ Validate that `--threshold <value>` adjusts the confidence cutoff applied by the
 ## 2. SCENARIO CONTRACT
 
 - Repo root. Python 3 available.
-- MCP server built.
+- Advisor runtime built.
 - A prompt known to produce a middle-tier confidence candidate (for example around 0.7).
 
 ---
@@ -42,19 +42,19 @@ Validate that `--threshold <value>` adjusts the confidence cutoff applied by the
 1. Run at the default threshold:
 
 ```bash
-python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py "review this pull request" --threshold 0.8
+python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "review this pull request" --threshold 0.8
 ```
 
 2. Run at a looser threshold:
 
 ```bash
-python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py "review this pull request" --threshold 0.6
+python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "review this pull request" --threshold 0.6
 ```
 
 3. Run at a strict threshold:
 
 ```bash
-python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py "review this pull request" --threshold 0.95
+python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "review this pull request" --threshold 0.95
 ```
 
 4. Record the number of entries returned in each case.
@@ -81,7 +81,7 @@ python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.p
 - Scenario [PC-002](../../manual-testing-playbook/python-compat/force-native-force-local.md), force toggles.
 - Scenario [PC-004](../../manual-testing-playbook/python-compat/regression-suite.md), regression suite coverage of threshold behavior.
 - Feature [`python-compat/cli-shim.md`](../../feature-catalog/python-compat/cli-shim.md).
-- Source: `.opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py`.
+- Source: `.opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py`.
 
 ---
 
@@ -99,7 +99,7 @@ python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.p
 Command:
 
 ```bash
-python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py "review this pull request" --threshold 0.8
+python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "review this pull request" --threshold 0.8
 ```
 
 Output:
@@ -135,7 +135,7 @@ Entry count: 2
 Command:
 
 ```bash
-python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py "review this pull request" --threshold 0.6
+python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "review this pull request" --threshold 0.6
 ```
 
 Output:
@@ -171,7 +171,7 @@ Entry count: 2
 Command:
 
 ```bash
-python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py "review this pull request" --threshold 0.95
+python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "review this pull request" --threshold 0.95
 ```
 
 Output:

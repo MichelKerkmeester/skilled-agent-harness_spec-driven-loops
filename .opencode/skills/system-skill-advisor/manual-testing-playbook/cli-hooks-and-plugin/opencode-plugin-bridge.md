@@ -1,6 +1,6 @@
 ---
-title: "CL-005 OpenCode Plugin Bridge"
-description: "Manual validation for the OpenCode system-skill-advisor plugin and bridge."
+title: "CL-005 OpenCode Plugin"
+description: "Manual validation for the OpenCode system-skill-advisor plugin that spawns the advisor CLI."
 trigger_phrases:
   - "cl-005"
   - "opencode plugin bridge"
@@ -16,9 +16,9 @@ expected_leaf_resources:
     leaf_resource_id: hooks/skill-advisor-hook.md
 ---
 
-# CL-005 OpenCode Plugin Bridge
+# CL-005 OpenCode Plugin
 
-Prompt: Manual validation for the OpenCode system-skill-advisor plugin and bridge.
+Prompt: Manual validation for the OpenCode system-skill-advisor plugin that spawns the advisor CLI.
 
 
 <!-- sk-doc-template: manual_testing_playbook -->
@@ -27,61 +27,63 @@ Prompt: Manual validation for the OpenCode system-skill-advisor plugin and bridg
 
 ## 1. OVERVIEW
 
-Validate the OpenCode plugin path that delegates through the stable native compat entrypoint, then falls back to Python brief production when needed.
+Validate the OpenCode plugin path, which spawns the advisor CLI and falls back to Python brief production when needed.
 
 ---
 
 ## 2. SCENARIO CONTRACT
 
-- MCP server build is current.
+- Advisor runtime build is current.
 - Plugin host file exists at `.opencode/plugins/system-skill-advisor.js`.
-- Bridge helper exists at `.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/system-skill-advisor-bridge.mjs`.
+- The plugin reaches the advisor by spawning `.opencode/bin/skill-advisor.cjs`.
 
 ---
 
 ## 3. TEST EXECUTION
 
-1. Build:
+1. Build the advisor runtime the CLI and daemon run from:
 
 ```bash
-npm --prefix .opencode/skills/system-spec-kit/runtime run build
+npm --prefix .opencode/skills/system-skill-advisor/runtime install
+npm --prefix .opencode/skills/system-skill-advisor/runtime run build
 ```
 
-2. Run bridge directly:
+2. Run the plugin's advisor call path directly:
 
 ```bash
-printf '%s' '{"prompt":"save this conversation context to memory","workspaceRoot":"'"$PWD"'","runtime":"opencode","maxTokens":80,"thresholdConfidence":0.8}' | node .opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/system-skill-advisor-bridge.mjs
+node .opencode/bin/skill-advisor.cjs advisor_recommend --prompt "save this conversation context to memory" \
+  --options '{"topK":3,"includeAttribution":false,"includeAbstainReasons":true,"confidenceThreshold":0.8,"uncertaintyThreshold":0.35}' --format json
 ```
 
-3. Inspect plugin status tool in OpenCode, when available:
+3. Inspect the plugin status tool through its test (runs without an interactive OpenCode session):
 
-```text
-spec_kit_skill_advisor_status({})
+```bash
+npm --prefix .opencode/skills/system-skill-advisor/runtime run test -- tests/system-skill-advisor-plugin.vitest.ts
 ```
 
 ### Expected Signals
 
-- Bridge returns JSON with `status: "ok"` or prompt-safe fail-open status.
-- Native success has `metadata.route: "native"` and an `Advisor:` brief.
-- Success metadata reports the 014 threshold pair: `confidenceThreshold: 0.8`, `uncertaintyThreshold: 0.35`, `confidenceOnly: false`.
-- Bridge imports `.opencode/skills/system-skill-advisor/mcp-server/dist/mcp-server/compat/index.js`, not private handler paths.
-- Disable flag returns a disabled brief or skipped state without invoking the native path.
+- The advisor call returns JSON with `status: "ok"` or a prompt-safe fail-open status.
+- Native success carries an `Advisor:` brief rendered from the CLI payload (`route: "cli"`, or `cli-local-scorer` when the daemon was unreachable).
+- The payload's `effectiveThresholds` report the 014 threshold pair: `confidenceThreshold: 0.8`, `uncertaintyThreshold: 0.35`, `confidenceOnly: false`.
+- The plugin spawns `.opencode/bin/skill-advisor.cjs` and never private handler paths.
+- `SYSTEM_SKILL_ADVISOR_HOOK_DISABLED=1` (or `SYSTEM_SKILL_ADVISOR_PLUGIN_DISABLED=1` for the plugin alone) yields a disabled brief without spawning the advisor. The legacy `SPECKIT_`-prefixed names still work.
 
 ### Failure Modes
 
 | Symptom | Detection | Action |
 | --- | --- | --- |
-| Private dist pinning | Bridge imports handler internals directly | Update bridge to use `compat/index.ts` after code approval. |
+| Private dist pinning | Plugin imports handler internals directly | Update the plugin to spawn the advisor CLI instead. |
 | Plugin disabled unexpectedly | Status tool reports `disabled_reason` | Check env and plugin options. |
-| Bridge timeout | `error: "TIMEOUT"` | Inspect build and Node binary path. |
+| CLI timeout | `error: "TIMEOUT"` | Inspect build and Node binary path. |
 
 ---
 
 ## 4. SOURCE FILES
 
 - `.opencode/plugins/system-skill-advisor.js`
-- `.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/system-skill-advisor-bridge.mjs`
-- `.opencode/skills/system-skill-advisor/mcp-server/compat/index.ts`
+- `.opencode/bin/skill-advisor.cjs`
+- `.opencode/skills/system-skill-advisor/runtime/tests/system-skill-advisor-plugin.vitest.ts`
 
 ---
 
@@ -99,107 +101,72 @@ spec_kit_skill_advisor_status({})
 Preconditions observed:
 
 ```text
-.opencode/plugins/system-skill-advisor.js read successfully; total 747 lines.
-.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/system-skill-advisor-bridge.mjs read successfully; total 935 lines.
-.opencode/skills/system-skill-advisor/mcp-server/compat/index.ts read successfully; total 9 lines.
+.opencode/plugins/system-skill-advisor.js read successfully; total 1476 lines.
+.opencode/bin/skill-advisor.cjs read successfully; total 116 lines.
+.opencode/skills/system-skill-advisor/runtime/dist/runtime/advisor-server.js present; 15675 bytes.
+.opencode/skills/system-skill-advisor/runtime/dist/runtime/lib/render.js present; 15501 bytes.
 ```
 
-Build command:
+Advisor CLI command (step 2), run from the repository root:
 
 ```bash
-npm --prefix .opencode/skills/system-spec-kit/runtime run build
+node .opencode/bin/skill-advisor.cjs advisor_recommend --prompt "save this conversation context to memory" \
+  --options '{"topK":3,"includeAttribution":false,"includeAbstainReasons":true,"confidenceThreshold":0.8,"uncertaintyThreshold":0.35}' --format json
 ```
 
-Build output:
-
-```text
-> @spec-kit/runtime@1.8.0 build
-> tsc --build && node scripts/finalize-dist.mjs
-```
-
-Bridge command:
-
-```bash
-printf '%s' '{"prompt":"save this conversation context to memory","workspaceRoot":"'"$PWD"'","runtime":"opencode","maxTokens":80,"thresholdConfidence":0.8}' | node .opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/system-skill-advisor-bridge.mjs
-```
-
-Bridge output:
-
-```json
-{"brief":null,"status":"skipped","metadata":{"route":"native","workspaceRoot":"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public","effectiveThresholds":{"confidenceThreshold":0.8,"uncertaintyThreshold":0.35,"confidenceOnly":false},"freshness":"unavailable","generation":9476,"cacheHit":false,"recommendationCount":0,"tokenCap":80,"skillLabel":null,"status":null,"redirectTo":null,"redirectFrom":[]}}
-```
-
-OpenCode status tool command:
-
-```text
-spec_kit_skill_advisor_status({})
-```
-
-OpenCode status tool output:
-
-```text
-plugin_id=system-skill-advisor
-enabled=true
-disabled_reason=none
-cache_ttl_ms=300000
-threshold_confidence=0.8
-max_tokens=80
-max_prompt_bytes=65536
-max_brief_chars=2048
-max_cache_entries=1000
-runtime_ready=true
-node_binary=node
-bridge_timeout_ms=10000
-bridge_path=[skill-advisor-bridge]
-last_bridge_status=skipped
-last_runtime_status=skipped
-last_error_code=none
-last_runtime_error=none
-last_duration_ms=453
-bridge_invocations=8
-advisor_lookups=8
-cache_entries=0
-cache_hits=0
-cache_misses=8
-cache_hit_rate=0
-```
-
-Bridge import path evidence from `.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/system-skill-advisor-bridge.mjs`:
-
-```js
-const compat = await import(new URL('../dist/mcp-server/compat/index.js', import.meta.url));
-```
-
-Disable flag contract evidence from `.opencode/skills/system-skill-advisor/mcp-server/schemas/compat-contract.json`:
+Advisor CLI output (exit code 0; response abbreviated to the routing fields):
 
 ```json
 {
-  "statusValues": ["ok", "skipped", "degraded", "fail_open"],
-  "disabledEnv": "SPECKIT_SKILL_ADVISOR_HOOK_DISABLED",
-  "forceLocalEnv": "SPECKIT_SKILL_ADVISOR_FORCE_LOCAL",
-  "defaults": {
-    "confidenceThreshold": 0.8,
-    "uncertaintyThreshold": 0.35
+  "status": "ok",
+  "data": {
+    "freshness": "stale",
+    "trustState": { "state": "stale", "reason": "advisor-server-startup-scan", "generation": 256 },
+    "recommendations": [
+      { "skillId": "system-spec-kit", "confidence": 0.9423, "status": "active" }
+    ],
+    "effectiveThresholds": { "confidenceThreshold": 0.8, "uncertaintyThreshold": 0.35, "confidenceOnly": false }
   }
 }
 ```
 
-Disabled bridge command:
+The call exits 0 whether the daemon answer is `live` or `stale`; `stale` is the prompt-safe degraded result the plugin renders, not a failed run.
+
+Plugin test command (step 3):
 
 ```bash
-printf '%s' '{"prompt":"save this conversation context to memory","workspaceRoot":"'"$PWD"'","runtime":"opencode","maxTokens":80,"thresholdConfidence":0.8}' | SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1 node .opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/system-skill-advisor-bridge.mjs
+npm --prefix .opencode/skills/system-skill-advisor/runtime run test -- tests/system-skill-advisor-plugin.vitest.ts
 ```
 
-Disabled bridge output:
+Plugin test output:
 
-```json
-{"brief":null,"status":"skipped","metadata":{"route":"disabled","freshness":"unavailable","recommendationCount":0}}
+```text
+ Test Files  1 passed (1)
+      Tests  40 passed (40)
+   Duration  1.93s
 ```
+
+Disable-flag evidence, from the same test file selected with `-t opt-out`:
+
+```text
+ Test Files  1 passed (1)
+      Tests  3 passed | 37 skipped (40)
+```
+
+The three opt-out paths are `env opt-out disables bridge invocation`, `shared hook env opt-out disables bridge invocation` and `config opt-out disables bridge invocation`. Each asserts that no advisor process is spawned and that the status tool reports `enabled=false` with the matching `disabled_reason`.
+
+Plugin source evidence from `.opencode/plugins/system-skill-advisor.js`:
+
+```js
+const ADVISOR_CLI_PATH = fileURLToPath(new URL('../bin/skill-advisor.cjs', import.meta.url));
+```
+
+The plugin resolves the CLI by path and spawns it; it never imports a bridge harness or a private handler module.
 
 ---
 
 ## 7. PASS/FAIL
 
-FAIL
+PASS
 
-The bridge preconditions and build succeeded, the bridge imported `../dist/mcp-server/compat/index.js`, threshold metadata matched `confidenceThreshold: 0.8`, `uncertaintyThreshold: 0.35`, and `confidenceOnly: false`, and the disable flag returned a skipped disabled route. However, the direct bridge invocation returned `status:"skipped"`, `brief:null`, `freshness:"unavailable"`, and did not produce an `Advisor:` brief, so the native success expected signal did not hold.
+The advisor CLI call exited 0 with `status: "ok"`, the 014 threshold pair (`confidenceThreshold: 0.8`, `uncertaintyThreshold: 0.35`, `confidenceOnly: false`) and ranked recommendations, so the CLI path the plugin spawns is live. The plugin test suite then passed 40/40, including the brief-rendering, cache, timeout, fail-open and opt-out paths, and its `-t opt-out` selection proved all three disable routes spawn no advisor process and report `enabled=false`. A `stale` trust state is the documented degraded answer, not a failed run: the plugin renders it as the prompt-safe brief.

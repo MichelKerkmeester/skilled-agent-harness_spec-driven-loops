@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/025-mcp-decommission-cli-front-door/006-runtime-package-rename",
+  "spec_folder": "system-skill-advisor/025-mcp-decommission-cli-front-door/006-runtime-package-rename",
+  "parent_id": "system-skill-advisor/025-mcp-decommission-cli-front-door",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "advisor package rename",
+      "advisor runtime directory",
+      "mcp-server rename",
+      "advisor path migration",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies"
+    ],
+    "key_topics": [
+      "advisor",
+      "package",
+      "rename",
+      "runtime",
+      "directory",
+      "mcp-server",
+      "path",
+      "migration",
+      "implementation",
+      "plan",
+      "technical",
+      "approach"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".opencode/bin/skill-advisor.cjs",
+      ".opencode/bin/system-skill-advisor-launcher.cjs",
+      ".opencode/plugins/system-skill-advisor.js",
+      ".opencode/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/skill-advisor.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "system-skill-advisor-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/system-skill-advisor-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "system-skill-advisor.js",
+        "kind": "code",
+        "path": ".opencode/plugins/system-skill-advisor.js",
+        "source": "derived"
+      },
+      {
+        "name": "dist-freshness.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Clean Architecture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The directory name is the last thing in the package still claiming an MCP server",
+    "created_at": "2026-09-11T06:49:03Z",
+    "last_save_at": "2026-09-11T14:37:59.537Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ced896f25edf1cda241999210fcda064111498fcfce44f8727535f1b18208b21",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "ad9f9d18e21985ad43e8d270b4232c7f56275d7253216314e609d2c1d8e3d18a",
+      "plan.md": "623be3502e9a0671d7dbb59e7536509be62e612f06a0036e968e8b3273adcb7d",
+      "tasks.md": "dbc2f006eff5759eda32e4de64029466791990a4700a6bf149f6e301d5c262c0",
+      "implementation-summary.md": "7432d0d2c6bbf14af1e2198c4a72615868e1c4305c783fbe0190f30582469142"
+    },
+    "last_active_at": null
+  }
+}

@@ -73,12 +73,12 @@ field_handling:
 # ─────────────────────────────────────────────────────────────────
 mutation_boundaries:
   allowed_targets:
-    - ".opencode/skills/system-skill-advisor/mcp-server/lib/scorer/lanes/explicit.ts"
-    - ".opencode/skills/system-skill-advisor/mcp-server/lib/scorer/lanes/lexical.ts"
+    - ".opencode/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts"
+    - ".opencode/skills/system-skill-advisor/runtime/lib/scorer/lanes/lexical.ts"
     - ".opencode/skills/*/graph-metadata.json"
   forbidden_targets:
     - ".opencode/skills/*/SKILL.md (content)"
-    - ".opencode/skills/system-skill-advisor/mcp-server/lib/scorer/weights-config.ts"
+    - ".opencode/skills/system-skill-advisor/runtime/lib/scorer/weights-config.ts"
     - "Any fusion scorer or daemon code"
   enforcement: "Phase 3 first activity (validate_targets) runs canonical-path validation BEFORE any write. Failure halts before mutation."
   validator:
@@ -200,13 +200,13 @@ approval_gates:
 # ─────────────────────────────────────────────────────────────────
 scoring_sources:
   explicit_ts:
-    path: ".opencode/skills/system-skill-advisor/mcp-server/lib/scorer/lanes/explicit.ts"
+    path: ".opencode/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts"
     fields: ["TOKEN_BOOSTS", "PHRASE_BOOSTS"]
   lexical_ts:
-    path: ".opencode/skills/system-skill-advisor/mcp-server/lib/scorer/lanes/lexical.ts"
+    path: ".opencode/skills/system-skill-advisor/runtime/lib/scorer/lanes/lexical.ts"
     fields: ["CATEGORY_HINTS"]
   weights_config_ts:
-    path: ".opencode/skills/system-skill-advisor/mcp-server/lib/scorer/weights-config.ts"
+    path: ".opencode/skills/system-skill-advisor/runtime/lib/scorer/weights-config.ts"
     fields: ["read-only - lane weights"]
   graph_metadata_per_skill:
     path: ".opencode/skills/{skill}/graph-metadata.json"
@@ -298,7 +298,7 @@ workflow:
       - "STEP 6 edit explicit.ts (only when approved scoped diff contains explicit changes)"
       - "STEP 7 edit lexical.ts (only when approved scoped diff contains lexical changes)"
       - "STEP 8 update graph-metadata.json per skill (only when approved scoped diff contains derived changes)"
-      - "STEP 9 rebuild dist: npm --prefix .opencode/skills/system-skill-advisor/mcp-server run build"
+      - "STEP 9 rebuild dist: npm --prefix .opencode/skills/system-skill-advisor/runtime run build"
       - "STEP 10 track applied changes per file for audit trail"
       - "STEP 11 display summary, then trigger pre_phase_4 approval gate"
     outputs:

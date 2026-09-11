@@ -52,8 +52,8 @@ routes:
     allowed_flags: []
     mutating: read-only
     gate3_location: "n/a (read-only provider and model-server status)"
-    mcp_tools:
-      - mcp__system_skill_advisor__advisor_status   # the shared HF model-server's surviving owner
+    cli_commands:
+      - 'node .opencode/bin/skill-advisor.cjs advisor_status --format json'   # the shared HF model-server's surviving owner
     trigger_phrases:
       - "embedding provider status"
       - "hf-local model-server health"
@@ -83,15 +83,15 @@ routes:
     allowed_flags: ["--skip-tests", "--dry-run", "--scope=all|explicit|derived|lexical"]
     mutating: mutates
     gate3_location: "lib/scorer/lanes/*.ts + .opencode/skills/*/graph-metadata.json"
-    mcp_tools:
-      - mcp__system_skill_advisor__advisor_recommend
-      - mcp__system_skill_advisor__advisor_status
-      - mcp__system_skill_advisor__advisor_validate
-      - mcp__system_skill_advisor__advisor_rebuild
-      - mcp__system_skill_advisor__skill_graph_scan
-      - mcp__system_skill_advisor__skill_graph_validate
-      - mcp__system_skill_advisor__skill_graph_query
-      - mcp__system_skill_advisor__skill_graph_status
+    cli_commands:
+      - 'node .opencode/bin/skill-advisor.cjs advisor_recommend --format json'
+      - 'node .opencode/bin/skill-advisor.cjs advisor_status --format json'
+      - 'node .opencode/bin/skill-advisor.cjs advisor_validate --format json'
+      - 'node .opencode/bin/skill-advisor.cjs advisor_rebuild --format json'
+      - 'node .opencode/bin/skill-advisor.cjs skill_graph_scan --format json'
+      - 'node .opencode/bin/skill-advisor.cjs skill_graph_validate --format json'
+      - 'node .opencode/bin/skill-advisor.cjs skill_graph_query --format json'
+      - 'node .opencode/bin/skill-advisor.cjs skill_graph_status --format json'
     script_invocations:
       - 'Warm-only: probe the existing system-skill-advisor IPC socket first; only when it answers, run node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --format json --timeout-ms 500 --warm-only (the flag guarantees no daemon start; exit 75 = backend unavailable, retryable)'
     trigger_phrases:

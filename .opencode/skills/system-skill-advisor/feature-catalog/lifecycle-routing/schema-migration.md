@@ -31,14 +31,14 @@ Evolve graph metadata without breaking existing snapshots. Additive-only migrati
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/mcp-server/lib/lifecycle/schema-migration.ts` | Library | Source reference |
-| `.opencode/skills/system-skill-advisor/mcp-server/lib/lifecycle/rollback.ts` | Library | Source reference |
+| `.opencode/skills/system-skill-advisor/runtime/lib/lifecycle/schema-migration.ts` | Library | Source reference |
+| `.opencode/skills/system-skill-advisor/runtime/lib/lifecycle/rollback.ts` | Library | Source reference |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/mcp-server/tests/lifecycle-derived-metadata.vitest.ts` | Automated test | migration and rollback invariants |
+| `.opencode/skills/system-skill-advisor/runtime/tests/lifecycle-derived-metadata.vitest.ts` | Automated test | migration and rollback invariants |
 | `Playbook scenario [LC-004](../../manual-testing-playbook/lifecycle-routing/schema-migration.md).` | Manual playbook | Source reference |
 
 ---

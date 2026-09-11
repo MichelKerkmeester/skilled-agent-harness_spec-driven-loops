@@ -52,7 +52,7 @@ Prompt: `Add a retry wrapper with exponential backoff, jitter, a circuit breaker
 
 1. **Advisor probe**:
    ```
-   bash: python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py "Add a retry wrapper with exponential backoff, jitter, a circuit breaker, and a pluggable metrics sink to the fetchConfig() startup call." --threshold 0.8 > /tmp/skc-DR002-advisor.txt
+   bash: python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "Add a retry wrapper with exponential backoff, jitter, a circuit breaker, and a pluggable metrics sink to the fetchConfig() startup call." --threshold 0.8 > /tmp/skc-DR002-advisor.txt
    ```
 2. **Verify**: top-1 == `sk-code`, score >= 0.80.
 3. **Invoke sk-code** with the exact prompt.

@@ -2,7 +2,7 @@
 # ───────────────────────────────────────────────────────────────
 # COMPONENT: SYSTEM SKILL ADVISOR DOCTOR
 # ───────────────────────────────────────────────────────────────
-# Read-only health check for the system-skill-advisor MCP server.
+# Read-only health check for the system-skill-advisor runtime.
 # Critical risk: @huggingface/transformers downloads Jina embedding
 # models on first use; can fail silently if disk or network is
 # constrained at install time.
@@ -12,14 +12,14 @@
 # Exit Codes:
 #   0  - Health checks passed (or advisory mode complete)
 #   1  - Invalid arguments
-#   20 - mcp_server dist missing
-#   26 - Runtime Node imports missing (HF transformers, better-sqlite3, MCP SDK)
+#   20 - advisor runtime dist missing
+#   26 - Runtime Node imports missing (HF transformers, better-sqlite3, zod)
 
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SKILL_DIR="$(dirname "$SCRIPT_DIR")"
-MCP_DIR="$SKILL_DIR/mcp-server"
+MCP_DIR="$SKILL_DIR/runtime"
 
 STRICT_MODE=false
 while [[ $# -gt 0 ]]; do
@@ -34,14 +34,14 @@ log_pass() { printf '  PASS: %s\n' "$1"; }
 log_warn() { printf '  WARN: %s\n' "$1"; }
 
 echo "=== system-skill-advisor Doctor ==="
-echo "MCP server: $MCP_DIR"
+echo "Advisor runtime: $MCP_DIR"
 echo ""
 
 if [[ ! -d "$MCP_DIR/dist" ]]; then
-    log_warn "MCP server dist missing at $MCP_DIR/dist — run \`npm run build\` in $MCP_DIR."
+    log_warn "Advisor runtime dist missing at $MCP_DIR/dist — run \`npm run build\` in $MCP_DIR."
     exit 20
 fi
-log_pass "MCP server dist present"
+log_pass "Advisor runtime dist present"
 
 NODE_BIN="$(command -v node || true)"
 if [[ -z "$NODE_BIN" ]]; then
@@ -54,15 +54,15 @@ log_pass "Node interpreter: $NODE_BIN"
 # Critical runtime imports for the skill advisor.
 # @huggingface/transformers is heaviest (model downloads at first use).
 # better-sqlite3 backs the skill-graph cache.
-# zod for schema validation; MCP SDK for the server.
-DEP_CHECK_MODULES="@huggingface/transformers better-sqlite3 @modelcontextprotocol/sdk/server/index.js zod"
+# zod for schema validation.
+DEP_CHECK_MODULES="@huggingface/transformers better-sqlite3 zod"
 DEP_CHECK_MISSING=()
 for mod in $DEP_CHECK_MODULES; do
     ( cd "$MCP_DIR" && "$NODE_BIN" -e "require('$mod')" 2>/dev/null ) || DEP_CHECK_MISSING+=("$mod")
 done
 
 if [[ ${#DEP_CHECK_MISSING[@]} -eq 0 ]]; then
-    log_pass "Runtime imports OK (@huggingface/transformers + better-sqlite3 + MCP SDK + zod)"
+    log_pass "Runtime imports OK (@huggingface/transformers + better-sqlite3 + zod)"
 else
     log_warn "Runtime imports FAILED — missing modules: ${DEP_CHECK_MISSING[*]}"
     echo "  Fix via: ( cd $MCP_DIR && npm install )"

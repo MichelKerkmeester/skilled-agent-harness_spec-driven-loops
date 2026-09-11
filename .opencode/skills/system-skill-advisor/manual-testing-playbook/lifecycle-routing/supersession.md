@@ -32,7 +32,7 @@ Validate that `lib/lifecycle/supersession.ts` implements asymmetric routing: a s
 ## 2. SCENARIO CONTRACT
 
 - A workspace containing a known superseded-successor pair in skill metadata (or a disposable copy with a synthetic pair).
-- MCP server built. Daemon reachable.
+- Advisor runtime built. Daemon reachable.
 - `includeAttribution: true` and `topK >= 2` on recommendation calls.
 
 ---
@@ -45,7 +45,7 @@ Validate that `lib/lifecycle/supersession.ts` implements asymmetric routing: a s
 2. Call `advisor_recommend` with a prompt that historically mapped to the superseded skill:
 
 ```text
-advisor_recommend({"prompt":"<prompt mapping to superseded skill>","options":{"topK":2,"includeAttribution":true}})
+node .opencode/bin/skill-advisor.cjs advisor_recommend --prompt "<prompt mapping to superseded skill>" --options '{"topK":2,"includeAttribution":true}' --format json
 ```
 
 3. Inspect the response for redirect metadata.
@@ -70,10 +70,10 @@ advisor_recommend({"prompt":"<prompt mapping to superseded skill>","options":{"t
 
 ## 4. SOURCE FILES
 
-- Scenario [NC-005](../../manual-testing-playbook/native-mcp-tools/lifecycle-redirect-metadata.md), native MCP redirect metadata.
+- Scenario [NC-005](../../manual-testing-playbook/native-cli-tools/lifecycle-redirect-metadata.md), native redirect metadata.
 - Scenario [LC-005](../../manual-testing-playbook/lifecycle-routing/rollback-lifecycle.md), lifecycle-level rollback.
 - Feature [`lifecycle-routing/supersession.md`](../../feature-catalog/lifecycle-routing/supersession.md).
-- Source: `.opencode/skills/system-skill-advisor/mcp-server/lib/lifecycle/supersession.ts`.
+- Source: `.opencode/skills/system-skill-advisor/runtime/lib/lifecycle/supersession.ts`.
 
 ---
 

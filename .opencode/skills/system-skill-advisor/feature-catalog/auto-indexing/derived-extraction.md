@@ -31,14 +31,14 @@ Automatically generate routing-ready derived entries for every skill without han
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/mcp-server/lib/derived/extract.ts` | Library | Source reference |
-| `.opencode/skills/system-skill-advisor/mcp-server/lib/derived/sync.ts` | Library | Source reference |
+| `.opencode/skills/system-skill-advisor/runtime/lib/derived/extract.ts` | Library | Source reference |
+| `.opencode/skills/system-skill-advisor/runtime/lib/derived/sync.ts` | Library | Source reference |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/mcp-server/tests/lifecycle-derived-metadata.vitest.ts` | Automated test | derived-sync correctness |
+| `.opencode/skills/system-skill-advisor/runtime/tests/lifecycle-derived-metadata.vitest.ts` | Automated test | derived-sync correctness |
 | `Playbook scenario [AI-001](../../manual-testing-playbook/auto-indexing/derived-extraction.md).` | Manual playbook | Source reference |
 
 ---

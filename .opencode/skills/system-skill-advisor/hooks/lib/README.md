@@ -29,7 +29,7 @@ description: "Warm-daemon CLI fallback that the skill-advisor prompt hook falls 
 
 ## 4. TESTS
 
-- `.opencode/skills/system-skill-advisor/mcp-server/tests/hooks/skill-advisor-cli-fallback-envelope.vitest.ts`
+- `.opencode/skills/system-skill-advisor/runtime/tests/hooks/skill-advisor-cli-fallback-envelope.vitest.ts`
 
 ---
 

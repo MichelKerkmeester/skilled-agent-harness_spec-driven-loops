@@ -18,7 +18,7 @@ operating_mode:
   read_only: true
 
 embeddings_doctor_invariant: |
-  Embeddings doctor is strictly read-only. It calls mcp__system_skill_advisor__advisor_status
+  Embeddings doctor is strictly read-only. It calls node .opencode/bin/skill-advisor.cjs advisor_status
   and reports provider resolution, fallback reason, and model-server metadata already exposed
   by the advisor, which is the surviving owner of the shared HF model server after the
   continuity server's decommission. It never manages model-server lifecycle; launchers own that.
@@ -37,7 +37,7 @@ mutation_boundaries:
   allowed_targets: []
   forbidden_targets:
     - "**/*"
-  invariant: "This workflow is report-only. It may call mcp__system_skill_advisor__advisor_status and print output, but it must not write files, change databases, alter env, or manage processes."
+  invariant: "This workflow is report-only. It may call node .opencode/bin/skill-advisor.cjs advisor_status and print output, but it must not write files, change databases, alter env, or manage processes."
 
 # ─────────────────────────────────────────────────────────────────
 # WORKFLOW
@@ -46,7 +46,7 @@ workflow:
   phase_0_status:
     purpose: "Read the current embedding provider and model-server status."
     activities:
-      - "Call: mcp__system_skill_advisor__advisor_status({})"
+      - "Call: node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root $PWD --format json"
       - "Read data.embeddings.provider.requestedProvider, effectiveProvider, fallbackReason, and dimensionChanged."
       - "If data.embeddings.modelServer is present, read model, dim, dtype, healthy, serverState, loaded, baseUrl, loadStartedAt, loadProgressAt, and loadTimeMs."
       - "Report any data.embeddings.modelServerError as diagnostic context."

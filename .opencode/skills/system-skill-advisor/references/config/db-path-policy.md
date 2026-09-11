@@ -30,12 +30,12 @@ Defines the package-local SQLite database location for the standalone advisor ru
 
 ### Core Principle
 
-The advisor owns its SQLite state inside `system-skill-advisor`; adjacent MCP packages must not become competing writers.
+The advisor owns its SQLite state inside `system-skill-advisor`; adjacent packages must not become competing writers.
 
 ### Key Sources
 
-- `mcp-server/lib/skill-graph/skill-graph-db.ts`
-- `mcp-server/database/README.md`
+- `runtime/lib/skill-graph/skill-graph-db.ts`
+- `runtime/database/README.md`
 
 ---
 
@@ -44,7 +44,7 @@ The advisor owns its SQLite state inside `system-skill-advisor`; adjacent MCP pa
 The advisor database lives inside the standalone advisor skill package:
 
 ```text
-.opencode/skills/system-skill-advisor/mcp-server/database/skill-graph.sqlite
+.opencode/skills/system-skill-advisor/runtime/database/skill-graph.sqlite
 ```
 
 It must not live under:
@@ -69,7 +69,7 @@ ADR-001 constraint A requires DB-local ownership for the extracted advisor. The 
 This separation gives cleaner mutation scope:
 
 - `/doctor:update` and future repair flows can reason per skill package.
-- The advisor MCP server can be the single writer for `skill-graph.sqlite`.
+- The advisor daemon is the single writer for `skill-graph.sqlite`.
 - `system-spec-kit` keeps memory and spec packet state without owning advisor runtime data.
 - Backups, cleanup and integrity checks can target the advisor package directly.
 
@@ -83,12 +83,12 @@ Production and operator docs should treat the package-local path as the default.
 
 ### Child-process `MEMORY_DB_PATH` pointer
 
-`system-skill-advisor-launcher.cjs`'s `createChildEnv()` sets the advisor MCP child's `MEMORY_DB_PATH` (the env var `@spec-kit/shared/embeddings/factory.ts` reads to resolve which database's `active_embedder_*` pointer to use) explicitly to this policy's package-local `skill-graph.sqlite` path by default. A bare ambient `MEMORY_DB_PATH` in the parent process is never honored as an override, whoever set it, since that would silently re-collocate the advisor's embedder-pointer resolution with another package's database and defeat this policy's separation. To override for tests/CI only, set the dedicated `SYSTEM_SKILL_ADVISOR_MEMORY_DB_PATH` var instead.
+`system-skill-advisor-launcher.cjs`'s `createChildEnv()` sets the advisor daemon child's `MEMORY_DB_PATH` (the env var `@spec-kit/shared/embeddings/factory.ts` reads to resolve which database's `active_embedder_*` pointer to use) explicitly to this policy's package-local `skill-graph.sqlite` path by default. A bare ambient `MEMORY_DB_PATH` in the parent process is never honored as an override, whoever set it, since that would silently re-collocate the advisor's embedder-pointer resolution with another package's database and defeat this policy's separation. To override for tests/CI only, set the dedicated `SYSTEM_SKILL_ADVISOR_MEMORY_DB_PATH` var instead.
 
 ---
 
 ## 5. MIGRATION NOTES
 
-Current package state keeps the database under `mcp-server/database/` and exposes it through the standalone `system_skill_advisor` MCP server.
+Current package state keeps the database under `runtime/database/` and serves it through the standalone daemon behind `node .opencode/bin/skill-advisor.cjs`.
 
 The `skill_graph_*` handlers and the lower-level `lib/skill-graph/` database/query library are advisor-owned and package-local.

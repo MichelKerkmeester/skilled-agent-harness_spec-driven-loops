@@ -18,7 +18,7 @@ export const SOCKET_FILE_NAME = 'daemon-ipc.sock';
 // SPECKIT_IPC_SOCKET_DIR. It names the skill-advisor daemon because that is the one daemon
 // whose launcher already pins this path, and it MUST stay byte-identical to
 // DEFAULT_SOCKET_DIR in .opencode/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts
-// and .opencode/skills/system-skill-advisor/mcp-server/skill-advisor-cli.ts, or the daemon and
+// and .opencode/skills/system-skill-advisor/runtime/skill-advisor-cli.ts, or the daemon and
 // its CLI probe bind different addresses. Any other daemon MUST pass its own directory:
 // daemon-ipc.sock is a per-service name, so two services sharing this fallback would collide.
 const DEFAULT_DAEMON_SOCKET_DIR = '/tmp/system-skill-advisor';
@@ -45,9 +45,19 @@ interface McpServerLike {
   connect(transport: StdioServerTransport): Promise<void>;
 }
 
+// A frame handler makes the bridge protocol-agnostic: the caller owns the frame
+// vocabulary (envelope, methods, error codes) while this module keeps owning bind,
+// reclaim, the client cap, and the shared activity counters. Returning null or
+// undefined writes nothing, which is how a notification is answered.
+export type IpcFrameHandler = (frame: unknown) => unknown | Promise<unknown>;
+
 interface IpcSocketServerOptions {
   readonly socketPath: string;
-  readonly createServer: () => McpServerLike;
+  // Exactly one of createServer / frameHandler serves an accepted connection.
+  // createServer keeps the original MCP-stdio wrapping for existing daemons;
+  // frameHandler serves newline-delimited JSON without any transport wrapper.
+  readonly createServer?: () => McpServerLike;
+  readonly frameHandler?: IpcFrameHandler;
   readonly maxClients?: number;
   readonly log?: (message: string) => void;
   readonly onActivity?: () => void;
@@ -337,6 +347,51 @@ async function disposeActiveServer(): Promise<void> {
   activeSocketPath = null;
 }
 
+// Frame-handler connection: newline-delimited JSON in, one JSON line out per
+// handled frame. Frames are handled strictly in order so a slow call cannot have a
+// later frame overtake it, and a line that does not parse closes the connection —
+// a peer that lost a delimiter cannot be resynchronised.
+function serveFrameHandlerConnection(
+  socket: net.Socket,
+  handler: IpcFrameHandler,
+  log: (message: string) => void,
+): void {
+  let buffer = '';
+  let queue: Promise<void> = Promise.resolve();
+
+  socket.on('data', (chunk: Buffer | string) => {
+    buffer += Buffer.isBuffer(chunk) ? chunk.toString('utf8') : String(chunk ?? '');
+    let newlineIndex = buffer.indexOf('\n');
+    while (newlineIndex !== -1) {
+      const line = buffer.slice(0, newlineIndex).trim();
+      buffer = buffer.slice(newlineIndex + 1);
+      newlineIndex = buffer.indexOf('\n');
+      if (!line) continue;
+      let frame: unknown;
+      try {
+        frame = JSON.parse(line);
+      } catch {
+        log('[ipc-bridge] closing connection on unparseable frame');
+        socket.destroy();
+        return;
+      }
+      queue = queue
+        .then(async () => {
+          if (socket.destroyed) return;
+          const response = await handler(frame);
+          if (socket.destroyed) return;
+          if (response !== null && response !== undefined) {
+            socket.write(`${JSON.stringify(response)}\n`);
+          }
+        })
+        .catch((error: unknown) => {
+          const message = error instanceof Error ? error.message : String(error);
+          log(`[ipc-bridge] frame handler error: ${message}`);
+          socket.destroy();
+        });
+    }
+  });
+}
 async function startIpcSocketServer(options: IpcSocketServerOptions): Promise<IpcSocketServerHandle> {
   if (activeServer) {
     await disposeActiveServer();
@@ -347,6 +402,13 @@ async function startIpcSocketServer(options: IpcSocketServerOptions): Promise<Ip
   const log = options.log ?? ((message: string) => console.error(message));
   const maxClients = options.maxClients ?? parseMaxClients();
   const onActivity = options.onActivity ?? (() => undefined);
+  const createServer = options.createServer;
+  const frameHandler = options.frameHandler;
+  // The bridge cannot serve a connection it has no way to answer: fail at bind
+  // time instead of accepting clients that would then hang.
+  if (!createServer && !frameHandler) {
+    throw new Error('startIpcSocketServer requires either createServer or frameHandler');
+  }
   if (!socketPath.startsWith('tcp://')) {
     const socketDir = path.dirname(socketPath);
     fs.mkdirSync(socketDir, { recursive: true, mode: 0o700 });
@@ -408,19 +470,26 @@ async function startIpcSocketServer(options: IpcSocketServerOptions): Promise<Ip
       totalSecondaryMessagesIn += countJsonRpcFrames(chunk);
     });
 
-    const transport = new StdioServerTransport(socket, socket);
-    activeTransports.set(socket, transport);
-    const secondaryServer = options.createServer();
-    secondaryServer.connect(transport).catch((error: unknown) => {
-      const message = error instanceof Error ? error.message : String(error);
-      log(`[ipc-bridge] secondary connect error: ${message}`);
-      socket.destroy();
-    });
+    let transport: StdioServerTransport | null = null;
+    if (frameHandler) {
+      serveFrameHandlerConnection(socket, frameHandler, log);
+    } else if (createServer) {
+      transport = new StdioServerTransport(socket, socket);
+      activeTransports.set(socket, transport);
+      const secondaryServer = createServer();
+      secondaryServer.connect(transport).catch((error: unknown) => {
+        const message = error instanceof Error ? error.message : String(error);
+        log(`[ipc-bridge] secondary connect error: ${message}`);
+        socket.destroy();
+      });
+    }
 
     socket.once('close', () => {
       activeSockets.delete(socket);
-      activeTransports.delete(socket);
-      void transport.close();
+      if (transport) {
+        activeTransports.delete(socket);
+        void transport.close();
+      }
       log('[ipc-bridge] disconnect');
     });
     socket.once('error', (error) => {

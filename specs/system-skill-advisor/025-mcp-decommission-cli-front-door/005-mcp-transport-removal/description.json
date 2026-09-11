@@ -1,0 +1,30 @@
+{
+  "level": "3",
+  "specFolder": "system-skill-advisor/025-mcp-decommission-cli-front-door/005-mcp-transport-removal",
+  "description": "The MCP layer is a pass-through that costs a declaration in five runtime config roots, an SDK dependency, a bridge process for OpenCode, and an",
+  "keywords": [
+    "mcp",
+    "layer",
+    "pass-through",
+    "costs",
+    "declaration",
+    "five",
+    "runtime",
+    "config",
+    "roots",
+    "sdk",
+    "dependency",
+    "bridge",
+    "process",
+    "opencode"
+  ],
+  "lastUpdated": "2026-09-11T09:27:47.515Z",
+  "specId": "005",
+  "folderSlug": "mcp-transport-removal",
+  "parentChain": [
+    "system-skill-advisor",
+    "025-mcp-decommission-cli-front-door"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

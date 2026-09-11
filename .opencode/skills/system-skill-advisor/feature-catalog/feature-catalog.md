@@ -1,6 +1,6 @@
 ---
 title: "Skill Advisor: Feature Catalog"
-description: "Current feature inventory for the native-first skill advisor, covering daemon freshness, auto-indexing, lifecycle routing, 5-lane scorer fusion, MCP surface, runtime hooks, plugin bridge and Python compatibility."
+description: "Current feature inventory for the native-first skill advisor, covering daemon freshness, auto-indexing, lifecycle routing, 5-lane scorer fusion, command surface, runtime hooks, the OpenCode plugin and Python compatibility."
 trigger_phrases:
   - "skill advisor catalog"
   - "advisor feature catalog"
@@ -13,15 +13,15 @@ version: 0.8.0.12
 
 <!-- sk-doc-template: skill_asset_feature_catalog -->
 
-This catalog is the current inventory for the skill advisor. The package source of truth is `.opencode/skills/system-skill-advisor/mcp-server/`, with adjacent OpenCode plugin docs included where the same hook/plugin ownership model applies. Each group links to per-feature files that cite the real implementation and test anchors.
+This catalog is the current inventory for the skill advisor. The package source of truth is `.opencode/skills/system-skill-advisor/runtime/`, with adjacent OpenCode plugin docs included where the same hook/plugin ownership model applies. Each group links to per-feature files that cite the real implementation and test anchors.
 
 ---
 
 ## 1. OVERVIEW
 
-The catalog covers 42 features across 7 groups. Group 01 owns daemon correctness. Groups 02-03 own the index and lifecycle surface that feeds the scorer. Group 04 owns scoring. Group 06 exposes the MCP tools plus the daemon-backed CLI fallback. Groups 07-08 cover runtime integrations, OpenCode plugins and Python compatibility.
+The catalog covers 42 features across 7 groups. Group 01 owns daemon correctness. Groups 02-03 own the index and lifecycle surface that feeds the scorer. Group 04 owns scoring. Group 06 owns the command surface: the nine CLI commands plus the stable compat entrypoint. Groups 07-08 cover runtime integrations, OpenCode plugins and Python compatibility.
 
-> **Numbering note (gap-05).** The directory layout skips slot `05--*` between `scorer-fusion` and `mcp-surface`. This is an intentional historical reservation from initial scaffold design that marked the boundary between the core scoring pipeline (groups 01-04) and the integration layer (groups 06-08). The gap is preserved to keep spec-folder cross-reference stability across packets. Do not renumber.
+> **Numbering note (gap-05).** The directory layout skips slot `05--*` between `scorer-fusion` and `cli-surface`. This is an intentional historical reservation from initial scaffold design that marked the boundary between the core scoring pipeline (groups 01-04) and the integration layer (groups 06-08). The gap is preserved to keep spec-folder cross-reference stability across packets. Do not renumber.
 
 | Group | Count | Scope |
 | --- | --- | --- |
@@ -29,8 +29,8 @@ The catalog covers 42 features across 7 groups. Group 01 owns daemon correctness
 | [auto-indexing](../feature-catalog/auto-indexing) | 7 | Derived extraction, sanitizer, provenance, sync, anti-stuffing, DF/IDF corpus, doc-frontmatter harvest |
 | [lifecycle-routing](../feature-catalog/lifecycle-routing) | 5 | Age haircut, supersession, archive handling, schema migration, rollback |
 | [scorer-fusion](../feature-catalog/scorer-fusion) | 6 | 5-lane fusion, projection, ambiguity, attribution, ablation, weights config |
-| [mcp-surface](../feature-catalog/mcp-surface) | 10 | `advisor_recommend`, `advisor_rebuild`, `advisor_status`, `advisor_validate`, stable compat entrypoint, `skill_graph_scan`, `skill_graph_query`, `skill_graph_status`, `skill_graph_validate`, daemon-backed `skill-advisor` CLI |
-| [hooks-and-plugin](../feature-catalog/hooks-and-plugin) | 4 | Claude and OpenCode hooks, OpenCode plugin bridge and the `/goal` plugin |
+| [cli-surface](../feature-catalog/cli-surface) | 10 | `advisor_recommend`, `advisor_rebuild`, `advisor_status`, `advisor_validate`, stable compat entrypoint, `skill_graph_scan`, `skill_graph_query`, `skill_graph_status`, `skill_graph_validate`, daemon-backed `skill-advisor` CLI |
+| [hooks-and-plugin](../feature-catalog/hooks-and-plugin) | 4 | Claude and OpenCode hooks, the OpenCode plugin and the `/goal` plugin |
 | [python-compat](../feature-catalog/python-compat) | 3 | Python CLI shim, regression suite, bench runner |
 
 Baseline numbers (remediation SHA `97a318d83`):
@@ -101,20 +101,20 @@ Baseline numbers (remediation SHA `97a318d83`):
 
 ---
 
-## 6. MCP SURFACE
+## 6. COMMAND SURFACE
 
 | Feature | File |
 | --- | --- |
-| `advisor_recommend` MCP tool | [mcp-surface/advisor-recommend.md](../feature-catalog/mcp-surface/advisor-recommend.md) |
-| `advisor_rebuild` MCP tool | [mcp-surface/advisor-rebuild.md](../feature-catalog/mcp-surface/advisor-rebuild.md) |
-| `advisor_status` MCP tool | [mcp-surface/advisor-status.md](../feature-catalog/mcp-surface/advisor-status.md) |
-| `advisor_validate` MCP tool | [mcp-surface/advisor-validate.md](../feature-catalog/mcp-surface/advisor-validate.md) |
-| Stable `compat/index.ts` entrypoint | [mcp-surface/compat-entrypoint.md](../feature-catalog/mcp-surface/compat-entrypoint.md) |
-| `skill_graph_scan` MCP tool | [mcp-surface/skill-graph-scan.md](../feature-catalog/mcp-surface/skill-graph-scan.md) |
-| `skill_graph_query` MCP tool | [mcp-surface/skill-graph-query.md](../feature-catalog/mcp-surface/skill-graph-query.md) |
-| `skill_graph_status` MCP tool | [mcp-surface/skill-graph-status.md](../feature-catalog/mcp-surface/skill-graph-status.md) |
-| `skill_graph_validate` MCP tool | [mcp-surface/skill-graph-validate.md](../feature-catalog/mcp-surface/skill-graph-validate.md) |
-| Daemon-backed `skill-advisor` CLI (9 commands, fail-closed trusted-mutation gate) | [mcp-surface/skill-advisor-cli.md](../feature-catalog/mcp-surface/skill-advisor-cli.md) |
+| `advisor_recommend` command | [cli-surface/advisor-recommend.md](../feature-catalog/cli-surface/advisor-recommend.md) |
+| `advisor_rebuild` command | [cli-surface/advisor-rebuild.md](../feature-catalog/cli-surface/advisor-rebuild.md) |
+| `advisor_status` command | [cli-surface/advisor-status.md](../feature-catalog/cli-surface/advisor-status.md) |
+| `advisor_validate` command | [cli-surface/advisor-validate.md](../feature-catalog/cli-surface/advisor-validate.md) |
+| Stable `compat/index.ts` entrypoint | [cli-surface/compat-entrypoint.md](../feature-catalog/cli-surface/compat-entrypoint.md) |
+| `skill_graph_scan` command | [cli-surface/skill-graph-scan.md](../feature-catalog/cli-surface/skill-graph-scan.md) |
+| `skill_graph_query` command | [cli-surface/skill-graph-query.md](../feature-catalog/cli-surface/skill-graph-query.md) |
+| `skill_graph_status` command | [cli-surface/skill-graph-status.md](../feature-catalog/cli-surface/skill-graph-status.md) |
+| `skill_graph_validate` command | [cli-surface/skill-graph-validate.md](../feature-catalog/cli-surface/skill-graph-validate.md) |
+| Daemon-backed `skill-advisor` CLI (9 commands, fail-closed trusted-mutation gate) | [cli-surface/skill-advisor-cli.md](../feature-catalog/cli-surface/skill-advisor-cli.md) |
 
 ---
 
@@ -124,7 +124,7 @@ Baseline numbers (remediation SHA `97a318d83`):
 | --- | --- |
 | Claude Code `user-prompt-submit` hook | [hooks-and-plugin/claude-hook.md](../feature-catalog/hooks-and-plugin/claude-hook.md) |
 | OpenCode native SessionStart/UserPromptSubmit hooks with prompt-wrapper fallback | hooks-and-plugin/opencode-hook.md (not yet authored) |
-| OpenCode plugin bridge | [hooks-and-plugin/opencode-plugin-bridge.md](../feature-catalog/hooks-and-plugin/opencode-plugin-bridge.md) |
+| OpenCode plugin | [hooks-and-plugin/opencode-plugin-bridge.md](../feature-catalog/hooks-and-plugin/opencode-plugin-bridge.md) |
 | Goal OpenCode plugin (`/goal`, `opencode_goal`, `opencode_goal_status`) | [hooks-and-plugin/goal-opencode-plugin.md](../feature-catalog/hooks-and-plugin/goal-opencode-plugin.md) |
 
 ---

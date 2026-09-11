@@ -42,18 +42,18 @@ Validation baselines are the promotion gate for routing behavior changes, not af
 
 ## 2. CURRENT BASELINES
 
-The measurement authority is [`scorer-eval-baseline.json`](../../mcp-server/scripts/routing-accuracy/scorer-eval-baseline.json), captured on **2026-07-30**. The values below are that dated snapshot, not a new run:
+The measurement authority is [`scorer-eval-baseline.json`](../../runtime/scripts/routing-accuracy/scorer-eval-baseline.json), captured on **2026-07-30**. The values below are that dated snapshot, not a new run:
 
 | Metric | Baseline | Source |
 |---|---:|---|
-| Full-corpus top-1 accuracy | 0.7744 | [`scorer-eval-baseline.json`](../../mcp-server/scripts/routing-accuracy/scorer-eval-baseline.json), captured 2026-07-30 |
-| Holdout top-1 accuracy | 0.7361 | [`scorer-eval-baseline.json`](../../mcp-server/scripts/routing-accuracy/scorer-eval-baseline.json), captured 2026-07-30 |
-| UNKNOWN count (full corpus) | 13 | [`scorer-eval-baseline.json`](../../mcp-server/scripts/routing-accuracy/scorer-eval-baseline.json), captured 2026-07-30 |
-| Python regression suite | measurement unavailable in this packet | `mcp-server/scripts/skill_advisor_regression.py` |
-| Advisor vitest tests | measurement unavailable in this packet | `mcp-server/tests/` |
-| Watcher idle CPU | 0.031% | `mcp-server/lib/daemon/watcher.ts` benchmark |
+| Full-corpus top-1 accuracy | 0.7744 | [`scorer-eval-baseline.json`](../../runtime/scripts/routing-accuracy/scorer-eval-baseline.json), captured 2026-07-30 |
+| Holdout top-1 accuracy | 0.7361 | [`scorer-eval-baseline.json`](../../runtime/scripts/routing-accuracy/scorer-eval-baseline.json), captured 2026-07-30 |
+| UNKNOWN count (full corpus) | 13 | [`scorer-eval-baseline.json`](../../runtime/scripts/routing-accuracy/scorer-eval-baseline.json), captured 2026-07-30 |
+| Python regression suite | measurement unavailable in this packet | `runtime/scripts/skill_advisor_regression.py` |
+| Advisor vitest tests | measurement unavailable in this packet | `runtime/tests/` |
+| Watcher idle CPU | 0.031% | `runtime/lib/daemon/watcher.ts` benchmark |
 | Watcher idle RSS | 5.516 MB | same |
-| Cache-hit p95 latency | ~6.989 ms | `mcp-server/bench/cache-latency.bench.ts` |
+| Cache-hit p95 latency | ~6.989 ms | `runtime/bench/cache-latency.bench.ts` |
 | Uncached p95 latency | ~11.45 ms | same |
 
 **Bounded-delta gate (policy accepted 2026-08-02):** do not regress more than the bounded amount below the baseline captured on **2026-07-30**. Full-corpus top-1 must remain at or above `0.7544` (`0.7744` baseline minus `0.0200`, captured 2026-07-30); holdout top-1 must remain at or above `0.7261` (`0.7361` baseline minus `0.0100`, captured 2026-07-30); UNKNOWN must remain at or below `15` (`13` baseline plus `2`, captured 2026-07-30). The former absolute floors are retired as policy statements; the snapshot JSON and scorer are unchanged.
@@ -64,14 +64,14 @@ The measurement authority is [`scorer-eval-baseline.json`](../../mcp-server/scri
 
 `advisor_validate` is a heavy operation. It runs the full corpus plus holdout plus parity plus safety plus latency slices in one pass. Require `confirmHeavyRun=true` to invoke.
 
-```text
-mcp__system_skill_advisor__advisor_validate({ "confirmHeavyRun": true })
+```bash
+node .opencode/bin/skill-advisor.cjs advisor_validate --confirm-heavy-run true --format json
 ```
 
 For a single-skill check (skip corpus + holdout):
 
-```text
-mcp__system_skill_advisor__advisor_validate({ "confirmHeavyRun": true, "skillSlug": "sk-code" })
+```bash
+node .opencode/bin/skill-advisor.cjs advisor_validate --confirm-heavy-run true --json '{"skillSlug":"sk-code"}' --format json
 ```
 
 Response fields to retain for baseline tracking:
@@ -110,7 +110,7 @@ Drift signal: drop > 1pp is a stronger regression signal than the corpus slice b
 
 ### Parity slice
 
-Checks that the Python shim plus the native MCP scorer return the same recommendations for the same prompt. Pass means parity holds.
+Checks that the Python shim and the native TypeScript scorer return the same recommendations for the same prompt. Pass means parity holds.
 
 Drift signal: any parity failure. Indicates a divergence between native plus Python paths. Inspect the failing prompt to identify which path drifted.
 
@@ -135,12 +135,12 @@ Drift signal: cache-hit > 15 ms or uncached > 25 ms. Likely causes are SQLite co
 | Corpus top-1 crosses the dated bounded-delta gate | Scorer weight change OR new skill metadata regression | Run `advisor_rebuild --force`. If still regressed, inspect `perSkill[]` for the regressed skills. Roll back weights per `lane-weight-tuning.md` §6 |
 | Holdout top-1 drops while corpus stays steady | Overfit to corpus | Inspect which holdout prompts misroute. Add representative cases to corpus. Re-run tuning |
 | UNKNOWN count crosses the dated bounded-delta gate | Trust-state went to `absent` OR scorer threshold misconfigured | Check `advisor_status.trustState`. If `absent`, run `advisor_rebuild`. If `live`, inspect lane weights for an over-aggressive threshold |
-| Parity slice fails on specific skill | Python shim missing recent token boost added to native scorer | Re-sync `scripts/skill_advisor.py` against `mcp-server/lib/scorer/lanes/` |
+| Parity slice fails on specific skill | Python shim missing recent token boost added to native scorer | Re-sync `scripts/skill_advisor.py` against `runtime/lib/scorer/lanes/` |
 | Safety violations > 0 | Attribution leaks prompt content | Inspect `slices.safety.violations[]` for the leaking field. Patch handler to redact |
-| Cache-hit p95 > 15 ms | SQLite contention | Check `advisor_status.daemon.leaseHolder`. If contested, kill stale processes. Verify `mcp-server/database/skill-graph.sqlite` integrity |
-| Uncached p95 > 25 ms | Scoring algorithm changed OR semantic_shadow lane embedding lookup slow | Profile via `mcp-server/bench/`. If semantic_shadow is the culprit, verify embeddings index freshness |
+| Cache-hit p95 > 15 ms | SQLite contention | Check `advisor_status.daemon.leaseHolder`. If contested, kill stale processes. Verify `runtime/database/skill-graph.sqlite` integrity |
+| Uncached p95 > 25 ms | Scoring algorithm changed OR semantic_shadow lane embedding lookup slow | Profile via `runtime/bench/`. If semantic_shadow is the culprit, verify embeddings index freshness |
 | `advisor_validate` errors with `confirmHeavyRun is required` | Caller did not opt in | Pass `confirmHeavyRun: true` |
-| `advisor_validate` hangs > 5 min | Daemon lock OR test-corpus growth | Check process via `ps`. If hung, kill the MCP server plus restart. If completion exceeds 5 min routinely, trim test corpus or split into incremental runs |
+| `advisor_validate` hangs > 5 min | Daemon lock OR test-corpus growth | Check the process via `ps`. If hung, stop the daemon and let the next CLI call cold-start it. If completion exceeds 5 min routinely, trim the test corpus or split into incremental runs |
 
 ---
 
@@ -151,5 +151,5 @@ Drift signal: cache-hit > 15 ms or uncached > 25 ms. Likely causes are SQLite co
 - [`advisor-scorer.md`](./advisor-scorer.md), scorer mechanics that the validate slices probe
 - [`freshness-contract.md`](../runtime/freshness-contract.md), trust state affects validate outcomes
 - `feature-catalog/feature-catalog.md` §1, canonical baseline source
-- `mcp-server/handlers/advisor-validate.ts`, handler implementation
-- `mcp-server/bench/`, latency benchmark harnesses
+- `runtime/handlers/advisor-validate.ts`, handler implementation
+- `runtime/bench/`, latency benchmark harnesses

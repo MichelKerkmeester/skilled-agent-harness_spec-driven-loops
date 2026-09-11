@@ -31,20 +31,20 @@ When `SPECKIT_ADVISOR_DOC_TRIGGERS=true`, `skill_graph_scan` walks every skill's
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/mcp-server/lib/skill-graph/doc-frontmatter.ts` | Library | Flag gate, tier weights, list-aware parser, capped walker |
-| `.opencode/skills/system-skill-advisor/mcp-server/lib/skill-graph/skill-graph-db.ts` | Library | `skill_docs` DDL + `harvestSkillDocs()` + scan-result counters |
-| `.opencode/skills/system-skill-advisor/mcp-server/lib/scorer/projection.ts` | Library | Flag-gated, missing-table-tolerant doc-trigger projection load |
-| `.opencode/skills/system-skill-advisor/mcp-server/lib/scorer/lanes/derived.ts` | Library | Top-3 tier-weighted doc scoring, 0.45 cap, docs-first evidence |
-| `.opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-recommend.ts` | Handler | Sanitized `matchedDocs` extraction, `doc_reference_signal` evidence type |
-| `.opencode/skills/system-skill-advisor/mcp-server/lib/daemon/watcher.ts` | Daemon | `doc-frontmatter` watch targets when the flag is on |
+| `.opencode/skills/system-skill-advisor/runtime/lib/skill-graph/doc-frontmatter.ts` | Library | Flag gate, tier weights, list-aware parser, capped walker |
+| `.opencode/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts` | Library | `skill_docs` DDL + `harvestSkillDocs()` + scan-result counters |
+| `.opencode/skills/system-skill-advisor/runtime/lib/scorer/projection.ts` | Library | Flag-gated, missing-table-tolerant doc-trigger projection load |
+| `.opencode/skills/system-skill-advisor/runtime/lib/scorer/lanes/derived.ts` | Library | Top-3 tier-weighted doc scoring, 0.45 cap, docs-first evidence |
+| `.opencode/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts` | Handler | Sanitized `matchedDocs` extraction, `doc_reference_signal` evidence type |
+| `.opencode/skills/system-skill-advisor/runtime/lib/daemon/watcher.ts` | Daemon | `doc-frontmatter` watch targets when the flag is on |
 | `.opencode/bin/system-skill-advisor-launcher.cjs` | Launcher | `SPECKIT_ADVISOR_DOC_TRIGGERS` in `CHILD_ENV_ALLOWLIST` |
-| `.opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py` | Compat | Gate-2 parity harvest merged into both graph-loader paths |
+| `.opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py` | Compat | Gate-2 parity harvest merged into both graph-loader paths |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/mcp-server/tests/skill-doc-harvest.vitest.ts` | Automated test | Parser, walker, flag-gated lifecycle, capping, invariance, sanitization (11 cases) |
+| `.opencode/skills/system-skill-advisor/runtime/tests/skill-doc-harvest.vitest.ts` | Automated test | Parser, walker, flag-gated lifecycle, capping, invariance, sanitization (11 cases) |
 | `Playbook scenario [AI-006](../../manual-testing-playbook/auto-indexing/doc-frontmatter-harvest.md).` | Manual playbook | Source reference |
 
 ---

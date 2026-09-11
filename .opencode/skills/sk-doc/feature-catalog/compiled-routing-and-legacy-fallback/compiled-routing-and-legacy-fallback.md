@@ -29,11 +29,11 @@ By default (and always when `SPECKIT_COMPILED_ROUTING=1`), the directive shells 
 
 ### Tri-State Flag
 
-`SPECKIT_COMPILED_ROUTING` is tri-state, parsed identically by the resolver and by the advisor-side consumption path. Each side owns its own per-hub default-on cohort: `sk-doc` (like all seven eligible hubs) is now a member of the resolver's cohort, so `sk-doc`'s hub-routing directive resolves to compiled serving when the flag is unset — the advisor-side `compiledRoute` enrichment cohort is tracked separately in `system-skill-advisor/mcp-server/lib/compiled-routing-flag.ts` and is unaffected by this cutover; `1` force-enables compiled resolution wherever the manifest also authorizes it; `0`, `false`, or `off` is an explicit fleet-wide kill-switch that forces legacy regardless of manifest state; any other value fails closed to legacy. `SPECKIT_COMPILED_ROUTING_DEBUG` gates optional stderr-only breadcrumbs for a fallback decision and never changes the served outcome.
+`SPECKIT_COMPILED_ROUTING` is tri-state, parsed identically by the resolver and by the advisor-side consumption path. Each side owns its own per-hub default-on cohort: `sk-doc` (like all seven eligible hubs) is now a member of the resolver's cohort, so `sk-doc`'s hub-routing directive resolves to compiled serving when the flag is unset — the advisor-side `compiledRoute` enrichment cohort is tracked separately in `system-skill-advisor/runtime/lib/compiled-routing-flag.ts` and is unaffected by this cutover; `1` force-enables compiled resolution wherever the manifest also authorizes it; `0`, `false`, or `off` is an explicit fleet-wide kill-switch that forces legacy regardless of manifest state; any other value fails closed to legacy. `SPECKIT_COMPILED_ROUTING_DEBUG` gates optional stderr-only breadcrumbs for a fallback decision and never changes the served outcome.
 
 ### Outcome Handling
 
-A served compiled decision returns one of four actions — `route` (use the returned `targets`), `clarify` or `defer` (disambiguate before proceeding), or `reject` (refuse) — which the `sk-doc` directive follows directly. The same decision, when returned inside `advisor_recommend`, is additionally attached to that recommendation's `compiledRoute` field and threaded into brief rendering as `metadata.compiledRouteSummary`; see [`advisor-recommend.md`](../../../system-skill-advisor/feature-catalog/mcp-surface/advisor-recommend.md) for the shared advisor-side consumption path.
+A served compiled decision returns one of four actions — `route` (use the returned `targets`), `clarify` or `defer` (disambiguate before proceeding), or `reject` (refuse) — which the `sk-doc` directive follows directly. The same decision, when returned inside `advisor_recommend`, is additionally attached to that recommendation's `compiledRoute` field and threaded into brief rendering as `metadata.compiledRouteSummary`; see [`advisor-recommend.md`](../../../system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md) for the shared advisor-side consumption path.
 
 ### Serving Status And Drift
 
@@ -58,7 +58,7 @@ A served compiled decision returns one of four actions — `route` (use the retu
 | File | Type | Role |
 |---|---|---|
 | `.opencode/bin/compiled-routing-foundation.vitest.ts` | Automated test | Resolver, tri-state flag, and promoted-closure parity coverage. |
-| `.opencode/skills/system-skill-advisor/mcp-server/tests/compiled-routing-consumption.vitest.ts` | Automated test | Advisor-side attach/consume/invalidate coverage shared by every eligible hub. |
+| `.opencode/skills/system-skill-advisor/runtime/tests/compiled-routing-consumption.vitest.ts` | Automated test | Advisor-side attach/consume/invalidate coverage shared by every eligible hub. |
 
 ---
 
@@ -71,4 +71,4 @@ A served compiled decision returns one of four actions — `route` (use the retu
 Related references:
 - [packet-authored-registry-routing.md](../packet-authored-registry-routing/packet-authored-registry-routing.md) — the registry-driven routing this directive resolves ahead of.
 - [feature-flag-governance.md](../../../system-spec-kit/feature-catalog/governance/feature-flag-governance.md) — `SPECKIT_COMPILED_ROUTING` flag governance (phased defaults, eligibility, serving status, drift, kill-switch).
-- [advisor-recommend.md](../../../system-skill-advisor/feature-catalog/mcp-surface/advisor-recommend.md) — how `advisor_recommend` attaches or omits `compiledRoute`.
+- [advisor-recommend.md](../../../system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md) — how `advisor_recommend` attaches or omits `compiledRoute`.

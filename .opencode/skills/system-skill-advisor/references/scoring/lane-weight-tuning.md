@@ -37,7 +37,7 @@ Lane weights change only with measured evidence and synchronized documentation u
 
 - [`advisor-scorer.md`](./advisor-scorer.md)
 - [`validation-baselines.md`](./validation-baselines.md)
-- `mcp-server/lib/scorer/lane-registry.ts`
+- `runtime/lib/scorer/lane-registry.ts`
 
 ---
 
@@ -54,7 +54,7 @@ Tune lane weights only when at least one of these triggers fires:
 Do not tune weights for these reasons:
 
 - "It feels low for lane X." Without measured evidence, intuition mispredicts the cross-skill impact.
-- "We just added this skill." Single-skill tuning belongs in the explicit_author lane's curated boosts (`mcp-server/lib/scorer/lanes/explicit.ts`), not in global lane weights.
+- "We just added this skill." Single-skill tuning belongs in the explicit_author lane's curated boosts (`runtime/lib/scorer/lanes/explicit.ts`), not in global lane weights.
 - "The semantic lane scored higher than expected." The semantic_shadow lane is live in the registry but carries the lowest fusion weight (0.05), so its live contribution is small by design. Re-weight it only with measured evidence; adjust the shadow_weight separately if you are tuning shadow mode rather than the live ranking.
 
 ---
@@ -66,9 +66,8 @@ Every weight change requires a baseline plus a comparison run. The measurement c
 **Step 1: Capture baseline.**
 
 ```bash
-npm --prefix .opencode/skills/system-skill-advisor/mcp-server run build
-# Then via MCP:
-mcp__system_skill_advisor__advisor_validate({ "confirmHeavyRun": true })
+npm --prefix .opencode/skills/system-skill-advisor/runtime run build
+node .opencode/bin/skill-advisor.cjs advisor_validate --confirm-heavy-run true --format json
 ```
 
 Save the response. Key fields to retain: `overallAccuracy`, `slices.corpus.full_corpus_top1`, `slices.corpus.unknown_count`, `slices.holdout.holdout_top1`, `slices.parity`, `slices.safety`, `slices.latency.regression_suite_status`, `telemetry`, `perSkill[]`.
@@ -76,15 +75,15 @@ Save the response. Key fields to retain: `overallAccuracy`, `slices.corpus.full_
 **Step 2: Run the lane-weight sweep.**
 
 ```bash
-npx vitest run --config .opencode/skills/system-skill-advisor/mcp-server/vitest.config.ts \
-  .opencode/skills/system-skill-advisor/mcp-server/tests/scorer/lane-weight-sweep.vitest.ts
+npx vitest run --config .opencode/skills/system-skill-advisor/runtime/vitest.config.ts \
+  .opencode/skills/system-skill-advisor/runtime/tests/scorer/lane-weight-sweep.vitest.ts
 ```
 
 This harness exercises each lane weight individually across a small grid plus reports which weight permutations move accuracy. It is the canonical input for any weight change proposal.
 
 **Step 3: Make the change.**
 
-Edit `mcp-server/lib/scorer/lane-registry.ts:7-19` (live weights) or `lane-registry.ts:32-38` (shadow weights). Keep both sums close to 1.0 to preserve the calibration assumptions in `scoring-constants.ts`. For experiments, `SPECKIT_ADVISOR_LANE_WEIGHTS_JSON` is allowlisted through the launcher and read by `lane-registry.ts`; it requires a daemon restart to apply and suits short-lived experiments only — durable tuning stays a source edit shipped with measured evidence.
+Edit `runtime/lib/scorer/lane-registry.ts:7-19` (live weights) or `lane-registry.ts:32-38` (shadow weights). Keep both sums close to 1.0 to preserve the calibration assumptions in `scoring-constants.ts`. For experiments, `SPECKIT_ADVISOR_LANE_WEIGHTS_JSON` is allowlisted through the launcher and read by `lane-registry.ts`; it requires a daemon restart to apply and suits short-lived experiments only — durable tuning stays a source edit shipped with measured evidence.
 
 **Step 4: Capture the comparison.**
 
@@ -117,7 +116,7 @@ Lane weight changes are governed work. The checklist:
 2. Run the measurement chain in §3. Attach baseline + comparison JSON to the packet.
 3. Apply the §4 decision rubric. If any "Defer" condition fires, halt or document the tradeoff.
 4. Update synchronized docs in one commit:
-   - `mcp-server/lib/scorer/lane-registry.ts`
+   - `runtime/lib/scorer/lane-registry.ts`
    - [`advisor-scorer.md`](./advisor-scorer.md) lane table
    - [`feature-catalog/scorer-fusion/weights-config.md`](../../feature-catalog/scorer-fusion/weights-config.md)
    - [README.md](../../README.md) §3.3 lane weights table
@@ -139,9 +138,9 @@ Rollback procedure:
 
 ```bash
 git revert <commit-sha>
-npm --prefix .opencode/skills/system-skill-advisor/mcp-server run build
-mcp__system_skill_advisor__advisor_rebuild({ "force": true })
-mcp__system_skill_advisor__advisor_validate({ "confirmHeavyRun": true })
+npm --prefix .opencode/skills/system-skill-advisor/runtime run build
+node .opencode/bin/skill-advisor.cjs advisor_rebuild --trusted --force true --format json
+node .opencode/bin/skill-advisor.cjs advisor_validate --confirm-heavy-run true --format json
 ```
 
 Confirm the baseline numbers return. Document the rollback rationale in the original packet's `implementation-summary.md`.
@@ -153,6 +152,6 @@ Confirm the baseline numbers return. Document the rollback rationale in the orig
 - [`advisor-scorer.md`](./advisor-scorer.md), lane attribution model + fusion + 16 confidence calibration constants.
 - [`feature-catalog/scorer-fusion/weights-config.md`](../../feature-catalog/scorer-fusion/weights-config.md), canonical current weights.
 - [`manual-testing-playbook/scorer-fusion/ablation.md`](../../manual-testing-playbook/scorer-fusion/ablation.md), ablation scenario for measuring lane contributions.
-- `mcp-server/tests/scorer/lane-weight-sweep.vitest.ts`, sweep harness.
-- `mcp-server/lib/scorer/lane-registry.ts:7-19,32-38`, live + shadow weight source-of-truth.
-- `mcp-server/lib/scorer/scoring-constants.ts:141-170`, confidence calibration constants.
+- `runtime/tests/scorer/lane-weight-sweep.vitest.ts`, sweep harness.
+- `runtime/lib/scorer/lane-registry.ts:7-19,32-38`, live + shadow weight source-of-truth.
+- `runtime/lib/scorer/scoring-constants.ts:141-170`, confidence calibration constants.

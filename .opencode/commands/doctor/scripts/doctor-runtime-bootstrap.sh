@@ -48,7 +48,7 @@ KIT_DIR="$SKILLS_DIR/system-spec-kit"
 # Runtime state for /doctor:update. It lives in the advisor's database directory
 # because that one is tracked and gitignore-managed; the spec-kit runtime/database
 # directory that used to hold it left with its server and is absent on a fresh clone.
-DB_DIR="$SKILLS_DIR/system-skill-advisor/mcp-server/database"
+DB_DIR="$SKILLS_DIR/system-skill-advisor/runtime/database"
 STATE_FILE="$DB_DIR/.doctor-update.bootstrap.json"
 LOCK_FILE="/tmp/doctor-runtime-bootstrap.lock"
 GRAPH_BACKFILL_DIST="$KIT_DIR/runtime/cli/dist/graph/backfill-graph-metadata.js"
@@ -149,7 +149,7 @@ elif [[ -d "$SKILLS_DIR" && -d "$LEGACY_SKILL_DIR" && ! -L "$LEGACY_SKILL_DIR" ]
 fi
 
 KIT_DIR="$SKILLS_DIR/system-spec-kit"
-DB_DIR="$SKILLS_DIR/system-skill-advisor/mcp-server/database"
+DB_DIR="$SKILLS_DIR/system-skill-advisor/runtime/database"
 STATE_FILE="$DB_DIR/.doctor-update.bootstrap.json"
 GRAPH_BACKFILL_DIST="$KIT_DIR/runtime/cli/dist/graph/backfill-graph-metadata.js"
 DESCRIPTION_DIST="$KIT_DIR/runtime/cli/dist/spec-folder/generate-description.js"

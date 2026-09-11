@@ -104,7 +104,7 @@ is_target_command() {
   case "$cmd" in
     *"system-skill-advisor-launcher.cjs"*|\
     *"mcp-code-mode-launcher.cjs"*|\
-    *"system-skill-advisor/mcp-server/dist/"*"advisor-server.js"*|\
+    *"system-skill-advisor/runtime/dist/"*"advisor-server.js"*|\
     *"mcp-code-mode/mcp-server/dist/index.js"*|\
     *"@modelcontextprotocol/server-sequential-thinking"*|\
     *"server-sequential-thinking"*|\

@@ -15,7 +15,7 @@ version: 0.8.0.12
 
 ## 1. OVERVIEW
 
-Give every consumer (native MCP tools, CLI hooks, plugin bridge, Python shim) a single shared vocabulary for describing whether advisor state is current, aged, missing or unreadable, without ever blocking the reader.
+Give every consumer (the CLI, hooks, the OpenCode plugin, the Python shim) a single shared vocabulary for describing whether advisor state is current, aged, missing or unreadable, without ever blocking the reader.
 
 ---
 
@@ -40,15 +40,15 @@ All consumers fail open: a `stale`, `absent` or `unavailable` state never crashe
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/mcp-server/lib/freshness/trust-state.ts` | Library | Source reference |
-| `.opencode/skills/system-skill-advisor/mcp-server/lib/freshness.ts` | Library | Source reference |
+| `.opencode/skills/system-skill-advisor/runtime/lib/freshness/trust-state.ts` | Library | Source reference |
+| `.opencode/skills/system-skill-advisor/runtime/lib/freshness.ts` | Library | Source reference |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/mcp-server/tests/legacy/advisor-freshness.vitest.ts` | Automated test | state transitions |
-| `Playbook scenarios [NC-002](../../manual-testing-playbook/native-mcp-tools/native-status-transitions.md) and [OP-001..OP-003](../../manual-testing-playbook/operator-h5).` | Manual playbook | Source reference |
+| `.opencode/skills/system-skill-advisor/runtime/tests/legacy/advisor-freshness.vitest.ts` | Automated test | state transitions |
+| `Playbook scenarios [NC-002](../../manual-testing-playbook/native-cli-tools/native-status-transitions.md) and [OP-001..OP-003](../../manual-testing-playbook/operator-h5).` | Manual playbook | Source reference |
 
 ---
 

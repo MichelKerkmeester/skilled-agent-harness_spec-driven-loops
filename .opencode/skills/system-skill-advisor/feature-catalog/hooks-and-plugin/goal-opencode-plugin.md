@@ -84,4 +84,4 @@ Live verification: the plugin is registered and driven end-to-end in a real Open
 
 Related references:
 - [opencode-plugin-bridge.md](../../feature-catalog/hooks-and-plugin/opencode-plugin-bridge.md)
-- [`mcp-surface/skill-advisor-cli.md`](../../feature-catalog/mcp-surface/skill-advisor-cli.md)
+- [`cli-surface/skill-advisor-cli.md`](../../feature-catalog/cli-surface/skill-advisor-cli.md)

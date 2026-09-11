@@ -40,7 +40,6 @@ upstream_assets:
     spec: "spec.md"
     decision_record: "decision-record.md"
   install_guides:
-    system_skill_advisor: ".opencode/skills/system-skill-advisor/INSTALL-GUIDE.md"
     code_mode: ".opencode/install-guides/MCP - Code Mode.md"
   scripts:
     health_check: ".opencode/commands/doctor/scripts/mcp-doctor.sh"
@@ -61,7 +60,7 @@ user_inputs:
 # ─────────────────────────────────────────────────────────────────
 field_handling:
   defaults:
-    server_filter_empty: null  # install all 5 when unset
+    server_filter_empty: null  # install every server defined in this file when unset
     runtime_filter_empty: null  # auto-detect active runtime when unset
   server_filter_policy:
     null: "install all supported MCP servers"
@@ -90,44 +89,12 @@ arguments:
 # REFERENCE: INSTALL GUIDES (read these during workflow)
 # ─────────────────────────────────────────────────────────────────
 install_guides:
-  system_skill_advisor: .opencode/skills/system-skill-advisor/INSTALL-GUIDE.md
   code_mode: .opencode/install-guides/MCP - Code Mode.md
 
 # ─────────────────────────────────────────────────────────────────
 # REFERENCE: SERVER DEFINITIONS
 # ─────────────────────────────────────────────────────────────────
 servers:
-  system_skill_advisor:
-    label: "Skill Advisor"
-    runtime: node
-    skill_dir: ".opencode/skills/system-skill-advisor"
-    entry_point: "mcp-server/dist/mcp-server/advisor-server.js"
-    install_script: null
-    install_script_mutation_class: none  # no install script; inline install_steps used
-    health_checks:
-      - { path: "mcp-server/dist/mcp-server/advisor-server.js", type: "file_exists" }
-      - { path: ".opencode/bin/system-skill-advisor-launcher.cjs", type: "file_exists" }
-      - { path: "mcp-server/node_modules", type: "dir_exists" }
-      - { path: "mcp-server/node_modules/@spec-kit/shared", type: "dir_exists" }
-      - { probe: "node -e \"import('./{skill_dir}/mcp-server/dist/mcp-server/lib/scorer/lanes/semantic-shadow.js')\"", type: "command_succeeds" }
-    install_steps:
-      - "cd {skill_dir}/mcp-server && npm install"
-      - "cd {skill_dir}/mcp-server && npm run build"
-    fallback_build: "cd {skill_dir}/mcp-server && npm install && npm run build"
-
-    label: "System Code Graph"
-    runtime: node
-    entry_point: "mcp-server/dist/index.js"
-    install_script: null
-    install_script_mutation_class: none  # no install script; inline install_steps used
-    health_checks:
-      - { path: "mcp-server/dist/index.js", type: "file_exists" }
-      - { path: "node_modules", type: "dir_exists" }
-    install_steps:
-      - "cd {skill_dir} && npm install"
-      - "cd {skill_dir} && npm run clean && npm run build"
-    fallback_build: "cd {skill_dir} && npm install && npm run clean && ./node_modules/.bin/tsc --build ./tsconfig.json"
-
   code_mode:
     label: "Code Mode"
     runtime: node
@@ -234,8 +201,6 @@ workflow:
     assessment_format: |
       | Server | Status | Detail |
       |--------|--------|--------|
-      | Skill Advisor | {status} | {detail} |
-      | System Code Graph | {status} | {detail} |
       | Code Mode | {status} | {detail} |
     checkpoint:
       enabled: true
@@ -326,8 +291,6 @@ workflow:
 
       | Server | Before | After | Action Taken |
       |--------|--------|-------|--------------|
-      | Skill Advisor | {before} | {after} | {action} |
-      | System Code Graph | {before} | {after} | {action} |
       | Code Mode | {before} | {after} | {action} |
 
       **Config wiring:** {config_summary}

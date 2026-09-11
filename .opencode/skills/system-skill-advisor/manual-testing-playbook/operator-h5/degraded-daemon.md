@@ -33,8 +33,8 @@ Validate the operator path for a degraded advisor daemon, usually caused by stal
 ## 2. SCENARIO CONTRACT
 
 - Use a disposable copy when simulating stale source timestamps.
-- MCP status tool is available.
-- Operator has access to MCP server logs or stderr.
+- The advisor CLI is available.
+- Operator has access to daemon logs or stderr.
 
 ---
 
@@ -42,17 +42,17 @@ Validate the operator path for a degraded advisor daemon, usually caused by stal
 
 1. Detect:
 
-```text
-advisor_status({"workspaceRoot":"/absolute/path/to/repo"})
+```bash
+node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root /absolute/path/to/repo --format json
 ```
 
 2. Confirm stale/degraded signals: `freshness: "stale"` or trust reason such as `SOURCE_NEWER_THAN_SKILL_GRAPH`.
 3. Inspect logs for watcher or generation messages.
 4. Remediate:
 
-```text
-skill_graph_scan({})
-advisor_status({"workspaceRoot":"/absolute/path/to/repo"})
+```bash
+node .opencode/bin/skill-advisor.cjs skill_graph_scan --trusted --format json
+node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root /absolute/path/to/repo --format json
 ```
 
 ### Expected Signals
@@ -73,8 +73,8 @@ advisor_status({"workspaceRoot":"/absolute/path/to/repo"})
 
 ## 4. SOURCE FILES
 
-- `.opencode/skills/system-skill-advisor/mcp-server/lib/daemon/`
-- `.opencode/skills/system-skill-advisor/mcp-server/lib/freshness/`
+- `.opencode/skills/system-skill-advisor/runtime/lib/daemon/`
+- `.opencode/skills/system-skill-advisor/runtime/lib/freshness/`
 
 ---
 
@@ -124,26 +124,26 @@ Command run: `glob("**/*log*", ".opencode/skills/system-skill-advisor")`
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/feature-catalog/feature-catalog.md
 ```
 
-Command run: `glob("mcp-server/**/*.log", ".opencode/skills/system-skill-advisor")`
+Command run: `glob("runtime/**/*.log", ".opencode/skills/system-skill-advisor")`
 
 ```text
 No files found
 ```
 
-Command run: `glob("mcp-server/**/*stderr*", ".opencode/skills/system-skill-advisor")`
+Command run: `glob("runtime/**/*stderr*", ".opencode/skills/system-skill-advisor")`
 
 ```text
 No files found
 ```
 
-Command run: `glob("mcp-server/**/*err*", ".opencode/skills/system-skill-advisor")`
+Command run: `glob("runtime/**/*err*", ".opencode/skills/system-skill-advisor")`
 
 ```text
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/mcp-server/tests/__fixtures__/errors.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/mcp-server/tests/skill-advisor-cli-help-aliases-errors.vitest.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/mcp-server/lib/error-diagnostics.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/mcp-server/lib/utils/error-format.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/mcp-server/tests/scorer/lane-registry-env-override.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/runtime/tests/__fixtures__/errors.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/runtime/tests/skill-advisor-cli-help-aliases-errors.vitest.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/runtime/lib/error-diagnostics.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/runtime/lib/utils/error-format.ts
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/runtime/tests/scorer/lane-registry-env-override.vitest.ts
 ```
 
 Command run: `skill_graph_scan({})`

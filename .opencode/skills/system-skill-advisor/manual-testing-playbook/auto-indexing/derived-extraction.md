@@ -32,7 +32,7 @@ Validate that derived extraction in `lib/derived/extract.ts` produces determinis
 ## 2. SCENARIO CONTRACT
 
 - Disposable workspace copy.
-- MCP server built.
+- Advisor runtime built.
 - A target skill with a SKILL.md plus `references/` and `assets/` content (for example `sk-doc`).
 - `diff` available.
 
@@ -87,7 +87,7 @@ cp .opencode/skills/sk-doc/graph-metadata.json /tmp/post-derived.json
 - Scenario [AI-002](../../manual-testing-playbook/auto-indexing/sanitizer-boundaries.md), A7 sanitizer boundary enforcement.
 - Scenario [AI-003](../../manual-testing-playbook/auto-indexing/provenance-and-trust-lanes.md), provenance and trust lane tagging.
 - Feature [`auto-indexing/derived-extraction.md`](../../feature-catalog/auto-indexing/derived-extraction.md).
-- Source: `.opencode/skills/system-skill-advisor/mcp-server/lib/derived/extract.ts` and `lib/derived/sync.ts`.
+- Source: `.opencode/skills/system-skill-advisor/runtime/lib/derived/extract.ts` and `lib/derived/sync.ts`.
 
 ---
 

@@ -13,7 +13,7 @@
 #   --json              Output machine-readable JSON
 #   --fix               Attempt auto-repair for failures
 #   --server <name>     Diagnose a single server only
-#                       Names: system_skill_advisor, code_mode
+#                       Names: code_mode
 #   --root <path>       Override project root
 #
 # Exit Codes:
@@ -47,7 +47,7 @@ Options:
   --json              Output machine-readable JSON
   --fix               Attempt auto-repair for failures
   --server <name>     Diagnose a single server only
-                      Names: system_skill_advisor, code_mode
+                      Names: code_mode
   --root <path>       Override project root
 
 Exit Codes:
@@ -56,7 +56,6 @@ Exit Codes:
   2  Failures detected
 
 Servers Checked:
-  system_skill_advisor      Skill Advisor (Node.js MCP, advisor_recommend + skill_graph_*)
   code_mode             Code Mode (Node.js MCP, TypeScript tool orchestration)
 
 Config Files Scanned:
@@ -254,152 +253,6 @@ diagnose_code_mode() {
   fi
 }
 
-
-# ── system_skill_advisor (Skill Advisor) ──────────────────────────
-diagnose_system_skill_advisor() {
-  local srv="system_skill_advisor"
-  local skill_dir="$PROJECT_ROOT/.opencode/skills/system-skill-advisor"
-  local dist_entry="$skill_dir/mcp-server/dist/mcp-server/advisor-server.js"
-  local shared_dep="$skill_dir/mcp-server/node_modules/@spec-kit/shared"
-  local shared_import_probe="$skill_dir/mcp-server/dist/mcp-server/lib/scorer/lanes/semantic-shadow.js"
-  local launcher="$PROJECT_ROOT/.opencode/bin/system-skill-advisor-launcher.cjs"
-  local db_dir="$skill_dir/mcp-server/database"
-  local needs_fix=false
-
-  _log log_header "Skill Advisor (system_skill_advisor)"
-
-  if [[ "$HAS_NODE" != true ]]; then
-    record_skip "$srv" "all" "Node.js not available"
-    _log log_skip "Node.js not available — skipping all checks"
-    return
-  fi
-
-  # Check 1: dist entry point exists
-  if [[ -f "$dist_entry" ]]; then
-    record_pass "$srv" "dist_exists" "$dist_entry"
-    _log log_pass "advisor-server.js exists"
-  else
-    record_fail "$srv" "dist_exists" "File missing: $dist_entry"
-    _log log_fail "advisor-server.js missing — needs build"
-    needs_fix=true
-  fi
-
-  # Check 2: launcher exists
-  if [[ -f "$launcher" ]]; then
-    record_pass "$srv" "launcher_exists" "$launcher"
-    _log log_pass ".opencode/bin/system-skill-advisor-launcher.cjs exists"
-  else
-    record_fail "$srv" "launcher_exists" "File missing: $launcher"
-    _log log_fail "launcher missing — repo state inconsistent"
-    needs_fix=true
-  fi
-
-  # Check 3: mcp-server/node_modules installed
-  if [[ -d "$skill_dir/mcp-server/node_modules" ]]; then
-    record_pass "$srv" "node_modules" "Installed"
-    _log log_pass "mcp-server/node_modules installed"
-  else
-    record_fail "$srv" "node_modules" "Missing"
-    _log log_fail "mcp-server/node_modules missing — needs npm install"
-    needs_fix=true
-  fi
-
-  # Check 4: @spec-kit/shared local package link
-  if [[ -e "$shared_dep" ]]; then
-    record_pass "$srv" "shared_dependency" "@spec-kit/shared resolved"
-    _log log_pass "@spec-kit/shared dependency link present"
-  else
-    record_fail "$srv" "shared_dependency" "Missing $shared_dep — run cd $skill_dir/mcp-server && npm install"
-    _log log_fail "@spec-kit/shared dependency link missing — needs npm install"
-    needs_fix=true
-  fi
-
-  # Check 5: shared import probe catches ERR_MODULE_NOT_FOUND before MCP startup
-  if [[ -f "$shared_import_probe" ]]; then
-    local shared_import_output
-    if shared_import_output="$(node -e "import(process.argv[1])" "$shared_import_probe" 2>&1)"; then
-      record_pass "$srv" "shared_import" "Compiled shared import resolved"
-      _log log_pass "Compiled shared import resolves"
-    else
-      if [[ "$shared_import_output" == *"@spec-kit/shared"* ]] || [[ "$shared_import_output" == *"ERR_MODULE_NOT_FOUND"* ]]; then
-        record_fail "$srv" "shared_import" "$shared_import_output"
-        _log log_fail "Compiled shared import failed — run npm install + build"
-        needs_fix=true
-      else
-        record_warn "$srv" "shared_import" "$shared_import_output"
-        _log log_warn "Compiled shared import probe returned a non-startup warning"
-      fi
-    fi
-  else
-    record_skip "$srv" "shared_import" "Probe file not found: $shared_import_probe"
-    _log log_skip "Compiled shared import probe not found"
-  fi
-
-  # Check 6: database directory + skill-graph.sqlite
-  if [[ -d "$db_dir" ]]; then
-    local db_file="$db_dir/skill-graph.sqlite"
-    if [[ -f "$db_file" ]]; then
-      local db_size
-      db_size="$(du -h "$db_file" 2>/dev/null | cut -f1)"
-      record_pass "$srv" "database" "skill-graph.sqlite exists ($db_size)"
-      _log log_pass "Database exists: skill-graph.sqlite ($db_size)"
-    else
-      record_warn "$srv" "database" "Database directory exists but skill-graph.sqlite not yet built"
-      _log log_warn "Database directory exists but skill-graph.sqlite not yet built (created on first advisor_rebuild)"
-    fi
-  else
-    record_warn "$srv" "database" "Database directory not found"
-    _log log_warn "Database directory not found (created on first advisor_rebuild)"
-  fi
-
-  # Check 7: Server entry point loads without native errors
-  if [[ -f "$dist_entry" ]]; then
-    if timeout 5 node -e "
-      try { require('$dist_entry'); } catch(e) {
-        if (e.code === 'ERR_DLOPEN_FAILED') process.exit(2);
-        process.exit(0); // MCP server expects stdio — exiting is normal
-      }
-    " 2>/dev/null; then
-      record_pass "$srv" "server_starts" "No ERR_DLOPEN_FAILED"
-      _log log_pass "Server entry point loads without native errors"
-    else
-      local ec=$?
-      if [[ "$ec" -eq 2 ]]; then
-        record_fail "$srv" "server_starts" "ERR_DLOPEN_FAILED — native module mismatch"
-        _log log_fail "ERR_DLOPEN_FAILED — native module rebuild required"
-        needs_fix=true
-      else
-        record_pass "$srv" "server_starts" "Entry point accessible"
-        _log log_pass "Server entry point accessible"
-      fi
-    fi
-  fi
-
-  # Check 8: advisor dist has no stale skill-root layout.
-  local stale_dist_root
-  for stale_dist_root in \
-    "$skill_dir/mcp-server/dist/system-skill-advisor" \
-    "$skill_dir/mcp-server/dist/system-spec-kit"; do
-    local drift_key
-    drift_key="dist_drift_$(basename "$stale_dist_root" | tr '-' '_')"
-    if [[ -e "$stale_dist_root" ]]; then
-      record_fail "$srv" "$drift_key" "Stale dist root present: $stale_dist_root"
-      _log log_fail "Stale dist root present: $stale_dist_root"
-      needs_fix=true
-    else
-      record_pass "$srv" "$drift_key" "Absent: $stale_dist_root"
-    fi
-  done
-
-  # Fix mode
-  if [[ "$FIX_MODE" == true ]] && [[ "$needs_fix" == true ]]; then
-    _log printf '\n  %sAttempting auto-repair...%s\n' "$CYAN" "$NC"
-    (cd "$skill_dir/mcp-server" && npm install 2>&1 | tail -3 && npm run build 2>&1 | tail -3) || true
-    record_pass "$srv" "fix_npm" "npm install + npm run build attempted"
-    _log log_info "Ran npm install + npm run build in mcp-server/"
-  fi
-}
-
 # ══════════════════════════════════════════════════════════════
 # CONFIG WIRING CHECK
 # ══════════════════════════════════════════════════════════════
@@ -412,7 +265,7 @@ detect_and_check_configs() {
     ".vscode/mcp.json|json-vscode-mcp|VS Code / Copilot"
   )
 
-  local -a servers=("system_skill_advisor" "code_mode")
+  local -a servers=("code_mode")
 
   for cfg_entry in "${config_files[@]}"; do
     IFS='|' read -r cfg_path cfg_format cfg_label <<< "$cfg_entry"
@@ -444,7 +297,6 @@ detect_and_check_configs() {
 # ══════════════════════════════════════════════════════════════
 # MAIN DISPATCH
 # ══════════════════════════════════════════════════════════════
-should_run "system_skill_advisor"    && diagnose_system_skill_advisor
 should_run "code_mode"            && diagnose_code_mode
 
 # Config wiring always runs (filtered by --server internally)

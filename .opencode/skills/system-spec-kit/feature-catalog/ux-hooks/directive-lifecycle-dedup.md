@@ -69,10 +69,10 @@ Kill switches:
 
 | File | Role |
 |---|---|
-| `.opencode/skills/system-skill-advisor/mcp-server/tests/hooks/directive-lifecycle.vitest.ts` | High-water, uncertainty, generation, secure-store, contention, cleanup, and isolation tests. |
-| `.opencode/skills/system-skill-advisor/mcp-server/tests/hooks/directive-lifecycle-boundary.vitest.ts` | Identified and global boundary invalidation tests. |
-| `.opencode/skills/system-skill-advisor/mcp-server/tests/hooks/claude-user-prompt-submit-hook.vitest.ts` | Claude handler cadence, fallback, flag, and transcript integration. |
-| `.opencode/skills/system-skill-advisor/mcp-server/tests/system-skill-advisor-plugin.vitest.ts` | OpenCode cadence, identity rejection, global invalidation, and status tests. |
+| `.opencode/skills/system-skill-advisor/runtime/tests/hooks/directive-lifecycle.vitest.ts` | High-water, uncertainty, generation, secure-store, contention, cleanup, and isolation tests. |
+| `.opencode/skills/system-skill-advisor/runtime/tests/hooks/directive-lifecycle-boundary.vitest.ts` | Identified and global boundary invalidation tests. |
+| `.opencode/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts` | Claude handler cadence, fallback, flag, and transcript integration. |
+| `.opencode/skills/system-skill-advisor/runtime/tests/system-skill-advisor-plugin.vitest.ts` | OpenCode cadence, identity rejection, global invalidation, and status tests. |
 | `.opencode/skills/system-spec-kit/runtime/tests/directive-lifecycle-adapter-parity.vitest.ts` | Registered Claude/Codex/Cursor/Devin payload and envelope parity. |
 | `.opencode/skills/system-spec-kit/runtime/tests/directive-lifecycle-boundary-bridge.vitest.ts` | Registered host-boundary coupling. |
 | `.opencode/hooks/dispatch/pi` | Pi dispatch and lifecycle suite. |

@@ -41,13 +41,13 @@ Validate two fallback paths: the Python shim routes to local scoring when native
 1. Python local fallback:
 
 ```bash
-SPECKIT_SKILL_ADVISOR_FORCE_LOCAL=1 python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py "help me commit my changes"
+SPECKIT_SKILL_ADVISOR_FORCE_LOCAL=1 python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "help me commit my changes"
 ```
 
 2. Native absent check in disposable workspace:
 
 ```text
-advisor_recommend({"prompt":"help me commit my changes","options":{"topK":1,"includeAbstainReasons":true}})
+node .opencode/bin/skill-advisor.cjs advisor_recommend --prompt "help me commit my changes" --options '{"topK":1,"includeAbstainReasons":true}' --format json
 ```
 
 3. Inspect `freshness`, `trustState` and recommendations.
@@ -62,7 +62,7 @@ advisor_recommend({"prompt":"help me commit my changes","options":{"topK":1,"inc
 
 | Symptom | Detection | Action |
 | --- | --- | --- |
-| Native absent throws | MCP call errors instead of JSON envelope | Inspect absent freshness branch. |
+| Native absent throws | Command call errors instead of JSON envelope | Inspect absent freshness branch. |
 | Shim cannot route locally | Forced-local exits nonzero | Check Python scorer imports and skill metadata. |
 | Live DB was moved and not restored | `advisor_status` remains absent in real repo | Restore database or run rebuild before continuing. |
 
@@ -70,8 +70,8 @@ advisor_recommend({"prompt":"help me commit my changes","options":{"topK":1,"inc
 
 ## 4. SOURCE FILES
 
-- `.opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-recommend.ts`
-- `.opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py`
+- `.opencode/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts`
+- `.opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py`
 
 ---
 
@@ -89,7 +89,7 @@ advisor_recommend({"prompt":"help me commit my changes","options":{"topK":1,"inc
 Command:
 
 ```bash
-SPECKIT_SKILL_ADVISOR_FORCE_LOCAL=1 python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py "help me commit my changes"
+SPECKIT_SKILL_ADVISOR_FORCE_LOCAL=1 python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "help me commit my changes"
 ```
 
 Output:

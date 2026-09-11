@@ -1,0 +1,26 @@
+{
+  "level": "3",
+  "specFolder": "system-skill-advisor/025-mcp-decommission-cli-front-door/002-daemon-transport-decision",
+  "description": "The resident daemon is why a prompt-time recommendation is fast: SQLite is warm and the embedder is already loaded",
+  "keywords": [
+    "resident",
+    "daemon",
+    "prompt-time",
+    "recommendation",
+    "fast",
+    "sqlite",
+    "warm",
+    "embedder",
+    "already",
+    "loaded"
+  ],
+  "lastUpdated": "2026-09-11T09:27:47.462Z",
+  "specId": "002",
+  "folderSlug": "daemon-transport-decision",
+  "parentChain": [
+    "system-skill-advisor",
+    "025-mcp-decommission-cli-front-door"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -72,7 +72,7 @@ The validator reads the file path and content shape, then applies the matching e
 **Step 1: Invoke it.** Gate 2 auto-routing fires on documentation keywords. Otherwise read the skill directly.
 
 ```bash
-python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py "validate my README" --threshold 0.8
+python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "validate my README" --threshold 0.8
 ```
 
 The advisor prints a routing recommendation with a score. A score above the 0.8 threshold names sk-doc as the skill to load.

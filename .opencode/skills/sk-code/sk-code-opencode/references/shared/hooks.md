@@ -40,12 +40,12 @@ This reference documents the runtime-hook entrypoint pattern for OpenCode-family
 | Source | Path | Purpose |
 |---|---|---|
 | Hook system reference | `.opencode/skills/system-spec-kit/references/config/hook-system.md` | Runtime-specific hook system deep-dive |
-| Hook helper inventory | `.opencode/skills/system-spec-kit/runtime/hooks/README.md` | Current hook helper tree; states OpenCode advice is delivered by plugin bridge |
+| Hook helper inventory | `.opencode/skills/system-spec-kit/runtime/hooks/README.md` | Current hook helper tree; states OpenCode advice is delivered by the plugin |
 | Claude settings | `.claude/settings.json` | Live checked-in Claude hook wiring |
 | Cursor hooks | `.cursor/hooks.json` | Live checked-in Cursor CLI/editor hook wiring |
 | Cursor hook contract | `.opencode/skills/cli-external-orchestration/cli-cursor/references/hook-contract.md` | Cursor-specific hook schema, discovery order, and event-delivery caveats |
 | OpenCode skill-advisor plugin | `.opencode/plugins/system-skill-advisor.js` | OpenCode prompt-time advisor plugin using `experimental.chat.system.transform` |
-| OpenCode skill-advisor bridge | `.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/system-skill-advisor-bridge.mjs` | Subprocess bridge from plugin to the advisor server |
+| Advisor CLI front door | `.opencode/bin/skill-advisor.cjs` | The nine-command CLI the plugin spawns for every advisor call |
 
 ---
 
@@ -173,16 +173,16 @@ Cursor's MCP hook payloads split the server and tool across **two** fields — `
 
 ## 5. OPENCODE HOOKS
 
-The removed `system-spec-kit/runtime/hooks/opencode/` suite is not present in this checkout. Current OpenCode prompt-time advice is delivered by plugin bridge:
+The removed `system-spec-kit/runtime/hooks/opencode/` suite is not present in this checkout. Current OpenCode prompt-time advice is delivered by the plugin:
 
 | Component | Path | Runtime surface |
 |---|---|---|
 | Skill advisor plugin | `.opencode/plugins/system-skill-advisor.js` | Exposes `experimental.chat.system.transform`, an `event` handler, and `spec_kit_skill_advisor_status`. |
-| Skill advisor bridge | `.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/system-skill-advisor-bridge.mjs` | Subprocess bridge from the plugin to `system_skill_advisor`; stdin JSON in, single stdout JSON response out. |
+| Advisor CLI front door | `.opencode/bin/skill-advisor.cjs` | The CLI the plugin spawns per call; JSON in, a single JSON response out. |
 
-`system-spec-kit/runtime/hooks/README.md` is explicit: OpenCode prompt-time advice is delivered by the OpenCode plugin and bridge, not by a subfolder in that directory. `hook-system.md` also describes OpenCode plugin-based transport through `.opencode/plugins/system-skill-advisor.js` and `.opencode/plugins/opencode-goal.js`.
+`system-spec-kit/runtime/hooks/README.md` is explicit: OpenCode prompt-time advice is delivered by the OpenCode plugin, not by a subfolder in that directory. `hook-system.md` also describes OpenCode plugin-based transport through `.opencode/plugins/system-skill-advisor.js` and `.opencode/plugins/opencode-goal.js`.
 
-Deprecated/stale references to `system-spec-kit/runtime/hooks/opencode/*` should be treated as legacy documentation until the authoritative hook contract names a new migration path. The current advisor bridge path is `system-skill-advisor/mcp-server/plugin-bridges/system-skill-advisor-bridge.mjs`.
+Deprecated/stale references to `system-spec-kit/runtime/hooks/opencode/*` should be treated as legacy documentation until the authoritative hook contract names a new migration path. The plugin now spawns `.opencode/bin/skill-advisor.cjs` directly; the bridge module it used to call was deleted.
 
 ---
 
@@ -246,7 +246,7 @@ Hooks are RUNTIME-SPECIFIC. Adding `compact-inject` to Claude does NOT auto-add 
 - Current helper inventory: `system-spec-kit/runtime/hooks/README.md`
 - Current hook contract: `system-spec-kit/references/config/hook-system.md`
 - Live Claude wiring: `.claude/settings.json`
-- OpenCode advisor plugin bridge: `.opencode/plugins/system-skill-advisor.js` -> `system-skill-advisor/mcp-server/plugin-bridges/system-skill-advisor-bridge.mjs`
+- OpenCode advisor plugin: `.opencode/plugins/system-skill-advisor.js` -> `.opencode/bin/skill-advisor.cjs`
 
 ### Runtime-Specific Deep-Dives (do not duplicate)
 

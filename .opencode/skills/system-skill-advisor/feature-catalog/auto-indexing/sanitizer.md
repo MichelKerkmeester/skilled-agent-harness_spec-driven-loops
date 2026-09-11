@@ -38,16 +38,16 @@ Unsanitized labels never leak to readers.
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/mcp-server/lib/derived/sanitizer.ts` | Library | Source reference |
-| `.opencode/skills/system-skill-advisor/mcp-server/lib/derived/sync.ts` | Library | Source reference |
-| `.opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-recommend.ts` | Handler | Source reference |
+| `.opencode/skills/system-skill-advisor/runtime/lib/derived/sanitizer.ts` | Library | Source reference |
+| `.opencode/skills/system-skill-advisor/runtime/lib/derived/sync.ts` | Library | Source reference |
+| `.opencode/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts` | Handler | Source reference |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-skill-advisor/mcp-server/tests/legacy/advisor-privacy.vitest.ts` | Automated test | boundary sanitization |
-| `.opencode/skills/system-skill-advisor/mcp-server/tests/handlers/advisor-recommend.vitest.ts` | Automated test | envelope sanitization |
+| `.opencode/skills/system-skill-advisor/runtime/tests/legacy/advisor-privacy.vitest.ts` | Automated test | boundary sanitization |
+| `.opencode/skills/system-skill-advisor/runtime/tests/handlers/advisor-recommend.vitest.ts` | Automated test | envelope sanitization |
 | `Playbook scenario [AI-002](../../manual-testing-playbook/auto-indexing/sanitizer-boundaries.md).` | Manual playbook | Source reference |
 
 ---
@@ -62,4 +62,4 @@ Related references:
 
 - [01-derived-extraction.md](../../feature-catalog/auto-indexing/derived-extraction.md).
 - [05-anti-stuffing.md](../../feature-catalog/auto-indexing/anti-stuffing.md).
-- [`mcp-surface/advisor-recommend.md`](../../feature-catalog/mcp-surface/advisor-recommend.md).
+- [`cli-surface/advisor-recommend.md`](../../feature-catalog/cli-surface/advisor-recommend.md).

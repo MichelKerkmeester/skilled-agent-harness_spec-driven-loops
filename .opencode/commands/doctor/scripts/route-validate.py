@@ -11,14 +11,16 @@ Validates `.opencode/commands/doctor/_routes.yaml` against:
   C. No duplicate target names
   D. Every route's YAML asset exists in assets/
   E. Mutation class is one of {read-only, add-only, mutates}
-  F. Each route's mcp_tools is a subset of the router's frontmatter allowed-tools union
+  F. Each route's mcp_tools is a subset of the router's frontmatter allowed-tools
+     union; each cli_commands entry invokes the advisor CLI with a known command
   G. Every route has ≥1 trigger phrase
   H. Flag-name collisions across targets (informational only)
   I. Every route's script_invocations resolve to an existing local script file
   J. Target-set parity across _routes.yaml, speckit.md's Workflow Assets table,
      and doctor_speckit_presentation.txt's menu/valid-targets/subsystem table
   K. Read-only mutation-policy: a `mutating: read-only` route may not declare a
-     packet/file/DB write in its target YAML or grant a known-mutating MCP tool
+     packet/file/DB write in its target YAML or grant a known-mutating advisor
+     command
 
 Exit codes:
   0 — all assertions pass
@@ -47,20 +49,39 @@ REQUIRED_KEYS = {
     "allowed_flags",
     "mutating",
     "gate3_location",
-    "mcp_tools",
     "trigger_phrases",
 }
+# A route declares the tool surface it uses in exactly one of these forms: MCP
+# tool ids, or advisor CLI invocations.
+TOOL_DECLARATION_KEYS = ("mcp_tools", "cli_commands")
 VALID_MUTATING = {"read-only", "add-only", "mutates"}
 
 # Matches repo-relative local script paths inside script_invocations prose,
 # e.g. ".opencode/bin/skill-advisor.cjs" or ".opencode/commands/doctor/scripts/x.py"
 SCRIPT_PATH_RE = re.compile(r"\.opencode/[^\s\"']+\.(?:cjs|mjs|js|py|sh)")
 
-# MCP tools known to mutate state (indexing/rebuild/link/scan writers), used by
+# Advisor CLI invocation shape for cli_commands entries: the repo-relative shim
+# path plus the set of commands the CLI itself exposes.
+ADVISOR_CLI_RELATIVE_PATH = ".opencode/bin/skill-advisor.cjs"
+ADVISOR_CLI_COMMANDS = {
+    "advisor_recommend",
+    "advisor_rebuild",
+    "advisor_status",
+    "advisor_validate",
+    "skill_graph_scan",
+    "skill_graph_query",
+    "skill_graph_status",
+    "skill_graph_validate",
+    "skill_graph_propagate_enhances",
+}
+
+# Advisor commands known to mutate state (index/rebuild writers), used by
 # assertion K to flag a `mutating: read-only` route that over-grants a mutator.
-KNOWN_MUTATING_MCP_TOOLS = {
-    "mcp__system_skill_advisor__advisor_rebuild",
-    "mcp__system_skill_advisor__skill_graph_scan",
+# skill_graph_propagate_enhances mutates only in its apply form, which no route
+# declares today.
+KNOWN_MUTATING_ADVISOR_COMMANDS = {
+    "advisor_rebuild",
+    "skill_graph_scan",
 }
 
 # Matches the write-activity prose used by target YAMLs ("Write to ...",
@@ -164,6 +185,31 @@ def parse_presentation_targets(presentation_path: Path) -> dict[str, set[str]]:
     return {"menu": menu_targets, "valid_targets": valid_targets, "subsystem": subsystem_targets}
 
 
+def advisor_cli_command_name(entry) -> str | None:
+    """Extract the advisor command named by one cli_commands entry.
+
+    Returns None when the entry does not invoke the advisor CLI shim.
+    """
+    if not isinstance(entry, str):
+        return None
+    tokens = entry.split()
+    if ADVISOR_CLI_RELATIVE_PATH not in tokens:
+        return None
+    for token in tokens[tokens.index(ADVISOR_CLI_RELATIVE_PATH) + 1:]:
+        if not token.startswith("-"):
+            return token
+    return None
+
+
+def advisor_cli_commands(route: dict) -> set[str]:
+    """Command names declared by a route's cli_commands entries."""
+    entries = route.get("cli_commands")
+    if not isinstance(entries, list):
+        return set()
+    names = (advisor_cli_command_name(entry) for entry in entries)
+    return {name for name in names if name}
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--routes", required=True, help="Path to _routes.yaml")
@@ -228,6 +274,8 @@ def main():
         missing = REQUIRED_KEYS - set(route.keys())
         if missing:
             R.fail(f"B2: route '{target}' missing required keys: {', '.join(sorted(missing))}")
+        if not any(key in route for key in TOOL_DECLARATION_KEYS):
+            R.fail(f"B2: route '{target}' declares neither {' nor '.join(TOOL_DECLARATION_KEYS)}")
 
     if R.fails == 0:
         R.passed("B2: all routes have required keys")
@@ -300,6 +348,29 @@ def main():
                     f2_failed = True
         if not f2_failed:
             R.passed("F2: all route mcp_tools are subsets of router allowed-tools union")
+
+    f3_failed = False
+    for route in routes:
+        if not isinstance(route, dict):
+            continue
+        target = route.get("target")
+        entries = route.get("cli_commands")
+        if entries is None:
+            continue
+        if not isinstance(entries, list):
+            R.fail(f"F3: route '{target}' cli_commands is not a list")
+            f3_failed = True
+            continue
+        for entry in entries:
+            command = advisor_cli_command_name(entry)
+            if command is None:
+                R.fail(f"F3: route '{target}' cli_commands entry does not invoke {ADVISOR_CLI_RELATIVE_PATH}: {entry!r}")
+                f3_failed = True
+            elif command not in ADVISOR_CLI_COMMANDS:
+                R.fail(f"F3: route '{target}' cli_commands entry names unknown advisor command '{command}': {entry!r}")
+                f3_failed = True
+    if not f3_failed:
+        R.passed("F3: every cli_commands entry invokes the advisor CLI with a known command")
 
     # ─────────────────────────────────────────────────────────────
     # G. TRIGGER PHRASE NON-EMPTY
@@ -396,13 +467,12 @@ def main():
                 if WRITE_ACTIVITY_RE.search(yaml_text):
                     R.fail(f"K1: route '{target}' is 'mutating: read-only' but its YAML ({yaml_path.name}) declares a write; reclassify as add-only/mutates or remove the write")
                     k_failed = True
-        mcp_tools = route.get("mcp_tools") or []
-        mutating_tools = sorted(set(mcp_tools) & KNOWN_MUTATING_MCP_TOOLS)
-        if mutating_tools:
-            R.fail(f"K2: route '{target}' is 'mutating: read-only' but grants known-mutating mcp_tools: {', '.join(mutating_tools)}")
+        mutating_commands = sorted(advisor_cli_commands(route) & KNOWN_MUTATING_ADVISOR_COMMANDS)
+        if mutating_commands:
+            R.fail(f"K2: route '{target}' is 'mutating: read-only' but grants known-mutating advisor commands: {', '.join(mutating_commands)}")
             k_failed = True
     if not k_failed:
-        R.passed("K1/K2: no read-only route declares a write or grants a mutating MCP tool")
+        R.passed("K1/K2: no read-only route declares a write or grants a mutating advisor command")
 
     # ─────────────────────────────────────────────────────────────
     # SUMMARY

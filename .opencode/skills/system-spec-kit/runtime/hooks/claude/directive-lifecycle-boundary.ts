@@ -24,7 +24,7 @@ function directiveLifecycleEnabled(): boolean {
   }
 }
 
-const TARGET_REL = 'skills/system-skill-advisor/mcp-server/dist/hooks/claude/directive-lifecycle-boundary.js';
+const TARGET_REL = 'skills/system-skill-advisor/runtime/dist/hooks/claude/directive-lifecycle-boundary.js';
 const MAX_ROOT_WALK_DEPTH = 14;
 const CHILD_TIMEOUT_MS = 500;
 const MAX_STDIO_BYTES = 64 * 1024;

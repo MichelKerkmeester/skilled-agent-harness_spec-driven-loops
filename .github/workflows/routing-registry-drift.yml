@@ -25,7 +25,7 @@ on:
       - '.github/workflows/routing-registry-drift.yml'
       - '.opencode/skills/*/mode-registry.json'
       - '.opencode/skills/*/hub-router.json'
-      - '.opencode/skills/system-skill-advisor/mcp-server/**'
+      - '.opencode/skills/system-skill-advisor/runtime/**'
       - '.opencode/commands/doctor/scripts/parent-skill-check.cjs'
       - '.opencode/skills/sk-doc/sk-create-skill/assets/parent-skill/**'
       - '.opencode/skills/sk-doc/sk-create-skill/references/parent-skill/**'
@@ -49,7 +49,7 @@ on:
       - '.github/workflows/routing-registry-drift.yml'
       - '.opencode/skills/*/mode-registry.json'
       - '.opencode/skills/*/hub-router.json'
-      - '.opencode/skills/system-skill-advisor/mcp-server/**'
+      - '.opencode/skills/system-skill-advisor/runtime/**'
       - '.opencode/commands/doctor/scripts/parent-skill-check.cjs'
       - '.opencode/skills/sk-doc/sk-create-skill/assets/parent-skill/**'
       - '.opencode/skills/sk-doc/sk-create-skill/references/parent-skill/**'
@@ -100,7 +100,7 @@ jobs:
         with:
           python-version: '3.x'
       - name: Routing-registry drift-guard + parity suites
-        working-directory: .opencode/skills/system-skill-advisor/mcp-server
+        working-directory: .opencode/skills/system-skill-advisor/runtime
         # The drift-guard asserts the hardcoded Python/TS routing maps equal the
         # registry projection; the parity suites assert per-mode routing. The
         # routing surface is dependency-free (aliases.ts has no imports;
@@ -157,7 +157,7 @@ jobs:
         # same command reproduces any failure locally.
         run: |
           set -euo pipefail
-          python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_graph_compiler.py --validate-only
+          python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_graph_compiler.py --validate-only
 
   golden-prompt-gate:
     name: Gate-2 golden prompts — real scorer top-1/top-3 + joined compiled mode
@@ -182,9 +182,9 @@ jobs:
           set -euo pipefail
           npm --prefix .opencode/skills/system-spec-kit ci
           ( cd .opencode/skills/system-spec-kit/shared && ../node_modules/.bin/tsc --build )
-          npm --prefix .opencode/skills/system-skill-advisor/mcp-server ci
+          npm --prefix .opencode/skills/system-skill-advisor/runtime ci
       - name: Golden-prompt acceptance suite
-        working-directory: .opencode/skills/system-skill-advisor/mcp-server
+        working-directory: .opencode/skills/system-skill-advisor/runtime
         run: |
           set -euo pipefail
           npx vitest run tests/routing-golden-prompts.vitest.ts
@@ -196,7 +196,7 @@ jobs:
         # re-scoring live under the same no-sqlite fallback regime the baseline
         # was captured in. It runs here, in the full-install job, because it
         # imports the real fusion scorer and the built shared dist.
-        working-directory: .opencode/skills/system-skill-advisor/mcp-server
+        working-directory: .opencode/skills/system-skill-advisor/runtime
         run: |
           set -euo pipefail
           npx vitest run tests/parity/scorer-eval-baseline-ratchet.vitest.ts
@@ -213,7 +213,7 @@ jobs:
         # regime fails. historical-clean keeps known-good prompts from regressing
         # inside the allowed band. Runs here rather than in the lean job because
         # the gate3 leg imports the built shared dist the install step produces.
-        working-directory: .opencode/skills/system-skill-advisor/mcp-server
+        working-directory: .opencode/skills/system-skill-advisor/runtime
         run: |
           set -euo pipefail
           python3 - <<'EOF'
