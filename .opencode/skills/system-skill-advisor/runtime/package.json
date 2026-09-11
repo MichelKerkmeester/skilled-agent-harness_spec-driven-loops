@@ -8,7 +8,8 @@
     "build": "npm --prefix ../../system-spec-kit/shared run build && ../../system-spec-kit/node_modules/.bin/tsc -p tsconfig.build.json",
     "postbuild": "mkdir -p dist/runtime/data && cp data/*.json dist/runtime/data/",
     "typecheck": "../../system-spec-kit/node_modules/.bin/tsc --noEmit --composite false -p tsconfig.build.json",
-    "test": "vitest run"
+    "test": "vitest run",
+    "test:stress": "SPECKIT_RUN_STRESS=true vitest run"
   },
   "dependencies": {
     "@huggingface/transformers": "^3.8.1",

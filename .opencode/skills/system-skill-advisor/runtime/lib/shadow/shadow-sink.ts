@@ -2,7 +2,7 @@
 // MODULE: Advisor Shadow Sink
 // ───────────────────────────────────────────────────────────────
 
-import { appendFileSync, existsSync, mkdirSync, renameSync, statSync } from 'node:fs';
+import { appendFileSync, existsSync, mkdirSync, realpathSync, renameSync, statSync } from 'node:fs';
 import { dirname, isAbsolute, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -50,6 +50,29 @@ function findWorkspaceRoot(start = process.cwd()): string {
   }
 }
 
+// A containment check has to compare like with like. process.cwd() hands back a
+// path with its symlinks already resolved, so a workspace under a symlinked
+// parent (/tmp on macOS, which is really /private/tmp) canonicalizes on one
+// side only: the root becomes /private/tmp/... while an operator-supplied path
+// stays /tmp/... . The two then look unrelated and a path genuinely inside the
+// workspace is refused. The target file need not exist yet, so canonicalize the
+// deepest ancestor that does and re-append the rest.
+function canonicalize(pathValue: string): string {
+  let head = resolve(pathValue);
+  const tail: string[] = [];
+  while (!existsSync(head)) {
+    const parent = dirname(head);
+    if (parent === head) return resolve(pathValue);
+    tail.unshift(head.slice(parent.length + 1));
+    head = parent;
+  }
+  try {
+    return resolve(realpathSync.native(head), ...tail);
+  } catch {
+    return resolve(pathValue);
+  }
+}
+
 function isPathInside(rootPath: string, targetPath: string): boolean {
   const rel = relative(rootPath, targetPath);
   return rel === '' || (!rel.startsWith('..') && !isAbsolute(rel));
@@ -67,7 +90,7 @@ function resolveShadowDeltaPath(options: RecordShadowDeltaOptions): { ok: true; 
 
   const resolvedPath = resolve(envPath);
   const workspaceRoot = findWorkspaceRoot();
-  if (!isPathInside(workspaceRoot, resolvedPath)) {
+  if (!isPathInside(canonicalize(workspaceRoot), canonicalize(resolvedPath))) {
     return {
       ok: false,
       path: resolvedPath,

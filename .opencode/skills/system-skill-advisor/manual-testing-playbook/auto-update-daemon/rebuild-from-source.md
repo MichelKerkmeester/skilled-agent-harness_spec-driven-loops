@@ -37,6 +37,11 @@ Validate the rebuild-from-source recovery path in `lib/freshness/rebuild-from-so
 - Backup of the original `skill-graph.sqlite` captured before corruption.
 - Advisor daemon reachable for the copy.
 - Operator has shell access to delete or mutate the copied database.
+- **No daemon is holding the copied database when the rebuild runs.** SQLite refuses to
+  replace a file another process has open, so a daemon still attached to the corrupted
+  copy makes the rebuild fail with `database disk image is malformed` rather than
+  recovering. Stop that daemon first. With the file unheld, the rebuild recovers:
+  `freshness` moves `absent` to `live` and the generation advances.
 
 ---
 

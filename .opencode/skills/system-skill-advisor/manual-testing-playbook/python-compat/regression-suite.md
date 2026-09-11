@@ -61,7 +61,7 @@ python3 .opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor_regr
 
 | Symptom | Detection | Action |
 | --- | --- | --- |
-| Fewer than 50 cases | Dataset loaded partial | Verify JSONL integrity. |
+| Fewer than 47 cases | Dataset loaded partial | Verify JSONL integrity. |
 | Regressions reported | One or more cases FAIL | Triage per case. Block release until resolved. |
 | Non-zero exit but zero failures | Suite exits abnormally | Inspect runner and post-run hooks. |
 
@@ -98,7 +98,7 @@ $ test -f ".opencode/skills/system-skill-advisor/runtime/scripts/fixtures/skill-
 $ test -f ".opencode/skills/system-skill-advisor/runtime/scripts/skill_advisor_regression.py"
 
 $ wc -l ".opencode/skills/system-skill-advisor/runtime/scripts/fixtures/skill-advisor-regression-cases.jsonl"
-      50 .opencode/skills/system-skill-advisor/runtime/scripts/fixtures/skill-advisor-regression-cases.jsonl
+      47 .opencode/skills/system-skill-advisor/runtime/scripts/fixtures/skill-advisor-regression-cases.jsonl
 ```
 
 Executed command:

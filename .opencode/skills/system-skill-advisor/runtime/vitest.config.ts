@@ -7,6 +7,13 @@ import path from 'node:path';
 const TEST_TIMEOUT_MS = 30_000;
 const TEARDOWN_TIMEOUT_MS = 1_000;
 const INCLUDE_BENCHES = process.env.SPECKIT_RUN_BENCHES === 'true';
+// The stress suites are excluded from the default run because they are slow, not
+// because they are unwanted. Without a way to opt in they were unreachable: no
+// script and no pattern selected them, so 21 files sat in the tree running never.
+// Opting in REPLACES the default set rather than adding to it: these suites churn
+// the daemon, its socket and its lease, and running them beside the ordinary
+// suites fails a handful of those on shared state rather than on their own logic.
+const INCLUDE_STRESS = process.env.SPECKIT_RUN_STRESS === 'true';
 
 // A plain object export instead of vitest's defineConfig wrapper: the config is
 // loaded by node's own module graph, where a bare `vitest` import only resolves
@@ -18,7 +25,7 @@ export default ({
   root: import.meta.dirname,
   test: {
     include: [
-      'tests/**/*.vitest.ts',
+      ...(INCLUDE_STRESS ? ['stress-test/**/*.vitest.ts'] : ['tests/**/*.vitest.ts']),
       ...(INCLUDE_BENCHES ? ['bench/**/*.bench.ts'] : []),
     ],
     exclude: [

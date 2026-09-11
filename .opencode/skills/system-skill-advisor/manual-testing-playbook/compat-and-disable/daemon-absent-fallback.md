@@ -55,7 +55,11 @@ node .opencode/bin/skill-advisor.cjs advisor_recommend --prompt "help me commit 
 ### Expected Signals
 
 - Forced-local shim returns a JSON array from the Python scorer.
-- Native absent response returns `recommendations: []`, `freshness: "absent"` and a prompt-safe abstain reason.
+- With no daemon reachable and cold spawn suppressed (`--warm-only`), the front door returns exit `75` with a
+  retryable error envelope naming the unreachable socket. The `freshness: "absent"` envelope with empty
+  recommendations is a handler-level branch that the front door no longer surfaces in the shipped
+  configuration: a cold start rebuilds to `live` instead. The hook layer is where an unreachable daemon
+  becomes the `Advisor: stale` brief.
 - The absence path does not throw and does not block prompt handling.
 
 ### Failure Modes
