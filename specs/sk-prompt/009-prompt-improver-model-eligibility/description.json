@@ -1,0 +1,20 @@
+{
+  "specFolder": "sk-prompt/009-prompt-improver-model-eligibility",
+  "description": "Restrict which models may act as the prompt-improve agent",
+  "keywords": [
+    "restrict",
+    "models",
+    "act",
+    "prompt-improve",
+    "agent"
+  ],
+  "lastUpdated": "2026-09-11T18:34:45.535Z",
+  "specId": "009",
+  "folderSlug": "prompt-improver-model-eligibility",
+  "parentChain": [
+    "sk-prompt"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

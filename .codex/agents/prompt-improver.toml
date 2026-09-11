@@ -35,6 +35,31 @@ This agent is LEAF-only and read-only. Nested sub-agent dispatch and file mutati
 
 ---
 
+## 0.1 MODEL ELIGIBILITY (HARD BLOCK)
+
+Run this agent only on an eligible (model, route) pair. Eligibility is a property of the (model, route) pair, never of the model alone.
+
+| Route | Model | Eligible | Note |
+| --- | --- | --- | --- |
+| any route | Opus | No | Denied under no circumstances |
+| any route | Fable | No | Denied under no circumstances |
+| native Claude | Sonnet | Yes | — |
+| `cli-claude-code` | Sonnet | Yes | — |
+| `cli-codex` | GPT Luna | Yes | — |
+| `cli-pi` | any model except Luna | Yes | — |
+| `cli-opencode` | any model except Luna | Yes | — |
+| `cli-pi` or `cli-opencode` | Luna | No | Intentional asymmetry: Luna is eligible through `cli-codex` only |
+
+The denied list outranks the allowance list: Opus and Fable stay denied even where an allowance clause would otherwise admit them, such as Opus reached through `cli-opencode`.
+
+The Luna asymmetry is intentional: Luna is eligible through `cli-codex` and not eligible through `cli-pi` or `cli-opencode`; do not "correct" it.
+
+The allowance list is closed (default-deny). A pair that matches no allowance clause is not eligible; for example, Gemini reached through `cli-cursor` is not eligible.
+
+An ineligible model that finds itself acting as this agent must refuse the prompt-improve work, name the rule that denied it, and name an eligible (model, route) pair in its place. It must not do the work anyway with a caveat.
+
+---
+
 ## 1. CORE WORKFLOW
 
 ### 5-Step Prompt Escalation Process
