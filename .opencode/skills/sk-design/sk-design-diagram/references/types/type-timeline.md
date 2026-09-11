@@ -9,7 +9,7 @@ trigger_phrases:
   - "incident timeline"
 importance_tier: normal
 contextType: implementation
-version: 1.1.0.6
+version: 1.2.0.8
 ---
 
 # Timeline

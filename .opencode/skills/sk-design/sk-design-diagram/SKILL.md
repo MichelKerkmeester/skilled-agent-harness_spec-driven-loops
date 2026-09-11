@@ -2,7 +2,7 @@
 name: sk-design-diagram
 description: Creates self-contained HTML/SVG diagrams across 27 types with a skinnable editorial design system.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.1.0.0
+version: 1.2.0.0
 ---
 
 # Create Diagram
@@ -26,8 +26,9 @@ This packet owns both formats. `type-flowchart.md` remains the HTML/SVG TYPE ref
 - Structure, ranking, and time → timeline, Gantt, bar, line, scatter, radar, pyramid/funnel, venn, nested, tree, org chart, layer stack, quadrant, loop.
 - Redrawing an existing `.drawio`, `.drawio.png`, `.drawio.svg`, `.mmd`, `.mermaid`, or fenced-Mermaid source as a presentable editorial diagram.
 - Exporting a generated diagram as `.png` or `.svg` for a slide, social card, print, or further editing.
+- Repainting a diagram in a product's own visual language from a measured or hand-written `DESIGN.md` Style Reference.
 
-Keyword triggers: `create:diagram`, `/design:diagram`, `diagram`, `architecture diagram`, `sequence diagram`, `ER diagram`, `data model`, `swimlane`, `state machine`, `venn`, `org chart`, `draw.io`, `drawio`, `mermaid`, `redraw diagram`, `export diagram`, `ASCII flowchart`, `workflow diagram`, `text diagram`, `text characters`, `decision tree`, `decision branch`, `parallel execution diagram`, `approval loop diagram`.
+Keyword triggers: `create:diagram`, `/design:diagram`, `diagram`, `theme diagram`, `style reference`, `DESIGN.md`, `repaint diagram`, `brand the diagram`, `architecture diagram`, `sequence diagram`, `ER diagram`, `data model`, `swimlane`, `state machine`, `venn`, `org chart`, `draw.io`, `drawio`, `mermaid`, `redraw diagram`, `export diagram`, `ASCII flowchart`, `workflow diagram`, `text diagram`, `text characters`, `decision tree`, `decision branch`, `parallel execution diagram`, `approval loop diagram`.
 
 ### Use Cases — selection guide
 
@@ -316,14 +317,18 @@ For `ascii-markdown`, produce the requested markdown file or embedded fenced tex
 - [primitive-terminal.md](./references/primitives/primitive-terminal.md) — fixed terminal-window skin, monospace throughout, one accent; not brand-tokenized.
 - [primitive-icons.md](./references/primitives/primitive-icons.md) — monochrome 24×24 icon library (compute, people, network, data, Kubernetes, action, DevOps, brand, data stack, language, statistical tools, file formats) with license attribution.
 - [ascii-format/pattern-selection.md](./references/ascii-format/pattern-selection.md) — workflow-shape pattern selection and split heuristics for `ascii-markdown` output.
+- [design-md-theming.md](./references/design-md-theming.md) — repainting a delivery from a local Style Reference: what the parser reads, which reference row fills each role, the gates a themed palette clears, and what a run refuses.
+- [derivation-record.md](./references/foundations/derivation-record.md) — why each stock value is what it is, the gates, and every recorded departure.
 
-### Templates and Assets
+### Forms and Assets
 
 - [starter-light.html](./assets/diagrams/starter-light.html) — minimal light variant (default).
 - [starter-dark.html](./assets/diagrams/starter-dark.html) — minimal dark variant.
 - [starter-full.html](./assets/diagrams/starter-full.html) — full editorial variant.
 - [starter-terminal.html](./assets/diagrams/starter-terminal.html) — terminal-window variant.
 - [icons.html](./assets/style-reference/harness-diagram/icons.html) — icon gallery; specimen glyphs are decorative (`aria-hidden="true"`).
+- [assets/diagrams/README.md](./assets/diagrams/README.md) — the 38-form library: 27 canonical diagrams, 7 pattern variants, 4 skin starters.
+- [assets/style-reference/README.md](./assets/style-reference/README.md) — one directory per visual language: its `DESIGN.md`, its provenance, its tokens and its glyphs.
 
 ---
 

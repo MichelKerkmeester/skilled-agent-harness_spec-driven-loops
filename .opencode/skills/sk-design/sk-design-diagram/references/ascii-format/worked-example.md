@@ -9,7 +9,7 @@ trigger_phrases:
   - "why flowchart passes validation"
 importance_tier: normal
 contextType: implementation
-version: 1.1.0.10
+version: 1.2.0.11
 ---
 
 # Worked Decision-Tree Example

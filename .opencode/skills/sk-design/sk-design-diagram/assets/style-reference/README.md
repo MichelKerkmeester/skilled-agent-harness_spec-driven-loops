@@ -9,7 +9,7 @@ trigger_phrases:
   - "where do the colours come from"
   - "add a style reference"
 contextType: general
-version: 1.1.0.0
+version: 1.2.0.2
 ---
 
 # assets/style-reference

@@ -9,7 +9,7 @@ trigger_phrases:
   - "terminal skin reference gate"
 importance_tier: normal
 contextType: implementation
-version: 1.1.0.0
+version: 1.2.0.4
 ---
 
 # Theming a diagram from DESIGN.md

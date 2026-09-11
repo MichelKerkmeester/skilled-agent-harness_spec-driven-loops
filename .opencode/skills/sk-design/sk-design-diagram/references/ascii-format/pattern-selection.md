@@ -9,7 +9,7 @@ trigger_phrases:
   - "large flowchart split signals"
 importance_tier: normal
 contextType: implementation
-version: 1.1.0.10
+version: 1.2.0.11
 ---
 
 # Pattern Selection and Splitting

@@ -7,7 +7,7 @@ trigger_phrases:
   - "diagram smart router"
 importance_tier: "normal"
 contextType: "reference"
-version: 1.1.0.2
+version: 1.2.0.3
 ---
 
 # Diagram Router Pseudocode

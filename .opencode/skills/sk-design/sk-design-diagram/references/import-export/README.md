@@ -6,7 +6,7 @@ trigger_phrases:
   - "diagram import export index"
   - "drawio mermaid export procedures"
 contextType: general
-version: 1.1.0.6
+version: 1.2.0.7
 ---
 
 # references/import-export
