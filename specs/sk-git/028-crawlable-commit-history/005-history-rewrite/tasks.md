@@ -57,7 +57,7 @@ contextType: "general"
 
 - [x] T008 Rehearse at full scale on a mirror, twice, the second with the 109 tags: INVARIANTS PASS
 - [x] T009 Dry-run the citation remap against the rehearsal commit map: 1,704 tokens, 1,672 files
-- [x] T010 Open the window: pinned 7acc23fcb9, rehearsed, pushed main, skilled/v4.0.0.0 and 109 tags on the operator's yes, remapped citations as 0009164, re-minted the executor hub as 0009165
+- [x] T010 Open the window: pinned 6358770875, rehearsed, pushed main, skilled/v4.0.0.0 and 109 tags on the operator's yes, remapped citations as 0009164, re-minted the executor hub as 0009165
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -245,7 +245,7 @@ contextType: "general"
 
 | Approver | Role | Status | Date |
 |----------|------|--------|------|
-| Operator | Technical Lead | [x] Approved the push against 7acc23fcb9 | 2026-09-11 |
+| Operator | Technical Lead | [x] Approved the push against 6358770875 | 2026-09-11 |
 | Conductor session | Verification | [x] Approved, everything before the push | 2026-09-11 |
 <!-- /ANCHOR:sign-off -->
 

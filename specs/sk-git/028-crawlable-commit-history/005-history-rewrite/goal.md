@@ -95,7 +95,7 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Tooling and rehearsals | Done | four scripts, two rehearsals PASS |
-| Window | Done | pin 7acc23fcb9 held; origin main a1faf0914a, v4 6358770875; remap 0009164; re-mint 0009165; final tip 7bb115bd61 |
+| Window | Done | pin 6358770875 held; origin main a1faf0914a, v4 6358770875; remap 0009164; re-mint 0009165; final tip 7bb115bd61 |
 
 ### Deviations and findings
 

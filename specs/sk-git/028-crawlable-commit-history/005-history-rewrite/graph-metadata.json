@@ -202,7 +202,7 @@
     ],
     "causal_summary": "New commits carry an address",
     "created_at": "2026-09-11T07:16:30Z",
-    "last_save_at": "2026-09-11T16:50:40.698Z",
+    "last_save_at": "2026-09-11T16:53:05.139Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +213,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f3b90ea2394ae57f02cee275932e4fefd59f9e599ededa63a063e287edfdc622",
+    "source_fingerprint": "sha256:fd38259d9d36f70482965b6bd167a6de7269349f67b12f973e5769c927b5b7e2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4079c18826b2dadd6d0cb84b533eb1b0daf4e19c5c7c900bdbd670202868541b",
       "plan.md": "551b496678ee58001aba46d95762237e41df33cbcdfe44732d81b3949e1faf37",
-      "tasks.md": "c6368d9c2b0f5302e8e9fb6c27836791294d96a925f3558b291bab157f99fc88",
-      "implementation-summary.md": "fb4011a38991c1be5a1d126bb8031669c14b84b5b2be4175a6c5adf79b430443"
+      "tasks.md": "e6f94d14aa29363809c65ddfc0689c834e8596ac0b557b0fdacc83845b1ec5cd",
+      "implementation-summary.md": "02a1c991fc36f197675b781735621779388c315258cac8f5d0634538d58e5384"
     },
     "last_active_at": null
   }

@@ -58,7 +58,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-002 | REQ-002 | Given the refined cascade, When 100 sampled rows are judged, Then the error rate is under 5 percent | scratch/sample-judgment.md: 2 of 55 mapped rows wrong | Met | - |
 | AC-003 | REQ-003 | Given a mirror of the source, When the rehearsal runs with the 109 on-line tags, Then all six invariants pass | rehearsal-2 rewrite.log: INVARIANTS: PASS, 111,686 messages checked, residue 0, tags 149 = 149 | Met | - |
 | AC-004 | REQ-004 | Given the rehearsal commit map, When the remap dry-runs over specs and skills, Then only commit tokens change and decoys stay | 1,704 tokens recognized and replaced, 10,092 skipped, 1,672 files would change | Met | - |
-| AC-005 | REQ-005 | Given the invariants, When the push happens, Then it follows a recorded rollback sentence and a fresh yes | rollback sentence in plan.md; yes recorded 2026-09-11 against pin 7acc23fcb9; origin main a1faf0914a, skilled/v4.0.0.0 6358770875 then 7bb115bd61 after the remap | Met | - |
+| AC-005 | REQ-005 | Given the invariants, When the push happens, Then it follows a recorded rollback sentence and a fresh yes | rollback sentence in plan.md; yes recorded 2026-09-11 against pin 6358770875; origin main a1faf0914a, skilled/v4.0.0.0 6358770875 then 7bb115bd61 after the remap | Met | - |
 
 ### Status values
 

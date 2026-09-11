@@ -211,14 +211,14 @@
     ],
     "causal_summary": "sk-git's commit contract produces readable conventional commits, but nothing in a commit is addressable the way a spec packet is",
     "created_at": "2026-09-11T07:16:22Z",
-    "last_save_at": "2026-09-11T16:50:44.458Z",
+    "last_save_at": "2026-09-11T16:53:05.144Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:3ee498664f4266bbd3728cab56e9ba21d684ee52f2c4d974e67cbde8cf282196",
+    "source_fingerprint": "sha256:bc0076477eac89b37c6f17da832f9ab4d2e2184bc8dc5e531bf6d9971aa9f508",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "df52d75a5c44a4b369b8ed37bc446b66529f1c4d8aa1c6129ae519ec98309929"
