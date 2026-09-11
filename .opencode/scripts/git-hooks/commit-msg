@@ -124,7 +124,9 @@ BODY_LINE=3
 
 if [[ -n "$BODY" ]]; then
   while IFS= read -r line || [[ -n "$line" ]]; do
-    if (( ${#line} > 100 )); then
+    # Trailers such as `Spec:` carry a machine path, not prose, so a long one is
+    # not a body-length violation.
+    if (( ${#line} > 100 )) && [[ ! "$line" =~ $TRAILER_RE ]]; then
       WARNINGS+=("Body line $BODY_LINE exceeds 100 characters.")
     fi
 

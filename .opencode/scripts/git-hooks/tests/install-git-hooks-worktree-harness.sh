@@ -71,6 +71,25 @@ custom_hooks="$(normalize_git_path "$WORKTREE" "$custom_hooks")"
 [[ -L "$custom_hooks/pre-commit" ]] || fail "core.hooksPath hook missing at $custom_hooks/pre-commit"
 printf 'PASS core.hooksPath: %s\n' "$custom_hooks/pre-commit"
 
+# --status must make a shadowing core.hooksPath visible instead of claiming the
+# checkout's own hooks are live. Clear the local value set above so the global
+# config is the only source, then name it.
+git -C "$REPO" config --unset core.hooksPath 2>/dev/null || true
+global_dir="$TEMP_ROOT/global-hooks"
+mkdir -p "$global_dir"
+global_cfg="$TEMP_ROOT/global-gitconfig"
+git config --file "$global_cfg" core.hooksPath "$global_dir"
+status_output="$TEMP_ROOT/status-output.txt"
+(
+  cd "$REPO"
+  GIT_CONFIG_GLOBAL="$global_cfg" bash "$INSTALLER" --status
+) > "$status_output"
+grep -q "core.hooksPath: $global_dir (global)" "$status_output" \
+  || fail "--status did not name the global hooksPath and its scope"
+grep -q "resolved hooks dir: $global_dir" "$status_output" \
+  || fail "--status did not print the resolved hooks directory"
+printf 'PASS --status names the global hooksPath: %s\n' "$global_dir"
+
 printf '%s\n' 'Installer transcript (linked worktree):'
 sed 's/^/  /' "$linked_output"
 printf '%s\n' 'Installer transcript (core.hooksPath):'

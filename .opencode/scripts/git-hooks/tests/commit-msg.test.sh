@@ -188,6 +188,28 @@ MSG
 ( cd "$TMP" && SPECKIT_SKIP_COMMIT_MSG_VALIDATE=1 bash "$HOOK" "$TMP/message.txt" >"$TMP/out.log" 2>&1 ); RC=$?
 check "the bypass passes an otherwise blocked message" 0 "$RC"
 
+# ── 10. a long trailer line is machine data, exempt from the body-length check ──
+# A `Spec:` path can exceed 100 characters without being prose the length rule
+# should measure. The line must still classify as a trailer and warn nothing.
+setup_repo
+LONG_TRAILER="Spec: specs/example/$(printf 'a%.0s' {1..90})"
+cat > "$TMP/message.txt" <<MSG
+feat(sk-git): add a thing
+
+This explains why the thing was added.
+$LONG_TRAILER
+MSG
+run_hook; RC=$?
+check "a long Spec: trailer passes" 0 "$RC"
+if grep -q 'exceeds 100 characters' "$TMP/out.log"; then
+  echo "FAIL  a long trailer line was counted against the 100-char body limit"
+  sed 's/^/        /' "$TMP/out.log" | tail -5
+  FAIL=$((FAIL + 1))
+else
+  echo "PASS  a long trailer line is exempt from the body-length warning"
+  PASS=$((PASS + 1))
+fi
+
 echo ""
 echo "PASS=$PASS FAIL=$FAIL"
 [[ "$FAIL" -eq 0 ]]

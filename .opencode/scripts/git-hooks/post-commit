@@ -14,6 +14,15 @@ if [ -z "$REPO_ROOT" ]; then
   exit 0
 fi
 
+# Autostash orphan guard: a `rebase --autostash` that stopped on a conflict leaves
+# its stash entry un-anchored, because post-rewrite runs before git re-applies it.
+# Anchor any leftover entry on the next commit. Best-effort; never blocks.
+if [[ -f "$REPO_ROOT/.opencode/scripts/git-hooks/lib/autostash-orphan-guard.sh" ]]; then
+  # shellcheck source=/dev/null
+  source "$REPO_ROOT/.opencode/scripts/git-hooks/lib/autostash-orphan-guard.sh"
+  autostash_orphan_guard || true
+fi
+
 # Continuous-integration autosync: publish this commit to the shared "live" branch
 # so the operator's IDE checkout reflects it within seconds. Gated tight so it
 # fires ONLY for a launch-wrapper session — the wrapper is the sole place that
