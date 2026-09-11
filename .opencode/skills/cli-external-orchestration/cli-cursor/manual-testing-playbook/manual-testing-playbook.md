@@ -12,7 +12,7 @@ version: 1.4.0.25
 
 <!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
 > **Result persistence**: a scenario run is complete only after its `PASS`, `FAIL`, or `SKIP`
-> outcome and reason are persisted through `run-manual-playbook-scenario.cjs` into
+> outcome and reason are recorded into
 > `cli-cursor/benchmark/reports/<dated-run-label>/`.
 
 This document combines the full manual-validation contract for the `cli-cursor` skill into a single reference. The root playbook acts as the operator directory, review protocol and orchestration guide. It explains how realistic user-driven tests should be run, how evidence should be captured, how results should be graded and where each per-scenario validation file lives. The per-scenario files provide the deeper execution contract for each scenario, including the user request, orchestrator prompt, execution process, source anchors and validation criteria.

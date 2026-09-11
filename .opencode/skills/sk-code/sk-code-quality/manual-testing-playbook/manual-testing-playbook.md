@@ -13,7 +13,7 @@ route so the harness can score its single routable checklist in Mode-A.
 
 <!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
 > **Result persistence**: a scenario run is complete only after its `PASS`, `FAIL`, or `SKIP` outcome and
-> reason are persisted through `run-manual-playbook-scenario.cjs` into
+> reason are recorded into
 > `sk-code-quality/benchmark/reports/<dated-run-label>/`.
 
 **Totals:** 1 scenario, 1 category.

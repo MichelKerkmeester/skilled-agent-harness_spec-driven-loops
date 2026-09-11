@@ -10,7 +10,7 @@ version: 1.5.0.33
 
 <!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
 > **Result persistence**: a scenario run is complete only after its `PASS`, `FAIL`, or `SKIP`
-> outcome and reason are persisted through `run-manual-playbook-scenario.cjs` into
+> outcome and reason are recorded into
 > `cli-claude-code/benchmark/reports/<dated-run-label>/`.
 
 This document combines the full manual-validation contract for the `cli-claude-code` skill into a single reference. The root playbook acts as the operator directory, review protocol and orchestration guide while the per-feature files carry the scenario-specific execution truth for cross-AI delegation to Anthropic's Claude Code CLI.

@@ -29,7 +29,7 @@ Canonical package artifacts:
 ### Result persistence
 
 <!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
-A scenario run is complete only after its `PASS`, `FAIL`, or `SKIP` outcome and reason are persisted through `run-manual-playbook-scenario.cjs` into `<skill>/benchmark/reports/<dated-run-label>/`; generated report Markdown is renderer-owned and never hand-authored.
+A scenario run is complete only after its `PASS`, `FAIL`, or `SKIP` outcome and reason are recorded into `<skill>/benchmark/reports/<dated-run-label>/`; generated report Markdown is renderer-owned and never hand-authored.
 
 ---
 
@@ -92,7 +92,7 @@ printf '%s\n' \
 - Artifact path or output reference (output files written under `~/.cache/sk-vision/{crops,zooms,annotations}`)
 - Scenario verdict with rationale (`PASS`, `FAIL`, or `SKIP` with a named blocker)
 
-Evidence is persisted through `run-manual-playbook-scenario.cjs` into `<skill>/benchmark/reports/<dated-run-label>/`. Every `PASS` requires at least one verified durable evidence artifact with a repo-relative path, byte count, and SHA-256.
+Evidence is recorded into `<skill>/benchmark/reports/<dated-run-label>/`. Every `PASS` requires at least one verified durable evidence artifact with a repo-relative path, byte count, and SHA-256.
 
 ---
 

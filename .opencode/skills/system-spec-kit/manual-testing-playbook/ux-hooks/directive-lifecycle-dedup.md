@@ -102,7 +102,7 @@ node specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-finding
 6. Create one outcome JSON per runtime/evidence class. Set `executionContext.evidenceRoot` to `.`, `requireDurableEvidence` to `true`, and list the exact prior run folder in `supersedes` when correcting historical evidence. Then persist without overwriting history:
 
 ```bash
-node .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-manual-playbook-scenario.cjs \
+node the retired scenario-persistence wrapper \
   --skill .opencode/skills/system-spec-kit \
   --scenario ux-hooks-directive-lifecycle-dedup \
   --variant <runtime-and-evidence-class> \
@@ -154,7 +154,7 @@ A complete run stores:
 - Host boundary: `.opencode/skills/system-skill-advisor/hooks/claude/directive-lifecycle-boundary.ts`
 - Registered bridge: `.opencode/skills/system-spec-kit/runtime/hooks/claude/directive-lifecycle-boundary.ts`
 - OpenCode adapter: `.opencode/plugins/system-skill-advisor.js`
-- Persistence wrapper: `.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-manual-playbook-scenario.cjs`
+- Persistence wrapper: the retired scenario-persistence wrapper
 
 Provenance: manual only - follow the TEST EXECUTION sequence by hand
 

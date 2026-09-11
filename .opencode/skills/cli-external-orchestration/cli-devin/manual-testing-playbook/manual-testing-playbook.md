@@ -28,7 +28,7 @@ Canonical package artifacts:
 
 <!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
 > **Result persistence**: a scenario run is complete only after its `PASS`, `FAIL`, or `SKIP`
-> outcome and reason are persisted through `run-manual-playbook-scenario.cjs` into
+> outcome and reason are recorded into
 > `cli-devin/benchmark/reports/<dated-run-label>/`.
 
 ---

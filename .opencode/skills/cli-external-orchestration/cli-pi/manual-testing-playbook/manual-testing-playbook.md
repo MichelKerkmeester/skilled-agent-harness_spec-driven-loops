@@ -14,7 +14,7 @@ This document is the operator directory and package-level validation contract fo
 
 <!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
 > **Result persistence**: a scenario run is complete only after its `PASS`, `FAIL`, or `SKIP`
-> outcome and reason are persisted through `run-manual-playbook-scenario.cjs` into
+> outcome and reason are recorded into
 > `cli-pi/benchmark/reports/<dated-run-label>/`.
 
 ---

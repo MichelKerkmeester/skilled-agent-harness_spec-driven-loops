@@ -10,7 +10,7 @@ version: 1.5.0.11
 
 <!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
 > **Result persistence**: a scenario run is complete only after its `PASS`, `FAIL`, or `SKIP`
-> outcome and reason are persisted through `run-manual-playbook-scenario.cjs` into
+> outcome and reason are recorded into
 > `sk-code-review/benchmark/reports/<dated-run-label>/`.
 
 This document combines the full manual-validation contract for the `review` skill into one reference. The root playbook acts as the operator directory, review protocol, and orchestration guide, while the per-feature files carry scenario-specific execution truth for findings-first code-review behavior.

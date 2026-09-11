@@ -8,7 +8,7 @@ quality, performance and animation, deployment/forms/video, and language standar
 
 <!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
 > **Result persistence**: a scenario run is complete only after its `PASS`, `FAIL`, or `SKIP` outcome
-> and reason are persisted through `run-manual-playbook-scenario.cjs` into
+> and reason are recorded into
 > `sk-code-webflow/benchmark/reports/<dated-run-label>/`.
 
 ## Categories

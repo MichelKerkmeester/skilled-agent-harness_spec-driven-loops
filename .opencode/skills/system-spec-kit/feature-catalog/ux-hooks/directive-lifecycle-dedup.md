@@ -77,7 +77,7 @@ Kill switches:
 | `.opencode/skills/system-spec-kit/runtime/tests/directive-lifecycle-boundary-bridge.vitest.ts` | Registered host-boundary coupling. |
 | `.opencode/hooks/dispatch/pi` | Pi dispatch and lifecycle suite. |
 | `.opencode/skills/system-spec-kit/manual-testing-playbook/ux-hooks/directive-lifecycle-dedup.md` | Evidence-class-aware operator scenario. |
-| `.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-manual-playbook-scenario.cjs` | Append-only reports with durable hashes and observed provenance. |
+| the retired scenario-persistence wrapper | Append-only reports with durable hashes and observed provenance. |
 
 Evidence must state one controlled class: `unit`, `adapter-driven`, `registered-path`, or `native-host-delivered`. Adapter success never implies host delivery. Cursor remains registered-path `PASS` and native-host-delivered `SKIP` while `beforeSubmitPrompt` stays dormant.
 

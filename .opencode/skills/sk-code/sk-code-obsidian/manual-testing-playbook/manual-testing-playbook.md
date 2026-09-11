@@ -17,7 +17,7 @@ category directory owns grouping, not display order.
 
 <!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
 > **Result persistence**: a scenario run is complete only after its `PASS`, `FAIL`, or `SKIP`
-> outcome and reason are persisted through `run-manual-playbook-scenario.cjs` into
+> outcome and reason are recorded into
 > `sk-code-obsidian/benchmark/reports/<dated-run-label>/`.
 
 ---
@@ -148,7 +148,7 @@ For each scenario run, capture:
    `sk-code-obsidian/assets/` paths were cited.
 
 Persist evidence under `/tmp/ob-<SCENARIO_ID>-<label>.txt` per scenario so cross-run and cross-CLI
-comparison stays reproducible, then finalize through `run-manual-playbook-scenario.cjs` per the
+comparison stays reproducible, then finalize through the retired scenario-persistence wrapper per the
 result-persistence contract above.
 
 ---

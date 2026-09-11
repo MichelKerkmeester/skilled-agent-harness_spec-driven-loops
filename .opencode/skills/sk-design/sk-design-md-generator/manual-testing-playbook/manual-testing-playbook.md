@@ -13,7 +13,7 @@ End-to-end manual testing reference for the md-generator skill. Every scenario v
 ---
 
 <!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
-> **COMPLETION:** A scenario run is incomplete until its `PASS`, `FAIL`, or `SKIP` outcome and reason are persisted through `run-manual-playbook-scenario.cjs` into `../benchmark/reports/<dated-run-label>/`. Generated report markdown is renderer-owned and is never hand-authored.
+> **COMPLETION:** A scenario run is incomplete until its `PASS`, `FAIL`, or `SKIP` outcome and reason are recorded into `../benchmark/reports/<dated-run-label>/`. Generated report markdown is renderer-owned and is never hand-authored.
 
 **EXECUTION POLICY:** Every default scenario in this playbook is SAFE to execute for real: it extracts from a live URL, validates the output, and inspects file content. None of the default scenarios fabricate tokens, overwrite production files, or mutate anything outside the `--output` spec folder passed to extraction. Run actual commands, inspect real outputs, and call the real embedded tool. Valid statuses are PASS, FAIL, or SKIP with a documented blocker. The escalation scenario exercises the anti-bot refusal gate as a negative control: it proves the skill escalates rather than fabricates. Fabricating tokens in any scenario is a HARD FAIL.
 

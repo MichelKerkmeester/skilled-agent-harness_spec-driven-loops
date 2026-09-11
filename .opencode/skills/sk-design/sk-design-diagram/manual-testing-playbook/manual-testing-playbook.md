@@ -24,7 +24,7 @@ The feature-catalog package ships as a sibling deliverable at `feature-catalog/`
 ### Result persistence
 
 <!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
-A scenario run is complete only after its `PASS`, `FAIL`, or `SKIP` outcome and reason are persisted through `run-manual-playbook-scenario.cjs` into `<skill>/benchmark/reports/<dated-run-label>/`; generated report Markdown is renderer-owned and never hand-authored.
+A scenario run is complete only after its `PASS`, `FAIL`, or `SKIP` outcome and reason are recorded into `<skill>/benchmark/reports/<dated-run-label>/`; generated report Markdown is renderer-owned and never hand-authored.
 The capture-review scenario (`CAP-001`) persists through the same runner.
 Every `SKIP` carries its reason in the reason column, and a `SKIP` with an empty reason is a failed run.
 

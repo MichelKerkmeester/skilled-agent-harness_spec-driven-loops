@@ -17,7 +17,7 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-Each row below is one immutable run folder. Rows are appended by the benchmark harness (`run-manual-playbook-scenario.cjs` / `run-skill-benchmark.cjs`) when it writes a report; operators never hand-edit this table or author report files. Corrected runs append new rows instead of rewriting history.
+Each row below is one immutable run folder. Rows are appended by the benchmark harness (the retired scenario-persistence wrapper / `run-skill-benchmark.cjs`) when it writes a report; operators never hand-edit this table or author report files. Corrected runs append new rows instead of rewriting history.
 
 ---
 

@@ -9,7 +9,7 @@ version: 1.5.0.3
 This playbook validates the `sk-create-benchmark` workflow as an authoring tool. It checks family routing, package shape, lane boundaries and evidence storage guidance. It does not run a benchmark or score a model.
 
 <!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
-A scenario run is complete only after its `PASS`, `FAIL` or `SKIP` outcome and reason are persisted through `run-manual-playbook-scenario.cjs` into the skill benchmark reports folder. Generated report Markdown is renderer-owned.
+A scenario run is complete only after its `PASS`, `FAIL` or `SKIP` outcome and reason are recorded into the skill benchmark reports folder. Generated report Markdown is renderer-owned.
 
 ## 1. OVERVIEW
 

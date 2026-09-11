@@ -17,7 +17,7 @@ Operator scenarios for the design skill. This corpus is an input: a run reads it
 > **EXECUTION POLICY**: Every scenario is executed for real, never mocked. Run the actual commands, issue the actual prompt, and read the actual reply. The only classifications are `PASS`, `FAIL`, or `SKIP` naming a specific sandbox or runtime blocker.
 
 <!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
-> **COMPLETION**: A scenario run is incomplete until its `PASS`, `FAIL`, or `SKIP` outcome and reason are persisted through `run-manual-playbook-scenario.cjs` into `../benchmark/reports/<dated-run-label>/`. Generated report markdown is renderer-owned and is never hand-authored.
+> **COMPLETION**: A scenario run is incomplete until its `PASS`, `FAIL`, or `SKIP` outcome and reason are recorded into `../benchmark/reports/<dated-run-label>/`. Generated report markdown is renderer-owned and is never hand-authored.
 
 ---
 

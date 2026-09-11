@@ -15,7 +15,7 @@ package is `tier: FAIL_CLOSED` and does not carry the routing-gold exemption sk-
 
 <!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
 > **Result persistence**: a scenario run is complete only after its `PASS`, `FAIL`, or `SKIP` outcome and
-> reason are persisted through `run-manual-playbook-scenario.cjs` into
+> reason are recorded into
 > `sk-code-mobile-cli/benchmark/reports/<dated-run-label>/`.
 
 Every scenario except `surface-detection/` assumes the hub's surface detection has already resolved
@@ -181,7 +181,7 @@ For each scenario run, capture:
 4. For cross-CLI scenarios (`PR-013`..`PR-015`): the per-runtime transcripts side by side.
 5. For token-cost scenarios (`PR-016`..`PR-018`): the resolved-set path count.
 
-Persist the `PASS`/`FAIL`/`SKIP` outcome and reason through `run-manual-playbook-scenario.cjs` into
+Persist the `PASS`/`FAIL`/`SKIP` outcome and reason through the retired scenario-persistence wrapper into
 `sk-code-mobile-cli/benchmark/reports/<dated-run-label>/`, per the result-persistence contract above.
 Intermediate command transcripts captured during a run may be kept under `/tmp/pr-<SCENARIO_ID>-<cli>.txt`
 for cross-CLI comparison before that final persistence step.

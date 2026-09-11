@@ -9,7 +9,7 @@ version: 1.0.0.0
 This playbook is the operator directory and release-review surface for the `sk-communication` skill and the `@portable-cli/communication-projection` package. Per-feature files contain the exact prompt, commands, signals, evidence, verdict criteria, and failure triage for each deterministic scenario.
 
 <!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
-A scenario run is complete only after its `PASS`, `FAIL`, or `SKIP` outcome and reason are persisted through `run-manual-playbook-scenario.cjs` into the skill's `benchmark/reports/<dated-run-label>/` directory. Generated report Markdown is renderer-owned and must not be hand-authored.
+A scenario run is complete only after its `PASS`, `FAIL`, or `SKIP` outcome and reason are recorded into the skill's `benchmark/reports/<dated-run-label>/` directory. Generated report Markdown is renderer-owned and must not be hand-authored.
 
 ---
 
@@ -92,7 +92,7 @@ A scenario is `PASS` only when its preconditions hold, the exact prompt and comm
 After assigning the verdict, run the canonical wrapper from the repository root, replacing the shell values with the actual scenario ID, feature slug, verdict, reason, stage, and evidence paths:
 
 ```bash
-node .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-manual-playbook-scenario.cjs \
+node the retired scenario-persistence wrapper \
   --skill sk-communication \
   --scenario COMM-001 \
   --variant advisor-routes-projection-request \

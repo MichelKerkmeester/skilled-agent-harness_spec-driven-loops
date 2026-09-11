@@ -9,7 +9,7 @@ version: 1.0.0.3
 This playbook validates the `sk-create-changelog` workflow as an authoring tool. It checks source resolution, global versus nested topology, four-part versioning, canonical format selection and the boundary around release mechanics.
 
 <!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
-A scenario run is complete only after its `PASS`, `FAIL` or `SKIP` outcome and reason are persisted through `run-manual-playbook-scenario.cjs` into the skill benchmark reports folder. Generated report Markdown is renderer-owned.
+A scenario run is complete only after its `PASS`, `FAIL` or `SKIP` outcome and reason are recorded into the skill benchmark reports folder. Generated report Markdown is renderer-owned.
 
 ## 1. OVERVIEW
 

@@ -57,7 +57,7 @@ node .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/
 ### Manual playbook scenario, single scenario
 
 ```bash
-node .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-manual-playbook-scenario.cjs \
+node the retired scenario-persistence wrapper \
   --skill .opencode/skills/sk-vision \
   --scenario VSN-012 \
   --variant status-first-run \
@@ -78,5 +78,5 @@ Rules:
 ## 4. REFERENCE
 
 - Corpus: `manual-testing-playbook/manual-testing-playbook.md`
-- Wrapper: `.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-manual-playbook-scenario.cjs`
+- Wrapper: the retired scenario-persistence wrapper
 - Runner: `.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs`

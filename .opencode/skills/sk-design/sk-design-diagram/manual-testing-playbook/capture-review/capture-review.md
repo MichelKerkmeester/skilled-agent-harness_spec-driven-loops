@@ -110,7 +110,7 @@ Overlap and the attach fan may leave the judged column only when a 2D pass over 
 6. `agent: Capture the themed copy and compare it against the stock capture by eye — paper, ink, or accent must differ`
 7. `agent: Render the file once with web fonts and once with remote fonts disabled; crop every arrow-label mask rect from both renders with a margin; compare the crops and report ink outside a mask's own bounds`
 8. `agent: Answer the six judged reads on the settled capture, each with the reason that decided it, then record the two taste notes`
-9. `bash: node run-manual-playbook-scenario.cjs --scenario CAP-001 --variant capture-review --verdict <PASS|FAIL|SKIP> --reason "<reason>" --evidence <comma-paths>`
+9. `bash: node the retired scenario-persistence wrapper --scenario CAP-001 --variant capture-review --verdict <PASS|FAIL|SKIP> --reason "<reason>" --evidence <comma-paths>`
 
 ### Expected
 

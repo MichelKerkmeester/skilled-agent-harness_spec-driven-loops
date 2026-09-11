@@ -296,7 +296,7 @@ purpose; a run outside a `reports/` directory is deliberately left out of the in
 A manual scenario is incomplete until its `PASS`, `FAIL`, or `SKIP` outcome and reason are persisted by the canonical wrapper into the skill's `benchmark/reports/<dated-run-label>/` folder. The renderer owns `skill-benchmark-report.md` and any `results.md` or `report.md` output; never hand-author those files.
 
 ```bash
-node .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-manual-playbook-scenario.cjs \
+node the retired scenario-persistence wrapper \
   --skill <root-or-id> \
   --scenario <ID> \
   --variant <feature-slug> \

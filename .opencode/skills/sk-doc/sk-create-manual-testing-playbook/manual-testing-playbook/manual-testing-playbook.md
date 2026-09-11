@@ -18,7 +18,7 @@ Canonical package artifacts:
 - `scenario-design/`
 
 <!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
-A scenario run is complete only after its `PASS`, `FAIL` or `SKIP` outcome and reason are persisted through `run-manual-playbook-scenario.cjs` into the owning skill's benchmark report folder. Use `SKIP` only with a specific sandbox or runtime blocker.
+A scenario run is complete only after its `PASS`, `FAIL` or `SKIP` outcome and reason are recorded into the owning skill's benchmark report folder. Use `SKIP` only with a specific sandbox or runtime blocker.
 
 ---
 
@@ -234,7 +234,7 @@ Verify that a manual run stores its verdict and reason through the canonical wra
 
 Prompt: `The operator ran MTP-004. Record its PASS result with the evidence path so the run can be audited later.`
 
-The mode should use `run-manual-playbook-scenario.cjs` with the scenario ID, variant, verdict, reason, stage and durable outcome evidence. It should not hand-author renderer-owned report Markdown.
+The mode should use the retired scenario-persistence wrapper with the scenario ID, variant, verdict, reason, stage and durable outcome evidence. It should not hand-author renderer-owned report Markdown.
 
 Desired user-visible outcome: the run folder contains the recorded outcome and the renderer can produce its report.
 
@@ -273,7 +273,7 @@ Desired user-visible outcome: a verdict with a specific reason and evidence for 
 | Test Module | Coverage | Playbook Overlap |
 |---|---|---|
 | `validate-playbook-package.cjs` | Operator-scenario structure, local links, IDs, root index membership and routing-gold exclusion | MTP-003, MTP-004 and MTP-006 |
-| `run-manual-playbook-scenario.cjs` | Durable manual outcome storage and evidence metadata | MTP-005 |
+| the retired scenario-persistence wrapper | Durable manual outcome storage and evidence metadata | MTP-005 |
 
 The package validator does not execute the mode. It checks the authored scenario contract. The wrapper stores results after an operator runs a scenario.
 
