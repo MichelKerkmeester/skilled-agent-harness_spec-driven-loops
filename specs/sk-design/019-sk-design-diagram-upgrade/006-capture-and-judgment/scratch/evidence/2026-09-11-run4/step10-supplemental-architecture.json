@@ -1,0 +1,19 @@
+{
+  "file": "assets/diagrams/architecture.html",
+  "why": "the second labelled reference illustration this scenario names, and the file whose read 3 decided the third run's FAIL",
+  "capture": "architecture-with-fonts.png, byte-identical to screenshots/diagrams/architecture.png",
+  "read_3": {
+    "answer": "PASS",
+    "was": "three of five masks sat on or touched a connector at the third run's HEAD",
+    "now": "all five masks clear every connector in the file by at least 8.0 units",
+    "per_mask": [
+      {"mask":"HTTPS [172,252,48x12]","own_connector":"line 168,272->220,272","gap":8.0},
+      {"mask":"RESP [172,296,32x12]","own_connector":"path M 220,288 H 168","gap":8.0,"was":"top edge exactly on the HTTPS stroke at y=272; moved from y=272 to y=296"},
+      {"mask":"SSR [368,252,48x12]","own_connector":"line 364,272->416,272","gap":8.0},
+      {"mask":"READ MDX [584,248,60x12]","own_connector":"path M 496,240 H 692 ...","gap":8.0,"was":"painted across the leg at y=240; moved from y=234 to y=248"},
+      {"mask":"QUERY [584,284,44x12]","own_connector":"path M 496,304 H 692 ...","gap":8.0,"was":"painted across the leg at y=304; moved from y=298 to y=284"}
+    ],
+    "method": "the shipped label-mask-clearance family re-run with its floor raised to 8 reports no pair in this file; confirmed by eye at 6x on crop-zone-border.png and crop-resp.png"
+  },
+  "other_reads": "1 PASS (no pair intersects or sits inside 12 units), 2 PASS (no edge carries two endpoints), 4 PASS (no third-box transit), 5 PASS (accent on Astro Origin and the SSR primary flow, declared once in the legend), 6 PASS (components and the calls between them is what architecture encodes)"
+}

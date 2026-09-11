@@ -1,0 +1,18 @@
+{
+  "renderer": "sk-design/shared/scripts/render-screenshots.cjs flags, driven one file at a time by cap.cjs; headless Google Chrome 153.0.8010.36, window 1280 wide, virtual-time-budget 2500ms, --full-page height measured per page",
+  "scale": "1 (device_scale_factor 1). Measured unit-to-pixel from magenta fiducials read back out of a real capture, per form: swimlane/architecture/sequence 1.2x, dp-integration 1.0x, it-state 1.25x",
+  "full_page_check": "measured height 813 for swimlane and architecture - not the fixed 900 viewport, so these are whole-page captures and not crops",
+  "stock":   {"path":"swimlane-stock.png","size":[1280,813],"sha256":"f26e385f52ccde61bebf8192f504cc1c57156582e26ab9566b0c45c76d079c1f"},
+  "settled": {"path":"swimlane-settled.png","size":[1280,813],"sha256":"f26e385f52ccde61bebf8192f504cc1c57156582e26ab9566b0c45c76d079c1f","settle_interval_ms":5527,"matches_stock":true},
+  "skin_pinned": {
+    "path":"swimlane-skin-pinned.png","size":[1280,813],
+    "sha256":"dfd786eb53b4c2cb210e8c58601bd040f93cdd1c4f61bed3274305371b5d4bce",
+    "token_source":"palette-accent-violet.json (stock palette, light accent #eb6c36 -> #6d28d9)",
+    "applicator":"scripts/apply-diagram-tokens.cjs RESULT: PASSED (contrast gates cleared, wrote to a scratch dir, refused nothing)",
+    "differs_from_settled": true,
+    "differing_pixels": 1187,
+    "what_moved": "the Deploy box border, the Approve-merge-to-Build handoff and its arrowhead, and both accent legend marks read violet; 0 occurrences of #eb6c36 remain in the themed copy and 6 of #6d28d9",
+    "what_did_not_move": "the accent TINT. rgba(235,108,54,0.08) is untouched by the applicator, so the Deploy box and the focal-outcome legend swatch keep a coral fill inside a violet border - pixel (1100,575) is (243,233,229) in both captures"
+  },
+  "committed_screenshot_parity": "all 39 committed PNGs under screenshots/ are byte-identical to a fresh full-corpus --full-page render at this HEAD; the two stale captures the third run found (state.png, venn.png) are closed"
+}

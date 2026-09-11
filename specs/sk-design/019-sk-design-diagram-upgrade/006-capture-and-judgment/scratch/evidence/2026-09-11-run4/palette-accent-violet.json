@@ -1,0 +1,200 @@
+{
+  "version": "1.1.0.0",
+  "note": "The stock skins of the diagram templates, harvested from the templates themselves so that --default reproduces them byte for byte. Kinds and gates follow references/foundations/derivation-record.md; a value that disagrees between the record's prose and a template is the template's, and the prose is what 004 corrects.",
+  "skins": {
+    "light": {
+      "roles": {
+        "paper": {
+          "value": "#f5f5f5",
+          "kind": "primary"
+        },
+        "ink": {
+          "value": "#2d3142",
+          "kind": "primary"
+        },
+        "muted": {
+          "value": "#4f5d75",
+          "kind": "primary"
+        },
+        "accent": {
+          "value": "#6d28d9",
+          "kind": "primary"
+        },
+        "paper-2": {
+          "value": "#ececec",
+          "kind": "primary"
+        },
+        "soft": {
+          "value": "#7a8399",
+          "kind": "primary"
+        },
+        "rule": {
+          "value": "rgba(45,49,66,0.12)",
+          "kind": "derived: ink at 0.12"
+        },
+        "rule-solid": {
+          "value": "rgba(79,93,117,0.25)",
+          "kind": "derived: muted at 0.25"
+        },
+        "accent-tint": {
+          "value": "rgba(235,108,54,0.08)",
+          "kind": "derived: accent at 0.08"
+        },
+        "link": {
+          "value": "#2e5aa8",
+          "kind": "primary"
+        },
+        "backend-fill": {
+          "value": "#ffffff",
+          "kind": "primary"
+        },
+        "high-level-chevron": {
+          "value": "#3d4460",
+          "kind": "primary"
+        },
+        "series-1": {
+          "value": "#7c8f6f",
+          "kind": "primary"
+        },
+        "series-2": {
+          "value": "#5c7899",
+          "kind": "primary"
+        },
+        "series-3": {
+          "value": "#b8915a",
+          "kind": "primary"
+        },
+        "series-4": {
+          "value": "#9c6b50",
+          "kind": "primary"
+        },
+        "series-5": {
+          "value": "#6e6479",
+          "kind": "primary"
+        }
+      }
+    },
+    "dark": {
+      "roles": {
+        "paper": {
+          "value": "#2d3142",
+          "kind": "primary"
+        },
+        "ink": {
+          "value": "#f5f5f5",
+          "kind": "primary"
+        },
+        "muted": {
+          "value": "#bfc0c0",
+          "kind": "primary"
+        },
+        "accent": {
+          "value": "#f08a59",
+          "kind": "primary"
+        },
+        "link": {
+          "value": "#6a95d8",
+          "kind": "primary"
+        }
+      }
+    },
+    "terminal": {
+      "roles": {
+        "page": {
+          "value": "#0a0a0a",
+          "kind": "primary"
+        },
+        "paper": {
+          "value": "#141414",
+          "kind": "primary"
+        },
+        "bar": {
+          "value": "#1b1b1b",
+          "kind": "primary"
+        },
+        "border": {
+          "value": "#2b2b2b",
+          "kind": "primary"
+        },
+        "ink": {
+          "value": "#f5f5f5",
+          "kind": "primary"
+        },
+        "muted": {
+          "value": "#9a9a9a",
+          "kind": "primary"
+        },
+        "soft": {
+          "value": "#5c5c5c",
+          "kind": "primary"
+        },
+        "accent": {
+          "value": "#ff5a36",
+          "kind": "primary"
+        },
+        "accent-tint": {
+          "value": "rgba(255, 90, 54, 0.12)",
+          "kind": "derived: accent at 0.12"
+        }
+      }
+    }
+  },
+  "grounds": {
+    "light": "paper",
+    "dark": "paper",
+    "terminal": "paper"
+  },
+  "gates": {
+    "textOnPaper": 4.5,
+    "markOnPaper": 3.0,
+    "accentAgainstInk": 1.5,
+    "textOnMark": 4.5,
+    "ungated": [
+      "backend-fill",
+      "bar",
+      "border",
+      "high-level-chevron",
+      "page",
+      "rule",
+      "rule-solid",
+      "series-1",
+      "series-2",
+      "series-3",
+      "series-4",
+      "series-5"
+    ]
+  },
+  "departures": [
+    {
+      "skin": "light",
+      "role": "accent",
+      "against": "paper",
+      "measured": 2.863,
+      "gate": "markOnPaper",
+      "why": "the brand accent; kept by decision, never re-derived"
+    },
+    {
+      "skin": "light",
+      "role": "soft",
+      "against": "paper",
+      "measured": 3.48,
+      "gate": "textOnPaper",
+      "why": "structural use only; may not carry sublabel or eyebrow text"
+    },
+    {
+      "skin": "terminal",
+      "role": "soft",
+      "against": "paper",
+      "measured": 2.76,
+      "gate": "textOnPaper",
+      "why": "decoration: inactive dots and spokes; never carries text"
+    }
+  ],
+  "forms": {
+    "skinByFile": {
+      "loop-terminal.html": "terminal",
+      "sequence-oauth-dark.html": "dark"
+    },
+    "defaultSkin": "light"
+  }
+}

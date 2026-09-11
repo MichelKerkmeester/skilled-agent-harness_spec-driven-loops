@@ -1,0 +1,18 @@
+{
+  "file": "assets/diagrams/swimlane.html",
+  "capture": "swimlane-settled.png (1280x813, scale 1, --full-page, headless Google Chrome 153.0.8010.36)",
+  "head": "ed5f1022875385d7ca0f8ddad7f36ecf2f20a392",
+  "unit_to_pixel": "x=1.2u+40, y=1.2u+160, taken from magenta fiducials painted into a throwaway copy and read back out of a real capture (never from a DOM dump)",
+  "reads": [
+    {"n":1,"read":"connector overlap","answer":"PASS","reason":"Six connectors, pairwise over every segment: no intersection and no pair closer than 46.6 units (nearest pairs are c4/c5 and c5/c6 at 46.6), well clear of the 12-unit offset floor. No two routes share a stroke path."},
+    {"n":2,"read":"attach fan","answer":"PASS","reason":"No box edge carries more than one connector endpoint, so no arrow can hide another; the fan question is satisfied vacuously. Noted but not failing: connector 2 attaches at Open PR's bottom-right corner (460,144) and Review content's top-left corner (500,176) rather than the edge midpoints L*k/(N+1) gives for N=1."},
+    {"n":3,"read":"visible gap","answer":"PASS","reason":"Both masks clear their stroke and every other stroke in the file. HANDOFF [452,124,60x12] sits 8.0 units above connector 2's horizontal leg at y=144; REVISE [576,240,52x12] sits 6.0 units beside connector 3's dashed return at x=570, at the floor of the 6-10 band. Confirmed by eye at 8x: both dashed and solid strokes run unbroken past their labels."},
+    {"n":4,"read":"behind-box","answer":"PASS","reason":"No connector enters a box that is not one of its own endpoints. Connector 3 starts 4 units inside Review content, which is its source. Noted but not failing this read as worded: connector 5's 30-unit horizontal leg is drawn along the bottom border of Approve merge, its own source box, and the coral stroke under the 1px ink border turns that stretch (93,72,75) against (94,97,110) elsewhere."},
+    {"n":5,"read":"focal balance","answer":"PASS","reason":"Exactly two accent-carrying elements in the drawing - the Deploy outcome box and the Approve-merge-to-Build critical handoff - plus two legend keys that declare them. Six occurrences of #eb6c36 in the file: one token declaration, two drawing elements, two legend keys, one marker def."},
+    {"n":6,"read":"type fit","answer":"PASS","reason":"The title asks how an article gets published; the drawing shows one artifact changing hands across four owner lanes with a revision loop back up a lane. Ownership-over-time is exactly what a swimlane encodes."}
+  ],
+  "taste_notes": [
+    {"note":"remove test","observation":"Build and Deploy always travel together in the CI/CD lane with no branch between them; collapsing them into one box would cost the reader nothing, and the arrow between them is one the layout already implies. The REVISE label also restates what the dashed stroke plus the legend's 'Revision loop' key already say.","scored":false},
+    {"note":"density","observation":"Eight nodes and six arrows, under the nine-node twelve-arrow threshold. The four-lane band plus a one-row legend carries it; the drawing reads as one shape with no guide beside it.","scored":false}
+  ]
+}

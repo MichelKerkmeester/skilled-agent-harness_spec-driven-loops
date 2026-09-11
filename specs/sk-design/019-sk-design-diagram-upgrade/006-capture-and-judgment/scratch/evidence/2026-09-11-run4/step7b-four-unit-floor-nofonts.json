@@ -1,0 +1,100 @@
+[
+  {
+    "form": "sequence",
+    "mask": "GET /ARTICLES/SLUG",
+    "rect": [
+      188,
+      160,
+      104,
+      12
+    ],
+    "changed_inside": 525,
+    "ring_changed": 0,
+    "ink_outside": 0,
+    "verdict": "clean"
+  },
+  {
+    "form": "sequence",
+    "mask": "200 HTML (CACHED)",
+    "rect": [
+      416,
+      216,
+      100,
+      12
+    ],
+    "changed_inside": 516,
+    "ring_changed": 20,
+    "ink_outside": 0,
+    "verdict": "clean"
+  },
+  {
+    "form": "sequence",
+    "mask": "MDX + FRONTMATTER",
+    "rect": [
+      420,
+      336,
+      96,
+      12
+    ],
+    "changed_inside": 426,
+    "ring_changed": 76,
+    "ink_outside": 9,
+    "verdict": "OVERFLOW"
+  },
+  {
+    "form": "sequence",
+    "mask": "RENDERED HTML",
+    "rect": [
+      192,
+      392,
+      96,
+      12
+    ],
+    "changed_inside": 476,
+    "ring_changed": 0,
+    "ink_outside": 0,
+    "verdict": "clean"
+  },
+  {
+    "form": "sequence",
+    "mask": "PURGE CACHE",
+    "rect": [
+      648,
+      448,
+      96,
+      12
+    ],
+    "changed_inside": 471,
+    "ring_changed": 0,
+    "ink_outside": 0,
+    "verdict": "clean"
+  },
+  {
+    "form": "dp-integration",
+    "mask": "KERNEL",
+    "rect": [
+      872,
+      192,
+      56,
+      12
+    ],
+    "changed_inside": 138,
+    "ring_changed": 0,
+    "ink_outside": 0,
+    "verdict": "clean"
+  },
+  {
+    "form": "dp-integration",
+    "mask": "HTTPS",
+    "rect": [
+      856,
+      216,
+      56,
+      12
+    ],
+    "changed_inside": 112,
+    "ring_changed": 0,
+    "ink_outside": 0,
+    "verdict": "clean"
+  }
+]

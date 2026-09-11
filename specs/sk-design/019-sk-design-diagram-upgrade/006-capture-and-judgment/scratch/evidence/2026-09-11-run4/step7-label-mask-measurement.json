@@ -1,0 +1,184 @@
+[
+  {
+    "form": "swimlane",
+    "mask": "HANDOFF",
+    "rect_units": [
+      452,
+      124,
+      60,
+      12
+    ],
+    "rect_px_with_fonts": [
+      582,
+      308,
+      654,
+      323
+    ],
+    "rect_px_no_fonts": [
+      582,
+      307,
+      654,
+      322
+    ],
+    "changed_px_in_margin_ring": 0,
+    "ink_outside_mask_new_in_no_fonts": 0,
+    "spill_sample": [],
+    "verdict": "clean"
+  },
+  {
+    "form": "swimlane",
+    "mask": "REVISE",
+    "rect_units": [
+      576,
+      240,
+      52,
+      12
+    ],
+    "rect_px_with_fonts": [
+      731,
+      448,
+      794,
+      462
+    ],
+    "rect_px_no_fonts": [
+      731,
+      447,
+      794,
+      461
+    ],
+    "changed_px_in_margin_ring": 0,
+    "ink_outside_mask_new_in_no_fonts": 0,
+    "spill_sample": [],
+    "verdict": "clean"
+  },
+  {
+    "form": "architecture",
+    "mask": "HTTPS",
+    "rect_units": [
+      172,
+      252,
+      48,
+      12
+    ],
+    "rect_px_with_fonts": [
+      246,
+      462,
+      304,
+      477
+    ],
+    "rect_px_no_fonts": [
+      246,
+      461,
+      304,
+      476
+    ],
+    "changed_px_in_margin_ring": 0,
+    "ink_outside_mask_new_in_no_fonts": 0,
+    "spill_sample": [],
+    "verdict": "clean"
+  },
+  {
+    "form": "architecture",
+    "mask": "RESP",
+    "rect_units": [
+      172,
+      296,
+      32,
+      12
+    ],
+    "rect_px_with_fonts": [
+      246,
+      515,
+      285,
+      530
+    ],
+    "rect_px_no_fonts": [
+      246,
+      514,
+      285,
+      529
+    ],
+    "changed_px_in_margin_ring": 0,
+    "ink_outside_mask_new_in_no_fonts": 0,
+    "spill_sample": [],
+    "verdict": "clean"
+  },
+  {
+    "form": "architecture",
+    "mask": "SSR",
+    "rect_units": [
+      368,
+      252,
+      48,
+      12
+    ],
+    "rect_px_with_fonts": [
+      481,
+      462,
+      539,
+      477
+    ],
+    "rect_px_no_fonts": [
+      481,
+      461,
+      539,
+      476
+    ],
+    "changed_px_in_margin_ring": 0,
+    "ink_outside_mask_new_in_no_fonts": 0,
+    "spill_sample": [],
+    "verdict": "clean"
+  },
+  {
+    "form": "architecture",
+    "mask": "READ MDX",
+    "rect_units": [
+      584,
+      248,
+      60,
+      12
+    ],
+    "rect_px_with_fonts": [
+      740,
+      457,
+      813,
+      472
+    ],
+    "rect_px_no_fonts": [
+      740,
+      456,
+      813,
+      471
+    ],
+    "changed_px_in_margin_ring": 0,
+    "ink_outside_mask_new_in_no_fonts": 0,
+    "spill_sample": [],
+    "verdict": "clean"
+  },
+  {
+    "form": "architecture",
+    "mask": "QUERY",
+    "rect_units": [
+      584,
+      284,
+      44,
+      12
+    ],
+    "rect_px_with_fonts": [
+      740,
+      500,
+      794,
+      515
+    ],
+    "rect_px_no_fonts": [
+      740,
+      499,
+      794,
+      514
+    ],
+    "changed_px_in_margin_ring": 0,
+    "ink_outside_mask_new_in_no_fonts": 0,
+    "spill_sample": [],
+    "verdict": "clean"
+  }
+]

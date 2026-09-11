@@ -1,0 +1,42 @@
+dp-integration.html: path "M816 188 H960 Q968 188 968 180 V132 Q968" clears the label mask [872,192,56x12] by 4px and the minimum is 8px; the gap is what lets a reader trace the line past its own label
+dp-integration.html: line 816,212 to 1000,212 clears the label mask [856,216,56x12] by 4px and the minimum is 8px; the gap is what lets a reader trace the line past its own label
+it-state.html: path "M 252,108 H 340" clears the label mask [260,86,40x16] by 6px and the minimum is 8px; the gap is what lets a reader trace the line past its own label
+it-state.html: path "M 252,196 H 308 Q 316,196 316,188 V 132 " clears the label mask [260,174,52x16] by 4px and the minimum is 8px; the gap is what lets a reader trace the line past its own label
+it-state.html: path "M 252,284 H 324 Q 332,284 332,276 V 148 " clears the label mask [260,262,44x16] by 6px and the minimum is 8px; the gap is what lets a reader trace the line past its own label
+it-state.html: line 472,148 to 472,232 clears the label mask [478,156,40x16] by 6px and the minimum is 8px; the gap is what lets a reader trace the line past its own label
+it-state.html: line 472,304 to 472,344 clears the label mask [478,312,40x16] by 6px and the minimum is 8px; the gap is what lets a reader trace the line past its own label
+it-state.html: path "M 604,268 H 654 Q 662,268 662,260 V 72 Q" clears the label mask [612,246,44x16] by 6px and the minimum is 8px; the gap is what lets a reader trace the line past its own label
+it-state.html: line 808,140 to 808,216 clears the label mask [814,148,36x16] by 6px and the minimum is 8px; the gap is what lets a reader trace the line past its own label
+it-state.html: line 808,272 to 808,344 clears the label mask [814,280,48x16] by 6px and the minimum is 8px; the gap is what lets a reader trace the line past its own label
+sequence-oauth-dark.html: line 160,176 to 476,176 clears the label mask [248,160,128x12] by 4px and the minimum is 8px; the gap is what lets a reader trace the line past its own label
+sequence-oauth-dark.html: line 476,272 to 168,272 clears the label mask [256,256,88x12] by 4px and the minimum is 8px; the gap is what lets a reader trace the line past its own label
+sequence-oauth-dark.html: line 476,368 to 168,368 clears the label mask [272,352,56x12] by 4px and the minimum is 8px; the gap is what lets a reader trace the line past its own label
+sequence-oauth-dark.html: line 164,416 to 796,416 clears the label mask [408,400,128x12] by 4px and the minimum is 8px; the gap is what lets a reader trace the line past its own label
+sequence-oauth-dark.html: line 796,456 to 168,456 clears the label mask [424,440,96x12] by 4px and the minimum is 8px; the gap is what lets a reader trace the line past its own label
+sequence-oauth-dark.html: line 164,504 to 476,504 clears the label mask [248,488,112x12] by 4px and the minimum is 8px; the gap is what lets a reader trace the line past its own label
+sequence-oauth-dark.html: line 476,544 to 168,544 clears the label mask [256,528,88x12] by 4px and the minimum is 8px; the gap is what lets a reader trace the line past its own label
+sequence-oauth-dark.html: line 164,600 to 796,600 clears the label mask [424,584,96x12] by 4px and the minimum is 8px; the gap is what lets a reader trace the line past its own label
+sequence-oauth-full.html: line 160,176 to 476,176 clears the label mask [248,160,128x12] by 4px and the minimum is 8px; the gap is what lets a reader trace the line past its own label
+sequence-oauth-full.html: line 476,272 to 168,272 clears the label mask [256,256,88x12] by 4px and the minimum is 8px; the gap is what lets a reader trace the line past its own label
+sequence-oauth-full.html: line 476,368 to 168,368 clears the label mask [272,352,56x12] by 4px and the minimum is 8px; the gap is what lets a reader trace the line past its own label
+sequence-oauth-full.html: line 164,416 to 796,416 clears the label mask [408,400,128x12] by 4px and the minimum is 8px; the gap is what lets a reader trace the line past its own label
+sequence-oauth-full.html: line 796,456 to 168,456 clears the label mask [424,440,96x12] by 4px and the minimum is 8px; the gap is what lets a reader trace the line past its own label
+sequence-oauth-full.html: line 164,504 to 476,504 clears the label mask [248,488,112x12] by 4px and the minimum is 8px; the gap is what lets a reader trace the line past its own label
+sequence-oauth-full.html: line 476,544 to 168,544 clears the label mask [256,528,88x12] by 4px and the minimum is 8px; the gap is what lets a reader trace the line past its own label
+sequence-oauth-full.html: line 164,600 to 796,600 clears the label mask [424,584,96x12] by 4px and the minimum is 8px; the gap is what lets a reader trace the line past its own label
+sequence-oauth.html: line 160,176 to 476,176 clears the label mask [248,160,128x12] by 4px and the minimum is 8px; the gap is what lets a reader trace the line past its own label
+sequence-oauth.html: line 476,272 to 168,272 clears the label mask [256,256,88x12] by 4px and the minimum is 8px; the gap is what lets a reader trace the line past its own label
+sequence-oauth.html: line 476,368 to 168,368 clears the label mask [272,352,56x12] by 4px and the minimum is 8px; the gap is what lets a reader trace the line past its own label
+sequence-oauth.html: line 164,416 to 796,416 clears the label mask [408,400,128x12] by 4px and the minimum is 8px; the gap is what lets a reader trace the line past its own label
+sequence-oauth.html: line 796,456 to 168,456 clears the label mask [424,440,96x12] by 4px and the minimum is 8px; the gap is what lets a reader trace the line past its own label
+sequence-oauth.html: line 164,504 to 476,504 clears the label mask [248,488,112x12] by 4px and the minimum is 8px; the gap is what lets a reader trace the line past its own label
+sequence-oauth.html: line 476,544 to 168,544 clears the label mask [256,528,88x12] by 4px and the minimum is 8px; the gap is what lets a reader trace the line past its own label
+sequence-oauth.html: line 164,600 to 796,600 clears the label mask [424,584,96x12] by 4px and the minimum is 8px; the gap is what lets a reader trace the line past its own label
+sequence.html: line 128,176 to 352,176 clears the label mask [188,160,104x12] by 4px and the minimum is 8px; the gap is what lets a reader trace the line past its own label
+sequence.html: line 352,232 to 580,232 clears the label mask [416,216,100x12] by 4px and the minimum is 8px; the gap is what lets a reader trace the line past its own label
+sequence.html: line 580,352 to 356,352 clears the label mask [420,336,96x12] by 4px and the minimum is 8px; the gap is what lets a reader trace the line past its own label
+sequence.html: line 348,408 to 128,408 clears the label mask [192,392,96x12] by 4px and the minimum is 8px; the gap is what lets a reader trace the line past its own label
+sequence.html: line 128,464 to 800,464 clears the label mask [648,448,96x12] by 4px and the minimum is 8px; the gap is what lets a reader trace the line past its own label
+swimlane.html: line 570,220 to 570,268 clears the label mask [576,240,52x12] by 6px and the minimum is 8px; the gap is what lets a reader trace the line past its own label
+
+total 40 pair(s) under 8px across 38 files

@@ -37,7 +37,7 @@ function capture(src, dest, height, extraFlags = []) {
 }
 
 const [,, src, dest, ...rest] = process.argv;
-const extra = rest.filter((r) => r.startsWith('--browser='))?.map((r) => r.slice('--browser='.length)) || [];
+const extra = rest.filter((r) => r.startsWith('--browser=')).map((r) => r.slice('--browser='.length));
 const h = measureOnce(src);
 const size = capture(src, dest, h === null ? HEIGHT : h, extra);
 process.stdout.write(JSON.stringify({ src, dest, measuredHeight: h, captureHeight: h === null ? HEIGHT : h, bytes: size, extraFlags: extra }) + '\n');

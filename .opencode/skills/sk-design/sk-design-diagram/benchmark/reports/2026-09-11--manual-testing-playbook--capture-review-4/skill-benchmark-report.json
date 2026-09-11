@@ -1,0 +1,488 @@
+{
+  "schemaVersion": "skill-benchmark-report.v1",
+  "traceMode": "doc",
+  "scoringMethod": "not-applicable-manual-outcome",
+  "targetSkill": {
+    "id": "sk-design-diagram",
+    "rootRel": ".opencode/skills/sk-design/sk-design-diagram"
+  },
+  "executor": null,
+  "model": null,
+  "variant": "capture-review",
+  "verdict": "PASS",
+  "aggregateScore": null,
+  "dimensionScores": {
+    "D1inter": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D1intra": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D2": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D3": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D4": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D5": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    }
+  },
+  "runQuality": {
+    "note": "Manual playbook outcome; no Lane C dimension scoring applies.",
+    "scenarioCount": 1
+  },
+  "scenarioRows": [
+    {
+      "scenarioId": "CAP-001",
+      "verdict": "PASS",
+      "reason": "PASS. Six judged reads on the settled full-page capture of assets/diagrams/swimlane.html at HEAD ed5f102287 (1280x813, scale 1, headless Google Chrome 153.0.8010.36 through the packet's shared renderer with --full-page; measured height 813 rather than the fixed 900 viewport, so this is a whole page and not a crop). What decided it: read 3 on assets/diagrams/architecture.html, the read that failed the third run, now holds - all five arrow-label masks clear every connector in that file by 8.0 units where three of them previously sat on or touched a stroke. RESP moved y=272 to 296, READ MDX 234 to 248, QUERY 298 to 284; confirmed by re-running the shipped label-mask-clearance family with its floor raised to 8 (no pair reported) and by eye at 6x on crop-resp.png and crop-zone-border.png, where the stroke runs unbroken past each label. Swimlane's own six reads, each with what decided it: read 1 PASS, a pairwise pass over every segment of all six connectors finds no intersection and no pair closer than 46.6 units against a 12-unit floor. Read 2 PASS, no box edge carries more than one endpoint so nothing can hide anything, though connector 2 still attaches at Open PR's bottom-right corner and Review content's top-left corner rather than the edge midpoints L*k/(N+1) gives. Read 3 PASS, HANDOFF [452,124,60x12] clears its leg by 8.0 and REVISE [576,240,52x12] clears its dashed return by 6.0, at the floor of the 6-10 band; both strokes traceable at 8x. Read 4 PASS, no connector enters a box that is not one of its endpoints. Read 5 PASS, exactly two accent elements in the drawing - the Deploy outcome box and the Approve-merge-to-Build handoff - plus the two legend keys that declare them; six occurrences of #eb6c36 in the file account for every mark. Read 6 PASS, one artifact changing hands across four owner lanes with a revision loop is what a swimlane encodes. Two taste notes recorded, not scored. Settle pair byte-identical (same sha256 across 5527ms). Skin pair differs by eye: apply-diagram-tokens.cjs RESULT PASSED moving the light accent #eb6c36 to #6d28d9, 1187 pixels differing, the Deploy border, the handoff arrow and both legend marks reading violet, zero stock accent hex left in the themed copy. Label-mask measurement: 7 arrow-label masks across the two files the scenario names as reference cases, 0 overflow, measured two ways after correcting the 1px whole-page shift the no-fonts render carries (fiducials painted into a throwaway copy and read back out of a real capture, giving y0=159 no-fonts against 160 with-fonts). A negative control proves the measurement is live: uncorrected, the same crops report 3 to 62 stray pixels on five of seven masks, and inside every mask 114 to 246 pixels genuinely changed, so the substitution happened and the clean result is not a comparison of identical regions. All 39 committed screenshots are byte-identical to a fresh full-corpus render, closing the two stale captures the third run found. Judgment on the four-unit floor: keep the number, fix the sentence under it. At the floor the gap reads - dp-integration's KERNEL and HTTPS at 4 units and sequence's five labels at 4 units all show a clean band of paper with the stroke unbroken. But the justification written into both the family and SKILL.md rule 12, that forms scale up about a quarter so four units lands near five pixels, is false for eight of the 38 forms, and wrongest on dp-integration, which is simultaneously the only 1.0x form and one of the forms sitting at the floor, so its four units are four physical pixels. Measured scale runs 1.0x to 1.648x, which means the same number means 4.0px on one form and 6.6px on another; the rule should be stated in rendered pixels or made scale-aware. Judgment on the HANDOFF proximity: a defect worth a finding, and bigger than that one label. The Open PR border's last painted pixel is x=592 and the H's first ink is x=594, one clean paper pixel, 1.2 units, so the word reads as a third line of the node rather than the name of the arrow leaving it; the cause is a 60-unit mask centred on a 40-unit segment overhanging 10 units onto a box the connector attaches to at its corner. A corpus scan finds 13 masks straddling a box or zone border, six of them arrow labels, with two visible outcomes depending on paint order: glued to the box where boxes paint last (swimlane, import-mermaid) or erasing a run of zone border where the zone paints first (architecture READ MDX 28 units and QUERY 12, import-drawio's two HTTPS labels). The fix is a mask-to-box clearance rule using the measurement the widened family already performs. Four findings outside the verdict's scope, none of them a traded defect: import-mermaid.html draws WRITES with no mask rect at all, live getBBox 711.6,308 28.8x10.4 sitting at gap 0 on its own connector's vertical leg, which breaks SKILL.md rule 7 and is invisible to the widened rule because a label with no rect matches neither detection path - so the widening fixed masks that exist and left labels lacking one untested; connector 5's 30-unit leg is still drawn on its own source box's bottom border, measured (93,72,75) against (94,97,110), and architecture does the same twice for 80 units each on the Astro Origin box, which the third run named and nobody fixed; the applicator rewrites hex literals only, so rgba(235,108,54,0.08) survives every palette change and the themed Deploy box ships a violet border round a coral fill, with 75 such literals across 32 of 38 forms; and sequence.html's 20-character label overruns its 96-unit mask by 9 ink pixels under substitution, harmless only because the mask fill there equals the page ground. The venn fix is real: the focal label is #2d3142 at 9.01:1 against the ground it actually sits on, up from 2.18:1, with the accent still marking the intersection as a tint. Step 2 is a SKIP inside an otherwise complete run: python3 -c 'import playwright' fails with ModuleNotFoundError: No module named 'playwright'; install with 'pip install playwright' then 'playwright install chromium'. The run continued on the packet's own shared renderer, whose output matches every committed screenshot byte for byte.",
+      "stage": "capture-review",
+      "classKind": "manual",
+      "providerModel": null,
+      "variant": "capture-review",
+      "evidence": [
+        "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/step1-corpus-check.txt",
+        "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/step2-renderer-check.txt",
+        "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/step3-4-6-capture-pairs.json",
+        "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/step3-screenshot-parity.txt",
+        "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/step5-applicator.txt",
+        "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/step7-label-mask-measurement.json",
+        "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/step7b-four-unit-floor-nofonts.json",
+        "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/step8-judged-reads.json",
+        "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/step9-judgments.json",
+        "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/step9-clearance-scan-under-8.txt",
+        "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/step9-unmasked-labels-scan.txt",
+        "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/step9-mask-vs-box-border-scan.txt",
+        "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/step10-supplemental-architecture.json",
+        "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/step11-findings.json",
+        "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/swimlane-stock.png",
+        "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/swimlane-settled.png",
+        "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/swimlane-skin-pinned.png",
+        "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/swimlane-with-fonts.png",
+        "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/swimlane-no-fonts.png",
+        "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/architecture-with-fonts.png",
+        "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/architecture-no-fonts.png",
+        "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/crop-handoff.png",
+        "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/crop-revise.png",
+        "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/crop-connector5.png",
+        "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/crop-resp.png",
+        "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/crop-zone-border.png",
+        "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/crop-mermaid-writes.png",
+        "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/crop-dp-4unit.png",
+        "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/crop-seq-4unit.png",
+        "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/crop-skin-violet.png",
+        "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/crop-venn-focal.png"
+      ],
+      "evidenceArtifacts": [
+        {
+          "path": "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/step1-corpus-check.txt",
+          "status": "verified",
+          "bytes": 683,
+          "sha256": "8cb51b4028cd26ff2f3be3e0e70013fb63aebea210ceaf67c4f73ca6d1024960"
+        },
+        {
+          "path": "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/step2-renderer-check.txt",
+          "status": "verified",
+          "bytes": 382,
+          "sha256": "e784580d555139274665f3dcd3541d86928a42c1e090ddf643d900bde5d91b04"
+        },
+        {
+          "path": "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/step3-4-6-capture-pairs.json",
+          "status": "verified",
+          "bytes": 2053,
+          "sha256": "8cb3adffa9499a6fc6b15514a3fbbf75b08e8a2faa0e6c29c7c1d9d691d8eb72"
+        },
+        {
+          "path": "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/step3-screenshot-parity.txt",
+          "status": "verified",
+          "bytes": 4025,
+          "sha256": "386c59ed9dc4ec4bb43a3e02649f4829d647dc88e11faca0c835bd1b65b0d025"
+        },
+        {
+          "path": "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/step5-applicator.txt",
+          "status": "verified",
+          "bytes": 405,
+          "sha256": "0cf17f41ca9ff6aa4b7177db4f601f984290accce8a053f82219a5772e5f352b"
+        },
+        {
+          "path": "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/step7-label-mask-measurement.json",
+          "status": "verified",
+          "bytes": 2840,
+          "sha256": "f521e8501263a1eee2fb314c994ae3a780b55ec19ec006c6e514029fc9c46ccf"
+        },
+        {
+          "path": "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/step7b-four-unit-floor-nofonts.json",
+          "status": "verified",
+          "bytes": 1550,
+          "sha256": "b12b17800cd4fac369addbfbfba2f154a0a5be7f1f3f7e8e5edcd534816ce204"
+        },
+        {
+          "path": "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/step8-judged-reads.json",
+          "status": "verified",
+          "bytes": 3158,
+          "sha256": "5106c451214cdcca6eed9269ab8e608da6cd0237b1fcbcfacf9bd9f967ae4ea4"
+        },
+        {
+          "path": "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/step9-judgments.json",
+          "status": "verified",
+          "bytes": 3405,
+          "sha256": "37a2cf15e4a90232386e05f858e8917fcc1f7317ff2a95c735392a70faeac48f"
+        },
+        {
+          "path": "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/step9-clearance-scan-under-8.txt",
+          "status": "verified",
+          "bytes": 7266,
+          "sha256": "8e4617f246ced01df9d63119caad099b5c4469ca28f6c4fee3bbdfa7ffabb7cb"
+        },
+        {
+          "path": "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/step9-unmasked-labels-scan.txt",
+          "status": "verified",
+          "bytes": 1766,
+          "sha256": "f659557740eaa9a9be865502e59241d8e972d08a8a6b6a0def48c3084524ab8e"
+        },
+        {
+          "path": "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/step9-mask-vs-box-border-scan.txt",
+          "status": "verified",
+          "bytes": 1745,
+          "sha256": "75ace3a24e5b7496e348c093f5110a5d8a0bbee43a431dc8629c16c26db2e10c"
+        },
+        {
+          "path": "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/step10-supplemental-architecture.json",
+          "status": "verified",
+          "bytes": 1682,
+          "sha256": "e3106e641384179b10e2d6c3681fa4208ab9076dfe84886f029e2250418ffec0"
+        },
+        {
+          "path": "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/step11-findings.json",
+          "status": "verified",
+          "bytes": 6653,
+          "sha256": "8d0b8e4576b84277d5274cfdc9bdfbc51fcde5f1856c61fa28483a7e851c5878"
+        },
+        {
+          "path": "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/swimlane-stock.png",
+          "status": "verified",
+          "bytes": 52323,
+          "sha256": "f26e385f52ccde61bebf8192f504cc1c57156582e26ab9566b0c45c76d079c1f"
+        },
+        {
+          "path": "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/swimlane-settled.png",
+          "status": "verified",
+          "bytes": 52323,
+          "sha256": "f26e385f52ccde61bebf8192f504cc1c57156582e26ab9566b0c45c76d079c1f"
+        },
+        {
+          "path": "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/swimlane-skin-pinned.png",
+          "status": "verified",
+          "bytes": 52347,
+          "sha256": "dfd786eb53b4c2cb210e8c58601bd040f93cdd1c4f61bed3274305371b5d4bce"
+        },
+        {
+          "path": "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/swimlane-with-fonts.png",
+          "status": "verified",
+          "bytes": 52323,
+          "sha256": "f26e385f52ccde61bebf8192f504cc1c57156582e26ab9566b0c45c76d079c1f"
+        },
+        {
+          "path": "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/swimlane-no-fonts.png",
+          "status": "verified",
+          "bytes": 52958,
+          "sha256": "a217f1771bb2ab691d1044059c02c9f27184a663420095a59a012f19de21984d"
+        },
+        {
+          "path": "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/architecture-with-fonts.png",
+          "status": "verified",
+          "bytes": 56895,
+          "sha256": "ab9508515f604e2026fd7ab535b827b4655af22662373481ddada68219db32ed"
+        },
+        {
+          "path": "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/architecture-no-fonts.png",
+          "status": "verified",
+          "bytes": 56606,
+          "sha256": "519fe71ce89824487160d492f1861bb5aa9ad6abbefc848036ebecaa4e95668e"
+        },
+        {
+          "path": "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/crop-handoff.png",
+          "status": "verified",
+          "bytes": 3532,
+          "sha256": "6139fb96fbee63c6cbbb2fab4e8edaf1200787e13528d439da32b38d82c6943f"
+        },
+        {
+          "path": "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/crop-revise.png",
+          "status": "verified",
+          "bytes": 4729,
+          "sha256": "ddd18fb7a025847ceb3e8d0a275145b4aebd0b11f57871df6780a63d21f8736a"
+        },
+        {
+          "path": "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/crop-connector5.png",
+          "status": "verified",
+          "bytes": 3271,
+          "sha256": "12d1f9770b9a5fd84fe0055f28b9cb6b9bd37164f2b93f1928976c66bc50c65d"
+        },
+        {
+          "path": "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/crop-resp.png",
+          "status": "verified",
+          "bytes": 5723,
+          "sha256": "f4b1252caee85e2c5cd6b0b4fcbc570e082c40ef1701718cfa9b342d8c69d3f9"
+        },
+        {
+          "path": "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/crop-zone-border.png",
+          "status": "verified",
+          "bytes": 5595,
+          "sha256": "8908745afc731270293117fd682e994dc62fbeb327ac65d08dcee6ed4acba5d3"
+        },
+        {
+          "path": "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/crop-mermaid-writes.png",
+          "status": "verified",
+          "bytes": 5896,
+          "sha256": "b75f08d9b959790d505f992541a3a929c1b12bdf6ad345fb6ff2684eb31e3e10"
+        },
+        {
+          "path": "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/crop-dp-4unit.png",
+          "status": "verified",
+          "bytes": 6044,
+          "sha256": "7aee55353b41c3aeda304a9d68612ba3af6f5b16ccd1874fd035383b6226e707"
+        },
+        {
+          "path": "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/crop-seq-4unit.png",
+          "status": "verified",
+          "bytes": 5500,
+          "sha256": "012a06ddf3f38522c2d7dcd627e18e333756159033b01757167646e90fdaab34"
+        },
+        {
+          "path": "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/crop-skin-violet.png",
+          "status": "verified",
+          "bytes": 13223,
+          "sha256": "68ee66601495fcd3634b1ff2ab497c523ce18a2179399d0c57971a5bb01935bc"
+        },
+        {
+          "path": "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/crop-venn-focal.png",
+          "status": "verified",
+          "bytes": 16611,
+          "sha256": "bb8c11ba507ebd60bdc9c67ff2f410bab752c803ab279cf311b271c98c54a695"
+        }
+      ]
+    }
+  ],
+  "supersedes": [],
+  "provenance": {
+    "note": "Manual playbook scenario outcome captured by the canonical wrapper; no benchmark dimensions were scored.",
+    "capturedAt": "2026-09-11T08:55:24.613Z",
+    "evidenceClass": "registered-path",
+    "evidenceArtifacts": [
+      {
+        "path": "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/step1-corpus-check.txt",
+        "status": "verified",
+        "bytes": 683,
+        "sha256": "8cb51b4028cd26ff2f3be3e0e70013fb63aebea210ceaf67c4f73ca6d1024960"
+      },
+      {
+        "path": "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/step2-renderer-check.txt",
+        "status": "verified",
+        "bytes": 382,
+        "sha256": "e784580d555139274665f3dcd3541d86928a42c1e090ddf643d900bde5d91b04"
+      },
+      {
+        "path": "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/step3-4-6-capture-pairs.json",
+        "status": "verified",
+        "bytes": 2053,
+        "sha256": "8cb3adffa9499a6fc6b15514a3fbbf75b08e8a2faa0e6c29c7c1d9d691d8eb72"
+      },
+      {
+        "path": "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/step3-screenshot-parity.txt",
+        "status": "verified",
+        "bytes": 4025,
+        "sha256": "386c59ed9dc4ec4bb43a3e02649f4829d647dc88e11faca0c835bd1b65b0d025"
+      },
+      {
+        "path": "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/step5-applicator.txt",
+        "status": "verified",
+        "bytes": 405,
+        "sha256": "0cf17f41ca9ff6aa4b7177db4f601f984290accce8a053f82219a5772e5f352b"
+      },
+      {
+        "path": "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/step7-label-mask-measurement.json",
+        "status": "verified",
+        "bytes": 2840,
+        "sha256": "f521e8501263a1eee2fb314c994ae3a780b55ec19ec006c6e514029fc9c46ccf"
+      },
+      {
+        "path": "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/step7b-four-unit-floor-nofonts.json",
+        "status": "verified",
+        "bytes": 1550,
+        "sha256": "b12b17800cd4fac369addbfbfba2f154a0a5be7f1f3f7e8e5edcd534816ce204"
+      },
+      {
+        "path": "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/step8-judged-reads.json",
+        "status": "verified",
+        "bytes": 3158,
+        "sha256": "5106c451214cdcca6eed9269ab8e608da6cd0237b1fcbcfacf9bd9f967ae4ea4"
+      },
+      {
+        "path": "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/step9-judgments.json",
+        "status": "verified",
+        "bytes": 3405,
+        "sha256": "37a2cf15e4a90232386e05f858e8917fcc1f7317ff2a95c735392a70faeac48f"
+      },
+      {
+        "path": "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/step9-clearance-scan-under-8.txt",
+        "status": "verified",
+        "bytes": 7266,
+        "sha256": "8e4617f246ced01df9d63119caad099b5c4469ca28f6c4fee3bbdfa7ffabb7cb"
+      },
+      {
+        "path": "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/step9-unmasked-labels-scan.txt",
+        "status": "verified",
+        "bytes": 1766,
+        "sha256": "f659557740eaa9a9be865502e59241d8e972d08a8a6b6a0def48c3084524ab8e"
+      },
+      {
+        "path": "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/step9-mask-vs-box-border-scan.txt",
+        "status": "verified",
+        "bytes": 1745,
+        "sha256": "75ace3a24e5b7496e348c093f5110a5d8a0bbee43a431dc8629c16c26db2e10c"
+      },
+      {
+        "path": "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/step10-supplemental-architecture.json",
+        "status": "verified",
+        "bytes": 1682,
+        "sha256": "e3106e641384179b10e2d6c3681fa4208ab9076dfe84886f029e2250418ffec0"
+      },
+      {
+        "path": "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/step11-findings.json",
+        "status": "verified",
+        "bytes": 6653,
+        "sha256": "8d0b8e4576b84277d5274cfdc9bdfbc51fcde5f1856c61fa28483a7e851c5878"
+      },
+      {
+        "path": "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/swimlane-stock.png",
+        "status": "verified",
+        "bytes": 52323,
+        "sha256": "f26e385f52ccde61bebf8192f504cc1c57156582e26ab9566b0c45c76d079c1f"
+      },
+      {
+        "path": "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/swimlane-settled.png",
+        "status": "verified",
+        "bytes": 52323,
+        "sha256": "f26e385f52ccde61bebf8192f504cc1c57156582e26ab9566b0c45c76d079c1f"
+      },
+      {
+        "path": "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/swimlane-skin-pinned.png",
+        "status": "verified",
+        "bytes": 52347,
+        "sha256": "dfd786eb53b4c2cb210e8c58601bd040f93cdd1c4f61bed3274305371b5d4bce"
+      },
+      {
+        "path": "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/swimlane-with-fonts.png",
+        "status": "verified",
+        "bytes": 52323,
+        "sha256": "f26e385f52ccde61bebf8192f504cc1c57156582e26ab9566b0c45c76d079c1f"
+      },
+      {
+        "path": "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/swimlane-no-fonts.png",
+        "status": "verified",
+        "bytes": 52958,
+        "sha256": "a217f1771bb2ab691d1044059c02c9f27184a663420095a59a012f19de21984d"
+      },
+      {
+        "path": "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/architecture-with-fonts.png",
+        "status": "verified",
+        "bytes": 56895,
+        "sha256": "ab9508515f604e2026fd7ab535b827b4655af22662373481ddada68219db32ed"
+      },
+      {
+        "path": "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/architecture-no-fonts.png",
+        "status": "verified",
+        "bytes": 56606,
+        "sha256": "519fe71ce89824487160d492f1861bb5aa9ad6abbefc848036ebecaa4e95668e"
+      },
+      {
+        "path": "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/crop-handoff.png",
+        "status": "verified",
+        "bytes": 3532,
+        "sha256": "6139fb96fbee63c6cbbb2fab4e8edaf1200787e13528d439da32b38d82c6943f"
+      },
+      {
+        "path": "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/crop-revise.png",
+        "status": "verified",
+        "bytes": 4729,
+        "sha256": "ddd18fb7a025847ceb3e8d0a275145b4aebd0b11f57871df6780a63d21f8736a"
+      },
+      {
+        "path": "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/crop-connector5.png",
+        "status": "verified",
+        "bytes": 3271,
+        "sha256": "12d1f9770b9a5fd84fe0055f28b9cb6b9bd37164f2b93f1928976c66bc50c65d"
+      },
+      {
+        "path": "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/crop-resp.png",
+        "status": "verified",
+        "bytes": 5723,
+        "sha256": "f4b1252caee85e2c5cd6b0b4fcbc570e082c40ef1701718cfa9b342d8c69d3f9"
+      },
+      {
+        "path": "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/crop-zone-border.png",
+        "status": "verified",
+        "bytes": 5595,
+        "sha256": "8908745afc731270293117fd682e994dc62fbeb327ac65d08dcee6ed4acba5d3"
+      },
+      {
+        "path": "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/crop-mermaid-writes.png",
+        "status": "verified",
+        "bytes": 5896,
+        "sha256": "b75f08d9b959790d505f992541a3a929c1b12bdf6ad345fb6ff2684eb31e3e10"
+      },
+      {
+        "path": "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/crop-dp-4unit.png",
+        "status": "verified",
+        "bytes": 6044,
+        "sha256": "7aee55353b41c3aeda304a9d68612ba3af6f5b16ccd1874fd035383b6226e707"
+      },
+      {
+        "path": "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/crop-seq-4unit.png",
+        "status": "verified",
+        "bytes": 5500,
+        "sha256": "012a06ddf3f38522c2d7dcd627e18e333756159033b01757167646e90fdaab34"
+      },
+      {
+        "path": "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/crop-skin-violet.png",
+        "status": "verified",
+        "bytes": 13223,
+        "sha256": "68ee66601495fcd3634b1ff2ab497c523ce18a2179399d0c57971a5bb01935bc"
+      },
+      {
+        "path": "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/crop-venn-focal.png",
+        "status": "verified",
+        "bytes": 16611,
+        "sha256": "bb8c11ba507ebd60bdc9c67ff2f410bab752c803ab279cf311b271c98c54a695"
+      }
+    ]
+  },
+  "executionContext": {
+    "traceMode": "doc",
+    "scenarioId": "CAP-001",
+    "stage": "capture-review",
+    "dispatch": "manual",
+    "evidenceClass": "registered-path",
+    "variant": "capture-review",
+    "evidenceRoot": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public",
+    "requireDurableEvidence": true,
+    "command": "node scripts/check-diagram-corpus.cjs -> python3 -c 'import playwright' (SKIP) -> sk-design/shared/scripts/render-screenshots.cjs flags per file, --full-page, scale 1, stock + settled + no-fonts -> node scripts/apply-diagram-tokens.cjs --source palette-accent-violet.json --out <scratch> --forms swimlane -> label-mask measurement over the 7 arrow-label masks in swimlane.html and architecture.html -> six judged reads on the settled capture",
+    "runtime": "headless Google Chrome 153.0.8010.36 via the packet's shared renderer, driven from Node on darwin 25.6.0",
+    "nodeVersion": "v26.8.2",
+    "payloadFixture": "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/step8-judged-reads.json",
+    "executorNotApplicableReason": "manual playbook scenario answered in-session against renders taken here; no external CLI executor was dispatched",
+    "modelNotApplicableReason": "the six reads are judgments recorded by the operator of the run, not output sampled from a named model endpoint",
+    "headCommit": "ed5f1022875385d7ca0f8ddad7f36ecf2f20a392",
+    "priorRun": "2026-09-11--manual-testing-playbook--capture-review-3 (FAIL); this run does not supersede it, the FAIL was a true record of a state since fixed"
+  }
+}

@@ -1,0 +1,15 @@
+architecture.html: mask [584,248,60x12] straddles box [616,128,164x272] stroke=rgba(45,49,66,0.10) -> left x=616 (mask spans 28.0 past it)
+architecture.html: mask [584,284,44x12] straddles box [616,128,164x272] stroke=rgba(45,49,66,0.10) -> left x=616 (mask spans 12.0 past it)
+import-drawio.html: mask [228,144,44x12] straddles box [40,96,200x224] stroke=rgba(45,49,66,0.12) -> right x=240 (mask spans 12.0 past it)
+import-drawio.html: mask [228,232,44x12] straddles box [40,96,200x224] stroke=rgba(45,49,66,0.12) -> right x=240 (mask spans 12.0 past it)
+import-mermaid.html: mask [240,148,56x12] straddles box [288,80,632x336] stroke=rgba(45,49,66,0.12) -> left x=288 (mask spans 8.0 past it)
+import-mermaid.html: mask [204,276,56x12] straddles box [40,80,200x336] stroke=rgba(45,49,66,0.12) -> right x=240 (mask spans 20.0 past it)
+import-mermaid.html: mask [204,276,56x12] straddles box [64,268,144x56] stroke=#7a8399 -> right x=208 (mask spans 4.0 past it)
+nested.html: mask [56,52,132x16] straddles box [40,60,920x380] stroke=rgba(45,49,66,0.30) -> top y=60 (mask spans 8.0 past it)
+nested.html: mask [88,88,112x16] straddles box [72,96,856x308] stroke=rgba(45,49,66,0.35) -> top y=96 (mask spans 8.0 past it)
+nested.html: mask [120,124,68x16] straddles box [104,132,792x236] stroke=rgba(45,49,66,0.45) -> top y=132 (mask spans 8.0 past it)
+nested.html: mask [152,160,72x16] straddles box [136,168,728x164] stroke=#4f5d75 -> top y=168 (mask spans 8.0 past it)
+nested.html: mask [184,196,60x16] straddles box [168,204,664x92] stroke=#eb6c36 -> top y=204 (mask spans 8.0 past it)
+swimlane.html: mask [452,124,60x12] straddles box [340,96,120x48] stroke=#2d3142 -> right x=460 (mask spans 8.0 past it)
+
+13 mask/box overlap(s) across 38 files

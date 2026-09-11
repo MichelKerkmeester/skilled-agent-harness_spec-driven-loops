@@ -1,0 +1,17 @@
+architecture.html: unmasked text "02" bbox 529.59,267.5,38.41,41.67 is 0px from path "M 496,304 H 692 Q 700,304 700,312 "
+dp-integration.html: unmasked text "DAG" bbox 296.86,130,14.28,9 is 6px from path "M200 124 H360 Q368 124 368 132 V18"
+dp-integration.html: unmasked text "AUTH" bbox 564.88,421,21.13,10 is 5.99px from line 592,460->592,408
+import-mermaid.html: unmasked text "WRITES" bbox 711.6,308,28.8,10.4 is 0px from path "M744,304 H720 A8,8 0 0 1 712,312 V"
+it-state.html: unmasked text "DISSEMINATION" bbox 696,48,76.96,10.4 is 5.6px from path "M 604,268 H 654 Q 662,268 662,260 "
+it-state.html: unmasked text "department folders" bbox 384,129.6,108,13.6 is 4.8px from line 472,148->472,232
+starter-full.html: unmasked text "HTTPS" bbox 148.81,288.67,26.38,10.83 is 5.5px from line 130,305->195,305
+starter-full.html: unmasked text "JWT" bbox 140.08,203.67,15.83,10.83 is 3.5px from path "M 80 140 L 80 200 Q 80 218 98 218 "
+starter-full.html: unmasked text "TLS" bbox 647.08,288.67,15.83,10.83 is 5.5px from line 620,305->696,305
+starter-full.html: unmasked text "01" bbox 246.01,283,47.99,51.67 is 0px from line 253,332->253,376
+starter-full.html: unmasked text "AWS CDN" bbox 235.11,313.83,37.77,11.67 is 6.5px from line 253,332->253,376
+starter-full.html: unmasked text "HTTP / API call" bbox 58,787.83,61.15,11.67 is 6px from line 38,793->52,793
+starter-full.html: unmasked text "Auth flow" bbox 58,803.83,39.61,11.67 is 6px from line 38,809->52,809
+starter-full.html: unmasked text "Internal connection" bbox 58,819.83,78.79,11.67 is 6px from line 38,825->52,825
+swimlane.html: unmasked text "fact-check · voice" bbox 526.8,203.67,86.41,10.83 is 5.5px from line 570,220->570,268
+
+15 unmasked label(s) within 4 units of a connector, across 38 files

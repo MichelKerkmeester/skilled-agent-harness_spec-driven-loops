@@ -203,14 +203,32 @@ function paintForm(palette, stock, options, name) {
   Object.entries(stock.skins[skin].roles).forEach(([role, entry]) => {
     if (HEX.test(entry.value) && !byValue.has(entry.value.toLowerCase())) byValue.set(entry.value.toLowerCase(), role);
   });
+  // A role also appears as a translucent form: the same colour at an alpha the palette never names,
+  // for a tint behind a focal node or a softened border. Those channels are the role's, so a repaint
+  // that moves the role and leaves them behind ships a themed drawing wearing two colours at once.
+  // They are matched by their channels and re-emitted at whatever alpha the drawing chose.
+  const channels = (hex) => [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16));
+  const byChannels = new Map();
+  byValue.forEach((role, hex) => byChannels.set(channels(hex).join(','), role));
   const used = new Set();
-  const repaint = (text) => text.replace(HEX_LITERAL, (literal) => {
+  const repaintAlpha = (text) => text.replace(/rgba\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*([\d.]+)\s*\)/g,
+    (literal, r, g, b, alpha) => {
+      const role = byChannels.get([r, g, b].map(Number).join(','));
+      if (!role || !(role in roles)) return literal;
+      used.add(role);
+      const [nr, ng, nb] = channels(roles[role]);
+      // Unchanged channels are returned untouched rather than re-emitted, because re-emitting
+      // normalises whatever spacing the drawing chose and the stock run has to reproduce bytes.
+      if (nr === Number(r) && ng === Number(g) && nb === Number(b)) return literal;
+      return `rgba(${nr},${ng},${nb},${alpha})`;
+    });
+  const repaint = (text) => repaintAlpha(text.replace(HEX_LITERAL, (literal) => {
     const role = byValue.get(literal.toLowerCase());
     if (!role) fail(`${file} uses ${literal}, which maps to no ${skin} role in the stock source`);
     if (!(role in roles)) fail(`${file} needs ${skin} ${role}, which the requested source lacks`);
     used.add(role);
     return roles[role];
-  });
+  }));
   let output = source;
   const declared = [];
   if (marker) {

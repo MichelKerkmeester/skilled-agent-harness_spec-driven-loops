@@ -1,0 +1,15 @@
+{
+  "executionContext": {
+    "evidenceRoot": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public",
+    "requireDurableEvidence": true,
+    "evidenceClass": "registered-path",
+    "command": "node scripts/check-diagram-corpus.cjs -> python3 -c 'import playwright' (SKIP) -> sk-design/shared/scripts/render-screenshots.cjs flags per file, --full-page, scale 1, stock + settled + no-fonts -> node scripts/apply-diagram-tokens.cjs --source palette-accent-violet.json --out <scratch> --forms swimlane -> label-mask measurement over the 7 arrow-label masks in swimlane.html and architecture.html -> six judged reads on the settled capture",
+    "runtime": "headless Google Chrome 153.0.8010.36 via the packet's shared renderer, driven from Node on darwin 25.6.0",
+    "nodeVersion": "v26.8.2",
+    "payloadFixture": "specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run4/step8-judged-reads.json",
+    "executorNotApplicableReason": "manual playbook scenario answered in-session against renders taken here; no external CLI executor was dispatched",
+    "modelNotApplicableReason": "the six reads are judgments recorded by the operator of the run, not output sampled from a named model endpoint",
+    "headCommit": "ed5f1022875385d7ca0f8ddad7f36ecf2f20a392",
+    "priorRun": "2026-09-11--manual-testing-playbook--capture-review-3 (FAIL); this run does not supersede it, the FAIL was a true record of a state since fixed"
+  }
+}

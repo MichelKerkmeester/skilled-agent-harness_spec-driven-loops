@@ -1,32 +1,35 @@
 'use strict';
 
 // A label mask is a paper rect painted under a label so the connector that label names reads
-// through the gap. On a long run the gap is a breath the eye forgives; on a short one the mask is
-// the connector — the stroke the reader was meant to follow is broken by the very thing that names
-// it, and one line reads as a stub and a tail. So under about 60px of drawn length the label
-// belongs beside the connector, with no mask across the stroke.
+// through the gap. A mask that touches the stroke defeats its own purpose: on a short run it erases
+// the connector outright, and on a long one it breaks the line exactly where the eye is following
+// it. So the rule is a clearance, measured on every connector, not an overlap test on short ones.
 //
-// Signals. The corpus marks a label mask with a class token carrying both words (class
-// "label-mask"); node-mask and zone-mask carry the same paper fill over a box or a zone, so the
-// class is the only marker that says "this rect hides the run of stroke a label sits on" rather
-// than "this rect hides grid behind a shape" — the fill alone cannot tell them apart, and a rule
-// keyed on the fill flags page backgrounds and node borders. A connector is read the way the elbow
-// rule reads one: it ends in an arrowhead or names itself connector, arrow, edge, link or flow,
-// and radial decoration is exempt, because a rule, a tick or a trend line carries no arrow label
-// to mask. Length is the shape's own drawn geometry, a line's span or a path's segments added end
-// to end, never its bounding box: a mask inside the bounding box of an elbow that turns away from
-// it erases nothing. The corpus's long masked runs measure well over 100px and the defects this
-// rule is drawn from measured 32 to 52px, so the boundary sits at 60.
-
+// Signals. Two files mark a mask with a class carrying both words; the rest of the corpus draws the
+// same thing as a ground-filled rect with its label immediately after it, and a rule that reads only
+// the named form is blind to almost every mask in the library. A ground fill alone is not enough —
+// page and zone grounds share it — so the label that follows is what makes a rect a mask, and a size
+// cap keeps a band out. A connector is read the way the elbow rule reads one: it ends in an arrowhead
+// or names itself connector, arrow, edge, link or flow, and radial decoration is exempt, because a
+// rule, a tick or a trend line carries no arrow label to mask. Distance is measured against the
+// shape's own drawn geometry, a line's span or a path's segments end to end, never its bounding box:
+// a mask inside the bounding box of an elbow that turns away from it is not near the stroke at all.
+//
+// Known blind spot: a label drawn with no mask rect at all matches neither signal, so this rule says
+// nothing about it even when it sits on its connector.
+//
 const NAME = 'label-mask-clearance';
+
 // A label mask may never touch its connector: the gap is what lets a reader trace the line past its
 // own label, and a mask on the stroke erases the thing the label names.
 //
-// The floor is four, not the six the prose asks for, and the difference is units. The prose is
-// written in rendered pixels; a drawing is written in user units, which these forms scale up by
-// about a quarter on the way to the screen. Four units is therefore around five pixels on screen,
-// and a whole family of forms has used it deliberately and reads correctly. Six to ten stays the
-// band to aim for; four is the point below which the gap stops being visible at all.
+// The floor is four user units, and what that is worth on screen depends on the form. These drawings
+// are authored in user units and scaled to the page, and the measured scale across the library runs
+// from 1.0 up to about 1.65, so four units is four physical pixels on one form and nearly seven on
+// another. The floor is therefore the weakest guarantee in the set, and it is deliberately set where
+// the tightest form in the corpus already reads: rendered and inspected, four units shows a clean
+// band with the stroke traceable through it. Six to ten remains the band to aim for, and a form that
+// scales at 1.0 should take the upper end rather than the floor.
 const CLEARANCE = 4;
 const ARITY = { M: 2, L: 2, H: 1, V: 1, A: 7, Q: 4, Z: 0 };
 const LEAF = new Set(['rect', 'circle', 'ellipse', 'line', 'path', 'use', 'image', 'polygon', 'polyline', 'text', 'tspan']);

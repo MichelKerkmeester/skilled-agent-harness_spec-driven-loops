@@ -1,0 +1,58 @@
+{
+  "verdict_scope": "PASS is scoped to the scenario's own criteria: the six reads on the settled swimlane capture, the settle pair, the skin pair, and the mask measurement on the two labelled reference illustrations the scenario names. Findings below sit outside those criteria and none of them decided the verdict.",
+  "findings": [
+    {
+      "id": "F1",
+      "severity": "high",
+      "title": "An arrow label with no mask at all is still invisible to the widened rule, and the corpus ships one painted on its connector",
+      "detail": "import-mermaid.html draws <text x=726 y=316>WRITES</text> with no rect before it. Its connector is path M744,304 H720 A8,8 0 0 1 712,312 V344; the label's live getBBox is 711.6,308 28.8x10.4, so the glyph box sits ON the vertical leg at x=712, gap 0. Visible at 8x in crop-mermaid-writes.png: the W straddles the stroke and notches the elbow. This violates SKILL.md rule 7 (never ship an arrow label without an opaque mask rect) and fails read 3 in that file.",
+      "why_the_rule_misses_it": "label-mask-clearance recognises a mask by a class carrying label+mask, or by a ground-filled rect immediately followed by a text. A label with no rect matches neither, so widening the detection fixed masks-that-exist and left labels-that-lack-masks untested. The corpus check is green with this defect in it.",
+      "pre_existing": true,
+      "found_by": "a live getBBox probe over every text in all 38 forms, distance-tested against the same connector geometry the family parses"
+    },
+    {
+      "id": "F2",
+      "severity": "medium",
+      "title": "No rule measures a label mask against a box or zone border, and six arrow labels in the corpus sit on one",
+      "detail": "See step9-judgments.json handoff_proximity. swimlane HANDOFF, architecture READ MDX and QUERY, import-drawio's two HTTPS labels, import-mermaid REQUEST. Two visible outcomes depending on paint order: a label glued to a box, or a mask erasing a run of zone border.",
+      "pre_existing": true
+    },
+    {
+      "id": "F3",
+      "severity": "medium",
+      "title": "A connector drawn along its own source box's border discolours that border",
+      "detail": "swimlane connector 5's 30-unit leg runs on Approve merge's bottom border: measured (93,72,75) across u 720-746 against (94,97,110) elsewhere on the same border - a brown stretch, visible at 10x in crop-connector5.png. architecture has the same pattern twice and longer: connectors C and D run 80 units each along the Astro Origin box's top and bottom borders, and the border's lower antialias row shifts from (240,176,149) to (198,138,117) over that half. The third run named the swimlane case; it is unfixed, and the architecture cases were not named. No read catches it - read 4 asks about a box that is not the connector's source or target.",
+      "pre_existing": true
+    },
+    {
+      "id": "F4",
+      "severity": "medium",
+      "title": "The applicator cannot move an accent written as rgba(), so a themed delivery keeps the stock accent in every tint",
+      "detail": "apply-diagram-tokens.cjs rewrites six-digit hex literals only (HEX_LITERAL at line 24). rgba(235,108,54,0.08) is the accent tint and it survives untouched: in the skin-pinned capture the Deploy box has a violet border around a coral fill, pixel (1100,575) identical in both captures. Corpus-wide, 32 of 38 forms carry the accent as an rgba literal, 75 occurrences. The skin pair still differs by eye, so step 6 passes - but it proves the skin reached the strokes, not the tints.",
+      "pre_existing": true
+    },
+    {
+      "id": "F5",
+      "severity": "low",
+      "title": "A mask elsewhere in the corpus does overflow under font substitution",
+      "detail": "sequence.html's label '200 · HTML + MAX-AGE' is 20 characters against a 96-unit mask and already overruns it with the web font; the substituted font widens it further, putting 9 ink pixels outside the mask's own bounds at u x 415-420 and 518-520. Harmless today - the mask fill equals the page paper there and the connector is 4 units below - but it is a real instance of the fault the measurement exists to catch, in a file the scenario does not name. The same label also breaks SKILL.md's 14-character cap for arrow labels, which no family enforces.",
+      "pre_existing": true
+    },
+    {
+      "id": "F6",
+      "severity": "low",
+      "title": "label-mask-clearance's header now describes behaviour the file no longer has",
+      "detail": "The opening comment still states the short-connector doctrine ('under about 60px of drawn length the label belongs beside the connector', 'so the boundary sits at 60') and still says the class token is the only marker that identifies a label mask. Neither is true after the widening: there is no 60 in the code, the local variable is still named short but holds every connector, and the mask predicate now accepts a ground-filled rect followed by a text. The doctrine is subsumed rather than lost - a mask across any connector is now an error at any length - but a reader is told the wrong rule.",
+      "pre_existing": false,
+      "introduced_by": "f269b0a2ab"
+    }
+  ],
+  "closed_since_run_3": [
+    {"item":"venn focal label in the accent at 2.18:1","state":"fixed","evidence":"now #2d3142 on the tinted intersection, measured 9.01:1 against the ground the glyphs actually sit on, matching the other set labels at 10.99:1. The accent still marks the intersection as a tint, which is the licensed use. The commit's 10.57 figure is against a lighter reference ground than the text sits on; both clear the 4.5 gate."},
+    {"item":"three architecture masks on or touching a connector","state":"fixed","evidence":"step10-supplemental-architecture.json - all five masks now clear every connector by 8.0 units, checked by geometry and by eye"},
+    {"item":"the corpus checker could not hold read 3","state":"fixed for masks that exist, not for labels without one","evidence":"168 assertions to 820; 13 masks moved; see F1"},
+    {"item":"two captures committed before their forms settled","state":"fixed","evidence":"39 of 39 committed PNGs byte-identical to a fresh full-corpus render"},
+    {"item":"connector 5's leg on its own source box's border","state":"still open","evidence":"F3"}
+  ],
+  "traded_defects": "none found. Each of the 13 moved masks now clears its stroke and none landed on a new one. The closest to a trade is import-mermaid REQUEST, which moved 16 units left and now overlaps the Mobile App border by 4 units - but that file paints boxes after labels, so the mask is simply covered and the glyphs still sit about 7 units clear of the border."
+}

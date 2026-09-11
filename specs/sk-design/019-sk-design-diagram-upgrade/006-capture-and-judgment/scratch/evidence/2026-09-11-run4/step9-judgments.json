@@ -1,0 +1,23 @@
+{
+  "four_unit_floor": {
+    "question": "is four user units a visible gap",
+    "answer": "yes as a floor, no as written",
+    "measured": {
+      "pairs_between_4_and_8_units": 40,
+      "families_using_it": "the three sequence forms and sequence.html (29 pairs at 4), dp-integration (2 at 4), it-state (1 at 4, 7 at 6), swimlane REVISE (1 at 6)",
+      "scale_spread": "the rule's justification, repeated in SKILL.md rule 12, says a drawing 'scales up about a quarter on the way to the screen' so four units lands near five pixels. Measured from fiducials, the corpus scale runs from 1.0x (dp-integration, viewBox 1200 in a 1200px frame) to 1.648x (data-flow). Eight of the 38 forms sit below 1.2x.",
+      "worst_case": "dp-integration is BOTH the 1.0x form and one of the forms sitting at the floor, so its four units are four physical pixels, not five"
+    },
+    "looked_at": "crop-dp-4unit.png (KERNEL and HTTPS at 4 units = 4px, 8x zoom) and crop-seq-4unit.png (4 units = 4.8px). In both the stroke runs unbroken past the label and a clean band of paper separates mask from line. A reader can trace the connector.",
+    "verdict": "keep the floor at four, fix the sentence under it. The number is defensible on the evidence; the reason given for it is not, because it asserts a uniform scale the corpus does not have and is wrongest on the very file that sits at the floor. A rule about a visible gap should either be stated in rendered pixels or be scale-aware - four units means 4.0px on one form and 6.6px on another."
+  },
+  "handoff_proximity": {
+    "question": "is the HANDOFF label's clearance from the Open PR box a defect worth a finding",
+    "measured": "the box's painted right border ends at px x=592 and the H's first ink begins at x=594, leaving exactly one clean paper pixel - 1.2 user units. The mask itself runs 8 units under the box and is hidden by it, because swimlane paints boxes after labels.",
+    "answer": "yes, and the finding is bigger than this label",
+    "why": "at one pixel the eye groups the word with the box, so HANDOFF reads as a third line of the Open PR node rather than as the name of the arrow leaving it. The cause is geometric and not a typo: a 60-unit mask centred on a 40-unit segment must overhang 10 units at each end, and the left overhang lands on the box because connector 2 attaches at the box's corner.",
+    "scope": "a corpus scan for label masks that straddle a box or zone border finds 13, of which 6 are arrow labels rather than zone titles: swimlane HANDOFF (8 units under a node border), architecture READ MDX (28 units) and QUERY (12) across the CONTENT zone's left border, import-drawio's two HTTPS labels across the EDGE zone's right border, and import-mermaid REQUEST 4 units under the Mobile App border.",
+    "two_outcomes": "which one you see depends on paint order. Where boxes paint after labels the box wins and the label ends up glued to it (swimlane, import-mermaid). Where the zone paints before labels the mask wins and erases a run of the zone border (architecture, import-drawio) - visible at 6x in crop-zone-border.png, where the CONTENT zone's left hairline breaks at both labels.",
+    "recommendation": "add a clearance rule for mask-to-box, not just mask-to-connector. It is the same measurement the widened family already does, against the box rects it currently skips, and it would catch all six at once."
+  }
+}

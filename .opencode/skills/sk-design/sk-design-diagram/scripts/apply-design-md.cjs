@@ -788,7 +788,24 @@ function remapLiterals(text, map, label, skin) {
   for (const literal of text.match(HEX_LITERAL) || []) {
     if (!map.has(literal.toLowerCase())) fail(`${label} uses ${literal}, which maps to no ${skin} role in the token source`);
   }
-  return { output, used };
+  // A role is also written translucently, at an alpha the palette never names — a tint behind a
+  // focal node, a softened border. Those channels belong to the role, so a theme that moves the
+  // role and leaves them behind ships a drawing wearing the old colour and the new one at once.
+  const channels = (hex) => [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16));
+  const byChannels = new Map();
+  map.forEach((hit, hex) => byChannels.set(channels(hex).join(','), hit));
+  const withAlpha = output.replace(/rgba\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*([\d.]+)\s*\)/g,
+    (literal, r, g, b, alpha) => {
+      const hit = byChannels.get([r, g, b].map(Number).join(','));
+      if (!hit) return literal;
+      const [nr, ng, nb] = channels(hit.value);
+      // Unchanged channels stay exactly as the drawing wrote them, so the identity run reproduces
+      // bytes rather than normalising whatever spacing it chose.
+      if (nr === Number(r) && ng === Number(g) && nb === Number(b)) return literal;
+      if (!used.includes(hit.role)) used.push(hit.role);
+      return `rgba(${nr},${ng},${nb},${alpha})`;
+    });
+  return { output: withAlpha, used };
 }
 
 function renderForm(source, skin, derived, label, pathGiven, hash) {
