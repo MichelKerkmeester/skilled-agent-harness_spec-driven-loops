@@ -3,14 +3,16 @@
 # COMPONENT: history rewrite runner
 # ───────────────────────────────────────────────────────────────
 # Rehearse a two-pass git filter-repo rewrite of the named refs on a
-# throwaway mirror, stamp the machine trailer paragraph from the frozen
-# plan, remap hash citations from the commit map, and prove the result
-# against invariants.  The bare backup is the rollback; the script never
-# pushes.  Without --rehearse it prints the push lines for the operator.
+# throwaway mirror, stamp the planned subject and the machine trailer
+# paragraph from the frozen plans, remap hash citations from the commit
+# map, and prove the result against invariants.  The bare backup is the
+# rollback; the script never pushes.  Without --rehearse it prints the
+# push lines for the operator.
 #
 # Usage:
 #   rewrite-run.sh --source <repo-or-url> --plan <plan.jsonl> --work <dir> \
-#       [--refs main,skilled/v4.0.0.0] [--tags] [--rehearse]
+#       [--subject-plan <subject-plan.jsonl>] [--refs main,skilled/v4.0.0.0] \
+#       [--tags] [--rehearse]
 #
 # Output:
 #   <work>/rewrite.log                timestamped step log and invariants
@@ -24,11 +26,13 @@ set -euo pipefail
 usage() {
   cat >&2 <<'USAGE'
 usage: rewrite-run.sh --source <repo-or-url> --plan <plan.jsonl> --work <dir>
+                      [--subject-plan <subject-plan.jsonl>]
                       [--refs main,skilled/v4.0.0.0] [--tags] [--rehearse]
 
   --source   repository or URL to clone twice (backup and mirror)
   --plan     frozen JSONL plan of old SHA, ordinal and packet
   --work     scratch directory for the clones, maps and log
+  --subject-plan  JSONL plan of replacement subjects by old SHA
   --refs     comma-separated branch names to rewrite
   --tags     also rewrite every tag on the mirror
   --rehearse run everything and stop before printing push lines
@@ -38,6 +42,7 @@ USAGE
 SOURCE=""
 PLAN=""
 WORK=""
+SUBJECT_PLAN=""
 REFS="main,skilled/v4.0.0.0"
 TAGS=0
 REHEARSE=0
@@ -50,6 +55,10 @@ while [ $# -gt 0 ]; do
       ;;
     --plan)
       PLAN="${2:-}"
+      shift 2
+      ;;
+    --subject-plan)
+      SUBJECT_PLAN="${2:-}"
       shift 2
       ;;
     --work)
@@ -85,6 +94,9 @@ if [ -z "$SOURCE" ] || [ -z "$PLAN" ] || [ -z "$WORK" ]; then
   exit 2
 fi
 [ -f "$PLAN" ] || { echo "error: plan '$PLAN' not found" >&2; exit 2; }
+if [ -n "$SUBJECT_PLAN" ]; then
+  [ -f "$SUBJECT_PLAN" ] || { echo "error: subject plan '$SUBJECT_PLAN' not found" >&2; exit 2; }
+fi
 command -v git-filter-repo >/dev/null 2>&1 || { echo "error: git-filter-repo not on PATH" >&2; exit 2; }
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
@@ -106,7 +118,7 @@ die() {
 
 # A source URL may carry a credential before the host; the log and the push lines never should.
 SOURCE_SHOWN="$(printf '%s' "$SOURCE" | sed -E 's#(://)[^/@]+@#\1<redacted>@#')"
-log "start: source=$SOURCE_SHOWN plan=$PLAN work=$WORK refs=$REFS tags=$TAGS rehearse=$REHEARSE"
+log "start: source=$SOURCE_SHOWN plan=$PLAN work=$WORK refs=$REFS tags=$TAGS rehearse=$REHEARSE subject-plan=${SUBJECT_PLAN:-none}"
 
 # ───────────────────────────────────────────────────────────────
 # 1. CLONES AND TIPS
@@ -265,6 +277,7 @@ set -e
 
 script_repr="$(python3 -c 'import sys; print(repr(sys.argv[1]))' "$STAMP_SCRIPT")"
 plan_repr="$(python3 -c 'import sys; print(repr(sys.argv[1]))' "$PLAN")"
+subject_plan_repr="$(python3 -c 'import sys; print(repr(sys.argv[1]))' "$SUBJECT_PLAN")"
 map1_repr="$(python3 -c 'import sys; print(repr(sys.argv[1]))' "$WORK/commit-map-1")"
 
 cat > "$WORK/pass1_callback.py" <<PY
@@ -272,6 +285,7 @@ import importlib.util
 
 SCRIPT = ${script_repr}
 PLAN = ${plan_repr}
+SUBJECT_PLAN = ${subject_plan_repr}
 
 
 def _load():
@@ -283,15 +297,19 @@ def _load():
 
 _MODULE = _load()
 _PLAN = _MODULE.load_plan(PLAN)
+_SUBJECT_PLAN = _MODULE.load_plan(SUBJECT_PLAN) if SUBJECT_PLAN else {}
 
 
 def stamp(commit):
     row = _PLAN.get(commit.original_id)
-    if row is not None:
-        commit.message = _MODULE.stamp_message(commit.message, row)
+    if row is None:
+        return
+    subject_row = _SUBJECT_PLAN.get(commit.original_id)
+    subject_new = subject_row.get("subject_new") if subject_row is not None else None
+    commit.message = _MODULE.stamp_message(commit.message, row, subject_new)
 PY
 
-log "pass 1: stamp Spec and Commit-Id trailers on the mirror"
+log "pass 1: stamp planned subjects, Spec lines and Commit-Id trailers on the mirror"
 set +e
 (
   cd "$MIRROR"
@@ -378,18 +396,42 @@ log "pass 2: copied cumulative commit map to $WORK/commit-map"
 
 log "running invariants"
 set +e
-python3 - "$MIRROR" "$BACKUP" "$PLAN" "$WORK/commit-map" "$REFSPEC_CSV" <<'PY' | tee -a "$LOG"
+python3 - "$MIRROR" "$BACKUP" "$PLAN" "$WORK/commit-map" "$REFSPEC_CSV" "$STAMP_SCRIPT" <<'PY' | tee -a "$LOG"
+import importlib.util
 import json
 import re
 import subprocess
 import sys
 
-mirror, backup, plan_path, map_path, refspec = sys.argv[1:6]
+mirror, backup, plan_path, map_path, refspec, stamp_script = sys.argv[1:7]
 refs = [ref for ref in refspec.split(",") if ref]
 ZERO = "0" * 40
 HEX = re.compile(rb"(?<![0-9a-zA-Z])[0-9a-f]{10,40}(?![0-9a-zA-Z])")
 
 results = []
+
+
+def load_stamp_module(path):
+    """Import the stamper module so the invariants share its predicates."""
+    spec = importlib.util.spec_from_file_location("stamp_callback", path)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+def spec_line_count(body):
+    """Count Spec: lines in the message's final trailer paragraph."""
+    paragraph = []
+    for line in reversed(body.split(b"\n")):
+        if line.strip() == b"":
+            if paragraph:
+                break
+            continue
+        paragraph.append(line)
+    return len([line for line in paragraph if line.startswith(b"Spec:")])
+
+
+STAMP = load_stamp_module(stamp_script)
 
 
 def report(label, ok, detail=""):
@@ -457,6 +499,8 @@ for line in map_lines[1:]:
     if len(parts) >= 2:
         pairs[parts[0]] = parts[1]
 
+old_of_new = {new: old for old, new in pairs.items() if new != ZERO}
+
 # 1. commit count per ref
 try:
     ok = True
@@ -495,7 +539,6 @@ except Exception as exc:
 messages = {}
 try:
     messages = load_messages(mirror, refs)
-    old_of_new = {new: old for old, new in pairs.items() if new != ZERO}
     bad = 0
     checked = 0
     for ref in refs:
@@ -553,6 +596,56 @@ try:
     report("no old 10-hex prefix remains in messages", not residue, "residue=%d" % len(residue))
 except Exception as exc:
     report("no old 10-hex prefix remains in messages", False, str(exc))
+
+# 7. no forbidden attribution line remains
+try:
+    lines_scanned = 0
+    offenders = 0
+    for body in messages.values():
+        for line in body.split(b"\n"):
+            lines_scanned += 1
+            if STAMP.is_forbidden_line(line):
+                offenders += 1
+    report("no forbidden attribution line remains", offenders == 0,
+           "lines=%d offenders=%d" % (lines_scanned, offenders))
+except Exception as exc:
+    report("no forbidden attribution line remains", False, str(exc))
+
+# 8. every non-exempt subject passes the commit-msg grammar
+try:
+    checked = 0
+    bad = 0
+    for ref in refs:
+        for sha in rev_list(mirror, ref):
+            subject = messages.get(sha, b"").split(b"\n", 1)[0]
+            if STAMP.is_exempt_subject(subject):
+                continue
+            checked += 1
+            if STAMP.subject_errors(subject):
+                bad += 1
+    report("every non-exempt subject passes the commit-msg grammar",
+           bad == 0, "checked=%d bad=%d" % (checked, bad))
+except Exception as exc:
+    report("every non-exempt subject passes the commit-msg grammar", False, str(exc))
+
+# 9. the Spec lines match the plan's touched packets
+try:
+    checked = 0
+    bad = 0
+    for ref in refs:
+        for sha in rev_list(mirror, ref):
+            old = old_of_new.get(sha)
+            if old is None or old not in plan:
+                bad += 1
+                continue
+            checked += 1
+            expected = len(STAMP.packet_paths(plan[old]))
+            if spec_line_count(messages.get(sha, b"")) != expected:
+                bad += 1
+    report("Spec line count equals the plan's packet count", bad == 0,
+           "checked=%d bad=%d" % (checked, bad))
+except Exception as exc:
+    report("Spec line count equals the plan's packet count", False, str(exc))
 
 print("INVARIANTS: %s" % ("PASS" if all(results) else "FAIL"))
 sys.exit(0 if all(results) else 1)

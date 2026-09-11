@@ -122,8 +122,45 @@ TRAILER_RE='^((Co-Authored-By|Signed-off-by|Reviewed-by|Tested-by|Refs)(:|[[:spa
 BREAKING_FOOTER_RE='^BREAKING CHANGE: .+$'
 BODY_LINE=3
 
+# Attribution the history must not carry. The named keys are refused wherever
+# they sit; a trailer whose value names the assistant vendor is refused too.
+# A prose line that merely mentions the vendor stays a decision for the
+# operator, so only trailer-shaped lines are refused here.
+FORBIDDEN_KEY_RE='^(Co-Authored-By|Claude-Session):'
+TRAILER_SHAPE_RE='^[A-Za-z][A-Za-z0-9-]*:[[:space:]]+[^[:space:]]'
+
+
+# Case-insensitive vendor match: bash 3.2 has no lowercase expansion.
+line_mentions_anthropic() {
+  local line="$1"
+  shopt -s nocasematch
+  if [[ "$line" == *anthropic* ]]; then
+    shopt -u nocasematch
+    return 0
+  fi
+  shopt -u nocasematch
+  return 1
+}
+
+
+line_is_forbidden_attribution() {
+  local line="$1"
+  if [[ "$line" =~ $FORBIDDEN_KEY_RE ]]; then
+    return 0
+  fi
+  if [[ ! "$line" =~ $TRAILER_SHAPE_RE ]]; then
+    return 1
+  fi
+  line_mentions_anthropic "$line"
+}
+
+
 if [[ -n "$BODY" ]]; then
   while IFS= read -r line || [[ -n "$line" ]]; do
+    if line_is_forbidden_attribution "$line"; then
+      ERRORS+=("Forbidden attribution line: '$line'.")
+    fi
+
     # Trailers such as `Spec:` carry a machine path, not prose, so a long one is
     # not a body-length violation.
     if (( ${#line} > 100 )) && [[ ! "$line" =~ $TRAILER_RE ]]; then

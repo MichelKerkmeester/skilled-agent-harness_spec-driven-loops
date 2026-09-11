@@ -85,6 +85,37 @@ esac
 # would let the cleanup step discard the keys together with the diff.
 SCISSORS_LINE="$COMMENT_CHAR ------------------------ >8 ------------------------"
 
+# Attribution a runtime can append to the pending message. The hook drops
+# these lines before it stamps, so no commit object receives one. Only
+# trailer-shaped lines count: a prose mention of the vendor stays prose.
+FORBIDDEN_KEY_RE='^(Co-Authored-By|Claude-Session):'
+TRAILER_SHAPE_RE='^[A-Za-z][A-Za-z0-9-]*:[[:space:]]+[^[:space:]]'
+
+
+# Case-insensitive vendor match: bash 3.2 has no lowercase expansion.
+line_mentions_anthropic() {
+  local line="$1"
+  shopt -s nocasematch
+  if [[ "$line" == *anthropic* ]]; then
+    shopt -u nocasematch
+    return 0
+  fi
+  shopt -u nocasematch
+  return 1
+}
+
+
+line_is_forbidden_attribution() {
+  local line="$1"
+  if [[ "$line" =~ $FORBIDDEN_KEY_RE ]]; then
+    return 0
+  fi
+  if [[ ! "$line" =~ $TRAILER_SHAPE_RE ]]; then
+    return 1
+  fi
+  line_mentions_anthropic "$line"
+}
+
 LINES=()
 while IFS= read -r line || [[ -n "$line" ]]; do
   LINES[${#LINES[@]}]="$line"
@@ -128,15 +159,23 @@ if (( REAL_END == 0 )); then
 fi
 
 # Cherry-pick copies are re-addressed: drop every copied id from the real body.
+# Attribution a runtime appended is dropped here too, before anything is stamped.
 REAL=()
 REAL_COUNT=0
+FORBIDDEN_FOUND=0
 index=0
 while (( index < REAL_END )); do
-  if (( CHERRY_PICK == 1 )) && [[ "${LINES[$index]}" = Commit-Id:* ]]; then
+  line="${LINES[$index]}"
+  if (( CHERRY_PICK == 1 )) && [[ "$line" = Commit-Id:* ]]; then
     index=$((index + 1))
     continue
   fi
-  REAL[REAL_COUNT]="${LINES[$index]}"
+  if line_is_forbidden_attribution "$line"; then
+    FORBIDDEN_FOUND=1
+    index=$((index + 1))
+    continue
+  fi
+  REAL[REAL_COUNT]="$line"
   REAL_COUNT=$((REAL_COUNT + 1))
   index=$((index + 1))
 done
@@ -188,7 +227,7 @@ if [[ -n "${SPECKIT_COMMIT_SPEC:-}" && "$HAS_SPEC" -eq 0 ]]; then
   fi
 fi
 
-if (( REQUIRE_ID == 0 && REQUIRE_SPEC == 0 )); then
+if (( REQUIRE_ID == 0 && REQUIRE_SPEC == 0 && FORBIDDEN_FOUND == 0 )); then
   exit 0
 fi
 

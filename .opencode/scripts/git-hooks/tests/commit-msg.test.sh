@@ -251,6 +251,45 @@ MSG
 run_hook; RC=$?
 check "prose quoting another id is not a collision" 0 "$RC"
 
+# ── 14. attribution trailers are refused ───────────────────────
+# The rewrite strips these from old history; the hook is the wall that keeps a
+# runtime from appending a new one to a fresh commit.
+setup_repo
+cat > "$TMP/message.txt" <<'MSG'
+feat(sk-git): add a thing
+
+This explains why the thing was added.
+
+Co-Authored-By: A <a@b.c>
+Claude-Session: xyz
+MSG
+run_hook; RC=$?
+check "attribution trailer lines are refused" 1 "$RC" "Forbidden attribution line"
+
+# ── 15. an anthropic trailer is refused ─────────────────────────
+setup_repo
+cat > "$TMP/message.txt" <<'MSG'
+feat(sk-git): add a thing
+
+This explains why the thing was added.
+
+Generated-By: Anthropic Claude
+MSG
+run_hook; RC=$?
+check "a trailer naming the vendor is refused" 1 "$RC" "Anthropic"
+
+# ── 16. prose that mentions the vendor is not an attribution line ──────────
+# Only trailer-shaped lines are machine data, so a prose mention stays a
+# question for the operator rather than a hook block.
+setup_repo
+cat > "$TMP/message.txt" <<'MSG'
+feat(sk-git): add a thing
+
+This explains why the Anthropic client moved.
+MSG
+run_hook; RC=$?
+check "prose mentioning the vendor passes" 0 "$RC"
+
 echo ""
 echo "PASS=$PASS FAIL=$FAIL"
 [[ "$FAIL" -eq 0 ]]

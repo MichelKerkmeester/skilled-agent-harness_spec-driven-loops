@@ -315,6 +315,30 @@ check_same "allocator failure leaves the message untouched" "$TMP/before.txt" "$
 check_absent "allocator failure stamps no id" '^Commit-Id:' "$TMP/message.txt"
 check_count "allocator failure reports one line" 'allocator failed' 1 "$TMP/out.log"
 
+# ── 15. attribution lines are stripped before stamping ──────────────────────
+setup_repo
+cat > "$TMP/message.txt" <<'MSG'
+feat(sk-git): strip attribution before stamping
+
+This body explains why the attribution never lands.
+
+Co-Authored-By: A <a@b.c>
+Claude-Session: https://claude.ai/session/1
+
+Generated-By: Anthropic Claude
+MSG
+run_hook message; RC=$?
+check_rc "attribution strip exits 0" 0 "$RC"
+check_absent "Co-Authored-By is stripped" 'Co-Authored-By' "$TMP/message.txt"
+check_absent "Claude-Session is stripped" 'Claude-Session' "$TMP/message.txt"
+check_absent "Anthropic trailer is stripped" 'Anthropic' "$TMP/message.txt"
+check_count "the prose body survives the strip" '^This body explains why the attribution never lands\.$' 1 "$TMP/message.txt"
+check_count "one id is stamped after the strip" '^Commit-Id: [0-9]{7}$' 1 "$TMP/message.txt"
+cp "$TMP/message.txt" "$TMP/after-strip.txt"
+run_hook message; RC=$?
+check_rc "a second run still exits 0" 0 "$RC"
+check_same "a second run changes nothing" "$TMP/after-strip.txt" "$TMP/message.txt"
+
 echo ""
 echo "PASS=$PASS FAIL=$FAIL"
 [[ "$FAIL" -eq 0 ]]
