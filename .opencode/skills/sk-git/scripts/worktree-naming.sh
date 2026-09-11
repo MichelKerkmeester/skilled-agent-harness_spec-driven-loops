@@ -384,7 +384,14 @@ _wn_default_base() {
 # create branch worktrees/NNN-slug and directory .worktrees/NNN-slug together.
 # Emits "<branch> <dir>" on success.
 create_named_worktree() {
-  local slug="$1" base="${2:-}" top wtbase nnn branch dir
+  local slug="" base="" provision=1 arg
+  for arg in "$@"; do
+    case "$arg" in
+      --no-provision) provision=0 ;;
+      *) if [ -z "$slug" ]; then slug="$arg"; elif [ -z "$base" ]; then base="$arg"; fi ;;
+    esac
+  done
+  local top wtbase nnn branch dir
   is_valid_slug "$slug" || { echo "invalid slug: $slug" >&2; return 1; }
   top="$(_wn_toplevel)" || { echo "not in a git repo" >&2; return 1; }
   wtbase="$(_wn_base_dir)" || { echo "cannot resolve worktree base" >&2; return 1; }
@@ -394,6 +401,10 @@ create_named_worktree() {
   dir="$wtbase/$nnn-$slug"
   mkdir -p "$wtbase" || { echo "cannot create worktree base: $wtbase" >&2; return 1; }
   git -C "$top" worktree add -b "$branch" "$dir" "$base" >&2 || return 1
+  # A worktree nobody can build is not a worktree anybody wanted.
+  if [ "$provision" = "1" ]; then
+    provision_worktree "$dir" || echo "worktree created but provisioning failed: $dir" >&2
+  fi
   echo "$branch $dir"
 }
 
@@ -426,6 +437,89 @@ create_detached_worktree() {
 }
 
 # ───────────────────────────────────────────────────────────────
+# 4b. DEPENDENCY PROVISIONING
+# ───────────────────────────────────────────────────────────────
+#
+# Every dependency tree in this repository is gitignored, so a worktree starts
+# with none of them. Unprovisioned, it does not fail cleanly: a build can exit 0
+# having compiled nothing, and a conformance check that copies a skill hub into
+# a temp directory loses that hub's dependencies and reports the hub broken.
+#
+# Provisioning INSTALLS rather than symlinking a tree from the source checkout.
+# A package's node_modules carries its own workspace self-links, which are
+# relative and resolve back to wherever they were created -- symlink the tree
+# and the worktree silently compiles against the other checkout's build output.
+
+# A workspace member never gets its own node_modules -- npm hoists its packages
+# to the workspace root -- so the presence of that directory cannot decide
+# whether a package is installed. Walk the node_modules chain the way Node does
+# and look for the package's first real dependency. Resolving the name instead
+# would be wrong twice over: an exports map with no root entry makes an
+# installed package unresolvable, and a hoisted dependency resolves from a
+# different directory than the one that declared it. A package that declares
+# nothing is satisfied by definition.
+_wn_deps_satisfied() {
+  local pkgdir="$1" root="$2" dep cur
+  dep="$(node -e '
+    const fs = require("fs"), path = require("path");
+    let manifest;
+    try { manifest = JSON.parse(fs.readFileSync(path.join(process.argv[1], "package.json"), "utf8")); }
+    catch { process.exit(1); }
+    const names = Object.keys({ ...(manifest.dependencies || {}), ...(manifest.devDependencies || {}) })
+      .filter((n) => !n.startsWith("@spec-kit/"));
+    process.stdout.write(names[0] || "");
+  ' "$pkgdir" 2>/dev/null)" || return 1
+  [ -n "$dep" ] || return 0
+  cur="$(cd "$pkgdir" 2>/dev/null && pwd -P)" || return 1
+  while :; do
+    [ -d "$cur/node_modules/$dep" ] && return 0
+    [ "$cur" = "$root" ] && break
+    [ "$cur" = "/" ] && break
+    cur="$(dirname "$cur")"
+  done
+  return 1
+}
+
+_wn_provision_paths_file() {
+  local here
+  here="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)" || return 1
+  printf '%s/worktree-provision-paths.txt
+' "$here"
+}
+
+# provision_worktree [dir] -- install each listed package that is missing one.
+# Idempotent: a package that already has node_modules is skipped. Exits non-zero
+# if any install failed, so a half-provisioned tree is never reported as ready.
+provision_worktree() {
+  local dir="${1:-}" list pkg installed=0 skipped=0 failed=0 mode
+  [ -n "$dir" ] || dir="$(_wn_toplevel)" || { echo "not in a git repo" >&2; return 1; }
+  [ -d "$dir" ] || { echo "no such worktree: $dir" >&2; return 1; }
+  list="$(_wn_provision_paths_file)" || return 1
+  [ -f "$list" ] || { echo "missing provision path list: $list" >&2; return 1; }
+
+  while IFS= read -r pkg; do
+    case "$pkg" in ''|\#*) continue ;; esac
+    [ -f "$dir/$pkg/package.json" ] || continue
+    if _wn_deps_satisfied "$dir/$pkg" "$dir"; then
+      skipped=$((skipped + 1)); continue
+    fi
+    # npm ci needs a lockfile and fails without one; that failure is easy to
+    # miss because the build that follows can still exit 0 doing nothing.
+    if [ -f "$dir/$pkg/package-lock.json" ]; then mode=ci; else mode=install; fi
+    echo "  provisioning $pkg ($mode)" >&2
+    if ( cd "$dir/$pkg" && npm "$mode" --no-audit --no-fund --silent >/dev/null 2>&1 ); then
+      installed=$((installed + 1))
+    else
+      echo "  FAILED: $pkg" >&2
+      failed=$((failed + 1))
+    fi
+  done < "$list"
+
+  echo "provisioned: $installed installed, $skipped already present, $failed failed" >&2
+  [ "$failed" -eq 0 ]
+}
+
+# ───────────────────────────────────────────────────────────────
 # 5. CLI DISPATCH
 # ───────────────────────────────────────────────────────────────
 
@@ -442,7 +536,9 @@ worktree-naming.sh <command> [args]
   validate-pair   <branch> <dir>
   validate-backup <branch>          Exit 0 when the branch is a backup/* safety ref.
   validate-remote-allowlist <branch>  Check the remote-push-permission allowlist.
-  create          <slug> [base]     Create a worktrees/NNN-slug worktree (branch + dir).
+  create          <slug> [base] [--no-provision]
+                                    Create a worktrees/NNN-slug worktree and install its deps.
+  provision       [dir]             Install the dependency trees a worktree needs (idempotent).
   create-branch   <slug> [base]     Create a branches/NNN-slug branch (no worktree).
   create-detached <slug> [base]     Create a numbered detached worktree.
 USAGE
@@ -473,6 +569,7 @@ _wn_main() {
       if is_remote_push_allowlisted "${1:-}"; then echo ok; else echo not-allowlisted >&2; exit 1; fi
       ;;
     create)          create_named_worktree "$@" ;;
+    provision)       provision_worktree "$@" ;;
     create-branch)   create_branch "$@" ;;
     create-detached) create_detached_worktree "$@" ;;
     ""|-h|--help|help) _wn_usage ;;

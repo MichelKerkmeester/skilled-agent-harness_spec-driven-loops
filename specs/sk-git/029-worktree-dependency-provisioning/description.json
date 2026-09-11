@@ -1,0 +1,27 @@
+{
+  "specFolder": "sk-git/029-worktree-dependency-provisioning",
+  "description": "Creating a worktree provisions its dependencies, because an unprovisioned one fails checks in ways that read as broken code.",
+  "keywords": [
+    "worktree",
+    "provisions",
+    "dependencies",
+    "because",
+    "unprovisioned",
+    "one",
+    "fails",
+    "checks",
+    "ways",
+    "read",
+    "broken",
+    "code"
+  ],
+  "lastUpdated": "2026-09-11T19:04:51.495Z",
+  "specId": "029",
+  "folderSlug": "worktree-dependency-provisioning",
+  "parentChain": [
+    "sk-git"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

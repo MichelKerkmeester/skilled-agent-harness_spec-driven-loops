@@ -1,0 +1,34 @@
+# Dependency trees a worktree needs before it can build, test, or pass its own
+# commit gates. Every one of these is gitignored, so a fresh worktree has none
+# of them and fails in ways that read as broken code rather than missing deps.
+#
+# One path per line, relative to the repository root, naming a directory that
+# holds a package.json. Blank lines and # comments are ignored.
+#
+# Order is install order: a package whose build another package consumes comes
+# first.
+
+# The repo root. A check that runs from a temporary directory resolves shared
+# packages by walking up from there; without this it finds nothing.
+.
+
+# The plugin/runtime surface. Plugin tests import from here.
+.opencode
+
+# Spec-kit, its shared library, and the two builds that the validation
+# orchestrator and the spec CLI are compiled into.
+.opencode/skills/system-spec-kit
+.opencode/skills/system-spec-kit/shared
+.opencode/skills/system-spec-kit/runtime
+.opencode/skills/system-spec-kit/runtime/cli
+
+# The advisor daemon and CLI front door.
+.opencode/skills/system-skill-advisor/runtime
+
+# The deep-loop runtime, which the fan-out runner needs.
+.opencode/skills/system-deep-loop/runtime
+
+# sk-doc. A conformance check copies a real skill hub into a temporary
+# directory; in a provisioned checkout the copy carries these dependencies with
+# it, and without them the check fails on a hub that is correct.
+.opencode/skills/sk-doc
