@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Phase 1: git-workflow-run-failures"
-description: "[2-3 sentences: what this implements and the technical approach]"
+description: "A five-iteration analysis lineage reproduced fourteen run-failing git behaviors, three serial cli-pi dispatches fixed the ten that live in the hooks, sk-git scripts and bin scripts, and a fresh lineage settled clean afterwards."
 trigger_phrases:
   - "implementation plan"
   - "technical approach"
@@ -23,13 +23,13 @@ contextType: "general"
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | Bash hooks and scripts, ES module rule engine, sk-code opencode standards |
+| **Framework** | deep-research fan-out for the analysis, cli-pi one-change dispatches for the fixes |
+| **Storage** | research/ for the analysis and the proof lineage |
+| **Testing** | eight shell harnesses and one node suite, each extended with the reproduced case |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+Analysis first, with reproductions in throwaway repositories, then one brief per producer group. Every adjustment fixed the producer and kept the interactive gate, shipped a harness case, and was re-run by the conductor. The proof is a fresh lineage on the adjusted tree that settled with succeeded 1.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -38,14 +38,14 @@ contextType: "general"
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Tests passing (if applicable)
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -54,14 +54,17 @@ contextType: "general"
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Analyze, then fix each producer, then prove with a run
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **Analysis lineage**: fourteen behaviors, reproduced or ruled out, ranked
+- **Hooks dispatch**: autostash anchor, bypass lines, trailer length, installer status
+- **sk-git scripts dispatch**: advisory effective directory, allocator lock reclaim
+- **bin scripts dispatch**: reaper safety, base persistence, sync rewrite log
+- **Proof lineage**: one iteration, settled clean
 
 ### Data Flow
-[Brief description of how data moves through the system]
+The observed list seeds the lineage. The lineage's reproductions seed the briefs. The briefs produce commits with harness cases. The proof lineage runs on the result.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -73,8 +76,11 @@ Use this section when `research_intent=fix_bug`, when planning from a deep-revie
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
+| git-rule-checks.mjs, git-context.mjs | advisory state source | update | 25 node cases |
+| commit-id-naming.sh | lock and high-water | update | 39 harness cases |
+| autostash-orphan-guard.sh, post-commit, pre-commit, commit-msg, install-git-hooks.sh | hook gates | update | 2, 25, 11, 43 cases, installer harness |
+| worktree-reaper.sh, worktree-session.sh, git-sync.sh | session lifecycle | update | 24, 18, 7 cases |
+| write-containment.ts, fanout-run.cjs | runtime containment and watchdog | unchanged, named for their own packet | research.md section 2 |
 
 Required inventories:
 - Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
@@ -99,9 +105,9 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Unit | rule engine cases | node --test |
+| Integration | hook, allocator, reaper, session and sync harnesses in throwaway repos | bash harnesses |
+| Manual | a fresh fan-out lineage on the adjusted tree | fanout-run.cjs |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -111,7 +117,8 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| phase 005 dispatches settled | Internal | Green | containment would fail the analysis lineage |
+| pi through the gateway | External | Green | no analysis |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -119,8 +126,8 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: a harness regresses on the main clone after merge
+- **Procedure**: revert the three fix commits; each is independent
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -152,10 +159,10 @@ Phase 1.5 (Config) ───┘
 
 | Phase | Complexity | Estimated Effort |
 |-------|------------|------------------|
-| Setup | [Low/Med/High] | [e.g., 1-2 hours] |
-| Core Implementation | [Low/Med/High] | [e.g., 4-8 hours] |
-| Verification | [Low/Med/High] | [e.g., 1-2 hours] |
-| **Total** | | **[e.g., 6-12 hours]** |
+| Setup | Med | 17-minute lineage plus the reduction |
+| Core Implementation | Med | three serial dispatches, about 40 minutes |
+| Verification | Low | harness reruns and a four-minute proof lineage |
+| **Total** | | **about 90 minutes** |
 <!-- /ANCHOR:effort -->
 
 ---
@@ -164,19 +171,19 @@ Phase 1.5 (Config) ───┘
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Backup created (if data changes)
-- [ ] Feature flag configured
-- [ ] Monitoring alerts set
+- [x] Not applicable
+- [x] Every gate keeps its bypass variable
+- [x] Not applicable
 
 ### Rollback Procedure
-1. [Immediate action - e.g., disable feature flag]
-2. [Revert code - e.g., git revert or redeploy previous version]
-3. [Verify rollback - e.g., smoke test critical paths]
-4. [Notify stakeholders - if user-facing]
+1. Set the affected gate's bypass variable
+2. Revert the fix commit
+3. Rerun its harness
+4. Not user-facing
 
 ### Data Reversal
-- **Has data migrations?** [Yes/No]
-- **Reversal procedure**: [Steps or "N/A"]
+- **Has data migrations?** No
+- **Reversal procedure**: N/A
 <!-- /ANCHOR:enhanced-rollback -->
 
 ---
@@ -203,10 +210,9 @@ Phase 1.5 (Config) ───┘
 
 | Component | Depends On | Produces | Blocks |
 |-----------|------------|----------|--------|
-| [Component A] | None | [Output] | B, C |
-| [Component B] | A | [Output] | D |
-| [Component C] | A | [Output] | D |
-| [Component D] | B, C | [Final] | None |
+| Analysis | quiet tree | research.md | Briefs |
+| Briefs | analysis | three commits | Proof |
+| Proof | commits | succeeded 1 | 006 |
 <!-- /ANCHOR:dependency-graph -->
 
 ---
@@ -214,15 +220,14 @@ Phase 1.5 (Config) ───┘
 <!-- ANCHOR:critical-path -->
 ## L3: CRITICAL PATH
 
-1. **[Phase/Task]** - [Duration estimate] - CRITICAL
-2. **[Phase/Task]** - [Duration estimate] - CRITICAL
-3. **[Phase/Task]** - [Duration estimate] - CRITICAL
+1. **Analysis lineage** - 17 minutes - CRITICAL
+2. **Three dispatches** - 40 minutes - CRITICAL
+3. **Proof lineage** - 4 minutes - CRITICAL
 
-**Total Critical Path**: [Sum of durations]
+**Total Critical Path**: about one hour
 
 **Parallel Opportunities**:
-- [Task A] and [Task B] can run simultaneously
-- [Task C] and [Task D] can run after Phase 1
+- None: the analysis and the proof need a frozen tree, and the dispatches ran serially after three were killed for memory
 <!-- /ANCHOR:critical-path -->
 
 ---
@@ -232,29 +237,29 @@ Phase 1.5 (Config) ───┘
 
 | Milestone | Description | Success Criteria | Target |
 |-----------|-------------|------------------|--------|
-| M1 | [Setup Complete] | [All dependencies ready] | [Date/Phase] |
-| M2 | [Core Done] | [Main features working] | [Date/Phase] |
-| M3 | [Release Ready] | [All tests pass] | [Date/Phase] |
+| M1 | Analysis settled | succeeded 1, five iterations | 2026-09-11, done |
+| M2 | Ten adjustments landed | three commits, all harnesses green | 2026-09-11, done |
+| M3 | Proof settled | succeeded 1 in 259 seconds | 2026-09-11, done |
 <!-- /ANCHOR:milestones -->
 
 ---
 
 ## L3: ARCHITECTURE DECISION RECORD
 
-### ADR-001: [Decision Title]
+### ADR-001: Runtime seams are named, not edited
 
-**Status**: [Proposed/Accepted/Deprecated]
+**Status**: Accepted
 
-**Context**: [What problem we're solving]
+**Context**: Four confirmed failures live in the deep-loop runtime: containment failing a lineage for another writer's same-packet edit, the stall watchdog reading buffered output as a hang, containment inheriting host-global git configuration, and a killed child leaving no cause.
 
-**Decision**: [What we decided]
+**Decision**: They are recorded with producer lines in research.md and left for a system-deep-loop packet. This packet edits sk-git, the hooks and the bin scripts only.
 
 **Consequences**:
-- [Positive outcome 1]
-- [Negative outcome + mitigation]
+- The shared runtime keeps its own blast radius and review
+- The containment failure that hit this packet stays possible until that packet lands; the delegation rule now tells the orchestrator to freeze
 
 **Alternatives Rejected**:
-- [Option B]: [Why rejected]
+- Patch fanout-run.cjs here: a shared runtime change outside the frozen scope
 
 ---
 

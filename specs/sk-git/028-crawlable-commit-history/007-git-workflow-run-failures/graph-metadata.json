@@ -39,7 +39,7 @@
       "approach"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -48,9 +48,11 @@
       "goal.md",
       "implementation-summary.md",
       "research/research.md",
+      ".opencode/scripts/git-hooks/lib/autostash-orphan-guard.sh",
+      ".opencode/skills/sk-git/scripts/lib/git-rule-checks.mjs",
+      ".opencode/bin/worktree-reaper.sh",
       "scratch/observed-failures.md",
-      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts",
-      ".opencode/skills/sk-git/scripts/lib/git-rule-checks.mjs"
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts"
     ],
     "entities": [
       {
@@ -96,6 +98,24 @@
         "source": "derived"
       },
       {
+        "name": "autostash-orphan-guard.sh",
+        "kind": "script",
+        "path": ".opencode/scripts/git-hooks/lib/autostash-orphan-guard.sh",
+        "source": "derived"
+      },
+      {
+        "name": "git-rule-checks.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-git/scripts/lib/git-rule-checks.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-reaper.sh",
+        "kind": "script",
+        "path": ".opencode/bin/worktree-reaper.sh",
+        "source": "derived"
+      },
+      {
         "name": "observed-failures.md",
         "kind": "doc",
         "path": "scratch/observed-failures.md",
@@ -105,12 +125,6 @@
         "name": "write-containment.ts",
         "kind": "code",
         "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts",
-        "source": "derived"
-      },
-      {
-        "name": "git-rule-checks.mjs",
-        "kind": "file",
-        "path": ".opencode/skills/sk-git/scripts/lib/git-rule-checks.mjs",
         "source": "derived"
       },
       {
@@ -162,7 +176,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Analysis",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Analyze",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -174,33 +194,15 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
+        "name": "Data Flow The",
         "kind": "proper_noun",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Automated runs in this repository hand work to detached children and fan-out lineages, and git behaviors that a human shrugs off end those runs: a revert that erases an orchestrator's work, a hook that blocks a commit nobody can answer for, an advisory that cries wolf on every add",
     "created_at": "2026-09-11T08:06:45Z",
-    "last_save_at": "2026-09-11T10:16:41.693Z",
+    "last_save_at": "2026-09-11T10:43:28.137Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +214,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:c9240b987356ca64709a883cc5198db24247cd8acd2ded0eb337f08cec02ce46",
+    "source_fingerprint": "sha256:1707c4f45b2fb66de1b689a33a57a16983c48f5fa25cc994cd2ce520622b0351",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6a7e1f78dd832624c86a16d000bb6111d7c6340652fd859b9dfd651bd6b5c978",
-      "plan.md": "9002a603f28a874651b11bde8dccc794f6ee025712631c63d50c39305e8794f0",
-      "tasks.md": "437dca75f005d7eca2ddf969abfa3e7f5be2c19f3edc2d2eaf9f1830af685d6b",
-      "implementation-summary.md": "c10b58de7a44733ed350a33b9e272d0469ae7d092179ffe9fef72f7b9d8efe24",
+      "spec.md": "cff220933e0c8e1e49ac13241decd7db86ceecd9fa6847fc424d6d1560ed4a41",
+      "plan.md": "a10e93aa759fb81a317115df5ea24d06fbcea84ffad2fd3a31d98f3d0bfb806c",
+      "tasks.md": "1e130acd6e066b44570b53ab15592a0125f0e587f1000776bf282253affbd313",
+      "implementation-summary.md": "56e7dedd2b49a4e09ec2177d10de47239367716b74586acdd71b7c454c2fe6b2",
       "research/research.md": "08a697c80fdb5d73488c50f86c2390e5fbf29dbec3f330737f8d73a5138d74af"
     },
     "last_active_at": null
