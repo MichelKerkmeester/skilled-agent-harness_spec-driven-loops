@@ -24,7 +24,7 @@ trigger_phrases:
   - "deep loop"
 importance_tier: important
 contextType: reference
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # Rule: Delegation and orchestration
@@ -90,6 +90,11 @@ Five things, in order. None is optional, and the first is a hard rule elsewhere.
 2. **Bind the write authority.** Say where the delegate may write before it starts.
    A delegate given the repository is a delegate that will eventually edit something
    nobody reviewed.
+
+   **The freeze runs both ways.** While a fan-out lineage runs, the orchestrator
+   changes nothing in the repository outside that lineage's directory until the run
+   settles, because the runner's write containment attributes every out-of-lineage
+   change to the lineage, reverts it and fails the run.
 3. **Freeze the scope in the brief itself.** See [`scope-discipline.md`](scope-discipline.md).
    Scope you did not write down is scope the delegate will infer, and it will infer wider.
 4. **State the shape of an acceptable answer.** Not the answer, the shape. A file list,
