@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "sk-design/019-sk-design-diagram-upgrade/011-full-page-capture",
+  "description": "`render-screenshots.cjs` captures every form at a fixed `1280x900` Chrome window with no full-page option (confirmed empirically in this authoring",
+  "keywords": [
+    "render-screenshots",
+    "cjs",
+    "captures",
+    "every",
+    "form",
+    "1280x900",
+    "chrome",
+    "window",
+    "full-page",
+    "option",
+    "confirmed",
+    "empirically",
+    "authoring"
+  ],
+  "lastUpdated": "2026-09-11T04:11:57.653Z",
+  "specId": "011",
+  "folderSlug": "full-page-capture",
+  "parentChain": [
+    "sk-design",
+    "019-sk-design-diagram-upgrade"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

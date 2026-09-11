@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "sk-design/019-sk-design-diagram-upgrade/008-doctrine-reconciliation",
+  "description": "The manual review found nine systemic patterns (S1-S9) where a document and the corpus disagree, or the corpus itself is internally inconsistent, and",
+  "keywords": [
+    "manual",
+    "review",
+    "found",
+    "nine",
+    "systemic",
+    "patterns",
+    "s1-s9",
+    "document",
+    "corpus",
+    "disagree",
+    "itself",
+    "internally",
+    "inconsistent"
+  ],
+  "lastUpdated": "2026-09-11T04:17:09.049Z",
+  "specId": "008",
+  "folderSlug": "doctrine-reconciliation",
+  "parentChain": [
+    "sk-design",
+    "019-sk-design-diagram-upgrade"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

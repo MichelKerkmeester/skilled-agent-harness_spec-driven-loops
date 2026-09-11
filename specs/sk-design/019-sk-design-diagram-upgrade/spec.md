@@ -128,6 +128,11 @@ not, by evidence; the phases after it build in the order the evidence sets.
 > fails and the corpus fails its own rules today; the CI doctrine is green with no backlog; the
 > derivation record gates the applicator, which gates the repaint, which gates the assertions.
 
+| 7 | 007-manual-review-remediation/ | [Phase 7 scope] | Pending |
+| 8 | 008-doctrine-reconciliation/ | [Phase 8 scope] | Pending |
+| 9 | 009-one-form-library/ | [Phase 9 scope] | Pending |
+| 10 | 010-design-md-style-reference/ | [Phase 10 scope] | Pending |
+| 11 | 011-full-page-capture/ | [Phase 11 scope] | Pending |
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins
@@ -144,6 +149,11 @@ not, by evidence; the phases after it build in the order the evidence sets.
 | 003 | 004 | `--default` reproduces the stock bytes over the four templates | byte diff empty |
 | 004 | 005 | The repainted corpus passes every family to come | a dress run of the phase-5 checker |
 | 005 | 006 | Every family has a case or a reasoned exemption; CI green with no backlog | the suite's own completeness tests; the workflow run | `check-corpus` `RESULT: PASSED`; suite green; CI workflow present |
+| 006-capture-and-judgment | 007-manual-review-remediation | [Criteria TBD] | [Verification TBD] |
+| 007-manual-review-remediation | 008-doctrine-reconciliation | [Criteria TBD] | [Verification TBD] |
+| 008-doctrine-reconciliation | 009-one-form-library | [Criteria TBD] | [Verification TBD] |
+| 009-one-form-library | 010-design-md-style-reference | [Criteria TBD] | [Verification TBD] |
+| 010-design-md-style-reference | 011-full-page-capture | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->
 
 ---

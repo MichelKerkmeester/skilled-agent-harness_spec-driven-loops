@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "sk-design/019-sk-design-diagram-upgrade/010-design-md-style-reference",
+  "description": "The diagram skill has one colour system: `assets/color/diagram-palette.json`, applied by `apply-diagram-tokens.cjs`",
+  "keywords": [
+    "diagram",
+    "skill",
+    "one",
+    "colour",
+    "system",
+    "assets",
+    "color",
+    "diagram-palette",
+    "json",
+    "applied",
+    "apply-diagram-tokens",
+    "cjs"
+  ],
+  "lastUpdated": "2026-09-11T04:14:04.189Z",
+  "specId": "010",
+  "folderSlug": "design-md-style-reference",
+  "parentChain": [
+    "sk-design",
+    "019-sk-design-diagram-upgrade"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

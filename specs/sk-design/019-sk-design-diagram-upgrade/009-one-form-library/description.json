@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "sk-design/019-sk-design-diagram-upgrade/009-one-form-library",
+  "description": "The diagram skill splits its 38 worked diagrams into two directories by a distinction nobody uses: `assets/templates/` (4 skin skeletons) and",
+  "keywords": [
+    "diagram",
+    "skill",
+    "splits",
+    "worked",
+    "diagrams",
+    "two",
+    "directories",
+    "distinction",
+    "nobody",
+    "assets",
+    "templates",
+    "skin",
+    "skeletons"
+  ],
+  "lastUpdated": "2026-09-11T04:09:05.816Z",
+  "specId": "009",
+  "folderSlug": "one-form-library",
+  "parentChain": [
+    "sk-design",
+    "019-sk-design-diagram-upgrade"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

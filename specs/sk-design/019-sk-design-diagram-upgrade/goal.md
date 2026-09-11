@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "sk-design/019-sk-design-diagram-upgrade"
     last_updated_at: "2026-09-10T20:00:00Z"
     last_updated_by: "claude-conductor"
-    recent_action: "All six phases executed; the first capture review recorded five corpus defects for repair"
-    next_safe_action: "Repair the five findings the capture review recorded, then re-run CAP-001"
+    recent_action: "A fresh Opus read all 38 forms and found 34 defects and ten systemic patterns; five phases opened to remediate, merge the corpus and add DESIGN.md theming"
+    next_safe_action: "Author 007-011, then fix the two P1s first"
     blockers: []
     key_files:
       - "specs/sk-design/019-sk-design-diagram-upgrade/001-upgrade-research/research/research.md"
@@ -21,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "claude-019-sk-design-diagram-upgrade"
       parent_session_id: null
-    completion_pct: 100
+    completion_pct: 55
     open_questions: []
     answered_questions: []
 ---
@@ -37,7 +37,7 @@ _memory:
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
 
-**Objective:** Every rule the diagram skill states is held by a check, its files are generated from one palette source, and what no check can see is read by an eye on a schedule — the standard the chart skill reached, adapted to a skin chosen per deliverable.
+**Objective:** Every rule the diagram skill states is held by a check, its files are generated from one palette source that a Style Reference can replace, the corpus is one adjustable form library rather than templates beside examples, and what no check can see is read by an eye on a schedule.
 
 ### Decisions
 
@@ -47,16 +47,21 @@ Frozen choices. Changing one is an amendment.
 |----|----------|
 | D1 | One skin per file; all skins in one palette source. No `prefers-color-scheme` blocks |
 | D2 | The Google Fonts link stays, on a one-entry allowlist; fallback chains are documented, not added |
-| D3 | Onboarding stays; an applicator is added; no second carried Style Reference |
-| D4 | Order is forced: decisions → applicator → repaint → checker → eye. No checker before the corpus passes it |
-| D5 | The 4px rule exempts font sizes and derived label offsets; `SKILL.md:403` yields to `:337` |
-| D6 | Markers: define only what you draw, per file. Ids are unique per file |
-| D7 | Nodes carry `data-diagram-node`; budgets count tagged nodes, not rects |
-| D8 | The accent stays `#eb6c36`; its 2.86:1 is a recorded departure, not re-derived |
-| D9 | `#3d4460` becomes a type-scoped role; sketchy is descoped with a stated reason |
-| D10 | Both lineages' findings are reconciled into one fact base before any decision is signed |
-| D11 | Implementation runs on GLM-5.3-Flash at max through cli-pi and DevPass, and on DeepSeek V4.1 Flash at max by the same route once its support lands; phase docs are authored by Sonnet 5 at xhigh under an Opus xhigh orchestrator; every deep-loop lineage runs in a worktree |
+| D3 | Onboarding stays; an applicator is added |
+| D4 | Order is forced: decisions → applicator → repaint → checker → eye |
+| D5 | The 4px rule exempts font sizes and derived offsets; it binds new files and ratchets legacy ones |
+| D6 | Markers: a starter defines the trio, a delivery keeps what it draws. Ids unique per file |
+| D7 | Nodes carry `data-diagram-node`; budgets count tagged nodes |
+| D8 | The accent stays `#eb6c36`; its 2.86:1 is a recorded departure |
+| D9 | `#3d4460` is a type-scoped role; sketchy is descoped |
+| D10 | Findings are reconciled into one fact base before a decision is signed |
+| D11 | Phase docs are authored by Sonnet 5 xhigh markdown agents under an Opus xhigh orchestrator |
 | D12 | Nothing changes in the chart skill. Comment hygiene is a hard block |
+| D13 | One form library: templates and examples merge into `assets/diagrams/`. Every file is a worked diagram to copy and adjust, not a strict template; the four skin starters live there as forms |
+| D14 | A Style Reference themes a delivery: a local `DESIGN.md` (generated or hand-written) is applied to a copy. The packet carries one stock reference whose provenance says it was written from this palette, not measured. Extraction stays with `sk-design-md-generator` |
+| D15 | Implementation runs on DeepSeek V4.1 Flash at max thinking through cli-pi and llmgateway. Every brief is pre-planned and improved through `sk-prompt` before dispatch |
+| D16 | Every review finding ends as a fix with evidence or a recorded reason. A doc-versus-corpus contradiction is resolved in one direction and the losing side is edited |
+| D17 | Captures are full page. The shared renderer gains an opt-in flag rather than changing what the chart skill shoots |
 
 ### Operator copy
 
@@ -78,6 +83,11 @@ The operator holds this directive as the session objective. Whenever anything ab
 | 004-corpus-and-catalog | `004-corpus-and-catalog/goal.md` |
 | 005-checker-mutations-and-ci | `005-checker-mutations-and-ci/goal.md` |
 | 006-capture-and-judgment | `006-capture-and-judgment/goal.md` |
+| 007-manual-review-remediation | `007-manual-review-remediation/goal.md` |
+| 008-doctrine-reconciliation | `008-doctrine-reconciliation/goal.md` |
+| 009-one-form-library | `009-one-form-library/goal.md` |
+| 010-design-md-style-reference | `010-design-md-style-reference/goal.md` |
+| 011-full-page-capture | `011-full-page-capture/goal.md` |
 
 **Precedence.** Decisions outrank child detail; child detail outranks any summary. Name a conflict rather than resolving it silently.
 
@@ -89,13 +99,22 @@ The operator holds this directive as the session objective. Whenever anything ab
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [x] `node .opencode/skills/sk-design/sk-design-diagram/scripts/check-diagram-corpus.cjs` prints `RESULT: PASSED`
-- [x] `node --test .opencode/skills/sk-design/sk-design-diagram/scripts/tests/` passes, and its completeness guard reports no family without a case
-- [x] `apply-diagram-tokens.cjs --default` over the four templates produces a byte-identical copy of each
-- [x] Every hex literal in `assets/examples` and `assets/templates` is a role value of that file's skin in the token source, and `apply-diagram-tokens.cjs --default` reproduces every example byte for byte
-- [x] Every in-scope document's `version` follows the Frontmatter Versioning Standard (`SKILL.md` is the anchor, children inherit major.minor) and the anchor is bumped for this round; `.github/workflows/diagram-corpus.yml` green on a push
-- [x] A dated capture-review report exists under `benchmark/reports/` with no hand-authored markdown
-- [x] `validate.sh specs/sk-design/019-sk-design-diagram-upgrade --strict --recursive` reports `RESULT: PASSED` for all seven folders
+**Round one — met, and still true from the final state.**
+
+- [x] The corpus checker prints `RESULT: PASSED`; the mutation suite passes with its completeness guard
+- [x] `--default` reproduces every form byte for byte, and every literal is a role of that file's skin
+- [x] Versions follow the Frontmatter Versioning Standard under a bumped anchor; CI green on a push
+- [x] A dated capture-review report exists with no hand-authored markdown
+- [x] `validate.sh` reports `RESULT: PASSED` for the packet, recursively
+
+**Round two — the manual review, the merge and the Style Reference.**
+
+- [ ] Every one of the 34 manual-review findings is fixed with evidence, or recorded with a reason a reader can check
+- [ ] Each systemic pattern S1–S9 is resolved in one direction, the losing document or file is edited, and no document states a value the corpus does not hold
+- [ ] `assets/diagrams/` is the only form directory; no path, document, script, test or workflow still names `assets/examples` or `assets/templates`
+- [ ] `apply-design-md.cjs --default` derives the stock palette exactly, and a second reference re-themes a copy through the same gates
+- [ ] Captures are full page: no committed screenshot is cut off, and CAP-001 re-runs with its findings closed
+- [ ] From the final state: checker `RESULT: PASSED`, suite green, `--default` byte-identical, CI green on a push, and `validate.sh --strict --recursive` PASSED for all twelve folders
 <!-- /ANCHOR:completion -->
 
 ---

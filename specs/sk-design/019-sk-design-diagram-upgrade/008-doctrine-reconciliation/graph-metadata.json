@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/019-sk-design-diagram-upgrade/008-doctrine-reconciliation",
+  "spec_folder": "sk-design/019-sk-design-diagram-upgrade/008-doctrine-reconciliation",
+  "parent_id": "sk-design/019-sk-design-diagram-upgrade",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "feature specification",
+      "problem statement",
+      "requirements and scope",
+      "success criteria",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies"
+    ],
+    "key_topics": [
+      "feature",
+      "specification",
+      "problem",
+      "statement",
+      "requirements",
+      "scope",
+      "success",
+      "criteria",
+      "implementation",
+      "plan",
+      "technical",
+      "approach"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".opencode/skills/sk-design/sk-design-diagram/references/foundations/style-guide.md",
+      ".opencode/skills/sk-design/sk-design-diagram/references/foundations/derivation-record.md",
+      ".opencode/skills/sk-design/sk-design-diagram/assets/examples/example-dp-integration.html",
+      ".opencode/skills/sk-design/sk-design-diagram/assets/examples/example-architecture.html",
+      ".opencode/skills/sk-design/sk-design-diagram/assets/examples/example-import-drawio.html",
+      ".opencode/skills/sk-design/sk-design-diagram/assets/examples/example-import-mermaid.html",
+      ".opencode/skills/sk-design/sk-design-diagram/assets/examples/example-pyramid.html",
+      ".opencode/skills/sk-design/sk-design-diagram/assets/examples/example-sequence.html",
+      ".opencode/skills/sk-design/sk-design-diagram/assets/examples/example-sequence-oauth.html",
+      ".opencode/skills/sk-design/sk-design-diagram/assets/examples/example-sequence-oauth-full.html",
+      ".opencode/skills/sk-design/sk-design-diagram/assets/examples/example-timeline.html",
+      ".opencode/skills/sk-design/sk-design-diagram/assets/examples/example-dp-security-matrix.html",
+      ".opencode/skills/sk-design/sk-design-diagram/assets/examples/example-it-state.html",
+      ".opencode/skills/sk-design/sk-design-diagram/assets/examples/example-org-chart.html"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "style-guide.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/sk-design-diagram/references/foundations/style-guide.md",
+        "source": "derived"
+      },
+      {
+        "name": "derivation-record.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/sk-design-diagram/references/foundations/derivation-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "example-dp-integration.html",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/sk-design-diagram/assets/examples/example-dp-integration.html",
+        "source": "derived"
+      },
+      {
+        "name": "example-architecture.html",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/sk-design-diagram/assets/examples/example-architecture.html",
+        "source": "derived"
+      },
+      {
+        "name": "example-import-drawio.html",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/sk-design-diagram/assets/examples/example-import-drawio.html",
+        "source": "derived"
+      },
+      {
+        "name": "example-import-mermaid.html",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/sk-design-diagram/assets/examples/example-import-mermaid.html",
+        "source": "derived"
+      },
+      {
+        "name": "example-pyramid.html",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/sk-design-diagram/assets/examples/example-pyramid.html",
+        "source": "derived"
+      },
+      {
+        "name": "example-sequence.html",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/sk-design-diagram/assets/examples/example-sequence.html",
+        "source": "derived"
+      },
+      {
+        "name": "example-sequence-oauth.html",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/sk-design-diagram/assets/examples/example-sequence-oauth.html",
+        "source": "derived"
+      },
+      {
+        "name": "example-sequence-oauth-full.html",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/sk-design-diagram/assets/examples/example-sequence-oauth-full.html",
+        "source": "derived"
+      },
+      {
+        "name": "example-timeline.html",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/sk-design-diagram/assets/examples/example-timeline.html",
+        "source": "derived"
+      },
+      {
+        "name": "example-dp-security-matrix.html",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/sk-design-diagram/assets/examples/example-dp-security-matrix.html",
+        "source": "derived"
+      },
+      {
+        "name": "example-it-state.html",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/sk-design-diagram/assets/examples/example-it-state.html",
+        "source": "derived"
+      },
+      {
+        "name": "example-org-chart.html",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/sk-design-diagram/assets/examples/example-org-chart.html",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The manual review found nine systemic patterns (S1-S9) where a document and the corpus disagree, or the corpus itself is internally inconsistent, and named a direction for each rather than leaving the contradiction open",
+    "created_at": "2026-09-11T03:52:46Z",
+    "last_save_at": "2026-09-11T04:18:37.920Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:6b574e3f417196d938e79fa3bf7e9efc624b58e9dc710ea798d26bf82830efd5",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "fefb20d3eb1af5125e1fe5b73234ca2e6daa44d73f6b5d12b7610b7585b51191",
+      "plan.md": "8a24e2f131f293f041460918850f98a541fe6ee37e950c2fe776e98b2a71b342",
+      "tasks.md": "afe82bd386d8afcc3824581542b01d883be79a9b386eede146253aa2b3577b20",
+      "implementation-summary.md": "41ae507d0af950721b1711d82c5f8679c3be4b15444e7259972bb933e02be7ea"
+    },
+    "last_active_at": null
+  }
+}

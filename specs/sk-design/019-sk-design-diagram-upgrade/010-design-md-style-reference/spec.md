@@ -1,0 +1,232 @@
+---
+title: "Feature Specification: Phase 10: design-md-style-reference"
+description: "Theme a diagram delivery from a local v3 DESIGN.md Style Reference, gated the way the chart sibling already is."
+trigger_phrases:
+  - "feature specification"
+  - "problem statement"
+  - "requirements and scope"
+  - "success criteria"
+importance_tier: "normal"
+contextType: "general"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+# Feature Specification: Phase 10: design-md-style-reference
+
+<!-- SPECKIT_LEVEL: 2 -->
+---
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|-------|-------|
+| **Level** | 2 |
+| **Priority** | P0 |
+| **Status** | Draft |
+| **Created** | 2026-09-11 |
+| **Branch** | `skilled/v4.0.0.0` |
+| **Parent Spec** | ../spec.md |
+| **Phase** | 10 of 11 |
+| **Predecessor** | 009-one-form-library |
+| **Successor** | 011-full-page-capture |
+| **Handoff Criteria** | `apply-design-md.cjs --default` reproduces the stock palette and stock bytes; a second reference themes a copy that clears every gate; a reference missing a required heading is refused by name; the extended `derivation-gates` family and its mutation cases pass; checker `RESULT: PASSED`; suite green. |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:phase-context -->
+## Phase Context
+
+This is **Phase 10** of the remediate the manual review and bring the diagram corpus to one adjustable form library themed from a DESIGN.md specification.
+
+**Scope Boundary**: the new `apply-design-md.cjs` script, the `references/design-md-theming.md` doc, the stock `assets/style-reference/diagram-stock/` reference, the extension of the `derivation-gates` checker family, its new mutation cases, and the `SKILL.md` routing that makes the capability discoverable — nothing that repaints the shipped corpus's own stock values, fixes a manual-review finding in a shipped form (007's job), or merges `assets/examples/`/`assets/templates/` into `assets/diagrams/` (009's job, this phase's predecessor).
+
+**Dependencies**:
+- `009-one-form-library`'s merged form directory (`assets/diagrams/`); if it has not landed on disk when this phase executes, T001 falls back to `assets/templates/` and `assets/examples/` and records which path was actually built against.
+- `assets/color/diagram-palette.json` — the packet's own token source, read for its gate thresholds, its three skins' role vocabulary, and the exact values `--default` must reproduce.
+- `scripts/apply-diagram-tokens.cjs` and `scripts/color-gates.cjs` — the existing applicator and the ported four-function contrast module this phase's script reuses the pattern of and re-derives through.
+- `scripts/families/derivation-gates.cjs` — the one existing checker family that already reads a `DIAGRAM_PALETTE` sentinel block and gates its values; this phase extends it rather than adding a parallel family.
+- `sk-design-chart/scripts/apply-design-md.cjs`, `references/design-md-theming.md`, and `assets/style-reference/evilcharts/{DESIGN.md,origin.md,tokens.json}` — read-only worked-example source for the v3 parser, the role-selection algorithm shape, the provenance comment shape, and the stock-reference-folder shape.
+
+**Deliverables**:
+- `.opencode/skills/sk-design/sk-design-diagram/scripts/apply-design-md.cjs`, the diagram skill's first Style-Reference applicator.
+- `.opencode/skills/sk-design/sk-design-diagram/references/design-md-theming.md`, documenting the command, the parsed headings, the role-mapping table, and the gates.
+- `.opencode/skills/sk-design/sk-design-diagram/assets/style-reference/diagram-stock/` (`DESIGN.md`, `origin.md`, `tokens.json`), the packet's one stock reference.
+- An extension to `.opencode/skills/sk-design/sk-design-diagram/scripts/families/derivation-gates.cjs` accepting a `system=design-md` sentinel and gating its inline values without requiring byte equality to the record.
+- New cases in `.opencode/skills/sk-design/sk-design-diagram/scripts/tests/mutation-cases.cjs` plus a fixture under `scripts/tests/fixtures/`.
+- `SKILL.md` routing to the new capability.
+
+**Changelog**:
+- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
+<!-- /ANCHOR:phase-context -->
+
+---
+
+<!-- ANCHOR:problem -->
+## 2. PROBLEM & PURPOSE
+
+### Problem Statement
+The diagram skill has one colour system: `assets/color/diagram-palette.json`, applied by `apply-diagram-tokens.cjs`. A request to theme a diagram delivery from a measured or hand-written brand reference has no path — the chart sibling already carries this capability (`apply-design-md.cjs`, `references/design-md-theming.md`, a stock reference at `assets/style-reference/evilcharts/`) but D12 forbids importing or editing any of it, and the diagram's own role vocabulary (structural chrome roles across three skins, not four chart series plus emphasis across two grounds) does not map onto the chart's algorithm unchanged.
+
+### Purpose
+A diagram delivery is themed from a local `DESIGN.md` — generated by `sk-design-md-generator` or written by hand — the same way a chart delivery already is: gated before anything is written, provenance recorded in the palette block, `--default` reproducing the stock corpus exactly.
+<!-- /ANCHOR:problem -->
+
+---
+
+<!-- ANCHOR:scope -->
+## 3. SCOPE
+
+### In Scope
+- `apply-design-md.cjs`: v3 heading parser, per-form role discovery, the role-mapping selection rules in `plan.md`, mechanical derivation of `rule`/`rule-solid`/`accent-tint`, the terminal-skin conditional, whole-file literal remapping, provenance writing, and the gate-then-write contract.
+- `assets/style-reference/diagram-stock/`: a hand-authored `DESIGN.md` curated so `--default` reproduces `diagram-palette.json` exactly, plus `origin.md` and `tokens.json`.
+- Extending `derivation-gates.cjs` to accept and gate a `system=design-md` sentinel block.
+- New mutation cases and a fixture proving the extension fires for its own stated reason.
+- `references/design-md-theming.md` and the `SKILL.md` routing that makes the capability discoverable.
+
+### Out of Scope
+- Repainting any shipped stock form's own values - `apply-diagram-tokens.cjs`'s job, unchanged by this phase.
+- Fixing F32 (`link` outside the sentinel block) in the shipped templates - 007's job; this phase's script works around it by design (whole-file literal remapping) without editing the affected files.
+- Merging `assets/examples/` and `assets/templates/` into `assets/diagrams/` - 009's job; this phase depends on that state but does not produce it.
+- Any change to `sk-design-chart`'s own files - D12 is a hard block; the harness and reference shape are read, not imported or edited.
+- Building a second stock reference measured from an external product - D14 requires exactly one stock reference, and it is authored from the packet's own palette, not measured.
+
+### Files to Change
+
+| File Path | Change Type | Description |
+|-----------|-------------|--------------|
+| `.opencode/skills/sk-design/sk-design-diagram/scripts/apply-design-md.cjs` | Create | The applicator: parser, role selection, terminal conditional, literal remapping, provenance, gates |
+| `.opencode/skills/sk-design/sk-design-diagram/references/design-md-theming.md` | Create | Command, parsed headings, role-mapping table, terminal decision, gates |
+| `.opencode/skills/sk-design/sk-design-diagram/assets/style-reference/diagram-stock/DESIGN.md` | Create | The stock v3 reference, curated to reproduce `diagram-palette.json` exactly |
+| `.opencode/skills/sk-design/sk-design-diagram/assets/style-reference/diagram-stock/origin.md` | Create | Provenance: authored from the packet's palette, not measured |
+| `.opencode/skills/sk-design/sk-design-diagram/assets/style-reference/diagram-stock/tokens.json` | Create | Declares dark-theme support so `--default` can theme the dark and terminal skins |
+| `.opencode/skills/sk-design/sk-design-diagram/scripts/families/derivation-gates.cjs` | Modify | Accept `system=design-md`, require its provenance comment, gate inline values, skip byte-equality for that block only |
+| `.opencode/skills/sk-design/sk-design-diagram/scripts/tests/fixtures/design-md-sample.html` | Create | Minimal fixture carrying one passing `system=design-md` block |
+| `.opencode/skills/sk-design/sk-design-diagram/scripts/tests/mutation-cases.cjs` | Modify | Two new `derivation-gates` cases: missing provenance, gate-failing inline value |
+| `.opencode/skills/sk-design/sk-design-diagram/SKILL.md` | Modify | Activation trigger, HOW IT WORKS paragraph, two REFERENCES rows, version bump |
+<!-- /ANCHOR:scope -->
+
+---
+
+<!-- ANCHOR:requirements -->
+## 4. REQUIREMENTS
+
+### P0 - Blockers (MUST complete)
+
+| ID | Requirement |
+|----|-------------|
+| REQ-001 | `apply-design-md.cjs` MUST refuse a URL argument, offer no force option, and accept `--default` (`assets/style-reference/diagram-stock/DESIGN.md`) or an explicit local path, mirroring the chart sibling's CLI contract; it MUST NOT accept a `--scheme` flag, since D1 gives each form exactly one skin to select (D1, D12, D14). |
+| REQ-002 | The script MUST parse a v3 reference's `## Tokens — Colors`, `## Tokens — Typography`, and `## Tokens — Spacing & Shapes` → `### Border Radius` sections by heading, exactly as the chart script does, and MUST fail by naming the missing heading, table, or substitute rather than guessing (D12). |
+| REQ-003 | For each selected form, the script MUST discover the role vocabulary its own single `DIAGRAM_PALETTE:BEGIN skin=<skin>` marker declares and derive a value for each declared role using the role-mapping table in `plan.md` §3 (D1). |
+| REQ-004 | The role-mapping table in `plan.md` MUST cover every role `assets/color/diagram-palette.json` defines across its three skins - `paper`, `ink`, `muted`, `accent`, `paper-2`, `soft`, `rule`, `rule-solid`, `accent-tint`, `link`, `backend-fill`, `high-level-chevron`, `series-1` through `series-5`, and the terminal skin's `page`, `bar`, `border` - and MUST state, for each, which reference rows can fill it and what happens when none can (D14). |
+| REQ-005 | `rule`, `rule-solid`, and `accent-tint` MUST be computed mechanically from their already-selected primary role at the stock alpha (`ink` at 0.12 for `rule`; `muted` at 0.25 for `rule-solid`; `accent` at its skin's stock alpha for `accent-tint`) and MUST NOT be looked up in the reference table, matching `diagram-palette.json`'s own "derived" kind. |
+| REQ-006 | The terminal skin's `page`/`bar`/`paper`/`border` roles MUST derive from a reference only when it declares dark-theme support (a `**Theme:**` line naming dark, or a `tokens.json` `darkMode.supported` flag) AND supplies at least four distinct usable neutral or background-tagged rows darker than its chosen light `paper`; absent either condition the entire terminal skin stays stock and the run says so by name (D14). |
+| REQ-007 | Selecting `accent` MUST use the single most-saturated chromatic row clearing `markOnPaper` (3.0:1) against the derived ground - one pick, not a four-series ladder; the stock 2.863:1 departure MUST remain the only value ever excused below that gate, and a themed accent that does not clear it MUST fail the run by name (D8 inherited). |
+| REQ-009 | The script MUST write the palette block back with the extended sentinel `DIAGRAM_PALETTE:BEGIN skin=<skin> system=design-md`, immediately followed by a provenance comment carrying the repository-relative input path and the input file's SHA-256, mirroring the chart script's `CHART_PALETTE` provenance shape (D14). |
+| REQ-010 | The script MUST print `RESULT: PASSED` and write every selected form's themed copy only after every derived role on every selected form clears its gate; on any failure it MUST print `RESULT: FAILED` naming the role, the measured ratio, the gate, and the nearest clearing reference row, and MUST write no file (D14). |
+| REQ-011 | `references/design-md-theming.md` MUST document the command, the parsed headings, the full role-mapping table, the terminal decision, and the gates, mirroring the chart sibling's reference doc shape (D14). |
+| REQ-012 | `assets/style-reference/diagram-stock/` MUST carry `DESIGN.md`, `origin.md`, and `tokens.json`; `origin.md` MUST state plainly that the reference was authored from `assets/color/diagram-palette.json`, not measured from an external product, distinguishing it from the chart sibling's measured `evilcharts` reference (D14). |
+| REQ-013 | `apply-design-md.cjs --default --all --out <dir>` MUST derive a palette identical, role for role, to every value in `assets/color/diagram-palette.json`, and every form it writes MUST be byte-identical to the corresponding stock file - the same identity property `apply-diagram-tokens.cjs --default` already carries (D14; parent Round Two criterion). |
+| REQ-014 | `derivation-gates.cjs` MUST be extended, not duplicated: its sentinel regex MUST accept an optional ` system=<id>` token; a block carrying `system=design-md` MUST require and validate a well-formed provenance comment immediately after its BEGIN marker, MUST skip the value-equals-record check for that block only, and MUST still enforce every contrast gate and the skin-role-vocabulary check unchanged; a block with no `system=` token MUST keep today's byte-for-byte equality behavior exactly (D14). |
+
+### P1 - Required (complete OR user-approved deferral)
+
+| ID | Requirement |
+|----|-------------|
+| REQ-008 | A form declaring a `series-N` role MUST fail by name (or be skipped with a printed note under `--all`, mirroring the chart's ordered-form skip) when the reference supplies fewer than five clearing-or-neutral-fallback candidates, since diagram series capacity is five, not the chart's four. |
+| REQ-015 | `scripts/tests/mutation-cases.cjs` MUST carry at least two new `derivation-gates`-family cases against a new checked-in fixture - a design-md block missing its provenance comment, and a design-md block whose inline value fails its gate - each proving the extension fires for its own stated reason without weakening the existing stock-drift case. |
+| REQ-016 | `SKILL.md` MUST route a Style-Reference request to `scripts/apply-design-md.cjs` and `references/design-md-theming.md`, exactly as the chart sibling's `SKILL.md` routes its own, so the capability is discoverable rather than internal-only tooling. |
+
+> Acceptance criteria for these requirements live in `acceptance-criteria.md`,
+> which is the document that decides whether this packet may close.
+<!-- /ANCHOR:requirements -->
+
+---
+
+<!-- ANCHOR:success-criteria -->
+## 5. SUCCESS CRITERIA
+
+- **SC-001**: `node .opencode/skills/sk-design/sk-design-diagram/scripts/apply-design-md.cjs --default --all --out <dir>` prints `RESULT: PASSED`, and `diff -rq <dir> <stock forms dir>` is empty.
+- **SC-002**: The same script run against a second, distinct `DESIGN.md` (the chart sibling's own `evilcharts` reference is a sufficient stress input) writes a themed copy and prints `RESULT: PASSED`.
+- **SC-003**: A reference missing a required v3 heading is refused by name in a `FAILURE`/error line, and no file is written.
+- **SC-004**: `node --test .opencode/skills/sk-design/sk-design-diagram/scripts/tests/` exits `0`, including the two new `derivation-gates` cases and the existing completeness triple.
+- **SC-005**: `node .opencode/skills/sk-design/sk-design-diagram/scripts/check-diagram-corpus.cjs` still prints `RESULT: PASSED` against the untouched stock corpus.
+- **SC-006**: `git diff` over `.opencode/skills/sk-design/sk-design-chart/` is empty.
+<!-- /ANCHOR:success-criteria -->
+
+---
+
+<!-- ANCHOR:risks -->
+## 6. RISKS & DEPENDENCIES
+
+| Type | Item | Impact | Mitigation |
+|------|------|--------|------------|
+| Dependency | 009's merged `assets/diagrams/` library | If absent when this phase executes, form paths and the applicator's source directory differ | T001 confirms the state on disk first and falls back to `assets/templates/` + `assets/examples/` explicitly (D13) |
+| Dependency | `assets/color/diagram-palette.json`'s exact role set and gate thresholds | Every role-mapping rule and every gate check reads from this file; a stale read invents a rule the source does not hold | T003 re-reads the file directly rather than trusting `references/foundations/derivation-record.md`'s prose, which is already known to disagree with it on the dark skin's role count |
+| Risk | The stock reference's curated table fails to reproduce `diagram-palette.json` exactly | SC-001 and the parent's Round Two criterion both fail | T018 iterates the table against a byte-diff loop until it is empty, the same process the chart sibling's own `evilcharts` reference went through |
+| Risk | The `derivation-gates` extension weakens the stock corpus's byte-equality regression | A themed block could mask a real drift in a stock form | REQ-014 requires the stock path (no `system=` token) to keep today's behavior unchanged, and the existing stock-drift mutation case is re-run, not replaced |
+| Risk | Terminal theming fabricates a four-layer dark chrome from a light-only reference | Produces a delivery no reference actually supports, the exact failure D14 forbids | REQ-006's conditional gate refuses terminal derivation outright when dark support or four distinct neutrals are missing |
+| Risk | F32's out-of-sentinel `link`/`rule-solid`/`accent-tint` literals are invisible to a sentinel-only substitution | A themed copy would leave those marks stock | The script repaints by whole-file literal remapping (the same mechanism `paintExample` already uses), not sentinel-only substitution |
+<!-- /ANCHOR:risks -->
+
+---
+
+<!-- ANCHOR:questions -->
+
+---
+
+<!-- ANCHOR:nfr -->
+## L2: NON-FUNCTIONAL REQUIREMENTS
+
+### Performance
+- **NFR-P01**: No runtime performance target applies. The script runs locally against at most 38 forms and one small `DESIGN.md`; the only timing concern is the byte-diff verification loop in T018, which this phase does not otherwise tune.
+
+### Security
+- **NFR-S01**: No auth surface. The script reads only local paths; a URL argument (`--default`'s path or an explicit reference path) is refused rather than fetched.
+
+### Reliability
+- **NFR-R01**: Determinism target - given the same reference and the same selected forms, two runs of `apply-design-md.cjs` produce byte-identical output. No selection rule may depend on filesystem read order, object-key iteration order beyond what `diagram-palette.json`'s own JSON parse guarantees, or wall-clock time.
+<!-- /ANCHOR:nfr -->
+
+---
+
+<!-- ANCHOR:edge-cases -->
+## L2: EDGE CASES
+
+### Data Boundaries
+- A reference with fewer than four usable six-digit colour rows - refused by name, matching the chart script's own minimum-row gate.
+- A reference declaring dark support but supplying only two or three distinct dark neutrals - terminal theming refuses rather than reusing a neutral twice to fabricate a fourth layer.
+- A form declaring a `series-N` role against a reference with fewer than five clearing candidates - that form fails by name (REQ-008), not the whole run under `--forms`.
+- A literal in the file that matches no stock role value at all - refused by name, mirroring `paintExample`'s existing refusal for an unmapped literal.
+
+### Error Scenarios
+- A `system=design-md` block with a malformed or missing provenance comment - `derivation-gates.cjs` errors, naming the file (REQ-014).
+- A `system=design-md` block whose inline value fails its gate - `derivation-gates.cjs` errors with the role, ratio, and gate, exactly as the stock path already does (REQ-014).
+- A stock block (no `system=` token) that drifts from the record - unchanged: `derivation-gates.cjs` still errors on the byte-inequality, proving the extension did not weaken the regression.
+
+### State Transitions
+- 009 has not landed when this phase executes - T001 builds against `assets/templates/` + `assets/examples/` and records the deviation in `goal.md`'s LOG, rather than blocking on a phase this one does not own.
+- A future form is added to the corpus that declares a role not yet in `diagram-palette.json` - out of scope; the script refuses it by name (the "role is not in the skin" check REQ-003 inherits from `derivation-gates.cjs`'s own existing behavior) rather than inventing a selection rule.
+<!-- /ANCHOR:edge-cases -->
+
+---
+
+<!-- ANCHOR:complexity -->
+## L2: COMPLEXITY ASSESSMENT
+
+| Dimension | Score | Notes |
+|-----------|-------|-------|
+| Scope | 20/25 | One new applicator script, one new reference doc, a three-file stock-reference asset, an extension to one existing checker family, new mutation cases plus a fixture, and a `SKILL.md` wiring pass - six files created, two modified |
+| Risk | 14/25 | No auth, no API, no production data - but the checker extension touches a family every future diagram-corpus change is judged against, and a hollow provenance check would ship a gate that lies |
+| Research | 16/20 | Reads the chart's 697-line applicator and its reference doc, the packet's own 003-built applicator and checker family, and the manual-review evidence file for a relevant finding (F32), rather than assuming the chart's shape ports unchanged |
+| **Total** | **50/70** | **Level 2** |
+<!-- /ANCHOR:complexity -->
+
+---
+
+## 10. OPEN QUESTIONS
+
+- Whether `assets/style-reference/diagram-stock/` needs its own `source-globals.css`-style companion file the way `evilcharts` carries one - left unresolved here, since the diagram reference is authored directly from `diagram-palette.json` rather than converted from another notation, so there is no second source file to carry beside it for a reader to cross-check.
+<!-- /ANCHOR:questions -->
+
+---
