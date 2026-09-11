@@ -34,6 +34,11 @@ They are the only forms that carry a palette block for every role, because they 
 diagram is copied from; a worked form keeps the tokens it actually draws with. They answer no
 question of their own, which is why the catalog does not index them.
 
+Inside a starter the drawing references its roles by name rather than by value, so repainting the
+block repaints the figure. Three of the four ship an empty placeholder drawing, so there is nothing
+in them to repaint until you draw it — that is what makes them starters. The full one carries a
+worked figure, and theming it moves every mark.
+
 To repaint any of these in another visual language, see
 [`../../references/design-md-theming.md`](../../references/design-md-theming.md).
 
