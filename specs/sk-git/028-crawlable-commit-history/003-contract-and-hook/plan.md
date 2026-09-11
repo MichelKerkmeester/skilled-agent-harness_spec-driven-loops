@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Phase 3: contract-and-hook"
-description: "[2-3 sentences: what this implements and the technical approach]"
+description: "Four cli-pi dispatches on DeepSeek V4.1 Flash, in the order the decisions fixed: hook whitelist and harness, ordinal allocator and harness, stamper hook and harness, then the skill documents through sk-doc."
 trigger_phrases:
   - "implementation plan"
   - "technical approach"
@@ -23,13 +23,13 @@ contextType: "general"
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | Bash hooks and scripts under sk-code opencode shell standards; Markdown under sk-doc create-skill |
+| **Framework** | git hooks installed by install-git-hooks.sh; sk-git allocator pattern |
+| **Storage** | high-water and lock files under the common Git directory |
+| **Testing** | shell harnesses beside each script, run-all-drift-guards.sh, validate_document.py |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+Each dispatch is one change with one brief: files named, verification named, evidence returned. The conductor runs every harness again before committing. The hook change commits first so the body gate survives the stamper.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -38,9 +38,9 @@ contextType: "general"
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
 - [ ] All acceptance criteria met
@@ -54,14 +54,16 @@ contextType: "general"
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Hook pipeline: prepare-commit-msg stamps, commit-msg validates, allocator mints
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **commit-msg**: validates shape, whitelists trailers, refuses duplicates
+- **commit-id-naming.sh**: mints ordinals under a lock with a history-derived high-water
+- **prepare-commit-msg**: stamps Spec and Commit-Id, keeps on amend, re-mints on cherry-pick
+- **sk-git documents**: state the contract the hooks enforce
 
 ### Data Flow
-[Brief description of how data moves through the system]
+git commit runs prepare-commit-msg, which asks the allocator for the next ordinal and appends the trailer paragraph. commit-msg then validates the whole message and scans history for a duplicate id.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -73,8 +75,10 @@ Use this section when `research_intent=fix_bug`, when planning from a deep-revie
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
+| commit-msg TRAILER_RE | decides prose versus trailer | update | commit-msg.test.sh |
+| install-git-hooks.sh | symlinks every file in the hook dir | unchanged | new hook picked up by the loop |
+| worktree-naming.sh | allocator pattern | unchanged | separate lock and counter |
+| sk-git SKILL.md and references | state the contract | update | validate_document.py |
 
 Required inventories:
 - Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
@@ -99,9 +103,9 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Unit | hook regexes, allocator commands, stamper cases | bash harnesses |
+| Integration | commit through both hooks in a fixture repo | prepare-commit-msg.test.sh |
+| Manual | an empty commit on the main clone after merge | git commit --allow-empty |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -111,7 +115,8 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| decision-record.md | Internal | Green | no contract to implement |
+| pi with the llmgateway credential | External | Green | no dispatch |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -119,8 +124,8 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: a harness fails on the main clone after merge
+- **Procedure**: revert the phase commits; ids already stamped stay valid text
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -152,10 +157,10 @@ Phase 1.5 (Config) ───┘
 
 | Phase | Complexity | Estimated Effort |
 |-------|------------|------------------|
-| Setup | [Low/Med/High] | [e.g., 1-2 hours] |
-| Core Implementation | [Low/Med/High] | [e.g., 4-8 hours] |
-| Verification | [Low/Med/High] | [e.g., 1-2 hours] |
-| **Total** | | **[e.g., 6-12 hours]** |
+| Setup | Low | 30 minutes |
+| Core Implementation | Med | 2 hours across four dispatches |
+| Verification | Low | 30 minutes |
+| **Total** | | **about 3 hours** |
 <!-- /ANCHOR:effort -->
 
 ---
@@ -164,19 +169,19 @@ Phase 1.5 (Config) ───┘
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Backup created (if data changes)
-- [ ] Feature flag configured
-- [ ] Monitoring alerts set
+- [x] Not applicable, no data changes
+- [x] Bypass variables exist for both hooks
+- [x] Not applicable
 
 ### Rollback Procedure
-1. [Immediate action - e.g., disable feature flag]
-2. [Revert code - e.g., git revert or redeploy previous version]
-3. [Verify rollback - e.g., smoke test critical paths]
-4. [Notify stakeholders - if user-facing]
+1. Set the hook's bypass variable if a commit is blocked wrongly
+2. Revert the phase commits
+3. Run the three harnesses
+4. Nothing user-facing
 
 ### Data Reversal
-- **Has data migrations?** [Yes/No]
-- **Reversal procedure**: [Steps or "N/A"]
+- **Has data migrations?** No
+- **Reversal procedure**: N/A
 <!-- /ANCHOR:enhanced-rollback -->
 
 ---
@@ -203,10 +208,10 @@ Phase 1.5 (Config) ───┘
 
 | Component | Depends On | Produces | Blocks |
 |-----------|------------|----------|--------|
-| [Component A] | None | [Output] | B, C |
-| [Component B] | A | [Output] | D |
-| [Component C] | A | [Output] | D |
-| [Component D] | B, C | [Final] | None |
+| Hook whitelist | decisions | commit-msg, harness | stamper commit order |
+| Allocator | decisions | commit-id-naming.sh, harness | stamper |
+| Stamper | allocator, hook | prepare-commit-msg, harness | docs |
+| Docs | all three | four skill files | 004 |
 <!-- /ANCHOR:dependency-graph -->
 
 ---
@@ -214,15 +219,15 @@ Phase 1.5 (Config) ───┘
 <!-- ANCHOR:critical-path -->
 ## L3: CRITICAL PATH
 
-1. **[Phase/Task]** - [Duration estimate] - CRITICAL
-2. **[Phase/Task]** - [Duration estimate] - CRITICAL
-3. **[Phase/Task]** - [Duration estimate] - CRITICAL
+1. **Hook whitelist** - 30 minutes - CRITICAL
+2. **Allocator then stamper** - 90 minutes - CRITICAL
+3. **Docs** - 30 minutes - CRITICAL
 
-**Total Critical Path**: [Sum of durations]
+**Total Critical Path**: about 3 hours
 
 **Parallel Opportunities**:
-- [Task A] and [Task B] can run simultaneously
-- [Task C] and [Task D] can run after Phase 1
+- The docs brief is written while the allocator runs
+- The stamper waits for the allocator
 <!-- /ANCHOR:critical-path -->
 
 ---
@@ -232,29 +237,29 @@ Phase 1.5 (Config) ───┘
 
 | Milestone | Description | Success Criteria | Target |
 |-----------|-------------|------------------|--------|
-| M1 | [Setup Complete] | [All dependencies ready] | [Date/Phase] |
-| M2 | [Core Done] | [Main features working] | [Date/Phase] |
-| M3 | [Release Ready] | [All tests pass] | [Date/Phase] |
+| M1 | Hook committed | commit-msg.test.sh PASS=9 | 2026-09-11, done |
+| M2 | Allocator and stamper committed | both harnesses exit 0 | 2026-09-11 |
+| M3 | Docs validated | validate_document.py exit 0 x4 | 2026-09-11 |
 <!-- /ANCHOR:milestones -->
 
 ---
 
 ## L3: ARCHITECTURE DECISION RECORD
 
-### ADR-001: [Decision Title]
+### ADR-001: Attached dispatch, one change per brief
 
-**Status**: [Proposed/Accepted/Deprecated]
+**Status**: Accepted
 
-**Context**: [What problem we're solving]
+**Context**: The first detached `nohup pi` child died silently with an empty log after writing the hook edit and before its harness.
 
-**Decision**: [What we decided]
+**Decision**: Dispatch every cli-pi child through the tool's attached background runner, one change per brief, and diff the tree after every return.
 
 **Consequences**:
-- [Positive outcome 1]
-- [Negative outcome + mitigation]
+- A dead child is visible as a non-zero return, not an empty file
+- The conductor waits per dispatch. Mitigation: independent work continues on files the child does not touch
 
 **Alternatives Rejected**:
-- [Option B]: [Why rejected]
+- Detached nohup launch: lost the process once already
 
 ---
 

@@ -130,6 +130,7 @@ and findings belong here.
 | Worktree allocated | Done | `worktrees/048-crawlable-commit-history` at `/Users/michelkerkmeester/worktrees/public/048-crawlable-commit-history` |
 | Packet scaffolded | Done | `create.sh --track sk-git --phase --phases 6 --level 3 --with-goal` |
 | Phase 001 research | Done |
+| Phase 003 contract and hook | Done | four commits, three harnesses 9/35/43, drift guards PASSED, docs VALID |
 | Phase 002 format decision | Done | decision-record.md, five ADRs approved 2026-09-11; identifier is a repository-wide ordinal, Spec: carries the full packet path | lineage `research/lineages/deepseek`: 10 iterations, synthesis stopReason maxIterationsReached, 16 state records |
 
 ### Deviations and findings

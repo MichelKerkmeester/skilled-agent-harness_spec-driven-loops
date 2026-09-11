@@ -33,7 +33,7 @@ The approved grammar becomes code and contract in four dispatches on cli-pi with
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P0 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-09-11 |
 | **Branch** | `worktrees/048-crawlable-commit-history` |
 | **Parent Spec** | ../spec.md |

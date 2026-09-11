@@ -91,11 +91,15 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Phase opened | Pending | |
+| Hook whitelist | Done | `43f727bc1b`, harness 9/9 |
+| Allocator | Done | `cda76b4ad9`, harness 35/35 |
+| Skill docs | Done | `e5a85ced55`, VALID x4, package PASS |
+| Stamper | Done | `3bfb4619c6`, harness 43/43 |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | |
+| First detached dispatch died silently | Switched to the attached background runner; recorded in plan.md ADR-001 |
+| SKILL.md over the 5,000-word cap | Condensed four ALWAYS rules that restated their references |
 <!-- /ANCHOR:log -->

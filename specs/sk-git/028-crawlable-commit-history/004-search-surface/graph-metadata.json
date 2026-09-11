@@ -39,14 +39,16 @@
       "approach"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "planned",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "feature-catalog/feature-catalog.md",
+      "manual-testing-playbook/manual-testing-playbook.md"
     ],
     "entities": [
       {
@@ -83,6 +85,18 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": "feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": "manual-testing-playbook/manual-testing-playbook.md",
         "source": "derived"
       },
       {
@@ -180,23 +194,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "A reader who knows a packet or an ordinal has no documented way to get from it to a commit",
     "created_at": "2026-09-11T07:16:28Z",
-    "last_save_at": "2026-09-11T07:22:52.725Z",
+    "last_save_at": "2026-09-11T08:47:19.920Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,10 +209,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c1826f322ef075c4921da05e4b67e775c5144f38c69b6373056202025c354e7e",
+    "source_fingerprint": "sha256:45745c53420efc9754fdb505cd234b04385424ff0358ba6841b8fd01b41f67fc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e2c5690757e79759c0345862f2be21b5484147c01a1eea14efeca8d58c33758b",
+      "spec.md": "31c6562b544bff4e053d9902659c6c930267b6d5e2c204828fcf5f74cd823ce3",
       "plan.md": "3103fa6795a381e9e300691750c0f67f6c69c4d38e52891039bd92ae8cbd69d0",
       "tasks.md": "662221c2395fe7007447f4a0dde0c0023f31615e8009ef3af9cd9924ea2a1a86",
       "implementation-summary.md": "81678652594df261181c637cfa9b07be00e574a2651b9de2717d7a52fba3739a"
