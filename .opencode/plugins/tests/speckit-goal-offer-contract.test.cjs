@@ -109,3 +109,31 @@ test('touched command files do not contain the stale goal command filename', () 
     );
   }
 });
+
+// The three lifecycle workflows each carry the same goal contract. They are
+// separate files because each workflow is read on its own, and they have
+// already drifted once: a runtime that learns the rule from one workflow and
+// meets a different rule in the next has no way to tell which is current.
+test('the three lifecycle workflows carry a byte-identical packet_goal block', () => {
+  const FILES = [
+    'commands/speckit/assets/speckit-plan.yaml',
+    'commands/speckit/assets/speckit-implement.yaml',
+    'commands/speckit/assets/speckit-complete.yaml',
+  ];
+  const blockOf = (relPath) => {
+    const text = readFileSync(join(OPENCODE_ROOT, relPath), 'utf8');
+    const start = text.indexOf('  packet_goal:\n');
+    assert.ok(start >= 0, `${relPath} has no packet_goal block`);
+    const end = text.indexOf('  status_tool_by_runtime:', start);
+    assert.ok(end > start, `${relPath} has no status_tool_by_runtime after packet_goal`);
+    return text.slice(start, end);
+  };
+  const [first, ...rest] = FILES.map(blockOf);
+  for (let i = 0; i < rest.length; i += 1) {
+    assert.equal(rest[i], first, `${FILES[i + 1]} drifted from ${FILES[0]}`);
+  }
+  // The block is the goal contract, so these load-bearing keys must be in it.
+  for (const key of ['nesting:', 'bind_by_runtime:', 'resend:', 'reminder:', 'log:', 'without_a_session:']) {
+    assert.ok(first.includes(key), `the shared block lost ${key}`);
+  }
+});

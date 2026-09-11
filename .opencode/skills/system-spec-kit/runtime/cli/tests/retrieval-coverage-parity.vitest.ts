@@ -100,7 +100,7 @@ const SCOPED_DIVERGENCES: ReadonlyArray<{
 
 describe('root coverage parity', () => {
   it('walks the roots the coverage decision names, in both lanes', () => {
-    expect(Array.from(CORPUS_ROOTS)).toEqual(['specs', '.opencode/skills', '.opencode/install-guides']);
+    expect(Array.from(CORPUS_ROOTS)).toEqual(['specs', '.opencode/skills', '.opencode/install-guides', '.opencode/hooks']);
     expect(Array.from(DEFAULT_ROOTS)).toEqual(['specs', '.opencode']);
   });
 

@@ -11,7 +11,8 @@
     "system-speckit/033-system-speckit-v4/036-goal-unification/005-runtime-surfaces",
     "system-speckit/033-system-speckit-v4/036-goal-unification/006-speckit-command-integration",
     "system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification",
-    "system-speckit/033-system-speckit-v4/036-goal-unification/008-hardening-research"
+    "system-speckit/033-system-speckit-v4/036-goal-unification/008-hardening-research",
+    "system-speckit/033-system-speckit-v4/036-goal-unification/009-close-open-decisions"
   ],
   "manual": {
     "depends_on": [],
@@ -183,17 +184,17 @@
     ],
     "causal_summary": "Three goal surfaces exist and nothing bridges them by code",
     "created_at": "2026-09-11T07:11:46Z",
-    "last_save_at": "2026-09-11T13:17:38.209Z",
+    "last_save_at": "2026-09-11T18:32:56.918Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:5657d68e31de8039b88bd389511ad3e5f323d353febb551e0d5049897674b9e5",
+    "source_fingerprint": "sha256:7e11bca659be1c0ebb2c3c784213a5c7476c6dcd6b28d29d53eceb09082da452",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f4f21c47bf9ead77998b596e6f6400756d39c51b925dbed6c5cb141118bab72e"
+      "spec.md": "beb6b5544d42a2b4f55023d7de85f95bf63e8c8abac6aa8be24bc0bb632dfd38"
     },
     "last_active_at": null
   }

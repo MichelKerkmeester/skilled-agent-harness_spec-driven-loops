@@ -1071,18 +1071,70 @@ function validateGoalDocument(folder: string, level: string, content: string, di
     return;
   }
   for (const line of binding.body.split('\n')) {
-    const row = line.match(/^\|\s*[^|]+\|\s*`([^`]+)`\s*\|/);
-    if (!row) {
+    const target = bindingRowTarget(line);
+    if (target === null) {
       continue;
     }
-    const target = row[1].trim();
-    if (target.includes('..') || path.isAbsolute(target) || !fs.existsSync(path.join(folder, target))) {
+    if (!resolvesInsidePacket(folder, target)) {
       diagnostics.push({
         code: 'SPECDOC_SUFFICIENCY_006',
         severity: 'error',
-        detail: `${GOAL_DOC}: binding row names '${target}' which does not exist`,
+        detail: `${GOAL_DOC}: binding row names '${target}' which does not exist inside the packet`,
       });
     }
+  }
+}
+
+/**
+ * Read the path a binding row points at, in either notation authors use.
+ *
+ * The row is written by hand, so the same target appears as bare text, in a
+ * code span, or as a markdown link. Recognising only one of them let the other
+ * two name a child that was never written and still pass, which is the whole
+ * failure this rule exists to catch.
+ */
+function bindingRowTarget(line: string): string | null {
+  const cells = line.match(/^\|\s*[^|]+\|([^|]*)\|/);
+  if (!cells) {
+    return null;
+  }
+  const cell = cells[1].trim();
+  if (!cell || /^-+$/.test(cell)) {
+    return null;
+  }
+  const link = cell.match(/^\[[^\]]*\]\(([^)]+)\)$/);
+  if (link) {
+    return link[1].trim();
+  }
+  const code = cell.match(/^`([^`]+)`$/);
+  if (code) {
+    return code[1].trim();
+  }
+  return /[\\/]/.test(cell) ? cell : null;
+}
+
+/**
+ * A binding target must name something inside this packet.
+ *
+ * Lexical checks alone let a symlink inside the packet resolve to a document
+ * outside it, which is the containment the runtime already enforces when it
+ * reads a goal. The two must agree, or a packet passes validation while the
+ * runtime refuses to bind it.
+ */
+function resolvesInsidePacket(folder: string, target: string): boolean {
+  if (!target || target.includes('..') || path.isAbsolute(target)) {
+    return false;
+  }
+  const candidate = path.join(folder, target);
+  if (!fs.existsSync(candidate)) {
+    return false;
+  }
+  try {
+    const realFolder = fs.realpathSync(folder);
+    const realCandidate = fs.realpathSync(candidate);
+    return realCandidate === realFolder || realCandidate.startsWith(`${realFolder}${path.sep}`);
+  } catch {
+    return false;
   }
 }
 

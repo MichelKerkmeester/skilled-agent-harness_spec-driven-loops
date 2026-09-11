@@ -1,5 +1,5 @@
 {
-  "manifestHash": "73b001723c44bda1fbe62a1896045b5b259470b235f124c436443949b5318ae9",
+  "manifestHash": "3e417ae70e1efc8ade53997acb9f4e50f71357d890fb065c48e8131702fae1ec",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -49366,8 +49366,8 @@
     "goal and key result setup": [
       "goal and key result setup"
     ],
-    "goal before and after": [
-      "goal before and after"
+    "goal before after": [
+      "goal before after"
     ],
     "goal binding": [
       "goal binding"
@@ -49377,6 +49377,12 @@
     ],
     "goal capability probes": [
       "goal capability probes"
+    ],
+    "goal closure plan": [
+      "goal closure plan"
+    ],
+    "goal closure tasks": [
+      "goal closure tasks"
     ],
     "goal command": [
       "/goal command"
@@ -49411,6 +49417,12 @@
     "goal core tasks": [
       "goal core tasks"
     ],
+    "goal criteria field": [
+      "goal criteria field"
+    ],
+    "goal criteria field plan": [
+      "goal criteria field plan"
+    ],
     "goal cross runtime docs": [
       "goal cross runtime docs"
     ],
@@ -49435,8 +49447,17 @@
     "goal deep loop iterations": [
       "goal deep loop iterations"
     ],
+    "goal deep review passes": [
+      "goal deep review passes"
+    ],
+    "goal devin merge rule": [
+      "goal devin merge rule"
+    ],
     "goal dispatch": [
       "goal dispatch"
+    ],
+    "goal do now do next do not": [
+      "goal do now do next do not"
     ],
     "goal docs hygiene": [
       "goal docs hygiene"
@@ -49609,11 +49630,23 @@
     "goal md tmpl": [
       "goal.md.tmpl"
     ],
+    "goal non utf8 refusal": [
+      "goal non-utf8 refusal"
+    ],
     "goal objective pointer criteria": [
       "goal objective pointer criteria"
     ],
     "goal offer dispatch": [
       "goal offer dispatch"
+    ],
+    "goal open decisions closed": [
+      "goal open decisions closed"
+    ],
+    "goal open decisions plan": [
+      "goal open decisions plan"
+    ],
+    "goal open decisions tasks": [
+      "goal open decisions tasks"
     ],
     "goal opencode plugin": [
       "goal opencode plugin"
@@ -49662,6 +49695,12 @@
     ],
     "goal resync tasks": [
       "goal resync tasks"
+    ],
+    "goal review disposition": [
+      "goal review disposition"
+    ],
+    "goal review findings": [
+      "goal review findings"
     ],
     "goal rollback": [
       "goal rollback"
@@ -49744,8 +49783,14 @@
     "goal unification hardening": [
       "goal unification hardening"
     ],
+    "goal unification hardening findings": [
+      "goal unification hardening findings"
+    ],
     "goal unification hardening research": [
       "goal unification hardening research"
+    ],
+    "goal unification record": [
+      "goal unification record"
     ],
     "goal unification research": [
       "goal unification research"
@@ -49753,8 +49798,8 @@
     "goal unification research strategy": [
       "goal unification research strategy"
     ],
-    "goal unification summary": [
-      "goal unification summary"
+    "goal unification review report": [
+      "goal unification review report"
     ],
     "goal unification synthesis": [
       "goal unification synthesis"

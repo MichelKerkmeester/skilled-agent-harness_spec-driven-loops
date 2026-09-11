@@ -164,3 +164,35 @@ test('resolveWorkspaceRoot walks up from a subdirectory to the repository root',
   mkdirSync(join(workspace, 'a', 'b'), { recursive: true });
   assert.equal(slice.resolveWorkspaceRoot(join(workspace, 'a', 'b')), require('node:path').resolve(workspace));
 });
+
+test('an objective splits into the packet sentence and whole criteria', () => {
+  writePacket('specs/x/001-split', goalDoc({ nested: true, criteria: ['alpha holds', 'beta holds'] }));
+  const packet = slice.readPacketGoal(workspace, 'specs/x/001-split');
+  const split = slice.splitObjectiveSlice(packet.objectiveSlice);
+  assert.ok(split.headline.startsWith('Execute specs/x/001-split/goal.md.'));
+  assert.ok(split.headline.includes('BINDING:'));
+  assert.deepEqual(split.criteria, ['alpha holds', 'beta holds']);
+  assert.ok(!split.headline.includes('DONE WHEN'));
+});
+
+test('a plain objective with no criteria heading stays whole', () => {
+  const split = slice.splitObjectiveSlice('Ship the thing and prove it');
+  assert.equal(split.headline, 'Ship the thing and prove it');
+  assert.deepEqual(split.criteria, []);
+});
+
+test('a criteria budget drops whole items and counts what it left', () => {
+  const criteria = ['alpha', 'beta', 'gamma'];
+  const fits = slice.selectCriteriaWithin(criteria, 1000);
+  assert.deepEqual(fits.shown, criteria);
+  assert.equal(fits.omitted, 0);
+
+  // 'alpha' costs 5 + 3 for the '- ' and newline; 'beta' would take it past 10.
+  const trimmed = slice.selectCriteriaWithin(criteria, 10);
+  assert.deepEqual(trimmed.shown, ['alpha']);
+  assert.equal(trimmed.omitted, 2);
+
+  const none = slice.selectCriteriaWithin(criteria, 0);
+  assert.deepEqual(none.shown, []);
+  assert.equal(none.omitted, 3);
+});

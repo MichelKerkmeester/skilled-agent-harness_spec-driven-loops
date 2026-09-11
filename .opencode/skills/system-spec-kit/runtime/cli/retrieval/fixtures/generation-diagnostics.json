@@ -1,12 +1,12 @@
 {
   "counts": {
     "duplicate-phrase": 54,
-    "missing-frontmatter": 7043,
+    "missing-frontmatter": 7060,
     "non-yaml-frontmatter": 1,
-    "ok": 14617,
+    "ok": 14623,
     "valid-empty-list": 7531
   },
-  "documentsScanned": 29246,
+  "documentsScanned": 29269,
   "ignoredMalformedDocuments": 1,
   "ignoredPaths": [
     {
@@ -16,7 +16,7 @@
   ],
   "ignoredPathsUnmatched": [],
   "malformedDocuments": 0,
-  "manifestHash": "73b001723c44bda1fbe62a1896045b5b259470b235f124c436443949b5318ae9",
+  "manifestHash": "3e417ae70e1efc8ade53997acb9f4e50f71357d890fb065c48e8131702fae1ec",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -31,7 +31,7 @@
       "editor-fallback": 2,
       "generic-workflow-word": 3,
       "numeric-only": 41,
-      "ok": 35599,
+      "ok": 35614,
       "prose-sentence": 27,
       "single-token": 304,
       "stop-word-only": 3
@@ -39511,6 +39511,12 @@
     {
       "category": "missing-frontmatter",
       "line": 1,
+      "path": "specs/hooks/021-compat-opt-in-and-image-declaration/review/lineages/glm-53-flash/deep-review-dashboard.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/hooks/021-compat-opt-in-and-image-declaration/review/lineages/glm-53-flash/iterations/iteration-001.md",
       "reason": "no opening frontmatter delimiter"
     },
@@ -39518,6 +39524,12 @@
       "category": "missing-frontmatter",
       "line": 1,
       "path": "specs/hooks/021-compat-opt-in-and-image-declaration/review/lineages/glm-53-flash/prompts/iteration-001.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks/021-compat-opt-in-and-image-declaration/review/lineages/glm-53-flash/review-report.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
@@ -46155,6 +46167,96 @@
       "category": "missing-frontmatter",
       "line": 1,
       "path": "specs/sk-design/019-sk-design-diagram-upgrade/001-upgrade-research/research/research.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-design/020-chart-and-diagram-review/001-chart-review/review/lineages/deepseek/deep-review-dashboard.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-design/020-chart-and-diagram-review/001-chart-review/review/lineages/deepseek/deep-review-strategy.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-design/020-chart-and-diagram-review/001-chart-review/review/lineages/deepseek/iterations/iteration-001.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-design/020-chart-and-diagram-review/001-chart-review/review/lineages/deepseek/iterations/iteration-002.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-design/020-chart-and-diagram-review/001-chart-review/review/lineages/deepseek/prompts/run-record.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-design/020-chart-and-diagram-review/001-chart-review/review/lineages/deepseek/review-report.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-design/020-chart-and-diagram-review/001-chart-review/review/lineages/ds4/deep-review-strategy.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-design/020-chart-and-diagram-review/002-diagram-review/review/lineages/deepseek/deep-review-dashboard.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-design/020-chart-and-diagram-review/002-diagram-review/review/lineages/deepseek/deep-review-strategy.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-design/020-chart-and-diagram-review/002-diagram-review/review/lineages/deepseek/iterations/iteration-001.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-design/020-chart-and-diagram-review/002-diagram-review/review/lineages/deepseek/iterations/iteration-002.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-design/020-chart-and-diagram-review/002-diagram-review/review/lineages/deepseek/probes/DESIGN.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-design/020-chart-and-diagram-review/002-diagram-review/review/lineages/deepseek/review-report.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-design/020-chart-and-diagram-review/002-diagram-review/review/lineages/ds4/deep-review-dashboard.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-design/020-chart-and-diagram-review/002-diagram-review/review/lineages/ds4/deep-review-strategy.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
@@ -95790,6 +95892,14 @@
     },
     {
       "path": "specs/agents/009-turn-closeout-next-steps/008-communication-split/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/010-repo-rule-system-integration/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/010-repo-rule-system-integration/scratch",
       "reason": "excluded directory"
     },
     {

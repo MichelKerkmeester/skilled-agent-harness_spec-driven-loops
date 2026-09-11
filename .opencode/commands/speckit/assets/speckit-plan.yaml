@@ -180,18 +180,24 @@ goal_prompting:
   # it rather than to a remembered string. Everything below is the agent's
   # posture around that file; the mechanics live in the goal hook core.
   packet_goal:
+    nesting:
+      parent_is_the_directive: "The packet root goal.md is the directive. A phased packet's children each carry their own goal.md, and the parent's binding table names them."
+      read_order: "Read the parent goal.md first, then the child goal.md for the phase being worked. A child's criteria bind as if written in the parent."
+      precedence: "Parent decisions outrank child detail; child detail outranks any summary of either. A summary is never the source."
+      budget: "The parent durable slice is bounded so it fits one chat message; children are unbounded. Never trim a child into the parent."
     bind_by_runtime:
       opencode: 'opencode_goal({ action: "bind", packetPath: spec_path })'
       pi: 'node .opencode/hooks/goal/bin/goal.cjs bind <spec_path> --runtime Pi --session <native session id> --workspace <repo root>'
       cursor: "injection-only; report the objective for the operator to set, do not fabricate a call"
       devin: "injection-only; report the objective for the operator to set, do not fabricate a call"
-      claude-code: "native goal command; render the durable slice, frontmatter excluded, and ask the operator to set it"
-      codex: "native goal command; render the durable slice, frontmatter excluded, and ask the operator to set it"
+      claude-code: "native goal command; render the durable slice, frontmatter excluded, and ask the operator to set it. There is no session record here, so hold the slice hash for the session instead."
+      codex: "native goal command; render the durable slice, frontmatter excluded, and ask the operator to set it. There is no session record here, so hold the slice hash for the session instead."
     resend:
       trigger: "The durable slice hash of the parent goal.md changed: a decision, a binding row or a criterion. Log rows and frontmatter never trigger."
       payload: "The durable slice of the parent goal.md with frontmatter excluded, rendered from the file, never from memory."
       after: "Ask the operator to set it. On a runtime with a bound session, record the send with the goal command's resent action."
       child_rule: "A child goal change that alters a parent decision or criterion is applied to the parent first, then the parent is resent."
+      without_a_session: "On claude-code and codex, read the hash at every command entry with `node .opencode/hooks/goal/bin/goal.cjs packet <spec_path> --workspace <repo root>` and compare `packet_slice_hash` against the hash last rendered this session. Different means resend; equal means stay silent. A first entry with no held hash renders once."
     reminder:
       while_unset: "Repeat a one-line reminder at every command entry and turn where the runtime injects; never repeat the full slice unless asked."
       never_halts: "Work never stops because a goal is unset or a reminder went unanswered. Only an explicit operator stop halts."

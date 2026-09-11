@@ -1,0 +1,19 @@
+{
+  "specFolder": "system-speckit/033-system-speckit-v4/036-goal-unification/009-close-open-decisions",
+  "description": "Phase 1: close-open-decisions",
+  "keywords": [
+    "phase",
+    "close-open-decisions"
+  ],
+  "lastUpdated": "2026-09-11T17:58:04.764Z",
+  "specId": "009",
+  "folderSlug": "close-open-decisions",
+  "parentChain": [
+    "system-speckit",
+    "033-system-speckit-v4",
+    "036-goal-unification"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

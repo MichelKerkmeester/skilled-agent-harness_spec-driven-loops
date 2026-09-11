@@ -1,5 +1,5 @@
 {
-  "corpusHash": "aa3f32c689cf84646c07a2bb4d21beb1822900a0c44ced9ddfa687fffaf0c86f",
+  "corpusHash": "f20e77efbbef9d21eb4082a7efe1ee41f7b5af783f5fca967ee036496c2607e3",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -17,7 +17,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 29246,
+  "includedPathCount": 29269,
   "includedPaths": [
     ".opencode/hooks/README.md",
     ".opencode/hooks/codex-watchdog/README.md",
@@ -8124,6 +8124,11 @@
     "specs/agents/009-turn-closeout-next-steps/008-communication-split/spec.md",
     "specs/agents/009-turn-closeout-next-steps/008-communication-split/tasks.md",
     "specs/agents/009-turn-closeout-next-steps/spec.md",
+    "specs/agents/010-repo-rule-system-integration/acceptance-criteria.md",
+    "specs/agents/010-repo-rule-system-integration/implementation-summary.md",
+    "specs/agents/010-repo-rule-system-integration/plan.md",
+    "specs/agents/010-repo-rule-system-integration/spec.md",
+    "specs/agents/010-repo-rule-system-integration/tasks.md",
     "specs/cli-external-orchestration/026-cli-external-parent/001-research-and-context/plan.md",
     "specs/cli-external-orchestration/026-cli-external-parent/001-research-and-context/spec.md",
     "specs/cli-external-orchestration/026-cli-external-parent/001-research-and-context/tasks.md",
@@ -9410,9 +9415,11 @@
     "specs/hooks/021-compat-opt-in-and-image-declaration/review/lineages/deepseek-v41-flash/iterations/iteration-001.md",
     "specs/hooks/021-compat-opt-in-and-image-declaration/review/lineages/deepseek-v41-flash/prompts/iteration-001.md",
     "specs/hooks/021-compat-opt-in-and-image-declaration/review/lineages/deepseek-v41-flash/review-report.md",
+    "specs/hooks/021-compat-opt-in-and-image-declaration/review/lineages/glm-53-flash/deep-review-dashboard.md",
     "specs/hooks/021-compat-opt-in-and-image-declaration/review/lineages/glm-53-flash/deep-review-strategy.md",
     "specs/hooks/021-compat-opt-in-and-image-declaration/review/lineages/glm-53-flash/iterations/iteration-001.md",
     "specs/hooks/021-compat-opt-in-and-image-declaration/review/lineages/glm-53-flash/prompts/iteration-001.md",
+    "specs/hooks/021-compat-opt-in-and-image-declaration/review/lineages/glm-53-flash/review-report.md",
     "specs/hooks/021-compat-opt-in-and-image-declaration/review/lineages/gpt-56-luna/deep-review-dashboard.md",
     "specs/hooks/021-compat-opt-in-and-image-declaration/review/lineages/gpt-56-luna/deep-review-strategy.md",
     "specs/hooks/021-compat-opt-in-and-image-declaration/review/lineages/gpt-56-luna/iterations/iteration-001.md",
@@ -12470,11 +12477,26 @@
     "specs/sk-design/020-chart-and-diagram-review/001-chart-review/acceptance-criteria.md",
     "specs/sk-design/020-chart-and-diagram-review/001-chart-review/implementation-summary.md",
     "specs/sk-design/020-chart-and-diagram-review/001-chart-review/plan.md",
+    "specs/sk-design/020-chart-and-diagram-review/001-chart-review/review/lineages/deepseek/deep-review-dashboard.md",
+    "specs/sk-design/020-chart-and-diagram-review/001-chart-review/review/lineages/deepseek/deep-review-strategy.md",
+    "specs/sk-design/020-chart-and-diagram-review/001-chart-review/review/lineages/deepseek/iterations/iteration-001.md",
+    "specs/sk-design/020-chart-and-diagram-review/001-chart-review/review/lineages/deepseek/iterations/iteration-002.md",
+    "specs/sk-design/020-chart-and-diagram-review/001-chart-review/review/lineages/deepseek/prompts/run-record.md",
+    "specs/sk-design/020-chart-and-diagram-review/001-chart-review/review/lineages/deepseek/review-report.md",
+    "specs/sk-design/020-chart-and-diagram-review/001-chart-review/review/lineages/ds4/deep-review-strategy.md",
     "specs/sk-design/020-chart-and-diagram-review/001-chart-review/spec.md",
     "specs/sk-design/020-chart-and-diagram-review/001-chart-review/tasks.md",
     "specs/sk-design/020-chart-and-diagram-review/002-diagram-review/acceptance-criteria.md",
     "specs/sk-design/020-chart-and-diagram-review/002-diagram-review/implementation-summary.md",
     "specs/sk-design/020-chart-and-diagram-review/002-diagram-review/plan.md",
+    "specs/sk-design/020-chart-and-diagram-review/002-diagram-review/review/lineages/deepseek/deep-review-dashboard.md",
+    "specs/sk-design/020-chart-and-diagram-review/002-diagram-review/review/lineages/deepseek/deep-review-strategy.md",
+    "specs/sk-design/020-chart-and-diagram-review/002-diagram-review/review/lineages/deepseek/iterations/iteration-001.md",
+    "specs/sk-design/020-chart-and-diagram-review/002-diagram-review/review/lineages/deepseek/iterations/iteration-002.md",
+    "specs/sk-design/020-chart-and-diagram-review/002-diagram-review/review/lineages/deepseek/probes/DESIGN.md",
+    "specs/sk-design/020-chart-and-diagram-review/002-diagram-review/review/lineages/deepseek/review-report.md",
+    "specs/sk-design/020-chart-and-diagram-review/002-diagram-review/review/lineages/ds4/deep-review-dashboard.md",
+    "specs/sk-design/020-chart-and-diagram-review/002-diagram-review/review/lineages/ds4/deep-review-strategy.md",
     "specs/sk-design/020-chart-and-diagram-review/002-diagram-review/spec.md",
     "specs/sk-design/020-chart-and-diagram-review/002-diagram-review/tasks.md",
     "specs/sk-design/020-chart-and-diagram-review/spec.md",
@@ -29223,6 +29245,7 @@
     "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review/iterations/iteration-003.md",
     "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review/resource-map.md",
     "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review/review-report.md",
+    "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification/review/review-report.md",
     "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification/review/review-scope.md",
     "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification/spec.md",
     "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification/tasks.md",
@@ -29230,15 +29253,15 @@
     "specs/system-speckit/033-system-speckit-v4/036-goal-unification/008-hardening-research/implementation-summary.md",
     "specs/system-speckit/033-system-speckit-v4/036-goal-unification/008-hardening-research/plan.md",
     "specs/system-speckit/033-system-speckit-v4/036-goal-unification/008-hardening-research/research/deep-research-strategy.md",
+    "specs/system-speckit/033-system-speckit-v4/036-goal-unification/008-hardening-research/research/research.md",
     "specs/system-speckit/033-system-speckit-v4/036-goal-unification/008-hardening-research/spec.md",
     "specs/system-speckit/033-system-speckit-v4/036-goal-unification/008-hardening-research/tasks.md",
-    "specs/system-speckit/033-system-speckit-v4/036-goal-unification/009-close-open-decisions/acceptance-criteria.md",
     "specs/system-speckit/033-system-speckit-v4/036-goal-unification/009-close-open-decisions/goal.md",
     "specs/system-speckit/033-system-speckit-v4/036-goal-unification/009-close-open-decisions/implementation-summary.md",
     "specs/system-speckit/033-system-speckit-v4/036-goal-unification/009-close-open-decisions/plan.md",
     "specs/system-speckit/033-system-speckit-v4/036-goal-unification/009-close-open-decisions/spec.md",
     "specs/system-speckit/033-system-speckit-v4/036-goal-unification/009-close-open-decisions/tasks.md",
-    "specs/system-speckit/033-system-speckit-v4/036-goal-unification/before-and-after.md",
+    "specs/system-speckit/033-system-speckit-v4/036-goal-unification/before-after.md",
     "specs/system-speckit/033-system-speckit-v4/036-goal-unification/goal.md",
     "specs/system-speckit/033-system-speckit-v4/036-goal-unification/spec.md",
     "specs/system-speckit/033-system-speckit-v4/CHANGELOG-v4.0.0.0.md",
@@ -29267,7 +29290,7 @@
     "specs/system-speckit/035-derived-artifact-registry/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "73b001723c44bda1fbe62a1896045b5b259470b235f124c436443949b5318ae9",
+  "manifestHash": "3e417ae70e1efc8ade53997acb9f4e50f71357d890fb065c48e8131702fae1ec",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -29667,6 +29690,14 @@
     },
     {
       "path": "specs/agents/009-turn-closeout-next-steps/008-communication-split/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/010-repo-rule-system-integration/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/010-repo-rule-system-integration/scratch",
       "reason": "excluded directory"
     },
     {

@@ -971,3 +971,65 @@ test('the packet lock root follows the workspace, not the record store, so diver
     rmSync(otherStateDir, { recursive: true, force: true });
   }
 });
+
+test('a bound brief renders criteria as their own field, one per line', () => {
+  writePacketGoal('specs/t/001-fixture', packetGoalDoc({ criteria: ['alpha holds', 'beta holds'] }));
+  core.bindGoal({ packetPath: 'specs/t/001-fixture' }, opts());
+  const brief = core.renderGoalBrief({ goal: core.showGoal(opts()), runtimeLabel: 'pi', maxChars: 4800 });
+  const lines = brief.split('\n');
+  const start = lines.indexOf('criteria:');
+  assert.ok(start > 0, 'the criteria field must be present');
+  assert.equal(lines[start + 1], '- alpha holds');
+  assert.equal(lines[start + 2], '- beta holds');
+  // The objective line names the packet only: one copy of the criteria, not two.
+  const objectiveLine = lines.find((line) => line.startsWith('objective:'));
+  assert.ok(!objectiveLine.includes('alpha holds'));
+  assert.ok(!brief.includes('DONE WHEN'));
+});
+
+test('a criteria list past the preview budget drops whole items and says how many', () => {
+  const many = Array.from({ length: 12 }, (_, i) => `criterion number ${i} is a long sentence about the work`);
+  writePacketGoal('specs/t/001-fixture', packetGoalDoc({ criteria: many }));
+  core.bindGoal({ packetPath: 'specs/t/001-fixture' }, opts());
+  const brief = core.renderGoalBrief({ goal: core.showGoal(opts()), runtimeLabel: 'pi', maxChars: 1200 });
+  const shown = brief.split('\n').filter((line) => /^- criterion number \d+ /.test(line));
+  assert.ok(shown.length > 0 && shown.length < many.length, 'some criteria fit and some do not');
+  // Every rendered criterion is whole; a budget never cuts one mid-sentence.
+  for (const line of shown) assert.ok(line.endsWith('about the work'));
+  assert.ok(brief.includes(`- (${many.length - shown.length} more in the goal file)`));
+});
+
+test('the compact block still carries the criteria field', () => {
+  writePacketGoal('specs/t/001-fixture', packetGoalDoc({ criteria: ['alpha holds'] }));
+  core.bindGoal({ packetPath: 'specs/t/001-fixture' }, opts());
+  const brief = core.renderGoalBrief({ goal: core.showGoal(opts()), runtimeLabel: 'pi', maxChars: 200 });
+  assert.ok(!brief.includes('status: active'), 'the compact block drops the status line');
+  assert.ok(brief.includes('criteria:'));
+  assert.ok(brief.includes('- alpha holds'));
+});
+
+test('a log append refuses a goal document that is not valid UTF-8 and leaves it byte-identical', () => {
+  const goalPath = writePacketGoal('specs/t/001-fixture', packetGoalDoc());
+  const original = readFileSync(goalPath);
+  // A lone 0xFF byte cannot appear in valid UTF-8.
+  const corrupted = Buffer.concat([original, Buffer.from([0xff])]);
+  writeFileSync(goalPath, corrupted);
+  assert.throws(
+    () => core.appendPacketLog({ workspace: stateDir, packetPath: 'specs/t/001-fixture', item: 'row', state: 'Done' }),
+    { code: 'GOAL_NOT_UTF8' },
+  );
+  assert.ok(readFileSync(goalPath).equals(corrupted), 'the document must be untouched');
+});
+
+test('a text set with a new objective drops the packet pointer, and re-setting the same one keeps it', () => {
+  writePacketGoal('specs/t/001-fixture', packetGoalDoc());
+  const bound = core.bindGoal({ packetPath: 'specs/t/001-fixture' }, opts());
+  assert.equal(bound.record.packetPath, 'specs/t/001-fixture');
+
+  const refreshed = core.setGoal({ objective: bound.record.objective }, opts());
+  assert.equal(refreshed.record.packetPath, 'specs/t/001-fixture', 'the same objective refreshes in place');
+
+  const replaced = core.setGoal({ objective: 'a different plain objective' }, opts());
+  assert.equal(replaced.record.packetPath, undefined, 'a new text objective replaces the record and its pointer');
+  assert.equal(core.packetState(core.showGoal(opts()), stateDir), 'unbound');
+});

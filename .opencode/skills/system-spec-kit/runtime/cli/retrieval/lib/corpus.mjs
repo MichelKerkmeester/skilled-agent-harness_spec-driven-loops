@@ -20,13 +20,15 @@ import { compareCodeUnits } from './normalize.mjs';
  * Walk roots, in the order they are visited. `.opencode/install-guides`
  * carries well-formed `trigger_phrases` frontmatter and is already reachable
  * by the ripgrep lane's broader `.opencode` root, so leaving it out here would
- * be a pure asymmetry rather than a deliberate scope choice. Root `README.md`
+ * be a pure asymmetry rather than a deliberate scope choice. `.opencode/hooks`
+ * carries the goal contract documents, which an operator asks for by name and
+ * which no skill document restates in full. Root `README.md`
  * and the five runtime mirrors (`.claude`, `.codex`, `.cursor`, `.devin`,
  * `.pi`) are deliberately excluded from both lanes; see
  * `references/retrieval/retrieval-conventions.md` for the full coverage table
  * and the reason for every root decision.
  */
-export const CORPUS_ROOTS = Object.freeze(['specs', '.opencode/skills', '.opencode/install-guides']);
+export const CORPUS_ROOTS = Object.freeze(['specs', '.opencode/skills', '.opencode/install-guides', '.opencode/hooks']);
 
 /**
  * Human-readable exclusion list recorded in the manifest. It is part of the

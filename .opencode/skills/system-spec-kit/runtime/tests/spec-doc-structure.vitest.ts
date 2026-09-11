@@ -385,7 +385,43 @@ describe('spec-doc-structure contract', () => {
     writeGoalDoc(folder, { level: 'phase', sliceChars: 800, bindingRows: ['| 002-missing | `002-missing/goal.md` |'] });
     const result = runSpecDocStructureRule({ folder, level: 'phase', rule: 'SPEC_DOC_SUFFICIENCY' });
     expect(result.status).toBe('fail');
-    expect(result.details).toContain("SPECDOC_SUFFICIENCY_006: goal.md: binding row names '002-missing/goal.md' which does not exist");
+    expect(result.details).toContain("SPECDOC_SUFFICIENCY_006: goal.md: binding row names '002-missing/goal.md' which does not exist inside the packet");
+  });
+
+  it('fails a missing binding target written as a markdown link, not only as a code span', () => {
+    const folder = makeTempDir('speckit-goal-binding-link-');
+    writeGoalDoc(folder, {
+      level: 'phase',
+      sliceChars: 800,
+      bindingRows: ['| 002-missing | [002-missing/goal.md](002-missing/goal.md) |'],
+    });
+    const result = runSpecDocStructureRule({ folder, level: 'phase', rule: 'SPEC_DOC_SUFFICIENCY' });
+    expect(result.status).toBe('fail');
+    expect(result.details).toContain("SPECDOC_SUFFICIENCY_006: goal.md: binding row names '002-missing/goal.md' which does not exist inside the packet");
+  });
+
+  it('accepts a binding target written as a markdown link when the child exists', () => {
+    const folder = makeTempDir('speckit-goal-binding-link-ok-');
+    fs.mkdirSync(path.join(folder, '001-child'));
+    fs.writeFileSync(path.join(folder, '001-child', 'goal.md'), '# child\n', 'utf8');
+    writeGoalDoc(folder, {
+      level: 'phase',
+      sliceChars: 800,
+      bindingRows: ['| 001-child | [001-child/goal.md](001-child/goal.md) |'],
+    });
+    const result = runSpecDocStructureRule({ folder, level: 'phase', rule: 'SPEC_DOC_SUFFICIENCY' });
+    expect(result.diagnostics.some((d) => d.code === 'SPECDOC_SUFFICIENCY_006')).toBe(false);
+  });
+
+  it('fails a binding target that exists but resolves outside the packet through a symlink', () => {
+    const outside = makeTempDir('speckit-goal-binding-outside-');
+    fs.writeFileSync(path.join(outside, 'goal.md'), '# elsewhere\n', 'utf8');
+    const folder = makeTempDir('speckit-goal-binding-escape-');
+    fs.symlinkSync(outside, path.join(folder, '002-escape'), 'dir');
+    writeGoalDoc(folder, { level: 'phase', sliceChars: 800, bindingRows: ['| 002-escape | `002-escape/goal.md` |'] });
+    const result = runSpecDocStructureRule({ folder, level: 'phase', rule: 'SPEC_DOC_SUFFICIENCY' });
+    expect(result.status).toBe('fail');
+    expect(result.details).toContain("SPECDOC_SUFFICIENCY_006: goal.md: binding row names '002-escape/goal.md' which does not exist inside the packet");
   });
 
   it('accepts a non-canonical doc that omits the _memory block (continuity is single-source in implementation-summary.md)', () => {

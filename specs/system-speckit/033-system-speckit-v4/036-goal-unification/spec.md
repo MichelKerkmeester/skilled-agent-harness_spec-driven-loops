@@ -125,6 +125,7 @@ One goal surface. The packet `goal.md`, nested when the packet is phased and sin
 | 7 | 007-retirement-docs-and-verification/ | Store retirement, READMEs, SKILL deltas, changelog, full verification and deep review | Complete |
 
 | 8 | 008-hardening-research/ | Five-iteration hardening research and a second review; do-now rows built, do-next backlog recorded | Complete |
+| 9 | 009-close-open-decisions/ | [Phase 9 scope] | Pending |
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins
@@ -143,6 +144,7 @@ One goal surface. The packet `goal.md`, nested when the packet is phased and sin
 | 004-goal-core-packet-backed | 006-speckit-command-integration | Same as above; 005 and 006 run in parallel | `node --test` goal suites green |
 | 006-speckit-command-integration | 007-retirement-docs-and-verification | 005 and 006 both Complete | Recursive validate passes on 001 through 006 |
 | 007-retirement-docs-and-verification | 008-hardening-research | 008 research and review syntheses exist; do-now rows built | Suites green after the build |
+| 008-hardening-research | 009-close-open-decisions | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->
 
 ---

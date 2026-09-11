@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-speckit/033-system-speckit-v4/036-goal-unification/008-hardening-research",
-  "spec_folder": "system-speckit/033-system-speckit-v4/036-goal-unification/008-hardening-research",
+  "packet_id": "system-speckit/033-system-speckit-v4/036-goal-unification/009-close-open-decisions",
+  "spec_folder": "system-speckit/033-system-speckit-v4/036-goal-unification/009-close-open-decisions",
   "parent_id": "system-speckit/033-system-speckit-v4/036-goal-unification",
   "children_ids": [],
   "manual": {
@@ -11,51 +11,48 @@
   },
   "derived": {
     "trigger_phrases": [
-      "goal unification hardening",
-      "goal hardening research",
-      "goal integration seams",
-      "goal overengineering review",
-      "goal hardening plan",
-      "hardening research plan",
-      "task breakdown",
-      "implementation tasks",
-      "verification checklist",
-      "task dependencies",
+      "goal open decisions closed",
+      "goal criteria field",
+      "goal non-utf8 refusal",
+      "goal devin merge rule",
+      "goal open decisions plan",
+      "goal criteria field plan",
+      "goal closure plan",
+      "goal open decisions tasks",
+      "goal closure tasks",
       "packet goal",
-      "durable directive"
+      "durable directive",
+      "completion criteria"
     ],
     "key_topics": [
       "goal",
-      "unification",
-      "hardening",
-      "research",
-      "integration",
-      "seams",
-      "overengineering",
-      "review",
-      "plan",
-      "task",
-      "breakdown",
-      "implementation"
+      "open",
+      "decisions",
+      "closed",
+      "criteria",
+      "field",
+      "non-utf8",
+      "refusal",
+      "devin",
+      "merge",
+      "rule",
+      "plan"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
-      "research/research.md",
-      "research/deep-research-strategy.md",
       ".opencode/hooks/goal/lib/goal-slice.cjs",
       ".opencode/hooks/goal/lib/goal-core.cjs",
-      ".opencode/hooks/goal/bin/goal.cjs",
       ".opencode/plugins/opencode-goal.js",
       ".opencode/skills/system-spec-kit/runtime/lib/validation/spec-doc-structure.ts",
-      ".opencode/skills/system-spec-kit/references/workflows/goal-set-string-playbook.md",
-      ".opencode/plugins/tests/opencode-goal-render-parity.test.cjs",
-      "research/lineages/deepseek/research.md"
+      ".opencode/skills/system-spec-kit/runtime/cli/retrieval/lib/corpus.mjs",
+      ".opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md",
+      ".opencode/hooks/goal/README.md"
     ],
     "entities": [
       {
@@ -89,18 +86,6 @@
         "source": "derived"
       },
       {
-        "name": "research.md",
-        "kind": "doc",
-        "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research-strategy.md",
-        "kind": "doc",
-        "path": "research/deep-research-strategy.md",
-        "source": "derived"
-      },
-      {
         "name": "goal-slice.cjs",
         "kind": "file",
         "path": ".opencode/hooks/goal/lib/goal-slice.cjs",
@@ -110,12 +95,6 @@
         "name": "goal-core.cjs",
         "kind": "file",
         "path": ".opencode/hooks/goal/lib/goal-core.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "goal.cjs",
-        "kind": "file",
-        "path": ".opencode/hooks/goal/bin/goal.cjs",
         "source": "derived"
       },
       {
@@ -131,15 +110,21 @@
         "source": "derived"
       },
       {
-        "name": "goal-set-string-playbook.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/references/workflows/goal-set-string-playbook.md",
+        "name": "corpus.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/runtime/cli/retrieval/lib/corpus.mjs",
         "source": "derived"
       },
       {
-        "name": "opencode-goal-render-parity.test.cjs",
-        "kind": "file",
-        "path": ".opencode/plugins/tests/opencode-goal-render-parity.test.cjs",
+        "name": "retrieval-conventions.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/hooks/goal/README.md",
         "source": "derived"
       },
       {
@@ -161,20 +146,20 @@
         "source": "derived"
       },
       {
-        "name": "Phase Context This",
+        "name": "Claude Code",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Scope Boundary",
+        "name": "The Devin",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Problem Statement The",
-        "kind": "proper_noun",
+        "name": "the",
+        "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
       },
@@ -185,27 +170,39 @@
         "source": "derived"
       },
       {
-        "name": "Technical Context",
-        "kind": "proper_noun",
+        "name": "1. SUMMARY",
+        "kind": "heading",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Overview Run",
-        "kind": "proper_noun",
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Pattern Research",
-        "kind": "proper_noun",
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. AFFECTED SURFACES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "5. PHASES",
+        "kind": "heading",
         "path": "plan.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "The packet shipped green, but a first review already showed the unit tests missed real defects",
-    "created_at": "2026-09-11T10:52:14Z",
-    "last_save_at": "2026-09-11T18:22:02.485Z",
+    "causal_summary": "The four decisions the hardening phase left to the operator, the last review advisories, and the Devin host merge unknown, all closed and pinned by tests.",
+    "created_at": "2026-09-11T17:58:04Z",
+    "last_save_at": "2026-09-11T18:32:56.910Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,17 +210,15 @@
       "plan.md",
       "tasks.md",
       "goal.md",
-      "implementation-summary.md",
-      "research/research.md"
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a42550870a97bfbb171d0cb535caf480d7b2b8c410b8930e31036eb87428ac77",
+    "source_fingerprint": "sha256:0ec4db076190bb7efd5235a213fde04b4565d0f2714d2da1be407f87b5fab629",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f71d72f0667ff3be873a073e05d5a26630ef4b74935fa77e9b640ebfce47d3ac",
-      "plan.md": "95075ba8a51b9077d76b3d0a55e8ac1e2fbb2b6028754d2737239ccffb7cb289",
-      "tasks.md": "19031a5228b127b98bd2f3df0de9105b577a62ebdca71a25fc9bdda5654b89fd",
-      "implementation-summary.md": "b997314546407d90625274846b0ea41eeeec477267dcce553be47b38de16e9dc",
-      "research/research.md": "920cc95a36505dfe22e6791d300402157bd9961445cff3c444ecfb91fd8cfd6b"
+      "spec.md": "02f1f6e1c94b63b88cc7e5ed757cf124e0f6a7894aed43a2e217f267eb301b98",
+      "plan.md": "ae350be3e1f68d4093773b941144ad05ff8d3ef29e399943ea78ebc870b6c0b5",
+      "tasks.md": "f3140ec0a78b5e54a93248d20e4f3b3b515d57f536ff8d1a837aa03d7c138739",
+      "implementation-summary.md": "ecae3aa62336d8c819881e7a3c1082c2140b1bcd8842c51d26fc47b0092c4d02"
     },
     "last_active_at": null
   }

@@ -348,7 +348,13 @@ function buildGoalPrompt(objective, rawOptions = {}) {
   const maxObjectiveChars = Number.isFinite(rawOptions.maxObjectiveChars) ? rawOptions.maxObjectiveChars : DEFAULT_MAX_OBJECTIVE_CHARS;
   const rawObjective = sanitizeInlineText(objective, maxObjectiveChars);
   const objectiveBudget = Math.max(240, Math.min(1200, maxGoalPromptChars - PROMPT_OVERHEAD_CHARS));
-  const objectiveSummary = clampText(rawObjective, objectiveBudget);
+  // The criteria are carried as their own field beside this prompt, so naming
+  // only the packet here keeps one copy instead of two and leaves the budget
+  // to the part a reader cannot reconstruct.
+  const objectiveSummary = clampText(
+    sanitizeInlineText(goalSlice.splitObjectiveSlice(objective).headline, maxObjectiveChars),
+    objectiveBudget,
+  );
   const hints = goalFocusHints(rawObjective);
   return sanitizePromptText([
     `Role: Focused ${runtimeLabel} execution agent operating under the active session goal.`,
@@ -371,6 +377,27 @@ function buildGoalPrompt(objective, rawOptions = {}) {
 // ─────────────────────────────────────────────────────────────────────────────
 // 6. RENDER (byte-compatible marker/field-line template)
 // ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Render the criteria block that follows the objective line.
+ *
+ * Criteria are the part of a goal that decides when work is done, and they sit
+ * at the tail where any truncation lands first. Giving them their own labelled
+ * lines keeps each one whole and lets a trimmed list say so, instead of running
+ * them together into one sentence that a cut can end mid-requirement.
+ *
+ * @param {string[]} criteria - Ordered completion criteria.
+ * @param {number} budgetChars - Characters available for the block.
+ * @returns {string[]} Field lines, empty when there is nothing to show.
+ */
+function renderCriteriaField(criteria, budgetChars) {
+  if (!Array.isArray(criteria) || criteria.length === 0) return [];
+  const { shown, omitted } = goalSlice.selectCriteriaWithin(criteria, budgetChars);
+  if (shown.length === 0) return [`criteria: ${criteria.length} in the goal file`];
+  const lines = ['criteria:', ...shown.map((item) => `- ${sanitizeInlineText(item, DEFAULT_MAX_OBJECTIVE_CHARS)}`)];
+  if (omitted > 0) lines.push(`- (${omitted} more in the goal file)`);
+  return lines;
+}
 
 function calculateObjectivePreviewChars(maxInjectionChars) {
   return Math.max(
@@ -401,7 +428,9 @@ function renderGoalBrief({ goal, runtimeLabel = 'cross-runtime', maxChars = DEFA
     promptSource = buildGoalPrompt(packet.objectiveSlice, { runtimeLabel });
   }
   const objectivePreviewLimit = calculateObjectivePreviewChars(maxChars);
-  const objective = sanitizeInlineText(objectiveSource, Math.min(DEFAULT_MAX_OBJECTIVE_CHARS, objectivePreviewLimit));
+  const split = goalSlice.splitObjectiveSlice(objectiveSource);
+  const objective = sanitizeInlineText(split.headline, Math.min(DEFAULT_MAX_OBJECTIVE_CHARS, objectivePreviewLimit));
+  const criteriaLines = renderCriteriaField(split.criteria, objectivePreviewLimit - objective.length);
   // The Role line is baked at set time from the runtime that created the goal,
   // but the brief should name whichever runtime is reading it now. Relabel it
   // to the caller's runtime so a goal set in one CLI reads correctly in another.
@@ -424,6 +453,7 @@ function renderGoalBrief({ goal, runtimeLabel = 'cross-runtime', maxChars = DEFA
     `[active_goal:${goalId}]`,
     'status: active',
     `objective: ${objective}`,
+    ...criteriaLines,
     'goal_prompt:',
     promptText,
     `last_check: ${verdict} ; reason: ${reason}`,
@@ -442,6 +472,7 @@ function renderGoalBrief({ goal, runtimeLabel = 'cross-runtime', maxChars = DEFA
 
   const buildCompactBlock = (promptText) => [
     `[active_goal:${goalId}]`,
+    ...criteriaLines,
     'goal_prompt:',
     promptText,
     `last_check: ${verdict} ; reason: ${reason}`,
@@ -1088,7 +1119,15 @@ function appendPacketLog({ workspace, packetPath, item, state = 'Done', evidence
   const packet = goalSlice.readPacketGoal(root, packetPath);
   if (!packet) throw new GoalError('PACKET_GOAL_NOT_FOUND', 'No goal.md at that packet path inside the workspace');
   return withFileLocks(packetLockRoot(root), [packetLockName(packet.packetRealPath)], () => {
-    const content = readFileSync(packet.goalPath, 'utf8');
+    const bytes = readFileSync(packet.goalPath);
+    const content = bytes.toString('utf8');
+    // Node replacement-decodes invalid bytes instead of throwing, so writing
+    // the decoded string back would silently rewrite the author's bytes as
+    // U+FFFD. Refuse the row and leave the document exactly as it was: a goal
+    // is authored text, and losing it to a progress note is the worse trade.
+    if (!Buffer.from(content, 'utf8').equals(bytes)) {
+      throw new GoalError('GOAL_NOT_UTF8', 'The goal document is not valid UTF-8; no row was appended');
+    }
     const hashBefore = goalSlice.durableSliceHash(content);
     const logIndex = content.indexOf(goalSlice.LOG_ANCHOR);
     if (logIndex < 0) throw new GoalError('GOAL_LOG_MISSING', 'The goal document has no log anchor');

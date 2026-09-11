@@ -519,7 +519,13 @@ function buildEnhancedGoalPrompt(objective, rawOptions = {}) {
   const options = normalizeOptions(rawOptions);
   const rawObjective = sanitizeInlineText(objective, options.maxObjectiveChars);
   const objectiveBudget = Math.max(240, Math.min(1200, options.maxGoalPromptChars - PROMPT_OVERHEAD_CHARS));
-  const objectiveSummary = clampText(rawObjective, objectiveBudget);
+  // The criteria are carried as their own field beside this prompt, so naming
+  // only the packet here keeps one copy instead of two and leaves the budget
+  // to the part a reader cannot reconstruct.
+  const objectiveSummary = clampText(
+    sanitizeInlineText(goalSlice.splitObjectiveSlice(objective).headline, options.maxObjectiveChars),
+    objectiveBudget,
+  );
   const hints = goalFocusHints(rawObjective);
   const prompt = sanitizePromptText([
     'Role: Focused OpenCode execution agent operating under the active session goal.',
@@ -2736,6 +2742,27 @@ async function unbindGoal(sessionID, rawOptions = {}) {
   }, options);
 }
 
+/**
+ * Render the criteria block that follows the objective line.
+ *
+ * Criteria decide when work is done and sit at the tail where truncation lands
+ * first. Their own labelled lines keep each one whole, and a trimmed list says
+ * how many it left behind rather than reading as the complete set.
+ *
+ * @param {string[]} criteria - Ordered completion criteria.
+ * @param {number} budgetChars - Characters available for the block.
+ * @param {number} maxItemChars - Per-item sanitisation ceiling.
+ * @returns {string[]} Field lines, empty when there is nothing to show.
+ */
+function renderCriteriaField(criteria, budgetChars, maxItemChars) {
+  if (!Array.isArray(criteria) || criteria.length === 0) return [];
+  const { shown, omitted } = goalSlice.selectCriteriaWithin(criteria, budgetChars);
+  if (shown.length === 0) return [`criteria: ${criteria.length} in the goal file`];
+  const lines = ['criteria:', ...shown.map((item) => `- ${sanitizeInlineText(item, maxItemChars)}`)];
+  if (omitted > 0) lines.push(`- (${omitted} more in the goal file)`);
+  return lines;
+}
+
 function renderGoalInjection(goal, rawOptions = {}) {
   if (!goal || goal.status !== 'active') return EMPTY_INJECTION_PREVIEW;
   countMetric(rawOptions, 'renderGoalInjection');
@@ -2751,7 +2778,9 @@ function renderGoalInjection(goal, rawOptions = {}) {
     promptSource = buildEnhancedGoalPrompt(packet.objectiveSlice, options).goalPrompt;
   }
   const objectivePreviewLimit = calculateObjectivePreviewChars(options.maxInjectionChars);
-  const objective = sanitizeInlineText(objectiveSource, Math.min(options.maxObjectiveChars, objectivePreviewLimit));
+  const split = goalSlice.splitObjectiveSlice(objectiveSource);
+  const objective = sanitizeInlineText(split.headline, Math.min(options.maxObjectiveChars, objectivePreviewLimit));
+  const criteriaLines = renderCriteriaField(split.criteria, objectivePreviewLimit - objective.length, options.maxObjectiveChars);
   const goalPrompt = sanitizePromptText(promptSource, options.maxGoalPromptChars);
   const reason = sanitizeInlineText(goal.lastVerifierReason || 'none', DEFAULT_MAX_REASON_CHARS) || 'none';
   const tokenBudget = goal.tokenBudget === null || goal.tokenBudget === undefined ? 'none' : String(goal.tokenBudget);
@@ -2766,6 +2795,7 @@ function renderGoalInjection(goal, rawOptions = {}) {
     `[active_goal:${goalId}]`,
     'status: active',
     `objective: ${objective}`,
+    ...criteriaLines,
     'goal_prompt:',
     promptText,
     `last_check: ${verdict} ; reason: ${reason}`,
@@ -2783,6 +2813,7 @@ function renderGoalInjection(goal, rawOptions = {}) {
 
   const buildCompactBlock = (promptText) => [
     `[active_goal:${goalId}]`,
+    ...criteriaLines,
     'goal_prompt:',
     promptText,
     `last_check: ${verdict} ; reason: ${reason}`,

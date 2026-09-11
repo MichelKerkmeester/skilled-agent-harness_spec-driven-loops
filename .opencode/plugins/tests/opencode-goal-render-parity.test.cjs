@@ -94,3 +94,48 @@ test('the brief cache key changes when a same-length write lands in the same mil
     await rm(stateDir, { recursive: true, force: true });
   }
 });
+
+// A bound packet adds one label both renderers must agree on. Criteria are the
+// part that decides when work is done, so a runtime that renders them under a
+// different name, or not at all, breaks the contract the model reads across
+// runtimes.
+test('both renderers emit the same criteria field for a bound packet', async () => {
+  const { mkdir, writeFile } = require('node:fs/promises');
+  const pluginModule = await import(pluginUrl);
+  const { __test } = pluginModule.default;
+  const workspace = await mkdtemp(join(tmpdir(), 'goal-parity-packet-'));
+  const stateDir = await mkdtemp(join(tmpdir(), 'goal-parity-pstate-'));
+  try {
+    await mkdir(join(workspace, '.git'), { recursive: true });
+    await mkdir(join(workspace, 'specs', 't', '001-fixture'), { recursive: true });
+    await writeFile(join(workspace, 'specs', 't', '001-fixture', 'goal.md'), [
+      '---', 'title: "Goal: parity"', '---',
+      '<!-- ANCHOR:directive -->', '**Objective:** Ship it.', '<!-- /ANCHOR:directive -->',
+      '<!-- ANCHOR:completion -->', '- [ ] alpha holds', '- [ ] beta holds', '<!-- /ANCHOR:completion -->',
+      '<!-- ANCHOR:log -->', '| Item | State | Evidence |', '|---|---|---|', '<!-- /ANCHOR:log -->', '',
+    ].join('\n'), 'utf8');
+
+    const pluginOptions = { stateDir, directory: workspace };
+    const ctx = { sessionID: 'parity-packet' };
+    await __test.executeGoalAction({ action: 'bind', packetPath: 'specs/t/001-fixture' }, ctx, pluginOptions);
+    const pluginGoal = await __test.readGoal(ctx.sessionID, pluginOptions);
+    const pluginBlock = __test.renderGoalInjection(pluginGoal, pluginOptions);
+
+    const coreOptions = { stateDir, scope: { runtime: 'pi', sessionId: 'parity-packet-core', workspace } };
+    const { record } = core.bindGoal({ packetPath: 'specs/t/001-fixture' }, coreOptions);
+    const coreBlock = core.renderGoalBrief({ goal: record, runtimeLabel: 'Pi', workspace });
+
+    assert.deepEqual(labelsOf(coreBlock), labelsOf(pluginBlock), 'label set and order must match when bound');
+    assert.deepEqual(
+      labelsOf(pluginBlock),
+      ['[active_goal:<id>]', 'status', 'objective', 'criteria', 'goal_prompt', 'last_check', 'usage', 'directive', '[/active_goal]'],
+      'the pinned bound label set',
+    );
+    const criteriaOf = (block) => block.split('\n').filter((line) => line === '- alpha holds' || line === '- beta holds');
+    assert.deepEqual(criteriaOf(coreBlock), ['- alpha holds', '- beta holds']);
+    assert.deepEqual(criteriaOf(pluginBlock), ['- alpha holds', '- beta holds']);
+  } finally {
+    await rm(workspace, { recursive: true, force: true });
+    await rm(stateDir, { recursive: true, force: true });
+  }
+});
