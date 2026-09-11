@@ -90,9 +90,6 @@ MODEL_STATE: Dict[str, Any] = {
 
 DEFAULT_MODEL = "moondream2"
 
-# Tasks that require Moondream 3.x (absent from the "moondream2" checkpoint).
-MOONDREAM3_ONLY_TASKS = {"segment", "reason", "ocr"}
-
 
 def _cache_dir() -> str:
     base = os.environ.get("SK_VISION_CACHE_DIR") or os.path.join(
