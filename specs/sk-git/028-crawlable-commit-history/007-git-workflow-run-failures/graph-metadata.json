@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-git/028-crawlable-commit-history/001-research",
-  "spec_folder": "sk-git/028-crawlable-commit-history/001-research",
+  "packet_id": "sk-git/028-crawlable-commit-history/007-git-workflow-run-failures",
+  "spec_folder": "sk-git/028-crawlable-commit-history/007-git-workflow-run-failures",
   "parent_id": "sk-git/028-crawlable-commit-history",
   "children_ids": [],
   "manual": {
@@ -11,45 +11,42 @@
   },
   "derived": {
     "trigger_phrases": [
-      "commit format research",
-      "crawlable commit research",
-      "commit identifier minting",
-      "history rewrite research",
+      "feature specification",
+      "problem statement",
+      "requirements and scope",
+      "success criteria",
       "implementation plan",
       "technical approach",
-      "research lineage plan",
-      "fanout research run",
+      "architecture decisions",
+      "testing strategy",
       "task breakdown",
       "implementation tasks",
       "verification checklist",
       "task dependencies"
     ],
     "key_topics": [
-      "commit",
-      "format",
-      "research",
-      "crawlable",
-      "identifier",
-      "minting",
-      "history",
-      "rewrite",
+      "feature",
+      "specification",
+      "problem",
+      "statement",
+      "requirements",
+      "scope",
+      "success",
+      "criteria",
       "implementation",
       "plan",
       "technical",
       "approach"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "draft",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
-      "implementation-summary.md",
-      "research/research.md",
-      "research/dispatch-prompt.md",
-      ".opencode/skills/sk-git/SKILL.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -89,24 +86,6 @@
         "source": "derived"
       },
       {
-        "name": "research.md",
-        "kind": "doc",
-        "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "dispatch-prompt.md",
-        "kind": "doc",
-        "path": "research/dispatch-prompt.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-git/SKILL.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -125,12 +104,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -138,6 +111,12 @@
       },
       {
         "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -155,13 +134,7 @@
         "source": "derived"
       },
       {
-        "name": "Overview One",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Conductor",
+        "name": "Clean Architecture",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -173,7 +146,13 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow The",
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -195,11 +174,29 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "Nothing in a commit today can be looked up the way `sk-git/028` can",
-    "created_at": "2026-09-11T07:16:23Z",
-    "last_save_at": "2026-09-11T08:07:44.301Z",
+    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "created_at": "2026-09-11T08:06:45Z",
+    "last_save_at": "2026-09-11T08:07:52.598Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,17 +205,15 @@
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
-      "implementation-summary.md",
-      "research/research.md"
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:020ebc2c534cfec6270682104b923f7ec722dbfbeebbf36bcb2c830bf647b11d",
+    "source_fingerprint": "sha256:3fcb51e1f3939ac76ebeb0119f2a205322d95739ecc11e5db737f4cb31dec28d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "90caf4dcb1a49a20501f907e9c0b9ab64389c99c4a45d4e475fe9ccf39a2c729",
-      "plan.md": "cb5d51e36524b05e9e0fe6d5fed51278c807e9ee6f0195ef7de483442b021207",
-      "tasks.md": "5a97dfc3cf0e61a519aa2ce6f801f62b4e6ab1cae1444f11b269f390f1b1e901",
-      "implementation-summary.md": "16ec047905909bdfcedbfa1672eb4b3f94ab4f0a6d1933b221ae17ef34b7376f",
-      "research/research.md": "6231fb735a0dc6dbac9e79a2d3bb35b2f8681bc13c4585085ce3a72e0e073db8"
+      "spec.md": "2ee63e239503db8d69d1361dfbb05a5240944d54d28694f1af8818435e33f40a",
+      "plan.md": "9002a603f28a874651b11bde8dccc794f6ee025712631c63d50c39305e8794f0",
+      "tasks.md": "437dca75f005d7eca2ddf969abfa3e7f5be2c19f3edc2d2eaf9f1830af685d6b",
+      "implementation-summary.md": "c10b58de7a44733ed350a33b9e272d0469ae7d092179ffe9fef72f7b9d8efe24"
     },
     "last_active_at": null
   }

@@ -1,11 +1,11 @@
 ---
 title: "Implementation Plan: Phase 1: research"
-description: "[2-3 sentences: what this implements and the technical approach]"
+description: "One cli-pi lineage running DeepSeek V4.1 Flash at max thinking through the LLM gateway for ten forced iterations, one angle each, over the sk-git commit contract and the live history."
 trigger_phrases:
   - "implementation plan"
   - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "research lineage plan"
+  - "fanout research run"
 importance_tier: "normal"
 contextType: "general"
 ---
@@ -23,13 +23,13 @@ contextType: "general"
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | deep-research loop via `fanout-run.cjs`; cli-pi executor; DeepSeek V4.1 Flash through the llmgateway provider |
+| **Framework** | system-deep-loop research mode, stop policy max-iterations |
+| **Storage** | The lineage directory: JSONL state, iteration files, deltas, strategy, findings registry |
+| **Testing** | The runner's stop-policy verdict, ten state records on disk, citations opened by the conductor |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+One brief, one lineage, ten angles. The brief carries the facts already measured and three non-negotiables, and points the model at the files and git commands that settle each angle. The conductor reads iterations as they land, verifies citations against the repository, and writes the top-level synthesis over all ten.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -38,14 +38,14 @@ contextType: "general"
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Ten iteration records present in the lineage state log
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -54,14 +54,16 @@ contextType: "general"
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Conductor and one detached executor lineage
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **`research/dispatch-prompt.md`**: the ten-angle brief, bound through the research topic
+- **`fanout-run.cjs`**: spawns the pi process, enforces write containment and the four-hour ceiling, writes the ledger
+- **`research/lineages/deepseek/`**: the lineage's entire write surface
+- **`research/research.md`**: the conductor's synthesis, written after the run
 
 ### Data Flow
-[Brief description of how data moves through the system]
+The brief and the live repository go in. Ten iteration files, ten state records and a lineage research.md come out. The conductor verifies and reduces them into the top-level research.md that phase 002 reads.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -69,18 +71,12 @@ contextType: "general"
 <!-- ANCHOR:affected-surfaces -->
 ## FIX ADDENDUM: AFFECTED SURFACES
 
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
+Not applicable. This phase changes no code surface. Every write lands under `research/`.
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
+| `research/lineages/deepseek/` | lineage write surface | created by the runner | `ls` after the run |
+| everything else | read-only sources | unchanged | `git status` shows no change outside the packet |
 <!-- /ANCHOR:affected-surfaces -->
 
 
@@ -99,9 +95,9 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Unit | none, no code is written | - |
+| Integration | the lineage completes ten iterations with stopReason maxIterationsReached | `fanout-run.cjs` verdict, `deep-research-state.jsonl` |
+| Manual | load-bearing claims re-measured by the conductor | git log, the commit-msg hook on a temp message |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -111,7 +107,9 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| `pi` 0.85.1 on PATH | External | Green | No dispatch possible |
+| `LLMGATEWAY_API_KEY` in the launching shell | External | Green, probe answered OK | Provider refusal in output |
+| deep-loop runtime `node_modules` in the worktree | Internal | Green, installed | Runner cannot load the tsx loader |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -119,8 +117,8 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: the lineage fails its verdict or writes outside `research/`
+- **Procedure**: `git checkout -- specs/sk-git/028-crawlable-commit-history/001-research` and delete `research/lineages/`, then relaunch with the same brief
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -132,17 +130,15 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 ## L2: PHASE DEPENDENCIES
 
 ```
-Phase 1 (Setup) ──────┐
-                      ├──► Phase 2 (Core) ──► Phase 3 (Verify)
-Phase 1.5 (Config) ───┘
+Brief written ──► Lineage launched ──► Ten iterations ──► Conductor synthesis ──► 002
 ```
 
 | Phase | Depends On | Blocks |
 |-------|------------|--------|
-| Setup | None | Core, Config |
-| Config | Setup | Core |
-| Core | Setup, Config | Verify |
-| Verify | Core | None |
+| Brief | packet scaffold | Launch |
+| Launch | brief, pi probe | Iterations |
+| Iterations | launch | Synthesis |
+| Synthesis | iterations | 002-format-decision |
 <!-- /ANCHOR:phase-deps -->
 
 ---
@@ -152,10 +148,10 @@ Phase 1.5 (Config) ───┘
 
 | Phase | Complexity | Estimated Effort |
 |-------|------------|------------------|
-| Setup | [Low/Med/High] | [e.g., 1-2 hours] |
-| Core Implementation | [Low/Med/High] | [e.g., 4-8 hours] |
-| Verification | [Low/Med/High] | [e.g., 1-2 hours] |
-| **Total** | | **[e.g., 6-12 hours]** |
+| Setup | Low | 1 hour, done |
+| Core Implementation | Med | 37 minutes wall clock for the run |
+| Verification | Low | 30 minutes |
+| **Total** | | **about 2 hours** |
 <!-- /ANCHOR:effort -->
 
 ---
@@ -164,19 +160,19 @@ Phase 1.5 (Config) ───┘
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Backup created (if data changes)
-- [ ] Feature flag configured
-- [ ] Monitoring alerts set
+- [x] Scaffold committed before launch so containment has a clean baseline
+- [x] Runner log kept in the scratchpad, outside the packet
+- [x] Ledger monitor armed
 
 ### Rollback Procedure
-1. [Immediate action - e.g., disable feature flag]
-2. [Revert code - e.g., git revert or redeploy previous version]
-3. [Verify rollback - e.g., smoke test critical paths]
-4. [Notify stakeholders - if user-facing]
+1. Stop the runner process if it is still alive
+2. Remove `research/lineages/` and restore the packet from the scaffold commit
+3. Relaunch with the same brief and flags
+4. Nothing user-facing changes
 
 ### Data Reversal
-- **Has data migrations?** [Yes/No]
-- **Reversal procedure**: [Steps or "N/A"]
+- **Has data migrations?** No
+- **Reversal procedure**: N/A
 <!-- /ANCHOR:enhanced-rollback -->
 
 ---
@@ -189,24 +185,18 @@ Phase 1.5 (Config) ───┘
 
 ```
 ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
-│   Phase 1   │────►│   Phase 2   │────►│   Phase 3   │
-│   Setup     │     │    Core     │     │   Verify    │
-└─────────────┘     └──────┬──────┘     └─────────────┘
-                          │
-                    ┌─────▼─────┐
-                    │  Phase 2b │
-                    │  Parallel │
-                    └───────────┘
+│   Brief     │────►│  Lineage    │────►│  Synthesis  │
+│  + probe    │     │  10 iters   │     │  + verify   │
+└─────────────┘     └─────────────┘     └─────────────┘
 ```
 
 ### Dependency Matrix
 
 | Component | Depends On | Produces | Blocks |
 |-----------|------------|----------|--------|
-| [Component A] | None | [Output] | B, C |
-| [Component B] | A | [Output] | D |
-| [Component C] | A | [Output] | D |
-| [Component D] | B, C | [Final] | None |
+| Brief | scaffold | dispatch-prompt.md | Lineage |
+| Lineage | brief, pi | iterations, state, lineage research.md | Synthesis |
+| Synthesis | lineage | research/research.md | 002 |
 <!-- /ANCHOR:dependency-graph -->
 
 ---
@@ -214,15 +204,13 @@ Phase 1.5 (Config) ───┘
 <!-- ANCHOR:critical-path -->
 ## L3: CRITICAL PATH
 
-1. **[Phase/Task]** - [Duration estimate] - CRITICAL
-2. **[Phase/Task]** - [Duration estimate] - CRITICAL
-3. **[Phase/Task]** - [Duration estimate] - CRITICAL
+1. **Lineage run** - 37 minutes observed - CRITICAL
+2. **Conductor verification and synthesis** - 30 minutes - CRITICAL
 
-**Total Critical Path**: [Sum of durations]
+**Total Critical Path**: about 70 minutes
 
 **Parallel Opportunities**:
-- [Task A] and [Task B] can run simultaneously
-- [Task C] and [Task D] can run after Phase 1
+- None inside the run. The runner reverts any write outside the lineage and fails the run, so the conductor must not edit the repository while a lineage is live.
 <!-- /ANCHOR:critical-path -->
 
 ---
@@ -232,29 +220,29 @@ Phase 1.5 (Config) ───┘
 
 | Milestone | Description | Success Criteria | Target |
 |-----------|-------------|------------------|--------|
-| M1 | [Setup Complete] | [All dependencies ready] | [Date/Phase] |
-| M2 | [Core Done] | [Main features working] | [Date/Phase] |
-| M3 | [Release Ready] | [All tests pass] | [Date/Phase] |
+| M1 | Lineage launched | ledger shows started, lineage dir exists | 2026-09-11, done |
+| M2 | Ten iterations | state log holds 10 records, stopReason maxIterationsReached | 2026-09-11, done |
+| M3 | Synthesis | research/research.md written and load-bearing claims re-measured | 2026-09-11, done |
 <!-- /ANCHOR:milestones -->
 
 ---
 
 ## L3: ARCHITECTURE DECISION RECORD
 
-### ADR-001: [Decision Title]
+### ADR-001: One lineage, forced depth
 
-**Status**: [Proposed/Accepted/Deprecated]
+**Status**: Accepted
 
-**Context**: [What problem we're solving]
+**Context**: The operator asked for ten iterations with no early convergence on one model through the gateway.
 
-**Decision**: [What we decided]
+**Decision**: One cli-pi lineage, `iterations: 10`, `--stop-policy max-iterations`, a four-hour ceiling, one angle per iteration fixed in the brief.
 
 **Consequences**:
-- [Positive outcome 1]
-- [Negative outcome + mitigation]
+- Every angle is covered once, in order, and the run cannot end early
+- One model is one opinion. Phase 002 adds a second lens before the operator decides.
 
 **Alternatives Rejected**:
-- [Option B]: [Why rejected]
+- Two lineages on two models: doubles cost, and the operator named one model
+- Native executor: the operator named cli-pi and DeepSeek
 
 ---
-

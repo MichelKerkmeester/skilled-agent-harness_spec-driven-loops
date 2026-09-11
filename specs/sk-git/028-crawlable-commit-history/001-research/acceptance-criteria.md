@@ -10,18 +10,19 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/001-research"
-    last_updated_at: "2026-09-11T07:16:25Z"
-    last_updated_by: "scaffold"
-    recent_action: "Authored the acceptance criteria for this packet"
-    next_safe_action: "Meet, waive or supersede the open criteria"
+    packet_pointer: "sk-git/028-crawlable-commit-history/001-research"
+    last_updated_at: "2026-09-11T10:20:00Z"
+    last_updated_by: "claude-fable-5-1"
+    recent_action: "Met every criterion after the lineage settled"
+    next_safe_action: "Start phase 002 from research/research.md"
     blockers: []
-    key_files: []
+    key_files:
+      - "research/research.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "[SESSION-ID]"
+      session_id: "2026-09-11-skgit-028"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,9 +40,9 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** [PACKET-ID]
-**Level:** [2/3/3+]
-**Status:** [Draft/In Progress/Complete]
+**Packet:** sk-git/028-crawlable-commit-history/001-research
+**Level:** 3
+**Status:** Complete
 **Date:** 2026-09-11
 <!-- /ANCHOR:metadata -->
 
@@ -54,7 +55,12 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given [context], When [action], Then [observable outcome] | [command, file:line, or artifact that proves it] | Unmet | - |
+| AC-001 | REQ-001 | Given the brief and the launched lineage, When the run settles, Then ten iteration files exist and the synthesis record says maxIterationsReached | `ls research/lineages/deepseek/iterations` lists 10 files; state log line `synthesis_complete ... stopReason maxIterationsReached`, 16 records | Met | - |
+| AC-002 | REQ-002 | Given any iteration file, When the conductor opens one cited file:line, Then the quoted text is there | SKILL.md:405 and commit-msg:72 matched the quotes in iteration-001.md; global hooks path confirmed by `git config --global core.hooksPath` | Met | - |
+| AC-003 | REQ-003 | Given the lineage research.md, When the conductor reduces it, Then research/research.md ranks recommendations and marks each implementable today or needs a decision | research/research.md sections 3 and 4 | Met | - |
+| AC-004 | REQ-004 | Given angle 4, When candidate messages are run through the hook regexes, Then each result is recorded | iteration-004.md What was measured; conductor re-ran a trailer-block message (exit 0) and a numeric scope (exit 1) | Met | - |
+| AC-005 | REQ-005 | Given angle 8, When the rewrite method is chosen, Then the filter-repo invocation and the citation remap method are named | iteration-008.md (commit-callback on a mirror) and iteration-009.md (prefix remap from the commit map) | Met | - |
+| AC-006 | US-002 | Given the run, When `git status` is read, Then the lineage wrote nothing outside `research/` | `git status --short` after the run: only research/ paths and metadata untracked | Met | - |
 
 ### Status values
 
@@ -79,8 +85,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** [Yes/No]
+**Closeable:** Yes
 
-[One or two sentences: which criteria carried the packet, and what was consciously
-left out. Write this when the packet is closed, not before.]
+AC-001 and AC-003 carried the packet: the run reached its cap and the synthesis ranks what phase 002 must decide. Left out on purpose: a second model lens, which phase 002 supplies before the operator approves the grammar.
 <!-- /ANCHOR:closure -->

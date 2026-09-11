@@ -1,0 +1,22 @@
+{
+  "run_id": "1789111510857-0nqzvk",
+  "loop_type": "research",
+  "spec_folder": ".opencode/specs/sk-git/028-crawlable-commit-history/001-research",
+  "base_artifact_dir": ".opencode/specs/sk-git/028-crawlable-commit-history/001-research/research",
+  "total_cli_lineages": 1,
+  "orphaned_lineages": [],
+  "total": 1,
+  "succeeded": 0,
+  "failed": 1,
+  "all_failed": true,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 1
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 1,
+    "salvage_miss": 0
+  }
+}

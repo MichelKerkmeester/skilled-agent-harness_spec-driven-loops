@@ -1,0 +1,480 @@
+{
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "q1-contract",
+      "text": "Which commit-message rules does the current sk-git contract and commit-msg hook enforce, and which collide with a numbered identifier?",
+      "status": "resolved",
+      "resolvedAtIteration": 1,
+      "evidence": [
+        ".opencode/scripts/git-hooks/commit-msg:43-48,72,79-81,83-105,110-117,123-129,139-141,153-155",
+        ".opencode/skills/sk-git/SKILL.md:352-519"
+      ]
+    },
+    {
+      "id": "q2-baseline",
+      "text": "What do the 9,106 commits on skilled/v4.0.0.0/main actually contain?",
+      "status": "resolved",
+      "resolvedAtIteration": 2,
+      "evidence": [
+        "command:git rev-list --count -> 9,108->9,112 live",
+        "command:SUBJECT_RE scan (6,643/9,108)",
+        "command:trailer scans"
+      ]
+    },
+    {
+      "id": "q3-search",
+      "text": "What can each search surface match in a subject, body, or trailer?",
+      "status": "resolved",
+      "resolvedAtIteration": 3,
+      "evidence": [
+        "command:git log --grep/--all-match/--fixed-strings/-S/-G",
+        "command:%(trailers:key=...) -> 119/349",
+        "file:.opencode/skills/system-spec-kit/runtime/cli/retrieval/lib/corpus.mjs:29"
+      ]
+    },
+    {
+      "id": "q4-identifier",
+      "text": "Which identifier scheme survives git and mints without collision at what subject cost?",
+      "status": "resolved",
+      "resolvedAtIteration": 4,
+      "evidence": [
+        "command:hook runs c1-c9",
+        "file:.opencode/skills/sk-git/scripts/worktree-naming.sh:8-32,209-247",
+        "command:uniq -d -> 413/1002"
+      ]
+    },
+    {
+      "id": "q5-trailer-shape",
+      "text": "What body/trailer shape makes commits searchable by packet, phase, and identifier?",
+      "status": "resolved",
+      "resolvedAtIteration": 5,
+      "evidence": [
+        "command:Spec: 81 vs %(trailers:key=Spec) 2",
+        "command:interpret-trailers placement demos",
+        "command:body word stats (median 101)"
+      ]
+    },
+    {
+      "id": "q6-prior-art",
+      "text": "What does prior art solve, cost, and whether it transfers?",
+      "status": "resolved",
+      "resolvedAtIteration": 6,
+      "evidence": [
+        "local knowledge: Conventional Commits, Gerrit, kernel, jj, platforms, Fossil",
+        ".opencode/skills/sk-git/assets/commit-message-template.md:149"
+      ]
+    },
+    {
+      "id": "q7-mapping",
+      "text": "How do the existing commits map to a packet and identifier, and what rule applies to unmappable ones?",
+      "status": "resolved",
+      "resolvedAtIteration": 7,
+      "evidence": [
+        "command:cascade -> 6,036 mapped / 3,075 fallback",
+        "command:scope-only ambiguity 52/310",
+        "command:multi-packet ties 41"
+      ]
+    },
+    {
+      "id": "q8-rewrite",
+      "text": "What do filter-repo callbacks preserve and lose; are notes/replace viable alternatives?",
+      "status": "resolved",
+      "resolvedAtIteration": 8,
+      "evidence": [
+        "command:git filter-repo --help",
+        "command:signature counts 11B/9102N",
+        "command:notes 0 / replace 0 / fetch refspec"
+      ]
+    },
+    {
+      "id": "q9-remap",
+      "text": "Where are commit hashes cited, what is the remap script, and what is the force-push blast radius + rollback?",
+      "status": "resolved",
+      "resolvedAtIteration": 9,
+      "evidence": [
+        "command:citation token analysis 1,700+294/7,260",
+        "command:message cites 460",
+        "command:refs scan 60/28/149/8/2"
+      ]
+    },
+    {
+      "id": "q10-plan",
+      "text": "What must change in hooks/tooling/docs, and what should phases 002-006 decide/build?",
+      "status": "resolved",
+      "resolvedAtIteration": 10,
+      "evidence": [
+        "iteration 10 decision table",
+        "file:.opencode/scripts/install-git-hooks.sh:69-107",
+        "command:tests inventory"
+      ]
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "f-contract-grammar",
+      "text": "SUBJECT_RE allows 13 types with lowercase kebab scope; numeric-only scopes block; summary rules block lowercase/space/punct/vague; >100 chars blocks; process labels warn.",
+      "addedAtIteration": 1,
+      "sources": [
+        ".opencode/scripts/git-hooks/commit-msg:72,79-81,83-105,110-113"
+      ]
+    },
+    {
+      "id": "f-trailer-whitelist",
+      "text": "TRAILER_RE is a closed whitelist; new keys (Spec/Phase/Commit-Id) count as explanatory body and a machine line satisfies the >=4-path body gate.",
+      "addedAtIteration": 1,
+      "sources": [
+        ".opencode/scripts/git-hooks/commit-msg:117,127-129,153-155"
+      ]
+    },
+    {
+      "id": "f-machine-wide-hook",
+      "text": "The hook is active machine-wide via global core.hooksPath symlinked to the main clone's hook sources; install writes symlinks only.",
+      "addedAtIteration": 1,
+      "sources": [
+        "command:git rev-parse --git-path hooks",
+        ".opencode/scripts/install-git-hooks.sh:29-107"
+      ]
+    },
+    {
+      "id": "f-baseline",
+      "text": "Live baseline 9,108->9,112 commits; 73% SUBJECT_RE match; 1,355 numeric scopes; 2,948 subjects >80 chars; 558 >100.",
+      "addedAtIteration": 2,
+      "sources": [
+        "command:baseline scan"
+      ]
+    },
+    {
+      "id": "f-trailer-reality",
+      "text": "Co-Authored-By 80.8%, Claude-Session 42.1%, Refs 3.8% (306 spec-path, 0 numeric); bodies 90.1%.",
+      "addedAtIteration": 2,
+      "sources": [
+        "command:trailer scan"
+      ]
+    },
+    {
+      "id": "f-citation-mass",
+      "text": "12,718 ten-hex tokens across 1,904 specs markdown files; 31 files elsewhere under .opencode/skills; zero in changelogs/root docs.",
+      "addedAtIteration": 2,
+      "sources": [
+        "command:rg token scan"
+      ]
+    },
+    {
+      "id": "f-grep",
+      "text": "--grep matches any message line (case-sensitive, ^ per line, OR default, AND via --all-match); packet AND query = 2 commits; -S/-G = 0 (diffs only).",
+      "addedAtIteration": 3,
+      "sources": [
+        "command:git log experiments"
+      ]
+    },
+    {
+      "id": "f-trailer-loss",
+      "text": "%(trailers:key=Refs) extracts 119/349; final contiguous paragraph only; keys case-insensitive; Commit-Id already parseable.",
+      "addedAtIteration": 3,
+      "sources": [
+        "command:trailer extraction",
+        "commit:8649953e01"
+      ]
+    },
+    {
+      "id": "f-trigger-index",
+      "text": "Trigger index corpus = specs/.opencode-skills/install-guides docs; research lineages excluded; commits cannot enter without a new pipeline.",
+      "addedAtIteration": 3,
+      "sources": [
+        ".opencode/skills/system-spec-kit/runtime/cli/retrieval/lib/corpus.mjs:29"
+      ]
+    },
+    {
+      "id": "f-trailer-zero-cost",
+      "text": "All candidate id shapes pass the hook in a final trailer block at zero subject cost; scope placement dies; subject placement contradicts the doc contract.",
+      "addedAtIteration": 4,
+      "sources": [
+        "command:hook runs c1-c9"
+      ]
+    },
+    {
+      "id": "f-allocator",
+      "text": "worktree-naming.sh lock + high-water allocator transfers to commit-id minting; no back-fill; ceiling.",
+      "addedAtIteration": 4,
+      "sources": [
+        ".opencode/skills/sk-git/scripts/worktree-naming.sh:8-32,209-247,250-309"
+      ]
+    },
+    {
+      "id": "f-duplicate-subjects",
+      "text": "413 duplicated subjects covering 1,002 commits: message identity is not unique; copy operations duplicate embedded ids unless policy handles it.",
+      "addedAtIteration": 4,
+      "sources": [
+        "command:uniq -d"
+      ]
+    },
+    {
+      "id": "f-four-key-shape",
+      "text": "Canonical shape: Context/Changes/Verification prose + final block Spec/Phase/Commit-Id/Refs; placement law enforced by interpret-trailers behavior.",
+      "addedAtIteration": 5,
+      "sources": [
+        "command:interpret-trailers demos"
+      ]
+    },
+    {
+      "id": "f-spec-gap",
+      "text": "Spec: appears in 81 commits but only 2 extract; placement outside the final paragraph is why.",
+      "addedAtIteration": 5,
+      "sources": [
+        "command:grep vs extraction"
+      ]
+    },
+    {
+      "id": "f-body-budget",
+      "text": "Body norm: median 101 words, mean 121.5; target <=120 words, Context <=40.",
+      "addedAtIteration": 5,
+      "sources": [
+        "command:body word stats"
+      ]
+    },
+    {
+      "id": "f-gerrit",
+      "text": "Gerrit stamps message-embedded ids that survive rewrites - mechanism transfers; review semantics and duplicate-on-copy do not.",
+      "addedAtIteration": 6,
+      "sources": [
+        "local knowledge"
+      ]
+    },
+    {
+      "id": "f-cascade",
+      "text": "Retrofit cascade: 297 refs + 65 spec + 719 scope-dir + 4,250 unique-touch + 705 dominant = 6,036 mapped; 3,075 fallback (41 ties, 310 scope-only, 2,724 no-signal).",
+      "addedAtIteration": 7,
+      "sources": [
+        "command:cascade"
+      ]
+    },
+    {
+      "id": "f-scope-ambiguity",
+      "text": "Scope-only mapping is ambiguous: of 310 scope-only commits, 52 resolve to one track; number 80 spans 13 tracks.",
+      "addedAtIteration": 7,
+      "sources": [
+        "command:track analysis"
+      ]
+    },
+    {
+      "id": "f-drift",
+      "text": "Live drift: 9,108->9,112 commits during the session; pin SHA and stop writers for the rewrite window.",
+      "addedAtIteration": 7,
+      "sources": [
+        "command:tip drift"
+      ]
+    },
+    {
+      "id": "f-filter-repo",
+      "text": "filter-repo: stream rewrite; prunes reflogs/objects; fresh-clone abort; commit-map old/new cumulative; signatures+extended headers stripped; message-callback also hits tag messages.",
+      "addedAtIteration": 8,
+      "sources": [
+        "command:git filter-repo --help"
+      ]
+    },
+    {
+      "id": "f-notes-replace",
+      "text": "notes/replace are not fetched/pushed by default, not message-searchable, not rendered by GitHub - rejected as id carriers.",
+      "addedAtIteration": 8,
+      "sources": [
+        "command:fetch refspec",
+        "command:notes/replace counts"
+      ]
+    },
+    {
+      "id": "f-corpus-real",
+      "text": "Citation corpus reduces to 1,700 commit-prefix tokens + 294 full-SHA cites in 7,260 unique; 5,560 decoys; token 1e58d845af x4,287; zero 10-hex collisions.",
+      "addedAtIteration": 9,
+      "sources": [
+        "command:token analysis"
+      ]
+    },
+    {
+      "id": "f-message-cites",
+      "text": "460 commit messages cite 551 hex tokens; not remappable in the first rewrite pass.",
+      "addedAtIteration": 9,
+      "sources": [
+        "command:message scan"
+      ]
+    },
+    {
+      "id": "f-blast",
+      "text": "Blast radius: 60 branches, 28 worktrees (2 prunable), 149 tags (98 annotated), 8 origin refs, 2 dependabot; live-sync must be stopped and reset; main/skilled force-push pre-push-exempt.",
+      "addedAtIteration": 9,
+      "sources": [
+        "command:refs scan",
+        ".opencode/bin/git-sync.sh"
+      ]
+    },
+    {
+      "id": "f-enforcement",
+      "text": "Enforcement: extend TRAILER_RE; repo-identity-aware prepare-commit-msg stamper; allocator reuse; tests are the gap; five doc surfaces.",
+      "addedAtIteration": 10,
+      "sources": [
+        "iteration 10"
+      ]
+    },
+    {
+      "id": "f-phase-plan",
+      "text": "Phase plan 002 contract freeze -> 003 forward tooling -> 004 mapping -> 005 rewrite execution -> 006 convergence, each with a gate.",
+      "addedAtIteration": 10,
+      "sources": [
+        "iteration 10"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-numeric-scope",
+      "text": "Identifier in numeric/packet scope position",
+      "reason": "Hook blocks numeric scopes; doc contract forbids packet identifiers in scope; slash forms fail SUBJECT_RE.",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-subject-default",
+      "text": "Identifier as default subject prefix",
+      "reason": "Passes the hook but spends the 80/100 budget and violates the summary rule.",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-hash-derived",
+      "text": "Hash-derived identifier",
+      "reason": "Changes whenever the hash changes - the brief's anti-pattern.",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-date-id",
+      "text": "Date-based id as primary",
+      "reason": "Redundant with committer date; timezone races; needs a lock anyway.",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-content-primary",
+      "text": "Content-derived id as primary address",
+      "reason": "Redefines the question; no patch id for merges; changes on amend/squash.",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-pickaxe",
+      "text": "-S/-G pickaxe for message retrieval",
+      "reason": "Zero hits; they search diffs.",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-trigger-ingest",
+      "text": "Commits entering the trigger index as written",
+      "reason": "Docs-only corpus; research lineages excluded; needs a new pipeline.",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-kernel-hashrefs",
+      "text": "Kernel-style hash-prefix commit references",
+      "reason": "Dangle under the planned rewrite.",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-fossil",
+      "text": "Fossil-style content addressing",
+      "reason": "Incompatible with any rewrite.",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-notes",
+      "text": "git notes as identifier carrier",
+      "reason": "Not --grep-searchable, not published, not rendered.",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-replace",
+      "text": "git replace as identifier carrier",
+      "reason": "Local-only; no platform support.",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-tag-message-stamp",
+      "text": "Naive --message-callback stamping",
+      "reason": "Processes tag messages too; use --commit-callback.",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-scope-only",
+      "text": "Scope-number-only packet mapping",
+      "reason": "258/310 scope-only commits span 2-20 tracks.",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-trailer-primary",
+      "text": "Trailer-based mapping as primary",
+      "reason": "Refs+Spec cover 362 commits; too sparse.",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-non-md-scan",
+      "text": "Scanning non-markdown files for citations",
+      "reason": "CSS colors, digests, benchmark data - noise.",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-uppercase",
+      "text": "Uppercase token matching",
+      "reason": "Sampled matches are epoch seconds, not commits.",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-brief-fixtures",
+      "text": "Brief fixture counts as execution baseline",
+      "reason": "Live measurement: 9,112, 60 branches, 28 worktrees, 149 tags.",
+      "addedAtIteration": 2
+    }
+  ],
+  "coverageBySources": {
+    "repo-files": 31,
+    "git-commands": 43,
+    "local-knowledge": 6,
+    "spec-kit-retrieval": 3
+  },
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0.78,
+  "graphDecision": "STOP",
+  "graphBlockers": [],
+  "divergence": {
+    "completed": [],
+    "failures": [],
+    "overrides": [],
+    "saturatedDirections": [
+      "contract-and-hook",
+      "baseline-measurement",
+      "search-surfaces",
+      "identifier-design",
+      "body-trailer-shape",
+      "prior-art",
+      "retrofit-mapping",
+      "rewrite-mechanics",
+      "citation-remap",
+      "enforcement-and-plan"
+    ]
+  },
+  "metrics": {
+    "iterationsCompleted": 10,
+    "openQuestions": 0,
+    "resolvedQuestions": 10,
+    "keyFindings": 26,
+    "ruledOutDirections": 17,
+    "newInfoRatios": [
+      1.0,
+      0.9,
+      0.85,
+      0.85,
+      0.8,
+      0.6,
+      0.85,
+      0.8,
+      0.8,
+      0.75
+    ],
+    "averageNewInfoRatio": 0.82,
+    "stopReason": "maxIterationsReached"
+  },
+  "lastUpdated": "2026-09-11T08:01:51Z"
+}

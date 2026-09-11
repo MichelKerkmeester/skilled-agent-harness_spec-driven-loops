@@ -51,11 +51,13 @@ Frozen choices. Changing one is an amendment.
 |----|----------|
 | D1 | Research first. Phase 001 runs 10 iterations on cli-pi with deepseek-v4.1-flash at max thinking, convergence off. No implementation before research.md exists. |
 | D2 | The grammar is frozen in 002's decision record and approved by the operator before any hook or skill file changes. |
-| D3 | The rewrite targets main, skilled/v4.0.0.0 and the five tags only. Other branches and worktrees are rebased or archived, never rewritten. |
+| D3 | The rewrite targets main, skilled/v4.0.0.0 and the tags phase 005 lists from the live refs, pinned by SHA at execution time. Other branches and worktrees are rebased or archived, never rewritten. |
 | D4 | Commit-hash citations under specs/ are remapped in the same phase as the rewrite. |
 | D5 | The force-push in 005 needs a written rollback and a fresh yes from the operator. No approval transfers. |
 | D6 | Implementation dispatches run on cli-pi with deepseek-v4.1-flash, high or max by task. Code follows sk-code opencode. Skill and README markdown follows sk-doc create-skill and create-readme. |
 | D7 | Work lives on worktree branch worktrees/048-crawlable-commit-history until the operator merges. |
+| D8 | A repo rule for the git discipline (commit identity, history rewrite, run-safe git behavior) is decided in 002 and, if needed, authored in 006 through sk-doc create-repo-rule, wired into REPO RULES.md and reflected in AGENTS.md section 5. |
+| D9 | Phase 007 analyzes every git workflow that can fail an automated run (hooks, live-sync, write containment, push policy, worktree state) and adjusts sk-git and the hooks so a run does not fail on them. |
 
 ### Operator copy
 
@@ -83,6 +85,7 @@ phase and binds as if written here.
 | 004-search-surface | `004-search-surface/goal.md` |
 | 005-history-rewrite | `005-history-rewrite/goal.md` |
 | 006-docs-and-release | `006-docs-and-release/goal.md` |
+| 007-git-workflow-run-failures | `007-git-workflow-run-failures/goal.md` |
 
 **Precedence.** Decisions above outrank child detail. Child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -107,6 +110,8 @@ here are invisible to whatever judges completion.
 - [ ] rg over specs/ finds zero pre-rewrite 10-hex hashes that existed in the old history
 - [ ] validate.sh specs/sk-git/028-crawlable-commit-history --strict --recursive prints RESULT: PASSED for the parent and all six children
 - [ ] validate_document.py, package_skill.py --check and ci-skill-root-metadata.cjs exit 0 for sk-git
+- [ ] REPO RULES.md routes to a git repo rule that validate_document.py accepts, or 002's decision record says why none is needed, and AGENTS.md section 5 matches it
+- [ ] 007-git-workflow-run-failures/implementation-summary.md lists every git workflow that could fail a run with its adjustment and a passing test or reproduction
 <!-- /ANCHOR:completion -->
 
 ---
@@ -124,11 +129,13 @@ and findings belong here.
 |------|-------|----------|
 | Worktree allocated | Done | `worktrees/048-crawlable-commit-history` at `/Users/michelkerkmeester/worktrees/public/048-crawlable-commit-history` |
 | Packet scaffolded | Done | `create.sh --track sk-git --phase --phases 6 --level 3 --with-goal` |
-| Phase 001 research | Pending | |
+| Phase 001 research | Done | lineage `research/lineages/deepseek`: 10 iterations, synthesis stopReason maxIterationsReached, 16 state records |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
 | Parent goal.md not produced by --with-goal | Rendered by hand with inline-gate-renderer at level phase |
+| The brief said 5 tags, 20 worktrees, 59 branches, 9,106 commits | Live refs: 149 tags (8 backup), 28 worktrees, 60 branches, 9,110 and moving. D3 amended to pin by SHA at execution time. |
+| Runner failed the lineage on write containment after all 10 iterations | The conductor edited planning docs outside the lineage while it ran. The runner reverted those edits and marked the lineage failed. Research artifacts were untouched. Rule for every later dispatch: change nothing in the repository while a lineage runs. |
 <!-- /ANCHOR:log -->

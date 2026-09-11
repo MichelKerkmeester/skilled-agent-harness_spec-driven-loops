@@ -85,7 +85,9 @@ Give every commit a stable, numbered, crawlable identity and a body shaped for s
 - A researched, evidence-backed commit grammar: subject, body, trailers and a numbered identifier that survives search by `git log --grep`, GitHub search and the spec-kit trigger index.
 - The sk-git contract update: `SKILL.md` commit logic, the commit-message template asset, the commit workflow reference, the preflight advisory rule and the blocking `commit-msg` hook, each with a test.
 - The search surface the format promises: recipes, and an index only if research shows plain `git log` is not enough.
-- The retroactive rewrite of `main`, `skilled/v4.0.0.0` and the five tags with `git filter-repo`, an old-to-new hash map and a citation remap over `specs/**/*.md`.
+- The retroactive rewrite of `main`, `skilled/v4.0.0.0` and the tags phase 005 lists from the live refs with `git filter-repo`, an old-to-new hash map and a citation remap over `specs/**/*.md`.
+- A repo rule for the git discipline, wired into `REPO RULES.md` and reflected in `AGENTS.md`, if phase 002 decides the current rules do not already cover it.
+- An analysis of every git workflow that can fail an automated run, and the adjustments that stop it.
 - sk-git documentation, changelog, advisor vocabulary and skill-root metadata for the new capability.
 
 ### Out of Scope
@@ -111,6 +113,10 @@ Give every commit a stable, numbered, crawlable identity and a body shaped for s
 | `.opencode/skills/sk-git/README.md` | Modify | 006-docs-and-release | Capability overview |
 | `.opencode/skills/sk-git/changelog/v1.6.0.0.md` | Create | 006-docs-and-release | Release entry |
 | `.opencode/skills/sk-git/graph-metadata.json` | Modify | 006-docs-and-release | Advisor vocabulary for commit search |
+| `repo-rules/<git-rule>.md` | Create | 006-docs-and-release | The git discipline rule, if 002 decides one is needed |
+| `REPO RULES.md` | Modify | 006-docs-and-release | Trigger row routing git actions to the rule |
+| `AGENTS.md` | Modify | 006-docs-and-release | Section 5 Git Workspace Safety row for commit identity and run-safe git |
+| `.opencode/scripts/git-hooks/*` and `.opencode/bin/git-sync.sh` | Modify | 007-git-workflow-run-failures | Adjustments so hooks and live-sync cannot fail an automated run |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -122,13 +128,15 @@ Give every commit a stable, numbered, crawlable identity and a body shaped for s
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | `001-research/` | Ten iterations of deep research on commit grammar, identifier minting and safe history rewrite, run by cli-pi with DeepSeek V4.1 Flash at max | Planned |
+| 1 | `001-research/` | Ten iterations of deep research on commit grammar, identifier minting and safe history rewrite, run by cli-pi with DeepSeek V4.1 Flash at max | Complete |
 | 2 | `002-format-decision/` | Freeze the grammar, the identifier scheme and the rewrite mapping rule in a decision record the operator approves | Planned |
 | 3 | `003-contract-and-hook/` | Update the sk-git contract, the commit-msg hook and the preflight rule, each with a test | Planned |
 | 4 | `004-search-surface/` | Search recipes, catalog and playbook entries, and an index only if research shows one is needed | Planned |
 | 5 | `005-history-rewrite/` | Rewrite main, skilled/v4.0.0.0 and tags on a mirror clone, remap citations in specs, force-push after a written rollback and an explicit yes | Planned |
-| 6 | `006-docs-and-release/` | README, changelog, advisor metadata, skill-root metadata and the parent closeout | Planned |
+| 6 | `006-docs-and-release/` | README, changelog, advisor metadata, skill-root metadata, the git repo rule with its REPO RULES.md and AGENTS.md integration, and the parent closeout, executed last | Planned |
+| 7 | `007-git-workflow-run-failures/` | Analyze every git workflow that can fail an automated run and adjust sk-git and the hooks so it does not, executed before 006 | Planned |
 
+| 7 | 007-git-workflow-run-failures/ | [Phase 7 scope] | Pending |
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins
@@ -145,7 +153,10 @@ Give every commit a stable, numbered, crawlable identity and a body shaped for s
 | 003-contract-and-hook | 004-search-surface | Hook and rule tests pass, drift guards green | `node --test` and `run-all-drift-guards.sh` exit 0 |
 | 004-search-surface | 005-history-rewrite | Every recipe resolves a known commit | Recipes run against HEAD |
 | 005-history-rewrite | 006-docs-and-release | Rewritten lines on origin, zero unmapped citations, recursive validate green | `validate.sh --recursive --strict` PASSED |
-| 006-docs-and-release | Done | sk-doc validators and skill-root metadata gate green | `validate_document.py`, `package_skill.py --check`, `ci-skill-root-metadata.cjs` exit 0 |
+| 005-history-rewrite | 007-git-workflow-run-failures | Rewritten lines on origin | followers synced |
+| 007-git-workflow-run-failures | 006-docs-and-release | Every run-failing workflow adjusted with a test or reproduction | `node --test` and hook tests exit 0 |
+| 006-docs-and-release | Done | sk-doc validators, skill-root metadata gate and repo-rule validation green | `validate_document.py`, `package_skill.py --check`, `ci-skill-root-metadata.cjs` exit 0 |
+| 006-docs-and-release | 007-git-workflow-run-failures | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->
 
 ---

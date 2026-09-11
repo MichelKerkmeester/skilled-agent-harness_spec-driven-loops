@@ -1,0 +1,4 @@
+feat(sk-git): add crawlable commit identifiers
+
+Commit-Id: sk-git/028-003
+Refs: specs/sk-git/028-crawlable-commit-history
