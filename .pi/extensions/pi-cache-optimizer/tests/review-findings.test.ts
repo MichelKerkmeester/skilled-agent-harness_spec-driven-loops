@@ -1119,13 +1119,66 @@ describe('DeepSeek compat classification', () => {
     };
   }
 
-  test('long retention is optional/verify-first, never required or in the snippet', () => {
+  test('a model name alone does not declare the DeepSeek wire format', () => {
     const model = deepSeekProxyModel();
+
+    // The family name still selects the cache adapter, but it is not protocol
+    // evidence: without an explicit opt-in the DeepSeek-specific checks stay off,
+    // and the flag that would gate them is never demanded of the operator.
+    assert.equal(internals.isDeepSeekCompatCheckApplicable(model), false);
+    assert.deepEqual(internals.describeMissingDeepSeekCompat(model), []);
+
+    // Only the generic proxy advice remains, which is safe on any channel.
+    assert.deepEqual(
+      internals.describeMissingCacheCompatForModel(model),
+      ['sendSessionAffinityHeaders'],
+    );
+  });
+
+  test('an explicit wire-format opt-in re-enables the DeepSeek reasoning check', () => {
+    const model = deepSeekProxyModel({
+      thinkingFormat: 'deepseek',
+      sendSessionAffinityHeaders: true,
+    });
+
+    assert.equal(internals.isDeepSeekCompatCheckApplicable(model), true);
+    assert.deepEqual(
+      internals.describeMissingDeepSeekCompat(model),
+      ['requiresReasoningContentOnAssistantMessages'],
+    );
+  });
+
+  test('no suggestion or rendered advice ever proposes the DeepSeek wire format', () => {
+    const suggestion = internals.buildDeepSeekCompatSuggestion([
+      'sendSessionAffinityHeaders',
+      'requiresReasoningContentOnAssistantMessages',
+    ]);
+    assert.equal('thinkingFormat' in suggestion, false);
+    assert.deepEqual(suggestion, {
+      sendSessionAffinityHeaders: true,
+      requiresReasoningContentOnAssistantMessages: true,
+    });
+
+    const text = internals.buildDeepSeekCompatWarningText('llmgateway/deepseek-v4.1-flash', [
+      'sendSessionAffinityHeaders',
+      'requiresReasoningContentOnAssistantMessages',
+    ]);
+    assert.ok(!text.includes('thinkingFormat'));
+  });
+
+  test('an explicit affinity opt-out is respected instead of reported missing', () => {
+    const model = deepSeekProxyModel({ sendSessionAffinityHeaders: false });
+
+    assert.deepEqual(internals.describeMissingCacheCompatForModel(model), []);
+  });
+
+  test('long retention is optional/verify-first, never required or in the snippet', () => {
+    const model = deepSeekProxyModel({ thinkingFormat: 'deepseek' });
     assert.equal(internals.isDeepSeekCompatCheckApplicable(model), true);
 
     const missing = internals.describeMissingDeepSeekCompat(model);
     assert.ok(!missing.includes('supportsLongCacheRetention'));
-    assert.ok(missing.includes('sendSessionAffinityHeaders'));
+    assert.ok(missing.includes('requiresReasoningContentOnAssistantMessages'));
 
     // The copyable snippet / fix write-set must never carry the risky flag.
     assert.equal(
@@ -1141,7 +1194,7 @@ describe('DeepSeek compat classification', () => {
   });
 
   test('optional long retention clears once explicitly enabled', () => {
-    const model = deepSeekProxyModel({ supportsLongCacheRetention: true });
+    const model = deepSeekProxyModel({ supportsLongCacheRetention: true, thinkingFormat: 'deepseek' });
     assert.deepEqual(internals.describeOptionalDeepSeekCompat(model), []);
     assert.ok(
       !internals.describeMissingDeepSeekCompat(model).includes('supportsLongCacheRetention'),
@@ -1595,14 +1648,17 @@ describe('/cache-optimizer fix command', () => {
           ),
           { source: 'modelOverride', value: false },
         );
-        assert.deepEqual(
+        // A name match must not make the fix write the DeepSeek wire format on
+        // the operator's behalf: the flag stays a deliberate opt-in, so the fix
+        // leaves the key absent.
+        assert.equal(
           freshModule.__internals_for_tests.resolveExplicitCompatValue(
             parsed,
             'proxy',
             'deepseek-v4',
             'thinkingFormat',
           ),
-          { source: 'modelOverride', value: 'deepseek' },
+          undefined,
         );
         assert.match(written, /\/\/ Credential and endpoint configuration must survive the fix\./);
         assert.equal(parsed.providers.proxy.apiKey, 'env:PROXY_API_KEY');

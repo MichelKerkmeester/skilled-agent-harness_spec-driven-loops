@@ -1,0 +1,27 @@
+{
+  "specFolder": "hooks/021-compat-opt-in-and-image-declaration",
+  "description": "Gate DeepSeek cache-compat advice on an explicit wire-protocol opt-in and declare image input for the llmgateway model",
+  "keywords": [
+    "gate",
+    "deepseek",
+    "cache-compat",
+    "advice",
+    "explicit",
+    "wire-protocol",
+    "opt-in",
+    "declare",
+    "image",
+    "input",
+    "llmgateway",
+    "model"
+  ],
+  "lastUpdated": "2026-09-11T07:59:30.639Z",
+  "specId": "021",
+  "folderSlug": "compat-opt-in-and-image-declaration",
+  "parentChain": [
+    "hooks"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

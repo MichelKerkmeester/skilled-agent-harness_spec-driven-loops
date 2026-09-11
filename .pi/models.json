@@ -46,11 +46,18 @@
       "api": "openai-completions",
       "baseUrl": "https://api.llmgateway.io/v1",
       "apiKey": "${LLMGATEWAY_API_KEY}",
+      "compat": {
+        "sendSessionAffinityHeaders": true
+      },
       "models": [
         {
           "id": "deepseek-v4.1-flash",
           "name": "DeepSeek V4.1 Flash",
           "reasoning": true,
+          "input": [
+            "text",
+            "image"
+          ],
           "contextWindow": 1050000,
           "maxTokens": 393216,
           "thinkingLevelMap": {

@@ -2939,24 +2939,30 @@ function buildOpenAIProxyCompatWarningText(key: string, missing: string[]): stri
   return lines.join('\n');
 }
 
+/**
+ * DeepSeek-specific compat that only an explicitly declared DeepSeek reasoning
+ * wire format can require. Family membership still selects the cache adapter,
+ * but it is not protocol evidence: a gateway can carry a DeepSeek-named model on
+ * an ordinary OpenAI reasoning_effort channel, and demanding DeepSeek replay
+ * fields there pushes Pi onto a wire format the upstream may reject.
+ *
+ * The wire-format flag is never itself reported as missing. Demanding the flag
+ * that gates this function would be circular, and writing it on the operator's
+ * behalf is the failure this gate exists to prevent.
+ *
+ * supportsLongCacheRetention is deliberately absent from this list: DeepSeek
+ * prefix caching is automatic and does not need it, and enabling it against an
+ * endpoint that rejects the OpenAI prompt_cache_retention parameter returns a
+ * 400. It is surfaced as verify-first optional advice instead — the same
+ * treatment the OpenAI-compatible proxy path gives it — and is never put in the
+ * copyable snippet or auto-written by /cache-optimizer fix.
+ */
 function describeMissingDeepSeekCompat(model: PiModel): string[] {
-  const compat = getCompat(model);
   const missing: string[] = [];
+  if (!isDeepSeekWireCompatApplicable(model)) return missing;
 
-  // supportsLongCacheRetention is intentionally NOT treated as required here.
-  // DeepSeek prefix caching is automatic and does not need it, and enabling it
-  // against an endpoint that rejects the OpenAI prompt_cache_retention parameter
-  // returns a 400. It is surfaced as verify-first optional advice instead — the
-  // same treatment the OpenAI-compatible proxy path gives it — and is never put
-  // in the copyable snippet or auto-written by /cache-optimizer fix.
-  if (model.api !== 'openai-responses' && compat.sendSessionAffinityHeaders !== true) {
-    missing.push('sendSessionAffinityHeaders');
-  }
-  if (compat.requiresReasoningContentOnAssistantMessages !== true) {
+  if (getCompat(model).requiresReasoningContentOnAssistantMessages !== true) {
     missing.push('requiresReasoningContentOnAssistantMessages');
-  }
-  if (compat.thinkingFormat !== 'deepseek') {
-    missing.push('thinkingFormat');
   }
 
   return missing;
@@ -2971,19 +2977,37 @@ function describeOptionalDeepSeekCompat(model: PiModel): string[] {
   return optional;
 }
 
+/**
+ * The single applicability source for DeepSeek compat advice. The family name
+ * selects the cache adapter, but only an explicitly declared DeepSeek wire
+ * format opts a channel into DeepSeek-specific advice; provider id, base URL and
+ * supportsReasoningEffort are deliberately irrelevant, because none of them is
+ * protocol evidence.
+ */
+function isDeepSeekWireCompatApplicable(model: PiModel): boolean {
+  return isDeepSeekLikeModel(model) && isOpenAICompatibleProxyApi(model.api) &&
+    !isPiBuiltInLlamaCppModel(model) && getCompat(model).thinkingFormat === 'deepseek';
+}
+
+/** Caller-facing name for the same gate, used by the compat diagnostics surfaces. */
 function isDeepSeekCompatCheckApplicable(model: PiModel): boolean {
-  return isDeepSeekLikeModel(model) && isOpenAICompatibleApi(model.api) &&
-    !isPiBuiltInLlamaCppModel(model);
+  return isDeepSeekWireCompatApplicable(model);
 }
 
 function describeMissingCacheCompatForModel(model: PiModel): string[] {
   if (isAdaptiveThinkingCompatApplicable(model)) {
     return describeMissingAdaptiveThinkingCompat(model);
   }
-  if (isDeepSeekCompatCheckApplicable(model)) {
-    return describeMissingDeepSeekCompat(model);
+
+  // Session affinity belongs to the generic proxy list for every
+  // OpenAI-compatible channel, so it survives on an opted-in DeepSeek channel and
+  // keeps its explicit-false opt-out, instead of a second and stricter copy of
+  // the same rule living on the DeepSeek branch.
+  const missing = describeMissingOpenAICompatibleProxyCompat(model);
+  if (isDeepSeekWireCompatApplicable(model)) {
+    missing.push(...describeMissingDeepSeekCompat(model));
   }
-  return describeMissingOpenAICompatibleProxyCompat(model);
+  return missing;
 }
 
 function buildDeepSeekCompatSuggestion(missing: string[]): Record<string, unknown> {
@@ -2997,9 +3021,6 @@ function buildDeepSeekCompatSuggestion(missing: string[]): Record<string, unknow
   }
   if (missing.includes('requiresReasoningContentOnAssistantMessages')) {
     suggestion.requiresReasoningContentOnAssistantMessages = true;
-  }
-  if (missing.includes('thinkingFormat')) {
-    suggestion.thinkingFormat = 'deepseek';
   }
 
   return suggestion;
@@ -3019,11 +3040,6 @@ function appendDeepSeekCompatAdviceLines(
   if (missing.includes('requiresReasoningContentOnAssistantMessages')) {
     lines.push(
       '- requiresReasoningContentOnAssistantMessages: true keeps replayed assistant turns compatible with DeepSeek reasoning_content requirements.',
-    );
-  }
-  if (missing.includes('thinkingFormat')) {
-    lines.push(
-      '- thinkingFormat: "deepseek" tells Pi to use DeepSeek reasoning/thinking parameter format.',
     );
   }
   if (missing.includes('sendSessionAffinityHeaders')) {

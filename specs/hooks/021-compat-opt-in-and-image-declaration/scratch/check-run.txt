@@ -1,0 +1,420 @@
+
+> pi-cache-optimizer@2.8.0 typecheck
+> tsc --noEmit --pretty false
+
+
+> pi-cache-optimizer@2.8.0 test
+> node --import jiti/register --test tests/*.test.ts
+
+(node:32834) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+▶ model input pricing lookup
+  ✔ resolves per-token rates from the cost block (0.602292ms)
+  ✔ treats missing or invalid rates as unpriced, never as free (0.180875ms)
+  ✔ prices an explicit zero cached-read rate and reports real savings (0.428167ms)
+  ✔ resolves pricing from the registry when the model carries no cost block (0.093875ms)
+✔ model input pricing lookup (1.870292ms)
+▶ cache economics cost arithmetic
+  ✔ bills uncached, cached-read and write tokens at their own rates (0.086875ms)
+  ✔ baseline bills every input token fully uncached (0.03225ms)
+  ✔ addUsageToCacheStats accumulates cost only when priced (0.051416ms)
+  ✔ records an input-only request without including it in the hit ratio (0.118083ms)
+  ✔ treats a model that never reports cache usage as unmeasured while retaining economics (0.061ms)
+  ✔ counts explicit zero cache fields as one measured miss (0.076667ms)
+  ✔ lets a reporting model use response presence instead of forcing a hit (0.056959ms)
+  ✔ ignores undefined usage without changing stats (0.313042ms)
+  ✔ an unpriced request leaves cost fields at zero (0.035917ms)
+✔ cache economics cost arithmetic (0.996083ms)
+▶ no-cache-fields signal accounting
+  ✔ a Pi-normalized response without cache fields preserves an unmeasured signal (0.06175ms)
+  ✔ an OpenAI-shape raw response without cache fields preserves an unmeasured signal (0.073959ms)
+  ✔ an explicit zero cache signal remains measured (0.031667ms)
+  ✔ still returns undefined when there is no input count at all (0.02775ms)
+  ✔ uses the active routed model capability when response stats lack compat (19.52775ms)
+✔ no-cache-fields signal accounting (19.909959ms)
+▶ prefix churn detection
+  ✔ counts a change between consecutive turns, not a stable prefix (0.115333ms)
+  ✔ detects churn across two real turns and stays quiet on a stable prefix (13.260209ms)
+✔ prefix churn detection (13.59075ms)
+▶ pre-phase stats record migration
+  ✔ a v6 record without economics fields loads with counters intact (0.418375ms)
+  ✔ a round-trip preserves migrated counters and new fields (6.935875ms)
+✔ pre-phase stats record migration (7.502083ms)
+▶ cache economics stats report
+  ✔ renders hit rate, cost, savings and churn for a priced non-DeepSeek model (0.204042ms)
+  ✔ shows unmeasured requests and excludes them from the hit ratio (0.215334ms)
+  ✔ renders "unpriced" instead of zero when the model has no pricing data (0.141375ms)
+✔ cache economics stats report (0.650041ms)
+(node:32835) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+▶ line hashing
+  ✔ lineHash is an 8-char hex digest, stable for identical content (0.385042ms)
+  ✔ lineHash ignores trailing whitespace only (0.069292ms)
+✔ line hashing (0.827125ms)
+▶ read annotation
+  ✔ annotateContent prefixes every content line with number and hash (0.488959ms)
+  ✔ annotateContent honors a read offset for the first line number (0.06925ms)
+  ✔ annotateContent skips read notice lines and their preceding blank (0.052542ms)
+  ✔ annotateContent is idempotent on already-annotated content (0.0875ms)
+✔ read annotation (0.802291ms)
+▶ hash-verified edit validation
+  ✔ refuses an identical line that shifted into the target position (0.171291ms)
+  ✔ requires the line count so a moved line cannot be edited blind (0.070375ms)
+  ✔ refuses an edit whose interior drifted, not just its endpoints (0.078ms)
+  ✔ accepts an edit whose endpoint hashes still match (0.06625ms)
+  ✔ refuses an edit whose from endpoint drifted (0.158875ms)
+  ✔ refuses an edit whose to endpoint drifted (0.105708ms)
+  ✔ refusal names the drifted line, claimed hash, actual hash, and current content (0.071125ms)
+  ✔ a near-miss hash still refuses — no fuzzy fallback (0.062958ms)
+  ✔ refuses out-of-range and inverted ranges (0.049917ms)
+  ✔ refuses overlapping edits (0.049292ms)
+✔ hash-verified edit validation (1.060875ms)
+▶ edit application
+  ✔ an unchanged target applies normally (0.4185ms)
+  ✔ multiple edits keep their line numbers via reverse-order application (0.065625ms)
+  ✔ buildEditSummary reports counts (0.052333ms)
+✔ edit application (0.594958ms)
+▶ edit_lines argument disambiguation
+  ✔ detects the sibling edit tool vocabulary (0.070958ms)
+  ✔ does not flag a valid edits array (0.028041ms)
+✔ edit_lines argument disambiguation (0.134375ms)
+▶ read annotation hook
+  ✔ annotates a read result with per-line hashes (14.773459ms)
+  ✔ passes through error results and non-read tools (3.578375ms)
+✔ read annotation hook (18.451708ms)
+▶ edit_lines tool end to end
+  ✔ applies an edit against an unchanged target (18.158708ms)
+  ✔ refuses when the target drifted between read and write (5.588375ms)
+  ✔ a near-miss hash still refuses through the tool — no fuzzy fallback (4.999292ms)
+  ✔ corrects a confused edit-vocabulary call (6.102958ms)
+✔ edit_lines tool end to end (35.154625ms)
+(node:32836) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+▶ retry loop guard batch assembly
+  ✔ four differing failures do not abort as a repeated request (0.815125ms)
+  ✔ the same failure repeating four times does abort as a repeated request (0.230583ms)
+  ✔ a long streak of differing failures still stops, with an honest message (0.108792ms)
+  ✔ discovers Pi toolCall blocks in message order (0.443583ms)
+  ✔ ignores messages that are not assistant tool-call turns (0.08275ms)
+✔ retry loop guard batch assembly (2.273833ms)
+▶ retry loop guard escalation
+  ✔ a driven retry storm escalates to a guard and then stops the turn (0.132416ms)
+  ✔ one legitimate retry does not trigger the guard (0.071959ms)
+  ✔ the guard cannot fire on a first attempt (0.054208ms)
+  ✔ a success mid-streak resets both streaks (0.076ms)
+  ✔ two independent batches do not share a streak (0.094792ms)
+✔ retry loop guard escalation (0.580292ms)
+▶ retry loop guard hook wiring
+  ✔ a driven retry storm escalates through the hooks and aborts the turn (8.217625ms)
+  ✔ a single failed attempt through the hooks stays silent (3.65325ms)
+  ✔ a success mid-streak through the hooks resets the escalation (4.029959ms)
+  ✔ a tool-result message_end does not reset the streak mid-batch (3.485917ms)
+  ✔ an assistant turn without tool calls ends a blocked streak (3.534958ms)
+✔ retry loop guard hook wiring (23.131917ms)
+(node:32837) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+▶ stable prompt reordering
+  ✔ preserves an ambiguous candidate inside dynamic marked content (0.3615ms)
+  ✔ lifts a unique candidate deterministically (0.350167ms)
+  ✔ preserves dynamic content nested inside a full context-file candidate (0.0965ms)
+✔ stable prompt reordering (1.195583ms)
+▶ OpenAI prompt cache key self-healing
+  ✔ unrelated 400 leaves prompt_cache_key injection enabled (18.893666ms)
+  ✔ explicit response rejection disables only the matching model (5.543ms)
+  ✔ persists an explicit rejection across a fresh extension load (15.5115ms)
+  ✔ reset forgets a persisted prompt cache key rejection (11.950542ms)
+  ✔ loads a pre-change stats file with no learned rejection (5.5495ms)
+  ✔ explicit message_end rejection disables only the matching model (6.135625ms)
+  ✔ caller-provided prompt cache keys remain untouched (3.542208ms)
+  ✔ model-level config can opt out of prompt cache key injection (4.099875ms)
+✔ OpenAI prompt cache key self-healing (71.897084ms)
+▶ assistant response adapter fallback
+  ✔ falls back to the direct context adapter for an unrecognized echoed id (0.8065ms)
+  ✔ uses a resolved upstream adapter without trusting the virtual router shell (0.198417ms)
+✔ assistant response adapter fallback (1.139666ms)
+▶ Anthropic cache TTL ordering repair
+  ✔ visible conflicts downgrade only late long-retention controls (0.191417ms)
+  ✔ repairs an OpenAI-compatible endpoint only with Anthropic cache format (3.644333ms)
+  ✔ records an Anthropic-format OpenAI-compatible endpoint's TTL-order error for the hidden-conflict fallback (2.870083ms)
+✔ Anthropic cache TTL ordering repair (6.848042ms)
+▶ foreign raw usage signal accounting
+  ✔ counts an Anthropic input-only response as a full miss (0.1275ms)
+  ✔ counts a Gemini prompt-only response as a full miss (0.058708ms)
+  ✔ still returns undefined when a foreign response has no input count (0.029583ms)
+✔ foreign raw usage signal accounting (0.265042ms)
+▶ cache-write display
+  ✔ shows tracked cache writes for a non-Anthropic adapter (0.093125ms)
+✔ cache-write display (0.113792ms)
+▶ footer stats modes
+  ✔ defaults to total and accepts session, total, or process environment values (0.126875ms)
+  ✔ persistent configuration overrides the environment mode (0.048083ms)
+  ✔ selects direct model stats from the requested scope (0.066417ms)
+  ✔ uses the requested scope for exact router restore (0.109375ms)
+  ✔ restores only the matching session bucket (0.06925ms)
+  ✔ keeps router fallback inside the requested scope (0.144375ms)
+  ✔ persists the command override atomically (2.451666ms)
+  ✔ config command overrides the environment mode (3.556667ms)
+  ✔ interactive menu exposes and applies footer mode (3.62625ms)
+✔ footer stats modes (10.413958ms)
+▶ Pi 0.83 adaptive-thinking compatibility
+  ✔ reports missing adaptive compat for native Claude Opus 5 (0.541ms)
+  ✔ does not report adaptive compat when Claude Opus 5 is configured (0.046541ms)
+  ✔ keeps older non-adaptive Claude models as a negative case (0.251167ms)
+✔ Pi 0.83 adaptive-thinking compatibility (0.889125ms)
+▶ DeepSeek compat classification
+  ✔ a model name alone does not declare the DeepSeek wire format (0.166209ms)
+  ✔ an explicit wire-format opt-in re-enables the DeepSeek reasoning check (0.062625ms)
+  ✔ no suggestion or rendered advice ever proposes the DeepSeek wire format (0.131083ms)
+  ✔ an explicit affinity opt-out is respected instead of reported missing (0.032917ms)
+  ✔ long retention is optional/verify-first, never required or in the snippet (0.04075ms)
+  ✔ optional long retention clears once explicitly enabled (0.026416ms)
+✔ DeepSeek compat classification (0.54375ms)
+▶ explicit compat precedence
+  ✔ modelOverrides true wins over false model and provider values (0.114584ms)
+  ✔ modelOverrides false wins over true model and provider values (0.040083ms)
+  ✔ custom model wins over provider and provider remains the fallback (0.046542ms)
+  ✔ before_provider_request reads modelOverrides from the active agent directory (8.197458ms)
+✔ explicit compat precedence (8.528125ms)
+▶ modelOverrides JSONC fixes
+  ✔ surgically repairs an existing override and preserves comments (1.085291ms)
+  ✔ self-check rejects a lower-layer edit shadowed by modelOverrides (0.164458ms)
+  ✔ creates only a modelOverrides entry for a built-in model (0.50475ms)
+  ✔ creates a comment-safe modelOverrides-only provider entry (0.168917ms)
+✔ modelOverrides JSONC fixes (1.995208ms)
+▶ /cache-optimizer fix command
+  ✔ direct and menu paths repair the effective modelOverride (11.527416ms)
+✔ /cache-optimizer fix command (11.62725ms)
+ℹ tests 114
+ℹ suites 28
+ℹ pass 114
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4365.329666
+
+=== npm run check ===
+
+> pi-cache-optimizer@2.8.0 check
+> npm run typecheck && npm test && npm run check:diff && npm run check:pack
+
+
+> pi-cache-optimizer@2.8.0 typecheck
+> tsc --noEmit --pretty false
+
+
+> pi-cache-optimizer@2.8.0 test
+> node --import jiti/register --test tests/*.test.ts
+
+(node:33759) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+▶ model input pricing lookup
+  ✔ resolves per-token rates from the cost block (0.403875ms)
+  ✔ treats missing or invalid rates as unpriced, never as free (0.1055ms)
+  ✔ prices an explicit zero cached-read rate and reports real savings (0.439875ms)
+  ✔ resolves pricing from the registry when the model carries no cost block (0.104583ms)
+✔ model input pricing lookup (1.563583ms)
+▶ cache economics cost arithmetic
+  ✔ bills uncached, cached-read and write tokens at their own rates (0.139666ms)
+  ✔ baseline bills every input token fully uncached (0.045375ms)
+  ✔ addUsageToCacheStats accumulates cost only when priced (0.082084ms)
+  ✔ records an input-only request without including it in the hit ratio (0.2035ms)
+  ✔ treats a model that never reports cache usage as unmeasured while retaining economics (0.174708ms)
+  ✔ counts explicit zero cache fields as one measured miss (0.186333ms)
+  ✔ lets a reporting model use response presence instead of forcing a hit (0.085416ms)
+  ✔ ignores undefined usage without changing stats (0.313334ms)
+  ✔ an unpriced request leaves cost fields at zero (0.04ms)
+✔ cache economics cost arithmetic (1.5105ms)
+▶ no-cache-fields signal accounting
+  ✔ a Pi-normalized response without cache fields preserves an unmeasured signal (0.065375ms)
+  ✔ an OpenAI-shape raw response without cache fields preserves an unmeasured signal (0.075208ms)
+  ✔ an explicit zero cache signal remains measured (0.029958ms)
+  ✔ still returns undefined when there is no input count at all (0.029917ms)
+  ✔ uses the active routed model capability when response stats lack compat (12.300417ms)
+✔ no-cache-fields signal accounting (12.693167ms)
+▶ prefix churn detection
+  ✔ counts a change between consecutive turns, not a stable prefix (0.071166ms)
+  ✔ detects churn across two real turns and stays quiet on a stable prefix (6.094833ms)
+✔ prefix churn detection (6.292834ms)
+▶ pre-phase stats record migration
+  ✔ a v6 record without economics fields loads with counters intact (0.330125ms)
+  ✔ a round-trip preserves migrated counters and new fields (4.743166ms)
+✔ pre-phase stats record migration (5.204583ms)
+▶ cache economics stats report
+  ✔ renders hit rate, cost, savings and churn for a priced non-DeepSeek model (0.209167ms)
+  ✔ shows unmeasured requests and excludes them from the hit ratio (0.090791ms)
+  ✔ renders "unpriced" instead of zero when the model has no pricing data (0.049375ms)
+✔ cache economics stats report (0.402458ms)
+(node:33760) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+▶ line hashing
+  ✔ lineHash is an 8-char hex digest, stable for identical content (0.389042ms)
+  ✔ lineHash ignores trailing whitespace only (0.092625ms)
+✔ line hashing (0.924292ms)
+▶ read annotation
+  ✔ annotateContent prefixes every content line with number and hash (0.358417ms)
+  ✔ annotateContent honors a read offset for the first line number (0.063042ms)
+  ✔ annotateContent skips read notice lines and their preceding blank (0.057375ms)
+  ✔ annotateContent is idempotent on already-annotated content (0.17625ms)
+✔ read annotation (0.771625ms)
+▶ hash-verified edit validation
+  ✔ refuses an identical line that shifted into the target position (0.349916ms)
+  ✔ requires the line count so a moved line cannot be edited blind (0.1745ms)
+  ✔ refuses an edit whose interior drifted, not just its endpoints (0.129917ms)
+  ✔ accepts an edit whose endpoint hashes still match (0.081416ms)
+  ✔ refuses an edit whose from endpoint drifted (0.057125ms)
+  ✔ refuses an edit whose to endpoint drifted (0.045792ms)
+  ✔ refusal names the drifted line, claimed hash, actual hash, and current content (0.05475ms)
+  ✔ a near-miss hash still refuses — no fuzzy fallback (0.047125ms)
+  ✔ refuses out-of-range and inverted ranges (0.0375ms)
+  ✔ refuses overlapping edits (0.031917ms)
+✔ hash-verified edit validation (1.204625ms)
+▶ edit application
+  ✔ an unchanged target applies normally (0.322709ms)
+  ✔ multiple edits keep their line numbers via reverse-order application (0.04525ms)
+  ✔ buildEditSummary reports counts (0.047708ms)
+✔ edit application (0.455042ms)
+▶ edit_lines argument disambiguation
+  ✔ detects the sibling edit tool vocabulary (0.118375ms)
+  ✔ does not flag a valid edits array (0.038709ms)
+✔ edit_lines argument disambiguation (0.196333ms)
+▶ read annotation hook
+  ✔ annotates a read result with per-line hashes (4.517375ms)
+  ✔ passes through error results and non-read tools (3.101ms)
+✔ read annotation hook (7.686625ms)
+▶ edit_lines tool end to end
+  ✔ applies an edit against an unchanged target (9.8745ms)
+  ✔ refuses when the target drifted between read and write (3.849208ms)
+  ✔ a near-miss hash still refuses through the tool — no fuzzy fallback (4.062792ms)
+  ✔ corrects a confused edit-vocabulary call (4.006583ms)
+✔ edit_lines tool end to end (22.112125ms)
+(node:33761) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+▶ retry loop guard batch assembly
+  ✔ four differing failures do not abort as a repeated request (0.6875ms)
+  ✔ the same failure repeating four times does abort as a repeated request (0.223708ms)
+  ✔ a long streak of differing failures still stops, with an honest message (0.095583ms)
+  ✔ discovers Pi toolCall blocks in message order (0.459583ms)
+  ✔ ignores messages that are not assistant tool-call turns (0.080709ms)
+✔ retry loop guard batch assembly (2.096042ms)
+▶ retry loop guard escalation
+  ✔ a driven retry storm escalates to a guard and then stops the turn (0.208709ms)
+  ✔ one legitimate retry does not trigger the guard (0.115125ms)
+  ✔ the guard cannot fire on a first attempt (0.073042ms)
+  ✔ a success mid-streak resets both streaks (0.125583ms)
+  ✔ two independent batches do not share a streak (0.099041ms)
+✔ retry loop guard escalation (0.816458ms)
+▶ retry loop guard hook wiring
+  ✔ a driven retry storm escalates through the hooks and aborts the turn (5.568167ms)
+  ✔ a single failed attempt through the hooks stays silent (3.291292ms)
+  ✔ a success mid-streak through the hooks resets the escalation (3.260292ms)
+  ✔ a tool-result message_end does not reset the streak mid-batch (3.123416ms)
+  ✔ an assistant turn without tool calls ends a blocked streak (2.449ms)
+✔ retry loop guard hook wiring (17.9035ms)
+(node:33762) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+▶ stable prompt reordering
+  ✔ preserves an ambiguous candidate inside dynamic marked content (0.49475ms)
+  ✔ lifts a unique candidate deterministically (0.395542ms)
+  ✔ preserves dynamic content nested inside a full context-file candidate (0.100042ms)
+✔ stable prompt reordering (1.489667ms)
+▶ OpenAI prompt cache key self-healing
+  ✔ unrelated 400 leaves prompt_cache_key injection enabled (7.506666ms)
+  ✔ explicit response rejection disables only the matching model (6.201042ms)
+  ✔ persists an explicit rejection across a fresh extension load (8.6255ms)
+  ✔ reset forgets a persisted prompt cache key rejection (9.136917ms)
+  ✔ loads a pre-change stats file with no learned rejection (3.539625ms)
+  ✔ explicit message_end rejection disables only the matching model (4.263792ms)
+  ✔ caller-provided prompt cache keys remain untouched (2.956458ms)
+  ✔ model-level config can opt out of prompt cache key injection (3.525292ms)
+✔ OpenAI prompt cache key self-healing (46.280166ms)
+▶ assistant response adapter fallback
+  ✔ falls back to the direct context adapter for an unrecognized echoed id (0.225166ms)
+  ✔ uses a resolved upstream adapter without trusting the virtual router shell (0.150291ms)
+✔ assistant response adapter fallback (0.427958ms)
+▶ Anthropic cache TTL ordering repair
+  ✔ visible conflicts downgrade only late long-retention controls (0.132959ms)
+  ✔ repairs an OpenAI-compatible endpoint only with Anthropic cache format (3.023125ms)
+  ✔ records an Anthropic-format OpenAI-compatible endpoint's TTL-order error for the hidden-conflict fallback (2.305167ms)
+✔ Anthropic cache TTL ordering repair (5.560625ms)
+▶ foreign raw usage signal accounting
+  ✔ counts an Anthropic input-only response as a full miss (0.10625ms)
+  ✔ counts a Gemini prompt-only response as a full miss (0.050375ms)
+  ✔ still returns undefined when a foreign response has no input count (0.026042ms)
+✔ foreign raw usage signal accounting (0.221625ms)
+▶ cache-write display
+  ✔ shows tracked cache writes for a non-Anthropic adapter (0.05475ms)
+✔ cache-write display (0.073083ms)
+▶ footer stats modes
+  ✔ defaults to total and accepts session, total, or process environment values (0.121041ms)
+  ✔ persistent configuration overrides the environment mode (0.042792ms)
+  ✔ selects direct model stats from the requested scope (0.046125ms)
+  ✔ uses the requested scope for exact router restore (0.080708ms)
+  ✔ restores only the matching session bucket (0.0485ms)
+  ✔ keeps router fallback inside the requested scope (0.115958ms)
+  ✔ persists the command override atomically (2.159917ms)
+  ✔ config command overrides the environment mode (2.778542ms)
+  ✔ interactive menu exposes and applies footer mode (3.15775ms)
+✔ footer stats modes (8.7205ms)
+▶ Pi 0.83 adaptive-thinking compatibility
+  ✔ reports missing adaptive compat for native Claude Opus 5 (0.476708ms)
+  ✔ does not report adaptive compat when Claude Opus 5 is configured (0.033833ms)
+  ✔ keeps older non-adaptive Claude models as a negative case (0.189792ms)
+✔ Pi 0.83 adaptive-thinking compatibility (0.741333ms)
+▶ DeepSeek compat classification
+  ✔ a model name alone does not declare the DeepSeek wire format (0.0795ms)
+  ✔ an explicit wire-format opt-in re-enables the DeepSeek reasoning check (0.040041ms)
+  ✔ no suggestion or rendered advice ever proposes the DeepSeek wire format (0.0915ms)
+  ✔ an explicit affinity opt-out is respected instead of reported missing (0.034167ms)
+  ✔ long retention is optional/verify-first, never required or in the snippet (0.037417ms)
+  ✔ optional long retention clears once explicitly enabled (0.024209ms)
+✔ DeepSeek compat classification (0.368125ms)
+▶ explicit compat precedence
+  ✔ modelOverrides true wins over false model and provider values (0.09575ms)
+  ✔ modelOverrides false wins over true model and provider values (0.028375ms)
+  ✔ custom model wins over provider and provider remains the fallback (0.03925ms)
+  ✔ before_provider_request reads modelOverrides from the active agent directory (6.365458ms)
+✔ explicit compat precedence (6.632958ms)
+▶ modelOverrides JSONC fixes
+  ✔ surgically repairs an existing override and preserves comments (0.828916ms)
+  ✔ self-check rejects a lower-layer edit shadowed by modelOverrides (0.115542ms)
+  ✔ creates only a modelOverrides entry for a built-in model (0.298958ms)
+  ✔ creates a comment-safe modelOverrides-only provider entry (0.122958ms)
+✔ modelOverrides JSONC fixes (1.407333ms)
+▶ /cache-optimizer fix command
+  ✔ direct and menu paths repair the effective modelOverride (7.020875ms)
+✔ /cache-optimizer fix command (7.088458ms)
+ℹ tests 114
+ℹ suites 28
+ℹ pass 114
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1413.257375
+
+> pi-cache-optimizer@2.8.0 check:diff
+> git diff --check
+
+
+> pi-cache-optimizer@2.8.0 check:pack
+> npm pack --dry-run --cache node_modules/.cache/npm
+
+npm notice
+npm notice 📦  pi-cache-optimizer@2.8.0
+npm notice Tarball Contents
+npm notice 1.1kB LICENSE
+npm notice 31.5kB README.md
+npm notice 417.1kB index.ts
+npm notice 1.3kB package.json
+npm notice Tarball Details
+npm notice name: pi-cache-optimizer
+npm notice version: 2.8.0
+npm notice filename: pi-cache-optimizer-2.8.0.tgz
+npm notice package size: 104.9 kB
+npm notice unpacked size: 450.9 kB
+npm notice shasum: 01ae282caecaa472dcbc276998f5cc5589b260a5
+npm notice integrity: sha512-3WQoodM+hZWao[...]s4eBQsFusPgOA==
+npm notice total files: 4
+npm notice
+pi-cache-optimizer-2.8.0.tgz

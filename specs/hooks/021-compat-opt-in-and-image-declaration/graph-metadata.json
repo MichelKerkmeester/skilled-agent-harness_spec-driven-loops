@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks/021-compat-opt-in-and-image-declaration",
+  "spec_folder": "hooks/021-compat-opt-in-and-image-declaration",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deepseek-like compat warning",
+      "merged compat lacks thinkingFormat",
+      "manufactured thinkingFormat deepseek",
+      "llmgateway image input omitted",
+      "pi cache optimizer warning",
+      "implementation plan",
+      "deepseek opt-in gate",
+      "declared capability over heuristic",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist"
+    ],
+    "key_topics": [
+      "deepseek-like",
+      "compat",
+      "warning",
+      "merged",
+      "lacks",
+      "thinkingformat",
+      "manufactured",
+      "deepseek",
+      "llmgateway",
+      "image",
+      "input",
+      "omitted"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".pi/extensions/pi-cache-optimizer/index.ts",
+      ".pi/extensions/pi-cache-optimizer/tests/review-findings.test.ts",
+      ".pi/models.json",
+      "scratch/verify-no-warning.mjs",
+      "scratch/verify-no-warning.txt",
+      "scratch/live-image-probe.md",
+      "scratch/live-affinity-probe.md",
+      "scratch/vision-probe.png",
+      "scratch/check-run.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".pi/extensions/pi-cache-optimizer/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "review-findings.test.ts",
+        "kind": "test",
+        "path": ".pi/extensions/pi-cache-optimizer/tests/review-findings.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "models.json",
+        "kind": "config",
+        "path": ".pi/models.json",
+        "source": "derived"
+      },
+      {
+        "name": "verify-no-warning.mjs",
+        "kind": "file",
+        "path": "scratch/verify-no-warning.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "verify-no-warning.txt",
+        "kind": "file",
+        "path": "scratch/verify-no-warning.txt",
+        "source": "derived"
+      },
+      {
+        "name": "live-image-probe.md",
+        "kind": "doc",
+        "path": "scratch/live-image-probe.md",
+        "source": "derived"
+      },
+      {
+        "name": "live-affinity-probe.md",
+        "kind": "doc",
+        "path": "scratch/live-affinity-probe.md",
+        "source": "derived"
+      },
+      {
+        "name": "vision-probe.png",
+        "kind": "file",
+        "path": "scratch/vision-probe.png",
+        "source": "derived"
+      },
+      {
+        "name": "check-run.txt",
+        "kind": "file",
+        "path": "scratch/check-run.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Approach Notes",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Layered",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`llmgateway/deepseek-v4.1-flash` produces a blocking-looking warning at every Pi launch:",
+    "created_at": "2026-09-11T07:59:30Z",
+    "last_save_at": "2026-09-11T08:06:00.835Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:7f20350f485ed4ad3351aef81be165e3bb0c1b6c671718649d8dcf02915fcf6d",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "1b2915a31ca4baea21569919c54edd7f700d3b7804d32c3d5454d4b8a9b92caa",
+      "plan.md": "c601444505aad39aca175ede02c49ad7fb4960a98c75531896902649b533605d",
+      "tasks.md": "7e0dea0dcf700299bcafcb99e6e8fd2a2a582803555d81d8737a696cfe8e1fe2",
+      "implementation-summary.md": "02e99599e26d8d44b756ba7e8f1a932aaf1df790caee7025b5174210c8084c60"
+    },
+    "last_active_at": null
+  }
+}

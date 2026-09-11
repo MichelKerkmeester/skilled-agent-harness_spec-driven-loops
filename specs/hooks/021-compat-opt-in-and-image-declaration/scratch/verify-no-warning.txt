@@ -1,0 +1,72 @@
+
+### current config llmgateway/deepseek-v4.1-flash
+  effective compat        : {"sendSessionAffinityHeaders":true}
+  check applicable        : false
+  deepseek missing        : []
+  full diagnosis missing  : []
+  chat warnings=0 expected=0  OK
+
+### current config llmgateway/glm-5.3-flash
+  effective compat        : {"sendSessionAffinityHeaders":true}
+  check applicable        : false
+  deepseek missing        : []
+  full diagnosis missing  : []
+  chat warnings=0 expected=0  OK
+
+### control A: plain third-party proxy, no compat (detector sanity)
+  effective compat        : {}
+  check applicable        : false
+  deepseek missing        : []
+  full diagnosis missing  : ["sendSessionAffinityHeaders"]
+  chat warnings=1 expected=1  OK
+    ! 💡 pi-cache-optimizer: proxy.example/gpt-6-x is a third-party GPT/OpenAI-compatible proxy but merged compat la
+
+### control B: opted-in DeepSeek proxy missing the replay flag
+  effective compat        : {"thinkingFormat":"deepseek","sendSessionAffinityHeaders":true}
+  check applicable        : true
+  deepseek missing        : ["requiresReasoningContentOnAssistantMessages"]
+  full diagnosis missing  : ["requiresReasoningContentOnAssistantMessages"]
+  chat warnings=1 expected=1  OK
+    ! 💡 pi-cache-optimizer: proxy.example/deepseek-v4.1-flash is DeepSeek-like but merged compat lacks requiresReas
+
+### control C: DeepSeek-named, never opted in (adapter short-circuits)
+  effective compat        : {}
+  check applicable        : false
+  deepseek missing        : []
+  full diagnosis missing  : ["sendSessionAffinityHeaders"]
+  chat warnings=0 expected=0  OK
+
+### command surface for the current llmgateway/deepseek-v4.1-flash
+
+--- /cache-optimizer compat
+✅ Compat fully configured.
+ℹ️ Session affinity headers are enabled. If you see 403 "blocked" errors,
+   the proxy/CDN may be blocking Pi's custom headers. Set sendSessionAffinityHeaders: false.
+
+Optional (not required, not auto-fixed):
+- supportsLongCacheRetention: enable only after your endpoint/proxy explicitly supports OpenAI long prompt cache retention.
+- If this channel returns `400 Unsupported parameter: prompt_cache_retention`, remove/avoid `supportsLongCacheRetention`; this extension does not write that field directly, but Pi may send it when long retention is requested and compat says the proxy supports it.
+
+🔀 Router/channel: Third-party OpenAI-compatible proxy. If cache hit rates are low:
+   • Verify the proxy routes to the same upstream account/instance per session.
+   • Ensure the proxy forwards prompt_cache_key and sends session-affinity headers.
+   • Check that the proxy r
+
+--- /cache-optimizer doctor
+Provider: llmgateway
+Model:    deepseek-v4.1-flash
+Name:     DeepSeek V4.1 Flash
+API:      openai-completions
+Base URL: https://api.llmgateway.io/v1
+Compat:   {"sendSessionAffinityHeaders":true}
+✅ Compat fully configured.
+
+Optional (not required, not auto-fixed):
+- supportsLongCacheRetention: enable only after your endpoint/proxy explicitly supports OpenAI long prompt cache retention.
+- If this channel returns `400 Unsupported parameter: prompt_cache_retention`, remove/avoid `supportsLongCacheRetention`; this extension does not write that field directly, but Pi may send it when long retention is requested and compat says the proxy supports it.
+
+ℹ️ Session affinity headers are enabled. Some CDNs/WAFs block custom headers
+   (session_id, x-client-request-id, x-session-affinity) and return 403. If you
+   see 403 errors, run /cache-optimizer fix to set sendSessionAffinityHeaders: false.
+
+🔀 
