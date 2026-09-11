@@ -142,6 +142,23 @@ health vocabulary alone.
 
 `excalidraw-drawing` vocabulary still routes to a plugin the vault no longer has. Pre-existing,
 recorded, not fixed.
+
+**Open, deferred by operator decision: the regenerated trigger index carries dead paths.**
+
+The regeneration that removed 61 dead `mcp-obsidian` paths introduced 117 paths that are not in
+the commit, 78 of which exist nowhere. A Gate 1 lookup for skill-advisor vocabulary returns one of
+them. The cause is not this packet's edits: the corpus walker in the retrieval library enumerates
+the filesystem with no tracked-file filter, so it indexed spec folders other sessions had created
+but not committed.
+
+Regenerating again does not fix it and currently makes it worse, because 766 untracked corpus
+files sit on disk while several sessions work. The operator chose to leave the committed index and
+regenerate once the tree is quiet, over reverting, because the absent paths belong to packets still
+in progress and become real when those sessions commit, whereas a revert would restore 61 paths
+that are permanently gone.
+
+The durable fix, if this recurs, is a tracked-file filter in the walker rather than a better-timed
+regeneration. That is runtime code outside this packet and would need its own scope.
 <!-- /ANCHOR:limitations -->
 
 ---
