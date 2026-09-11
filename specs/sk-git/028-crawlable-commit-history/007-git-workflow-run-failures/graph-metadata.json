@@ -47,6 +47,7 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      "research/research.md",
       "scratch/observed-failures.md",
       ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts",
       ".opencode/skills/sk-git/scripts/lib/git-rule-checks.mjs"
@@ -86,6 +87,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
@@ -189,17 +196,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Automated runs in this repository hand work to detached children and fan-out lineages, and git behaviors that a human shrugs off end those runs: a revert that erases an orchestrator's work, a hook that blocks a commit nobody can answer for, an advisory that cries wolf on every add",
     "created_at": "2026-09-11T08:06:45Z",
-    "last_save_at": "2026-09-11T09:02:35.912Z",
+    "last_save_at": "2026-09-11T10:16:41.693Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,15 +209,17 @@
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "research/research.md"
     ],
-    "source_fingerprint": "sha256:f2623bb72cb46fcaff5dd9a25c4a69ba990d054b4024ac2b2c11a5f87af4b511",
+    "source_fingerprint": "sha256:c9240b987356ca64709a883cc5198db24247cd8acd2ded0eb337f08cec02ce46",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6a7e1f78dd832624c86a16d000bb6111d7c6340652fd859b9dfd651bd6b5c978",
       "plan.md": "9002a603f28a874651b11bde8dccc794f6ee025712631c63d50c39305e8794f0",
       "tasks.md": "437dca75f005d7eca2ddf969abfa3e7f5be2c19f3edc2d2eaf9f1830af685d6b",
-      "implementation-summary.md": "c10b58de7a44733ed350a33b9e272d0469ae7d092179ffe9fef72f7b9d8efe24"
+      "implementation-summary.md": "c10b58de7a44733ed350a33b9e272d0469ae7d092179ffe9fef72f7b9d8efe24",
+      "research/research.md": "08a697c80fdb5d73488c50f86c2390e5fbf29dbec3f330737f8d73a5138d74af"
     },
     "last_active_at": null
   }
