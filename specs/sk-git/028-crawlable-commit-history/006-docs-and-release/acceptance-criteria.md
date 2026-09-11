@@ -41,7 +41,7 @@ _memory:
 
 **Packet:** sk-git/028-crawlable-commit-history/006-docs-and-release
 **Level:** 3
-**Status:** Complete
+**Status:** In Progress
 **Date:** 2026-09-11
 <!-- /ANCHOR:metadata -->
 

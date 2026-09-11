@@ -3,7 +3,6 @@
   "packet_id": "sk-git/028-crawlable-commit-history/006-docs-and-release",
   "spec_folder": "sk-git/028-crawlable-commit-history/006-docs-and-release",
   "parent_id": "sk-git/028-crawlable-commit-history",
-  "status_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -40,7 +39,7 @@
       "approach"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -147,6 +146,12 @@
         "source": "derived"
       },
       {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -154,12 +159,6 @@
       },
       {
         "name": "Handoff Criteria",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase Context This",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -203,7 +202,7 @@
     ],
     "causal_summary": "sk-git's README says nothing about commit identity, its changelog stops at 1.5.2.0, the advisor cannot route commit-id vocabulary, and the two rule surfaces still lack the freeze paragraph and the identity row",
     "created_at": "2026-09-11T07:16:31Z",
-    "last_save_at": "2026-09-11T10:47:53.381Z",
+    "last_save_at": "2026-09-11T10:48:23.645Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,10 +213,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:96603ad123687c6ada979a96531c13fed956c8aa92b3fc5cc1dc32607363fdd9",
+    "source_fingerprint": "sha256:22cb9f8bd35a2ed7d64544487c12719c6f5233584db5a2cbb8a071038abcc9f9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "470115883372d2327bdd78b608fdb8981d43feb3ae55a189aee557faca04410d",
+      "spec.md": "7afcdef90daa57e16bb3d108e2e3f959ed02f21d95c73e270902db80e4062428",
       "plan.md": "8947f20dd4f0699c33ef02dee9c8a4be58cd3a85da4b841e83db46f37ab44ce8",
       "tasks.md": "44792718f81b7acd87f01d4e25cacc72cfe66cc05aa05fd2914fdc339d7d44be",
       "implementation-summary.md": "2895f78f992303e6ecec4e530bc18276c14ae1799bb5a83a97e6bb17986b9bc8"
