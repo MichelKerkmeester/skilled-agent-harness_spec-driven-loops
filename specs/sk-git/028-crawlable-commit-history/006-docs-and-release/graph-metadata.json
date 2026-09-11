@@ -39,14 +39,19 @@
       "approach"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "planned",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/sk-git/README.md",
+      ".opencode/skills/sk-git/SKILL.md",
+      ".opencode/skills/sk-git/graph-metadata.json",
+      ".opencode/skills/sk-git/leaf-manifest.json",
+      "repo-rules/delegation-and-orchestration.md"
     ],
     "entities": [
       {
@@ -83,6 +88,36 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-git/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-git/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-git/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-git/leaf-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "delegation-and-orchestration.md",
+        "kind": "doc",
+        "path": "repo-rules/delegation-and-orchestration.md",
         "source": "derived"
       },
       {
@@ -162,41 +197,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "sk-git's README says nothing about commit identity, its changelog stops at 1.5.2.0, the advisor cannot route commit-id vocabulary, and the two rule surfaces still lack the freeze paragraph and the identity row",
     "created_at": "2026-09-11T07:16:31Z",
-    "last_save_at": "2026-09-11T07:22:57.222Z",
+    "last_save_at": "2026-09-11T10:32:14.447Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,10 +212,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3f7e6d758eb196dc1a7add1b2f728078ff3301209beadf54a9fae7f692941be5",
+    "source_fingerprint": "sha256:45f92690786105e5ea0e63d4e25da26b9e691ba6adf28b787aac13bb91d2b556",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "640a00f3f30026b809f65bd481e7292d583ad8dd2a3aae8cbe9c778405c0ec66",
+      "spec.md": "b9812cc5d0b2f6e71deb57cecd0016690fef72346457fce095811a081cc8ec1e",
       "plan.md": "54835e34ff117a2ce670a15972fee68794aee8fc8a956fbccbb979be697f276f",
       "tasks.md": "5e48f7c1a4e3eb0742628a43f90ae96480e1f169437d2e3daffe2ce3c534b0f5",
       "implementation-summary.md": "72f21814cb8ad7014adcee0f85370eded3414ebb46987fed256978077543a58c"
