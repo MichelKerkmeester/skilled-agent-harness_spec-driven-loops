@@ -8,8 +8,6 @@ const path = require('node:path');
 const { spawnSync } = require('node:child_process');
 
 const REPO = path.resolve(__dirname, '..', '..', '..', '..', '..');
-const LOADER_PATH = path.join(REPO, '.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs');
-const GENERATOR_PATH = path.join(REPO, '.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/playbook-generator.cjs');
 const POST_ROUTER_PATH = path.join(REPO, '.opencode/hooks/post-edit-quality/lib/post-edit-router.cjs');
 const LEAF_GENERATOR_PATH = path.join(REPO, '.opencode/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs');
 const LEAF_CONTRACT_PATH = path.join(REPO, '.opencode/skills/sk-doc/sk-create-skill/scripts/lib/leaf-resource-contract.cjs');
@@ -17,8 +15,6 @@ const TOPOLOGY_PATH = path.join(REPO, '.opencode/skills/sk-doc/sk-create-skill/s
 const FRONTMATTER_PATH = path.join(REPO, '.opencode/skills/sk-doc/shared/scripts/frontmatter-version.mjs');
 const DRIFT_PATH = path.join(REPO, '.opencode/skills/system-deep-loop/runtime/scripts/check-contract-drift.cjs');
 
-const loader = require(LOADER_PATH);
-const generator = require(GENERATOR_PATH);
 const postRouter = require(POST_ROUTER_PATH);
 const leafGenerator = require(LEAF_GENERATOR_PATH);
 const leafContract = require(LEAF_CONTRACT_PATH);
@@ -52,13 +48,6 @@ function writeScenario(skillRoot, rootName) {
   ].join('\n'));
 }
 
-function loadTyped(rootName) {
-  const skillRoot = tempDir('root-matrix-loader-');
-  writeScenario(skillRoot, rootName);
-  const result = loader.loadPlaybookScenarios({ skillRoot });
-  return { shape: result.shape, ids: result.scenarios.map((scenario) => scenario.scenarioId) };
-}
-
 function frontmatterClass(rootName) {
   const fixture = tempDir('root-matrix-frontmatter-');
   const skillRoot = path.join(fixture, 'skills', 'sample');
@@ -77,39 +66,10 @@ function frontmatterClass(rootName) {
   return JSON.parse(fs.readFileSync(`${manifestBase}.json`, 'utf8'))[0].fileClass;
 }
 
+// The playbook-scenario loader and generator this matrix also covered were retired with
+// their lane. The remaining consumers are the ones that still exist; a replacement for the
+// retired pair has to arrive with a replacement lane, not by re-adding dead paths here.
 function run() {
-  check('Lane C loads the canonical root and refuses the legacy underscore root', () => {
-    assert.doesNotThrow(() => loadTyped('manual-testing-playbook'));
-    const skillRoot = tempDir('root-matrix-legacy-');
-    writeScenario(skillRoot, 'manual_testing_playbook');
-    assert.throws(() => loader.loadPlaybookScenarios({ skillRoot }), { code: 'UNSUPPORTED_PLAYBOOK_ROOT' });
-  });
-  check('Lane C refuses a missing playbook root', () => {
-    assert.throws(() => loader.loadPlaybookScenarios({ skillRoot: tempDir('root-matrix-missing-') }), { code: 'MISSING_PLAYBOOK_ROOT' });
-  });
-  check('Lane C refuses an unsupported playbook root', () => {
-    const skillRoot = tempDir('root-matrix-unsupported-');
-    fs.mkdirSync(path.join(skillRoot, 'manual_testing_playbook_v2'));
-    assert.throws(() => loader.loadPlaybookScenarios({ skillRoot }), { code: 'UNSUPPORTED_PLAYBOOK_ROOT' });
-  });
-  check('Lane C refuses a legacy underscore root beside the canonical root', () => {
-    const skillRoot = tempDir('root-matrix-coexist-');
-    fs.mkdirSync(path.join(skillRoot, 'manual_testing_playbook'));
-    fs.mkdirSync(path.join(skillRoot, 'manual-testing-playbook'));
-    assert.throws(() => loader.loadPlaybookScenarios({ skillRoot }), { code: 'UNSUPPORTED_PLAYBOOK_ROOT' });
-  });
-  check('Lane C refuses an unsupported root index', () => {
-    const skillRoot = tempDir('root-matrix-index-');
-    const playbook = path.join(skillRoot, 'manual-testing-playbook');
-    fs.mkdirSync(playbook);
-    fs.writeFileSync(path.join(playbook, 'manual_testing_playbook_v2.md'), '# unsupported\n');
-    assert.throws(() => loader.loadPlaybookScenarios({ skillRoot }), { code: 'UNSUPPORTED_PLAYBOOK_INDEX' });
-  });
-  check('Lane C generator refuses before staging', () => {
-    const skillRoot = tempDir('root-matrix-generator-');
-    fs.mkdirSync(path.join(skillRoot, 'manual-testing-playbook-next'));
-    assert.throws(() => generator.analyzeCoverage(skillRoot), { code: 'UNSUPPORTED_PLAYBOOK_ROOT' });
-  });
   check('post-edit router canonicalizes the hyphen root and rejects the underscore alias', () => {
     assert.equal(postRouter.canonicalSkillScopeSubtree('feature-catalog'), 'feature-catalog');
     assert.equal(postRouter.canonicalSkillScopeSubtree('manual-testing-playbook'), 'manual-testing-playbook');

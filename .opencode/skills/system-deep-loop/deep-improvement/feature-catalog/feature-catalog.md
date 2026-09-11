@@ -1,12 +1,12 @@
 ---
 title: "deep-improvement: Feature Catalog"
-description: "Unified reference combining the evaluation loop, integration scanning, scoring, model-benchmark mode, and skill-benchmark mode surfaces that currently ship in deep-improvement."
+description: "Unified reference combining the evaluation loop, integration scanning, scoring, and model-benchmark mode surfaces that currently ship in deep-improvement."
 version: 1.18.0.0
 ---
 
 # deep-improvement: Feature Catalog
 
-This document combines the current feature inventory for the `deep-improvement` system into a single reference. The root catalog acts as the system-level directory: it summarizes the evaluation loop, the integration scanner, the deterministic scoring stack, the model-benchmark mode, and the skill-benchmark mode, then points to the per-feature files that carry the deeper implementation and validation anchors.
+This document combines the current feature inventory for the `deep-improvement` system into a single reference. The root catalog acts as the system-level directory: it summarizes the evaluation loop, the integration scanner, the deterministic scoring stack, and the model-benchmark mode, then points to the per-feature files that carry the deeper implementation and validation anchors.
 
 ---
 
@@ -16,13 +16,12 @@ Use this catalog as the canonical inventory for the live `deep-improvement` feat
 
 ### Lane Legend
 
-The skill runs three lanes through one agent. Each category and feature below is tagged with the lane it serves.
+The skill runs two lanes through one agent. Each category and feature below is tagged with the lane it serves.
 
 | Lane | Meaning | Entry Point |
 |---|---|---|
 | **Lane A** | Agent-improvement: evaluate and improve an agent markdown file via guarded promotion | `/deep:agent-improvement`, `loop-host --mode=agent-improvement` |
 | **Lane B** | Model-benchmark: benchmark a model or prompt framework, no agent mutation | `/deep:model-benchmark`, `loop-host --mode=model-benchmark` |
-| **Lane C** | Skill-benchmark: diagnose a skill's routing, discovery, efficiency, and usefulness, no skill mutation | `/deep:skill-benchmark`, `loop-host --mode=skill-benchmark` |
 | **Shared** | Surface used by all lanes (reducer, dashboard, profiling, command scaffolding) | reached from any lane |
 
 | Category | Coverage | Lane | Primary Runtime Surface |
@@ -31,7 +30,6 @@ The skill runs three lanes through one agent. Each category and feature below is
 | Integration scanning | 3 features | Lane A | `scan-integration.cjs`, `/deep:agent-improvement`, `.opencode/agents/deep-improvement.md` |
 | Scoring system | 4 features | Shared | `generate-profile.cjs`, `score-candidate.cjs`, `reduce-state.cjs` |
 | Model-benchmark mode | 5 features | Lane B | `loop-host.cjs`, `dispatch-model.cjs`, `run-benchmark.cjs`, `scorer/score-model-variant.cjs` |
-| Skill-benchmark mode | 6 features | Lane C | `loop-host.cjs --mode=skill-benchmark`, `scripts/skill-benchmark/*.cjs` |
 
 ---
 
@@ -291,7 +289,7 @@ Routes loop-host between the agent-improvement scorer and the model-benchmark ma
 
 #### How It Works
 
-`scripts/shared/loop-host.cjs` resolves `--mode` before any work begins. `--mode=agent-improvement`, or no flag, routes to `scripts/agent-improvement/score-candidate.cjs` unchanged; `--mode=model-benchmark` runs `scripts/shared/materialize-benchmark-fixtures.cjs` then `scripts/model-benchmark/run-benchmark.cjs`; and `--mode=skill-benchmark` runs `scripts/skill-benchmark/run-skill-benchmark.cjs` (Lane C). `VALID_MODES` is a closed three-value set, and an unknown mode warns to stderr and falls back to `agent-improvement`.
+`scripts/shared/loop-host.cjs` resolves `--mode` before any work begins. `--mode=agent-improvement`, or no flag, routes to `scripts/agent-improvement/score-candidate.cjs` unchanged; and `--mode=model-benchmark` runs `scripts/shared/materialize-benchmark-fixtures.cjs` then `scripts/model-benchmark/run-benchmark.cjs`. `VALID_MODES` is a closed two-value set, and an unknown mode warns to stderr and falls back to `agent-improvement`.
 
 #### Source Files
 
@@ -360,97 +358,5 @@ Turns benchmark reports into quality-delta evidence and blocks promotion on regr
 #### Source Files
 
 See [`model-benchmark-mode/score-delta-benchmark-gates.md`](../feature-catalog/model-benchmark-mode/score-delta-benchmark-gates.md) for full implementation and validation file listings.
-
----
-
-## 6. SKILL-BENCHMARK MODE
-
-**Lane:** Lane C (skill-benchmark)
-
-These entries describe the skill-benchmark path that diagnoses how a *skill* is routed-to, discovered, used, and structured in practice — distinct from doc-shape validation and manual testing playbooks. It is diagnostic by default and emits a ranked Skill Benchmark Report. Mode A (router-replay) and D1-inter (advisor probe) are deterministic; D4 usefulness ablation and live trace capture are follow-on.
-
-### Mode wiring and orchestration
-
-#### Description
-
-Routes loop-host to the skill-benchmark orchestrator with a single additive arm; the orchestrator runs the D5 gate, then per-scenario contamination-lint, router-replay, and scoring.
-
-#### How It Works
-
-`scripts/shared/loop-host.cjs` resolves `--mode=skill-benchmark` to `scripts/skill-benchmark/run-skill-benchmark.cjs` via an additive `VALID_MODES` entry, `LANE_SKILL_BENCHMARK` set, and `planInvocation` arm; the agent-improvement and model-benchmark plans stay byte-identical.
-
-#### Source Files
-
-See [`skill-benchmark/mode-wiring.md`](../feature-catalog/skill-benchmark/mode-wiring.md) for full implementation and validation file listings.
-
-### Hint-free fixtures and contamination gate
-
-#### Description
-
-Per-skill public/private scenario fixtures keep the expected skill/intents/resources scorer-only; a contamination linter rejects public prompts that leak the answer before dispatch.
-
-#### How It Works
-
-`scripts/skill-benchmark/contamination-lint.cjs` builds banned vocabulary from the target skill's own identity (name, triggers, router keywords, resource path tokens) and treats any leak as a fixture failure, not a skill failure.
-
-#### Source Files
-
-See [`skill-benchmark/contamination-gate-and-fixtures.md`](../feature-catalog/skill-benchmark/contamination-gate-and-fixtures.md) for full implementation and validation file listings.
-
-### Router-replay and advisor probe (Mode A)
-
-#### Description
-
-Replays the target skill's own router for in-skill routing and discovery, and probes the advisor out-of-band for inter-skill selection — both deterministic, no LLM.
-
-#### How It Works
-
-`scripts/skill-benchmark/router-replay.cjs` extracts `INTENT_SIGNALS`/`RESOURCE_MAP` from the target `SKILL.md` and reproduces the substring routing (D1-intra + D2 proxy); `scripts/skill-benchmark/advisor-probe.cjs` runs `skill_advisor.py` over the SQLite graph for the D1-inter signal.
-
-#### Source Files
-
-See [`skill-benchmark/router-replay-and-advisor-probe.md`](../feature-catalog/skill-benchmark/router-replay-and-advisor-probe.md) for full implementation and validation file listings.
-
-### D5 structural connectivity hard gate
-
-#### Description
-
-A static scan runs before any dispatch and caps the verdict on structural failures.
-
-#### How It Works
-
-`scripts/skill-benchmark/d5-connectivity.cjs` flags dead routed paths, dead intent keys, path escapes, orphan references, and an unparseable router; any P0 sets `gateFailed` and caps the verdict to `BLOCKED-BY-STRUCTURE`. It resolves a router from any shape the fleet uses — `INTENT_SIGNALS` or the equivalent `INTENT_MODEL`, the `LOADING_LEVELS` tiers, and a parent hub's active root `ROUTER.md` stage-two map — so a packet routed by its hub is not condemned for carrying no router of its own.
-
-#### Source Files
-
-See [`skill-benchmark/d5-connectivity-gate.md`](../feature-catalog/skill-benchmark/d5-connectivity-gate.md) for full implementation and validation file listings.
-
-### D1-D5 scoring and funnel
-
-#### Description
-
-Computes the five dimensions with a funnel whose largest single-stage drop is the headline bottleneck; the aggregate normalizes over the dimensions actually measured.
-
-#### How It Works
-
-`scripts/skill-benchmark/score-skill-benchmark.cjs` scores D1 inter+intra, D2 discovery, D3 efficiency, D5 connectivity, and reports D4 usefulness as `unscored` until live mode; the weights are hardcoded in the scorer, and `assets/skill-benchmark/default-profile.json` documents them but is a reference asset that is not consumed at runtime.
-
-#### Source Files
-
-See [`skill-benchmark/scoring-and-funnel.md`](../feature-catalog/skill-benchmark/scoring-and-funnel.md) for full implementation and validation file listings.
-
-### Dual report and remediation taxonomy
-
-#### Description
-
-Emits a machine report plus a human report rendered from it (anti-drift), with ranked bottlenecks mapped to concrete remediations and hand-off lanes.
-
-#### How It Works
-
-`scripts/skill-benchmark/build-report.cjs` renders `skill-benchmark-report.md` FROM `skill-benchmark-report.json` (anti-drift). `assets/skill-benchmark/remediation-taxonomy.json` documents how each finding class maps to a target file, locus, one-line fix, and hand-off lane; it is a reference asset (exercised by its own test) and is not yet imported by the report code.
-
-#### Source Files
-
-See [`skill-benchmark/dual-report-and-remediation.md`](../feature-catalog/skill-benchmark/dual-report-and-remediation.md) for full implementation and validation file listings.
 
 ---

@@ -1,13 +1,12 @@
 ---
 title: "deep-improvement"
-description: "Proposal-first evaluator skill that tests bounded agent improvement with 5-dimension scoring, dynamic profiling and guarded promotion across three co-equal lanes."
+description: "Proposal-first evaluator skill that tests bounded agent improvement with 5-dimension scoring, dynamic profiling and guarded promotion across two co-equal lanes."
 trigger_phrases:
   - "deep-improvement"
   - "agent improvement loop"
   - "bounded agent improvement"
   - "5-dimension scoring"
   - "model-benchmark mode"
-  - "skill-benchmark mode"
 version: 1.17.0.38
 ---
 
@@ -21,9 +20,9 @@ version: 1.17.0.38
 
 | Aspect | What you get |
 |---|---|
-| **Use it for** | Proving a bounded agent, model, or skill improved with measured evidence before you mutate the canonical file |
-| **Invoke with** | `/deep:agent-improvement`, `/deep:model-benchmark`, or `/deep:skill-benchmark` |
-| **Works on** | Any agent `.md` under `.opencode/agents/`, a model or prompt framework against repeatable fixtures, or a skill's real-world routing |
+| **Use it for** | Proving a bounded agent or model improved with measured evidence before you mutate the canonical file |
+| **Invoke with** | `/deep:agent-improvement` or `/deep:model-benchmark` |
+| **Works on** | Any agent `.md` under `.opencode/agents/`, or a model or prompt framework against repeatable fixtures |
 | **Produces** | Lane-specific candidates, benchmark reports, an append-only journal and a dashboard; output roots are defined by each lane's command contract |
 
 ---
@@ -36,7 +35,7 @@ Editing an agent prompt is normally guesswork. You reword a rule, the prompt rea
 
 ### What It Does
 
-`deep-improvement` replaces that guess with measured evidence. It writes a candidate to a bounded sandbox, scores it across five deterministic dimensions and promotes to the canonical file only after both score evidence and operator approval pass. It is the only deep loop that can mutate a file, but it does so exclusively behind a guarded promotion gate with a recorded rollback path. The three co-equal lanes are defined by the `deep-improvement` entries in [`mode-registry.json`](../mode-registry.json): Agent-Improvement, Model-Benchmark and Skill-Benchmark.
+`deep-improvement` replaces that guess with measured evidence. It writes a candidate to a bounded sandbox, scores it across five deterministic dimensions and promotes to the canonical file only after both score evidence and operator approval pass. It is the only deep loop that can mutate a file, but it does so exclusively behind a guarded promotion gate with a recorded rollback path. The two co-equal lanes are defined by the `deep-improvement` entries in [`mode-registry.json`](../mode-registry.json): Agent-Improvement and Model-Benchmark.
 
 ---
 
@@ -97,17 +96,16 @@ Profiles are generated dynamically from the target agent file via `generate-prof
 
 A candidate becomes promotion-eligible only when five gates all pass: prompt scoring must clear the bar, benchmark status must be complete and passing, repeatability must be proven, the manifest boundary must hold and the operator must approve. `promote-candidate.cjs` enforces every gate before it writes the canonical file. The rollback helper restores the archived pre-promotion state and records a dimensional comparison so you can audit the difference. The scorer and the mutator stay independent throughout.
 
-### The Three Lanes
+### The Two Lanes
 
-All three lanes share the same candidate, dispatcher and scorer seams.
+Both lanes share the same candidate, dispatcher and scorer seams.
 
 | Lane | Command | What it tests |
 |---|---|---|
 | A: Agent-Improvement | `/deep:agent-improvement` | A bounded agent `.md` file |
 | B: Model-Benchmark | `/deep:model-benchmark` | A model or prompt framework against repeatable fixtures |
-| C: Skill-Benchmark | `/deep:skill-benchmark` | A skill's routing, discovery, efficiency and usefulness |
 
-Lane B enters through `scripts/shared/loop-host.cjs --mode=model-benchmark` and writes benchmark outputs to `.opencode/skills/system-deep-loop/deep-improvement/benchmark/model-benchmark/{run_label}/`; benchmark reports include `outcomeScoreDelta` and helped/hurt fixture deltas so promotion can block regressions instead of relying on pass/fail alone. Lane C runs through `loop-host.cjs --mode=skill-benchmark` and emits a ranked diagnostic Skill Benchmark Report. Lane A is the default path when no mode flag is set.
+Lane B enters through `scripts/shared/loop-host.cjs --mode=model-benchmark` and writes benchmark outputs to `.opencode/skills/system-deep-loop/deep-improvement/benchmark/model-benchmark/{run_label}/`; benchmark reports include `outcomeScoreDelta` and helped/hurt fixture deltas so promotion can block regressions instead of relying on pass/fail alone. Lane A is the default path when no mode flag is set.
 
 ---
 
@@ -115,7 +113,7 @@ Lane B enters through `scripts/shared/loop-host.cjs --mode=model-benchmark` and 
 
 ### When To Use This Skill
 
-Run `deep-improvement` when you want to prove an agent edit earned its place before you commit it. Run it when integration drift across runtime mirrors worries you and you need a scanner to find every surface. Run Lane B when a model or prompt framework needs benchmark comparison against repeatable fixtures. Run Lane C when a skill's routing accuracy or discoverability needs measurement.
+Run `deep-improvement` when you want to prove an agent edit earned its place before you commit it. Run it when integration drift across runtime mirrors worries you and you need a scanner to find every surface. Run Lane B when a model or prompt framework needs benchmark comparison against repeatable fixtures.
 
 Skip it for open-ended prompt rewrites across many agent families at once. Skip it for direct canonical edits you already have confidence in. Skip it for general planning that belongs in `/speckit:plan`.
 
@@ -161,9 +159,9 @@ A: It finds every file that references an agent: the canonical definition, its C
 
 A: Structural Integrity checks that required sections are present. Rule Coherence checks that ALWAYS/NEVER rules align with workflow steps. Integration Consistency checks that mirrors are in sync and that commands and skills reference the agent. Output Quality checks that output-verification items exist with no placeholder content. System Fitness checks permissions, resource references and frontmatter completeness.
 
-**Q: How are the three lanes different?**
+**Q: How are the two lanes different?**
 
-A: Lane A improves a bounded agent `.md` file and writes packet-local candidates with five-dimension scores. Lane B benchmarks a model or prompt framework against repeatable fixtures. Lane C diagnoses a skill's routing, discovery, efficiency and usefulness without mutating the skill. All three share the same candidate, dispatcher and scorer seams.
+A: Lane A improves a bounded agent `.md` file and writes packet-local candidates with five-dimension scores. Lane B benchmarks a model or prompt framework against repeatable fixtures. Both share the same candidate, dispatcher and scorer seams.
 
 **Q: How does rollback work?**
 
@@ -177,7 +175,7 @@ The skill ships two validation packages.
 
 ### Feature Catalog
 
-The `feature-catalog/` covers every capability across five categories: evaluation-loop, integration-scanning, scoring-system, model-benchmark-mode and skill-benchmark. Each category documents inputs, outputs, the owning resource and acceptance criteria with live source anchors.
+The `feature-catalog/` covers every capability across four categories: evaluation-loop, integration-scanning, scoring-system and model-benchmark-mode. Each category documents inputs, outputs, the owning resource and acceptance criteria with live source anchors.
 
 ### Manual Testing Playbook
 
@@ -200,7 +198,7 @@ The `feature-catalog/` covers every capability across five categories: evaluatio
 
 | Document | Purpose |
 |---|---|
-| [`SKILL.md`](./SKILL.md) | Runtime instructions, the smart router and the full operating contract for all three lanes |
+| [`SKILL.md`](./SKILL.md) | Runtime instructions, the smart router and the full operating contract for both lanes |
 | [`references/shared/quick-reference.md`](./references/shared/quick-reference.md) | One-page operator cheat sheet with commands, dimension weights and the runtime layout |
 | [`references/shared/loop-protocol.md`](./references/shared/loop-protocol.md) | End-to-end operator workflow across setup, proposal, scoring and stop |
 | [`references/shared/promotion-rules.md`](./references/shared/promotion-rules.md) | Keep, reject and promote decision rules |
@@ -208,9 +206,7 @@ The `feature-catalog/` covers every capability across five categories: evaluatio
 | [`references/agent-improvement/integration-scanning.md`](./references/agent-improvement/integration-scanning.md) | Integration scanner documentation and surface inventory |
 | [`references/agent-improvement/score-dimensions.md`](./references/agent-improvement/score-dimensions.md) | Per-dimension checker detail |
 | [`references/model-benchmark/benchmark-operator-guide.md`](./references/model-benchmark/benchmark-operator-guide.md) | Fixture benchmark execution |
-| [`references/skill-benchmark/operator-guide.md`](./references/skill-benchmark/operator-guide.md) | Skill-benchmark operator workflow |
-| [`references/skill-benchmark/scoring-contract.md`](./references/skill-benchmark/scoring-contract.md) | Skill-benchmark scoring and funnel contract |
-| [`scripts/shared/loop-host.cjs`](./scripts/shared/loop-host.cjs) | Shared loop host entry point for Lanes B and C |
+| [`scripts/shared/loop-host.cjs`](./scripts/shared/loop-host.cjs) | Shared loop host entry point for Lane B |
 | [`scripts/agent-improvement/score-candidate.cjs`](./scripts/agent-improvement/score-candidate.cjs) | The five-dimension candidate scorer |
 | [`scripts/shared/promote-candidate.cjs`](./scripts/shared/promote-candidate.cjs) | Guarded canonical promotion |
 | [`feature-catalog/feature-catalog.md`](./feature-catalog/feature-catalog.md) | Feature inventory with source anchors |

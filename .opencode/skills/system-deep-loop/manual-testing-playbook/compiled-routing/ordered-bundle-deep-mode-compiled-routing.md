@@ -52,10 +52,9 @@ Use deep research to investigate why our advisor sometimes routes iterative inve
 
 ## 3. COMMAND SEQUENCE
 
-The cutover executor runs this hub's compiled-routing parity command scoped to this directory and gates on the captured evidence contract:
-```
-run-skill-benchmark.cjs --skill system-deep-loop --compiled-routing-parity on --route-gold off --playbook-dir <this-dir> --scenarios DL-CR-001 --trace-mode router
-```
+The cutover executor runs this hub's compiled-routing parity check scoped to this directory and gates on the captured evidence contract. The run is scoped to this directory and to scenario `DL-CR-001` alone, pins trace mode `router`, turns compiled-routing parity on, and turns route-gold scoring off, so the captured evidence is a pure compiled-versus-legacy comparison.
+
+> The runner that produced the archived evidence for this scenario was retired together with its improvement lane. The archived pair under `benchmark/compiled-routing/` is the frozen record of that parity result.
 
 ## Pass/Fail Criteria
 

@@ -175,10 +175,6 @@
         {
           "sibling": "/deep:model-benchmark",
           "when": "Prefer model benchmark when the target is a model or prompt framework profile rather than an agent definition."
-        },
-        {
-          "sibling": "/deep:skill-benchmark",
-          "when": "Prefer skill benchmark when the target is a skill's routing, discovery, or usefulness."
         }
       ]
     }
@@ -222,57 +218,6 @@
         {
           "sibling": "/deep:agent-improvement",
           "when": "Prefer agent improvement when the target is an agent definition to change and promote."
-        },
-        {
-          "sibling": "/deep:skill-benchmark",
-          "when": "Prefer skill benchmark when the target is a skill's real-world routing and usefulness."
-        }
-      ]
-    }
-  },
-  {
-    "command": "/deep:skill-benchmark",
-    "ownerMode": "skill-benchmark",
-    "description": "Benchmark a skill's real routing, discovery, efficiency and usefulness into a ranked report. :auto/:confirm.",
-    "argumentHint": "<skill_id_or_root> [:auto|:confirm] [--outputs-dir=PATH] [--fixtures-dir=PATH] [--trace-mode=router|live] [--advisor-mode=python]",
-    "userIntent": {
-      "job": "I want to measure a skill's routing, discovery, efficiency, and usefulness in practice.",
-      "ownedSignals": [
-        "benchmark a skill",
-        "test skill routing",
-        "measure skill usefulness"
-      ]
-    },
-    "choreography": [
-      {
-        "order": 1,
-        "skill": "system-deep-loop",
-        "resource": ".opencode/skills/system-deep-loop/SKILL.md",
-        "action": "load the system-deep-loop parent hub routing table"
-      },
-      {
-        "order": 2,
-        "skill": "deep-improvement",
-        "resource": ".opencode/skills/system-deep-loop/deep-improvement/SKILL.md",
-        "action": "load the evaluator-first skill-benchmark mode contract, then apply the workflow to $ARGUMENTS"
-      },
-      {
-        "order": 3,
-        "skill": "deep-improvement",
-        "resource": ".opencode/commands/deep/assets/deep-skill-benchmark-presentation.txt",
-        "action": "load the command presentation contract before resolving setup and execution mode"
-      }
-    ],
-    "discriminator": {
-      "whenToUse": "Use this command when the target is a skill whose real-world routing and usefulness should be benchmarked.",
-      "preferSiblingWhen": [
-        {
-          "sibling": "/deep:agent-improvement",
-          "when": "Prefer agent improvement when the target is an agent definition to change and promote."
-        },
-        {
-          "sibling": "/deep:model-benchmark",
-          "when": "Prefer model benchmark when the target is a model or prompt framework profile."
         }
       ]
     }

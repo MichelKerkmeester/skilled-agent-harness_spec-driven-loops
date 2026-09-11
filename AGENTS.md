@@ -470,7 +470,7 @@ Entry points only. Where a Flow column is present it names an order that is not 
 | **Deep research** | `/deep:research` | loop → convergence → synthesize → memory save |
 | **Deep review** | `/deep:review` | loop → convergence → `review-report.md` → memory save |
 | **Deep AI Council** | `/deep:ai-council` | deliberate → critique → converge → artifacts → gate |
-| **Improvement / benchmarks** | `/deep:agent-improvement` · `/deep:model-benchmark` · `/deep:skill-benchmark` | — |
+| **Improvement / benchmarks** | `/deep:agent-improvement` · `/deep:model-benchmark` | — |
 | **Claim completion** | Final-State Verification | `validate.sh <spec-folder> --strict` → checklist all items → reconcile metadata |
 | **Save context** | `/speckit:save`, or compose JSON → `generate-context.js` | — |
 | **End session** | `/speckit:save` | → `handover.md` update → continuation prompt |

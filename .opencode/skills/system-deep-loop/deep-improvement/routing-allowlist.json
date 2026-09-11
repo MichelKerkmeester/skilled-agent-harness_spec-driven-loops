@@ -1,7 +1,5 @@
 {
   "intentionally_unrouted": [
-    {"path": "assets/skill-benchmark/README.md", "reason": "Lane C data-directory catalog; search-discovery via its own trigger_phrases, not task-time routing."},
-    {"path": "assets/skill-benchmark/fixtures/README.md", "reason": "Legacy Mode-A fixture corpus inventory; superseded-but-supported catalog, not per-task guidance."},
     {"path": "assets/model-benchmark/README.md", "reason": "Lane B data-directory catalog; scripts consume the data directly, not via task intent."},
     {"path": "assets/model-benchmark/benchmark-profiles/README.md", "reason": "Profile inventory catalog documenting canonical JSON configs; discovery, not live-execution guidance."},
     {"path": "assets/model-benchmark/benchmark-fixtures/README.md", "reason": "Fixture taxonomy/inventory catalog for benchmark data; discovery aid, not a task intent."},

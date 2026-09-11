@@ -37,7 +37,7 @@ const { parseArgs } = require('./parse-args.cjs');
 // ─────────────────────────────────────────────────────────────────────────────
 
 const SCRIPTS_ROOT = __dirname;
-const VALID_MODES = new Set(['agent-improvement', 'model-benchmark', 'skill-benchmark']);
+const VALID_MODES = new Set(['agent-improvement', 'model-benchmark']);
 
 // Lane separation: planInvocation() returns BARE script names (e.g.
 // 'score-candidate.cjs') to keep the backward-compat identity plan
@@ -58,29 +58,6 @@ const LANE_MODEL_BENCHMARK = new Set([
   'run-benchmark.cjs',
   'dispatch-model.cjs',
 ]);
-// Lane C (skill-benchmark): the orchestrator the run resolves to. Sub-scripts
-// (router-replay, contamination-lint, d5-connectivity, parse-resource-loads,
-// score-skill-benchmark, build-report) are required internally by the
-// orchestrator, so only the entry script needs lane-path resolution here.
-const LANE_SKILL_BENCHMARK = new Set([
-  'run-skill-benchmark.cjs',
-]);
-// Optional flags loop-host forwards to run-skill-benchmark.cjs, in forwarding
-// order. --skill and --outputs-dir are required and handled separately. This
-// list is exactly the set run-skill-benchmark.cjs's run() reads; forwarding a
-// flag the orchestrator never consumes would be silently absorbed and mislead
-// operators into thinking it has effect.
-const SKILL_BENCHMARK_RUN_OPTIONS = [
-  'fixtures-dir',
-  'output',
-  'trace-mode',
-  'advisor-mode',
-  'scenarios',
-  'executor',
-  'playbook-dir',
-  'compiled-routing-parity',
-];
-
 // Single source of truth for the optional model-benchmark flags loop-host
 // forwards to run-benchmark.cjs (one shared benchmark option schema). Order is
 // the forwarding order. --profile and --outputs-dir are required and handled
@@ -122,9 +99,6 @@ function resolveScriptPath(scriptName) {
   if (LANE_MODEL_BENCHMARK.has(scriptName)) {
     return path.join(SCRIPTS_ROOT, '..', 'model-benchmark', scriptName);
   }
-  if (LANE_SKILL_BENCHMARK.has(scriptName)) {
-    return path.join(SCRIPTS_ROOT, '..', 'skill-benchmark', scriptName);
-  }
   // Other shared scripts (materialize-benchmark-fixtures, promote-candidate,
   // reduce-state, improvement-journal, mutation-coverage) live alongside this file.
   return path.join(SCRIPTS_ROOT, scriptName);
@@ -153,7 +127,7 @@ function resolveMode(rawMode) {
  * the identity gate can assert byte-identical plans for the default and explicit
  * agent-improvement routes without spawning anything.
  *
- * @param {string} mode - Resolved run mode (agent-improvement, model-benchmark, skill-benchmark)
+ * @param {string} mode - Resolved run mode (agent-improvement, model-benchmark)
  * @param {object} args - Parsed CLI args keyed by flag name
  * @returns {{ ok: true, steps: Array<{script: string, args: string[]}> } | { ok: false, error: string }}
  */
@@ -187,20 +161,6 @@ function planInvocation(mode, args) {
         { script: 'run-benchmark.cjs', args: benchArgs },
       ],
     };
-  }
-  if (mode === 'skill-benchmark') {
-    if (!args.skill || !args['outputs-dir']) {
-      return { ok: false, error: 'skill-benchmark: missing required --skill=<skill-root-or-id> and --outputs-dir=<path>' };
-    }
-    // Single orchestrator step: run-skill-benchmark.cjs internally sequences
-    // D5-gate -> router-replay -> (optional live) -> trace-parse -> score ->
-    // report, so the plan stays one step (unlike Lane B's materialize+run pair).
-    // Lane C scripts use space-separated args.
-    const skillArgs = ['--skill', args.skill, '--outputs-dir', args['outputs-dir']];
-    for (const opt of SKILL_BENCHMARK_RUN_OPTIONS) {
-      if (args[opt] !== undefined) skillArgs.push(`--${opt}`, String(args[opt]));
-    }
-    return { ok: true, steps: [{ script: 'run-skill-benchmark.cjs', args: skillArgs }] };
   }
   // agent-improvement (default). score-candidate.cjs uses key=value args.
   if (!args.candidate) {
@@ -248,4 +208,4 @@ if (require.main === module) main();
 // 5. EXPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-module.exports = { parseArgs, resolveMode, planInvocation, resolveScriptPath, VALID_MODES, LANE_SKILL_BENCHMARK };
+module.exports = { parseArgs, resolveMode, planInvocation, resolveScriptPath, VALID_MODES };

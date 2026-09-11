@@ -34,13 +34,12 @@ describe('improvement stays host-driven, never a runtime convergence loopType', 
     expect(source).not.toContain(`loopType !== 'improvement'`);
   });
 
-  it('loop-host keeps exactly the three supported improvement lanes', () => {
+  it('loop-host keeps exactly the two supported improvement lanes', () => {
     const loopHost = nodeRequire(LOOP_HOST) as { VALID_MODES: Set<string> };
     expect(loopHost.VALID_MODES).toBeInstanceOf(Set);
     expect([...loopHost.VALID_MODES].sort()).toEqual([
       'agent-improvement',
       'model-benchmark',
-      'skill-benchmark',
     ]);
     expect(loopHost.VALID_MODES.has('improvement')).toBe(false);
   });

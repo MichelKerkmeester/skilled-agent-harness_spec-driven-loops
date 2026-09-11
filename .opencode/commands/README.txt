@@ -42,7 +42,7 @@ Commands are organized into five groups plus root-level utilities:
 | Group | Path | Commands | Purpose |
 |-------|------|----------|---------|
 | **create** | `commands/create/` | 12 | Scaffold OpenCode components, documentation packages, changelogs, charts, diagrams, diffs and repo rules |
-| **deep** | `commands/deep/` | 6 | Deep research, review, AI council and improvement loops |
+| **deep** | `commands/deep/` | 5 | Deep research, review, AI council and improvement loops |
 | **doctor** | `commands/doctor/` | 3 | MCP, Spec Kit, update, and subsystem diagnostics |
 | **design** | `commands/design/` | 3 | Style Reference extraction, standalone charts and diagrams |
 | **prompt** | `commands/prompt/` | 1 | Prompt engineering surface (`/prompt:improve`) via sk-prompt |
@@ -100,7 +100,6 @@ command/
 │   ├── model-benchmark.md    # Model/prompt-framework benchmark loop
 │   ├── research.md           # Iterative deep research workflow
 │   ├── review.md             # Iterative code review workflow
-│   ├── skill-benchmark.md    # Skill routing and usefulness benchmark loop
 │   └── assets/               # YAML workflow definitions
 ├── doctor/                   # MCP server diagnostic and install commands
 │   ├── mcp.md                # Diagnose/install MCP infrastructure
@@ -175,7 +174,6 @@ Run long-form, stateful deep-loop workflows. Each command supports `:auto` and `
 | Model Benchmark | `/deep:model-benchmark [profile] [:auto\|:confirm]` | Benchmark and optimize a model or prompt framework against fixtures |
 | Research Loop | `/deep:research <topic> [:auto\|:confirm]` | Iterative technical investigation with convergence |
 | Review Loop | `/deep:review <target> [:auto\|:confirm]` | Iterative code review with severity-weighted findings |
-| Skill Benchmark | `/deep:skill-benchmark <skill> [:auto\|:confirm]` | Benchmark a skill routing, discovery, efficiency and usefulness |
 
 ### Design Commands
 

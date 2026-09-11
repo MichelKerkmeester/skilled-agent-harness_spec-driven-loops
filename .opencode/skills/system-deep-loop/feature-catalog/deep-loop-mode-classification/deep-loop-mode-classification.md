@@ -1,6 +1,6 @@
 ---
 title: "Registry-Driven Deep-Loop Mode Classification"
-description: "How the system-deep-loop hub classifies a request into one of seven workflowMode packets via a three-tier discriminator, without holding any per-mode logic itself."
+description: "How the system-deep-loop hub classifies a request into one of five workflowMode packets via a three-tier discriminator, without holding any per-mode logic itself."
 trigger_phrases:
   - "registry-driven deep-loop mode classification"
   - "system-deep-loop three-tier discriminator"
@@ -15,7 +15,7 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-`system-deep-loop` is a registry-driven, invokable hub. `mode-registry.json` is the single source of truth for its seven `workflowMode` packets; the hub classifies a request, resolves the mode through the registry, and loads `registry[mode].packet` without re-deriving the mapping or holding per-mode logic itself.
+`system-deep-loop` is a registry-driven, invokable hub. `mode-registry.json` is the single source of truth for its five `workflowMode` packets; the hub classifies a request, resolves the mode through the registry, and loads `registry[mode].packet` without re-deriving the mapping or holding per-mode logic itself.
 
 The `/deep:*` commands and native agent types are complementary surfaces that reach the same packets through their own static routers or agent definitions — they do not bypass or duplicate the registry.
 
@@ -25,7 +25,7 @@ The `/deep:*` commands and native agent types are complementary surfaces that re
 
 ### Three-Tier Discriminator
 
-Every packet carries `workflowMode` (the public mode key: `research`, `review`, `ai-council`, `alignment`, and the three improvement lanes `agent-improvement`, `model-benchmark`, `skill-benchmark`), `runtimeLoopType` (the graph-backed convergence key consumed by `runtime/scripts/convergence.cjs`, validated against active `research`/`review`/`council`, and explicitly `null` for all three improvement lanes rather than inferred from `workflowMode` — `ai-council` maps to `runtimeLoopType: council`, `alignment` maps to `runtimeLoopType: review`), and `backendKind` (`runtime-loop-type` for research/review/ai-council/alignment, `improvement-host` for the three improvement lanes, run via `deep-improvement/scripts/shared/loop-host.cjs --mode`).
+Every packet carries `workflowMode` (the public mode key: `research`, `review`, `ai-council`, and the two improvement lanes `agent-improvement`, `model-benchmark`), `runtimeLoopType` (the graph-backed convergence key consumed by `runtime/scripts/convergence.cjs`, validated against active `research`/`review`/`council`, and explicitly `null` for both improvement lanes rather than inferred from `workflowMode` — `ai-council` maps to `runtimeLoopType: council`), and `backendKind` (`runtime-loop-type` for research/review/ai-council, `improvement-host` for the two improvement lanes, run via `deep-improvement/scripts/shared/loop-host.cjs --mode`).
 
 ### Intent Classification, Not Keyed Resource Discovery
 
@@ -40,7 +40,7 @@ The advisor routes any deep-loop query to the single identity `system-deep-loop`
 | File | Layer | Role |
 |---|---|---|
 | `.opencode/skills/system-deep-loop/SKILL.md` | Shared | States the registry-driven classification contract and the three-tier discriminator. |
-| `.opencode/skills/system-deep-loop/mode-registry.json` | Shared | Declarative registry for all seven `workflowMode` packets. |
+| `.opencode/skills/system-deep-loop/mode-registry.json` | Shared | Declarative registry for all five `workflowMode` packets. |
 | `.opencode/skills/system-deep-loop/ROUTER.md` | Shared | Second-layer intent-to-leaf mapping consumed by router-replay benchmarking. |
 
 ### Validation And Tests

@@ -41,10 +41,6 @@ scripts/
 |   +-- remediation.vitest.ts
 |   +-- run-benchmark-hardening.vitest.ts
 |   `-- scorer.vitest.ts
-+-- skill-benchmark/tests/
-|   +-- skill-benchmark.vitest.ts
-|   +-- playbook-mode.vitest.ts
-|   `-- sk-code-router-sync.vitest.ts
 `-- shared/tests/
     +-- improvement-journal.vitest.ts
     +-- loop-host.vitest.ts
@@ -81,14 +77,6 @@ scripts/
 | `remediation.vitest.ts` | Model-benchmark remediation hardening (dispatcher cwd, cwd-check prefix, criteria-exec gate). |
 | `run-benchmark-hardening.vitest.ts` | `model-benchmark/run-benchmark.cjs` hardening and fixture handling. |
 | `scorer.vitest.ts` | `model-benchmark/scorer/score-model-variant.cjs` five-dimension scoring output. |
-
-### skill-benchmark/tests/
-
-| File | Covers |
-|---|---|
-| `skill-benchmark.vitest.ts` | `skill-benchmark/` orchestrator, router-replay, dual report rendering. |
-| `playbook-mode.vitest.ts` | Playbook parser, executor dispatch, real-gold scoring, divergence, live/browser/D4/generator. |
-| `sk-code-router-sync.vitest.ts` | sk-code router drift guard (machine-readable router stays parseable). |
 
 ### shared/tests/
 

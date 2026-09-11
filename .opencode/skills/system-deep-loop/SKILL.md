@@ -5,7 +5,7 @@ description: "Routes research, review, AI Council, and improvement modes through
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob, Task, WebFetch]
 ---
 
-<!-- Keywords: system-deep-loop, deep-loop, deep-research, deep-review, deep-ai-council, deep-improvement, conformance, standard-authority, conformance-review, read-only-default, context-gathering, reuse-catalog, autoresearch, iterative-research, review-loop, deep-review-wave, release-readiness, severity-findings, P0-P1-P2, ai-council, council-deliberation, multi-seat-planning, agent-improvement, benchmark-harness, model-benchmark, skill-benchmark, convergence-detection, externalized-state, coverage-graph, mode-registry, workflowmode, runtimeloop-type, backendkind -->
+<!-- Keywords: system-deep-loop, deep-loop, deep-research, deep-review, deep-ai-council, deep-improvement, conformance, standard-authority, conformance-review, read-only-default, context-gathering, reuse-catalog, autoresearch, iterative-research, review-loop, deep-review-wave, release-readiness, severity-findings, P0-P1-P2, ai-council, council-deliberation, multi-seat-planning, agent-improvement, benchmark-harness, model-benchmark, convergence-detection, externalized-state, coverage-graph, mode-registry, workflowmode, runtimeloop-type, backendkind -->
 
 # System Deep Loop
 
@@ -24,7 +24,7 @@ Use this skill (through the hub) for any active deep-loop workflow. Invoke it as
 | **research** | Outward, web + code iterative investigation → `research/research.md` | `system-deep-loop/deep-research/` | `/deep:research` | `deep-research` |
 | **review** | Iterative review loop → P0/P1/P2 findings + verdict | `system-deep-loop/deep-review/` | `/deep:review` | `deep-review` |
 | **ai-council** | Multi-seat planning deliberation → `ai-council/**` artifacts | `system-deep-loop/deep-ai-council/` | `/deep:ai-council` | `ai-council` |
-| **improvement** (3 lanes) | Evaluator-first improvement: `agent-improvement`, `model-benchmark`, `skill-benchmark` | `system-deep-loop/deep-improvement/` | `/deep:agent-improvement` · `/deep:model-benchmark` · `/deep:skill-benchmark` | `deep-improvement` |
+| **improvement** (2 lanes) | Evaluator-first improvement: `agent-improvement`, `model-benchmark` | `system-deep-loop/deep-improvement/` | `/deep:agent-improvement` · `/deep:model-benchmark` | `deep-improvement` |
 
 ### When NOT to Use
 - A single quick read/edit (no loop) — use the relevant code or doc skill directly.
@@ -44,7 +44,7 @@ Routing is **registry-driven** (invokable-hub, Option E) in two stages. Stage 1 
 
 ### Surface Router — per-mode leaf sets
 
-Stage 2 of routing lives in `ROUTER.md` at the hub root, next to `SKILL.md` and `README.md`. It defines the per-mode leaf-intent model (the research loop protocol/state/convergence leaves, the review loop protocol/completion/convergence leaves, the ai-council loop protocol/scoring/output-schema leaves, the agent-improvement candidate/score/promotion-gate leaves, and the model- and skill-benchmark evaluator leaves), the machine-readable `DEFAULT_RESOURCE` / `INTENT_SIGNALS` / `RESOURCE_MAP` block that the deterministic router-replay and benchmarks parse, and the how-to-read rules (dominant intent → one leaf set; near-tied intents → deduped union; no keyword match → hub `defer`, never a silent default to a mode). Every `RESOURCE_MAP` path is packet-qualified and converts to the canonical `(workflowMode, leafResourceId)` pair at the one contract boundary.
+Stage 2 of routing lives in `ROUTER.md` at the hub root, next to `SKILL.md` and `README.md`. It defines the per-mode leaf-intent model (the research loop protocol/state/convergence leaves, the review loop protocol/completion/convergence leaves, the ai-council loop protocol/scoring/output-schema leaves, the agent-improvement candidate/score/promotion-gate leaves, and the model-benchmark evaluator leaves), the machine-readable `DEFAULT_RESOURCE` / `INTENT_SIGNALS` / `RESOURCE_MAP` block that the deterministic router-replay and benchmarks parse, and the how-to-read rules (dominant intent → one leaf set; near-tied intents → deduped union; no keyword match → hub `defer`, never a silent default to a mode). Every `RESOURCE_MAP` path is packet-qualified and converts to the canonical `(workflowMode, leafResourceId)` pair at the one contract boundary.
 
 `ROUTER.md` stays a separate document on purpose: the router-replay contract resolves the hub's mode from `hub-router.json` and reads the leaf sets from the surface document — the machine block must not move into `SKILL.md` (the replay would treat it as the hub's own router and lose the mode projection) or into `hub-router.json` (schema handoff-ambiguity rule).
 
@@ -55,14 +55,14 @@ This hub is an intent/registry router, not a keyed resource-discovery router: at
 The hub's own routing logic is read-only (classify, guard a path, load a packet). The frontmatter `allowed-tools` list is nonetheless broad because, per the two-axis hub canon contract, a hub's tool grant MUST equal the exact union of every registered mode's `toolSurface.allowed` in `mode-registry.json` — not the tool set the hub's own logic uses. This is a hard invariant enforced by `parent-skill-check.cjs` (check 3j: "hub allowed-tools equals the union of mode tool surfaces"); narrowing the frontmatter grant to only what routing-only logic needs would fail that check and break every mode whose `toolSurface` isn't a subset of the narrowed list. Treat the breadth of `allowed-tools` as evidence of the child modes' combined needs, not of mutating logic living in the hub.
 
 ### The three-tier discriminator
-- **`workflowMode`** — the public active mode key: `research`, `review`, `ai-council`, and the three improvement lanes `agent-improvement`, `model-benchmark`, `skill-benchmark`.
+- **`workflowMode`** — the public active mode key: `research`, `review`, `ai-council`, and the two improvement lanes `agent-improvement` and `model-benchmark`.
 - **`runtimeLoopType`** — the graph-backed convergence key consumed by `runtime/scripts/convergence.cjs` (validated against active `research|review|council`). **Explicit `null` for custom and improvement backends; never inferred from `workflowMode`.** Note `ai-council` maps to `runtimeLoopType: council`.
 - **`backendKind`** — which backend runs the mode: `runtime-loop-type` (research/review/ai-council) or `improvement-host` (`deep-improvement/scripts/shared/loop-host.cjs --mode`).
 
 ### Routing rule
 ```
 UNKNOWN_FALLBACK_CHECKLIST = [
-    "Confirm whether this is research, review, ai-council, or one improvement lane (agent-improvement, model-benchmark, skill-benchmark) work",
+    "Confirm whether this is research, review, ai-council, or one improvement lane (agent-improvement, model-benchmark) work",
     "Confirm the target artifact: research.md, a review verdict, ai-council deliberation artifacts, or an improvement candidate",
     "Confirm the matching /deep:* command or agent type when one is already known",
     "Confirm the backend expectations: runtimeLoopType (research/review/council) or the improvement-host lane",

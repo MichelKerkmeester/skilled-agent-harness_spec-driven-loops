@@ -1,11 +1,10 @@
 ---
 title: "deep-improvement Scripts: Lane Runtime"
-description: "CLI scripts for the three deep-improvement lanes plus their shared router, helpers, and tests."
+description: "CLI scripts for the two deep-improvement lanes plus their shared router, helpers, and tests."
 trigger_phrases:
   - "deep-improvement scripts"
   - "agent-improvement lane scripts"
   - "model-benchmark lane scripts"
-  - "skill-benchmark lane scripts"
 ---
 
 # deep-improvement Scripts: Lane Runtime
@@ -14,14 +13,13 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`scripts/` holds the CLI scripts for the deep-improvement skill. The scripts split into three lanes plus a shared layer: `agent-improvement/`, `model-benchmark/`, and `skill-benchmark/`. `shared/` serves the lane hosts, and `lib/` provides CommonJS helpers consumed by the lane scripts.
+`scripts/` holds the CLI scripts for the deep-improvement skill. The scripts split into two lanes plus a shared layer: `agent-improvement/` and `model-benchmark/`. `shared/` serves the lane hosts, and `lib/` provides CommonJS helpers consumed by the lane scripts.
 
 Current state:
 
 - `shared/loop-host.cjs` is the router. It switches between lanes and resolves bare script names to lane directories at spawn time.
 - Some lane and shared scripts require helpers from `lib/` with relative paths.
 - `model-benchmark/run-benchmark.cjs` defaults to `--scorer pattern` and accepts `--scorer 5dim` for the opt-in five-dimension scorer under `model-benchmark/scorer/`.
-- `skill-benchmark/` provides the skill diagnostic lane.
 
 ---
 
@@ -35,7 +33,6 @@ scripts/
 +-- agent-improvement/    # Lane A scripts
 +-- model-benchmark/      # Lane B scripts
 |   `-- scorer/                # Opt-in five-dimension scorer subtree
-+-- skill-benchmark/      # Lane C scripts
 +-- lib/                  # Shared CommonJS helpers
 `-- */tests/              # Lane-local Vitest suites; shared/tests/ also holds fixtures + the suite index
 ```
@@ -43,7 +40,7 @@ scripts/
 Allowed dependency direction:
 
 ```text
-shared/loop-host.cjs → agent-improvement/ | model-benchmark/ | skill-benchmark/   (resolved at spawn)
+shared/loop-host.cjs → agent-improvement/ | model-benchmark/   (resolved at spawn)
 agent-improvement/ → lib/
 model-benchmark/ → lib/
 shared/ → lib/
@@ -78,7 +75,6 @@ scripts/
 |   +-- dispatch-model.cjs                 # Model-agnostic CLI dispatcher
 |   +-- scorer/                            # Opt-in five-dimension scorer subtree
 |   `-- tests/                             # Lane B Vitest suites
-+-- skill-benchmark/                       # Lane C diagnostic benchmark scripts
 +-- lib/                                   # Shared CommonJS helpers
 `-- vitest.config.mjs                      # Vitest include config
 ```
@@ -97,7 +93,6 @@ scripts/
 | `model-benchmark/run-benchmark.cjs` | Fixture and integration scorer. `--scorer pattern` is the default and `--scorer 5dim` selects the `scorer/` subtree. |
 | `model-benchmark/dispatch-model.cjs` | Model-agnostic CLI dispatcher for Lane B. |
 | `model-benchmark/scorer/` | Five-dimension scorer with `score-model-variant.cjs`, `deterministic/`, `grader/`, and `lib/cache.cjs`. The runtime `cache/` is git-ignored. |
-| `skill-benchmark/` | Lane C diagnostic benchmark scripts for skill routing, discovery, efficiency, and usefulness. |
 | `lib/` | Shared CommonJS helpers: `typed-errors.cjs`, `promotion-gates.cjs`, `mirror-sync-verify.cjs`. |
 
 ---
@@ -108,7 +103,7 @@ scripts/
 |---|---|
 | Entry | `shared/loop-host.cjs` is the single router. Lanes are not invoked directly by the loop. |
 | Imports | Lane and shared scripts import helpers from `lib/` only. `lib/` is not a cross-skill import surface. |
-| Lane separation | Lane scripts stay in `agent-improvement/`, `model-benchmark/`, or `skill-benchmark/`; cross-lane scripts stay in `shared/`. |
+| Lane separation | Lane scripts stay in `agent-improvement/` or `model-benchmark/`; cross-lane scripts stay in `shared/`. |
 | Test co-location | Each lane's Vitest suites live in its own `tests/` subdir (`<lane>/tests/`). Cross-lane fixtures and the suite index live under `shared/tests/`. |
 
 Main flow:

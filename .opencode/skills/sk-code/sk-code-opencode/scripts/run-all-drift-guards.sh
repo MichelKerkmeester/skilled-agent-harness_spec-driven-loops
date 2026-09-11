@@ -26,8 +26,6 @@ REPO_ROOT="$(cd "${SKILLS_DIR}/../.." && pwd)"
 
 DRIFT_VERIFIER="${CODE_OPENCODE_DIR}/assets/scripts/verify_alignment_drift.py"
 STACK_VERIFIER="${CODE_OPENCODE_DIR}/assets/scripts/verify_stack_folders.py"
-VITEST_DIR="${SKILLS_DIR}/system-deep-loop/deep-improvement/scripts"
-VITEST_FILE="skill-benchmark/tests/sk-code-router-sync.vitest.ts"
 
 failures=0
 
@@ -50,21 +48,15 @@ run_guard "alignment-drift  (verify_alignment_drift.py --check-router)" \
 run_guard "stack-folders    (verify_stack_folders.py)" \
   python3 "${STACK_VERIFIER}"
 
-# The router-sync suite resolves its own config from VITEST_DIR, so run it there
-# in a subshell to contain the directory change (rather than via run_guard).
-echo "── router-sync      (sk-code-router-sync.vitest.ts)"
-if ( cd "${VITEST_DIR}" && npx vitest run "${VITEST_FILE}" ); then
-  echo "PASS: router-sync      (sk-code-router-sync.vitest.ts)"
-else
-  echo "FAIL: router-sync      (sk-code-router-sync.vitest.ts)"
-  failures=$((failures + 1))
-fi
-echo ""
+# The third guard was a router-sync suite that lived inside a retired lane and went with
+# it. It checked that this surface's router stayed in step with the compiled routing
+# snapshot, which nothing here measures now. Rebuilding it needs a home that outlives any
+# one lane, so it is recorded as missing rather than quietly dropped.
 
 if [ "${failures}" -ne 0 ]; then
   echo "run-all-drift-guards: ${failures} guard(s) FAILED"
   exit 1
 fi
 
-echo "run-all-drift-guards: all 3 guards PASSED"
+echo "run-all-drift-guards: all 2 guards PASSED"
 exit 0

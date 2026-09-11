@@ -526,12 +526,12 @@ Brings several AI viewpoints together to plan hard decisions. `@ai-council` runs
 &nbsp;
 #### Agent Improvement & Benchmarking
 
-Three co-equal lanes in the `system-deep-loop` improvement mode. Lane A reviews and upgrades any of your agents: `/deep:agent-improvement` runs `@deep-improvement`. Lane B benchmarks a model or prompt framework: `/deep:model-benchmark`. Lane C diagnoses a skill's real-world routing, discovery, efficiency and usefulness: `/deep:skill-benchmark`.
+Two co-equal lanes in the `system-deep-loop` improvement mode. Lane A reviews and upgrades any of your agents: `/deep:agent-improvement` runs `@deep-improvement`. Lane B benchmarks a model or prompt framework: `/deep:model-benchmark`.
 - **Objective scoring:** rates an agent across five dimensions with fixed, repeatable checks, not another AI's opinion
 - **Sees the whole footprint:** finds every place the agent lives (definition, mirrors, commands, workflows, skills) before changing anything
 - **Never breaks the original:** changes go to a sandbox copy and only get promoted after they pass scoring, benchmarks and your approval, with rollback if they don't
 - **Knows when to stop:** ends once the scores stop improving
-- **Benchmarks too (Lanes B/C):** models and prompt frameworks against fixtures with pattern or 5-dimension scoring (deterministic or graded), and skills against real routing and discovery behavior
+- **Benchmarks too (Lane B):** models and prompt frameworks against fixtures with pattern or 5-dimension scoring, deterministic or graded
 
 For details, see the [Deep Loop Runtime README](.opencode/skills/system-deep-loop/runtime/README.md), or the [system-deep-loop README](.opencode/skills/system-deep-loop/README.md), which documents each mode.
 
@@ -802,8 +802,6 @@ The active autonomous loop families (the improvement family carries three lanes)
 **Model Benchmark** (`/deep:model-benchmark`)
 - Benchmarks a model or prompt framework against fixtures. See [Deep Loop](#deep-loop). Modes: `:auto`, `:confirm`
 
-**Skill Benchmark** (`/deep:skill-benchmark`)
-- Diagnoses a skill's real-world routing, discovery and usefulness. See [Deep Loop](#deep-loop). Modes: `:auto`, `:confirm`
 
 &nbsp;
 #### DOCTOR

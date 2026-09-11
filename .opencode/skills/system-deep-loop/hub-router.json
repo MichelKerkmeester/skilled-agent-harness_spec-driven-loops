@@ -4,7 +4,7 @@
   "routerPolicy": {
     "defaultMode": null,
     "ambiguityDelta": 1,
-    "tieBreak": ["research", "review", "ai-council", "agent-improvement", "model-benchmark", "skill-benchmark"],
+    "tieBreak": ["research", "review", "ai-council", "agent-improvement", "model-benchmark"],
     "outcomes": {
       "single": "one dominant deep-loop intent routes to one mode",
       "orderedBundle": "clearly separate deep-loop intents route to an ordered mode list",
@@ -40,11 +40,6 @@
       "weight": 4,
       "classes": ["model-benchmark-aliases"],
       "resources": ["deep-improvement/SKILL.md"]
-    },
-    "skill-benchmark": {
-      "weight": 4,
-      "classes": ["skill-benchmark-aliases"],
-      "resources": ["deep-improvement/SKILL.md"]
     }
   },
   "vocabularyClasses": {
@@ -62,9 +57,6 @@
     },
     "model-benchmark-aliases": {
       "keywords": ["/deep:model-benchmark", "model benchmark", "benchmark a model"]
-    },
-    "skill-benchmark-aliases": {
-      "keywords": ["/deep:skill-benchmark", "skill benchmark"]
     },
     "hub-identity": {
       "keywords": ["system-deep-loop", "deep-loop-workflows", "deep loop workflows", "deep loop workflow"]

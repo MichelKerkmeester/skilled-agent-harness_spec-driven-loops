@@ -33,7 +33,6 @@ efforts, and authors must keep them from colliding:
 | --- | --- |
 | `manual_testing_playbook` | Does the **system** match documented behavior when driven by a competent executor? Human-verifies the workflow itself. |
 | `feature_catalog` | What **exists** in this skill (commands, surfaces, artifacts)? Inventory, not measurement. |
-| `/deep:skill-benchmark` | **Skill** structure and routing quality. Scores the skill, not a live executor run. |
 | `/deep:model-benchmark` | **Model** scoring against static fixtures. Fixed inputs, reproducible targets, no live command surface. |
 | `behavior_benchmark` | **Live executor behavior at the real command surface** under realistic prompting. |
 
