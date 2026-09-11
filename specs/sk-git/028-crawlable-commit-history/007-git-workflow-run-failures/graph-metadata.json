@@ -39,14 +39,17 @@
       "approach"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "planned",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "scratch/observed-failures.md",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts",
+      ".opencode/skills/sk-git/scripts/lib/git-rule-checks.mjs"
     ],
     "entities": [
       {
@@ -83,6 +86,24 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "observed-failures.md",
+        "kind": "doc",
+        "path": "scratch/observed-failures.md",
+        "source": "derived"
+      },
+      {
+        "name": "write-containment.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts",
+        "source": "derived"
+      },
+      {
+        "name": "git-rule-checks.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-git/scripts/lib/git-rule-checks.mjs",
         "source": "derived"
       },
       {
@@ -174,29 +195,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "Automated runs in this repository hand work to detached children and fan-out lineages, and git behaviors that a human shrugs off end those runs: a revert that erases an orchestrator's work, a hook that blocks a commit nobody can answer for, an advisory that cries wolf on every add",
     "created_at": "2026-09-11T08:06:45Z",
-    "last_save_at": "2026-09-11T08:07:52.598Z",
+    "last_save_at": "2026-09-11T09:02:35.912Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,10 +210,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3fcb51e1f3939ac76ebeb0119f2a205322d95739ecc11e5db737f4cb31dec28d",
+    "source_fingerprint": "sha256:f2623bb72cb46fcaff5dd9a25c4a69ba990d054b4024ac2b2c11a5f87af4b511",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2ee63e239503db8d69d1361dfbb05a5240944d54d28694f1af8818435e33f40a",
+      "spec.md": "6a7e1f78dd832624c86a16d000bb6111d7c6340652fd859b9dfd651bd6b5c978",
       "plan.md": "9002a603f28a874651b11bde8dccc794f6ee025712631c63d50c39305e8794f0",
       "tasks.md": "437dca75f005d7eca2ddf969abfa3e7f5be2c19f3edc2d2eaf9f1830af685d6b",
       "implementation-summary.md": "c10b58de7a44733ed350a33b9e272d0469ae7d092179ffe9fef72f7b9d8efe24"
