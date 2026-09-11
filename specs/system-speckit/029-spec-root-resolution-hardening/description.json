@@ -1,5 +1,5 @@
 {
-  "level": "phase",
+  "level": "2",
   "specFolder": "system-speckit/029-spec-root-resolution-hardening",
   "description": "Spec-root resolution is implemented at ~20 independent call sites with four different precedences (canonical-first, legacy-first, canonical-only,",
   "keywords": [

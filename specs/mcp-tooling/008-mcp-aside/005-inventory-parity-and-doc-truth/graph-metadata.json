@@ -48,7 +48,6 @@
       ".opencode/skills/mcp-tooling/mcp-aside-devtools/SKILL.md",
       ".opencode/skills/mcp-tooling/mcp-aside-devtools/assets/utcp-aside-manual.md",
       ".opencode/skills/mcp-tooling/mcp-aside-devtools/feature-catalog/feature-catalog.md",
-      "scripts/doctor.sh",
       ".opencode/skills/mcp-tooling/mcp-aside-devtools/README.md",
       ".opencode/skills/mcp-tooling/mcp-aside-devtools/install-guide.md",
       ".opencode/skills/mcp-tooling/mcp-aside-devtools/references/mcp-wiring.md",
@@ -103,12 +102,6 @@
         "source": "derived"
       },
       {
-        "name": "doctor.sh",
-        "kind": "script",
-        "path": "scripts/doctor.sh",
-        "source": "derived"
-      },
-      {
         "name": "README.md",
         "kind": "doc",
         "path": ".opencode/skills/mcp-tooling/mcp-aside-devtools/README.md",
@@ -136,6 +129,12 @@
         "name": "code-mode-discovery.md",
         "kind": "doc",
         "path": ".opencode/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/mcp-transport/code-mode-discovery.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor.sh",
+        "kind": "script",
+        "path": ".opencode/skills/mcp-tooling/mcp-aside-devtools/scripts/doctor.sh",
         "source": "derived"
       },
       {
@@ -207,7 +206,7 @@
     ],
     "causal_summary": "The `aside` UTCP manual is now registered in `.utcpconfig.json`, but the `mcp-aside-devtools` packet still documents registration as a \"later phase\" in roughly 30 places, gates its Code Mode discovery scenario on non-registration, and ships a doctor that treats manual absence as expected",
     "created_at": "2026-07-16T12:58:30Z",
-    "last_save_at": "2026-08-30T15:39:09.862Z",
+    "last_save_at": "2026-09-10T20:43:40.799Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

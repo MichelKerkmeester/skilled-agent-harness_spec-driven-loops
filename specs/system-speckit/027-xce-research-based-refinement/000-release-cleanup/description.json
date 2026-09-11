@@ -7,7 +7,7 @@
     "phase",
     "parent"
   ],
-  "level": "phase",
+  "level": "2",
   "schema_version": 1,
   "packet_id": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup",
   "status": "phase-parent",

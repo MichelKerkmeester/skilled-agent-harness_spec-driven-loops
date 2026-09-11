@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/009-manual-testing-playbook",
   "description": "The sk-design hub and mode packets use manual_testing_playbook roots, category directories, scenario files, and index names with underscores, and",
   "keywords": [

@@ -1,5 +1,5 @@
 {
-  "level": "3",
+  "level": "2",
   "specFolder": "cli-external-orchestration/030-cli-cursor-creation",
   "description": "Cursor CLI (`cursor-agent`) is a real, actively-developed terminal coding agent (build `2026.07.23-e383d2b`, installed and live-verified on this",
   "keywords": [

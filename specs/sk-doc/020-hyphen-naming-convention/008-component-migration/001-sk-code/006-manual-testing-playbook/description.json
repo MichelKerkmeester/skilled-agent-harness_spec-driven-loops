@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/006-manual-testing-playbook",
   "description": "The hub-level playbook is a routable evidence corpus with the root manualtestingplaybook/ and categories crossbrowserandperformancegates,",
   "keywords": [

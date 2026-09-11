@@ -1,5 +1,5 @@
 {
-  "level": "phase",
+  "level": "2",
   "specFolder": "mcp-tooling/008-mcp-aside",
   "description": "The `mcp-tooling` parent hub bridges Chrome DevTools debugging (`mcp-chrome-devtools`), ClickUp orchestration (`mcp-click-up`), and a Figma Desktop",
   "keywords": [

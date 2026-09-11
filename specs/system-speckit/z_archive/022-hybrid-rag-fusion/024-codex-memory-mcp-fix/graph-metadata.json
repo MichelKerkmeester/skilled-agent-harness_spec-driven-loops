@@ -46,15 +46,8 @@
       "tasks.md",
       "decision-record.md",
       "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/scripts/utils/logger.ts",
       ".codex/config.toml",
-      ".claude/mcp.json",
-      "scripts/utils/logger.ts",
-      "tests/db-dimension-integrity.vitest.ts",
-      "tests/lifecycle-shutdown.vitest.ts",
-      "tests/stage2b-enrichment-extended.vitest.ts",
-      "lib/errors/core.ts",
-      "tests/error-sanitization.vitest.ts"
+      ".claude/mcp.json"
     ],
     "entities": [
       {
@@ -88,12 +81,6 @@
         "source": "derived"
       },
       {
-        "name": "logger.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/utils/logger.ts",
-        "source": "derived"
-      },
-      {
         "name": "config.toml",
         "kind": "file",
         "path": ".codex/config.toml",
@@ -103,36 +90,6 @@
         "name": "mcp.json",
         "kind": "config",
         "path": ".claude/mcp.json",
-        "source": "derived"
-      },
-      {
-        "name": "db-dimension-integrity.vitest.ts",
-        "kind": "test",
-        "path": "tests/db-dimension-integrity.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "lifecycle-shutdown.vitest.ts",
-        "kind": "test",
-        "path": "tests/lifecycle-shutdown.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "stage2b-enrichment-extended.vitest.ts",
-        "kind": "test",
-        "path": "tests/stage2b-enrichment-extended.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "core.ts",
-        "kind": "code",
-        "path": "lib/errors/core.ts",
-        "source": "derived"
-      },
-      {
-        "name": "error-sanitization.vitest.ts",
-        "kind": "test",
-        "path": "tests/error-sanitization.vitest.ts",
         "source": "derived"
       },
       {
@@ -200,11 +157,47 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Retrospective Evidence Capture",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Packet Creation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Broader Remediation Follow",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Codex could fail to initialize `speckitmemory` because the MCP server assumed it could create a SQLite database under the workspace and because startup-time structured logs could leak onto stdout during background memory scans",
     "created_at": "2026-04-12T09:02:50.313Z",
-    "last_save_at": "2026-08-30T15:39:39.376Z",
+    "last_save_at": "2026-09-10T21:05:07.297Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

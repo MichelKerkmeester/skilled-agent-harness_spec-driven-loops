@@ -44,17 +44,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      "hooks/index.ts",
-      "tests/hooks-ux-feedback.vitest.ts",
-      "tests/memory-save-ux-regressions.vitest.ts",
-      "tests/context-server.vitest.ts",
-      "tests/handler-checkpoints.vitest.ts",
-      "tests/tool-input-schema.vitest.ts",
-      "tests/mcp-input-validation.vitest.ts",
-      "lib/search/search-flags.ts",
-      "hooks/mutation-feedback.ts",
-      "hooks/response-hints.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -79,66 +69,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "index.ts",
-        "kind": "code",
-        "path": "hooks/index.ts",
-        "source": "derived"
-      },
-      {
-        "name": "hooks-ux-feedback.vitest.ts",
-        "kind": "test",
-        "path": "tests/hooks-ux-feedback.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-save-ux-regressions.vitest.ts",
-        "kind": "test",
-        "path": "tests/memory-save-ux-regressions.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "context-server.vitest.ts",
-        "kind": "test",
-        "path": "tests/context-server.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "handler-checkpoints.vitest.ts",
-        "kind": "test",
-        "path": "tests/handler-checkpoints.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "tool-input-schema.vitest.ts",
-        "kind": "test",
-        "path": "tests/tool-input-schema.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "mcp-input-validation.vitest.ts",
-        "kind": "test",
-        "path": "tests/mcp-input-validation.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "search-flags.ts",
-        "kind": "code",
-        "path": "lib/search/search-flags.ts",
-        "source": "derived"
-      },
-      {
-        "name": "mutation-feedback.ts",
-        "kind": "code",
-        "path": "hooks/mutation-feedback.ts",
-        "source": "derived"
-      },
-      {
-        "name": "response-hints.ts",
-        "kind": "code",
-        "path": "hooks/response-hints.ts",
         "source": "derived"
       },
       {
@@ -200,11 +130,71 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "summaryLayer",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "all",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Phase",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Manual UX-hooks scenarios for the Spec Kit Memory system live inside the central playbook and require a phase-specific document that preserves exact prompts, command sequences, evidence expectations, and verdict criteria",
     "created_at": "2026-04-12T09:02:50.304Z",
-    "last_save_at": "2026-08-30T15:39:39.222Z",
+    "last_save_at": "2026-09-10T21:05:01.873Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

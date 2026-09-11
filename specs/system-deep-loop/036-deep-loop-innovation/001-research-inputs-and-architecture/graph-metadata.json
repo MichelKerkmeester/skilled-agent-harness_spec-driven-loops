@@ -127,18 +127,18 @@
     ],
     "causal_summary": "Market and effectiveness research, baseline taxonomy and state census, and the architecture coverage and transition contract.",
     "created_at": "2026-08-13T09:22:19.057Z",
-    "last_save_at": "2026-08-30T15:39:20.407Z",
+    "last_save_at": "2026-09-10T20:46:16.389Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:8bc1d415004520f08b11d72430f18cebf9ae37603ba9db8b9ae19afc9dc4a4e4",
+    "source_fingerprint": "sha256:a528e1f8087ce97833df12ce6018cc5973da78d55095e5165f70a7cda00f300e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "704d5739b3ec9c90819a74d6e0514579f57ada974bf95a4444963416c751d869",
-      "research/research.md": "45b520dc268f3ec53f8d2705736faaa5dff8a6ccfc36f505050f61ea1259bafb"
+      "research/research.md": "c61dc4c3345e63d77c84636b4400e6d748dd8aa35cce4b5eee339da3b5a65885"
     },
     "last_active_child_id": "system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/001-deep-loop-market-research",
     "last_active_at": null

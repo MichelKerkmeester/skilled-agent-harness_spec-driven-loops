@@ -66,11 +66,6 @@
   },
   {
     "workflowMode": "sk-git",
-    "leafResourceId": "feature-catalog/worktree-naming/pre-push-naming-enforcement.md",
-    "diskPath": "feature-catalog/worktree-naming/pre-push-naming-enforcement.md"
-  },
-  {
-    "workflowMode": "sk-git",
     "leafResourceId": "manual-testing-playbook/commit-formation/co-authored-by-footer.md",
     "diskPath": "manual-testing-playbook/commit-formation/co-authored-by-footer.md"
   },
@@ -151,33 +146,8 @@
   },
   {
     "workflowMode": "sk-git",
-    "leafResourceId": "manual-testing-playbook/owner-first-worktree-tooling/prepush-fail-open-on-broken-validator.md",
-    "diskPath": "manual-testing-playbook/owner-first-worktree-tooling/prepush-fail-open-on-broken-validator.md"
-  },
-  {
-    "workflowMode": "sk-git",
-    "leafResourceId": "manual-testing-playbook/owner-first-worktree-tooling/prepush-gates-only-new-branches.md",
-    "diskPath": "manual-testing-playbook/owner-first-worktree-tooling/prepush-gates-only-new-branches.md"
-  },
-  {
-    "workflowMode": "sk-git",
-    "leafResourceId": "manual-testing-playbook/owner-first-worktree-tooling/prepush-migration-tolerance.md",
-    "diskPath": "manual-testing-playbook/owner-first-worktree-tooling/prepush-migration-tolerance.md"
-  },
-  {
-    "workflowMode": "sk-git",
-    "leafResourceId": "manual-testing-playbook/owner-first-worktree-tooling/prepush-never-blocks-release-branches.md",
-    "diskPath": "manual-testing-playbook/owner-first-worktree-tooling/prepush-never-blocks-release-branches.md"
-  },
-  {
-    "workflowMode": "sk-git",
-    "leafResourceId": "manual-testing-playbook/owner-first-worktree-tooling/prepush-rejects-wrapper-ref.md",
-    "diskPath": "manual-testing-playbook/owner-first-worktree-tooling/prepush-rejects-wrapper-ref.md"
-  },
-  {
-    "workflowMode": "sk-git",
-    "leafResourceId": "manual-testing-playbook/owner-first-worktree-tooling/prepush-skip-env-bypass.md",
-    "diskPath": "manual-testing-playbook/owner-first-worktree-tooling/prepush-skip-env-bypass.md"
+    "leafResourceId": "manual-testing-playbook/owner-first-worktree-tooling/prepush-remote-permission-gate.md",
+    "diskPath": "manual-testing-playbook/owner-first-worktree-tooling/prepush-remote-permission-gate.md"
   },
   {
     "workflowMode": "sk-git",

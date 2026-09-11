@@ -34,10 +34,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/scripts/utils/template-structure.js",
-      "scripts/tests/template-structure.vitest.ts",
-      "scripts/tests/test-phase-command-workflows.js"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -62,24 +59,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "template-structure.js",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/utils/template-structure.js",
-        "source": "derived"
-      },
-      {
-        "name": "template-structure.vitest.ts",
-        "kind": "test",
-        "path": "scripts/tests/template-structure.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "test-phase-command-workflows.js",
-        "kind": "code",
-        "path": "scripts/tests/test-phase-command-workflows.js",
         "source": "derived"
       },
       {
@@ -183,11 +162,29 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Template Compliance",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The deferred R-12 work still relied on draft assumptions that do not match the current repo: there are no checked-in `.fingerprint` sidecars, the validator only partially enforced template structure, and runtime speckit prompts mostly pointed at template paths instead of carrying inline structure for the exact document being written",
     "created_at": "2026-04-12T09:02:50.273Z",
-    "last_save_at": "2026-08-30T15:39:38.752Z",
+    "last_save_at": "2026-09-10T21:04:55.514Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

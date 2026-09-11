@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/004-benchmark",
   "description": "The sk-git benchmark surface contains two snake_case live-profile directories and report content with historical path pointers.",
   "keywords": [

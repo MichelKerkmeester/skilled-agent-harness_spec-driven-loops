@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/001-create-skill",
   "description": "The create-skill packet uses snake_case directories and template/reference filenames throughout its parent-skill and ordinary skill resource trees.",
   "keywords": [

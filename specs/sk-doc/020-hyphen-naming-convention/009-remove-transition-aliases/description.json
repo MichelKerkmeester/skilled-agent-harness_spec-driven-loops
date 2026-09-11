@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "sk-doc/020-hyphen-naming-convention/009-remove-transition-aliases",
   "description": "The migration has completed and the bounded coexistence window from phase 002 is closed, but runtime consumers still carry compatibility paths for the",
   "keywords": [

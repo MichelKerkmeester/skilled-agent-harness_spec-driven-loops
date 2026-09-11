@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/006-changelog-verify",
   "description": "The mcp-code-mode surface has a changelog through v1.0.8.0 and SKILL.md currently declares version 1.0.8.0, while the embedded npm lock metadata",
   "keywords": [

@@ -46,7 +46,6 @@
       "tasks.md",
       "implementation-summary.md",
       "manual-testing-playbook/manual-testing-playbook.md",
-      "scripts/doctor.sh",
       "scripts/README.md",
       ".opencode/skills/mcp-tooling/mcp-notion/manual-testing-playbook/manual-testing-playbook.md",
       ".opencode/skills/mcp-tooling/mcp-notion/scripts/install.sh",
@@ -86,12 +85,6 @@
         "source": "derived"
       },
       {
-        "name": "doctor.sh",
-        "kind": "script",
-        "path": "scripts/doctor.sh",
-        "source": "derived"
-      },
-      {
         "name": "README.md",
         "kind": "doc",
         "path": "scripts/README.md",
@@ -101,6 +94,12 @@
         "name": "install.sh",
         "kind": "script",
         "path": ".opencode/skills/mcp-tooling/mcp-notion/scripts/install.sh",
+        "source": "derived"
+      },
+      {
+        "name": "doctor.sh",
+        "kind": "script",
+        "path": ".opencode/skills/mcp-tooling/mcp-notion/scripts/doctor.sh",
         "source": "derived"
       },
       {
@@ -202,7 +201,7 @@
     ],
     "causal_summary": "After Phase 4 the mode is registered but unproven end-to-end: nothing has confirmed that every mode doc validates, that a fresh operator can install and diagnose the mode without touching a real workspace, that the mode's headline numbers agree across all docs, or that the packet's completion metadata is internally consistent",
     "created_at": "2026-08-21T15:00:46.691Z",
-    "last_save_at": "2026-08-30T15:39:10.330Z",
+    "last_save_at": "2026-09-10T20:43:50.843Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

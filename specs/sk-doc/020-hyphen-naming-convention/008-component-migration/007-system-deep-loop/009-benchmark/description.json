@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/009-benchmark",
   "description": "The root system-deep-loop benchmark boundary contains three underscore-separated storage directories—after_d3_proxy, live_mode_b, and",
   "keywords": [

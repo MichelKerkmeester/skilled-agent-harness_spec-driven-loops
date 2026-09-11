@@ -45,12 +45,7 @@
       "plan.md",
       "tasks.md",
       "decision-record.md",
-      "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/scripts/core/workflow.ts",
-      ".opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts",
-      ".opencode/skills/system-spec-kit/scripts/core/post-save-review.ts",
-      ".opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts",
-      ".opencode/skills/system-spec-kit/scripts/types/session-types.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -81,36 +76,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "workflow.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/core/workflow.ts",
-        "source": "derived"
-      },
-      {
-        "name": "template-renderer.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts",
-        "source": "derived"
-      },
-      {
-        "name": "post-save-review.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/core/post-save-review.ts",
-        "source": "derived"
-      },
-      {
-        "name": "input-normalizer.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts",
-        "source": "derived"
-      },
-      {
-        "name": "session-types.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/types/session-types.ts",
         "source": "derived"
       },
       {
@@ -196,11 +161,41 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Execution Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Checklist Before",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execution Rules",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Reporting Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The generate-context.js pipeline has no observable signal for embedding health: the retry manager runs a background job every 5 minutes with circuit-breaker logic, but its RetryStats object (pending count, failed count, retry attempts, circuit breaker state) never reaches any MCP tool",
     "created_at": "2026-04-12T09:02:50.279Z",
-    "last_save_at": "2026-08-30T15:39:38.852Z",
+    "last_save_at": "2026-09-10T21:04:56.690Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

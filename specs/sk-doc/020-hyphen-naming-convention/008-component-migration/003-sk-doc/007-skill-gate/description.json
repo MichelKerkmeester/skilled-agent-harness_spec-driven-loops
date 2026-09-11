@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/007-skill-gate",
   "description": "The sk-doc component phases need one blocking rollup that aggregates their evidence and proves the whole naming surface is kebab-clean under the 020",
   "keywords": [

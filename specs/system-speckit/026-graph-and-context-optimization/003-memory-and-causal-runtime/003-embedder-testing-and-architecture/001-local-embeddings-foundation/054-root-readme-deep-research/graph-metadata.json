@@ -206,7 +206,7 @@
     ],
     "causal_summary": "Catch the depth Phase D missed",
     "created_at": "2026-05-15T13:35:00Z",
-    "last_save_at": "2026-08-30T15:39:30.082Z",
+    "last_save_at": "2026-09-10T20:47:33.618Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,14 +217,14 @@
       "research/research.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:d9299e1f46beb3249bff3bec8847736e24ff70a09cf7b73143c5bd6e878e4f61",
+    "source_fingerprint": "sha256:5e0194117b656a8a709e044f56a3d29710caff7ecf2aacc328726451d9f6d778",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "65111086f6e69bd2fd17c64716ede31a5fd43b8cdfb3de0a9da0822cc862c291",
       "plan.md": "e129b1012450a38a9a374450c4195d0393d02aca6c9912a42d6b1e1f423028b5",
       "tasks.md": "376b43f0c9b2cd497af79def16ec862741151518cc77b322cd816552985c4f88",
       "implementation-summary.md": "80885b480dc9718b97a5a54bb398aeaea1a9c109475d98a24b2def635c70ead9",
-      "research/research.md": "39e9eb8d1328d2af9f8826717edffe570645e699e0c8a9bb91c8499190447db7",
+      "research/research.md": "102a951b9fb0b158cfadce91fea46a7a0817df36ce4c3b95fc2ae49699621e97",
       "resource-map.md": "65c0f592b7fe7160f173976b216e9da3de628eaec7fcf778534f60551b307f36"
     },
     "last_active_child_id": null,

@@ -24,7 +24,7 @@ contextType: "implementation"
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | task-06-global-readme-update |
+| **Spec Folder** | 006-global-readme-update |
 | **Parent Spec** | 130-memory-overhaul-and-agent-upgrade-release |
 | **Completed** | 2026-02-14 |
 | **Level** | 3+ |

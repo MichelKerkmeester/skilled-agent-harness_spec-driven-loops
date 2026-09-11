@@ -46,7 +46,6 @@
       "implementation-summary.md",
       "research/research.md",
       "research/resource-map.md",
-      "scripts/dist/memory/generate-context.js",
       "research/findings-registry.json",
       "research/deep-research-state.jsonl",
       "research/iterations/iteration-001.md",
@@ -90,12 +89,6 @@
         "name": "research.md",
         "kind": "doc",
         "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "generate-context.js",
-        "kind": "code",
-        "path": "scripts/dist/memory/generate-context.js",
         "source": "derived"
       },
       {
@@ -205,11 +198,17 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Change Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "system-code-graph's routing cannot be measured on the canonical typed-pair surface, and unlike its sibling hubs it has no measurement scaffolding at all",
     "created_at": "2026-07-17T04:06:39.227Z",
-    "last_save_at": "2026-08-30T15:39:14.675Z",
+    "last_save_at": "2026-09-10T20:44:33.679Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,14 +218,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:57ca2bb07b73d4e291298fe6f880acb98136d38969c6f7a94e817cccc546014a",
+    "source_fingerprint": "sha256:e66dc475d8c25ed82a21fc6d93e668aa1cadd900db91f2f4833e38b4e2c08e80",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8e7debbf4d4fb010ef0fdefd15c861795aebd937e6ec6adab5e49bd008799e6a",
       "plan.md": "33609302b2bab44ad0898fd09d05448e20b67b93cd12124d1aca2d84131e2c35",
       "tasks.md": "c6163b29a7c99f5622e16cb4c72a9c5664fc0cf26cc7b8fe6cdc0d1dedc09837",
       "implementation-summary.md": "3d38527f8db4723b4a300089cf5425a06e2e7f2e399cfc4da7cfe0ede35a3704",
-      "research/research.md": "4090a81546fbab0858065b290a2241fc76ccae12a2d2e3712a018f707dd98a50"
+      "research/research.md": "95376b0b50c27a9bdf6ab749d15b3d9181bb305339d6348c199db7a25d534183"
     },
     "last_active_child_id": null,
     "last_active_at": null

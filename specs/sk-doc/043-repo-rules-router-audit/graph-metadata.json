@@ -204,7 +204,7 @@
     ],
     "causal_summary": "The `REPO RULES.md` router and its nine rule files were suspected of carrying avoidable",
     "created_at": "2026-08-31T19:47:34Z",
-    "last_save_at": "2026-08-31T19:58:57.019Z",
+    "last_save_at": "2026-09-10T20:45:43.003Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,11 +213,11 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d1c9db96128191230810f5f413329d642d30e6ebf10abc09c916aa84444719a5",
+    "source_fingerprint": "sha256:6c9302afe02110fcf45a13f7dd095c345ed97440d19599df90060c059b2f1855",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9303c247532b0649f503aeec58323a4b9eb215ea37f794e03d093f540cf0ac79",
-      "plan.md": "f829d38d8c022b161fd60887fb68812b653c84b1087a8832d44bb1e29606026c",
+      "plan.md": "7396c9081c9e54bcc7f4a73149f1293ffe02e904fe0f7d6216cb324de7ff3b8d",
       "tasks.md": "61a6350733e13d248765e4539885d8023b52f11577d8a8e4fc7c154e69fea46e",
       "implementation-summary.md": "dbf53bc4a690212b732c28e117b04c3a25c58503e825505c81e0230dfaccb5ac"
     },

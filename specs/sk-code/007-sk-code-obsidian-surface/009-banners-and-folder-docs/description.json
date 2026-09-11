@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "sk-code/007-sk-code-obsidian-surface/009-banners-and-folder-docs",
   "description": "Phase 008 built `scan-folder-docs.mjs`, which reported 19 violations against the tree: every source",
   "keywords": [

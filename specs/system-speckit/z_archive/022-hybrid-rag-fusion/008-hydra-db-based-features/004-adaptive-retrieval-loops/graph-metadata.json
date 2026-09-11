@@ -45,8 +45,7 @@
       "plan.md",
       "tasks.md",
       "decision-record.md",
-      "implementation-summary.md",
-      "tests/adaptive-ranking.vitest.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -77,12 +76,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "adaptive-ranking.vitest.ts",
-        "kind": "test",
-        "path": "tests/adaptive-ranking.vitest.ts",
         "source": "derived"
       },
       {
@@ -192,11 +185,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The current retrieval system can collect useful signals, but it does not turn them into disciplined improvement loops",
     "created_at": "2026-04-12T09:02:50.261Z",
-    "last_save_at": "2026-08-30T15:39:38.555Z",
+    "last_save_at": "2026-09-10T21:04:51.287Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -44,18 +44,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      "scripts/tests/outsourced-agent-handback-docs.vitest.ts",
-      "scripts/loaders/data-loader.ts",
-      "scripts/utils/input-normalizer.ts",
-      "scripts/extractors/session-extractor.ts",
-      "scripts/tests/runtime-memory-inputs.vitest.ts",
-      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
-      ".opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts",
-      ".opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts",
-      ".opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts",
-      ".opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts",
-      ".opencode/skills/system-spec-kit/scripts/tests/outsourced-agent-handback-docs.vitest.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -80,42 +69,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "outsourced-agent-handback-docs.vitest.ts",
-        "kind": "test",
-        "path": "scripts/tests/outsourced-agent-handback-docs.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "data-loader.ts",
-        "kind": "code",
-        "path": "scripts/loaders/data-loader.ts",
-        "source": "derived"
-      },
-      {
-        "name": "input-normalizer.ts",
-        "kind": "code",
-        "path": "scripts/utils/input-normalizer.ts",
-        "source": "derived"
-      },
-      {
-        "name": "session-extractor.ts",
-        "kind": "code",
-        "path": "scripts/extractors/session-extractor.ts",
-        "source": "derived"
-      },
-      {
-        "name": "runtime-memory-inputs.vitest.ts",
-        "kind": "test",
-        "path": "scripts/tests/runtime-memory-inputs.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "validate.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
         "source": "derived"
       },
       {
@@ -201,11 +154,47 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "accepted",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. TASK NOTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PHASE 1: SETUP",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Runtime Input Hardening",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Step Persistence",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "When an external CLI (Codex, Copilot, Gemini, Claude Code) completes delegated work and returns session context, the data must flow through 010's `generate-context.js` pipeline to produce a memory file",
     "created_at": "2026-04-12T09:02:50.265Z",
-    "last_save_at": "2026-08-30T15:39:38.627Z",
+    "last_save_at": "2026-09-10T21:04:51.650Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

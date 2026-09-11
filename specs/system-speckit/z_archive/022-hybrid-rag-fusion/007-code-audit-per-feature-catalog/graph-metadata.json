@@ -4,28 +4,6 @@
   "spec_folder": "system-speckit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog",
   "parent_id": "system-speckit/z_archive/022-hybrid-rag-fusion",
   "children_ids": [
-    "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/001-retrieval",
-    "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/002-mutation",
-    "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/003-discovery",
-    "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/004-maintenance",
-    "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/005-lifecycle",
-    "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/006-analysis",
-    "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/007-evaluation",
-    "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/008-bug-fixes-and-data-integrity",
-    "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/009-evaluation-and-measurement",
-    "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/010-graph-signal-activation",
-    "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/011-scoring-and-calibration",
-    "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/012-query-intelligence",
-    "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/013-memory-quality-and-indexing",
-    "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/014-pipeline-architecture",
-    "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/015-retrieval-enhancements",
-    "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/016-tooling-and-scripts",
-    "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/017-governance",
-    "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/018-ux-hooks",
-    "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/019-decisions-and-deferrals",
-    "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/020-feature-flag-reference",
-    "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/021-remediation-revalidation",
-    "system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/022-implement-and-remove-deprecated-features",
     "system-speckit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/001-retrieval",
     "system-speckit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/002-mutation",
     "system-speckit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/003-discovery",
@@ -93,19 +71,9 @@
       "implementation-summary.md",
       "research/research.md",
       "resource-map.md",
-      "scripts/spec/check-completion.sh",
-      "scripts/ops/runbook.sh",
-      "scripts/evals/run-ablation.ts",
       "config/config.jsonc",
       "config/filters.jsonc",
-      "scripts/spec/create.sh",
-      "scripts/spec/validate.sh",
-      "configs/cognitive.ts",
-      "lib/utils/path-security.ts",
-      "handlers/save/markdown-evidence-builder.ts",
-      "handlers/save/spec-folder-mutex.ts",
-      "handlers/save/validation-responses.ts",
-      "handlers/v-rule-bridge.ts"
+      "handlers/save/spec-folder-mutex.ts"
     ],
     "entities": [
       {
@@ -151,24 +119,6 @@
         "source": "derived"
       },
       {
-        "name": "check-completion.sh",
-        "kind": "script",
-        "path": "scripts/spec/check-completion.sh",
-        "source": "derived"
-      },
-      {
-        "name": "runbook.sh",
-        "kind": "script",
-        "path": "scripts/ops/runbook.sh",
-        "source": "derived"
-      },
-      {
-        "name": "run-ablation.ts",
-        "kind": "code",
-        "path": "scripts/evals/run-ablation.ts",
-        "source": "derived"
-      },
-      {
         "name": "config.jsonc",
         "kind": "file",
         "path": "config/config.jsonc",
@@ -181,51 +131,9 @@
         "source": "derived"
       },
       {
-        "name": "create.sh",
-        "kind": "script",
-        "path": "scripts/spec/create.sh",
-        "source": "derived"
-      },
-      {
-        "name": "validate.sh",
-        "kind": "script",
-        "path": "scripts/spec/validate.sh",
-        "source": "derived"
-      },
-      {
-        "name": "cognitive.ts",
-        "kind": "code",
-        "path": "configs/cognitive.ts",
-        "source": "derived"
-      },
-      {
-        "name": "path-security.ts",
-        "kind": "code",
-        "path": "lib/utils/path-security.ts",
-        "source": "derived"
-      },
-      {
-        "name": "markdown-evidence-builder.ts",
-        "kind": "code",
-        "path": "handlers/save/markdown-evidence-builder.ts",
-        "source": "derived"
-      },
-      {
         "name": "spec-folder-mutex.ts",
         "kind": "code",
         "path": "handlers/save/spec-folder-mutex.ts",
-        "source": "derived"
-      },
-      {
-        "name": "validation-responses.ts",
-        "kind": "code",
-        "path": "handlers/save/validation-responses.ts",
-        "source": "derived"
-      },
-      {
-        "name": "v-rule-bridge.ts",
-        "kind": "code",
-        "path": "handlers/v-rule-bridge.ts",
         "source": "derived"
       },
       {
@@ -251,11 +159,71 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Model Context Protocol",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Create Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Research Remediation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Stale Metadata Fixes",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Feature Specification: Code Audit per Feature Catalog",
     "created_at": "2026-04-12T09:02:50.243Z",
-    "last_save_at": "2026-08-30T15:39:38.261Z",
+    "last_save_at": "2026-09-10T21:04:46.186Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

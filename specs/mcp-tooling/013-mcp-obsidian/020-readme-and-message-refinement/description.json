@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "mcp-tooling/013-mcp-obsidian/020-readme-and-message-refinement",
   "description": "The mcp-obsidian README and SKILL.md state the skill's reason for being as routing between two CLI profiles and the MCP",
   "keywords": [

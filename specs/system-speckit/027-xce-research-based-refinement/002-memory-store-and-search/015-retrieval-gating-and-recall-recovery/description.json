@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "3",
   "specFolder": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/015-retrieval-gating-and-recall-recovery",
   "description": "On-topic memory searches return `requestQuality: weak`, `citationPolicy: donotciteresults`, and a \"Retrieval quality is weak\" response policy even",
   "keywords": [

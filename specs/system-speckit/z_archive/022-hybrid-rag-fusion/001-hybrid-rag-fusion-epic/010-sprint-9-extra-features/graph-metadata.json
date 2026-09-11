@@ -42,19 +42,7 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      "formatters/search-results.ts",
-      "lib/search/hybrid-search.ts",
-      "lib/search/pipeline/types.ts",
-      "handlers/memory-search.ts",
-      "lib/ops/job-queue.ts",
-      "handlers/index.ts",
-      "handlers/memory-save.ts",
-      "lib/ops/file-watcher.ts",
-      "tests/unit-rrf-fusion.vitest.ts",
-      "schemas/tool-input-schemas.ts",
-      "handlers/memory-ingest.ts",
-      "tests/review-fixes.vitest.ts",
-      "lib/search/search-flags.ts"
+      "tests/unit-rrf-fusion.vitest.ts"
     ],
     "entities": [
       {
@@ -82,81 +70,9 @@
         "source": "derived"
       },
       {
-        "name": "search-results.ts",
-        "kind": "code",
-        "path": "formatters/search-results.ts",
-        "source": "derived"
-      },
-      {
-        "name": "hybrid-search.ts",
-        "kind": "code",
-        "path": "lib/search/hybrid-search.ts",
-        "source": "derived"
-      },
-      {
-        "name": "types.ts",
-        "kind": "code",
-        "path": "lib/search/pipeline/types.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-search.ts",
-        "kind": "code",
-        "path": "handlers/memory-search.ts",
-        "source": "derived"
-      },
-      {
-        "name": "job-queue.ts",
-        "kind": "code",
-        "path": "lib/ops/job-queue.ts",
-        "source": "derived"
-      },
-      {
-        "name": "index.ts",
-        "kind": "code",
-        "path": "handlers/index.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-save.ts",
-        "kind": "code",
-        "path": "handlers/memory-save.ts",
-        "source": "derived"
-      },
-      {
-        "name": "file-watcher.ts",
-        "kind": "code",
-        "path": "lib/ops/file-watcher.ts",
-        "source": "derived"
-      },
-      {
         "name": "unit-rrf-fusion.vitest.ts",
         "kind": "test",
         "path": "tests/unit-rrf-fusion.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "tool-input-schemas.ts",
-        "kind": "code",
-        "path": "schemas/tool-input-schemas.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-ingest.ts",
-        "kind": "code",
-        "path": "handlers/memory-ingest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "review-fixes.vitest.ts",
-        "kind": "test",
-        "path": "tests/review-fixes.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "search-flags.ts",
-        "kind": "code",
-        "path": "lib/search/search-flags.ts",
         "source": "derived"
       },
       {
@@ -200,11 +116,83 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "New Dependencies",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Layered",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Strict Zod Schema Validation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Define Zod",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Create Zod",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The Memory MCP server's internal data structures are rich (6 score fields, causal graph, anchor metadata, pipeline traces) but the external API surface does not fully expose this richness",
     "created_at": "2026-04-12T09:02:50.232Z",
-    "last_save_at": "2026-08-30T15:39:38.102Z",
+    "last_save_at": "2026-09-10T21:04:41.919Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

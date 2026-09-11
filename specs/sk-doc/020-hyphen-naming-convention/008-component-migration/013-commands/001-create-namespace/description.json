@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/001-create-namespace",
   "description": "The `.opencode/commands/create/assets/` tree has maintained filenames such as `createagentauto.yaml`, `createfeaturecatalogconfirm.yaml`, and",
   "keywords": [

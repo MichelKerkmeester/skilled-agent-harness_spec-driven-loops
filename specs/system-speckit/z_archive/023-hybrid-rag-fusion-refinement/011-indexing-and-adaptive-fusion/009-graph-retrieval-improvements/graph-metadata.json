@@ -46,21 +46,8 @@
       "tasks.md",
       "decision-record.md",
       "implementation-summary.md",
-      "lib/graph/community-summaries.ts",
-      "lib/graph/community-storage.ts",
-      "lib/search/community-search.ts",
-      "lib/graph/temporal-edges.ts",
-      "lib/graph/contradiction-detection.ts",
-      "lib/graph/usage-tracking.ts",
-      "lib/graph/usage-ranking-signal.ts",
-      "lib/extraction/ontology-hooks.ts",
-      "tests/concept-extraction.vitest.ts",
-      "tests/community-search.vitest.ts",
-      "tests/provenance-envelope.vitest.ts",
-      "tests/contradiction-detection.vitest.ts",
-      "tests/usage-weighted-ranking.vitest.ts",
-      "tests/temporal-edges.vitest.ts",
-      "lib/search/entity-linker.ts"
+      "scratch/diagnosis-trace.md",
+      "scratch/diagnosis-findings.md"
     ],
     "entities": [
       {
@@ -94,93 +81,15 @@
         "source": "derived"
       },
       {
-        "name": "community-summaries.ts",
-        "kind": "code",
-        "path": "lib/graph/community-summaries.ts",
+        "name": "diagnosis-trace.md",
+        "kind": "doc",
+        "path": "scratch/diagnosis-trace.md",
         "source": "derived"
       },
       {
-        "name": "community-storage.ts",
-        "kind": "code",
-        "path": "lib/graph/community-storage.ts",
-        "source": "derived"
-      },
-      {
-        "name": "community-search.ts",
-        "kind": "code",
-        "path": "lib/search/community-search.ts",
-        "source": "derived"
-      },
-      {
-        "name": "temporal-edges.ts",
-        "kind": "code",
-        "path": "lib/graph/temporal-edges.ts",
-        "source": "derived"
-      },
-      {
-        "name": "contradiction-detection.ts",
-        "kind": "code",
-        "path": "lib/graph/contradiction-detection.ts",
-        "source": "derived"
-      },
-      {
-        "name": "usage-tracking.ts",
-        "kind": "code",
-        "path": "lib/graph/usage-tracking.ts",
-        "source": "derived"
-      },
-      {
-        "name": "usage-ranking-signal.ts",
-        "kind": "code",
-        "path": "lib/graph/usage-ranking-signal.ts",
-        "source": "derived"
-      },
-      {
-        "name": "ontology-hooks.ts",
-        "kind": "code",
-        "path": "lib/extraction/ontology-hooks.ts",
-        "source": "derived"
-      },
-      {
-        "name": "concept-extraction.vitest.ts",
-        "kind": "test",
-        "path": "tests/concept-extraction.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "community-search.vitest.ts",
-        "kind": "test",
-        "path": "tests/community-search.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "provenance-envelope.vitest.ts",
-        "kind": "test",
-        "path": "tests/provenance-envelope.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "contradiction-detection.vitest.ts",
-        "kind": "test",
-        "path": "tests/contradiction-detection.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "usage-weighted-ranking.vitest.ts",
-        "kind": "test",
-        "path": "tests/usage-weighted-ranking.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "temporal-edges.vitest.ts",
-        "kind": "test",
-        "path": "tests/temporal-edges.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "entity-linker.ts",
-        "kind": "code",
-        "path": "lib/search/entity-linker.ts",
+        "name": "diagnosis-findings.md",
+        "kind": "doc",
+        "path": "scratch/diagnosis-findings.md",
         "source": "derived"
       },
       {
@@ -206,11 +115,89 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execution Protocol",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Build Graph Artifacts",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Improve Retrieval",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Diagnose Before Building",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context The",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The graph is structurally healthy but does not meaningfully improve retrieval",
     "created_at": "2026-04-12T09:02:50.338Z",
-    "last_save_at": "2026-08-30T15:39:39.628Z",
+    "last_save_at": "2026-09-10T21:05:10.912Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -48,8 +48,7 @@
       "research/deep-research-state.jsonl",
       "research/iterations/iteration-001.md",
       "research/deltas/iter-001.jsonl",
-      "research/findings-registry.json",
-      "scripts/spec/validate.sh"
+      "research/findings-registry.json"
     ],
     "entities": [
       {
@@ -116,12 +115,6 @@
         "name": "findings-registry.json",
         "kind": "config",
         "path": "research/findings-registry.json",
-        "source": "derived"
-      },
-      {
-        "name": "validate.sh",
-        "kind": "script",
-        "path": "scripts/spec/validate.sh",
         "source": "derived"
       },
       {
@@ -195,11 +188,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "After packets 042-045 closed the documented stress-coverage backlog and known drift findings, the next layer of risk is unknowns: latent production-code bugs, miswired automation paths, and architectural shortcuts that have accumulated across `system-spec-kit` (the umbrella skill), `mcpserver` (the runtime), `codegraph` (subsystem), and `skilladvisor` (subsystem)",
     "created_at": "2026-05-01T03:46:56Z",
-    "last_save_at": "2026-08-30T15:39:28.739Z",
+    "last_save_at": "2026-09-10T20:47:11.890Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,14 +208,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:9b9f21a9178c904c4125c26c559c7f795901d99900370a0f69d2c5b2cad707b5",
+    "source_fingerprint": "sha256:09deadb1b0bc1585696436439ddeb3e3022e3344748e10a81bcfd6ea8f5fc319",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "837ee7233584276aa9fd05ad96775c8f266cbf6b8932554e2ba15545ccc10b11",
       "plan.md": "ad57e834391fde443cd4732322cbeec93c4696d05c84163243b0ab78ea8f6add",
       "tasks.md": "a7eaedb25dfa8874cf013db5de4be7e26138ce74a2deb8e7a138c13c06487525",
       "implementation-summary.md": "6574d1834f36307f6a0186c73e51b794b1d2437b81be1b9ed1ac37c805cd787d",
-      "research/research.md": "8d2885744ccd9bdbddaf046d12573cf9a0a25a0f00fc9359f0c346fe8915f85b"
+      "research/research.md": "33c1fc27788abb63dbaa6891ba522b1d025a40cb0e0e20c3294c8b47dcf7eee0"
     },
     "last_active_child_id": null,
     "last_active_at": null

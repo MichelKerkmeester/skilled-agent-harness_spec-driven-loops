@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/013-bench-harness-and-fixture-audit",
   "description": "Measurement-quality prerequisite for the cocoindex-retrieval-pipeline future-proofing arc (013→018).",
   "keywords": [

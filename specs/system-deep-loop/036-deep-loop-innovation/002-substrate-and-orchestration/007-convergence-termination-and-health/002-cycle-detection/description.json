@@ -1,5 +1,5 @@
 {
-  "level": "2",
+  "level": "3",
   "specFolder": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/007-convergence-termination-and-health/002-cycle-detection",
   "description": "Deterministic detection of repeated loop states, claim frontiers, and next-foci over ledger history, with progress-gated health evidence and no stop",
   "keywords": [

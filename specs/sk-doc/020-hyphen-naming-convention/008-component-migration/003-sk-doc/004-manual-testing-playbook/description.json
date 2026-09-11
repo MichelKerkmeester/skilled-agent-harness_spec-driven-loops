@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/004-manual-testing-playbook",
   "description": "The root sk-doc manual_testing_playbook tree uses snake_case for its category directories, scenario filenames, and root index.",
   "keywords": [

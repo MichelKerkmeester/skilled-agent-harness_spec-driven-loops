@@ -46,20 +46,7 @@
       "tasks.md",
       "implementation-summary.md",
       "research/research.md",
-      ".opencode/skills/system-spec-kit/scripts/tests/phase-classification.vitest.ts",
-      ".opencode/skills/system-spec-kit/scripts/tests/content-filter-parity.vitest.ts",
-      ".opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts",
-      "scripts/core/workflow.ts",
-      "scripts/utils/input-normalizer.ts",
-      "scripts/types/session-types.ts",
-      "scripts/extractors/collect-session-data.ts",
-      "scripts/lib/simulation-factory.ts",
-      "scripts/extractors/decision-extractor.ts",
-      "scripts/tests/task-enrichment.vitest.ts",
-      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
-      ".opencode/skills/system-spec-kit/scripts/tests/test-extractors-loaders.js",
-      "tests/task-enrichment.vitest.ts",
-      "scripts/loaders/data-loader.ts"
+      "tests/task-enrichment.vitest.ts"
     ],
     "entities": [
       {
@@ -93,81 +80,9 @@
         "source": "derived"
       },
       {
-        "name": "phase-classification.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/phase-classification.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "content-filter-parity.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/content-filter-parity.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "runtime-memory-inputs.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "workflow.ts",
-        "kind": "code",
-        "path": "scripts/core/workflow.ts",
-        "source": "derived"
-      },
-      {
-        "name": "input-normalizer.ts",
-        "kind": "code",
-        "path": "scripts/utils/input-normalizer.ts",
-        "source": "derived"
-      },
-      {
-        "name": "session-types.ts",
-        "kind": "code",
-        "path": "scripts/types/session-types.ts",
-        "source": "derived"
-      },
-      {
-        "name": "collect-session-data.ts",
-        "kind": "code",
-        "path": "scripts/extractors/collect-session-data.ts",
-        "source": "derived"
-      },
-      {
-        "name": "simulation-factory.ts",
-        "kind": "code",
-        "path": "scripts/lib/simulation-factory.ts",
-        "source": "derived"
-      },
-      {
-        "name": "decision-extractor.ts",
-        "kind": "code",
-        "path": "scripts/extractors/decision-extractor.ts",
-        "source": "derived"
-      },
-      {
         "name": "task-enrichment.vitest.ts",
         "kind": "test",
-        "path": "scripts/tests/task-enrichment.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "validate.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
-        "source": "derived"
-      },
-      {
-        "name": "test-extractors-loaders.js",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/test-extractors-loaders.js",
-        "source": "derived"
-      },
-      {
-        "name": "data-loader.ts",
-        "kind": "code",
-        "path": "scripts/loaders/data-loader.ts",
+        "path": "tests/task-enrichment.vitest.ts",
         "source": "derived"
       },
       {
@@ -205,11 +120,83 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Additive",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Focused Vitest",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence-backed",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "CLI",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "explicit",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parity Hardening",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 016 had already landed its runtime behavior in the live code, but the phase folder still claimed completion without direct parity-specific proof",
     "created_at": "2026-04-12T09:02:50.266Z",
-    "last_save_at": "2026-08-30T15:39:38.638Z",
+    "last_save_at": "2026-09-10T21:04:51.755Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

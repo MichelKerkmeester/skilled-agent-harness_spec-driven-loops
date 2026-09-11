@@ -52,7 +52,6 @@
       "research/deep-research-round2-2026-03-26.md",
       "scratch/remediation-manifest.md",
       "scratch/analysis-summary.md",
-      "api/storage.ts",
       "scratch/constitutional-cache-investigation.md",
       "scratch/launch-audit-agents.sh"
     ],
@@ -121,12 +120,6 @@
         "name": "analysis-summary.md",
         "kind": "doc",
         "path": "scratch/analysis-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "storage.ts",
-        "kind": "code",
-        "path": "api/storage.ts",
         "source": "derived"
       },
       {
@@ -200,11 +193,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Overview Historical",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "This packet still preserves important historical audit evidence, but downstream wrapper packets were reading its milestone counts as if they were current release-control truth",
     "created_at": "2026-04-12T09:02:50.241Z",
-    "last_save_at": "2026-08-30T15:39:38.236Z",
+    "last_save_at": "2026-09-10T21:04:46.255Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

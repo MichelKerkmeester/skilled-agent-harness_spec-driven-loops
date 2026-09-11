@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/004-hooks",
   "description": "Hook paths are consumed by runtime settings, install guides, plugin bridges, and the hook reference",
   "keywords": [

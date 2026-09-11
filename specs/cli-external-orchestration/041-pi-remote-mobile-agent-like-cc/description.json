@@ -1,5 +1,5 @@
 {
-  "level": "phase",
+  "level": "2",
   "specFolder": "cli-external-orchestration/041-pi-remote-mobile-agent-like-cc",
   "description": "Pi CLI exposes a persistent local RPC subprocess, not a secure mobile product",
   "keywords": [

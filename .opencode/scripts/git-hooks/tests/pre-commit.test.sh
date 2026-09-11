@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# Test harness for the pre-commit hook's compiled-routing re-mint gate.
+# Test harness for the pre-commit hook's two auto re-mint gates: compiled routing
+# and spec derived metadata.
 #
 # Runs entirely inside a throwaway git repo carrying a fixture hub, a stub mint
 # tool and stub route modules, so it never touches the real clone's index, its
@@ -147,6 +148,119 @@ git -C "$TMP" rm -q ".opencode/skills/$HUB/SKILL.md"
 run_hook; RC=$?
 check "staged deletion is not a mint trigger" 0 "$RC"
 
+# ══ spec derived-metadata gate ══════════════════════════════════════════════
+# Its own fixture: a packet carrying graph-metadata.json plus a stub repair tool,
+# so the cases exercise the gate's path-walking and staging rather than the real
+# re-derivation, which has its own tests.
+PKT="specs/hooks/001-fixture"
+CHILD="specs/hooks/002-parent/001-child"
+GROUP="specs/hooks/002-parent/research"
+
+setup_spec_fixture() {
+  rm -rf "$TMP"; mkdir -p "$TMP"
+  git -C "$TMP" init -q
+  git -C "$TMP" config core.hooksPath /dev/null
+  git -C "$TMP" config user.email t@example.com
+  git -C "$TMP" config user.name test
+  mkdir -p "$TMP/$PKT/scratch" "$TMP/$CHILD" "$TMP/specs/hooks/002-parent" \
+           "$TMP/.opencode/skills/system-spec-kit/runtime/cli/spec"
+  for d in "$PKT" "$CHILD" "specs/hooks/002-parent"; do
+    echo "# spec" > "$TMP/$d/spec.md"
+    echo '{"fingerprint":"old"}' > "$TMP/$d/graph-metadata.json"
+    echo '{"d":"old"}' > "$TMP/$d/description.json"
+  done
+  echo "working file" > "$TMP/$PKT/scratch/notes.md"
+  # A grouping directory: carries metadata but is not a packet, because it has no
+  # spec.md. The real repository has eight of these, and the re-derive tool exits
+  # non-zero on them, so the gate must walk past rather than into one.
+  mkdir -p "$TMP/$GROUP"
+  echo '{"fingerprint":"old"}' > "$TMP/$GROUP/graph-metadata.json"
+  echo "# a note" > "$TMP/$GROUP/notes.md"
+  # Stub repair tool: rewrites both derived files so a change is visible, unless
+  # told to fail or to behave as the common no-op.
+  cat > "$TMP/.opencode/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs" <<'REPAIR'
+const fs = require('fs');
+const path = require('path');
+if (process.env.STUB_REPAIR_FAIL === '1') { console.error('stub repair refused'); process.exit(1); }
+if (process.env.STUB_REPAIR_NOOP === '1') { console.log('inspected=1 repairable=0'); process.exit(0); }
+const folder = process.argv[process.argv.indexOf('--folder') + 1];
+for (const f of ['graph-metadata.json', 'description.json']) {
+  fs.writeFileSync(path.join(process.cwd(), folder, f), JSON.stringify({ fingerprint: Date.now() }));
+}
+REPAIR
+  git -C "$TMP" add -A >/dev/null
+  git -C "$TMP" commit -qm init
+}
+
+# ── 8. nothing under specs/ staged: the gate must not speak ──
+setup_spec_fixture
+echo "unrelated" > "$TMP/notes.md"; git -C "$TMP" add notes.md
+run_hook; RC=$?
+check "no spec doc is a silent no-op" 0 "$RC"
+grep -q 'spec-remint' "$TMP/out.log" && { echo "FAIL  spec gate spoke on an unrelated commit"; FAIL=$((FAIL + 1)); }
+
+# ── 9. a staged spec doc re-derives its packet and stages both derived files ──
+setup_spec_fixture
+echo "# edited" > "$TMP/$PKT/spec.md"; git -C "$TMP" add "$PKT/spec.md"
+run_hook; RC=$?
+check "staged spec doc re-derives its packet" 0 "$RC" "re-derived $PKT"
+STAGED="$(git -C "$TMP" diff --cached --name-only | grep -cE 'graph-metadata.json|description.json')"
+if [[ "$STAGED" == "2" ]]; then echo "PASS  both derived files reached the index"; PASS=$((PASS + 1))
+else echo "FAIL  expected 2 staged derived files, got $STAGED"; FAIL=$((FAIL + 1)); fi
+
+# ── 10. a packet staged and unstaged at once is refused ──
+setup_spec_fixture
+echo "# staged" > "$TMP/$PKT/spec.md"; git -C "$TMP" add "$PKT/spec.md"
+echo "# unstaged too" > "$TMP/$PKT/spec.md"
+run_hook; RC=$?
+check "partly staged packet is refused" 1 "$RC" "staged and unstaged at once"
+
+# ── 11. a repair failure blocks and shows the tool's own output ──
+setup_spec_fixture
+echo "# edited" > "$TMP/$PKT/spec.md"; git -C "$TMP" add "$PKT/spec.md"
+STUB_REPAIR_FAIL=1 run_hook; RC=$?
+check "repair failure blocks with its output" 1 "$RC" "stub repair refused"
+
+# ── 12. a no-op repair passes without claiming it staged anything ──
+setup_spec_fixture
+echo "# edited" > "$TMP/$PKT/spec.md"; git -C "$TMP" add "$PKT/spec.md"
+STUB_REPAIR_NOOP=1 run_hook; RC=$?
+check "a no-op repair is silent" 0 "$RC"
+grep -q 're-derived' "$TMP/out.log" && { echo "FAIL  gate claimed a re-derive that wrote nothing"; FAIL=$((FAIL + 1)); }
+
+# ── 13. a phase child resolves to the child, not its parent ──
+# The packet is the NEAREST ancestor carrying graph-metadata.json. Walking to the
+# parent instead would re-derive the wrong folder and leave the child stale.
+setup_spec_fixture
+echo "# edited" > "$TMP/$CHILD/spec.md"; git -C "$TMP" add "$CHILD/spec.md"
+run_hook; RC=$?
+check "a phase child resolves to itself" 0 "$RC" "re-derived $CHILD"
+grep -q "re-derived specs/hooks/002-parent " "$TMP/out.log" && { echo "FAIL  gate re-derived the parent as well"; FAIL=$((FAIL + 1)); }
+
+# ── 14. a scratch/ file is not a packet document ──
+setup_spec_fixture
+echo "changed" > "$TMP/$PKT/scratch/notes.md"; git -C "$TMP" add "$PKT/scratch/notes.md"
+run_hook; RC=$?
+check "a scratch file does not trigger the gate" 0 "$RC"
+grep -q 'spec-remint' "$TMP/out.log" && { echo "FAIL  gate fired on a scratch file"; FAIL=$((FAIL + 1)); }
+
+# ── 15. a pathspec-narrowed commit is refused, because git discards that index ──
+setup_spec_fixture
+echo "# edited" > "$TMP/$PKT/spec.md"; git -C "$TMP" add "$PKT/spec.md"
+( cd "$TMP" && cp .git/index "$TMP/.git/next-index-1234.lock"
+  GIT_INDEX_FILE="$TMP/.git/next-index-1234.lock" bash "$HOOK" >"$TMP/out.log" 2>&1 )
+RC=$?
+check "pathspec-narrowed spec commit is refused" 1 "$RC" "narrows its"
+
+# ── 16. a grouping directory with metadata but no spec.md is walked past ──
+# The re-derive tool refuses these ("target is not a spec folder"), so keying the
+# packet on metadata alone would turn every such commit into a block.
+setup_spec_fixture
+echo "# edited" > "$TMP/$GROUP/notes.md"; git -C "$TMP" add "$GROUP/notes.md"
+run_hook; RC=$?
+check "a metadata-only directory resolves to its packet parent" 0 "$RC" "re-derived specs/hooks/002-parent"
+grep -q "re-derived $GROUP" "$TMP/out.log" && { echo "FAIL  gate tried to re-derive a non-packet"; FAIL=$((FAIL + 1)); }
+
 echo ""
-echo "pre-commit route-remint gate: $PASS passed, $FAIL failed"
+echo "pre-commit auto re-mint gates: $PASS passed, $FAIL failed"
 [[ "$FAIL" -eq 0 ]]

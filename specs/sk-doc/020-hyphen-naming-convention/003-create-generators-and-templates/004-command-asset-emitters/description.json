@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/004-command-asset-emitters",
   "description": "The /create:* auto, confirm, and presentation assets still contain output rules and examples that can emit underscore paths.",
   "keywords": [

@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands",
   "description": "The `.opencode/commands/` surface combines seven namespaced command families, two loose root command files, shared command tooling, and asset trees",
   "keywords": [

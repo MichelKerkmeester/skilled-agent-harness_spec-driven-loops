@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/005-cli-opencode",
   "description": "The cli-opencode mode README at `.opencode/skills/cli-external-orchestration/cli-opencode/README.md` still carries the older tabular reference-card",
   "keywords": [

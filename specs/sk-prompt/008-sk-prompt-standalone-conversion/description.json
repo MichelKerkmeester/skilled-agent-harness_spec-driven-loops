@@ -1,5 +1,5 @@
 {
-  "level": "phase",
+  "level": "2",
   "specFolder": "sk-prompt/008-sk-prompt-standalone-conversion",
   "description": "`sk-prompt` carries two workflow packets behind one advisor identity, but only one of them is a prompt-engineering workflow",
   "keywords": [

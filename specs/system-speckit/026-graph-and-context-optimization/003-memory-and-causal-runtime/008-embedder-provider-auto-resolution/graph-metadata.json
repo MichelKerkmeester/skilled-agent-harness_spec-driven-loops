@@ -47,9 +47,7 @@
       "implementation-summary.md",
       "research/research.md",
       ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
-      "shared/paths.ts",
       "shared/dist/embeddings/factory.js",
-      "dist/context-server.js",
       "shared/embeddings/factory.ts",
       "shared/embeddings/providers/ollama.ts"
     ],
@@ -91,21 +89,9 @@
         "source": "derived"
       },
       {
-        "name": "paths.ts",
-        "kind": "code",
-        "path": "shared/paths.ts",
-        "source": "derived"
-      },
-      {
         "name": "factory.js",
         "kind": "code",
         "path": "shared/dist/embeddings/factory.js",
-        "source": "derived"
-      },
-      {
-        "name": "context-server.js",
-        "kind": "code",
-        "path": "dist/context-server.js",
         "source": "derived"
       },
       {
@@ -197,11 +183,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "With `EMBEDDINGSPROVIDER=auto` (the committed MCP-config default, documented as a local-first cascade `ollama → hf-local → openai → voyage`), the mk-spec-memory daemon silently resolves to `hf-local` — which is unhealthy on this host (no running backend) — instead of the active, working `ollama` embedder",
     "created_at": "2026-05-27T12:33:58.373Z",
-    "last_save_at": "2026-08-30T15:39:31.576Z",
+    "last_save_at": "2026-09-10T20:47:59.427Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,14 +209,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:92afcd115518050381112df5b5dc38f557ca8f61c823532901a250b1c310a8a9",
+    "source_fingerprint": "sha256:6e206ce41668d52da84841a098a17419fe05ba095333562a17537e8053cec504",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "85ba3a2073d940dcc392d5c6bfe5c9e672970feb8b54d3d84b557ba0a08ab81e",
       "plan.md": "b7892fdedefc5e2dfe308c69d24c7b4222b3451255cd03732b31853ecde1bb71",
       "tasks.md": "af539ab8c250036ce50210404ab994fe618a69ca2ffcab48b1febf846bdd3d8d",
       "implementation-summary.md": "a932b55bfb590069dbcb40aa9670d24165d8c5263e9d91d35fc32ee95cd0fe28",
-      "research/research.md": "569205738d28d246c5672478d4cb26d75d1fe1b5acc38fc2d406e2f7fd3d9102"
+      "research/research.md": "347cfc2c15eecef1e9b6f64540d88c511e2b29e2b51fac18e31eb07fb1cba09b"
     },
     "last_active_child_id": null,
     "last_active_at": null

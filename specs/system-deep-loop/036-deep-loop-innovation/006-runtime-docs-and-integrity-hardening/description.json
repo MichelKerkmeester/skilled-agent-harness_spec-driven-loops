@@ -1,5 +1,5 @@
 {
-  "level": "3",
+  "level": "2",
   "specFolder": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening",
   "description": "Runtime code READMEs and sk-code alignment, plus artifact-certificate, alignment-coverage, mode-gate, dispatch-integrity, promotion-authority,",
   "keywords": [

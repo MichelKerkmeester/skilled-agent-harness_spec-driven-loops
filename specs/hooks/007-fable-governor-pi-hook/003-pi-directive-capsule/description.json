@@ -1,5 +1,5 @@
 {
-  "level": "2",
+  "level": "1",
   "specFolder": "hooks/007-fable-governor-pi-hook/003-pi-directive-capsule",
   "description": "Pi sessions get no per-turn direction about subagent dispatch: nothing says to prefer the native pi-subagents plugin over cli- routes, and AGENTS.md",
   "keywords": [

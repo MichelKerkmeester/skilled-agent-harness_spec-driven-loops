@@ -1,5 +1,5 @@
 {
-  "level": "phase",
+  "level": "2",
   "specFolder": "sk-vision/001-sk-vision-fork-of-opencode-senses/005-pi-adapter",
   "description": "Pi loads extensions from `.pi/extensions/` via relative symlinks to owner trees",
   "keywords": [

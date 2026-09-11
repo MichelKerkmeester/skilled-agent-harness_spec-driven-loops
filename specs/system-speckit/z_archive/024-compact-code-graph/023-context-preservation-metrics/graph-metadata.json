@@ -44,12 +44,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      "lib/session/context-metrics.ts",
-      "handlers/session-health.ts",
-      "lib/response/envelope.ts",
-      "handlers/eval-reporting.ts",
-      "lib/eval/reporting-dashboard.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -74,36 +69,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "context-metrics.ts",
-        "kind": "code",
-        "path": "lib/session/context-metrics.ts",
-        "source": "derived"
-      },
-      {
-        "name": "session-health.ts",
-        "kind": "code",
-        "path": "handlers/session-health.ts",
-        "source": "derived"
-      },
-      {
-        "name": "envelope.ts",
-        "kind": "code",
-        "path": "lib/response/envelope.ts",
-        "source": "derived"
-      },
-      {
-        "name": "eval-reporting.ts",
-        "kind": "code",
-        "path": "handlers/eval-reporting.ts",
-        "source": "derived"
-      },
-      {
-        "name": "reporting-dashboard.ts",
-        "kind": "code",
-        "path": "lib/eval/reporting-dashboard.ts",
         "source": "derived"
       },
       {
@@ -195,11 +160,41 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria Template",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Metadata Template",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Template",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered Template",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "We needed a way to measure how well session context survives across runtimes instead of relying on parity claims and anecdotal failures",
     "created_at": "2026-04-13T04:55:10.699Z",
-    "last_save_at": "2026-08-30T15:39:39.788Z",
+    "last_save_at": "2026-09-10T21:05:11.975Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:005e768ce8b585bccebffac2705db23e6d7bccea61ea5e3e5ad8b20f4095f57d",
+    "source_fingerprint": "sha256:d242c1e2c1c6ee29f49935c24488199457fc4bb204e4d31a0a5bd26b3b7059ca",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "cebc18f83f7a2ea09dd1e89ffe0252b9193389ea53ef9012d22f77a9442fd281",
-      "plan.md": "21cbf2112f56a7823ff5919dfd49441395a5485818069c1e69f1a5bb7e32ab85",
-      "tasks.md": "394e366f6eafb3749cad59498641ceee2834422bfe4e24e58a0918863009ab18",
-      "implementation-summary.md": "378f92ae0612a3ef89c6e9096db1a6699c0c82f5a090161d75fc0cd988df2add"
+      "plan.md": "b2b1f66cf7d77599214d8c92fcb5926e1635e982f1d65673e79903647bada589",
+      "tasks.md": "a37f51c0ad1c18f5ba216952dd0b4ed9b205756ee2c20f068e9d8758e5c27282",
+      "implementation-summary.md": "86bda6acdc0b390d9745dd0c5f9ac6782f334b77b9e6c99da56c246ccd0b89e2"
     },
     "last_active_child_id": null,
     "last_active_at": null

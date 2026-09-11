@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "mcp-tooling/009-mcp-refero/005-inventory-parity-and-doc-truth",
   "description": "The v1.0.0.0 `mcp-refero` packet shipped structurally valid but short of hub-sibling inventory parity: no `examples/` directory, no",
   "keywords": [

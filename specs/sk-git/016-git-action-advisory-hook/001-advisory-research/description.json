@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "sk-git/016-git-action-advisory-hook/001-advisory-research",
   "description": "The incident list in the parent spec is a starting point drawn from one session, not a survey",
   "keywords": [

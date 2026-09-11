@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Phase 008 built `scan-naming.mjs`, which measured the plugin tree at 235 of 248 scanned files",
     "created_at": "2026-08-28T18:17:41Z",
-    "last_save_at": "2026-08-30T15:39:11.277Z",
+    "last_save_at": "2026-09-10T20:44:06.434Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,11 +202,11 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a1aacd800fa732d80459a0b77c17114d1a0867069e47de570daf9713dd1f660c",
+    "source_fingerprint": "sha256:5becf268bbb716fc782c9d447019a89e8a439b0a94c2e1c9e7c1ffaa4c49832d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2f0ac205b3069fe11415a0a99e32c103d73d30450d2824e917da3b04211f98fc",
-      "plan.md": "50f38a0d87f18b605fc0b683e549838edd402d6a270e5cd3e0ce9c7a4fb9ffde",
+      "plan.md": "1c7fa90e1a681b066187f55a6fdce42d993f56740ad347fab892443364a3a4b0",
       "tasks.md": "0065f7dbc7ae736afcf1b39cf81340a167e330f1c553bddb437ab570a85ac55d",
       "implementation-summary.md": "ee7aefff49149df0761cf14a33386c9821d7bea7725804d510956b4c0e5d270d"
     },

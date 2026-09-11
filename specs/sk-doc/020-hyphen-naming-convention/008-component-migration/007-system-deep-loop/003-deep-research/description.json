@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/003-deep-research",
   "description": "The deep-research packet contains 13 underscore-bearing directory families and 103 underscore-bearing files across assets, catalogs, playbooks,",
   "keywords": [

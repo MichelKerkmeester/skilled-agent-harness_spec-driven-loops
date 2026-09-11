@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/007-changelog-verify",
   "description": "The advisor has versioned changelog entries through v0.10.0, while the skill identity documents expose version",
   "keywords": [

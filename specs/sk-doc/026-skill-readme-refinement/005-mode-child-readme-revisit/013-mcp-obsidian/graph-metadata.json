@@ -49,8 +49,7 @@
       ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/013-mcp-obsidian/spec.md",
       ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/013-mcp-obsidian/plan.md",
       ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/013-mcp-obsidian/tasks.md",
-      ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
-      ".opencode/skills/sk-doc/shared/references/hvr-rules.md"
+      ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md"
     ],
     "entities": [
       {
@@ -87,12 +86,6 @@
         "name": "skill-readme-template.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
-        "source": "derived"
-      },
-      {
-        "name": "hvr-rules.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/shared/references/hvr-rules.md",
         "source": "derived"
       },
       {
@@ -196,11 +189,17 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The mcp-obsidian README is the pilot that set the purpose-first standard for mode skill READMEs",
     "created_at": "2026-08-04T08:34:43.761Z",
-    "last_save_at": "2026-08-30T15:39:17.704Z",
+    "last_save_at": "2026-09-10T20:45:28.450Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

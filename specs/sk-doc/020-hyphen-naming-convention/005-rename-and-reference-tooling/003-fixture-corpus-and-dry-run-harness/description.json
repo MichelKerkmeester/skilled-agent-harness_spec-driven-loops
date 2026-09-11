@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/003-fixture-corpus-and-dry-run-harness",
   "description": "The rename engine and reference checker need representative, repeatable evidence before a real migration run.",
   "keywords": [

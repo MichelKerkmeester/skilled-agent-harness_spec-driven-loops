@@ -205,7 +205,7 @@
     ],
     "causal_summary": "The sk-code parent hub exposes four WORKFLOW sub-skills — `code-implement`, `code-quality`, `code-debug`, `code-verify` — that carry the day-to-day coding lifecycle",
     "created_at": "2026-07-05T14:53:44.541Z",
-    "last_save_at": "2026-08-30T15:39:10.952Z",
+    "last_save_at": "2026-09-10T20:43:59.457Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,14 +215,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:b269364b367d994e9ad90818cfe07fa86eda7be6336e65d973ed0832c3505bd5",
+    "source_fingerprint": "sha256:93b011d2d2917e8ef3dbe6c82dbdf8d35464a7ce96e89e59f2e7de406731818f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "75d2b6f2e3a2477296f3560e104f3383dda874288ea886095e997de2e9a16ddc",
       "plan.md": "5bd6a7cf60e3a564f2f9ba26c2ca20d1e1a94793427906f5f6b5818823b005b0",
       "tasks.md": "f7c152fc0a31d360faaab5e052d1e5a3c6a664765a53b406d6392c003a5edce4",
       "implementation-summary.md": "a57c6f8013b2440584f6af5b398d4eef7b3c65aca7a0f42012335a77b39c1deb",
-      "research/research.md": "5e979fa1489d3d32a5a121690e12ada4ca6a8dd5c9eb1c79ae5947df85abd0dc"
+      "research/research.md": "748cb72ab0ab3b869b6efe0a7dc95e1dda46dc3337114608280e9309c085a0ff"
     },
     "last_active_child_id": null,
     "last_active_at": null

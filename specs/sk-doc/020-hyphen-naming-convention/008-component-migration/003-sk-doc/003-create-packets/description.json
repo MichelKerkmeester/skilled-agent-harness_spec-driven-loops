@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets",
   "description": "The create- packets are independent authoring workflows, but their resource directories and template filenames use mixed snakecase forms",
   "keywords": [

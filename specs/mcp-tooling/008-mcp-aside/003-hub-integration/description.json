@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "mcp-tooling/008-mcp-aside/003-hub-integration",
   "description": "After phase 002 the `mcp-aside-devtools` packet exists but is invisible: the hub's mode-registry and router do not know it, the parent SKILL.md does",
   "keywords": [

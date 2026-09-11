@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "mcp-tooling/010-mcp-mobbin",
   "description": "The `mcp-tooling` hub has two workflow bridges (`mcp-chrome-devtools`, `mcp-click-up`) and one transport (`mcp-figma`), but no app-design-research",
   "keywords": [

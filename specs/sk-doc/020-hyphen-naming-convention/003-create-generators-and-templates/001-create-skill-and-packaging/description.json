@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/001-create-skill-and-packaging",
   "description": "The create-skill scaffolder and package checks must keep generated skill roots, packets, resource paths, and package names in kebab-case.",
   "keywords": [

@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/001-mcp-server-dir-and-manifest-closure",
   "description": "The skill stores its embedded Node MCP server under mcp_server, and installers, diagnostics, guides, and generated metadata refer to that path.",
   "keywords": [

@@ -44,16 +44,12 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      "tests/fixtures/runtime-fixtures.ts",
-      "tests/runtime-routing.vitest.ts",
       "tests/hook-session-start.vitest.ts",
       "tests/hook-precompact.vitest.ts",
       "tests/hook-stop-token-tracking.vitest.ts",
-      "tests/cross-runtime-fallback.vitest.ts",
       "tests/token-snapshot-store.vitest.ts",
       "tests/session-token-resume.vitest.ts",
-      "tests/edge-cases.vitest.ts",
-      "tests/dual-scope-hooks.vitest.ts"
+      "tests/edge-cases.vitest.ts"
     ],
     "entities": [
       {
@@ -81,18 +77,6 @@
         "source": "derived"
       },
       {
-        "name": "runtime-fixtures.ts",
-        "kind": "code",
-        "path": "tests/fixtures/runtime-fixtures.ts",
-        "source": "derived"
-      },
-      {
-        "name": "runtime-routing.vitest.ts",
-        "kind": "test",
-        "path": "tests/runtime-routing.vitest.ts",
-        "source": "derived"
-      },
-      {
         "name": "hook-session-start.vitest.ts",
         "kind": "test",
         "path": "tests/hook-session-start.vitest.ts",
@@ -111,12 +95,6 @@
         "source": "derived"
       },
       {
-        "name": "cross-runtime-fallback.vitest.ts",
-        "kind": "test",
-        "path": "tests/cross-runtime-fallback.vitest.ts",
-        "source": "derived"
-      },
-      {
         "name": "token-snapshot-store.vitest.ts",
         "kind": "test",
         "path": "tests/token-snapshot-store.vitest.ts",
@@ -132,12 +110,6 @@
         "name": "edge-cases.vitest.ts",
         "kind": "test",
         "path": "tests/edge-cases.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "dual-scope-hooks.vitest.ts",
-        "kind": "test",
-        "path": "tests/dual-scope-hooks.vitest.ts",
         "source": "derived"
       },
       {
@@ -199,11 +171,35 @@
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation Template",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Setup Template",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "This phase addresses concrete context-preservation and code-graph reliability gaps tracked in this packet",
     "created_at": "2026-04-12T09:02:50.347Z",
-    "last_save_at": "2026-08-30T15:39:39.742Z",
+    "last_save_at": "2026-09-10T21:05:11.594Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +208,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0a78a547f8052410534175c16af3f36c40fe8885f11da5890b107819fa0c3ed6",
+    "source_fingerprint": "sha256:4df11f43d064a402320c1b905a3f27d3bf9472b6da05810095d02846a76d5eaa",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3d31f6d4961298c16b3adb1dd0e4702ea6946148ef1f0cfc7be3b16304357dca",
       "plan.md": "d97c4c11060a3f39ce2f47ca7793d02b550087042d663fd1110bf85c717d92c8",
       "tasks.md": "8ddb84806482e90a90f58943f5c06564ea9913e98e4bedd2094bd7a2d039e17f",
-      "implementation-summary.md": "52acf9043627b9b598389aa372d7f8a1248fdb56fe0323b0f7313cea26c80f83"
+      "implementation-summary.md": "141a0ca7b728f467bd78435d63d41a44e8653ef2244fe7489c9772ab17916a59"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/004-cli-devin",
   "description": "The cli-devin mode README at `.opencode/skills/cli-external-orchestration/cli-devin/README.md` still carries the older tabular reference-card style",
   "keywords": [

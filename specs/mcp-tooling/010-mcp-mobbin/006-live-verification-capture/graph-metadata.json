@@ -48,7 +48,6 @@
       ".opencode/skills/mcp-tooling/mcp-mobbin/references/discovery-fixture-2026-07-16.json",
       ".opencode/skills/mcp-tooling/mcp-mobbin/references/tool-surface.md",
       ".opencode/skills/mcp-tooling/mcp-mobbin/SKILL.md",
-      "scripts/doctor.sh",
       ".opencode/skills/mcp-tooling/mcp-mobbin/README.md",
       ".opencode/skills/mcp-tooling/mcp-mobbin/install-guide.md",
       ".opencode/skills/mcp-tooling/mcp-mobbin/references/mcp-wiring.md",
@@ -60,7 +59,8 @@
       ".opencode/skills/mcp-tooling/mcp-mobbin/feature-catalog/screens/screens.md",
       ".opencode/skills/mcp-tooling/mcp-mobbin/feature-catalog/apps/apps.md",
       ".opencode/skills/mcp-tooling/mcp-mobbin/feature-catalog/elements/elements.md",
-      ".opencode/skills/mcp-tooling/mcp-mobbin/examples/README.md"
+      ".opencode/skills/mcp-tooling/mcp-mobbin/examples/README.md",
+      ".opencode/skills/mcp-tooling/mcp-mobbin/examples/smoke-search-limit-1.md"
     ],
     "entities": [
       {
@@ -103,12 +103,6 @@
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/mcp-tooling/mcp-mobbin/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "doctor.sh",
-        "kind": "script",
-        "path": "scripts/doctor.sh",
         "source": "derived"
       },
       {
@@ -172,6 +166,12 @@
         "source": "derived"
       },
       {
+        "name": "smoke-search-limit-1.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-mobbin/examples/smoke-search-limit-1.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The whole packet was built on the official one-public-tool record: `searchscreens` only, `searchflows` explicitly listed as a tool that must never be invented, the `deep` search question preserved as an unresolved conflict, and the callable name marked INFERRED",
     "created_at": "2026-07-16T12:58:35Z",
-    "last_save_at": "2026-08-30T15:39:10.007Z",
+    "last_save_at": "2026-09-10T20:43:44.723Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

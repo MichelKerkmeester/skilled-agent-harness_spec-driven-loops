@@ -1,5 +1,5 @@
 {
-  "level": "3",
+  "level": "2",
   "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/003-staged-state-migration-and-authority-cutover/003-cutover-certificate-and-rollback-window",
   "description": "Plan the signed evidence bundle that authorizes a per-mode authority flip and the monitored rollback window that keeps the flip reversible until clean",
   "keywords": [

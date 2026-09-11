@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/009-create-changelog",
   "description": "The create-changelog packet contains snake_case reference filenames for topology edge cases, version bump rules, and worked examples.",
   "keywords": [

@@ -1,5 +1,5 @@
 {
-  "level": "2",
+  "level": "1",
   "specFolder": "mcp-tooling/014-mcp-notion/003-knowledge-references",
   "description": "After Phase 2 the `mcp-notion` mode has a routing contract but no knowledge layer, so it is a thin transport",
   "keywords": [

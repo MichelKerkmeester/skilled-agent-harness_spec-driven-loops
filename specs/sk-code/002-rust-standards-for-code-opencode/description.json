@@ -1,5 +1,5 @@
 {
-  "level": "phase",
+  "level": "1",
   "specFolder": "sk-code/002-rust-standards-for-code-opencode",
   "description": "WS1: `sk-code`'s `code-opencode` surface encodes per-language standards as a `references/<lang>/{styleguide,qualitystandards,quickreference}.md` trio",
   "keywords": [

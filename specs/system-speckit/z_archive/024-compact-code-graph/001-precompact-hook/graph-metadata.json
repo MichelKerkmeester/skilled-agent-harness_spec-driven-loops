@@ -46,7 +46,6 @@
       "tasks.md",
       "implementation-summary.md",
       ".claude/settings.local.json",
-      "hooks/memory-surface.ts",
       "hooks/claude/compact-inject.ts",
       "hooks/claude/session-prime.ts",
       "hooks/claude/shared.ts",
@@ -81,12 +80,6 @@
         "name": "settings.local.json",
         "kind": "config",
         "path": ".claude/settings.local.json",
-        "source": "derived"
-      },
-      {
-        "name": "memory-surface.ts",
-        "kind": "code",
-        "path": "hooks/memory-surface.ts",
         "source": "derived"
       },
       {
@@ -196,11 +189,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Template",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "This phase addresses concrete context-preservation and code-graph reliability gaps tracked in this packet",
     "created_at": "2026-04-12T09:02:50.343Z",
-    "last_save_at": "2026-08-30T15:39:39.698Z",
+    "last_save_at": "2026-09-10T21:05:11.189Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +208,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8a421bd72a78094b99e4bd0231d956788b0b8be959ade7671dc711d9dc78ca6b",
+    "source_fingerprint": "sha256:8983c4c1bacb436ca0ece6ed48298e97db7bb3ffc69b4cdbc8cbf4134094244c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c090ca1723a058a1ef39506739b4c8b796e70827cd3bd26f20913fb31646770a",
       "plan.md": "c211064d348ff969f164ae0252b258171956c83b90fd3771927e350301544e8c",
       "tasks.md": "715e6ad396142c4d2f60be10d50aa57094f0fbc13daf93180e2efcc3b735bed3",
-      "implementation-summary.md": "1dca43d0f24aa5a6a8734a6013b5d00c8029fd037bcc1d47d46a4abdcfd1152c"
+      "implementation-summary.md": "c0283814a989c6b26ba640683339ffe401a140056da1068dad48e37ce636c7f2"
     },
     "last_active_child_id": null,
     "last_active_at": null

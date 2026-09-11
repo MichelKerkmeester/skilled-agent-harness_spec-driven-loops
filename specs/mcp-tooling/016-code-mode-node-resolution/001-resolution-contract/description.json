@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "mcp-tooling/016-code-mode-node-resolution/001-resolution-contract",
   "description": "The requirement is published in two places already: the server manifest declares `engines.node` as `>=24.0.0 <25.0.0`, and a postinstall check warns",
   "keywords": [

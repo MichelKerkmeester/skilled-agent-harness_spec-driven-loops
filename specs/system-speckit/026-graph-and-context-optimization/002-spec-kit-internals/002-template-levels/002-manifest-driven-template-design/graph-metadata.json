@@ -48,19 +48,16 @@
       "implementation-summary.md",
       "research/research.md",
       "research/resource-map.md",
-      "scripts/templates/inline-gate-renderer.ts",
-      ".opencode/skills/system-spec-kit/scripts/spec/create.sh",
-      ".opencode/skills/system-spec-kit/scripts/rules/check-files.sh",
-      ".opencode/skills/system-spec-kit/scripts/utils/template-structure.js",
       ".opencode/skills/system-spec-kit/shared/parsing/spec-doc-health.ts",
-      "scripts/tests/workflow-invariance.vitest.ts",
-      "scripts/spec/create.sh",
-      "scripts/rules/check-files.sh",
       "research/iterations/iteration-007.md",
       "research/iterations/iteration-001.md",
       "research/iterations/iteration-008.md",
       "research/deep-research-state.jsonl",
-      "research/deltas/iter-001.jsonl"
+      "research/deltas/iter-001.jsonl",
+      "research/deltas/iter-008.jsonl",
+      "research/deep-research-strategy.md",
+      "research/findings-registry.json",
+      ".opencode/skills/system-spec-kit/SKILL.md"
     ],
     "entities": [
       {
@@ -100,39 +97,9 @@
         "source": "derived"
       },
       {
-        "name": "inline-gate-renderer.ts",
-        "kind": "code",
-        "path": "scripts/templates/inline-gate-renderer.ts",
-        "source": "derived"
-      },
-      {
-        "name": "create.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/spec/create.sh",
-        "source": "derived"
-      },
-      {
-        "name": "check-files.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-files.sh",
-        "source": "derived"
-      },
-      {
-        "name": "template-structure.js",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/utils/template-structure.js",
-        "source": "derived"
-      },
-      {
         "name": "spec-doc-health.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/shared/parsing/spec-doc-health.ts",
-        "source": "derived"
-      },
-      {
-        "name": "workflow-invariance.vitest.ts",
-        "kind": "test",
-        "path": "scripts/tests/workflow-invariance.vitest.ts",
         "source": "derived"
       },
       {
@@ -163,6 +130,30 @@
         "name": "iter-001.jsonl",
         "kind": "file",
         "path": "research/deltas/iter-001.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "iter-008.jsonl",
+        "kind": "file",
+        "path": "research/deltas/iter-008.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-strategy.md",
+        "kind": "doc",
+        "path": "research/deep-research-strategy.md",
+        "source": "derived"
+      },
+      {
+        "name": "findings-registry.json",
+        "kind": "config",
+        "path": "research/findings-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
         "source": "derived"
       },
       {
@@ -206,11 +197,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Hybrid Manifest",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The current template system maintains 86 files (~13K LOC) split across `core/`, `addendum/`, four materialized `levelN/` outputs, `phaseparent/`, cross-cutting templates, plus a build-time composer (`compose.sh`) and an anchor wrapper (`wrap-all-templates.ts`)",
     "created_at": "2026-05-01T09:15:39Z",
-    "last_save_at": "2026-08-30T15:39:29.268Z",
+    "last_save_at": "2026-09-10T20:47:22.021Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,7 +218,7 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:fc6f6872909ea1c99772b04c009053574167ea6ff650d0976b0720a853a30779",
+    "source_fingerprint": "sha256:56dcfae09f06bb5d739c55b0622a319bd48a9b60b868a2f1fbe38de0640c3321",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "467a160da2981ec91a91ee0bb016890b0a2ea23e08927e79e4bb51d488e5c516",
@@ -229,7 +226,7 @@
       "tasks.md": "8673ff0a9e25a6d3536485cb497e0d81f758b988fbc40a9e56409fa15de73270",
       "decision-record.md": "dfeba78cdbbc22343f43550f1213a5583d58839b9e8ceb0f368ab902b9570f63",
       "implementation-summary.md": "d214eeba212c5b35006abeddf8edf517bd4747dc77fcab934a42a4ca36f13648",
-      "research/research.md": "f2fa6e3369d6825c8d9ff1d3af5c095994dbfa0ea8970d0cbb6a6e9027cec8bc"
+      "research/research.md": "968fa4183d6a5d562161b64fdaff432a87212f3c8a96fa87257ff011d3636f0e"
     },
     "last_active_child_id": null,
     "last_active_at": null

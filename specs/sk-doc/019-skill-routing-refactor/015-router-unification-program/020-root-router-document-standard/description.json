@@ -1,5 +1,5 @@
 {
-  "level": "phase",
+  "level": "2",
   "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/020-root-router-document-standard",
   "description": "Six class-H parent skills still keep their second-stage leaf router at `shared/references/smart-routing.md`, while the mcp-tooling pilot already uses",
   "keywords": [

@@ -43,13 +43,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      "shared/embeddings.ts",
-      "scripts/lib/semantic-summarizer.ts",
-      "scripts/core/workflow.ts",
-      "scripts/core/memory-indexer.ts",
-      "scripts/tests/test-embeddings-behavioral.js",
-      "shared/index.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -74,42 +68,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "embeddings.ts",
-        "kind": "code",
-        "path": "shared/embeddings.ts",
-        "source": "derived"
-      },
-      {
-        "name": "semantic-summarizer.ts",
-        "kind": "code",
-        "path": "scripts/lib/semantic-summarizer.ts",
-        "source": "derived"
-      },
-      {
-        "name": "workflow.ts",
-        "kind": "code",
-        "path": "scripts/core/workflow.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-indexer.ts",
-        "kind": "code",
-        "path": "scripts/core/memory-indexer.ts",
-        "source": "derived"
-      },
-      {
-        "name": "test-embeddings-behavioral.js",
-        "kind": "code",
-        "path": "scripts/tests/test-embeddings-behavioral.js",
-        "source": "derived"
-      },
-      {
-        "name": "index.ts",
-        "kind": "code",
-        "path": "shared/index.ts",
         "source": "derived"
       },
       {
@@ -195,11 +153,47 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Static Decay Metadata",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Known Limitations No",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "both",
+        "kind": "key_phrase",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "local",
+        "kind": "key_phrase",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Before this phase, the scripts-side indexer embedded raw markdown via `generateEmbedding(content)`, while the MCP save path normalized content but still treated the document as a flat body",
     "created_at": "2026-04-12T09:02:50.272Z",
-    "last_save_at": "2026-08-30T15:39:38.735Z",
+    "last_save_at": "2026-09-10T21:04:55.297Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

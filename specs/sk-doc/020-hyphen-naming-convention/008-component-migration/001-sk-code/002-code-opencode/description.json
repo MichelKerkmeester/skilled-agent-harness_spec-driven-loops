@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/002-code-opencode",
   "description": "The code-opencode packet is a large evidence tree with snakecase names across assets/checklists, manual-testing-playbook categories,",
   "keywords": [

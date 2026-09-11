@@ -1,5 +1,5 @@
 {
-  "level": "phase",
+  "level": "2",
   "specFolder": "sk-prompt/007-sk-prompt-parent",
   "description": "`sk-prompt` (active prompt-improvement engine: 7 frameworks, DEPTH thinking, CLEAR scoring) and `sk-prompt-models` (read-only small-model prompt-craft",
   "keywords": [

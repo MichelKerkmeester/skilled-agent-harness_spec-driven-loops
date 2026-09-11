@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/006-changelog-verify",
   "description": "The sk-doc component migration needs a changelog entry that names the completed rename set and records the corresponding four-part version bump.",
   "keywords": [

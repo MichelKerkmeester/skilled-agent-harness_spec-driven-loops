@@ -1,5 +1,5 @@
 {
-  "level": "phase",
+  "level": "2",
   "specFolder": "sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures",
   "description": "Several in-scope filesystem names are not owned by one component subtree",
   "keywords": [

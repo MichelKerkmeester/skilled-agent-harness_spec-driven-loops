@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "hooks/008-pi-caching-like-reasonix/006-fork-and-improve-deep-pi/001-fix-and-test-deep-pi",
   "description": "A full read of `deep-pi`'s installed source (1,299 lines across 7 files — `deeppi.ts`, `eligibility.ts`, `stability.ts`, `stormbreaker.ts`,",
   "keywords": [

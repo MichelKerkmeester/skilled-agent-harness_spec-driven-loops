@@ -46,7 +46,6 @@
       "tasks.md",
       "implementation-summary.md",
       "research/research.md",
-      ".opencode/bin/spec-memory.cjs",
       "research/cli-backend/lineages/gpt/research.md",
       "research/risk-closure/lineages/gpt-closure/research.md",
       "research/orchestration-summary.json",
@@ -81,12 +80,6 @@
         "name": "research.md",
         "kind": "doc",
         "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec-memory.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/spec-memory.cjs",
         "source": "derived"
       },
       {
@@ -196,11 +189,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "speckit",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The mk-spec-memory MCP server (37 tools) is the spec-kit's continuity backbone, but the MCP transport carries real operational costs: a mid-session disconnect on 2026-06-06 permanently removed 45 tools from a live session because Claude Code never reconnects MCP transports, every session pays tool-schema token overhead, and each runtime needs separate MCP registration",
     "created_at": "2026-06-06T08:46:15.481Z",
-    "last_save_at": "2026-08-30T15:39:33.815Z",
+    "last_save_at": "2026-09-10T20:48:34.984Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,14 +209,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:3a63c0e975485c03e2fc3a01e8cb75b5896647bbaddfc8ea96280c040f9dc178",
+    "source_fingerprint": "sha256:168854d5caba52bfd7d09b4686cbb04196de2acc2362a4a06fd841cdd89f2d8f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "64cec6ca08294ff8509761251b393070446383794df80e18015f43f15b9a5b26",
       "plan.md": "5d68acdb59d8b97190f5263e754025d58511463e7495e7805de21782a203921a",
       "tasks.md": "e393882cdace3bdcf26d48cefad0f767326c46bdb9873a5290d82b7663f40ccc",
       "implementation-summary.md": "01249def2b7a532f080be35402f256f35ce6ff323904ea0d9812adc56ca09482",
-      "research/research.md": "01f07f3034cde3bebc65bfb88a4edfe7bb824e0b0a1720928f87a631cbda912c"
+      "research/research.md": "21e5a82fe3e2945445689b9cf22470354523bf658dda66da0c440c75de613a18"
     },
     "last_active_child_id": null,
     "last_active_at": null

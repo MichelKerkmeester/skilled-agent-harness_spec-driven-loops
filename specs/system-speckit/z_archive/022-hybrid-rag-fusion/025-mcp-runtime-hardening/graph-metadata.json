@@ -44,13 +44,7 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      "lib/utils/cleanup-helpers.ts",
-      ".opencode/specs/descriptions.json",
-      "lib/errors/core.ts",
-      "tests/db-dimension-integrity.vitest.ts",
-      "tests/lifecycle-shutdown.vitest.ts",
-      "tests/stage2b-enrichment-extended.vitest.ts",
-      "tests/error-sanitization.vitest.ts"
+      ".opencode/specs/descriptions.json"
     ],
     "entities": [
       {
@@ -78,45 +72,9 @@
         "source": "derived"
       },
       {
-        "name": "cleanup-helpers.ts",
-        "kind": "code",
-        "path": "lib/utils/cleanup-helpers.ts",
-        "source": "derived"
-      },
-      {
         "name": "descriptions.json",
         "kind": "config",
         "path": ".opencode/specs/descriptions.json",
-        "source": "derived"
-      },
-      {
-        "name": "core.ts",
-        "kind": "code",
-        "path": "lib/errors/core.ts",
-        "source": "derived"
-      },
-      {
-        "name": "db-dimension-integrity.vitest.ts",
-        "kind": "test",
-        "path": "tests/db-dimension-integrity.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "lifecycle-shutdown.vitest.ts",
-        "kind": "test",
-        "path": "tests/lifecycle-shutdown.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "stage2b-enrichment-extended.vitest.ts",
-        "kind": "test",
-        "path": "tests/stage2b-enrichment-extended.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "error-sanitization.vitest.ts",
-        "kind": "test",
-        "path": "tests/error-sanitization.vitest.ts",
         "source": "derived"
       },
       {
@@ -196,11 +154,47 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Dimension Integrity Tests",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Lifecycle Coverage Tests",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Log Sanitization",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The `024-codex-memory-mcp-fix` packet documented six follow-on recommendations (T020-T025) for runtime hardening, but none were implemented",
     "created_at": "2026-04-12T09:02:50.314Z",
-    "last_save_at": "2026-08-30T15:39:39.387Z",
+    "last_save_at": "2026-09-10T21:05:07.018Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/001-references",
   "description": "SUPERSEDED by concurrent v4 work, which already executed the sk-git reference rename set (committed on skilled/v4); the live surface is fully",
   "keywords": [

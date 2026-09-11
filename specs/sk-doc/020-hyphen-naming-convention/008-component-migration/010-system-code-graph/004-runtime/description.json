@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/004-runtime",
   "description": "The system-code-graph runtime tree is a named migration surface even though its current four files and directory",
   "keywords": [

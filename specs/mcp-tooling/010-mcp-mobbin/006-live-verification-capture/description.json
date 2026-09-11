@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "mcp-tooling/010-mcp-mobbin/006-live-verification-capture",
   "description": "The whole packet was built on the official one-public-tool record: `searchscreens` only, `searchflows` explicitly listed as a tool that must never be",
   "keywords": [

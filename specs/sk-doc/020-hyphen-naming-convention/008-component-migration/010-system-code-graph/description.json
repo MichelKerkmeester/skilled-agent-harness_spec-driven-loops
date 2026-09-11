@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph",
   "description": "The system-code-graph surface still exposes snakecase filesystem roots and content paths in its MCP package,",
   "keywords": [

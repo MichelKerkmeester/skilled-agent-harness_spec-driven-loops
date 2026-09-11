@@ -1,5 +1,5 @@
 {
-  "level": "3",
+  "level": "2",
   "specFolder": "system-deep-loop/036-deep-loop-innovation/008-review-and-rollback-followup",
   "description": "Runtime code review, review drift remediation, rollback candidate hash hardening, and review containment exemption.",
   "keywords": [

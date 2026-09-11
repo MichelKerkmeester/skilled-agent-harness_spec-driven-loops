@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/001-hub-root-and-shared",
   "description": "The system-deep-loop hub root and shared boundary contain exact routing and metadata contracts that a broad rename could damage.",
   "keywords": [

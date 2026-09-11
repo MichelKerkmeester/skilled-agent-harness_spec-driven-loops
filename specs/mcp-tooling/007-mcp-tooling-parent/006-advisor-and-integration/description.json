@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "mcp-tooling/007-mcp-tooling-parent/006-advisor-and-integration",
   "description": "After phases 004-005 the content lives under the hub, but the advisor still sees three graph identities and every external referrer still points at",
   "keywords": [

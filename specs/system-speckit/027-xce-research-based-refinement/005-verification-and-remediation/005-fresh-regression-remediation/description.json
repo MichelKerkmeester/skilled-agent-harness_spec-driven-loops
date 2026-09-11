@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "childTopology": [
     "001-memory-storage-and-search",
     "002-daemon-launcher-lifecycle",

@@ -90,8 +90,8 @@
       ".opencode/skills/sk-code/sk-code-quality/README.md",
       ".opencode/skills/sk-code/sk-code-review/README.md",
       ".opencode/skills/sk-code/sk-code-webflow/README.md",
-      ".opencode/skills/sk-doc/sk-create-agent/README.md",
-      ".opencode/skills/sk-doc/sk-create-benchmark/README.md"
+      ".opencode/skills/sk-design/sk-design-md-generator/README.md",
+      ".opencode/skills/sk-doc/sk-create-agent/README.md"
     ],
     "entities": [
       {
@@ -145,7 +145,7 @@
     ],
     "causal_summary": "Phase parent: one child phase per mode (child) skill, each revisiting that skill's README against the refined template from phase 001, using mcp-obsidian as the exemplar.",
     "created_at": "2026-08-04T07:12:17.718Z",
-    "last_save_at": "2026-08-30T15:39:17.576Z",
+    "last_save_at": "2026-09-10T20:45:25.841Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "sk-git/016-git-action-advisory-hook/003-preflight-hook",
   "description": "Encoded rules do nothing until something evaluates them against a real command",
   "keywords": [

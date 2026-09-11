@@ -1,5 +1,5 @@
 {
-  "level": "feature",
+  "level": "1",
   "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/012-fixture-audit-10-probes",
   "description": "Audit the 18-pair code-retrieval fixture for expected-path correctness.",
   "keywords": [

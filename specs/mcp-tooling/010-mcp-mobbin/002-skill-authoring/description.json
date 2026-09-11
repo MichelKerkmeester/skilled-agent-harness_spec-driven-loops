@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "mcp-tooling/010-mcp-mobbin/002-skill-authoring",
   "description": "The hub has no `mcp-mobbin` packet: there is no SKILL.md contract, no tool-surface reference, no install guide, and no UTCP manual snippet for the",
   "keywords": [

@@ -1,5 +1,5 @@
 {
-  "level": "2",
+  "level": "1",
   "specFolder": "hooks/007-fable-governor-pi-hook/002-governor-parity",
   "description": "The per-turn governor capsule is inconsistent across runtimes: canonical composition points carry hygiene + governor + proof-over-appearance",
   "keywords": [

@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Packet 008 shipped two working forks — `pi-cache-optimizer` (003, DeepSeek-guarded) and `deep-pi` (006, hardened DeepSeek-direct telemetry) — both verified live and benchmarked",
     "created_at": "2026-08-08T04:59:50.930Z",
-    "last_save_at": "2026-08-30T15:39:09.428Z",
+    "last_save_at": "2026-09-10T20:43:30.834Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,14 +201,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:9f0dd7b88ac298e077ac9042d33a8a6703abfb0837436722660b088d541b3725",
+    "source_fingerprint": "sha256:c5ba5298adc11b2a1c61fd75ae0c099c0d6537ada53306cc0d63fd6a5dcb31c8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "eae8ca8da7128e0974be8571e42c06f0f2120603af8868600443436dd1815def",
       "plan.md": "ecf8c00c1dbde7e959717266fb01ea6f3cd6520446b13c7a5342bfe76908227f",
       "tasks.md": "9e8329b5b2406df7e3f48640be795ddd5d8e5e736337c99b68769c24943ebc2d",
       "implementation-summary.md": "598353c11f35cc06e688eef6b7e07f698eede3531c7baf1b063c9e8db8315626",
-      "research/research.md": "44ecdc956d1ce01bc017ea0cd6034b3f548351d25f779695c02693ed2463cb12"
+      "research/research.md": "9bde0d0184a6dcb31b65b9bf686b85a552992ec0bdd065f943c6a49fc2d53d37"
     },
     "last_active_child_id": null,
     "last_active_at": null

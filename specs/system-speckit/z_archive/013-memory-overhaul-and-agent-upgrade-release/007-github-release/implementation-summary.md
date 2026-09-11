@@ -23,7 +23,7 @@ contextType: "implementation"
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | task-07-github-release |
+| **Spec Folder** | 007-github-release |
 | **Parent Spec** | 130-memory-overhaul-and-agent-upgrade-release |
 | **Completed** | 2026-02-16 (prep phase complete; publication pending) |
 | **Level** | 3+ |

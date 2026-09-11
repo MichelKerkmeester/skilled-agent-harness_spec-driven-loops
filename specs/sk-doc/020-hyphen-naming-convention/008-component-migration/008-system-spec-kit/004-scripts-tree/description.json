@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/004-scripts-tree",
   "description": "The system-spec-kit surface has a small set of non-Python script filenames that still contain underscores, while Python scripts and test fixture names",
   "keywords": [

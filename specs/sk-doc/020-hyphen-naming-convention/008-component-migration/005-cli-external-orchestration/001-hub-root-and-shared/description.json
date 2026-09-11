@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/001-hub-root-and-shared",
   "description": "The live hub root has exact routing files, delegated component trees, a root manual-testing-playbook tree, and an empty shared boundary.",
   "keywords": [

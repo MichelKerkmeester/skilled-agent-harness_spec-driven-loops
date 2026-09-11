@@ -1,5 +1,5 @@
 {
-  "level": "phase",
+  "level": "2",
   "specFolder": "cli-external-orchestration/026-cli-external-parent",
   "description": "`cli-opencode` (full-runtime OpenCode dispatch orchestrator: external dispatch, parallel detached sessions, cross-AI handback) and `cli-claude-code`",
   "keywords": [

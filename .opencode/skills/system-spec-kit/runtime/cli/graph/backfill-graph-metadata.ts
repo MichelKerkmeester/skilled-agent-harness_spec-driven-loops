@@ -247,8 +247,27 @@ function resolveRepoRoot(): string {
 }
 
 function isSpecFolder(dirPath: string): boolean {
+  return specFolderRejection(dirPath) === null;
+}
+
+/**
+ * Why a folder is not a spec folder, or null when it is one.
+ *
+ * Two conditions decide this, and a caller that reports only one of them sends
+ * the reader to the wrong place: a numbered folder name AND a spec.md. The name
+ * rule is load-bearing rather than cosmetic, because the discovery walk below
+ * uses this same predicate, and the repository contains benchmark fixtures and
+ * backup directories that carry a spec.md. Accepting on content alone would
+ * write generated metadata into both.
+ */
+function specFolderRejection(dirPath: string): string | null {
   const base = path.basename(dirPath);
-  return SPEC_FOLDER_RE.test(base) && fs.existsSync(path.join(dirPath, 'spec.md'));
+  const named = SPEC_FOLDER_RE.test(base);
+  const hasSpec = fs.existsSync(path.join(dirPath, 'spec.md'));
+  if (named && hasSpec) return null;
+  if (!named && !hasSpec) return 'folder name is not NNN-slug and there is no spec.md';
+  if (!named) return `folder name "${base}" is not NNN-slug`;
+  return 'missing spec.md';
 }
 
 /**
@@ -267,8 +286,9 @@ function resolveScopedTarget(target: string): { ok: true; specFolder: string } |
   if (!fs.existsSync(absTarget) || !fs.statSync(absTarget).isDirectory()) {
     return { ok: false, error: `target spec folder does not exist: ${absTarget}` };
   }
-  if (!isSpecFolder(absTarget)) {
-    return { ok: false, error: `target is not a spec folder (missing spec.md): ${absTarget}` };
+  const rejection = specFolderRejection(absTarget);
+  if (rejection !== null) {
+    return { ok: false, error: `target is not a spec folder (${rejection}): ${absTarget}` };
   }
   try {
     resolveSpecFolderIdentity(absTarget);

@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Deep-research-005 ranked the JS in-memory BM25 index as the top resident-memory target, but its recommendation noted that SQLite FTS5 tokenization and weights may not be identical",
     "created_at": "2026-05-19T19:25:52.542Z",
-    "last_save_at": "2026-08-30T15:39:30.297Z",
+    "last_save_at": "2026-09-10T20:47:36.104Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,7 +213,7 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:6913e53dc1c17f06d5d560cdf476f3171652292517307c69f6b44d478492971c",
+    "source_fingerprint": "sha256:547d053a518e66c6e15a0f3fbb74fe6881b6383d74bcaf2091bb953276692ea2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3bc5ae1c19c3302b963866cadb4ba41a806a8cdc2cfc932b5a7237f8db93f31e",
@@ -221,7 +221,7 @@
       "tasks.md": "bbb3870d2e05bfc7beba91923015151caa4b5bb35b44caa1b32e57880edf126a",
       "decision-record.md": "77b05cc8bfc4b7deec305a987a8657f456042dc47a2a4f6c560db593abb93aac",
       "implementation-summary.md": "7789748ccdf2caac588365b685363c468bbfaac6e92e89dfc096dc1574e15682",
-      "research/research.md": "bc4dbf8c858138923582800579dad482200731a0f03b85cb3888596e42d6bf58"
+      "research/research.md": "5a838709de869c41c7c5b07b4ea689e5649eadb7f1d7b08eccc3e81a307d3830"
     },
     "last_active_child_id": null,
     "last_active_at": null

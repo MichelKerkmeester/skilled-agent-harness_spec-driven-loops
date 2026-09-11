@@ -1,5 +1,5 @@
 {
-  "level": "2",
+  "level": "1",
   "specFolder": "mcp-tooling/014-mcp-notion/005-verification-and-closeout",
   "description": "After Phase 4 the mode is registered but unproven end-to-end: nothing has confirmed that every mode doc validates, that a fresh operator can install",
   "keywords": [

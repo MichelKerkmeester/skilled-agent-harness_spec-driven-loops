@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "mcp-tooling/008-mcp-aside/006-live-verification-capture",
   "description": "The packet predicted `aside.asiderepl` as THE Code Mode callable and marked it UNCONFIRMED/UNKNOWN in 12 files, because live discovery had never run",
   "keywords": [

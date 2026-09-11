@@ -43,13 +43,6 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      "scripts/core/quality-scorer.ts",
-      "scripts/extractors/quality-scorer.ts",
-      "scripts/core/config.ts",
-      "scripts/core/workflow.ts",
-      "scripts/tests/quality-scorer-calibration.vitest.ts",
-      "scripts/tests/runtime-memory-inputs.vitest.ts",
-      "core/quality-scorer.ts",
       "extractors/quality-scorer.ts"
     ],
     "entities": [
@@ -80,31 +73,7 @@
       {
         "name": "quality-scorer.ts",
         "kind": "code",
-        "path": "scripts/core/quality-scorer.ts",
-        "source": "derived"
-      },
-      {
-        "name": "config.ts",
-        "kind": "code",
-        "path": "scripts/core/config.ts",
-        "source": "derived"
-      },
-      {
-        "name": "workflow.ts",
-        "kind": "code",
-        "path": "scripts/core/workflow.ts",
-        "source": "derived"
-      },
-      {
-        "name": "quality-scorer-calibration.vitest.ts",
-        "kind": "test",
-        "path": "scripts/tests/quality-scorer-calibration.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "runtime-memory-inputs.vitest.ts",
-        "kind": "test",
-        "path": "scripts/tests/runtime-memory-inputs.vitest.ts",
+        "path": "extractors/quality-scorer.ts",
         "source": "derived"
       },
       {
@@ -196,11 +165,35 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Known Limitations No",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "deprecation",
+        "kind": "key_phrase",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The pipeline runs three quality checks with a split contract: stored/indexed quality uses the 0.0-1.0 scale, but workflow gating uses 0-100",
     "created_at": "2026-04-12T09:02:50.267Z",
-    "last_save_at": "2026-08-30T15:39:38.661Z",
+    "last_save_at": "2026-09-10T21:04:51.783Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

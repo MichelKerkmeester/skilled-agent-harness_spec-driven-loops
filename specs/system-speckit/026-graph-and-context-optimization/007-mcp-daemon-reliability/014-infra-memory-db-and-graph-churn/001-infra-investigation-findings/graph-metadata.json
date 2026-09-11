@@ -189,7 +189,7 @@
     ],
     "causal_summary": "Two live-infra issues degrade the spec-memory subsystem",
     "created_at": "2026-06-08T11:22:12.712Z",
-    "last_save_at": "2026-08-30T15:39:32.403Z",
+    "last_save_at": "2026-09-10T20:48:14.428Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,14 +199,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:51c38c954c5d8ef7f0f6781ae1bd25c1575c0fa5969197466e17abb8dc9deb88",
+    "source_fingerprint": "sha256:c6300601b4d0e88694fa7a001fafb48dfe76891e8817d56ddd243a3f7bf915bd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "54ffd4439555d10b1f1fb0281f5a26a58861a62abeec363980c49beee7cd77f1",
       "plan.md": "7932f0cdd1b062099fe2faf0cd74d96503f6153559fd5b85a6883907db10016c",
       "tasks.md": "ad2b6a1a857d40ec3ed0e038793beacc56b909e84e5cb49de3051b0717fe25bb",
       "implementation-summary.md": "6f93da905985469399b18e60f324e4771c53b54eb0506a4e17caeb978d963a67",
-      "research/research.md": "0dcf7b438b6fd9e41ca799c39b7aa89f5c23c2aa36ffeec527433b6eb835348d"
+      "research/research.md": "431c5627a96858e9188fa6312204c4f3d82c9a86db5ee4900cf747ff58a2d30c"
     },
     "last_active_child_id": null,
     "last_active_at": null

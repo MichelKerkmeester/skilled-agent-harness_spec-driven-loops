@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "mcp-tooling/009-mcp-refero/002-skill-authoring",
   "description": "The `refero` UTCP manual is reachable through Code Mode but has no skill surface: no SKILL.md contract, no documented tool inventory, no routing",
   "keywords": [

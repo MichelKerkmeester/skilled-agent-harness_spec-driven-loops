@@ -30,7 +30,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 018-rewrite-system-spec-kit-readme |
+| **Spec Folder** | 018-rewrite-system-speckit-readme |
 | **Completed** | 2026-03-25 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

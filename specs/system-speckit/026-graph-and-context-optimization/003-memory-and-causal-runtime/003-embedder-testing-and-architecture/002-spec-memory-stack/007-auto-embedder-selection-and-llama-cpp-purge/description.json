@@ -1,5 +1,5 @@
 {
-  "level": "feature",
+  "level": "1",
   "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/007-auto-embedder-selection-and-llama-cpp-purge",
   "description": "Replace the hardcoded embeddinggemma-300m default with a smart precedence-chain auto-selection at bootstrap.",
   "keywords": [

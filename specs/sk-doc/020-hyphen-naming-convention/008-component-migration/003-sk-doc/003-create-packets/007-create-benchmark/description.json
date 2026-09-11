@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/007-create-benchmark",
   "description": "The create-benchmark packet uses snake_case taxonomy directories and fixture, profile, guide, and storage filenames.",
   "keywords": [

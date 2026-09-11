@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/012-skill-gate",
   "description": "The sibling phases need one blocking rollup gate that proves their evidence is complete and that no in-scope snake_case filesystem name or stale path",
   "keywords": [

@@ -39,7 +39,7 @@
       "work"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md"
     ],
@@ -89,7 +89,7 @@
     ],
     "causal_summary": "The `mcp-tooling` hub has no design-reference research transport: when UI work needs real-world design examples (screens, flows, patterns from shipping products), there is no routed skill surface for Refero, even though a `refero` manual already exists in `.utcpconfig.json` (`npx -y mcp-remote https://api.refero.design/mcp`) and is reachable through Code Mode",
     "created_at": "2026-07-16T09:39:27Z",
-    "last_save_at": "2026-08-30T15:39:09.885Z",
+    "last_save_at": "2026-09-10T20:43:40.375Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

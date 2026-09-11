@@ -1,5 +1,5 @@
 {
-  "level": "phase",
+  "level": "2",
   "specFolder": "cli-external-orchestration/049-cline-provider-roster",
   "description": "The operator authenticated the Cline provider inside opencode (it registers as `cline-pass`, not `cline`), which exposes",
   "keywords": [

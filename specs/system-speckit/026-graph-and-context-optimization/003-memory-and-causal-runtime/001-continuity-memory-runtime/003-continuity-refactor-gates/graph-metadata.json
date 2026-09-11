@@ -53,14 +53,7 @@
       "lib/resume/resume-ladder.ts",
       "scratch/verify-phases-review.md",
       "scratch/phase-017-rerun-seed.md",
-      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
-      "lib/routing/content-router.ts",
       "prompts/research-prompt-impact.md",
-      "scripts/memory/generate-context.ts",
-      "scripts/core/workflow.ts",
-      "scripts/core/post-save-review.ts",
-      "scripts/core/memory-indexer.ts",
-      "scripts/spec/validate.sh",
       ".opencode/skills/system-spec-kit/ARCHITECTURE.md",
       ".opencode/skills/system-spec-kit/README.md"
     ],
@@ -126,45 +119,9 @@
         "source": "derived"
       },
       {
-        "name": "validate.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
-        "source": "derived"
-      },
-      {
-        "name": "content-router.ts",
-        "kind": "code",
-        "path": "lib/routing/content-router.ts",
-        "source": "derived"
-      },
-      {
         "name": "research-prompt-impact.md",
         "kind": "doc",
         "path": "prompts/research-prompt-impact.md",
-        "source": "derived"
-      },
-      {
-        "name": "generate-context.ts",
-        "kind": "code",
-        "path": "scripts/memory/generate-context.ts",
-        "source": "derived"
-      },
-      {
-        "name": "workflow.ts",
-        "kind": "code",
-        "path": "scripts/core/workflow.ts",
-        "source": "derived"
-      },
-      {
-        "name": "post-save-review.ts",
-        "kind": "code",
-        "path": "scripts/core/post-save-review.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-indexer.ts",
-        "kind": "code",
-        "path": "scripts/core/memory-indexer.ts",
         "source": "derived"
       },
       {
@@ -208,11 +165,47 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Parent",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`006-continuity-refactor-gates/` now owns only the six execution gates that remain after the reorganization promoted former follow-on work into sibling top-level phases `007` through `010`",
     "created_at": "2026-04-12T09:02:53.476Z",
-    "last_save_at": "2026-08-30T15:39:29.426Z",
+    "last_save_at": "2026-09-10T20:47:23.905Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -224,7 +217,7 @@
       "handover.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:0d4c48d3b5e729a61843f6abeb3888feddaf46fccd57a12158f657da24d5e586",
+    "source_fingerprint": "sha256:325a9f5189a71d99c2d1c598b8c75eb0105e409dbda2c71a649192c9837663f0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "044482bc3474c8ef470111b455e0a2f803e74ce3af49d7d32e99c696366a8089",
@@ -233,7 +226,7 @@
       "implementation-summary.md": "f09dacc35378001bf30a617817687c6683784907413afdc668888e87b798810e",
       "research/research.md": "2c40e98a07d538b790fc6e2abfcab3ca5ee28daf023bc08288fa81ae8b5a2046",
       "handover.md": "e8ef085220bd23eb0c59d78e9a495d01124a5ac8e14856efb95ecabbdf41cddf",
-      "resource-map.md": "67c9bea4899433e67b62d11851f8bbc439a106ffdebd8ab1ab61dedcd35bdca9"
+      "resource-map.md": "83f077eafa83c5333ccd1160c07bda19cfd83f337d95574319ae7ec7dd4436fb"
     },
     "last_active_child_id": null,
     "last_active_at": null

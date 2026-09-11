@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Three-model, 15-iteration deep-research investigation (SOL-high / GLM-5.2-high / Grok-4.5-high, 5 iters each, all lineages concurrent, no early convergence) into whether every skill- and skill-advisor-related JSON across .opencode/skills is optimized, automated, effective, tested, and integrated — and where the highest-leverage gaps are.",
     "created_at": "2026-07-29T06:03:55.087Z",
-    "last_save_at": "2026-08-30T15:39:15.704Z",
+    "last_save_at": "2026-09-10T20:44:48.461Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,14 +203,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:d50067e3a55201808af0347e5bc067b947ec750047da6c3b9bf768983b5bd08a",
+    "source_fingerprint": "sha256:ccea1712227ae5eb9318207a50130788bbc658e001be1357601a0c4b1ec37020",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7566d4703852aa2bcaa719144096ffb1a1eeeb64cad8b7d3f7b91e0d384e1865",
       "plan.md": "4e371502718eafa496f4322c7599d12a540d348c6165a7512f76253706050199",
       "tasks.md": "ec045657c3c2fc195bae2a82100caac2eafe993cd55e8118596bc7b0d1c2af30",
       "implementation-summary.md": "7f83a06874ec89d1e29b42a4324c43d941f4a252116bdf390aeb1bb2c16e877e",
-      "research/research.md": "d7d0a0b5cf24a1696893bdc877a4a3737f3bb4dee1ba963b57b2a64873937924"
+      "research/research.md": "d55bc50643e0190e5fe95e48724f7ae679a7454bdec1be38e50253a703453db0"
     },
     "last_active_child_id": null,
     "last_active_at": null

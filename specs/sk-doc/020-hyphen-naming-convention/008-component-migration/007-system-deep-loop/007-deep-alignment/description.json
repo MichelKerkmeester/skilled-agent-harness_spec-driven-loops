@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/007-deep-alignment",
   "description": "The deep-alignment packet contains 15 underscore-bearing directory families and 68 underscore-bearing files across adapters, catalogs, playbooks, and",
   "keywords": [

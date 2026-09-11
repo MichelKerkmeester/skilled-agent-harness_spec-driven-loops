@@ -1,5 +1,5 @@
 {
-  "level": "3",
+  "level": "2",
   "specFolder": "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/003-underscore-content-folders-and-files",
   "description": "Catalog/playbook content was named in hyphen-case: category folders (`featurecatalog/mcp-tool-surface/`),",
   "keywords": [

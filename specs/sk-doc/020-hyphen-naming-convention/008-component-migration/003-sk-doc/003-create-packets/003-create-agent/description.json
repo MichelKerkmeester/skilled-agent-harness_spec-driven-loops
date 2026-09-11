@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/003-create-agent",
   "description": "The create-agent packet contains snake_case template and reference filenames used to scaffold agent documentation.",
   "keywords": [

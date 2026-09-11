@@ -23,7 +23,7 @@ contextType: "implementation"
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | task-02-skill-speckit-alignment |
+| **Spec Folder** | 002-skill-speckit-alignment |
 | **Parent Spec** | 130-memory-overhaul-and-agent-upgrade-release |
 | **Completed** | [YYYY-MM-DD] (to be filled by implementer) |
 | **Level** | 3+ |

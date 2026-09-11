@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/001-hub-root-and-shared",
   "description": "The shared sk-code layer is the source for surface detection, routing, universal verification, workflow doctrine, and reusable asset patterns",
   "keywords": [

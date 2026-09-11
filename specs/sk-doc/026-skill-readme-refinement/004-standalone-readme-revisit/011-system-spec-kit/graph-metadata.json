@@ -52,8 +52,7 @@
       ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/011-system-spec-kit/plan.md",
       ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/011-system-spec-kit/tasks.md",
       ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
-      ".opencode/skills/mcp-tooling/mcp-obsidian/README.md",
-      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh"
+      ".opencode/skills/mcp-tooling/mcp-obsidian/README.md"
     ],
     "entities": [
       {
@@ -96,12 +95,6 @@
         "name": "skill-readme-template.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
-        "source": "derived"
-      },
-      {
-        "name": "validate.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
         "source": "derived"
       },
       {
@@ -199,11 +192,17 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`.opencode/skills/system-spec-kit/README.md` still carries the older tabular reference-card style and predates the pilot standard that the mcp-obsidian README set and the refined template from phase 001",
     "created_at": "2026-08-04T08:34:38.721Z",
-    "last_save_at": "2026-08-30T15:39:17.549Z",
+    "last_save_at": "2026-09-10T20:45:25.879Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

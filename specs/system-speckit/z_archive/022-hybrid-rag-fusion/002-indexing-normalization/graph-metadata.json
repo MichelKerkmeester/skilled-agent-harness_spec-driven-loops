@@ -46,19 +46,19 @@
       "implementation-summary.md",
       "research/research.md",
       "handover.md",
-      ".opencode/skills/system-spec-kit/scripts/dist/memory/backfill-frontmatter.js",
-      ".opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts",
-      ".opencode/skills/system-spec-kit/scripts/utils/spec-affinity.ts",
-      ".opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts",
-      ".opencode/skills/system-spec-kit/scripts/types/session-types.ts",
-      ".opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts",
-      ".opencode/skills/system-spec-kit/scripts/tests/input-normalizer-unit.vitest.ts",
-      ".opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts",
-      ".opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js",
-      "tests/handler-memory-index.vitest.ts",
-      "scripts/spec/validate.sh",
-      "scripts/utils/input-normalizer.ts",
-      "scripts/types/session-types.ts"
+      "scratch/agent-output-iter-001-codex-A1.md",
+      "scratch/agent-output-iter-001-codex-A2.md",
+      "scratch/agent-output-iter-001-codex-A3.md",
+      "scratch/agent-output-iter-001-copilot-C1.md",
+      "scratch/agent-output-iter-001-copilot-C2.md",
+      "scratch/agent-output-iter-001-copilot-C3.md",
+      "scratch/agent-output-iter-002-codex-A1.md",
+      "scratch/agent-output-iter-002-codex-A2.md",
+      "scratch/agent-output-iter-002-codex-A3.md",
+      "scratch/agent-output-iter-002-copilot-C1.md",
+      "scratch/agent-output-iter-002-copilot-C2.md",
+      "scratch/agent-output-iter-002-copilot-C3.md",
+      "scratch/agent-output-iter-003-codex-A1.md"
     ],
     "entities": [
       {
@@ -104,69 +104,81 @@
         "source": "derived"
       },
       {
-        "name": "backfill-frontmatter.js",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/dist/memory/backfill-frontmatter.js",
+        "name": "agent-output-iter-001-codex-A1.md",
+        "kind": "doc",
+        "path": "scratch/agent-output-iter-001-codex-A1.md",
         "source": "derived"
       },
       {
-        "name": "input-normalizer.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts",
+        "name": "agent-output-iter-001-codex-A2.md",
+        "kind": "doc",
+        "path": "scratch/agent-output-iter-001-codex-A2.md",
         "source": "derived"
       },
       {
-        "name": "spec-affinity.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/utils/spec-affinity.ts",
+        "name": "agent-output-iter-001-codex-A3.md",
+        "kind": "doc",
+        "path": "scratch/agent-output-iter-001-codex-A3.md",
         "source": "derived"
       },
       {
-        "name": "memory-indexer.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts",
+        "name": "agent-output-iter-001-copilot-C1.md",
+        "kind": "doc",
+        "path": "scratch/agent-output-iter-001-copilot-C1.md",
         "source": "derived"
       },
       {
-        "name": "session-types.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/types/session-types.ts",
+        "name": "agent-output-iter-001-copilot-C2.md",
+        "kind": "doc",
+        "path": "scratch/agent-output-iter-001-copilot-C2.md",
         "source": "derived"
       },
       {
-        "name": "collect-session-data.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts",
+        "name": "agent-output-iter-001-copilot-C3.md",
+        "kind": "doc",
+        "path": "scratch/agent-output-iter-001-copilot-C3.md",
         "source": "derived"
       },
       {
-        "name": "input-normalizer-unit.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/input-normalizer-unit.vitest.ts",
+        "name": "agent-output-iter-002-codex-A1.md",
+        "kind": "doc",
+        "path": "scratch/agent-output-iter-002-codex-A1.md",
         "source": "derived"
       },
       {
-        "name": "runtime-memory-inputs.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts",
+        "name": "agent-output-iter-002-codex-A2.md",
+        "kind": "doc",
+        "path": "scratch/agent-output-iter-002-codex-A2.md",
         "source": "derived"
       },
       {
-        "name": "generate-context.js",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js",
+        "name": "agent-output-iter-002-codex-A3.md",
+        "kind": "doc",
+        "path": "scratch/agent-output-iter-002-codex-A3.md",
         "source": "derived"
       },
       {
-        "name": "handler-memory-index.vitest.ts",
-        "kind": "test",
-        "path": "tests/handler-memory-index.vitest.ts",
+        "name": "agent-output-iter-002-copilot-C1.md",
+        "kind": "doc",
+        "path": "scratch/agent-output-iter-002-copilot-C1.md",
         "source": "derived"
       },
       {
-        "name": "validate.sh",
-        "kind": "script",
-        "path": "scripts/spec/validate.sh",
+        "name": "agent-output-iter-002-copilot-C2.md",
+        "kind": "doc",
+        "path": "scratch/agent-output-iter-002-copilot-C2.md",
+        "source": "derived"
+      },
+      {
+        "name": "agent-output-iter-002-copilot-C3.md",
+        "kind": "doc",
+        "path": "scratch/agent-output-iter-002-copilot-C3.md",
+        "source": "derived"
+      },
+      {
+        "name": "agent-output-iter-003-codex-A1.md",
+        "kind": "doc",
+        "path": "scratch/agent-output-iter-003-codex-A1.md",
         "source": "derived"
       },
       {
@@ -192,23 +204,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Tier Normalization",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Decisions",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The index scan currently collects files from both `specs/` and `.opencode/specs/` roots",
     "created_at": "2026-04-12T09:02:50.237Z",
-    "last_save_at": "2026-08-30T15:39:38.168Z",
+    "last_save_at": "2026-09-10T21:04:46.126Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

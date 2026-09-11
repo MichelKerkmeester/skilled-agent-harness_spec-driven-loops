@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "hooks/020-spec-metadata-auto-remint",
+  "description": "Every spec packet carries a `graph-metadata.json` holding a fingerprint of the documents it was derived from, plus fields summarised out of them",
+  "keywords": [
+    "every",
+    "spec",
+    "packet",
+    "carries",
+    "graph-metadata",
+    "json",
+    "holding",
+    "fingerprint",
+    "documents",
+    "derived",
+    "plus",
+    "fields",
+    "summarised",
+    "them"
+  ],
+  "lastUpdated": "2026-09-11T03:54:25.987Z",
+  "specId": "020",
+  "folderSlug": "spec-metadata-auto-remint",
+  "parentChain": [
+    "hooks"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

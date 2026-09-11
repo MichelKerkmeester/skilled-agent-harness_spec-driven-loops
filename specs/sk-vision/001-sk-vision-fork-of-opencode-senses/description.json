@@ -1,5 +1,5 @@
 {
-  "level": "phase",
+  "level": "2",
   "specFolder": "sk-vision/001-sk-vision-fork-of-opencode-senses",
   "description": "Text-only coding models in OpenCode and Pi cannot read screenshots, mockups, or error images",
   "keywords": [

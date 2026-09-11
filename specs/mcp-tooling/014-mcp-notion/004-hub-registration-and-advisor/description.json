@@ -1,5 +1,5 @@
 {
-  "level": "2",
+  "level": "1",
   "specFolder": "mcp-tooling/014-mcp-notion/004-hub-registration-and-advisor",
   "description": "The `mcp-notion` package exists on disk but is invisible: the skill-advisor does not surface `mcp-tooling` for Notion prompts (its hub",
   "keywords": [

@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/009-command-assets",
   "description": "The commands surface stores workflow, presentation, legacy, compiled, fixture, and reference-like files under several namespace asset directories",
   "keywords": [

@@ -46,11 +46,7 @@
       "tasks.md",
       "implementation-summary.md",
       "shared/package.json",
-      "shared/paths.ts",
-      "api/index.ts",
-      "scripts/package.json",
-      "scripts/core/workflow.ts",
-      "scripts/dist/memory/validate-memory-quality.js"
+      "api/index.ts"
     ],
     "entities": [
       {
@@ -84,27 +80,9 @@
         "source": "derived"
       },
       {
-        "name": "paths.ts",
-        "kind": "code",
-        "path": "shared/paths.ts",
-        "source": "derived"
-      },
-      {
         "name": "index.ts",
         "kind": "code",
         "path": "api/index.ts",
-        "source": "derived"
-      },
-      {
-        "name": "workflow.ts",
-        "kind": "code",
-        "path": "scripts/core/workflow.ts",
-        "source": "derived"
-      },
-      {
-        "name": "validate-memory-quality.js",
-        "kind": "code",
-        "path": "scripts/dist/memory/validate-memory-quality.js",
         "source": "derived"
       },
       {
@@ -196,11 +174,29 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The 10-iteration deep review found 14 P1 (required) and 4 P2 (advisory) findings across 5 workstreams",
     "created_at": "2026-04-12T09:02:50.320Z",
-    "last_save_at": "2026-08-30T15:39:39.478Z",
+    "last_save_at": "2026-09-10T21:05:07.558Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

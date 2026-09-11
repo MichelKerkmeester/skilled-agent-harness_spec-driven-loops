@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/031-sk-create-readme",
   "description": "The skill README at `.opencode/skills/sk-doc/sk-create-readme/README.md` still carries the older tabular reference-card style with an AT A GLANCE",
   "keywords": [

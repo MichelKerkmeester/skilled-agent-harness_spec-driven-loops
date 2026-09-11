@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/007-changelog-verify",
   "description": "The system-code-graph release history currently ends at v1.3.0.0 and does not yet prove that the 020 filesystem migration was recorded.",
   "keywords": [

@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The incident list in the parent spec is a starting point drawn from one session, not a survey",
     "created_at": "2026-07-27T18:47:24Z",
-    "last_save_at": "2026-09-07T16:17:06.568Z",
+    "last_save_at": "2026-09-10T20:45:50.065Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,12 +210,12 @@
       "implementation-summary.md",
       "research.md"
     ],
-    "source_fingerprint": "sha256:d74d4f065620d77fda81104ad22e16d86e163380d628aefb6ec11d16e229b4d2",
+    "source_fingerprint": "sha256:d3fee23af173882af7084b72bde0151347fab2576d32a317bfa8e8a6b5ecb833",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "bf0cc15c5290a351062a25dc819fa2c13b68f5e9667934d3af21e07a75a2a3a7",
-      "plan.md": "6cfd1ca55a6e18934f16c0cdbc218ff6051843d2041d66526e34b0b80c8770cb",
-      "tasks.md": "8b6b538de1c61a6479c66c355087eb2de1118193883d8f30094b96882e25d58e",
+      "plan.md": "d5e49d62793239c9ace2033ccc0d83965e3b633696169d0e9109e9b27bc0d129",
+      "tasks.md": "784430727f16a7da99406b71eef09b723b88e0ff3dd90017d6ce2a19ca7c09f1",
       "implementation-summary.md": "d54fde64379493aa274d0817ec64e7078b7c1a075c42b4fb9b140778776c97f7",
       "research.md": "91c8ad98b7a394de185cde09fee5259a9d274fa4414792f30145a4f622b1c053"
     },

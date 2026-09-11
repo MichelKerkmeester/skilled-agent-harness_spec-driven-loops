@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit",
   "description": "Phase parent: one child phase per standalone skill root, each revisiting that skill's README against the refined template from phase 001,",
   "keywords": [

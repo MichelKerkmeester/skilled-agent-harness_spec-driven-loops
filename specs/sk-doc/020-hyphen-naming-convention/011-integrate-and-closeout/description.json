@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "sk-doc/020-hyphen-naming-convention/011-integrate-and-closeout",
   "description": "The migration candidate may have passed the whole-repo gate against an earlier base while the integration target continues to move.",
   "keywords": [

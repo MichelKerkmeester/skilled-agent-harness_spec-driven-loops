@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "mcp-tooling/010-mcp-mobbin/005-inventory-parity-and-doc-truth",
   "description": "The `mobbin` Code Mode manual is now registered in `.utcpconfig.json`, but the entire packet still teaches pre-registration doctrine: 98 marker lines",
   "keywords": [

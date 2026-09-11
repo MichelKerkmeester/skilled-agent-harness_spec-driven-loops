@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "mcp-tooling/016-code-mode-node-resolution/002-launcher-shim",
   "description": "Host configurations currently name an interpreter directly, which is why they had to name an absolute one",
   "keywords": [

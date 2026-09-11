@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/005-deep-ai-council",
   "description": "The deep-ai-council packet contains 12 underscore-bearing directory families and 89 underscore-bearing files, including paired feature-catalog and",
   "keywords": [

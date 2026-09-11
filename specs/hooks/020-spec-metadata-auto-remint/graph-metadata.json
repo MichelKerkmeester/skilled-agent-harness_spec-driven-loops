@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks/020-spec-metadata-auto-remint",
+  "spec_folder": "hooks/020-spec-metadata-auto-remint",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "spec metadata auto remint",
+      "stale source fingerprint",
+      "graph metadata drift",
+      "derived metadata gate",
+      "implementation plan",
+      "spec metadata gate approach",
+      "sweep then gate",
+      "auto fix derived artifact",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies"
+    ],
+    "key_topics": [
+      "spec",
+      "metadata",
+      "auto",
+      "remint",
+      "stale",
+      "source",
+      "fingerprint",
+      "graph",
+      "drift",
+      "derived",
+      "gate",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "runtime/cli/graph/backfill-graph-metadata.ts",
+      "runtime/cli/spec/repair-derived.cjs",
+      ".opencode/scripts/git-hooks/tests/pre-commit.test.sh"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "backfill-graph-metadata.ts",
+        "kind": "code",
+        "path": "runtime/cli/graph/backfill-graph-metadata.ts",
+        "source": "derived"
+      },
+      {
+        "name": "repair-derived.cjs",
+        "kind": "file",
+        "path": "runtime/cli/spec/repair-derived.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "pre-commit.test.sh",
+        "kind": "script",
+        "path": ".opencode/scripts/git-hooks/tests/pre-commit.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Auto",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Every spec packet carries a `graph-metadata.json` holding a fingerprint of the documents it was derived from, plus fields summarised out of them",
+    "created_at": "2026-09-10T20:45:38Z",
+    "last_save_at": "2026-09-11T03:54:33.017Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9eed970c2c881fdf37dbdbfb1bd44bdcd00b393b24eaaa1d45aeb014a5ea169c",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "7425db3070712c8f9ac1f912ea4d11e33d6cda08560aed83d9875ccb52b2c8b7",
+      "plan.md": "41c580174f324933e44485b4a527911c66ed88f5754faaa0c4b7df3c3b2d1df4",
+      "tasks.md": "2959c3478198a0f7fccaece257f6bc7791fbb63ae9dee95ca4e80069c15a5086",
+      "implementation-summary.md": "615281018a9bf5122ee6ebb60f8135520127d363a24cf47dbec68f986a651e10"
+    },
+    "last_active_at": null
+  }
+}

@@ -43,14 +43,6 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      "scripts/utils/input-normalizer.ts",
-      "scripts/utils/fact-coercion.ts",
-      "scripts/extractors/file-extractor.ts",
-      "scripts/extractors/conversation-extractor.ts",
-      "scripts/extractors/decision-extractor.ts",
-      "scripts/extractors/collect-session-data.ts",
-      "scripts/tests/runtime-memory-inputs.vitest.ts",
-      "scripts/tests/test-extractors-loaders.js",
       "tests/runtime-memory-inputs.vitest.ts"
     ],
     "entities": [
@@ -79,51 +71,9 @@
         "source": "derived"
       },
       {
-        "name": "input-normalizer.ts",
-        "kind": "code",
-        "path": "scripts/utils/input-normalizer.ts",
-        "source": "derived"
-      },
-      {
-        "name": "fact-coercion.ts",
-        "kind": "code",
-        "path": "scripts/utils/fact-coercion.ts",
-        "source": "derived"
-      },
-      {
-        "name": "file-extractor.ts",
-        "kind": "code",
-        "path": "scripts/extractors/file-extractor.ts",
-        "source": "derived"
-      },
-      {
-        "name": "conversation-extractor.ts",
-        "kind": "code",
-        "path": "scripts/extractors/conversation-extractor.ts",
-        "source": "derived"
-      },
-      {
-        "name": "decision-extractor.ts",
-        "kind": "code",
-        "path": "scripts/extractors/decision-extractor.ts",
-        "source": "derived"
-      },
-      {
-        "name": "collect-session-data.ts",
-        "kind": "code",
-        "path": "scripts/extractors/collect-session-data.ts",
-        "source": "derived"
-      },
-      {
         "name": "runtime-memory-inputs.vitest.ts",
         "kind": "test",
-        "path": "scripts/tests/runtime-memory-inputs.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "test-extractors-loaders.js",
-        "kind": "code",
-        "path": "scripts/tests/test-extractors-loaders.js",
+        "path": "tests/runtime-memory-inputs.vitest.ts",
         "source": "derived"
       },
       {
@@ -197,11 +147,53 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Metadata Preservation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Object",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Based Fact Coercion",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Known Limitations No",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "counts",
+        "kind": "key_phrase",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Normalization is lossy at multiple pipeline boundaries",
     "created_at": "2026-04-12T09:02:50.269Z",
-    "last_save_at": "2026-08-30T15:39:38.678Z",
+    "last_save_at": "2026-09-10T21:04:53.668Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

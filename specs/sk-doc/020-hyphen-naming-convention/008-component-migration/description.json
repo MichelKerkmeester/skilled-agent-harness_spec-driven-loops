@@ -1,5 +1,5 @@
 {
-  "level": "phase",
+  "level": "2",
   "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration",
   "description": "The 14-way per-component fan-out that renames each skill subtree's snake_case filesystem names to kebab-case as a self-contained, dependency-closed",
   "keywords": [

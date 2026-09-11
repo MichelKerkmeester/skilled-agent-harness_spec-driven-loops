@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "3",
   "specFolder": "sk-prompt/007-sk-prompt-parent/002-architecture-decision",
   "description": "The program has approved high-impact structural decisions for folding `.opencode/skills/sk-prompt/` and `.opencode/skills/sk-prompt-models/` into a",
   "keywords": [

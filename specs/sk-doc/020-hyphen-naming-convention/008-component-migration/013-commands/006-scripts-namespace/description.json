@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/006-scripts-namespace",
   "description": "The scripts namespace is part of the commands filesystem surface, so it must be checked against the program's canonical kebab-case rule",
   "keywords": [

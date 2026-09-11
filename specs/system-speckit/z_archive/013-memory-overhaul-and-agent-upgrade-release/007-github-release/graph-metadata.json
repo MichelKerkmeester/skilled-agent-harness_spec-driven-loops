@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Specify the GitHub tagged release for spec 130, following `PUBLICRELEASE.md` conventions",
     "created_at": "2026-05-26T19:43:14.244Z",
-    "last_save_at": "2026-08-30T15:39:37.808Z",
+    "last_save_at": "2026-09-10T21:04:36.483Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,14 +205,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2a5ee3b0e175e19b257562e26630bcdec7c0fb7a3f87a76b949a24fbbe656527",
+    "source_fingerprint": "sha256:6ef3f9c66707474675712e570e236ed1293e67d1c2b33d7c26aa55dc7c115829",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a1149c1fa0871749f2080d46e8e395c7ee2ce877bc22e67ab5b141ccb482a31b",
       "plan.md": "f7171c6fe2ed4481c894c711c607a634857b18acb944893750aa8028213adc5d",
       "tasks.md": "c6f8e41fcd101fa8d22889eecfb54ad096b5d0a8e34a49970c1e48905b4c148c",
       "decision-record.md": "ce40223e27468e274785b0484351f42f49e8511ef478d16de33f63f6f33242b2",
-      "implementation-summary.md": "ae38ab9c4ecf3870b17ad6048d3a51fb503af681534c5c43e338fcd364ed83b8"
+      "implementation-summary.md": "5ece7db4aa0254a65fa6041f85aa9baca428ebd98f26a4201e51889e9af57e70"
     },
     "last_active_child_id": null,
     "last_active_at": null

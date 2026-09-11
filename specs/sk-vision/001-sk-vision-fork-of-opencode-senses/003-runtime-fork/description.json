@@ -1,5 +1,5 @@
 {
-  "level": "phase",
+  "level": "2",
   "specFolder": "sk-vision/001-sk-vision-fork-of-opencode-senses/003-runtime-fork",
   "description": "The skill root has no importable JSON-RPC core",
   "keywords": [

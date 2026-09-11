@@ -44,10 +44,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      "handlers/memory-index.ts",
-      "lib/storage/incremental-index.ts",
-      "tests/startup-checks.vitest.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -72,24 +69,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "memory-index.ts",
-        "kind": "code",
-        "path": "handlers/memory-index.ts",
-        "source": "derived"
-      },
-      {
-        "name": "incremental-index.ts",
-        "kind": "code",
-        "path": "lib/storage/incremental-index.ts",
-        "source": "derived"
-      },
-      {
-        "name": "startup-checks.vitest.ts",
-        "kind": "test",
-        "path": "tests/startup-checks.vitest.ts",
         "source": "derived"
       },
       {
@@ -193,11 +172,29 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verdict Table",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 004 maintenance scenarios must be executed from scratch",
     "created_at": "2026-04-12T09:02:50.291Z",
-    "last_save_at": "2026-08-30T15:39:39.053Z",
+    "last_save_at": "2026-09-10T21:05:00.073Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

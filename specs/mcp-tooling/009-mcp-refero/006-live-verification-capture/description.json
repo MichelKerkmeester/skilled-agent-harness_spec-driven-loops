@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "mcp-tooling/009-mcp-refero/006-live-verification-capture",
   "description": "The packet carried a preserved cross-lineage naming conflict: the doubled-prefix callable `refero.referorefero<tool>` was live-verified only",
   "keywords": [

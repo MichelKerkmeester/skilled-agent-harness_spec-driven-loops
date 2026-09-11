@@ -36,9 +36,7 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "scripts/codex/sync-prompts.cjs",
-      "scripts/codex/sync-agents.cjs"
+      "tasks.md"
     ],
     "entities": [
       {
@@ -57,18 +55,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "sync-prompts.cjs",
-        "kind": "file",
-        "path": "scripts/codex/sync-prompts.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "sync-agents.cjs",
-        "kind": "file",
-        "path": "scripts/codex/sync-agents.cjs",
         "source": "derived"
       },
       {
@@ -176,7 +162,7 @@
     ],
     "causal_summary": "The system-spec-kit surface has a small set of non-Python script filenames that still contain underscores, while Python scripts and test fixture names follow separate contracts. This phase renames only permitted script filenames and updates sourcing, imports, and registry references without touching Python filenames or test-runner magic.",
     "created_at": "2026-07-14T15:18:00Z",
-    "last_save_at": "2026-08-30T15:39:16.763Z",
+    "last_save_at": "2026-09-10T20:45:09.396Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

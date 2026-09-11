@@ -43,18 +43,7 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      "scripts/types/session-types.ts",
-      "scripts/extractors/conversation-extractor.ts",
-      "scripts/extractors/decision-extractor.ts",
-      "scripts/extractors/diagram-extractor.ts",
-      "scripts/extractors/file-extractor.ts",
-      "scripts/spec-folder/alignment-validator.ts",
-      "scripts/spec-folder/folder-detector.ts",
-      "scripts/utils/spec-affinity.ts",
       "types/session-types.ts",
-      "scripts/extractors/session-extractor.ts",
-      "scripts/extractors/collect-session-data.ts",
-      "scripts/core/workflow.ts",
       "tests/spec-affinity.vitest.ts"
     ],
     "entities": [
@@ -85,67 +74,7 @@
       {
         "name": "session-types.ts",
         "kind": "code",
-        "path": "scripts/types/session-types.ts",
-        "source": "derived"
-      },
-      {
-        "name": "conversation-extractor.ts",
-        "kind": "code",
-        "path": "scripts/extractors/conversation-extractor.ts",
-        "source": "derived"
-      },
-      {
-        "name": "decision-extractor.ts",
-        "kind": "code",
-        "path": "scripts/extractors/decision-extractor.ts",
-        "source": "derived"
-      },
-      {
-        "name": "diagram-extractor.ts",
-        "kind": "code",
-        "path": "scripts/extractors/diagram-extractor.ts",
-        "source": "derived"
-      },
-      {
-        "name": "file-extractor.ts",
-        "kind": "code",
-        "path": "scripts/extractors/file-extractor.ts",
-        "source": "derived"
-      },
-      {
-        "name": "alignment-validator.ts",
-        "kind": "code",
-        "path": "scripts/spec-folder/alignment-validator.ts",
-        "source": "derived"
-      },
-      {
-        "name": "folder-detector.ts",
-        "kind": "code",
-        "path": "scripts/spec-folder/folder-detector.ts",
-        "source": "derived"
-      },
-      {
-        "name": "spec-affinity.ts",
-        "kind": "code",
-        "path": "scripts/utils/spec-affinity.ts",
-        "source": "derived"
-      },
-      {
-        "name": "session-extractor.ts",
-        "kind": "code",
-        "path": "scripts/extractors/session-extractor.ts",
-        "source": "derived"
-      },
-      {
-        "name": "collect-session-data.ts",
-        "kind": "code",
-        "path": "scripts/extractors/collect-session-data.ts",
-        "source": "derived"
-      },
-      {
-        "name": "workflow.ts",
-        "kind": "code",
-        "path": "scripts/core/workflow.ts",
+        "path": "types/session-types.ts",
         "source": "derived"
       },
       {
@@ -201,11 +130,71 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Remove Index Signature",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Update Consumer Imports",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "zero",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Known Limitations No",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Canonical typing is partial and inverted",
     "created_at": "2026-04-12T09:02:50.269Z",
-    "last_save_at": "2026-08-30T15:39:38.687Z",
+    "last_save_at": "2026-09-10T21:04:53.724Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

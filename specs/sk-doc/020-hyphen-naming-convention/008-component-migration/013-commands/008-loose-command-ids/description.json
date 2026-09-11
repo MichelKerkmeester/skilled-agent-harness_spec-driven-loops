@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/008-loose-command-ids",
   "description": "The loose command surface contains `agentrouter.md` and `goalopencode.md`, while the program's canonical filesystem form is kebab-case",
   "keywords": [

@@ -47,20 +47,20 @@
       "implementation-summary.md",
       "research/research.md",
       "review/review-report.md",
-      "lib/storage/lineage-state.ts",
       "shared/embeddings/factory.js",
-      "lib/search/vector-index-store.ts",
-      "lib/storage/checkpoints.ts",
-      "handlers/checkpoints.ts",
-      "lib/storage/reconsolidation.ts",
-      "lib/errors.ts",
-      "core/db-state.ts",
-      "lib/search/hybrid-search.ts",
-      "handlers/pe-gating.ts",
-      "handlers/memory-save.ts",
-      "lib/search/vector-index-mutations.ts",
-      "lib/search/bm25-index.ts",
-      "lib/storage/causal-edges.ts"
+      "review/review-report-v1-original-audit.md",
+      "review/iterations/iteration-001.md",
+      "review/iterations/iteration-040.md",
+      "review/deep-review-strategy.md",
+      "review/deep-research-state.jsonl",
+      "review/iterations/iteration-030.md",
+      "review/iterations/iteration-031.md",
+      "review/deep-research-config.json",
+      "review/deep-review-dashboard.md",
+      "research/iterations/iteration-001.md",
+      "research/iterations/iteration-005.md",
+      "research/deep-research-config.json",
+      "research/deep-research-strategy.md"
     ],
     "entities": [
       {
@@ -100,81 +100,75 @@
         "source": "derived"
       },
       {
-        "name": "lineage-state.ts",
-        "kind": "code",
-        "path": "lib/storage/lineage-state.ts",
-        "source": "derived"
-      },
-      {
         "name": "factory.js",
         "kind": "code",
         "path": "shared/embeddings/factory.js",
         "source": "derived"
       },
       {
-        "name": "vector-index-store.ts",
-        "kind": "code",
-        "path": "lib/search/vector-index-store.ts",
+        "name": "review-report-v1-original-audit.md",
+        "kind": "doc",
+        "path": "review/review-report-v1-original-audit.md",
         "source": "derived"
       },
       {
-        "name": "checkpoints.ts",
-        "kind": "code",
-        "path": "lib/storage/checkpoints.ts",
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "review/iterations/iteration-001.md",
         "source": "derived"
       },
       {
-        "name": "reconsolidation.ts",
-        "kind": "code",
-        "path": "lib/storage/reconsolidation.ts",
+        "name": "iteration-040.md",
+        "kind": "doc",
+        "path": "review/iterations/iteration-040.md",
         "source": "derived"
       },
       {
-        "name": "errors.ts",
-        "kind": "code",
-        "path": "lib/errors.ts",
+        "name": "deep-review-strategy.md",
+        "kind": "doc",
+        "path": "review/deep-review-strategy.md",
         "source": "derived"
       },
       {
-        "name": "db-state.ts",
-        "kind": "code",
-        "path": "core/db-state.ts",
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "review/deep-research-state.jsonl",
         "source": "derived"
       },
       {
-        "name": "hybrid-search.ts",
-        "kind": "code",
-        "path": "lib/search/hybrid-search.ts",
+        "name": "iteration-030.md",
+        "kind": "doc",
+        "path": "review/iterations/iteration-030.md",
         "source": "derived"
       },
       {
-        "name": "pe-gating.ts",
-        "kind": "code",
-        "path": "handlers/pe-gating.ts",
+        "name": "iteration-031.md",
+        "kind": "doc",
+        "path": "review/iterations/iteration-031.md",
         "source": "derived"
       },
       {
-        "name": "memory-save.ts",
-        "kind": "code",
-        "path": "handlers/memory-save.ts",
+        "name": "deep-research-config.json",
+        "kind": "config",
+        "path": "review/deep-research-config.json",
         "source": "derived"
       },
       {
-        "name": "vector-index-mutations.ts",
-        "kind": "code",
-        "path": "lib/search/vector-index-mutations.ts",
+        "name": "deep-review-dashboard.md",
+        "kind": "doc",
+        "path": "review/deep-review-dashboard.md",
         "source": "derived"
       },
       {
-        "name": "bm25-index.ts",
-        "kind": "code",
-        "path": "lib/search/bm25-index.ts",
+        "name": "iteration-005.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-005.md",
         "source": "derived"
       },
       {
-        "name": "causal-edges.ts",
-        "kind": "code",
-        "path": "lib/storage/causal-edges.ts",
+        "name": "deep-research-strategy.md",
+        "kind": "doc",
+        "path": "research/deep-research-strategy.md",
         "source": "derived"
       },
       {
@@ -206,11 +200,17 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Problem Statement The Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The Spec Kit Memory MCP server is a 70K+ LOC system with 31 MCP tools, a 57-column `memoryindex` table, 5-channel hybrid search, causal graph traversal, FSRS-based scheduling, PE-gating, reconsolidation, lineage versioning, and a 2,500-LOC monolithic save pipeline",
     "created_at": "2026-04-12T09:02:50.315Z",
-    "last_save_at": "2026-08-30T15:39:39.399Z",
+    "last_save_at": "2026-09-10T21:05:07.304Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -45,10 +45,7 @@
       "plan.md",
       "tasks.md",
       "decision-record.md",
-      "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/scripts/spec/recommend-level.sh",
-      ".opencode/skills/system-spec-kit/scripts/spec/create.sh",
-      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -79,24 +76,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "recommend-level.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/spec/recommend-level.sh",
-        "source": "derived"
-      },
-      {
-        "name": "create.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/spec/create.sh",
-        "source": "derived"
-      },
-      {
-        "name": "validate.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
         "source": "derived"
       },
       {
@@ -194,11 +173,29 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Behavioral Layer",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "New Level Tier",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Large, multi-session tasks (500+ LOC, 15+ files, cross-domain scope) currently produce monolithic spec folders whose documentation grows unwieldy and whose context files balloon beyond useful retrieval limits",
     "created_at": "2026-04-12T09:02:50.222Z",
-    "last_save_at": "2026-08-30T15:39:37.945Z",
+    "last_save_at": "2026-09-10T21:04:41.800Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

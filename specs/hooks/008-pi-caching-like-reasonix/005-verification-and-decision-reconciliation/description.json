@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "3",
   "specFolder": "hooks/008-pi-caching-like-reasonix/005-verification-and-decision-reconciliation",
   "description": "Phases 003 and 004 each verify their own piece in isolation (the fork's diff scope; deep-pi's self-gating)",
   "keywords": [

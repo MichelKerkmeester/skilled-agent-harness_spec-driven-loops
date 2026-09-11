@@ -42,17 +42,7 @@
       "plan.md",
       "tasks.md",
       "decision-record.md",
-      "implementation-summary.md",
-      "scripts/core/post-save-review.ts",
-      ".opencode/skills/system-spec-kit/scripts/types/session-types.ts",
-      ".opencode/skills/system-spec-kit/scripts/core/workflow.ts",
-      ".opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts",
-      ".opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts",
-      ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts",
-      ".opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts",
-      ".opencode/skills/system-spec-kit/scripts/core/post-save-review.ts",
-      "scripts/types/session-types.ts",
-      "scripts/core/workflow.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -83,48 +73,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "post-save-review.ts",
-        "kind": "code",
-        "path": "scripts/core/post-save-review.ts",
-        "source": "derived"
-      },
-      {
-        "name": "session-types.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/types/session-types.ts",
-        "source": "derived"
-      },
-      {
-        "name": "workflow.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/core/workflow.ts",
-        "source": "derived"
-      },
-      {
-        "name": "collect-session-data.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts",
-        "source": "derived"
-      },
-      {
-        "name": "input-normalizer.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts",
-        "source": "derived"
-      },
-      {
-        "name": "generate-context.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts",
-        "source": "derived"
-      },
-      {
-        "name": "session-extractor.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts",
         "source": "derived"
       },
       {
@@ -198,11 +146,53 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Record Wave",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Integrate Step",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Restore Metadata Through Safe Hybrid Enrichment",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context The",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The original phase-016 pack had drifted away from the code that actually shipped",
     "created_at": "2026-04-12T09:02:50.277Z",
-    "last_save_at": "2026-08-30T15:39:38.816Z",
+    "last_save_at": "2026-09-10T21:04:56.146Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

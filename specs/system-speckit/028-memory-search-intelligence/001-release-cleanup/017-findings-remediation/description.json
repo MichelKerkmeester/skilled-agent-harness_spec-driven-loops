@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "3",
   "specFolder": "system-speckit/028-memory-search-intelligence/001-release-cleanup/017-findings-remediation",
   "description": "The audit in phase 016 produced 88 findings across six categories",
   "keywords": [

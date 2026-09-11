@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code",
   "description": "The sk-code surface is a nested family rather than one flat directory: a routing hub, shared references and assets, two workflow modes, two read-only",
   "keywords": [

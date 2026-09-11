@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/002-design-interface",
   "description": "The design-interface mode has underscore-bearing procedure, asset, and reference names while its SKILL.md and README.md cite those paths directly.",
   "keywords": [

@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "mcp-tooling/016-code-mode-node-resolution/004-install-and-doctor",
   "description": "Two install scripts write MCP registrations, so a fresh install would reintroduce whatever shape they encode regardless of what the cutover fixed",
   "keywords": [

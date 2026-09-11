@@ -191,7 +191,7 @@
     ],
     "causal_summary": "The CLI executor hub carried 46 references into the deleted packet across 20 files",
     "created_at": "2026-08-28T08:49:38Z",
-    "last_save_at": "2026-08-30T15:39:18.963Z",
+    "last_save_at": "2026-09-10T20:45:55.514Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,11 +200,11 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0a337969b3cb206547dc5dd397c038a8abd2f9e9b4b1976c695df168d873c96e",
+    "source_fingerprint": "sha256:8ad66e2fe9f888a43eae210d1eadb34db7e14d1f6311b02fc2066baedfe371eb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1fec70a029d2d8a014294d9ea773611c21fbf9bdc367a3eeb8c4df3c6c648606",
-      "plan.md": "e2e4e3607d3f7de5c4f598bc5a2c22b3420806993495a7ceb593d3e5b98dac20",
+      "plan.md": "cbc63144507932ad7305ff9aec4253c8b2146f53f81933427747e6104fd3b450",
       "tasks.md": "7c5a0e04268ed8e95cc389f603b34b5529fe270ab9e8e4f653d6c1c4e4056798",
       "implementation-summary.md": "758c0a2d32bf27a6893a1c1517f6d7f2870a6088677def4e1a234b0b830a3e98"
     },

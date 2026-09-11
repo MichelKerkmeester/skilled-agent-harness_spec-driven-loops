@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The 037 corpus grew well past what the gen-1 research studied",
     "created_at": "2026-08-13T18:42:57.524Z",
-    "last_save_at": "2026-08-30T15:39:22.394Z",
+    "last_save_at": "2026-09-10T20:46:48.053Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,14 +211,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:eadb5eedc884827b74b211fafe0c7c14c814a66ca3acf839a8e87263b67e8bc8",
+    "source_fingerprint": "sha256:a3c7fcc2285cb412be064f5247b519f89614533b3d9950a492eef6014c1afe2a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "03b556ed3ce745233e0d14fed0ab572efe74b89744be8a5dfa3104a348870d2d",
       "plan.md": "7e4f18a92533b23b241d0d84b3341a3da8f08d70311e655fef333c194d33ac9e",
       "tasks.md": "4ab6c453b1e8cc3a1e4d71475b6ee8559ab0408dcc949c315d9cf65c4e4b006a",
       "implementation-summary.md": "19231e5283071ce81289085047cbd6b5314ee2638a2e396c0bc1c750f0923dd3",
-      "research/research.md": "fb74bd990be6b2697645829f04ff067de9f22dfcd8a52ee96e8db26d94f1da06"
+      "research/research.md": "d3744d02040f76ee7aa82d6d959e36b82f82aba71d7dfbb634a8cfa7014fbf00"
     },
     "last_active_child_id": null,
     "last_active_at": null

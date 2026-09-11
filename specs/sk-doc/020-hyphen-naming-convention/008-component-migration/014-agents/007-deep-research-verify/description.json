@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents/007-deep-research-verify",
   "description": "The agents surface needs an explicit candidate audit for deep-research across the three runtime agent directories.",
   "keywords": [

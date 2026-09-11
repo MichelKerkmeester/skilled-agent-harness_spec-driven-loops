@@ -191,7 +191,7 @@
     ],
     "causal_summary": "The sk-prompt-models packet is not documentation: its model-profiles.json is read at runtime by two parallel scorer implementations and enforced by a PR-blocking CI guard",
     "created_at": "2026-08-28T08:49:35Z",
-    "last_save_at": "2026-08-30T15:39:18.943Z",
+    "last_save_at": "2026-09-10T20:45:55.519Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,11 +200,11 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:012d2628f83c02a4803c818f4137c20d63392015d54b5741e2c39f76789f6ad6",
+    "source_fingerprint": "sha256:8fb14aae6c93cfc8f759713c1aba8e9eef28a859117d94b9309aa8e2fdb9bbda",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "04fce2e38284c0cfc69a9e1b05e4dbbbb656a453f31a2e695cfe59214aecf8fe",
-      "plan.md": "1544d5da6c3f21b2114273bbe8c7ae74725179a76815b094b08f4f3f17c912d0",
+      "plan.md": "f10625ea2e86493ada864dca1a46fe4182848312ac322a1516195ff775296689",
       "tasks.md": "66bbed61a5abd4b62c822af0eda2328a15dd48bbef3e0b0853178b8ddb1f410d",
       "implementation-summary.md": "1b0443b57be3fd2f1d27182a1f54e0300ff4c857da2c606be1070d0983af861e"
     },

@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/010-commands-gate",
   "description": "The commands surface is split across seven namespace migrations, a loose-root classification, a residual asset/reference closure, and this gate",
   "keywords": [

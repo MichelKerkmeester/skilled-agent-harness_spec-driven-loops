@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/002-cross-skill-symlink-closure",
   "description": "Symlink targets and link-nodes cross skill boundaries, so a target name change is safe only when every pointer, relative target string, and executable",
   "keywords": [

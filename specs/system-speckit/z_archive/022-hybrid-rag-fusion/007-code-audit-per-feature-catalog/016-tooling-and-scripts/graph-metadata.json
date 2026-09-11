@@ -44,18 +44,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      "scripts/utils/template-structure.js",
-      "scripts/spec/check-completion.sh",
-      "scripts/ops/runbook.sh",
-      "scripts/spec/create.sh",
-      "scripts/spec/validate.sh",
-      "scripts/core/tree-thinning.ts",
-      "scripts/evals/check-architecture-boundaries.ts",
-      "scripts/spec/progressive-validate.sh",
-      "scripts/evals/check-source-dist-alignment.ts",
-      "scripts/memory/generate-context.ts",
-      "scripts/core/workflow.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -80,72 +69,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "template-structure.js",
-        "kind": "code",
-        "path": "scripts/utils/template-structure.js",
-        "source": "derived"
-      },
-      {
-        "name": "check-completion.sh",
-        "kind": "script",
-        "path": "scripts/spec/check-completion.sh",
-        "source": "derived"
-      },
-      {
-        "name": "runbook.sh",
-        "kind": "script",
-        "path": "scripts/ops/runbook.sh",
-        "source": "derived"
-      },
-      {
-        "name": "create.sh",
-        "kind": "script",
-        "path": "scripts/spec/create.sh",
-        "source": "derived"
-      },
-      {
-        "name": "validate.sh",
-        "kind": "script",
-        "path": "scripts/spec/validate.sh",
-        "source": "derived"
-      },
-      {
-        "name": "tree-thinning.ts",
-        "kind": "code",
-        "path": "scripts/core/tree-thinning.ts",
-        "source": "derived"
-      },
-      {
-        "name": "check-architecture-boundaries.ts",
-        "kind": "code",
-        "path": "scripts/evals/check-architecture-boundaries.ts",
-        "source": "derived"
-      },
-      {
-        "name": "progressive-validate.sh",
-        "kind": "script",
-        "path": "scripts/spec/progressive-validate.sh",
-        "source": "derived"
-      },
-      {
-        "name": "check-source-dist-alignment.ts",
-        "kind": "code",
-        "path": "scripts/evals/check-source-dist-alignment.ts",
-        "source": "derived"
-      },
-      {
-        "name": "generate-context.ts",
-        "kind": "code",
-        "path": "scripts/memory/generate-context.ts",
-        "source": "derived"
-      },
-      {
-        "name": "workflow.ts",
-        "kind": "code",
-        "path": "scripts/core/workflow.ts",
         "source": "derived"
       },
       {
@@ -201,11 +124,77 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Overview Audit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Session Capturing Pipeline Quality",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "chokidar",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built All",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Audit Results",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The Tooling and Scripts category spans validation rules, CLI entrypoints, migration utilities, watcher logic, and session-capture plumbing",
     "created_at": "2026-04-12T09:02:50.253Z",
-    "last_save_at": "2026-08-30T15:39:38.406Z",
+    "last_save_at": "2026-09-10T21:04:49.344Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

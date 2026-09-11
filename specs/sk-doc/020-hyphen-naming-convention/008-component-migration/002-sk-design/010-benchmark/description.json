@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/010-benchmark",
   "description": "Benchmark run snapshots use underscore-bearing after-label directories, while the benchmark README and changelog describe those paths as comparison",
   "keywords": [

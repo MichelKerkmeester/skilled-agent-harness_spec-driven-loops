@@ -1,5 +1,5 @@
 {
-  "level": "phase",
+  "level": "2",
   "specFolder": "sk-doc/016-create-diff-mode/011-skill-anchor-toc-removal",
   "description": "Skill documentation under `.opencode/skills/` has accumulated navigational scaffolding the user",
   "keywords": [

@@ -53,7 +53,6 @@
       ".pi/agents/orchestrate.md",
       "pi/sync-agents-pi.cjs",
       ".codex/agents/debug.toml",
-      ".opencode/skills/system-spec-kit/scripts/codex/sync-agents.cjs",
       ".cursor/agents/orchestrate.md",
       ".devin/agents/orchestrate/AGENT.md",
       ".opencode/skills/sk-doc/sk-create-agent/SKILL.md",
@@ -207,7 +206,7 @@
     ],
     "causal_summary": "The `orchestrate` agent carries no documented policy for the six external CLI executor modes under",
     "created_at": "2026-09-02T11:03:33Z",
-    "last_save_at": "2026-09-02T12:02:24.320Z",
+    "last_save_at": "2026-09-10T20:42:57.451Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,11 +216,11 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:703adda390438a9237beaf1962072d076d562f28a421df47336bf8bd8c0d5da4",
+    "source_fingerprint": "sha256:0fa12d550c4836d356b5c5dcb0565879f97a52e2346b77f1f588c405774db8a4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3e46155cf57314a11289ce79e0a089b7abc6a2851bee2cd8d9280e8dc13ed958",
-      "plan.md": "ec0e8a310ae2ff97e83756d8ba8c88066b7a1c28778b24de217305d3979f87f2",
+      "plan.md": "9df6fe2c6a5339f7fa3ef21c06f0c947d02aa8339ddecb2f494c19808d1eae84",
       "tasks.md": "5a4fc525ba1b1833a10c82dfc02fab10dc300a8ce55194da83249a6da4494384",
       "implementation-summary.md": "73c0c127de94b83cf11c2958f3e709a2b8782a869b58f82dd276d5f570a4fb68"
     },

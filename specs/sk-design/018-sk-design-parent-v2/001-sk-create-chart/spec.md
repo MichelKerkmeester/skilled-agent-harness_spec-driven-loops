@@ -174,6 +174,11 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 31 | 031-full-family-coverage/ | A case for every family the checker registers, and a guard that fails when one arrives without | Complete |
 | 32 | 032-evilcharts-stock/ | The stock register becomes evilcharts on a warmed ground, and the ranked ladder stops shipping a pair nobody can tell apart | Complete |
 | 33 | 033-visual-verification/ | Every capture read by fresh reviewers, twelve defects the green checks had no opinion about, and the rule that data never wears the ink | Complete |
+| 34 | 034-emphasis-budget/ | A second verification round over the eighteen forms whose repaint nobody had read, plus an emphasis budget so a form spends its accent once | Complete |
+| 35 | 035-median-and-ladder-correction/ | The two geometry fixes that shipped on a self-read and did not work: the box plot's median was the wrong colour, and the dumbbell ladder had nothing to thin | Complete |
+| 36 | 036-evilcharts-only-and-open-tables/ | One Style Reference instead of two, the worked deliveries dropped so the templates are the corpus, and every data table open by default | Complete |
+| 37 | 037-remove-gallery/ | The gallery removed on request, with the height handshake and the two checker families that existed only to serve it | Complete |
+| 38 | 038-chart-command-alignment/ | The `/design:chart` command stops naming files the corpus removed or never had, and declares the hub that owns its mode | Complete |
 | 39 | 039-prerelease-versioning-and-residue/ | Twenty-two releases renumber below 1.0 in shipping order, and the four live surfaces still naming files the corpus cleanup deleted are reconciled | Complete |
 ### Phase Transition Rules
 

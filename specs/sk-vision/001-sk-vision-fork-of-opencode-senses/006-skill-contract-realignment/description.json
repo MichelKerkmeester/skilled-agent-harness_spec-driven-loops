@@ -1,5 +1,5 @@
 {
-  "level": "phase",
+  "level": "2",
   "specFolder": "sk-vision/001-sk-vision-fork-of-opencode-senses/006-skill-contract-realignment",
   "description": "The shipped skill fails sk-create-skill conformance: `SKILL.md` still reads as a scaffold stub that defers the runtime to \"later children\",",
   "keywords": [

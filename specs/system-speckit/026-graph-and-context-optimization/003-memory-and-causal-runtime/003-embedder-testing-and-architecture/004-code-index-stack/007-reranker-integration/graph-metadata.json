@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Opt-in GTE cross-encoder reranker integration for CocoIndex hybrid retrieval.",
     "created_at": "2026-05-18T05:13:45.663Z",
-    "last_save_at": "2026-08-30T15:39:30.542Z",
+    "last_save_at": "2026-09-10T20:47:39.823Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,14 +202,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:57b7d890947fb1de473b9d4dcc27544ad834698dfd66ba284a6ed1ff1de0efc6",
+    "source_fingerprint": "sha256:6e2e712376ffc4d586716eec6a6cd09cdc77b94d12adf5a059b9e4241a93a66b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "50546d14b4b21091f0679a6b889982f4b9f9fe77db3db553bd3db89cbcfe68e1",
       "plan.md": "ca7b75843147976e06ea7f53d8c8f36f991e51afec6576d8985e8b3a24d01158",
       "tasks.md": "799b84b7b2d1a1c0fca8a9c478b4646672022fcc01fc12d13b1762bff39c754b",
       "implementation-summary.md": "722af62dd77ae9ac94fe9f1ca3fd62fd1983fde22cc3e26ca5f8a28d9370c32d",
-      "research/research.md": "bd472f45aaecb1e38e33b39c9c4b74816513d92f267d837d98a3105fec2f99f5"
+      "research/research.md": "576a1ea0fe9e8ab100c5049a66391b9787998e9eda59a4cc64176d7a4d733fd5"
     },
     "last_active_child_id": null,
     "last_active_at": null

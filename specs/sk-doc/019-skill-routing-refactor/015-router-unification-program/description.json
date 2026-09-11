@@ -1,5 +1,5 @@
 {
-  "level": "phase",
+  "level": "3",
   "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program",
   "description": "Phase parent for the fleet router-unification program: a reversible compiled policy, closed route decision algebra, shared recovery budget,",
   "keywords": [

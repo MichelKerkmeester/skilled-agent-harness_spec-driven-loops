@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/004-cli-codex",
   "description": "The cli-codex component has underscore-separated reference and prompt-asset filenames with active links from its skill and README.",
   "keywords": [

@@ -43,21 +43,9 @@
       "tasks.md",
       "implementation-summary.md",
       "shared/trigger-extractor.ts",
-      ".opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts",
-      ".opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts",
-      ".opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts",
-      ".opencode/skills/system-spec-kit/scripts/extractors/implementation-guide-extractor.ts",
       ".opencode/skills/system-spec-kit/shared/trigger-extractor.ts",
-      ".opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts",
-      ".opencode/skills/system-spec-kit/scripts/core/tree-thinning.ts",
-      ".opencode/skills/system-spec-kit/scripts/extractors/conversation-extractor.ts",
-      ".opencode/skills/system-spec-kit/scripts/tests/semantic-signal-golden.vitest.ts",
       ".opencode/skills/system-spec-kit/shared/dist/trigger-extractor.js",
-      "shared/dist/trigger-extractor.js",
-      "scripts/extractors/decision-extractor.ts",
-      "scripts/extractors/collect-session-data.ts",
-      "scripts/extractors/session-extractor.ts",
-      "scripts/extractors/implementation-guide-extractor.ts"
+      "shared/dist/trigger-extractor.js"
     ],
     "entities": [
       {
@@ -88,54 +76,6 @@
         "name": "trigger-extractor.ts",
         "kind": "code",
         "path": "shared/trigger-extractor.ts",
-        "source": "derived"
-      },
-      {
-        "name": "decision-extractor.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts",
-        "source": "derived"
-      },
-      {
-        "name": "collect-session-data.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts",
-        "source": "derived"
-      },
-      {
-        "name": "session-extractor.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-guide-extractor.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/extractors/implementation-guide-extractor.ts",
-        "source": "derived"
-      },
-      {
-        "name": "input-normalizer.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts",
-        "source": "derived"
-      },
-      {
-        "name": "tree-thinning.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/core/tree-thinning.ts",
-        "source": "derived"
-      },
-      {
-        "name": "conversation-extractor.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/extractors/conversation-extractor.ts",
-        "source": "derived"
-      },
-      {
-        "name": "semantic-signal-golden.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/semantic-signal-golden.vitest.ts",
         "source": "derived"
       },
       {
@@ -203,11 +143,59 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Why It Changed",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Next Steps",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "After the Sprint 1 pipeline hardening landed, a `/memory:save` run still produced a memory file that scored 88/100 while carrying 10 structural quality issues",
     "created_at": "2026-04-12T09:02:50.281Z",
-    "last_save_at": "2026-08-30T15:39:38.876Z",
+    "last_save_at": "2026-09-10T21:04:56.552Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

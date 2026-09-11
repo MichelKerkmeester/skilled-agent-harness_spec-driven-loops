@@ -202,7 +202,7 @@
     ],
     "causal_summary": "`lumo.md` asserts specific, uncited figures — Reasonix at a ~99.8% cache-hit rate, a ~$61→$12 single-day cost drop, DeepSeek-native prefix caching — and describes Pi as provider-agnostic with a `pi-cache-optimizer` extension and a list of \"missing in Pi\" features (Context Engine v2, MCP first-class support, plan mode, checkpoints & rewind)",
     "created_at": "2026-08-06T09:15:11.519Z",
-    "last_save_at": "2026-08-30T15:39:09.306Z",
+    "last_save_at": "2026-09-10T20:43:28.038Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,14 +212,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:7e27e38969b8c3e5fdfe95985848efafea2e66d7e7bf01687f437a554c04b13a",
+    "source_fingerprint": "sha256:705c43c1101471b0a7bd80515331995254622c315c04e7ba95e2556434974b9f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6f4eb754a6277cfb48e2e72506b6cb3516473cdbe765fa0d38f96f4eb679b6e0",
       "plan.md": "f485fe3a2428817ee2f29d2910a0e1759b823501c1bfe6597ab22d3902b80f4d",
       "tasks.md": "df2ecd63d8899053747d86d1a4d8c0df3c0eb2cfa21da77ceef3ee234f6d89a5",
       "implementation-summary.md": "83c25f87da2d46414ce35f7fad1b861aec1a2d37b715c5ef1d2a5736c022a368",
-      "research/research.md": "26e856c4ba127897293337c42e2653146cb0daea9761f3e2aa37f478f2a900cf"
+      "research/research.md": "531080ec52d58198dc1387825eec208501ff4676d8360fdbe033f0230fb1610f"
     },
     "last_active_child_id": null,
     "last_active_at": null

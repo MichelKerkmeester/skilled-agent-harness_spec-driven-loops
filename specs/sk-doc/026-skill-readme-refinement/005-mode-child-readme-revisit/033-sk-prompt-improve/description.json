@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/033-sk-prompt-improve",
   "description": "The README at `.opencode/skills/sk-prompt/sk-prompt-improve/README.md` still carries the older tabular reference-card style: AT A GLANCE, QUICK START",
   "keywords": [

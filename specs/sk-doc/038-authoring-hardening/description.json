@@ -1,5 +1,5 @@
 {
-  "level": "phase",
+  "level": "2",
   "specFolder": "sk-doc/038-authoring-hardening",
   "description": "Manual testing playbooks across the skill fleet had drifted to roughly 2,600 contract violations, and no build ever failed",
   "keywords": [

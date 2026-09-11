@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "mcp-tooling/007-mcp-tooling-parent/010-routing-corpus-and-holdouts",
   "description": "The hub grew from three modes to six, but the blind-holdout suite in `hubrouting/` covered only mcp-chrome-devtools (MT-H01) and mcp-figma (MT-H02),",
   "keywords": [

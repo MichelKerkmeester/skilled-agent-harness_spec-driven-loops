@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The system-spec-kit README (`README.md`, ~872 lines) was written before the 22-category feature catalog, 14-command suite (8 speckit + 6 memory), and phase decomposition system existed",
     "created_at": "2026-04-12T09:02:50.309Z",
-    "last_save_at": "2026-08-30T15:39:39.304Z",
+    "last_save_at": "2026-09-10T21:05:05.973Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +206,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:366a9d4bc36176f751bebf87435f42e9519dcebdd3074263b4d963fff79b4349",
+    "source_fingerprint": "sha256:6f437d512c5582df238964fa52c847ee4f4c4a64c72c9eac49048221dccbe80b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3b7dfbb69d3077c821fec7298fe0279d47de660468f8a9a3287797144db4f216",
       "plan.md": "8dc334a4f6046b7a7385425b8798abaee30fe64dca208468dc851eb391c1ef82",
       "tasks.md": "2736b5deb1c4ead6aab609aaa153fb65ca03cdddbf77c9c041868eaa8a702e28",
-      "implementation-summary.md": "01b71d482e66ed4578279e2390523e12473b19f9a531cedb8f522091623a5ec6"
+      "implementation-summary.md": "486fec43bc318bd3e55d863ee30e69bbca51c1259d9e1b26804d569d68b1f58d"
     },
     "last_active_child_id": null,
     "last_active_at": null

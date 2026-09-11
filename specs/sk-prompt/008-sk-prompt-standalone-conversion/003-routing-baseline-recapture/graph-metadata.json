@@ -191,7 +191,7 @@
     ],
     "causal_summary": "The ratchet pins exact counts and the corpus files are sha256-pinned, so a deliberate capability removal reds two gates that are working correctly",
     "created_at": "2026-08-28T08:49:36Z",
-    "last_save_at": "2026-08-30T15:39:18.950Z",
+    "last_save_at": "2026-09-10T20:45:55.500Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,11 +200,11 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1adfaf64c97a65474316b5f96f6ee6cbefa690ef990e3965e23257c5743d3d3b",
+    "source_fingerprint": "sha256:5313185d0621be08c2183e28a277d2bd182c7257d2b0a3b50bd5c53c50a953ee",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8e7493b55d8a2ec2a8eaed73c09228251aa98df29507257f6304ba96b2d1402a",
-      "plan.md": "8aae995ccb87a1765e7028e2a65246e81bb7c76dfdcbf8ac35aaac71be5f9ca1",
+      "plan.md": "d4577b8a62fd19d240416fb94aa5cfbde8f95d45f57e0d7c401fab10f3b10867",
       "tasks.md": "710283270dc9d3958b313ba6bc79589ff4232d2d0226d968c30b3e92c9931efe",
       "implementation-summary.md": "29cd8bb2f09e780b9084b2a68aacfcc225e65fbe34e9a9c54aeec05f214d5529"
     },

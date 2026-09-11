@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/001-cli-claude-code",
   "description": "The cli-claude-code README at `.opencode/skills/cli-external-orchestration/cli-claude-code/README.md` still carries the older tabular reference-card",
   "keywords": [

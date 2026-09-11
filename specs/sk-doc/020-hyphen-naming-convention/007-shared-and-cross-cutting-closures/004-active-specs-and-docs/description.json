@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/004-active-specs-and-docs",
   "description": "Active spec folders and authored documents can retain snake_case names and path references even though numeric phase folders are already structurally",
   "keywords": [

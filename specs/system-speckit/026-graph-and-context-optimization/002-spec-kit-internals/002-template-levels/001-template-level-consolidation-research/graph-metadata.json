@@ -47,20 +47,12 @@
       "decision-record.md",
       "implementation-summary.md",
       "research/research.md",
-      ".opencode/skills/system-spec-kit/scripts/spec/create.sh",
-      ".opencode/skills/system-spec-kit/scripts/lib/template-utils.sh",
-      ".opencode/skills/system-spec-kit/scripts/rules/check-files.sh",
       "research/deep-research-state.jsonl",
       "research/resource-map.md",
       "research/iterations/iteration-001.md",
       "research/deep-research-config.json",
-      "scripts/lib/template-utils.sh",
-      "scripts/spec/create.sh",
-      "scripts/utils/template-structure.js",
-      "scripts/spec/check-template-staleness.sh",
-      "scripts/rules/check-files.sh",
       ".opencode/skills/system-spec-kit/templates/README.md",
-      ".opencode/skills/system-spec-kit/scripts/utils/template-structure.js"
+      "templates/README.md"
     ],
     "entities": [
       {
@@ -100,24 +92,6 @@
         "source": "derived"
       },
       {
-        "name": "create.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/spec/create.sh",
-        "source": "derived"
-      },
-      {
-        "name": "template-utils.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/lib/template-utils.sh",
-        "source": "derived"
-      },
-      {
-        "name": "check-files.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-files.sh",
-        "source": "derived"
-      },
-      {
         "name": "deep-research-state.jsonl",
         "kind": "file",
         "path": "research/deep-research-state.jsonl",
@@ -133,18 +107,6 @@
         "name": "deep-research-config.json",
         "kind": "config",
         "path": "research/deep-research-config.json",
-        "source": "derived"
-      },
-      {
-        "name": "template-structure.js",
-        "kind": "code",
-        "path": "scripts/utils/template-structure.js",
-        "source": "derived"
-      },
-      {
-        "name": "check-template-staleness.sh",
-        "kind": "script",
-        "path": "scripts/spec/check-template-staleness.sh",
         "source": "derived"
       },
       {
@@ -206,11 +168,41 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Five Checks",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Breakdown",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Deep",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The current template system at `.opencode/skills/system-spec-kit/templates/` has accumulated 83 .md template files (~13K LOC) across `core/`, `addendum/{level2-verify,level3-arch,level3-plus-govern,phase}/`, and four materialized output directories (`level1/`, `level2/`, `level3/`, `level3+/`)",
     "created_at": "2026-05-01T07:40:58Z",
-    "last_save_at": "2026-08-30T15:39:29.250Z",
+    "last_save_at": "2026-09-10T20:47:21.794Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,7 +213,7 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:48e12feabe36cee60ba6acd0dc51dcd45e5d1f469c75a84aace1873688bfed53",
+    "source_fingerprint": "sha256:65133ae28b0b47cf982657ffe21bdd9e5c0696822df3d168d1d529b7b006b930",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6719fe82709a006618eeb5e91d4a8829dd6c2fba41bdb228867df100887b6e04",
@@ -229,7 +221,7 @@
       "tasks.md": "4f49e6c7e2e59f99812f94b6cdfb6e057c2fbf5777914cf49b3b585914152f87",
       "decision-record.md": "365f5f2a0d1989f1d9617bce48d39b89fc30b64afcc0988fc3f04537d152183f",
       "implementation-summary.md": "925a19585c0aed0d35d178ad127b2fb191214781940f8437ab28f48ca0f498da",
-      "research/research.md": "3d9493148238e10d65d5d74221a8c110eee94ffc37bd89e76f58ebbe31294ec5"
+      "research/research.md": "c44c22da50de87943901d39777c27f56787b49cbbe67dbb4f4b963705778a85d"
     },
     "last_active_child_id": null,
     "last_active_at": null

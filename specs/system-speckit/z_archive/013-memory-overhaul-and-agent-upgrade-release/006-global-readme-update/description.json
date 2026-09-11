@@ -24,5 +24,6 @@
     "013-memory-overhaul-and-agent-upgrade-release"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": []
+  "memoryNameHistory": [],
+  "level": "3+"
 }

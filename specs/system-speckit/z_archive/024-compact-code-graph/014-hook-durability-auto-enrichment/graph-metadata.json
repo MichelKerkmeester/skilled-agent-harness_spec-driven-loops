@@ -50,16 +50,10 @@
       "hooks/claude/session-stop.ts",
       "hooks/claude/compact-inject.ts",
       "hooks/claude/shared.ts",
-      "hooks/memory-surface.ts",
-      "hooks/response-hints.ts",
-      "lib/response/envelope.ts",
       "tests/hook-state.vitest.ts",
       "tests/hook-session-start.vitest.ts",
       "tests/hook-precompact.vitest.ts",
-      "tests/dual-scope-hooks.vitest.ts",
-      "tests/edge-cases.vitest.ts",
-      "tests/envelope.vitest.ts",
-      "tests/hooks-ux-feedback.vitest.ts"
+      "tests/edge-cases.vitest.ts"
     ],
     "entities": [
       {
@@ -123,24 +117,6 @@
         "source": "derived"
       },
       {
-        "name": "memory-surface.ts",
-        "kind": "code",
-        "path": "hooks/memory-surface.ts",
-        "source": "derived"
-      },
-      {
-        "name": "response-hints.ts",
-        "kind": "code",
-        "path": "hooks/response-hints.ts",
-        "source": "derived"
-      },
-      {
-        "name": "envelope.ts",
-        "kind": "code",
-        "path": "lib/response/envelope.ts",
-        "source": "derived"
-      },
-      {
         "name": "hook-state.vitest.ts",
         "kind": "test",
         "path": "tests/hook-state.vitest.ts",
@@ -159,27 +135,9 @@
         "source": "derived"
       },
       {
-        "name": "dual-scope-hooks.vitest.ts",
-        "kind": "test",
-        "path": "tests/dual-scope-hooks.vitest.ts",
-        "source": "derived"
-      },
-      {
         "name": "edge-cases.vitest.ts",
         "kind": "test",
         "path": "tests/edge-cases.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "envelope.vitest.ts",
-        "kind": "test",
-        "path": "tests/envelope.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "hooks-ux-feedback.vitest.ts",
-        "kind": "test",
-        "path": "tests/hooks-ux-feedback.vitest.ts",
         "source": "derived"
       },
       {
@@ -205,11 +163,47 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Wire Claude",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Order",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hook Reliability",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Call Priming",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Dead Code Cleanup",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "This phase addresses concrete context-preservation and code-graph reliability gaps tracked in this packet",
     "created_at": "2026-04-13T04:55:08.077Z",
-    "last_save_at": "2026-08-30T15:39:39.753Z",
+    "last_save_at": "2026-09-10T21:05:11.600Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,14 +213,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:49e5930f339fa454b7ceec4cd995bdffc6a90d74c478ab6bb2c4fdc0a8264170",
+    "source_fingerprint": "sha256:dbda98c3c69daa9a0360ae3c4aad69edb27d71f7e84d9ea1856b2ec4d5776520",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "12ce7d5ea86d685528dac75d3469ef648b0a3f62d3868dd1a97aea8f8d026bed",
       "plan.md": "3f60f0b491530336045fbe5cf6d376b7a7218ad22a5724f4f23f94c4f7fd05b7",
       "tasks.md": "3c14f0772b60d6a766d595f084b8bd9fcc3b6a63a485f1bdaf90d74439fed40e",
       "decision-record.md": "c1deff01e63b1520ce39b4b3384531f1a9daa95bb5a7010ea7f088b0c310212e",
-      "implementation-summary.md": "d7f8d66dc9d179e7b4a02002246b06851d74fa9287992ac9748cf86c506a345e"
+      "implementation-summary.md": "5332119e79650d7feed51a583ba72e22ca0b60541d0c8725dede6e4b3322ba19"
     },
     "last_active_child_id": null,
     "last_active_at": null

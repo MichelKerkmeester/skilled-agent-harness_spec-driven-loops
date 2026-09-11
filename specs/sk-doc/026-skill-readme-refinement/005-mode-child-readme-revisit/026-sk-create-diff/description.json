@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/026-sk-create-diff",
   "description": "The sk-create-diff README at `.opencode/skills/sk-doc/sk-create-diff/README.md` still reads in the older tabular reference-card register and predates",
   "keywords": [

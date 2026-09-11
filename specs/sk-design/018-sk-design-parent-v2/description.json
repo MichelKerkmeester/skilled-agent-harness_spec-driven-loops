@@ -1,5 +1,5 @@
 {
-  "level": "phase",
+  "level": "2",
   "specFolder": "sk-design/018-sk-design-parent-v2",
   "description": "`sk-design` is a hub of four coherent modes, every request that reached a mode before still reaches",
   "keywords": [

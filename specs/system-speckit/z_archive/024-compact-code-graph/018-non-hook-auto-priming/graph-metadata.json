@@ -44,12 +44,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      "handlers/session-health.ts",
-      "hooks/memory-surface.ts",
-      "hooks/index.ts",
-      "schemas/tool-input-schemas.ts",
-      "tools/lifecycle-tools.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -74,36 +69,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "session-health.ts",
-        "kind": "code",
-        "path": "handlers/session-health.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-surface.ts",
-        "kind": "code",
-        "path": "hooks/memory-surface.ts",
-        "source": "derived"
-      },
-      {
-        "name": "index.ts",
-        "kind": "code",
-        "path": "hooks/index.ts",
-        "source": "derived"
-      },
-      {
-        "name": "tool-input-schemas.ts",
-        "kind": "code",
-        "path": "schemas/tool-input-schemas.ts",
-        "source": "derived"
-      },
-      {
-        "name": "lifecycle-tools.ts",
-        "kind": "code",
-        "path": "tools/lifecycle-tools.ts",
         "source": "derived"
       },
       {
@@ -195,11 +160,41 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Metadata Template",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Template",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered Template",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions Template",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "This phase addresses concrete context-preservation and code-graph reliability gaps tracked in this packet",
     "created_at": "2026-04-13T04:55:08.652Z",
-    "last_save_at": "2026-08-30T15:39:39.762Z",
+    "last_save_at": "2026-09-10T21:05:11.571Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:83c9aca0c449ab05eb564abae4fbd27fa4859eab2a751a6783df1aaf33f3f155",
+    "source_fingerprint": "sha256:a3f628ba8d37ba6cca184009c37dc214f361149b9ef4649bb30eaa0d65c9dd37",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "779c2eebd5c186c9189b6df4532ba3944d43a12cb47ad455158dae7a56555d64",
       "plan.md": "9b2069af934bf5f506d6f951fa3ee0a1e1666c34131570667fd0c3ab0c9814c6",
       "tasks.md": "008027231b78772bf23fb4b606d764a8f2db87a3b25b056b2b6e5e4ce24b9df8",
-      "implementation-summary.md": "9afb1e695b1d8af14dc922606479dbc84b5dc0357f574dd773b378c8eaf9dbb0"
+      "implementation-summary.md": "2b2f9af50c9f40eddddd7d767454394df7212922c893f7bb30259a1dc480f84e"
     },
     "last_active_child_id": null,
     "last_active_at": null

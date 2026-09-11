@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The packet carries one Style Reference, the stock it was derived from",
     "created_at": "2026-09-09T16:24:27Z",
-    "last_save_at": "2026-09-09T16:25:37.303Z",
+    "last_save_at": "2026-09-10T20:33:29.149Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +208,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9261b8dff4efdb8b36971e5e5df74d88f844b2a1a34f189dcdc454d4be7ffe01",
+    "source_fingerprint": "sha256:7027433b3798a464483bf8cf8b55263cd0fa31f9ca926a3cf48acd8ec011acd9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ccf779ba62d37cfef33b4d1f28aa40718146fa99c0833b455e8efbc37896f775",
       "plan.md": "12e6dc7148ceabe01ff3812e89ee30c5f1ad7383e42c122f857d7231b25160f2",
       "tasks.md": "21597938ab9f441b847649cfc658be9f39a1de8b5c5c90113647cdd483157791",
-      "implementation-summary.md": "eaa1887975c9c62c04d5695b66d24774bd28481dee0eeb5c83ebfc51e16e70ad"
+      "implementation-summary.md": "ad57f8136e7ec215e7eeabd69c8a03f8f6e51e16cb5fad6ae28a3aa0d398e4a6"
     },
     "last_active_at": null
   }

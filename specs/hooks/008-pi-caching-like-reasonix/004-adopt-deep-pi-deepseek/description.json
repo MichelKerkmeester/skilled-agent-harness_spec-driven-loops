@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "hooks/008-pi-caching-like-reasonix/004-adopt-deep-pi-deepseek",
   "description": "The operator intends to route more work through DeepSeek going forward",
   "keywords": [

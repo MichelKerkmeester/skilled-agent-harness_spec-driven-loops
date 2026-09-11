@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/010-create-diff",
   "description": "The create-diff packet is assigned a component-local naming phase, but its current filesystem inventory contains no non-exempt snake_case name to",
   "keywords": [

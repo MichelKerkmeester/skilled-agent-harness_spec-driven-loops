@@ -1,5 +1,5 @@
 {
-  "level": "3",
+  "level": "2",
   "specFolder": "system-deep-loop/030-deep-loop-unification",
   "description": "`deep-loop-workflows` (the public, advisor-routable parent hub — 4 mode packets, ~1.1.0.0) and `deep-loop-runtime` (its \"frozen, MCP-free backend\" —",
   "keywords": [

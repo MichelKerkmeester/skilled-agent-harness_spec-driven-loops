@@ -44,8 +44,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "shared/algorithms/rrf-fusion.ts",
-      "shared/ranking/learned-combiner.ts"
+      "shared/algorithms/rrf-fusion.ts"
     ],
     "entities": [
       {
@@ -70,12 +69,6 @@
         "name": "rrf-fusion.ts",
         "kind": "code",
         "path": "shared/algorithms/rrf-fusion.ts",
-        "source": "derived"
-      },
-      {
-        "name": "learned-combiner.ts",
-        "kind": "code",
-        "path": "shared/ranking/learned-combiner.ts",
         "source": "derived"
       },
       {
@@ -177,7 +170,7 @@
     ],
     "causal_summary": "The current fusion pipeline relies on flat heuristic constants: a fixed RRF K=60, a flat convergence bonus of +0.10, a static graph boost of 1.5x, and hard-coded Stage 2 signal weights",
     "created_at": "2026-04-12T09:02:50.234Z",
-    "last_save_at": "2026-08-30T15:39:38.124Z",
+    "last_save_at": "2026-09-10T21:04:44.556Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

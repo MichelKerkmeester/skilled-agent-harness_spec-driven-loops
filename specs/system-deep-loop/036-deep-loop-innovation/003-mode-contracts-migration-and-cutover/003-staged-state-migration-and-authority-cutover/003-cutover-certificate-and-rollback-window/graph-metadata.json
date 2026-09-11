@@ -45,7 +45,6 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      "mcp-server/lib/templates/level-contract-resolver.js",
       ".opencode/specs/system-deep-loop/036-deep-loop-innovation/spec.md",
       ".opencode/specs/system-deep-loop/036-deep-loop-innovation/manifest/phase-tree.json"
     ],
@@ -72,12 +71,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "level-contract-resolver.js",
-        "kind": "code",
-        "path": "mcp-server/lib/templates/level-contract-resolver.js",
         "source": "derived"
       },
       {
@@ -197,7 +190,7 @@
     ],
     "causal_summary": "Plan the signed evidence bundle that authorizes a per-mode authority flip and the monitored rollback window that keeps the flip reversible until clean closure. The certificate is a ledger event binding parity, rollback, migration, and policy evidence.",
     "created_at": "2026-07-16T03:43:57.641Z",
-    "last_save_at": "2026-08-30T15:39:21.542Z",
+    "last_save_at": "2026-09-10T20:46:34.391Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

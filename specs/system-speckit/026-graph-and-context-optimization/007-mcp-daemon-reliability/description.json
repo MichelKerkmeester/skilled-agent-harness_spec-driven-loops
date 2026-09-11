@@ -1,5 +1,5 @@
 {
-  "level": "phase",
+  "level": "2",
   "specFolder": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability",
   "description": "The mk-spec-memory and mkcodeindex MCP daemons fail repeatedly during sessions: a missing `/tmp` socket dir crashes startup, the embedding model RSS",
   "keywords": [

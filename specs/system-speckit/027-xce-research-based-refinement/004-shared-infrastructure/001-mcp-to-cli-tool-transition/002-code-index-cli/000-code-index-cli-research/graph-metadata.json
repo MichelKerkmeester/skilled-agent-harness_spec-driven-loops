@@ -50,8 +50,7 @@
       "research/research.md",
       "research/lineages/gpt/research.md",
       "research/orchestration-summary.json",
-      "research/gap-audit/lineages/gpt-gap/research.md",
-      "lib/ipc/socket-server.ts"
+      "research/gap-audit/lineages/gpt-gap/research.md"
     ],
     "entities": [
       {
@@ -88,12 +87,6 @@
         "name": "orchestration-summary.json",
         "kind": "config",
         "path": "research/orchestration-summary.json",
-        "source": "derived"
-      },
-      {
-        "name": "socket-server.ts",
-        "kind": "code",
-        "path": "lib/ipc/socket-server.ts",
         "source": "derived"
       },
       {
@@ -197,11 +190,17 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The mkcodeindex MCP server (8 tools) is the structural-code-search backbone, but its only client surface is the MCP protocol layer: a mid-session transport disconnect removes the tools until restart (Code Graph showed \"unavailable\" at this session's own startup), every session pays schema token overhead, and hooks/cron/CI have no sanctioned shell path",
     "created_at": "2026-06-06T13:40:00Z",
-    "last_save_at": "2026-08-30T15:39:33.874Z",
+    "last_save_at": "2026-09-10T20:48:35.839Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,14 +210,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:c702680736376faa05caf24d0f4f21f56bbb876359dbacb6e2971373e068b0ee",
+    "source_fingerprint": "sha256:6efb6de7f28825ef2dbdacfa11073ae69678b5fd5a7c27ec2ce3aef7ee242275",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "48da558e674a1b755690aa3130716f0a759207fb0beac83ae2feea2880e6f520",
       "plan.md": "61ff6d85265aac78a1712b4d849abd28f7d1bad7537f7a67a017aeb7941aea18",
       "tasks.md": "8cf896908774ee9f920d946606421b4283b2bce7fc387de3d9e96884b3d44fcb",
       "implementation-summary.md": "b8dc9f7b0f2f297d7f44f9e61bfa89a08b14a7ad5f3b53bad9148086e22744df",
-      "research/research.md": "78d0fec212e1b1e2f6fb3675258d4130a436a8bc59ba557738f7f19bfb8b386d"
+      "research/research.md": "5ad78452b1615d0448b8d845a75fe3f93c07a3ec5851ca7bcf7e7783f786924f"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -23,7 +23,7 @@ contextType: "implementation"
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | task-04-agent-alignment |
+| **Spec Folder** | 004-agent-alignment |
 | **Parent Spec** | 130-memory-overhaul-and-agent-upgrade-release |
 | **Completed** | [YYYY-MM-DD] (to be filled by implementer) |
 | **Level** | 3+ |

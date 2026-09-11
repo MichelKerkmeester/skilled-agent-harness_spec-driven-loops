@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/007-changelog-verify",
   "description": "This verification-only phase confirms that the cli-external-orchestration hub and its three CLI workflow release surfaces record the completed",
   "keywords": [

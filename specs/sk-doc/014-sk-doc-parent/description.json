@@ -1,5 +1,5 @@
 {
-  "level": "phase",
+  "level": "3",
   "specFolder": "sk-doc/014-sk-doc-parent",
   "description": "`sk-doc` is a 6-mode monolith: one overloaded `SKILL.md` carries document-quality management,",
   "keywords": [

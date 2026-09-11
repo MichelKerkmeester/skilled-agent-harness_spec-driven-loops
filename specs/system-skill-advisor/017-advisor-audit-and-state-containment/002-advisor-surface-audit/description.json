@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "system-skill-advisor/017-advisor-audit-and-state-containment/002-advisor-surface-audit",
   "description": "The skill-advisor subsystem has never had a systematic sweep of its own code and structure surface",
   "keywords": [

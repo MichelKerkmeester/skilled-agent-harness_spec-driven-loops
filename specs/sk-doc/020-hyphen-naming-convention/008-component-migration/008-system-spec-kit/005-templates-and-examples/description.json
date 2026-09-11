@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/005-templates-and-examples",
   "description": "The system-spec-kit template surface contains underscore-bearing directory and file names in the examples and stress-test layouts, including level_1,",
   "keywords": [

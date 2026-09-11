@@ -1,5 +1,5 @@
 {
-  "level": "phase",
+  "level": "2",
   "specFolder": "mcp-tooling/014-mcp-notion",
   "description": "Phase parent for adding Notion support to the mcp-tooling hub: first validate whether the official Notion MCP (@notionhq/notion-mcp-server, 24 tools)",
   "keywords": [

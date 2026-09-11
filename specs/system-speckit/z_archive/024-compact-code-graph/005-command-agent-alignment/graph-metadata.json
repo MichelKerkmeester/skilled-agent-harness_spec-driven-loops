@@ -45,7 +45,6 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      ".opencode/commands/memory/save.md",
       ".opencode/skills/system-spec-kit/SKILL.md"
     ],
     "entities": [
@@ -71,12 +70,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "save.md",
-        "kind": "doc",
-        "path": ".opencode/commands/memory/save.md",
         "source": "derived"
       },
       {
@@ -192,11 +185,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "What Was Built Template",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "This phase addresses concrete context-preservation and code-graph reliability gaps tracked in this packet",
     "created_at": "2026-04-12T09:02:50.345Z",
-    "last_save_at": "2026-08-30T15:39:39.732Z",
+    "last_save_at": "2026-09-10T21:05:11.553Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e31149dde0b243b261538895aacc8a7b532d8beb942d6aedb86e8dea2552a606",
+    "source_fingerprint": "sha256:56ef1a2289a829f131d6649987caa05aae3678c1dcd6af137fc0f16cf3d94c32",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e572c0e5446a34ebe7ecfcde26a446eab7458a8028f97b2e42e5aa9981fb0ae0",
       "plan.md": "8003ae980903fd4b7a4582cde71d78ea1b75312062bf17e49fcc1768bc69aadc",
       "tasks.md": "886830e8ad9652e0bec6347f5ee603f5fe25ed3839935305ce39827215eb0b14",
-      "implementation-summary.md": "b6ad753fe2ef8c5465d38ef6eea75aca74f125ef869126f2a6909ddbc4e2999f"
+      "implementation-summary.md": "004bd220bc6c60faef95ccb41553f568b11bd4a860bf60ecb243f2ba1ffe1f68"
     },
     "last_active_child_id": null,
     "last_active_at": null

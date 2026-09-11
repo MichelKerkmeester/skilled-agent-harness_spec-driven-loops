@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "hooks/008-pi-caching-like-reasonix/006-fork-and-improve-deep-pi/003-live-verification-and-closeout",
   "description": "Unit tests prove fixes #1 and #2 work against synthetic inputs in isolation",
   "keywords": [

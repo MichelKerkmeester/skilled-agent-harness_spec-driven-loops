@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design",
   "description": "Lean phase parent for the kebab-case filesystem naming work across the sk-design hub, mode packets, catalog/playbook trees, benchmark artifacts,",
   "keywords": [

@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/001-cli-external-orchestration",
   "description": "The cli-external-orchestration README still carries the older tabular reference-card style: a dense AT A GLANCE table, a feature-heavy pitch",
   "keywords": [

@@ -42,17 +42,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      "scripts/utils/phase-classifier.ts",
-      "scripts/extractors/conversation-extractor.ts",
-      "scripts/utils/tool-detection.ts",
-      "scripts/types/session-types.ts",
-      "scripts/extractors/file-extractor.ts",
-      "scripts/lib/simulation-factory.ts",
-      "scripts/tests/phase-classification.vitest.ts",
-      "scripts/tests/test-scripts-modules.js",
-      "scripts/lib/flowchart-generator.ts",
-      "scripts/tests/test-extractors-loaders.js"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -77,66 +67,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "phase-classifier.ts",
-        "kind": "code",
-        "path": "scripts/utils/phase-classifier.ts",
-        "source": "derived"
-      },
-      {
-        "name": "conversation-extractor.ts",
-        "kind": "code",
-        "path": "scripts/extractors/conversation-extractor.ts",
-        "source": "derived"
-      },
-      {
-        "name": "tool-detection.ts",
-        "kind": "code",
-        "path": "scripts/utils/tool-detection.ts",
-        "source": "derived"
-      },
-      {
-        "name": "session-types.ts",
-        "kind": "code",
-        "path": "scripts/types/session-types.ts",
-        "source": "derived"
-      },
-      {
-        "name": "file-extractor.ts",
-        "kind": "code",
-        "path": "scripts/extractors/file-extractor.ts",
-        "source": "derived"
-      },
-      {
-        "name": "simulation-factory.ts",
-        "kind": "code",
-        "path": "scripts/lib/simulation-factory.ts",
-        "source": "derived"
-      },
-      {
-        "name": "phase-classification.vitest.ts",
-        "kind": "test",
-        "path": "scripts/tests/phase-classification.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "test-scripts-modules.js",
-        "kind": "code",
-        "path": "scripts/tests/test-scripts-modules.js",
-        "source": "derived"
-      },
-      {
-        "name": "flowchart-generator.ts",
-        "kind": "code",
-        "path": "scripts/lib/flowchart-generator.ts",
-        "source": "derived"
-      },
-      {
-        "name": "test-extractors-loaders.js",
-        "kind": "code",
-        "path": "scripts/tests/test-extractors-loaders.js",
         "source": "derived"
       },
       {
@@ -198,11 +128,71 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Pattern Cluster",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Document Vector Construction",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Based Phase Scoring",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Contiguous Phase Tracking",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Known Limitations No",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. WHAT WAS BUILT",
+        "kind": "heading",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Conversation phase handling previously lived in a keyword-precedence ladder that favored early matches over richer context, so ambiguous exchanges like \"grep in debug output\" could resolve to Research instead of Debugging",
     "created_at": "2026-04-12T09:02:50.271Z",
-    "last_save_at": "2026-08-30T15:39:38.714Z",
+    "last_save_at": "2026-09-10T21:04:55.031Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

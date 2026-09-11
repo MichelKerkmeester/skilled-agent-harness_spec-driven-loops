@@ -23,7 +23,7 @@ contextType: "implementation"
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | task-05-changelog-updates |
+| **Spec Folder** | 005-changelog-updates |
 | **Parent Spec** | 130-memory-overhaul-and-agent-upgrade-release |
 | **Completed** | [YYYY-MM-DD] (to be filled by implementer) |
 | **Level** | 3+ |

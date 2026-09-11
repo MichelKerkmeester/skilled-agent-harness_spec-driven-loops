@@ -1,5 +1,5 @@
 {
-  "level": "phase",
+  "level": "2",
   "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture",
   "description": "Umbrella phase parent for embedder and reranker architecture across mk-spec-memory, mcp-coco-index, skill-advisor, launcher support, cross-cutting QA,",
   "keywords": [

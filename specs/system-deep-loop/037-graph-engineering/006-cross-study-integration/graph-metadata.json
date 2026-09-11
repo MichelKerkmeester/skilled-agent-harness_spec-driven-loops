@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Studies 1–5 each produced a 20-iteration synthesis, but each stands alone",
     "created_at": "2026-08-14T06:01:27.366Z",
-    "last_save_at": "2026-08-30T15:39:22.452Z",
+    "last_save_at": "2026-09-10T20:46:48.515Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,14 +212,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:d4cce84a5f3939bc3beadf49a7d833dc1b46e39dc20846739ef4474fb1f47aa7",
+    "source_fingerprint": "sha256:e95c0e116c641df33d1e1ff1bcf21d1556ab3e3f335dc4e2b552bef4690051d5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0dca46576481861987f61b67d61b469fd4063363d70c93a278fd8cb99a14e9b5",
       "plan.md": "4eb2cb4d1fa887ac04cfb99f62eb5124f7bf5816e6618dbc49418eca661ee0f6",
       "tasks.md": "79442d7171b94b1ea8c8e930c5569857031cb8fa8f1e22ae2bd2896a24aea4bd",
       "implementation-summary.md": "12605ac56d83cd86717aae837716fe14f2b4ec19d09631031724634579bf0e09",
-      "research/research.md": "3c17b6f441aba156a41ac84ba7bcc8d7176a0189ab577655e410112ffdd009fb"
+      "research/research.md": "89e7ddb73e273f06e74849218455499ec68f979bf7367c4a433a5106d0ec1502"
     },
     "last_active_child_id": null,
     "last_active_at": null

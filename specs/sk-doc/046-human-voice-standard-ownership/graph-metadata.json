@@ -54,7 +54,6 @@
       ".opencode/skills/sk-doc/leaf-aliases.json",
       ".opencode/skills/sk-doc/leaf-manifest.json",
       ".opencode/skills/sk-doc/README.md",
-      ".opencode/skills/system-spec-kit/scripts/tests/__snapshots__/scaffold-golden-snapshots.vitest.ts.snap",
       "shared/README.md"
     ],
     "entities": [
@@ -137,12 +136,6 @@
         "source": "derived"
       },
       {
-        "name": "scaffold-golden-snapshots.vitest.ts.snap",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/__snapshots__/scaffold-golden-snapshots.vitest.ts.snap",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -201,11 +194,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The Human Voice Rules standard lives at `.opencode/skills/sk-doc/shared/references/hvr-rules.md`,",
     "created_at": "2026-09-01T03:42:36Z",
-    "last_save_at": "2026-09-01T04:16:32.151Z",
+    "last_save_at": "2026-09-10T20:45:43.676Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,11 +214,11 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3c80b40e2426e5ca51b9be113460e56b73378f253f9ca4cefcf5625979f8d269",
+    "source_fingerprint": "sha256:7a62f6369b25dd67d2baf8a214ee9eb1337dfd1979a8884b30d30902dff39c20",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "342a11875b0272c816141b13b382ac61175e5cd46cae0bdae2c426e551be2de9",
-      "plan.md": "6d84fbd425788dc7ae862f6fa3bb1756e2b100e1a006b6f86e619ca7beeb3345",
+      "plan.md": "09d1194f392741ef44ba3a853c6456fcd61c2aab93daf2d157b7aa8f6ef295e6",
       "tasks.md": "de53ebf35743666a22f1d0825683f9a2a986b0c204a8a2cd2ad853cf214db0a9",
       "implementation-summary.md": "2a7e565fcf97e61c3e8ca09ac9084965abffa3152734fd4f658c864809740447"
     },

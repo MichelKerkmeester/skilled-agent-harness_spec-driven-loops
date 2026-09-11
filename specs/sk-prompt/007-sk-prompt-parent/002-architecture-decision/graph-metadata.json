@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The program has approved high-impact structural decisions for folding `.opencode/skills/sk-prompt/` and `.opencode/skills/sk-prompt-models/` into a single `.opencode/skills/sk-prompt/` parent hub, but phase 003 cannot safely scaffold the hub until those decisions are frozen in one architecture record",
     "created_at": "2026-07-09T13:34:33Z",
-    "last_save_at": "2026-08-30T15:39:18.858Z",
+    "last_save_at": "2026-09-10T20:45:55.518Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,12 +210,12 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5f08fe29c8a10da7c36a038407100f4544659885e0afc03ccee936d22fbb8b52",
+    "source_fingerprint": "sha256:2fcb94aae4aa1148a032f04690c742e6a427f18d30840f3d84e918071ea2f305",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "edd77271c4a5d98a52fd035ca285bb05d40da51f90b215bd282de85bb9e71716",
-      "plan.md": "5a82097bec7d661de8bf6b8c503b9f386608fbbb4b809e4694b5ff0d1b73f02c",
-      "tasks.md": "8323b4a7b411ff121cf4e8b9c4b896cb3ad21050e87d1a26648dacee9332d2d4",
+      "spec.md": "e6284d6907b9b50f3dc97f621fe61cc0fb167b08d32563f4a5f7ae5857abe5fa",
+      "plan.md": "994fdc06daa86011b74ec80640bf50e3069d1fa78c3e695f0faacdae81c5ceae",
+      "tasks.md": "94d1cc988056f56303f455398470d56cb0345215c36894826615378086d58166",
       "decision-record.md": "ec3bd7d5b9b52974225b615b36bd9589ac4babfecb3c278540af25edc8ba0bfb",
       "implementation-summary.md": "b68551f9b7461f15b224a78ecddfe77e4d6c73694d2f3d3e0faef702b6b3ab40"
     },

@@ -1,5 +1,5 @@
 {
-  "level": "phase",
+  "level": "2",
   "specFolder": "sk-doc/037-playbook-family-remediation",
   "description": "Manual testing playbooks are the only executable statement of what each skill package promises an operator",
   "keywords": [

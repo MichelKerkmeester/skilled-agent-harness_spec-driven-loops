@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "sk-git/016-git-action-advisory-hook/004-pathspec-integrity",
   "description": "The pathspec failure that motivated the packet is covered by a rule built in phase 002, and its reproduction is asserted there",
   "keywords": [

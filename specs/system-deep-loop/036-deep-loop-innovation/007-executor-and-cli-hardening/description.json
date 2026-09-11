@@ -1,5 +1,5 @@
 {
-  "level": "3",
+  "level": "2",
   "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening",
   "description": "CLI adapter stress and playbooks, executor wiring and parity, write-containment hardening, deep-alignment integrity, trustworthy state records,",
   "keywords": [

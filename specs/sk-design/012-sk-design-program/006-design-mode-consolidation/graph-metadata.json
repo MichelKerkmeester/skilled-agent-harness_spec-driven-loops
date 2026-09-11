@@ -48,12 +48,15 @@
       "implementation-summary.md",
       "research/research.md",
       "handover.md",
+      ".opencode/skills/sk-design/mode-registry.json",
       "scratch/styles.sha256.before",
       "scratch/foundations-files.before.txt",
       "scratch/audit-files.before.txt",
       "scratch/benchmark-before/report.json",
       "scratch/routing.sha256.before",
-      ".opencode/skills/sk-design/SKILL.md"
+      ".opencode/skills/sk-design/SKILL.md",
+      ".opencode/skills/sk-design/hub-router.json",
+      ".opencode/skills/sk-design/command-metadata.json"
     ],
     "entities": [
       {
@@ -99,6 +102,12 @@
         "source": "derived"
       },
       {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/mode-registry.json",
+        "source": "derived"
+      },
+      {
         "name": "styles.sha256.before",
         "kind": "file",
         "path": "scratch/styles.sha256.before",
@@ -132,6 +141,18 @@
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-design/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "command-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/command-metadata.json",
         "source": "derived"
       },
       {
@@ -181,29 +202,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Rollback Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Four",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Foundations and audit were registered as peer hub modes despite being interface-domain workflows",
     "created_at": "2026-07-26T09:12:46.542Z",
-    "last_save_at": "2026-08-30T15:39:12.937Z",
+    "last_save_at": "2026-09-10T20:50:11.047Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,7 +218,7 @@
       "research/research.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:79db32749daf194acb840e7e846fe79243880ffe20129a01ad005e63cb3fffdc",
+    "source_fingerprint": "sha256:c8faebdd45f7b1724aeec9113fd63276a545b36e8e41dabee49520041ab4e07d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7f09a984bfb3dfa9a0480d4150482c20cfab33d355bb539a1f0d669daeeea33a",
@@ -223,7 +226,7 @@
       "tasks.md": "42b0e33a76af8003dbe50fb34f31f70cd3ecc3082b31ecd035b262a995125aae",
       "decision-record.md": "856e63422b21c36e780cd931e821915626ca9a2d339bf34fb3c54c706de68946",
       "implementation-summary.md": "175e697f1f00dcb3854ad6c4a407e9625fdee842c280c7f1cbf3ebb4763de11f",
-      "research/research.md": "b8439b2a153b8377161b1776675b52a327e6544bd3b33955479ac07ffd74e127",
+      "research/research.md": "2328551d69cdb968a8855cab3142a002492a764fd477dbd767d7dd19dd98f9fa",
       "handover.md": "f81742d8e105e02774adc8e5fb88e0543729ad2a4fc8bd368e813eae09dbd942"
     },
     "last_active_child_id": null,

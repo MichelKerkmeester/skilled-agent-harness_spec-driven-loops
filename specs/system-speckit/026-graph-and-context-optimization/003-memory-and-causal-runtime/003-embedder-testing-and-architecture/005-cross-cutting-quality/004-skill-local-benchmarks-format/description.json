@@ -1,5 +1,5 @@
 {
-  "level": "feature",
+  "level": "1",
   "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/004-skill-local-benchmarks-format",
   "description": "Cross-cutting introduction of a new `mcp_server/benchmarks/` convention for any MCP server in this repo (our own + forks).",
   "keywords": [

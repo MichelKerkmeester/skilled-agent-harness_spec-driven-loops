@@ -44,8 +44,7 @@
       "plan.md",
       "tasks.md",
       "decision-record.md",
-      "implementation-summary.md",
-      ".opencode/skills/sk-design/README.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -76,12 +75,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/README.md",
         "source": "derived"
       },
       {
@@ -191,11 +184,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The `007-styles-folder-readmes` packet gave every styles folder a README, but most are minimal stubs",
     "created_at": "2026-07-22T05:45:30.641Z",
-    "last_save_at": "2026-08-30T15:39:12.749Z",
+    "last_save_at": "2026-09-10T20:50:07.998Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

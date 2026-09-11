@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/002-mcp-server-inner-dirs",
   "description": "The MCP server contains non-Python directories whose names still use underscores, including runtime, bridge, stress, and test-support paths.",
   "keywords": [

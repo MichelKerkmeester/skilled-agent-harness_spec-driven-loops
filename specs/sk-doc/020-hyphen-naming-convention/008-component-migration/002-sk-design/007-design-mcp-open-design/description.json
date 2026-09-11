@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/007-design-mcp-open-design",
   "description": "The nested Open Design transport packet contains underscore-bearing install, transport-reference, and shell-helper names, and the shell helper is",
   "keywords": [

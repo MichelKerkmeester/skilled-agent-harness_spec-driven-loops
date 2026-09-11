@@ -98,6 +98,13 @@ const SPEC_FOLDER_ROW = /(\|[ \t]*\*\*Spec Folder\*\*[ \t]*\|[ \t]*)([^|\r\n]+?)
 const DOCS = ['spec.md', 'plan.md', 'tasks.md', 'implementation-summary.md', 'handover.md'];
 const PACKET_MARKERS = new Set(['spec.md', 'implementation-summary.md']);
 
+// A marker alone is not enough: the metadata writer this script drives also
+// requires the numbered folder name, and handing it a folder it will refuse
+// turns a correctly out-of-scope directory into a reported failure. The two
+// definitions of "packet" have to agree or the failure count means nothing.
+// Mirrors SPEC_FOLDER_RE in backfill-graph-metadata.ts.
+const PACKET_NAME_RE = /^\d{3}(?:[-_].+)?$/;
+
 // The recorded location lives in the leading YAML block. A pointer written into
 // a document's body is an illustration of the format, not this packet's own
 // record, and rewriting it would corrupt the passage it explains. The block can
@@ -401,7 +408,7 @@ function discover(root) {
         isPacket = true;
       }
     }
-    if (isPacket) packets.push(dir);
+    if (isPacket && PACKET_NAME_RE.test(path.basename(dir))) packets.push(dir);
   }
   return packets.sort();
 }

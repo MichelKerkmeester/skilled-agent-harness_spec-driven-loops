@@ -4,20 +4,6 @@
   "spec_folder": "system-speckit/z_archive/023-hybrid-rag-fusion-refinement",
   "parent_id": null,
   "children_ids": [
-    "system-spec-kit/z_archive/023-hybrid-rag-fusion-refinement/001-shared-esm-migration",
-    "system-spec-kit/z_archive/023-hybrid-rag-fusion-refinement/002-mcp-server-esm-migration",
-    "system-spec-kit/z_archive/023-hybrid-rag-fusion-refinement/003-scripts-interop-refactor",
-    "system-spec-kit/z_archive/023-hybrid-rag-fusion-refinement/004-verification-and-standards",
-    "system-spec-kit/z_archive/023-hybrid-rag-fusion-refinement/005-test-and-scenario-remediation",
-    "system-spec-kit/z_archive/023-hybrid-rag-fusion-refinement/006-review-remediation",
-    "system-spec-kit/z_archive/023-hybrid-rag-fusion-refinement/007-hybrid-search-null-db-fix",
-    "system-spec-kit/z_archive/023-hybrid-rag-fusion-refinement/008-spec-memory-compliance-audit",
-    "system-spec-kit/z_archive/023-hybrid-rag-fusion-refinement/009-reindex-validator-false-positives",
-    "system-spec-kit/z_archive/023-hybrid-rag-fusion-refinement/010-search-retrieval-quality-fixes",
-    "system-spec-kit/z_archive/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion",
-    "system-spec-kit/z_archive/023-hybrid-rag-fusion-refinement/012-memory-save-quality-pipeline",
-    "system-spec-kit/z_archive/023-hybrid-rag-fusion-refinement/013-fts5-fix-and-search-dashboard",
-    "system-spec-kit/z_archive/023-hybrid-rag-fusion-refinement/014-feedback-signal-pipeline",
     "system-speckit/z_archive/023-hybrid-rag-fusion-refinement/001-shared-esm-migration",
     "system-speckit/z_archive/023-hybrid-rag-fusion-refinement/002-mcp-server-esm-migration",
     "system-speckit/z_archive/023-hybrid-rag-fusion-refinement/003-scripts-interop-refactor",
@@ -74,10 +60,7 @@
       "plan.md",
       "research/research.md",
       "resource-map.md",
-      "dist/context-server.js",
-      "scripts/dist/memory/generate-context.js",
       "shared/package.json",
-      "scripts/package.json",
       "009-reindex-validator-false-positives/spec.md",
       "010-search-retrieval-quality-fixes/spec.md",
       "011-indexing-and-adaptive-fusion/spec.md"
@@ -105,18 +88,6 @@
         "name": "resource-map.md",
         "kind": "doc",
         "path": "resource-map.md",
-        "source": "derived"
-      },
-      {
-        "name": "context-server.js",
-        "kind": "code",
-        "path": "dist/context-server.js",
-        "source": "derived"
-      },
-      {
-        "name": "generate-context.js",
-        "kind": "code",
-        "path": "scripts/dist/memory/generate-context.js",
         "source": "derived"
       },
       {
@@ -226,11 +197,23 @@
         "kind": "proper_noun",
         "path": "research/research.md",
         "source": "derived"
+      },
+      {
+        "name": "Resource Map",
+        "kind": "proper_noun",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Author Instructions",
+        "kind": "proper_noun",
+        "path": "resource-map.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Feature Specification: ESM Module Compliance",
     "created_at": "2026-04-12T09:02:50.316Z",
-    "last_save_at": "2026-08-30T15:39:39.418Z",
+    "last_save_at": "2026-09-10T21:05:07.228Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

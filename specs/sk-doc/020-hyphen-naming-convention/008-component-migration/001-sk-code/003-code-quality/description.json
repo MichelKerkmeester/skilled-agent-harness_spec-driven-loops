@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/003-code-quality",
   "description": "The code-quality mode still stores its reusable checklist under assets/codequalitychecklist/, its playbook under manualtestingplaybook/qualitygate/,",
   "keywords": [

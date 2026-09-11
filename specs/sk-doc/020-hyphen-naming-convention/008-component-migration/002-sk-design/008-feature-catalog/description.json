@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/008-feature-catalog",
   "description": "The sk-design hub and mode packets use feature_catalog roots, category directories, and feature files with underscores, while catalog indexes link to",
   "keywords": [

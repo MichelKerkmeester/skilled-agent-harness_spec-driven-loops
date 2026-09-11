@@ -45,8 +45,7 @@
       "plan.md",
       "tasks.md",
       "decision-record.md",
-      ".opencode/commands/README.txt",
-      ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs"
+      ".opencode/commands/README.txt"
     ],
     "entities": [
       {
@@ -77,12 +76,6 @@
         "name": "README.txt",
         "kind": "file",
         "path": ".opencode/commands/README.txt",
-        "source": "derived"
-      },
-      {
-        "name": "sync-prompts.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs",
         "source": "derived"
       },
       {
@@ -192,11 +185,17 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The loose command surface contains `agentrouter.md` and `goalopencode.md`, while the program's canonical filesystem form is kebab-case",
     "created_at": "2026-07-14T15:18:37Z",
-    "last_save_at": "2026-08-30T15:39:17.076Z",
+    "last_save_at": "2026-09-10T20:45:16.720Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

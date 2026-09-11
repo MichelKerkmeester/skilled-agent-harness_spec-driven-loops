@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/002-scripts",
   "description": "The sk-doc scripts tree contains snake_case markdown fixture filenames and Python script names that must be treated differently.",
   "keywords": [

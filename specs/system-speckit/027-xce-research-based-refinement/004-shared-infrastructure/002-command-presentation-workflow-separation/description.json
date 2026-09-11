@@ -1,5 +1,5 @@
 {
-  "level": "phase",
+  "level": "2",
   "status": "phase-parent",
   "specFolder": "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation",
   "description": "Command files under `.opencode/commands/<group>/<name>.md` currently mix workflow logic with presentation contracts",

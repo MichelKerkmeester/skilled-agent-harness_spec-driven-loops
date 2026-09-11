@@ -369,6 +369,105 @@ if [[ "${SPECKIT_SKIP_ROUTE_REMINT:-0}" != "1" ]] && command -v node >/dev/null 
   fi
 fi
 
+# --- Spec derived-metadata auto re-mint (blocking only when it cannot fix it) ---
+# A packet's graph-metadata.json stores a fingerprint of the spec documents it was
+# derived from, plus fields summarised out of them. Editing spec.md or any sibling
+# doc invalidates both, and nothing local says so: validate.sh reports it, but only
+# for the folder someone thinks to run it against. A repository sweep found 460
+# packets carrying a stale fingerprint, which is what happens when every edit leaves
+# the regeneration to a human who has no reason to remember it.
+# Same shape as the routing gate above and for the same reason: the artifact is
+# derived from the staged documents, so this regenerates and stages it rather than
+# printing a command. It refuses in the two cases where regenerating would be a lie.
+if [[ -z "${SPECKIT_SKIP_SPEC_REMINT:-}" ]]; then
+  # scratch/ holds working files that are not packet documents, and z_archive/ is
+  # retired history nothing should re-derive.
+  SPEC_STAGED_DOCS="$(git diff --cached --name-only --diff-filter=ACMR -- 'specs/**/*.md' 2>/dev/null \
+    | grep -v '/scratch/' | grep -v '/z_archive/' || true)"
+
+  if [[ -n "$SPEC_STAGED_DOCS" ]]; then
+    # A doc's packet is the nearest ancestor carrying BOTH graph-metadata.json and
+    # spec.md. Walking up rather than assuming a depth is what makes this work for a
+    # phase child, whose docs sit two levels below the track.
+    # Both files are required because the repository contains grouping directories
+    # that carry metadata without being packets, and the re-derive tool exits non-zero
+    # on them ("target is not a spec folder"). Keying on the metadata alone would make
+    # this gate block every commit that touched a document under one of those.
+    SPEC_PACKETS="$(
+      while IFS= read -r doc; do
+        [[ -z "$doc" ]] && continue
+        dir="$(dirname "$doc")"
+        while [[ "$dir" == specs/* ]]; do
+          if [[ -f "$REPO_ROOT/$dir/graph-metadata.json" && -f "$REPO_ROOT/$dir/spec.md" ]]; then
+            echo "$dir"; break
+          fi
+          dir="$(dirname "$dir")"
+        done
+      done <<< "$SPEC_STAGED_DOCS" | sort -u
+    )"
+
+    if [[ -n "$SPEC_PACKETS" ]]; then
+      # git runs this hook against a throwaway index when a pathspec narrows the
+      # commit. Anything staged there is discarded, so the metadata would reach the
+      # commit while the real index keeps the old blob, and the next commit would
+      # silently revert it. The name is the whole discriminator: a plain commit uses
+      # .git/index and "git commit -a" uses .git/index.lock, so testing for "not
+      # index" would block every -a commit in the repository.
+      if [[ "$(basename "${GIT_INDEX_FILE:-index}")" == next-index-* ]]; then
+        echo "" >&2
+        echo "BLOCKED [gate:spec-remint]: spec docs are staged and this commit narrows its" >&2
+        echo "pathspec, so metadata staged now would be discarded with the temporary index." >&2
+        echo "Fix: run the repair yourself and commit its output with the docs:" >&2
+        printf '  node .opencode/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs --folder %s --apply\n' $SPEC_PACKETS >&2
+        exit 1
+      fi
+
+      for SPEC_PACKET in $SPEC_PACKETS; do
+        # Re-deriving reads the working tree, not the index. If a doc in this packet
+        # is only half staged the metadata would describe content the commit does not
+        # carry, which is a quieter version of the drift this gate exists to remove.
+        SPEC_DIRTY="$(git diff --name-only -- "$SPEC_PACKET" 2>/dev/null | grep -v '/scratch/' || true)"
+        if [[ -n "$SPEC_DIRTY" ]]; then
+          echo "" >&2
+          echo "BLOCKED [gate:spec-remint]: $SPEC_PACKET has documents staged and unstaged at once:" >&2
+          printf '%s\n' "$SPEC_DIRTY" | sed 's/^/  /' >&2
+          echo "Metadata derived now would describe content this commit does not contain." >&2
+          echo "Fix: stage the rest, or unstage the partial edit, then re-commit." >&2
+          exit 1
+        fi
+
+        if ! SPEC_OUT="$(node "$REPO_ROOT/.opencode/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs" \
+              --folder "$SPEC_PACKET" --apply 2>&1)"; then
+          echo "" >&2
+          echo "BLOCKED [gate:spec-remint]: could not re-derive metadata for $SPEC_PACKET:" >&2
+          printf '%s\n' "$SPEC_OUT" | sed 's/^/  /' >&2
+          echo "Bypass: SPECKIT_SKIP_SPEC_REMINT=1 git commit ..." >&2
+          exit 1
+        fi
+
+        # Nothing to stage is the common case: most doc edits leave the derived
+        # fields identical, and the tool is a no-op then. Only report when it wrote.
+        SPEC_CHANGED="$(git diff --name-only -- "$SPEC_PACKET/graph-metadata.json" "$SPEC_PACKET/description.json" 2>/dev/null || true)"
+        [[ -z "$SPEC_CHANGED" ]] && continue
+
+        git add -- "$SPEC_PACKET/graph-metadata.json" "$SPEC_PACKET/description.json" 2>/dev/null || true
+
+        # Prove it. An add that silently did nothing leaves the commit carrying stale
+        # metadata, and no later local gate can see that.
+        SPEC_LEFT="$(git diff --name-only -- "$SPEC_PACKET/graph-metadata.json" "$SPEC_PACKET/description.json" 2>/dev/null || true)"
+        if [[ -n "$SPEC_LEFT" ]]; then
+          echo "" >&2
+          echo "BLOCKED [gate:spec-remint]: re-derived $SPEC_PACKET but this did not reach the index:" >&2
+          printf '%s\n' "$SPEC_LEFT" | sed 's/^/  /' >&2
+          echo "Fix: git add those paths, then re-commit." >&2
+          exit 1
+        fi
+        echo "[gate:spec-remint] re-derived $SPEC_PACKET and staged its metadata." >&2
+      done
+    fi
+  fi
+fi
+
 # --- Tool ownership map gate (blocking) ---
 # Blocks commits when the committed generated map no longer matches TOOL_DEFINITIONS.
 # Manual-testing-playbook operator contract: enforced by CI only (pull request,

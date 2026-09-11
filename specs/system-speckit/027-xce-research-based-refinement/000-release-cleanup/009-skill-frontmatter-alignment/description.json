@@ -7,7 +7,7 @@
     "references",
     "assets"
   ],
-  "level": "phase",
+  "level": "1",
   "status": "phase-parent",
   "is_phase_parent": true,
   "parent_id": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup",

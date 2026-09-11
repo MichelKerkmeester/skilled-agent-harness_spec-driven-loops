@@ -12,7 +12,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "024-compact-code-graph/023-context-preservation-metrics"
+    packet_pointer: "system-speckit/z_archive/024-compact-code-graph/023-context-preservation-metrics"
     last_updated_at: "2026-04-24T15:33:48Z"
     last_updated_by: "claude-opus-4-7-spec-audit-2026-04-24"
     recent_action: "Spec audit + path reference remediation (Pass 1-3)"

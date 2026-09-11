@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Three constant directives were appended to every advisor brief on every user turn, on every",
     "created_at": "2026-08-30T18:28:13Z",
-    "last_save_at": "2026-08-30T18:39:51.316Z",
+    "last_save_at": "2026-09-10T20:43:35.182Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,11 +210,11 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6c94367c5d66c35e7be21e0b0a7067b2a91c0bff85bc5063157fde35880c072a",
+    "source_fingerprint": "sha256:9f048f887f431a8f1d650987e9a33725b9d29dfe40e4905cbbdd966613f5ffa7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4514f71054ee2bffb3d8135f6b4083bbbbed816c9c7f19cf6fb7955d0a5d8804",
-      "plan.md": "2ad9771937af2663566183dc3fc31859f3f3a2f4b6bf05cade3b753e77d2f1a5",
+      "plan.md": "6a88d2ea1bb5673e356b0fce0e08d953990e990d3b6555346f3bd09a513377d0",
       "tasks.md": "6d8b3f9a75c251736005bde5cf2cf010c220532f1814634deb0957731cf68cb7",
       "implementation-summary.md": "18f47ab736272a9470340abf9b72e43e9bb95ca4fb1af97bac6161c828b83a7a"
     },

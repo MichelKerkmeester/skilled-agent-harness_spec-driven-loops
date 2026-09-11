@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "mcp-tooling/007-mcp-tooling-parent/005-foldin-clickup-and-figma",
   "description": "The hub has one workflow packet (chrome-devtools) but still needs its second workflow bridge (click-up) and its transport (figma)",
   "keywords": [

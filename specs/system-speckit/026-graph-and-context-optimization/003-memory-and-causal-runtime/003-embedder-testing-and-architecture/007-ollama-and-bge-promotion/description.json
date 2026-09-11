@@ -1,5 +1,5 @@
 {
-  "level": "phase",
+  "level": "1",
   "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/007-ollama-and-bge-promotion",
   "description": "Phase parent.",
   "keywords": [

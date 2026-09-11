@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "3",
   "specFolder": "sk-git/016-git-action-advisory-hook/002-rule-encoding",
   "description": "sk-git declared no `hardrules:`, so the evaluator that already runs on every Bash command had nothing to read for git",
   "keywords": [

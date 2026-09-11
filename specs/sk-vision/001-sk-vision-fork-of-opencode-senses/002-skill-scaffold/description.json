@@ -1,5 +1,5 @@
 {
-  "level": "phase",
+  "level": "2",
   "specFolder": "sk-vision/001-sk-vision-fork-of-opencode-senses/002-skill-scaffold",
   "description": "Text-only models need a legal standalone skill root before any runtime copy",
   "keywords": [

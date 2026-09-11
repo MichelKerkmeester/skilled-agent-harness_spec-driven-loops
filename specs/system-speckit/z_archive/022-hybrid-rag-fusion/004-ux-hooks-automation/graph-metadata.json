@@ -46,21 +46,8 @@
       "tasks.md",
       "implementation-summary.md",
       "research/research.md",
-      "tools/types.ts",
-      "dist/context-server.js",
-      "hooks/mutation-feedback.ts",
-      "hooks/response-hints.ts",
-      "tests/embeddings.vitest.ts",
-      "tests/hooks-ux-feedback.vitest.ts",
       "tests/stdio-logging-safety.vitest.ts",
-      "tests/context-server.vitest.ts",
-      "tests/handler-checkpoints.vitest.ts",
-      "tests/mcp-input-validation.vitest.ts",
-      "tests/memory-crud-extended.vitest.ts",
-      "tests/memory-save-ux-regressions.vitest.ts",
-      "tests/tool-input-schema.vitest.ts",
-      "handlers/memory-crud-health.ts",
-      "handlers/mutation-hooks.ts"
+      "research/iterations/iteration-001.md"
     ],
     "entities": [
       {
@@ -94,93 +81,15 @@
         "source": "derived"
       },
       {
-        "name": "types.ts",
-        "kind": "code",
-        "path": "tools/types.ts",
-        "source": "derived"
-      },
-      {
-        "name": "context-server.js",
-        "kind": "code",
-        "path": "dist/context-server.js",
-        "source": "derived"
-      },
-      {
-        "name": "mutation-feedback.ts",
-        "kind": "code",
-        "path": "hooks/mutation-feedback.ts",
-        "source": "derived"
-      },
-      {
-        "name": "response-hints.ts",
-        "kind": "code",
-        "path": "hooks/response-hints.ts",
-        "source": "derived"
-      },
-      {
-        "name": "embeddings.vitest.ts",
-        "kind": "test",
-        "path": "tests/embeddings.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "hooks-ux-feedback.vitest.ts",
-        "kind": "test",
-        "path": "tests/hooks-ux-feedback.vitest.ts",
-        "source": "derived"
-      },
-      {
         "name": "stdio-logging-safety.vitest.ts",
         "kind": "test",
         "path": "tests/stdio-logging-safety.vitest.ts",
         "source": "derived"
       },
       {
-        "name": "context-server.vitest.ts",
-        "kind": "test",
-        "path": "tests/context-server.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "handler-checkpoints.vitest.ts",
-        "kind": "test",
-        "path": "tests/handler-checkpoints.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "mcp-input-validation.vitest.ts",
-        "kind": "test",
-        "path": "tests/mcp-input-validation.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-crud-extended.vitest.ts",
-        "kind": "test",
-        "path": "tests/memory-crud-extended.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-save-ux-regressions.vitest.ts",
-        "kind": "test",
-        "path": "tests/memory-save-ux-regressions.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "tool-input-schema.vitest.ts",
-        "kind": "test",
-        "path": "tests/tool-input-schema.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-crud-health.ts",
-        "kind": "code",
-        "path": "handlers/memory-crud-health.ts",
-        "source": "derived"
-      },
-      {
-        "name": "mutation-hooks.ts",
-        "kind": "code",
-        "path": "handlers/mutation-hooks.ts",
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-001.md",
         "source": "derived"
       },
       {
@@ -206,11 +115,89 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Purpose Ship",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Shared",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Driven Fixes",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Add Windows",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Mutation handlers had inconsistent post-mutation follow-up behavior and uneven UX hint output across save/update/delete paths",
     "created_at": "2026-04-12T09:02:50.239Z",
-    "last_save_at": "2026-08-30T15:39:38.196Z",
+    "last_save_at": "2026-09-10T21:04:46.141Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

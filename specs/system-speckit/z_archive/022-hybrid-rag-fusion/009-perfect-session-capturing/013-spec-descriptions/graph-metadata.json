@@ -44,11 +44,7 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      "specs/descriptions.json",
-      "scripts/spec/create.sh",
-      "scripts/utils/slug-utils.ts",
-      "scripts/core/workflow.ts",
-      "scripts/spec-folder/generate-description.ts"
+      "specs/descriptions.json"
     ],
     "entities": [
       {
@@ -79,30 +75,6 @@
         "name": "descriptions.json",
         "kind": "config",
         "path": "specs/descriptions.json",
-        "source": "derived"
-      },
-      {
-        "name": "create.sh",
-        "kind": "script",
-        "path": "scripts/spec/create.sh",
-        "source": "derived"
-      },
-      {
-        "name": "slug-utils.ts",
-        "kind": "code",
-        "path": "scripts/utils/slug-utils.ts",
-        "source": "derived"
-      },
-      {
-        "name": "workflow.ts",
-        "kind": "code",
-        "path": "scripts/core/workflow.ts",
-        "source": "derived"
-      },
-      {
-        "name": "generate-description.ts",
-        "kind": "code",
-        "path": "scripts/spec-folder/generate-description.ts",
         "source": "derived"
       },
       {
@@ -194,11 +166,35 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Backward Compatibility",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Testing Playbook",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Folder Description Lifecycle",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The centralized `specs/descriptions.json` stores all spec folder descriptions in a single file, creating three problems:",
     "created_at": "2026-04-12T09:02:50.274Z",
-    "last_save_at": "2026-08-30T15:39:38.773Z",
+    "last_save_at": "2026-09-10T21:04:55.930Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

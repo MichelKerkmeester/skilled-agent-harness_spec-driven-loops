@@ -204,7 +204,7 @@
     ],
     "causal_summary": "The mode shipped without a manual testing playbook, so nothing recorded how an operator confirms it behaves correctly",
     "created_at": "2026-08-31T14:06:06Z",
-    "last_save_at": "2026-08-31T15:51:58.746Z",
+    "last_save_at": "2026-09-10T20:45:42.151Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,11 +214,11 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6f7198436660bf3013a88a74680297671c898b66ad6846a75060be93115b721f",
+    "source_fingerprint": "sha256:c7593da0f3ece3d9456e4acdd6dd5ecbe5751050cc06e03f033fa45e90d4f01e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3e799cd8aedaf400bc257b914031f1459978f57b8b8e26b611d5e664df0cf23e",
-      "plan.md": "c9e9cac7b5c338ce04458c5d9c487488f405f08f7c75947ec33e4db1776e3b29",
+      "plan.md": "304bf76cb712427b0d5eedc1b56b9602f2b2ec32160982bd5cc562eae863bc6b",
       "tasks.md": "22f06d72e0c9d23478ae12e55284c870a3f927e0a685553d8a4c19a6356e199b",
       "implementation-summary.md": "40ce9373e7631757b7d405f730129881b6e74d408c8fdc2028ad984a657da0f4"
     },

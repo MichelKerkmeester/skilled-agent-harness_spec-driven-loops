@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "sk-doc/020-hyphen-naming-convention/010-whole-repo-gate",
   "description": "The migration needs one evidence-based end-state gate that proves the scope-aware filesystem naming rule, reference closure, Git rename history, and",
   "keywords": [

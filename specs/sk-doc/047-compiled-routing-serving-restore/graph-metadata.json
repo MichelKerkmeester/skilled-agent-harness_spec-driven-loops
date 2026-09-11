@@ -48,8 +48,7 @@
       "implementation-summary.md",
       ".opencode/bin/compiled-route-sync.cjs",
       ".opencode/skills/sk-doc/hub-router.json",
-      ".opencode/skills/sk-doc/mode-registry.json",
-      ".opencode/skills/system-spec-kit/scripts/rules/check-complexity.sh"
+      ".opencode/skills/sk-doc/mode-registry.json"
     ],
     "entities": [
       {
@@ -98,12 +97,6 @@
         "name": "mode-registry.json",
         "kind": "config",
         "path": ".opencode/skills/sk-doc/mode-registry.json",
-        "source": "derived"
-      },
-      {
-        "name": "check-complexity.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-complexity.sh",
         "source": "derived"
       },
       {
@@ -195,11 +188,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Three of the five parent hubs reported `servingAuthority: legacy` with cause",
     "created_at": "2026-09-01T05:38:12Z",
-    "last_save_at": "2026-09-01T06:20:08.286Z",
+    "last_save_at": "2026-09-10T20:45:43.886Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,11 +208,11 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cac09e28c7b4b886dd670a21012ae8963ecf0d33bfce146fb098ecb373a8f6b2",
+    "source_fingerprint": "sha256:526e8c859f864e0bb0586e8ddafdeab5531b7bab3ab30c3ffb9f21fd860fc364",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c1df3dad85fb69f35859a98a0ea801593a26756b94b58f4924c273d2c30e553d",
-      "plan.md": "152be4a81b5c0edd641f72f85c8599b22c104e36c461a83333018f55e850d405",
+      "plan.md": "0269c21f91e06b8e17b524a12a7c10d3dcfc87e6eb0fc39025cd273a34f05e26",
       "tasks.md": "51f613fef30ae621023ee89e3f71c9a0604790f845a52015fb4586e346ed3de2",
       "implementation-summary.md": "230f58d7e8e79122a77a810cf133151284f8f5e1d851ec11caaf6d3972433b35"
     },

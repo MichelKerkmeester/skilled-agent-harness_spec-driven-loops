@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/003-hoisted-shared-script-closures",
   "description": "Shared scripts used by more than one skill must move with their complete import, require, source, registry, fixture, and symlink closure rather than",
   "keywords": [

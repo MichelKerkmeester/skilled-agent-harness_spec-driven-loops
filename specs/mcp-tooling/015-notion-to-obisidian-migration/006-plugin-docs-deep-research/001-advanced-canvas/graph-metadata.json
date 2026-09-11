@@ -189,7 +189,7 @@
     ],
     "causal_summary": "The shipped mcp-obsidian Advanced Canvas file-layer reference docs (`references/plugins/advanced-canvas/`) carried a `VERIFY`-flagged unknown for the cross-portal (interdimensional) edge serialization shape and told the AI to never author it",
     "created_at": "2026-08-23T03:37:59.812Z",
-    "last_save_at": "2026-08-30T15:39:10.414Z",
+    "last_save_at": "2026-09-10T20:43:52.279Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,13 +198,13 @@
       "tasks.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:26338b2783a13cb0fdc13ad0d4e19171faf275e2d592be7f0cd4e7e4d706375a",
+    "source_fingerprint": "sha256:3c163ce65aabb2212ed300100c7d12aa689b74405f6e37402f95315206db5fd2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "346b91f08ed3dbef01fce965f72a5353fcb48f43dd48bf2da9ae8ebb7b52ffd4",
       "plan.md": "8077217c4b41d183f2a6b461242e809ac48a3100af3b747bb8198377ac6047d1",
       "tasks.md": "88a68ff0a3704d2b3c1fce17e0a62657a1c595083c1f3663cbf48ac263377fa8",
-      "research/research.md": "12fb58062c55a91ae5cbd9ea7dc48c8e82ed637870217456e714e2e0c30163ba"
+      "research/research.md": "f05c924dbc149e94b33bb40371ee7bfff2aadf3c9a82218aa3f2c3422d76b713"
     },
     "last_active_child_id": null,
     "last_active_at": null

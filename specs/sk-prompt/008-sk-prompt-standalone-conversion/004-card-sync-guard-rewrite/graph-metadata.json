@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The guard ran four structural checks; two of them read the deleted model registry directly and now crash with a FileNotFoundError before reporting anything",
     "created_at": "2026-08-28T08:49:37Z",
-    "last_save_at": "2026-08-30T15:39:18.957Z",
+    "last_save_at": "2026-09-10T20:45:55.491Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,11 +201,11 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fd53cac16eb31b0c660867f53513b8beb070e3036569c8121e8c29663e33d0b6",
+    "source_fingerprint": "sha256:fb69624cd61e93bf8913b447250b6ebcf36e0b7a050393c6d9f7808e0815a931",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "cd7ff5146731c61d6cdd3aca1de78742e8da0b3c4064a2f06e5a6a6dcd8427ab",
-      "plan.md": "4bd3c5f982c120a61b8ced2e667dc80d6a1ea0ce853932560997b1677d1927b8",
+      "plan.md": "0b2c47146a953dc06dafb9f1e05826d2c488a8ae5be8e44dde1f67fb30800707",
       "tasks.md": "55823744b6c8afca531c4a6f6ae89b803736d4dce90f522a6c42d03830e94fd3",
       "implementation-summary.md": "629f0c06f321f651ec0c00494cf43a451d8202dc3b187cb3e1ef9bc54784944f"
     },

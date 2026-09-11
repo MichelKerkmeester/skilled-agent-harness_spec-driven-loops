@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Ten phases landed a new surface packet, its hub wiring, and a set of source conventions applied to",
     "created_at": "2026-08-28T18:17:41Z",
-    "last_save_at": "2026-08-30T15:39:11.285Z",
+    "last_save_at": "2026-09-10T20:44:06.468Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,11 +202,11 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:476ecab99db52a434c9b19921e43dad27005ac0902089f4d34e73c5e5385a5f2",
+    "source_fingerprint": "sha256:dcadf14b15b0080fe039710e7ab9c66a6274ffe8e4f09b9e2dba1ca47cf9ddf8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1fa678254fda264437798e2194347b9aab833b4fbad3b84ecb792cc3402119aa",
-      "plan.md": "2a39360294fbacf54626da79cb68a280b845a5fa3c4614dc95721061aded0d9a",
+      "plan.md": "012171c3813040102656e4e0334f072c439e3e68008398bfda8fce667600e9d9",
       "tasks.md": "45393dc0b5fb076f2a45b9fe9b68d5734ab3e8a892c4c3a61e150c5d61f2f792",
       "implementation-summary.md": "a834f617b76e26bf243b062e10fd4195d7019159a392532f984bee624a46e598"
     },

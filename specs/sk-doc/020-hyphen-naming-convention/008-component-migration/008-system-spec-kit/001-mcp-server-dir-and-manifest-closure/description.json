@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/001-mcp-server-dir-and-manifest-closure",
   "description": "The system-spec-kit workspace still exposes mcp_server as a filesystem path even though kebab-case is canonical.",
   "keywords": [

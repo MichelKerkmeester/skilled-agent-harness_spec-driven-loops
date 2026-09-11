@@ -4,28 +4,6 @@
   "spec_folder": "system-speckit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook",
   "parent_id": "system-speckit/z_archive/022-hybrid-rag-fusion",
   "children_ids": [
-    "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/001-retrieval",
-    "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/002-mutation",
-    "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/003-discovery",
-    "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/004-maintenance",
-    "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/005-lifecycle",
-    "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/006-analysis",
-    "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/007-evaluation",
-    "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/008-bug-fixes-and-data-integrity",
-    "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/009-evaluation-and-measurement",
-    "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/010-graph-signal-activation",
-    "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/011-scoring-and-calibration",
-    "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/012-query-intelligence",
-    "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/013-memory-quality-and-indexing",
-    "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/014-pipeline-architecture",
-    "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/015-retrieval-enhancements",
-    "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/016-tooling-and-scripts",
-    "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/017-governance",
-    "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/018-ux-hooks",
-    "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/019-feature-flag-reference",
-    "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/020-feature-flag-reference-audit",
-    "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/021-remediation-revalidation",
-    "system-spec-kit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/022-implement-and-remove-deprecated-features",
     "system-speckit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/001-retrieval",
     "system-speckit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/002-mutation",
     "system-speckit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/003-discovery",
@@ -91,7 +69,6 @@
       "tasks.md",
       "implementation-summary.md",
       "resource-map.md",
-      "shared/index.ts",
       "006-analysis/spec.md"
     ],
     "entities": [
@@ -123,12 +100,6 @@
         "name": "resource-map.md",
         "kind": "doc",
         "path": "resource-map.md",
-        "source": "derived"
-      },
-      {
-        "name": "index.ts",
-        "kind": "code",
-        "path": "shared/index.ts",
         "source": "derived"
       },
       {
@@ -238,11 +209,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Feature Specification: manual-testing-per-playbook",
     "created_at": "2026-04-12T09:02:50.288Z",
-    "last_save_at": "2026-08-30T15:39:39.013Z",
+    "last_save_at": "2026-09-10T21:04:59.594Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

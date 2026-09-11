@@ -1,5 +1,5 @@
 {
-  "level": "phase",
+  "level": "2",
   "specFolder": "sk-doc/020-hyphen-naming-convention/014-naming-standard-hardening",
   "description": "The kebab-case naming canon (`shared/references/filesystem-naming-convention.md`) is enforced by the code but not by the standard docs or the gates",
   "keywords": [

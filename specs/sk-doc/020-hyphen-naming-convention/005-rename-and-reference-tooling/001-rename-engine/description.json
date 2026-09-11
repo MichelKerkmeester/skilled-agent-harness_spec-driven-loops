@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/001-rename-engine",
   "description": "The migration needs a deterministic git-mv engine driven by an explicit semantic source-to-target map.",
   "keywords": [

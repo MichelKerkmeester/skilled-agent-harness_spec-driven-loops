@@ -190,7 +190,7 @@
     ],
     "causal_summary": "Research phase for §3 structural retrieval improvements. Deep-research informs implementation plan.",
     "created_at": "2026-05-18T05:13:46.123Z",
-    "last_save_at": "2026-08-30T15:39:30.549Z",
+    "last_save_at": "2026-09-10T20:47:39.940Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,14 +200,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:6ce500bbb496cbe5996e0b620eb6cf637c7e22207f8533db9e956e94665ea856",
+    "source_fingerprint": "sha256:e2298c3aff8fa9f8048bd4f8838cf28fc6c02cbffb17bf1a7a5c9137a2b2bc84",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "641c67545ac24979ac610f0ba2f472a117de4cfd182f6f3e5adf7976c4ac59d7",
       "plan.md": "084d2039f74a6e376bac55c52a22c7710b65e97637051285ba0809e556207eef",
       "tasks.md": "9e9e1e12b4b6f59f1709392477c77591366e7f3431fe86c901641ec11b0b2ef6",
       "implementation-summary.md": "5f987abe4adf1030d3852e077870ad60ca68fcb6d8d598c92291f674e5122f93",
-      "research/research.md": "dcd4b6fa0b2ac9c686d5ce00eeadf4c3026baebc77ff5d5bcc0f589d0d98b1c4"
+      "research/research.md": "fdaef71795dba93cf8d914f188843fc883742060e9c6550b20a33e5cbdfe32e7"
     },
     "last_active_child_id": null,
     "last_active_at": null

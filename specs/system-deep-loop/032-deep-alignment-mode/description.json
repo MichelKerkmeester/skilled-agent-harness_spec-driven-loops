@@ -1,5 +1,5 @@
 {
-  "level": "phase",
+  "level": "2",
   "specFolder": "system-deep-loop/032-deep-alignment-mode",
   "description": "This repository defines conformance standards for its own artifacts — `sk-doc`'s document templates and DQI validators, `sk-git`'s commit and",
   "keywords": [

@@ -44,9 +44,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      "lib/search/pipeline/stage2-fusion.ts",
-      "lib/cognitive/co-activation.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -71,18 +69,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "stage2-fusion.ts",
-        "kind": "code",
-        "path": "lib/search/pipeline/stage2-fusion.ts",
-        "source": "derived"
-      },
-      {
-        "name": "co-activation.ts",
-        "kind": "code",
-        "path": "lib/cognitive/co-activation.ts",
         "source": "derived"
       },
       {
@@ -178,7 +164,7 @@
     ],
     "causal_summary": "The bug-fixes-and-data-integrity category covers 11 scenarios that verify correctness of data handling, deduplication, and transaction safety in the hybrid-rag-fusion memory system",
     "created_at": "2026-04-12T09:02:50.295Z",
-    "last_save_at": "2026-08-30T15:39:39.091Z",
+    "last_save_at": "2026-09-10T21:05:00.721Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

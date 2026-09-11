@@ -46,13 +46,7 @@
       "tasks.md",
       "decision-record.md",
       "implementation-summary.md",
-      "research/research.md",
-      "scripts/core/workflow.ts",
-      "scripts/extractors/conversation-extractor.ts",
-      "scripts/extractors/collect-session-data.ts",
-      "scripts/extractors/decision-extractor.ts",
-      "scripts/lib/validate-memory-quality.ts",
-      "scripts/core/quality-scorer.ts"
+      "research/research.md"
     ],
     "entities": [
       {
@@ -89,42 +83,6 @@
         "name": "research.md",
         "kind": "doc",
         "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "workflow.ts",
-        "kind": "code",
-        "path": "scripts/core/workflow.ts",
-        "source": "derived"
-      },
-      {
-        "name": "conversation-extractor.ts",
-        "kind": "code",
-        "path": "scripts/extractors/conversation-extractor.ts",
-        "source": "derived"
-      },
-      {
-        "name": "collect-session-data.ts",
-        "kind": "code",
-        "path": "scripts/extractors/collect-session-data.ts",
-        "source": "derived"
-      },
-      {
-        "name": "decision-extractor.ts",
-        "kind": "code",
-        "path": "scripts/extractors/decision-extractor.ts",
-        "source": "derived"
-      },
-      {
-        "name": "validate-memory-quality.ts",
-        "kind": "code",
-        "path": "scripts/lib/validate-memory-quality.ts",
-        "source": "derived"
-      },
-      {
-        "name": "quality-scorer.ts",
-        "kind": "code",
-        "path": "scripts/core/quality-scorer.ts",
         "source": "derived"
       },
       {
@@ -198,11 +156,47 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execution Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Confirm Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Reuse Existing Normalization Instead",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Structured memory saves (`--json`/`--stdin`) could degrade into poor outputs when normalization did not adequately feed downstream extraction/scoring paths",
     "created_at": "2026-04-12T09:02:50.338Z",
-    "last_save_at": "2026-08-30T15:39:39.640Z",
+    "last_save_at": "2026-09-10T21:05:11.165Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

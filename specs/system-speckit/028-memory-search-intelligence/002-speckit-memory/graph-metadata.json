@@ -85,15 +85,7 @@
       "039-substrate-sandbox-cleanup/spec.md",
       "040-opencode-temp-worker-reaping/spec.md",
       "042-embedder-relisten-and-reaper-hardening/spec.md",
-      "shared/algorithms/rrf-fusion.ts",
-      "lib/search/query-router.ts",
-      "lib/response/envelope.ts",
-      "lib/storage/causal-edges.ts",
-      "lib/search/causal-boost.ts",
-      "lib/graph/temporal-edges.ts",
-      "lib/graph/contradiction-detection.ts",
-      "lib/search/fsrs.ts",
-      "lib/storage/idempotency-receipts.ts"
+      "shared/algorithms/rrf-fusion.ts"
     ],
     "entities": [
       {
@@ -112,54 +104,6 @@
         "name": "rrf-fusion.ts",
         "kind": "code",
         "path": "shared/algorithms/rrf-fusion.ts",
-        "source": "derived"
-      },
-      {
-        "name": "query-router.ts",
-        "kind": "code",
-        "path": "lib/search/query-router.ts",
-        "source": "derived"
-      },
-      {
-        "name": "envelope.ts",
-        "kind": "code",
-        "path": "lib/response/envelope.ts",
-        "source": "derived"
-      },
-      {
-        "name": "causal-edges.ts",
-        "kind": "code",
-        "path": "lib/storage/causal-edges.ts",
-        "source": "derived"
-      },
-      {
-        "name": "causal-boost.ts",
-        "kind": "code",
-        "path": "lib/search/causal-boost.ts",
-        "source": "derived"
-      },
-      {
-        "name": "temporal-edges.ts",
-        "kind": "code",
-        "path": "lib/graph/temporal-edges.ts",
-        "source": "derived"
-      },
-      {
-        "name": "contradiction-detection.ts",
-        "kind": "code",
-        "path": "lib/graph/contradiction-detection.ts",
-        "source": "derived"
-      },
-      {
-        "name": "fsrs.ts",
-        "kind": "code",
-        "path": "lib/search/fsrs.ts",
-        "source": "derived"
-      },
-      {
-        "name": "idempotency-receipts.ts",
-        "kind": "code",
-        "path": "lib/storage/idempotency-receipts.ts",
         "source": "derived"
       },
       {
@@ -231,18 +175,18 @@
     ],
     "causal_summary": "The Spec-Kit Memory MCP research surfaced candidate work across recall retrieval, deterministic IDs, currentness, reliability and eval coverage",
     "created_at": "2026-06-16T14:27:21.651Z",
-    "last_save_at": "2026-08-30T15:39:34.802Z",
+    "last_save_at": "2026-09-10T20:48:52.701Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:a454da81899fbc177d33dba6d8604bdd905a540649c8ae112ac1de802cbdff84",
+    "source_fingerprint": "sha256:7898b16c38a5aa922ee4145e4068c8e9046fd1454b84207a58130644a13934b9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c8485532e3ba33c76f52f5ca3b39adba6d6fdd6ff69831a32434728c76412e76",
-      "research/research.md": "1b660c1db38d7d958962be1851e6c18522db6929f4636700136c59e70fc8f604"
+      "research/research.md": "14e20509af45994983531d706cb44a8451682be54175bc59e7caa3b9559b0bb7"
     },
     "last_active_child_id": "system-speckit/028-memory-search-intelligence/002-speckit-memory/039-substrate-sandbox-cleanup",
     "last_active_at": "2026-06-23T00:00:00Z"
