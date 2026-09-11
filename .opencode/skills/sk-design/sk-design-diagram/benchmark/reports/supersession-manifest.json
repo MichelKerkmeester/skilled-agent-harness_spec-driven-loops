@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "mappings": [
+    {
+      "superseded": "2026-09-11--manual-testing-playbook--capture-review-2",
+      "replacement": "2026-09-11--manual-testing-playbook--capture-review-3",
+      "capturedAt": "2026-09-11T08:11:23.920Z",
+      "scenarioId": "CAP-001"
+    }
+  ]
+}

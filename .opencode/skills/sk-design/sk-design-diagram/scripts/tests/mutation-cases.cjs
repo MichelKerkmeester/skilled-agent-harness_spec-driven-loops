@@ -55,10 +55,14 @@ const FILE_CASES = [
     from: 'x1="808" y1="466" x2="828" y2="466" stroke="rgba(45,49,66,0.35)" stroke-width="1" stroke-dasharray="4,3"',
     to: 'x1="808" y1="466" x2="828" y2="466" stroke="rgba(45,49,66,0.35)" stroke-width="1" stroke-dasharray="9,2"',
     expect: /keys the dash array "9 2"/ },
-  { name: 'a label mask shifted onto a short connector', family: 'short-connector-labels',
+  { name: 'a label mask shifted onto its connector', family: 'label-mask-clearance',
     file: 'assets/diagrams/it-state.html',
     from: 'class="label-mask" x="478" y="312"', to: 'class="label-mask" x="470" y="312"',
-    expect: /under about 60px a label belongs beside its connector/ },
+    expect: /painted across it/ },
+  { name: 'a label mask pulled inside the clearance floor', family: 'label-mask-clearance',
+    file: 'assets/diagrams/flowchart.html',
+    from: '<rect x="644" y="220" width="24" height="12"', to: '<rect x="644" y="226" width="24" height="12"',
+    expect: /and the minimum is 4px/ },
 ];
 
 // The corpus-scoped families read the skill's documents and the token source, so their cases

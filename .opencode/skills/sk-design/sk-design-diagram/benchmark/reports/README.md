@@ -24,6 +24,7 @@ Each row below is one run folder. Rows are written by the benchmark harness at t
 
 | Executed | Folder | Runtime | Result | Verdict | Source |
 |---|---|---|---|---|---|
+| 2026-09-11 | [`2026-09-11--manual-testing-playbook--capture-review-3/`](./2026-09-11--manual-testing-playbook--capture-review-3/) | capture-review | 1 FAIL | **FAIL** | `manual-testing-playbook` |
 | 2026-09-11 | [`2026-09-11--manual-testing-playbook--capture-review-2/`](./2026-09-11--manual-testing-playbook--capture-review-2/) | capture-review | 1 FAIL | **FAIL** | `manual-testing-playbook` |
 | 2026-09-11 | [`2026-09-11--manual-testing-playbook--capture-review/`](./2026-09-11--manual-testing-playbook--capture-review/) | capture-review | 1 FAIL | **FAIL** | `manual-testing-playbook` |
 | 2026-08-12 | [`2026-08-12--manual-testing-playbook--hub-registration/`](./2026-08-12--manual-testing-playbook--hub-registration/) | deepseek-v4-flash deepseek/deepseek-v4-flash hub-registration | 1 PASS | **PASS** | `manual-testing-playbook` |

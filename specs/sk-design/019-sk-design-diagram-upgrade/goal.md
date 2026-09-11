@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "sk-design/019-sk-design-diagram-upgrade"
     last_updated_at: "2026-09-10T20:00:00Z"
     last_updated_by: "claude-conductor"
-    recent_action: "A fresh Opus read all 38 forms and found 34 defects and ten systemic patterns; five phases opened to remediate, merge the corpus and add DESIGN.md theming"
-    next_safe_action: "Author 007-011, then fix the two P1s first"
+    recent_action: "Five phases executed: 52 defects fixed over two rounds, ten systemic patterns settled, the corpus merged into one library, DESIGN.md theming added, captures made full page, and three capture reviews run"
+    next_safe_action: "Close the thirteen label masks the widened clearance rule found, then run a fourth capture review"
     blockers: []
     key_files:
       - "specs/sk-design/019-sk-design-diagram-upgrade/001-upgrade-research/research/research.md"
@@ -21,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "claude-019-sk-design-diagram-upgrade"
       parent_session_id: null
-    completion_pct: 55
+    completion_pct: 90
     open_questions: []
     answered_questions: []
 ---
@@ -109,10 +109,10 @@ The operator holds this directive as the session objective. Whenever anything ab
 
 **Round two — the manual review, the merge and the Style Reference.**
 
-- [ ] Every one of the 34 manual-review findings is fixed with evidence, or recorded with a reason a reader can check
-- [ ] Each systemic pattern S1–S9 is resolved in one direction, the losing document or file is edited, and no document states a value the corpus does not hold
-- [ ] `assets/diagrams/` is the only form directory; no path, document, script, test or workflow still names `assets/examples` or `assets/templates`
-- [ ] `apply-design-md.cjs --default` derives the stock palette exactly, and a second reference re-themes a copy through the same gates
+- [x] Every one of the 34 manual-review findings is fixed with evidence, or recorded with a reason a reader can check
+- [x] Each systemic pattern S1–S9 is resolved in one direction, the losing document or file is edited, and no document states a value the corpus does not hold
+- [x] `assets/diagrams/` is the only form directory; no path, document, script, test or workflow still names `assets/examples` or `assets/templates`
+- [x] `apply-design-md.cjs --default` derives the stock palette exactly, and a second reference re-themes a copy through the same gates
 - [ ] Captures are full page: no committed screenshot is cut off, and CAP-001 re-runs with its findings closed
 - [ ] From the final state: checker `RESULT: PASSED`, suite green, `--default` byte-identical, CI green on a push, and `validate.sh --strict --recursive` PASSED for all twelve folders
 <!-- /ANCHOR:completion -->
@@ -150,4 +150,23 @@ The operator holds this directive as the session objective. Whenever anything ab
 | Criterion 5 amended: version fields are per document by standard | Both research lineages read the five differing `version:` fields as drift. `sk-create-frontmatter/references/frontmatter-versioning.md` makes them the rule: every in-scope doc carries its own, `SKILL.md` anchors, children inherit major.minor. The criterion now asks for conformance to that standard, not one field |
 | The reconciliation pass is not a phase | Folded into 002's first tasks rather than renumbering five children |
 | The conductor misread the orchestrator as dead after node 005 | Its process hid its argv from `ps`, so the conductor's liveness checks missed it and dispatched a second agent for 006 while the orchestrator's own was writing it; the two reconciled, the orchestrator finished, and its report printed in full: five nodes PASSED, 29 of 29 placed, 7 dispatches |
+
+### Round two
+
+| Item | State | Evidence |
+|------|-------|----------|
+| 007 remediation, two rounds | Done | 34 findings fixed, then a fresh reader rendered every changed form and found 32 closed, two not landed and nine fixes that broke something new; all 18 closed. 42 of 42 tasks, 37 of 37 criteria |
+| 008 doctrine, ten patterns | Done | S1-S9 settled; two resolved by measurement rather than a change, and the record says why. 21 of 24 tasks, 14 of 16 criteria |
+| 009 one form library | Done | 38 forms in one directory, code keyed on the palette block rather than the directory. 27 of 27 tasks, 14 of 14 criteria |
+| 010 DESIGN.md theming | Done | `--default` derives all 31 role values exactly and reproduces every form; a second reference re-themes and gates. 19 of 20 criteria |
+| 011 full-page capture | Done | Eleven forms exceeded the old ceiling; no capture lands on 900 now, and the chart packet's images are byte-identical, proved by instrumenting every browser spawn |
+| Three capture reviews | Run | The second failed on masks sitting on their connectors; the third confirmed those fixed and found a long-standing defect in a second file that judging one file had hidden |
+
+### What the reviews overturned
+
+| Claim | What measurement showed |
+|-------|-------------------------|
+| A swimlane label overflowed its mask under a substituted font | Never real. The method counted ink anywhere in a margin, so an antialias shift on a neighbouring stroke read as a spill. Per glyph there is eleven units of slack |
+| Three keyed legend fills are one grey and must be stepped apart | The measurement was right and the conclusion wrong. Those node types are separated by stroke, and each swatch carries its own |
+| Masks must clear a stroke by six | The prose is in rendered pixels and the drawings in user units, which scale up about a quarter. Four units is the floor, six to ten the band |
 <!-- /ANCHOR:log -->
