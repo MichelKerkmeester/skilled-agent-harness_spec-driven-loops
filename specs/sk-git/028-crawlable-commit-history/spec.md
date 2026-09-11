@@ -52,7 +52,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Complete |
+| **Status** | In Progress |
 | **Created** | 2026-09-11 |
 | **Branch** | `worktrees/048-crawlable-commit-history` |
 | **Parent Spec** | `../spec.md` |
@@ -135,7 +135,9 @@ Give every commit a stable, numbered, crawlable identity and a body shaped for s
 | 5 | `005-history-rewrite/` | Rewrite main, skilled/v4.0.0.0 and tags on a mirror clone, remap citations in specs, force-push after a written rollback and an explicit yes | Complete |
 | 6 | `006-docs-and-release/` | README, changelog, advisor metadata, skill-root metadata, the git repo rule with its REPO RULES.md and AGENTS.md integration, and the parent closeout, executed last | Complete |
 | 7 | `007-git-workflow-run-failures/` | Analyze every git workflow that can fail an automated run and adjust sk-git and the hooks so it does not, executed before 006 | Complete |
+| 8 | `008-second-pass-subjects-and-attribution/` | Second rewrite pass: normalized subjects with a packet keyword, one Spec per touched packet, attribution lines stripped and forbidden | In Progress |
 
+| 8 | 008-second-pass-subjects-and-attribution/ | [Phase 8 scope] | Pending |
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins
@@ -155,6 +157,7 @@ Give every commit a stable, numbered, crawlable identity and a body shaped for s
 | 005-history-rewrite | 007-git-workflow-run-failures | Rewritten lines on origin | followers synced |
 | 007-git-workflow-run-failures | 006-docs-and-release | Every run-failing workflow adjusted with a test or reproduction | `node --test` and hook tests exit 0 |
 | 006-docs-and-release | Done | sk-doc validators, skill-root metadata gate and repo-rule validation green | `validate_document.py`, `package_skill.py --check`, `ci-skill-root-metadata.cjs` exit 0 |
+| 007-git-workflow-run-failures | 008-second-pass-subjects-and-attribution | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->
 
 ---

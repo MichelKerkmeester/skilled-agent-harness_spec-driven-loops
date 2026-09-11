@@ -1,0 +1,18 @@
+{
+  "specFolder": "sk-git/028-crawlable-commit-history/008-second-pass-subjects-and-attribution",
+  "description": "Phase 1: second-pass-subjects-and-attribution",
+  "keywords": [
+    "phase",
+    "second-pass-subjects-and-attribution"
+  ],
+  "lastUpdated": "2026-09-11T17:06:04.333Z",
+  "specId": "008",
+  "folderSlug": "second-pass-subjects-and-attribution",
+  "parentChain": [
+    "sk-git",
+    "028-crawlable-commit-history"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}

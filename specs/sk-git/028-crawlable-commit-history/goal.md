@@ -57,6 +57,7 @@ Frozen choices. Changing one is an amendment.
 | D6 | Implementation dispatches run on cli-pi with deepseek-v4.1-flash, high or max by task. Code follows sk-code opencode. Skill and README markdown follows sk-doc create-skill and create-readme. |
 | D7 | Work lives on worktree branch worktrees/048-crawlable-commit-history until the operator merges. |
 | D8 | A repo rule for the git discipline (commit identity, history rewrite, run-safe git behavior) is decided in 002 and, if needed, authored in 006 through sk-doc create-repo-rule, wired into REPO RULES.md and reflected in AGENTS.md section 5. |
+| D10 | Phase 008 runs a second rewrite pass: subjects normalized by recorded rules with a packet keyword, one Spec line per touched packet, every Co-Authored-By, Claude-Session and Anthropic attribution line stripped and forbidden by the hooks, under the same window discipline. |
 | D9 | Phase 007 analyzes every git workflow that can fail an automated run (hooks, live-sync, write containment, push policy, worktree state) and adjusts sk-git and the hooks so a run does not fail on them. |
 
 ### Operator copy
@@ -86,6 +87,7 @@ phase and binds as if written here.
 | 005-history-rewrite | `005-history-rewrite/goal.md` |
 | 006-docs-and-release | `006-docs-and-release/goal.md` |
 | 007-git-workflow-run-failures | `007-git-workflow-run-failures/goal.md` |
+| 008-second-pass-subjects-and-attribution | `008-second-pass-subjects-and-attribution/goal.md` |
 
 **Precedence.** Decisions above outrank child detail. Child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -112,6 +114,7 @@ here are invisible to whatever judges completion.
 - [x] validate_document.py, package_skill.py --check and ci-skill-root-metadata.cjs exit 0 for sk-git
 - [x] REPO RULES.md routes to a git repo rule that validate_document.py accepts, or 002's decision record says why none is needed, and AGENTS.md section 5 matches it
 - [x] 007-git-workflow-run-failures/implementation-summary.md lists every git workflow that could fail a run with its adjustment and a passing test or reproduction
+- [ ] On origin after the second pass: every non-exempt subject passes the commit-msg grammar, every multi-packet commit carries one Spec line per packet, and zero Co-Authored-By, Claude-Session or Anthropic lines remain, with the hooks refusing new ones
 <!-- /ANCHOR:completion -->
 
 ---

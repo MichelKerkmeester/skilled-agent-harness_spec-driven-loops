@@ -10,7 +10,8 @@
     "sk-git/028-crawlable-commit-history/004-search-surface",
     "sk-git/028-crawlable-commit-history/005-history-rewrite",
     "sk-git/028-crawlable-commit-history/006-docs-and-release",
-    "sk-git/028-crawlable-commit-history/007-git-workflow-run-failures"
+    "sk-git/028-crawlable-commit-history/007-git-workflow-run-failures",
+    "sk-git/028-crawlable-commit-history/008-second-pass-subjects-and-attribution"
   ],
   "manual": {
     "depends_on": [],
@@ -155,6 +156,12 @@
         "source": "derived"
       },
       {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -168,12 +175,6 @@
       },
       {
         "name": "Handoff Criteria",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Problem Statement",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -197,13 +198,13 @@
         "source": "derived"
       },
       {
-        "name": "file",
+        "name": "a",
         "kind": "key_phrase",
         "path": "goal.md",
         "source": "derived"
       },
       {
-        "name": "its",
+        "name": "file",
         "kind": "key_phrase",
         "path": "goal.md",
         "source": "derived"
@@ -211,17 +212,17 @@
     ],
     "causal_summary": "sk-git's commit contract produces readable conventional commits, but nothing in a commit is addressable the way a spec packet is",
     "created_at": "2026-09-11T07:16:22Z",
-    "last_save_at": "2026-09-11T16:53:05.144Z",
+    "last_save_at": "2026-09-11T17:08:51.071Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:bc0076477eac89b37c6f17da832f9ab4d2e2184bc8dc5e531bf6d9971aa9f508",
+    "source_fingerprint": "sha256:53b62613a9bcacb1f8b8045b21fa038c3892047b98f522d9d90e20677f06d969",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "df52d75a5c44a4b369b8ed37bc446b66529f1c4d8aa1c6129ae519ec98309929"
+      "spec.md": "12b344047a9e87080fae9473d260807325e9c3e5e774ee018230813f23d80beb"
     },
     "last_active_at": null
   }
