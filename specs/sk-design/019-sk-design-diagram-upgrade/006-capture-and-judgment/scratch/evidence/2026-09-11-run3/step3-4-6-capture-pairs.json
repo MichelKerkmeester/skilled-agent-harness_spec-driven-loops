@@ -1,0 +1,36 @@
+{
+  "renderer": "sk-design/shared/scripts/render-screenshots.cjs --full-page, headless Google Chrome 153.0.8010.36, window 1280 wide, virtual-time-budget 2500ms",
+  "scale": "1 (device_scale_factor 1); the page maps its 1000-unit viewBox onto 1200 CSS px, so 1 unit = 1.2 px and the mapping was taken from magenta fiducials painted into a throwaway copy and read back out of a real capture",
+  "stock": {
+    "path": "swimlane-stock.png",
+    "size": [
+      1280,
+      813
+    ],
+    "sha256": "f26e385f52ccde61bebf8192f504cc1c57156582e26ab9566b0c45c76d079c1f"
+  },
+  "settled": {
+    "path": "swimlane-settled.png",
+    "size": [
+      1280,
+      813
+    ],
+    "sha256": "f26e385f52ccde61bebf8192f504cc1c57156582e26ab9566b0c45c76d079c1f",
+    "settle_interval_ms": 2229,
+    "matches_stock": true
+  },
+  "skin_pinned": {
+    "path": "swimlane-skin-pinned.png",
+    "size": [
+      1280,
+      813
+    ],
+    "sha256": "e2aeca930e420bd77674b3f177c1b5b225051fc65ef0fc22bd4119f7bee11bcf",
+    "token_source": "palette-accent-teal.json (stock palette, light accent #eb6c36 -> #0f766e, accent-tint moved with it)",
+    "applicator": "scripts/apply-diagram-tokens.cjs RESULT: PASSED (contrast gates cleared)",
+    "differs_from_settled": true,
+    "differing_pixels": 1187,
+    "what_moved": "the Deploy outcome box border and tint, the Approve-merge-to-Build critical handoff and its arrowhead, and the two accent legend marks all read teal; 0 occurrences of #eb6c36 remain in the themed copy and 6 of #0f766e"
+  },
+  "committed_screenshot_parity": "every fresh --full-page render taken in this run is byte-identical to the screenshot committed under screenshots/diagrams/, for all 11 forms rendered (swimlane, architecture, dp-integration, venn, starter-full, er, high-level, import-drawio, import-mermaid, org-chart, it-state)"
+}

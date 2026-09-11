@@ -1,0 +1,15 @@
+{
+  "measurement": "font-substitution label-mask measurement",
+  "renders": {
+    "with_fonts": "37 FontFace entries loaded",
+    "no_fonts": "0 FontFace entries; launched with --disable-remote-fonts and fonts.googleapis.com / fonts.gstatic.com mapped to 127.0.0.1",
+    "both": "1280x813, scale 1, same flags otherwise"
+  },
+  "trap_corrected": {
+    "what": "The no-fonts page sits exactly 1 px higher than the with-fonts page, because the h1's fallback serif gives a different line box and everything below it shifts up.",
+    "how_found": "Magenta 1x1 fiducials painted at viewBox (100,100) and (900,400) in a throwaway copy, captured with the real capture flags, and read back out of the PNG - so the mapping comes from a screenshot and never from a DOM dump, which is where the browser's chrome-subtraction discrepancy lives.",
+    "why_it_matters": "Before the correction the naive crop diff reported 14 to 217 changed pixels outside six of the seven masks, every one of them the same drawing one row up. After it, all seven report zero. Counting that shift as label spill is the error this run was told to avoid."
+  },
+  "results": "7 arrow-label masks (2 in swimlane, 5 in architecture). 0 with any overflow. Two independent measurements agree: (a) pixel - after the 1px correction, zero changed pixels outside any mask's own bounds; (b) geometry - every label's getBBox in the no-fonts render is strictly inside its mask on all four sides, minimum slack 5.08 units horizontally and 0.33 vertically. The substituted font draws the labels slightly narrower and shorter, not wider, so there is nothing to spill.",
+  "note": "high-level.html is excluded rather than reported clean: it draws every edge without a label, so its box-mask rects are not label masks."
+}

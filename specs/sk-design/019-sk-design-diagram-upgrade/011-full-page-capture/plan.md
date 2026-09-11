@@ -43,11 +43,11 @@ contextType: "general"
 - [x] Dependencies identified (spec.md §6) — 009's merge and 007's content fixes are read at execution time, not assumed
 
 ### Definition of Done
-- [ ] All acceptance criteria in `acceptance-criteria.md` are `Met`, `Waived` or `Superseded`
-- [ ] `sk-design-chart`'s images are proven byte-identical after the change (diff, not visual spot-check)
-- [ ] Every screenshot under `sk-design-diagram/screenshots/diagrams/` has a pixel height matching its source's measured content height
-- [ ] A second CAP-001 report exists, addressing all five findings from the first report
-- [ ] `spec.md` / `tasks.md` / `acceptance-criteria.md` / `goal.md` are synchronized with the final state
+- [ ] All acceptance criteria in `acceptance-criteria.md` are `Met`, `Waived` or `Superseded` — 8/10 `Met` (AC-001 through AC-007, AC-009); AC-008 (the S10 playbook note) is `Unmet` and unwaived, so AC-010 (the phase gate) is also `Unmet`
+- [x] `sk-design-chart`'s images are proven byte-identical after the change (diff, not visual spot-check) — instrumented at implementation time (39 unflagged spawns, no measurement) and independently re-diffed this closeout session, empty
+- [x] Every screenshot under `sk-design-diagram/screenshots/diagrams/` has a pixel height matching its source's measured content height — a fresh full-corpus `--full-page` render this session reproduced every committed PNG byte-for-byte
+- [x] A second CAP-001 report exists, addressing all five findings from the first report — `benchmark/reports/2026-09-11--manual-testing-playbook--capture-review-2/`
+- [x] `spec.md` / `tasks.md` / `acceptance-criteria.md` / `goal.md` are synchronized with the final state — done in this closeout pass
 <!-- /ANCHOR:quality-gates -->
 
 ---

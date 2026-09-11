@@ -1,0 +1,6 @@
+# CAP-001 run 3 step 5 — applicator
+$ node scripts/apply-diagram-tokens.cjs --source /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/scratch/evidence/2026-09-11-run3/palette-accent-teal.json --out /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/2bce8375-95be-49d4-89d7-21a303845583/scratchpad/themed --forms swimlane
+WROTE /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/2bce8375-95be-49d4-89d7-21a303845583/scratchpad/themed/swimlane.html
+WROTE /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/2bce8375-95be-49d4-89d7-21a303845583/scratchpad/themed/README.md
+RESULT: PASSED
+exit=0

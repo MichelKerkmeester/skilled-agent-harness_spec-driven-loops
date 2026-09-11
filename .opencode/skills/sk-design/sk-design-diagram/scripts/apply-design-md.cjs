@@ -708,6 +708,10 @@ function validateRoles(derived, skin, used, label) {
     check(role, value, isTextRole ? 'textOnPaper' : 'markOnPaper',
       isTextRole ? gates.textOnPaper : gates.markOnPaper, ground);
     if (role === 'accent' && skinRoles.ink) check(role, value, 'accentAgainstInk', gates.accentAgainstInk, skinRoles.ink.value);
+    // The accent is the one filled mark a label is set on, so it answers the mark-text gate too.
+    // The checker applies this to a themed block; applying it here as well is what stops the
+    // applicator calling a delivery clean that the checker then refuses.
+    if (role === 'accent' && gates.textOnMark) check(role, value, 'textOnMark', gates.textOnMark, ground);
   }
   return { failures, notes };
 }

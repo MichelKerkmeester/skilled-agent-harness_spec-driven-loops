@@ -1,0 +1,56 @@
+{
+  "file": "assets/diagrams/swimlane.html",
+  "capture": "swimlane-settled.png (1280x813, scale 1, --full-page, headless Chrome 153.0.8010.36), byte-identical to the committed screenshots/diagrams/swimlane.png",
+  "head": "9371f99938",
+  "unit_to_pixel": "1 viewBox unit = 1.2 rendered px; distances below are in viewBox units, with the centre-to-centre figure first and the painted-stroke-edge figure in parentheses",
+  "reads": [
+    {
+      "n": 1,
+      "read": "Connector overlap",
+      "answer": "NO fault -> PASS",
+      "reason": "Six drawn connectors plus three legend samples. A pairwise pass over every segment of every pair finds no intersection and no pair closer than 12 units: the smallest gap between any two connector segments is far above the 12-unit offset the rule demands, so no two share a stroke, run parallel on top of each other, or cross. Nothing needs a bridge or hop because nothing crosses."
+    },
+    {
+      "n": 2,
+      "read": "Attach fan",
+      "answer": "YES rule holds -> PASS",
+      "reason": "No box edge carries more than one connector endpoint, so no arrow can hide another and there is nothing to fan. Recorded as an observation rather than a failure: connector 2 attaches at the bottom-right corner of Open PR (460,144) and the top-left corner of Review content (500,176) rather than at the edge midpoints the L*k/(N+1) formula gives for N=1; the arrowhead lands cleanly on the rounded corner and reads as attached, so the read holds."
+    },
+    {
+      "n": 3,
+      "read": "Visible gap",
+      "answer": "YES rule holds -> PASS",
+      "reason": "Both arrow-label masks now clear their own stroke, where the previous run found all three sitting on it. HANDOFF (452,124 60x12) sits 8.0 units above the horizontal leg of its elbow (7.4 to the painted stroke edge) and the full 40-unit leg is drawn and traceable in the capture. REVISE (576,240 52x12) sits 6.0 units beside its vertical dashed return (5.4 to the stroke edge), at the floor of the 6-10 band but clear: no touch, no overlap. Both carry an opaque mask (paper #f5f5f5 and paper-2 #ececec, both declared roles). The fourth label, DEPLOY TRIGGER, was deleted rather than moved, so there is no longer a label to overpaint.",
+      "observation_not_a_failure": "The HANDOFF mask now runs 8.5 units under the Open PR box (x 452-460.5 against a box ending at 460.5) and the box, drawn after it, paints over that strip. The first glyph of HANDOFF clears the box's outer border by 1.34 units, about 2 rendered px, so the label reads as glued to the box. No rule in the packet measures label-to-box clearance and read 3 tests the connector, so this does not fail the read - but it is new: at the old y=140 the label sat below the box entirely."
+    },
+    {
+      "n": 4,
+      "read": "Behind-box",
+      "answer": "NO fault -> PASS",
+      "reason": "No connector segment enters the interior of a box that is not one of its own endpoints. Every route runs in the open between lanes, so the unavoidable-intervening-box exception is never invoked and no dashed-transit treatment is needed.",
+      "observation_not_a_failure": "The 30-unit horizontal leg of connector 5 (M750 316 H720) is drawn exactly on the bottom border of its own source box, Approve merge (y=316 is the box edge). The box paints over it, but the 1.4-unit coral stroke is wider than the 1-unit dark border, so 0.3 units peek out on each side and 30 units of that border render brown (93,72,75) instead of slate (94,97,110). Approve merge is the connector's source, so read 4 does not reach it; it is the same geometry that made DEPLOY TRIGGER unreadable, and deleting the label left the cause in place."
+    },
+    {
+      "n": 5,
+      "read": "Focal balance",
+      "answer": "YES rule holds -> PASS",
+      "reason": "Two elements in the drawing carry the accent and they are the two a reader should look at first: the Deploy outcome box (accent border over an accent-tint fill) and the Approve-merge-to-Build critical handoff (accent stroke and arrowhead). Everything else is slate or muted. The only other accent marks are the two legend keys that declare those two treatments, which is the legend doing its job, not a third focal element. Inside the 1-2 ceiling."
+    },
+    {
+      "n": 6,
+      "read": "Type fit",
+      "answer": "YES rule holds -> PASS",
+      "reason": "The title asks 'Publishing an article', and the thing the drawing has to show is one artifact changing hands across four owners - AUTHOR, REVIEWER, EDITOR, CI/CD - with a revision loop back up a lane. Ownership per step is the whole question, which is what a swimlane encodes and what a plain flowchart would drop."
+    }
+  ],
+  "taste_notes_not_scored": [
+    {
+      "note": "The remove test",
+      "observation": "HANDOFF is the deletable element. The lane structure already says this arrow changes hands - it is the only connector that crosses a lane boundary into REVIEWER - and the legend carries no key for it. Deleting it is the same argument the packet used one arrow later to delete DEPLOY TRIGGER, and it would also remove the box abutment the current position creates."
+    },
+    {
+      "note": "Density",
+      "observation": "Seven boxes, six connectors, four lanes, five legend keys: under the nine-node and twelve-arrow thresholds, and it reads as one shape with no guide beside it. The staircase layout leaves the bottom-left roughly half of the lane area empty, which is the swimlane's natural shape rather than a density fault, but it is the one thing that makes the drawing look wider than its content."
+    }
+  ]
+}

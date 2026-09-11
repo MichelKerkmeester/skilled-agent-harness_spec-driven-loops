@@ -39,7 +39,7 @@
       "approach"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -48,8 +48,11 @@
       "goal.md",
       "implementation-summary.md",
       ".opencode/skills/sk-design/shared/scripts/render-screenshots.cjs",
+      ".opencode/skills/sk-design/sk-design-diagram/assets/diagrams/swimlane.html",
+      ".opencode/skills/sk-design/sk-design-diagram/assets/diagrams/dp-integration.html",
+      ".opencode/skills/sk-design/sk-design-diagram/SKILL.md",
+      ".opencode/skills/sk-design/sk-design-diagram/manual-testing-playbook/capture-review/capture-review.md",
       ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-manual-playbook-scenario.cjs",
-      ".opencode/skills/sk-design/sk-design-diagram/screenshots/icons.png",
       ".opencode/skills/sk-design/sk-design-diagram/README.md",
       ".opencode/skills/sk-design/sk-design-diagram/manual-testing-playbook/manual-testing-playbook.md",
       ".github/workflows/diagram-corpus.yml"
@@ -98,15 +101,33 @@
         "source": "derived"
       },
       {
-        "name": "run-manual-playbook-scenario.cjs",
+        "name": "swimlane.html",
         "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-manual-playbook-scenario.cjs",
+        "path": ".opencode/skills/sk-design/sk-design-diagram/assets/diagrams/swimlane.html",
         "source": "derived"
       },
       {
-        "name": "icons.png",
+        "name": "dp-integration.html",
         "kind": "file",
-        "path": ".opencode/skills/sk-design/sk-design-diagram/screenshots/icons.png",
+        "path": ".opencode/skills/sk-design/sk-design-diagram/assets/diagrams/dp-integration.html",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/sk-design-diagram/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "capture-review.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/sk-design-diagram/manual-testing-playbook/capture-review/capture-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "run-manual-playbook-scenario.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-manual-playbook-scenario.cjs",
         "source": "derived"
       },
       {
@@ -129,6 +150,12 @@
       },
       {
         "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -158,12 +185,6 @@
         "source": "derived"
       },
       {
-        "name": "Result Persistence",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -180,29 +201,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`render-screenshots.cjs` captures every form at a fixed `1280x900` Chrome window with no full-page option (confirmed empirically in this authoring pass: two-pass measurement shows Chrome's `--screenshot` flag always outputs exactly the requested `--window-size`, never auto-trimmed to content)",
     "created_at": "2026-09-11T03:52:48Z",
-    "last_save_at": "2026-09-11T04:12:57.098Z",
+    "last_save_at": "2026-09-11T07:58:18.992Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +216,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fd0829d476a2ab37967ca36ae6bf850ab46c0794a71d3850812a5b1359fc786d",
+    "source_fingerprint": "sha256:dfddf2d5247e354e7c790849ae51ef42dd231b37512d45cc9053049ee7eb30ae",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9f209c8d90ca17fb1e6e0c1de7b8aaad97e930b988e55f504e4449b92b008263",
-      "plan.md": "210cfbd10be9f2b7badd56cbfdd174c023a0eeab6662a698238730b1e046b63f",
-      "tasks.md": "03c3985e2c3bfde5c14aa2a9a6f6ba9d4457da17a3c73dc549478668213fa599",
-      "implementation-summary.md": "40493c1c796e2707ed6281f3b49acf0dfaadd8fc912f9d58a2ffa4b24b6150d1"
+      "spec.md": "71c1a0d57373ca84114a91aa0214f42ba53a2771cf042602326c9106a023ab0a",
+      "plan.md": "18f96213621ff977c9b82b191f25a33e3dfa3bd7b6dbf75e72fd9ba7c1c6e729",
+      "tasks.md": "4b4b6d934255bce3043b8355d7fd39ac3f5f4a7bf1bd4082d49431faace292fa",
+      "implementation-summary.md": "341ed17ed1acede861108eb81ebe697c12aaf9ec1117a0a1789d613e54c28078"
     },
     "last_active_at": null
   }

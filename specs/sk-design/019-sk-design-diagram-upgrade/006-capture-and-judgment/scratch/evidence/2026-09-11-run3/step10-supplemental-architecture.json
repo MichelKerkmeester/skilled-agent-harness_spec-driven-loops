@@ -1,0 +1,13 @@
+{
+  "scope": "Optional Supplemental Checks in capture-review.md: run the same six reads on a second labelled illustration, assets/diagrams/architecture.html, to confirm the reads hold where routes crowd. Not part of CAP-001's stated pass/fail, which is written against the settled capture of swimlane.html.",
+  "result": "They do not hold. Read 3 fails on three of five arrow-label masks - the same defect the previous run failed swimlane for, never fixed here.",
+  "reads": {
+    "1_connector_overlap": "PASS - no pair of connector segments intersects or comes within 12 units.",
+    "2_attach_fan": "PASS - two edges carry two endpoints each (Reader right edge and Cloudflare left edge, at y=272 and y=288); both are spaced 16 units apart, above the 12-unit minimum.",
+    "3_visible_gap": "FAIL - READ MDX (584,234 60x12) is painted across the horizontal leg of its own connector at y=240, and QUERY (584,298 44x12) across its own at y=304; in both the stroke is broken for the label's width and resumes on the far side. RESP (172,272 32x12) has its top edge exactly on the HTTPS connector at y=272, touching a stroke that is not even its own, and sits only 4.0 units above its own dashed return at y=288, under the 6-unit minimum. HTTPS (172,252) at 8.0 units and SSR (368,252) at 8.0 units are clean.",
+    "4_behind_box": "PASS - no connector enters a box that is not one of its endpoints.",
+    "5_focal_balance": "PASS - accent on two elements, the Astro Origin box with its ORIG chip and the SSR connector.",
+    "6_type_fit": "PASS - components and the calls between them is what an architecture diagram is for."
+  },
+  "evidence": ["architecture-with-fonts.png", "maskcrop-architecture-read-mdx.png", "maskcrop-architecture-query.png", "maskcrop-architecture-resp.png", "step10-architecture-geometry.json"]
+}

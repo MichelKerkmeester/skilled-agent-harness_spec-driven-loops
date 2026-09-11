@@ -1,0 +1,18 @@
+# CAP-001 run 3 step 2 — renderer verification
+# run at 2026-09-11T07:52:32Z
+$ python3 -c "import playwright"
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+ModuleNotFoundError: No module named 'playwright'
+exit=1
+
+RESULT: playwright MISSING -> step 2 is a SKIP inside the run.
+Exact install instruction:
+  pip install playwright
+  playwright install chromium
+
+Substitute renderer named by the scenario (local headless Chrome):
+$ "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --version
+Google Chrome 153.0.8010.36 
+node v26.8.2
+Pillow 11.3.0

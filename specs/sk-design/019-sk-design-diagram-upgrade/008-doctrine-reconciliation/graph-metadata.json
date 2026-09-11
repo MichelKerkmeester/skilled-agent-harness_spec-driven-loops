@@ -49,12 +49,15 @@
       "implementation-summary.md",
       ".opencode/skills/sk-design/sk-design-diagram/references/foundations/style-guide.md",
       ".opencode/skills/sk-design/sk-design-diagram/references/foundations/derivation-record.md",
-      ".opencode/skills/sk-design/sk-design-diagram/assets/style-reference/harness-diagram/diagram-palette.json",
+      ".opencode/skills/sk-design/sk-design-diagram/assets/diagrams/dp-integration.html",
+      ".opencode/skills/sk-design/sk-design-diagram/assets/diagrams/high-level.html",
+      ".opencode/skills/sk-design/sk-design-diagram/assets/diagrams/er.html",
+      ".opencode/skills/sk-design/sk-design-diagram/assets/diagrams/it-state.html",
+      ".opencode/skills/sk-design/sk-design-diagram/assets/diagrams/README.md",
       ".opencode/skills/sk-design/sk-design-diagram/scripts/families/legend-fidelity.cjs",
       ".opencode/skills/sk-design/sk-design-diagram/scripts/families/short-connector-labels.cjs",
       ".opencode/skills/sk-design/sk-design-diagram/scripts/tests/mutation-cases.cjs",
-      ".opencode/skills/sk-design/sk-design-diagram/scripts/check-diagram-corpus.cjs",
-      ".opencode/skills/sk-design/sk-design-diagram/assets/diagrams/dp-integration.html"
+      ".opencode/skills/sk-design/sk-design-diagram/scripts/check-diagram-corpus.cjs"
     ],
     "entities": [
       {
@@ -106,9 +109,33 @@
         "source": "derived"
       },
       {
-        "name": "diagram-palette.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-design/sk-design-diagram/assets/style-reference/harness-diagram/diagram-palette.json",
+        "name": "dp-integration.html",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/sk-design-diagram/assets/diagrams/dp-integration.html",
+        "source": "derived"
+      },
+      {
+        "name": "high-level.html",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/sk-design-diagram/assets/diagrams/high-level.html",
+        "source": "derived"
+      },
+      {
+        "name": "er.html",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/sk-design-diagram/assets/diagrams/er.html",
+        "source": "derived"
+      },
+      {
+        "name": "it-state.html",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design/sk-design-diagram/assets/diagrams/it-state.html",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/sk-design-diagram/assets/diagrams/README.md",
         "source": "derived"
       },
       {
@@ -133,12 +160,6 @@
         "name": "check-diagram-corpus.cjs",
         "kind": "file",
         "path": ".opencode/skills/sk-design/sk-design-diagram/scripts/check-diagram-corpus.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "dp-integration.html",
-        "kind": "file",
-        "path": ".opencode/skills/sk-design/sk-design-diagram/assets/diagrams/dp-integration.html",
         "source": "derived"
       },
       {
@@ -182,29 +203,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview Nine",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Direct",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The manual review found nine systemic patterns (S1-S9) where a document and the corpus disagree, or the corpus itself is internally inconsistent, and named a direction for each rather than leaving the contradiction open",
     "created_at": "2026-09-11T03:52:46Z",
-    "last_save_at": "2026-09-11T07:03:54.745Z",
+    "last_save_at": "2026-09-11T08:09:30.568Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,13 +218,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4b4a021c352d4375f64ca9d9310c316772c8344a9929e9e4dd05f41aee572bc1",
+    "source_fingerprint": "sha256:67168bbaac7eb62afb98ba0f39b7533d4dd55c0805c1a4767048b35184d69f2a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "fefb20d3eb1af5125e1fe5b73234ca2e6daa44d73f6b5d12b7610b7585b51191",
       "plan.md": "8a24e2f131f293f041460918850f98a541fe6ee37e950c2fe776e98b2a71b342",
-      "tasks.md": "71e2879e6c08403b6e3d795aff8da044eb6f0b76378f1c32bdbe379f2f42e0cf",
-      "implementation-summary.md": "32135ad6aaad6d106f3e5a321180814574f9938ffa3e06404bd00f128a9e02b5"
+      "tasks.md": "e29a41bd94b7e5be9139d3528a8cfe5287d2d8b0b239c0644af679acc4451169",
+      "implementation-summary.md": "e44f80bda7d141edae474bb85d813d8cfc87aad19d27a9e2bb41b9da465b0329"
     },
     "last_active_at": null
   }

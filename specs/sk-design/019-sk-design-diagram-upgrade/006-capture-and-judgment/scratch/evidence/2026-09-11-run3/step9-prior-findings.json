@@ -1,0 +1,46 @@
+{
+  "previous_run": "benchmark/reports/2026-09-11--manual-testing-playbook--capture-review-2",
+  "judged_at_head": "9371f99938",
+  "method": "every status below was decided from a fresh --full-page render taken in this run and from the SVG geometry parsed out of the current file, never from the fix commit's message",
+  "findings": [
+    {
+      "finding": "read 3 FAIL: all three swimlane arrow-label masks sit on their own connector",
+      "status": "CLOSED",
+      "evidence": "swimlane-settled.png, crop-handoff.png, crop-revise.png, step8-swimlane-geometry.json",
+      "current_state": "Two labels remain and both clear their stroke: HANDOFF 8.0 units above its leg (7.4 to the stroke edge) with the whole 40-unit leg drawn, REVISE 6.0 units beside its dashed return (5.4 to the edge). Neither mask is crossed by any connector segment. The third, DEPLOY TRIGGER, was deleted."
+    },
+    {
+      "finding": "read 3 FAIL: DEPLOY TRIGGER overpainted by the Approve merge box",
+      "status": "CLOSED as stated, cause still present",
+      "evidence": "crop-connector5-fringe.png",
+      "current_state": "The label is gone, so nothing is overpainted. The geometry that overpainted it is unchanged: connector 5's horizontal leg is drawn on y=316, which is the bottom border of its own source box, and the 1.4-unit coral stroke under the 1-unit slate border turns 30 units of that border brown (93,72,75 against 94,97,110 elsewhere). Visible at 1x as a warm segment of an otherwise slate border."
+    },
+    {
+      "finding": "Focal balance fails on dp-integration (accent on two boxes plus nine connectors, legend declares coral twice)",
+      "status": "CLOSED",
+      "evidence": "prior-dp-integration.png",
+      "current_state": "Every connector now strokes muted: the seven primary data paths and the two AUTH/AUDIT risers were repointed from .connector.primary/.auth accent to muted, and the arrow-accent marker was removed from the file. Accent survives on exactly two boxes, Object storage and Query engine, through .core-node. The legend declares coral once, as 'Focal platform surface'; 'Primary data path' and 'Layer-wide service' are now muted. The rust and blue footer rows use their own named roles (--identity-rust, --logging-blue), not the accent."
+    },
+    {
+      "finding": "Focal balance fails on venn (no accent at all)",
+      "status": "CLOSED, and it introduced a contrast defect",
+      "evidence": "prior-venn.png",
+      "current_state": "The one focal intersection now carries the accent: the triple overlap is filled rgba(235,108,54,0.08) and the label reads coral, which is what type-venn.md asks for. The trade: 'Shippable' measures 2.18:1 against the ground it is painted on (222,214,213), where it was previously white on solid ink. The palette's own gates put text at 4.5:1 and marks at 3.0:1, and its single accent departure is recorded against markOnPaper - it licenses the accent as a mark, not as text. The focal label is now the least legible text in a drawing whose other set labels measure 11.0:1, which inverts what focal means. The corpus checker cannot see it: derivation-gates only measures files carrying a palette block, and venn is a worked form."
+    },
+    {
+      "finding": "Focal balance fails on starter-full (accent on six elements)",
+      "status": "CLOSED",
+      "evidence": "prior-starter-full.png",
+      "current_state": "One element in the drawing carries the accent: the Web App box and its own UI chip. The JWT and TLS connectors, the Auth Provider box, the OAI PROTECTED note and the SG security group are all muted now. The only other accent marks are the legend's 'Frontend / UI' key and the first summary card's bullet, outside the diagram area. Inside the 1-2 ceiling."
+    },
+    {
+      "finding": "The renderer crops tall captures at the 900px viewport",
+      "status": "CLOSED, re-confirmed",
+      "evidence": "step3-4-6-capture-pairs.json",
+      "current_state": "Eleven forms were re-rendered with --full-page in this run and every one is byte-identical to its committed screenshot, so the shipped set and a fresh capture are the same frames."
+    }
+  ],
+  "closed": 5,
+  "closed_with_a_new_defect": 1,
+  "still_open": 0
+}

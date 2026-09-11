@@ -35,7 +35,10 @@ diagram is copied from; a worked form keeps the tokens it actually draws with. T
 question of their own, which is why the catalog does not index them.
 
 Inside a starter the drawing references its roles by name rather than by value, so repainting the
-block repaints the figure. Three of the four ship an empty placeholder drawing, so there is nothing
+block repaints the figure. One role is declared without being drawn with: the full starter carries
+`paper-2` for the framed variant that ships commented out, so uncommenting four lines sits the figure
+on a card. A role declared for a documented opt-in is the one good reason to declare a role the
+drawing does not use. Three of the four ship an empty placeholder drawing, so there is nothing
 in them to repaint until you draw it — that is what makes them starters. The full one carries a
 worked figure, and theming it moves every mark.
 

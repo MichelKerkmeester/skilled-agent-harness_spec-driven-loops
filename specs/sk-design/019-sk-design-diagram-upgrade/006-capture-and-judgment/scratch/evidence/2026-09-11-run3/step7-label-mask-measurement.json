@@ -1,0 +1,100 @@
+[
+  {
+    "file": "swimlane",
+    "label": "HANDOFF",
+    "mask": [
+      452,
+      124,
+      60,
+      12
+    ],
+    "changed_inside": 187,
+    "changed_outside": 0,
+    "overflow_count": 0,
+    "overflow_samples": []
+  },
+  {
+    "file": "swimlane",
+    "label": "REVISE",
+    "mask": [
+      576,
+      240,
+      52,
+      12
+    ],
+    "changed_inside": 132,
+    "changed_outside": 0,
+    "overflow_count": 0,
+    "overflow_samples": []
+  },
+  {
+    "file": "architecture",
+    "label": "HTTPS",
+    "mask": [
+      172,
+      252,
+      48,
+      12
+    ],
+    "changed_inside": 143,
+    "changed_outside": 0,
+    "overflow_count": 0,
+    "overflow_samples": []
+  },
+  {
+    "file": "architecture",
+    "label": "RESP",
+    "mask": [
+      172,
+      272,
+      32,
+      12
+    ],
+    "changed_inside": 105,
+    "changed_outside": 0,
+    "overflow_count": 0,
+    "overflow_samples": []
+  },
+  {
+    "file": "architecture",
+    "label": "SSR",
+    "mask": [
+      368,
+      252,
+      48,
+      12
+    ],
+    "changed_inside": 85,
+    "changed_outside": 0,
+    "overflow_count": 0,
+    "overflow_samples": []
+  },
+  {
+    "file": "architecture",
+    "label": "READ-MDX",
+    "mask": [
+      584,
+      234,
+      60,
+      12
+    ],
+    "changed_inside": 176,
+    "changed_outside": 0,
+    "overflow_count": 0,
+    "overflow_samples": []
+  },
+  {
+    "file": "architecture",
+    "label": "QUERY",
+    "mask": [
+      584,
+      298,
+      44,
+      12
+    ],
+    "changed_inside": 125,
+    "changed_outside": 0,
+    "overflow_count": 0,
+    "overflow_samples": []
+  }
+]

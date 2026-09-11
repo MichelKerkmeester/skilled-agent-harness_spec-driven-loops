@@ -1,0 +1,22 @@
+# CAP-001 run 3 step 1 — corpus check
+# run at 2026-09-11T07:52:26Z
+# HEAD 9371f99938
+$ node scripts/check-diagram-corpus.cjs
+Diagram corpus: 38 files, 12 families
+  + accessible-svg: 304 assertion(s), 0 failure(s)
+  + catalog-bidirectional: 101 assertion(s), 0 failure(s)
+  + derivation-gates: 54 assertion(s), 0 failure(s)
+  + grid-4px: 38 assertion(s), 0 failure(s)
+  + legend-fidelity: 18 assertion(s), 0 failure(s)
+  + marker-vocabulary: 98 assertion(s), 0 failure(s)
+  + metadata: 62 assertion(s), 0 failure(s)
+  + no-external: 38 assertion(s), 0 failure(s)
+  + node-budget: 38 assertion(s), 0 failure(s)
+  + orthogonal-connectors: 164 assertion(s), 0 failure(s)
+  + short-connector-labels: 66 assertion(s), 0 failure(s)
+  + unique-ids: 181 assertion(s), 0 failure(s)
+
+Summary: errors: 0
+
+RESULT: PASSED
+exit=0

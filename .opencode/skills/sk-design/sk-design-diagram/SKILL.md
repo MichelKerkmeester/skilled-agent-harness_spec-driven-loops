@@ -317,7 +317,7 @@ For `ascii-markdown`, produce the requested markdown file or embedded fenced tex
 - [primitive-terminal.md](./references/primitives/primitive-terminal.md) — fixed terminal-window skin, monospace throughout, one accent; not brand-tokenized.
 - [primitive-icons.md](./references/primitives/primitive-icons.md) — monochrome 24×24 icon library (compute, people, network, data, Kubernetes, action, DevOps, brand, data stack, language, statistical tools, file formats) with license attribution.
 - [ascii-format/pattern-selection.md](./references/ascii-format/pattern-selection.md) — workflow-shape pattern selection and split heuristics for `ascii-markdown` output.
-- [design-md-theming.md](./references/design-md-theming.md) — repainting a delivery from a local Style Reference: what the parser reads, which reference row fills each role, the gates a themed palette clears, and what a run refuses.
+- [design-md-theming.md](./references/design-md-theming.md) — repainting a delivery from a local Style Reference: what the parser reads, which reference row fills each role, the gates a themed palette clears, and what a run refuses. The applicator is `scripts/apply-design-md.cjs`; it writes themed copies to a scratch directory and refuses to touch the stock library.
 - [derivation-record.md](./references/foundations/derivation-record.md) — why each stock value is what it is, the gates, and every recorded departure.
 
 ### Forms and Assets

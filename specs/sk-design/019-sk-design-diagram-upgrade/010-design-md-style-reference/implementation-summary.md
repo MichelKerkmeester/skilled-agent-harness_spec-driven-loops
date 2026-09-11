@@ -11,13 +11,12 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-design/019-sk-design-diagram-upgrade/010-design-md-style-reference"
-    last_updated_at: "2026-09-11T09:30:00Z"
+    last_updated_at: "2026-09-11T10:15:00Z"
     last_updated_by: "markdown-agent"
-    recent_action: "Closed out the phase record against the shipped commits"
-    next_safe_action: "Build the derivation-gates.cjs extension and the SKILL.md routing, or waive them"
+    recent_action: "Re-closed against 9371f99938/76ad403c52; fixed the plan.md link row"
+    next_safe_action: "Add an SKILL.md reference to scripts/apply-design-md.cjs, or waive AC-018 with a recorded ADR"
     blockers:
-      - "derivation-gates.cjs has no system=design-md handling — REQ-014/REQ-015 unmet"
-      - "SKILL.md is missing the WHEN TO USE trigger, the two REFERENCES rows, and the version bump — REQ-016 unmet"
+      - "SKILL.md never names scripts/apply-design-md.cjs — REQ-016/AC-018 still unmet on that one point"
     key_files:
       - "specs/sk-design/019-sk-design-diagram-upgrade/010-design-md-style-reference/acceptance-criteria.md"
       - "specs/sk-design/019-sk-design-diagram-upgrade/010-design-md-style-reference/goal.md"
@@ -26,9 +25,9 @@ _memory:
       - ".opencode/skills/sk-design/sk-design-diagram/SKILL.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "markdown-010-design-md-style-reference-closeout"
+      session_id: "markdown-010-design-md-style-reference-recloseout"
       parent_session_id: null
-    completion_pct: 80
+    completion_pct: 95
     open_questions: []
     answered_questions: []
 ---
@@ -46,7 +45,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 010-design-md-style-reference |
-| **Completed** | Not complete — closed out 2026-09-11 against what shipped |
+| **Completed** | Not complete — re-closed 2026-09-11 against commits `9371f99938` and `76ad403c52`; one criterion (AC-018) remains |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -84,9 +83,9 @@ recorded as `goal.md`'s decision D15, with a pointer from `plan.md` §3.1 and th
 | `.opencode/skills/sk-design/sk-design-diagram/assets/style-reference/harness-diagram/DESIGN.md` | Created | The stock v3 reference, curated so `--default` reproduces `diagram-palette.json` exactly |
 | `.opencode/skills/sk-design/sk-design-diagram/assets/style-reference/harness-diagram/origin.md` | Created | Provenance: states plainly the reference was authored from the packet's own palette, not measured |
 | `.opencode/skills/sk-design/sk-design-diagram/assets/style-reference/harness-diagram/diagram-palette.json`, `icons.html` | Moved in (later commits) | The token source and icon specimen joined the reference bundle so a "visual language" is one directory |
-| `.opencode/skills/sk-design/sk-design-diagram/SKILL.md` | Modified (partially) | One HOW IT WORKS sentence points at `references/design-md-theming.md`; the activation trigger, the `apply-design-md.cjs` REFERENCES row, and the version bump were not added |
-| `.opencode/skills/sk-design/sk-design-diagram/scripts/families/derivation-gates.cjs` | **Not modified** | The `system=design-md` sentinel extension this phase specified was never built |
-| `.opencode/skills/sk-design/sk-design-diagram/scripts/tests/mutation-cases.cjs`, `scripts/tests/fixtures/` | **Not modified / does not exist** | The two new `derivation-gates` cases and their fixture were never added |
+| `.opencode/skills/sk-design/sk-design-diagram/SKILL.md` | Modified (commit `76ad403c52`, still partial) | Gained the WHEN TO USE activation trigger, five keyword triggers, one REFERENCES row (`design-md-theming.md`), and the version bump to `1.2.0.0`; still names `scripts/apply-design-md.cjs` nowhere |
+| `.opencode/skills/sk-design/sk-design-diagram/scripts/families/derivation-gates.cjs` | Modified (commit `9371f99938`) | Accepts an optional ` system=design-md` sentinel token, requires and validates its provenance comment, skips byte-equality for that block only, keeps every gate (adding `textOnMark` for the accent role when themed) |
+| `.opencode/skills/sk-design/sk-design-diagram/scripts/tests/mutation-cases.cjs`, `scripts/tests/fixtures/design-md-sample.html` | Modified / Created (commit `9371f99938`) | Two new `derivation-gates` cases (deleted provenance; accent under `textOnMark`) against a new fixture |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -108,6 +107,16 @@ terminal conditional both ways (no dark declared, dark declared), `node --test s
 `node scripts/check-diagram-corpus.cjs`. It also reran the exact stress input `tasks.md` names for
 T025 — the chart sibling's `evilcharts/DESIGN.md` under `--all` — which fails on a `soft`-role gate
 issue the identity case never exercises (see Known Limitations).
+
+**Re-closeout pass (2026-09-11).** Three of the four gaps that prior pass left `Unmet` were closed
+by commits `9371f99938` and `76ad403c52`. This pass reran all of it live rather than trusting the
+task/AC evidence carried over from the prior pass: `node --test scripts/tests/` (18/18, up from
+16/16), a hand-built themed delivery run through `check-diagram-corpus.cjs --extra` (fails on
+deleted provenance, passes on a well-formed non-stock accent), and `SKILL.md`'s literal content
+(`grep -ni "apply-design\|\.cjs" SKILL.md` — still no hits). It also fixed the fourth gap directly,
+adding a dark `link` row to `plan.md` §3.1, since that document is inside this closeout's own write
+authority. See `goal.md`'s LOG for the two judgment calls this pass made and one new finding (the
+applicator's own write-time gate and the corpus-wide checker's `textOnMark` gate disagree).
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -138,11 +147,12 @@ issue the identity case never exercises (see Known Limitations).
 | Accent below `markOnPaper` | PASS — `FAILURE ... accent ratio=1.22:1 gate=markOnPaper 3:1 ... nearest clearing value #968c82` |
 | Terminal conditional (no dark declared, `--all`) | PASS — terminal stays byte-identical to stock, run states the reason |
 | Terminal conditional (no dark declared, `--forms starter-terminal`) | PASS — fails by name rather than falling back silently |
-| `node --test scripts/tests/` | PASS (16/16) — but does not include the two `derivation-gates` cases REQ-015 asks for, because they were never written |
+| `node --test scripts/tests/` | PASS (18/18, up from 16/16) — includes the two `derivation-gates` cases REQ-015 asks for |
 | `node scripts/check-diagram-corpus.cjs` | PASS — `RESULT: PASSED`, errors: 0 |
 | `git diff --stat -- .opencode/skills/sk-design/sk-design-chart` | PASS — empty |
-| `scripts/families/derivation-gates.cjs` `system=design-md` support | **FAIL — does not exist** |
-| `SKILL.md` routing (trigger, HOW IT WORKS paragraph, two REFERENCES rows, version bump) | **FAIL — one of four present** |
+| `scripts/families/derivation-gates.cjs` `system=design-md` support | **PASS** — a themed block missing provenance fails by name; a well-formed themed block with a non-stock in-gate value passes with 0 failures (`check-diagram-corpus.cjs --extra <dir>`) |
+| `SKILL.md` routing (trigger, HOW IT WORKS paragraph, two REFERENCES rows, version bump) | **PARTIAL — three of four present** (trigger, version bump, one REFERENCES row); `apply-design-md.cjs` is named nowhere in the file |
+| `plan.md` §3.1 dark `link` row | **PASS** — added by this closeout pass |
 | `validate.sh .../010-design-md-style-reference --strict` | See the closeout's final result line (run after this document) |
 <!-- /ANCHOR:verification -->
 
@@ -151,12 +161,11 @@ issue the identity case never exercises (see Known Limitations).
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **`derivation-gates.cjs` carries no `system=design-md` handling.** REQ-014's sentinel extension, and REQ-015's two mutation cases plus fixture, were never built. A themed form's palette block is gated only by the applicator's own in-memory checks at write time, never by the corpus-wide checker `check-diagram-corpus.cjs` runs. Building this stayed outside this closeout pass's write authority (scoped to the phase's spec-folder docs); it needs an implementation pass.
-2. **`SKILL.md` does not route to the new capability as REQ-016 specifies.** One sentence in HOW IT WORKS points at `references/design-md-theming.md`; there is no WHEN TO USE activation trigger, no REFERENCES row for either `apply-design-md.cjs` or `design-md-theming.md`, and the frontmatter `version` never moved from `1.1.0.0`. A user has to already know the capability exists to find that one sentence.
-3. **`assets/style-reference/diagram-stock/` was never built.** The reference bundle shipped at `assets/style-reference/harness-diagram/` instead, and no `tokens.json` file exists there — dark-theme support is declared through `DESIGN.md`'s own `**Theme:**` line, which the code accepts as an alternative signal. Functionally equivalent for this packet's own reference; `spec.md`'s Files-to-Change table names the wrong path and an extra file.
-4. **`soft`'s documented text-gate exemption is narrower in code than in either doc.** `plan.md` §3.1 and `references/design-md-theming.md` §5 both describe `soft` as "never held to the text gate." `validateRoles()` (`apply-design-md.cjs:674`) puts `soft` in `TEXT_ROLES` and only excuses a sub-gate value when its measured ratio exactly reproduces a *recorded* departure ratio from `diagram-palette.json`. `--default` passes because the identity value reproduces the stock 3.48:1 departure exactly; a freshly-derived `soft` value that matches no recorded departure fails outright — observed live against a real second reference (17 forms, ratios as low as 1.04:1). Themed corpora that don't happen to reproduce the exact stock ratio will see this as a real failure mode, not a documentation nit.
-5. **REQ-004's role-mapping table is missing a dedicated dark `link` row**, and the actual `diagram-palette.json` dark skin carries 5 roles, not the 4 this packet's own acceptance criteria assumed. The code still derives dark `link` correctly (the derivation loop is generic per role, not hard-coded per skin), so this is a table/documentation gap rather than a functional one.
-6. **REQ-008 (series-capacity shortfall) and the "declares dark but too few neutrals" terminal case were not reproduced live** in this closeout pass — both refusal paths exist and were confirmed by direct code reading, but a hand-edited reference kept supplying enough fallback candidates from its remaining rows to avoid triggering either one within the time available.
+1. **`SKILL.md` still does not fully route to the new capability as REQ-016 specifies.** Commit `76ad403c52` added the WHEN TO USE activation trigger, five keyword triggers, one REFERENCES row (`design-md-theming.md`), and the version bump to `1.2.0.0` — but `scripts/apply-design-md.cjs` is still named nowhere in the file (`grep -ni "apply-design\|\.cjs" SKILL.md` — no hits), and HOW IT WORKS still carries only its pre-existing one-sentence pointer, not a dedicated paragraph. A user can discover the capability and its reference doc, but has to open that doc to learn the script exists.
+2. **`assets/style-reference/diagram-stock/` was never built.** The reference bundle shipped at `assets/style-reference/harness-diagram/` instead, and no `tokens.json` file exists there — dark-theme support is declared through `DESIGN.md`'s own `**Theme:**` line, which the code accepts as an alternative signal. Functionally equivalent for this packet's own reference; `spec.md`'s Files-to-Change table names the wrong path and an extra file.
+3. **`soft`'s documented text-gate exemption is narrower in code than in either doc.** `plan.md` §3.1 and `references/design-md-theming.md` §5 both describe `soft` as "never held to the text gate." `validateRoles()` (`apply-design-md.cjs:674`) puts `soft` in `TEXT_ROLES` and only excuses a sub-gate value when its measured ratio exactly reproduces a *recorded* departure ratio from `diagram-palette.json`. `--default` passes because the identity value reproduces the stock 3.48:1 departure exactly; a freshly-derived `soft` value that matches no recorded departure fails outright — observed live against a real second reference (17 forms, ratios as low as 1.04:1). Themed corpora that don't happen to reproduce the exact stock ratio will see this as a real failure mode, not a documentation nit.
+4. **REQ-008 (series-capacity shortfall) and the "declares dark but too few neutrals" terminal case were not reproduced live** — both refusal paths exist and were confirmed by direct code reading, but a hand-edited reference kept supplying enough fallback candidates from its remaining rows to avoid triggering either one within the time available.
+5. **The applicator's own write-time gate and the corpus-wide checker's gate disagree on `textOnMark`.** `apply-design-md.cjs`'s `validateRoles()` never checks `textOnMark` for `accent`, only `markOnPaper` and (when `ink` exists) `accentAgainstInk`; `derivation-gates.cjs`'s themed branch (commit `9371f99938`) adds `textOnMark` as a fourth check. A moved-accent reference reran this pass wrote clean under the applicator's own `--all` run (`RESULT: PASSED`) but then failed `check-diagram-corpus.cjs --extra` on 2 of the 39 forms it wrote (`accent measures 3.70:1 ... textOnMark gate is 4.5:1`). Neither tool is wrong on its own terms, and nothing in this phase's requirements says which one governs — but a themed delivery is not provably clean until both agree, and today only the second one checks.
 <!-- /ANCHOR:limitations -->
 
 ---

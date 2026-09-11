@@ -1,0 +1,78 @@
+[
+  {
+    "file": ".opencode/skills/sk-design/sk-design-diagram/assets/diagrams/swimlane.html",
+    "boxes": 9,
+    "connectors": 9,
+    "masks": 2,
+    "read1_pairs_under_12": [],
+    "read2_multi_attach_edges": {},
+    "read2_max_per_edge": 1,
+    "read3_masks": [
+      {
+        "mask": [
+          452.0,
+          124.0,
+          60.0,
+          12.0
+        ],
+        "fill": "#f5f5f5",
+        "nearest": [
+          [
+            8.0,
+            "path \"M460 144 H500 V176\"",
+            7.4,
+            false
+          ],
+          [
+            8.0,
+            "path \"M460 144 H500 V176\"",
+            7.4,
+            false
+          ],
+          [
+            102.08,
+            "line 570,220->570,268",
+            101.48,
+            false
+          ]
+        ],
+        "crossed_by": [],
+        "overlaps_boxes": [
+          "#ffffff(340,96 120x48)"
+        ]
+      },
+      {
+        "mask": [
+          576.0,
+          240.0,
+          52.0,
+          12.0
+        ],
+        "fill": "#ececec",
+        "nearest": [
+          [
+            6.0,
+            "line 570,220->570,268",
+            5.4,
+            false
+          ],
+          [
+            41.76,
+            "line 640,292->680,292",
+            41.16,
+            false
+          ],
+          [
+            99.36,
+            "path \"M460 144 H500 V176\"",
+            98.76,
+            false
+          ]
+        ],
+        "crossed_by": [],
+        "overlaps_boxes": []
+      }
+    ],
+    "read4_transits": []
+  }
+]

@@ -1,0 +1,237 @@
+{
+  "swimlane": [
+    {
+      "label": "HANDOFF",
+      "mask": [
+        452,
+        124,
+        60,
+        12
+      ],
+      "text_bbox_fonts": [
+        461.84,
+        125.67,
+        40.33,
+        10.83
+      ],
+      "text_bbox_nofonts": [
+        461.78,
+        126.5,
+        40.44,
+        9.17
+      ],
+      "slack_fonts": {
+        "left": 9.84,
+        "right": 9.84,
+        "top": 1.67,
+        "bottom": -0.5
+      },
+      "slack_nofonts": {
+        "left": 9.78,
+        "right": 9.78,
+        "top": 2.5,
+        "bottom": 0.33
+      }
+    },
+    {
+      "label": "REVISE",
+      "mask": [
+        576,
+        240,
+        52,
+        12
+      ],
+      "text_bbox_fonts": [
+        584.71,
+        241.67,
+        34.57,
+        10.83
+      ],
+      "text_bbox_nofonts": [
+        584.67,
+        242.5,
+        34.66,
+        9.17
+      ],
+      "slack_fonts": {
+        "left": 8.71,
+        "right": 8.71,
+        "top": 1.67,
+        "bottom": -0.5
+      },
+      "slack_nofonts": {
+        "left": 8.67,
+        "right": 8.67,
+        "top": 2.5,
+        "bottom": 0.33
+      }
+    }
+  ],
+  "architecture": [
+    {
+      "label": "HTTPS",
+      "mask": [
+        172,
+        252,
+        48,
+        12
+      ],
+      "text_bbox_fonts": [
+        182.4,
+        253.67,
+        27.2,
+        10.83
+      ],
+      "text_bbox_nofonts": [
+        182.35,
+        254.5,
+        27.29,
+        9.17
+      ],
+      "slack_fonts": {
+        "left": 10.4,
+        "right": 10.4,
+        "top": 1.67,
+        "bottom": -0.5
+      },
+      "slack_nofonts": {
+        "left": 10.35,
+        "right": 10.35,
+        "top": 2.5,
+        "bottom": 0.33
+      }
+    },
+    {
+      "label": "RESP",
+      "mask": [
+        172,
+        272,
+        32,
+        12
+      ],
+      "text_bbox_fonts": [
+        177.11,
+        272.67,
+        21.77,
+        10.83
+      ],
+      "text_bbox_nofonts": [
+        177.08,
+        273.5,
+        21.84,
+        9.17
+      ],
+      "slack_fonts": {
+        "left": 5.11,
+        "right": 5.11,
+        "top": 0.67,
+        "bottom": 0.5
+      },
+      "slack_nofonts": {
+        "left": 5.08,
+        "right": 5.08,
+        "top": 1.5,
+        "bottom": 1.33
+      }
+    },
+    {
+      "label": "SSR",
+      "mask": [
+        368,
+        252,
+        48,
+        12
+      ],
+      "text_bbox_fonts": [
+        383.84,
+        253.67,
+        16.33,
+        10.83
+      ],
+      "text_bbox_nofonts": [
+        383.81,
+        254.5,
+        16.38,
+        9.17
+      ],
+      "slack_fonts": {
+        "left": 15.84,
+        "right": 15.84,
+        "top": 1.67,
+        "bottom": -0.5
+      },
+      "slack_nofonts": {
+        "left": 15.81,
+        "right": 15.81,
+        "top": 2.5,
+        "bottom": 0.33
+      }
+    },
+    {
+      "label": "READ MDX",
+      "mask": [
+        584,
+        234,
+        60,
+        12
+      ],
+      "text_bbox_fonts": [
+        592.24,
+        234.67,
+        43.53,
+        10.83
+      ],
+      "text_bbox_nofonts": [
+        592.17,
+        235.5,
+        43.66,
+        9.17
+      ],
+      "slack_fonts": {
+        "left": 8.24,
+        "right": 8.24,
+        "top": 0.67,
+        "bottom": 0.5
+      },
+      "slack_nofonts": {
+        "left": 8.17,
+        "right": 8.17,
+        "top": 1.5,
+        "bottom": 1.33
+      }
+    },
+    {
+      "label": "QUERY",
+      "mask": [
+        584,
+        298,
+        44,
+        12
+      ],
+      "text_bbox_fonts": [
+        592.4,
+        298.67,
+        27.2,
+        10.83
+      ],
+      "text_bbox_nofonts": [
+        592.35,
+        299.5,
+        27.29,
+        9.17
+      ],
+      "slack_fonts": {
+        "left": 8.4,
+        "right": 8.4,
+        "top": 0.67,
+        "bottom": 0.5
+      },
+      "slack_nofonts": {
+        "left": 8.35,
+        "right": 8.35,
+        "top": 1.5,
+        "bottom": 1.33
+      }
+    }
+  ]
+}
