@@ -63,6 +63,20 @@ Two further observations are recorded from the same captures and are explicitly 
 
 **The settled double capture.** Each file is captured twice with a settle interval between the two, and the pair is compared. A difference means the drawing was still moving — an animation caught mid-cycle, or a font that arrived late and re-flowed the text — and the second capture is the one reviewed, because it is the frame the reader will actually see. The pair matching is what licenses every read: an answer taken on a moving drawing describes a frame, not the file.
 
+**A capture reads the whole page.** The shared renderer takes `--full-page`, which measures a page
+before shooting it and captures at that height; without the flag it shoots a fixed viewport and
+everything below is silently gone. Eleven of the library's forms are taller than that fixed height,
+and the crop is not a cosmetic loss: it once hid a legend row drawn outside its canvas and a caption
+contradicted by its own drawing from a reviewer working off the committed images, which is exactly
+the failure this review exists to catch. Shoot with the flag, and if a capture's height is a round
+number matching the viewport rather than the drawing, you are reading a crop.
+
+There is a measurement trap under it. This browser subtracts its chrome from the layout viewport when
+dumping the DOM but not when screenshotting, so a probe and a capture requested at the same window
+size can place the same element about thirty pixels apart on a centred page. A crop taken from
+probe coordinates will therefore show the wrong region and look like a defect. Probe at the height
+you will capture at, and assert the two agree before trusting any coordinate you measured.
+
 ### The Font-Substitution Label-Mask Measurement
 
 A label's mask is sized to the font the page asked for. When the page cannot fetch that font, the browser substitutes one whose glyphs are wider or taller, and a mask that covered the label a moment ago no longer does — the connector bleeds back through the text, which is the exact fault the opaque mask exists to prevent. The measurement is:
