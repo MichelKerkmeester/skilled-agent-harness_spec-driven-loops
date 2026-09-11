@@ -154,13 +154,18 @@ goal_prompting:
     # supported runtimes document no adapter for it, including the one whose
     # native goal surface is the reason this offer exists. A runtime without a
     # surface hands off to the operator; none is ever faked.
+    # When the resolved packet carries a goal.md, the set path binds instead of
+    # setting text: bindGoal derives the objective from the file, so the packet
+    # is the source from the first turn and the operator has nothing to paste.
+    bind_when_goal_present:
+      rule: "If <spec_path>/goal.md exists, call the bind action with spec_path and skip the text set; goal_objective is then the packet's objective slice."
     dispatch_by_runtime:
       opencode:
         tool: opencode_goal
-        invocation: 'opencode_goal({ action: "set", objective: goal_objective })'
+        invocation: 'opencode_goal({ action: "bind", packetPath: spec_path }) when <spec_path>/goal.md exists, otherwise opencode_goal({ action: "set", objective: goal_objective })'
         status_tool: opencode_goal_status
       pi:
-        command: 'bin/goal.cjs set <objective>'
+        command: 'bin/goal.cjs bind <spec_path> when <spec_path>/goal.md exists, otherwise bin/goal.cjs set <objective>'
         note: "Scope flags carry the native session identity."
       cursor:
         surface: "injection-only; no management surface"
@@ -169,8 +174,30 @@ goal_prompting:
         surface: "native session-goal command, when the runtime provides one"
         handoff: "Report the objective for the operator to set; do not fabricate a call."
   objective_shape:
-    rule: "Pointer plus copied completion criteria; never a file body."
-    why: "Nothing dereferences a path in an objective, and every surface caps what it holds."
+    rule: "Pointer first, then the binding sentence when the packet is phased, then the completion criteria copied out; never the file body and never its frontmatter."
+    why: "Nothing dereferences a path in an objective, every surface caps what it holds, and a truncation must keep the address. The chat resend is a different payload: the whole durable slice, so the operator can paste it; the objective stored by the runtime is the projection above."
+  # The packet goal.md is the source of the directive, and the session binds to
+  # it rather than to a remembered string. Everything below is the agent's
+  # posture around that file; the mechanics live in the goal hook core.
+  packet_goal:
+    bind_by_runtime:
+      opencode: 'opencode_goal({ action: "bind", packetPath: spec_path })'
+      pi: 'node .opencode/hooks/goal/bin/goal.cjs bind <spec_path> --runtime Pi --session <native session id> --workspace <repo root>'
+      cursor: "injection-only; report the objective for the operator to set, do not fabricate a call"
+      devin: "injection-only; report the objective for the operator to set, do not fabricate a call"
+      claude-code: "native goal command; render the durable slice, frontmatter excluded, and ask the operator to set it"
+      codex: "native goal command; render the durable slice, frontmatter excluded, and ask the operator to set it"
+    resend:
+      trigger: "The durable slice hash of the parent goal.md changed: a decision, a binding row or a criterion. Log rows and frontmatter never trigger."
+      payload: "The durable slice of the parent goal.md with frontmatter excluded, rendered from the file, never from memory."
+      after: "Ask the operator to set it. On a runtime with a bound session, record the send with the goal command's resent action."
+      child_rule: "A child goal change that alters a parent decision or criterion is applied to the parent first, then the parent is resent."
+    reminder:
+      while_unset: "Repeat a one-line reminder at every command entry and turn where the runtime injects; never repeat the full slice unless asked."
+      never_halts: "Work never stops because a goal is unset or a reminder went unanswered. Only an explicit operator stop halts."
+      after_set: "Acknowledge in one line and continue the current work at once; do not restate the goal, do not ask whether to proceed."
+    log:
+      rule: "Progress, evidence and deviations go to the goal log, below the durable slice, never into the directive, and always through the locked append: the goal command's log action on a bound session, or `node .opencode/hooks/goal/bin/goal.cjs packet-log <spec_path> \"<item> | <state> | <evidence>\" --workspace <repo root>` on a runtime without a management surface or for an unbound packet. Never hand-edit the table."
   status_tool_by_runtime:
     opencode: opencode_goal_status
     default: "none; report state from the packet documents instead"

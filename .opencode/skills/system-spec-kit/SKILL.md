@@ -155,7 +155,7 @@ INTENT_SIGNALS = {
     "PHASE": {"weight": 4, "keywords": ["phase", "decompose", "split", "workstream", "multi-phase", "phased approach", "phased", "multi-session"]},
     "RETRIEVAL_TUNING": {"weight": 3, "keywords": ["retrieval", "search tuning", "fusion", "scoring", "pipeline"]},
     "INTAKE": {"weight": 4, "keywords": ["intake", "folder_state", "start_state", "repair-mode", "intake-only"]},
-    "HOOKS": {"weight": 4, "keywords": ["hook", "skill advisor hook", "advisor hook", "prompt-time advisor", "advisor_validate", "goal plugin", "opencode-goal", "/goal", "active_goal", "session goal"]},
+    "HOOKS": {"weight": 4, "keywords": ["hook", "skill advisor hook", "advisor hook", "prompt-time advisor", "advisor_validate", "goal plugin", "opencode-goal", "/goal", "active_goal", "session goal", "set goal", "bind goal", "packet goal", "update the goal", "resend goal", "goal.md", "nested goal", "durable slice"]},
     "LAUNCHER": {"weight": 4, "keywords": ["launcher", "lease", "pid file", "single-writer", "lease_held_by"]},
     "RENAME": {"weight": 3, "keywords": ["rename", "mechanical refactor", "rename pattern", "git mv", "case variants"]},
     "EVALUATION": {"weight": 3, "keywords": ["evaluate", "ablation", "benchmark", "baseline", "metrics"]},
@@ -480,7 +480,7 @@ Run `.opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh <spec-folder>
 
 ### OpenCode Goal Plugin
 
-The local `/goal` surface is `.opencode/plugins/opencode-goal.js` plus `.opencode/commands/goal-opencode.md`. It is not an MCP daemon bridge: it stores per-session JSON state under `.opencode/skills/.state/goal/`, injects the active goal with `experimental.chat.system.transform`, observes lifecycle events through the plugin `event` hook, and exposes `opencode_goal` / `opencode_goal_status` plugin tools. Use [`.opencode/hooks/goal/goal-plugin.md`](../../hooks/goal/goal-plugin.md) for the operator contract, restart requirement, environment variables, validation commands, and boundary between raw `objective` and generated `goalPrompt`.
+The packet `goal.md` is the source of goal state. A session binds to it (`opencode_goal({ action: "bind", packetPath })` on OpenCode, `bin/goal.cjs bind <packet>` on Pi), the runtime injects the file's durable slice on every turn with the frontmatter stripped, and the per-session record under `.opencode/skills/.state/goal/` keeps only the pointer, liveness and telemetry. When an operator says "set the goal", "bind the goal", "update the goal" or "resend the goal" in conversation, that is this surface: render the parent's durable slice from the file, frontmatter excluded, hand it over to be set, keep reminding while it stays unset, and never stop work for it. The OpenCode surface is `.opencode/plugins/opencode-goal.js` plus `.opencode/commands/goal-opencode.md`; it injects with `experimental.chat.system.transform`, observes lifecycle events through the plugin `event` hook, and exposes `opencode_goal` / `opencode_goal_status` plugin tools. Use [`.opencode/hooks/goal/goal-plugin.md`](../../hooks/goal/goal-plugin.md) for the operator contract, restart requirement, environment variables, validation commands, and boundary between raw `objective` and generated `goalPrompt`.
 
 ### Code Graph and Search Routing
 

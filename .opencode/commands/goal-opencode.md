@@ -1,6 +1,6 @@
 ---
 description: Manage the passive session goal.
-argument-hint: "set <objective> [--budget N] | show | history | doctor | health | clear | complete | pause [reason] | resume"
+argument-hint: "bind <packet-path> | unbind | resent | log <item> | <state> | <evidence> | packet <packet-path> | set <objective> [--budget N] | show | history | doctor | health | clear | complete | pause [reason] | resume"
 allowed-tools: opencode_goal, opencode_goal_status
 ---
 
@@ -31,12 +31,17 @@ Bind routing to these resolved `ARGS_PRESENT`, `QUERY`, `FIRST`, and `REST` valu
 
 ## 3. CONTRACT
 
-**Inputs:** `$ARGUMENTS` — `set <objective> [--budget N] | show | history | doctor | health | clear | complete | pause [reason] | resume`
-**Outputs:** `STATUS=<OK|FAIL> ACTION=<set|clear|complete|pause|resume|history|doctor|health|show>`
+**Inputs:** `$ARGUMENTS` — `bind <packet-path> | resent | packet <packet-path> | set <objective> [--budget N] | show | history | doctor | health | clear | complete | pause [reason] | resume`
+**Outputs:** `STATUS=<OK|FAIL> ACTION=<bind|resent|packet|set|clear|complete|pause|resume|history|doctor|health|show>`
 
 This command is state-free. It never reads or writes `.opencode/skills/.state/goal` directly.
 
 - Empty arguments or `show` route to `opencode_goal_status`.
+- `bind <packet-path>` routes to `opencode_goal` with `action: "bind"` and `packetPath`. The packet's `goal.md` becomes the directive: the objective is derived from it, the injection renders from the file on every turn, and the frontmatter never leaves the file.
+- `unbind` routes to `opencode_goal` with `action: "unbind"`, dropping the packet pointer and keeping the record.
+- `resent` routes to `opencode_goal` with `action: "resent"`, recording that the current durable slice was resent in chat so the reminder stops.
+- `log <item> | <state> | <evidence>` routes to `opencode_goal` with `action: "log"` and the three parts; the row lands below the packet's log anchor under the per-packet lock and never touches the durable slice.
+- `packet <packet-path>` routes to `opencode_goal` with `action: "packet"` and `packetPath`: a session-free read of the packet's durable slice, hash and size.
 - `set <objective> --budget N` routes to `opencode_goal` with `action: "set"`, `objective` with the budget suffix removed, and `tokenBudget: N`.
 - `set <objective>` routes to `opencode_goal` with `action: "set"` and `objective: REST`.
 - Bare text routes to `opencode_goal` with `action: "set"` and `objective: QUERY`.
@@ -46,7 +51,7 @@ This command is state-free. It never reads or writes `.opencode/skills/.state/go
 
 Status output reports continuation budget fields affected by `OPENCODE_GOAL_MAX_AUTO_TURNS` and `OPENCODE_GOAL_MAX_WALL_MS`: `remaining_auto_turns`, `remaining_wall_ms`, and `provider_retry_after_ms`.
 
-Successful `set` responses include `mutation=created`, `mutation=refreshed`, or `mutation=replaced` immediately after the status line. `created` means no prior goal existed, `refreshed` means the active goal objective was unchanged, and `replaced` means a different objective or terminal prior goal produced a fresh goal record.
+Successful `set` responses include `mutation=created`, `mutation=refreshed`, or `mutation=replaced` immediately after the status line; `bind` responses carry `mutation=bound` or `mutation=rebound` plus `packet_path`, `packet_nested`, `packet_slice_hash` and `resend_pending`. `created` means no prior goal existed, `refreshed` means the active goal objective was unchanged, and `replaced` means a different objective or terminal prior goal produced a fresh goal record.
 
 When `OPENCODE_GOAL_PLUGIN_DISABLED=1`, plugin tools fail closed. The command must print the tool result verbatim, including `STATUS=FAIL ACTION=<action> ERROR="..."` and `code=PLUGIN_DISABLED`.
 
@@ -60,7 +65,10 @@ Your FIRST and ONLY action is the single tool call selected below. Do NOT read f
 
 1. If `ARGS_PRESENT=false`, call `opencode_goal_status({})` and print its result exactly.
 2. If `FIRST` is `show`, call `opencode_goal_status({})` and print its result exactly.
-3. If `FIRST` is `set`, parse an optional trailing `--budget N` from `REST`:
+3. If `FIRST` is `bind`, call `opencode_goal({ action: "bind", packetPath: REST })`. If `REST` is empty, print `STATUS=FAIL ACTION=bind ERROR="A packet path is required"` and `code=INVALID_PACKET_PATH` without calling a tool.
+3a. If `FIRST` is `resent`, call `opencode_goal({ action: "resent" })`. If `FIRST` is `unbind`, call `opencode_goal({ action: "unbind" })`. If `FIRST` is `log`, split `REST` on `|` into item, state and evidence and call `opencode_goal({ action: "log", item, state, evidence })`.
+3b. If `FIRST` is `packet`, call `opencode_goal({ action: "packet", packetPath: REST })`.
+3c. If `FIRST` is `set`, parse an optional trailing `--budget N` from `REST`:
    - If present, `N` must be a positive base-10 integer (`1` or greater). If `N` is missing, non-numeric, zero, or negative, print `STATUS=FAIL ACTION=set ERROR="Token budget must be a positive integer"` and `code=INVALID_TOKEN_BUDGET` without calling a tool.
    - Remove the trailing `--budget N` from the objective. If the remaining objective is empty, print `STATUS=FAIL ACTION=set ERROR="Objective is required"` and `code=INVALID_OBJECTIVE` without calling a tool.
    - Call `opencode_goal({ action: "set", objective: <objective>, tokenBudget: N })` when budget is present, otherwise call `opencode_goal({ action: "set", objective: REST })`.

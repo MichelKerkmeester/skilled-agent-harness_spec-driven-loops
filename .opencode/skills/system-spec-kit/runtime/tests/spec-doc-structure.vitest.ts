@@ -3,11 +3,13 @@ import os from 'node:os';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
+import { createRequire } from 'node:module';
 
 import { afterEach, describe, expect, it } from 'vitest';
 
 import {
   RULE_FAILURE_CODES,
+  extractGoalDurableSlice,
   runSpecDocStructureRule,
   type MergePlan,
 } from '../lib/validation/spec-doc-structure';
@@ -200,6 +202,74 @@ afterEach(() => {
   }
 });
 
+
+// A goal document whose durable slice can be sized exactly: the frontmatter and
+// the log are outside the slice by definition, so only the padding inside the
+// directive anchor moves the measurement.
+function writeGoalDoc(folder: string, options: { level: 'phase' | '1'; sliceChars: number; bindingRows?: string[] }): string {
+  const frontmatter = [
+    '---',
+    'title: "Goal: fixture"',
+    'description: "fixture"',
+    'trigger_phrases:',
+    '  - "goal fixture"',
+    'importance_tier: "important"',
+    'contextType: "planning"',
+    '_memory:',
+    '  continuity:',
+    '    packet_pointer: "fixture/goal"',
+    '    last_updated_at: "2026-09-11T00:00:00Z"',
+    '    last_updated_by: "vitest"',
+    '    recent_action: "Wrote fixture"',
+    '    next_safe_action: "Run validator"',
+    '    blockers: []',
+    '    key_files: []',
+    '    session_dedup:',
+    `      fingerprint: "sha256:${'0'.repeat(64)}"`,
+    '      session_id: "vitest"',
+    '      parent_session_id: null',
+    '    completion_pct: 0',
+    '    open_questions: []',
+    '    answered_questions: []',
+    '---',
+    '',
+  ].join('\n');
+  const binding = options.level === 'phase'
+    ? [
+        '<!-- ANCHOR:binding -->',
+        '## 2. BINDING',
+        '| Phase | Goal document |',
+        '|-------|---------------|',
+        ...(options.bindingRows ?? []),
+        '<!-- /ANCHOR:binding -->',
+        '',
+      ].join('\n')
+    : '';
+  const skeleton = [
+    '# Goal: fixture',
+    '',
+    '<!-- SPECKIT_TEMPLATE_SOURCE: goal | v2.2 -->',
+    '',
+    '<!-- ANCHOR:directive -->',
+    '## 1. DURABLE DIRECTIVE',
+    '**Objective:** PADDING',
+    '<!-- /ANCHOR:directive -->',
+    '',
+    binding,
+    '<!-- ANCHOR:completion -->',
+    '## 3. COMPLETION CRITERIA',
+    '- [ ] validate.sh passes',
+    '<!-- /ANCHOR:completion -->',
+    '',
+  ].join('\n');
+  const baseLength = skeleton.replace('PADDING', '').length;
+  const padding = 'x'.repeat(Math.max(0, options.sliceChars - baseLength));
+  const content = `${frontmatter}${skeleton.replace('PADDING', padding)}<!-- ANCHOR:log -->\n## 4. LOG\nvolatile\n<!-- /ANCHOR:log -->\n`;
+  const goalPath = path.join(folder, 'goal.md');
+  fs.writeFileSync(goalPath, content, 'utf8');
+  return goalPath;
+}
+
 describe('spec-doc-structure contract', () => {
   // drift: verified against shipped behavior during Unit H
   it('freezes the failure-code ordering from Gate C research', () => {
@@ -226,6 +296,8 @@ describe('spec-doc-structure contract', () => {
       'SPECDOC_SUFFICIENCY_002',
       'SPECDOC_SUFFICIENCY_003',
       'SPECDOC_SUFFICIENCY_004',
+      'SPECDOC_SUFFICIENCY_005',
+      'SPECDOC_SUFFICIENCY_006',
     ]);
     expect(RULE_FAILURE_CODES.CROSS_ANCHOR_CONTAMINATION).toEqual([
       'SPECDOC_CONTAM_001',
@@ -238,6 +310,82 @@ describe('spec-doc-structure contract', () => {
       'SPECDOC_FINGERPRINT_003',
       'SPECDOC_FINGERPRINT_004',
     ]);
+  });
+
+  it('measures the goal durable slice from the frontmatter fence to the log anchor', () => {
+    const folder = makeTempDir('speckit-goal-measure-');
+    const goalPath = writeGoalDoc(folder, { level: '1', sliceChars: 1500 });
+    expect(extractGoalDurableSlice(fs.readFileSync(goalPath, 'utf8')).length).toBe(1500);
+  });
+
+  it('measures the same slice as the runtime goal-slice module on every fence variant', () => {
+    // The golden pin: the validator's extractor and the hook runtime's must
+    // agree byte for byte, or the budget rule judges a slice the model never sees.
+    const runtimeSlice = createRequire(import.meta.url)(path.resolve(THIS_DIR, '../../../../hooks/goal/lib/goal-slice.cjs')) as {
+      extractDurableSlice: (content: string) => string;
+    };
+    const folder = makeTempDir('speckit-goal-parity-');
+    const goalPath = writeGoalDoc(folder, { level: '1', sliceChars: 1200 });
+    const clean = fs.readFileSync(goalPath, 'utf8');
+    const variants = {
+      clean,
+      trailing: clean.replace(/^---\n/, '---  \n').replace(/\n---\n/, '\n---\t\n'),
+      crOnly: clean.replace(/\n/g, '\r'),
+      crlf: clean.replace(/\n/g, '\r\n'),
+      unclosed: '---\ntitle: "x"\nsession_id: "SECRET"\n# Goal\n<!-- ANCHOR:log -->\n',
+    };
+    for (const [name, content] of Object.entries(variants)) {
+      expect(extractGoalDurableSlice(content), name).toBe(runtimeSlice.extractDurableSlice(content));
+      expect(extractGoalDurableSlice(content), name).not.toContain('SECRET');
+      expect(extractGoalDurableSlice(content), name).not.toContain('title:');
+    }
+    expect(extractGoalDurableSlice(variants.unclosed)).toBe('');
+  });
+
+  it('checks the continuity block even when the frontmatter fence carries trailing whitespace', () => {
+    const folder = makeTempDir('speckit-goal-fence-memory-');
+    const goalPath = writeGoalDoc(folder, { level: '1', sliceChars: 800 });
+    const padded = fs.readFileSync(goalPath, 'utf8').replace(/^---\n/, '---  \n');
+    fs.writeFileSync(goalPath, padded.replace('    packet_pointer: "fixture/goal"\n', ''), 'utf8');
+    const result = runSpecDocStructureRule({ folder, level: '1', rule: 'FRONTMATTER_MEMORY_BLOCK' });
+    expect(result.diagnostics.some((d) => d.code === 'SPECDOC_FRONTMATTER_003')).toBe(true);
+  });
+
+  it('fails a top-level goal whose durable slice exceeds the error tier', () => {
+    const folder = makeTempDir('speckit-goal-over-');
+    writeGoalDoc(folder, { level: '1', sliceChars: 4001 });
+    const result = runSpecDocStructureRule({ folder, level: '1', rule: 'SPEC_DOC_SUFFICIENCY' });
+    expect(result.status).toBe('fail');
+    expect(result.diagnostics.some((d) => d.code === 'SPECDOC_SUFFICIENCY_005' && d.severity === 'error')).toBe(true);
+  });
+
+  it('warns a phase parent goal between the warning and error tiers', () => {
+    const folder = makeTempDir('speckit-goal-warm-');
+    fs.mkdirSync(path.join(folder, '001-child'));
+    fs.writeFileSync(path.join(folder, '001-child', 'goal.md'), '# child\n', 'utf8');
+    writeGoalDoc(folder, { level: 'phase', sliceChars: 3200, bindingRows: ['| 001-child | `001-child/goal.md` |'] });
+    const result = runSpecDocStructureRule({ folder, level: 'phase', rule: 'SPEC_DOC_SUFFICIENCY' });
+    expect(result.status).toBe('warn');
+    expect(result.diagnostics.filter((d) => d.code === 'SPECDOC_SUFFICIENCY_005').map((d) => d.severity)).toEqual(['warning']);
+    expect(result.diagnostics.some((d) => d.code === 'SPECDOC_SUFFICIENCY_006')).toBe(false);
+  });
+
+  it('leaves a phase child goal unbounded', () => {
+    const parent = makeTempDir('speckit-goal-parent-');
+    fs.writeFileSync(path.join(parent, 'spec.md'), '# parent\n', 'utf8');
+    const child = path.join(parent, '001-child');
+    fs.mkdirSync(child);
+    writeGoalDoc(child, { level: '1', sliceChars: 6000 });
+    const result = runSpecDocStructureRule({ folder: child, level: '1', rule: 'SPEC_DOC_SUFFICIENCY' });
+    expect(result.diagnostics.some((d) => d.code === 'SPECDOC_SUFFICIENCY_005')).toBe(false);
+  });
+
+  it('fails a binding row that names a child goal which does not exist', () => {
+    const folder = makeTempDir('speckit-goal-binding-');
+    writeGoalDoc(folder, { level: 'phase', sliceChars: 800, bindingRows: ['| 002-missing | `002-missing/goal.md` |'] });
+    const result = runSpecDocStructureRule({ folder, level: 'phase', rule: 'SPEC_DOC_SUFFICIENCY' });
+    expect(result.status).toBe('fail');
+    expect(result.details).toContain("SPECDOC_SUFFICIENCY_006: goal.md: binding row names '002-missing/goal.md' which does not exist");
   });
 
   it('accepts a non-canonical doc that omits the _memory block (continuity is single-source in implementation-summary.md)', () => {

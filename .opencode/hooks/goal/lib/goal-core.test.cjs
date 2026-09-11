@@ -719,3 +719,255 @@ test('CLI bare text falls through to set, mirroring the /goal-opencode router', 
   assert.ok(result.stdout.startsWith('STATUS=OK ACTION=set'));
   assert.equal(envelopeField(result.stdout, 'objective'), '"Ship the widget"');
 });
+
+// ─────────────────────────────────────────────────────────────────────────────
+// PACKET BINDING
+// ─────────────────────────────────────────────────────────────────────────────
+
+function packetGoalDoc({ nested = false, criteria = ['validate.sh passes'] } = {}) {
+  const binding = nested
+    ? '<!-- ANCHOR:binding -->\n## 2. BINDING\n| Phase | Goal document |\n|---|---|\n| 001-a | `001-a/goal.md` |\n<!-- /ANCHOR:binding -->\n\n'
+    : '';
+  return [
+    '---',
+    'title: "Goal: fixture"',
+    '_memory:',
+    '  continuity:',
+    '    session_dedup:',
+    '      session_id: "SECRET-SESSION"',
+    '---',
+    '# Goal: fixture',
+    '<!-- ANCHOR:directive -->',
+    '## 1. DURABLE DIRECTIVE',
+    '**Objective:** Ship the fixture.',
+    '<!-- /ANCHOR:directive -->',
+    binding + '<!-- ANCHOR:completion -->',
+    '## 3. COMPLETION CRITERIA',
+    ...criteria.map((c) => `- [ ] ${c}`),
+    '<!-- /ANCHOR:completion -->',
+    '<!-- ANCHOR:log -->',
+    '## 4. LOG',
+    '| Item | State | Evidence |',
+    '|---|---|---|',
+    '| scaffolded | Done | file |',
+    '<!-- /ANCHOR:log -->',
+    '',
+  ].join('\n');
+}
+
+function writePacketGoal(rel, content) {
+  const dir = join(stateDir, rel);
+  mkdirSync(dir, { recursive: true });
+  writeFileSync(join(dir, 'goal.md'), content, 'utf8');
+  return join(dir, 'goal.md');
+}
+
+test('bindGoal derives the objective from the packet and renders without frontmatter', () => {
+  writePacketGoal('specs/t/001-fixture', packetGoalDoc({ nested: true }));
+  const { record, packet, mutation } = core.bindGoal({ packetPath: 'specs/t/001-fixture' }, opts());
+  assert.equal(mutation, 'bound');
+  assert.equal(record.packetPath, 'specs/t/001-fixture');
+  assert.equal(packet.nested, true);
+  assert.ok(record.objective.startsWith('Execute specs/t/001-fixture/goal.md.'));
+  const brief = core.renderGoalBrief({ goal: core.showGoal(opts()), runtimeLabel: 'pi' });
+  assert.ok(brief.startsWith('[active_goal:'));
+  assert.ok(brief.includes('objective: Execute specs/t/001-fixture/goal.md.'));
+  assert.ok(!brief.includes('SECRET'));
+  assert.ok(!brief.includes('---\ntitle'));
+});
+
+test('a bound session renders the file as it is now, not the copy stored at bind time', () => {
+  const goalPath = writePacketGoal('specs/t/001-fixture', packetGoalDoc({ criteria: ['first criterion'] }));
+  core.bindGoal({ packetPath: 'specs/t/001-fixture' }, opts());
+  writeFileSync(goalPath, packetGoalDoc({ criteria: ['second criterion'] }), 'utf8');
+  const brief = core.renderGoalBrief({ goal: core.showGoal(opts()), runtimeLabel: 'pi' });
+  assert.ok(brief.includes('second criterion'));
+  assert.ok(!brief.includes('first criterion'));
+});
+
+test('a bound record whose goal.md is gone injects nothing and does not fall back', () => {
+  const goalPath = writePacketGoal('specs/t/001-fixture', packetGoalDoc());
+  core.bindGoal({ packetPath: 'specs/t/001-fixture' }, opts());
+  rmSync(goalPath);
+  assert.equal(core.renderGoalBrief({ goal: core.showGoal(opts()), runtimeLabel: 'pi' }), '');
+});
+
+test('bindGoal refuses paths outside the workspace and packets without a goal document', () => {
+  assert.throws(() => core.bindGoal({ packetPath: '../outside' }, opts()), { code: 'PACKET_GOAL_NOT_FOUND' });
+  assert.throws(() => core.bindGoal({ packetPath: 'specs/t/missing' }, opts()), { code: 'PACKET_GOAL_NOT_FOUND' });
+  assert.equal(core.showGoal(opts()), null);
+});
+
+test('resend is pending after a durable change and settles after noteResent, never after a log append', () => {
+  const goalPath = writePacketGoal('specs/t/001-fixture', packetGoalDoc({ criteria: ['first'] }));
+  const { record } = core.bindGoal({ packetPath: 'specs/t/001-fixture' }, opts());
+  assert.equal(core.resendPending(record, record.workspace), true);
+  const resent = core.noteResent(opts()).record;
+  assert.equal(core.resendPending(resent, resent.workspace), false);
+  core.appendGoalLog({ item: 'built', state: 'Done', evidence: 'tests' }, opts());
+  assert.equal(core.resendPending(core.showGoal(opts()), resent.workspace), false);
+  assert.ok(readFileSync(goalPath, 'utf8').includes('| built | Done | tests |'));
+  writeFileSync(goalPath, packetGoalDoc({ criteria: ['first', 'second'] }), 'utf8');
+  assert.equal(core.resendPending(core.showGoal(opts()), resent.workspace), true);
+});
+
+test('appendGoalLog refuses to touch the durable slice and keeps the frontmatter intact', () => {
+  const goalPath = writePacketGoal('specs/t/001-fixture', packetGoalDoc());
+  core.bindGoal({ packetPath: 'specs/t/001-fixture' }, opts());
+  const before = readFileSync(goalPath, 'utf8');
+  core.appendGoalLog({ item: 'step', state: 'In Progress', evidence: 'x' }, opts());
+  const after = readFileSync(goalPath, 'utf8');
+  assert.equal(after.split('<!-- ANCHOR:log -->')[0], before.split('<!-- ANCHOR:log -->')[0]);
+  assert.ok(after.includes('session_id: "SECRET-SESSION"'));
+});
+
+test('unbindGoal drops the pointer and the record renders from its stored copy again', () => {
+  writePacketGoal('specs/t/001-fixture', packetGoalDoc());
+  core.bindGoal({ packetPath: 'specs/t/001-fixture' }, opts());
+  const { record } = core.unbindGoal(opts());
+  assert.equal(record.packetPath, undefined);
+  assert.ok(core.renderGoalBrief({ goal: record, runtimeLabel: 'pi' }).startsWith('[active_goal:'));
+});
+
+test('two sessions bound to one packet keep separate records and resend state', () => {
+  writePacketGoal('specs/t/001-fixture', packetGoalDoc());
+  core.bindGoal({ packetPath: 'specs/t/001-fixture' }, scopedOpts('pi', 'session-a'));
+  core.bindGoal({ packetPath: 'specs/t/001-fixture' }, scopedOpts('pi', 'session-b'));
+  core.noteResent(scopedOpts('pi', 'session-a'));
+  assert.equal(core.resendPending(core.showGoal(scopedOpts('pi', 'session-a')), stateDir), false);
+  assert.equal(core.resendPending(core.showGoal(scopedOpts('pi', 'session-b')), stateDir), true);
+});
+
+test('CLI bind, resent, log and unbind return STATUS=OK envelopes with packet fields', () => {
+  writePacketGoal('specs/t/001-fixture', packetGoalDoc({ nested: true }));
+  const bind = runCli(['bind', 'specs/t/001-fixture', '--workspace', stateDir]);
+  assert.equal(bind.status, 0);
+  assert.ok(bind.stdout.startsWith('STATUS=OK ACTION=bind'));
+  assert.equal(envelopeField(bind.stdout, 'packet_bound'), 'true');
+  assert.equal(envelopeField(bind.stdout, 'packet_nested'), 'true');
+  assert.equal(envelopeField(bind.stdout, 'resend_pending'), 'true');
+  const resent = runCli(['resent', '--workspace', stateDir]);
+  assert.equal(envelopeField(resent.stdout, 'resend_pending'), 'false');
+  const log = runCli(['log', 'phase one | Done | tests green', '--workspace', stateDir]);
+  assert.ok(log.stdout.startsWith('STATUS=OK ACTION=log'));
+  const unbind = runCli(['unbind', '--workspace', stateDir]);
+  assert.equal(envelopeField(unbind.stdout, 'packet_bound'), 'false');
+});
+
+test('CLI packet reads a packet goal without a bound session and without frontmatter', () => {
+  writePacketGoal('specs/t/001-fixture', packetGoalDoc({ nested: true }));
+  const res = runCli(['packet', 'specs/t/001-fixture', '--workspace', stateDir]);
+  assert.ok(res.stdout.startsWith('STATUS=OK ACTION=packet'));
+  assert.equal(envelopeField(res.stdout, 'packet_nested'), 'true');
+  assert.ok(!res.stdout.includes('SECRET-SESSION'));
+  assert.equal(core.showGoal(opts()), null);
+});
+
+test('two writers through an alias and the real path serialize on one lock and both rows land', async () => {
+  const { symlinkSync } = require('node:fs');
+  const goalPath = writePacketGoal('specs/t/001-fixture', packetGoalDoc());
+  symlinkSync(join(stateDir, 'specs', 't', '001-fixture'), join(stateDir, 'specs', 't', 'alias'));
+  core.bindGoal({ packetPath: 'specs/t/001-fixture' }, scopedOpts('pi', 'writer-a'));
+  core.bindGoal({ packetPath: 'specs/t/alias' }, scopedOpts('pi', 'writer-b'));
+  const startAt = Date.now() + 150;
+  const workerSource = [
+    'const core = require(process.argv[1]);',
+    'const options = JSON.parse(process.argv[2]);',
+    'const startAtMs = Number(process.argv[3]);',
+    'while (Date.now() < startAtMs) {}',
+    'for (let i = 0; i < 5; i += 1) core.appendGoalLog({ item: `${options.scope.sessionId}-${i}`, state: "Done", evidence: "x" }, options);',
+  ].join('\n');
+  const { spawn } = require('node:child_process');
+  const run = (opts) => new Promise((resolve) => {
+    const child = spawn('node', ['-e', workerSource, join(__dirname, 'goal-core.cjs'), JSON.stringify(opts), String(startAt)], { stdio: 'ignore' });
+    child.on('exit', resolve);
+  });
+  await Promise.all([run(scopedOpts('pi', 'writer-a')), run(scopedOpts('pi', 'writer-b'))]);
+  const rows = (readFileSync(goalPath, 'utf8').match(/\| writer-[ab]-\d \| Done \| x \|/g) || []).length;
+  assert.equal(rows, 10);
+});
+
+test('a rebind to a different packet archives the prior record', () => {
+  writePacketGoal('specs/t/001-fixture', packetGoalDoc());
+  writePacketGoal('specs/t/002-other', packetGoalDoc({ criteria: ['other'] }));
+  const first = core.bindGoal({ packetPath: 'specs/t/001-fixture' }, opts()).record;
+  const second = core.bindGoal({ packetPath: 'specs/t/002-other' }, opts());
+  assert.equal(second.mutation, 'rebound');
+  const archived = core.listArchivedGoals(opts());
+  assert.ok(archived.some((entry) => entry.goal.goalId === first.goalId && entry.goal.packetPath === 'specs/t/001-fixture'));
+});
+
+test('show reports packet_state=missing with a hint once the bound document is gone', () => {
+  const goalPath = writePacketGoal('specs/t/001-fixture', packetGoalDoc());
+  core.bindGoal({ packetPath: 'specs/t/001-fixture' }, scopedOpts('cli', 'default-session'));
+  assert.equal(core.packetState(core.showGoal(scopedOpts('cli', 'default-session')), stateDir), 'bound');
+  rmSync(goalPath);
+  const res = runCli(['show', '--workspace', stateDir]);
+  assert.equal(envelopeField(res.stdout, 'packet_state'), 'missing');
+  assert.equal(envelopeField(res.stdout, 'packet_bound'), 'false');
+  assert.ok(res.stdout.includes('hint='));
+});
+
+test('a text objective past the cap is reported as truncated, not silently clamped', () => {
+  const res = runCli(['set', 'x'.repeat(4500), '--workspace', stateDir]);
+  assert.ok(res.stdout.startsWith('STATUS=OK ACTION=set'));
+  assert.ok(res.stdout.includes('warning="objective was 4500 characters and was truncated to 4000'));
+});
+
+test('a CRLF goal document keeps CRLF after a log append', () => {
+  const goalPath = writePacketGoal('specs/t/001-fixture', packetGoalDoc().replace(/\n/g, '\r\n'));
+  core.bindGoal({ packetPath: 'specs/t/001-fixture' }, opts());
+  core.appendGoalLog({ item: 'crlf', state: 'Done', evidence: 'x' }, opts());
+  const after = readFileSync(goalPath, 'utf8');
+  assert.equal((after.match(/\r\n/g) || []).length, after.split('\n').length - 1);
+  assert.ok(after.includes('| crlf | Done | x |'));
+});
+
+test('appendPacketLog appends without a session record', () => {
+  const goalPath = writePacketGoal('specs/t/001-fixture', packetGoalDoc());
+  const result = core.appendPacketLog({ workspace: stateDir, packetPath: 'specs/t/001-fixture', item: 'no-record', state: 'Done', evidence: 'e' });
+  assert.equal(result.packetPath, 'specs/t/001-fixture');
+  assert.ok(readFileSync(goalPath, 'utf8').includes('| no-record | Done | e |'));
+});
+
+test('CLI packet-log appends without a session and neutralizes pipes and anchor markup in the row', () => {
+  const goalPath = writePacketGoal('specs/t/001-fixture', packetGoalDoc());
+  const res = runCli(['packet-log', 'specs/t/001-fixture', 'a | b <!-- ANCHOR:log --> | c|d', '--workspace', stateDir]);
+  assert.ok(res.stdout.startsWith('STATUS=OK ACTION=packet-log'), res.stdout);
+  const after = readFileSync(goalPath, 'utf8');
+  assert.equal((after.match(/<!-- ANCHOR:log -->/g) || []).length, 1, 'a log row cannot open a second log anchor');
+  assert.ok(after.includes('| a | b <! -- ANCHOR:log -- > | c |'), 'the CLI row grammar keeps three cells');
+  assert.equal(core.showGoal(opts()), null);
+  core.appendPacketLog({ workspace: stateDir, packetPath: 'specs/t/001-fixture', item: 'x|y', state: 'Done', evidence: 'z' });
+  assert.ok(readFileSync(goalPath, 'utf8').includes('| x/y | Done | z |'), 'a pipe inside a cell cannot split the row');
+});
+
+test('the packet lock root follows the workspace, not the record store, so divergent state dirs still contend', async () => {
+  const goalPath = writePacketGoal('specs/t/001-fixture', packetGoalDoc());
+  const otherStateDir = mkdtempSync(join(tmpdir(), 'goal-core-other-'));
+  try {
+    // Each writer keeps its records somewhere different, which is exactly the
+    // case a session-scoped lock cannot serialize.
+    const workerSource = [
+      'const core = require(process.argv[1]);',
+      'const options = JSON.parse(process.argv[2]);',
+      'const startAtMs = Number(process.argv[3]);',
+      'while (Date.now() < startAtMs) {}',
+      'for (let i = 0; i < 5; i += 1) core.appendPacketLog({ workspace: options.workspace, packetPath: "specs/t/001-fixture", item: `${options.tag}-${i}`, state: "Done", evidence: "x" });',
+    ].join('\n');
+    const startAt = Date.now() + 150;
+    const run = (tag, dir) => new Promise((resolve) => {
+      const child = spawn('node', ['-e', workerSource, join(__dirname, 'goal-core.cjs'), JSON.stringify({ workspace: stateDir, tag }), String(startAt)], {
+        stdio: 'ignore',
+        env: { ...process.env, OPENCODE_GOAL_STATE_DIR: dir },
+      });
+      child.on('exit', resolve);
+    });
+    await Promise.all([run('one', stateDir), run('two', otherStateDir)]);
+    const rows = (readFileSync(goalPath, 'utf8').match(/\| (one|two)-\d \| Done \| x \|/g) || []).length;
+    assert.equal(rows, 10, 'every row from both record stores must survive');
+    assert.ok(existsSync(join(stateDir, '.opencode', 'skills', '.state', 'goal', '.locks')), 'the lock lives under the workspace');
+  } finally {
+    rmSync(otherStateDir, { recursive: true, force: true });
+  }
+});

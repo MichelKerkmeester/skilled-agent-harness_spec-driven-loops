@@ -1,0 +1,24 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/033-system-speckit-v4/036-goal-unification",
+  "description": "Three goal surfaces exist and nothing bridges them by code",
+  "keywords": [
+    "three",
+    "goal",
+    "surfaces",
+    "exist",
+    "nothing",
+    "bridges",
+    "them",
+    "code"
+  ],
+  "lastUpdated": "2026-09-11T11:12:21.717Z",
+  "specId": "036",
+  "folderSlug": "goal-unification",
+  "parentChain": [
+    "system-speckit",
+    "033-system-speckit-v4"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

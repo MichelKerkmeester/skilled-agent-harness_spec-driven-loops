@@ -1,0 +1,96 @@
+{
+  "schema_version": "1.0",
+  "lineage": {
+    "sessionId": "fanout-glm-1789112155370-jcyia7",
+    "label": "glm",
+    "executor": { "kind": "cli-pi", "model": "glm-5.3-flash", "reasoningEffort": "max" },
+    "generation": 1,
+    "artifactDir": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/001-goal-unification-research/research/lineages/glm"
+  },
+  "status": "complete",
+  "stopReason": "maxIterationsReached",
+  "iterationsCompleted": 5,
+  "maxIterations": 5,
+  "iterationNumbering": "program iterations 11-15 (lineage-local runs 1-5); continuation of the 15-iteration program, iterations 1-10 ran in the deepseek lineage",
+  "metrics": {
+    "averageNewInfoRatio": 0.6,
+    "lastThreeRatios": [0.65, 0.7, 0.5],
+    "trend": "non-monotonic: verification-resurgent (0.55 -> 0.70) then the synthesis dip (0.50)",
+    "stuckCount": 0,
+    "questionsAnswered": 8,
+    "questionsTotal": 8,
+    "ruledOutCount": 8,
+    "correctionsRecorded": 27,
+    "evidenceCallsTotal": 33,
+    "guardViolations": []
+  },
+  "questions": [
+    { "id": "KQ1", "decision": "D1", "angle": "A1", "question": "How does a session learn which packet's goal.md is active?", "state": "answered", "answer": "Verified: the explicit per-session pointer survives; its carrier evidence corrected (a prompt-side writer persists lastSpecFolder alongside the stop writer; the shipped prime hint is the confirm-don't-claim precedent; the frontmatter's packet_pointer is the adoption-able vocabulary).", "iterations": [11, 15] },
+    { "id": "KQ2", "decision": "D3", "angle": "A2", "question": "Which surfaces render goal text and where does the strip boundary live?", "state": "answered", "answer": "The marker slice survives; the 'full text of this file' payload wording contradicts the above-the-log trigger and must be reworded (036's own copy, 036:62, already words it correctly); anchors resolve and the IF is pre-resolved on the live fixture; the fence omission traces to 010's phase-parent scaffold gap.", "iterations": [13, 14] },
+    { "id": "KQ3", "decision": "D2", "angle": "A3", "question": "What does the legacy store hold that goal.md cannot?", "state": "answered", "answer": "Unchanged: locks, per-session liveness, telemetry, retention, archive; +1 migration fact (redirected stores never adopt legacy scoped keys, goal-core.cjs:195).", "iterations": [11, 15] },
+    { "id": "KQ4", "decision": "D4", "angle": "A4", "question": "What triggers a resend and how is it deduped?", "state": "answered", "answer": "Edge trigger on the durable-slice hash stands; 029's exclusions (029:71-72) are the design's boundary — detection mechanized, paste-verification stays excluded; the criterion-5 (036:99) vs read-only-resume (resume.md:4) conflict is named, not silent.", "iterations": [13, 15] },
+    { "id": "KQ5", "decision": "D5", "angle": "A5", "question": "Which runtimes can ship and with which identity?", "state": "answered-partial", "answer": "All 16 substantive claims verified, zero overturned: pi/opencode/cursor ship, devin defers (hook surface richer than recorded: four events), Claude/Codex by-design (README:69-70); anchors corrected (README:66/67/69-70/25); the plugin accepts three identity spellings and duplicates the budget policy; the pi host-cap UNKNOWN stands, now a recorded negative.", "iterations": [12] },
+    { "id": "KQ6", "decision": "D7", "angle": "A6", "question": "What must stay per-session under a shared goal.md?", "state": "answered", "answer": "Verified: 009's requirements govern the store; the shared file's concurrent-edit residual was never in 009's contract; selection/liveness/telemetry/locks stay 009's; no regression; 009 itself is delivery-freshness-pending (009:64).", "iterations": [13] },
+    { "id": "KQ7", "decision": "D7", "angle": "A7", "question": "What may mutate the parent goal unprompted?", "state": "answered", "answer": "The authority ladder survives with sharper grounding: durable edits command-mediated and ratified (the naming rule, tmpl:77-78, is the pre-existing principle); log+continuity the only auto-write surface (new tooling, 029-deferred); the one-shared-resolver + set-then-inject-canary constraint pre-derives from ADR:129 and 009:54.", "iterations": [13] },
+    { "id": "KQ8", "decision": "D6", "angle": "A8", "question": "What are the real caps and where is the budget enforced?", "state": "answered", "answer": "Constants and 1200/576/4800 verified; the mechanism story corrected: promptBudget = max(3, 4800 - |buildBlock('')|) at :417-418 (~3,875-3,910, INFERRED), the compact path practically never engages, approx-2900 refuted; the 576-preview truncation is live (1,182 vs 576); criterion #1 (three-document agreement) fails three ways today; criterion #2 adds a second restored rule (binding-row existence); recommendation corrected O8-A -> O8-B on 036's own numbers (3,393-3,732: 4000-legal, 3000-warm, at completion_pct 5).", "iterations": [14] }
+  ],
+  "decisions": [
+    { "id": "D1", "name": "binding", "run2Verdict": "AGREE (grounding corrected)", "chosen": "O1-B per-session packet pointer, explicit bind only — surviving; adopt-adoptable: the record-side pointer can ratify-adopt the frontmatter's existing packet_pointer (036:14)", "corrections": ["two-writer lastSpecFolder carrier (prompt-side writer inferred: user-prompt-submit.ts)", "ADR lines :65/:72/:73/:85/:87, decision :83, mitigation :129", "'unbound' precedent = 009 REQ-012 :152, not the CLI"], "rejected": ["O1-A conversational only", "O1-C cwd inference", "O1-D command-implicit only"], "enforcementSite": "a bind resolver beside resolveGoalScope (goal-core.cjs:174) sharing ONE key derivation with the hooks, accepted by the set-then-inject canary (decision-record.md:129; 009/spec.md:54) + the speckit bind step" },
+    { "id": "D2", "name": "store fate", "run2Verdict": "AGREE (untouched)", "chosen": "O3-B demote to per-session index + telemetry", "corrections": ["redirected stores never adopt legacy scoped keys (goal-core.cjs:195)"], "rejected": ["O3-A retire", "O3-C duplicate objective", "O3-D liveness in frontmatter"], "enforcementSite": "goal-core.cjs:622 (read) / :897 (write)" },
+    { "id": "D3", "name": "strip", "run2Verdict": "AGREE WITH CORRECTIONS", "chosen": "O2-B marker slice, resolved IF level:phase — surviving; the payload wording ('full text of this file', tmpl:56-59 / playbook:74-75) must be reworded to the durable slice (036:62 is the correct wording; criterion #1 036:95 demands the agreement)", "corrections": ["anchors/IF/fence fixture behavior (it-014)", "tmpl:104-106 VOLATILE + tmpl:77-78 naming rule + tmpl:80-81 witnesses", "010 phase-parent scaffold gap (036:126)"], "rejected": ["O2-A YAML parse", "O2-C delimiter only", "O2-D materialized slice"], "enforcementSite": "shared CJS slice module under .opencode/hooks/goal/lib/ consumed by both renderers; the :391 goalPrompt||objective fallback is the ready projection seam" },
+    { "id": "D4", "name": "resend", "run2Verdict": "AGREE WITH CORRECTIONS", "chosen": "O4-A edge trigger on durable-slice hash, packet-scoped dedup — surviving; detection mechanized, paste-verification stays excluded (029:71-72)", "corrections": ["criterion-5 (036:99: resume AND save) vs read-only resume whitelist (resume.md:4) — named conflict", "the paste defect is live and self-reported (036:118 wrap artifacts)"], "rejected": ["O4-B cadence", "O4-C mtime", "O4-D in-file fingerprint", "O4-E manual"], "enforcementSite": "injection evaluation path + plugin brief cache key; the criterion-5 resolution (whitelist widening or criterion amendment) recorded in the implementation packet" },
+    { "id": "D5", "name": "runtimes", "run2Verdict": "AGREE in substance; citations corrected", "chosen": "ship pi/opencode/cursor; defer devin; Claude Code and Codex via native goal + speckit — 16/16 run-1 claims verified, zero overturned", "corrections": ["delivery matrix anchors: README:66 (pi), :67 (cursor), :69-70 (claude/codex), :71 (devin), :25 (no core import)", "plugin identity: requireSessionID :333-339, context extraction :353-356 (three spellings)", "Devin: FOUR hook events (SessionStart, UserPromptSubmit, Stop, SessionEnd)", "plugin duplicates the budget policy (:45-48) — drift risk R3 wider than the two renderers", "pi host cap: stands, recorded negative (docs/extensions.md:905-955, 2170-2192: tool-output limits only)"], "rejected": ["devin hook-only ship", "repo hook into host-private stores"], "enforcementSite": "adapter table in .opencode/hooks/goal/README.md (the by-design rows are the hub's own contract)" },
+    { "id": "D6", "name": "budget", "run2Verdict": "CORRECTED (recommendation changed)", "chosen": "O8-B: enforce 4000 on the measured durable slice with the 3000 warming tier + consumer-side check + the SECOND restored rule (binding-row existence, 036:96)", "corrections": ["O8-A -> O8-B on 036's own numbers (3,393-3,732 = 113-124% of 3,000, 93% of 4,000, completion_pct 5)", "mechanism: the :417-418 dynamic label-clamp, not the 1900 constant nor the compact path; approx-2900 refuted (promptBudget ~3,875-3,910, INFERRED)", "the 576-preview truncation is current state (1,182 vs 576 on 036)", "units: criterion says characters; the 010 precedent speaks bytes (036:6,695 = 6,695, ASCII)"], "rejected": ["O8-A 4000-only (corrected by measurement)", "O8-C no enforcement"], "enforcementSite": ".opencode/skills/system-spec-kit/runtime/lib/validation/spec-doc-structure.ts:207/:229 region (unchanged); the criterion-2 double rule (4000 + binding-row existence) is the specification" },
+    { "id": "D7", "name": "isolation reconciliation", "run2Verdict": "AGREE (grounding corrected and strengthened)", "chosen": "shared directive + per-session selection/liveness/telemetry; durable edits ratified — surviving; the naming rule (tmpl:77-78) is the pre-existing ratification principle; the 029 exclusions are the boundary (detection only)", "corrections": ["009 problem citations: :48/:79 exact, enumeration :77->:81; uncited :50 (never fall back) and :54 (critical dependency) stronger", "009 status: implementation verified, delivery freshness pending (009:64)", "010 and 009 never cross-reference — the reconciliation is novel, not inherited"], "rejected": ["per-session directive copies", "inference binding", "auto durable rewrite"], "enforcementSite": "record schema (goal-core.cjs:869 region) + speckit command whitelists + the criterion-5 resolution" }
+  ],
+  "artifacts": {
+    "strategy": "../../deep-research-strategy.md",
+    "config": "deep-research-config.json",
+    "stateLog": "deep-research-state.jsonl",
+    "synthesis": "research.md",
+    "convergenceReport": "convergence-report.md",
+    "dashboard": "deep-research-dashboard.md",
+    "findingsRegistry": "findings-registry.json",
+    "baseline": "../../lineages/deepseek/research.md",
+    "iterations": ["iterations/iteration-011.md", "iterations/iteration-012.md", "iterations/iteration-013.md", "iterations/iteration-014.md", "iterations/iteration-015.md"],
+    "deltas": ["deltas/iter-011.jsonl", "deltas/iter-012.jsonl", "deltas/iter-013.jsonl", "deltas/iter-014.jsonl", "deltas/iter-015.jsonl"]
+  },
+  "risks": [
+    { "id": "R1", "risk": "shared-state regression", "severity": "high", "run2": "no regression found; the 009 requirements are store-scoped (009:137-138) and the file's residual sits outside 009's contract" },
+    { "id": "R2", "risk": "concurrent directive writes", "severity": "medium", "run2": "unchanged; the naming rule (tmpl:77-78) is the behavioral mitigation" },
+    { "id": "R3", "risk": "two implementations drifting", "severity": "high", "run2": "BROADER than the renderers: the plugin duplicates the budget policy numbers (opencode-goal.js:45-48 vs goal-core.cjs:67-70)" },
+    { "id": "R4", "risk": "resend spam", "severity": "medium", "run2": "unchanged; the :391 fallback + :417-418 clamp are the existing truncation plumbing" },
+    { "id": "R5", "risk": "frontmatter leak", "severity": "high", "run2": "036's own copy words it correctly (036:62); the tmpl/playbook wording remains the leak risk (it-013 F5)" },
+    { "id": "R6", "risk": "silent truncation of criteria", "severity": "high", "run2": "LIVE, not hypothetical: 1,182 vs 576 on 036; mechanism corrected to the :385-386 preview + :417-418 clamp" },
+    { "id": "R7", "risk": "dangling packet pointer", "severity": "low", "run2": "unchanged; 036's binding precondition green (7/7 children)" },
+    { "id": "R8", "risk": "stale dedup across packets", "severity": "low", "run2": "unchanged" },
+    { "id": "R9", "risk": "doc-rule drift (dangling citations)", "severity": "high", "run2": "UPGRADED: 27 corrections in one verification pass + the MK_/OPENCODE_ spelling drift + the units split (bytes vs characters) — the drift is systemic" },
+    { "id": "R10", "risk": "continuity goal-facet naming collision", "severity": "low", "run2": "REDUCED: the frontmatter's packet_pointer (036:14) already provides file-side vocabulary" },
+    { "id": "R11", "risk": "criterion/whitelist drift (036:99 resume+save vs read-only resume.md:4)", "severity": "medium", "run2": "NEW — named per 036:85-86; widen the whitelist or amend the criterion" }
+  ],
+  "openGaps": [
+    { "id": "G1", "gap": "Host injection caps for five runtimes", "status": "stands", "run2": "recorded negative for pi (mechanism documented, no char cap: pi docs extensions.md:905-955, 2170-2192); others unsearched", "wouldConfirm": "runtime documentation or an observed live truncation" },
+    { "id": "G2", "gap": "plugin import of the shared slice module", "status": "advanced", "run2": "the :391 goalPrompt||objective fallback is the ready projection seam; the duplicated budget policy (opencode-goal.js:45-48) raises the shared module's value", "wouldConfirm": "attempting the import in the plugin's ESM runtime" },
+    { "id": "G3", "gap": "'unbound' vocabulary", "status": "closed", "run2": "precedent = 009 REQ-012 (spec.md:152), requirement-layer continuity, not CLI code compatibility" },
+    { "id": "G4", "gap": "child-to-parent ratification UX", "status": "closed-in-principle", "run2": "the mechanism is the template's naming rule (tmpl:77-78); command-side UX remains a design pass" },
+    { "id": "G5", "gap": "packet 036's goal.md vs 4000", "status": "closed", "run2": "3,393-3,732 chars: 4000-legal, 3000-warm, at completion_pct 5" },
+    { "id": "G6", "gap": "exact |buildBlock('')| and hence the prompt ceiling", "status": "new", "run2": "INFERRED 3,875-3,910; wouldConfirm: one evaluation of buildBlock('') (goal-core.cjs:405-415, :417)" },
+    { "id": "G6b", "gap": "identity of the prompt-side lastSpecFolder writer", "status": "new", "run2": "INFERRED user-prompt-submit.ts; wouldConfirm: grep its assignments" },
+    { "id": "G6c", "gap": "residual documentation probes", "status": "new", "run2": "references/validation/validation-rules.md content (it-008's negative unre-verified); MK_GOAL_* support in the core; 'malformed legacy' CLI wording; 'unbound' in plugin/pi" }
+  ],
+  "qualityGates": {
+    "iterationMarkdown": "pass",
+    "deltaFiles": "pass",
+    "ledgerRecords": "pass (direct-write; gateway unavailable, note in state-events.jsonl)",
+    "stateProjection": "pass",
+    "sourceCitations": "pass (27 corrections recorded; 3 residual probes documented in research.md section 6)",
+    "ruledOutRecorded": "pass (8 in deltas; correction ledgers carry the rest)",
+    "convergenceEvaluated": "pass (telemetry-only; ratios 0.5-0.7 never近 0.05; stop policy max-iterations honored — no early synthesis)"
+  },
+  "deviation": {
+    "what": "All event/state records written directly by the executor instead of through the append gateway",
+    "why": "no node tooling reachable through the dispatch guard in this inline lineage; schemas mirror the gateway envelope",
+    "evidence": "state-events.jsonl (initialized event note); precedent: the deepseek lineage's synthesis.json deviation"
+  },
+  "completedAt": "2026-09-11T08:22:00Z"
+}

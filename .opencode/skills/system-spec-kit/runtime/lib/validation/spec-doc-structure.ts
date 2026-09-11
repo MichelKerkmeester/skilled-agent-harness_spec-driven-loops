@@ -7,7 +7,7 @@ import path from 'node:path';
 import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 
-import { resolveLevelContract, type SpecKitLevel } from '../templates/level-contract-resolver.js';
+import { resolveGoalDurableBudget, resolveLevelContract, type SpecKitLevel } from '../templates/level-contract-resolver.js';
 
 /** The five structural rules {@link runSpecDocStructureRule} can evaluate. */
 export type SpecDocRuleName =
@@ -141,6 +141,8 @@ export const RULE_FAILURE_CODES: Readonly<Record<SpecDocRuleName, readonly strin
     'SPECDOC_SUFFICIENCY_002',
     'SPECDOC_SUFFICIENCY_003',
     'SPECDOC_SUFFICIENCY_004',
+    'SPECDOC_SUFFICIENCY_005',
+    'SPECDOC_SUFFICIENCY_006',
   ],
   CROSS_ANCHOR_CONTAMINATION: [
     'SPECDOC_CONTAM_001',
@@ -272,8 +274,11 @@ function countLeadingSpaces(value: string): number {
 
 function extractFrontmatter(content: string): FrontmatterExtraction {
   const normalized = content.replace(/\r\n/g, '\n');
-  const frontmatterPattern = /^(?:\uFEFF)?(?:\s*<!--[\s\S]*?-->\s*)*---\n([\s\S]*?)\n---(?:\n|$)/;
-  const frontmatterOpeningPattern = /^(?:\uFEFF)?(?:\s*<!--[\s\S]*?-->\s*)*---\n/;
+  // Trailing spaces or tabs on a fence are tolerated here for the same reason
+  // the goal extractors tolerate them: a fence an editor padded must not turn
+  // the continuity check into a silent pass.
+  const frontmatterPattern = /^(?:\uFEFF)?(?:\s*<!--[\s\S]*?-->\s*)*---[ \t]*\n([\s\S]*?)\n---[ \t]*(?:\n|$)/;
+  const frontmatterOpeningPattern = /^(?:\uFEFF)?(?:\s*<!--[\s\S]*?-->\s*)*---[ \t]*\n/;
   const match = normalized.match(frontmatterPattern);
   if (frontmatterOpeningPattern.test(normalized) && !match) {
     return {
@@ -1012,6 +1017,75 @@ function looksLikeCitation(text: string): boolean {
   return /\[[^\]]+\]\([^)]+\)|`[^`]+(?:\/[^`]+)?`|https?:\/\/|iteration-\d+|source:/i.test(text);
 }
 
+const GOAL_DOC = 'goal.md';
+const GOAL_LOG_ANCHOR = '<!-- ANCHOR:log -->';
+
+/**
+ * The durable slice of a goal document: what an operator sets as the session
+ * objective. It starts after the frontmatter's closing fence and ends at the
+ * log anchor, anchors and comments included, so the count matches what an
+ * author sees in the file. Frontmatter is bookkeeping and never part of it.
+ */
+export function extractGoalDurableSlice(content: string): string {
+  // Same boundary the runtime extractor draws: bare CR normalized too, and a
+  // fence tolerates trailing spaces or tabs, so both count the same slice.
+  const normalized = content.replace(/\r\n?/g, '\n');
+  const fence = normalized.match(/^(?:\uFEFF)?(?:\s*<!--[\s\S]*?-->\s*)*---[ \t]*\n[\s\S]*?\n---[ \t]*(?:\n|$)/);
+  // An opener with no closing fence is a broken document. The runtime reads it
+  // as an empty slice rather than as body that includes the bookkeeping, and
+  // the budget must count the same thing the runtime would render.
+  if (!fence && /^(?:\uFEFF)?(?:\s*<!--[\s\S]*?-->\s*)*---[ \t]*\n/.test(normalized)) return '';
+  const body = fence ? normalized.slice(fence[0].length) : normalized;
+  const logIndex = body.indexOf(GOAL_LOG_ANCHOR);
+  return logIndex >= 0 ? body.slice(0, logIndex) : body;
+}
+
+// A phase child sits inside a folder that is itself a packet. Its goal binds
+// through the parent and is never set directly, so the budget skips it.
+function isPhaseChildFolder(folder: string): boolean {
+  return fs.existsSync(path.join(path.dirname(folder), 'spec.md'));
+}
+
+function validateGoalDocument(folder: string, level: string, content: string, diagnostics: RuleDiagnostic[]): void {
+  const budget = resolveGoalDurableBudget();
+  const budgetApplies = level === 'phase' || !isPhaseChildFolder(folder);
+  if (budget && budgetApplies) {
+    const length = extractGoalDurableSlice(content).length;
+    if (length > budget.errorChars) {
+      diagnostics.push({
+        code: 'SPECDOC_SUFFICIENCY_005',
+        severity: 'error',
+        detail: `${GOAL_DOC}: durable slice is ${length} characters (> ${budget.errorChars})`,
+      });
+    } else if (length > budget.warnChars) {
+      diagnostics.push({
+        code: 'SPECDOC_SUFFICIENCY_005',
+        severity: 'warning',
+        detail: `${GOAL_DOC}: durable slice is ${length} characters (> ${budget.warnChars}); it fails past ${budget.errorChars}`,
+      });
+    }
+  }
+
+  const binding = parseAnchors(content).anchors.find((anchor) => anchor.id === 'binding');
+  if (!binding) {
+    return;
+  }
+  for (const line of binding.body.split('\n')) {
+    const row = line.match(/^\|\s*[^|]+\|\s*`([^`]+)`\s*\|/);
+    if (!row) {
+      continue;
+    }
+    const target = row[1].trim();
+    if (target.includes('..') || path.isAbsolute(target) || !fs.existsSync(path.join(folder, target))) {
+      diagnostics.push({
+        code: 'SPECDOC_SUFFICIENCY_006',
+        severity: 'error',
+        detail: `${GOAL_DOC}: binding row names '${target}' which does not exist`,
+      });
+    }
+  }
+}
+
 function validateSpecDocSufficiency(folder: string, level: string): RuleResult {
   const diagnostics: RuleDiagnostic[] = [];
   const contract = resolveLevelContract(normalizeSpecKitLevel(level));
@@ -1090,6 +1164,10 @@ function validateSpecDocSufficiency(folder: string, level: string): RuleResult {
           detail: `${document.basename}: research content is missing a citation`,
         });
       }
+    }
+
+    if (document.basename === GOAL_DOC) {
+      validateGoalDocument(folder, level, document.content, diagnostics);
     }
 
     if (document.basename === 'decision-record.md') {

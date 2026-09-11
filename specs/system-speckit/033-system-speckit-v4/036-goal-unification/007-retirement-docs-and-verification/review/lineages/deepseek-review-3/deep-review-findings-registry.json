@@ -1,0 +1,378 @@
+{
+  "sessionId": "fanout-deepseek-review-3-1789130055224-0aogzl",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "auto",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 5,
+    "timestamp": "2026-09-11T13:26:00Z"
+  },
+  "status": "COMPLETE",
+  "verdict": "PASS",
+  "hasAdvisories": true,
+  "releaseReadinessState": "advisories-open",
+  "openFindings": [
+    {
+      "findingId": "F301",
+      "severity": "P2",
+      "title": "The packet-log lock root escapes the documented OPENCODE_GOAL_STATE_DIR override, so an append still writes a lock tree under the workspace state root",
+      "file": ".opencode/hooks/goal/lib/goal-core.cjs",
+      "line": 902,
+      "dimension": "correctness",
+      "findingClass": "doc-behavior-drift",
+      "status": "active",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "carriedFrom": "new",
+      "affectedSurfaceHints": [
+        "goal-core.cjs:902",
+        "goal-core.cjs:1062",
+        "opencode/README.md:130"
+      ],
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Reproduced: with the env override set, an append still creates <workspace>/.opencode/skills/.state/goal/.locks/; harmless because .gitignore:108 ignores that tree"
+        }
+      ]
+    },
+    {
+      "findingId": "F302",
+      "severity": "P2",
+      "title": "On an unclosed frontmatter opener the validator measures the whole document as the durable slice where the runtime fails closed",
+      "file": ".opencode/skills/system-spec-kit/runtime/lib/validation/spec-doc-structure.ts",
+      "line": 1030,
+      "dimension": "correctness",
+      "findingClass": "measurement-drift",
+      "status": "active",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "carriedFrom": "new (residual of the pass-2 F102 fix)",
+      "affectedSurfaceHints": [
+        "spec-doc-structure.ts:1026-1031",
+        "goal-slice.cjs:42-45",
+        "goal-slice.cjs:255"
+      ],
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Reproduced: runtime extractDurableSlice 0 vs validator extractGoalDurableSlice 4400 on a 4200-char body"
+        }
+      ]
+    },
+    {
+      "findingId": "F303",
+      "severity": "P2",
+      "title": "A goal.md whose frontmatter fence carries trailing whitespace skips the continuity-block check entirely while an exact fence warns",
+      "file": ".opencode/skills/system-spec-kit/runtime/lib/validation/spec-doc-structure.ts",
+      "line": 277,
+      "dimension": "correctness",
+      "findingClass": "boundary-drift",
+      "status": "active",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "carriedFrom": "new",
+      "affectedSurfaceHints": [
+        "spec-doc-structure.ts:276-278",
+        "spec-doc-structure.ts:1029-1030",
+        "orchestrator.ts:682"
+      ],
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Reproduced: trailing-space fence -> FRONTMATTER_MEMORY_BLOCK pass with no diagnostics; exact fence -> SPECDOC_FRONTMATTER_002 warn"
+        }
+      ]
+    },
+    {
+      "findingId": "F304",
+      "severity": "P2",
+      "title": "The parity test named for the runtime extractor compares the validator's extractor with itself, and ADR-003's golden pin is still absent",
+      "file": ".opencode/skills/system-spec-kit/runtime/tests/spec-doc-structure.vitest.ts",
+      "line": 320,
+      "dimension": "traceability",
+      "findingClass": "missing-validation",
+      "status": "active",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "carriedFrom": "new (the pin the pass-2 F102 fix promised)",
+      "affectedSurfaceHints": [
+        "spec-doc-structure.vitest.ts:320-328",
+        "002-decisions-and-contract-freeze/decision-record.md:265",
+        "runtime/cli/validation/continuity-freshness.ts:21"
+      ],
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Read: only the validator module is imported; a repo-wide grep for the exported symbol finds no runtime reference"
+        }
+      ]
+    },
+    {
+      "findingId": "F305",
+      "severity": "P2",
+      "title": "The hook README still says the OpenCode plugin imports goal-slice.cjs only, contradicting its new shared appendPacketLog import",
+      "file": ".opencode/hooks/goal/README.md",
+      "line": 29,
+      "dimension": "traceability",
+      "findingClass": "doc-code-contradiction",
+      "status": "active",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "carriedFrom": "new",
+      "affectedSurfaceHints": [
+        "opencode/README.md:29",
+        "opencode/README.md:117",
+        "opencode/README.md:140",
+        "opencode-goal.js:26-27",
+        "opencode-goal.js:3024"
+      ],
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Read: three import-boundary sentences deny the import the plugin makes"
+        }
+      ]
+    },
+    {
+      "findingId": "F306",
+      "severity": "P2",
+      "title": "The packet_goal log rule's carve-out is undecidable from any shipped surface, and on Cursor and Devin it is the only branch",
+      "file": ".opencode/commands/speckit/assets/speckit-plan.yaml",
+      "line": 200,
+      "dimension": "traceability",
+      "findingClass": "undecidable-contract",
+      "status": "active",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "carriedFrom": "new (the pass-2 F104 narrowing left it)",
+      "affectedSurfaceHints": [
+        "speckit-plan.yaml:200",
+        "speckit-implement.yaml:165",
+        "speckit-complete.yaml:258",
+        "commands/speckit/save.md:61",
+        "goal-core.cjs:950-965",
+        "bin/goal.cjs:139-143"
+      ],
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Read + run: the session-free packet read reports no bound-ness; show needs the session's own record, so the carve-out cannot be evaluated where it is the only path"
+        }
+      ]
+    },
+    {
+      "findingId": "F307",
+      "severity": "P2",
+      "title": "The README says the packet action needs only --workspace, but the CLI requires session identity, so the documented invocation fails",
+      "file": ".opencode/hooks/goal/README.md",
+      "line": 62,
+      "dimension": "traceability",
+      "findingClass": "doc-code-contradiction",
+      "status": "active",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "carriedFrom": "new",
+      "affectedSurfaceHints": [
+        "opencode/README.md:62",
+        "bin/goal.cjs:386-393",
+        ".cursor/commands/goal-cursor.md:27"
+      ],
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Reproduced: packet <fixture> --workspace <ws> fails MISSING_SESSION_ID; adding --runtime/--session returns OK"
+        }
+      ]
+    },
+    {
+      "findingId": "F308",
+      "severity": "P2",
+      "title": "A log row carrying anchor markup passes the sanitizer and makes the packet fail the sufficiency rule it previously passed",
+      "file": ".opencode/hooks/goal/lib/goal-core.cjs",
+      "line": 1063,
+      "dimension": "security",
+      "findingClass": "input-hardening-gap",
+      "status": "active",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "carriedFrom": "new",
+      "affectedSurfaceHints": [
+        "goal-core.cjs:1063",
+        "goal-core.cjs:255-278",
+        "spec-doc-structure.ts:599-603",
+        "spec-doc-structure.ts:1089-1097"
+      ],
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Reproduced: row written verbatim with STATUS=OK; the packet drops from pass to three SPECDOC_SUFFICIENCY_001 errors while the slice hash and the write guard stay unchanged"
+        }
+      ]
+    },
+    {
+      "findingId": "F309",
+      "severity": "P2",
+      "title": "A rebind archives the prior record in the core but overwrites it in place in the OpenCode plugin, so the two implementations keep different history",
+      "file": ".opencode/plugins/opencode-goal.js",
+      "line": 1818,
+      "dimension": "traceability",
+      "findingClass": "runtime-parity-gap",
+      "status": "active",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "carriedFrom": "new",
+      "affectedSurfaceHints": [
+        "opencode-goal.js:1818-1855",
+        "opencode-goal.js:1691-1700",
+        "opencode-goal.js:1541",
+        "opencode-goal.js:3229",
+        "goal-core.cjs:945-949"
+      ],
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Core archive reproduced end to end (archive_count=1 with the prior packet path); the plugin's archive call sites enumerated to prove the absence"
+        }
+      ]
+    },
+    {
+      "findingId": "F310",
+      "severity": "P2",
+      "title": "The recorded Devin limitation names two same-field emitters where the shipped chain has three, so the live check it defers to is scoped to the wrong chain",
+      "file": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/008-hardening-research/implementation-summary.md",
+      "line": 119,
+      "dimension": "traceability",
+      "findingClass": "stale-scope-claim",
+      "status": "active",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "carriedFrom": "new (pass-2 F107's recorded scope)",
+      "affectedSurfaceHints": [
+        ".devin/hooks.v1.json:45,50,55",
+        "runtime/dist/hooks/devin/shared.js:84-108",
+        "runtime/hooks/devin/spec-gate-classify.mjs:21",
+        "goal/devin/goal-inject.mjs:78"
+      ],
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Read: three entries can write additionalContext; the limitation records two and scopes DV-022 against the shorter chain"
+        }
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": {
+      "status": "covered",
+      "openFindings": 3,
+      "findingRefs": [
+        "F301",
+        "F302",
+        "F303"
+      ]
+    },
+    "security": {
+      "status": "covered",
+      "openFindings": 1,
+      "findingRefs": [
+        "F308"
+      ]
+    },
+    "traceability": {
+      "status": "covered",
+      "openFindings": 6,
+      "findingRefs": [
+        "F304",
+        "F305",
+        "F306",
+        "F307",
+        "F309",
+        "F310"
+      ]
+    },
+    "maintainability": {
+      "status": "covered",
+      "openFindings": 0,
+      "findingRefs": []
+    }
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 10,
+    "resolved": 0
+  },
+  "convergenceScore": 0.0,
+  "priorLineageVerification": {
+    "lineage": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-2",
+    "verdict": "PASS",
+    "verifiedFixed": [
+      "F101",
+      "F103",
+      "F105",
+      "F106"
+    ],
+    "partialResiduals": [
+      {
+        "priorId": "F102",
+        "successors": [
+          "F302",
+          "F303",
+          "F304"
+        ],
+        "note": "Fixed for closed fences; the unclosed opener and the strict frontmatter parser remain, and the promised golden pin is still absent."
+      },
+      {
+        "priorId": "F104",
+        "successors": [
+          "F306"
+        ],
+        "note": "Narrowed to a carve-out no shipped surface can evaluate."
+      },
+      {
+        "priorId": "F107",
+        "successors": [
+          "F310"
+        ],
+        "note": "Still open; its recorded scope undercounts the chain (three writers, not two)."
+      }
+    ],
+    "stillOpenFollowUps": [
+      "F107"
+    ]
+  },
+  "severityCounts": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 10,
+    "resolved": 0
+  },
+  "iterationCount": 5,
+  "stopPolicy": "max-iterations",
+  "convergenceThreshold": 0.05
+}

@@ -208,9 +208,37 @@ test('fails open (never throws) when the shared state file is corrupt JSON', () 
   assert.deepEqual(response, { permission: 'allow' });
 });
 
-test('the Cursor command is fail-closed and never invokes the unbound manage CLI', () => {
+test('the Cursor command is fail-closed for management and only ever invokes the session-free packet read', () => {
   const command = readFileSync(COMMAND_PATH, 'utf8');
   assert.match(command, /code=UNSUPPORTED_SESSION_BINDING/);
   assert.doesNotMatch(command, /OPENCODE_GOAL_RUNTIME_LABEL=/);
-  assert.doesNotMatch(command, /node\s+\.opencode\/hooks\/goal\/bin\/goal\.cjs/);
+  const invocations = command.match(/node\s+\.opencode\/hooks\/goal\/bin\/goal\.cjs\s+\S+/g) || [];
+  assert.ok(invocations.length > 0, 'the packet read is the one allowed invocation');
+  for (const invocation of invocations) {
+    assert.match(invocation, /goal\.cjs\s+packet$/, `only the packet read may be invoked: ${invocation}`);
+  }
+});
+
+test('a bound packet injects the resend reminder until the slice is marked resent', () => {
+  const workspace = mkdtempSync(join(tmpdir(), 'goal-cursor-ws-'));
+  try {
+    const { mkdirSync, writeFileSync } = require('node:fs');
+    mkdirSync(join(workspace, '.git'));
+    const dir = join(workspace, 'specs', 't', '001-fixture');
+    mkdirSync(dir, { recursive: true });
+    writeFileSync(join(dir, 'goal.md'), [
+      '---', 'title: "x"', '---', '<!-- ANCHOR:directive -->', '**Objective:** Ship it.', '<!-- /ANCHOR:directive -->',
+      '<!-- ANCHOR:completion -->', '- [ ] done', '<!-- /ANCHOR:completion -->', '<!-- ANCHOR:log -->', '| a | b | c |', '|---|---|---|', '<!-- /ANCHOR:log -->', '',
+    ].join('\n'), 'utf8');
+    const options = { stateDir, scope: { workspace, runtime: 'cursor', sessionId: 'test-session' } };
+    core.bindGoal({ packetPath: 'specs/t/001-fixture' }, options);
+    const payload = JSON.stringify({ session_id: 'test-session', workspace_roots: [workspace] });
+    const first = JSON.parse(runHook(payload).stdout);
+    assert.ok(first.agent_message.includes('[goal_resend_pending]'));
+    core.noteResent(options);
+    const second = JSON.parse(runHook(payload).stdout);
+    assert.ok(!second.agent_message.includes('[goal_resend_pending]'));
+  } finally {
+    rmSync(workspace, { recursive: true, force: true });
+  }
 });

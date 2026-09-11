@@ -1,0 +1,87 @@
+{
+  "schema_version": "1.0",
+  "lineage": {
+    "sessionId": "fanout-deepseek-1789111300546-r4d2ee",
+    "label": "deepseek",
+    "executor": { "kind": "cli-pi", "model": "deepseek-v4.1-flash", "reasoningEffort": "max" },
+    "generation": 1,
+    "artifactDir": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/001-goal-unification-research/research/lineages/deepseek"
+  },
+  "status": "complete",
+  "stopReason": "maxIterationsReached",
+  "iterationsCompleted": 10,
+  "maxIterations": 10,
+  "metrics": {
+    "averageNewInfoRatio": 0.665,
+    "lastThreeRatios": [0.72, 0.55, 0.5],
+    "trend": "declining",
+    "stuckCount": 0,
+    "questionsAnswered": 8,
+    "questionsTotal": 8,
+    "ruledOutCount": 18,
+    "guardViolations": []
+  },
+  "questions": [
+    { "id": "KQ1", "decision": "D1", "angle": "A1", "question": "How does a session learn which packet's goal.md is active?", "state": "answered", "answer": "Explicit per-session pointer record (packetPath) written only by a bind step; never inferred.", "iterations": [1, 9] },
+    { "id": "KQ2", "decision": "D3", "angle": "A2", "question": "Which surfaces render goal text and where does the strip boundary live?", "state": "answered", "answer": "Marker slice from body start to the log anchor, shared by resend, both renderers, and CLI show; the objective keeps its own pointer+criteria slice.", "iterations": [2, 10] },
+    { "id": "KQ3", "decision": "D2", "angle": "A3", "question": "What does the legacy store hold that goal.md cannot?", "state": "answered", "answer": "Locks, per-session liveness, telemetry, retention and archive; the durable objective is the only thing that must stop living there.", "iterations": [3, 9] },
+    { "id": "KQ4", "decision": "D4", "angle": "A4", "question": "What triggers a resend and how is it deduped?", "state": "answered", "answer": "Edge trigger on the durable-slice hash with a packet-scoped dedup key; never mtime, never the in-file fingerprint, never a timer.", "iterations": [4, 10] },
+    { "id": "KQ5", "decision": "D5", "angle": "A5", "question": "Which runtimes can ship and with which identity?", "state": "answered-partial", "answer": "pi/opencode/cursor ship; devin defers for lack of a command surface; Claude Code and Codex keep host-private native goal stores. Host injection caps remain UNKNOWN.", "iterations": [5] },
+    { "id": "KQ6", "decision": "D7", "angle": "A6", "question": "What must stay per-session under a shared goal.md?", "state": "answered", "answer": "Selection, liveness, telemetry, locks and dedup state; only the directive content is shared.", "iterations": [6] },
+    { "id": "KQ7", "decision": "D7", "angle": "A7", "question": "What may mutate the parent goal unprompted?", "state": "answered", "answer": "Log appends and continuity bookkeeping only; durable-slice changes are command-mediated and operator-ratified; child amendments apply to the parent first, then resend.", "iterations": [7] },
+    { "id": "KQ8", "decision": "D6", "angle": "A8", "question": "What are the real caps and where is the budget enforced?", "state": "answered", "answer": "Accepted objective 4000, prompt 4000, prompt Objective 1200, injected objective preview 576, block 4800; enforce at the TS validator that already owns goal.md rules, with the 4000 frozen threshold.", "iterations": [8] }
+  ],
+  "decisions": [
+    { "id": "D1", "name": "binding", "chosen": "O1-B per-session packet pointer, explicit bind only", "rejected": ["O1-A conversational only", "O1-C cwd inference", "O1-D command-implicit only"], "enforcementSite": ".opencode/hooks/goal/lib/goal-core.cjs:174 (resolver) + speckit bind step" },
+    { "id": "D2", "name": "store fate", "chosen": "O3-B demote to per-session index + telemetry", "rejected": ["O3-A retire", "O3-C duplicate objective", "O3-D liveness in frontmatter"], "enforcementSite": "goal-core.cjs:622 (read) / :897 (write)" },
+    { "id": "D3", "name": "strip", "chosen": "O2-B marker slice, resolved IF level:phase", "rejected": ["O2-A YAML parse", "O2-C delimiter only", "O2-D materialized slice"], "enforcementSite": "shared CJS slice module under .opencode/hooks/goal/lib/, consumed by both renderers" },
+    { "id": "D4", "name": "resend", "chosen": "O4-A edge trigger on durable-slice hash, packet-scoped dedup", "rejected": ["O4-B cadence", "O4-C mtime", "O4-D in-file fingerprint", "O4-E manual"], "enforcementSite": "injection evaluation path + plugin brief cache key" },
+    { "id": "D5", "name": "runtimes", "chosen": "ship pi/opencode/cursor; defer devin; Claude Code and Codex via native goal + speckit", "rejected": ["devin hook-only ship", "repo hook into host-private stores"], "enforcementSite": "adapter table in .opencode/hooks/goal/README.md §3" },
+    { "id": "D6", "name": "budget", "chosen": "O8-A enforce 4000 on the durable slice with a warming tier + consumer-side check", "rejected": ["O8-C no enforcement"], "enforcementSite": ".opencode/skills/system-spec-kit/runtime/lib/validation/spec-doc-structure.ts:207/:229 region" },
+    { "id": "D7", "name": "isolation reconciliation", "chosen": "shared directive + per-session selection/liveness/telemetry; durable edits ratified", "rejected": ["per-session directive copies", "inference binding", "auto durable rewrite"], "enforcementSite": "record schema (goal-core.cjs:869 region) + speckit command whitelists" }
+  ],
+  "artifacts": {
+    "strategy": "deep-research-strategy.md",
+    "config": "deep-research-config.json",
+    "stateLog": "deep-research-state.jsonl",
+    "synthesis": "research.md",
+    "convergenceReport": "convergence-report.md",
+    "dashboard": "deep-research-dashboard.md",
+    "iterations": ["iterations/iteration-001.md", "iterations/iteration-002.md", "iterations/iteration-003.md", "iterations/iteration-004.md", "iterations/iteration-005.md", "iterations/iteration-006.md", "iterations/iteration-007.md", "iterations/iteration-008.md", "iterations/iteration-009.md", "iterations/iteration-010.md"],
+    "deltas": ["deltas/iter-001.jsonl", "deltas/iter-002.jsonl", "deltas/iter-003.jsonl", "deltas/iter-004.jsonl", "deltas/iter-005.jsonl", "deltas/iter-006.jsonl", "deltas/iter-007.jsonl", "deltas/iter-008.jsonl", "deltas/iter-009.jsonl", "deltas/iter-010.jsonl"]
+  },
+  "risks": [
+    { "id": "R1", "risk": "shared-state regression", "severity": "high" },
+    { "id": "R2", "risk": "concurrent directive writes", "severity": "medium" },
+    { "id": "R3", "risk": "two implementations drifting", "severity": "high" },
+    { "id": "R4", "risk": "resend spam", "severity": "medium" },
+    { "id": "R5", "risk": "frontmatter leak", "severity": "high" },
+    { "id": "R6", "risk": "silent truncation of criteria", "severity": "high" },
+    { "id": "R7", "risk": "dangling packet pointer", "severity": "low" },
+    { "id": "R8", "risk": "stale dedup across packets", "severity": "low" },
+    { "id": "R9", "risk": "doc-rule drift (dangling citations)", "severity": "low" },
+    { "id": "R10", "risk": "continuity goal-facet naming collision", "severity": "low" }
+  ],
+  "openGaps": [
+    "Host injection caps for pi, cursor, devin, claude-code, codex are UNKNOWN",
+    "Whether opencode-goal.js can import a shared CJS slice module without a build step",
+    "Whether the 'unbound' vocabulary is reused for packet-unbound state",
+    "Ratification UX for the child-to-parent amendment path",
+    "The real size of packet 036's parent goal.md against the 4000 budget"
+  ],
+  "qualityGates": {
+    "iterationMarkdown": "pass",
+    "deltaFiles": "pass",
+    "ledgerRecords": "pass (sequences 2-11)",
+    "stateProjection": "pass",
+    "sourceCitations": "pass",
+    "ruledOutRecorded": "pass",
+    "convergenceEvaluated": "pass"
+  },
+  "deviation": {
+    "what": "Terminal synthesis record written as a plain artifact instead of through the append gateway",
+    "why": "synthesis_complete is a pinned legacy event that the ledger schema refuses to migrate (pin-old-runtime)",
+    "evidence": ".opencode/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/legacy-compatibility.ts:53"
+  },
+  "completedAt": "2026-09-11T07:31:29Z"
+}

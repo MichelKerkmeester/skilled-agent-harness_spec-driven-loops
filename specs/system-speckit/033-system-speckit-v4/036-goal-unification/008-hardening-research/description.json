@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/033-system-speckit-v4/036-goal-unification/008-hardening-research",
+  "description": "The packet shipped green, but a first review already showed the unit tests missed real defects",
+  "keywords": [
+    "packet",
+    "shipped",
+    "green",
+    "first",
+    "review",
+    "already",
+    "showed",
+    "unit",
+    "tests",
+    "missed",
+    "real",
+    "defects"
+  ],
+  "lastUpdated": "2026-09-11T14:13:24.899Z",
+  "specId": "008",
+  "folderSlug": "hardening-research",
+  "parentChain": [
+    "system-speckit",
+    "033-system-speckit-v4",
+    "036-goal-unification"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

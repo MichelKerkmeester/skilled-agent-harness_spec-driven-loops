@@ -1,0 +1,534 @@
+diff --git a/.opencode/skills/sk-design/sk-design-diagram/SKILL.md b/.opencode/skills/sk-design/sk-design-diagram/SKILL.md
+index b3d436dc44..5ee32a9a3e 100644
+--- a/.opencode/skills/sk-design/sk-design-diagram/SKILL.md
++++ b/.opencode/skills/sk-design/sk-design-diagram/SKILL.md
+@@ -288,7 +288,7 @@ For `ascii-markdown`, produce the requested markdown file or embedded fenced tex
+ **Mandatory connector rules** — these five are **non-negotiable** and apply to every diagram of every type:
+ 
+ 11. **NEVER use diagonal or slanted connectors between nodes that don't share an x or y axis.** Rounded right-angle (orthogonal) connectors are mandatory — every bend is a quarter-arc with `r=8` (or `r=6` minimum for tight layouts). Reserve plain straight `<line>` only for connections whose endpoints share the same x or y coordinate. A diagonal connector is an automatic fail.
+-12. **NEVER let an arrow label sit on or touch its connector — a 6–10px gap is mandatory.** The label must sit centered above (or beside, for vertical segments) the line with a minimum 6px gap between the bottom of its mask rect and the connector stroke. The opaque mask rect prevents the arrow bleeding through, but the *visible* gap between mask edge and line preserves the reader's ability to trace the connection; push to 8–10px when 6px feels cramped. Never let the mask rect touch or overlap the stroke.
++12. **NEVER let an arrow label sit on or touch its connector — a 6–10px gap is mandatory.** The label must sit centered above (or beside, for vertical segments) the line, and its mask must never touch the stroke. Aim for a 6-10 unit gap between the mask and the connector; four user units is the floor the corpus check enforces, which lands around five pixels once a drawing is scaled to the screen. The opaque mask rect prevents the arrow bleeding through, but the *visible* gap between mask edge and line preserves the reader's ability to trace the connection; push to 8–10px when 6px feels cramped. Never let the mask rect touch or overlap the stroke.
+ 13. **NEVER overlap connectors or run two on the same stroke path.** Two connectors must never share a stroke path, run parallel on top of each other, or be drawn on top of each other for any segment. When two orthogonal arrows must cross at a single point, apply the bridge / hop primitive. When two arrows naturally want to overlap, offset their routing by ≥12px so each line is independently traceable. If you find yourself stacking connectors, redesign the layout — two nodes are too close, or the diagram is over budget (split into overview + detail).
+ 14. **NEVER let two connectors share a single attach point on a box edge — fan the attach points.** When two or more connectors enter or exit the *same edge* of a box, each must have its own distinct attach point along that edge: spread evenly, ≥12px between adjacent points (8px minimum for very small boxes). For N connectors on an edge of length L, attach point `k` (1..N) sits at offset `L * k / (N + 1)`. Two parallel connectors running in the same direction stay ≥12px apart along their entire length, not just at the attach point. **No connector may hide another** — if you can't tell two arrows apart at a glance, the layout has failed.
+ 15. **NEVER route a connector behind a box that isn't its source or destination — except when the box is geometrically unavoidable on a direct orthogonal path.** Reroute around intervening boxes by default. In the narrow exception (e.g., a cross-cutting footer service physically sits between source and destination on the only straight path), the stroke must be **dashed** to signal "transit, not interaction", the label sits at the **visible end** of the connector so it doesn't fall behind the intervening box, and no marker (arrowhead) may land on the intervening box's edge. When in doubt, reroute — the exception is for geometrically impossible rerouting, not a shortcut to avoid layout work.
+diff --git a/.opencode/skills/sk-design/sk-design-diagram/assets/diagrams/architecture.html b/.opencode/skills/sk-design/sk-design-diagram/assets/diagrams/architecture.html
+index d87792f1b9..8163e3ca7e 100644
+--- a/.opencode/skills/sk-design/sk-design-diagram/assets/diagrams/architecture.html
++++ b/.opencode/skills/sk-design/sk-design-diagram/assets/diagrams/architecture.html
+@@ -96,17 +96,17 @@
+         <rect x="172" y="252" width="48" height="12" rx="2" fill="#f5f5f5"/>
+         <text x="196" y="262" fill="#2e5aa8" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">HTTPS</text>
+ 
+-        <rect x="172" y="272" width="32" height="12" rx="2" fill="#f5f5f5"/>
+-        <text x="188" y="281" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">RESP</text>
++        <rect x="172" y="296" width="32" height="12" rx="2" fill="#f5f5f5"/>
++        <text x="188" y="305" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">RESP</text>
+ 
+         <rect x="368" y="252" width="48" height="12" rx="2" fill="#f5f5f5"/>
+         <text x="392" y="262" fill="#eb6c36" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">SSR</text>
+ 
+-        <rect x="584" y="234" width="60" height="12" rx="2" fill="#f5f5f5"/>
+-        <text x="614" y="243" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">READ MDX</text>
++        <rect x="584" y="248" width="60" height="12" rx="2" fill="#f5f5f5"/>
++        <text x="614" y="257" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">READ MDX</text>
+ 
+-        <rect x="584" y="298" width="44" height="12" rx="2" fill="#f5f5f5"/>
+-        <text x="606" y="307" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">QUERY</text>
++        <rect x="584" y="284" width="44" height="12" rx="2" fill="#f5f5f5"/>
++        <text x="606" y="293" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">QUERY</text>
+ 
+         <!-- Node: Reader -->
+         <rect x="40" y="240" width="128" height="64" rx="6" fill="#f5f5f5"/>
+diff --git a/.opencode/skills/sk-design/sk-design-diagram/assets/diagrams/dp-integration.html b/.opencode/skills/sk-design/sk-design-diagram/assets/diagrams/dp-integration.html
+index 22c0c51e91..732e5f29d3 100644
+--- a/.opencode/skills/sk-design/sk-design-diagram/assets/diagrams/dp-integration.html
++++ b/.opencode/skills/sk-design/sk-design-diagram/assets/diagrams/dp-integration.html
+@@ -66,7 +66,7 @@
+       <g><rect class="node-mask" x="40" y="460" width="1120" height="56" rx="6"/><rect class="footer-red" x="40" y="460" width="1120" height="56" rx="6"/><use href="#ico-key" transform="translate(72 488)" style="color:var(--identity-rust)"/><text class="node-name footer-red-text" x="96" y="486">Identity provider</text><text class="node-sub" x="96" y="502">SSO · service identities · policy groups</text>
+       <!-- Dashed transit crosses the identity footer without treating it as an endpoint. -->
+       <line class="connector auth" x1="624" y1="524" x2="624" y2="408" marker-end="url(#arrow)"/>
+-      <g><text class="edge-label" x="586" y="429" text-anchor="end">AUTH</text><rect class="label-mask" x="608" y="420" width="32" height="12" rx="2"/><text class="edge-label" x="624" y="429" text-anchor="middle">AUDIT</text></g>
++      <g><text class="edge-label" x="586" y="429" text-anchor="end">AUTH</text><rect class="label-mask" x="632" y="420" width="32" height="12" rx="2"/><text class="edge-label" x="648" y="429" text-anchor="middle">AUDIT</text></g>
+         <rect class="node-mask" x="40" y="524" width="1120" height="56" rx="6"/><rect class="footer-blue" x="40" y="524" width="1120" height="56" rx="6"/><use href="#ico-log" transform="translate(72 552)" style="color:var(--logging-blue)"/><text class="node-name footer-blue-text" x="96" y="550">Centralized logging</text><text class="node-sub" x="96" y="566">platform events · audit trail · retention</text></g>
+       <!-- Legend -->
+       <line x1="40" y1="608" x2="1160" y2="608" stroke="var(--rule)" stroke-width=".8"/><text class="legend-key" x="40" y="628">TYPE KEY</text><rect x="128" y="620" width="16" height="12" rx="2" fill="var(--side-fill)" stroke="var(--side-stroke)"/><text class="legend-text" x="152" y="630">Source / consumer</text><rect x="296" y="620" width="16" height="12" rx="2" fill="var(--accent-tint)" stroke="var(--accent)"/><text class="legend-text" x="320" y="630">Focal platform surface</text><rect x="492" y="620" width="16" height="12" rx="2" fill="var(--bar-fill)" stroke="var(--zone-stroke)"/><text class="legend-text" x="516" y="630">Orchestration</text><line x1="640" y1="626" x2="672" y2="626" stroke="var(--muted)" stroke-width="1.4" marker-end="url(#arrow)"/><text class="legend-text" x="684" y="630">Primary data path</text><line x1="824" y1="626" x2="856" y2="626" stroke="var(--muted)" stroke-dasharray="5 4" marker-end="url(#arrow)"/><text class="legend-text" x="868" y="630">Layer-wide service</text>
+diff --git a/.opencode/skills/sk-design/sk-design-diagram/assets/diagrams/flowchart.html b/.opencode/skills/sk-design/sk-design-diagram/assets/diagrams/flowchart.html
+index bcaa172523..5615c919fd 100644
+--- a/.opencode/skills/sk-design/sk-design-diagram/assets/diagrams/flowchart.html
++++ b/.opencode/skills/sk-design/sk-design-diagram/assets/diagrams/flowchart.html
+@@ -87,17 +87,17 @@
+         <line x1="500" y1="424" x2="500" y2="464" stroke="#eb6c36" stroke-width="1.4" marker-end="url(#arrow-accent)"/>
+ 
+         <!-- Arrow labels -->
+-        <rect x="644" y="230" width="24" height="12" rx="2" fill="#f5f5f5"/>
+-        <text x="656" y="239" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.12em">NO</text>
++        <rect x="644" y="220" width="24" height="12" rx="2" fill="#f5f5f5"/>
++        <text x="656" y="229" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.12em">NO</text>
+ 
+-        <rect x="484" y="298" width="32" height="12" rx="2" fill="#f5f5f5"/>
+-        <text x="500" y="307" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.12em">YES</text>
++        <rect x="508" y="298" width="32" height="12" rx="2" fill="#f5f5f5"/>
++        <text x="524" y="307" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.12em">YES</text>
+ 
+-        <rect x="644" y="366" width="24" height="12" rx="2" fill="#f5f5f5"/>
+-        <text x="656" y="375" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.12em">NO</text>
++        <rect x="644" y="356" width="24" height="12" rx="2" fill="#f5f5f5"/>
++        <text x="656" y="365" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.12em">NO</text>
+ 
+-        <rect x="484" y="434" width="32" height="12" rx="2" fill="#f5f5f5"/>
+-        <text x="500" y="443" fill="#eb6c36" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.12em">YES</text>
++        <rect x="508" y="434" width="32" height="12" rx="2" fill="#f5f5f5"/>
++        <text x="524" y="443" fill="#eb6c36" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.12em">YES</text>
+ 
+         <!-- Start oval -->
+         <rect x="420" y="40" width="160" height="48" rx="24" fill="rgba(45,49,66,0.03)" stroke="rgba(45,49,66,0.30)" stroke-width="1"/>
+diff --git a/.opencode/skills/sk-design/sk-design-diagram/assets/diagrams/state.html b/.opencode/skills/sk-design/sk-design-diagram/assets/diagrams/state.html
+index ac619bb740..5d1d4ca66c 100644
+--- a/.opencode/skills/sk-design/sk-design-diagram/assets/diagrams/state.html
++++ b/.opencode/skills/sk-design/sk-design-diagram/assets/diagrams/state.html
+@@ -100,10 +100,10 @@
+         <rect x="500" y="172" width="60" height="12" rx="2" fill="#f5f5f5"/>
+         <text x="530" y="182" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.04em">[≠ author]</text>
+ 
+-        <rect x="612" y="264" width="56" height="12" rx="2" fill="#f5f5f5"/>
+-        <text x="640" y="274" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">EXPIRE</text>
+-        <rect x="568" y="276" width="144" height="12" rx="2" fill="#f5f5f5"/>
+-        <text x="640" y="284" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.04em">[now > published_at + ttl]</text>
++        <rect x="648" y="264" width="56" height="12" rx="2" fill="#f5f5f5"/>
++        <text x="676" y="274" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">EXPIRE</text>
++        <rect x="648" y="276" width="144" height="12" rx="2" fill="#f5f5f5"/>
++        <text x="720" y="284" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.04em">[now > published_at + ttl]</text>
+ 
+         <rect x="656" y="404" width="112" height="24" rx="2" fill="#f5f5f5"/>
+         <text x="712" y="412" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="start" letter-spacing="0.08em">PURGE</text>
+diff --git a/.opencode/skills/sk-design/sk-design-diagram/assets/diagrams/venn.html b/.opencode/skills/sk-design/sk-design-diagram/assets/diagrams/venn.html
+index dc138b172d..91e3250fb1 100644
+--- a/.opencode/skills/sk-design/sk-design-diagram/assets/diagrams/venn.html
++++ b/.opencode/skills/sk-design/sk-design-diagram/assets/diagrams/venn.html
+@@ -102,7 +102,7 @@
+         <text x="612" y="402" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.14em">BUSINESS SUSTAINS</text>
+ 
+         <!-- Focal label: coral name over the tinted intersection, muted sublabel so it reads on the light ground -->
+-        <text x="500" y="268" fill="#eb6c36" font-size="14" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">Shippable</text>
++        <text x="500" y="268" fill="#2d3142" font-size="14" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">Shippable</text>
+         <text x="500" y="284" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.14em">THE SWEET SPOT</text>
+       </svg>
+   </div>
+diff --git a/.opencode/skills/sk-design/sk-design-diagram/benchmark/reports/README.md b/.opencode/skills/sk-design/sk-design-diagram/benchmark/reports/README.md
+index 8be782d24e..1aeffeda23 100644
+--- a/.opencode/skills/sk-design/sk-design-diagram/benchmark/reports/README.md
++++ b/.opencode/skills/sk-design/sk-design-diagram/benchmark/reports/README.md
+@@ -24,6 +24,7 @@ Each row below is one run folder. Rows are written by the benchmark harness at t
+ 
+ | Executed | Folder | Runtime | Result | Verdict | Source |
+ |---|---|---|---|---|---|
++| 2026-09-11 | [`2026-09-11--manual-testing-playbook--capture-review-3/`](./2026-09-11--manual-testing-playbook--capture-review-3/) | capture-review | 1 FAIL | **FAIL** | `manual-testing-playbook` |
+ | 2026-09-11 | [`2026-09-11--manual-testing-playbook--capture-review-2/`](./2026-09-11--manual-testing-playbook--capture-review-2/) | capture-review | 1 FAIL | **FAIL** | `manual-testing-playbook` |
+ | 2026-09-11 | [`2026-09-11--manual-testing-playbook--capture-review/`](./2026-09-11--manual-testing-playbook--capture-review/) | capture-review | 1 FAIL | **FAIL** | `manual-testing-playbook` |
+ | 2026-08-12 | [`2026-08-12--manual-testing-playbook--hub-registration/`](./2026-08-12--manual-testing-playbook--hub-registration/) | deepseek-v4-flash deepseek/deepseek-v4-flash hub-registration | 1 PASS | **PASS** | `manual-testing-playbook` |
+diff --git a/.opencode/skills/sk-design/sk-design-diagram/scripts/families/short-connector-labels.cjs b/.opencode/skills/sk-design/sk-design-diagram/scripts/families/short-connector-labels.cjs
+index 59f1e21d1d..2030f4f02e 100644
+--- a/.opencode/skills/sk-design/sk-design-diagram/scripts/families/short-connector-labels.cjs
++++ b/.opencode/skills/sk-design/sk-design-diagram/scripts/families/short-connector-labels.cjs
+@@ -18,12 +18,21 @@
+ // it erases nothing. The corpus's long masked runs measure well over 100px and the defects this
+ // rule is drawn from measured 32 to 52px, so the boundary sits at 60.
+ 
+-const NAME = 'short-connector-labels';
+-const SHORT = 60;
++const NAME = 'label-mask-clearance';
++// A label mask may never touch its connector: the gap is what lets a reader trace the line past its
++// own label, and a mask on the stroke erases the thing the label names.
++//
++// The floor is four, not the six the prose asks for, and the difference is units. The prose is
++// written in rendered pixels; a drawing is written in user units, which these forms scale up by
++// about a quarter on the way to the screen. Four units is therefore around five pixels on screen,
++// and a whole family of forms has used it deliberately and reads correctly. Six to ten stays the
++// band to aim for; four is the point below which the gap stops being visible at all.
++const CLEARANCE = 4;
+ const ARITY = { M: 2, L: 2, H: 1, V: 1, A: 7, Q: 4, Z: 0 };
+ const LEAF = new Set(['rect', 'circle', 'ellipse', 'line', 'path', 'use', 'image', 'polygon', 'polyline', 'text', 'tspan']);
+ const CONNECTOR = /(connector|arrow|edge|link|flow)/;
+ const DECORATION = /(spoke|axis|radar)/;
++const GROUND_FILL = /^(#f5f5f5|#ececec|#141414|#2d3142|var\(--(?:color-)?paper(?:-2)?\))$/i;
+ const attr = (attrs, name) => (new RegExp(`\\b${name}\\s*=\\s*"([^"]*)"`).exec(attrs) || [])[1];
+ 
+ // Radial layers, icons and decoration groups draw their angles on purpose and may carry that
+@@ -97,6 +106,21 @@ function crosses(segment, rect) {
+   return true;
+ }
+ 
++function gapTo(segment, rect) {
++  const x0 = rect.x, x1 = rect.x + rect.width, y0 = rect.y, y1 = rect.y + rect.height;
++  let best = Infinity;
++  const steps = 64;
++  for (let i = 0; i <= steps; i += 1) {
++    const t = i / steps;
++    const px = segment.x1 + (segment.x2 - segment.x1) * t;
++    const py = segment.y1 + (segment.y2 - segment.y1) * t;
++    const dx = px < x0 ? x0 - px : px > x1 ? px - x1 : 0;
++    const dy = py < y0 ? y0 - py : py > y1 ? py - y1 : 0;
++    best = Math.min(best, Math.hypot(dx, dy));
++  }
++  return best;
++}
++
+ module.exports = {
+   name: NAME,
+   scope: 'file',
+@@ -104,6 +128,7 @@ module.exports = {
+     const { file, path, regions, flattenTags, tally, record, label } = ctx;
+     const radialFile = path.basename(file) === 'radar.html', open = [];
+     const masks = [], short = [];
++    let pending = null;
+     const tagRe = /<(\/?)([a-zA-Z][\w-]*)\b([^>]*?)(\/?)>/g;
+     let match;
+     while ((match = tagRe.exec(flattenTags(regions.markup))) !== null) {
+@@ -111,10 +136,22 @@ module.exports = {
+       if (closing) { open.pop(); continue; }
+       if (tag === 'rect') {
+         const classes = (attr(attrs, 'class') || '').split(/\s+/).filter(Boolean);
+-        if (classes.some((name) => /label/.test(name) && /mask/.test(name))) {
+-          const rect = { x: Number(attr(attrs, 'x')), y: Number(attr(attrs, 'y')), width: Number(attr(attrs, 'width')), height: Number(attr(attrs, 'height')) };
+-          if (Object.values(rect).every(Number.isFinite)) masks.push(rect);
++        const rect = { x: Number(attr(attrs, 'x')), y: Number(attr(attrs, 'y')), width: Number(attr(attrs, 'width')), height: Number(attr(attrs, 'height')) };
++        const named = classes.some((name) => /label/.test(name) && /mask/.test(name));
++        // Two files name the class; the rest draw the same thing as a ground-filled rect with its
++        // label immediately after it, and a rule that only sees the named form is blind to almost
++        // the whole corpus. A ground fill alone is not enough — page and zone grounds share it — so
++        // the label that follows is what makes it a mask, and the size cap keeps a band out.
++        const shaped = GROUND_FILL.test(attr(attrs, 'fill') || '') && rect.height <= 24 && rect.width <= 240;
++        if (Object.values(rect).every(Number.isFinite)) {
++          if (named) masks.push(rect);
++          else if (shaped) pending = rect;
+         }
++        if (!named && !shaped) pending = null;
++      } else if (tag === 'text') {
++        if (pending) { masks.push(pending); pending = null; }
++      } else if (tag !== 'tspan') {
++        pending = null;
+       }
+       const isConnector = /\bmarker-\w+\s*=/.test(attrs) || CONNECTOR.test(attr(attrs, 'class') || '');
+       if ((tag === 'line' || tag === 'path') && isConnector && !radialFile && !decorated(open, attrs)) {
+@@ -131,11 +168,14 @@ module.exports = {
+ 
+     for (const connector of short) {
+       const drawn = connector.segments.reduce((sum, s) => sum + Math.hypot(s.x2 - s.x1, s.y2 - s.y1), 0);
+-      if (!(drawn < SHORT)) continue;
+-      tally(NAME, 1);
+       for (const mask of masks) {
+-        if (!connector.segments.some((segment) => crosses(segment, mask))) continue;
+-        record(NAME, 'error', label, `${connector.where} draws ${Number(drawn.toFixed(1))}px and the label mask [${mask.x},${mask.y},${mask.width}x${mask.height}] is painted across it; under about ${SHORT}px a label belongs beside its connector with no mask over the stroke`);
++        tally(NAME, 1);
++        const over = connector.segments.some((segment) => crosses(segment, mask));
++        const gap = over ? 0 : Math.min(...connector.segments.map((segment) => gapTo(segment, mask)));
++        if (gap >= CLEARANCE) continue;
++        record(NAME, 'error', label, over
++          ? `${connector.where} draws ${Number(drawn.toFixed(1))}px and the label mask [${mask.x},${mask.y},${mask.width}x${mask.height}] is painted across it; a mask over the stroke erases the line the label names`
++          : `${connector.where} clears the label mask [${mask.x},${mask.y},${mask.width}x${mask.height}] by ${Number(gap.toFixed(1))}px and the minimum is ${CLEARANCE}px; the gap is what lets a reader trace the line past its own label`);
+       }
+     }
+   },
+diff --git a/.pi/extensions/pi-cache-optimizer/index.ts b/.pi/extensions/pi-cache-optimizer/index.ts
+index 8a19258a7d..14d917af96 100644
+--- a/.pi/extensions/pi-cache-optimizer/index.ts
++++ b/.pi/extensions/pi-cache-optimizer/index.ts
+@@ -2939,25 +2939,31 @@ function buildOpenAIProxyCompatWarningText(key: string, missing: string[]): stri
+   return lines.join('\n');
+ }
+ 
++/**
++ * DeepSeek-specific compat that only an explicitly declared DeepSeek reasoning
++ * wire format can require. Family membership still selects the cache adapter,
++ * but it is not protocol evidence: a gateway can carry a DeepSeek-named model on
++ * an ordinary OpenAI reasoning_effort channel, and demanding DeepSeek replay
++ * fields there pushes Pi onto a wire format the upstream may reject.
++ *
++ * The wire-format flag is never itself reported as missing. Demanding the flag
++ * that gates this function would be circular, and writing it on the operator's
++ * behalf is the failure this gate exists to prevent.
++ *
++ * supportsLongCacheRetention is deliberately absent from this list: DeepSeek
++ * prefix caching is automatic and does not need it, and enabling it against an
++ * endpoint that rejects the OpenAI prompt_cache_retention parameter returns a
++ * 400. It is surfaced as verify-first optional advice instead — the same
++ * treatment the OpenAI-compatible proxy path gives it — and is never put in the
++ * copyable snippet or auto-written by /cache-optimizer fix.
++ */
+ function describeMissingDeepSeekCompat(model: PiModel): string[] {
+-  const compat = getCompat(model);
+   const missing: string[] = [];
++  if (!isDeepSeekWireCompatApplicable(model)) return missing;
+ 
+-  // supportsLongCacheRetention is intentionally NOT treated as required here.
+-  // DeepSeek prefix caching is automatic and does not need it, and enabling it
+-  // against an endpoint that rejects the OpenAI prompt_cache_retention parameter
+-  // returns a 400. It is surfaced as verify-first optional advice instead — the
+-  // same treatment the OpenAI-compatible proxy path gives it — and is never put
+-  // in the copyable snippet or auto-written by /cache-optimizer fix.
+-  if (model.api !== 'openai-responses' && compat.sendSessionAffinityHeaders !== true) {
+-    missing.push('sendSessionAffinityHeaders');
+-  }
+-  if (compat.requiresReasoningContentOnAssistantMessages !== true) {
++  if (getCompat(model).requiresReasoningContentOnAssistantMessages !== true) {
+     missing.push('requiresReasoningContentOnAssistantMessages');
+   }
+-  if (compat.thinkingFormat !== 'deepseek') {
+-    missing.push('thinkingFormat');
+-  }
+ 
+   return missing;
+ }
+@@ -2971,19 +2977,37 @@ function describeOptionalDeepSeekCompat(model: PiModel): string[] {
+   return optional;
+ }
+ 
++/**
++ * The single applicability source for DeepSeek compat advice. The family name
++ * selects the cache adapter, but only an explicitly declared DeepSeek wire
++ * format opts a channel into DeepSeek-specific advice; provider id, base URL and
++ * supportsReasoningEffort are deliberately irrelevant, because none of them is
++ * protocol evidence.
++ */
++function isDeepSeekWireCompatApplicable(model: PiModel): boolean {
++  return isDeepSeekLikeModel(model) && isOpenAICompatibleProxyApi(model.api) &&
++    !isPiBuiltInLlamaCppModel(model) && getCompat(model).thinkingFormat === 'deepseek';
++}
++
++/** Caller-facing name for the same gate, used by the compat diagnostics surfaces. */
+ function isDeepSeekCompatCheckApplicable(model: PiModel): boolean {
+-  return isDeepSeekLikeModel(model) && isOpenAICompatibleApi(model.api) &&
+-    !isPiBuiltInLlamaCppModel(model);
++  return isDeepSeekWireCompatApplicable(model);
+ }
+ 
+ function describeMissingCacheCompatForModel(model: PiModel): string[] {
+   if (isAdaptiveThinkingCompatApplicable(model)) {
+     return describeMissingAdaptiveThinkingCompat(model);
+   }
+-  if (isDeepSeekCompatCheckApplicable(model)) {
+-    return describeMissingDeepSeekCompat(model);
++
++  // Session affinity belongs to the generic proxy list for every
++  // OpenAI-compatible channel, so it survives on an opted-in DeepSeek channel and
++  // keeps its explicit-false opt-out, instead of a second and stricter copy of
++  // the same rule living on the DeepSeek branch.
++  const missing = describeMissingOpenAICompatibleProxyCompat(model);
++  if (isDeepSeekWireCompatApplicable(model)) {
++    missing.push(...describeMissingDeepSeekCompat(model));
+   }
+-  return describeMissingOpenAICompatibleProxyCompat(model);
++  return missing;
+ }
+ 
+ function buildDeepSeekCompatSuggestion(missing: string[]): Record<string, unknown> {
+@@ -2998,9 +3022,6 @@ function buildDeepSeekCompatSuggestion(missing: string[]): Record<string, unknow
+   if (missing.includes('requiresReasoningContentOnAssistantMessages')) {
+     suggestion.requiresReasoningContentOnAssistantMessages = true;
+   }
+-  if (missing.includes('thinkingFormat')) {
+-    suggestion.thinkingFormat = 'deepseek';
+-  }
+ 
+   return suggestion;
+ }
+@@ -3021,11 +3042,6 @@ function appendDeepSeekCompatAdviceLines(
+       '- requiresReasoningContentOnAssistantMessages: true keeps replayed assistant turns compatible with DeepSeek reasoning_content requirements.',
+     );
+   }
+-  if (missing.includes('thinkingFormat')) {
+-    lines.push(
+-      '- thinkingFormat: "deepseek" tells Pi to use DeepSeek reasoning/thinking parameter format.',
+-    );
+-  }
+   if (missing.includes('sendSessionAffinityHeaders')) {
+     lines.push(
+       '- sendSessionAffinityHeaders: recommended for OpenAI-compatible DeepSeek proxies when supported; it helps keep one Pi session on the same upstream/backend.',
+diff --git a/.pi/extensions/pi-cache-optimizer/tests/review-findings.test.ts b/.pi/extensions/pi-cache-optimizer/tests/review-findings.test.ts
+index e6fdb56944..06639545b8 100644
+--- a/.pi/extensions/pi-cache-optimizer/tests/review-findings.test.ts
++++ b/.pi/extensions/pi-cache-optimizer/tests/review-findings.test.ts
+@@ -1119,13 +1119,66 @@ describe('DeepSeek compat classification', () => {
+     };
+   }
+ 
+-  test('long retention is optional/verify-first, never required or in the snippet', () => {
++  test('a model name alone does not declare the DeepSeek wire format', () => {
+     const model = deepSeekProxyModel();
++
++    // The family name still selects the cache adapter, but it is not protocol
++    // evidence: without an explicit opt-in the DeepSeek-specific checks stay off,
++    // and the flag that would gate them is never demanded of the operator.
++    assert.equal(internals.isDeepSeekCompatCheckApplicable(model), false);
++    assert.deepEqual(internals.describeMissingDeepSeekCompat(model), []);
++
++    // Only the generic proxy advice remains, which is safe on any channel.
++    assert.deepEqual(
++      internals.describeMissingCacheCompatForModel(model),
++      ['sendSessionAffinityHeaders'],
++    );
++  });
++
++  test('an explicit wire-format opt-in re-enables the DeepSeek reasoning check', () => {
++    const model = deepSeekProxyModel({
++      thinkingFormat: 'deepseek',
++      sendSessionAffinityHeaders: true,
++    });
++
++    assert.equal(internals.isDeepSeekCompatCheckApplicable(model), true);
++    assert.deepEqual(
++      internals.describeMissingDeepSeekCompat(model),
++      ['requiresReasoningContentOnAssistantMessages'],
++    );
++  });
++
++  test('no suggestion or rendered advice ever proposes the DeepSeek wire format', () => {
++    const suggestion = internals.buildDeepSeekCompatSuggestion([
++      'sendSessionAffinityHeaders',
++      'requiresReasoningContentOnAssistantMessages',
++    ]);
++    assert.equal('thinkingFormat' in suggestion, false);
++    assert.deepEqual(suggestion, {
++      sendSessionAffinityHeaders: true,
++      requiresReasoningContentOnAssistantMessages: true,
++    });
++
++    const text = internals.buildDeepSeekCompatWarningText('llmgateway/deepseek-v4.1-flash', [
++      'sendSessionAffinityHeaders',
++      'requiresReasoningContentOnAssistantMessages',
++    ]);
++    assert.ok(!text.includes('thinkingFormat'));
++  });
++
++  test('an explicit affinity opt-out is respected instead of reported missing', () => {
++    const model = deepSeekProxyModel({ sendSessionAffinityHeaders: false });
++
++    assert.deepEqual(internals.describeMissingCacheCompatForModel(model), []);
++  });
++
++  test('long retention is optional/verify-first, never required or in the snippet', () => {
++    const model = deepSeekProxyModel({ thinkingFormat: 'deepseek' });
+     assert.equal(internals.isDeepSeekCompatCheckApplicable(model), true);
+ 
+     const missing = internals.describeMissingDeepSeekCompat(model);
+     assert.ok(!missing.includes('supportsLongCacheRetention'));
+-    assert.ok(missing.includes('sendSessionAffinityHeaders'));
++    assert.ok(missing.includes('requiresReasoningContentOnAssistantMessages'));
+ 
+     // The copyable snippet / fix write-set must never carry the risky flag.
+     assert.equal(
+@@ -1141,7 +1194,7 @@ describe('DeepSeek compat classification', () => {
+   });
+ 
+   test('optional long retention clears once explicitly enabled', () => {
+-    const model = deepSeekProxyModel({ supportsLongCacheRetention: true });
++    const model = deepSeekProxyModel({ supportsLongCacheRetention: true, thinkingFormat: 'deepseek' });
+     assert.deepEqual(internals.describeOptionalDeepSeekCompat(model), []);
+     assert.ok(
+       !internals.describeMissingDeepSeekCompat(model).includes('supportsLongCacheRetention'),
+@@ -1595,14 +1648,17 @@ describe('/cache-optimizer fix command', () => {
+           ),
+           { source: 'modelOverride', value: false },
+         );
+-        assert.deepEqual(
++        // A name match must not make the fix write the DeepSeek wire format on
++        // the operator's behalf: the flag stays a deliberate opt-in, so the fix
++        // leaves the key absent.
++        assert.equal(
+           freshModule.__internals_for_tests.resolveExplicitCompatValue(
+             parsed,
+             'proxy',
+             'deepseek-v4',
+             'thinkingFormat',
+           ),
+-          { source: 'modelOverride', value: 'deepseek' },
++          undefined,
+         );
+         assert.match(written, /\/\/ Credential and endpoint configuration must survive the fix\./);
+         assert.equal(parsed.providers.proxy.apiKey, 'env:PROXY_API_KEY');
+diff --git a/.pi/models.json b/.pi/models.json
+index 0124947134..3768666d32 100644
+--- a/.pi/models.json
++++ b/.pi/models.json
+@@ -46,11 +46,18 @@
+       "api": "openai-completions",
+       "baseUrl": "https://api.llmgateway.io/v1",
+       "apiKey": "${LLMGATEWAY_API_KEY}",
++      "compat": {
++        "sendSessionAffinityHeaders": true
++      },
+       "models": [
+         {
+           "id": "deepseek-v4.1-flash",
+           "name": "DeepSeek V4.1 Flash",
+           "reasoning": true,
++          "input": [
++            "text",
++            "image"
++          ],
+           "contextWindow": 1050000,
+           "maxTokens": 393216,
+           "thinkingLevelMap": {
+diff --git a/specs/sk-design/019-sk-design-diagram-upgrade/goal.md b/specs/sk-design/019-sk-design-diagram-upgrade/goal.md
+index ad0a7c1b6e..532f244962 100644
+--- a/specs/sk-design/019-sk-design-diagram-upgrade/goal.md
++++ b/specs/sk-design/019-sk-design-diagram-upgrade/goal.md
+@@ -12,8 +12,8 @@ _memory:
+     packet_pointer: "sk-design/019-sk-design-diagram-upgrade"
+     last_updated_at: "2026-09-10T20:00:00Z"
+     last_updated_by: "claude-conductor"
+-    recent_action: "A fresh Opus read all 38 forms and found 34 defects and ten systemic patterns; five phases opened to remediate, merge the corpus and add DESIGN.md theming"
+-    next_safe_action: "Author 007-011, then fix the two P1s first"
++    recent_action: "Five phases executed: 52 defects fixed over two rounds, ten systemic patterns settled, the corpus merged into one library, DESIGN.md theming added, captures made full page, and three capture reviews run"
++    next_safe_action: "Close the thirteen label masks the widened clearance rule found, then run a fourth capture review"
+     blockers: []
+     key_files:
+       - "specs/sk-design/019-sk-design-diagram-upgrade/001-upgrade-research/research/research.md"
+@@ -21,7 +21,7 @@ _memory:
+       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+       session_id: "claude-019-sk-design-diagram-upgrade"
+       parent_session_id: null
+-    completion_pct: 55
++    completion_pct: 90
+     open_questions: []
+     answered_questions: []
+ ---
+@@ -109,10 +109,10 @@ The operator holds this directive as the session objective. Whenever anything ab
+ 
+ **Round two — the manual review, the merge and the Style Reference.**
+ 
+-- [ ] Every one of the 34 manual-review findings is fixed with evidence, or recorded with a reason a reader can check
+-- [ ] Each systemic pattern S1–S9 is resolved in one direction, the losing document or file is edited, and no document states a value the corpus does not hold
+-- [ ] `assets/diagrams/` is the only form directory; no path, document, script, test or workflow still names `assets/examples` or `assets/templates`
+-- [ ] `apply-design-md.cjs --default` derives the stock palette exactly, and a second reference re-themes a copy through the same gates
++- [x] Every one of the 34 manual-review findings is fixed with evidence, or recorded with a reason a reader can check
++- [x] Each systemic pattern S1–S9 is resolved in one direction, the losing document or file is edited, and no document states a value the corpus does not hold
++- [x] `assets/diagrams/` is the only form directory; no path, document, script, test or workflow still names `assets/examples` or `assets/templates`
++- [x] `apply-design-md.cjs --default` derives the stock palette exactly, and a second reference re-themes a copy through the same gates
+ - [ ] Captures are full page: no committed screenshot is cut off, and CAP-001 re-runs with its findings closed
+ - [ ] From the final state: checker `RESULT: PASSED`, suite green, `--default` byte-identical, CI green on a push, and `validate.sh --strict --recursive` PASSED for all twelve folders
+ <!-- /ANCHOR:completion -->
+@@ -150,4 +150,23 @@ The operator holds this directive as the session objective. Whenever anything ab
+ | Criterion 5 amended: version fields are per document by standard | Both research lineages read the five differing `version:` fields as drift. `sk-create-frontmatter/references/frontmatter-versioning.md` makes them the rule: every in-scope doc carries its own, `SKILL.md` anchors, children inherit major.minor. The criterion now asks for conformance to that standard, not one field |
+ | The reconciliation pass is not a phase | Folded into 002's first tasks rather than renumbering five children |
+ | The conductor misread the orchestrator as dead after node 005 | Its process hid its argv from `ps`, so the conductor's liveness checks missed it and dispatched a second agent for 006 while the orchestrator's own was writing it; the two reconciled, the orchestrator finished, and its report printed in full: five nodes PASSED, 29 of 29 placed, 7 dispatches |
++
++### Round two
++
++| Item | State | Evidence |
++|------|-------|----------|
++| 007 remediation, two rounds | Done | 34 findings fixed, then a fresh reader rendered every changed form and found 32 closed, two not landed and nine fixes that broke something new; all 18 closed. 42 of 42 tasks, 37 of 37 criteria |
++| 008 doctrine, ten patterns | Done | S1-S9 settled; two resolved by measurement rather than a change, and the record says why. 21 of 24 tasks, 14 of 16 criteria |
++| 009 one form library | Done | 38 forms in one directory, code keyed on the palette block rather than the directory. 27 of 27 tasks, 14 of 14 criteria |
++| 010 DESIGN.md theming | Done | `--default` derives all 31 role values exactly and reproduces every form; a second reference re-themes and gates. 19 of 20 criteria |
++| 011 full-page capture | Done | Eleven forms exceeded the old ceiling; no capture lands on 900 now, and the chart packet's images are byte-identical, proved by instrumenting every browser spawn |
++| Three capture reviews | Run | The second failed on masks sitting on their connectors; the third confirmed those fixed and found a long-standing defect in a second file that judging one file had hidden |
++
++### What the reviews overturned
++
++| Claim | What measurement showed |
++|-------|-------------------------|
++| A swimlane label overflowed its mask under a substituted font | Never real. The method counted ink anywhere in a margin, so an antialias shift on a neighbouring stroke read as a spill. Per glyph there is eleven units of slack |
++| Three keyed legend fills are one grey and must be stepped apart | The measurement was right and the conclusion wrong. Those node types are separated by stroke, and each swatch carries its own |
++| Masks must clear a stroke by six | The prose is in rendered pixels and the drawings in user units, which scale up about a quarter. Four units is the floor, six to ten the band |
+ <!-- /ANCHOR:log -->

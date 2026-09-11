@@ -1,0 +1,1 @@
+../../.opencode/hooks/goal/devin/goal-inject.mjs

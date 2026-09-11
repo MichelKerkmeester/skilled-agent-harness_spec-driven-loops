@@ -308,6 +308,14 @@ Trigger: "save context", "save memory", `/speckit:save`
 - **The save writes metadata, not prose.** The continuity writer `node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js` refreshes the generated metadata pair, and canonical doc content is owned by a different path. Editing the continuity frontmatter directly is a legitimate shortcut when only continuity changed.
 - **Read the post-save quality review before calling the save done.** HIGH issues must be patched by hand; the review is emitted, not advisory decoration.
 
+#### GOAL POSTURE RULE [ALWAYS ON]
+Trigger: a session bound to a spec packet, on every turn.
+- The bound packet's `goal.md` is the single source of goal state. Read it, never a remembered summary of it, and never send its frontmatter to chat, to an objective, or to an injection path.
+- When anything in the durable slice changes (a decision, a binding row or a criterion), resend the stripped slice in chat unprompted, and keep reminding while the goal is unset.
+- Work never stops because a goal is unset or a reminder went unanswered. Only the operator stops it.
+- After a goal is set, acknowledge it in one line and continue immediately. Do not restate it, and do not ask whether to proceed.
+- Mechanics (binding, the strip, the budget, the log) are `system-spec-kit`'s and the goal hook's, not this document's.
+
 #### Self-Check (before ANY tool-using response):
 - [ ] File modification? Asked spec folder question?
 - [ ] Skill routing verified?
@@ -473,6 +481,7 @@ Entry points only. Where a Flow column is present it names an order that is not 
 | **Deep AI Council** | `/deep:ai-council` | deliberate → critique → converge → artifacts → gate |
 | **Improvement / benchmarks** | `/deep:agent-improvement` · `/deep:model-benchmark` · `/deep:skill-benchmark` | — |
 | **Claim completion** | Final-State Verification | `validate.sh <spec-folder> --strict` → checklist all items → reconcile metadata |
+| **Goal state** | the bound packet's `goal.md` | durable slice is the source → resend stripped on change → never stop for it |
 | **Save context** | `/speckit:save`, or compose JSON → `generate-context.js` | — |
 | **End session** | `/speckit:save` | → `handover.md` update → continuation prompt |
 | **Trigger index maintenance** | `node .opencode/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs` | run after trigger phrases change; commit the regenerated index and manifest together; `/doctor speckit-retrieval` reports a pair one run did not produce |

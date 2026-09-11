@@ -6,7 +6,15 @@ trigger_phrases:
   - "session goal objective"
   - "goal pointer"
   - "copied completion criteria"
-version: 3.9.0.1
+  - "set the goal"
+  - "bind the goal"
+  - "bind a packet goal"
+  - "update the goal"
+  - "resend the goal"
+  - "goal log"
+  - "packet goal"
+  - "durable slice"
+version: 3.11.0.0
 ---
 
 # Goal Set-String Playbook
@@ -17,7 +25,7 @@ version: 3.9.0.1
 
 A packet's goal document can be as long as it needs to be. The objective an operator sets cannot: every runtime goal surface caps what it holds, and a slice that will not fit is truncated at the tail, which is exactly where the completion criteria live.
 
-This playbook fixes the shape of what gets typed. The rule it complements checks the file; nothing can check what an operator pastes, so this is guidance rather than a gate.
+This playbook fixes the shape of what gets typed. The rule it complements checks the file: a phase parent or top-level `goal.md` warns past 3,000 durable characters and fails past 4,000, measured from the frontmatter's closing fence to the log anchor. Nothing can check what an operator pastes, so the shape below is guidance rather than a gate.
 
 ---
 
@@ -54,12 +62,13 @@ Leave the criteria in the file alone and the evaluator is judging a table of con
 
 ## 4. WHEN IT WILL NOT FIT
 
-The durable slice has a budget for exactly this reason, and the rule reports a slice that exceeds it. If what you want to set is too long, cut in this order:
+The durable slice has a budget for exactly this reason: the validator warns a parent past 3,000 characters and fails it past 4,000. Children are unbounded. If what you want to set is too long, cut in this order:
 
-1. **The log.** It is not part of the durable slice and never belongs in the objective.
-2. **Restated child detail.** If the parent summarises what a child's goal document already says, delete the summary. The binding makes the child authoritative.
-3. **Decision prose.** A decision needs to be recognisable, not argued. The argument belongs in the decision record.
-4. **Criterion wording, never criterion count.** Shorten each bullet; do not drop one. A dropped criterion is a gate that stops existing.
+1. **The frontmatter.** It is never part of the slice. It is bookkeeping for the file, and it is stripped from every chat send, injection and objective before anything is measured.
+2. **The log.** It is not part of the durable slice and never belongs in the objective.
+3. **Restated child detail.** If the parent summarises what a child's goal document already says, delete the summary. The binding makes the child authoritative.
+4. **Decision prose.** A decision needs to be recognisable, not argued. The argument belongs in the decision record.
+5. **Criterion wording, never criterion count.** Shorten each bullet; do not drop one. A dropped criterion is a gate that stops existing.
 
 If it still will not fit, the packet is trying to be one goal when it is two. Split it.
 
@@ -71,8 +80,11 @@ The objective the operator set is a copy of the durable slice, and copies drift.
 The goal document is the source, so the agent working the packet owns the resync:
 
 1. Whenever anything above the log changes (the objective, a decision, the
-   binding table, a criterion), resend the full text of the parent `goal.md` in
-   chat, unprompted, so the operator can paste it over the session objective.
+   binding table, a criterion), resend the durable slice of the parent
+   `goal.md` in chat, unprompted and with the frontmatter stripped, so the
+   operator can paste it over the session objective. Keep reminding while it
+   stays unset. Never stop work because it is unset; only the operator stops
+   work. After the operator sets it, acknowledge in one line and continue.
 2. A child `goal.md` change that alters a parent decision or criterion is an
    amendment to the parent: apply it there first, then resend the parent. A
    child change that stays inside its own phase needs no resend.
@@ -109,7 +121,7 @@ operator's hands carry it.
 
 ## 7. WORKED EXAMPLE
 
-From a real four-phase packet whose durable slice measures 1,986 characters against a 3,000 budget:
+From a real four-phase packet whose durable slice measures 1,986 characters, well under the 3,000 warning tier:
 
 ```text
 Execute specs/system-speckit/033-system-speckit-v4/010-goal-file-addon/goal.md.
@@ -134,5 +146,5 @@ difference is what the pointer buys.
 
 | Document | Role |
 |---|---|
-| [validation-rules.md](../validation/validation-rules.md) | The rule that checks the file's shape and the durable budget |
+| [validation-rules.md](../validation/validation-rules.md) | `SPEC_DOC_SUFFICIENCY`, whose goal diagnostics check the durable budget and the binding table |
 | [quick-reference.md](./quick-reference.md) | First-touch command surface |

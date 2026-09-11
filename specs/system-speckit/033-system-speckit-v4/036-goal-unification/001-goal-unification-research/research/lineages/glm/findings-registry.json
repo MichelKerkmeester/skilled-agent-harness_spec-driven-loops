@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "reducer_version": "deep-research-state-reducer@1",
+  "session_id": "fanout-glm-1789112155370-jcyia7",
+  "iterations": [
+    { "run": 1, "programIteration": 11, "angle": "A1 (weakest)", "focus": "Weakest-evidenced angle of run 1: binding, verification pass (D1)", "status": "complete", "newInfoRatio": 0.6, "findings": 7, "evidenceCalls": 12 },
+    { "run": 2, "programIteration": 12, "angle": "A5", "focus": "Verify or refute run 1's runtime feasibility table (D5)", "status": "complete", "newInfoRatio": 0.55, "findings": 8, "evidenceCalls": 9 },
+    { "run": 3, "programIteration": 13, "angle": "A6+A7", "focus": "Isolation (009) x auto-update authority (029) reconciliation (D7)", "status": "complete", "newInfoRatio": 0.65, "findings": 7, "evidenceCalls": 4 },
+    { "run": 4, "programIteration": 14, "angle": "A8+A2", "focus": "Budget arithmetic on the real 036 goal.md + extractor fixture (D6, D3)", "status": "complete", "newInfoRatio": 0.7, "findings": 7, "evidenceCalls": 8 },
+    { "run": 5, "programIteration": 15, "angle": "synthesis", "focus": "Ranked verdicts per D1-D7 (agree/correct/overturn)", "status": "thought", "newInfoRatio": 0.5, "findings": 1, "evidenceCalls": 0 }
+  ],
+  "metrics": {
+    "iterationsCompleted": 5,
+    "keyFindings": 28,
+    "correctionsRecorded": 27,
+    "openQuestions": 0,
+    "resolvedQuestions": 8,
+    "resolvedPartial": 1,
+    "averageNewInfoRatio": 0.6,
+    "stuckCount": 0,
+    "guardViolations": 0,
+    "convergenceScore": 0.92,
+    "coverageBySources": 1.0
+  },
+  "questions": [
+    { "id": "KQ1", "state": "verified", "iterations": [11, 15], "note": "carrier evidence corrected (two-writer; prime hint; packet_pointer)" },
+    { "id": "KQ2", "state": "verified", "iterations": [13, 14, 15], "note": "payload wording tension resolved to the durable slice; fixture behaves (anchors/IF); fence omission = 010 phase-parent gap" },
+    { "id": "KQ3", "state": "verified", "iterations": [11, 15], "note": "unchanged; +1: redirected stores never adopt legacy keys (goal-core.cjs:195)" },
+    { "id": "KQ4", "state": "verified", "iterations": [13, 15], "note": "029 exclusions are the design boundary; criterion-5-vs-whitelist conflict named" },
+    { "id": "KQ5", "state": "verified-partial", "iterations": [12], "residual": "host injection caps UNKNOWN (pi: recorded negative; others unsearched)" },
+    { "id": "KQ6", "state": "verified", "iterations": [13], "note": "no regression; the residual concurrent-edit risk sits outside 009's contract" },
+    { "id": "KQ7", "state": "verified", "iterations": [13, 15], "note": "ladder survives; one-shared-resolver + canary pre-derived (ADR:129, 009:54)" },
+    { "id": "KQ8", "state": "verified", "iterations": [14, 15], "note": "numbers hold; mechanism corrected (:417-418 label-clamp); recommendation O8-A -> O8-B" }
+  ],
+  "correctionLedgers": [
+    { "iteration": 11, "corrections": 6, "highlights": "ADR-001 lines :65/:72/:73/:85/:87; 'unbound' -> 009:152; two-writer carrier; MK_/OPENCODE_ env drift" },
+    { "iteration": 12, "corrections": 5, "highlights": "README delivery matrix :66-:71; :25 (no core import); plugin :333-339/:353-356; Devin 4 events; duplicated budget policy (:45-48)" },
+    { "iteration": 13, "corrections": 9, "highlights": "009 enumeration :77->:81; uncited :50/:54; nine template citation verdicts (it-007 precise, it-002 shifted); VOLATILE half :104-106; naming rule :77-78" },
+    { "iteration": 14, "corrections": 7, "highlights": "promptBudget :428->:417-418 (dynamic, INFERRED ~3.9k); compact :432->:421-430; 3000-anchor :57->:112; O8-A->O8-B; zero-fingerprint confirmed; packet_pointer found" }
+  ],
+  "openGaps": [
+    { "id": "G1", "gap": "Host injection caps for five runtimes", "iterations": [12], "status": "stands (recorded negative for pi)", "wouldConfirm": "runtime documentation or an observed live truncation" },
+    { "id": "G2", "gap": "plugin import of the shared slice module", "iterations": [12, 14], "status": "advanced (:391 seam; duplication raises the value)", "wouldConfirm": "attempting the import in the plugin's ESM runtime" },
+    { "id": "G3", "gap": "'unbound' vocabulary", "iterations": [11], "status": "closed (009:152)" },
+    { "id": "G4", "gap": "child-to-parent ratification UX", "iterations": [13], "status": "closed-in-principle (tmpl:77-78); command-side UX remains" },
+    { "id": "G5", "gap": "packet 036's goal.md vs 4000", "iterations": [14], "status": "closed (3,393-3,732; 4000-legal, 3000-warm)" },
+    { "id": "G6", "gap": "exact |buildBlock('')| / prompt ceiling", "iterations": [14], "status": "new (INFERRED 3,875-3,910)", "wouldConfirm": "one evaluation of buildBlock('') (goal-core.cjs:405-415,417)" },
+    { "id": "G6b", "gap": "prompt-side lastSpecFolder writer identity", "iterations": [11], "status": "new (INFERRED user-prompt-submit.ts)", "wouldConfirm": "grep its assignments" },
+    { "id": "G6c", "gap": "residual documentation probes (validation-rules.md content; MK_ support; 'malformed legacy' wording; 'unbound' beyond the goal core+CLI)", "iterations": [11, 14], "status": "new", "wouldConfirm": "the targeted reads it-011/it-014 documented but did not spend" }
+  ],
+  "ruledOut": [
+    { "iteration": 11, "direction": "CLI 'unbound' precedent as the compat constraint", "because": "the precedent is 009:152 (requirement layer), not the CLI" },
+    { "iteration": 11, "direction": "implicit lastSpecFolder binding (re-test)", "because": "the shipped prime hint + ADR:87 are the confirm-don't-claim pattern" },
+    { "iteration": 12, "direction": "repo drift explaining the shifted anchors", "because": "mtimes (Sep 6/Aug 21/Aug 15) precede run 1's window" },
+    { "iteration": 12, "direction": "a documented pi host injection cap", "because": "pi's docs govern tool-output truncation only (extensions.md:2170-2192)" },
+    { "iteration": 13, "direction": "the design contradicting 029's exclusions", "because": "029 excluded paste-verification; the design mechanizes detection only (029:3,70-72)" },
+    { "iteration": 13, "direction": "shared goal.md re-opening 009's REQ-002/003", "because": "store-scoped requirements; the residual sits outside 009's contract" },
+    { "iteration": 14, "direction": "compact-path truncation as the injection mechanism", "because": ":417-418 clamp then :419 early-return; compact needs |overhead|+3 > 4800" },
+    { "iteration": 14, "direction": "char/bytes adjustment for 036", "because": "6,695 = 6,695 under both locales (ASCII); the unit choice still matters for the restored rule" }
+  ]
+}

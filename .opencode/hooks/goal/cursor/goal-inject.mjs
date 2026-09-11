@@ -33,7 +33,7 @@
 import { createRequire } from 'node:module';
 
 const require = createRequire(import.meta.url);
-const { readGoalRecord, renderGoalBrief, recordTurn, isPluginDisabled } = require('../lib/goal-core.cjs');
+const { readGoalRecord, renderGoalBrief, renderResendReminder, recordTurn, isPluginDisabled } = require('../lib/goal-core.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. HELPERS
@@ -77,11 +77,16 @@ async function main() {
     const goal = readGoalRecord(options);
     if (!goal || goal.status !== 'active') return allow();
 
-    const brief = renderGoalBrief({ goal, runtimeLabel: 'Cursor' });
+    const brief = renderGoalBrief({ goal, runtimeLabel: 'Cursor', workspace: cwd });
     if (!brief) return allow();
 
     recordTurn({}, options);
-    return allow({ agent_message: brief });
+    // Cursor has no management command, so the reminder carries the one CLI
+    // line that records the resend with this session's own scope.
+    const reminder = renderResendReminder(goal, cwd, {
+      recordCommand: `node .opencode/hooks/goal/bin/goal.cjs resent --runtime cursor --session ${JSON.stringify(sessionId)} --workspace ${JSON.stringify(cwd)}`,
+    });
+    return allow({ agent_message: reminder ? `${brief}\n${reminder}` : brief });
   } catch {
     return allow(); // any goal-core error -> fail open, no injection
   }

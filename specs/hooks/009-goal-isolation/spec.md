@@ -147,7 +147,7 @@ Make goal ownership explicit and session-scoped so each AI session sees and muta
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-009 | Cursor consumes its native identity fields. | Adapter tests cover `session_id`, `conversation_id` fallback, and missing identity; no test relies on shared `active-goal.json`. |
-| REQ-010 | Devin documentation and tracked files agree. | Current docs/matrices state that Devin goal adapters were decommissioned; no registration or missing adapter path is claimed. |
+| REQ-010 | Devin documentation and tracked files agree. | Current docs/matrices state that Devin goal adapters were decommissioned; no registration or missing adapter path is claimed. Superseded 2026-09-11 by the goal unification packet (036, ADR-005): Devin regained an injection-only adapter at `.opencode/hooks/goal/devin/goal-inject.mjs`, registered in `.devin/hooks.v1.json`, and the docs now say so. |
 | REQ-011 | Diagnostics describe scoped state accurately. | `show`, `history`, `doctor`, and `health` distinguish current-session data from aggregate counts without printing raw session ids by default. |
 | REQ-012 | Fork/resume behavior is explicit. | Resume with the same native id restores the same goal; a new or forked id starts unbound unless an explicit clone action is specified. |
 | REQ-013 | Runtime docs and command text stop claiming the global CLI already owns session resolution. | Repository search finds no stale statement that `bin/goal.cjs` resolves a session without receiving identity. |

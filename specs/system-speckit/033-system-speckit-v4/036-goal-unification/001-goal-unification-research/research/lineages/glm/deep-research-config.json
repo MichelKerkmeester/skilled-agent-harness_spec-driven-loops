@@ -1,0 +1,76 @@
+{
+  "topic": "Goal unification, run 2: verify, refute and deepen the deepseek lineage's findings (iterations 11-15 of the 15-iteration program)",
+  "maxIterations": 5,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "minIterations": 3,
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations"
+  },
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/001-goal-unification-research",
+  "artifactDir": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/001-goal-unification-research/research/lineages/glm",
+  "createdAt": "2026-09-11T07:43:34Z",
+  "status": "initialized",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-pi",
+    "model": "glm-5.3-flash",
+    "reasoningEffort": "max",
+    "serviceTier": null,
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 3600
+  },
+  "lineage": {
+    "sessionId": "fanout-glm-1789112155370-jcyia7",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "generation": 1,
+    "continuedFromRun": "deepseek (iterations 1-10, same 15-iteration program; its research.md is this lineage's verification baseline)",
+    "fanoutLabel": "glm",
+    "sequentialSuccessor": null
+  },
+  "iterationNumbering": {
+    "scheme": "program",
+    "range": [11, 15],
+    "note": "The 15-iteration program continues across two sequential lineages; this lineage owns program iterations 11-15. Lineage-local sequence appears as run 1-5 alongside."
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "next-focus"
+    ]
+  },
+  "capabilityMatrixPath": ".opencode/skills/system-deep-loop/deep-research/assets/runtime-capabilities.json",
+  "reducerScriptPath": ".opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+  "pauseSentinelPath": "notes/.deep-research-pause",
+  "archiveRoot": "archive",
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research.md": "mutable"
+  },
+  "writeSurface": {
+    "authority": "fanout_lineage_artifact_dir override",
+    "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/001-goal-unification-research/research/lineages/glm",
+    "rule": "all writes stay inside this directory; the repo is read-only for this lineage"
+  }
+}

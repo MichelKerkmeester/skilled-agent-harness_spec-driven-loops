@@ -157,3 +157,104 @@ test('regression graph key files exclude non-deliverable legacy basenames', asyn
     );
   }
 });
+
+// ─────────────────────────────────────────────────────────────────────────────
+// PACKET BINDING THROUGH THE TOOL PATH
+// ─────────────────────────────────────────────────────────────────────────────
+
+const { mkdir, writeFile } = require('node:fs/promises');
+
+async function writePacketGoal(root, rel) {
+  const dir = join(root, rel);
+  await mkdir(dir, { recursive: true });
+  await mkdir(join(root, '.git'), { recursive: true });
+  await writeFile(join(dir, 'goal.md'), [
+    '---', 'title: "Goal: fixture"', '_memory:', '  continuity:', '    session_dedup:', '      session_id: "SECRET"', '---',
+    '<!-- ANCHOR:directive -->', '**Objective:** Ship it.', '<!-- /ANCHOR:directive -->',
+    '<!-- ANCHOR:completion -->', '- [ ] TOOLPATH_CRITERION', '<!-- /ANCHOR:completion -->',
+    '<!-- ANCHOR:log -->', '| Item | State | Evidence |', '|---|---|---|', '<!-- /ANCHOR:log -->', '',
+  ].join('\n'), 'utf8');
+}
+
+test('executeGoalAction bind derives the objective from the packet and the injection never carries frontmatter', async () => withState(async ({ __test, ctx, opts, stateDir }) => {
+  await writePacketGoal(stateDir, 'specs/t/001-fixture');
+  const bindOpts = { ...opts, directory: stateDir };
+  const bindRes = await __test.executeGoalAction({ action: 'bind', packetPath: 'specs/t/001-fixture' }, ctx, bindOpts);
+  assert.match(String(bindRes), /STATUS=OK ACTION=bind/);
+  assert.match(String(bindRes), /mutation=bound/);
+  assert.match(String(bindRes), /packet_bound=true/);
+  assert.match(String(bindRes), /resend_pending=true/);
+  const goal = await __test.readGoal(ctx.sessionID, opts);
+  assert.equal(goal.packetPath, 'specs/t/001-fixture');
+  assert.ok(String(goal.objective).startsWith('Execute specs/t/001-fixture/goal.md.'));
+  const block = __test.renderGoalInjection(goal, bindOpts);
+  assert.ok(block.includes('TOOLPATH_CRITERION'));
+  assert.ok(!block.includes('SECRET'));
+  const resentRes = await __test.executeGoalAction({ action: 'resent' }, ctx, bindOpts);
+  assert.match(String(resentRes), /resend_pending=false/);
+}));
+
+test('executeGoalAction packet reads a packet without binding, and bind refuses a missing document', async () => withState(async ({ __test, ctx, opts, stateDir }) => {
+  await writePacketGoal(stateDir, 'specs/t/001-fixture');
+  const readOpts = { ...opts, directory: stateDir };
+  const packetRes = await __test.executeGoalAction({ action: 'packet', packetPath: 'specs/t/001-fixture' }, ctx, readOpts);
+  assert.match(String(packetRes), /STATUS=OK ACTION=packet/);
+  assert.match(String(packetRes), /packet_nested=false/);
+  assert.ok(!String(packetRes).includes('SECRET'));
+  assert.equal(await __test.readGoal(ctx.sessionID, opts), null);
+  const missing = await __test.executeGoalAction({ action: 'bind', packetPath: 'specs/t/never' }, ctx, readOpts);
+  assert.match(String(missing), /STATUS=FAIL/);
+  assert.match(String(missing), /PACKET_GOAL_NOT_FOUND/);
+}));
+
+
+test('the system transform carries the resend reminder while the bound packet is unresent', async () => withState(async ({ __test, ctx, opts, stateDir, pluginModule }) => {
+  await writePacketGoal(stateDir, 'specs/t/001-fixture');
+  const bindOpts = { ...opts, directory: stateDir };
+  await __test.executeGoalAction({ action: 'bind', packetPath: 'specs/t/001-fixture' }, ctx, bindOpts);
+  const output = { system: [] };
+  await pluginModule.default.__test.appendGoalBrief({ sessionID: ctx.sessionID }, output, bindOpts);
+  assert.ok(output.system.some((entry) => entry.includes('[goal_resend_pending]')), 'reminder rides the injection');
+  await __test.executeGoalAction({ action: 'resent' }, ctx, bindOpts);
+  const after = { system: [] };
+  await pluginModule.default.__test.appendGoalBrief({ sessionID: ctx.sessionID }, after, bindOpts);
+  assert.ok(!after.system.some((entry) => entry.includes('[goal_resend_pending]')), 'reminder clears after resent');
+}));
+
+test('executeGoalAction unbind, log, packet budget and an unknown action', async () => withState(async ({ __test, ctx, opts, stateDir }) => {
+  await writePacketGoal(stateDir, 'specs/t/001-fixture');
+  const bindOpts = { ...opts, directory: join(stateDir, 'specs') };
+  const bindRes = await __test.executeGoalAction({ action: 'bind', packetPath: 'specs/t/001-fixture' }, ctx, bindOpts);
+  assert.match(String(bindRes), /packet_bound=true/, 'bind resolves against the repo root, not the subdirectory');
+  assert.match(String(bindRes), /packet_state=bound/);
+  const logRes = await __test.executeGoalAction({ action: 'log', item: 'from plugin', state: 'Done', evidence: 'tool' }, ctx, bindOpts);
+  assert.match(String(logRes), /STATUS=OK ACTION=log/);
+  const doc = await readFile(join(stateDir, 'specs', 't', '001-fixture', 'goal.md'), 'utf8');
+  assert.ok(doc.includes('| from plugin | Done | tool |'));
+  const packetRes = await __test.executeGoalAction({ action: 'packet', packetPath: 'specs/t/001-fixture' }, ctx, bindOpts);
+  assert.match(String(packetRes), /packet_budget=/);
+  const unknown = await __test.executeGoalAction({ action: 'explode' }, ctx, bindOpts);
+  assert.match(String(unknown), /STATUS=FAIL/);
+  assert.match(String(unknown), /UNKNOWN_ACTION/);
+  const unbindRes = await __test.executeGoalAction({ action: 'unbind' }, ctx, bindOpts);
+  assert.match(String(unbindRes), /mutation=unbound/);
+  assert.match(String(unbindRes), /packet_state=unbound/);
+}));
+
+test('executeGoalAction set reports a truncated text objective', async () => withState(async ({ __test, ctx, opts }) => {
+  const res = await __test.executeGoalAction({ action: 'set', objective: 'y'.repeat(4500) }, ctx, opts);
+  assert.match(String(res), /STATUS=OK ACTION=set/);
+  assert.match(String(res), /warning="objective was 4500 characters and was truncated to 4000/);
+}));
+
+test('a rebind to a different packet leaves the prior record in history', async () => withState(async ({ __test, ctx, opts, stateDir }) => {
+  await writePacketGoal(stateDir, 'specs/t/001-fixture');
+  await writePacketGoal(stateDir, 'specs/t/002-other');
+  const bindOpts = { ...opts, directory: stateDir };
+  const first = await __test.executeGoalAction({ action: 'bind', packetPath: 'specs/t/001-fixture' }, ctx, bindOpts);
+  const firstId = String(first).match(/goal_id=(\S+)/)[1];
+  const second = await __test.executeGoalAction({ action: 'bind', packetPath: 'specs/t/002-other' }, ctx, bindOpts);
+  assert.match(String(second), /mutation=rebound/);
+  const history = await __test.executeGoalAction({ action: 'history' }, ctx, bindOpts);
+  assert.ok(String(history).includes(firstId), 'prior record archived on rebind');
+}));

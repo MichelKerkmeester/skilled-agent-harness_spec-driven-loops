@@ -75,10 +75,12 @@
       ".pi/settings.json",
       ".pi/prompts/goal-pi.md",
       ".cursor/commands/goal-cursor.md",
-      ".cursor/hooks.json",
+      ".opencode/hooks/goal/devin/goal-inject.mjs",
       ".devin/hooks.v1.json",
+      ".cursor/hooks.json",
       ".opencode/hooks/goal/lib/goal-core.test.cjs",
-      ".pi/extensions/goal-context.ts"
+      ".pi/extensions/goal-context.ts",
+      "specs/system-speckit/033-system-speckit-v4/036-goal-unification/002-decisions-and-contract-freeze/decision-record.md"
     ],
     "entities": [
       {
@@ -154,15 +156,15 @@
         "source": "derived"
       },
       {
-        "name": "hooks.json",
-        "kind": "config",
-        "path": ".cursor/hooks.json",
-        "source": "derived"
-      },
-      {
         "name": "hooks.v1.json",
         "kind": "config",
         "path": ".devin/hooks.v1.json",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".cursor/hooks.json",
         "source": "derived"
       },
       {
@@ -228,7 +230,7 @@
     ],
     "causal_summary": "The cross-runtime core resolves every Pi and Cursor goal operation to one fixed file, `active-goal.json`",
     "created_at": "2026-08-10T10:17:19Z",
-    "last_save_at": "2026-08-30T15:39:09.532Z",
+    "last_save_at": "2026-09-11T17:01:22.352Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -238,13 +240,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:33dcff3e9a4c72dd6ab381618b8a3b12c38d98e29da62df270a421c846a14db3",
+    "source_fingerprint": "sha256:f14c5ac271791850675ac7cffb240a7b1be3586367af436c469ee4b263c5b113",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "027c5a3278b20eecdb7d8a0a28b6df42c0304816f1f1813c98def7e17feb4419",
+      "spec.md": "2c929e92ce3864c996cf83f28b1053b1dbc38018716fde885ab5eb8f5c63b8eb",
       "plan.md": "1515971baa25e90f0bec0ac426205c9275e38191abe0e16e506cbeee7c8c3157",
       "tasks.md": "d5cb1b2439003d99988f1bfec7f67746d00166991b942fcdf8f56fe41da58a5e",
-      "decision-record.md": "ded40514cc3d262923a8b4985f31f34639d3fee38875bea7e7a5a37a5b4fc378",
+      "decision-record.md": "f5411ad8a8b5494d3ef869c50e9df38635685ed412dc014d018e9e21f23315b7",
       "implementation-summary.md": "0213dc94ec4ef973b0a153c97a9239320bf20e8115332025961bed9f6b1d8857"
     },
     "last_active_child_id": "hooks/009-goal-isolation/006-opencode-goal-optimization-and-devin-removal",

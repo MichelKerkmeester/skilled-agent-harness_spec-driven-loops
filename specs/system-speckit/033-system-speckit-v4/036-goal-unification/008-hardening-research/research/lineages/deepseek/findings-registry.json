@@ -1,0 +1,319 @@
+{
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "q1-hardening",
+      "text": "Where can a bound session still be lied to or left silent?",
+      "status": "resolved",
+      "resolvedAtIteration": 1,
+      "evidence": [
+        ".opencode/hooks/goal/lib/goal-slice.cjs:24",
+        ".opencode/hooks/goal/lib/goal-slice.cjs:37",
+        ".opencode/hooks/goal/lib/goal-core.cjs:894",
+        ".opencode/hooks/goal/lib/goal-core.cjs:1048",
+        ".opencode/plugins/opencode-goal.js:2703",
+        ".opencode/skills/system-spec-kit/runtime/lib/validation/spec-doc-structure.ts:1028"
+      ]
+    },
+    {
+      "id": "q2-integration",
+      "text": "Where do the shipped pieces still not meet?",
+      "status": "resolved",
+      "resolvedAtIteration": 2,
+      "evidence": [
+        ".opencode/commands/speckit/assets/speckit-plan.yaml:156-186",
+        ".opencode/plugins/opencode-goal.js:168",
+        ".opencode/skills/system-spec-kit/runtime/cli/retrieval/lib/corpus.mjs:29",
+        ".opencode/commands/speckit/save.md:61"
+      ]
+    },
+    {
+      "id": "q3-ux",
+      "text": "Where is an operator step manual that could be automatic, a message unclear, or a paste a tool could do?",
+      "status": "resolved",
+      "resolvedAtIteration": 3,
+      "evidence": [
+        ".opencode/hooks/goal/lib/goal-slice.cjs:138",
+        ".opencode/hooks/goal/bin/goal.cjs:139",
+        ".opencode/hooks/goal/lib/goal-core.cjs:273-278"
+      ]
+    },
+    {
+      "id": "q4-overengineering",
+      "text": "What shipped that no current caller needs?",
+      "status": "resolved",
+      "resolvedAtIteration": 4,
+      "evidence": [
+        ".opencode/hooks/goal/lib/goal-slice.cjs:229",
+        ".opencode/plugins/opencode-goal.js:1241",
+        ".opencode/hooks/goal/bin/goal.cjs:137",
+        ".opencode/plugins/opencode-goal.js:2897-2898"
+      ]
+    },
+    {
+      "id": "q5-ranking",
+      "text": "What should be done now, next, or not at all, ranked by impact x confidence / cost?",
+      "status": "resolved",
+      "resolvedAtIteration": 5,
+      "evidence": [
+        "iterations/iteration-005.md"
+      ]
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "f-iter001-h1",
+      "text": "Extractor parity drift reversed: validator fence regex stricter than the fixed runtime",
+      "files": [
+        ".opencode/hooks/goal/lib/goal-slice.cjs",
+        ".opencode/skills/system-spec-kit/runtime/lib/validation/spec-doc-structure.ts"
+      ]
+    },
+    {
+      "id": "f-iter001-h2",
+      "text": "Bare-CR line endings leak frontmatter including session_id",
+      "files": [
+        ".opencode/hooks/goal/lib/goal-slice.cjs"
+      ]
+    },
+    {
+      "id": "f-iter001-h3",
+      "text": "Packet lock keyed lexically; alias bypass loses a log row",
+      "files": [
+        ".opencode/hooks/goal/lib/goal-core.cjs"
+      ]
+    },
+    {
+      "id": "f-iter001-h4",
+      "text": "Plugin and core disagree on which workspace wins",
+      "files": [
+        ".opencode/hooks/goal/lib/goal-core.cjs",
+        ".opencode/plugins/opencode-goal.js"
+      ]
+    },
+    {
+      "id": "f-iter001-h5",
+      "text": "readPacketGoal statSync can throw instead of failing open",
+      "files": [
+        ".opencode/hooks/goal/lib/goal-slice.cjs"
+      ]
+    },
+    {
+      "id": "f-iter001-h6",
+      "text": "Non-UTF8 goal.md corrupted by first log append",
+      "files": [
+        ".opencode/hooks/goal/lib/goal-core.cjs"
+      ]
+    },
+    {
+      "id": "f-iter001-h7",
+      "text": "CRLF goal.md gains a bare-LF row",
+      "files": [
+        ".opencode/hooks/goal/lib/goal-core.cjs"
+      ]
+    },
+    {
+      "id": "f-iter001-h8",
+      "text": "Binding-table containment is lexical only",
+      "files": [
+        ".opencode/skills/system-spec-kit/runtime/lib/validation/spec-doc-structure.ts"
+      ]
+    },
+    {
+      "id": "f-iter001-h9",
+      "text": "Missing-child binding rule bypassed by link notation",
+      "files": [
+        ".opencode/skills/system-spec-kit/runtime/lib/validation/spec-doc-structure.ts"
+      ]
+    },
+    {
+      "id": "f-iter002-i1",
+      "text": "Bind table referenced by no step",
+      "files": [
+        ".opencode/commands/speckit/assets/speckit-plan.yaml"
+      ]
+    },
+    {
+      "id": "f-iter002-i2",
+      "text": "Plugin omits log/unbind; unknown actions become show",
+      "files": [
+        ".opencode/plugins/opencode-goal.js"
+      ]
+    },
+    {
+      "id": "f-iter002-i3",
+      "text": "Goal contract docs outside trigger-index corpus roots",
+      "files": [
+        ".opencode/skills/system-spec-kit/runtime/cli/retrieval/lib/corpus.mjs"
+      ]
+    },
+    {
+      "id": "f-iter002-i4",
+      "text": "Save path gives the unlocked log append equal footing",
+      "files": [
+        ".opencode/commands/speckit/save.md"
+      ]
+    },
+    {
+      "id": "f-iter002-i5",
+      "text": "No resend mechanism on Claude Code and Codex",
+      "files": [
+        ".opencode/commands/speckit/assets/speckit-plan.yaml"
+      ]
+    },
+    {
+      "id": "f-iter003-u1",
+      "text": "Resync paste replaced by bind+resent",
+      "files": [
+        ".opencode/hooks/goal/lib/goal-slice.cjs",
+        ".opencode/hooks/goal/lib/goal-core.cjs"
+      ]
+    },
+    {
+      "id": "f-iter003-u2",
+      "text": "show claims packet_bound after the document is gone",
+      "files": [
+        ".opencode/hooks/goal/bin/goal.cjs"
+      ]
+    },
+    {
+      "id": "f-iter003-u3",
+      "text": "Criteria flattened in the objective line",
+      "files": [
+        ".opencode/hooks/goal/lib/goal-core.cjs",
+        ".opencode/plugins/opencode-goal.js"
+      ]
+    },
+    {
+      "id": "f-iter003-u4",
+      "text": "usage line prints tokens 0/none",
+      "files": [
+        ".opencode/hooks/goal/lib/goal-core.cjs"
+      ]
+    },
+    {
+      "id": "f-iter003-u5",
+      "text": "Reminder names an action two runtimes lack",
+      "files": [
+        ".opencode/hooks/goal/lib/goal-slice.cjs"
+      ]
+    },
+    {
+      "id": "f-iter003-u6",
+      "text": "show envelope embeds whole documents",
+      "files": [
+        ".opencode/hooks/goal/bin/goal.cjs"
+      ]
+    },
+    {
+      "id": "f-iter003-u7",
+      "text": "Rebind archive branch unreachable",
+      "files": [
+        ".opencode/hooks/goal/lib/goal-core.cjs"
+      ]
+    },
+    {
+      "id": "f-iter004-o1",
+      "text": "Remove content and mtimeMs from the packet projection",
+      "files": [
+        ".opencode/hooks/goal/lib/goal-slice.cjs"
+      ]
+    },
+    {
+      "id": "f-iter004-o2",
+      "text": "lastCheckAtMs never rendered",
+      "files": [
+        ".opencode/plugins/opencode-goal.js"
+      ]
+    },
+    {
+      "id": "f-iter004-o3",
+      "text": "Gate CLI injection_preview",
+      "files": [
+        ".opencode/hooks/goal/bin/goal.cjs"
+      ]
+    },
+    {
+      "id": "f-iter004-o4",
+      "text": "De-duplicate envelope lines",
+      "files": [
+        ".opencode/plugins/opencode-goal.js"
+      ]
+    },
+    {
+      "id": "f-iter004-o5",
+      "text": "Keep goalDurableBudget manifest block",
+      "files": [
+        ".opencode/skills/system-spec-kit/runtime/lib/templates/level-contract-resolver.ts"
+      ]
+    },
+    {
+      "id": "f-iter004-o6",
+      "text": "Keep packet action surfaces",
+      "files": [
+        ".opencode/hooks/goal/bin/goal.cjs"
+      ]
+    },
+    {
+      "id": "f-iter004-o7",
+      "text": "Keep reminder length; split the set mandate",
+      "files": [
+        ".opencode/hooks/goal/lib/goal-slice.cjs"
+      ]
+    },
+    {
+      "id": "f-iter004-o8",
+      "text": "Trim skill paragraph; lint the three asset blocks",
+      "files": [
+        ".opencode/skills/system-spec-kit/SKILL.md",
+        ".opencode/commands/speckit/assets/speckit-plan.yaml"
+      ]
+    },
+    {
+      "id": "f-iter004-o9",
+      "text": "Pin renderer differences with a parity test",
+      "files": [
+        ".opencode/hooks/goal/lib/goal-core.cjs",
+        ".opencode/plugins/opencode-goal.js"
+      ]
+    },
+    {
+      "id": "f-iter005-s1",
+      "text": "Twelve do-now changes",
+      "files": [
+        "iterations/iteration-005.md"
+      ]
+    },
+    {
+      "id": "f-iter005-s2",
+      "text": "Twelve do-next changes",
+      "files": [
+        "iterations/iteration-005.md"
+      ]
+    },
+    {
+      "id": "f-iter005-s3",
+      "text": "Nine do-not defences",
+      "files": [
+        "iterations/iteration-005.md"
+      ]
+    }
+  ],
+  "ruledOut": [
+    {
+      "direction": "Normal same-workspace concurrent appends interleave",
+      "reason": "Shared workspace state dir plus shared packet lock",
+      "iteration": 1
+    },
+    {
+      "direction": "Renamed packet falls back to stored objective",
+      "reason": "Empty block when the bound document is gone",
+      "iteration": 1
+    },
+    {
+      "direction": "Non-UTF8 crashes a render",
+      "reason": "Node replacement-decodes instead of throwing",
+      "iteration": 1
+    }
+  ]
+}

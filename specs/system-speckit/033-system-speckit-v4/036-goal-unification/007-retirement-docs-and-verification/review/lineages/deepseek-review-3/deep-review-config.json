@@ -1,0 +1,90 @@
+{
+  "topic": "Third-pass review of the goal unification build: packet goal.md as the single goal source across runtimes",
+  "mode": "review",
+  "reviewTarget": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "reviewScopeFiles": [
+    ".opencode/hooks/goal/lib/goal-slice.cjs",
+    ".opencode/hooks/goal/lib/goal-core.cjs",
+    ".opencode/hooks/goal/bin/goal.cjs",
+    ".opencode/hooks/goal/README.md",
+    ".opencode/hooks/goal/goal-plugin.md",
+    ".opencode/hooks/goal/pi/goal-context.ts",
+    ".opencode/hooks/goal/cursor/goal-inject.mjs",
+    ".opencode/hooks/goal/devin/goal-inject.mjs",
+    ".opencode/hooks/goal/opencode/opencode-goal.js",
+    ".opencode/plugins/opencode-goal.js",
+    ".opencode/plugins/tests/opencode-goal-tool-path.test.cjs",
+    ".opencode/skills/system-spec-kit/runtime/lib/validation/spec-doc-structure.ts",
+    ".opencode/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts",
+    ".opencode/skills/system-spec-kit/runtime/tests/spec-doc-structure.vitest.ts",
+    ".opencode/skills/system-spec-kit/templates/spec-kit-docs.json",
+    ".opencode/commands/speckit/assets/speckit-plan.yaml",
+    ".opencode/commands/speckit/assets/speckit-implement.yaml",
+    ".opencode/commands/speckit/assets/speckit-complete.yaml",
+    ".opencode/commands/speckit/save.md",
+    ".opencode/commands/goal-opencode.md",
+    ".cursor/commands/goal-cursor.md",
+    ".devin/hooks.v1.json",
+    "AGENTS.md",
+    "specs/system-speckit/033-system-speckit-v4/036-goal-unification/002-decisions-and-contract-freeze/decision-record.md",
+    "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification/spec.md",
+    "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification/goal.md",
+    "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification/tasks.md",
+    "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification/implementation-summary.md",
+    "specs/system-speckit/033-system-speckit-v4/036-goal-unification/008-hardening-research/implementation-summary.md"
+  ],
+  "sessionId": "fanout-deepseek-review-3-1789130055224-0aogzl",
+  "parentSessionId": null,
+  "lineageMode": "auto",
+  "generation": 1,
+  "continuedFromRun": null,
+  "maxIterations": 5,
+  "convergenceThreshold": 0.05,
+  "stopPolicy": "max-iterations",
+  "noProgressThreshold": 0.05,
+  "severityThreshold": "P2",
+  "executor": {
+    "kind": "cli-pi",
+    "model": "deepseek-v4.1-flash",
+    "reasoningEffort": "max"
+  },
+  "fanout": {
+    "lineageLabel": "deepseek-review-3",
+    "lineageIndex": 2,
+    "artifactDirOverride": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-3",
+    "siblingLineage": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-2",
+    "pass": 3
+  },
+  "priorLineage": {
+    "dir": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-2",
+    "verdict": "PASS",
+    "findingCounts": { "P0": 0, "P1": 0, "P2": 7 },
+    "rule": "Do not re-report a finding the phase-008 fix list closes unless the fix itself is wrong or incomplete."
+  },
+  "artifactRoot": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-3",
+  "createdAt": "2026-09-11T12:34:15Z",
+  "reviewDepthSchemaVersion": 2,
+  "reviewDepthApplicability": {
+    "scopeClass": "complex",
+    "enforcement": "strict",
+    "reason": "Cross-runtime goal contract with a shared slice module, a shared locked append pulled into the plugin, a validator measurement boundary, per-runtime adapters, speckit YAML goal instructions, and a packet that claims the fixes.",
+    "evidenceRefs": [
+      ".opencode/hooks/goal/lib/goal-core.cjs:1054-1101",
+      ".opencode/plugins/opencode-goal.js:26-27",
+      ".opencode/skills/system-spec-kit/runtime/lib/validation/spec-doc-structure.ts:1026-1034"
+    ]
+  },
+  "status": "complete",
+  "releaseReadinessState": "advisories-open"
+}

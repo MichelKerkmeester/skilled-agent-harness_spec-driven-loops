@@ -21,7 +21,7 @@ trigger_phrases:
 
 `.opencode/hooks/` is the single home for every "hook" concept in the repo. Four concern folders (`dispatch/`, `mcp-route-guard/`, `post-edit-quality/`, `task-dispatch/`, plus their shared helper in `shared/`) hold AI-runtime lifecycle hooks that have no real dependency on the skill they used to live inside: each was originally nested under a domain skill's own tree (`cli-opencode/scripts/`, `mcp-code-mode/runtime/`, `sk-code/sk-code-quality/scripts/`, `system-deep-loop/runtime/lib/deep-loop/`). Moving them out means a user can adopt or remove the enforcement layer independently of the skill's own knowledge and reference content.
 
-A further AI-runtime concern, [`goal/`](./goal/README.md), is a cross-runtime sibling of the OpenCode `opencode-goal` plugin. It provides session-scoped passive goal tracking for Pi and Cursor through native session identity, opaque per-session state, prompt-injection hardening, a heuristic verifier, and an explicitly bound manage CLI. OpenCode keeps using `opencode-goal` directly.
+A further AI-runtime concern, [`goal/`](./goal/README.md), is a cross-runtime sibling of the OpenCode `opencode-goal` plugin. It binds a session to a spec packet whose `goal.md` is the directive, renders that file's durable slice on every turn with the frontmatter stripped, and keeps only the pointer, liveness and telemetry per session. Pi, Cursor and Devin reach it through native session identity; OpenCode keeps using `opencode-goal` directly, which imports the same slice module.
 
 A fifth folder, [`git/`](./git/README.md), holds the git commit-hooks installer (the pre-commit gate): an unrelated concept from the four AI-runtime concerns above, nested here only because both are "hooks" in the everyday sense and the operator wanted one unified tree rather than two similarly-named sibling directories (`hooks/` and `runtime-hooks/`). **`git/pre-commit` is not standalone**: the repo's real, installed `.git/hooks/pre-commit` is `.opencode/scripts/git-hooks/pre-commit`, which chain-calls `git/pre-commit` by path as its comment-hygiene sub-gate. See [`git/README.md`](./git/README.md) for that installer's own contract, and [`injection-contract.md`](./injection-contract.md) for what each AI-runtime hook here actually injects and its visibility to the human operator.
 
@@ -133,8 +133,10 @@ hooks/
 |   `-- opencode/ system-deep-loop-guard.js (browsability symlink -> ../../../plugins/)
 `-- goal/                            # cross-runtime passive session-goal tracking (sibling of opencode-goal)
     +-- lib/goal-core.cjs, goal-core.test.cjs
-    +-- bin/goal.cjs                 # scoped management, diagnostics, and explicit legacy quarantine
+    +-- lib/goal-slice.cjs, goal-slice.test.cjs   # packet goal.md projections shared with the OpenCode plugin
+    +-- bin/goal.cjs                 # scoped management (bind, resent, log, packet), diagnostics, legacy quarantine
     +-- cursor/   goal-inject.mjs
+    +-- devin/    goal-inject.mjs
     +-- pi/       goal-context.ts (real file; `.pi/extensions/` symlinks to it)
     `-- opencode/ opencode-goal.js (browsability symlink -> ../../../plugins/)
 ```
@@ -153,7 +155,7 @@ Pi's portable adapters live here too, in per-concern `pi/` subfolders (`dispatch
 | `mcp-route-guard` | claude, cursor, devin, codex, pi (symlinked) | `mcp-route-guard.js` |
 | `post-edit-quality` | claude, devin, codex, cursor (indexed proxy), pi (symlinked) | `sk-code-post-edit-quality.js` |
 | `task-dispatch` | claude, cursor, devin, pi (symlinked) | `system-deep-loop-guard.js` |
-| `goal` | cursor, pi (symlinked); plus `lib/` core + `bin/` manage CLI | `opencode-goal.js` |
+| `goal` | cursor, devin, pi (symlinked); plus `lib/` core and slice module + `bin/` manage CLI | `opencode-goal.js` |
 
 `sk-git-preflight-advisory.js` and `cli-dispatch-audit.js` (OpenCode plugins owned by `sk-git`/`cli-opencode` respectively) both also import `dispatch/lib/dispatch-rule-checks.mjs` and `dispatch/lib/dispatch-audit.mjs` from here.
 
@@ -228,7 +230,7 @@ For the *why* behind each absence, why a runtime has no adapter for a concern, s
 | `dispatch` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered |
 | `dist-freshness` |, by-design: OpenCode plugin owns source/dist freshness projection |, by-design: OpenCode plugin owns source/dist freshness projection |, by-design: OpenCode plugin owns source/dist freshness projection |, by-design: OpenCode plugin owns source/dist freshness projection | ✓ covered |, by-design: OpenCode plugin owns source/dist freshness projection |
 | `git-preflight` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered |
-| `goal` |, by-design: goal state ships only on native session-bound goal surfaces |, by-design: goal state ships only on native session-bound goal surfaces | ✓ covered |, by-design: goal state ships only on native session-bound goal surfaces | ✓ covered | ✓ covered |
+| `goal` |, by-design: native host goal command; the packet goal reaches it through the speckit workflows |, by-design: native host goal command; same | ✓ covered (injection + packet read) | ✓ covered (injection only) | ✓ covered | ✓ covered |
 | `mcp-route-guard` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered |
 | `permission-policy` |, by-design: permission via `PreToolUse` decision, no dedicated permission-request adapter |, by-design: permission via `PreToolUse` decision, no dedicated permission-request adapter |, by-design: no dedicated permission-request adapter | ✓ covered |, by-design: no dedicated permission-request adapter |, by-design: no separate approval event beyond `tool_call` |
 | `post-edit-quality` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered |

@@ -27,6 +27,11 @@
           "type": "command",
           "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/bin/install-codex-hooks.mjs --check >/dev/null 2>&1 || echo \"[codex-hooks] drift detected - run: node .opencode/bin/install-codex-hooks.mjs --check\"'",
           "timeout": 5
+        },
+        {
+          "type": "command",
+          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/hooks/goal/devin/goal-inject.mjs || { printf \"%s\\n\" \"mk-hook-drift host=devin event=SessionStart adapter=goal-inject.mjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"SessionStart\\\",\\\"additionalContext\\\":\\\"mk devin hook could not resolve; run npm run build in the spec-kit runtime package\\\",\\\"mkHookDrift\\\":true}}\"; }'",
+          "timeout": 10
         }
       ]
     }
@@ -43,6 +48,11 @@
         {
           "type": "command",
           "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/runtime/hooks/devin/spec-gate-classify.mjs'",
+          "timeout": 10
+        },
+        {
+          "type": "command",
+          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/hooks/goal/devin/goal-inject.mjs || { printf \"%s\\n\" \"mk-hook-drift host=devin event=UserPromptSubmit adapter=goal-inject.mjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"UserPromptSubmit\\\",\\\"additionalContext\\\":\\\"mk devin hook could not resolve; run npm run build in the spec-kit runtime package\\\",\\\"mkHookDrift\\\":true}}\"; }'",
           "timeout": 10
         }
       ]

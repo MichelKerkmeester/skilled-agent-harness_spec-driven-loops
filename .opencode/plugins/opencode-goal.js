@@ -10,7 +10,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import { createHash, randomUUID } from 'node:crypto';
-import { appendFile, link, mkdir, open, readFile, readdir, rename, stat, unlink } from 'node:fs/promises';
+import { appendFile, link, mkdir, open, readFile, readdir, rename, stat, unlink, writeFile } from 'node:fs/promises';
 import { join, resolve as resolvePath } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createRequire } from 'node:module';
@@ -19,6 +19,12 @@ import { tool } from '@opencode-ai/plugin/tool';
 
 const require = createRequire(import.meta.url);
 const { isHookEnabled } = require('../hooks/shared/hook-flags.cjs');
+// The packet goal.md projections are shared with the runtime-neutral core so the
+// two implementations cannot disagree on where the frontmatter ends.
+const goalSlice = require('../hooks/goal/lib/goal-slice.cjs');
+// The locked packet-log append lives in the runtime-neutral core so both
+// implementations serialize on the same lock; nothing else is imported.
+const { appendPacketLog: appendPacketLogShared } = require('../hooks/goal/lib/goal-core.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -162,7 +168,7 @@ const STATUS_TRANSITIONS = Object.freeze({
 });
 const VALID_VERIFIER_VERDICTS = new Set(['met', 'not_met', 'blocked']);
 const EMPTY_INJECTION_PREVIEW = '';
-const GOAL_ACTIONS = ['set', 'show', 'clear', 'complete', 'pause', 'history', 'resume', 'doctor', 'health'];
+const GOAL_ACTIONS = ['set', 'bind', 'unbind', 'resent', 'log', 'packet', 'show', 'clear', 'complete', 'pause', 'history', 'resume', 'doctor', 'health'];
 const mutationQueues = new Map();
 const jsonlAppendQueues = new Map();
 const knownStateDirs = new Set();
@@ -1251,6 +1257,19 @@ function normalizeStoredGoal(rawGoal, fallbackSessionID, rawOptions = {}, expect
     accountedMessageUsage: normalizeAccountedMessageUsage(rawGoal.accountedMessageUsage),
     usageSource: sanitizeInlineText(rawGoal.usageSource || 'unavailable', 80),
     providerRetryAfterMs: normalizeDeadlineMs(rawGoal.providerRetryAfterMs),
+    // Packet binding: the pointer to the goal.md that is the directive, the
+    // workspace it resolves against, and the slice hash last resent in chat.
+    // Absent on an unbound record; a bound record renders from the file.
+    packetPath: typeof rawGoal.packetPath === 'string' && rawGoal.packetPath.trim()
+      ? sanitizeInlineText(rawGoal.packetPath, 1000)
+      : null,
+    workspace: typeof rawGoal.workspace === 'string' && rawGoal.workspace.trim()
+      ? sanitizeInlineText(rawGoal.workspace, 1000)
+      : null,
+    boundAtMs: Number.isFinite(rawGoal.boundAtMs) ? Math.max(0, Math.trunc(rawGoal.boundAtMs)) : null,
+    lastResentSliceHash: typeof rawGoal.lastResentSliceHash === 'string' && /^sha256:[a-f0-9]{64}$/.test(rawGoal.lastResentSliceHash)
+      ? rawGoal.lastResentSliceHash
+      : null,
   };
 }
 
@@ -1784,6 +1803,89 @@ async function setGoal(sessionID, objective, rawOptions = {}) {
     });
   }
   return goal;
+}
+
+/**
+ * Bind the session to a packet. The packet goal.md becomes the directive; the
+ * record keeps the pointer, an operator copy derived from it, and bookkeeping.
+ * The path must resolve inside the workspace and the document must exist.
+ *
+ * @param {string} sessionID - OpenCode session id
+ * @param {string} packetPath - Repo-relative packet directory
+ * @param {Object} [rawOptions] - State helper options; `directory` is the workspace
+ * @returns {Promise<Object>} Updated goal record
+ */
+async function bindGoal(sessionID, packetPath, rawOptions = {}) {
+  const options = normalizeOptions(rawOptions);
+  // Bind against the repository root, not the subdirectory the tool was
+  // called from, so a packet path means the same thing on every surface.
+  const workspace = goalSlice.resolveWorkspaceRoot(options.directory || process.cwd());
+  const packet = goalSlice.readPacketGoal(workspace, packetPath);
+  if (!packet) throw new GoalError('PACKET_GOAL_NOT_FOUND', 'No goal.md at that packet path inside the workspace');
+  const objective = sanitizeInlineText(packet.objectiveSlice, options.maxObjectiveChars);
+  const requestedBudget = normalizeTokenBudget(rawOptions.tokenBudget);
+  let mutation = 'bound';
+  // A rebind to a different packet keeps the prior record in the archive, as
+  // the runtime-neutral core does, so both implementations keep one history.
+  const prior = await readGoal(sessionID, options);
+  if (prior && prior.packetPath && prior.packetPath !== packet.packetPath) {
+    const archiveDir = await ensureGoalArchiveDir(options);
+    const snapshotPath = join(archiveDir, `${sessionKeyForSession(sessionID)}.${normalizeGoalID(prior.goalId)}.json`);
+    await writeFile(snapshotPath, `${JSON.stringify(prior, null, 2)}\n`, { mode: 0o600 }).catch((error) => {
+      writeDebugStderr('bindGoal.archivePrior', error);
+    });
+  }
+  const goal = await mutateGoal(sessionID, (current) => {
+    const timestamp = nowMs(options);
+    const tokenBudget = requestedBudget === undefined ? current?.tokenBudget ?? null : requestedBudget;
+    const promptFields = buildEnhancedGoalPrompt(packet.objectiveSlice, options);
+    const base = current && (current.status === 'active' || current.status === 'paused')
+      ? { ...current, status: 'active' }
+      : buildNewGoal(sessionID, objective, tokenBudget, options);
+    if (current) mutation = 'rebound';
+    return {
+      ...base,
+      objective,
+      goalPrompt: promptFields.goalPrompt,
+      promptEnhancement: promptFields.promptEnhancement,
+      tokenBudget,
+      packetPath: packet.packetPath,
+      workspace: resolvePath(workspace),
+      boundAtMs: timestamp,
+      lastResentSliceHash: base.packetPath === packet.packetPath ? (base.lastResentSliceHash || null) : null,
+      updatedAtMs: timestamp,
+      updatedAt: isoFromMs(timestamp),
+    };
+  }, options);
+  if (goal && typeof goal === 'object') {
+    Object.defineProperty(goal, 'mutation', { value: mutation, enumerable: false, configurable: true });
+  }
+  return goal;
+}
+
+/**
+ * Record that the current durable slice was resent in chat, so the reminder stops.
+ *
+ * @param {string} sessionID - OpenCode session id
+ * @param {Object} [rawOptions] - State helper options
+ * @returns {Promise<Object>} Updated goal record
+ */
+async function noteResent(sessionID, rawOptions = {}) {
+  const options = normalizeOptions(rawOptions);
+  return mutateGoal(sessionID, (current) => {
+    if (!current) throw new GoalError('GOAL_NOT_FOUND', 'No goal is set');
+    const packet = resolvePacketGoalForRecord(current, options);
+    if (!packet) throw new GoalError('PACKET_GOAL_NOT_FOUND', 'The bound packet goal.md is missing');
+    const timestamp = nowMs(options);
+    return { ...current, lastResentSliceHash: packet.hash, updatedAtMs: timestamp, updatedAt: isoFromMs(timestamp) };
+  }, options);
+}
+
+/** Whether the operator copy is behind the bound packet's durable slice. */
+function resendPending(goal, rawOptions = {}) {
+  const packet = resolvePacketGoalForRecord(goal, rawOptions);
+  if (!packet) return false;
+  return packet.hash !== (goal.lastResentSliceHash || null);
 }
 
 /**
@@ -2611,13 +2713,46 @@ async function maybeContinueGoal(sessionID, rawOptions = {}) {
  * @param {Object} [rawOptions] - Render options
  * @returns {string} Injection block, or empty string when no block should render
  */
+function resolvePacketGoalForRecord(goal, rawOptions = {}) {
+  if (!goal || typeof goal.packetPath !== 'string' || !goal.packetPath) return null;
+  const workspace = goal.workspace || goalSlice.resolveWorkspaceRoot(rawOptions.directory || process.cwd());
+  return goalSlice.readPacketGoal(workspace, goal.packetPath);
+}
+
+function packetStateForRecord(goal, rawOptions = {}) {
+  if (!goal || typeof goal.packetPath !== 'string' || !goal.packetPath) return 'unbound';
+  return resolvePacketGoalForRecord(goal, rawOptions) ? 'bound' : 'missing';
+}
+
+/**
+ * Drop the packet pointer. The record and its operator copy stay as they are.
+ */
+async function unbindGoal(sessionID, rawOptions = {}) {
+  const options = normalizeOptions(rawOptions);
+  return mutateGoal(sessionID, (current) => {
+    if (!current) throw new GoalError('GOAL_NOT_FOUND', 'No goal is set');
+    const timestamp = nowMs(options);
+    return { ...current, packetPath: null, workspace: null, boundAtMs: null, lastResentSliceHash: null, updatedAtMs: timestamp, updatedAt: isoFromMs(timestamp) };
+  }, options);
+}
+
 function renderGoalInjection(goal, rawOptions = {}) {
   if (!goal || goal.status !== 'active') return EMPTY_INJECTION_PREVIEW;
   countMetric(rawOptions, 'renderGoalInjection');
   const options = normalizeOptions(rawOptions);
+  // A bound session renders from the packet goal.md as it is now. A bound
+  // record whose document is gone injects nothing rather than a stale copy.
+  let objectiveSource = goal.objective;
+  let promptSource = goal.goalPrompt || goal.objective;
+  if (typeof goal.packetPath === 'string' && goal.packetPath) {
+    const packet = resolvePacketGoalForRecord(goal, rawOptions);
+    if (!packet) return EMPTY_INJECTION_PREVIEW;
+    objectiveSource = packet.objectiveSlice;
+    promptSource = buildEnhancedGoalPrompt(packet.objectiveSlice, options).goalPrompt;
+  }
   const objectivePreviewLimit = calculateObjectivePreviewChars(options.maxInjectionChars);
-  const objective = sanitizeInlineText(goal.objective, Math.min(options.maxObjectiveChars, objectivePreviewLimit));
-  const goalPrompt = sanitizePromptText(goal.goalPrompt || goal.objective, options.maxGoalPromptChars);
+  const objective = sanitizeInlineText(objectiveSource, Math.min(options.maxObjectiveChars, objectivePreviewLimit));
+  const goalPrompt = sanitizePromptText(promptSource, options.maxGoalPromptChars);
   const reason = sanitizeInlineText(goal.lastVerifierReason || 'none', DEFAULT_MAX_REASON_CHARS) || 'none';
   const tokenBudget = goal.tokenBudget === null || goal.tokenBudget === undefined ? 'none' : String(goal.tokenBudget);
   const tokensUsed = Number.isFinite(goal.tokensUsed) ? Math.max(0, Math.trunc(goal.tokensUsed)) : 0;
@@ -2634,6 +2769,10 @@ function renderGoalInjection(goal, rawOptions = {}) {
     'goal_prompt:',
     promptText,
     `last_check: ${verdict} ; reason: ${reason}`,
+    // Every label here is shared with the runtime-neutral renderer and pinned
+    // by a parity test. The one intended difference is this line's content:
+    // OpenCode has a native token feed and an auto-turn cap, so it reports
+    // real counts and a ratio where the other runtimes report a turn estimate.
     `usage: tokens ${tokensUsed}/${tokenBudget}; time ${timeUsedSeconds}s; iteration ${autoTurnsUsed}/${maxAutoTurns}`,
     directive,
     '[/active_goal]',
@@ -2655,13 +2794,23 @@ function renderGoalInjection(goal, rawOptions = {}) {
   return clampText(buildCompactBlock(sanitizePromptText(goalPrompt, compactPromptBudget)), options.maxInjectionChars);
 }
 
+// The cached entry must be invalidated by any write, and `mtimeMs` alone
+// cannot do that: two writes inside one millisecond that leave the file the
+// same length (a verifier verdict flipping, a resent hash replaced) would
+// serve the previous record. Nanosecond mtime plus inode and size makes the
+// key change whenever the file does.
+function goalBriefCacheKey(fileStats) {
+  const mtime = typeof fileStats.mtimeNs === 'bigint' ? fileStats.mtimeNs.toString() : String(fileStats.mtimeMs);
+  return `${mtime}:${fileStats.size}:${fileStats.ino ?? 0}`;
+}
+
 async function readGoalForBrief(sessionID, rawOptions = {}) {
   const options = normalizeOptions(rawOptions);
   const path = goalPathForSession(sessionID, options);
   const cached = goalBriefCache.get(path);
   let fileStats = null;
   try {
-    fileStats = await stat(path);
+    fileStats = await stat(path, { bigint: true });
   } catch (error) {
     if (error?.code !== 'ENOENT') throw error;
     const legacyPath = legacyGoalPathForSession(sessionID, options);
@@ -2669,8 +2818,8 @@ async function readGoalForBrief(sessionID, rawOptions = {}) {
       await stat(legacyPath);
       const migratedGoal = await readGoal(sessionID, options);
       if (!migratedGoal) return null;
-      fileStats = await stat(path);
-      const cacheKey = `${fileStats.mtimeMs}:${fileStats.size}`;
+      fileStats = await stat(path, { bigint: true });
+      const cacheKey = goalBriefCacheKey(fileStats);
       setGoalBriefCache(path, { cacheKey, goal: migratedGoal }, options);
       return migratedGoal;
     } catch (legacyError) {
@@ -2684,7 +2833,7 @@ async function readGoalForBrief(sessionID, rawOptions = {}) {
     }
   }
 
-  const cacheKey = `${fileStats.mtimeMs}:${fileStats.size}`;
+  const cacheKey = goalBriefCacheKey(fileStats);
   if (cached?.cacheKey === cacheKey) return touchGoalBriefCache(path, cached, options).goal;
 
   try {
@@ -2714,6 +2863,11 @@ async function appendGoalBrief(input = {}, output = { system: [] }, rawOptions =
     const marker = `[active_goal:${goal.goalId}]`;
     if (output.system.some((entry) => typeof entry === 'string' && entry.includes(marker))) return;
     output.system.push(block);
+    // While the operator copy is behind the bound packet, one reminder line
+    // rides the same injection. It never blocks; it tells the agent to resend.
+    if (resendPending(goal, rawOptions)) {
+      output.system.push(goalSlice.renderResendReminderText(goal.packetPath, { recordCommand: '/goal-opencode resent' }));
+    }
   } catch (error) {
     writeDebugStderr('appendGoalBrief', error);
     await appendGoalJsonl(GOAL_EVENTS_LOG_FILENAME, {
@@ -2758,6 +2912,13 @@ function goalStateLines(action, goal, rawOptions = {}, mutation = null, renderOp
     `goal_id=${goal.goalId}`,
     `status=${goal.status}`,
     `objective=${quoteValue(goal.objective)}`,
+    `packet_path=${quoteValue(goal.packetPath || '')}`,
+    `packet_state=${packetStateForRecord(goal, options)}`,
+    `packet_bound=${packetStateForRecord(goal, options) === 'bound' ? 'true' : 'false'}`,
+    `resend_pending=${resendPending(goal, options) ? 'true' : 'false'}`,
+    ...(packetStateForRecord(goal, options) === 'missing'
+      ? [`hint=${quoteValue('the bound packet goal.md is missing or outside the workspace; this session injects nothing until you bind again or unbind')}`]
+      : []),
     `goal_prompt=${quoteValue(goal.goalPrompt || '')}`,
     `prompt_framework=${quoteValue(goal.promptEnhancement?.framework || '')}`,
     `prompt_methodology=${quoteValue(goal.promptEnhancement?.methodology || '')}`,
@@ -2837,6 +2998,11 @@ function failureLines(error, action = 'show') {
 }
 
 async function executeGoalAction(args, context, rawOptions = {}) {
+  // An action the tool does not know is an error, never a silent `show`: a
+  // success-shaped envelope for a typo would tell the caller nothing went wrong.
+  if (args?.action !== undefined && !GOAL_ACTIONS.includes(args.action)) {
+    return failureLines(new GoalError('UNKNOWN_ACTION', `Unknown goal action '${String(args.action).slice(0, 40)}'; expected one of ${GOAL_ACTIONS.join(', ')}`), 'show');
+  }
   const action = GOAL_ACTIONS.includes(args?.action) ? args.action : 'show';
   const sessionID = sessionIdFromContext(context);
   const options = normalizeOptions(rawOptions);
@@ -2854,12 +3020,65 @@ async function executeGoalAction(args, context, rawOptions = {}) {
       const health = await inspectGoalHealth({ ...options, runtimeState: rawOptions.runtimeState });
       return healthLines(action, health);
     }
+    if (action === 'bind') {
+      const goal = await bindGoal(sessionID, args?.packetPath, {
+        ...options,
+        directory: options.directory || context?.directory,
+        tokenBudget: args?.tokenBudget,
+      });
+      const packet = resolvePacketGoalForRecord(goal, { ...options, directory: options.directory || context?.directory });
+      const budgetLine = packet && (packet.budgetState === 'over' || packet.budgetState === 'warn')
+        ? `\npacket_budget=${packet.budgetState}\nwarning=${quoteValue(`durable slice is ${packet.durableChars} characters; past the ${packet.budgetState === 'over' ? 'error' : 'warning'} tier`)}`
+        : (packet ? `\npacket_budget=${packet.budgetState}` : '');
+      return goalStateLines(action, goal, options, goal.mutation || 'bound', renderOptions) + budgetLine;
+    }
+    if (action === 'resent') {
+      const goal = await noteResent(sessionID, { ...options, directory: options.directory || context?.directory });
+      return goalStateLines(action, goal, options, 'resent', renderOptions);
+    }
+    if (action === 'unbind') {
+      const goal = await unbindGoal(sessionID, options);
+      return goalStateLines(action, goal, options, 'unbound', renderOptions);
+    }
+    if (action === 'log') {
+      const current = await readGoal(sessionID, options);
+      const packet = resolvePacketGoalForRecord(current, { ...options, directory: options.directory || context?.directory });
+      if (!packet) throw new GoalError('PACKET_GOAL_NOT_FOUND', 'No bound packet goal.md to log against');
+      const [item, state, evidence] = String(args?.item ?? args?.objective ?? '').split('|').map((part) => part.trim());
+      const result = appendPacketLogShared({
+        workspace: current.workspace || goalSlice.resolveWorkspaceRoot(options.directory || context?.directory || process.cwd()),
+        packetPath: packet.packetPath,
+        item,
+        state: args?.state ?? state,
+        evidence: args?.evidence ?? evidence,
+      });
+      return ['STATUS=OK ACTION=log', 'mutation=logged', `packet_path=${quoteValue(result.packetPath)}`, `row=${quoteValue(result.row)}`].join('\n');
+    }
+    if (action === 'packet') {
+      const workspace = goalSlice.resolveWorkspaceRoot(options.directory || context?.directory || process.cwd());
+      const packet = goalSlice.readPacketGoal(workspace, args?.packetPath);
+      if (!packet) throw new GoalError('PACKET_GOAL_NOT_FOUND', 'No goal.md at that packet path inside the workspace');
+      return [
+        `STATUS=OK ACTION=${action}`,
+        `packet_path=${quoteValue(packet.packetPath)}`,
+        `packet_nested=${packet.nested ? 'true' : 'false'}`,
+        `packet_durable_chars=${packet.durableChars}`,
+        `packet_budget=${packet.budgetState}`,
+        `packet_slice_hash=${quoteValue(packet.hash)}`,
+        `objective_slice=${quoteValue(packet.objectiveSlice)}`,
+        `chat_slice=${quoteValue(packet.chatSlice)}`,
+      ].join('\n');
+    }
     if (action === 'set') {
       const goal = await setGoal(sessionID, args?.objective, {
         ...options,
         tokenBudget: args?.tokenBudget,
       });
-      return goalStateLines(action, goal, options, goal.mutation || 'created', renderOptions);
+      const rawLength = String(args?.objective ?? '').length;
+      const truncationLine = rawLength > options.maxObjectiveChars
+        ? `\nwarning=${quoteValue(`objective was ${rawLength} characters and was truncated to ${options.maxObjectiveChars}; the tail is lost`)}`
+        : '';
+      return goalStateLines(action, goal, options, goal.mutation || 'created', renderOptions) + truncationLine;
     }
     if (action === 'clear') {
       await clearGoal(sessionID, options);
@@ -3058,10 +3277,14 @@ export default async function MkGoalPlugin(ctx, rawOptions = {}) {
 
     tool: {
       opencode_goal: tool({
-        description: 'Set, show, clear, complete, pause, resume, inspect history, or check goal plugin health',
+        description: 'Bind or unbind a packet goal, mark it resent, append a log row, read a packet, set, show, clear, complete, pause, resume, inspect history, or check goal plugin health',
         args: {
           action: tool.schema.enum(GOAL_ACTIONS),
           objective: tool.schema.string().optional(),
+          packetPath: tool.schema.string().optional(),
+          item: tool.schema.string().optional(),
+          state: tool.schema.string().optional(),
+          evidence: tool.schema.string().optional(),
           tokenBudget: tool.schema.number().int().positive().nullable().optional(),
           reason: tool.schema.string().optional(),
         },
@@ -3091,6 +3314,12 @@ export default async function MkGoalPlugin(ctx, rawOptions = {}) {
  */
 const __test = Object.freeze({
   GoalError,
+  appendGoalBrief,
+  goalBriefCacheKey,
+  bindGoal,
+  unbindGoal,
+  noteResent,
+  resendPending,
   accountUsage,
   buildEnhancedGoalPrompt,
   clearGoal,

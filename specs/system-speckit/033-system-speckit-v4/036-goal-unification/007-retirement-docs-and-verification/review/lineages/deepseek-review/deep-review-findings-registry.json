@@ -1,0 +1,817 @@
+{
+  "sessionId": "fanout-deepseek-review-1789117367422-11rap2",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 3,
+    "timestamp": "2026-09-11T09:24:00Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "title": "Opening or closing fence with trailing whitespace leaks frontmatter into every goal surface",
+      "file": ".opencode/hooks/goal/lib/goal-slice.cjs",
+      "line": 22,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "title": "Pointer-less records still inject their stored objective, contradicting ADR-001/ADR-002 and the hook README",
+      "file": ".opencode/hooks/goal/lib/goal-core.cjs",
+      "line": 394,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F003",
+      "severity": "P1",
+      "title": "ADR-006's set-time consumer length check is absent; over-budget objectives truncate silently",
+      "file": ".opencode/hooks/goal/lib/goal-core.cjs",
+      "line": 1115,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F005",
+      "severity": "P1",
+      "title": "Symlinked packet path escapes the workspace: bind reads and log writes a goal.md outside it",
+      "file": ".opencode/hooks/goal/lib/goal-slice.cjs",
+      "line": 131,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F010",
+      "severity": "P1",
+      "title": "OpenCode injection carries no resend reminder although ADR-004 says the reminder rides the injection path",
+      "file": ".opencode/plugins/opencode-goal.js",
+      "line": 2707,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F004",
+      "severity": "P2",
+      "title": "Plugin brief cache keys on state-file mtime:size, not the packet slice hash ADR-004 requires",
+      "file": ".opencode/plugins/opencode-goal.js",
+      "line": 2790,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F006",
+      "severity": "P2",
+      "title": "Log serialization is stateDir-scoped and the durable-slice guard is an advisory pre-write check",
+      "file": ".opencode/hooks/goal/lib/goal-core.cjs",
+      "line": 1046,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F007",
+      "severity": "P2",
+      "title": "OpenCode plugin exposes no unbind and no log action, so ADR-007's log authority is unreachable through the primary tool",
+      "file": ".opencode/plugins/opencode-goal.js",
+      "line": 168,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F008",
+      "severity": "P2",
+      "title": "Setting a new objective on a bound record silently drops the packet pointer",
+      "file": ".opencode/plugins/opencode-goal.js",
+      "line": 1792,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F009",
+      "severity": "P2",
+      "title": "Rebinding never archives the prior record: core's replace branch is dead code and the plugin has no archive path",
+      "file": ".opencode/hooks/goal/lib/goal-core.cjs",
+      "line": 937,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F011",
+      "severity": "P2",
+      "title": "Changelog contradicts itself on Devin: injection-only adapter regained vs 'deliberately decommissioned'",
+      "file": "specs/system-speckit/033-system-speckit-v4/CHANGELOG-v4.0.0.0.md",
+      "line": 305,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F012",
+      "severity": "P2",
+      "title": "009 REQ-010 still requires docs to call Devin decommissioned; ADR-005's promised amendment is absent",
+      "file": "specs/hooks/009-goal-isolation/spec.md",
+      "line": 150,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F013",
+      "severity": "P2",
+      "title": "Plugin bind stores an unresolved workspace through a dead ternary, drifting from core's repo-root resolution",
+      "file": ".opencode/plugins/opencode-goal.js",
+      "line": 1838,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F014",
+      "severity": "P2",
+      "title": "No parity test between core renderGoalBrief and plugin renderGoalInjection despite a byte-for-byte claim",
+      "file": ".opencode/hooks/goal/README.md",
+      "line": 37,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F015",
+      "severity": "P2",
+      "title": "Cursor command hint advertises actions the command contract fails closed on",
+      "file": ".cursor/commands/goal-cursor.md",
+      "line": 3,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 5,
+    "P2": 10
+  },
+  "openFindingsCount": 15,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [
+      "capability-gap",
+      "constraint-not-implemented",
+      "contract-vs-tests",
+      "dead-branch",
+      "frontmatter-boundary-drift",
+      "frontmatter-leak",
+      "lock-scope",
+      "missing-enforcement",
+      "parity-coverage",
+      "path-escape",
+      "release-note-contradiction",
+      "runtime-parity",
+      "silent-transition",
+      "stale-requirement",
+      "surface-hint-mismatch",
+      "workspace-resolution-drift"
+    ],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {
+      "frontmatter-leak": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "contract-vs-tests": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "missing-enforcement": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "constraint-not-implemented": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "frontmatter-boundary-drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "path-escape": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "lock-scope": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "capability-gap": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "silent-transition": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "dead-branch": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "runtime-parity": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "release-note-contradiction": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "stale-requirement": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "workspace-resolution-drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "parity-coverage": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "surface-hint-mismatch": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      }
+    }
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [],
+  "cleanSearchProof": [],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "frontmatter-leak",
+      "contract-vs-tests",
+      "missing-enforcement",
+      "constraint-not-implemented",
+      "path-escape",
+      "lock-scope",
+      "capability-gap",
+      "silent-transition",
+      "dead-branch",
+      "runtime-parity",
+      "release-note-contradiction",
+      "stale-requirement",
+      "workspace-resolution-drift",
+      "parity-coverage",
+      "surface-hint-mismatch"
+    ],
+    "covered": [
+      "runtime-parity",
+      "release-note-contradiction",
+      "stale-requirement",
+      "workspace-resolution-drift",
+      "parity-coverage",
+      "surface-hint-mismatch"
+    ],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 5,
+      "executed": 5,
+      "pass": 0,
+      "partial": 3,
+      "fail": 2,
+      "blocked": 0,
+      "notApplicable": 1,
+      "gatingFailures": 2
+    },
+    "results": [
+      {
+        "protocolId": "spec_code",
+        "status": "fail",
+        "gateClass": "hard",
+        "applicable": true,
+        "counts": {
+          "pass": 0,
+          "partial": 0,
+          "fail": 4
+        },
+        "evidence": [
+          ".opencode/hooks/goal/lib/goal-core.cjs:394",
+          ".opencode/hooks/goal/lib/goal-core.cjs:1115",
+          ".opencode/hooks/goal/lib/goal-slice.cjs:131",
+          ".opencode/plugins/opencode-goal.js:2707"
+        ],
+        "findingRefs": [
+          "F002",
+          "F003",
+          "F005",
+          "F010"
+        ],
+        "summary": "Frozen ADRs and the shipped goal surfaces disagree on pointer-less rendering, set-time budget enforcement, workspace escaping and the OpenCode reminder path."
+      },
+      {
+        "protocolId": "checklist_evidence",
+        "status": "partial",
+        "gateClass": "hard",
+        "applicable": true,
+        "counts": {
+          "pass": 0,
+          "partial": 1,
+          "fail": 0
+        },
+        "evidence": [
+          "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification/tasks.md:37-69"
+        ],
+        "findingRefs": [],
+        "summary": "Phase 007 is a scaffold: T001-T009 unchecked and no verification evidence recorded; no false completion claim found."
+      },
+      {
+        "protocolId": "skill_agent",
+        "status": "not_applicable",
+        "gateClass": "advisory",
+        "applicable": false,
+        "counts": {
+          "pass": 0,
+          "partial": 0,
+          "fail": 0
+        },
+        "evidence": [],
+        "findingRefs": [],
+        "summary": "The target is a spec folder, not a skill-agent pair."
+      },
+      {
+        "protocolId": "agent_cross_runtime",
+        "status": "fail",
+        "gateClass": "advisory",
+        "applicable": true,
+        "counts": {
+          "pass": 0,
+          "partial": 0,
+          "fail": 4
+        },
+        "evidence": [
+          ".opencode/plugins/opencode-goal.js:168",
+          ".opencode/plugins/opencode-goal.js:1838",
+          ".opencode/plugins/opencode-goal.js:2707",
+          ".cursor/commands/goal-cursor.md:3"
+        ],
+        "findingRefs": [
+          "F007",
+          "F010",
+          "F013",
+          "F015"
+        ],
+        "summary": "Pi, Cursor and Devin match their decision rows; the OpenCode tool and injection surfaces diverge on actions, workspace normalization and reminder."
+      },
+      {
+        "protocolId": "feature_catalog_code",
+        "status": "partial",
+        "gateClass": "advisory",
+        "applicable": true,
+        "counts": {
+          "pass": 0,
+          "partial": 1,
+          "fail": 0
+        },
+        "evidence": [
+          ".opencode/skills/system-spec-kit/feature-catalog/feature-catalog.md:784-788",
+          "specs/hooks/009-goal-isolation/spec.md:150"
+        ],
+        "findingRefs": [
+          "F012"
+        ],
+        "summary": "Feature catalog describes the packet-bound plugin; the 009 requirement row still calls Devin decommissioned."
+      },
+      {
+        "protocolId": "playbook_capability",
+        "status": "partial",
+        "gateClass": "advisory",
+        "applicable": true,
+        "counts": {
+          "pass": 0,
+          "partial": 1,
+          "fail": 0
+        },
+        "evidence": [
+          ".opencode/skills/system-spec-kit/references/workflows/goal-set-string-playbook.md:57",
+          ".opencode/skills/system-spec-kit/templates/spec-kit-docs.json:24-29"
+        ],
+        "findingRefs": [
+          "F003"
+        ],
+        "summary": "Playbook, template and manifest carry the same 3000/4000 pair; the runtime set path does not enforce them."
+      }
+    ]
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

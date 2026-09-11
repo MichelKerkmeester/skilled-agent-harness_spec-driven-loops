@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/033-system-speckit-v4/036-goal-unification/004-goal-core-packet-backed",
+  "description": "goal-core.cjs keys state by sha256 of workspace, runtime and session and never reads specs/",
+  "keywords": [
+    "goal-core",
+    "cjs",
+    "keys",
+    "state",
+    "sha256",
+    "workspace",
+    "runtime",
+    "session",
+    "never",
+    "reads",
+    "specs"
+  ],
+  "lastUpdated": "2026-09-11T08:50:50.115Z",
+  "specId": "004",
+  "folderSlug": "goal-core-packet-backed",
+  "parentChain": [
+    "system-speckit",
+    "033-system-speckit-v4",
+    "036-goal-unification"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

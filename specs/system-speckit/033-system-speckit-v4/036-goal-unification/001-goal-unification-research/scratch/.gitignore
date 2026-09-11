@@ -1,0 +1,2 @@
+# Fan-out driver stdout: run residue, reproducible from the launch script beside it.
+*.log

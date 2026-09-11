@@ -30,9 +30,10 @@ Tests are CJS (`.test.cjs`) so they can `require()` Node builtins and the shared
 | `opencode-goal-continuation.test.cjs` | `opencode-goal.js` | Guarded continuation behavior; uses `helpers/continuation-log.cjs`. |
 | `opencode-goal-export-contract.test.cjs` | `opencode-goal.js` | The goal plugin export contract (default export shape, `.__test` surface). |
 | `opencode-goal-lifecycle.test.cjs` | `opencode-goal.js` | Goal lifecycle events and usage tracking; uses `helpers/continuation-log.cjs`. |
+| `opencode-goal-render-parity.test.cjs` | `opencode-goal.js` + `hooks/goal/lib/goal-core.cjs` | Pins the shared injection label set across both renderers and the brief cache key's write sensitivity. |
 | `opencode-goal-state.test.cjs` | `opencode-goal.js` | Session-keyed goal persistence; uses `helpers/continuation-log.cjs`. |
 | `opencode-goal-supervisor.test.cjs` | `opencode-goal.js` | Verifier results and durable goal state. |
-| `opencode-goal-tool-path.test.cjs` | `opencode-goal.js` | Tool-context session resolution. |
+| `opencode-goal-tool-path.test.cjs` | `opencode-goal.js` | Tool-context session resolution, packet bind, resent, packet read and the injected resend reminder. |
 | `session-cleanup.test.cjs` | `session-cleanup.js` | Lifecycle cleanup and safety gating. |
 | `sk-code-post-edit-quality.test.cjs` | `sk-code-post-edit-quality.js` | Post-edit routing and adapter behavior; `tool.execute.before`/`after` callID correlation. |
 | `sk-communication-projection.test.cjs` | `sk-communication-projection.js` | Projection gate matrix, snapshot restore, and fail-open boundary. |
@@ -55,6 +56,7 @@ tests/
 +-- claude-task-dispatch-guard.test.cjs
 +-- opencode-goal-capabilities.test.cjs
 +-- opencode-goal-continuation.test.cjs
++-- opencode-goal-render-parity.test.cjs
 +-- opencode-goal-export-contract.test.cjs
 +-- opencode-goal-lifecycle.test.cjs
 +-- opencode-goal-state.test.cjs

@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification",
+  "description": "The store, its locks and archive, the hook README and plugin doc, the spec-kit SKILL section and the changelog all describe the old model",
+  "keywords": [
+    "store",
+    "locks",
+    "archive",
+    "hook",
+    "readme",
+    "plugin",
+    "doc",
+    "spec-kit",
+    "skill",
+    "section",
+    "changelog",
+    "describe",
+    "old",
+    "model"
+  ],
+  "lastUpdated": "2026-09-11T14:08:56.254Z",
+  "specId": "007",
+  "folderSlug": "retirement-docs-and-verification",
+  "parentChain": [
+    "system-speckit",
+    "033-system-speckit-v4",
+    "036-goal-unification"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

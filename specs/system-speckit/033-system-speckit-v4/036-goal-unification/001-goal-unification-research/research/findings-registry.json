@@ -1,0 +1,98 @@
+{
+  "mergedFrom": [
+    "deepseek",
+    "glm"
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [],
+  "keyFindings": [
+    {
+      "id": "iteration-6-finding-3",
+      "title": "**`lastSpecFolder`-style implicit binding** (iteration 1, F1) — using it as a *fallback* would violate",
+      "text": "**`lastSpecFolder`-style implicit binding** (iteration 1, F1) — using it as a *fallback* would violate",
+      "addedAtIteration": 6,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-006.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-6-finding-2",
+      "title": "**A legacy record with an objective but no packet** — must not be injected merely because a packet",
+      "text": "**A legacy record with an objective but no packet** — must not be injected merely because a packet",
+      "addedAtIteration": 6,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-006.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-1",
+      "title": "**Cross-process mutual exclusion.** Mutations take a lock under `.locks/`",
+      "text": "**Cross-process mutual exclusion.** Mutations take a lock under `.locks/`",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-2",
+      "title": "**Ephemeral per-session telemetry** — `turnsUsed`, `tokenBudget`, `startedAtMs`, `lastActivityAtMs`,",
+      "text": "**Ephemeral per-session telemetry** — `turnsUsed`, `tokenBudget`, `startedAtMs`, `lastActivityAtMs`,",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-3",
+      "title": "**Retention and rotation policy** — active retention 2 days, archive retention 90 days, hourly sweep,",
+      "text": "**Retention and rotation policy** — active retention 2 days, archive retention 90 days, hourly sweep,",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-6-finding-1",
+      "title": "**Two sessions, one packet, both editing the directive** — nobody \"replaces\" anybody, but a concurrent",
+      "text": "**Two sessions, one packet, both editing the directive** — nobody \"replaces\" anybody, but a concurrent",
+      "addedAtIteration": 6,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-006.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    }
+  ],
+  "ruledOutDirections": [],
+  "metrics": {
+    "iterationsCompleted": 15,
+    "openQuestions": 0,
+    "resolvedQuestions": 0,
+    "keyFindings": 6,
+    "sourceFindings": 6,
+    "reconstructionGaps": 0,
+    "convergenceScore": 0.71,
+    "coverageBySources": {}
+  },
+  "schema_mismatch": [
+    {
+      "type": "schema_mismatch",
+      "severity": "warn",
+      "lineage": "glm",
+      "message": "Registry has no usable \"keyFindings\" array (checked aliases: findings); lineage findings will be skipped.",
+      "aliasKey": null,
+      "canonicalKey": "keyFindings",
+      "coercedCount": 0
+    }
+  ]
+}

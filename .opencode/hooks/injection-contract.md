@@ -91,9 +91,9 @@ B) Create a new spec folder
 - **Owning modules:** `opencode-goal.js`, `system-dist-freshness-guard.js` (see their own entries in [`../plugins/README.md`](../plugins/README.md) §5).
 - **Channel:** `[SYS]` only. Both use `experimental.chat.system.transform`, never `chat.message`'s mutable `parts`, so none of this is rendered as a visible chat bubble in OpenCode today (see §5 below for what would make it visible).
 
-### Cross-Runtime Active-Goal Brief (Cursor / Pi)
+### Cross-Runtime Active-Goal Brief (Cursor / Pi / Devin)
 
-**Injects:** the passive session-goal steering block, marker- and field-compatible with opencode-goal's OpenCode injection but rendered by the runtime-neutral core (`.opencode/hooks/goal/lib/goal-core.cjs` `renderGoalBrief`) with the `goalPrompt` Role line relabeled to the reading runtime. Verbatim shape:
+**Injects:** the passive session-goal steering block, marker- and field-compatible with opencode-goal's OpenCode injection but rendered by the runtime-neutral core (`.opencode/hooks/goal/lib/goal-core.cjs` `renderGoalBrief`) with the `goalPrompt` Role line relabeled to the reading runtime. When the session is bound to a packet, the `objective:` and `goal_prompt:` content is projected from that packet's `goal.md` durable slice on every turn (frontmatter never included), and one `[goal_resend_pending] ...` line follows the block while the operator copy is behind the file. Verbatim shape:
 
 ```text
 [active_goal:<goalId>]
@@ -116,8 +116,8 @@ directive: Continue toward this objective. Before ending, run the goal verifier 
 ```
 
 - **Trigger per runtime:** Cursor `sessionStart` only (its `beforeSubmitPrompt` never delivers, `stop` never fires); Pi `input` (every turn, operator-visible transform) + `session_start` (restore) + `turn_end` (verify + `recordTurn`).
-- **Owning modules:** the shared core `.opencode/hooks/goal/lib/goal-core.cjs` plus the per-runtime adapters under `.opencode/hooks/goal/{cursor,pi}/`. Each read resolves workspace, runtime, and native session id to an opaque per-session state file. The legacy `active-goal.json` is never an injection fallback.
-- **Channel per runtime:** Cursor `[SYS]` (`sessionStart` `agent_message`). Pi `[MSG]` — its `input`-event transform appends the block onto the visible prompt, the one runtime where the operator sees the active-goal text themselves (same mechanism as the advisor brief and Gate-3 question, and they chain additively). The `usage:` token count is honestly `n/a` outside OpenCode (turn count is the accounting primitive; `usageSource` is always `turn-count-estimate`).
+- **Owning modules:** the shared core `.opencode/hooks/goal/lib/goal-core.cjs`, the slice module `lib/goal-slice.cjs`, plus the per-runtime adapters under `.opencode/hooks/goal/{cursor,devin,pi}/`. Each read resolves workspace, runtime, and native session id to an opaque per-session state file. The legacy `active-goal.json` is never an injection fallback.
+- **Channel per runtime:** Cursor `[SYS]` (`sessionStart` `agent_message`). Devin `[SYS]` (`SessionStart` and `UserPromptSubmit` `hookSpecificOutput.additionalContext`). Pi `[MSG]` — its `input`-event transform appends the block onto the visible prompt, the one runtime where the operator sees the active-goal text themselves (same mechanism as the advisor brief and Gate-3 question, and they chain additively). The `usage:` token count is honestly `n/a` outside OpenCode (turn count is the accounting primitive; `usageSource` is always `turn-count-estimate`).
 
 ---
 

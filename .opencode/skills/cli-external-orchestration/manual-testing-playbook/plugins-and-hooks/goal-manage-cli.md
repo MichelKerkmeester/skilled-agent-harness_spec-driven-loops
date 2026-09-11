@@ -11,7 +11,7 @@ stage: routing
 expected_intent: UNKNOWN
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
-version: 1.4.0.7
+version: 1.5.0.0
 ---
 
 # Goal Manage CLI: Session Isolation And Legacy Cutover
@@ -22,7 +22,7 @@ version: 1.4.0.7
 
 This scenario validates the runtime-neutral goal core without touching operator state. It proves that two sessions keep different goals, missing identity never writes or injects, aggregate diagnostics do not reveal raw session ids, legacy state requires explicit ownership, malformed legacy data can only be archived, and rollback disables injection while preserving every state layout.
 
-OpenCode's native `opencode-goal` plugin is a separate regression control. Pi is the fully supported cross-runtime path. Cursor is injection-only because its prompt command does not receive the hook's native session id. Codex has no goal adapter. Claude Code has no repository adapter or goal command; any separate live native capability is outside this scenario.
+OpenCode's native `opencode-goal` plugin is a separate regression control. Pi is the fully supported cross-runtime path. Cursor and Devin are injection-only because their prompt surfaces do not receive the hook's native session id; Cursor additionally answers a session-free packet read. Claude Code and Codex keep their native host goal command and are outside this scenario. Section G proves the packet-bound path: the packet's `goal.md` is the directive, its frontmatter never reaches an output, and the resend reminder tracks the durable slice.
 
 ---
 
@@ -144,14 +144,36 @@ printf '%s' '{"session_id":"session-b","workspace_roots":["'"$WORKSPACE"'"]}' \
 
 Expected: CLI management fails with `PLUGIN_DISABLED`; Cursor returns only `{"permission":"allow"}` with no `agent_message`. Pi rollback uses `-extensions/goal-context.ts` in `.pi/settings.json`; preserve the state root and do not merge scoped files into `active-goal.json`.
 
+### G. Packet binding, frontmatter containment and the resend reminder
+
+```bash
+GOAL_PACKET_ROOT="$(mktemp -d /tmp/goal-packet.XXXXXX)"
+export OPENCODE_GOAL_STATE_DIR="$GOAL_PACKET_ROOT"
+PACKET=specs/system-speckit/033-system-speckit-v4/036-goal-unification
+
+node "$GOAL_CLI" packet "$PACKET" --runtime pi --session session-c --workspace "$WORKSPACE"
+node "$GOAL_CLI" bind "$PACKET" --runtime pi --session session-c --workspace "$WORKSPACE"
+node "$GOAL_CLI" show --runtime pi --session session-c --workspace "$WORKSPACE"
+node "$GOAL_CLI" resent --runtime pi --session session-c --workspace "$WORKSPACE"
+node "$GOAL_CLI" log "playbook run | Done | section G" --runtime pi --session session-c --workspace "$WORKSPACE"
+node "$GOAL_CLI" bind ../outside --runtime pi --session session-c --workspace "$WORKSPACE"
+printf '%s' '{"session_id":"session-c","workspace_roots":["'"$WORKSPACE"'"]}' | node .opencode/hooks/goal/cursor/goal-inject.mjs
+printf '%s' '{"session_id":"session-c","hook_event_name":"UserPromptSubmit","cwd":"'"$WORKSPACE"'"}' | node .opencode/hooks/goal/devin/goal-inject.mjs
+node "$GOAL_CLI" unbind --runtime pi --session session-c --workspace "$WORKSPACE"
+```
+
+Expected: `packet` reports `packet_nested=true`, `packet_budget=`, and a `chat_slice` with no `---` fence and no `session_id:` line; `bind` reports `mutation=bound`, `packet_bound=true`, `resend_pending=true`; `show` reports an `objective=` starting with `Execute <packet>/goal.md.` and an `injection_preview` with no frontmatter; `resent` flips `resend_pending=false`; `log` appends one row below the packet's log anchor and leaves everything above it byte-identical; `bind ../outside` fails with `PACKET_GOAL_NOT_FOUND`; the Cursor and Devin adapters carry the brief and, before `resent`, a `[goal_resend_pending]` line; `unbind` reports `packet_state=unbound` and `packet_bound=false`. A second `bind` through `specs/.../036-goal-unification` from another session while the first still logs must not lose rows: both take the same real-path lock under the workspace state root. Revert the appended log row afterwards, or run against a scratch copy of the packet.
+
 ### Automated companion gate
 
 ```bash
 node --test \
+  .opencode/hooks/goal/lib/goal-slice.test.cjs \
   .opencode/hooks/goal/lib/goal-core.test.cjs \
   .opencode/hooks/goal/bin/goal.test.cjs \
   .opencode/hooks/goal/pi/goal-pi.test.mjs \
-  .opencode/hooks/goal/cursor/goal-cursor.test.mjs
+  .opencode/hooks/goal/cursor/goal-cursor.test.mjs \
+  .opencode/hooks/goal/devin/goal-devin.test.mjs
 ```
 
 ---
@@ -164,6 +186,8 @@ node --test \
 | `.opencode/hooks/goal/bin/goal.cjs` | Session-bound management and explicit legacy action envelope. |
 | `.opencode/hooks/goal/pi/goal-context.ts` | Pi native identity and `/goal-pi`. |
 | `.opencode/hooks/goal/cursor/goal-inject.mjs` | Cursor session-bound injection. |
+| `.opencode/hooks/goal/devin/goal-inject.mjs` | Devin session-bound injection. |
+| `.opencode/hooks/goal/lib/goal-slice.cjs` | Packet `goal.md` projections shared with the OpenCode plugin. |
 | `.opencode/hooks/goal/README.md` | Current state layout, support matrix, failure contract, and rollback. |
 
 ---

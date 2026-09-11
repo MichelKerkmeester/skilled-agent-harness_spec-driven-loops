@@ -1,0 +1,16 @@
+Deep-review lineage complete. Executed inline as the executor — no nested dispatch — across `phase_init` → 3 iterations → `phase_synthesis`, all inside `.../review/lineages/deepseek-review`.
+
+## Verdict: CONDITIONAL — P0=0, P1=5, P2=10
+
+**P1 (required before PASS):**
+- **F001** `.opencode/hooks/goal/lib/goal-slice.cjs:22` — a fence with trailing whitespace (`--- `) is not stripped by the runtime extractor while the validator's `FRONTMATTER_RE` matches it; reproduced end-to-end, `session_id`/continuity block reach chat, CLI and injection. Against ADR-003.
+- **F002** `goal-core.cjs:394` — pointer-less records still inject their stored objective; ADR-001/ADR-002 and `README.md:37` say "no injection, no fallback", while `goal-core.test.cjs:824` and `goal-pi.test.mjs:227` pin the opposite.
+- **F003** `goal-core.cjs:1115` — ADR-006's set-time consumer length check is absent; `clampText` silently truncates over-budget objectives in core and plugin.
+- **F005** `goal-slice.cjs:131` — symlinked packet path escapes the workspace; reproduced via the shipped CLI: `bind` read and `log` wrote a `goal.md` outside the workspace. Against ADR-001.
+- **F010** `opencode-goal.js:2707` — no resend reminder on the OpenCode injection path although ADR-004 says the reminder rides injection; callers exist only in pi/cursor/devin, and 005's summary narrows the scope without an ADR/README/changelog amendment.
+
+**P2 (10):** cache key not hash-keyed (ADR-004 constraint), stateDir-scoped log lock, OpenCode missing `unbind`/`log` (ADR-007), `set` silently dropping the pointer, dead rebind-archive branch, changelog Devin self-contradiction, stale 009 REQ-010, plugin workspace-resolution drift, no render parity test, Cursor hint mismatch.
+
+**Verification:** `verify-iteration.cjs` exit 0 for all three iterations; reducer (`reduce-state.cjs`) regenerated the registry (15 findings, all four dimensions covered) and dashboard (`COMPLETE`, `maxIterationsReached`); each iteration file and the report end with `Review verdict: CONDITIONAL`. Artifacts: config, strategy, state JSONL (config + 3 iterations + stop + traceability summary + synthesis), registry, dashboard, resource-map, report, `iterations/` and `deltas/`.
+
+No reviewed source was changed; every write is inside the lineage directory. The only other files touched during the window (`review/observability-events.jsonl`, `review/orchestration-status.log`) are the parent orchestrator's, not mine.

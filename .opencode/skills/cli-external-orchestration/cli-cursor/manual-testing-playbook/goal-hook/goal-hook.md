@@ -1,7 +1,7 @@
 ---
 title: "CU-027 -- Session-bound Cursor goal injection"
 description: "Validates Cursor A/B injection isolation, missing-identity behavior, registration truth, and unsupported management."
-version: 1.4.0.5
+version: 1.5.0.0
 ---
 
 # CU-027 -- Session-bound Cursor goal injection
@@ -10,7 +10,7 @@ version: 1.4.0.5
 
 Cursor's `sessionStart` payload supplies `session_id`, with `conversation_id` as a fallback. `.opencode/hooks/goal/cursor/goal-inject.mjs` uses that native value with runtime `cursor` and the payload workspace. It injects only the matching scoped goal and records a turn touch.
 
-Cursor management is intentionally unsupported. The prompt command does not receive the hook's current-session identity, so `.cursor/commands/goal-cursor.md` returns `UNSUPPORTED_SESSION_BINDING` and never invokes the shared CLI.
+Cursor management is intentionally unsupported. The prompt command does not receive the hook's current-session identity, so `.cursor/commands/goal-cursor.md` returns `UNSUPPORTED_SESSION_BINDING` for every management action. The one allowed command is `packet <packet-path>`, a session-free read of a packet's `goal.md` durable slice through `bin/goal.cjs packet`, which binds nothing and writes nothing. When the injected session is bound to a packet, `agent_message` is rendered from that packet's `goal.md` and carries a `[goal_resend_pending]` line while the operator copy is behind the file.
 
 ---
 

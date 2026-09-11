@@ -1,7 +1,7 @@
 ---
 title: "CC-029 -- Claude Code repository goal discovery boundary"
 description: "Validates that Claude Code cannot discover the OpenCode-only goal command through this repository."
-version: 1.5.0.7
+version: 1.6.0.0
 ---
 
 # CC-029 -- Claude Code repository goal discovery boundary
@@ -31,13 +31,13 @@ The runtime-neutral goal core does not register a Claude Code adapter or command
 
 ### Exact Command Sequence
 
-Run the exact path and mirror checks from the scenario contract, scan `.claude/settings.json` for goal adapter registrations, then read `.opencode/hooks/goal/README.md` and `.opencode/skills/system-spec-kit/constitutional/goal-prompting-runtime-specific.md`.
+Run the exact path and mirror checks from the scenario contract, scan `.claude/settings.json` for goal adapter registrations, then read `.opencode/hooks/goal/README.md` and the `goal_prompting` block of `.opencode/commands/speckit/assets/speckit-plan.yaml` (`.opencode/skills/system-spec-kit/constitutional/goal-prompting-runtime-specific.md`.
 
 || Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 ||---|---|---|---|---|---|---|---|---|
 || CC-029 | Claude Code repository goal discovery boundary | Repository support-truth audit | `Verify that this repository does not expose the OpenCode-only goal command to Claude Code, registers no Claude goal adapter, and makes no unproven claim about a separate live Claude goal feature.` | `test ! -e .opencode/hooks/goal/claude`; `test -d .claude/commands && test ! -L .claude/commands`; `test ! -e .claude/commands/goal-opencode.md`; `test -L .claude/commands/agent-router.md`; run `sync-runtime-mirrors.cjs --check`; scan `.claude/settings.json` | No adapter/registration; filtered real root; OpenCode goal absent; shared link present; mirror check green | Path and mirror exit statuses plus exact matrix/policy lines | PASS when filter, generator, source, config, and docs agree | Treat a leaked command or new adapter as a contract change requiring native identity, management, and tests before updating prose |
 
-This scenario proves repository discovery only. It does not assert that a specific Claude product version exposes native goal state, where such state would live, or whether a headless invocation can use it.
+This scenario proves repository discovery only. It does not assert that a specific Claude product version exposes native goal state, where such state would live, or whether a headless invocation can use it. Claude Code keeps its native host goal command by design; the packet goal reaches it through the speckit workflows, which render the parent `goal.md` durable slice with the frontmatter stripped for the operator to set, and through the `GOAL POSTURE RULE` block in `AGENTS.md`.
 
 ---
 
@@ -45,7 +45,7 @@ This scenario proves repository discovery only. It does not assert that a specif
 
 || File | Role |
 ||---|---|
-|| `../../../../../skills/system-spec-kit/constitutional/goal-prompting-runtime-specific.md` | Runtime routing authority. |
+|| `../../../../../commands/speckit/assets/speckit-plan.yaml` | Runtime routing authority (`goal_prompting.set_mutation.dispatch_by_runtime` and `packet_goal.bind_by_runtime`). |
 || `../../../../../hooks/goal/README.md` | Current support matrix and sibling-core boundary. |
 || `../../../../../hooks/goal/lib/goal-core.cjs` | Scoped core that has no Claude caller. |
 || `../../../../../commands/goal-opencode.md` | OpenCode-only command, not a Claude Code fallback. |

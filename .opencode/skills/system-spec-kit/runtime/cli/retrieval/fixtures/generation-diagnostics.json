@@ -1,12 +1,12 @@
 {
   "counts": {
     "duplicate-phrase": 57,
-    "missing-frontmatter": 6990,
+    "missing-frontmatter": 7035,
     "non-yaml-frontmatter": 1,
-    "ok": 14525,
-    "valid-empty-list": 7518
+    "ok": 14563,
+    "valid-empty-list": 7529
   },
-  "documentsScanned": 29091,
+  "documentsScanned": 29185,
   "ignoredMalformedDocuments": 1,
   "ignoredPaths": [
     {
@@ -16,7 +16,7 @@
   ],
   "ignoredPathsUnmatched": [],
   "malformedDocuments": 0,
-  "manifestHash": "3261dd110cb900523a826f5dfc2e7b4b6aa10676d80f296915efe35d09c3b45f",
+  "manifestHash": "84e74094176b9f225e97001e4af0ce2a9120e18d3dfed2c3c869212bb1eb20f6",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -31,7 +31,7 @@
       "editor-fallback": 2,
       "generic-workflow-word": 3,
       "numeric-only": 41,
-      "ok": 35517,
+      "ok": 35567,
       "prose-sentence": 27,
       "single-token": 304,
       "stop-word-only": 3
@@ -4673,6 +4673,12 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": ".opencode/skills/cli-external-orchestration/cli-devin/manual-testing-playbook/goal-hook/goal-hook.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": ".opencode/skills/cli-external-orchestration/cli-devin/manual-testing-playbook/hooks/confirmed-events-smoke-matrix.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -6437,6 +6443,12 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": ".opencode/skills/cli-external-orchestration/cli-opencode/changelog/v1.4.6.0.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": ".opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/context-leaf-agent.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -7698,6 +7710,12 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".opencode/skills/cli-external-orchestration/cli-pi/changelog/v1.5.2.0.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".opencode/skills/cli-external-orchestration/cli-pi/changelog/v1.5.3.0.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -12982,6 +13000,66 @@
       "category": "missing-frontmatter",
       "line": 1,
       "path": ".opencode/skills/sk-design/sk-design-diagram/benchmark/reports/2026-09-11--manual-testing-playbook--capture-review-2/source.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".opencode/skills/sk-design/sk-design-diagram/benchmark/reports/2026-09-11--manual-testing-playbook--capture-review-3/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".opencode/skills/sk-design/sk-design-diagram/benchmark/reports/2026-09-11--manual-testing-playbook--capture-review-3/failed-runs.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".opencode/skills/sk-design/sk-design-diagram/benchmark/reports/2026-09-11--manual-testing-playbook--capture-review-3/findings-and-recommendations.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".opencode/skills/sk-design/sk-design-diagram/benchmark/reports/2026-09-11--manual-testing-playbook--capture-review-3/skill-benchmark-report.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".opencode/skills/sk-design/sk-design-diagram/benchmark/reports/2026-09-11--manual-testing-playbook--capture-review-3/source.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".opencode/skills/sk-design/sk-design-diagram/benchmark/reports/2026-09-11--manual-testing-playbook--capture-review-4/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".opencode/skills/sk-design/sk-design-diagram/benchmark/reports/2026-09-11--manual-testing-playbook--capture-review-4/failed-runs.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".opencode/skills/sk-design/sk-design-diagram/benchmark/reports/2026-09-11--manual-testing-playbook--capture-review-4/findings-and-recommendations.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".opencode/skills/sk-design/sk-design-diagram/benchmark/reports/2026-09-11--manual-testing-playbook--capture-review-4/skill-benchmark-report.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".opencode/skills/sk-design/sk-design-diagram/benchmark/reports/2026-09-11--manual-testing-playbook--capture-review-4/source.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
@@ -30795,6 +30873,12 @@
     },
     {
       "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".opencode/skills/sk-git/changelog/v1.6.0.0.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
       "line": 2,
       "path": ".opencode/skills/sk-git/manual-testing-playbook/commit-formation/co-authored-by-footer.md",
       "reason": "no trigger_phrases key in frontmatter"
@@ -30803,6 +30887,12 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".opencode/skills/sk-git/manual-testing-playbook/commit-formation/conventional-commit-from-diff.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".opencode/skills/sk-git/manual-testing-playbook/commit-formation/find-commits-by-packet-and-id.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -39401,6 +39491,18 @@
       "category": "missing-frontmatter",
       "line": 1,
       "path": "specs/hooks/019-cache-optimizer-measurement-fixes/impl/prompts/w6.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks/021-compat-opt-in-and-image-declaration/review/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks/021-compat-opt-in-and-image-declaration/review/brief.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
@@ -54205,6 +54307,78 @@
       "category": "missing-frontmatter",
       "line": 1,
       "path": "specs/sk-git/019-mass-deletion-guard/tasks.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-git/028-crawlable-commit-history/001-research/research/dispatch-prompt.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-git/028-crawlable-commit-history/007-git-workflow-run-failures/research/dispatch-prompt.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-git/028-crawlable-commit-history/007-git-workflow-run-failures/research/proof/lineages/proof/deep-research-dashboard.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-git/028-crawlable-commit-history/007-git-workflow-run-failures/research/proof/lineages/proof/iterations/iteration-001.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-git/028-crawlable-commit-history/007-git-workflow-run-failures/research/proof/lineages/proof/research.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-git/028-crawlable-commit-history/review/lineages/deepseek/deep-review-dashboard.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/sk-git/028-crawlable-commit-history/review/lineages/deepseek/deep-review-strategy.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-git/028-crawlable-commit-history/review/lineages/deepseek/iterations/iteration-001.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-git/028-crawlable-commit-history/review/lineages/deepseek/iterations/iteration-002.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-git/028-crawlable-commit-history/review/lineages/deepseek/iterations/iteration-003.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-git/028-crawlable-commit-history/review/lineages/deepseek/iterations/iteration-004.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-git/028-crawlable-commit-history/review/lineages/deepseek/review-report.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
@@ -95009,6 +95183,179 @@
       "line": 1,
       "path": "specs/system-speckit/033-system-speckit-v4/026-runtime-code-standards-research/research/confirmed-findings.md",
       "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/001-goal-unification-research/research/fanout-attribution.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-2/deep-review-dashboard.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 3,
+      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-2/deep-review-strategy.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-2/iterations/iteration-001.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-2/iterations/iteration-002.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-2/iterations/iteration-003.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-2/iterations/iteration-004.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-2/iterations/iteration-005.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 3,
+      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-2/resource-map.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 3,
+      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-2/review-report.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-3/deep-review-dashboard.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 3,
+      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-3/deep-review-strategy.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-3/iterations/iteration-001.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-3/iterations/iteration-002.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-3/iterations/iteration-003.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-3/iterations/iteration-004.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-3/iterations/iteration-005.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 3,
+      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-3/resource-map.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 3,
+      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-3/review-report.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review/deep-review-dashboard.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 3,
+      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review/deep-review-strategy.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 3,
+      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review/iterations/iteration-001.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 3,
+      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review/iterations/iteration-002.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 3,
+      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review/iterations/iteration-003.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review/resource-map.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 3,
+      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review/review-report.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification/review/review-scope.md",
+      "reason": "no opening frontmatter delimiter"
     }
   ],
   "skippedPaths": [
@@ -95342,6 +95689,38 @@
     },
     {
       "path": "specs/agents/008-orchestrate-external-cli-delegation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/009-turn-closeout-next-steps/001-deep-research/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/009-turn-closeout-next-steps/001-deep-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/009-turn-closeout-next-steps/002-decision-and-design/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/009-turn-closeout-next-steps/003-rule-authoring/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/009-turn-closeout-next-steps/004-agents-md-integration/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/009-turn-closeout-next-steps/005-verification/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/009-turn-closeout-next-steps/006-synthesis-presentation/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/009-turn-closeout-next-steps/006-synthesis-presentation/scratch",
       "reason": "excluded directory"
     },
     {
@@ -95834,6 +96213,10 @@
     },
     {
       "path": "specs/hooks/020-spec-metadata-auto-remint/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/021-compat-opt-in-and-image-declaration/scratch",
       "reason": "excluded directory"
     },
     {
@@ -97113,6 +97496,42 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-git/028-crawlable-commit-history/001-research/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-git/028-crawlable-commit-history/001-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-git/028-crawlable-commit-history/002-format-decision/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-git/028-crawlable-commit-history/003-contract-and-hook/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-git/028-crawlable-commit-history/004-search-surface/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-git/028-crawlable-commit-history/005-history-rewrite/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-git/028-crawlable-commit-history/006-docs-and-release/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-git/028-crawlable-commit-history/007-git-workflow-run-failures/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-git/028-crawlable-commit-history/007-git-workflow-run-failures/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-git/z_archive",
       "reason": "excluded directory"
     },
@@ -97481,6 +97900,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-deep-loop/046-synthesis-chat-presentation/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-deep-loop/z_archive",
       "reason": "excluded directory"
     },
@@ -97526,38 +97949,6 @@
     },
     {
       "path": "specs/system-skill-advisor/024-routing-perfection-research/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/001-transport-and-consumer-inventory/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/002-daemon-transport-decision/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/003-cli-front-door-parity/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/004-caller-rewire/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/005-mcp-transport-removal/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/006-runtime-package-rename/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/007-docs-and-residue-sweep/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/008-verification-and-closeout/scratch",
       "reason": "excluded directory"
     },
     {
@@ -99193,7 +99584,23 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-2/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-3/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/008-hardening-research/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/008-hardening-research/scratch",
       "reason": "excluded directory"
     },
     {
@@ -99201,23 +99608,11 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/035-derived-artifact-registry/001-artifact-registry-and-walker/scratch",
+      "path": "specs/system-speckit/035-derived-artifact-registry/001-registry-walker-and-proof/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/035-derived-artifact-registry/002-mechanism-tests/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-speckit/035-derived-artifact-registry/003-standing-drift-sweep/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-speckit/035-derived-artifact-registry/004-transactional-remint/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-speckit/035-derived-artifact-registry/005-unhealable-quarantine/scratch",
+      "path": "specs/system-speckit/035-derived-artifact-registry/002-transactional-remint/scratch",
       "reason": "excluded directory"
     },
     {

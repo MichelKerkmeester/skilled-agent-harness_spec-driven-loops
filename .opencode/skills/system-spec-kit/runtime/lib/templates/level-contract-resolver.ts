@@ -47,10 +47,22 @@ interface ManifestLevelRow {
   frontmatterMarkerLevel: number;
 }
 
+interface ManifestGoalBudget {
+  warnChars: number;
+  errorChars: number;
+}
+
 interface SpecKitDocsManifest {
   manifestVersion: string;
   versions?: Record<string, string>;
+  goalDurableBudget?: ManifestGoalBudget;
   levels: Record<SpecKitLevel, ManifestLevelRow>;
+}
+
+/** The character budget a goal document's durable slice must fit, with the tier that only warns. */
+export interface GoalDurableBudget {
+  warnChars: number;
+  errorChars: number;
 }
 
 /** JSON-safe form of {@link LevelContract}, with its Maps flattened to plain objects. */
@@ -267,6 +279,26 @@ export function resolveLevelContract(level: SpecKitLevel): LevelContract {
 }
 
 /** Flatten a {@link LevelContract}'s Maps into the plain-object shape JSON serialization needs. */
+/**
+ * Resolve the goal durable-slice budget the manifest declares. The template,
+ * the playbook and the validator all quote these two numbers, so they live in
+ * one place and every reader gets the same pair. A manifest without the block
+ * yields no budget, and the validator then checks nothing.
+ */
+export function resolveGoalDurableBudget(): GoalDurableBudget | null {
+  const manifest = loadManifest('1');
+  const raw = manifest.goalDurableBudget;
+  if (!raw || typeof raw !== 'object') {
+    return null;
+  }
+  const warnChars = Number(raw.warnChars);
+  const errorChars = Number(raw.errorChars);
+  if (!Number.isInteger(warnChars) || !Number.isInteger(errorChars) || warnChars <= 0 || errorChars < warnChars) {
+    throw new Error(`spec-kit-docs.json goalDurableBudget must carry integer warnChars <= errorChars, got ${JSON.stringify(raw)}`);
+  }
+  return { warnChars, errorChars };
+}
+
 export function serializeLevelContract(contract: LevelContract): SerializedLevelContract {
   return {
     requiredCoreDocs: [...contract.requiredCoreDocs],

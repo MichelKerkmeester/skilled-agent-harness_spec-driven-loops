@@ -1,7 +1,7 @@
 ---
 title: "PI-021 -- Session-isolated goal hook and native command"
 description: "Validates Pi native session binding, two-session isolation, lifecycle injection, legacy migration, and disabled fallback."
-version: 1.5.0.6
+version: 1.6.0.0
 ---
 
 # PI-021 -- Session-isolated goal hook and native command
@@ -11,6 +11,8 @@ version: 1.5.0.6
 Pi is the fully supported runtime-neutral goal path. `.opencode/hooks/goal/pi/goal-context.ts` obtains `ctx.sessionManager.getSessionId()` for input, session-start, turn-end, and the registered `/goal-pi` command. The command delegates parsing to the shared CLI but appends the native runtime, session, and workspace flags after user arguments, so prompt text cannot override the binding.
 
 The `.pi/prompts/goal-pi.md` file is a fail-closed fallback. If it runs, the native extension command is unavailable and no goal mutation is allowed.
+
+`/goal-pi` also carries the packet actions: `bind <packet-path>` makes a packet's `goal.md` the directive, `resent` records that its durable slice was sent in chat, `log <item> | <state> | <evidence>` appends a progress row below the packet's log anchor, and `packet <packet-path>` reads a packet without binding. While a bound packet's slice is behind the operator copy, the `input` transform appends one `[goal_resend_pending]` line after the brief.
 
 ---
 

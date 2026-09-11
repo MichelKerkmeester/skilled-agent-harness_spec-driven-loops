@@ -1,5 +1,5 @@
 {
-  "manifestHash": "3261dd110cb900523a826f5dfc2e7b4b6aa10676d80f296915efe35d09c3b45f",
+  "manifestHash": "84e74094176b9f225e97001e4af0ce2a9120e18d3dfed2c3c869212bb1eb20f6",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -9517,17 +9517,11 @@
     "advisor architecture audit": [
       "advisor architecture audit"
     ],
-    "advisor architecture rewrite": [
-      "advisor architecture rewrite"
-    ],
     "advisor auth helper": [
       "advisor auth helper"
     ],
     "advisor baseline": [
       "advisor baseline"
-    ],
-    "advisor behavior table": [
-      "advisor behavior table"
     ],
     "advisor bridge import repair": [
       "advisor bridge import repair"
@@ -9538,32 +9532,14 @@
     "advisor cache tests": [
       "advisor cache tests"
     ],
-    "advisor caller inventory": [
-      "advisor caller inventory"
-    ],
-    "advisor caller rewire": [
-      "advisor caller rewire"
-    ],
     "advisor catalog rename map": [
       "advisor catalog rename map"
     ],
     "advisor cleanup": [
       "advisor cleanup"
     ],
-    "advisor cli contract": [
-      "advisor cli contract"
-    ],
     "advisor cli fallback": [
       "advisor cli fallback"
-    ],
-    "advisor cli front door": [
-      "advisor cli front door"
-    ],
-    "advisor cli parity": [
-      "advisor cli parity"
-    ],
-    "advisor closeout": [
-      "advisor closeout"
     ],
     "advisor codegraph 027 reconciliation": [
       "advisor codegraph 027 reconciliation"
@@ -9573,12 +9549,6 @@
     ],
     "advisor codegraph procedural readiness": [
       "advisor codegraph procedural readiness"
-    ],
-    "advisor cold boot proof": [
-      "advisor cold boot proof"
-    ],
-    "advisor cold start": [
-      "advisor cold start"
     ],
     "advisor compatibility": [
       "advisor compatibility",
@@ -9629,15 +9599,6 @@
     "advisor daemon": [
       "advisor daemon"
     ],
-    "advisor daemon decision": [
-      "advisor daemon decision"
-    ],
-    "advisor daemon framing": [
-      "advisor daemon framing"
-    ],
-    "advisor daemon protocol": [
-      "advisor daemon protocol"
-    ],
     "advisor daemon reload verification": [
       "advisor daemon reload verification"
     ],
@@ -9655,9 +9616,6 @@
     ],
     "advisor database policy": [
       "advisor database policy"
-    ],
-    "advisor decommission verification": [
-      "advisor decommission verification"
     ],
     "advisor decoupling": [
       "advisor decoupling"
@@ -9683,9 +9641,6 @@
     "advisor doc cleanup post extraction": [
       "advisor doc cleanup post-extraction"
     ],
-    "advisor docs sweep": [
-      "advisor docs sweep"
-    ],
     "advisor documentation path migration": [
       "advisor documentation path migration"
     ],
@@ -9700,9 +9655,6 @@
     ],
     "advisor env hardening": [
       "advisor env hardening"
-    ],
-    "advisor exit taxonomy": [
-      "advisor exit taxonomy"
     ],
     "advisor extraction child 002": [
       "advisor extraction child 002"
@@ -9794,9 +9746,6 @@
     "advisor hook registration paths": [
       "advisor hook registration paths"
     ],
-    "advisor hook rewire": [
-      "advisor hook rewire"
-    ],
     "advisor hook runtime matrix": [
       "advisor hook runtime matrix"
     ],
@@ -9887,17 +9836,8 @@
     "advisor lane weight": [
       "advisor lane weight"
     ],
-    "advisor latency baseline": [
-      "advisor latency baseline"
-    ],
     "advisor latency bench": [
       "advisor latency bench"
-    ],
-    "advisor latency delta": [
-      "advisor latency delta"
-    ],
-    "advisor launcher supervisor": [
-      "advisor launcher supervisor"
     ],
     "advisor lease semantics": [
       "advisor lease semantics"
@@ -9920,14 +9860,8 @@
     "advisor manual testing playbook": [
       "advisor manual testing playbook"
     ],
-    "advisor mcp inventory": [
-      "advisor mcp inventory"
-    ],
     "advisor mcp registration": [
       "advisor mcp registration"
-    ],
-    "advisor mcp removal": [
-      "advisor mcp removal"
     ],
     "advisor mcp server": [
       "advisor mcp server"
@@ -9971,9 +9905,6 @@
     "advisor package envelope": [
       "advisor package envelope"
     ],
-    "advisor package rename": [
-      "advisor package rename"
-    ],
     "advisor package root rename": [
       "advisor package root rename"
     ],
@@ -9985,9 +9916,6 @@
     ],
     "advisor parity rollback tasks": [
       "advisor parity rollback tasks"
-    ],
-    "advisor path migration": [
-      "advisor path migration"
     ],
     "advisor phantom hook row": [
       "advisor phantom hook row"
@@ -10004,17 +9932,11 @@
     "advisor plugin bridge tests": [
       "advisor plugin bridge tests"
     ],
-    "advisor plugin cli": [
-      "advisor plugin cli"
-    ],
     "advisor positive controls dispatch plan": [
       "advisor positive controls dispatch plan"
     ],
     "advisor positive controls dispatch summary": [
       "advisor positive controls dispatch summary"
-    ],
-    "advisor preserve set": [
-      "advisor preserve set"
     ],
     "advisor probe inter skill": [
       "advisor probe inter-skill"
@@ -10030,9 +9952,6 @@
     ],
     "advisor projection filesystem fallback": [
       "advisor projection filesystem-fallback"
-    ],
-    "advisor protocol version": [
-      "advisor protocol version"
     ],
     "advisor proxy removal": [
       "advisor proxy removal"
@@ -10134,9 +10053,6 @@
     "advisor refinement deep review": [
       "advisor refinement deep review"
     ],
-    "advisor registration removal": [
-      "advisor registration removal"
-    ],
     "advisor regression tests": [
       "advisor regression tests"
     ],
@@ -10151,9 +10067,6 @@
     ],
     "advisor renderer fixture drift": [
       "advisor renderer fixture drift"
-    ],
-    "advisor residue sweep": [
-      "advisor residue sweep"
     ],
     "advisor resolver false sentinel": [
       "advisor resolver false sentinel"
@@ -10202,9 +10115,6 @@
     ],
     "advisor routing tokens preserved": [
       "advisor routing tokens preserved"
-    ],
-    "advisor runtime directory": [
-      "advisor runtime directory"
     ],
     "advisor runtime modules": [
       "advisor runtime modules"
@@ -10301,9 +10211,6 @@
     ],
     "advisor smoke test not run": [
       "advisor smoke test not run"
-    ],
-    "advisor socket protocol": [
-      "advisor socket protocol"
     ],
     "advisor socket server": [
       "advisor socket server"
@@ -10404,17 +10311,11 @@
     "advisor transport": [
       "advisor transport"
     ],
-    "advisor transport delete": [
-      "advisor transport delete"
-    ],
     "advisor transport disagreement": [
       "advisor transport disagreement"
     ],
     "advisor transport fallback budget": [
       "advisor transport fallback budget"
-    ],
-    "advisor transport removal": [
-      "advisor transport removal"
     ],
     "advisor transport resilience": [
       "advisor transport resilience"
@@ -10473,9 +10374,6 @@
     "advisor why recommended": [
       "advisor why recommended"
     ],
-    "advisor wire contract": [
-      "advisor wire contract"
-    ],
     "advisor workspace root resolver false sentinel": [
       "advisor workspace root resolver false sentinel"
     ],
@@ -10487,6 +10385,9 @@
     ],
     "advisory deduplication": [
       "advisory deduplication"
+    ],
+    "advisory false positive cwd": [
+      "advisory false positive cwd"
     ],
     "advisory metadata fields": [
       "advisory metadata fields"
@@ -11719,6 +11620,9 @@
     "allocator hermetic test": [
       "allocator hermetic test"
     ],
+    "allocator stale lock": [
+      "allocator stale lock"
+    ],
     "allow hurt fixtures": [
       "allow-hurt-fixtures"
     ],
@@ -11872,9 +11776,6 @@
     ],
     "anchor to h2 mapping": [
       "anchor-to-H2 mapping"
-    ],
-    "anchorless documents": [
-      "anchorless documents"
     ],
     "anchors checked integrity": [
       "anchors checked integrity"
@@ -13120,6 +13021,9 @@
     "ask before pushing to origin": [
       "ask before pushing to origin"
     ],
+    "ask question tool": [
+      "ask question tool"
+    ],
     "aspirational threshold audit": [
       "aspirational threshold audit"
     ],
@@ -13194,6 +13098,9 @@
     ],
     "assets checklists task breakdown": [
       "assets checklists task breakdown"
+    ],
+    "assets color removed": [
+      "assets/color removed"
     ],
     "assets implementation summary": [
       "assets implementation summary"
@@ -13705,6 +13612,9 @@
     "authorization boundary status": [
       "authorization boundary status"
     ],
+    "authorization contract": [
+      "authorization contract"
+    ],
     "authorization decision events": [
       "authorization decision events"
     ],
@@ -13914,6 +13824,9 @@
     ],
     "autoresearch": [
       "autoresearch"
+    ],
+    "autostash orphan rebase": [
+      "autostash orphan rebase"
     ],
     "autosync commits to live branch": [
       "autosync commits to live branch"
@@ -15093,6 +15006,15 @@
     ],
     "bijective map verification tasks": [
       "bijective map verification tasks"
+    ],
+    "bind a packet goal": [
+      "bind a packet goal"
+    ],
+    "bind packet goal": [
+      "bind packet goal"
+    ],
+    "bind the goal": [
+      "bind the goal"
     ],
     "binding block check": [
       "binding block check"
@@ -17981,6 +17903,9 @@
     "chart palette": [
       "chart palette"
     ],
+    "chart palette per style reference": [
+      "chart palette per style reference"
+    ],
     "chart phase 001 summary": [
       "chart phase 001 summary"
     ],
@@ -20130,6 +20055,9 @@
     "cli dispatch containment recursion guards": [
       "cli dispatch containment recursion guards"
     ],
+    "cli dispatch doc drift": [
+      "cli dispatch doc drift"
+    ],
     "cli dispatch hangs with no output": [
       "cli dispatch hangs with no output"
     ],
@@ -21053,7 +20981,8 @@
       "cli pi readme tasks"
     ],
     "cli pi self dispatch": [
-      "cli-pi self dispatch"
+      "cli-pi self dispatch",
+      "cli-pi self-dispatch"
     ],
     "cli pi self invocation removal": [
       "cli-pi self invocation removal"
@@ -21628,6 +21557,9 @@
     "cline pass enabledmodels pi settings": [
       "cline-pass enabledModels pi settings"
     ],
+    "cline pass listing only rationale": [
+      "cline-pass listing-only rationale"
+    ],
     "cline pass model id slashed fix": [
       "cline-pass model id slashed fix"
     ],
@@ -21744,6 +21676,9 @@
     ],
     "close loop state": [
       "close loop state"
+    ],
+    "close out next steps research": [
+      "close-out next steps research"
     ],
     "close stress gaps": [
       "close stress gaps"
@@ -25269,11 +25204,39 @@
     "commit disappeared after autosync": [
       "commit disappeared after autosync"
     ],
+    "commit format research": [
+      "commit format research"
+    ],
     "commit got orphaned by reset": [
       "commit got orphaned by reset"
     ],
+    "commit grammar decision": [
+      "commit grammar decision"
+    ],
+    "commit id allocator": [
+      "commit-id allocator"
+    ],
+    "commit id ordinal": [
+      "commit-id ordinal"
+    ],
+    "commit id ordinal decision": [
+      "commit-id ordinal decision"
+    ],
+    "commit id scheme": [
+      "commit id scheme"
+    ],
+    "commit id trailer": [
+      "commit id trailer",
+      "commit-id trailer"
+    ],
+    "commit identifier minting": [
+      "commit identifier minting"
+    ],
     "commit message template": [
       "commit message template"
+    ],
+    "commit msg whitelist": [
+      "commit-msg whitelist"
     ],
     "commit subject length rules": [
       "commit subject length rules"
@@ -26797,6 +26760,9 @@
     "containment ring hierarchy": [
       "containment ring hierarchy"
     ],
+    "containment same packet write": [
+      "containment same packet write"
+    ],
     "containment suite one root source": [
       "containment suite one root source"
     ],
@@ -27846,9 +27812,6 @@
     "corpus wide restyle plan": [
       "corpus wide restyle plan"
     ],
-    "corpus wide staleness": [
-      "corpus wide staleness"
-    ],
     "corrected phase2 baseline": [
       "corrected phase2 baseline"
     ],
@@ -28385,6 +28348,15 @@
     ],
     "crawl website for css": [
       "crawl website for css"
+    ],
+    "crawlable commit history": [
+      "crawlable commit history"
+    ],
+    "crawlable commit history goal": [
+      "crawlable commit history goal"
+    ],
+    "crawlable commit research": [
+      "crawlable commit research"
     ],
     "create": [
       "create"
@@ -31146,9 +31118,6 @@
     "daemon versus python scorer": [
       "daemon versus python scorer"
     ],
-    "daemon versus stateless": [
-      "daemon versus stateless"
-    ],
     "daemon wal checkpoint before sigkill": [
       "daemon WAL checkpoint before SIGKILL"
     ],
@@ -31713,6 +31682,9 @@
     "decision test recovery": [
       "decision test recovery"
     ],
+    "decision tests evidence": [
+      "decision tests evidence"
+    ],
     "decision tree flowchart": [
       "decision tree flowchart"
     ],
@@ -31764,14 +31736,17 @@
     "declared capability loss": [
       "declared capability loss"
     ],
-    "declared residue": [
-      "declared residue"
+    "declared capability over heuristic": [
+      "declared capability over heuristic"
     ],
     "declared signal closure": [
       "declared signal closure"
     ],
     "declared trigger scores zero": [
       "declared trigger scores zero"
+    ],
+    "declared unhealable": [
+      "declared unhealable"
     ],
     "declined resume containment finding": [
       "declined resume containment finding"
@@ -33843,6 +33818,9 @@
     "deep loop resource map plan": [
       "deep loop resource map plan"
     ],
+    "deep loop results display": [
+      "deep loop results display"
+    ],
     "deep loop revalidation plan": [
       "deep-loop revalidation plan"
     ],
@@ -35619,6 +35597,9 @@
     "deepseek compat consistency tasks": [
       "deepseek compat consistency tasks"
     ],
+    "deepseek compat opt in": [
+      "deepseek compat opt-in"
+    ],
     "deepseek deleted files": [
       "deepseek deleted files"
     ],
@@ -35639,6 +35620,9 @@
     ],
     "deepseek guard implementation": [
       "deepseek guard implementation"
+    ],
+    "deepseek like compat warning": [
+      "deepseek-like compat warning"
     ],
     "deepseek long retention advice": [
       "deepseek long retention advice"
@@ -35679,6 +35663,9 @@
     "deepseek mimo luna interface verdict": [
       "deepseek mimo luna interface verdict"
     ],
+    "deepseek opt in gate": [
+      "deepseek opt-in gate"
+    ],
     "deepseek prefix cache pi": [
       "deepseek prefix cache pi"
     ],
@@ -35690,6 +35677,12 @@
     ],
     "deepseek research lane spec kit docs": [
       "deepseek research lane spec kit docs"
+    ],
+    "deepseek route repoint decision": [
+      "deepseek route repoint decision"
+    ],
+    "deepseek v4 1 flash route": [
+      "deepseek v4.1 flash route"
     ],
     "deepseek v4 flash": [
       "deepseek v4 flash"
@@ -35918,6 +35911,9 @@
     ],
     "deferred followups decisions": [
       "deferred followups decisions"
+    ],
+    "deferred live gates": [
+      "deferred live gates"
     ],
     "deferred loading verification": [
       "deferred loading verification"
@@ -39155,6 +39151,9 @@
     "dispatch preflight hook repoint": [
       "dispatch preflight hook repoint"
     ],
+    "dispatch preflight suite": [
+      "dispatch preflight suite"
+    ],
     "dispatch receipt resume projection": [
       "dispatch receipt resume projection"
     ],
@@ -40009,9 +40008,6 @@
     "doctor route repair": [
       "doctor route repair"
     ],
-    "doctor route rewire": [
-      "doctor route rewire"
-    ],
     "doctor route validate manifest": [
       "doctor route validate manifest"
     ],
@@ -40663,9 +40659,6 @@
     "drift suspect write latency guard plan": [
       "drift-suspect write latency guard plan"
     ],
-    "drift sweep": [
-      "drift sweep"
-    ],
     "drift sweep across subsystems": [
       "drift sweep across subsystems"
     ],
@@ -40995,6 +40988,9 @@
     ],
     "durable retry tasks": [
       "durable retry tasks"
+    ],
+    "durable slice": [
+      "durable slice"
     ],
     "durable slice budget": [
       "durable slice budget"
@@ -42179,6 +42175,9 @@
     "end user scope default": [
       "end-user scope default"
     ],
+    "end with next steps": [
+      "end with next steps"
+    ],
     "energy level routing": [
       "energy level routing"
     ],
@@ -43353,6 +43352,9 @@
     "existing": [
       "existing"
     ],
+    "existing home for close out": [
+      "existing home for close-out"
+    ],
     "existing readme cleanup": [
       "existing readme cleanup"
     ],
@@ -44461,9 +44463,6 @@
     "falsifier discipline": [
       "falsifier discipline"
     ],
-    "falsify the gate": [
-      "falsify the gate"
-    ],
     "fan in budget floor": [
       "fan-in budget floor"
     ],
@@ -44694,6 +44693,9 @@
     ],
     "fanout reliability changelog": [
       "fanout reliability changelog"
+    ],
+    "fanout research run": [
+      "fanout research run"
     ],
     "fanout resume salvage evidence": [
       "fanout resume salvage evidence"
@@ -45742,6 +45744,12 @@
     ],
     "filter overdue": [
       "filter overdue"
+    ],
+    "filter repo commit callback": [
+      "filter-repo commit callback"
+    ],
+    "filter repo message rewrite": [
+      "filter-repo message rewrite"
     ],
     "filter tasks by label": [
       "filter tasks by label"
@@ -47039,6 +47047,9 @@
     "form validation classes": [
       "form validation classes"
     ],
+    "format decision phase": [
+      "format decision phase"
+    ],
     "format guide contract tasks": [
       "format guide contract tasks"
     ],
@@ -47659,9 +47670,6 @@
     "frontmatter migration tasks": [
       "frontmatter migration tasks"
     ],
-    "frontmatter missing": [
-      "frontmatter missing"
-    ],
     "frontmatter mode intent phrases": [
       "frontmatter mode intent phrases"
     ],
@@ -47745,6 +47753,9 @@
     ],
     "frontmatter shared versus owned": [
       "frontmatter shared versus owned"
+    ],
+    "frontmatter strip contract": [
+      "frontmatter strip contract"
     ],
     "frontmatter strip research": [
       "frontmatter strip research"
@@ -48851,6 +48862,9 @@
     "git hook fail open": [
       "git hook fail open"
     ],
+    "git hook files inventory": [
+      "git hook files inventory"
+    ],
     "git hook gate hardening": [
       "git hook gate hardening"
     ],
@@ -48926,8 +48940,14 @@
     "git readme rewrite tasks": [
       "git readme rewrite tasks"
     ],
+    "git repo rule verdict": [
+      "git repo rule verdict"
+    ],
     "git rule checks": [
       "git rule checks"
+    ],
+    "git run failure analysis": [
+      "git run failure analysis"
     ],
     "git skill doc authoring tasks": [
       "git skill doc authoring tasks"
@@ -49259,6 +49279,9 @@
     "goal addon research resources": [
       "goal addon research resources"
     ],
+    "goal adr": [
+      "goal ADR"
+    ],
     "goal adr freeze": [
       "goal ADR freeze"
     ],
@@ -49355,6 +49378,9 @@
     "goal durable budget 4000": [
       "goal durable budget 4000"
     ],
+    "goal durable slice budget": [
+      "goal durable slice budget"
+    ],
     "goal file addon": [
       "goal file addon"
     ],
@@ -49366,6 +49392,12 @@
     ],
     "goal flag tasks": [
       "goal flag tasks"
+    ],
+    "goal hardening plan": [
+      "goal hardening plan"
+    ],
+    "goal hardening research": [
+      "goal hardening research"
     ],
     "goal hook capability matrix": [
       "goal hook capability matrix"
@@ -49391,6 +49423,9 @@
     "goal hook reads goal md": [
       "goal hook reads goal.md"
     ],
+    "goal hook rebuild decision matrix": [
+      "goal hook rebuild decision matrix"
+    ],
     "goal hook refactor": [
       "goal hook refactor"
     ],
@@ -49408,6 +49443,9 @@
     ],
     "goal injection contract": [
       "goal injection contract"
+    ],
+    "goal integration seams": [
+      "goal integration seams"
     ],
     "goal isolation": [
       "goal isolation"
@@ -49460,6 +49498,9 @@
     "goal legacy cutover": [
       "goal legacy cutover"
     ],
+    "goal log": [
+      "goal log"
+    ],
     "goal manage cli": [
       "goal manage cli"
     ],
@@ -49493,6 +49534,9 @@
     "goal opencode plugin": [
       "goal opencode plugin"
     ],
+    "goal overengineering review": [
+      "goal overengineering review"
+    ],
     "goal pi goal opencode goal cursor goal devin": [
       "goal-pi goal-opencode goal-cursor goal-devin"
     ],
@@ -49501,6 +49545,9 @@
     ],
     "goal pointer": [
       "goal pointer"
+    ],
+    "goal posture agents md row": [
+      "goal posture AGENTS.md row"
     ],
     "goal prompt choice": [
       "goal_prompt_choice"
@@ -49531,6 +49578,9 @@
     ],
     "goal rollback": [
       "goal rollback"
+    ],
+    "goal runtime feasibility": [
+      "goal runtime feasibility"
     ],
     "goal runtime state": [
       "goal runtime state"
@@ -49595,14 +49645,26 @@
     "goal unification changelog": [
       "goal unification changelog"
     ],
+    "goal unification d1 d8 verdicts": [
+      "goal unification D1 D8 verdicts"
+    ],
     "goal unification decisions": [
       "goal unification decisions"
+    ],
+    "goal unification hardening": [
+      "goal unification hardening"
+    ],
+    "goal unification hardening research": [
+      "goal unification hardening research"
     ],
     "goal unification research": [
       "goal unification research"
     ],
     "goal unification research strategy": [
       "goal unification research strategy"
+    ],
+    "goal unification synthesis": [
+      "goal unification synthesis"
     ],
     "goal unification verification": [
       "goal unification verification"
@@ -50383,9 +50445,6 @@
     "grayscale first": [
       "grayscale first"
     ],
-    "green theater": [
-      "green theater"
-    ],
     "greenfield command generator": [
       "greenfield command generator"
     ],
@@ -50764,6 +50823,9 @@
     ],
     "hardening phase": [
       "hardening phase"
+    ],
+    "hardening research plan": [
+      "hardening research plan"
     ],
     "harder intent prompt corpus": [
       "harder intent prompt corpus"
@@ -51362,6 +51424,9 @@
     "history preserving git move": [
       "history-preserving git move"
     ],
+    "history rewrite research": [
+      "history rewrite research"
+    ],
     "hls js video streaming": [
       "hls js video streaming"
     ],
@@ -51520,9 +51585,6 @@
     ],
     "hook kill switch phase status": [
       "hook kill-switch phase status"
-    ],
-    "hook latency baseline": [
-      "hook latency baseline"
     ],
     "hook level lifecycle flags": [
       "hook-level lifecycle flags"
@@ -52243,6 +52305,9 @@
     ],
     "hvr gate verification checklist": [
       "hvr gate verification checklist"
+    ],
+    "hvr in a reply": [
+      "hvr in a reply"
     ],
     "hvr lint changelog": [
       "hvr lint changelog"
@@ -57005,6 +57070,9 @@
     "list vaults": [
       "List vaults"
     ],
+    "listing only cline pass": [
+      "listing-only cline-pass"
+    ],
     "listsupporteddimensions embeddermanifest": [
       "listSupportedDimensions EmbedderManifest"
     ],
@@ -57380,6 +57448,12 @@
     ],
     "llmgateway glm 5 3 flash fanout": [
       "llmgateway glm-5.3-flash fanout"
+    ],
+    "llmgateway image declaration": [
+      "llmgateway image declaration"
+    ],
+    "llmgateway image input omitted": [
+      "llmgateway image input omitted"
     ],
     "llmgateway luna roster": [
       "llmgateway luna roster"
@@ -58986,6 +59060,9 @@
     ],
     "manual verification tasks": [
       "manual verification tasks"
+    ],
+    "manufactured thinkingformat deepseek": [
+      "manufactured thinkingFormat deepseek"
     ],
     "map tokens to semantic roles": [
       "map tokens to semantic roles"
@@ -60704,9 +60781,6 @@
       "mcp_server README update",
       "mcp_server readme update"
     ],
-    "mcp server rename": [
-      "mcp-server rename"
-    ],
     "mcp server shared readme": [
       "mcp_server shared readme"
     ],
@@ -61245,9 +61319,6 @@
     ],
     "mechanical versus judgment findings": [
       "mechanical versus judgment findings"
-    ],
-    "mechanism tests": [
-      "mechanism tests"
     ],
     "medallion architecture": [
       "medallion architecture"
@@ -62661,6 +62732,9 @@
     ],
     "merge tasks and checklist": [
       "merge tasks and checklist"
+    ],
+    "merged compat lacks thinkingformat": [
+      "merged compat lacks thinkingFormat"
     ],
     "mermaid extract": [
       "mermaid_extract"
@@ -66664,6 +66738,9 @@
     "numbered category sections": [
       "numbered category sections"
     ],
+    "numbered commit format": [
+      "numbered commit format"
+    ],
     "numbered h2 divider drift": [
       "numbered h2 divider drift"
     ],
@@ -67987,6 +68064,9 @@
     "opencode go cache compat": [
       "opencode-go cache compat"
     ],
+    "opencode go cline pass repoint": [
+      "opencode-go cline-pass repoint"
+    ],
     "opencode go compat plan": [
       "opencode-go compat plan"
     ],
@@ -68013,6 +68093,9 @@
     ],
     "opencode go usage limit fan out": [
       "opencode-go usage limit fan-out"
+    ],
+    "opencode go v4 1 swap": [
+      "opencode-go v4.1 swap"
     ],
     "opencode goal": [
       "opencode-goal",
@@ -68485,6 +68568,9 @@
     ],
     "operator approval batch": [
       "operator approval batch"
+    ],
+    "operator approval grammar": [
+      "operator approval grammar"
     ],
     "operator copy of goal": [
       "operator copy of goal"
@@ -69623,6 +69709,9 @@
     ],
     "packet goal single source": [
       "packet goal single source"
+    ],
+    "packet goal single source backlog": [
+      "packet goal single source backlog"
     ],
     "packet handoff alignment": [
       "packet handoff alignment"
@@ -72895,6 +72984,9 @@
     "pi cache optimizer verify first optional": [
       "pi-cache-optimizer verify-first optional"
     ],
+    "pi cache optimizer warning": [
+      "pi cache optimizer warning"
+    ],
     "pi cache optimizer warning cleared": [
       "pi-cache-optimizer warning cleared"
     ],
@@ -75564,6 +75656,9 @@
     "premature stop prevention": [
       "premature stop prevention"
     ],
+    "prepare commit msg stamper": [
+      "prepare-commit-msg stamper"
+    ],
     "prepare verify commit implementation": [
       "prepare verify commit implementation"
     ],
@@ -76656,6 +76751,9 @@
     ],
     "proof over appearance removed": [
       "proof over appearance removed"
+    ],
+    "proof run after run failure adjustments": [
+      "proof run after run-failure adjustments"
     ],
     "proof through output metadata": [
       "proof through output metadata"
@@ -78586,6 +78684,9 @@
     "recommendation status join tasks": [
       "recommendation status join tasks"
     ],
+    "recommendations in chat": [
+      "recommendations in chat"
+    ],
     "recompile deep command contracts": [
       "recompile deep command contracts"
     ],
@@ -79563,6 +79664,9 @@
     ],
     "refreshskillembeddings dispatcher": [
       "refreshSkillEmbeddings dispatcher"
+    ],
+    "refusal census": [
+      "refusal census"
     ],
     "refusal path works": [
       "refusal path works"
@@ -81736,6 +81840,9 @@
     "research level tasks": [
       "research level tasks"
     ],
+    "research lineage plan": [
+      "research lineage plan"
+    ],
     "research lineages divergence": [
       "research lineages divergence"
     ],
@@ -81952,6 +82059,9 @@
     "research tuning guide": [
       "research tuning guide"
     ],
+    "resend the goal": [
+      "resend the goal"
+    ],
     "reserve feedback type write boundary": [
       "reserve feedback type write boundary"
     ],
@@ -82014,6 +82124,9 @@
     ],
     "residual routing failures": [
       "residual routing failures"
+    ],
+    "residue baseline": [
+      "residue baseline"
     ],
     "residue census criterion": [
       "residue census criterion"
@@ -82427,6 +82540,9 @@
     "resume 033 remediation": [
       "resume 033 remediation"
     ],
+    "resume 069": [
+      "resume 069"
+    ],
     "resume adapter forged confirmation": [
       "resume adapter forged confirmation"
     ],
@@ -82663,9 +82779,6 @@
     ],
     "retired prefix criterion restated": [
       "retired prefix criterion restated"
-    ],
-    "retired tool id sweep": [
-      "retired tool id sweep"
     ],
     "retired vector search docs cleanup": [
       "retired vector search docs cleanup"
@@ -82964,6 +83077,9 @@
     "retroactive automation phase parent": [
       "retroactive automation phase parent"
     ],
+    "retroactive commit rewrite": [
+      "retroactive commit rewrite"
+    ],
     "retroactive implementation": [
       "retroactive implementation"
     ],
@@ -82990,6 +83106,9 @@
     ],
     "retrofit diagnostics schema": [
       "retrofit diagnostics schema"
+    ],
+    "retrofit mapping cascade": [
+      "retrofit mapping cascade"
     ],
     "retrofit move tasks": [
       "retrofit move tasks"
@@ -86534,6 +86653,9 @@
     "scope policy rerun": [
       "scope policy rerun"
     ],
+    "scope reversal adr": [
+      "scope reversal adr"
+    ],
     "scope statement check": [
       "scope statement check"
     ],
@@ -86786,9 +86908,6 @@
     ],
     "scratch folder usage": [
       "scratch folder usage"
-    ],
-    "scratch worktree sweep": [
-      "scratch worktree sweep"
     ],
     "screen detail refero": [
       "screen detail refero"
@@ -87272,6 +87391,9 @@
     ],
     "search trigger lane disposition": [
       "search trigger lane disposition"
+    ],
+    "searchable commit messages": [
+      "searchable commit messages"
     ],
     "searchbudget plan": [
       "SearchBudget plan"
@@ -87918,6 +88040,9 @@
     "session goal state architecture": [
       "session goal state architecture"
     ],
+    "session handover": [
+      "session handover"
+    ],
     "session handover 2026 05 18 evening": [
       "session handover 2026-05-18 evening"
     ],
@@ -87974,6 +88099,9 @@
     ],
     "session outcome enum": [
       "session outcome enum"
+    ],
+    "session packet binding": [
+      "session packet binding"
     ],
     "session packet binding decision": [
       "session packet binding decision"
@@ -88145,6 +88273,9 @@
     ],
     "set the degree cap and gauge defaults": [
       "set the degree cap and gauge defaults"
+    ],
+    "set the goal": [
+      "set the goal"
     ],
     "set up research session": [
       "set up research session"
@@ -89082,6 +89213,9 @@
     ],
     "sibling route regression probe": [
       "sibling route regression probe"
+    ],
+    "sibling route reopen decision": [
+      "sibling route reopen decision"
     ],
     "sibling shape parity check": [
       "sibling shape parity check"
@@ -91024,6 +91158,9 @@
     "sk design changelog verification plan": [
       "sk-design changelog verification plan"
     ],
+    "sk design chart v0 23 0 0": [
+      "sk-design-chart v0.23.0.0"
+    ],
     "sk design claude parity": [
       "sk-design Claude parity"
     ],
@@ -92435,6 +92572,9 @@
     "sk git code readmes tasks": [
       "sk-git code readmes tasks"
     ],
+    "sk git commit contract update": [
+      "sk-git commit contract update"
+    ],
     "sk git compiled policy parity": [
       "sk-git compiled policy parity"
     ],
@@ -92623,6 +92763,9 @@
     ],
     "sk git scripts folder": [
       "sk-git scripts folder"
+    ],
+    "sk git scripts inventory": [
+      "sk-git scripts inventory"
     ],
     "sk git scripts tests": [
       "sk-git scripts tests"
@@ -93974,9 +94117,6 @@
     "skill advisor manual testing playbook": [
       "skill-advisor manual testing playbook"
     ],
-    "skill advisor mcp decommission": [
-      "skill advisor mcp decommission"
-    ],
     "skill advisor mcp identity": [
       "skill advisor MCP identity"
     ],
@@ -94244,9 +94384,6 @@
     ],
     "skill advisor watcher race": [
       "skill-advisor watcher race"
-    ],
-    "skill advisor without mcp": [
-      "skill advisor without mcp"
     ],
     "skill advisor zombie launcher fix": [
       "skill-advisor zombie launcher fix"
@@ -96928,6 +97065,9 @@
     "spec template optimizations plan": [
       "spec template optimizations plan"
     ],
+    "spec trailer key": [
+      "spec trailer key"
+    ],
     "spec tree regroup plan": [
       "spec tree regroup plan"
     ],
@@ -97702,9 +97842,6 @@
     ],
     "stale all minilm voyage wording fix": [
       "stale all-MiniLM voyage wording fix"
-    ],
-    "stale artifact test": [
-      "stale artifact test"
     ],
     "stale audit p0 closure": [
       "stale audit P0 closure"
@@ -98981,6 +99118,9 @@
     "structural validation rules": [
       "structural validation rules"
     ],
+    "structured choice": [
+      "structured choice"
+    ],
     "structured council recovery context": [
       "structured council recovery context"
     ],
@@ -99007,6 +99147,9 @@
     ],
     "structured output mode": [
       "structured output mode"
+    ],
+    "structured question tool": [
+      "structured question tool"
     ],
     "stuck detection": [
       "stuck detection"
@@ -99082,6 +99225,9 @@
     ],
     "style reference chart": [
       "style reference chart"
+    ],
+    "style reference owns its colour": [
+      "style reference owns its colour"
     ],
     "style reference schema": [
       "style reference schema"
@@ -100033,6 +100179,9 @@
     ],
     "synthesis fold in": [
       "synthesis fold-in"
+    ],
+    "synthesis presentation research": [
+      "synthesis presentation research"
     ],
     "synthesis v1 verification report": [
       "synthesis v1 verification report"
@@ -103005,9 +103154,6 @@
     "transport return reconciliation": [
       "transport return reconciliation"
     ],
-    "transport surface classification": [
-      "transport surface classification"
-    ],
     "trapezoid layer diagram": [
       "trapezoid layer diagram"
     ],
@@ -103445,6 +103591,9 @@
     ],
     "turbulence displacement filter": [
       "turbulence displacement filter"
+    ],
+    "turn close out": [
+      "turn close-out"
     ],
     "turn end mutation probe tasks": [
       "turn_end mutation probe tasks"
@@ -103989,9 +104138,6 @@
     "unforget disjointness task": [
       "unforget disjointness task"
     ],
-    "unhealable quarantine": [
-      "unhealable quarantine"
-    ],
     "unicode normalized resource path": [
       "unicode-normalized resource path"
     ],
@@ -104234,6 +104380,9 @@
     ],
     "update task priority or assignee": [
       "update task priority or assignee"
+    ],
+    "update the goal": [
+      "update the goal"
     ],
     "updatephaseparentpointer bypasses zod": [
       "updatePhaseParentPointer bypasses zod"
@@ -104856,9 +105005,6 @@
     ],
     "validation command reference": [
       "validation command reference"
-    ],
-    "validation distance": [
-      "validation distance"
     ],
     "validation enforce graduation": [
       "validation enforce graduation"
@@ -106587,6 +106733,9 @@
     "wedged loading cooldown implementation plan": [
       "wedged loading cooldown implementation plan"
     ],
+    "weekly freshness report": [
+      "weekly freshness report"
+    ],
     "weekly task filter": [
       "weekly task filter"
     ],
@@ -106710,6 +106859,9 @@
     ],
     "what shipped test repair": [
       "what shipped test repair"
+    ],
+    "what the operator must do next": [
+      "what the operator must do next"
     ],
     "what v4 actually ships": [
       "what v4 actually ships"

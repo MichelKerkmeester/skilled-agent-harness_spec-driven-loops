@@ -1,0 +1,6 @@
+{"type":"config","topic":"fanout-glm-1789112155370-jcyia7","maxIterations":5,"generation":1,"artifactDir":"specs/system-speckit/033-system-speckit-v4/036-goal-unification/001-goal-unification-research/research/lineages/glm","iterationNumbering":"program 11-15 (run 1-5 lineage-local)","timestamp":"2026-09-11T07:43:34Z"}
+{"type":"iteration","iteration":11,"run":1,"status":"complete","newInfoRatio":0.6,"ruledOut":["iter-011:cli-unbound-precedent","iter-011:implicit-lastSpecFolder-binding"],"timestamp":"2026-09-11T07:51:13.000Z"}
+{"type":"iteration","iteration":12,"run":2,"status":"complete","newInfoRatio":0.55,"ruledOut":["iter-012:readme-drift-explanation","iter-012:documented-pi-host-cap"],"timestamp":"2026-09-11T07:56:27.000Z"}
+{"type":"iteration","iteration":13,"run":3,"status":"complete","newInfoRatio":0.65,"ruledOut":["iter-013:design-contradicts-029-exclusions","iter-013:shared-goalmd-reopens-009"],"timestamp":"2026-09-11T08:00:54.000Z"}
+{"type":"iteration","iteration":14,"run":4,"status":"complete","newInfoRatio":0.7,"ruledOut":["iter-014:compact-path-truncation","iter-014:char-bytes-adjustment-036"],"timestamp":"2026-09-11T08:12:22.000Z"}
+{"type":"iteration","iteration":15,"run":5,"status":"thought","newInfoRatio":0.5,"ruledOut":[],"timestamp":"2026-09-11T08:17:37.000Z"}

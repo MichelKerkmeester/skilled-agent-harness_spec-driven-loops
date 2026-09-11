@@ -42,6 +42,10 @@ goal_prompting:
     require: goal_objective
     behavior: "Do not call opencode_goal from resume; present the objective as a follow-up action."
   status_tool: opencode_goal_status
+  packet_goal:
+    read: "Read the packet goal.md durable slice from the file; resume never mutates it and never binds."
+    reminder: "If the runtime reports resend_pending, or the operator copy is known to be behind, render the durable slice with frontmatter excluded once and ask the operator to set it; then continue the resume."
+    never_halts: "Work never stops because a goal is unset. After the operator sets it, acknowledge in one line and continue."
 
 # ─────────────────────────────────────────────────────────────────
 # SESSION DETECTION

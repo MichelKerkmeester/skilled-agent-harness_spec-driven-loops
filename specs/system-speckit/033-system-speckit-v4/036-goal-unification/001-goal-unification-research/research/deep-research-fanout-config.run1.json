@@ -1,0 +1,16 @@
+{
+  "assignment_model": "flat_pool",
+  "concurrency": 1,
+  "maxRetries": 5,
+  "executors": [
+    {
+      "label": "deepseek",
+      "kind": "cli-pi",
+      "model": "deepseek-v4.1-flash",
+      "reasoningEffort": "max",
+      "count": 1,
+      "iterations": 10,
+      "timeoutSeconds": 3600
+    }
+  ]
+}

@@ -94,6 +94,12 @@ When a runtime cannot deliver automatic advisor context, use `/speckit:resume`, 
 
 ---
 
+### Goal transport
+
+The session goal rides the same hook surfaces. The bound packet's `goal.md` is the directive; each runtime injects its durable slice with the frontmatter stripped and appends a one-line resend reminder while the operator copy is behind the file. OpenCode injects through `.opencode/plugins/opencode-goal.js` (`experimental.chat.system.transform`, tools `opencode_goal` with `bind`, `resent`, `packet` and `opencode_goal_status`). Pi injects on `input` and `session_start` through `.opencode/hooks/goal/pi/goal-context.ts` and manages through `/goal-pi`. Cursor injects on `sessionStart` through `.opencode/hooks/goal/cursor/goal-inject.mjs` and answers only a session-free packet read. Devin injects on `SessionStart` and `UserPromptSubmit` through `.opencode/hooks/goal/devin/goal-inject.mjs`. Claude Code and Codex keep their native host goal command; the speckit workflows hand them the stripped slice to set. The model, the actions and the state layout are in `.opencode/hooks/goal/README.md`.
+
+---
+
 ## 7. INSTALLATION DRIFT CHECK
 
 From a linked worktree, run the project-scoped check with its required flag:

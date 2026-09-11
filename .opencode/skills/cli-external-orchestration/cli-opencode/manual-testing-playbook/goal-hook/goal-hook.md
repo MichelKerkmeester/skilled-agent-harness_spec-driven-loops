@@ -1,7 +1,7 @@
 ---
 title: "CO-039 -- Goal hook native opencode-goal validation"
 description: "Validates OpenCode goal actions, session isolation, fixed opaque state keys, lazy legacy migration, native token accounting, and system-prompt injection."
-version: 1.4.0.7
+version: 1.5.0.0
 ---
 
 # CO-039 -- Goal hook native opencode-goal validation
@@ -12,7 +12,7 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 ## 1. OVERVIEW
 
-This scenario validates the OpenCode-native `opencode-goal` plugin for `CO-039`. It focuses on the `/goal-opencode` command's action set (`set`, `show`, `history`, `doctor`, `health`, `clear`, `complete`, `pause`, `resume`), the `opencode_goal` / `opencode_goal_status` tool contract those actions route through, per-OpenCode-session goal state, native OpenCode token accounting, and the `experimental.chat.system.transform` injection that steers the model with a passive `[active_goal]` block.
+This scenario validates the OpenCode-native `opencode-goal` plugin for `CO-039`. It focuses on the `/goal-opencode` command's action set (`bind`, `resent`, `packet`, `set`, `show`, `history`, `doctor`, `health`, `clear`, `complete`, `pause`, `resume`), the `opencode_goal` / `opencode_goal_status` tool contract those actions route through, per-OpenCode-session goal state, native OpenCode token accounting, and the `experimental.chat.system.transform` injection that steers the model with a passive `[active_goal]` block.
 
 `opencode-goal` (`.opencode/plugins/opencode-goal.js`) is a separate system from the runtime-neutral Pi/Cursor core under `.opencode/hooks/goal/` (see `CE-P03` in the hub playbook). It stores one file per OpenCode session as `<full-sha256-of-session-id>.json`, so filenames are fixed-length and do not expose a reversible session identifier. When a digest-keyed file is absent, a valid earlier hex-keyed file is adopted lazily only after its embedded session id is validated; an occupied digest target remains authoritative. Native `message.updated` events remain the source of `tokens_used`, not a turn-count estimate. Full contract: `.opencode/hooks/goal/goal-plugin.md`.
 
@@ -43,7 +43,8 @@ Operators run the exact prompt and command sequence for `CO-039` and confirm the
 ### Recommended Orchestration Process
 
 1. Restate the user request and confirm the scenario ID.
-2. Confirm `.opencode/plugins/opencode-goal.js` and the 7 `.opencode/plugins/tests/opencode-goal-*.test.cjs` suites exist.
+2. Confirm `.opencode/plugins/opencode-goal.js` and the 7 `.opencode/plugins/tests/opencode-goal-*.test.cjs` suites exist, and that the plugin resolves `.opencode/hooks/goal/lib/goal-slice.cjs` (a missing slice module fails the whole plugin load).
+2a. Drive `opencode_goal({ action: "bind", packetPath })` against a scratch packet with a `goal.md`, confirm `packet_bound=true` and `resend_pending=true`, confirm the transform output carries the packet objective, no frontmatter and a `[goal_resend_pending]` line, then `resent` and confirm the line is gone.
 3. Confirm `node -e "import('./.opencode/plugins/opencode-goal.js')"` succeeds from the repository root; do not add temporary dependency links.
 4. In a scratch script, instantiate the plugin with a fresh `stateDir` and drive the full action set against two normal session ids plus one 140-character id.
 5. Assert every new state basename is a 64-character lowercase SHA-256 digest plus `.json`, with no raw or legacy hex session id present.

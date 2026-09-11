@@ -1,7 +1,7 @@
 ---
 title: "454 -- Goal OpenCode plugin active-goal injection and status"
 description: "Manual scenario validating the local /goal OpenCode plugin, active-goal injection preview, prompt metadata, and restart boundary."
-version: 3.7.0.1
+version: 3.8.0.0
 id: ux-hooks-goal-opencode-plugin
 expected_workflow_mode: system-spec-kit
 expected_leaf_resources:
@@ -24,8 +24,8 @@ This scenario validates that the local `/goal` OpenCode plugin owns session-goal
 - Objective: Verify `/goal set` persists a goal, generates `goalPrompt` metadata, and exposes an `[active_goal]` injection preview through plugin status.
 - Real user request: `Set a goal to finish the goal plugin docs integration, then show me the active goal status and the injection preview.`
 - Prompt: `Validate the /goal plugin active-goal injection and status surface.`
-- Expected execution process: Restart OpenCode after plugin edits, run `/goal set <objective> --budget N`, run `/goal show`, run `/goal history`, run `/goal doctor` or `/goal health`, run `/goal pause <reason>`, run `/goal resume`, inspect each status envelope, validate `OPENCODE_GOAL_VERIFIER=heuristic` and optional `OPENCODE_GOAL_VERIFIER=llm`, and compare it with the plugin unit tests when a direct runtime check is unavailable.
-- Expected signals: `STATUS=OK ACTION=set`, `STATUS=OK ACTION=show`, `STATUS=OK ACTION=history`, `STATUS=OK ACTION=doctor` or `STATUS=OK ACTION=health`, `STATUS=OK ACTION=resume`, `goal_prompt=`, `prompt_framework="CRAFT+TIDD-EC"`, `prompt_max_chars=4000`, `token_budget=`, `remaining_auto_turns=`, `remaining_wall_ms=`, `provider_retry_after_ms=`, `verifier_source=none|injected|default-heuristic|default-llm`, `mutation=created|refreshed|replaced` on set, `store_health=` on status/set output, and an injection preview containing `[active_goal:<goalId>]` plus `goal_prompt:`.
+- Expected execution process: Restart OpenCode after plugin edits, run `/goal bind <packet-path>` against a packet that carries a `goal.md`, run `/goal show` and confirm `packet_bound=true` and an injection preview whose `objective:` starts with `Execute <packet>/goal.md.` and carries no frontmatter, run `/goal resent` and confirm `resend_pending=false`, run `/goal packet <packet-path>` and confirm `chat_slice=` carries no `title:` line, then run `/goal set <objective> --budget N`, run `/goal show`, run `/goal history`, run `/goal doctor` or `/goal health`, run `/goal pause <reason>`, run `/goal resume`, inspect each status envelope, validate `OPENCODE_GOAL_VERIFIER=heuristic` and optional `OPENCODE_GOAL_VERIFIER=llm`, and compare it with the plugin unit tests when a direct runtime check is unavailable.
+- Expected signals: `STATUS=OK ACTION=bind` with `mutation=bound`, `packet_bound=true`, `resend_pending=true`, `STATUS=OK ACTION=resent` with `resend_pending=false`, `STATUS=OK ACTION=packet` with `packet_slice_hash=`, `STATUS=OK ACTION=set`, `STATUS=OK ACTION=show`, `STATUS=OK ACTION=history`, `STATUS=OK ACTION=doctor` or `STATUS=OK ACTION=health`, `STATUS=OK ACTION=resume`, `goal_prompt=`, `prompt_framework="CRAFT+TIDD-EC"`, `prompt_max_chars=4000`, `token_budget=`, `remaining_auto_turns=`, `remaining_wall_ms=`, `provider_retry_after_ms=`, `verifier_source=none|injected|default-heuristic|default-llm`, `mutation=created|refreshed|replaced` on set, `store_health=` on status/set output, and an injection preview containing `[active_goal:<goalId>]` plus `goal_prompt:`.
 - Desired user-visible outcome: A concise pass/fail verdict with the exact status lines or unit-test evidence.
 - Pass/fail: PASS if tool status and injection preview include the active goal plus prompt metadata; FAIL if `/goal` reads state directly from command markdown, omits `goal_prompt`, or requires MCP daemon state.
 
@@ -42,6 +42,7 @@ As an OpenCode runtime validation operator, restart OpenCode if plugin files cha
 ### Commands
 
 1. Restart OpenCode after any `.opencode/plugins/opencode-goal.js` or `.opencode/commands/goal-opencode.md` edit.
+1a. `/goal bind specs/<track>/<packet>` for a packet that carries a `goal.md`, then `/goal show`, `/goal resent`, `/goal packet specs/<track>/<packet>`.
 2. `/goal set Finish the goal plugin docs integration and validate it`
 3. `/goal show`
 4. `/goal set Finish the goal plugin docs integration and validate it --budget 1234`
@@ -177,7 +178,7 @@ injection_preview="[active_goal:goal-b7a3ad9a-f1a6-4787-8eb8-3c413c78a894]\nstat
 - **PASS**: active goal state, `goal_prompt=`, `prompt_framework="CRAFT+TIDD-EC"`, `prompt_max_chars=4000`, `mutation=created`, `store_health=`, `verifier_source=none` before verification, and injection preview with `[active_goal:goal-b7a3ad9a-f1a6-4787-8eb8-3c413c78a894]` plus `goal_prompt:` were visible from plugin-owned tool output.
 
 - **Pass**: active goal state, prompt metadata, and injection preview are visible and owned by plugin tools.
-- **Fail**: command markdown reads state directly, status lacks prompt metadata, set output omits `mutation=`, status/set output omits `store_health=` or `verifier_source=`, `/goal history` omits `archive_count=`, `/goal doctor` or `/goal health` omits `orphan_candidate_count=`, `/goal resume` cannot reactivate a paused goal, `OPENCODE_GOAL_VERIFIER=heuristic` false-completes weak evidence, `OPENCODE_GOAL_VERIFIER=llm` cannot reach `ctx.client.session.promptAsync` when enabled, `OPENCODE_GOAL_MAX_AUTO_TURNS` or `OPENCODE_GOAL_MAX_WALL_MS` is ignored, or injection preview omits `goal_prompt:`.
+- **Fail**: a bound goal's injection preview or `chat_slice` carries a `---` fence or a `session_id:` line, `bind` accepts a path outside the workspace, `resent` does not clear `resend_pending`, command markdown reads state directly, status lacks prompt metadata, set output omits `mutation=`, status/set output omits `store_health=` or `verifier_source=`, `/goal history` omits `archive_count=`, `/goal doctor` or `/goal health` omits `orphan_candidate_count=`, `/goal resume` cannot reactivate a paused goal, `OPENCODE_GOAL_VERIFIER=heuristic` false-completes weak evidence, `OPENCODE_GOAL_VERIFIER=llm` cannot reach `ctx.client.session.promptAsync` when enabled, `OPENCODE_GOAL_MAX_AUTO_TURNS` or `OPENCODE_GOAL_MAX_WALL_MS` is ignored, or injection preview omits `goal_prompt:`.
 
 ### Failure Triage
 

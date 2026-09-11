@@ -77,9 +77,9 @@ Codex fires **no** permission event at all (real capability gap); Claude *has* `
 **Codex fires no confirmed agent-spawn event, so there is nothing to intercept.**
 Claude/Cursor/Devin fire a tool event for the spawn and OpenCode/Pi expose a subagent `tool_call`; Codex's `PreToolUse` only covers known tools like `exec`. (Pi is `~ partial` — direct calls only.)
 
-### `goal` — folders on **cursor, opencode, pi**
+### `goal` — folders on **cursor, devin, opencode, pi**
 **Ships only where a session-bound command identity exists to drive it.**
-Per the goal contract: OpenCode has `opencode-goal` + `/goal-opencode`, Pi has a native extension + `/goal-pi`, Cursor has a partial `sessionStart` hook; Claude is explicitly *"outside this contract,"* and Codex/Devin ship no adapter.
+Per the goal contract: OpenCode has `opencode-goal` + `/goal-opencode`, Pi has a native extension + `/goal-pi`, Cursor has a `sessionStart` hook plus a session-free packet read, Devin has an injection-only hook on `SessionStart` and `UserPromptSubmit`; Claude and Codex keep their native host goal command and reach the packet goal through the speckit workflows.
 
 ### `git-preflight` — covered on **all six** (not a gap)
 **The four editors share one `shared/` adapter instead of a copy each; only opencode and pi carry runtime-native subfolders.**

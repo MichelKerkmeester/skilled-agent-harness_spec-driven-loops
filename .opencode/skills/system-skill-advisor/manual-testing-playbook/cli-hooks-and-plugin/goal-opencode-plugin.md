@@ -6,7 +6,7 @@ trigger_phrases:
   - "goal opencode plugin"
   - "/goal command"
   - "opencode_goal"
-version: 0.8.0.33
+version: 0.8.1.0
 id: CL-007
 category: cli_hooks_and_plugin
 stage: routing
@@ -34,7 +34,7 @@ Validate that `/goal` routes through the OpenCode plugin tools, persists per-ses
 ## 2. SCENARIO CONTRACT
 
 - OpenCode plugin host can load `.opencode/plugins/opencode-goal.js`.
-- `/goal` command exists at `.opencode/commands/goal_opencode.md`.
+- `/goal` command exists at `.opencode/commands/goal-opencode.md` and routes `bind`, `resent` and `packet` alongside the lifecycle actions.
 - Use a disposable session or temporary `stateDir` so existing session goals are not overwritten.
 - Live OpenCode-run tool invocation is verified (an `opencode serve` run lists `opencode_goal`/`opencode_goal_status` and a live model turn persists per-session state); when a live session is unavailable in this run, execute the plugin tool path directly and record that as the fallback, not as an open blocker.
 
@@ -42,7 +42,7 @@ Validate that `/goal` routes through the OpenCode plugin tools, persists per-ses
 
 ## 3. TEST EXECUTION
 
-1. Run the state and tool-path tests:
+1. Run the state and tool-path tests (the tool-path suite covers packet bind, resent, packet read and the injected resend reminder):
 
 ```bash
 node .opencode/plugins/tests/opencode-goal-state.test.cjs

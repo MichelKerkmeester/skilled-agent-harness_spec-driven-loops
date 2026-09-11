@@ -103,11 +103,11 @@ See [`cli-dispatch-authorization/cli-dispatch-authorization.md`](cli-dispatch-au
 
 #### Description
 
-The runtime-neutral goal core stores one active goal per workspace, runtime, and native session id. Pi supplies identity through its extension session manager; Cursor supplies identity to its `sessionStart` hook. The OpenCode-native `opencode-goal` plugin remains a separate per-session system.
+The runtime-neutral goal core stores one record per workspace, runtime, and native session id, and binds that session to a spec packet whose `goal.md` is the directive. Pi supplies identity through its extension session manager; Cursor supplies identity to its `sessionStart` hook; Devin supplies it to its `SessionStart` and `UserPromptSubmit` hooks. The OpenCode-native `opencode-goal` plugin remains a separate per-session system that shares the packet slice module.
 
 #### Current Reality
 
-Pi has a native registered `/goal-pi` management command plus session-bound injection and turn-end verification. Cursor has session-bound injection but no safe management bridge, so `/goal-cursor` fails with `UNSUPPORTED_SESSION_BINDING`. Claude Code has no repository adapter or goal command; any separate live native capability is unverified here. Codex has no adapter. Legacy `active-goal.json` is never injected automatically and can only be inspected, migrated to an explicit validated scope, or archived. Aggregate diagnostics expose counts and classification without raw session ids.
+Pi has a native registered `/goal-pi` management command (bind, resent, log, packet, set and the lifecycle actions) plus session-bound injection with the resend reminder and turn-end verification. Cursor has session-bound injection with the reminder and a session-free `/goal-cursor packet <path>` read; every management action still fails with `UNSUPPORTED_SESSION_BINDING`. Devin is injection-only through `.opencode/hooks/goal/devin/goal-inject.mjs`. Claude Code and Codex keep their native host goal command and reach the packet goal through the speckit workflows. Legacy `active-goal.json` is never injected automatically and can only be inspected, migrated to an explicit validated scope, or archived. Aggregate diagnostics expose counts and classification without raw session ids.
 
 #### Source Files
 

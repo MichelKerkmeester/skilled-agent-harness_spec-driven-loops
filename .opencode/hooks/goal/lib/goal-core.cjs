@@ -34,6 +34,7 @@ const { dirname, isAbsolute, join, relative, resolve, sep } = require('node:path
 const { createHash, randomUUID } = require('node:crypto');
 
 const { isHookEnabled } = require('../../shared/hook-flags.cjs');
+const goalSlice = require('./goal-slice.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -72,6 +73,12 @@ const OBJECTIVE_PREVIEW_MAX_CHARS = 600;
 const VALID_STATUSES = new Set(['active', 'paused', 'completed', 'cleared']);
 const ACTIONS = [
   'set',
+  'bind',
+  'unbind',
+  'resent',
+  'log',
+  'packet',
+  'packet-log',
   'show',
   'clear',
   'complete',
@@ -380,15 +387,26 @@ function calculateObjectivePreviewChars(maxInjectionChars) {
  * native token feed exists outside OpenCode. Falls back to a compact block
  * (same shape as opencode-goal's fallback) when over `maxChars`.
  */
-function renderGoalBrief({ goal, runtimeLabel = 'cross-runtime', maxChars = DEFAULT_MAX_INJECTION_CHARS } = {}) {
+function renderGoalBrief({ goal, runtimeLabel = 'cross-runtime', maxChars = DEFAULT_MAX_INJECTION_CHARS, workspace = null } = {}) {
   if (!goal || goal.status !== 'active') return '';
+  // A bound session renders from the packet goal.md, never from a remembered
+  // copy: the file is the source and the record only points at it. A bound
+  // record whose document is gone is unbound and injects nothing.
+  let objectiveSource = goal.objective;
+  let promptSource = goal.goalPrompt || goal.objective;
+  if (typeof goal.packetPath === 'string' && goal.packetPath) {
+    const packet = resolvePacketGoal(goal, workspace);
+    if (!packet) return '';
+    objectiveSource = packet.objectiveSlice;
+    promptSource = buildGoalPrompt(packet.objectiveSlice, { runtimeLabel });
+  }
   const objectivePreviewLimit = calculateObjectivePreviewChars(maxChars);
-  const objective = sanitizeInlineText(goal.objective, Math.min(DEFAULT_MAX_OBJECTIVE_CHARS, objectivePreviewLimit));
+  const objective = sanitizeInlineText(objectiveSource, Math.min(DEFAULT_MAX_OBJECTIVE_CHARS, objectivePreviewLimit));
   // The Role line is baked at set time from the runtime that created the goal,
   // but the brief should name whichever runtime is reading it now. Relabel it
   // to the caller's runtime so a goal set in one CLI reads correctly in another.
   const safeRuntimeLabel = String(runtimeLabel).replace(/[^A-Za-z0-9 _-]/g, '').trim().slice(0, 40) || 'cross-runtime';
-  const storedPrompt = sanitizePromptText(goal.goalPrompt || goal.objective, DEFAULT_MAX_GOAL_PROMPT_CHARS);
+  const storedPrompt = sanitizePromptText(promptSource, DEFAULT_MAX_GOAL_PROMPT_CHARS);
   const goalPrompt = storedPrompt.replace(
     /^Role: Focused .+? execution agent operating under the active session goal\./m,
     `Role: Focused ${safeRuntimeLabel} execution agent operating under the active session goal.`,
@@ -409,6 +427,10 @@ function renderGoalBrief({ goal, runtimeLabel = 'cross-runtime', maxChars = DEFA
     'goal_prompt:',
     promptText,
     `last_check: ${verdict} ; reason: ${reason}`,
+    // Every label here is shared with the OpenCode plugin's renderer and
+    // pinned by a parity test. The one intended difference is this line's
+    // content: no runtime here exposes a native token feed, so the count is
+    // honestly absent and the iteration is a turn estimate.
     `usage: tokens n/a/${tokenBudget}; time ${timeUsedSeconds}s; iteration ${turnsUsed} (source: ${USAGE_SOURCE})`,
     directive,
     '[/active_goal]',
@@ -859,6 +881,257 @@ function archiveLegacyGoal(rawOptions = {}) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
+// 9b. PACKET BINDING (the packet goal.md is the source of the directive)
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Read the bound packet's goal document for a record. Null when the record is
+ * unbound or the document is gone, and every caller treats null as unbound:
+ * no injection, no fallback to a remembered objective.
+ */
+function resolvePacketGoal(record, workspace) {
+  if (!record || typeof record.packetPath !== 'string' || !record.packetPath) return null;
+  const root = typeof workspace === 'string' && workspace ? workspace : record.workspace;
+  if (!root) return null;
+  return goalSlice.readPacketGoal(root, record.packetPath);
+}
+
+// A packet lock is keyed on the packet's real path, so an alias and its
+// target contend, and it lives under the workspace's own state root rather
+// than whatever state dir a session was given, so two sessions that keep
+// their records in different places still serialize their appends.
+function packetLockName(packetRealPath) {
+  return `packet:${createHash('sha256').update(packetRealPath, 'utf8').digest('hex')}`;
+}
+
+// The packet lock root is the workspace's own state directory, and it
+// deliberately ignores the record-store override. Mutual exclusion over a file
+// two sessions share cannot depend on where each session keeps its private
+// records: honoring the override gives each session its own lock, and the
+// appends interleave and lose rows. The lock belongs to the packet, and the
+// packet belongs to the workspace.
+function packetLockRoot(workspace) {
+  return join(workspace, STATE_SUBDIR);
+}
+
+// A log row is table text: a pipe would split the row and an HTML comment
+// could open or close an anchor, so both are neutralized before the write.
+function sanitizeLogCell(value, maxChars) {
+  return sanitizeInlineText(value, maxChars)
+    .replace(/<!--/g, '<! --')
+    .replace(/-->/g, '-- >')
+    .replace(/\|/g, '/');
+}
+
+/** Atomic text write for a tracked document: temp, fsync, rename, default mode. */
+function writeTextAtomic(targetPath, text) {
+  const tempPath = `${targetPath}.${process.pid}.${Date.now()}.tmp`;
+  let fd = null;
+  try {
+    fd = openSync(tempPath, 'w');
+    writeSync(fd, text, null, 'utf8');
+    fsyncSync(fd);
+    closeSync(fd);
+    fd = null;
+    renameSync(tempPath, targetPath);
+  } catch (error) {
+    if (fd !== null) {
+      try { closeSync(fd); } catch { /* already closed */ }
+    }
+    try { unlinkSync(tempPath); } catch { /* nothing to clean up */ }
+    throw new GoalError('WRITE_GOAL_FAILED', `Failed to write goal document: ${error.message}`);
+  }
+}
+
+/**
+ * Bind the session to a packet. The packet's goal.md becomes the directive;
+ * the record keeps only the pointer, the operator copy derived from it, and
+ * bookkeeping. Binding never guesses: the path must resolve inside the
+ * workspace and the document must exist.
+ */
+function bindGoal({ packetPath, tokenBudget = null, runtimeLabel = null } = {}, rawOptions = {}) {
+  if (isPluginDisabled()) throw new GoalError('PLUGIN_DISABLED', `${DISABLED_ENV}=1 disables goal core execution`);
+  return withScopeMutation(rawOptions, (goalScope) => {
+    const packet = goalSlice.readPacketGoal(goalScope.workspace, packetPath);
+    if (!packet) throw new GoalError('PACKET_GOAL_NOT_FOUND', 'No goal.md at that packet path inside the workspace');
+    const current = readGoalRecordForScope(goalScope);
+    const nowMsValue = Date.now();
+    const promptRuntimeLabel = runtimeLabel || goalScope.runtime;
+    const objective = sanitizeInlineText(packet.objectiveSlice, DEFAULT_MAX_OBJECTIVE_CHARS);
+    const goalPrompt = buildGoalPrompt(packet.objectiveSlice, { runtimeLabel: promptRuntimeLabel });
+    const base = current && (current.status === 'active' || current.status === 'paused')
+      ? { ...current, status: 'active', revision: (current.revision || 0) + 1 }
+      : buildNewRecord(objective, goalPrompt, tokenBudget, goalScope.runtime, nowMsValue);
+    // A rebind to a different packet, or a bind over a terminal record, leaves
+    // the prior record behind in the archive so history keeps it.
+    if (current && (current.packetPath !== packet.packetPath || base !== current && current.status !== 'active' && current.status !== 'paused')) {
+      archiveGoalRecord(current, goalScope);
+    }
+    const record = {
+      ...base,
+      objective,
+      goalPrompt,
+      tokenBudget: tokenBudget ?? base.tokenBudget ?? null,
+      packetPath: packet.packetPath,
+      workspace: goalScope.workspace,
+      boundAtMs: nowMsValue,
+      boundBy: goalScope.runtime,
+      lastResentSliceHash: base.packetPath === packet.packetPath ? (base.lastResentSliceHash || null) : null,
+      updatedAt: isoFromMs(nowMsValue),
+      updatedAtMs: nowMsValue,
+      lastActivityAtMs: nowMsValue,
+      runtime: goalScope.runtime,
+    };
+    writeJsonAtomic(goalScope.statePath, record);
+    return { record, packet, mutation: current ? 'rebound' : 'bound' };
+  });
+}
+
+/** Drop the packet pointer. The record and its operator copy stay as they are. */
+function unbindGoal(rawOptions = {}) {
+  if (isPluginDisabled()) throw new GoalError('PLUGIN_DISABLED', `${DISABLED_ENV}=1 disables goal core execution`);
+  return withScopeMutation(rawOptions, (goalScope) => {
+    const current = requireCurrentGoal(goalScope);
+    const nowMsValue = Date.now();
+    const record = { ...current, updatedAt: isoFromMs(nowMsValue), updatedAtMs: nowMsValue, revision: (current.revision || 0) + 1 };
+    delete record.packetPath;
+    delete record.boundAtMs;
+    delete record.boundBy;
+    delete record.lastResentSliceHash;
+    writeJsonAtomic(goalScope.statePath, record);
+    return { record, mutation: 'unbound' };
+  });
+}
+
+/**
+ * Session-free read of a packet's goal document: what any runtime may show
+ * without a session identity, because it binds nothing and writes nothing.
+ * Returns null when the path escapes the workspace or has no goal document.
+ */
+function describePacketGoal(packetPath, rawOptions = {}) {
+  const workspaceStart = typeof rawOptions.workspace === 'string' && rawOptions.workspace.trim()
+    ? rawOptions.workspace.trim()
+    : rawOptions.cwd || process.cwd();
+  const workspace = resolveRepoRoot(workspaceStart);
+  const packet = goalSlice.readPacketGoal(workspace, packetPath);
+  if (!packet) return null;
+  return {
+    packetPath: packet.packetPath,
+    nested: packet.nested,
+    durableChars: packet.durableChars,
+    budgetState: packet.budgetState,
+    hash: packet.hash,
+    chatSlice: packet.chatSlice,
+    objectiveSlice: packet.objectiveSlice,
+  };
+}
+
+/**
+ * The one-line reminder a runtime appends to its injection while the operator
+ * copy is behind the packet. It never blocks and never repeats a resend on its
+ * own; it tells the agent to do both.
+ */
+function renderResendReminder(goal, workspace, options = {}) {
+  if (!goal || goal.status !== 'active' || !resendPending(goal, workspace)) return '';
+  return goalSlice.renderResendReminderText(goal.packetPath, options);
+}
+
+/**
+ * Whether the operator's copy is behind the packet. True when the durable
+ * slice hash differs from the one last resent; a log edit never changes it.
+ */
+function resendPending(record, workspace) {
+  const packet = resolvePacketGoal(record, workspace);
+  if (!packet) return false;
+  return packet.hash !== (record.lastResentSliceHash || null);
+}
+
+/**
+ * The truth about a record's packet: `unbound` when it never pointed at one,
+ * `bound` when the document resolves, `missing` when the pointer is set but
+ * the document is gone or escapes the workspace. Injection is silent in the
+ * missing case, so the envelope must say why.
+ */
+function packetState(record, workspace) {
+  if (!record || typeof record.packetPath !== 'string' || !record.packetPath) return 'unbound';
+  return resolvePacketGoal(record, workspace) ? 'bound' : 'missing';
+}
+
+/** Record that the current durable slice was resent in chat, so the reminder stops. */
+function noteResent(rawOptions = {}) {
+  if (isPluginDisabled()) throw new GoalError('PLUGIN_DISABLED', `${DISABLED_ENV}=1 disables goal core execution`);
+  return withScopeMutation(rawOptions, (goalScope) => {
+    const current = requireCurrentGoal(goalScope);
+    const packet = resolvePacketGoal(current, goalScope.workspace);
+    if (!packet) throw new GoalError('PACKET_GOAL_NOT_FOUND', 'The bound packet goal.md is missing');
+    const nowMsValue = Date.now();
+    const record = { ...current, lastResentSliceHash: packet.hash, updatedAt: isoFromMs(nowMsValue), updatedAtMs: nowMsValue };
+    writeJsonAtomic(goalScope.statePath, record);
+    return { record, packet, mutation: 'resent' };
+  });
+}
+
+/**
+ * Append one row to a packet goal's progress table without needing a session
+ * record. The log is the only region tooling may write unprompted; it sits
+ * below the durable slice, so the hash and the operator copy are untouched.
+ * Serialized per packet on its real path, under the workspace's state root,
+ * so two sessions appending at once cannot interleave whatever state dir
+ * each keeps its record in. The OpenCode plugin calls this directly.
+ */
+function appendPacketLog({ workspace, packetPath, item, state = 'Done', evidence = '' } = {}) {
+  const safeItem = sanitizeLogCell(item, 200);
+  if (!safeItem) throw new GoalError('INVALID_LOG_ITEM', 'A log item is required');
+  const safeState = sanitizeLogCell(state, 40) || 'Done';
+  const safeEvidence = sanitizeLogCell(evidence, 400);
+  const root = resolveRepoRoot(workspace || process.cwd());
+  const packet = goalSlice.readPacketGoal(root, packetPath);
+  if (!packet) throw new GoalError('PACKET_GOAL_NOT_FOUND', 'No goal.md at that packet path inside the workspace');
+  return withFileLocks(packetLockRoot(root), [packetLockName(packet.packetRealPath)], () => {
+    const content = readFileSync(packet.goalPath, 'utf8');
+    const hashBefore = goalSlice.durableSliceHash(content);
+    const logIndex = content.indexOf(goalSlice.LOG_ANCHOR);
+    if (logIndex < 0) throw new GoalError('GOAL_LOG_MISSING', 'The goal document has no log anchor');
+    const row = `| ${safeItem} | ${safeState} | ${safeEvidence} |`;
+    const head = content.slice(0, logIndex);
+    const tail = content.slice(logIndex);
+    // A CRLF document keeps CRLF: the inserted row reuses the terminator the
+    // file already uses, so one append never mixes line endings.
+    const terminator = /\r\n/.test(content) ? '\r\n' : '\n';
+    // The progress table is the first table in the log; its last row is where
+    // a new row goes. Without a table the row lands right after the heading.
+    const lines = tail.split(terminator);
+    let insertAt = -1;
+    let inTable = false;
+    for (let index = 0; index < lines.length; index += 1) {
+      const isRow = /^\|.*\|\s*$/.test(lines[index]);
+      if (isRow) { inTable = true; insertAt = index; continue; }
+      if (inTable) break;
+    }
+    if (insertAt < 0) {
+      throw new GoalError('GOAL_LOG_MISSING', 'The goal log has no progress table to append to');
+    }
+    lines.splice(insertAt + 1, 0, row);
+    const updated = head + lines.join(terminator);
+    if (goalSlice.durableSliceHash(updated) !== hashBefore) {
+      throw new GoalError('GOAL_LOG_WRITE_REFUSED', 'A log append must not change the durable slice');
+    }
+    writeTextAtomic(packet.goalPath, updated);
+    return { packetPath: packet.packetPath, row };
+  });
+}
+
+/** Append a log row against the session's bound packet. */
+function appendGoalLog({ item, state = 'Done', evidence = '' } = {}, rawOptions = {}) {
+  if (isPluginDisabled()) throw new GoalError('PLUGIN_DISABLED', `${DISABLED_ENV}=1 disables goal core execution`);
+  const goalScope = resolveGoalScope(rawOptions);
+  const current = readGoalRecordForScope(goalScope);
+  const packet = resolvePacketGoal(current, goalScope.workspace);
+  if (!packet) throw new GoalError('PACKET_GOAL_NOT_FOUND', 'No bound packet goal.md to log against');
+  return appendPacketLog({ workspace: goalScope.workspace, packetPath: packet.packetPath, item, state, evidence });
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 // 10. GOAL LIFECYCLE
 // ─────────────────────────────────────────────────────────────────────────────
 
@@ -898,6 +1171,10 @@ function setGoal({ objective, tokenBudget = null, runtimeLabel = null } = {}, ra
   if (isPluginDisabled()) throw new GoalError('PLUGIN_DISABLED', `${DISABLED_ENV}=1 disables goal core execution`);
   const sanitizedObjective = sanitizeInlineText(objective, DEFAULT_MAX_OBJECTIVE_CHARS);
   if (!sanitizedObjective) throw new GoalError('INVALID_OBJECTIVE', 'Objective is required');
+  // A text objective past the cap is clamped, and a clamp is a silent loss of
+  // whatever sat at the tail, which is where criteria live. Report it.
+  const rawLength = String(objective || '').length;
+  const truncated = rawLength > DEFAULT_MAX_OBJECTIVE_CHARS;
 
   return withScopeMutation(rawOptions, (goalScope) => {
     const current = readGoalRecordForScope(goalScope);
@@ -935,7 +1212,7 @@ function setGoal({ objective, tokenBudget = null, runtimeLabel = null } = {}, ra
     }
 
     writeJsonAtomic(goalScope.statePath, record);
-    return { record, mutation };
+    return { record, mutation, truncated: truncated ? { rawLength, maxChars: DEFAULT_MAX_OBJECTIVE_CHARS } : null };
   });
 }
 
@@ -1153,6 +1430,16 @@ module.exports = {
   renderGoalBrief,
   verifyGoalHeuristic,
   setGoal,
+  bindGoal,
+  unbindGoal,
+  noteResent,
+  resendPending,
+  resolvePacketGoal,
+  packetState,
+  describePacketGoal,
+  renderResendReminder,
+  appendPacketLog,
+  appendGoalLog,
   showGoal,
   clearGoal,
   completeGoal,

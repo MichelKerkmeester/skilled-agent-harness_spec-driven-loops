@@ -1,0 +1,116 @@
+{
+  "topic": "Independent review of the goal unification build: packet goal.md as the single goal source across runtimes",
+  "mode": "review",
+  "reviewTarget": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "reviewScopeFiles": [
+    ".opencode/hooks/goal/lib/goal-slice.cjs",
+    ".opencode/hooks/goal/lib/goal-core.cjs",
+    ".opencode/hooks/goal/bin/goal.cjs",
+    ".opencode/hooks/goal/pi/goal-context.ts",
+    ".opencode/hooks/goal/cursor/goal-inject.mjs",
+    ".opencode/hooks/goal/devin/goal-inject.mjs",
+    ".opencode/plugins/opencode-goal.js",
+    ".opencode/skills/system-spec-kit/runtime/lib/validation/spec-doc-structure.ts",
+    ".opencode/skills/system-spec-kit/runtime/lib/templates/level-contract-resolver.ts",
+    ".opencode/skills/system-spec-kit/templates/addons/goal.md.tmpl",
+    ".opencode/skills/system-spec-kit/templates/spec-kit-docs.json",
+    ".opencode/skills/system-spec-kit/references/workflows/goal-set-string-playbook.md",
+    ".opencode/commands/speckit/assets/speckit-plan.yaml",
+    ".opencode/commands/speckit/assets/speckit-implement.yaml",
+    ".opencode/commands/speckit/assets/speckit-complete.yaml",
+    ".opencode/commands/speckit/assets/speckit-resume-auto.yaml",
+    ".opencode/commands/speckit/assets/speckit-resume-confirm.yaml",
+    ".opencode/commands/goal-opencode.md",
+    ".cursor/commands/goal-cursor.md",
+    "AGENTS.md",
+    "specs/system-speckit/033-system-speckit-v4/036-goal-unification/002-decisions-and-contract-freeze/decision-record.md"
+  ],
+  "sessionId": "fanout-deepseek-review-1789117367422-11rap2",
+  "parentSessionId": null,
+  "lineageMode": "auto",
+  "generation": 1,
+  "continuedFromRun": null,
+  "maxIterations": 3,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "minIterations": 1,
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations",
+    "divergent": {}
+  },
+  "stopPolicy": "max-iterations",
+  "stuckThreshold": 2,
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "overlay": [
+      "skill_agent",
+      "agent_cross_runtime",
+      "feature_catalog_code",
+      "playbook_capability"
+    ]
+  },
+  "qualityGateThreshold": true,
+  "releaseReadinessState": "release-blocking",
+  "specFolder": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification",
+  "createdAt": "2026-09-11T09:03:00Z",
+  "status": "complete",
+  "verdict": "CONDITIONAL",
+  "stopReason": "maxIterationsReached",
+  "executionMode": "AUTONOMOUS",
+  "executor": {
+    "kind": "cli-pi",
+    "model": "deepseek-v4.1-flash",
+    "reasoningEffort": "max",
+    "serviceTier": null,
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 900
+  },
+  "fanoutOverride": {
+    "artifactDir": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review",
+    "note": "artifact_dir bound directly to config.fanout_lineage_artifact_dir; resolveArtifactRoot not executed."
+  },
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    "review-report.md": "mutable",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": [
+      "latestJSONLDelta",
+      "newIterationFile",
+      "priorReducedState"
+    ],
+    "outputs": [
+      "findingsRegistry",
+      "dashboardMetrics",
+      "strategyUpdates"
+    ],
+    "metrics": [
+      "dimensionsCovered",
+      "findingsBySeverity",
+      "openFindings",
+      "resolvedFindings",
+      "convergenceScore"
+    ]
+  }
+}

@@ -1,0 +1,8 @@
+**Lineage complete.** All six phases closed, every check green:
+
+- **Iterations 11-15** written (5/5, statuses `complete`×4 + `thought`×1) with deltas, event records, and a 6-line append-only state log — 33 evidence calls total (12/9/4/8/0, each iteration inside the 8-11 target or the 12 ceiling), 8 ruled-out directions, 27 corrections registered.
+- **Terminal synthesis** carries the required stop reason in all three places: `research.md` (`stop_reason: "maxIterationsReached"`), `synthesis.json` (`"stopReason": "maxIterationsReached"`), `convergence-report.md` (frontmatter + final_status).
+- **Verdict**: run 2 overturns **no** chosen run-1 option — it corrects the foundations of five (D1/D3/D4/D5/D7), changes one recommendation (D6: O8-A → O8-B, on 036's own 3,393-3,732-char warming-zone measurement at 5% completion), and closes 3 of 5 inherited gaps (G3→`009:152`; G4→the tmpl:77-78 naming principle; G5→measured). The 576-preview truncation is live (1,182 vs 576 on this very packet), and the prompt-ceiling mechanism was corrected to the dynamic `:417-418` label-clamp (≈3,875-3,910, INFERRED, confirming call named).
+- **Containment**: every write inside `research/lineages/glm/` (26 files, verified); no repo tooling run — no node, no `validate.sh`, no git writes; only read-only verification.
+
+FANOUT_LINEAGE_COMPLETE:glm

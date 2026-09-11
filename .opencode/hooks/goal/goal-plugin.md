@@ -29,15 +29,18 @@ This is a local OpenCode plugin contract, not an MCP tool and not a daemon-backe
 | Surface | Path | Role |
 |---|---|---|
 | Plugin | `.opencode/plugins/opencode-goal.js` | Auto-loaded OpenCode plugin with `event`, `experimental.chat.system.transform`, `opencode_goal`, and `opencode_goal_status`. |
-| Command | `.opencode/commands/goal-opencode.md` | State-free `/goal` router for `set`, `show`, `history`, `doctor`, `health`, `clear`, `complete`, `pause`, and `resume`. |
-| State | `.opencode/skills/.state/goal/` | Runtime JSON state, keyed by a fixed SHA-256 digest of the session id, intentionally outside spec docs. |
+| Command | `.opencode/commands/goal-opencode.md` | State-free `/goal` router for `bind`, `unbind`, `resent`, `log`, `packet`, `set`, `show`, `history`, `doctor`, `health`, `clear`, `complete`, `pause`, and `resume`. |
+| State | `.opencode/skills/.state/goal/` | Per-session JSON record keyed by a fixed SHA-256 digest of the session id: the packet pointer, the operator copy, liveness and telemetry. The directive is the bound packet's `goal.md`. |
+| Slice | `.opencode/hooks/goal/lib/goal-slice.cjs` | The packet goal projections the plugin renders from; shared with the runtime-neutral core so the frontmatter boundary is defined once. |
 | Tests | `.opencode/plugins/tests/opencode-goal-*.test.cjs` | Unit coverage for state, tool path, lifecycle, supervisor, continuation, export contract, and injection behavior. |
 
 ---
 
 ## 3. BEHAVIOR CONTRACT
 
-- `/goal set <objective>` stores a sanitized raw `objective`, derives a deterministic `goalPrompt`, and records prompt metadata under `promptEnhancement`.
+- `/goal bind <packet-path>` resolves the path inside the workspace, refuses anything outside it or without a `goal.md`, derives the objective from the file (pointer, binding sentence when phased, criteria copied out) and stores `packetPath`. From then on injection renders from the file on every turn; a bound goal whose file is gone injects nothing.
+- `/goal resent` records the durable-slice hash that was resent in chat so `resend_pending` clears. `/goal unbind` drops the pointer and keeps the record. `/goal log <item> | <state> | <evidence>` appends one row below the packet's log anchor through the shared core's locked append. `/goal packet <packet-path>` reads a packet's slice, hash, size and budget tier without binding. An action the tool does not know fails with `UNKNOWN_ACTION` instead of falling back to `show`.
+- `/goal set <objective>` stores a sanitized raw `objective`, derives a deterministic `goalPrompt`, and records prompt metadata under `promptEnhancement`. A different objective on a bound goal replaces the record and drops the packet pointer: text and packet are two modes, and `set` selects text. Bind again to return to the packet.
 - `/goal set <objective> --budget N` passes `tokenBudget: N` through the command router; invalid, zero, negative, or missing budget values fail before a tool call.
 - `/goal history` lists archived goal records from `.opencode/skills/.state/goal/.archive/` without creating or mutating active state.
 - Reads adopt valid legacy hex-keyed active and archived files into the fixed digest path without overwriting an occupied target. Malformed or mismatched sources remain untouched.
@@ -78,7 +81,12 @@ This is a local OpenCode plugin contract, not an MCP tool and not a daemon-backe
 | Field | Values | Meaning |
 |---|---|---|
 | `store_health` | `no_active_goal`, `state_age_ms:<N>` | Diagnostic on the active-goal state file: absent, or its age in milliseconds. |
-| `mutation` | `created`, `refreshed`, `replaced` | Set-time outcome: `created` when no goal existed, `refreshed` when the same objective was re-set, `replaced` when a different objective overwrote an existing goal. |
+| `mutation` | `created`, `refreshed`, `replaced`, `bound`, `rebound`, `unbound`, `resent`, `logged` | Set-time outcome: `created` when no goal existed, `refreshed` when the same objective was re-set, `replaced` when a different objective overwrote an existing goal; `bound` and `rebound` for a packet bind, `resent` after the slice hash is recorded. |
+| `packet_path` | repo-relative path or empty | The bound packet directory; empty when the goal was set from text. |
+| `packet_state` | `bound`, `missing`, `unbound` | `bound` when the pointer resolves to a document, `missing` when the pointer is set but the document is gone or outside the workspace (a `hint=` line follows and injection is silent), `unbound` when the goal was set from text. |
+| `packet_bound` | `true`, `false` | `true` only when `packet_state=bound`. |
+| `warning` | text | Present after a text `set` whose objective exceeded 4000 characters and was truncated, and after a `bind` whose durable slice is past the warning or error tier. |
+| `resend_pending` | `true`, `false` | Whether the packet's durable slice changed since it was last marked resent. Log rows and reflow never flip it. |
 | `max_auto_turns` | positive integer | Effective auto-turn cap after `OPENCODE_GOAL_MAX_AUTO_TURNS` and stored state normalization. |
 | `remaining_auto_turns` | integer >= 0 | Auto-continuation turns still available before the cap suppresses continuation. |
 | `max_wall_ms` | positive integer | Effective wall-clock cap after `OPENCODE_GOAL_MAX_WALL_MS`. |
@@ -102,7 +110,7 @@ The default heuristic marks a goal `met` only when the latest assistant evidence
 
 - Keep `.opencode/commands/goal-opencode.md` as a thin one-tool router. Do not duplicate state parsing or prompt construction in command markdown.
 - Do not route `opencode-goal` through the skill-advisor daemon CLI or any other daemon-backed bridge. Goal state is session-local plugin state.
-- Do not store objective-derived runtime state in spec docs or packet continuity surfaces unless the user explicitly asks to save continuity.
+- The packet `goal.md` is the directive and the plugin only reads it. Tooling writes a packet goal's log, below the durable slice, through the shared core's locked append; nothing writes the decisions, binding rows or criteria unprompted, and nothing sends the file's frontmatter anywhere.
 - Do not auto-run shell commands inferred from the goal objective. Verification evidence must come from explicit tests, command output, or supervisor-safe state.
 - Restart OpenCode after changing `.opencode/plugins/opencode-goal.js`, `.opencode/commands/goal-opencode.md`, or this plugin's load-time configuration.
 
@@ -130,7 +138,7 @@ For documentation-only changes, also run the relevant `sk-doc` structure check a
 
 ## 8. CROSS-RUNTIME RELATIONSHIP
 
-This plugin is the OpenCode-native goal system. Cursor and Pi reach the same passive-goal behavior through a runtime-neutral sibling under `.opencode/hooks/goal/` — not this plugin.
+This plugin is the OpenCode-native goal system. Cursor, Pi and Devin reach the same passive-goal behavior through a runtime-neutral sibling under `.opencode/hooks/goal/`, not this plugin. Both implementations read the bound packet through one module, `.opencode/hooks/goal/lib/goal-slice.cjs`, so a goal bound on one runtime renders the same slice on another.
 
 **State model.** `opencode-goal` keeps per-OpenCode-session state and native token accounting under `<full-sha256-of-session-id>.json`. Valid files from the earlier reversible hex-key format migrate lazily on active reads, injection, orphan sweeps, and history access; occupied digest targets remain authoritative. The sibling core hashes the unambiguous serialization of repository root, runtime, and native session id into one opaque `<full-sha256>.json` basename with a matching archive namespace. Its legacy `active-goal.json` is diagnostic-only and never supplies prompt injection. Cross-runtime usage accounting remains `turn-count-estimate` because these adapters do not expose OpenCode's native token feed.
 
@@ -140,19 +148,20 @@ This plugin is the OpenCode-native goal system. Cursor and Pi reach the same pas
 |---|---|---|---|
 | OpenCode | Native plugin | `/goal-opencode` | Native verifier and guarded continuation |
 | Pi | Native session-bound extension | Native registered `/goal-pi` | `turn_end` heuristic; no forced continuation |
-| Cursor | Session-bound `sessionStart` hook | Unsupported without native command identity | Turn touch only; no continuation |
-| Claude Code | No sibling-core adapter | No repository command; live native capability unverified here | Outside this contract |
-| Codex | None | None | None |
+| Cursor | Session-bound `sessionStart` hook, with the resend reminder | `/goal-cursor packet <path>` only; binding needs identity the command lacks | Turn touch only; no continuation |
+| Devin | `SessionStart` + `UserPromptSubmit` hook, with the resend reminder | None; the repository exposes no Devin command surface | Turn touch only |
+| Claude Code | Native host goal command | Native; the speckit workflows render the stripped durable slice to set | Outside this contract |
+| Codex | Native host goal command | Same as Claude Code | Outside this contract |
 
 **Command surface.** Each retained goal-capable runtime uses its own command boundary:
 
 | Runtime | Command | Source | Drives |
 |---|---|---|---|
 | OpenCode | `/goal-opencode` | `.opencode/commands/goal-opencode.md` | `opencode_goal` / `opencode_goal_status` plugin tools |
-| Cursor | `/goal-cursor` | `.cursor/commands/goal-cursor.md` | Fails with `UNSUPPORTED_SESSION_BINDING`; never calls the CLI |
+| Cursor | `/goal-cursor` | `.cursor/commands/goal-cursor.md` | `packet <path>` through the session-free CLI read; every other action fails with `UNSUPPORTED_SESSION_BINDING` |
 | Pi | `/goal-pi` | Registered by `.opencode/hooks/goal/pi/goal-context.ts` | Shared CLI with native runtime/session/workspace flags appended by the extension |
 
-The shared CLI keeps the base OpenCode action envelope and adds explicit `legacy-inspect`, `legacy-migrate`, and `legacy-archive` actions. All current-session actions require explicit native binding; only aggregate diagnostics and non-binding legacy inspection/archive work without it. See `.opencode/hooks/goal/README.md` for state layout, error behavior, rollback, and verification.
+The shared CLI keeps the base OpenCode action envelope and adds `bind`, `unbind`, `resent`, `log`, `packet` and the explicit `legacy-inspect`, `legacy-migrate`, and `legacy-archive` actions. All current-session actions require explicit native binding; only aggregate diagnostics and non-binding legacy inspection/archive work without it. See `.opencode/hooks/goal/README.md` for state layout, error behavior, rollback, and verification.
 
 ---
 

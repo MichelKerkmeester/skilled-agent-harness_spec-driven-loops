@@ -33,6 +33,8 @@ type GoalRecord = {
   runtime?: string;
   lastVerifierVerdict?: string;
   lastVerifierReason?: string | null;
+  packetPath?: string;
+  workspace?: string;
 };
 
 type GoalOptions = {
@@ -43,7 +45,8 @@ type GoalOptions = {
 type GoalCore = {
   isPluginDisabled(): boolean;
   resolveRepoRoot(startDir: string): string;
-  renderGoalBrief(input: { goal: GoalRecord | null; runtimeLabel: string }): string;
+  renderGoalBrief(input: { goal: GoalRecord | null; runtimeLabel: string; workspace?: string }): string;
+  renderResendReminder(goal: GoalRecord | null, workspace: string, options?: { recordCommand?: string }): string;
   verifyGoalHeuristic(input: { goal: GoalRecord; transcriptText: string }): { verdict: string; reason: string };
   readGoalRecord(options: GoalOptions): GoalRecord | null;
   recordTurn(input: object, options: GoalOptions): GoalRecord | null;
@@ -176,7 +179,7 @@ function extractTurnEndText(event: TurnEndEvent): string {
 
 export default function goalContext(pi: ExtensionAPI): void {
   pi.registerCommand("goal-pi", {
-    description: "Manage the active goal for this Pi session",
+    description: "Manage the active goal for this Pi session: bind <packet>, show, resent, log, packet <path>, set, clear",
     handler: (args, ctx) => runGoalCommand(pi, args, ctx),
   });
 
@@ -184,10 +187,16 @@ export default function goalContext(pi: ExtensionAPI): void {
     try {
       const core = await loadGoalCore();
       if (core.isPluginDisabled()) return { action: "continue" };
-      const goal = core.readGoalRecord(goalOptions(ctx));
-      const brief = core.renderGoalBrief({ goal, runtimeLabel: RUNTIME_LABEL });
+      const options = goalOptions(ctx);
+      const goal = core.readGoalRecord(options);
+      const brief = core.renderGoalBrief({ goal, runtimeLabel: RUNTIME_LABEL, workspace: options.scope.workspace });
       if (!brief) return { action: "continue" };
-      return { action: "transform", text: `${event.text}\n\n${brief}` };
+      // A bound packet whose durable slice moved past the operator's copy gets
+      // one reminder line per turn. It rides the same injection and never
+      // blocks: the agent resends, the operator sets, work continues.
+      const reminder = core.renderResendReminder(goal, options.scope.workspace, { recordCommand: "/goal-pi resent" });
+      const text = reminder ? `${event.text}\n\n${brief}\n${reminder}` : `${event.text}\n\n${brief}`;
+      return { action: "transform", text };
     } catch {
       // Fail open because a goal-state bug must never alter a valid user turn.
       return { action: "continue" };
@@ -198,8 +207,9 @@ export default function goalContext(pi: ExtensionAPI): void {
     try {
       const core = await loadGoalCore();
       if (core.isPluginDisabled()) return;
-      const goal = core.readGoalRecord(goalOptions(ctx));
-      const brief = core.renderGoalBrief({ goal, runtimeLabel: RUNTIME_LABEL });
+      const options = goalOptions(ctx);
+      const goal = core.readGoalRecord(options);
+      const brief = core.renderGoalBrief({ goal, runtimeLabel: RUNTIME_LABEL, workspace: options.scope.workspace });
       if (!brief) return;
       pi.sendMessage({ customType: "goal-context-restore", content: brief, display: false });
     } catch {

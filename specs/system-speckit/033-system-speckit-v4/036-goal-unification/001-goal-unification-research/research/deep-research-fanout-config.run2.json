@@ -1,0 +1,16 @@
+{
+  "assignment_model": "flat_pool",
+  "concurrency": 1,
+  "maxRetries": 5,
+  "executors": [
+    {
+      "label": "glm",
+      "kind": "cli-pi",
+      "model": "glm-5.3-flash",
+      "reasoningEffort": "max",
+      "count": 1,
+      "iterations": 5,
+      "timeoutSeconds": 3600
+    }
+  ]
+}

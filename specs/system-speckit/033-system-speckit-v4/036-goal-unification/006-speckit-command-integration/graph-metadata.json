@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/033-system-speckit-v4/036-goal-unification/006-speckit-command-integration",
+  "spec_folder": "system-speckit/033-system-speckit-v4/036-goal-unification/006-speckit-command-integration",
+  "parent_id": "system-speckit/033-system-speckit-v4/036-goal-unification",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "speckit goal auto update",
+      "parent goal resend",
+      "goal reminder cadence",
+      "speckit plan goal integration",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
+    ],
+    "key_topics": [
+      "speckit",
+      "goal",
+      "auto",
+      "parent",
+      "resend",
+      "reminder",
+      "cadence",
+      "plan",
+      "integration",
+      "task",
+      "breakdown",
+      "implementation"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".opencode/commands/speckit/assets/speckit-plan.yaml",
+      ".opencode/commands/speckit/assets/speckit-resume-auto.yaml",
+      ".opencode/commands/speckit/save.md",
+      ".opencode/skills/system-spec-kit/SKILL.md",
+      ".opencode/skills/system-spec-kit/runtime/data/trigger-index.json",
+      ".opencode/commands/speckit/plan.md",
+      ".opencode/commands/speckit/implement.md",
+      ".opencode/commands/speckit/complete.md",
+      ".opencode/commands/speckit/resume.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-plan.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/speckit/assets/speckit-plan.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-resume-auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/speckit/assets/speckit-resume-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "save.md",
+        "kind": "doc",
+        "path": ".opencode/commands/speckit/save.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/runtime/data/trigger-index.json",
+        "source": "derived"
+      },
+      {
+        "name": "implement.md",
+        "kind": "doc",
+        "path": ".opencode/commands/speckit/implement.md",
+        "source": "derived"
+      },
+      {
+        "name": "complete.md",
+        "kind": "doc",
+        "path": ".opencode/commands/speckit/complete.md",
+        "source": "derived"
+      },
+      {
+        "name": "resume.md",
+        "kind": "doc",
+        "path": ".opencode/commands/speckit/resume.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Sequential",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "No speckit command reads or updates goal.md",
+    "created_at": "2026-09-11T07:11:50Z",
+    "last_save_at": "2026-09-11T08:58:44.051Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:492d11d6898e82d7828e24f71f62ad137bc173624bff90021b2b4a07dbd6de03",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "a629aadaa99cf13fc74e8f9c8fd29cdaca2c8e58feb0dabfcb8799e5eaa958d4",
+      "plan.md": "a506cfd26280461abdc8534027cc74c792200f0895ad8093d386450a62ca39c1",
+      "tasks.md": "ba8392c30a4858ec88788ae0b4d770e939ec60a3cb4d68a2834fc3da4b8df130",
+      "implementation-summary.md": "1657b46b3c7cd51332aba2e2d436926815686b23a1e5c03e7d8e75ecec05567e"
+    },
+    "last_active_at": null
+  }
+}

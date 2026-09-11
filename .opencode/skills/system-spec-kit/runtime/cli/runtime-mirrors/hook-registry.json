@@ -504,7 +504,7 @@
     },
     {
       "id": "goal-inject",
-      "concern": "Inject the active session goal at session start",
+      "concern": "Inject the bound packet's goal and the resend reminder",
       "bindings": {
         "cursor": [
           {
@@ -514,6 +514,28 @@
             "matcher": null,
             "runner": "node",
             "script": ".opencode/hooks/goal/cursor/goal-inject.mjs",
+            "timeout": 10,
+            "fallback": "envelope"
+          }
+        ],
+        "devin": [
+          {
+            "event": "SessionStart",
+            "group": 0,
+            "slot": 5,
+            "matcher": "",
+            "runner": "node",
+            "script": ".opencode/hooks/goal/devin/goal-inject.mjs",
+            "timeout": 10,
+            "fallback": "envelope"
+          },
+          {
+            "event": "UserPromptSubmit",
+            "group": 0,
+            "slot": 2,
+            "matcher": "",
+            "runner": "node",
+            "script": ".opencode/hooks/goal/devin/goal-inject.mjs",
             "timeout": 10,
             "fallback": "envelope"
           }

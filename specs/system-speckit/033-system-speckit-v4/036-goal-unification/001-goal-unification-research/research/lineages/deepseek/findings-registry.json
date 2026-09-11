@@ -1,0 +1,70 @@
+{
+  "schema_version": "1.0",
+  "reducer_version": "deep-research-state-reducer@1",
+  "session_id": "fanout-deepseek-1789111300546-r4d2ee",
+  "iterations": [
+    { "run": 1, "angle": "A1", "focus": "Session-to-packet binding mechanisms (D1)", "status": "complete", "newInfoRatio": 0.9, "findings": 5 },
+    { "run": 2, "angle": "A2", "focus": "Render surfaces and strip placement (D3)", "status": "complete", "newInfoRatio": 0.75, "findings": 5 },
+    { "run": 3, "angle": "A3", "focus": "Legacy store inventory and fate (D2)", "status": "complete", "newInfoRatio": 0.7, "findings": 5 },
+    { "run": 4, "angle": "A4", "focus": "Resend predicate, cadence, dedup (D4)", "status": "complete", "newInfoRatio": 0.68, "findings": 6 },
+    { "run": 5, "angle": "A5", "focus": "Runtime surface and identity map (D5)", "status": "complete", "newInfoRatio": 0.65, "findings": 7 },
+    { "run": 6, "angle": "A6", "focus": "Isolation regression (D7)", "status": "complete", "newInfoRatio": 0.6, "findings": 6 },
+    { "run": 7, "angle": "A7", "focus": "Authority ladder and child-to-parent amendment", "status": "complete", "newInfoRatio": 0.6, "findings": 6 },
+    { "run": 8, "angle": "A8", "focus": "Budget and truncation arithmetic (D6)", "status": "complete", "newInfoRatio": 0.72, "findings": 6 },
+    { "run": 9, "angle": "A1+A3", "focus": "Binding and store fate as one mechanism", "status": "complete", "newInfoRatio": 0.55, "findings": 7 },
+    { "run": 10, "angle": "A2+A4", "focus": "Strip and resend as one pipeline", "status": "complete", "newInfoRatio": 0.5, "findings": 5 }
+  ],
+  "metrics": {
+    "iterationsCompleted": 10,
+    "keyFindings": 58,
+    "openQuestions": 5,
+    "resolvedQuestions": 8,
+    "averageNewInfoRatio": 0.665,
+    "stuckCount": 0,
+    "guardViolations": 0,
+    "convergenceScore": 0.87,
+    "coverageBySources": 1.0
+  },
+  "questions": [
+    { "id": "KQ1", "state": "resolved", "iterations": [1, 9] },
+    { "id": "KQ2", "state": "resolved", "iterations": [2, 10] },
+    { "id": "KQ3", "state": "resolved", "iterations": [3, 9] },
+    { "id": "KQ4", "state": "resolved", "iterations": [4, 10] },
+    { "id": "KQ5", "state": "resolved-partial", "iterations": [5], "residual": "host injection caps UNKNOWN" },
+    { "id": "KQ6", "state": "resolved", "iterations": [6] },
+    { "id": "KQ7", "state": "resolved", "iterations": [7] },
+    { "id": "KQ8", "state": "resolved", "iterations": [8] }
+  ],
+  "openGaps": [
+    { "id": "G1", "gap": "Host injection caps for five runtimes", "iterations": [5], "wouldConfirm": "runtime documentation or an observed live truncation" },
+    { "id": "G2", "gap": "Plugin cannot import the core today; shared-module seam unverified", "iterations": [5, 9, 10], "wouldConfirm": "attempting the import in the plugin's runtime" },
+    { "id": "G3", "gap": "unbound vocabulary reuse undecided", "iterations": [9], "wouldConfirm": "design decision in the implementation packet" },
+    { "id": "G4", "gap": "Child-to-parent ratification UX undesigned", "iterations": [7], "wouldConfirm": "command-level design pass" },
+    { "id": "G5", "gap": "Packet 036 parent goal.md not measured against 4000", "iterations": [8], "wouldConfirm": "read the parent goal file and measure the durable slice" }
+  ],
+  "ruledOut": [
+    { "iteration": 1, "approach": "Nearest-packet inference from cwd as primary binding", "reason": "Nested phased packets are the ambiguous case the repo detector refuses", "evidence": ".opencode/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts:112" },
+    { "iteration": 2, "approach": "YAML-parse strip boundary", "reason": "No parser in any goal surface; nested continuity block in frontmatter", "evidence": ".opencode/skills/system-spec-kit/templates/addons/goal.md.tmpl:16" },
+    { "iteration": 2, "approach": "Materialized slice file", "reason": "Drift can resend superseded criteria", "evidence": ".opencode/skills/system-spec-kit/references/workflows/goal-set-string-playbook.md:74" },
+    { "iteration": 3, "approach": "Retire the legacy store outright", "reason": "Locks, liveness and telemetry have no home", "evidence": ".opencode/hooks/goal/lib/goal-core.cjs:524" },
+    { "iteration": 3, "approach": "Liveness in goal.md frontmatter", "reason": "Per-session state in a committed shared file", "evidence": ".opencode/skills/.state/goal/README.md:31" },
+    { "iteration": 4, "approach": "mtime resend predicate", "reason": "Log edits and git operations are non-triggers", "evidence": ".opencode/skills/system-spec-kit/references/workflows/goal-set-string-playbook.md:79" },
+    { "iteration": 4, "approach": "In-file continuity fingerprint as predicate", "reason": "Only implementation-summary.md is stamped", "evidence": ".opencode/skills/system-spec-kit/runtime/cli/validation/continuity-freshness.ts:56" },
+    { "iteration": 4, "approach": "Turn-cadence resend timer", "reason": "Fires without change, misses changes between ticks", "evidence": ".opencode/skills/system-spec-kit/references/workflows/goal-set-string-playbook.md:74" },
+    { "iteration": 5, "approach": "Ship a devin goal surface here", "reason": "No command surface in the repo", "evidence": ".devin/hooks.v1.json:1" },
+    { "iteration": 5, "approach": "Reach Claude/Codex goal stores from a repo hook", "reason": "Both stores are host-private", "evidence": ".opencode/hooks/goal/README.md:102" },
+    { "iteration": 6, "approach": "Per-session copies of the directive", "reason": "Re-creates drift", "evidence": "specs/hooks/009-goal-isolation/decision-record.md:47" },
+    { "iteration": 6, "approach": "Inference binding as an automatic path", "reason": "ADR-001: selection never guesses", "evidence": "specs/hooks/009-goal-isolation/decision-record.md:41" },
+    { "iteration": 7, "approach": "Fully automatic durable rewrites", "reason": "Neutralizes the operator copy and spams resends", "evidence": ".opencode/skills/system-spec-kit/templates/addons/goal.md.tmpl:54" },
+    { "iteration": 7, "approach": "Operator-only durable writes", "reason": "Contradicts the auto-update requirement", "evidence": ".opencode/skills/system-spec-kit/references/workflows/goal-set-string-playbook.md:74" },
+    { "iteration": 8, "approach": "Rely on runtime truncation as the budget guard", "reason": "Truncation is silent and cuts the criteria tail", "evidence": ".opencode/skills/system-spec-kit/templates/addons/goal.md.tmpl:39" },
+    { "iteration": 8, "approach": "Leave the budget unenforced", "reason": "A 15028-byte goal.md exists with no signal", "evidence": "specs/system-speckit/033-system-speckit-v4/010-goal-file-addon/spec.md:61" },
+    { "iteration": 9, "approach": "Derive the operator objective from goal.md on read", "reason": "The objective is the copy the runtime judges", "evidence": ".opencode/skills/system-spec-kit/references/workflows/goal-set-string-playbook.md:104" },
+    { "iteration": 10, "approach": "Line-range durable slicing / EOF fallback", "reason": "Ignores the IF level:phase conditional and would resend the log", "evidence": ".opencode/skills/system-spec-kit/templates/addons/goal.md.tmpl:65" }
+  ],
+  "graphProgress": {
+    "nodeCount": 47,
+    "edgeCount": 41,
+    "emptyGraph": false
+  }
+}

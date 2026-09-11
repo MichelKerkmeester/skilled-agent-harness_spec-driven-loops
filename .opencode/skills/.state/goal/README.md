@@ -5,7 +5,7 @@ trigger_phrases:
   - "goal runtime state"
   - "active session goals"
   - "goal state archive"
-version: 1.0.0.1
+version: 1.1.0.0
 ---
 
 # Goal Runtime State
@@ -18,6 +18,8 @@ version: 1.0.0.1
 
 This folder stores machine-specific state for the [`opencode-goal.js`](../../../plugins/opencode-goal.js) plugin. The plugin reads and writes goal records for each OpenCode session, records continuation decisions and archives inactive goals.
 
+This store is a per-session index, not the directive. A session binds to a spec packet, and that packet's `goal.md` is the single source of the goal; each record here keeps the packet pointer, an operator copy derived from the file, liveness, telemetry and the hash of the durable slice last resent in chat. The directive is never duplicated into a record as its own truth: rendering reads the packet file every time.
+
 The state gives an OpenCode session a durable completion objective across turns. The plugin can reload the objective for each system-prompt transform, update usage and verifier evidence from lifecycle events and decide whether an idle session should continue. Keeping this information in a session-keyed file lets the plugin preserve goal progress without placing runtime state in command markdown, spec documents or a shared memory database.
 
 Raw runtime data is git-ignored. Only this `README.md` is tracked, so external users can see the folder and understand its purpose without receiving local session data.
@@ -28,7 +30,9 @@ Raw runtime data is git-ignored. Only this `README.md` is tracked, so external u
 
 | Path | Shape | Purpose |
 |---|---|---|
-| `<session-id-hex>.json` | Formatted JSON object | Stores one session goal. Fields include `sessionId`, `goalId`, `objective`, `goalPrompt`, `promptEnhancement`, `status`, budget and usage counters, timestamps, continuation state and verifier results. |
+| `<session-id-hex>.json` | Formatted JSON object | Stores one session goal. Fields include `sessionId`, `goalId`, `objective`, `goalPrompt`, `promptEnhancement`, `status`, budget and usage counters, timestamps, continuation state and verifier results, plus the packet fields `packetPath`, `workspace`, `boundAtMs` and `lastResentSliceHash` when the session is bound. |
+| `<sha256-of-workspace-runtime-session>.json` | Formatted JSON object | The runtime-neutral core's record for Pi, Cursor and Devin sessions, same packet fields, keyed by the composite scope. |
+| `.locks/<sha256>.lock/` | Directory | Cross-process locks: record mutations keyed by session scope, and packet log appends keyed by the packet's real path. Packet-log locks always live under this workspace-default root, whatever state directory a session was given, so every session appending to one packet contends here. |
 | `.continuation.log` | JSON Lines | Records continuation decisions with `ts`, `sid`, `goalId`, `decision`, `reason` and `autoTurnsUsed`. |
 | `.goal-events.log` | JSON Lines | Records debug and persistence events when goal debugging is enabled. |
 | `.continuation.log.<timestamp>-<uuid>` | JSON Lines | Rotated continuation-log segment. |
@@ -59,6 +63,12 @@ The plugin's event hook keeps the record current during the session:
 | `session.deleted` | Clears volatile locks and moves the session goal file into `.archive/`. |
 
 The idle verifier marks a verified goal complete, marks a blocked verdict as blocked or leaves a not-met goal available for further work. Guarded continuation is disabled unless `OPENCODE_GOAL_AUTONOMY` selects `active` or `smoke`. Before sending another prompt, the plugin checks the active status, verifier result, prompt blockers, session status, cooldown, auto-turn cap, wall-clock cap and token budget. It records non-quiet decisions in `.continuation.log` whether the result is suppression, a smoke-mode `would_fire` decision or a sent continuation.
+
+---
+
+## 3b. MIGRATION NOTE
+
+Two key schemes share this folder: the OpenCode plugin keys by the SHA-256 of the session id and adopts the older hex-encoded name lazily, and the runtime-neutral core keys by the SHA-256 of workspace, runtime and session id and adopts its older runtime-prefixed name only under the workspace's own state root. Neither scheme changed when the packet fields arrived. A record without `packetPath` renders from its stored copy exactly as before, so nothing is rekeyed, nothing is rewritten in place, and a record only gains the packet fields when a session binds. On this checkout the folder held no records when the change landed, so the note is for other machines.
 
 ---
 

@@ -164,5 +164,7 @@ No reader or injection hook falls back to `active-goal.json`. The legacy singlet
 - Tests cover two simultaneous sessions, namespace collisions, missing identity, legacy state, hostile archives, and multiprocess lifecycle mutations.
 
 **How to roll back**: disable goal injection with `MK_GOAL_PLUGIN_DISABLED=1`, revert the entire scoped bundle, retain all scoped and legacy data, and confirm new sessions receive no goal block. Do not merge scoped records into a new global active goal.
+
+**Amendment (2026-09-11)**: the goal unification packet at `specs/system-speckit/033-system-speckit-v4/036-goal-unification/002-decisions-and-contract-freeze/decision-record.md` (ADR-007) moves the isolated unit from goal content to session-to-packet binding. The directive now lives in a packet `goal.md` that sessions share by construction; selection, liveness, telemetry, locks and the last-resent hash stay per session under this record's composite scope. Nothing here is reversed: selection still never guesses, missing identity still injects nothing, and the singleton stays legacy-only. Devin regained a goal adapter in that packet as injection-only, which supersedes the "remain decommissioned" line above.
 <!-- /ANCHOR:adr-001-impl -->
 <!-- /ANCHOR:adr-001 -->

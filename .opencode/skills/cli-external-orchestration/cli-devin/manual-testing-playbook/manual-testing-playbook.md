@@ -82,7 +82,7 @@ Two results corrected assumptions carried in the authored scenarios:
 
 ## 1. OVERVIEW
 
-This playbook contains 35 deterministic scenarios across 11 categories. The original 20 `DV-NNN` scenarios are deliberate: six confirmed lifecycle events are covered by one event-matrix scenario, while approval delivery and the bypass safety invariant have dedicated scenarios. `DV-021` adds the shared sk-git preflight advisory, and the `cli-devin-EC-NNN` stress-matrix category adds 14 hermetic fan-out/lineage cells. The result covers every requested Devin-native surface without duplicating one file per event where the evidence is the same.
+This playbook contains 36 deterministic scenarios across 12 categories. The original 20 `DV-NNN` scenarios are deliberate: six confirmed lifecycle events are covered by one event-matrix scenario, while approval delivery and the bypass safety invariant have dedicated scenarios. `DV-021` adds the shared sk-git preflight advisory, and the `cli-devin-EC-NNN` stress-matrix category adds 14 hermetic fan-out/lineage cells. The result covers every requested Devin-native surface without duplicating one file per event where the evidence is the same.
 
 Coverage note (2026-07-27): The scenarios are grounded in Devin 3000.2.17, with `devin` installed and authenticated during the live contract work. They cover the default `devin -p` dispatch, availability and hallucination probes, the `smart` help/runtime mismatch, `normal`/`auto`, `accept-edits`, `dangerous`/`bypass`, and `autonomous`/`--sandbox` permission behavior, six live hook events, the PermissionRequest difference, PreToolUse under bypass, built-in and mirrored subagents, all 13 mirrored agents, the 36 slash-command roster, the unquoted-colon parser defect, Cursor/Claude/Standard rule inheritance, the `devin mcp` surface, session continuation, and document-only `/handoff` coverage. No live result is asserted beyond the verified facts supplied with this phase.
 
@@ -262,3 +262,14 @@ external Devin process; there is no operator-facing prompt beyond the run-this-t
 - `cli-devin-EC-012`: [Worktree collision](stress/worktree-collision.md)
 - `cli-devin-EC-013`: [Node modules integrity](stress/node-modules-integrity.md)
 - `cli-devin-EC-014`: [Self invocation](stress/self-invocation.md)
+
+---
+
+## 20. GOAL HOOK (`DV-022`)
+
+This category validates Devin's injection-only goal path: the bound packet's `goal.md` rendered as
+`additionalContext` on `SessionStart` and `UserPromptSubmit`, the resend reminder that tracks the
+durable slice, no frontmatter on any path, and `{}` on missing identity, malformed stdin or the
+disabled switch.
+
+- `DV-022`: [Session-bound Devin goal injection](goal-hook/goal-hook.md)

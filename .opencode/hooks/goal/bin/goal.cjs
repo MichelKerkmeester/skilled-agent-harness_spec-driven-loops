@@ -135,6 +135,12 @@ function goalLines(goal, runtimeLabel = 'cli') {
     `last_check=${goal.lastVerifierVerdict || 'not_evaluated'}`,
     `verifier_reason=${core.quoteValue(goal.lastVerifierReason || '')}`,
     `injection_preview=${core.quoteValue(injectionPreview)}`,
+    `packet_path=${core.quoteValue(goal.packetPath || '')}`,
+    `packet_state=${core.packetState(goal, goal.workspace)}`,
+    `packet_bound=${core.packetState(goal, goal.workspace) === 'bound' ? 'true' : 'false'}`,
+    ...(core.packetState(goal, goal.workspace) === 'missing'
+      ? [`hint=${core.quoteValue('the bound packet goal.md is missing or outside the workspace; this session injects nothing until you bind again or unbind')}`]
+      : []),
   ];
 }
 
@@ -147,13 +153,96 @@ function runShow(runtimeLabel, options) {
   printOk('show', goalLines(goal, runtimeLabel));
 }
 
+function runBind(rest, runtimeLabel, options) {
+  const { objective: packetPath, tokenBudget, error } = parseSetArgs(rest);
+  if (error) return printFail('bind', new core.GoalError(error.code, error.message));
+  if (!packetPath) return printFail('bind', new core.GoalError('INVALID_PACKET_PATH', 'A packet path is required'));
+  try {
+    const { record, packet, mutation } = core.bindGoal({ packetPath, tokenBudget, runtimeLabel }, options);
+    printOk('bind', [
+      ...goalLines(record, runtimeLabel),
+      `packet_nested=${packet.nested ? 'true' : 'false'}`,
+      `packet_durable_chars=${packet.durableChars}`,
+      `packet_budget=${packet.budgetState}`,
+      `packet_slice_hash=${core.quoteValue(packet.hash)}`,
+      `resend_pending=${core.resendPending(record, record.workspace) ? 'true' : 'false'}`,
+      ...(packet.budgetState === 'over' || packet.budgetState === 'warn'
+        ? [`warning=${core.quoteValue(`durable slice is ${packet.durableChars} characters; ${packet.budgetState === 'over' ? 'past the error tier' : 'past the warning tier'} (${packet.budget.warnChars}/${packet.budget.errorChars})`)}`]
+        : []),
+    ], mutation);
+  } catch (error) {
+    printFail('bind', error);
+  }
+}
+
+function runUnbind(runtimeLabel, options) {
+  try {
+    const { record, mutation } = core.unbindGoal(options);
+    printOk('unbind', goalLines(record, runtimeLabel), mutation);
+  } catch (error) {
+    printFail('unbind', error);
+  }
+}
+
+function runResent(runtimeLabel, options) {
+  try {
+    const { record, packet, mutation } = core.noteResent(options);
+    printOk('resent', [...goalLines(record, runtimeLabel), `packet_slice_hash=${core.quoteValue(packet.hash)}`, 'resend_pending=false'], mutation);
+  } catch (error) {
+    printFail('resent', error);
+  }
+}
+
+function runLog(rest, options) {
+  const [item, state, evidence] = rest.join(' ').split('|').map((part) => part.trim());
+  try {
+    const result = core.appendGoalLog({ item, state, evidence }, options);
+    printOk('log', [`packet_path=${core.quoteValue(result.packetPath)}`, `row=${core.quoteValue(result.row)}`], 'logged');
+  } catch (error) {
+    printFail('log', error);
+  }
+}
+
+function runPacket(rest, options) {
+  const packetPath = rest.join(' ').trim();
+  if (!packetPath) return printFail('packet', new core.GoalError('INVALID_PACKET_PATH', 'A packet path is required'));
+  const packet = core.describePacketGoal(packetPath, { workspace: options.scope.workspace });
+  if (!packet) return printFail('packet', new core.GoalError('PACKET_GOAL_NOT_FOUND', 'No goal.md at that packet path inside the workspace'));
+  printOk('packet', [
+    `packet_path=${core.quoteValue(packet.packetPath)}`,
+    `packet_nested=${packet.nested ? 'true' : 'false'}`,
+    `packet_durable_chars=${packet.durableChars}`,
+    `packet_budget=${packet.budgetState}`,
+    `packet_slice_hash=${core.quoteValue(packet.hash)}`,
+    `objective_slice=${core.quoteValue(packet.objectiveSlice)}`,
+    `chat_slice=${core.quoteValue(packet.chatSlice)}`,
+  ]);
+}
+
+// Session-free append for runtimes with no management surface and for a
+// packet no session is bound to: same locked path, no record required.
+function runPacketLog(rest, options) {
+  const [packetPath, ...rowParts] = rest;
+  const [item, state, evidence] = rowParts.join(' ').split('|').map((part) => part.trim());
+  if (!packetPath) return printFail('packet-log', new core.GoalError('INVALID_PACKET_PATH', 'A packet path is required'));
+  try {
+    const result = core.appendPacketLog({ workspace: options.scope.workspace, packetPath, item, state, evidence });
+    printOk('packet-log', [`packet_path=${core.quoteValue(result.packetPath)}`, `row=${core.quoteValue(result.row)}`], 'logged');
+  } catch (error) {
+    printFail('packet-log', error);
+  }
+}
+
 function runSet(rest, runtimeLabel, options) {
   const { objective, tokenBudget, error } = parseSetArgs(rest);
   if (error) return printFail('set', new core.GoalError(error.code, error.message));
   if (!objective) return printFail('set', new core.GoalError('INVALID_OBJECTIVE', 'Objective is required'));
   try {
-    const { record, mutation } = core.setGoal({ objective, tokenBudget, runtimeLabel }, options);
-    printOk('set', goalLines(record, runtimeLabel), mutation);
+    const { record, mutation, truncated } = core.setGoal({ objective, tokenBudget, runtimeLabel }, options);
+    printOk('set', [
+      ...goalLines(record, runtimeLabel),
+      ...(truncated ? [`warning=${core.quoteValue(`objective was ${truncated.rawLength} characters and was truncated to ${truncated.maxChars}; the tail is lost`)}`] : []),
+    ], mutation);
   } catch (error_) {
     printFail('set', error_);
   }
@@ -308,7 +397,8 @@ function main(argv) {
   }
 
   const options = goalOptions(parsedScope.binding);
-  const actionsWithoutScope = new Set(['doctor', 'health', 'legacy-inspect', 'legacy-archive']);
+  // Reads of a packet file and the record-free append need a workspace, not a session.
+  const actionsWithoutScope = new Set(['doctor', 'health', 'legacy-inspect', 'legacy-archive', 'packet', 'packet-log']);
   if (!actionsWithoutScope.has(action)) {
     try {
       core.resolveGoalScope(options);
@@ -320,6 +410,12 @@ function main(argv) {
   switch (action) {
     case 'show': return runShow(runtimeLabel, options);
     case 'set': return runSet(rest, runtimeLabel, options);
+    case 'bind': return runBind(rest, runtimeLabel, options);
+    case 'unbind': return runUnbind(runtimeLabel, options);
+    case 'resent': return runResent(runtimeLabel, options);
+    case 'log': return runLog(rest, options);
+    case 'packet': return runPacket(rest, options);
+    case 'packet-log': return runPacketLog(rest, options);
     case 'history': return runHistory(options);
     case 'doctor': return runDoctor('doctor', options);
     case 'health': return runDoctor('health', options);
