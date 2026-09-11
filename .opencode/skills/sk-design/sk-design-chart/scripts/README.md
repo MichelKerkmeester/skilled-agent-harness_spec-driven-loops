@@ -123,7 +123,7 @@ With `--render` three more run, and all three need a browser:
 
 Two checks are about the corpus rather than about one file:
 
-- `palette-source` computes every contrast gate from `assets/color/palettes.json` rather than from a copy. A test that restates the values goes stale the first time somebody edits a colour, and then it certifies the old palette forever.
+- `palette-source` computes every contrast gate from `assets/style-reference/evilcharts/palettes.json` rather than from a copy. A test that restates the values goes stale the first time somebody edits a colour, and then it certifies the old palette forever.
 - `palette-source-dark` runs the same gates against the dark surface. It prints as its own line with its own assertion count, so one theme's pass cannot be read as covering both, and a run that reports nothing on this line has gated one ground rather than two.
 - `narrow-viewport` is asserted from the stylesheet rather than from a rendered page, and that limit is deliberate rather than lazy. A headless run returns the DOM, and the DOM does not say whether the page overflowed. The numbers that would answer it live in layout. So the check proves both regions of the card can scroll sideways, and that the drawing declares a floor no wider than its own `viewBox`, which is the part an author forgets. The table half was added after two files were measured dragging the whole page sideways at 500 units, which is a thing this check cannot see and a script injected into a copy of the file can. Whether the chart is legible at that floor stays a review question, and the contract says so.
 - `catalog` resolves the index in both directions: every catalog row reaches a file that identifies itself with the same id, and every chart form on disk appears in the catalog. A row that exists is not a row that points anywhere, and an index checked in one direction only rots on the first rename.
@@ -138,10 +138,10 @@ A validator that has only ever passed is not evidence. Before trusting a green r
 
 ```bash
 # a colour literal outside the palette block
-cp assets/color/palette-sheet-neutral.html /tmp/keep.html
-sed -i '' 's/var(--chart-muted)/#888888/' assets/color/palette-sheet-neutral.html
+cp assets/style-reference/evilcharts/palette-sheet-neutral.html /tmp/keep.html
+sed -i '' 's/var(--chart-muted)/#888888/' assets/style-reference/evilcharts/palette-sheet-neutral.html
 node scripts/check-corpus.cjs   # expect RESULT: FAILED on colour-literals
-cp /tmp/keep.html assets/color/palette-sheet-neutral.html
+cp /tmp/keep.html assets/style-reference/evilcharts/palette-sheet-neutral.html
 node scripts/check-corpus.cjs   # expect RESULT: PASSED
 ```
 
@@ -273,18 +273,18 @@ this route knew thirty-six colour names and none of those three.
 The dark half of the palette breaks in four places, and each one is a different check.
 
 ```bash
-cp assets/color/palettes.json /tmp/keep.json
+cp assets/style-reference/evilcharts/palettes.json /tmp/keep.json
 
 # a dark value below its own gate: the light line stays green and the dark line goes red
-sed -i '' 's/"#7657BF"/"#3A2C5C"/' assets/color/palettes.json
+sed -i '' 's/"#7657BF"/"#3A2C5C"/' assets/style-reference/evilcharts/palettes.json
 node scripts/check-corpus.cjs   # expect RESULT: FAILED on palette-source-dark
 
 # a dark ramp written backwards. Reversal keeps every step separation intact, so this is the
 # mutation a check that gated whichever end looked lighter would wave through
-cp /tmp/keep.json assets/color/palettes.json
-sed -i '' 's/\["#A1D4DC", "#47AFBE", "#318893", "#28646A", "#1F4649"\]/["#1F4649", "#28646A", "#318893", "#47AFBE", "#A1D4DC"]/' assets/color/palettes.json
+cp /tmp/keep.json assets/style-reference/evilcharts/palettes.json
+sed -i '' 's/\["#A1D4DC", "#47AFBE", "#318893", "#28646A", "#1F4649"\]/["#1F4649", "#28646A", "#318893", "#47AFBE", "#A1D4DC"]/' assets/style-reference/evilcharts/palettes.json
 node scripts/check-corpus.cjs   # expect RESULT: FAILED on palette-source-dark, five times
-cp /tmp/keep.json assets/color/palettes.json
+cp /tmp/keep.json assets/style-reference/evilcharts/palettes.json
 ```
 
 The block half breaks in three:

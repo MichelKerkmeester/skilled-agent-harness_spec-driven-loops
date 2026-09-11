@@ -9,7 +9,7 @@ trigger_phrases:
   - "chart skeleton"
 importance_tier: important
 contextType: reference
-version: 0.22.0.30
+version: 0.23.0.31
 ---
 
 # Chart Template Contract
@@ -46,7 +46,7 @@ A delivery is one card in one file, and it is what reaches a user. A gallery is 
 
 ## 3. THE FILE SKELETON
 
-Copy the skeleton from `assets/color/palette-sheet-neutral.html`, which is a working file that passes every check. The structure is:
+Copy the skeleton from `assets/style-reference/evilcharts/palette-sheet-neutral.html`, which is a working file that passes every check. The structure is:
 
 ```
 <!doctype html>
@@ -586,7 +586,7 @@ a reviewer to notice a second copy.
 ## 8. AUTHORING A NEW TEMPLATE
 
 1. Find the question in `catalog.md`. If no row answers it, that is a gap to report rather than a chart to improvise.
-2. Copy `assets/color/palette-sheet-neutral.html` to `assets/templates/<id>.html`.
+2. Copy `assets/style-reference/evilcharts/palette-sheet-neutral.html` to `assets/templates/<id>.html`.
 3. Set the identity tag and the title. The id, the filename stem and the catalog row all carry the same string.
 4. Choose the colour system, and paste both of its palette blocks from the corpus check output. The check prints the light block and the dark one, each against the block it expected to find.
 5. Replace the data block with the real shape, and write the drawing code below it.
@@ -818,4 +818,4 @@ check cannot see.
 | [`design-md-theming.md`](./design-md-theming.md) | How a local v3 DESIGN.md becomes a provenance-gated delivery |
 | [`catalog.md`](./catalog.md) | The index from a question to a chart form |
 | [`../scripts/README.md`](../scripts/README.md) | How to run the corpus check and how to prove it can fail |
-| [`../assets/color/palette-sheet-neutral.html`](../assets/color/palette-sheet-neutral.html) | The working skeleton to copy |
+| [`../assets/style-reference/evilcharts/palette-sheet-neutral.html`](../assets/style-reference/evilcharts/palette-sheet-neutral.html) | The working skeleton to copy |

@@ -26,7 +26,13 @@ const { execFileSync } = require('child_process');
 const { channel, luminance, contrast, round2 } = require('./color-gates.cjs');
 
 const PACKAGE_ROOT = path.resolve(__dirname, '..');
-const PALETTE_SOURCE = path.join(PACKAGE_ROOT, 'assets', 'color', 'palettes.json');
+const STYLE_REFERENCE_DIR = path.join(PACKAGE_ROOT, 'assets', 'style-reference');
+// Colour lives inside the reference it was measured from, not in a folder beside it. A stock
+// palette is one reference's answer, so the default reference names which answer the corpus
+// ships; adding another reference adds another palette rather than editing this one.
+const DEFAULT_STYLE_REFERENCE = 'evilcharts';
+const paletteSourceFor = (name) => path.join(STYLE_REFERENCE_DIR, name, 'palettes.json');
+const PALETTE_SOURCE = paletteSourceFor(DEFAULT_STYLE_REFERENCE);
 const CATALOG = path.join(PACKAGE_ROOT, 'references', 'catalog.md');
 const POINTER_CONTRACT = path.join(PACKAGE_ROOT, 'references', 'template-contract.md');
 const TEMPLATE_DIR = path.join(PACKAGE_ROOT, 'assets', 'templates');
@@ -1023,8 +1029,14 @@ function checkAccessibility(file, src, ids) {
     'no element carries data-chart-table. The numbers behind the drawing have to be readable without seeing it');
 }
 
+// A palette proof sheet is recognised by its filename, not by a directory, because every style
+// reference now keeps its own sheets beside the palette they prove. Matching the path would mean
+// editing this rule every time a reference is added.
+const isPaletteProofSheet = (file) =>
+  /(^|[\\/])palette-sheet-[a-z0-9-]+\.html$/.test(file.replace(/\\/g, '/'));
+
 function checkCardParts(file, src) {
-  const isProofSheet = file.startsWith('assets/color/');
+  const isProofSheet = isPaletteProofSheet(file);
   const expectedParts = isProofSheet ? ['headline', 'subtitle', 'figure', 'source'] : CARD_PARTS;
   // The metric block is an optional part of the anatomy: a card leads with its number when
   // the number has a baseline to be read against, and a card without one keeps the shorter
@@ -1582,7 +1594,7 @@ function checkTypeScale(file, src, palette) {
   // rather than restating them means a change of register is a change to one file.
   const allowed = new Map();
   const scale = palette.typeScale || {};
-  const sources = file.startsWith('assets/color/')
+  const sources = isPaletteProofSheet(file)
     ? [scale.sheetRoles]
     : [scale.roles, scale.departures];
   for (const group of sources) {
@@ -3120,6 +3132,27 @@ function checkStyleReference() {
       record('style-reference', 'error', label,
         'the directory carries no DESIGN.md, so nothing here can be applied to the corpus');
     }
+    // A reference that borrows another reference's colour is not a reference; it is a second name
+    // for the first one. Requiring the file here is what makes "add a reference" mean "decide its
+    // colour", instead of silently inheriting whichever palette happens to be the default.
+    tally('style-reference', 1);
+    const palettePath = path.join(directory, 'palettes.json');
+    if (!fs.existsSync(palettePath)) {
+      record('style-reference', 'error', label,
+        'the reference carries no palettes.json. Every reference owns the colour measured from it, so a reference without one has no palette of its own to apply');
+    } else {
+      try {
+        const own = JSON.parse(fs.readFileSync(palettePath, 'utf8'));
+        tally('style-reference', 1);
+        if (!own.derivation) {
+          record('style-reference', 'error', label,
+            'the reference palette records no derivation, so nothing states which measurement its values came from');
+        }
+      } catch (error) {
+        record('style-reference', 'error', label,
+          `the reference palette does not parse as JSON: ${error.message}`);
+      }
+    }
     const originPath = path.join(directory, 'origin.md');
     if (!fs.existsSync(originPath)) {
       record('style-reference', 'error', label,
@@ -3155,20 +3188,20 @@ function checkPaletteDerivation(palette) {
   const derivation = palette.derivation;
   tally('palette-derivation', 3);
   if (!derivation) {
-    record('palette-derivation', 'error', 'assets/color/palettes.json',
+    record('palette-derivation', 'error', rel(PALETTE_SOURCE),
       'the palette records no derivation. Every value here came from a Style Reference or from an arithmetic, and a palette that does not say which is a palette nobody can check against its source');
     return;
   }
   const referencePath = path.join(PACKAGE_ROOT, derivation.reference);
   if (!fs.existsSync(referencePath)) {
-    record('palette-derivation', 'error', 'assets/color/palettes.json',
+    record('palette-derivation', 'error', rel(PALETTE_SOURCE),
       `the derivation names ${derivation.reference}, and no file is there. A palette derived from a reference the packet does not carry cannot be checked against anything`);
     return;
   }
   const source = fs.readFileSync(referencePath, 'utf8');
   const digest = crypto.createHash('sha256').update(fs.readFileSync(referencePath)).digest('hex');
   if (digest !== derivation.sha256) {
-    record('palette-derivation', 'error', 'assets/color/palettes.json',
+    record('palette-derivation', 'error', rel(PALETTE_SOURCE),
       `the Style Reference has changed since the palette was derived from it: recorded ${derivation.sha256.slice(0, 16)}…, found ${digest.slice(0, 16)}…. Re-deriving is a deliberate act, so the pin moves only when somebody moves it`);
   }
 
@@ -3180,7 +3213,7 @@ function checkPaletteDerivation(palette) {
     published.set(row[2].trim(), row[1].toUpperCase());
   }
   if (!published.size) {
-    record('palette-derivation', 'error', 'assets/color/palettes.json',
+    record('palette-derivation', 'error', rel(PALETTE_SOURCE),
       'the Style Reference publishes no token table this rule can read, so no value in the palette can be traced to it');
     return;
   }
@@ -3189,12 +3222,12 @@ function checkPaletteDerivation(palette) {
   const accounted = new Set();
   const claim = (role, where) => {
     if (accounted.has(role)) {
-      record('palette-derivation', 'error', 'assets/color/palettes.json',
+      record('palette-derivation', 'error', rel(PALETTE_SOURCE),
         `${role} is accounted for twice, the second time under ${where}. One role has one origin, or the record is describing two different palettes`);
     }
     accounted.add(role);
     if (!shipped.has(role)) {
-      record('palette-derivation', 'error', 'assets/color/palettes.json',
+      record('palette-derivation', 'error', rel(PALETTE_SOURCE),
         `the derivation accounts for ${role} under ${where}, and the palette has no such role. A record describing a value nobody ships is a record nobody maintains`);
       return false;
     }
@@ -3207,12 +3240,12 @@ function checkPaletteDerivation(palette) {
     tally('palette-derivation', 1);
     if (!claim(role, 'roles')) continue;
     if (!published.has(token)) {
-      record('palette-derivation', 'error', 'assets/color/palettes.json',
+      record('palette-derivation', 'error', rel(PALETTE_SOURCE),
         `${role} is recorded as taking ${token}, which the Style Reference does not publish`);
       continue;
     }
     if (shipped.get(role).toUpperCase() !== published.get(token)) {
-      record('palette-derivation', 'error', 'assets/color/palettes.json',
+      record('palette-derivation', 'error', rel(PALETTE_SOURCE),
         `${role} ships "${shipped.get(role)}" and is recorded as taking ${token}, which the Style Reference publishes as "${published.get(token)}". The palette and its record disagree about where this value came from`);
     }
   }
@@ -3225,30 +3258,30 @@ function checkPaletteDerivation(palette) {
     if (!claim(departure.role, 'departures')) continue;
     const value = shipped.get(departure.role);
     if (value.toUpperCase() !== String(departure.shipped).toUpperCase()) {
-      record('palette-derivation', 'error', 'assets/color/palettes.json',
+      record('palette-derivation', 'error', rel(PALETTE_SOURCE),
         `${departure.role} ships "${value}" and the derivation records it as "${departure.shipped}". The record is what a reader trusts about a value that left its reference, so the two cannot differ`);
       continue;
     }
     if (published.get(departure.from) !== String(departure.measured).toUpperCase()) {
-      record('palette-derivation', 'error', 'assets/color/palettes.json',
+      record('palette-derivation', 'error', rel(PALETTE_SOURCE),
         `${departure.role} departs from ${departure.from}, recorded as "${departure.measured}", and the Style Reference publishes that token as "${published.get(departure.from) || 'nothing'}"`);
       continue;
     }
     const threshold = palette.gates[departure.gate];
     const against = resolveRole(palette, departure.against);
     if (typeof threshold !== 'number' || !against) {
-      record('palette-derivation', 'error', 'assets/color/palettes.json',
+      record('palette-derivation', 'error', rel(PALETTE_SOURCE),
         `${departure.role} names gate "${departure.gate}" against "${departure.against}", and one of the two does not resolve`);
       continue;
     }
     const before = contrast(departure.measured, against);
     const after = contrast(value, against);
     if (before >= threshold) {
-      record('palette-derivation', 'error', 'assets/color/palettes.json',
+      record('palette-derivation', 'error', rel(PALETTE_SOURCE),
         `${departure.role} was moved off "${departure.measured}" to clear ${departure.gate}, and the measured tone already clears it at ${before.toFixed(2)}:1 against ${departure.against}. A departure nothing forces is a value changed for a reason that no longer exists`);
     }
     if (after < threshold) {
-      record('palette-derivation', 'error', 'assets/color/palettes.json',
+      record('palette-derivation', 'error', rel(PALETTE_SOURCE),
         `${departure.role} ships "${value}" to clear ${departure.gate} and reaches ${after.toFixed(2)}:1 against ${departure.against}, under the ${threshold} it was moved to reach`);
     }
   }
@@ -3262,12 +3295,12 @@ function checkPaletteDerivation(palette) {
     if (!claim(choice.role, 'chosen')) continue;
     const value = shipped.get(choice.role);
     if (value.toUpperCase() !== String(choice.shipped).toUpperCase()) {
-      record('palette-derivation', 'error', 'assets/color/palettes.json',
+      record('palette-derivation', 'error', rel(PALETTE_SOURCE),
         `${choice.role} ships "${value}" and the derivation records the choice as "${choice.shipped}"`);
       continue;
     }
     if (published.get(choice.from) !== String(choice.measured).toUpperCase()) {
-      record('palette-derivation', 'error', 'assets/color/palettes.json',
+      record('palette-derivation', 'error', rel(PALETTE_SOURCE),
         `${choice.role} is recorded as declining ${choice.from} at "${choice.measured}", and the Style Reference publishes that token as "${published.get(choice.from) || 'nothing'}". A choice records what it turned down`);
     }
   }
@@ -3278,7 +3311,7 @@ function checkPaletteDerivation(palette) {
     tally('palette-derivation', 1);
     if (!claim(role, 'derived')) continue;
     if (!derivation.kinds || !derivation.kinds[kind]) {
-      record('palette-derivation', 'error', 'assets/color/palettes.json',
+      record('palette-derivation', 'error', rel(PALETTE_SOURCE),
         `${role} is recorded as "${kind}", which the derivation does not describe. An arithmetic nobody wrote down exempts a value for no stated reason`);
       continue;
     }
@@ -3287,7 +3320,7 @@ function checkPaletteDerivation(palette) {
       const owner = /^([a-z-]+)\.(series|seriesDark)\[/.exec(role);
       const ladder = owner ? (palette.systems[owner[1]] || {})[owner[2]] : null;
       if (!ladder || ladder.length < 3) {
-        record('palette-derivation', 'error', 'assets/color/palettes.json',
+        record('palette-derivation', 'error', rel(PALETTE_SOURCE),
           `${role} is recorded as a ramp interior and sits in no ramp this rule can read`);
       } else {
         // Equal spacing is the whole content of the exemption: these rungs were not taken from
@@ -3297,7 +3330,7 @@ function checkPaletteDerivation(palette) {
         const steps = ladder.slice(0, -1).map((value, at) => contrast(value, ladder[at + 1]));
         const spread = Math.max(...steps) - Math.min(...steps);
         if (spread > RAMP_EVENNESS) {
-          record('palette-derivation', 'error', 'assets/color/palettes.json',
+          record('palette-derivation', 'error', rel(PALETTE_SOURCE),
             `the "${owner[1]}" ramp's steps run from ${Math.min(...steps).toFixed(2)}:1 to ${Math.max(...steps).toFixed(2)}:1, a spread of ${spread.toFixed(2)} against the ${RAMP_EVENNESS} these rungs were placed to hold. A rung recorded as evenly spaced and bunched toward one end encodes a magnitude the data does not have`);
         }
       }
@@ -3307,7 +3340,7 @@ function checkPaletteDerivation(palette) {
       const theme = role.startsWith('chromeDark') ? palette.chromeDark : palette.chrome;
       const value = shipped.get(role);
       if (!new RegExp('^' + theme.ink + '[0-9A-Fa-f]{2}$', 'i').test(value)) {
-        record('palette-derivation', 'error', 'assets/color/palettes.json',
+        record('palette-derivation', 'error', rel(PALETTE_SOURCE),
           `${role} is recorded as that theme's ink at alpha and ships "${value}", which is not "${theme.ink}" with two hex digits after it`);
       }
     }
@@ -3316,7 +3349,7 @@ function checkPaletteDerivation(palette) {
   for (const [role] of shipped) {
     tally('palette-derivation', 1);
     if (accounted.has(role)) continue;
-    record('palette-derivation', 'error', 'assets/color/palettes.json',
+    record('palette-derivation', 'error', rel(PALETTE_SOURCE),
       `${role} ships "${shipped.get(role)}" and the derivation accounts for it nowhere. A value that is neither taken from the reference, nor a named departure from it, nor a stated arithmetic, arrived from somewhere nobody wrote down`);
   }
 }
@@ -3419,7 +3452,10 @@ function main() {
   // The block belongs to the files that draw in the shared frame: every chart form and every
   // proof sheet. The set is derived from the two directories rather than listed, so a new form
   // joins it by existing.
-  checkGeometryBlock([...htmlFilesUnder(TEMPLATE_DIR), ...htmlFilesUnder(path.join(ASSET_ROOT, 'color'))]);
+  checkGeometryBlock([
+    ...htmlFilesUnder(TEMPLATE_DIR),
+    ...htmlFilesUnder(STYLE_REFERENCE_DIR).filter((f) => isPaletteProofSheet(f)),
+  ]);
 
 
 /* ------------------------------------------------------- pointer-contract coverage */

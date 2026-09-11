@@ -107,7 +107,7 @@ Read one file from each colour system rather than one file overall. The three sy
 
 | File | Role |
 |---|---|
-| [`assets/color/palettes.json`](../../assets/color/palettes.json) | Primary anchor, the dark chrome and the dark values for all three systems |
+| [`assets/style-reference/evilcharts/palettes.json`](../../assets/style-reference/evilcharts/palettes.json) | Primary anchor, the dark chrome and the dark values for all three systems |
 | [`references/color-system.md`](../../references/color-system.md) | Section 4 on when a hue may be re-chosen, and section 5 on the gates run per theme |
 | [`references/template-contract.md`](../../references/template-contract.md) | Section 6 on the second block, and rule 4's two-block ceiling |
 | [`assets/templates/treemap.html`](../../assets/templates/treemap.html) | The categorical form this scenario reads |

@@ -137,7 +137,7 @@ test('every carried reference derives two gated themes', () => {
 
 test('the stock reference is the one --default reads, and its pin matches the palette', () => {
   const crypto = require('node:crypto');
-  const palette = JSON.parse(fs.readFileSync(path.join(ROOT, 'assets', 'color', 'palettes.json'), 'utf8'));
+  const palette = JSON.parse(fs.readFileSync(path.join(ROOT, 'assets', 'style-reference', 'evilcharts', 'palettes.json'), 'utf8'));
   const referencePath = path.join(ROOT, palette.derivation.reference);
   assert.equal(referencePath, apply.DEFAULT_DESIGN_PATH,
     'the palette records the reference --default actually reads, so the two cannot drift apart');

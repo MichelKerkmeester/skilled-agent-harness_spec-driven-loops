@@ -8,7 +8,7 @@ trigger_phrases:
   - "design-md chart delivery"
 importance_tier: normal
 contextType: reference
-version: 0.22.0.8
+version: 0.23.0.9
 ---
 
 # Theming a chart from DESIGN.md
@@ -121,7 +121,7 @@ fewer of them, and that is the right side of the trade.
 
 ## Gates before writing
 
-The thresholds come from `assets/color/palettes.json` on every run. The applicator uses the shared
+The thresholds come from `assets/style-reference/evilcharts/palettes.json` on every run. The applicator uses the shared
 colour arithmetic module that the checker requires, so the same transfer curve, luminance and
 rounding produce both results.
 

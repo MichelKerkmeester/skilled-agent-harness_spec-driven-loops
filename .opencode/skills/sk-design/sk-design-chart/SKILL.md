@@ -2,7 +2,7 @@
 name: sk-design-chart
 description: "Chart authoring for sk-doc: turn a reader's comparison into one catalog form, copy its file and ship a standalone HTML chart."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 0.22.0.0
+version: 0.23.0.0
 metadata:
   packetKind: workflow
 ---
@@ -105,8 +105,8 @@ def route_resources(request):
 | --- | --- | --- |
 | Chart lookup | `references/catalog.md` | Turn the comparison a reader needs into one chart form and the file that draws it |
 | Chart forms | `assets/templates/` | One self-contained file per form, copied whole rather than extracted from |
-| Colour systems | `assets/color/` | The three named stock systems, the palette source they read and their proof sheets |
-| Stock Style Reference | `assets/style-reference/evilcharts/` | The reference the stock palette and corner ladder were derived from, and what `--default` themes to |
+| Style References | `assets/style-reference/` | One directory per reference. Each owns its `DESIGN.md`, its `palettes.json` and its proof sheets, so adding a reference means deciding its colour rather than inheriting somebody else's |
+| Stock colour | `assets/style-reference/evilcharts/palettes.json` | The default reference's own palette: the three named systems, the corner ladder and the type scale every stock form reads, and what `--default` themes to |
 | Design Reference application | `scripts/apply-design-md.cjs`, `references/design-md-theming.md` | Derive a gated delivery palette from a local v3 `DESIGN.md` without fetching or changing stock forms; pass any other reference's path to override the stock one |
 | Template contract | `references/template-contract.md` | What a form file has to contain before the corpus check passes it |
 | Corpus validation | `scripts/` | Prove every form still renders after a change |
@@ -121,7 +121,7 @@ The workflow is template-first, and that is a constraint rather than a preferenc
 2. Open `references/catalog.md` and resolve that comparison to one row.
 3. Copy the file that row names. Do not rewrite its render code.
 4. Swap the data block for the reader's data.
-5. Apply one colour system from `assets/color/`. One per artifact.
+5. Apply one colour system from the default reference's palette. One per artifact.
 6. Keep the result a single self-contained file. It opens in a browser with no install step.
 7. Run the corpus validator before reporting the result.
 

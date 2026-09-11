@@ -8,7 +8,7 @@ trigger_phrases:
   - "chart index"
 importance_tier: normal
 contextType: reference
-version: 0.22.0.15
+version: 0.23.0.16
 ---
 
 # Chart Catalog
@@ -172,7 +172,7 @@ renders.
 
 ## 7. WHAT IS NOT INDEXED HERE
 
-The catalog governs `assets/templates/` alone. The palette sheets under `assets/color/` are proof sheets for the colour systems rather than chart forms, so they carry no row and the check does not expect one.
+The catalog governs `assets/templates/` alone. The palette sheets under `assets/style-reference/evilcharts/` are proof sheets for the colour systems rather than chart forms, so they carry no row and the check does not expect one.
 
 ---
 

@@ -10,7 +10,7 @@ trigger_phrases:
   - "design-md theming"
 importance_tier: normal
 contextType: reference
-version: 0.22.0.10
+version: 0.23.0.11
 ---
 
 # sk-design-chart References
@@ -38,7 +38,7 @@ The catalog holds twenty-nine chart forms across six question families. When no 
 
 Reference files in this packet are lookups and contracts. They route a request to a template and they carry no render code of their own, because a render block copied into a reference is a second copy that drifts from the template it came from.
 
-Chart markup lives in `../assets/`. Stock colour values live in `../assets/color/palettes.json` and nowhere else. A local design reference is read by `../scripts/apply-design-md.cjs`, and this directory holds the guide that defines how its values earn the same roles and gates.
+Chart markup lives in `../assets/`. Stock colour values live in `../assets/style-reference/evilcharts/palettes.json` and nowhere else. A local design reference is read by `../scripts/apply-design-md.cjs`, and this directory holds the guide that defines how its values earn the same roles and gates.
 
 ---
 

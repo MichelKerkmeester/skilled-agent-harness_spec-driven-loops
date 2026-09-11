@@ -48,15 +48,15 @@ Operators run the exact prompt and command sequence for `CHT-005` and confirm th
 ### Commands
 
 1. `bash: cp .opencode/skills/sk-design/sk-design-chart/assets/templates/heat-matrix.html keep-matrix.html`
-2. `bash: cp .opencode/skills/sk-design/sk-design-chart/assets/color/palette-sheet-neutral.html keep-sheet.html`
+2. `bash: cp .opencode/skills/sk-design/sk-design-chart/assets/style-reference/evilcharts/palette-sheet-neutral.html keep-sheet.html`
 3. `bash: node .opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs > before.txt 2>&1`
 4. `bash: echo $?`
 5. `agent: Change one hex inside the palette block of assets/templates/heat-matrix.html, leaving the palette source untouched`
 6. `bash: node .opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs > drifted.txt 2>&1`
 7. `bash: cp keep-matrix.html .opencode/skills/sk-design/sk-design-chart/assets/templates/heat-matrix.html`
-8. `agent: Replace one var(--chart-muted) reference outside the palette block of assets/color/palette-sheet-neutral.html with a literal hex`
+8. `agent: Replace one var(--chart-muted) reference outside the palette block of assets/style-reference/evilcharts/palette-sheet-neutral.html with a literal hex`
 9. `bash: node .opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs > literal.txt 2>&1`
-10. `bash: cp keep-sheet.html .opencode/skills/sk-design/sk-design-chart/assets/color/palette-sheet-neutral.html`
+10. `bash: cp keep-sheet.html .opencode/skills/sk-design/sk-design-chart/assets/style-reference/evilcharts/palette-sheet-neutral.html`
 11. `agent: Reverse the five .series-N fill mappings in assets/templates/heat-matrix.html so .series-1 takes token 5 and .series-5 takes token 1`
 12. `bash: node .opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs > reversed.txt 2>&1`
 13. `bash: cp keep-matrix.html .opencode/skills/sk-design/sk-design-chart/assets/templates/heat-matrix.html`
@@ -123,7 +123,7 @@ Change one value in the palette source itself and run the check. Every template 
 
 | File | Role |
 |---|---|
-| [`assets/color/palettes.json`](../../assets/color/palettes.json) | Primary anchor, the only place a colour value is defined |
+| [`assets/style-reference/evilcharts/palettes.json`](../../assets/style-reference/evilcharts/palettes.json) | Primary anchor, the only place a colour value is defined |
 | [`references/color-system.md`](../../references/color-system.md) | The three systems, the role vocabulary and the contrast gates |
 | [`references/template-contract.md`](../../references/template-contract.md) | Section 6, which states the palette block is the only place a colour appears |
 | [`assets/templates/heat-matrix.html`](../../assets/templates/heat-matrix.html) | The ordered ramp where a drifted step is least visible |

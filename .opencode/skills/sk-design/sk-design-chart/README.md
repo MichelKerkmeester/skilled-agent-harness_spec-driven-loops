@@ -12,7 +12,7 @@ trigger_phrases:
   - "style reference chart"
 importance_tier: normal
 contextType: general
-version: 0.22.0.25
+version: 0.23.0.26
 ---
 
 # sk-design-chart
@@ -86,8 +86,8 @@ The hub router draws the same line by name. The bare type names `sk-design-diagr
 | [`SKILL.md`](./SKILL.md) | The runtime contract: when to use the packet, the workflow, the rules |
 | [`references/`](./references/) | The catalog, the colour systems and the template contract |
 | [`assets/templates/`](./assets/templates/) | One self-contained file per chart form, copied whole |
-| [`assets/color/`](./assets/color/) | The three stock colour systems, their palette source and their proof sheets |
-| [`assets/style-reference/`](./assets/style-reference/) | The Style Reference the stock palette was derived from, carried here rather than read from a sibling library |
+| [`assets/style-reference/`](./assets/style-reference/) | One directory per Style Reference, each carrying its own `DESIGN.md`, `palettes.json` and proof sheets. A reference is carried here rather than read from a sibling library, so nothing outside the packet can change it |
+| [`assets/style-reference/evilcharts/`](./assets/style-reference/evilcharts/) | The default reference, whose palette supplies the three stock colour systems every stock form reads |
 | [`scripts/`](./scripts/) | The corpus validator, shared gate arithmetic and the local `DESIGN.md` applicator |
 | [`manual-testing-playbook/`](./manual-testing-playbook/) | Operator scenarios for the packet |
 | [`changelog/`](./changelog/) | One file per release, named `v[version].md` |

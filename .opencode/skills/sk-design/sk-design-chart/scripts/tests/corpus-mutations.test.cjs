@@ -70,7 +70,7 @@ function runFileCase(spec) {
 // need a package to mutate. The copy carries only what the static check reads.
 const PACKAGE_PARTS = [
   ['scripts'], ['references'],
-  ['assets', 'color'], ['assets', 'style-reference'], ['assets', 'templates'],
+  ['assets', 'style-reference'], ['assets', 'templates'],
 ];
 
 function copyPackage() {
@@ -126,7 +126,7 @@ function runPackageFileCase(spec) {
 }
 
 function editPalette(directory, change) {
-  const file = path.join(directory, 'assets', 'color', 'palettes.json');
+  const file = path.join(directory, 'assets', 'style-reference', 'evilcharts', 'palettes.json');
   const palette = JSON.parse(fs.readFileSync(file, 'utf8'));
   change(palette);
   fs.writeFileSync(file, `${JSON.stringify(palette, null, 2)}\n`, 'utf8');
@@ -312,7 +312,7 @@ const PACKAGE_CASES = [
     family: 'palette-source', expect: /draws series 1 in the ink on the light ground/ },
   { name: 'palette-source refuses a ranked system that reverses',
     mutate: (d) => {
-      const file = path.join(d, 'assets', 'color', 'palettes.json');
+      const file = path.join(d, 'assets', 'style-reference', 'evilcharts', 'palettes.json');
       const palette = JSON.parse(fs.readFileSync(file, 'utf8'));
       const series = palette.systems.neutral.series;
       const [low, high] = [series[1], series[2]];
@@ -324,8 +324,8 @@ const PACKAGE_CASES = [
       fs.writeFileSync(file, `${JSON.stringify(palette, null, 2)}\n`, 'utf8');
       // The block check would catch this on its own, so the templates are moved with it: what is
       // under test is whether anything holds the ranking once the drift is gone.
-      for (const part of ['templates', 'color']) {
-        const directory = path.join(d, 'assets', part);
+      for (const part of [['templates'], ['style-reference', 'evilcharts']]) {
+        const directory = path.join(d, 'assets', ...part);
         for (const name of fs.readdirSync(directory)) {
           if (!name.endsWith('.html')) continue;
           const at = path.join(directory, name);

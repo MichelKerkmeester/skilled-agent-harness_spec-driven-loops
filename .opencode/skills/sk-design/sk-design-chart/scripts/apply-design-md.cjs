@@ -19,7 +19,11 @@ const {
 const VERSION = '1.4.0.0';
 const PACKAGE_ROOT = path.resolve(__dirname, '..');
 const TEMPLATE_DIR = path.join(PACKAGE_ROOT, 'assets', 'templates');
-const PALETTE_SOURCE = path.join(PACKAGE_ROOT, 'assets', 'color', 'palettes.json');
+const STYLE_REFERENCE_DIR = path.join(PACKAGE_ROOT, 'assets', 'style-reference');
+// The stock palette is the default reference's own file. Reading it from inside the reference is
+// what keeps a second reference from changing the stock values by existing.
+const DEFAULT_STYLE_REFERENCE = 'evilcharts';
+const PALETTE_SOURCE = path.join(STYLE_REFERENCE_DIR, DEFAULT_STYLE_REFERENCE, 'palettes.json');
 const PALETTE_BEGIN = /\/\*\s*CHART_PALETTE:BEGIN\s+system=[a-z0-9-]+\s*\*\//;
 const PALETTE_END = '/* CHART_PALETTE:END */';
 const PALETTE_DARK_BEGIN = /\/\*\s*CHART_PALETTE_DARK:BEGIN\s+system=[a-z0-9-]+\s*\*\//;
@@ -143,7 +147,7 @@ function parseTokens(file) {
 // the forms is the one read, because a stock the corpus was derived from cannot be allowed to
 // change under it without a diff. Any other reference, including the cursor capture carried beside
 // it, is applied by passing its path instead.
-const DEFAULT_DESIGN_PATH = path.join(PACKAGE_ROOT, 'assets', 'style-reference', 'evilcharts', 'DESIGN.md');
+const DEFAULT_DESIGN_PATH = path.join(STYLE_REFERENCE_DIR, DEFAULT_STYLE_REFERENCE, 'DESIGN.md');
 // Provenance records the reference by a path a second machine can resolve: relative to the
 // repository root, never the absolute path of whoever ran the script.
 const REPO_ROOT = path.resolve(PACKAGE_ROOT, '..', '..', '..', '..');

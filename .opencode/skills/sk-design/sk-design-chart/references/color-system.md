@@ -9,14 +9,26 @@ trigger_phrases:
   - "chart color roles"
 importance_tier: normal
 contextType: reference
-version: 0.22.0.18
+version: 0.23.0.19
 ---
 
 # Chart Colour Systems
 
-Every stock colour in this packet comes from `assets/color/palettes.json`. A template never invents
-one, and the corpus check fails a template that carries a colour literal anywhere except a palette
-block. A `design-md` delivery is the one request-time exception: its values come from a local v3
+Colour belongs to the Style Reference it was measured from. Every reference under
+`assets/style-reference/` carries its own `palettes.json` beside its `DESIGN.md`, and the corpus
+check fails a reference that carries none, so adding a reference is deciding its colour rather than
+inheriting whichever palette happens to be the default.
+
+What a reference owns is its colour, not the floors that colour has to clear. The contrast gates,
+the type scale and the corner ladder are read from the default reference's file and apply to every
+delivery, whichever reference painted it — a brand supplies values, it does not get to lower the bar
+those values are measured against. A second reference's own `palettes.json` records the measurement
+behind its values and is not read while that reference is not the default, which is why adding one is
+a decision about colour and not about accessibility.
+
+Every stock colour in this packet comes from the default reference's file,
+`assets/style-reference/evilcharts/palettes.json`. A template never invents one, and the corpus
+check fails a template that carries a colour literal anywhere except a palette block. A `design-md` delivery is the one request-time exception: its values come from a local v3
 `DESIGN.md`, and the checker accepts them only by provenance plus the same inline gates.
 
 Every role holds two values, one per ground. A file paints the light set by default and the dark set when the reader's operating system asks for one, and both sets come from the same file and clear the same gates.
@@ -423,5 +435,5 @@ label it, that form carries the pattern, and this paragraph is the reason nothin
 | --- | --- |
 | [`template-contract.md`](./template-contract.md) | What a template file has to contain |
 | [`catalog.md`](./catalog.md) | The index from a question to a chart form |
-| [`../assets/color/palettes.json`](../assets/color/palettes.json) | The source of truth for every value |
+| [`../assets/style-reference/evilcharts/palettes.json`](../assets/style-reference/evilcharts/palettes.json) | The source of truth for every value |
 | [`../scripts/README.md`](../scripts/README.md) | What the corpus check enforces |

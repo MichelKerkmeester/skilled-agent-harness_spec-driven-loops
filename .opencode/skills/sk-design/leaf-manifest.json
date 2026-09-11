@@ -2,12 +2,12 @@
   "modes": [
     {
       "leaves": [
-        "assets/color/palette-sheet-categorical.html",
-        "assets/color/palette-sheet-neutral.html",
-        "assets/color/palette-sheet-ordered.html",
-        "assets/color/palettes.json",
         "assets/style-reference/evilcharts/DESIGN.md",
         "assets/style-reference/evilcharts/origin.md",
+        "assets/style-reference/evilcharts/palette-sheet-categorical.html",
+        "assets/style-reference/evilcharts/palette-sheet-neutral.html",
+        "assets/style-reference/evilcharts/palette-sheet-ordered.html",
+        "assets/style-reference/evilcharts/palettes.json",
         "assets/style-reference/evilcharts/source-globals.css",
         "assets/style-reference/evilcharts/tokens.json",
         "assets/templates/bar-columns.html",
