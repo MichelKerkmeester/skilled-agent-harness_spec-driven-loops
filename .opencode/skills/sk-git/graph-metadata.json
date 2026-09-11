@@ -31,7 +31,8 @@
     "rebase",
     "integrate",
     "gitkraken",
-    "owner-first-naming"
+    "owner-first-naming",
+    "commit-identity"
   ],
   "intent_signals": [
     "git workflow",
@@ -54,7 +55,13 @@
     "owner-first branch",
     "skill-scoped worktree",
     "worktree naming allocator",
-    "skilled branch"
+    "skilled branch",
+    "commit id",
+    "commit identifier",
+    "spec trailer",
+    "find commits by packet",
+    "commit ordinal",
+    "stamp commit id"
   ],
   "derived": {
     "trigger_phrases": [
@@ -98,7 +105,15 @@
       "gitlens start review",
       "gitlens start work",
       "cross-platform pull request",
-      "multi-provider issue"
+      "multi-provider issue",
+      "commit id",
+      "commit identifier",
+      "commit ordinal",
+      "spec trailer",
+      "find commits by packet",
+      "find commits by id",
+      "stamp commit id",
+      "commit-id trailer"
     ],
     "key_topics": [
       "git",

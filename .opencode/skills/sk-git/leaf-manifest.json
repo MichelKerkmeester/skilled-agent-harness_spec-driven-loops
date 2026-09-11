@@ -17,6 +17,7 @@
         "feature-catalog/worktree-naming/owner-first-worktree-naming.md",
         "manual-testing-playbook/commit-formation/co-authored-by-footer.md",
         "manual-testing-playbook/commit-formation/conventional-commit-from-diff.md",
+        "manual-testing-playbook/commit-formation/find-commits-by-packet-and-id.md",
         "manual-testing-playbook/commit-formation/mixed-concerns-split-or-warn.md",
         "manual-testing-playbook/commit-formation/scope-inference-skill-folder.md",
         "manual-testing-playbook/cross-cli-orchestration/cli-opencode-and-cli-copilot-handback.md",
