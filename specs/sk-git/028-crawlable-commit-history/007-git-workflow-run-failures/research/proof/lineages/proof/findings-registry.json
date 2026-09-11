@@ -1,0 +1,29 @@
+{
+  "version": "1.0",
+  "sessionId": "fanout-proof-1789123034382-9ptgi0",
+  "updatedAt": "2026-09-11T10:39:10Z",
+  "findings": [
+    {"id": "F1.1", "severity": "info", "title": "Five README-declared hook files named, all present at mode 0755", "fixTarget": "none", "verdict": "confirmed"},
+    {"id": "F1.2", "severity": "low", "title": "git-hooks folder holds seven hook files; commit-msg appears nowhere in the README", "fixTarget": "docs", "verdict": "confirmed"},
+    {"id": "F1.3", "severity": "low", "title": "Installer header omits prepare-commit-msg from its installed-hooks list", "fixTarget": "docs", "verdict": "derived"},
+    {"id": "F1.4", "severity": "low", "title": "sk-git scripts README omits commit-id-naming.sh and stamp-branch.sh", "fixTarget": "docs", "verdict": "confirmed"},
+    {"id": "F1.5", "severity": "info", "title": "Commit-id allocator carries an ownerless-lock grace reclaim", "fixTarget": "none", "verdict": "confirmed"}
+  ],
+  "keyFindings": [
+    {"id": "F1.1", "severity": "info", "title": "Five README-declared hook files named, all present at mode 0755", "fixTarget": "none", "verdict": "confirmed"},
+    {"id": "F1.2", "severity": "low", "title": "git-hooks folder holds seven hook files; commit-msg appears nowhere in the README", "fixTarget": "docs", "verdict": "confirmed"},
+    {"id": "F1.3", "severity": "low", "title": "Installer header omits prepare-commit-msg from its installed-hooks list", "fixTarget": "docs", "verdict": "derived"},
+    {"id": "F1.4", "severity": "low", "title": "sk-git scripts README omits commit-id-naming.sh and stamp-branch.sh", "fixTarget": "docs", "verdict": "confirmed"},
+    {"id": "F1.5", "severity": "info", "title": "Commit-id allocator carries an ownerless-lock grace reclaim", "fixTarget": "none", "verdict": "confirmed"}
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {"id": "Q1", "answer": "Five README-declared hooks plus two installed extras on disk; three executable sk-git scripts; documentation drift recorded for both folders."}
+  ],
+  "ruledOutDirections": [],
+  "metrics": {
+    "iterationsCompleted": 1,
+    "findingsCount": 5,
+    "ruledOutCount": 0
+  }
+}
