@@ -13,7 +13,7 @@ const { contrast, round2 } = require('./color-gates.cjs');
 
 const PACKAGE_ROOT = path.resolve(__dirname, '..');
 const FORM_DIR = path.join(PACKAGE_ROOT, 'assets', 'diagrams');
-const DEFAULT_SOURCE = path.join(PACKAGE_ROOT, 'assets', 'style-reference', 'diagram-palette.json');
+const DEFAULT_SOURCE = path.join(PACKAGE_ROOT, 'assets', 'style-reference', 'harness-diagram', 'diagram-palette.json');
 const SKINS = ['light', 'dark', 'terminal'];
 const BEGIN = /\/\*\s*DIAGRAM_PALETTE:BEGIN\s+skin=([a-z0-9-]+)\s*\*\//;
 const END = /\/\*\s*DIAGRAM_PALETTE:END\s*\*\//;

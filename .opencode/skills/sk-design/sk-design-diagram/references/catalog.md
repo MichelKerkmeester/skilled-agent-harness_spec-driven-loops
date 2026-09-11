@@ -50,4 +50,4 @@ Read this before choosing a type. The table between the sentinels below is machi
 
 The hand-drawn `sketchy` treatment is documented in `references/primitives/primitive-sketchy.md` as a variant that applies to any minimal template, but no example in the corpus exercises it. It is descoped from this catalog with that stated reason, unproven by any example, rather than given a manufactured proof file whose only job would be to demonstrate one primitive.
 
-`assets/style-reference/icons.html` is a specimen sheet for the icon primitive, not a diagram. It carries no type and no reader question, so it is not indexed as an example.
+`assets/style-reference/harness-diagram/icons.html` is a specimen sheet for the icon primitive, not a diagram. It carries no type and no reader question, so it is not indexed as an example.

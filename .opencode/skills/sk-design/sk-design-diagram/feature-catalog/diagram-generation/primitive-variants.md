@@ -38,7 +38,7 @@ The terminal window primitive wraps any diagram in a fake terminal window — a 
 
 ### Icon library
 
-The icon library is a monochrome 24×24 set used in IT/cloud diagrams, with each glyph using `currentColor` so it inherits the active skin or any user-onboarded brand palette. Icons are organized into categories (compute, people, network, data, Kubernetes, action, DevOps, brand, data stack, language, statistical tools, file formats) with license attribution per icon; generic icons are stroked at 1.5px and brand silhouettes are filled. The gallery in `assets/style-reference/icons.html` is the browse surface, and its specimen glyphs are decorative (`aria-hidden="true"`).
+The icon library is a monochrome 24×24 set used in IT/cloud diagrams, with each glyph using `currentColor` so it inherits the active skin or any user-onboarded brand palette. Icons are organized into categories (compute, people, network, data, Kubernetes, action, DevOps, brand, data stack, language, statistical tools, file formats) with license attribution per icon; generic icons are stroked at 1.5px and brand silhouettes are filled. The gallery in `assets/style-reference/harness-diagram/icons.html` is the browse surface, and its specimen glyphs are decorative (`aria-hidden="true"`).
 
 ---
 
@@ -52,7 +52,7 @@ The icon library is a monochrome 24×24 set used in IT/cloud diagrams, with each
 | `references/primitives/primitive-sketchy.md` | Shared | The displacement-filter grammar, tuning parameters, and the filter-shapes-not-text rule |
 | `references/primitives/primitive-terminal.md` | Shared | The fixed terminal skin tokens, titlebar chrome, monospace typography, and one-accent rule |
 | `references/primitives/primitive-icons.md` | Shared | The monochrome icon library with per-icon SVG snippets, categories, and license attribution |
-| `assets/style-reference/icons.html`, `assets/diagrams/starter-terminal.html` | Shared | The icon gallery and the terminal template variant the primitive is applied to |
+| `assets/style-reference/harness-diagram/icons.html`, `assets/diagrams/starter-terminal.html` | Shared | The icon gallery and the terminal template variant the primitive is applied to |
 
 ### Validation And Tests
 

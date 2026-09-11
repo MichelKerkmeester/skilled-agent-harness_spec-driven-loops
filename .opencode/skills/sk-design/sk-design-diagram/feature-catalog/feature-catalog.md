@@ -81,7 +81,7 @@ Four on-demand primitives loaded only on explicit request: annotation callouts, 
 
 #### Current Reality
 
-Annotation callouts are italic serif asides with a dashed Bézier leader and landing dot, max 2 per diagram; the sketchy filter wobbles shapes but never text; the terminal skin is a fixed monospace one-accent register with macOS-style titlebar dots and a `$` prompt; icons are monochrome 24×24 `currentColor` glyphs with license attribution, browsable in `assets/style-reference/icons.html`.
+Annotation callouts are italic serif asides with a dashed Bézier leader and landing dot, max 2 per diagram; the sketchy filter wobbles shapes but never text; the terminal skin is a fixed monospace one-accent register with macOS-style titlebar dots and a `$` prompt; icons are monochrome 24×24 `currentColor` glyphs with license attribution, browsable in `assets/style-reference/harness-diagram/icons.html`.
 
 #### Source Files
 

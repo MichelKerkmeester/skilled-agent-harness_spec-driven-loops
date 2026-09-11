@@ -47,7 +47,7 @@ for a themed value.
 
 - The applicator: [`apply-design-md.cjs`](../scripts/apply-design-md.cjs).
 - The token source it reads on every run for roles, gates and departures:
-  [`diagram-palette.json`](../assets/style-reference/diagram-palette.json).
+  [`diagram-palette.json`](../assets/style-reference/harness-diagram/diagram-palette.json).
 - Contrast arithmetic, shared with the corpus checker: [`color-gates.cjs`](../scripts/color-gates.cjs).
 - The carried reference `--default` derives from and the corpus was written from:
   [`harness-diagram/DESIGN.md`](../assets/style-reference/harness-diagram/DESIGN.md), whose

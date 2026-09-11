@@ -160,7 +160,7 @@ Regenerate after changing any form:
 
 ```bash
 node ../shared/scripts/render-screenshots.cjs \
-  ./assets ./screenshots
+  ./assets ./screenshots --full-page   # each form at its own height
 node ../shared/scripts/render-screenshots.cjs \
   ./assets ./screenshots --check   # every source covered
 ```

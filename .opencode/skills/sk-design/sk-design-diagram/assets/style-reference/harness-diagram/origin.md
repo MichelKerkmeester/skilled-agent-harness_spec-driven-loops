@@ -5,7 +5,7 @@
 That distinction matters and is stated first because the sibling chart packet carries a reference of
 the opposite kind: a copy of a real component library, whose `origin.md` records the repository it
 came from. This one has no upstream. The diagram language is the harness's own, and its values were
-recorded in `assets/style-reference/diagram-palette.json` before any reference existed. This file expresses
+recorded in `assets/style-reference/harness-diagram/diagram-palette.json` before any reference existed. This file expresses
 that palette in the v3 Style Reference shape so the applicator has something to derive `--default`
 from, and so the stock look is one reference among several rather than the only one the packet can
 draw.
@@ -28,5 +28,5 @@ mapped by the selection rules in `references/design-md-theming.md`.
 |------|--------|
 | `DESIGN.md` | recorded by the applicator on first use |
 
-The palette this was written from is `assets/style-reference/diagram-palette.json`; that file, not this one,
+The palette this was written from is `assets/style-reference/harness-diagram/diagram-palette.json`; that file, not this one,
 remains the source the corpus is generated from.

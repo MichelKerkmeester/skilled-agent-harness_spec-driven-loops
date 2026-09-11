@@ -5,7 +5,7 @@
 // inlined on one page share a document, so bare title/desc ids make the second one answer to the first.
 
 const NAME = 'accessible-svg';
-const SPECIMEN_SHEET = 'assets/style-reference/icons.html';
+const SPECIMEN_SHEET = 'assets/style-reference/harness-diagram/icons.html';
 const BARE_IDS = new Set(['title', 'desc']);
 
 function escapeRe(value) {

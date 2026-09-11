@@ -372,7 +372,7 @@ Define each icon as `<g id="ico-…">` in `<defs>`, drawn at translate(cx, cy) w
 - `ico-key` — identity / IDP
 - `ico-monitoring` (chart-line) — observability stack
 
-If you need more icons, browse `assets/style-reference/icons.html` and define matching `<symbol>` blocks.
+If you need more icons, browse `assets/style-reference/harness-diagram/icons.html` and define matching `<symbol>` blocks.
 
 ---
 

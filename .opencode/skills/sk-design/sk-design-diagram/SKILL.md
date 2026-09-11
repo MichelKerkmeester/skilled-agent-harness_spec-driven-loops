@@ -99,7 +99,7 @@ references/types/type-*.md               # 27 per-type layout conventions — CO
 references/import-export/import-*.md     # draw.io / Mermaid redraw — CONDITIONAL (import)
 references/import-export/export.md       # PNG/SVG export procedure — CONDITIONAL (export)
 assets/diagrams/starter-*.html          # 4 skin starters to copy — ON_DEMAND
-assets/style-reference/icons.html                        # icon gallery — ON_DEMAND
+assets/style-reference/harness-diagram/icons.html                        # icon gallery — ON_DEMAND
 ```
 
 The route reference per diagram type:
@@ -140,7 +140,7 @@ The route reference per diagram type:
 |---|---|---|
 | ALWAYS | Every diagram | `references/foundations/style-guide.md` |
 | CONDITIONAL | Intent matches | `references/types/type-*.md`, `references/import-export/import-*.md`, `references/foundations/output-spec.md`, `references/import-export/export.md`, `references/foundations/onboarding.md` |
-| ON_DEMAND | Only on explicit request | `references/primitives/primitive-*.md`, `assets/diagrams/starter-*.html`, `assets/style-reference/icons.html` |
+| ON_DEMAND | Only on explicit request | `references/primitives/primitive-*.md`, `assets/diagrams/starter-*.html`, `assets/style-reference/harness-diagram/icons.html` |
 
 ### Smart Router Pseudocode
 
@@ -187,7 +187,7 @@ Universal building blocks — background, arrow markers, node boxes, arrow label
 - **Arrow labels:** every label needs an opaque mask rect *and* a visible 6–10px gap above its connector; ≤14 characters, all-caps, centered on the segment midpoint; never `writing-mode` vertical.
 - **Legend:** horizontal strip at the bottom with a hairline separator — never inside the diagram area; expand the SVG `viewBox` height by ~60px.
 
-Optional primitives: annotation callouts → `references/primitives/primitive-annotation.md`; hand-drawn variant → `references/primitives/primitive-sketchy.md`; terminal window → `references/primitives/primitive-terminal.md`; icon set → `references/primitives/primitive-icons.md` (browse `assets/style-reference/icons.html`).
+Optional primitives: annotation callouts → `references/primitives/primitive-annotation.md`; hand-drawn variant → `references/primitives/primitive-sketchy.md`; terminal window → `references/primitives/primitive-terminal.md`; icon set → `references/primitives/primitive-icons.md` (browse `assets/style-reference/harness-diagram/icons.html`).
 
 ### Layout and spacing
 
@@ -244,7 +244,7 @@ For `ascii-markdown`, produce the requested markdown file or embedded fenced tex
 3. IDs are prefixed per diagram and variant (`<slug>-title` / `<slug>-desc`); bare `title` / `desc` IDs are banned because two inline diagrams would collide.
 4. `<title>` is the short name of the subject — roughly the page `<h1>`, ~60 characters or fewer.
 5. `<desc>` is one sentence stating what the diagram shows in reader terms — describe content, not geometry.
-6. Decorative-only SVG (e.g., the specimen glyphs in `assets/style-reference/icons.html`) carries `aria-hidden="true"`.
+6. Decorative-only SVG (e.g., the specimen glyphs in `assets/style-reference/harness-diagram/icons.html`) carries `aria-hidden="true"`.
 
 **Exporting to PNG / SVG:** when asked to export, save, rasterize, or convert a diagram to `.png` or `.svg`, load `references/import-export/export.md` and follow the procedure there. Both formats deliver the diagram only (the `<svg>` node); editorial wrappers are dropped by design. Export is **manual** — never produce export files unprompted.
 
@@ -323,7 +323,7 @@ For `ascii-markdown`, produce the requested markdown file or embedded fenced tex
 - [starter-dark.html](./assets/diagrams/starter-dark.html) — minimal dark variant.
 - [starter-full.html](./assets/diagrams/starter-full.html) — full editorial variant.
 - [starter-terminal.html](./assets/diagrams/starter-terminal.html) — terminal-window variant.
-- [icons.html](./assets/style-reference/icons.html) — icon gallery; specimen glyphs are decorative (`aria-hidden="true"`).
+- [icons.html](./assets/style-reference/harness-diagram/icons.html) — icon gallery; specimen glyphs are decorative (`aria-hidden="true"`).
 
 ---
 
