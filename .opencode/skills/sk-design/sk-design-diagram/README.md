@@ -32,7 +32,7 @@ A generic AI-drawn diagram is easy to spot: dark mode with a cyan glow, identica
 
 ### What It Does
 
-`sk-design-diagram` picks the right one of 27 diagram types for what's being shown, loads that type's layout conventions and complexity budget, draws against the shared design system in `references/foundations/style-guide.md`, and runs the SKILL.md §6 Pre-Output Checklist before handoff. It also redraws an existing draw.io or Mermaid source, extracting the structural content only, never the source's coordinates, colors, or renderer layout, at a chosen format, size, detail level, and audience. It produces standalone `.html` diagrams for the `html-svg` format, or a plain markdown flowchart for the `ascii-markdown` format: the two formats live in this one packet; the earlier separate `sk-create-flowchart` skill has been fully deprecated and removed.
+`sk-design-diagram` picks the right one of 27 diagram types for what's being shown, loads that type's layout conventions and complexity budget, draws against the shared design system in `references/foundations/style-guide.md`, and runs the `SKILL.md` §6 SUCCESS CRITERIA gate before handoff. It also redraws an existing draw.io or Mermaid source, extracting the structural content only, never the source's coordinates, colors, or renderer layout, at a chosen format, size, detail level, and audience. It produces standalone `.html` diagrams for the `html-svg` format, or a plain markdown flowchart for the `ascii-markdown` format: the two formats live in this one packet; the earlier separate `sk-create-flowchart` skill has been fully deprecated and removed.
 
 ### The 27 Diagram Types
 
@@ -60,7 +60,7 @@ That request maps to `references/types/type-architecture.md`.
 
 **Step 2: Draw the diagram against the design system, then run the taste gate.**
 
-The taste gate is `SKILL.md` §9's Pre-Output Checklist: self-applied, no external script: type fit, the remove test, signal (accent on ≤2 elements), the five mandatory connector rules, the accessible-SVG contract, and typography.
+The taste gate is the `SKILL.md` §6 SUCCESS CRITERIA checklist: self-applied, no external script: type fit, the remove test, signal (accent on ≤2 elements), the five mandatory connector rules, the accessible-SVG contract, and typography.
 
 **Step 3: When redrawing an existing draw.io or Mermaid file, extract first: never render.**
 
@@ -79,7 +79,7 @@ Every build follows the same order. Detect the request shape, generate, import, 
 
 ### Key Concept: The Taste Gate Is Not Optional Polish
 
-`SKILL.md` §9 is not a style nicety. It catches the failure modes that make a diagram look AI-generated instead of intentional: a diagonal connector between off-axis nodes, an arrow label sitting on top of its own line, two connectors sharing a stroke path, a legend floating inside the diagram, an accent color used on five "important" things instead of one or two. A diagram that looks right at a glance but never ran through this checklist has not actually been checked. The packet's own success criteria treat a diagram that skipped the taste gate as unfinished, not finished-with-an-unrun-check.
+`SKILL.md` §6 SUCCESS CRITERIA is not a style nicety. It catches the failure modes that make a diagram look AI-generated instead of intentional: a diagonal connector between off-axis nodes, an arrow label sitting on top of its own line, two connectors sharing a stroke path, a legend floating inside the diagram, an accent color used on five "important" things instead of one or two. A diagram that looks right at a glance but never ran through this checklist has not actually been checked. The packet's own success criteria treat a diagram that skipped the taste gate as unfinished, not finished-with-an-unrun-check.
 
 ---
 
@@ -102,7 +102,7 @@ Reach for `sk-design-diagram` when a reader will learn more from a visual than f
 
 | What you see | Why | Fix |
 |---|---|---|
-| Diagram looks generic or "AI-drawn" | Dark mode + glow, identical boxes, no real accent decision | Re-run the §9 taste gate's Signal checks; pick 1-2 genuinely focal elements |
+| Diagram looks generic or "AI-drawn" | Dark mode + glow, identical boxes, no real accent decision | Re-run the §6 SUCCESS CRITERIA Signal checks; pick 1-2 genuinely focal elements |
 | Diagonal connector between two boxes | Off-axis nodes connected with a straight `<line>` instead of an orthogonal elbow | Route with a rounded right-angle connector (`r=8`); see `SKILL.md` RULES |
 | Arrow label unreadable or overlapping the line | Missing the mandatory 6-10px gap or opaque mask rect | Add the mask rect and the visible gap per the connector-rules checklist |
 | Import redraw looks nothing like the source | Wrong output dial (format/size/detail/audience) for the destination | Re-check the four dials in `references/foundations/output-spec.md` against where the diagram is going |
@@ -134,7 +134,9 @@ A: No: the packet has no network-fetch tool. Onboarding is agent-mediated: the c
 | Connector rules | Every delivered diagram passes all five mandatory connector rules in `SKILL.md` RULES |
 | Accessible SVG | `role="img"`, `aria-labelledby`, first-child `<title>`, `<desc>`, and diagram/variant-prefixed IDs on every delivered SVG |
 | Import fidelity | Every import redraw reports a fidelity ledger, merged, collapsed, dropped |
-| Manual review | The diagram reflects real source content, stays within its type's complexity budget, and passes the full §9 taste gate |
+| Manual review | The diagram reflects real source content, stays within its type's complexity budget, and passes the full §6 SUCCESS CRITERIA taste gate |
+| Corpus check | `node scripts/check-diagram-corpus.cjs` from the packet root prints `RESULT: PASSED` |
+| Outside delivery | `node scripts/check-diagram-corpus.cjs --extra <dir>` prints `RESULT: PASSED` over a delivered `.html` written outside the packet |
 
 ---
 

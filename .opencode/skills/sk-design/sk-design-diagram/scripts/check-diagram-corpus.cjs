@@ -10,7 +10,14 @@
  *   - pairwise connector geometry (overlap, the attach fan, the visible label gap, a route behind a
  *     box) needs a 2D pass over parsed paths, not a regex; until one exists the eye holds it
  *   - focal balance, type fit, the remove test and taste are judgments
+ *   - path `d` data and `polygon`/`polyline` points are exempt from the 4px grid rather than simply
+ *     unmeasured: a path is written as relative offsets and icon glyphs, not as layout positions,
+ *     so the grid family measures the tags that place things and leaves the outline alone
  * Those live in the capture review, and a judgment that becomes computable moves in here, logged.
+ *
+ * Each family line reports its assertions, the values it compared, beside its runs, the files it was
+ * invoked on. A family whose rules never reach a file therefore shows a zero assertion count with a
+ * full run count, so an exemption is visible rather than counted as a pass.
  *
  * Usage:
  *   node check-diagram-corpus.cjs             the corpus
@@ -37,6 +44,7 @@ const PALETTE_SOURCE = path.join(PACKAGE_ROOT, 'assets', 'style-reference', 'har
 
 const findings = [];
 const counts = new Map();
+const invocations = new Map();
 const seen = new Set();
 
 function record(check, level, file, message) {
@@ -154,16 +162,26 @@ function main() {
       kind: origin ? (STARTER.test(origin) ? 'starter' : 'form') : kind,
       originLabel: origin ? rel(origin) : null,
     };
-    for (const family of families) if (family.scope === 'file') family.run(ctx);
+    for (const family of families) {
+      if (family.scope !== 'file') continue;
+      family.run(ctx);
+      invocations.set(family.name, (invocations.get(family.name) || 0) + 1);
+    }
   }
-  for (const family of families) if (family.scope === 'corpus') family.run({ ...shared, files: internal });
+  for (const family of families) {
+    if (family.scope !== 'corpus') continue;
+    family.run({ ...shared, files: internal });
+    invocations.set(family.name, (invocations.get(family.name) || 0) + 1);
+  }
 
   const errors = findings.filter((f) => f.level === 'error');
   console.log(`Diagram corpus: ${internal.length} files, ${families.length} families`);
   for (const family of families) {
     const n = counts.get(family.name) || 0;
+    const runs = invocations.get(family.name) || 0;
+    const runLabel = family.scope === 'corpus' ? 'corpus run(s)' : 'file run(s)';
     const failed = errors.filter((e) => e.check === family.name).length;
-    console.log(`  ${failed ? 'x' : '+'} ${family.name}: ${n} assertion(s), ${failed} failure(s)`);
+    console.log(`  ${failed ? 'x' : '+'} ${family.name}: ${n} assertion(s), ${runs} ${runLabel}, ${failed} failure(s)`);
   }
   if (errors.length) {
     console.log('');

@@ -9,7 +9,7 @@ trigger_phrases:
   - "apply DESIGN.md to chart"
 importance_tier: normal
 contextType: reference
-version: 0.22.0.15
+version: 0.23.0.15
 ---
 
 # sk-design-chart Scripts
@@ -29,7 +29,7 @@ Run it from the repository root. The first form is the one to reach for by defau
 node .opencode/skills/sk-design/sk-design-chart/scripts/apply-design-md.cjs \
   path/to/DESIGN.md --forms grouped-bars,daily-line --out scratch/themed
 node .opencode/skills/sk-design/sk-design-chart/scripts/apply-design-md.cjs \
-  --default --all --out scratch/themed      # the cursor bundle; ordered forms are skipped with a note
+  --default --all --out scratch/themed      # the carried evilcharts reference; ordered forms are skipped with a note
 
 # structural checks over the whole corpus
 node .opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs
@@ -55,6 +55,7 @@ needs a Chrome or Chromium binary, found on the usual paths or named by `CHROME_
 | [`apply-design-md.cjs`](apply-design-md.cjs) | Parse the documented v3 DESIGN.md tables, derive both grounds, refuse failed gates and write deterministic themed copies |
 | [`color-gates.cjs`](color-gates.cjs) | Shared sRGB luminance, contrast and rounding functions used by the applicator and checker |
 | [`check-corpus.cjs`](check-corpus.cjs) | The corpus check. It reads every template in the corpus and asserts the template contract against each one. With `--render` it also opens each template in a headless browser |
+| [`tests/`](tests/) | The standing mutation suite: one case per check family, each breaking a file and expecting that family to say one specific thing. Run with `node --test scripts/tests/` |
 
 ---
 

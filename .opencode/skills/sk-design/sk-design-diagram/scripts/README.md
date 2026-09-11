@@ -26,7 +26,7 @@ Behavior details (per-type routing rules, the four output dials) live in [`../re
 |---|---:|
 | Code files | 3 |
 | CLI entrypoints | 3 |
-| Test suites | 0 (no committed regression suite yet) |
+| Test suites | 1 (`scripts/tests/corpus-mutations.test.cjs`, one case per checker family) |
 
 ---
 
@@ -38,9 +38,11 @@ Run from the packet root:
 python3 scripts/drawio_extract.py diagram.drawio --page 1
 python3 scripts/mermaid_extract.py diagram.mmd --diagram 1
 bash scripts/validate-flowchart.sh path/to/flowchart.md
+node scripts/check-diagram-corpus.cjs                          # the packet corpus
+node scripts/check-diagram-corpus.cjs --extra path/to/dir      # also HTML deliveries outside it
 ```
 
-Both print a Markdown digest to stdout by default. Add `--json` for the full IR, or `--out <path>` to write the digest to a file instead of stdout.
+Both print a Markdown digest to stdout by default. Add `--json` for the full IR, or `--out <path>` to write the digest to a file instead of stdout. The corpus check prints `RESULT: PASSED` on a clean run, and it is the marker to read rather than the exit code.
 
 ---
 
@@ -92,7 +94,9 @@ The flowchart validator uses its own two-code delivery contract:
 
 ## 7. VALIDATION / TESTS
 
-No committed regression suite exists for this folder yet. Verify a change compiles and both entrypoints still resolve their exit-code contract:
+`node --test scripts/tests/` runs the standing suite: one mutation case per checker family, each breaking exactly one thing in a copy and expecting that family to say the specific thing its message promises. The suite also asserts its own completeness, so a family added without a case fails the run.
+
+Verify a change compiles and both entrypoints still resolve their exit-code contract:
 
 ```bash
 python3 -m py_compile scripts/drawio_extract.py scripts/mermaid_extract.py

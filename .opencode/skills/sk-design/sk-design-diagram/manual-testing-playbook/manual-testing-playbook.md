@@ -1,6 +1,6 @@
 ---
 title: "sk-design-diagram: Manual Testing Playbook"
-description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the sk-design-diagram sk-doc workflow packet."
+description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the sk-design-diagram workflow packet in the sk-design hub."
 version: 1.0.0.5
 ---
 
@@ -58,7 +58,7 @@ Coverage note (2026-08-12): every scenario is runnable today against the shipped
 1. Working directory is the repository root, so `.opencode/skills/sk-design/sk-design-diagram/` subpaths and the `.opencode/commands/create/` assets resolve.
 2. Python 3.9+ is available on `PATH` for the extraction scripts (`drawio_extract.py` / `mermaid_extract.py`).
 3. For the PNG export step of IMP-003, Playwright (`playwright` Python package + Chromium) must be installed; otherwise IMP-003 is a documented `SKIP` with a named blocker and a surfaced install instruction.
-4. Generated artifacts (`.html`, `.svg`, `.png`) are written to a scratch or docs output directory outside the packet. The one documented in-package mutation is `references/foundations/style-guide.md` during the onboarding scenario (DIA-003), which runs on a scratch checkout or is reverted with `git checkout -- .opencode/skills/sk-design/sk-design-diagram/references/foundations/style-guide.md`.
+4. Generated artifacts (`.html`, `.svg`, `.png`) are written to a scratch or docs output directory outside the packet. The one documented in-package mutation is `references/foundations/style-guide.md` during the onboarding scenario (DIA-003), which runs on a scratch checkout or restores from a copy of the file taken before the scenario starts. Restore from a copy, not from `git checkout --`: that command reverts to the last commit rather than to the state the operator was working in, so on an uncommitted tree it silently throws the work away.
 5. No destructive scenarios exist — the skill only writes new files and never mutates source inputs — but every import and export scenario MUST confirm the source file is byte-unchanged afterward.
 
 ---
@@ -314,10 +314,10 @@ Desired user-visible outcome: an HTML sequence diagram at the argument path, pro
 ### CMD-002 | Hub registration
 
 #### Description
-Verify the packet is registered in the `sk-doc` hub: `workflowMode`, command, and aliases in `mode-registry.json`, leaves in `leaf-manifest.json`, no packet-local `graph-metadata.json`, and a clean package-structure validator run.
+Verify the packet is registered in the `sk-design` hub: `workflowMode`, command, and aliases in `mode-registry.json`, leaves in `leaf-manifest.json`, no packet-local `graph-metadata.json`, and a clean package-structure validator run.
 
 #### Scenario Contract
-Prompt: `Verify the sk-design-diagram packet is correctly registered in the sk-doc hub: its workflowMode, command, and aliases in mode-registry.json, its leaf references in leaf-manifest.json, and that the packet root carries no packet-local graph-metadata.json. Report PASS or FAIL for each registration fact.`
+Prompt: `Verify the sk-design-diagram packet is correctly registered in the sk-design hub: its workflowMode, command, and aliases in mode-registry.json, its leaf references in leaf-manifest.json, and that the packet root carries no packet-local graph-metadata.json. Report PASS or FAIL for each registration fact.`
 
 Natural-language aliases such as `drawio`, `mermaid diagram`, `redraw diagram`, and `export diagram` must route to the packet.
 

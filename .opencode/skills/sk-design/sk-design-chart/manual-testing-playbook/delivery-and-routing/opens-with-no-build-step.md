@@ -2,7 +2,7 @@
 title: "CHT-007 -- It opens with no build step"
 description: "This scenario validates the delivery property for `CHT-007`. It confirms a delivered chart opens from a file:// URL with no install, no package manager and no network, carrying no remote resource and no runtime fetch."
 stage: delivery
-version: 0.22.0.4
+version: 0.23.0.4
 ---
 
 # CHT-007 -- It opens with no build step
@@ -50,15 +50,16 @@ Operators run the exact prompt and command sequence for `CHT-007` and confirm th
 1. `bash: node .opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs > before.txt 2>&1`
 2. `bash: cp .opencode/skills/sk-design/sk-design-chart/assets/templates/treemap.html ~/chart-delivery-check.html`
 3. `agent: Turn the network off, open ~/chart-delivery-check.html from a file:// URL and read the rendered card`
-4. `agent: Add a remote stylesheet link to a scratch copy of one form under the corpus tree`
-5. `bash: node .opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs > external.txt 2>&1`
-6. `bash: git checkout -- .opencode/skills/sk-design/sk-design-chart`
-7. `bash: rm ~/chart-delivery-check.html`
-8. `bash: git status --porcelain .opencode/skills/sk-design/sk-design-chart`
+4. `bash: cp .opencode/skills/sk-design/sk-design-chart/assets/templates/treemap.html keep-treemap.html`
+5. `agent: Add a remote stylesheet link to .opencode/skills/sk-design/sk-design-chart/assets/templates/treemap.html`
+6. `bash: node .opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs > external.txt 2>&1`
+7. `bash: cp keep-treemap.html .opencode/skills/sk-design/sk-design-chart/assets/templates/treemap.html`
+8. `bash: rm ~/chart-delivery-check.html keep-treemap.html`
+9. `bash: git status --porcelain .opencode/skills/sk-design/sk-design-chart`
 
 ### Expected
 
-Step 1 gives the baseline with `no-external` reporting its assertion count and zero failures. Step 2 moves one delivery outside the repository, which is the state the recipient receives. Step 3 shows the whole card: headline, subtitle, the drawing and the source line, with the network off and nothing installed. Step 4 introduces the one thing the rule forbids. Step 5 reports `RESULT: FAILED` on `no-external` naming the file and the remote reference. Steps 6 and 7 restore the tree and remove the copy. Step 8 returns empty output.
+Step 1 gives the baseline with `no-external` reporting its assertion count and zero failures. Step 2 moves one delivery outside the repository, which is the state the recipient receives. Step 3 shows the whole card: headline, subtitle, the drawing and the source line, with the network off and nothing installed. Step 4 copies the corpus form aside. Step 5 introduces the one thing the rule forbids. Step 6 reports `RESULT: FAILED` on `no-external` naming the file and the remote reference. Step 7 restores the form from the copy, step 8 removes both copies, and step 9 returns empty output.
 
 Opening the copy outside the repository matters more than it looks. A file that resolves a sibling path works inside the tree and fails the moment it is sent to somebody.
 

@@ -14,7 +14,7 @@
     "muted": "#A1A1A1",
     "rule": "#FAFAFA17"
   },
-  "chromeDarkNote": "The ground a reader gets when their operating system asks for dark: the cursor ink itself, which the reference already uses as the surface behind its light action fills. Parchment becomes the ink and mist the muted tone, both clearing the text gate on that ground. The rule is ink at nine percent rather than a solid grey, chosen so the same declaration reads as a hairline on both grounds.",
+  "chromeDarkNote": "The ground a reader gets when their operating system asks for dark: the ink colour itself, which the reference already uses as the surface behind its light action fills. Parchment becomes the ink and mist the muted tone, both clearing the text gate on that ground. The rule is ink at nine percent rather than a solid grey, chosen so the same declaration reads as a hairline on both grounds.",
   "chromeRoles": {
     "surface": "The page and card ground. Every contrast ratio in this file is measured against it.",
     "ink": "Primary text: the headline and any label a reader has to read exactly.",
@@ -30,7 +30,7 @@
     "card": "8.4px"
   },
   "radiusRoles": {
-    "ladder": "One 2px knob, five steps, on the cursor reference's 4px corner with 8px for the one container that holds a whole card. Every step is a corner the corpus actually draws, so a rung exists for a consumer rather than for symmetry.",
+    "ladder": "One 2px knob, five steps: 4.4px for the middle rungs, 8.4px for the one container that holds a whole card. Every step is a corner the corpus actually draws, so a rung exists for a consumer rather than for symmetry.",
     "mark": "A data mark's corner: a bar end, a box body, a calendar cell, a legend swatch, a ring tick.",
     "track": "A percentage bar and the track it runs inside.",
     "swatch": "A colour block large enough to be read as a panel rather than as a mark.",
@@ -61,6 +61,11 @@
       "note": "12px",
       "tick": "11px"
     }
+  },
+  "fontStacks": {
+    "note": "The two stacks the shipped forms set for text and for numbers. The carried reference declares its own faces, so the stock corpus's type is not derivable from it and is recorded here.",
+    "sans": "CursorGothic, Inter, system-ui, \"Helvetica Neue\", sans-serif",
+    "mono": "ui-monospace, SFMono-Regular, \"SF Mono\", Menlo, Consolas, \"Liberation Mono\", monospace"
   },
   "gates": {
     "note": "Every gate is computed once per theme, against that theme's own surface. A value that clears on paper has proved nothing about the dark ground, and the two runs print as separate lines.",
@@ -138,7 +143,7 @@
   "derivation": {
     "note": "What the palette owes the Style Reference it was derived from, in a form the corpus check can hold rather than a form a reader has to trust. Every role is in exactly one of the three lists below: it takes a reference token verbatim, it departs from one to clear a named gate, or it comes from an arithmetic the reference cannot carry.",
     "reference": "assets/style-reference/evilcharts/DESIGN.md",
-    "sha256": "ec8c6f693516026fdd7b22bbb57162f15b8a4b51fa2d9b80df6c331414967f8c",
+    "sha256": "4d912a6d7d6b3e38d7b8fb0b5ccf99c12cf8471e6e4b971fd103ebde1aff2d3b",
     "kinds": {
       "ramp-interior": "A rung between the ends of a magnitude ramp, placed by equal contrast rather than by mixing toward the ground. The ramp contract in palette-source holds its separation and its direction.",
       "ink-at-alpha": "That theme’s ink at a fixed alpha, computed rather than picked."

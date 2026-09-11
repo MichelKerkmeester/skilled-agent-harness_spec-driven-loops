@@ -1,7 +1,7 @@
 ---
 title: "sk-design-chart: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, the review protocol, the orchestration guide and the per-feature validation files for the sk-design-chart sk-doc workflow packet."
-version: 0.22.0.5
+version: 0.23.0.5
 ---
 
 # sk-design-chart: Manual Testing Playbook
@@ -47,7 +47,7 @@ So the inverted rule for this package is that **a run reporting a pass from the 
 
 ### Family Coverage
 
-The corpus holds twenty-one chart forms across six question families. Every family is named below with the scenario that carries it and the reason, because the failure modes here cut across families rather than along them. A per-family scenario set would produce six near-identical documents that all fail for the same reason, which is the bar a scenario has to clear to earn its place.
+The corpus holds twenty-nine chart forms across six question families. Every family is named below with the scenario that carries it and the reason, because the failure modes here cut across families rather than along them. A per-family scenario set would produce six near-identical documents that all fail for the same reason, which is the bar a scenario has to clear to earn its place.
 
 | Family | Carried by | Why that scenario is the one |
 |---|---|---|
@@ -82,7 +82,7 @@ The corpus holds twenty-one chart forms across six question families. Every fami
 3. A Chrome or Chromium binary is present for any scenario using `--render`, found on the usual paths or named by `CHROME_PATH`. A run without one records a `SKIP` naming the missing browser as the environment blocker.
 4. A desktop browser is available for the scenarios that need a rendered page read by eye. Those scenarios name the requirement in their own preconditions, and a headless-only machine records a `SKIP` naming the unavailable display as the blocker.
 5. The corpus is unmodified and the working tree is clean for the packet paths, so any diff is attributable to the run.
-6. Scenarios that break a file on purpose do so on a copy under a scratch path, or restore with `git checkout --` of the touched path before the next scenario starts. A run that leaves a diff under the packet has failed the scenario it was executing.
+6. Scenarios that break a file on purpose do so on a copy under a scratch path, or take a copy of the touched file first and restore from that copy before the next scenario starts. `git checkout --` reverts to the last commit rather than to the state the operator was working in, so on an uncommitted tree it throws the work away. A run that leaves a diff under the packet has failed the scenario it was executing.
 
 ---
 

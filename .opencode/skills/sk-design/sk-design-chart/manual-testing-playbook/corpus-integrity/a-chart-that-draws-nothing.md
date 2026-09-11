@@ -2,7 +2,7 @@
 title: "CHT-004 -- A chart that draws nothing"
 description: "This scenario validates the render pass for `CHT-004`. It confirms a chart producing no marks is caught, that the run says which mode it was and that an intermittent browser failure is told apart from a real one."
 stage: validation
-version: 0.22.0.4
+version: 0.23.0.4
 ---
 
 # CHT-004 -- A chart that draws nothing

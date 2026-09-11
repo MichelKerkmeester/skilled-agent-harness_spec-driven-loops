@@ -7,7 +7,7 @@ This file is the single source of truth for user-facing presentation in `/design
 Run this automatic self-check before setup. This is not a user question.
 
 ```text
-SELF-CHECK: Are create-diagram packet resources available?
+SELF-CHECK: Are sk-design-diagram packet resources available?
 
 Indicators:
 - `.opencode/skills/sk-design/sk-design-diagram/SKILL.md` is readable
@@ -30,7 +30,7 @@ Hard-block message:
 ```text
 CREATE-DIAGRAM RESOURCES REQUIRED
 
-This command requires the create-diagram packet for:
+This command requires the sk-design-diagram packet for:
 - The shared editorial design system, complexity budget, and taste gate
 - Per-type layout conventions (27 diagram types)
 - draw.io and Mermaid extraction for redraw requests
@@ -41,12 +41,12 @@ Required references:
 .opencode/skills/sk-design/sk-design-diagram/references/types/type-<name>.md
 .opencode/skills/sk-design/sk-design-diagram/references/ascii-format/pattern-selection.md
 
-STATUS=FAIL ERROR="create-diagram resources unavailable"
+STATUS=FAIL ERROR="sk-design-diagram resources unavailable"
 ```
 
 ## 2. Auto Setup Resolution
 
-For `:auto`, resolve setup using the system auto-mode contract, resolve `output_format` before selecting a type or pattern, then load `create-diagram-auto.yaml` only when every required field is available.
+For `:auto`, resolve setup using the system auto-mode contract, resolve `output_format` before selecting a type or pattern, then load `diagram-auto.yaml` only when every required field is available.
 
 Resolution tiers:
 
@@ -168,7 +168,7 @@ Design System:
 - Complexity budget: [node-count]/[max] nodes, [accent-count]/2 accent elements | [pattern selected and source fidelity reviewed]
 
 Validation:
-- [Taste gate (§9 checklist) and accessible SVG contract | `scripts/validate-flowchart.sh`]: PASSED
+- [Taste gate (§6 SUCCESS CRITERIA) and accessible SVG contract | `scripts/validate-flowchart.sh`]: PASSED
 
 Output:
 - [Single self-contained HTML file, inline SVG, no external images | Single markdown flowchart with fenced text diagram]

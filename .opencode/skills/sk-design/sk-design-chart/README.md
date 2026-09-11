@@ -45,8 +45,8 @@ A form file that already renders has had those problems solved once. Copying it 
 
 You describe the comparison a reader needs to make. The catalog in `references/catalog.md` turns that comparison into one row, and the row names the file that draws it. You copy that file, swap its data block and apply one colour system. A validator then proves the corpus still renders.
 
-When a request names a local v3 `DESIGN.md`, or passes `--default` for the `cursor` bundle in the
-style library, `scripts/apply-design-md.cjs` derives the chart role
+When a request names a local v3 `DESIGN.md`, or passes `--default` for the carried `evilcharts`
+reference in the style library, `scripts/apply-design-md.cjs` derives the chart role
 palette, typeface stacks and corner ladder from its documented tables. The script reuses the
 corpus gates, refuses to write on a failure, and places a hash-bearing provenance comment in both
 theme blocks. Site extraction remains the job of `sk-design-md-generator`; this packet applies the
@@ -109,8 +109,9 @@ That is a constraint rather than a preference. This repository is MIT and public
 | Corpus | `node .opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs` | `RESULT: PASSED` |
 | Design reference | `node .opencode/skills/sk-design/sk-design-chart/scripts/apply-design-md.cjs <DESIGN.md> --forms <a,b> --out <dir>` | `RESULT: PASSED` and deterministic themed copies |
 | Outside delivery | `node .opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs --extra <dir>` | `RESULT: PASSED` with `design-md` provenance and gates checked |
+| Mutation suite | `node --test scripts/tests/` | Every check family is exercised by a case or named with the reason it needs a browser |
 | Package shape | `python3 .opencode/skills/sk-doc/sk-create-skill/scripts/package_skill.py .opencode/skills/sk-design/sk-design-chart --check --strict` | `Result: PASS` |
-| Hub shape | `node .opencode/commands/doctor/scripts/parent-skill-check.cjs .opencode/skills/sk-doc` | Zero invariant failures |
+| Hub shape | `node .opencode/commands/doctor/scripts/parent-skill-check.cjs .opencode/skills/sk-design` | Zero invariant failures |
 | Voice | `python3 .opencode/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py README.md` | Zero hard blockers |
 
 ---
@@ -131,7 +132,7 @@ Every template and example in this mode is rendered to a PNG under
 [`screenshots/`](./screenshots/), mirroring the source layout, so a form can be
 judged without opening a browser.
 
-Regenerate after changing any template:
+Regenerate from this packet's directory after changing any template:
 
 ```bash
 node ../shared/scripts/render-screenshots.cjs \

@@ -21,6 +21,10 @@ module.exports = {
     const count = (name) => (markup.match(new RegExp(`<[^>]*\\b${name}\\b[^>]*>`, 'g')) || []).length;
     const nodes = count('data-diagram-node');
     const arrows = count('data-diagram-arrow');
+    // The corpus ships no tagged elements, so there is nothing here to measure. A file that carries
+    // neither tag records no comparison rather than one silent pass, and the run's invocation count
+    // is what says the file was visited.
+    if (nodes === 0 && arrows === 0) return;
     tally(NAME, 1);
     if (nodes > NODE_BUDGET) {
       record(NAME, 'error', label, `${nodes} tagged nodes against a budget of ${NODE_BUDGET}; past that count the drawing stops reading as one shape and starts reading as a chart`);

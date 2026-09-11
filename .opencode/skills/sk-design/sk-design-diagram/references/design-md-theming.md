@@ -60,13 +60,13 @@ for a themed value.
 
 ```bash
 node .opencode/skills/sk-design/sk-design-diagram/scripts/apply-design-md.cjs \
-  path/to/DESIGN.md --forms template-full --out scratch/themed
+  path/to/DESIGN.md --forms starter-full --out scratch/themed
 ```
 
 | Argument | Meaning |
 | --- | --- |
 | `<path>` or `--default` | The reference to theme from. `--default` reads the carried reference above; a path must be a local file. |
-| `--forms a,b` | The forms to write, by file base name (`template`, `template-dark`, `template-full`, `template-terminal`). |
+| `--forms a,b` | The forms to write, by file base name (`starter-light`, `starter-dark`, `starter-full`, `starter-terminal`). |
 | `--all` | Every form in `assets/diagrams/`. |
 | `--out <dir>` | Where the copies are written. Required; the directory is created after every gate has passed. |
 

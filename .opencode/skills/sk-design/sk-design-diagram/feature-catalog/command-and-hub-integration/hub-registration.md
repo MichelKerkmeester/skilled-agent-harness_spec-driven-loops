@@ -1,11 +1,11 @@
 ---
 title: "Hub registration"
-description: "The packet's registration in the sk-doc hub: workflowMode, command, and aliases in mode-registry.json, router signals in hub-router.json, leaves in leaf-manifest.json, command metadata, and the no-packet-local-graph-metadata.json invariant."
+description: "The packet's registration in the sk-design hub: workflowMode, command, and aliases in mode-registry.json, router signals in hub-router.json, leaves in leaf-manifest.json, command metadata, and the no-packet-local-graph-metadata.json invariant."
 trigger_phrases:
   - "hub registration"
   - "mode-registry.json entry"
   - "hub-router.json signals"
-  - "sk-doc advisor identity"
+  - "sk-design advisor identity"
   - "packet registration"
 version: 1.0.0.4
 ---
@@ -16,9 +16,9 @@ version: 1.0.0.4
 
 ## 1. OVERVIEW
 
-The packet's registration in the `sk-doc` hub: `workflowMode`, command, and aliases in `mode-registry.json`, router signals in `hub-router.json`, and command choreography in `command-metadata.json`, with no packet-local advisor metadata.
+The packet's registration in the `sk-design` hub: `workflowMode`, command, and aliases in `mode-registry.json`, router signals in `hub-router.json`, and command choreography in `command-metadata.json`, with no packet-local advisor metadata.
 
-`sk-design-diagram` is a nested workflow packet under the `sk-doc` parent hub. It carries no independent advisor identity — discovery, routing, and command dispatch all resolve through the three hub-owned registry files, keeping `sk-doc` as the single advisor root for every packet-scoped mode, matching the pattern every other `sk-create-*` sibling packet uses.
+`sk-design-diagram` is a nested workflow packet under the `sk-design` parent hub. It carries no independent advisor identity: discovery, routing, and command dispatch all resolve through the three hub-owned registry files, keeping `sk-design` as the single advisor root for its modes, matching the pattern the hub's other modes use.
 
 ---
 
@@ -30,11 +30,11 @@ The packet registers as `workflowMode: "sk-design-diagram"`, `packetKind: "workf
 
 ### hub-router.json signals
 
-The router's `tieBreak` list includes `sk-design-diagram` alongside every other `sk-create-*` packet. Its own entry (`"sk-design-diagram": { "weight": 3, "classes": ["create-diagram-aliases"], "resources": ["sk-design-diagram/SKILL.md"] }`) binds the packet to a dedicated `create-diagram-aliases` keyword class carrying the full alias set plus additional signal phrases (`entity relationship diagram`, `radar chart`, `high-level diagram`, `medallion diagram`, `data flow diagram`, `self-contained HTML diagram`, `editorial diagram`) beyond the mode-registry alias list, so natural-language requests route correctly even when they don't match an alias verbatim.
+The router's `tieBreak` list includes `sk-design-diagram` alongside the hub's other modes. Its own entry under `routerSignals` (`"sk-design-diagram": { "weight": 3, "classes": ["create-diagram-aliases"], "resources": ["sk-design-diagram/SKILL.md"] }`) binds the packet to a dedicated `create-diagram-aliases` keyword class carrying the full alias set plus additional signal phrases (`entity relationship diagram`, `radar chart`, `high-level diagram`, `medallion diagram`, `data flow diagram`, `self-contained HTML diagram`, `editorial diagram`) beyond the mode-registry alias list, so natural-language requests route correctly even when they don't match an alias verbatim.
 
 ### No packet-local advisor identity
 
-The packet root carries no `graph-metadata.json`, `description.json`, `mode-registry.json`, or `hub-router.json` of its own — advisor identity and cross-packet routing live exclusively at the `sk-doc` hub root, per the standard/nested-workflow-packet contract. `validate_skill_package.py` is the packaging gate that enforces this shape at intake, and `ci-skill-root-metadata.cjs` is the fleet-wide audit that confirms the hub itself stays class H clean after the registration.
+The packet root carries no `graph-metadata.json`, `description.json`, `mode-registry.json`, or `hub-router.json` of its own — advisor identity and cross-packet routing live exclusively at the `sk-design` hub root, per the standard/nested-workflow-packet contract. `validate_skill_package.py` is the packaging gate that enforces this shape at intake, and `ci-skill-root-metadata.cjs` is the fleet-wide audit that confirms the hub itself stays class H clean after the registration.
 
 ---
 
@@ -44,9 +44,9 @@ The packet root carries no `graph-metadata.json`, `description.json`, `mode-regi
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/sk-doc/mode-registry.json` | Registry | The `sk-design-diagram` `workflowMode` entry: command, aliases, tool surface |
-| `.opencode/skills/sk-doc/hub-router.json` | Registry | The `create-diagram-aliases` weighted keyword class and `tieBreak` membership |
-| `.opencode/skills/sk-doc/command-metadata.json` | Registry | The `/design:diagram` command choreography entry |
+| `.opencode/skills/sk-design/mode-registry.json` | Registry | The `sk-design-diagram` `workflowMode` entry: command, aliases, tool surface |
+| `.opencode/skills/sk-design/hub-router.json` | Registry | The `create-diagram-aliases` weighted keyword class and `tieBreak` membership |
+| `.opencode/skills/sk-design/command-metadata.json` | Registry | The `/design:diagram` command choreography entry |
 
 ### Validation And Tests
 
@@ -54,7 +54,7 @@ The packet root carries no `graph-metadata.json`, `description.json`, `mode-regi
 |---|---|---|
 | `manual-testing-playbook/command-and-hub-integration/hub-registration.md` | Manual playbook | Scenario CMD-002 verifies the packet resolves through hub routing without a packet-local advisor identity |
 | `.opencode/skills/sk-doc/sk-create-skill/scripts/validate_skill_package.py` | Test harness | Packaging gate that enforces the no-packet-local-metadata invariant |
-| `.opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs` | Test harness | Fleet-wide audit confirming the `sk-doc` hub stays class H clean |
+| `.opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs` | Test harness | Fleet-wide audit confirming the `sk-design` hub stays class H clean |
 
 ---
 

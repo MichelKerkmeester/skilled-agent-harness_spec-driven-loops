@@ -123,7 +123,7 @@ The workflow is template-first, and that is a constraint rather than a preferenc
 4. Swap the data block for the reader's data.
 5. Apply one colour system from the default reference's palette. One per artifact.
 6. Keep the result a single self-contained file. It opens in a browser with no install step.
-7. Run the corpus validator before reporting the result.
+7. Run the corpus check before reporting the result: `node scripts/check-corpus.cjs` over the packet, and `node scripts/check-corpus.cjs --extra <dir>` over a delivery written outside it. Both must print `RESULT: PASSED`.
 
 When the request names a `DESIGN.md`, a style reference or a measured site's look, route the
 application branch to `scripts/apply-design-md.cjs`. It reads the v3 headings documented by
@@ -147,7 +147,7 @@ The corpus shares a measured visual register for card anatomy, type scale, bare 
 - Copy a form file that already renders, and change only its data block.
 - Apply exactly one colour system per artifact; a `design-md` delivery is accepted only with its provenance comment and both inline gate checks.
 - Produce a single self-contained file that opens with no install step.
-- Run the corpus validator before reporting a result.
+- Run the corpus check before reporting a result: `scripts/check-corpus.cjs` over the packet, `scripts/check-corpus.cjs --extra <dir>` over a delivery written outside it, and require `RESULT: PASSED` from both.
 - Author every chart and every palette in this packet.
 
 ### ❌ NEVER
@@ -181,7 +181,7 @@ The corpus shares a measured visual register for card anatomy, type scale, bare 
 - The file traces back to one named row in `references/catalog.md`.
 - One colour system is applied throughout.
 - A local `DESIGN.md` can produce a deterministic, provenance-bearing delivery without changing stock forms or palettes.
-- The corpus validator exits clean.
+- The corpus check printed `RESULT: PASSED` over the packet, and `--extra <dir>` printed it over the delivered file.
 
 ---
 

@@ -64,6 +64,28 @@ function runFileCase(spec) {
   }
 }
 
+// Some rules are exemptions rather than assertions: the 4px grid never measures a path's command
+// data or a point list. A case that proves a family fires cannot show that, so these run the other
+// way round — the mutation lands and the run has to stay green.
+function runExemptionCase(spec) {
+  const source = path.join(ROOT, spec.file);
+  const original = fs.readFileSync(source, 'utf8');
+  assert.ok(original.includes(spec.from),
+    `the patch anchor is not in ${spec.file}; a case whose patch does not apply proves nothing`);
+  const mutated = original.replace(spec.from, spec.to);
+  assert.notEqual(mutated, original, 'the patch changed nothing');
+
+  const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'diagram-exemption-'));
+  try {
+    fs.writeFileSync(path.join(directory, 'mutant.html'), mutated, 'utf8');
+    const output = runChecker(directory);
+    assert.match(output, /RESULT: PASSED/,
+      `${spec.family} fired on ${spec.name}, which is exempt:\n${failuresFor(output, spec.family).join('\n')}`);
+  } finally {
+    fs.rmSync(directory, { recursive: true, force: true });
+  }
+}
+
 // Corpus-scoped families read a reference document or the token source, so those cases mutate a
 // package copy: the checker, its families, the assets it reads and the documents it indexes.
 const PACKAGE_PARTS = [['scripts'], ['references'], ['assets'], ['SKILL.md']];
@@ -117,12 +139,19 @@ for (const spec of PACKAGE_CASES) {
   test(`${spec.family} refuses ${spec.name}`, () => runPackageCase(spec));
 }
 
+const EXEMPTION_CASES = require('./mutation-cases.cjs').EXEMPTION_CASES;
+for (const spec of EXEMPTION_CASES) {
+  test(`${spec.family} leaves ${spec.name} alone`, () => runExemptionCase(spec));
+}
+
 // ── the guard that keeps this file honest ───────────────────────────────────────────────────────
 // Coverage written once follows the work that prompted it and then rots. So the suite asserts its
-// own completeness: every family the checker registers has a case, nothing here names a family
-// the checker does not register, and a family may sit outside only by being named with a reason
-// that is still true.
-const NEEDS_AN_EYE = {};
+// own completeness: every family the checker registers has a case, nothing here names a family the
+// checker does not register, and a family the shipped corpus never exercises is recorded below with
+// the reason, so its silence is a decision rather than an accident.
+const NEEDS_AN_EYE = {
+  'node-budget': 'no shipped form carries a data-diagram-node or data-diagram-arrow element, so on the corpus the family compares no count and its mutation case is the only proof it fires',
+};
 
 function registeredFamilies() {
   return new Set(fs.readdirSync(FAMILY_DIR).filter((n) => n.endsWith('.cjs')).map((n) => require(path.join(FAMILY_DIR, n)).name));

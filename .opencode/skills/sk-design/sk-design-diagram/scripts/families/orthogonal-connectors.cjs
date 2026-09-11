@@ -62,7 +62,9 @@ module.exports = {
     let match;
     while ((match = tagRe.exec(flattenTags(regions.markup))) !== null) {
       const closing = match[1] === '/', tag = match[2], attrs = match[3];
-      if (closing) { open.pop(); continue; }
+      // Pop only what was pushed. A leaf never entered the stack, so treating its closing tag
+      // as an exit discards the group above it and silently strips that group's exemption.
+      if (closing) { if (!LEAF.has(tag)) open.pop(); continue; }
       const skip = decorated(open, attrs);
       const isConnector = /\bmarker-\w+\s*=/.test(attrs) || CONNECTOR.test(attr(attrs, 'class') || '');
       if (tag === 'line' && !radialFile && !skip && isConnector) {

@@ -66,7 +66,7 @@ Capture the gate question text, the site URL used, the role-mapping table with c
 
 1. Confirm the packet's `references/foundations/style-guide.md` really is at the shipped default accent; a pre-customized install legitimately skips the gate.
 2. If no diff was proposed, confirm the site fetch actually returned readable CSS (image-only or JS-rendered pages yield nothing to extract) and request a blog or docs URL instead.
-3. If `style-guide.md` changed without approval, restore it with `git checkout -- .opencode/skills/sk-design/sk-design-diagram/references/foundations/style-guide.md` and re-run the scenario in a scratch checkout.
+3. If `style-guide.md` changed without approval, restore it from the copy the scenario took and re-run the scenario in a scratch checkout. Do not restore with `git checkout --`: that reverts to the last commit rather than to the state the operator was working in, so on an uncommitted tree it throws the work away.
 
 ### Optional Supplemental Checks
 

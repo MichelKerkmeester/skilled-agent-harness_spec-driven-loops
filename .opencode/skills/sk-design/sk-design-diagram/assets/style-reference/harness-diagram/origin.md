@@ -1,3 +1,15 @@
+---
+title: "harness-diagram - Origin of this Style Reference"
+description: "Where the harness-diagram reference came from: written from the packet's own palette rather than measured from an external product."
+trigger_phrases:
+  - "harness diagram origin"
+  - "style reference provenance"
+  - "diagram palette origin"
+importance_tier: normal
+contextType: reference
+version: 1.2.0.4
+---
+
 # Origin of this Style Reference
 
 **This reference was written from the packet's own palette, not measured from an external product.**

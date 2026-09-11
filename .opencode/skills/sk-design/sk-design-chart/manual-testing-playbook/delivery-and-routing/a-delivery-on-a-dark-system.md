@@ -2,7 +2,7 @@
 title: "CHT-009 -- A delivery read on a dark system"
 description: "This scenario validates the theme behaviour for `CHT-009`. It confirms a delivered chart answers the reader's operating system, that the dark values are readable rather than merely present, and that printing still puts the light palette on paper."
 stage: delivery
-version: 0.22.0.3
+version: 0.23.0.3
 ---
 
 # CHT-009 -- A delivery read on a dark system

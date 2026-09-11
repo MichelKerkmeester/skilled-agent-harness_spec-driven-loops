@@ -86,10 +86,13 @@ Those forms keep the stock ordered system inside an otherwise themed set.
 
 When a request names no Style Reference, `--default` themes from
 `assets/style-reference/evilcharts/DESIGN.md`, the one reference this packet carries beside its
-forms and the one the stock palette source is derived from since v0.18.0.0. Theming from it
-reproduces the stock palette and the stock corner ladder exactly, which is the property that says
-the default is still the reference the corpus came from; the corpus check holds it through the
-`palette-derivation` family.
+forms and the one the stock palette source is derived from since v0.18.0.0. It applies that
+reference's own table to the shared roles as one derived system, so the delivery and the stock
+palette agree where the mapping lands on the same value and differ where it has to choose one,
+which is the larger part of the colour table. The corner ladder is what reproduces the stock
+values exactly, all five rungs byte-identical, and that is the property that says the default is
+still the reference the corpus came from. The check holds the palette file against that reference
+through the `palette-derivation` family; a themed delivery is held against the gates instead.
 
 The copy is severed from its source on purpose. A reference that is regenerated elsewhere would
 change what `--default` produces without a diff, and leave the stock palette derived from a file

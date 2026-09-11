@@ -145,7 +145,7 @@ The route reference per diagram type:
 
 ### Smart Router Pseudocode
 
-The reference implementation of the router lives in [`references/foundations/router-pseudocode.md`](references/foundations/router-pseudocode.md); the routing rules above are the contract, the pseudocode is one way to hold them.
+The reference implementation of the router lives in [`references/foundations/router-pseudocode.md`](references/foundations/router-pseudocode.md): it holds `discover_markdown_resources()`, `_guard_in_skill()` and the `UNKNOWN_FALLBACK` branch, while the routing rules above are the contract and the pseudocode is one way to hold them.
 
 
 The router guards paths and loads only existing resources. Format resolution precedes type/pattern selection; ambiguity returns `UNKNOWN_FALLBACK`.
@@ -182,7 +182,7 @@ Full spec: `references/foundations/style-guide.md`.
 
 Universal building blocks — background, arrow markers, node boxes, arrow labels, legend. Type-specialized primitives (lifelines, activation bars, regions) live in the relevant `references/types/type-*.md`.
 
-- **Background:** default clean `paper` fill, no dot pattern — the diagram sits directly on the page. Optional dotted-paper variant (`22×22` pattern at ~10% ink opacity) only for long-form editorial hero diagrams.
+- **Background:** the dotted-paper ground is the default: a `22×22` dot pattern at ~10% `ink` opacity on `paper`, carried by 26 of the 34 worked forms. Drop it for a clean `paper` fill when the drawing is dense enough that the pattern competes with it.
 - **Arrow markers:** a starter defines all three (`arrow`, `arrow-accent`, `arrow-link`) so a copy can draw with them; a finished diagram keeps only the markers it draws, and draws only markers it defines; default = muted, accent = coral, link = blue; dashed `5,4` for optional/passive/return. **Draw arrows before boxes** so z-order puts lines behind nodes.
 - **Node box:** opaque paper mask → styled box (`rx=6`) → rectangular type tag (`rx=2`, not a pill) → Geist node name → Geist Mono technical sublabel.
 - **Arrow labels:** every label needs an opaque mask rect *and* a visible 6–10px gap above its connector; ≤14 characters, all-caps, centered on the segment midpoint; never `writing-mode` vertical.
@@ -192,7 +192,7 @@ Optional primitives: annotation callouts → `references/primitives/primitive-an
 
 ### Layout and spacing
 
-- **4px grid (non-negotiable):** layout values — node dimensions (80…320), x/y coordinates, gaps (20/24/32/40/48), padding (8/12/16), radius (4/6/8) — divisible by 4. Exempt: stroke widths, opacity, dot pattern, font sizes (`style-guide.md` §2's type scale, not the grid). Quick check: if a layout coordinate ends in 1/2/3/5/6/7/9 — fix it.
+- **4px grid (non-negotiable):** layout values — node dimensions (80…320), x/y coordinates, gaps (20/24/32/40/48), padding (8/12/16), radius (4/6/8) — divisible by 4. Exempt: stroke widths, opacity, dot pattern, font sizes (`style-guide.md` §2's type scale, not the grid), path geometry (`d` commands) and point lists (`points`). Quick check: if a layout coordinate ends in 1/2/3/5/6/7/9 — fix it.
 - **Complexity budget:** max 9 nodes, 12 arrows/transitions, 2 coral elements, and 2 annotation callouts per diagram. Per-type ceilings (sequence lifelines, swimlane lanes, ER entities, tree depth, org-chart nodes, venn circles, radar axes, bar/line/series counts, Gantt tasks, scatter points, …) live in each `references/types/type-*.md`. If you exceed, split into two diagrams (overview + detail).
 - **Page layout:** header (eyebrow, title, optional subtitle) → diagram container (clean/borderless by default; framed `paper-2` variant opt-in) → summary cards (varied widths, no shadow) → footer (Geist Mono colophon, hairline top border).
 
@@ -263,12 +263,13 @@ For `ascii-markdown`, produce the requested markdown file or embedded fenced tex
    - The diagram isn't done when everything is added; it's done when nothing can be removed.
 2. **ALWAYS keep density at target 4/10** — enough to be technically complete, not so dense it needs a guide. Above 9 nodes it's probably two diagrams.
 3. **ALWAYS load the format-specific reference before creating output** — `html-svg` loads the matching `references/types/type-*.md` with its layout conventions, anti-patterns, and example files; `ascii-markdown` loads `references/ascii-format/pattern-selection.md` and one matching `assets/ascii-patterns/*.md` asset.
-4. **ALWAYS enforce the 4px grid** — every font size, coordinate, node dimension, and gap divisible by 4; stroke widths and opacity are exempt.
+4. **ALWAYS enforce the 4px grid** — every font size, coordinate, node dimension, and gap divisible by 4; stroke widths, opacity, path geometry and point lists are exempt.
 5. **ALWAYS treat `references/foundations/style-guide.md` as the single source of truth for tokens** — refer to semantic roles and look up hex values there; never hardcode values that disagree with the guide.
 6. **ALWAYS keep `accent` on 1–2 focal elements per diagram.** If you're tempted to accent 4 things, you haven't decided what's focal yet.
 7. **ALWAYS satisfy the resolved format's output contract** — `html-svg` ships one self-contained `.html` file with embedded CSS, inline SVG, no JS required, and the accessible SVG contract in HOW IT WORKS § Output; `ascii-markdown` ships one readable markdown flowchart.
 8. **ALWAYS run `bash scripts/validate-flowchart.sh <target>` before delivering `ascii-markdown` output** — exit `0` is required, including warning-only runs; exit `1` blocks delivery until fixed.
 9. **ALWAYS run the style-guide gate before the first `html-svg` diagram in a project** — don't silently ship default-skinned diagrams into a branded project.
+10. **ALWAYS run the corpus check before reporting a result**: `node scripts/check-diagram-corpus.cjs` over the packet, and `node scripts/check-diagram-corpus.cjs --extra <dir>` over a delivery written outside it. Require the `RESULT: PASSED` marker from each run, not the exit code alone.
 
 ### NEVER
 
@@ -368,7 +369,7 @@ Run the applicable validation gate before delivery. `html-svg` requires the tast
 - [ ] No two connectors overlap, share a stroke path, or run on top of each other? Crossings use the bridge/hop primitive?
 - [ ] When several connectors enter or exit the same edge of a box, each has its own attach point (≥12px apart)? No connector hides another?
 - [ ] No connector passes behind a non-endpoint box, except the unavoidable-intervening-box case — and then the stroke is dashed and the label sits at the visible end?
-- [ ] Every arrow label has an opaque `fill="#f5f5f5"` rect behind it?
+- [ ] Every arrow label has an opaque mask rect behind it, filled with the form's own `paper` (light `#f5f5f5`, dark `#2d3142`, `terminal-paper` `#141414`) rather than one hex everywhere?
 - [ ] Legend is a horizontal bottom strip, not floating?
 - [ ] No vertical `writing-mode` text?
 - [ ] `viewBox` expanded for the legend strip (~60px)?
@@ -386,6 +387,7 @@ Run the applicable validation gate before delivery. `html-svg` requires the tast
 
 - [ ] Single self-contained `.html` produced at the requested path — embedded CSS, inline SVG, no JS required?
 - [ ] Export files (`.png` / `.svg`) produced via `references/import-export/export.md` only when explicitly requested?
+- [ ] `node scripts/check-diagram-corpus.cjs` printed `RESULT: PASSED` over the packet, and `--extra <dir>` printed it over an `.html` delivery written outside it?
 
 ### ASCII/Markdown deliverable
 

@@ -1,3 +1,15 @@
+---
+title: "evilcharts - Style Reference"
+description: "The chart corpus's default Style Reference: near-white paper, near-black ink, a hairline rule and five saturated series hues, read out of the evilcharts library."
+trigger_phrases:
+  - "evilcharts style reference"
+  - "chart style reference"
+  - "default chart palette"
+importance_tier: normal
+contextType: reference
+version: 0.23.0.4
+---
+
 # evilcharts — Style Reference
 > Neutral paper, one saturated accent per series, nothing decorative behind the data
 

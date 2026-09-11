@@ -1,6 +1,6 @@
 ---
 title: "sk-design-diagram: Feature Catalog"
-description: "Unified reference combining the complete feature inventory and current-reality reference for the sk-design-diagram sk-doc workflow packet."
+description: "Unified reference combining the complete feature inventory and current-reality reference for the sk-design-diagram workflow packet in the sk-design hub."
 trigger_phrases:
   - "sk-design-diagram"
   - "create diagram skill"
@@ -161,11 +161,11 @@ See [`command-and-hub-integration/design-diagram-command.md`](command-and-hub-in
 
 #### Description
 
-The packet's registration in the `sk-doc` hub: `workflowMode`, command, and aliases in `mode-registry.json`, router signals in `hub-router.json`, leaves in `leaf-manifest.json`, command metadata, and the no-packet-local-`graph-metadata.json` invariant.
+The packet's registration in the `sk-design` hub: `workflowMode`, command, and aliases in `mode-registry.json`, router signals in `hub-router.json`, leaves in `leaf-manifest.json`, command metadata, and the no-packet-local-`graph-metadata.json` invariant.
 
 #### Current Reality
 
-`sk-design-diagram` is registered with command `/design:diagram` and 27 aliases including `drawio`, `mermaid diagram`, `redraw diagram`, `export diagram`, and the merged `sk-create-flowchart` ASCII/markdown vocabulary (`flowchart`, `decision tree`, `swimlane`, etc.); `hub-router.json` routes the `create-diagram-aliases` class at weight 3 to this packet's SKILL.md; the packet root carries no packet-local advisor metadata (advisor identity lives at the `sk-doc` hub root); `validate_skill_package.py` is the packaging gate.
+`sk-design-diagram` is registered with command `/design:diagram` and 27 aliases including `drawio`, `mermaid diagram`, `redraw diagram`, `export diagram`, and the merged `sk-create-flowchart` ASCII/markdown vocabulary (`flowchart`, `decision tree`, `swimlane`, etc.); `hub-router.json` routes the `create-diagram-aliases` class at weight 3 to this packet's SKILL.md; the packet root carries no packet-local advisor metadata (advisor identity lives at the `sk-design` hub root); `validate_skill_package.py` is the packaging gate.
 
 #### Source Files
 

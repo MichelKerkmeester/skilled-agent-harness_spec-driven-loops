@@ -2,7 +2,7 @@
 title: "CHT-006 -- The index resolves in both directions"
 description: "This scenario validates the chart lookup for `CHT-006`. It confirms every catalog row reaches a file that identifies itself with the same id, and that every chart form on disk appears in the catalog."
 stage: validation
-version: 0.22.0.4
+version: 0.23.0.4
 ---
 
 # CHT-006 -- The index resolves in both directions
@@ -48,18 +48,19 @@ Operators run the exact prompt and command sequence for `CHT-006` and confirm th
 ### Commands
 
 1. `bash: node .opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs > before.txt 2>&1`
-2. `agent: Add one row to the table between the CHART_CATALOG sentinels in references/catalog.md naming a file that does not exist`
-3. `bash: node .opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs > phantom-row.txt 2>&1`
-4. `bash: git checkout -- .opencode/skills/sk-design/sk-design-chart/references/catalog.md`
-5. `agent: Copy assets/templates/scatter.html to assets/templates/orphan-form.html and change its identity tag to orphan-form`
-6. `bash: node .opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs > orphan-file.txt 2>&1`
-7. `bash: rm .opencode/skills/sk-design/sk-design-chart/assets/templates/orphan-form.html`
-8. `bash: node .opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs > after.txt 2>&1`
-9. `bash: git status --porcelain .opencode/skills/sk-design/sk-design-chart`
+2. `bash: cp .opencode/skills/sk-design/sk-design-chart/references/catalog.md keep-catalog.md`
+3. `agent: Add one row to the table between the CHART_CATALOG sentinels in references/catalog.md naming a file that does not exist`
+4. `bash: node .opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs > phantom-row.txt 2>&1`
+5. `bash: cp keep-catalog.md .opencode/skills/sk-design/sk-design-chart/references/catalog.md`
+6. `agent: Copy assets/templates/scatter.html to assets/templates/orphan-form.html and change its identity tag to orphan-form`
+7. `bash: node .opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs > orphan-file.txt 2>&1`
+8. `bash: rm .opencode/skills/sk-design/sk-design-chart/assets/templates/orphan-form.html`
+9. `bash: node .opencode/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs > after.txt 2>&1`
+10. `bash: git status --porcelain .opencode/skills/sk-design/sk-design-chart`
 
 ### Expected
 
-Step 1 gives the baseline with `catalog` reporting its assertion count and zero failures. Step 3 reports `RESULT: FAILED` on `catalog`, naming the row whose file is not on disk. Step 6 reports `RESULT: FAILED` on `catalog`, naming the form that carries no row, and the scanned file count rises by one, which is the second half of the evidence. Step 8 returns to the baseline. Step 9 returns empty output.
+Step 1 gives the baseline with `catalog` reporting its assertion count and zero failures. Step 4 reports `RESULT: FAILED` on `catalog`, naming the row whose file is not on disk, and step 5 restores the index from the copy taken in step 2. Step 7 reports `RESULT: FAILED` on `catalog`, naming the form that carries no row, and the scanned file count rises by one, which is the second half of the evidence. Step 9 returns to the baseline. Step 10 returns empty output.
 
 The copied form is a real file rather than an empty one on purpose. An empty file would fail several other checks first and the run would never reach the index question.
 

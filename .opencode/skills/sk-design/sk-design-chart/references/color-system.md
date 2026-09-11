@@ -305,10 +305,11 @@ paper has proved nothing about ink.
 | `emphasisAgainstFirstSeries` | 1.5:1 | Emphasis against `series-1` |
 
 The design-md adapter applies `textOnSurface` to ink and muted, `markOnSurface` to all four series
-and emphasis, `rampDarkestOnSurface` and `rampLightestOnSurface` to the two series ends,
-`rampStepSeparation` to adjacent series values, and `emphasisAgainstFirstSeries` to emphasis. The
-rule role remains deliberately ungated, but the dark rule still has to be the dark ink colour at a
-non-full alpha.
+and emphasis, and `emphasisAgainstFirstSeries` to emphasis; the corpus check then holds a delivery's
+blocks to that set plus the series separation, comparing every pair of series rather than adjacent
+values alone, with a pair passing on the ratio or on thirty degrees of hue. The two ramp-end gates
+belong to the stock magnitude systems, and the adapter does not apply them. The rule role remains
+deliberately ungated, but the dark rule still has to be the dark ink colour at a non-full alpha.
 
 Two of those names were written when there was one ground and now read wrong on the other: on ink
 the step this table calls the darkest is the brightest one. The check tests the end by its distance
@@ -344,7 +345,7 @@ A ramp step is read as part of a group, against its legend and its neighbours. A
 
 Enforced by `scripts/check-corpus.cjs`, on every run:
 
-- Every gate in the table above, computed from the palette file, once per theme against that theme's own surface.
+- Every gate in the table above, computed from the palette file, once per theme against that theme's own surface. That holds for the three stock systems the palette file describes; the design-md adapter applies the subset named under the table, in `scripts/apply-design-md.cjs` at write time and again over a delivery's own blocks in the corpus check.
 - Every system defines as many series values as its declared capacity, on both grounds.
 - A `magnitude` system runs from the step furthest from the ground to the step nearest it, without reversing.
 - The dark `rule` value is that theme's ink at an alpha, rather than a solid grey that a card edge would have to sit over.

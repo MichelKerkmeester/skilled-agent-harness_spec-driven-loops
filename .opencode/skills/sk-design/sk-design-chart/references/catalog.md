@@ -43,8 +43,8 @@ Prose outside the sentinels is never asserted on. Rewrite this page freely. Only
 | --- | --- | --- | --- | --- | --- |
 | histogram | distribution | What shape does this measure take across its range | 6 to 15 adjacent bins, one count each | neutral | assets/templates/histogram.html |
 | bullet | comparison | Did this measure clear its target, and by how much | 1 to 6 metrics, each with an actual, a target and banded ranges | ordered | assets/templates/bullet.html |
-| funnel | part-to-whole | Where in the pipeline are we losing them | 4 to 7 ordered stages, one count each | neutral | assets/templates/funnel.html |
-| dumbbell | change | How far did each category move between two readings | 5 to 12 categories, a before and an after each | neutral | assets/templates/dumbbell.html |
+| funnel | composition | Where in the pipeline are we losing them | 4 to 7 ordered stages, one count each | neutral | assets/templates/funnel.html |
+| dumbbell | comparison | How far did each category move between two readings | 5 to 12 categories, a before and an after each | neutral | assets/templates/dumbbell.html |
 | population-pyramid | distribution | How do two populations differ across the same bands | 6 to 12 ordered bands, two counts each | categorical | assets/templates/population-pyramid.html |
 | bar-rows | comparison | Which category is biggest, when the names are words | 8 or fewer categories, one value each | neutral | assets/templates/bar-rows.html |
 | bar-columns | comparison | Which category is biggest, when the names are short codes | 8 or fewer categories, one value each | neutral | assets/templates/bar-columns.html |

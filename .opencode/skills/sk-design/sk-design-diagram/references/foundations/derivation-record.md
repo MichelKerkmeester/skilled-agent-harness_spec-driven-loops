@@ -52,16 +52,23 @@ The opt-in series palette for multi-series charts lives in the style guide, not 
 
 | Role | Value | Kind | Rule or source |
 |---|---|---|---|
-| `paper` | `#2d3142` | primary | Jet-black from the brand palette, the light `ink` value reused as ground |
-| `paper-2` | `#393e53` | primary | Hand-picked, one step lighter than `paper` |
+| `paper` | `#2d3142` | primary | Jet-black from the brand palette, the light `ink` value reused |
 | `ink` | `#f5f5f5` | primary | White-smoke from the brand palette, the light `paper` value reused |
 | `muted` | `#bfc0c0` | primary | Silver from the brand palette |
-| `soft` | `#8e98ac` | primary | Hand-picked, a brighter counterpart of the light `soft` |
-| `rule` | `rgba(245,245,245,0.12)` | derived | `ink` at 0.12 |
-| `rule-solid` | `rgba(191,192,192,0.25)` | derived | `muted` at 0.25, equivalently silver `#bfc0c0` at 0.25 |
 | `accent` | `#f08a59` | primary | Hand-picked; not a lightness shift of the light accent |
-| `accent-tint` | `rgba(240,138,89,0.10)` | derived | `accent` at 0.10 |
 | `link` | `#6a95d8` | primary | Hand-picked, a brighter counterpart of the light `link` |
+
+Five primaries, and no derived roles. The dark drawing does use translucent forms of these — eleven
+distinct alphas of ink, muted and accent across the one dark form — but they are not roles and do not
+need to be. Both applicators match a translucent value by its channels and re-emit it at whatever
+alpha the drawing chose, so a repaint carries every one of them without any of them being named.
+
+This section used to list `paper-2`, `soft`, `rule`, `rule-solid` and `accent-tint` as dark roles.
+Two of them named values no form has ever drawn; the other three named three alphas out of eleven,
+which made the choice of those three arbitrary. A record that declares roles the token source does
+not define is a record a themed block cannot satisfy: declaring the documented `--color-paper-2` in a
+dark block is refused by the corpus check, because the skin has no such role.
+
 
 ---
 

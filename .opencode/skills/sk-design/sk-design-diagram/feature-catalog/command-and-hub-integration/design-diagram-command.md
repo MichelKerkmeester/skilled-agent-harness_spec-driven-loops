@@ -34,7 +34,7 @@ The router owns three assets: the presentation contract (`create-diagram-present
 
 ### Presentation boundary
 
-User-facing wording — startup questions, Phase 0 verification, the setup dashboard, confirmation prompts, status display, completion display, and next-step text — lives only in `create-diagram-presentation.txt`. The router never invents visible wording for those surfaces; it only selects the workflow YAML and execution mode. The command's metadata registers the same choreography in `command-metadata.json`: load the `sk-doc` hub routing table, load the `sk-design-diagram` mode contract, then load the presentation contract before resolving setup and execution mode.
+User-facing wording — startup questions, Phase 0 verification, the setup dashboard, confirmation prompts, status display, completion display, and next-step text — lives only in `create-diagram-presentation.txt`. The router never invents visible wording for those surfaces; it only selects the workflow YAML and execution mode. The command's metadata registers the same choreography in `command-metadata.json`: load the `sk-design` hub routing table, load the `sk-design-diagram` mode contract, then load the presentation contract before resolving setup and execution mode.
 
 ---
 
@@ -54,7 +54,7 @@ User-facing wording — startup questions, Phase 0 verification, the setup dashb
 | File | Type | Role |
 |---|---|---|
 | `manual-testing-playbook/command-and-hub-integration/design-diagram-command.md` | Manual playbook | Scenario CMD-001 verifies the router loads the presentation contract, binds the correct workflow YAML, and produces the diagram without inventing prompts |
-| `.opencode/skills/sk-doc/command-metadata.json` | Reference | Anchor for the `/design:diagram` command metadata and choreography |
+| `.opencode/skills/sk-design/command-metadata.json` | Reference | Anchor for the `/design:diagram` command metadata and choreography |
 
 ---
 

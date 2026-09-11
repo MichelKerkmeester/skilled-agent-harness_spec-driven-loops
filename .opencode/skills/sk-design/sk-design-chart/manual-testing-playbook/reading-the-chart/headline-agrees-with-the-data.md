@@ -2,7 +2,7 @@
 title: "CHT-001 -- The headline agrees with its own data"
 description: "This scenario validates the headline claim for `CHT-001`. It confirms every comparative claim in a card's top line is derived from the data block in the same file rather than accepted because the file renders."
 stage: authoring
-version: 0.22.0.4
+version: 0.23.0.4
 ---
 
 # CHT-001 -- The headline agrees with its own data

@@ -82,4 +82,17 @@ const PACKAGE_CASES = [
     expect: /example-gone\.html|architecture/ },
 ];
 
-module.exports = { FILE_CASES, PACKAGE_CASES };
+// The other direction: rules that are exemptions rather than assertions. An off-grid value inside a
+// path's command data or a polygon's point list is not a defect — those are relative offsets and
+// icon glyphs, not layout positions — so the case lands the value and expects a green run. The
+// measured side of the same value is a defect, which the grid-4px case above proves.
+const EXEMPTION_CASES = [
+  { name: 'an off-grid value inside a path command', family: 'grid-4px',
+    file: 'assets/diagrams/layers.html',
+    from: '</defs>', to: '</defs><path d="M13 0 H17 V4"/>' },
+  { name: 'an off-grid value inside a point list', family: 'grid-4px',
+    file: 'assets/diagrams/layers.html',
+    from: '</defs>', to: '</defs><polygon points="13,0 17,4 13,4"/>' },
+];
+
+module.exports = { FILE_CASES, PACKAGE_CASES, EXEMPTION_CASES };

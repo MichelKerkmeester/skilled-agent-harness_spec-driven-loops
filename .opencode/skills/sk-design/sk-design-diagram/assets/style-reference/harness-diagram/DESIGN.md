@@ -1,3 +1,15 @@
+---
+title: "harness-diagram - Style Reference"
+description: "The diagram corpus's own Style Reference: newsprint paper, one blue-slate ink, one accent and three skins, written from the packet's palette."
+trigger_phrases:
+  - "harness diagram style reference"
+  - "diagram style reference"
+  - "diagram palette source"
+importance_tier: normal
+contextType: reference
+version: 1.2.0.3
+---
+
 # Harness Diagram — Style Reference
 > Paper the colour of newsprint, one ink, one accent, and structure that never competes with meaning
 

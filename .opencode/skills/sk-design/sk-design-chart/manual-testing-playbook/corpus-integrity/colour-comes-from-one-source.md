@@ -2,7 +2,7 @@
 title: "CHT-005 -- Colour comes from one source"
 description: "This scenario validates the colour system for `CHT-005`. It confirms every palette block still matches the palette source in both directions and that no colour literal appears anywhere outside a palette block."
 stage: validation
-version: 0.22.0.7
+version: 0.23.0.7
 ---
 
 # CHT-005 -- Colour comes from one source

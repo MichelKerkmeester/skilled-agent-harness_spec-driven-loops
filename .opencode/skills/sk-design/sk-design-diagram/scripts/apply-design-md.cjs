@@ -971,7 +971,12 @@ function run(argv) {
       lines.push(`NOTE ${message}; its stock bytes are written unchanged`);
     }
     const rendered = renderForm(source, skin, derived, `${form}.html`, options.designPath, hash);
-    const gated = validateRoles(derived, skin, rendered.used, form);
+    // Gate the skin's whole role set, not the roles whose bytes happened to change. A role whose
+    // derived value equals its stock value is painted just as surely as one that moved, and gating
+    // only the movers means a reference that shifts a ground while leaving a role alone ships a
+    // delivery whose contrast against that new ground nothing measured.
+    const painted = Object.keys(derived.skins[skin].roles);
+    const gated = validateRoles(derived, skin, painted, form);
     notes.push(...gated.notes);
     failures.push(...gated.failures);
     outputs.set(form, rendered.output);

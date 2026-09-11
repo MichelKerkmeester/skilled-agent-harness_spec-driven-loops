@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 /**
- * Standing proof that every corpus assertion fails when the thing it describes is broken.
+ * Standing proof that every family in the corpus check can fail when the thing it describes is
+ * broken: one case each for the families this line of work did not touch, and several for the ones
+ * it did. A family covered once is guarded against going silent, not against every rule it holds.
  *
  * The corpus check is the packet's contract and had no coverage of its own. Two reviews of it
  * found twenty-one assertions that passed for a reason other than the one their message gave: a
@@ -25,6 +27,7 @@ const { execFileSync } = require('node:child_process');
 
 const ROOT = path.resolve(__dirname, '..', '..');
 const CHECKER = path.join(ROOT, 'scripts', 'check-corpus.cjs');
+const { FAMILY_NAMES } = require(CHECKER);
 
 function runChecker(script, extra) {
   const args = extra ? [script, '--extra', extra] : [script];
@@ -370,7 +373,7 @@ const REMAINING_FILE_CASES = [
     family: 'table-disclosure', expect: /details/ },
   { name: 'unique-ids refuses a duplicated id', file: 'assets/templates/bar-columns.html',
     from: 'id="fig-label"', to: 'id="chart"',
-    family: 'unique-ids', expect: /./ },
+    family: 'unique-ids', expect: /appears more than once/ },
   { name: 'narrow-viewport refuses a figure with no class to pan it', file: 'assets/templates/bar-columns.html',
     from: 'class="figure"', to: 'class="figure-region"',
     family: 'narrow-viewport', expect: /declares no overflow-x/ },
@@ -379,7 +382,7 @@ const REMAINING_FILE_CASES = [
     family: 'motion', expect: /no prefers-reduced-motion fallback/ },
   { name: 'no-external refuses a fetched resource', file: 'assets/templates/bar-columns.html',
     from: '</head>', to: '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter">\n</head>',
-    family: 'no-external', expect: /./ },
+    family: 'no-external', expect: /a remote src or href/ },
   { name: 'number-format refuses a locale-dependent formatter', file: 'assets/templates/bar-columns.html',
     from: 'const rows = document.getElementById', to: 'const shown = (1).toLocaleString();\nconst rows = document.getElementById',
     family: 'number-format', expect: /toLocaleString/ },
@@ -394,7 +397,7 @@ const REMAINING_FILE_CASES = [
     family: 'finding-cue', expect: /declares no FINDING block/ },
   { name: 'type-scale refuses a size outside the published scale', file: 'assets/templates/bar-columns.html',
     from: '.source { margin: 0; font-size: 14px', to: '.source { margin: 0; font-size: 15px',
-    family: 'type-scale', expect: /./ },
+    family: 'type-scale', expect: /not one of the published rungs/ },
 ];
 
 // The corpus no longer ships a themed delivery, so the design-md case builds one: the applicator
@@ -468,7 +471,14 @@ const LAST_CASES = [
         '| bar-columns | comparison |', '| bar-columns | comparison |').replace(
         '| neutral | assets/templates/bar-columns.html |', '| invented | assets/templates/bar-columns.html |'), 'utf8');
     },
-    family: 'catalog-system', expect: /./ },
+    family: 'catalog-system', expect: /which the palette source does not define/ },
+  { name: 'catalog-family refuses a row whose family is not one section 4 defines',
+    mutate: (d) => {
+      const file = path.join(d, 'references', 'catalog.md');
+      const text = fs.readFileSync(file, 'utf8');
+      fs.writeFileSync(file, text.replace('| funnel | composition |', '| funnel | part-to-whole |'), 'utf8');
+    },
+    family: 'catalog-family', expect: /which section 4 does not define/ },
   { name: 'pointer-contract-coverage refuses a form with no contract row',
     mutate: (d) => {
       const from = path.join(d, 'assets', 'templates', 'bar-columns.html');
@@ -488,7 +498,7 @@ const LAST_CASES = [
       p.systems.categorical.seriesDark[1] = '#101010';
       p.derivation.roles['categorical.seriesDark[1]'] = '--color-ink';
     }),
-    family: 'palette-source-dark', expect: /./ },
+    family: 'palette-source-dark', expect: /below the 3:1 mark gate/ },
   { name: 'gradient-sweep refuses a gradient running between two series values',
     mutate: (d) => {
       const file = path.join(d, 'assets', 'templates', 'daily-line.html');
@@ -498,14 +508,14 @@ const LAST_CASES = [
         '<linearGradient id="area-sweep" gradientUnits="userSpaceOnUse" x1="0" x2="0"><stop offset="0" stop-color="var(--chart-series-1)"/><stop offset="1" stop-color="var(--chart-series-2)"/></linearGradient>\n        <linearGradient id="area-fade" gradientUnits="userSpaceOnUse" x1="0" x2="0">',
       ), 'utf8');
     },
-    family: 'gradient-sweep', expect: /./ },
+    family: 'gradient-sweep', expect: /A sweep between two series values restates an ordering/ },
   { name: 'interaction-hygiene refuses an inert drawing that still carries a handler',
     mutate: (d) => {
       const file = path.join(d, 'assets', 'templates', 'bar-columns.html');
       const text = fs.readFileSync(file, 'utf8');
       fs.writeFileSync(file, text.replace('data-chart-inert="', 'data-chart-dim="" data-chart-inert="'), 'utf8');
     },
-    family: 'interaction-hygiene', expect: /./ },
+    family: 'interaction-hygiene', expect: /cannot both refuse the pointer and answer it/ },
 ];
 for (const spec of LAST_CASES) {
   test(spec.name, () => runPackageCase(spec));
@@ -525,12 +535,10 @@ const NEEDS_A_BROWSER = {
 };
 
 function registeredFamilies() {
-  const source = fs.readFileSync(path.join(ROOT, 'scripts', 'check-corpus.cjs'), 'utf8');
-  const names = new Set([...source.matchAll(/(?:tally|record)\(\s*'([a-z-]+)'/g)].map((m) => m[1]));
-  // The palette rules address their family through a theme object rather than a literal.
-  names.add('palette-source');
-  names.add('palette-source-dark');
-  return names;
+  // The registry lives in the checker, so a family added or renamed there arrives here without an
+  // edit: the set is not written down twice, and the two copies cannot drift apart while the family
+  // it names loses its only case.
+  return new Set(FAMILY_NAMES);
 }
 
 function coveredFamilies() {

@@ -6,10 +6,22 @@
  * wish, so a rule that cannot be checked is marked advisory in the contract instead of
  * being written as if it bound.
  *
+ * What this does not hold, and why, so nobody reads a green run as more than it is:
+ *   - whether the chart answers the request, and whether the drawing reads on the page (a label
+ *     sitting on a line, a tick clipped at the plot edge, a headline that misstates the numbers
+ *     under it) is a judgement made by eye; --render opens the page but does not judge it
+ *   - the applicator's output against the stock blocks: the palette-derivation family holds the
+ *     palette file against the reference it came from, and a themed delivery is held against the
+ *     gates rather than against a stock rendering it may no longer resemble
+ *   - a delivery's name against the form it came from: a delivery is renamed before it is handed
+ *     over, so the identity tag is checked and the filename is not
+ * Those live in the manual testing playbook, and a rule that becomes computable moves in here.
+ *
  * Usage:
  *   node check-corpus.cjs            structural checks only
  *   node check-corpus.cjs --render   also open every template in a headless browser
  *   node check-corpus.cjs --extra DIR also check HTML deliveries outside this package
+ *   node check-corpus.cjs --families list the check families, one name per line, and exit
  *
  * Exit 0 only when the run prints RESULT: PASSED. Read the marker, not the exit code:
  * a run that dies before its first check also exits without printing failures.
@@ -81,12 +93,75 @@ const NAMED_COLOURS = [
   'skyblue', 'darkblue', 'lightblue', 'darkgreen', 'lightgreen', 'orangered', 'seagreen',
 ];
 
+// Every check writes under a name drawn from this list, and the list is the registry rather than a
+// convention: the mutation suite reads it to decide which families must have a case, so a check that
+// invents a name fails at its first write instead of going uncovered. A family renamed in the code
+// and not here leaves its old entry standing, which is the break the suite's coverage guard reads.
+const FAMILY_NAMES = [
+  'accessibility',
+  'card-parts',
+  'card-readout',
+  'catalog',
+  'catalog-family',
+  'catalog-system',
+  'colour-literals',
+  'cursor-guide',
+  'curve-contract',
+  'dark-render',
+  'data-block',
+  'design-md',
+  'determinism',
+  'document-shape',
+  'emphasis-budget',
+  'empty-notice',
+  'finding-cue',
+  'geometry-block',
+  'gradient-sweep',
+  'identity',
+  'interaction-hygiene',
+  'interaction-state',
+  'legend',
+  'mark-policy',
+  'metric-block',
+  'motion',
+  'narrow-viewport',
+  'no-external',
+  'number-format',
+  'palette-block',
+  'palette-derivation',
+  'palette-source',
+  'palette-source-dark',
+  'pointer-contract-coverage',
+  'pointer-reach',
+  'radius',
+  'ramp-prose',
+  'reference-line',
+  'render',
+  'script-parses',
+  'series-mapping',
+  'settled-render',
+  'source-line',
+  'style-reference',
+  'table-disclosure',
+  'tooltip-card',
+  'tooltip-indicator',
+  'type-scale',
+  'unique-ids',
+];
+
 const findings = [];
 const counts = new Map();
 
 const seenFindings = new Set();
 
+function assertKnownFamily(check) {
+  if (!FAMILY_NAMES.includes(check)) {
+    throw new Error(`check family "${check}" is not registered in FAMILY_NAMES, so no case covers it and no report names it`);
+  }
+}
+
 function record(check, level, file, message) {
+  assertKnownFamily(check);
   const key = `${check}\u0000${file}\u0000${message}`;
   if (seenFindings.has(key)) return;
   seenFindings.add(key);
@@ -94,6 +169,7 @@ function record(check, level, file, message) {
 }
 
 function tally(check, n) {
+  assertKnownFamily(check);
   counts.set(check, (counts.get(check) || 0) + n);
 }
 
@@ -460,7 +536,7 @@ function metaContent(src, name) {
   return m ? m[1] : null;
 }
 
-function checkIdentity(file, src, palette) {
+function checkIdentity(file, src, palette, isExtra) {
   const id = metaContent(src, 'chart-template');
   const systemId = metaContent(src, 'chart-color-system');
   const stem = path.basename(file, '.html');
@@ -469,7 +545,10 @@ function checkIdentity(file, src, palette) {
     record('identity', 'error', file, 'no <meta name="chart-template"> identity. Nothing can index a file that will not say what it is');
   } else if (!/^[a-z0-9-]+$/.test(id)) {
     record('identity', 'error', file, `identity "${id}" is not lower-case kebab`);
-  } else if (id !== stem) {
+  } else if (id !== stem && !isExtra) {
+    // A delivery is renamed as a matter of course before it is handed over, so its filename says
+    // nothing about which form it came from. The identity tag still has to be there and still has
+    // to be legible; only the match against the name is dropped for a file the corpus does not ship.
     record('identity', 'error', file, `identity "${id}" does not match the filename stem "${stem}"`);
   }
   if (!systemId) {
@@ -2559,10 +2638,12 @@ function parseCatalog() {
   const headers = cells(lines[0]);
   const idCol = headers.indexOf('id');
   const fileCol = headers.indexOf('file');
-  // The system cell is read as well as the id and the file. It is a mirror of what a template
-  // declares rather than a second opinion, which is precisely why it can drift: nothing about a
-  // cell copied by hand keeps it agreeing with the file it describes.
+  // The system and family cells are read as well as the id and the file. Both are hand-kept copies
+  // — of a declaration inside the file, and of the family list in this document's section 4 — which
+  // is precisely why they can drift: nothing about a cell copied by hand keeps it agreeing with the
+  // thing it describes.
   const systemCol = headers.indexOf('system');
+  const familyCol = headers.indexOf('family');
   if (idCol === -1 || fileCol === -1) {
     record('catalog', 'error', rel(CATALOG),
       `the index table needs an "id" column and a "file" column and has [${headers.join(', ')}]`);
@@ -2573,9 +2654,14 @@ function parseCatalog() {
     if (/^\|[\s:|-]+\|$/.test(line)) continue;
     const c = cells(line);
     if (!c[idCol]) continue;
-    rows.push({ id: c[idCol], file: c[fileCol], system: systemCol === -1 ? null : c[systemCol] });
+    rows.push({
+      id: c[idCol],
+      file: c[fileCol],
+      system: systemCol === -1 ? null : c[systemCol],
+      family: familyCol === -1 ? null : c[familyCol],
+    });
   }
-  return { rows, headers, systemCol };
+  return { rows, headers, systemCol, familyCol };
 }
 
 function checkCatalogResolves(catalog, templateIdentities) {
@@ -2638,6 +2724,52 @@ function checkCatalogSystem(catalog, palette) {
     if (declared === row.system) continue;
     record('catalog-system', 'error', rel(CATALOG),
       `row "${row.id}" says the system is "${row.system}" and ${row.file} declares "${declared}". The cell mirrors the file, so the file is the side that decides and the row is the side that drifted`);
+  }
+}
+
+// Every row's family cell has to name one of the question families section 4 defines. The cell is
+// machine-read the same way the system cell is, and it was the one column that could say anything at
+// all: a row naming a family the document never defines sends a reader looking for a shelf that is
+// not on it.
+const FAMILY_SECTION_HEADING = '## 4. THE FAMILIES';
+
+function parseQuestionFamilies() {
+  if (!fs.existsSync(CATALOG)) return null;
+  const text = fs.readFileSync(CATALOG, 'utf8');
+  const start = text.indexOf(FAMILY_SECTION_HEADING);
+  if (start === -1) return null;
+  const after = text.slice(start + FAMILY_SECTION_HEADING.length);
+  const end = after.search(/\n## /);
+  const section = end === -1 ? after : after.slice(0, end);
+  const names = new Set();
+  for (const line of section.split('\n')) {
+    const cell = /^\|\s*([A-Za-z][A-Za-z-]*)\s*\|/.exec(line);
+    if (cell && cell[1].toLowerCase() !== 'family') names.add(cell[1].toLowerCase());
+  }
+  return names;
+}
+
+function checkCatalogFamily(catalog, questionFamilies) {
+  if (!catalog) return;
+  tally('catalog-family', catalog.rows.length + 1);
+  if (catalog.familyCol === -1) {
+    record('catalog-family', 'error', rel(CATALOG),
+      'the index table carries no "family" column, so no row says which question group its form belongs to');
+    return;
+  }
+  if (!questionFamilies || !questionFamilies.size) {
+    record('catalog-family', 'error', rel(CATALOG),
+      `no "${FAMILY_SECTION_HEADING}" family table was found, so no row's family can be held against the families the document defines`);
+    return;
+  }
+  for (const row of catalog.rows) {
+    if (!row.family) {
+      record('catalog-family', 'error', rel(CATALOG), `row "${row.id}" names no question family`);
+      continue;
+    }
+    if (questionFamilies.has(row.family)) continue;
+    record('catalog-family', 'error', rel(CATALOG),
+      `row "${row.id}" names the family "${row.family}", which section 4 does not define. The cell is read the way the system cell is, so a row may only name a shelf the document has`);
   }
 }
 
@@ -3380,6 +3512,10 @@ function resolveRole(palette, role) {
 }
 
 function main() {
+  if (process.argv.includes('--families')) {
+    for (const name of FAMILY_NAMES) console.log(name);
+    return;
+  }
   const wantRender = process.argv.includes('--render');
   let extraDirectory;
   try {
@@ -3404,7 +3540,7 @@ function main() {
     const isExtra = extraFiles.includes(file);
     const name = fileLabel(file, extraDirectory);
     checkDocumentShape(name, src);
-    const { id, systemId } = checkIdentity(name, src, palette);
+    const { id, systemId } = checkIdentity(name, src, palette, isExtra);
     const blocks = checkPaletteBlock(name, src, palette, systemId);
     checkColourLiterals(name, src, blocks);
     checkRadiusTokens(name, src, blocks);
@@ -3514,6 +3650,7 @@ function checkContractCoverage(templateFiles) {
   const catalog = parseCatalog();
   checkCatalogResolves(catalog, templateIdentities);
   checkCatalogSystem(catalog, palette);
+  checkCatalogFamily(catalog, parseQuestionFamilies());
   if (wantRender) checkRenders(files);
 
   const errors = findings.filter((f) => f.level === 'error');
@@ -3541,4 +3678,6 @@ function checkContractCoverage(templateFiles) {
 }
 
 if (require.main === module) main();
+
+module.exports = { FAMILY_NAMES };
 

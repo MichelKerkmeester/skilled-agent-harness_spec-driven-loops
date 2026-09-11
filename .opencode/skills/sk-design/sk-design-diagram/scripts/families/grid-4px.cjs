@@ -45,13 +45,15 @@ function countOffGrid(ctx) {
     const closing = match[1] === '/';
     const tag = match[2];
     const attrs = match[3];
-    if (closing) { open.pop(); continue; }
+    // Pop only what was pushed. A leaf never entered the stack, so treating its closing tag as
+    // an exit discards the group above it and silently strips that group's exemption.
+    if (closing) { if (!LEAF.has(tag)) open.pop(); continue; }
     const exempt = EXEMPT_SUBTREE.has(tag) || open.some((ancestor) => EXEMPT_SUBTREE.has(ancestor));
     if (!exempt) {
       const found = [];
       for (const attr of GEOMETRY[tag] || []) {
         const hit = new RegExp(`\\b${attr}\\s*=\\s*"([^"]*)"`).exec(attrs);
-        if (!hit || (tag === 'rect' && attr.startsWith('r'))) continue;
+        if (!hit) continue;
         const value = hit[1].trim();
         if (offGrid(value)) found.push(`${attr}=${value}`);
       }

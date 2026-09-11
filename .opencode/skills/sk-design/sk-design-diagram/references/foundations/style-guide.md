@@ -35,15 +35,20 @@ Every token is referred to by **semantic role**, not by its hex value. Type refe
 | Role | Purpose | Default (light) | Default (dark) |
 |---|---|---|---|
 | `paper` | Page background, default node fill | `#f5f5f5` (white-smoke) | `#2d3142` (jet-black) |
-| `paper-2` | Diagram container bg, secondary fill | `#ececec` | `#393e53` |
+| `paper-2` | Diagram container bg, secondary fill | `#ececec` | light only |
 | `ink` | Primary text, primary stroke | `#2d3142` (jet-black) | `#f5f5f5` (white-smoke) |
 | `muted` | Secondary text, default arrow stroke | `#4f5d75` (blue-slate) | `#bfc0c0` (silver) |
-| `soft` | Sublabels, boundary labels | `#7a8399` | `#8e98ac` |
-| `rule` | Hairline borders | `rgba(45,49,66,0.12)` | `rgba(245,245,245,0.12)` |
-| `rule-solid` | Stronger borders, baselines | `rgba(79,93,117,0.25)` (muted at 0.25) | `rgba(191,192,192,0.25)` |
+| `soft` | Structure only: spokes, ticks, dot pattern | `#7a8399` | light only |
+| `rule` | Hairline borders | `rgba(45,49,66,0.12)` | carried by channel |
+| `rule-solid` | Stronger borders, baselines | `rgba(79,93,117,0.25)` (muted at 0.25) | carried by channel |
 | `accent` | Focal / 1–2 max per diagram | `#eb6c36` (atomic-tangerine) | `#f08a59` |
-| `accent-tint` | Fill for accent-bordered boxes | `rgba(235,108,54,0.08)` | `rgba(240,138,89,0.10)` |
+| `accent-tint` | Fill for accent-bordered boxes | `rgba(235,108,54,0.08)` | carried by channel |
 | `link` | HTTP/API calls, external arrows | `#2e5aa8` | `#6a95d8` |
+
+The dark skin defines five roles — `paper`, `ink`, `muted`, `accent`, `link` — and no others. A role
+marked *light only* has no dark value and no dark form draws one. A translucent treatment marked
+*carried by channel* needs no dark role either: both applicators match such a value by its channels
+and re-emit it at whatever alpha the drawing chose, so a dark repaint moves every one of them.
 
 > **Brand palette source:** this skin maps to a five-color brand palette — `jet-black #2d3142`, `silver #bfc0c0`, `white-smoke #f5f5f5`, `atomic-tangerine #eb6c36`, `blue-slate #4f5d75`. The `soft`, `rule`, and `link` tokens are derived (lighter slate, ink-at-opacity, and a saturated variant in the blue-slate hue family) to cover roles the brand palette doesn't name directly.
 
@@ -65,7 +70,7 @@ A small set of desaturated, editorial-tone colors for two cases: a chart type th
 | `series-4` | `#9c6b50` (rust-brown) | `#b88670` | Non-focal series |
 | `series-5` | `#6e6479` (slate) | `#8d8298` | Non-focal series |
 
-Fills sit at `0.18` opacity light, `0.22` dark; strokes use the full color. A chip that carries a label is a mark with text on it, so its fill clears the `text-on-mark` gate at 4.5:1 against the label colour; all five of these do. **Everything else uses muted-ink variants** — architecture, swimlane and the rest. The series palette is opt-in where overlapping shapes or a typed vocabulary demand distinguishable color, not a license to add color elsewhere.
+Fills sit at `0.18` opacity light, `0.22` dark; strokes use the full color. A chip that carries a label is a mark with text on it, so its fill clears the `text-on-mark` gate at 4.5:1 against the label colour. Three of these are used that way — `series-2`, `series-4` and `series-5` — and all three clear it against white. The other two are series marks only: nothing sets text on them, so the gate does not apply and neither would clear it if it did. **Everything else uses muted-ink variants** — architecture, swimlane and the rest. The series palette is opt-in where overlapping shapes or a typed vocabulary demand distinguishable color, not a license to add color elsewhere.
 
 #### Terminal skin (opt-in alternate)
 
@@ -120,7 +125,7 @@ A self-contained palette for the terminal-window primitive (see [primitive-termi
 | `radius-sm` | `4` | Small tags |
 | `radius-md` | `6` | Node boxes |
 | `radius-lg` | `8` | Containers, rings |
-| `grid` | `4` | Every coord, size, and gap is divisible by 4 (hard rule) |
+| `grid` | `4` | Every coord, size, and gap is divisible by 4 (hard rule). Exempt: stroke widths, opacity, path geometry and point lists |
 
 ---
 

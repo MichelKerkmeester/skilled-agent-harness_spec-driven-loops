@@ -1,6 +1,18 @@
+---
+title: "evilcharts - Origin of this Style Reference"
+description: "Where the evilcharts reference came from: read out of the component library's source-globals.css, not captured by the style library's crawler."
+trigger_phrases:
+  - "evilcharts origin"
+  - "style reference provenance"
+  - "where the chart palette came from"
+importance_tier: normal
+contextType: reference
+version: 0.23.0.5
+---
+
 # Origin of this Style Reference
 
-Unlike the cursor reference beside it, this one was not captured by the style library. It was
+This one was not captured by the style library. It was
 read out of the evilcharts source and written here, so what is measured and what is authored
 are recorded separately below.
 
@@ -46,6 +58,6 @@ a run themes twenty-five.
 
 | File | sha256 | Read by |
 |------|--------|---------|
-| `DESIGN.md` | `ec8c6f693516026f…` | `scripts/apply-design-md.cjs` — its colour table, its typography blocks, its border-radius table and its theme line |
+| `DESIGN.md` | `4d912a6d7d6b3e38…` | `scripts/apply-design-md.cjs` — its colour table, its typography blocks, its border-radius table and its theme line |
 | `source-globals.css` | `133dd40285d513f4…` | a reader checking a converted hex against the oklch it came from; nothing loads it |
 | `tokens.json` | `90d5a56c859b6103…` | `scripts/apply-design-md.cjs` — `darkMode`, which decides whether the dark theme derives from this reference or from stock chrome |

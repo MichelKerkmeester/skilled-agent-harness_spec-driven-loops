@@ -145,8 +145,7 @@ function parseTokens(file) {
 // The default Style Reference when a request names none, and the one the stock palette is derived
 // from: near-white paper, near-black ink and all of the colour spent on the marks. The copy beside
 // the forms is the one read, because a stock the corpus was derived from cannot be allowed to
-// change under it without a diff. Any other reference, including the cursor capture carried beside
-// it, is applied by passing its path instead.
+// change under it without a diff. Any other reference is applied by passing its path instead.
 const DEFAULT_DESIGN_PATH = path.join(STYLE_REFERENCE_DIR, DEFAULT_STYLE_REFERENCE, 'DESIGN.md');
 // Provenance records the reference by a path a second machine can resolve: relative to the
 // repository root, never the absolute path of whoever ran the script.
@@ -617,6 +616,34 @@ function derive(input) {
   return { palette, rows, typography, light, dark, radius, failures, declaredDark };
 }
 
+// Containment for a directory that may not exist yet: the path is real only as far as it goes,
+// and the missing tail is appended to the real parent. A lexically resolved path can still reach
+// the templates through a symlink or a case-variant name, and the native resolver is the one that
+// returns the path as the filesystem stores it rather than the spelling it was given, so either
+// of those resolves back to the directory it actually points at.
+function canonicalPath(target) {
+  return (fs.realpathSync.native || fs.realpathSync)(target);
+}
+
+function realPathOf(target) {
+  let current = path.resolve(target);
+  const missing = [];
+  while (!fs.existsSync(current)) {
+    missing.unshift(path.basename(current));
+    const parent = path.dirname(current);
+    if (parent === current) break;
+    current = parent;
+  }
+  const base = fs.existsSync(current) ? canonicalPath(current) : current;
+  return path.join(base, ...missing);
+}
+
+function insideDirectory(target, directory) {
+  const realTarget = realPathOf(target);
+  const realDirectory = canonicalPath(directory);
+  return realTarget === realDirectory || realTarget.startsWith(realDirectory + path.sep);
+}
+
 function run(argv) {
   const options = parseArgs(argv);
   const input = { ...options, designPath: options.designPath };
@@ -664,7 +691,7 @@ function run(argv) {
     ));
   }
   const outDir = path.resolve(options.out);
-  if (outDir === TEMPLATE_DIR || outDir.startsWith(TEMPLATE_DIR + path.sep)) {
+  if (insideDirectory(outDir, TEMPLATE_DIR)) {
     fail('refusing to write inside assets/templates; stock forms are immutable');
   }
   fs.mkdirSync(outDir, { recursive: true });
