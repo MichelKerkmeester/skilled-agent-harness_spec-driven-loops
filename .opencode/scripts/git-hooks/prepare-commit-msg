@@ -179,7 +179,13 @@ fi
 # its value and the message does not carry one already.
 REQUIRE_SPEC=0
 if [[ -n "${SPECKIT_COMMIT_SPEC:-}" && "$HAS_SPEC" -eq 0 ]]; then
-  REQUIRE_SPEC=1
+  # The value lands on a trailer line verbatim, so it must be one packet path and
+  # nothing that could open a second line or a second key.
+  if [[ "$SPECKIT_COMMIT_SPEC" =~ ^[A-Za-z0-9][A-Za-z0-9._/-]*$ ]]; then
+    REQUIRE_SPEC=1
+  else
+    printf 'prepare-commit-msg: SPECKIT_COMMIT_SPEC is not a packet path; Spec not stamped.\n' >&2
+  fi
 fi
 
 if (( REQUIRE_ID == 0 && REQUIRE_SPEC == 0 )); then

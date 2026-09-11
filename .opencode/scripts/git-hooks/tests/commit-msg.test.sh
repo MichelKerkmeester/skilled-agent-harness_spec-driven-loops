@@ -104,6 +104,7 @@ cat > "$TMP/message.txt" <<'MSG'
 feat(sk-git): add a thing
 
 This explains why the thing was added.
+
 Spec: specs/example/001-demo
 Commit-Id: 0009114
 MSG
@@ -174,6 +175,7 @@ cat > "$TMP/message.txt" <<'MSG'
 feat(sk-git): add a thing
 
 This explains why the thing was added.
+
 Commit-Id: 0009131
 MSG
 run_hook; RC=$?
@@ -197,6 +199,7 @@ cat > "$TMP/message.txt" <<MSG
 feat(sk-git): add a thing
 
 This explains why the thing was added.
+
 $LONG_TRAILER
 MSG
 run_hook; RC=$?
@@ -209,6 +212,44 @@ else
   echo "PASS  a long trailer line is exempt from the body-length warning"
   PASS=$((PASS + 1))
 fi
+
+# ── 11. keys above prose are invisible to git's trailer parser and are refused ──
+setup_repo
+cat > "$TMP/message.txt" <<'MSG'
+feat(sk-git): add a thing
+
+Spec: specs/example/001-demo
+Commit-Id: 0009140
+
+Prose that landed after the keys.
+MSG
+run_hook; RC=$?
+check "keys above prose are blocked" 1 "$RC"
+
+# ── 12. a colon-form Fixes: line is a trailer, not prose ────────────────────
+setup_repo
+stage_four
+cat > "$TMP/message.txt" <<'MSG'
+feat(sk-git): add a thing
+
+Fixes: #12
+Commit-Id: 0009141
+MSG
+run_hook; RC=$?
+check "colon-form Fixes: counts as a trailer, so four paths still need prose" 1 "$RC"
+
+# ── 13. prose that quotes an id is not a collision ──────────────────────────
+setup_repo
+git -C "$TMP/repo" commit -q --allow-empty -m "feat(x): carrier" -m "Commit-Id: 0009150" 2>/dev/null || true
+cat > "$TMP/message.txt" <<'MSG'
+feat(sk-git): add a thing
+
+See the note about Commit-Id: 0009150 in the plan.
+
+Commit-Id: 0009151
+MSG
+run_hook; RC=$?
+check "prose quoting another id is not a collision" 0 "$RC"
 
 echo ""
 echo "PASS=$PASS FAIL=$FAIL"

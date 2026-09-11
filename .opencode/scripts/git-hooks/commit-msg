@@ -118,7 +118,7 @@ HAS_BREAKING_FOOTER=0
 # than joining the alternation above, because that branch also accepts a space
 # after the key — which would misread prose such as "Spec folder was renamed"
 # as a trailer and wrongly satisfy the explanatory-body requirement.
-TRAILER_RE='^((Co-Authored-By|Signed-off-by|Reviewed-by|Tested-by|Refs)(:|[[:space:]])|(Fixes|Closes|Related[[:space:]]to)[[:space:]]|(Spec|Commit-Id):)'
+TRAILER_RE='^((Co-Authored-By|Signed-off-by|Reviewed-by|Tested-by|Refs)(:|[[:space:]])|(Fixes|Closes|Related[[:space:]]to)(:|[[:space:]])|(Spec|Commit-Id):)'
 BREAKING_FOOTER_RE='^BREAKING CHANGE: .+$'
 BODY_LINE=3
 
@@ -152,9 +152,10 @@ if [[ -n "$BODY" ]]; then
     if [[ "$line" == Commit-Id:* ]]; then
       if [[ "$line" =~ $COMMIT_ID_RE ]]; then
         COMMIT_ID="${BASH_REMATCH[1]}"
+        # Anchored to a whole line, so prose that quotes an id is not a collision.
         EXISTING_ID="$(
-          git -C "$REPO_ROOT" log --all --not HEAD --fixed-strings \
-            --grep="Commit-Id: $COMMIT_ID" --format=%h 2>/dev/null || true
+          git -C "$REPO_ROOT" log --all --not HEAD -E \
+            --grep="^Commit-Id: ${COMMIT_ID}\$" --format=%h 2>/dev/null || true
         )"
         if [[ -n "$EXISTING_ID" ]]; then
           ERRORS+=("Commit-Id '$COMMIT_ID' already belongs to another commit.")
@@ -164,6 +165,27 @@ if [[ -n "$BODY" ]]; then
       fi
     fi
   done <<< "$BODY"
+fi
+
+# Every reader of the machine keys, git's own trailer parser included, sees only the
+# final paragraph. A key above prose is invisible to them, so the hook holds the
+# placement law: when Spec or Commit-Id appear, the final paragraph must be trailers only.
+if [[ -n "$BODY" ]] && printf '%s\n' "$BODY" | grep -qE '^(Spec|Commit-Id):'; then
+  FINAL_PARAGRAPH="$(printf '%s\n' "$BODY" | awk 'BEGIN{p=""} /^$/{p=""; next} {p=p $0 "\n"} END{printf "%s", p}')"
+  FINAL_OK=1
+  FINAL_HAS_KEY=0
+  while IFS= read -r line || [[ -n "$line" ]]; do
+    [[ -z "$line" ]] && continue
+    if [[ ! "$line" =~ $TRAILER_RE ]]; then
+      FINAL_OK=0
+    fi
+    if [[ "$line" =~ ^(Spec|Commit-Id): ]]; then
+      FINAL_HAS_KEY=1
+    fi
+  done <<< "$FINAL_PARAGRAPH"
+  if (( FINAL_OK == 0 || FINAL_HAS_KEY == 0 )); then
+    ERRORS+=("Spec and Commit-Id must sit in the final paragraph with no prose beside them, or git's trailer parser cannot see them.")
+  fi
 fi
 
 if [[ "$BREAKING" == "!" && "$HAS_BREAKING_FOOTER" -eq 0 ]]; then

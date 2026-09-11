@@ -104,7 +104,9 @@ die() {
   exit 1
 }
 
-log "start: source=$SOURCE plan=$PLAN work=$WORK refs=$REFS tags=$TAGS rehearse=$REHEARSE"
+# A source URL may carry a credential before the host; the log and the push lines never should.
+SOURCE_SHOWN="$(printf '%s' "$SOURCE" | sed -E 's#(://)[^/@]+@#\1<redacted>@#')"
+log "start: source=$SOURCE_SHOWN plan=$PLAN work=$WORK refs=$REFS tags=$TAGS rehearse=$REHEARSE"
 
 # ───────────────────────────────────────────────────────────────
 # 1. CLONES AND TIPS
@@ -572,7 +574,7 @@ if [ "$REHEARSE" -eq 1 ]; then
 else
   log "operator push commands (run by hand; this script never pushes):"
   for ref in "${REF_LIST[@]}"; do
-    log "git -C $MIRROR push --force $SOURCE $ref:$ref"
+    log "git -C $MIRROR push --force $SOURCE_SHOWN $ref:$ref"
   done
 fi
 log "done"

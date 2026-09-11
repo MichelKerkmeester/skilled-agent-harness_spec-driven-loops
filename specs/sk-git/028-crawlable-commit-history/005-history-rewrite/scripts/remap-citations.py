@@ -128,9 +128,13 @@ def iter_scannable_files(roots: List[str], extensions: List[str]) -> Iterator[Pa
         base = Path(root)
         if not base.is_dir():
             _fail(f"root '{root}' is not a directory")
-        for dirpath, _dirnames, filenames in os.walk(base):
+        for dirpath, dirnames, filenames in os.walk(base):
+            # A symlink can point outside the root; the remap must never write there.
+            dirnames[:] = sorted(d for d in dirnames if not (Path(dirpath) / d).is_symlink())
             for filename in sorted(filenames):
                 path = Path(dirpath) / filename
+                if path.is_symlink():
+                    continue
                 if path.suffix.lower() in extensions:
                     yield path
 
