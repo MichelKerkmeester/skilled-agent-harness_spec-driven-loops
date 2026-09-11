@@ -73,13 +73,13 @@ Three to seven bullets, each checkable without opening another file. Copy them
 verbatim into the objective: nothing dereferences a path, so criteria left only
 here are invisible to whatever judges completion.
 
-- [ ] Recursive strict validate over the parent prints RESULT: PASSED and exits 0
-- [ ] Every phase reports its acceptance criteria closeable
-- [ ] Every runtime cold-boots with no advisor MCP server and the routing brief still arrives
-- [ ] All nine capabilities answer through the CLI from the final state
-- [ ] The prompt-hook latency delta against the phase 002 baseline is reported per runtime
-- [ ] The advisor test suite and the repository gates run from the final state with their output read
-- [ ] The parent goal's DONE WHEN table carries evidence in every row
+- [x] Recursive strict validate over the parent prints RESULT: PASSED and exits 0
+- [x] Every phase reports its acceptance criteria closeable
+- [x] Every runtime cold-boots with no advisor MCP server and the routing brief still arrives
+- [x] All nine capabilities answer through the CLI from the final state
+- [x] The prompt-hook latency delta against the phase 002 baseline is reported per runtime
+- [x] The advisor test suite and the repository gates run from the final state with their output read
+- [x] The parent goal's DONE WHEN table carries evidence in every row
 <!-- /ANCHOR:completion -->
 
 ---
@@ -95,9 +95,9 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Phase planned | Pending | |
-| Phase executed | Pending | |
-| Acceptance rows closed | Pending | |
+| Phase planned | Done | `plan.md`, `tasks.md` |
+| Phase executed | Done | Seven criteria re-run from the final state; `latency-delta.md` and `implementation-summary.md` carry the numbers |
+| Acceptance rows closed | Done | 8 of 8 Met in `acceptance-criteria.md`, each naming the evidence |
 
 ### Deviations and findings
 

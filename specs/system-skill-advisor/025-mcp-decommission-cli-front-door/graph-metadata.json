@@ -193,19 +193,19 @@
         "source": "derived"
       },
       {
+        "name": "LLM Gateway",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
         "name": "no",
-        "kind": "key_phrase",
-        "path": "goal.md",
-        "source": "derived"
-      },
-      {
-        "name": "convergence",
-        "kind": "key_phrase",
-        "path": "goal.md",
-        "source": "derived"
-      },
-      {
-        "name": "evidence",
         "kind": "key_phrase",
         "path": "goal.md",
         "source": "derived"
@@ -213,14 +213,14 @@
     ],
     "causal_summary": "The skill advisor is the last subsystem in this framework's own runtime that ships an MCP server, and that server owns no behavior",
     "created_at": "2026-09-11T06:48:54Z",
-    "last_save_at": "2026-09-11T18:19:17.582Z",
+    "last_save_at": "2026-09-11T19:20:16.444Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:2ca7231392126b4539d4bb7911afd4a29c28a1a40e913af36171e17e8082346e",
+    "source_fingerprint": "sha256:d7c28fd1695a47f663783d913b9f265f09153ee20abc98f398a0d9999b9638fd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "96c76b4b48ac8a24528334141405e5cadfcaa5788a88372bebd425b3345e05d7"
