@@ -114,7 +114,11 @@ fi
 
 HAS_EXPLANATORY_BODY=0
 HAS_BREAKING_FOOTER=0
-TRAILER_RE='^((Co-Authored-By|Signed-off-by|Reviewed-by|Tested-by|Refs)(:|[[:space:]])|(Fixes|Closes|Related[[:space:]]to)[[:space:]])'
+# Machine trailers. Spec: and Commit-Id: get their own colon-only branch rather
+# than joining the alternation above, because that branch also accepts a space
+# after the key — which would misread prose such as "Spec folder was renamed"
+# as a trailer and wrongly satisfy the explanatory-body requirement.
+TRAILER_RE='^((Co-Authored-By|Signed-off-by|Reviewed-by|Tested-by|Refs)(:|[[:space:]])|(Fixes|Closes|Related[[:space:]]to)[[:space:]]|(Spec|Commit-Id):)'
 BREAKING_FOOTER_RE='^BREAKING CHANGE: .+$'
 BODY_LINE=3
 
@@ -133,6 +137,30 @@ if [[ -n "$BODY" ]]; then
     fi
 
     BODY_LINE=$((BODY_LINE + 1))
+  done <<< "$BODY"
+fi
+
+# A Commit-Id must be the seven-digit zero-padded ordinal and must not already
+# name another commit. The search excludes HEAD on purpose: an amend keeps its
+# own id (HEAD still carries it), and the copy a cherry-pick makes is a fresh
+# commit that is never HEAD — so only a genuinely foreign id is a collision.
+COMMIT_ID_RE='^Commit-Id: ([0-9]{7})$'
+if [[ -n "$BODY" ]]; then
+  while IFS= read -r line || [[ -n "$line" ]]; do
+    if [[ "$line" == Commit-Id:* ]]; then
+      if [[ "$line" =~ $COMMIT_ID_RE ]]; then
+        COMMIT_ID="${BASH_REMATCH[1]}"
+        EXISTING_ID="$(
+          git -C "$REPO_ROOT" log --all --not HEAD --fixed-strings \
+            --grep="Commit-Id: $COMMIT_ID" --format=%h 2>/dev/null || true
+        )"
+        if [[ -n "$EXISTING_ID" ]]; then
+          ERRORS+=("Commit-Id '$COMMIT_ID' already belongs to another commit.")
+        fi
+      else
+        ERRORS+=("Commit-Id must be exactly seven digits: '$line'.")
+      fi
+    fi
   done <<< "$BODY"
 fi
 
