@@ -366,7 +366,9 @@ The research cascade assigns 4,250 commits to a packet because they touch exactl
 
 **We chose**: keep the four-rule cascade, exclude rolling and generated spec files from the touch signal, require the commit scope to be consistent with the track before rule 3 fires, and measure the error rate on a random sample before the rewrite.
 
-**How it works**: the mapping script drops `goal.md`, `graph-metadata.json`, `description.json` and anything under `activation/` from the touched-path set. Rule 3 applies only when the scope names the track, a skill under it, or is a generic scope such as `specs`. A sample of 100 mapped commits is judged by hand and the rate recorded in phase 005; above 5 percent the rule is tightened again.
+**How it works**: the mapping script drops `goal.md`, `graph-metadata.json`, `description.json`, `handover.md`, anything under `activation/` or `scratch/`, and log files from the touched-path set. Rule 3 applies unless the scope positively contradicts the packet: a scope that names another known track, another skill's topic, or a packet number absent from the path refuses the rule, while a missing, generic, shortened or unknown scope does not. A numeric scope matches any phase number on the path. A `Refs:` path with packet shape maps even when the packet has since moved. A sample of 100 mapped commits is judged by hand and the rate recorded in phase 005; above 5 percent the rule is tightened again.
+
+*Amended 2026-09-11 during phase 005:* the first cut required the scope to confirm the track and refused 2,086 single-packet commits whose scope merely shortened the track name or was absent, leaving 60 percent of history unmapped. Contradiction, not confirmation, is the test, which brings the unmapped share to 38.6 percent.
 <!-- /ANCHOR:adr-004-decision -->
 
 ---
