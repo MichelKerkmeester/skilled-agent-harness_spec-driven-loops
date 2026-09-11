@@ -31,14 +31,14 @@ The free Ox Alpha tune was retired from this block and replaced by GLM-5.3-Flash
 ### Where It Lives
 
 - Provider block: `.pi/models.json` under `providers["cline-pass"]`, with three models
-- Enabled in the picker: `.pi/settings.json` under `enabledModels`, entries `"cline-pass/cline-pass/deepseek-v4-flash"` and `"cline-pass/z-ai/glm-5.3-flash"`. **DeepSeek V4 Pro is declared in the provider block but is NOT in `enabledModels`**, so it is dispatchable by explicit `--model` and absent from the picker
+- Enabled in the picker: `.pi/settings.json` under `enabledModels`, entries `"cline-pass/cline-pass/deepseek-v4.1-flash"` and `"cline-pass/z-ai/glm-5.3-flash"`. **DeepSeek V4 Pro is declared in the provider block but is NOT in `enabledModels`**, so it is dispatchable by explicit `--model` and absent from the picker
 - Default: `.pi/settings.json` `defaultProvider` is `"cline-pass"` and `defaultModel` is `"z-ai/glm-5.3-flash"` (operator-selected; set it to any cline-pass model)
 
-**Model ids**: the pi reference is three-segment — provider `cline-pass` plus the model `id`. The DeepSeek entry keeps a `cline-pass/` prefix (`cline-pass/cline-pass/deepseek-v4-flash`), matching opencode's form. **GLM-5.3-Flash is different**: its Cline `id` carries the vendor prefix `z-ai/glm-5.3-flash`, so its reference is `cline-pass/z-ai/glm-5.3-flash`, not `cline-pass/glm-5.3-flash`. Both forms still satisfy Cline's required `modelType/model` shape (see the model-id gotcha below).
+**Model ids**: the pi reference is three-segment — provider `cline-pass` plus the model `id`. The DeepSeek entry keeps a `cline-pass/` prefix (`cline-pass/cline-pass/deepseek-v4.1-flash`), matching opencode's form. **GLM-5.3-Flash is different**: its Cline `id` carries the vendor prefix `z-ai/glm-5.3-flash`, so its reference is `cline-pass/z-ai/glm-5.3-flash`, not `cline-pass/glm-5.3-flash`. Both forms still satisfy Cline's required `modelType/model` shape (see the model-id gotcha below).
 
 ### Dispatch
 
-Select flash with `--provider cline-pass --model cline-pass/cline-pass/deepseek-v4-flash`, or GLM-5.3-Flash with `--model cline-pass/z-ai/glm-5.3-flash`. The cli-pi skill roster documents both under its `### cline-pass` section.
+Select flash with `--provider cline-pass --model cline-pass/cline-pass/deepseek-v4.1-flash`, or GLM-5.3-Flash with `--model cline-pass/z-ai/glm-5.3-flash`. The cli-pi skill roster documents both under its `### cline-pass` section, and records that the V4.1 Flash id has not yet completed a live turn — the older `cline-pass/cline-pass/deepseek-v4-flash` is the fallback until it does.
 
 DeepSeek V4 Pro was retired from this block on 2026-09-04. Its object, its `enabledModels` entry and its rows in every CLI roster are gone, so `pi` and the skills now agree that it is not a dispatch target. Cline still offers it upstream; the exclusion is a curation decision, not an availability one.
 
@@ -52,7 +52,7 @@ Each model also carries a `thinkingLevelMap` (`{ "high": "high", "xhigh": "xhigh
 
 The provider `api` MUST be `"openai-completions"`, never a bare `"openai"`. A bare `openai` passes `pi auth check` and `--list-models` but throws at stream time (`No API provider registered for api: openai`). Every builtin OpenAI-compatible model, for example deepseek, uses `openai-completions`.
 
-The model `id` MUST be the exact `modelType/model` Cline expects — never bare. The Cline API rejects a bare id at request time with `400 "invalid model format. Expected format: modelType/model"`, and rejects a wrong `modelType/model` with `404 "model not found"`. Both failures hide from `pi --list-models` and `pi auth check` (which never send a completion), so they only surface on the first real dispatch. The DeepSeek entries use `cline-pass/deepseek-v4-flash` (opencode uses the same slashed id); **GLM-5.3-Flash uses `z-ai/glm-5.3-flash`** — the vendor prefix, not `cline-pass/`.
+The model `id` MUST be the exact `modelType/model` Cline expects — never bare. The Cline API rejects a bare id at request time with `400 "invalid model format. Expected format: modelType/model"`, and rejects a wrong `modelType/model` with `404 "model not found"`. Both failures hide from `pi --list-models` and `pi auth check` (which never send a completion), so they only surface on the first real dispatch. The DeepSeek entry uses `cline-pass/deepseek-v4.1-flash` (opencode uses the same slashed id); **GLM-5.3-Flash uses `z-ai/glm-5.3-flash`** — the vendor prefix, not `cline-pass/`.
 
 ---
 
@@ -122,11 +122,13 @@ pi keeps its own auth store. Opencode's existing `cline-pass` credential (`~/.lo
 
 ```bash
 pi --list-models | grep cline
-pi auth check --provider cline-pass --model cline-pass/cline-pass/deepseek-v4-flash --json
+pi auth check --provider cline-pass --model cline-pass/cline-pass/deepseek-v4.1-flash --json
 # real round-trip (needs a key) — proves each model id is accepted:
-pi -p "reply OK" --provider cline-pass --model cline-pass/cline-pass/deepseek-v4-flash --thinking xhigh --mode text
+pi -p "reply OK" --provider cline-pass --model cline-pass/cline-pass/deepseek-v4.1-flash --thinking xhigh --mode text
 pi -p "reply OK" --provider cline-pass --model cline-pass/z-ai/glm-5.3-flash --thinking xhigh --mode text
 ```
+
+On cline-pass the V4.1 Flash id is **listed by Cline but not yet proven on this route**: every attempt made 2026-09-11 returned `429 You have reached your monthly Clinepass limit`, including the older `cline-pass/cline-pass/deepseek-v4-flash`, which is how we know the block is the account's quota and not the id. Re-run the flash round-trip above once the quota window resets before treating the V4.1 id as verified; until that turn passes, `cline-pass/cline-pass/deepseek-v4-flash` stays the safer dispatch.
 
 For llmgateway:
 
@@ -137,7 +139,7 @@ pi -p "reply OK" --provider llmgateway --model llmgateway/deepseek-v4.1-flash --
 pi -p "reply OK" --provider llmgateway --model llmgateway/glm-5.3-flash --thinking max --mode text
 ```
 
-Expected: the list shows the `cline-pass  cline-pass/deepseek-v4-flash` and `…/z-ai/glm-5.3-flash` rows plus the two `llmgateway` rows, and each dispatch returns a model reply rather than a `400 invalid model format`, a `400 Provider llmgateway does not support model …`, or a `401 Unauthorized`.
+Expected: the list shows the `cline-pass  cline-pass/deepseek-v4.1-flash` and `…/z-ai/glm-5.3-flash` rows plus the two `llmgateway` rows, and each dispatch returns a model reply rather than a `400 invalid model format`, a `400 Provider llmgateway does not support model …`, or a `401 Unauthorized`. A `429 monthly Clinepass limit` means the route was never exercised — retry after the window resets.
 
 `pi auth check` is **not** a credential test here. It never sends a completion, so it reports `{"status":"ready"}` whenever the provider block carries any non-empty `apiKey` value — including an unresolved placeholder that Cline will reject. Only the round-trip lines prove the credential. Its one honest signal is the opposite direction: `{"status":"invalid","reason":"invalid_state"}` means the provider block itself did not load.
 
@@ -147,4 +149,4 @@ Expected: the list shows the `cline-pass  cline-pass/deepseek-v4-flash` and `…
 
 To drop llmgateway, delete the `providers["llmgateway"]` block from `.pi/models.json` and its four `"llmgateway/…"` lines from `.pi/settings.json` `enabledModels`. Nothing else references it — it is not a default and not in the deep-loop fan-out roster.
 
-Delete the `providers["cline-pass"]` block from `.pi/models.json` and the `"cline-pass/cline-pass/deepseek-v4-flash"` and `"cline-pass/z-ai/glm-5.3-flash"` lines from `.pi/settings.json` `enabledModels`. To drop a single model, remove its object from the provider block and its `enabledModels` line if it has one. If `defaultProvider` still points at `cline-pass`, reset it to another authenticated provider so an unqualified dispatch still resolves. No other cleanup is needed. There is no builtin and no stored state beyond an optional pi-login credential you can clear separately.
+Delete the `providers["cline-pass"]` block from `.pi/models.json` and the `"cline-pass/cline-pass/deepseek-v4.1-flash"` and `"cline-pass/z-ai/glm-5.3-flash"` lines from `.pi/settings.json` `enabledModels`. To drop a single model, remove its object from the provider block and its `enabledModels` line if it has one. If `defaultProvider` still points at `cline-pass`, reset it to another authenticated provider so an unqualified dispatch still resolves. No other cleanup is needed. There is no builtin and no stored state beyond an optional pi-login credential you can clear separately.
