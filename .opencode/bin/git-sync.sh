@@ -136,6 +136,22 @@ _record() {
   ts="$(date -u +%Y-%m-%dT%H:%M:%SZ 2>/dev/null || echo '-')"
   printf '%s\t%s\tbranch=%s\tlive=%s\t%s\n' "$ts" "$1" "$BRANCH" "$LIVE" "${2:-}" >> "$SYNC_LOG" 2>/dev/null || true
 }
+# Record the old -> new object id of every commit a rebase rewrote, one line per commit.
+# A rebase replaces each commit id it touches, so a run that pinned a SHA before the sync
+# otherwise has no way to learn which of its references went stale. Pairing is positional:
+# source order before the rebase maps onto source order after it.
+_log_sha_rewrites() {
+  local base="$1" before="$2" old_shas new_shas old new
+  old_shas="$(git rev-list --reverse "$base..$before" 2>/dev/null || true)"
+  new_shas="$(git rev-list --reverse "$base..HEAD" 2>/dev/null || true)"
+  [ -n "$old_shas" ] || return 0
+  [ "$old_shas" != "$new_shas" ] || return 0
+  while IFS="$(printf '\t')" read -r old new; do
+    [ -n "$old" ] || continue
+    [ -n "$new" ] || continue
+    _record rewrite "old=$old new=$new"
+  done < <(paste <(printf '%s\n' "$old_shas") <(printf '%s\n' "$new_shas"))
+}
 
 if [ -z "$LIVE" ]; then
   [ "$AUTO" = "1" ] && exit 0
@@ -244,6 +260,7 @@ while :; do
   fi
 
   if git rebase --quiet "$REMOTE_TIP" 2>/dev/null; then
+    _log_sha_rewrites "$REMOTE_TIP" "$HEAD_SHA"
     if _push_live; then
       _record published "rebased onto $REMOTE/$LIVE"
       log "rebased onto $REMOTE/$LIVE and published $BRANCH"

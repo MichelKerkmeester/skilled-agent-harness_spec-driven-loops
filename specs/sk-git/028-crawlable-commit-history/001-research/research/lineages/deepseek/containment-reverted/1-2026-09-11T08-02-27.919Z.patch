@@ -1,0 +1,762 @@
+diff --git a/specs/sk-git/028-crawlable-commit-history/001-research/acceptance-criteria.md b/specs/sk-git/028-crawlable-commit-history/001-research/acceptance-criteria.md
+index 194e2117e4..a1d908ec21 100644
+--- a/specs/sk-git/028-crawlable-commit-history/001-research/acceptance-criteria.md
++++ b/specs/sk-git/028-crawlable-commit-history/001-research/acceptance-criteria.md
+@@ -10,18 +10,18 @@ importance_tier: "important"
+ contextType: "implementation"
+ _memory:
+   continuity:
+-    packet_pointer: "scaffold/001-research"
+-    last_updated_at: "2026-09-11T07:16:25Z"
+-    last_updated_by: "scaffold"
++    packet_pointer: "sk-git/028-crawlable-commit-history/001-research"
++    last_updated_at: "2026-09-11T09:45:00Z"
++    last_updated_by: "claude-fable-5-1"
+     recent_action: "Authored the acceptance criteria for this packet"
+-    next_safe_action: "Meet, waive or supersede the open criteria"
++    next_safe_action: "Meet the open criteria when the lineage settles"
+     blockers: []
+     key_files: []
+     session_dedup:
+       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+-      session_id: "[SESSION-ID]"
++      session_id: "2026-09-11-skgit-028"
+       parent_session_id: null
+-    completion_pct: 0
++    completion_pct: 30
+     open_questions: []
+     answered_questions: []
+ ---
+@@ -39,9 +39,9 @@ _memory:
+ <!-- ANCHOR:metadata -->
+ ## 1. METADATA
+ 
+-**Packet:** [PACKET-ID]
+-**Level:** [2/3/3+]
+-**Status:** [Draft/In Progress/Complete]
++**Packet:** sk-git/028-crawlable-commit-history/001-research
++**Level:** 3
++**Status:** In Progress
+ **Date:** 2026-09-11
+ <!-- /ANCHOR:metadata -->
+ 
+@@ -54,7 +54,12 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
+ 
+ | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
+ |-------|-----|---------------------|--------------|--------|--------|
+-| AC-001 | REQ-001 | Given [context], When [action], Then [observable outcome] | [command, file:line, or artifact that proves it] | Unmet | - |
++| AC-001 | REQ-001 | Given the brief and the launched lineage, When the run settles, Then the state log holds ten iteration records and the synthesis record says maxIterationsReached | `wc -l research/lineages/deepseek/deep-research-state.jsonl` and `grep stopReason` | Unmet | - |
++| AC-002 | REQ-002 | Given any iteration file, When the conductor opens one cited file:line, Then the quoted text is there | `sed -n <line>p <file>` matched for iterations 1 to 10 | Unmet | - |
++| AC-003 | REQ-003 | Given the lineage research.md, When the conductor reduces it, Then research/research.md ranks recommendations and marks each implementable today or needs a decision | `grep -c "implementable today\|needs a contract decision" research/research.md` | Unmet | - |
++| AC-004 | REQ-004 | Given angle 4, When candidate messages are run through the hook regexes, Then each result is recorded | iteration-004.md What was measured section | Unmet | - |
++| AC-005 | REQ-005 | Given angle 8, When the rewrite method is chosen, Then the filter-repo invocation and the citation remap method are named | iteration-008.md and iteration-009.md | Unmet | - |
++| AC-006 | US-002 | Given the run, When `git status` is read, Then nothing outside `research/` changed | `git status --short` | Unmet | - |
+ 
+ ### Status values
+ 
+@@ -79,8 +84,7 @@ waiver is treated as an unmet criterion rather than as a pass.
+ <!-- ANCHOR:closure -->
+ ## 3. CLOSURE STATEMENT
+ 
+-**Closeable:** [Yes/No]
++**Closeable:** No
+ 
+-[One or two sentences: which criteria carried the packet, and what was consciously
+-left out. Write this when the packet is closed, not before.]
++Written when the lineage settles and the synthesis exists.
+ <!-- /ANCHOR:closure -->
+diff --git a/specs/sk-git/028-crawlable-commit-history/001-research/graph-metadata.json b/specs/sk-git/028-crawlable-commit-history/001-research/graph-metadata.json
+index d915532745..32d3fda930 100644
+--- a/specs/sk-git/028-crawlable-commit-history/001-research/graph-metadata.json
++++ b/specs/sk-git/028-crawlable-commit-history/001-research/graph-metadata.json
+@@ -17,8 +17,8 @@
+       "history rewrite research",
+       "implementation plan",
+       "technical approach",
+-      "architecture decisions",
+-      "testing strategy",
++      "research lineage plan",
++      "fanout research run",
+       "task breakdown",
+       "implementation tasks",
+       "verification checklist",
+@@ -47,7 +47,8 @@
+       "acceptance-criteria.md",
+       "goal.md",
+       "implementation-summary.md",
+-      ".opencode/skills/sk-git/SKILL.md"
++      ".opencode/skills/sk-git/SKILL.md",
++      "research/dispatch-prompt.md"
+     ],
+     "entities": [
+       {
+@@ -92,6 +93,12 @@
+         "path": ".opencode/skills/sk-git/SKILL.md",
+         "source": "derived"
+       },
++      {
++        "name": "dispatch-prompt.md",
++        "kind": "doc",
++        "path": "research/dispatch-prompt.md",
++        "source": "derived"
++      },
+       {
+         "name": "Feature Specification",
+         "kind": "proper_noun",
+@@ -141,25 +148,25 @@
+         "source": "derived"
+       },
+       {
+-        "name": "Clean Architecture",
++        "name": "Overview One",
+         "kind": "proper_noun",
+         "path": "plan.md",
+         "source": "derived"
+       },
+       {
+-        "name": "Key Components",
++        "name": "Pattern Conductor",
+         "kind": "proper_noun",
+         "path": "plan.md",
+         "source": "derived"
+       },
+       {
+-        "name": "Data Flow",
++        "name": "Key Components",
+         "kind": "proper_noun",
+         "path": "plan.md",
+         "source": "derived"
+       },
+       {
+-        "name": "Current Role",
++        "name": "Data Flow The",
+         "kind": "proper_noun",
+         "path": "plan.md",
+         "source": "derived"
+@@ -187,17 +194,11 @@
+         "kind": "proper_noun",
+         "path": "tasks.md",
+         "source": "derived"
+-      },
+-      {
+-        "name": "Verification Protocol",
+-        "kind": "proper_noun",
+-        "path": "tasks.md",
+-        "source": "derived"
+       }
+     ],
+     "causal_summary": "Nothing in a commit today can be looked up the way `sk-git/028` can",
+     "created_at": "2026-09-11T07:16:23Z",
+-    "last_save_at": "2026-09-11T07:24:00.585Z",
++    "last_save_at": "2026-09-11T07:38:43.720Z",
+     "save_lineage": "graph_only",
+     "last_accessed_at": null,
+     "source_docs": [
+@@ -208,12 +209,12 @@
+       "goal.md",
+       "implementation-summary.md"
+     ],
+-    "source_fingerprint": "sha256:65d1e31ce4f8d6821d91e7e51b5ecc1322845509d9e7a0fd879c8534b2cfae4b",
++    "source_fingerprint": "sha256:7b57f62488e854300aa03b9d088a0a3f9e94bedcb3caa398e8deab1f4a36676f",
+     "source_fingerprint_docset": 3,
+     "source_doc_hashes": {
+       "spec.md": "90caf4dcb1a49a20501f907e9c0b9ab64389c99c4a45d4e475fe9ccf39a2c729",
+-      "plan.md": "181b413fef51949bf66f377787529e97f560ca71594818362474958ae581e0da",
+-      "tasks.md": "05f9c94cac85ba9a3667f7bb8347cb81520f6631a3f5918e7f32f04c3446dcf7",
++      "plan.md": "b97168cff594fb85b8082a1897fd48d46954c424449ab3b7ae7887b3faebac85",
++      "tasks.md": "5ac4cb1210c4cb72f12fb2288c42cf623216aea8d9d8a64cd00d946e0207a621",
+       "implementation-summary.md": "98548e7db5fc9ad4edfd471be65f01f3a8f888c7063ccf884f8ef31240d40f73"
+     },
+     "last_active_at": null
+diff --git a/specs/sk-git/028-crawlable-commit-history/001-research/plan.md b/specs/sk-git/028-crawlable-commit-history/001-research/plan.md
+index 685376648f..5b42bebafe 100644
+--- a/specs/sk-git/028-crawlable-commit-history/001-research/plan.md
++++ b/specs/sk-git/028-crawlable-commit-history/001-research/plan.md
+@@ -1,11 +1,11 @@
+ ---
+ title: "Implementation Plan: Phase 1: research"
+-description: "[2-3 sentences: what this implements and the technical approach]"
++description: "One cli-pi lineage running DeepSeek V4.1 Flash at max thinking through the LLM gateway for ten forced iterations, one angle each, over the sk-git commit contract and the live history."
+ trigger_phrases:
+   - "implementation plan"
+   - "technical approach"
+-  - "architecture decisions"
+-  - "testing strategy"
++  - "research lineage plan"
++  - "fanout research run"
+ importance_tier: "normal"
+ contextType: "general"
+ ---
+@@ -23,13 +23,13 @@ contextType: "general"
+ 
+ | Aspect | Value |
+ |--------|-------|
+-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
+-| **Framework** | [e.g., React, FastAPI] |
+-| **Storage** | [e.g., PostgreSQL, None] |
+-| **Testing** | [e.g., Jest, pytest] |
++| **Language/Stack** | deep-research loop via `fanout-run.cjs`; cli-pi executor; DeepSeek V4.1 Flash through the llmgateway provider |
++| **Framework** | system-deep-loop research mode, stop policy max-iterations |
++| **Storage** | The lineage directory: JSONL state, iteration files, deltas, strategy, findings registry |
++| **Testing** | The runner's stop-policy verdict, ten state records on disk, one citation opened by the conductor |
+ 
+ ### Overview
+-[2-3 sentences: what this implements and the technical approach]
++One brief, one lineage, ten angles. The brief carries the facts already measured and three non-negotiables, and points the model at the files and git commands that settle each angle. The conductor reads iterations as they land, verifies citations against the repository, and writes the top-level synthesis over all ten.
+ <!-- /ANCHOR:summary -->
+ 
+ ---
+@@ -38,13 +38,13 @@ contextType: "general"
+ ## 2. QUALITY GATES
+ 
+ ### Definition of Ready
+-- [ ] Problem statement clear and scope documented
+-- [ ] Success criteria measurable
+-- [ ] Dependencies identified
++- [x] Problem statement clear and scope documented
++- [x] Success criteria measurable
++- [x] Dependencies identified
+ 
+ ### Definition of Done
+ - [ ] All acceptance criteria met
+-- [ ] Tests passing (if applicable)
++- [ ] Ten iteration records present in the lineage state log
+ - [ ] Docs updated (spec/plan/tasks)
+ <!-- /ANCHOR:quality-gates -->
+ 
+@@ -54,14 +54,16 @@ contextType: "general"
+ ## 3. ARCHITECTURE
+ 
+ ### Pattern
+-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
++Conductor and one detached executor lineage
+ 
+ ### Key Components
+-- **[Component 1]**: [Purpose]
+-- **[Component 2]**: [Purpose]
++- **`research/dispatch-prompt.md`**: the ten-angle brief, bound through the research topic
++- **`fanout-run.cjs`**: spawns the pi process, enforces write containment and the four-hour ceiling, writes the ledger
++- **`research/lineages/deepseek/`**: the lineage's entire write surface
++- **`research/research.md`**: the conductor's synthesis, written after the run
+ 
+ ### Data Flow
+-[Brief description of how data moves through the system]
++The brief and the live repository go in. Ten iteration files, ten state records and a lineage research.md come out. The conductor verifies and reduces them into the top-level research.md that phase 002 reads.
+ <!-- /ANCHOR:architecture -->
+ 
+ ---
+@@ -69,18 +71,12 @@ contextType: "general"
+ <!-- ANCHOR:affected-surfaces -->
+ ## FIX ADDENDUM: AFFECTED SURFACES
+ 
+-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
++Not applicable. This phase changes no code surface. Every write lands under `research/`.
+ 
+ | Surface | Current Role | Action | Verification |
+ |---------|--------------|--------|--------------|
+-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
+-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
+-
+-Required inventories:
+-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
+-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
+-- Matrix axes: list every independent input axis and the required rows before implementation.
+-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
++| `research/lineages/deepseek/` | lineage write surface | created by the runner | `ls` after the run |
++| everything else | read-only sources | unchanged | `git status` shows no change outside the packet |
+ <!-- /ANCHOR:affected-surfaces -->
+ 
+ 
+@@ -99,9 +95,9 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
+ 
+ | Test Type | Scope | Tools |
+ |-----------|-------|-------|
+-| Unit | [Components/functions] | [Jest/pytest/etc.] |
+-| Integration | [API endpoints/flows] | [Tools] |
+-| Manual | [User journeys] | Browser |
++| Unit | none, no code is written | - |
++| Integration | the lineage completes ten iterations with stopReason maxIterationsReached | `fanout-run.cjs` verdict, `deep-research-state.jsonl` |
++| Manual | one citation per iteration opened and matched against the file | `sed -n` on the cited line |
+ <!-- /ANCHOR:testing -->
+ 
+ ---
+@@ -111,7 +107,9 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
+ 
+ | Dependency | Type | Status | Impact if Blocked |
+ |------------|------|--------|-------------------|
+-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
++| `pi` 0.85.1 on PATH | External | Green | No dispatch possible |
++| `LLMGATEWAY_API_KEY` in the launching shell | External | Green, probe answered OK | Provider refusal in output |
++| deep-loop runtime `node_modules` in the worktree | Internal | Green, installed | Runner cannot load the tsx loader |
+ <!-- /ANCHOR:dependencies -->
+ 
+ ---
+@@ -119,8 +117,8 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
+ <!-- ANCHOR:rollback -->
+ ## 7. ROLLBACK PLAN
+ 
+-- **Trigger**: [Conditions requiring rollback]
+-- **Procedure**: [How to revert changes]
++- **Trigger**: the lineage fails its verdict or writes outside `research/`
++- **Procedure**: `git checkout -- specs/sk-git/028-crawlable-commit-history/001-research` and delete `research/lineages/`, then relaunch with the same brief
+ <!-- /ANCHOR:rollback -->
+ 
+ ---
+@@ -132,17 +130,15 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
+ ## L2: PHASE DEPENDENCIES
+ 
+ ```
+-Phase 1 (Setup) ──────┐
+-                      ├──► Phase 2 (Core) ──► Phase 3 (Verify)
+-Phase 1.5 (Config) ───┘
++Brief written ──► Lineage launched ──► Ten iterations ──► Conductor synthesis ──► 002
+ ```
+ 
+ | Phase | Depends On | Blocks |
+ |-------|------------|--------|
+-| Setup | None | Core, Config |
+-| Config | Setup | Core |
+-| Core | Setup, Config | Verify |
+-| Verify | Core | None |
++| Brief | packet scaffold | Launch |
++| Launch | brief, pi probe | Iterations |
++| Iterations | launch | Synthesis |
++| Synthesis | iterations | 002-format-decision |
+ <!-- /ANCHOR:phase-deps -->
+ 
+ ---
+@@ -152,10 +148,10 @@ Phase 1.5 (Config) ───┘
+ 
+ | Phase | Complexity | Estimated Effort |
+ |-------|------------|------------------|
+-| Setup | [Low/Med/High] | [e.g., 1-2 hours] |
+-| Core Implementation | [Low/Med/High] | [e.g., 4-8 hours] |
+-| Verification | [Low/Med/High] | [e.g., 1-2 hours] |
+-| **Total** | | **[e.g., 6-12 hours]** |
++| Setup | Low | done, 1 hour |
++| Core Implementation | Med | the run itself, 1 to 3 hours wall clock |
++| Verification | Low | 30 minutes |
++| **Total** | | **3 to 5 hours** |
+ <!-- /ANCHOR:effort -->
+ 
+ ---
+@@ -164,19 +160,19 @@ Phase 1.5 (Config) ───┘
+ ## L2: ENHANCED ROLLBACK
+ 
+ ### Pre-deployment Checklist
+-- [ ] Backup created (if data changes)
+-- [ ] Feature flag configured
+-- [ ] Monitoring alerts set
++- [x] Scaffold committed before launch so containment has a clean baseline
++- [x] Runner log kept in the scratchpad, outside the packet
++- [x] Ledger monitor armed
+ 
+ ### Rollback Procedure
+-1. [Immediate action - e.g., disable feature flag]
+-2. [Revert code - e.g., git revert or redeploy previous version]
+-3. [Verify rollback - e.g., smoke test critical paths]
+-4. [Notify stakeholders - if user-facing]
++1. Stop the runner process if it is still alive
++2. Remove `research/lineages/` and restore the packet from the scaffold commit
++3. Relaunch with the same brief and flags
++4. Nothing user-facing changes
+ 
+ ### Data Reversal
+-- **Has data migrations?** [Yes/No]
+-- **Reversal procedure**: [Steps or "N/A"]
++- **Has data migrations?** No
++- **Reversal procedure**: N/A
+ <!-- /ANCHOR:enhanced-rollback -->
+ 
+ ---
+@@ -189,24 +185,18 @@ Phase 1.5 (Config) ───┘
+ 
+ ```
+ ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
+-│   Phase 1   │────►│   Phase 2   │────►│   Phase 3   │
+-│   Setup     │     │    Core     │     │   Verify    │
+-└─────────────┘     └──────┬──────┘     └─────────────┘
+-                          │
+-                    ┌─────▼─────┐
+-                    │  Phase 2b │
+-                    │  Parallel │
+-                    └───────────┘
++│   Brief     │────►│  Lineage    │────►│  Synthesis  │
++│  + probe    │     │  10 iters   │     │  + verify   │
++└─────────────┘     └─────────────┘     └─────────────┘
+ ```
+ 
+ ### Dependency Matrix
+ 
+ | Component | Depends On | Produces | Blocks |
+ |-----------|------------|----------|--------|
+-| [Component A] | None | [Output] | B, C |
+-| [Component B] | A | [Output] | D |
+-| [Component C] | A | [Output] | D |
+-| [Component D] | B, C | [Final] | None |
++| Brief | scaffold | dispatch-prompt.md | Lineage |
++| Lineage | brief, pi | iterations, state, lineage research.md | Synthesis |
++| Synthesis | lineage | research/research.md | 002 |
+ <!-- /ANCHOR:dependency-graph -->
+ 
+ ---
+@@ -214,15 +204,14 @@ Phase 1.5 (Config) ───┘
+ <!-- ANCHOR:critical-path -->
+ ## L3: CRITICAL PATH
+ 
+-1. **[Phase/Task]** - [Duration estimate] - CRITICAL
+-2. **[Phase/Task]** - [Duration estimate] - CRITICAL
+-3. **[Phase/Task]** - [Duration estimate] - CRITICAL
++1. **Lineage run** - 1 to 3 hours - CRITICAL
++2. **Conductor verification and synthesis** - 30 minutes - CRITICAL
+ 
+-**Total Critical Path**: [Sum of durations]
++**Total Critical Path**: 2 to 4 hours
+ 
+ **Parallel Opportunities**:
+-- [Task A] and [Task B] can run simultaneously
+-- [Task C] and [Task D] can run after Phase 1
++- Planning docs for this phase are written while the lineage runs
++- Nothing in 002 starts before the synthesis exists
+ <!-- /ANCHOR:critical-path -->
+ 
+ ---
+@@ -232,29 +221,29 @@ Phase 1.5 (Config) ───┘
+ 
+ | Milestone | Description | Success Criteria | Target |
+ |-----------|-------------|------------------|--------|
+-| M1 | [Setup Complete] | [All dependencies ready] | [Date/Phase] |
+-| M2 | [Core Done] | [Main features working] | [Date/Phase] |
+-| M3 | [Release Ready] | [All tests pass] | [Date/Phase] |
++| M1 | Lineage launched | ledger shows started, lineage dir exists | 2026-09-11 |
++| M2 | Ten iterations | state log holds 10 records, stopReason maxIterationsReached | 2026-09-11 |
++| M3 | Synthesis | research/research.md written and one citation per iteration verified | 2026-09-11 |
+ <!-- /ANCHOR:milestones -->
+ 
+ ---
+ 
+ ## L3: ARCHITECTURE DECISION RECORD
+ 
+-### ADR-001: [Decision Title]
++### ADR-001: One lineage, forced depth
+ 
+-**Status**: [Proposed/Accepted/Deprecated]
++**Status**: Accepted
+ 
+-**Context**: [What problem we're solving]
++**Context**: The operator asked for ten iterations with no early convergence on one model through the gateway.
+ 
+-**Decision**: [What we decided]
++**Decision**: One cli-pi lineage, `iterations: 10`, `--stop-policy max-iterations`, a four-hour ceiling, one angle per iteration fixed in the brief.
+ 
+ **Consequences**:
+-- [Positive outcome 1]
+-- [Negative outcome + mitigation]
++- Every angle is covered once, in order, and the run cannot end early
++- One model is one opinion. Phase 002 adds a second lens before the operator decides.
+ 
+ **Alternatives Rejected**:
+-- [Option B]: [Why rejected]
++- Two lineages on two models: doubles cost, and the operator named one model
++- Native executor: the operator named cli-pi and DeepSeek
+ 
+ ---
+-
+diff --git a/specs/sk-git/028-crawlable-commit-history/001-research/tasks.md b/specs/sk-git/028-crawlable-commit-history/001-research/tasks.md
+index 29b9115118..ca57214934 100644
+--- a/specs/sk-git/028-crawlable-commit-history/001-research/tasks.md
++++ b/specs/sk-git/028-crawlable-commit-history/001-research/tasks.md
+@@ -34,9 +34,9 @@ contextType: "general"
+ <!-- ANCHOR:phase-1 -->
+ ## Phase 1: Setup
+ 
+-- [ ] T001 Create project structure
+-- [ ] T002 Install dependencies
+-- [ ] T003 [P] Configure development tools
++- [x] T001 Allocate the worktree through sk-git and build the spec-kit runtime inside it (worktrees/048-crawlable-commit-history)
++- [x] T002 Write the ten-angle brief with the facts already measured (research/dispatch-prompt.md)
++- [x] T003 [P] Probe pi through the llmgateway provider with a one-line dispatch (scratch)
+ <!-- /ANCHOR:phase-1 -->
+ 
+ ---
+@@ -44,10 +44,10 @@ contextType: "general"
+ <!-- ANCHOR:phase-2 -->
+ ## Phase 2: Implementation
+ 
+-- [ ] T004 [Implement core feature 1]
+-- [ ] T005 [Implement core feature 2]
+-- [ ] T006 [Implement core feature 3]
+-- [ ] T007 [Add error handling]
++- [x] T004 Commit the scaffold so write containment has a clean baseline (specs/sk-git/028-crawlable-commit-history)
++- [x] T005 Launch the detached lineage: cli-pi, deepseek-v4.1-flash, max, 10 iterations, stop policy max-iterations (research/lineages/deepseek)
++- [ ] T006 Read each iteration as it lands and open one citation per iteration (research/lineages/deepseek/iterations)
++- [ ] T007 Write the top-level synthesis over all ten iterations (research/research.md)
+ <!-- /ANCHOR:phase-2 -->
+ 
+ ---
+@@ -55,9 +55,9 @@ contextType: "general"
+ <!-- ANCHOR:phase-3 -->
+ ## Phase 3: Verification
+ 
+-- [ ] T008 Test happy path manually
+-- [ ] T009 Test edge cases
+-- [ ] T010 Update documentation
++- [ ] T008 Confirm ten state records and stopReason maxIterationsReached (research/lineages/deepseek/deep-research-state.jsonl)
++- [ ] T009 Confirm no write landed outside research/ (git status)
++- [ ] T010 Validate the phase under strict and record the evidence (implementation-summary.md)
+ <!-- /ANCHOR:phase-3 -->
+ 
+ ---
+@@ -98,9 +98,9 @@ contextType: "general"
+ <!-- ANCHOR:pre-impl -->
+ ## Pre-Implementation
+ 
+-- [ ] CHK-001 [P0] Requirements documented in spec.md
+-- [ ] CHK-002 [P0] Technical approach defined in plan.md
+-- [ ] CHK-003 [P1] Dependencies identified and available
++- [x] CHK-001 [P0] Requirements documented in spec.md
++- [x] CHK-002 [P0] Technical approach defined in plan.md
++- [x] CHK-003 [P1] Dependencies identified and available
+ <!-- /ANCHOR:pre-impl -->
+ 
+ ---
+@@ -108,10 +108,10 @@ contextType: "general"
+ <!-- ANCHOR:code-quality -->
+ ## Code Quality
+ 
+-- [ ] CHK-010 [P0] Code passes lint/format checks
+-- [ ] CHK-011 [P0] No console errors or warnings
+-- [ ] CHK-012 [P1] Error handling implemented
+-- [ ] CHK-013 [P1] Code follows project patterns
++- [ ] CHK-010 [P0] No code written in this phase, gate passes vacuously
++- [ ] CHK-011 [P0] Runner log shows no error before the verdict
++- [ ] CHK-012 [P1] Provider refusal text absent from the lineage output
++- [ ] CHK-013 [P1] Iteration files follow the output shape in the brief
+ <!-- /ANCHOR:code-quality -->
+ 
+ ---
+@@ -120,9 +120,9 @@ contextType: "general"
+ ## Testing Checklist
+ 
+ - [ ] CHK-020 [P0] All acceptance criteria met
+-- [ ] CHK-021 [P0] Manual testing complete
+-- [ ] CHK-022 [P1] Edge cases tested
+-- [ ] CHK-023 [P1] Error scenarios validated
++- [ ] CHK-021 [P0] One citation per iteration opened and matched
++- [ ] CHK-022 [P1] Every git command the iterations quote was re-run by the conductor at least once
++- [ ] CHK-023 [P1] Findings marked implementable today or needs a decision
+ <!-- /ANCHOR:testing -->
+ 
+ ---
+@@ -130,13 +130,13 @@ contextType: "general"
+ <!-- ANCHOR:fix-completeness -->
+ ## Fix Completeness
+ 
+-- [ ] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`.
+-- [ ] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep.
+-- [ ] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs, and tests.
+-- [ ] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases.
+-- [ ] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed.
+-- [ ] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state.
+-- [ ] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range.
++- [ ] CHK-FIX-001 [P0] Not applicable, no fix in this phase
++- [ ] CHK-FIX-002 [P0] Not applicable
++- [ ] CHK-FIX-003 [P0] Not applicable
++- [ ] CHK-FIX-004 [P0] Not applicable
++- [ ] CHK-FIX-005 [P1] Not applicable
++- [ ] CHK-FIX-006 [P1] Not applicable
++- [ ] CHK-FIX-007 [P1] Not applicable
+ <!-- /ANCHOR:fix-completeness -->
+ 
+ ---
+@@ -144,9 +144,9 @@ contextType: "general"
+ <!-- ANCHOR:security -->
+ ## Security
+ 
+-- [ ] CHK-030 [P0] No hardcoded secrets
+-- [ ] CHK-031 [P0] Input validation implemented
+-- [ ] CHK-032 [P1] Auth/authz working correctly
++- [x] CHK-030 [P0] No hardcoded secrets, the gateway key stays in the shell environment
++- [x] CHK-031 [P0] The lineage runs with write containment to its own directory
++- [ ] CHK-032 [P1] Not applicable
+ <!-- /ANCHOR:security -->
+ 
+ ---
+@@ -155,8 +155,8 @@ contextType: "general"
+ ## Documentation
+ 
+ - [ ] CHK-040 [P1] Spec/plan/tasks synchronized
+-- [ ] CHK-041 [P1] Code comments adequate
+-- [ ] CHK-042 [P2] README updated (if applicable)
++- [ ] CHK-041 [P1] Not applicable
++- [ ] CHK-042 [P2] Not applicable
+ <!-- /ANCHOR:docs -->
+ 
+ ---
+@@ -164,7 +164,7 @@ contextType: "general"
+ <!-- ANCHOR:file-org -->
+ ## File Organization
+ 
+-- [ ] CHK-050 [P1] Temp files in scratch/ only
++- [x] CHK-050 [P1] Runner log lives in the session scratchpad, not the packet
+ - [ ] CHK-051 [P1] scratch/ cleaned before completion
+ <!-- /ANCHOR:file-org -->
+ 
+@@ -175,9 +175,9 @@ contextType: "general"
+ 
+ | Category | Total | Verified |
+ |----------|-------|----------|
+-| P0 Items | [X] | [ ]/[X] |
+-| P1 Items | [Y] | [ ]/[Y] |
+-| P2 Items | [Z] | [ ]/[Z] |
++| P0 Items | 9 | 4/9 |
++| P1 Items | 11 | 2/11 |
++| P2 Items | 2 | 0/2 |
+ 
+ **Verification Date**: 2026-09-11
+ <!-- /ANCHOR:summary -->
+@@ -187,10 +187,10 @@ contextType: "general"
+ <!-- ANCHOR:arch-verify -->
+ ## L3+: Architecture Verification
+ 
+-- [ ] CHK-100 [P0] Architecture decisions documented in decision-record.md
+-- [ ] CHK-101 [P1] All ADRs have status (Proposed/Accepted)
+-- [ ] CHK-102 [P1] Alternatives documented with rejection rationale
+-- [ ] CHK-103 [P2] Migration path documented (if applicable)
++- [x] CHK-100 [P0] Architecture decision documented in plan.md ADR-001
++- [x] CHK-101 [P1] ADR has status Accepted
++- [x] CHK-102 [P1] Alternatives documented with rejection rationale
++- [ ] CHK-103 [P2] Not applicable
+ <!-- /ANCHOR:arch-verify -->
+ 
+ ---
+@@ -198,10 +198,10 @@ contextType: "general"
+ <!-- ANCHOR:perf-verify -->
+ ## L3+: Performance Verification
+ 
+-- [ ] CHK-110 [P1] Response time targets met (NFR-P01)
+-- [ ] CHK-111 [P1] Throughput targets met (NFR-P02)
+-- [ ] CHK-112 [P2] Load testing completed
+-- [ ] CHK-113 [P2] Performance benchmarks documented
++- [ ] CHK-110 [P1] Each iteration under twelve tool calls (NFR-P01)
++- [ ] CHK-111 [P1] Run finishes inside the four-hour ceiling
++- [ ] CHK-112 [P2] Not applicable
++- [ ] CHK-113 [P2] Not applicable
+ <!-- /ANCHOR:perf-verify -->
+ 
+ ---
+@@ -209,11 +209,11 @@ contextType: "general"
+ <!-- ANCHOR:deploy-ready -->
+ ## L3+: Deployment Readiness
+ 
+-- [ ] CHK-120 [P0] Rollback procedure documented and tested
+-- [ ] CHK-121 [P0] Feature flag configured (if applicable)
+-- [ ] CHK-122 [P1] Monitoring/alerting configured
+-- [ ] CHK-123 [P1] Runbook created
+-- [ ] CHK-124 [P2] Deployment runbook reviewed
++- [x] CHK-120 [P0] Rollback procedure documented in plan.md
++- [ ] CHK-121 [P0] Not applicable
++- [x] CHK-122 [P1] Ledger monitor armed on orchestration-status.log
++- [ ] CHK-123 [P1] Not applicable
++- [ ] CHK-124 [P2] Not applicable
+ <!-- /ANCHOR:deploy-ready -->
+ 
+ ---
+@@ -221,10 +221,10 @@ contextType: "general"
+ <!-- ANCHOR:compliance-verify -->
+ ## L3+: Compliance Verification
+ 
+-- [ ] CHK-130 [P1] Security review completed
+-- [ ] CHK-131 [P1] Dependency licenses compatible
+-- [ ] CHK-132 [P2] OWASP Top 10 checklist completed
+-- [ ] CHK-133 [P2] Data handling compliant with requirements
++- [ ] CHK-130 [P1] Not applicable
++- [ ] CHK-131 [P1] Not applicable
++- [ ] CHK-132 [P2] Not applicable
++- [ ] CHK-133 [P2] Not applicable
+ <!-- /ANCHOR:compliance-verify -->
+ 
+ ---
+@@ -233,9 +233,9 @@ contextType: "general"
+ ## L3+: Documentation Verification
+ 
+ - [ ] CHK-140 [P1] All spec documents synchronized
+-- [ ] CHK-141 [P1] API documentation complete (if applicable)
+-- [ ] CHK-142 [P2] User-facing documentation updated
+-- [ ] CHK-143 [P2] Knowledge transfer documented
++- [ ] CHK-141 [P1] Not applicable
++- [ ] CHK-142 [P2] Not applicable
++- [ ] CHK-143 [P2] Synthesis names what phase 002 must decide
+ <!-- /ANCHOR:docs-verify -->
+ 
+ ---
+@@ -245,9 +245,7 @@ contextType: "general"
+ 
+ | Approver | Role | Status | Date |
+ |----------|------|--------|------|
+-| [Name] | Technical Lead | [ ] Approved | |
+-| [Name] | Product Owner | [ ] Approved | |
+-| [Name] | QA Lead | [ ] Approved | |
++| Operator | Technical Lead | [ ] Approved | |
++| Conductor session | Verification | [ ] Approved | |
+ <!-- /ANCHOR:sign-off -->
+ 
+-
+diff --git a/specs/sk-git/028-crawlable-commit-history/goal.md b/specs/sk-git/028-crawlable-commit-history/goal.md
+index 03c645c254..366586531e 100644
+--- a/specs/sk-git/028-crawlable-commit-history/goal.md
++++ b/specs/sk-git/028-crawlable-commit-history/goal.md
+@@ -51,7 +51,7 @@ Frozen choices. Changing one is an amendment.
+ |----|----------|
+ | D1 | Research first. Phase 001 runs 10 iterations on cli-pi with deepseek-v4.1-flash at max thinking, convergence off. No implementation before research.md exists. |
+ | D2 | The grammar is frozen in 002's decision record and approved by the operator before any hook or skill file changes. |
+-| D3 | The rewrite targets main, skilled/v4.0.0.0 and the five tags only. Other branches and worktrees are rebased or archived, never rewritten. |
++| D3 | The rewrite targets main, skilled/v4.0.0.0 and the tags phase 005 lists from the live refs, pinned by SHA at execution time. Other branches and worktrees are rebased or archived, never rewritten. |
+ | D4 | Commit-hash citations under specs/ are remapped in the same phase as the rewrite. |
+ | D5 | The force-push in 005 needs a written rollback and a fresh yes from the operator. No approval transfers. |
+ | D6 | Implementation dispatches run on cli-pi with deepseek-v4.1-flash, high or max by task. Code follows sk-code opencode. Skill and README markdown follows sk-doc create-skill and create-readme. |
+@@ -124,11 +124,12 @@ and findings belong here.
+ |------|-------|----------|
+ | Worktree allocated | Done | `worktrees/048-crawlable-commit-history` at `/Users/michelkerkmeester/worktrees/public/048-crawlable-commit-history` |
+ | Packet scaffolded | Done | `create.sh --track sk-git --phase --phases 6 --level 3 --with-goal` |
+-| Phase 001 research | Pending | |
++| Phase 001 research | In Progress | lineage `research/lineages/deepseek`, iterations 1 to 3 landed by 09:45, citations verified |
+ 
+ ### Deviations and findings
+ 
+ | Item | Note |
+ |------|------|
+ | Parent goal.md not produced by --with-goal | Rendered by hand with inline-gate-renderer at level phase |
++| The brief said 5 tags, 20 worktrees, 59 branches, 9,106 commits | Live refs: 149 tags (8 backup), 28 worktrees, 60 branches, 9,110 commits and moving. D3 amended to pin by SHA at execution time. |
+ <!-- /ANCHOR:log -->
+diff --git a/specs/sk-git/028-crawlable-commit-history/graph-metadata.json b/specs/sk-git/028-crawlable-commit-history/graph-metadata.json
+index dbe23fc364..ff4e179943 100644
+--- a/specs/sk-git/028-crawlable-commit-history/graph-metadata.json
++++ b/specs/sk-git/028-crawlable-commit-history/graph-metadata.json
+@@ -184,24 +184,18 @@
+         "kind": "key_phrase",
+         "path": "goal.md",
+         "source": "derived"
+-      },
+-      {
+-        "name": "inline-gate-renderer",
+-        "kind": "key_phrase",
+-        "path": "goal.md",
+-        "source": "derived"
+       }
+     ],
+     "causal_summary": "sk-git's commit contract produces readable conventional commits, but nothing in a commit is addressable the way a spec packet is",
+     "created_at": "2026-09-11T07:16:22Z",
+-    "last_save_at": "2026-09-11T07:23:58.450Z",
++    "last_save_at": "2026-09-11T07:39:29.133Z",
+     "save_lineage": "graph_only",
+     "last_accessed_at": null,
+     "source_docs": [
+       "spec.md",
+       "goal.md"
+     ],
+-    "source_fingerprint": "sha256:1bc3c9d1928e88f27b3a80f0fed6210720b4f05dbded41f4bf98e6a5c634133e",
++    "source_fingerprint": "sha256:20c203632775fb7cd4637b2a4659761f0d0078606f2f604bba53c9ccf62386c4",
+     "source_fingerprint_docset": 3,
+     "source_doc_hashes": {
+       "spec.md": "8f99941502f8dcfb3eab05e39266a0ea03759664c826ff160e6ca509f3c3b420"

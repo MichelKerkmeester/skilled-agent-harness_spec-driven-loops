@@ -3,7 +3,7 @@ name: sk-git
 description: "Git: numbered worktrees, conventional commits, PRs, merge/rebase, and finish; single-skill workflow guidance with no spec."
 allowed-tools: [Read, Bash, mcp__code_mode__call_tool_chain]
 argument-hint: "[worktree|commit|finish]"
-version: 1.5.2.0
+version: 1.6.0.0
 hard_rules:
   - id: commit-scope-drops-untracked
     check: commit-scope-drops-untracked
@@ -356,8 +356,8 @@ Setup (worktree created) → Work → Complete (committed, tests passing) → ba
 1. **Use deterministic conventional commit format** - All authored commits follow `type(scope): summary`; preserve the explicitly exempt Git-generated subjects defined below
 2. **Create worktree for parallel work** - Never work on multiple features in the same worktree
 3. **Verify branch is up-to-date** - Pull latest changes before creating PR
-4. **Name worktree-created branches with the numbered-worktree grammar** - `worktrees/{NNN}-{slug}` (directory `{base}/{NNN}-{slug}`) for a worktree-backed branch, or `branches/{NNN}-{slug}` for a dedicated branch with none. `{base}` defaults to `.worktrees`; set git config `speckit.worktreeBase` (or env `SPECKIT_WORKTREE_BASE`) to an absolute path to relocate worktrees OUT of the checkout (all tooling resolves this base, including the legacy `.worktrees` layout). `{NNN}` is a 3-digit zero-padded per-namespace counter (001..999): `worktrees/` and `branches/` number independently, sequential, never skipped or reused, so `worktrees/003` and `branches/003` may coexist. `{slug}` is lowercase-kebab (e.g., `worktrees/0001-auth-hardening`). Never hand-compute `{NNN}`: allocate via `.opencode/skills/sk-git/scripts/worktree-naming.sh` (`create <slug> [base]`, `create-branch <slug> [base]`, or `allocate [worktrees|branches]`) — it locks and seeds each counter from its high-water mark plus every matching ref. `skilled/v*` and `main` are reserved; `backup/<anything>` refs are legal but unnumbered. Distinct from the launch wrapper's unnumbered `work/{runtime}/{slug}` + `.worktrees/{runtime}-{slug}` lane (see above).
-5. **Reference spec folder in commits** - Include spec folder path in commit body when applicable
+4. **Name worktree-created branches with the numbered-worktree grammar** - `worktrees/{NNN}-{slug}` for a worktree-backed branch, `branches/{NNN}-{slug}` for a dedicated branch with none. Each namespace counts 001..999 independently, sequential, never skipped or reused. Never hand-compute `{NNN}`: allocate through `.opencode/skills/sk-git/scripts/worktree-naming.sh` (`create`, `create-branch` or `allocate`), which locks and seeds each counter from its high-water mark plus every matching ref. The script header carries the full grammar, the relocatable `{base}` rule and the reserved `skilled/v*`, `main` and `backup/` lanes. Distinct from the launch wrapper's unnumbered `work/{runtime}/{slug}` lane (see above).
+5. **Reference the spec packet in a `Spec:` trailer** - Put the packet path in a `Spec:` trailer shaped `Spec: <track>/<packet>[/<phase>...]`, relative to `specs/` with nested phases included and omit it when the commit is not packet work. `Refs:` is for external links only: issues, pull requests and URLs.
 6. **Clean up after merge** - Delete local and remote feature branches after successful merge
 7. **Squash commits for clean history** - Use squash merge for feature branches with many WIP commits
 8. **Defer toolchain + DB work to main on large reorgs** - Do file/`git mv` ops in the worktree, but run the spec-kit toolchain and ALL metadata regeneration on `main` after merge: a bare worktree lacks gitignored deps (`node_modules`/`dist`), so the generators there crash or silently no-op. See [large-reorg-playbook.md](references/large-reorg-playbook.md).
@@ -367,9 +367,9 @@ Setup (worktree created) → Work → Complete (committed, tests passing) → ba
 12. **Route GitKraken MCP's local-mutation tools back to Bash** - GitKraken MCP (`gitkraken.gitkraken_*`) exposes `git_add_or_commit`, `git_push`, `git_pull`, `git_fetch`, `git_checkout`, `git_branch`, `git_worktree`, and `git_stash` — duplicates of mutations already gated by NEVER #2, ALWAYS #4, and the commit-message logic. Never call these as a Bash substitute; reserve it for GitLens AI workflows and cross-platform issue/PR/repository ops with no local equivalent. Full detail: [gitkraken-mcp-integration.md](references/gitkraken-mcp-integration.md) §2.
 13. **Honor an authorized operator's explicit direct-push directive on a protected branch** - Protected-branch rules primarily gate EXTERNAL contributors. When the operator holds bypass rights and explicitly asks for one, do it — do NOT default to a PR detour, re-ask, or frame the bypass as a problem. Still apply full commit hygiene (scope to intended files, never blind `git add -A`; use Conventional Commits) and report plainly the push bypassed protection. Bypass authority lives in operator memory, not this codebase-agnostic skill.
 14. **Commit substantial work before an autostash-prone operation** - `git merge|pull|rebase --autostash` (or `pull.rebase=true`/`rebase.autoStash=true`) stashes the tree, runs the operation, then re-applies it — but a re-apply CONFLICT strands the changeset behind an easily-missed warning, one `git stash drop`/`clear`/gc from permanent loss. Before merging/pulling/rebasing a large or shared-branch changeset, COMMIT it (or stash and pop it yourself) instead of `--autostash`. The `post-merge`/`post-rewrite` guard ([git-hooks/lib/autostash-orphan-guard.sh](../../scripts/git-hooks/lib/autostash-orphan-guard.sh)) is a safety net, not a substitute: it anchors autostashes under `refs/autostash-rescue/<sha>` and alerts visibly if not re-applied — recover with `git stash pop` and commit immediately, before any `git stash drop/clear`.
-15. **Reconcile the primary checkout after pushing a detached/worktree HEAD to a shared branch** - `git push origin HEAD:<branch>` from a detached HEAD or isolated worktree advances the REMOTE `<branch>` but never the local ref in the primary checkout — the work is safe on origin yet INVISIBLE there until a separate sync. Verify the primary checkout's `<branch>` contains the commit; if not, say plainly it's on origin but not yet there, and hand over the safe sync recipe. NEVER stash/rebase/reset a primary tree that is dirty, diverged, or concurrently owned — forcing a sync risks orphaning its autostash (ALWAYS #14) or clobbering commits; give the operator the recipe for a clean tree instead. See [finish-workflows.md](references/finish-workflows.md) Step 5b.
-16. **Let launch-wrapper sessions autosync; never hand-roll the publish** - Under the continuous-integration model (see above), autosync already publishes every commit to the live branch via `git-sync.sh`. Do NOT manually `git push origin HEAD:<live>` or rebase onto the live branch to "make work visible" — a hand-rolled push risks the invariants `git-sync.sh` protects. If autosync is blocked (a printed conflict), resolve per its message; don't force it. The primary checkout follows via `git-live-follow.sh` (fast-forward-only) and is never worked in. Full contract: [continuous-integration.md](references/continuous-integration.md).
-17. **Reap worktrees before branches, and only the exempt wrapper lane** - Always remove a finished worktree's directory (`git worktree remove`) BEFORE deleting its branch (`git branch -d`) — a checked-out branch can't be deleted. `.opencode/bin/worktree-reaper.sh` auto-reaps ONLY the launch-wrapper lane (`work/{runtime}/{slug}` pairs), and only when all hold: clean tree, branch merged into the LIVE integration tip (the primary checkout's real `HEAD`, not a stale local `main`), and the session proven inactive by its marker file (`<common-git-dir>/worktree-sessions/<runtime>-<slug>.pid`, a dead pid). Human task worktrees, dedicated branches, detached worktrees, and any wrapper worktree with a missing/unreadable marker or live pid stay report-only — absence of proof is never proof of absence. Naming-grammar enforcement is a migration-tolerant pre-push hook: new remote branches only, never `skilled/v*`.
+15. **Reconcile the primary checkout after pushing a detached/worktree HEAD to a shared branch** - `git push origin HEAD:<branch>` from a detached HEAD or a worktree advances the remote but not the primary checkout's local ref, so the work is safe on origin yet invisible there. Say so plainly and hand over the safe sync recipe. Never stash, rebase or reset a primary tree that is dirty, diverged or concurrently owned. See [finish-workflows.md](references/finish-workflows.md) Step 5b.
+16. **Let launch-wrapper sessions autosync; never hand-roll the publish** - Under the continuous-integration model, autosync publishes every commit to the live branch through `git-sync.sh`. Never `git push origin HEAD:<live>` or rebase onto the live branch by hand: that risks the invariants the sync protects. If autosync prints a conflict, resolve per its message and never force it. The primary checkout follows fast-forward-only and is never worked in. Full contract: [continuous-integration.md](references/continuous-integration.md).
+17. **Reap worktrees before branches, and only the exempt wrapper lane** - Remove a finished worktree's directory (`git worktree remove`) before deleting its branch, because a checked-out branch cannot be deleted. `.opencode/bin/worktree-reaper.sh` auto-reaps only `work/{runtime}/{slug}` pairs that are clean, merged into the live integration tip and proven inactive by a dead session marker. Everything else stays report-only: absence of proof is never proof of absence. Naming is enforced by a migration-tolerant pre-push hook on new remote branches only, never `skilled/v*`.
 18. **Ask before every push to a branch outside the remote allowlist** - See [Remote Push Permission Enforcement](#remote-push-permission-enforcement) above for mechanics; a prior approval never carries forward to the next push. Allowlist: [remote-branch-policy.md](references/remote-branch-policy.md).
 
 ### Commit Message Logic (Human-Clear and AI-Deterministic)
@@ -483,16 +483,23 @@ Changes:
 Verification:
 - `<command>` -> <observed result>
 
-Refs: <issue, PR, or spec path>
+Spec: <track>/<packet>[/<phase>...]
+Commit-Id: NNNNNNN
+Refs: <issue, PR or URL>
 ```
+
+The trailer paragraph is the commit's final paragraph, contiguous and separated from the prose
+above it by a blank line. The `Commit-Id:` ordinal is stamped by the `prepare-commit-msg` hook
+and never typed by hand. An amend keeps its id, unless the message is replaced with `-m`, which mints a fresh one. A cherry-pick re-mints a fresh one.
 
 Use only sections that carry useful information, explain internal terms on first use, and state
 in verification what actually ran and its result.
 
 #### 7. Deterministic Self-Check
 
-Before committing, verify message format (§1-2), type (§3), scope (§4), summary (§5), and body
-(§6) satisfy their rule, and that the same staged diff would produce the same subject again.
+Before committing, verify message format (§1-2), type (§3), scope (§4), summary (§5), body
+(§6) and the final trailer paragraph satisfy their rule, and that the same staged diff would
+produce the same subject again.
 
 ### ⛔ NEVER
 
@@ -506,6 +513,7 @@ Before committing, verify message format (§1-2), type (§3), scope (§4), summa
 8. **Rebase public/shared branches** - Only rebase local, unpushed commits
 9. **Bypass a git hook with `--no-verify`** - Never skip commit-msg, pre-commit, or pre-push validation this way; if a hook is genuinely wrong, fix it or use its documented override (e.g. `SPECKIT_SKIP_COMMIT_MSG_VALIDATE=1`), not a blanket bypass
 10. **Amend a commit that has already been pushed or merged** - Rewriting published history breaks other clones and any autosynced live branch; commit a new change (or `git revert`) instead once it's left the local repo
+11. **Hand-write or edit a `Commit-Id:` value** - The `prepare-commit-msg` hook stamps the ordinal from the allocator. A typed or edited id collides with history, so the commit-msg hook refuses it
 
 ### ⚠️ ESCALATE IF
 

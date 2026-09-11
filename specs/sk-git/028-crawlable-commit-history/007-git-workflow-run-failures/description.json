@@ -1,0 +1,30 @@
+{
+  "level": "3",
+  "specFolder": "sk-git/028-crawlable-commit-history/007-git-workflow-run-failures",
+  "description": "Automated runs in this repository hand work to detached children and fan-out lineages, and git behaviors that a human shrugs off end those runs: a",
+  "keywords": [
+    "automated",
+    "runs",
+    "repository",
+    "hand",
+    "work",
+    "detached",
+    "children",
+    "fan-out",
+    "lineages",
+    "git",
+    "behaviors",
+    "human",
+    "shrugs",
+    "end"
+  ],
+  "lastUpdated": "2026-09-11T10:16:27.949Z",
+  "specId": "007",
+  "folderSlug": "git-workflow-run-failures",
+  "parentChain": [
+    "sk-git",
+    "028-crawlable-commit-history"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

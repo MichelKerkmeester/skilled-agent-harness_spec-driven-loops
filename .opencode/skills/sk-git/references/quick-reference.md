@@ -107,6 +107,23 @@ git commit -m "type(scope): description"
 
 # Commit with body
 git commit -m "Subject" -m "Body explaining why"
+
+# Commit packet work: the hook stamps Spec: and Commit-Id:
+SPECKIT_COMMIT_SPEC=sk-git/028-crawlable-commit-history/003-contract-and-hook \
+  git commit -m "type(scope): description"
+```
+
+### Find commits
+
+```bash
+# Commits for one packet
+git log -E --grep='^Spec: sk-git/028'
+
+# Find a commit by its id
+git log --fixed-strings --grep='Commit-Id: 0009113'
+
+# List every stamped id
+git log --format='%(trailers:key=Commit-Id,valueonly)'
 ```
 
 ### 7-Step Workflow

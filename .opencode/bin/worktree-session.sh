@@ -257,6 +257,15 @@ fi
 # 6. WORKTREE CREATION
 # ───────────────────────────────────────────────────────────────
 
+# Record the chosen base in the repository config when it is unset. The base can arrive
+# only through this launch's environment, which no later process inherits (the reaper runs
+# on its own); without a durable record it falls back to the in-checkout default and
+# mistakes this live session's worktree for an absent one. Non-fatal: a session never
+# fails to launch over a config write.
+if ! git -C "$MAIN_ROOT" config --get speckit.worktreeBase >/dev/null 2>&1; then
+  git -C "$MAIN_ROOT" config speckit.worktreeBase "$WT_BASE_DIR" >/dev/null 2>&1 || true
+fi
+
 log "allocating worktree $WT_REL on branch $BRANCH (base: $WT_BASE)"
 git -C "$MAIN_ROOT" worktree add -b "$BRANCH" "$WT_ABS" "$WT_BASE" >&2
 

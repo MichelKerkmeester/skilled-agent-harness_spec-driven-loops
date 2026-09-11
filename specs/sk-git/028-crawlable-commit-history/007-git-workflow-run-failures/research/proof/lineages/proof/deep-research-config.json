@@ -1,0 +1,63 @@
+{
+  "topic": "Proof run after the run-failure adjustments: in one iteration, read .opencode/scripts/git-hooks/README.md and .opencode/skills/sk-git/scripts/commit-id-naming.sh, list the five hook files and the three sk-git scripts by name with one line each on what they guard, and write the iteration file.",
+  "maxIterations": 1,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "minIterations": 1,
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations"
+  },
+  "stopPolicy": "max-iterations",
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 60,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 20,
+  "progressiveSynthesis": true,
+  "specFolder": ".opencode/specs/sk-git/028-crawlable-commit-history/007-git-workflow-run-failures",
+  "createdAt": "2026-09-11T10:39:10Z",
+  "status": "initialized",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-pi",
+    "model": "deepseek-v4.1-flash",
+    "reasoningEffort": "max",
+    "serviceTier": null,
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 3600
+  },
+  "lineage": {
+    "sessionId": "fanout-proof-1789123034382-9ptgi0",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": [
+      "new",
+      "resume",
+      "restart"
+    ],
+    "deferredModes": [
+      "fork",
+      "completed-continue"
+    ],
+    "generation": 1,
+    "continuedFromRun": null,
+    "fanoutLabel": "proof"
+  },
+  "artifactDir": ".opencode/specs/sk-git/028-crawlable-commit-history/007-git-workflow-run-failures/research/proof/lineages/proof",
+  "reducer": {
+    "enabled": false,
+    "version": "1.0",
+    "registryFile": "findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md",
+    "note": "Detached fan-out lineage: this process writes reducer-owned surfaces inline; no reducer subprocess is spawned."
+  },
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research.md": "mutable"
+  }
+}

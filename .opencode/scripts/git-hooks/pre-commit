@@ -299,6 +299,7 @@ if [[ "${SPECKIT_SKIP_ROUTE_REMINT:-0}" != "1" ]] && command -v node >/dev/null 
       echo "Fix: node .opencode/bin/compiled-route-manifest.cjs refresh --hub $ROUTE_HUB \\" >&2
       echo "       --skill-root .opencode/skills/$ROUTE_HUB" >&2
       echo "     then copy the runtime manifest over its authored copy, and commit both." >&2
+      echo "Bypass: SPECKIT_SKIP_ROUTE_REMINT=1 git commit ..." >&2
       exit 1
     fi
 
@@ -312,6 +313,7 @@ if [[ "${SPECKIT_SKIP_ROUTE_REMINT:-0}" != "1" ]] && command -v node >/dev/null 
       printf '%s\n' "$ROUTE_DIRTY" | sed 's/^/  /' >&2
       echo "A manifest minted now would describe content this commit does not contain." >&2
       echo "Fix: stage the rest, or unstage the partial edit, then re-commit." >&2
+      echo "Bypass: SPECKIT_SKIP_ROUTE_REMINT=1 git commit ..." >&2
       exit 1
     fi
 
@@ -362,6 +364,7 @@ if [[ "${SPECKIT_SKIP_ROUTE_REMINT:-0}" != "1" ]] && command -v node >/dev/null 
       echo "Fix: git add the two manifest paths below, then re-commit." >&2
       echo "  $ROUTE_RUNTIME_FILE" >&2
       echo "  $ROUTE_AUTHORED_FILE" >&2
+      echo "Bypass: SPECKIT_SKIP_ROUTE_REMINT=1 git commit ..." >&2
       exit 1
     fi
     echo "[gate:route-remint] re-minted $ROUTE_HUB and staged both manifests." >&2
@@ -419,6 +422,7 @@ if [[ "${SPECKIT_SKIP_SPEC_REMINT:-0}" != "1" ]] && command -v node >/dev/null 2
         echo "pathspec, so metadata staged now would be discarded with the temporary index." >&2
         echo "Fix: run the repair yourself and commit its output with the docs:" >&2
         printf '  node .opencode/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs --folder %s --apply\n' $SPEC_PACKETS >&2
+        echo "Bypass: SPECKIT_SKIP_SPEC_REMINT=1 git commit ..." >&2
         exit 1
       fi
 
@@ -433,12 +437,22 @@ if [[ "${SPECKIT_SKIP_SPEC_REMINT:-0}" != "1" ]] && command -v node >/dev/null 2
       # and braces rather than a live path, and it costs nothing.
       for SPEC_PACKET in $SPEC_PACKETS; do
         SPEC_DIRTY="$(git diff --name-only -- "$SPEC_PACKET" 2>/dev/null | grep -v '/scratch/' || true)"
+        # Only a half-staged INPUT is a problem: re-deriving reads the working tree,
+        # so the gate's own derived outputs (graph-metadata.json, description.json)
+        # are outputs, not inputs, and a packet dirty only in those re-derives
+        # cleanly. Block only when a real document is half-staged.
+        SPEC_DIRTY_INPUTS=""
         if [[ -n "$SPEC_DIRTY" ]]; then
+          SPEC_DIRTY_INPUTS="$(printf '%s\n' "$SPEC_DIRTY" \
+            | grep -vE '/(graph-metadata|description)\.json$' || true)"
+        fi
+        if [[ -n "$SPEC_DIRTY_INPUTS" ]]; then
           echo "" >&2
           echo "BLOCKED [gate:spec-remint]: $SPEC_PACKET has documents staged and unstaged at once:" >&2
-          printf '%s\n' "$SPEC_DIRTY" | sed 's/^/  /' >&2
+          printf '%s\n' "$SPEC_DIRTY_INPUTS" | sed 's/^/  /' >&2
           echo "Metadata derived now would describe content this commit does not contain." >&2
           echo "Fix: stage the rest, or unstage the partial edit, then re-commit." >&2
+          echo "Bypass: SPECKIT_SKIP_SPEC_REMINT=1 git commit ..." >&2
           exit 1
         fi
         SPEC_ARGS+=(--folder "$SPEC_PACKET")
@@ -492,6 +506,7 @@ if [[ "${SPECKIT_SKIP_SPEC_REMINT:-0}" != "1" ]] && command -v node >/dev/null 2
           echo "BLOCKED [gate:spec-remint]: re-derived $SPEC_PACKET but this did not reach the index:" >&2
           printf '%s\n' "$SPEC_LEFT" | sed 's/^/  /' >&2
           echo "Fix: git add those paths, then re-commit." >&2
+          echo "Bypass: SPECKIT_SKIP_SPEC_REMINT=1 git commit ..." >&2
           exit 1
         fi
         echo "[gate:spec-remint] re-derived $SPEC_PACKET and staged its metadata." >&2

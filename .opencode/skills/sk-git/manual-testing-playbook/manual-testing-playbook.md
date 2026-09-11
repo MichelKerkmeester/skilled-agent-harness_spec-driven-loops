@@ -32,7 +32,7 @@ Canonical package artifacts:
 
 This playbook validates the `sk-git` skill surface through the scenarios indexed in sections 7-14 and cross-referenced in section 16. Each scenario keeps a stable `GIT-NNN` ID and links to a dedicated feature file that carries the full execution contract. The category folders listed above and the per-feature links below are the authoritative inventory; no separate count is maintained here.
 
-Coverage note (2026-07-14): the playbook covers worktree choice enforcement, current-branch mode, stay-on-main recovery, Conventional Commit derivation, deterministic scope inference, mixed-concern split warnings, the canonical Claude Opus co-author footer, four explicit safety refusals, finish merge and PR flows, failing-test gates, cleanup, conflict recovery, wrong-branch recovery, no-op commits, rebase-vs-merge choices, cross-CLI advisory handbacks, and the numbered worktree tooling safety contract: locked per-namespace number allocation, slug/number/branch/pair grammar validation, worktree creation and the wrapper/backup-lane exemptions, launch-wrapper session isolation (child exec-in-place, runtime validation, session markers, contained shared-artifact symlinks), reap-only-proven-inactive wrapper cleanup (dry-run and report-only handling of non-qualifying worktrees), and the migration-tolerant pre-push naming gate (new-branch-only gating, legacy tolerance, fail-open, release-branch exemption, explicit bypass, wrapper-ref rejection).
+Coverage note (2026-07-14): the playbook covers worktree choice enforcement, current-branch mode, stay-on-main recovery, Conventional Commit derivation, deterministic scope inference, mixed-concern split warnings, commit lookup by packet and identifier, the canonical Claude Opus co-author footer, four explicit safety refusals, finish merge and PR flows, failing-test gates, cleanup, conflict recovery, wrong-branch recovery, no-op commits, rebase-vs-merge choices, cross-CLI advisory handbacks, and the numbered worktree tooling safety contract: locked per-namespace number allocation, slug/number/branch/pair grammar validation, worktree creation and the wrapper/backup-lane exemptions, launch-wrapper session isolation (child exec-in-place, runtime validation, session markers, contained shared-artifact symlinks), reap-only-proven-inactive wrapper cleanup (dry-run and report-only handling of non-qualifying worktrees), and the migration-tolerant pre-push naming gate (new-branch-only gating, legacy tolerance, fail-open, release-branch exemption, explicit bypass, wrapper-ref rejection).
 
 ### Realistic Test Model
 
@@ -219,7 +219,7 @@ Expected signals: The final branch is `main`; response explains any branch recov
 
 ## 8. COMMIT FORMATION (`GIT-004..GIT-007`)
 
-This category covers 4 scenarios. The linked per-feature files remain the canonical execution contract.
+This category covers 5 scenarios. The linked per-feature files remain the canonical execution contract.
 
 ### GIT-004 | Conventional commit from diff
 
@@ -284,6 +284,22 @@ Expected signals: Footer appears exactly once, with exact capitalization, spacin
 #### Test Execution
 
 > **Feature File:** [GIT-007](commit-formation/co-authored-by-footer.md)
+
+### GIT-044 | Find commits by packet and identifier
+
+#### Description
+
+Verify the three queries resolve a commit after a stamped commit exists.
+
+#### Scenario Contract
+
+Prompt: `Create a stamped commit in a scratch repository, then show that the values query, the packet query and the identifier query all return it.`
+
+Expected signals: The values query prints the commit's `Commit-Id`, the packet query returns the commit hash and the identifier query returns the same hash.
+
+#### Test Execution
+
+> **Feature File:** [GIT-044](commit-formation/find-commits-by-packet-and-id.md)
 
 ---
 
@@ -816,6 +832,7 @@ The `sk-doc` package validator (`validate-playbook-package.cjs`) is the structur
 | Commit Formation | GIT-005 | `commit-formation/scope-inference-skill-folder.md` | Yes |
 | Commit Formation | GIT-006 | `commit-formation/mixed-concerns-split-or-warn.md` | Yes |
 | Commit Formation | GIT-007 | `commit-formation/co-authored-by-footer.md` | Yes |
+| Commit Formation | GIT-044 | `commit-formation/find-commits-by-packet-and-id.md` | Yes |
 | Safety Refusals | GIT-008 | `safety-refusals/no-verify-bypass-refused.md` | Yes |
 | Safety Refusals | GIT-009 | `safety-refusals/secrets-in-diff-refused.md` | Yes |
 | Safety Refusals | GIT-010 | `safety-refusals/force-push-to-main-refused.md` | Yes |

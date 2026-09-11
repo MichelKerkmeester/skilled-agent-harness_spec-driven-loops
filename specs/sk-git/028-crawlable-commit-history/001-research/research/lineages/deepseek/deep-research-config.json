@@ -1,0 +1,85 @@
+{
+  "topic": "How commits in this repository become addressable and searchable the way spec packets are: a numbered, crawlable commit message grammar for sk-git; how the identifier is minted without collisions; how the 9,106 existing commits on main and skilled/v4.0.0.0 are rewritten with their spec citations remapped. Ten-angle brief at .opencode/specs/sk-git/028-crawlable-commit-history/001-research/research/dispatch-prompt.md",
+  "maxIterations": 10,
+  "minIterations": 10,
+  "convergenceThreshold": 0.05,
+  "stopPolicy": "max-iterations",
+  "antiConvergence": {
+    "minIterations": 10,
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations",
+    "divergent": {},
+    "note": "Ten angles, one per iteration, in order. Convergence before maxIterations is telemetry only."
+  },
+  "stuckThreshold": 3,
+  "minIdeaObservations": 2,
+  "maxDurationMinutes": 240,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 15,
+  "progressiveSynthesis": true,
+  "specFolder": ".opencode/specs/sk-git/028-crawlable-commit-history/001-research",
+  "artifactDir": ".opencode/specs/sk-git/028-crawlable-commit-history/001-research/research/lineages/deepseek",
+  "fanout_lineage_artifact_dir": ".opencode/specs/sk-git/028-crawlable-commit-history/001-research/research/lineages/deepseek",
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "createdAt": "2026-09-11T07:26:50Z",
+  "completedAt": "2026-09-11T08:01:51Z",
+  "status": "complete",
+  "stopReason": "maxIterationsReached",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-pi",
+    "model": "deepseek-v4.1-flash",
+    "reasoningEffort": "max",
+    "serviceTier": null,
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 3600
+  },
+  "lineage": {
+    "sessionId": "fanout-deepseek-1789111510857-0nqzvk",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": [
+      "new",
+      "resume",
+      "restart"
+    ],
+    "deferredModes": [
+      "fork",
+      "completed-continue"
+    ],
+    "generation": 1,
+    "continuedFromRun": null,
+    "fanoutRole": "detached-parallel-lineage"
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "divergence-frontier",
+      "next-focus"
+    ]
+  },
+  "pauseSentinelPath": ".deep-research-pause",
+  "fileProtection": {
+    "deep-research-config.json": "immutable-except-terminal-status",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "delta-*.jsonl": "write-once",
+    "research.md": "mutable"
+  }
+}

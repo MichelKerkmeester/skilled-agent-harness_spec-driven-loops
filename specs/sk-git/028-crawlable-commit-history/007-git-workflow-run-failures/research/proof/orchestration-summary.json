@@ -1,0 +1,22 @@
+{
+  "run_id": "1789123034382-9ptgi0",
+  "loop_type": "research",
+  "spec_folder": ".opencode/specs/sk-git/028-crawlable-commit-history/007-git-workflow-run-failures",
+  "base_artifact_dir": ".opencode/specs/sk-git/028-crawlable-commit-history/007-git-workflow-run-failures/research/proof",
+  "total_cli_lineages": 1,
+  "orphaned_lineages": [],
+  "total": 1,
+  "succeeded": 1,
+  "failed": 0,
+  "all_failed": false,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0
+  }
+}

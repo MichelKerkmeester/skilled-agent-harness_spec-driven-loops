@@ -272,6 +272,45 @@ test('shape-only destructive tokens fire regardless of state', () => {
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
+// 7b. THE EFFECTIVE DIRECTORY
+// ─────────────────────────────────────────────────────────────────────────────
+
+test('a command that changes directory is evaluated against that directory', () => {
+  const main = repo();
+  // A `-C` target or a leading `cd` only matters when the two directories hold different
+  // state, so the fixture is a primary checkout plus a linked worktree. The files exist only
+  // in the worktree, which is the false fire the session-cwd defect produced.
+  const wt = fs.mkdtempSync(path.join(os.tmpdir(), 'git-advisory-wt-'));
+  fs.rmSync(wt, { recursive: true, force: true });
+  git(main, 'worktree', 'add', '-q', '-b', 'advisory-wt', wt);
+  cleanup.push(wt);
+  for (const f of ['w1.txt', 'w2.txt', 'w3.txt']) fs.writeFileSync(path.join(wt, f), 'x\n');
+
+  const paths = 'w1.txt w2.txt w3.txt';
+  assert.equal(
+    check('add-pathspec-matches-nothing', `git -C ${wt} add ${paths}`, main),
+    true,
+    'a -C target holding the paths yields no advisory',
+  );
+  assert.equal(
+    check('add-pathspec-matches-nothing', `cd ${wt} && git add ${paths}`, main),
+    true,
+    'a leading cd target holding the paths yields no advisory',
+  );
+
+  // The direction that matters is false silence: a dirty worktree reset from a session whose
+  // own checkout is clean must still warn, or the uncommitted work is destroyed unremarked.
+  fs.writeFileSync(path.join(wt, 'seed.txt'), 'uncommitted work\n');
+  assert.equal(git(main, 'status', '--porcelain'), '', 'the session checkout stays clean');
+  assert.notEqual(git(wt, 'status', '--porcelain'), '', 'the target worktree is dirty');
+  assert.equal(
+    check('reset-hard-discards-changes', `git -C ${wt} reset --hard`, main),
+    false,
+    'a hard reset in the dirty target directory is flagged despite a clean session cwd',
+  );
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
 // 8. PARSING AND CONTRACT
 // ─────────────────────────────────────────────────────────────────────────────
 
@@ -279,6 +318,7 @@ test('parser separates flags from pathspec across invocation shapes', () => {
   assert.equal(parseGitCommand('git commit --only a.txt -m x').sub, 'commit');
   assert.deepEqual(parseGitCommand('git add -u -- src/').paths, ['src/']);
   assert.equal(parseGitCommand('git -C /repo status').sub, 'status');
+  assert.equal(parseGitCommand('git -C /repo status').effectiveDir, '/repo', 'the -C target becomes the effective directory');
   assert.equal(parseGitCommand('FOO=1 git add x').sub, 'add');
   assert.equal(parseGitCommand('echo not-git'), null);
 });

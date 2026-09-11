@@ -4,6 +4,7 @@
 # Usage:
 #   bash .opencode/scripts/install-git-hooks.sh             # install
 #   bash .opencode/scripts/install-git-hooks.sh --uninstall # remove
+#   bash .opencode/scripts/install-git-hooks.sh --status    # report where each hook resolves
 #
 # Hooks installed:
 #   commit-msg  — blocks invalid structure and warns on clarity issues
@@ -64,6 +65,53 @@ is_our_symlink() {
     *) return 1 ;;
   esac
 }
+
+# Resolve the file a hook path actually points at, following one symlink hop.
+# --status uses it to show which checkout's copy is live when a global
+# core.hooksPath shadows this worktree's own sources.
+resolve_target() {
+  local target="$1" value
+  if [[ -L "$target" ]]; then
+    value="$(readlink "$target")"
+    [[ "$value" = /* ]] || value="$(cd "$(dirname "$target")" && pwd -P)/$value"
+    printf '%s\n' "$value"
+  elif [[ -e "$target" ]]; then
+    printf '%s\n' "$target"
+  else
+    printf '%s\n' "(not installed)"
+  fi
+}
+
+if [ "${1:-}" = "--status" ]; then
+  global_hooks="$(git -C "$REPO_ROOT" config --global --get core.hooksPath 2>/dev/null || true)"
+  local_hooks="$(git -C "$REPO_ROOT" config --local --get core.hooksPath 2>/dev/null || true)"
+  if [[ -n "$local_hooks" ]]; then
+    hooks_scope="local"
+  elif [[ -n "$global_hooks" ]]; then
+    hooks_scope="global"
+  else
+    hooks_scope="unset"
+  fi
+
+  printf 'core.hooksPath: %s (%s)\n' \
+    "${local_hooks:-${global_hooks:-<unset>}}" "$hooks_scope"
+  printf 'resolved hooks dir: %s\n' "$HOOK_TARGET_DIR"
+  printf 'hook sources in: %s\n' "$HOOK_SOURCE_DIR"
+  printf '\n'
+  for hook in "$HOOK_SOURCE_DIR"/*; do
+    [[ -f "$hook" ]] || continue
+    name="$(basename "$hook")"
+    is_git_hook_name "$name" || continue
+    target="$HOOK_TARGET_DIR/$name"
+    printf '  %s\n' "$name"
+    printf '    installed: %s\n' "$(resolve_target "$target")"
+    printf '    source:    %s\n' "$hook"
+    if [[ -L "$target" ]] && [[ "$(resolve_target "$target")" != "$hook" ]]; then
+      printf '    SHADOWED: the installed hook resolves outside this checkout\n'
+    fi
+  done
+  exit 0
+fi
 
 if [ "${1:-}" = "--uninstall" ]; then
   for hook in "$HOOK_SOURCE_DIR"/*; do

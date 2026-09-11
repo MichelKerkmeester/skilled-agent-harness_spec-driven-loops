@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-git/028-crawlable-commit-history/003-contract-and-hook",
+  "spec_folder": "sk-git/028-crawlable-commit-history/003-contract-and-hook",
+  "parent_id": "sk-git/028-crawlable-commit-history",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "commit-msg whitelist",
+      "commit-id allocator",
+      "prepare-commit-msg stamper",
+      "sk-git commit contract update",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies"
+    ],
+    "key_topics": [
+      "commit-msg",
+      "whitelist",
+      "commit-id",
+      "allocator",
+      "prepare-commit-msg",
+      "stamper",
+      "sk-git",
+      "commit",
+      "contract",
+      "implementation",
+      "plan",
+      "technical"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".opencode/scripts/git-hooks/tests/commit-msg.test.sh",
+      ".opencode/skills/sk-git/scripts/commit-id-naming.sh",
+      ".opencode/skills/sk-git/scripts/tests/commit-id-naming.test.sh",
+      ".opencode/scripts/git-hooks/tests/prepare-commit-msg.test.sh",
+      ".opencode/scripts/git-hooks/README.md",
+      "tests/README.md",
+      ".opencode/skills/sk-git/SKILL.md",
+      ".opencode/skills/sk-git/assets/commit-message-template.md",
+      ".opencode/skills/sk-git/references/commit-workflows.md",
+      ".opencode/skills/sk-git/references/quick-reference.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "commit-msg.test.sh",
+        "kind": "script",
+        "path": ".opencode/scripts/git-hooks/tests/commit-msg.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "commit-id-naming.sh",
+        "kind": "script",
+        "path": ".opencode/skills/sk-git/scripts/commit-id-naming.sh",
+        "source": "derived"
+      },
+      {
+        "name": "commit-id-naming.test.sh",
+        "kind": "script",
+        "path": ".opencode/skills/sk-git/scripts/tests/commit-id-naming.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "prepare-commit-msg.test.sh",
+        "kind": "script",
+        "path": ".opencode/scripts/git-hooks/tests/prepare-commit-msg.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/scripts/git-hooks/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-git/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "commit-message-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-git/assets/commit-message-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "commit-workflows.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-git/references/commit-workflows.md",
+        "source": "derived"
+      },
+      {
+        "name": "quick-reference.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-git/references/quick-reference.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The contract exists only in a decision record",
+    "created_at": "2026-09-11T07:16:26Z",
+    "last_save_at": "2026-09-11T11:32:41.816Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:74013ff821a0a5cecdf33f193986c4ece2784b3af961fd9c11551c33bf2f0025",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "a850677eef8234ba73665b5819cd2e07f6153892dfe1d93c7d420e554d283e51",
+      "plan.md": "76b64057590c89bc43dc1eb307b6583a7552d3453e995305b2e4dc00b0f478d9",
+      "tasks.md": "c835a88426a767b84102c3ae7a8f8e15777e9135b94916ae05a77324044f4d78",
+      "implementation-summary.md": "b666efee72203d128dd064ffaa4ba400656f9353e2b7d8402ef81e8e7d3f46b8"
+    },
+    "last_active_at": null
+  }
+}

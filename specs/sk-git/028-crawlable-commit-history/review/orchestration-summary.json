@@ -1,0 +1,71 @@
+{
+  "run_id": "1789125627716-t7qggd",
+  "loop_type": "review",
+  "spec_folder": ".opencode/specs/sk-git/028-crawlable-commit-history",
+  "base_artifact_dir": ".opencode/specs/sk-git/028-crawlable-commit-history/review",
+  "total_cli_lineages": 1,
+  "orphaned_lineages": [],
+  "total": 1,
+  "succeeded": 1,
+  "failed": 0,
+  "all_failed": false,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0
+  },
+  "timestamp_anomalies": [
+    {
+      "label": "deepseek",
+      "state_log": ".opencode/specs/sk-git/028-crawlable-commit-history/review/lineages/deepseek/deep-review-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-09-11T11:20:27.721Z",
+        "end_at_iso": "2026-09-11T11:28:49.581Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 7,
+        "untimestamped": 0,
+        "unparseable": 0,
+        "total": 8
+      },
+      "sample": [
+        {
+          "index": 1,
+          "reason": "after_window",
+          "timestamp": "2026-09-11T11:32:00Z",
+          "deltaMs": 70419
+        },
+        {
+          "index": 2,
+          "reason": "after_window",
+          "timestamp": "2026-09-11T11:32:10Z",
+          "deltaMs": 80419
+        },
+        {
+          "index": 3,
+          "reason": "after_window",
+          "timestamp": "2026-09-11T11:40:00Z",
+          "deltaMs": 550419
+        },
+        {
+          "index": 4,
+          "reason": "after_window",
+          "timestamp": "2026-09-11T11:50:00Z",
+          "deltaMs": 1150419
+        },
+        {
+          "index": 5,
+          "reason": "after_window",
+          "timestamp": "2026-09-11T12:00:00Z",
+          "deltaMs": 1750419
+        }
+      ]
+    }
+  ]
+}

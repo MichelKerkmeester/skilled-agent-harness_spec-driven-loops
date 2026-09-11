@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+echo WORKTREE-INSTALLER-HOOK
+exit 0

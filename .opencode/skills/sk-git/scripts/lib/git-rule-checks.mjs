@@ -22,10 +22,17 @@
 // 1. CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
 
+import path from 'node:path';
+
 // Adapters share this narrow gate so unrelated shell commands never collect repository state.
 export const GIT_SHAPE = /(?:^|[;&|]\s*)(?:\w+=\S+\s+)*git\s+(?:-C\s+\S+\s+)?[a-z-]+/;
 
-const GIT_INVOCATION = /(?:^|[;&|]\s*)(?:\w+=\S+\s+)*git\s+(?:-C\s+\S+\s+)?([a-z-]+)((?:\s+[^;&|]*)?)/;
+const GIT_INVOCATION = /(?:^|[;&|]\s*)(?:\w+=\S+\s+)*git\s+(?:-C\s+(\S+)\s+)?([a-z-]+)((?:\s+[^;&|]*)?)/;
+
+// `cd <dir> && git ...` moves the directory of the invocation just as `git -C <dir>` does, so
+// both resolve to one effective directory. Only a `cd` immediately before the invocation counts:
+// a `cd` earlier in a longer pipeline may not be the one the git command inherits.
+const CD_BEFORE_GIT = /(?:^|[;&|]\s*)cd\s+(?:"([^"]*)"|'([^']*)'|(\S+))\s*&&\s*(?:\w+=\S+\s+)*git\s/;
 
 // Flags whose value is a separate argument. Without this list a commit message lands in the
 // pathspec, and every path-sensitive check below then reasons about a word from the message.
@@ -47,19 +54,45 @@ const BARE_IN_SUBCOMMAND = { add: new Set(['-u']), restore: new Set(['-s']) };
 // wrapper scripts and anything behind a shell variable are left alone, because guessing at
 // their expansion would produce advisories about commands the operator never typed.
 
+/** Strip one pair of surrounding quotes from a shell token. */
+function unquote(token) {
+  return typeof token === 'string' ? token.replace(/^["']|["']$/g, '') : '';
+}
+
+/**
+ * Resolve a directory token to an absolute path without touching the filesystem.
+ *
+ * A shell expansion (`$DIR`), a home-relative path or an empty token has no statically known
+ * target, and a relative one needs a known base. Each returns null so the caller fails open
+ * rather than reason about the wrong repository's state.
+ *
+ * @param {string|null} baseDir - Directory the token is relative to, or null when unknown.
+ * @param {string} token - Raw `-C` or `cd` argument.
+ * @returns {string|null} Absolute directory, or null when it cannot be resolved.
+ */
+function resolveDir(baseDir, token) {
+  const target = unquote(token);
+  if (!target || /[$`]/.test(target) || target.startsWith('~')) return null;
+  if (path.isAbsolute(target)) return path.resolve(target);
+  return baseDir ? path.resolve(baseDir, target) : null;
+}
+
 /**
  * Split a git command into subcommand, flags and positional pathspec arguments.
  *
  * @param {string} command - Shell command containing a directly visible git invocation.
+ * @param {string} [sessionCwd] - Directory relative `cd`/`-C` targets resolve against.
  * @returns {{sub: string, flags: string[], paths: string[], raw: string,
- *   afterSeparator: boolean}|null} Parsed command or null when no git invocation is visible.
+ *   afterSeparator: boolean, effectiveDir: string|null, cwdResolved: boolean}|null} Parsed
+ *   command, or null when no git invocation is visible.
  */
-export function parseGitCommand(command) {
+export function parseGitCommand(command, sessionCwd = process.cwd()) {
   const cmd = String(command || '');
   const m = cmd.match(GIT_INVOCATION);
   if (!m) return null;
-  const sub = m[1];
-  const rest = (m[2] || '').trim();
+  const cwdTarget = m[1];
+  const sub = m[2];
+  const rest = (m[3] || '').trim();
 
   const tokens = rest.match(/(?:[^\s"']+|"[^"]*"|'[^']*')+/g) || [];
   const flags = [];
@@ -79,7 +112,36 @@ export function parseGitCommand(command) {
     }
     paths.push(t);
   }
-  return { sub, flags, paths, raw: cmd, afterSeparator };
+  // The command's effective directory: a leading `cd <dir> &&` first, then a git-level
+  // `-C <dir>` resolved against it. A token needing shell expansion cannot be resolved
+  // statically, so the result is marked unresolved and the checks stay silent.
+  const cdMatch = cmd.match(CD_BEFORE_GIT);
+  const cdDir = cdMatch ? resolveDir(sessionCwd, cdMatch[1] ?? cdMatch[2] ?? cdMatch[3]) : sessionCwd;
+  let effectiveDir = cdDir;
+  let cwdResolved = cdDir !== null;
+  if (cwdTarget !== undefined) {
+    const target = resolveDir(effectiveDir, cwdTarget);
+    if (target === null) {
+      cwdResolved = false;
+      effectiveDir = null;
+    } else {
+      effectiveDir = target;
+    }
+  }
+  return { sub, flags, paths, raw: cmd, afterSeparator, effectiveDir, cwdResolved };
+}
+
+/**
+ * The repository context a command's state reads must come from the directory the command
+ * actually runs in, not the session's. Returns the session context when the command does not
+ * move directory, a context rooted at the effective directory otherwise, and null when that
+ * directory is unknowable. Callers treat null as silence, per the fail-open rule above.
+ */
+function contextFor(p, ctx) {
+  if (!p || !ctx || !p.cwdResolved) return null;
+  const dir = p.effectiveDir;
+  if (!dir || dir === ctx.cwd) return ctx;
+  return ctx.forDir(dir);
 }
 
 const has = (flags, ...names) => flags.some((f) => names.some((n) => f === n || f.startsWith(`${n}=`)));
@@ -103,13 +165,15 @@ export const GIT_CHECKS = {
    * omission stayed invisible because the report was read as a count rather than a list.
    */
   'commit-scope-drops-untracked': (cmd, ctx) => {
-    const p = parseGitCommand(cmd);
+    const p = parseGitCommand(cmd, ctx.cwd);
     if (!p || p.sub !== 'commit') return true;
     const scopedToDir = has(p.flags, '--only', '-o') && p.paths.length > 0;
     const scopedToAll = has(p.flags, '-a', '--all');
     if (!scopedToDir && !scopedToAll) return true;
 
-    const untracked = ctx.untrackedPaths();
+    const c = contextFor(p, ctx);
+    if (!c) return true;
+    const untracked = c.untrackedPaths();
     if (untracked.length === 0) return true;
     if (scopedToAll) return false;
 
@@ -126,13 +190,15 @@ export const GIT_CHECKS = {
    * contributes nothing to the commit while appearing in the command.
    */
   'commit-pathspec-empty-change': (cmd, ctx) => {
-    const p = parseGitCommand(cmd);
+    const p = parseGitCommand(cmd, ctx.cwd);
     if (!p || p.sub !== 'commit') return true;
     if (!has(p.flags, '--only', '-o')) return true;
     if (p.paths.length === 0) return true;
+    const c = contextFor(p, ctx);
+    if (!c) return true;
     for (const path of p.paths) {
-      const staged = ctx.stagedUnder([path]);
-      const unstaged = ctx.unstagedUnder([path]);
+      const staged = c.stagedUnder([path]);
+      const unstaged = c.unstagedUnder([path]);
       if (staged === null || unstaged === null) continue;
       if (staged.length === 0 && unstaged.length === 0) return false;
     }
@@ -144,13 +210,15 @@ export const GIT_CHECKS = {
    * already removed. The operator believes their change is staged and commits without it.
    */
   'add-pathspec-matches-nothing': (cmd, ctx) => {
-    const p = parseGitCommand(cmd);
+    const p = parseGitCommand(cmd, ctx.cwd);
     if (!p || p.sub !== 'add') return true;
     if (p.paths.length === 0) return true;
     if (p.paths.some((x) => x === '.' || x === '-A' || x === '--all')) return true;
+    const c = contextFor(p, ctx);
+    if (!c) return true;
     // Only a pathspec git could not resolve at all is worth saying something about. A tracked
     // file with no pending change also stages nothing, and that is simply a no-op, not a mistake.
-    return ctx.addDryRun(p.paths).status !== 'unmatched';
+    return c.addDryRun(p.paths).status !== 'unmatched';
   },
 
   /**
@@ -159,13 +227,15 @@ export const GIT_CHECKS = {
    * often the subject of active work.
    */
   'add-pathspec-only-ignored': (cmd, ctx) => {
-    const p = parseGitCommand(cmd);
+    const p = parseGitCommand(cmd, ctx.cwd);
     if (!p || p.sub !== 'add') return true;
     if (p.paths.length === 0 || has(p.flags, '-f', '--force')) return true;
-    if (ctx.checkIgnore(p.paths).length === 0) return true;
+    const c = contextFor(p, ctx);
+    if (!c) return true;
+    if (c.checkIgnore(p.paths).length === 0) return true;
     // Git refuses the add outright and names the ignore rule when EVERY matched path is ignored.
     // A pathspec covering both ignored and addable files succeeds, and needs no advisory.
-    return ctx.addDryRun(p.paths).status !== 'ignored';
+    return c.addDryRun(p.paths).status !== 'ignored';
   },
 
   /**
@@ -173,10 +243,12 @@ export const GIT_CHECKS = {
    * is precisely the thing being missed, and git says nothing.
    */
   'add-update-skips-untracked': (cmd, ctx) => {
-    const p = parseGitCommand(cmd);
+    const p = parseGitCommand(cmd, ctx.cwd);
     if (!p || p.sub !== 'add') return true;
     if (!has(p.flags, '-u', '--update')) return true;
-    return ctx.untrackedPaths().length === 0;
+    const c = contextFor(p, ctx);
+    if (!c) return true;
+    return c.untrackedPaths().length === 0;
   },
 
   /**
@@ -185,13 +257,15 @@ export const GIT_CHECKS = {
    * version remains staged and ready to commit.
    */
   'restore-discards-over-staged': (cmd, ctx) => {
-    const p = parseGitCommand(cmd);
+    const p = parseGitCommand(cmd, ctx.cwd);
     if (!p) return true;
     const isRestore = p.sub === 'restore' && !has(p.flags, '--staged', '-S');
     const isCheckoutPath = p.sub === 'checkout' && p.afterSeparator;
     if (!isRestore && !isCheckoutPath) return true;
     if (p.paths.length === 0) return true;
-    const staged = ctx.stagedUnder(p.paths);
+    const c = contextFor(p, ctx);
+    if (!c) return true;
+    const staged = c.stagedUnder(p.paths);
     return staged === null || staged.length === 0;
   },
 
@@ -224,11 +298,13 @@ export const GIT_CHECKS = {
    * Git resolves it to the existing path, so a rename that looks applied silently is not.
    */
   'case-only-pathspec-folds': (cmd, ctx) => {
-    const p = parseGitCommand(cmd);
+    const p = parseGitCommand(cmd, ctx.cwd);
     if (!p || !['add', 'mv', 'rm'].includes(p.sub)) return true;
-    if (p.paths.length === 0 || !ctx.ignoreCase()) return true;
-    const tracked = ctx.tracked();
-    const lower = ctx.trackedLowercase();
+    if (p.paths.length === 0) return true;
+    const c = contextFor(p, ctx);
+    if (!c || !c.ignoreCase()) return true;
+    const tracked = c.tracked();
+    const lower = c.trackedLowercase();
     return !p.paths.some((path) => !tracked.has(path) && lower.has(path.toLowerCase()));
   },
 
@@ -238,11 +314,13 @@ export const GIT_CHECKS = {
    * to commit. This is the only routine operation in git where reading the file misleads.
    */
   'staged-path-rewritten-by-filter': (cmd, ctx) => {
-    const p = parseGitCommand(cmd);
+    const p = parseGitCommand(cmd, ctx.cwd);
     if (!p || !['add', 'commit'].includes(p.sub)) return true;
-    const candidates = p.paths.length > 0 ? p.paths : ctx.stagedPaths();
+    const c = contextFor(p, ctx);
+    if (!c) return true;
+    const candidates = p.paths.length > 0 ? p.paths : c.stagedPaths();
     if (candidates.length === 0) return true;
-    return !candidates.some((path) => ctx.filterFor(path) !== null);
+    return !candidates.some((path) => c.filterFor(path) !== null);
   },
 
   // Destructive tier.
@@ -256,9 +334,11 @@ export const GIT_CHECKS = {
    * reset on a clean tree destroys nothing on disk and stays silent.
    */
   'reset-hard-discards-changes': (cmd, ctx) => {
-    const p = parseGitCommand(cmd);
+    const p = parseGitCommand(cmd, ctx.cwd);
     if (!p || p.sub !== 'reset' || !has(p.flags, '--hard')) return true;
-    return ctx.dirtyCount() === 0;
+    const c = contextFor(p, ctx);
+    if (!c) return true;
+    return c.dirtyCount() === 0;
   },
 
   /**
@@ -268,13 +348,15 @@ export const GIT_CHECKS = {
    * few-file case.
    */
   'clean-force-deletes-files': (cmd, ctx) => {
-    const p = parseGitCommand(cmd);
+    const p = parseGitCommand(cmd, ctx.cwd);
     if (!p || p.sub !== 'clean') return true;
     const forced = p.flags.some((f) => /^-[a-z]*f/.test(f) || f === '--force');
     if (!forced) return true;
+    const c = contextFor(p, ctx);
+    if (!c) return true;
     const withDirs = p.flags.some((f) => /^-[a-z]*d/.test(f));
     const withIgnored = p.flags.some((f) => /^-[a-z]*[xX]/.test(f));
-    const would = ctx.cleanDryRun(withDirs, withIgnored);
+    const would = c.cleanDryRun(withDirs, withIgnored);
     if (would === null || would.length === 0) return true;
     return withIgnored ? false : would.length < 10;
   },
@@ -285,11 +367,13 @@ export const GIT_CHECKS = {
    * silent since git already refuses it on its own.
    */
   'branch-force-delete-unmerged': (cmd, ctx) => {
-    const p = parseGitCommand(cmd);
+    const p = parseGitCommand(cmd, ctx.cwd);
     if (!p || p.sub !== 'branch') return true;
     const forcedDelete = has(p.flags, '-D') || (has(p.flags, '--delete', '-d') && has(p.flags, '--force', '-f'));
     if (!forcedDelete || p.paths.length === 0) return true;
-    const unmerged = ctx.unmergedBranches();
+    const c = contextFor(p, ctx);
+    if (!c) return true;
+    const unmerged = c.unmergedBranches();
     return !p.paths.some((name) => unmerged.has(name));
   },
 
@@ -298,10 +382,12 @@ export const GIT_CHECKS = {
    * command returns; a targeted `stash drop` names its victim and stays silent.
    */
   'stash-clear-drops-entries': (cmd, ctx) => {
-    const p = parseGitCommand(cmd);
+    const p = parseGitCommand(cmd, ctx.cwd);
     if (!p || p.sub !== 'stash') return true;
     if (p.paths[0] !== 'clear') return true;
-    return ctx.stashCount() === 0;
+    const c = contextFor(p, ctx);
+    if (!c) return true;
+    return c.stashCount() === 0;
   },
 
   /**

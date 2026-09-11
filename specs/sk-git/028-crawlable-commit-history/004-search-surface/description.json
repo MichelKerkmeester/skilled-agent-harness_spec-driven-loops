@@ -1,0 +1,24 @@
+{
+  "level": "3",
+  "specFolder": "sk-git/028-crawlable-commit-history/004-search-surface",
+  "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+  "keywords": [
+    "broken",
+    "missing",
+    "inefficient",
+    "sentences",
+    "describing",
+    "specific",
+    "pain",
+    "point"
+  ],
+  "lastUpdated": "2026-09-11T07:16:29.990Z",
+  "specId": "004",
+  "folderSlug": "search-surface",
+  "parentChain": [
+    "sk-git",
+    "028-crawlable-commit-history"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

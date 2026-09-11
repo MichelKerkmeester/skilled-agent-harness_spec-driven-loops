@@ -1,0 +1,7 @@
+diff --git a/specs/x/001-p/plan.md b/specs/x/001-p/plan.md
+index 0475758..e6519ea 100644
+--- a/specs/x/001-p/plan.md
++++ b/specs/x/001-p/plan.md
+@@ -1 +1,2 @@
+ plan v1
++orchestrator planning edit

@@ -76,6 +76,11 @@
   },
   {
     "workflowMode": "sk-git",
+    "leafResourceId": "manual-testing-playbook/commit-formation/find-commits-by-packet-and-id.md",
+    "diskPath": "manual-testing-playbook/commit-formation/find-commits-by-packet-and-id.md"
+  },
+  {
+    "workflowMode": "sk-git",
     "leafResourceId": "manual-testing-playbook/commit-formation/mixed-concerns-split-or-warn.md",
     "diskPath": "manual-testing-playbook/commit-formation/mixed-concerns-split-or-warn.md"
   },

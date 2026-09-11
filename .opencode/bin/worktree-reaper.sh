@@ -9,15 +9,17 @@
 #
 # Default (safe) behavior:
 #   - `git worktree prune` (clears stale administrative entries for already-deleted dirs).
-#   - Remove each .worktrees/* whose branch is fully merged into main AND whose working
-#     tree is clean (no uncommitted changes). A dirty or unmerged worktree is left alone.
-#   - Prune per-session socket dirs and session markers whose worktree is gone.
+#   - Remove each registered wrapper worktree (branch work/<runtime>/<slug>) whose working
+#     tree is clean AND whose branch is fully merged into the live tip. A dirty or unmerged
+#     worktree is left alone, as is one that still has a live process working inside it.
+#   - Prune per-session socket dirs and session markers whose worktree is no longer in
+#     git's worktree registry.
 #
 # Flags:
 #   --dry-run        Print what would be pruned; change nothing.
 #
-# Safety: only operates on worktrees under <repo>/.worktrees/. Never removes the main
-# checkout. Never signals a process.
+# Safety: resolves worktrees from `git worktree list` (any base), never removes the main
+# checkout, never touches a worktree a live process is using, never signals a process.
 
 set -euo pipefail
 
@@ -108,6 +110,62 @@ _wrapper_branch_matches_dir() {
   return 1
 }
 
+# Every slug git currently registers as a worktree, the primary checkout excluded. The
+# launcher's base directory is per-process state (an environment variable), so a reaper
+# started without that environment cannot see the worktree through its own base probe and
+# would mistake a live session's state for a leftover. git's registry is authoritative
+# regardless of which base the launcher chose, so membership here decides existence.
+_registered_slugs() {
+  git -C "$MAIN_TOPLEVEL" worktree list --porcelain 2>/dev/null | while IFS= read -r line; do
+    case "$line" in worktree\ *) ;; *) continue ;; esac
+    p="${line#worktree }"
+    [ "$p" = "$MAIN_TOPLEVEL" ] || basename "$p"
+  done
+}
+_is_registered_slug() {
+  local probe="$1" slug
+  while IFS= read -r slug; do
+    [ "$slug" = "$probe" ] && return 0
+  done <<< "$REGISTERED_SLUGS"
+  return 1
+}
+
+# Pid of a live process whose working directory is the worktree (or a directory inside it),
+# or nothing. The session marker only proves the wrapper's own pid, which a detached or
+# background child easily outlives; removing the worktree under such a child pulls the
+# ground out from under a running process, so removal must refuse while one holds it.
+# Method: `lsof -a -d cwd -F pn` emits a machine-readable pid/name stream for every
+# process's cwd descriptor and is available on both macOS and Linux; where lsof is absent
+# but /proc exists, each /proc/<pid>/cwd link is read instead. Both paths compare against
+# the symlink-resolved worktree path because lsof reports resolved paths while git may hand
+# us one with a symlinked prefix (e.g. /var vs /private/var).
+_busy_pid_in() {
+  local root="$1" canon pid name link
+  canon="$(cd "$root" 2>/dev/null && pwd -P)" || canon="$root"
+  if command -v lsof >/dev/null 2>&1; then
+    while IFS= read -r line; do
+      case "$line" in
+        p*) pid="${line#p}" ;;
+        n*) name="${line#n}"
+            case "$name" in
+              "$canon"|"$canon"/*) printf '%s\n' "$pid"; return 0 ;;
+            esac ;;
+      esac
+    done < <(lsof -a -d cwd -F pn 2>/dev/null || true)
+    return 1
+  fi
+  if [ -d /proc ]; then
+    for link in /proc/[0-9]*/cwd; do
+      [ -L "$link" ] || continue
+      name="$(readlink "$link" 2>/dev/null || true)"
+      case "$name" in
+        "$canon"|"$canon"/*) printf '%s\n' "${link#/proc/}" | cut -d/ -f1; return 0 ;;
+      esac
+    done
+  fi
+  return 1
+}
+
 # ───────────────────────────────────────────────────────────────
 # 4. WORKTREE PRUNING
 # ───────────────────────────────────────────────────────────────
@@ -115,14 +173,14 @@ _wrapper_branch_matches_dir() {
 log "pruning stale worktree admin entries"
 act git -C "$MAIN_TOPLEVEL" worktree prune
 
-if [ ! -d "$WT_BASE" ]; then
-  log "no worktree base dir ($WT_BASE) — nothing to prune"
-else
-  # Iterate registered worktrees under .worktrees/ only.
-  while IFS= read -r line; do
+[ -d "$WT_BASE" ] || log "no worktree base dir ($WT_BASE) — resolving worktrees from the registry"
+
+# Iterate every registered worktree, from any base: the launcher may have chosen the base
+# from the environment, so a reaper without it must still see the worktree.
+while IFS= read -r line; do
     case "$line" in worktree\ *) ;; *) continue ;; esac
     wt_path="${line#worktree }"
-    case "$wt_path" in "$WT_BASE"/*) ;; *) continue ;; esac   # only .worktrees/* (skip main)
+    [ "$wt_path" = "$MAIN_TOPLEVEL" ] && continue   # never the primary checkout
     [ -d "$wt_path" ] || continue
     bn="$(basename "$wt_path")"
 
@@ -158,12 +216,19 @@ else
       log "keep (wrapper active or liveness unproven): $wt_path [$branch]"
       continue
     fi
+    if busy_pid="$(_busy_pid_in "$wt_path")"; then
+      log "keep (live process inside; pid $busy_pid): $wt_path [$branch]"
+      continue
+    fi
     log "prune (wrapper merged + clean + inactive): $wt_path [$branch]"
     act git -C "$MAIN_TOPLEVEL" worktree remove "$wt_path"
     act git -C "$MAIN_TOPLEVEL" branch -d "$branch"
     act rm -f "$MARKERS_DIR/$bn.pid"
   done < <(git -C "$MAIN_TOPLEVEL" worktree list --porcelain | grep '^worktree ')
-fi
+
+# Snapshot the registry AFTER reaping, so a worktree removed above is already absent here
+# and its leftover socket dir and marker still get cleaned.
+REGISTERED_SLUGS="$(_registered_slugs)"
 
 # ───────────────────────────────────────────────────────────────
 # 5. SOCKET DIRECTORY CLEANUP
@@ -175,6 +240,7 @@ if [ -d "$SOCK_BASE" ]; then
   for sd in "$SOCK_BASE"/*; do
     [ -d "$sd" ] || continue
     slug="$(basename "$sd")"
+    if _is_registered_slug "$slug"; then continue; fi
     if [ ! -d "$WT_BASE/$slug" ]; then
       log "prune stale socket dir (no matching worktree): $sd"
       act rm -rf -- "$sd"
@@ -187,6 +253,7 @@ if [ -d "$MARKERS_DIR" ]; then
   for mf in "$MARKERS_DIR"/*.pid; do
     [ -f "$mf" ] || continue
     slug="$(basename "$mf" .pid)"
+    if _is_registered_slug "$slug"; then continue; fi
     [ -d "$WT_BASE/$slug" ] || { log "prune stale session marker (no matching worktree): $mf"; act rm -f -- "$mf"; }
   done
 fi

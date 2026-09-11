@@ -93,6 +93,9 @@ function lines(value) {
  */
 export function createGitContext(cwd = process.cwd()) {
   const cache = new Map();
+  // Contexts for other directories, so a command carrying `-C <dir>` or a leading
+  // `cd <dir> &&` reads that directory's state without rebuilding on every check.
+  const rooted = new Map();
 
   const memo = (key, compute) => {
     if (!cache.has(key)) cache.set(key, compute());
@@ -101,6 +104,19 @@ export function createGitContext(cwd = process.cwd()) {
 
   const api = {
     cwd,
+
+    /**
+     * A context rooted at another directory, memoized per directory.
+     *
+     * A git command can move the directory it runs in with `-C <dir>` or a leading
+     * `cd <dir> &&`, and the state a check must read belongs to that directory rather than the
+     * session's. Only the directory changes: the same lazy, cached, fail-soft accessors apply.
+     */
+    forDir: (dir) => {
+      if (!dir || dir === cwd) return api;
+      if (!rooted.has(dir)) rooted.set(dir, createGitContext(dir));
+      return rooted.get(dir);
+    },
 
     /** True when cwd is inside a git work tree at all. Every other accessor assumes this. */
     isRepo: () => memo('isRepo', () => git(['rev-parse', '--is-inside-work-tree'], cwd) === 'true'),

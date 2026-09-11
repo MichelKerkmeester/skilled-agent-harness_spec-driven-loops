@@ -137,5 +137,28 @@ F3_GOOD_RC=$?
 expect "normal runtime identity is accepted" test "$F3_GOOD_RC" -eq 0
 expect "normal runtime identity forms a legal branch name" grep -E "branch[[:space:]]+= work/myrt/" "$F3_GOOD_STDOUT"
 
+# ── F4: an environment-only base is persisted so a later reaper agrees ──
+# The base can arrive solely through SPECKIT_WORKTREE_BASE, which a reaper started on its
+# own does not inherit; the wrapper records its choice in the repo config so the reaper
+# resolves the same directory instead of falling back to the in-checkout default.
+F4_FIXTURE="$ROOT/f4"
+F4_BASE="$ROOT/f4-base"
+mkdir -p "$F4_FIXTURE"
+make_fixture "$F4_FIXTURE"
+set +e
+(
+  cd "$F4_FIXTURE" || exit 1
+  env -u AI_SESSION_CHILD \
+    PATH="$BIN_DIR:$PATH" \
+    SPECKIT_WORKTREE_BASE="$F4_BASE" \
+    bash "$WRAPPER" myrt
+) >/dev/null 2>"$ROOT/f4.stderr"
+F4_RC=$?
+set -e
+F4_CFG="$(git -C "$F4_FIXTURE" config --get speckit.worktreeBase 2>/dev/null || true)"
+expect "env-base launch succeeds" test "$F4_RC" -eq 0
+expect "env-base launch allocates under the env base" test -d "$F4_BASE"
+expect "env-base launch persists the base into repo config" test "$F4_CFG" = "$F4_BASE"
+
 echo "worktree-session tests: PASS=$PASS FAIL=$FAIL"
 [ "$FAIL" -eq 0 ]

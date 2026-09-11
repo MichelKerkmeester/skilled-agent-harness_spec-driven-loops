@@ -293,6 +293,31 @@ STAGED="$(git -C "$TMP" diff --cached --name-only | grep -cE 'graph-metadata.jso
 if [[ "$STAGED" == "4" ]]; then echo "PASS  all four derived files reached the index"; PASS=$((PASS + 1))
 else echo "FAIL  expected 4 staged derived files, got $STAGED"; FAIL=$((FAIL + 1)); fi
 
+# ── 18. a route-remint block names its bypass, so an unattended caller can escape ──
+setup_fixture
+echo "staged" > "$TMP/.opencode/skills/$HUB/SKILL.md"
+git -C "$TMP" add ".opencode/skills/$HUB/SKILL.md"
+echo "unstaged too" > "$TMP/.opencode/skills/$HUB/SKILL.md"
+run_hook; RC=$?
+check "route block names its bypass" 1 "$RC" "Bypass: SPECKIT_SKIP_ROUTE_REMINT=1"
+
+# ── 19. a spec-remint block names its bypass too ──
+setup_spec_fixture
+echo "# staged" > "$TMP/$PKT/spec.md"; git -C "$TMP" add "$PKT/spec.md"
+echo "# unstaged too" > "$TMP/$PKT/spec.md"
+run_hook; RC=$?
+check "spec block names its bypass" 1 "$RC" "Bypass: SPECKIT_SKIP_SPEC_REMINT=1"
+
+# ── 20. a packet dirty only in the gate's own derived files re-derives ──
+# The derived files are outputs, not derivation inputs, so their dirt cannot make
+# the metadata describe content the commit lacks. Blocking on it wedged automated
+# committers behind a file the gate itself rewrites.
+setup_spec_fixture
+echo "# edited" > "$TMP/$PKT/spec.md"; git -C "$TMP" add "$PKT/spec.md"
+echo '{"fingerprint":"manual"}' > "$TMP/$PKT/graph-metadata.json"
+run_hook; RC=$?
+check "a packet dirty only in derived files re-derives" 0 "$RC" "re-derived $PKT"
+
 echo ""
 echo "pre-commit auto re-mint gates: $PASS passed, $FAIL failed"
 [[ "$FAIL" -eq 0 ]]

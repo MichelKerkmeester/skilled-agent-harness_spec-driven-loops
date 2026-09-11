@@ -177,7 +177,11 @@ Quick summary: `type(scope)[!]: imperative summary`, both type and scope
 required, scope is a stable subsystem name (never a numeric packet id),
 subject target 80 / hard max 100 characters, a body is required whenever
 four or more paths are staged or the reason isn't obvious from the subject
-alone.
+alone. Every commit ends with one contiguous trailer paragraph separated from
+the prose by a blank line: `Spec: <track>/<packet>[/<phase>...]` when the work
+belongs to a packet, then `Commit-Id: NNNNNNN`, then `Refs:` for external links
+only. Set `SPECKIT_COMMIT_SPEC` to the packet path before committing and the
+`prepare-commit-msg` hook adds `Spec:`. Never type a `Commit-Id:` by hand.
 
 **Validation**: `message_written`
 
