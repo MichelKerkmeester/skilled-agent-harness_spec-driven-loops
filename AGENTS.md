@@ -237,24 +237,16 @@ One table, not a checklist to recite. Each row is a signal the work is drifting 
 
 ##### Verification Standards
 
-| Standard                             | Rule                                                                                                                                                                         |
-| --------------------------------------| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Confirmed vs inferred**            | For load-bearing claims, prose must distinguish confirmed (with evidence: file:line, command, artifact) from inferred (state what would confirm it).                         |
-| **Baseline before "no regressions"** | Capture real starting numbers, re-run the WHOLE gate, report the delta.                                                                                                      |
-| **Finding = hypothesis**             | A sub-agent's "COMPLETE" or reviewer's "P0" — confirm against real symptom before acting.                                                                                    |
-| **Objective proof plan**             | For machine-state tasks, translate acceptance criteria into 1-5 observable pass/fail checks before changing files. Include exact paths, formats, and exposed boundary cases. |
-| **Observed command evidence**        | A command counts as evidence only after its output and exit status are read. Run focused checks during repair, then rerun the authoritative whole gate.                      |
-| **Safe negative control**            | When practical and non-destructive, reproduce the exact failing symptom before the fix so the same check proves the change.                                                  |
-| **Final-state proof**                | Before completion, prove that required artifacts exist, objective checks pass from the final state, and the scoped diff contains no task-created residue.                    |
+These four bind unconditionally, including on a read-only turn where Gate 5 never fires and no rule file loads.
 
-**Task-specific proof:**
+| Standard | Rule |
+|---|---|
+| **Confirmed vs inferred** | A load-bearing claim carries its evidence (file:line, command, artifact). An inferred one says what would confirm it. |
+| **Observed command evidence** | A command is evidence only once its output AND exit status are read. Exit status alone has been wrong in both directions. |
+| **Finding = hypothesis** | A sub-agent's "COMPLETE" and a reviewer's "P0" are claims about themselves until something you ran confirms them. |
+| **Baseline before "no regressions"** | Capture the starting numbers, rerun the WHOLE gate, report the delta. |
 
-| Task type               | Required proof                                                                    |
-| -------------------------| -----------------------------------------------------------------------------------|
-| **Filter or transform** | Inventory every in-scope variant, process each one, and rescan for residue.       |
-| **Computed answer**     | Confirm the result through an independent derivation before writing it.           |
-| **Performance claim**   | Measure actual runtime under stated conditions and report the baseline and delta. |
-| **Exact artifact**      | Verify the required filename, path, format, and content shape directly.           |
+Proof plans, negative controls, final-state proof and per-shape proof (filters inventory their variants, computed answers are derived twice, performance claims are measured, exact artifacts are checked by name, path and shape) are [`evidence-and-proof.md`](repo-rules/evidence-and-proof.md).
 
 ### 🔒 POST-EXECUTION GATES
 
@@ -281,25 +273,13 @@ Trigger: Claiming "done", "complete", "finished", "works"
 4. When `SPECKIT_COMPLETION_FRESHNESS=true`, completion claims must also pass `CONTINUITY_FRESHNESS`: the stored `session_dedup.fingerprint` matches recomputed content and packet-scoped paths are clean. The rule decides its own applicability at its entry point, so every caller gets the same answer, and it reports nothing when the flag is off. A stale result reports a warning, which does not block; `SPECKIT_COMPLETION_FRESHNESS_ENFORCE` escalates it to an error, which does.
 - Skip: Level 1 tasks (checklist.md is optional at every level).
 
-##### Invoking validate.sh — four ways a run lies
+##### Invoking validate.sh
 
-These are properties of the harness, not of any one repository, and each has already certified a
-broken packet as green.
-
-1. **Require an explicit `RESULT: PASSED`.** A stale compiled orchestrator makes `validate.sh` refuse
-   to run: it prints `compiled validation orchestrator is stale`, exits 3, and emits **no rule output
-   at all**. A sweep that only looks for `RESULT: FAILED` reads that silence as a clean pass. Rebuild
-   with `cd "$(realpath .opencode)/skills/system-spec-kit/runtime" && npm run build`.
-2. **Invoke through `realpath`, and verify by content.** Where `.opencode` is a symlink, the spec
-   scripts and generators can silently no-op — exit 0, zero output. Use
-   `NODE_PRESERVE_SYMLINKS=1 bash "$(realpath .opencode)/skills/system-spec-kit/runtime/cli/spec/validate.sh" <folder> --strict`
-   and confirm the rule lines appeared, rather than trusting the exit code.
-3. **A phase parent recurses into its children.** The printed output continues past the folder you
-   asked about, so the tail describes the last child rather than your packet. Take the **first**
-   `RESULT:` line for a folder's own verdict, and validate children individually for a per-packet
-   answer.
-4. **Regenerate metadata after any spec-doc edit**, or `GENERATED_METADATA_INTEGRITY` fails on a
-   fingerprint that no longer matches the documents it attests.
+The harness has four ways of reporting a pass it did not perform, and each has already
+certified a broken packet as green. **Require an explicit `RESULT: PASSED`**; every other
+signal, including exit status and the absence of `FAILED`, has been wrong in both directions.
+The four traps and their exact commands are `system-spec-kit`'s, in
+`references/validation/validation-rules.md`.
 
 #### MEMORY SAVE RULE [HARD] BLOCK
 Trigger: "save context", "save memory", `/speckit:save`

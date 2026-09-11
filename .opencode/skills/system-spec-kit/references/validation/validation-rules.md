@@ -756,7 +756,31 @@ SPECKIT_JSON=true bash .opencode/skills/system-spec-kit/runtime/cli/spec/validat
 
 ---
 
-## 14. RELATED RESOURCES
+## 14. INVOKING VALIDATE.SH: FOUR WAYS A RUN LIES
+
+These are properties of the harness rather than of any one repository, and each has already
+certified a broken packet as green. They belong here because this document owns what a
+validation run means; a copy kept anywhere else goes stale the first time the harness moves.
+
+1. **Require an explicit `RESULT: PASSED`.** A stale compiled orchestrator makes the script
+   refuse to run: it prints `compiled validation orchestrator is stale`, exits 3, and emits
+   no rule output at all. A sweep looking only for `RESULT: FAILED` reads that silence as a
+   clean pass. Rebuild with
+   `cd "$(realpath .opencode)/skills/system-spec-kit/runtime" && npm run build`.
+2. **Invoke through `realpath`, and verify by content.** Where `.opencode` is a symlink the
+   spec scripts and generators can silently no-op, exiting 0 with zero output. Use
+   `NODE_PRESERVE_SYMLINKS=1 bash "$(realpath .opencode)/skills/system-spec-kit/runtime/cli/spec/validate.sh" <folder> --strict`
+   and confirm the rule lines appeared rather than trusting the exit code.
+3. **A phase parent recurses into its children.** Printed output continues past the folder you
+   asked about, so the tail describes the last child rather than your packet. Take the FIRST
+   `RESULT:` line for a folder's own verdict, and validate children individually for a
+   per-packet answer.
+4. **Regenerate metadata after any spec-doc edit**, or `GENERATED_METADATA_INTEGRITY` fails on
+   a fingerprint that no longer matches the documents it attests.
+
+---
+
+## 15. RELATED RESOURCES
 
 ### Reference Files
 
