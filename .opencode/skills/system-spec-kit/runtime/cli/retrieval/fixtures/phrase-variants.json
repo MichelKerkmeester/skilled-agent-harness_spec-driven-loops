@@ -1,5 +1,5 @@
 {
-  "manifestHash": "84e74094176b9f225e97001e4af0ce2a9120e18d3dfed2c3c869212bb1eb20f6",
+  "manifestHash": "73b001723c44bda1fbe62a1896045b5b259470b235f124c436443949b5318ae9",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -8937,6 +8937,9 @@
     "active embedder provider generic resolution": [
       "active embedder provider generic resolution"
     ],
+    "active goal": [
+      "active_goal"
+    ],
     "active goal injection": [
       "active goal injection",
       "active_goal injection"
@@ -9212,6 +9215,9 @@
     ],
     "adding new mcp server": [
       "adding new mcp server"
+    ],
+    "additionalcontext contents": [
+      "additionalContext contents"
     ],
     "additive adherence artifacts": [
       "additive adherence artifacts"
@@ -9525,6 +9531,9 @@
     ],
     "advisor bridge import repair": [
       "advisor bridge import repair"
+    ],
+    "advisor brief contents": [
+      "advisor brief contents"
     ],
     "advisor build better sqlite3 declaration": [
       "advisor build better-sqlite3 declaration"
@@ -9937,9 +9946,6 @@
     ],
     "advisor positive controls dispatch summary": [
       "advisor positive controls dispatch summary"
-    ],
-    "advisor probe inter skill": [
-      "advisor probe inter-skill"
     ],
     "advisor probes 3 of 3 correct": [
       "advisor probes 3 of 3 correct"
@@ -10442,6 +10448,9 @@
     ],
     "aesthetics retirement tasks": [
       "aesthetics retirement tasks"
+    ],
+    "affinity advice consumer path": [
+      "affinity advice consumer path"
     ],
     "affordance evidence display": [
       "affordance evidence display"
@@ -11861,14 +11870,8 @@
     "anti bot escalation phantom hex detection": [
       "anti-bot escalation phantom hex detection"
     ],
-    "anti circularity tiers": [
-      "anti-circularity tiers"
-    ],
     "anti convergence floor": [
       "anti-convergence floor"
-    ],
-    "anti drift report projection": [
-      "anti-drift report projection"
     ],
     "anti hallucination design reference": [
       "anti-hallucination design reference"
@@ -13993,9 +13996,6 @@
     "ban snake case files and folders": [
       "ban snake_case files and folders"
     ],
-    "banned vocabulary check": [
-      "banned vocabulary check"
-    ],
     "banned vocabulary list": [
       "banned vocabulary list"
     ],
@@ -15151,9 +15151,6 @@
     "blocked by registry reachable": [
       "blocked-by-registry reachable"
     ],
-    "blocked by structure verdict": [
-      "BLOCKED-BY-STRUCTURE verdict"
-    ],
     "blocked by test sandbox": [
       "BLOCKED_BY_TEST_SANDBOX"
     ],
@@ -15754,9 +15751,6 @@
     "build obsidian theme": [
       "build obsidian theme"
     ],
-    "build report cjs": [
-      "build-report.cjs"
-    ],
     "build scoring profile": [
       "build scoring profile"
     ],
@@ -16248,6 +16242,9 @@
     ],
     "call tool chain chrome": [
       "call_tool_chain chrome"
+    ],
+    "call tool chain nudge": [
+      "call_tool_chain nudge"
     ],
     "call tool chain patterns": [
       "call_tool_chain patterns"
@@ -18205,6 +18202,9 @@
     ],
     "check generated metadata drift": [
       "check generated metadata drift"
+    ],
+    "check git hooks": [
+      "check git hooks"
     ],
     "check git hooks guard script": [
       "check-git-hooks guard script"
@@ -21647,6 +21647,9 @@
     "cline support cli pi investigation": [
       "cline support cli pi investigation"
     ],
+    "clipped register versus a plan": [
+      "clipped register versus a plan"
+    ],
     "close 052 findings": [
       "close 052 findings"
     ],
@@ -23986,6 +23989,9 @@
     "codex hook dormancy": [
       "codex hook dormancy"
     ],
+    "codex hook health": [
+      "codex hook health"
+    ],
     "codex hook install robustness": [
       "Codex hook install robustness"
     ],
@@ -23997,6 +24003,9 @@
     ],
     "codex hook install robustness tasks": [
       "Codex hook install robustness tasks"
+    ],
+    "codex hook installer": [
+      "codex hook installer"
     ],
     "codex hook parity": [
       "Codex hook parity",
@@ -24029,6 +24038,9 @@
     ],
     "codex hooks stable": [
       "Codex hooks stable"
+    ],
+    "codex hooks watchdog": [
+      "codex hooks watchdog"
     ],
     "codex image input": [
       "codex image input"
@@ -24548,6 +24560,9 @@
     ],
     "command bridge compatibility": [
       "command bridge compatibility"
+    ],
+    "command bridge regeneration": [
+      "command-bridge regeneration"
     ],
     "command bridges": [
       "command bridges"
@@ -25158,6 +25173,9 @@
     "comment hygiene governance audit": [
       "comment hygiene governance audit"
     ],
+    "comment hygiene hook": [
+      "comment hygiene hook"
+    ],
     "comment hygiene implementation": [
       "comment hygiene implementation"
     ],
@@ -25382,6 +25400,9 @@
     "compact decision format": [
       "compact decision format"
     ],
+    "compact inject": [
+      "compact inject"
+    ],
     "compact pi arbitration": [
       "compact pi arbitration"
     ],
@@ -25465,6 +25486,15 @@
     ],
     "compat index": [
       "compat index"
+    ],
+    "compat opt in review": [
+      "compat opt-in review"
+    ],
+    "compat opt in review findings": [
+      "compat opt-in review findings"
+    ],
+    "compat opt in review state": [
+      "compat opt-in review state"
     ],
     "compat override": [
       "compat override"
@@ -25998,6 +26028,9 @@
     "completion criteria copied verbatim": [
       "completion criteria copied verbatim"
     ],
+    "completion evidence hook": [
+      "completion evidence hook"
+    ],
     "completion evidence reconcile": [
       "completion evidence reconcile"
     ],
@@ -26033,6 +26066,9 @@
     ],
     "completion gate tasks": [
       "completion gate tasks"
+    ],
+    "completion sentinel": [
+      "completion sentinel"
     ],
     "completion sentinel plugin": [
       "completion sentinel plugin"
@@ -26786,9 +26822,6 @@
     ],
     "containment violation": [
       "containment_violation"
-    ],
-    "contamination lint cjs": [
-      "contamination-lint.cjs"
     ],
     "content addressed causal edge plan": [
       "content-addressed causal edge plan"
@@ -29704,6 +29737,9 @@
     "cross runtime feature parity": [
       "cross-runtime feature parity"
     ],
+    "cross runtime goal core": [
+      "cross-runtime goal core"
+    ],
     "cross runtime goal hook proof method": [
       "cross runtime goal hook proof method"
     ],
@@ -30686,12 +30722,6 @@
     "cycle health evidence": [
       "cycle health evidence"
     ],
-    "d1 d5 scoring and funnel": [
-      "d1-d5 scoring and funnel"
-    ],
-    "d1 d5 weights": [
-      "d1 d5 weights"
-    ],
     "d1 d8 defect train": [
       "D1 D8 defect train"
     ],
@@ -30728,9 +30758,6 @@
     "d4 r grader dim id mismatch": [
       "d4-r grader dim_id mismatch"
     ],
-    "d5 connectivity cjs": [
-      "d5-connectivity.cjs"
-    ],
     "d5 hard fail alignment cap summary": [
       "d5 hard fail alignment cap summary"
     ],
@@ -30748,9 +30775,6 @@
     ],
     "d5 registry wiring tasks": [
       "d5 registry wiring tasks"
-    ],
-    "d5 structural connectivity hard gate": [
-      "d5 structural connectivity hard gate"
     ],
     "d7 supersession command names": [
       "D7 supersession command names"
@@ -31522,9 +31546,6 @@
     ],
     "dead path rows": [
       "dead path rows"
-    ],
-    "dead resource path detection": [
-      "dead resource path detection"
     ],
     "dead row disposal decision": [
       "dead row disposal decision"
@@ -32834,6 +32855,9 @@
     "deep improvement benchmark": [
       "deep-improvement benchmark"
     ],
+    "deep improvement benchmark artifacts": [
+      "deep-improvement benchmark artifacts"
+    ],
     "deep improvement benchmark index": [
       "deep-improvement benchmark index"
     ],
@@ -33079,9 +33103,6 @@
     ],
     "deep improvement reviewer scorer": [
       "deep-improvement reviewer scorer"
-    ],
-    "deep improvement routing benchmark": [
-      "deep-improvement routing benchmark"
     ],
     "deep improvement scripts": [
       "deep-improvement scripts"
@@ -33458,6 +33479,9 @@
     "deep loop fingerprint history tasks": [
       "deep-loop fingerprint history tasks"
     ],
+    "deep loop five modes": [
+      "deep-loop five modes"
+    ],
     "deep loop focus candidate selection": [
       "deep-loop focus candidate selection"
     ],
@@ -33502,6 +33526,9 @@
     ],
     "deep loop graph upsert": [
       "deep_loop_graph_upsert"
+    ],
+    "deep loop guard": [
+      "deep loop guard"
     ],
     "deep loop guard state": [
       "deep loop guard state"
@@ -33631,6 +33658,9 @@
     ],
     "deep loop mode contract tasks": [
       "deep-loop mode contract tasks"
+    ],
+    "deep loop mode removal": [
+      "deep-loop mode removal"
     ],
     "deep loop mode write ownership": [
       "deep-loop mode write ownership"
@@ -34962,6 +34992,9 @@
     "deep review codex timeout": [
       "deep review codex timeout"
     ],
+    "deep review compat opt in": [
+      "deep review compat opt-in"
+    ],
     "deep review conditional to pass": [
       "deep-review conditional to pass"
     ],
@@ -35304,6 +35337,9 @@
     "deep review replay idempotency tasks": [
       "deep-review replay idempotency tasks"
     ],
+    "deep review report": [
+      "deep review report"
+    ],
     "deep review research skill contract fixes": [
       "deep-review research skill contract fixes"
     ],
@@ -35450,6 +35486,9 @@
     "deep review strategy 045": [
       "deep review strategy 045"
     ],
+    "deep review strategy glm 53 flash": [
+      "deep review strategy glm-53-flash"
+    ],
     "deep review strategy md": [
       "deep-review-strategy.md"
     ],
@@ -35545,6 +35584,9 @@
     ],
     "deep routing escalation": [
       "deep routing escalation"
+    ],
+    "deep skill benchmark deprecation": [
+      "deep-skill-benchmark deprecation"
     ],
     "deep skill graph metadata path fix": [
       "deep skill graph-metadata path fix"
@@ -35791,9 +35833,6 @@
     ],
     "default on hubs cohort": [
       "default-on hubs cohort"
-    ],
-    "default profile json": [
-      "default_profile json"
     ],
     "default provider transport": [
       "default provider transport"
@@ -36337,6 +36376,9 @@
     ],
     "deprecate sk prompt models": [
       "deprecate sk-prompt-models"
+    ],
+    "deprecate skill benchmark": [
+      "deprecate skill benchmark"
     ],
     "deprecated bulk delete outcome": [
       "deprecated bulk delete outcome"
@@ -38215,6 +38257,9 @@
     "devin p templates": [
       "devin -p templates"
     ],
+    "devin permission hook": [
+      "devin permission hook"
+    ],
     "devin permission mode effort lever": [
       "devin permission mode effort lever"
     ],
@@ -38887,6 +38932,9 @@
     "directive inventory tasks": [
       "directive inventory tasks"
     ],
+    "directive lifecycle boundary": [
+      "directive lifecycle boundary"
+    ],
     "directive lifecycle dedup": [
       "directive lifecycle dedup"
     ],
@@ -39145,11 +39193,17 @@
     "dispatch name council": [
       "dispatch name council"
     ],
+    "dispatch preflight": [
+      "dispatch preflight"
+    ],
     "dispatch preflight authorization": [
       "dispatch preflight authorization"
     ],
     "dispatch preflight hook repoint": [
       "dispatch preflight hook repoint"
+    ],
+    "dispatch preflight lint": [
+      "dispatch preflight lint"
     ],
     "dispatch preflight suite": [
       "dispatch preflight suite"
@@ -39312,6 +39366,9 @@
     ],
     "dist stale rebuild required": [
       "dist stale rebuild required"
+    ],
+    "dist staleness hook": [
+      "dist staleness hook"
     ],
     "dist staleness rebuild implementation": [
       "dist staleness rebuild implementation"
@@ -40401,6 +40458,9 @@
     "domain tuned reranker finetune": [
       "domain tuned reranker finetune"
     ],
+    "done claim evidence check": [
+      "done claim evidence check"
+    ],
     "done with audit comment": [
       "done with audit comment"
     ],
@@ -40817,9 +40877,6 @@
     ],
     "dual read single write fail closed migration": [
       "dual read single write fail closed migration"
-    ],
-    "dual report and remediation taxonomy": [
-      "dual report and remediation taxonomy"
     ],
     "dual schema wal truncate": [
       "dual-schema WAL TRUNCATE"
@@ -44181,6 +44238,9 @@
     "fable review synthesis": [
       "Fable review synthesis"
     ],
+    "fable subagent guard": [
+      "fable subagent guard"
+    ],
     "fabricated timestamps": [
       "fabricated timestamps"
     ],
@@ -44646,11 +44706,17 @@
     "fanout lineage": [
       "fanout lineage"
     ],
+    "fanout lineage dashboard": [
+      "fanout lineage dashboard"
+    ],
     "fanout lineage err retention": [
       "fanout lineage err retention"
     ],
     "fanout lineage in process": [
       "fanout lineage in-process"
+    ],
+    "fanout lineage strategy": [
+      "fanout lineage strategy"
     ],
     "fanout live search shipped": [
       "fanout live search shipped"
@@ -47146,6 +47212,9 @@
     "forward authoring out of scope": [
       "forward authoring out of scope"
     ],
+    "forward looking progress update": [
+      "forward looking progress update"
+    ],
     "forward plan": [
       "forward plan"
     ],
@@ -48853,6 +48922,9 @@
     "git history reconciliation": [
       "git history reconciliation"
     ],
+    "git hook drift": [
+      "git hook drift"
+    ],
     "git hook embedded heredoc duplication": [
       "git hook embedded heredoc duplication"
     ],
@@ -48879,6 +48951,12 @@
     ],
     "git hook reset local head": [
       "git hook reset local head"
+    ],
+    "git hook verification": [
+      "git hook verification"
+    ],
+    "git hooks": [
+      "git hooks"
     ],
     "git hooks presence guard": [
       "git hooks presence guard"
@@ -49288,6 +49366,9 @@
     "goal and key result setup": [
       "goal and key result setup"
     ],
+    "goal before and after": [
+      "goal before and after"
+    ],
     "goal binding": [
       "goal binding"
     ],
@@ -49377,6 +49458,9 @@
     ],
     "goal durable budget 4000": [
       "goal durable budget 4000"
+    ],
+    "goal durable slice": [
+      "goal durable slice"
     ],
     "goal durable slice budget": [
       "goal durable slice budget"
@@ -49540,6 +49624,9 @@
     "goal pi goal opencode goal cursor goal devin": [
       "goal-pi goal-opencode goal-cursor goal-devin"
     ],
+    "goal plugin": [
+      "goal plugin"
+    ],
     "goal plugin final state": [
       "goal plugin final state"
     ],
@@ -49627,6 +49714,9 @@
     "goal store fate decision": [
       "goal store fate decision"
     ],
+    "goal system comparison": [
+      "goal system comparison"
+    ],
     "goal template": [
       "goal template"
     ],
@@ -49662,6 +49752,9 @@
     ],
     "goal unification research strategy": [
       "goal unification research strategy"
+    ],
+    "goal unification summary": [
+      "goal unification summary"
     ],
     "goal unification synthesis": [
       "goal unification synthesis"
@@ -50800,6 +50893,9 @@
     "hard rule registration closed": [
       "hard rule registration closed"
     ],
+    "hard rules engine": [
+      "hard rules engine"
+    ],
     "hardcoded checkout root": [
       "hardcoded checkout root"
     ],
@@ -50964,9 +51060,6 @@
     ],
     "headless stream print capture plan": [
       "headless stream print capture plan"
-    ],
-    "headline bottleneck funnel": [
-      "headline bottleneck funnel"
     ],
     "health and degeneration harness implementation plan": [
       "health and degeneration harness implementation plan"
@@ -51412,9 +51505,6 @@
     "highest priority review dimension": [
       "highest-priority review dimension"
     ],
-    "hint free fixtures and contamination gate": [
-      "hint-free fixtures and contamination gate"
-    ],
     "historic context preservation": [
       "historic context preservation"
     ],
@@ -51487,6 +51577,9 @@
     "hook adapter port": [
       "hook adapter port"
     ],
+    "hook adapter shared": [
+      "hook adapter shared"
+    ],
     "hook adapter shared boilerplate": [
       "hook adapter shared boilerplate"
     ],
@@ -51513,6 +51606,9 @@
     ],
     "hook contract remediation": [
       "hook contract remediation"
+    ],
+    "hook coverage rationale": [
+      "hook coverage rationale"
     ],
     "hook daemon docs alignment": [
       "hook daemon docs alignment"
@@ -51576,6 +51672,9 @@
     ],
     "hook helper skipped fail open": [
       "hook helper skipped fail_open"
+    ],
+    "hook injection contract": [
+      "hook injection contract"
     ],
     "hook kill switch adr": [
       "hook kill-switch ADR"
@@ -51664,6 +51763,9 @@
     "hook regression harness": [
       "hook regression harness"
     ],
+    "hook relocation": [
+      "hook relocation"
+    ],
     "hook relocation decision": [
       "hook relocation decision"
     ],
@@ -51744,6 +51846,12 @@
     ],
     "hooks manual testing playbook run": [
       "hooks manual testing playbook run"
+    ],
+    "hooks shared helpers": [
+      "hooks shared helpers"
+    ],
+    "hooks tree": [
+      "hooks tree"
     ],
     "hooks tree opencode row": [
       "hooks tree opencode row"
@@ -53701,8 +53809,14 @@
     "install bdg": [
       "install bdg"
     ],
+    "install codex hooks": [
+      "install codex hooks"
+    ],
     "install cupt": [
       "install cupt"
+    ],
+    "install git hooks": [
+      "install git hooks"
     ],
     "install guide": [
       "install guide"
@@ -54045,9 +54159,6 @@
     ],
     "intent signals resource map": [
       "intent signals resource map"
-    ],
-    "intent signals substring matching": [
-      "INTENT_SIGNALS substring matching"
     ],
     "intentional fixture exclusion": [
       "intentional fixture exclusion"
@@ -54414,6 +54525,9 @@
     ],
     "irreversible task deletion": [
       "irreversible task deletion"
+    ],
+    "is hook output visible": [
+      "is hook output visible"
     ],
     "is phase parent": [
       "is phase parent"
@@ -55351,6 +55465,9 @@
     "lane b hyphen underscore": [
       "lane b hyphen underscore"
     ],
+    "lane b model benchmark run labels": [
+      "Lane B model-benchmark run labels"
+    ],
     "lane b profile json scaffold": [
       "Lane B profile json scaffold"
     ],
@@ -55381,18 +55498,11 @@
     "lane c d3 proxy tasks": [
       "Lane-C D3 proxy tasks"
     ],
-    "lane c d5 connectivity gate": [
-      "Lane C D5 connectivity gate"
-    ],
     "lane c dead branch cleanup": [
       "lane c dead branch cleanup"
     ],
     "lane c fields skip trap": [
       "lane c fields skip trap"
-    ],
-    "lane c fixtures": [
-      "lane C fixtures",
-      "lane c fixtures"
     ],
     "lane c hub benchmark plan": [
       "lane-c hub benchmark plan"
@@ -55400,8 +55510,8 @@
     "lane c hub benchmark tasks": [
       "lane-c hub benchmark tasks"
     ],
-    "lane c orchestration": [
-      "lane c orchestration"
+    "lane c removal": [
+      "lane c removal"
     ],
     "lane c router final plan": [
       "lane-c router-final plan"
@@ -55415,20 +55525,8 @@
     "lane c router final tasks": [
       "lane-c router-final tasks"
     ],
-    "lane c routing remediation": [
-      "lane c routing remediation"
-    ],
-    "lane c scoring": [
-      "lane c scoring"
-    ],
     "lane c skill benchmark hub": [
       "lane-c skill benchmark hub"
-    ],
-    "lane c skill benchmark self run": [
-      "Lane C skill-benchmark self-run"
-    ],
-    "lane c vitest": [
-      "Lane C Vitest"
     ],
     "lane champion backfill recall": [
       "lane champion backfill recall"
@@ -56346,6 +56444,9 @@
     "legacy 065 child alias cleanup": [
       "legacy 065 child alias cleanup"
     ],
+    "legacy active goal migration": [
+      "legacy active goal migration"
+    ],
     "legacy advisor tool bridge": [
       "legacy advisor tool bridge"
     ],
@@ -56964,9 +57065,6 @@
     "lint baseline 115 problems": [
       "lint baseline 115 problems"
     ],
-    "lint fixture for leaks": [
-      "lint fixture for leaks"
-    ],
     "lint known baseline 115 problems": [
       "lint known baseline 115 problems"
     ],
@@ -57139,6 +57237,9 @@
     ],
     "live branch default on": [
       "live branch default on"
+    ],
+    "live branch reconcile": [
+      "live branch reconcile"
     ],
     "live db byte equality guard": [
       "live DB byte-equality guard"
@@ -59923,6 +60024,9 @@
     "mcp helper process leak": [
       "mcp helper process leak"
     ],
+    "mcp helper teardown": [
+      "mcp helper teardown"
+    ],
     "mcp host config cutover": [
       "mcp host config cutover"
     ],
@@ -60618,6 +60722,7 @@
       "mcp roundtrip scenarios"
     ],
     "mcp route guard": [
+      "mcp route guard",
       "mcp-route-guard"
     ],
     "mcp route guard cursor fix": [
@@ -64302,17 +64407,11 @@
     "mode scaffold tasks": [
       "mode scaffold tasks"
     ],
-    "mode skill benchmark": [
-      "--mode=skill-benchmark"
-    ],
     "mode skill readme revisit": [
       "mode skill readme revisit"
     ],
     "mode switch": [
       "mode switch"
-    ],
-    "mode wiring and orchestration": [
-      "mode wiring and orchestration"
     ],
     "mode write set conflict graph": [
       "mode write-set conflict graph"
@@ -68650,9 +68749,6 @@
     "opt in 5 dimension scorer": [
       "opt-in 5-dimension scorer"
     ],
-    "opt in advisor probe": [
-      "opt-in advisor probe"
-    ],
     "opt in collector posture": [
       "opt-in collector posture"
     ],
@@ -69706,6 +69802,9 @@
     ],
     "packet goal": [
       "packet goal"
+    ],
+    "packet goal binding": [
+      "packet goal binding"
     ],
     "packet goal single source": [
       "packet goal single source"
@@ -70973,9 +71072,6 @@
     "per runtime setup docs": [
       "per-runtime setup docs"
     ],
-    "per scenario aggregate scoring": [
-      "per-scenario aggregate scoring"
-    ],
     "per seat outcome aggregation": [
       "per-seat outcome aggregation"
     ],
@@ -71087,6 +71183,9 @@
     "permanently remove task": [
       "permanently remove task"
     ],
+    "permission decision policy": [
+      "permission decision policy"
+    ],
     "permission level cells": [
       "permission level cells"
     ],
@@ -71104,6 +71203,9 @@
     ],
     "permission precondition version scoped": [
       "permission precondition version scoped"
+    ],
+    "permission request policy": [
+      "permission request policy"
     ],
     "permissions gate": [
       "permissions gate"
@@ -74566,9 +74668,6 @@
     "playbook scenario repair": [
       "playbook scenario repair"
     ],
-    "playbook scenario scoring": [
-      "playbook scenario scoring"
-    ],
     "playbook shell python daemon waves": [
       "playbook shell python daemon waves"
     ],
@@ -74939,6 +75038,9 @@
     "portable communication research": [
       "portable communication research"
     ],
+    "portable guard cores": [
+      "portable guard cores"
+    ],
     "portable mcp launcher": [
       "portable mcp launcher"
     ],
@@ -75168,6 +75270,7 @@
       "post-edit hook dead"
     ],
     "post edit quality": [
+      "post edit quality",
       "post-edit-quality"
     ],
     "post edit quality router": [
@@ -75406,6 +75509,9 @@
     ],
     "pre commit auto remint": [
       "pre-commit auto remint"
+    ],
+    "pre commit hook": [
+      "pre-commit hook"
     ],
     "pre commit mirror gate": [
       "pre-commit mirror gate"
@@ -75782,8 +75888,14 @@
     "primary checkout never behind origin": [
       "primary checkout never behind origin"
     ],
+    "primary checkout reconcile": [
+      "primary checkout reconcile"
+    ],
     "primary never behind adr": [
       "primary never behind adr"
+    ],
+    "primary reconcile": [
+      "primary reconcile"
     ],
     "primary reconcile disjoint fast forward": [
       "primary reconcile disjoint fast forward"
@@ -76995,12 +77107,6 @@
     "public docs": [
       "public docs"
     ],
-    "public private fixture": [
-      "public private fixture"
-    ],
-    "public private fixture pair": [
-      "public private fixture pair"
-    ],
     "public repo security audit": [
       "Public repo security audit"
     ],
@@ -77654,9 +77760,6 @@
     ],
     "rag workstream dispositions": [
       "rag workstream dispositions"
-    ],
-    "raise live routing score": [
-      "raise live routing score"
     ],
     "raise the retrieval floor": [
       "raise the retrieval floor"
@@ -78692,6 +78795,9 @@
     ],
     "reconcile 117 packet": [
       "reconcile 117 packet"
+    ],
+    "reconcile codex hooks": [
+      "reconcile codex hooks"
     ],
     "reconcile handler registration": [
       "reconcile handler registration"
@@ -80453,12 +80559,6 @@
     "remediation tasks": [
       "remediation tasks"
     ],
-    "remediation taxonomy": [
-      "remediation taxonomy"
-    ],
-    "remediation taxonomy json": [
-      "remediation-taxonomy.json"
-    ],
     "remote branch allowlist": [
       "remote branch allowlist"
     ],
@@ -80596,6 +80696,9 @@
     ],
     "remove sk vision from claude mcp": [
       "remove sk-vision from claude mcp"
+    ],
+    "remove skill benchmark lane": [
+      "remove skill-benchmark lane"
     ],
     "remove snake case back compatibility": [
       "remove snake case back compatibility"
@@ -80779,9 +80882,6 @@
     ],
     "render prompt": [
       "render prompt"
-    ],
-    "render skill benchmark report": [
-      "render skill benchmark report"
     ],
     "render ts directives": [
       "render.ts directives"
@@ -81005,9 +81105,6 @@
     ],
     "replay pool plan": [
       "replay pool plan"
-    ],
-    "replay skill router": [
-      "replay skill router"
     ],
     "replayable claim status": [
       "replayable claim status"
@@ -82344,9 +82441,6 @@
     ],
     "resource map memory finalization": [
       "resource map memory finalization"
-    ],
-    "resource map optimization": [
-      "resource map optimization"
     ],
     "resource map optional addon": [
       "resource map optional addon"
@@ -83881,6 +83975,9 @@
     "roadmap phase 2 conditional native": [
       "roadmap phase 2 conditional native"
     ],
+    "roadmap style update": [
+      "roadmap style update"
+    ],
     "roadmap template": [
       "roadmap template"
     ],
@@ -84556,12 +84653,6 @@
     "router regeneration tasks": [
       "router regeneration tasks"
     ],
-    "router replay and advisor probe": [
-      "router replay and advisor probe"
-    ],
-    "router replay cjs": [
-      "router-replay.cjs"
-    ],
     "router replay rename plan": [
       "router-replay rename plan"
     ],
@@ -85138,9 +85229,6 @@
     "run command surface benchmark": [
       "run command surface benchmark"
     ],
-    "run connectivity gate": [
-      "run connectivity gate"
-    ],
     "run design extraction": [
       "run design extraction"
     ],
@@ -85170,9 +85258,6 @@
     ],
     "run label index table template": [
       "run-label index table template"
-    ],
-    "run lane c": [
-      "run lane c"
     ],
     "run manual playbook scenario": [
       "run manual playbook scenario"
@@ -85212,12 +85297,6 @@
     ],
     "run research on dirty tree": [
       "run research on dirty tree"
-    ],
-    "run skill benchmark": [
-      "run-skill-benchmark"
-    ],
-    "run skill benchmark cjs": [
-      "run-skill-benchmark.cjs"
     ],
     "run spec recall gate": [
       "run spec recall gate"
@@ -85465,6 +85544,9 @@
     "runtime enumeration audit": [
       "runtime enumeration audit"
     ],
+    "runtime extension model differences": [
+      "runtime extension model differences"
+    ],
     "runtime fail remediation tasks": [
       "runtime fail remediation tasks"
     ],
@@ -85500,6 +85582,9 @@
     ],
     "runtime hook vocabulary": [
       "runtime hook vocabulary"
+    ],
+    "runtime hooks": [
+      "runtime hooks"
     ],
     "runtime initialized health field": [
       "runtime_initialized health field"
@@ -86200,6 +86285,9 @@
     "savemode refactor memory save": [
       "savemode refactor memory save"
     ],
+    "say the plan before working": [
+      "say the plan before working"
+    ],
     "sc 001": [
       "sc-001"
     ],
@@ -86698,9 +86786,6 @@
     "score adjustment role": [
       "score adjustment role"
     ],
-    "score benchmark dimensions": [
-      "score benchmark dimensions"
-    ],
     "score candidate": [
       "score-candidate"
     ],
@@ -86736,9 +86821,6 @@
     ],
     "score scale unification": [
       "score scale unification"
-    ],
-    "score skill benchmark cjs": [
-      "score-skill-benchmark.cjs"
     ],
     "score this document": [
       "score this document"
@@ -87626,6 +87708,9 @@
     "self electing primary sidecar": [
       "self-electing primary sidecar"
     ],
+    "self healed a stale build": [
+      "self-healed a stale build"
+    ],
     "self healing context": [
       "self-healing context"
     ],
@@ -88007,6 +88092,9 @@
     "session cleanup fallback summary": [
       "session-cleanup fallback summary"
     ],
+    "session cleanup hook": [
+      "session cleanup hook"
+    ],
     "session cleanup no session pid": [
       "session-cleanup no-session-pid"
     ],
@@ -88022,6 +88110,9 @@
     "session cleanup trap": [
       "session cleanup trap"
     ],
+    "session continuity priming": [
+      "session continuity priming"
+    ],
     "session continuity recovery": [
       "session continuity recovery"
     ],
@@ -88033,6 +88124,12 @@
     ],
     "session extraction and enrichment": [
       "session extraction and enrichment"
+    ],
+    "session goal": [
+      "session goal"
+    ],
+    "session goal isolation": [
+      "session goal isolation"
     ],
     "session goal objective": [
       "session goal objective"
@@ -88063,6 +88160,9 @@
     ],
     "session leak detection": [
       "session leak detection"
+    ],
+    "session lifecycle hooks": [
+      "session lifecycle hooks"
     ],
     "session lineage": [
       "session lineage"
@@ -88168,6 +88268,9 @@
     ],
     "session start artifact path": [
       "session-start artifact path"
+    ],
+    "session start context": [
+      "session start context"
     ],
     "session start orphan sweep flag": [
       "session-start orphan sweep flag"
@@ -88624,6 +88727,9 @@
     ],
     "shared checkout concurrent editor": [
       "shared checkout concurrent editor"
+    ],
+    "shared checkout warning": [
+      "shared checkout warning"
     ],
     "shared cleanup criteria": [
       "shared cleanup criteria"
@@ -90554,9 +90660,6 @@
     ],
     "sk code router sync drift guard rust": [
       "sk-code-router-sync drift guard rust"
-    ],
-    "sk code router sync test": [
-      "sk-code router sync test"
     ],
     "sk code router typed gold": [
       "sk-code router typed gold"
@@ -94470,9 +94573,6 @@
     "skill benchmark deterministic replay": [
       "skill benchmark deterministic replay"
     ],
-    "skill benchmark dimensions": [
-      "skill benchmark dimensions"
-    ],
     "skill benchmark effect certificate plan": [
       "skill benchmark effect certificate plan"
     ],
@@ -94500,17 +94600,8 @@
     "skill benchmark hub re layer": [
       "skill-benchmark hub re-layer"
     ],
-    "skill benchmark invocation": [
-      "skill benchmark invocation"
-    ],
-    "skill benchmark lane scripts": [
-      "skill-benchmark lane scripts"
-    ],
     "skill benchmark ledger head linkage": [
       "skill benchmark ledger head linkage"
-    ],
-    "skill benchmark ledger schema": [
-      "skill-benchmark-ledger-schema"
     ],
     "skill benchmark legacy upcaster": [
       "skill benchmark legacy upcaster"
@@ -94530,9 +94621,6 @@
     "skill benchmark migration gate tasks": [
       "skill benchmark migration gate tasks"
     ],
-    "skill benchmark mode": [
-      "skill-benchmark mode"
-    ],
     "skill benchmark mode gate input": [
       "skill benchmark mode gate input"
     ],
@@ -94548,9 +94636,6 @@
     "skill benchmark offline verifier plan": [
       "skill benchmark offline verifier plan"
     ],
-    "skill benchmark operator guide": [
-      "skill-benchmark operator guide"
-    ],
     "skill benchmark optimize automation": [
       "skill-benchmark optimize automation"
     ],
@@ -94565,9 +94650,6 @@
     ],
     "skill benchmark preveventhash boundary": [
       "Skill Benchmark prevEventHash boundary"
-    ],
-    "skill benchmark profile": [
-      "skill benchmark profile"
     ],
     "skill benchmark projection contract": [
       "skill benchmark projection contract"
@@ -94605,9 +94687,6 @@
     "skill benchmark reducer implementation": [
       "skill benchmark reducer implementation"
     ],
-    "skill benchmark reducers": [
-      "skill-benchmark-reducers"
-    ],
     "skill benchmark reducers and projections": [
       "skill benchmark reducers and projections"
     ],
@@ -94619,6 +94698,9 @@
     ],
     "skill benchmark reference sealing tasks": [
       "skill benchmark reference sealing tasks"
+    ],
+    "skill benchmark removal plan": [
+      "skill-benchmark removal plan"
     ],
     "skill benchmark report storage": [
       "skill-benchmark-report storage"
@@ -94653,23 +94735,11 @@
     "skill benchmark rollback switch": [
       "skill benchmark rollback switch"
     ],
-    "skill benchmark scenario authoring": [
-      "skill-benchmark scenario authoring"
-    ],
-    "skill benchmark scoring contract": [
-      "skill-benchmark scoring contract"
-    ],
-    "skill benchmark scripts": [
-      "skill benchmark scripts"
-    ],
     "skill benchmark sealed adapter evidence": [
       "skill benchmark sealed adapter evidence"
     ],
     "skill benchmark sealed artifact implementation": [
       "Skill Benchmark sealed artifact implementation"
-    ],
-    "skill benchmark sealed artifacts": [
-      "skill-benchmark-sealed-artifacts"
     ],
     "skill benchmark sealed artifacts implementation plan": [
       "Skill Benchmark sealed artifacts implementation plan"
@@ -94703,9 +94773,6 @@
     ],
     "skill benchmark tamper evident read plan": [
       "skill benchmark tamper evident read plan"
-    ],
-    "skill benchmark tests": [
-      "skill-benchmark tests"
     ],
     "skill benchmark typed event fold": [
       "skill-benchmark typed event fold"
@@ -95465,9 +95532,6 @@
     ],
     "skill routing follow up investigations": [
       "skill routing follow-up investigations"
-    ],
-    "skill routing optimization": [
-      "skill routing optimization"
     ],
     "skill routing optimization mode": [
       "skill routing optimization mode"
@@ -97900,6 +97964,9 @@
     "stale dist prevention hook plugin": [
       "stale dist prevention hook plugin"
     ],
+    "stale dist rebuild": [
+      "stale dist rebuild"
+    ],
     "stale dist rebuild outcome": [
       "stale dist rebuild outcome"
     ],
@@ -98302,6 +98369,9 @@
     ],
     "starter design tokens css": [
       "starter design tokens css"
+    ],
+    "startup guard teardown": [
+      "startup guard teardown"
     ],
     "startup guard warnings": [
       "startup guard warnings"
@@ -101180,6 +101250,9 @@
     "systematic frontend debugging": [
       "systematic frontend debugging"
     ],
+    "systemmessage contents": [
+      "systemMessage contents"
+    ],
     "t 0381 convergence graph fix": [
       "T-0381 convergence graph fix"
     ],
@@ -101354,6 +101427,9 @@
     ],
     "task details": [
       "task details"
+    ],
+    "task dispatch guard": [
+      "task dispatch guard"
     ],
     "task duration bars": [
       "task duration bars"
@@ -104126,6 +104202,9 @@
     "unearned coverage credit alignment": [
       "unearned coverage credit alignment"
     ],
+    "uneven hook coverage explained": [
+      "uneven hook coverage explained"
+    ],
     "unforget channel disjointness": [
       "unforget channel disjointness"
     ],
@@ -106776,6 +106855,9 @@
     "what cdp domains exist": [
       "what cdp domains exist"
     ],
+    "what changed about goals": [
+      "what changed about goals"
+    ],
     "what changed between these two screenshots": [
       "what changed between these two screenshots"
     ],
@@ -106803,11 +106885,17 @@
     "what does spec kit do": [
       "what does spec kit do"
     ],
+    "what does this hook inject": [
+      "what does this hook inject"
+    ],
     "what does v4 actually ship": [
       "what does v4 actually ship"
     ],
     "what goes in a rule": [
       "what goes in a rule"
+    ],
+    "what happens at each checkpoint": [
+      "what happens at each checkpoint"
     ],
     "what plugins are installed": [
       "what plugins are installed"
@@ -107124,8 +107212,14 @@
     "why did the scanner flag that": [
       "why did the scanner flag that"
     ],
+    "why does only opencode have this hook": [
+      "why does only opencode have this hook"
+    ],
     "why does this feel overwhelming": [
       "why does this feel overwhelming"
+    ],
+    "why doesnt this runtime have this hook": [
+      "why doesnt this runtime have this hook"
     ],
     "why flowchart passes validation": [
       "why flowchart passes validation"
@@ -107195,9 +107289,6 @@
     ],
     "wire routing accuracy gate into ci": [
       "wire routing accuracy gate into ci"
-    ],
-    "wire skill benchmark mode": [
-      "wire skill-benchmark mode"
     ],
     "wire the audited dispatch": [
       "wire the audited dispatch"
@@ -107496,6 +107587,9 @@
     "worktree git hooks coverage": [
       "worktree git hooks coverage"
     ],
+    "worktree guard hook": [
+      "worktree guard hook"
+    ],
     "worktree guard hook wiring": [
       "worktree-guard hook wiring"
     ],
@@ -107555,6 +107649,9 @@
     ],
     "worktree relocation tasks": [
       "worktree relocation tasks"
+    ],
+    "worktree safety": [
+      "worktree safety"
     ],
     "worktree session sh": [
       "worktree-session.sh"

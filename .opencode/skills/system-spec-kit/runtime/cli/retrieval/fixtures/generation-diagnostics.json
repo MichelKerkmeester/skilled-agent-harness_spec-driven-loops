@@ -1,12 +1,12 @@
 {
   "counts": {
-    "duplicate-phrase": 57,
-    "missing-frontmatter": 7035,
+    "duplicate-phrase": 54,
+    "missing-frontmatter": 7043,
     "non-yaml-frontmatter": 1,
-    "ok": 14563,
-    "valid-empty-list": 7529
+    "ok": 14617,
+    "valid-empty-list": 7531
   },
-  "documentsScanned": 29185,
+  "documentsScanned": 29246,
   "ignoredMalformedDocuments": 1,
   "ignoredPaths": [
     {
@@ -16,7 +16,7 @@
   ],
   "ignoredPathsUnmatched": [],
   "malformedDocuments": 0,
-  "manifestHash": "84e74094176b9f225e97001e4af0ce2a9120e18d3dfed2c3c869212bb1eb20f6",
+  "manifestHash": "73b001723c44bda1fbe62a1896045b5b259470b235f124c436443949b5318ae9",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -31,7 +31,7 @@
       "editor-fallback": 2,
       "generic-workflow-word": 3,
       "numeric-only": 41,
-      "ok": 35567,
+      "ok": 35599,
       "prose-sentence": 27,
       "single-token": 304,
       "stop-word-only": 3
@@ -32512,12 +32512,6 @@
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": ".opencode/skills/system-deep-loop/deep-improvement/behavior-benchmark/scenarios/IMB-008-skill-benchmark-bare-command-halt.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
       "path": ".opencode/skills/system-deep-loop/deep-improvement/benchmark/reports/2026-07-10--live-mode-b--live/README.md",
       "reason": "no opening frontmatter delimiter"
     },
@@ -32902,12 +32896,6 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/intra-routing-recall/skill-benchmark.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
       "path": ".opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/intra-routing-recall/target-onboarding.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -33059,42 +33047,6 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/runtime-truth/stop-reason-taxonomy.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/skill-benchmark/contamination-gate.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/skill-benchmark/d5-connectivity-hard-gate.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/skill-benchmark/dual-report-and-remediation.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/skill-benchmark/mode-wiring-routing.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/skill-benchmark/router-replay-mode-a.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/skill-benchmark/scoring-vs-private-gold.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -34445,12 +34397,6 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".opencode/skills/system-deep-loop/manual-testing-playbook/improvement-lane-routing/skill-benchmark.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
       "path": ".opencode/skills/system-deep-loop/manual-testing-playbook/manual-testing-playbook.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -35023,27 +34969,6 @@
       "line": 2,
       "path": ".opencode/skills/system-deep-loop/runtime/lib/semantic-communities/README.md",
       "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "duplicate-phrase",
-      "line": 6,
-      "path": ".opencode/skills/system-deep-loop/runtime/lib/skill-benchmark-ledger-schema/README.md",
-      "rawKey": "trigger_phrases",
-      "reason": "duplicate normalized phrase \"skill benchmark ledger schema\""
-    },
-    {
-      "category": "duplicate-phrase",
-      "line": 6,
-      "path": ".opencode/skills/system-deep-loop/runtime/lib/skill-benchmark-reducers/README.md",
-      "rawKey": "trigger_phrases",
-      "reason": "duplicate normalized phrase \"skill benchmark reducers\""
-    },
-    {
-      "category": "duplicate-phrase",
-      "line": 6,
-      "path": ".opencode/skills/system-deep-loop/runtime/lib/skill-benchmark-sealed-artifacts/README.md",
-      "rawKey": "trigger_phrases",
-      "reason": "duplicate normalized phrase \"skill benchmark sealed artifacts\""
     },
     {
       "category": "missing-frontmatter",
@@ -38389,6 +38314,66 @@
       "reason": "declared empty trigger list"
     },
     {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash/review/lineages/deepseek-v4-1-flash-max/deep-review-dashboard.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash/review/lineages/deepseek-v4-1-flash-max/deep-review-strategy.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash/review/lineages/deepseek-v4-1-flash-max/iterations/iteration-001.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash/review/lineages/deepseek-v4-1-flash-max/prompts/iteration-001.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash/review/lineages/deepseek-v4-1-flash-max/review-report.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash/review/lineages/gpt-5-6-luna-max-fast/deep-review-dashboard.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash/review/lineages/gpt-5-6-luna-max-fast/deep-review-strategy.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash/review/lineages/gpt-5-6-luna-max-fast/iterations/iteration-001.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash/review/lineages/gpt-5-6-luna-max-fast/prompts/iteration-001.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash/review/lineages/gpt-5-6-luna-max-fast/review-report.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
       "category": "valid-empty-list",
       "line": 3,
       "path": "specs/hooks/001-hook-docs-relocation/fix-report-preexisting-ghosts.md",
@@ -39504,6 +39489,62 @@
       "line": 1,
       "path": "specs/hooks/021-compat-opt-in-and-image-declaration/review/brief.md",
       "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks/021-compat-opt-in-and-image-declaration/review/lineages/deepseek-v41-flash/iterations/iteration-001.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks/021-compat-opt-in-and-image-declaration/review/lineages/deepseek-v41-flash/prompts/iteration-001.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/hooks/021-compat-opt-in-and-image-declaration/review/lineages/deepseek-v41-flash/review-report.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks/021-compat-opt-in-and-image-declaration/review/lineages/glm-53-flash/iterations/iteration-001.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks/021-compat-opt-in-and-image-declaration/review/lineages/glm-53-flash/prompts/iteration-001.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 4,
+      "path": "specs/hooks/021-compat-opt-in-and-image-declaration/review/lineages/gpt-56-luna/deep-review-dashboard.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/hooks/021-compat-opt-in-and-image-declaration/review/lineages/gpt-56-luna/iterations/iteration-001.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/hooks/021-compat-opt-in-and-image-declaration/review/lineages/gpt-56-luna/prompts/iteration-001.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "valid-empty-list",
+      "line": 4,
+      "path": "specs/hooks/021-compat-opt-in-and-image-declaration/review/lineages/gpt-56-luna/resource-map.md",
+      "rawKey": "trigger_phrases",
+      "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
@@ -95360,6 +95401,30 @@
   ],
   "skippedPaths": [
     {
+      "path": ".opencode/hooks/dispatch/lib/node_modules",
+      "reason": "excluded directory"
+    },
+    {
+      "path": ".opencode/hooks/dispatch/node_modules",
+      "reason": "excluded directory"
+    },
+    {
+      "path": ".opencode/hooks/dispatch/pi/node_modules",
+      "reason": "excluded directory"
+    },
+    {
+      "path": ".opencode/hooks/git-preflight/README.md",
+      "reason": "duplicate of an already-indexed document"
+    },
+    {
+      "path": ".opencode/hooks/skill-advisor/README.md",
+      "reason": "duplicate of an already-indexed document"
+    },
+    {
+      "path": ".opencode/hooks/spec-gate/README.md",
+      "reason": "duplicate of an already-indexed document"
+    },
+    {
       "path": ".opencode/install-guides/MCP - Chrome Dev Tools.md",
       "reason": "duplicate of an already-indexed document"
     },
@@ -95517,10 +95582,6 @@
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-fixtures",
-      "reason": "excluded directory"
-    },
-    {
-      "path": ".opencode/skills/system-deep-loop/deep-improvement/assets/skill-benchmark/fixtures",
       "reason": "excluded directory"
     },
     {
@@ -95721,6 +95782,14 @@
     },
     {
       "path": "specs/agents/009-turn-closeout-next-steps/006-synthesis-presentation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/009-turn-closeout-next-steps/007-progress-updates/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/009-turn-closeout-next-steps/008-communication-split/scratch",
       "reason": "excluded directory"
     },
     {
@@ -97036,6 +97105,14 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-design/020-chart-and-diagram-review/001-chart-review/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-design/020-chart-and-diagram-review/002-diagram-review/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-design/z_archive",
       "reason": "excluded directory"
     },
@@ -97532,6 +97609,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-git/028-crawlable-commit-history/008-second-pass-subjects-and-attribution/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-git/z_archive",
       "reason": "excluded directory"
     },
@@ -97901,6 +97982,10 @@
     },
     {
       "path": "specs/system-deep-loop/046-synthesis-chat-presentation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/047-deprecate-skill-benchmark/scratch",
       "reason": "excluded directory"
     },
     {
@@ -99601,6 +99686,10 @@
     },
     {
       "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/008-hardening-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/009-close-open-decisions/scratch",
       "reason": "excluded directory"
     },
     {
