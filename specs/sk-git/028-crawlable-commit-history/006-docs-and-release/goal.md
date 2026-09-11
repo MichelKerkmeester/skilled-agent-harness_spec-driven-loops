@@ -90,11 +90,13 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Phase opened | Pending | |
+| README, changelog, version | Done | `d6ca91f853`, VALID x3, package PASS |
+| Vocabulary and manifests | Done | `a8135ef83c`, gate 13/13 |
+| Rule and AGENTS.md | Done | `d4d6096ac1` |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | |
+| Advisor probe | Deferred to the merge, named in the summary |
 <!-- /ANCHOR:log -->

@@ -10,18 +10,18 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/006-docs-and-release"
+    packet_pointer: "sk-git/028-crawlable-commit-history/006-docs-and-release"
     last_updated_at: "2026-09-11T07:16:33Z"
-    last_updated_by: "scaffold"
+    last_updated_by: "claude-fable-5-1"
     recent_action: "Authored the acceptance criteria for this packet"
     next_safe_action: "Meet, waive or supersede the open criteria"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "[SESSION-ID]"
+      session_id: "2026-09-11-skgit-028"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 90
     open_questions: []
     answered_questions: []
 ---
@@ -39,9 +39,9 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** [PACKET-ID]
-**Level:** [2/3/3+]
-**Status:** [Draft/In Progress/Complete]
+**Packet:** sk-git/028-crawlable-commit-history/006-docs-and-release
+**Level:** 3
+**Status:** Complete
 **Date:** 2026-09-11
 <!-- /ANCHOR:metadata -->
 
@@ -54,7 +54,10 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given [context], When [action], Then [observable outcome] | [command, file:line, or artifact that proves it] | Unmet | - |
+| AC-001 | REQ-001 | Given the release, When README, changelog and SKILL.md are validated, Then each is VALID and both versions read 1.6.0.0 | three VALID lines, `d6ca91f853` | Met | - |
+| AC-002 | REQ-002 | Given the vocabulary edit, When the metadata gate and package check run, Then both pass | gate checked 13 passed 13 fixed 1; Result: PASS; `a8135ef83c` | Met | - |
+| AC-003 | REQ-003 | Given ADR-005, When the rule and AGENTS.md are edited, Then the freeze paragraph and the identity row exist with the version bumped | `d4d6096ac1`, diff reviewed in full | Met | - |
+| AC-004 | US-002 | Given a commit-id prompt, When the advisor scores it on the main checkout, Then sk-git is recommended at or above the bar | deferred to the merge: the daemon indexes the main checkout | Unmet | - |
 
 ### Status values
 
@@ -79,8 +82,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** [Yes/No]
+**Closeable:** No
 
-[One or two sentences: which criteria carried the packet, and what was consciously
-left out. Write this when the packet is closed, not before.]
+AC-001 to AC-003 carried the packet. AC-004 is a one-prompt check on the main checkout after the merge, named rather than skipped.
 <!-- /ANCHOR:closure -->

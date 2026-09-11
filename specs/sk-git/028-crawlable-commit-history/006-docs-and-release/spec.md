@@ -33,7 +33,7 @@ The code and the contract shipped in phases 003 to 005 and 007. This phase makes
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-09-11 |
 | **Branch** | `worktrees/048-crawlable-commit-history` |
 | **Parent Spec** | ../spec.md |

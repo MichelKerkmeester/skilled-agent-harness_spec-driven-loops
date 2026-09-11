@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Phase 6: docs-and-release"
-description: "[2-3 sentences: what this implements and the technical approach]"
+description: "Two sk-doc dispatches and one conductor edit: the README, changelog and version through create-readme and create-changelog, the delegation-rule paragraph and AGENTS.md row through create-repo-rule revise, and the advisor vocabulary with regenerated manifests through the skill-root metadata gate."
 trigger_phrases:
   - "implementation plan"
   - "technical approach"
@@ -23,13 +23,13 @@ contextType: "general"
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | Markdown and JSON metadata |
+| **Framework** | sk-doc create-readme, create-changelog, create-repo-rule; ci-skill-root-metadata.cjs |
+| **Storage** | None |
+| **Testing** | validate_document.py, package_skill.py --check, ci-skill-root-metadata.cjs, recursive validate.sh |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+The release documents and the rule edits go through the sk-doc modes that own them, one child each. The vocabulary edit and manifest regeneration are small enough that the conductor makes them directly and lets the metadata gate rewrite the derived files. The phase runs last and ends with the parent's recursive validation.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -38,9 +38,9 @@ contextType: "general"
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
 - [ ] All acceptance criteria met
@@ -54,14 +54,15 @@ contextType: "general"
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Documentation and metadata only
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **README and changelog**: what shipped, in the reader's terms
+- **Advisor vocabulary and manifests**: how a prompt reaches sk-git
+- **Delegation rule and AGENTS.md row**: the freeze posture and the ownership line ADR-005 decided
 
 ### Data Flow
-[Brief description of how data moves through the system]
+A reader starts at the README or the changelog; the advisor starts at graph-metadata.json; a dispatching session starts at the delegation rule.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -73,8 +74,10 @@ Use this section when `research_intent=fix_bug`, when planning from a deep-revie
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
+| README.md, changelog, SKILL.md version | release surface | update | validate_document.py |
+| graph-metadata.json | advisor identity | update | metadata gate |
+| leaf-manifest.json, leaf-aliases.json | derived | regenerated | metadata gate fixed 1 |
+| delegation-and-orchestration.md, AGENTS.md | posture and ownership | update | validate_document.py, diff |
 
 Required inventories:
 - Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
@@ -99,9 +102,9 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Unit | none | - |
+| Integration | package and metadata gates | package_skill.py, ci-skill-root-metadata.cjs |
+| Manual | advisor routing of a commit-id prompt | after the merge, the daemon indexes the main checkout |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -111,7 +114,8 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| phases 003 to 007 landed | Internal | Green | README would list scripts that change |
+| advisor daemon on the main checkout | Internal | Yellow | routing check waits for the merge |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -119,8 +123,8 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: a validator regression after merge
+- **Procedure**: revert the three phase commits
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -152,10 +156,10 @@ Phase 1.5 (Config) ───┘
 
 | Phase | Complexity | Estimated Effort |
 |-------|------------|------------------|
-| Setup | [Low/Med/High] | [e.g., 1-2 hours] |
-| Core Implementation | [Low/Med/High] | [e.g., 4-8 hours] |
-| Verification | [Low/Med/High] | [e.g., 1-2 hours] |
-| **Total** | | **[e.g., 6-12 hours]** |
+| Setup | Low | 15 minutes |
+| Core Implementation | Low | two dispatches and one edit, about 40 minutes |
+| Verification | Low | 10 minutes |
+| **Total** | | **about one hour** |
 <!-- /ANCHOR:effort -->
 
 ---
@@ -164,19 +168,19 @@ Phase 1.5 (Config) ───┘
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Backup created (if data changes)
-- [ ] Feature flag configured
-- [ ] Monitoring alerts set
+- [x] Not applicable
+- [x] Not applicable
+- [x] Not applicable
 
 ### Rollback Procedure
-1. [Immediate action - e.g., disable feature flag]
-2. [Revert code - e.g., git revert or redeploy previous version]
-3. [Verify rollback - e.g., smoke test critical paths]
-4. [Notify stakeholders - if user-facing]
+1. Revert the phase commits
+2. Regenerate the manifests
+3. Rerun the three validators
+4. Not user-facing
 
 ### Data Reversal
-- **Has data migrations?** [Yes/No]
-- **Reversal procedure**: [Steps or "N/A"]
+- **Has data migrations?** No
+- **Reversal procedure**: N/A
 <!-- /ANCHOR:enhanced-rollback -->
 
 ---
@@ -203,10 +207,10 @@ Phase 1.5 (Config) ───┘
 
 | Component | Depends On | Produces | Blocks |
 |-----------|------------|----------|--------|
-| [Component A] | None | [Output] | B, C |
-| [Component B] | A | [Output] | D |
-| [Component C] | A | [Output] | D |
-| [Component D] | B, C | [Final] | None |
+| README and changelog | phases 003 to 007 | three files | closeout |
+| Vocabulary | README | metadata and manifests | closeout |
+| Rule edits | ADR-005 | two files | closeout |
+| Closeout | all | parent validates recursively | window |
 <!-- /ANCHOR:dependency-graph -->
 
 ---
@@ -214,15 +218,15 @@ Phase 1.5 (Config) ───┘
 <!-- ANCHOR:critical-path -->
 ## L3: CRITICAL PATH
 
-1. **[Phase/Task]** - [Duration estimate] - CRITICAL
-2. **[Phase/Task]** - [Duration estimate] - CRITICAL
-3. **[Phase/Task]** - [Duration estimate] - CRITICAL
+1. **README dispatch** - 15 minutes - CRITICAL
+2. **Rule dispatch** - 15 minutes - CRITICAL
+3. **Closeout and recursive validate** - 15 minutes - CRITICAL
 
-**Total Critical Path**: [Sum of durations]
+**Total Critical Path**: about 45 minutes
 
 **Parallel Opportunities**:
-- [Task A] and [Task B] can run simultaneously
-- [Task C] and [Task D] can run after Phase 1
+- The vocabulary edit ran beside the rule dispatch
+- The dispatches ran one at a time
 <!-- /ANCHOR:critical-path -->
 
 ---
@@ -232,29 +236,29 @@ Phase 1.5 (Config) ───┘
 
 | Milestone | Description | Success Criteria | Target |
 |-----------|-------------|------------------|--------|
-| M1 | [Setup Complete] | [All dependencies ready] | [Date/Phase] |
-| M2 | [Core Done] | [Main features working] | [Date/Phase] |
-| M3 | [Release Ready] | [All tests pass] | [Date/Phase] |
+| M1 | Release docs | VALID x3, package PASS, `d6ca91f853` | 2026-09-11, done |
+| M2 | Vocabulary and manifests | gate checked 13 passed 13 fixed 1, `a8135ef83c` | 2026-09-11, done |
+| M3 | Rule edits and closeout | validator green, parent recursive PASSED | 2026-09-11 |
 <!-- /ANCHOR:milestones -->
 
 ---
 
 ## L3: ARCHITECTURE DECISION RECORD
 
-### ADR-001: [Decision Title]
+### ADR-001: The advisor routing check waits for the merge
 
-**Status**: [Proposed/Accepted/Deprecated]
+**Status**: Accepted
 
-**Context**: [What problem we're solving]
+**Context**: The advisor CLI is not built in this worktree and the daemon indexes the main checkout, so a probe here cannot see the vocabulary change.
 
-**Decision**: [What we decided]
+**Decision**: Record the routing check as a post-merge verification, with the exact prompt to run, and keep the metadata gate as this phase's proof.
 
 **Consequences**:
-- [Positive outcome 1]
-- [Negative outcome + mitigation]
+- The phase closes on the gate and the package check
+- One check is deferred and named, not skipped silently
 
 **Alternatives Rejected**:
-- [Option B]: [Why rejected]
+- Build the advisor in the worktree: a second toolchain install for one probe
 
 ---
 

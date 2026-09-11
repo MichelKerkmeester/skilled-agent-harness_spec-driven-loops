@@ -59,6 +59,7 @@
       ".opencode/skills/sk-git/scripts/lib/git-rule-checks.mjs",
       ".opencode/skills/sk-git/references/quick-reference.md",
       ".opencode/skills/sk-git/README.md",
+      ".opencode/skills/sk-git/changelog/v1.6.0.0.md",
       ".opencode/skills/sk-git/graph-metadata.json",
       ".opencode/bin/git-sync.sh",
       "001-research/goal.md",
@@ -66,8 +67,7 @@
       "003-contract-and-hook/goal.md",
       "004-search-surface/goal.md",
       "005-history-rewrite/goal.md",
-      "006-docs-and-release/goal.md",
-      "007-git-workflow-run-failures/goal.md"
+      "006-docs-and-release/goal.md"
     ],
     "entities": [
       {
@@ -122,6 +122,12 @@
         "name": "README.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-git/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.6.0.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-git/changelog/v1.6.0.0.md",
         "source": "derived"
       },
       {
@@ -205,17 +211,17 @@
     ],
     "causal_summary": "sk-git's commit contract produces readable conventional commits, but nothing in a commit is addressable the way a spec packet is",
     "created_at": "2026-09-11T07:16:22Z",
-    "last_save_at": "2026-09-11T10:43:26.864Z",
+    "last_save_at": "2026-09-11T10:47:46.116Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:677146017b7d45e75ff0803bb0c8ba21f78a4d8eaa8cdd205eb3ed750a22469a",
+    "source_fingerprint": "sha256:e8b89a5369433132d5b9e3590577ce1106fb5c341a1a4f8d577491fb03d4c12b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "800d757cc2533f6b8c8d7cf338b3afabd5d113fac03e927907715ec45ac573bc"
+      "spec.md": "695941321c99575ecc76504d37d22c0f6db1f8b7b0c7f14ec347520bf4f35663"
     },
     "last_active_at": null
   }

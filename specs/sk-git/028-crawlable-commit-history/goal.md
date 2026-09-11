@@ -103,15 +103,15 @@ Three to seven bullets, each checkable without opening another file. Copy them
 verbatim into the objective: nothing dereferences a path, so criteria left only
 here are invisible to whatever judges completion.
 
-- [ ] 001-research/research/lineages/deepseek/deep-research-state.jsonl holds 10 iteration records and 001-research/research/research.md exists with file:line citations
-- [ ] 002-format-decision/decision-record.md records the grammar and an operator approval line
-- [ ] The commit-msg hook test and sk-git rule test pass under node --test, and run-all-drift-guards.sh exits 0
+- [x] 001-research/research/lineages/deepseek/deep-research-state.jsonl holds 10 iteration records and 001-research/research/research.md exists with file:line citations
+- [x] 002-format-decision/decision-record.md records the grammar and an operator approval line
+- [x] The commit-msg hook test and sk-git rule test pass under node --test, and run-all-drift-guards.sh exits 0
 - [ ] git log --grep on the new identifier resolves a commit on the rewritten main and skilled/v4.0.0.0 on origin
 - [ ] rg over specs/ finds zero pre-rewrite 10-hex hashes that existed in the old history
 - [ ] validate.sh specs/sk-git/028-crawlable-commit-history --strict --recursive prints RESULT: PASSED for the parent and all six children
-- [ ] validate_document.py, package_skill.py --check and ci-skill-root-metadata.cjs exit 0 for sk-git
-- [ ] REPO RULES.md routes to a git repo rule that validate_document.py accepts, or 002's decision record says why none is needed, and AGENTS.md section 5 matches it
-- [ ] 007-git-workflow-run-failures/implementation-summary.md lists every git workflow that could fail a run with its adjustment and a passing test or reproduction
+- [x] validate_document.py, package_skill.py --check and ci-skill-root-metadata.cjs exit 0 for sk-git
+- [x] REPO RULES.md routes to a git repo rule that validate_document.py accepts, or 002's decision record says why none is needed, and AGENTS.md section 5 matches it
+- [x] 007-git-workflow-run-failures/implementation-summary.md lists every git workflow that could fail a run with its adjustment and a passing test or reproduction
 <!-- /ANCHOR:completion -->
 
 ---
@@ -130,6 +130,7 @@ and findings belong here.
 | Worktree allocated | Done | `worktrees/048-crawlable-commit-history` at `/Users/michelkerkmeester/worktrees/public/048-crawlable-commit-history` |
 | Packet scaffolded | Done | `create.sh --track sk-git --phase --phases 6 --level 3 --with-goal` |
 | Phase 001 research | Done |
+| Phase 006 docs and release | Done | `d6ca91f853`, `a8135ef83c`, `d4d6096ac1`; advisor probe after the merge |
 | Phase 007 run failures | Done | ten producers fixed, four runtime seams named, proof lineage succeeded 1 |
 | Phase 005 history rewrite | Rehearsed | tooling committed, two full-scale rehearsals PASS, push waits for the window |
 | Phase 004 search surface | Done | `98be1cebc2`, queries proven on a stamped fixture commit |

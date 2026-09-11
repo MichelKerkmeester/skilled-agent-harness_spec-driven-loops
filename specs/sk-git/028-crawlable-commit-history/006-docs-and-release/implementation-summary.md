@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+description: "sk-git 1.6.0.0 is released in its README and changelog, the advisor knows the commit-identity vocabulary, the delegation rule freezes the orchestrator during a lineage, and AGENTS.md names commit identity beside branch naming."
 trigger_phrases:
   - "implementation summary"
   - "what shipped"
@@ -12,16 +12,16 @@ _memory:
   continuity:
     packet_pointer: "sk-git/028-crawlable-commit-history/006-docs-and-release"
     last_updated_at: "2026-09-11T07:16:33Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialized Level 3 template"
-    next_safe_action: "Replace continuity placeholders"
+    last_updated_by: "claude-fable-5-1"
+    recent_action: "Closed the release phase with the validators green"
+    next_safe_action: "Present the rewrite window to the operator; probe the advisor after the merge"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-006-docs-and-release"
+      session_id: "2026-09-11-skgit-028"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 90
     open_questions: []
     answered_questions: []
 ---
@@ -48,7 +48,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+A reader, the advisor and the rules now agree on what commit identity is and who owns it. The README explains it where the other conventions are, the changelog says what 1.6.0.0 changed, the advisor vocabulary routes a commit-id prompt to sk-git, and the delegation rule says the one thing this packet paid to learn: while a lineage runs, the orchestrator freezes too.
 
 ### Phase 6: docs-and-release
 
@@ -59,7 +59,11 @@ Explain what the user gains, not what files you touched.]
 
 | File | Action | Purpose |
 |------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+| `.opencode/skills/sk-git/README.md`, `SKILL.md` | Modified | Commit identity section, version 1.6.0.0 |
+| `.opencode/skills/sk-git/changelog/v1.6.0.0.md` | Created | Release entry |
+| `.opencode/skills/sk-git/graph-metadata.json`, `leaf-manifest.json`, `leaf-aliases.json` | Modified, regenerated | Vocabulary and derived manifests |
+| `repo-rules/delegation-and-orchestration.md` | Modified | Freeze paragraph, version 1.0.0.1 |
+| `AGENTS.md` | Modified | Commit identity row |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -67,7 +71,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-[How was this tested, verified and shipped? What was the rollout approach?]
+Two cli-pi dispatches on DeepSeek V4.1 Flash at high effort, one for the release documents and one for the rule surfaces, and one conductor edit for the vocabulary with the metadata gate regenerating the derived files. Every validator was re-run by the conductor. The rule diff was read in full. Commits: `d6ca91f853`, `a8135ef83c`, `d4d6096ac1`.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -77,7 +81,8 @@ Explain what the user gains, not what files you touched.]
 
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| No new repo rule | REPO RULES.md keeps mechanics in skills; the freeze is posture and fits the delegation rule |
+| Advisor probe deferred to the merge | The CLI is not built in the worktree and the daemon indexes the main checkout |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -87,7 +92,10 @@ Explain what the user gains, not what files you touched.]
 
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| validate_document.py on README, changelog, SKILL.md | VALID x3 |
+| package_skill.py --check | Result: PASS, 4,963 words |
+| ci-skill-root-metadata.cjs --fix | checked 13, passed 13, fixed 1 |
+| Rule and AGENTS.md diff | reviewed in full; validator finding predates the edit on every rule file |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -95,7 +103,8 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **The advisor routing check waits for the merge.** Run `skill-advisor.cjs advisor_recommend` with a commit-id prompt on the main checkout and expect sk-git at or above 0.8.
+2. **The rule validator reports a missing overview on every rule file.** That is the rule anatomy, not this edit, and belongs to sk-create-repo-rule's contract.
 <!-- /ANCHOR:limitations -->
 
 ---
