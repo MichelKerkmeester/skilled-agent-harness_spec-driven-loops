@@ -89,6 +89,31 @@ describe('repair-derived', () => {
     expect(run(['specs/sk-git', '--apply']).status).toBe(2);
   });
 
+  // --folder became repeatable so a caller with a known packet set pays node's
+  // startup once rather than per packet. Both cases below are regressions that
+  // shipped with that change and were found by review rather than by this file.
+  it('accepts a repeated --folder and inspects each packet once', () => {
+    const a = fixture('batch-a', {});
+    const b = fixture('batch-b', {});
+    const result = run(['--folder', a, '--folder', b]);
+    expect(result.stdout).toMatch(/inspected=2/);
+  });
+
+  // A repeated path used to become two targets, and with --apply two workers
+  // could then re-derive the same packet at the same time.
+  it('counts a folder given twice as one target', () => {
+    const only = fixture('batch-dupe', {});
+    const result = run(['--folder', only, '--folder', only]);
+    expect(result.stdout).toMatch(/inspected=1/);
+  });
+
+  // Collecting folders into an array dropped --roots from the validation loop,
+  // so a rejected root passed silently whenever a --folder was also supplied.
+  it('still refuses a bad --roots when a --folder is present', () => {
+    const good = fixture('batch-roots', {});
+    expect(run(['--folder', good, '--roots', '/etc']).status).toBe(2);
+  });
+
   it('rewrites a stale recorded location from the packet path on disk', () => {
     const dir = fixture('location', {
       'implementation-summary.md': summaryDoc('wrong-track/999-stale', '999-stale-name'),

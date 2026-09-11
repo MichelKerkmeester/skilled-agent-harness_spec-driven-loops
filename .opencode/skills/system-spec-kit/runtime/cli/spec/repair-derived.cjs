@@ -114,7 +114,7 @@ const PACKET_NAME_RE = /^\d{3}(?:[-_].+)?$/;
 const FRONTMATTER_OPEN = /^\uFEFF?(?:[ \t]*\r?\n|<!--[\s\S]*?-->[ \t]*\r?\n)*---[ \t]*\r?\n/;
 const FRONTMATTER_CLOSE = /^(?:---|\.\.\.)[ \t]*\r?$/m;
 
-const USAGE = 'Usage: repair-derived.cjs [--folder <packet>] [--roots <dir>] [--apply]';
+const USAGE = 'Usage: repair-derived.cjs [--folder <packet>]... [--roots <dir>] [--apply]';
 
 // Reported as one planned step like any other, so a dry run names it and the
 // exit code counts it. Carries no apply(): the re-derive is a child process the
@@ -417,7 +417,11 @@ function discover(root) {
 // 6. ARGUMENTS
 // ───────────────────────────────────────────────────────────────────
 function parseArgs(argv) {
-  const options = { apply: false, folder: undefined, roots: 'specs' };
+  // --folder repeats. A caller with a known set of packets would otherwise pay
+  // node's startup once per packet, which is the whole cost when the repairs
+  // themselves are no-ops: a single empty packet measures ~1.5s wall against
+  // ~0.7s of work. The pre-commit gate is that caller.
+  const options = { apply: false, folders: [], roots: 'specs' };
   for (let i = 0; i < argv.length; i += 1) {
     const token = argv[i];
     if (token === '--apply') {
@@ -425,7 +429,8 @@ function parseArgs(argv) {
     } else if (token === '--folder' || token === '--roots') {
       const value = argv[i + 1];
       if (value === undefined || value.startsWith('--')) fail(`${token} needs a path`);
-      options[token === '--folder' ? 'folder' : 'roots'] = value;
+      if (token === '--folder') options.folders.push(value);
+      else options.roots = value;
       i += 1;
     } else if (token.startsWith('--')) {
       fail(`unknown argument: ${token}`);
@@ -481,18 +486,23 @@ function insideSpecs(target) {
 // 7. ENTRY POINT
 // ───────────────────────────────────────────────────────────────────
 async function main() {
-  const { apply, folder: folderArg, roots: rootsArg } = parseArgs(process.argv.slice(2));
+  const { apply, folders: folderArgs, roots: rootsArg } = parseArgs(process.argv.slice(2));
 
   // One clear refusal beats the same spawn failure repeated once per packet.
   const required = apply ? [VALIDATE, BACKFILL] : [VALIDATE];
   for (const tool of required) {
     if (!fs.existsSync(path.resolve(REPO, tool))) fail(`run this from the repository root: ${tool} is not here`);
   }
-  for (const candidate of [folderArg, rootsArg].filter(Boolean)) {
+  // Every explicit target is checked, not just the first. A bad path in the
+  // middle of a batch must refuse the run rather than be silently repaired past.
+  const explicit = folderArgs.length > 0;
+  // Every supplied path is checked, including a --roots that this run will not
+  // use. A rejected path is a rejected argument whether or not it was reached.
+  for (const candidate of [...folderArgs, rootsArg].filter(Boolean)) {
     if (!insideSpecs(candidate)) fail(`refusing a target outside the packet tree: ${candidate}`);
     if (!fs.existsSync(path.resolve(REPO, candidate))) fail(`no such path: ${candidate}`);
   }
-  const targets = folderArg ? [folderArg] : discover(rootsArg);
+  const targets = explicit ? [...new Set(folderArgs)] : discover(rootsArg);
 
   let repaired = 0;
   let pending = 0;
@@ -569,7 +579,9 @@ async function main() {
   // End on the command that acts on what was just reported, so the next step is
   // copyable rather than something to reconstruct from the usage line.
   if (!apply && pending > 0) {
-    const scope = folderArg ? `--folder ${folderArg}` : `--roots ${rootsArg}`;
+    const scope = folderArgs.length > 0
+      ? folderArgs.map((f) => `--folder ${f}`).join(' ')
+      : `--roots ${rootsArg}`;
     process.stdout.write(`\nTo apply these repairs:\n  node ${path.relative(REPO, __filename)} ${scope} --apply\n`);
   }
 

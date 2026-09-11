@@ -181,11 +181,15 @@ setup_spec_fixture() {
   cat > "$TMP/.opencode/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs" <<'REPAIR'
 const fs = require('fs');
 const path = require('path');
+fs.appendFileSync(path.join(process.cwd(), 'repair-calls.log'), 'call\n');
 if (process.env.STUB_REPAIR_FAIL === '1') { console.error('stub repair refused'); process.exit(1); }
 if (process.env.STUB_REPAIR_NOOP === '1') { console.log('inspected=1 repairable=0'); process.exit(0); }
-const folder = process.argv[process.argv.indexOf('--folder') + 1];
-for (const f of ['graph-metadata.json', 'description.json']) {
-  fs.writeFileSync(path.join(process.cwd(), folder, f), JSON.stringify({ fingerprint: Date.now() }));
+const folders = process.argv.reduce((acc, tok, i) =>
+  (tok === '--folder' ? [...acc, process.argv[i + 1]] : acc), []);
+for (const folder of folders) {
+  for (const f of ['graph-metadata.json', 'description.json']) {
+    fs.writeFileSync(path.join(process.cwd(), folder, f), JSON.stringify({ fingerprint: Date.now() }));
+  }
 }
 REPAIR
   git -C "$TMP" add -A >/dev/null
@@ -260,6 +264,34 @@ echo "# edited" > "$TMP/$GROUP/notes.md"; git -C "$TMP" add "$GROUP/notes.md"
 run_hook; RC=$?
 check "a metadata-only directory resolves to its packet parent" 0 "$RC" "re-derived specs/hooks/002-parent"
 grep -q "re-derived $GROUP" "$TMP/out.log" && { echo "FAIL  gate tried to re-derive a non-packet"; FAIL=$((FAIL + 1)); }
+
+# ── 17. two packets in one commit are re-derived in a single process ──
+# The gate batches every staged packet into one node call, because spawning per
+# packet was the entire cost: 3 packets measured 4.47s serially against 1.59s
+# batched. A stub honouring only the first --folder would let a broken batch pass,
+# which is why the stub above reads them all.
+setup_spec_fixture
+echo "# edited" > "$TMP/$PKT/spec.md"; git -C "$TMP" add "$PKT/spec.md"
+echo "# edited" > "$TMP/$CHILD/spec.md"; git -C "$TMP" add "$CHILD/spec.md"
+run_hook; RC=$?
+check "two packets re-derive together" 0 "$RC" "re-derived $PKT"
+if grep -q "re-derived $CHILD" "$TMP/out.log"; then
+  echo "PASS  the second packet was re-derived too"; PASS=$((PASS + 1))
+else
+  echo "FAIL  the second packet was not re-derived"; FAIL=$((FAIL + 1))
+fi
+# The assertion that makes this a batching test rather than a re-derive test:
+# two packets must cost exactly one process. Without it the case passes against
+# the per-packet loop it replaced, and proves nothing about the change.
+CALLS="$(grep -c . "$TMP/repair-calls.log" 2>/dev/null || echo 0)"
+if [[ "$CALLS" == "1" ]]; then
+  echo "PASS  two packets cost one node invocation"; PASS=$((PASS + 1))
+else
+  echo "FAIL  expected 1 node invocation for 2 packets, got $CALLS"; FAIL=$((FAIL + 1))
+fi
+STAGED="$(git -C "$TMP" diff --cached --name-only | grep -cE 'graph-metadata.json|description.json')"
+if [[ "$STAGED" == "4" ]]; then echo "PASS  all four derived files reached the index"; PASS=$((PASS + 1))
+else echo "FAIL  expected 4 staged derived files, got $STAGED"; FAIL=$((FAIL + 1)); fi
 
 echo ""
 echo "pre-commit auto re-mint gates: $PASS passed, $FAIL failed"

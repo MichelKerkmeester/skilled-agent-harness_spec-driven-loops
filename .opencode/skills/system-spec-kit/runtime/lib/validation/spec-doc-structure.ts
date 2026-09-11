@@ -815,10 +815,16 @@ function validateFrontmatterMemoryBlock(folder: string, level: string): RuleResu
         || /^[#>*-]/.test(fieldValue)
         || /\bhttps?:\/\//.test(fieldValue);
       if (looksNarrative || fieldValue.length > 96) {
+        // Advisory, unlike the checks above it. Those fields are parsed: a
+        // timestamp is read as a date and an actor slug is matched, so a wrong
+        // one breaks something downstream. These two are read by people only,
+        // and the test for them is a heuristic over prose — a sentence that
+        // happens to contain "because" is not a defect. Failing a packet on
+        // style costs a red gate and buys nothing no reader would have caught.
         diagnostics.push({
           code: 'SPECDOC_FRONTMATTER_004',
-          severity: 'error',
-          detail: `${document.basename}: ${fieldName} must stay compact and non-narrative`,
+          severity: 'warning',
+          detail: `${document.basename}: ${fieldName} reads long or narrative; keep it compact`,
         });
       }
     }
@@ -827,10 +833,12 @@ function validateFrontmatterMemoryBlock(folder: string, level: string): RuleResu
     const keyFiles = extractContinuityList(parsed.continuityBlock, 'key_files');
 
     if (blockers.length > 5) {
+      // A cap on how many things a person may be blocked on. Nothing reads the
+      // list by index and a sixth blocker is information, not corruption.
       diagnostics.push({
         code: 'SPECDOC_FRONTMATTER_004',
-        severity: 'error',
-        detail: `${document.basename}: blockers contains ${blockers.length} items (max 5)`,
+        severity: 'warning',
+        detail: `${document.basename}: blockers contains ${blockers.length} items; keep it to 5 or fewer`,
       });
     }
 

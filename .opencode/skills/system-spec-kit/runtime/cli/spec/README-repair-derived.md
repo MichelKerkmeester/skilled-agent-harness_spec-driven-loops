@@ -61,6 +61,11 @@ node .opencode/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs --root
 # repair one packet
 node .../repair-derived.cjs --folder specs/<track>/<packet> --apply
 
+# --folder repeats, and every packet is handled in one process. Node's startup
+# is the whole cost when the repairs are no-ops, so batching a known set beats
+# calling this once per packet: 3 packets measured 4.47s serially, 1.59s batched.
+node .../repair-derived.cjs --folder specs/a/001-one --folder specs/b/002-two --apply
+
 # repair a subtree
 node .../repair-derived.cjs --roots specs/<track> --apply
 ```
@@ -123,7 +128,7 @@ of the remaining debt is authored rather than mechanical.
   cost: about 1.9 seconds, of which the shell wrapper is 0.15 and module
   loading 0.06 — the rest is the validator's own rule subprocesses. Nothing
   here can make a packet cheaper, only run more of them at once, so a walk of
-  the ~2,500-packet tree stays in the minutes. Scope with `--folder` or
+  the ~2,500-packet tree stays in the minutes. Scope with one or more `--folder` flags, or
   `--roots` when possible.
 - Every packet is validated even when nothing about it can be repaired, because
   the census of what was refused is the other half of the report.

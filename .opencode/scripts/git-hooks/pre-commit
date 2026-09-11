@@ -379,7 +379,7 @@ fi
 # Same shape as the routing gate above and for the same reason: the artifact is
 # derived from the staged documents, so this regenerates and stages it rather than
 # printing a command. It refuses in the two cases where regenerating would be a lie.
-if [[ -z "${SPECKIT_SKIP_SPEC_REMINT:-}" ]]; then
+if [[ "${SPECKIT_SKIP_SPEC_REMINT:-0}" != "1" ]] && command -v node >/dev/null 2>&1; then
   # scratch/ holds working files that are not packet documents, and z_archive/ is
   # retired history nothing should re-derive.
   SPEC_STAGED_DOCS="$(git diff --cached --name-only --diff-filter=ACMR -- 'specs/**/*.md' 2>/dev/null \
@@ -422,10 +422,16 @@ if [[ -z "${SPECKIT_SKIP_SPEC_REMINT:-}" ]]; then
         exit 1
       fi
 
+      # Partial staging is checked per packet and up front, because a refusal has
+      # to name the packet and must happen before anything is written.
+      # Re-deriving reads the working tree, not the index. If a doc in a packet is
+      # only half staged the metadata would describe content the commit does not
+      # carry, which is a quieter version of the drift this gate exists to remove.
+      SPEC_ARGS=()
+      # Bash 3.2 ships on macOS and errors on an empty array expansion under
+      # set -u. The guard above guarantees at least one packet, so this is belt
+      # and braces rather than a live path, and it costs nothing.
       for SPEC_PACKET in $SPEC_PACKETS; do
-        # Re-deriving reads the working tree, not the index. If a doc in this packet
-        # is only half staged the metadata would describe content the commit does not
-        # carry, which is a quieter version of the drift this gate exists to remove.
         SPEC_DIRTY="$(git diff --name-only -- "$SPEC_PACKET" 2>/dev/null | grep -v '/scratch/' || true)"
         if [[ -n "$SPEC_DIRTY" ]]; then
           echo "" >&2
@@ -435,26 +441,52 @@ if [[ -z "${SPECKIT_SKIP_SPEC_REMINT:-}" ]]; then
           echo "Fix: stage the rest, or unstage the partial edit, then re-commit." >&2
           exit 1
         fi
+        SPEC_ARGS+=(--folder "$SPEC_PACKET")
+      done
 
-        if ! SPEC_OUT="$(node "$REPO_ROOT/.opencode/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs" \
-              --folder "$SPEC_PACKET" --apply 2>&1)"; then
-          echo "" >&2
-          echo "BLOCKED [gate:spec-remint]: could not re-derive metadata for $SPEC_PACKET:" >&2
-          printf '%s\n' "$SPEC_OUT" | sed 's/^/  /' >&2
-          echo "Bypass: SPECKIT_SKIP_SPEC_REMINT=1 git commit ..." >&2
-          exit 1
-        fi
+      # One process for every packet. The re-derive itself is nearly free when a
+      # packet is already fresh, so per-packet spawning was the entire cost: a
+      # no-op packet measures about 1.5s wall against 0.7s of work, and a commit
+      # touching scores of packets paid that startup once each.
+      SPEC_RC=0
+      SPEC_OUT="$(node "$REPO_ROOT/.opencode/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs" \
+            ${SPEC_ARGS[@]+"${SPEC_ARGS[@]}"} --apply 2>&1)" || SPEC_RC=$?
 
-        # Nothing to stage is the common case: most doc edits leave the derived
-        # fields identical, and the tool is a no-op then. Only report when it wrote.
-        SPEC_CHANGED="$(git diff --name-only -- "$SPEC_PACKET/graph-metadata.json" "$SPEC_PACKET/description.json" 2>/dev/null || true)"
+      # One call now covers every packet, so a failure can leave earlier packets
+      # already rewritten on disk. Leaving those unstaged makes the next attempt
+      # refuse a packet that is not the problem, reporting a half-staged tree
+      # instead of the real failure. Stage what succeeded either way, then decide.
+      # Which packets the tool actually rewrote has to be decided BEFORE staging,
+      # because staging is what clears the unstaged-diff signal that answers it.
+      SPEC_WROTE=()
+      for SPEC_PACKET in $SPEC_PACKETS; do
+        SPEC_PAIR=("$SPEC_PACKET/graph-metadata.json" "$SPEC_PACKET/description.json")
+        SPEC_CHANGED="$(git diff --name-only -- "${SPEC_PAIR[@]}" 2>/dev/null || true)"
         [[ -z "$SPEC_CHANGED" ]] && continue
+        SPEC_WROTE+=("$SPEC_PACKET")
+        git add -- "${SPEC_PAIR[@]}" 2>/dev/null || true
+      done
 
-        git add -- "$SPEC_PACKET/graph-metadata.json" "$SPEC_PACKET/description.json" 2>/dev/null || true
+      if [[ "$SPEC_RC" -ne 0 ]]; then
+        echo "" >&2
+        echo "BLOCKED [gate:spec-remint]: could not re-derive metadata for the staged packets:" >&2
+        printf '%s\n' "$SPEC_OUT" | sed 's/^/  /' >&2
+        echo "Any packet the tool did repair has been staged, so a retry reports this" >&2
+        echo "same failure rather than a half-written tree." >&2
+        echo "Bypass: SPECKIT_SKIP_SPEC_REMINT=1 git commit ..." >&2
+        exit 1
+      fi
+
+      # Confirmation stays per packet so a path that fails to reach the index is
+      # named. Nothing to stage is the common case: most doc edits leave the
+      # derived fields identical, and the tool is a no-op then, so only the
+      # packets recorded above are confirmed and reported.
+      for SPEC_PACKET in ${SPEC_WROTE[@]+"${SPEC_WROTE[@]}"}; do
+        SPEC_PAIR=("$SPEC_PACKET/graph-metadata.json" "$SPEC_PACKET/description.json")
 
         # Prove it. An add that silently did nothing leaves the commit carrying stale
         # metadata, and no later local gate can see that.
-        SPEC_LEFT="$(git diff --name-only -- "$SPEC_PACKET/graph-metadata.json" "$SPEC_PACKET/description.json" 2>/dev/null || true)"
+        SPEC_LEFT="$(git diff --name-only -- "${SPEC_PAIR[@]}" 2>/dev/null || true)"
         if [[ -n "$SPEC_LEFT" ]]; then
           echo "" >&2
           echo "BLOCKED [gate:spec-remint]: re-derived $SPEC_PACKET but this did not reach the index:" >&2

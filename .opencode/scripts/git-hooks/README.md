@@ -21,7 +21,7 @@ trigger_phrases:
 
 Current state:
 
-- `pre-commit` runs an advisory doc-model-reference drift check, then six blocking sub-gates: comment hygiene, agent-mirror sync, mirror parity, prompt-card sync, MCP mutation-class and compiled-routing re-mint. Five carry their own bypass flag; agent-mirror sync has none.
+- `pre-commit` runs an advisory doc-model-reference drift check, then seven blocking sub-gates: comment hygiene, agent-mirror sync, mirror parity, prompt-card sync, MCP mutation-class, compiled-routing re-mint and spec derived-metadata re-mint. Six carry their own bypass flag; agent-mirror sync has none.
 - `post-commit` publishes the just-completed commit to the shared live branch, and only from a linked worktree in a launch-wrapper session that exports both `SPECKIT_AUTOSYNC=1` and `SPECKIT_LIVE_BRANCH`.
 - `post-merge` and `post-rewrite` anchor and surface any `--autostash` entry after a merge or an amend/rebase, so a conflicted (un-applied) autostash cannot be lost silently.
 - `lib/autostash-orphan-guard.sh` is the one shared helper `post-merge` and `post-rewrite` both source; `lib/mass-deletion-guard.sh` backs the `pre-push` mass-deletion gate.
@@ -65,7 +65,7 @@ Dependency direction: git lifecycle event ───▶ hook script ───▶ 
 
 ```text
 git-hooks/
-+-- pre-commit                   # Doc-model-ref drift (advisory) + 6 blocking sub-gates
++-- pre-commit                   # Doc-model-ref drift (advisory) + 7 blocking sub-gates
 +-- post-commit                     # Live-branch autosync publish
 +-- post-merge                      # Autostash orphan guard after merge
 +-- post-rewrite                    # Autostash orphan guard after amend/rebase
@@ -98,7 +98,7 @@ hooks here → hard-fail without a bypass env var on their primary check
 
 | File | Responsibility | Bypass |
 |---|---|---|
-| `pre-commit` | Runs `validate-doc-model-refs.js` and warns (does not block) on drift. Then runs six blocking sub-gates when their staged-path trigger matches: comment hygiene, agent-mirror sync, mirror parity, prompt-quality-card sync, the MCP mutation-class contract, and compiled-routing re-mint. The last one is the only gate here that repairs its artifact and stages the repair rather than instructing you to. | `SPECKIT_SKIP_DOC_MODEL_VALIDATE=1` (advisory check); `SPECKIT_SKIP_COMMENT_HYGIENE=1`, `SPECKIT_SKIP_MIRROR_PARITY=1`, `SPECKIT_SKIP_CARD_SYNC=1`, `SPECKIT_SKIP_MCP_MUTATION_CLASS=1`, `SPECKIT_SKIP_ROUTE_REMINT=1` (five of the six blocking sub-gates; agent-mirror sync has no bypass) |
+| `pre-commit` | Runs `validate-doc-model-refs.js` and warns (does not block) on drift. Then runs seven blocking sub-gates when their staged-path trigger matches: comment hygiene, agent-mirror sync, mirror parity, prompt-quality-card sync, the MCP mutation-class contract, compiled-routing re-mint, and spec derived-metadata re-mint. The last two repair their artifact and stage the repair rather than instructing you to, which is the exception in this folder and is confined to artifacts derived from the staged input. | `SPECKIT_SKIP_DOC_MODEL_VALIDATE=1` (advisory check); `SPECKIT_SKIP_COMMENT_HYGIENE=1`, `SPECKIT_SKIP_MIRROR_PARITY=1`, `SPECKIT_SKIP_CARD_SYNC=1`, `SPECKIT_SKIP_MCP_MUTATION_CLASS=1`, `SPECKIT_SKIP_ROUTE_REMINT=1`, `SPECKIT_SKIP_SPEC_REMINT=1` (six of the seven blocking sub-gates; agent-mirror sync has no bypass) |
 | `post-commit` | Publishes the just-completed commit to the shared live branch through `.opencode/bin/git-sync.sh --auto --quiet`, and only from a linked worktree in a launch-wrapper session that exports both `SPECKIT_AUTOSYNC=1` and `SPECKIT_LIVE_BRANCH`. | `SPECKIT_AUTOSYNC=0` (this launch); `SYSTEM_LIVE_SYNC_DISABLED` or `SYSTEM_HOOKS_DISABLED` (whole live-sync loop) |
 | `post-merge` | Sources `lib/autostash-orphan-guard.sh` and anchors any `--autostash` entry the merge left un-applied. | None; the guard is best-effort and never blocks |
 | `post-rewrite` | Sources `lib/autostash-orphan-guard.sh` after an amend or rebase. The rewritten `old_commit new_commit` pairs git sends on stdin are unused. | None; the guard is best-effort and never blocks |
@@ -111,7 +111,7 @@ hooks here → hard-fail without a bypass env var on their primary check
 
 | Boundary | Rule |
 |---|---|
-| Blocking vs advisory | `pre-commit`'s six named sub-gates and `pre-push`'s new-branch naming gate may fail their git operation. Every other check in this folder is advisory or best-effort (`\|\| true` on the guard call). |
+| Blocking vs advisory | `pre-commit`'s seven named sub-gates and `pre-push`'s new-branch naming gate may fail their git operation. Every other check in this folder is advisory or best-effort (`\|\| true` on the guard call). |
 | Autostash ownership | Only `lib/autostash-orphan-guard.sh` writes `refs/autostash-rescue/*` and the alert log. Hooks source it rather than duplicating the anchor-and-alert logic. |
 | Autosync scope | `post-commit` publishes only from a linked worktree in a launch-wrapper session. The primary checkout never auto-publishes, and a blocked publish stays local. |
 | Installation | Hooks are plain files here; `install-git-hooks.sh` is what makes them live, by symlinking each into `.git/hooks/`. Editing a hook here takes effect immediately for anyone whose `.git/hooks/<name>` is still the symlink. |

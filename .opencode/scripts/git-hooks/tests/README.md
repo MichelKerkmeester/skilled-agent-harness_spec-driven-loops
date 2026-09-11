@@ -25,7 +25,7 @@ These files are test harnesses, not installed Git hooks. The current source inve
 |---|---|
 | `install-git-hooks-worktree-harness.sh` | Verifies hook placement for a linked worktree and a custom `core.hooksPath`. |
 | `mass-deletion-guard.test.sh` | Exercises the guard's threshold, override, add-versus-delete and fail-open verdict logic against a throwaway repository. |
-| `pre-commit.test.sh` | Exercises the compiled-routing re-mint gate against a fixture hub: the no-op path, a successful re-mint with both manifests confirmed in the index, a partly staged input, a missing authored manifest, a mint failure, a pathspec-narrowed commit and a staged deletion. |
+| `pre-commit.test.sh` | Exercises both auto re-mint gates against throwaway fixtures. Compiled routing: the no-op path, a successful re-mint with both manifests confirmed in the index, a partly staged input, a missing authored manifest, a mint failure, a pathspec-narrowed commit and a staged deletion. Spec derived metadata: the same refusal shapes plus a no-op repair that must stay silent, a `scratch/` file that is not a packet document, a phase child that must resolve to itself rather than its parent, a metadata-only directory the gate must walk past, and a two-packet commit asserting the batch costs exactly one process. |
 | `pre-push.test.sh` | Exercises the owner-first branch naming gate, migration tolerance, release branches and the explicit bypass. |
 
 ---
