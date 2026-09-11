@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Probe v2: this copy lives in the linked worktree and would print 'WORKTREE v2'
+# if the worktree's own file were the one git runs.
+echo "HOOK-FROM=LINKED-WORKTREE v2"
+exit 0

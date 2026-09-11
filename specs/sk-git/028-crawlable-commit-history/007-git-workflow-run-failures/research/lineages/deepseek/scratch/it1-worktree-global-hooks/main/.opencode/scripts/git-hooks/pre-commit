@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Probe: identifies which copy of the hook actually ran.
+echo "HOOK-FROM=MAIN v1"
+exit 0

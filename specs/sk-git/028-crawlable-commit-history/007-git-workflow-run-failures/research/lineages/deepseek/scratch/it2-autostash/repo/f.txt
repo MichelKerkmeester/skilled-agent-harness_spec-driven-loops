@@ -1,0 +1,5 @@
+<<<<<<< Updated upstream
+work changes f
+=======
+local uncommitted change
+>>>>>>> Stashed changes

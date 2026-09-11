@@ -38,3 +38,8 @@ Phase 007 starts from these, reproduces each, and adjusts the producer.
 12. `git add <several existing paths>` from a linked worktree fires the sk-git advisory
     `add-pathspec-matches-nothing` on every single commit of this session, twenty times so far,
     while every add staged exactly what it named.
+13. A research lineage that reproduces git failures leaves throwaway repositories under its own
+    scratch directory. Their nested `.git` directories make `git add` of the packet fail with
+    "does not have a commit checked out", so the run's own evidence blocks the commit that records it.
+14. The fan-out runner reported a `timestamp_anomaly` on the lineage's state records, six of seven
+    after its window, because the child stamps local time with a Z suffix.
