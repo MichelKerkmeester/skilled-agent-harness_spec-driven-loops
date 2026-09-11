@@ -27,7 +27,6 @@ Canonical package artifacts:
 - `scope-and-precedence/`
 - `re-review-and-stale-context/`
 - `cross-cli-orchestration/`
-- `structural-impact-preflight/`
 - `efficiency-and-restraint/`
 - `intra-routing-recall/`
 
@@ -35,9 +34,9 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 31 deterministic scenarios across 9 categories validating the `review` skill surface and its review-agent consumers. Each scenario maps to a dedicated per-feature file with exact prompt, command sequence, expected signals, evidence, pass/fail criteria, and failure triage.
+This playbook provides 30 deterministic scenarios across 8 categories validating the `review` skill surface and its review-agent consumers. Each scenario maps to a dedicated per-feature file with exact prompt, command sequence, expected signals, evidence, pass/fail criteria, and failure triage.
 
-Coverage note: the playbook covers single-pass review flow, security/correctness minimums, severity and evidence discipline, scope and precedence, re-review behavior, stale-context handling, structural-impact preflight degradation, AI-generated-code review, native `@review` invocation, external CLI handbacks through cli-opencode and cli-claude-code, the v1.4.0.0 efficiency-and-restraint behaviors (reinvent-the-wheel detection, the unrequested-code removal prompt, ceiling-comment downgrade, the `SK_CODE_REVIEW_DEPTH` alias, and the rule-invariant canary), and intra-skill routing recall for the seven review-lens intents (`SECURITY`, `QUALITY`, `KISS`, `DRY`, `SOLID`, `REMOVAL`, `TESTING`) driven by `SKILL.md` §2's `INTENT_SIGNALS` and `RESOURCE_MAP`. `review` does not ship a dedicated feature catalog, so per-feature files anchor directly to `SKILL.md`, `references/`, `scripts/`, and `.opencode/agents/` on disk.
+Coverage note: the playbook covers single-pass review flow, security/correctness minimums, severity and evidence discipline, scope and precedence, re-review behavior, stale-context handling, AI-generated-code review, native `@review` invocation, external CLI handbacks through cli-opencode and cli-claude-code, the v1.4.0.0 efficiency-and-restraint behaviors (reinvent-the-wheel detection, the unrequested-code removal prompt, ceiling-comment downgrade, the `SK_CODE_REVIEW_DEPTH` alias, and the rule-invariant canary), and intra-skill routing recall for the seven review-lens intents (`SECURITY`, `QUALITY`, `KISS`, `DRY`, `SOLID`, `REMOVAL`, `TESTING`) driven by `SKILL.md` §2's `INTENT_SIGNALS` and `RESOURCE_MAP`. `review` does not ship a dedicated feature catalog, so per-feature files anchor directly to `SKILL.md`, `references/`, `scripts/`, and `.opencode/agents/` on disk.
 
 ### Realistic Test Model
 
@@ -201,9 +200,8 @@ This section records wave planning and capacity guidance for executing the 31-sc
 | 2 | Security + evidence | CR-004..CR-009 | Exercises mandatory P0/P1 evidence and checklist discipline |
 | 3 | Re-review + stale context | CR-013..CR-015 | Requires prior findings, stale docs, or generated-code fixtures |
 | 4 | Cross-CLI | CR-016..CR-018 | Tool availability and handback reconciliation are isolated |
-| 5 | Structural impact | CR-019 | Isolates code-graph freshness and `detect_changes` caveat behavior |
-| 6 | Efficiency + restraint | CR-020..CR-024 | Restraint, needed-ness, ceiling evidence, depth alias, and the wording canary are read-only and isolate cleanly |
-| 7 | Intra routing recall | CR-R01..CR-R07 | Pure path-resolution checks against `SKILL.md` §2's `INTENT_SIGNALS`/`RESOURCE_MAP`; no diff fixture or CLI dependency, isolates cleanly |
+| 5 | Efficiency + restraint | CR-020..CR-024 | Restraint, needed-ness, ceiling evidence, depth alias, and the wording canary are read-only and isolate cleanly |
+| 6 | Intra routing recall | CR-R01..CR-R07 | Pure path-resolution checks against `SKILL.md` §2's `INTENT_SIGNALS`/`RESOURCE_MAP`; no diff fixture or CLI dependency, isolates cleanly |
 
 ### Cross-CLI Reconciliation Rules
 
@@ -555,29 +553,7 @@ Desired user-visible outcome: A findings-first review artifact that preserves sc
 
 ---
 
-## 13. STRUCTURAL IMPACT PREFLIGHT (CR-019)
-
-This category covers 1 scenario while the linked feature file remains the canonical execution contract.
-
-### CR-019 | detect_changes-assisted review
-
-#### Description
-
-Local-diff review that attempts structural-impact analysis and keeps reviewing when the graph is stale.
-
-#### Scenario Contract
-
-Prompt: `Review this small local diff and use detect_changes for structural-impact preflight; if the graph is stale, include the caveat and continue the git-diff review.`
-
-Desired user-visible outcome: A findings-first review artifact that records the structural-impact attempt, names stale or unavailable graph caveats when present, and preserves normal git-diff review coverage.
-
-#### Test Execution
-
-> **Feature File:** [CR-019](../manual-testing-playbook/structural-impact-preflight/detect-changes-assisted-review.md)
-
----
-
-## 14. EFFICIENCY AND RESTRAINT (CR-020..CR-024)
+## 13. EFFICIENCY AND RESTRAINT (CR-020..CR-024)
 
 This category covers 5 scenarios while the linked feature files remain the canonical execution contract. These scenarios validate the v1.4.0.0 ponytail-based refinement: maintainability restraint, needed-ness, intentional-simplification evidence, the review-depth alias, and the load-bearing-wording canary.
 
@@ -663,7 +639,7 @@ Desired user-visible outcome: A findings-first review artifact that preserves sc
 
 ---
 
-## 15. INTRA ROUTING RECALL (CR-R01..CR-R07)
+## 14. INTRA ROUTING RECALL (CR-R01..CR-R07)
 
 This category covers 7 scenarios while the linked feature files remain the canonical execution contract. Unlike CR-001..CR-024, these scenarios do not review a diff; they confirm that `SKILL.md` §2's `INTENT_SIGNALS` keyword weights and `RESOURCE_MAP` entries still resolve the correct checklist/reference set for each of the seven review-lens intents (`SECURITY`, `QUALITY`, `KISS`, `DRY`, `SOLID`, `REMOVAL`, `TESTING`).
 
@@ -767,7 +743,7 @@ Prompt: `Review this test suite for testing coverage, assertions, mocks, stubs, 
 
 ---
 
-## 16. AUTOMATED TEST CROSS-REFERENCE
+## 15. AUTOMATED TEST CROSS-REFERENCE
 
 The current repository has no dedicated automated test module for `review/manual-testing-playbook/`, and the sk-doc validator currently checks the root playbook only. These adjacent tests and stress fixtures exercise related routing or review-dispatch behavior.
 
@@ -781,7 +757,7 @@ Validator limitation: per-feature file completeness requires the structural swee
 
 ---
 
-## 17. FEATURE CATALOG CROSS-REFERENCE INDEX
+## 16. FEATURE CATALOG CROSS-REFERENCE INDEX
 
 | Feature ID | Feature Name | Category | Feature File |
 |---|---|---|---|
@@ -803,7 +779,6 @@ Validator limitation: per-feature file completeness requires the structural swee
 | CR-016 | Native Claude Code invocation | CROSS-CLI ORCHESTRATION | [CR-016](../manual-testing-playbook/cross-cli-orchestration/native-claude-code-invocation.md) |
 | CR-017 | cli-opencode delegation | CROSS-CLI ORCHESTRATION | [CR-017](../manual-testing-playbook/cross-cli-orchestration/cli-opencode-delegation.md) |
 | CR-018 | cli-opencode and cli-claude-code handback | CROSS-CLI ORCHESTRATION | [CR-018](../manual-testing-playbook/cross-cli-orchestration/cli-opencode-and-cli-claude-code-handback.md) |
-| CR-019 | detect_changes-assisted review | STRUCTURAL IMPACT PREFLIGHT | [CR-019](../manual-testing-playbook/structural-impact-preflight/detect-changes-assisted-review.md) |
 | CR-020 | Reinvent-the-wheel detection | EFFICIENCY AND RESTRAINT | [CR-020](../manual-testing-playbook/efficiency-and-restraint/reinvent-the-wheel-detection.md) |
 | CR-021 | Unrequested-code removal prompt | EFFICIENCY AND RESTRAINT | [CR-021](../manual-testing-playbook/efficiency-and-restraint/unrequested-code-removal.md) |
 | CR-022 | Ceiling-comment downgrade | EFFICIENCY AND RESTRAINT | [CR-022](../manual-testing-playbook/efficiency-and-restraint/ceiling-comment-downgrade.md) |

@@ -89,8 +89,8 @@ function testInternalServersExempt() {
     toolName: 'mcp__code_mode__call_tool_chain',
     projectDir,
   });
-  const codeIndexResult = guardCore.evaluateNativeMcpCall({
-    toolName: 'mcp__system_code_index__code_graph_query',
+  const internalServerResult = guardCore.evaluateNativeMcpCall({
+    toolName: 'mcp__system_skill_advisor__code_graph_query',
     projectDir,
   });
   const sequentialResult = guardCore.evaluateNativeMcpCall({
@@ -98,10 +98,10 @@ function testInternalServersExempt() {
     projectDir,
   });
   assert.equal(codeModeResult.decision, 'allow', 'code_mode is exempt');
-  assert.equal(codeIndexResult.decision, 'allow', 'system_code_index is exempt');
+  assert.equal(internalServerResult.decision, 'allow', 'system_skill_advisor is exempt');
   assert.equal(sequentialResult.decision, 'allow', 'sequential_thinking is exempt');
   assert.equal(codeModeResult.warnings.length, 0, 'no warning for code_mode');
-  assert.equal(codeIndexResult.warnings.length, 0, 'no warning for system_code_index');
+  assert.equal(internalServerResult.warnings.length, 0, 'no warning for system_skill_advisor');
 }
 
 function testNonMcpToolsAllow() {
@@ -119,7 +119,7 @@ function testDecisionEnumIsWarnOnly() {
     'mcp__claude_ai_ClickUp__clickup_create_task',
     'mcp__claude_ai_Webflow__data_cms_tool',
     'mcp__code_mode__call_tool_chain',
-    'mcp__system_code_index__code_graph_query',
+    'mcp__system_skill_advisor__code_graph_query',
     'Bash',
     'Read',
     '',
@@ -146,7 +146,7 @@ function testNormalizationBridgesOfficialAndConnectorSpellings() {
 }
 
 function testInternalServerTokenPrefixDetection() {
-  assert.ok(guardCore.isInternalServerToken('system_code_index'), 'system_ prefix is internal');
+  assert.ok(guardCore.isInternalServerToken('system_skill_advisor'), 'system_ prefix is internal');
   assert.ok(guardCore.isInternalServerToken('system_skill_advisor'), 'system_ prefix is internal');
   assert.ok(guardCore.isInternalServerToken('code_mode'), 'code_mode is internal');
   assert.ok(guardCore.isInternalServerToken('sequential_thinking'), 'sequential_thinking is internal');

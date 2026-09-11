@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "agents/011-retire-code-index-tool-references",
+  "spec_folder": "agents/011-retire-code-index-tool-references",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "retire detect_changes references",
+      "code-index tool decommission cleanup",
+      "review agent structural impact removal",
+      "system_code_index retired",
+      "retire detect_changes plan",
+      "code-index cleanup plan",
+      "retire detect_changes tasks",
+      "code-index cleanup tasks",
+      "retire detect_changes summary",
+      "code-index cleanup summary"
+    ],
+    "key_topics": [
+      "retire",
+      "references",
+      "code-index",
+      "tool",
+      "decommission",
+      "cleanup",
+      "review",
+      "agent",
+      "structural",
+      "impact",
+      "removal",
+      "retired"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "specs/agents/011-retire-code-index-tool-references/spec.md",
+      ".opencode/agents/review.md",
+      ".opencode/agents/deep-review.md",
+      ".opencode/skills/sk-code/sk-code-review/SKILL.md",
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "specs/agents/011-retire-code-index-tool-references/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "review.md",
+        "kind": "doc",
+        "path": ".opencode/agents/review.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.md",
+        "kind": "doc",
+        "path": ".opencode/agents/deep-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/sk-code-review/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "mirror-sync-verify.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Delete",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mirrors Regenerate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Proof Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "observed",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `systemcodeindex` MCP server was deregistered from every runtime surface",
+    "created_at": "2026-09-11T20:34:22.159Z",
+    "last_save_at": "2026-09-11T20:34:22.159Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9164682a3213a988fb4a4fd4ed33c2952a7f786d1a489619ac093aadd7569a76",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "748ac9efabc97b676c194a3ce9ec5ec5265118b79b5eb0580a7baecff9aee5c8",
+      "plan.md": "8c187be3500073e8f47581cf5b08b3c98a014667c1d4a8b3bcf66319ebe03298",
+      "tasks.md": "482c081188c7d6b036bf4650be206c36b30fe03eb46723a0548a4b23fde15352",
+      "implementation-summary.md": "1bf5996ed6d5a05fadb30a2e9e895b52de22f00b20e3d328d3d415740e2341be"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

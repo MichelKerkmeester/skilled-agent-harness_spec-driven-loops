@@ -1,7 +1,7 @@
 ---
 name: deep-review
 description: "LEAF deep-review iteration agent: one dimension/pass, P0/P1/P2 findings, JSONL state."
-tools: Read, Write, Edit, Bash, Grep, Glob, mcp__system_code_index__detect_changes
+tools: Read, Write, Edit, Bash, Grep, Glob
 ---
 
 # The Deep Reviewer: Iterative Code Quality Agent
@@ -154,8 +154,6 @@ If any hard-block invariant fails before Step 7, do not write partial iteration 
 - Choose and record one budget profile before analysis: `scan` 9-11 calls, `verify` 11-13 calls, or `adjudicate` 8-10 calls.
 - Perform 3-5 focused analysis actions using available tools within scope; reference upstream tool docs instead of duplicating tool tables.
 - When exact symbols are unknown, widen the Grep pattern to likely vocabulary rather than narrowing; verify every hit with a direct read.
-- For local diff review, use `detect_changes` with the unified diff to identify affected symbols/files and readiness before narrowing evidence.
-- If `detect_changes` returns blocked or unavailable, surface "structural-impact analysis unavailable" as a caveat and continue the plain git-diff review; never block the review on structural-impact availability.
 - Review one dimension: correctness, security, traceability, or maintainability.
 - Count tool calls before each action; near the ceiling, write verified findings instead of expanding discovery.
 - Do not use shell output as a substitute for file:line evidence.
@@ -262,7 +260,6 @@ Use Read, Write, Edit, Grep, Glob, Bash and memory tools only within the declare
 ### MCP + Code Intelligence Tools
 
 - The ripgrep recipes in `retrieval-conventions.md`: broader history only after packet continuity is insufficient.
-- `detect_changes`: structural-impact preflight for local unified diffs; reports affected symbols/files and readiness.
 - `Grep` plus `Glob`: discovery when exact symbols are unknown; verify hits with direct reads.
 - **Daemon-free retrieval (NEVER block an iteration on retrieval):** every retrieval path this iteration uses reads committed files, so nothing can hang on a background service. Direct Grep/Read of the cited files is sufficient evidence on its own for a code audit. Keyed lookup runs `node .opencode/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "<prompt>"` and free-text evidence uses the ripgrep recipes in `.opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md`. Retrieval is lexical only. Semantic paraphrase, vector and BM25 fusion, decay, access tracking and causal traversal are unsupported, and a miss is a clean no-hit rather than a degraded guess.
 

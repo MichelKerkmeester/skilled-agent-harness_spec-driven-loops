@@ -120,38 +120,6 @@ describe('mirror-sync-verify', () => {
     expect(comparison.orderMatches).toBe(false);
   });
 
-  it('rejects a mirror whose body requires a tool absent from its declared surface', () => {
-    const canonical = `---
-name: ${AGENT_NAME}
-description: Mirror sync fixture
-permission:
-  read: allow
-  detect_changes: allow
----
-
-# Mirror Sync Fixture
-
-Use detect_changes before reporting structural impact.
-`;
-    const claude = `---
-name: ${AGENT_NAME}
-description: Mirror sync fixture
-tools: Read
----
-
-# Mirror Sync Fixture
-
-Use detect_changes before reporting structural impact.
-`;
-    writeFile(`.opencode/agents/${AGENT_NAME}.md`, canonical);
-    writeFile(`.claude/agents/${AGENT_NAME}.md`, claude);
-
-    const result = mirrorSync.verifyMirrorSync(AGENT_NAME, canonical, { repoRoot: tmpDir });
-
-    expect(result.allInSync).toBe(false);
-    expect(result.driftRuntimes).toEqual(['claude']);
-  });
-
   it('checks a Codex mirror only when that agent is actually shipped there', () => {
     writeAllMirrors();
     const withoutCodex = mirrorSync.verifyMirrorSync(AGENT_NAME, CANONICAL, { repoRoot: tmpDir });

@@ -1,0 +1,22 @@
+{
+  "specFolder": "agents/011-retire-code-index-tool-references",
+  "description": "The `systemcodeindex` MCP server was deregistered from every runtime surface",
+  "keywords": [
+    "systemcodeindex",
+    "mcp",
+    "server",
+    "deregistered",
+    "every",
+    "runtime",
+    "surface"
+  ],
+  "lastUpdated": "2026-09-11T20:34:21.967Z",
+  "specId": "011",
+  "folderSlug": "retire-code-index-tool-references",
+  "parentChain": [
+    "agents"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

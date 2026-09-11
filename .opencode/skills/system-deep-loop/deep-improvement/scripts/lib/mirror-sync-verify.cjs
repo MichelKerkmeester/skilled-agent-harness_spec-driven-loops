@@ -43,9 +43,15 @@ const LOAD_BEARING_MARKERS = Object.freeze([
   'DELIVER',
 ]);
 
-const TOOL_ALIASES = Object.freeze({
-  detect_changes: Object.freeze(['detect_changes', 'mcp__system_code_index__detect_changes']),
-});
+// Tools that must be DECLARED by a mirror whenever the agent body mentions them,
+// mapped to every spelling a runtime dialect uses for the same tool. An MCP-backed
+// tool is bare in OpenCode's permission block and namespaced in Claude's tools
+// line, so without this map the same tool reads as drift across the pair.
+//
+// Empty today: the only entry was an MCP tool whose server was decommissioned, and
+// nothing that remains is spelled differently per runtime. Add an entry when a tool
+// is both mentioned in an agent body and spelled differently across mirrors.
+const TOOL_ALIASES = Object.freeze({});
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS
