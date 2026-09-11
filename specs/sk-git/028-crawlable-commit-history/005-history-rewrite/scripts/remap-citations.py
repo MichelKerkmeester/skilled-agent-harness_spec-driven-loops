@@ -197,13 +197,17 @@ def parse_args(argv: Optional[List[str]] = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Remap commit hash citations after a filter-repo rewrite.")
     parser.add_argument("--commit-map", required=True, metavar="PATH", help="filter-repo commit map to read")
     parser.add_argument("--root", required=True, action="append", metavar="DIR", help="directory to scan; repeatable")
-    parser.add_argument("--ext", required=True, action="append", metavar="EXT", help="file extension to scan, e.g. .md; repeatable")
+    parser.add_argument(
+        "--ext", required=True, action="append", metavar="EXT", help="file extension to scan, e.g. .md; repeatable"
+    )
     parser.add_argument("--apply", action="store_true", help="write the remapped files in place")
     parser.add_argument("--report", metavar="JSON", help="also write the JSON report to this path")
     return parser.parse_args(argv)
 
 
-def build_report(args: argparse.Namespace, extensions: List[str], stats: RunStats, residue: Optional[int]) -> Dict[str, object]:
+def build_report(
+    args: argparse.Namespace, extensions: List[str], stats: RunStats, residue: Optional[int]
+) -> Dict[str, object]:
     """Assemble the JSON-serializable run report."""
     return {
         "applied": args.apply,
