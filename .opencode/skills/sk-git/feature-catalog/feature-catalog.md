@@ -128,7 +128,7 @@ A deterministic commit-message contract (`type(scope)[!]: imperative summary`) p
 
 #### Current Reality
 
-Type and scope selection both follow a fixed first-match priority order; a `commit-msg` hook enforces the structural contract (bypass: `SPECKIT_SKIP_COMMIT_MSG_VALIDATE=1`). On a dirty shared tree, the AI stages only its own explicit pathspecs and asserts the staged set against a deny-pattern before committing, rather than using a broad `git add -A`/`git add .`.
+Type and scope selection both follow a fixed first-match priority order; a `commit-msg` hook enforces the structural contract (bypass: `SPECKIT_SKIP_COMMIT_MSG_VALIDATE=1`). On a dirty shared tree, the AI stages only its own explicit pathspecs and asserts the staged set against a deny-pattern before committing, rather than using a broad `git add -A`/`git add .`. The trailer paragraph ends every commit and carries `Spec: <track>/<packet>[/<phase>...]` for packet work plus a stamped seven-digit `Commit-Id: NNNNNNN`. The identifier queries live in `references/quick-reference.md`, where one greps the `Spec:` line for a packet and the other greps the `Commit-Id:` line for an ordinal.
 
 #### Source Files
 
