@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+ModuleNotFoundError: No module named 'playwright'
+exit=1
+--- blocker: python playwright package missing
+--- install: pip install playwright && playwright install chromium
+--- continued on: .opencode/skills/sk-design/shared/scripts/render-screenshots.cjs (headless Google Chrome)
+Google Chrome 153.0.8010.36 

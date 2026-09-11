@@ -156,14 +156,14 @@
     ],
     "causal_summary": "`sk-design-diagram` is where `sk-design-chart` stood before its v1.9.0.0: a good editorial design",
     "created_at": "2026-09-10T17:17:40Z",
-    "last_save_at": "2026-09-11T04:36:01.809Z",
+    "last_save_at": "2026-09-11T08:32:37.395Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:46e7b53facd73223f8b70ac9af9dffaed43b46279e4feba8a0db30e68dabf6cc",
+    "source_fingerprint": "sha256:8bbef7835c446a992381bebd2bb86df814c99979730a4dc577c7b974514a69f0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "daf26781f73f1e12f4c3d659019c4cbea3e6b3fd7e3a1b21f7417066df89fd69"

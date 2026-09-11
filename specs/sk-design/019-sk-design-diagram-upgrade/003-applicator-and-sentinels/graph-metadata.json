@@ -47,13 +47,8 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      ".opencode/skills/sk-design/sk-design-diagram/assets/color/diagram-palette.json",
       ".opencode/skills/sk-design/sk-design-diagram/scripts/color-gates.cjs",
       ".opencode/skills/sk-design/sk-design-diagram/scripts/apply-diagram-tokens.cjs",
-      ".opencode/skills/sk-design/sk-design-diagram/assets/templates/template.html",
-      ".opencode/skills/sk-design/sk-design-diagram/assets/templates/template-dark.html",
-      ".opencode/skills/sk-design/sk-design-diagram/assets/templates/template-full.html",
-      ".opencode/skills/sk-design/sk-design-diagram/assets/templates/template-terminal.html",
       ".opencode/skills/sk-design/sk-design-chart/scripts/apply-design-md.cjs",
       ".opencode/skills/sk-design/sk-design-chart/scripts/color-gates.cjs",
       "scripts/README.md"
@@ -96,12 +91,6 @@
         "source": "derived"
       },
       {
-        "name": "diagram-palette.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-design/sk-design-diagram/assets/color/diagram-palette.json",
-        "source": "derived"
-      },
-      {
         "name": "color-gates.cjs",
         "kind": "file",
         "path": ".opencode/skills/sk-design/sk-design-diagram/scripts/color-gates.cjs",
@@ -111,30 +100,6 @@
         "name": "apply-diagram-tokens.cjs",
         "kind": "file",
         "path": ".opencode/skills/sk-design/sk-design-diagram/scripts/apply-diagram-tokens.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "template.html",
-        "kind": "file",
-        "path": ".opencode/skills/sk-design/sk-design-diagram/assets/templates/template.html",
-        "source": "derived"
-      },
-      {
-        "name": "template-dark.html",
-        "kind": "file",
-        "path": ".opencode/skills/sk-design/sk-design-diagram/assets/templates/template-dark.html",
-        "source": "derived"
-      },
-      {
-        "name": "template-full.html",
-        "kind": "file",
-        "path": ".opencode/skills/sk-design/sk-design-diagram/assets/templates/template-full.html",
-        "source": "derived"
-      },
-      {
-        "name": "template-terminal.html",
-        "kind": "file",
-        "path": ".opencode/skills/sk-design/sk-design-diagram/assets/templates/template-terminal.html",
         "source": "derived"
       },
       {
@@ -202,11 +167,41 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`DIAGRAMPALETTE:BEGIN skin=light|dark|terminal … :END` blocks, one per file, in the four templates",
     "created_at": "2026-09-10T17:17:42Z",
-    "last_save_at": "2026-09-10T22:33:09.197Z",
+    "last_save_at": "2026-09-11T08:31:26.988Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

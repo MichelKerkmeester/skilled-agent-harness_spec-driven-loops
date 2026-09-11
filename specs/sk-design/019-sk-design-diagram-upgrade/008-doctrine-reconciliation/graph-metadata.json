@@ -55,7 +55,6 @@
       ".opencode/skills/sk-design/sk-design-diagram/assets/diagrams/it-state.html",
       ".opencode/skills/sk-design/sk-design-diagram/assets/diagrams/README.md",
       ".opencode/skills/sk-design/sk-design-diagram/scripts/families/legend-fidelity.cjs",
-      ".opencode/skills/sk-design/sk-design-diagram/scripts/families/short-connector-labels.cjs",
       ".opencode/skills/sk-design/sk-design-diagram/scripts/tests/mutation-cases.cjs",
       ".opencode/skills/sk-design/sk-design-diagram/scripts/check-diagram-corpus.cjs"
     ],
@@ -145,12 +144,6 @@
         "source": "derived"
       },
       {
-        "name": "short-connector-labels.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/sk-design/sk-design-diagram/scripts/families/short-connector-labels.cjs",
-        "source": "derived"
-      },
-      {
         "name": "mutation-cases.cjs",
         "kind": "file",
         "path": ".opencode/skills/sk-design/sk-design-diagram/scripts/tests/mutation-cases.cjs",
@@ -203,11 +196,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The manual review found nine systemic patterns (S1-S9) where a document and the corpus disagree, or the corpus itself is internally inconsistent, and named a direction for each rather than leaving the contradiction open",
     "created_at": "2026-09-11T03:52:46Z",
-    "last_save_at": "2026-09-11T08:09:30.568Z",
+    "last_save_at": "2026-09-11T08:31:28.478Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -49,6 +49,7 @@
       "research/research.md",
       "research/dispatch-prompt.md",
       "research/orchestration-summary.json",
+      ".github/workflows/diagram-corpus.yml",
       "feature-catalog/feature-catalog.md"
     ],
     "entities": [
@@ -98,6 +99,12 @@
         "name": "orchestration-summary.json",
         "kind": "config",
         "path": "research/orchestration-summary.json",
+        "source": "derived"
+      },
+      {
+        "name": "diagram-corpus.yml",
+        "kind": "config",
+        "path": ".github/workflows/diagram-corpus.yml",
         "source": "derived"
       },
       {
@@ -189,17 +196,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The diagram skill's rules live in prose with nothing holding them, and the chart skill solved",
     "created_at": "2026-09-10T17:17:40Z",
-    "last_save_at": "2026-09-10T19:27:02.722Z",
+    "last_save_at": "2026-09-11T08:31:26.527Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
