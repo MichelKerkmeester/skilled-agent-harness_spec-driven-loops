@@ -1,6 +1,6 @@
 ---
 title: "Rule: Communication"
-description: "Write so the reader can act after one pass: one idea per sentence, verdict first, nothing that does not carry information."
+description: "Write so the reader can act after one pass: one idea per sentence, plain words, nothing that does not carry information."
 trigger_phrases:
   - "one idea per sentence"
   - "atomic paragraphs"
@@ -12,10 +12,6 @@ trigger_phrases:
   - "marketing language"
   - "match length to the question"
   - "wall of text"
-  - "lead with the recommendation"
-  - "verdict first"
-  - "ask then do framing"
-  - "restate the request"
   - "change modality not volume"
   - "I don't follow"
   - "in simple terms"
@@ -23,8 +19,6 @@ trigger_phrases:
   - "remove the dashes"
   - "punctuation"
   - "too abstract"
-  - "name the failure a best practice prevents"
-  - "required versus optional"
 importance_tier: important
 contextType: reference
 version: 1.0.0.0
@@ -38,8 +32,6 @@ version: 1.0.0.0
 ## Fires when
 
 - About to write any substantive reply, an answer, an explanation, a close-out, a status.
-- About to present a recommendation, a fork, or a trade-off.
-- About to answer a complex or ambiguous request.
 - The reader has signalled they did not understand.
 
 This file carries what `AGENTS.md` §8 used to hold in full. Its trigger is deliberately
@@ -48,8 +40,12 @@ being written, or it silently stops applying to the short answers that need it m
 
 ## The rule
 
-**Write so the reader can act after one pass: one idea per sentence, the verdict first,
-nothing in the reply that does not carry information.**
+**Write so the reader can act after one pass: one idea per sentence, nothing in the reply
+that does not carry information.**
+
+This file governs how a reply reads. The shape of a decision you hand over, the verdict-first
+ordering and the recommendation, moved to [`presenting-decisions.md`](presenting-decisions.md)
+when this file reached its length ceiling.
 
 Delivery, not rigor. Nothing here licenses a softer claim than the evidence supports.
 
@@ -117,7 +113,14 @@ reader who has seen a lot of generated text. Either way they cost trust the cont
 This rule carries the ban because it fires on every substantive reply. The full standard,
 including the vocabulary and structural tells this one does not repeat, is
 [`hvr-rules.md`](../.opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md) in `sk-doc`.
-Load it when writing a document rather than a reply.
+Load all of it when writing a document.
+
+**In a reply, take its voice half and leave its document half.** The voice directives, the
+vocabulary lists and the tell lists apply to anything a reader reads, and a reply is read.
+The document-structure sections do not, because a reply has no headings, no front matter and
+no publish step. A message that presents the result of a long run is the case that decides
+this: it is a reply by delivery and a document by content, and it takes the voice half like
+any other reply.
 
 ---
 
@@ -142,7 +145,7 @@ content and is not:
 - **Empty openers:** "Great question", "Let me take a look", "I'll now".
 - **Restated summaries:** repeating back what you just said, one abstraction level up.
 - **Vague warnings:** "be careful with this", "this can be tricky", naming no failure.
-  If it is worth a warning it is worth naming what goes wrong; see §7.
+  If it is worth a warning it is worth naming what goes wrong.
 - **Corporate and marketing register:** "robust", "seamless", "leverage", "best-in-class".
 - **Narrating the obvious:** announcing a tool call the reader can see the result of.
 
@@ -151,72 +154,21 @@ sentence that mattered.
 
 ---
 
-## 7. LEAD WITH THE RECOMMENDATION, BUT EARN IT
-
-State the verdict first, and reach it by analysis. The order of the reply is not the
-order of the thinking, and it must not become it: front-loading a conclusion in the
-*writing* is a service to the reader, while front-loading one in the *reasoning* is how
-you stop noticing the evidence against it.
-
-If you cannot state the verdict yet, say that, a named uncertainty is a verdict about
-the state of the evidence, and it beats a confident sentence you would have to retract.
-
-The failure this prevents: two of them. A reply the reader must finish before learning
-what you think, and a conclusion that got picked early and defended afterwards.
-
----
-
-## 8. PRESENTING A RECOMMENDATION
-
-**Recommend one approach.** Name its main trade-off. Mention an alternative only when it
-could change the decision, a survey of options the reader will not take is work handed
-back rather than done.
-
-**Separate required from optional.** Mark must-do work distinctly from nice-to-have. A
-reader who cannot tell them apart does all of it or none of it.
-
-**Name the failure a best practice prevents.** Never cite a best practice, guardrail, or
-extra layer without stating the specific bug, cost, or user problem it avoids. "It's
-best practice" is an appeal to authority with the authority left out, and it is how
-unnecessary work enters a plan unchallenged, [`prevent-overengineering.md`](prevent-overengineering.md)
-is the rule that stops it being built.
-
-**State assumptions when evidence is missing.** A visible assumption can be corrected by
-the reader. A silent one cannot, and it will be discovered as a defect later.
-
----
-
-## 9. ASK→DO FRAMING
-
-For a complex or ambiguous request, preface the answer:
-
-1. **ASK:** restate the request in your own words. A paraphrase back, not a question
-   back: it proves you understood, and it surfaces a misreading before the work, not after.
-2. **DO:** state your approach in three to seven bullets.
-3. **THEN:** ask only the one or two clarifying questions that would change the
-   approach. Consolidate them into a single prompt, per `AGENTS.md` §2; escalate rather
-   than guess, per `AGENTS.md` §7.
-
-A question that would not change what you do is not a clarifying question, it is a delay.
-
----
-
-## 10. WHEN THE READER DID NOT FOLLOW
+## 7. WHEN THE READER DID NOT FOLLOW
 
 "I don't follow", "what?", "too abstract", "in simple terms": all the same signal, and
 the wrong response to every one of them is the same explanation at greater length.
 
 **Change modality, not volume.** Route to `sk-communication`: `/rewrite:response` for
 plainer wording, `/rewrite:explain-visually` for a diagram at a chosen depth. That skill
-is deliberately held off advisor routing, so this rule is the only thing that reaches
-it, §10 below does not waive that.
+is deliberately held off advisor routing, so this rule is the only thing that reaches it.
 
 The failure this prevents: the second explanation fails the same way as the first,
 because it was the same explanation.
 
 ---
 
-## 11. WHAT THIS RULE IS NOT
+## 8. WHAT THIS RULE IS NOT
 
 - **Not a constraint on rigor.** These shape delivery. Nothing here softens a claim, a
   caveat, or a verification standard owned by
@@ -231,14 +183,10 @@ because it was the same explanation.
 
 ---
 
-## 12. SELF-CHECK
+## 9. SELF-CHECK
 
 - [ ] No em dash, no semicolon, no serial comma.
-- [ ] The verdict is in the first few lines, and I reached it by analysis rather than committing to it early.
 - [ ] Every sentence carries information; no empty opener, restated summary, or unnamed warning survived.
 - [ ] Length matches what the reader asked, not what the work cost.
-- [ ] Every best practice, guardrail, or extra layer I recommended names the failure it prevents.
-- [ ] Required and optional work are visibly distinct.
-- [ ] Assumptions I made on missing evidence are stated, not silent.
 - [ ] Where the reader said they did not follow, I changed modality rather than adding words.
 - [ ] Nothing I cut for concision was something they needed.

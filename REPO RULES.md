@@ -44,7 +44,9 @@ is not.
 | Delete, overwrite, migrate, deploy, publish, send, install · force-push or rewrite history · change a shared contract · touch auth, data, or config | [`blast-radius.md`](repo-rules/blast-radius.md) | Reversibility, the rollback sentence, when to stop for a yes |
 | Diagnose a failure · make a red check green · attempt the same fix twice · add a special case, retry, sleep, or broadened catch | [`root-cause-and-debugging.md`](repo-rules/root-cause-and-debugging.md) | Fixing the producer instead of the symptom, and when to level up to the seam |
 | Answer without certainty · contradict the operator · fill a gap with a plausible guess · hit a contradiction between two things that must both be true | [`uncertainty-and-honesty.md`](repo-rules/uncertainty-and-honesty.md) | Confidence bands, UNKNOWN, contradiction halts |
-| Write any substantive reply · present a recommendation, a fork, or a trade-off · answer a complex or ambiguous request · the reader says they did not follow | [`communication.md`](repo-rules/communication.md) | How a reply reads: sentence shape, length, filler, verdict-first order, Ask→Do framing |
+| Write any substantive reply · the reader says they did not follow | [`communication.md`](repo-rules/communication.md) | How a reply reads: sentence shape, plain words, punctuation, length, filler |
+| Present a recommendation, a fork, or a trade-off · answer a complex or ambiguous request · start a multi-step stretch the reader cannot see inside · report what a long run found | [`presenting-decisions.md`](repo-rules/presenting-decisions.md) | Verdict first, one recommended path, saying where you are going before a long stretch |
+| End a turn · report work done, blocked, or partly done · ask the operator anything · state a fork or two acceptable paths · continue past a decision nobody made | [`handoff-and-questions.md`](repo-rules/handoff-and-questions.md) | What is the operator's to do next, and when a question becomes a structured choice |
 | Wire, rewire or remove a mode in a parent-hub skill · edit a hub's registry, router, `ROUTER.md`, `graph-metadata.json` or `SKILL.md` mode table · report that a mode is registered, routed or integrated · quote a per-hub gate result | [`skill-hub-routing.md`](repo-rules/skill-hub-routing.md) | The two routing stages, what "integrated" requires, and checking the hub you actually changed |
 
 ---
@@ -60,7 +62,9 @@ is not.
 | [Blast radius](repo-rules/blast-radius.md) | Size effort to what the change can break; no irreversible step without a named rollback and a yes. |
 | [Root cause](repo-rules/root-cause-and-debugging.md) | Fix the producer, not the symptom; every fix names the mechanism. |
 | [Uncertainty and honesty](repo-rules/uncertainty-and-honesty.md) | Never fabricate; mark the confidence you actually have. |
-| [Communication](repo-rules/communication.md) | Write so the reader can act after one pass: one idea per sentence, verdict first, nothing that does not carry information. |
+| [Communication](repo-rules/communication.md) | Write so the reader can act after one pass: one idea per sentence, plain words, nothing that does not carry information. |
+| [Presenting decisions](repo-rules/presenting-decisions.md) | When the reader has to decide, put the verdict first and recommend one path. |
+| [Handoff and questions](repo-rules/handoff-and-questions.md) | End every turn by naming what is now the operator's to do, in the form that lets them do it. |
 | [Hub routing](repo-rules/skill-hub-routing.md) | A hub projects one advisor identity and routes in two stages; registered is not routed, and a gate run without its hub argument checks something else. |
 
 Each file expands `AGENTS.md` and is bounded by it: where a rule file appears to
@@ -72,7 +76,8 @@ permit something `AGENTS.md` restricts, `AGENTS.md` wins and the rule file is wr
 
 **In:** how to think and act, restraint, scope, evidence, risk, diagnosis, honesty,
 the posture to hold when work is handed to another runtime, how the resulting reply
-reads, and what you may claim about wiring you have changed. Delivery joined the list
+reads, what you may claim about wiring you have changed, and how a turn hands control
+back to the operator. Delivery joined the list
 when `AGENTS.md` §8 moved down; it is the one rule here whose trigger is every
 substantive reply rather than a specific action, and §8 keeps the two clauses that
 must bind even when nothing loads.
@@ -89,3 +94,16 @@ In; it is an evidence obligation whose subject happens to be routing. `skill-hub
 is the one rule on this side of that line, and it carries no route-selection guidance:
 the mechanics stay in the skills, and the rule points at them. A fourth widening that
 admits selection itself would dissolve the boundary; this one does not.
+
+**The ask-surface carve-out, added as the fourth widening, on an operator decision that
+overrode a research refusal.** A four-iteration decision-test run returned *refuse* here:
+naming a question tool per runtime reads as the "which command" family, and the paragraph
+above pre-refuses a fourth widening that admits selection. The operator widened it anyway,
+and what follows is the narrowing that keeps the boundary standing. *Choosing between
+runtimes, agents, commands, models or flags* stays Out, unchanged. *Naming the surface that
+asks the operator a question, in the runtime you are already running in*, is In. That is not
+a selection, because nothing is being selected: the runtime is a given, and the rule records
+which of its surfaces carries an obligation the rule already imposes. `handoff-and-questions.md`
+is the one rule on this side of that line, its §5 is the only place a tool name appears, and
+it names only what this repository confirms. A fifth widening that let a rule pick between
+runtimes would be the dissolution this one avoids.
