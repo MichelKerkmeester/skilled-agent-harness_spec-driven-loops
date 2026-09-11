@@ -16,8 +16,8 @@
     svg .head-name,svg .component-name,svg .role-name,svg .value{font-family:'Geist',sans-serif}svg .head-name,svg .component-name,svg .role-name{font-size:11px;font-weight:600}
     svg .head-name,svg .component-name{fill:#2d3142}svg .role-name,svg .role-code{fill:#f5f5f5}svg .head-sub,svg .role-code,svg .hint,svg .legend-text,svg .focal-sub{font-family:'Geist Mono',monospace}
     svg .head-sub,svg .hint,svg .legend-text{fill:#4f5d75}svg .head-sub,svg .role-code,svg .hint{font-size:9px}svg .role-code{opacity:.85}
-    svg .cell{stroke:rgba(45,49,66,.12);stroke-width:.6}svg .full{fill:rgba(45,49,66,.08)}svg .write{fill:#fff}svg .read{fill:rgba(79,93,117,.08)}svg .none{fill:#f5f5f5}
-    svg .value{font-size:10px}svg .value.full-text{fill:#2d3142;font-weight:600}svg .value.write-text{fill:#2d3142}svg .value.read-text{fill:#4f5d75}svg .value.none-text{fill:#7a8399}
+    svg .cell{stroke:rgba(45,49,66,.12);stroke-width:.6}svg .full{fill:rgba(45,49,66,.16)}svg .write{fill:#fff}svg .read{fill:rgba(79,93,117,.09)}svg .none{fill:url(#dp-security-matrix-none-hatch)}
+    svg .value{font-size:10px}svg .value.full-text{fill:#2d3142;font-weight:600}svg .value.write-text{fill:#2d3142}svg .value.read-text{fill:#4f5d75}svg .value.none-text{fill:#4f5d75}
     svg .focal{fill:rgba(235,108,54,.07);stroke:#eb6c36;stroke-width:1.4}svg .focal-text{fill:#eb6c36;font-weight:600}svg .focal-sub{fill:#eb6c36;font-size:8px;opacity:.85}
     svg .legend-text{font-size:9px}
   </style>
@@ -28,6 +28,9 @@
     <div class="diagram">
       <svg viewBox="0 0 1084 400" role="img" aria-labelledby="dp-security-matrix-title dp-security-matrix-desc" xmlns="http://www.w3.org/2000/svg">
         <title id="dp-security-matrix-title">Data platform access matrix</title><desc id="dp-security-matrix-desc">A five by five permission matrix for platform roles and components.</desc>
+        <defs>
+          <pattern id="dp-security-matrix-none-hatch" width="8" height="8" patternUnits="userSpaceOnUse"><path d="M0,8 L8,0" fill="none" stroke="rgba(45,49,66,.05)" stroke-width="1"/></pattern>
+        </defs>
         <rect width="1084" height="400" fill="#f5f5f5"/>
 
         <!-- Header: y=72, h=52; role x positions derive from the 148px column formula -->

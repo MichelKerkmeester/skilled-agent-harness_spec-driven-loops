@@ -91,6 +91,10 @@
         "accent": {
           "value": "#f08a59",
           "kind": "primary"
+        },
+        "link": {
+          "value": "#6a95d8",
+          "kind": "primary"
         }
       }
     },

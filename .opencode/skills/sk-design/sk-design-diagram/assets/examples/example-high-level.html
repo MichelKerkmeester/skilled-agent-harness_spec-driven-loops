@@ -107,10 +107,10 @@
            ═══════════════════════════════════════════ -->
 
       <!-- Data sources → NiFi (staggered entry points) -->
-      <path d="M 144,92 H 156 Q 164,92 164,100 V 112 Q 164,120 176,120" fill="none" stroke="#4f5d75" stroke-width="1" marker-end="url(#arrow)"/>
-      <path d="M 144,172 H 156 Q 164,172 164,164 V 144 Q 164,136 176,136" fill="none" stroke="#4f5d75" stroke-width="1" marker-end="url(#arrow)"/>
-      <path d="M 144,252 H 156 Q 164,252 164,244 V 160 Q 164,152 176,152" fill="none" stroke="#4f5d75" stroke-width="1" marker-end="url(#arrow)"/>
-      <path d="M 144,336 H 156 Q 164,336 164,328 V 176 Q 164,168 176,168" fill="none" stroke="#4f5d75" stroke-width="1" marker-end="url(#arrow)"/>
+      <path d="M 144,92 H 156 Q 172,92 172,100 V 112 Q 172,120 176,120" fill="none" stroke="#4f5d75" stroke-width="1" marker-end="url(#arrow)"/>
+      <path d="M 144,172 H 156 Q 172,172 172,164 V 144 Q 172,136 176,136" fill="none" stroke="#4f5d75" stroke-width="1" marker-end="url(#arrow)"/>
+      <path d="M 144,252 H 156 Q 172,252 172,244 V 160 Q 172,152 176,152" fill="none" stroke="#4f5d75" stroke-width="1" marker-end="url(#arrow)"/>
+      <path d="M 144,336 H 156 Q 172,336 172,328 V 176 Q 172,168 176,168" fill="none" stroke="#4f5d75" stroke-width="1" marker-end="url(#arrow)"/>
 
       <!-- Airflow → tools (dashed orchestration drops) -->
       <line x1="452" y1="96" x2="452" y2="104" stroke="#4f5d75" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arrow-sm)"/>
@@ -126,7 +126,7 @@
       <!-- Trino → MinIO (vertical, Trino queries storage) -->
       <line x1="448" y1="176" x2="448" y2="208" stroke="#4f5d75" stroke-width="1" marker-end="url(#arrow)"/>
       <!-- MinIO → Trino (write-back, dashed) -->
-      <line x1="456" y1="208" x2="456" y2="176" stroke="rgba(45,49,66,0.30)" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arrow)"/>
+      <line x1="456" y1="208" x2="456" y2="176" stroke="#4f5d75" opacity="0.45" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arrow)"/>
 
       <!-- Trino → Data Modeling (bend down) -->
       <path d="M 532,140 H 556 Q 564,140 564,148 V 176 Q 564,184 600,184" fill="none" stroke="#4f5d75" stroke-width="1" marker-end="url(#arrow)"/>

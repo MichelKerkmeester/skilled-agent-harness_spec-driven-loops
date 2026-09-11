@@ -64,14 +64,6 @@
       max-width: 58ch;
     }
 
-    .diagram-container {
-      background: var(--color-paper-2);
-      border-radius: 8px;
-      border: 1px solid var(--color-rule);
-      padding: 1.5rem;
-      overflow-x: auto;
-    }
-
     svg { width: 100%; min-width: 840px; display: block; }
 
     .cards {
@@ -180,7 +172,6 @@
       <p class="subtitle">A resource call under a bearer token, with an ALT fragment for the happy path versus a 401 that refreshes via Auth and retries. Async audit is fire-and-forget with an open arrowhead.</p>
     </div>
 
-    <div class="diagram-container">
       <svg viewBox="0 0 960 720" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="sequence-oauth-full-title sequence-oauth-full-desc">
         <title id="sequence-oauth-full-title">Bearer call with refresh</title>
         <desc id="sequence-oauth-full-desc">Client calls API with a bearer token. An ALT fragment shows either a valid 200 response or a 401 path that refreshes via Auth and retries.</desc>
@@ -221,7 +212,7 @@
         <text x="312" y="170" fill="#2e5aa8" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">GET /RESOURCE + BEARER</text>
 
         <rect x="88" y="208" width="752" height="360" rx="4"
-              fill="rgba(45,49,66,0.02)" stroke="rgba(45,49,66,0.22)" stroke-width="1"/>
+              fill="rgba(45,49,66,0.04)" stroke="rgba(45,49,66,0.22)" stroke-width="1"/>
         <rect x="88" y="208" width="40" height="16" rx="2"
               fill="#f5f5f5" stroke="rgba(45,49,66,0.22)" stroke-width="1"/>
         <text x="108" y="220" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.12em">ALT</text>
@@ -306,7 +297,6 @@
         <line x1="696" y1="684" x2="724" y2="684" stroke="#eb6c36" stroke-width="1.4" marker-end="url(#arrow-accent)"/>
         <text x="732" y="688" fill="#4f5d75" font-size="8.5" font-family="'Geist', sans-serif">Headline</text>
       </svg>
-    </div>
 
     <div class="cards">
       <div class="card">
