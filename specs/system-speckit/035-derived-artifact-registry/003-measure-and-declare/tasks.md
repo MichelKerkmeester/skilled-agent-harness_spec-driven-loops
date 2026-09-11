@@ -1,0 +1,267 @@
+---
+title: "Tasks: Phase 3: measure the residue and declare the unhealable"
+description: "Task Format: T### [P?] Description (file path)"
+trigger_phrases:
+  - "task breakdown"
+  - "implementation tasks"
+  - "verification checklist"
+  - "task dependencies"
+importance_tier: "normal"
+contextType: "general"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
+# Tasks: Phase 3: measure the residue and declare the unhealable
+
+<!-- SPECKIT_LEVEL: 3 -->
+
+---
+
+<!-- ANCHOR:notation -->
+## Task Notation
+
+| Prefix | Meaning |
+|--------|---------|
+| `[ ]` | Pending |
+| `[x]` | Completed |
+| `[P]` | Parallelizable |
+| `[B]` | Blocked |
+
+**Task Format**: `T### [P?] Description (file path)`
+<!-- /ANCHOR:notation -->
+
+---
+
+<!-- ANCHOR:phase-1 -->
+## Phase 1: Setup
+
+- [ ] T001 Read the derived-repair step in `.github/workflows/strict-pass-freshness-report.yml` and record its current command, artifact name and parse check
+- [ ] T002 Capture the current text output of both tools over `specs` and record the counts as the comparison fixture
+- [ ] T003 Re-measure the residue baseline with `node .opencode/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs --roots specs` and record the exit code
+- [ ] T004 Capture the healer refusal census with `node .opencode/skills/system-spec-kit/runtime/cli/spec/heal-spec-docs.cjs --roots specs` and record each refusal with its stated reason
+<!-- /ANCHOR:phase-1 -->
+
+---
+
+<!-- ANCHOR:phase-2 -->
+## Phase 2: Implementation
+
+- [ ] T005 Add `--format json` to `runtime/cli/spec/repair-derived.cjs`, reusing the existing count path rather than a second one
+- [ ] T006 Add `--format json` to `runtime/cli/spec/heal-spec-docs.cjs`, listing every refusal with its document path and reason
+- [ ] T007 Write `runtime/cli/lib/unhealable-documents.json` from the T004 census, one entry per document with a reason and sorted by path
+- [ ] T008 Extend the workflow step to capture both reports, parse them and publish the counts without discarding the report on a non-zero exit
+- [ ] T009 Add the declaration comparison and render the undeclared and stale lists in the job summary
+- [ ] T010 Add the JSON and text parity cases to `runtime/cli/tests/repair-derived.vitest.ts`
+- [ ] T011 Add the census and declaration cases to `runtime/cli/tests/heal-spec-docs.vitest.ts`
+<!-- /ANCHOR:phase-2 -->
+
+---
+
+<!-- ANCHOR:phase-3 -->
+## Phase 3: Verification
+
+- [ ] T012 Run both tools in both modes over one fixture tree and compare counts and exit codes
+- [ ] T013 Run a declaration fixture where one refusal is undeclared and one declared entry is no longer refused, and confirm both appear
+- [ ] T014 Run the extended workflow command in a scratch worktree and confirm `git status --porcelain` is byte-identical
+- [ ] T015 Confirm the workflow file passes no `--apply` in the derived-repair step
+- [ ] T016 Record the baseline and confirm a second run over the same tree reproduces it
+- [ ] T017 Run `validate.sh --strict` on this phase and record the result
+<!-- /ANCHOR:phase-3 -->
+
+---
+
+<!-- ANCHOR:completion -->
+## Completion Criteria
+
+- [ ] All tasks marked `[x]`
+- [ ] No `[B]` blocked tasks remaining
+- [ ] Manual verification passed
+<!-- /ANCHOR:completion -->
+
+---
+
+<!-- ANCHOR:cross-refs -->
+## Cross-References
+
+- **Specification**: See `spec.md`
+- **Plan**: See `plan.md`
+<!-- /ANCHOR:cross-refs -->
+
+---
+
+## Verification Checklist
+
+<!-- ANCHOR:protocol -->
+## Verification Protocol
+
+| Priority | Handling | Completion Impact |
+|----------|----------|-------------------|
+| **[P0]** | HARD BLOCKER | Cannot claim done until complete |
+| **[P1]** | Required | Must complete OR get user approval |
+| **[P2]** | Optional | Can defer with documented reason |
+<!-- /ANCHOR:protocol -->
+
+---
+
+<!-- ANCHOR:pre-impl -->
+## Pre-Implementation
+
+- [ ] CHK-001 [P0] Requirements documented in spec.md
+- [ ] CHK-002 [P0] Technical approach defined in plan.md
+- [ ] CHK-003 [P1] Dependencies identified and available
+- [ ] CHK-004 [P0] The baseline was re-measured, not copied from this document
+- [ ] CHK-005 [P0] Both tools' current text output was captured before the JSON modes were written
+<!-- /ANCHOR:pre-impl -->
+
+---
+
+<!-- ANCHOR:code-quality -->
+## Code Quality
+
+- [ ] CHK-010 [P0] Code passes lint/format checks
+- [ ] CHK-011 [P0] No console errors or warnings
+- [ ] CHK-012 [P1] Error handling implemented
+- [ ] CHK-013 [P1] Code follows project patterns
+- [ ] CHK-014 [P1] Text mode remains the default for both tools
+<!-- /ANCHOR:code-quality -->
+
+---
+
+<!-- ANCHOR:testing -->
+## Testing Checklist
+
+- [ ] CHK-020 [P0] All acceptance criteria met
+- [ ] CHK-021 [P0] Manual testing complete
+- [ ] CHK-022 [P1] Edge cases tested
+- [ ] CHK-023 [P1] Error scenarios validated
+- [ ] CHK-024 [P0] JSON and text counts are asserted equal over one fixture tree
+- [ ] CHK-025 [P0] Both declaration directions are asserted, undeclared and stale
+<!-- /ANCHOR:testing -->
+
+---
+
+<!-- ANCHOR:fix-completeness -->
+## Fix Completeness
+
+- [ ] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`.
+- [ ] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep.
+- [ ] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs, and tests.
+- [ ] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases.
+- [ ] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed.
+- [ ] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state.
+- [ ] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range.
+<!-- /ANCHOR:fix-completeness -->
+
+---
+
+<!-- ANCHOR:security -->
+## Security
+
+- [ ] CHK-030 [P0] No hardcoded secrets
+- [ ] CHK-031 [P0] Input validation implemented
+- [ ] CHK-032 [P1] Auth/authz working correctly
+- [ ] CHK-033 [P0] The workflow job keeps `contents: read` and passes no write flag
+<!-- /ANCHOR:security -->
+
+---
+
+<!-- ANCHOR:docs -->
+## Documentation
+
+- [ ] CHK-040 [P1] Spec/plan/tasks synchronized
+- [ ] CHK-041 [P1] Code comments adequate
+- [ ] CHK-042 [P2] README updated (if applicable)
+- [ ] CHK-043 [P1] The declared list names a reason for every entry
+<!-- /ANCHOR:docs -->
+
+---
+
+<!-- ANCHOR:file-org -->
+## File Organization
+
+- [ ] CHK-050 [P1] Temp files in scratch/ only
+- [ ] CHK-051 [P1] scratch/ cleaned before completion
+- [ ] CHK-052 [P0] No new sweep file appears in the diff
+<!-- /ANCHOR:file-org -->
+
+---
+
+<!-- ANCHOR:summary -->
+## Verification Summary
+
+| Category | Total | Verified |
+|----------|-------|----------|
+| P0 Items | 17 | 0/17 |
+| P1 Items | 13 | 0/13 |
+| P2 Items | 2 | 0/2 |
+
+**Verification Date**: pending phase execution
+<!-- /ANCHOR:summary -->
+
+---
+
+<!-- ANCHOR:arch-verify -->
+## L3+: Architecture Verification
+
+- [ ] CHK-100 [P0] Architecture decisions documented in the plan ADR section
+- [ ] CHK-101 [P1] All ADRs have status (Proposed/Accepted)
+- [ ] CHK-102 [P1] Alternatives documented with rejection rationale
+- [ ] CHK-103 [P2] Migration path documented (if applicable)
+<!-- /ANCHOR:arch-verify -->
+
+---
+
+<!-- ANCHOR:perf-verify -->
+## L3+: Performance Verification
+
+- [ ] CHK-110 [P1] Response time targets met (NFR-P01)
+- [ ] CHK-111 [P1] Throughput targets met (NFR-P02)
+- [ ] CHK-112 [P2] Load testing completed
+- [ ] CHK-113 [P2] Performance benchmarks documented
+<!-- /ANCHOR:perf-verify -->
+
+---
+
+<!-- ANCHOR:deploy-ready -->
+## L3+: Deployment Readiness
+
+- [ ] CHK-120 [P0] Rollback procedure documented and tested
+- [ ] CHK-121 [P0] Feature flag configured (if applicable)
+- [ ] CHK-122 [P1] Monitoring/alerting configured
+- [ ] CHK-123 [P1] Runbook created
+- [ ] CHK-124 [P2] Deployment runbook reviewed
+<!-- /ANCHOR:deploy-ready -->
+
+---
+
+<!-- ANCHOR:compliance-verify -->
+## L3+: Compliance Verification
+
+- [ ] CHK-130 [P1] Security review completed
+- [ ] CHK-131 [P1] Dependency licenses compatible
+- [ ] CHK-132 [P2] OWASP Top 10 checklist completed
+- [ ] CHK-133 [P2] Data handling compliant with requirements
+<!-- /ANCHOR:compliance-verify -->
+
+---
+
+<!-- ANCHOR:docs-verify -->
+## L3+: Documentation Verification
+
+- [ ] CHK-140 [P1] All spec documents synchronized
+- [ ] CHK-141 [P1] API documentation complete (if applicable)
+- [ ] CHK-142 [P2] User-facing documentation updated
+- [ ] CHK-143 [P2] Knowledge transfer documented
+<!-- /ANCHOR:docs-verify -->
+
+---
+
+<!-- ANCHOR:sign-off -->
+## L3+: Sign-Off
+
+| Approver | Role | Status | Date |
+|----------|------|--------|------|
+| Phase owner | Technical Lead | pending | |
+| Operator | Product Owner | pending | |
+<!-- /ANCHOR:sign-off -->
+
+

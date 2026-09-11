@@ -1,0 +1,26 @@
+{
+  "level": "3",
+  "specFolder": "system-speckit/035-derived-artifact-registry/002-transactional-remint",
+  "description": "The re-mint gate exists to keep a packet's generated metadata in step with its documents, and it does that by regenerating and staging",
+  "keywords": [
+    "re-mint",
+    "gate",
+    "exists",
+    "keep",
+    "packet",
+    "metadata",
+    "step",
+    "documents",
+    "regenerating",
+    "staging"
+  ],
+  "lastUpdated": "2026-09-11T09:39:58.587Z",
+  "specId": "002",
+  "folderSlug": "transactional-remint",
+  "parentChain": [
+    "system-speckit",
+    "035-derived-artifact-registry"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,120 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/035-derived-artifact-registry",
+  "spec_folder": "system-speckit/035-derived-artifact-registry",
+  "parent_id": null,
+  "children_ids": [
+    "system-speckit/035-derived-artifact-registry/001-artifact-registry-and-walker",
+    "system-speckit/035-derived-artifact-registry/002-mechanism-tests",
+    "system-speckit/035-derived-artifact-registry/003-standing-drift-sweep",
+    "system-speckit/035-derived-artifact-registry/004-transactional-remint",
+    "system-speckit/035-derived-artifact-registry/005-unhealable-quarantine",
+    "system-speckit/035-derived-artifact-registry/001-registry-walker-and-proof",
+    "system-speckit/035-derived-artifact-registry/002-transactional-remint",
+    "system-speckit/035-derived-artifact-registry/003-measure-and-declare"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "derived artifact registry",
+      "stale fingerprint sweep",
+      "per artifact gate",
+      "derived staleness walker"
+    ],
+    "key_topics": [
+      "derived",
+      "artifact",
+      "registry",
+      "stale",
+      "fingerprint",
+      "sweep",
+      "per",
+      "gate",
+      "staleness",
+      "walker",
+      "packet",
+      "stores"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      ".github/workflows/strict-pass-freshness-report.yml",
+      "runtime/cli/spec/heal-spec-docs.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "strict-pass-freshness-report.yml",
+        "kind": "config",
+        "path": ".github/workflows/strict-pass-freshness-report.yml",
+        "source": "derived"
+      },
+      {
+        "name": "heal-spec-docs.cjs",
+        "kind": "file",
+        "path": "runtime/cli/spec/heal-spec-docs.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose One",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A packet stores derived data beside a fingerprint of the documents it came from, and the same shape repeats for routing manifests and the retrieval index",
+    "created_at": "2026-09-11T06:37:34Z",
+    "last_save_at": "2026-09-11T09:43:29.914Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:3b19d1584aa9fece4ed213b23f0a74c7881c23a06dd15ce3abcf49e5eff8a000",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "a3a9c3fb7fd26e690900b0c84c0c5033665c261a989712a7a570965ec2a5e3f6"
+    },
+    "last_active_at": null
+  }
+}
