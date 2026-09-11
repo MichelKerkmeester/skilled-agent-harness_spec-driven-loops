@@ -22,6 +22,7 @@ trigger_phrases:
 Current state:
 
 - `pre-commit` runs an advisory doc-model-reference drift check, then seven blocking sub-gates: comment hygiene, agent-mirror sync, mirror parity, prompt-card sync, MCP mutation-class, compiled-routing re-mint and spec derived-metadata re-mint. Six carry their own bypass flag; agent-mirror sync has none.
+- `prepare-commit-msg` stamps the machine trailer paragraph: it mints a `Commit-Id:` through the sk-git ordinal allocator whenever one is absent, re-mints a fresh one on cherry-pick, keeps the existing id on amend, and appends `Spec:` only when `SPECKIT_COMMIT_SPEC` supplies the packet. It identifies this repository by the allocator's path, separates the block from prose with one blank line, keeps trailing comment lines (and a `git commit -v` scissors/diff tail) below the block, and exits untouched anywhere else.
 - `post-commit` publishes the just-completed commit to the shared live branch, and only from a linked worktree in a launch-wrapper session that exports both `SPECKIT_AUTOSYNC=1` and `SPECKIT_LIVE_BRANCH`.
 - `post-merge` and `post-rewrite` anchor and surface any `--autostash` entry after a merge or an amend/rebase, so a conflicted (un-applied) autostash cannot be lost silently.
 - `lib/autostash-orphan-guard.sh` is the one shared helper `post-merge` and `post-rewrite` both source; `lib/mass-deletion-guard.sh` backs the `pre-push` mass-deletion gate.
@@ -162,6 +163,7 @@ bash -n .opencode/scripts/git-hooks/post-commit
 bash -n .opencode/scripts/git-hooks/post-merge
 bash -n .opencode/scripts/git-hooks/post-rewrite
 bash -n .opencode/scripts/git-hooks/pre-push
+bash -n .opencode/scripts/git-hooks/prepare-commit-msg
 bash -n .opencode/scripts/git-hooks/lib/autostash-orphan-guard.sh
 git commit --allow-empty -m "hook smoke"
 ```

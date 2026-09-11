@@ -1,0 +1,276 @@
+#!/usr/bin/env bash
+# ───────────────────────────────────────────────────────────────
+# COMPONENT: Prepare-Commit-Msg Hook — Machine Trailer Stamper
+# ───────────────────────────────────────────────────────────────
+# Mints a repository-wide ordinal through the sk-git allocator and appends the
+# machine trailer paragraph: `Commit-Id:` always, and `Spec:` only when the
+# environment supplies the packet. An amend keeps its existing id, a
+# cherry-pick re-mints a fresh one, and a repository that does not ship the
+# allocator is left alone.
+#
+# The hook never blocks a commit: every failure path exits 0, and the commit-msg
+# hook still validates whatever the message contains.
+#
+# Bypass: SPECKIT_SKIP_PREPARE_COMMIT_MSG=1 git commit ...
+# Spec:   SPECKIT_COMMIT_SPEC=<track>/<packet>[/<phase>] git commit ...
+# Install: bash .opencode/scripts/install-git-hooks.sh
+# Uninstall: bash .opencode/scripts/install-git-hooks.sh --uninstall
+#
+# Exit Codes:
+#   0 - Always; a failed stamp must never block the commit
+
+set -euo pipefail
+
+# ───────────────────────────────────────────────────────────────
+# 1. GUARDS
+# ───────────────────────────────────────────────────────────────
+
+if [[ "${SPECKIT_SKIP_PREPARE_COMMIT_MSG:-0}" = "1" ]]; then
+  exit 0
+fi
+
+MESSAGE_FILE="${1:-}"
+SOURCE="${2:-}"
+
+if [[ -z "$MESSAGE_FILE" || ! -f "$MESSAGE_FILE" ]]; then
+  exit 0
+fi
+
+# The hook is symlinked machine-wide through the operator's global hooksPath,
+# so repository identity decides: only the checkout that ships the allocator is
+# stamped, and every other repository exits untouched.
+REPO_ROOT="$(git rev-parse --show-toplevel 2>/dev/null || true)"
+if [[ -z "$REPO_ROOT" ]]; then
+  exit 0
+fi
+
+ALLOCATOR="$REPO_ROOT/.opencode/skills/sk-git/scripts/commit-id-naming.sh"
+if [[ ! -f "$ALLOCATOR" ]]; then
+  exit 0
+fi
+
+# Git generates merge and squash messages itself; they stay untouched.
+case "$SOURCE" in
+  merge|squash)
+    exit 0
+    ;;
+esac
+
+# ───────────────────────────────────────────────────────────────
+# 2. MESSAGE ANALYSIS
+# ───────────────────────────────────────────────────────────────
+
+# A cherry-pick copies an id that already belongs to the picked commit. Git
+# marks the operation with CHERRY_PICK_HEAD while the picked message is the
+# pending one.
+CHERRY_PICK=0
+if [[ "$SOURCE" = "commit" ]]; then
+  CHERRY_PICK_HEAD_PATH="$(git rev-parse --git-path CHERRY_PICK_HEAD 2>/dev/null || true)"
+  if [[ -n "$CHERRY_PICK_HEAD_PATH" && -f "$CHERRY_PICK_HEAD_PATH" ]]; then
+    CHERRY_PICK=1
+  fi
+fi
+
+# Trailing comment lines move below the trailer block. core.commentChar can
+# replace the default '#', and 'auto' lets git pick one, where '#' stays safe.
+COMMENT_CHAR="$(git config --get core.commentChar 2>/dev/null || true)"
+case "$COMMENT_CHAR" in
+  ""|auto)
+    COMMENT_CHAR="#"
+    ;;
+esac
+
+# `git commit -v` appends the diff below a scissors line. That region is git's
+# scratch space, so it must stay below the stamped paragraph; appending past it
+# would let the cleanup step discard the keys together with the diff.
+SCISSORS_LINE="$COMMENT_CHAR ------------------------ >8 ------------------------"
+
+LINES=()
+while IFS= read -r line || [[ -n "$line" ]]; do
+  LINES[${#LINES[@]}]="$line"
+done < "$MESSAGE_FILE"
+LINE_COUNT=${#LINES[@]}
+
+TAIL_START="$LINE_COUNT"
+index=0
+while (( index < LINE_COUNT )); do
+  if [[ "${LINES[$index]}" = "$SCISSORS_LINE" ]]; then
+    TAIL_START="$index"
+    break
+  fi
+  index=$((index + 1))
+done
+
+COMMENT_START="$TAIL_START"
+while (( COMMENT_START > 0 )); do
+  previous=$((COMMENT_START - 1))
+  if [[ "${LINES[$previous]}" = "$COMMENT_CHAR"* ]]; then
+    COMMENT_START="$previous"
+  else
+    break
+  fi
+done
+
+# Trailing blank lines are dropped here and re-added as the separator below.
+REAL_END="$COMMENT_START"
+while (( REAL_END > 0 )); do
+  previous=$((REAL_END - 1))
+  if [[ -z "${LINES[$previous]//[[:space:]]/}" ]]; then
+    REAL_END="$previous"
+  else
+    break
+  fi
+done
+
+# A message that is empty apart from comments is left alone; git aborts it.
+if (( REAL_END == 0 )); then
+  exit 0
+fi
+
+# Cherry-pick copies are re-addressed: drop every copied id from the real body.
+REAL=()
+REAL_COUNT=0
+index=0
+while (( index < REAL_END )); do
+  if (( CHERRY_PICK == 1 )) && [[ "${LINES[$index]}" = Commit-Id:* ]]; then
+    index=$((index + 1))
+    continue
+  fi
+  REAL[REAL_COUNT]="${LINES[$index]}"
+  REAL_COUNT=$((REAL_COUNT + 1))
+  index=$((index + 1))
+done
+
+# Dropping copied ids can expose blank lines that no longer separate anything.
+while (( REAL_COUNT > 0 )); do
+  previous=$((REAL_COUNT - 1))
+  if [[ -z "${REAL[$previous]//[[:space:]]/}" ]]; then
+    REAL_COUNT=$((REAL_COUNT - 1))
+  else
+    break
+  fi
+done
+
+# ───────────────────────────────────────────────────────────────
+# 3. STAMPING DECISION
+# ───────────────────────────────────────────────────────────────
+
+HAS_SPEC=0
+HAS_COMMIT_ID=0
+index=0
+while (( index < REAL_COUNT )); do
+  case "${REAL[$index]}" in
+    Spec:*)
+      HAS_SPEC=1
+      ;;
+    Commit-Id:*)
+      HAS_COMMIT_ID=1
+      ;;
+  esac
+  index=$((index + 1))
+done
+
+REQUIRE_ID=0
+if (( CHERRY_PICK == 1 || HAS_COMMIT_ID == 0 )); then
+  REQUIRE_ID=1
+fi
+
+# Nothing guesses a packet: Spec is stamped only when the environment provides
+# its value and the message does not carry one already.
+REQUIRE_SPEC=0
+if [[ -n "${SPECKIT_COMMIT_SPEC:-}" && "$HAS_SPEC" -eq 0 ]]; then
+  REQUIRE_SPEC=1
+fi
+
+if (( REQUIRE_ID == 0 && REQUIRE_SPEC == 0 )); then
+  exit 0
+fi
+
+NEW_ID=""
+if (( REQUIRE_ID == 1 )); then
+  if ! NEW_ID="$(bash "$ALLOCATOR" allocate 2>/dev/null)"; then
+    printf 'prepare-commit-msg: allocator failed; leaving the message unstamped.\n' >&2
+    exit 0
+  fi
+fi
+
+# ───────────────────────────────────────────────────────────────
+# 4. REWRITE
+# ───────────────────────────────────────────────────────────────
+
+# A trailing run of machine keys is the existing trailer paragraph: append to
+# it. Anything else is prose that needs exactly one blank line of separation.
+BLOCK_START="$REAL_COUNT"
+while (( BLOCK_START > 0 )); do
+  previous=$((BLOCK_START - 1))
+  case "${REAL[$previous]}" in
+    Spec:*|Commit-Id:*)
+      BLOCK_START="$previous"
+      ;;
+    *)
+      break
+      ;;
+  esac
+done
+
+NEEDS_BLANK=0
+if (( REAL_COUNT > 0 && BLOCK_START == REAL_COUNT )); then
+  NEEDS_BLANK=1
+fi
+
+TMP_MESSAGE="$(mktemp "${MESSAGE_FILE}.stamp.XXXXXX" 2>/dev/null || true)"
+if [[ -z "$TMP_MESSAGE" ]]; then
+  printf 'prepare-commit-msg: could not create a temporary file; leaving the message unstamped.\n' >&2
+  exit 0
+fi
+
+# Write the stamped message beside the original and swap it in, so a write
+# failure never leaves a half-written commit message behind.
+write_stamped_message() {
+  local position
+
+  position=0
+  while (( position < BLOCK_START )); do
+    printf '%s\n' "${REAL[$position]}" >> "$TMP_MESSAGE" || return 1
+    position=$((position + 1))
+  done
+
+  if (( NEEDS_BLANK == 1 )); then
+    printf '\n' >> "$TMP_MESSAGE" || return 1
+  fi
+
+  if (( REQUIRE_SPEC == 1 )); then
+    printf 'Spec: %s\n' "$SPECKIT_COMMIT_SPEC" >> "$TMP_MESSAGE" || return 1
+  fi
+
+  while (( position < REAL_COUNT )); do
+    printf '%s\n' "${REAL[$position]}" >> "$TMP_MESSAGE" || return 1
+    position=$((position + 1))
+  done
+
+  if (( REQUIRE_ID == 1 )); then
+    printf 'Commit-Id: %s\n' "$NEW_ID" >> "$TMP_MESSAGE" || return 1
+  fi
+
+  position="$COMMENT_START"
+  while (( position < TAIL_START )); do
+    printf '%s\n' "${LINES[$position]}" >> "$TMP_MESSAGE" || return 1
+    position=$((position + 1))
+  done
+
+  position="$TAIL_START"
+  while (( position < LINE_COUNT )); do
+    printf '%s\n' "${LINES[$position]}" >> "$TMP_MESSAGE" || return 1
+    position=$((position + 1))
+  done
+
+  return 0
+}
+
+if write_stamped_message && mv -f "$TMP_MESSAGE" "$MESSAGE_FILE"; then
+  exit 0
+fi
+
+rm -f "$TMP_MESSAGE" 2>/dev/null || true
+printf 'prepare-commit-msg: could not write the stamped message; leaving it unstamped.\n' >&2
+exit 0
