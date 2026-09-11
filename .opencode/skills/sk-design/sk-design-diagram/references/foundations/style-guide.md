@@ -30,7 +30,7 @@ Change this file and every diagram the skill produces inherits the new skin with
 
 #### Semantic roles
 
-Every token is referred to by **semantic role**, not by its hex value. Type references (`type-*.md`) and SKILL.md say `accent`, not `#f7591f`.
+Every token is referred to by **semantic role**, not by its hex value. Type references (`type-*.md`) and SKILL.md say `accent`, not `#eb6c36`.
 
 | Role | Purpose | Default (light) | Default (dark) |
 |---|---|---|---|
@@ -40,7 +40,7 @@ Every token is referred to by **semantic role**, not by its hex value. Type refe
 | `muted` | Secondary text, default arrow stroke | `#4f5d75` (blue-slate) | `#bfc0c0` (silver) |
 | `soft` | Sublabels, boundary labels | `#7a8399` | `#8e98ac` |
 | `rule` | Hairline borders | `rgba(45,49,66,0.12)` | `rgba(245,245,245,0.12)` |
-| `rule-solid` | Stronger borders, baselines | `#bfc0c0` (silver) | `rgba(191,192,192,0.25)` |
+| `rule-solid` | Stronger borders, baselines | `rgba(79,93,117,0.25)` (muted at 0.25) | `rgba(191,192,192,0.25)` |
 | `accent` | Focal / 1–2 max per diagram | `#eb6c36` (atomic-tangerine) | `#f08a59` |
 | `accent-tint` | Fill for accent-bordered boxes | `rgba(235,108,54,0.08)` | `rgba(240,138,89,0.10)` |
 | `link` | HTTP/API calls, external arrows | `#2e5aa8` | `#6a95d8` |
@@ -53,9 +53,9 @@ Every token is referred to by **semantic role**, not by its hex value. Type refe
 
 There is no formula. The dark values are hand-picked: the accent moves from `#eb6c36` to `#f08a59` by hue, saturation and lightness together, so no single rule reproduces it, and the warm `rgba(28,25,23, X)` spelling this section once described appears in none of the examples. Every value, its kind and its origin are recorded in [derivation-record.md](derivation-record.md); a value derived by a rule (ink at an alpha, accent at an alpha) is marked as such there and re-derived by the corpus check.
 
-#### Series palette (multi-series chart types only)
+#### Series palette (multi-series charts and typed-chip vocabularies)
 
-A small set of desaturated, editorial-tone colors for chart types that genuinely need to distinguish multiple overlapping entities (currently: **radar**). The "1-focal" rule still holds — `accent` is reserved for the focal series; the palette below covers the rest.
+A small set of desaturated, editorial-tone colors for two cases: a chart type that must distinguish overlapping entities (**radar**, **line**), and a diagram whose chips name a closed vocabulary a reader has to tell apart (**data-flow**, **process**, **dp-integration**, **it-state**). The "1-focal" rule still holds — `accent` is reserved for the focal series; the palette below covers the rest.
 
 | Token | Light | Dark | Notes |
 |---|---|---|---|
@@ -65,7 +65,7 @@ A small set of desaturated, editorial-tone colors for chart types that genuinely
 | `series-4` | `#9c6b50` (rust-brown) | `#b88670` | Non-focal series |
 | `series-5` | `#6e6479` (slate) | `#8d8298` | Non-focal series |
 
-Fills sit at `0.18` opacity light, `0.22` dark; strokes use the full color. **Don't backfill these tokens to non-chart types** — architecture, swimlane, etc. continue to use muted-ink variants. The series palette is opt-in for diagrams where overlapping shapes demand distinguishable color, not a license to add color elsewhere.
+Fills sit at `0.18` opacity light, `0.22` dark; strokes use the full color. **Everything else uses muted-ink variants** — architecture, swimlane and the rest. The series palette is opt-in where overlapping shapes or a typed vocabulary demand distinguishable color, not a license to add color elsewhere.
 
 #### Terminal skin (opt-in alternate)
 
@@ -155,5 +155,5 @@ Three options:
 - **No rainbow palette**: if your brand ships 8 colors, pick 3 (paper, ink, accent). The rest become `muted` variants.
 - **Serif + sans + mono**: three families, not more. If brand typography is all sans, keep Instrument Serif for `title` and `callout` anyway — the contrast is load-bearing.
 - **Paper is warm-neutral, not pure white**: pure white turns the design sterile. Pick a cream, bone, or light grey with a hint of warmth.
-- **Dot pattern is optional, not default**: the 22×22 dot pattern is an opt-in "dotted paper" variant (good for long-form editorial hero diagrams). The default background is a clean `paper` fill, no pattern. When the pattern is enabled, it should sit at ~10% opacity of `ink` on `paper` — visible but quiet.
+- **Dot pattern is the default ground**: the 22×22 dot pattern carries the paper, and 26 of the 34 shipped forms use it. Drop it for a clean `paper` fill when the drawing is dense enough that the pattern competes with it — eight forms do. The pattern sits at ~10% opacity of `ink` on `paper`: visible but quiet.
 - **Container is clean by default**: the diagram sits directly on the page paper, no secondary container background or border. A framed variant (`paper-2` bg + `rule` border + 8px radius + padding) is available as an opt-in for card-heavy layouts, but don't reach for it by default — the extra chrome fights the figure.

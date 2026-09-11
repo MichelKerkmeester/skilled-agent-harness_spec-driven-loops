@@ -39,7 +39,7 @@ The opt-in series palette for multi-series charts lives in the style guide, not 
 | `muted` | `#4f5d75` | primary | Blue-slate from the brand palette |
 | `soft` | `#7a8399` | primary | Hand-picked, a lighter slate in the blue-slate family |
 | `rule` | `rgba(45,49,66,0.12)` | derived | `ink` at 0.12 |
-| `rule-solid` | `#bfc0c0` | primary | Silver from the brand palette |
+| `rule-solid` | `rgba(79,93,117,0.25)` | derived | `muted` at 0.25; the templates' value, which settles the disagreement |
 | `accent` | `#eb6c36` | primary | Atomic-tangerine from the brand palette |
 | `accent-tint` | `rgba(235,108,54,0.08)` | derived | `accent` at 0.08 |
 | `link` | `#2e5aa8` | primary | Hand-picked, a saturated variant in the blue-slate hue family |
