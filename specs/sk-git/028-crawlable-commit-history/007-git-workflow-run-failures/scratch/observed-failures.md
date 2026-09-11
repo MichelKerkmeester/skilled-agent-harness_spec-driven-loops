@@ -24,3 +24,17 @@ Phase 007 starts from these, reproduces each, and adjusts the producer.
    stopped.
 7. The commit-msg hook warned "consider revising the message" on a message that only carried a
    spec path in Refs. Check which clarity rule fired and whether it should.
+8. Three concurrent cli-pi children were killed by the operating system for memory pressure with
+   no partial output; the runner reported exit and nothing else. Two other sessions and desktop
+   apps held most of the memory. Serial dispatch survived.
+9. The pre-commit spec-remint gate blocks a commit when a packet has files staged and unstaged at
+   once, including derived files a previous gate run or another process left dirty. A
+   non-interactive committer that stages exact paths hits this with no way to answer.
+10. `git count-objects` reports a leftover `tmp_pack_*` in the main clone's object store, the
+    trace of a git process killed mid-write.
+11. A dispatched child edited a packet's implementation-summary.md outside its brief because the
+    completion-evidence advisory told it the packet claimed done with 0/15 items; the advisory
+    reads the whole packet, not the child's deliverable.
+12. `git add <several existing paths>` from a linked worktree fires the sk-git advisory
+    `add-pathspec-matches-nothing` on every single commit of this session, twenty times so far,
+    while every add staged exactly what it named.
