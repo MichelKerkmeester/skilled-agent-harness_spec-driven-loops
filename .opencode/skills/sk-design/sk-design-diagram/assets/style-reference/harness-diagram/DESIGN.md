@@ -29,7 +29,7 @@ for names, a monospace for anything technical, and a serif reserved for an annot
 | Accent tint | `rgba(235,108,54,0.08)` | `--color-accent-tint` | The focal node's fill behind its accent outline |
 | Link | `#2e5aa8` | `--color-link` | A reference out of the diagram |
 | Sage | `#7c8f6f` | `--color-series-1` | First series where several entities overlap |
-| Slate blue | `#5e7a9b` | `--color-series-2` | Second series |
+| Slate blue | `#5c7899` | `--color-series-2` | Second series |
 | Wheat | `#b8915a` | `--color-series-3` | Third series |
 | Rust | `#9c6b50` | `--color-series-4` | Fourth series |
 | Heather | `#6e6479` | `--color-series-5` | Fifth series |

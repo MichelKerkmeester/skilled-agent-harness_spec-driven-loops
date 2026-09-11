@@ -57,7 +57,7 @@
           "kind": "primary"
         },
         "series-2": {
-          "value": "#5e7a9b",
+          "value": "#5c7899",
           "kind": "primary"
         },
         "series-3": {
@@ -148,6 +148,7 @@
     "textOnPaper": 4.5,
     "markOnPaper": 3.0,
     "accentAgainstInk": 1.5,
+    "textOnMark": 4.5,
     "ungated": [
       "backend-fill",
       "bar",

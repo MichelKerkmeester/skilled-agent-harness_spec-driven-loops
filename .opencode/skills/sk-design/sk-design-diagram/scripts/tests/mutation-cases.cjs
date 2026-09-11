@@ -40,6 +40,15 @@ const FILE_CASES = [
     file: 'assets/diagrams/starter-light.html',
     from: '--color-muted:   #4f5d75;', to: '--color-muted:   #dddddd;',
     expect: /muted/ },
+  { name: 'a legend swatch keying a dash the drawing never paints', family: 'legend-fidelity',
+    file: 'assets/diagrams/high-level.html',
+    from: 'x1="808" y1="466" x2="828" y2="466" stroke="rgba(45,49,66,0.35)" stroke-width="1" stroke-dasharray="4,3"',
+    to: 'x1="808" y1="466" x2="828" y2="466" stroke="rgba(45,49,66,0.35)" stroke-width="1" stroke-dasharray="9,2"',
+    expect: /keys the dash array "9 2"/ },
+  { name: 'a label mask shifted onto a short connector', family: 'short-connector-labels',
+    file: 'assets/diagrams/it-state.html',
+    from: 'class="label-mask" x="478" y="312"', to: 'class="label-mask" x="470" y="312"',
+    expect: /under about 60px a label belongs beside its connector/ },
 ];
 
 // The corpus-scoped families read the skill's documents and the token source, so their cases

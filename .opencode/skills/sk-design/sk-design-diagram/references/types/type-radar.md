@@ -71,7 +71,7 @@ The skill's "1-focal" rule still holds: `accent` is reserved for the focal serie
 |---|---|---|---|
 | Focal | `accent` | `#eb6c36` | `#f08a59` |
 | 1 | `series-1` (sage) | `#7c8f6f` | `#9caf8f` |
-| 2 | `series-2` (dusty-blue) | `#5e7a9b` | `#82a0c0` |
+| 2 | `series-2` (dusty-blue) | `#5c7899` | `#82a0c0` |
 | 3 | `series-3` (mustard) | `#b8915a` | `#d3ad7a` |
 | 4 | `series-4` (rust-brown) | `#9c6b50` | `#b88670` |
 | 5 | `series-5` (slate) | `#6e6479` | `#8d8298` |

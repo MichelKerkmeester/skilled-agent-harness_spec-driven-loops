@@ -348,7 +348,7 @@ Same catalog as `type-data-flow.md` §8.
 | Code | Color (light) | Color (dark) | Meaning |
 |------|---------------|--------------|---------|
 | `LS` | `#7c8f6f` sage | `#9caf8f` | List / assignment / task |
-| `DB` | `#5e7a9b` dusty-blue | `#82a0c0` | Dataset / tabular records |
+| `DB` | `#5c7899` dusty-blue | `#82a0c0` | Dataset / tabular records |
 | `TB` | `#b8915a` mustard | `#d3ad7a` | Table (analysis-ready) |
 | `FL` | `#9c6b50` rust-brown | `#b88670` | File / document / report |
 | `WB` | `#6e6479` slate | `#8d8298` | Web / press / public release |

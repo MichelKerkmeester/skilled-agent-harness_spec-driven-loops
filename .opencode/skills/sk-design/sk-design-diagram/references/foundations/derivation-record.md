@@ -90,7 +90,16 @@ The terminal skin is a second, fixed skin. You opt into it per diagram, and onbo
 | `text-on-paper` | 4.5:1 | `ink`, `muted`, and any text role against its ground |
 | `mark-on-paper` | 3.0:1 | Any stroke or fill that carries meaning |
 | `accent-against-ink` | 1.5:1 | The `accent` wherever it meets an `ink`-weight ground |
+| `text-on-mark` | 4.5:1 | A label set on a coloured mark rather than on the paper: a typed chip, a filled badge |
 | hairlines | ungated | `rule` and `rule-solid`, decoration reviewed by eye |
+
+`text-on-mark` was added after a reader measured white chip labels against the text gate by analogy
+and found one under it. The analogy was sound and the gate was missing, which is the worse of the two
+problems: a rule applied by eye is a rule that holds only while someone is looking. Series values
+stay ungated against the paper, because a series mark carries no text; a series value used as a chip
+fill is a different use and clears this gate or it does not ship. The one that did not, the second
+series, moved two points darker — invisible at a glance, 4.44:1 to 4.56:1 against white, and better
+against the paper as well.
 
 ### Recorded departures
 

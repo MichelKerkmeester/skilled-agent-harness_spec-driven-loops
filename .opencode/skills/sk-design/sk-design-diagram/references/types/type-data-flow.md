@@ -326,7 +326,7 @@ Either chip may be omitted (e.g., a sink node has only an input chip; a source-o
 | Code | Color | Meaning |
 |------|-------|---------|
 | `WB` | `#6e6479` (mauve) | Web / Public data |
-| `DB` | `#5e7a9b` (steel-blue) | Dataset / Raw file |
+| `DB` | `#5c7899` (steel-blue) | Dataset / Raw file |
 | `TB` | `#b8915a` (amber) | Table / Analysis-ready |
 | `FL` | `#9c6b50` (sienna) | File / Report / Export |
 | `LS` | `#4a7c59` (forest) | Live stream / Event |
