@@ -204,7 +204,7 @@
     ],
     "causal_summary": "Routing runs in two stages, and phase 2 only fixed the second one inside the mode",
     "created_at": "2026-09-11T06:42:01Z",
-    "last_save_at": "2026-09-11T07:51:37.714Z",
+    "last_save_at": "2026-09-11T10:01:05.688Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +214,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f11b9f9a7f4c21adb4dfc414a722c92bc6d079c2afaad5d70eb85305ea4e1134",
+    "source_fingerprint": "sha256:0a56952543d37dc18decb0de32418ebb2d4c8e2946b3175bcd57672816a11fdf",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "eb73f2a4d66eec2c768c1f2d3378bed0a51e765d3f854ac5230aea48ebfb2009",
       "plan.md": "5709b9e9bc1084a67816698eae2cb35209a2a41b72a7950ee2ab55238c352dab",
       "tasks.md": "05eb24f9bb61f2948068c71c6fca19b628af33e34505a101fdc14dc4c5873087",
-      "implementation-summary.md": "7e6d256e2f0fcb4aeeb0246d4dbd3eab055f9866f2729d6196c99f9c6950be03"
+      "implementation-summary.md": "cdcdea5804602244ab7e17098154ddfe4f221fc3693d16b467d886a80e0ebcb2"
     },
     "last_active_at": null
   }

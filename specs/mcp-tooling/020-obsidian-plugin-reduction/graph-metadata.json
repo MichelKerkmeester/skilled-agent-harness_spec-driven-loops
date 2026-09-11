@@ -35,7 +35,7 @@
       "docs"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       ".opencode/skills/mcp-tooling/mcp-obsidian/SKILL.md",
@@ -120,16 +120,16 @@
     ],
     "causal_summary": "The `mcp-obsidian` mode documents fourteen Obsidian plugins, and only two are wanted",
     "created_at": "2026-09-11T06:41:59Z",
-    "last_save_at": "2026-09-11T07:28:31.408Z",
+    "last_save_at": "2026-09-11T10:01:00.780Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:01b715a79588db4b07a944a8c2fa097c403d4c1d34bdfa769452cfb7abba9e49",
+    "source_fingerprint": "sha256:f417d39abf3b857f536f86056e39e99e7561202f749908bfe1d0020d279c9012",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ee2c66b7219ae793a05ac93328b65279daa0ce391a590c6efb4016b6326d0fde"
+      "spec.md": "5ca42e49e69993b5e4e07fa213d427ccb9a4af155c5f674cde36050788b6a043"
     },
     "last_active_at": null
   }

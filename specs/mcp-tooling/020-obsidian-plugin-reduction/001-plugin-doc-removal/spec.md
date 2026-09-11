@@ -81,7 +81,7 @@ references the deletions create are phase 2's work.
 ### Problem Statement
 Twelve of the mode's fourteen dedicated plugin doc sets are unwanted.
 Each is a four-file bundle, and most carry example assets, a feature-catalog entry and a
-playbook tie-in as well. Their roughly 8,700 reference lines are dead weight a reader must rule
+playbook tie-in as well. Their 8,892 reference lines are dead weight a reader must rule
 out before reaching the note and vault surfaces the mode exists for.
 
 ### Purpose
@@ -199,7 +199,7 @@ All paths are relative to `.opencode/skills/mcp-tooling/mcp-obsidian/`.
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
-- **NFR-P01**: The mode's reference tree drops by roughly 8,700 lines, which is the point of the phase rather than a side effect to measure.
+- **NFR-P01**: The mode's reference tree drops by 8,892 reference lines, which is the point of the phase rather than a side effect to measure.
 
 ### Security
 - **NFR-S01**: No credential, token or vault path is touched. The deletions are documentation only.
@@ -225,7 +225,7 @@ All paths are relative to `.opencode/skills/mcp-tooling/mcp-obsidian/`.
 
 | Dimension | Score | Triggers |
 |-----------|-------|----------|
-| Scope | 20/25 | Files: 79, LOC: ~8,700, Systems: 1 |
+| Scope | 20/25 | Files: 79, LOC: 8,892, Systems: 1 |
 | Risk | 5/25 | Auth: N, API: N, Breaking: N (documentation only) |
 | Research | 2/20 | The inventory is frozen in this spec |
 | Multi-Agent | 3/15 | Workstreams: 1 |

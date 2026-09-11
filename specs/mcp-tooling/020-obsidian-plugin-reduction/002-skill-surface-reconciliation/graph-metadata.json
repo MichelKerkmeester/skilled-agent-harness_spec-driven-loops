@@ -197,7 +197,7 @@
     ],
     "causal_summary": "After phase 1 the mode's own documents are wrong",
     "created_at": "2026-09-11T06:42:00Z",
-    "last_save_at": "2026-09-11T07:51:35.358Z",
+    "last_save_at": "2026-09-11T10:01:04.029Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ecfc20ad53940a73c77f3711998ff0bfd0129acd052dc23dc9b51046742b79cf",
+    "source_fingerprint": "sha256:22ab055c079f66f7f0e9ee9b187ee945695a8754877864fb7e01c04fd0993412",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "fe966fec31e3ce6095e163fbf0c90e7f7e8066f9e13da2090381340a7bedca4e",
       "plan.md": "511dff5f911fcb9cdc221f48c4eddf69f815b719442c2d76ce1d617d27a114df",
       "tasks.md": "1248e454930225efe3340cc828c48eb1c1324d5487954796b0758e0c16782012",
-      "implementation-summary.md": "defc5d65c3d953e96ffc67ee7ecbecb8b59a601c690106d0ae95c00d895aaa5f"
+      "implementation-summary.md": "16730ed7f104c44678d7faf8fa04ea9401ba789d568cc2ab38bded1b8c68b5d4"
     },
     "last_active_at": null
   }

@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Twelve of the mode's fourteen dedicated plugin doc sets are unwanted",
     "created_at": "2026-09-11T06:41:59Z",
-    "last_save_at": "2026-09-11T07:51:32.657Z",
+    "last_save_at": "2026-09-11T10:01:02.430Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:445957cf8e2579fc0c3d86239965fc227b1eadccf810aab928e11e041e057f66",
+    "source_fingerprint": "sha256:f03eb789142a796b0f36db5b42ccdd754f76f7759a5673b3b8e5a6ec11c9d195",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "873493e2f3e5b19203d415014310e46bcf2f496672cf5f940d3f8f792c0ba4c6",
+      "spec.md": "9d4ca384c8ec3c3a64b9a0f87400b5134ad57f0c607927d49b9afc6fc356c08d",
       "plan.md": "6a3588050042f667494e3f5089ff128cae087fb24edc6c515b54b96b3468b563",
       "tasks.md": "c4c070f66404fe3523e0540dec1c0b7f243e0096913d66b86e2e7ff86408198e",
-      "implementation-summary.md": "3733988a350a6920657eb864f2d680e17bbfda5a1b7d532478668a7490356fde"
+      "implementation-summary.md": "bb06f1d9bbb9943fd18a7b006fb73bede36a324af5c0cb64b6b341067564880e"
     },
     "last_active_at": null
   }

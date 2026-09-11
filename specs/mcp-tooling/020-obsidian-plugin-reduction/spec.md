@@ -13,8 +13,8 @@ _memory:
     packet_pointer: "mcp-tooling/020-obsidian-plugin-reduction"
     last_updated_at: "2026-09-11T00:00:00Z"
     last_updated_by: "orchestrator"
-    recent_action: "Author phase-parent spec and freeze the removal inventory"
-    next_safe_action: "Execute phase 001 plugin-doc-removal"
+    recent_action: "Packet complete: all three phases shipped, committed and pushed"
+    next_safe_action: "None; the packet is closed"
     blockers: []
     key_files:
       - ".opencode/skills/mcp-tooling/mcp-obsidian/SKILL.md"
@@ -24,7 +24,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "orchestrator-session"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Which plugins are retained? Iconic and Health.md, named by the operator."
@@ -60,7 +60,7 @@ _memory:
 
 The `mcp-obsidian` mode documents fourteen Obsidian plugins, and only two are wanted.
 Each carries a four-file reference bundle of index, data model, workflows and troubleshooting,
-plus matching asset examples, feature-catalog entries, playbook tie-ins and router vocabulary. The other twelve cost roughly 8,700 reference lines and
+plus matching asset examples, feature-catalog entries, playbook tie-ins and router vocabulary. The other twelve cost 8,892 reference lines and
 twenty router intents that compete for the same requests, and every one of them is a surface a
 reader must rule out before reaching the note and vault operations the mode exists for.
 
