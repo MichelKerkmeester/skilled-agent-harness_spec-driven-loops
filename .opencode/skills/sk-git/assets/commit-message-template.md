@@ -14,7 +14,13 @@ version: 1.2.0.0
 
 # Commit Message Template - Repository-Specific Contract
 
-## 1. CANONICAL CONTRACT
+## 1. OVERVIEW
+
+This asset shows the commit shape sk-git enforces: a `type(scope): summary` subject, a short prose body and a final trailer paragraph that names the packet and carries the stamped ordinal. The rules live in `SKILL.md`. This file carries the procedure, the examples and the self-check you run before `git commit`.
+
+---
+
+## 2. CANONICAL CONTRACT
 
 The canonical rules are in `../SKILL.md` under
 "Commit Message Logic (Human-Clear and AI-Deterministic)."
@@ -31,13 +37,20 @@ numeric packet. Aim for 80 characters and never exceed 100.
 Git-generated `Merge`, `Revert`, `fixup!`, `squash!`, and `amend!` subjects
 are preserved unchanged.
 
+Every authored commit ends with one contiguous trailer paragraph, separated from
+the prose above it by a blank line. It carries `Spec: <track>/<packet>[/<phase>...]`
+when the work belongs to a packet (the path is relative to `specs/` and includes
+nested phases), then `Commit-Id: NNNNNNN`, then `Refs:` for external links only.
+The `prepare-commit-msg` hook stamps both machine keys, so never type a
+`Commit-Id:` by hand.
+
 Structural rules are enforced by
 [../../../scripts/git-hooks/commit-msg](../../../scripts/git-hooks/commit-msg)
 (bypass: `SPECKIT_SKIP_COMMIT_MSG_VALIDATE=1 git commit ...`).
 
 ---
 
-## 2. AI AUTHOR PROCEDURE
+## 3. AI AUTHOR PROCEDURE
 
 1. Inspect the staged diff, not only filenames.
 2. Confirm the staged paths form one logical change.
@@ -52,7 +65,7 @@ Structural rules are enforced by
 
 ---
 
-## 3. BODY TEMPLATE
+## 4. BODY TEMPLATE
 
 ```text
 Context: <why this change is needed>
@@ -64,7 +77,9 @@ Changes:
 Verification:
 - `<command>` -> <observed result>
 
-Refs: <issue, PR, or spec path>
+Spec: <track>/<packet>[/<phase>...]
+Commit-Id: NNNNNNN
+Refs: <issue, PR or URL>
 ```
 
 Do not fill sections with boilerplate. Omit an unused section rather than
@@ -72,7 +87,7 @@ writing `N/A`.
 
 ---
 
-## 4. REPOSITORY-SPECIFIC EXAMPLES
+## 5. REPOSITORY-SPECIFIC EXAMPLES
 
 ### Fix a missing code-graph consumer
 
@@ -88,6 +103,8 @@ Changes:
 
 Verification:
 - `bash .opencode/scripts/git-hooks/tests/post-commit-code-graph-invalidation.sh` -> 3/3 pass
+
+Commit-Id: 0009021
 ```
 
 ### Add cross-provider Git workflows
@@ -103,6 +120,9 @@ Changes:
 
 Verification:
 - Advisor routing checks passed for GitKraken and normal commit prompts.
+
+Spec: sk-git/014-gitkraken-mcp-integration
+Commit-Id: 0009022
 ```
 
 ### Preserve the intended database journal mode
@@ -119,6 +139,9 @@ Changes:
 
 Verification:
 - Repeated warm restarts retained DELETE mode.
+
+Spec: system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/033-boot-wal-shm-sigbus-fix
+Commit-Id: 0009023
 ```
 
 These examples are tightened versions of real commits in this repository's
@@ -127,7 +150,7 @@ actually gets committed here, not generic auth/API scaffolding.
 
 ---
 
-## 5. SELF-CHECK
+## 6. SELF-CHECK
 
 - [ ] Authored subject matches `type(scope)[!]: imperative summary`.
 - [ ] Type is the first match in the canonical priority.
@@ -139,10 +162,12 @@ actually gets committed here, not generic auth/API scaffolding.
 - [ ] Verification claims name the command or observed evidence.
 - [ ] Breaking changes include `!` and `BREAKING CHANGE:`.
 - [ ] Message remains understandable without the linked spec or issue.
+- [ ] The trailer paragraph is the last paragraph and stays contiguous.
+- [ ] The `Commit-Id:` value was stamped by the hook, not typed by hand.
 
 ---
 
-## 6. RELATED RESOURCES
+## 7. RELATED RESOURCES
 
 - [../SKILL.md](../SKILL.md) - Canonical Commit Message Logic
 - [../../../scripts/git-hooks/commit-msg](../../../scripts/git-hooks/commit-msg) - Structural enforcement hook
