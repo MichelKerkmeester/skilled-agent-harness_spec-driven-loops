@@ -138,6 +138,17 @@ Semantic role combinations — reference these by name in type specs.
 | `optional` | `ink @ 0.02` | `ink @ 0.20` dashed `4,3` |
 | `security` | `accent @ 0.05` | `accent @ 0.50` dashed `4,4` |
 
+The stroke is what separates these types, not the fill. Every fill above except `focal` and `backend`
+is ink or muted at a low alpha, so flattened against the paper they land within about 4% of each
+other — measurably one grey. That is deliberate: the fill says "this is a node", the stroke says which
+kind, and a drawing where five node types carried five distinguishable fills would spend all of its
+colour on the chrome.
+
+It follows that a legend swatch keying these types shows near-identical fills and distinct strokes, and
+that is faithful rather than a defect. A reviewer measuring only the fills will call them one grey and
+be right about the measurement and wrong about the legend. What a swatch must match is the treatment
+the drawing actually uses to tell the type apart, which the corpus check holds for dash patterns.
+
 ---
 
 ## 5. CUSTOMIZING THE SKIN
@@ -155,5 +166,5 @@ Three options:
 - **No rainbow palette**: if your brand ships 8 colors, pick 3 (paper, ink, accent). The rest become `muted` variants.
 - **Serif + sans + mono**: three families, not more. If brand typography is all sans, keep Instrument Serif for `title` and `callout` anyway — the contrast is load-bearing.
 - **Paper is warm-neutral, not pure white**: pure white turns the design sterile. Pick a cream, bone, or light grey with a hint of warmth.
-- **Dot pattern is the default ground**: the 22×22 dot pattern carries the paper, and 26 of the 34 shipped forms use it. Drop it for a clean `paper` fill when the drawing is dense enough that the pattern competes with it — eight forms do. The pattern sits at ~10% opacity of `ink` on `paper`: visible but quiet.
+- **Dot pattern is the default ground**: the 22×22 dot pattern carries the paper, and 26 of the 34 worked forms use it. Drop it for a clean `paper` fill when the drawing is dense enough that the pattern competes with it — the eight that do are the security matrix, both import examples, the IT current-state, medallion, org chart, consultant quadrant and venn, each of them a figure whose own fills already cover most of the page. The pattern sits at ~10% opacity of `ink` on `paper`: visible but quiet.
 - **Container is clean by default**: the diagram sits directly on the page paper, no secondary container background or border. A framed variant (`paper-2` bg + `rule` border + 8px radius + padding) is available as an opt-in for card-heavy layouts, but don't reach for it by default — the extra chrome fights the figure.
