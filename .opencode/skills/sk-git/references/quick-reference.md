@@ -349,6 +349,7 @@ gh pr create                           # Create PR
 | Commit message too long | Move details to body, keep subject ≤80 chars (100 hard max) |
 | Merge conflicts | `git status`, resolve manually, `git add`, `git commit` |
 | PR creation fails | Check `gh auth status`, `gh auth login` |
+| Push fails with 403 | Read the `remote:` line. `Permission … denied to <user>` means the wrong account is active, not an expired token: `gh auth switch --hostname github.com --user <owner>` |
 | Worktree won't remove | Check for uncommitted changes, `git worktree unlock` |
 
 ---

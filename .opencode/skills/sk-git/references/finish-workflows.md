@@ -853,6 +853,22 @@ gh auth login
 # Follow interactive prompts
 ```
 
+**Authenticated as the wrong account**. When more than one account is logged in, `gh auth status`
+reports each one and marks a single `Active account: true`. A push made while the wrong one is active
+fails with `403` and a remote line reading `Permission to <owner>/<repo>.git denied to <user>` — read
+that line, because the bare `403` alone looks like an expired token and sends you to re-login, which
+fixes nothing. Fetching still works, since read access is usually open, so the first symptom is that
+pulls succeed and pushes stop.
+
+```bash
+gh auth status                                  # which account is active, and who else is logged in
+git remote -v                                   # who owns the repo
+gh auth switch --hostname github.com --user <owner-account>
+```
+
+Switching changes the credential every session on the machine uses, so when the work is not yours to
+decide, report the mismatch and the one-line fix rather than switching underneath someone.
+
 **No upstream remote**:
 ```bash
 # Add remote
