@@ -16,7 +16,7 @@ This scenario validates the Devin best-effort guarantee for text-only models.
 
 ### Why This Matters
 
-Devin attaches sk-vision only over MCP and cannot force a tool call, and it has no repo-owned always-on rule slot. So the vision note must be supplied as session guidance. With the Devin drop-in note supplied as guidance, a text-only Devin model calls a `sk_vision_*` tool on an attached image unprompted and reports real content. Best-effort by design.
+Devin needs no instruction for the common case: its `UserPromptSubmit` hook injects the evidence when a prompt names a resolvable image, so the model cannot decline what is already in its context. The drop-in note covers the two cases the hook cannot: a cold model load that exceeds the hook timeout, and a prompt naming no resolvable path. This scenario checks the fallback, not the hook.
 
 ---
 
@@ -27,7 +27,7 @@ Operators run a neutral prompt with the vision-note text supplied as guidance ag
 - Objective: with the Devin drop-in note supplied as session guidance, a text-only Devin model calls a `sk_vision_*` tool on an attached image unprompted and reports real content
 - Real user request: `GLM in Devin answers about screenshots without ever reading them.`
 - Prompt (NEUTRAL): `What is the status message in this image?` (the note text from `hooks/devin/vision-rule.md` is supplied as guidance alongside it)
-- Preconditions: Devin has sk-vision attached and connected (VSN-019 PASS); the `hooks/devin/vision-rule.md` note text is in the session guidance (Devin has no repo-owned always-on rule slot, so it must be supplied); the active model is text-only (GLM); the fixture is attached or its path is given; server env `SK_VISION_MODEL=moondream3-preview`; Devin headless `-p` needs `--permission-mode dangerous` for MCP tools.
+- Preconditions: the vision CLI is built (`vision-runtime/dist/vision-cli.js`); the `hooks/devin/vision-rule.md` fallback text is in the session guidance, since Devin has no repo-owned always-on rule slot; the active model is text-only (GLM); the fixture path is given; `Exec(node)` is granted in `.devin/config.local.json`.
 - Expected execution process: guided by the note, the model calls `sk_vision_inspect`/`sk_vision_ocr` on the image without an explicit "you are blind" instruction, then reports the real text.
 - Expected signals: transcript shows a namespaced sk-vision tool call the neutral prompt did not request; the quoted text matches `DEPLOY OK 7391`.
 - Desired user-visible outcome: a text-only model in Devin reports the image's true content when the vision note is present as guidance.
@@ -83,7 +83,7 @@ Capture the model transcript (showing the tools call and quote) and the ground-t
 | File | Role |
 |---|---|
 | `hooks/devin/vision-rule.md` | The drop-in note for Devin Knowledge |
-| `vision-runtime/dist/mcp-server.js` | Built stdio server the host launches |
+| `vision-runtime/dist/vision-cli.js` | Built CLI entry the host runs |
 | `vision-runtime/src/opencode/tools.ts` | The tool definitions, including `sk_vision_inspect` / `sk_vision_ocr` |
 
 ---

@@ -1,8 +1,8 @@
 [
   {
     "workflowMode": "sk-vision",
-    "leafResourceId": "feature-catalog/host-adapters/mcp-transport.md",
-    "diskPath": "feature-catalog/host-adapters/mcp-transport.md"
+    "leafResourceId": "feature-catalog/host-adapters/devin-hook.md",
+    "diskPath": "feature-catalog/host-adapters/devin-hook.md"
   },
   {
     "workflowMode": "sk-vision",
@@ -13,6 +13,11 @@
     "workflowMode": "sk-vision",
     "leafResourceId": "feature-catalog/host-adapters/pi-extension.md",
     "diskPath": "feature-catalog/host-adapters/pi-extension.md"
+  },
+  {
+    "workflowMode": "sk-vision",
+    "leafResourceId": "feature-catalog/host-adapters/vision-cli.md",
+    "diskPath": "feature-catalog/host-adapters/vision-cli.md"
   },
   {
     "workflowMode": "sk-vision",

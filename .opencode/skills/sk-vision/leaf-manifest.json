@@ -2,9 +2,10 @@
   "modes": [
     {
       "leaves": [
-        "feature-catalog/host-adapters/mcp-transport.md",
+        "feature-catalog/host-adapters/devin-hook.md",
         "feature-catalog/host-adapters/opencode-plugin.md",
         "feature-catalog/host-adapters/pi-extension.md",
+        "feature-catalog/host-adapters/vision-cli.md",
         "feature-catalog/pixel-analysis/annotate.md",
         "feature-catalog/pixel-analysis/colors.md",
         "feature-catalog/pixel-analysis/crop.md",

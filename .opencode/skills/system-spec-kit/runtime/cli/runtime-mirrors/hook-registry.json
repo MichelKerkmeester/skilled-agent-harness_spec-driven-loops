@@ -1283,6 +1283,24 @@
       "pi": {
         "extension": "session-start-advisories.ts"
       }
+    },
+    {
+      "id": "sk-vision-inject",
+      "concern": "Inject local vision evidence for an image named in the prompt",
+      "bindings": {
+        "devin": [
+          {
+            "event": "UserPromptSubmit",
+            "group": 0,
+            "slot": 3,
+            "matcher": "",
+            "runner": "node",
+            "script": ".opencode/hooks/sk-vision/devin/sk-vision.mjs",
+            "timeout": 60,
+            "fallback": "envelope"
+          }
+        ]
+      }
     }
   ]
 }

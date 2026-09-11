@@ -1,0 +1,258 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-vision/001-sk-vision-fork-of-opencode-senses/024-mcp-retirement-and-hook-adapters",
+  "spec_folder": "sk-vision/001-sk-vision-fork-of-opencode-senses/024-mcp-retirement-and-hook-adapters",
+  "parent_id": "sk-vision/001-sk-vision-fork-of-opencode-senses",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      {
+        "packet_id": "sk-vision/001-sk-vision-fork-of-opencode-senses/023-command-gated-vision-and-runtime-teardown",
+        "reason": "Imported from legacy graph-metadata.json",
+        "source": "legacy"
+      }
+    ],
+    "supersedes": [
+      {
+        "packet_id": "sk-vision/001-sk-vision-fork-of-opencode-senses/014-cursor-devin-mcp-adapters",
+        "reason": "Imported from legacy graph-metadata.json",
+        "source": "legacy"
+      },
+      {
+        "packet_id": "sk-vision/001-sk-vision-fork-of-opencode-senses/020-cursor-mcp-decoupling",
+        "reason": "Imported from legacy graph-metadata.json",
+        "source": "legacy"
+      },
+      {
+        "packet_id": "sk-vision/001-sk-vision-fork-of-opencode-senses/021-mcp-server-process-lifecycle",
+        "reason": "Imported from legacy graph-metadata.json",
+        "source": "legacy"
+      }
+    ],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-vision MCP retirement",
+      "sk-vision cursor hook adapter",
+      "sk-vision devin hook adapter",
+      "retire sk-vision-mcp server",
+      "vision without MCP",
+      "sk-vision MCP retirement plan",
+      "sk-vision hook adapter plan",
+      "vision without MCP plan",
+      "sk-vision MCP retirement tasks",
+      "sk-vision hook adapter tasks",
+      "sk-vision MCP retirement acceptance criteria",
+      "sk-vision hook adapter closure gate"
+    ],
+    "key_topics": [
+      "sk-vision",
+      "mcp",
+      "retirement",
+      "cursor",
+      "hook",
+      "adapter",
+      "devin",
+      "retire",
+      "sk-vision-mcp",
+      "server",
+      "vision",
+      "without"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/024-mcp-retirement-and-hook-adapters/spec.md",
+      ".cursor/hooks.json",
+      ".devin/hooks.v1.json",
+      ".cursor/commands/vision.md",
+      "scratch/cursor-event-probe.md",
+      ".cursor/mcp.json",
+      ".cursor/rules/sk-vision.md",
+      ".devin/mcp_config.json",
+      ".devin/config.local.json",
+      "hooks/README.md",
+      ".opencode/hooks/injection-contract.md",
+      ".opencode/hooks/README.md",
+      ".claude/agents/review.md",
+      ".claude/agents/deep-review.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/024-mcp-retirement-and-hook-adapters/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".cursor/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.v1.json",
+        "kind": "config",
+        "path": ".devin/hooks.v1.json",
+        "source": "derived"
+      },
+      {
+        "name": "vision.md",
+        "kind": "doc",
+        "path": ".cursor/commands/vision.md",
+        "source": "derived"
+      },
+      {
+        "name": "cursor-event-probe.md",
+        "kind": "doc",
+        "path": "scratch/cursor-event-probe.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".cursor/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "sk-vision.md",
+        "kind": "doc",
+        "path": ".cursor/rules/sk-vision.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp_config.json",
+        "kind": "config",
+        "path": ".devin/mcp_config.json",
+        "source": "derived"
+      },
+      {
+        "name": "config.local.json",
+        "kind": "config",
+        "path": ".devin/config.local.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "hooks/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "injection-contract.md",
+        "kind": "doc",
+        "path": ".opencode/hooks/injection-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "review.md",
+        "kind": "doc",
+        "path": ".claude/agents/review.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.md",
+        "kind": "doc",
+        "path": ".claude/agents/deep-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Every Cursor",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The sk-vision MCP transport has no host that can currently reach it, and it is decaying in two directions at once",
+    "created_at": "2026-09-11T19:14:30.276Z",
+    "last_save_at": "2026-09-11T20:13:59.528Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c3a763a1527b080eae5d1bf99d282d7f09a87660a6c8f3d20e5bb3528cd2299b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "cb4c575765e89905712dd8161a78410f8002811925eec1a362f2ddda92eb47f0",
+      "plan.md": "620064f110728e3b0cb8e6281177e0d30e996865e940bf179d6a6d35f0069fb7",
+      "tasks.md": "5b961aa493cdcf20b95225629eeecc2eb7e28288d81fb405e37dd570773f7c29",
+      "decision-record.md": "dff3fc1dc2d4da7b1231b7ac279625289b052ad34222b9d11342f44e444f096a",
+      "implementation-summary.md": "45ae1f005970f76e7a32bda60acff1268ac2abe6c229f9eaa473643528860e26"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -5,11 +5,11 @@ allowed-tools: [Read, Bash]
 version: 0.2.0.0
 ---
 
-<!-- Keywords: screenshot OCR, attached image, mockup, error.png, local vision, moondream, grounded evidence, sk_vision_ocr, sk_vision_inspect, cursor mcp, devin mcp, sk-vision -->
+<!-- Keywords: screenshot OCR, attached image, mockup, error.png, local vision, moondream, grounded evidence, sk_vision_ocr, sk_vision_inspect, cursor cli, devin hook, sk-vision -->
 
 # sk-vision
 
-Local vision skill. Text-only coding models get grounded OCR, layout, detect, and inspect evidence from a private Moondream runtime. The default posture is opt-in and idle. OpenCode does not register the tools by default. Pi registers them hidden. Cursor and Devin keep their MCP tools available. No API keys, no cloud upload, no per-image cost.
+Local vision skill. Text-only coding models get grounded OCR, layout, detect, and inspect evidence from a private Moondream runtime. The default posture is opt-in and idle. OpenCode does not register the tools by default. Pi registers them hidden. Devin gets evidence injected by a prompt-time hook. Cursor runs the CLI. No API keys, no cloud upload, no per-image cost.
 
 ---
 
@@ -203,11 +203,12 @@ The runtime lazy-loads the model on the first inference request (default `moondr
 
 ### Host adapters
 
-OpenCode and Pi expose in-process plugin APIs, so the skill owns their adapter source under `hooks/` and each host loads it through a symlink or re-export. Cursor and Devin have no in-process plugin API. They attach tools over MCP and share one MCP stdio server.
+OpenCode and Pi expose in-process plugin APIs, so the skill owns their adapter source under `hooks/` and each host loads it through a symlink or re-export. Cursor and Devin have neither, and they differ from each other: Devin delivers a prompt-time lifecycle hook, Cursor delivers no prompt-time event at all. Each therefore gets the strongest mechanism its runtime actually supports.
 
 - **OpenCode**: the built plugin `vision-runtime/dist/plugin.js` registers only the `command.execute.before` hook by default. The hook runs for `/vision`, fetches the latest session image, injects a `<SK-VISION COMMAND>` evidence block and tears the runtime down afterward. `SK_VISION_AUTOINSPECT=1` restores the legacy visible tools and always-on inspection. The plugin loads through `.opencode/plugins/sk-vision.js`, which points to the built entry inside the runtime package so it resolves `python/runtime.py`.
 - **Pi**: `hooks/pi/sk-vision.ts` registers the 13 tools hidden by default. The native `/vision` command calls the hidden `sk_vision_inspect` tool and opens a fresh runtime for each call. It tears the runtime down after each call. `SK_VISION_AUTOINSPECT=1` restores the legacy visible tools and always-on inspection. The extension loads through `.pi/extensions/sk-vision.ts`.
-- **Cursor**: the built MCP server remains registered in `.cursor/mcp.json`. The `/vision` command drives `sk_vision_inspect`. Devin has no command surface, so it calls `sk_vision_inspect` directly. The shared MCP server remains bound to the host lifetime and shuts down when the host closes it. Claude has no sk-vision integration.
+- **Devin**: `hooks/devin/sk-vision.mjs` runs on `UserPromptSubmit`, registered in `.devin/hooks.v1.json`. When a prompt names an image path that resolves on disk, it analyzes the image and injects a `<SK-VISION EVIDENCE>` block into the same turn, then tears the runtime down. The model never has to ask. Every path fails open.
+- **Cursor**: runs the CLI at `vision-runtime/dist/vision-cli.js`, driven by its `/vision` command and its always-apply rule. Cursor delivers no prompt-time hook event, so injection is impossible there and the call has to be made rather than forced. Claude has no sk-vision integration.
 
 ### `/vision` command
 
@@ -216,9 +217,10 @@ OpenCode and Pi expose in-process plugin APIs, so the skill owns their adapter s
 Bare `/vision` behaves by host:
 
 - OpenCode reads the latest image and returns scene, caption and OCR evidence.
-- Cursor and Pi ask for a question in the conversation or return a full read. A prompt file cannot open a UI input box.
+- Pi asks for a question in the conversation or returns a full read. A prompt file cannot open a UI input box.
+- Cursor runs the CLI against the path the user names, since the CLI cannot see the conversation.
 
-OpenCode handles the command in a `command.execute.before` plugin hook. The hook fetches the latest session image, runs the analysis, injects a `<SK-VISION COMMAND>` evidence block and tears the runtime down. Cursor's command prompt drives the MCP tool registered in `.cursor/mcp.json`. Pi's command prompt drives its hidden tool. Each Pi call opens a fresh runtime and tears it down afterward. Devin has no command surface and calls `sk_vision_inspect` directly.
+OpenCode handles the command in a `command.execute.before` plugin hook. The hook fetches the latest session image, runs the analysis, injects a `<SK-VISION COMMAND>` evidence block and tears the runtime down. Pi's command prompt drives its hidden tool, opening a fresh runtime per call. Cursor's command runs the CLI. Devin has no command surface and needs none, because its hook injects the evidence without being asked.
 
 ### Environment variables
 
@@ -310,6 +312,6 @@ The authoritative behavior lives in the code. When this doc and the code disagre
 
 ## 7. INTEGRATION
 
-- **Host load paths**: host-adapter sources live under `hooks/` and are mirrored into the shared hook hub at `.opencode/hooks/sk-vision/{pi,opencode,cursor,devin}`. Pi loads `hooks/pi/` through `.pi/extensions/sk-vision.ts`. OpenCode loads the built package plugin through `.opencode/plugins/sk-vision.js`. The entry sits inside the runtime package so it resolves `python/runtime.py`. MCP configs under `hooks/` launch `dist/mcp-server.js` for Cursor and Devin.
+- **Host load paths**: host-adapter sources live under `hooks/` and are mirrored into the shared hook hub at `.opencode/hooks/sk-vision/{pi,opencode,devin}`. Pi loads `hooks/pi/` through `.pi/extensions/sk-vision.ts`. OpenCode loads the built package plugin through `.opencode/plugins/sk-vision.js`. The entry sits inside the runtime package so it resolves `python/runtime.py`. Devin loads `hooks/devin/sk-vision.mjs` through `.devin/hooks.v1.json`. Cursor holds no adapter source: it runs the built CLI.
 - **Related skills**: `sk-code` builds and verifies the runtime package. `sk-doc` and `sk-create-skill` own this SKILL.md, README shape and validation gate.
 - **Tool usage**: the 13 `sk_vision_*` tools are the public surface. The JSON-RPC methods above are internal and reached only through the adapters, never called directly by the host model.

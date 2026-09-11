@@ -16,7 +16,7 @@ This is the packet's Cursor best-effort guarantee — distinct from VSN-020, who
 
 ### Why This Matters
 
-Cursor attaches sk-vision only over MCP and cannot force a tool call, so it gets a best-effort rule rather than a hard guarantee. With the always-on Cursor rule active, a text-only model calls a `sk_vision_*` tool on an attached image UNPROMPTED (the prompt never tells it to) and reports the real content. This scenario proves the rule delivers that outcome in Cursor's headless `cursor-agent -p` mode.
+Cursor delivers no prompt-time hook event, confirmed by live probe, so nothing can force the call and it gets a best-effort rule rather than a hard guarantee. With the always-on Cursor rule active, a text-only model runs the vision CLI on a named image UNPROMPTED (the prompt never tells it to) and reports the real content. This scenario proves the rule delivers that outcome in Cursor's headless `cursor-agent -p` mode.
 
 ---
 
@@ -84,7 +84,7 @@ Capture the model transcript (showing the unprompted tool call and quote) and th
 |---|---|
 | `hooks/cursor/vision-rule.md` | The always-on rule source |
 | `.cursor/rules/sk-vision.md` | The symlink to `hooks/cursor/vision-rule.md` that Cursor loads |
-| `vision-runtime/dist/mcp-server.js` | Built stdio server the host launches |
+| `vision-runtime/dist/vision-cli.js` | Built CLI entry the host runs |
 | `vision-runtime/src/opencode/tools.ts` | The tool definitions, including `sk_vision_inspect` / `sk_vision_ocr` |
 
 ---

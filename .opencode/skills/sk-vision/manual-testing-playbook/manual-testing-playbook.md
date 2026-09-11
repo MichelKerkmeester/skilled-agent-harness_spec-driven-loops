@@ -37,7 +37,7 @@ A scenario run is complete only after its `PASS`, `FAIL`, or `SKIP` outcome and 
 
 This playbook provides a derived census of deterministic scenarios across categories validating the `sk-vision` skill surface. The operator validator computes those counts from the walked tree; do not hand-maintain them. Each feature keeps its original ID and links to a dedicated feature file with the full execution contract.
 
-Coverage note (2026-08-22): 27 operator scenarios across 6 categories cover the 13 shipped `sk_vision_*` tools, all four host adapters, the `/vision` command in OpenCode, Cursor and Pi, direct MCP use in Devin, the standalone MCP server and its process lifecycle, the legacy auto-inspect compatibility path and the JSON-RPC runtime lifecycle. The default OpenCode and Pi posture is idle. The command scenarios verify question and bare forms plus runtime teardown. The Cursor and Devin scenarios require their hosts with `sk-vision` attached.
+Coverage note (2026-09-11): 25 operator scenarios across 6 categories cover the 13 shipped `sk_vision_*` tools, all four host adapters, the `/vision` command in OpenCode, Pi and Cursor, prompt-time injection in Devin, the legacy auto-inspect compatibility path and the JSON-RPC runtime lifecycle. The default OpenCode and Pi posture is idle. The command scenarios verify question and bare forms plus runtime teardown. The four MCP scenarios were retired with the transport; Devin now has an injection hook and Cursor a CLI.
 
 ### Realistic Test Model
 
@@ -75,7 +75,7 @@ printf '%s\n' \
 | "$HOME/.cache/sk-vision/venv/bin/python" -
 ```
 
-6. Host adapters present: `.opencode/plugins/sk-vision.js` (OpenCode) and `.pi/extensions/sk-vision.ts` (Pi) exist and load. OpenCode advertises no vision tools by default. Pi registers the 13 tools hidden. `SK_VISION_AUTOINSPECT=1` restores visible legacy tools. Cursor and Devin keep the MCP tools available.
+6. Host adapters present: `.opencode/plugins/sk-vision.js` (OpenCode) and `.pi/extensions/sk-vision.ts` (Pi) exist and load. OpenCode advertises no vision tools by default. Pi registers the 13 tools hidden. `SK_VISION_AUTOINSPECT=1` restores visible legacy tools. Devin's hook is registered in `.devin/hooks.v1.json`. Cursor's CLI is built at `vision-runtime/dist/vision-cli.js`.
 7. Teardown: `SK_VISION_TEARDOWN=close` is the default. Each `/vision` scenario checks that the runtime process is gone after the call. `unload` frees the model while keeping the process. `keep` leaves it running.
 8. Destructive scenarios: none in this playbook. No scenario deletes cache or model state permanently.
 
@@ -100,7 +100,7 @@ Evidence is recorded into `<skill>/benchmark/reports/<dated-run-label>/`. Every 
 
 - CLI commands shown as `bash: <command>`.
 - NDJSON JSON-RPC requests shown as single-quoted JSON lines piped into `vision-runtime/python/runtime.py`.
-- MCP tool calls shown as `sk_vision_<name>({ key: value })`.
+- Tool calls shown as `sk_vision_<name>({ key: value })`.
 - Agent prompts shown as `agent: <instruction>`.
 - `->` separates sequential steps.
 - `<FIXTURE>` means the fixture PNG from Global Preconditions; `<FIXTURE_B>` means a second, visually distinct PNG (used only by the diff scenario).
@@ -411,9 +411,9 @@ Desired user-visible outcome: a list of visually similar local images, or an exp
 
 ---
 
-## 10. HOST ADAPTERS (`VSN-014, VSN-015, VSN-017..VSN-020, VSN-025..VSN-027`)
+## 10. HOST ADAPTERS (`VSN-014, VSN-015, VSN-020, VSN-026..VSN-029`)
 
-OpenCode and Pi attach in-process and stay idle by default. Their `/vision` scenarios verify command activation and teardown. Cursor uses `/vision` to drive its registered MCP tool. Devin has no command surface and calls the tool directly. The remaining scenarios cover the shared MCP server, host attachments and process lifecycle.
+OpenCode and Pi attach in-process and stay idle by default. Their `/vision` scenarios verify command activation and teardown. Devin injects evidence at prompt time through a lifecycle hook and needs no command. Cursor delivers no prompt-time event, so its `/vision` runs the built CLI.
 
 ### VSN-014 | OpenCode plugin
 
@@ -447,52 +447,38 @@ Desired user-visible outcome: the 13 `sk_vision_*` tools available in a Pi sessi
 > **Feature File:** [VSN-015](host-adapters/pi-extension.md)
 > **Catalog:** [pi-extension](../feature-catalog/host-adapters/pi-extension.md)
 
-### VSN-017 | Standalone MCP server
+### VSN-028 | Devin prompt-time injection
 
 #### Description
-Verify the built MCP stdio server starts under Node and advertises exactly 13 tools. Cursor and Devin both depend on this one process, so a direct protocol check separates transport failures from host-config failures.
+Verify the Devin hook analyzes an image named in a prompt and injects the evidence into the same turn, without the model asking. This is the whole point of the Devin path: a text-only model cannot request what it cannot see.
 
 #### Scenario Contract
-Prompt: `Launch the sk-vision MCP server directly and confirm it advertises all 13 tools.`
+Prompt: `What does ./scratch/error.png say?`
 
-Desired user-visible outcome: a healthy, complete standalone server (`count: 13`).
+Desired user-visible outcome: the reply quotes text from the image, grounded in an injected block the operator never asked for.
 
 #### Test Execution
-> **Feature File:** [VSN-017](host-adapters/mcp-standalone.md)
-> **Catalog:** [mcp-transport](../feature-catalog/host-adapters/mcp-transport.md)
+> **Feature File:** [VSN-028](host-adapters/devin-hook.md)
+> **Catalog:** [devin-hook](../feature-catalog/host-adapters/devin-hook.md)
 
-### VSN-018 | Cursor MCP attachment
+### VSN-029 | Cursor CLI read
 
 #### Description
-Verify Cursor attaches the shared sk-vision MCP server through the merged `.claude/mcp.json` (via the `.cursor/mcp.json` chain) without dropping other servers, and can call `sk_vision_status`.
+Verify Cursor's `/vision` command runs the CLI and answers from its output. Cursor delivers no prompt-time hook event, so this is the only path it has and the call must actually be made.
 
 #### Scenario Contract
-Prompt: `Confirm Cursor attaches the repository's sk-vision MCP server and can call its status tool.`
+Prompt: `/vision ./scratch/error.png what is the error?`
 
-Desired user-visible outcome: a text-only Cursor model (e.g. GLM) can reach the shared vision tools.
-
-#### Test Execution
-> **Feature File:** [VSN-018](host-adapters/cursor-mcp.md)
-> **Catalog:** [mcp-transport](../feature-catalog/host-adapters/mcp-transport.md)
-
-### VSN-019 | Devin MCP attachment
-
-#### Description
-Verify Devin loads `.devin/mcp_config.json`, attaches sk-vision, and can call the namespaced `mcp__sk-vision__sk_vision_status`.
-
-#### Scenario Contract
-Prompt: `Confirm Devin attaches the repository's sk-vision MCP server and can call its namespaced status tool.`
-
-Desired user-visible outcome: a text-only Devin model (e.g. GLM) can reach the shared vision tools through the documented namespace.
+Desired user-visible outcome: the reply quotes the error text, and the exit-code contract holds on a bad path.
 
 #### Test Execution
-> **Feature File:** [VSN-019](host-adapters/devin-mcp.md)
-> **Catalog:** [mcp-transport](../feature-catalog/host-adapters/mcp-transport.md)
+> **Feature File:** [VSN-029](host-adapters/vision-cli.md)
+> **Catalog:** [vision-cli](../feature-catalog/host-adapters/vision-cli.md)
 
 ### VSN-020 | Vision-blind model gains sight
 
 #### Description
-Verify the end-to-end value: a text-only model such as GLM, in Cursor or Devin, reads an image it cannot natively see by calling `sk_vision_ocr` / `sk_vision_inspect` instead of hallucinating or refusing.
+Verify the end-to-end value: a text-only model such as GLM, in Devin or Cursor, reads an image it cannot natively see instead of hallucinating or refusing. On Devin the evidence arrives injected; on Cursor the model runs the CLI.
 
 #### Scenario Contract
 Prompt: `Read the exact text in this image and quote it. You have no native vision — use the available sk-vision tools.`
@@ -501,21 +487,7 @@ Desired user-visible outcome: the vision-blind model answers correctly about an 
 
 #### Test Execution
 > **Feature File:** [VSN-020](host-adapters/vision-blind-model.md)
-> **Catalog:** [mcp-transport](../feature-catalog/host-adapters/mcp-transport.md)
-
-### VSN-025 | MCP server process lifecycle
-
-#### Description
-Verify the shared MCP stdio server self-terminates when its host goes away instead of lingering as an orphaned `node` process. Cursor and Devin launch it as a child; an idempotent shutdown is wired to every teardown path (transport close, stdin `end`/`close`, `SIGTERM`/`SIGINT`/`SIGHUP`) plus a reparent-to-init watchdog for the `SIGKILL` case that emits no signal. This scenario drives the stdin-EOF path deterministically.
-
-#### Scenario Contract
-Prompt: `Launch the sk-vision MCP server with its input closed and confirm the process exits on its own without leaving an orphan.`
-
-Desired user-visible outcome: the server exits on its own and no `mcp-server.js` process is left behind.
-
-#### Test Execution
-> **Feature File:** [VSN-025](host-adapters/mcp-lifecycle.md)
-> **Catalog:** [mcp-transport](../feature-catalog/host-adapters/mcp-transport.md)
+> **Catalog:** [devin-hook](../feature-catalog/host-adapters/devin-hook.md)
 
 ### VSN-026 | OpenCode `/vision` command
 

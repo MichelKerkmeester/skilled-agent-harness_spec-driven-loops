@@ -57,6 +57,7 @@ This table is the single source of truth for repo-authored hook kill-switch name
 | `primary-reconcile` | `SYSTEM_PRIMARY_RECONCILE_DISABLED` | none | enabled | reconcile | wired |
 | `dist-freshness` | `SYSTEM_DIST_FRESHNESS_DISABLED` | none | enabled | warn / rebuild | wired |
 | `session-cleanup` | `SYSTEM_SESSION_CLEANUP_DISABLED` | none | enabled | teardown | wired |
+| `sk-vision` | `SYSTEM_SK_VISION_DISABLED` | none | enabled | inject | wired |
 | `hook-install` | `SYSTEM_HOOK_INSTALL_DISABLED` | none | enabled | install | wired |
 | `git-commit-hooks` | `SYSTEM_GIT_COMMIT_HOOKS_DISABLED` | none | enabled | deny | wired |
 
@@ -251,5 +252,6 @@ Beyond the guard-core concerns above, the hub also indexes every remaining repo-
 | `session-cleanup` | claude, codex, cursor, devin + opencode plugin | `.opencode/scripts/session-cleanup.sh`, `.opencode/plugins/session-cleanup.js` |
 | `hook-install` | claude, cursor, devin (Codex is the install target) | `.opencode/bin/install-codex-hooks.mjs` |
 | `dist-freshness` (per-runtime `.sh`) | claude, codex, cursor, devin | `.opencode/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh` |
+| `sk-vision` | devin | `.opencode/skills/sk-vision/hooks/devin/sk-vision.mjs` |
 
 Each runtime's `session-lifecycle/` and `skill-advisor/` subfolders also carry the deployed `.js` entrypoint alongside its `.ts` source: a relative symlink into `system-spec-kit`'s built `dist/hooks/`, so the actually-executed file is browsable too. Those dist symlinks resolve after a build, exactly like the deployed `.<runtime>/hooks/*.js` symlinks the runtimes already use.

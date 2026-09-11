@@ -269,19 +269,35 @@ See [`host-adapters/pi-extension.md`](host-adapters/pi-extension.md) for full im
 
 ---
 
-### MCP stdio transport (sk-vision-mcp)
+### Devin prompt-time injection hook (sk-vision.mjs)
 
 #### Description
 
-Exposes all 13 sk-vision tools through one shared MCP stdio server. Cursor drives `sk_vision_inspect` with `/vision`. Devin has no command surface and calls the tool directly.
+Analyzes an image named in a Devin prompt and injects the evidence into the same turn, without the model asking for it.
 
 #### Current Reality
 
-The built `vision-runtime/dist/mcp-server.js` registers the 13 tools over MCP stdio and delegates through the shared provider and runtime client. Cursor starts it from `.cursor/mcp.json` and its `/vision` command drives `sk_vision_inspect`. Devin starts it from `.devin/mcp_config.json` and calls the tool directly. The server binds to its host's lifetime and shuts down on transport close, stdin EOF and signals, with a reparent-to-init watchdog for the `SIGKILL` case.
+`hooks/devin/sk-vision.mjs` runs on `UserPromptSubmit`, registered in `.devin/hooks.v1.json`. It detects an image path that resolves on disk, analyzes it through the shared evidence core, and returns a `<SK-VISION EVIDENCE>` block as `additionalContext`. The runtime is torn down per call. Every path fails open, so a malformed payload, a disabled kill-switch, an unbuilt runtime or any error yields an empty response rather than a blocked turn. Its 60-second timeout is met by a warm model and exceeded by a cold first load.
 
 #### Source Files
 
-See [`host-adapters/mcp-transport.md`](host-adapters/mcp-transport.md) for full implementation and test file listings.
+See [`host-adapters/devin-hook.md`](host-adapters/devin-hook.md) for full implementation and test file listings.
+
+---
+
+### Vision CLI (vision-cli.js)
+
+#### Description
+
+The command entry for a host that can run a process but cannot load an adapter or receive injected context. Cursor is that host.
+
+#### Current Reality
+
+`vision-runtime/dist/vision-cli.js` takes an image path and an optional question, or `--from-text` to find a path inside prose, and prints a `<SK-VISION EVIDENCE>` block on stdout. Cursor's `/vision` command and its always-apply rule invoke it. Exit codes are `0` for evidence, `1` for a runtime or usage error on stderr, and `2` when no image was found. It shares the evidence core with the Devin hook, so both hosts see identical analysis.
+
+#### Source Files
+
+See [`host-adapters/vision-cli.md`](host-adapters/vision-cli.md) for full implementation and test file listings.
 
 ---
 

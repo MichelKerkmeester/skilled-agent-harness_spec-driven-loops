@@ -1,6 +1,6 @@
 ---
 title: "VSN-020 -- Vision-blind model gains sight"
-description: "This scenario validates the end-to-end value of the MCP path for `VSN-020`: a text-only model (such as GLM) in Cursor or Devin reads an image it cannot natively see, via sk_vision_* tools."
+description: "This scenario validates the end-to-end value for `VSN-020`: a text-only model (such as GLM) in Devin or Cursor reads an image it cannot natively see."
 version: 1.0.0.0
 ---
 
@@ -12,17 +12,17 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 ## 1. OVERVIEW
 
-This scenario validates the whole reason sk-vision ships an MCP path: giving a text-only model vision inside an MCP-only host.
+This scenario validates the whole reason sk-vision exists: giving a text-only model vision inside a host that cannot provide it.
 
 ### Why This Matters
 
-Cursor and Devin routinely run text-only models — GLM is the common example — that receive an image part but cannot see a single pixel of it. Without sk-vision such a model guesses, hallucinates, or refuses. With the sk-vision MCP server attached (VSN-018 / VSN-019), that same vision-blind model reads the image through `sk_vision_ocr` / `sk_vision_inspect` and reports real content. This scenario proves the tools deliver that outcome, not just that the server connects.
+Devin and Cursor routinely run text-only models, GLM being the common example, that receive an image part but cannot see a single pixel of it. Without sk-vision such a model guesses, hallucinates, or refuses. The two hosts now get there differently, and the difference matters: on Devin the hook injects the evidence whether or not the model would have asked (VSN-028), while on Cursor the model must run the CLI itself (VSN-029). This scenario proves the outcome reaches the model, not merely that a mechanism is wired.
 
 ---
 
 ## 2. SCENARIO CONTRACT
 
-Operators run the exact prompt against a text-only model in an MCP host that has `sk-vision` attached, and confirm the model reports the image's true content through a tool rather than guessing.
+Operators run the exact prompt against a text-only model in Devin or Cursor and confirm the model reports the image's true content rather than guessing.
 
 - Objective: confirm a vision-blind model reads an attached image's exact text via `sk_vision_ocr` (or `sk_vision_inspect`) instead of hallucinating or refusing
 - Real user request: `I'm using GLM in Cursor and it can't read the text in my screenshot.`
@@ -35,7 +35,7 @@ Operators run the exact prompt against a text-only model in an MCP host that has
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| VSN-020 | Vision-blind model gains sight | Confirm a text-only model reads an image via the MCP tools | Read the exact text in this image and quote it. You have no native vision — use the available sk-vision tools. | 1. Select a text-only model (e.g. GLM) in the host and confirm `sk-vision` is attached (VSN-018/VSN-019) -> 2. host/agent: attach or name a known-text image, then run the prompt -> 3. bash (ground truth): `SK_VISION_DISABLE_AUTO_PROVISION=1 sk_vision_ocr` equivalent, or compare the model's quote to the image's known text | Step 2 transcript shows a `sk_vision_ocr` / `sk_vision_inspect` (namespaced under Devin) tool call; the quoted text equals the known image text | The model transcript with the tool call and its quote, plus the ground-truth text | PASS if a vision tool is called and the quote matches ground truth; FAIL on hallucination, refusal, or a no-tool answer | 1. Confirm attachment with VSN-018/VSN-019 -> 2. Confirm the model is genuinely text-only -> 3. Call `sk_vision_ocr` directly to get ground truth -> 4. Re-prompt making the no-native-vision constraint explicit |
+| VSN-020 | Vision-blind model gains sight | Confirm a text-only model reports an image's real content | Read the exact text in this image and quote it. You have no native vision. | 1. Select a text-only model (e.g. GLM) and confirm the host path works (VSN-028 for Devin, VSN-029 for Cursor) -> 2. host/agent: name a known-text image, then run the prompt -> 3. bash (ground truth): run the CLI on the same image and compare the model's quote to its OCR | Devin: the reply quotes the image text with no tool call, because the hook injected it. Cursor: the transcript shows a CLI run and the quote matches | The model transcript, and the ground-truth CLI output | PASS if the quote matches ground truth; FAIL on hallucination, refusal, or an answer derived from the filename | 1. Confirm the host path with VSN-028 or VSN-029 -> 2. Confirm the model is genuinely text-only -> 3. Run the CLI directly for ground truth -> 4. Re-prompt making the no-native-vision constraint explicit |
 
 ---
 
@@ -77,13 +77,13 @@ Capture the model transcript (showing the tool call and the quote) and the groun
 | File | Role |
 |---|---|
 | `manual-testing-playbook.md` | Root directory page and scenario summary |
-| `cursor-mcp.md` / `devin-mcp.md` | The host attachment scenarios this one builds on |
+| `devin-hook.md` / `vision-cli.md` | The host scenarios this one builds on |
 
 ### Implementation And Test Anchors
 
 | File | Role |
 |---|---|
-| `vision-runtime/dist/mcp-server.js` | Built stdio server the host launches |
+| `vision-runtime/dist/vision-cli.js` | Built CLI entry the host runs |
 | `vision-runtime/src/opencode/tools.ts` | The 13 tool definitions, including `sk_vision_ocr` / `sk_vision_inspect` |
 | `vision-runtime/python/runtime.py` | The OCR/inspect handlers that produce the real text |
 

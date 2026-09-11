@@ -23,15 +23,26 @@ await Bun.build({
   },
 });
 
-// Bundle the MCP stdio server so the MCP-only hosts (Cursor, Devin) can launch
-// the 13 tools independently of the in-process plugin. Kept in the package because
-// it needs the MCP SDK dependency that resolves inside vision-runtime.
+
+// Two node-targeted bundles for the hosts that reach vision from outside the
+// process, because they consume it differently: Devin's lifecycle hook imports
+// the evidence core, while Cursor's command executes the CLI. A bundle exports
+// only what its own entry exports, so the hook cannot import the core through
+// the CLI's bundle and each needs its own entrypoint.
 await Bun.build({
-  entrypoints: [resolve(root, "src/mcp/server.ts")],
+  entrypoints: [resolve(root, "src/evidence/prompt-evidence.ts")],
   outdir: dist,
-  target: "bun",
+  target: "node",
   format: "esm",
-  naming: "mcp-server.[ext]",
+  naming: "prompt-evidence.[ext]",
+});
+
+await Bun.build({
+  entrypoints: [resolve(root, "src/cli/vision-cli.ts")],
+  outdir: dist,
+  target: "node",
+  format: "esm",
+  naming: "vision-cli.[ext]",
 });
 
 // Ship the Python runtime alongside so the plugin can find it without the repo.
@@ -54,4 +65,4 @@ await Bun.build({
   },
 });
 
-console.log("built dist/plugin.js + dist/mcp-server.js + dist/python/runtime.py + hooks/opencode/sk-vision.js");
+console.log("built dist/plugin.js + dist/prompt-evidence.js + dist/vision-cli.js + dist/python/runtime.py + hooks/opencode/sk-vision.js");

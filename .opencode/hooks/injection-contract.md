@@ -83,6 +83,26 @@ B) Create a new spec folder
 - **Owning module:** `system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs` (`classifyIntent`).
 - **Channel per runtime:** Claude/Cursor/Devin/Codex `[SYS]` (`spec-gate-classify.mjs` -> `additionalContext`). OpenCode `[SYS]` (`system-spec-gate.js` via `experimental.chat.system.transform`). Pi `[MSG]` (`spec-gate-classify.ts` appends the question onto the visible prompt via the same `input`-transform mechanism as the advisor brief, and the two chain additively, so both appear in the same visibly-modified prompt).
 
+### sk-vision Evidence (Devin only)
+
+**Injects:** a `<SK-VISION EVIDENCE>` block carrying scene, caption and exact OCR for an image the prompt names, so a text-only model can answer about a picture it cannot see.
+
+```text
+<SK-VISION EVIDENCE>
+[SCENE] source: /path/to/error.png
+...
+[OCR] source: /path/to/error.png
+text:
+DEPLOY FAILED: exit code 137
+</SK-VISION EVIDENCE>
+```
+
+- **Trigger:** a user prompt naming an image path that resolves to a file on disk. A path that does not resolve produces nothing, deliberately, so a filename mentioned in passing never spins a local GPU.
+- **Owning module:** `.opencode/skills/sk-vision/hooks/devin/sk-vision.mjs`, over the shared core at `vision-runtime/src/evidence/prompt-evidence.ts`.
+- **Channel per runtime:** Devin `[SYS]` (`UserPromptSubmit` -> `hookSpecificOutput.additionalContext`). No other runtime carries it. OpenCode and Pi reach the same runtime in-process through their own plugin and extension, and Cursor runs the CLI instead.
+- **Why Cursor is absent:** a live probe against build `2026.09.02-c22c1a3` confirmed Cursor does not deliver `beforeSubmitPrompt`, with a `sessionStart` positive control firing on the same runs. Injection is impossible there, so Cursor's `/vision` command and always-apply rule invoke `vision-runtime/dist/vision-cli.js` instead. The same probe is why the two spec-kit hooks registered on that event are dormant.
+- **Kill-switch:** `SYSTEM_SK_VISION_DISABLED`, plus the master `SYSTEM_HOOKS_DISABLED`. Fail-open on every path, including an unbuilt runtime.
+
 ### Goal / Dist-Freshness Context (OpenCode only)
 
 **Injects:** active-goal guidance or a stale-dist warning, each bounded and each appended independently.

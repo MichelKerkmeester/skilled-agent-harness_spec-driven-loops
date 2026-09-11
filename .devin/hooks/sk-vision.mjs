@@ -1,0 +1,1 @@
+../../.opencode/hooks/sk-vision/devin/sk-vision.mjs

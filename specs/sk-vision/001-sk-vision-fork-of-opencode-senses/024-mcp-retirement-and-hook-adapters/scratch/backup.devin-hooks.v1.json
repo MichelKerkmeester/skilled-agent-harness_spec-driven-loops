@@ -54,11 +54,6 @@
           "type": "command",
           "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/hooks/goal/devin/goal-inject.mjs || { printf \"%s\\n\" \"mk-hook-drift host=devin event=UserPromptSubmit adapter=goal-inject.mjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"UserPromptSubmit\\\",\\\"additionalContext\\\":\\\"mk devin hook could not resolve; run npm run build in the spec-kit runtime package\\\",\\\"mkHookDrift\\\":true}}\"; }'",
           "timeout": 10
-        },
-        {
-          "type": "command",
-          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/hooks/sk-vision/devin/sk-vision.mjs || { printf \"%s\\n\" \"mk-hook-drift host=devin event=UserPromptSubmit adapter=sk-vision.mjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"UserPromptSubmit\\\",\\\"additionalContext\\\":\\\"mk devin hook could not resolve; run npm run build in the spec-kit runtime package\\\",\\\"mkHookDrift\\\":true}}\"; }'",
-          "timeout": 60
         }
       ]
     }

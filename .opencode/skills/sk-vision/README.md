@@ -1,6 +1,6 @@
 ---
 title: "sk-vision"
-description: "Local vision for text-only coding models. Grounded OCR, inspect, detect and pixel analysis from a private Moondream runtime in OpenCode, Pi, Cursor and Devin."
+description: "Local vision for text-only coding models. Grounded OCR, inspect, detect and pixel analysis from a private Moondream runtime in OpenCode, Pi, Devin and Cursor."
 trigger_phrases:
   - "screenshot OCR"
   - "attached image"
@@ -14,7 +14,7 @@ version: 0.2.0.0
 
 > Text-only coding models get grounded OCR, layout, detect and pixel-analysis evidence from a private Moondream runtime. Vision is opt-in and runs only when you invoke `/vision` or call an available tool.
 
-Use `/vision` with an image in OpenCode, Cursor or Pi. Devin calls `sk_vision_inspect` directly. The 13 `sk_vision_*` tools provide exact OCR, structured scene reads, object detection, colors, image diffing, cropping and more.
+Use `/vision` with an image in OpenCode, Pi or Cursor. Devin needs no command: its hook injects the evidence when a prompt names an image. The 13 `sk_vision_*` tools provide exact OCR, structured scene reads, object detection, colors, image diffing, cropping and more.
 
 ---
 
@@ -38,7 +38,7 @@ Text-only coding models are blind. A user pastes a screenshot of a broken UI or 
 
 ### What It Does
 
-`sk-vision` owns a host-agnostic JSON-RPC runtime (`vision-runtime/`, Python + Moondream, default `moondream2`) and thin per-host adapters. The default posture is idle. OpenCode does not register the tools by default. Pi registers them hidden. Cursor and Devin keep their MCP tools available.
+`sk-vision` owns a host-agnostic JSON-RPC runtime (`vision-runtime/`, Python + Moondream, default `moondream2`) and thin per-host adapters. The default posture is idle. OpenCode does not register the tools by default. Pi registers them hidden. Devin gets evidence injected at prompt time. Cursor runs the CLI.
 
 ### Why It Matters
 
@@ -64,11 +64,11 @@ The value is not "call a model on an image". It is turning an image into evidenc
 /vision What does this screenshot say?
 ```
 
-Use bare `/vision` for a full read of the most-recent image. OpenCode returns scene, caption and OCR evidence. Cursor and Pi ask for a question in the conversation or return a full read.
+Use bare `/vision` for a full read of the most-recent image. OpenCode returns scene, caption and OCR evidence. Pi asks for a question in the conversation or returns a full read. Cursor needs an explicit path, because its CLI cannot see the conversation.
 
 **Step 3: Verify before you rely on it.**
 
-`sk_vision_status` is a direct call on Cursor and Devin and is visible in OpenCode or Pi when `SK_VISION_AUTOINSPECT=1` is set. In the default mode, `/vision` handles image analysis and runtime teardown.
+`sk_vision_status` is visible in OpenCode or Pi when `SK_VISION_AUTOINSPECT=1` is set. In the default mode, `/vision` handles image analysis and runtime teardown.
 
 Returns `model_loaded`, device, VRAM and request count. The first model `load` downloads ~3.9 GB of weights and may provision a venv under `~/.cache/sk-vision/venv`.
 
@@ -90,7 +90,7 @@ All 13 tools speak one protocol: the TypeScript `RuntimeClient` sends NDJSON JSO
 
 ### Command-gated activation
 
-The default posture is opt-in and idle. OpenCode runs `/vision` through a `command.execute.before` hook. The hook fetches the latest session image, runs the analysis, injects a `<SK-VISION COMMAND>` evidence block and tears the runtime down. Pi's `/vision` prompt drives its hidden `sk_vision_inspect` tool and tears down a fresh runtime after each call. Cursor's prompt drives the MCP tool registered in `.cursor/mcp.json`. Devin has no command surface and calls the MCP tool directly. `SK_VISION_AUTOINSPECT=1` restores the legacy always-on behavior and visible tools in OpenCode and Pi. Full protocol, methods and tool semantics are in [SKILL.md](SKILL.md) §3.
+The default posture is opt-in and idle. OpenCode runs `/vision` through a `command.execute.before` hook. The hook fetches the latest session image, runs the analysis, injects a `<SK-VISION COMMAND>` evidence block and tears the runtime down. Pi's `/vision` prompt drives its hidden `sk_vision_inspect` tool and tears down a fresh runtime after each call. Cursor's prompt runs the built CLI. Devin has no command surface and needs none: its `UserPromptSubmit` hook injects the evidence when a prompt names an image path that resolves. `SK_VISION_AUTOINSPECT=1` restores the legacy always-on behavior and visible tools in OpenCode and Pi. Full protocol, methods and tool semantics are in [SKILL.md](SKILL.md) §3.
 
 ---
 
@@ -121,13 +121,14 @@ The runtime exposes **13** `sk_vision_*` tools: `inspect`, `detect`, `point`, `o
 
 ## 7. HOST ADAPTERS
 
-OpenCode and Pi load an in-process adapter from the skill's `hooks/` source. Cursor and Devin are MCP-only and share one MCP server:
+Every host reaches the same runtime through the strongest mechanism it supports:
 
 - **OpenCode**: the built plugin `vision-runtime/dist/plugin.js` loads through `.opencode/plugins/sk-vision.js`. It does not register the 13 tools by default. Its `/vision` command hook injects evidence and tears down the runtime. `SK_VISION_AUTOINSPECT=1` restores visible tools and legacy auto-inspect.
 - **Pi**: source `hooks/pi/sk-vision.ts` loads through `.pi/extensions/sk-vision.ts`. It registers the 13 tools hidden by default. Its `/vision` prompt drives the hidden inspect tool and tears down a fresh runtime after each call.
-- **Cursor and Devin**: both use the shared MCP server. Cursor has a `/vision` prompt command. Devin has no command surface and calls the MCP tool directly. See `hooks/README.md`.
+- **Devin**: a `UserPromptSubmit` hook that injects evidence without being asked. See `hooks/README.md`.
+- **Cursor**: the built CLI, invoked by its `/vision` command and always-apply rule. Cursor delivers no prompt-time hook event, so nothing can force the call there.
 
-The in-process sources are mirrored to the shared hook fleet at `.opencode/hooks/sk-vision/{pi,opencode}`. Skill owns the source. Every other path is a symlink, re-export or MCP config.
+Adapter sources are mirrored to the shared hook fleet at `.opencode/hooks/sk-vision/{pi,opencode,devin}`. The skill owns the source. Every other path is a symlink or re-export.
 
 ---
 

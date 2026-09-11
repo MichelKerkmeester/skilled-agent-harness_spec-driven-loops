@@ -555,8 +555,6 @@ For details, see the [Deep Loop Runtime README](.opencode/skills/system-deep-loo
 - Owns the packet continuity writer, the generated trigger index and the ripgrep retrieval recipes
 - Manages the manifest template source, 38 validation rules, the spec-kit script suite and the feature-catalog / testing-playbook documentation surfaces
 
-- Owns AST indexing, SQLite graph storage, readiness contracts and `detect_changes` impact checks
-
 **system-skill-advisor**
 - Gate 2 skill-routing subsystem at `.opencode/skills/system-skill-advisor/`
 - Owns prompt-time skill routing, the `skill_graph_*` commands, freshness and lifecycle checks, plus the shared embeddings stack
