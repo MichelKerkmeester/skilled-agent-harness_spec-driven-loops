@@ -47,7 +47,7 @@ The deliverable is a single self-contained `.html` checked against the taste gat
 | `scripts/mermaid_extract.py` | Script | Parses Mermaid text into the IR and digest with a strict trust boundary, supported-kinds reporting, size/node/edge limits, and exit code 2 for unreadable input |
 | `references/import-export/import-mermaid.md` | Shared | The six-step redraw procedure, supported grammars, edge cases, and anti-patterns |
 | `references/foundations/output-spec.md` | Shared | The four dials, size presets, degrade ladder, and fidelity-ledger contract |
-| `assets/examples/example-import-mermaid.html` | Shared | Shipped worked example of the procedure on a sample flowchart source |
+| `assets/diagrams/import-mermaid.html` | Shared | Shipped worked example of the procedure on a sample flowchart source |
 
 ### Validation And Tests
 

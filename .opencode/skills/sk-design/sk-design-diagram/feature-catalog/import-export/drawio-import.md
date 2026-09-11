@@ -47,7 +47,7 @@ The deliverable is a single self-contained `.html` written at the requested path
 | `scripts/drawio_extract.py` | Script | Decodes draw.io formats into the IR and Markdown digest, with `--page`, `--json`, `--max-rows`, and `--out` options and exit code 2 for unreadable input |
 | `references/import-export/import-drawio.md` | Shared | The six-step redraw procedure: extract, set the four dials, pick the type, build the semantic model, redraw, deliver |
 | `references/foundations/output-spec.md` | Shared | The four dials, size presets, degrade ladder, and fidelity-ledger contract |
-| `assets/examples/example-import-drawio.html` | Shared | Shipped worked example of the procedure on a sample architecture source |
+| `assets/diagrams/import-drawio.html` | Shared | Shipped worked example of the procedure on a sample architecture source |
 
 ### Validation And Tests
 

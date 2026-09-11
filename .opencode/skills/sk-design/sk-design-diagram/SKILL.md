@@ -31,7 +31,7 @@ Keyword triggers: `create:diagram`, `/design:diagram`, `diagram`, `architecture 
 
 ### Use Cases — selection guide
 
-The question a reader needs answered picks the type. The full table — one row per type with its canonical example, variants, ceiling, import paths and skin — lives in [`references/catalog.md`](references/catalog.md), which the corpus check reads in both directions.
+The question a reader needs answered picks the type. The full table — one row per type with its canonical form, variants, ceiling, import paths and skin — lives in [`references/catalog.md`](references/catalog.md), which the corpus check reads in both directions.
 
 ### When NOT to Use
 
@@ -98,7 +98,7 @@ references/primitives/primitive-*.md     # annotation, sketchy, terminal, icons 
 references/types/type-*.md               # 27 per-type layout conventions — CONDITIONAL (generate)
 references/import-export/import-*.md     # draw.io / Mermaid redraw — CONDITIONAL (import)
 references/import-export/export.md       # PNG/SVG export procedure — CONDITIONAL (export)
-assets/templates/template*.html          # 4 output variants to copy — ON_DEMAND
+assets/diagrams/starter-*.html          # 4 skin starters to copy — ON_DEMAND
 assets/icons.html                        # icon gallery — ON_DEMAND
 ```
 
@@ -140,7 +140,7 @@ The route reference per diagram type:
 |---|---|---|
 | ALWAYS | Every diagram | `references/foundations/style-guide.md` |
 | CONDITIONAL | Intent matches | `references/types/type-*.md`, `references/import-export/import-*.md`, `references/foundations/output-spec.md`, `references/import-export/export.md`, `references/foundations/onboarding.md` |
-| ON_DEMAND | Only on explicit request | `references/primitives/primitive-*.md`, `assets/templates/template*.html`, `assets/icons.html` |
+| ON_DEMAND | Only on explicit request | `references/primitives/primitive-*.md`, `assets/diagrams/starter-*.html`, `assets/icons.html` |
 
 ### Smart Router Pseudocode
 
@@ -182,7 +182,7 @@ Full spec: `references/foundations/style-guide.md`.
 Universal building blocks — background, arrow markers, node boxes, arrow labels, legend. Type-specialized primitives (lifelines, activation bars, regions) live in the relevant `references/types/type-*.md`.
 
 - **Background:** default clean `paper` fill, no dot pattern — the diagram sits directly on the page. Optional dotted-paper variant (`22×22` pattern at ~10% ink opacity) only for long-form editorial hero diagrams.
-- **Arrow markers:** a template defines all three (`arrow`, `arrow-accent`, `arrow-link`) so a copy can draw with them; a finished diagram keeps only the markers it draws, and draws only markers it defines; default = muted, accent = coral, link = blue; dashed `5,4` for optional/passive/return. **Draw arrows before boxes** so z-order puts lines behind nodes.
+- **Arrow markers:** a starter defines all three (`arrow`, `arrow-accent`, `arrow-link`) so a copy can draw with them; a finished diagram keeps only the markers it draws, and draws only markers it defines; default = muted, accent = coral, link = blue; dashed `5,4` for optional/passive/return. **Draw arrows before boxes** so z-order puts lines behind nodes.
 - **Node box:** opaque paper mask → styled box (`rx=6`) → rectangular type tag (`rx=2`, not a pill) → Geist node name → Geist Mono technical sublabel.
 - **Arrow labels:** every label needs an opaque mask rect *and* a visible 6–10px gap above its connector; ≤14 characters, all-caps, centered on the segment midpoint; never `writing-mode` vertical.
 - **Legend:** horizontal strip at the bottom with a hairline separator — never inside the diagram area; expand the SVG `viewBox` height by ~60px.
@@ -195,22 +195,27 @@ Optional primitives: annotation callouts → `references/primitives/primitive-an
 - **Complexity budget:** max 9 nodes, 12 arrows/transitions, 2 coral elements, and 2 annotation callouts per diagram. Per-type ceilings (sequence lifelines, swimlane lanes, ER entities, tree depth, org-chart nodes, venn circles, radar axes, bar/line/series counts, Gantt tasks, scatter points, …) live in each `references/types/type-*.md`. If you exceed, split into two diagrams (overview + detail).
 - **Page layout:** header (eyebrow, title, optional subtitle) → diagram container (clean/borderless by default; framed `paper-2` variant opt-in) → summary cards (varied widths, no shadow) → footer (Geist Mono colophon, hairline top border).
 
-### Templates and variants
+### The form library
 
-Every diagram ships from a copied template (see `assets/`):
+Every diagram starts as a copy of a form in `assets/diagrams/`. There are 38: 27 canonical diagrams,
+one per type, 7 pattern variants, and the 4 skin starters below. A worked diagram is usually the
+better starting point — it shows the conventions applied rather than described — and nothing in the
+library is a strict template. The starters are for when you want a skin without a drawing:
 
 | Variant | File | When to use |
 |---|---|---|
-| **Minimal light** (default) | `assets/templates/template.html` | Screenshot-ready. Diagram + title. Warm paper. |
-| **Minimal dark** | `assets/templates/template-dark.html` | Dark-mode sites, slides, high-contrast posts. |
-| **Full editorial** | `assets/templates/template-full.html` | Long-form posts where the diagram is the hero. |
-| **Terminal** | `assets/templates/template-terminal.html` | Dev-tool / CLI-product posts and technical social cards. |
+| **Minimal light** (default) | `assets/diagrams/starter-light.html` | Screenshot-ready. Diagram + title. Warm paper. |
+| **Minimal dark** | `assets/diagrams/starter-dark.html` | Dark-mode sites, slides, high-contrast posts. |
+| **Full editorial** | `assets/diagrams/starter-full.html` | Long-form posts where the diagram is the hero. |
+| **Terminal** | `assets/diagrams/starter-terminal.html` | Dev-tool / CLI-product posts and technical social cards. |
 
-The **sketchy** variant applies to any minimal variant (SVG turbulence filter; see `references/primitives/primitive-sketchy.md`). The **consultant special** quadrant variant (`example-quadrant-consultant.html`, BCG/McKinsey-style 2×2) ships alongside the quadrant example.
+The **sketchy** variant applies to any minimal variant (SVG turbulence filter; see `references/primitives/primitive-sketchy.md`). The **consultant special** quadrant variant (`quadrant-consultant.html`, BCG/McKinsey-style 2×2) sits beside the plain quadrant form.
+
+To repaint a copy in another visual language, see [`references/design-md-theming.md`](references/design-md-theming.md).
 
 **To create a new diagram:**
 
-1. Copy the variant closest to what you want (`template.html` for minimal, `template-full.html` for cards).
+1. Copy the variant closest to what you want (`starter-light.html` for minimal, `starter-full.html` for cards).
 2. Load the matching `references/types/type-<name>.md` for layout conventions.
 3. Replace the eyebrow, h1, and SVG body. Replace `[diagram-slug]` with the file's diagram/variant slug, fill the copied `<title>` / `<desc>` placeholders, and do not delete them.
 4. Run the taste gate (SUCCESS CRITERIA).
@@ -314,10 +319,10 @@ For `ascii-markdown`, produce the requested markdown file or embedded fenced tex
 
 ### Templates and Assets
 
-- [template.html](./assets/templates/template.html) — minimal light variant (default).
-- [template-dark.html](./assets/templates/template-dark.html) — minimal dark variant.
-- [template-full.html](./assets/templates/template-full.html) — full editorial variant.
-- [template-terminal.html](./assets/templates/template-terminal.html) — terminal-window variant.
+- [starter-light.html](./assets/diagrams/starter-light.html) — minimal light variant (default).
+- [starter-dark.html](./assets/diagrams/starter-dark.html) — minimal dark variant.
+- [starter-full.html](./assets/diagrams/starter-full.html) — full editorial variant.
+- [starter-terminal.html](./assets/diagrams/starter-terminal.html) — terminal-window variant.
 - [icons.html](./assets/icons.html) — icon gallery; specimen glyphs are decorative (`aria-hidden="true"`).
 
 ---

@@ -152,11 +152,11 @@ A: No: the packet has no network-fetch tool. Onboarding is agent-mediated: the c
 
 ## SCREENSHOTS
 
-Every template and example in this mode is rendered to a PNG under
+Every form in this mode is rendered to a PNG under
 [`screenshots/`](./screenshots/), mirroring the source layout, so a form can be
 judged without opening a browser.
 
-Regenerate after changing any template:
+Regenerate after changing any form:
 
 ```bash
 node ../shared/scripts/render-screenshots.cjs \

@@ -38,7 +38,7 @@ Five connector rules apply to every diagram of every type. Off-axis connectors u
 
 ### Templates and variants
 
-Every diagram ships from a copied template in `assets/` — `template.html` (minimal light, default), `template-dark.html`, `template-full.html` (full editorial), and `template-terminal.html`. The sketchy variant applies a displacement filter to any minimal variant, and the consultant-special quadrant example ships alongside the quadrant reference. Creating a diagram means copying the closest variant, loading the matching type reference, replacing the eyebrow/title/SVG body with prefixed accessible IDs, and running the taste gate before delivery.
+Every diagram ships from a copied template in `assets/` — `starter-light.html` (minimal light, default), `starter-dark.html`, `starter-full.html` (full editorial), and `starter-terminal.html`. The sketchy variant applies a displacement filter to any minimal variant, and the consultant-special quadrant example ships alongside the quadrant reference. Creating a diagram means copying the closest variant, loading the matching type reference, replacing the eyebrow/title/SVG body with prefixed accessible IDs, and running the taste gate before delivery.
 
 ---
 
@@ -50,7 +50,7 @@ Every diagram ships from a copied template in `assets/` — `template.html` (min
 |---|---|---|
 | `references/foundations/style-guide.md` | Shared | Semantic token roles, typography font stack, stroke/radius/spacing tokens, node type-to-treatment mapping, and the terminal skin |
 | `SKILL.md` (Design system, Core SVG primitives, Layout and spacing, RULES) | Handler | The 4px grid, complexity budget, five mandatory connector rules, and the taste-gate checklist |
-| `assets/templates/template*.html` (template, template-dark, template-full, template-terminal) | Shared | The four output variants every diagram is copied from |
+| `assets/diagrams/template*.html` (template, template-dark, template-full, template-terminal) | Shared | The four output variants every diagram is copied from |
 
 ### Validation And Tests
 

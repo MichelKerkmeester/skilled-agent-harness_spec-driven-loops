@@ -58,6 +58,6 @@ Focal bar: replace fill with `rgba(235,108,54,0.12)`, stroke with `#eb6c36`, lab
 
 ## 4. Examples
 
-- `assets/examples/example-bar.html` — minimal light
-- `assets/examples/example-bar-dark.html` — minimal dark
-- `assets/examples/example-bar-full.html` — full editorial
+- `assets/diagrams/bar.html` — minimal light
+- `assets/diagrams/bar-dark.html` — minimal dark
+- `assets/diagrams/bar-full.html` — full editorial

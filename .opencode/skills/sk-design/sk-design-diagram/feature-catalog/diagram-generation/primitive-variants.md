@@ -52,7 +52,7 @@ The icon library is a monochrome 24×24 set used in IT/cloud diagrams, with each
 | `references/primitives/primitive-sketchy.md` | Shared | The displacement-filter grammar, tuning parameters, and the filter-shapes-not-text rule |
 | `references/primitives/primitive-terminal.md` | Shared | The fixed terminal skin tokens, titlebar chrome, monospace typography, and one-accent rule |
 | `references/primitives/primitive-icons.md` | Shared | The monochrome icon library with per-icon SVG snippets, categories, and license attribution |
-| `assets/icons.html`, `assets/templates/template-terminal.html` | Shared | The icon gallery and the terminal template variant the primitive is applied to |
+| `assets/icons.html`, `assets/diagrams/starter-terminal.html` | Shared | The icon gallery and the terminal template variant the primitive is applied to |
 
 ### Validation And Tests
 

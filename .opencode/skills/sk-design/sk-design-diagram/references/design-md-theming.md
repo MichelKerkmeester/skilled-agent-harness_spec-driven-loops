@@ -67,18 +67,18 @@ node .opencode/skills/sk-design/sk-design-diagram/scripts/apply-design-md.cjs \
 | --- | --- |
 | `<path>` or `--default` | The reference to theme from. `--default` reads the carried reference above; a path must be a local file. |
 | `--forms a,b` | The forms to write, by file base name (`template`, `template-dark`, `template-full`, `template-terminal`). |
-| `--all` | Every form in `assets/templates/`. |
+| `--all` | Every form in `assets/diagrams/`. |
 | `--out <dir>` | Where the copies are written. Required; the directory is created after every gate has passed. |
 
 There is no force option. A URL is refused by name rather than fetched, and an URL as the first
 argument is refused before anything else is parsed. A `--forms` list may not be combined with
-`--all`. Writing inside `assets/templates/` is refused: the stock forms are immutable, and this
+`--all`. Writing inside `assets/diagrams/` is refused: the stock forms are immutable, and this
 script only ever writes copies.
 
 A sibling `tokens.json` beside the reference is read when present, for its `darkMode` support flag
 only; no flag passes it explicitly, because a reference that carries one carries it beside itself.
 
-The out directory mirrors the source set, so files that are not forms — the templates `README.md` —
+The out directory mirrors the source set, so files that are not forms — the library `README.md` —
 travel unchanged.
 
 `--default --all --out <dir>` must reproduce the stock forms byte for byte:
@@ -86,7 +86,7 @@ travel unchanged.
 ```bash
 node .opencode/skills/sk-design/sk-design-diagram/scripts/apply-design-md.cjs \
   --default --all --out /tmp/dmd-default
-diff -rq /tmp/dmd-default assets/templates   # no output
+diff -rq /tmp/dmd-default assets/diagrams   # no output
 ```
 
 That diff is the property that says the carried reference and the corpus have not drifted apart. It

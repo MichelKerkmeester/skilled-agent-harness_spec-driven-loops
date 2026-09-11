@@ -33,6 +33,6 @@ version: 1.1.0.6
 - Coral on root AND a leaf.
 
 ## 3. Examples
-- `assets/examples/example-tree.html` — minimal light
-- `assets/examples/example-tree-dark.html` — minimal dark
-- `assets/examples/example-tree-full.html` — full editorial
+- `assets/diagrams/tree.html` — minimal light
+- `assets/diagrams/tree-dark.html` — minimal dark
+- `assets/diagrams/tree-full.html` — full editorial

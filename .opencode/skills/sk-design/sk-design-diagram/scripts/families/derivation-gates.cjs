@@ -18,8 +18,9 @@ module.exports = {
     const { kind, regions, palette, gates, tally, record, label } = ctx;
     const styles = regions.styles.join('\n');
     const begins = [...styles.matchAll(BEGIN)];
-    // A delivery outside the package is not a template, so an absent block is not its defect.
-    if (kind !== 'template' && begins.length === 0) return;
+    // Only a starter must carry a block: it is what a new diagram is copied from. A worked form
+    // and a delivery outside the package keep whichever tokens they draw with.
+    if (kind !== 'starter' && begins.length === 0) return;
     tally(NAME, 1);
     const ends = [...styles.matchAll(END)];
     if (begins.length !== 1 || ends.length !== 1 || ends[0].index < begins[0].index) {

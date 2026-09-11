@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Theme diagram templates from a local v3 DESIGN.md Style Reference.
+ * Theme diagram forms from a local v3 DESIGN.md Style Reference.
  *
  * The reference is read, never fetched: a URL argument is refused by name and there is no force
  * option. Every selected form's palette is derived and gated in memory before anything is
@@ -21,7 +21,7 @@ const { contrast, round2 } = require('./color-gates.cjs');
 
 const VERSION = '1.0.0.0';
 const PACKAGE_ROOT = path.resolve(__dirname, '..');
-const TEMPLATE_DIR = path.join(PACKAGE_ROOT, 'assets', 'templates');
+const FORM_DIR = path.join(PACKAGE_ROOT, 'assets', 'diagrams');
 const PALETTE_SOURCE = path.join(PACKAGE_ROOT, 'assets', 'color', 'diagram-palette.json');
 // The default Style Reference, and the copy beside the forms for the same reason the chart
 // sibling keeps its own: a corpus cannot be derived from a file that may change under it. This
@@ -788,12 +788,19 @@ function remapLiterals(text, map, label, skin) {
 }
 
 function renderForm(source, skin, derived, label, pathGiven, hash) {
-  const marker = BEGIN.exec(source);
-  if (!marker) fail(`${label} has no DIAGRAM_PALETTE:BEGIN marker`);
-  if (marker[2]) fail(`${label} was already themed (${marker[2].trim()}); theme the stock form instead`);
   const roles = derived.skins[skin].roles;
-  const block = substituteBlock(source, skin, roles);
   const map = literalMapFor(derived.palette, skin, roles);
+  const marker = BEGIN.exec(source);
+  // A worked form has no palette block; it keeps every colour as a bare literal, so the whole
+  // file is mapped role by role. A starter carries the block a copy is drawn on, and only what
+  // sits outside the block is literal-mapped, so a value the block just painted is never read
+  // back as a stock literal and mapped a second time.
+  if (!marker) {
+    const mapped = remapLiterals(source, map, label, skin);
+    return { output: mapped.output, used: mapped.used };
+  }
+  if (marker[2]) fail(`${label} was already themed (${marker[2].trim()}); theme the stock form instead`);
+  const block = substituteBlock(source, skin, roles);
   let output = block.output;
   // A block that already carries what the reference derives has nothing to vouch for: provenance
   // says where a value came from, and those values are the file's own. The extended marker and
@@ -852,13 +859,13 @@ function parseArgs(argv) {
 
 function formNames(options) {
   const names = options.all
-    ? fs.readdirSync(TEMPLATE_DIR).filter((file) => file.endsWith('.html')).map((file) => file.slice(0, -5)).sort()
+    ? fs.readdirSync(FORM_DIR).filter((file) => file.endsWith('.html')).map((file) => file.slice(0, -5)).sort()
     : options.forms;
   if (!names.length) fail('no diagram forms were selected');
   const unique = [...new Set(names)];
   unique.forEach((form) => {
     if (!/^[a-z0-9-]+$/.test(form)) fail(`form is not lower-case kebab: ${form}`);
-    readText(path.join(TEMPLATE_DIR, `${form}.html`), 'diagram form');
+    readText(path.join(FORM_DIR, `${form}.html`), 'diagram form');
   });
   return unique;
 }
@@ -920,10 +927,13 @@ function run(argv) {
   const failures = [];
   const notes = [];
   for (const form of forms) {
-    const source = readText(path.join(TEMPLATE_DIR, `${form}.html`), 'diagram form');
+    const source = readText(path.join(FORM_DIR, `${form}.html`), 'diagram form');
     const marker = BEGIN.exec(source);
-    const skin = marker && marker[1];
-    if (!skin || !SKINS.includes(skin)) fail(`${form}.html has no valid skin marker`);
+    const formsConfig = derived.palette.forms || {};
+    const skin = marker
+      ? marker[1]
+      : (formsConfig.skinByFile || {})[`${form}.html`] || formsConfig.defaultSkin;
+    if (!skin || !SKINS.includes(skin)) fail(`${form}.html has no valid skin marker and the token source names no skin for it`);
     // A form that draws a categorical set needs every slot; a table that cannot fill five is a
     // shortfall of that form alone, so a named request is refused and a corpus run skips it.
     const declaredSeries = [...source.matchAll(/--color-(series-\d+)\s*:/g)].map((match) => match[1]);
@@ -954,8 +964,8 @@ function run(argv) {
   }
 
   const outDir = path.resolve(options.out);
-  if (outDir === TEMPLATE_DIR || outDir.startsWith(TEMPLATE_DIR + path.sep)) {
-    fail('refusing to write inside assets/templates; the stock forms are immutable');
+  if (outDir === FORM_DIR || outDir.startsWith(FORM_DIR + path.sep)) {
+    fail('refusing to write inside assets/diagrams; the stock forms are immutable');
   }
   fs.mkdirSync(outDir, { recursive: true });
   for (const [form, output] of outputs) {
@@ -963,8 +973,8 @@ function run(argv) {
     lines.push(`WROTE ${path.join(options.out, `${form}.html`)}`);
   }
   // The out directory mirrors the source set, so files that are not forms travel unchanged.
-  for (const name of fs.readdirSync(TEMPLATE_DIR).filter((entry) => !entry.endsWith('.html'))) {
-    const extra = path.join(TEMPLATE_DIR, name);
+  for (const name of fs.readdirSync(FORM_DIR).filter((entry) => !entry.endsWith('.html'))) {
+    const extra = path.join(FORM_DIR, name);
     if (fs.statSync(extra).isFile()) {
       fs.copyFileSync(extra, path.join(outDir, name));
       lines.push(`WROTE ${path.join(options.out, name)}`);

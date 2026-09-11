@@ -407,15 +407,15 @@ Before emitting SVG, verify **every** item:
 
 ## 9. Examples
 
-- `assets/examples/example-it-state.html` — minimal light (NatStat canonical: 3 zones, 9 components, 8 connectors, 0 footer bars, SQL Server tinted olive). Gallery default.
-- `assets/examples/example-it-state-dark.html` — same, dark skin.
-- `assets/examples/example-it-state-full.html` — same, editorial-card frame with summary cards.
-- `assets/examples/example-it-state-extended.html` — exercises §4 color override + footer bars: 2 footer bars (Identity Manager + Observability) below the zones, third custom color on Analyst Machines (slate-blue, data-quality concern).
-- `assets/examples/example-it-state-extended-dark.html` — extended pattern, dark skin.
+- `assets/diagrams/it-state.html` — minimal light (NatStat canonical: 3 zones, 9 components, 8 connectors, 0 footer bars, SQL Server tinted olive). Gallery default.
+- `assets/diagrams/it-state-dark.html` — same, dark skin.
+- `assets/diagrams/it-state-full.html` — same, editorial-card frame with summary cards.
+- `assets/diagrams/it-state-extended.html` — exercises §4 color override + footer bars: 2 footer bars (Identity Manager + Observability) below the zones, third custom color on Analyst Machines (slate-blue, data-quality concern).
+- `assets/diagrams/it-state-extended-dark.html` — extended pattern, dark skin.
 
 ---
 
-## 10. Worked YAML — full inputs for `example-it-state.html`
+## 10. Worked YAML — full inputs for `it-state.html`
 
 The complete inputs that map to the shipped canonical example. Every coordinate in that SVG is derivable from §2 applied to these inputs.
 

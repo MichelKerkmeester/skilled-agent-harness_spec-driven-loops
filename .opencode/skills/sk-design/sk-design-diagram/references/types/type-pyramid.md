@@ -42,6 +42,6 @@ Don't mix orientations on one diagram.
 - Coral on the base layer (dilutes the "apex = rare" signal).
 
 ## 4. Examples
-- `assets/examples/example-pyramid.html` — minimal light
-- `assets/examples/example-pyramid-dark.html` — minimal dark
-- `assets/examples/example-pyramid-full.html` — full editorial
+- `assets/diagrams/pyramid.html` — minimal light
+- `assets/diagrams/pyramid-dark.html` — minimal dark
+- `assets/diagrams/pyramid-full.html` — full editorial

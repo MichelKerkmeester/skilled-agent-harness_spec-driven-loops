@@ -53,6 +53,6 @@ version: 1.1.0.6
 
 ## 3. Examples
 
-- `assets/examples/example-line.html` — minimal light
-- `assets/examples/example-line-dark.html` — minimal dark
-- `assets/examples/example-line-full.html` — full editorial
+- `assets/diagrams/line.html` — minimal light
+- `assets/diagrams/line-dark.html` — minimal dark
+- `assets/diagrams/line-full.html` — full editorial

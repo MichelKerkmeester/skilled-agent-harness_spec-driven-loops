@@ -88,6 +88,6 @@ Rules:
 - Legend floating inside the diagram area.
 
 ## 6. Examples
-- `assets/examples/example-architecture.html` — minimal light
-- `assets/examples/example-architecture-dark.html` — minimal dark
-- `assets/examples/example-architecture-full.html` — full editorial
+- `assets/diagrams/architecture.html` — minimal light
+- `assets/diagrams/architecture-dark.html` — minimal dark
+- `assets/diagrams/architecture-full.html` — full editorial

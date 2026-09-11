@@ -30,10 +30,10 @@ version: 1.1.0.6
 - Missing axis names.
 
 ## 3. Examples
-- `assets/examples/example-quadrant.html` — minimal light
-- `assets/examples/example-quadrant-dark.html` — minimal dark
-- `assets/examples/example-quadrant-full.html` — full editorial
-- `assets/examples/example-quadrant-consultant.html` — consultant special (see below)
+- `assets/diagrams/quadrant.html` — minimal light
+- `assets/diagrams/quadrant-dark.html` — minimal dark
+- `assets/diagrams/quadrant-full.html` — full editorial
+- `assets/diagrams/quadrant-consultant.html` — consultant special (see below)
 
 ---
 

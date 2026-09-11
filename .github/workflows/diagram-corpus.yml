@@ -22,7 +22,7 @@ on:
 # review that needs one says so and runs on a schedule rather than passing quietly in CI.
 jobs:
   corpus:
-    name: Corpus contract, its mutation suite and the applicator gate
+    name: Corpus contract, its mutation suite and both applicator gates
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -37,15 +37,20 @@ jobs:
           node scripts/check-diagram-corpus.cjs | tee /tmp/diagram-corpus.log
           grep -q 'RESULT: PASSED' /tmp/diagram-corpus.log
 
-      - name: Applicator reproduces the stock bytes
+      # Both applicators must reproduce the shipped bytes: the token applicator proves the forms are
+      # generated from the palette source, and the DESIGN.md applicator proves the carried Style
+      # Reference still describes that same palette. An exclusion here would hide exactly the drift
+      # these two steps exist to catch, so neither takes one.
+      - name: Both applicators reproduce the stock bytes
         run: |
           set -euo pipefail
           cd .opencode/skills/sk-design/sk-design-diagram
-          node scripts/apply-diagram-tokens.cjs --default --out /tmp/diagram-templates | tee /tmp/applicator.log
+          node scripts/apply-diagram-tokens.cjs --default --all --out /tmp/diagram-forms | tee /tmp/applicator.log
           grep -q 'RESULT: PASSED' /tmp/applicator.log
-          diff -rq /tmp/diagram-templates assets/templates
-          node scripts/apply-diagram-tokens.cjs --default --examples --out /tmp/diagram-examples | tail -1
-          diff -rq --exclude=example-sequence-oauth-dark.html /tmp/diagram-examples assets/examples
+          diff -rq /tmp/diagram-forms assets/diagrams
+          node scripts/apply-design-md.cjs --default --all --out /tmp/diagram-themed | tee /tmp/design-md.log
+          grep -q 'RESULT: PASSED' /tmp/design-md.log
+          diff -rq /tmp/diagram-themed assets/diagrams
 
       - name: Mutation suite
         run: |

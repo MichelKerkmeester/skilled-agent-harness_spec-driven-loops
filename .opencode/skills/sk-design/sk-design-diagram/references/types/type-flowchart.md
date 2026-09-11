@@ -32,6 +32,6 @@ version: 1.1.0.6
 - Unlabeled decision branches.
 
 ## 3. Examples
-- `assets/examples/example-flowchart.html` — minimal light
-- `assets/examples/example-flowchart-dark.html` — minimal dark
-- `assets/examples/example-flowchart-full.html` — full editorial
+- `assets/diagrams/flowchart.html` — minimal light
+- `assets/diagrams/flowchart-dark.html` — minimal dark
+- `assets/diagrams/flowchart-full.html` — full editorial

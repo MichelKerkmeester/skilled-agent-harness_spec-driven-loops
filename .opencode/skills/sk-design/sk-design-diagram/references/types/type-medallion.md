@@ -359,12 +359,12 @@ Before emitting SVG, verify **every** item:
 
 ## 9. Examples
 
-- `assets/examples/example-medallion.html` — minimal light (NatStat quarterly survey: 5 tiers, 2 path cards, Aggregated focal). Gallery default.
-- `assets/examples/example-medallion-dark.html` — same, dark skin.
-- `assets/examples/example-medallion-full.html` — same, editorial-card frame with subtitle + summary cards.
+- `assets/diagrams/medallion.html` — minimal light (NatStat quarterly survey: 5 tiers, 2 path cards, Aggregated focal). Gallery default.
+- `assets/diagrams/medallion-dark.html` — same, dark skin.
+- `assets/diagrams/medallion-full.html` — same, editorial-card frame with subtitle + summary cards.
 
 ---
 
 ## 10. Worked YAML
 
-The YAML in §1 is the **complete** inputs definition for the shipped `example-medallion.html`. Every coordinate in that file's SVG is derivable from §2 applied to those inputs. The same YAML is embedded as a top-of-file HTML comment inside `example-medallion.html` so source view shows the parametric inputs immediately above the SVG.
+The YAML in §1 is the **complete** inputs definition for the shipped `medallion.html`. Every coordinate in that file's SVG is derivable from §2 applied to those inputs. The same YAML is embedded as a top-of-file HTML comment inside `medallion.html` so source view shows the parametric inputs immediately above the SVG.

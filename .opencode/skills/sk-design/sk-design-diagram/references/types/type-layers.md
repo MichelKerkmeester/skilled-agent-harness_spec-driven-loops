@@ -35,6 +35,6 @@ version: 1.1.0.6
 - Inconsistent layer heights without reason.
 
 ## 3. Examples
-- `assets/examples/example-layers.html` — minimal light
-- `assets/examples/example-layers-dark.html` — minimal dark
-- `assets/examples/example-layers-full.html` — full editorial
+- `assets/diagrams/layers.html` — minimal light
+- `assets/diagrams/layers-dark.html` — minimal dark
+- `assets/diagrams/layers-full.html` — full editorial

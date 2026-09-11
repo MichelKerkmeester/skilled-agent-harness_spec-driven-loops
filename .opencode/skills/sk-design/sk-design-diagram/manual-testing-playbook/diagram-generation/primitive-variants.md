@@ -43,14 +43,14 @@ Operators run the exact prompt and command sequence for `DIA-004` and confirm th
 ### Commands
 
 1. `agent: Read references/foundations/style-guide.md, references/types/type-loop.md, references/primitives/primitive-sketchy.md, and references/primitives/primitive-annotation.md (on demand)`
-2. `agent: Copy assets/templates/template.html to docs/compounding-loop.html`
+2. `agent: Copy assets/diagrams/starter-light.html to docs/compounding-loop.html`
 3. `agent: Apply the sketchy turbulence/displacement filter to shape groups only; keep all text as siblings outside the filtered group`
 4. `agent: Add at most two italic Instrument Serif callouts with dashed Bézier leaders and landing dots in the margins`
 5. `agent: Run the taste gate and audit the filter grouping, callout count, and typography`
 
 ### Expected
 
-Step 3 produces a `<g filter="url(#sketchy)">` containing only shapes, with every `<text>` outside it. Step 4 yields exactly two callouts in the margins, each an italic serif with a dashed leader. Step 5 confirms the loop diagram stays within the budget and no forbidden font (JetBrains Mono) appears. If the operator also requests the terminal variant, step 2 is repeated from `assets/templates/template-terminal.html` and the audit checks `terminal-*` tokens with one accent and a monospace title prefixed with `# `.
+Step 3 produces a `<g filter="url(#sketchy)">` containing only shapes, with every `<text>` outside it. Step 4 yields exactly two callouts in the margins, each an italic serif with a dashed leader. Step 5 confirms the loop diagram stays within the budget and no forbidden font (JetBrains Mono) appears. If the operator also requests the terminal variant, step 2 is repeated from `assets/diagrams/starter-terminal.html` and the audit checks `terminal-*` tokens with one accent and a monospace title prefixed with `# `.
 
 ### Evidence
 

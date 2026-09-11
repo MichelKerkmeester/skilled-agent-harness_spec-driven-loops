@@ -28,8 +28,11 @@ const gates = require('./color-gates.cjs');
 
 const PACKAGE_ROOT = path.resolve(__dirname, '..');
 const FAMILY_DIR = path.join(__dirname, 'families');
-const TEMPLATE_DIR = path.join(PACKAGE_ROOT, 'assets', 'templates');
-const EXAMPLE_DIR = path.join(PACKAGE_ROOT, 'assets', 'examples');
+const FORM_DIR = path.join(PACKAGE_ROOT, 'assets', 'diagrams');
+// A starter is a form with nothing drawn in it yet. It is the only kind that must carry a palette
+// block, because it is what a new diagram is copied from; a worked form keeps whichever tokens it
+// draws with. The two used to be told apart by directory and now share one, so the name says it.
+const STARTER = /(^|\/)starter-[a-z-]+\.html$/;
 const PALETTE_SOURCE = path.join(PACKAGE_ROOT, 'assets', 'color', 'diagram-palette.json');
 
 const findings = [];
@@ -128,11 +131,11 @@ function main() {
   }
   const palette = JSON.parse(fs.readFileSync(PALETTE_SOURCE, 'utf8'));
   const families = loadFamilies();
-  const internal = [...htmlFilesUnder(TEMPLATE_DIR), ...htmlFilesUnder(EXAMPLE_DIR)];
+  const internal = htmlFilesUnder(FORM_DIR);
   const extra = extraDirectory ? htmlFilesUnder(extraDirectory) : [];
   const shared = {
     tally, record, rel, gates, palette, crypto, fs, path,
-    root: PACKAGE_ROOT, templateDir: TEMPLATE_DIR, exampleDir: EXAMPLE_DIR,
+    root: PACKAGE_ROOT, formDir: FORM_DIR, templateDir: FORM_DIR, exampleDir: FORM_DIR,
     stripHtmlComments, stripCssComments, regionsOf, flattenTags, htmlFilesUnder,
   };
   for (const file of [...internal, ...extra]) {
@@ -140,7 +143,7 @@ function main() {
     const label = isExtra ? `--extra/${path.relative(extraDirectory, file)}` : rel(file);
     const src = fs.readFileSync(file, 'utf8');
     const clean = stripHtmlComments(src);
-    const kind = file.startsWith(TEMPLATE_DIR) ? 'template' : file.startsWith(EXAMPLE_DIR) ? 'example' : 'extra';
+    const kind = isExtra ? 'extra' : STARTER.test(file) ? 'starter' : 'form';
     const ctx = { ...shared, file, label, isExtra, src, clean, regions: regionsOf(clean), kind };
     for (const family of families) if (family.scope === 'file') family.run(ctx);
   }

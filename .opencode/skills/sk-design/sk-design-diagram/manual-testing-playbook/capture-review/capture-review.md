@@ -33,7 +33,7 @@ Operators run the exact prompt and command sequence for `CAP-001` and confirm th
 
 - Objective: verify a rendered capture of a corpus illustration against the six judged reads, on a capture pair that proves the skin reached the paint and a settle pair that proves the drawing had stopped moving
 - Real user request: `Here's the render of the diagram that's going into our docs — tell me what a person actually sees wrong with it before we publish.`
-- Prompt: `Capture assets/examples/example-swimlane.html at scale 1 and review the settled capture at the eye: answer the six judged reads, report each with its reason, take the skin-pinned capture beside the stock one, compare the two captures of the settle pair, and measure every arrow-label mask in the no-fonts render against the with-fonts render. Persist the outcome.`
+- Prompt: `Capture assets/diagrams/swimlane.html at scale 1 and review the settled capture at the eye: answer the six judged reads, report each with its reason, take the skin-pinned capture beside the stock one, compare the two captures of the settle pair, and measure every arrow-label mask in the no-fonts render against the with-fonts render. Persist the outcome.`
 - Expected execution process: the agent renders the corpus file through the local browser at scale 1 so a mask rect's coordinates land on the pixels it names, captures it twice with a settle interval between and reviews the second, re-themes the same file through the applicator from a token source whose accent differs and captures the themed copy, answers the six reads from the settled capture, then runs the label-mask measurement on the with-fonts and no-fonts renders and persists the outcome.
 - Expected signals: three captures of the one file (stock, skin-pinned, settled); the skin pair differs by eye in paper, ink, or accent; the settle pair matches; all six reads answered with the reason that decided them; two taste notes recorded but not scored; no arrow-label mask shows ink outside its own bounds in the no-fonts render; the outcome persisted with a reason on any `SKIP`.
 - Desired user-visible outcome: an operator-readable verdict on whether the diagram is clean to the eye, backed by the captures that show why.
@@ -72,7 +72,7 @@ A label's mask is sized to the font the page asked for. When the page cannot fet
 3. Ink pixels outside the mask's own bounds in the no-fonts render, where the with-fonts render had none, are overflow.
 4. Fail threshold: any mask with overflow.
 
-The reference case is the illustrations whose connectors carry labels — `assets/examples/example-swimlane.html` and `assets/examples/example-architecture.html` — because those files carry the opaque `fill="#f5f5f5"` mask rects the measurement crops. A file whose connectors are unlabelled has no mask to measure and is excluded rather than reported clean on it: `assets/examples/example-high-level.html` draws every edge without a label, so its box-mask rects are not label masks and must not be counted as ones.
+The reference case is the illustrations whose connectors carry labels — `assets/diagrams/swimlane.html` and `assets/diagrams/architecture.html` — because those files carry the opaque `fill="#f5f5f5"` mask rects the measurement crops. A file whose connectors are unlabelled has no mask to measure and is excluded rather than reported clean on it: `assets/diagrams/high-level.html` draws every edge without a label, so its box-mask rects are not label masks and must not be counted as ones.
 
 ### The Graduation Threshold
 
@@ -84,15 +84,15 @@ Overlap and the attach fan may leave the judged column only when a 2D pass over 
 
 ### Prompt
 
-- Prompt: `Capture assets/examples/example-swimlane.html at scale 1 and review the settled capture at the eye: answer the six judged reads, report each with its reason, take the skin-pinned capture beside the stock one, compare the two captures of the settle pair, and measure every arrow-label mask in the no-fonts render against the with-fonts render. Persist the outcome.`
+- Prompt: `Capture assets/diagrams/swimlane.html at scale 1 and review the settled capture at the eye: answer the six judged reads, report each with its reason, take the skin-pinned capture beside the stock one, compare the two captures of the settle pair, and measure every arrow-label mask in the no-fonts render against the with-fonts render. Persist the outcome.`
 
 ### Commands
 
 1. `bash: node scripts/check-diagram-corpus.cjs` (the green corpus run the review sits beside; read for `RESULT: PASSED`, not the exit code alone)
 2. `bash: python -c "import playwright"` (verify the renderer; if the import fails, surface the exact install instruction, record a `SKIP` naming the missing browser, and stop)
-3. `agent: Render assets/examples/example-swimlane.html at scale 1 and capture the diagram node, so every mask rect's coordinates land on the pixels it names`
+3. `agent: Render assets/diagrams/swimlane.html at scale 1 and capture the diagram node, so every mask rect's coordinates land on the pixels it names`
 4. `agent: Wait out the settle interval, capture the same file a second time, compare the two captures, and review the second`
-5. `bash: node scripts/apply-diagram-tokens.cjs --examples --source <palette.json> --out <scratch-dir> --forms example-swimlane` (the token source must move the accent and clear its skin's gates; the applicator refuses to write into the stock examples)
+5. `bash: node scripts/apply-diagram-tokens.cjs --source <palette.json> --out <scratch-dir> --forms swimlane` (the token source must move the accent and clear its skin's gates; the applicator refuses to write into the stock library)
 6. `agent: Capture the themed copy and compare it against the stock capture by eye — paper, ink, or accent must differ`
 7. `agent: Render the file once with web fonts and once with remote fonts disabled; crop every arrow-label mask rect from both renders with a margin; compare the crops and report ink outside a mask's own bounds`
 8. `agent: Answer the six judged reads on the settled capture, each with the reason that decided it, then record the two taste notes`
@@ -122,7 +122,7 @@ Capture the corpus run output, the stock, skin-pinned, and both settled captures
 
 ### Optional Supplemental Checks
 
-Run the same six reads on a second labelled illustration such as `assets/examples/example-architecture.html`, where two connectors enter one box edge and a dashed return runs against the flow, to confirm the reads hold where routes crowd. Then theme a labelled illustration into the dark skin and repeat the mask measurement: the mask fill follows the skin's `paper` role, so a mask that kept the light value leaves a pale patch behind every label and the overflow crop is where it shows.
+Run the same six reads on a second labelled illustration such as `assets/diagrams/architecture.html`, where two connectors enter one box edge and a dashed return runs against the flow, to confirm the reads hold where routes crowd. Then theme a labelled illustration into the dark skin and repeat the mask measurement: the mask fill follows the skin's `paper` role, so a mask that kept the light value leaves a pale patch behind every label and the overflow crop is where it shows.
 
 ---
 
@@ -142,7 +142,7 @@ Run the same six reads on a second labelled illustration such as `assets/example
 | `scripts/apply-diagram-tokens.cjs` | Re-themes a corpus file from a token source for the skin-pinned capture, gated against the skin's contrast thresholds |
 | `references/import-export/export.md` | The render-and-screenshot procedure the capture reuses |
 | `references/foundations/style-guide.md` | Token roles the reads resolve against, including the mask fill |
-| `assets/examples/` | The corpus being captured; the labelled illustrations carry the mask rects the measurement crops |
+| `assets/diagrams/` | The corpus being captured; the labelled illustrations carry the mask rects the measurement crops |
 | `SKILL.md` (RULES + SUCCESS CRITERIA) | The connector rules and taste-gate checklist the reads answer to |
 
 ---

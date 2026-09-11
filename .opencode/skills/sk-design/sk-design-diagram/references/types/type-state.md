@@ -30,6 +30,6 @@ version: 1.1.0.6
 - Unlabeled transitions (the whole point is *what triggers this*).
 
 ## 3. Examples
-- `assets/examples/example-state.html` — minimal light
-- `assets/examples/example-state-dark.html` — minimal dark
-- `assets/examples/example-state-full.html` — full editorial
+- `assets/diagrams/state.html` — minimal light
+- `assets/diagrams/state-dark.html` — minimal dark
+- `assets/diagrams/state-full.html` — full editorial

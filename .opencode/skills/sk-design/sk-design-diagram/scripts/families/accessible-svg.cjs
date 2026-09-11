@@ -35,7 +35,7 @@ module.exports = {
     const open = /<svg\b[^>]*\brole\s*=\s*"img"[^>]*>/i.exec(markup);
     tally(NAME, 1);
     if (!open) {
-      if (kind === 'template' || kind === 'example') {
+      if (kind === 'starter' || kind === 'form') {
         record(NAME, 'error', label, 'no <svg role="img"> in the delivery; without the image role a diagram is read as raw markup rather than announced as one thing');
       }
       return;

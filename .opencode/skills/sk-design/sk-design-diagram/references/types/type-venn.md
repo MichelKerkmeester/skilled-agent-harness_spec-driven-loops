@@ -35,6 +35,6 @@ version: 1.1.0.6
 - 4+ circles where 2–3 would do.
 
 ## 3. Examples
-- `assets/examples/example-venn.html` — minimal light
-- `assets/examples/example-venn-dark.html` — minimal dark
-- `assets/examples/example-venn-full.html` — full editorial
+- `assets/diagrams/venn.html` — minimal light
+- `assets/diagrams/venn-dark.html` — minimal dark
+- `assets/diagrams/venn-full.html` — full editorial

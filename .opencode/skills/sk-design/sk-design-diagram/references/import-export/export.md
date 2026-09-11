@@ -60,7 +60,7 @@ If the user explicitly asks for "a screenshot of the whole page including the ca
      ```
      If the SVG already contains a `<defs>` block, **merge** the `<style>` into it (don't add a second `<defs>`).
 4. Prepend `<?xml version="1.0" encoding="UTF-8"?>\n` so the file is well-formed XML.
-5. Write to `<basename>.svg` next to the source (e.g. `example-architecture.html` → `example-architecture.svg`). Honour an explicit output path if the user provides one.
+5. Write to `<basename>.svg` next to the source (e.g. `architecture.html` → `example-architecture.svg`). Honour an explicit output path if the user provides one.
 
 ### Caveat to surface to the user
 
@@ -115,7 +115,7 @@ Default `device_scale_factor=2` for crisp output. Accept `1` for compact assets 
 
 ### Output naming
 
-`example-architecture.html` → `example-architecture.png`, written next to the source. Honour explicit user-provided paths.
+`architecture.html` → `architecture.png`, written next to the source. Honour explicit user-provided paths.
 
 ---
 

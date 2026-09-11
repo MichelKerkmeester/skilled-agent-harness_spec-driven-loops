@@ -43,7 +43,7 @@ Operators run the exact prompt and command sequence for `DIA-001` and confirm th
 ### Commands
 
 1. `agent: Read references/foundations/style-guide.md (always) and references/types/type-architecture.md (matching type)`
-2. `agent: Copy assets/templates/template.html to docs/checkout-architecture.html`
+2. `agent: Copy assets/diagrams/starter-light.html to docs/checkout-architecture.html`
 3. `agent: Replace the eyebrow, H1, and SVG body; fill the prefixed <title>/<desc>; enforce the 4px grid and the complexity budget`
 4. `agent: Run the taste gate from SKILL.md SUCCESS CRITERIA and verify the accessible-SVG contract`
 

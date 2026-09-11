@@ -13,9 +13,10 @@ module.exports = {
   name: NAME,
   scope: 'file',
   run(ctx) {
-    const { kind, regions, flattenTags, tally, record, label } = ctx;
-    // A delivery checked as an extra owes the same budget as the corpus it was copied from.
-    if (kind === 'specimen') return;
+    const { regions, flattenTags, tally, record, label } = ctx;
+    // A delivery checked as an extra owes the same budget as the corpus it was copied from, so no
+    // kind is exempt here. The exemption that used to sit on this line named a kind the harness
+    // stopped assigning, which made it a branch that could never be taken.
     const markup = flattenTags(regions.markup);
     const count = (name) => (markup.match(new RegExp(`<[^>]*\\b${name}\\b[^>]*>`, 'g')) || []).length;
     const nodes = count('data-diagram-node');

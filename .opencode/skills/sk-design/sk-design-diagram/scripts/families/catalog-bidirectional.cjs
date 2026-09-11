@@ -14,7 +14,7 @@ module.exports = {
   name: 'catalog-bidirectional',
   scope: 'corpus',
   run(ctx) {
-    const { fs, path, root, tally, record, exampleDir } = ctx;
+    const { fs, path, root, tally, record, formDir } = ctx;
     const catalog = path.join(root, 'references', 'catalog.md');
     tally('catalog-bidirectional', 1);
     if (!fs.existsSync(catalog)) {
@@ -43,10 +43,11 @@ module.exports = {
       const id = row[col('id')];
       const files = [row[col('canonical')], row[col('variants')], row[col('imports')]]
         .join(',').split(',').map((s) => s.trim()).filter((s) => s && s !== 'none')
-        .map((s) => (s.startsWith('assets/') ? s : `assets/examples/${s}`));
+        .map((s) => (s.startsWith('assets/') ? s : `assets/diagrams/${s}`));
       tally('catalog-bidirectional', 1);
-      if (!files.some((f) => f.endsWith(`example-${id}.html`))) {
-        record('catalog-bidirectional', 'error', 'references/catalog.md', `row "${id}" names no canonical file example-${id}.html`);
+      const canonical = `assets/diagrams/${id}.html`;
+      if (!files.some((f) => f === canonical)) {
+        record('catalog-bidirectional', 'error', 'references/catalog.md', `row "${id}" names no canonical file ${canonical}`);
       }
       for (const f of files) {
         tally('catalog-bidirectional', 1);
@@ -56,10 +57,14 @@ module.exports = {
         referenced.set(f, (referenced.get(f) || 0) + 1);
       }
     }
-    for (const file of fs.readdirSync(exampleDir).filter((n) => n.endsWith('.html')).sort()) {
+    // A starter is the blank a new diagram is drawn on, not a worked form: it answers no
+    // question, so it carries no catalog row and none is owed. Every worked form must be
+    // indexed.
+    for (const file of fs.readdirSync(formDir).filter((n) => n.endsWith('.html')).sort()) {
       tally('catalog-bidirectional', 1);
-      if (!referenced.has(`assets/examples/${file}`)) {
-        record('catalog-bidirectional', 'error', `assets/examples/${file}`, 'no catalog row names this file. A diagram nothing indexes is a diagram nobody finds');
+      if (/^starter-[a-z-]+\.html$/.test(file)) continue;
+      if (!referenced.has(`assets/diagrams/${file}`)) {
+        record('catalog-bidirectional', 'error', `assets/diagrams/${file}`, 'no catalog row names this file. A diagram nothing indexes is a diagram nobody finds');
       }
     }
   },

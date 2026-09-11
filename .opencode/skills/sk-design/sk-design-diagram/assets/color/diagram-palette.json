@@ -189,12 +189,11 @@
       "why": "decoration: inactive dots and spokes; never carries text"
     }
   ],
-  "examples": {
+  "forms": {
     "skinByFile": {
-      "example-loop-terminal.html": "terminal",
-      "example-sequence-oauth-dark.html": "dark"
+      "loop-terminal.html": "terminal",
+      "sequence-oauth-dark.html": "dark"
     },
-    "defaultSkin": "light",
-    "untokenized": []
+    "defaultSkin": "light"
   }
 }

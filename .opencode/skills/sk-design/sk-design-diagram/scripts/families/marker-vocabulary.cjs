@@ -36,10 +36,10 @@ module.exports = {
       for (const id of urlTargets(match[1])) drawn.add(id);
     }
 
-    // A template is a skeleton: it defines the marker trio so a copy can draw with it, and draws
-    // nothing itself. Only a finished diagram owes the rule that every definition is used.
+    // A starter is a skeleton: it defines the marker trio so a copy can draw with it, and draws
+    // nothing itself. Only a worked form owes the rule that every definition is used.
     for (const id of defined) {
-      if (ctx.kind === 'template') break;
+      if (ctx.kind === 'starter') break;
       tally(NAME, 1);
       if (!drawn.has(id)) {
         record(NAME, 'error', label, `<marker id="${id}"> is defined and no marker-start, marker-mid or marker-end draws it; a marker nothing references is dead weight in the defs block`);

@@ -45,7 +45,7 @@
     {
       "scenarioId": "DIA-001",
       "verdict": "PASS",
-      "reason": "Loaded references/types/type-architecture.md + style-guide.md; wrote docs/checkout-architecture.html (3 nodes, 2 orthogonal edges, 1 accent, bottom legend). Verified: role=img + title/desc pair present as first children, self-contained per packet convention (inline CSS/SVG/no JS; the one external Google Fonts <link> matches the packet's own shipped template.html and every canonical example — not a scenario-specific defect).",
+      "reason": "Loaded references/types/type-architecture.md + style-guide.md; wrote docs/checkout-architecture.html (3 nodes, 2 orthogonal edges, 1 accent, bottom legend). Verified: role=img + title/desc pair present as first children, self-contained per packet convention (inline CSS/SVG/no JS; the one external Google Fonts <link> matches the packet's own shipped starter-light.html and every canonical example — not a scenario-specific defect).",
       "stage": "diagram-generation",
       "classKind": "manual",
       "providerModel": "deepseek/deepseek-v4-flash",

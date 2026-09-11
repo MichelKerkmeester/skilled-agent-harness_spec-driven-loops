@@ -54,6 +54,6 @@ Duration in pixels: `(end_week - start_week) × pitch`. Pitch = timeline_width /
 
 ## 3. Examples
 
-- `assets/examples/example-gantt.html` — minimal light
-- `assets/examples/example-gantt-dark.html` — minimal dark
-- `assets/examples/example-gantt-full.html` — full editorial
+- `assets/diagrams/gantt.html` — minimal light
+- `assets/diagrams/gantt-dark.html` — minimal dark
+- `assets/diagrams/gantt-full.html` — full editorial

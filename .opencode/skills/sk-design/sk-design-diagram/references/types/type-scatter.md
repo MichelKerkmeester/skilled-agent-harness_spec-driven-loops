@@ -48,6 +48,6 @@ version: 1.1.0.6
 
 ## 3. Examples
 
-- `assets/examples/example-scatter.html` — minimal light
-- `assets/examples/example-scatter-dark.html` — minimal dark
-- `assets/examples/example-scatter-full.html` — full editorial
+- `assets/diagrams/scatter.html` — minimal light
+- `assets/diagrams/scatter-dark.html` — minimal dark
+- `assets/diagrams/scatter-full.html` — full editorial

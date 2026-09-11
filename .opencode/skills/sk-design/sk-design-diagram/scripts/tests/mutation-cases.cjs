@@ -9,35 +9,35 @@ const path = require('node:path');
 
 const FILE_CASES = [
   { name: 'a diagram whose svg has no title', family: 'accessible-svg',
-    file: 'assets/examples/example-architecture.html',
+    file: 'assets/diagrams/architecture.html',
     from: '<title id="architecture-title">', to: '<title id="architecture-title-moved">',
     expect: /aria-labelledby|title/ },
   { name: 'an id used twice in one file', family: 'unique-ids',
-    file: 'assets/examples/example-architecture.html',
+    file: 'assets/diagrams/architecture.html',
     from: 'id="architecture-desc"', to: 'id="architecture-title"',
     expect: /architecture-title/ },
   { name: 'a script fetched from a host that is not the fonts allowlist', family: 'no-external',
-    file: 'assets/examples/example-architecture.html',
+    file: 'assets/diagrams/architecture.html',
     from: '</head>', to: '<script src="https://cdn.example.com/a.js"></script></head>',
     expect: /cdn\.example\.com/ },
   { name: 'a connector drawn with a marker nobody defined', family: 'marker-vocabulary',
-    file: 'assets/examples/example-architecture.html',
+    file: 'assets/diagrams/architecture.html',
     from: 'marker-end="url(#arrow)"', to: 'marker-end="url(#nope)"',
     expect: /nope/ },
   { name: 'a new file with a value off the grid', family: 'grid-4px',
-    file: 'assets/examples/example-layers.html',
+    file: 'assets/diagrams/layers.html',
     from: '</defs>', to: '</defs><rect x="13" y="0" width="4" height="4"/>',
     expect: /x=13/ },
   { name: 'a connector line that runs at an angle', family: 'orthogonal-connectors',
-    file: 'assets/examples/example-swimlane.html',
+    file: 'assets/diagrams/swimlane.html',
     from: '<path d="M460 144 H500 V176" fill="none"', to: '<line x1="460" y1="144" x2="500" y2="176"',
     expect: /angle/ },
   { name: 'more tagged nodes than the budget allows', family: 'node-budget',
-    file: 'assets/examples/example-layers.html',
+    file: 'assets/diagrams/layers.html',
     from: '</defs>', to: `</defs>${'<rect data-diagram-node="true" x="0" y="0" width="4" height="4"/>'.repeat(10)}`,
     expect: /budget|nodes/ },
   { name: 'a template whose palette block drifts from the token source', family: 'derivation-gates',
-    file: 'assets/templates/template.html',
+    file: 'assets/diagrams/starter-light.html',
     from: '--color-muted:   #4f5d75;', to: '--color-muted:   #dddddd;',
     expect: /muted/ },
 ];
@@ -54,7 +54,7 @@ const PACKAGE_CASES = [
   { name: 'a catalog row naming a file that left', family: 'catalog-bidirectional',
     mutate: (dir) => {
       const file = path.join(dir, 'references', 'catalog.md');
-      fs.writeFileSync(file, fs.readFileSync(file, 'utf8').replace('example-architecture.html', 'example-gone.html'), 'utf8');
+      fs.writeFileSync(file, fs.readFileSync(file, 'utf8').replace('architecture.html', 'gone.html'), 'utf8');
     },
     expect: /example-gone\.html|architecture/ },
 ];

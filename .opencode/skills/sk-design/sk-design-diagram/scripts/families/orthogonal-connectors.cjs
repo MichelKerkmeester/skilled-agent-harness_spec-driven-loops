@@ -57,7 +57,7 @@ module.exports = {
   scope: 'file',
   run(ctx) {
     const { file, path, regions, flattenTags, tally, record, label } = ctx;
-    const radialFile = path.basename(file) === 'example-radar.html', open = [];
+    const radialFile = path.basename(file) === 'radar.html', open = [];
     const tagRe = /<(\/?)([a-zA-Z][\w-]*)\b([^>]*?)(\/?)>/g;
     let match;
     while ((match = tagRe.exec(flattenTags(regions.markup))) !== null) {

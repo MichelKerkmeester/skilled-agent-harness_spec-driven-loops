@@ -29,6 +29,6 @@ version: 1.1.0.6
 - Arrows that snake back and forth — reorder steps so the flow is mostly straight.
 
 ## 3. Examples
-- `assets/examples/example-swimlane.html` — minimal light
-- `assets/examples/example-swimlane-dark.html` — minimal dark
-- `assets/examples/example-swimlane-full.html` — full editorial
+- `assets/diagrams/swimlane.html` — minimal light
+- `assets/diagrams/swimlane-dark.html` — minimal dark
+- `assets/diagrams/swimlane-full.html` — full editorial

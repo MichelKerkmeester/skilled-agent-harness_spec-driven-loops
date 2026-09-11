@@ -34,7 +34,7 @@ Every `SKIP` carries its reason in the reason column, and a `SKIP` with an empty
 
 This playbook covers the full operator-visible surface of the `sk-design-diagram` packet across four categories: diagram generation, import/export, command/hub integration, and capture review. Each feature keeps its original ID and links to a dedicated feature file with the full execution contract. The operator validator computes the exact census from the walked tree; this document does not hand-maintain counts.
 
-Coverage note (2026-08-12): every scenario is runnable today against the shipped references, the `assets/templates/template*.html` variants, and the `scripts/drawio_extract.py` / `scripts/mermaid_extract.py` extractors; the PNG export scenario requires a local Playwright install and is otherwise a documented `SKIP` with a named blocker.
+Coverage note (2026-08-12): every scenario is runnable today against the shipped references, the `assets/diagrams/template*.html` variants, and the `scripts/drawio_extract.py` / `scripts/mermaid_extract.py` extractors; the PNG export scenario requires a local Playwright install and is otherwise a documented `SKIP` with a named blocker.
 
 ### Realistic Test Model
 
@@ -337,7 +337,7 @@ Desired user-visible outcome: a registration verdict backed by the two manifest 
 Verify a rendered capture of a corpus illustration against the six reads the corpus checker states it does not hold — connector overlap, the attach fan, the visible label gap, a route behind a box, focal balance, and type fit — on a capture pair that proves the skin reached the paint and a settle pair that proves the drawing had stopped moving.
 
 #### Scenario Contract
-Prompt: `Capture assets/examples/example-swimlane.html at scale 1 and review the settled capture at the eye: answer the six judged reads, report each with its reason, take the skin-pinned capture beside the stock one, compare the two captures of the settle pair, and measure every arrow-label mask in the no-fonts render against the with-fonts render. Persist the outcome.`
+Prompt: `Capture assets/diagrams/swimlane.html at scale 1 and review the settled capture at the eye: answer the six judged reads, report each with its reason, take the skin-pinned capture beside the stock one, compare the two captures of the settle pair, and measure every arrow-label mask in the no-fonts render against the with-fonts render. Persist the outcome.`
 
 - Objective: verify a rendered capture of a corpus illustration against the six judged reads, on a capture pair that proves the skin reached the paint and a settle pair that proves the drawing had stopped moving
 - Real user request: `Here's the render of the diagram that's going into our docs — tell me what a person actually sees wrong with it before we publish.`

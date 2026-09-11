@@ -61,4 +61,4 @@ The router loads exactly one of these files per generate request, selected by `S
 |---|---|
 | [`../../SKILL.md`](../../SKILL.md) | Type-selection guide and Smart Router. |
 | [`../foundations/style-guide.md`](../foundations/style-guide.md) | The shared design tokens every type draws against. |
-| [`../../assets/examples/`](../../assets/examples/) | One canonical rendered example per type. |
+| [`../../assets/diagrams/`](../../assets/diagrams/) | One canonical rendered example per type. |

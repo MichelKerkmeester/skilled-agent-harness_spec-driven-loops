@@ -43,7 +43,7 @@ _None._
 
 | Scenario | Class | Stage | Score | First failing stage |
 | -------- | ----- | ----- | ----- | ------------------- |
-| DIA-001 | manual | diagram-generation | — | PASS: Loaded references/types/type-architecture.md + style-guide.md; wrote docs/checkout-architecture.html (3 nodes, 2 orthogonal edges, 1 accent, bottom legend). Verified: role=img + title/desc pair present as first children, self-contained per packet convention (inline CSS/SVG/no JS; the one external Google Fonts <link> matches the packet's own shipped template.html and every canonical example — not a scenario-specific defect). |
+| DIA-001 | manual | diagram-generation | — | PASS: Loaded references/types/type-architecture.md + style-guide.md; wrote docs/checkout-architecture.html (3 nodes, 2 orthogonal edges, 1 accent, bottom legend). Verified: role=img + title/desc pair present as first children, self-contained per packet convention (inline CSS/SVG/no JS; the one external Google Fonts <link> matches the packet's own shipped starter-light.html and every canonical example — not a scenario-specific defect). |
 
 ## Methodology / caveats
 
