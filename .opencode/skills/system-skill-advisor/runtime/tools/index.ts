@@ -8,7 +8,7 @@ import {
   handleAdvisorStatus,
   handleAdvisorValidate,
 } from '../handlers/index.js';
-import type { MCPCallerContext } from '../lib/context/caller-context.js';
+import type { CallerContext } from '../lib/context/caller-context.js';
 import { advisorRebuildTool } from './advisor-rebuild.js';
 import { advisorRecommendTool } from './advisor-recommend.js';
 import { advisorStatusTool } from './advisor-status.js';
@@ -51,7 +51,7 @@ function toMCP(result: { content: Array<{ type: string; text: string }> }): MCPR
 export async function dispatchTool(
   name: string,
   args: Record<string, unknown>,
-  callerContext?: MCPCallerContext | null,
+  callerContext?: CallerContext | null,
 ): Promise<MCPResponse | null> {
   switch (name) {
     case 'advisor_recommend':

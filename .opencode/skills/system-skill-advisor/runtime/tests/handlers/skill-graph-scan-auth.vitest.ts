@@ -10,10 +10,10 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import { handleSkillGraphScan } from '../../handlers/skill-graph/scan.js';
 import { closeDb, getDb, initDb } from '../../lib/skill-graph/skill-graph-db.js';
 import { runWithCallerContext } from '../../lib/context/caller-context.js';
-import type { MCPCallerContext } from '../../lib/context/caller-context.js';
+import type { CallerContext } from '../../lib/context/caller-context.js';
 
 type HandlerResponse = { content: Array<{ type: string; text: string }> };
-type AuthContext = MCPCallerContext & { readonly trusted: boolean };
+type AuthContext = CallerContext & { readonly trusted: boolean };
 
 function callerContext(trusted: boolean): AuthContext {
   return {

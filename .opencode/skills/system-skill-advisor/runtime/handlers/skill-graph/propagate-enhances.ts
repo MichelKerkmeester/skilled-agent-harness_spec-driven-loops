@@ -5,7 +5,7 @@
 // optionally applies missing inbound enhances edges across skills.
 
 import { resolve } from 'node:path';
-import type { MCPCallerContext } from '../../lib/context/caller-context.js';
+import type { CallerContext } from '../../lib/context/caller-context.js';
 import { requireTrustedCaller } from '../../lib/auth/trusted-caller.js';
 import { errorResponse, okResponse, redactDiagnosticText } from './response-envelope.js';
 import { propagateInboundEnhances } from '../../lib/cross-skill-edges/index.js';
@@ -34,7 +34,7 @@ type HandlerResponse = { content: Array<{ type: string; text: string }> };
 /** Handle skill_graph_propagate_enhances tool call */
 export async function handleSkillGraphPropagateEnhances(
   args: PropagateEnhancesArgs,
-  callerContext?: MCPCallerContext | null,
+  callerContext?: CallerContext | null,
 ): Promise<HandlerResponse> {
   try {
     // Trust gates the MUTATING path only: report/propose and dry-run apply

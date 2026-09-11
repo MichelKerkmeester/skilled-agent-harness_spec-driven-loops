@@ -2,7 +2,7 @@
 // MODULE: Trusted Caller Guard
 // ───────────────────────────────────────────────────────────────
 
-import { getCallerContext, type MCPCallerContext } from '../context/caller-context.js';
+import { getCallerContext, type CallerContext } from '../context/caller-context.js';
 
 export interface TrustedCallerRejection {
   readonly ok: false;
@@ -12,13 +12,13 @@ export interface TrustedCallerRejection {
 
 export interface TrustedCallerAcceptance {
   readonly ok: true;
-  readonly callerContext: MCPCallerContext;
+  readonly callerContext: CallerContext;
 }
 
 export type TrustedCallerResult = TrustedCallerAcceptance | TrustedCallerRejection;
 
 export function requireTrustedCaller(
-  callerContext: MCPCallerContext | null = getCallerContext(),
+  callerContext: CallerContext | null = getCallerContext(),
   toolName = 'skill_graph_scan',
 ): TrustedCallerResult {
   if (callerContext?.trusted === true) {

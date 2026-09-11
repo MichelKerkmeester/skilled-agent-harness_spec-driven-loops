@@ -14,7 +14,7 @@ import {
 } from '../schemas/advisor-tool-schemas.js';
 import { readAdvisorStatus } from './advisor-status.js';
 
-import type { MCPCallerContext } from '../lib/context/caller-context.js';
+import type { CallerContext } from '../lib/context/caller-context.js';
 import type { SkillGraphIndexResult } from '../lib/skill-graph/skill-graph-db.js';
 import type {
   AdvisorFreshness,
@@ -118,7 +118,7 @@ export function rebuildAdvisorIndex(
  */
 export async function handleAdvisorRebuild(
   args: unknown,
-  callerContext?: MCPCallerContext | null,
+  callerContext?: CallerContext | null,
 ): Promise<HandlerResponse> {
   const trustedCaller = requireTrustedCaller(callerContext, 'advisor_rebuild');
   if (!trustedCaller.ok) {

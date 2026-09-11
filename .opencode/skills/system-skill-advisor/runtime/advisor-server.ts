@@ -25,7 +25,7 @@ import { publishSkillGraphGeneration } from './lib/freshness/generation.js';
 import { startSkillGraphDaemon, type SkillGraphDaemon } from './lib/daemon/lifecycle.js';
 import type { SkillGraphFsWatcher } from './lib/daemon/watcher.js';
 import { readAdvisorStatus } from './handlers/advisor-status.js';
-import { runWithCallerContext, type MCPCallerContext } from './lib/context/caller-context.js';
+import { runWithCallerContext, type CallerContext } from './lib/context/caller-context.js';
 import {
   getIpcBridgeStats,
   resolveIpcSocketPath,
@@ -208,7 +208,7 @@ export function resolveTrustedCaller(metadata: Record<string, unknown>): boolean
   return process.env.SYSTEM_SKILL_ADVISOR_TRUST_DEFAULT === 'trusted';
 }
 
-export function buildCallerContext(extra: unknown): MCPCallerContext {
+export function buildCallerContext(extra: unknown): CallerContext {
   const metadata = isRecord(extra) ? { ...extra } : {};
   return {
     sessionId: typeof metadata.sessionId === 'string' ? metadata.sessionId : null,

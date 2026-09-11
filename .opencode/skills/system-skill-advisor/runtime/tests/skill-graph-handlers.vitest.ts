@@ -4,7 +4,7 @@ import { join } from 'node:path';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { handleSkillGraphQuery } from '../handlers/skill-graph/query.js';
 import { handleSkillGraphScan } from '../handlers/skill-graph/scan.js';
-import { runWithCallerContext, type MCPCallerContext } from '../lib/context/caller-context.js';
+import { runWithCallerContext, type CallerContext } from '../lib/context/caller-context.js';
 import { closeDb, getDb, indexSkillMetadata, initDb } from '../lib/skill-graph/skill-graph-db.js';
 import { writeGraphMetadata } from './fixtures/skill-graph-db.js';
 
@@ -14,7 +14,7 @@ function parsePayload(result: HandlerResponse): Record<string, unknown> {
   return JSON.parse(result.content[0].text) as Record<string, unknown>;
 }
 
-function trustedCaller(): MCPCallerContext & { readonly trusted: true } {
+function trustedCaller(): CallerContext & { readonly trusted: true } {
   return {
     sessionId: 'trusted-scan',
     transport: 'stdio',

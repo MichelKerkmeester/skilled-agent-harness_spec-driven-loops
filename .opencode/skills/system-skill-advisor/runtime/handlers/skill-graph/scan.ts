@@ -5,7 +5,7 @@
 
 import { resolve } from 'node:path';
 import { indexSkillMetadata, refreshSkillEmbeddings } from '../../lib/skill-graph/skill-graph-db.js';
-import type { MCPCallerContext } from '../../lib/context/caller-context.js';
+import type { CallerContext } from '../../lib/context/caller-context.js';
 import { requireTrustedCaller } from '../../lib/auth/trusted-caller.js';
 import { computeAdvisorSourceSignature } from '../../lib/freshness.js';
 import { publishSkillGraphGeneration } from '../../lib/freshness/generation.js';
@@ -29,7 +29,7 @@ type HandlerResponse = { content: Array<{ type: string; text: string }> };
 /** Handle skill_graph_scan tool call */
 export async function handleSkillGraphScan(
   args: ScanArgs,
-  callerContext?: MCPCallerContext | null,
+  callerContext?: CallerContext | null,
 ): Promise<HandlerResponse> {
   try {
     const trustedCaller = requireTrustedCaller(callerContext);

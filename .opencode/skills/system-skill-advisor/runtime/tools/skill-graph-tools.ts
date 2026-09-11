@@ -10,7 +10,7 @@ import {
   handleSkillGraphPropagateEnhances,
 } from '../handlers/skill-graph/index.js';
 
-import type { MCPCallerContext } from '../lib/context/caller-context.js';
+import type { CallerContext } from '../lib/context/caller-context.js';
 import type { ToolDefinition } from './types.js';
 
 type MCPResponse = {
@@ -119,7 +119,7 @@ function validationError(tool: string, missingKeys: string[]): MCPResponse {
 export async function handleTool(
   name: string,
   args: Record<string, unknown>,
-  callerContext?: MCPCallerContext | null,
+  callerContext?: CallerContext | null,
 ): Promise<MCPResponse | null> {
   switch (name) {
     case 'skill_graph_scan':

@@ -10,9 +10,9 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import MkSkillAdvisorPlugin from '../../../../plugins/system-skill-advisor.js';
 import { handleSkillGraphScan } from '../handlers/skill-graph/scan.js';
 import { runWithCallerContext } from '../lib/context/caller-context.js';
-import type { MCPCallerContext } from '../lib/context/caller-context.js';
+import type { CallerContext } from '../lib/context/caller-context.js';
 
-function trustedCaller(): MCPCallerContext & { readonly trusted: true } {
+function trustedCaller(): CallerContext & { readonly trusted: true } {
   return {
     sessionId: 'trusted-session',
     transport: 'stdio',
