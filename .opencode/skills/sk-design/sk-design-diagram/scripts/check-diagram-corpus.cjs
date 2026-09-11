@@ -33,7 +33,7 @@ const FORM_DIR = path.join(PACKAGE_ROOT, 'assets', 'diagrams');
 // block, because it is what a new diagram is copied from; a worked form keeps whichever tokens it
 // draws with. The two used to be told apart by directory and now share one, so the name says it.
 const STARTER = /(^|\/)starter-[a-z-]+\.html$/;
-const PALETTE_SOURCE = path.join(PACKAGE_ROOT, 'assets', 'color', 'diagram-palette.json');
+const PALETTE_SOURCE = path.join(PACKAGE_ROOT, 'assets', 'style-reference', 'diagram-palette.json');
 
 const findings = [];
 const counts = new Map();

@@ -22,7 +22,7 @@ const { contrast, round2 } = require('./color-gates.cjs');
 const VERSION = '1.0.0.0';
 const PACKAGE_ROOT = path.resolve(__dirname, '..');
 const FORM_DIR = path.join(PACKAGE_ROOT, 'assets', 'diagrams');
-const PALETTE_SOURCE = path.join(PACKAGE_ROOT, 'assets', 'color', 'diagram-palette.json');
+const PALETTE_SOURCE = path.join(PACKAGE_ROOT, 'assets', 'style-reference', 'diagram-palette.json');
 // The default Style Reference, and the copy beside the forms for the same reason the chart
 // sibling keeps its own: a corpus cannot be derived from a file that may change under it. This
 // reference writes down the corpus's own palette, so theming from it is an identity.
