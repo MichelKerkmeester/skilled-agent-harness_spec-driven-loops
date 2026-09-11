@@ -156,13 +156,38 @@ done
 IFS="$old_ifs"
 [ "${#REF_LIST[@]}" -gt 0 ] || die "no refs to rewrite"
 
+# A tag joins the rewrite only when its commit sits on a rewritten line. A tag that
+# points off those lines has no plan row, and pulling it in would drag unrelated
+# history through the callback, so it keeps its old commit and the backup keeps
+# that commit alive.
 if [ "$TAGS" -eq 1 ]; then
+  BRANCH_TIPS=()
+  for ref in "${REF_LIST[@]}"; do
+    BRANCH_TIPS[${#BRANCH_TIPS[@]}]="$(git -C "$MIRROR" rev-parse "$ref^{commit}")"
+  done
+  TAGS_ON=0
+  TAGS_OFF=0
   IFS=$'\n'
   for tagref in $(git -C "$MIRROR" for-each-ref --format='%(refname)' refs/tags); do
     [ -n "$tagref" ] || continue
-    REF_LIST[${#REF_LIST[@]}]="$tagref"
+    tag_commit="$(git -C "$MIRROR" rev-parse "$tagref^{commit}" 2>/dev/null || true)"
+    on_line=0
+    for tip in "${BRANCH_TIPS[@]}"; do
+      if [ -n "$tag_commit" ] && git -C "$MIRROR" merge-base --is-ancestor "$tag_commit" "$tip" 2>/dev/null; then
+        on_line=1
+        break
+      fi
+    done
+    if [ "$on_line" -eq 1 ]; then
+      REF_LIST[${#REF_LIST[@]}]="$tagref"
+      TAGS_ON=$((TAGS_ON + 1))
+    else
+      TAGS_OFF=$((TAGS_OFF + 1))
+      printf '%s\n' "$tagref" >> "$WORK/tags-left-alone.txt"
+    fi
   done
   IFS="$old_ifs"
+  log "tags on the rewritten lines: $TAGS_ON; left alone: $TAGS_OFF (listed in tags-left-alone.txt)"
 fi
 
 FILTER_REF_ARGS=(--refs "${REF_LIST[@]}")

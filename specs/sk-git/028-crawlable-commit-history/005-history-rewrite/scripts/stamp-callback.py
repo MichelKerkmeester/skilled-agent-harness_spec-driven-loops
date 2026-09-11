@@ -39,7 +39,14 @@ REFS_LINE = re.compile(rb"^Refs:[ \t]*(\S.*?)[ \t]*$")
 SPEC_LINE = re.compile(rb"^Spec:")
 COMMIT_ID_LINE = re.compile(rb"^Commit-Id:")
 # A line git's trailer parser recognizes as ``Token: value``.
-TRAILER_LINE = re.compile(rb"^[A-Za-z][A-Za-z0-9-]*:[ \t]+\S.*$")
+TRAILER_LINE = re.compile(rb"^([A-Za-z][A-Za-z0-9-]*):[ \t]+\S.*$")
+# Legacy messages end in a paragraph such as ``chore: align skill docs``: the shape of a
+# trailer, the meaning of a subject. Treating it as a trailer block would bury the keys
+# above prose, where git's parser no longer sees them.
+PROSE_TOKENS = frozenset(
+    {b"feat", b"fix", b"docs", b"chore", b"refactor", b"test", b"ci", b"build", b"style", b"perf",
+     b"release", b"revert", b"merge", b"spec", b"review", b"research", b"commit", b"wip", b"note", b"config"}
+)
 # A commit citation between non-alphanumeric boundaries, 10 to 40 hex.
 HEX_TOKEN = re.compile(rb"(?<![0-9a-zA-Z])[0-9a-f]{10,40}(?![0-9a-zA-Z])")
 SPEC_ROOTS = (b".opencode/specs/", b"specs/")
@@ -88,6 +95,12 @@ def _names_same_packet(value: bytes, spec: str) -> bool:
     return candidate == spec.encode("utf-8")
 
 
+def _is_trailer_line(body: bytes) -> bool:
+    """Return True for a ``Token: value`` line whose token is not a subject type."""
+    match = TRAILER_LINE.match(body)
+    return match is not None and match.group(1).lower() not in PROSE_TOKENS
+
+
 def _is_trailer_block(lines: List[bytes]) -> Optional[int]:
     """Return the start of a final all-trailer paragraph, or None.
 
@@ -96,7 +109,7 @@ def _is_trailer_block(lines: List[bytes]) -> Optional[int]:
     line, or the message is nothing but trailers.
     """
     start = len(lines)
-    while start > 0 and TRAILER_LINE.match(_line_body(lines[start - 1])):
+    while start > 0 and _is_trailer_line(_line_body(lines[start - 1])):
         start -= 1
     if start == len(lines):
         return None

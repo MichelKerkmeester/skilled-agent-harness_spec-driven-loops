@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Phase 5: history-rewrite"
-description: "[2-3 sentences: what this implements and the technical approach]"
+description: "Five scripts and one gated window: a frozen plan from a pinned SHA, a mirror rewrite with invariants rehearsed at full scale, a citation remap from the commit map, a branch stamper for the lines left behind, and a force-push that waits for a written rollback and a fresh yes."
 trigger_phrases:
   - "implementation plan"
   - "technical approach"
@@ -23,13 +23,13 @@ contextType: "general"
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | Python 3 for the plan, callback and remap; bash for the runner and branch stamper; git filter-repo |
+| **Framework** | git filter-repo commit and message callbacks over a mirror clone |
+| **Storage** | the work directory: backup.git, mirror.git, plan.jsonl, commit maps, rewrite.log |
+| **Testing** | unittest suites per script, a five-commit rehearsal in the suite, a full-scale rehearsal on a mirror with six invariants |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+The plan is built once from a pinned SHA and never minted inside a callback. The runner clones a bare backup and a mirror, checks the plan covers every commit on the named refs, stamps the trailers in a commit callback, remaps hash citations in messages in a second pass, and proves six invariants. The remapper fixes citations under specs/ from the commit map. The push is a separate step behind the operator's yes, and the backup is the rollback.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -38,9 +38,9 @@ contextType: "general"
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
 - [ ] All acceptance criteria met
@@ -54,14 +54,17 @@ contextType: "general"
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Plan, rewrite, remap, publish, in that order, each a separate script
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **build-commit-plan.py**: ordinals by topological order and packets by the refined cascade
+- **stamp-callback.py**: pure message formatting and hash remapping for the callbacks
+- **rewrite-run.sh**: clones, coverage check, two passes, invariants, rehearse mode, push lines
+- **remap-citations.py**: prefix-exact citation remap under specs/ with a residue check
+- **stamp-branch.sh**: ordinals for a branch's unique commits after it is rebased onto the new base
 
 ### Data Flow
-[Brief description of how data moves through the system]
+The pinned SHA produces plan.jsonl. The runner reads the plan and the source into a mirror and emits commit-map. The remapper reads commit-map and rewrites the documents. The operator reads the invariants and the rollback sentence, then runs the printed push lines by hand.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -73,8 +76,11 @@ Use this section when `research_intent=fix_bug`, when planning from a deep-revie
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
+| origin main and skilled/v4.0.0.0 | the published lines | update by force-push, after the yes | tips recorded before and after |
+| 109 tags on those lines | release markers | rewritten with the lines | tag count invariant |
+| 40 tags off those lines | backup and old release tags | unchanged | listed in the record |
+| 58 other branches and 28 worktrees | old ancestry | rebased or archived by their owners, stamped with stamp-branch.sh | follower sync record |
+| live-sync and follow scripts | autosync | disabled for the window, live branch reset after | continuous-integration.md |
 
 Required inventories:
 - Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
@@ -99,9 +105,9 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Unit | plan rules, callback formatting, remap rules | unittest, 8 + 12 + 4 cases |
+| Integration | five-commit rehearsal in the suite; full-scale rehearsal on a mirror | rewrite-run.sh --rehearse |
+| Manual | hand judgment of a 100-row plan sample | scratch/sample-judgment.md |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -111,7 +117,9 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| git filter-repo | External | Green, installed | no rewrite |
+| A quiet window with writers stopped | Operator | Yellow, the branch moved five times today | plan and map diverge |
+| The operator's yes | Operator | Red until given | no push |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -119,8 +127,8 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: any invariant fails after the push, or a follower cannot be re-pointed
+- **Procedure**: stop the window, push every ref from backup.git with `git push --mirror` to origin, reset each local clone to its recorded tip, re-enable autosync, treat the old SHAs as canonical. The rewritten mirror is abandoned, not repaired.
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -152,10 +160,10 @@ Phase 1.5 (Config) ───┘
 
 | Phase | Complexity | Estimated Effort |
 |-------|------------|------------------|
-| Setup | [Low/Med/High] | [e.g., 1-2 hours] |
-| Core Implementation | [Low/Med/High] | [e.g., 4-8 hours] |
-| Verification | [Low/Med/High] | [e.g., 1-2 hours] |
-| **Total** | | **[e.g., 6-12 hours]** |
+| Setup | Med | 2 hours, five scripts across four dispatches |
+| Core Implementation | Med | 1 hour for the full-scale rehearsal and remap |
+| Verification | High | the push window and follower sync, operator-paced |
+| **Total** | | **half a day plus the window** |
 <!-- /ANCHOR:effort -->
 
 ---
@@ -164,19 +172,19 @@ Phase 1.5 (Config) ───┘
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Backup created (if data changes)
-- [ ] Feature flag configured
-- [ ] Monitoring alerts set
+- [x] backup.git is cloned before the mirror is touched, every run
+- [x] rehearse mode stops before any push line is printed
+- [x] rewrite.log carries every step and invariant
 
 ### Rollback Procedure
-1. [Immediate action - e.g., disable feature flag]
-2. [Revert code - e.g., git revert or redeploy previous version]
-3. [Verify rollback - e.g., smoke test critical paths]
-4. [Notify stakeholders - if user-facing]
+1. Stop the window and keep autosync off
+2. `git push --mirror` from backup.git to origin for main, skilled/v4.0.0.0 and the tags
+3. Compare every origin tip to tips-before.txt
+4. Tell the operator which SHAs are canonical again
 
 ### Data Reversal
-- **Has data migrations?** [Yes/No]
-- **Reversal procedure**: [Steps or "N/A"]
+- **Has data migrations?** Yes, the citation remap under specs/
+- **Reversal procedure**: `git checkout` the pre-remap commit of specs/, or rerun the remapper with the inverse map
 <!-- /ANCHOR:enhanced-rollback -->
 
 ---
@@ -203,10 +211,11 @@ Phase 1.5 (Config) ───┘
 
 | Component | Depends On | Produces | Blocks |
 |-----------|------------|----------|--------|
-| [Component A] | None | [Output] | B, C |
-| [Component B] | A | [Output] | D |
-| [Component C] | A | [Output] | D |
-| [Component D] | B, C | [Final] | None |
+| Plan | pinned SHA | plan.jsonl | Rewrite |
+| Rewrite | plan, source | mirror.git, commit-map, invariants | Remap, Push |
+| Remap | commit-map | rewritten documents, residue 0 | Push |
+| Push | invariants, rollback sentence, yes | origin updated | Followers |
+| Followers | push | rebased branches, reset live branch | 006 |
 <!-- /ANCHOR:dependency-graph -->
 
 ---
@@ -214,15 +223,15 @@ Phase 1.5 (Config) ───┘
 <!-- ANCHOR:critical-path -->
 ## L3: CRITICAL PATH
 
-1. **[Phase/Task]** - [Duration estimate] - CRITICAL
-2. **[Phase/Task]** - [Duration estimate] - CRITICAL
-3. **[Phase/Task]** - [Duration estimate] - CRITICAL
+1. **Full-scale rehearsal** - about 20 minutes - CRITICAL
+2. **Operator window: freeze, rerun on the pinned tip, remap, push** - operator-paced - CRITICAL
+3. **Follower sync** - operator-paced - CRITICAL
 
-**Total Critical Path**: [Sum of durations]
+**Total Critical Path**: the window, once opened, should close inside two hours
 
 **Parallel Opportunities**:
-- [Task A] and [Task B] can run simultaneously
-- [Task C] and [Task D] can run after Phase 1
+- The branch stamper is built while the rehearsal runs
+- Nothing overlaps the window
 <!-- /ANCHOR:critical-path -->
 
 ---
@@ -232,29 +241,29 @@ Phase 1.5 (Config) ───┘
 
 | Milestone | Description | Success Criteria | Target |
 |-----------|-------------|------------------|--------|
-| M1 | [Setup Complete] | [All dependencies ready] | [Date/Phase] |
-| M2 | [Core Done] | [Main features working] | [Date/Phase] |
-| M3 | [Release Ready] | [All tests pass] | [Date/Phase] |
+| M1 | Five scripts tested | 24 unit cases and the suite rehearsal pass | 2026-09-11 |
+| M2 | Full-scale rehearsal | six invariants PASS on a mirror of 9,123 commits | 2026-09-11 |
+| M3 | Published | origin tips rewritten, residue 0, followers synced | after the operator's yes |
 <!-- /ANCHOR:milestones -->
 
 ---
 
 ## L3: ARCHITECTURE DECISION RECORD
 
-### ADR-001: [Decision Title]
+### ADR-001: Rewrite only the tags on the rewritten lines
 
-**Status**: [Proposed/Accepted/Deprecated]
+**Status**: Accepted
 
-**Context**: [What problem we're solving]
+**Context**: 109 of the 149 tags point at commits on main or skilled/v4.0.0.0. The other 40 are backup tags and old release tags on earlier lines that the operator's decision D3 leaves alone.
 
-**Decision**: [What we decided]
+**Decision**: The runner rewrites a tag only when its commit is an ancestor of a rewritten ref tip. The 40 others keep pointing at their old commits, whose objects the backup and the untouched branches keep alive.
 
 **Consequences**:
-- [Positive outcome 1]
-- [Negative outcome + mitigation]
+- Every release tag on the two lines follows its commit
+- The mirror keeps the old ancestry the 40 tags and 58 branches still reference, until those are rebased or archived
 
 **Alternatives Rejected**:
-- [Option B]: [Why rejected]
+- Rewrite every tag: the plan covers only the two lines, and off-line tags would fail the coverage check or pull unrelated history into the rewrite
 
 ---
 

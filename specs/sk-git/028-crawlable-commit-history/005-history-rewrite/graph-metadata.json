@@ -47,6 +47,10 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      "scripts/build-commit-plan.py",
+      "scripts/tests/test_build_commit_plan.py",
+      "scripts/stamp-callback.py",
+      "scripts/rewrite-run.sh",
       "scripts/remap-citations.py"
     ],
     "entities": [
@@ -84,6 +88,30 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "build-commit-plan.py",
+        "kind": "file",
+        "path": "scripts/build-commit-plan.py",
+        "source": "derived"
+      },
+      {
+        "name": "test_build_commit_plan.py",
+        "kind": "file",
+        "path": "scripts/tests/test_build_commit_plan.py",
+        "source": "derived"
+      },
+      {
+        "name": "stamp-callback.py",
+        "kind": "file",
+        "path": "scripts/stamp-callback.py",
+        "source": "derived"
+      },
+      {
+        "name": "rewrite-run.sh",
+        "kind": "script",
+        "path": "scripts/rewrite-run.sh",
         "source": "derived"
       },
       {
@@ -141,7 +169,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Plan",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -153,13 +187,7 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
+        "name": "Data Flow The",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -169,35 +197,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "New commits carry an address",
     "created_at": "2026-09-11T07:16:30Z",
-    "last_save_at": "2026-09-11T08:52:36.433Z",
+    "last_save_at": "2026-09-11T09:55:06.668Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +212,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:15d17abe3d952143bed475b48a4e47df00367521011ed36da215cc86d8fa8a09",
+    "source_fingerprint": "sha256:7eaa4248b6c31ff5a506564737e65159d46c5a179b3d75b4996b08a522b9a51b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4079c18826b2dadd6d0cb84b533eb1b0daf4e19c5c7c900bdbd670202868541b",
-      "plan.md": "7e22aa40cd4c23c19b55c5b3be51f78335360807cf33254715a2884be038b10c",
+      "plan.md": "551b496678ee58001aba46d95762237e41df33cbcdfe44732d81b3949e1faf37",
       "tasks.md": "7e8b4e6fc61e25f36f45220197101d87bfa88b4271836e3976bbc61c8fe37853",
-      "implementation-summary.md": "6a972b7891424580a0305afaa25d2c074cbf2d31af6040333c3d62c74fa61c89"
+      "implementation-summary.md": "5768b19208b2b8c0b73233fc759308641a65432910efbf5f3092d1df615115d2"
     },
     "last_active_at": null
   }

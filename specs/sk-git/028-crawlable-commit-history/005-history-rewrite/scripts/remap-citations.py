@@ -94,7 +94,7 @@ def load_commit_map(map_path: Path) -> Dict[str, str]:
             hashes share a ten-character prefix and would be ambiguous.
     """
     lines = map_path.read_text(encoding="utf-8").splitlines()
-    if not lines or lines[0].strip() != MAP_HEADER:
+    if not lines or lines[0].split() != MAP_HEADER.split():
         _fail(f"commit map '{map_path}' does not start with the '{MAP_HEADER}' header")
     pairs: List[Tuple[str, str]] = []
     for line_number, line in enumerate(lines[1:], start=2):

@@ -88,6 +88,12 @@ class StampMessageTest(unittest.TestCase):
         )
         self.assertEqual(STAMP.stamp_message(message, ROW), expected)
 
+    def test_legacy_subject_shaped_final_line_stays_prose(self) -> None:
+        message = b"feat(x): subject\n\nchore: align skill docs and spec artifacts\n"
+        stamped = STAMP.stamp_message(message, ROW)
+        self.assertTrue(stamped.endswith(b"\n\nSpec: " + str(ROW["spec"]).encode() + b"\nCommit-Id: " + str(ROW["ordinal"]).encode() + b"\n"), stamped)
+        self.assertIn(b"chore: align skill docs and spec artifacts\n\nSpec:", stamped)
+
     def test_message_with_no_packet_gets_only_a_commit_id(self) -> None:
         message = b"Subject\n\nBody\n"
         expected = b"Subject\n\nBody\n\nCommit-Id: 0000002\n"
