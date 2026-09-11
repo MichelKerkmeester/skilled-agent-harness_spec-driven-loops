@@ -1,5 +1,5 @@
 {
-  "corpusHash": "f20e77efbbef9d21eb4082a7efe1ee41f7b5af783f5fca967ee036496c2607e3",
+  "corpusHash": "6a9eefd860d045fee7a82641e035f85ab76773200076bd64fefb1d03e4cb8f5b",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -17,7 +17,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 29269,
+  "includedPathCount": 29301,
   "includedPaths": [
     ".opencode/hooks/README.md",
     ".opencode/hooks/codex-watchdog/README.md",
@@ -1167,7 +1167,6 @@
     ".opencode/skills/cli-external-orchestration/cli-opencode/changelog/v1.4.3.0.md",
     ".opencode/skills/cli-external-orchestration/cli-opencode/changelog/v1.4.4.0.md",
     ".opencode/skills/cli-external-orchestration/cli-opencode/changelog/v1.4.5.0.md",
-    ".opencode/skills/cli-external-orchestration/cli-opencode/changelog/v1.4.6.0.md",
     ".opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/context-leaf-agent.md",
     ".opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/deep-research-agent-iterations.md",
     ".opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/deep-review-agent-audit.md",
@@ -1393,7 +1392,6 @@
     ".opencode/skills/cli-external-orchestration/cli-pi/changelog/v1.5.0.0.md",
     ".opencode/skills/cli-external-orchestration/cli-pi/changelog/v1.5.1.0.md",
     ".opencode/skills/cli-external-orchestration/cli-pi/changelog/v1.5.2.0.md",
-    ".opencode/skills/cli-external-orchestration/cli-pi/changelog/v1.5.3.0.md",
     ".opencode/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/agent-bridge/project-agent-override.md",
     ".opencode/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/cli-invocation/default-invocation-and-settings-merge.md",
     ".opencode/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/cli-invocation/hallucination-fixture-undocumented-pi-syntax.md",
@@ -5743,7 +5741,6 @@
     ".opencode/skills/sk-design/sk-design-md-generator/styles/tests/engine/README.md",
     ".opencode/skills/sk-design/sk-design-md-generator/styles/tests/oracle/README.md",
     ".opencode/skills/sk-design/sk-design-md-generator/styles/tests/oracle/golden/README.md",
-    ".opencode/skills/sk-doc/.pytest_cache/README.md",
     ".opencode/skills/sk-doc/README.md",
     ".opencode/skills/sk-doc/ROUTER.md",
     ".opencode/skills/sk-doc/SKILL.md",
@@ -5820,9 +5817,7 @@
     ".opencode/skills/sk-doc/manual-testing-playbook/token-cost-baseline/minimal-load.md",
     ".opencode/skills/sk-doc/manual-testing-playbook/unknown-fallback/disambiguation-required.md",
     ".opencode/skills/sk-doc/manual-testing-playbook/unknown-fallback/no-keyword-match.md",
-    ".opencode/skills/sk-doc/scripts/.pytest_cache/README.md",
     ".opencode/skills/sk-doc/scripts/README.md",
-    ".opencode/skills/sk-doc/scripts/tests/.pytest_cache/README.md",
     ".opencode/skills/sk-doc/scripts/tests/README.md",
     ".opencode/skills/sk-doc/scripts/tests/code-folder/flat-contents-pass/README.md",
     ".opencode/skills/sk-doc/scripts/tests/code-folder/negative/broken-links/README.md",
@@ -6182,9 +6177,7 @@
     ".opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md",
     ".opencode/skills/sk-doc/sk-create-with-human-voice/references/scope-and-exemptions.md",
     ".opencode/skills/sk-doc/sk-create-with-human-voice/references/scoring-and-verification.md",
-    ".opencode/skills/sk-doc/sk-create-with-human-voice/scripts/.pytest_cache/README.md",
     ".opencode/skills/sk-doc/sk-create-with-human-voice/scripts/README.md",
-    ".opencode/skills/sk-doc/sk-create-with-human-voice/scripts/tests/.pytest_cache/README.md",
     ".opencode/skills/sk-git/README.md",
     ".opencode/skills/sk-git/SKILL.md",
     ".opencode/skills/sk-git/assets/commit-message-template.md",
@@ -7318,6 +7311,16 @@
     ".opencode/skills/system-skill-advisor/feature-catalog/auto-indexing/provenance-and-trust-lanes.md",
     ".opencode/skills/system-skill-advisor/feature-catalog/auto-indexing/sanitizer.md",
     ".opencode/skills/system-skill-advisor/feature-catalog/auto-indexing/sync.md",
+    ".opencode/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-rebuild.md",
+    ".opencode/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md",
+    ".opencode/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-status.md",
+    ".opencode/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-validate.md",
+    ".opencode/skills/system-skill-advisor/feature-catalog/cli-surface/compat-entrypoint.md",
+    ".opencode/skills/system-skill-advisor/feature-catalog/cli-surface/skill-advisor-cli.md",
+    ".opencode/skills/system-skill-advisor/feature-catalog/cli-surface/skill-graph-query.md",
+    ".opencode/skills/system-skill-advisor/feature-catalog/cli-surface/skill-graph-scan.md",
+    ".opencode/skills/system-skill-advisor/feature-catalog/cli-surface/skill-graph-status.md",
+    ".opencode/skills/system-skill-advisor/feature-catalog/cli-surface/skill-graph-validate.md",
     ".opencode/skills/system-skill-advisor/feature-catalog/daemon-and-freshness/cache-invalidation.md",
     ".opencode/skills/system-skill-advisor/feature-catalog/daemon-and-freshness/generation.md",
     ".opencode/skills/system-skill-advisor/feature-catalog/daemon-and-freshness/lease.md",
@@ -7334,16 +7337,6 @@
     ".opencode/skills/system-skill-advisor/feature-catalog/lifecycle-routing/rollback.md",
     ".opencode/skills/system-skill-advisor/feature-catalog/lifecycle-routing/schema-migration.md",
     ".opencode/skills/system-skill-advisor/feature-catalog/lifecycle-routing/supersession.md",
-    ".opencode/skills/system-skill-advisor/feature-catalog/mcp-surface/advisor-rebuild.md",
-    ".opencode/skills/system-skill-advisor/feature-catalog/mcp-surface/advisor-recommend.md",
-    ".opencode/skills/system-skill-advisor/feature-catalog/mcp-surface/advisor-status.md",
-    ".opencode/skills/system-skill-advisor/feature-catalog/mcp-surface/advisor-validate.md",
-    ".opencode/skills/system-skill-advisor/feature-catalog/mcp-surface/compat-entrypoint.md",
-    ".opencode/skills/system-skill-advisor/feature-catalog/mcp-surface/skill-advisor-cli.md",
-    ".opencode/skills/system-skill-advisor/feature-catalog/mcp-surface/skill-graph-query.md",
-    ".opencode/skills/system-skill-advisor/feature-catalog/mcp-surface/skill-graph-scan.md",
-    ".opencode/skills/system-skill-advisor/feature-catalog/mcp-surface/skill-graph-status.md",
-    ".opencode/skills/system-skill-advisor/feature-catalog/mcp-surface/skill-graph-validate.md",
     ".opencode/skills/system-skill-advisor/feature-catalog/python-compat/bench-runner.md",
     ".opencode/skills/system-skill-advisor/feature-catalog/python-compat/cli-shim.md",
     ".opencode/skills/system-skill-advisor/feature-catalog/python-compat/regression-suite.md",
@@ -7383,16 +7376,16 @@
     ".opencode/skills/system-skill-advisor/manual-testing-playbook/lifecycle-routing/schema-migration.md",
     ".opencode/skills/system-skill-advisor/manual-testing-playbook/lifecycle-routing/supersession.md",
     ".opencode/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md",
-    ".opencode/skills/system-skill-advisor/manual-testing-playbook/native-mcp-tools/advisor-status-rebuild-separation.md",
-    ".opencode/skills/system-skill-advisor/manual-testing-playbook/native-mcp-tools/ambiguous-brief-rendering.md",
-    ".opencode/skills/system-skill-advisor/manual-testing-playbook/native-mcp-tools/lifecycle-redirect-metadata.md",
-    ".opencode/skills/system-skill-advisor/manual-testing-playbook/native-mcp-tools/native-recommend-happy-path.md",
-    ".opencode/skills/system-skill-advisor/manual-testing-playbook/native-mcp-tools/native-status-transitions.md",
-    ".opencode/skills/system-skill-advisor/manual-testing-playbook/native-mcp-tools/native-validate-slices.md",
-    ".opencode/skills/system-skill-advisor/manual-testing-playbook/native-mcp-tools/shadow-delta-sink.md",
-    ".opencode/skills/system-skill-advisor/manual-testing-playbook/native-mcp-tools/skill-graph-query.md",
-    ".opencode/skills/system-skill-advisor/manual-testing-playbook/native-mcp-tools/skill-graph-status.md",
-    ".opencode/skills/system-skill-advisor/manual-testing-playbook/native-mcp-tools/skill-graph-validate.md",
+    ".opencode/skills/system-skill-advisor/manual-testing-playbook/native-cli-tools/advisor-status-rebuild-separation.md",
+    ".opencode/skills/system-skill-advisor/manual-testing-playbook/native-cli-tools/ambiguous-brief-rendering.md",
+    ".opencode/skills/system-skill-advisor/manual-testing-playbook/native-cli-tools/lifecycle-redirect-metadata.md",
+    ".opencode/skills/system-skill-advisor/manual-testing-playbook/native-cli-tools/native-recommend-happy-path.md",
+    ".opencode/skills/system-skill-advisor/manual-testing-playbook/native-cli-tools/native-status-transitions.md",
+    ".opencode/skills/system-skill-advisor/manual-testing-playbook/native-cli-tools/native-validate-slices.md",
+    ".opencode/skills/system-skill-advisor/manual-testing-playbook/native-cli-tools/shadow-delta-sink.md",
+    ".opencode/skills/system-skill-advisor/manual-testing-playbook/native-cli-tools/skill-graph-query.md",
+    ".opencode/skills/system-skill-advisor/manual-testing-playbook/native-cli-tools/skill-graph-status.md",
+    ".opencode/skills/system-skill-advisor/manual-testing-playbook/native-cli-tools/skill-graph-validate.md",
     ".opencode/skills/system-skill-advisor/manual-testing-playbook/operator-h5/degraded-daemon.md",
     ".opencode/skills/system-skill-advisor/manual-testing-playbook/operator-h5/quarantined-daemon.md",
     ".opencode/skills/system-skill-advisor/manual-testing-playbook/operator-h5/unavailable-daemon.md",
@@ -7406,66 +7399,13 @@
     ".opencode/skills/system-skill-advisor/manual-testing-playbook/scorer-fusion/five-lane-fusion.md",
     ".opencode/skills/system-skill-advisor/manual-testing-playbook/scorer-fusion/lane-attribution.md",
     ".opencode/skills/system-skill-advisor/manual-testing-playbook/scorer-fusion/projection.md",
-    ".opencode/skills/system-skill-advisor/mcp-server/.pytest_cache/README.md",
-    ".opencode/skills/system-skill-advisor/mcp-server/README.md",
-    ".opencode/skills/system-skill-advisor/mcp-server/bench/README.md",
-    ".opencode/skills/system-skill-advisor/mcp-server/compat/README.md",
-    ".opencode/skills/system-skill-advisor/mcp-server/config/README.md",
-    ".opencode/skills/system-skill-advisor/mcp-server/data/README.md",
-    ".opencode/skills/system-skill-advisor/mcp-server/database/README.md",
-    ".opencode/skills/system-skill-advisor/mcp-server/handlers/README.md",
-    ".opencode/skills/system-skill-advisor/mcp-server/handlers/skill-graph/README.md",
-    ".opencode/skills/system-skill-advisor/mcp-server/lib/README.md",
-    ".opencode/skills/system-skill-advisor/mcp-server/lib/auth/README.md",
-    ".opencode/skills/system-skill-advisor/mcp-server/lib/compat/README.md",
-    ".opencode/skills/system-skill-advisor/mcp-server/lib/context/README.md",
-    ".opencode/skills/system-skill-advisor/mcp-server/lib/corpus/README.md",
-    ".opencode/skills/system-skill-advisor/mcp-server/lib/cross-skill-edges/README.md",
-    ".opencode/skills/system-skill-advisor/mcp-server/lib/daemon/README.md",
-    ".opencode/skills/system-skill-advisor/mcp-server/lib/derived/README.md",
-    ".opencode/skills/system-skill-advisor/mcp-server/lib/embedders/README.md",
-    ".opencode/skills/system-skill-advisor/mcp-server/lib/embedders/adapters/README.md",
-    ".opencode/skills/system-skill-advisor/mcp-server/lib/freshness/README.md",
-    ".opencode/skills/system-skill-advisor/mcp-server/lib/ipc/README.md",
-    ".opencode/skills/system-skill-advisor/mcp-server/lib/lifecycle/README.md",
-    ".opencode/skills/system-skill-advisor/mcp-server/lib/scorer/README.md",
-    ".opencode/skills/system-skill-advisor/mcp-server/lib/scorer/lanes/README.md",
-    ".opencode/skills/system-skill-advisor/mcp-server/lib/scorer/lanes/__tests__/README.md",
-    ".opencode/skills/system-skill-advisor/mcp-server/lib/shadow/README.md",
-    ".opencode/skills/system-skill-advisor/mcp-server/lib/shared/README.md",
-    ".opencode/skills/system-skill-advisor/mcp-server/lib/skill-graph/README.md",
-    ".opencode/skills/system-skill-advisor/mcp-server/lib/test-helpers/README.md",
-    ".opencode/skills/system-skill-advisor/mcp-server/lib/utils/README.md",
-    ".opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/README.md",
-    ".opencode/skills/system-skill-advisor/mcp-server/schemas/README.md",
-    ".opencode/skills/system-skill-advisor/mcp-server/scripts/README.md",
-    ".opencode/skills/system-skill-advisor/mcp-server/scripts/command-bridges/README.md",
-    ".opencode/skills/system-skill-advisor/mcp-server/scripts/command-bridges/shadow-diff.md",
-    ".opencode/skills/system-skill-advisor/mcp-server/scripts/routing-accuracy/README.md",
-    ".opencode/skills/system-skill-advisor/mcp-server/stress-test/search-quality/README.md",
-    ".opencode/skills/system-skill-advisor/mcp-server/stress-test/skill-advisor/README.md",
-    ".opencode/skills/system-skill-advisor/mcp-server/tests/README.md",
-    ".opencode/skills/system-skill-advisor/mcp-server/tests/cache/README.md",
-    ".opencode/skills/system-skill-advisor/mcp-server/tests/compat/README.md",
-    ".opencode/skills/system-skill-advisor/mcp-server/tests/embedders/README.md",
-    ".opencode/skills/system-skill-advisor/mcp-server/tests/handlers/README.md",
-    ".opencode/skills/system-skill-advisor/mcp-server/tests/hooks/README.md",
-    ".opencode/skills/system-skill-advisor/mcp-server/tests/legacy/README.md",
-    ".opencode/skills/system-skill-advisor/mcp-server/tests/parity/README.md",
-    ".opencode/skills/system-skill-advisor/mcp-server/tests/python/README.md",
-    ".opencode/skills/system-skill-advisor/mcp-server/tests/schemas/README.md",
-    ".opencode/skills/system-skill-advisor/mcp-server/tests/scorer/README.md",
-    ".opencode/skills/system-skill-advisor/mcp-server/tests/scorer/sweep-reports/hard-intent-corpus-resweep/research/sweep-results-harder.md",
-    ".opencode/skills/system-skill-advisor/mcp-server/tests/scorer/sweep-reports/seeded-corpus-evaluation-sweep/research/sweep-results.md",
-    ".opencode/skills/system-skill-advisor/mcp-server/tests/skill-graph/README.md",
-    ".opencode/skills/system-skill-advisor/mcp-server/tests/utils/README.md",
-    ".opencode/skills/system-skill-advisor/mcp-server/tools/README.md",
     ".opencode/skills/system-skill-advisor/references/config/db-path-policy.md",
     ".opencode/skills/system-skill-advisor/references/decisions/deferred-decisions.md",
     ".opencode/skills/system-skill-advisor/references/graph/propagate-enhances.md",
     ".opencode/skills/system-skill-advisor/references/graph/skill-graph-drift.md",
     ".opencode/skills/system-skill-advisor/references/graph/skill-graph-extraction-plan.md",
     ".opencode/skills/system-skill-advisor/references/graph/skill-graph-query-cookbook.md",
+    ".opencode/skills/system-skill-advisor/references/runtime/cli-front-door-contract.md",
     ".opencode/skills/system-skill-advisor/references/runtime/daemon-lease-contract.md",
     ".opencode/skills/system-skill-advisor/references/runtime/freshness-contract.md",
     ".opencode/skills/system-skill-advisor/references/runtime/legacy-tool-bridge.md",
@@ -7474,6 +7414,58 @@
     ".opencode/skills/system-skill-advisor/references/scoring/advisor-scorer.md",
     ".opencode/skills/system-skill-advisor/references/scoring/lane-weight-tuning.md",
     ".opencode/skills/system-skill-advisor/references/scoring/validation-baselines.md",
+    ".opencode/skills/system-skill-advisor/runtime/README.md",
+    ".opencode/skills/system-skill-advisor/runtime/bench/README.md",
+    ".opencode/skills/system-skill-advisor/runtime/compat/README.md",
+    ".opencode/skills/system-skill-advisor/runtime/config/README.md",
+    ".opencode/skills/system-skill-advisor/runtime/data/README.md",
+    ".opencode/skills/system-skill-advisor/runtime/database/README.md",
+    ".opencode/skills/system-skill-advisor/runtime/handlers/README.md",
+    ".opencode/skills/system-skill-advisor/runtime/handlers/skill-graph/README.md",
+    ".opencode/skills/system-skill-advisor/runtime/lib/README.md",
+    ".opencode/skills/system-skill-advisor/runtime/lib/auth/README.md",
+    ".opencode/skills/system-skill-advisor/runtime/lib/compat/README.md",
+    ".opencode/skills/system-skill-advisor/runtime/lib/context/README.md",
+    ".opencode/skills/system-skill-advisor/runtime/lib/corpus/README.md",
+    ".opencode/skills/system-skill-advisor/runtime/lib/cross-skill-edges/README.md",
+    ".opencode/skills/system-skill-advisor/runtime/lib/daemon/README.md",
+    ".opencode/skills/system-skill-advisor/runtime/lib/derived/README.md",
+    ".opencode/skills/system-skill-advisor/runtime/lib/embedders/README.md",
+    ".opencode/skills/system-skill-advisor/runtime/lib/embedders/adapters/README.md",
+    ".opencode/skills/system-skill-advisor/runtime/lib/freshness/README.md",
+    ".opencode/skills/system-skill-advisor/runtime/lib/ipc/README.md",
+    ".opencode/skills/system-skill-advisor/runtime/lib/lifecycle/README.md",
+    ".opencode/skills/system-skill-advisor/runtime/lib/scorer/README.md",
+    ".opencode/skills/system-skill-advisor/runtime/lib/scorer/lanes/README.md",
+    ".opencode/skills/system-skill-advisor/runtime/lib/scorer/lanes/__tests__/README.md",
+    ".opencode/skills/system-skill-advisor/runtime/lib/shadow/README.md",
+    ".opencode/skills/system-skill-advisor/runtime/lib/shared/README.md",
+    ".opencode/skills/system-skill-advisor/runtime/lib/skill-graph/README.md",
+    ".opencode/skills/system-skill-advisor/runtime/lib/test-helpers/README.md",
+    ".opencode/skills/system-skill-advisor/runtime/lib/utils/README.md",
+    ".opencode/skills/system-skill-advisor/runtime/schemas/README.md",
+    ".opencode/skills/system-skill-advisor/runtime/scripts/README.md",
+    ".opencode/skills/system-skill-advisor/runtime/scripts/command-bridges/README.md",
+    ".opencode/skills/system-skill-advisor/runtime/scripts/command-bridges/shadow-diff.md",
+    ".opencode/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md",
+    ".opencode/skills/system-skill-advisor/runtime/stress-test/search-quality/README.md",
+    ".opencode/skills/system-skill-advisor/runtime/stress-test/skill-advisor/README.md",
+    ".opencode/skills/system-skill-advisor/runtime/tests/README.md",
+    ".opencode/skills/system-skill-advisor/runtime/tests/cache/README.md",
+    ".opencode/skills/system-skill-advisor/runtime/tests/compat/README.md",
+    ".opencode/skills/system-skill-advisor/runtime/tests/embedders/README.md",
+    ".opencode/skills/system-skill-advisor/runtime/tests/handlers/README.md",
+    ".opencode/skills/system-skill-advisor/runtime/tests/hooks/README.md",
+    ".opencode/skills/system-skill-advisor/runtime/tests/legacy/README.md",
+    ".opencode/skills/system-skill-advisor/runtime/tests/parity/README.md",
+    ".opencode/skills/system-skill-advisor/runtime/tests/python/README.md",
+    ".opencode/skills/system-skill-advisor/runtime/tests/schemas/README.md",
+    ".opencode/skills/system-skill-advisor/runtime/tests/scorer/README.md",
+    ".opencode/skills/system-skill-advisor/runtime/tests/scorer/sweep-reports/hard-intent-corpus-resweep/research/sweep-results-harder.md",
+    ".opencode/skills/system-skill-advisor/runtime/tests/scorer/sweep-reports/seeded-corpus-evaluation-sweep/research/sweep-results.md",
+    ".opencode/skills/system-skill-advisor/runtime/tests/skill-graph/README.md",
+    ".opencode/skills/system-skill-advisor/runtime/tests/utils/README.md",
+    ".opencode/skills/system-skill-advisor/runtime/tools/README.md",
     ".opencode/skills/system-skill-advisor/scripts/README.md",
     ".opencode/skills/system-spec-kit/ARCHITECTURE.md",
     ".opencode/skills/system-spec-kit/README.md",
@@ -8124,11 +8116,6 @@
     "specs/agents/009-turn-closeout-next-steps/008-communication-split/spec.md",
     "specs/agents/009-turn-closeout-next-steps/008-communication-split/tasks.md",
     "specs/agents/009-turn-closeout-next-steps/spec.md",
-    "specs/agents/010-repo-rule-system-integration/acceptance-criteria.md",
-    "specs/agents/010-repo-rule-system-integration/implementation-summary.md",
-    "specs/agents/010-repo-rule-system-integration/plan.md",
-    "specs/agents/010-repo-rule-system-integration/spec.md",
-    "specs/agents/010-repo-rule-system-integration/tasks.md",
     "specs/cli-external-orchestration/026-cli-external-parent/001-research-and-context/plan.md",
     "specs/cli-external-orchestration/026-cli-external-parent/001-research-and-context/spec.md",
     "specs/cli-external-orchestration/026-cli-external-parent/001-research-and-context/tasks.md",
@@ -8794,20 +8781,8 @@
     "specs/cli-external-orchestration/068-drop-openrouter-provider/spec.md",
     "specs/cli-external-orchestration/068-drop-openrouter-provider/tasks.md",
     "specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash/acceptance-criteria.md",
-    "specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash/decision-record.md",
-    "specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash/handover.md",
     "specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash/implementation-summary.md",
     "specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash/plan.md",
-    "specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash/review/lineages/deepseek-v4-1-flash-max/deep-review-dashboard.md",
-    "specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash/review/lineages/deepseek-v4-1-flash-max/deep-review-strategy.md",
-    "specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash/review/lineages/deepseek-v4-1-flash-max/iterations/iteration-001.md",
-    "specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash/review/lineages/deepseek-v4-1-flash-max/prompts/iteration-001.md",
-    "specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash/review/lineages/deepseek-v4-1-flash-max/review-report.md",
-    "specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash/review/lineages/gpt-5-6-luna-max-fast/deep-review-dashboard.md",
-    "specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash/review/lineages/gpt-5-6-luna-max-fast/deep-review-strategy.md",
-    "specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash/review/lineages/gpt-5-6-luna-max-fast/iterations/iteration-001.md",
-    "specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash/review/lineages/gpt-5-6-luna-max-fast/prompts/iteration-001.md",
-    "specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash/review/lineages/gpt-5-6-luna-max-fast/review-report.md",
     "specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash/spec.md",
     "specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash/tasks.md",
     "specs/hooks/001-hook-docs-relocation/decision-record.md",
@@ -9405,27 +9380,8 @@
     "specs/hooks/020-spec-metadata-auto-remint/plan.md",
     "specs/hooks/020-spec-metadata-auto-remint/spec.md",
     "specs/hooks/020-spec-metadata-auto-remint/tasks.md",
-    "specs/hooks/021-compat-opt-in-and-image-declaration/handover-cli-skills.md",
     "specs/hooks/021-compat-opt-in-and-image-declaration/implementation-summary.md",
     "specs/hooks/021-compat-opt-in-and-image-declaration/plan.md",
-    "specs/hooks/021-compat-opt-in-and-image-declaration/review/README.md",
-    "specs/hooks/021-compat-opt-in-and-image-declaration/review/brief.md",
-    "specs/hooks/021-compat-opt-in-and-image-declaration/review/lineages/deepseek-v41-flash/deep-review-dashboard.md",
-    "specs/hooks/021-compat-opt-in-and-image-declaration/review/lineages/deepseek-v41-flash/deep-review-strategy.md",
-    "specs/hooks/021-compat-opt-in-and-image-declaration/review/lineages/deepseek-v41-flash/iterations/iteration-001.md",
-    "specs/hooks/021-compat-opt-in-and-image-declaration/review/lineages/deepseek-v41-flash/prompts/iteration-001.md",
-    "specs/hooks/021-compat-opt-in-and-image-declaration/review/lineages/deepseek-v41-flash/review-report.md",
-    "specs/hooks/021-compat-opt-in-and-image-declaration/review/lineages/glm-53-flash/deep-review-dashboard.md",
-    "specs/hooks/021-compat-opt-in-and-image-declaration/review/lineages/glm-53-flash/deep-review-strategy.md",
-    "specs/hooks/021-compat-opt-in-and-image-declaration/review/lineages/glm-53-flash/iterations/iteration-001.md",
-    "specs/hooks/021-compat-opt-in-and-image-declaration/review/lineages/glm-53-flash/prompts/iteration-001.md",
-    "specs/hooks/021-compat-opt-in-and-image-declaration/review/lineages/glm-53-flash/review-report.md",
-    "specs/hooks/021-compat-opt-in-and-image-declaration/review/lineages/gpt-56-luna/deep-review-dashboard.md",
-    "specs/hooks/021-compat-opt-in-and-image-declaration/review/lineages/gpt-56-luna/deep-review-strategy.md",
-    "specs/hooks/021-compat-opt-in-and-image-declaration/review/lineages/gpt-56-luna/iterations/iteration-001.md",
-    "specs/hooks/021-compat-opt-in-and-image-declaration/review/lineages/gpt-56-luna/prompts/iteration-001.md",
-    "specs/hooks/021-compat-opt-in-and-image-declaration/review/lineages/gpt-56-luna/resource-map.md",
-    "specs/hooks/021-compat-opt-in-and-image-declaration/review/lineages/gpt-56-luna/review-report.md",
     "specs/hooks/021-compat-opt-in-and-image-declaration/spec.md",
     "specs/hooks/021-compat-opt-in-and-image-declaration/tasks.md",
     "specs/mcp-tooling/007-mcp-tooling-parent/001-research-and-context/plan.md",
@@ -12474,32 +12430,6 @@
     "specs/sk-design/019-sk-design-diagram-upgrade/011-full-page-capture/tasks.md",
     "specs/sk-design/019-sk-design-diagram-upgrade/goal.md",
     "specs/sk-design/019-sk-design-diagram-upgrade/spec.md",
-    "specs/sk-design/020-chart-and-diagram-review/001-chart-review/acceptance-criteria.md",
-    "specs/sk-design/020-chart-and-diagram-review/001-chart-review/implementation-summary.md",
-    "specs/sk-design/020-chart-and-diagram-review/001-chart-review/plan.md",
-    "specs/sk-design/020-chart-and-diagram-review/001-chart-review/review/lineages/deepseek/deep-review-dashboard.md",
-    "specs/sk-design/020-chart-and-diagram-review/001-chart-review/review/lineages/deepseek/deep-review-strategy.md",
-    "specs/sk-design/020-chart-and-diagram-review/001-chart-review/review/lineages/deepseek/iterations/iteration-001.md",
-    "specs/sk-design/020-chart-and-diagram-review/001-chart-review/review/lineages/deepseek/iterations/iteration-002.md",
-    "specs/sk-design/020-chart-and-diagram-review/001-chart-review/review/lineages/deepseek/prompts/run-record.md",
-    "specs/sk-design/020-chart-and-diagram-review/001-chart-review/review/lineages/deepseek/review-report.md",
-    "specs/sk-design/020-chart-and-diagram-review/001-chart-review/review/lineages/ds4/deep-review-strategy.md",
-    "specs/sk-design/020-chart-and-diagram-review/001-chart-review/spec.md",
-    "specs/sk-design/020-chart-and-diagram-review/001-chart-review/tasks.md",
-    "specs/sk-design/020-chart-and-diagram-review/002-diagram-review/acceptance-criteria.md",
-    "specs/sk-design/020-chart-and-diagram-review/002-diagram-review/implementation-summary.md",
-    "specs/sk-design/020-chart-and-diagram-review/002-diagram-review/plan.md",
-    "specs/sk-design/020-chart-and-diagram-review/002-diagram-review/review/lineages/deepseek/deep-review-dashboard.md",
-    "specs/sk-design/020-chart-and-diagram-review/002-diagram-review/review/lineages/deepseek/deep-review-strategy.md",
-    "specs/sk-design/020-chart-and-diagram-review/002-diagram-review/review/lineages/deepseek/iterations/iteration-001.md",
-    "specs/sk-design/020-chart-and-diagram-review/002-diagram-review/review/lineages/deepseek/iterations/iteration-002.md",
-    "specs/sk-design/020-chart-and-diagram-review/002-diagram-review/review/lineages/deepseek/probes/DESIGN.md",
-    "specs/sk-design/020-chart-and-diagram-review/002-diagram-review/review/lineages/deepseek/review-report.md",
-    "specs/sk-design/020-chart-and-diagram-review/002-diagram-review/review/lineages/ds4/deep-review-dashboard.md",
-    "specs/sk-design/020-chart-and-diagram-review/002-diagram-review/review/lineages/ds4/deep-review-strategy.md",
-    "specs/sk-design/020-chart-and-diagram-review/002-diagram-review/spec.md",
-    "specs/sk-design/020-chart-and-diagram-review/002-diagram-review/tasks.md",
-    "specs/sk-design/020-chart-and-diagram-review/spec.md",
     "specs/sk-doc/014-sk-doc-parent/001-research-and-canon/research/research.md",
     "specs/sk-doc/014-sk-doc-parent/001-research-and-canon/spec.md",
     "specs/sk-doc/014-sk-doc-parent/002-architecture-decision/decision-record.md",
@@ -16181,6 +16111,10 @@
     "specs/sk-git/028-crawlable-commit-history/review/lineages/deepseek/iterations/iteration-004.md",
     "specs/sk-git/028-crawlable-commit-history/review/lineages/deepseek/review-report.md",
     "specs/sk-git/028-crawlable-commit-history/spec.md",
+    "specs/sk-git/029-worktree-dependency-provisioning/implementation-summary.md",
+    "specs/sk-git/029-worktree-dependency-provisioning/plan.md",
+    "specs/sk-git/029-worktree-dependency-provisioning/spec.md",
+    "specs/sk-git/029-worktree-dependency-provisioning/tasks.md",
     "specs/sk-prompt/007-sk-prompt-parent/001-research-and-context/implementation-summary.md",
     "specs/sk-prompt/007-sk-prompt-parent/001-research-and-context/plan.md",
     "specs/sk-prompt/007-sk-prompt-parent/001-research-and-context/spec.md",
@@ -18637,6 +18571,81 @@
     "specs/system-skill-advisor/024-routing-perfection-research/research/synthesis.md",
     "specs/system-skill-advisor/024-routing-perfection-research/spec.md",
     "specs/system-skill-advisor/024-routing-perfection-research/tasks.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/001-transport-and-consumer-inventory/acceptance-criteria.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/001-transport-and-consumer-inventory/goal.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/001-transport-and-consumer-inventory/implementation-summary.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/001-transport-and-consumer-inventory/inventory.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/001-transport-and-consumer-inventory/plan.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/001-transport-and-consumer-inventory/spec.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/001-transport-and-consumer-inventory/tasks.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/002-daemon-transport-decision/acceptance-criteria.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/002-daemon-transport-decision/baseline.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/002-daemon-transport-decision/goal.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/002-daemon-transport-decision/implementation-summary.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/002-daemon-transport-decision/plan.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/002-daemon-transport-decision/protocol-contract.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/002-daemon-transport-decision/spec.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/002-daemon-transport-decision/tasks.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/002-daemon-transport-decision/warm-mechanism.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/003-cli-front-door-parity/acceptance-criteria.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/003-cli-front-door-parity/goal.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/003-cli-front-door-parity/implementation-summary.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/003-cli-front-door-parity/parity/verdict.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/003-cli-front-door-parity/plan.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/003-cli-front-door-parity/spec.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/003-cli-front-door-parity/tasks.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/004-caller-rewire/acceptance-criteria.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/004-caller-rewire/goal.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/004-caller-rewire/implementation-summary.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/004-caller-rewire/plan.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/004-caller-rewire/spec.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/004-caller-rewire/tasks.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/005-mcp-transport-removal/acceptance-criteria.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/005-mcp-transport-removal/goal.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/005-mcp-transport-removal/implementation-summary.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/005-mcp-transport-removal/plan.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/005-mcp-transport-removal/spec.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/005-mcp-transport-removal/tasks.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/006-runtime-package-rename/acceptance-criteria.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/006-runtime-package-rename/goal.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/006-runtime-package-rename/implementation-summary.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/006-runtime-package-rename/plan.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/006-runtime-package-rename/spec.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/006-runtime-package-rename/tasks.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/007-docs-and-residue-sweep/acceptance-criteria.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/007-docs-and-residue-sweep/goal.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/007-docs-and-residue-sweep/implementation-summary.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/007-docs-and-residue-sweep/plan.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/007-docs-and-residue-sweep/spec.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/007-docs-and-residue-sweep/tasks.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/008-verification-and-closeout/acceptance-criteria.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/008-verification-and-closeout/goal.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/008-verification-and-closeout/implementation-summary.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/008-verification-and-closeout/latency-delta.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/008-verification-and-closeout/plan.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/008-verification-and-closeout/spec.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/008-verification-and-closeout/tasks.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/009-deep-review-decommission/goal.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/009-deep-review-decommission/implementation-summary.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/009-deep-review-decommission/plan.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/009-deep-review-decommission/review/lineages/deepseek-review/deep-review-dashboard.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/009-deep-review-decommission/review/lineages/deepseek-review/deep-review-strategy.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/009-deep-review-decommission/review/lineages/deepseek-review/iterations/iteration-001.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/009-deep-review-decommission/review/lineages/deepseek-review/iterations/iteration-002.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/009-deep-review-decommission/review/lineages/deepseek-review/iterations/iteration-003.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/009-deep-review-decommission/review/lineages/deepseek-review/iterations/iteration-004.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/009-deep-review-decommission/review/lineages/deepseek-review/iterations/iteration-005.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/009-deep-review-decommission/review/lineages/deepseek-review/iterations/iteration-006.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/009-deep-review-decommission/review/lineages/deepseek-review/review-report.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/009-deep-review-decommission/spec.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/009-deep-review-decommission/tasks.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/010-deep-research-residue/goal.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/010-deep-research-residue/implementation-summary.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/010-deep-research-residue/plan.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/010-deep-research-residue/spec.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/010-deep-research-residue/tasks.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/goal.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/spec.md",
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-additional-release-readiness-findings/__tier2-h-deferred.md",
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-additional-release-readiness-findings/implementation-summary.md",
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-additional-release-readiness-findings/plan.md",
@@ -29287,10 +29296,33 @@
     "specs/system-speckit/035-derived-artifact-registry/003-measure-and-declare/plan.md",
     "specs/system-speckit/035-derived-artifact-registry/003-measure-and-declare/spec.md",
     "specs/system-speckit/035-derived-artifact-registry/003-measure-and-declare/tasks.md",
-    "specs/system-speckit/035-derived-artifact-registry/spec.md"
+    "specs/system-speckit/035-derived-artifact-registry/spec.md",
+    "specs/system-speckit/045-daemon-and-test-harness-hardening/001-production-db-isolation/goal.md",
+    "specs/system-speckit/045-daemon-and-test-harness-hardening/001-production-db-isolation/implementation-summary.md",
+    "specs/system-speckit/045-daemon-and-test-harness-hardening/001-production-db-isolation/plan.md",
+    "specs/system-speckit/045-daemon-and-test-harness-hardening/001-production-db-isolation/spec.md",
+    "specs/system-speckit/045-daemon-and-test-harness-hardening/001-production-db-isolation/tasks.md",
+    "specs/system-speckit/045-daemon-and-test-harness-hardening/002-orphan-daemon-reaping/acceptance-criteria.md",
+    "specs/system-speckit/045-daemon-and-test-harness-hardening/002-orphan-daemon-reaping/goal.md",
+    "specs/system-speckit/045-daemon-and-test-harness-hardening/002-orphan-daemon-reaping/implementation-summary.md",
+    "specs/system-speckit/045-daemon-and-test-harness-hardening/002-orphan-daemon-reaping/plan.md",
+    "specs/system-speckit/045-daemon-and-test-harness-hardening/002-orphan-daemon-reaping/spec.md",
+    "specs/system-speckit/045-daemon-and-test-harness-hardening/002-orphan-daemon-reaping/tasks.md",
+    "specs/system-speckit/045-daemon-and-test-harness-hardening/003-test-hang-containment/goal.md",
+    "specs/system-speckit/045-daemon-and-test-harness-hardening/003-test-hang-containment/implementation-summary.md",
+    "specs/system-speckit/045-daemon-and-test-harness-hardening/003-test-hang-containment/plan.md",
+    "specs/system-speckit/045-daemon-and-test-harness-hardening/003-test-hang-containment/spec.md",
+    "specs/system-speckit/045-daemon-and-test-harness-hardening/003-test-hang-containment/tasks.md",
+    "specs/system-speckit/045-daemon-and-test-harness-hardening/004-live-follow-log-hygiene/goal.md",
+    "specs/system-speckit/045-daemon-and-test-harness-hardening/004-live-follow-log-hygiene/implementation-summary.md",
+    "specs/system-speckit/045-daemon-and-test-harness-hardening/004-live-follow-log-hygiene/plan.md",
+    "specs/system-speckit/045-daemon-and-test-harness-hardening/004-live-follow-log-hygiene/spec.md",
+    "specs/system-speckit/045-daemon-and-test-harness-hardening/004-live-follow-log-hygiene/tasks.md",
+    "specs/system-speckit/045-daemon-and-test-harness-hardening/goal.md",
+    "specs/system-speckit/045-daemon-and-test-harness-hardening/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "3e417ae70e1efc8ade53997acb9f4e50f71357d890fb065c48e8131702fae1ec",
+  "manifestHash": "e10deae6b7dfd34cf54c6964eb23f7d35c39f2871134673e3df950ac9015b8ac",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -29300,18 +29332,6 @@
     ".opencode/hooks"
   ],
   "skippedPaths": [
-    {
-      "path": ".opencode/hooks/dispatch/lib/node_modules",
-      "reason": "excluded directory"
-    },
-    {
-      "path": ".opencode/hooks/dispatch/node_modules",
-      "reason": "excluded directory"
-    },
-    {
-      "path": ".opencode/hooks/dispatch/pi/node_modules",
-      "reason": "excluded directory"
-    },
     {
       "path": ".opencode/hooks/git-preflight/README.md",
       "reason": "duplicate of an already-indexed document"
@@ -29339,14 +29359,6 @@
     {
       "path": ".opencode/skills/mcp-code-mode/mcp-server/README.md",
       "reason": "duplicate of an already-indexed document"
-    },
-    {
-      "path": ".opencode/skills/mcp-code-mode/mcp-server/dist",
-      "reason": "excluded directory"
-    },
-    {
-      "path": ".opencode/skills/mcp-code-mode/mcp-server/node_modules",
-      "reason": "excluded directory"
     },
     {
       "path": ".opencode/skills/sk-code/benchmark/fixtures",
@@ -29401,14 +29413,6 @@
       "reason": "duplicate of an already-indexed document"
     },
     {
-      "path": ".opencode/skills/sk-communication/cli-communication-projection/dist",
-      "reason": "excluded directory"
-    },
-    {
-      "path": ".opencode/skills/sk-communication/cli-communication-projection/node_modules",
-      "reason": "excluded directory"
-    },
-    {
       "path": ".opencode/skills/sk-communication/cli-communication-projection/test/fixtures",
       "reason": "excluded directory"
     },
@@ -29418,14 +29422,6 @@
     },
     {
       "path": ".opencode/skills/sk-design/sk-design-diagram/scripts/tests/fixtures",
-      "reason": "excluded directory"
-    },
-    {
-      "path": ".opencode/skills/sk-design/sk-design-md-generator/backend/dist",
-      "reason": "excluded directory"
-    },
-    {
-      "path": ".opencode/skills/sk-design/sk-design-md-generator/backend/node_modules",
       "reason": "excluded directory"
     },
     {
@@ -29465,31 +29461,7 @@
       "reason": "excluded directory"
     },
     {
-      "path": ".opencode/skills/sk-vision/vision-runtime/dist",
-      "reason": "excluded directory"
-    },
-    {
-      "path": ".opencode/skills/sk-vision/vision-runtime/node_modules",
-      "reason": "excluded directory"
-    },
-    {
-      "path": ".opencode/skills/system-deep-loop/deep-ai-council/node_modules",
-      "reason": "excluded directory"
-    },
-    {
-      "path": ".opencode/skills/system-deep-loop/deep-ai-council/scripts/node_modules",
-      "reason": "excluded directory"
-    },
-    {
       "path": ".opencode/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-fixtures",
-      "reason": "excluded directory"
-    },
-    {
-      "path": ".opencode/skills/system-deep-loop/deep-improvement/node_modules",
-      "reason": "excluded directory"
-    },
-    {
-      "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/node_modules",
       "reason": "excluded directory"
     },
     {
@@ -29498,10 +29470,6 @@
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-review/scripts/tests/fixtures",
-      "reason": "excluded directory"
-    },
-    {
-      "path": ".opencode/skills/system-deep-loop/node_modules",
       "reason": "excluded directory"
     },
     {
@@ -29521,39 +29489,39 @@
       "reason": "excluded directory"
     },
     {
-      "path": ".opencode/skills/system-skill-advisor/mcp-server/dist",
+      "path": ".opencode/skills/system-skill-advisor/runtime/dist",
       "reason": "excluded directory"
     },
     {
-      "path": ".opencode/skills/system-skill-advisor/mcp-server/lib/shared/embeddings",
+      "path": ".opencode/skills/system-skill-advisor/runtime/lib/shared/embeddings",
       "reason": "symlinked directory"
     },
     {
-      "path": ".opencode/skills/system-skill-advisor/mcp-server/node_modules",
+      "path": ".opencode/skills/system-skill-advisor/runtime/node_modules",
       "reason": "excluded directory"
     },
     {
-      "path": ".opencode/skills/system-skill-advisor/mcp-server/scripts/fixtures",
+      "path": ".opencode/skills/system-skill-advisor/runtime/scripts/fixtures",
       "reason": "excluded directory"
     },
     {
-      "path": ".opencode/skills/system-skill-advisor/mcp-server/tests/__fixtures__",
+      "path": ".opencode/skills/system-skill-advisor/runtime/tests/__fixtures__",
       "reason": "excluded directory"
     },
     {
-      "path": ".opencode/skills/system-skill-advisor/mcp-server/tests/fixtures",
+      "path": ".opencode/skills/system-skill-advisor/runtime/tests/fixtures",
       "reason": "excluded directory"
     },
     {
-      "path": ".opencode/skills/system-skill-advisor/mcp-server/tests/legacy/advisor-fixtures",
+      "path": ".opencode/skills/system-skill-advisor/runtime/tests/legacy/advisor-fixtures",
       "reason": "excluded directory"
     },
     {
-      "path": ".opencode/skills/system-skill-advisor/mcp-server/tests/parity/fixtures",
+      "path": ".opencode/skills/system-skill-advisor/runtime/tests/parity/fixtures",
       "reason": "excluded directory"
     },
     {
-      "path": ".opencode/skills/system-skill-advisor/mcp-server/tests/scorer/fixtures",
+      "path": ".opencode/skills/system-skill-advisor/runtime/tests/scorer/fixtures",
       "reason": "excluded directory"
     },
     {
@@ -29562,10 +29530,6 @@
     },
     {
       "path": ".opencode/skills/system-spec-kit/runtime/cli/dist",
-      "reason": "excluded directory"
-    },
-    {
-      "path": ".opencode/skills/system-spec-kit/runtime/cli/node_modules",
       "reason": "excluded directory"
     },
     {
@@ -29622,10 +29586,6 @@
     },
     {
       "path": ".opencode/skills/system-spec-kit/runtime/tests/validation/fixtures",
-      "reason": "excluded directory"
-    },
-    {
-      "path": ".opencode/skills/system-spec-kit/runtime/tmp-test-fixtures",
       "reason": "excluded directory"
     },
     {
@@ -29693,28 +29653,8 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/agents/010-repo-rule-system-integration/research/lineages",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/agents/010-repo-rule-system-integration/scratch",
-      "reason": "excluded directory"
-    },
-    {
       "path": "specs/agents/z_archive",
       "reason": "excluded directory"
-    },
-    {
-      "path": "specs/ai-systems",
-      "reason": "symlinked directory"
-    },
-    {
-      "path": "specs/anobel.com",
-      "reason": "symlinked directory"
-    },
-    {
-      "path": "specs/app-mobile-cli",
-      "reason": "symlinked directory"
     },
     {
       "path": "specs/cli-external-orchestration/026-cli-external-parent/001-research-and-context/scratch",
@@ -29938,10 +29878,6 @@
     },
     {
       "path": "specs/cli-external-orchestration/066-pi-self-dispatch-and-subagents-retirement/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-external-orchestration/067-deferred-closure/scratch",
       "reason": "excluded directory"
     },
     {
@@ -30429,10 +30365,6 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/mcp-tooling/019-official-obsidian-cli/001-cli-versus-mcp/scratch",
-      "reason": "excluded directory"
-    },
-    {
       "path": "specs/mcp-tooling/019-official-obsidian-cli/scratch",
       "reason": "excluded directory"
     },
@@ -30451,10 +30383,6 @@
     {
       "path": "specs/mcp-tooling/z_archive",
       "reason": "excluded directory"
-    },
-    {
-      "path": "specs/obsidian",
-      "reason": "symlinked directory"
     },
     {
       "path": "specs/sk-code/z_archive",
@@ -31010,14 +30938,6 @@
     },
     {
       "path": "specs/sk-design/019-sk-design-diagram-upgrade/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-design/020-chart-and-diagram-review/001-chart-review/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-design/020-chart-and-diagram-review/002-diagram-review/scratch",
       "reason": "excluded directory"
     },
     {
@@ -31942,6 +31862,50 @@
     },
     {
       "path": "specs/system-skill-advisor/024-routing-perfection-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/001-transport-and-consumer-inventory/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/002-daemon-transport-decision/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/003-cli-front-door-parity/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/004-caller-rewire/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/005-mcp-transport-removal/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/006-runtime-package-rename/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/007-docs-and-residue-sweep/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/008-verification-and-closeout/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/009-deep-review-decommission/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/010-deep-research-residue/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/010-deep-research-residue/scratch",
       "reason": "excluded directory"
     },
     {
@@ -33610,6 +33574,22 @@
     },
     {
       "path": "specs/system-speckit/035-derived-artifact-registry/002-transactional-remint/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/045-daemon-and-test-harness-hardening/001-production-db-isolation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/045-daemon-and-test-harness-hardening/002-orphan-daemon-reaping/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/045-daemon-and-test-harness-hardening/003-test-hang-containment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/045-daemon-and-test-harness-hardening/004-live-follow-log-hygiene/scratch",
       "reason": "excluded directory"
     },
     {

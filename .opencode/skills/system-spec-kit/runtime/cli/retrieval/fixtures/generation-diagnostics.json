@@ -1,12 +1,12 @@
 {
   "counts": {
     "duplicate-phrase": 54,
-    "missing-frontmatter": 7060,
+    "missing-frontmatter": 7025,
     "non-yaml-frontmatter": 1,
-    "ok": 14623,
-    "valid-empty-list": 7531
+    "ok": 14692,
+    "valid-empty-list": 7529
   },
-  "documentsScanned": 29269,
+  "documentsScanned": 29301,
   "ignoredMalformedDocuments": 1,
   "ignoredPaths": [
     {
@@ -16,22 +16,22 @@
   ],
   "ignoredPathsUnmatched": [],
   "malformedDocuments": 0,
-  "manifestHash": "3e417ae70e1efc8ade53997acb9f4e50f71357d890fb065c48e8131702fae1ec",
+  "manifestHash": "e10deae6b7dfd34cf54c6964eb23f7d35c39f2871134673e3df950ac9015b8ac",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
       "editor-fallback": 3,
-      "generic-workflow-word": 170,
+      "generic-workflow-word": 174,
       "numeric-only": 112,
       "prose-sentence": 18,
-      "single-token": 814,
+      "single-token": 819,
       "stop-word-only": 12
     },
     "phrases": {
       "editor-fallback": 2,
       "generic-workflow-word": 3,
       "numeric-only": 41,
-      "ok": 35614,
+      "ok": 35650,
       "prose-sentence": 27,
       "single-token": 304,
       "stop-word-only": 3
@@ -6443,12 +6443,6 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".opencode/skills/cli-external-orchestration/cli-opencode/changelog/v1.4.6.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
       "path": ".opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/context-leaf-agent.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -7710,12 +7704,6 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".opencode/skills/cli-external-orchestration/cli-pi/changelog/v1.5.2.0.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".opencode/skills/cli-external-orchestration/cli-pi/changelog/v1.5.3.0.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -28952,12 +28940,6 @@
     },
     {
       "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".opencode/skills/sk-doc/.pytest_cache/README.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
       "line": 2,
       "path": ".opencode/skills/sk-doc/SKILL.md",
       "reason": "no trigger_phrases key in frontmatter"
@@ -29363,18 +29345,6 @@
       "line": 2,
       "path": ".opencode/skills/sk-doc/manual-testing-playbook/unknown-fallback/no-keyword-match.md",
       "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".opencode/skills/sk-doc/scripts/.pytest_cache/README.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".opencode/skills/sk-doc/scripts/tests/.pytest_cache/README.md",
-      "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
@@ -30672,18 +30642,6 @@
       "line": 2,
       "path": ".opencode/skills/sk-doc/sk-create-with-human-voice/manual-testing-playbook/tell-detection/word-sense-is-a-candidate.md",
       "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".opencode/skills/sk-doc/sk-create-with-human-voice/scripts/.pytest_cache/README.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".opencode/skills/sk-doc/sk-create-with-human-voice/scripts/tests/.pytest_cache/README.md",
-      "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
@@ -35441,35 +35399,35 @@
     {
       "category": "duplicate-phrase",
       "line": 6,
-      "path": ".opencode/skills/system-skill-advisor/feature-catalog/mcp-surface/advisor-rebuild.md",
+      "path": ".opencode/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-rebuild.md",
       "rawKey": "trigger_phrases",
       "reason": "duplicate normalized phrase \"advisor rebuild\""
     },
     {
       "category": "duplicate-phrase",
       "line": 6,
-      "path": ".opencode/skills/system-skill-advisor/feature-catalog/mcp-surface/skill-graph-query.md",
+      "path": ".opencode/skills/system-skill-advisor/feature-catalog/cli-surface/skill-graph-query.md",
       "rawKey": "trigger_phrases",
       "reason": "duplicate normalized phrase \"skill graph query\""
     },
     {
       "category": "duplicate-phrase",
       "line": 6,
-      "path": ".opencode/skills/system-skill-advisor/feature-catalog/mcp-surface/skill-graph-scan.md",
+      "path": ".opencode/skills/system-skill-advisor/feature-catalog/cli-surface/skill-graph-scan.md",
       "rawKey": "trigger_phrases",
       "reason": "duplicate normalized phrase \"skill graph scan\""
     },
     {
       "category": "duplicate-phrase",
       "line": 6,
-      "path": ".opencode/skills/system-skill-advisor/feature-catalog/mcp-surface/skill-graph-status.md",
+      "path": ".opencode/skills/system-skill-advisor/feature-catalog/cli-surface/skill-graph-status.md",
       "rawKey": "trigger_phrases",
       "reason": "duplicate normalized phrase \"skill graph status\""
     },
     {
       "category": "duplicate-phrase",
       "line": 6,
-      "path": ".opencode/skills/system-skill-advisor/feature-catalog/mcp-surface/skill-graph-validate.md",
+      "path": ".opencode/skills/system-skill-advisor/feature-catalog/cli-surface/skill-graph-validate.md",
       "rawKey": "trigger_phrases",
       "reason": "duplicate normalized phrase \"skill graph validate\""
     },
@@ -35494,61 +35452,55 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".opencode/skills/system-skill-advisor/manual-testing-playbook/native-mcp-tools/skill-graph-query.md",
+      "path": ".opencode/skills/system-skill-advisor/manual-testing-playbook/native-cli-tools/skill-graph-query.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".opencode/skills/system-skill-advisor/manual-testing-playbook/native-mcp-tools/skill-graph-status.md",
+      "path": ".opencode/skills/system-skill-advisor/manual-testing-playbook/native-cli-tools/skill-graph-status.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".opencode/skills/system-skill-advisor/manual-testing-playbook/native-mcp-tools/skill-graph-validate.md",
+      "path": ".opencode/skills/system-skill-advisor/manual-testing-playbook/native-cli-tools/skill-graph-validate.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": ".opencode/skills/system-skill-advisor/mcp-server/.pytest_cache/README.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".opencode/skills/system-skill-advisor/mcp-server/config/README.md",
+      "path": ".opencode/skills/system-skill-advisor/runtime/config/README.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".opencode/skills/system-skill-advisor/mcp-server/lib/test-helpers/README.md",
+      "path": ".opencode/skills/system-skill-advisor/runtime/lib/test-helpers/README.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": ".opencode/skills/system-skill-advisor/mcp-server/scripts/command-bridges/shadow-diff.md",
+      "path": ".opencode/skills/system-skill-advisor/runtime/scripts/command-bridges/shadow-diff.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": ".opencode/skills/system-skill-advisor/mcp-server/tests/scorer/sweep-reports/hard-intent-corpus-resweep/research/sweep-results-harder.md",
+      "path": ".opencode/skills/system-skill-advisor/runtime/tests/scorer/sweep-reports/hard-intent-corpus-resweep/research/sweep-results-harder.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": ".opencode/skills/system-skill-advisor/mcp-server/tests/scorer/sweep-reports/seeded-corpus-evaluation-sweep/research/sweep-results.md",
+      "path": ".opencode/skills/system-skill-advisor/runtime/tests/scorer/sweep-reports/seeded-corpus-evaluation-sweep/research/sweep-results.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".opencode/skills/system-skill-advisor/mcp-server/tests/utils/README.md",
+      "path": ".opencode/skills/system-skill-advisor/runtime/tests/utils/README.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -38314,66 +38266,6 @@
       "reason": "declared empty trigger list"
     },
     {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash/review/lineages/deepseek-v4-1-flash-max/deep-review-dashboard.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash/review/lineages/deepseek-v4-1-flash-max/deep-review-strategy.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash/review/lineages/deepseek-v4-1-flash-max/iterations/iteration-001.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash/review/lineages/deepseek-v4-1-flash-max/prompts/iteration-001.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash/review/lineages/deepseek-v4-1-flash-max/review-report.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash/review/lineages/gpt-5-6-luna-max-fast/deep-review-dashboard.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash/review/lineages/gpt-5-6-luna-max-fast/deep-review-strategy.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash/review/lineages/gpt-5-6-luna-max-fast/iterations/iteration-001.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash/review/lineages/gpt-5-6-luna-max-fast/prompts/iteration-001.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash/review/lineages/gpt-5-6-luna-max-fast/review-report.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
       "category": "valid-empty-list",
       "line": 3,
       "path": "specs/hooks/001-hook-docs-relocation/fix-report-preexisting-ghosts.md",
@@ -39477,86 +39369,6 @@
       "line": 1,
       "path": "specs/hooks/019-cache-optimizer-measurement-fixes/impl/prompts/w6.md",
       "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/hooks/021-compat-opt-in-and-image-declaration/review/README.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/hooks/021-compat-opt-in-and-image-declaration/review/brief.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/hooks/021-compat-opt-in-and-image-declaration/review/lineages/deepseek-v41-flash/iterations/iteration-001.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/hooks/021-compat-opt-in-and-image-declaration/review/lineages/deepseek-v41-flash/prompts/iteration-001.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/hooks/021-compat-opt-in-and-image-declaration/review/lineages/deepseek-v41-flash/review-report.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/hooks/021-compat-opt-in-and-image-declaration/review/lineages/glm-53-flash/deep-review-dashboard.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/hooks/021-compat-opt-in-and-image-declaration/review/lineages/glm-53-flash/iterations/iteration-001.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/hooks/021-compat-opt-in-and-image-declaration/review/lineages/glm-53-flash/prompts/iteration-001.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/hooks/021-compat-opt-in-and-image-declaration/review/lineages/glm-53-flash/review-report.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 4,
-      "path": "specs/hooks/021-compat-opt-in-and-image-declaration/review/lineages/gpt-56-luna/deep-review-dashboard.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/hooks/021-compat-opt-in-and-image-declaration/review/lineages/gpt-56-luna/iterations/iteration-001.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/hooks/021-compat-opt-in-and-image-declaration/review/lineages/gpt-56-luna/prompts/iteration-001.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 4,
-      "path": "specs/hooks/021-compat-opt-in-and-image-declaration/review/lineages/gpt-56-luna/resource-map.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
@@ -46167,96 +45979,6 @@
       "category": "missing-frontmatter",
       "line": 1,
       "path": "specs/sk-design/019-sk-design-diagram-upgrade/001-upgrade-research/research/research.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/sk-design/020-chart-and-diagram-review/001-chart-review/review/lineages/deepseek/deep-review-dashboard.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/sk-design/020-chart-and-diagram-review/001-chart-review/review/lineages/deepseek/deep-review-strategy.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/sk-design/020-chart-and-diagram-review/001-chart-review/review/lineages/deepseek/iterations/iteration-001.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/sk-design/020-chart-and-diagram-review/001-chart-review/review/lineages/deepseek/iterations/iteration-002.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/sk-design/020-chart-and-diagram-review/001-chart-review/review/lineages/deepseek/prompts/run-record.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/sk-design/020-chart-and-diagram-review/001-chart-review/review/lineages/deepseek/review-report.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/sk-design/020-chart-and-diagram-review/001-chart-review/review/lineages/ds4/deep-review-strategy.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/sk-design/020-chart-and-diagram-review/002-diagram-review/review/lineages/deepseek/deep-review-dashboard.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/sk-design/020-chart-and-diagram-review/002-diagram-review/review/lineages/deepseek/deep-review-strategy.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/sk-design/020-chart-and-diagram-review/002-diagram-review/review/lineages/deepseek/iterations/iteration-001.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/sk-design/020-chart-and-diagram-review/002-diagram-review/review/lineages/deepseek/iterations/iteration-002.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/sk-design/020-chart-and-diagram-review/002-diagram-review/review/lineages/deepseek/probes/DESIGN.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/sk-design/020-chart-and-diagram-review/002-diagram-review/review/lineages/deepseek/review-report.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/sk-design/020-chart-and-diagram-review/002-diagram-review/review/lineages/ds4/deep-review-dashboard.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/sk-design/020-chart-and-diagram-review/002-diagram-review/review/lineages/ds4/deep-review-strategy.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
@@ -59927,6 +59649,60 @@
       "line": 1,
       "path": "specs/system-skill-advisor/024-routing-perfection-research/research/synthesis.md",
       "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/009-deep-review-decommission/review/lineages/deepseek-review/deep-review-dashboard.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/009-deep-review-decommission/review/lineages/deepseek-review/deep-review-strategy.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/009-deep-review-decommission/review/lineages/deepseek-review/iterations/iteration-001.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/009-deep-review-decommission/review/lineages/deepseek-review/iterations/iteration-002.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/009-deep-review-decommission/review/lineages/deepseek-review/iterations/iteration-003.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/009-deep-review-decommission/review/lineages/deepseek-review/iterations/iteration-004.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/009-deep-review-decommission/review/lineages/deepseek-review/iterations/iteration-005.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/009-deep-review-decommission/review/lineages/deepseek-review/iterations/iteration-006.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/009-deep-review-decommission/review/lineages/deepseek-review/review-report.md",
+      "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "valid-empty-list",
@@ -95503,18 +95279,6 @@
   ],
   "skippedPaths": [
     {
-      "path": ".opencode/hooks/dispatch/lib/node_modules",
-      "reason": "excluded directory"
-    },
-    {
-      "path": ".opencode/hooks/dispatch/node_modules",
-      "reason": "excluded directory"
-    },
-    {
-      "path": ".opencode/hooks/dispatch/pi/node_modules",
-      "reason": "excluded directory"
-    },
-    {
       "path": ".opencode/hooks/git-preflight/README.md",
       "reason": "duplicate of an already-indexed document"
     },
@@ -95541,14 +95305,6 @@
     {
       "path": ".opencode/skills/mcp-code-mode/mcp-server/README.md",
       "reason": "duplicate of an already-indexed document"
-    },
-    {
-      "path": ".opencode/skills/mcp-code-mode/mcp-server/dist",
-      "reason": "excluded directory"
-    },
-    {
-      "path": ".opencode/skills/mcp-code-mode/mcp-server/node_modules",
-      "reason": "excluded directory"
     },
     {
       "path": ".opencode/skills/sk-code/benchmark/fixtures",
@@ -95603,14 +95359,6 @@
       "reason": "duplicate of an already-indexed document"
     },
     {
-      "path": ".opencode/skills/sk-communication/cli-communication-projection/dist",
-      "reason": "excluded directory"
-    },
-    {
-      "path": ".opencode/skills/sk-communication/cli-communication-projection/node_modules",
-      "reason": "excluded directory"
-    },
-    {
       "path": ".opencode/skills/sk-communication/cli-communication-projection/test/fixtures",
       "reason": "excluded directory"
     },
@@ -95620,14 +95368,6 @@
     },
     {
       "path": ".opencode/skills/sk-design/sk-design-diagram/scripts/tests/fixtures",
-      "reason": "excluded directory"
-    },
-    {
-      "path": ".opencode/skills/sk-design/sk-design-md-generator/backend/dist",
-      "reason": "excluded directory"
-    },
-    {
-      "path": ".opencode/skills/sk-design/sk-design-md-generator/backend/node_modules",
       "reason": "excluded directory"
     },
     {
@@ -95667,31 +95407,7 @@
       "reason": "excluded directory"
     },
     {
-      "path": ".opencode/skills/sk-vision/vision-runtime/dist",
-      "reason": "excluded directory"
-    },
-    {
-      "path": ".opencode/skills/sk-vision/vision-runtime/node_modules",
-      "reason": "excluded directory"
-    },
-    {
-      "path": ".opencode/skills/system-deep-loop/deep-ai-council/node_modules",
-      "reason": "excluded directory"
-    },
-    {
-      "path": ".opencode/skills/system-deep-loop/deep-ai-council/scripts/node_modules",
-      "reason": "excluded directory"
-    },
-    {
       "path": ".opencode/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-fixtures",
-      "reason": "excluded directory"
-    },
-    {
-      "path": ".opencode/skills/system-deep-loop/deep-improvement/node_modules",
-      "reason": "excluded directory"
-    },
-    {
-      "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/node_modules",
       "reason": "excluded directory"
     },
     {
@@ -95700,10 +95416,6 @@
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-review/scripts/tests/fixtures",
-      "reason": "excluded directory"
-    },
-    {
-      "path": ".opencode/skills/system-deep-loop/node_modules",
       "reason": "excluded directory"
     },
     {
@@ -95723,39 +95435,39 @@
       "reason": "excluded directory"
     },
     {
-      "path": ".opencode/skills/system-skill-advisor/mcp-server/dist",
+      "path": ".opencode/skills/system-skill-advisor/runtime/dist",
       "reason": "excluded directory"
     },
     {
-      "path": ".opencode/skills/system-skill-advisor/mcp-server/lib/shared/embeddings",
+      "path": ".opencode/skills/system-skill-advisor/runtime/lib/shared/embeddings",
       "reason": "symlinked directory"
     },
     {
-      "path": ".opencode/skills/system-skill-advisor/mcp-server/node_modules",
+      "path": ".opencode/skills/system-skill-advisor/runtime/node_modules",
       "reason": "excluded directory"
     },
     {
-      "path": ".opencode/skills/system-skill-advisor/mcp-server/scripts/fixtures",
+      "path": ".opencode/skills/system-skill-advisor/runtime/scripts/fixtures",
       "reason": "excluded directory"
     },
     {
-      "path": ".opencode/skills/system-skill-advisor/mcp-server/tests/__fixtures__",
+      "path": ".opencode/skills/system-skill-advisor/runtime/tests/__fixtures__",
       "reason": "excluded directory"
     },
     {
-      "path": ".opencode/skills/system-skill-advisor/mcp-server/tests/fixtures",
+      "path": ".opencode/skills/system-skill-advisor/runtime/tests/fixtures",
       "reason": "excluded directory"
     },
     {
-      "path": ".opencode/skills/system-skill-advisor/mcp-server/tests/legacy/advisor-fixtures",
+      "path": ".opencode/skills/system-skill-advisor/runtime/tests/legacy/advisor-fixtures",
       "reason": "excluded directory"
     },
     {
-      "path": ".opencode/skills/system-skill-advisor/mcp-server/tests/parity/fixtures",
+      "path": ".opencode/skills/system-skill-advisor/runtime/tests/parity/fixtures",
       "reason": "excluded directory"
     },
     {
-      "path": ".opencode/skills/system-skill-advisor/mcp-server/tests/scorer/fixtures",
+      "path": ".opencode/skills/system-skill-advisor/runtime/tests/scorer/fixtures",
       "reason": "excluded directory"
     },
     {
@@ -95764,10 +95476,6 @@
     },
     {
       "path": ".opencode/skills/system-spec-kit/runtime/cli/dist",
-      "reason": "excluded directory"
-    },
-    {
-      "path": ".opencode/skills/system-spec-kit/runtime/cli/node_modules",
       "reason": "excluded directory"
     },
     {
@@ -95824,10 +95532,6 @@
     },
     {
       "path": ".opencode/skills/system-spec-kit/runtime/tests/validation/fixtures",
-      "reason": "excluded directory"
-    },
-    {
-      "path": ".opencode/skills/system-spec-kit/runtime/tmp-test-fixtures",
       "reason": "excluded directory"
     },
     {
@@ -95895,28 +95599,8 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/agents/010-repo-rule-system-integration/research/lineages",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/agents/010-repo-rule-system-integration/scratch",
-      "reason": "excluded directory"
-    },
-    {
       "path": "specs/agents/z_archive",
       "reason": "excluded directory"
-    },
-    {
-      "path": "specs/ai-systems",
-      "reason": "symlinked directory"
-    },
-    {
-      "path": "specs/anobel.com",
-      "reason": "symlinked directory"
-    },
-    {
-      "path": "specs/app-mobile-cli",
-      "reason": "symlinked directory"
     },
     {
       "path": "specs/cli-external-orchestration/026-cli-external-parent/001-research-and-context/scratch",
@@ -96140,10 +95824,6 @@
     },
     {
       "path": "specs/cli-external-orchestration/066-pi-self-dispatch-and-subagents-retirement/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-external-orchestration/067-deferred-closure/scratch",
       "reason": "excluded directory"
     },
     {
@@ -96631,10 +96311,6 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/mcp-tooling/019-official-obsidian-cli/001-cli-versus-mcp/scratch",
-      "reason": "excluded directory"
-    },
-    {
       "path": "specs/mcp-tooling/019-official-obsidian-cli/scratch",
       "reason": "excluded directory"
     },
@@ -96653,10 +96329,6 @@
     {
       "path": "specs/mcp-tooling/z_archive",
       "reason": "excluded directory"
-    },
-    {
-      "path": "specs/obsidian",
-      "reason": "symlinked directory"
     },
     {
       "path": "specs/sk-code/z_archive",
@@ -97212,14 +96884,6 @@
     },
     {
       "path": "specs/sk-design/019-sk-design-diagram-upgrade/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-design/020-chart-and-diagram-review/001-chart-review/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-design/020-chart-and-diagram-review/002-diagram-review/scratch",
       "reason": "excluded directory"
     },
     {
@@ -98144,6 +97808,50 @@
     },
     {
       "path": "specs/system-skill-advisor/024-routing-perfection-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/001-transport-and-consumer-inventory/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/002-daemon-transport-decision/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/003-cli-front-door-parity/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/004-caller-rewire/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/005-mcp-transport-removal/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/006-runtime-package-rename/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/007-docs-and-residue-sweep/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/008-verification-and-closeout/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/009-deep-review-decommission/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/010-deep-research-residue/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/010-deep-research-residue/scratch",
       "reason": "excluded directory"
     },
     {
@@ -99812,6 +99520,22 @@
     },
     {
       "path": "specs/system-speckit/035-derived-artifact-registry/002-transactional-remint/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/045-daemon-and-test-harness-hardening/001-production-db-isolation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/045-daemon-and-test-harness-hardening/002-orphan-daemon-reaping/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/045-daemon-and-test-harness-hardening/003-test-hang-containment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/045-daemon-and-test-harness-hardening/004-live-follow-log-hygiene/scratch",
       "reason": "excluded directory"
     },
     {

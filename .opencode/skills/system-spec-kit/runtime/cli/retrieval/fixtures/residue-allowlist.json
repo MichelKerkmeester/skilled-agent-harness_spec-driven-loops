@@ -138,31 +138,31 @@
       "reason": "Two historical lines explaining why a scenario step changed."
     },
     {
-      "pathPrefixOrGlob": ".opencode/skills/system-skill-advisor/mcp-server/scripts/routing-accuracy/scorer-eval-baseline.json",
+      "pathPrefixOrGlob": ".opencode/skills/system-skill-advisor/runtime/scripts/routing-accuracy/scorer-eval-baseline.json",
       "reason": "Captured scorer baseline; dated evidence that is never rewritten."
     },
     {
-      "pathPrefixOrGlob": ".opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-validate.ts",
+      "pathPrefixOrGlob": ".opencode/skills/system-skill-advisor/runtime/handlers/advisor-validate.ts",
       "reason": "Routing vocabulary for the surviving /memory:save command: the labeled-corpus bucket and its accuracy slice are named after the prompts they group, not after a tool call."
     },
     {
-      "pathPrefixOrGlob": ".opencode/skills/system-skill-advisor/mcp-server/schemas/advisor-tool-schemas.ts",
+      "pathPrefixOrGlob": ".opencode/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts",
       "reason": "Routing vocabulary for the surviving /memory:save command: the accuracy-bucket key is part of the validate output schema and renaming it would break the captured baseline."
     },
     {
-      "pathPrefixOrGlob": ".opencode/skills/system-skill-advisor/mcp-server/tests/handlers/advisor-validate.vitest.ts",
+      "pathPrefixOrGlob": ".opencode/skills/system-skill-advisor/runtime/tests/handlers/advisor-validate.vitest.ts",
       "reason": "Routing vocabulary for the surviving /memory:save command: the test reads the accuracy-bucket key its handler emits."
     },
     {
-      "pathPrefixOrGlob": ".opencode/skills/system-skill-advisor/mcp-server/tests/parity/scorer-eval-baseline-ratchet.vitest.ts",
+      "pathPrefixOrGlob": ".opencode/skills/system-skill-advisor/runtime/tests/parity/scorer-eval-baseline-ratchet.vitest.ts",
       "reason": "Routing vocabulary for the surviving /memory:save command: the ratchet compares the accuracy-bucket key recorded in the captured baseline."
     },
     {
-      "pathPrefixOrGlob": ".opencode/skills/system-skill-advisor/mcp-server/scripts/routing-accuracy/capture-scorer-eval-baseline.mjs",
+      "pathPrefixOrGlob": ".opencode/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-scorer-eval-baseline.mjs",
       "reason": "Routing vocabulary for the surviving /memory:save command: the capture script writes the accuracy-bucket key the baseline records."
     },
     {
-      "pathPrefixOrGlob": ".opencode/skills/system-skill-advisor/mcp-server/lib/scorer/fusion.ts",
+      "pathPrefixOrGlob": ".opencode/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
       "reason": "Routing vocabulary for the surviving /memory:save command: a prompt keyword the scorer matches on, not a tool call."
     },
     {

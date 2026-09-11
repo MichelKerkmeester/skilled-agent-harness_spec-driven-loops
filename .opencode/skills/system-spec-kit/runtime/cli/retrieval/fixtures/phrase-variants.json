@@ -1,5 +1,5 @@
 {
-  "manifestHash": "3e417ae70e1efc8ade53997acb9f4e50f71357d890fb065c48e8131702fae1ec",
+  "manifestHash": "e10deae6b7dfd34cf54c6964eb23f7d35c39f2871134673e3df950ac9015b8ac",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -7797,6 +7797,9 @@
     "045 010 upgrade safety operability audit": [
       "045-010-upgrade-safety-operability-audit"
     ],
+    "045 daemon and test harness hardening": [
+      "045-daemon-and-test-harness-hardening"
+    ],
     "045 hardening review": [
       "045 hardening review"
     ],
@@ -9523,11 +9526,17 @@
     "advisor architecture audit": [
       "advisor architecture audit"
     ],
+    "advisor architecture rewrite": [
+      "advisor architecture rewrite"
+    ],
     "advisor auth helper": [
       "advisor auth helper"
     ],
     "advisor baseline": [
       "advisor baseline"
+    ],
+    "advisor behavior table": [
+      "advisor behavior table"
     ],
     "advisor bridge import repair": [
       "advisor bridge import repair"
@@ -9541,14 +9550,38 @@
     "advisor cache tests": [
       "advisor cache tests"
     ],
+    "advisor caller inventory": [
+      "advisor caller inventory"
+    ],
+    "advisor caller rewire": [
+      "advisor caller rewire"
+    ],
     "advisor catalog rename map": [
       "advisor catalog rename map"
     ],
     "advisor cleanup": [
       "advisor cleanup"
     ],
+    "advisor cli": [
+      "advisor cli"
+    ],
+    "advisor cli contract": [
+      "advisor cli contract"
+    ],
     "advisor cli fallback": [
       "advisor cli fallback"
+    ],
+    "advisor cli front door": [
+      "advisor cli front door"
+    ],
+    "advisor cli output shape": [
+      "advisor cli output shape"
+    ],
+    "advisor cli parity": [
+      "advisor cli parity"
+    ],
+    "advisor closeout": [
+      "advisor closeout"
     ],
     "advisor codegraph 027 reconciliation": [
       "advisor codegraph 027 reconciliation"
@@ -9558,6 +9591,12 @@
     ],
     "advisor codegraph procedural readiness": [
       "advisor codegraph procedural readiness"
+    ],
+    "advisor cold boot proof": [
+      "advisor cold boot proof"
+    ],
+    "advisor cold start": [
+      "advisor cold start"
     ],
     "advisor compatibility": [
       "advisor compatibility",
@@ -9608,6 +9647,15 @@
     "advisor daemon": [
       "advisor daemon"
     ],
+    "advisor daemon decision": [
+      "advisor daemon decision"
+    ],
+    "advisor daemon framing": [
+      "advisor daemon framing"
+    ],
+    "advisor daemon protocol": [
+      "advisor daemon protocol"
+    ],
     "advisor daemon reload verification": [
       "advisor daemon reload verification"
     ],
@@ -9625,6 +9673,9 @@
     ],
     "advisor database policy": [
       "advisor database policy"
+    ],
+    "advisor decommission verification": [
+      "advisor decommission verification"
     ],
     "advisor decoupling": [
       "advisor decoupling"
@@ -9650,6 +9701,9 @@
     "advisor doc cleanup post extraction": [
       "advisor doc cleanup post-extraction"
     ],
+    "advisor docs sweep": [
+      "advisor docs sweep"
+    ],
     "advisor documentation path migration": [
       "advisor documentation path migration"
     ],
@@ -9664,6 +9718,15 @@
     ],
     "advisor env hardening": [
       "advisor env hardening"
+    ],
+    "advisor error envelope": [
+      "advisor error envelope"
+    ],
+    "advisor exit codes": [
+      "advisor exit codes"
+    ],
+    "advisor exit taxonomy": [
+      "advisor exit taxonomy"
     ],
     "advisor extraction child 002": [
       "advisor extraction child 002"
@@ -9755,6 +9818,9 @@
     "advisor hook registration paths": [
       "advisor hook registration paths"
     ],
+    "advisor hook rewire": [
+      "advisor hook rewire"
+    ],
     "advisor hook runtime matrix": [
       "advisor hook runtime matrix"
     ],
@@ -9845,8 +9911,17 @@
     "advisor lane weight": [
       "advisor lane weight"
     ],
+    "advisor latency baseline": [
+      "advisor latency baseline"
+    ],
     "advisor latency bench": [
       "advisor latency bench"
+    ],
+    "advisor latency delta": [
+      "advisor latency delta"
+    ],
+    "advisor launcher supervisor": [
+      "advisor launcher supervisor"
     ],
     "advisor lease semantics": [
       "advisor lease semantics"
@@ -9869,14 +9944,14 @@
     "advisor manual testing playbook": [
       "advisor manual testing playbook"
     ],
+    "advisor mcp inventory": [
+      "advisor mcp inventory"
+    ],
     "advisor mcp registration": [
       "advisor mcp registration"
     ],
-    "advisor mcp server": [
-      "advisor mcp server"
-    ],
-    "advisor mcp server boundary": [
-      "advisor mcp server boundary"
+    "advisor mcp removal": [
+      "advisor mcp removal"
     ],
     "advisor mcp tools": [
       "advisor mcp tools"
@@ -9914,6 +9989,9 @@
     "advisor package envelope": [
       "advisor package envelope"
     ],
+    "advisor package rename": [
+      "advisor package rename"
+    ],
     "advisor package root rename": [
       "advisor package root rename"
     ],
@@ -9926,14 +10004,17 @@
     "advisor parity rollback tasks": [
       "advisor parity rollback tasks"
     ],
+    "advisor parity verdict": [
+      "advisor parity verdict"
+    ],
+    "advisor path migration": [
+      "advisor path migration"
+    ],
     "advisor phantom hook row": [
       "advisor phantom hook row"
     ],
     "advisor phrase booster": [
       "advisor phrase booster"
-    ],
-    "advisor plugin bridge": [
-      "advisor plugin bridge"
     ],
     "advisor plugin bridge cutover": [
       "advisor plugin bridge cutover"
@@ -9941,11 +10022,17 @@
     "advisor plugin bridge tests": [
       "advisor plugin bridge tests"
     ],
+    "advisor plugin cli": [
+      "advisor plugin cli"
+    ],
     "advisor positive controls dispatch plan": [
       "advisor positive controls dispatch plan"
     ],
     "advisor positive controls dispatch summary": [
       "advisor positive controls dispatch summary"
+    ],
+    "advisor preserve set": [
+      "advisor preserve set"
     ],
     "advisor probes 3 of 3 correct": [
       "advisor probes 3 of 3 correct"
@@ -9958,6 +10045,9 @@
     ],
     "advisor projection filesystem fallback": [
       "advisor projection filesystem-fallback"
+    ],
+    "advisor protocol version": [
+      "advisor protocol version"
     ],
     "advisor proxy removal": [
       "advisor proxy removal"
@@ -10059,6 +10149,9 @@
     "advisor refinement deep review": [
       "advisor refinement deep review"
     ],
+    "advisor registration removal": [
+      "advisor registration removal"
+    ],
     "advisor regression tests": [
       "advisor regression tests"
     ],
@@ -10073,6 +10166,9 @@
     ],
     "advisor renderer fixture drift": [
       "advisor renderer fixture drift"
+    ],
+    "advisor residue sweep": [
+      "advisor residue sweep"
     ],
     "advisor resolver false sentinel": [
       "advisor resolver false sentinel"
@@ -10121,6 +10217,9 @@
     ],
     "advisor routing tokens preserved": [
       "advisor routing tokens preserved"
+    ],
+    "advisor runtime directory": [
+      "advisor runtime directory"
     ],
     "advisor runtime modules": [
       "advisor runtime modules"
@@ -10188,6 +10287,9 @@
     "advisor server rename": [
       "advisor server rename"
     ],
+    "advisor session warm": [
+      "advisor session warm"
+    ],
     "advisor shadow parity evidence": [
       "advisor shadow parity evidence"
     ],
@@ -10218,6 +10320,9 @@
     "advisor smoke test not run": [
       "advisor smoke test not run"
     ],
+    "advisor socket protocol": [
+      "advisor socket protocol"
+    ],
     "advisor socket server": [
       "advisor socket server"
     ],
@@ -10229,6 +10334,9 @@
     ],
     "advisor stale wording fix": [
       "advisor stale wording fix"
+    ],
+    "advisor standalone boundary": [
+      "advisor standalone boundary"
     ],
     "advisor standalone package": [
       "advisor standalone package"
@@ -10317,11 +10425,17 @@
     "advisor transport": [
       "advisor transport"
     ],
+    "advisor transport delete": [
+      "advisor transport delete"
+    ],
     "advisor transport disagreement": [
       "advisor transport disagreement"
     ],
     "advisor transport fallback budget": [
       "advisor transport fallback budget"
+    ],
+    "advisor transport removal": [
+      "advisor transport removal"
     ],
     "advisor transport resilience": [
       "advisor transport resilience"
@@ -10365,6 +10479,12 @@
     "advisor vocabulary chart": [
       "advisor vocabulary chart"
     ],
+    "advisor warm mechanism": [
+      "advisor warm mechanism"
+    ],
+    "advisor warm only": [
+      "advisor warm only"
+    ],
     "advisor weight calibration": [
       "advisor weight calibration"
     ],
@@ -10379,6 +10499,9 @@
     ],
     "advisor why recommended": [
       "advisor why recommended"
+    ],
+    "advisor wire contract": [
+      "advisor wire contract"
     ],
     "advisor workspace root resolver false sentinel": [
       "advisor workspace root resolver false sentinel"
@@ -10448,9 +10571,6 @@
     ],
     "aesthetics retirement tasks": [
       "aesthetics retirement tasks"
-    ],
-    "affinity advice consumer path": [
-      "affinity advice consumer path"
     ],
     "affordance evidence display": [
       "affordance evidence display"
@@ -13614,9 +13734,6 @@
     ],
     "authorization boundary status": [
       "authorization boundary status"
-    ],
-    "authorization contract": [
-      "authorization contract"
     ],
     "authorization decision events": [
       "authorization decision events"
@@ -20055,9 +20172,6 @@
     "cli dispatch containment recursion guards": [
       "cli dispatch containment recursion guards"
     ],
-    "cli dispatch doc drift": [
-      "cli dispatch doc drift"
-    ],
     "cli dispatch hangs with no output": [
       "cli dispatch hangs with no output"
     ],
@@ -20560,6 +20674,9 @@
     "cli matrix vitest ts buildcopilotpromptarg parity": [
       "cli-matrix.vitest.ts buildCopilotPromptArg parity"
     ],
+    "cli mcp parity": [
+      "cli mcp parity"
+    ],
     "cli mode enforcement implementation summary": [
       "cli mode enforcement implementation summary"
     ],
@@ -20981,8 +21098,7 @@
       "cli pi readme tasks"
     ],
     "cli pi self dispatch": [
-      "cli-pi self dispatch",
-      "cli-pi self-dispatch"
+      "cli-pi self dispatch"
     ],
     "cli pi self invocation removal": [
       "cli-pi self invocation removal"
@@ -21556,9 +21672,6 @@
     ],
     "cline pass enabledmodels pi settings": [
       "cline-pass enabledModels pi settings"
-    ],
-    "cline pass listing only rationale": [
-      "cline-pass listing-only rationale"
     ],
     "cline pass model id slashed fix": [
       "cline-pass model id slashed fix"
@@ -25486,15 +25599,6 @@
     ],
     "compat index": [
       "compat index"
-    ],
-    "compat opt in review": [
-      "compat opt-in review"
-    ],
-    "compat opt in review findings": [
-      "compat opt-in review findings"
-    ],
-    "compat opt in review state": [
-      "compat opt-in review state"
     ],
     "compat override": [
       "compat override"
@@ -31127,6 +31231,9 @@
     "daemon sqlite launcher asymmetry": [
       "daemon sqlite launcher asymmetry"
     ],
+    "daemon start trigger": [
+      "daemon start trigger"
+    ],
     "daemon supervisor probe": [
       "daemon supervisor probe"
     ],
@@ -31141,6 +31248,9 @@
     ],
     "daemon versus python scorer": [
       "daemon versus python scorer"
+    ],
+    "daemon versus stateless": [
+      "daemon versus stateless"
     ],
     "daemon wal checkpoint before sigkill": [
       "daemon WAL checkpoint before SIGKILL"
@@ -34992,9 +35102,6 @@
     "deep review codex timeout": [
       "deep review codex timeout"
     ],
-    "deep review compat opt in": [
-      "deep review compat opt-in"
-    ],
     "deep review conditional to pass": [
       "deep-review conditional to pass"
     ],
@@ -35337,9 +35444,6 @@
     "deep review replay idempotency tasks": [
       "deep-review replay idempotency tasks"
     ],
-    "deep review report": [
-      "deep review report"
-    ],
     "deep review research skill contract fixes": [
       "deep-review research skill contract fixes"
     ],
@@ -35485,9 +35589,6 @@
     ],
     "deep review strategy 045": [
       "deep review strategy 045"
-    ],
-    "deep review strategy glm 53 flash": [
-      "deep review strategy glm-53-flash"
     ],
     "deep review strategy md": [
       "deep-review-strategy.md"
@@ -35720,12 +35821,6 @@
     "deepseek research lane spec kit docs": [
       "deepseek research lane spec kit docs"
     ],
-    "deepseek route repoint decision": [
-      "deepseek route repoint decision"
-    ],
-    "deepseek v4 1 flash route": [
-      "deepseek v4.1 flash route"
-    ],
     "deepseek v4 flash": [
       "deepseek v4 flash"
     ],
@@ -35950,9 +36045,6 @@
     ],
     "deferred followups decisions": [
       "deferred followups decisions"
-    ],
-    "deferred live gates": [
-      "deferred live gates"
     ],
     "deferred loading verification": [
       "deferred loading verification"
@@ -39205,9 +39297,6 @@
     "dispatch preflight lint": [
       "dispatch preflight lint"
     ],
-    "dispatch preflight suite": [
-      "dispatch preflight suite"
-    ],
     "dispatch receipt resume projection": [
       "dispatch receipt resume projection"
     ],
@@ -40064,6 +40153,9 @@
     ],
     "doctor route repair": [
       "doctor route repair"
+    ],
+    "doctor route rewire": [
+      "doctor route rewire"
     ],
     "doctor route validate manifest": [
       "doctor route validate manifest"
@@ -44706,17 +44798,11 @@
     "fanout lineage": [
       "fanout lineage"
     ],
-    "fanout lineage dashboard": [
-      "fanout lineage dashboard"
-    ],
     "fanout lineage err retention": [
       "fanout lineage err retention"
     ],
     "fanout lineage in process": [
       "fanout lineage in-process"
-    ],
-    "fanout lineage strategy": [
-      "fanout lineage strategy"
     ],
     "fanout live search shipped": [
       "fanout live search shipped"
@@ -47446,6 +47532,9 @@
     ],
     "fresh verify remediation tasks": [
       "fresh verify remediation tasks"
+    ],
+    "fresh worktree dependencies": [
+      "fresh worktree dependencies"
     ],
     "freshness contract": [
       "freshness contract"
@@ -51729,6 +51818,9 @@
     ],
     "hook kill switch phase status": [
       "hook kill-switch phase status"
+    ],
+    "hook latency baseline": [
+      "hook latency baseline"
     ],
     "hook level lifecycle flags": [
       "hook-level lifecycle flags"
@@ -57213,9 +57305,6 @@
     "list vaults": [
       "List vaults"
     ],
-    "listing only cline pass": [
-      "listing-only cline-pass"
-    ],
     "listsupporteddimensions embeddermanifest": [
       "listSupportedDimensions EmbedderManifest"
     ],
@@ -60930,6 +61019,9 @@
     "mcp server readme update": [
       "mcp_server README update",
       "mcp_server readme update"
+    ],
+    "mcp server rename": [
+      "mcp-server rename"
     ],
     "mcp server shared readme": [
       "mcp_server shared readme"
@@ -68208,9 +68300,6 @@
     "opencode go cache compat": [
       "opencode-go cache compat"
     ],
-    "opencode go cline pass repoint": [
-      "opencode-go cline-pass repoint"
-    ],
     "opencode go compat plan": [
       "opencode-go compat plan"
     ],
@@ -68237,9 +68326,6 @@
     ],
     "opencode go usage limit fan out": [
       "opencode-go usage limit fan-out"
-    ],
-    "opencode go v4 1 swap": [
-      "opencode-go v4.1 swap"
     ],
     "opencode goal": [
       "opencode-goal",
@@ -70348,6 +70434,9 @@
     ],
     "parity": [
       "parity"
+    ],
+    "parity allowlist": [
+      "parity allowlist"
     ],
     "parity audit": [
       "parity audit"
@@ -72460,6 +72549,9 @@
     ],
     "phase 19 tasks": [
       "phase 19 tasks"
+    ],
+    "phase 2 budget check": [
+      "phase 2 budget check"
     ],
     "phase 2 path extraction fix": [
       "phase 2 path extraction fix"
@@ -76637,6 +76729,9 @@
     ],
     "prompt hardening tasks": [
       "prompt hardening tasks"
+    ],
+    "prompt hook latency after decommission": [
+      "prompt hook latency after decommission"
     ],
     "prompt improve": [
       "/prompt:improve",
@@ -82679,9 +82774,6 @@
     "resume 033 remediation": [
       "resume 033 remediation"
     ],
-    "resume 069": [
-      "resume 069"
-    ],
     "resume adapter forged confirmation": [
       "resume adapter forged confirmation"
     ],
@@ -82918,6 +83010,9 @@
     ],
     "retired prefix criterion restated": [
       "retired prefix criterion restated"
+    ],
+    "retired tool id sweep": [
+      "retired tool id sweep"
     ],
     "retired vector search docs cleanup": [
       "retired vector search docs cleanup"
@@ -86786,9 +86881,6 @@
     "scope policy rerun": [
       "scope policy rerun"
     ],
-    "scope reversal adr": [
-      "scope reversal adr"
-    ],
     "scope statement check": [
       "scope statement check"
     ],
@@ -88182,9 +88274,6 @@
     "session goal state architecture": [
       "session goal state architecture"
     ],
-    "session handover": [
-      "session handover"
-    ],
     "session handover 2026 05 18 evening": [
       "session handover 2026-05-18 evening"
     ],
@@ -89364,9 +89453,6 @@
     ],
     "sibling route regression probe": [
       "sibling route regression probe"
-    ],
-    "sibling route reopen decision": [
-      "sibling route reopen decision"
     ],
     "sibling shape parity check": [
       "sibling shape parity check"
@@ -94046,6 +94132,9 @@
     "skill advisor cli changelog root": [
       "skill-advisor cli changelog root"
     ],
+    "skill advisor cli commands": [
+      "skill advisor cli commands"
+    ],
     "skill advisor cli core changelog": [
       "skill-advisor cli core changelog"
     ],
@@ -94264,6 +94353,9 @@
     ],
     "skill advisor manual testing playbook": [
       "skill-advisor manual testing playbook"
+    ],
+    "skill advisor mcp decommission": [
+      "skill advisor mcp decommission"
     ],
     "skill advisor mcp identity": [
       "skill advisor MCP identity"
@@ -94532,6 +94624,9 @@
     ],
     "skill advisor watcher race": [
       "skill-advisor watcher race"
+    ],
+    "skill advisor without mcp": [
+      "skill advisor without mcp"
     ],
     "skill advisor zombie launcher fix": [
       "skill-advisor zombie launcher fix"
@@ -98262,8 +98357,8 @@
     "standalone advisor mcp decision": [
       "standalone advisor MCP decision"
     ],
-    "standalone advisor mcp shape": [
-      "standalone advisor mcp shape"
+    "standalone advisor shape": [
+      "standalone advisor shape"
     ],
     "standalone code graph mcp": [
       "standalone code graph MCP"
@@ -100884,9 +100979,6 @@
     "system skill advisor architecture rewrite": [
       "system-skill-advisor architecture rewrite"
     ],
-    "system skill advisor bridge": [
-      "system-skill-advisor bridge"
-    ],
     "system skill advisor changelog verification": [
       "system-skill-advisor changelog verification"
     ],
@@ -100932,26 +101024,8 @@
     "system skill advisor marketing readme": [
       "system-skill-advisor marketing readme"
     ],
-    "system skill advisor mcp server": [
-      "system skill advisor mcp server"
-    ],
     "system skill advisor mcp server directory": [
       "system-skill-advisor mcp-server directory"
-    ],
-    "system skill advisor mcp server lib context": [
-      "system-skill-advisor mcp-server/lib/context"
-    ],
-    "system skill advisor mcp server lib scorer lanes": [
-      "system-skill-advisor mcp-server/lib/scorer/lanes"
-    ],
-    "system skill advisor mcp server lib scorer lanes tests": [
-      "system-skill-advisor mcp-server/lib/scorer/lanes/__tests__"
-    ],
-    "system skill advisor mcp server scripts routing accuracy": [
-      "system-skill-advisor mcp-server/scripts/routing-accuracy"
-    ],
-    "system skill advisor mcp server stress test search quality": [
-      "system-skill-advisor mcp-server/stress-test/search-quality"
     ],
     "system skill advisor migration closure": [
       "system-skill-advisor migration closure"
@@ -101004,8 +101078,26 @@
     "system skill advisor rollout tasks": [
       "system skill advisor rollout tasks"
     ],
+    "system skill advisor runtime": [
+      "system skill advisor runtime"
+    ],
     "system skill advisor runtime config": [
       "system_skill_advisor runtime config"
+    ],
+    "system skill advisor runtime lib context": [
+      "system-skill-advisor runtime/lib/context"
+    ],
+    "system skill advisor runtime lib scorer lanes": [
+      "system-skill-advisor runtime/lib/scorer/lanes"
+    ],
+    "system skill advisor runtime lib scorer lanes tests": [
+      "system-skill-advisor runtime/lib/scorer/lanes/__tests__"
+    ],
+    "system skill advisor runtime scripts routing accuracy": [
+      "system-skill-advisor runtime/scripts/routing-accuracy"
+    ],
+    "system skill advisor runtime stress test search quality": [
+      "system-skill-advisor runtime/stress-test/search-quality"
     ],
     "system skill advisor scaffold": [
       "system-skill-advisor scaffold"
@@ -103274,6 +103366,9 @@
     ],
     "transport return reconciliation": [
       "transport return reconciliation"
+    ],
+    "transport surface classification": [
+      "transport surface classification"
     ],
     "trapezoid layer diagram": [
       "trapezoid layer diagram"
@@ -107662,6 +107757,9 @@
     "worktree naming test harness": [
       "worktree naming test harness"
     ],
+    "worktree node modules": [
+      "worktree node_modules"
+    ],
     "worktree per session automation": [
       "worktree per session automation"
     ],
@@ -107670,6 +107768,15 @@
     ],
     "worktree portability verification": [
       "worktree portability verification"
+    ],
+    "worktree provisioning": [
+      "worktree provisioning"
+    ],
+    "worktree provisioning plan": [
+      "worktree provisioning plan"
+    ],
+    "worktree provisioning tasks": [
+      "worktree provisioning tasks"
     ],
     "worktree readme update": [
       "worktree readme update"
