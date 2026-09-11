@@ -10,7 +10,11 @@ _memory:
     last_updated_by: "claude"
     recent_action: "Authored the plan; branches inserted and proven"
     next_safe_action: "Run whole-suite gates; commit"
-trigger_phrases: []
+trigger_phrases:
+  - "implementation plan"
+  - "technical approach"
+  - "architecture decisions"
+  - "testing strategy"
 ---
 # Implementation Plan: Deterministic Single-Executor Dispatch for cli-cursor/devin/pi
 

@@ -15,7 +15,11 @@ _memory:
     key_files:
       - ".opencode/skills/system-deep-loop/shared/behavior-benchmark/framework.md"
       - ".opencode/skills/system-deep-loop/deep-alignment/scripts/scoping.cjs"
-trigger_phrases: []
+trigger_phrases:
+  - "implementation plan"
+  - "technical approach"
+  - "architecture decisions"
+  - "testing strategy"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 

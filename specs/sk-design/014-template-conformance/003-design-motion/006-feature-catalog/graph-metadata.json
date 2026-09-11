@@ -13,7 +13,16 @@
     "trigger_phrases": [
       "design-motion feature-catalog conformance",
       "motion feature catalog template audit",
-      "motion restraint gate card structure"
+      "motion restraint gate card structure",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies",
+      "implementation summary"
     ],
     "key_topics": [
       "design-motion",
@@ -185,7 +194,7 @@
     ],
     "causal_summary": "`feature-catalog/` carries a root `feature-catalog.md` plus three subdirectories — `build-cards/` (`motion-fill-in-cards.md`), `procedure-cards/` (`motion-procedure-card-inventory.md`), and `restraint-gate-and-choreography/` (`choreography-and-reduced-motion.md`, `motion-restraint-gate.md`) — none of which was in the 014 program's seed sample",
     "created_at": "2026-07-27T14:53:13.941Z",
-    "last_save_at": "2026-09-03T22:18:08.973Z",
+    "last_save_at": "2026-09-11T04:35:42.416Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -194,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3db775672eea80bdddd0f0c9dde3b23b13f83ef258e2d4d5cc5af367f3c87108",
+    "source_fingerprint": "sha256:1c8dbc6dad107d78740f4c87021fdecb562a3ca28a8592508e355cbf059a9b7d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "77ea5260ed8116b3ac75c2a5fa734ab9b5ba23a898687a96fce8d58bd8acb46b",
-      "plan.md": "6195812e2cb4f27be0d526ab5da6deb47cb3207939db0ba403a09099988cde1a",
-      "tasks.md": "2cdca7a80a48c1cdf2c57d6885bbf1be830b42e0b4205ff3d255ff0cfaec25d9",
-      "implementation-summary.md": "ccf1282a7d0ddacd2c7c80284fdfd2a0ba25d5a7c92f15dc171c9fda58b977b2"
+      "plan.md": "9eb74e723bada45aabdf03318b7d9d64e41b49ae610b0f16bc525a0c93ed0941",
+      "tasks.md": "11fe70ba52193d5aef33930d9a9889cbd410c9daf13017332d73641607c393c5",
+      "implementation-summary.md": "162f305da6f284147cb1e61e741c9b7afa652032f784ecda8052c75d56795ddb"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -22,7 +22,11 @@ _memory:
     answered_questions:
       - "deep-alignment is the shared conformance engine behind /deep:command-benchmark and /create:benchmark's conformance axis; removing it cascades to those surfaces and the conformance-benchmark family (operator-approved)."
       - "Derived metadata (advisor projection, command bridges, leaf-manifests, compiled contracts) is regenerated from hand-edited sources so the CI drift-guards validate the final state."
-trigger_phrases: []
+trigger_phrases:
+  - "implementation summary"
+  - "what shipped"
+  - "validation evidence"
+  - "continuation notes"
 ---
 # Implementation Summary: Deprecate deep-alignment and Cascade to the Conformance-Benchmark Capability
 

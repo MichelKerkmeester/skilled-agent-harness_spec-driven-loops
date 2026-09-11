@@ -22,6 +22,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: References and READMEs Lean-Trio Sync
 
 <!-- SPECKIT_LEVEL: 2 -->

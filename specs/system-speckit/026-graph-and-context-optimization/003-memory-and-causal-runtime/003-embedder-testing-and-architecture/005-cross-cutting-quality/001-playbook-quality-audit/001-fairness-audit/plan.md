@@ -1,7 +1,11 @@
 ---
 title: "Plan: 017/001 Playbook fairness audit"
 description: "Execution plan for playbook fairness audit."
-trigger_phrases: []
+trigger_phrases:
+  - "implementation plan"
+  - "technical approach"
+  - "architecture decisions"
+  - "testing strategy"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 1 -->

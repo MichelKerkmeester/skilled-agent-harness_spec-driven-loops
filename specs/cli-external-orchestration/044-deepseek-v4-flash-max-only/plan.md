@@ -11,7 +11,11 @@ _memory:
     next_safe_action: "Implement the pin helper + builder application"
     blockers: []
     completion_pct: 100
-trigger_phrases: []
+trigger_phrases:
+  - "implementation plan"
+  - "technical approach"
+  - "architecture decisions"
+  - "testing strategy"
 ---
 # Implementation Plan: DeepSeek V4 Flash pinned to the Max thinking tier
 

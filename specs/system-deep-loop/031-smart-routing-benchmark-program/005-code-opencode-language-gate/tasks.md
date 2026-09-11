@@ -12,7 +12,11 @@ _memory:
     completion_pct: 95
     open_questions: []
     answered_questions: []
-trigger_phrases: []
+trigger_phrases:
+  - "task breakdown"
+  - "implementation tasks"
+  - "verification checklist"
+  - "task dependencies"
 ---
 # Tasks: code-opencode Language-Slice Intent Gate
 

@@ -13,7 +13,11 @@ _memory:
     next_safe_action: "Proceed to phase 003."
     blockers: []
     key_files: []
-trigger_phrases: []
+trigger_phrases:
+  - "implementation plan"
+  - "technical approach"
+  - "architecture decisions"
+  - "testing strategy"
 ---
 
 # Implementation Plan: Reference and Asset Template Alignment

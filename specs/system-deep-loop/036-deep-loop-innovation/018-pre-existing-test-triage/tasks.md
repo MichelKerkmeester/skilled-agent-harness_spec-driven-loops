@@ -10,7 +10,11 @@ _memory:
     last_updated_by: "claude"
     recent_action: "Authored the triage task list"
     next_safe_action: "Commit + push"
-trigger_phrases: []
+trigger_phrases:
+  - "task breakdown"
+  - "implementation tasks"
+  - "verification checklist"
+  - "task dependencies"
 ---
 # Tasks: Pre-Existing Runtime Test-Failure Triage
 

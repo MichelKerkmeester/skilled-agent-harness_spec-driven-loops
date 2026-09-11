@@ -18,7 +18,11 @@ _memory:
       - ".opencode/skills/sk-doc/mode-registry.json"
       - ".opencode/skills/sk-doc/hub-router.json"
       - ".opencode/commands/create/benchmark.md"
-trigger_phrases: []
+trigger_phrases:
+  - "implementation plan"
+  - "technical approach"
+  - "architecture decisions"
+  - "testing strategy"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 

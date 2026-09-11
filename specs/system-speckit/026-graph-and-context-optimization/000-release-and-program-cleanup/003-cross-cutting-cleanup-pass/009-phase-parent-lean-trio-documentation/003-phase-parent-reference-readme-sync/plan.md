@@ -20,6 +20,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 # Implementation Plan: References and READMEs Lean-Trio Sync
 
 <!-- SPECKIT_LEVEL: 2 -->

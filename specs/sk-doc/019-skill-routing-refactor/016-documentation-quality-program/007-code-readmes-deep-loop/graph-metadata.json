@@ -14,9 +14,15 @@
       "code readmes deep loop",
       "runtime lib domain readmes",
       "stale runtime catalog fix",
-      "code readmes deep loop summary",
-      "fifty-three deep-loop readmes",
-      "runtime lib catalog refresh"
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies",
+      "code readmes deep loop summary"
     ],
     "key_topics": [
       "code",
@@ -28,9 +34,9 @@
       "domain",
       "stale",
       "catalog",
-      "summary",
-      "fifty-three",
-      "deep-loop"
+      "implementation",
+      "plan",
+      "technical"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -40,7 +46,9 @@
       "tasks.md",
       "implementation-summary.md",
       ".opencode/skills/system-deep-loop/runtime/lib/README.md",
-      ".opencode/skills/system-deep-loop/runtime/tests/README.md"
+      ".opencode/skills/system-deep-loop/runtime/tests/README.md",
+      "runtime/lib/README.md",
+      "runtime/tests/README.md"
     ],
     "entities": [
       {
@@ -190,7 +198,7 @@
     ],
     "causal_summary": "The repo-wide scan flagged fifty-three code and script folders without a README under `system-deep-loop`, the largest single group",
     "created_at": "2026-07-22T13:46:50.887Z",
-    "last_save_at": "2026-09-03T22:19:24.778Z",
+    "last_save_at": "2026-09-11T04:36:34.167Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,12 +207,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:625ef7362c4267ddf7af7dc431e49fbc93bc04a2770ffbb2ec5016ea59c022a1",
+    "source_fingerprint": "sha256:00bd84034fd1b2c304268fc63c8d0fabf05a070d2455e73299628113a650f5b8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "587b0c785212ee29488f657464fc3fce5e26fcf6130aa3513208a8938275587d",
-      "plan.md": "ea5b380a2e702c177d7a33cf7b3dc309d80829db8908b073d33c9ead6ae99485",
-      "tasks.md": "f680a6ac970a0d17010ec18b740057527633e092a8555586c7dae73b3c240604",
+      "plan.md": "b2c0971898e507402593ee72e6939efd8b8ecdae4be47f632d69ce5e4e963483",
+      "tasks.md": "3ccb07cbaecbed40541a512224aad007da4ea19aff2427b9a3aab3977d57d8b9",
       "implementation-summary.md": "05ded9791570bf0eff8c2e09a32b7ec4d4161e25a2b63d3a5a9c0416232ba337"
     },
     "last_active_child_id": null,

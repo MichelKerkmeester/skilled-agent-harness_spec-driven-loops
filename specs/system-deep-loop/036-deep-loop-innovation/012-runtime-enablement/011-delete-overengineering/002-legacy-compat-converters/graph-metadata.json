@@ -14,9 +14,15 @@
       "legacy compat converters delete",
       "per-mode legacy compatibility removal",
       "ledger schema legacy upcasters delete",
-      "phase 002 legacy compat converters",
-      "per-mode legacy compatibility removed",
-      "ledger schema upcasters removed"
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies",
+      "phase 002 legacy compat converters"
     ],
     "key_topics": [
       "legacy",
@@ -29,8 +35,8 @@
       "ledger",
       "schema",
       "upcasters",
-      "phase",
-      "removed"
+      "implementation",
+      "plan"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -188,7 +194,7 @@
     ],
     "causal_summary": "Wave 2 of the over-engineering removal program: delete the seven per-mode legacy-format converters (F1) — decide<Mode>Compatibility + upcastLegacy<Mode>Record and their legacy-compatibility.ts modules — now the ledger is the single writer, and their now-dead test blocks. The deep-research variant is live (append-mode-event.cjs) and stays, along with the shared tests/helpers/legacy-real-log.ts fixture it depends on.",
     "created_at": "2026-08-24T17:06:19.066Z",
-    "last_save_at": "2026-09-03T22:21:22.279Z",
+    "last_save_at": "2026-09-11T04:38:31.325Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,12 +203,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dbbb72f433b1cf17589385eccb1fe0fb273e8ebf6d042d30eff8e649218cfa72",
+    "source_fingerprint": "sha256:9cda5e8b13294fc1d33ee5eaad24508225d9f45f201097518e82bb9f63e0764d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9acc853407e483b34a146e64b1393c83ca1fd231fe947046113f60e7d781eade",
-      "plan.md": "c0bf64f0edeb1e0aaedf5605fd63ab15e117caaca22c00d1148914f03b2dfffa",
-      "tasks.md": "5d2ef9c58ed8f7fbf111eb5cf84ba1c2c7f1fb172b788f6d3564623f9e7388b3",
+      "plan.md": "fff8a8a7bdbf121767e459c6d4de2f3af95dbece8022f012badb7efd6469b495",
+      "tasks.md": "40e88a4ac3e812c107c86296424fcbe19f142285d1727fe2ec1566a00603c8b8",
       "implementation-summary.md": "98c8957bce2a9d2f3c349cd611c0d42a3752687f1b8cf8017455a2ff89983693"
     },
     "last_active_child_id": null,

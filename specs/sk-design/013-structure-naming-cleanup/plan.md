@@ -3,7 +3,11 @@ title: "Implementation Plan: sk-design Structure & Naming Cleanup"
 description: "Phased plan for removing the styles/docs stray, renaming dunder folders to kebab, and conforming the interface command YAMLs to the create-command scaffolding."
 importance_tier: "standard"
 contextType: "general"
-trigger_phrases: []
+trigger_phrases:
+  - "implementation plan"
+  - "technical approach"
+  - "architecture decisions"
+  - "testing strategy"
 ---
 # Implementation Plan: sk-design Structure & Naming Cleanup
 

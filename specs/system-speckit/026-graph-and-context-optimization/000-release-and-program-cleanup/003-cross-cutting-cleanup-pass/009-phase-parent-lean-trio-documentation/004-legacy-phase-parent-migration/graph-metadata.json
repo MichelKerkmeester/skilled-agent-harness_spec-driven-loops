@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The lean-trio policy is enforced for new phase parents (validator, template, generator, resume, docs)",
     "created_at": "2026-04-27T14:00:00Z",
-    "last_save_at": "2026-08-30T15:39:27.928Z",
+    "last_save_at": "2026-09-11T04:38:43.363Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,11 +204,11 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5b6e8e4b7c08a81415013514e7b4736d926a072b158c0411ca75242acd7012bd",
+    "source_fingerprint": "sha256:0edf1cb8512590b1b2ea17231db852397a508d82a6d6e8a865c040e9f3a46ae9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f97c93ca2cfb71125b6f154f0fe9027c2afebf63cd5662cde3020e48dbb628fc",
-      "plan.md": "cf475861aa84e8507fe309c231e8ef9696237afa4fecb4a1e14b2e9a2612dc32",
+      "spec.md": "dc0e77eef74545389a2df9e231b865df8ee775e2f1aa0c7f8428fea8f905a6d3",
+      "plan.md": "93588d8c50b61267aeb87acf208c89b9bdc5d7846c02e11e80a498026c2b98c1",
       "tasks.md": "e6c63df2ddc9f31d769c217b3e1d120dc443ec49f2aa2b38593cff28cb3f446f",
       "implementation-summary.md": "fd5eb23d2147a5702407da676b7639f118e43f7a66710fb5b4912312c4c288e7"
     },

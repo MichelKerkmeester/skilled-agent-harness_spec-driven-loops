@@ -21,7 +21,11 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions: []
-trigger_phrases: []
+trigger_phrases:
+  - "implementation summary"
+  - "what shipped"
+  - "validation evidence"
+  - "continuation notes"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary: Memory Store/Search/Save Write-Path Remediation

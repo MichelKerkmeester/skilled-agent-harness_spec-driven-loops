@@ -16,7 +16,13 @@
       "write containment",
       "cli-pi deepseek",
       "observation-only leaf",
-      "loop adherence"
+      "loop adherence",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks"
     ],
     "key_topics": [
       "deepseek",
@@ -30,7 +36,7 @@
       "cli-pi",
       "observation-only",
       "leaf",
-      "models"
+      "implementation"
     ],
     "importance_tier": "high",
     "status": "complete",
@@ -191,7 +197,7 @@
     ],
     "causal_summary": "Weak models do not obey the deep-loop's observation-only leaf contract, and today the runtime can only catch the breach after the fact — it cannot let such a model succeed",
     "created_at": "2026-08-16T09:11:48.617Z",
-    "last_save_at": "2026-09-03T22:21:13.894Z",
+    "last_save_at": "2026-09-11T04:38:29.330Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,13 +206,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3dbf4f607ba83a22cf651b03e62cbaa79171ef3840441dec81dc6fd90bde9287",
+    "source_fingerprint": "sha256:11fc580b2bab29ac1ca16f7dd3f5ead230a1b75852d2528488158ab5a280b8b3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "50d124a05fcdfc64f1f7d7579d4cc990cdc24afc063e332cc2f1664056f43b2f",
-      "plan.md": "6d1a0d3945cd5314c1cabca1067ad5e1d25a2ce1e9670a64bb1fb08b438d50e4",
-      "tasks.md": "1cc9c8617bcb3a5601fd996f4289758bddc8a54e9395f4941acc2c36be9f9780",
-      "implementation-summary.md": "eb90ac8e426c9c88e45f6a16cf3f19ddce6d5c8db152fd6ad81ea19aab2dd9d1"
+      "plan.md": "da4095cb946807ff85cb53af16765aca100e7661ee03407ce73dc0b400af7e38",
+      "tasks.md": "99cba7fe43d6941bb08962ff5d473a900f86f8afc5635befec060d8408c3a43e",
+      "implementation-summary.md": "54ef61481e78f5b91515e10893eb6c8bd98f9fe73e7750ec32aa2408099f33e5"
     },
     "last_active_child_id": null,
     "last_active_at": null

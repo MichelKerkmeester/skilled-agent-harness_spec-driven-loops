@@ -13,7 +13,16 @@
     "trigger_phrases": [
       "design-md-generator assets conformance",
       "md-generator assets template audit",
-      "cardinal rules card conformance"
+      "cardinal rules card conformance",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies",
+      "implementation summary"
     ],
     "key_topics": [
       "design-md-generator",
@@ -25,9 +34,9 @@
       "cardinal",
       "rules",
       "card",
-      "holds",
-      "files",
-      "cardinal-rules-card"
+      "implementation",
+      "plan",
+      "technical"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -185,7 +194,7 @@
     ],
     "causal_summary": "`assets/` holds 3 files — `cardinal-rules-card.md`, `design-md-prompt-template.md`, `source-of-truth-router-card.md` — none of which was part of the 014 program's seed sample",
     "created_at": "2026-07-27T15:10:01.812Z",
-    "last_save_at": "2026-09-03T22:18:18.735Z",
+    "last_save_at": "2026-09-11T04:35:43.456Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -194,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bae59f2f685078f0c23c95d887bc84d1a4f059a06b3c2915913d966d5c12dc56",
+    "source_fingerprint": "sha256:55ece760faf462a959cc6473327076c16f3f3bc3e16abc16cdfa031b26009046",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "46806a449628cb5971fc676a34877efdd434c6e82e9171c944d390c45a43afc0",
-      "plan.md": "e9a92bff75e3aba93b71ef827ff09110f7c8819bd0d223c88d015f3bdb7c7c96",
-      "tasks.md": "b47d32709676a8b32602c982b2b9d4ae836386cca9ee45873354bc0c39d14fc4",
-      "implementation-summary.md": "dcb245f6685a95eb63e9ce548b2927ba4d8134c65c746fcbb30cd3fefbe440a5"
+      "plan.md": "6e9e542fa7b1ab14ee14016ba483cf984b0b2c86fafde89c2ec3dd280c212033",
+      "tasks.md": "4cdc98d7f023ba10fd313a094eaabb1260d637a4f1137e4c4d16acf3a394eb39",
+      "implementation-summary.md": "47cd0b67b096e6d62cb237beafb6ba11f13e85643390ad8a9f5ce2e9b527b7f0"
     },
     "last_active_child_id": null,
     "last_active_at": null

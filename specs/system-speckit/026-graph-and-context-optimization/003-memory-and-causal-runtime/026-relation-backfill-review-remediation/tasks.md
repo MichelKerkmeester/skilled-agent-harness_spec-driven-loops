@@ -14,7 +14,11 @@ _memory:
     completion_pct: 90
     open_questions: []
     answered_questions: []
-trigger_phrases: []
+trigger_phrases:
+  - "task breakdown"
+  - "implementation tasks"
+  - "verification checklist"
+  - "task dependencies"
 ---
 # Task Breakdown: Relation-Backfill Review Remediation
 

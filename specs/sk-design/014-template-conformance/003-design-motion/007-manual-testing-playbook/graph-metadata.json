@@ -13,7 +13,16 @@
     "trigger_phrases": [
       "design-motion manual-testing-playbook conformance",
       "motion playbook template audit",
-      "motion procedure-card-contract structure"
+      "motion procedure-card-contract structure",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies",
+      "implementation summary"
     ],
     "key_topics": [
       "design-motion",
@@ -25,9 +34,9 @@
       "audit",
       "procedure-card-contract",
       "structure",
-      "largest",
-      "folder",
-      "root"
+      "implementation",
+      "plan",
+      "technical"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -185,7 +194,7 @@
     ],
     "causal_summary": "`manual-testing-playbook/` is the largest folder in `design-motion`: a root `manual-testing-playbook.md` plus 7 subdirectories (`advanced-craft/`, `decision/`, `micro-interactions/`, `presence/`, `procedure-card-contract/`, `reduced-motion/`, `strategy/`) holding 13 further files, 14 total",
     "created_at": "2026-07-27T14:53:14.129Z",
-    "last_save_at": "2026-09-03T22:18:11.014Z",
+    "last_save_at": "2026-09-11T04:35:42.499Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -194,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:791a2d437dd5494e67ed32ec2bbbd70cff98536b1681b6a2483f58f1d80c4390",
+    "source_fingerprint": "sha256:b352ea90523f9919b3fe8ecfbe6e7efe058458033d8f08f09f90cc63526060e9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2318392f54432dd011c8ab3659b1c6a515a5d22731029fdeb85a6edb8ad84100",
-      "plan.md": "cf5abd6217ccb5135330ee64f3c7ab2959fc6af765aa978f9123eb6b8f15471a",
-      "tasks.md": "e31118414c613ff0322fa5a11b029c5d52e84c91858f867672ab81e5afe43339",
-      "implementation-summary.md": "15188955152221f0258ea668f15e4af93fb8dafa185b3b730b34d280fedd7b15"
+      "plan.md": "8d4217d37672b5486f5a68ac60853b8dd395eee7d2ef5b77981ef0a17344f7e8",
+      "tasks.md": "c1b2ea58ee78bfd1cb77313e5894ccb71960929a990588b5a7baf07bb538e77c",
+      "implementation-summary.md": "e5a387c75bc60aba29f067f87080063709bb9117add1145bf604ff182ab47b41"
     },
     "last_active_child_id": null,
     "last_active_at": null

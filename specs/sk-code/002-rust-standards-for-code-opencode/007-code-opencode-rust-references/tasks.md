@@ -2,7 +2,11 @@
 title: "Tasks: Phase 7 — Split code-opencode Rust References"
 description: "Task checklist with evidence for the code-opencode Rust reference split + router rewire."
 contextType: "implementation"
-trigger_phrases: []
+trigger_phrases:
+  - "task breakdown"
+  - "implementation tasks"
+  - "verification checklist"
+  - "task dependencies"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 # Tasks: Phase 7 — Split code-opencode Rust References

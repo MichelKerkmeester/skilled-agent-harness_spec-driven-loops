@@ -15,9 +15,14 @@
       "behavior framework schema v2",
       "direct-dispatch evidence",
       "boundary violation bucket",
-      "command behavior evaluator implementation",
-      "behavior benchmark schema v2 complete",
-      "DAB v1 golden regression"
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies"
     ],
     "key_topics": [
       "command",
@@ -31,7 +36,7 @@
       "violation",
       "bucket",
       "implementation",
-      "benchmark"
+      "plan"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -192,7 +197,7 @@
     ],
     "causal_summary": "Adds shared behavior-benchmark framework schema v2 with direct-dispatch evidence, outcome probes, setup-misbind detection, and fixture-boundary evidence, while preserving the existing DAB-001 to 011 scores under backward-compatible v1 parsing.",
     "created_at": "2026-07-14T20:36:59.716Z",
-    "last_save_at": "2026-09-03T22:20:12.572Z",
+    "last_save_at": "2026-09-11T04:38:01.185Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,12 +206,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:99329d7e3c667232a745cb9a069824b54b3b2926561cd7c1de5e6b29c1c15e39",
+    "source_fingerprint": "sha256:4474c486df1a5afa380d557d82ca1c3fb6c3a38c2c5b1750daafee08c5ece805",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7e313ba5ea62dd9aa3a68584c44e45c2b7fce5ec6f347c896d489e91d51f979f",
-      "plan.md": "50eea4de90eb0da2674192b27bf84d38a0de5a37938f82ff23ddb10d073996c2",
-      "tasks.md": "8f4aba2ec779c7a1df90765da84ac2cd4f5a2af1b0f499e580a1d14118078aa6",
+      "plan.md": "dd73393a16c2f5c5ca94bd55d781663666f547c20c41a07dd82b122d23f600a7",
+      "tasks.md": "3816804f266c066d70950facdaf439321cc33ff4e6837a928c3b930322db32d5",
       "implementation-summary.md": "153ee43f278789e37e3033b9454b81009d9f5ec4930711e927f1022a6588f6ff"
     },
     "last_active_child_id": null,

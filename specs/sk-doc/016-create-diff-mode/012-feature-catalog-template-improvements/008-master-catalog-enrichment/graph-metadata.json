@@ -12,20 +12,25 @@
     "related_to": []
   },
   "derived": {
-    "trigger_phrases": [],
+    "trigger_phrases": [
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy"
+    ],
     "key_topics": [
+      "implementation",
+      "plan",
+      "technical",
+      "approach",
+      "architecture",
+      "decisions",
+      "testing",
+      "strategy",
       "master",
       "files",
       "remaining",
-      "stale",
-      "references",
-      "small",
-      "scope",
-      "edits",
-      "phase",
-      "catalog",
-      "enrichment",
-      "skills"
+      "stale"
     ],
     "importance_tier": "normal",
     "status": "planned",
@@ -109,18 +114,18 @@
     ],
     "causal_summary": "Add trigger_phrases and last_updated to all 3 master feature_catalog.md files. Fix any remaining stale references. Small scope — 3 files, AI edits.",
     "created_at": "2026-07-09T10:02:46.152Z",
-    "last_save_at": "2026-09-03T22:18:58.810Z",
+    "last_save_at": "2026-09-11T04:36:15.514Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md"
     ],
-    "source_fingerprint": "sha256:cf3157fd3814193b7e55b976021c1b8e8e9a742a4caa94346f66b08864e62370",
+    "source_fingerprint": "sha256:230b199224378a5e0e70d4480f588b36c0b986d4b636d3c8c9f479bc97611971",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9db91d3212c5feb1668d583338af23bdb18b379be9d504187075cbcfeb8782bf",
-      "plan.md": "ad5e3c69d7449bd9cce5a88f8b49ea7079ce301987a9b24d23dae481faa35d1d"
+      "plan.md": "5363d5d6fe2dbe055ef3a67dd2f065a167657745ac5e8f27e9b6a9ee6cb65062"
     },
     "last_active_child_id": null,
     "last_active_at": null

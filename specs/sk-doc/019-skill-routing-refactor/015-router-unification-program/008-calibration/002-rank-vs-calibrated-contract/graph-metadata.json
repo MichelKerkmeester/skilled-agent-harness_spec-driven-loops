@@ -18,7 +18,11 @@
       "calibration certificate build approach",
       "estimatedError projection invisibility plan",
       "rank vs calibrated contract tasks",
-      "calibration certificate task list"
+      "calibration certificate task list",
+      "implementation summary",
+      "what shipped",
+      "validation evidence",
+      "continuation notes"
     ],
     "key_topics": [
       "rank",
@@ -190,7 +194,7 @@
     ],
     "causal_summary": "The compiled evaluator (`002`) already carries `rankScore`/`scoreMargin` as evidence inside a `route` decision (synthesis §2.3)",
     "created_at": "2026-07-18T13:13:18.421Z",
-    "last_save_at": "2026-09-03T22:19:04.441Z",
+    "last_save_at": "2026-09-11T04:36:26.845Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2f4b85ebee94561ee6f6a77ccd5e7d10bb75b15b7c67c3b541f538aab7966feb",
+    "source_fingerprint": "sha256:1f5b84c3778292829017ade298246bd1c39f91e394ef74d8743be69bc7f66eda",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d6a6daf546b18c4e57ccb7c0d11bbaf2d677c5fdf5f1a6e7ac0bf4b89dbf9cb0",
       "plan.md": "0c784d2eca2cc4ea75764f2998bcc78edceafa744f43a42bff45db749d5427fa",
       "tasks.md": "4ec3622b6651ea7eeb2194b3bc94e1506c86dda7531a2999e97947b8450f29fa",
-      "implementation-summary.md": "c856b84d33fa2684d0de1c06ab349b9b4999e00624a87294d60aae8acf350bbc"
+      "implementation-summary.md": "adb9be1a39d1219c86c76490ddc0d61524a0a9bc6a28c0205f818d13dfbc3b1a"
     },
     "last_active_child_id": null,
     "last_active_at": null

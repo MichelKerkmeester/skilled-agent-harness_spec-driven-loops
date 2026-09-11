@@ -3,7 +3,11 @@ title: "Implementation Summary: sk-design Structure & Naming Cleanup"
 description: "What was cleaned up in sk-design and the verification evidence."
 importance_tier: "important"
 contextType: "general"
-trigger_phrases: []
+trigger_phrases:
+  - "implementation summary"
+  - "what shipped"
+  - "validation evidence"
+  - "continuation notes"
 ---
 # Implementation Summary: sk-design Structure & Naming Cleanup
 

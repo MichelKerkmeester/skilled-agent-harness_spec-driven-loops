@@ -16,7 +16,11 @@ _memory:
       - ".opencode/skills/sk-doc/shared/scripts/validate_document.py"
       - ".opencode/skills/sk-doc/shared/scripts/quick_validate.py"
       - ".opencode/skills/sk-doc/shared/assets/template_rules.json"
-trigger_phrases: []
+trigger_phrases:
+  - "implementation plan"
+  - "technical approach"
+  - "architecture decisions"
+  - "testing strategy"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 

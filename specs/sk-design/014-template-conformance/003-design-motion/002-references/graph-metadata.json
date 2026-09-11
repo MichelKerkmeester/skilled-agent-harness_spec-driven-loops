@@ -13,7 +13,16 @@
     "trigger_phrases": [
       "design-motion references conformance",
       "motion-strategy separator discipline",
-      "advanced-craft H2 casing"
+      "advanced-craft H2 casing",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies",
+      "implementation summary"
     ],
     "key_topics": [
       "design-motion",
@@ -24,10 +33,10 @@
       "discipline",
       "advanced-craft",
       "casing",
-      "holds",
-      "flat",
-      "files",
-      "governed"
+      "implementation",
+      "plan",
+      "technical",
+      "approach"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -185,7 +194,7 @@
     ],
     "causal_summary": "`references/` holds 7 flat files, all governed by `skill-reference-template.md`",
     "created_at": "2026-07-27T14:53:13.117Z",
-    "last_save_at": "2026-09-03T22:18:00.856Z",
+    "last_save_at": "2026-09-11T04:35:41.723Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -194,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ed843a037399e0f8f299b58288fb13e97507b38a8d54c24ff93318356ad356a7",
+    "source_fingerprint": "sha256:79fecf7405e54b46be20173020a0c57b36b6347e31f446cdbb27e26a35f2762c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ba4af6360235e931624aa639130ecc6065a414fda19692485af0fcdaa83b7aa1",
-      "plan.md": "9bcee22cc337e353836c8805493212b47d64ed35b3612a895e4afd82fdcb0e02",
-      "tasks.md": "b8ad6964d18940f2d6e3c28141df034662da2cf824104a5b94ebdf1b81ca2dc8",
-      "implementation-summary.md": "6af534f963625e160c77d0dead40c7cdf9ec2387551d288fec0b980e7cab335f"
+      "plan.md": "8e5706ea96a420108919beb6f5a97e1a4bb980dc6b549c562c72cbc0baf92dc2",
+      "tasks.md": "95aba307feb411fe67340e87013394edf87f321771cbdfb8ee5b90d69bd766ab",
+      "implementation-summary.md": "47823a7cc2d56a7b27763c2216320cbcaf7d89e0796eb0bbffeff3bf9377d631"
     },
     "last_active_child_id": null,
     "last_active_at": null

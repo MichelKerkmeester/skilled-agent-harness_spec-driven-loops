@@ -14,7 +14,15 @@
       "research cli pi bridge cursor devin",
       "pi models oauth cursor devin feasibility",
       "native pi model bridge research",
-      "expose cursor devin models in pi research"
+      "expose cursor devin models in pi research",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies"
     ],
     "key_topics": [
       "research",
@@ -28,7 +36,7 @@
       "native",
       "model",
       "expose",
-      "lists"
+      "implementation"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -190,7 +198,7 @@
     ],
     "causal_summary": "`cli pi` lists models in its own `/model` picker from pi's provider roster",
     "created_at": "2026-08-17T09:56:22.263Z",
-    "last_save_at": "2026-09-03T22:15:34.114Z",
+    "last_save_at": "2026-09-11T04:34:32.177Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,13 +208,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:74962ef700b2d65379ec77fa4739369c243285c9bf1fd0263919857ead436e13",
+    "source_fingerprint": "sha256:6a9c494a005336e3e258e8fcf43f32e9ba35c3465463acc10822ce5aa0be31c5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "320ecd6fc287fc7c4568c9051c004f6ee425865018fdcb946023e9d012a1fbb6",
-      "plan.md": "c10366bc60bb8007d00fe6bac6dcf3e2aeace5b1896748ec758a38bcd90c024d",
-      "tasks.md": "623996196ce447c0f5b227d2b6470e8a626bcd31340dc6b1a6c4ce918042cfae",
-      "implementation-summary.md": "f7747d3f902e84f0e6d5a71434ae663aad916e3a229ba39503be5fb8960abb35",
+      "plan.md": "f5ff33a4dbc1b8fee3ac73494deea7c4342cdd0aaa3c366944aa45ddddbeec7c",
+      "tasks.md": "0114c08cb7e769e6161c59f5be4efb69a862424185081b7d6e47ab2056325eff",
+      "implementation-summary.md": "0a8e5eea2a47fe7c1d0daf24fe6c85309c6f3bea2970af09dea119379513e3ce",
       "research/research.md": "8cbc154a449135dc8395f55d4718408d12db487a9209f5e952c46502308d2dbb"
     },
     "last_active_child_id": null,

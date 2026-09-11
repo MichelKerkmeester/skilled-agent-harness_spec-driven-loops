@@ -15,8 +15,14 @@
       "pin deepseek flash to max effort",
       "flash max only fan-out",
       "cli-pi cli-opencode flash thinking pin",
-      "deepseek flash max pin summary",
-      "flash thinking pin fan-out summary"
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies"
     ],
     "key_topics": [
       "deepseek",
@@ -29,8 +35,8 @@
       "fan-out",
       "cli-pi",
       "cli-opencode",
-      "summary",
-      "operator"
+      "implementation",
+      "plan"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -189,7 +195,7 @@
     ],
     "causal_summary": "Operator policy: DeepSeek V4 Flash may be dispatched only at its max thinking tier — never at a lower effort (high/low/off) and never non-thinking",
     "created_at": "2026-08-16T16:53:59.878Z",
-    "last_save_at": "2026-09-03T22:15:30.827Z",
+    "last_save_at": "2026-09-11T04:34:32.445Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,12 +205,12 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:701ae535929f4e25b62c45861be677ec9b341f717524742b615e9babdbd9bf7d",
+    "source_fingerprint": "sha256:a4796f4bd9c79c2d46f4553e93e84aec7b122f848cdf40d1c7ce26dafc88f9e0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b0684a73ad1c5a567c79ca2d8f810d1a7783e714c1989ee3dc9f513056d45289",
-      "plan.md": "e00dc112ac67a5cb87b6d3f8622b95cab3bf5e42f0e804bb9c9021f4c83a0099",
-      "tasks.md": "e8fe434a33d63483207b5c8a9de891a351b6a3f89241713edd506e94b90e4e27",
+      "plan.md": "38b2a494983e431a5921a5dc0c19580cf24e715a7f18936eb687b57dc62b9cb4",
+      "tasks.md": "7842f2bbab45b0f94ea8c1b3b6d1408d5d07e5c066ad602b56942b3fbbc257fc",
       "decision-record.md": "349b911c064f90e6b25dd590ded0f628779a06634ae598e9ec7b43d3ee383eb0",
       "implementation-summary.md": "c92a3f1fef547a9612819f69d94e1e5d27ecf271d882542c7ad6cdc3d181a5a5"
     },

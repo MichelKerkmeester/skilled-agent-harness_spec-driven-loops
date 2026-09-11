@@ -13,7 +13,16 @@
     "trigger_phrases": [
       "external-cli runtime wiring",
       "external-cli entrypoint",
-      "per-engine cli command table"
+      "per-engine cli command table",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies",
+      "implementation summary"
     ],
     "key_topics": [
       "external-cli",
@@ -24,10 +33,10 @@
       "cli",
       "command",
       "table",
-      "phase",
-      "delivered",
-      "provider",
-      "tested"
+      "implementation",
+      "plan",
+      "technical",
+      "approach"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -188,7 +197,7 @@
     ],
     "causal_summary": "Phase 005 delivered the external-cli provider as a tested package path, but command 2's Branch B still dispatches to a cli- skill ad-hoc",
     "created_at": "2026-08-19T07:26:19.954Z",
-    "last_save_at": "2026-09-03T22:17:19.761Z",
+    "last_save_at": "2026-09-11T04:35:23.767Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +206,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:adf2e39a3f1f734551a65fddc896aba9fd941f88875d912a141b5741d98d24e2",
+    "source_fingerprint": "sha256:ab3d40495951b0335151a7e6a3d3cb69cd88ec1230519f6ad6710bfc7e7c635a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5d75b4b3051b7204231a11c7c6e6cfd484be0d7a97260243586641c460563b65",
-      "plan.md": "382a4a51e10f9b2c85b4c7b6d8b36691991afb0fcce761aa36661149d6e7d72d",
-      "tasks.md": "b7ba653d2dc9c33d6559f66bb57318cd95db167e20ad89d60e56de44fea859bc",
-      "implementation-summary.md": "5a1e11e031973fdd2885bd7c71c6e5228f2e7a01bbb23171a86ee778adaf4c9e"
+      "plan.md": "247db57ac65d824ffba8571d675b12a45dd89c14e2dfb4de42ee7627b73cb5c9",
+      "tasks.md": "10e51f2a965add4e25980c558c73b077518d9e9e963d39d1dae37af466558d7c",
+      "implementation-summary.md": "4da0edb94b419f1761e85826500b00fb3ce4a6f02e9839cab7971c7e6f08480e"
     },
     "last_active_child_id": null,
     "last_active_at": null

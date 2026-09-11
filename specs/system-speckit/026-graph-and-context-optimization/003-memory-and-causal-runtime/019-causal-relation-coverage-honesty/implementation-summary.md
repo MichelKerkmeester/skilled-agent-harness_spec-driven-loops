@@ -15,7 +15,11 @@ _memory:
     open_questions: []
     answered_questions:
       - "Full relation-inference backfill is a future feature."
-trigger_phrases: []
+trigger_phrases:
+  - "implementation summary"
+  - "what shipped"
+  - "validation evidence"
+  - "continuation notes"
 ---
 # Implementation Summary: Causal Relation-Coverage Reporting Honesty
 

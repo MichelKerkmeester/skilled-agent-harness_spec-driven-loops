@@ -3,7 +3,11 @@ title: "Tasks: Clean-Room License Audit (012/001)"
 description: "Task list for the P0 license-audit gate."
 importance_tier: "important"
 contextType: "implementation"
-trigger_phrases: []
+trigger_phrases:
+  - "task breakdown"
+  - "implementation tasks"
+  - "verification checklist"
+  - "task dependencies"
 ---
 # Tasks: Clean-Room License Audit (012/001)
 

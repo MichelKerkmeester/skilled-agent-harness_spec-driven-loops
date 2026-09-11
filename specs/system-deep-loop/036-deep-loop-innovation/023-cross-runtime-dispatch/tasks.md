@@ -10,7 +10,11 @@ _memory:
     last_updated_by: "claude"
     recent_action: "Implemented + reconciled contracts; tasks complete pending whole-suite gates"
     next_safe_action: "Run whole-suite gates; commit"
-trigger_phrases: []
+trigger_phrases:
+  - "task breakdown"
+  - "implementation tasks"
+  - "verification checklist"
+  - "task dependencies"
 ---
 # Tasks: Retire the deep/* Dispatch-Context (Phase-0) Gate
 

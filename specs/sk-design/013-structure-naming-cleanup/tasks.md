@@ -3,7 +3,11 @@ title: "Tasks: sk-design Structure & Naming Cleanup"
 description: "Phased task breakdown for the sk-design structure/naming cleanup."
 importance_tier: "standard"
 contextType: "general"
-trigger_phrases: []
+trigger_phrases:
+  - "task breakdown"
+  - "implementation tasks"
+  - "verification checklist"
+  - "task dependencies"
 ---
 # Tasks: sk-design Structure & Naming Cleanup
 

@@ -12,7 +12,17 @@
   "derived": {
     "trigger_phrases": [
       "number-agnostic playbook loader",
-      "no-new-numbered-snippet guard"
+      "no-new-numbered-snippet guard",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies",
+      "implementation summary",
+      "what shipped"
     ],
     "key_topics": [
       "number-agnostic",
@@ -20,13 +30,13 @@
       "loader",
       "no-new-numbered-snippet",
       "guard",
-      "phase",
-      "numbered-snippet-filename",
-      "deprecation",
-      "program",
-      "spec",
-      "lane",
-      "re-base"
+      "implementation",
+      "plan",
+      "technical",
+      "approach",
+      "architecture",
+      "decisions",
+      "testing"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -168,7 +178,7 @@
     ],
     "causal_summary": "Phase 001 of the numbered-snippet-filename deprecation program (026).",
     "created_at": "2026-07-11T14:47:54.151Z",
-    "last_save_at": "2026-09-03T22:18:41.416Z",
+    "last_save_at": "2026-09-11T04:36:08.589Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -177,13 +187,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f7947e06d8a86d33f4258c475e9503cfef1b921919570802bf5cb0028cc23e23",
+    "source_fingerprint": "sha256:301f887a3a7548df1e9e78ef724cbc70899870cf09ada9a685933de52718d7a8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a73c8aed79b47d44b0127aebfcca44f5188611b256cbf623a3a80a4db71c9149",
-      "plan.md": "68f21def0f1d9789fc8cdf9630627a3312630239c6544f7dd92f1c936e641fea",
-      "tasks.md": "8cc656a9eee4fbe12ab571464d74bb987296c805712e10e0e272f40b0e1b44a6",
-      "implementation-summary.md": "b874ef1b1f4c37b64034acbcce0e33fa14f017fd36630853fd82743aa8c8110e"
+      "plan.md": "eb05cd4f6f317273783ee3e9bbece993b2c63c9a9ba078eb26b196086ba8749b",
+      "tasks.md": "836f47c9329b09df525c89fd4a71f4e984362ed06276d1158905c88e94343205",
+      "implementation-summary.md": "bbe22c9ec982370b4125f0e6fa749385b57731f8d6ef021fee166ae770a8c88d"
     },
     "last_active_child_id": null,
     "last_active_at": null

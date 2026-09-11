@@ -14,8 +14,15 @@
       "rename fallout remediation",
       "compiled routing drift",
       "stale create-skill import",
-      "router-sync stale import fixed",
-      "compiled routing operator-gated"
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies",
+      "router-sync stale import fixed"
     ],
     "key_topics": [
       "rename",
@@ -27,9 +34,9 @@
       "stale",
       "create-skill",
       "import",
-      "router-sync",
-      "operator-gated",
-      "close"
+      "implementation",
+      "plan",
+      "technical"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -169,6 +176,12 @@
         "source": "derived"
       },
       {
+        "name": "trigger_phrases:   -",
+        "kind": "quoted",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Summary",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
@@ -179,17 +192,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "What Was Built",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Close the three rename-fallout follow-ups the LUNA review surfaced: a stale pre-rename test import, sk-doc compiled-routing drift, and the blocked strict-validation dist.",
     "created_at": "2026-07-29T16:39:37.878Z",
-    "last_save_at": "2026-09-03T22:19:36.051Z",
+    "last_save_at": "2026-09-11T04:36:38.323Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,12 +206,12 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:1eb95bd4bfc8bc702e74d4f21a8ba25802c24c3d3d2ba636a7eb837f9ad56c9a",
+    "source_fingerprint": "sha256:623707b9261de3c0ac32bfc7c9072569db82ac47739b9218d8d0ff362e49e530",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e06b284bbd6f2dafacf419bcd3c4e9ef984d3bd8afaa87af26505adc1424a7e2",
-      "plan.md": "0f154793b5972e2c26aa07b3c86b000d0af858ca5577b083d2e6ff1a3a3b28c6",
-      "tasks.md": "3de64a57c3444573ed5d96c47ff27847cfdcbc2eb9f1e63c0ac7aab2f35479bb",
+      "plan.md": "aa48d5de9b06b4d71eaf40e57b3c63183771def65ecf5aeccc9df8f25bcc92e1",
+      "tasks.md": "99f7126fb3884d8bdd351fd44bc6be61f8e9962f1b31f66874ea2875a4f12c67",
       "implementation-summary.md": "bbe833ea30a78eede0ee094fbc3d5599d2e8b14b91d1a915bc3720632b9d55fb",
       "handover.md": "1cb86d8f3d8b5f9909a5a64f7d1e277027faf5789164d6730456950b86eab80a"
     },

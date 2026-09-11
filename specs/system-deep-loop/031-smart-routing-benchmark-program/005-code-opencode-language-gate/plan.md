@@ -12,7 +12,11 @@ _memory:
     completion_pct: 95
     open_questions: []
     answered_questions: []
-trigger_phrases: []
+trigger_phrases:
+  - "implementation plan"
+  - "technical approach"
+  - "architecture decisions"
+  - "testing strategy"
 ---
 # Plan: code-opencode Language-Slice Intent Gate
 

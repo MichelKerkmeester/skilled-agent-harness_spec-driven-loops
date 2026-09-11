@@ -13,7 +13,11 @@ _memory:
     next_safe_action: "Proceed to phase 002."
     blockers: []
     key_files: []
-trigger_phrases: []
+trigger_phrases:
+  - "implementation plan"
+  - "technical approach"
+  - "architecture decisions"
+  - "testing strategy"
 ---
 
 # Implementation Plan: JSON Cleanup and Advisor-Metadata Conventions

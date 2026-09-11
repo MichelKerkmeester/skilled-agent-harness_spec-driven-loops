@@ -14,6 +14,14 @@
       "owned asset manifest",
       "motion character handoff",
       "measured motion section design.md",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies",
       "evidence envelopes implementation summary"
     ],
     "key_topics": [
@@ -26,9 +34,9 @@
       "measured",
       "section",
       "design",
-      "evidence",
-      "envelopes",
-      "implementation"
+      "implementation",
+      "plan",
+      "technical"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -186,7 +194,7 @@
     ],
     "causal_summary": "sk-design modes currently have no shared evidence contracts for three gaps that two independent Hallmark adoption research syntheses converged on as their highest-confidence findings: (1) there is no provider-neutral schema for describing owned assets without hotlinking or bundling third-party binaries; (2) there is no semantic vocabulary connecting motion \"character\" intent to sk-design's existing timing/easing bands; (3) the `MotionSystem` detector already produces motion evidence, but the v3 DESIGN.md schema has no output section for it — the gap is output, not detection",
     "created_at": "2026-07-20T09:21:25.442Z",
-    "last_save_at": "2026-09-03T22:17:49.457Z",
+    "last_save_at": "2026-09-11T04:35:38.282Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -195,12 +203,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:368889b59e2fc12294edc0c3c355a51ac0d3d4a5c10d16a3cacebcdafbbbaccd",
+    "source_fingerprint": "sha256:f46d7f3919986e762514e4711b2656d6035f9b81452e36938c793d44c69ed7d4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "317def499a26a38329e5c11caab2a0d9b613e85203353aff6c1e4a5a96ccaa0a",
-      "plan.md": "c68dc223bbf0c4fc54b3efc72d622780779d95cce19c336f8bd941836c842d99",
-      "tasks.md": "3dee1216eb58fd1461a312836c43cb71a5320f93d0d4661bb435d3b7a3c70d86",
+      "plan.md": "1c2fa5d9787770b8cbed9a725f41ff6446884823eefe640ae9f03f2d26c04c39",
+      "tasks.md": "3fdb08a1f33aa975f3d3fc1fb9699249063890518dd742079950344f800c9a84",
       "implementation-summary.md": "bfa54a8ff4038197084555c0597bc1a4920793b7a8c04f9e1553f89a7fc3ef01"
     },
     "last_active_child_id": null,

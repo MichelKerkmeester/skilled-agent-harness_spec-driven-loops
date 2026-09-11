@@ -16,7 +16,11 @@ _memory:
       - ".opencode/skills/system-deep-loop/deep-alignment/scripts/scoping.cjs"
       - ".opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-doc.cjs"
       - ".opencode/commands/scripts/validate-command-references.cjs"
-trigger_phrases: []
+trigger_phrases:
+  - "task breakdown"
+  - "implementation tasks"
+  - "verification checklist"
+  - "task dependencies"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 

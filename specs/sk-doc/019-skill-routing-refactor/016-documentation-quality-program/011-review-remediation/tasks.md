@@ -13,7 +13,11 @@ _memory:
     next_safe_action: "Baseline the validator corpus before changing the gate."
     blockers: []
     key_files: []
-trigger_phrases: []
+trigger_phrases:
+  - "task breakdown"
+  - "implementation tasks"
+  - "verification checklist"
+  - "task dependencies"
 ---
 
 # Tasks: Deep-Review Remediation

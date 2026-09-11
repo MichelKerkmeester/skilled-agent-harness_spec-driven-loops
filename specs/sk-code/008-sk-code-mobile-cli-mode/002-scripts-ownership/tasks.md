@@ -11,7 +11,11 @@ _memory:
     next_safe_action: "None — decision complete."
     blockers: []
     completion_pct: 100
-trigger_phrases: []
+trigger_phrases:
+  - "task breakdown"
+  - "implementation tasks"
+  - "verification checklist"
+  - "task dependencies"
 ---
 
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->

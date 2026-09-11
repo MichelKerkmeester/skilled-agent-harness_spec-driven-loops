@@ -13,7 +13,16 @@
     "trigger_phrases": [
       "de-numbering migration script",
       "dry-run rename tooling",
-      "category prefix migration diff"
+      "category prefix migration diff",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies",
+      "implementation summary"
     ],
     "key_topics": [
       "de-numbering",
@@ -25,9 +34,9 @@
       "category",
       "prefix",
       "diff",
-      "phase",
-      "numbered-prefix",
-      "deprecation"
+      "implementation",
+      "plan",
+      "technical"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -185,7 +194,7 @@
     ],
     "causal_summary": "Phase 003 of the numbered-prefix deprecation. Author one deterministic migration script that performs the whole de-numbering — git mv the 390 numbered category folders to bare slugs, rewrite the 115 frontmatter category: values, the ~1,052 root index-table path rows, the ~5,298 nav/cross-ref links across ~1,841 files, and the two SKILL.md router-prefix blocks — with a DRY-RUN mode that mutates nothing and emits a rename map, per-file diff, and safety/collision report. Honors the ADR-004 deny-list (z_archive, CHANGELOG, history, this packet's evidence). Tooling-only phase — Phase 004 runs it.",
     "created_at": "2026-07-10T18:51:12.903Z",
-    "last_save_at": "2026-09-03T22:18:34.113Z",
+    "last_save_at": "2026-09-11T04:36:08.281Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -194,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:02ec3de62cf2b69d34934c4c03528f402ab2f6ca14eae697e4aee53c2058d4b3",
+    "source_fingerprint": "sha256:0186d02c0af807e20747b56357e20e9b0a1153657ae0e2818ce734151bc5d153",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a5375d3f5bdf8f14a4ba74e9d879a84c102c5981bbb902b4332b32c378e18115",
-      "plan.md": "5f9725eaf0de5f2b21f9efb046208f14cc6ce19955591243cf4a9ef4d9f2d810",
-      "tasks.md": "fbcde18cbe49e00ca8dc7fedbc09ea58b7d56138b4fad4976fe2d5279b64f935",
-      "implementation-summary.md": "019bdcd0d35b00e65014df236e433a33d7a520c95e8964c54940fb36e45f7961"
+      "plan.md": "700d169ce8c25ee740f3681995d37ca8163024a05daf87d2c0a80ad69a1e02dc",
+      "tasks.md": "bfd11e53ed6e3dfa945bff9a75ce728418d7c4f657cef44a16b08723ee23eda6",
+      "implementation-summary.md": "3497d864dd3664561a90e9709cfc9a5801f058ecdf80c26bd986236c486da91b"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -11,7 +11,11 @@ _memory:
       - "research/research.md"
       - "spec.md"
     completion_pct: 60
-trigger_phrases: []
+trigger_phrases:
+  - "implementation summary"
+  - "what shipped"
+  - "validation evidence"
+  - "continuation notes"
 ---
 # Implementation Summary: Pi Remote Experience Parity Research
 

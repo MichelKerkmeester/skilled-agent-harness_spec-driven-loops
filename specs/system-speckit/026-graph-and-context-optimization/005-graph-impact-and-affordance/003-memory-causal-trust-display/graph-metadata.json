@@ -14,6 +14,14 @@
       "012 memory trust display",
       "memory trust badges",
       "causal edge freshness display",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies",
       "012/005 implementation summary"
     ],
     "key_topics": [
@@ -25,10 +33,10 @@
       "edge",
       "freshness",
       "implementation",
-      "summary",
-      "display-only",
-      "confidence",
-      "orphan"
+      "plan",
+      "technical",
+      "approach",
+      "architecture"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -186,7 +194,7 @@
     ],
     "causal_summary": "Display-only trust badges (confidence, extraction_age, last_access_age, orphan, weight_history) on MemoryResultEnvelope. NO schema change. NO new relations. NO storage of code/process/tool facts.",
     "created_at": "2026-04-25T10:48:09.300Z",
-    "last_save_at": "2026-09-03T22:23:12.819Z",
+    "last_save_at": "2026-09-11T04:39:45.874Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -195,12 +203,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:74b755059e72dc85aa0850c57e8a71631e0a65b678e882871eb50b732606555c",
+    "source_fingerprint": "sha256:e7203b6d64c8c54cf49fdb70550899c835043790eebade57f8ad621a5e345bfa",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d6a29933d5e02d62664017b774e02a267c6bd22cd8118d9893bd5a553564e518",
-      "plan.md": "6379ababb322c856b52b67dd05e7f91e18723408b3072ab329c5f245fc863fe1",
-      "tasks.md": "2f3a308fbf058f5f2b3d9a08afd3bc5fa8be45d728605ee48346cd87154eb973",
+      "plan.md": "6cd761458503c57a7ae7b3c2681c409351ea8e5e4b5fb62d8449143bb0cfec28",
+      "tasks.md": "edc30acb0efa0573d62d616dc6604d17e31168ed441f653d1bf6a5e178518dc8",
       "implementation-summary.md": "f2df06037513f27e2ba63bfc0ea30b7542014fc46801d7f631aac00438cb9edf"
     },
     "last_active_child_id": null,

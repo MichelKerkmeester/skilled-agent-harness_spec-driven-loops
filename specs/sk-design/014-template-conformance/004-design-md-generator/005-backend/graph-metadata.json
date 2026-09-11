@@ -13,7 +13,16 @@
     "trigger_phrases": [
       "design-md-generator backend structure conformance",
       "backend scripts tests directory rules",
-      "md-generator test suite structural audit"
+      "md-generator test suite structural audit",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies",
+      "implementation summary"
     ],
     "key_topics": [
       "design-md-generator",
@@ -185,7 +194,7 @@
     ],
     "causal_summary": "`backend/` is structurally unlike every other sk-design mode folder: it is a real TypeScript package (`package.json`, `tsconfig.json`, `tsconfig.build.json`, `vitest.config.ts`, `README.md`, `.npmignore`) with `scripts/` (29 `.ts` files) and `tests/` (19 `.ts` files + fixtures, 173 tests total)",
     "created_at": "2026-07-27T15:10:02.344Z",
-    "last_save_at": "2026-09-03T22:18:22.528Z",
+    "last_save_at": "2026-09-11T04:35:43.611Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -194,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fe34ebda9d83d40877a77736c46005e08487ab37431b241cd810e8abca949a81",
+    "source_fingerprint": "sha256:26f0e20a6a27654e66e5ab3af320c64f080c67e15dd3670d7fa68dd682193d52",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8869a2b2fbae521e744d105f729f815901751a3eb434745a8388847707465bdf",
-      "plan.md": "509e60377b495963b131802427045a418202b799052486939685bb50c41844a9",
-      "tasks.md": "d9affce25afac24919711a5cbdb9193e90384f281fcf1e1566364583e0d72383",
-      "implementation-summary.md": "eb19b89ea939279d0a099e85e5aa7e3f13054726c6220273b3a041c41c13b381"
+      "plan.md": "e366e360d3b20f784c59b20f45a250b972d50eb9af095fec299ed0bc0aa831f4",
+      "tasks.md": "38ade13c4bf8dcaca3783c6574190621c9ba9bb7550c2c508fe71fc59b86e355",
+      "implementation-summary.md": "7295271ce1a8009920b885717e2d5fe811e14d0680aea544872b6c79c66727b0"
     },
     "last_active_child_id": null,
     "last_active_at": null

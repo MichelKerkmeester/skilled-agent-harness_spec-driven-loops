@@ -14,7 +14,11 @@ _memory:
     completion_pct: 80
     open_questions: []
     answered_questions: []
-trigger_phrases: []
+trigger_phrases:
+  - "implementation plan"
+  - "technical approach"
+  - "architecture decisions"
+  - "testing strategy"
 ---
 # Implementation Plan: Causal Relation-Coverage Reporting Honesty
 

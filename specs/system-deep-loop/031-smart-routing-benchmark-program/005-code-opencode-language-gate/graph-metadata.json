@@ -13,6 +13,14 @@
     "trigger_phrases": [
       "code-opencode language gate",
       "language slice intent split",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies",
       "code-opencode language gate summary",
       "language slice split results"
     ],
@@ -23,12 +31,12 @@
       "slice",
       "intent",
       "split",
-      "summary",
-      "results",
-      "single",
-      "per-language",
-      "intents",
-      "javascript"
+      "implementation",
+      "plan",
+      "technical",
+      "approach",
+      "architecture",
+      "decisions"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -186,7 +194,7 @@
     ],
     "causal_summary": "Split code-opencode's single LANGUAGE_STANDARDS intent into per-language intents (JAVASCRIPT/TYPESCRIPT/PYTHON/SHELL) so a single-language task stops routing all four languages' guides; mirror the split into the sk-code parent projection under the existing drift guards.",
     "created_at": "2026-05-16T09:42:35Z",
-    "last_save_at": "2026-09-03T22:19:55.988Z",
+    "last_save_at": "2026-09-11T04:37:54.815Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -195,12 +203,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b47c87b6a6a1402de9a957c63082a3f22ad26d5e86ea922fbbf16732a35091b4",
+    "source_fingerprint": "sha256:9b14c2bd2c915aec009be409a35873d44f912547c50b43998294342296402275",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e049a98d9d1ee4d0be991777b2ea19c1afebad4d515db5a494fb55a149e5212b",
-      "plan.md": "6f75357ee311efd59370054e70baeb5771b6ea541fe3d22a52577436a614d639",
-      "tasks.md": "7ce218cc4347e4883e3efce91b9cec5ef9ff70e0e5b4d9bd7af731b12ea41a57",
+      "plan.md": "d51154f64512b9d9de9d141a18f6e87c1ab0069c7b000a9e2ec966522d84a119",
+      "tasks.md": "9e5cc702f86b61c30eeb88adb7661cbfb1eebdcb93b6c3a645a2f7f25337b412",
       "implementation-summary.md": "a34352c2654083aada8a7cf3ace9abf20ea8689b8ed0da8dfe9608802335ef67"
     },
     "last_active_child_id": null,

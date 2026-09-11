@@ -14,7 +14,11 @@ _memory:
     completion_pct: 85
     open_questions: []
     answered_questions: []
-trigger_phrases: []
+trigger_phrases:
+  - "task breakdown"
+  - "implementation tasks"
+  - "verification checklist"
+  - "task dependencies"
 ---
 # Task Breakdown: Relation-Inference Backfill
 

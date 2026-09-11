@@ -48,8 +48,7 @@
       "scratch/regression-baseline-pre-003.txt",
       ".opencode/skills/system-spec-kit/README.md",
       ".opencode/skills/system-spec-kit/templates/README.md",
-      ".opencode/skills/system-spec-kit/SKILL.md",
-      ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json"
+      ".opencode/skills/system-spec-kit/SKILL.md"
     ],
     "entities": [
       {
@@ -92,12 +91,6 @@
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/system-spec-kit/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "validator-registry.json",
-        "kind": "config",
-        "path": ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
         "source": "derived"
       },
       {
@@ -195,11 +188,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phases 001 and 002 shipped the lean-trio policy end-to-end: validator phase-parent branches across five rules, the new content-discipline validator, the generator pointer-write and bubble-up, the resume pointer-first redirect, the lean phase-parent template, and base documentation in CLAUDE.md, AGENTS.md, AGENTSBarter.md, AGENTSexamplefsenterprises.md, and the system-spec-kit `SKILL.md`",
     "created_at": "2026-04-27T13:30:00Z",
-    "last_save_at": "2026-08-30T15:39:27.916Z",
+    "last_save_at": "2026-09-11T04:38:43.326Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d4a24d0cd800903e10717ad9fef88670268795a06419d846507dbb3380f14f97",
+    "source_fingerprint": "sha256:ceefe6a6646e4b1928c4c3cc450c326715a8c55db21f03463616acca9434cf5b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0ef1c9d3c3f289386d4327d436e7e035f648864f72c69519cac8677edc35b075",
-      "plan.md": "a2bdc77ed2d6f1b38d8b23912c20894a6b4460574a9b059b7f61e3230582970e",
+      "spec.md": "ce52023dfe3c52581b1fba0328a2b1cb9e0ac1b9213400ee90ac42e7707e1f64",
+      "plan.md": "3f2f124f8d69bb6d49e2b3670cdecaf989281fd210e726dc3e66f2db2e6f3d96",
       "tasks.md": "9e3545b7eea38adbae3d3a79223605ba918c4277d2e2dfb498042a4735ffd33c",
-      "implementation-summary.md": "f4f4a926a63cd51dcb0565443e23e3d02c53bb96f4a333be4f5d82339ba63b46"
+      "implementation-summary.md": "19fb6147cbf7afac3fff906639bd7ae0a3fc84dcded8e3b76099ac45fb73f661"
     },
     "last_active_child_id": null,
     "last_active_at": null

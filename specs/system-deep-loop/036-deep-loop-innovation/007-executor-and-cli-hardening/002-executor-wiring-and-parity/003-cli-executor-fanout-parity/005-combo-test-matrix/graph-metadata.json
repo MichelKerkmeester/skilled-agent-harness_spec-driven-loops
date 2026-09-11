@@ -15,9 +15,14 @@
       "ambient-config isolation read-only leaf",
       "pi no-extensions read-only hardening",
       "log every credentials-gated skip",
-      "combo matrix ambient isolation progress",
-      "pi no-extensions read-only builder",
-      "read-only leaf hermetic ambient config"
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies"
     ],
     "key_topics": [
       "combo",
@@ -192,7 +197,7 @@
     ],
     "causal_summary": "Two things needed to close the fan-out parity packet",
     "created_at": "2026-07-29T15:59:11.801Z",
-    "last_save_at": "2026-09-03T22:21:04.849Z",
+    "last_save_at": "2026-09-11T04:38:25.951Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,12 +206,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0497e7797892fc11a21024cf47ea236cb40c5621535fd779fe63d2921ee5691b",
+    "source_fingerprint": "sha256:e93391eb7922bc6a8a1c291e86370c41317b765958ffbf438d27e22fd8ee1766",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "55260ea13f98d8003241f56a9cb14527280dc001fdc64e77078bb41f65ccdf78",
-      "plan.md": "0c384f59643bdb78e9ee60f75ec670e13cfb596d9aee50a473a8e6f2c4a7cbeb",
-      "tasks.md": "c8032e74c3727dbb5967ac7b5256f6243f314adc4362beb3aea59ec51c3e1570",
+      "plan.md": "a9fb7f4169d1acd2666d4757e6f5c16b8be305802d21daf49eaddf13685da227",
+      "tasks.md": "47ef1528377ffc18eacbe15abdbec69317a0f1920b452c6f6f9bfb5b7e902094",
       "implementation-summary.md": "a444aee130a666ec3b882923364318bc17f120e1250f32ad8ee31f4a459572d3"
     },
     "last_active_child_id": null,

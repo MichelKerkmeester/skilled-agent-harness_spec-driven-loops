@@ -13,7 +13,16 @@
     "trigger_phrases": [
       "design-motion assets conformance",
       "motion assets template audit",
-      "motion fill-in cards conformance"
+      "motion fill-in cards conformance",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies",
+      "implementation summary"
     ],
     "key_topics": [
       "design-motion",
@@ -24,10 +33,10 @@
       "audit",
       "fill-in",
       "cards",
-      "holds",
-      "files",
-      "animate-presence-checklist",
-      "motion-pattern-cards"
+      "implementation",
+      "plan",
+      "technical",
+      "approach"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -185,7 +194,7 @@
     ],
     "causal_summary": "`assets/` holds 3 files — `animate-presence-checklist.md`, `motion-pattern-cards.md`, `motion-performance-failure-card.md` — none of which was part of the 014 program's seed sample",
     "created_at": "2026-07-27T14:53:13.315Z",
-    "last_save_at": "2026-09-03T22:18:02.933Z",
+    "last_save_at": "2026-09-11T04:35:42.003Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -194,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:467c8b33516df90ad167a2a5808e2a1cebacb106af381fabfd514abf7b1e12eb",
+    "source_fingerprint": "sha256:6ab1e9aacae55b54899c832b0057524d7141c079ccecb88d63a09154d3e049f2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "dbffca594c6485fb2805495ac072ea0732af649509321bc6440c130926a3121e",
-      "plan.md": "3f3cfe171e9ad3bd7abbfc81c3c4def89e7fd2589aacf64f492a927486edbb07",
-      "tasks.md": "e5f3617e330c8bd2ec80849c6c75d9688db073a7bd9b8f9825d028d5d8775949",
-      "implementation-summary.md": "3020d28ddee74c513c10a03ec0079caa235bafedc81daac8070a0e9b58b659e8"
+      "plan.md": "00941370f80ac42816e1e8d9846e26b9321e6e78c75c9eda44390342aa8cdbdf",
+      "tasks.md": "0278a91411ebf6d53877e9f7939d74d1e7ca9697d652a158b73482e9bca2fde1",
+      "implementation-summary.md": "991497329c0faffa10c471c67e4110d3f89ee3183874c98883396983021c34cb"
     },
     "last_active_child_id": null,
     "last_active_at": null

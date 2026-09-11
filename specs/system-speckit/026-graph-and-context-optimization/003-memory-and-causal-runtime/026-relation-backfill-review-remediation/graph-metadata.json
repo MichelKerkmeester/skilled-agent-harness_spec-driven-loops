@@ -21,10 +21,10 @@
       "relation backfill remediation plan",
       "conflict guard implementation",
       "backfill honest delta counting",
-      "relation backfill remediation decision",
-      "suppress contradicts emission vs detector",
-      "relation agnostic conflict guard decision",
-      "backfill delta counting decision"
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies"
     ],
     "key_topics": [
       "relation",
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "`collectSupersessionEdges` emits `contradicts` for predecessor->successor, and `collectLineageEdges` emits `caused` for the SAME directed pair because lineage is reciprocal (`A.supersededby=B` AND `B.predecessor=A`)",
     "created_at": "2026-06-04T14:30:00Z",
-    "last_save_at": "2026-09-03T22:23:08.897Z",
+    "last_save_at": "2026-09-11T04:39:45.358Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,14 +207,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6dd7dbf745aa92e3a3f0936767fbd87579a0c994384256b090a953b121cc4fb9",
+    "source_fingerprint": "sha256:a395b9d6ed3a82498cdc1f2d502a2da10a0bb57f10415a05a138854897984b93",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9bdc24c6231d41b045f5dd96e92af176f02e4e7035ce3e61923a003cb7fdbd05",
       "plan.md": "6fc2b1aeaa77f73fa61134bac0fe1e9914b08b5e31a04f740bf7c534230f927c",
-      "tasks.md": "9817feb845c14fb86f4d63e16fd7d470b1ee508a00116949a9cbde8adf063f4c",
+      "tasks.md": "0f3cb7e4c97d025be1b77547bed39d4683b5f2d4f953d6c2d454f309f1a0ed54",
       "decision-record.md": "8023dc8b0a283e8e8689dc56052575decb01a8832c321689d95d8f5eeb9dc4d9",
-      "implementation-summary.md": "5e53a70c9e37d94004db05ddff930c46ea6a2ff6b76dfc233094d8982d603dc7"
+      "implementation-summary.md": "87a9a4e4f1e7a4b8947eb2811b5d295dd1a673aa303bbe42cfe49095f5f47a66"
     },
     "last_active_child_id": null,
     "last_active_at": null

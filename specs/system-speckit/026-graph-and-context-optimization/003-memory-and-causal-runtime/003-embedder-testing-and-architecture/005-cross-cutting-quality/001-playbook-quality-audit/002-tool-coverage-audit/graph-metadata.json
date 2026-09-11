@@ -11,21 +11,32 @@
   },
   "derived": {
     "trigger_phrases": [
-      "017/002 tool-surface coverage audit"
+      "017/002 tool-surface coverage audit",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies",
+      "implementation summary",
+      "what shipped",
+      "validation evidence"
     ],
     "key_topics": [
       "tool-surface",
       "coverage",
       "audit",
-      "cross-reference",
-      "mk-spec-memory",
-      "mcp",
-      "tools",
-      "against",
-      "pre-expansion",
-      "playbook",
-      "scenarios",
-      "classify"
+      "implementation",
+      "plan",
+      "technical",
+      "approach",
+      "architecture",
+      "decisions",
+      "testing",
+      "strategy",
+      "task"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -184,7 +195,7 @@
     ],
     "causal_summary": "Cross-reference the 42 mk-spec-memory MCP tools against pre-expansion playbook scenarios and classify coverage gaps.",
     "created_at": "2026-05-17T12:59:59Z",
-    "last_save_at": "2026-09-03T22:22:44.572Z",
+    "last_save_at": "2026-09-11T04:39:23.983Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -193,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ffba98cd52dcf692e9c5cf159f5c06d17ae0dccb04dd9a3019bced29ff5a34fb",
+    "source_fingerprint": "sha256:c37bde1258f8483c8b55dec6f82e28289c54622cb433053f8b1b657048d07a97",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d91485692740b731bf2a9bbfa82374fa255a40c30b52f6fc24cd6bd0d7af8490",
-      "plan.md": "c7ffb5b236ec361aa44f3ef561a9be1deb41a7ca63d9c9b4961191b45e0cb879",
-      "tasks.md": "fd94a2fc518dec065a95105b9b8e126bbf39ae9818238fc645fe393c648ad631",
-      "implementation-summary.md": "f8b75228f26cb814ffaf3640f2fdbe38008777e3ed47fde9a0449e6eb2b0a4f0"
+      "plan.md": "5399a214e33df7b08b51f98e478540e04007c8dc57627d21ea7609476d99d254",
+      "tasks.md": "8c8c73236110c823fa4783b52b2493bd894ecb69b5a18f89230b9e7908131c2d",
+      "implementation-summary.md": "c2dafe4d315b4bca09365a5cd7546e178d84b75b0f4c5d6a763dc625c99ff0cd"
     },
     "last_active_child_id": null,
     "last_active_at": null

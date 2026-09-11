@@ -16,7 +16,11 @@ _memory:
     key_files:
       - ".opencode/skills/system-deep-loop/shared/behavior-benchmark/behavior-bench-run.cjs"
       - ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
-trigger_phrases: []
+trigger_phrases:
+  - "task breakdown"
+  - "implementation tasks"
+  - "verification checklist"
+  - "task dependencies"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 

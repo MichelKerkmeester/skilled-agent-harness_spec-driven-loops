@@ -15,7 +15,14 @@
       "dark-flag-graduation winner scenario coverage",
       "benchmark coverage gaps",
       "conditional graduation",
-      "production readiness of graduated flags"
+      "production readiness of graduated flags",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist"
     ],
     "key_topics": [
       "dark",
@@ -197,7 +204,7 @@
     ],
     "causal_summary": "The 007 Dark Flag Graduation Suite returned GRADUATE verdicts for 4 clusters (9 flags) across multihop tail-appends, code-graph staleness repair and bitemporal reads, advisor RRF fusion and conflict-rerank, and deep-loop finding dedup and gauges",
     "created_at": "2026-06-24T15:37:46.751Z",
-    "last_save_at": "2026-09-03T22:23:53.399Z",
+    "last_save_at": "2026-09-11T04:40:42.154Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +214,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:915e1edd3b0ba13fc4ffcf9a624ab1a9e7c3b90ebcf7d1b939735191fa131fcf",
+    "source_fingerprint": "sha256:5d774abdb81fd730da9705ca689f46810016d00dd3974881cb0dec35c5fb7cf6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "61bded23a8cc834d8af27061e0215fa75e44ddf8a1df8547ed124818af29b2e8",
-      "plan.md": "3382f9cee2754848c84ceff2a2ac0216fcec7af91454e9bd9b8418cda1950d2a",
-      "tasks.md": "374705fc99799a1de4f7a2ec9f89fe08ee78daefb9e8ed046b201c52c85c6bce",
-      "implementation-summary.md": "eb68317b56443e36d5b4622b13eb78e687619589ca41c9784be9a6b76d4b30bb",
+      "plan.md": "66fbfef7bb18875340bfe667d2273c98602149730da1f8ea3ad45578adf9d1b0",
+      "tasks.md": "c5a0e16d86d1abf8cd433ddf3c9afdcf5f897334d6dd767e66c23309d1667ab1",
+      "implementation-summary.md": "26b02860eff92bb30f02b7aab943493cc88a17d7232c400877217004e3a76f65",
       "research/research.md": "314eefa78f5dc86940107a9a78e64e1e3c258ac503e704999034658975a3013e"
     },
     "last_active_child_id": null,

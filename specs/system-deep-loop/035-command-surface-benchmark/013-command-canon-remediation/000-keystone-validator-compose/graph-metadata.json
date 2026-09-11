@@ -14,9 +14,15 @@
       "keystone validator compose",
       "frontmatter validation type command",
       "quick_validate compose",
-      "keystone composition implementation",
-      "frontmatter validation compose status",
-      "type command frontmatter checks"
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies",
+      "keystone composition implementation"
     ],
     "key_topics": [
       "keystone",
@@ -26,11 +32,11 @@
       "validation",
       "type",
       "command",
-      "composition",
       "implementation",
-      "status",
-      "checks",
-      "composes"
+      "plan",
+      "technical",
+      "approach",
+      "architecture"
     ],
     "importance_tier": "critical",
     "status": "complete",
@@ -190,7 +196,7 @@
     ],
     "causal_summary": "Composes the frontmatter and behavioral checks that today live only in quick_validate.py into the canonical validate_document.py --type command path, keyed by template_rules.json, so every canon frontmatter rule fires on the one path command authors validate against while section-presence behavior and every currently-conformant command are preserved.",
     "created_at": "2026-07-16T07:51:58.280Z",
-    "last_save_at": "2026-09-03T22:20:35.165Z",
+    "last_save_at": "2026-09-11T04:38:01.855Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,12 +205,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d00f9a875910b405deb2a2268c269c5a47558f748d8fbc5bab130f40f48487d1",
+    "source_fingerprint": "sha256:16307850dbeea450a350a2af6bc61025beb4a510a22564393c30ddf6b37a48a2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b8dfe80872a9912d014441f439a0566d0b3b615787d46f048009119b93ea91e1",
-      "plan.md": "652fc710a22b88a4c0791fa0bd23dada34cfafa5f27d94c0e9b5e4a1f007c764",
-      "tasks.md": "ff63e3c766d0bc95312d44fdb440a2e76ef49fcadfe071c61a59b613ff88f46d",
+      "plan.md": "1c3bea2adc5086e989f80b4f1da1717fae13ae38ea297cc6ba58452a35597bad",
+      "tasks.md": "921a6d8b6bf42e355a01578a8277119509f9b1d0dce88162a89d07d542bcd3c3",
       "implementation-summary.md": "8f40cd616df3b52334f41bf362969b5823fc1955223bc280ba5a246800f4127f"
     },
     "last_active_child_id": null,

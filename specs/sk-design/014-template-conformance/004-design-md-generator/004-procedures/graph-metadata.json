@@ -13,7 +13,16 @@
     "trigger_phrases": [
       "design-md-generator procedures conformance",
       "design-system-extraction template audit",
-      "md-generator procedure template check"
+      "md-generator procedure template check",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies",
+      "implementation summary"
     ],
     "key_topics": [
       "design-md-generator",
@@ -25,9 +34,9 @@
       "md-generator",
       "procedure",
       "check",
-      "holds",
-      "exactly",
-      "one"
+      "implementation",
+      "plan",
+      "technical"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -185,7 +194,7 @@
     ],
     "causal_summary": "`procedures/` holds exactly one file, `design-system-extraction.md`, which was not part of the 014 program's seed sample",
     "created_at": "2026-07-27T15:10:02.062Z",
-    "last_save_at": "2026-09-03T22:18:20.521Z",
+    "last_save_at": "2026-09-11T04:35:43.456Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -194,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c888a16ae50ff50efa0666a248a145bc62551929b39c70fda479154c7c3d9f91",
+    "source_fingerprint": "sha256:dd0f80c8125d32c812a1e3b7316d38c7981a878db8d09df40ca7bfb8e8659f8c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "bbe0584e35ba945333ad2fdbf81571ed8b271c5076149059a49c4e1b3a6ee64a",
-      "plan.md": "42b12bca05c70d2dbf078bcb0cdb28343064f4e66778e898ec15649c17d521d8",
-      "tasks.md": "0adc4847b9cfc162e63d10f9071aecf6c66641aec9c8378d459b69cd85d7f551",
-      "implementation-summary.md": "6ae73a33d1a6253abbfca3362820a6538d492a580a6f3209e7be9de036b60f0a"
+      "plan.md": "ea62486f9e344401d8e1c58163c8cbb51c97278c6e988d889894df51460e94c0",
+      "tasks.md": "de3593bffeabe429d37981e5cf1c0dd06889b6cc83b3eb0205f5c47600639a58",
+      "implementation-summary.md": "fcbdfb34a5c8af59625d81f1f3d9fc37414f4f8a4a7c1e30b4d680887bc60219"
     },
     "last_active_child_id": null,
     "last_active_at": null

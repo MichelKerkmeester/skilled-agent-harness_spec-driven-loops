@@ -1,7 +1,11 @@
 ---
 title: "Tasks: 017/003 Scenario expansion"
 description: "Task checklist for scenario expansion."
-trigger_phrases: []
+trigger_phrases:
+  - "task breakdown"
+  - "implementation tasks"
+  - "verification checklist"
+  - "task dependencies"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 1 -->

@@ -13,7 +13,16 @@
     "trigger_phrases": [
       "runtime contract remediation",
       "external cli model default",
-      "local mode static text projection"
+      "local mode static text projection",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies",
+      "implementation summary"
     ],
     "key_topics": [
       "runtime",
@@ -189,7 +198,7 @@
     ],
     "causal_summary": "A review of the shipped packet found four contract defects:",
     "created_at": "2026-08-20T20:00:33.153Z",
-    "last_save_at": "2026-09-03T22:17:26.492Z",
+    "last_save_at": "2026-09-11T04:35:24.813Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,13 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7fcfa617493f9e532463c0adaccd70045439aa443a0be8e5eeb42a01c019fa37",
+    "source_fingerprint": "sha256:b45ab4e36968a3f5e64fa2006e7fe5f8cd76cf0adfa1c85e347f6c644d4cc76a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d05064aeb9debf040bfee07763a07abdf404222904e9f3a683669760224b5e3f",
-      "plan.md": "f588a8374c69f62532424b069fda6b7307f312efb8403d5777d78797e2eb657e",
-      "tasks.md": "c25ab3b8ceb2bbf01a2f549fdfe23000c4aec05940b26c8c02886e40b3b5afe9",
-      "implementation-summary.md": "64d2203fd0d04d38c7164b9aa34bb6c517b0dfaa7107f3cf349107b83ff9fed7"
+      "plan.md": "eda3ddd729a7964449c9516d8b670cff39455d2aeffee396d7dbdb1669a4de33",
+      "tasks.md": "4d7b5373721870ef6f31c5a28a035652587ee7790231346462e927cb0b9b6b8a",
+      "implementation-summary.md": "f7af2cc5b1d3cea1a8638387f3763bef2031b564173a598b88daf624580cde66"
     },
     "last_active_child_id": null,
     "last_active_at": null

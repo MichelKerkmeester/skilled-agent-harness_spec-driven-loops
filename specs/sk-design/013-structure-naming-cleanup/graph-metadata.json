@@ -15,7 +15,14 @@
       "sk-design naming convention",
       "styles/docs stray removal",
       "dunder test folder rename",
-      "interface command yaml conformance"
+      "interface command yaml conformance",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist"
     ],
     "key_topics": [
       "sk-design",
@@ -187,7 +194,7 @@
     ],
     "causal_summary": "Three structural/naming defects in `sk-design`: (1) a misplaced `styles/docs/` folder holding a stray `manual-testing-playbook.md` whose content the hub playbook already covers under `styles-library-utilization/`; (2) dunder test/fixture folders (`corpus/tests` in five modes plus a backend `tests/fixtures`) that violate the kebab-case sk-doc filesystem naming convention (nodemodules excepted as tool-mandated); (3) the `/interface` command workflow YAML assets that do not conform to the create-command contract that governs `commands/interface/assets/`",
     "created_at": "2026-08-30T15:39:12.961Z",
-    "last_save_at": "2026-09-03T22:17:58.385Z",
+    "last_save_at": "2026-09-11T04:35:40.324Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:98d1a5efc54cbb5e5d6041f6b6851ed383ef081d76427a6d72b22bad4f5b9775",
+    "source_fingerprint": "sha256:4bb6dc612745c176e7cc192af29a84d9d108f804e1ba5a3ff5a36d0883a31499",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "37e61880bc333077ceb5919dab3ff73c0cb46a5c0c0280dfb34fa34659df17b4",
-      "plan.md": "e4b6fa3d79fe4cceb353e27635658af7b54779b866bcb648a5261860b2fedde5",
-      "tasks.md": "ffe9624bd9db34363a86c9d2b9c856c24fc95f2aa33c1d4feb5e510cf826a7da",
-      "implementation-summary.md": "d78098c6d3a4cabce3bca3697371ab20f69355c885919283705bb6b655ad30bd"
+      "plan.md": "247cba3356eda5f06a7cffc974ccca0b980845144baffcd6070fad563ec2376e",
+      "tasks.md": "ec2467da32be1a90938d366b758d1b082ce8c94a3b74f24471d5cf4b27102ce3",
+      "implementation-summary.md": "2e5632abb8fedd1ceed03e58ffca14559bb9c4018ecd40d51103a30c1ca2f8c3"
     },
     "last_active_child_id": null,
     "last_active_at": null

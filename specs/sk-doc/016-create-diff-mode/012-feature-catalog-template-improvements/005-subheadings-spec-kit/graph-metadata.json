@@ -12,20 +12,25 @@
     "related_to": []
   },
   "derived": {
-    "trigger_phrases": [],
+    "trigger_phrases": [
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy"
+    ],
     "key_topics": [
+      "implementation",
+      "plan",
+      "technical",
+      "approach",
+      "architecture",
+      "decisions",
+      "testing",
+      "strategy",
       "apply",
       "sub-headings",
       "system-spec-kit",
-      "works",
-      "sections",
-      "exceed",
-      "paragraphs",
-      "csv",
-      "phase",
-      "target",
-      "only",
-      "files"
+      "works"
     ],
     "importance_tier": "normal",
     "status": "planned",
@@ -97,18 +102,18 @@
     ],
     "causal_summary": "Apply H3 sub-headings to system-spec-kit HOW IT WORKS sections that exceed 3 paragraphs. Uses the long_sections_audit.csv from phase 002 to target only files that need restructuring.",
     "created_at": "2026-07-09T10:02:46.134Z",
-    "last_save_at": "2026-09-03T22:18:53.424Z",
+    "last_save_at": "2026-09-11T04:36:15.360Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md"
     ],
-    "source_fingerprint": "sha256:ac5872ffa4827c045695ec9cfd07d24b3cc65a272da123e63fa5d7662511268d",
+    "source_fingerprint": "sha256:7bd48b3f83d11434a39adba064ee9924f145e21aba4800b863908ae55f33a8da",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6797deb45581ebe5d61acc47fb3e39a80f99c0279b7d640703840ca4b9c8fd74",
-      "plan.md": "414237fb00167e5c3f8261a6b6181ba886e0c9acc8eb600736ebb4dc50b413a2"
+      "plan.md": "e6b8c403e4b5c1ff93a8693d2b36f394a822cee17c70c534b76d37e0c5c5ec74"
     },
     "last_active_child_id": null,
     "last_active_at": null

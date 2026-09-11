@@ -18,10 +18,13 @@
       "memory_causal_stats backfill",
       "entity density cache invalidation causal",
       "spec document chain causal edges",
-      "relation backfill decision",
-      "causal backfill wiring choice",
-      "deterministic inference signals",
-      "memory_causal_stats backfill entry point"
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist"
     ],
     "key_topics": [
       "relation",
@@ -194,7 +197,7 @@
     ],
     "causal_summary": "After packet 019, `memorycausalstats.relationCoverage.backfillJob` honestly reports `implemented:false` / `command:null` because no command actually balances relation coverage — the prior `memoryhealth({autoRepair})` hint was a no-op",
     "created_at": "2026-06-04T12:30:00Z",
-    "last_save_at": "2026-09-03T22:23:06.014Z",
+    "last_save_at": "2026-09-11T04:39:44.633Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,14 +207,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d6e8f1370f223d92b507b8c5228ecb6756901492efc6ec739a3e078f49e2db90",
+    "source_fingerprint": "sha256:5cdd905646fa6b58277130e16ed8adf3bb63b215a764182605e0589e4961451d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d9d92b85558fd02e57ebb5bf7196e0bcd24fa5a1b0c7197752a545249820953a",
-      "plan.md": "edd1161047f0827ec9d021071811bbec7fd18ad20e19eee1ef224e4097247a3f",
-      "tasks.md": "3ca6720cb96876888714cdbda8d0928e5fbf38a8eae8ecbb1b1155879fe21a47",
+      "plan.md": "2175361bb3e01351267e8e737ba9b62643cddbe9a388651acca229fa99d5ddff",
+      "tasks.md": "5c56922e252a9b534ed66dba58e9319496ed4fc96549aae75a2e917072a40ca7",
       "decision-record.md": "ff3ef7007233f7fa189131df60e07d59877324f2337fb1c1a3cd735476acda95",
-      "implementation-summary.md": "821bb3ed1d3909b614391faa813b64c1e6425c414740b242ce52872aa1782361"
+      "implementation-summary.md": "8b74edadf9401923ef74f20e2032e8ddff7610b3eef10317a385e5e859a2c112"
     },
     "last_active_child_id": null,
     "last_active_at": null

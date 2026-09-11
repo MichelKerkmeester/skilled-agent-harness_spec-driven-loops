@@ -183,7 +183,7 @@
     ],
     "causal_summary": "The 485-scenario manual testing playbook sweep (packet `031-manual-playbook-execution-sweep`) is confirming real, reproducible bugs across the spec-kit/code-graph/skill-advisor stack — feature-flag kill-switches that don't disable their feature, a \"read-only\" indexing path that mutates data, scoring-pipeline synchronization gaps, and more",
     "created_at": "2026-07-02T11:57:47.283Z",
-    "last_save_at": "2026-09-07T16:18:04.597Z",
+    "last_save_at": "2026-09-11T04:40:21.886Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -192,12 +192,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ce255ce65b019147068c9b436517633f1e8040d8b3a673b8c1ca2ceedafb6c4e",
+    "source_fingerprint": "sha256:31b7a197ce1930b42bd1113ba263c978dcdf2a6475467ff272c2b201b04717fa",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f673b846da0105049e90382dac4d2b278525ebf74156c3ce5c2e6ccdd1c3b57f",
       "plan.md": "ebfbc07710a0df9104624f63e91ace35cdeddfa46f11f2b4b3e1d08a0c141ea3",
-      "tasks.md": "9d41dc96a636153993a6433f06f6bcbc020d8ac77991f000d21d2d6715ff2428",
+      "tasks.md": "94545c3d206af169753a4a30fa15353525a4bce9c1c4a1f4420665cdd3844eba",
       "implementation-summary.md": "42f9c3e6203df7f9cf7fd71265f49dc22d53db6d7acb1f86ad05704ad8bd3bc6"
     },
     "last_active_child_id": null,

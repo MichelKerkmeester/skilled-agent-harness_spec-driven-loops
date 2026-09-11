@@ -14,9 +14,15 @@
       "titlecase enforcement config flip",
       "h2uppercaserequired flip closeout",
       "documentation quality program closeout",
-      "titlecase config flip summary",
-      "documentation quality program closeout summary",
-      "uppercase check refinement"
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies",
+      "titlecase config flip summary"
     ],
     "key_topics": [
       "titlecase",
@@ -28,9 +34,9 @@
       "documentation",
       "quality",
       "program",
-      "summary",
-      "uppercase",
-      "check"
+      "implementation",
+      "plan",
+      "technical"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -184,7 +190,7 @@
     ],
     "causal_summary": "The `h2UppercaseRequired` config was off for the reference and asset types, so Title-Case header drift only showed in the advisory score",
     "created_at": "2026-07-22T16:00:57.919Z",
-    "last_save_at": "2026-09-03T22:19:27.611Z",
+    "last_save_at": "2026-09-11T04:36:34.399Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -193,12 +199,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d2498fa5bfecef7f16a6c36085f54b8ae0e2e878a9b4dcf6fe96f7dafcce3adf",
+    "source_fingerprint": "sha256:2a0087bdd0b14c00ce7bbd11ba7fb3ba1cbbdce298ec0eedd92f2e14890d7620",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "540287b0ffc2bdc00d7a426d77351aa49f3cebaf21c3196da3a160ed23cbee01",
-      "plan.md": "0cfbd61f4730c9936dd347bfd955a7a914fe9baa5b40f8af38e16f5219e0eca5",
-      "tasks.md": "32a0491e4e2cb72cbe4e7e6bc95bedf91125379fa0aa3766bb163bc23b2e18b9",
+      "plan.md": "a533b7e886a63693f04ef1bd1274b6b19366ba56244bcc877ee65c0d19656f3e",
+      "tasks.md": "b9420548068ce7dfb55c7d239924b4b5947d8d25c6fd655bdb8292f7428621a5",
       "implementation-summary.md": "622054e5fcee28a65b6a08575a44edf804e3dab453bbacefc8aa8063f199cc27"
     },
     "last_active_child_id": null,

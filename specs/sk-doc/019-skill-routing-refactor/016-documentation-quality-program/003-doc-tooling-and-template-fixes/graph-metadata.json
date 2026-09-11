@@ -14,8 +14,15 @@
       "validate_document.py path bug",
       "skill readme template clarifications",
       "doc tooling fixes",
-      "validate_document path fix summary",
-      "validator symlink resolve"
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies",
+      "validate_document path fix summary"
     ],
     "key_topics": [
       "path",
@@ -26,10 +33,10 @@
       "clarifications",
       "doc",
       "tooling",
-      "summary",
-      "validator",
-      "symlink",
-      "resolve"
+      "implementation",
+      "plan",
+      "technical",
+      "approach"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -188,7 +195,7 @@
     ],
     "causal_summary": "The documented top-level validator path `sk-doc/scripts/validatedocument.py` is a symlink to the real `sk-doc/shared/scripts/validatedocument.py`",
     "created_at": "2026-07-22T12:21:14.835Z",
-    "last_save_at": "2026-09-03T22:19:16.032Z",
+    "last_save_at": "2026-09-11T04:36:33.481Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,12 +204,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5d9e5b00eb62597737910b56acf005db03fa98049ae8d8f0017da4b57815883c",
+    "source_fingerprint": "sha256:8589a6e34a96974308037ac1ceb87859c7ee67ef03f3a74b2da82bf87ad63725",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9f8836abe31c3192cc59c36074fbf3edddc1300a36e6a54d01acc74b5137f2ce",
-      "plan.md": "58d06fabd83e91ebe7d098553c0c87df202c1a4fad02c27c7641bf26d7d1e12c",
-      "tasks.md": "7f9288e8b3dd8e8d43dcbaacfb2a62d7a644f030814f12848f8d523abe2bf899",
+      "plan.md": "f120e60d889740d7a2390744ee7f1307e1c4b7f04ce20c394215a4c203aae27b",
+      "tasks.md": "f6e24eab39d78ce8f690570fa2e600c8aa3f3089ab5ce26d3440ba896afa700b",
       "implementation-summary.md": "d2fee82acb09327236848a12e2d73d2632592b04fc19af08584d6860962c00d2"
     },
     "last_active_child_id": null,

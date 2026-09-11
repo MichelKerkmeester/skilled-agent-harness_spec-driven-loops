@@ -13,7 +13,16 @@
     "trigger_phrases": [
       "018 phase 008 split code-opencode references",
       "typescript shell javascript reference hygiene",
-      "code-opencode shared tier split"
+      "code-opencode shared tier split",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies",
+      "implementation summary"
     ],
     "key_topics": [
       "phase",
@@ -27,7 +36,7 @@
       "hygiene",
       "shared",
       "tier",
-      "nine"
+      "implementation"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -185,7 +194,7 @@
     ],
     "causal_summary": "Nine `code-opencode` docs exceed 500 lines: the typescript trio (865/714/562), the shell trio (625/538/501), javascript qualitystandards (605), and the shared tier codeorganization (722) + universalpatterns (561)",
     "created_at": "2026-07-11T16:48:24.944Z",
-    "last_save_at": "2026-09-03T22:16:01.854Z",
+    "last_save_at": "2026-09-11T04:35:13.641Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -194,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5f9097a4254238e1ea5d036f5a9c0f210d4699766ffc0eaef9c13df31883c301",
+    "source_fingerprint": "sha256:5426e1b4ce6b55b0cfd1fb7a005623cc13708f6f18928357af75786d61560304",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7df7fd241c52e1069abad7ad7be5267e3c21345bc474260b6f288c27d62511f3",
-      "plan.md": "bea2ab6e2ab46726e44275852d0baccc45a0f2e51523aec10540cdbc4ffa2afc",
-      "tasks.md": "2d153729d88a1d7caa9cb7203140d55cb6d9efa125e403fd5a0b0022b62f8103",
-      "implementation-summary.md": "6308339860685b0845c02807ce038d61a3a6f5ae76b119eeb9182fd984d126f8"
+      "plan.md": "ae50f0e5d3d341f2facf38cdca03ffdd9af8ed2dd4ab660fa458c483f23c5f51",
+      "tasks.md": "1ec281fd3869db6f956bf844c6852083f178c87c2395205376fea8d352d528de",
+      "implementation-summary.md": "3578006ea8ed5f64b0e7388753bc6281a74bf2b57d4b8f64e2a0faebb4bbd518"
     },
     "last_active_child_id": null,
     "last_active_at": null

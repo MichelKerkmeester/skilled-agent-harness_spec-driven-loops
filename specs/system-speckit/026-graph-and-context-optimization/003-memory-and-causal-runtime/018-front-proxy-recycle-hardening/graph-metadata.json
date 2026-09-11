@@ -17,7 +17,14 @@
       "mcp connecting forever",
       "daemon recycle hang",
       "cold start timeout proxy",
-      "lazy init process exit daemon"
+      "lazy init process exit daemon",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist"
     ],
     "key_topics": [
       "front",
@@ -191,7 +198,7 @@
     ],
     "causal_summary": "A 2026-06-04 incident left `mk-spec-memory` stuck at `connecting…` in new sessions after an operator externally SIGTERM-killed the daemon child during a from-source DB rebuild",
     "created_at": "2026-06-04T09:30:00Z",
-    "last_save_at": "2026-09-03T22:23:00.931Z",
+    "last_save_at": "2026-09-11T04:39:44.459Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,13 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:638619f9989dbc49bdc0f643d6461c40ba0da1ec3dd790106bb61714cf28d3e2",
+    "source_fingerprint": "sha256:d8465a6a50a1c30a6de5ca0b63315a5facd362c962f8795653791330d733a07c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f8ac70fd6e704b43628b22fb0cc697a9731d46ccce0172554b9135765d17ee88",
-      "plan.md": "21d2c2b7ce08706eb8eb715a453409fdab9f7a26c004d53aa948a9377685e7b8",
-      "tasks.md": "eb84c981950b9ac7ccd7d4fd8e7e19b4fcaecd455bf1f17ce16fc6ec3925ecaa",
-      "implementation-summary.md": "86d0f33c4bfd8b84a30a254850c62a3969c5f444b72057ac204e66b0f432e4a0"
+      "plan.md": "997838e511f3859d1b09efff4defc86e117e1a19668ae05854b42e7d7ad0a851",
+      "tasks.md": "f0e8fdbdd5241074b1375cb1eafae6f8c0f3ee945fcfdb9a5dfb1444f82bba05",
+      "implementation-summary.md": "2b5af5fd7db2f7645569ff4d8629b0ea4f418e413cdf4bd5c557a153146a4971"
     },
     "last_active_child_id": null,
     "last_active_at": null

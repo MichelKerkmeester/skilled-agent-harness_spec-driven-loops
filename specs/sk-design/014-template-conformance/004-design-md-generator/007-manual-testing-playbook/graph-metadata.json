@@ -13,7 +13,16 @@
     "trigger_phrases": [
       "design-md-generator manual-testing-playbook conformance",
       "md-generator playbook template audit",
-      "anti-bot escalation phantom hex detection"
+      "anti-bot escalation phantom hex detection",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies",
+      "implementation summary"
     ],
     "key_topics": [
       "design-md-generator",
@@ -185,7 +194,7 @@
     ],
     "causal_summary": "`manual-testing-playbook/` is the largest folder in `design-md-generator`: a root `manual-testing-playbook.md` plus 12 subdirectories (`accessibility/`, `authoring-boundary/`, `cluster/`, `dark-mode/`, `detectors/`, `escalation/`, `extract/`, `fidelity/`, `guided-run/`, `interaction/`, `procedure-card-contract/` (3 files), `report/`, `setup/`, `source-of-truth/`, `study/`, `validate/`) holding 17 further files, 18 total",
     "created_at": "2026-07-27T15:10:02.827Z",
-    "last_save_at": "2026-09-03T22:18:26.544Z",
+    "last_save_at": "2026-09-11T04:35:43.748Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -194,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5d137ee4a89870ea34b0fe94f7e6a5d430e085b8a310b8cfd685241e3567f277",
+    "source_fingerprint": "sha256:fb1d5253f3584db81b443929fedbae5e4d28d6bc820f21bfb988d14ead9297d7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "22ed54ec9be6a2d554c2592dbcd4b9262f87902113323bc44ef52ff1efb72a3c",
-      "plan.md": "9294454978fdfabb814902847c2b70ab47d83c30ea3fdd80be11ad3aa6bd0f95",
-      "tasks.md": "52c251471eb8e1fa401cbc54b55c5f9c4e7441dc965a70017ec9f43974497764",
-      "implementation-summary.md": "ea2125699171c52f96976b3f8b982a3ec9d3fe8b8375e6c28435b63c7ea73971"
+      "plan.md": "50333a76e716d5c9aec374cd8512dc6a5e6da86e62ffc7478dfd3c238a0dc8ea",
+      "tasks.md": "b1ed40725eeecfd2a3004d78d737fa1140a6a1bcb3748f2258b0c9cb914501f7",
+      "implementation-summary.md": "96e5d1a8c44d963d74a63c7aa061a796971ca2e146ad8228ed9295f8edceed6f"
     },
     "last_active_child_id": null,
     "last_active_at": null

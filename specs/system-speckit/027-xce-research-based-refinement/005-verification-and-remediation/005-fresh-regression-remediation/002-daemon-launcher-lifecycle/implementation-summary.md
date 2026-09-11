@@ -20,7 +20,11 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
-trigger_phrases: []
+trigger_phrases:
+  - "implementation summary"
+  - "what shipped"
+  - "validation evidence"
+  - "continuation notes"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary: Daemon Launcher & Lifecycle Remediation

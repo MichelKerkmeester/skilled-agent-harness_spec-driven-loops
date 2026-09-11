@@ -13,7 +13,11 @@ _memory:
     next_safe_action: "Stage the validator hardening with a corpus baseline."
     blockers: []
     key_files: []
-trigger_phrases: []
+trigger_phrases:
+  - "implementation plan"
+  - "technical approach"
+  - "architecture decisions"
+  - "testing strategy"
 ---
 
 # Implementation Plan: Deep-Review Remediation

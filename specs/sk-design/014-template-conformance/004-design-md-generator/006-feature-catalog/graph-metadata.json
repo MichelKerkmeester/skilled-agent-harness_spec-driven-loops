@@ -13,7 +13,16 @@
     "trigger_phrases": [
       "design-md-generator feature-catalog conformance",
       "md-generator feature catalog template audit",
-      "cluster-classify extract validate cards"
+      "cluster-classify extract validate cards",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies",
+      "implementation summary"
     ],
     "key_topics": [
       "design-md-generator",
@@ -185,7 +194,7 @@
     ],
     "causal_summary": "`feature-catalog/` carries a root `feature-catalog.md` plus 7 subdirectories — `cluster-classify/`, `extract/`, `feature-extractors/`, `interaction-capture/`, `procedure-cards/`, `report-preview/`, `validate/`, `write-design-md/` — each holding one file, 8 subdirectory files plus the root (9 total)",
     "created_at": "2026-07-27T15:10:02.584Z",
-    "last_save_at": "2026-09-03T22:18:24.664Z",
+    "last_save_at": "2026-09-11T04:35:43.694Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -194,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a0128e5ceed0e7f3c47963cb28c06d51e31c96ecfb7f57ff29e39a5d18580b9e",
+    "source_fingerprint": "sha256:3a701c215a1c51245fef682381c1950417e177462d84bae815409a27341cd8c5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d9a38d26135469bbc56b27bc8cbbaa3157b0203b0af40a1006288491f0b4e25b",
-      "plan.md": "92c84d32a95831c6a9dc8e644e32051e210c62437929f4b0c5ee379a2013df18",
-      "tasks.md": "0d7ca5f4e20f18ddca5e674195d8d3ae0db060b1a61ef251f8af91e6381bb795",
-      "implementation-summary.md": "9945c57f7f5fe759b1298e08a43d6f2b77a2eb50c9505320702faa00a08dc642"
+      "plan.md": "beab23489089850d99fbb1a4284bf4612d093d5ecc00e8e7cd8b6552262ea72b",
+      "tasks.md": "0592cd73c86cb6903cf5318122927051379c5bfc16bbe954a64df3547be8c0d6",
+      "implementation-summary.md": "dc21ae3c6019645d54995440a21f7e2674039ea19455129b4c47d8cc4eca251f"
     },
     "last_active_child_id": null,
     "last_active_at": null

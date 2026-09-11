@@ -12,7 +12,17 @@
   "derived": {
     "trigger_phrases": [
       "align playbook generator slug filenames",
-      "de-number playbook-generator.cjs"
+      "de-number playbook-generator.cjs",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies",
+      "implementation summary",
+      "what shipped"
     ],
     "key_topics": [
       "align",
@@ -23,10 +33,10 @@
       "de-number",
       "playbook-generator",
       "cjs",
-      "phase",
-      "numbered-snippet-filename",
-      "deprecation",
-      "emits"
+      "implementation",
+      "plan",
+      "technical",
+      "approach"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -179,7 +189,7 @@
     ],
     "causal_summary": "Phase 002 of the numbered-snippet-filename deprecation. Fix playbook-generator.cjs so it emits descriptive-slug scenario filenames (with an optional stage: frontmatter field) instead of AG-NNN.md, and re-verify that the sk-doc convention docs (create-feature-catalog, create-manual-testing-playbook), their templates, and the four /create:* generator YAMLs already forbid numbered per-feature filenames. Small foundation phase — no folders renamed, no existing files touched here.",
     "created_at": "2026-07-11T14:47:54.283Z",
-    "last_save_at": "2026-09-03T22:18:43.207Z",
+    "last_save_at": "2026-09-11T04:36:08.650Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -188,13 +198,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1a4b00840b757a8f00dd0c8386b8999b4939ebaf5e9a7f97e3c4b1f3d7542475",
+    "source_fingerprint": "sha256:2d2aeb2fd448a9fe9407c7bdda746dc9e0f2a2a04e0fa2c15462551f6013f296",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "bd70eb3b4f0b7259a5024a66c596a68ad0a282943efc94ecd70fb722dc5f0019",
-      "plan.md": "43e5963af648d928eb67f0bb09f53624c6e1e91ca423e9150b229050113ca5b5",
-      "tasks.md": "e70e1682008266b463f4fcad61e55e5950036cd4347d0361682543779027a8ba",
-      "implementation-summary.md": "f26881dc0497cd1573a50c903d33897a4e8ef550343e3be0b6b7cf249b78d690"
+      "plan.md": "91c3661f0fcb88edcf416edd5c4d070badb2c0cf135d82219f4d35667da3a293",
+      "tasks.md": "de145bc2f9002f1b4f6cbea2d6477e0891e09ed9b7f8d9b9085f9a8dfc9c4ce5",
+      "implementation-summary.md": "635d3dfa44e1c219e55098a6cb40ef2c0b22e98d4a12ad8e60ca1b89c559fa14"
     },
     "last_active_child_id": null,
     "last_active_at": null

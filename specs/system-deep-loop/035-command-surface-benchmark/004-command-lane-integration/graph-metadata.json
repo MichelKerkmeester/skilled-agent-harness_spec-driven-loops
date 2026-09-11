@@ -15,8 +15,14 @@
       "peer adapter registration",
       "alignment convergence gate",
       "raw-delta reducer agreement",
-      "sk-doc-command lane registration",
-      "command adapter convergence run"
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies"
     ],
     "key_topics": [
       "command",
@@ -189,7 +195,7 @@
     ],
     "causal_summary": "Registers and configures the sk-doc-command peer adapter as a lane, runs all canonical commands to convergence, and hard-gates raw-delta and reducer agreement so the deterministic verdict is trustworthy.",
     "created_at": "2026-07-14T20:36:59.449Z",
-    "last_save_at": "2026-09-03T22:20:10.492Z",
+    "last_save_at": "2026-09-11T04:38:01.217Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,12 +204,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:740c12fcc46eee178e04cb205b968642b49b77e33a2c05b011a0d978b770d669",
+    "source_fingerprint": "sha256:54ed017ca40ef24da5eb90ec604d9c62e8a5153e6ad8c5e1fd0d711543cecdaf",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d1860d4b3d45b9edb2a7dcfa3b1d0351d9f926018064d249620273f88cb189ca",
-      "plan.md": "a277e311ff9175a068ba197afa751e136aec674e483b982f04b22fdd0031c64a",
-      "tasks.md": "99b069082fe3a0de6b8af76363f917254d3c3273ca424b649ec4f85a49a0d1c6",
+      "plan.md": "2e9cf339e2e669fbc93ddf28dbfad2e79e42091b79a1592a2d0f38553eefb710",
+      "tasks.md": "1ef1254bfdc391b86adfd0582ea05d0e19237a8096fcb210e4faaa1f5fc0c788",
       "implementation-summary.md": "2d4dbf6bae97d3c949bafcc37b54e185efaa3d8520d932859ea7ba06db0d563f"
     },
     "last_active_child_id": null,

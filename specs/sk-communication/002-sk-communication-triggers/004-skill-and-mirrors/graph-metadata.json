@@ -13,7 +13,16 @@
     "trigger_phrases": [
       "sk-communication skill note",
       "trigger command mirrors",
-      "cross-runtime command mirror"
+      "cross-runtime command mirror",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies",
+      "implementation summary"
     ],
     "key_topics": [
       "sk-communication",
@@ -24,10 +33,10 @@
       "mirrors",
       "cross-runtime",
       "mirror",
-      "two",
-      "commands",
-      "existed",
-      "opencode"
+      "implementation",
+      "plan",
+      "technical",
+      "approach"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -186,7 +195,7 @@
     ],
     "causal_summary": "The two commands existed under `.opencode/commands/` but were undocumented in the skill and unmirrored, so operators had no in-skill pointer to the trigger surface and the commands were not invokable across runtimes",
     "created_at": "2026-08-19T04:54:46.199Z",
-    "last_save_at": "2026-09-03T22:17:15.969Z",
+    "last_save_at": "2026-09-11T04:35:23.553Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -195,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:172a249e93f179ab28b7fec252720e1ae9992d67cbd8faa5c04d43c9048b372d",
+    "source_fingerprint": "sha256:c3c16be7e620ba19245856360e449146138164e820fff4d3ba99eca5a1ef462f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1f19ad2a6591e030bf8c47d80cd7707f3d7ec18bd16cefc4abdd87473f66487e",
-      "plan.md": "7cdb9800819cebf0c4de381c553373f06ca72fc492d1705bc572a4df33551ed1",
-      "tasks.md": "eb0834c38176ab69618b60eab0370a98e651b01bd5421b4eddd2b7bef9f08be1",
-      "implementation-summary.md": "82d211a4591a30d09ce9a27e531501220ada61da18356424dc551f99b1411da5"
+      "plan.md": "1ae7a3c8fe77dff4035140481077c0fb776c16efbc0c9d13dea7e807c1f70b0a",
+      "tasks.md": "613768010ba66f6dfa6810eaf54ef01ecc95fd653ac3175fb993417ccb057823",
+      "implementation-summary.md": "6469079c68df64bafbb809585b7fc31eaff566f10f8eb964712b7f8854b06603"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -10,7 +10,11 @@ _memory:
     next_task: "Run validation"
     blockers: []
     notes: "All five clusters graduate-ready. Verdict: PASS. 0 P0, 1 P1, 3 P2 findings."
-trigger_phrases: []
+trigger_phrases:
+  - "implementation summary"
+  - "what shipped"
+  - "validation evidence"
+  - "continuation notes"
 ---
 
 # Implementation Summary: Dark Flag Validation

@@ -10,7 +10,11 @@ _memory:
     last_updated_by: "claude"
     recent_action: "Authored the plan; implementation complete"
     next_safe_action: "Verify both gates; reconcile docs"
-trigger_phrases: []
+trigger_phrases:
+  - "implementation plan"
+  - "technical approach"
+  - "architecture decisions"
+  - "testing strategy"
 ---
 # Implementation Plan: Objective Dispatch-Context Anchor for the deep/* Phase-0 Gate
 

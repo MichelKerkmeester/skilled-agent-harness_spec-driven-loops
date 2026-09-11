@@ -14,8 +14,15 @@
       "interface commands implementation",
       "creation-template commands",
       "design command rename",
-      "interface creation commands complete",
-      "design command compatibility aliases"
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies",
+      "interface creation commands complete"
     ],
     "key_topics": [
       "interface",
@@ -25,11 +32,11 @@
       "design",
       "command",
       "rename",
-      "creation",
-      "complete",
-      "compatibility",
-      "aliases",
-      "five"
+      "plan",
+      "technical",
+      "approach",
+      "architecture",
+      "decisions"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -37,7 +44,10 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/sk-design/mode-registry.json",
+      ".opencode/skills/sk-design/command-metadata.json",
+      ".opencode/skills/sk-design/hub-router.json"
     ],
     "entities": [
       {
@@ -62,6 +72,24 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "command-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/command-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/hub-router.json",
         "source": "derived"
       },
       {
@@ -165,29 +193,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The five `/design:` commands are thin routers with no creation scaffolding",
     "created_at": "2026-07-19T09:44:56.632Z",
-    "last_save_at": "2026-09-03T22:17:44.067Z",
+    "last_save_at": "2026-09-11T04:35:37.195Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,12 +206,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0d7ba2823ce6155bee567897e2d5ac91625d5263998372ccea34ee8cce7d6674",
+    "source_fingerprint": "sha256:a243b8ce32bf7e69029501cc3eafb27cd050d971bb7836c4cc3c1fdc48b0e4e2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "61d8400076b20f78bc6c7b6b496cc5bec6ee24185fc7a89387f6092a0a29e1eb",
-      "plan.md": "fc729e16c0791ae4a899bf239632e26860c448dc3c32a80c756491983b850a57",
-      "tasks.md": "4304ac82a85aff39e86453366432d204d39c7066c91fe2724bcfaa5ea2fcd8a9",
+      "plan.md": "7297b5682b6b435f24e04a3185738c8cf91b8d077da1ea9863e94887c7a922ff",
+      "tasks.md": "dd416100b3a8e74b72b2f122193e9e5dae0f2edfec8876ad6b25e9d6ec920d1f",
       "implementation-summary.md": "5f63c046dced146c5b870f828332576e736bd5bb8d2ae01b0709f5e6f4c5cf74"
     },
     "last_active_child_id": null,

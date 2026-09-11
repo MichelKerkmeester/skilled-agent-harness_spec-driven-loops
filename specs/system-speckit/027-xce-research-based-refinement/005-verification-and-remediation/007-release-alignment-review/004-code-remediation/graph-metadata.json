@@ -17,7 +17,11 @@
       "code remediation plan",
       "track B code remediation plan",
       "code remediation tasks",
-      "track B code remediation tasks"
+      "track B code remediation tasks",
+      "implementation summary",
+      "what shipped",
+      "validation evidence",
+      "continuation notes"
     ],
     "key_topics": [
       "code",
@@ -27,11 +31,11 @@
       "track",
       "plan",
       "tasks",
-      "review",
-      "002-code-vs-sk-code-opencode",
-      "findings-all",
-      "json",
-      "surfaced"
+      "implementation",
+      "summary",
+      "shipped",
+      "validation",
+      "evidence"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -189,7 +193,7 @@
     ],
     "causal_summary": "The Track B review (`../002-code-vs-sk-code-opencode/review/findings-all.json`) surfaced 154 findings (66 P0 / 47 P1 / 41 P2) against the OpenCode code surface",
     "created_at": "2026-06-18T12:41:12.578Z",
-    "last_save_at": "2026-09-03T22:23:44.322Z",
+    "last_save_at": "2026-09-11T04:40:18.333Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,13 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:47a2be490fd3dd95f30298654dd15a215be63f4179eeb04be5cc74eb660560a7",
+    "source_fingerprint": "sha256:49ae4719f9c7087cd532c3496e4eeefa7dab6d7f76f9099d44ba099a152ff15d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "83767b1f90473ad41be78024ce7709e1242d44b85f984fd62f5d844232e5829f",
       "plan.md": "95ad78302a274151b75332e590e3a5785473a5cf81d47df049ae428ac1aff197",
       "tasks.md": "3349a3b610b95d4a2e8a7761954e662acbdcfaeb080dfa42f5fb739106d4d842",
-      "implementation-summary.md": "984dfd9818cb01aebeb3b57702ab133968e4b152499e175cbb0896520225bf76"
+      "implementation-summary.md": "cf670273b3168320e4409f597dac08c4e884ee1ba5098fd4f76cb49748fc819a"
     },
     "last_active_child_id": null,
     "last_active_at": null

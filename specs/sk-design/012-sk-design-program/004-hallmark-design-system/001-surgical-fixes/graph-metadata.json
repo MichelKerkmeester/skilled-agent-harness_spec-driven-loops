@@ -14,6 +14,14 @@
       "hallmark surgical fixes",
       "anti-slop audit probes",
       "hero media contract",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies",
       "hallmark surgical fixes implemented"
     ],
     "key_topics": [
@@ -25,10 +33,10 @@
       "hero",
       "media",
       "contract",
-      "implemented",
-      "external",
-      "mit-licensed",
-      "static-site"
+      "implementation",
+      "plan",
+      "technical",
+      "approach"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -187,7 +195,7 @@
     ],
     "causal_summary": "Hallmark (an external, MIT-licensed static-site design skill researched in packet `012-sk-design-program/001-research/004-hallmark-design-skill-research`) encodes several heuristics that sk-design's existing modes currently lack: a disciplined hero/media enrichment gate, an explicit multi-page coherence lock, a broader anti-slop audit probe set with cognitive/perceptual rationale, engineering-verifiable fallback-font layout-shift proof, and a target-derived responsive proof matrix",
     "created_at": "2026-07-20T09:08:50.381Z",
-    "last_save_at": "2026-09-03T22:17:46.843Z",
+    "last_save_at": "2026-09-11T04:35:37.734Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,12 +204,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cd26050aa2609993b0bb0880d9f71398070c82913ac3399cd378da2fb016f3ec",
+    "source_fingerprint": "sha256:caae242265ac3966393535a904c515a0ae1b0df7d47143ef9ddb0e83c5adfa0f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "01130308ade5d446ed83eb76b3b2e1e6da9dbbc7525698533dadf25eda601b10",
-      "plan.md": "1dd5c0f2596941c783fb826ac3a0354cd301248dbabda2088c88f4d4e629fb63",
-      "tasks.md": "2291bebfc34cf8fb23506ff9ecb0791163834ff23e983ff23abcb12dfbbe836d",
+      "plan.md": "53809e10282ea74b329c003a43019891238b9f571523ebcef46803148620f2e6",
+      "tasks.md": "c54d92d0260a13846deb501d1f4150a52895dd78f7950acb835ac5309a52be67",
       "implementation-summary.md": "acdf911030ed00d99217dcef1902c74b5de9c5adaad9c81b5dbfe7afad59aee5"
     },
     "last_active_child_id": null,

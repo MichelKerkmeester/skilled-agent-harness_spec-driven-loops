@@ -14,9 +14,15 @@
       "skill mode readme overhaul",
       "bare readme rewrite",
       "skill readme template migration",
-      "readme overhaul summary",
-      "skill readme swarm",
-      "fourteen readmes validated"
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies",
+      "readme overhaul summary"
     ],
     "key_topics": [
       "skill",
@@ -27,10 +33,10 @@
       "rewrite",
       "template",
       "migration",
-      "summary",
-      "swarm",
-      "fourteen",
-      "readmes"
+      "implementation",
+      "plan",
+      "technical",
+      "approach"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -189,7 +195,7 @@
     ],
     "causal_summary": "sk-doc owns the skill-readme-template, a nine-section narrative model in the same human voice the repo root README uses",
     "created_at": "2026-07-22T12:50:05.876Z",
-    "last_save_at": "2026-09-03T22:19:17.909Z",
+    "last_save_at": "2026-09-11T04:36:33.799Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,12 +204,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:618d2b218c5226374687a1990719a4122ee313a80090d288bff79b2ca532b959",
+    "source_fingerprint": "sha256:ad6c00b001a7ec061376e40e13e7cd14effbd486987bfea7b97815f634734eab",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ba2a79b8bb8fd95afdb72eafbaf843e218dc552c9017fa72eb22ca352292cecd",
-      "plan.md": "8c7589d63ae8d647a10a403a42a9203429ea368978abc976b686022afce8df6b",
-      "tasks.md": "bea60c3b6d5dd76077f1a9893a1bbfad37b39db461b0899e4e4c7c0c7e2edefa",
+      "plan.md": "aec3218aee2870b7c0723445c686398d09de4fb4d7389b8cdfdc3ac76abfc500",
+      "tasks.md": "5a506aa884a14485ac85dbfd5aa25b1fd371a17dafec0d7c3cea8bd52d945150",
       "implementation-summary.md": "01960d0f6540e6020459626be3b9ecac9d3f0b42ea6160b0adb20c6b90948c1a"
     },
     "last_active_child_id": null,

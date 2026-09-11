@@ -16,7 +16,11 @@ _memory:
       - ".opencode/skills/sk-doc/shared/scripts/validate_document.py"
       - ".opencode/skills/sk-doc/shared/scripts/quick_validate.py"
       - ".opencode/skills/sk-doc/shared/assets/template_rules.json"
-trigger_phrases: []
+trigger_phrases:
+  - "task breakdown"
+  - "implementation tasks"
+  - "verification checklist"
+  - "task dependencies"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 

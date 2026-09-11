@@ -21,7 +21,11 @@ _memory:
     open_questions: []
     answered_questions:
       - "Vectors: profile-addressed JSON arrays + deterministic cosine (no external SQLite vector extension, per no-new-deps)"
-trigger_phrases: []
+trigger_phrases:
+  - "implementation summary"
+  - "what shipped"
+  - "validation evidence"
+  - "continuation notes"
 ---
 
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->

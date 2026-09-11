@@ -15,10 +15,14 @@
       "conformance_benchmark template",
       "peer adapter benchmark authoring",
       "create-benchmark conformance family",
-      "create-benchmark conformance implementation",
-      "conformance benchmark family complete",
-      "peer adapter authoring branch",
-      "benchmark family parity test"
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies"
     ],
     "key_topics": [
       "conformance",
@@ -30,9 +34,9 @@
       "authoring",
       "create-benchmark",
       "implementation",
-      "complete",
-      "branch",
-      "parity"
+      "plan",
+      "technical",
+      "approach"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -196,7 +200,7 @@
     ],
     "causal_summary": "Adds a fifth authored create-benchmark family, conformance_benchmark, that templates the input scaffolding for deterministic artifact-conformance benchmarks run through a deep-alignment peer adapter, plus routing projections, a minimal authoring-command branch, and a family-parity regression test.",
     "created_at": "2026-07-15T04:42:13.321Z",
-    "last_save_at": "2026-09-03T22:20:06.374Z",
+    "last_save_at": "2026-09-11T04:38:00.686Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +209,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ad89a698bdcd20fd19dc6baf13e6e7b0e4f182c8c37c7919c1d6c9554e6bea94",
+    "source_fingerprint": "sha256:782c3ac94b72ec0cfbb62023f919a4adc2edbdc73b7005efee1af6fd2dcfd511",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0f9a69802a389aff673140b2fcb564050bea9752f29805c473f0a978e26e8e10",
-      "plan.md": "b7d61b990332a27687b7003ec43ce8e60053aac1d8fb535ace44107a76cb88cf",
-      "tasks.md": "917adf304cad5837d52fb05cc093ab1519f788bd451a3e750637dbae50b36b03",
+      "plan.md": "eb974518503fbe49d28ab2ea744720e117acbc72367c7a39fa824edfbe03c427",
+      "tasks.md": "663938fb055f6f4dc5a1a87072958980881f02fbe7bebd8a543026a82d18b11c",
       "implementation-summary.md": "2304270f4f7eff52f446650f7eeed318b62921b22370ba04ed9a3b0ac0811c51"
     },
     "last_active_child_id": null,

@@ -16,7 +16,11 @@ _memory:
       - ".opencode/skills/system-deep-loop/deep-alignment/scripts/scoping.cjs"
       - ".opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-doc.cjs"
       - ".opencode/commands/scripts/validate-command-references.cjs"
-trigger_phrases: []
+trigger_phrases:
+  - "implementation plan"
+  - "technical approach"
+  - "architecture decisions"
+  - "testing strategy"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 

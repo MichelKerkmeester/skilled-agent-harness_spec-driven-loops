@@ -2,7 +2,11 @@
 title: "Implementation Plan: Phase 9 — Split code-webflow Implementation References"
 description: "Deterministic split of 11 code-webflow implementation docs + tool-driven lockstep rewire of the code-webflow RESOURCE_MAP, parent union, and playbook expected_resources."
 contextType: "implementation"
-trigger_phrases: []
+trigger_phrases:
+  - "implementation plan"
+  - "technical approach"
+  - "architecture decisions"
+  - "testing strategy"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 # Implementation Plan: Phase 9 — Split code-webflow Implementation References

@@ -3,7 +3,11 @@ title: "Tasks: 012/003"
 description: "Edge explanation + blast_radius uplift."
 importance_tier: "important"
 contextType: "implementation"
-trigger_phrases: []
+trigger_phrases:
+  - "task breakdown"
+  - "implementation tasks"
+  - "verification checklist"
+  - "task dependencies"
 ---
 # Tasks: 012/003
 

@@ -18,7 +18,11 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
-trigger_phrases: []
+trigger_phrases:
+  - "task breakdown"
+  - "implementation tasks"
+  - "verification checklist"
+  - "task dependencies"
 ---
 # Tasks: cli-pi Fan-out Execution
 

@@ -14,7 +14,11 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/skills/sk-doc/create-benchmark/SKILL.md"
-trigger_phrases: []
+trigger_phrases:
+  - "task breakdown"
+  - "implementation tasks"
+  - "verification checklist"
+  - "task dependencies"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 

@@ -15,7 +15,11 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
-trigger_phrases: []
+trigger_phrases:
+  - "task breakdown"
+  - "implementation tasks"
+  - "verification checklist"
+  - "task dependencies"
 ---
 # Tasks: Validate, Re-Benchmark Lane C, Prove Zero Corpus Loss
 

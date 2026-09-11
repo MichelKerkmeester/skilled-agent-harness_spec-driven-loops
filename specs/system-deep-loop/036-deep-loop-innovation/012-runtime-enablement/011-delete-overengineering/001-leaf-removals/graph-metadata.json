@@ -14,9 +14,15 @@
       "leaf removals wave",
       "shadow adapters delete",
       "dead authority constants delete",
-      "phase 001 leaf removals",
-      "shadow adapters removed",
-      "recovery manifest removed"
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies",
+      "phase 001 leaf removals"
     ],
     "key_topics": [
       "leaf",
@@ -28,9 +34,9 @@
       "dead",
       "authority",
       "constants",
-      "phase",
-      "removed",
-      "recovery"
+      "implementation",
+      "plan",
+      "technical"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -188,7 +194,7 @@
     ],
     "causal_summary": "Wave 1 of the over-engineering removal program: delete the three lowest-risk, zero-caller leaves (F5 hierarchical-budgets shadow-adapters, F6 receipts legacy-recovery manifest, F8 dead AUTHORITY_FLIP_COMMON constants) and their tests, severing barrel exports first. No live-loop adjacency.",
     "created_at": "2026-08-24T17:06:18.731Z",
-    "last_save_at": "2026-09-03T22:21:19.355Z",
+    "last_save_at": "2026-09-11T04:38:31.093Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,12 +203,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5868557c9f6ff22aa23103df7b67d1a537727c24f9f8f409cdc7860e0510c6ca",
+    "source_fingerprint": "sha256:65b7e6612ef4b78292967e22c1d9c7d02eed8ccfe6fac21a12ff204497ed75e3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "332a65264424a9cbbb373b7a57df2072747695c7797203074275d094b8775d78",
-      "plan.md": "eb509690a1e935fa4436003123fe546e9ea03df1db1951a481003cf038455d2f",
-      "tasks.md": "f485550ebbf1a369df5b9478ca156326bc95973c5c5c36b906de5245864b4ce9",
+      "plan.md": "8f79b0eb501916b22739a6f9289d240c1a728a89b3e14fc092196808ad07190b",
+      "tasks.md": "f52ec03052c63392228a6d659ddb6a98dcb7613e9edcfdbc392cb26a1e14140e",
       "implementation-summary.md": "3ed1c537899e4814f1fa36319a0c8e1375492c164c105e2cf00ed82ccdd10a28"
     },
     "last_active_child_id": null,

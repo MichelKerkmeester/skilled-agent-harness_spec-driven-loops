@@ -3,7 +3,11 @@ title: "Implementation Plan: Visual Explanation Lane for sk-communication"
 description: "How the modality dial and the depth dial become one command plus a Lane B section in sk-communication, without touching the projection lane."
 importance_tier: "medium"
 contextType: "general"
-trigger_phrases: []
+trigger_phrases:
+  - "implementation plan"
+  - "technical approach"
+  - "architecture decisions"
+  - "testing strategy"
 ---
 # Implementation Plan: Visual Explanation Lane for sk-communication
 

@@ -17,7 +17,11 @@ _memory:
       - ".opencode/skills/system-deep-loop/deep-alignment/scripts/tests/sk-doc-command-adapter.test.cjs"
       - ".opencode/commands/create/assets/create_readme_auto.yaml"
       - ".opencode/commands/doctor/_routes.yaml"
-trigger_phrases: []
+trigger_phrases:
+  - "implementation plan"
+  - "technical approach"
+  - "architecture decisions"
+  - "testing strategy"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 

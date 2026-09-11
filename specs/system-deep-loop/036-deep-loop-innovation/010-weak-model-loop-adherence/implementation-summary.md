@@ -20,7 +20,11 @@ _memory:
     open_questions: []
     answered_questions:
       - "Hard pre-write jail not needed: prompt-hardening drove DeepSeek breaches to zero"
-trigger_phrases: []
+trigger_phrases:
+  - "implementation summary"
+  - "what shipped"
+  - "validation evidence"
+  - "continuation notes"
 ---
 # Implementation Summary
 

@@ -15,9 +15,14 @@
       "loop-lock.js ERR_MODULE_NOT_FOUND deep-loop",
       "NODE_PRESERVE_SYMLINKS tsx loader",
       "DEEP_LOOP_REPO_ROOT containment override",
-      "tsx boot spaced path hardening summary",
-      "runtime-bootstrap tsxChildEnv",
-      "DEEP_LOOP_REPO_ROOT override"
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies"
     ],
     "key_topics": [
       "tsx",
@@ -30,8 +35,8 @@
       "loader",
       "containment",
       "override",
-      "summary",
-      "runtime-bootstrap"
+      "implementation",
+      "plan"
     ],
     "importance_tier": "high",
     "status": "complete",
@@ -191,7 +196,7 @@
     ],
     "causal_summary": "The deep-loop runtime is 19 `.ts` files with zero `.js` files; each `.cjs` entrypoint re-execs itself under the tsx loader (`--import <tsx>`), which remaps `.js` import specifiers to their `.ts` source",
     "created_at": "2026-08-26T14:47:30.655Z",
-    "last_save_at": "2026-09-03T22:22:03.501Z",
+    "last_save_at": "2026-09-11T04:38:32.720Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,12 +205,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3f937538d35e672a85a8d9c62728377f13e48c6e99d3815a686b880ad645c250",
+    "source_fingerprint": "sha256:5d61913513dd5e669130a23e46f08735c496fe354424b29d091e9e3b1fa79eef",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "54e5bff7370b5a9ae10787eed741f1e08f2a1c0453cee07cdaa7e17952e5f9b3",
-      "plan.md": "ee2fd2a8d9d930d8fc3d26c6940e347636fe503f41c4c3daecc4bb5e94375453",
-      "tasks.md": "8d1456c10d1ef9531be057fa1c27a4d4e2dd0c1105403cda3eb5bc9ad4d85b28",
+      "plan.md": "fb2c304b4c067483ad917b0df2e27358012d96396f7c81721f9271eed3a35ed3",
+      "tasks.md": "1bf6be3b43eaaf6e9c32c3c32f6620da74842dc531c6f6d5f38cc36b5c67b159",
       "implementation-summary.md": "306bd7684595e3106337367cae11853e17f42987cf266cef7b4b3b0341a4b008"
     },
     "last_active_child_id": null,

@@ -12,7 +12,17 @@
   "derived": {
     "trigger_phrases": [
       "number-agnostic leaf classification",
-      "no-new-numbers guard"
+      "no-new-numbers guard",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies",
+      "implementation summary",
+      "what shipped"
     ],
     "key_topics": [
       "number-agnostic",
@@ -20,13 +30,13 @@
       "classification",
       "no-new-numbers",
       "guard",
-      "phase",
-      "numbered-prefix",
-      "deprecation",
-      "re-base",
-      "sk-doc",
-      "catalog",
-      "playbook"
+      "implementation",
+      "plan",
+      "technical",
+      "approach",
+      "architecture",
+      "decisions",
+      "testing"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -180,7 +190,7 @@
     ],
     "causal_summary": "Phase 002 of the numbered-prefix deprecation. Re-base the sk-doc catalog/playbook leaf classifier in validate_document.py (both copies) from the number-anchored `^\\\\d{2}--` parent test to a structural test — the file sits in a SUBfolder of feature_catalog/ (resp. manual_testing_playbook/), so both the numbered NN--slug form and the de-numbered slug form validate during the transition while the root index file stays excluded.",
     "created_at": "2026-07-10T18:51:12.779Z",
-    "last_save_at": "2026-09-03T22:18:32.239Z",
+    "last_save_at": "2026-09-11T04:36:07.876Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -189,13 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cc8f7c8a90c2705766d6fe12dd4ea98669299cf90d72174ab2d5bd4dee208345",
+    "source_fingerprint": "sha256:19c9e24eebd55c1f3ec25d0f88c2babdb4d12570d6188b5a9a139295653e6c32",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c5b40ba5510e609d6adfd748451c2961611a2ff851e7614b09ed01ec91949e5f",
-      "plan.md": "5faefd5ee40a95c5a3a1aa902f4598d71e5cd37e8dd170de2b0d56661c31f6bc",
-      "tasks.md": "9bdf39d4c41475834129cc378a7bae5f001c69bb32f909a5e716a86528db4839",
-      "implementation-summary.md": "4982dc83d97d20bdff923fc6231c5777bc8558a46ad2b17dfb6cbe58e08d8137"
+      "plan.md": "fe4c99c2a380ef92757f2a69b8d51329b92769269c113c43dd62f4e0dafb35f2",
+      "tasks.md": "a09321b14b2e646eab1422addf93c56780dd5f691bb4caaefca98324576c0340",
+      "implementation-summary.md": "a63609a75065ff7537c5882744358e77b175cf03fdc14fcb52827db41d8f91da"
     },
     "last_active_child_id": null,
     "last_active_at": null

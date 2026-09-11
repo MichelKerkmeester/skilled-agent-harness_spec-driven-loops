@@ -14,7 +14,11 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/skills/sk-doc/create-benchmark/SKILL.md"
-trigger_phrases: []
+trigger_phrases:
+  - "implementation plan"
+  - "technical approach"
+  - "architecture decisions"
+  - "testing strategy"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 

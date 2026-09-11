@@ -14,7 +14,15 @@
       "rewrite-response",
       "self-rewrite command",
       "in-context plain english",
-      "sk-communication trigger"
+      "sk-communication trigger",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies"
     ],
     "key_topics": [
       "rewrite-response",
@@ -25,10 +33,10 @@
       "english",
       "sk-communication",
       "trigger",
-      "projection",
-      "layer",
-      "rewrites",
-      "cli"
+      "implementation",
+      "plan",
+      "technical",
+      "approach"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -187,7 +195,7 @@
     ],
     "causal_summary": "The sk-communication projection layer rewrites CLI output through a model, but a user has no way to ask the active AI to re-render its own reply in that plain-English style without invoking any model",
     "created_at": "2026-08-19T04:33:57.686Z",
-    "last_save_at": "2026-09-03T22:17:14.042Z",
+    "last_save_at": "2026-09-11T04:35:23.593Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:504876da9dd70a1e5930397b351e4b66c3a2556e77b81db27b19c7d83bb12b72",
+    "source_fingerprint": "sha256:7d80c6028f935d13f203d7bd753a56816f0742323860ca37f4a2eb1a8755bc2b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f811273877ef4b0820d63ed1d632e7edd80b85a2d5a525be629a43c6ff426a07",
-      "plan.md": "a744e485ffb21b94ad2ffa1daeaf225497ed6c04092cbc2cd62528ae2535326c",
-      "tasks.md": "eb776bdb84ee8cd1b94ad8b72be72dfe9e1eae1e6ce1ba0705281103b625c055",
-      "implementation-summary.md": "ae8b6465a9cef94125694ae42a5814b310a88b2aa76a5d553ece4110aad299a1"
+      "plan.md": "26a0404d370384cf2b1ebd5c66863fc6d980343d3d5b73849b1f59d8164ecb84",
+      "tasks.md": "7181f0bc05ccecb53d1aa7f22e5420946345639d240b964c75e0a386b81650e5",
+      "implementation-summary.md": "af1a5a75141c48327b493ae3a6e00be2a1ea180224cd855a7e8f8dbb3a671a02"
     },
     "last_active_child_id": null,
     "last_active_at": null

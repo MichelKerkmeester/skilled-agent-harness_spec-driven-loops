@@ -15,7 +15,11 @@
     "trigger_phrases": [
       "mechanical sweep",
       "catalog heading rename",
-      "bulk catalog fix"
+      "bulk catalog fix",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy"
     ],
     "key_topics": [
       "mechanical",
@@ -24,12 +28,12 @@
       "heading",
       "rename",
       "bulk",
-      "script-driven",
-      "across",
-      "files",
-      "current",
-      "reality",
-      "insert"
+      "implementation",
+      "plan",
+      "technical",
+      "approach",
+      "architecture",
+      "decisions"
     ],
     "importance_tier": "normal",
     "status": "planned",
@@ -113,18 +117,18 @@
     ],
     "causal_summary": "Script-driven bulk fixes across all 370 catalog files: rename CURRENT REALITY heading, insert template marker, fix validation table columns.",
     "created_at": "2026-06-04T13:19:25.656Z",
-    "last_save_at": "2026-09-03T22:18:50.065Z",
+    "last_save_at": "2026-09-11T04:36:15.274Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md"
     ],
-    "source_fingerprint": "sha256:71b6d84549f84188ad39d76679260a143fd92e5f6d0ce8178a9182f5323f0dce",
+    "source_fingerprint": "sha256:9908bb97ace6899f93880dc109d0721538095a1445e879a4b34253a888f1c05d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5052c1169f6785cf4c3e28d32ad78e71db2652635c5237f72e7ee6e69c9a77f6",
-      "plan.md": "4cef9106847794f541b66cd958bff0bd09daf3f23a737ebbd9db0a078d73fa09"
+      "plan.md": "d7434818a7dca2539af56d1b5f11730af56b502011e75cd42b9ff293bcf4251e"
     },
     "last_active_child_id": null,
     "last_active_at": null

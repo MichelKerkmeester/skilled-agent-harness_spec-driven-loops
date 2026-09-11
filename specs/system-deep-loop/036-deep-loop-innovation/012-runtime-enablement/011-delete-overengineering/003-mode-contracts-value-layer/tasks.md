@@ -3,7 +3,11 @@ title: "Tasks: Phase 003 Mode-Contracts Value Layer"
 description: "Ordered removal manifest for F2 — relocate the one live-consumer export, sever barrels, delete, verify."
 contextType: "implementation"
 parent: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering/003-mode-contracts-value-layer"
-trigger_phrases: []
+trigger_phrases:
+  - "task breakdown"
+  - "implementation tasks"
+  - "verification checklist"
+  - "task dependencies"
 ---
 
 <!-- SPECKIT_LEVEL: 2 -->

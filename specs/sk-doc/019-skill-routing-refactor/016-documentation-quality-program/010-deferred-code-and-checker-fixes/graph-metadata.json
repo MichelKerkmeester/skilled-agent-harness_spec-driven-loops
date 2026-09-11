@@ -14,9 +14,15 @@
       "deferred code checker fixes",
       "10a manifest checker path fix",
       "skill command uppercase flip",
-      "deferred fixes summary",
-      "10a checker fix summary",
-      "skill command flip summary"
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies",
+      "deferred fixes summary"
     ],
     "key_topics": [
       "deferred",
@@ -29,8 +35,8 @@
       "command",
       "uppercase",
       "flip",
-      "summary",
-      "closeout"
+      "implementation",
+      "plan"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -191,7 +197,7 @@
     ],
     "causal_summary": "The closeout deferred five follow-ups",
     "created_at": "2026-07-22T16:53:39.311Z",
-    "last_save_at": "2026-09-03T22:19:29.621Z",
+    "last_save_at": "2026-09-11T04:36:34.802Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,12 +206,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9a712f97b90c7869988f8d88da504f9914ddb851348c89249b9d658872c312e8",
+    "source_fingerprint": "sha256:9fab0a88b39cb6a7a9ea04b246028984d8e2ba944535ee580455a406de9b596a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b2a9f3b1e7f579ed2b58227b97b4042309fb04ce81b23108a143aed0995d1764",
-      "plan.md": "0ffab3e95a818459ba8a926df75a4115a8f1ceb2295fc4fe2d98e00ee466ff05",
-      "tasks.md": "9740355a8fe655615a63faacf14563cc9b24cec6c5cd3cab6d3d9fb97251ab4a",
+      "plan.md": "bbef5b2fd72aaa0f16e4c0b04a397461a3aa13663dea25d50f714ada460f514b",
+      "tasks.md": "c6dfb54d26fc6833d544ae4abb9c0d52e3108c73400735de071930d8dde74287",
       "implementation-summary.md": "57289156e37e6cfafe3817d8f201580a121a077bcf834d7504730430f1763e7f"
     },
     "last_active_child_id": null,

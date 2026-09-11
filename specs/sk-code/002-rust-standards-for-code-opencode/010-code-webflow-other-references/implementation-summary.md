@@ -12,7 +12,11 @@ _memory:
     blockers: []
     completion_pct: 100
     status: "Complete"
-trigger_phrases: []
+trigger_phrases:
+  - "implementation summary"
+  - "what shipped"
+  - "validation evidence"
+  - "continuation notes"
 ---
 # Implementation Summary
 

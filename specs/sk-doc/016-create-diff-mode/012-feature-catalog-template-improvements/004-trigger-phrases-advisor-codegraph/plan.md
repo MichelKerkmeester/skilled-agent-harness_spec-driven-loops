@@ -3,7 +3,11 @@ title: "Plan: Phase 004 — Trigger Phrases, advisor + code-graph"
 description: "Execution plan for adding and improving trigger_phrases across system-skill-advisor (40 files) and system-code-graph (14 files)."
 importance_tier: "normal"
 contextType: "general"
-trigger_phrases: []
+trigger_phrases:
+  - "implementation plan"
+  - "technical approach"
+  - "architecture decisions"
+  - "testing strategy"
 ---
 # Plan: Phase 004 — Trigger Phrases, advisor + code-graph
 

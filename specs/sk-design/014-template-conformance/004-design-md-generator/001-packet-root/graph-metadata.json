@@ -13,7 +13,16 @@
     "trigger_phrases": [
       "design-md-generator packet root audit",
       "design-md-generator INSTALL-GUIDE conformance",
-      "md-generator root template check"
+      "md-generator root template check",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies",
+      "implementation summary"
     ],
     "key_topics": [
       "design-md-generator",
@@ -25,9 +34,9 @@
       "md-generator",
       "template",
       "check",
-      "unusual",
-      "among",
-      "sk-design"
+      "implementation",
+      "plan",
+      "technical"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -185,7 +194,7 @@
     ],
     "causal_summary": "`design-md-generator`'s packet root is unusual among sk-design modes: it carries three root markdown files, not two",
     "created_at": "2026-07-27T15:10:01.252Z",
-    "last_save_at": "2026-09-03T22:18:14.879Z",
+    "last_save_at": "2026-09-11T04:35:43.024Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -194,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d0569ed1ff797985e6ee3607740e05bc05ec7e0fc7c190dbc63673b421d19dcf",
+    "source_fingerprint": "sha256:68659d78fcc2995dc1b946941677999699d605271cb08474bc2364053cf98d19",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b51dcb946eccc4bf365cdef6636e846c4b38a95940c7c8d396d14ca2a035345a",
-      "plan.md": "5fc4ff88d299b7f38fda70161d2407297763cc0b14707774dbe6b156892e47d9",
-      "tasks.md": "29d2b389392755d77d0c7be9f7e537ed84f8d3cbdd669f26caa031ad9750be54",
-      "implementation-summary.md": "38ddff5846dcfd2742e9a2f8841153b174e1432e91d3c9c1fbb4db48f73bb59d"
+      "plan.md": "8771d8d044462ea8f6448baa9916cb0d3d6b763825bfbfd32d3ce174e4040eec",
+      "tasks.md": "ee1ee9b24d12ee4f838309494346c18e19914d793fe4616aeacbf0528b8793ad",
+      "implementation-summary.md": "05eed3f5afa9f73bb7e6910f661465cb6a45645bd6218cd4838d559bbdadd74e"
     },
     "last_active_child_id": null,
     "last_active_at": null

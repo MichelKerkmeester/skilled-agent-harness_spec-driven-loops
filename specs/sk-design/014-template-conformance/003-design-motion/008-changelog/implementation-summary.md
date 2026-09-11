@@ -17,7 +17,11 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
-trigger_phrases: []
+trigger_phrases:
+  - "implementation summary"
+  - "what shipped"
+  - "validation evidence"
+  - "continuation notes"
 ---
 # Implementation Summary: design-motion changelog/ conformance
 

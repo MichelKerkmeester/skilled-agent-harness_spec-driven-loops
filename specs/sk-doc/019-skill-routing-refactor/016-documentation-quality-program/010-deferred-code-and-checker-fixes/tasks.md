@@ -13,7 +13,11 @@ _memory:
     next_safe_action: "Operator ff-merge to v4."
     blockers: []
     key_files: []
-trigger_phrases: []
+trigger_phrases:
+  - "task breakdown"
+  - "implementation tasks"
+  - "verification checklist"
+  - "task dependencies"
 ---
 
 # Tasks: Deferred Code and Checker Fixes

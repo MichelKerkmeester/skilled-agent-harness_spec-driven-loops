@@ -19,7 +19,10 @@
       "enrichment default on plan",
       "async enrichment implementation",
       "enrichment default on tasks",
-      "async enrichment task breakdown"
+      "async enrichment task breakdown",
+      "implementation summary",
+      "what shipped",
+      "validation evidence"
     ],
     "key_topics": [
       "post-insert",
@@ -191,7 +194,7 @@
     ],
     "causal_summary": "Three save-time \"planner-first\" features ship behind opt-in flags that default to OFF",
     "created_at": "2026-06-04T04:55:00Z",
-    "last_save_at": "2026-09-03T22:22:58.144Z",
+    "last_save_at": "2026-09-11T04:39:44.451Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:67df6ea9e1e5356da4e8f7bd9d6becb8d1249423d66338cc658bb9de56a849ff",
+    "source_fingerprint": "sha256:c127b05aed75a889d65fb449eb0d76209ef31274775ddd20aae23abba7bfa9c6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a3fbb4d130fe843d483317d86267e4ed2dce9e0e1d0ae0aa4b13cd2a09b34f10",
       "plan.md": "798b83d5cba10b86c7278b0f607f31862c8bcaaf42272611efad9332106cf602",
       "tasks.md": "f881f4e13863d9f6196833154ee4b68dafb00305d8918d8169abea091e2073d3",
-      "implementation-summary.md": "cdfee6db2a52099d235d610d21429d77071337f34efdbd5d717281d219b408cb"
+      "implementation-summary.md": "f7c08622841eff08a96d6d1d8653fc0bee81f9259cf14eafed77fa9910feb1e3"
     },
     "last_active_child_id": null,
     "last_active_at": null

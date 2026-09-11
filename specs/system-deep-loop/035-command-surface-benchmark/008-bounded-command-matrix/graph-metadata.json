@@ -15,9 +15,14 @@
       "model matrix executor variance",
       "leaf sentinels",
       "alignment fan-out wiring",
-      "bounded command matrix implementation",
-      "command behavior matrix scheduler",
-      "command matrix reconciliation"
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies"
     ],
     "key_topics": [
       "bounded",
@@ -191,7 +196,7 @@
     ],
     "causal_summary": "Runs both GPT drivers across all command scenarios plus eligible leaf sentinels with explicit skips and contested-cell reruns, building or verifying the alignment fan-out wiring that is not shipped today.",
     "created_at": "2026-07-14T20:37:00.448Z",
-    "last_save_at": "2026-09-03T22:20:26.917Z",
+    "last_save_at": "2026-09-11T04:38:01.312Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,12 +205,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0f8ab22601d973ee889ab6287ceb2698795060b0424a9fac1ebf8785d9d2b104",
+    "source_fingerprint": "sha256:f9f43edc94f8daa86f2c0a69eabb9b4d6245c7693ab79afa871890a4e425c174",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "93d31190e0cf6d0abd3c306e61af734a40ec3a3380e6430e1bb62b79ccf3e604",
-      "plan.md": "beccd74dccd7b779b62d5b114393cb647ce01ae507ca13fb2a09cf076e434a59",
-      "tasks.md": "32af82fcf3580ce6a98fe40c6b19f12607f61df82ad2bf5a8f1c1e395a7b4318",
+      "plan.md": "4f8e9811cd6ac440999fc04731ba1893e3438e09682bf5795a016add6007c9eb",
+      "tasks.md": "3e9a4d80f0a5e887e7675bfbab1245998fd3d07e7bc4a0e6b22666b683d842d7",
       "implementation-summary.md": "42e85b0edeb4033403b82962079f2c49cc3cbe836135dadd9883c0a7223ca3bc"
     },
     "last_active_child_id": null,

@@ -3,7 +3,11 @@ title: "Plan: Phase 002 Legacy-Compat Converters"
 description: "Approach and verification gates for the F1 seven-module legacy-compat removal wave."
 contextType: "implementation"
 parent: "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering/002-legacy-compat-converters"
-trigger_phrases: []
+trigger_phrases:
+  - "implementation plan"
+  - "technical approach"
+  - "architecture decisions"
+  - "testing strategy"
 ---
 
 <!-- SPECKIT_LEVEL: 2 -->

@@ -15,9 +15,14 @@
       "command census freeze",
       "command topology taxonomy",
       "two-axis verdict semantics",
-      "command benchmark contract implementation",
-      "command benchmark phase 000 summary",
-      "command census taxonomy evidence"
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies"
     ],
     "key_topics": [
       "command",
@@ -31,7 +36,7 @@
       "verdict",
       "semantics",
       "implementation",
-      "phase"
+      "plan"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -40,7 +45,6 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs",
       ".opencode/commands/scripts/validate-command-references.cjs"
     ],
     "entities": [
@@ -66,12 +70,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "sync-prompts.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs",
         "source": "derived"
       },
       {
@@ -187,11 +185,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Frozen Contract Set The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Freezes the canonical command census, the four-topology taxonomy, the two non-averaged verdict axes, per-phase baseline counts, ownership boundaries against existing validators, and the handoff gates every downstream phase builds against.",
     "created_at": "2026-07-14T20:25:28.765Z",
-    "last_save_at": "2026-09-03T22:20:04.166Z",
+    "last_save_at": "2026-09-11T04:38:00.769Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,12 +204,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3d6e3c8f107ef092bff16f9a69e9383b60dd89a5377c13eac188fb874a8f4110",
+    "source_fingerprint": "sha256:c5f5bb4f2bb6b4af2cfa1ffcc60d99e810b1469b3f00ac290192285f39e7ecf6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "eeab1e78d7f7bad2ddf4c5ea64bca7a8c156c0123fa00cfd4a76b5c69f94b323",
-      "plan.md": "994a33ebea8a96ec72ac737dc106cec43efe6e37633802aa19356e72e074b5bf",
-      "tasks.md": "4f539c7e9dd57edb957ae8020149126437db06611b683ed39f2a29e1e67639e8",
+      "plan.md": "b29de73dfa90b00c5c6fe9bf6ea0ee9e2298fc47280ccf4b2cc546c4110e3bbc",
+      "tasks.md": "35c3aaa6abdf395253d24f8fdd98bfafe38a384a93e8fb8e1b170e0b285f51f2",
       "implementation-summary.md": "f7ab5095caef53bf9f8cece7e242aaa1ce3ff400f0ee0c75be89d9c9f5d3cdea"
     },
     "last_active_child_id": null,

@@ -14,7 +14,11 @@ _memory:
     key_files:
       - ".opencode/skills/system-spec-kit/mcp_server/tests/flag-ceiling.vitest.ts"
     completion_pct: 100
-trigger_phrases: []
+trigger_phrases:
+  - "task breakdown"
+  - "implementation tasks"
+  - "verification checklist"
+  - "task dependencies"
 ---
 # Tasks: Version-Suffix Flag-Name Cleanup
 

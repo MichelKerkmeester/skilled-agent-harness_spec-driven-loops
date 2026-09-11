@@ -12,20 +12,25 @@
     "related_to": []
   },
   "derived": {
-    "trigger_phrases": [],
+    "trigger_phrases": [
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy"
+    ],
     "key_topics": [
+      "implementation",
+      "plan",
+      "technical",
+      "approach",
+      "architecture",
+      "decisions",
+      "testing",
+      "strategy",
       "script-driven",
       "related",
       "references",
-      "prev",
-      "next",
-      "links",
-      "source",
-      "metadata",
-      "snippets",
-      "currently",
-      "missing",
-      "them"
+      "prev"
     ],
     "importance_tier": "normal",
     "status": "planned",
@@ -97,18 +102,18 @@
     ],
     "causal_summary": "Script-driven: add 'Related references:' prev/next links to SOURCE METADATA in all 315 snippets currently missing them. Link titles sourced from frontmatter — no AI judgment needed.",
     "created_at": "2026-07-09T10:02:46.146Z",
-    "last_save_at": "2026-09-03T22:18:56.877Z",
+    "last_save_at": "2026-09-11T04:36:15.485Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md"
     ],
-    "source_fingerprint": "sha256:5ff87e3ff108b105e35ca5592657f240b526f2c0f6db98f1c14cf911b70aa649",
+    "source_fingerprint": "sha256:7b5dfa58df2890f37d3e9ca0bcaeba242aba840b261155aa6d7ca36d5e11573a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1b2e7ab12ea454ee916f2224b989c0547214ecfe44e177823b9d4f0fba5aac95",
-      "plan.md": "17fb8bf2736d617ce0800c8a61eac0952b97d90c957830e5ee74fb20e6b26ba5"
+      "plan.md": "7dd548208d7c6c3c414d001c5bab019c2744ebb778db11553451eb95497444ae"
     },
     "last_active_child_id": null,
     "last_active_at": null

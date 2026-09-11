@@ -14,7 +14,15 @@
       "runtime agent gateway alignment",
       "leaf agent direct append",
       "deep-loop agent state jsonl bypass",
-      "append gateway agent prompt"
+      "append gateway agent prompt",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies"
     ],
     "key_topics": [
       "runtime",
@@ -189,7 +197,7 @@
     ],
     "causal_summary": "The `012-runtime-enablement` work made the typed event ledger authoritative for all eight deep-loop modes and turned each `-state.jsonl` into a pure projection of the ledger",
     "created_at": "2026-08-25T07:11:26.953Z",
-    "last_save_at": "2026-09-03T22:21:40.461Z",
+    "last_save_at": "2026-09-11T04:38:31.719Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,14 +207,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d6f4c0c50345eff32b96e8531db760ba559221a1f8add2cca1d963525bfae19f",
+    "source_fingerprint": "sha256:11bd6a78eb57e31f78a9f36ce6b4bb664fe84578189b92f0aa1f72895a702f3f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "cd84afd1fae1705d9db71607f41af5e6b6199cce6e0d1642d3228bc72900e581",
-      "plan.md": "2ba0d7925bc863d26fe9d4dbfd9bbca5e17e79e4aa7fba6ac255deb4da56b8a0",
-      "tasks.md": "de9e8e4a4d0b8e67778a1a374302a666eb1b574eb059207d82f1b71deb8ee494",
+      "plan.md": "b36e17d0592a108e899de8e6269bc1f909c3b70b5dda5efcb40d3217535cadb3",
+      "tasks.md": "2311f08240a89a748a533e876dbc436d114628ddad45e4afb3b5872841f0c097",
       "decision-record.md": "f4e4d20234bb1e1a476e52b28c506e84587b5eaa4bea244f5a3cdee69bfa9aa1",
-      "implementation-summary.md": "5beef30f8f41ecaf64d90f042a45fb72519f8b685cc323a891762cc4bf56a9c0"
+      "implementation-summary.md": "30588465b68bd3b7328ffbd500da554af8614c16068bb3c84ebbd883b79e2aee"
     },
     "last_active_child_id": null,
     "last_active_at": null

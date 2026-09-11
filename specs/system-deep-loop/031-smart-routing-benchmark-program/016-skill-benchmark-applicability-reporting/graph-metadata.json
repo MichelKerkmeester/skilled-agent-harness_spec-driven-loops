@@ -13,7 +13,16 @@
     "trigger_phrases": [
       "skill benchmark excluded by design",
       "D1-inter advisor-invisible reporting",
-      "D4-R fail closed scenario selection"
+      "D4-R fail closed scenario selection",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies",
+      "implementation summary"
     ],
     "key_topics": [
       "skill",
@@ -179,7 +188,7 @@
     ],
     "causal_summary": "The Lane C skill-benchmark silently normalizes D1-inter (advisor rank) and D4 out of the weighted aggregate for skills that cannot support them, so an advisor-invisible surface like code-opencode reports two 'unscored' dimensions that read as gaps rather than structural N/A.",
     "created_at": "2026-07-11T14:10:05.865Z",
-    "last_save_at": "2026-09-03T22:20:00.192Z",
+    "last_save_at": "2026-09-11T04:37:56.830Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -188,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7942e4157cf34ee7ec2816c1c18d3d2e6e37b4b64f641783d22df78d32d6d737",
+    "source_fingerprint": "sha256:6404a7838f194564cf15056b2a547c20d2fcb9bd8148aa903a088198ee3642cb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "383c9deda278fbbace6c1c46988259480e37e2e188f308142aa0d18e8807cf2a",
-      "plan.md": "31c6e122e6dd7fcbc6ddc6fe910bb1d45995fc20701047579dfd62d53fb58e35",
-      "tasks.md": "48259698a68340ff8b9a29daf3581272049e8ccd6029ee2ce8bce9e47f26ad71",
-      "implementation-summary.md": "6a47d7a26828f67712e206d936f3ae832310e8ec79756bbc98d2507b5dc9634d"
+      "plan.md": "f34557ca07452a434424e89e9eb6231b6ae8133735b27f0c9226b446ce112f73",
+      "tasks.md": "719cf9ccfb5cc7f636e9c8ad852281908d21469d2b256ff1a461344927cf58ba",
+      "implementation-summary.md": "199f0d6cfce188ae07091f62a8fcbad2ad754df745ea6caa90e2a11623239d3e"
     },
     "last_active_child_id": null,
     "last_active_at": null

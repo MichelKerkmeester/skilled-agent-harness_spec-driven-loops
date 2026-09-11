@@ -10,7 +10,11 @@ _memory:
     last_updated_by: "claude"
     recent_action: "Authored the plan; implementation complete"
     next_safe_action: "Run whole-suite gates; commit"
-trigger_phrases: []
+trigger_phrases:
+  - "implementation plan"
+  - "technical approach"
+  - "architecture decisions"
+  - "testing strategy"
 ---
 # Implementation Plan: Retire the deep/* Dispatch-Context (Phase-0) Gate
 

@@ -18,7 +18,11 @@ _memory:
       - ".opencode/skills/sk-doc/mode-registry.json"
       - ".opencode/skills/sk-doc/hub-router.json"
       - ".opencode/commands/create/benchmark.md"
-trigger_phrases: []
+trigger_phrases:
+  - "task breakdown"
+  - "implementation tasks"
+  - "verification checklist"
+  - "task dependencies"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 

@@ -16,9 +16,13 @@
       "presentation asset research",
       "workflow yaml mode research",
       "route manifest yaml research",
-      "command asset layer research run",
-      "asset layer cross-model backlog",
-      "command yaml presentation research synthesis"
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist"
     ],
     "key_topics": [
       "command",
@@ -32,7 +36,7 @@
       "mode",
       "route",
       "manifest",
-      "run"
+      "implementation"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -195,7 +199,7 @@
     ],
     "causal_summary": "A two-lineage deep-research fan-out (5x GPT-5.6-Sol xhigh/fast via cli-codex + 5x GLM-5.2 max via cli-opencode, 10 forced iterations, non-convergence) drilling the command asset layer — the _auto.yaml / _confirm.yaml workflow YAMLs, the _presentation.txt display assets, and the doctor route-manifest _routes.yaml — and producing a cross-model asset-layer backlog (A-K/A-W/A-G) at research/research.md that refines the 013 remediation phases.",
     "created_at": "2026-07-16T07:48:40.216Z",
-    "last_save_at": "2026-09-03T22:20:43.577Z",
+    "last_save_at": "2026-09-11T04:38:02.387Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +209,12 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:5cfc86345b70260a24a0a580a8a5f9dd39ce90b4c651e3a94f5163e34b17fc55",
+    "source_fingerprint": "sha256:bed2fba0773f2f28777529082a0c812d29b68534f6e2c88fe3a644e95bfa3a12",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "72f8e50fce2fc050393c2c0587137a86cdcc5898414f14fa635ae564e5ac69c1",
-      "plan.md": "dd61728793b7a8418b37e6dae090c10c9597e03212c0a506dcd85b54c85a5944",
-      "tasks.md": "0dd3cc521c7926ea16857ae94e11a681e6fa07ff1e2ab88437030d089c736a3c",
+      "plan.md": "3f96148a01559f6800774270087f51eff510bef9e61fa0f904e4dedf28753557",
+      "tasks.md": "76c057b64c5d50d001be74cc99bc1c8fc8e288542ed64208daca5298c7de9e4b",
       "implementation-summary.md": "18ac7a5639b00d028a2dddba359f7abadad01e4fd1481851f964502a1dd37729",
       "research/research.md": "ba9bac13cdae7cc6702e723ca7ac0a8d5e596aa1a90a7bdf1f519a2cfd504a54"
     },

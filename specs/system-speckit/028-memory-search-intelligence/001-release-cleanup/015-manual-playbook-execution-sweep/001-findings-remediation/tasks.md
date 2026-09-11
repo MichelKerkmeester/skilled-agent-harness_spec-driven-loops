@@ -6,6 +6,7 @@ trigger_phrases:
 importance_tier: "important"
 contextType: "implementation"
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 # Tasks: Manual Playbook Sweep Findings Remediation
 
 <!-- SPECKIT_LEVEL: 2 -->

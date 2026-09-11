@@ -21,7 +21,11 @@ _memory:
     open_questions: []
     answered_questions:
       - "All 3 flags default-on with opt-out env; enrichment async/deferred."
-trigger_phrases: []
+trigger_phrases:
+  - "implementation summary"
+  - "what shipped"
+  - "validation evidence"
+  - "continuation notes"
 ---
 # Implementation Summary: Enrichment + Reconsolidation Default-On (Async)
 

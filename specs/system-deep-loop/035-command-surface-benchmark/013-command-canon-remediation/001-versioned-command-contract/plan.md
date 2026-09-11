@@ -17,7 +17,11 @@ _memory:
       - ".opencode/skills/sk-doc/create-command/SKILL.md"
       - ".opencode/skills/sk-doc/create-command/assets/command_router_template.md"
       - ".opencode/skills/sk-doc/create-command/assets/command_template.md"
-trigger_phrases: []
+trigger_phrases:
+  - "implementation plan"
+  - "technical approach"
+  - "architecture decisions"
+  - "testing strategy"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 

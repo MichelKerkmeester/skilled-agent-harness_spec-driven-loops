@@ -13,7 +13,16 @@
     "trigger_phrases": [
       "style database implementation",
       "styles sqlite fts vector",
-      "styles _engine database backend"
+      "styles _engine database backend",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies",
+      "implementation summary"
     ],
     "key_topics": [
       "style",
@@ -24,10 +33,10 @@
       "fts",
       "vector",
       "backend",
-      "290-style",
-      "library",
-      "opencode",
-      "skills"
+      "plan",
+      "technical",
+      "approach",
+      "architecture"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -187,7 +196,7 @@
     ],
     "causal_summary": "The 1,290-style library (`.opencode/skills/sk-design/styles/`) is served by a file-walking retrieval engine (`styles/engine`) whose read path rebuilds a 5.89 MB denormalized manifest and a disposable in-memory FTS index on every query — a full-corpus query measured at 6,246.5 ms",
     "created_at": "2026-07-19T08:37:30.136Z",
-    "last_save_at": "2026-09-03T22:17:41.327Z",
+    "last_save_at": "2026-09-11T04:35:35.735Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:30b2b5f2bdcfb8dc489cb1b8a5a7d98ce010f050d5050d26f6516c16b0cca421",
+    "source_fingerprint": "sha256:18bee2138e8f7d031ca4f4ee46d92254a0755d01e4ab790b0bc9c771bb35b63b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1cb6fea7546a98ae512a3f918b2a1e5eb8ee55cd16495d8c5064062a442ae55b",
-      "plan.md": "8bb17dad34ba4c8e0db4a42434c98ee1490d0eb5b493af37d3ac4f0934ada496",
-      "tasks.md": "12a1e86b26966bf28b1889be237fdc246564e54bd4193ffc6553aaccfc110dde",
-      "implementation-summary.md": "cb91a3250c9683e783156614413291c88891ea5aef2e092fc220f0deaa61b0f5"
+      "plan.md": "2a3c1b8edc46d2c7e066e19a5a74cf6fccbed3482dc5f35dba68d7958176b8e2",
+      "tasks.md": "830f97b4527ddd03934e5bbc8690780c2ea59caf7572ca64e07bfcf46fcb4f3f",
+      "implementation-summary.md": "7490e5e32d15b0e86463521e04ca36c8454a1a37e9bf8e7973625d7b9bb0c745"
     },
     "last_active_child_id": null,
     "last_active_at": null

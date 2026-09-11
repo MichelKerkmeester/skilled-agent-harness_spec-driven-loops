@@ -3,7 +3,11 @@ title: "Implementation Summary: Architecture Diagrams & Topology"
 template_source: "SPECKIT_TEMPLATE_SOURCE: implementation-summary-core | v2.2"
 description: "Summary of architecture diagram and topology tree additions across 17 code-folder READMEs and ARCHITECTURE.md."
 importance_tier: "normal"
-trigger_phrases: []
+trigger_phrases:
+  - "implementation summary"
+  - "what shipped"
+  - "validation evidence"
+  - "continuation notes"
 ---
 
 <!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary-core | v2.2 -->

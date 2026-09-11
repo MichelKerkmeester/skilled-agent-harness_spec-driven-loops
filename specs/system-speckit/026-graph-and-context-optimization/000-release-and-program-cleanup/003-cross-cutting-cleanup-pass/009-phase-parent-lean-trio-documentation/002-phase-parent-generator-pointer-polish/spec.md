@@ -22,6 +22,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: Phase Parent Generator Pointer + Polish
 
 <!-- SPECKIT_LEVEL: 2 -->

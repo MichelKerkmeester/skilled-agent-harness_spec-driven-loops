@@ -14,7 +14,11 @@ _memory:
     completion_pct: 10
     open_questions: []
     answered_questions: []
-trigger_phrases: []
+trigger_phrases:
+  - "implementation plan"
+  - "technical approach"
+  - "architecture decisions"
+  - "testing strategy"
 ---
 # Plan: Lane C Skill-Benchmark Applicability Reporting
 

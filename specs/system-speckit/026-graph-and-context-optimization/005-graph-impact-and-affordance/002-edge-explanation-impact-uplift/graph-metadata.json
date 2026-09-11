@@ -15,7 +15,14 @@
       "012 blast radius uplift",
       "code graph reason step",
       "ambiguity candidates",
-      "012/003 implementation summary"
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies"
     ],
     "key_topics": [
       "edge",
@@ -187,7 +194,7 @@
     ],
     "causal_summary": "Add reason/step fields to edge metadata + display; enrich blast_radius with depth groups, risk levels, min-confidence filter, ambiguity candidates, structured failure-fallback. No SQLite migration.",
     "created_at": "2026-04-25T10:48:07.859Z",
-    "last_save_at": "2026-09-03T22:23:10.830Z",
+    "last_save_at": "2026-09-11T04:39:45.516Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,12 +203,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e51f908c2be292e8b919a44c051fe8281aa6836386c572053bfa3c68b2d49fc6",
+    "source_fingerprint": "sha256:59673c1f194a3dd6537c1a9a7fee6079357b04ad33e044d1f68503f79960d961",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4e16a1601f7988f1e8e5efd846dd0f98abda5673a9f8a462fa52158545f4aec9",
-      "plan.md": "7d0922d17731e63b9e0531388c11d8b8e8c6dfa6f35117309767b577a4d07032",
-      "tasks.md": "d888806b1eabdc214d1008f87d9741c931e58a3d30ad0fd07d26560229b43254",
+      "plan.md": "004c6873dd310c756df4b7d1558eb736d2890ea869b58cabec63e2dc1b9310ef",
+      "tasks.md": "941238d35db94f055433bea63584caf7eaf2cfde750112ab089ae45e8ad31897",
       "implementation-summary.md": "f026c0326ded16972242839fa3619c21c87c501128b669c4e40d16cdfb27c570"
     },
     "last_active_child_id": null,

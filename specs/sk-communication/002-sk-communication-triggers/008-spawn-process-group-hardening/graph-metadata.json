@@ -13,7 +13,16 @@
     "trigger_phrases": [
       "spawn process group hardening",
       "cli process group kill",
-      "orphaned subprocess teardown"
+      "orphaned subprocess teardown",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies",
+      "implementation summary"
     ],
     "key_topics": [
       "spawn",
@@ -25,9 +34,9 @@
       "orphaned",
       "subprocess",
       "teardown",
-      "phase-006",
-      "boundary",
-      "killed"
+      "implementation",
+      "plan",
+      "technical"
     ],
     "importance_tier": "supporting",
     "status": "complete",
@@ -187,7 +196,7 @@
     ],
     "causal_summary": "The phase-006 spawn boundary killed only the direct child on timeout",
     "created_at": "2026-08-20T05:12:58.967Z",
-    "last_save_at": "2026-09-03T22:17:24.043Z",
+    "last_save_at": "2026-09-11T04:35:24.728Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:332fd1fdc90d70085d882b1aee084e73424803dfb972331b0c2fe2c08ba1ebcb",
+    "source_fingerprint": "sha256:7420a3d13a413d55993705f8d4cbfc7615abea12f661fcff095adfc743aaf52e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9a479d2facaf4ea2fb81fed5a56db2150b44a8089dbd8fa92bb0fd2f6a5700a1",
-      "plan.md": "6dba4f989acf796cea090fafb959e0069bde7d0747d8ff7ef48ee2f7f1082886",
-      "tasks.md": "dcf003ca36324fe21a340eeed12c34ec1f33b64c3d77af35e02cfce6f21c7d1f",
-      "implementation-summary.md": "e1ad9a6b13c63e89bd194e22a7265667bcf2dd6f4abc4cd5cec36c0babac24e6"
+      "plan.md": "047eb7efac1305c3250cdb9a1327a15842b5c3e3de93c22f5aaadc7982d13d27",
+      "tasks.md": "2e9c274133edf36d73864cfb3a2bbe6ae8a3dbfe2de3d12882dae8184f61750c",
+      "implementation-summary.md": "e71568a86bc7a0713592efef67cac952e94ae8bf372eee9f4bb6e74f35429823"
     },
     "last_active_child_id": null,
     "last_active_at": null

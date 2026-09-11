@@ -14,7 +14,15 @@
       "external-cli provider",
       "cli provider family",
       "external agent projection provider",
-      "cli transport"
+      "cli transport",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies"
     ],
     "key_topics": [
       "external-cli",
@@ -25,10 +33,10 @@
       "agent",
       "projection",
       "transport",
-      "command",
-      "engine",
-      "path",
-      "pure"
+      "implementation",
+      "plan",
+      "technical",
+      "approach"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -199,7 +207,7 @@
     ],
     "causal_summary": "Command 2's cli- engine path is pure command-level orchestration",
     "created_at": "2026-08-19T06:20:53.378Z",
-    "last_save_at": "2026-09-03T22:17:17.862Z",
+    "last_save_at": "2026-09-11T04:35:23.791Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +216,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e899ed49313ebecab4349450616ecdad5d14d9c7f70d0cf2bcb3fa1db2733135",
+    "source_fingerprint": "sha256:0fb4661834fb23cb13c2f42123db854ab789164dfe3960b6c9f8aece7a8b2e87",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "fa7e4b28fa804c547b323f0662318d31b2759a9e9b4b928db9d2232b776b1f0b",
-      "plan.md": "b2bab97e1a40dbfa6a5c27dde91a3a4729e51577868a72e14fd962ff0851b402",
-      "tasks.md": "dd36f0011045d503ceb97264a6791d7ee62af1ecb18cf1c07a6aaeab7ee4a1e8",
-      "implementation-summary.md": "913f386c928dda1cc92d4cf29b4f91d2b0cc1a2769f8e22f728729bc04c891b9"
+      "plan.md": "f7c68eee137856c377ca8e912a2caa23bd62c8aad69f0607b4f0abc5aaa5fb30",
+      "tasks.md": "03c86fc73b0f46559132edf2b60e17b60224df29b24ad7bf2cc6a46c78ea162e",
+      "implementation-summary.md": "ce1414a6cb7017c6ad47679ecbc5724dfb5994e5d663f9b0b639303926e341c8"
     },
     "last_active_child_id": null,
     "last_active_at": null

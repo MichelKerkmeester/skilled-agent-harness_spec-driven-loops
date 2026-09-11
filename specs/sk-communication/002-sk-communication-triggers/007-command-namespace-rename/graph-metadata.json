@@ -13,7 +13,16 @@
     "trigger_phrases": [
       "rewrite command namespace",
       "rewrite response command rename",
-      "rewrite subfolder commands"
+      "rewrite subfolder commands",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies",
+      "implementation summary"
     ],
     "key_topics": [
       "rewrite",
@@ -23,11 +32,11 @@
       "rename",
       "subfolder",
       "commands",
-      "two",
-      "trigger",
-      "sat",
-      "flat",
-      "paths"
+      "implementation",
+      "plan",
+      "technical",
+      "approach",
+      "architecture"
     ],
     "importance_tier": "supporting",
     "status": "complete",
@@ -190,7 +199,7 @@
     ],
     "causal_summary": "The two trigger commands sat at the flat paths `.opencode/commands/rewrite-response.md` and `.opencode/commands/rewrite-response-by-external-agent.md`, so they invoked as `/rewrite-response` and `/rewrite-response-by-external-agent`",
     "created_at": "2026-08-19T20:23:37.258Z",
-    "last_save_at": "2026-09-03T22:17:21.708Z",
+    "last_save_at": "2026-09-11T04:35:24.394Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +208,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:28189b52e380f0edb33550ba4dfa3bfb255b1946d81d2ba7002f569f8deec163",
+    "source_fingerprint": "sha256:7bb05fce63538c8379fddf343dc7d89baf33b5cc7f014192f01b2b3a2b7c2059",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e8eeb60edf69d4488a01bbd3935a5e047bf57d3c3feaa88a56c33817678beb49",
-      "plan.md": "d65dd8ec78d743f629cc9820e3a0bbfdd9ab8eb9c219ec70c58a206b0b7ceccb",
-      "tasks.md": "c6bb0bc8dc6a9411214fcd432feced3da25fc93d10e89ddf5c321cca99cc0c9c",
-      "implementation-summary.md": "30f12a115b2e4e2e22fa5e3b0b8d0156d460a3f8b326e8acae45df24771b342a"
+      "plan.md": "ada788343e752c13213633a5e1d88643a517ff006fc85c79c77faa2203b285e5",
+      "tasks.md": "1864dbd48eff6568dfacdab96045f9ce6d83677f2fc1b5d89dfae9114eaa16f8",
+      "implementation-summary.md": "9080758feefd0ba97baeedbf99f53a8330e539744a6760f39ab0833aaf92ad9e"
     },
     "last_active_child_id": null,
     "last_active_at": null
