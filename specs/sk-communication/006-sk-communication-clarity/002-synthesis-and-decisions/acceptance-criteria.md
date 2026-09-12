@@ -11,12 +11,11 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-communication/006-sk-communication-clarity/002-synthesis-and-decisions"
-    last_updated_at: "2026-09-12T13:00:00Z"
+    last_updated_at: "2026-09-12T17:47:00Z"
     last_updated_by: "opus-5-session"
-    recent_action: "Authored the acceptance criteria for this packet"
-    next_safe_action: "Verify phase 001 artifacts, then record the verdicts"
-    blockers:
-      - "Phase 001 has not run"
+    recent_action: "Realigned the criteria with the eight Accepted ADRs and the remaining allocation work"
+    next_safe_action: "Build the allocation table over the candidate union, then record the non-work rows and the rejection list"
+    blockers: []
     key_files:
       - "decision-record.md"
       - "spec.md"
@@ -55,15 +54,22 @@ _memory:
 
 One row per criterion. `AC-ID` is stable once written: supersede a criterion, never renumber it.
 
+The eight operator decisions are already recorded and Accepted in `decision-record.md`, so no criterion
+below asks whether a decision was reached. They ask whether the allocation table is complete, whether
+each candidate is assigned once, whether the eight ADRs are reachable and Accepted, and whether the
+non-work register and the rejection list carry their reasons.
+
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given the merged recommendation list, When the phase closes, Then every row carries adopt, reject or already-covered | Count rows against the union of lineage recommendations, and scan for blanks | Unmet | - |
-| AC-002 | REQ-002 | Given an adopted recommendation, When the allocation table is read, Then it names exactly one owning document | Duplicate scan over the owning-document column returns nothing | Unmet | - |
-| AC-003 | REQ-003 | Given an adopted recommendation, When its row is read, Then it names a specific failure rather than a general benefit | Read each adopted row and reject any failure statement that would fit any rule set | Unmet | - |
-| AC-004 | REQ-004 | Given a contradiction between a source and an existing rule, When the phase closes, Then an ADR names which wins and why | One ADR per contradiction exists in `decision-record.md`, including the colon case | Unmet | - |
-| AC-005 | REQ-005 | Given two lineages that disagree, When the disagreement is recorded, Then it is diagnosed as underspecified or thin-evidence and not averaged | Every disagreement entry carries a diagnosis, and no entry carries a tally | Unmet | - |
-| AC-006 | REQ-006 | Given a proposed new repo rule, When its row is read, Then it names why no existing document can carry it | Each new-rule proposal names the existing files it was tested against | Unmet | - |
-| AC-007 | REQ-007 | Given the reader-profile recommendations, When the phase closes, Then the record states always-binding rule or operator-selected mode | The answer appears in `decision-record.md` as a decision, not as an open question | Unmet | - |
+| AC-001 | REQ-001 | Given the union of candidates from both research syntheses, When the allocation table is read, Then every candidate carries exactly one verdict and no row is blank | Count the rows against the 29-candidate union the phase 001 synthesis records, scan for blanks, and confirm the four non-work rows are present | Unmet | - |
+| AC-002 | REQ-002 | Given an adopted candidate, When the owning-document column is read, Then it names exactly one document | A duplicate scan over the owning-document column returns nothing, and every adopted row's cell is filled | Unmet | - |
+| AC-003 | REQ-003 | Given an adopted candidate, When its row is read, Then it names the specific failure the rule prevents rather than a general benefit | Read each adopted row and reject any failure statement that would fit any rule set | Unmet | - |
+| AC-004 | REQ-004 | Given a source rule that conflicts with an existing rule, When the packet closes, Then an Accepted ADR says which side wins and why, and ADR-001 through ADR-008 are present and reachable | Read every ADR in `decision-record.md`, confirm each Status field reads Accepted, and confirm the colon case names the rule that stands and the rule that would have changed | Unmet | - |
+| AC-005 | REQ-005 | Given two lineages that disagree, When the disagreement is recorded, Then it is diagnosed as an underspecified question or as thin evidence, and never averaged | Every disagreement entry carries a diagnosis, and no entry carries a tally | Unmet | - |
+| AC-006 | REQ-006 | Given a candidate the table assigns to a new rule file, When its row is read, Then it names why no existing document can carry it | Each new-file assignment names the existing file it was tested against, which for the reply-shape bundle is the length ceiling `communication.md` records | Unmet | - |
+| AC-007 | REQ-007 | Given the reader-profile candidates, When their rows are read, Then the answer is explicit: the delivery rules bind whenever a reply is written, and the reader-conditional rules need an operator-selected mode that stays off by default | The split appears in the table as a decision, not as an open question | Unmet | - |
+| AC-008 | REQ-001 | Given a candidate no surface can carry, When its row is read, Then it is recorded as deliberate non-work with a blocking reason and no owning document | Four rows are present, covering the editing lane for durable prose, the long-session decay problem, runtime mirror verification, and reply-level numbering | Unmet | - |
+| AC-009 | REQ-001 | Given a candidate or an option the decisions did not adopt, When the rejection list is read, Then each rejection carries one reason | Read each rejection and confirm no rejected option reappears as an adopted row | Unmet | - |
 
 ### Status values
 
@@ -90,6 +96,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 
 **Closeable:** No
 
-This phase is blocked on phase 001. The statement is written when the phase closes, naming which
-criteria carried it and what was consciously left out.
+Every row above is `Unmet`, so closure is blocked. The eight decisions are recorded and Accepted, so
+the deciding half of this phase is done. What is not done is the allocation table, the four non-work
+rows and the rejection list, and this statement will be rewritten when they land.
 <!-- /ANCHOR:closure -->
