@@ -236,13 +236,14 @@ One table, not a checklist to recite. Each row is a signal the work is drifting 
 
 ##### Verification Standards
 
-These four bind unconditionally, including on a read-only turn where Gate 5 never fires and no rule file loads.
+These five bind unconditionally, including on a read-only turn where Gate 5 never fires and no rule file loads.
 
 | Standard | Rule |
 |---|---|
 | **Confirmed vs inferred** | A load-bearing claim carries its evidence (file:line, command, artifact). An inferred one says what would confirm it. |
 | **Observed command evidence** | A command is evidence only once its output AND exit status are read. Exit status alone has been wrong in both directions. |
 | **Finding = hypothesis** | A sub-agent's "COMPLETE" and a reviewer's "P0" are claims about themselves until something you ran confirms them. |
+| **Your own read is also one lens** | A judgment answered from your own reading alone is the same single-lens claim. Ground it, or say it is judgment and what would change it. |
 | **Baseline before "no regressions"** | Capture the starting numbers, rerun the WHOLE gate, report the delta. |
 
 Proof plans, negative controls, final-state proof and per-shape proof (filters inventory their variants, computed answers are derived twice, performance claims are measured, exact artifacts are checked by name, path and shape) are [`evidence-and-proof.md`](repo-rules/evidence-and-proof.md).
