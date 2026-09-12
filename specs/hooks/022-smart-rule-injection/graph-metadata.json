@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks/022-smart-rule-injection",
+  "spec_folder": "hooks/022-smart-rule-injection",
+  "parent_id": null,
+  "children_ids": [
+    "hooks/022-smart-rule-injection/001-deep-research",
+    "hooks/022-smart-rule-injection/002-event-triggered-injection",
+    "hooks/022-smart-rule-injection/003-shallow-evidence-claims"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "smart rule injection",
+      "inject a rule at prompt time",
+      "hook instead of gate 5",
+      "rule that binds on a read-only turn",
+      "injection selectivity",
+      "stop embedding on every message"
+    ],
+    "key_topics": [
+      "prompt-time rule injection",
+      "event-triggered injection",
+      "injection selectivity",
+      "evidence criterion",
+      "gate 5 load boundary",
+      "completion event detection"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decisions.md"
+    ],
+    "entities": [],
+    "causal_summary": "Decide from repository evidence which repo rules, if any, are better served by a prompt-time injection hook than by the Gate 5 load, and design the selectivity that keeps injection off most turns.",
+    "created_at": "2026-09-12T00:00:00Z",
+    "last_save_at": "2026-09-12T00:00:00Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": ["spec.md", "plan.md", "tasks.md"],
+    "source_fingerprint": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+    "source_fingerprint_docset": 2,
+    "last_active_child_id": "hooks/022-smart-rule-injection/003-shallow-evidence-claims",
+    "last_active_at": "2026-09-12T00:00:00Z"
+  }
+}
