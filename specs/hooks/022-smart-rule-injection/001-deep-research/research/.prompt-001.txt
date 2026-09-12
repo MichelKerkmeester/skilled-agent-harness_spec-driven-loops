@@ -1,0 +1,59 @@
+You are researching one question for this repository. Read-only: do not edit anything.
+
+QUESTION
+Which repo rules, if any, are better served by a prompt-time injection hook than by the
+Gate 5 load, and what keeps such a hook silent on the turns where it adds nothing?
+
+WHY THIS IS OPEN
+Repo rules load at Gate 5, which fires on the FIRST WRITE of a session. A read-only turn
+never fires it (AGENTS.md, the Gate 5 block). So a rule whose obligation binds while
+reading is silent exactly when it is needed. A prior research round refused two proposed
+rules for this reason: a context-gathering rule and a design-loading rule. Both wanted to
+bind before any write. Neither could.
+
+THE BAR, ALREADY SET BY THIS REPOSITORY — do not re-derive it, apply it
+`.opencode/hooks/injection-contract.md` records that two prompt-time directives were
+RETIRED because they "restated a disposition every turn, which is what the system prompt
+and AGENTS.md already carry", and that the surviving one stays "because it is not a
+disposition — it names a specific prohibition a pre-commit gate enforces, and the gate is
+what makes it load-bearing." Read that passage. Any candidate you propose must clear that
+same bar, and you must say which side of it the candidate falls on.
+
+THE HARD CONSTRAINT
+The operator's requirement, verbatim: injections must not spam every message; they need to
+be smart. So a proposal is INCOMPLETE unless it states the SILENCE condition — when the
+hook does not fire — with the same precision as the trigger. "Fires when relevant" is not a
+silence condition. Name the observable signal.
+
+PORTABILITY
+The rule corpus is shared by symlink across three repositories whose skills are independent
+directories. Hub names are stable across repos; paths inside hubs are not. A hook that
+injects rule content must work in a repo laid out differently. Say how, or say the
+candidate cannot.
+
+READ THESE
+- AGENTS.md, the Gate 5 block and the Gate 1/Gate 2 blocks
+- REPO RULES.md, especially its scope statement
+- repo-rules/ (11 files) — which obligations bind on a read-only turn
+- .opencode/hooks/injection-contract.md — all of it, it is 279 lines
+- .opencode/hooks/ — what surfaces exist and what already fires at prompt time
+- .opencode/skills/system-skill-advisor/hooks/skill-advisor-hook.md — the working precedent
+
+ANSWER IN THIS SHAPE
+1. INVENTORY — which repo-rule obligations actually bind on a read-only turn. Cite the
+   rule and line. If the answer is none, that is the finding.
+2. CANDIDATES — for each, the trigger, the SILENCE condition, the cost when it fires
+   wrongly, and which side of the retirement bar it falls on.
+3. SURFACE — can the existing injection contract carry it without a new mechanism.
+4. PORTABILITY — does the candidate survive a repo with a different layout.
+5. VERDICT — one of: inject, leave at Gate 5, change the rule instead, or refuse.
+
+Every claim carries a file:line that resolves. A well-evidenced refusal is a better result
+than an invented hook; do not treat proposing one as the goal. Nothing converges early:
+later iterations must test earlier ones, not restate them.
+
+ITERATION 1 OF 10.
+First pass. Read selectively and establish ground truth; do not attempt to read every file.
+
+Be selective about what you open; a partial answer with resolving citations beats an exhaustive read that never finishes.
+Return only this iteration's findings, in the output format above.

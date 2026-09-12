@@ -1,0 +1,103 @@
+You are researching one question for this repository. Read-only: do not edit anything.
+
+QUESTION
+What should the system inject at an EVENT, rather than at a prompt? An event is something
+that just happened: work completed, a goal was met, a turn ended, a session ended, a gate
+passed or failed.
+
+WHY THIS IS OPEN, AND WHAT IS ALREADY SETTLED
+A prior ten-iteration round asked whether to inject rule content keyed on the USER'S
+PROMPT VOCABULARY. It refused eighteen candidates and the refusal stands. Do not
+re-propose any prompt-vocabulary trigger; that question is closed.
+
+This round asks a different question the prior round never tested. An event trigger has a
+silence condition for free: the event is rare and discrete, so the hook is quiet by
+default. That is exactly what every refused candidate lacked.
+
+GROUND TRUTH — verify, then build on it, do not rediscover it
+Read `.opencode/hooks/injection-contract.md` section 4 in full. Three facts matter:
+- The Completion Evidence Sentinel already DETECTS when a completion claim looks
+  unsupported by evidence, and injects nothing. Channel `[LOG]`. Advisory-only was an
+  explicit v1 decision, not an oversight.
+- Session Stop runs and injects nothing. Channel `[NONE]`.
+- The goal hook already reads BACKWARD COMPOSITION at turn end, flattening the ending
+  message plus tool results into evidence. That mechanism is proven and running.
+So there are live detectors with their output channel switched off. Whether to switch any
+on is a policy change, and one prior candidate was refused specifically for upgrading an
+advisory log to an injection without consent. Treat that as a real cost, not a formality.
+
+THREE THINGS TO COVER, IN THIS ORDER
+1. THE OPERATOR'S FIRST IDEA: when work completes or a goal is met, inject guidance on how
+   to present final findings. The repo has rules for this that bind only on write turns.
+   Does the completion event reach them, and is the guidance worth the channel?
+2. THE OPERATOR'S SECOND IDEA: smartly trigger the structured question tool. Note the
+   timing problem before you evaluate it: deciding a turn SHOULD have asked requires
+   judging a reply that does not exist at prompt time, and at turn end that turn is over.
+   Say plainly whether that is fatal or solvable.
+3. CANDIDATES THE OPERATOR DID NOT NAME. This is a required section, not optional. Survey
+   every event the runtimes actually expose and ask what each one is uniquely positioned
+   to carry. Propose at least three the operator has not thought of, and hold them to the
+   same bar. An obvious idea nobody proposed because it is bad is also a finding.
+
+THE BAR — apply it, do not re-derive it
+`injection-contract.md` records that two prompt-time directives were RETIRED for
+"restating a disposition every turn", and that the survivor stays "because it is not a
+disposition — it names a specific prohibition a pre-commit gate enforces, and the gate is
+what makes it load-bearing." Every candidate says which side it falls on.
+
+REQUIREMENTS FOR EVERY CANDIDATE
+- The EVENT it keys on, and which runtimes actually fire it. Runtimes differ; a candidate
+  that works on one runtime only is a partial answer, and say so.
+- The SILENCE condition. Being event-keyed is not automatically enough: say how often the
+  event really fires in a working session.
+- What it costs when it fires wrongly.
+- PORTABILITY: the rule corpus is shared by symlink across three repos whose skills are
+  independent directories. Hub names are stable; paths inside hubs are not.
+
+READ THESE
+- .opencode/hooks/injection-contract.md, all of it
+- .opencode/hooks/completion/, .opencode/hooks/session-lifecycle/, .opencode/hooks/goal/
+- AGENTS.md, the Gate 5 block and the close-out requirements in section 10
+- repo-rules/handoff-and-questions.md and repo-rules/presenting-decisions.md, the two rules
+  the operator's ideas are reaching for
+- specs/hooks/022-smart-rule-injection/001-deep-research/research/ for what is already refused
+
+ANSWER IN THIS SHAPE
+1. EVENT SURFACE — which events exist, which fire on read-only sessions, which are unused.
+2. IDEA ONE — completion presentation. Verdict plus evidence.
+3. IDEA TWO — question triggering. Verdict plus evidence.
+4. NEW CANDIDATES — at least three, held to the same bar.
+5. VERDICT — ranked, each with the test that decided it.
+
+Every claim carries a file:line that resolves. A well-evidenced refusal beats an invented
+hook. Nothing converges early: later iterations test earlier ones, not restate them.
+
+ITERATION 3 OF 10.
+Earlier iterations of this lineage already found the following. Do NOT repeat them.
+Go deeper, test what they assumed, or cover a surface they missed.
+
+### Iteration 1
+## 1. EVENT SURFACE
+## 2. IDEA ONE: completion presentation
+## 3. IDEA TWO: structured question triggering
+## 4. NEW CANDIDATES
+## 5. VERDICT
+
+### Iteration 2
+## 1. EVENT SURFACE
+## 2. IDEA ONE — completion presentation
+- **The trigger does not exist as an event.** "A goal was met" is emitted by nothing on any runtime. It is a 0.72-confidence heuristic verdict (`goal/README.md:46`) computed only at Pi `turn_end` (`goal-context.ts:229-231`), and it deliberately produces *silence* when met (`:233`). "Work completed" is the sentinel's tail-400-char claim regex (`completion/README.md:31`) — a heuristic, not an event, and its one model-visible instance exists to flag *unsupported* claims, not to carry presentation guidance.
+- **The payload is resident and the moment is contract-owned.** `AGENTS.md:405-409` carries the communication/presenting/handoff digests with load commands; `:501` carries the close-out obligation verbatim. The rule defers at its own moment: "Where the run has its own contract for this, that contract wins" (`presenting-decisions.md:129-132`), and the deep modes' completion contracts own their reports (`AGENTS.md:464-465`).
+- **Delivery is structurally late**, and on Claude verifiably fire-and-forget (correction 2). Upgrading any of the four log-channel sentinels is the same consent cost the prior round refused for this detector (001, iteration 6 C2; refusal restated in `iteration-010.md`).
+- Deciding test: trigger absence. Secondary: restatement. Nothing new reopens it.
+## 3. IDEA TWO — structured question triggering
+- **Detection solvable** — the reply exists at turn end and is readable on every runtime that fires one (`completion/README.md:64-69`).
+- **Remedy fatal, now bounded from the outside.** Pi exposes the strongest timing surfaces that exist in any runtime: `message_end` handlers can *replace* the finalized assistant message (pi docs `extensions.md:621`), and `ui_prompt_start/end` fire around blocking user prompts (`:583-599`). Neither helps: a role-preserving replacement cannot make the model *ask*, and `ui_prompt_*` observes extension-authored prompts, not model prose. Claude's block-continuation exists in the API but is doubly disabled for these hooks — advisory-only by design (`completion/README.md:64`) and `async: true` in config (`.claude/settings.json:146`, `:152`). No runtime currently contains a surface that can reopen a finished turn for a better question.
+- **The judgment is the second killer.** "Should have asked" requires the three-condition bar (`handoff-and-questions.md:101-106`: alternatives nameable; the answer changes what you do next; not resolvable from code/default) — none computable from reply text — and prose is the rule's default (`:108-110`), so a form detector fires on compliant turns.
+- Deciding test: remedy availability at fire time.
+## 4. NEW CANDIDATES
+## 5. VERDICT
+
+
+Be selective about what you open; a partial answer with resolving citations beats an exhaustive read that never finishes.
+Return only this iteration's findings, in the output format above.
