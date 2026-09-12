@@ -777,7 +777,7 @@ workflow:
               step_prepare_divergent_pivot:
                 action: "Generate state-grounded read-only review candidates and prepare or resume the pivot transaction"
                 command: |
-                  node --experimental-strip-types --input-type=module <<'EOF'
+                  node --import "$(node -p "require.resolve('tsx', { paths: ['.opencode/skills/system-deep-loop/runtime'] })")" --input-type=module <<'EOF'
                   import {
                     buildReviewPivotPreparationInput,
                     renderReviewPivotSeatPrompt,
@@ -849,7 +849,7 @@ workflow:
                 action: "Durably record the seat-001 native dispatch outcome"
                 skip_when: "pivot_prepare_status != 'pending' or pivot_missing_seat_ids does not contain 'seat-001'"
                 command: |
-                  node --experimental-strip-types --input-type=module <<'EOF'
+                  node --import "$(node -p "require.resolve('tsx', { paths: ['.opencode/skills/system-deep-loop/runtime'] })")" --input-type=module <<'EOF'
                   import { recordPivotSeatResult } from './.opencode/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts';
                   const status = '{pivot_seat_001_dispatch_status}';
                   const outcome = status === 'fulfilled'
@@ -882,7 +882,7 @@ workflow:
                 action: "Durably record the seat-002 native dispatch outcome"
                 skip_when: "pivot_prepare_status != 'pending' or pivot_missing_seat_ids does not contain 'seat-002'"
                 command: |
-                  node --experimental-strip-types --input-type=module <<'EOF'
+                  node --import "$(node -p "require.resolve('tsx', { paths: ['.opencode/skills/system-deep-loop/runtime'] })")" --input-type=module <<'EOF'
                   import { recordPivotSeatResult } from './.opencode/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts';
                   const status = '{pivot_seat_002_dispatch_status}';
                   const outcome = status === 'fulfilled'
@@ -915,7 +915,7 @@ workflow:
                 action: "Durably record the seat-003 native dispatch outcome"
                 skip_when: "pivot_prepare_status != 'pending' or pivot_missing_seat_ids does not contain 'seat-003'"
                 command: |
-                  node --experimental-strip-types --input-type=module <<'EOF'
+                  node --import "$(node -p "require.resolve('tsx', { paths: ['.opencode/skills/system-deep-loop/runtime'] })")" --input-type=module <<'EOF'
                   import { recordPivotSeatResult } from './.opencode/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts';
                   const status = '{pivot_seat_003_dispatch_status}';
                   const outcome = status === 'fulfilled'
@@ -929,7 +929,7 @@ workflow:
                 action: "Finalize the prepared pivot after all missing native seats are durable"
                 skip_when: "pivot_prepare_status != 'pending'"
                 command: |
-                  node --experimental-strip-types --input-type=module <<'EOF'
+                  node --import "$(node -p "require.resolve('tsx', { paths: ['.opencode/skills/system-deep-loop/runtime'] })")" --input-type=module <<'EOF'
                   import { finalizePivotTransaction } from './.opencode/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts';
                   process.stdout.write(`${JSON.stringify(finalizePivotTransaction({ paths: {pivot_paths_json}, pivotId: '{pivot_id}', resumed: {pivot_resumed} }))}\n`);
                   EOF
@@ -1087,7 +1087,7 @@ workflow:
           wait_for_completion: true
         if_cli_copilot:
           command: |
-            node --experimental-strip-types --input-type=module <<'EOF'
+            node --import "$(node -p "require.resolve('tsx', { paths: ['.opencode/skills/system-deep-loop/runtime'] })")" --input-type=module <<'EOF'
             import { readFileSync, writeFileSync } from 'node:fs';
             import { createHash } from 'node:crypto';
 
@@ -1186,7 +1186,7 @@ workflow:
             - "Large-prompt wrapper mode rewrites the prompt file at promptPath to include the TARGET AUTHORITY preamble (prefix + divider + original body); the argv becomes a bare @promptPath reference"
         if_cli_claude_code:
           command: |
-            node --experimental-strip-types --input-type=module <<'EOF'
+            node --import "$(node -p "require.resolve('tsx', { paths: ['.opencode/skills/system-deep-loop/runtime'] })")" --input-type=module <<'EOF'
             import { readFileSync } from 'node:fs';
             import { createHash } from 'node:crypto';
 
@@ -1266,7 +1266,7 @@ workflow:
             - "claude-code supports --effort for reasoning depth"
         if_cli_opencode:
           command: |
-            node --experimental-strip-types --input-type=module <<'EOF'
+            node --import "$(node -p "require.resolve('tsx', { paths: ['.opencode/skills/system-deep-loop/runtime'] })")" --input-type=module <<'EOF'
             import { execFileSync } from 'node:child_process';
             import { appendFileSync, readFileSync, readlinkSync, realpathSync } from 'node:fs';
             import { createHash } from 'node:crypto';
@@ -1429,7 +1429,7 @@ workflow:
             - "cli-opencode self-invocation guard: this single-executor branch must only run from a non-OpenCode dispatch surface (Claude Code/raw shell). Explicit parallel-detached cli-opencode fan-out is handled by step_fanout_spawn_cli/fanout-run.cjs, not this branch. the `cli-external-orchestration/cli-opencode` mode's SKILL.md (`.opencode/skills/cli-external-orchestration/cli-opencode/SKILL.md`) §SELF-INVOCATION PROHIBITED contract is the authoritative gate"
         if_cli_codex:
           command: |
-            node --experimental-strip-types --input-type=module <<'EOF'
+            node --import "$(node -p "require.resolve('tsx', { paths: ['.opencode/skills/system-deep-loop/runtime'] })")" --input-type=module <<'EOF'
             import { readFileSync } from 'node:fs';
             import { execFileSync } from 'node:child_process';
 
@@ -1547,7 +1547,7 @@ workflow:
             - "--sandbox workspace-write is required so the iteration can write its own iteration file/delta/state record (read-only would fail the post-dispatch artifact gate); -c approval_policy=never keeps it non-interactive; --model omitted when unset so ~/.codex/config.toml default applies"
         if_cli_cursor:
           command: |
-            node --experimental-strip-types --input-type=module <<'EOF'
+            node --import "$(node -p "require.resolve('tsx', { paths: ['.opencode/skills/system-deep-loop/runtime'] })")" --input-type=module <<'EOF'
             import { readFileSync } from 'node:fs';
             import { createRequire } from 'node:module';
             import { runAuditedExecutorCommand } from './.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts';
@@ -1637,7 +1637,7 @@ workflow:
             - "Fails closed when cursor-agent is absent or the model is off the allowlist (buildLineageCommand throws, exit non-zero) — a requested cli-cursor executor never degrades to native"
         if_cli_devin:
           command: |
-            node --experimental-strip-types --input-type=module <<'EOF'
+            node --import "$(node -p "require.resolve('tsx', { paths: ['.opencode/skills/system-deep-loop/runtime'] })")" --input-type=module <<'EOF'
             import { readFileSync } from 'node:fs';
             import { createRequire } from 'node:module';
             import { runAuditedExecutorCommand } from './.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts';
@@ -1727,7 +1727,7 @@ workflow:
             - "Fails closed when devin is absent or the model is off the allowlist (buildLineageCommand throws, exit non-zero) — a requested cli-devin executor never degrades to native"
         if_cli_pi:
           command: |
-            node --experimental-strip-types --input-type=module <<'EOF'
+            node --import "$(node -p "require.resolve('tsx', { paths: ['.opencode/skills/system-deep-loop/runtime'] })")" --input-type=module <<'EOF'
             import { readFileSync } from 'node:fs';
             import { createRequire } from 'node:module';
             import { runAuditedExecutorCommand } from './.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts';
