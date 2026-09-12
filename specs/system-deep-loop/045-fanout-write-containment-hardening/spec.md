@@ -33,7 +33,7 @@ The deep-loop fan-out guard cannot tell a leaf's stray write from a human's edit
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | In Progress |
 | **Created** | 2026-09-08 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Origin** | The 2026-09-08 containment incident on the chart visual-upgrade research run: lane `luna` completed five iterations, then reverted 1,858 out-of-scope paths written by a concurrent session and was recorded `failed`. The second lane was stopped by hand before it could repeat the sweep over 932 further live edits. |
@@ -270,7 +270,17 @@ The two `buildLineageCommand` importers are the reason the worktree phase must k
 
 - Should the restore opt-in be rejected outright when the churn sampler has already fired, or only suppressed for the rest of the run? The specification takes the second reading; the first would be stricter and is a one-line change.
 - Should quarantine content be retained after a clean run, or pruned on the next run of the same packet? The specification retains it, on the grounds that a quarantine nobody reads costs disk while a quarantine that was pruned costs the recovery.
-- Should per-lineage worktrees become the default for every fan-out, or stay opt-in until a full research run has been observed on them? The plan sequences the worktree phase after the preserve work precisely so this can be answered with evidence.
+- **ANSWERED 2026-09-11 by the ten-iteration research in `research/`.** Per-lineage worktrees must
+  not become the default, and the worktree phase should not start, until two gaps are specified.
+  First, the startup sweep of the shared worktree prefix has no liveness gate, so with overlapping
+  runs every new run's startup becomes a probabilistic deletion pass over live peers' working
+  trees — strictly worse than a wrong HEAD restore, because deleted untracked output has no HEAD
+  copy to detect the loss by. Second, containment resolves one repo root per run, so under N
+  worktrees the guard would inspect a tree nobody writes to and report clean, recreating the exact
+  failure this packet exists to end. A third item is a verification gap rather than a design gap:
+  the acceptance criterion "no worktree remains" passes for a destructive sweep, so the plan needs
+  a concurrent negative control — run B starts while run A is live, and every one of A's worktrees
+  survives. See `research/synthesis.md`.
 <!-- /ANCHOR:questions -->
 
 ---

@@ -126,8 +126,11 @@ function runAcquireProcess(
 ): Promise<ChildProcessResult> {
   const testPath = fileURLToPath(import.meta.url);
   const testDirectory = dirname(testPath);
-  const mcpServerDirectory = resolve(testDirectory, '../../../../system-spec-kit/runtime');
-  const vitestCli = join(mcpServerDirectory, 'node_modules/vitest/vitest.mjs');
+  // The nested run must use THIS package's own vitest and config. Borrowing a sibling
+  // skill's install ties this test to that skill's dependency layout, which is how it
+  // came to point at a directory that does not exist.
+  const runtimeDirectory = resolve(testDirectory, '../..');
+  const vitestCli = join(runtimeDirectory, 'node_modules/vitest/vitest.mjs');
   return new Promise((resolveProcess, rejectProcess) => {
     const child = spawn(process.execPath, [
       vitestCli,
@@ -137,7 +140,7 @@ function runAcquireProcess(
       '-t',
       'independent process acquisition worker',
     ], {
-      cwd: mcpServerDirectory,
+      cwd: runtimeDirectory,
       env: {
         ...process.env,
         LOCKS_FENCING_PROCESS_ROOT: rootDirectory,

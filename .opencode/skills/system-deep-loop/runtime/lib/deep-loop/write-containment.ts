@@ -19,7 +19,8 @@
 // ╚══════════════════════════════════════════════════════════════════════════╝
 
 import { spawnSync } from 'node:child_process';
-import { appendFileSync, mkdirSync, readlinkSync, realpathSync, writeFileSync } from 'node:fs';
+import { appendFileSync, copyFileSync, mkdirSync, mkdtempSync, readFileSync, readlinkSync, realpathSync, rmSync, statSync, writeFileSync } from 'node:fs';
+import { tmpdir } from 'node:os';
 import { basename, dirname, isAbsolute, join, relative, resolve, sep } from 'node:path';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -45,7 +46,7 @@ export interface ContainmentViolation {
 
 export interface ContainmentRevertAction {
   path: string;
-  action: 'restored_from_head' | 'preserved_untracked';
+  action: 'restored_from_head' | 'restored_from_baseline' | 'preserved_untracked' | 'preserved_in_head';
   ok: boolean;
   error?: string;
 }
@@ -93,12 +94,37 @@ export interface ContainmentOptions {
    * prefix-only matching would silently reinstate this failure.
    */
   unattributablePaths?: string[];
+  /**
+   * Absolute directory under which the pre-dispatch snapshot copies dirty files' bytes.
+   *
+   * Read only by `snapshotOutOfScopeDirtyPaths`; detection and enforcement ignore it. A
+   * baseline recorded as a hash can prove a file changed but cannot restore it, and the only
+   * other source of the old bytes is HEAD -- which throws away whatever a concurrent editor
+   * had already written before this lane even started. Copying the bytes is what makes a
+   * faithful restore possible later. Omitted means no copy is made.
+   */
+  captureContentDir?: string;
   env?: NodeJS.ProcessEnv;
 }
 
 export interface DirtyPathEntry {
   path: string;
   hash: string;
+  /**
+   * Capture-dir-relative POSIX path where this file's pre-dispatch bytes were stored.
+   *
+   * Present only when content capture was requested AND the copy succeeded. It is the only
+   * faithful restore source: the hash says the file changed, but not what it held.
+   */
+  baselineContentPath?: string;
+  /**
+   * Set when the bytes were NOT stored -- the file is over the size bound, the lane budget
+   * was already spent, or the copy failed.
+   *
+   * Explicit rather than implied by an absent `baselineContentPath`, so a degraded baseline
+   * is visible to whoever later restores from it instead of looking like nothing to record.
+   */
+  baselineTruncated?: boolean;
 }
 
 export interface DetectOptions extends ContainmentOptions {
@@ -146,10 +172,22 @@ export interface EnforceInput extends DetectOptions {
   stateLogPath?: string;
   iteration?: number;
   label?: string;
+  /**
+   * Remedy forwarded to the revert. Omitted means 'preserve', so a caller that has not
+   * decided a HEAD restore is safe here cannot destroy uncommitted work by default; a
+   * caller that has decided opts in per call, exactly as the low-level API requires.
+   */
+  mode?: 'preserve' | 'restore';
+  /**
+   * Absolute directory the baseline entries' `baselineContentPath` values were captured
+   * under. Forwarded to the revert so an opted-in restore puts back a dirty path's
+   * pre-dispatch bytes; omitted, every in-HEAD path is restored from HEAD as before.
+   */
+  baselineContentRoot?: string;
 }
 
 export interface EnforceResult {
-  /** In-HEAD out-of-scope breaches reverted from HEAD -- fatal; the caller fails the iteration. */
+  /** In-HEAD out-of-scope breaches, reported not undone under the default remedy; the caller decides fatality. */
   violations: ContainmentViolation[];
   /** Regenerable state and not-in-HEAD paths preserved on disk -- advisory, never fatal. */
   advisories: ContainmentViolation[];
@@ -161,6 +199,43 @@ export interface EnforceResult {
    * it unconditionally without inventing wording for the nothing-to-recover case.
    */
   recoveryHint: string | null;
+  /**
+   * Repo-relative POSIX path of the directory holding what each guarded path left behind:
+   * its bytes, its diff against HEAD and its diff against the pre-dispatch bytes. Null when
+   * no path was quarantined, or when the directory could not be created.
+   *
+   * `recoveryHint` names the one patch a caller surfaces in its fatal message. This names the
+   * record an operator reads afterwards, and it exists under both remedies.
+   */
+  quarantinePath: string | null;
+}
+
+export interface QuarantineEntry {
+  /** Repo-relative POSIX path of the guarded path this entry records. */
+  path: string;
+  /** Git blob hash of the bytes as they were on disk at quarantine time; '' when unhashable. */
+  hash: string;
+  /** True when those bytes were copied under `content/`. */
+  content_stored: boolean;
+  /** True when the bytes were deliberately NOT stored, because a capture bound was reached. */
+  content_truncated?: boolean;
+  /** Quarantine-relative POSIX path of the stored bytes. */
+  content_path?: string;
+  /** Quarantine-relative POSIX path of the diff against HEAD. */
+  head_patch_path?: string;
+  /** Quarantine-relative POSIX path of the diff against the pre-dispatch bytes. */
+  baseline_patch_path?: string;
+  /** First failure while recording this path; the rest of the record is still attempted. */
+  error?: string;
+}
+
+export interface QuarantineResult {
+  /** Repo-relative POSIX path of the quarantine dir, or null when it could not be created. */
+  dirPath: string | null;
+  /** One entry per guarded path, in the order they were given. */
+  entries: QuarantineEntry[];
+  /** Why the record is incomplete, when it is. */
+  error?: string;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -268,6 +343,71 @@ function gitHashStdin(repoRoot: string, content: string, env?: NodeJS.ProcessEnv
     return (typeof result.stdout === 'string' ? result.stdout : '').trim();
   } catch {
     return '';
+  }
+}
+
+/**
+ * Hash bytes and store them as a blob, so a scratch index can reference them.
+ *
+ * The held-bytes diff below needs a git object to name, and the bytes it holds came from a
+ * file on disk rather than from a commit, so there is nothing to look up: they have to be
+ * written. The object is dangling, which is the whole of its effect on the repository.
+ */
+function gitHashObjectWrite(repoRoot: string, content: Buffer, env?: NodeJS.ProcessEnv): string {
+  try {
+    const result = spawnSync('git', ['-C', repoRoot, 'hash-object', '-w', '--stdin'], {
+      encoding: 'utf8',
+      input: content,
+      env: env ?? process.env,
+    });
+    if (result.error || result.status !== 0) return '';
+    return (typeof result.stdout === 'string' ? result.stdout : '').trim();
+  } catch {
+    return '';
+  }
+}
+
+/**
+ * Diff bytes we hold against the bytes on disk now, as a patch with repo-relative headers.
+ *
+ * Held bytes are not a git object, so `git diff` has nothing to compare them with until
+ * something puts them in an index: a scratch index carrying that one blob gives git both
+ * sides -- the held bytes as the pre-image, the working tree as the post-image -- and the
+ * result carries the same headers as every other patch here, so it applies the way those do.
+ */
+function diffAgainstHeldBytes(input: {
+  repoRoot: string;
+  repoRelativePosixPath: string;
+  bytes: Buffer;
+  env?: NodeJS.ProcessEnv;
+}): { ok: true; diff: string } | { ok: false; error: string } {
+  let scratchDir = '';
+  try {
+    scratchDir = mkdtempSync(join(tmpdir(), 'containment-held-bytes-'));
+    const env = { ...(input.env ?? process.env), GIT_INDEX_FILE: join(scratchDir, 'index') };
+    const blob = gitHashObjectWrite(input.repoRoot, input.bytes, env);
+    if (blob === '') return { ok: false, error: 'git hash-object -w --stdin failed' };
+    const indexed = gitOutput(
+      ['update-index', '--add', '--cacheinfo', `100644,${blob},${input.repoRelativePosixPath}`],
+      { repoRoot: input.repoRoot, env },
+    );
+    if (!indexed.ok) return { ok: false, error: 'git update-index --cacheinfo failed' };
+    const diff = gitOutput(
+      ['diff', '--no-ext-diff', '--no-textconv', '--binary', '--', input.repoRelativePosixPath],
+      { repoRoot: input.repoRoot, env },
+    );
+    if (!diff.ok) return { ok: false, error: 'git diff <scratch index> -- <path> failed' };
+    return { ok: true, diff: diff.stdout };
+  } catch (error) {
+    return { ok: false, error: (error as Error).message };
+  } finally {
+    if (scratchDir !== '') {
+      try {
+        rmSync(scratchDir, { recursive: true, force: true });
+      } catch {
+        // Scratch only: a temp dir that will not go away must not fail the record using it.
+      }
+    }
   }
 }
 
@@ -476,9 +616,74 @@ function isRegenerableRuntimeState(repoRelativePath: string, artifactRelPosix?: 
 // ─────────────────────────────────────────────────────────────────────────────
 
 /**
+ * Largest single dirty file whose bytes are copied into the baseline capture.
+ *
+ * The capture exists so a later restore has real bytes to restore TO. An unbounded copy
+ * would let one large blob in an unrelated part of the tree spend the whole lane budget or
+ * the dispatcher's disk on a file the guard only needed to compare, so anything over this
+ * size is recorded as truncated instead.
+ */
+export const BASELINE_MAX_FILE_BYTES = 2 * 1024 * 1024;
+
+/**
+ * Total baseline bytes a single snapshot call may copy.
+ *
+ * Bounded per call rather than per file because the cost that matters is the whole
+ * pre-dispatch sweep on a tree with many dirty files at once. Once the budget is spent the
+ * remaining entries are marked truncated, so the shortfall is visible rather than silent.
+ */
+export const BASELINE_MAX_LANE_BYTES = 64 * 1024 * 1024;
+
+interface BaselineCaptureOutcome {
+  /** Capture-dir-relative POSIX path of the stored bytes; absent when nothing was stored. */
+  contentPath?: string;
+  /** True when the bytes were deliberately NOT stored, so absence is not read as cleanness. */
+  truncated: boolean;
+  /** Bytes this capture adds to the running lane total. */
+  bytes: number;
+}
+
+/**
+ * Copy one dirty file's pre-dispatch bytes under the capture dir.
+ *
+ * A baseline recorded as a hash alone can only ever answer "did this change"; it leaves a
+ * later restore with nothing to put back, and the only other source of the old bytes is
+ * HEAD -- which throws away whatever a concurrent editor had already written before this
+ * lane started. Keeping the bytes is what makes a faithful restore possible.
+ *
+ * Never throws: a baseline that cannot be captured is a degraded baseline, not a failed
+ * lane, so a size over the bound, an exhausted budget, a vanished file or a failed write
+ * all mark the entry truncated and let the sweep continue.
+ */
+function captureBaselineFile(input: {
+  sourceAbsolutePath: string;
+  repoRelativePosixPath: string;
+  captureContentDir: string;
+  laneBytes: number;
+}): BaselineCaptureOutcome {
+  try {
+    const size = statSync(input.sourceAbsolutePath).size;
+    if (size > BASELINE_MAX_FILE_BYTES) return { truncated: true, bytes: 0 };
+    if (input.laneBytes + size > BASELINE_MAX_LANE_BYTES) return { truncated: true, bytes: 0 };
+    const relativePath = toPosix(join('containment', 'baseline', input.repoRelativePosixPath));
+    const destination = join(input.captureContentDir, relativePath);
+    mkdirSync(dirname(destination), { recursive: true });
+    copyFileSync(input.sourceAbsolutePath, destination);
+    return { contentPath: relativePath, truncated: false, bytes: size };
+  } catch {
+    return { truncated: true, bytes: 0 };
+  }
+}
+
+/**
  * Pre-dispatch snapshot: every dirty path (tracked modified/deleted AND untracked)
  * that lies OUTSIDE artifactDir. This is the baseline subtracted after dispatch so
  * pre-existing unrelated changes are never treated as the leaf's violations.
+ *
+ * With `captureContentDir` set, each recorded file's current bytes are copied under that dir
+ * too, so the baseline can later be restored from rather than only compared against. A file
+ * whose bytes cannot be copied is marked truncated; the snapshot itself never fails on a
+ * capture problem.
  *
  * Returns [] (no-op) when git is unavailable, repoRoot is not a worktree, or
  * artifactDir is outside the worktree.
@@ -488,6 +693,8 @@ export function snapshotOutOfScopeDirtyPaths(opts: ContainmentOptions): DirtyPat
   if (!scope) return [];
   const entries = readStatusEntries({ repoRoot: opts.repoRoot, env: opts.env });
   const out: DirtyPathEntry[] = [];
+  // The lane budget spans this call's whole loop: one snapshot is one lane's baseline.
+  let laneBytes = 0;
   for (const entry of entries) {
     if (isUnattributable(entry.path, scope.unattributableRelPosix, scope.unattributableFileRelPosix)) continue;
     if (!isContainedInArtifact(scope.repoRealRoot, scope.artifactRealRoot, scope.artifactRelPosix, entry.path)) {
@@ -497,7 +704,23 @@ export function snapshotOutOfScopeDirtyPaths(opts: ContainmentOptions): DirtyPat
       // its content, so a leaf that overwrites the SAME out-of-scope path in a later iteration
       // would go undetected forever behind the first iteration's now-stale advisory.
       const hash = gitHashObject(opts.repoRoot, entryPath, opts.env);
-      out.push({ path: entryPath, hash });
+      // Capture is opt-in and additive: with no dir configured the entry carries exactly the
+      // keys it always did, so an existing caller's baseline shape does not change.
+      const captured = opts.captureContentDir
+        ? captureBaselineFile({
+            sourceAbsolutePath: join(scope.repoRealRoot, entryPath),
+            repoRelativePosixPath: entryPath,
+            captureContentDir: opts.captureContentDir,
+            laneBytes,
+          })
+        : null;
+      if (captured) laneBytes += captured.bytes;
+      out.push({
+        path: entryPath,
+        hash,
+        ...(captured?.contentPath ? { baselineContentPath: captured.contentPath } : {}),
+        ...(captured?.truncated ? { baselineTruncated: true } : {}),
+      });
     }
   }
   return Array.from(new Map(out.map((e) => [e.path, e])).values()).sort((a, b) => a.path.localeCompare(b.path));
@@ -600,31 +823,288 @@ function captureRevertPatch(input: {
 }
 
 /**
- * Revert the given out-of-scope violating paths WITHOUT ever irreversibly deleting a file.
- * A tracked path present in HEAD is restored from HEAD -- which resurrects deletions and
- * undoes modifications, and is fully recoverable. A not-in-HEAD path (untracked or newly
- * added) has no HEAD content to restore, so the only "revert" would be a hard delete; but on
- * a dirty, multi-actor tree such a path may be a concurrent write by the orchestrator or a
- * parallel session, indistinguishable from the leaf's own. Deleting it would be irreversible
- * data loss, so it is PRESERVED and reported instead. NEVER a blanket `git clean`, NEVER a
- * delete -- the caller decides fatal-ness separately, by whether the path belongs to the
- * packet's own directory tree.
+ * The bytes a baseline entry recorded for a path, or null when nothing may be restored from it.
+ *
+ * Null covers all three ways a baseline goes unusable -- the entry is marked truncated, no
+ * capture dir was configured, or the recorded copy can no longer be read -- and they mean the
+ * same thing at the moment of a restore: we do NOT hold what the file contained before the lane
+ * started. HEAD is not a stand-in for those bytes, so a null here is never a cue to fall back
+ * to it.
+ */
+function readBaselineContent(entry: DirtyPathEntry, baselineContentRoot?: string): Buffer | null {
+  if (entry.baselineTruncated) return null;
+  if (!entry.baselineContentPath || !baselineContentRoot) return null;
+  try {
+    return readFileSync(join(baselineContentRoot, entry.baselineContentPath));
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Run one write, creating its parent directories; null on success, the failure message otherwise.
+ *
+ * A record exists so it can be read back later, so a write that fails must cost the record
+ * only the part it covers: the caller keeps the message on that path's entry and goes on.
+ */
+function writeQuarantineFile(destination: string, write: (absolutePath: string) => void): string | null {
+  try {
+    mkdirSync(dirname(destination), { recursive: true });
+    write(destination);
+    return null;
+  } catch (error) {
+    return (error as Error).message;
+  }
+}
+
+/**
+ * Record one guarded path under the quarantine tree. Never throws.
+ *
+ * `lane.bytes` is the budget for the whole sweep rather than for this file, exactly as it is
+ * for the pre-dispatch capture these bounds come from: what has to stay bounded is the run.
+ */
+function quarantineOnePath(input: {
+  violation: ContainmentViolation;
+  quarantineDir: string;
+  repoRoot: string;
+  baselineEntry?: DirtyPathEntry;
+  baselineContentRoot?: string;
+  env?: NodeJS.ProcessEnv;
+  lane: { bytes: number };
+}): QuarantineEntry {
+  const { violation } = input;
+  const entry: QuarantineEntry = {
+    path: violation.path,
+    hash: gitHashObject(input.repoRoot, violation.path, input.env),
+    content_stored: false,
+  };
+  // The first failure wins: what fails here is usually the destination itself, so every write
+  // below fails for the same reason, and the first message is the one that names it.
+  let failure: string | null = null;
+  const fail = (message: string): void => {
+    if (failure === null) failure = message;
+  };
+
+  // The bytes as the lane left them, which is the last moment they exist: a later lane, a
+  // commit or a checkout replaces them, and nothing else in the run keeps a copy.
+  try {
+    const size = statSync(violation.absolutePath).size;
+    if (size > BASELINE_MAX_FILE_BYTES || input.lane.bytes + size > BASELINE_MAX_LANE_BYTES) {
+      entry.content_truncated = true;
+    } else {
+      const contentPath = `content/${violation.path}`;
+      const writeError = writeQuarantineFile(join(input.quarantineDir, contentPath), (destination) => {
+        copyFileSync(violation.absolutePath, destination);
+      });
+      if (writeError !== null) {
+        fail(`content copy failed: ${writeError}`);
+      } else {
+        input.lane.bytes += size;
+        entry.content_stored = true;
+        entry.content_path = contentPath;
+      }
+    }
+  } catch (error) {
+    // A deleted or dangling path has nothing to copy; its hash and its patches still stand.
+    fail(`content copy failed: ${(error as Error).message}`);
+  }
+
+  // The diff against HEAD: the content a rollback would have put in place of these bytes. A
+  // path that is not in HEAD has no pre-image there, so only its stored bytes record it.
+  const headDiff = gitOutput(
+    ['diff', '--no-ext-diff', '--no-textconv', '--binary', 'HEAD', '--', violation.path],
+    { repoRoot: input.repoRoot, env: input.env },
+  );
+  if (!headDiff.ok) {
+    fail('git diff HEAD -- <path> failed');
+  } else if (headDiff.stdout.trim() !== '') {
+    const patchPath = `patch-head/${violation.path}.patch`;
+    const writeError = writeQuarantineFile(join(input.quarantineDir, patchPath), (destination) => {
+      writeFileSync(destination, headDiff.stdout, 'utf8');
+    });
+    if (writeError !== null) fail(`patch-head write failed: ${writeError}`);
+    else entry.head_patch_path = patchPath;
+  }
+
+  // The diff against the bytes captured before the dispatch, for the paths that hold them:
+  // HEAD is not what such a path held then, so `patch-head` cannot answer this question.
+  const baselineBytes = input.baselineEntry
+    ? readBaselineContent(input.baselineEntry, input.baselineContentRoot)
+    : null;
+  if (baselineBytes !== null) {
+    const held = diffAgainstHeldBytes({
+      repoRoot: input.repoRoot,
+      repoRelativePosixPath: violation.path,
+      bytes: baselineBytes,
+      env: input.env,
+    });
+    if (!held.ok) {
+      fail(`patch-baseline diff failed: ${held.error}`);
+    } else {
+      const patchPath = `patch-baseline/${violation.path}.patch`;
+      const writeError = writeQuarantineFile(join(input.quarantineDir, patchPath), (destination) => {
+        writeFileSync(destination, held.diff, 'utf8');
+      });
+      if (writeError !== null) fail(`patch-baseline write failed: ${writeError}`);
+      else entry.baseline_patch_path = patchPath;
+    }
+  }
+
+  if (failure !== null) entry.error = failure;
+  return entry;
+}
+
+/**
+ * Write what each guarded path left behind into `<artifactDir>/containment/quarantine/`:
+ * `manifest.json`, the current bytes under `content/`, the diff against HEAD under
+ * `patch-head/`, and the diff against the pre-dispatch bytes under `patch-baseline/`.
+ *
+ * The working tree keeps what the lane left, so this record is the only durable answer to
+ * what an out-of-scope write actually said. The combined patch beside it answers what a
+ * rollback undid, which is a different question, and neither the tree nor the loop state
+ * holds the bytes themselves. A later pass over the same artifact dir replaces the manifest
+ * and the files it names.
+ *
+ * Never throws. A record that cannot be written is a degraded record, not a failed lane: the
+ * failure is kept on that path's entry, the rest of the sweep continues, and the guard goes
+ * on reporting the violation it already found.
+ */
+export function quarantineViolations(input: {
+  repoRoot: string;
+  artifactDir: string;
+  /** Repo-relative POSIX path of the artifact dir, prefixed onto the returned directory path. */
+  artifactRelPosix: string;
+  /** The guarded violations; a path that is not here is not quarantined. */
+  violations: ContainmentViolation[];
+  /** Pre-dispatch baseline: only a path whose bytes it holds gets a `patch-baseline/` diff. */
+  preDispatchDirtyPaths?: DirtyPathEntry[];
+  /** Absolute directory the entries' `baselineContentPath` values were captured under. */
+  baselineContentRoot?: string;
+  env?: NodeJS.ProcessEnv;
+}): QuarantineResult {
+  const quarantineDir = join(input.artifactDir, 'containment', 'quarantine');
+  const prefix = input.artifactRelPosix === '' ? '' : `${input.artifactRelPosix}/`;
+  const dirPath = `${prefix}containment/quarantine`;
+  const baselineByPath = new Map(
+    (input.preDispatchDirtyPaths ?? []).map((entry) => [toPosix(entry.path), entry]),
+  );
+
+  let mkdirError: string | null = null;
+  try {
+    mkdirSync(quarantineDir, { recursive: true });
+  } catch (error) {
+    mkdirError = (error as Error).message;
+  }
+
+  const lane = { bytes: 0 };
+  const entries = input.violations.map((violation) =>
+    quarantineOnePath({
+      violation,
+      quarantineDir,
+      repoRoot: input.repoRoot,
+      baselineEntry: baselineByPath.get(toPosix(violation.path)),
+      baselineContentRoot: input.baselineContentRoot,
+      env: input.env,
+      lane,
+    }),
+  );
+
+  if (mkdirError !== null) {
+    // Every write above failed on this one reason, and each entry carries it.
+    return { dirPath: null, entries, error: `quarantine dir unavailable: ${mkdirError}` };
+  }
+  try {
+    writeFileSync(
+      join(quarantineDir, 'manifest.json'),
+      `${JSON.stringify({ timestamp: new Date().toISOString(), entries }, null, 2)}\n`,
+      'utf8',
+    );
+  } catch (error) {
+    return { dirPath, entries, error: `manifest write failed: ${(error as Error).message}` };
+  }
+  return { dirPath, entries };
+}
+
+/**
+ * Apply the configured remedy to the given out-of-scope violating paths, WITHOUT ever
+ * irreversibly deleting a file. `mode` selects that remedy and defaults to 'preserve',
+ * under which a tracked path present in HEAD is left byte-for-byte as it is on disk and
+ * reported as 'preserved_in_head'.
+ *
+ * Preserve is the default because a HEAD restore is the one containment outcome that
+ * destroys work: the guard cannot distinguish this leaf's stray write from a concurrent
+ * session's in-flight edit to the same file, and the edited bytes die with the restore
+ * with nobody watching to reclaim them. 'restore' is the opt-in for the checkouts where
+ * that trade is safe -- it resurrects deletions and undoes modifications. A not-in-HEAD
+ * path (untracked or newly added) has no HEAD content to restore, so the only "revert"
+ * would be a hard delete; but on a dirty, multi-actor tree such a path may be a concurrent
+ * write by the orchestrator or a parallel session, indistinguishable from the leaf's own.
+ * Deleting it would be irreversible data loss, so it is PRESERVED and reported instead in
+ * BOTH modes. NEVER a blanket `git clean`, NEVER a delete -- the caller decides fatal-ness
+ * separately, by whether the path belongs to the packet's own directory tree.
+ *
+ * Under 'restore', the pre-dispatch baseline decides what a path goes back TO. A path that
+ * was CLEAN at dispatch is restored from HEAD, which is what it held then. A path that was
+ * ALREADY DIRTY is restored from the bytes the baseline captured, because HEAD is not those
+ * bytes -- it is the last commit, and rolling back to it discards whatever a concurrent
+ * editor had written before this lane started. A dirty path whose baseline holds no bytes
+ * is left exactly as it is on disk, for the same reason.
  */
 export function revertOutOfScopeViolations(opts: {
   repoRoot: string;
   violations: ContainmentViolation[];
   env?: NodeJS.ProcessEnv;
+  /** Remedy for a path that exists in HEAD; the default leaves the working tree untouched. */
+  mode?: 'preserve' | 'restore';
+  /**
+   * The pre-dispatch baseline; consulted only by 'restore', only to pick a path's target.
+   *
+   * Omitting it keeps the previous behaviour verbatim -- every in-HEAD path comes from HEAD --
+   * so a caller with a baseline can opt in per call, exactly as it opts into 'restore' itself.
+   */
+  preDispatchDirtyPaths?: DirtyPathEntry[];
+  /** Absolute directory the entry's `baselineContentPath` values were captured under. */
+  baselineContentRoot?: string;
 }): ContainmentRevertResult {
+  const mode = opts.mode ?? 'preserve';
+  const baselineByPath = new Map((opts.preDispatchDirtyPaths ?? []).map((entry) => [toPosix(entry.path), entry]));
   const reverted: ContainmentRevertAction[] = [];
   for (const violation of opts.violations) {
     if (pathInHead(opts.repoRoot, violation.path, opts.env)) {
-      const ok = checkoutFromHead(opts.repoRoot, violation.path, opts.env);
-      reverted.push({
-        path: violation.path,
-        action: 'restored_from_head',
-        ok,
-        ...(ok ? {} : { error: 'git checkout HEAD -- <path> failed' }),
-      });
+      if (mode === 'restore') {
+        const baseline = baselineByPath.get(toPosix(violation.path));
+        if (baseline === undefined) {
+          const ok = checkoutFromHead(opts.repoRoot, violation.path, opts.env);
+          reverted.push({
+            path: violation.path,
+            action: 'restored_from_head',
+            ok,
+            ...(ok ? {} : { error: 'git checkout HEAD -- <path> failed' }),
+          });
+        } else {
+          const baselineBytes = readBaselineContent(baseline, opts.baselineContentRoot);
+          if (baselineBytes === null) {
+            // The bytes exist on this tree and nowhere else we may reach: the restore target the
+            // baseline described is unavailable, so the file is left as the lane left it rather
+            // than rolled back past work the baseline is the only record of.
+            reverted.push({ path: violation.path, action: 'preserved_in_head', ok: true });
+          } else {
+            try {
+              writeFileSync(join(opts.repoRoot, violation.path), baselineBytes);
+              reverted.push({ path: violation.path, action: 'restored_from_baseline', ok: true });
+            } catch (error) {
+              reverted.push({
+                path: violation.path,
+                action: 'restored_from_baseline',
+                ok: false,
+                error: `baseline restore failed: ${(error as Error).message}`,
+              });
+            }
+          }
+        }
+      } else {
+        reverted.push({ path: violation.path, action: 'preserved_in_head', ok: true });
+      }
     } else {
       // A not-in-HEAD path can't be attributed to this leaf under concurrent fan-out --
       // a parent orchestrator or a sibling session may have created it during the same
@@ -684,10 +1164,11 @@ function appendContainmentEvent(stateLogPath: string, event: ContainmentViolatio
 }
 
 /**
- * High-level post-dispatch guard: detect NEW out-of-scope violations, save what the
- * revert will undo as a patch, revert them, and (when stateLogPath is provided) append
- * a containment_violation event. Returns the violations, revert result, the event (null
- * when clean), and `recoveryHint` naming the saved patch for the caller's fatal message.
+ * High-level post-dispatch guard: detect NEW out-of-scope violations, quarantine what each
+ * guarded path left behind, save what a restore would undo as a patch, apply the remedy, and
+ * (when stateLogPath is provided) append a containment_violation event. Returns the
+ * violations, revert result, the event (null when clean), `recoveryHint` naming the saved
+ * patch for the caller's fatal message, and `quarantinePath` naming the durable record.
  * The caller fails the iteration fail-closed when `violations.length > 0`.
  */
 export function enforceWriteContainment(input: EnforceInput): EnforceResult {
@@ -695,6 +1176,7 @@ export function enforceWriteContainment(input: EnforceInput): EnforceResult {
   if (detected.length === 0) {
     return {
       violations: [], advisories: [], revertResult: { reverted: [] }, event: null, recoveryHint: null,
+      quarantinePath: null,
     };
   }
   // detectNewOutOfScopeViolations above only returns non-empty once it has already resolved
@@ -725,10 +1207,25 @@ export function enforceWriteContainment(input: EnforceInput): EnforceResult {
     iteration: input.iteration,
     env: input.env,
   });
+  // Then the same paths again as their own files, while they are still on disk. The combined
+  // patch above records what a restore would undo; this records what each path held and what
+  // it changed from. It writes whatever it can and never throws, so it cannot fail the lane.
+  const quarantine = quarantineViolations({
+    repoRoot: input.repoRoot,
+    artifactDir: input.artifactDir,
+    artifactRelPosix,
+    violations: guarded,
+    preDispatchDirtyPaths: input.preDispatchDirtyPaths,
+    baselineContentRoot: input.baselineContentRoot,
+    env: input.env,
+  });
   const revertResult = revertOutOfScopeViolations({
     repoRoot: input.repoRoot,
     violations: guarded,
     env: input.env,
+    mode: input.mode,
+    preDispatchDirtyPaths: input.preDispatchDirtyPaths,
+    baselineContentRoot: input.baselineContentRoot,
   });
   // Partition by what the revert actually did: HEAD-restored paths are recoverable breaches
   // and always fatal. A preserved not-in-HEAD path is a non-fatal advisory only when it sits
@@ -770,7 +1267,7 @@ export function enforceWriteContainment(input: EnforceInput): EnforceResult {
     appendContainmentEvent(input.stateLogPath, event);
   }
   const recoveryHint = patch.path ? `recoverable patch: ${patch.path}` : null;
-  return { violations, advisories, revertResult, event, recoveryHint };
+  return { violations, advisories, revertResult, event, recoveryHint, quarantinePath: quarantine.dirPath };
 }
 
 // Exported for tests / diagnostics.

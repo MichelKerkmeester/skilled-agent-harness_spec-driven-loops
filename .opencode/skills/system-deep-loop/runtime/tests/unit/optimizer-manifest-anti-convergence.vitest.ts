@@ -52,7 +52,8 @@ const manifestPath = resolve(
   repoRoot,
   'skills',
   'system-spec-kit',
-  'scripts',
+  'runtime',
+  'cli',
   'optimizer',
   'optimizer-manifest.json',
 );

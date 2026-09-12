@@ -52,7 +52,7 @@ deep-loop/
 | `receipt-crypto.ts` | Derives, signs and verifies receipt keys and signatures. |
 | `runtime-capabilities.cjs` | Resolves the parameterized runtime capability matrix. |
 | `sleep.ts` | Provides the synchronous sleep primitive used by runtime coordination. |
-| `write-containment.ts` | Checks that runtime writes stay within the allowed boundary. |
+| `write-containment.ts` | Detects runtime writes outside the allowed boundary and reports them. Preserve is the default remedy, so the working tree is left as the lane left it; restoring is opt-in and targets the pre-dispatch baseline, never HEAD. |
 
 ---
 

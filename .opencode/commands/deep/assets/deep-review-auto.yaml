@@ -1528,11 +1528,10 @@ workflow:
             });
             if (containment.violations.length > 0) {
               console.error(
-                'write-containment violation: reverted ' + containment.violations.length
-                  + ' out-of-scope path(s): '
+                'write-containment advisory: detected ' + containment.violations.length
+                  + ' out-of-scope path(s), left on disk: '
                   + containment.violations.map((v) => v.path).join(', '),
               );
-              process.exit(1);
             }
             process.exit(dispatchExit);
             EOF
@@ -1623,11 +1622,10 @@ workflow:
             });
             if (containment.violations.length > 0) {
               console.error(
-                'write-containment violation: reverted ' + containment.violations.length
-                  + ' out-of-scope path(s): '
+                'write-containment advisory: detected ' + containment.violations.length
+                  + ' out-of-scope path(s), left on disk: '
                   + containment.violations.map((v) => v.path).join(', '),
               );
-              process.exit(1);
             }
             process.exit(dispatchExit);
             EOF
@@ -1714,11 +1712,10 @@ workflow:
             });
             if (containment.violations.length > 0) {
               console.error(
-                'write-containment violation: reverted ' + containment.violations.length
-                  + ' out-of-scope path(s): '
+                'write-containment advisory: detected ' + containment.violations.length
+                  + ' out-of-scope path(s), left on disk: '
                   + containment.violations.map((v) => v.path).join(', '),
               );
-              process.exit(1);
             }
             process.exit(dispatchExit);
             EOF
@@ -1805,11 +1802,10 @@ workflow:
             });
             if (containment.violations.length > 0) {
               console.error(
-                'write-containment violation: reverted ' + containment.violations.length
-                  + ' out-of-scope path(s): '
+                'write-containment advisory: detected ' + containment.violations.length
+                  + ' out-of-scope path(s), left on disk: '
                   + containment.violations.map((v) => v.path).join(', '),
               );
-              process.exit(1);
             }
             process.exit(dispatchExit);
             EOF

@@ -1,0 +1,10 @@
+1|worktree isolation mechanics: what `git worktree add` costs per lineage, whether the shared index/objects directory serialises concurrent adds, and what breaks first at 10, 50, 200 concurrent worktrees
+2|seeding a per-lineage worktree with the target packet's UNCOMMITTED content, since a lineage routinely reads a spec that is not yet committed
+3|path rewriting: every path handed to an executor (prompt write-surface paths, artifact-dir override, per-kind directory flags, and the kind that has no directory flag)
+4|copy-back of the lineage artifact directory into the main checkout: atomicity, collision with a concurrent writer, and what happens when copy-back fails
+5|resource ceilings that actually bound concurrency: disk, inodes, file handles, node_modules duplication, memory per CLI process
+6|per-runtime recursion and self-invocation guards across cli-codex, cli-opencode, cli-pi, cli-cursor, cli-devin and cli-claude-code, and which of them block legitimate nesting
+7|provider quota and rate-limit behaviour under high concurrency, including how a 429 is distinguished from a broken model id
+8|what coordination remains necessary once lineages are isolated: locks, leases, the append-gateway, and whether any of it can be dropped
+9|failure and recovery: partial lane failure, orphaned worktrees after an interrupted run, and how a sweep avoids deleting a live one
+10|migration path from today's shared-checkout model to isolation without breaking the four command YAMLs and the callers that inline containment

@@ -39,7 +39,7 @@
       "implementation"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -196,13 +196,13 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement The",
+        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "In Scope",
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The fan-out runner snapshots dirty paths outside the lineage directory before dispatch, and after the lane it treats every tracked file that changed outside that directory as the leaf's write",
     "created_at": "2026-09-08T17:47:19Z",
-    "last_save_at": "2026-09-08T17:59:29.623Z",
+    "last_save_at": "2026-09-12T06:10:11.179Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,14 +222,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:db58b51c1fa0cb6a7f6059da1b314c880045d50a49e075fca446f7d2804ba667",
+    "source_fingerprint": "sha256:74b1995d888dde46cd62fcf21383ab5252dcdc543a75b74b36cefd1aced23c4e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6deec9526aa4508f16038d6c82dc02d57221f4232c1a1df6ae0e1e494e4c8953",
+      "spec.md": "819b4158d23e771b914175cb5e058d833938333d4dcb6d97043839e3af1c3a0a",
       "plan.md": "f36d80a6194c9277944faa463008affd78bf89a92a966ab4fae6a7b79c97c272",
-      "tasks.md": "27b07911db2e80009aee64525ac959d7107daff1539cebc7fd35be9ae4eda6e5",
+      "tasks.md": "91a7e06e41f6a0ce93c980240a708ff2290837c4c87ef1198a44fc391a5c181a",
       "decision-record.md": "841d9c3bcb92ce5c8f9f462d1dda87bd81606e3d2297d7824114ed38855cea0d",
-      "implementation-summary.md": "9ea75b60e60c344f60750cb86dbaa2040af3bfca5376ff4157d137ae064956f8"
+      "implementation-summary.md": "6d6bc62aaf6edec9bc4f8a3936ffc965b55575e2a36f65f792312fce2fef3a13"
     },
     "last_active_at": null
   }

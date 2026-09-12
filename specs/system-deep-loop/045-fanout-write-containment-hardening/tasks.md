@@ -34,9 +34,12 @@ contextType: "implementation"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Reproduce the incident as a failing test: a temp repo, a lane that trips containment, a simulated neighbour dirtying tracked files mid-lane, asserting the current guard rewinds them (`runtime/tests/unit/write-containment.vitest.ts`)
-- [ ] T002 Add the `containment` block to the fan-out control shape with mode and churn threshold, defaulting to preserve, rejecting an unknown mode (`runtime/lib/deep-loop/executor-config.ts`)
-- [ ] T003 [P] Add the runner flag that overrides the config mode, and thread it to the containment call sites (`runtime/scripts/fanout-run.cjs`)
+- [x] T001 Reproduce the incident as a failing test: a temp repo, a lane that trips containment, a simulated neighbour dirtying tracked files mid-lane, asserting the current guard rewinds them (`runtime/tests/unit/write-containment.vitest.ts`)
+  - Evidence: SUPERSEDED as written. This task specified a test asserting that the guard REWINDS a neighbour's files, a red reproduction of the defect written before the fix. Two things served that purpose instead: the 2026-09-11 production incident itself, in which concurrent lanes reverted another session's committed-since work, and the end-to-end stress case which now asserts the opposite contract against the real runner. Writing the task as specified would add a test that fails by design.
+- [x] T002 Add the `containment` block to the fan-out control shape with mode and churn threshold, defaulting to preserve, rejecting an unknown mode (`runtime/lib/deep-loop/executor-config.ts`)
+  - Evidence: containment block added to the fan-out control shape at executor-config.ts:688 with mode defaulting to preserve and an unknown mode rejected by the schema; executor-config, fanout-run and write-containment suites 271 passed
+- [x] T003 [P] Add the runner flag that overrides the config mode, and thread it to the containment call sites (`runtime/scripts/fanout-run.cjs`)
+  - Evidence: runner flag --containment-mode validated at fanout-run.cjs:213, effective mode resolved flag-then-config-then-preserve at :2630 and passed to the guard at :3167; same run 271 passed
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -46,25 +49,38 @@ contextType: "implementation"
 
 Phase 2a — quarantine and baseline, satisfying the first two requirements.
 
-- [ ] T004 Write the quarantine tree per finding: manifest, content copy, patch against HEAD and, where a baseline exists, patch against baseline (`runtime/lib/deep-loop/write-containment.ts`)
-- [ ] T005 Capture baseline content alongside the existing path and hash entries, bounded per file and per lane, marking a path baseline-truncated when it exceeds either bound (`runtime/lib/deep-loop/write-containment.ts`)
-- [ ] T006 Add the mode parameter and make preserve the remedy that copies and returns, leaving the working tree untouched (`runtime/lib/deep-loop/write-containment.ts`)
-- [ ] T007 Under restore, target the baseline bytes for a path that was already dirty at baseline, and HEAD only for a path that was clean; a baseline-truncated path preserves regardless of mode (`runtime/lib/deep-loop/write-containment.ts`)
-- [ ] T008 Record the finding on the status ledger and the observability stream in both modes, with the quarantine location on the event (`runtime/scripts/fanout-run.cjs`)
+- [x] T004 Write the quarantine tree per finding: manifest, content copy, patch against HEAD and, where a baseline exists, patch against baseline (`runtime/lib/deep-loop/write-containment.ts`)
+  - Evidence: quarantine tree written per finding under containment/quarantine: manifest.json with per-path hash and storage state, the lane's current bytes, a patch against HEAD, and a patch against the baseline where captured; write-containment.vitest.ts 58 passed
+- [x] T005 Capture baseline content alongside the existing path and hash entries, bounded per file and per lane, marking a path baseline-truncated when it exceeds either bound (`runtime/lib/deep-loop/write-containment.ts`)
+  - Evidence: baseline bytes captured under containment/baseline, bounded 2 MiB per file and 64 MiB per lane; write-containment.vitest.ts 51 passed
+- [x] T006 Add the mode parameter and make preserve the remedy that copies and returns, leaving the working tree untouched (`runtime/lib/deep-loop/write-containment.ts`)
+  - Evidence: mode parameter added, preserve is the default remedy; write-containment.vitest.ts 48 passed at the time of the change
+- [x] T007 Under restore, target the baseline bytes for a path that was already dirty at baseline, and HEAD only for a path that was clean; a baseline-truncated path preserves regardless of mode (`runtime/lib/deep-loop/write-containment.ts`)
+  - Evidence: restore targets baseline bytes, HEAD only for a path clean at baseline, truncated preserves; write-containment.vitest.ts 54 passed
+- [x] T008 Record the finding on the status ledger and the observability stream in both modes, with the quarantine location on the event (`runtime/scripts/fanout-run.cjs`)
+  - Evidence: the guard returns the quarantine location and the runner now carries it on the lane output alongside the violations and recovery hint, at fanout-run.cjs:3236; fanout-run and stress suites 142 passed 1 skipped
 
 Phase 2b — outcome separation, satisfying the third requirement.
 
-- [ ] T009 Move the containment block below artefact validation and the max-iterations policy check so a complete lane is judged on its own artefacts first (`runtime/scripts/fanout-run.cjs`)
-- [ ] T010 Settle a complete lane with containment findings as `completed_with_containment_advisory` instead of throwing, carrying the findings on the result (`runtime/scripts/fanout-run.cjs`)
-- [ ] T011 Count the new state separately in the pool summary and map it in the ledger status resolver (`runtime/scripts/fanout-pool.cjs`)
-- [ ] T012 Accept the new state in the max-iterations policy check, so forced-depth validation is not defeated by a containment finding (`runtime/scripts/fanout-run.cjs`)
-- [ ] T013 [P] Add error handling for a failed quarantine write: the finding is still recorded with the write error, and nothing was destroyed in the meantime (`runtime/lib/deep-loop/write-containment.ts`)
+- [x] T009 Move the containment block below artefact validation and the max-iterations policy check so a complete lane is judged on its own artefacts first (`runtime/scripts/fanout-run.cjs`)
+  - Evidence: containment block moved below the exit, artefact, stop-policy and salvage throws; fanout-run.vitest.ts and write-containment.vitest.ts 170 passed
+- [x] T010 Settle a complete lane with containment findings as `completed_with_containment_advisory` instead of throwing, carrying the findings on the result (`runtime/scripts/fanout-run.cjs`)
+  - Evidence: a complete lane settles completed_with_containment_advisory and returns; stress fanout.vitest.ts 19 passed 1 skipped
+- [x] T011 Count the new state separately in the pool summary and map it in the ledger status resolver (`runtime/scripts/fanout-pool.cjs`)
+  - Evidence: pool summary carries a separate advisory counter and the ledger event carries containment_advisory; four suites 223 passed 1 skipped
+- [x] T012 Accept the new state in the max-iterations policy check, so forced-depth validation is not defeated by a containment finding (`runtime/scripts/fanout-run.cjs`)
+  - Evidence: superseded by T009. Containment now runs after the max-iterations policy check, so that check never observes a containment state and needs no new case.
+- [x] T013 [P] Add error handling for a failed quarantine write: the finding is still recorded with the write error, and nothing was destroyed in the meantime (`runtime/lib/deep-loop/write-containment.ts`)
+  - Evidence: a failed quarantine write records the error on that path's manifest entry and never throws, so losing the record cannot become losing the lane; covered by a case in write-containment.vitest.ts
 
 Phase 3 — caller and documentation migration, satisfying the sixth requirement.
 
-- [ ] T014 Pass the containment mode from the four command YAMLs and align their inline containment calls with the new signature (`.opencode/commands/deep/assets/deep-research-auto.yaml`, `deep-research-confirm.yaml`, `deep-review-auto.yaml`, `deep-review-confirm.yaml`)
-- [ ] T015 [P] Rewrite the containment paragraph in both loop protocols and the hub SKILL.md bullet that tells operators not to edit a checkout with a live lineage (`deep-research/references/protocol/loop-protocol.md`, `deep-review/references/protocol/loop-protocol.md`, `system-deep-loop/SKILL.md`)
-- [ ] T016 [P] Update the containment role line and the fan-out feature catalog entry (`runtime/lib/deep-loop/README.md`, `runtime/feature-catalog/fanout/fanout-run.md`)
+- [x] T014 Pass the containment mode from the four command YAMLs and align their inline containment calls with the new signature (`.opencode/commands/deep/assets/deep-research-auto.yaml`, `deep-research-confirm.yaml`, `deep-review-auto.yaml`, `deep-review-confirm.yaml`)
+  - Evidence: the twenty inline containment call sites across all four command workflows now report the finding and fall through to the dispatch's own exit code instead of exiting 1, and say 'detected ... left on disk' rather than 'reverted'; the superseded wording is absent from every workflow asset
+- [x] T015 [P] Rewrite the containment paragraph in both loop protocols and the hub SKILL.md bullet that tells operators not to edit a checkout with a live lineage (`deep-research/references/protocol/loop-protocol.md`, `deep-review/references/protocol/loop-protocol.md`, `system-deep-loop/SKILL.md`)
+  - Evidence: hub SKILL.md bullet and the research loop protocol's containment rule rewritten to state preserve-by-default, the opt-in restore that targets the pre-dispatch baseline, and the advisory lane outcome. The review loop protocol carries no equivalent paragraph, so it needed no change
+- [x] T016 [P] Update the containment role line and the fan-out feature catalog entry (`runtime/lib/deep-loop/README.md`, `runtime/feature-catalog/fanout/fanout-run.md`)
+  - Evidence: containment role line in the runtime library README now states detection, the preserve default and the baseline-targeted opt-in. The fan-out feature-catalog paragraph was left as written: it describes detection and orchestrator-owned exemptions, which this work did not change
 
 Phase 4 — lineage worktrees, satisfying the fifth requirement.
 
@@ -77,8 +93,10 @@ Phase 4 — lineage worktrees, satisfying the fifth requirement.
 
 Phase 5 — churn detection, optional, satisfying the fourth requirement.
 
-- [ ] T023 Sample out-of-lineage tracked churn on the existing progress heartbeat and count newly-dirty paths since the previous sample (`runtime/scripts/fanout-run.cjs`)
-- [ ] T024 Emit `shared_checkout_detected` above the threshold and latch preserve mode for the remainder of the run, overriding any restore opt-in (`runtime/scripts/fanout-run.cjs`)
+- [x] T023 Sample out-of-lineage tracked churn on the existing progress heartbeat and count newly-dirty paths since the previous sample (`runtime/scripts/fanout-run.cjs`)
+  - Evidence: out-of-lineage tracked churn sampled on the existing progress heartbeat, reusing the containment snapshot so sibling lineage writes are not read as foreign churn; threshold 0 disables sampling entirely; executor-config.ts:701 carries the threshold, default 3
+- [x] T024 Emit `shared_checkout_detected` above the threshold and latch preserve mode for the remainder of the run, overriding any restore opt-in (`runtime/scripts/fanout-run.cjs`)
+  - Evidence: a sample above the threshold appends shared_checkout_detected at fanout-run.cjs:3091 and latches preserve for the rest of the run, overriding any restore opt-in and never un-latching on a later quieter sample; a sampling error stops the detector, never the lane; 276 passed against a 274 baseline
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -86,11 +104,15 @@ Phase 5 — churn detection, optional, satisfying the fourth requirement.
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T025 Run the deep-loop runtime Vitest suite and read the output and exit status
-- [ ] T026 Run the incident reproduction from Phase 1 and confirm it now passes with the neighbour's files byte-identical
-- [ ] T027 Run one real research fan-out on the main checkout with a second session editing tracked files, and confirm the tree is untouched and the lane completes
+- [x] T025 Run the deep-loop runtime Vitest suite and read the output and exit status
+  - Evidence: full deep-loop runtime suite green: 151 files passed, 2550 tests passed, 7 skipped, 0 failed, exit 0. Reaching green also required correcting three stale cross-package paths in the suite, all pointing into system-spec-kit: the tsx loader, a nested vitest borrowed from another skill, and the optimizer manifest. All three predate this work.
+- [x] T026 Run the incident reproduction from Phase 1 and confirm it now passes with the neighbour's files byte-identical
+  - Evidence: confirmed twice. In the harness, the stress case asserts the out-of-scope file keeps the lane's bytes, git reports it modified, the ledger records preserved_in_head and the lane settles with the advisory (19 passed, 1 skipped). In production, a live lane on the shared checkout detected 7 out-of-scope paths and preserved all 7 byte-identical, 5 of them belonging to other sessions including a research lineage mid-iteration.
+- [x] T027 Run one real research fan-out on the main checkout with a second session editing tracked files, and confirm the tree is untouched and the lane completes
+  - Evidence: live run on the main checkout with concurrent sessions writing: 7 findings, 7 preserved, lane fulfilled with the advisory status, run summary all_failed false
 - [ ] T028 Run one fan-out with the worktree option on against an uncommitted packet, and confirm every lineage directory is present in the main checkout afterwards and no worktree remains
-- [ ] T029 Grep the five documentation surfaces and the four command YAMLs for the old containment wording and confirm none remains
+- [x] T029 Grep the five documentation surfaces and the four command YAMLs for the old containment wording and confirm none remains
+  - Evidence: all five documentation surfaces and all four command workflows report zero occurrences of the superseded containment wording
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -282,3 +304,5 @@ Phase 5 — churn detection, optional, satisfying the fourth requirement.
 | Operator | Deep-loop runtime owner | [ ] Approved | |
 | Operator | Verification | [ ] Approved | |
 <!-- /ANCHOR:sign-off -->
+
+

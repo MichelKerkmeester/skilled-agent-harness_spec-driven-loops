@@ -32,6 +32,8 @@ const WAVE_ASSIGNMENT_MODEL = 'wave';
 const WAVE_PLANNER_STATUS_DORMANT = 'dormant';
 const WAVE_PLANNER_DORMANT_MESSAGE = 'wave planner is dormant until conflict-safety substrate is available';
 const POST_EXIT_ORPHAN_REASON = 'orphaned_after_subprocess_exit';
+// One literal shared by the emitting CLI and the pool that counts it, so the two cannot drift.
+const CONTAINMENT_ADVISORY_STATUS = 'completed_with_containment_advisory';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS
@@ -622,6 +624,9 @@ function runCappedPool(options) {
       };
       if (result.status === 'rejected') {
         emitEvent({ ...baseEvent, error: result.error });
+      } else if (result.output && result.output.status === CONTAINMENT_ADVISORY_STATUS) {
+        // A complete lane keeps its success; the flag carries the containment caveat.
+        emitEvent({ ...baseEvent, containment_advisory: true });
       } else {
         emitEvent(baseEvent);
       }
@@ -869,13 +874,24 @@ function runCappedPool(options) {
 /**
  * Build the ordered-results + summary envelope for a completed pool run.
  *
+ * A lane whose artefacts are complete but whose worktree held an out-of-scope write still
+ * succeeded, so it stays inside `succeeded`; that caveat gets its own count because it is
+ * otherwise invisible to a reader of the summary.
+ *
  * @param {Array<Object>} results - Per-item settlement results (ordered).
- * @returns {Object} { results, summary: { total, succeeded, failed, all_failed } }.
+ * @returns {Object} { results, summary: { total, succeeded, failed, all_failed,
+ *   completed_with_containment_advisory } }.
  */
 function buildPoolSummary(results) {
   const total = results.length;
   const succeeded = results.filter((result) => result && result.status === 'fulfilled').length;
   const failed = total - succeeded;
+  const completedWithContainmentAdvisory = results.filter((result) => {
+    if (!result || !result.output) {
+      return false;
+    }
+    return result.output.status === CONTAINMENT_ADVISORY_STATUS;
+  }).length;
   const gauges = buildPoolGauges({ total, settled: total, pending: 0, failed });
   const failureClasses = buildFailureClassRollup(results);
   return {
@@ -885,6 +901,7 @@ function buildPoolSummary(results) {
       succeeded,
       failed,
       all_failed: total > 0 && failed === total,
+      completed_with_containment_advisory: completedWithContainmentAdvisory,
       gauges,
       failure_classes: failureClasses,
     },
@@ -926,6 +943,7 @@ function writeOrchestrationSummary(summaryPath, summary) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = {
+  CONTAINMENT_ADVISORY_STATUS,
   runCappedPool,
   settleItem,
   buildPoolSummary,

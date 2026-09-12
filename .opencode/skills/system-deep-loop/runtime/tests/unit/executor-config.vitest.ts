@@ -432,6 +432,21 @@ describe('parseFanoutConfig', () => {
     expect(config.executors[0].touches).toEqual([]);
   });
 
+  it('defaults containment to preserve and rejects an unknown mode', () => {
+    // Preserve is the default because attribution on a shared checkout is a guess, and a
+    // restore acts on that guess destructively; an unrecognized mode must be rejected
+    // rather than coerced into one of the two remedies.
+    expect(parseFanoutConfig({ executors: [{ kind: 'native', label: 'opus' }] }).containment.mode).toBe('preserve');
+    expect(parseFanoutConfig({
+      containment: { mode: 'restore' },
+      executors: [{ kind: 'native', label: 'opus' }],
+    }).containment.mode).toBe('restore');
+    expect(() => parseFanoutConfig({
+      containment: { mode: 'revert' },
+      executors: [{ kind: 'native', label: 'opus' }],
+    })).toThrow(ExecutorConfigError);
+  });
+
   it('accepts cli-codex as a fan-out lineage', () => {
     const config = parseFanoutConfig({
       executors: [{ kind: 'cli-codex', model: 'gpt-5.6-codex', label: 'codex' }],
@@ -859,7 +874,7 @@ describe('isFlashMaxPinnedModel / pinReasoningEffortForModel', () => {
     expect(isFlashMaxPinnedModel('deepseek-v4-flash')).toBe(true);
     expect(isFlashMaxPinnedModel('deepseek-v4-flash-vision-exp')).toBe(true);
     expect(isFlashMaxPinnedModel('deepseek-v4.1-flash')).toBe(true);
-    expect(isFlashMaxPinnedModel('opencode-go/deepseek-v4-flash-vision-exp')).toBe(true);
+    expect(isFlashMaxPinnedModel('opencode-go/deepseek-v4.1-flash')).toBe(true);
     expect(isFlashMaxPinnedModel('deepseek/deepseek-v4-flash')).toBe(true);
     expect(isFlashMaxPinnedModel('opencode-go/deepseek-v4-flash')).toBe(true);
     expect(isFlashMaxPinnedModel('deepseek/deepseek-v4-flash-latest')).toBe(true);

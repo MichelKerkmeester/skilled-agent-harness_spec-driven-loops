@@ -50,12 +50,16 @@ const {
       succeeded: number;
       failed: number;
       all_failed: boolean;
+      completed_with_containment_advisory: number;
       gauges: { lag: number; pending: number; failed: number };
       failure_classes: { timeout: number; exit: number; salvage_miss: number };
     };
   }>;
   buildPoolSummary: (results: Array<Record<string, unknown>>) => {
-    summary: { failure_classes: { timeout: number; exit: number; salvage_miss: number } };
+    summary: {
+      completed_with_containment_advisory: number;
+      failure_classes: { timeout: number; exit: number; salvage_miss: number };
+    };
   };
   createWavePlannerInterface: () => {
     assignmentModel: string;
@@ -200,6 +204,7 @@ describe('runCappedPool', () => {
       succeeded: 0,
       failed: 0,
       all_failed: false,
+      completed_with_containment_advisory: 0,
       gauges: { lag: 0, pending: 0, failed: 0 },
       failure_classes: { timeout: 0, exit: 0, salvage_miss: 0 },
     });
@@ -228,6 +233,26 @@ describe('runCappedPool', () => {
     const byLabel = (label: string) => events.filter((e) => e.label === label).map((e) => e.event);
     expect(byLabel('ok')).toEqual(['started', 'completed']);
     expect(byLabel('boom')).toEqual(['started', 'failed']);
+  });
+
+  it('counts an advisory-settled lane as a success while flagging the caveat', async () => {
+    const events: Array<Record<string, unknown>> = [];
+    const result = await runCappedPool({
+      items: [{ label: 'contained' }],
+      concurrency: 1,
+      worker: async () => ({ status: 'completed_with_containment_advisory' }),
+      onEvent: (event) => events.push(event),
+    });
+
+    // The lane delivered everything it owed, so the advisory must not move it out of
+    // `succeeded`; the dedicated count is the one place a summary reader can see the
+    // out-of-scope write that the success count hides.
+    expect(result.summary.completed_with_containment_advisory).toBe(1);
+    expect(result.summary.succeeded).toBe(1);
+    expect(result.summary.failed).toBe(0);
+    expect(result.summary.all_failed).toBe(false);
+    expect(events.map((event) => event.event)).toEqual(['started', 'completed']);
+    expect(events[1]?.containment_advisory).toBe(true);
   });
 
   it('attaches lag, pending, and failed gauges to events and final summary', async () => {

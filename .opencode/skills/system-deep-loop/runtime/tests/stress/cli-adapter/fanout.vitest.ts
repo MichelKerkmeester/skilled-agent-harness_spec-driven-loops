@@ -283,8 +283,10 @@ function installDestructiveShim(fixture: AdapterShimFixture, targetPath: string)
     "mkdirSync(lineageDir, { recursive: true });",
     "writeFileSync(control.targetPath, 'destructive out-of-scope write\\n', 'utf8');",
     "writeFileSync(join(lineageDir, 'research.md'), '# Shim research\\n', 'utf8');",
-    "process.stdout.write('{\"type\":\"text\",\"part\":',",
-    "  '{\"providerID\":\"shim\",\"modelID\":\"success\"}}\\n');",
+    // One concatenated string: a second argument here is read by Node as a stream
+    // encoding, and anything that is not a real encoding name throws before the
+    // call writes anything.
+    "process.stdout.write('{\"type\":\"text\",\"part\":{\"providerID\":\"shim\",\"modelID\":\"success\"}}\\n');",
   ].join('\n'), 'utf8');
 }
 
@@ -335,13 +337,13 @@ describe.sequential('fan-out manifest integrity', () => {
 });
 
 describe.sequential('fan-out scheduler contracts', () => {
-  it('refuses a lineage that modifies a committed out-of-scope path and restores HEAD', async () => {
+  it('preserves an out-of-scope write on disk, reports it, and completes the lineage', async () => {
     const fixture = useShim('success');
     const worktree = createIsolatedWorktrees();
     worktrees.push(worktree);
     const repository = worktree.worktrees[0];
     const targetPath = join(repository, 'fixture.txt');
-    const beforeContent = readFileSync(targetPath, 'utf8');
+    const committedContent = readFileSync(targetPath, 'utf8');
     const beforeHash = spawnSync('git', ['hash-object', 'fixture.txt'], {
       cwd: repository,
       encoding: 'utf8',
@@ -356,7 +358,7 @@ describe.sequential('fan-out scheduler contracts', () => {
     const results = envelope.results as Array<{
       label: string;
       status: string;
-      error: { message: string };
+      output: { status: string };
     }>;
     const pids = Object.values(readRecordedPids(fixture));
     await waitUntilDead(pids);
@@ -370,11 +372,19 @@ describe.sequential('fan-out scheduler contracts', () => {
       encoding: 'utf8',
     });
 
-    expect(afterContent).toBe(beforeContent);
+    // A stray out-of-scope write cannot be attributed to this lineage alone, so the guard
+    // leaves the bytes where they are. The worktree keeps the edit and still differs from
+    // HEAD, instead of a restore silently discarding whoever's uncommitted work it was.
+    expect(committedContent).toBe('fixture\n');
+    expect(afterContent).toBe('destructive out-of-scope write\n');
     expect(afterHash.status).toBe(0);
-    expect(String(afterHash.stdout).trim()).toBe(String(beforeHash.stdout).trim());
+    expect(String(afterHash.stdout).trim()).not.toBe(String(beforeHash.stdout).trim());
     expect(targetStatus.status).toBe(0);
-    expect(String(targetStatus.stdout)).toBe('');
+    expect(String(targetStatus.stdout)).toBe(' M fixture.txt\n');
+
+    // The lineage produced its artifact, so the finding stays an advisory attached to a
+    // complete lineage: it is recorded, and it neither rejects the lineage nor replaces
+    // its completed outcome.
     expect(readFileSync(join(lineageDir, 'research.md'), 'utf8')).toBe('# Shim research\n');
     expect(events).toEqual(expect.arrayContaining([
       expect.objectContaining({
@@ -382,26 +392,23 @@ describe.sequential('fan-out scheduler contracts', () => {
         severity: 'error',
         label: 'write-containment',
         violations: [{ path: 'fixture.txt', kind: 'modified', status: ' M' }],
-        reverted: [{ path: 'fixture.txt', action: 'restored_from_head', ok: true }],
+        reverted: [{ path: 'fixture.txt', action: 'preserved_in_head', ok: true }],
       }),
       expect.objectContaining({
-        event: 'failed',
-        terminal: true,
+        event: 'completed',
         label: 'write-containment',
-        error: expect.objectContaining({
-          message: expect.stringContaining('violated write containment'),
-        }),
       }),
     ]));
-    expect(run.result.exitCode).toBe(3);
+    expect(events.filter((event) => event.event === 'failed')).toEqual([]);
+    expect(run.result.exitCode).toBe(0);
     expect(run.result.timedOut).toBe(false);
-    expect(envelope.summary).toMatchObject({ failed: 1, all_failed: true });
+    expect(envelope.summary).toMatchObject({ total: 1, succeeded: 1, failed: 0, all_failed: false });
     expect(results).toEqual([
       expect.objectContaining({
         label: 'write-containment',
-        status: 'rejected',
-        error: expect.objectContaining({
-          message: expect.stringContaining('violated write containment'),
+        status: 'fulfilled',
+        output: expect.objectContaining({
+          status: 'completed_with_containment_advisory',
         }),
       }),
     ]);

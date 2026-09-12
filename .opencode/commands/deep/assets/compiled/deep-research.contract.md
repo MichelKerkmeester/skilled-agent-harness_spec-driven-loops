@@ -12,7 +12,7 @@
     },
     {
       "path": ".opencode/commands/deep/assets/deep-research-presentation.txt",
-      "sha256": "8fd04bcd8513cd713873443ad6032df413fac0583bf167574ca524c0e02d2a27",
+      "sha256": "de1f2a261ac695637c7f7f9de801017c32e0d45a43da2f7fc21ab7ea19707483",
       "section": "full"
     },
     {
@@ -22,32 +22,32 @@
     },
     {
       "path": ".opencode/commands/deep/assets/deep-research-auto.yaml",
-      "sha256": "300c04a3cf08f5730c04f9e8eebfefd0c94a89de4d0bbde45e56183a2f7eb8bc",
+      "sha256": "8f1d526f2fb87c1a902f4a044015fed378f87b7a97f33162451d0db51345edf8",
       "section": "full"
     },
     {
       "path": ".opencode/commands/deep/assets/deep-research-confirm.yaml",
-      "sha256": "b64bed55c835234371af3acf10417e249a723d7d4aa6e3aa95f74380b60d0b5c",
+      "sha256": "7c1602c77265a1af592e162e00da071a16b6948cadd04b04fba79ecd7bd12ca0",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/mode-registry.json",
-      "sha256": "12cd354ffa65832fff12c248486279b2b410542d9294a7ca97fedcceeb4524dd",
+      "sha256": "9d48716d1b4acd63e117770ebed7120808fa0c22cb3a6233875df95d81192ebc",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/SKILL.md",
-      "sha256": "df615c991eaf45dec4ea118dae5f100a04c7cd68629231e2bcd230fb1d41076a",
+      "sha256": "dea97cddb5bbc646f2f3bf9e3886026693e1fbe692e984014703e141be665216",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-research/SKILL.md",
-      "sha256": "3c977ba60820655b8aacc0e8001a1777118c7b930735a352d2d278f9afbeb972",
+      "sha256": "2fc344cf5a9f73e4c30719fd3ff4eb537ac565aaabe74b7f7e34c5f36856f676",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md",
-      "sha256": "d518420314ff5899544843bf9528f8ebb7f1a8f375e2f7e223c3495354e1ff00",
+      "sha256": "f87b785e7fd2f25563f418aa06c78ac6cac681c4591ceec26583e79852b00967",
       "section": "full"
     },
     {

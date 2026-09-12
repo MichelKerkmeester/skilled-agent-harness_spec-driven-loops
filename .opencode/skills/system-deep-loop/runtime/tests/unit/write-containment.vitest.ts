@@ -19,9 +19,11 @@ import {
   detectNewOutOfScopeViolations,
   revertOutOfScopeViolations,
   enforceWriteContainment,
+  quarantineViolations,
   buildContainmentViolationEvent,
   classifyViolation,
   __internals,
+  BASELINE_MAX_FILE_BYTES,
 } from '../../lib/deep-loop/write-containment.js';
 import type { DirtyPathEntry } from '../../lib/deep-loop/write-containment';
 
@@ -126,6 +128,190 @@ describe('write-containment — snapshotOutOfScopeDirtyPaths', () => {
   });
 });
 
+// A baseline recorded as a hash alone can only prove a file changed; it cannot be restored
+// from, and the only other source of the old bytes is HEAD, which discards whatever a
+// concurrent editor had already written before the lane started. Capturing the bytes makes a
+// faithful restore possible, so these cover the opt-in capture and its two degraded cases.
+describe('write-containment — baseline content capture', () => {
+  function makeCaptureDir(): string {
+    const dir = mkdtempSync(join(tmpdir(), 'baseline-capture-'));
+    tempRoots.push(dir);
+    return dir;
+  }
+
+  it('leaves returned entries unchanged when no capture dir is configured', () => {
+    const { root, artifactDir } = baselineRepo();
+    writeFileSync(join(root, 'tracked-outside.txt'), 'CHANGED\n');
+    writeFileSync(join(root, 'deep/file.txt'), 'CHANGED_DEEP\n');
+
+    const dirty = snapshotOutOfScopeDirtyPaths({ repoRoot: root, artifactDir });
+
+    // Strict equality: not even an undefined-valued key may appear on the entry.
+    expect(dirty).toStrictEqual([
+      { path: 'deep/file.txt', hash: git(root, ['hash-object', '--', 'deep/file.txt']).trim() },
+      {
+        path: 'tracked-outside.txt',
+        hash: git(root, ['hash-object', '--', 'tracked-outside.txt']).trim(),
+      },
+    ]);
+  });
+
+  it('copies a small dirty file under containment/baseline and names it on the entry', () => {
+    const { root, artifactDir } = baselineRepo();
+    const captureDir = makeCaptureDir();
+    writeFileSync(join(root, 'deep/file.txt'), 'PREDISPATCH_DEEP\n');
+
+    const dirty = snapshotOutOfScopeDirtyPaths({ repoRoot: root, artifactDir, captureContentDir: captureDir });
+
+    const entry = dirty.find((candidate) => candidate.path === 'deep/file.txt');
+    expect(entry?.baselineContentPath).toBe('containment/baseline/deep/file.txt');
+    expect(entry?.baselineTruncated).toBeUndefined();
+    // Parent dirs are created by the capture, and the stored bytes are the pre-dispatch ones.
+    expect(readFileSync(join(captureDir, 'containment/baseline/deep/file.txt'), 'utf8')).toBe('PREDISPATCH_DEEP\n');
+  });
+
+  it('marks a file over the per-file bound truncated and writes no bytes', () => {
+    const { root, artifactDir } = baselineRepo();
+    const captureDir = makeCaptureDir();
+    writeFileSync(join(root, 'big-outside.bin'), Buffer.alloc(BASELINE_MAX_FILE_BYTES + 1, 0x41));
+
+    const dirty = snapshotOutOfScopeDirtyPaths({ repoRoot: root, artifactDir, captureContentDir: captureDir });
+
+    const entry = dirty.find((candidate) => candidate.path === 'big-outside.bin');
+    expect(entry?.baselineTruncated).toBe(true);
+    expect(entry?.baselineContentPath).toBeUndefined();
+    expect(existsSync(join(captureDir, 'containment/baseline/big-outside.bin'))).toBe(false);
+  });
+});
+
+// Restore mode used to have one source, HEAD. For a path that was ALREADY dirty when the lane
+// started that source is the wrong one: HEAD is the last commit, so rolling back to it discards
+// whatever a concurrent editor had written before the dispatch -- work this lane never touched.
+// The baseline's captured bytes are the faithful source, and a baseline that holds no bytes is
+// no source at all: there we leave the file alone rather than fall back to HEAD.
+describe('write-containment — restore prefers the baseline bytes over HEAD', () => {
+  function makeBaselineDir(): string {
+    const dir = mkdtempSync(join(tmpdir(), 'baseline-restore-'));
+    tempRoots.push(dir);
+    return dir;
+  }
+
+  it('puts back the pre-dispatch bytes of an already-dirty path, not HEAD content', () => {
+    const { root, artifactDir } = baselineRepo();
+    const baselineDir = makeBaselineDir();
+    const outsidePath = join(root, 'tracked-outside.txt');
+
+    // A concurrent editor's work, written BEFORE this lane was dispatched.
+    writeFileSync(outsidePath, 'CONCURRENT_EDIT\n');
+    const preDispatch = snapshotOutOfScopeDirtyPaths({
+      repoRoot: root,
+      artifactDir,
+      captureContentDir: baselineDir,
+    });
+    expect(preDispatch.find((entry) => entry.path === 'tracked-outside.txt')?.baselineContentPath)
+      .toBeDefined();
+
+    // The leaf then clobbers the very same path.
+    writeFileSync(outsidePath, 'LEAF_CLOBBER\n');
+    const violations = detectNewOutOfScopeViolations({
+      repoRoot: root,
+      artifactDir,
+      preDispatchDirtyPaths: preDispatch,
+    });
+    expect(violations.map((violation) => violation.path)).toEqual(['tracked-outside.txt']);
+
+    const revert = revertOutOfScopeViolations({
+      repoRoot: root,
+      violations,
+      mode: 'restore',
+      preDispatchDirtyPaths: preDispatch,
+      baselineContentRoot: baselineDir,
+    });
+
+    expect(revert.reverted).toEqual([
+      { path: 'tracked-outside.txt', action: 'restored_from_baseline', ok: true },
+    ]);
+    // The concurrent editor's bytes come back -- NOT HEAD's 'ORIGINAL_OUTSIDE'.
+    expect(readFileSync(outsidePath, 'utf8')).toBe('CONCURRENT_EDIT\n');
+  });
+
+  it('preserves an already-dirty path whose baseline bytes could not be captured', () => {
+    const { root, artifactDir } = baselineRepo();
+    const baselineDir = makeBaselineDir();
+    const bigPath = join(root, 'big-tracked.bin');
+
+    // Committed, then made dirty at a size the capture bound refuses to copy.
+    writeFileSync(bigPath, Buffer.alloc(BASELINE_MAX_FILE_BYTES + 1, 0x41));
+    commitAll(root, 'test(containment): track an oversized file');
+    writeFileSync(bigPath, Buffer.alloc(BASELINE_MAX_FILE_BYTES + 1, 0x42));
+
+    const preDispatch = snapshotOutOfScopeDirtyPaths({
+      repoRoot: root,
+      artifactDir,
+      captureContentDir: baselineDir,
+    });
+    const entry = preDispatch.find((candidate) => candidate.path === 'big-tracked.bin');
+    expect(entry?.baselineTruncated).toBe(true);
+    expect(entry?.baselineContentPath).toBeUndefined();
+
+    // The leaf then overwrites it, and this is what must survive the restore.
+    const laneBytes = Buffer.alloc(BASELINE_MAX_FILE_BYTES + 1, 0x43);
+    writeFileSync(bigPath, laneBytes);
+    const violations = detectNewOutOfScopeViolations({
+      repoRoot: root,
+      artifactDir,
+      preDispatchDirtyPaths: preDispatch,
+    });
+    expect(violations.map((violation) => violation.path)).toEqual(['big-tracked.bin']);
+
+    const revert = revertOutOfScopeViolations({
+      repoRoot: root,
+      violations,
+      mode: 'restore',
+      preDispatchDirtyPaths: preDispatch,
+      baselineContentRoot: baselineDir,
+    });
+
+    expect(revert.reverted).toEqual([
+      { path: 'big-tracked.bin', action: 'preserved_in_head', ok: true },
+    ]);
+    // A baseline we could not capture is not a baseline we may roll back to.
+    expect(readFileSync(bigPath).equals(laneBytes)).toBe(true);
+  });
+
+  it('still restores from HEAD when the path was clean at dispatch (no baseline entry)', () => {
+    const { root, artifactDir } = baselineRepo();
+    const baselineDir = makeBaselineDir();
+
+    // Clean tree at dispatch: the baseline holds no entry for the path the leaf later clobbers.
+    const preDispatch = snapshotOutOfScopeDirtyPaths({
+      repoRoot: root,
+      artifactDir,
+      captureContentDir: baselineDir,
+    });
+    expect(preDispatch).toEqual([]);
+
+    writeFileSync(join(root, 'tracked-outside.txt'), 'LEAF_CLOBBER\n');
+    const violations = detectNewOutOfScopeViolations({
+      repoRoot: root,
+      artifactDir,
+      preDispatchDirtyPaths: preDispatch,
+    });
+
+    const revert = revertOutOfScopeViolations({
+      repoRoot: root,
+      violations,
+      mode: 'restore',
+      preDispatchDirtyPaths: preDispatch,
+      baselineContentRoot: baselineDir,
+    });
+
+    expect(revert.reverted).toEqual([
+      { path: 'tracked-outside.txt', action: 'restored_from_head', ok: true },
+    ]);
+    expect(readFileSync(join(root, 'tracked-outside.txt'), 'utf8')).toBe('ORIGINAL_OUTSIDE\n');
+  });
+});
 describe('write-containment — regression case (a): in-artifact write passes', () => {
   it('detects zero violations when the leaf writes only inside the artifact dir', () => {
     const { root, artifactDir } = baselineRepo();
@@ -164,7 +350,7 @@ describe('write-containment — regression case (b): out-of-artifact write is de
     expect(violations[0].path).toBe('tracked-outside.txt');
     expect(violations[0].kind).toBe('modified');
 
-    const revert = revertOutOfScopeViolations({ repoRoot: root, violations });
+    const revert = revertOutOfScopeViolations({ repoRoot: root, violations, mode: 'restore' });
     expect(revert.reverted).toHaveLength(1);
     expect(revert.reverted[0].action).toBe('restored_from_head');
     expect(revert.reverted[0].ok).toBe(true);
@@ -188,7 +374,7 @@ describe('write-containment — regression case (b): out-of-artifact write is de
     expect(violations[0].path).toBe('deep/file.txt');
     expect(violations[0].kind).toBe('deleted');
 
-    const revert = revertOutOfScopeViolations({ repoRoot: root, violations });
+    const revert = revertOutOfScopeViolations({ repoRoot: root, violations, mode: 'restore' });
     expect(revert.reverted[0].ok).toBe(true);
     expect(existsSync(join(root, 'deep/file.txt'))).toBe(true);
     expect(readFileSync(join(root, 'deep/file.txt'), 'utf8')).toBe('ORIGINAL_DEEP\n');
@@ -250,7 +436,7 @@ describe('write-containment — regression case (c): pre-existing dirty file is 
     expect(existsSync(join(root, 'evil-new-file.txt'))).toBe(true);
   });
 
-  it('detects and restores truncation of a pre-existing dirty tracked file by content identity', () => {
+  it('detects truncation of a pre-existing dirty tracked file by content identity, without rolling it back to HEAD', () => {
     const { root, artifactDir } = baselineRepo();
     const outsidePath = join(root, 'tracked-outside.txt');
 
@@ -266,13 +452,17 @@ describe('write-containment — regression case (c): pre-existing dirty file is 
       repoRoot: root,
       artifactDir,
       preDispatchDirtyPaths: preDispatch,
+      mode: 'restore',
     });
 
     expect(result.violations.map((violation) => violation.path)).toEqual(['tracked-outside.txt']);
+    // The path was already dirty at dispatch and no bytes were captured, so it is left as the
+    // lane left it: HEAD holds the last commit, not the concurrent editor's pre-dispatch
+    // content, and rolling back to it would discard work this lane never wrote.
     expect(result.revertResult.reverted).toEqual([
-      { path: 'tracked-outside.txt', action: 'restored_from_head', ok: true },
+      { path: 'tracked-outside.txt', action: 'preserved_in_head', ok: true },
     ]);
-    expect(readFileSync(outsidePath, 'utf8')).toBe('ORIGINAL_OUTSIDE\n');
+    expect(readFileSync(outsidePath, 'utf8')).toBe('');
   });
 });
 
@@ -323,6 +513,7 @@ describe('write-containment — concurrent-writer safety (never delete unattribu
       artifactDir,
       preDispatchDirtyPaths: preDispatch,
       label: 'sol',
+      mode: 'restore',
     });
 
     // Both are fatal now — the tracked breach and the unrelated untracked write.
@@ -333,6 +524,36 @@ describe('write-containment — concurrent-writer safety (never delete unattribu
     // ...while the untracked write is fatal but still never deleted.
     expect(existsSync(join(root, 'concurrent.txt'))).toBe(true);
     expect(readFileSync(join(root, 'concurrent.txt'), 'utf8')).toBe('parallel\n');
+  });
+});
+
+// A tracked path present in HEAD is the case the remedy used to roll back, and it is the case
+// that destroys work: the guard cannot tell this leaf's stray write from a concurrent session's
+// in-flight edit to the same file. Preserving the bytes is therefore what the remedy does
+// unless the caller explicitly opts into a restore.
+describe('write-containment — preserve is the default remedy', () => {
+  it('leaves a tracked modified out-of-scope file on disk and reports preserved_in_head with no mode passed', () => {
+    const { root, artifactDir } = baselineRepo();
+    const preDispatch = snapshotOutOfScopeDirtyPaths({ repoRoot: root, artifactDir });
+
+    // A tracked out-of-scope write: the one case that used to be restored from HEAD.
+    writeFileSync(join(root, 'tracked-outside.txt'), 'UNATTRIBUTED_EDIT\n');
+
+    const violations = detectNewOutOfScopeViolations({
+      repoRoot: root,
+      artifactDir,
+      preDispatchDirtyPaths: preDispatch,
+    });
+    expect(violations.map((v) => v.path)).toEqual(['tracked-outside.txt']);
+
+    const revert = revertOutOfScopeViolations({ repoRoot: root, violations });
+
+    expect(revert.reverted).toEqual([
+      { path: 'tracked-outside.txt', action: 'preserved_in_head', ok: true },
+    ]);
+    // The writer's bytes survive: that writer may be a session nobody is watching, and a HEAD
+    // restore leaves it nothing to notice or undo.
+    expect(readFileSync(join(root, 'tracked-outside.txt'), 'utf8')).toBe('UNATTRIBUTED_EDIT\n');
   });
 });
 
@@ -533,6 +754,7 @@ describe('write-containment — enforceWriteContainment high-level', () => {
       stateLogPath: stateLog,
       iteration: 3,
       label: 'review-i3-g1',
+      mode: 'restore',
     });
 
     expect(result.violations).toHaveLength(1);
@@ -550,6 +772,38 @@ describe('write-containment — enforceWriteContainment high-level', () => {
     const parsed = JSON.parse(logLine);
     expect(parsed.event).toBe('containment_violation');
     expect(parsed.reverted[0].action).toBe('restored_from_head');
+  });
+
+  it('restores an already-dirty path from the captured baseline bytes, not from HEAD', () => {
+    const { root, artifactDir } = baselineRepo();
+    const outsidePath = join(root, 'tracked-outside.txt');
+
+    // A concurrent editor wrote this before the lane started, so HEAD holds only the
+    // original commit and the captured bytes are the only faithful restore source.
+    writeFileSync(outsidePath, 'CONCURRENT_EDIT\n');
+    const preDispatch = snapshotOutOfScopeDirtyPaths({
+      repoRoot: root,
+      artifactDir,
+      captureContentDir: artifactDir,
+    });
+    expect(preDispatch.find((entry) => entry.path === 'tracked-outside.txt')?.baselineContentPath)
+      .toBeDefined();
+
+    writeFileSync(outsidePath, 'LEAF_CLOBBER\n');
+
+    const result = enforceWriteContainment({
+      repoRoot: root,
+      artifactDir,
+      preDispatchDirtyPaths: preDispatch,
+      baselineContentRoot: artifactDir,
+      mode: 'restore',
+    });
+
+    expect(result.revertResult.reverted).toEqual([
+      { path: 'tracked-outside.txt', action: 'restored_from_baseline', ok: true },
+    ]);
+    // The pre-dispatch bytes come back -- not HEAD's 'ORIGINAL_OUTSIDE'.
+    expect(readFileSync(outsidePath, 'utf8')).toBe('CONCURRENT_EDIT\n');
   });
 
   it('returns no violations, no revert, and a null event when the leaf stayed in scope', () => {
@@ -660,6 +914,7 @@ describe('write-containment — concurrent sibling lineages', () => {
       unattributableDirs: [grokDir],
       preDispatchDirtyPaths: pre,
       label: 'sol',
+      mode: 'restore',
     });
 
     // The real violation is still caught and reverted...
@@ -937,6 +1192,7 @@ describe('write-containment — a concurrent run in a sibling phase folder', () 
       preDispatchDirtyPaths: preDispatch,
       iteration: 2,
       label: 'luna-max',
+      mode: 'restore',
     });
 
     expect(result.violations.map((v) => v.path)).toEqual(['tracked-outside.txt']);
@@ -1081,6 +1337,7 @@ describe('write-containment — orchestrator-owned ledgers are not the leaf’s 
       preDispatchDirtyPaths: pre,
       iteration: 1,
       label: 'leaf',
+      mode: 'restore',
     });
 
     expect(result.violations.map((v) => v.path)).toEqual([
@@ -1119,6 +1376,7 @@ describe('write-containment — a reverted tracked edit survives as a recoverabl
       preDispatchDirtyPaths: preDispatch,
       iteration: 3,
       label: 'sol',
+      mode: 'restore',
     });
 
     // Fail-closed is unchanged: still a fatal violation, still reverted from HEAD.
@@ -1150,6 +1408,7 @@ describe('write-containment — a reverted tracked edit survives as a recoverabl
       artifactDir,
       preDispatchDirtyPaths: preDispatch,
       iteration: 1,
+      mode: 'restore',
     });
     expect(readFileSync(join(root, 'tracked-outside.txt'), 'utf8')).toBe('ORIGINAL_OUTSIDE\n');
 
@@ -1168,6 +1427,7 @@ describe('write-containment — a reverted tracked edit survives as a recoverabl
       artifactDir,
       preDispatchDirtyPaths: preDispatch,
       iteration: 2,
+      mode: 'restore',
     });
 
     expect(existsSync(join(root, 'deep/file.txt'))).toBe(true);
@@ -1209,6 +1469,7 @@ describe('write-containment — a reverted tracked edit survives as a recoverabl
       artifactDir,
       preDispatchDirtyPaths: preDispatch,
       iteration: 5,
+      mode: 'restore',
     });
 
     // Fail-closed survives a failed capture: the breach is still reverted and still fatal.
@@ -1327,5 +1588,152 @@ describe('write-containment — a symlink cannot carry a write out of the artifa
 
     // Resolution may only narrow scope: an outside path cannot buy its way in by pointing in.
     expect(violations.map((v) => v.path)).toContain('shortcut');
+  });
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// QUARANTINE RECORD
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * The guard keeps what a lane left instead of rolling it back, so the only thing standing
+ * between a stray write and nobody ever learning what it said is the record under
+ * `containment/quarantine/`. These cover that record: the bytes plus the diff against HEAD,
+ * the size bound that trades bytes for a flag, and the one outcome that must never happen,
+ * a failed record taking the lane down with it.
+ */
+describe('write-containment — the quarantine record of what a guarded path wrote', () => {
+  const QUARANTINE = 'containment/quarantine';
+  const MANIFEST = `${QUARANTINE}/manifest.json`;
+
+  interface Manifest {
+    entries: ManifestEntry[];
+  }
+
+  interface ManifestEntry {
+    path: string;
+    hash: string;
+    content_stored: boolean;
+    content_truncated?: boolean;
+    content_path?: string;
+    head_patch_path?: string;
+    baseline_patch_path?: string;
+    error?: string;
+  }
+
+  function manifest(artifactDir: string): Manifest {
+    return JSON.parse(readFileSync(join(artifactDir, MANIFEST), 'utf8')) as Manifest;
+  }
+
+  function entryFor(artifactDir: string, path: string): ManifestEntry {
+    const entry = manifest(artifactDir).entries.find((candidate) => candidate.path === path);
+    if (entry === undefined) throw new Error(`no quarantine entry for ${path}`);
+    return entry;
+  }
+
+  it('stores the on-disk bytes and the HEAD patch, and hashes the copy as it hashed the file', () => {
+    const { root, artifactDir } = baselineRepo();
+    const preDispatch = snapshotOutOfScopeDirtyPaths({ repoRoot: root, artifactDir });
+    writeFileSync(join(root, 'tracked-outside.txt'), 'LANE_WROTE_THIS\n');
+
+    const result = enforceWriteContainment({
+      repoRoot: root,
+      artifactDir,
+      preDispatchDirtyPaths: preDispatch,
+      iteration: 1,
+      label: 'sol',
+    });
+
+    expect(result.quarantinePath).toBe(`artifact/${QUARANTINE}`);
+    const entry = entryFor(artifactDir, 'tracked-outside.txt');
+    expect(entry.content_stored).toBe(true);
+    expect(entry.content_truncated).toBeUndefined();
+    expect(entry.content_path).toBe('content/tracked-outside.txt');
+    expect(entry.error).toBeUndefined();
+
+    const storedPath = join(artifactDir, QUARANTINE, 'content/tracked-outside.txt');
+    expect(readFileSync(storedPath, 'utf8')).toBe('LANE_WROTE_THIS\n');
+    // The hash the manifest records is the hash of the bytes on disk, which the copy shares.
+    const onDiskHash = git(root, ['hash-object', '--', 'tracked-outside.txt']).trim();
+    expect(entry.hash).toBe(onDiskHash);
+    expect(git(root, ['hash-object', '--', `artifact/${QUARANTINE}/content/tracked-outside.txt`]).trim())
+      .toBe(onDiskHash);
+
+    // The patch is a real diff against HEAD, not a note about one.
+    expect(entry.head_patch_path).toBe('patch-head/tracked-outside.txt.patch');
+    const patchBody = readFileSync(
+      join(artifactDir, QUARANTINE, 'patch-head/tracked-outside.txt.patch'),
+      'utf8',
+    );
+    expect(patchBody).toContain('+LANE_WROTE_THIS');
+    expect(patchBody).toContain('-ORIGINAL_OUTSIDE');
+  });
+
+  it('marks a file over the per-file bound content_truncated with no bytes stored, and still records its patch', () => {
+    const { root, artifactDir } = baselineRepo();
+    const bigPath = join(root, 'big-outside.bin');
+    // Committed, then dirty at dispatch, at a size the capture bound refuses to copy.
+    writeFileSync(bigPath, Buffer.alloc(BASELINE_MAX_FILE_BYTES + 1, 0x41));
+    commitAll(root, 'test(containment): track an oversized file');
+    writeFileSync(bigPath, Buffer.alloc(BASELINE_MAX_FILE_BYTES + 1, 0x42));
+    const preDispatch = snapshotOutOfScopeDirtyPaths({ repoRoot: root, artifactDir });
+
+    // The lane then overwrites it, which is the write the quarantine has to record.
+    writeFileSync(bigPath, Buffer.alloc(BASELINE_MAX_FILE_BYTES + 1, 0x43));
+
+    enforceWriteContainment({
+      repoRoot: root,
+      artifactDir,
+      preDispatchDirtyPaths: preDispatch,
+      iteration: 2,
+      label: 'sol',
+    });
+
+    const entry = entryFor(artifactDir, 'big-outside.bin');
+    expect(entry.content_truncated).toBe(true);
+    expect(entry.content_stored).toBe(false);
+    expect(entry.content_path).toBeUndefined();
+    expect(existsSync(join(artifactDir, QUARANTINE, 'content/big-outside.bin'))).toBe(false);
+    // The hash and the patch survive the bound: only the bytes were traded away.
+    expect(entry.hash).toBe(git(root, ['hash-object', '--', 'big-outside.bin']).trim());
+    expect(entry.head_patch_path).toBe('patch-head/big-outside.bin.patch');
+    expect(existsSync(join(artifactDir, QUARANTINE, 'patch-head/big-outside.bin.patch'))).toBe(true);
+  });
+
+  it('keeps the failure on that path entry and never throws when the quarantine destination is unwritable', () => {
+    const { root, artifactDir } = baselineRepo();
+    // Occupy the directory's name with a file, so every mkdir below it fails.
+    writeFileSync(join(artifactDir, 'containment'), 'not a directory\n');
+    const preDispatch = snapshotOutOfScopeDirtyPaths({ repoRoot: root, artifactDir });
+    writeFileSync(join(root, 'tracked-outside.txt'), 'LANE_WROTE_THIS\n');
+    const violations = detectNewOutOfScopeViolations({
+      repoRoot: root,
+      artifactDir,
+      preDispatchDirtyPaths: preDispatch,
+    });
+
+    const quarantine = quarantineViolations({
+      repoRoot: root,
+      artifactDir,
+      artifactRelPosix: 'artifact',
+      violations,
+      preDispatchDirtyPaths: preDispatch,
+    });
+
+    expect(quarantine.dirPath).toBeNull();
+    expect(quarantine.entries).toHaveLength(1);
+    expect(quarantine.entries[0].content_stored).toBe(false);
+    expect(quarantine.entries[0].error).toMatch(/not a directory|ENOTDIR/i);
+    // What needs no destination is still recorded.
+    expect(quarantine.entries[0].hash).toBe(git(root, ['hash-object', '--', 'tracked-outside.txt']).trim());
+
+    // And the guard still reports the breach rather than failing on the record.
+    const result = enforceWriteContainment({
+      repoRoot: root,
+      artifactDir,
+      preDispatchDirtyPaths: preDispatch,
+    });
+    expect(result.violations.map((violation) => violation.path)).toEqual(['tracked-outside.txt']);
+    expect(result.quarantinePath).toBeNull();
   });
 });

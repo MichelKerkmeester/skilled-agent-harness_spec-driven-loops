@@ -42,6 +42,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 045-fanout-write-containment-hardening |
+| **Status** | In Progress |
 | **Completed** | Not completed |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->
@@ -93,10 +94,12 @@ Not delivered. The plan sequences three implementation changes: the quarantine a
 
 | Check | Result |
 |-------|--------|
-| Deep-loop runtime Vitest suite | Not run — no implementation exists |
-| Incident reproduction case | Not written — first task of Phase 1 |
-| Manual shared-checkout run | Not run |
-| Manual uncommitted-packet worktree run | Not run |
+| Deep-loop runtime Vitest suite | **GREEN.** 151 files passed, 2550 tests passed, 7 skipped, 0 failed, exit 0. Three stale cross-package paths in the suite had to be corrected first, all reaching into system-spec-kit and all predating this work: a tsx loader path that has never existed, a nested vitest borrowed from another skill's install rather than this package's own, and an optimizer manifest path left behind when the file moved |
+| Containment unit suite | 54 passed |
+| Fan-out and pool unit suites | 223 passed, 1 skipped across four files |
+| End-to-end stress reproduction | 19 passed, 1 skipped. The out-of-scope file keeps the lane's bytes, git reports it modified, the ledger records `preserved_in_head`, and the lane settles `completed_with_containment_advisory` with exit 0 |
+| Manual shared-checkout run | **PASSED** on the real main checkout with other sessions live. The lane detected 7 out-of-scope paths and preserved all 7: 3 tracked as `preserved_in_head` (a skill-advisor vitest config belonging to another session, plus two probe files edited mid-lane after the baseline snapshot) and 4 untracked as `preserved_untracked` (three files inside another packet's live research lineage, and a playbook run record). Probe file ended at blob 12da3741, 299 lines, neither the 298-line baseline nor HEAD's 284. The lane settled `fulfilled` with `output.status: completed_with_containment_advisory`; run summary `succeeded 1, failed 0, all_failed false, completed_with_containment_advisory 1` |
+| Manual uncommitted-packet worktree run | Not run. The worktree phase is held pending two specification gaps recorded against the packet's third open question |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -106,7 +109,10 @@ Not delivered. The plan sequences three implementation changes: the quarantine a
 
 1. **Preserve leaves a dirty tree** A run that trips containment no longer cleans up after itself. The finding is recorded at severity error and counted in the run summary, so it is reported rather than silent, but the operator is the one who decides what to do with it.
 2. **Quarantine is bounded** A file over 2 MiB or a lane over 64 MiB stops storing content and keeps only hashes and patches. The truncation is recorded per path; recovery for those paths depends on the patch applying cleanly.
-3. **Worktree isolation depends on path rewriting** An executor that resolves a path relative to the original checkout could still write outside its worktree. The rewrite covers the prompt pack and the dispatch flags; anything an executor derives on its own is out of reach.
+3. **Containment does not run when an earlier gate rejects the lane** Artefact validation and the stop-policy check now precede containment, so a lane that fails either produces no containment finding at all. This is the intended ordering, since a lane that did not do its work should be judged on that first, but it means an out-of-scope write by a failing lane goes unreported.
+4. **One unreproduced lane rejection, recorded as an observation rather than a defect** A live forced-depth lane was rejected for `duplicate state records for iterations: 1,1,1,1,1`. A second lane under the same stop policy produced a clean log, exactly one iteration record, and settled fulfilled. The validator filters by record type and only counts iteration records, so events carrying an iteration number are not the cause. The first lane's artifacts were deleted during cleanup before the second run, so the original evidence no longer exists. Treat this as unexplained and unreproduced, not as a known leaf defect; if it recurs, keep the lineage directory.
+5. **Baseline capture copies the whole dirty working set, not just what the lane touches** It cannot know in advance which paths a lane will write, so it captures every dirty path outside the lineage directory before dispatch. A measured live run on a busy shared checkout captured 893 files at 8.2 MB into one lineage directory, including in-progress files belonging to eight other packets. The per-file and per-lane bounds cap the size but not the scope, and the cost scales with how dirty the checkout is rather than with what the lane does.
+6. **Worktree isolation depends on path rewriting** An executor that resolves a path relative to the original checkout could still write outside its worktree. The rewrite covers the prompt pack and the dispatch flags; anything an executor derives on its own is out of reach.
 <!-- /ANCHOR:limitations -->
 
 ---
