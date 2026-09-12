@@ -73,6 +73,11 @@ Cursor's per-session cadence is stated correctly in the root `README.md`. A comm
 command filename, a dead rule citation and two wrong suite counts are corrected, and the goal
 engine README carries a note that the word names four unrelated things here.
 
+**The last finding, settled by the operator.** That Claude Code and Codex each ship a native
+goal command was confirmed on 2026-09-12 and is now recorded as such in the playbook, the
+engine README and the plugin contract. It stays marked host behaviour, because a later host
+version can withdraw it and nothing in this repository would notice.
+
 **One check.** `.opencode/plugins/tests/goal-doc-contract.test.cjs` fails when a goal document
 cites a path that moved, states a suite count the suite does not report, or names a disable
 variable that is not the concern's canonical one.

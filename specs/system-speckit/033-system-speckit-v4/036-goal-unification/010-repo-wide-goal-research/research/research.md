@@ -83,7 +83,7 @@ code disagree on observable behaviour; **L** = wording, counts, citations.
 | C7 M | Kill switch blocks documented session-free reads (`bin/goal.cjs:395-408`) while library `appendPacketLog`/`describePacketGoal` skip the check | **Open design decision** |
 | C8 M | `OPENCODE_GOAL_STATE_DIR` documented as the override (`.env.example:304`, engine README) but the plugin ignores it (`opencode-goal.js:34`) | **Qualify or implement** |
 | C9 L | `tokens_used` documented canonical (`goal-plugin.md:103-105`) but CLI emits only `usage_source` (`bin/goal.cjs:131`; plugin emits both, `opencode-goal.js:2960-2970`) | **Field/doc defect** |
-| C10 M | Claude/Codex "native host goal command" asserted three ways; nothing in-repo verifies it; CC-029 exists to fence it but its authority is the dead citation in C11 | **Keep, fenced** (host behaviour) |
+| C10 M | Claude/Codex "native host goal command" asserted three ways; nothing in-repo verifies it; CC-029 exists to fence it but its authority is the dead citation in C11 | **Resolved 2026-09-12: operator-confirmed.** Both hosts ship the command. Recorded as host behaviour, re-checkable only against a live host, and the dead citation is repointed |
 | C11 L | Validation-asset rot: CL-007 cites `goal_opencode.md` (4×); CC-029 + benchmark JSON cite the deleted constitutional rule; CO-039 says 7 suites/125 vs observed 8/137; PI-021 expects `pi-<sha256>.json`; save.md's `log` example omits scope flags (R5-F1) | **Six defects** |
 | C12 L | Root README "a parent goal" vs manifest "phase parents and top-level packets" | **Wording defect** |
 | C13 L | Claude/Codex support sentence copied in hub matrix, coverage rationale and root README | **Duplication, consistent** |

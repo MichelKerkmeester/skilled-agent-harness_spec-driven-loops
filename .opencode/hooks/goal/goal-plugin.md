@@ -151,7 +151,7 @@ This plugin is the OpenCode-native goal system. Cursor, Pi and Devin reach the s
 | Cursor | Session-bound `sessionStart` hook, with the resend reminder | `/goal-cursor packet <path>` only; binding needs identity the command lacks | Turn touch only; no continuation |
 | Devin | `SessionStart` + `UserPromptSubmit` hook, with the resend reminder | None; the repository exposes no Devin command surface | Turn touch only |
 | Claude Code | Native host goal command | Native; the speckit workflows render the stripped durable slice to set | Outside this contract |
-| Codex | Native host goal command | Same as Claude Code | Outside this contract |
+| Codex | Native host goal command | Same as Claude Code | Outside this contract; both hosts operator-confirmed 2026-09-12 |
 
 **Command surface.** Each retained goal-capable runtime uses its own command boundary:
 
