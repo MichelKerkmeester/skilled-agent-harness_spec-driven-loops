@@ -1,5 +1,5 @@
 {
-  "corpusHash": "da87a0cf6575d9a98fcdfa4efb0aefb34f46b1f7235221a3fa6baeaf550296a4",
+  "corpusHash": "20cd5a176dffc59410936ae36d83896d6130df1c80f8598fa0a4630229907979",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -17,7 +17,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 29466,
+  "includedPathCount": 29474,
   "includedPaths": [
     ".opencode/hooks/README.md",
     ".opencode/hooks/codex-watchdog/README.md",
@@ -2824,8 +2824,6 @@
     ".opencode/skills/sk-communication/feature-catalog/assembly-and-context/generation-keyed-message-assembly.md",
     ".opencode/skills/sk-communication/feature-catalog/evaluation-and-observability/blind-non-inferiority-evaluation.md",
     ".opencode/skills/sk-communication/feature-catalog/evaluation-and-observability/content-free-observability.md",
-    ".opencode/skills/sk-communication/feature-catalog/explanation/depth-calibrated-explanation.md",
-    ".opencode/skills/sk-communication/feature-catalog/explanation/modality-selection.md",
     ".opencode/skills/sk-communication/feature-catalog/feature-catalog.md",
     ".opencode/skills/sk-communication/feature-catalog/fidelity-and-render/capability-aware-presentation.md",
     ".opencode/skills/sk-communication/feature-catalog/fidelity-and-render/protected-span-fidelity-validation.md",
@@ -2836,8 +2834,6 @@
     ".opencode/skills/sk-communication/feature-catalog/provider-and-privacy/provider-adapters-and-execution.md",
     ".opencode/skills/sk-communication/feature-catalog/runtime-adapters/six-runtime-adapter-matrix.md",
     ".opencode/skills/sk-communication/manual-testing-playbook/advisor-routing/advisor-routes-projection-request.md",
-    ".opencode/skills/sk-communication/manual-testing-playbook/explanation/depth-flag-changes-words-not-facts.md",
-    ".opencode/skills/sk-communication/manual-testing-playbook/explanation/explain-visually-selects-modality.md",
     ".opencode/skills/sk-communication/manual-testing-playbook/fidelity-and-privacy/exact-original-fidelity-fallback.md",
     ".opencode/skills/sk-communication/manual-testing-playbook/fidelity-and-privacy/external-cli-provider-fallback.md",
     ".opencode/skills/sk-communication/manual-testing-playbook/fidelity-and-privacy/privacy-precedes-provider-ranking.md",
@@ -2847,7 +2843,6 @@
     ".opencode/skills/sk-communication/manual-testing-playbook/release-gating/compatibility-doctor-selects-original-only.md",
     ".opencode/skills/sk-communication/manual-testing-playbook/release-gating/human-certified-bundle-gates-release.md",
     ".opencode/skills/sk-communication/manual-testing-playbook/release-gating/provisional-evaluation-blocks-release.md",
-    ".opencode/skills/sk-communication/references/visual-explanation.md",
     ".opencode/skills/sk-design/ROUTER.md",
     ".opencode/skills/sk-design/SKILL.md",
     ".opencode/skills/sk-design/benchmark/README.md",
@@ -10675,6 +10670,15 @@
     "specs/sk-communication/003-visual-explanation-lane/plan.md",
     "specs/sk-communication/003-visual-explanation-lane/spec.md",
     "specs/sk-communication/003-visual-explanation-lane/tasks.md",
+    "specs/sk-communication/004-visual-explanation-output-medium/implementation-summary.md",
+    "specs/sk-communication/004-visual-explanation-output-medium/plan.md",
+    "specs/sk-communication/004-visual-explanation-output-medium/spec.md",
+    "specs/sk-communication/004-visual-explanation-output-medium/tasks.md",
+    "specs/sk-communication/005-deprecate-visual-explanation-lane/acceptance-criteria.md",
+    "specs/sk-communication/005-deprecate-visual-explanation-lane/implementation-summary.md",
+    "specs/sk-communication/005-deprecate-visual-explanation-lane/plan.md",
+    "specs/sk-communication/005-deprecate-visual-explanation-lane/spec.md",
+    "specs/sk-communication/005-deprecate-visual-explanation-lane/tasks.md",
     "specs/sk-design/001-design-foundations/plan.md",
     "specs/sk-design/001-design-foundations/spec.md",
     "specs/sk-design/001-design-foundations/tasks.md",
@@ -18792,6 +18796,10 @@
     "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/013-research-findings-remediation/tasks.md",
     "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/goal.md",
     "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/spec.md",
+    "specs/system-skill-advisor/026-pre-existing-suite-failures/implementation-summary.md",
+    "specs/system-skill-advisor/026-pre-existing-suite-failures/plan.md",
+    "specs/system-skill-advisor/026-pre-existing-suite-failures/spec.md",
+    "specs/system-skill-advisor/026-pre-existing-suite-failures/tasks.md",
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-additional-release-readiness-findings/__tier2-h-deferred.md",
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-additional-release-readiness-findings/implementation-summary.md",
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-additional-release-readiness-findings/plan.md",
@@ -29487,7 +29495,7 @@
     "specs/system-speckit/045-daemon-and-test-harness-hardening/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "6a7ad2ef225e8930059596e69a6ce6126ba6af6ca0feba1f46e61903b7a28b62",
+  "manifestHash": "3181abe368c54510dbf261ace65f3ecf5b7e2d2a8fc366e53f8488a9d958700e",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -29822,10 +29830,6 @@
       "reason": "excluded directory"
     },
     {
-      "path": ".opencode/skills/system-spec-kit/runtime/tmp-test-fixtures",
-      "reason": "excluded directory"
-    },
-    {
       "path": ".opencode/skills/system-spec-kit/shared/dist",
       "reason": "excluded directory"
     },
@@ -30135,10 +30139,6 @@
     },
     {
       "path": "specs/cli-external-orchestration/066-pi-self-dispatch-and-subagents-retirement/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-external-orchestration/067-deferred-closure/scratch",
       "reason": "excluded directory"
     },
     {
@@ -30699,6 +30699,14 @@
     },
     {
       "path": "specs/sk-communication/002-sk-communication-triggers/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-communication/004-visual-explanation-output-medium/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-communication/005-deprecate-visual-explanation-lane/scratch",
       "reason": "excluded directory"
     },
     {

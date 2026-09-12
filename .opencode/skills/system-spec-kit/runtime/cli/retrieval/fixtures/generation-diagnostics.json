@@ -1,12 +1,12 @@
 {
   "counts": {
     "duplicate-phrase": 54,
-    "missing-frontmatter": 7107,
+    "missing-frontmatter": 7105,
     "non-yaml-frontmatter": 1,
-    "ok": 14773,
+    "ok": 14783,
     "valid-empty-list": 7531
   },
-  "documentsScanned": 29466,
+  "documentsScanned": 29474,
   "ignoredMalformedDocuments": 1,
   "ignoredPaths": [
     {
@@ -16,7 +16,7 @@
   ],
   "ignoredPathsUnmatched": [],
   "malformedDocuments": 0,
-  "manifestHash": "6a7ad2ef225e8930059596e69a6ce6126ba6af6ca0feba1f46e61903b7a28b62",
+  "manifestHash": "3181abe368c54510dbf261ace65f3ecf5b7e2d2a8fc366e53f8488a9d958700e",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -31,7 +31,7 @@
       "editor-fallback": 2,
       "generic-workflow-word": 3,
       "numeric-only": 41,
-      "ok": 35802,
+      "ok": 35805,
       "prose-sentence": 27,
       "single-token": 304,
       "stop-word-only": 3
@@ -12370,18 +12370,6 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".opencode/skills/sk-communication/manual-testing-playbook/advisor-routing/advisor-routes-projection-request.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".opencode/skills/sk-communication/manual-testing-playbook/explanation/depth-flag-changes-words-not-facts.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".opencode/skills/sk-communication/manual-testing-playbook/explanation/explain-visually-selects-modality.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -96109,10 +96097,6 @@
       "reason": "excluded directory"
     },
     {
-      "path": ".opencode/skills/system-spec-kit/runtime/tmp-test-fixtures",
-      "reason": "excluded directory"
-    },
-    {
       "path": ".opencode/skills/system-spec-kit/shared/dist",
       "reason": "excluded directory"
     },
@@ -96422,10 +96406,6 @@
     },
     {
       "path": "specs/cli-external-orchestration/066-pi-self-dispatch-and-subagents-retirement/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/cli-external-orchestration/067-deferred-closure/scratch",
       "reason": "excluded directory"
     },
     {
@@ -96986,6 +96966,14 @@
     },
     {
       "path": "specs/sk-communication/002-sk-communication-triggers/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-communication/004-visual-explanation-output-medium/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-communication/005-deprecate-visual-explanation-lane/scratch",
       "reason": "excluded directory"
     },
     {
