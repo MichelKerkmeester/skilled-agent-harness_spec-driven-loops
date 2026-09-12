@@ -32,7 +32,7 @@ The concern covers three session boundaries, each with a distinct job:
 
 **Session start (`session-prime` / `session-start`).** Injects context via stdout (Claude) or the runtime's context-injection channel (Codex `emitCodexContext`, Cursor `agent_message`, Devin `emitDevinContext`, Pi `sendMessage`). It branches on the session source:
 - `compact` (Claude only): reads the cached compact brief that the PreCompact hook persisted, validates it semantically and for staleness (30-minute TTL), sanitizes and wraps it with provenance markers, and injects it as `Recovered Context (Post-Compaction)` plus `Recovery Instructions`. A stale or quarantined cache falls back to a one-line pointer to `/speckit:resume`.
-- `startup`: emits a `Session Context` surface (recovery-tools list) and, when a cached session summary is accepted, a `Session Continuity` section.
+- `startup`: emits a `Session Context` surface (recovery-tools list). The richer startup brief and the cached `Session Continuity` summary both read from a structural index that no longer exists, so this fallback surface is the only one left.
 - `resume`: emits the last active spec folder (from per-session state) and a resume pointer.
 - `clear` (Claude only): minimal fresh-context notice.
 
