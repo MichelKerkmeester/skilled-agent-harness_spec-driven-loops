@@ -159,9 +159,11 @@ sentence that mattered.
 "I don't follow", "what?", "too abstract", "in simple terms": all the same signal, and
 the wrong response to every one of them is the same explanation at greater length.
 
-**Change modality, not volume.** Route to `sk-communication`: `/rewrite:response` for
-plainer wording, `/rewrite:explain-visually` for a diagram at a chosen depth. That skill
-is deliberately held off advisor routing, so this rule is the only thing that reaches it.
+**Change modality, not volume.** For plainer wording, route to `sk-communication`
+(`/rewrite:response`). That skill is deliberately held off advisor routing, so this rule is
+the only thing that reaches it. For a diagram, use the runtime's own visual capability —
+`sk-communication` carried an explanation lane until it was retired, because what it produced
+was fenced source rather than a rendered picture.
 
 The failure this prevents: the second explanation fails the same way as the first,
 because it was the same explanation.

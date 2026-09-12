@@ -46,11 +46,7 @@
     "exact-original",
     "non-inferiority",
     "compatibility-doctor",
-    "release-gate",
-    "visual-explanation",
-    "modality-selection",
-    "explanation-depth",
-    "diagramming"
+    "release-gate"
   ],
   "intent_signals": [
     "make CLI output readable",
@@ -69,15 +65,7 @@
     "content-free telemetry",
     "compatibility doctor",
     "release gate",
-    "deepseek ollama llama.cpp provider",
-    "explain this visually",
-    "draw the control flow",
-    "diagram this",
-    "show it as a tree",
-    "explain simply",
-    "explain from zero",
-    "pick a visual form",
-    "choose an explanation depth"
+    "deepseek ollama llama.cpp provider"
   ],
   "derived": {
     "trigger_phrases": [
@@ -85,9 +73,7 @@
       "claudish to english",
       "rewrite cli output to plain english",
       "privacy-first provider routing",
-      "full-projection vs safe-native",
-      "explain visually at a chosen depth",
-      "which visual form fits this"
+      "full-projection vs safe-native"
     ],
     "key_topics": [
       "communication",
@@ -100,14 +86,10 @@
       "presentation-tier",
       "evaluation",
       "release-gate",
-      "visual-explanation",
-      "modality",
       "depth"
     ],
     "key_files": [
-      ".opencode/skills/sk-communication/SKILL.md",
-      ".opencode/skills/sk-communication/references/visual-explanation.md",
-      ".opencode/commands/rewrite/explain-visually.md"
+      ".opencode/skills/sk-communication/SKILL.md"
     ],
     "entities": [
       {
@@ -120,10 +102,9 @@
     "source_docs": [
       "README.md",
       "SKILL.md",
-      "leaf-manifest.config.json",
-      "references/visual-explanation.md"
+      "leaf-manifest.config.json"
     ],
-    "causal_summary": "Routes requests to one of two lanes: a portable CLI projection package that rewrites terse agent output into readable plain English while keeping canonical bytes unchanged behind privacy-first provider routing, and an in-context explanation lane that renders a topic or the prior reply as the smallest visual at a chosen depth.",
+    "causal_summary": "Routes a request to the right subsystem of a portable CLI projection package that rewrites terse agent output into readable plain English across six runtimes, while leaving the canonical event stream, transcript, tool data and model context byte-for-byte unchanged, and returning the exact original on every unsafe or failed path. Projection is off by default and the skill is held off advisor routing, so an operator opts in and invokes it by hand.",
     "created_at": "2026-08-12T12:55:02.180324+00:00",
     "last_updated_at": "2026-08-28T00:00:00.000000+00:00"
   }
