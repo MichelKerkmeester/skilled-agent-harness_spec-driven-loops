@@ -141,7 +141,7 @@ One recovery is worth recording. A loop meant to revert version-field churn on u
 | `pi --list-models` after `pi update --models` | PASS. 1M context, 384K output, `thinking yes`, `images yes`. The id was absent before the refresh |
 | `cline-pass` live dispatch (reopened pass) | NOT RUN — blocked. `429 "monthly Clinepass limit"` on every attempt, including the known-good V4-Flash control, which is what attributes the block to the account |
 | `cline-pass` resolution | FAILS BY DESIGN of the catalog: Cline lists `deepseek/deepseek-v4.1-flash`, models.dev carries no cline-pass entry, so opencode never sends the request |
-| pi-side dispatch on the new id | DEFERRED to the operator. The dispatch-authorization hook denies a cli-pi self-dispatch from inside a pi session |
+| pi-side dispatch on the new id | PASS. 2026-09-12: `pi -p --offline --model llmgateway/deepseek-v4.1-flash --thinking max "Reply with the single word: ok" </dev/null` exited 0 and returned `ok` |
 | Second-pass suites and gate | PASS. 213 tests, 0 failures; `check-frontmatter-versions.sh` 2,894 files, exit 0 |
 <!-- /ANCHOR:verification -->
 

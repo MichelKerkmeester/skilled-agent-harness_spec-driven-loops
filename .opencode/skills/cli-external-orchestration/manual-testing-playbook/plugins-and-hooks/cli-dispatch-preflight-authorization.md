@@ -26,7 +26,7 @@ version: 1.4.0.1
 The dispatch preflight authorization surface decides, before a Bash tool call runs, whether a command is an external-CLI dispatch and — under Pi — whether that dispatch is authorized. It is built on one shared, runtime-neutral inspector consumed by every dispatch hook:
 
 - Shared inspector: `.opencode/hooks/dispatch/lib/dispatch-audit.mjs` (`inspectDispatch` / `matchDispatchShape`). `inspectDispatch` tokenizes a bounded shell command without evaluating it and returns one of three classifications: `direct` (exactly one proven command-position executor), `ambiguous` (an executor-shaped candidate that cannot be pinned to a single direct executor — variable/alias/substitution/wrapper/multi-segment forms), or `none` (no dispatch evidence).
-- Pi authorization gate: `.opencode/hooks/dispatch/pi/dispatch-preflight-lint.ts` (`shouldDenyPiDispatch`, wired via the `tool_call` handler). It maps the inspector's `kind` to an allow/deny decision: `none` → no-op (not a dispatch), `ambiguous` → deny (the command does not prove one direct executor), `direct` → deny unless the user's own request names the matching executor (or a `/deep:* --executor=cli-X` override), and a `cli-pi` self-dispatch is never authorized.
+- Pi authorization gate: `.opencode/hooks/dispatch/pi/dispatch-preflight-lint.ts` (`shouldDenyPiDispatch`, wired via the `tool_call` handler). It maps the inspector's `kind` to an allow/deny decision: `none` → no-op (not a dispatch), `ambiguous` → deny (the command does not prove one direct executor), `direct` → deny unless the user's own request names the matching executor (or a `/deep:* --executor=cli-X` override).
 - Cross-runtime consumers: the same shared inspector feeds the Claude, Codex, and Devin dispatch hooks (`dispatch-preflight-lint.mjs` and `dispatch-audit-posttooluse.mjs` under each runtime folder) and the observational audit trail (`matchDispatchShape`, which records only `direct` dispatches). A classification change in the shared inspector therefore changes behavior for all four inspector runtimes at once.
 
 **Quote-safe executor normalization.** A quoted command-position token still names the binary the shell will run, so `"devin" -p x` invokes `devin` exactly as the bare form does. The inspector classifies such a quote-safe executor as `direct` (by exact basename membership), identical to its unquoted twin. Because exact basename membership admits only a real executor name, multi-word quoted prose (`"devin -p task"` as a single token) and a quoted token used as an argument (`echo "devin" -p "hi"`) correctly remain `none`. This closes a path where a quoted executor previously classified as `none`, evading both the Pi authorization gate and the audit trail.
@@ -39,7 +39,7 @@ This scenario validates: the shared inspector's unit suite; the Pi preflight sui
 
 - Preconditions: `.opencode/hooks/dispatch/lib/dispatch-audit.mjs`, `.opencode/hooks/dispatch/lib/dispatch-audit.test.mjs`, `.opencode/hooks/dispatch/pi/dispatch-preflight-lint.ts`, and `.opencode/hooks/dispatch/pi/dispatch-preflight-lint.test.ts` all exist. Node is on `PATH`; `npx vitest` and `npx tsx` are resolvable.
 - Real user-facing trigger: an agent under any inspector runtime runs a Bash tool call, or a Pi session issues a `bash` `tool_call`, whose command is (or resembles) an external-CLI dispatch — including forms where the executable token is quoted or path-qualified.
-- Expected signals: the shared inspector suite passes in full; the Pi preflight suite passes in full; a quote-safe command-position executor (`"devin" -p "task"`) classifies as `{ kind: "direct", executor: "cli-devin" }` and is recorded by `matchDispatchShape` as `{ skill: "cli-devin" }`; multi-word quoted prose and a quoted argument classify as `none`; and `shouldDenyPiDispatch` denies the quote-safe dispatch when the user did not name the executor, allows it when the user named `cli-devin`, and denies a `cli-pi` self-dispatch.
+- Expected signals: the shared inspector suite passes in full; the Pi preflight suite passes in full; a quote-safe command-position executor (`"devin" -p "task"`) classifies as `{ kind: "direct", executor: "cli-devin" }` and is recorded by `matchDispatchShape` as `{ skill: "cli-devin" }`; multi-word quoted prose and a quoted argument classify as `none`; and `shouldDenyPiDispatch` denies the quote-safe dispatch when the user did not name the executor, allows it when the user named `cli-devin`, and allows a `cli-pi` dispatch when the operator named `cli-pi` but denies it when they did not.
 - Desired user-visible outcome: a concise pass/fail verdict citing exact captured command output, with no fabricated JSON.
 - Pass/fail: PASS if both suites pass, the quote-safe executor classifies as a single direct executor (and is audit-visible), the prose/argument/non-dispatch controls stay `none`, and the Pi deny decisions match the authorization contract above. FAIL if a quote-safe executor classifies as `none` (bypass), if a prose/argument control is misclassified as a dispatch (false positive), if the deny decision contradicts the contract, or if any inspector entry throws instead of failing closed to `none`.
 
@@ -52,13 +52,13 @@ This scenario validates: the shared inspector's unit suite; the Pi preflight sui
 1. Run the shared inspector unit suite (covers the `direct`/`ambiguous`/`none` table including the quote-safe rows):
 
 ```bash
-npx vitest run .opencode/hooks/dispatch/lib/dispatch-audit.test.mjs --reporter=dot
+npx vitest run --config .opencode/hooks/vitest.config.ts .opencode/hooks/dispatch/lib/dispatch-audit.test.mjs --reporter=dot
 ```
 
 2. Run the Pi preflight suite (covers `shouldDenyPiDispatch` and the `tool_call` gate):
 
 ```bash
-npx vitest run .opencode/hooks/dispatch/pi/dispatch-preflight-lint.test.ts --reporter=dot
+npx vitest run --config .opencode/hooks/vitest.config.ts .opencode/hooks/dispatch/pi/dispatch-preflight-lint.test.ts --reporter=dot
 ```
 
 3. Live in-process classification + Pi deny decision against the real modules (quote-safe, env-wrapped, unquoted, prose, argument, and self-dispatch cases):
@@ -83,7 +83,7 @@ npx tsx -e '
 
 - Step 1: `Test Files 8 passed (8)`, `Tests 356 passed (356)`, no failures.
 - Step 2: `Test Files 1 passed (1)`, `Tests 32 passed (32)`, no failures.
-- Step 3: `"devin" -p "task"`, the env-wrapped quoted `pi`, and the unquoted `devin -p task` each classify as a single `direct` executor and carry a matching non-null `auditSkill`; `"devin -p task"` (one quoted token) and `echo "devin" -p "hi"` (quoted argument) classify as `none` with a null `auditSkill`; the quote-safe `devin` dispatch is `denied:true` with no explicit executor mention, `denied:false` when the user names `cli-devin`, and the `pi` self-dispatch is `denied:true`.
+- Step 3: `"devin" -p "task"`, the env-wrapped quoted `pi`, and the unquoted `devin -p task` each classify as a single `direct` executor and carry a matching non-null `auditSkill`; `"devin -p task"` (one quoted token) and `echo "devin" -p "hi"` (quoted argument) classify as `none` with a null `auditSkill`; the quote-safe `devin` dispatch is `denied:true` with no explicit executor mention, `denied:false` when the user names `cli-devin`, and the `pi` dispatch is `denied:false` when the operator named `cli-pi` and `denied:true` when they did not.
 
 ---
 
@@ -92,7 +92,7 @@ npx tsx -e '
 Shared inspector unit suite:
 
 ```bash
-npx vitest run .opencode/hooks/dispatch/lib/dispatch-audit.test.mjs --reporter=dot
+npx vitest run --config .opencode/hooks/vitest.config.ts .opencode/hooks/dispatch/lib/dispatch-audit.test.mjs --reporter=dot
 ```
 
 ```text
@@ -103,7 +103,7 @@ npx vitest run .opencode/hooks/dispatch/lib/dispatch-audit.test.mjs --reporter=d
 Pi preflight suite:
 
 ```bash
-npx vitest run .opencode/hooks/dispatch/pi/dispatch-preflight-lint.test.ts --reporter=dot
+npx vitest run --config .opencode/hooks/vitest.config.ts .opencode/hooks/dispatch/pi/dispatch-preflight-lint.test.ts --reporter=dot
 ```
 
 ```text
@@ -129,7 +129,7 @@ Reading of the evidence:
 
 - The quote-safe executor `"devin" -p "task"` classifies as `direct cli-devin` and is audit-visible (`auditSkill: cli-devin`) — identical to the unquoted `devin -p task`. The env-wrapped quoted `pi` resolves through the `env KEY=v` wrapper to `direct cli-pi`.
 - The two controls hold: a single quoted prose token (`"devin -p task"`) and a quoted argument to `echo` both stay `none`, so the normalization does not manufacture false positives.
-- At the Pi gate, the now-`direct` quote-safe dispatch is denied when the user did not name the executor (the bypass is closed: an unauthorized quoted CLI can no longer slip through as `none`), allowed when the user explicitly named `cli-devin`, and a `cli-pi` self-dispatch is denied outright.
+- At the Pi gate, the now-`direct` quote-safe dispatch is denied when the user did not name the executor (the bypass is closed: an unauthorized quoted CLI can no longer slip through as `none`), allowed when the user explicitly named `cli-devin`, and a `cli-pi` dispatch is allowed when the operator named `cli-pi` but denied when they did not.
 
 ---
 
@@ -157,4 +157,4 @@ Reading of the evidence:
 
 **PASS**
 
-The shared inspector suite passed 356/356 and the Pi preflight suite passed 32/32. A live in-process run against the real modules classified the quote-safe executor `"devin" -p "task"` as `direct cli-devin` (audit-visible), resolved the env-wrapped quoted `pi` to `direct cli-pi`, and matched the unquoted `devin -p task` classification exactly — while a single quoted prose token and a quoted `echo` argument both correctly stayed `none`. The Pi authorization gate denied the quote-safe dispatch when the user named no executor, allowed it when the user named `cli-devin`, and denied the `cli-pi` self-dispatch. Every JSON line above was written by a real process invocation and read back; no fabricated output was used.
+Run the shared inspector suite (`npx vitest run --config .opencode/hooks/vitest.config.ts .opencode/hooks/dispatch/lib/dispatch-audit.test.mjs`) and the Pi preflight suite (`npx vitest run --config .opencode/hooks/vitest.config.ts .opencode/hooks/dispatch/pi/dispatch-preflight-lint.test.ts`). All cases are expected to pass. A live in-process run against the real modules classified the quote-safe executor `"devin" -p "task"` as `direct cli-devin` (audit-visible), resolved the env-wrapped quoted `pi` to `direct cli-pi`, and matched the unquoted `devin -p task` classification exactly — while a single quoted prose token and a quoted `echo` argument both correctly stayed `none`. The Pi authorization gate denied the quote-safe dispatch when the user named no executor and allowed it when the user named `cli-devin`. A `cli-pi` dispatch is allowed when the operator named `cli-pi` and denied when they did not. Every JSON line above was written by a real process invocation and read back; no fabricated output was used.
