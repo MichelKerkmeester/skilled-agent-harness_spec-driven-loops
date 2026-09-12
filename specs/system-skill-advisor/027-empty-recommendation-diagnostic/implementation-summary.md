@@ -58,6 +58,13 @@ The branch lives in `hooks/lib/skill-advisor-cli-fallback.ts`, in the result bui
 ### Why this was worth a packet
 
 That message is the only explanation a reader gets when no brief appears, and it named a failure that had not happened. In this session it produced a reproducible five-of-five "cold-start defect" on a path that was working correctly the whole time, and it survived three separate hypotheses about transport, node interpreters and environment before the message itself was recognised as the thing that was wrong. A diagnostic that lies is worse than no diagnostic, because it is followed.
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `hooks/lib/skill-advisor-cli-fallback.ts` | Modified | No-match split out of the outage diagnostics; result builder exported as a test seam |
+| `runtime/tests/hooks/skill-advisor-cli-fallback-no-match.vitest.ts` | Created | Three outcomes: no match, unreachable, clean route |
+| `changelog/v0.11.1.0.md` | Created | The skill's record of this fix and the preceding one, with its version bumped to match |
 <!-- /ANCHOR:what-built -->
 
 ---

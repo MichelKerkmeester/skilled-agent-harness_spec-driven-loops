@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The advisor hook reports one of three outcomes",
     "created_at": "2026-09-12T12:03:57.464Z",
-    "last_save_at": "2026-09-12T12:04:44.680Z",
+    "last_save_at": "2026-09-12T12:42:01.747Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8ed3cb0a0029a5402a9bf265dc1f2acaded1e4ce15951a319eff084ab6f34c21",
+    "source_fingerprint": "sha256:bc53212056f3eb65d163a5da9ced56b4009282e08de31c3bb7aa6b159308bb08",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5be2ed23b8fc3be1abacd9514157b66f6b0dce0fc1ee1985bcd9916d445727de",
       "plan.md": "c74cb2b57bc7ac6e1bff6c09f451bb9962d0ebeb822ef5f9ef9dbffb13d306f9",
       "tasks.md": "b4f311b1d9df6c884f7be468558b2960b660e292e20f2cf149b5a7a5d0a3e823",
-      "implementation-summary.md": "f7cddba0f978e9301e7fe25901653af301b318ffa24658b6b1e8c511b5a8dda1"
+      "implementation-summary.md": "42a1da85fdaec89fcbc811c2e826e17dcdddc87db3a404188ee6594f0d398f35"
     },
     "last_active_child_id": null,
     "last_active_at": null
