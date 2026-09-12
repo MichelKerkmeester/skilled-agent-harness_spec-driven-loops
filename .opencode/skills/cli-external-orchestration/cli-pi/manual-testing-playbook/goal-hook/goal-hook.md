@@ -22,7 +22,7 @@ The `.pi/prompts/goal-pi.md` file is a fail-closed fallback. If it runs, the nat
 - Real user request: `Keep this Pi session on Goal A while another Pi session works on Goal B.`
 - Prompt: `Use the native Pi goal command to set different goals in two isolated session ids, prove each id reads and injects only its own goal, then verify resume, missing identity, legacy migration, and disabled fallback behavior.`
 - Expected execution process: load the extension explicitly against temporary state -> set A and B through `/goal-pi` -> inspect scoped files and command output -> run the adapter matrix -> exercise legacy migration in temporary state -> disable discovery and confirm the fallback never calls the CLI.
-- Expected signals: two opaque `pi-<sha256>.json` files, distinct A/B objectives, same-id resume, new-id no goal, no raw session id in filenames, `MISSING_SESSION_ID` for unbound CLI mutation, and `UNSUPPORTED_SESSION_BINDING` from the prompt fallback.
+- Expected signals: two opaque `<sha256>.json` files, distinct A/B objectives, same-id resume, new-id no goal, no raw session id in filenames, `MISSING_SESSION_ID` for unbound CLI mutation, and `UNSUPPORTED_SESSION_BINDING` from the prompt fallback.
 - Evidence requirements: Capture both native command envelopes, the two opaque state filenames, scoped JSON comparisons, migration result, negative-boundary error codes, and automated test summary.
 - Desired user-visible outcome: PASS/FAIL with the two objectives, state-file count, and exact error code for every negative boundary.
 - Pass/fail: PASS only if A/B stay isolated through set, read, turn mutation, resume, and completion; migration binds one explicit empty target; and no disabled or missing-id path selects a goal.

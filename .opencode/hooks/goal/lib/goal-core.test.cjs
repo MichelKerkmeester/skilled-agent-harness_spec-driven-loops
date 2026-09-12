@@ -188,7 +188,7 @@ test('two sessions keep independent goals through lifecycle mutations', () => {
   core.completeGoal(sessionA);
   assert.equal(core.showGoal(sessionA), null);
   assert.equal(core.showGoal(sessionB).objective, 'Goal B');
-  assert.equal(core.listArchivedGoals(sessionA)[0].goal.status, 'completed');
+  assert.equal(core.listArchivedGoals(sessionA)[0].goal.status, 'complete');
   assert.deepEqual(core.listArchivedGoals(sessionB), []);
 
   core.clearGoal(sessionB);
@@ -451,7 +451,7 @@ test('cross-process clear and complete serialize to one terminal archive', async
   assert.equal(core.showGoal(options), null);
   const archived = core.listArchivedGoals(options);
   assert.equal(archived.length, 1);
-  assert.match(archived[0].goal.status, /^(cleared|completed)$/);
+  assert.match(archived[0].goal.status, /^(cleared|complete)$/);
 });
 
 test('cross-process legacy migration preserves the successful target', async () => {
@@ -510,12 +510,12 @@ test('clearGoal archives the record before removing the active state file', () =
 test('completeGoal archives the record as completed and removes active state', () => {
   const { record } = core.setGoal({ objective: 'Ship the widget', runtime: 'pi' }, opts());
   const completed = core.completeGoal(opts());
-  assert.equal(completed.status, 'completed');
+  assert.equal(completed.status, 'complete');
   assert.equal(core.showGoal(opts()), null);
   const archived = core.listArchivedGoals(opts());
   assert.equal(archived.length, 1);
   assert.equal(archived[0].goal.goalId, record.goalId);
-  assert.equal(archived[0].goal.status, 'completed');
+  assert.equal(archived[0].goal.status, 'complete');
 });
 
 test('clearGoal with no active goal is a no-op that does not throw', () => {
@@ -1032,4 +1032,34 @@ test('a text set with a new objective drops the packet pointer, and re-setting t
   const replaced = core.setGoal({ objective: 'a different plain objective' }, opts());
   assert.equal(replaced.record.packetPath, undefined, 'a new text objective replaces the record and its pointer');
   assert.equal(core.packetState(core.showGoal(opts()), stateDir), 'unbound');
+});
+
+test('the kill switch freezes the session-free library paths too, not just the commands', () => {
+  writePacketGoal('specs/t/001-fixture', packetGoalDoc());
+  const previous = process.env.OPENCODE_GOAL_PLUGIN_DISABLED;
+  process.env.OPENCODE_GOAL_PLUGIN_DISABLED = '1';
+  try {
+    assert.throws(
+      () => core.appendPacketLog({ workspace: stateDir, packetPath: 'specs/t/001-fixture', item: 'row' }),
+      { code: 'PLUGIN_DISABLED' },
+    );
+    assert.throws(
+      () => core.describePacketGoal('specs/t/001-fixture', { workspace: stateDir }),
+      { code: 'PLUGIN_DISABLED' },
+    );
+  } finally {
+    if (previous === undefined) delete process.env.OPENCODE_GOAL_PLUGIN_DISABLED;
+    else process.env.OPENCODE_GOAL_PLUGIN_DISABLED = previous;
+  }
+});
+
+test('a record written under the old status word is read back under the current one', () => {
+  core.setGoal({ objective: 'legacy status fixture' }, opts());
+  const statePath = core.resolveGoalScope(opts()).statePath;
+  assert.ok(statePath, 'the scope names where the record lives');
+  const stored = JSON.parse(readFileSync(statePath, 'utf8'));
+  stored.status = 'completed';
+  writeFileSync(statePath, JSON.stringify(stored), 'utf8');
+  const read = core.showGoal(opts());
+  assert.equal(read.status, 'complete', 'the pre-rename word is upgraded, not rejected');
 });

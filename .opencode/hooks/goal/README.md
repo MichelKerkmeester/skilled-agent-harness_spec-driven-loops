@@ -16,6 +16,11 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
+> **The word "goal" names more than one thing here.** This document is about the session
+> goal: a packet's `goal.md` and the engine that serves it. A deep-review scope manifest
+> called `goal-file-manifest.txt` and a third-party integration's own goals feature share the
+> word and share nothing else. Check which one a document means before acting on it.
+
 `.opencode/hooks/goal/` provides passive goal steering for runtimes that can supply a verified native session identity. Each supported read or mutation resolves one composite scope:
 
 ```text
@@ -76,7 +81,7 @@ The core is runtime-neutral; each adapter binds it to a native lifecycle event a
 | **Claude** | — | native goal command | — | Keeps its host goal command. The speckit workflows render the parent goal's durable slice, frontmatter excluded, and hand it over to be set; the `AGENTS.md` goal posture row binds the agent on every turn. |
 | **Codex** | — | native goal command | — | Same as Claude. |
 
-A runtime is not called fully supported unless injection and management bind the same native current-session identity. Cursor and Devin therefore remain injection-only, and `/goal-cursor` fails closed for anything but the packet read. Pi and OpenCode bind injection and management to the same native identity; Pi also carries a heuristic verify surface.
+A runtime is not called fully supported unless injection and management bind the same native current-session identity. Cursor and Devin therefore carry injection without management, and `/goal-cursor` fails closed for anything but the packet read. Injection-without-management is not read-only: both adapters record a turn on the bound record, which is the one write they make. Pi and OpenCode bind injection and management to the same native identity; Pi also carries a heuristic verify surface.
 
 OpenCode's real plugin cannot live in this tree because its loader globs `.opencode/plugins/` by a flat pattern, so `opencode/opencode-goal.js` is a browsability-only symlink back into that folder and nothing loads through it. Pi loads in the other direction: the real `pi/goal-context.ts` lives here, and `.pi/extensions/` holds the relative symlink Pi discovers.
 

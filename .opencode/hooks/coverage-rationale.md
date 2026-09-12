@@ -79,7 +79,7 @@ Claude/Cursor/Devin fire a tool event for the spawn and OpenCode/Pi expose a sub
 
 ### `goal` — folders on **cursor, devin, opencode, pi**
 **Ships only where a session-bound command identity exists to drive it.**
-Per the goal contract: OpenCode has `opencode-goal` + `/goal-opencode`, Pi has a native extension + `/goal-pi`, Cursor has a `sessionStart` hook plus a session-free packet read, Devin has an injection-only hook on `SessionStart` and `UserPromptSubmit`; Claude and Codex keep their native host goal command and reach the packet goal through the speckit workflows.
+Per the goal contract: OpenCode has `opencode-goal` + `/goal-opencode`, Pi has a native extension + `/goal-pi`, Cursor has a `sessionStart` hook plus a session-free packet read, Devin has an inject-and-record hook on `SessionStart` and `UserPromptSubmit` with no management surface; Claude and Codex keep their native host goal command and reach the packet goal through the speckit workflows.
 
 ### `git-preflight` — covered on **all six** (not a gap)
 **The four editors share one `shared/` adapter instead of a copy each; only opencode and pi carry runtime-native subfolders.**

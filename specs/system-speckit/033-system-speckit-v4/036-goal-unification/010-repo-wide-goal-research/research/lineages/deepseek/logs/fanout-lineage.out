@@ -1,0 +1,17 @@
+Deep-research lineage `deepseek` is complete: all five rings executed inline in this session, no nested dispatch.
+
+**Verdict:** the goal *system* is sound and tested; the *documentation/validation layer around it* has drifted. Stopped on the max-iterations cap (5), **not** converged — ring 4, the widest ring, was the second-highest producer.
+
+**Artifacts written** (all inside the bound lineage dir `research/lineages/deepseek/`):
+- `research.md` — the reconciled report (map, register C1–C15, unowned surfaces, reader traps)
+- `iterations/iteration-001..005.md` + `deltas/iter-001..005.jsonl` — 36 findings, 2 corrections, 4 resolved questions
+- `convergence-report.md`, `deep-research-dashboard.md`, `findings-registry.json` (regenerated from the deltas by `logs/registry-build.cjs`), `deep-research-state.jsonl` (9 records)
+
+**Ring 5 highlights** (what the earlier rings could not see):
+- **C1 (high):** the durable budget is enforced on phase children by the hook alone; manifest, validator, rules, playbook and template all declare them unbounded — a phase child passes `validate.sh --strict` and is then called "past the error tier".
+- **C2 (high):** `plugins/README.md:96-98` states a kill-switch rule that computes to the dead `SYSTEM_GOAL_DISABLED`; three other rosters name `OPENCODE_GOAL_DISABLED` correctly. R1-F1 was downgraded — the dead name is local-only drift (`hook-flags.env` is gitignored; the committed example is right).
+- **C3–C11:** `/goal resume` has three behaviours across plugin/catalogues/core; two incompatible status vocabularies; CC-029 + its benchmark JSON cite a deleted constitutional file; CL-007 cites `goal_opencode.md` (doesn't exist) while its quoted lines match the real file; CO-039 pins 7 suites/125 tests vs observed **8 suites/137 pass**; PI-021 expects the legacy `pi-<sha256>.json` shape; and the save workflow's documented CLI `log` example omits `--runtime/--session` (R5-F1, verified against `bin/goal.cjs:401-408`).
+
+**Verification:** all JSON/JSONL files parse; plugin suites ran green (137/137); engine files (`.opencode/hooks/goal`, `opencode-goal.js`, `spec-kit-docs.json`) are clean against git; writes were confined to the lineage (the 63 other dirty paths are unrelated concurrent work — recorded as a state note with evidence).
+
+**Residual unknowns** (in `convergence-report.md`): C7's kill-switch intent, C4's rename-or-map decision, and the Claude/Codex host command — unobservable from this repository by construction. The orchestrator can now collect this lineage alongside the others for cross-lineage reconciliation.

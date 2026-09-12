@@ -31,7 +31,12 @@ const { appendPacketLog: appendPacketLogShared } = require('../hooks/goal/lib/go
 // ─────────────────────────────────────────────────────────────────────────────
 
 const PLUGIN_ID = 'opencode-goal';
-const DEFAULT_STATE_DIR = fileURLToPath(new URL('../skills/.state/goal/', import.meta.url));
+// The record store is relocatable, and both engines must land in the same place
+// or one session's records become invisible to the other. The packet lock is a
+// separate matter and stays rooted in the workspace: moving it was tried, probed
+// and reverted after it split the lock and lost rows.
+const DEFAULT_STATE_DIR = process.env.OPENCODE_GOAL_STATE_DIR
+  || fileURLToPath(new URL('../skills/.state/goal/', import.meta.url));
 const DEFAULT_MAX_OBJECTIVE_CHARS = 4000;
 const DEFAULT_MAX_GOAL_PROMPT_CHARS = 4000;
 const DEFAULT_MAX_INJECTION_CHARS = 4800;
@@ -55,7 +60,9 @@ const OBJECTIVE_PREVIEW_MAX_CHARS = 600;
 const MIN_PROMPT_BUDGET_CHARS = 3;
 const NORMALIZED_OPTIONS_MARKER = Symbol('mkGoalNormalizedOptions');
 const MS_PER_DAY = 24 * 60 * 60 * 1000;
-const DISABLED_ENV = 'OPENCODE_GOAL_PLUGIN_DISABLED';
+// The name an error prints is the name an operator will go and set, so it is
+// the concern's canonical variable rather than one of its accepted aliases.
+const DISABLED_ENV = 'OPENCODE_GOAL_DISABLED';
 const AUTONOMY_ENV = 'OPENCODE_GOAL_AUTONOMY';
 const DEBUG_ENV = 'OPENCODE_GOAL_DEBUG';
 const VERIFIER_ENV = 'OPENCODE_GOAL_VERIFIER';

@@ -1,0 +1,329 @@
+diff --git a/.opencode/skills/README.txt b/.opencode/skills/README.txt
+index ec4bf92087..c2c139bd60 100644
+--- a/.opencode/skills/README.txt
++++ b/.opencode/skills/README.txt
+@@ -1,6 +1,6 @@
+ ---
+ title: "Skills Library"
+-description: "Catalog and front door to 11 top-level skill identities across four catalog families, with routing guidance and creation workflow."
++description: "Catalog and front door to 13 top-level skill identities across four catalog families, with routing guidance and creation workflow."
+ trigger_phrases:
+   - "skills library"
+   - "available skills"
+@@ -21,14 +21,14 @@ trigger_phrases:
+ |---|---|
+ | **Use it for** | Finding the skill that matches your task and understanding how routing picks it |
+ | **Invoke with** | Gate 2 auto-routing, a direct read of the skill's `SKILL.md`, or keyword triggers like "commit changes" |
+-| **Families** | Four prefix families: `cli-*` (1), `mcp-*` (2), `sk-*` (5), `system-*` (3) |
++| **Families** | Four prefix families: `cli-*` (1), `mcp-*` (2), `sk-*` (7), `system-*` (3) |
+ | **Catalog** | A family-by-family table below that links every skill's own README |
+ 
+ ---
+ 
+ ## 2. OVERVIEW
+ 
+-Eleven top-level skill identities live under `.opencode/skills/`, each a self-contained folder with runtime instructions (`SKILL.md`), a README, graph metadata and domain references. They stay out of context until needed: the advisor scores a request, returns a ranked list, and the agent loads only the match. This library catalogs every skill by family, links each one's README and explains how routing picks the match, so the right skill loads focused guidance instead of wasting context on the wrong one.
++Thirteen top-level skill identities live under `.opencode/skills/`, each a self-contained folder with runtime instructions (`SKILL.md`), a README, graph metadata and domain references. They stay out of context until needed: the advisor scores a request, returns a ranked list, and the agent loads only the match. This library catalogs every skill by family, links each one's README and explains how routing picks the match, so the right skill loads focused guidance instead of wasting context on the wrong one.
+ 
+ New skills are discovered automatically from a valid `SKILL.md` frontmatter plus `graph-metadata.json`; no manual registration step exists.
+ 
+@@ -56,10 +56,12 @@ Each skill name links to its own README. One-line descriptions reflect current b
+ | Skill | What it does |
+ |---|---|
+ | [`sk-code`](sk-code/README.md) | Unified two-axis code skill: two WORKFLOW modes (`sk-code-quality`, `sk-code-review`) plus read-only SURFACE evidence packets (`sk-code-webflow`, `sk-code-opencode`), each carrying implement/debug/verify workflow and verification gates |
++| [`sk-communication`](sk-communication/README.md) | Two lanes: one rewrites terse agent output into plain English byte-safely, the other renders a topic or the prior reply as the smallest visual at a chosen depth |
+ | [`sk-doc`](sk-doc/README.md) | Documentation and component-authoring parent hub: workflow packets for skills, hubs, READMEs/install-guides, agents, commands, catalogs and playbooks, plus deterministic validation and DQI scoring |
+ | [`sk-git`](sk-git/README.md) | Git workflow in one skill: numbered worktrees, Conventional Commits, PRs, merge/rebase and finish |
+-| [`sk-design-md-generator`](sk-design-md-generator/README.md) | Extracts a live website's real, measured CSS into a v3 Style Reference DESIGN.md (named tokens, type scale, components, Quick Start CSS/Tailwind) — measured ground truth for sk-code to build against, plus a condensed general design-knowledge layer |
++| [`sk-design-md-generator`](sk-design/sk-design-md-generator/README.md) | Extracts a live website's real, measured CSS into a v3 Style Reference DESIGN.md (named tokens, type scale, components, Quick Start CSS/Tailwind) — measured ground truth for sk-code to build against, plus a condensed general design-knowledge layer |
+ | [`sk-prompt`](sk-prompt/README.md) | Prompt engineering: turns a request into a structured, scored prompt via 7 frameworks, DEPTH thinking and CLEAR scoring; owns the canonical CLI prompt-quality card |
++| [`sk-vision`](sk-vision/README.md) | Local vision for text-only coding models: grounded OCR, inspect, detect and pixel analysis from a private Moondream runtime |
+ 
+ ### system-*: Deep Loops and the Runtime Foundation
+ 
+diff --git a/.opencode/skills/sk-doc/description.json b/.opencode/skills/sk-doc/description.json
+index 1fb20d8380..4c8ac77407 100644
+--- a/.opencode/skills/sk-doc/description.json
++++ b/.opencode/skills/sk-doc/description.json
+@@ -1,6 +1,6 @@
+ {
+   "name": "sk-doc",
+-  "description": "Documentation & OpenCode-component authoring parent hub. One advisor identity that routes through mode-registry.json + hub-router.json to thirteen nested workflow packets: sk-create-skill (+ sk-create-skill-parent), sk-create-readme (install guides folded), sk-create-agent, sk-create-command, sk-create-feature-catalog, sk-create-manual-testing-playbook, sk-create-benchmark, sk-design-diagram (HTML/SVG diagrams and ASCII/markdown flowcharts, one output-format dial), sk-design-chart (standalone HTML data charts from a 20-form catalog across six question families, with three colour systems), sk-create-changelog, sk-create-diff (local before/after document reviews), sk-create-repo-rule, sk-create-frontmatter (the YAML frontmatter contract: per-class field rules, the description budget, and the 4-part version derivation), sk-create-with-human-voice (apply or score prose against the Human Voice Rules, with a scope gate, a scanner that parses the standard at run time, and a re-scan after the rewrite), and sk-create-quality-control (validate/score/optimize an existing doc). The universal sk-create-quality-control pipeline — validators, global standards, frontmatter/llms/template assets — lives once in shared/ and is consumed by every packet. Workflow-only hub: no surface axis, zero named extensions.",
++  "description": "Documentation & OpenCode-component authoring parent hub. One advisor identity that routes through mode-registry.json + hub-router.json to fourteen workflow modes across thirteen nested workflow packets: sk-create-skill (+ sk-create-skill-parent), sk-create-readme (install guides folded), sk-create-agent, sk-create-command, sk-create-feature-catalog, sk-create-manual-testing-playbook, sk-create-benchmark, sk-create-changelog, sk-create-diff (local before/after document reviews), sk-create-repo-rule, sk-create-frontmatter (the YAML frontmatter contract: per-class field rules, the description budget, and the 4-part version derivation), sk-create-with-human-voice (apply or score prose against the Human Voice Rules, with a scope gate, a scanner that parses the standard at run time, and a re-scan after the rewrite), and sk-create-quality-control (validate/score/optimize an existing doc). The universal sk-create-quality-control pipeline — validators, global standards, frontmatter/llms/template assets — lives once in shared/ and is consumed by every packet. Workflow-only hub: no surface axis, zero named extensions.",
+   "version": "2.1.0.0",
+   "importance_tier": "high",
+   "keywords": [
+diff --git a/.opencode/skills/sk-doc/graph-metadata.json b/.opencode/skills/sk-doc/graph-metadata.json
+index face5995e7..6b3f7e32e8 100644
+--- a/.opencode/skills/sk-doc/graph-metadata.json
++++ b/.opencode/skills/sk-doc/graph-metadata.json
+@@ -424,7 +424,7 @@
+         "source": "derived"
+       }
+     ],
+-    "causal_summary": "Documentation and OpenCode-component authoring parent hub. One advisor identity that routes through mode-registry.json + hub-router.json to fifteen nested workflow packets (sk-create-skill/sk-create-skill-parent, sk-create-readme, sk-create-agent, sk-create-command, sk-create-feature-catalog, sk-create-manual-testing-playbook, sk-create-benchmark, sk-design-diagram, sk-design-chart, sk-create-changelog, sk-create-diff, sk-create-repo-rule, sk-create-frontmatter, sk-create-with-human-voice, sk-create-quality-control). The universal sk-create-quality-control pipeline lives once in shared/ and is consumed by every packet. It matters because it gives the workspace one discoverable identity for authoring and validating high-quality documentation and components, with per-artifact workflows isolated in self-contained packets.",
++    "causal_summary": "Documentation and OpenCode-component authoring parent hub. One advisor identity that routes through mode-registry.json + hub-router.json to fourteen workflow modes across thirteen nested workflow packets (sk-create-skill/sk-create-skill-parent, sk-create-readme, sk-create-agent, sk-create-command, sk-create-feature-catalog, sk-create-manual-testing-playbook, sk-create-benchmark, sk-create-changelog, sk-create-diff, sk-create-repo-rule, sk-create-frontmatter, sk-create-with-human-voice, sk-create-quality-control). The universal sk-create-quality-control pipeline lives once in shared/ and is consumed by every packet. It matters because it gives the workspace one discoverable identity for authoring and validating high-quality documentation and components, with per-artifact workflows isolated in self-contained packets.",
+     "source_docs": [
+       "SKILL.md",
+       "README.md",
+diff --git a/.opencode/skills/sk-doc/sk-create-repo-rule/assets/repo-rules-router-template.md b/.opencode/skills/sk-doc/sk-create-repo-rule/assets/repo-rules-router-template.md
+index 766d2c6245..f44dfefb6b 100644
+--- a/.opencode/skills/sk-doc/sk-create-repo-rule/assets/repo-rules-router-template.md
++++ b/.opencode/skills/sk-doc/sk-create-repo-rule/assets/repo-rules-router-template.md
+@@ -36,7 +36,7 @@ a file, and the router is the index.
+ # REPO RULES
+ 
+ Repo-local operating rules. `AGENTS.md` **Gate 5 (§2)** makes reading this mandatory
+-before your first write of the session. This document then routes you to the one rule
++before your first write of the session. This document then routes you to every rule
+ file that governs what you are about to do. **It is a router, not a rulebook:** it
+ holds no rules of its own.
+ 
+@@ -56,13 +56,15 @@ holds no rules of its own.
+ 
+ | Level | Source | Can be overridden? |
+ |-------|--------|--------------------|
+-| 1 | Every `AGENTS.md` hard blocker and mandatory gate | No |
++| 1 | Every `AGENTS.md` §1 hard blocker, the Four Laws, PLAN-WORKFLOW LOCK, Comment Hygiene, and every mandatory gate in §2 | No |
+ | 2 | An explicit, in-the-moment operator instruction | Not applicable, it is the instruction |
+ | 3 | These rule files | Only by level 1 or 2 |
+ | 4 | General judgment | By anything above |
+ 
+-A rule file may tighten `AGENTS.md`. None relaxes a hard block or authorizes what
+-`AGENTS.md` forbids.
++A rule file may tighten `AGENTS.md`. None relaxes a HARD BLOCK or authorizes what
++`AGENTS.md` forbids. Gate 5 does not change that: it makes the **load** mandatory,
++while what you load stays at level 3, the obligation to read is tier 1, the content
++is not.
+ 
+ ---
+ 
+diff --git a/.opencode/skills/sk-doc/sk-create-repo-rule/references/agents-md-integration.md b/.opencode/skills/sk-doc/sk-create-repo-rule/references/agents-md-integration.md
+index 93becedb1f..04426d23d1 100644
+--- a/.opencode/skills/sk-doc/sk-create-repo-rule/references/agents-md-integration.md
++++ b/.opencode/skills/sk-doc/sk-create-repo-rule/references/agents-md-integration.md
+@@ -46,18 +46,19 @@ is not an accident.
+ 
+ Before adding a trigger row, confirm `REPO RULES.md` §4 **In** admits the rule.
+ 
+-The shipped set hit this twice, and both times the row was written before anyone looked:
++The shipped set hit this four times, and every time the row was written before
++anyone looked:
+ 
+ - Adding the delegation rule under a scope statement that listed "agent dispatch" as
+   **Out**. The router would have routed to a rule it declared out of bounds.
+ - Moving communication down while §4 said nothing about how a reply reads.
+ 
+-All three were caught and the boundary was widened deliberately each time, the third
++All four were caught and the boundary was widened deliberately each time, the third
+ being the narrow routing carve-out that admits verifying wiring you changed while still
+-refusing route selection. **A fourth widening that admitted selection itself would
++refusing route selection. **A fifth widening that admitted selection itself would
+ dissolve the boundary the set exists to hold** — if the scope statement excludes a
+ proposal, that is a refusal, not a paperwork problem. The mode does not widen §4
+-unilaterally; that is an operator decision, and each of the three was one.
++unilaterally; that is an operator decision, and each of the four was one.
+ 
+ ---
+ 
+@@ -89,9 +90,8 @@ nothing, which **looks like coverage**. Always leave the safer wreck.
+ 4. Bump `version`.
+ 5. Re-verify links and counts.
+ 
+-**On `version`:** all nine shipped rules sit at `1.0.0.0`, so the corpus offers no
+-evidence for a scheme. Use the fourth segment for any content change and leave the first
+-three alone until something forces the question. **This is a choice, not a finding.**
++**On `version`:** use the fourth segment for any content change and leave the first three
++alone until something forces the question. **This is a choice, not a finding.**
+ 
+ ---
+ 
+@@ -136,12 +136,59 @@ a deliverable — nobody asked for it.
+ 
+ ---
+ 
+-## 8. SELF-CHECK
++## 8. THE SIBLING FEDERATION
++
++A rule file can be shared. A rule in `repo-rules/` may be symlinked into sibling
++repositories, and each sibling's router then points at the link. The source file stays
++here. A sibling holds only a path to it, so **every shared rule is edited, versioned
++and retired in one place**.
++
++**Per sibling, four mechanics.** A new or promoted rule needs all four in every sibling
++that shares the set. Each omission breaks something specific:
++
++| Missing | Result |
++|---------|--------|
++| Symlink | A row resolves to nothing, and the break looks like coverage |
++| `.gitignore` entry | The link is committed and dangles on a fresh clone, and it publishes the local filesystem layout |
++| Trigger row | The rule never loads in that repository |
++| Index row | The rule is unbrowsable there |
++
++**The symlink shape.** Create a relative symlink in the sibling's `repo-rules/`
++directory, named after the rule and pointing at the source file, for example
++`../../Code_Environment/Public/repo-rules/<rule>.md`. A relative target names the
++sibling's own layout instead of an absolute home directory.
++
++**The `.gitignore` entry.** Add `repo-rules/<rule>.md` to the sibling's shared-rules
++block. Local rule files and the router beside the symlinks stay tracked. Only the
++links are ignored.
++
++**The rows.** Add the trigger row to the sibling router's §2 and the index row to its
++§3, matching the source rows. A shared row carries no `**local**` marker. The rules
++that live in the sibling are the ones that do.
++
++**Ordering.** Create the symlink only after the source file exists, or it dangles.
++Retire by running that order backwards in every sibling: rows first, then the
++`.gitignore` entry, then the symlink, and the source file last. Deleting the source
++first leaves every sibling row pointing at nothing.
++
++**Promoting a local rule.** Move the file into the source repository's `repo-rules/`,
++replace each sibling's local copy with the symlink, and add the ignore entry and the
++rows that are missing.
++
++**Verifying a shared rule.** Follow each link to a real file, confirm both rows
++resolve, and confirm that every sibling still has the same count of files, trigger
++rows and index rows. A link that resolves in one repository is not evidence for
++another.
++
++---
++
++## 9. SELF-CHECK
+ 
+ - [ ] The scope statement was checked before the trigger row was written.
+ - [ ] All three wiring points exist, and the pointer covers every governed section.
+ - [ ] Trigger rows, index rows and rule files are the same count.
+ - [ ] Every link resolves.
++- [ ] On a shared rule: every sibling carries the symlink, the ignore entry and both rows.
+ - [ ] On revise: if the firing condition changed, the trigger row changed with it.
+ - [ ] On retire: nothing points at the deleted file, and the reason is recorded.
+ - [ ] Nothing in `AGENTS.md` changed except a pointer.
+diff --git a/.opencode/skills/sk-doc/sk-create-repo-rule/references/creation-standards.md b/.opencode/skills/sk-doc/sk-create-repo-rule/references/creation-standards.md
+index 25e20f4c86..168bbc5962 100644
+--- a/.opencode/skills/sk-doc/sk-create-repo-rule/references/creation-standards.md
++++ b/.opencode/skills/sk-doc/sk-create-repo-rule/references/creation-standards.md
+@@ -71,8 +71,8 @@ reader who has the problem and does not know the rule exists.
+ 
+ **Two hard constraints:**
+ 
+-- **No phrase may appear in two rules.** The set carries 161 phrases with zero collisions;
+-  a duplicate makes both rules unfindable by it.
++- **No phrase may appear in two rules.** The set carries 194 phrases across the 11 files
++  under `repo-rules/` with zero collisions; a duplicate makes both rules unfindable by it.
+ - **Aim for 15-20.** The observed range is 16-20. Fewer leaves the rule hard to reach;
+   many more usually means section titles crept back in.
+ 
+diff --git a/.opencode/skills/sk-doc/sk-create-repo-rule/references/decision-tests.md b/.opencode/skills/sk-doc/sk-create-repo-rule/references/decision-tests.md
+index 082913ee80..c7ba9da0f0 100644
+--- a/.opencode/skills/sk-doc/sk-create-repo-rule/references/decision-tests.md
++++ b/.opencode/skills/sk-doc/sk-create-repo-rule/references/decision-tests.md
+@@ -69,11 +69,12 @@ agent and CLI dispatch — which agent, which command, which model, which flags.
+ 
+ **The line:** *how to dispatch is theirs; how to think while dispatching is ours.*
+ 
+-**Recovered from:** the router's own section 4, which has been widened exactly three
++**Recovered from:** the router's own section 4, which has been widened exactly four
+ times and every time deliberately — to admit delegation posture, then delivery, then a
+-narrow routing carve-out. The third is the instructive one: it admits *verifying wiring
+-you changed* as an evidence obligation, and still refuses *selecting* a route. A fourth
+-widening that admitted selection would dissolve the boundary the set exists to hold.
++narrow routing carve-out, then the ask-surface carve-out. The third is the instructive
++one: it admits *verifying wiring you changed* as an evidence obligation, and still
++refuses *selecting* a route. A fifth widening that admitted selection would dissolve
++the boundary the set exists to hold.
+ 
+ **So the test did not get weaker.** Ask which side of the carve-out the proposal sits on.
+ A rule about which skill, command, model or flags to pick is still refused here.
+@@ -137,6 +138,10 @@ Refusing is not the end of the decision. Every refusal routes somewhere:
+ reason is what stops the same suggestion arriving next quarter with nobody remembering
+ why it was refused.
+ 
++**Where the record lives:** the decision record of the spec packet that owns the rule
++set for that repository. Spec folders are where this repository keeps refusal history,
++diffed and archived with the work, and the rule files and the router stay free of it.
++
+ ---
+ 
+ ## 6. SELF-CHECK
+diff --git a/.opencode/skills/sk-doc/sk-create-repo-rule/references/rule-anatomy.md b/.opencode/skills/sk-doc/sk-create-repo-rule/references/rule-anatomy.md
+index 0d8ca04a21..7c482ac37c 100644
+--- a/.opencode/skills/sk-doc/sk-create-repo-rule/references/rule-anatomy.md
++++ b/.opencode/skills/sk-doc/sk-create-repo-rule/references/rule-anatomy.md
+@@ -152,8 +152,8 @@ failure is invisible to a reader: it looks correct and only a parser objects.
+ 
+ **`trigger_phrases` carry symptom vocabulary, not section titles.** The section titles are
+ already greppable from the body; the phrases exist to catch someone who has the problem
+-and does not know the rule's name. Measured: 161 phrases across 9 files, no duplicates,
+-every phrase resolving to exactly one rule.
++and does not know the rule's name. Measured: 194 phrases across the 11 files under
++`repo-rules/`, no duplicates, every phrase resolving to exactly one rule.
+ 
+ ---
+ 
+diff --git a/AGENTS.md b/AGENTS.md
+index d0eed77a1b..3d70dd004d 100644
+--- a/AGENTS.md
++++ b/AGENTS.md
+@@ -58,7 +58,7 @@ Beyond Law 4 (uncertainty, line-number mismatch, failing tests), also halt on:
+ 
+ ## 2. ⛔ MANDATORY GATES — STOP BEFORE ACTING
+ 
+-**⚠️ BEFORE using ANY tool (except Gate Actions: the trigger index lookup, skill_advisor.py), you MUST pass all applicable gates below.**
++**⚠️ BEFORE using ANY tool (except Gate Actions: the trigger index lookup, `.opencode/bin/skill-advisor.cjs`), you MUST pass all applicable gates below.**
+ 
+ ### 🔒 PRE-EXECUTION GATES (Pass before ANY tool use)
+ 
+@@ -111,7 +111,7 @@ Skills are on-demand domain expertise invoked through Gate 2 (§2): when the adv
+ 
+ **Advisor metadata placement.** These filenames also name spec-folder continuity metadata (§6) under a completely separate schema — never the same file, never interchangeable. At a skill root, `graph-metadata.json` is the advisor identity file and is required at BOTH parent-hub and standalone roots; `description.json`, `mode-registry.json`, and `hub-router.json` are **hub-only** (forbidden on a standalone root). None of them live at a mode/packet or `shared/` sublevel. Full contract (per-class required/forbidden matrix, key schemas, hub doctrine, and the `ci-skill-root-metadata.cjs` fleet audit): `.opencode/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md`.
+ 
+-**A parent hub projects one advisor identity, and its modes route in two stages.** The advisor scores the hub; the hub's `hub-router.json` and root `ROUTER.md` then pick the mode and its leaves. Most nested modes carry `advisorRouting.routingClass: "metadata"` — resolved by hub membership, with no advisor entry of their own — so their vocabulary reaches the advisor only through the hub's `graph-metadata.json`. A minority do not: `lexical` and `alias-fold` modes get their own advisor entries and projection maps, and `command-bridge` routes by command surface instead. Check the class before assuming which applies. **Never report a mode as routed because a registry entry exists — check both stages, against the hub you actually changed.** Surface list and the class table: `parent-skills-nested-packets.md`, expanded by [`skill-hub-routing.md`](repo-rules/skill-hub-routing.md).
++**A parent hub projects one advisor identity, and its modes route in two stages.** The advisor scores the hub; the hub's `hub-router.json` and root `ROUTER.md` then pick the mode and its leaves. Most nested modes carry `advisorRouting.routingClass: "metadata"` — resolved by hub membership, with no advisor entry of their own — so their vocabulary reaches the advisor only through the hub's `graph-metadata.json`. A minority do not: `lexical` and `alias-fold` modes get their own advisor entries and projection maps, and `command-bridge` routes by command surface instead. Check the class before assuming which applies. **Never report a mode as routed because a registry entry exists — check both stages, against the hub you actually changed.** Surface list and the class table: `.opencode/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md`, expanded by [`skill-hub-routing.md`](repo-rules/skill-hub-routing.md).
+ 
+ #### GATE 4: SKILL-OWNED WORKFLOW TIEBREAKERS
+ Trigger-phrase routing ("deep-research", "deep-review", ":auto", "iterations", "convergence") and state-machine discipline (no manual `/tmp` state, no direct `@deep-research` / `@deep-review` Task dispatch, no skipping `deep-research-state.jsonl` / `deltas/` / `logs/`) are enforced by Gate 2 (Skill Advisor at ≥ 0.8) plus the `/deep:research` and `/deep:review` mode-packet SKILL.md invariants (the deep modes are packets under `system-deep-loop/`, not standalone skills). The two tiebreakers below are NOT covered there:
+@@ -179,7 +179,7 @@ Trigger: About to skip gates, or realized gates were skipped → STOP → STATE:
+ - **Define proof before implementation.** Convert acceptance criteria into observable checks and identify the authoritative final gate before changing files.
+ - **Use a research-first approach.** Read the actual code, docs, and local instructions first; prefer surgical edits over broad rewrites.
+ - **Make one pre-write pass before adding code.** Two questions, in order. *Does this need to exist?* — walk the restraint ladder, cheapest rung first: not at all, then a simpler existing thing, then the minimum that works. Concluding "unnecessary" never licenses a cut; implement the frozen scope AND raise the amendment in the same response. *What does it touch?* — when the change can break a caller or a shared contract, name the owning module, one real caller, and the contract that must not break, before the first edit. Both questions need what already exists to be read first, which is why this is a post-read reflex and not a planning ritual. Authoritative rungs: `sk-code/shared/references/universal/code-quality-standards.md` §1.
+-- **Repo-local rules load at Gate 5 (§2), before your first write.** What `REPO RULES.md` carries is repo-local: thinking and acting discipline — restraint, scope, evidence, blast radius, diagnosis, honesty — alongside verification commands and local contracts, all binding exactly as this document's rules do, and below them on conflict. The gate owns the mechanics; do not re-derive them here.
++- **Repo-local rules load at Gate 5 (§2), before your first write.** `REPO RULES.md` is a router, not a rulebook: it carries the loading instructions and precedence ladder, the trigger table matching the action you are about to take to the per-rule files under `repo-rules/`, an index of those files, and the scope statement that bounds the set. It holds no rules and no commands of its own. Those rule files carry the repo-local thinking and acting discipline (restraint, scope, evidence, blast radius, diagnosis, honesty), binding exactly as this document's rules do, and below them on conflict. The gate owns the mechanics; do not re-derive them here.
+ 
+ **Ownership & Completion:**
+ - **Take responsibility for issues encountered during execution.** Do not dodge ownership with phrases like `not caused by my changes` or `pre-existing issue`; work toward the fix.
+@@ -189,7 +189,6 @@ Trigger: About to skip gates, or realized gates were skipped → STOP → STATE:
+ 
+ **Debugging & Iteration:**
+ - Reproduce the exact symptom when safe, trace the responsible producer and its consumers, fix the root cause, and rerun the same check.
+-- Law 4 keeps forward progress and completion blocked while a check fails; diagnosis and repair are the permitted bounded remediation loop, not permission to proceed past the failure.
+ - If an attempt repeats without new evidence, stop patching at the failure site: restate the problem one level up — at the interface, the data flow, or the module boundary — and inspect the available interface before trying again. A fix that works only by special-casing a caller is evidence the seam is wrong: name the seam and the files a seam fix would touch, then ask — SCOPE LOCK still binds, and editing outside scope needs a yes. Do not repeat the same guess; stop local retries at the code skill's repeated-failure limit — its count governs a debugging loop, not Section 7's — then escalate in Section 7's format.
+ 
+ **Verification & Reasoning:**
+@@ -301,7 +300,7 @@ Trigger: a session bound to a spec packet, on every turn.
+ - [ ] File modification? Asked spec folder question?
+ - [ ] Skill routing verified?
+ - [ ] First code or `.md` write? Routed per the Gate 2 artifact trigger and LOADED what it resolved?
+-- [ ] Passed Gate 5? Repository has a `REPO RULES.md` → matched the action in its trigger table and LOADED the rule file it names?
++- [ ] Passed Gate 5? Repository has a `REPO RULES.md` → matched the action in its trigger table and LOADED every rule file it names?
+ - [ ] Saving continuity? Using the continuity writer `generate-context.js` (not Write tool)?
+ - [ ] Aligned with ORIGINAL request? No scope drift?
+ - [ ] Claiming completion? `checklist.md` verified?
+@@ -402,7 +401,7 @@ Confidence stays <80% after two failed attempts → ask with 2-3 options. Blocke
+ 
+ ## 8. 🗣️ COMMUNICATION QUALITY
+ 
+-**How a reply reads is governed by [`repo-rules/communication.md`](repo-rules/communication.md), and it fires on every substantive reply** — not only on complex ones. Load it before answering: sentence and paragraph shape, plain words, length, filler, verdict-first ordering, how to present a recommendation, the Ask→Do framing for an ambiguous request, and what to do when the reader says they did not follow.
++**How a reply reads is governed by [`repo-rules/communication.md`](repo-rules/communication.md), and it fires on every substantive reply** — not only on complex ones. Load it before answering: sentence and paragraph shape, plain words, punctuation, length, filler, and what to do when the reader says they did not follow.
+ 
+ **How a decision is presented is governed by [`repo-rules/presenting-decisions.md`](repo-rules/presenting-decisions.md)**: verdict first, one recommended path with its trade-off, the intended path stated before a long stretch of work, and a synthesis reported as findings rather than a file path.
+ 
+@@ -452,7 +451,7 @@ Entry points only. Where a Flow column is present it names an order that is not
+ | **Resume prior work** | `/speckit:resume` | The continuity ladder: `handover.md` → `_memory.continuity` → canonical spec docs |
+ | **New spec folder** | Gate 3 Option B | research → evidence-based plan → approval → implement |
+ | **Code work** | `sk-code` | implement → quality gate → debug → verify |
+-| **Repo-local rules** | Gate 5 → `REPO RULES.md` | match the action in the trigger table → load the one `repo-rules/*.md` it names |
++| **Repo-local rules** | Gate 5 → `REPO RULES.md` | match the action in the trigger table → load every `repo-rules/*.md` it names |
+ | **Design reference extraction** | `sk-design-md-generator`; `mcp-figma` for Figma sources | measure → build via `sk-code` |
+ | **Research / exploration** | the trigger index lookup | then the ripgrep recipes in `retrieval-conventions.md`, scoped by track and packet |
+ | **Git workflow** | `sk-git` | worktree → commit → finish (PR); see §5 Git Workspace Safety |

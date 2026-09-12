@@ -20,7 +20,7 @@ The runtime-neutral goal core does not register a Claude Code adapter or command
 - Expected execution process: inspect the goal adapter tree -> verify `.claude/commands` is a real filtered directory -> verify the OpenCode goal command is absent while a shared command is symlinked -> run the mirror check -> read the runtime matrix and routing rule.
 - Exact command sequence: run `test ! -e .opencode/hooks/goal/claude`; `test -d .claude/commands && test ! -L .claude/commands`; `test ! -e .claude/commands/goal-opencode.md`; `test -L .claude/commands/agent-router.md`; then run `node .opencode/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check` and scan `.claude/settings.json` for goal registrations.
 - Expected signals: no `goal/claude` adapter or Claude goal registration; the Claude command root is not a whole-directory symlink; `goal-opencode.md` is absent; a shared command is linked; the mirror check passes.
-- Evidence requirements: capture every path-check and mirror-check exit status, the registration scan, and the exact README and constitutional routing lines.
+- Evidence requirements: capture every path-check and mirror-check exit status, the registration scan, and the exact README and workflow-asset routing lines.
 - Desired user-visible outcome: Repository-discovery PASS plus an explicit statement that live product-native behavior remains unverified.
 - Pass/fail: PASS when the filter, generator, source, config, and docs agree. FAIL if the OpenCode command enters Claude discovery, a Claude adapter/registration appears, or docs claim unverified live support.
 - Failure triage: treat a new adapter or registration as a goal-contract change; treat prose-only disagreement as documentation drift and update it only after source and registration checks.
@@ -31,7 +31,7 @@ The runtime-neutral goal core does not register a Claude Code adapter or command
 
 ### Exact Command Sequence
 
-Run the exact path and mirror checks from the scenario contract, scan `.claude/settings.json` for goal adapter registrations, then read `.opencode/hooks/goal/README.md` and the `goal_prompting` block of `.opencode/commands/speckit/assets/speckit-plan.yaml` (`.opencode/skills/system-spec-kit/constitutional/goal-prompting-runtime-specific.md`.
+Run the exact path and mirror checks from the scenario contract, scan `.claude/settings.json` for goal adapter registrations, then read `.opencode/hooks/goal/README.md` and the `goal_prompting` block of `.opencode/commands/speckit/assets/speckit-plan.yaml` (the constitutional rule that once carried this routing was removed; the workflow asset is now the only authority).
 
 || Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 ||---|---|---|---|---|---|---|---|---|

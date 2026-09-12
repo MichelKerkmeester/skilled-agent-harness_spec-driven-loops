@@ -41,7 +41,9 @@ const goalSlice = require('./goal-slice.cjs');
 // ─────────────────────────────────────────────────────────────────────────────
 
 const STATE_DIR_ENV = 'OPENCODE_GOAL_STATE_DIR';
-const DISABLED_ENV = 'OPENCODE_GOAL_PLUGIN_DISABLED';
+// The name an error prints is the name an operator will go and set, so it is
+// the concern's canonical variable rather than one of its accepted aliases.
+const DISABLED_ENV = 'OPENCODE_GOAL_DISABLED';
 const STATE_SUBDIR = '.opencode/skills/.state/goal';
 const LEGACY_STATE_FILENAME = 'active-goal.json';
 const ARCHIVE_SUBDIR = '.archive';
@@ -70,7 +72,22 @@ const OBJECTIVE_PREVIEW_RATIO = 0.12;
 const OBJECTIVE_PREVIEW_MIN_CHARS = 60;
 const OBJECTIVE_PREVIEW_MAX_CHARS = 600;
 
-const VALID_STATUSES = new Set(['active', 'paused', 'completed', 'cleared']);
+// The two engines answer about the same goal, so they name its states the same
+// way. Records written before the rename carry the old word; they are read and
+// upgraded rather than rejected, because a stored goal is the operator's, not
+// ours to invalidate.
+const VALID_STATUSES = new Set(['active', 'paused', 'complete', 'cleared']);
+const LEGACY_STATUS_ALIASES = Object.freeze({ completed: 'complete' });
+
+/**
+ * Read a stored status under its current name.
+ *
+ * @param {unknown} status - The status as it appears in a record.
+ * @returns {unknown} The current name, or the input unchanged.
+ */
+function upgradeStatus(status) {
+  return (typeof status === 'string' && LEGACY_STATUS_ALIASES[status]) || status;
+}
 const ACTIONS = [
   'set',
   'bind',
@@ -133,15 +150,11 @@ function isPluginDisabled(env = process.env) {
  * Walk up from `startDir` looking for a repo root marker (`.git` or the
  * `.opencode` skills tree). Falls back to `startDir` when nothing is found.
  */
+// One walk, shared with the slice module. Two copies of the same marker list
+// drift the moment a marker is added to one of them, and the two engines would
+// then disagree about which directory a packet path is relative to.
 function resolveRepoRoot(startDir = process.cwd()) {
-  let dir = resolve(startDir);
-  for (let depth = 0; depth < 40; depth += 1) {
-    if (existsSync(join(dir, '.git')) || existsSync(join(dir, '.opencode', 'skills'))) return dir;
-    const parent = dirname(dir);
-    if (parent === dir) break;
-    dir = parent;
-  }
-  return resolve(startDir);
+  return goalSlice.resolveWorkspaceRoot(startDir);
 }
 
 /**
@@ -677,7 +690,9 @@ function readGoalRecordForScope(goalScope) {
     try {
       const raw = readFileSync(path, 'utf8');
       const parsed = JSON.parse(raw);
-      return parsed && typeof parsed === 'object' ? parsed : null;
+      if (!parsed || typeof parsed !== 'object') return null;
+      parsed.status = upgradeStatus(parsed.status);
+      return parsed;
     } catch {
       continue;
     }
@@ -740,7 +755,8 @@ function inspectLegacyGoal(rawOptions = {}) {
       && parsed.goalId.trim()
       && typeof parsed.objective === 'string'
       && parsed.objective.trim()
-      && VALID_STATUSES.has(parsed.status);
+      && VALID_STATUSES.has(upgradeStatus(parsed.status));
+    if (hasValidShape) parsed.status = upgradeStatus(parsed.status);
     return hasValidShape
       ? { present: true, status: 'valid', path, goal: parsed, sizeBytes, raw }
       : { present: true, status: 'malformed', path, goal: null, sizeBytes, raw };
@@ -1040,6 +1056,7 @@ function unbindGoal(rawOptions = {}) {
  * Returns null when the path escapes the workspace or has no goal document.
  */
 function describePacketGoal(packetPath, rawOptions = {}) {
+  if (isPluginDisabled()) throw new GoalError('PLUGIN_DISABLED', `${DISABLED_ENV}=1 disables goal core execution`);
   const workspaceStart = typeof rawOptions.workspace === 'string' && rawOptions.workspace.trim()
     ? rawOptions.workspace.trim()
     : rawOptions.cwd || process.cwd();
@@ -1111,6 +1128,7 @@ function noteResent(rawOptions = {}) {
  * each keeps its record in. The OpenCode plugin calls this directly.
  */
 function appendPacketLog({ workspace, packetPath, item, state = 'Done', evidence = '' } = {}) {
+  if (isPluginDisabled()) throw new GoalError('PLUGIN_DISABLED', `${DISABLED_ENV}=1 disables goal core execution`);
   const safeItem = sanitizeLogCell(item, 200);
   if (!safeItem) throw new GoalError('INVALID_LOG_ITEM', 'A log item is required');
   const safeState = sanitizeLogCell(state, 40) || 'Done';
@@ -1269,7 +1287,7 @@ function completeGoal(rawOptions = {}) {
     const nowMsValue = Date.now();
     const record = {
       ...current,
-      status: 'completed',
+      status: 'complete',
       updatedAt: isoFromMs(nowMsValue),
       updatedAtMs: nowMsValue,
       revision: (current.revision || 0) + 1,
@@ -1320,6 +1338,9 @@ function pauseGoal({ reason = '' } = {}, rawOptions = {}) {
   });
 }
 
+// This engine carries four states, so a resume from anything but paused has no
+// meaning here. The OpenCode plugin carries three more and resumes from two of
+// them as well; the difference is the state sets, not the command.
 function resumeGoal(rawOptions = {}) {
   if (isPluginDisabled()) throw new GoalError('PLUGIN_DISABLED', `${DISABLED_ENV}=1 disables goal core execution`);
   return withScopeMutation(rawOptions, (goalScope) => {

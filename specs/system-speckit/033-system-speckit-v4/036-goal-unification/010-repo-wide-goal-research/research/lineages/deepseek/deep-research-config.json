@@ -1,0 +1,50 @@
+{
+  "sessionId": "fanout-deepseek-1789192823658-autusz",
+  "lineageLabel": "deepseek",
+  "executor": "cli-pi model=deepseek-v4.1-flash",
+  "loopType": "research",
+  "generation": 1,
+  "lifecycleMode": "new",
+  "specFolder": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/010-repo-wide-goal-research",
+  "artifactDir": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/010-repo-wide-goal-research/research/lineages/deepseek",
+  "researchTopic": "Every goal-related surface in this repository, one expanding ring per iteration per research/deep-research-strategy.md. Iteration 1 the goal engine under .opencode/hooks/goal; iteration 2 adds every runtime surface including the OpenCode plugin, per-runtime commands and the generated hook mirrors under .claude .codex .cursor .devin .pi; iteration 3 adds spec-kit's own goal contract, template, budget, validator rules, playbook, lifecycle workflow assets and retrieval; iteration 4 adds everything else in the repository that touches a goal including root instruction files, repo rules, skills, feature catalogues, manual testing playbooks and gates; iteration 5 reconciles the rings and names every contradiction, unowned surface and thing a reader would get wrong. Keep every ring the earlier iterations established and widen it; never narrow. Cite file:line for every claim about current behaviour. Mark design conclusions CLAIM and anything unconfirmed INFERRED or UNKNOWN with what would settle it.",
+  "maxIterations": 5,
+  "convergenceThreshold": 0.05,
+  "stopPolicy": "max-iterations",
+  "statePaths": {
+    "config": "deep-research-config.json",
+    "stateLog": "deep-research-state.jsonl",
+    "strategy": "deep-research-strategy.md",
+    "dashboard": "deep-research-dashboard.md",
+    "findingsRegistry": "findings-registry.json",
+    "iterationPattern": "iterations/iteration-NNN.md",
+    "deltaPattern": "deltas/iter-NNN.jsonl",
+    "logPattern": "logs/iter-NNN.log",
+    "canonicalReport": "research.md",
+    "convergenceReport": "convergence-report.md"
+  },
+  "writeSurface": {
+    "bound": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/010-repo-wide-goal-research/research/lineages/deepseek",
+    "rule": "this directory only; no writes anywhere else in the repository",
+    "containmentBaselines": [
+      "containment/",
+      ".executor-state/",
+      "deep-research-audit-ledger/",
+      "deep-research-effect-ledger/",
+      "locks-and-fencing-v1/"
+    ]
+  },
+  "deviations": [
+    {
+      "item": "append-mode-event.cjs append gateway",
+      "status": "not-invoked",
+      "reason": "runtime/cli append-mode-event.cjs --mode research --run-directory <spec folder> writes the state log and receipts under the spec folder, which is outside this lineage's bound write surface. The lineage override makes that directory the entire write surface and forbids any command that writes outside it. State records are therefore appended to the in-lineage deep-research-state.jsonl in the same shape the gateway would produce, and this deviation is recorded here and in every iteration file.",
+      "whatWouldSettleIt": "a gateway invocation with --run-directory pointed at the lineage artifact dir, if the gateway supports it"
+    }
+  ],
+  "charter": {
+    "citations": "every claim about current behaviour carries a file:line that was opened and confirmed",
+    "labels": "CLAIM for design conclusions, INFERRED or UNKNOWN with the settling action for anything unconfirmed",
+    "ringRule": "each iteration keeps every earlier ring and widens it; never narrow"
+  }
+}

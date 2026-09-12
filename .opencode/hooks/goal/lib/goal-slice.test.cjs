@@ -196,3 +196,26 @@ test('a criteria budget drops whole items and counts what it left', () => {
   assert.deepEqual(none.shown, []);
   assert.equal(none.omitted, 3);
 });
+
+test('a phase child goal carries no budget, matching the validator', () => {
+  const manifestDir = join(workspace, '.opencode', 'skills', 'system-spec-kit', 'templates');
+  mkdirSync(manifestDir, { recursive: true });
+  writeFileSync(
+    join(manifestDir, 'spec-kit-docs.json'),
+    JSON.stringify({ goalDurableBudget: { warnChars: 3000, errorChars: 4000 } }),
+    'utf8',
+  );
+
+  // A top-level packet is budgeted.
+  writePacket('specs/x/001-parent', goalDoc());
+  const parent = slice.readPacketGoal(workspace, 'specs/x/001-parent');
+  assert.notEqual(parent.budget, null);
+  assert.equal(parent.budgetState, 'ok');
+
+  // A child inside a packet binds through its parent, so no budget applies.
+  writeFileSync(join(workspace, 'specs', 'x', '001-parent', 'spec.md'), '# parent\n', 'utf8');
+  writePacket('specs/x/001-parent/002-child', goalDoc());
+  const child = slice.readPacketGoal(workspace, 'specs/x/001-parent/002-child');
+  assert.equal(child.budget, null);
+  assert.equal(child.budgetState, 'unknown');
+});

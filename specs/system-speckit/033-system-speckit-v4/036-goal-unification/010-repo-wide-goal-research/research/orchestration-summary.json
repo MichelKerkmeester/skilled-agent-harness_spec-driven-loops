@@ -1,0 +1,23 @@
+{
+  "run_id": "1789192823658-autusz",
+  "loop_type": "research",
+  "spec_folder": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/010-repo-wide-goal-research",
+  "base_artifact_dir": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/010-repo-wide-goal-research/research",
+  "total_cli_lineages": 1,
+  "orphaned_lineages": [],
+  "total": 1,
+  "succeeded": 1,
+  "failed": 0,
+  "all_failed": false,
+  "completed_with_containment_advisory": 1,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0
+  }
+}

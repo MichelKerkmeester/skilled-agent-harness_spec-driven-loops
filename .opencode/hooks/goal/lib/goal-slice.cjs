@@ -277,6 +277,19 @@ function resolveGoalBudget(workspace) {
   }
 }
 
+/**
+ * A phase child sits inside a folder that is itself a packet. Its goal binds
+ * through the parent and is never set as the operator copy, so no budget
+ * applies to it. The validator draws the same line; if these two disagree an
+ * operator trims a child goal that nothing was ever going to reject.
+ *
+ * @param {string} packetAbsolute - Absolute packet directory.
+ * @returns {boolean} True when the packet is a phase child.
+ */
+function isPhaseChild(packetAbsolute) {
+  return existsSync(join(dirname(packetAbsolute), 'spec.md'));
+}
+
 function budgetState(durableChars, budget) {
   if (!budget) return 'unknown';
   if (durableChars > budget.errorChars) return 'over';
@@ -309,7 +322,7 @@ function readPacketGoal(workspace, packetPath) {
   if (splitFrontmatter(content).broken) return null;
   const durableSlice = extractDurableSlice(content);
   const objective = buildObjectiveSlice(content, dir.relative);
-  const budget = resolveGoalBudget(workspace);
+  const budget = isPhaseChild(dir.absolute) ? null : resolveGoalBudget(workspace);
   return Object.freeze({
     budget,
     budgetState: budgetState(durableSlice.length, budget),

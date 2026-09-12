@@ -128,6 +128,7 @@ function goalLines(goal, runtimeLabel = 'cli') {
     `goal_prompt=${core.quoteValue(goal.goalPrompt || '')}`,
     `token_budget=${goal.tokenBudget === null || goal.tokenBudget === undefined ? 'none' : goal.tokenBudget}`,
     `turns_used=${Number.isFinite(goal.turnsUsed) ? goal.turnsUsed : 0}`,
+    `tokens_used=${Number.isFinite(goal.tokensUsed) ? goal.tokensUsed : 0}`,
     `usage_source=${goal.usageSource || 'unavailable'}`,
     `created_at_ms=${goal.createdAtMs}`,
     `updated_at_ms=${goal.updatedAtMs}`,

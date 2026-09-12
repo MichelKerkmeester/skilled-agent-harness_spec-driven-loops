@@ -858,11 +858,11 @@ The 12 underlying YAML workflows in `.opencode/commands/doctor/assets/` are self
 
 ### 🎯 Goal Plugin
 
-Gives a session a durable completion objective that survives across turns, instead of losing intent to context resets. The packet's `goal.md` is the goal: a session binds to a spec packet, the runtime injects that file's durable slice on every turn with its frontmatter stripped, and the agent resends the slice in chat whenever a decision or criterion changes, reminding you to set it without ever stopping work.
+Gives a session a durable completion objective that survives across turns, instead of losing intent to context resets. The packet's `goal.md` is the goal: a session binds to a spec packet, the runtime injects that file's durable slice with its frontmatter stripped, on every turn where that runtime injects at all — OpenCode, Pi and Devin per turn, Cursor at session start, and the agent resends the slice in chat whenever a decision or criterion changes, reminding you to set it without ever stopping work.
 - **Claude Code and Codex:** use the built-in native `/goal <condition>`; the speckit workflows hand you the stripped slice of the parent `goal.md` to paste. Do not route through `opencode_goal` (that tool does not exist in those sessions)
 - **OpenCode:** `/goal-opencode bind <packet-path>` makes the packet goal the session goal; `resent` clears the reminder, `packet <path>` reads a packet, and `set <condition>` still sets a plain text goal; show / pause / clear / complete via the `opencode_goal` tools
-- **Pi, Cursor, Devin:** the shared core under `.opencode/hooks/goal/` injects the same slice; Pi also manages through `/goal-pi`, Cursor answers a session-free packet read, Devin is injection-only
-- **Guarded by the validator:** a parent goal warns past 3,000 characters and fails past 4,000, and a binding row naming a child goal that does not exist fails
+- **Pi, Cursor, Devin:** the shared core under `.opencode/hooks/goal/` injects the same slice; Pi also manages through `/goal-pi`, Cursor answers a session-free packet read, Devin injects without a management surface. Cursor and Devin still record a turn on the bound record, so neither is read-only
+- **Guarded by the validator:** a phase parent or top-level packet goal warns past 3,000 characters and fails past 4,000, and a binding row naming a child goal that does not exist fails
 - **Autonomous continuation is default-off** and gated (caps, cooldown, kill-switch). See `.opencode/hooks/goal/README.md` for the model and `.opencode/hooks/goal/goal-plugin.md` for the OpenCode plugin contract
 
 ---

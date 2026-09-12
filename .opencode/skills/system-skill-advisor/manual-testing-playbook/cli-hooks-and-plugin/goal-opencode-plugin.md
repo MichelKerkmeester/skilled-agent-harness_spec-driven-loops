@@ -120,7 +120,7 @@ node .opencode/plugins/tests/opencode-goal-capabilities.test.cjs
 
 - Feature [`hooks-and-plugin/goal-opencode-plugin.md`](../../feature-catalog/hooks-and-plugin/goal-opencode-plugin.md)
 - Source: `.opencode/plugins/opencode-goal.js`
-- Source: `.opencode/commands/goal_opencode.md`
+- Source: `.opencode/commands/goal-opencode.md`
 - Tests: `.opencode/plugins/tests/opencode-goal-*.test.cjs`
 
 ---
@@ -182,7 +182,7 @@ PATH=/opt/homebrew/bin:$PATH node .opencode/plugins/tests/opencode-goal-state.te
 
 ### Preconditions
 
-Command file read confirmed `.opencode/commands/goal_opencode.md` exists and routes only through plugin tools:
+Command file read confirmed `.opencode/commands/goal-opencode.md` exists and routes only through plugin tools:
 
 ```text
 4: allowed-tools: opencode_goal, opencode_goal_status
@@ -194,11 +194,11 @@ Command file read confirmed `.opencode/commands/goal_opencode.md` exists and rou
 83: - Reads go through `opencode_goal_status`; mutations go through `opencode_goal`.
 ```
 
-Grep evidence for direct state path and plugin tools in `.opencode/commands/goal_opencode.md`:
+Grep evidence for direct state path and plugin tools in `.opencode/commands/goal-opencode.md`:
 
 ```text
 Found 17 matches
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/goal_opencode.md:
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/goal-opencode.md:
   Line 4: allowed-tools: opencode_goal, opencode_goal_status
 
   Line 15: Manage the passive session goal through the `opencode-goal` plugin. `/goal` is a state-free router: it resolves the requested action from `$ARGUMENTS` and dispatches to the `opencode_goal` / `opencode_goal_status` plugin tools, which own all goal state and session resolution.
