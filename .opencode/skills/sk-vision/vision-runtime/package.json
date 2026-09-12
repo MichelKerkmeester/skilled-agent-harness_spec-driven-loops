@@ -1,0 +1,48 @@
+{
+  "name": "sk-vision",
+  "version": "0.3.0",
+  "description": "Local vision runtime for text-only coding models: OCR, detect, inspect and analysis tools via Moondream, with native OpenCode/Pi adapters, a Devin lifecycle hook and a CLI.",
+  "type": "module",
+  "author": {
+    "name": "sk-vision contributors"
+  },
+  "license": "MIT",
+  "scripts": {
+    "build": "bun run scripts/build.ts",
+    "test": "bun test",
+    "typecheck": "bunx tsc --noEmit",
+    "prepublishOnly": "bun run typecheck && bun run build"
+  },
+  "dependencies": {
+    "@opencode-ai/plugin": "1.17.15",
+    "@opencode-ai/sdk": "1.17.15",
+    "zod": "^4.1.8"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "typescript": "^5.6.0"
+  },
+  "main": "./dist/plugin.js",
+  "exports": {
+    ".": {
+      "types": "./src/plugin.ts",
+      "import": "./dist/plugin.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "opencode",
+    "pi",
+    "plugin",
+    "multimodal",
+    "vision",
+    "moondream",
+    "screenshot",
+    "ocr"
+  ],
+  "engines": {
+    "bun": ">=1.0.0"
+  }
+}
