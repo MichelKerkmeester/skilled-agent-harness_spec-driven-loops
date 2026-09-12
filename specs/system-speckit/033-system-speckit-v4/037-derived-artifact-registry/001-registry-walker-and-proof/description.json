@@ -1,0 +1,21 @@
+{
+  "level": "3",
+  "specFolder": "system-speckit/033-system-speckit-v4/037-derived-artifact-registry/001-registry-walker-and-proof",
+  "description": "Freshness is defended per artifact",
+  "keywords": [
+    "freshness",
+    "defended",
+    "per",
+    "artifact"
+  ],
+  "lastUpdated": "2026-09-11T09:39:58.581Z",
+  "specId": "001",
+  "folderSlug": "registry-walker-and-proof",
+  "parentChain": [
+    "system-speckit",
+    "033-system-speckit-v4",
+    "037-derived-artifact-registry"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

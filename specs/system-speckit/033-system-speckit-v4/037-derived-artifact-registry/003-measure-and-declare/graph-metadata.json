@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/033-system-speckit-v4/037-derived-artifact-registry/003-measure-and-declare",
+  "spec_folder": "system-speckit/033-system-speckit-v4/037-derived-artifact-registry/003-measure-and-declare",
+  "parent_id": "system-speckit/033-system-speckit-v4/037-derived-artifact-registry",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "residue baseline",
+      "declared unhealable",
+      "weekly freshness report",
+      "refusal census",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies"
+    ],
+    "key_topics": [
+      "residue",
+      "baseline",
+      "declared",
+      "unhealable",
+      "weekly",
+      "freshness",
+      "report",
+      "refusal",
+      "census",
+      "implementation",
+      "plan",
+      "technical"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "runtime/cli/spec/repair-derived.cjs",
+      "runtime/cli/spec/heal-spec-docs.cjs",
+      ".github/workflows/strict-pass-freshness-report.yml",
+      "runtime/cli/tests/repair-derived.vitest.ts",
+      "runtime/cli/lib/validator-registry.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "repair-derived.cjs",
+        "kind": "file",
+        "path": "runtime/cli/spec/repair-derived.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "heal-spec-docs.cjs",
+        "kind": "file",
+        "path": "runtime/cli/spec/heal-spec-docs.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "strict-pass-freshness-report.yml",
+        "kind": "config",
+        "path": ".github/workflows/strict-pass-freshness-report.yml",
+        "source": "derived"
+      },
+      {
+        "name": "repair-derived.vitest.ts",
+        "kind": "test",
+        "path": "runtime/cli/tests/repair-derived.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "validator-registry.json",
+        "kind": "config",
+        "path": "runtime/cli/lib/validator-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The weekly job already answers whether the corpus drifted, but it answers in prose",
+    "created_at": "2026-09-11T06:37:35Z",
+    "last_save_at": "2026-09-12T16:14:52.709Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:64f3f2b57deab88afd9e789a16cb914c44263ff7dd646722e12a88c526161ba8",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "fa881ed2db595671dd5ad25089e5610a4ac362faf600ec911d2db08f5744ff63",
+      "plan.md": "7c986549a0e84b9fca47c736d93625bce4169f5511d6c9c06367fa23a576ca58",
+      "tasks.md": "0c171ccc48ea0c4f84a16637897fe5d00b5a24d79f9b331054b41924680bd6bc",
+      "implementation-summary.md": "5ae8bb36abe9c1003db66fc30562f004820b4b0a64371eedb033a81f002fce10"
+    },
+    "last_active_at": null
+  }
+}

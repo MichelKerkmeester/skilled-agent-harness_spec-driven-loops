@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/033-system-speckit-v4/038-goal-unification/001-goal-unification-research",
+  "spec_folder": "system-speckit/033-system-speckit-v4/038-goal-unification/001-goal-unification-research",
+  "parent_id": "system-speckit/033-system-speckit-v4/038-goal-unification",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "goal unification research",
+      "goal binding research",
+      "goal store fate",
+      "frontmatter strip research",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
+    ],
+    "key_topics": [
+      "goal",
+      "unification",
+      "research",
+      "binding",
+      "store",
+      "fate",
+      "frontmatter",
+      "strip",
+      "task",
+      "breakdown",
+      "implementation",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "research/synthesis.md",
+      "research/deep-research-strategy.md",
+      "research/deep-research-fanout-config.run1.json",
+      "research/findings-registry.json",
+      ".opencode/plugins/opencode-goal.js",
+      ".devin/hooks.v1.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "synthesis.md",
+        "kind": "doc",
+        "path": "research/synthesis.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-strategy.md",
+        "kind": "doc",
+        "path": "research/deep-research-strategy.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-fanout-config.run1.json",
+        "kind": "config",
+        "path": "research/deep-research-fanout-config.run1.json",
+        "source": "derived"
+      },
+      {
+        "name": "findings-registry.json",
+        "kind": "config",
+        "path": "research/findings-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-goal.js",
+        "kind": "code",
+        "path": ".opencode/plugins/opencode-goal.js",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.v1.json",
+        "kind": "config",
+        "path": ".devin/hooks.v1.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Sequential",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Seven design decisions must be frozen before any code changes, and each one is a judgment call the repository cannot settle by grep",
+    "created_at": "2026-09-11T07:11:47Z",
+    "last_save_at": "2026-09-12T16:14:52.963Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:ad9f38149b45352834aec08d03baaeb6a1bf7d052ffc0d2680f80d07c532a514",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "c1a3a394bb75398880423774a3aaf766215f61ee1929b9694d9a5e23b7902094",
+      "plan.md": "2e362c86fcd91429cfff4c67fe12dc579d7534b9bd5f552fb591866ce742106d",
+      "tasks.md": "d1e9ce3053758e21170f9e7dbe5d42126e5743e9cd8161ec6057682959f11df3",
+      "implementation-summary.md": "4617ac71b414c014d5b47aa582b3f2a7737a044d0042ebb878e5ab33b155f581",
+      "research/research.md": "f8f2d0c473bc3a68408c37fb690319e40eeeccd17d96ec9466ec467b3164bc29"
+    },
+    "last_active_at": null
+  }
+}

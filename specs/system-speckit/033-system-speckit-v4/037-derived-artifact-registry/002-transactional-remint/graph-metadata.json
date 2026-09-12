@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/033-system-speckit-v4/037-derived-artifact-registry/002-transactional-remint",
+  "spec_folder": "system-speckit/033-system-speckit-v4/037-derived-artifact-registry/002-transactional-remint",
+  "parent_id": "system-speckit/033-system-speckit-v4/037-derived-artifact-registry",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "transactional remint",
+      "partial failure staging",
+      "commit widening",
+      "restore staged",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies"
+    ],
+    "key_topics": [
+      "transactional",
+      "remint",
+      "partial",
+      "failure",
+      "staging",
+      "commit",
+      "widening",
+      "restore",
+      "staged",
+      "implementation",
+      "plan",
+      "technical"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "runtime/cli/spec/repair-derived.cjs",
+      ".opencode/scripts/git-hooks/tests/pre-commit.test.sh"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "repair-derived.cjs",
+        "kind": "file",
+        "path": "runtime/cli/spec/repair-derived.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "pre-commit.test.sh",
+        "kind": "script",
+        "path": ".opencode/scripts/git-hooks/tests/pre-commit.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Select",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The re-mint gate exists to keep a packet's generated metadata in step with its documents, and it does that by regenerating and staging",
+    "created_at": "2026-09-11T06:37:39Z",
+    "last_save_at": "2026-09-12T16:14:52.594Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:265f839570f8d21e578a149148a2f4c1bad2455ec4825bc335811533a26c2c97",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "4dc373e04d28550da078ec23586e3142d845e77beb2570782f3e3d9d52205372",
+      "plan.md": "9374e775eaa6ebcb0d4de3bc7b41488cb88cf1e0348e840e1c8ee39c32406385",
+      "tasks.md": "ac475a39a5475ed023605b356152b76806abd489828c1c33704dc306004556c9",
+      "implementation-summary.md": "0b0b4f30b16a53bf592cb8aa538e8c91d3c9125ec89dcc0346906d599d8309aa"
+    },
+    "last_active_at": null
+  }
+}
