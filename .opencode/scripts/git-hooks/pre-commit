@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
-# Pre-commit hook — advisory model-reference drift check.
+# Pre-commit hook — blocking gates plus a few advisories.
 #
-# Runs validate-doc-model-refs.js on the working tree before each commit.
-# Advisory mode: prints warnings on drift but does NOT block the commit.
-# Bypass: SPECKIT_SKIP_DOC_MODEL_VALIDATE=1 git commit ...
+# What runs here is what must run before the commit object exists. Checks that
+# only need to run once per change, and that cost more than they catch, belong
+# in CI instead; the doc-model reference validator moved there for that reason.
+# Each gate below documents its own bypass.
 #
 # Install: bash .opencode/scripts/install-git-hooks.sh
 # Uninstall: rm .git/hooks/pre-commit
