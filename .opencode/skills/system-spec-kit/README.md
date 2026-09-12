@@ -59,6 +59,7 @@ Embeddings are local-first. The runtime probes Ollama first with the default `no
 | **Documentation levels** | four levels matched to task complexity, from the Level 1 baseline up to the Level 3+ governance set |
 | **Phase parents** | lean parent folders with the control-file trio and named child phase folders |
 | **Packet-local changelogs** | `changelog/` history written beside packet roots and direct child phases at closeout |
+| **Goal documents** | an optional `goal.md` addon binding a session to a durable objective, gated by a character budget |
 | **Validation** | the 40-rule registry with three strict-only rules gated behind `--strict` |
 
 ### Continuity and Retrieval
@@ -223,6 +224,16 @@ Not every change needs the same amount of paperwork. A one-line bug fix does not
 | **Phase Parent** | control files only | `spec.md`, `description.json`, `graph-metadata.json` | folder contains phase children with their own spec docs |
 
 The LOC ranges are guidance, not hard rules. Risk, complexity and the number of affected files can push a task to a higher level. When in doubt, choose the higher level.
+
+### Goal Documents
+
+A packet can opt into a `goal.md` document with `create.sh --with-goal`, valid at every level and on phase parents. It holds the durable objective and completion criteria a session works toward across turns, rendered from `templates/addons/goal.md.tmpl`.
+
+A session binds to exactly one packet, and that packet's `goal.md` is the single source of the goal on every runtime. Rendering reads the file fresh each time, so editing it changes what the model sees on its next turn. Frontmatter never leaves the file: every surface that shows the goal, including the chat resend and the runtime injection, reads the durable slice only.
+
+The validator warns past 3,000 durable characters and fails past 4,000. That budget applies to phase parents and top-level packets. Phase children are unbounded, and a binding row naming a child `goal.md` that does not exist fails validation.
+
+The full cross-runtime contract, injection behavior per runtime and management commands live in the root `README.md` Goal Plugin section and in `.opencode/hooks/goal/README.md`.
 
 ### Task Priority System
 

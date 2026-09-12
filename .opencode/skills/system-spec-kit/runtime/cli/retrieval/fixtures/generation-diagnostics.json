@@ -1,12 +1,12 @@
 {
   "counts": {
     "duplicate-phrase": 54,
-    "missing-frontmatter": 7105,
+    "missing-frontmatter": 7135,
     "non-yaml-frontmatter": 1,
-    "ok": 14783,
+    "ok": 14815,
     "valid-empty-list": 7531
   },
-  "documentsScanned": 29474,
+  "documentsScanned": 29536,
   "ignoredMalformedDocuments": 1,
   "ignoredPaths": [
     {
@@ -16,7 +16,7 @@
   ],
   "ignoredPathsUnmatched": [],
   "malformedDocuments": 0,
-  "manifestHash": "3181abe368c54510dbf261ace65f3ecf5b7e2d2a8fc366e53f8488a9d958700e",
+  "manifestHash": "7d2e42001157e9dad4fb32e6b6568c7de06eb614bb8127d6f3c04a10a9b23b0f",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -31,7 +31,7 @@
       "editor-fallback": 2,
       "generic-workflow-word": 3,
       "numeric-only": 41,
-      "ok": 35805,
+      "ok": 35842,
       "prose-sentence": 27,
       "single-token": 304,
       "stop-word-only": 3
@@ -12166,6 +12166,12 @@
       "category": "missing-frontmatter",
       "line": 1,
       "path": ".opencode/skills/sk-communication/changelog/v1.1.0.0.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".opencode/skills/sk-communication/changelog/v1.2.0.0.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
@@ -39529,6 +39535,24 @@
       "reason": "declared empty trigger list"
     },
     {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks/022-smart-rule-injection/001-deep-research/research/iterations/iteration-001.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks/022-smart-rule-injection/001-deep-research/research/iterations/iteration-002.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks/022-smart-rule-injection/001-deep-research/research/prior-findings.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
       "category": "valid-empty-list",
       "line": 3,
       "path": "specs/mcp-tooling/007-mcp-tooling-parent/007-routing-benchmark-and-review/review-report.md",
@@ -41986,6 +42010,162 @@
       "path": "specs/sk-communication/002-sk-communication-triggers/001-research-contracts/research/research.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-communication/006-sk-communication-clarity/context/clarity.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-communication/006-sk-communication-clarity/context/claude-style-patch-main/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-communication/006-sk-communication-clarity/context/claude-style-patch-main/STYLE.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/sk-communication/006-sk-communication-clarity/context/i-have-adhd-main/.cursor/skills/i-have-adhd/SKILL.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-communication/006-sk-communication-clarity/context/i-have-adhd-main/.github/install/INSTALL.ja.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-communication/006-sk-communication-clarity/context/i-have-adhd-main/.github/install/INSTALL.ko.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-communication/006-sk-communication-clarity/context/i-have-adhd-main/.github/install/INSTALL.pt-BR.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-communication/006-sk-communication-clarity/context/i-have-adhd-main/.github/install/INSTALL.vi.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-communication/006-sk-communication-clarity/context/i-have-adhd-main/.github/install/INSTALL.zh-CN.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-communication/006-sk-communication-clarity/context/i-have-adhd-main/.github/pull_request_template.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-communication/006-sk-communication-clarity/context/i-have-adhd-main/.github/readme/README.ja.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-communication/006-sk-communication-clarity/context/i-have-adhd-main/.github/readme/README.ko.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-communication/006-sk-communication-clarity/context/i-have-adhd-main/.github/readme/README.pt-BR.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-communication/006-sk-communication-clarity/context/i-have-adhd-main/.github/readme/README.th.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-communication/006-sk-communication-clarity/context/i-have-adhd-main/.github/readme/README.vi.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-communication/006-sk-communication-clarity/context/i-have-adhd-main/.github/readme/README.zh-CN.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/sk-communication/006-sk-communication-clarity/context/i-have-adhd-main/.opencode/command/i-have-adhd.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-communication/006-sk-communication-clarity/context/i-have-adhd-main/AGENTS.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-communication/006-sk-communication-clarity/context/i-have-adhd-main/CONTRIBUTING.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-communication/006-sk-communication-clarity/context/i-have-adhd-main/GEMINI.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-communication/006-sk-communication-clarity/context/i-have-adhd-main/INSTALL.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-communication/006-sk-communication-clarity/context/i-have-adhd-main/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-communication/006-sk-communication-clarity/context/i-have-adhd-main/evals/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-communication/006-sk-communication-clarity/context/i-have-adhd-main/evals/RESULTS.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-communication/006-sk-communication-clarity/context/i-have-adhd-main/evals/rubric.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/sk-communication/006-sk-communication-clarity/context/i-have-adhd-main/skills/i-have-adhd/SKILL.md",
+      "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "valid-empty-list",
@@ -96974,6 +97154,26 @@
     },
     {
       "path": "specs/sk-communication/005-deprecate-visual-explanation-lane/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/002-synthesis-and-decisions/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/003-root-doc-and-repo-rules/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/004-sk-communication-upgrade/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/scratch",
       "reason": "excluded directory"
     },
     {
