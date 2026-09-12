@@ -109,6 +109,8 @@ hook_adapter_fallback_health_checks:
   - { host: devin, event: SessionStart, path: ".opencode/skills/system-spec-kit/runtime/dist/hooks/devin/session-start.js", type: file_exists }
   - { host: devin, event: UserPromptSubmit, path: ".opencode/skills/system-spec-kit/runtime/dist/hooks/devin/user-prompt-submit.js", type: file_exists }
   - { host: devin, event: PreToolUse, path: ".opencode/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs", type: file_exists }
+  - { host: devin, event: SessionStart, path: ".opencode/hooks/goal/devin/goal-inject.mjs", type: file_exists }
+  - { host: devin, event: UserPromptSubmit, path: ".opencode/hooks/goal/devin/goal-inject.mjs", type: file_exists }
   - { host: devin, event: Stop, path: ".opencode/skills/system-spec-kit/runtime/dist/hooks/devin/session-stop.js", type: file_exists }
 
 # ─────────────────────────────────────────────────────────────────

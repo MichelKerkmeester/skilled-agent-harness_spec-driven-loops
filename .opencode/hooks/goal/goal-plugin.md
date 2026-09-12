@@ -1,10 +1,10 @@
 ---
 title: "OpenCode Goal Plugin Contract"
-description: "Operator contract for the local /goal OpenCode plugin, session-goal state, prompt injection, lifecycle events, and validation surfaces."
+description: "Operator contract for the local /goal-opencode OpenCode plugin, session-goal state, prompt injection, lifecycle events, and validation surfaces."
 trigger_phrases:
   - "goal plugin"
   - "opencode-goal"
-  - "/goal command"
+  - "/goal-opencode command"
   - "active_goal"
   - "session goal"
 importance_tier: "important"
@@ -14,11 +14,11 @@ version: 3.8.1.0
 
 # OpenCode Goal Plugin Contract
 
-Use this reference when changing, validating, or operating the local `/goal` OpenCode plugin. It names the plugin-owned state, injection hooks, command boundary, environment controls, and restart requirements.
+Use this reference when changing, validating, or operating the local `/goal-opencode` OpenCode plugin. It names the plugin-owned state, injection hooks, command boundary, environment controls, and restart requirements.
 
 ## 1. OVERVIEW
 
-`/goal` gives an OpenCode session a durable completion objective. The command is a thin router; the plugin owns state, injection, lifecycle tracking, status output, completion supervision, and guarded continuation.
+`/goal-opencode` gives an OpenCode session a durable completion objective. The command is a thin router; the plugin owns state, injection, lifecycle tracking, status output, completion supervision, and guarded continuation.
 
 This is a local OpenCode plugin contract, not an MCP tool and not a daemon-backed CLI bridge. The plugin is documented here because it participates in the same OpenCode runtime-injection layer as the skill-advisor and spec-gate plugin surfaces.
 
@@ -29,7 +29,7 @@ This is a local OpenCode plugin contract, not an MCP tool and not a daemon-backe
 | Surface | Path | Role |
 |---|---|---|
 | Plugin | `.opencode/plugins/opencode-goal.js` | Auto-loaded OpenCode plugin with `event`, `experimental.chat.system.transform`, `opencode_goal`, and `opencode_goal_status`. |
-| Command | `.opencode/commands/goal-opencode.md` | State-free `/goal` router for `bind`, `unbind`, `resent`, `log`, `packet`, `set`, `show`, `history`, `doctor`, `health`, `clear`, `complete`, `pause`, and `resume`. |
+| Command | `.opencode/commands/goal-opencode.md` | State-free `/goal-opencode` router for `bind`, `unbind`, `resent`, `log`, `packet`, `set`, `show`, `history`, `doctor`, `health`, `clear`, `complete`, `pause`, and `resume`. |
 | State | `.opencode/skills/.state/goal/` | Per-session JSON record keyed by a fixed SHA-256 digest of the session id: the packet pointer, the operator copy, liveness and telemetry. The directive is the bound packet's `goal.md`. |
 | Slice | `.opencode/hooks/goal/lib/goal-slice.cjs` | The packet goal projections the plugin renders from; shared with the runtime-neutral core so the frontmatter boundary is defined once. |
 | Tests | `.opencode/plugins/tests/opencode-goal-*.test.cjs` | Unit coverage for state, tool path, lifecycle, supervisor, continuation, export contract, and injection behavior. |
@@ -38,20 +38,20 @@ This is a local OpenCode plugin contract, not an MCP tool and not a daemon-backe
 
 ## 3. BEHAVIOR CONTRACT
 
-- `/goal bind <packet-path>` resolves the path inside the workspace, refuses anything outside it or without a `goal.md`, derives the objective from the file (pointer, binding sentence when phased, criteria copied out) and stores `packetPath`. From then on injection renders from the file on every turn; a bound goal whose file is gone injects nothing.
-- `/goal resent` records the durable-slice hash that was resent in chat so `resend_pending` clears. `/goal unbind` drops the pointer and keeps the record. `/goal log <item> | <state> | <evidence>` appends one row below the packet's log anchor through the shared core's locked append. `/goal packet <packet-path>` reads a packet's slice, hash, size and budget tier without binding. An action the tool does not know fails with `UNKNOWN_ACTION` instead of falling back to `show`.
-- `/goal set <objective>` stores a sanitized raw `objective`, derives a deterministic `goalPrompt`, and records prompt metadata under `promptEnhancement`. A different objective on a bound goal replaces the record and drops the packet pointer: text and packet are two modes, and `set` selects text. Bind again to return to the packet.
-- `/goal set <objective> --budget N` passes `tokenBudget: N` through the command router; invalid, zero, negative, or missing budget values fail before a tool call.
-- `/goal history` lists archived goal records from `.opencode/skills/.state/goal/.archive/` without creating or mutating active state.
+- `/goal-opencode bind <packet-path>` resolves the path inside the workspace, refuses anything outside it or without a `goal.md`, derives the objective from the file (pointer, binding sentence when phased, criteria copied out) and stores `packetPath`. From then on injection renders from the file on every turn; a bound goal whose file is gone injects nothing.
+- `/goal-opencode resent` records the durable-slice hash that was resent in chat so `resend_pending` clears. `/goal-opencode unbind` drops the pointer and keeps the record. `/goal-opencode log <item> | <state> | <evidence>` appends one row below the packet's log anchor through the shared core's locked append. `/goal-opencode packet <packet-path>` reads a packet's slice, hash, size and budget tier without binding. An action the tool does not know fails with `UNKNOWN_ACTION` instead of falling back to `show`.
+- `/goal-opencode set <objective>` stores a sanitized raw `objective`, derives a deterministic `goalPrompt`, and records prompt metadata under `promptEnhancement`. A different objective on a bound goal replaces the record and drops the packet pointer: text and packet are two modes, and `set` selects text. Bind again to return to the packet.
+- `/goal-opencode set <objective> --budget N` passes `tokenBudget: N` through the command router; invalid, zero, negative, or missing budget values fail before a tool call.
+- `/goal-opencode history` lists archived goal records from `.opencode/skills/.state/goal/.archive/` without creating or mutating active state.
 - Reads adopt valid legacy hex-keyed active and archived files into the fixed digest path without overwriting an occupied target. Malformed or mismatched sources remain untouched.
-- `/goal doctor` and `/goal health` are read-only inspections that report active state-file count, archive-file count, `.continuation.log` and `.goal-events.log` byte sizes, last sweep time, and orphan-candidate count.
-- `/goal resume` reactivates `paused`, `usage_limited` and `budget_limited` goals, clears `continuationSuppressed`, clears `continuationSuppressedReason`, and rejects terminal resurrection.
+- `/goal-opencode doctor` and `/goal-opencode health` are read-only inspections that report active state-file count, archive-file count, `.continuation.log` and `.goal-events.log` byte sizes, last sweep time, and orphan-candidate count.
+- `/goal-opencode resume` reactivates `paused`, `usage_limited` and `budget_limited` goals, clears `continuationSuppressed`, clears `continuationSuppressedReason`, and rejects terminal resurrection.
 - `experimental.chat.system.transform` injects one `[active_goal:<goalId>]` block only for active goals.
 - The injected block keeps a short raw `objective:` preview for auditability and uses `goal_prompt:` for model-facing steering.
 - A bound packet's completion criteria render as their own `criteria:` field, one per line, in both the full and the compact block. A budget drops whole criteria rather than cutting one, and adds an `- (N more in the goal file)` line when it does.
 - The `event` hook restores active goals on `session.created`, records usage/evidence on `message.updated`, tracks prompt blockers, verifies on `session.idle`, and attempts continuation only when autonomy gates pass. Provider usage-limit recovery is lazy: a retry-after deadline recorded from a 429 payload is evaluated on the next `message.updated` or `session.idle`, with no timer.
 - Idle verification uses an injected `supervisorVerifier` when tests or callers provide one; otherwise it uses the production default verifier. The default is a fail-closed heuristic over the latest assistant evidence and the goal objective. Set `OPENCODE_GOAL_VERIFIER=llm` to opt into the model-backed verifier that calls `ctx.client.session.promptAsync` and parses a structured verdict.
-- `/goal show` and `opencode_goal_status` expose the exact injection preview plus prompt metadata so operators can inspect what the model receives.
+- `/goal-opencode show` and `opencode_goal_status` expose the exact injection preview plus prompt metadata so operators can inspect what the model receives.
 
 ---
 
@@ -82,7 +82,7 @@ This is a local OpenCode plugin contract, not an MCP tool and not a daemon-backe
 
 ## 5. OUTPUT FIELDS
 
-`opencode_goal_status` and `/goal set` responses expose these status fields in addition to the injection preview and prompt metadata:
+`opencode_goal_status` and `/goal-opencode set` responses expose these status fields in addition to the injection preview and prompt metadata:
 
 | Field | Values | Meaning |
 |---|---|---|
@@ -102,7 +102,7 @@ This is a local OpenCode plugin contract, not an MCP tool and not a daemon-backe
 
 The default heuristic marks a goal `met` only when the latest assistant evidence is long enough to carry signal, contains an explicit completion phrase, and references enough objective keywords to tie the claim to the active goal. Empty, short, truncated, unrelated, merely repetitive, investigation-only, or mixed completion-plus-blocker evidence remains `not_met`; blocker words such as failed, error, cannot, TODO, not yet, partially, still need, pending, or waiting override completion phrases.
 
-`/goal history` returns `archive_count` plus `archive_N_file`, `archive_N_goal_id`, `archive_N_session_id`, `archive_N_status`, `archive_N_objective`, `archive_N_updated_at_ms`, and `archive_N_size_bytes` rows. `/goal doctor` and `/goal health` return `active_state_file_count`, `archive_file_count`, `continuation_log_bytes`, `goal_events_log_bytes`, `last_sweep_at_ms`, `last_sweep_at`, and `orphan_candidate_count`.
+`/goal-opencode history` returns `archive_count` plus `archive_N_file`, `archive_N_goal_id`, `archive_N_session_id`, `archive_N_status`, `archive_N_objective`, `archive_N_updated_at_ms`, and `archive_N_size_bytes` rows. `/goal-opencode doctor` and `/goal-opencode health` return `active_state_file_count`, `archive_file_count`, `continuation_log_bytes`, `goal_events_log_bytes`, `last_sweep_at_ms`, `last_sweep_at`, and `orphan_candidate_count`.
 
 ### Canonical Usage Fields
 

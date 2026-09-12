@@ -5,7 +5,7 @@ description: "How .cursor derives from .opencode and .claude: symlinked agents a
 
 # Cursor CLI Sync Manifest
 
-> Everything Cursor consumes is a **symlink** onto a canonical file, so no mirror here can drift from its source. Only `hooks.json` and `rules/` are authored in this directory.
+> Almost everything Cursor consumes is a **symlink** onto a canonical file, so those mirrors cannot drift from their source. Authored in this directory: `hooks.json`, `rules/`, and the two native commands `commands/goal-cursor.md` and `commands/vision.md`, which have no canonical counterpart to point at.
 
 ---
 
@@ -29,7 +29,7 @@ Agents source from **`.claude/agents/`**, not `.opencode/agents/`, because Curso
 | Surface | Mechanism | Source | Target shape |
 |---|---|---|---|
 | `agents/*.md` (13) | symlink | `.claude/agents/<name>.md` | `../../.claude/agents/<name>.md` |
-| `commands/*.md` (35) | symlink | `.opencode/commands/<path>.md` | flattened: `create/agent.md` → `create-agent.md` |
+| `commands/*.md` (36) | symlink, except the two native commands | `.opencode/commands/<path>.md` | flattened: `create/agent.md` → `create-agent.md` |
 | `hooks/*` (15) | symlink | scattered `.opencode/**` | discovery mirror only |
 | `hooks.json` | **hand-authored** | — | — |
 | `rules/skill-routing.md` | **hand-authored**, plus one generated Gate 1 pointer block | root `AGENTS.md` Gate 1 line via `sync-gate1-pointers.cjs` | also read by Devin; `--check` catches a stale block |
