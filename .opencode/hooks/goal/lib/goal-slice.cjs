@@ -114,6 +114,10 @@ function buildObjectiveSlice(content, packetPath) {
 }
 
 const CRITERIA_HEADING = 'DONE WHEN:';
+// A rendered criterion costs its own text plus the '- ' marker and the newline.
+const CRITERIA_LINE_OVERHEAD_CHARS = 3;
+// Deep enough for any real checkout, shallow enough that a cycle cannot hang a turn.
+const WORKSPACE_WALK_MAX_DEPTH = 40;
 
 /**
  * Split an objective slice into the sentence that names the packet and the
@@ -159,7 +163,7 @@ function selectCriteriaWithin(criteria, budgetChars) {
   const shown = [];
   let used = 0;
   for (const item of items) {
-    const cost = item.length + 3;
+    const cost = item.length + CRITERIA_LINE_OVERHEAD_CHARS;
     if (used + cost > budget) break;
     shown.push(item);
     used += cost;
@@ -212,7 +216,7 @@ function renderResendReminderText(packetPath, options = {}) {
  */
 function resolveWorkspaceRoot(startDir) {
   let dir = resolve(startDir || process.cwd());
-  for (let depth = 0; depth < 40; depth += 1) {
+  for (let depth = 0; depth < WORKSPACE_WALK_MAX_DEPTH; depth += 1) {
     if (existsSync(join(dir, '.git')) || existsSync(join(dir, '.opencode', 'skills'))) return dir;
     const parent = dirname(dir);
     if (parent === dir) break;

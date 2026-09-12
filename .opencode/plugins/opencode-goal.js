@@ -1,7 +1,5 @@
 // ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ COMPONENT: Goal OpenCode Plugin (opencode-goal)                               ║
-// ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ PURPOSE: Persist session goals and inject passive goal steering.         ║
+// ║ opencode-goal — session goal persistence and passive goal steering for OpenCode║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 
@@ -53,6 +51,11 @@ const DEFAULT_CONTINUATION_TIMEOUT_MS = 30 * 1000;
 const DEFAULT_JSONL_MAX_BYTES = 5 * 1024 * 1024;
 const DEFAULT_GOAL_BRIEF_CACHE_ENTRIES = 512;
 const GOAL_ID_MAX_CHARS = 160;
+// The objective summary inside a prompt is clamped between these, whatever the
+// prompt budget works out to: below the floor it stops naming the packet, above
+// the ceiling it crowds out the steering text it introduces.
+const PROMPT_OBJECTIVE_MIN_CHARS = 240;
+const PROMPT_OBJECTIVE_MAX_CHARS = 1200;
 const PROMPT_OVERHEAD_CHARS = 1900;
 const OBJECTIVE_PREVIEW_RATIO = 0.12;
 const OBJECTIVE_PREVIEW_MIN_CHARS = 60;
@@ -525,7 +528,10 @@ function goalFocusHints(objective) {
 function buildEnhancedGoalPrompt(objective, rawOptions = {}) {
   const options = normalizeOptions(rawOptions);
   const rawObjective = sanitizeInlineText(objective, options.maxObjectiveChars);
-  const objectiveBudget = Math.max(240, Math.min(1200, options.maxGoalPromptChars - PROMPT_OVERHEAD_CHARS));
+  const objectiveBudget = Math.max(
+    PROMPT_OBJECTIVE_MIN_CHARS,
+    Math.min(PROMPT_OBJECTIVE_MAX_CHARS, options.maxGoalPromptChars - PROMPT_OVERHEAD_CHARS),
+  );
   // The criteria are carried as their own field beside this prompt, so naming
   // only the packet here keeps one copy instead of two and leaves the budget
   // to the part a reader cannot reconstruct.

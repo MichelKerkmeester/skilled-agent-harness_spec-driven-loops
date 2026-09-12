@@ -1,15 +1,11 @@
 #!/usr/bin/env node
 // ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ COMPONENT: goal manage CLI (runtime-neutral)                             ║
-// ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ PURPOSE: Thin router over goal-core.cjs for runtimes with no plugin      ║
-// ║          tool surface. Preserves `/goal-opencode`'s base actions,       ║
-// ║          STATUS=/ACTION= envelope, --budget parsing, and error codes,   ║
-// ║          while adding explicit legacy quarantine actions.               ║
-// ║          benchmarks can compare the manage CLI against the OpenCode      ║
-// ║          plugin router 1:1. Never writes goal state directly -- every    ║
-// ║          mutation goes through the shared core.                          ║
+// ║ goal — the manage command for runtimes with no plugin tool surface       ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
+//
+// A thin router over the shared core, preserving the status envelope and error
+// codes so a benchmark can compare this surface against the OpenCode plugin
+// one to one. It never writes goal state directly.
 'use strict';
 
 // ─────────────────────────────────────────────────────────────────────────────

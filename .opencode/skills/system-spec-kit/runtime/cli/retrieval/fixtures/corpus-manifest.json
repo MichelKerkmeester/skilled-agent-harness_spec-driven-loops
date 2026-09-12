@@ -1,5 +1,5 @@
 {
-  "corpusHash": "6a9eefd860d045fee7a82641e035f85ab76773200076bd64fefb1d03e4cb8f5b",
+  "corpusHash": "9ea8777a132d7a6d852038f57e76bb3ba8a379c8c7f8e00755972d5ded14ca90",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -17,7 +17,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 29301,
+  "includedPathCount": 29447,
   "includedPaths": [
     ".opencode/hooks/README.md",
     ".opencode/hooks/codex-watchdog/README.md",
@@ -852,6 +852,7 @@
     ".opencode/skills/cli-external-orchestration/cli-devin/changelog/v1.3.0.0.md",
     ".opencode/skills/cli-external-orchestration/cli-devin/changelog/v1.4.0.0.md",
     ".opencode/skills/cli-external-orchestration/cli-devin/changelog/v1.4.1.0.md",
+    ".opencode/skills/cli-external-orchestration/cli-devin/changelog/v1.4.2.0.md",
     ".opencode/skills/cli-external-orchestration/cli-devin/manual-testing-playbook/cli-invocation/availability-probe.md",
     ".opencode/skills/cli-external-orchestration/cli-devin/manual-testing-playbook/cli-invocation/default-invocation.md",
     ".opencode/skills/cli-external-orchestration/cli-devin/manual-testing-playbook/cli-invocation/hallucination-fixture-fabricated-flag.md",
@@ -1167,6 +1168,7 @@
     ".opencode/skills/cli-external-orchestration/cli-opencode/changelog/v1.4.3.0.md",
     ".opencode/skills/cli-external-orchestration/cli-opencode/changelog/v1.4.4.0.md",
     ".opencode/skills/cli-external-orchestration/cli-opencode/changelog/v1.4.5.0.md",
+    ".opencode/skills/cli-external-orchestration/cli-opencode/changelog/v1.4.6.0.md",
     ".opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/context-leaf-agent.md",
     ".opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/deep-research-agent-iterations.md",
     ".opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/deep-review-agent-audit.md",
@@ -1392,6 +1394,7 @@
     ".opencode/skills/cli-external-orchestration/cli-pi/changelog/v1.5.0.0.md",
     ".opencode/skills/cli-external-orchestration/cli-pi/changelog/v1.5.1.0.md",
     ".opencode/skills/cli-external-orchestration/cli-pi/changelog/v1.5.2.0.md",
+    ".opencode/skills/cli-external-orchestration/cli-pi/changelog/v1.5.3.0.md",
     ".opencode/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/agent-bridge/project-agent-override.md",
     ".opencode/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/cli-invocation/default-invocation-and-settings-merge.md",
     ".opencode/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/cli-invocation/hallucination-fixture-undocumented-pi-syntax.md",
@@ -2652,7 +2655,6 @@
     ".opencode/skills/sk-code/sk-code-review/manual-testing-playbook/severity-and-evidence-discipline/class-of-bug-vs-instance-only.md",
     ".opencode/skills/sk-code/sk-code-review/manual-testing-playbook/severity-and-evidence-discipline/cross-consumer-affected-surface.md",
     ".opencode/skills/sk-code/sk-code-review/manual-testing-playbook/severity-and-evidence-discipline/p0-blocker-with-file-line.md",
-    ".opencode/skills/sk-code/sk-code-review/manual-testing-playbook/structural-impact-preflight/detect-changes-assisted-review.md",
     ".opencode/skills/sk-code/sk-code-review/references/pr-state-dedup.md",
     ".opencode/skills/sk-code/sk-code-review/references/quick-reference.md",
     ".opencode/skills/sk-code/sk-code-review/references/review-core.md",
@@ -2978,6 +2980,7 @@
     ".opencode/skills/sk-design/sk-design-diagram/benchmark/reports/README.md",
     ".opencode/skills/sk-design/sk-design-diagram/changelog/v1.0.0.0.md",
     ".opencode/skills/sk-design/sk-design-diagram/changelog/v1.1.0.0.md",
+    ".opencode/skills/sk-design/sk-design-diagram/changelog/v1.2.0.0.md",
     ".opencode/skills/sk-design/sk-design-diagram/feature-catalog/command-and-hub-integration/design-diagram-command.md",
     ".opencode/skills/sk-design/sk-design-diagram/feature-catalog/command-and-hub-integration/hub-registration.md",
     ".opencode/skills/sk-design/sk-design-diagram/feature-catalog/diagram-generation/editorial-style-and-connectors.md",
@@ -5741,6 +5744,7 @@
     ".opencode/skills/sk-design/sk-design-md-generator/styles/tests/engine/README.md",
     ".opencode/skills/sk-design/sk-design-md-generator/styles/tests/oracle/README.md",
     ".opencode/skills/sk-design/sk-design-md-generator/styles/tests/oracle/golden/README.md",
+    ".opencode/skills/sk-doc/.pytest_cache/README.md",
     ".opencode/skills/sk-doc/README.md",
     ".opencode/skills/sk-doc/ROUTER.md",
     ".opencode/skills/sk-doc/SKILL.md",
@@ -5817,7 +5821,9 @@
     ".opencode/skills/sk-doc/manual-testing-playbook/token-cost-baseline/minimal-load.md",
     ".opencode/skills/sk-doc/manual-testing-playbook/unknown-fallback/disambiguation-required.md",
     ".opencode/skills/sk-doc/manual-testing-playbook/unknown-fallback/no-keyword-match.md",
+    ".opencode/skills/sk-doc/scripts/.pytest_cache/README.md",
     ".opencode/skills/sk-doc/scripts/README.md",
+    ".opencode/skills/sk-doc/scripts/tests/.pytest_cache/README.md",
     ".opencode/skills/sk-doc/scripts/tests/README.md",
     ".opencode/skills/sk-doc/scripts/tests/code-folder/flat-contents-pass/README.md",
     ".opencode/skills/sk-doc/scripts/tests/code-folder/negative/broken-links/README.md",
@@ -6177,7 +6183,9 @@
     ".opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md",
     ".opencode/skills/sk-doc/sk-create-with-human-voice/references/scope-and-exemptions.md",
     ".opencode/skills/sk-doc/sk-create-with-human-voice/references/scoring-and-verification.md",
+    ".opencode/skills/sk-doc/sk-create-with-human-voice/scripts/.pytest_cache/README.md",
     ".opencode/skills/sk-doc/sk-create-with-human-voice/scripts/README.md",
+    ".opencode/skills/sk-doc/sk-create-with-human-voice/scripts/tests/.pytest_cache/README.md",
     ".opencode/skills/sk-git/README.md",
     ".opencode/skills/sk-git/SKILL.md",
     ".opencode/skills/sk-git/assets/commit-message-template.md",
@@ -6410,10 +6418,12 @@
     ".opencode/skills/sk-vision/benchmark/reports/2026-08-17--manual-testing-playbook--vsn-020-devin-vision-blind/source.md",
     ".opencode/skills/sk-vision/benchmark/reports/README.md",
     ".opencode/skills/sk-vision/changelog/v0.2.0.0.md",
+    ".opencode/skills/sk-vision/changelog/v0.3.0.0.md",
     ".opencode/skills/sk-vision/feature-catalog/feature-catalog.md",
-    ".opencode/skills/sk-vision/feature-catalog/host-adapters/mcp-transport.md",
+    ".opencode/skills/sk-vision/feature-catalog/host-adapters/devin-hook.md",
     ".opencode/skills/sk-vision/feature-catalog/host-adapters/opencode-plugin.md",
     ".opencode/skills/sk-vision/feature-catalog/host-adapters/pi-extension.md",
+    ".opencode/skills/sk-vision/feature-catalog/host-adapters/vision-cli.md",
     ".opencode/skills/sk-vision/feature-catalog/pixel-analysis/annotate.md",
     ".opencode/skills/sk-vision/feature-catalog/pixel-analysis/colors.md",
     ".opencode/skills/sk-vision/feature-catalog/pixel-analysis/crop.md",
@@ -6435,15 +6445,13 @@
     ".opencode/skills/sk-vision/manual-testing-playbook/guaranteed-vision/classifier-and-env.md",
     ".opencode/skills/sk-vision/manual-testing-playbook/guaranteed-vision/cursor-rule.md",
     ".opencode/skills/sk-vision/manual-testing-playbook/guaranteed-vision/devin-note.md",
-    ".opencode/skills/sk-vision/manual-testing-playbook/host-adapters/cursor-mcp.md",
-    ".opencode/skills/sk-vision/manual-testing-playbook/host-adapters/devin-mcp.md",
-    ".opencode/skills/sk-vision/manual-testing-playbook/host-adapters/mcp-lifecycle.md",
-    ".opencode/skills/sk-vision/manual-testing-playbook/host-adapters/mcp-standalone.md",
+    ".opencode/skills/sk-vision/manual-testing-playbook/host-adapters/devin-hook.md",
     ".opencode/skills/sk-vision/manual-testing-playbook/host-adapters/opencode-plugin.md",
     ".opencode/skills/sk-vision/manual-testing-playbook/host-adapters/opencode-vision-command.md",
     ".opencode/skills/sk-vision/manual-testing-playbook/host-adapters/pi-extension.md",
     ".opencode/skills/sk-vision/manual-testing-playbook/host-adapters/pi-vision-command.md",
     ".opencode/skills/sk-vision/manual-testing-playbook/host-adapters/vision-blind-model.md",
+    ".opencode/skills/sk-vision/manual-testing-playbook/host-adapters/vision-cli.md",
     ".opencode/skills/sk-vision/manual-testing-playbook/manual-testing-playbook.md",
     ".opencode/skills/sk-vision/manual-testing-playbook/pixel-analysis/annotate.md",
     ".opencode/skills/sk-vision/manual-testing-playbook/pixel-analysis/colors.md",
@@ -8116,6 +8124,17 @@
     "specs/agents/009-turn-closeout-next-steps/008-communication-split/spec.md",
     "specs/agents/009-turn-closeout-next-steps/008-communication-split/tasks.md",
     "specs/agents/009-turn-closeout-next-steps/spec.md",
+    "specs/agents/010-repo-rule-system-integration/acceptance-criteria.md",
+    "specs/agents/010-repo-rule-system-integration/implementation-summary.md",
+    "specs/agents/010-repo-rule-system-integration/plan.md",
+    "specs/agents/010-repo-rule-system-integration/research/cross-lineage-synthesis.md",
+    "specs/agents/010-repo-rule-system-integration/research/synthesis.md",
+    "specs/agents/010-repo-rule-system-integration/spec.md",
+    "specs/agents/010-repo-rule-system-integration/tasks.md",
+    "specs/agents/011-retire-code-index-tool-references/implementation-summary.md",
+    "specs/agents/011-retire-code-index-tool-references/plan.md",
+    "specs/agents/011-retire-code-index-tool-references/spec.md",
+    "specs/agents/011-retire-code-index-tool-references/tasks.md",
     "specs/cli-external-orchestration/026-cli-external-parent/001-research-and-context/plan.md",
     "specs/cli-external-orchestration/026-cli-external-parent/001-research-and-context/spec.md",
     "specs/cli-external-orchestration/026-cli-external-parent/001-research-and-context/tasks.md",
@@ -8781,10 +8800,26 @@
     "specs/cli-external-orchestration/068-drop-openrouter-provider/spec.md",
     "specs/cli-external-orchestration/068-drop-openrouter-provider/tasks.md",
     "specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash/acceptance-criteria.md",
+    "specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash/decision-record.md",
+    "specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash/handover.md",
     "specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash/implementation-summary.md",
     "specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash/plan.md",
+    "specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash/review/lineages/deepseek-v4-1-flash-max/deep-review-dashboard.md",
+    "specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash/review/lineages/deepseek-v4-1-flash-max/deep-review-strategy.md",
+    "specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash/review/lineages/deepseek-v4-1-flash-max/iterations/iteration-001.md",
+    "specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash/review/lineages/deepseek-v4-1-flash-max/prompts/iteration-001.md",
+    "specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash/review/lineages/deepseek-v4-1-flash-max/review-report.md",
+    "specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash/review/lineages/gpt-5-6-luna-max-fast/deep-review-dashboard.md",
+    "specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash/review/lineages/gpt-5-6-luna-max-fast/deep-review-strategy.md",
+    "specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash/review/lineages/gpt-5-6-luna-max-fast/iterations/iteration-001.md",
+    "specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash/review/lineages/gpt-5-6-luna-max-fast/prompts/iteration-001.md",
+    "specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash/review/lineages/gpt-5-6-luna-max-fast/review-report.md",
     "specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash/spec.md",
     "specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash/tasks.md",
+    "specs/cli-external-orchestration/070-swe-2-model-cutover/implementation-summary.md",
+    "specs/cli-external-orchestration/070-swe-2-model-cutover/plan.md",
+    "specs/cli-external-orchestration/070-swe-2-model-cutover/spec.md",
+    "specs/cli-external-orchestration/070-swe-2-model-cutover/tasks.md",
     "specs/hooks/001-hook-docs-relocation/decision-record.md",
     "specs/hooks/001-hook-docs-relocation/fix-report-preexisting-ghosts.md",
     "specs/hooks/001-hook-docs-relocation/implementation-summary.md",
@@ -9380,8 +9415,27 @@
     "specs/hooks/020-spec-metadata-auto-remint/plan.md",
     "specs/hooks/020-spec-metadata-auto-remint/spec.md",
     "specs/hooks/020-spec-metadata-auto-remint/tasks.md",
+    "specs/hooks/021-compat-opt-in-and-image-declaration/handover-cli-skills.md",
     "specs/hooks/021-compat-opt-in-and-image-declaration/implementation-summary.md",
     "specs/hooks/021-compat-opt-in-and-image-declaration/plan.md",
+    "specs/hooks/021-compat-opt-in-and-image-declaration/review/README.md",
+    "specs/hooks/021-compat-opt-in-and-image-declaration/review/brief.md",
+    "specs/hooks/021-compat-opt-in-and-image-declaration/review/lineages/deepseek-v41-flash/deep-review-dashboard.md",
+    "specs/hooks/021-compat-opt-in-and-image-declaration/review/lineages/deepseek-v41-flash/deep-review-strategy.md",
+    "specs/hooks/021-compat-opt-in-and-image-declaration/review/lineages/deepseek-v41-flash/iterations/iteration-001.md",
+    "specs/hooks/021-compat-opt-in-and-image-declaration/review/lineages/deepseek-v41-flash/prompts/iteration-001.md",
+    "specs/hooks/021-compat-opt-in-and-image-declaration/review/lineages/deepseek-v41-flash/review-report.md",
+    "specs/hooks/021-compat-opt-in-and-image-declaration/review/lineages/glm-53-flash/deep-review-dashboard.md",
+    "specs/hooks/021-compat-opt-in-and-image-declaration/review/lineages/glm-53-flash/deep-review-strategy.md",
+    "specs/hooks/021-compat-opt-in-and-image-declaration/review/lineages/glm-53-flash/iterations/iteration-001.md",
+    "specs/hooks/021-compat-opt-in-and-image-declaration/review/lineages/glm-53-flash/prompts/iteration-001.md",
+    "specs/hooks/021-compat-opt-in-and-image-declaration/review/lineages/glm-53-flash/review-report.md",
+    "specs/hooks/021-compat-opt-in-and-image-declaration/review/lineages/gpt-56-luna/deep-review-dashboard.md",
+    "specs/hooks/021-compat-opt-in-and-image-declaration/review/lineages/gpt-56-luna/deep-review-strategy.md",
+    "specs/hooks/021-compat-opt-in-and-image-declaration/review/lineages/gpt-56-luna/iterations/iteration-001.md",
+    "specs/hooks/021-compat-opt-in-and-image-declaration/review/lineages/gpt-56-luna/prompts/iteration-001.md",
+    "specs/hooks/021-compat-opt-in-and-image-declaration/review/lineages/gpt-56-luna/resource-map.md",
+    "specs/hooks/021-compat-opt-in-and-image-declaration/review/lineages/gpt-56-luna/review-report.md",
     "specs/hooks/021-compat-opt-in-and-image-declaration/spec.md",
     "specs/hooks/021-compat-opt-in-and-image-declaration/tasks.md",
     "specs/mcp-tooling/007-mcp-tooling-parent/001-research-and-context/plan.md",
@@ -12430,6 +12484,37 @@
     "specs/sk-design/019-sk-design-diagram-upgrade/011-full-page-capture/tasks.md",
     "specs/sk-design/019-sk-design-diagram-upgrade/goal.md",
     "specs/sk-design/019-sk-design-diagram-upgrade/spec.md",
+    "specs/sk-design/020-chart-and-diagram-review/001-chart-review/acceptance-criteria.md",
+    "specs/sk-design/020-chart-and-diagram-review/001-chart-review/implementation-summary.md",
+    "specs/sk-design/020-chart-and-diagram-review/001-chart-review/plan.md",
+    "specs/sk-design/020-chart-and-diagram-review/001-chart-review/review/lineages/deepseek/deep-review-dashboard.md",
+    "specs/sk-design/020-chart-and-diagram-review/001-chart-review/review/lineages/deepseek/deep-review-strategy.md",
+    "specs/sk-design/020-chart-and-diagram-review/001-chart-review/review/lineages/deepseek/iterations/iteration-001.md",
+    "specs/sk-design/020-chart-and-diagram-review/001-chart-review/review/lineages/deepseek/iterations/iteration-002.md",
+    "specs/sk-design/020-chart-and-diagram-review/001-chart-review/review/lineages/deepseek/iterations/iteration-003.md",
+    "specs/sk-design/020-chart-and-diagram-review/001-chart-review/review/lineages/deepseek/iterations/iteration-004.md",
+    "specs/sk-design/020-chart-and-diagram-review/001-chart-review/review/lineages/deepseek/prompts/run-record.md",
+    "specs/sk-design/020-chart-and-diagram-review/001-chart-review/review/lineages/deepseek/review-report.md",
+    "specs/sk-design/020-chart-and-diagram-review/001-chart-review/review/lineages/ds4/deep-review-strategy.md",
+    "specs/sk-design/020-chart-and-diagram-review/001-chart-review/spec.md",
+    "specs/sk-design/020-chart-and-diagram-review/001-chart-review/tasks.md",
+    "specs/sk-design/020-chart-and-diagram-review/002-diagram-review/acceptance-criteria.md",
+    "specs/sk-design/020-chart-and-diagram-review/002-diagram-review/implementation-summary.md",
+    "specs/sk-design/020-chart-and-diagram-review/002-diagram-review/plan.md",
+    "specs/sk-design/020-chart-and-diagram-review/002-diagram-review/review/lineages/deepseek/deep-review-dashboard.md",
+    "specs/sk-design/020-chart-and-diagram-review/002-diagram-review/review/lineages/deepseek/deep-review-strategy.md",
+    "specs/sk-design/020-chart-and-diagram-review/002-diagram-review/review/lineages/deepseek/iterations/iteration-001.md",
+    "specs/sk-design/020-chart-and-diagram-review/002-diagram-review/review/lineages/deepseek/iterations/iteration-002.md",
+    "specs/sk-design/020-chart-and-diagram-review/002-diagram-review/review/lineages/deepseek/iterations/iteration-003.md",
+    "specs/sk-design/020-chart-and-diagram-review/002-diagram-review/review/lineages/deepseek/iterations/iteration-004.md",
+    "specs/sk-design/020-chart-and-diagram-review/002-diagram-review/review/lineages/deepseek/probes/DESIGN.md",
+    "specs/sk-design/020-chart-and-diagram-review/002-diagram-review/review/lineages/deepseek/review-report.md",
+    "specs/sk-design/020-chart-and-diagram-review/002-diagram-review/review/lineages/ds4/deep-review-dashboard.md",
+    "specs/sk-design/020-chart-and-diagram-review/002-diagram-review/review/lineages/ds4/deep-review-strategy.md",
+    "specs/sk-design/020-chart-and-diagram-review/002-diagram-review/spec.md",
+    "specs/sk-design/020-chart-and-diagram-review/002-diagram-review/tasks.md",
+    "specs/sk-design/020-chart-and-diagram-review/spec.md",
+    "specs/sk-design/020-chart-and-diagram-review/synthesis.md",
     "specs/sk-doc/014-sk-doc-parent/001-research-and-canon/research/research.md",
     "specs/sk-doc/014-sk-doc-parent/001-research-and-canon/spec.md",
     "specs/sk-doc/014-sk-doc-parent/002-architecture-decision/decision-record.md",
@@ -16210,6 +16295,10 @@
     "specs/sk-prompt/008-sk-prompt-standalone-conversion/008-docs-and-final-gate/spec.md",
     "specs/sk-prompt/008-sk-prompt-standalone-conversion/008-docs-and-final-gate/tasks.md",
     "specs/sk-prompt/008-sk-prompt-standalone-conversion/spec.md",
+    "specs/sk-prompt/009-prompt-improver-model-eligibility/implementation-summary.md",
+    "specs/sk-prompt/009-prompt-improver-model-eligibility/plan.md",
+    "specs/sk-prompt/009-prompt-improver-model-eligibility/spec.md",
+    "specs/sk-prompt/009-prompt-improver-model-eligibility/tasks.md",
     "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/001-research/decision-record.md",
     "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/001-research/implementation-summary.md",
     "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/001-research/plan.md",
@@ -16329,6 +16418,12 @@
     "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/023-command-gated-vision-and-runtime-teardown/plan.md",
     "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/023-command-gated-vision-and-runtime-teardown/spec.md",
     "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/023-command-gated-vision-and-runtime-teardown/tasks.md",
+    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/024-mcp-retirement-and-hook-adapters/acceptance-criteria.md",
+    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/024-mcp-retirement-and-hook-adapters/decision-record.md",
+    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/024-mcp-retirement-and-hook-adapters/implementation-summary.md",
+    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/024-mcp-retirement-and-hook-adapters/plan.md",
+    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/024-mcp-retirement-and-hook-adapters/spec.md",
+    "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/024-mcp-retirement-and-hook-adapters/tasks.md",
     "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/context/.github/ISSUE_TEMPLATE/bug_report.md",
     "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/context/.github/ISSUE_TEMPLATE/feature_request.md",
     "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/context/.github/PULL_REQUEST_TEMPLATE.md",
@@ -18480,6 +18575,28 @@
     "specs/system-deep-loop/045-fanout-write-containment-hardening/goal.md",
     "specs/system-deep-loop/045-fanout-write-containment-hardening/implementation-summary.md",
     "specs/system-deep-loop/045-fanout-write-containment-hardening/plan.md",
+    "specs/system-deep-loop/045-fanout-write-containment-hardening/research/iterations/iteration-001.md",
+    "specs/system-deep-loop/045-fanout-write-containment-hardening/research/iterations/iteration-002.md",
+    "specs/system-deep-loop/045-fanout-write-containment-hardening/research/iterations/iteration-003.md",
+    "specs/system-deep-loop/045-fanout-write-containment-hardening/research/iterations/iteration-004.md",
+    "specs/system-deep-loop/045-fanout-write-containment-hardening/research/iterations/iteration-005.md",
+    "specs/system-deep-loop/045-fanout-write-containment-hardening/research/iterations/iteration-006.md",
+    "specs/system-deep-loop/045-fanout-write-containment-hardening/research/iterations/iteration-007.md",
+    "specs/system-deep-loop/045-fanout-write-containment-hardening/research/iterations/iteration-008.md",
+    "specs/system-deep-loop/045-fanout-write-containment-hardening/research/iterations/iteration-009.md",
+    "specs/system-deep-loop/045-fanout-write-containment-hardening/research/iterations/iteration-010.md",
+    "specs/system-deep-loop/045-fanout-write-containment-hardening/research/open-questions/iteration-001.md",
+    "specs/system-deep-loop/045-fanout-write-containment-hardening/research/open-questions/iteration-002.md",
+    "specs/system-deep-loop/045-fanout-write-containment-hardening/research/open-questions/iteration-003.md",
+    "specs/system-deep-loop/045-fanout-write-containment-hardening/research/open-questions/iteration-004.md",
+    "specs/system-deep-loop/045-fanout-write-containment-hardening/research/open-questions/iteration-005.md",
+    "specs/system-deep-loop/045-fanout-write-containment-hardening/research/open-questions/synthesis.md",
+    "specs/system-deep-loop/045-fanout-write-containment-hardening/research/synthesis.md",
+    "specs/system-deep-loop/045-fanout-write-containment-hardening/review/lineages/containment-live-2/deep-review-dashboard.md",
+    "specs/system-deep-loop/045-fanout-write-containment-hardening/review/lineages/containment-live-2/deep-review-strategy.md",
+    "specs/system-deep-loop/045-fanout-write-containment-hardening/review/lineages/containment-live-2/iterations/iteration-001.md",
+    "specs/system-deep-loop/045-fanout-write-containment-hardening/review/lineages/containment-live-2/prompts/iteration-001.md",
+    "specs/system-deep-loop/045-fanout-write-containment-hardening/review/lineages/containment-live-2/review-report.md",
     "specs/system-deep-loop/045-fanout-write-containment-hardening/spec.md",
     "specs/system-deep-loop/045-fanout-write-containment-hardening/tasks.md",
     "specs/system-deep-loop/046-synthesis-chat-presentation/acceptance-criteria.md",
@@ -18492,6 +18609,10 @@
     "specs/system-deep-loop/047-deprecate-skill-benchmark/plan.md",
     "specs/system-deep-loop/047-deprecate-skill-benchmark/spec.md",
     "specs/system-deep-loop/047-deprecate-skill-benchmark/tasks.md",
+    "specs/system-deep-loop/048-fanout-convergence-mode-flag/implementation-summary.md",
+    "specs/system-deep-loop/048-fanout-convergence-mode-flag/plan.md",
+    "specs/system-deep-loop/048-fanout-convergence-mode-flag/spec.md",
+    "specs/system-deep-loop/048-fanout-convergence-mode-flag/tasks.md",
     "specs/system-skill-advisor/000-rust-backend-rewrite/001-research/plan.md",
     "specs/system-skill-advisor/000-rust-backend-rewrite/001-research/research/deep-research-strategy.md",
     "specs/system-skill-advisor/000-rust-backend-rewrite/001-research/spec.md",
@@ -18623,20 +18744,33 @@
     "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/008-verification-and-closeout/implementation-summary.md",
     "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/008-verification-and-closeout/latency-delta.md",
     "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/008-verification-and-closeout/plan.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/008-verification-and-closeout/playbook-runs/README.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/008-verification-and-closeout/playbook-runs/claude-haiku.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/008-verification-and-closeout/playbook-runs/cli-codex-luna.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/008-verification-and-closeout/playbook-runs/cli-opencode-deepseek.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/008-verification-and-closeout/playbook-runs/cli-pi-deepseek.md",
     "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/008-verification-and-closeout/spec.md",
     "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/008-verification-and-closeout/tasks.md",
     "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/009-deep-review-decommission/goal.md",
     "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/009-deep-review-decommission/implementation-summary.md",
     "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/009-deep-review-decommission/plan.md",
-    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/009-deep-review-decommission/review/lineages/deepseek-review/deep-review-dashboard.md",
-    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/009-deep-review-decommission/review/lineages/deepseek-review/deep-review-strategy.md",
-    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/009-deep-review-decommission/review/lineages/deepseek-review/iterations/iteration-001.md",
-    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/009-deep-review-decommission/review/lineages/deepseek-review/iterations/iteration-002.md",
-    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/009-deep-review-decommission/review/lineages/deepseek-review/iterations/iteration-003.md",
-    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/009-deep-review-decommission/review/lineages/deepseek-review/iterations/iteration-004.md",
-    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/009-deep-review-decommission/review/lineages/deepseek-review/iterations/iteration-005.md",
-    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/009-deep-review-decommission/review/lineages/deepseek-review/iterations/iteration-006.md",
-    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/009-deep-review-decommission/review/lineages/deepseek-review/review-report.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/009-deep-review-decommission/review/_archive/20260911T192702Z/lineages/deepseek-review/deep-review-dashboard.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/009-deep-review-decommission/review/_archive/20260911T192702Z/lineages/deepseek-review/deep-review-strategy.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/009-deep-review-decommission/review/_archive/20260911T192702Z/lineages/deepseek-review/iterations/iteration-001.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/009-deep-review-decommission/review/_archive/20260911T192702Z/lineages/deepseek-review/iterations/iteration-002.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/009-deep-review-decommission/review/_archive/20260911T192702Z/lineages/deepseek-review/iterations/iteration-003.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/009-deep-review-decommission/review/_archive/20260911T192702Z/lineages/deepseek-review/iterations/iteration-004.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/009-deep-review-decommission/review/_archive/20260911T192702Z/lineages/deepseek-review/iterations/iteration-005.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/009-deep-review-decommission/review/_archive/20260911T192702Z/lineages/deepseek-review/iterations/iteration-006.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/009-deep-review-decommission/review/_archive/20260911T192702Z/lineages/deepseek-review/review-report.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/009-deep-review-decommission/review/lineages/deepseek-confirm/deep-review-dashboard.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/009-deep-review-decommission/review/lineages/deepseek-confirm/deep-review-strategy.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/009-deep-review-decommission/review/lineages/deepseek-confirm/iterations/iteration-001.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/009-deep-review-decommission/review/lineages/deepseek-confirm/iterations/iteration-002.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/009-deep-review-decommission/review/lineages/deepseek-confirm/iterations/iteration-003.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/009-deep-review-decommission/review/lineages/deepseek-confirm/iterations/iteration-004.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/009-deep-review-decommission/review/lineages/deepseek-confirm/iterations/iteration-005.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/009-deep-review-decommission/review/lineages/deepseek-confirm/review-report.md",
     "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/009-deep-review-decommission/spec.md",
     "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/009-deep-review-decommission/tasks.md",
     "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/010-deep-research-residue/goal.md",
@@ -29270,6 +29404,18 @@
     "specs/system-speckit/033-system-speckit-v4/036-goal-unification/009-close-open-decisions/plan.md",
     "specs/system-speckit/033-system-speckit-v4/036-goal-unification/009-close-open-decisions/spec.md",
     "specs/system-speckit/033-system-speckit-v4/036-goal-unification/009-close-open-decisions/tasks.md",
+    "specs/system-speckit/033-system-speckit-v4/036-goal-unification/010-repo-wide-goal-research/goal.md",
+    "specs/system-speckit/033-system-speckit-v4/036-goal-unification/010-repo-wide-goal-research/implementation-summary.md",
+    "specs/system-speckit/033-system-speckit-v4/036-goal-unification/010-repo-wide-goal-research/plan.md",
+    "specs/system-speckit/033-system-speckit-v4/036-goal-unification/010-repo-wide-goal-research/research/deep-research-strategy.md",
+    "specs/system-speckit/033-system-speckit-v4/036-goal-unification/010-repo-wide-goal-research/research/research.md",
+    "specs/system-speckit/033-system-speckit-v4/036-goal-unification/010-repo-wide-goal-research/spec.md",
+    "specs/system-speckit/033-system-speckit-v4/036-goal-unification/010-repo-wide-goal-research/tasks.md",
+    "specs/system-speckit/033-system-speckit-v4/036-goal-unification/011-goal-drift-remediation/goal.md",
+    "specs/system-speckit/033-system-speckit-v4/036-goal-unification/011-goal-drift-remediation/implementation-summary.md",
+    "specs/system-speckit/033-system-speckit-v4/036-goal-unification/011-goal-drift-remediation/plan.md",
+    "specs/system-speckit/033-system-speckit-v4/036-goal-unification/011-goal-drift-remediation/spec.md",
+    "specs/system-speckit/033-system-speckit-v4/036-goal-unification/011-goal-drift-remediation/tasks.md",
     "specs/system-speckit/033-system-speckit-v4/036-goal-unification/before-after.md",
     "specs/system-speckit/033-system-speckit-v4/036-goal-unification/goal.md",
     "specs/system-speckit/033-system-speckit-v4/036-goal-unification/spec.md",
@@ -29322,7 +29468,7 @@
     "specs/system-speckit/045-daemon-and-test-harness-hardening/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "e10deae6b7dfd34cf54c6964eb23f7d35c39f2871134673e3df950ac9015b8ac",
+  "manifestHash": "6238f377a31706f7701e873a4ced4284c6c30b0b55664c32c46e74fe8736ad06",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -29332,6 +29478,18 @@
     ".opencode/hooks"
   ],
   "skippedPaths": [
+    {
+      "path": ".opencode/hooks/dispatch/lib/node_modules",
+      "reason": "excluded directory"
+    },
+    {
+      "path": ".opencode/hooks/dispatch/node_modules",
+      "reason": "excluded directory"
+    },
+    {
+      "path": ".opencode/hooks/dispatch/pi/node_modules",
+      "reason": "excluded directory"
+    },
     {
       "path": ".opencode/hooks/git-preflight/README.md",
       "reason": "duplicate of an already-indexed document"
@@ -29359,6 +29517,14 @@
     {
       "path": ".opencode/skills/mcp-code-mode/mcp-server/README.md",
       "reason": "duplicate of an already-indexed document"
+    },
+    {
+      "path": ".opencode/skills/mcp-code-mode/mcp-server/dist",
+      "reason": "excluded directory"
+    },
+    {
+      "path": ".opencode/skills/mcp-code-mode/mcp-server/node_modules",
+      "reason": "excluded directory"
     },
     {
       "path": ".opencode/skills/sk-code/benchmark/fixtures",
@@ -29413,6 +29579,14 @@
       "reason": "duplicate of an already-indexed document"
     },
     {
+      "path": ".opencode/skills/sk-communication/cli-communication-projection/dist",
+      "reason": "excluded directory"
+    },
+    {
+      "path": ".opencode/skills/sk-communication/cli-communication-projection/node_modules",
+      "reason": "excluded directory"
+    },
+    {
       "path": ".opencode/skills/sk-communication/cli-communication-projection/test/fixtures",
       "reason": "excluded directory"
     },
@@ -29422,6 +29596,14 @@
     },
     {
       "path": ".opencode/skills/sk-design/sk-design-diagram/scripts/tests/fixtures",
+      "reason": "excluded directory"
+    },
+    {
+      "path": ".opencode/skills/sk-design/sk-design-md-generator/backend/dist",
+      "reason": "excluded directory"
+    },
+    {
+      "path": ".opencode/skills/sk-design/sk-design-md-generator/backend/node_modules",
       "reason": "excluded directory"
     },
     {
@@ -29461,7 +29643,31 @@
       "reason": "excluded directory"
     },
     {
+      "path": ".opencode/skills/sk-vision/vision-runtime/dist",
+      "reason": "excluded directory"
+    },
+    {
+      "path": ".opencode/skills/sk-vision/vision-runtime/node_modules",
+      "reason": "excluded directory"
+    },
+    {
+      "path": ".opencode/skills/system-deep-loop/deep-ai-council/node_modules",
+      "reason": "excluded directory"
+    },
+    {
+      "path": ".opencode/skills/system-deep-loop/deep-ai-council/scripts/node_modules",
+      "reason": "excluded directory"
+    },
+    {
       "path": ".opencode/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-fixtures",
+      "reason": "excluded directory"
+    },
+    {
+      "path": ".opencode/skills/system-deep-loop/deep-improvement/node_modules",
+      "reason": "excluded directory"
+    },
+    {
+      "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/node_modules",
       "reason": "excluded directory"
     },
     {
@@ -29470,6 +29676,10 @@
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-review/scripts/tests/fixtures",
+      "reason": "excluded directory"
+    },
+    {
+      "path": ".opencode/skills/system-deep-loop/node_modules",
       "reason": "excluded directory"
     },
     {
@@ -29533,6 +29743,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": ".opencode/skills/system-spec-kit/runtime/cli/node_modules",
+      "reason": "excluded directory"
+    },
+    {
       "path": ".opencode/skills/system-spec-kit/runtime/cli/retrieval/fixtures",
       "reason": "excluded directory"
     },
@@ -29586,6 +29800,10 @@
     },
     {
       "path": ".opencode/skills/system-spec-kit/runtime/tests/validation/fixtures",
+      "reason": "excluded directory"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/runtime/tmp-test-fixtures",
       "reason": "excluded directory"
     },
     {
@@ -29653,8 +29871,28 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/agents/010-repo-rule-system-integration/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/010-repo-rule-system-integration/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/agents/z_archive",
       "reason": "excluded directory"
+    },
+    {
+      "path": "specs/ai-systems",
+      "reason": "symlinked directory"
+    },
+    {
+      "path": "specs/anobel.com",
+      "reason": "symlinked directory"
+    },
+    {
+      "path": "specs/app-mobile-cli",
+      "reason": "symlinked directory"
     },
     {
       "path": "specs/cli-external-orchestration/026-cli-external-parent/001-research-and-context/scratch",
@@ -29878,6 +30116,10 @@
     },
     {
       "path": "specs/cli-external-orchestration/066-pi-self-dispatch-and-subagents-retirement/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/067-deferred-closure/scratch",
       "reason": "excluded directory"
     },
     {
@@ -30365,6 +30607,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/mcp-tooling/019-official-obsidian-cli/001-cli-versus-mcp/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/mcp-tooling/019-official-obsidian-cli/scratch",
       "reason": "excluded directory"
     },
@@ -30383,6 +30629,10 @@
     {
       "path": "specs/mcp-tooling/z_archive",
       "reason": "excluded directory"
+    },
+    {
+      "path": "specs/obsidian",
+      "reason": "symlinked directory"
     },
     {
       "path": "specs/sk-code/z_archive",
@@ -30938,6 +31188,14 @@
     },
     {
       "path": "specs/sk-design/019-sk-design-diagram-upgrade/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-design/020-chart-and-diagram-review/001-chart-review/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-design/020-chart-and-diagram-review/002-diagram-review/scratch",
       "reason": "excluded directory"
     },
     {
@@ -31509,6 +31767,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-prompt/009-prompt-improver-model-eligibility/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-prompt/z_archive",
       "reason": "excluded directory"
     },
@@ -31614,6 +31876,10 @@
     },
     {
       "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/022-opencode-plugin-runtime-resolution/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/024-mcp-retirement-and-hook-adapters/scratch",
       "reason": "excluded directory"
     },
     {
@@ -33562,6 +33828,18 @@
     },
     {
       "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/009-close-open-decisions/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/010-repo-wide-goal-research/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/010-repo-wide-goal-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/011-goal-drift-remediation/scratch",
       "reason": "excluded directory"
     },
     {

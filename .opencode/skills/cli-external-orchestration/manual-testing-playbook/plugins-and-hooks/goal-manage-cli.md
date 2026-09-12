@@ -136,10 +136,10 @@ Expected: inspect reports `malformed`; migrate fails with `LEGACY_GOAL_MALFORMED
 ### F. Rollback and disabled state
 
 ```bash
-OPENCODE_GOAL_PLUGIN_DISABLED=1 node "$GOAL_CLI" --runtime pi --session session-b --workspace "$WORKSPACE" show
+OPENCODE_GOAL_DISABLED=1 node "$GOAL_CLI" --runtime pi --session session-b --workspace "$WORKSPACE" show
 
 printf '%s' '{"session_id":"session-b","workspace_roots":["'"$WORKSPACE"'"]}' \
-  | OPENCODE_GOAL_PLUGIN_DISABLED=1 node .opencode/hooks/goal/cursor/goal-inject.mjs
+  | OPENCODE_GOAL_DISABLED=1 node .opencode/hooks/goal/cursor/goal-inject.mjs
 ```
 
 Expected: CLI management fails with `PLUGIN_DISABLED`; Cursor returns only `{"permission":"allow"}` with no `agent_message`. Pi rollback uses `-extensions/goal-context.ts` in `.pi/settings.json`; preserve the state root and do not merge scoped files into `active-goal.json`.
@@ -162,7 +162,7 @@ printf '%s' '{"session_id":"session-c","hook_event_name":"UserPromptSubmit","cwd
 node "$GOAL_CLI" unbind --runtime pi --session session-c --workspace "$WORKSPACE"
 ```
 
-Expected: `packet` reports `packet_nested=true`, `packet_budget=`, and a `chat_slice` with no `---` fence and no `session_id:` line; `bind` reports `mutation=bound`, `packet_bound=true`, `resend_pending=true`; `show` reports an `objective=` starting with `Execute <packet>/goal.md.` and an `injection_preview` with no frontmatter; `resent` flips `resend_pending=false`; `log` appends one row below the packet's log anchor and leaves everything above it byte-identical; `bind ../outside` fails with `PACKET_GOAL_NOT_FOUND`; the Cursor and Devin adapters carry the brief and, before `resent`, a `[goal_resend_pending]` line; `unbind` reports `packet_state=unbound` and `packet_bound=false`. A second `bind` through `specs/.../036-goal-unification` from another session while the first still logs must not lose rows: both take the same real-path lock under the workspace state root. Revert the appended log row afterwards, or run against a scratch copy of the packet.
+Expected: `packet` reports `packet_nested=true`, `packet_budget=`, and a `chat_slice` with no `---` fence and no `session_id:` line; `bind` reports `mutation=bound`, `packet_bound=true`, `resend_pending=true`; `show` reports an `objective=` starting with `Execute <packet>/goal.md.` and an `injection_preview` carrying the packet's `criteria:` lines and no frontmatter; `resent` flips `resend_pending=false`; `log` appends one row below the packet's log anchor and leaves everything above it byte-identical; `bind ../outside` fails with `PACKET_GOAL_NOT_FOUND`; the Cursor and Devin adapters carry the brief and, before `resent`, a `[goal_resend_pending]` line; `unbind` reports `packet_state=unbound` and `packet_bound=false`. A second `bind` through `specs/.../036-goal-unification` from another session while the first still logs must not lose rows: both take the same real-path lock under the workspace state root. Revert the appended log row afterwards, or run against a scratch copy of the packet.
 
 ### Automated companion gate
 

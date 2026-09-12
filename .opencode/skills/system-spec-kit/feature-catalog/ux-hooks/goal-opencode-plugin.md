@@ -19,7 +19,7 @@ This catalog entry maps the current `/goal` OpenCode plugin behavior to its impl
 
 ## 1. OVERVIEW
 
-The goal plugin gives OpenCode a session-level completion objective. Users call `/goal bind <packet-path>` to make a packet's `goal.md` the directive, or `/goal set <objective>` for a text goal, and the plugin persists the per-session record, injects an active-goal block on each turn (rendered from the packet file when bound, frontmatter never included), and exposes tool-backed status, history, doctor/health, resume, resent, packet read and mutation operations.
+The goal plugin gives OpenCode a session-level completion objective. Users call `/goal bind <packet-path>` to make a packet's `goal.md` the directive, or `/goal set <objective>` for a text goal, and the plugin persists the per-session record, injects an active-goal block on each turn (rendered from the packet file when bound, frontmatter never included, the packet's completion criteria carried as their own `criteria:` lines in both the full and compact block), and exposes tool-backed status, history, doctor/health, resume, resent, packet read and mutation operations.
 
 This feature is cataloged under UX hooks because it is a runtime-injection and operator-feedback surface. It runs entirely inside the OpenCode plugin host: no daemon, no CLI bridge, and no dependency on anything else in this package.
 

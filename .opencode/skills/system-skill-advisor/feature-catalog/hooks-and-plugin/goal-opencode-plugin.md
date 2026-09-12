@@ -30,7 +30,7 @@ This entry lives with the Skill Advisor hook/plugin documentation because it use
 
 ### Passive Injection
 
-The plugin registers `experimental.chat.system.transform`. When a session has an active goal, it appends a bounded `[active_goal:<goal-id>]` block containing status, objective, last verifier result, usage counters and a directive to continue toward the objective; when bound to a packet the objective and prompt are projected from the packet's `goal.md` with the frontmatter stripped, and a `[goal_resend_pending]` line follows while the operator copy is behind the file. Objective and evidence text are sanitized before storage or injection.
+The plugin registers `experimental.chat.system.transform`. When a session has an active goal, it appends a bounded `[active_goal:<goal-id>]` block containing status, objective, the bound packet's completion criteria one per line, last verifier result, usage counters and a directive to continue toward the objective; when bound to a packet the objective and prompt are projected from the packet's `goal.md` with the frontmatter stripped, and a `[goal_resend_pending]` line follows while the operator copy is behind the file. Objective and evidence text are sanitized before storage or injection.
 
 ### Tools And Lifecycle
 

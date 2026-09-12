@@ -1,5 +1,5 @@
 {
-  "manifestHash": "e10deae6b7dfd34cf54c6964eb23f7d35c39f2871134673e3df950ac9015b8ac",
+  "manifestHash": "6238f377a31706f7701e873a4ced4284c6c30b0b55664c32c46e74fe8736ad06",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -10031,6 +10031,9 @@
     "advisor positive controls dispatch summary": [
       "advisor positive controls dispatch summary"
     ],
+    "advisor post decommission verification": [
+      "advisor post-decommission verification"
+    ],
     "advisor preserve set": [
       "advisor preserve set"
     ],
@@ -10572,6 +10575,9 @@
     "aesthetics retirement tasks": [
       "aesthetics retirement tasks"
     ],
+    "affinity advice consumer path": [
+      "affinity advice consumer path"
+    ],
     "affordance evidence display": [
       "affordance evidence display"
     ],
@@ -10968,6 +10974,9 @@
     ],
     "agent mirror propagation": [
       "agent mirror propagation"
+    ],
+    "agent mirror propagation plan": [
+      "agent mirror propagation plan"
     ],
     "agent mirror verification": [
       "agent mirror verification"
@@ -11484,6 +11493,9 @@
     ],
     "algorithm branching flow": [
       "algorithm branching flow"
+    ],
+    "alias drift verification checklist": [
+      "alias drift verification checklist"
     ],
     "alias over capture decision": [
       "alias over-capture decision"
@@ -13734,6 +13746,9 @@
     ],
     "authorization boundary status": [
       "authorization boundary status"
+    ],
+    "authorization contract": [
+      "authorization contract"
     ],
     "authorization decision events": [
       "authorization decision events"
@@ -18152,6 +18167,9 @@
     "chart source inventory": [
       "chart source inventory"
     ],
+    "chart style reference": [
+      "chart style reference"
+    ],
     "chart template contract": [
       "chart template contract"
     ],
@@ -20172,6 +20190,9 @@
     "cli dispatch containment recursion guards": [
       "cli dispatch containment recursion guards"
     ],
+    "cli dispatch doc drift": [
+      "cli dispatch doc drift"
+    ],
     "cli dispatch hangs with no output": [
       "cli dispatch hangs with no output"
     ],
@@ -21098,7 +21119,8 @@
       "cli pi readme tasks"
     ],
     "cli pi self dispatch": [
-      "cli-pi self dispatch"
+      "cli-pi self dispatch",
+      "cli-pi self-dispatch"
     ],
     "cli pi self invocation removal": [
       "cli-pi self invocation removal"
@@ -21672,6 +21694,9 @@
     ],
     "cline pass enabledmodels pi settings": [
       "cline-pass enabledModels pi settings"
+    ],
+    "cline pass listing only rationale": [
+      "cline-pass listing-only rationale"
     ],
     "cline pass model id slashed fix": [
       "cline-pass model id slashed fix"
@@ -23070,6 +23095,15 @@
     "code index advisor secondary wedge fix": [
       "code-index advisor secondary wedge fix"
     ],
+    "code index cleanup plan": [
+      "code-index cleanup plan"
+    ],
+    "code index cleanup summary": [
+      "code-index cleanup summary"
+    ],
+    "code index cleanup tasks": [
+      "code-index cleanup tasks"
+    ],
     "code index cli changelog root": [
       "code-index cli changelog root"
     ],
@@ -23207,6 +23241,9 @@
     ],
     "code index shim changelog": [
       "code-index shim changelog"
+    ],
+    "code index tool decommission cleanup": [
+      "code-index tool decommission cleanup"
     ],
     "code map source folder": [
       "code map source folder"
@@ -25600,6 +25637,15 @@
     "compat index": [
       "compat index"
     ],
+    "compat opt in review": [
+      "compat opt-in review"
+    ],
+    "compat opt in review findings": [
+      "compat opt-in review findings"
+    ],
+    "compat opt in review state": [
+      "compat opt-in review state"
+    ],
     "compat override": [
       "compat override"
     ],
@@ -25957,6 +26003,9 @@
     ],
     "compiled routing publish tasks": [
       "compiled routing publish tasks"
+    ],
+    "compiled routing re mint": [
+      "compiled routing re-mint"
     ],
     "compiled routing ready manifest boundary": [
       "compiled routing ready manifest boundary"
@@ -27527,6 +27576,9 @@
     ],
     "convergence gates": [
       "convergence gates"
+    ],
+    "convergence mode flag dropped": [
+      "convergence-mode flag dropped"
     ],
     "convergence persist snapshot round id": [
       "convergence persist-snapshot round-id"
@@ -30430,9 +30482,6 @@
     "cursor default model composer": [
       "cursor default model composer"
     ],
-    "cursor devin vision tools": [
-      "Cursor Devin vision tools"
-    ],
     "cursor dispatch prompt discipline": [
       "cursor dispatch prompt discipline"
     ],
@@ -30723,6 +30772,9 @@
     ],
     "cursor validation pipeline": [
       "cursor validation pipeline"
+    ],
+    "cursor vision command": [
+      "cursor vision command"
     ],
     "cursor workspace isolation": [
       "cursor workspace isolation"
@@ -35102,6 +35154,9 @@
     "deep review codex timeout": [
       "deep review codex timeout"
     ],
+    "deep review compat opt in": [
+      "deep review compat opt-in"
+    ],
     "deep review conditional to pass": [
       "deep-review conditional to pass"
     ],
@@ -35444,6 +35499,9 @@
     "deep review replay idempotency tasks": [
       "deep-review replay idempotency tasks"
     ],
+    "deep review report": [
+      "deep review report"
+    ],
     "deep review research skill contract fixes": [
       "deep-review research skill contract fixes"
     ],
@@ -35589,6 +35647,9 @@
     ],
     "deep review strategy 045": [
       "deep review strategy 045"
+    ],
+    "deep review strategy glm 53 flash": [
+      "deep review strategy glm-53-flash"
     ],
     "deep review strategy md": [
       "deep-review-strategy.md"
@@ -35821,6 +35882,12 @@
     "deepseek research lane spec kit docs": [
       "deepseek research lane spec kit docs"
     ],
+    "deepseek route repoint decision": [
+      "deepseek route repoint decision"
+    ],
+    "deepseek v4 1 flash route": [
+      "deepseek v4.1 flash route"
+    ],
     "deepseek v4 flash": [
       "deepseek v4 flash"
     ],
@@ -35859,6 +35926,9 @@
     ],
     "deepseek via devin enabled": [
       "deepseek via devin enabled"
+    ],
+    "default chart palette": [
+      "default chart palette"
     ],
     "default deny gateway plan": [
       "default deny gateway plan"
@@ -36045,6 +36115,9 @@
     ],
     "deferred followups decisions": [
       "deferred followups decisions"
+    ],
+    "deferred live gates": [
+      "deferred live gates"
     ],
     "deferred loading verification": [
       "deferred loading verification"
@@ -37914,6 +37987,9 @@
     "devin agents skills rules parity tasks": [
       "devin agents skills rules parity tasks"
     ],
+    "devin alias drift evidence": [
+      "devin alias drift evidence"
+    ],
     "devin allowlist edit plan": [
       "devin allowlist edit plan"
     ],
@@ -38009,6 +38085,9 @@
     ],
     "devin curated four family scope": [
       "devin curated four family scope"
+    ],
+    "devin curated roster refresh": [
+      "devin curated roster refresh"
     ],
     "devin curated scope enforced": [
       "devin curated scope enforced"
@@ -38265,6 +38344,9 @@
     "devin mcp config": [
       "devin mcp config"
     ],
+    "devin mcp config ownership": [
+      "devin mcp config ownership"
+    ],
     "devin mcp host": [
       "devin mcp host"
     ],
@@ -38391,6 +38473,9 @@
     "devin prompt templates": [
       "devin prompt templates"
     ],
+    "devin prompt time injection hook sk vision mjs": [
+      "Devin prompt-time injection hook (sk-vision.mjs)"
+    ],
     "devin providers and models": [
       "devin providers and models"
     ],
@@ -38423,6 +38508,12 @@
     ],
     "devin roster removal": [
       "devin roster removal"
+    ],
+    "devin roster task breakdown": [
+      "devin roster task breakdown"
+    ],
+    "devin roster verification approach": [
+      "devin roster verification approach"
     ],
     "devin run subagent": [
       "devin run_subagent"
@@ -38487,6 +38578,9 @@
     "devin supported models runtime": [
       "devin supported models runtime"
     ],
+    "devin swe alias drift": [
+      "devin swe alias drift"
+    ],
     "devin swe default model": [
       "devin swe default model"
     ],
@@ -38501,6 +38595,9 @@
     ],
     "devin userpromptsubmit goal inject": [
       "devin userpromptsubmit goal inject"
+    ],
+    "devin userpromptsubmit vision": [
+      "devin UserPromptSubmit vision"
     ],
     "devin vm offload": [
       "devin vm offload"
@@ -38720,6 +38817,12 @@
     ],
     "diagram packet strict gate": [
       "diagram packet strict gate"
+    ],
+    "diagram palette origin": [
+      "diagram palette origin"
+    ],
+    "diagram palette source": [
+      "diagram palette source"
     ],
     "diagram playbook and catalog": [
       "diagram playbook and catalog"
@@ -39296,6 +39399,9 @@
     ],
     "dispatch preflight lint": [
       "dispatch preflight lint"
+    ],
+    "dispatch preflight suite": [
+      "dispatch preflight suite"
     ],
     "dispatch receipt resume projection": [
       "dispatch receipt resume projection"
@@ -43114,6 +43220,9 @@
     "evilcharts adoption build": [
       "evilcharts adoption build"
     ],
+    "evilcharts origin": [
+      "evilcharts origin"
+    ],
     "evilcharts research": [
       "evilcharts research"
     ],
@@ -43125,6 +43234,9 @@
     ],
     "evilcharts strategy": [
       "evilcharts strategy"
+    ],
+    "evilcharts style reference": [
+      "evilcharts style reference"
     ],
     "evilcharts synthesis": [
       "evilcharts synthesis"
@@ -44762,6 +44874,15 @@
     "fanout containment sibling scope": [
       "fanout containment sibling scope"
     ],
+    "fanout convergence mode": [
+      "fanout convergence mode"
+    ],
+    "fanout convergence mode plan": [
+      "fanout convergence mode plan"
+    ],
+    "fanout convergence mode tasks": [
+      "fanout convergence mode tasks"
+    ],
     "fanout devin allowlist gemini": [
       "fanout devin allowlist gemini"
     ],
@@ -44798,11 +44919,17 @@
     "fanout lineage": [
       "fanout lineage"
     ],
+    "fanout lineage dashboard": [
+      "fanout lineage dashboard"
+    ],
     "fanout lineage err retention": [
       "fanout lineage err retention"
     ],
     "fanout lineage in process": [
       "fanout lineage in-process"
+    ],
+    "fanout lineage strategy": [
+      "fanout lineage strategy"
     ],
     "fanout live search shipped": [
       "fanout live search shipped"
@@ -49479,6 +49606,9 @@
     "goal command every runtime": [
       "goal command every runtime"
     ],
+    "goal contradiction register": [
+      "goal contradiction register"
+    ],
     "goal core and state": [
       "goal core and state"
     ],
@@ -49562,6 +49692,9 @@
     ],
     "goal docs parity plan": [
       "goal docs parity plan"
+    ],
+    "goal documentation drift": [
+      "goal documentation drift"
     ],
     "goal documentation parity tasks": [
       "goal documentation parity tasks"
@@ -49841,6 +49974,9 @@
     ],
     "goal store fate decision": [
       "goal store fate decision"
+    ],
+    "goal surfaces inventory": [
+      "goal surfaces inventory"
     ],
     "goal system comparison": [
       "goal system comparison"
@@ -51081,6 +51217,12 @@
     "harness dependencies repointed": [
       "harness dependencies repointed"
     ],
+    "harness diagram origin": [
+      "harness diagram origin"
+    ],
+    "harness diagram style reference": [
+      "harness diagram style reference"
+    ],
     "harness envelope output": [
       "harness envelope output"
     ],
@@ -51731,6 +51873,9 @@
     ],
     "hook adapter thin transports": [
       "hook adapter thin transports"
+    ],
+    "hook adapter versus cli": [
+      "hook adapter versus CLI"
     ],
     "hook box header all runtimes": [
       "hook box header all runtimes"
@@ -57305,6 +57450,9 @@
     "list vaults": [
       "List vaults"
     ],
+    "listing only cline pass": [
+      "listing-only cline-pass"
+    ],
     "listsupporteddimensions embeddermanifest": [
       "listSupportedDimensions EmbedderManifest"
     ],
@@ -58187,6 +58335,9 @@
     ],
     "luna devpass plan": [
       "luna devpass plan"
+    ],
+    "luna eligible through cli codex only": [
+      "luna eligible through cli-codex only"
     ],
     "luna high acceptance build record": [
       "luna high acceptance build record"
@@ -61065,9 +61216,6 @@
     ],
     "mcp status tool": [
       "mcp status tool"
-    ],
-    "mcp stdio transport sk vision mcp": [
-      "MCP stdio transport (sk-vision-mcp)"
     ],
     "mcp stress cycle doc observability": [
       "mcp stress cycle doc observability"
@@ -68300,6 +68448,9 @@
     "opencode go cache compat": [
       "opencode-go cache compat"
     ],
+    "opencode go cline pass repoint": [
+      "opencode-go cline-pass repoint"
+    ],
     "opencode go compat plan": [
       "opencode-go compat plan"
     ],
@@ -68326,6 +68477,9 @@
     ],
     "opencode go usage limit fan out": [
       "opencode-go usage limit fan-out"
+    ],
+    "opencode go v4 1 swap": [
+      "opencode-go v4.1 swap"
     ],
     "opencode goal": [
       "opencode-goal",
@@ -68933,6 +69087,9 @@
     ],
     "opus deep review of the follow ups": [
       "opus deep review of the follow-ups"
+    ],
+    "opus fable never eligible prompt improver": [
+      "opus fable never eligible prompt improver"
     ],
     "opus review remediation decisions": [
       "opus review remediation decisions"
@@ -74892,6 +75049,9 @@
     "playbook verification checklist": [
       "playbook verification checklist"
     ],
+    "playbook verification run": [
+      "playbook verification run"
+    ],
     "playbook versus runtime mismatch": [
       "playbook versus runtime mismatch"
     ],
@@ -76812,8 +76972,14 @@
     "prompt improver agent repoint": [
       "prompt-improver agent repoint"
     ],
+    "prompt improver eligibility plan": [
+      "prompt improver eligibility plan"
+    ],
     "prompt improver filename verification": [
       "prompt-improver filename verification"
+    ],
+    "prompt improver model eligibility": [
+      "prompt improver model eligibility"
     ],
     "prompt isolation safety": [
       "prompt isolation safety"
@@ -81204,6 +81370,9 @@
     "replace spec kit classifier shim": [
       "replace spec-kit classifier shim"
     ],
+    "replace swe 1 7 with swe 2": [
+      "replace swe 1.7 with swe 2"
+    ],
     "replay baseline tasks": [
       "replay baseline tasks"
     ],
@@ -81404,6 +81573,9 @@
     ],
     "repo wide consumer search": [
       "repo-wide consumer search"
+    ],
+    "repo wide goal research": [
+      "repo wide goal research"
     ],
     "repo wide remediation sweep plan": [
       "repo wide remediation sweep plan"
@@ -82774,6 +82946,9 @@
     "resume 033 remediation": [
       "resume 033 remediation"
     ],
+    "resume 069": [
+      "resume 069"
+    ],
     "resume adapter forged confirmation": [
       "resume adapter forged confirmation"
     ],
@@ -82930,6 +83105,18 @@
     "retire design aliases tasks": [
       "retire design aliases tasks"
     ],
+    "retire detect changes plan": [
+      "retire detect_changes plan"
+    ],
+    "retire detect changes references": [
+      "retire detect_changes references"
+    ],
+    "retire detect changes summary": [
+      "retire detect_changes summary"
+    ],
+    "retire detect changes tasks": [
+      "retire detect_changes tasks"
+    ],
     "retire dry run": [
       "retire dry run"
     ],
@@ -82974,6 +83161,9 @@
     ],
     "retire sk design interface": [
       "retire sk-design interface"
+    ],
+    "retire sk vision mcp server": [
+      "retire sk-vision-mcp server"
     ],
     "retire standalone checklist": [
       "retire standalone checklist"
@@ -83487,6 +83677,9 @@
     ],
     "review agent naming tasks": [
       "review agent naming tasks"
+    ],
+    "review agent structural impact removal": [
+      "review agent structural impact removal"
     ],
     "review alignment projection refresh": [
       "review alignment projection refresh"
@@ -86881,6 +87074,9 @@
     "scope policy rerun": [
       "scope policy rerun"
     ],
+    "scope reversal adr": [
+      "scope reversal adr"
+    ],
     "scope statement check": [
       "scope statement check"
     ],
@@ -88274,6 +88470,9 @@
     "session goal state architecture": [
       "session goal state architecture"
     ],
+    "session handover": [
+      "session handover"
+    ],
     "session handover 2026 05 18 evening": [
       "session handover 2026-05-18 evening"
     ],
@@ -89453,6 +89652,9 @@
     ],
     "sibling route regression probe": [
       "sibling route regression probe"
+    ],
+    "sibling route reopen decision": [
+      "sibling route reopen decision"
     ],
     "sibling shape parity check": [
       "sibling shape parity check"
@@ -91317,6 +91519,9 @@
     "sk design adapter built": [
       "sk-design adapter built"
     ],
+    "sk design advisor identity": [
+      "sk-design advisor identity"
+    ],
     "sk design audit adapter plan": [
       "sk-design audit adapter plan"
     ],
@@ -92099,9 +92304,6 @@
     ],
     "sk doc advisor and skill graph": [
       "sk-doc advisor and skill graph"
-    ],
-    "sk doc advisor identity": [
-      "sk-doc advisor identity"
     ],
     "sk doc aligned code readmes": [
       "sk-doc aligned code readmes"
@@ -93592,6 +93794,9 @@
     "sk vision class s": [
       "sk-vision class S"
     ],
+    "sk vision cli": [
+      "sk-vision cli"
+    ],
     "sk vision code alignment": [
       "sk-vision code alignment"
     ],
@@ -93606,6 +93811,9 @@
     ],
     "sk vision colors": [
       "sk_vision_colors"
+    ],
+    "sk vision command entry": [
+      "sk-vision command entry"
     ],
     "sk vision command gated activation": [
       "sk-vision command-gated activation"
@@ -93661,6 +93869,9 @@
     "sk vision cursor devin testing playbook tasks": [
       "sk-vision cursor devin testing playbook tasks"
     ],
+    "sk vision cursor hook adapter": [
+      "sk-vision cursor hook adapter"
+    ],
     "sk vision cursor hook entry": [
       "sk-vision cursor hook entry"
     ],
@@ -93681,6 +93892,12 @@
     ],
     "sk vision detect": [
       "sk_vision_detect"
+    ],
+    "sk vision devin hook": [
+      "sk-vision devin hook"
+    ],
+    "sk vision devin hook adapter": [
+      "sk-vision devin hook adapter"
     ],
     "sk vision devin hook entry": [
       "sk-vision devin hook entry"
@@ -93736,6 +93953,18 @@
     "sk vision handover": [
       "sk-vision handover"
     ],
+    "sk vision hook adapter closure gate": [
+      "sk-vision hook adapter closure gate"
+    ],
+    "sk vision hook adapter plan": [
+      "sk-vision hook adapter plan"
+    ],
+    "sk vision hook adapter summary": [
+      "sk-vision hook adapter summary"
+    ],
+    "sk vision hook adapter tasks": [
+      "sk-vision hook adapter tasks"
+    ],
     "sk vision hooks four hosts": [
       "sk-vision hooks four hosts"
     ],
@@ -93759,6 +93988,9 @@
     ],
     "sk vision host registration scope": [
       "sk-vision host registration scope"
+    ],
+    "sk vision injection adapter": [
+      "sk-vision injection adapter"
     ],
     "sk vision inline comments": [
       "sk-vision inline comments"
@@ -93790,9 +94022,6 @@
     "sk vision manual testing playbook": [
       "sk-vision manual testing playbook"
     ],
-    "sk vision mcp": [
-      "sk-vision-mcp"
-    ],
     "sk vision mcp orphan watchdog": [
       "sk-vision mcp orphan watchdog"
     ],
@@ -93811,8 +94040,25 @@
     "sk vision mcp process lifecycle guards tasks": [
       "sk-vision mcp process lifecycle guards tasks"
     ],
+    "sk vision mcp retirement": [
+      "sk-vision MCP retirement"
+    ],
+    "sk vision mcp retirement acceptance criteria": [
+      "sk-vision MCP retirement acceptance criteria"
+    ],
+    "sk vision mcp retirement decision": [
+      "sk-vision MCP retirement decision"
+    ],
+    "sk vision mcp retirement plan": [
+      "sk-vision MCP retirement plan"
+    ],
+    "sk vision mcp retirement summary": [
+      "sk-vision MCP retirement summary"
+    ],
+    "sk vision mcp retirement tasks": [
+      "sk-vision MCP retirement tasks"
+    ],
     "sk vision mcp server": [
-      "sk-vision MCP server",
       "sk-vision mcp server"
     ],
     "sk vision mcp server zombie processes": [
@@ -99439,6 +99685,9 @@
     "style reference owns its colour": [
       "style reference owns its colour"
     ],
+    "style reference provenance": [
+      "style reference provenance"
+    ],
     "style reference schema": [
       "style reference schema"
     ],
@@ -100234,6 +100483,24 @@
     "swe 1 6 static infra scenarios": [
       "SWE-1.6 static infra scenarios"
     ],
+    "swe 2 allowlist verification": [
+      "swe-2 allowlist verification"
+    ],
+    "swe 2 cutover": [
+      "swe-2 cutover"
+    ],
+    "swe 2 cutover plan": [
+      "swe-2 cutover plan"
+    ],
+    "swe 2 cutover summary": [
+      "swe-2 cutover summary"
+    ],
+    "swe 2 cutover tasks": [
+      "swe-2 cutover tasks"
+    ],
+    "swe 2 task dependencies": [
+      "swe-2 task dependencies"
+    ],
     "sweep ac traceability": [
       "sweep ac traceability"
     ],
@@ -100638,6 +100905,9 @@
     ],
     "system code graph whole surface verification tasks": [
       "system-code-graph whole-surface verification tasks"
+    ],
+    "system code index retired": [
+      "system_code_index retired"
     ],
     "system code standards": [
       "system code standards"
@@ -106026,8 +106296,17 @@
     "visible plan": [
       "visible plan"
     ],
+    "vision cli vision cli js": [
+      "Vision CLI (vision-cli.js)"
+    ],
     "vision runtime protocol": [
       "vision runtime protocol"
+    ],
+    "vision without mcp": [
+      "vision without MCP"
+    ],
+    "vision without mcp plan": [
+      "vision without MCP plan"
     ],
     "visual design preview": [
       "visual design preview"
@@ -107082,6 +107361,9 @@
     "what shipped shared package": [
       "what shipped shared package"
     ],
+    "what shipped swe 2": [
+      "what shipped swe-2"
+    ],
     "what shipped template contract": [
       "what shipped template contract"
     ],
@@ -107163,6 +107445,12 @@
     "where plugins keep data": [
       "where plugins keep data"
     ],
+    "where the chart palette came from": [
+      "where the chart palette came from"
+    ],
+    "where the eligibility contract lives": [
+      "where the eligibility contract lives"
+    ],
     "where to look next": [
       "where to look next"
     ],
@@ -107240,6 +107528,9 @@
     ],
     "which model for pi dispatch": [
       "which model for pi dispatch"
+    ],
+    "which model may act as prompt improve": [
+      "which model may act as prompt-improve"
     ],
     "which obsidian plugin files are removed": [
       "which obsidian plugin files are removed"
@@ -107390,6 +107681,9 @@
     ],
     "why was my rule refused": [
       "why was my rule refused"
+    ],
+    "widen advisor vocabulary": [
+      "widen advisor vocabulary"
     ],
     "widen outer fence": [
       "widen outer fence"

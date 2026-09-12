@@ -45,9 +45,10 @@ This is a local OpenCode plugin contract, not an MCP tool and not a daemon-backe
 - `/goal history` lists archived goal records from `.opencode/skills/.state/goal/.archive/` without creating or mutating active state.
 - Reads adopt valid legacy hex-keyed active and archived files into the fixed digest path without overwriting an occupied target. Malformed or mismatched sources remain untouched.
 - `/goal doctor` and `/goal health` are read-only inspections that report active state-file count, archive-file count, `.continuation.log` and `.goal-events.log` byte sizes, last sweep time, and orphan-candidate count.
-- `/goal resume` reactivates only `paused` or `usage_limited` goals, clears `continuationSuppressed`, clears `continuationSuppressedReason`, and rejects terminal resurrection.
+- `/goal resume` reactivates `paused`, `usage_limited` and `budget_limited` goals, clears `continuationSuppressed`, clears `continuationSuppressedReason`, and rejects terminal resurrection.
 - `experimental.chat.system.transform` injects one `[active_goal:<goalId>]` block only for active goals.
 - The injected block keeps a short raw `objective:` preview for auditability and uses `goal_prompt:` for model-facing steering.
+- A bound packet's completion criteria render as their own `criteria:` field, one per line, in both the full and the compact block. A budget drops whole criteria rather than cutting one, and adds an `- (N more in the goal file)` line when it does.
 - The `event` hook restores active goals on `session.created`, records usage/evidence on `message.updated`, tracks prompt blockers, verifies on `session.idle`, and attempts continuation only when autonomy gates pass. Provider usage-limit recovery is lazy: a retry-after deadline recorded from a 429 payload is evaluated on the next `message.updated` or `session.idle`, with no timer.
 - Idle verification uses an injected `supervisorVerifier` when tests or callers provide one; otherwise it uses the production default verifier. The default is a fail-closed heuristic over the latest assistant evidence and the goal objective. Set `OPENCODE_GOAL_VERIFIER=llm` to opt into the model-backed verifier that calls `ctx.client.session.promptAsync` and parses a structured verdict.
 - `/goal show` and `opencode_goal_status` expose the exact injection preview plus prompt metadata so operators can inspect what the model receives.
@@ -58,7 +59,9 @@ This is a local OpenCode plugin contract, not an MCP tool and not a daemon-backe
 
 | Variable | Default | Effect |
 |---|---|---|
-| `OPENCODE_GOAL_PLUGIN_DISABLED` | unset | Set `1` to disable goal injection and plugin behavior. |
+| `OPENCODE_GOAL_DISABLED` | unset | Canonical. Set `1` to disable goal injection and plugin behavior. |
+| `OPENCODE_GOAL_PLUGIN_DISABLED` | unset | Legacy alias of the line above, honoured by the shared resolver. |
+| `OPENCODE_GOAL_STATE_DIR` | unset | Relocates the record store for both engines. The packet lock deliberately stays under the workspace state directory, so two sessions with different stores still serialize. |
 | `OPENCODE_GOAL_AUTONOMY` | unset | `active` enables guarded continuation; `smoke` logs would-fire decisions; unset or `passive` suppresses continuation. |
 | `OPENCODE_GOAL_DEBUG` | unset | Set `1` to append bounded debug events under `.state/goal`. |
 | `OPENCODE_GOAL_VERIFIER` | `heuristic` | `heuristic` uses the deterministic fail-closed verifier; `llm` opts into `ctx.client.session.promptAsync` semantic verdicts. |

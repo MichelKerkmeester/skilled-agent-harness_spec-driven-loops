@@ -1,13 +1,9 @@
 // ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ COMPONENT: goal-core (runtime-neutral)                                   ║
-// ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ PURPOSE: Persist isolated cross-runtime session goals and render the     ║
-// ║          passive `[active_goal]` steering block injected into a model's ║
-// ║          context. Ported from the OpenCode `opencode-goal` plugin's session   ║
-// ║          state machine, template, and prompt-injection hardening. Reads ║
-// ║          fail open; management mutations raise stable GoalError codes. ║
-// ║          This module never writes stdout or stderr.                     ║
+// ║ goal-core — cross-runtime session goal state and the injected steering block║
 // ╚══════════════════════════════════════════════════════════════════════════╝
+//
+// Reads fail open so a broken record never breaks a turn; management mutations
+// raise stable error codes instead. This module never writes stdout or stderr.
 'use strict';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -68,6 +64,13 @@ const DEFAULT_MAX_EVIDENCE_CHARS = 1200;
 const MIN_PROMPT_BUDGET_CHARS = 3;
 const GOAL_ID_MAX_CHARS = 160;
 const PROMPT_OVERHEAD_CHARS = 1900;
+// The objective summary inside a prompt is clamped between these, whatever the
+// prompt budget works out to: below the floor it stops naming the packet, above
+// the ceiling it crowds out the steering text it introduces.
+const PROMPT_OBJECTIVE_MIN_CHARS = 240;
+const PROMPT_OBJECTIVE_MAX_CHARS = 1200;
+// A runtime label is display text in a Role line, not an identifier.
+const RUNTIME_LABEL_MAX_CHARS = 40;
 const OBJECTIVE_PREVIEW_RATIO = 0.12;
 const OBJECTIVE_PREVIEW_MIN_CHARS = 60;
 const OBJECTIVE_PREVIEW_MAX_CHARS = 600;
@@ -153,6 +156,12 @@ function isPluginDisabled(env = process.env) {
 // One walk, shared with the slice module. Two copies of the same marker list
 // drift the moment a marker is added to one of them, and the two engines would
 // then disagree about which directory a packet path is relative to.
+/**
+ * Find the repository root a packet path is resolved against.
+ *
+ * @param {string} [startDir] - Any directory inside the repository.
+ * @returns {string} The repository root.
+ */
 function resolveRepoRoot(startDir = process.cwd()) {
   return goalSlice.resolveWorkspaceRoot(startDir);
 }
@@ -227,18 +236,42 @@ function resolveGoalScope(rawOptions = {}) {
   });
 }
 
+/**
+ * Where this scope's record lives.
+ *
+ * @param {Object} [rawOptions] - Scope options.
+ * @returns {string} Absolute path to the record file.
+ */
 function statePath(rawOptions = {}) {
   return resolveGoalScope(rawOptions).statePath;
 }
 
+/**
+ * Where this scope's archived records live.
+ *
+ * @param {Object} [rawOptions] - Scope options.
+ * @returns {string} Absolute path to the archive directory.
+ */
 function archiveDir(rawOptions = {}) {
   return resolveGoalScope(rawOptions).archiveDir;
 }
 
+/**
+ * Where the pre-scope singleton record lived, kept for quarantine and migration.
+ *
+ * @param {Object} [rawOptions] - Scope options.
+ * @returns {string} Absolute path to the legacy record.
+ */
 function legacyStatePath(rawOptions = {}) {
   return join(resolveStateDir(rawOptions), LEGACY_STATE_FILENAME);
 }
 
+/**
+ * Where a quarantined legacy record is archived to.
+ *
+ * @param {Object} [rawOptions] - Scope options.
+ * @returns {string} Absolute path to the legacy archive directory.
+ */
 function legacyArchiveDir(rawOptions = {}) {
   return join(resolveStateDir(rawOptions), ARCHIVE_SUBDIR, LEGACY_ARCHIVE_SUBDIR);
 }
@@ -247,6 +280,13 @@ function legacyArchiveDir(rawOptions = {}) {
 // 4. TEXT HARDENING (ported from opencode-goal normalizeUserAuthoredText)
 // ─────────────────────────────────────────────────────────────────────────────
 
+/**
+ * Cut text to a length, marking that it was cut.
+ *
+ * @param {unknown} value - Any value; coerced to text.
+ * @param {number} maxChars - Ceiling in characters.
+ * @returns {string} The text, clamped.
+ */
 function clampText(value, maxChars) {
   const text = String(value ?? '');
   const limit = Number.isFinite(maxChars) ? Math.max(0, Math.trunc(maxChars)) : text.length;
@@ -284,6 +324,13 @@ function normalizeUserAuthoredText(value) {
     .replace(/\b(jailbreak|prompt\s*injection|do\s+anything\s+now)\b/gi, '[instruction-redacted]');
 }
 
+/**
+ * Normalise operator-authored text to one safe line.
+ *
+ * @param {unknown} value - Any value; coerced to text.
+ * @param {number} [maxChars] - Ceiling in characters.
+ * @returns {string} One line, clamped, with injection markers neutralised.
+ */
 function sanitizeInlineText(value, maxChars = DEFAULT_MAX_OBJECTIVE_CHARS) {
   const text = normalizeUserAuthoredText(value)
     .replace(/[\n]+/g, ' ')
@@ -292,6 +339,13 @@ function sanitizeInlineText(value, maxChars = DEFAULT_MAX_OBJECTIVE_CHARS) {
   return clampText(text, maxChars);
 }
 
+/**
+ * Normalise operator-authored text for a multi-line prompt body.
+ *
+ * @param {unknown} value - Any value; coerced to text.
+ * @param {number} [maxChars] - Ceiling in characters.
+ * @returns {string} The prompt text, clamped, with injection markers neutralised.
+ */
 function sanitizePromptText(value, maxChars = DEFAULT_MAX_GOAL_PROMPT_CHARS) {
   const text = normalizeUserAuthoredText(value)
     .replace(/\r\n?/g, '\n')
@@ -303,6 +357,13 @@ function sanitizePromptText(value, maxChars = DEFAULT_MAX_GOAL_PROMPT_CHARS) {
   return clampText(text, maxChars);
 }
 
+/**
+ * Normalise verifier evidence, which is model output and never trusted.
+ *
+ * @param {unknown} value - Any value; coerced to text.
+ * @param {number} [maxChars] - Ceiling in characters.
+ * @returns {string} The evidence, clamped and redacted.
+ */
 function redactEvidence(value, maxChars = DEFAULT_MAX_EVIDENCE_CHARS) {
   const text = normalizeUserAuthoredText(value)
     .replace(/-----BEGIN [A-Z ]*PRIVATE KEY-----[\s\S]*?-----END [A-Z ]*PRIVATE KEY-----/g, '[secret-redacted]')
@@ -321,6 +382,12 @@ function normalizeGoalID(value) {
   return `goal-${digest}`;
 }
 
+/**
+ * Quote a value for a status envelope field, so a newline cannot forge a line.
+ *
+ * @param {unknown} value - Any value; coerced to text.
+ * @returns {string} A JSON string literal.
+ */
 function quoteValue(value) {
   return JSON.stringify(String(value ?? ''));
 }
@@ -360,7 +427,10 @@ function buildGoalPrompt(objective, rawOptions = {}) {
   const maxGoalPromptChars = Number.isFinite(rawOptions.maxGoalPromptChars) ? rawOptions.maxGoalPromptChars : DEFAULT_MAX_GOAL_PROMPT_CHARS;
   const maxObjectiveChars = Number.isFinite(rawOptions.maxObjectiveChars) ? rawOptions.maxObjectiveChars : DEFAULT_MAX_OBJECTIVE_CHARS;
   const rawObjective = sanitizeInlineText(objective, maxObjectiveChars);
-  const objectiveBudget = Math.max(240, Math.min(1200, maxGoalPromptChars - PROMPT_OVERHEAD_CHARS));
+  const objectiveBudget = Math.max(
+    PROMPT_OBJECTIVE_MIN_CHARS,
+    Math.min(PROMPT_OBJECTIVE_MAX_CHARS, maxGoalPromptChars - PROMPT_OVERHEAD_CHARS),
+  );
   // The criteria are carried as their own field beside this prompt, so naming
   // only the packet here keeps one copy instead of two and leaves the budget
   // to the part a reader cannot reconstruct.
@@ -447,7 +517,7 @@ function renderGoalBrief({ goal, runtimeLabel = 'cross-runtime', maxChars = DEFA
   // The Role line is baked at set time from the runtime that created the goal,
   // but the brief should name whichever runtime is reading it now. Relabel it
   // to the caller's runtime so a goal set in one CLI reads correctly in another.
-  const safeRuntimeLabel = String(runtimeLabel).replace(/[^A-Za-z0-9 _-]/g, '').trim().slice(0, 40) || 'cross-runtime';
+  const safeRuntimeLabel = String(runtimeLabel).replace(/[^A-Za-z0-9 _-]/g, '').trim().slice(0, RUNTIME_LABEL_MAX_CHARS) || 'cross-runtime';
   const storedPrompt = sanitizePromptText(promptSource, DEFAULT_MAX_GOAL_PROMPT_CHARS);
   const goalPrompt = storedPrompt.replace(
     /^Role: Focused .+? execution agent operating under the active session goal\./m,
@@ -700,6 +770,12 @@ function readGoalRecordForScope(goalScope) {
   return null;
 }
 
+/**
+ * Read this scope's record. Fails open: any error reads as no goal.
+ *
+ * @param {Object} [rawOptions] - Scope options.
+ * @returns {Object | null} The record, or null.
+ */
 function readGoalRecord(rawOptions = {}) {
   try {
     return readGoalRecordForScope(resolveGoalScope(rawOptions));
@@ -737,6 +813,12 @@ function removeStateFile(goalScope) {
 // 9. LEGACY SINGLETON QUARANTINE
 // ─────────────────────────────────────────────────────────────────────────────
 
+/**
+ * Report what the pre-scope singleton record holds, without acting on it.
+ *
+ * @param {Object} [rawOptions] - Scope options.
+ * @returns {Object} Presence, validity, size and the parsed record when readable.
+ */
 function inspectLegacyGoal(rawOptions = {}) {
   const path = legacyStatePath(rawOptions);
   try {
@@ -840,6 +922,12 @@ function quarantineLegacySnapshot(snapshot, rawOptions = {}) {
   }
 }
 
+/**
+ * Adopt a readable legacy record into the current scope.
+ *
+ * @param {Object} [rawOptions] - Scope options.
+ * @returns {Object} The adopted record and what the migration did.
+ */
 function migrateLegacyGoal(rawOptions = {}) {
   if (isPluginDisabled()) throw new GoalError('PLUGIN_DISABLED', `${DISABLED_ENV}=1 disables goal core execution`);
   const goalScope = resolveGoalScope(rawOptions);
@@ -905,6 +993,12 @@ function migrateLegacyGoal(rawOptions = {}) {
   });
 }
 
+/**
+ * Move the legacy record out of the way without adopting it.
+ *
+ * @param {Object} [rawOptions] - Scope options.
+ * @returns {Object} Where it went.
+ */
 function archiveLegacyGoal(rawOptions = {}) {
   if (isPluginDisabled()) throw new GoalError('PLUGIN_DISABLED', `${DISABLED_ENV}=1 disables goal core execution`);
   const stateDir = resolveStateDir(rawOptions);
@@ -1319,6 +1413,13 @@ function clearGoal(rawOptions = {}) {
   });
 }
 
+/**
+ * Pause the active goal, keeping the record.
+ *
+ * @param {Object} [input] - Optional reason for the pause.
+ * @param {Object} [rawOptions] - Scope options.
+ * @returns {Object} The paused record.
+ */
 function pauseGoal({ reason = '' } = {}, rawOptions = {}) {
   if (isPluginDisabled()) throw new GoalError('PLUGIN_DISABLED', `${DISABLED_ENV}=1 disables goal core execution`);
   return withScopeMutation(rawOptions, (goalScope) => {
@@ -1338,9 +1439,16 @@ function pauseGoal({ reason = '' } = {}, rawOptions = {}) {
   });
 }
 
-// This engine carries four states, so a resume from anything but paused has no
-// meaning here. The OpenCode plugin carries three more and resumes from two of
-// them as well; the difference is the state sets, not the command.
+/**
+ * Reactivate a paused goal.
+ *
+ * This engine carries four states, so a resume from anything but paused has no
+ * meaning here. The OpenCode plugin carries three more and resumes from two of
+ * them as well; the difference is the state sets, not the command.
+ *
+ * @param {Object} [rawOptions] - Scope options.
+ * @returns {Object} The reactivated record.
+ */
 function resumeGoal(rawOptions = {}) {
   if (isPluginDisabled()) throw new GoalError('PLUGIN_DISABLED', `${DISABLED_ENV}=1 disables goal core execution`);
   return withScopeMutation(rawOptions, (goalScope) => {
@@ -1390,6 +1498,12 @@ function recordTurn(_input = {}, rawOptions = {}) {
   }
 }
 
+/**
+ * List this scope's archived records, newest first.
+ *
+ * @param {Object} [rawOptions] - Scope options.
+ * @returns {Array<Object>} The archived records.
+ */
 function listArchivedGoals(rawOptions = {}) {
   try {
     const goalScope = resolveGoalScope(rawOptions);
@@ -1442,6 +1556,12 @@ function countScopedArchiveFiles(stateDir) {
   }
 }
 
+/**
+ * Report store health: counts, sizes and anything that looks orphaned.
+ *
+ * @param {Object} [rawOptions] - Scope options.
+ * @returns {Object} The diagnostic figures.
+ */
 function doctorStats(rawOptions = {}) {
   const stateDir = resolveStateDir(rawOptions);
   const legacy = inspectLegacyGoal(rawOptions);

@@ -49,7 +49,7 @@ Set A and B with `node .opencode/hooks/goal/bin/goal.cjs --runtime cursor --sess
 
 ### Rollback
 
-Set `OPENCODE_GOAL_PLUGIN_DISABLED=1` or remove the Cursor goal registration as one controlled change. Preserve scoped and quarantined state. A disabled adapter must return only `{"permission":"allow"}` and must not increment any goal record.
+Set `OPENCODE_GOAL_DISABLED=1` or remove the Cursor goal registration as one controlled change. Preserve scoped and quarantined state. A disabled adapter must return only `{"permission":"allow"}` and must not increment any goal record.
 
 ---
 
