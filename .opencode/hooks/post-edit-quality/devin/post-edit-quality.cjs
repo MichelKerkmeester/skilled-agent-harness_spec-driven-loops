@@ -49,34 +49,44 @@ function filePathFrom(toolInput) {
   return typeof candidate === 'string' && candidate ? candidate : undefined;
 }
 
-function printCommentHygieneFinding(finding, filePath) {
-  process.stdout.write('\n');
-  process.stdout.write('COMMENT HYGIENE WARNING: ephemeral-artifact pointers found in code comments.\n');
-  process.stdout.write('These references are unstable and will rot. Replace each with the durable WHY.\n');
-  process.stdout.write(`Violations in ${filePath}:\n`);
+function buildCommentHygieneFinding(finding, filePath) {
+  const lines = [
+    '',
+    'COMMENT HYGIENE WARNING: ephemeral-artifact pointers found in code comments.',
+    'These references are unstable and will rot. Replace each with the durable WHY.',
+    `Violations in ${filePath}:`,
+  ];
   for (const line of String(finding.stdout || '').split('\n')) {
-    if (line.trim()) process.stdout.write(`  ${line}\n`);
+    if (line.trim()) lines.push(`  ${line}`);
   }
-  process.stdout.write('See: .opencode/skills/sk-code/shared/references/universal/code-style-guide.md §4\n');
-  process.stdout.write("Escape: add 'hygiene-ok' to a comment line to suppress the warning for that line.\n");
-  process.stdout.write('\n');
+  lines.push(
+    'See: .opencode/skills/sk-code/shared/references/universal/code-style-guide.md §4',
+    "Escape: add 'hygiene-ok' to a comment line to suppress the warning for that line.",
+    '',
+  );
+  return lines.join('\n');
 }
 
-function printGenericFinding(finding, filePath) {
-  process.stdout.write('\n');
-  process.stdout.write(`POST-EDIT QUALITY WARNING [${finding.label}] for ${filePath}:\n`);
+function buildGenericFinding(finding, filePath) {
+  const lines = [
+    '',
+    `POST-EDIT QUALITY WARNING [${finding.label}] for ${filePath}:`,
+  ];
   for (const line of String(finding.stdout || '').split('\n')) {
-    if (line.trim()) process.stdout.write(`  ${line}\n`);
+    if (line.trim()) lines.push(`  ${line}`);
   }
-  process.stdout.write('\n');
+  lines.push('');
+  return lines.join('\n');
 }
 
-function printFindings(findings, filePath) {
-  if (!Array.isArray(findings) || findings.length === 0) return;
+function buildFindings(findings, filePath) {
+  if (!Array.isArray(findings) || findings.length === 0) return '';
+  let text = '';
   for (const finding of findings) {
-    if (finding.label === 'comment-hygiene') printCommentHygieneFinding(finding, filePath);
-    else printGenericFinding(finding, filePath);
+    if (finding.label === 'comment-hygiene') text += buildCommentHygieneFinding(finding, filePath);
+    else text += buildGenericFinding(finding, filePath);
   }
+  return text;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -115,6 +125,7 @@ async function main() {
   }
   if (!fileExists) return;
 
+  let advisory = '';
   try {
     const entries = router.resolveDispatch(filePath, projectDir);
     const checksBudget = remainingMs(startedAt, router.CLAUDE_HOOK_BUDGET_MS);
@@ -122,7 +133,7 @@ async function main() {
       perChildTimeoutMs: router.CLAUDE_CHECKER_TIMEOUT_MS,
       minCheckerMs: router.CLAUDE_MIN_CHECKER_MS,
     });
-    printFindings(findings, filePath);
+    advisory += buildFindings(findings, filePath);
   } catch (_) {
     // Fail-open: a dispatch/spawn bug must never surface a traceback.
   }
@@ -134,10 +145,19 @@ async function main() {
       const banner = router.runDistStalenessCheck(filePath, projectDir, {
         timeoutMs: Math.min(distBudget, router.CLAUDE_CHECKER_TIMEOUT_MS),
       });
-      if (banner) process.stdout.write(`\n${banner}\n\n`);
+      if (banner) advisory += `\n${banner}\n\n`;
     }
   } catch (_) {
     // Fail-open.
+  }
+
+  // Exit-0 plain stdout is only shown in the transcript view, not given to the
+  // assistant, so findings are delivered through the PostToolUse envelope
+  // instead. A clean edit stays silent: no envelope, no output at all.
+  if (advisory) {
+    process.stdout.write(JSON.stringify({
+      hookSpecificOutput: { hookEventName: 'PostToolUse', additionalContext: advisory },
+    }));
   }
 }
 
