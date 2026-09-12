@@ -30,7 +30,9 @@ const DEFAULT_SETTINGS = Object.freeze({
 const HISTORICAL_SETTINGS = Object.freeze({
   'ai-council': { sandboxMode: 'workspace-write', ...DEFAULT_SETTINGS },
   code: { sandboxMode: 'workspace-write', ...DEFAULT_SETTINGS },
-  context: { sandboxMode: 'read-only', ...DEFAULT_SETTINGS },
+  // Context gathering reads and summarises; it does not decide. The cheap tier is the
+  // point of dispatching it at all, so it does not inherit the default.
+  context: { sandboxMode: 'read-only', model: 'gpt-5.5', modelReasoningEffort: 'low' },
   debug: { sandboxMode: 'workspace-write', ...DEFAULT_SETTINGS },
   'deep-improvement': { sandboxMode: 'workspace-write', ...DEFAULT_SETTINGS },
   'deep-research': { sandboxMode: 'workspace-write', ...DEFAULT_SETTINGS },
