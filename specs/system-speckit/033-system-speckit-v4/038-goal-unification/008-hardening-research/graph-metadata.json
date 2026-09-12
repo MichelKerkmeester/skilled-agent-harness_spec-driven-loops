@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/033-system-speckit-v4/038-goal-unification/008-hardening-research",
+  "spec_folder": "system-speckit/033-system-speckit-v4/038-goal-unification/008-hardening-research",
+  "parent_id": "system-speckit/033-system-speckit-v4/038-goal-unification",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "goal unification hardening",
+      "goal hardening research",
+      "goal integration seams",
+      "goal overengineering review",
+      "goal hardening plan",
+      "hardening research plan",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies",
+      "packet goal",
+      "durable directive"
+    ],
+    "key_topics": [
+      "goal",
+      "unification",
+      "hardening",
+      "research",
+      "integration",
+      "seams",
+      "overengineering",
+      "review",
+      "plan",
+      "task",
+      "breakdown",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "research/deep-research-strategy.md",
+      ".opencode/hooks/goal/lib/goal-slice.cjs",
+      ".opencode/hooks/goal/lib/goal-core.cjs",
+      ".opencode/hooks/goal/bin/goal.cjs",
+      ".opencode/plugins/opencode-goal.js",
+      ".opencode/skills/system-spec-kit/runtime/lib/validation/spec-doc-structure.ts",
+      ".opencode/skills/system-spec-kit/references/workflows/goal-set-string-playbook.md",
+      ".opencode/plugins/tests/opencode-goal-render-parity.test.cjs",
+      "research/lineages/deepseek/research.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-strategy.md",
+        "kind": "doc",
+        "path": "research/deep-research-strategy.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal-slice.cjs",
+        "kind": "file",
+        "path": ".opencode/hooks/goal/lib/goal-slice.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "goal-core.cjs",
+        "kind": "file",
+        "path": ".opencode/hooks/goal/lib/goal-core.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "goal.cjs",
+        "kind": "file",
+        "path": ".opencode/hooks/goal/bin/goal.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-goal.js",
+        "kind": "code",
+        "path": ".opencode/plugins/opencode-goal.js",
+        "source": "derived"
+      },
+      {
+        "name": "spec-doc-structure.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/runtime/lib/validation/spec-doc-structure.ts",
+        "source": "derived"
+      },
+      {
+        "name": "goal-set-string-playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/references/workflows/goal-set-string-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-goal-render-parity.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/opencode-goal-render-parity.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Research",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The packet shipped green, but a first review already showed the unit tests missed real defects",
+    "created_at": "2026-09-11T10:52:14Z",
+    "last_save_at": "2026-09-12T16:14:53.936Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:ad1556a395e22a5f49d2bca8d08b268eff98665cf84e54c32b0f4972d701ff67",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "f71d72f0667ff3be873a073e05d5a26630ef4b74935fa77e9b640ebfce47d3ac",
+      "plan.md": "95075ba8a51b9077d76b3d0a55e8ac1e2fbb2b6028754d2737239ccffb7cb289",
+      "tasks.md": "19031a5228b127b98bd2f3df0de9105b577a62ebdca71a25fc9bdda5654b89fd",
+      "implementation-summary.md": "ec56104c5777c4d81afe7b4aee6d2df54fcb09c9546897cbe86c14aca346653e",
+      "research/research.md": "920cc95a36505dfe22e6791d300402157bd9961445cff3c444ecfb91fd8cfd6b"
+    },
+    "last_active_at": null
+  }
+}

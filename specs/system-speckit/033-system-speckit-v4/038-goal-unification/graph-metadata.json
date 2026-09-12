@@ -1,0 +1,196 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/033-system-speckit-v4/038-goal-unification",
+  "spec_folder": "system-speckit/033-system-speckit-v4/038-goal-unification",
+  "parent_id": "system-speckit/033-system-speckit-v4",
+  "children_ids": [
+    "system-speckit/033-system-speckit-v4/038-goal-unification/001-goal-unification-research",
+    "system-speckit/033-system-speckit-v4/038-goal-unification/002-decisions-and-contract-freeze",
+    "system-speckit/033-system-speckit-v4/038-goal-unification/003-speckit-goal-contract",
+    "system-speckit/033-system-speckit-v4/038-goal-unification/004-goal-core-packet-backed",
+    "system-speckit/033-system-speckit-v4/038-goal-unification/005-runtime-surfaces",
+    "system-speckit/033-system-speckit-v4/038-goal-unification/006-speckit-command-integration",
+    "system-speckit/033-system-speckit-v4/038-goal-unification/007-retirement-docs-and-verification",
+    "system-speckit/033-system-speckit-v4/038-goal-unification/008-hardening-research",
+    "system-speckit/033-system-speckit-v4/038-goal-unification/009-close-open-decisions",
+    "system-speckit/033-system-speckit-v4/038-goal-unification/010-repo-wide-goal-research",
+    "system-speckit/033-system-speckit-v4/038-goal-unification/011-goal-drift-remediation",
+    "system-speckit/033-system-speckit-v4/038-goal-unification/012-open-items-research"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "goal unification",
+      "goal hook refactor",
+      "packet goal single source",
+      "goal.md frontmatter strip",
+      "goal state store retirement",
+      "goal command every runtime",
+      "goal.md across runtimes",
+      "frontmatter never sent in chat",
+      "parent goal resend"
+    ],
+    "key_topics": [
+      "goal",
+      "unification",
+      "hook",
+      "refactor",
+      "packet",
+      "single",
+      "source",
+      "frontmatter",
+      "strip",
+      "state",
+      "store",
+      "retirement"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "goal.md",
+      ".opencode/skills/system-spec-kit/templates/addons/goal.md.tmpl",
+      ".opencode/skills/system-spec-kit/references/workflows/goal-set-string-playbook.md",
+      ".opencode/skills/system-spec-kit/runtime/lib/validation/spec-doc-structure.ts",
+      ".opencode/hooks/goal/lib/goal-core.cjs",
+      ".opencode/plugins/opencode-goal.js",
+      ".opencode/hooks/goal/README.md",
+      "002-decisions-and-contract-freeze/decision-record.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md.tmpl",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/templates/addons/goal.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "goal-set-string-playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/references/workflows/goal-set-string-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-doc-structure.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/runtime/lib/validation/spec-doc-structure.ts",
+        "source": "derived"
+      },
+      {
+        "name": "goal-core.cjs",
+        "kind": "file",
+        "path": ".opencode/hooks/goal/lib/goal-core.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-goal.js",
+        "kind": "code",
+        "path": ".opencode/plugins/opencode-goal.js",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/hooks/goal/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Three",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "review",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "liveness",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "speckit",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "migration",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Three goal surfaces exist and nothing bridges them by code",
+    "created_at": "2026-09-11T07:11:46Z",
+    "last_save_at": "2026-09-12T16:54:29.334Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "goal.md"
+    ],
+    "source_fingerprint": "sha256:b2b6a9dcddabf64155ae030c61c02bb411e18b32adcd9647708efc27ab210f99",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "7c1cea864822d8f9abc3c180f02afa5ce5197eac8e2b3156c791381f068dc3ea"
+    },
+    "last_active_at": null
+  }
+}

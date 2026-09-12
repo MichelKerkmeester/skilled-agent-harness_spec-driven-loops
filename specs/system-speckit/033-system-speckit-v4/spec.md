@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: system-speckit-v4"
-description: "Phase parent for repo v4 of system-spec-kit: the thirty-five packets from the plan-preflight fix on 2026-08-15 through the changelog draft update on 2026-09-08, consolidated in chronological order with a timeline, covering template reduction, validation-gate coherence, path containment, daemon hardening, the memory-database decommission and its landing, the runtime rename, the reality-alignment and simplification research rounds, the recorded-findings closure, CI mirror parity, the changelog fact-check, and the draft update."
+description: "Phase parent for repo v4 of system-spec-kit: the thirty-eight packets from the plan-preflight fix on 2026-08-15 through the goal unification on 2026-09-12, consolidated in chronological order with a timeline, covering template reduction, validation-gate coherence, path containment, daemon hardening, the memory-database decommission and its landing, the runtime rename, the reality-alignment and simplification research rounds, the recorded-findings closure, CI mirror parity, the changelog fact-check, the draft update, the spec-doc healer, the derived-artifact registry, and the goal unification."
 trigger_phrases:
   - "system speckit v4"
   - "spec kit v4 timeline"
@@ -40,7 +40,7 @@ _memory:
     - What needs done: the high-level outcome the phases work toward
 -->
 
-# Feature Specification: Phase parent for repo v4 of system-spec-kit: the thirty-five packets from the plan-preflight fix through the changelog draft update, consolidated in chronological order with a timeline
+# Feature Specification: Phase parent for repo v4 of system-spec-kit: the thirty-eight packets from the plan-preflight fix through the goal unification, consolidated in chronological order with a timeline
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -65,10 +65,10 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-Thirty-five packets shipped system-spec-kit's fourth generation between 2026-08-15 and 2026-09-08 as separate top-level folders numbered by creation order rather than by the order the work actually started, with names that said what was planned rather than what shipped. Anyone reading the track saw fragments; nothing showed the sequence.
+Thirty-eight packets shipped system-spec-kit's fourth generation between 2026-08-15 and 2026-09-12 as separate top-level folders numbered by creation order rather than by the order the work actually started, with names that said what was planned rather than what shipped. Anyone reading the track saw fragments; nothing showed the sequence.
 
 ### Purpose
-Hold the thirty-five packets as phases in chronological order under one parent that a reader can call v4, with a timeline, literal names, and retrieval that reaches every child.
+Hold the thirty-eight packets as phases in chronological order under one parent that a reader can call v4, with a timeline, literal names, and retrieval that reaches every child.
 
 > **Phase-parent note:** This spec.md is the ONLY authored document at the parent level. All detailed planning, task breakdowns, checklists, and decisions live in the child phase folders listed in the Phase Documentation Map below. This keeps the parent from drifting stale as phases execute and pivot.
 <!-- /ANCHOR:problem -->
@@ -79,7 +79,7 @@ Hold the thirty-five packets as phases in chronological order under one parent t
 ## 3. SCOPE
 
 ### In Scope
-- The thirty-five packets as children 001 to 035, numbered by first commit; nested phases keep their own structure with generic names made literal and 041's numbering gap closed.
+- The thirty-eight packets as children 001 to 038, numbered by first commit; the 2026-09-11/09-12 additions (spec-doc healer, derived-artifact registry, goal unification) joined as children 036 to 038 and the 044/045 leftovers reconciled into 012/014; nested phases keep their own structure with generic names made literal and 041's numbering gap closed.
 - Every live reference repointed; changelogs, archives, lineages and scratch kept as recorded history.
 - `timeline.md` with a chronological table and gantt built from git history.
 - Trigger phrases and headings tuned for the ripgrep-first retrieval that replaced the memory database.
@@ -142,6 +142,9 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 33 | 033-ci-dependency-hardening/ | was `037-ci-dependency-hardening`; the pre-commit hook runs all six CI mirror checks, the workflow triggers on every mirror source, and the Dependabot backlog reaches zero | complete |
 | 34 | 034-v4-state-inventory-research/ | two ten-iteration lanes, GPT-5.6 Luna and DeepSeek V4 Flash, inventory what the repository ships today and measure the old changelog draft against it | complete |
 | 35 | 035-v4-changelog-draft-update/ | the v4.0.0.0 changelog draft corrected from the confirmed drift table and extended with the late-cycle work | complete |
+| 36 | 036-spec-doc-healer/ | was `034-spec-doc-healer`; restored the scaffold values 323 documents lost | complete |
+| 37 | 037-derived-artifact-registry/ | was `035-derived-artifact-registry`; one registry for every derived artifact, planned in three phases | draft |
+| 38 | 038-goal-unification/ | the packet goal.md made the single goal every runtime reads, 12 children | complete |
 
 ### Phase Transition Rules
 

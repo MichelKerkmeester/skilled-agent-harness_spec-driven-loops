@@ -1,0 +1,33 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/033-system-speckit-v4/036-spec-doc-healer",
+  "description": "323 spec documents across 137 packets carried a required frontmatter field with no value, almost always `triggerphrases` written as an empty inline",
+  "keywords": [
+    "spec",
+    "documents",
+    "across",
+    "packets",
+    "carried",
+    "required",
+    "frontmatter",
+    "field",
+    "value",
+    "almost",
+    "always",
+    "triggerphrases",
+    "written",
+    "empty",
+    "inline"
+  ],
+  "lastUpdated": "2026-09-12T17:07:47.131Z",
+  "specId": "036",
+  "folderSlug": "spec-doc-healer",
+  "parentChain": [
+    "system-speckit",
+    "033-system-speckit-v4"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "12-09-26_18-07__description-identity-repointed-to-disk.md"
+  ]
+}

@@ -1,6 +1,6 @@
 ---
 title: "Timeline: system-speckit-v4"
-description: "Chronological record of the thirty-five packets that make up system-spec-kit v4, ordered by first commit, with what each shipped, its status and its key commits, built from git history."
+description: "Chronological record of the thirty-eight packets that make up system-spec-kit v4, ordered by first commit, with what each shipped, its status and its key commits, built from git history."
 trigger_phrases:
   - "system speckit v4 timeline"
   - "which spec was worked on first"
@@ -15,17 +15,17 @@ contextType: "general"
 <!-- SPECKIT_TEMPLATE_SOURCE: timeline | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 
-> The order in which the thirty-five v4 packets were started and finished, taken from git.
+> The order in which the thirty-eight v4 packets were started and finished, taken from git.
 
 ---
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Subject:** system-spec-kit v4, children 001 to 035 of this parent
+**Subject:** system-spec-kit v4, children 001 to 038 of this parent
 **Status:** Complete
 **Started:** 2026-08-15
-**Last updated:** 2026-09-08
+**Last updated:** 2026-09-12
 **Owner:** the spec-kit maintainers; regenerated from `git log` over each packet's current and former paths, excluding the bulk housekeeping commits from 2026-09-06 onward that touch five or more children (consolidation moves, repoints, metadata and provenance sweeps); nothing hand-typed
 <!-- /ANCHOR:metadata -->
 
@@ -106,6 +106,12 @@ Each entry is a packet's first commit. The outcome names what the packet left be
 
 **2026-09-08:** `035-v4-changelog-draft-update` started; 0 commits over 0 nested phases. Outcome: The v4.0.0.0 changelog draft corrected at every confirmed drift row and extended with the memory decommission, runtime rename, completion-gate, simplification, closure and CI work it predated. Status Complete; last commit 2026-09-08.
 
+**2026-09-11:** `036-spec-doc-healer` (was `034-spec-doc-healer`) started; 1 commit over 0 nested phases. Outcome: The healer restores the required frontmatter fields 323 spec documents lost, nearly always an emptied trigger_phrases list, and refuses what it cannot justify, so the retrieval index fills again. Status Complete; last commit 2026-09-11.
+
+**2026-09-11:** `037-derived-artifact-registry` (was `035-derived-artifact-registry`) started; 1 commit over 3 nested phases. Outcome: One registry for every derived artifact, planned in three phases. Nothing built yet. Status Draft; last commit 2026-09-11.
+
+**2026-09-11:** `038-goal-unification` (was `036-goal-unification`) started; 6 commits over 12 nested phases. Outcome: The packet goal.md became the single goal source for every runtime: goal-core reads and writes it, the goal hook and the speckit commands keep it current and resend the stripped slice, and the legacy store was demoted to a session index. Four follow-up phases then closed the last open decisions, researched what the remediation left open and had the recommendations contested by a second model family. Status Complete; last commit 2026-09-12.
+
 ### Chronology table
 
 | # | Slot | Old id | First | Last | Commits | Nested | Status |
@@ -138,6 +144,16 @@ Each entry is a packet's first commit. The outcome names what the packet left be
 | 26 | `026-runtime-code-standards-research` | none | 2026-09-06 | 2026-09-06 | 1 | 0 | Complete |
 | 27 | `027-doc-path-strict-mode-and-retired-capability-fixes` | none | 2026-09-06 | 2026-09-06 | 1 | 0 | Complete |
 | 28 | `028-header-tags-hook-catch-and-script-test-fixes` | none | 2026-09-06 | 2026-09-06 | 1 | 0 | Complete |
+| 29 | `029-goal-operator-resync-rule` | `034-goal-operator-resync-rule` | 2026-09-06 | 2026-09-06 | 4 | 0 | Complete |
+| 30 | `030-spec-kit-simplification-research` | `035-spec-kit-simplification-research` | 2026-09-06 | 2026-09-07 | 40 | 22 | Complete |
+| 31 | `031-ci-shared-package-resolution` | `029-ci-shared-package-resolution` | 2026-09-07 | 2026-09-07 | 4 | 0 | Complete |
+| 32 | `032-recorded-findings-closure` | `036-recorded-findings-closure` | 2026-09-07 | 2026-09-07 | 24 | 16 | Complete |
+| 33 | `033-ci-dependency-hardening` | `037-ci-dependency-hardening` | 2026-09-07 | 2026-09-07 | 5 | 0 | Complete |
+| 34 | `034-v4-state-inventory-research` | none | 2026-09-08 | 2026-09-08 | 5 | 0 | Complete |
+| 35 | `035-v4-changelog-draft-update` | none | 2026-09-08 | 2026-09-08 | 7 | 0 | Complete |
+| 36 | `036-spec-doc-healer` | `034-spec-doc-healer` | 2026-09-11 | 2026-09-11 | 1 | 0 | Complete |
+| 37 | `037-derived-artifact-registry` | `035-derived-artifact-registry` | 2026-09-11 | 2026-09-11 | 1 | 3 | Draft |
+| 38 | `038-goal-unification` | `036-goal-unification` | 2026-09-11 | 2026-09-12 | 7 | 12 | Complete |
 
 ### Gantt
 
@@ -216,6 +232,12 @@ gantt
     v4-state-inventory-research :2026-09-08, 2026-09-08
     section 035
     v4-changelog-draft-update :2026-09-08, 2026-09-08
+    section 036
+    spec-doc-healer :2026-09-11, 2026-09-11
+    section 037
+    derived-artifact-registry :2026-09-11, 2026-09-11
+    section 038
+    goal-unification :2026-09-11, 2026-09-12
 ```
 
 ### Key commits
@@ -449,6 +471,22 @@ Up to five per packet, the earliest and the latest, excluding the consolidation 
 
 - (this commit) 2026-09-08 docs(specs): bring the v4 changelog draft in line with the repository
 
+**36. 036-spec-doc-healer**
+
+- `ac4ce79e20` 2026-09-11 feat(spec-kit): restore the scaffold values 323 documents lost, and refuse the rest
+
+**37. 037-derived-artifact-registry**
+
+- `290b7d91e2` 2026-09-11 docs(spec-kit): plan the derived-artifact registry in three phases
+
+**38. 038-goal-unification**
+
+- `6ba2f1b4ea` 2026-09-11 feat(goal): make the packet goal.md the one goal every runtime reads
+- `a1fbcdf140` 2026-09-11 feat(goal): give the completion criteria their own field and close the last open decisions
+- `dfb4aee666` 2026-09-12 fix(goal): make the goal documents and the goal code say the same thing
+- `fa660efc41` 2026-09-12 docs(goal): record the native host goal command as confirmed, not unproven
+- `6f44447b4e` 2026-09-12 docs(goal): contest the open-items recommendations with a second model family
+
 <!-- /ANCHOR:timeline -->
 
 ---
@@ -483,4 +521,6 @@ Up to five per packet, the earliest and the latest, excluding the consolidation 
 **Repository state inventoried and the old changelog draft fact-checked:** 2026-09-08, `034`. Status: Done. Evidence: `034-v4-state-inventory-research/research/confirmed-drift.md`.
 
 **Changelog draft brought in line with the repository:** 2026-09-08, `035`. Status: Done. Evidence: `CHANGELOG-v4.0.0.0.md` and `035-v4-changelog-draft-update/implementation-summary.md`.
+
+**Third consolidation wave into this parent:** 2026-09-12. Status: Done. Evidence: the track's `034-spec-doc-healer` and `035-derived-artifact-registry` moved to children `036`/`037`, `036-goal-unification` renumbered to `038` by first commit, the `044`/`045` leftovers reconciled into `012`/`014`; this timeline.
 <!-- /ANCHOR:milestones -->
