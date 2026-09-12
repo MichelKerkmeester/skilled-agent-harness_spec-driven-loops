@@ -189,8 +189,8 @@ candidates no surface can carry, and record what was rejected and why.
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 17 | 0/17 |
-| P1 Items | 12 | 0/12 |
+| P0 Items | 16 | 0/16 |
+| P1 Items | 13 | 0/13 |
 | P2 Items | 1 | 0/1 |
 
 **Verification Date**: Pending, this phase has not run
