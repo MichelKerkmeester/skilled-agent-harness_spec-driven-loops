@@ -115,7 +115,7 @@ reader who has seen a lot of generated text. Either way they cost trust the cont
 
 This rule carries the ban because it fires on every substantive reply. The full standard,
 including the vocabulary and structural tells this one does not repeat, is
-[`hvr-rules.md`](../.opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md) in `sk-doc`.
+the Human Voice Rules, which `sk-doc` routes to.
 Load all of it when writing a document.
 
 **In a reply, take its voice half and leave its document half.** The voice directives, the
