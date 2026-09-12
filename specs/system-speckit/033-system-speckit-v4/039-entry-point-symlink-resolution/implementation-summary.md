@@ -78,7 +78,14 @@ it matches on a filename rather than comparing paths, so a link cannot displace 
    a build directory traces back to a source, which is a different question. A tracked copy sitting
    beside its own source is outside what it looks at, so the drift that started this would not be
    caught today either. Closing that is a separate change.
-5. **The delegated migration was verified by a command that could not see the failure** The brief
+5. **One existing test had recorded the defect as the contract** Three hook adapters are mirrored
+   into their runtime's own hooks directory as symlinks. Run through those mirrors they produced
+   nothing and exited 0, and a parity case asserted exactly that, while asserting the fourth
+   adapter answers. The asymmetry had no stated reason: the fourth carries no entry check at all,
+   which is why it always answered. Production was never affected, because the registered commands
+   invoke the build output by its real path. The case now expects all four to answer, and reverting
+   the fix fails it for exactly the three, so it tracks the behaviour rather than restating it.
+6. **The delegated migration was verified by a command that could not see the failure** The brief
    named the typecheck, which runs with composite mode off and therefore cannot report the
    cross-project listing error. The build caught it afterwards. The brief was wrong, not the work.
 <!-- /ANCHOR:limitations -->

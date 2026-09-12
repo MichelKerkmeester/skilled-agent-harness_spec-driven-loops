@@ -22,7 +22,8 @@ contextType: "implementation"
 | AC-003 | REQ-002 | Given a launch path that cannot be resolved, When the question is asked, Then it returns false rather than raising | Same file, asserting both that it does not throw and that the answer is false | Met | - |
 | AC-004 | REQ-003 | Given the trigger-index lookup that runs on every turn, When it is reached through a symlinked path, Then it returns the same bytes as a direct invocation | Measured on this repository through a symlinked parent: 5757 bytes either way and byte-identical, against 0 bytes and exit 0 before | Met | - |
 | AC-005 | REQ-003 | Given a guard that matches on a filename rather than comparing paths, When the migration runs, Then it is left alone | That shape cannot be displaced by a link, so changing it would add risk without removing any | Met | - |
-| AC-006 | REQ-004 | Given the spec-kit suite, When it runs from the final state, Then it passes and the delta is the added cases | Pending | Pending | - |
+| AC-006 | REQ-004 | Given the spec-kit suite, When it runs from the final state, Then it passes and the delta is accounted for | Pending | Pending | - |
+| AC-007 | REQ-003 | Given a hook adapter invoked through the mirror symlink its runtime registers, When it runs, Then it answers rather than exiting silently | `runtime/tests/directive-lifecycle-adapter-parity.vitest.ts` asserts all four adapters answer. Reverting the helper fails it for exactly the three that carry an entry check, leaving the unguarded fourth passing | Met | - |
 
 <!-- /ANCHOR:criteria -->
 
