@@ -1,0 +1,72 @@
+You are researching one question for this repository. Read-only: do not edit anything.
+
+QUESTION
+What change to the rule corpus or to AGENTS.md would actually reduce confident claims that
+the evidence does not support?
+
+REFRAME THE PROBLEM BEFORE YOU START — this is the key insight, test it, do not assume it
+The obvious framing is "claims made with no evidence". That framing is wrong for this
+repository, and the incident record below shows why. In every real case the agent DID run
+a command, DID read a file, and DID cite something. The failure was that the evidence was
+read too SHALLOWLY, and then reported with full confidence. A rule demanding "cite your
+evidence" would have been satisfied by every one of these failures.
+
+So the real question is narrower and harder: what makes an agent stop at the first
+plausible reading of a tool result? Test whether that reframing holds before building on it.
+
+THE INCIDENT RECORD — real failures from one session in this repository, use them as the
+test set. Any proposal must be checked against these: would it actually have caught this one?
+1. An agent was told a skill was not a registered mode. It was registered in four places.
+   Cause: grepped for a prefixed name when the registry keys on the bare name. One grep,
+   one negative result, reported as fact.
+2. Five scripts were reported broken. Two were. Cause: the grep could not match a
+   multi-line require statement, and the load test inspected only the first line of error
+   output, so a real module-not-found printed "loads ok".
+3. A file was said to need 233 lines after a cut. The correct answer was 230. Cause: an
+   arithmetic total was inherited from a prior analysis and never re-derived, though every
+   individual line range in it was verified.
+4. Twice, a verification grep failed because the text it searched for was wrapped across
+   two lines. Correct fixes were reported as unapplied.
+5. A finding was reported as a second conflicting confidence scale. It was a scoring
+   weight with a similar-looking number.
+Notice what these share: a tool ran, its output was read, and the reading was partial.
+Also notice failure 3 is different in kind from the others. Say how, and whether one rule
+can address both kinds.
+
+WHAT ALREADY EXISTS — verify each, then say precisely why it did not prevent the above
+- AGENTS.md carries five verification standards that bind unconditionally, including
+  "Observed command evidence": a command is evidence only once its output AND exit status
+  are read.
+- AGENTS.md carries "Never fabricate", "UNKNOWN when uncertain", and an explicit
+  uncertainty prefix.
+- repo-rules/evidence-and-proof.md carries the four ways a green run lies.
+- repo-rules/uncertainty-and-honesty.md carries the confidence thresholds.
+The corpus is not silent on this. Every incident above happened anyway, in a session where
+these were loaded. Explaining that gap is the core of a good answer. A proposal that only
+restates existing text is refused by the corpus's own restraint test.
+
+THE ADMISSION BAR — apply it, do not re-derive it
+.opencode/skills/sk-doc/sk-create-repo-rule/references/decision-tests.md carries four
+tests. Test 1 matters most here: a rule file loads at Gate 5, which fires on the FIRST
+WRITE. Most of the incidents above happened on read-only turns. So a new RULE FILE may be
+structurally unable to help, and the answer may be an AGENTS.md row instead. Decide that
+explicitly rather than defaulting to one.
+
+SHAPE OF THE ANSWER
+1. DIAGNOSIS — why the existing standards did not fire. Be specific per incident.
+2. WHERE IT BELONGS — new rule file, section in an existing rule, or AGENTS.md row.
+   Test 1 decides most of this; show the reasoning.
+3. THE PROPOSAL — exact wording you would add, and the incident numbers above it would
+   have caught. A proposal catching none of them is refused.
+4. WHAT IT COSTS — what it would fire on wrongly, and how often.
+5. VERDICT.
+
+Every claim carries a file:line that resolves. A well-evidenced refusal beats an invented
+rule; the corpus has refused twenty-eight proposals across two prior rounds and was right
+to. Nothing converges early: later iterations test earlier ones, not restate them.
+
+ITERATION 1 OF 10.
+First pass. Read selectively and establish ground truth; do not attempt to read every file.
+
+Be selective about what you open; a partial answer with resolving citations beats an exhaustive read that never finishes.
+Return only this iteration's findings, in the output format above.
