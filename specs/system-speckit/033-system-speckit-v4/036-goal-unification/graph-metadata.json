@@ -14,7 +14,8 @@
     "system-speckit/033-system-speckit-v4/036-goal-unification/008-hardening-research",
     "system-speckit/033-system-speckit-v4/036-goal-unification/009-close-open-decisions",
     "system-speckit/033-system-speckit-v4/036-goal-unification/010-repo-wide-goal-research",
-    "system-speckit/033-system-speckit-v4/036-goal-unification/011-goal-drift-remediation"
+    "system-speckit/033-system-speckit-v4/036-goal-unification/011-goal-drift-remediation",
+    "system-speckit/033-system-speckit-v4/036-goal-unification/012-open-items-research"
   ],
   "manual": {
     "depends_on": [],
@@ -186,17 +187,17 @@
     ],
     "causal_summary": "Three goal surfaces exist and nothing bridges them by code",
     "created_at": "2026-09-11T07:11:46Z",
-    "last_save_at": "2026-09-12T06:40:15.706Z",
+    "last_save_at": "2026-09-12T08:29:40.216Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:2a8bb14a2ac03300106dc86450dfb3f08f0fef720c6c1b6709ce1e3997046fa5",
+    "source_fingerprint": "sha256:2d0c309f8336d8aa081f180c03b59f6b659b45df1f96a1384930f4174c42c75d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0b01c0878371b0bc4e4d10c3e69a7a9d0bd1d00839b434ce1e4f00fd5d1e2aef"
+      "spec.md": "e3484437c19895574db1ddc1d166f5f2700091c719b71f502a1ad72c92f3a528"
     },
     "last_active_at": null
   }

@@ -1,0 +1,66 @@
+{
+  "sessionId": "fanout-deepseek-1789201017494-mped3v",
+  "lineage": "deepseek",
+  "generatedAt": "2026-09-12T09:20:00Z",
+  "source": "deltas/iter-001..005.jsonl",
+  "totals": {
+    "findings": 29,
+    "low": 13,
+    "medium": 13,
+    "high": 2,
+    "critical": 1
+  },
+  "findings": [
+    { "id": "R1-F1", "iteration": 1, "severity": "medium", "class": "premise-correction", "label": "No prose line-length rule exists; the 100-character maximum is declared only for code" },
+    { "id": "R1-F2", "iteration": 1, "severity": "low", "class": "measurement", "label": "Every markdown class wraps near 100 and exceeds it at 4-30%" },
+    { "id": "R1-F3", "iteration": 1, "severity": "low", "class": "measurement", "label": "The goal documents sit at or above the corpus rate" },
+    { "id": "R1-F4", "iteration": 1, "severity": "medium", "class": "unreproducible-claim", "label": "The strategy's 365-line count does not reproduce on any natural four-file set" },
+    { "id": "R1-F5", "iteration": 1, "severity": "low", "class": "measurement", "label": "Code long lines are consistent across shipped plugins, not drifted" },
+    { "id": "R1-F6", "iteration": 1, "severity": "medium", "class": "cost-analysis", "label": "Repo-wide enforcement would be a ~216,500-line rewrite" },
+    { "id": "R2-F1", "iteration": 2, "severity": "low", "class": "duplication", "label": "Flag-roster duplication is wide and now consistent; keep, no generator" },
+    { "id": "R2-F2", "iteration": 2, "severity": "low", "class": "duplication", "label": "Six support-story restatements agree today under a declared owner" },
+    { "id": "R2-F3", "iteration": 2, "severity": "medium", "class": "unowned", "label": "The state-directory README is accurate but owned by nobody" },
+    { "id": "R2-F4", "iteration": 2, "severity": "low", "class": "unowned", "label": "The spec-kit offer test is documented in the plugin test tree, not unowned" },
+    { "id": "R2-F5", "iteration": 2, "severity": "medium", "class": "drift", "label": "STATE_DIR is documented; RUNTIME_LABEL is still only in .env.example" },
+    { "id": "R2-F6", "iteration": 2, "severity": "medium", "class": "drift", "label": "goal-file-manifest.txt has two parsers with two different contracts" },
+    { "id": "R2-F7", "iteration": 2, "severity": "high", "class": "drift", "label": "A live spec-kit test depends on a packet-resident script" },
+    { "id": "R2-F8", "iteration": 2, "severity": "low", "class": "drift", "label": "Benchmark records cite moved paths and should keep doing so" },
+    { "id": "R3-F1", "iteration": 3, "severity": "medium", "class": "unowned", "label": "The contract test does not cover the root README goal section" },
+    { "id": "R3-F2", "iteration": 3, "severity": "low", "class": "cost-analysis", "label": "Adding the README to the contract test's path scan passes today" },
+    { "id": "R3-F3", "iteration": 3, "severity": "medium", "class": "checkability", "label": "Five of the section's six claims are pinnable in-repo; the native-host one is not" },
+    { "id": "R3-F4", "iteration": 3, "severity": "low", "class": "deliberate-exclusion", "label": "Both retrieval lanes exclude the root README deliberately, with a written reason" },
+    { "id": "R3-F5", "iteration": 3, "severity": "low", "class": "coverage-gap", "label": "Link integrity covers the section's links, not its claims" },
+    { "id": "R4-F1", "iteration": 4, "severity": "medium", "class": "naming", "label": "Only one of the four referents is a real collision; the session goal and packet goal are one system" },
+    { "id": "R4-F2", "iteration": 4, "severity": "medium", "class": "naming", "label": "The disambiguation already exists, in the document whose readers need it least" },
+    { "id": "R4-F3", "iteration": 4, "severity": "medium", "class": "naming", "label": "The manifest name reaches a workflow, a gate and a live test, none about a packet goal" },
+    { "id": "R4-F4", "iteration": 4, "severity": "medium", "class": "cost-analysis", "label": "The rename touches thirteen live files; ~60 historical citations must not be rewritten" },
+    { "id": "R4-F5", "iteration": 4, "severity": "low", "class": "unknown", "label": "No in-repo consumer reads the manifest outside the enumerated files; out-of-repo consumers INFERRED absent" },
+    { "id": "R5-F1", "iteration": 5, "severity": "critical", "class": "drift", "label": "Three environment variables are read by the goal plugin and documented nowhere" },
+    { "id": "R5-F2", "iteration": 5, "severity": "medium", "class": "check-shape", "label": "A roster-name check passes today and fails only for a name that disables nothing" },
+    { "id": "R5-F3", "iteration": 5, "severity": "medium", "class": "check-shape", "label": "The README goal section's checkable half is confirmed and passes today" },
+    { "id": "R5-F4", "iteration": 5, "severity": "low", "class": "check-shape", "label": "The manifest name and the checker default can diverge; one comparison closes it" },
+    { "id": "R5-F5", "iteration": 5, "severity": "medium", "class": "negative-recommendation", "label": "Four adjacent facts do not earn a check" }
+  ],
+  "answeredQuestions": [
+    { "id": "Q1", "question": "Enforce, exempt or retire the 100-character limit", "answer": "Retire the prose reading; keep the code-style maxima", "iteration": 1 },
+    { "id": "Q2", "question": "Owner, deletion or generator for each unowned surface", "answer": "Keep consistent duplication under named owners; repair two drifted surfaces", "iteration": 2 },
+    { "id": "Q3", "question": "Test, retrieval lane, or neither for the root README goal section", "answer": "Cover by contract test; keep out of both retrieval lanes", "iteration": 3 },
+    { "id": "Q4", "question": "Rename, note or nothing for the naming collision", "answer": "Rename the deep-review scope manifest and its checker; thirteen live files", "iteration": 4 },
+    { "id": "Q5", "question": "Which facts earn a machine check", "answer": "Three checks plus one assertion; four facts explicitly declined", "iteration": 5 }
+  ],
+  "ruledOut": [
+    "Repo-wide 100-character prose lint (216,500 failing lines)",
+    "Goal-docs-only line-length budget (nothing breaks at 104 characters)",
+    "Joining the root README to a retrieval lane (frontmatter on 87 KB marketing; reverses a documented exclusion)",
+    "Renaming the session-goal vocabulary (one system with the packet goal)",
+    "Generating the flag rosters or the support story from one source",
+    "Deleting the state-directory README, the manifest files or the historical benchmark records",
+    "Per-copy prose scans of the support-story restatements",
+    "Promoting the whole advisory node-test lane to blocking"
+  ],
+  "unknowns": [
+    { "id": "U1", "label": "Which four files the packet strategy measured for 365 lines", "settlingAction": "Ask the strategy author or recover that session's measurement" },
+    { "id": "U2", "label": "Out-of-repo consumers of goal-file-manifest.txt", "confidence": "INFERRED absent", "settlingAction": "Operator check of downstream automation" },
+    { "id": "U3", "label": "The ring 5 checks were prototyped as scans, not committed as suites", "settlingAction": "Land them in the implementation pass and watch them pass" }
+  ]
+}

@@ -128,6 +128,7 @@ One goal surface. The packet `goal.md`, nested when the packet is phased and sin
 | 9 | 009-close-open-decisions/ | [Phase 9 scope] | Pending |
 | 10 | 010-repo-wide-goal-research/ | [Phase 10 scope] | Pending |
 | 11 | 011-goal-drift-remediation/ | [Phase 11 scope] | Pending |
+| 12 | 012-open-items-research/ | [Phase 12 scope] | Pending |
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins
@@ -149,6 +150,7 @@ One goal surface. The packet `goal.md`, nested when the packet is phased and sin
 | 008-hardening-research | 009-close-open-decisions | [Criteria TBD] | [Verification TBD] |
 | 009-close-open-decisions | 010-repo-wide-goal-research | [Criteria TBD] | [Verification TBD] |
 | 010-repo-wide-goal-research | 011-goal-drift-remediation | [Criteria TBD] | [Verification TBD] |
+| 011-goal-drift-remediation | 012-open-items-research | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->
 
 ---
