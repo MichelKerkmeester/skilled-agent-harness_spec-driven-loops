@@ -3,8 +3,8 @@
 # COMPONENT: Test Upgrade Level
 # ───────────────────────────────────────────────────────────────
 # Tests regression coverage for upgrade-level.sh
-# Covers fixes applied in spec 125: shell-common guard, dry-run,
-# Level detection, input validation, already-at-target, missing spec.md.
+# Covers the regression surface: shell-common guard, dry-run, level detection,
+# input validation, already-at-target, and a missing spec.md.
 # COMPATIBILITY: bash 3.2+ (macOS default)
 
 set -euo pipefail

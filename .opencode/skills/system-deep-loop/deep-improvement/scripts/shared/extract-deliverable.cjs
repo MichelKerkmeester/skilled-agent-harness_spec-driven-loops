@@ -5,7 +5,7 @@
 'use strict';
 
 /**
- * Pilot teaching T5 (spec 143): graders and linters that read a model's whole
+ * Graders and linters that read a model's whole
  * transcript score its reasoning, rule-quoting and self-assessment instead of
  * the deliverable (almost every early lint hit was a false positive from
  * reasoning text). Outputs graded for quality must wrap ONLY the deliverable

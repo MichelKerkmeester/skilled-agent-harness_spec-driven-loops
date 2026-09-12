@@ -5,7 +5,7 @@
 'use strict';
 
 /**
- * Pilot teaching T6 (spec 143): a held-out fixture that answers with a
+ * A held-out fixture that answers with a
  * clarifying question produces no deliverable and cannot be graded — and naive
  * gate code turns that measurement gap into a false kill-switch. This lint
  * classifies fixtures from their RECORDED outputs (the honest signal: what the
