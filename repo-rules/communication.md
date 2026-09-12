@@ -12,6 +12,9 @@ trigger_phrases:
   - "marketing language"
   - "match length to the question"
   - "wall of text"
+  - "no tables"
+  - "don't use tables in chat"
+  - "table or prose"
   - "change modality not volume"
   - "I don't follow"
   - "in simple terms"
@@ -134,6 +137,11 @@ Length is earned by the reader's need, never by the work you did to get there. E
 spent is not a reason to spend the reader's attention.
 
 The failure this prevents: the answer is in there, and they did not find it.
+
+**No tables in a reply.** A table makes the reader parse a grid to reach one fact, and it
+reads as a form rather than an answer. One or two facts go in a sentence; parallel items go
+in a bulleted list. A table earns its place in a file someone returns to, never in a reply
+they read once.
 
 ---
 

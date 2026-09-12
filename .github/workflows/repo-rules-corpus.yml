@@ -1,0 +1,36 @@
+name: Repo Rules Corpus
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'REPO RULES.md'
+      - 'repo-rules/**'
+      - '.opencode/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs'
+
+jobs:
+  repo-rules-corpus:
+    name: Repo-rules corpus stays in sync
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Check repo-rules corpus
+        run: |
+          set -euo pipefail
+          GUARD=".opencode/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs"
+          # This gate keeps the repo-rules corpus loadable so drift cannot leave a rule silently unloaded.
+          # Fail closed in CI: a PR that deletes or moves this required checker must not disable the gate.
+          if [ ! -f "$GUARD" ]; then
+            echo "::error::Repo-rules guard not found at $GUARD — failing closed."
+            exit 1
+          fi
+          if node "$GUARD"; then
+            echo "All clear — repo-rules corpus is consistent."
+          else
+            echo "::error::Repo-rules corpus drifted — restore the rule files, router rows and trigger phrases so every rule remains loadable."
+            exit 1
+          fi
