@@ -2675,6 +2675,7 @@ async function loadWorktreeModules() {
     removeLineageWorktree: lifecycle.removeLineageWorktree,
     resolveLineagePaths: paths.resolveLineagePaths,
     publishLineageDirectory: publish.publishLineageDirectory,
+    sweepStagingResidue: publish.sweepStagingResidue,
     reclaimWorktrees: reclaim.reclaimWorktrees,
     refreshWorktreeLease: lease.refreshWorktreeLease,
     setWorktreeLeaseState: lease.setWorktreeLeaseState,
@@ -2773,12 +2774,11 @@ function listPacketUncommittedPaths(input) {
  * Returns null for every outcome that is not a usable tree. A lane that cannot be isolated
  * still has to run, so each failure reports itself and hands the caller the dispatch it had
  * before this option existed. A tree that was made and then could not be used is removed first,
- * because the next attempt reuses this directory name and a tree still sitting at it would
- * refuse the create.
+ * so a failed setup leaves behind no directory a sweep would have to guess about.
  */
 function prepareLaneWorktree(input) {
   const {
-    modules, repoRoot, worktreeBase, runId, label, ownerPid, ttlMs, specFolder, baseArtifactDir,
+    modules, repoRoot, worktreeBase, runId, label, attempt, ownerPid, ttlMs, specFolder, baseArtifactDir,
     lineage, lineageDir, parseStatusPorcelain, logEvent,
   } = input;
 
@@ -2787,12 +2787,18 @@ function prepareLaneWorktree(input) {
     return null;
   };
 
+  // A retry of a lane whose predecessor's tree was kept on purpose after a failed publish would
+  // find that name taken and drop to the shared checkout, so the attempt is part of the name this
+  // create uses. It leads the label because the reclaim sweep recognizes a lane a resume may still
+  // need by the name's suffix, and a trailing attempt would hide the tree from that guard.
+  const worktreeLabel = `attempt-${attempt}-${label}`;
+
   const created = modules.createLineageWorktree({
     repoRoot,
     worktreeBase,
     prefix: FANOUT_WORKTREE_PREFIX,
     runId,
-    label,
+    label: worktreeLabel,
     ownerPid,
     ttlMs,
   });
@@ -3136,6 +3142,37 @@ async function main() {
         error: error instanceof Error ? error.message : String(error),
       });
     }
+
+    // A publisher that died mid-transaction leaves an incomplete staging copy under the parent
+    // publication uses, and nothing will ever rename it. It is swept once here, before any lane
+    // publishes into that parent. Only this run's residue is eligible: another run's staging is
+    // that run's to finish. A failed sweep is reported and never fails a run whose lanes have not
+    // started.
+    try {
+      const staging = worktrees.sweepStagingResidue({ targetParent: lineagesDir, runId });
+      appendFanoutStatusLedger(ledgerPath, {
+        event: 'worktree_staging_swept',
+        status: 'ok',
+        at: new Date().toISOString(),
+        run_id: runId,
+        loop_type: loopType,
+        spec_folder: specFolder,
+        removed: staging.removed,
+        in_use: staging.inUse,
+        errors: staging.errors,
+      });
+    } catch (error) {
+      appendFanoutStatusLedger(ledgerPath, {
+        event: 'worktree_staging_sweep_failed',
+        status: 'warning',
+        severity: 'warning',
+        at: new Date().toISOString(),
+        run_id: runId,
+        loop_type: loopType,
+        spec_folder: specFolder,
+        error: error instanceof Error ? error.message : String(error),
+      });
+    }
   }
 
   const lineageSnapshots = new Map();
@@ -3269,6 +3306,7 @@ async function main() {
             worktreeBase,
             runId,
             label: lineage.label,
+            attempt,
             ownerPid: process.pid,
             ttlMs: worktreeLeaseTtlMs,
             specFolder,
