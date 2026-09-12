@@ -47,16 +47,16 @@ Frozen. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | Delete, do not deprecate: stdio server, MCP SDK, plugin bridge, MCP method vocabulary and result envelope, all five runtime declarations. JSON-RPC framing and `initialize` stay: the socket bridge parses them |
+| D1 | Delete, do not deprecate: stdio server, MCP SDK, plugin bridge, MCP method vocabulary and envelope, all five runtime declarations. JSON-RPC framing and `initialize` stay: the socket bridge parses them |
 | D2 | Preservation is the bar. All nine capabilities, the unprompted brief and every operator-visible output stay identical. A behavior change is a failure, not a trade-off |
-| D3 | The daemon's fate is decided by measurement, not preference: both options benchmarked against the recorded baseline before the protocol freezes. Inconclusive keeps it |
-| D4 | One CLI front door for every caller: both prompt hooks, the OpenCode plugin, doctor routes, any agent, through `.opencode/bin/skill-advisor.cjs`. One caller-facing seam, not one code path: it absorbs the local scorer |
+| D3 | The daemon's fate is decided by measurement: both options benchmarked against the recorded baseline before the protocol freezes. Inconclusive keeps it |
+| D4 | One CLI front door for every caller: both prompt hooks, the OpenCode plugin, doctor routes, any agent. One caller-facing seam, not one code path: it absorbs the local scorer |
 | D5 | Rename `mcp-server/` to `runtime/` here |
 | D6 | Order is load-bearing: prove the replacement, rewire callers, delete, rename, retrofit docs. Nothing goes before its replacement |
-| D7 | Scope is the advisor's own transport. Routing quality untouched; every other MCP server keeps its registration; model server and socket bridge preserved |
+| D7 | Scope is the advisor's own transport. Routing quality untouched; every other MCP server keeps its registration; model server and socket bridge kept |
 | D8 | Implementation runs DeepSeek V4.1 Flash at max thinking via LLM Gateway, dispatched by cli-pi. Amended: binds implementation dispatch; verification, remediation and packet records are the session's own |
 | D9 | A degraded answer is acceptable; no answer is a failure. The CLI still starts the daemon, bounded not skipped, and renders a route line when it fell back |
-| D10 | Two audit loops close the packet, each 5 iterations, convergence disabled, run through their own commands: a review hunting surviving MCP references, and a research on what it teaches |
+| D10 | Audit loops close the packet, convergence disabled, each through its own command: a review hunting surviving MCP references, and research on what it teaches. Amended: four ran, not two, on four models |
 
 <!-- /ANCHOR:directive -->
 
@@ -65,7 +65,7 @@ Frozen. Changing one is an amendment.
 <!-- ANCHOR:binding -->
 ## 2. BINDING
 
-Phases: 1 inventory, 2 daemon decision, 3 CLI parity, 4 caller rewire, 5 removal, 6 rename, 7 docs sweep, 8 verification, 9 review, 10 research. Each carries its own `goal.md`, binding as if written here. Decisions above outrank child detail; name a conflict, never resolve it silently.
+Phases 1-13, named in the parent's phase map. Each carries its own `goal.md`, binding as if written here. Decisions above outrank child detail; name a conflict, never resolve it silently.
 <!-- /ANCHOR:binding -->
 
 ---
@@ -82,7 +82,7 @@ Only these decide done; an evaluator sees the objective string, not these files.
 - [ ] Every runtime starts with no advisor MCP server and the brief still arrives unprompted: proven warm, cold where the call starts the daemon, and unreachable where a degraded line is required
 - [ ] The prompt-hook latency delta against the pre-change baseline is reported and inside the phase 2 budget
 - [ ] No live instruction surface calls the advisor an MCP server or names a retired tool id, AGENTS.md included, and the package directory is `runtime/`
-- [ ] Both audit loops ran their 5 iterations and every P0 and P1 finding is fixed or answered with evidence
+- [ ] Every audit loop ran its full iteration count and each P0 and P1 finding is fixed or answered with evidence
 <!-- /ANCHOR:completion -->
 
 ---

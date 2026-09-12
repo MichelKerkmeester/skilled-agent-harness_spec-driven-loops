@@ -1,0 +1,43 @@
+{
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {"id": "Q1", "question": "Which failures were latent while the CLI was only a fallback and surfaced solely because it became the primary path?", "answer": "Eight latent defects/exposures named at file with hiding mechanisms: socket-scope probe (fallback.js, probed flat path vs sha256(dbDir) scope dir — always socket_absent), 250ms budget clamp under ~440ms warm latency, ~30s wait on immediately-knowable unreachable daemon, warm-only default refusing cold spawn via prompt-time env marker (no brief at all; fixed via --no-warm-only), env-block config carried inside MCP declarations (rehomed to REPO_ENV_DEFAULTS), cross-package shim hardcoding the renamed path (spec-kit TARGET_REL), MCP Server object being the socket's request handler not a transport, plus three harness-level latents: invalid frozen parity inputs, 4-suite sampling hiding 48 failures, documented --convergence-mode flag never bound.", "resolvedByIteration": 2},
+    {"id": "Q2", "question": "What classes of residue does transport removal leave beyond name references, and which did the sweep miss?", "answer": "Eleven grounded classes: assertion residue (claims naming neither retired token — THE missed class, 8 surfaces found by hunting claims), corpus-outside residue (87 live files incl. .github working-directory — residue that executes), printed-command residue, diagnostic false-negatives, test/fixture residue, name-outlived-referent kept-by-constraint, generated-artifact residue (regenerate don't edit), evidence residue (fixing = falsification), negative-guard residue (keep), packet-record residue (incl. cross-loop: uncommitted artifacts revert the next lineage), retrieval-vocabulary residue. Bucketing rule: historical=leave, live=rewrite, guard=keep, generated=regenerate, operator-name=keep deliberately.", "resolvedByIteration": 3},
+    {"id": "Q3", "question": "What repeatable checklist should the next transport-to-CLI migration use, ordered by cost of failure prevented?", "answer": "21 steps in five phases: (A) map what the transport silently carries — reconciled inventory, lift env config, trace the real registered path, decide residency by measurement and name what starts it; (B) prove replacement while old is live — frozen wire contract, parity on validated frozen inputs, resilience moved behind new door first, exercise fallback in every dependency state; (C) rewire then delete stopping on surprise — callers+helpers proven, dependents handed to the deletion, halt on load-bearing surfaces, rename after removal; (D) sweep by claims over the whole repo with written keep-classes; (E) verify from final state — full suite, inverted guards, one-worktree real-path measurement, honest record, flags-that-bind.", "resolvedByIteration": 4},
+    {"id": "Q4", "question": "What exactly shipped and which ordering invariants made it safe?", "answer": "Replacement proven (003 parity: 22 frozen cases, 7 matched, 15 named-allowlisted, 0 differed) before callers rewired (004) before transport deleted (005) before rename (006). Ordering load-bearing: nothing deleted until replacement proven; rename waits so the move diff stays mechanical.", "resolvedByIteration": 1},
+    {"id": "Q5", "question": "Which residue hits are legitimate historical records vs live surfaces?", "answer": "Bucketing verified on live tree: 820 files carry the old path, 0 outside specs/changelog/benchmark — AC-007 closure holds. Keep-classes: changelogs/dated benchmarks/frozen fixtures/run-records (evidence), negative-guard tests (guards), packet docs (records), sweep's own docs (must name what they hunted), operator-visible names (constraint).", "resolvedByIteration": 3}
+  ],
+  "keyFindings": [
+    {"id": "F-central", "finding": "The observable signature of the worst failure looked like success: the warm-only cold-spawn refusal produced a 209ms hook read as an improvement until the work was found missing.", "iterations": [2]},
+    {"id": "F-unifying", "finding": "Every latent failure sat on a path the healthy system never took; promotion made the untraveled path load-bearing.", "iterations": [2, 4]},
+    {"id": "F-missed-class", "finding": "The token sweep missed assertion residue (claims naming neither retired token) and corpus-outside wiring (.github working-directory); sibling packet independently hit the same two.", "iterations": [3, 5]},
+    {"id": "F-buckets", "finding": "Residue count != hit count: keep-by-design classes (evidence, guards, operator names, generated artifacts) mean the correct action on most surviving hits is inaction.", "iterations": [3]},
+    {"id": "F-criterion-trap", "finding": "A literal-zero acceptance criterion is unfalsifiable once kept evidence exists; write the buckets into the criterion (live-zero).", "iterations": [3, 5]},
+    {"id": "F-interloop", "finding": "Uncommitted loop output is a landmine for the next loop — 19 leftover paths reverted a research lineage via write containment; commit each loop's artifacts before starting the next.", "iterations": [5]},
+    {"id": "F-fallback-first", "finding": "Move resilience behind the new front door before repointing callers, and exercise the fallback in every dependency state before it becomes primary.", "iterations": [2, 4]},
+    {"id": "F-halt-on-surprise", "finding": "When a removal surface proves load-bearing (MCP Server = socket request handler), halt and reopen the phase rather than work around it.", "iterations": [2, 4]},
+    {"id": "F-harness-flags", "finding": "Audit that harness flags bind: --convergence-mode was documented but never read; an equivalent flag's identical behavior hid it; the repaired code's comment records the mechanism.", "iterations": [4, 5]},
+    {"id": "F-sibling", "finding": "The sibling memory-decommission independently produced the same taxonomy (214 claim-hits in 115 live files post-sweep; code seams broken; literal-zero criterion amended) — the lessons generalize within this repo.", "iterations": [5]}
+  ],
+  "ruledOutDirections": [
+    {"direction": "Counting string hits as residue", "reason": "Kept-by-design classes make hit-count != residue-count", "iteration": 3},
+    {"direction": "Ordering the checklist by the packet's phase order", "reason": "Phase order serves execution safety; checklist order serves failure-cost prevention", "iteration": 4},
+    {"direction": "Reading phase 010's research output for comparison", "reason": "Independence constraint — agreement is evidence only if independent", "iteration": 5},
+    {"direction": "Treating corrected citations as iteration-4 defects", "reason": "Transcription errors in this lineage's own artifacts; found and fixed by the audit pass", "iteration": 5},
+    {"direction": "Bespoke wire protocol for the replacement", "reason": "Shared bridge already parses JSON-RPC for its liveness probe; a second grammar adds a grammar without removing one (protocol-contract.md)", "iteration": 1}
+  ],
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "keyFindings": 10,
+    "convergenceScore": 0.81,
+    "coverageBySources": {
+      "packetDocuments": 25,
+      "gitCommits": 12,
+      "liveCodeFiles": 14,
+      "liveGrepsAndCommands": 18,
+      "siblingPacket": 1
+    }
+  }
+}

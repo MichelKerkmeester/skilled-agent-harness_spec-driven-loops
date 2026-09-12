@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": "system-skill-advisor/025-mcp-decommission-cli-front-door/012-deep-research-glm-5-3",
+  "description": "Two readings agree on the decommission's lessons, which is better than one but still thin evidence",
+  "keywords": [
+    "two",
+    "readings",
+    "agree",
+    "decommission",
+    "lessons",
+    "better",
+    "one",
+    "still",
+    "thin",
+    "evidence"
+  ],
+  "lastUpdated": "2026-09-12T07:34:31.614Z",
+  "specId": "012",
+  "folderSlug": "deep-research-glm-5-3",
+  "parentChain": [
+    "system-skill-advisor",
+    "025-mcp-decommission-cli-front-door"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

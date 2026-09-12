@@ -1,0 +1,11 @@
+{
+  "owner_pid": 63266,
+  "started_at_iso": "2026-09-12T06:12:01.951Z",
+  "ttl_ms": 300000,
+  "last_heartbeat_iso": "2026-09-12T06:12:01.951Z",
+  "packet_id": "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/012-deep-research-glm-5-3",
+  "runtime_kind": "main",
+  "phase": "running",
+  "last_activity_iso": "2026-09-12T06:12:01.951Z",
+  "acquire_nonce": "63266-1789193521952-9590d66d-2558-43c3-b1d2-fe041e219c18"
+}

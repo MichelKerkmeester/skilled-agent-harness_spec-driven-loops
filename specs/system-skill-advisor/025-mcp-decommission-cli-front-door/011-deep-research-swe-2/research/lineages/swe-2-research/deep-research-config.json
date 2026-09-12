@@ -1,0 +1,76 @@
+{
+  "topic": "What the skill advisor's MCP-transport decommission teaches, as a lessons study rather than a defect hunt. Case study: the eight-phase packet specs/system-skill-advisor/025-mcp-decommission-cli-front-door. Three questions: (1) which failures were latent while the CLI was only a fallback and surfaced solely because it became the primary path, named at file with the mechanism that kept each hidden; (2) what classes of residue a transport removal leaves beyond obvious name references, grounded in this packet, including which class the existing sweep would have missed; (3) a repeatable checklist for the next transport-to-CLI migration ordered so steps preventing the most expensive failures come first.",
+  "maxIterations": 5,
+  "minIterations": 3,
+  "convergenceThreshold": 0.1,
+  "stopPolicy": "max-iterations",
+  "antiConvergence": {
+    "minIterations": 3,
+    "convergenceMode": "off",
+    "stopPolicy": "max-iterations",
+    "divergent": {},
+    "note": "Convergence before maxIterations is telemetry only; broaden review angles instead of synthesizing early."
+  },
+  "stuckThreshold": 3,
+  "minIdeaObservations": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/011-deep-research-swe-2",
+  "artifactDir": "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/011-deep-research-swe-2/research/lineages/swe-2-research",
+  "fanout_lineage_artifact_dir": "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/011-deep-research-swe-2/research/lineages/swe-2-research",
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "createdAt": "2026-09-12T00:00:00Z",
+  "status": "initialized",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-devin",
+    "model": "swe-2-max",
+    "reasoningEffort": null,
+    "serviceTier": null,
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "fanout-swe-2-research-1789189288280-etmi20",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": ["new", "resume", "restart"],
+    "deferredModes": ["fork", "completed-continue"],
+    "generation": 1,
+    "continuedFromRun": null,
+    "fanoutRole": "detached-parallel-lineage"
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "divergence-frontier",
+      "next-focus"
+    ]
+  },
+  "pauseSentinelPath": ".deep-research-pause",
+  "fileProtection": {
+    "deep-research-config.json": "immutable-except-terminal-status",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "delta-*.jsonl": "write-once",
+    "research.md": "mutable"
+  }
+}
