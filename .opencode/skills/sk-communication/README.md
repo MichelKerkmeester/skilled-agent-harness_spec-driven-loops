@@ -75,7 +75,7 @@ Lane B needs none of that. It is a prompt contract, not a package:
 ```bash
 /rewrite:explain-visually                                  # re-render the last reply as a visual
 /rewrite:explain-visually --depth=novice how worktrees work  # explain a topic from zero
-/rewrite:explain-visually --artifact the dispatch pipeline   # also write a standalone HTML file
+/rewrite:explain-visually --inline the dispatch pipeline     # render in the reply instead of publishing
 ```
 
 Consume the package through its subpath exports: `@portable-cli/communication-projection`, plus `./contracts`, `./versioning`, `./providers`, `./privacy`, `./runtimes`, `./evaluation`, `./observability`, `./doctor`, and `./release`.
@@ -90,7 +90,7 @@ Consume the package through its subpath exports: `@portable-cli/communication-pr
 - Every runtime path declares full-projection or safe-native, and the two never mix in a 1:1 parity claim.
 - Telemetry is content-free; a release requires a human-certified non-inferiority result, never a provisional one.
 - Lane B simplifies words, never facts: depth changes vocabulary and framing, never a value, an identifier, a path, or the truth of a claim.
-- Lane B is display-only unless `--artifact` is passed, and even then it creates a new file rather than editing an existing one.
+- Lane B publishes its visual as a new page by default and renders in the reply under `--inline`. Either way it creates new material rather than editing an existing file.
 - Lane A's enablement flag and egress rules do not apply to Lane B, which synthesizes in-context and carries neither risk.
 
 ---

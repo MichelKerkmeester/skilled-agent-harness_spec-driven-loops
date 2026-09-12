@@ -1,6 +1,6 @@
 ---
 description: "Explain the prior reply or a named topic as the smallest diagram that answers it, at a chosen depth."
-argument-hint: "[--depth=expert|plain|novice] [--artifact] [topic]"
+argument-hint: "[--depth=expert|plain|novice] [--inline] [topic]"
 allowed-tools: Read, Write, Bash, Grep, Glob
 ---
 
@@ -17,7 +17,8 @@ The `/rewrite:explain-visually` command turns an explanation into a picture inst
 - Chooses a **modality**: the smallest visual form that answers the current question.
 - Chooses a **depth**: how much prior knowledge to assume, from peer-level down to none.
 - Operates entirely in-context using the executing model's reasoning capacity. No local or external LLM provider, CLI dispatch, or background service is invoked.
-- Display-only by default: canonical transcript history and project files stay unchanged. A file is written only when `--artifact` is passed, and that file is newly created — never an edit of existing content.
+- Renders where the reader can actually see it. A diagram published as a page is a diagram; the same diagram as fenced source in a terminal is a wall of text that fails the one job this command has. So the default is a published visual, and `--inline` is the opt-out for something small enough to read as source.
+- Creates only new material: canonical transcript history and existing project files stay unchanged either way.
 - Preserves technical accuracy and reproduces protected tokens byte-for-byte.
 
 It belongs to the `/rewrite` family because, with no topic argument, it re-renders the prior reply — the same act as `/rewrite:response`, choosing a diagram rather than plainer wording.
@@ -26,14 +27,15 @@ It belongs to the `/rewrite` family because, with no topic argument, it re-rende
 
 ## 2. CONTRACT
 
-**Inputs:** `$ARGUMENTS` — optional `--depth=expert|plain|novice`, optional `--artifact`, optional free-text `topic`.
+**Inputs:** `$ARGUMENTS` — optional `--depth=expert|plain|novice`, optional `--inline`, optional free-text `topic`.
 
-**Outputs:** A visual explanation rendered in-turn, optionally an HTML file, followed by a structured status line.
+**Outputs:** A published visual page and its link, or an in-reply rendering under `--inline`, followed by a structured status line.
 
 | Output Status                                     | Condition                                                        |
 | --------------------------------------------------| ------------------------------------------------------------------|
-| `STATUS=OK`                                       | Visual explanation rendered                                      |
-| `STATUS=OK ARTIFACT="<path>"`                     | Visual explanation rendered and an HTML artifact was written     |
+| `STATUS=OK ARTIFACT="<url>"`                      | Visual published as a page and the reader was given its link     |
+| `STATUS=OK ARTIFACT="<path>"`                     | Published as a file because this runtime has no publish surface  |
+| `STATUS=OK INLINE=1`                              | Rendered in the reply, because `--inline` was passed             |
 | `STATUS=NOOP REASON="no prior assistant message"` | No topic given and no previous assistant turn exists             |
 | `STATUS=NOOP REASON="nothing visual to show"`     | Subject is a plain factual answer no diagram would clarify       |
 | `STATUS=FAIL ERROR="<message>"`                   | Invalid arguments or unrecoverable error                         |
@@ -47,7 +49,7 @@ Execute the following steps in order:
 ### Step 1: Parse Arguments
 
 - Read `--depth=<level>`; accept `expert`, `plain`, `novice`. Default to `expert` when absent.
-- Read `--artifact` as a boolean; default false.
+- Read `--inline` as a boolean; default false. Publishing is the default.
 - Treat all remaining non-flag text as the `topic`.
 - If `--depth` carries an unrecognized value, return `STATUS=FAIL ERROR="unknown depth"`.
 - If an unknown flag is present, return `STATUS=FAIL ERROR="unknown flag"`.
@@ -101,12 +103,25 @@ Simplification applies to prose only. It never rewrites a value.
 ### Step 6: Render
 
 - Place the visual first, with at most a short line of prose before it, and put any supporting text directly beside the part it explains.
-- Render Mermaid in a ```mermaid fenced block. Render trees and pseudocode in plain fenced blocks.
-- If `--artifact` was passed, and only then:
-  - Write one self-contained HTML file to the session scratchpad directory.
-  - Reference no external assets; inline all styles.
-  - Do not modify any existing file to do this.
-  - State the path in the status line.
+
+**By default, publish it.**
+
+- Write one self-contained HTML page: the visual, and the supporting text beside the parts it explains.
+- Inline every style. Reference no external asset. A page that needs the network is a page that breaks.
+- Publish it through whatever surface this runtime exposes for rendered pages, and give the reader the
+  link. Mermaid renders natively in a published page, so a ```mermaid block inside the HTML is a
+  diagram rather than source.
+- Do not modify any existing file to do this; the page is new material.
+- Where the runtime has no publish surface, write the file, name its path, and say plainly that it is
+  a file rather than a link. Do not silently fall back to fenced source: the reader asked for a visual.
+- Put only the link and one line of summary in the reply. The page carries the explanation.
+
+**With `--inline`, render it in the reply instead.**
+
+- Mermaid in a ```mermaid fenced block; trees and pseudocode in plain fenced blocks.
+- Use this for something small enough to read as source, or when the reader asked for it. Be aware
+  that in most terminals a fenced Mermaid block displays as its own source text, not as a picture.
+
 - Emit the status line last.
 
 ---
@@ -177,6 +192,6 @@ STATUS=NOOP REASON="nothing visual to show"
 ## 5. NOTES
 
 - **In-Context Execution:** The active model produces the explanation within the existing conversation. No external API or local model process is invoked, so the projection lane's enablement flag and egress rules do not apply to this command.
-- **Display-Only By Default:** Nothing is written to disk unless `--artifact` is passed. Even then, the command creates a new file and never rewrites canonical transcript records or source files.
+- **New Material Only:** The command creates a page or a reply and never rewrites canonical transcript records or existing source files. Publishing by default changes where the visual goes, not what it is allowed to touch.
 - **Smallest Sufficient Visual:** A diagram that shows everything explains nothing. Cut every node that does not help answer the question actually asked.
 - **Simplify The Words, Never The Facts:** Depth changes vocabulary and framing. It never changes a value, an identifier, or a claim.

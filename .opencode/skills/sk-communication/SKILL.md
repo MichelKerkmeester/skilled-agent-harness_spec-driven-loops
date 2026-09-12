@@ -21,7 +21,7 @@ The skill adapts an explanation on three axes. Lane A moves one of them; Lane B 
 |---|---|---|
 | **Axis** | Register: the same content in plainer words | Modality (prose → visual) and depth (assumed knowledge) |
 | **Acts on** | An existing byte stream of agent output | A topic, or the prior reply, explained anew |
-| **Produces** | A display-only re-render of that stream | A new diagram, tree, or artifact |
+| **Produces** | A display-only re-render of that stream | A new diagram, tree, or page, published where it renders |
 | **Reaches a model?** | May call a local or hosted model | In-context only |
 | **Gating** | Off by default; egress rules apply | Always available by command; no enablement flag |
 | **Entry point** | `/rewrite:response`, `/rewrite:response-by-external-agent` | `/rewrite:explain-visually` |
@@ -64,7 +64,7 @@ Lane B: `explain visually`, `diagram this`, `draw the flow`, `visualize this`, `
 - Authoring documentation or markdown → `sk-doc`.
 - Live-website CSS to a measured Style Reference → `sk-design-md-generator`.
 - Git worktrees, commits, or PRs → `sk-git`.
-- Rewriting durable Markdown or any on-disk file. That changes canonical bytes and is explicitly out of scope; it needs a separate opt-in product contract, not this projection layer. This bars *editing existing files*. It does not bar Lane B from **creating** a new, self-contained explanatory artifact when the operator passes `--artifact` — a new file is not a rewrite of canonical bytes.
+- Rewriting durable Markdown or any on-disk file. That changes canonical bytes and is explicitly out of scope; it needs a separate opt-in product contract, not this projection layer. This bars *editing existing files*. It does not bar Lane B from **creating** a new, self-contained explanatory page — new material is not a rewrite of canonical bytes.
 
 ### Operator Trigger Commands
 
@@ -72,7 +72,7 @@ Three slash commands expose sk-communication as an on-demand trigger surface. Pr
 
 - `/rewrite:response` — the active AI re-renders its own most recent reply in plain English, entirely in-context. No local or external LLM. Display-only: canonical bytes stay unchanged.
 - `/rewrite:response-by-external-agent` — a one-shot projection of a target through a chosen engine (an external `cli-*` skill, native in-context, or a local LLM). It sets `COMMUNICATION_PROJECTION_ENABLED` inline for the single run so the flag falls away immediately afterward, keeping the default-off invariant even on error. It never writes `enablement.local.json`.
-- `/rewrite:explain-visually` — Lane B. Explains a named topic, or the prior reply when no topic is given, as the smallest visual that answers the question, at a chosen depth (`expert` | `plain` | `novice`). Entirely in-context: no local or external LLM, so no enablement flag applies. Display-only unless `--artifact` is passed, which creates one new self-contained HTML file. Modality table and depth rubric: `references/visual-explanation.md`.
+- `/rewrite:explain-visually` — Lane B. Explains a named topic, or the prior reply when no topic is given, as the smallest visual that answers the question, at a chosen depth (`expert` | `plain` | `novice`). Entirely in-context: no local or external LLM, so no enablement flag applies. Publishes the visual as a page and hands the reader its link, because a diagram only lands where it renders; `--inline` puts it in the reply instead, for something small enough to read as source. Modality table and depth rubric: `references/visual-explanation.md`.
 
 ---
 
