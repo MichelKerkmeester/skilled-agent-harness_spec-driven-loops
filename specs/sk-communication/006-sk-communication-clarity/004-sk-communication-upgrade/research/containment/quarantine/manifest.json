@@ -1,0 +1,18 @@
+{
+  "timestamp": "2026-09-12T16:29:37.333Z",
+  "entries": [
+    {
+      "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/worktree-lifecycle.ts",
+      "hash": "7a869ece15475ee88bc4d92c9cedf218f01e661f",
+      "content_stored": true,
+      "content_path": "content/.opencode/skills/system-deep-loop/runtime/lib/deep-loop/worktree-lifecycle.ts",
+      "head_patch_path": "patch-head/.opencode/skills/system-deep-loop/runtime/lib/deep-loop/worktree-lifecycle.ts.patch"
+    },
+    {
+      "path": "specs/system-deep-loop/045-fanout-write-containment-hardening/research/worktree-symlinks/synthesis.md",
+      "hash": "b05ce91f35b3518af1bb0bfa25a631c244b8ed30",
+      "content_stored": true,
+      "content_path": "content/specs/system-deep-loop/045-fanout-write-containment-hardening/research/worktree-symlinks/synthesis.md"
+    }
+  ]
+}

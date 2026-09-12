@@ -1,0 +1,184 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-communication/006-sk-communication-clarity",
+  "spec_folder": "sk-communication/006-sk-communication-clarity",
+  "parent_id": null,
+  "children_ids": [
+    "sk-communication/006-sk-communication-clarity/001-research-communication-context",
+    "sk-communication/006-sk-communication-clarity/002-synthesis-and-decisions",
+    "sk-communication/006-sk-communication-clarity/003-root-doc-and-repo-rules",
+    "sk-communication/006-sk-communication-clarity/004-sk-communication-upgrade",
+    "sk-communication/006-sk-communication-clarity/005-verification-and-rollout",
+    "sk-communication/006-sk-communication-clarity/006-reply-shape-rules",
+    "sk-communication/006-sk-communication-clarity/007-wording-standard-restructure",
+    "sk-communication/006-sk-communication-clarity/008-decision-and-handoff-rules",
+    "sk-communication/006-sk-communication-clarity/009-adjacent-surface-rules"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-communication clarity",
+      "clarity rules",
+      "claude style patch",
+      "colon rule",
+      "verbless fragment",
+      "stacked compression",
+      "adhd output shaping",
+      "communication repo rule",
+      "phase parent"
+    ],
+    "key_topics": [
+      "sk-communication",
+      "clarity",
+      "rules",
+      "claude",
+      "style",
+      "patch",
+      "colon",
+      "rule",
+      "verbless",
+      "fragment",
+      "stacked",
+      "compression"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "AGENTS.md",
+      "REPO RULES.md",
+      "repo-rules/communication.md",
+      ".opencode/skills/sk-communication/SKILL.md",
+      ".opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md",
+      "002-synthesis-and-decisions/decision-record.md",
+      "repo-rules/presenting-decisions.md",
+      "repo-rules/handoff-and-questions.md",
+      "repo-rules/evidence-and-proof.md",
+      "context/clarity.md",
+      "context/claude-style-patch-main/STYLE.md",
+      "context/i-have-adhd-main/skills/i-have-adhd/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "AGENTS.md",
+        "kind": "doc",
+        "path": "AGENTS.md",
+        "source": "derived"
+      },
+      {
+        "name": "REPO RULES.md",
+        "kind": "doc",
+        "path": "REPO RULES.md",
+        "source": "derived"
+      },
+      {
+        "name": "communication.md",
+        "kind": "doc",
+        "path": "repo-rules/communication.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-communication/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "hvr-rules.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md",
+        "source": "derived"
+      },
+      {
+        "name": "presenting-decisions.md",
+        "kind": "doc",
+        "path": "repo-rules/presenting-decisions.md",
+        "source": "derived"
+      },
+      {
+        "name": "handoff-and-questions.md",
+        "kind": "doc",
+        "path": "repo-rules/handoff-and-questions.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence-and-proof.md",
+        "kind": "doc",
+        "path": "repo-rules/evidence-and-proof.md",
+        "source": "derived"
+      },
+      {
+        "name": "clarity.md",
+        "kind": "doc",
+        "path": "context/clarity.md",
+        "source": "derived"
+      },
+      {
+        "name": "STYLE.md",
+        "kind": "doc",
+        "path": "context/claude-style-patch-main/STYLE.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Human Voice Rules",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The repository governs how a reply reads across three layers: `AGENTS.md` keeps the two clauses",
+    "created_at": "2026-09-12T12:44:34Z",
+    "last_save_at": "2026-09-12T17:29:31.316Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:f1c5191b2a28e94ef8e2b3b30edda4886eb79a9abdb99374c1bf02b564b78a2c",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "7b80673d7be93ff6306ec9a7ec6e2de8e4f6b565df4d04d98877e75dfeb7ac6c"
+    },
+    "last_active_at": null
+  }
+}

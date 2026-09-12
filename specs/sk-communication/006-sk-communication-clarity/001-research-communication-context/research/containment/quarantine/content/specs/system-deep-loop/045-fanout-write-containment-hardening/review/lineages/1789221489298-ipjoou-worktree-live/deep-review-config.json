@@ -1,0 +1,69 @@
+{
+  "topic": "Review of packet 045-fanout-write-containment-hardening (fan-out write containment for shared checkouts) at commit 2d7439c0a5",
+  "mode": "review",
+  "reviewTarget": "specs/system-deep-loop/045-fanout-write-containment-hardening",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": ["correctness", "security", "traceability", "maintainability"],
+  "resource_map_present": false,
+  "sessionId": "fanout-worktree-live-1789221489298-ipjoou",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "maxIterations": 1,
+  "convergenceThreshold": 0.1,
+  "stuckThreshold": 2,
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": ["spec_code", "checklist_evidence"],
+    "overlay": ["feature_catalog_code", "playbook_capability"]
+  },
+  "qualityGateThreshold": true,
+  "releaseReadinessState": "in-progress",
+  "specFolder": "system-deep-loop/045-fanout-write-containment-hardening",
+  "artifactDir": "specs/system-deep-loop/045-fanout-write-containment-hardening/review/lineages/worktree-live",
+  "createdAt": "2026-09-12T14:00:00Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "stopPolicy": "convergence",
+  "reviewedRevision": {
+    "commit": "2d7439c0a5",
+    "commitSubject": "fix(system-deep-loop): sweep publish residue and let a retried lane build its own worktree",
+    "commitDate": "2026-09-12T15:56:58+02:00",
+    "worktree": "/Users/michelkerkmeester/worktrees/public/fanout-1789221489298-ipjoou-attempt-1-worktree-live"
+  },
+  "fanoutLineage": {
+    "lineageId": "worktree-live",
+    "lineageArtifactDir": "specs/system-deep-loop/045-fanout-write-containment-hardening/review/lineages/worktree-live",
+    "artifactRootOverrideApplied": true,
+    "executor": "cli-pi",
+    "model": "deepseek-v4.1-flash",
+    "reasoningEffort": "max",
+    "invocationFingerprint": "inv:8f589a4508df4a869ccb0d22cfdf0e4dedd5789f2ccadbf4a11d4f6ff3cab477",
+    "writeContainmentMode": "preserve",
+    "isolation": "dedicated git worktree (structural per-lineage isolation; main checkout not a party to this run)"
+  },
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "review-report-v*.md": "write-once",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": ["fullJSONLHistory", "iterationFiles", "priorReducedState"],
+    "outputs": ["findingsRegistry", "dashboardMetrics", "strategyUpdates"],
+    "metrics": [
+      "dimensionsCovered",
+      "findingsBySeverity",
+      "openFindings",
+      "resolvedFindings",
+      "convergenceScore"
+    ]
+  }
+}

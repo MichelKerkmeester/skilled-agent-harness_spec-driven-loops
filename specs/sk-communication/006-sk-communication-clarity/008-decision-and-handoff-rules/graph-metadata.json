@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-communication/006-sk-communication-clarity/008-decision-and-handoff-rules",
+  "spec_folder": "sk-communication/006-sk-communication-clarity/008-decision-and-handoff-rules",
+  "parent_id": "sk-communication/006-sk-communication-clarity",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "decision and handoff rules",
+      "reader triage before drafting",
+      "state restatement cadence",
+      "unconfirmed cause qualifier",
+      "decision and handoff plan",
+      "pre-drafting reader model",
+      "restatement cadence",
+      "decision and handoff tasks",
+      "qualifier against the tiers",
+      "duplication scan",
+      "edit not append",
+      "acceptance criteria"
+    ],
+    "key_topics": [
+      "decision",
+      "handoff",
+      "rules",
+      "reader",
+      "triage",
+      "drafting",
+      "state",
+      "restatement",
+      "cadence",
+      "unconfirmed",
+      "cause",
+      "qualifier"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "repo-rules/presenting-decisions.md",
+      "repo-rules/handoff-and-questions.md",
+      "repo-rules/evidence-and-proof.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "presenting-decisions.md",
+        "kind": "doc",
+        "path": "repo-rules/presenting-decisions.md",
+        "source": "derived"
+      },
+      {
+        "name": "handoff-and-questions.md",
+        "kind": "doc",
+        "path": "repo-rules/handoff-and-questions.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence-and-proof.md",
+        "kind": "doc",
+        "path": "repo-rules/evidence-and-proof.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Five",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Five adopted candidates belong to rules that shape a decision, a handback and a claim rather than a",
+    "created_at": "2026-09-12T16:39:31Z",
+    "last_save_at": "2026-09-12T16:47:50.202Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e40b57d8dde8ad05881c0123f413bd4f47d7ef8df30f6454669cb09a0d432017",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "de71c88fdd9f7e9c5184d27404319f44c252530b90c4af4c7e2145012c71b0ee",
+      "plan.md": "828e2aed7f3553ec2bc893a6ce5b636f5c7da17c027cb6e0a2400d5bb90e5ef1",
+      "tasks.md": "abf73f8b1fbd8e1ab1cd6e4b7de25081ba7226d1534b456492f0deeba9760fe6",
+      "implementation-summary.md": "96f9db8fb4037587c34fc83d19741c2e58ec9d899d48f1b7889bbae2cb79c643"
+    },
+    "last_active_at": null
+  }
+}

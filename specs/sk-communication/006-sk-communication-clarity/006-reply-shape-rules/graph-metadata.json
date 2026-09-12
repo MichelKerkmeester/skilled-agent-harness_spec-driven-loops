@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-communication/006-sk-communication-clarity/006-reply-shape-rules",
+  "spec_folder": "sk-communication/006-sk-communication-clarity/006-reply-shape-rules",
+  "parent_id": "sk-communication/006-sk-communication-clarity",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "reply shape rules",
+      "first line contract",
+      "concise not compressed",
+      "tangent suppression",
+      "sentence relation rule",
+      "reply shape plan",
+      "assign by governed unit",
+      "counterweight rule",
+      "contradiction scan",
+      "reply shape tasks",
+      "ten candidates",
+      "counterweight cross-reference"
+    ],
+    "key_topics": [
+      "reply",
+      "shape",
+      "rules",
+      "first",
+      "line",
+      "contract",
+      "concise",
+      "compressed",
+      "tangent",
+      "suppression",
+      "sentence",
+      "relation"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "repo-rules/communication.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "communication.md",
+        "kind": "doc",
+        "path": "repo-rules/communication.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Ten",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Assign",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Ten adopted candidates belong to the rule that governs how a reply reads",
+    "created_at": "2026-09-12T16:39:30Z",
+    "last_save_at": "2026-09-12T16:45:13.117Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:18360a36ca7b3fd2ba2abc84ead547b2c67570f4cb9ec7212f83ec01f4130fec",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "7e5b63878e45905ce9b2c878f699dff6704ba7be04bb3b3823e4ed2d628f77af",
+      "plan.md": "463fc24cd8cdd8bcd1c469d2754e23f447a1cfb263e649af6edf5d87d5976bce",
+      "tasks.md": "2ec1b0e46a4d7225f0602dd41a33d846af61c669d9cdfd96aa12c45c16fb15cf",
+      "implementation-summary.md": "a5d20ae6538feb09df6808aea6b080c299044625f590fd7af8595598b74d7302"
+    },
+    "last_active_at": null
+  }
+}

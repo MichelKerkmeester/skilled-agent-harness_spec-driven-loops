@@ -1,0 +1,231 @@
+diff --git a/specs/system-speckit/033-system-speckit-v4/038-goal-unification/009-close-open-decisions/graph-metadata.json b/specs/system-speckit/033-system-speckit-v4/038-goal-unification/009-close-open-decisions/graph-metadata.json
+new file mode 100644
+index 0000000000..c3797c7213
+--- /dev/null
++++ b/specs/system-speckit/033-system-speckit-v4/038-goal-unification/009-close-open-decisions/graph-metadata.json
+@@ -0,0 +1,225 @@
++{
++  "schema_version": 1,
++  "packet_id": "system-speckit/033-system-speckit-v4/038-goal-unification/009-close-open-decisions",
++  "spec_folder": "system-speckit/033-system-speckit-v4/038-goal-unification/009-close-open-decisions",
++  "parent_id": "system-speckit/033-system-speckit-v4/038-goal-unification",
++  "children_ids": [],
++  "manual": {
++    "depends_on": [],
++    "supersedes": [],
++    "related_to": []
++  },
++  "derived": {
++    "trigger_phrases": [
++      "goal open decisions closed",
++      "goal criteria field",
++      "goal non-utf8 refusal",
++      "goal devin merge rule",
++      "goal open decisions plan",
++      "goal criteria field plan",
++      "goal closure plan",
++      "goal open decisions tasks",
++      "goal closure tasks",
++      "packet goal",
++      "durable directive",
++      "completion criteria"
++    ],
++    "key_topics": [
++      "goal",
++      "open",
++      "decisions",
++      "closed",
++      "criteria",
++      "field",
++      "non-utf8",
++      "refusal",
++      "devin",
++      "merge",
++      "rule",
++      "plan"
++    ],
++    "importance_tier": "normal",
++    "status": "in_progress",
++    "key_files": [
++      "spec.md",
++      "plan.md",
++      "tasks.md",
++      "goal.md",
++      "implementation-summary.md",
++      ".opencode/hooks/goal/lib/goal-slice.cjs",
++      ".opencode/hooks/goal/lib/goal-core.cjs",
++      ".opencode/plugins/opencode-goal.js",
++      ".opencode/skills/system-spec-kit/runtime/lib/validation/spec-doc-structure.ts",
++      ".opencode/skills/system-spec-kit/runtime/cli/retrieval/lib/corpus.mjs",
++      ".opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md",
++      ".opencode/hooks/goal/README.md"
++    ],
++    "entities": [
++      {
++        "name": "spec.md",
++        "kind": "doc",
++        "path": "spec.md",
++        "source": "derived"
++      },
++      {
++        "name": "plan.md",
++        "kind": "doc",
++        "path": "plan.md",
++        "source": "derived"
++      },
++      {
++        "name": "tasks.md",
++        "kind": "doc",
++        "path": "tasks.md",
++        "source": "derived"
++      },
++      {
++        "name": "goal.md",
++        "kind": "doc",
++        "path": "goal.md",
++        "source": "derived"
++      },
++      {
++        "name": "implementation-summary.md",
++        "kind": "doc",
++        "path": "implementation-summary.md",
++        "source": "derived"
++      },
++      {
++        "name": "goal-slice.cjs",
++        "kind": "file",
++        "path": ".opencode/hooks/goal/lib/goal-slice.cjs",
++        "source": "derived"
++      },
++      {
++        "name": "goal-core.cjs",
++        "kind": "file",
++        "path": ".opencode/hooks/goal/lib/goal-core.cjs",
++        "source": "derived"
++      },
++      {
++        "name": "opencode-goal.js",
++        "kind": "code",
++        "path": ".opencode/plugins/opencode-goal.js",
++        "source": "derived"
++      },
++      {
++        "name": "spec-doc-structure.ts",
++        "kind": "code",
++        "path": ".opencode/skills/system-spec-kit/runtime/lib/validation/spec-doc-structure.ts",
++        "source": "derived"
++      },
++      {
++        "name": "corpus.mjs",
++        "kind": "file",
++        "path": ".opencode/skills/system-spec-kit/runtime/cli/retrieval/lib/corpus.mjs",
++        "source": "derived"
++      },
++      {
++        "name": "retrieval-conventions.md",
++        "kind": "doc",
++        "path": ".opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md",
++        "source": "derived"
++      },
++      {
++        "name": "README.md",
++        "kind": "doc",
++        "path": ".opencode/hooks/goal/README.md",
++        "source": "derived"
++      },
++      {
++        "name": "Feature Specification",
++        "kind": "proper_noun",
++        "path": "spec.md",
++        "source": "derived"
++      },
++      {
++        "name": "Parent Spec",
++        "kind": "proper_noun",
++        "path": "spec.md",
++        "source": "derived"
++      },
++      {
++        "name": "Handoff Criteria",
++        "kind": "proper_noun",
++        "path": "spec.md",
++        "source": "derived"
++      },
++      {
++        "name": "Claude Code",
++        "kind": "proper_noun",
++        "path": "spec.md",
++        "source": "derived"
++      },
++      {
++        "name": "The Devin",
++        "kind": "proper_noun",
++        "path": "spec.md",
++        "source": "derived"
++      },
++      {
++        "name": "the",
++        "kind": "key_phrase",
++        "path": "spec.md",
++        "source": "derived"
++      },
++      {
++        "name": "Implementation Plan",
++        "kind": "proper_noun",
++        "path": "plan.md",
++        "source": "derived"
++      },
++      {
++        "name": "1. SUMMARY",
++        "kind": "heading",
++        "path": "plan.md",
++        "source": "derived"
++      },
++      {
++        "name": "2. QUALITY GATES",
++        "kind": "heading",
++        "path": "plan.md",
++        "source": "derived"
++      },
++      {
++        "name": "3. ARCHITECTURE",
++        "kind": "heading",
++        "path": "plan.md",
++        "source": "derived"
++      },
++      {
++        "name": "4. AFFECTED SURFACES",
++        "kind": "heading",
++        "path": "plan.md",
++        "source": "derived"
++      },
++      {
++        "name": "5. PHASES",
++        "kind": "heading",
++        "path": "plan.md",
++        "source": "derived"
++      }
++    ],
++    "causal_summary": "The four decisions the hardening phase left to the operator, the last review advisories, and the Devin host merge unknown, all closed and pinned by tests.",
++    "created_at": "2026-09-11T17:58:04Z",
++    "last_save_at": "2026-09-12T16:14:53.934Z",
++    "save_lineage": "graph_only",
++    "last_accessed_at": null,
++    "source_docs": [
++      "spec.md",
++      "plan.md",
++      "tasks.md",
++      "goal.md",
++      "implementation-summary.md"
++    ],
++    "source_fingerprint": "sha256:4a45fd795c64ef2707992151716a7f993469b3faf852c8a69a359061b6f4dfc0",
++    "source_fingerprint_docset": 3,
++    "source_doc_hashes": {
++      "spec.md": "02f1f6e1c94b63b88cc7e5ed757cf124e0f6a7894aed43a2e217f267eb301b98",
++      "plan.md": "ae350be3e1f68d4093773b941144ad05ff8d3ef29e399943ea78ebc870b6c0b5",
++      "tasks.md": "f3140ec0a78b5e54a93248d20e4f3b3b515d57f536ff8d1a837aa03d7c138739",
++      "implementation-summary.md": "f3f86d8f088a2b0eeceb89cf9521433194c1ea5be8361f86908a351795d30372"
++    },
++    "last_active_at": null
++  }
++}

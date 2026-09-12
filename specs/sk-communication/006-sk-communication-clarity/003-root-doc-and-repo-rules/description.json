@@ -1,0 +1,18 @@
+{
+  "specFolder": "sk-communication/006-sk-communication-clarity/003-root-doc-and-repo-rules",
+  "description": "Phase 3: root-doc-and-repo-rules",
+  "keywords": [
+    "phase",
+    "root-doc-and-repo-rules"
+  ],
+  "lastUpdated": "2026-09-12T12:44:37.064Z",
+  "specId": "003",
+  "folderSlug": "root-doc-and-repo-rules",
+  "parentChain": [
+    "sk-communication",
+    "006-sk-communication-clarity"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}
