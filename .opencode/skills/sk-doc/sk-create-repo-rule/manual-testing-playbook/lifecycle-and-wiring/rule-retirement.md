@@ -45,7 +45,7 @@ Operators run the exact prompt and command sequence for `RRL-003` and confirm th
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| RRL-003 | Rule retirement | Verify a rule is retired in the inverted create order with equal counts and no dangling references | `The root cause rule has not caught anything in months and nothing it prevents still happens here. Retire it properly.` | 1. `bash: awk '/^## 2\. TRIGGER TABLE/{t=1} /^## 3\. INDEX/{t=0;i=1} /^## 4\./{i=0} t&&/repo-rules\//{tr++} i&&/repo-rules\//{ix++} END{print tr, ix}' 'REPO RULES.md'` -> 2. `agent: Remove the pointer, then the index row, then the trigger row, then the file` -> 3. `agent: Record why the rule was retired` -> 4. `bash: rerun the step 1 command and compare` | Step 1: eight trigger rows and eight index rows. Step 2: removal proceeds in the stated order. Step 4: seven and seven, with eight files becoming seven | The step 1 counts, the removal order, the recorded reason, and the step 4 counts | PASS if step 4 shows seven trigger rows, seven index rows and seven files with every link resolving; FAIL if any count differs, a pointer remains, or the file is archived | 1. Compare the step 1 and step 4 counts before reading anything else, since unequal counts localize the failure to a specific missed removal. 2. Check the order actually used, because a row removed after the file leaves a window where the router points at nothing. 3. Grep the always-loaded document for the retired rule name, since a surviving pointer is the removal most often missed and it is invisible in the router |
+| RRL-003 | Rule retirement | Verify a rule is retired in the inverted create order with equal counts and no dangling references | `The root cause rule has not caught anything in months and nothing it prevents still happens here. Retire it properly.` | 1. `bash: awk '/^## 2\. TRIGGER TABLE/{t=1} /^## 3\. INDEX/{t=0;i=1} /^## 4\./{i=0} t&&/repo-rules\//{tr++} i&&/repo-rules\//{ix++} END{print tr, ix}' 'REPO RULES.md'` -> 2. `agent: Remove the pointer, then the index row, then the trigger row, then the file` -> 3. `agent: Record why the rule was retired` -> 4. `bash: rerun the step 1 command and compare` | Step 1: equal trigger-row and index-row counts, both matching the number of files under `repo-rules/`. Step 2: removal proceeds in the stated order. Step 4: both row counts one lower than step 1, and the file count one lower as well | The step 1 counts, the removal order, the recorded reason, and the step 4 counts | PASS if step 4 shows equal trigger-row and index-row counts, each one lower than step 1, with the file count one lower as well and every link resolving; FAIL if any count differs, a pointer remains, or the file is archived | 1. Compare the step 1 and step 4 counts before reading anything else, since unequal counts localize the failure to a specific missed removal. 2. Check the order actually used, because a row removed after the file leaves a window where the router points at nothing. 3. Grep the always-loaded document for the retired rule name, since a surviving pointer is the removal most often missed and it is invisible in the router |
 
 ### Commands
 
@@ -56,7 +56,7 @@ Operators run the exact prompt and command sequence for `RRL-003` and confirm th
 
 ### Expected
 
-Step 1 prints eight and eight, matching the eight rule files. Step 2 performs the removals in the inverted create order, and each intermediate state leaves at worst a file nothing points at. Step 3 records the reason, which is the deliverable that stops the rule being re-proposed later. Step 4 prints seven and seven, and the rule file count is seven. No archive directory exists.
+Step 1 prints two equal counts, matching the number of rule files under `repo-rules/`. Step 2 performs the removals in the inverted create order, and each intermediate state leaves at worst a file nothing points at. Step 3 records the reason, which is the deliverable that stops the rule being re-proposed later. Step 4 prints both counts one lower than step 1, and the rule file count is one lower than before. No archive directory exists.
 
 ### Evidence
 
@@ -64,7 +64,7 @@ Capture the step 1 counts, the file count before, the order the removals were pe
 
 ### Pass / Fail
 
-- **Pass**: trigger rows, index rows and rule files all drop from eight to seven together, no pointer to the retired rule remains, every link resolves, the reason is recorded, and nothing is archived.
+- **Pass**: trigger rows, index rows and rule files all drop by exactly one together, no pointer to the retired rule remains, every link resolves, the reason is recorded, and nothing is archived.
 - **Fail**: any of the three counts differs from the others, a pointer or row survives, the file is moved to an archive rather than deleted, or the reason is not recorded.
 
 ### Failure Triage

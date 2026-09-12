@@ -17,7 +17,7 @@ This scenario validates collision detection for `RRA-003`. It focuses on catchin
 
 ### Why This Matters
 
-No phrase may appear in two rules. The set carries one hundred and forty-four phrases with zero collisions, and that property is what makes a phrase a reliable way to reach one rule. A duplicate does not make both rules findable, it makes both unfindable by that phrase, because a reader who types it has no way to know which file was meant. The check is cheap and it is easy to skip, since a colliding phrase looks correct in isolation and only fails when compared against the whole set.
+No phrase may appear in two rules. The corpus checker prints the phrase count and zero collisions (`phrases=N collisions=0`), and that property is what makes a phrase a reliable way to reach one rule. A duplicate does not make both rules findable, it makes both unfindable by that phrase, because a reader who types it has no way to know which file was meant. The check is cheap and it is easy to skip, since a colliding phrase looks correct in isolation and only fails when compared against the whole set.
 
 ---
 
@@ -73,7 +73,7 @@ Capture the step 1 match including its file and line number, the reported owner,
 
 ### Optional Supplemental Checks
 
-Sweep the whole set for duplicates rather than checking one phrase, and confirm the total still shows zero collisions. That converts a single-phrase check into a standing property of the corpus.
+Sweep the whole set for duplicates rather than checking one phrase: run the corpus checker (`node .opencode/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs`) and read its phrase-uniqueness line, which reports the phrase count with zero collisions. That converts a single-phrase check into a standing property of the corpus.
 
 ---
 
