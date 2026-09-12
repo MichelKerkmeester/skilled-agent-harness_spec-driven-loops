@@ -1,0 +1,80 @@
+{
+  "sessionId": "fanout-luna-1789202042622-4x183m",
+  "lineage": "luna",
+  "generatedAt": "2026-09-12T10:05:00Z",
+  "source": "deltas/iter-001..002.jsonl",
+  "totals": {
+    "findings": 24,
+    "low": 4,
+    "medium": 13,
+    "high": 7,
+    "critical": 0
+  },
+  "findings": [
+    {"id":"L1-A1","iteration":1,"severity":"medium","class":"evidence-provenance","label":"First-report measurement artifacts are absent at the cited relative paths"},
+    {"id":"L1-A2","iteration":1,"severity":"medium","class":"premise-correction","label":"Width guidance exists outside the cited language guides"},
+    {"id":"L1-A3","iteration":1,"severity":"medium","class":"cost-analysis","label":"Retiring the width concept is not the same as declining a blocking prose lint"},
+    {"id":"L1-A4","iteration":1,"severity":"low","class":"cost-analysis","label":"The mass-rewrite size and rendering impossibility are not independently proven"},
+    {"id":"L2-A5","iteration":1,"severity":"medium","class":"boundary","label":"The POSIX flag mirror does not implement canonical goal aliases"},
+    {"id":"L2-A6","iteration":1,"severity":"high","class":"support-story-drift","label":"The automatic resend claim is not supported by the adapters"},
+    {"id":"L2-A7","iteration":1,"severity":"medium","class":"premise-correction","label":"Scope validation and trackedness are complementary contracts, not proven parser drift"},
+    {"id":"L2-A8","iteration":1,"severity":"medium","class":"cost-analysis","label":"The packet-resident checker is a maintenance dependency, not a current default-input dependency"},
+    {"id":"L2-A9","iteration":1,"severity":"low","class":"ownership","label":"Runtime-label documentation needs an owner decision"},
+    {"id":"L3-A10","iteration":1,"severity":"high","class":"check-shape","label":"The generic goal-doc contract regex cannot test README semantics"},
+    {"id":"L3-A11","iteration":1,"severity":"medium","class":"negative-control","label":"Cursor host event registration is not evidence of goal delivery"},
+    {"id":"L3-A12","iteration":1,"severity":"low","class":"alternative","label":"A section-specific support contract is lower blast than adding the marketing README to generic DOCS"},
+    {"id":"L4-A13","iteration":1,"severity":"high","class":"premise-correction","label":"Six goal-file manifests are shared provenance ledgers, not one deep-review-only artifact"},
+    {"id":"L4-A14","iteration":1,"severity":"high","class":"blast-radius","label":"A global review-scope rename changes an accepted input contract"},
+    {"id":"L4-A15","iteration":1,"severity":"low","class":"alternative","label":"Keep-or-stage is viable because no user-harm incident is cited"},
+    {"id":"L5-A16","iteration":1,"severity":"medium","class":"ownership","label":"The three missing env knobs are real, but the generic source scan mixes owners"},
+    {"id":"L5-A17","iteration":1,"severity":"medium","class":"check-shape","label":"The proposed roster scan duplicates existing resolver tests and misses shell behavior"},
+    {"id":"L5-A18","iteration":1,"severity":"medium","class":"check-shape","label":"A basename equality check does not prove manifest agreement"},
+    {"id":"L5-A19","iteration":1,"severity":"medium","class":"alternative","label":"State-path parity is a machine fact even if prose-copy testing is not worthwhile"},
+    {"id":"L2-R1","iteration":2,"severity":"medium","class":"recommendation","label":"Keep soft width guidance but make no blocking prose-width gate"},
+    {"id":"L2-R2","iteration":2,"severity":"medium","class":"recommendation","label":"Keep unowned-surface copies, repair cadence wording, document runtime-label ownership, and defer checker relocation"},
+    {"id":"L2-R3","iteration":2,"severity":"high","class":"recommendation","label":"Test the root README goal section semantically while keeping it outside retrieval"},
+    {"id":"L2-R4","iteration":2,"severity":"high","class":"recommendation","label":"Do not globally rename the six goal-touch provenance manifests"},
+    {"id":"L2-R5","iteration":2,"severity":"high","class":"recommendation","label":"Use owner-specific executable checks with negative controls instead of one generic scan"}
+  ],
+  "answeredQuestions": [
+    {"id":"A-Q1","question":"Which first-report claims fail under citation audit?","answer":"The absolute width claim, automatic resend agreement, manifest drift diagnosis, review-only rename frame, and shallow checks fail as stated.","iteration":1},
+    {"id":"A-Q2","question":"Which costs or blast radii are understated?","answer":"README semantic coverage, checker relocation, global manifest rename, and ownership-partitioned environment checks are larger than priced.","iteration":1},
+    {"id":"A-Q3","question":"Which alternatives were dismissed too quickly?","answer":"Scoped non-blocking width guidance, intentional two-stage validation, section-specific README contract, keep-or-stage naming, and executable state parity.","iteration":1},
+    {"id":"R-Q1","question":"What recommendation should be made for prose line width?","answer":"Keep the existing soft readability guidance and add no blocking prose-width gate. The first report wins only if the policy target explicitly means removing every soft convention, not merely avoiding a lint gate.","iteration":2},
+    {"id":"R-Q2","question":"What should be done with the unowned surfaces?","answer":"Keep consistent copies and tests, correct the automatic-resend wording to event-triggered reminders, document runtime-label ownership, and defer checker relocation until a default-path caller or ownership requirement is demonstrated.","iteration":2},
+    {"id":"R-Q3","question":"Should the root README goal section be tested, retrieved, or left outside both?","answer":"Give the README a targeted semantic contract test while keeping it out of retrieval. Test the actual section and host-event negative control rather than adding it to the generic path-regex DOCS list.","iteration":2},
+    {"id":"R-Q4","question":"Should any referent be renamed because the word goal names four things?","answer":"Do not globally rename the six existing goal-file-manifest.txt files: current headers identify them as goal-touch provenance ledgers. Clarify deep-review terminology and reserve review-scope-manifest.txt for a new artifact or an explicitly owned migration.","iteration":2},
+    {"id":"R-Q5","question":"Which facts earn a machine check, with what smallest reliable test shape?","answer":"Check each owner contract: the three missing plugin environment knobs, the runtime-label documentation, README semantics, and any manifest path/default contract only after ownership or migration is decided. Use executable behavior and negative controls; do not add shallow prose, roster, or basename scans.","iteration":2}
+  ],
+  "ruledOut": [
+    "repo-wide blocking Markdown lint",
+    "global six-file rename without semantic ownership",
+    "roster string-membership scan without behavior execution",
+    "README path scan as semantic coverage",
+    "full retirement of all soft width guidance without an explicit policy target",
+    "generic goal-document regex as a semantic README contract",
+    "manifest relocation before inventorying explicit callers",
+    "global renaming of existing goal-touch provenance ledgers",
+    "one cross-owner scan as the machine-check strategy"
+  ],
+  "unknowns": [
+    {"id":"U1","label":"Exact commands and file sets behind the first report's corpus percentages","confidence":"thin evidence","settlingAction":"Recover the source measurement session or rerun the counts in an implementation-owned artifact."},
+    {"id":"U2","label":"Whether any operator incident requires renaming goal-file-manifest.txt","confidence":"thin evidence","settlingAction":"Search downstream automation and ask the owner before any rename."},
+    {"id":"U3","label":"Whether the desired line-width decision is no gate or no soft convention","confidence":"underspecified","settlingAction":"Choose the policy target explicitly in the implementation packet."},
+    {"id":"U4","label":"Which owner controls the support contract, runtime-label documentation, and any future manifest migration","confidence":"thin evidence","settlingAction":"Name the owning surface and its authoritative test before editing shared documentation or paths."}
+  ],
+  "divergenceFrontier": [
+    "No blocking prose lint versus preserving a non-binding readability convention.",
+    "Targeted README support contract versus generic goal-document inclusion.",
+    "Keep six goal-touch ledgers versus globally rename a basename used by review scope discovery.",
+    "Owner-specific executable checks versus one blocking cross-surface machine-check suite."
+  ],
+  "convergence": {
+    "threshold": 0.05,
+    "observedNewInfoRatios": [0.92, 0.78],
+    "converged": false,
+    "termination": "maxIterationsReached"
+  },
+  "lastIteration": 2,
+  "status": "complete"
+}

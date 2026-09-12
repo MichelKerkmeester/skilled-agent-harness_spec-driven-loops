@@ -41,3 +41,17 @@ These are what it left behind, deliberately or for want of a decision.
 
 `research/research.md` is the canonical record: one section per ring, each ending in a single
 recommendation with its cost and its blast radius.
+
+## Second lens: two iterations on a different model family
+
+The five recommendations above are judgment calls, and one model's judgment is one opinion. A
+second lineage on GPT-5.6 Luna Max, fast tier, takes the first lineage's report as input and is
+asked to contest it rather than repeat it.
+
+| Iteration | Task |
+|---|---|
+| 6 | Adversarial verification. Open the first lineage's citations. Name every claim that does not hold, every recommendation whose cost or blast radius is understated, and every alternative it dismissed too quickly. |
+| 7 | The decision set. For each of the five items, state the recommendation you would give and where it differs from the first lineage's, with the evidence that separates them. Where you agree, say what would have to be true for the other answer to win. |
+
+Disagreement between the two lineages is not averaged. It means the question was underspecified
+or the evidence is thin, and the record says which.

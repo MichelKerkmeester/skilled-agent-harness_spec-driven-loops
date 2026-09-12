@@ -1,23 +1,23 @@
 {
-  "run_id": "1789201017494-mped3v",
+  "run_id": "1789202042622-4x183m",
   "loop_type": "research",
   "spec_folder": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/012-open-items-research",
   "base_artifact_dir": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/012-open-items-research/research",
   "total_cli_lineages": 1,
   "orphaned_lineages": [],
   "total": 1,
-  "succeeded": 1,
-  "failed": 0,
-  "all_failed": false,
-  "completed_with_containment_advisory": 1,
+  "succeeded": 0,
+  "failed": 1,
+  "all_failed": true,
+  "completed_with_containment_advisory": 0,
   "gauges": {
     "lag": 0,
     "pending": 0,
-    "failed": 0
+    "failed": 1
   },
   "failure_classes": {
     "timeout": 0,
-    "exit": 0,
+    "exit": 1,
     "salvage_miss": 0
   }
 }

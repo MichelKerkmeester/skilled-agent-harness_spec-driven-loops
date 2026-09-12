@@ -1,14 +1,74 @@
 ---
-title: "Research: the goal items left open"
-description: "Five rings over the items remediation left open: line width, unowned surfaces, the untested README section, the naming collision, and which facts earn a machine check."
+title: "Research: the goal items left open, both lenses"
+description: "Five rings on DeepSeek Flash Max, then two adversarial iterations on Luna Max that contested three of the five recommendations; the disagreements are named, not averaged."
 trigger_phrases:
   - "goal open items research"
   - "goal line length standard"
   - "goal unowned surfaces"
   - "goal machine checks"
+  - "goal manifest rename"
 importance_tier: important
 contextType: research
 ---
+
+# Research: the goal items left open, both lenses
+
+> Two lineages, seven iterations. The first proposed; the second opened its citations and
+> contested it. Where they disagree the record says whether the question was underspecified or
+> the evidence is thin. Nothing is averaged.
+
+---
+
+## 1. WHAT BOTH LENSES AGREE ON
+
+Three conclusions survived the adversarial pass because the repository supports them directly.
+
+**No blocking width gate.** Neither lineage would add one. Nothing in the tree enforces a prose
+width today and the corpus exceeds any such limit everywhere.
+
+**The root README goal section stays out of both retrieval lanes.** The exclusion is documented
+and structural: the file carries no frontmatter, so admitting it would mean adding one to an
+eighty-seven kilobyte marketing document to reverse a decision that was made on purpose.
+
+**Three plugin knobs are undocumented.** `OPENCODE_GOAL_VERIFIER_TIMEOUT_MS`,
+`OPENCODE_GOAL_CONTINUATION_TIMEOUT_MS` and `OPENCODE_GOAL_JSONL_MAX_BYTES` are read by name in
+the plugin and named in no document. An operator can set them and cannot discover them. Both
+lineages found this independently; it is the one unambiguous defect in the set.
+
+---
+
+## 2. WHERE THEY DISAGREE, AND WHY
+
+| Question | First lineage | Second lineage | The disagreement |
+|---|---|---|---|
+| Prose width | Retire the limit | Keep a soft readability convention, add no gate | Underspecified: "retire" never said whether it means no gate or no convention |
+| Unowned surfaces | Keep the copies, document the label variable, relocate the manifest checker | Same on the copies and the variable; defer the relocation | Thin evidence: no incident shows the checker's current home causing harm |
+| Root README | Add it to the existing contract test's document list | Write a targeted semantic contract instead | Thin evidence: neither shows a generic path scan is sufficient for this section's claims |
+| The colliding name | Rename the manifest and its checker, thirteen files | Do not rename: the basename spans six per-packet provenance ledgers | Underspecified ownership, and no operator incident establishes harm |
+| Machine checks | Four cheap checks in one blocking suite | Owner-specific checks with negative controls, no generic scans | Thin evidence that one owner spans the surfaces |
+
+**The rename disagreement is settled by counting.** Six `goal-file-manifest.txt` files exist, one
+inside each of six different spec packets, so the name is a per-packet provenance ledger rather
+than one shared artifact. That makes a global rename a rewrite of six historical records, which
+is a materially different proposition from the first lineage's framing. The second lineage is
+right about the shape; whether the collision is worth paying for at all remains open.
+
+---
+
+## 3. WHAT THIS MEANS FOR THE NEXT CHANGE
+
+Do now, because both lenses agree and the evidence is direct: document the three plugin knobs.
+
+Decide before doing: whether a soft width convention is worth writing down at all; who owns the
+support-story wording and the manifest machinery; whether the README section earns a generic or a
+semantic check. Each of these is a decision, not a discovery, and neither lineage can make it.
+
+Do not do yet: the manifest rename. It touches six packets' historical records and no cited
+incident shows the name has ever misled anyone.
+
+---
+
+## 4. FIRST LINEAGE REPORT, IN FULL
 
 ---
 title: "Research: the goal items left open"
@@ -250,3 +310,14 @@ failure there is a report rather than a gate.
   `retrieval-conventions.md:282`, `corpus.mjs:24-30`, `README.md:859-866`, `markdown-link-integrity.yml`,
   `goal-opencode.md:7`, `pi/goal-context.ts:181`, `.cursor/hooks.json`, `.devin/hooks.v1.json:2,39`,
   `mcp-click-up/.../manage-goals.md:19`
+
+
+---
+
+## 5. SECOND LINEAGE
+
+The adversarial report is at `research/lineages/luna/research.md`, with its two iterations and
+deltas beside it. The runner rejected the lineage on a stop-policy technicality: it reached its
+configured two-iteration cap without emitting the synthesis event the policy expects. Both
+iterations and the full report were written before that, so the artifacts are salvaged here
+rather than discarded. The exit status described the process, not the work.
