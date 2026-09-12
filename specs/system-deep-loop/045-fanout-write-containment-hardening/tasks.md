@@ -84,12 +84,15 @@ Phase 3 — caller and documentation migration, satisfying the sixth requirement
 
 Phase 4 — lineage worktrees, satisfying the fifth requirement.
 
-- [ ] T017 Create one detached worktree per lineage from HEAD, named by run and label under the resolved worktree base, and symlink the shared dependency directories into it (`runtime/scripts/fanout-run.cjs`)
+- [ ] T017 Create one detached worktree per lineage from HEAD, named by run and label under the resolved worktree base, symlink the shared dependency directories, and write the ownership lease into the worktree root at creation, refreshed on the existing progress heartbeat (`runtime/scripts/fanout-run.cjs`)
 - [ ] T018 Seed the worktree with the target packet's uncommitted working-tree content so a lineage can read a spec that is not yet committed (`runtime/scripts/fanout-run.cjs`)
 - [ ] T019 Rewrite every path handed to the executor — the rendered prompt's write-surface paths, the artifact-directory override and the per-kind directory flags — to the worktree, and run the directory-flagless kind with the worktree as its working directory (`runtime/scripts/fanout-run.cjs`)
-- [ ] T020 Copy the lineage directory back into the main checkout after the lane, and remove the worktree; on a copy-back failure retain the worktree and name it on the failure event (`runtime/scripts/fanout-run.cjs`)
-- [ ] T021 Sweep the runner's own ephemeral worktree prefix at startup so an interrupted run does not accumulate checkouts (`runtime/scripts/fanout-run.cjs`)
+- [ ] T020 Publish the lineage directory into the main checkout by run-keyed staged rename: stage a complete copy in the main checkout so the final rename is atomic, write its manifest last as the completion marker, hold the claim lease across the whole check-and-rename, and rename any existing published directory aside rather than deleting it. On failure retain the worktree, mark its lease retained, and name it on the failure event (`runtime/scripts/fanout-run.cjs`)
+- [ ] T021 Reclaim the runner's own worktree prefix at startup, AFTER the ledger read and the claim pass, removing an entry only on positive proof of death: heartbeat stale beyond twice its lifetime AND owner process absent AND no process holding that directory. Keep unmarked entries past a creation grace window, never reclaim a retained or claimed entry, and emit a per-entry keep-or-remove decision with its reason to the ledger (`runtime/scripts/fanout-run.cjs`)
 - [ ] T022 Degrade to the main checkout under forced preserve, with a warning event, when a worktree cannot be created (`runtime/scripts/fanout-run.cjs`)
+- [ ] T030 Take a lease on the shared worktree prefix for the duration of the claim and reclamation window, because the prefix outlives any single run's directory lock, and record each worktree's path on its lane ledger event so claim and release key off the ledger rather than directory-name parsing (`runtime/scripts/fanout-run.cjs`)
+- [ ] T031 Cover the four worktree criteria: run-scoped teardown, the concurrent negative control asserting a peer run's worktrees survive with their keep decisions recorded, the publish content assertion, and the two-sided boundary assertion (`runtime/tests/unit/fanout-run.vitest.ts`)
+- [ ] T032 Sweep staging residue alongside worktrees so a publisher that dies mid-transaction leaves reclaimable state rather than a permanent block (`runtime/scripts/fanout-run.cjs`)
 
 Phase 5 — churn detection, optional, satisfying the fourth requirement.
 
