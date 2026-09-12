@@ -60,7 +60,7 @@ you write it, and it tells the operator what they are approving.
 |------|----------|---------------|
 | **Trivially reversible** | Working-tree edit to a tracked file; a new untracked file; a local commit | Proceed |
 | **Reversible with effort** | A migration with a working down step; a regenerable artifact; an installed dependency | Say what undoing costs, then proceed |
-| **Irreversible** | Sent message, comment, or email; published package or release; deleted remote data; overwritten untracked file; rewritten shared history; force-push; **any push to a remote branch that is not release or reserved**; an external call with side effects; a destructive migration with no down step | **Written rollback + explicit yes, first** |
+| **Irreversible** | Sent message, comment, or email; published package or release; deleted remote data; overwritten untracked file; rewritten shared history; force-push; **any push to a non-allowlisted remote branch**; an external call with side effects; a destructive migration with no down step | **Written rollback + explicit yes, first** |
 
 Two traps sit in the middle tier and behave like the bottom one:
 

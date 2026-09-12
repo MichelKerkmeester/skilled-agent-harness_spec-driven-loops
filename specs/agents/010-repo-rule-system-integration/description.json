@@ -1,0 +1,35 @@
+{
+  "level": "3",
+  "specFolder": "agents/010-repo-rule-system-integration",
+  "description": "Extend the repo-rule system across the wider system and shrink AGENTS.md where content no longer earns a full writeup",
+  "keywords": [
+    "extend",
+    "repo-rule",
+    "system",
+    "across",
+    "wider",
+    "shrink",
+    "agents",
+    "content",
+    "longer",
+    "earns",
+    "full",
+    "writeup"
+  ],
+  "lastUpdated": "2026-09-11T20:59:38.351Z",
+  "specId": "010",
+  "folderSlug": "repo-rule-system-integration",
+  "parentChain": [
+    "agents"
+  ],
+  "memorySequence": 7,
+  "memoryNameHistory": [
+    "11-09-26_20-56__research-run-is-complete-and-the-synthesis-is.md",
+    "11-09-26_21-09__fixed-both-siblings-are-whole-again-repository.md",
+    "11-09-26_21-10__all-three-are-false-positives-from-my-own-matcher.md",
+    "11-09-26_21-12__six-of-the-top-seven-recommendations-are-now-done.md",
+    "11-09-26_21-13__both-lenses-are-running-one-driver-each-plus-its.md",
+    "11-09-26_21-58__all-three-lineages-have-now-run-their-full.md",
+    "11-09-26_21-59__cross-lineage-synthesis-dispatched-to-a-fresh.md"
+  ]
+}

@@ -152,8 +152,8 @@ failure is invisible to a reader: it looks correct and only a parser objects.
 
 **`trigger_phrases` carry symptom vocabulary, not section titles.** The section titles are
 already greppable from the body; the phrases exist to catch someone who has the problem
-and does not know the rule's name. Measured: 161 phrases across 9 files, no duplicates,
-every phrase resolving to exactly one rule.
+and does not know the rule's name. Measured: 194 phrases across the 11 files under
+`repo-rules/`, no duplicates, every phrase resolving to exactly one rule.
 
 ---
 

@@ -50,7 +50,7 @@ Before writing NEW code for an implementation task, stop at the first rung that 
 5. **Can it be one line?**
 6. **Only then: the minimum code that works.**
 
-The ladder consumes the detected surface; it does NOT change surface precedence (OPENCODE > WEBFLOW > UNKNOWN) or the Iron Law (Phase 3 verification is still required). For the over-engineering, gold-plating, and scope-creep detectors, see the repo `CLAUDE.md` "ANTI-PATTERNS" table.
+The ladder consumes the detected surface; it does NOT change surface precedence (OPENCODE > WEBFLOW > UNKNOWN) or the Iron Law (Phase 3 verification is still required). For the over-engineering, gold-plating, and scope-creep detectors, see the Restraint Signals table in the repo `AGENTS.md` §3.
 
 ---
 
@@ -78,7 +78,7 @@ P0 covers issues that have caused production incidents or reviewer-author confus
 4. **No silent failures** — exceptions either surface to the caller or are logged with enough context to debug.
 5. **Naming convention adherence** — surface-specific (snake_case for WEBFLOW JS, camelCase for OPENCODE TypeScript, snake_case for OPENCODE Python/Shell, etc.).
 6. **No hardcoded secrets** — credentials, API keys, tokens never inline; always env vars or secret stores.
-7. **No ephemeral-artifact pointers in comments** — comments must not name a spec folder/number, packet/phase/task/checklist/requirement id (`T###`, `CHK-###`, `REQ-###`), feature-catalog entry, ADR id, or ticket id; these get renamed or archived and rot into dangling pointers. Keep the durable WHY. See `code_style_guide.md` §4 "No ephemeral-artifact pointers" for the allowed-vs-forbidden contract.
+7. **No ephemeral-artifact pointers in comments** — comments must not name a spec folder/number, packet/phase/task/checklist/requirement id (`T###`, `CHK-###`, `REQ-###`), feature-catalog entry, ADR id, or ticket id; these get renamed or archived and rot into dangling pointers. Keep the durable WHY. See `code-style-guide.md` §4 "No ephemeral-artifact pointers" for the allowed-vs-forbidden contract.
 
 ---
 

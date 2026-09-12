@@ -75,7 +75,9 @@ that says what fails at the cheaper one** in the response, not just in your head
 > stopped causing.
 
 Building nothing is not a formality: a surprising share of requests are already satisfied
-by code that exists, and reading first is what reveals it. The sentence, written out, > "Extending `parseConfig` in place fails, because the CLI and the daemon call it with
+by code that exists, and reading first is what reveals it. The sentence, written out:
+
+> "Extending `parseConfig` in place fails, because the CLI and the daemon call it with
 > incompatible defaults today, so the change breaks the daemon. Adding a new function
 > beside it."
 

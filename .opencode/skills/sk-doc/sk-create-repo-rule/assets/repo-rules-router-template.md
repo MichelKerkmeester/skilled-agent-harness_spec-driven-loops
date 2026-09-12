@@ -36,7 +36,7 @@ a file, and the router is the index.
 # REPO RULES
 
 Repo-local operating rules. `AGENTS.md` **Gate 5 (§2)** makes reading this mandatory
-before your first write of the session. This document then routes you to the one rule
+before your first write of the session. This document then routes you to every rule
 file that governs what you are about to do. **It is a router, not a rulebook:** it
 holds no rules of its own.
 
@@ -56,13 +56,15 @@ holds no rules of its own.
 
 | Level | Source | Can be overridden? |
 |-------|--------|--------------------|
-| 1 | Every `AGENTS.md` hard blocker and mandatory gate | No |
+| 1 | Every `AGENTS.md` §1 hard blocker, the Four Laws, PLAN-WORKFLOW LOCK, Comment Hygiene, and every mandatory gate in §2 | No |
 | 2 | An explicit, in-the-moment operator instruction | Not applicable, it is the instruction |
 | 3 | These rule files | Only by level 1 or 2 |
 | 4 | General judgment | By anything above |
 
-A rule file may tighten `AGENTS.md`. None relaxes a hard block or authorizes what
-`AGENTS.md` forbids.
+A rule file may tighten `AGENTS.md`. None relaxes a HARD BLOCK or authorizes what
+`AGENTS.md` forbids. Gate 5 does not change that: it makes the **load** mandatory,
+while what you load stays at level 3, the obligation to read is tier 1, the content
+is not.
 
 ---
 

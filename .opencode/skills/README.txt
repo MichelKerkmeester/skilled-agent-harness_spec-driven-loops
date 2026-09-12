@@ -1,6 +1,6 @@
 ---
 title: "Skills Library"
-description: "Catalog and front door to 11 top-level skill identities across four catalog families, with routing guidance and creation workflow."
+description: "Catalog and front door to 13 top-level skill identities across four catalog families, with routing guidance and creation workflow."
 trigger_phrases:
   - "skills library"
   - "available skills"
@@ -21,14 +21,14 @@ trigger_phrases:
 |---|---|
 | **Use it for** | Finding the skill that matches your task and understanding how routing picks it |
 | **Invoke with** | Gate 2 auto-routing, a direct read of the skill's `SKILL.md`, or keyword triggers like "commit changes" |
-| **Families** | Four prefix families: `cli-*` (1), `mcp-*` (2), `sk-*` (5), `system-*` (3) |
+| **Families** | Four prefix families: `cli-*` (1), `mcp-*` (2), `sk-*` (7), `system-*` (3) |
 | **Catalog** | A family-by-family table below that links every skill's own README |
 
 ---
 
 ## 2. OVERVIEW
 
-Eleven top-level skill identities live under `.opencode/skills/`, each a self-contained folder with runtime instructions (`SKILL.md`), a README, graph metadata and domain references. They stay out of context until needed: the advisor scores a request, returns a ranked list, and the agent loads only the match. This library catalogs every skill by family, links each one's README and explains how routing picks the match, so the right skill loads focused guidance instead of wasting context on the wrong one.
+Thirteen top-level skill identities live under `.opencode/skills/`, each a self-contained folder with runtime instructions (`SKILL.md`), a README, graph metadata and domain references. They stay out of context until needed: the advisor scores a request, returns a ranked list, and the agent loads only the match. This library catalogs every skill by family, links each one's README and explains how routing picks the match, so the right skill loads focused guidance instead of wasting context on the wrong one.
 
 New skills are discovered automatically from a valid `SKILL.md` frontmatter plus `graph-metadata.json`; no manual registration step exists.
 
@@ -56,10 +56,12 @@ Each skill name links to its own README. One-line descriptions reflect current b
 | Skill | What it does |
 |---|---|
 | [`sk-code`](sk-code/README.md) | Unified two-axis code skill: two WORKFLOW modes (`sk-code-quality`, `sk-code-review`) plus read-only SURFACE evidence packets (`sk-code-webflow`, `sk-code-opencode`), each carrying implement/debug/verify workflow and verification gates |
+| [`sk-communication`](sk-communication/README.md) | Two lanes: one rewrites terse agent output into plain English byte-safely, the other renders a topic or the prior reply as the smallest visual at a chosen depth |
 | [`sk-doc`](sk-doc/README.md) | Documentation and component-authoring parent hub: workflow packets for skills, hubs, READMEs/install-guides, agents, commands, catalogs and playbooks, plus deterministic validation and DQI scoring |
 | [`sk-git`](sk-git/README.md) | Git workflow in one skill: numbered worktrees, Conventional Commits, PRs, merge/rebase and finish |
-| [`sk-design-md-generator`](sk-design-md-generator/README.md) | Extracts a live website's real, measured CSS into a v3 Style Reference DESIGN.md (named tokens, type scale, components, Quick Start CSS/Tailwind) — measured ground truth for sk-code to build against, plus a condensed general design-knowledge layer |
+| [`sk-design-md-generator`](sk-design/sk-design-md-generator/README.md) | Extracts a live website's real, measured CSS into a v3 Style Reference DESIGN.md (named tokens, type scale, components, Quick Start CSS/Tailwind) — measured ground truth for sk-code to build against, plus a condensed general design-knowledge layer |
 | [`sk-prompt`](sk-prompt/README.md) | Prompt engineering: turns a request into a structured, scored prompt via 7 frameworks, DEPTH thinking and CLEAR scoring; owns the canonical CLI prompt-quality card |
+| [`sk-vision`](sk-vision/README.md) | Local vision for text-only coding models: grounded OCR, inspect, detect and pixel analysis from a private Moondream runtime |
 
 ### system-*: Deep Loops and the Runtime Foundation
 

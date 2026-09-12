@@ -71,8 +71,8 @@ reader who has the problem and does not know the rule exists.
 
 **Two hard constraints:**
 
-- **No phrase may appear in two rules.** The set carries 161 phrases with zero collisions;
-  a duplicate makes both rules unfindable by it.
+- **No phrase may appear in two rules.** The set carries 194 phrases across the 11 files
+  under `repo-rules/` with zero collisions; a duplicate makes both rules unfindable by it.
 - **Aim for 15-20.** The observed range is 16-20. Fewer leaves the rule hard to reach;
   many more usually means section titles crept back in.
 

@@ -1,0 +1,78 @@
+TASK
+
+Audit whether the skill-benchmark lane of this repository is genuinely and completely retired, or only appears to be. This is an adversarial review. Your job is to find what is still reachable, still broken, or was missed. Finding nothing is a valid result, but you must look hard before concluding it. This run is read-only.
+
+WHAT WAS DONE, AS CLAIMED
+
+A benchmark lane called skill-benchmark was removed. The claim is that it is gone from every surface that could reach it: command entry points across five runtimes, its workflow and presentation contracts, its script tree, its fixture corpus, its typed ledger libraries, and its registration in the mode registry, hub router, graph metadata and leaf manifest. Generated advisor and command-bridge artifacts were regenerated rather than hand-edited. Historical benchmark reports belonging to other skills were deliberately preserved.
+
+Treat every sentence above as a claim to test, not as background. The person making it has already been wrong once about this lane: an earlier brief asserted it was not a registered mode when it was registered in four places, because a search used a prefixed spelling and the registry keys on the bare name. Assume similar naming traps remain.
+
+WHAT TO CHECK, AND THE TRAPS THAT HIDE EACH ONE
+
+1. Reachability. Can any command, router, registry, manifest, alias, symlink or generated artifact still resolve the lane? Search the bare name and every prefixed and suffixed variant, in every file type, not only markdown and json. A search for one spelling proving clean is not evidence the others are.
+2. Dangling references. Does any surviving file point at a deleted path, script, fixture, test or document? Links in docs, requires in scripts, paths in config, test targets in shell runners, entries in indexes and catalogs.
+3. Broken dependents. Did anything outside the lane consume it as a library? Run or load the suspects rather than reading them; some requires are lazy and a file that imports cleanly can still fail on the path that reaches the dead call.
+4. Counts and indexes. Any catalog, index, README or metadata file claiming a count that the tree no longer matches.
+5. Over-removal. Was anything deleted that did not belong to the lane? Historical benchmark reports under other skills are the specific risk, since they share a filename prefix with the lane and belong to other packets as run evidence.
+6. Generated artifacts. Anything regenerated should be internally consistent and consistent with its source. A regenerated pair produced by two different runs reports as drift and the mismatch is invisible until something reads it.
+7. Tests. Does any test still assert the lane exists, or assert a count that changed?
+
+METHOD
+
+Read and run before asserting. Prefer executing a check over reasoning about it: run the repo's own gates, load a suspect module, grep for a path and then confirm the target is absent. Where a check has an exit code, read the output text too, because an exit code alone has been wrong in both directions in this repository.
+
+DO
+
+- Carry a file:line citation, or the exact command and its output, for every finding.
+- Rank findings by severity: P0 for something still reachable or actually broken, P1 for a dangling reference or false count, P2 for cosmetic residue.
+- State plainly when a check passed, so a clean area is on the record rather than merely unmentioned.
+- Report a negative result as a finding when it matters: naming what you searched for and did not find is evidence.
+
+DO NOT
+
+- Do not edit, create, move or delete any file. This is read-only.
+- Do not accept a claim above because it sounds plausible. Test it.
+- Do not report a finding you did not verify, and do not carry a path from this brief without confirming it exists.
+- Do not pad the report with findings that change nothing.
+
+OUTPUT FORMAT
+
+VERDICT on the first line: COMPLETE, INCOMPLETE, or OVER-REMOVED, with one sentence of reason.
+Then FINDINGS, ranked P0 first, each with what is wrong, the evidence, and what it would take to fix.
+Then CHECKED AND CLEAN: the areas you verified and found sound, so the audit's coverage is visible.
+Then WHAT I COULD NOT CHECK, and why.
+
+ITERATION 2 OF 5.
+Earlier iterations of this same lineage already found the following. Do NOT repeat them.
+Go deeper, test what they assumed, or cover a surface they missed.
+
+### Iteration 1
+## 1. Reachability — what still resolves
+- `sk-code/benchmark/README.md:52-55, 61-66` (router + live quick-start)
+- `sk-create-benchmark/assets/skill-benchmark/skill-benchmark-readme-template.md:133-146`
+## 2. Dangling references (surviving files → deleted paths)
+- `sk-code/ROUTER.md:311` — tells readers to run the deleted `skill-benchmark/tests/sk-code-router-sync.vitest.ts`; the sk-code router block is now **unguarded**
+- `sk-code-opencode/references/shared/alignment-verification-automation.md:112` — calls that same deleted test "the equality authority" (new find; not just prose — a contract claim)
+- `sk-code-quality/SKILL.md:140`, `sk-code-mobile-cli/SKILL.md:89` — justify design by "the deterministic skill-benchmark router-replay"
+- `sk-create-skill/references/skill/upgrading-a-skill-to-v4.md:222`, `references/parent-skill/compiled-routing-architecture.md:66`, `parent-skills-nested-packets.md:255`, `parent-hub-router-schema.md:30` — invoke/name deleted lane scripts and `/deep:skill-benchmark`
+- `sk-create-manual-testing-playbook/SKILL.md:285` + `assets/manual-testing-playbook-snippet-template.md:55-64,170-171` — "Lane C" contracts
+- `sk-code/benchmark/reports/2026-06-02--d4r-live--live/README.md:32`, `sk-code/manual-testing-playbook/compiled-routing/surface-bundle-compiled-routing.md:54`, `sk-doc/manual-testing-playbook/manual-testing-playbook.md:92`, `.../compiled-routing/bundle-rules-compiled-routing.md:73`, `sk-design/sk-design-chart/.../form-choice-and-the-diagram-boundary.md:51-52` — run deleted `run-skill-benchmark.cjs`/`router-replay.cjs`
+- `sk-create-command/assets/command-contract.json:276` — the machine-readable `deep` family contract still lists `/deep:skill-benchmark` in `invocation_aliases`. Checked the consumer (`generate-command-routers.cjs`): it does **not** read `invocation_aliases`, so nothing flags this, but the asset advertises a deleted command
+- `sk-doc/sk-create-skill/scripts/init_skill.py:130` — the **scaffolder** still emits `run-skill-benchmark.cjs` into every new skill's benchmark README
+- 10 `sk-doc/manual-testing-playbook/holdout/*.md` files — describe scenarios as "scored by the routing-gold and skill-benchmark gates"
+- `deep-review/README.md:176` — live mode README: "deep-improvement … across three lanes: agent improvement, model benchmark and **skill benchmark**" (space-spelling)
+## 3. Broken dependents (what actually fails)
+- `sk-doc/sk-create-benchmark/scripts/render-serving-snapshot.cjs:47-50` — top-level `require` of deleted `compiled-routing-parity.cjs` → **load-time MODULE_NOT_FOUND**; `:385` also requires `_args.cjs` in its CLI block
+- `sk-doc/sk-create-benchmark/scripts/archive-compiled-routing.cjs:34-41` — top-level requires of deleted `build-report.cjs` + `compiled-routing-parity.cjs`, and it requires the broken snapshot module at `:33`; `:224` `_args.cjs`
+- `sk-doc/sk-create-skill/scripts/validate-compiled-routing-scenarios.cjs:388-390` — CLI entry `require`s deleted `_args.cjs` → crashes when run as a command (module exports still importable; its test at `sk-create-skill/scripts/tests/validate-compiled-routing-scenarios.test.cjs:19` requires the module, not the CLI)
+- `scripts/tests/test_readme_manifest.py` vs `code-folder/durable-directory-manifest.json:522,542,543,598-600` (six deleted dirs frozen in the equality set → "not reproducible")
+- `scripts/tests/test_readme_verdict_parity.py` vs `baseline-readme-verdicts.json:7117,7127,7347,7357,7927,7937,7947` (seven deleted READMEs → `File not found`)
+## 4. Counts and indexes
+- `check-documentation-drift.cjs:115-116` — `families !== 4` passes; `lanes !== 3` now false (§3b).
+- `deep-review/README.md:176` — "three lanes" claim contradicts the registry.
+- `description.json` — "five modes across four workflow families" (correct); `mode-registry.json` verified five.
+- `runtime/scripts/README.md:38` — still describes the drift check as functional.
+
+
+Return only this iteration's findings, in the output format above.

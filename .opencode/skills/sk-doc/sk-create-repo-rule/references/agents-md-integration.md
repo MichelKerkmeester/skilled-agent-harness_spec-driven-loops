@@ -46,18 +46,19 @@ is not an accident.
 
 Before adding a trigger row, confirm `REPO RULES.md` §4 **In** admits the rule.
 
-The shipped set hit this twice, and both times the row was written before anyone looked:
+The shipped set hit this four times, and every time the row was written before
+anyone looked:
 
 - Adding the delegation rule under a scope statement that listed "agent dispatch" as
   **Out**. The router would have routed to a rule it declared out of bounds.
 - Moving communication down while §4 said nothing about how a reply reads.
 
-All three were caught and the boundary was widened deliberately each time, the third
+All four were caught and the boundary was widened deliberately each time, the third
 being the narrow routing carve-out that admits verifying wiring you changed while still
-refusing route selection. **A fourth widening that admitted selection itself would
+refusing route selection. **A fifth widening that admitted selection itself would
 dissolve the boundary the set exists to hold** — if the scope statement excludes a
 proposal, that is a refusal, not a paperwork problem. The mode does not widen §4
-unilaterally; that is an operator decision, and each of the three was one.
+unilaterally; that is an operator decision, and each of the four was one.
 
 ---
 
@@ -89,9 +90,8 @@ nothing, which **looks like coverage**. Always leave the safer wreck.
 4. Bump `version`.
 5. Re-verify links and counts.
 
-**On `version`:** all nine shipped rules sit at `1.0.0.0`, so the corpus offers no
-evidence for a scheme. Use the fourth segment for any content change and leave the first
-three alone until something forces the question. **This is a choice, not a finding.**
+**On `version`:** use the fourth segment for any content change and leave the first three
+alone until something forces the question. **This is a choice, not a finding.**
 
 ---
 
@@ -136,12 +136,59 @@ a deliverable — nobody asked for it.
 
 ---
 
-## 8. SELF-CHECK
+## 8. THE SIBLING FEDERATION
+
+A rule file can be shared. A rule in `repo-rules/` may be symlinked into sibling
+repositories, and each sibling's router then points at the link. The source file stays
+here. A sibling holds only a path to it, so **every shared rule is edited, versioned
+and retired in one place**.
+
+**Per sibling, four mechanics.** A new or promoted rule needs all four in every sibling
+that shares the set. Each omission breaks something specific:
+
+| Missing | Result |
+|---------|--------|
+| Symlink | A row resolves to nothing, and the break looks like coverage |
+| `.gitignore` entry | The link is committed and dangles on a fresh clone, and it publishes the local filesystem layout |
+| Trigger row | The rule never loads in that repository |
+| Index row | The rule is unbrowsable there |
+
+**The symlink shape.** Create a relative symlink in the sibling's `repo-rules/`
+directory, named after the rule and pointing at the source file, for example
+`../../Code_Environment/Public/repo-rules/<rule>.md`. A relative target names the
+sibling's own layout instead of an absolute home directory.
+
+**The `.gitignore` entry.** Add `repo-rules/<rule>.md` to the sibling's shared-rules
+block. Local rule files and the router beside the symlinks stay tracked. Only the
+links are ignored.
+
+**The rows.** Add the trigger row to the sibling router's §2 and the index row to its
+§3, matching the source rows. A shared row carries no `**local**` marker. The rules
+that live in the sibling are the ones that do.
+
+**Ordering.** Create the symlink only after the source file exists, or it dangles.
+Retire by running that order backwards in every sibling: rows first, then the
+`.gitignore` entry, then the symlink, and the source file last. Deleting the source
+first leaves every sibling row pointing at nothing.
+
+**Promoting a local rule.** Move the file into the source repository's `repo-rules/`,
+replace each sibling's local copy with the symlink, and add the ignore entry and the
+rows that are missing.
+
+**Verifying a shared rule.** Follow each link to a real file, confirm both rows
+resolve, and confirm that every sibling still has the same count of files, trigger
+rows and index rows. A link that resolves in one repository is not evidence for
+another.
+
+---
+
+## 9. SELF-CHECK
 
 - [ ] The scope statement was checked before the trigger row was written.
 - [ ] All three wiring points exist, and the pointer covers every governed section.
 - [ ] Trigger rows, index rows and rule files are the same count.
 - [ ] Every link resolves.
+- [ ] On a shared rule: every sibling carries the symlink, the ignore entry and both rows.
 - [ ] On revise: if the firing condition changed, the trigger row changed with it.
 - [ ] On retire: nothing points at the deleted file, and the reason is recorded.
 - [ ] Nothing in `AGENTS.md` changed except a pointer.

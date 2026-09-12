@@ -58,7 +58,7 @@ Beyond Law 4 (uncertainty, line-number mismatch, failing tests), also halt on:
 
 ## 2. ⛔ MANDATORY GATES — STOP BEFORE ACTING
 
-**⚠️ BEFORE using ANY tool (except Gate Actions: the trigger index lookup, skill_advisor.py), you MUST pass all applicable gates below.**
+**⚠️ BEFORE using ANY tool (except Gate Actions: the trigger index lookup, `.opencode/bin/skill-advisor.cjs`), you MUST pass all applicable gates below.**
 
 ### 🔒 PRE-EXECUTION GATES (Pass before ANY tool use)
 
@@ -111,7 +111,7 @@ Skills are on-demand domain expertise invoked through Gate 2 (§2): when the adv
 
 **Advisor metadata placement.** These filenames also name spec-folder continuity metadata (§6) under a completely separate schema — never the same file, never interchangeable. At a skill root, `graph-metadata.json` is the advisor identity file and is required at BOTH parent-hub and standalone roots; `description.json`, `mode-registry.json`, and `hub-router.json` are **hub-only** (forbidden on a standalone root). None of them live at a mode/packet or `shared/` sublevel. Full contract (per-class required/forbidden matrix, key schemas, hub doctrine, and the `ci-skill-root-metadata.cjs` fleet audit): `.opencode/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md`.
 
-**A parent hub projects one advisor identity, and its modes route in two stages.** The advisor scores the hub; the hub's `hub-router.json` and root `ROUTER.md` then pick the mode and its leaves. Most nested modes carry `advisorRouting.routingClass: "metadata"` — resolved by hub membership, with no advisor entry of their own — so their vocabulary reaches the advisor only through the hub's `graph-metadata.json`. A minority do not: `lexical` and `alias-fold` modes get their own advisor entries and projection maps, and `command-bridge` routes by command surface instead. Check the class before assuming which applies. **Never report a mode as routed because a registry entry exists — check both stages, against the hub you actually changed.** Surface list and the class table: `parent-skills-nested-packets.md`, expanded by [`skill-hub-routing.md`](repo-rules/skill-hub-routing.md).
+**A parent hub projects one advisor identity, and its modes route in two stages.** The advisor scores the hub; the hub's `hub-router.json` and root `ROUTER.md` then pick the mode and its leaves. Most nested modes carry `advisorRouting.routingClass: "metadata"` — resolved by hub membership, with no advisor entry of their own — so their vocabulary reaches the advisor only through the hub's `graph-metadata.json`. A minority do not: `lexical` and `alias-fold` modes get their own advisor entries and projection maps, and `command-bridge` routes by command surface instead. Check the class before assuming which applies. **Never report a mode as routed because a registry entry exists — check both stages, against the hub you actually changed.** Surface list and the class table: `.opencode/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md`, expanded by [`skill-hub-routing.md`](repo-rules/skill-hub-routing.md).
 
 #### GATE 4: SKILL-OWNED WORKFLOW TIEBREAKERS
 Trigger-phrase routing ("deep-research", "deep-review", ":auto", "iterations", "convergence") and state-machine discipline (no manual `/tmp` state, no direct `@deep-research` / `@deep-review` Task dispatch, no skipping `deep-research-state.jsonl` / `deltas/` / `logs/`) are enforced by Gate 2 (Skill Advisor at ≥ 0.8) plus the `/deep:research` and `/deep:review` mode-packet SKILL.md invariants (the deep modes are packets under `system-deep-loop/`, not standalone skills). The two tiebreakers below are NOT covered there:
@@ -179,7 +179,7 @@ Trigger: About to skip gates, or realized gates were skipped → STOP → STATE:
 - **Define proof before implementation.** Convert acceptance criteria into observable checks and identify the authoritative final gate before changing files.
 - **Use a research-first approach.** Read the actual code, docs, and local instructions first; prefer surgical edits over broad rewrites.
 - **Make one pre-write pass before adding code.** Two questions, in order. *Does this need to exist?* — walk the restraint ladder, cheapest rung first: not at all, then a simpler existing thing, then the minimum that works. Concluding "unnecessary" never licenses a cut; implement the frozen scope AND raise the amendment in the same response. *What does it touch?* — when the change can break a caller or a shared contract, name the owning module, one real caller, and the contract that must not break, before the first edit. Both questions need what already exists to be read first, which is why this is a post-read reflex and not a planning ritual. Authoritative rungs: `sk-code/shared/references/universal/code-quality-standards.md` §1.
-- **Repo-local rules load at Gate 5 (§2), before your first write.** What `REPO RULES.md` carries is repo-local: thinking and acting discipline — restraint, scope, evidence, blast radius, diagnosis, honesty — alongside verification commands and local contracts, all binding exactly as this document's rules do, and below them on conflict. The gate owns the mechanics; do not re-derive them here.
+- **Repo-local rules load at Gate 5 (§2), before your first write.** `REPO RULES.md` is a router, not a rulebook: it carries the loading instructions and precedence ladder, the trigger table matching the action you are about to take to the per-rule files under `repo-rules/`, an index of those files, and the scope statement that bounds the set. It holds no rules and no commands of its own. Those rule files carry the repo-local thinking and acting discipline (restraint, scope, evidence, blast radius, diagnosis, honesty), binding exactly as this document's rules do, and below them on conflict. The gate owns the mechanics; do not re-derive them here.
 
 **Ownership & Completion:**
 - **Take responsibility for issues encountered during execution.** Do not dodge ownership with phrases like `not caused by my changes` or `pre-existing issue`; work toward the fix.
@@ -189,7 +189,6 @@ Trigger: About to skip gates, or realized gates were skipped → STOP → STATE:
 
 **Debugging & Iteration:**
 - Reproduce the exact symptom when safe, trace the responsible producer and its consumers, fix the root cause, and rerun the same check.
-- Law 4 keeps forward progress and completion blocked while a check fails; diagnosis and repair are the permitted bounded remediation loop, not permission to proceed past the failure.
 - If an attempt repeats without new evidence, stop patching at the failure site: restate the problem one level up — at the interface, the data flow, or the module boundary — and inspect the available interface before trying again. A fix that works only by special-casing a caller is evidence the seam is wrong: name the seam and the files a seam fix would touch, then ask — SCOPE LOCK still binds, and editing outside scope needs a yes. Do not repeat the same guess; stop local retries at the code skill's repeated-failure limit — its count governs a debugging loop, not Section 7's — then escalate in Section 7's format.
 
 **Verification & Reasoning:**
@@ -301,7 +300,7 @@ Trigger: a session bound to a spec packet, on every turn.
 - [ ] File modification? Asked spec folder question?
 - [ ] Skill routing verified?
 - [ ] First code or `.md` write? Routed per the Gate 2 artifact trigger and LOADED what it resolved?
-- [ ] Passed Gate 5? Repository has a `REPO RULES.md` → matched the action in its trigger table and LOADED the rule file it names?
+- [ ] Passed Gate 5? Repository has a `REPO RULES.md` → matched the action in its trigger table and LOADED every rule file it names?
 - [ ] Saving continuity? Using the continuity writer `generate-context.js` (not Write tool)?
 - [ ] Aligned with ORIGINAL request? No scope drift?
 - [ ] Claiming completion? `checklist.md` verified?
@@ -402,7 +401,7 @@ Confidence stays <80% after two failed attempts → ask with 2-3 options. Blocke
 
 ## 8. 🗣️ COMMUNICATION QUALITY
 
-**How a reply reads is governed by [`repo-rules/communication.md`](repo-rules/communication.md), and it fires on every substantive reply** — not only on complex ones. Load it before answering: sentence and paragraph shape, plain words, length, filler, verdict-first ordering, how to present a recommendation, the Ask→Do framing for an ambiguous request, and what to do when the reader says they did not follow.
+**How a reply reads is governed by [`repo-rules/communication.md`](repo-rules/communication.md), and it fires on every substantive reply** — not only on complex ones. Load it before answering: sentence and paragraph shape, plain words, punctuation, length, filler, and what to do when the reader says they did not follow.
 
 **How a decision is presented is governed by [`repo-rules/presenting-decisions.md`](repo-rules/presenting-decisions.md)**: verdict first, one recommended path with its trade-off, the intended path stated before a long stretch of work, and a synthesis reported as findings rather than a file path.
 
@@ -452,7 +451,7 @@ Entry points only. Where a Flow column is present it names an order that is not 
 | **Resume prior work** | `/speckit:resume` | The continuity ladder: `handover.md` → `_memory.continuity` → canonical spec docs |
 | **New spec folder** | Gate 3 Option B | research → evidence-based plan → approval → implement |
 | **Code work** | `sk-code` | implement → quality gate → debug → verify |
-| **Repo-local rules** | Gate 5 → `REPO RULES.md` | match the action in the trigger table → load the one `repo-rules/*.md` it names |
+| **Repo-local rules** | Gate 5 → `REPO RULES.md` | match the action in the trigger table → load every `repo-rules/*.md` it names |
 | **Design reference extraction** | `sk-design-md-generator`; `mcp-figma` for Figma sources | measure → build via `sk-code` |
 | **Research / exploration** | the trigger index lookup | then the ripgrep recipes in `retrieval-conventions.md`, scoped by track and packet |
 | **Git workflow** | `sk-git` | worktree → commit → finish (PR); see §5 Git Workspace Safety |

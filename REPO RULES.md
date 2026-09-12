@@ -1,7 +1,7 @@
 # REPO RULES
 
 Repo-local operating rules. `AGENTS.md` **Gate 5 (§2)** makes reading this mandatory
-before your first write of the session; this document then routes you to the one rule
+before your first write of the session; this document then routes you to every rule
 file that governs what you are about to do. **It is a router, not a rulebook:** it
 holds no rules of its own.
 
@@ -37,17 +37,17 @@ is not.
 
 | You are about to… | Load | It settles |
 |-------------------|------|-----------|
-| Add a file, module, class, interface, option, layer, or dependency · generalize something that works · write "flexible", "future-proof", "might need", "best practice" · add a test beyond the coverage floor | [`prevent-overengineering.md`](repo-rules/prevent-overengineering.md) | Whether this should exist at all, and at what size |
-| Touch a file outside the ask · fix something noticed in passing · rename, reformat, or delete beyond the named area · deviate from an approved plan | [`scope-discipline.md`](repo-rules/scope-discipline.md) | What is yours to change, and how to raise what isn't |
+| Add a file, module, class, interface, option, layer, or dependency · generalize something that works · write "flexible", "future-proof", "scalable", "extensible", "might need", "best practice", "while we're here" · add a test beyond the coverage floor | [`prevent-overengineering.md`](repo-rules/prevent-overengineering.md) | Whether this should exist at all, and at what size |
+| Touch a file outside the ask · fix something noticed in passing · rename, reformat, or delete beyond the named area · deviate from an approved plan · decide what to do with the rest when part of the work is blocked | [`scope-discipline.md`](repo-rules/scope-discipline.md) | What is yours to change, and how to raise what isn't |
 | Say "done", "works", "fixed", "passing", "no regressions" · report a result · quote a number · act on a tool's or sub-agent's success report · close out a turn | [`evidence-and-proof.md`](repo-rules/evidence-and-proof.md) | What counts as proof, how a green run lies, what an honest close-out contains |
-| Hand work to another runtime: a CLI executor, sub-agent, fan-out lineage, or deep loop · compose the prompt one will act on · accept or quote what one returned · answer a judgment question from your own reading alone | [`delegation-and-orchestration.md`](repo-rules/delegation-and-orchestration.md) | The orchestrating posture, what a brief must carry, why one model is one opinion |
-| Delete, overwrite, migrate, deploy, publish, send, install · force-push or rewrite history · change a shared contract · touch auth, data, or config | [`blast-radius.md`](repo-rules/blast-radius.md) | Reversibility, the rollback sentence, when to stop for a yes |
-| Diagnose a failure · make a red check green · attempt the same fix twice · add a special case, retry, sleep, or broadened catch | [`root-cause-and-debugging.md`](repo-rules/root-cause-and-debugging.md) | Fixing the producer instead of the symptom, and when to level up to the seam |
-| Answer without certainty · contradict the operator · fill a gap with a plausible guess · hit a contradiction between two things that must both be true | [`uncertainty-and-honesty.md`](repo-rules/uncertainty-and-honesty.md) | Confidence bands, UNKNOWN, contradiction halts |
+| Hand work to another runtime: a CLI executor, sub-agent, fan-out lineage, or deep loop Decide whether to hand work to another runtime at all · compose the prompt one will act on · accept or quote what one returned · answer a judgment question from your own reading alone | [`delegation-and-orchestration.md`](repo-rules/delegation-and-orchestration.md) | The orchestrating posture, what a brief must carry, why one model is one opinion |
+| Delete, overwrite, migrate, deploy, publish, send, install · force-push or rewrite history · change a shared contract · touch auth, data, or config · make any call that leaves this machine · truncate · touch branches, tags, or reflogs | [`blast-radius.md`](repo-rules/blast-radius.md) | Reversibility, the rollback sentence, when to stop for a yes |
+| Diagnose a failure · make a red check green · attempt the same fix twice · add a special case, retry, sleep, or broadened catch · call a failure a flake, infra, or pre-existing | [`root-cause-and-debugging.md`](repo-rules/root-cause-and-debugging.md) | Fixing the producer instead of the symptom, and when to level up to the seam |
+| Answer without certainty · contradict the operator · fill a gap with a plausible guess · hit a contradiction between two things that must both be true · name a path, flag, function, version, or number you have not verified | [`uncertainty-and-honesty.md`](repo-rules/uncertainty-and-honesty.md) | Confidence bands, UNKNOWN, contradiction halts |
 | Write any substantive reply · the reader says they did not follow | [`communication.md`](repo-rules/communication.md) | How a reply reads: sentence shape, plain words, punctuation, length, filler |
-| Present a recommendation, a fork, or a trade-off · answer a complex or ambiguous request · start a multi-step stretch the reader cannot see inside · report what a long run found | [`presenting-decisions.md`](repo-rules/presenting-decisions.md) | Verdict first, one recommended path, saying where you are going before a long stretch |
+| Present a recommendation, a fork, or a trade-off · answer a complex or ambiguous request · start a multi-step stretch the reader cannot see inside · report what a long run found · list every option you considered | [`presenting-decisions.md`](repo-rules/presenting-decisions.md) | Verdict first, one recommended path, saying where you are going before a long stretch |
 | End a turn · report work done, blocked, or partly done · ask the operator anything · state a fork or two acceptable paths · continue past a decision nobody made | [`handoff-and-questions.md`](repo-rules/handoff-and-questions.md) | What is the operator's to do next, and when a question becomes a structured choice |
-| Wire, rewire or remove a mode in a parent-hub skill · edit a hub's registry, router, `ROUTER.md`, `graph-metadata.json` or `SKILL.md` mode table · report that a mode is registered, routed or integrated · quote a per-hub gate result | [`skill-hub-routing.md`](repo-rules/skill-hub-routing.md) | The two routing stages, what "integrated" requires, and checking the hub you actually changed |
+| Wire, rewire or remove a mode in a parent-hub skill · edit a hub's registry, router, `ROUTER.md`, `graph-metadata.json` or `SKILL.md` mode table · report that a mode is registered, routed, reachable or integrated · quote a per-hub gate result | [`skill-hub-routing.md`](repo-rules/skill-hub-routing.md) | The two routing stages, what "integrated" requires, and checking the hub you actually changed |
 
 ---
 

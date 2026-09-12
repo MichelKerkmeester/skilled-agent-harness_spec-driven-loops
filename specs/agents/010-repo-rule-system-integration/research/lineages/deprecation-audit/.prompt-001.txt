@@ -1,0 +1,49 @@
+TASK
+
+Audit whether the skill-benchmark lane of this repository is genuinely and completely retired, or only appears to be. This is an adversarial review. Your job is to find what is still reachable, still broken, or was missed. Finding nothing is a valid result, but you must look hard before concluding it. This run is read-only.
+
+WHAT WAS DONE, AS CLAIMED
+
+A benchmark lane called skill-benchmark was removed. The claim is that it is gone from every surface that could reach it: command entry points across five runtimes, its workflow and presentation contracts, its script tree, its fixture corpus, its typed ledger libraries, and its registration in the mode registry, hub router, graph metadata and leaf manifest. Generated advisor and command-bridge artifacts were regenerated rather than hand-edited. Historical benchmark reports belonging to other skills were deliberately preserved.
+
+Treat every sentence above as a claim to test, not as background. The person making it has already been wrong once about this lane: an earlier brief asserted it was not a registered mode when it was registered in four places, because a search used a prefixed spelling and the registry keys on the bare name. Assume similar naming traps remain.
+
+WHAT TO CHECK, AND THE TRAPS THAT HIDE EACH ONE
+
+1. Reachability. Can any command, router, registry, manifest, alias, symlink or generated artifact still resolve the lane? Search the bare name and every prefixed and suffixed variant, in every file type, not only markdown and json. A search for one spelling proving clean is not evidence the others are.
+2. Dangling references. Does any surviving file point at a deleted path, script, fixture, test or document? Links in docs, requires in scripts, paths in config, test targets in shell runners, entries in indexes and catalogs.
+3. Broken dependents. Did anything outside the lane consume it as a library? Run or load the suspects rather than reading them; some requires are lazy and a file that imports cleanly can still fail on the path that reaches the dead call.
+4. Counts and indexes. Any catalog, index, README or metadata file claiming a count that the tree no longer matches.
+5. Over-removal. Was anything deleted that did not belong to the lane? Historical benchmark reports under other skills are the specific risk, since they share a filename prefix with the lane and belong to other packets as run evidence.
+6. Generated artifacts. Anything regenerated should be internally consistent and consistent with its source. A regenerated pair produced by two different runs reports as drift and the mismatch is invisible until something reads it.
+7. Tests. Does any test still assert the lane exists, or assert a count that changed?
+
+METHOD
+
+Read and run before asserting. Prefer executing a check over reasoning about it: run the repo's own gates, load a suspect module, grep for a path and then confirm the target is absent. Where a check has an exit code, read the output text too, because an exit code alone has been wrong in both directions in this repository.
+
+DO
+
+- Carry a file:line citation, or the exact command and its output, for every finding.
+- Rank findings by severity: P0 for something still reachable or actually broken, P1 for a dangling reference or false count, P2 for cosmetic residue.
+- State plainly when a check passed, so a clean area is on the record rather than merely unmentioned.
+- Report a negative result as a finding when it matters: naming what you searched for and did not find is evidence.
+
+DO NOT
+
+- Do not edit, create, move or delete any file. This is read-only.
+- Do not accept a claim above because it sounds plausible. Test it.
+- Do not report a finding you did not verify, and do not carry a path from this brief without confirming it exists.
+- Do not pad the report with findings that change nothing.
+
+OUTPUT FORMAT
+
+VERDICT on the first line: COMPLETE, INCOMPLETE, or OVER-REMOVED, with one sentence of reason.
+Then FINDINGS, ranked P0 first, each with what is wrong, the evidence, and what it would take to fix.
+Then CHECKED AND CLEAN: the areas you verified and found sound, so the audit's coverage is visible.
+Then WHAT I COULD NOT CHECK, and why.
+
+ITERATION 1 OF 5.
+This is the first pass. Establish the ground truth by reading before asserting.
+
+Return only this iteration's findings, in the output format above.

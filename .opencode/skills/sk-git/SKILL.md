@@ -584,9 +584,9 @@ produce the same subject again.
 ### Framework Integration
 
 This skill operates within the framework in [AGENTS.md](../../../AGENTS.md):
-- **Gate 2**: Skill routing via `skill_advisor.py`
+- **Gate 2**: Skill routing via `.opencode/bin/skill-advisor.cjs`
 - **Gate 3**: File modifications require the spec folder question (AGENTS.md, HARD BLOCK)
-- **Tool Routing**: AGENTS.md Section 6 decision tree
+- **Tool Routing**: AGENTS.md Section 5 decision tree
 - **Continuity**: see Continuity Integration below
 
 ### Continuity Integration

@@ -1,0 +1,45 @@
+TASK
+
+Adversarially verify seven specific claims about this repository. Read only the files named in each claim. Do NOT survey the repository, do NOT read broadly, do NOT open files beyond those named. A previous run of this task stalled by trying to read everything; staying narrow is the requirement, not a suggestion.
+
+For each claim return exactly one verdict: CONFIRMED, REFUTED, or CANNOT CHECK, followed by one or two sentences of evidence with a file:line. Nothing else.
+
+THE CLAIMS
+
+C1. REPO RULES.md states that every trigger which fires is loaded, not just the first, and that three or four firing at once is normal. Check REPO RULES.md section 1 and AGENTS.md around line 125.
+
+C2. Gate 5 in AGENTS.md fires only on the first write of a session and never on a read-only turn. Check AGENTS.md around line 122. If true, state the consequence for a rule file on a read-only turn.
+
+C3. The Restraint Signals table in AGENTS.md is the only copy, because repo-rules/prevent-overengineering.md explicitly defers to it rather than repeating it. Check prevent-overengineering.md around line 102.
+
+C4. The Confidence Thresholds bands in AGENTS.md are the only copy, because repo-rules/uncertainty-and-honesty.md points at them without carrying them. Check uncertainty-and-honesty.md around line 48.
+
+C5. repo-rules/ holds exactly 11 rule files, and REPO RULES.md carries exactly 11 trigger rows in its section 2 and exactly 11 index rows in its section 3. Count them.
+
+C6. No trigger phrase appears in the frontmatter of two different files under repo-rules/. Check by reading the trigger_phrases blocks.
+
+C7. AGENTS.md is a document of roughly 500 lines and CLAUDE.md is a symlink to it rather than a separate copy.
+
+THEN ONE JUDGEMENT
+
+After the seven verdicts, answer in at most 150 words: given what you just read, is there content in AGENTS.md that does not earn being fully written out in a document loaded on every single turn? Name at most three candidates with a line number, or say none and why. Do not read more files to answer this; use only what the claims above made you read.
+
+DO NOT
+
+- Do not read any file not named above.
+- Do not edit, create or delete anything.
+- Do not pad. A short accurate answer is the goal.
+
+ITERATION 4 OF 5.
+Earlier iterations of this lineage already found the following. Do NOT repeat them.
+Go deeper, test what they assumed, or cover a surface they missed.
+
+### Iteration 1
+
+### Iteration 2
+
+### Iteration 3
+
+
+Be selective about what you open; a partial answer with resolving citations beats an exhaustive read that never finishes.
+Return only this iteration's findings, in the output format above.

@@ -69,11 +69,12 @@ agent and CLI dispatch — which agent, which command, which model, which flags.
 
 **The line:** *how to dispatch is theirs; how to think while dispatching is ours.*
 
-**Recovered from:** the router's own section 4, which has been widened exactly three
+**Recovered from:** the router's own section 4, which has been widened exactly four
 times and every time deliberately — to admit delegation posture, then delivery, then a
-narrow routing carve-out. The third is the instructive one: it admits *verifying wiring
-you changed* as an evidence obligation, and still refuses *selecting* a route. A fourth
-widening that admitted selection would dissolve the boundary the set exists to hold.
+narrow routing carve-out, then the ask-surface carve-out. The third is the instructive
+one: it admits *verifying wiring you changed* as an evidence obligation, and still
+refuses *selecting* a route. A fifth widening that admitted selection would dissolve
+the boundary the set exists to hold.
 
 **So the test did not get weaker.** Ask which side of the carve-out the proposal sits on.
 A rule about which skill, command, model or flags to pick is still refused here.
@@ -136,6 +137,10 @@ Refusing is not the end of the decision. Every refusal routes somewhere:
 **Record every refusal with the test it failed.** A declined proposal with a written
 reason is what stops the same suggestion arriving next quarter with nobody remembering
 why it was refused.
+
+**Where the record lives:** the decision record of the spec packet that owns the rule
+set for that repository. Spec folders are where this repository keeps refusal history,
+diffed and archived with the work, and the rule files and the router stay free of it.
 
 ---
 
