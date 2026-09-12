@@ -3960,10 +3960,34 @@ describe('fanout-run.cjs — post-run packet metadata refresh', () => {
 
     expect(plan.commands).toHaveLength(2);
     const [description, backfill] = plan.commands ?? [];
-    expect(description.file).toBe(join(distDir, 'spec-folder', 'generate-description.js'));
+    // Canonical, because that is what the generators' own entry-point guard compares against.
+    expect(description.file).toBe(realpathSync(join(distDir, 'spec-folder', 'generate-description.js')));
     expect(description.args).toEqual([specFolder, repoRoot]);
-    expect(backfill.file).toBe(join(distDir, 'graph', 'backfill-graph-metadata.js'));
+    expect(backfill.file).toBe(realpathSync(join(distDir, 'graph', 'backfill-graph-metadata.js')));
     expect(backfill.args).toEqual([specFolder]);
+  });
+
+  it('canonicalizes the generator path, so a build reached through a link still runs', () => {
+    const realDist = makeTempDir('fanout-metadata-realdist-');
+    mkdirSync(join(realDist, 'spec-folder'), { recursive: true });
+    mkdirSync(join(realDist, 'graph'), { recursive: true });
+    writeFileSync(join(realDist, 'spec-folder', 'generate-description.js'), '// stub\n');
+    writeFileSync(join(realDist, 'graph', 'backfill-graph-metadata.js'), '// stub\n');
+
+    // A checkout that shares another's build directory rather than holding its own. Invoked by
+    // the linked spelling, these generators decide they are not the entry point and exit 0
+    // without doing anything, which is indistinguishable from success at the call site.
+    const linkedRoot = makeTempDir('fanout-metadata-linked-');
+    const linkedDist = join(linkedRoot, 'dist-link');
+    symlinkSync(realDist, linkedDist, 'dir');
+
+    const plan = buildMetadataRefreshCommands('specs/pkg', linkedRoot, linkedDist);
+    expect(plan.commands).toHaveLength(2);
+    expect(plan.commands?.[0]?.file).toBe(realpathSync(join(realDist, 'spec-folder', 'generate-description.js')));
+    expect(plan.commands?.[0]?.file.startsWith(linkedDist)).toBe(false);
+    // The checkout to act on travels in the arguments, so canonicalizing the script path
+    // cannot redirect the write to the checkout that owns the build.
+    expect(plan.commands?.[0]?.args).toEqual(['specs/pkg', linkedRoot]);
   });
 
   it('resolves the generator dist paths from the repo root when no override is given', () => {
@@ -3976,7 +4000,7 @@ describe('fanout-run.cjs — post-run packet metadata refresh', () => {
 
     const plan = buildMetadataRefreshCommands('specs/pkg', repoRoot);
     expect(plan.commands).not.toBeNull();
-    expect(plan.commands?.[0]?.file).toBe(join(distDir, 'spec-folder', 'generate-description.js'));
+    expect(plan.commands?.[0]?.file).toBe(realpathSync(join(distDir, 'spec-folder', 'generate-description.js')));
   });
 
   it('reports the missing dist files instead of building commands when the CLI is unbuilt', () => {

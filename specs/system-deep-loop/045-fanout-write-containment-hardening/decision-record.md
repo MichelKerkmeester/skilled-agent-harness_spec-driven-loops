@@ -323,3 +323,49 @@ There is already a precedent for a non-allocator lane in the same repository: `.
 <!-- /ANCHOR:adr-003 -->
 
 ---
+
+---
+
+## Sharing installed dependencies into a lineage worktree
+
+**Decision.** Share the installed trees by splitting the link, rather than installing per lane or
+linking each tree wholesale.
+
+**Context.** Provisioning by install costs a full dependency install per lane, which unlimited
+concurrency cannot absorb. Linking wholesale is what the launch wrapper does, and sk-git's rule
+forbade it without saying precisely what it protects. Five research iterations plus four
+reproductions established that the rule was guarding two different defects and naming neither.
+
+**What was reproduced.** A workspace package's self-link is relative, so carried into another
+checkout inside a wholesale link it re-anchors through the link's physical location and resolves
+into the source checkout. A lane then reads the main checkout's code however much it edits its
+own, and exits 0. Separately, a compiled entry point reached through a link compares the path it
+was invoked with against the location it derives from its own file; the two disagree, the guard
+reads false, and the script exits 0 having done nothing. `--preserve-symlinks` repairs neither,
+and for the first it is actively worse: it reports the lane's spelling for the main checkout's
+bytes.
+
+**Consequences.**
+- Dependency roots carrying no checkout-internal links are still linked wholesale, so the
+  install stays shared and provisioning stays cheap.
+- Roots that carry them become real directories in the lane, third-party entries linked
+  individually, each self-link rewritten relative to the lane's own copy. Relative is required,
+  not preferred: relocating a worktree rewrites git's registration and not link text.
+- The shared package's build output joins the provisioned set, because most of its export map
+  resolves onto it and a lane-local self-link would otherwise fail at import.
+- The classification is computed per provision by detecting escaping links, not held as a list,
+  because a list misclassifies the next workspace package added and the failure is silent.
+- The metadata generators are invoked by their canonical path, which makes their guard agree
+  with itself. The checkout to act on travels in the arguments, so this cannot redirect a write.
+
+**Applied to both provisioners.** The launch wrapper carried the same defect and now performs
+the same split, so a wrapper session resolves first-party code from its own worktree. Its cost is
+on the session launch path: roughly 0.8 s to create 334 links where it previously created two, a
+figure measured rather than estimated, and reduced from 1.5 s by removing a subprocess per entry.
+Its own harness gained a case asserting the bytes a child process loads; three of its assertions
+fail against the previous implementation.
+
+**Still open.** The entry-point guard is repaired only where this runtime invokes it. Fourteen
+sites in the spec-kit build still compare an invocation path against a resolved one, so any other
+caller reaching them through a link gets the same silent no-op. Fixing the guard at source belongs
+to that skill.

@@ -8,7 +8,7 @@
 // The ownership lease is asserted through the lease module that wrote it, so a
 // worktree is only ever "owned" in the sense a sweep would read.
 
-import { existsSync, lstatSync, mkdirSync, mkdtempSync, readFileSync, realpathSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
+import { existsSync, lstatSync, mkdirSync, mkdtempSync, readFileSync, readlinkSync, realpathSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { spawnSync } from 'node:child_process';
@@ -473,5 +473,108 @@ describe('worktree-lifecycle / remove', () => {
         worktreeDir: join(fixture.worktreeBase, 'never-created'),
       }),
     ).toEqual({ ok: true, removed: false });
+  });
+});
+
+// A dependency root carrying a workspace self-link is the one shape that cannot be shared by
+// linking it wholesale: the link's relative text re-anchors through wherever the link
+// physically lives, so a lane reading through it silently loads the main checkout's bytes and
+// never sees its own edits. These cases assert on the bytes the lane actually loaded, because
+// a resolved path is spellable — under preserved symlinks it reports the lane's spelling for a
+// file the main checkout owns — while the contents of two deliberately different copies are not.
+describe('worktree-lifecycle / dependency isolation', () => {
+  const DEPS_REL = 'node_modules';
+
+  /** Repository holding a tracked workspace package plus an installed, self-linking deps root. */
+  function makeWorkspaceFixture(): Fixture {
+    const root = mkdtempSync(join(tmpdir(), 'worktree-selflink-'));
+    tempRoots.push(root);
+    const repoRoot = join(root, 'repo');
+    mkdirSync(join(repoRoot, 'pkg'), { recursive: true });
+    git(repoRoot, ['init', '-q']);
+    git(repoRoot, ['config', 'user.email', 'test@local']);
+    git(repoRoot, ['config', 'user.name', 'test']);
+    git(repoRoot, ['config', 'core.excludesFile', '/dev/null']);
+    writeFileSync(join(repoRoot, '.gitignore'), 'node_modules\n', 'utf8');
+    writeFileSync(join(repoRoot, 'pkg', 'package.json'), '{"name":"@scope/pkg","main":"index.js"}\n', 'utf8');
+    // Tracked, so a worktree checks out its own copy that the lane can then diverge.
+    writeFileSync(join(repoRoot, 'pkg', 'index.js'), 'module.exports = "MAIN";\n', 'utf8');
+    git(repoRoot, ['add', '-A']);
+    git(repoRoot, ['commit', '-q', '-m', 'workspace fixture']);
+
+    // Installed state: untracked in the main checkout, exactly as a package manager leaves it.
+    mkdirSync(join(repoRoot, DEPS_REL, '@scope'), { recursive: true });
+    mkdirSync(join(repoRoot, DEPS_REL, 'vendored'), { recursive: true });
+    writeFileSync(join(repoRoot, DEPS_REL, 'vendored', 'index.js'), 'module.exports = "VENDORED";\n', 'utf8');
+    symlinkSync('../../pkg', join(repoRoot, DEPS_REL, '@scope', 'pkg'), 'dir');
+
+    return { repoRoot, worktreeBase: join(root, 'worktrees'), root };
+  }
+
+  /** What a child process rooted at `cwd` actually loads for the workspace specifier. */
+  function probe(cwd: string): { value: string; resolved: string } {
+    const env = { ...cleanGitEnv() };
+    // The runtime strips this deliberately, and left set it would make the probe report the
+    // lane's spelling for a file the main checkout owns.
+    delete env.NODE_PRESERVE_SYMLINKS;
+    const result = spawnSync(
+      process.execPath,
+      ['-e', 'process.stdout.write(JSON.stringify({value:require("@scope/pkg"),resolved:require.resolve("@scope/pkg")}))'],
+      { cwd, encoding: 'utf8', env },
+    );
+    if (result.status !== 0) {
+      throw new Error(`probe failed in ${cwd}: ${result.stderr || result.stdout}`);
+    }
+    return JSON.parse(result.stdout) as { value: string; resolved: string };
+  }
+
+  it('resolves a workspace package from the lane rather than the main checkout', () => {
+    vi.stubEnv('SPECKIT_WORKTREE_SHARED_PATHS', DEPS_REL);
+    const fixture = makeWorkspaceFixture();
+    const created = createDefault(fixture);
+    expect(created.ok).toBe(true);
+    const worktreeDir = expectedWorktreeDir(fixture);
+
+    // The lane diverges from HEAD, which is the whole situation isolation exists to serve.
+    writeFileSync(join(worktreeDir, 'pkg', 'index.js'), 'module.exports = "LANE";\n', 'utf8');
+
+    const fromLane = probe(worktreeDir);
+    expect(fromLane.value).toBe('LANE');
+    expect(realpathSync(fromLane.resolved)).toBe(realpathSync(join(worktreeDir, 'pkg', 'index.js')));
+    expect(realpathSync(fromLane.resolved).startsWith(realpathSync(fixture.repoRoot) + '/')).toBe(false);
+  });
+
+  it('still reads the main checkout from the main checkout, so the probe can see both states', () => {
+    vi.stubEnv('SPECKIT_WORKTREE_SHARED_PATHS', DEPS_REL);
+    const fixture = makeWorkspaceFixture();
+    const created = createDefault(fixture);
+    expect(created.ok).toBe(true);
+    writeFileSync(join(expectedWorktreeDir(fixture), 'pkg', 'index.js'), 'module.exports = "LANE";\n', 'utf8');
+
+    expect(probe(fixture.repoRoot).value).toBe('MAIN');
+  });
+
+  it('keeps third-party entries shared with the main checkout', () => {
+    vi.stubEnv('SPECKIT_WORKTREE_SHARED_PATHS', DEPS_REL);
+    const fixture = makeWorkspaceFixture();
+    expect(createDefault(fixture).ok).toBe(true);
+    const vendored = join(expectedWorktreeDir(fixture), DEPS_REL, 'vendored');
+
+    expect(lstatSync(vendored).isSymbolicLink()).toBe(true);
+    expect(realpathSync(vendored)).toBe(realpathSync(join(fixture.repoRoot, DEPS_REL, 'vendored')));
+  });
+
+  it('rewrites the self-link as relative text so relocating the lane cannot re-anchor it', () => {
+    vi.stubEnv('SPECKIT_WORKTREE_SHARED_PATHS', DEPS_REL);
+    const fixture = makeWorkspaceFixture();
+    expect(createDefault(fixture).ok).toBe(true);
+    const worktreeDir = expectedWorktreeDir(fixture);
+    const link = join(worktreeDir, DEPS_REL, '@scope', 'pkg');
+
+    expect(readlinkSync(link)).toBe('../../pkg');
+    // Every ancestor up to the lane root must be a real directory, or the relative text
+    // re-anchors through a linked ancestor and resolves into the main checkout again.
+    expect(lstatSync(join(worktreeDir, DEPS_REL)).isSymbolicLink()).toBe(false);
+    expect(lstatSync(join(worktreeDir, DEPS_REL, '@scope')).isSymbolicLink()).toBe(false);
   });
 });

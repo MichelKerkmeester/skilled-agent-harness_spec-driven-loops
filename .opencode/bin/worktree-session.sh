@@ -84,6 +84,7 @@ default_shared_paths() {
 .opencode/skills/system-spec-kit/runtime/dist
 .opencode/skills/system-spec-kit/runtime/cli/dist
 .opencode/skills/system-spec-kit/runtime/cli/node_modules
+.opencode/skills/system-spec-kit/shared/dist
 PATHS
 }
 
@@ -269,6 +270,82 @@ fi
 log "allocating worktree $WT_REL on branch $BRANCH (base: $WT_BASE)"
 git -C "$MAIN_ROOT" worktree add -b "$BRANCH" "$WT_ABS" "$WT_BASE" >&2
 
+# A dependency root can contain the workspace's own packages, written by the package manager
+# as relative links out of that root and back into the checkout it was installed from. Shared
+# into another checkout as one wholesale link, that relative text re-anchors through wherever
+# the link physically sits and resolves into the original checkout, so a session reads code it
+# never edited while every path it prints still looks local. Everything else in the root is
+# third-party and resolves to the same bytes from either tree.
+#
+# Detected rather than listed, because a fixed inventory misclassifies the first workspace
+# package added after it was written and the resulting failure is silent.
+_repo_internal_self_links() {
+  local root_real="$1" main_root="$2" entry resolved
+  find "$root_real" -mindepth 2 -maxdepth 2 -type l 2>/dev/null | while IFS= read -r entry; do
+    resolved="$(_canonical_existing_path "$entry")" || continue
+    _is_strictly_inside "$resolved" "$main_root" || continue
+    if _is_within "$resolved" "$root_real"; then continue; fi
+    printf '%s\n' "$entry"
+  done
+}
+
+# Share such a root without carrying the defect into the worktree. The root becomes a real
+# directory here, third-party entries are linked across unchanged so one install still serves
+# every worktree, and the directories holding workspace links become real directories whose
+# links are recreated.
+#
+# The recreated text is copied from the main checkout verbatim, which is correct precisely
+# because the link occupies the same repository-relative path in both trees: the same relative
+# text therefore names each tree's own copy. An absolute target carries no such guarantee, so
+# it is refused and the caller falls back rather than pointing a link at the wrong checkout.
+#
+# Every directory from a recreated link up to the worktree root must be real. A relative link
+# created under a linked ancestor re-anchors through that ancestor and lands back in the main
+# checkout, which looks repaired and is not.
+_link_shared_split() {
+  local src="$1" dst="$2" self_links="$3" rel="$4"
+  local scope_set='|' link_set='|' entry base nested name link_text
+
+  # Parameter expansion rather than basename/dirname throughout: this runs on the session
+  # launch path over every entry of a dependency root, where a subprocess per entry is the
+  # dominant cost and the string work is not.
+  local scope_dir
+  while IFS= read -r entry; do
+    [ -n "$entry" ] || continue
+    scope_dir="${entry%/*}"
+    base="${scope_dir##*/}"
+    case "$scope_set" in *"|$base|"*) ;; *) scope_set="$scope_set$base|" ;; esac
+    link_set="$link_set$base/${entry##*/}|"
+  done <<< "$self_links"
+
+  rm -rf -- "$dst"
+  mkdir -p "$dst"
+  for entry in "$src"/* "$src"/.[!.]*; do
+    [ -e "$entry" ] || [ -L "$entry" ] || continue
+    base="${entry##*/}"
+    case "$scope_set" in
+      *"|$base|"*) ;;
+      *) ln -s -- "$entry" "$dst/$base"; continue ;;
+    esac
+    mkdir -p "$dst/$base"
+    for nested in "$entry"/* "$entry"/.[!.]*; do
+      [ -e "$nested" ] || [ -L "$nested" ] || continue
+      name="${nested##*/}"
+      case "$link_set" in
+        *"|$base/$name|"*)
+          link_text="$(readlink "$nested")"
+          case "$link_text" in
+            /*) log "workspace link is absolute, cannot re-anchor: $rel/$base/$name"; return 1 ;;
+          esac
+          ln -s -- "$link_text" "$dst/$base/$name"
+          ;;
+        *) ln -s -- "$nested" "$dst/$base/$name" ;;
+      esac
+    done
+  done
+  return 0
+}
+
 # Symlink shared artifacts so the worktree reuses main's installed deps + compiled output.
 while IFS= read -r rel; do
   [ -z "$rel" ] && continue
@@ -321,9 +398,18 @@ while IFS= read -r rel; do
     continue
   fi
   mkdir -p "$(dirname "$dst")"
-  rm -rf -- "$dst"
-  ln -s -- "$src" "$dst"
-  log "linked $rel -> main"
+  self_links="$(_repo_internal_self_links "$src_resolved" "$MAIN_ROOT")"
+  if [ -z "$self_links" ]; then
+    rm -rf -- "$dst"
+    ln -s -- "$src" "$dst"
+    log "linked $rel -> main"
+  elif _link_shared_split "$src" "$dst" "$self_links" "$rel"; then
+    log "linked $rel -> main, workspace links re-anchored to this worktree"
+  else
+    rm -rf -- "$dst"
+    ln -s -- "$src" "$dst"
+    log "WARNING: linked $rel wholesale; its workspace links still resolve to the main checkout"
+  fi
 done <<< "$SHARED_RAW"
 
 # ───────────────────────────────────────────────────────────────

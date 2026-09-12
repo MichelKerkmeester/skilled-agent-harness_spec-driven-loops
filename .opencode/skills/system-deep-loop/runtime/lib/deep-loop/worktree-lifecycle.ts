@@ -151,6 +151,10 @@ const DEFAULT_SHARED_PATHS: readonly string[] = [
   '.opencode/skills/system-spec-kit/runtime/cli/dist',
   '.opencode/skills/system-spec-kit/runtime/cli/node_modules',
   '.opencode/skills/system-deep-loop/runtime/node_modules',
+  // The shared package resolves most of its export map onto compiled output. Once a lane
+  // resolves that package from its own tree, an unprovisioned build directory turns every
+  // one of those exports into a module-not-found at import time.
+  '.opencode/skills/system-spec-kit/shared/dist',
 ];
 
 /** Same override the launch wrapper reads, and the same separator it splits on. */
@@ -377,6 +381,134 @@ interface SharedLinkTally {
   failed: string | null;
 }
 
+/** A link inside a dependency root that points back into the checkout holding it. */
+interface RepoInternalSelfLink {
+  /** Directory within the dependency root that holds the link. */
+  readonly scopeDir: string;
+  /** The link's own name inside that directory. */
+  readonly name: string;
+  /** Path segments, relative to the checkout root, that the link resolves to. */
+  readonly targetSegments: readonly string[];
+}
+
+/**
+ * Find the links inside a dependency root that resolve back into the checkout holding it.
+ *
+ * A package manager writes a workspace package's own entry as a relative link out of the
+ * dependency root and into the source it was installed from. Carried into another checkout as
+ * part of a wholesale link, that relative text re-anchors through the link's physical location
+ * and silently resolves to the original checkout's source and compiled output, so a lane reads
+ * bytes it never wrote and cannot see its own edits. Every other entry is third-party and
+ * resolves to identical bytes from either tree.
+ *
+ * Detected rather than listed: a fixed inventory misclassifies the first workspace package
+ * added after it was written, and the failure it causes is silent.
+ */
+function findRepoInternalSelfLinks(sourceAbs: string, repoRoot: string): RepoInternalSelfLink[] {
+  const found: RepoInternalSelfLink[] = [];
+  const repoRootReal = realpathOrNull(repoRoot);
+  const sourceReal = realpathOrNull(sourceAbs);
+  if (repoRootReal === null || sourceReal === null) {
+    return found;
+  }
+
+  let scopeEntries: string[];
+  try {
+    scopeEntries = readdirSync(sourceAbs);
+  } catch {
+    return found;
+  }
+
+  for (const scopeDir of scopeEntries) {
+    const scopeAbs = join(sourceAbs, scopeDir);
+    const scopeStat = lstatOrNull(scopeAbs);
+    if (scopeStat === null || !scopeStat.isDirectory()) {
+      continue;
+    }
+    let names: string[];
+    try {
+      names = readdirSync(scopeAbs);
+    } catch {
+      continue;
+    }
+    for (const name of names) {
+      const linkAbs = join(scopeAbs, name);
+      const linkStat = lstatOrNull(linkAbs);
+      if (linkStat === null || !linkStat.isSymbolicLink()) {
+        continue;
+      }
+      const resolved = realpathOrNull(linkAbs);
+      // Inside the checkout but outside the dependency root is the signature. A third-party
+      // package resolves within the root it was installed into; an escape that still lands in
+      // the checkout is the workspace's own source.
+      if (resolved === null || !isInside(resolved, repoRootReal) || isInside(resolved, sourceReal)) {
+        continue;
+      }
+      found.push({
+        scopeDir,
+        name,
+        targetSegments: relative(repoRootReal, resolved).split(sep).filter(Boolean),
+      });
+    }
+  }
+  return found;
+}
+
+/**
+ * Provision a dependency root that carries links back into the source checkout.
+ *
+ * The root becomes a real directory in the lane. Third-party entries are linked across
+ * unchanged, because they resolve to the same bytes from either checkout and copying them
+ * would cost the whole point of sharing one install. The directories holding checkout-internal
+ * links become real directories too, and each such link is rewritten to name the lane's own
+ * copy of what it pointed at.
+ *
+ * The rewritten text is relative, which is required rather than preferred. A worktree can be
+ * relocated, and that rewrites git's registration without touching link text, so absolute text
+ * afterwards either dangles or resolves into whichever checkout later occupies the old path.
+ * Relative text also keeps link and target inside one physical tree, so every path resolves
+ * into the lane even when the lane is reached through an aliased or symlinked parent.
+ *
+ * The chain from each rewritten link up to the lane root must be real directories, which is
+ * why the root cannot stay a single wholesale link. A relative link created under a symlinked
+ * ancestor re-anchors through that ancestor back into the source checkout, reproducing the
+ * defect in a tree that now looks repaired.
+ */
+function linkSharedPathSplit(input: {
+  worktreeDir: string;
+  worktreeRootReal: string;
+  sourceAbs: string;
+  destAbs: string;
+  selfLinks: readonly RepoInternalSelfLink[];
+}): void {
+  const { worktreeDir, worktreeRootReal, sourceAbs, destAbs, selfLinks } = input;
+
+  rmSync(destAbs, { recursive: true, force: true });
+  prepareDestinationDir(destAbs, worktreeRootReal);
+
+  const rewrittenScopes = new Set(selfLinks.map((link) => link.scopeDir));
+
+  for (const entry of readdirSync(sourceAbs)) {
+    const entryDest = join(destAbs, entry);
+    if (!rewrittenScopes.has(entry)) {
+      symlinkSync(join(sourceAbs, entry), entryDest, 'dir');
+      continue;
+    }
+
+    prepareDestinationDir(entryDest, worktreeRootReal);
+    for (const name of readdirSync(join(sourceAbs, entry))) {
+      const nestedDest = join(entryDest, name);
+      const selfLink = selfLinks.find((link) => link.scopeDir === entry && link.name === name);
+      if (selfLink === undefined) {
+        symlinkSync(join(sourceAbs, entry, name), nestedDest, 'dir');
+        continue;
+      }
+      const laneTarget = join(worktreeDir, ...selfLink.targetSegments);
+      symlinkSync(relative(dirname(nestedDest), laneTarget), nestedDest, 'dir');
+    }
+  }
+}
+
 /**
  * Link one shared dependency root from the main checkout into a fresh worktree.
  *
@@ -409,10 +541,15 @@ function linkSharedPath(input: {
   const destAbs = join(worktreeDir, ...segments);
   try {
     prepareDestinationParent(destAbs, worktreeRootReal);
-    // The replacement mirrors the launch wrapper: whatever HEAD checked out at this
-    // path is not the installed artefact, and a link cannot be created over it.
-    rmSync(destAbs, { recursive: true, force: true });
-    symlinkSync(sourceAbs, destAbs, 'dir');
+    const selfLinks = findRepoInternalSelfLinks(sourceAbs, repoRoot);
+    if (selfLinks.length === 0) {
+      // The replacement mirrors the launch wrapper: whatever HEAD checked out at this
+      // path is not the installed artefact, and a link cannot be created over it.
+      rmSync(destAbs, { recursive: true, force: true });
+      symlinkSync(sourceAbs, destAbs, 'dir');
+    } else {
+      linkSharedPathSplit({ worktreeDir, worktreeRootReal, sourceAbs, destAbs, selfLinks });
+    }
     tally.linked.push(repoRelativePosixPath);
   } catch (error) {
     tally.failed = `${repoRelativePosixPath}: ${errorMessage(error)}`;

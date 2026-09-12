@@ -530,10 +530,16 @@ NOT contain them. Toolchains that depend on them break **silently**:
 - `validate.sh --strict`, `generate-context.js`, and other spec-kit generators import
   from `dist/` / `node_modules/`. Inside a bare worktree these either crash on a missing
   module or — worse — no-op and report success on **zero** files.
-- **Do NOT symlink deps into the worktree.** Symlinking `node_modules`/`dist` makes Node
-  resolve paths relative to the symlink target, which silently processes nothing (the
-  generator walks the wrong root and exits 0 having touched no files). This looks like a
-  pass but did no work.
+- **Do not share deps into a worktree in a way that resolves back to the source checkout.**
+  Wholesale-linking `node_modules`/`dist` does exactly that, by two separate mechanisms.
+  A workspace self-link inside the tree is relative, so it re-anchors through wherever the
+  link physically sits and the worktree reads the source checkout's code however much it
+  edits its own. And a compiled entry point reached through a link compares the path it was
+  invoked with against the location it derives from its own file, finds them different, and
+  exits 0 having touched no files. The second is why a run can look like a pass and do no
+  work. Sharing is safe once the third-party entries are linked individually, each self-link
+  is recreated relative to the worktree, and generators are invoked by their canonical path;
+  installing is the blunt way to get the same guarantee.
 
 **Rule:** Run the spec-kit toolchain (strict validate, generators, metadata regen) on
 `main` AFTER the merge. NEVER trust a strict-validate run executed inside a bare worktree
