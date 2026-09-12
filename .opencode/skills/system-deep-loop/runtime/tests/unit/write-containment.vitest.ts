@@ -1355,12 +1355,17 @@ describe('write-containment — orchestrator-owned ledgers are not the leaf’s 
  * The guard cannot tell a leaf's stray write from an operator hand-editing the same
  * checkout while a lineage runs, so it attributes both to the leaf and reverts them.
  * That stays correct and stays fatal; what used to be wrong is that the operator's
- * work was erased with nothing left but a path in the event. The content the revert
- * undoes is now saved as an appliable patch first.
+ * work was erased with nothing left but a path in the event. The content an action
+ * discards is now saved as an appliable patch first, under a directory named after
+ * the remedy that ran: a preserved path is never recorded beneath a name claiming a
+ * rollback.
  */
 describe('write-containment — a reverted tracked edit survives as a recoverable patch', () => {
-  function patchFileNames(artifactDir: string): string[] {
-    const dir = join(artifactDir, 'containment-reverted');
+  function patchFileNames(
+    artifactDir: string,
+    dirName: 'containment-reverted' | 'containment-out-of-scope',
+  ): string[] {
+    const dir = join(artifactDir, dirName);
     return existsSync(dir) ? readdirSync(dir) : [];
   }
 
@@ -1389,12 +1394,54 @@ describe('write-containment — a reverted tracked edit survives as a recoverabl
     );
     expect(result.event!.revertedPatchError).toBeUndefined();
     expect(result.recoveryHint).toBe(`recoverable patch: ${patchPath}`);
-    expect(patchFileNames(artifactDir)).toHaveLength(1);
+    expect(patchFileNames(artifactDir, 'containment-reverted')).toHaveLength(1);
 
     // The erased content is IN the patch, not merely referenced by it.
     const patchBody = readFileSync(join(root, patchPath!), 'utf8');
     expect(patchBody).toContain('+OPERATOR_EDIT');
     expect(patchBody).toContain('-ORIGINAL_OUTSIDE');
+  });
+
+  it('names the captured diff for the remedy: out-of-scope under preserve, reverted under restore', () => {
+    const { root, artifactDir } = baselineRepo();
+    const preDispatch = snapshotOutOfScopeDirtyPaths({ repoRoot: root, artifactDir });
+
+    writeFileSync(join(root, 'tracked-outside.txt'), 'OPERATOR_EDIT\n');
+
+    // Default remedy: nothing was rolled back, so the capture may not land under a name that
+    // claims it was.
+    const preserved = enforceWriteContainment({
+      repoRoot: root,
+      artifactDir,
+      preDispatchDirtyPaths: preDispatch,
+      iteration: 6,
+    });
+
+    expect(preserved.revertResult.reverted).toEqual([
+      { path: 'tracked-outside.txt', action: 'preserved_in_head', ok: true },
+    ]);
+    expect(readFileSync(join(root, 'tracked-outside.txt'), 'utf8')).toBe('OPERATOR_EDIT\n');
+    expect(preserved.event!.revertedPatchPath).toMatch(
+      /^artifact\/containment-out-of-scope\/6-\d{4}-\d{2}-\d{2}T\d{2}-\d{2}-\d{2}\.\d{3}Z\.patch$/,
+    );
+    expect(patchFileNames(artifactDir, 'containment-out-of-scope')).toHaveLength(1);
+    expect(patchFileNames(artifactDir, 'containment-reverted')).toEqual([]);
+
+    // Opted-in remedy: the bytes really were rolled back, so the patch belongs under the name
+    // that says so.
+    const restored = enforceWriteContainment({
+      repoRoot: root,
+      artifactDir,
+      preDispatchDirtyPaths: preDispatch,
+      iteration: 7,
+      mode: 'restore',
+    });
+
+    expect(readFileSync(join(root, 'tracked-outside.txt'), 'utf8')).toBe('ORIGINAL_OUTSIDE\n');
+    expect(restored.event!.revertedPatchPath).toMatch(
+      /^artifact\/containment-reverted\/7-\d{4}-\d{2}-\d{2}T\d{2}-\d{2}-\d{2}\.\d{3}Z\.patch$/,
+    );
+    expect(patchFileNames(artifactDir, 'containment-reverted')).toHaveLength(1);
   });
 
   it('restores the erased edit when the saved patch is applied — the recoverability claim', () => {
@@ -1453,7 +1500,7 @@ describe('write-containment — a reverted tracked edit survives as a recoverabl
     expect(readFileSync(join(root, 'concurrent-new-file.txt'), 'utf8')).toBe('CONCURRENT\n');
     expect(result.event!.revertedPatchPath).toBeUndefined();
     expect(result.recoveryHint).toBeNull();
-    expect(patchFileNames(artifactDir)).toEqual([]);
+    expect(patchFileNames(artifactDir, 'containment-out-of-scope')).toEqual([]);
   });
 
   it('still reverts, and records the write failure, when the patch cannot be saved', () => {
