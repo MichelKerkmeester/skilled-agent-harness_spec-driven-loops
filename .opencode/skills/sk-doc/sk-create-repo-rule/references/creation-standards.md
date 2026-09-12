@@ -1,6 +1,6 @@
 ---
 title: "Creation Standards: Is This Rule Worth Loading?"
-description: "The bar above the structural floor. A rule can pass every structural check and still be worth nobody's context; these five tests decide whether it earns the load, and each is met by all nine shipped rules."
+description: "The bar above the structural floor. A rule can pass every structural check and still be worth nobody's context; these five tests decide whether it earns the load, and each is met by every shipped rule."
 trigger_phrases:
   - "creation standards"
   - "is this rule worth loading"
@@ -23,8 +23,8 @@ would change their behaviour over.
 
 ## 0. OVERVIEW
 
-These five tests are read out of what the nine shipped rules already do. Every one passes
-on all nine. Each is a question a reviewer answers by reading; none can be automated, and
+These five tests are read out of what the shipped corpus already does. Every one passes
+across the corpus. Each is a question a reviewer answers by reading; none can be automated, and
 that limit is the reason they live here rather than in the structural floor.
 
 ---
@@ -33,9 +33,9 @@ that limit is the reason they live here rather than in the structural floor.
 
 **A numbered section earns its place by making clear what goes wrong without it.**
 
-This is the test the corpus meets least obviously and most consistently. Two rules state
-it outright with a `The failure this prevents:` line. The other six carry it in the
-section's substance instead:
+This is the test the corpus meets least obviously and most consistently. The corpus splits
+between rules that state it outright with a `The failure this prevents:` line and rules that
+carry it in the section's substance instead:
 
 - `evidence-and-proof.md` §3 is titled **THE FOUR WAYS A GREEN RUN LIES** and then
   enumerates them. The section *is* the failure.
@@ -50,9 +50,9 @@ substance is the failure has already met the test.
 **The check:** read the section and say aloud what breaks without it. If you cannot,
 the section is a topic rather than a rule, and it goes.
 
-> A grep cannot run this test. An early attempt to measure it by pattern reported two of
-> eight rules as compliant — the two most recently written, because they happened to share
-> a phrasing. The corpus was fine; the measurement was wrong.
+> A grep cannot run this test. An early attempt to measure it by pattern reported only the
+> most recently written rules as compliant, because they happened to share a phrasing. The
+> corpus was fine; the measurement was wrong.
 
 ---
 
@@ -112,16 +112,18 @@ An item with no such sentence is decoration; a body obligation with no item is a
 
 **A rule that could be read as licence to do less needs a section saying it is not.**
 
-Three of eight carry a `WHAT THIS RULE IS NOT` section, and the pattern is instructive —
-all three are rules whose surface reading permits *less* work:
+Some rules in the corpus carry a `WHAT THIS RULE IS NOT` section, and the pattern is instructive —
+the examples below are rules whose surface reading permits *less* work:
 
 | Rule | The misreading it refuses |
 |------|---------------------------|
 | `prevent-overengineering.md` | "build less" becoming licence to under-deliver frozen scope |
 | `delegation-and-orchestration.md` | "orchestrate it" becoming licence to delegate everything |
 | `communication.md` | "match length to the question" becoming licence to omit what the reader needs |
+| `presenting-decisions.md` | "verdict first" becoming licence to reason less before writing |
+| `handoff-and-questions.md` | "name what is left" becoming licence to ask more, or to hand back your own unfinished work |
 
-The five rules without one are rules that only ever demand *more* rigour — nobody misreads
+Rules without one are rules that only ever demand *more* rigour — nobody misreads
 "fix the producer, not the symptom" as permission to do less.
 
 **The check:** could a tired reader use this rule as an excuse? If yes, refuse that reading
@@ -135,12 +137,10 @@ Each is an observed failure, not a preference.
 
 - **Don't cite a best practice without naming what it prevents.** `AGENTS.md` forbids this
   everywhere else; a rule that does it is holding others to a bar it fails.
-- **Don't restate another rule.** Link instead — and expect not to need to. The corpus
-  carries four sideways links across eight files.
+- **Don't restate another rule.** Link instead — and expect not to need to.
 - **Don't write a rule that fires on a topic.** Triggers are actions you are about to take.
   A rule that fires on "thinking about testing" fires never.
-- **Don't add a section because the rule looks short.** Length is not the target; three of
-  eight sit comfortably under 160 lines.
+- **Don't add a section because the rule looks short.** Length is not the target.
 - **Don't write the self-check last and fastest.** It is the part a reader actually uses
   under time pressure, and it is where a rule most often stops being actionable.
 
@@ -153,7 +153,7 @@ Each is an observed failure, not a preference.
 - **Not a gate on whether the rule may exist** — that is `decision-tests.md`, and it runs
   first. These standards assume the rule has already earned the right to be written.
 - **Not licence to hold a draft to a bar the corpus does not meet.** Every test here passes
-  on all nine shipped rules. A proposed sixth standard that they fail is a wrong standard.
+  on every shipped rule. A proposed sixth standard that they fail is a wrong standard.
 
 ---
 

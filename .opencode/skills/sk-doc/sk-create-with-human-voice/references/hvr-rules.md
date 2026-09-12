@@ -144,6 +144,25 @@ WRONG: "Not just a tool, but a complete platform."
 RIGHT: "A complete platform."
 ```
 
+### Tables In A Reply
+
+Scoped to a conversational reply, never to a document. A document is returned to and
+scanned, so a table earns its place there. A reply is read once, and a grid makes the
+reader parse rows and columns to reach one fact that a sentence would have handed them.
+
+Put one or two facts in a sentence. Put parallel items in a bulleted list. Reserve the
+table for a file someone comes back to.
+
+```
+WRONG (in a reply):
+| File | What changed |
+|------|--------------|
+| a.md | trimmed      |
+
+RIGHT (in a reply):
+Trimmed `a.md`.
+```
+
 ### Three-Item Enumeration Fix
 
 AI defaults to exactly three items. Use 2, 4 or 5 instead. If you naturally have 3, cut one or add a fourth.

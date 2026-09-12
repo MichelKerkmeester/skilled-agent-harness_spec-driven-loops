@@ -34,8 +34,7 @@ version: 1.0.0.2
 
 ## Fires when
 
-- About to **decide whether** to hand work to another runtime at all, the cost question
-  comes before the briefing question, and this file used to fire only after it.
+- About to **decide whether** to hand work to another runtime at all.
 - About to hand work to another runtime: a CLI executor, a sub-agent, a fan-out lineage, a deep loop.
 - About to compose the prompt that a delegate will act on.
 - About to accept, quote, or act on what a delegate returned.
@@ -47,23 +46,11 @@ version: 1.0.0.2
 brief it with evidence and a frozen scope, and judge what comes back against the
 repository, no single model's verdict, the delegate's or your own, closes a question.**
 
-Orchestrating is a posture, not a ceremony. It means you own the decomposition, the
-brief, and the verdict, and the delegate owns exactly one bounded piece of work.
-
 ---
 
 ## 1. THE POSTURE SWITCH
 
-The moment you delegate, three of your jobs change and one appears.
-
-| Working alone | Orchestrating |
-|---------------|---------------|
-| You read the code | You decide what the delegate must read, and say so |
-| You hold the scope in your head | You write the scope down, because the delegate cannot see your head |
-| Your uncertainty is visible to you | The delegate's confidence tells you nothing about its accuracy |
-| Nothing corresponds | You now own a verification step that did not exist before |
-
-Before any of that, one check: **is delegating cheaper than doing it?** A dispatch costs
+One check comes first: **is delegating cheaper than doing it?** A dispatch costs
 a brief, a wait, and a verification pass. Work you could finish in the time it takes to
 write the brief is work you should finish, see [`prevent-overengineering.md`](prevent-overengineering.md).
 This is the first question, not a caveat at the end.
@@ -83,9 +70,7 @@ It is not. It has no memory of this session, and no access to what you already r
 
 Five things, in order. None is optional, and the first is a hard rule elsewhere.
 
-1. **Read the executor's own contract.** `AGENTS.md` Dispatch Rules require reading
-   `cli-external-orchestration/cli-X/SKILL.md` before composing any `cli-X` prompt. This
-   file does not repeat them, and a dispatch flag copied into prose goes stale.
+1. **Read the executor's own contract**, per `AGENTS.md` Dispatch Rules.
 2. **Bind the write authority.** Say where the delegate may write before it starts.
    A delegate given the repository is a delegate that will eventually edit something
    nobody reviewed.
@@ -125,8 +110,6 @@ restatement of the brief's own assumptions, and reads as corroboration.
 ---
 
 ## 4. ONE MODEL IS ONE OPINION
-
-A delegate's output is a hypothesis. So is yours.
 
 For a **factual** question (does this symbol exist, does this test pass, what does this
 file say), one delegate is enough, because the repository can settle it and you will
@@ -226,8 +209,6 @@ reverse. When a delegate's work does belong in your commit, read it first and sa
   cheaper done directly.
 - **Not permission to defer the verdict.** The orchestrator decides. A delegate that
   returns three options has returned three options, not a decision.
-- **Not a routing document.** Which skill, which agent, which command, which flags, all of that belongs to `AGENTS.md` and the skills it routes to. This file governs
-  the posture, not the plumbing.
 - **Not about human collaboration.** It addresses machine delegation. The parts that
   generalize do so by accident, not by design.
 
