@@ -1,0 +1,21 @@
+{
+  "level": "1",
+  "specFolder": "system-skill-advisor/027-empty-recommendation-diagnostic",
+  "description": "The advisor hook reports one of three outcomes",
+  "keywords": [
+    "advisor",
+    "hook",
+    "reports",
+    "one",
+    "three",
+    "outcomes"
+  ],
+  "lastUpdated": "2026-09-12T12:04:44.539Z",
+  "specId": "027",
+  "folderSlug": "empty-recommendation-diagnostic",
+  "parentChain": [
+    "system-skill-advisor"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
