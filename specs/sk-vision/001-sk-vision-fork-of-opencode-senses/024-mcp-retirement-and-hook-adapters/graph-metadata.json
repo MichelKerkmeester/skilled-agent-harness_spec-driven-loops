@@ -74,15 +74,15 @@
       ".devin/hooks.v1.json",
       ".cursor/commands/vision.md",
       "scratch/cursor-event-probe.md",
+      ".devin/SYNC.md",
+      ".pi/extensions/README.md",
       ".cursor/mcp.json",
       ".cursor/rules/sk-vision.md",
       ".devin/mcp_config.json",
       ".devin/config.local.json",
       "hooks/README.md",
       ".opencode/hooks/injection-contract.md",
-      ".opencode/hooks/README.md",
-      ".claude/agents/review.md",
-      ".claude/agents/deep-review.md"
+      ".opencode/hooks/README.md"
     ],
     "entities": [
       {
@@ -146,6 +146,18 @@
         "source": "derived"
       },
       {
+        "name": "SYNC.md",
+        "kind": "doc",
+        "path": ".devin/SYNC.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".pi/extensions/README.md",
+        "source": "derived"
+      },
+      {
         "name": "mcp.json",
         "kind": "config",
         "path": ".cursor/mcp.json",
@@ -170,27 +182,9 @@
         "source": "derived"
       },
       {
-        "name": "README.md",
-        "kind": "doc",
-        "path": "hooks/README.md",
-        "source": "derived"
-      },
-      {
         "name": "injection-contract.md",
         "kind": "doc",
         "path": ".opencode/hooks/injection-contract.md",
-        "source": "derived"
-      },
-      {
-        "name": "review.md",
-        "kind": "doc",
-        "path": ".claude/agents/review.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep-review.md",
-        "kind": "doc",
-        "path": ".claude/agents/deep-review.md",
         "source": "derived"
       },
       {
@@ -228,11 +222,17 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The sk-vision MCP transport has no host that can currently reach it, and it is decaying in two directions at once",
     "created_at": "2026-09-11T19:14:30.276Z",
-    "last_save_at": "2026-09-11T20:13:59.528Z",
+    "last_save_at": "2026-09-12T04:00:09.680Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -243,14 +243,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c3a763a1527b080eae5d1bf99d282d7f09a87660a6c8f3d20e5bb3528cd2299b",
+    "source_fingerprint": "sha256:c8cecd6112930047cce792c1c147e4e6fd15d64cc22f0efb6764b67d350aeda0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "cb4c575765e89905712dd8161a78410f8002811925eec1a362f2ddda92eb47f0",
       "plan.md": "620064f110728e3b0cb8e6281177e0d30e996865e940bf179d6a6d35f0069fb7",
       "tasks.md": "5b961aa493cdcf20b95225629eeecc2eb7e28288d81fb405e37dd570773f7c29",
       "decision-record.md": "dff3fc1dc2d4da7b1231b7ac279625289b052ad34222b9d11342f44e444f096a",
-      "implementation-summary.md": "45ae1f005970f76e7a32bda60acff1268ac2abe6c229f9eaa473643528860e26"
+      "implementation-summary.md": "2e980abb08a7e2f0d59097dba28b9db3e3d929e888eb454ec8cd56088bcc18f5"
     },
     "last_active_child_id": null,
     "last_active_at": null

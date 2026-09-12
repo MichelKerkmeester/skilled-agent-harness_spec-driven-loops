@@ -5,7 +5,7 @@ description: "How .devin derives from .opencode and .claude: the nested agent sy
 
 # Devin CLI Sync Manifest
 
-> Devin needs the same files as its siblings but at **different paths and in a nested shape**. Every mirror here is a symlink onto a canonical file; only `hooks.v1.json` is authored in this directory.
+> Devin needs the same files as its siblings but at **different paths and in a nested shape**. Every mirror here is a symlink onto a canonical file. Two files are authored in this directory instead: `hooks.v1.json`, whose event set has no counterpart to mirror, and `mcp_config.json`, which Devin owns outright.
 
 ---
 
@@ -29,6 +29,7 @@ Two naming quirks to internalise:
 | `agents/<name>/AGENT.md` (13) | symlink | `.claude/agents/<name>.md` | `../../../.claude/agents/<name>.md` |
 | `hooks/*` | symlink | scattered `.opencode/**` | discovery mirror only |
 | `hooks.v1.json` | **hand-authored** | — | — |
+| `mcp_config.json` | **Devin-owned** | — | real file, not a symlink |
 | `config.local.json` | operator-local | — | gitignored, never synced |
 | `rules/` | **absent by design** | — | see §5 |
 | `manual-testing-playbook/` | whole-dir symlink | `.opencode/skills/cli-external-orchestration/cli-devin/manual-testing-playbook` | `../.opencode/skills/cli-external-orchestration/cli-devin/manual-testing-playbook` |
@@ -123,6 +124,7 @@ A command missing from `devin skills list` while present on disk is almost alway
 ## 8. KNOWN GAPS
 
 - **`hooks.v1.json` is hand-authored and unmirrorable.** Its event set is genuinely different — `PermissionRequest` and `PostCompaction` exist nowhere else.
+- **`mcp_config.json` is Devin's own file.** It was a symlink into `sk-vision` while that skill shipped an MCP server, which meant a vision skill owned Devin's entire MCP configuration including `code_mode`. Retiring that server moved ownership here, matching the resolution Cursor reached earlier for the same reason.
 - **No strict-YAML gate.** Nothing blocks a colon-bearing unquoted `description:` from being committed to a canonical file; it only surfaces as a silently missing command in Devin.
 - **`PostCompaction` has never been observed firing.** It needs a session long enough to trigger real compaction, which a scenario-sized dispatch cannot force.
 - **`PermissionRequest` is inert under `bypass`**, the mode this repo uses. Documented rather than worked around, because `PreToolUse` still covers the guard path.

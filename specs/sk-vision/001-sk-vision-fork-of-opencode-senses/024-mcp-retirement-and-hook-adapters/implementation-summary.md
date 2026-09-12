@@ -112,7 +112,21 @@ The outer evidence wrapper reused `<SK-VISION>`, which the per-signal renderers 
 ---
 
 <!-- ANCHOR:remaining -->
-## 5. REMAINING WORK
+## 5. DOC-ALIGNMENT FOLLOW-UP
+
+A later pass audited every documentation surface describing what this packet changed, and found three gaps the original pass missed.
+
+**The skill had no changelog entry and no version bump.** The convention here is one entry per version under the skill's own `changelog/`, and the existing entry documents the state this packet superseded. Added `v0.3.0.0` covering the retirement, both new adapters, the shared core, the marker, the kill-switch and the Devin config ownership move, with its verification table and the two operator notes. Bumped the version in `SKILL.md`, the skill `README.md` and the runtime `package.json`.
+
+**`.devin/SYNC.md` was made false by this packet.** It stated that only `hooks.v1.json` is authored in that directory, and never listed `mcp_config.json` at all. Moving Devin's Code Mode registration into a Devin-owned real file made that claim wrong. Corrected the claim, added the inventory row, and recorded why ownership moved.
+
+**One pre-existing defect was found and fixed.** `.pi/extensions/README.md` pointed at `sk-vision/pi/sk-vision.ts` in two places. That path has not existed since the hook restructure; the adapter lives under `hooks/pi/`. Not caused by this packet, cheap to correct while in the same surface family, and the symlink target confirms the corrected path.
+
+Gates re-run from that final state: skill, readme and changelog documents VALID with zero issues, feature catalog PASS with zero violations, manual testing playbook PASS at 25 scenarios, skill-root metadata 13 of 13, and the alignment-drift verifier PASS over 38 files with zero findings.
+
+---
+
+## 6. REMAINING WORK
 
 One item, and it belongs to a different track:
 
