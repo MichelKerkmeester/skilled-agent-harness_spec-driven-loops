@@ -429,6 +429,31 @@ See [depth-framework.md](./references/depth-framework.md) for the DEPTH methodol
 | `complexity_hint` | No | Integer `1-10` used to choose Quick vs Standard DEPTH energy |
 | `constraints` | No | Compliance, security, audience, or output requirements |
 
+### Model Eligibility
+
+Dispatch `@prompt-improver`, or run this skill inline, only on an eligible (model, route) pair. Eligibility is a property of the (model, route) pair, never of the model alone.
+
+| Route | Model | Eligible | Note |
+|-------|-------|----------|------|
+| any route | Opus | No | Denied under no circumstances |
+| any route | Fable | No | Denied under no circumstances |
+| native Claude | Sonnet | Yes | — |
+| `cli-claude-code` | Sonnet | Yes | — |
+| `cli-codex` | GPT Luna | Yes | — |
+| `cli-pi` | any model except Luna | Yes | — |
+| `cli-opencode` | any model except Luna | Yes | — |
+| `cli-pi` or `cli-opencode` | Luna | No | Intentional asymmetry: Luna is eligible through `cli-codex` only |
+
+The denied list outranks the allowance list: Opus and Fable stay denied even where an allowance clause would otherwise admit them, such as Opus reached through `cli-opencode`.
+
+The Luna asymmetry is intentional: Luna is eligible through `cli-codex` and not eligible through `cli-pi` or `cli-opencode`; do not "correct" it.
+
+The allowance list is closed (default-deny). A pair that matches no allowance clause is not eligible; for example, Gemini reached through `cli-cursor` is not eligible.
+
+An ineligible model must refuse the prompt-improve work, name the rule that denied it, and name an eligible (model, route) pair in its place, whether it was reached through this skill inline or through the agent. It must not do the work anyway with a caveat.
+
+The canonical home of this contract is `.opencode/agents/prompt-improver.md`, so future edits land in one place.
+
 ### Deterministic Agent Rules
 
 - Use `references/patterns-evaluation.md` as the framework-selection source of truth.
@@ -464,7 +489,7 @@ This skill operates within the behavioral framework defined in AGENTS.md.
 
 Key integrations:
 - **Gate 2**: Skill routing via `skill_advisor.py` with prompt-related intent boosters
-- **Tool Routing**: Per AGENTS.md Section 6 decision tree
+- **Tool Routing**: Per AGENTS.md Section 5 decision tree
 - **Continuity**: Context preserved by `/speckit:save`, which writes through `generate-context.js`
 
 ### Tool Usage Guidelines

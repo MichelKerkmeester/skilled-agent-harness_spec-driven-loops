@@ -1,0 +1,12 @@
+[
+ {"label":"search_jsonlogic","tool":"obsidian_search_notes","args":{"mode":"jsonlogic","query":{"glob":["*.md","{{ path }}"]}}},
+ {"label":"list_notes_deep","tool":"obsidian_list_notes","args":{"path":"Tags","depth":3}},
+ {"label":"list_notes_badpath","tool":"obsidian_list_notes","args":{"path":"ZZZ-no-such-folder"}},
+ {"label":"open_in_ui","tool":"obsidian_open_in_ui","args":{"path":"zz-mcp-scratch.md"}},
+ {"label":"open_in_ui_missing","tool":"obsidian_open_in_ui","args":{"path":"ZZZ-does-not-exist.md"}},
+ {"label":"list_commands_gated","tool":"obsidian_list_commands","args":{}},
+ {"label":"execute_command_gated","tool":"obsidian_execute_command","args":{"commandId":"app:reload"}},
+ {"label":"write_note_collision","tool":"obsidian_write_note","args":{"target":{"type":"path","path":"zz-mcp-scratch.md"},"content":"OVERWRITTEN"}},
+ {"label":"get_after_collision","tool":"obsidian_get_note","args":{"format":"content","target":{"type":"path","path":"zz-mcp-scratch.md"}}},
+ {"label":"delete_note","tool":"obsidian_delete_note","args":{"target":{"type":"path","path":"zz-mcp-scratch.md"}}}
+]

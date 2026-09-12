@@ -1,0 +1,273 @@
+{
+  "startupMs": 1222,
+  "results": [
+    {
+      "label": "list_notes",
+      "tool": "obsidian_list_notes",
+      "args": {},
+      "ms": 26,
+      "isError": false,
+      "text": "**(vault root)** — 26 entries · 17 files, 9 directories · depth=2\n\nEntry `type`: a trailing `/` marks a `directory`; every other line is a `file`.\n```\n├── 2026-09-02.md\n├── Database Testbed/\n│   ├── Attachments/ [truncated — pass deeper `depth` to expand]\n│   ├── README.md\n│   ├── Records/ [truncated — pass deeper `depth` to expand]\n│   └── Testbed.md\n├── Finance/\n│   ├── Expenses/ [truncated — pass deeper `depth` to expand]\n│   ├── Finance Expenses.md\n│   ├── Finance Income.md\n│   ├── Finance Overview.md\n│   ├── Finance Reports.md\n│   ├── Finance Reports.md.bak-year-20260825-061030\n│   ├── Finance Sales.md\n│   ├── Income/ [truncated — pass deeper `depth` to expand]\n│   ├── Reports/ [truncated — pass deeper `depth` to expand]\n│   └── Sales/ [truncated — pass deeper `depth` to expand]\n├── Plugins/\n│   ├── Plugin Guide - BRAT.md\n│   ├── Plugin Guide - Charts.md\n│   ├── Plugin Guide - Git.md\n│   ├── Plugin Guide - Health.md.md\n│   ├── Plugin Guide - Iconic.md\n│   ├── Plugin Guide - Local REST API with MCP.md\n│   └── Plugin Guide - Outliner.md\n└── zz-cli-scratch-renamed.md\n```"
+    },
+    {
+      "label": "list_tags",
+      "tool": "obsidian_list_tags",
+      "args": {},
+      "ms": 9,
+      "isError": false,
+      "text": "**8 tags** · limit=200\n\n- `#plugin-guide` (7)\n- `#brat` (1)\n- `#charts` (1)\n- `#git` (1)\n- `#health-md` (1)\n- `#iconic` (1)\n- `#local-rest-api` (1)\n- `#outliner` (1)"
+    },
+    {
+      "label": "search_text",
+      "tool": "obsidian_search_notes",
+      "args": {
+        "mode": "text",
+        "query": "prepended-line"
+      },
+      "ms": 7,
+      "isError": false,
+      "text": "**Search (text) — 1 on this page · 1 total**\n\n### zz-cli-scratch-renamed.md\nmatch at context[0–14] · subject[0–14]\n```text\nprepended-line\n# CLI scratch\nline one\nappended-line\n```"
+    },
+    {
+      "label": "search_none",
+      "tool": "obsidian_search_notes",
+      "args": {
+        "mode": "text",
+        "query": "zzz-no-such-string-anywhere"
+      },
+      "ms": 4,
+      "isError": false,
+      "text": "**Search (text) — 0 on this page · 0 total**\n"
+    },
+    {
+      "label": "write_note_create",
+      "tool": "obsidian_write_note",
+      "args": {
+        "target": {
+          "type": "path",
+          "path": "zz-mcp-scratch.md"
+        },
+        "content": "# MCP scratch\n\n## Alpha\nalpha body\n\n## Beta\nbeta body\n"
+      },
+      "ms": 20,
+      "isError": false,
+      "text": "**Created zz-mcp-scratch.md**\n*Size:* 0 → 54 bytes\n*Section targeted:* false\n*Created:* true"
+    },
+    {
+      "label": "get_note_content",
+      "tool": "obsidian_get_note",
+      "args": {
+        "format": "content",
+        "target": {
+          "type": "path",
+          "path": "zz-mcp-scratch.md"
+        }
+      },
+      "ms": 3,
+      "isError": false,
+      "text": "**zz-mcp-scratch.md** (format: content)\n\n# MCP scratch\n\n## Alpha\nalpha body\n\n## Beta\nbeta body\n"
+    },
+    {
+      "label": "get_note_docmap",
+      "tool": "obsidian_get_note",
+      "args": {
+        "format": "document-map",
+        "target": {
+          "type": "path",
+          "path": "zz-mcp-scratch.md"
+        }
+      },
+      "ms": 8,
+      "isError": false,
+      "text": "**zz-mcp-scratch.md** (format: document-map)\n\n**Headings (3)**\n- MCP scratch\n- MCP scratch::Alpha\n- MCP scratch::Beta\n\n**Blocks (0)**\n\n**Frontmatter fields (0)**"
+    },
+    {
+      "label": "get_note_section",
+      "tool": "obsidian_get_note",
+      "args": {
+        "format": "section",
+        "target": {
+          "type": "path",
+          "path": "zz-mcp-scratch.md"
+        },
+        "section": {
+          "type": "heading",
+          "target": "Alpha"
+        }
+      },
+      "ms": 5,
+      "isError": false,
+      "text": "**zz-mcp-scratch.md** (format: section)\n*Section:* heading → Alpha\n\n**Value:**\n## Alpha\nalpha body"
+    },
+    {
+      "label": "append",
+      "tool": "obsidian_append_to_note",
+      "args": {
+        "target": {
+          "type": "path",
+          "path": "zz-mcp-scratch.md"
+        },
+        "content": "appended by mcp"
+      },
+      "ms": 10,
+      "isError": false,
+      "text": "**Appended to zz-mcp-scratch.md**\n*Size:* 54 → 69 bytes\n*Created:* false\n*Section targeted:* false"
+    },
+    {
+      "label": "patch_section",
+      "tool": "obsidian_patch_note",
+      "args": {
+        "target": {
+          "type": "path",
+          "path": "zz-mcp-scratch.md"
+        },
+        "section": {
+          "type": "heading",
+          "target": "Beta"
+        },
+        "operation": "replace",
+        "content": "beta REPLACED"
+      },
+      "ms": 12,
+      "isError": false,
+      "text": "**Patched zz-mcp-scratch.md**\n*Operation:* replace\n*Section:* heading → MCP scratch::Beta\n*Size:* 69 → 57 bytes"
+    },
+    {
+      "label": "replace_in_note",
+      "tool": "obsidian_replace_in_note",
+      "args": {
+        "target": {
+          "type": "path",
+          "path": "zz-mcp-scratch.md"
+        },
+        "replacements": [
+          {
+            "search": "alpha body",
+            "replace": "alpha CHANGED"
+          }
+        ]
+      },
+      "ms": 8,
+      "isError": false,
+      "text": "**Replaced in zz-mcp-scratch.md**\n*Total replacements:* 1\n*Size:* 57 → 60 bytes\n\n**Per replacement**\n- `alpha body` → 1 match (body 1, frontmatter 0)"
+    },
+    {
+      "label": "frontmatter_set",
+      "tool": "obsidian_manage_frontmatter",
+      "args": {
+        "operation": "set",
+        "target": {
+          "type": "path",
+          "path": "zz-mcp-scratch.md"
+        },
+        "key": "status",
+        "value": "probe"
+      },
+      "ms": 10,
+      "isError": false,
+      "text": "**Frontmatter set `status` in zz-mcp-scratch.md**\n*Size:* 60 → 82 bytes\n\n**Frontmatter (1 keys after change)**\n- `status`: probe"
+    },
+    {
+      "label": "frontmatter_get",
+      "tool": "obsidian_manage_frontmatter",
+      "args": {
+        "operation": "get",
+        "target": {
+          "type": "path",
+          "path": "zz-mcp-scratch.md"
+        },
+        "key": "status"
+      },
+      "ms": 3,
+      "isError": false,
+      "text": "**Frontmatter get `status` in zz-mcp-scratch.md**\n*Exists:* true\n*Value:*\nprobe"
+    },
+    {
+      "label": "tags_add",
+      "tool": "obsidian_manage_tags",
+      "args": {
+        "target": {
+          "type": "path",
+          "path": "zz-mcp-scratch.md"
+        },
+        "operation": "add",
+        "tags": [
+          "zzprobe"
+        ]
+      },
+      "ms": 12,
+      "isError": false,
+      "text": "**Added tags to zz-mcp-scratch.md** (operation: add)\n*Size:* 82 → 100 bytes\n*Applied (1):* `#zzprobe`\n*Skipped (0):* _(none)_\n*All tags now (1):* `#zzprobe`"
+    },
+    {
+      "label": "tags_list",
+      "tool": "obsidian_manage_tags",
+      "args": {
+        "target": {
+          "type": "path",
+          "path": "zz-mcp-scratch.md"
+        },
+        "operation": "list"
+      },
+      "ms": 3,
+      "isError": false,
+      "text": "**Tags (operation: list) in zz-mcp-scratch.md**\n*Frontmatter (1):* `#zzprobe`\n*Inline (0):* _(none)_\n*All (1):* `#zzprobe`"
+    },
+    {
+      "label": "get_note_full",
+      "tool": "obsidian_get_note",
+      "args": {
+        "format": "full",
+        "target": {
+          "type": "path",
+          "path": "zz-mcp-scratch.md"
+        },
+        "includeLinks": true
+      },
+      "ms": 3,
+      "isError": false,
+      "text": "**zz-mcp-scratch.md** (format: full)\n*Tags:* zzprobe\n*Stat:* ctime=1788375484625 mtime=1788375484708 size=100\n\n**Frontmatter**\n- `status`: probe\n- `tags`: [\n  \"zzprobe\"\n]\n\n**Content**\n---\nstatus: probe\ntags:\n  - zzprobe\n---\n# MCP scratch\n\n## Alpha\nalpha CHANGED\n\n## Beta\nbeta REPLACED"
+    },
+    {
+      "label": "get_note_missing",
+      "tool": "obsidian_get_note",
+      "args": {
+        "format": "content",
+        "target": {
+          "type": "path",
+          "path": "ZZZ-does-not-exist.md"
+        }
+      },
+      "ms": 6,
+      "isError": true,
+      "text": "Error: Not found: ZZZ-does-not-exist.md\n\nRecovery: Verify the path with obsidian_list_notes or use obsidian_search_notes to locate the note."
+    },
+    {
+      "label": "get_note_active",
+      "tool": "obsidian_get_note",
+      "args": {
+        "format": "content",
+        "target": {
+          "type": "active"
+        }
+      },
+      "ms": 5,
+      "isError": false,
+      "text": "**Database Testbed/Testbed.md** (format: content)\n\n---\ndb_view: true\ndatabase:\n  id: testbed-db\n  name: Testbed\n  icon: 🧪\n  coverImage: \"\"\n  coverImagePositionY: 50\n  description: Mock database exercising every column type and view on desktop and phone.\n  sourceFolder: Database Testbed/Records\n  sourceRules: []\n  sourceLogic: and\n  newRecordFolder: Database Testbed/Records\n  recordIconField: \"\"\n  computedSyncMode: display-only\n  summaryFormulas: {}\n  columns:\n    - key: file.name\n      label: Title\n      type: text\n    - key: summary\n      label: Summary\n      type: text\n    - key: status\n      label: Status\n      type: status\n      statusOptions:\n        - value: Backlog\n          color: gray\n        - value: In Progress\n          color: blue\n        - value: Blocked\n          color: red\n        - value: In Review\n          color: orange\n        - value: Done\n          color: green\n        - value: Archived\n          color: purple\n    - key: priority\n      label: Priority\n      type: select\n      statusOptions:\n        - value: Low\n          color: slate\n        - value: Medium\n          color: yellow\n        - value: High\n          color: orange\n        - value: Critical\n          color: rose\n    - key: labels\n      label: Labels\n      type: multi-select\n      statusOptions:\n        - value: research\n          color: cyan\n        - value: design\n          color: violet\n        - value: urgent\n          color: red\n        - value: mobile\n          color: teal\n        - value: backend\n          color: indigo\n        - value: docs\n          color: brown\n        - value: infra\n          color: lime\n    - key: amount\n      label: Amount\n      type: number\n    - key: budget\n      label: Budget\n      type: currency\n    - key: net\n      label: Net\n      type: computed\n      computedKey: net\n    - key: margin\n      label: Margin %\n      type: computed\n      computedKey: margin\n    - key: due\n      label: Due\n      type: date\n    - key: reviewed_at\n      label: Reviewed\n      type: datetime\n    - key: pinned\n      label: Pinned\n      type: checkbox\n    - key: related\n      label: Related\n      type: relation\n      relationConfig:\n        targetDatabaseId: testbed-db\n    - key: related_count\n      label: \"Related #\"\n      type: rollup\n      rollupConfig:\n        relationField: related\n        targetField: file.name\n        aggregation: count\n    - key: attachments\n      label: Files\n      type: files\n    - key: link\n      label: Link\n      type: text\n      textRenderMode: link\n    - key: notes\n      label: Notes\n      type: text\n      wrap: true\n    - key: year\n      label: Year\n      type: text\n  computedFields:\n    - key: net\n      label: Net\n      expression: IF(OR([budget] == null, [amount] == null), null, [budget] - [amount])\n      type: number\n    - key: margin\n      label: Margin %\n      expression: IF(OR([budget] == null, [amount] == null, [budget] == 0), null, ([budget] - [amount]) / [budget] * 100)\n      type: number\n  statusPresets: []\n  defaultStatusPresetId: \"\"\n  views:\n    - id: tb-table\n      name: All Records\n      viewType: table\n      sourceFolder: \"\"\n      sourceRules: []\n      sourceLogic: and\n      showRecordIcon: false\n      recordIconFieldOverrideEnabled: false\n      recordIconField: \"\"\n      newRecordFolder: \"\"\n      displayWidth: wide\n      sortColumn: \"\"\n      sortDirection: asc\n      sortRules:\n        - field: margin\n          direction: desc\n      columnOrder:\n        - file.name\n        - summary\n        - status\n        - priority\n        - labels\n        - amount\n        - budget\n        - net\n        - margin\n        - due\n        - reviewed_at\n        - pinned\n        - related\n        - related_count\n        - attachments\n        - link\n        - notes\n        - year\n      columnWidths:\n        file.name: 220\n        summary: 210\n        notes: 280\n        link: 200\n        related: 190\n        reviewed_at: 150\n      hiddenColumns: []\n      sortColumnOrder: \"\"\n      statusFilter: \"\"\n      groupByField: \"\"\n      groupOrders: {}\n      showEmptyGroups: {}\n      collapsedGroups: {}\n      boardGroupField: \"\"\n      boardSubgroupEnabled: false\n      boardSubgroupField: \"\"\n      boardColumnWidth: 280\n      defaultColumnWidth: 150\n      titleField: \"\"\n      boardCardOrders: {}\n      boardHiddenGroups: {}\n      manualOrder:\n        ranks:\n          Database Testbed/Records/01 — Q3 Compliance Audit.md: 2DHi\n          Database Testbed/Records/02 — Onboarding Flow Redesign.md: 4QZQ\n          Database Testbed/Records/04 — This Is A Deliberately Very Long Record Title That Should Overflow And Force Truncation On Narrow Phone Columns.md: 6dr8\n          Database Testbed/Records/21 — Billing Webhooks.md: 8r8q\n          Database Testbed/Records/24 — Performance Budget.md: B4QY\n          Database Testbed/Records/18 — Accessibility Pass.md: DHiG\n          Database Testbed/Records/19 — Search Relevance.md: FUzy\n          Database Testbed/Records/17 — Enterprise Deal Desk.md: HiHg\n          Database Testbed/Records/05 — API Rate Limiter.md: JvZO\n          Database Testbed/Records/06 — Data Warehouse Migration.md: M8r6\n          Database Testbed/Records/23 — Legacy Import Tool.md: OM8o\n          Database Testbed/Records/11 — Docs Overhaul.md: QZQW\n          Database Testbed/Records/15 — Budget Reforecast.md: SmiE\n          Database Testbed/Records/10 — Pricing Experiment.md: Uzzw\n          Database Testbed/Records/25 — Localization Sprint.md: XDHe\n          Database Testbed/Records/09 — Mobile Nav Bug Sweep.md: ZQZM\n          Database Testbed/Records/16 — Zero-Cost Cleanup.md: bdr4\n          Database Testbed/Records/03 — Marketing Site Refresh.md: dr8m\n          Database Testbed/Records/07 — Logo.md: g4QU\n          Database Testbed/Records/13 — SSO Rollout.md: iHiC\n          Database Testbed/Records/12 — Incident Retro.md: kUzu\n          Database Testbed/Records/20 — Notification Center.md: miHc\n          Database Testbed/Records/26 — Security Review.md: ovZK\n          Database Testbed/Records/14 — Empty Shell.md: r8r2\n          Database Testbed/Records/27 — Roadmap Planning.md: tM8k\n          Database Testbed/Records/22 — Design Tokens.md: vZQS\n          Database Testbed/Records/08 — Customer Interviews Round Two.md: xmiA\n      galleryImageField: \"\"\n      galleryImageAspectRatio: 0.75\n      galleryCardSize: 250\n      galleryImageFit: cover\n      boardImageField: \"\"\n      boardImageAspectRatio: 0.75\n      boardImageFit: cover\n      showEmptyFields: false\n      listCompactFields: false\n      statusPresets: []\n      defaultStatusPresetId: \"\"\n      filterLogic: and\n      filters: []\n      summaryRules:\n        - field: amount\n          summary: SUM\n        - field: budget\n          summary: SUM\n        - field: net\n          summary: AVERAGE\n        - field: margin\n          summary: AVERAGE\n      conditionalFormats:\n        - id: cf-blocked\n          condition:\n            field: status\n            op: eq\n            value: Blocked\n          valueSource: literal\n          target: record\n          bold: true\n          color: red\n      chartType: bar\n      chartGroupField: \"\"\n      chartDateBucket: \"\"\n      chartNumberBucket: \"\"\n      chartStackField: \"\"\n      chartSeriesField: \"\"\n      chartAggregation: count\n      chartValueField: \"\"\n      chartSecondaryAggregation: count\n      chartSecondaryValueField: \"\"\n      chartSortBy: \"\"\n      chartHiddenGroups: {}\n      chartOmitZeroValues: false\n      chartCumulative: false\n      chartHeight: \"\"\n      chartGridLines: \"\"\n      chartAxisNames: \"\"\n      chartShowTitle: true\n      chartTitle: \"\"\n      chartShowDataLabels: false\n      chartDataLabelMode: \"\"\n      chartDataLabelColor: \"\"\n      chartSmoothLine: false\n      chartGradientArea: false\n      chartColorPalette: \"\"\n      chartColorByValue: false\n      chartShowDonutCenter: false\n      chartDonutCenterMode: \"\"\n      chartValueAxisRange: \"\"\n      chartReferenceLines: []\n      calendarMonth: \"\"\n      calendarStartDateField: \"\"\n      calendarEndDateField: \"\"\n      calendarTitleField: \"\"\n      calendarColorField: \"\"\n      calendarKeepCellAspectRatio: false\n      calendarScale: \"\"\n      calendarDay: \"\"\n      calendarWeekStart: \"\"\n      timelineStartDateField: \"\"\n      timelineEndDateField: \"\"\n      timelineGroupField: \"\"\n      timelineTitleField: \"\"\n      timelineColorField: \"\"\n      timelineScale: \"\"\n      timelineAnchor: \"\"\n      timelineColumnSizeMode: \"\"\n      viewStates:\n        table:\n          sortRules:\n            - field: margin\n              direction: desc\n    - id: tb-board\n      name: By Status\n      viewType: board\n      sourceFolder: \"\"\n      sourceRules: []\n      sourceLogic: and\n      showRecordIcon: false\n      recordIconFieldOverrideEnabled: false\n      recordIconField: \"\"\n      newRecordFolder: \"\"\n      displayWidth: wide\n      sortColumn: \"\"\n      sortDirection: asc\n      sortRules: []\n      columnOrder:\n        - file.name\n        - summary\n        - status\n        - priority\n        - labels\n        - amount\n        - budget\n        - net\n        - margin\n        - due\n        - reviewed_at\n        - pinned\n        - related\n        - related_count\n        - attachments\n        - link\n        - notes\n        - year\n      columnWidths: {}\n      hiddenColumns: []\n      sortColumnOrder: \"\"\n      statusFilter: \"\"\n      groupByField: \"\"\n      groupOrders: {}\n      showEmptyGroups: {}\n      collapsedGroups: {}\n      boardGroupField: status\n      boardSubgroupEnabled: false\n      boardSubgroupField: \"\"\n      boardColumnWidth: 280\n      defaultColumnWidth: 150\n      titleField: \"\"\n      boardCardOrders: {}\n      boardHiddenGroups: {}\n      manualOrder:\n        ranks:\n          Database Testbed/Records/01 — Q3 Compliance Audit.md: 2DHi\n          Database Testbed/Records/02 — Onboarding Flow Redesign.md: 4QZQ\n          Database Testbed/Records/04 — This Is A Deliberately Very Long Record Title That Should Overflow And Force Truncation On Narrow Phone Columns.md: 6dr8\n          Database Testbed/Records/21 — Billing Webhooks.md: 8r8q\n          Database Testbed/Records/24 — Performance Budget.md: B4QY\n          Database Testbed/Records/18 — Accessibility Pass.md: DHiG\n          Database Testbed/Records/19 — Search Relevance.md: FUzy\n          Database Testbed/Records/17 — Enterprise Deal Desk.md: HiHg\n          Database Testbed/Records/05 — API Rate Limiter.md: JvZO\n          Database Testbed/Records/06 — Data Warehouse Migration.md: M8r6\n          Database Testbed/Records/23 — Legacy Import Tool.md: OM8o\n          Database Testbed/Records/11 — Docs Overhaul.md: QZQW\n          Database Testbed/Records/15 — Budget Reforecast.md: SmiE\n          Database Testbed/Records/10 — Pricing Experiment.md: Uzzw\n          Database Testbed/Records/25 — Localization Sprint.md: XDHe\n          Database Testbed/Records/09 — Mobile Nav Bug Sweep.md: ZQZM\n          Database Testbed/Records/16 — Zero-Cost Cleanup.md: bdr4\n          Database Testbed/Records/03 — Marketing Site Refresh.md: dr8m\n          Database Testbed/Records/07 — Logo.md: g4QU\n          Database Testbed/Records/13 — SSO Rollout.md: iHiC\n          Database Testbed/Records/12 — Incident Retro.md: kUzu\n          Database Testbed/Records/20 — Notification Center.md: miHc\n          Database Testbed/Records/26 — Security Review.md: ovZK\n          Database Testbed/Records/14 — Empty Shell.md: r8r2\n          Database Testbed/Records/27 — Roadmap Planning.md: tM8k\n          Database Testbed/Records/22 — Design Tokens.md: vZQS\n          Database Testbed/Records/08 — Customer Interviews Round Two.md: xmiA\n      galleryImageField: \"\"\n      galleryImageAspectRatio: 0.75\n      galleryCardSize: 250\n      galleryImageFit: cover\n      boardImageField: \"\"\n      boardImageAspectRatio: 0.75\n      boardImageFit: cover\n      showEmptyFields: false\n      listCompactFields: false\n      statusPresets: []\n      defaultStatusPresetId: \"\"\n      filterLogic: and\n      filters: []\n      summaryRules: []\n      conditionalFormats: []\n      chartType: bar\n      chartGroupField: \"\"\n      chartDateBucket: \"\"\n      chartNumberBucket: \"\"\n      chartStackField: \"\"\n      chartSeriesField: \"\"\n      chartAggregation: count\n      chartValueField: \"\"\n      chartSecondaryAggregation: count\n      chartSecondaryValueField: \"\"\n      chartSortBy: \"\"\n      chartHiddenGroups: {}\n      chartOmitZeroValues: false\n      chartCumulative: false\n      chartHeight: \"\"\n      chartGridLines: \"\"\n      chartAxisNames: \"\"\n      chartShowTitle: true\n      chartTitle: \"\"\n      chartShowDataLabels: false\n      chartDataLabelMode: \"\"\n      chartDataLabelColor: \"\"\n      chartSmoothLine: false\n      chartGradientArea: false\n      chartColorPalette: \"\"\n      chartColorByValue: false\n      chartShowDonutCenter: false\n      chartDonutCenterMode: \"\"\n      chartValueAxisRange: \"\"\n      chartReferenceLines: []\n      calendarMonth: \"\"\n      calendarStartDateField: \"\"\n      calendarEndDateField: \"\"\n      calendarTitleField: \"\"\n      calendarColorField: \"\"\n      calendarKeepCellAspectRatio: false\n      calendarScale: \"\"\n      calendarDay: \"\"\n      calendarWeekStart: \"\"\n      timelineStartDateField: \"\"\n      timelineEndDateField: \"\"\n      timelineGroupField: \"\"\n      timelineTitleField: \"\"\n      timelineColorField: \"\"\n      timelineScale: \"\"\n      timelineAnchor: \"\"\n      timelineColumnSizeMode: \"\"\n      viewStates:\n        board: {}\n    - id: tb-gallery\n      name: Cards\n      viewType: gallery\n      sourceFolder: \"\"\n      sourceRules: []\n      sourceLogic: and\n      showRecordIcon: false\n      recordIconFieldOverrideEnabled: false\n      recordIconField: \"\"\n      newRecordFolder: \"\"\n      displayWidth: wide\n      sortColumn: \"\"\n      sortDirection: asc\n      sortRules: []\n      columnOrder:\n        - file.name\n        - summary\n        - status\n        - priority\n        - labels\n        - amount\n        - budget\n        - net\n        - margin\n        - due\n        - reviewed_at\n        - pinned\n        - related\n        - related_count\n        - attachments\n        - link\n        - notes\n        - year\n      columnWidths: {}\n      hiddenColumns: []\n      sortColumnOrder: \"\"\n      statusFilter: \"\"\n      groupByField: \"\"\n      groupOrders: {}\n      showEmptyGroups: {}\n      collapsedGroups: {}\n      boardGroupField: \"\"\n      boardSubgroupEnabled: false\n      boardSubgroupField: \"\"\n      boardColumnWidth: 280\n      defaultColumnWidth: 150\n      titleField: \"\"\n      boardCardOrders: {}\n      boardHiddenGroups: {}\n      manualOrder:\n        ranks:\n          Database Testbed/Records/01 — Q3 Compliance Audit.md: 2DHi\n          Database Testbed/Records/02 — Onboarding Flow Redesign.md: 4QZQ\n          Database Testbed/Records/04 — This Is A Deliberately Very Long Record Title That Should Overflow And Force Truncation On Narrow Phone Columns.md: 6dr8\n          Database Testbed/Records/21 — Billing Webhooks.md: 8r8q\n          Database Testbed/Records/24 — Performance Budget.md: B4QY\n          Database Testbed/Records/18 — Accessibility Pass.md: DHiG\n          Database Testbed/Records/19 — Search Relevance.md: FUzy\n          Database Testbed/Records/17 — Enterprise Deal Desk.md: HiHg\n          Database Testbed/Records/05 — API Rate Limiter.md: JvZO\n          Database Testbed/Records/06 — Data Warehouse Migration.md: M8r6\n          Database Testbed/Records/23 — Legacy Import Tool.md: OM8o\n          Database Testbed/Records/11 — Docs Overhaul.md: QZQW\n          Database Testbed/Records/15 — Budget Reforecast.md: SmiE\n          Database Testbed/Records/10 — Pricing Experiment.md: Uzzw\n          Database Testbed/Records/25 — Localization Sprint.md: XDHe\n          Database Testbed/Records/09 — Mobile Nav Bug Sweep.md: ZQZM\n          Database Testbed/Records/16 — Zero-Cost Cleanup.md: bdr4\n          Database Testbed/Records/03 — Marketing Site Refresh.md: dr8m\n          Database Testbed/Records/07 — Logo.md: g4QU\n          Database Testbed/Records/13 — SSO Rollout.md: iHiC\n          Database Testbed/Records/12 — Incident Retro.md: kUzu\n          Database Testbed/Records/20 — Notification Center.md: miHc\n          Database Testbed/Records/26 — Security Review.md: ovZK\n          Database Testbed/Records/14 — Empty Shell.md: r8r2\n          Database Testbed/Records/27 — Roadmap Planning.md: tM8k\n          Database Testbed/Records/22 — Design Tokens.md: vZQS\n          Database Testbed/Records/08 — Customer Interviews Round Two.md: xmiA\n      galleryImageField: attachments\n      galleryImageAspectRatio: 0.75\n      galleryCardSize: 260\n      galleryImageFit: cover\n      boardImageField: \"\"\n      boardImageAspectRatio: 0.75\n      boardImageFit: cover\n      showEmptyFields: true\n      listCompactFields: false\n      statusPresets: []\n      defaultStatusPresetId: \"\"\n      filterLogic: and\n      filters: []\n      summaryRules: []\n      conditionalFormats: []\n      chartType: bar\n      chartGroupField: \"\"\n      chartDateBucket: \"\"\n      chartNumberBucket: \"\"\n      chartStackField: \"\"\n      chartSeriesField: \"\"\n      chartAggregation: count\n      chartValueField: \"\"\n      chartSecondaryAggregation: count\n      chartSecondaryValueField: \"\"\n      chartSortBy: \"\"\n      chartHiddenGroups: {}\n      chartOmitZeroValues: false\n      chartCumulative: false\n      chartHeight: \"\"\n      chartGridLines: \"\"\n      chartAxisNames: \"\"\n      chartShowTitle: true\n      chartTitle: \"\"\n      chartShowDataLabels: false\n      chartDataLabelMode: \"\"\n      chartDataLabelColor: \"\"\n      chartSmoothLine: false\n      chartGradientArea: false\n      chartColorPalette: \"\"\n      chartColorByValue: false\n      chartShowDonutCenter: false\n      chartDonutCenterMode: \"\"\n      chartValueAxisRange: \"\"\n      chartReferenceLines: []\n      calendarMonth: \"\"\n      calendarStartDateField: \"\"\n      calendarEndDateField: \"\"\n      calendarTitleField: \"\"\n      calendarColorField: \"\"\n      calendarKeepCellAspectRatio: false\n      calendarScale: \"\"\n      calendarDay: \"\"\n      calendarWeekStart: \"\"\n      timelineStartDateField: \"\"\n      timelineEndDateField: \"\"\n      timelineGroupField: \"\"\n      timelineTitleField: \"\"\n      timelineColorField: \"\"\n      timelineScale: \"\"\n      timelineAnchor: \"\"\n      timelineColumnSizeMode: \"\"\n      viewStates:\n        gallery: {}\n    - id: tb-list\n      name: Punch List\n      viewType: list\n      sourceFolder: \"\"\n      sourceRules: []\n      sourceLogic: and\n      showRecordIcon: false\n      recordIconFieldOverrideEnabled: false\n      recordIconField: \"\"\n      newRecordFolder: \"\"\n      displayWidth: wide\n      sortColumn: priority\n      sortDirection: asc\n      sortRules: []\n      columnOrder:\n        - file.name\n        - summary\n        - status\n        - priority\n        - labels\n        - amount\n        - budget\n        - net\n        - margin\n        - due\n        - reviewed_at\n        - pinned\n        - related\n        - related_count\n        - attachments\n        - link\n        - notes\n        - year\n      columnWidths: {}\n      hiddenColumns: []\n      sortColumnOrder: \"\"\n      statusFilter: \"\"\n      groupByField: \"\"\n      groupOrders: {}\n      showEmptyGroups: {}\n      collapsedGroups: {}\n      boardGroupField: \"\"\n      boardSubgroupEnabled: false\n      boardSubgroupField: \"\"\n      boardColumnWidth: 280\n      defaultColumnWidth: 150\n      titleField: \"\"\n      boardCardOrders: {}\n      boardHiddenGroups: {}\n      manualOrder:\n        ranks:\n          Database Testbed/Records/01 — Q3 Compliance Audit.md: 2DHi\n          Database Testbed/Records/02 — Onboarding Flow Redesign.md: 4QZQ\n          Database Testbed/Records/04 — This Is A Deliberately Very Long Record Title That Should Overflow And Force Truncation On Narrow Phone Columns.md: 6dr8\n          Database Testbed/Records/21 — Billing Webhooks.md: 8r8q\n          Database Testbed/Records/24 — Performance Budget.md: B4QY\n          Database Testbed/Records/18 — Accessibility Pass.md: DHiG\n          Database Testbed/Records/19 — Search Relevance.md: FUzy\n          Database Testbed/Records/17 — Enterprise Deal Desk.md: HiHg\n          Database Testbed/Records/05 — API Rate Limiter.md: JvZO\n          Database Testbed/Records/06 — Data Warehouse Migration.md: M8r6\n          Database Testbed/Records/23 — Legacy Import Tool.md: OM8o\n          Database Testbed/Records/11 — Docs Overhaul.md: QZQW\n          Database Testbed/Records/15 — Budget Reforecast.md: SmiE\n          Database Testbed/Records/10 — Pricing Experiment.md: Uzzw\n          Database Testbed/Records/25 — Localization Sprint.md: XDHe\n          Database Testbed/Records/09 — Mobile Nav Bug Sweep.md: ZQZM\n          Database Testbed/Records/16 — Zero-Cost Cleanup.md: bdr4\n          Database Testbed/Records/03 — Marketing Site Refresh.md: dr8m\n          Database Testbed/Records/07 — Logo.md: g4QU\n          Database Testbed/Records/13 — SSO Rollout.md: iHiC\n          Database Testbed/Records/12 — Incident Retro.md: kUzu\n          Database Testbed/Records/20 — Notification Center.md: miHc\n          Database Testbed/Records/26 — Security Review.md: ovZK\n          Database Testbed/Records/14 — Empty Shell.md: r8r2\n          Database Testbed/Records/27 — Roadmap Planning.md: tM8k\n          Database Testbed/Records/22 — Design Tokens.md: vZQS\n          Database Testbed/Records/08 — Customer Interviews Round Two.md: xmiA\n      galleryImageField: \"\"\n      galleryImageAspectRatio: 0.75\n      galleryCardSize: 250\n      galleryImageFit: cover\n      boardImageField: \"\"\n      boardImageAspectRatio: 0.75\n      boardImageFit: cover\n      showEmptyFields: false\n      listCompactFields: true\n      statusPresets: []\n      defaultStatusPresetId: \"\"\n      filterLogic: and\n      filters:\n        - field: pinned\n          op: eq\n          value: \"true\"\n      summaryRules: []\n      conditionalFormats: []\n      chartType: bar\n      chartGroupField: \"\"\n      chartDateBucket: \"\"\n      chartNumberBucket: \"\"\n      chartStackField: \"\"\n      chartSeriesField: \"\"\n      chartAggregation: count\n      chartValueField: \"\"\n      chartSecondaryAggregation: count\n      chartSecondaryValueField: \"\"\n      chartSortBy: \"\"\n      chartHiddenGroups: {}\n      chartOmitZeroValues: false\n      chartCumulative: false\n      chartHeight: \"\"\n      chartGridLines: \"\"\n      chartAxisNames: \"\"\n      chartShowTitle: true\n      chartTitle: \"\"\n      chartShowDataLabels: false\n      chartDataLabelMode: \"\"\n      chartDataLabelColor: \"\"\n      chartSmoothLine: false\n      chartGradientArea: false\n      chartColorPalette: \"\"\n      chartColorByValue: false\n      chartShowDonutCenter: false\n      chartDonutCenterMode: \"\"\n      chartValueAxisRange: \"\"\n      chartReferenceLines: []\n      calendarMonth: \"\"\n      calendarStartDateField: \"\"\n      calendarEndDateField: \"\"\n      calendarTitleField: \"\"\n      calendarColorField: \"\"\n      calendarKeepCellAspectRatio: false\n      calendarScale: \"\"\n      calendarDay: \"\"\n      calendarWeekStart: \"\"\n      timelineStartDateField: \"\"\n      timelineEndDateField: \"\"\n      timelineGroupField: \"\"\n      timelineTitleField: \"\"\n      timelineColorField: \"\"\n      timelineScale: \"\"\n      timelineAnchor: \"\"\n      timelineColumnSizeMode: \"\"\n      viewStates:\n        list: {}\n    - id: tb-calendar\n      name: Calendar\n      viewType: calendar\n      sourceFolder: \"\"\n      sourceRules: []\n      sourceLogic: and\n      showRecordIcon: false\n      recordIconFieldOverrideEnabled: false\n      recordIconField: \"\"\n      newRecordFolder: \"\"\n      displayWidth: wide\n      sortColumn: \"\"\n      sortDirection: asc\n      sortRules: []\n      columnOrder:\n        - file.name\n        - summary\n        - status\n        - priority\n        - labels\n        - amount\n        - budget\n        - net\n        - margin\n        - due\n        - reviewed_at\n        - pinned\n        - related\n        - related_count\n        - attachments\n        - link\n        - notes\n        - year\n      columnWidths: {}\n      hiddenColumns: []\n      sortColumnOrder: \"\"\n      statusFilter: \"\"\n      groupByField: \"\"\n      groupOrders: {}\n      showEmptyGroups: {}\n      collapsedGroups: {}\n      boardGroupField: \"\"\n      boardSubgroupEnabled: false\n      boardSubgroupField: \"\"\n      boardColumnWidth: 280\n      defaultColumnWidth: 150\n      titleField: \"\"\n      boardCardOrders: {}\n      boardHiddenGroups: {}\n      manualOrder:\n        ranks:\n          Database Testbed/Records/01 — Q3 Compliance Audit.md: 2DHi\n          Database Testbed/Records/02 — Onboarding Flow Redesign.md: 4QZQ\n          Database Testbed/Records/04 — This Is A Deliberately Very Long Record Title That Should Overflow And Force Truncation On Narrow Phone Columns.md: 6dr8\n          Database Testbed/Records/21 — Billing Webhooks.md: 8r8q\n          Database Testbed/Records/24 — Performance Budget.md: B4QY\n          Database Testbed/Records/18 — Accessibility Pass.md: DHiG\n          Database Testbed/Records/19 — Search Relevance.md: FUzy\n          Database Testbed/Records/17 — Enterprise Deal Desk.md: HiHg\n          Database Testbed/Records/05 — API Rate Limiter.md: JvZO\n          Database Testbed/Records/06 — Data Warehouse Migration.md: M8r6\n          Database Testbed/Records/23 — Legacy Import Tool.md: OM8o\n          Database Testbed/Records/11 — Docs Overhaul.md: QZQW\n          Database Testbed/Records/15 — Budget Reforecast.md: SmiE\n          Database Testbed/Records/10 — Pricing Experiment.md: Uzzw\n          Database Testbed/Records/25 — Localization Sprint.md: XDHe\n          Database Testbed/Records/09 — Mobile Nav Bug Sweep.md: ZQZM\n          Database Testbed/Records/16 — Zero-Cost Cleanup.md: bdr4\n          Database Testbed/Records/03 — Marketing Site Refresh.md: dr8m\n          Database Testbed/Records/07 — Logo.md: g4QU\n          Database Testbed/Records/13 — SSO Rollout.md: iHiC\n          Database Testbed/Records/12 — Incident Retro.md: kUzu\n          Database Testbed/Records/20 — Notification Center.md: miHc\n          Database Testbed/Records/26 — Security Review.md: ovZK\n          Database Testbed/Records/14 — Empty Shell.md: r8r2\n          Database Testbed/Records/27 — Roadmap Planning.md: tM8k\n          Database Testbed/Records/22 — Design Tokens.md: vZQS\n          Database Testbed/Records/08 — Customer Interviews Round Two.md: xmiA\n      galleryImageField: \"\"\n      galleryImageAspectRatio: 0.75\n      galleryCardSize: 250\n      galleryImageFit: cover\n      boardImageField: \"\"\n      boardImageAspectRatio: 0.75\n      boardImageFit: cover\n      showEmptyFields: false\n      listCompactFields: false\n      statusPresets: []\n      defaultStatusPresetId: \"\"\n      filterLogic: and\n      filters: []\n      summaryRules: []\n      conditionalFormats: []\n      chartType: bar\n      chartGroupField: \"\"\n      chartDateBucket: \"\"\n      chartNumberBucket: \"\"\n      chartStackField: \"\"\n      chartSeriesField: \"\"\n      chartAggregation: count\n      chartValueField: \"\"\n      chartSecondaryAggregation: count\n      chartSecondaryValueField: \"\"\n      chartSortBy: \"\"\n      chartHiddenGroups: {}\n      chartOmitZeroValues: false\n      chartCumulative: false\n      chartHeight: \"\"\n      chartGridLines: \"\"\n      chartAxisNames: \"\"\n      chartShowTitle: true\n      chartTitle: \"\"\n      chartShowDataLabels: false\n      chartDataLabelMode: \"\"\n      chartDataLabelColor: \"\"\n      chartSmoothLine: false\n      chartGradientArea: false\n      chartColorPalette: \"\"\n      chartColorByValue: false\n      chartShowDonutCenter: false\n      chartDonutCenterMode: \"\"\n      chartValueAxisRange: \"\"\n      chartReferenceLines: []\n      calendarMonth: 2026-08\n      calendarStartDateField: due\n      calendarEndDateField: \"\"\n      calendarTitleField: \"\"\n      calendarColorField: status\n      calendarKeepCellAspectRatio: false\n      calendarScale: month\n      calendarDay: \"\"\n      calendarWeekStart: \"\"\n      timelineStartDateField: \"\"\n      timelineEndDateField: \"\"\n      timelineGroupField: \"\"\n      timelineTitleField: \"\"\n      timelineColorField: \"\"\n      timelineScale: \"\"\n      timelineAnchor: \"\"\n      timelineColumnSizeMode: \"\"\n      viewStates:\n        calendar: {}\n    - id: tb-timeline\n      name: Timeline\n      viewType: timeline\n      sourceFolder: \"\"\n      sourceRules: []\n      sourceLogic: and\n      showRecordIcon: false\n      recordIconFieldOverrideEnabled: false\n      recordIconField: \"\"\n      newRecordFolder: \"\"\n      displayWidth: wide\n      sortColumn: \"\"\n      sortDirection: asc\n      sortRules: []\n      columnOrder:\n        - file.name\n        - summary\n        - status\n        - priority\n        - labels\n        - amount\n        - budget\n        - net\n        - margin\n        - due\n        - reviewed_at\n        - pinned\n        - related\n        - related_count\n        - attachments\n        - link\n        - notes\n        - year\n      columnWidths: {}\n      hiddenColumns: []\n      sortColumnOrder: \"\"\n      statusFilter: \"\"\n      groupByField: \"\"\n      groupOrders: {}\n      showEmptyGroups: {}\n      collapsedGroups: {}\n      boardGroupField: \"\"\n      boardSubgroupEnabled: false\n      boardSubgroupField: \"\"\n      boardColumnWidth: 280\n      defaultColumnWidth: 150\n      titleField: \"\"\n      boardCardOrders: {}\n      boardHiddenGroups: {}\n      manualOrder:\n        ranks:\n          Database Testbed/Records/27 — Roadmap Planning.md: 2DHi\n          Database Testbed/Records/26 — Security Review.md: 4QZQ\n          Database Testbed/Records/25 — Localization Sprint.md: 6dr8\n          Database Testbed/Records/24 — Performance Budget.md: 8r8q\n          Database Testbed/Records/23 — Legacy Import Tool.md: B4QY\n          Database Testbed/Records/22 — Design Tokens.md: DHiG\n          Database Testbed/Records/21 — Billing Webhooks.md: FUzy\n          Database Testbed/Records/20 — Notification Center.md: HiHg\n          Database Testbed/Records/19 — Search Relevance.md: JvZO\n          Database Testbed/Records/18 — Accessibility Pass.md: M8r6\n          Database Testbed/Records/17 — Enterprise Deal Desk.md: OM8o\n          Database Testbed/Records/16 — Zero-Cost Cleanup.md: QZQW\n          Database Testbed/Records/15 — Budget Reforecast.md: SmiE\n          Database Testbed/Records/14 — Empty Shell.md: Uzzw\n          Database Testbed/Records/12 — Incident Retro.md: XDHe\n          Database Testbed/Records/13 — SSO Rollout.md: ZQZM\n          Database Testbed/Records/11 — Docs Overhaul.md: bdr4\n          Database Testbed/Records/10 — Pricing Experiment.md: dr8m\n          Database Testbed/Records/09 — Mobile Nav Bug Sweep.md: g4QU\n          Database Testbed/Records/08 — Customer Interviews Round Two.md: iHiC\n          Database Testbed/Records/07 — Logo.md: kUzu\n          Database Testbed/Records/04 — This Is A Deliberately Very Long Record Title That Should Overflow And Force Truncation On Narrow Phone Columns.md: miHc\n          Database Testbed/Records/06 — Data Warehouse Migration.md: ovZK\n          Database Testbed/Records/05 — API Rate Limiter.md: r8r2\n          Database Testbed/Records/03 — Marketing Site Refresh.md: tM8k\n          Database Testbed/Records/02 — Onboarding Flow Redesign.md: vZQS\n          Database Testbed/Records/01 — Q3 Compliance Audit.md: xmiA\n      galleryImageField: \"\"\n      galleryImageAspectRatio: 0.75\n      galleryCardSize: 250\n      galleryImageFit: cover\n      boardImageField: \"\"\n      boardImageAspectRatio: 0.75\n      boardImageFit: cover\n      showEmptyFields: false\n      listCompactFields: false\n      statusPresets: []\n      defaultStatusPresetId: \"\"\n      filterLogic: and\n      filters: []\n      summaryRules: []\n      conditionalFormats: []\n      chartType: bar\n      chartGroupField: \"\"\n      chartDateBucket: \"\"\n      chartNumberBucket: \"\"\n      chartStackField: \"\"\n      chartSeriesField: \"\"\n      chartAggregation: count\n      chartValueField: \"\"\n      chartSecondaryAggregation: count\n      chartSecondaryValueField: \"\"\n      chartSortBy: \"\"\n      chartHiddenGroups: {}\n      chartOmitZeroValues: false\n      chartCumulative: false\n      chartHeight: \"\"\n      chartGridLines: \"\"\n      chartAxisNames: \"\"\n      chartShowTitle: true\n      chartTitle: \"\"\n      chartShowDataLabels: false\n      chartDataLabelMode: \"\"\n      chartDataLabelColor: \"\"\n      chartSmoothLine: false\n      chartGradientArea: false\n      chartColorPalette: \"\"\n      chartColorByValue: false\n      chartShowDonutCenter: false\n      chartDonutCenterMode: \"\"\n      chartValueAxisRange: \"\"\n      chartReferenceLines: []\n      calendarMonth: \"\"\n      calendarStartDateField: \"\"\n      calendarEndDateField: \"\"\n      calendarTitleField: \"\"\n      calendarColorField: \"\"\n      calendarKeepCellAspectRatio: false\n      calendarScale: \"\"\n      calendarDay: \"\"\n      calendarWeekStart: \"\"\n      timelineStartDateField: due\n      timelineEndDateField: \"\"\n      timelineGroupField: status\n      timelineTitleField: \"\"\n      timelineColorField: status\n      timelineScale: month\n      timelineAnchor: 2026-08-28\n      timelineColumnSizeMode: \"\"\n      viewStates:\n        timeline: {}\n    - id: tb-chart\n      name: Budget by Status\n      viewType: chart\n      sourceFolder: \"\"\n      sourceRules: []\n      sourceLogic: and\n      showRecordIcon: false\n      recordIconFieldOverrideEnabled: false\n      recordIconField: \"\"\n      newRecordFolder: \"\"\n      displayWidth: wide\n      sortColumn: \"\"\n      sortDirection: asc\n      sortRules: []\n      columnOrder:\n        - file.name\n        - summary\n        - status\n        - priority\n        - labels\n        - amount\n        - budget\n        - net\n        - margin\n        - due\n        - reviewed_at\n        - pinned\n        - related\n        - related_count\n        - attachments\n        - link\n        - notes\n        - year\n      columnWidths: {}\n      hiddenColumns: []\n      sortColumnOrder: \"\"\n      statusFilter: \"\"\n      groupByField: \"\"\n      groupOrders: {}\n      showEmptyGroups: {}\n      collapsedGroups: {}\n      boardGroupField: \"\"\n      boardSubgroupEnabled: false\n      boardSubgroupField: \"\"\n      boardColumnWidth: 280\n      defaultColumnWidth: 150\n      titleField: \"\"\n      boardCardOrders: {}\n      boardHiddenGroups: {}\n      manualOrder:\n        ranks:\n          Database Testbed/Records/27 — Roadmap Planning.md: 2DHi\n          Database Testbed/Records/25 — Localization Sprint.md: 4QZQ\n          Database Testbed/Records/26 — Security Review.md: 6dr8\n          Database Testbed/Records/22 — Design Tokens.md: 8r8q\n          Database Testbed/Records/23 — Legacy Import Tool.md: B4QY\n          Database Testbed/Records/24 — Performance Budget.md: DHiG\n          Database Testbed/Records/21 — Billing Webhooks.md: FUzy\n          Database Testbed/Records/19 — Search Relevance.md: HiHg\n          Database Testbed/Records/20 — Notification Center.md: JvZO\n          Database Testbed/Records/17 — Enterprise Deal Desk.md: M8r6\n          Database Testbed/Records/18 — Accessibility Pass.md: OM8o\n          Database Testbed/Records/16 — Zero-Cost Cleanup.md: QZQW\n          Database Testbed/Records/15 — Budget Reforecast.md: SmiE\n          Database Testbed/Records/14 — Empty Shell.md: Uzzw\n          Database Testbed/Records/13 — SSO Rollout.md: XDHe\n          Database Testbed/Records/11 — Docs Overhaul.md: ZQZM\n          Database Testbed/Records/08 — Customer Interviews Round Two.md: bdr4\n          Database Testbed/Records/12 — Incident Retro.md: dr8m\n          Database Testbed/Records/10 — Pricing Experiment.md: g4QU\n          Database Testbed/Records/09 — Mobile Nav Bug Sweep.md: iHiC\n          Database Testbed/Records/06 — Data Warehouse Migration.md: kUzu\n          Database Testbed/Records/07 — Logo.md: miHc\n          Database Testbed/Records/05 — API Rate Limiter.md: ovZK\n          Database Testbed/Records/04 — This Is A Deliberately Very Long Record Title That Should Overflow And Force Truncation On Narrow Phone Columns.md: r8r2\n          Database Testbed/Records/03 — Marketing Site Refresh.md: tM8k\n          Database Testbed/Records/02 — Onboarding Flow Redesign.md: vZQS\n          Database Testbed/Records/01 — Q3 Compliance Audit.md: xmiA\n      galleryImageField: \"\"\n      galleryImageAspectRatio: 0.75\n      galleryCardSize: 250\n      galleryImageFit: cover\n      boardImageField: \"\"\n      boardImageAspectRatio: 0.75\n      boardImageFit: cover\n      showEmptyFields: false\n      listCompactFields: false\n      statusPresets: []\n      defaultStatusPresetId: \"\"\n      filterLogic: and\n      filters: []\n      summaryRules: []\n      conditionalFormats: []\n      chartType: bar\n      chartGroupField: status\n      chartDateBucket: \"\"\n      chartNumberBucket: \"\"\n      chartStackField: \"\"\n      chartSeriesField: \"\"\n      chartAggregation: sum\n      chartValueField: budget\n      chartSecondaryAggregation: count\n      chartSecondaryValueField: \"\"\n      chartSortBy: \"\"\n      chartHiddenGroups: {}\n      chartOmitZeroValues: false\n      chartCumulative: false\n      chartHeight: \"\"\n      chartGridLines: \"\"\n      chartAxisNames: \"\"\n      chartShowTitle: true\n      chartTitle: Budget by Status\n      chartShowDataLabels: false\n      chartDataLabelMode: \"\"\n      chartDataLabelColor: \"\"\n      chartSmoothLine: false\n      chartGradientArea: false\n      chartColorPalette: \"\"\n      chartColorByValue: false\n      chartShowDonutCenter: false\n      chartDonutCenterMode: \"\"\n      chartValueAxisRange: \"\"\n      chartReferenceLines: []\n      calendarMonth: \"\"\n      calendarStartDateField: \"\"\n      calendarEndDateField: \"\"\n      calendarTitleField: \"\"\n      calendarColorField: \"\"\n      calendarKeepCellAspectRatio: false\n      calendarScale: \"\"\n      calendarDay: \"\"\n      calendarWeekStart: \"\"\n      timelineStartDateField: \"\"\n      timelineEndDateField: \"\"\n      timelineGroupField: \"\"\n      timelineTitleField: \"\"\n      timelineColorField: \"\"\n      timelineScale: \"\"\n      timelineAnchor: \"\"\n      timelineColumnSizeMode: \"\"\n      viewStates:\n        chart: {}\n---\n\n> This file is a Note Database view (`db_view: true`). Open it in Obsidian to browse the Testbed database. Rows live in `Records/`.\n"
+    },
+    {
+      "label": "get_note_periodic",
+      "tool": "obsidian_get_note",
+      "args": {
+        "format": "content",
+        "target": {
+          "type": "periodic",
+          "period": "daily"
+        }
+      },
+      "ms": 3,
+      "isError": true,
+      "text": "Error: No daily note found. Check that the Periodic Notes plugin is enabled and the note exists.\n\nRecovery: Create the periodic note first or pass an explicit path target."
+    }
+  ]
+}

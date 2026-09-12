@@ -1,0 +1,150 @@
+{
+  "topic": "Review of specs/hooks/021-compat-opt-in-and-image-declaration",
+  "mode": "review",
+  "sessionId": "fanout-gpt-56-luna-1789146937931-6gxjep",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "migrationWindowEndsAt": "",
+  "maxIterations": 1,
+  "convergenceThreshold": 0.1,
+  "antiConvergence": {
+    "minIterations": 2,
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations",
+    "divergent": {}
+  },
+  "stuckThreshold": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": false,
+  "specFolder": "specs/hooks/021-compat-opt-in-and-image-declaration",
+  "reviewTarget": "specs/hooks/021-compat-opt-in-and-image-declaration",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "reviewScopeFiles": [
+    "specs/hooks/021-compat-opt-in-and-image-declaration/spec.md",
+    "specs/hooks/021-compat-opt-in-and-image-declaration/plan.md",
+    "specs/hooks/021-compat-opt-in-and-image-declaration/tasks.md",
+    "specs/hooks/021-compat-opt-in-and-image-declaration/implementation-summary.md",
+    "specs/hooks/021-compat-opt-in-and-image-declaration/description.json",
+    "specs/hooks/021-compat-opt-in-and-image-declaration/graph-metadata.json",
+    "specs/hooks/021-compat-opt-in-and-image-declaration/review/README.md",
+    "specs/hooks/021-compat-opt-in-and-image-declaration/review/brief.md",
+    "specs/hooks/021-compat-opt-in-and-image-declaration/review/change-under-review.diff",
+    ".pi/extensions/pi-cache-optimizer/index.ts",
+    ".pi/extensions/pi-cache-optimizer/tests/review-findings.test.ts",
+    ".pi/models.json",
+    "specs/hooks/021-compat-opt-in-and-image-declaration/scratch/live-image-probe.md",
+    "specs/hooks/021-compat-opt-in-and-image-declaration/scratch/live-image-probe.json",
+    "specs/hooks/021-compat-opt-in-and-image-declaration/scratch/live-affinity-probe.md",
+    "specs/hooks/021-compat-opt-in-and-image-declaration/scratch/live-affinity-probe.json",
+    "specs/hooks/021-compat-opt-in-and-image-declaration/scratch/verify-no-warning.mjs",
+    "specs/hooks/021-compat-opt-in-and-image-declaration/scratch/verify-no-warning.txt",
+    "specs/hooks/021-compat-opt-in-and-image-declaration/scratch/check-run.txt",
+    "specs/hooks/021-compat-opt-in-and-image-declaration/scratch/vision-probe.png"
+  ],
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "artifact_dir": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/hooks/021-compat-opt-in-and-image-declaration/review/lineages/gpt-56-luna",
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "overlay": [
+      "skill_agent",
+      "agent_cross_runtime",
+      "feature_catalog_code",
+      "playbook_capability"
+    ]
+  },
+  "qualityGateThreshold": true,
+  "runtimeCapabilityResolver": ".opencode/skills/system-deep-loop/deep-review/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+  "createdAt": "2026-09-11T17:20:00Z",
+  "status": "complete",
+  "releaseReadinessState": "in-progress",
+  "executionMode": "auto",
+  "requestedExecutionMode": "AUTONOMOUS",
+  "requestedLineageMode": "auto",
+  "setupBindings": {
+    "review_target": "specs/hooks/021-compat-opt-in-and-image-declaration",
+    "review_target_type": "spec-folder",
+    "review_dimensions": "all",
+    "spec_folder": "specs/hooks/021-compat-opt-in-and-image-declaration",
+    "execution_mode": "AUTONOMOUS",
+    "lineage_mode": "auto"
+  },
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-5.6-luna",
+    "reasoningEffort": "max",
+    "serviceTier": "fast",
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 900,
+    "raw": "cli-codex model=gpt-5.6-luna"
+  },
+  "lineage": {
+    "label": "gpt-56-luna",
+    "fanout": true,
+    "detached": true,
+    "inlineExecutor": true,
+    "artifactOverride": "specs/hooks/021-compat-opt-in-and-image-declaration/review/lineages/gpt-56-luna"
+  },
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "review-report-v*.md": "write-once",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": [
+      "latestJSONLDelta",
+      "newIterationFile",
+      "priorReducedState"
+    ],
+    "outputs": [
+      "findingsRegistry",
+      "dashboardMetrics",
+      "strategyUpdates"
+    ],
+    "metrics": [
+      "dimensionsCovered",
+      "findingsBySeverity",
+      "openFindings",
+      "resolvedFindings",
+      "convergenceScore"
+    ]
+  },
+  "_optimizerManaged": {
+    "description": "Fields managed by the offline loop optimizer.",
+    "lockedFields": [
+      "lineageMode",
+      "reducer",
+      "fileProtection",
+      "sessionId",
+      "mode",
+      "reviewDimensions",
+      "antiConvergence.convergenceMode",
+      "antiConvergence.stopPolicy"
+    ],
+    "promotionMode": "advisory-only"
+  }
+}

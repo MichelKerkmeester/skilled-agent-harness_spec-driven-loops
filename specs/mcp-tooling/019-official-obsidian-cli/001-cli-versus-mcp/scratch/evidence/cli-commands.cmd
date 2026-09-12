@@ -1,0 +1,1 @@
+obsidian commands filter=app 

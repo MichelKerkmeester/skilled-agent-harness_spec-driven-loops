@@ -8,7 +8,9 @@ import {
   existsSync,
   mkdirSync,
   mkdtempSync,
+  readdirSync,
   readFileSync,
+  realpathSync,
   rmSync,
   symlinkSync,
   writeFileSync,
@@ -3984,5 +3986,249 @@ describe('fanout-run.cjs — post-run packet metadata refresh', () => {
       join(emptyDist, 'spec-folder', 'generate-description.js'),
       join(emptyDist, 'graph', 'backfill-graph-metadata.js'),
     ]);
+  });
+});
+
+// The three cases below share one repository fixture, because the only differences that
+// matter are the flag and the worktree base: a lane in the shared checkout dispatches
+// exactly as it did before the option existed, a lane with a tree runs in that tree and is
+// copied back, and a lane whose tree cannot be made still runs where it always did.
+const prepareWorktreeRepo = (testId: string) => {
+  const hermetic = useHermeticEnv(testId);
+  // Resolved physically because the runner's own paths are: a spawned process reports its
+  // working directory as the resolved path, so a symlinked tmp root would compare unequal on
+  // every absolute path in this fixture.
+  const repoRoot = realpathSync(hermetic.tmpDir);
+  const binDir = makeTempDir(`fanout-run-worktrees-bin-${testId}-`);
+  const specFolder = `specs/test-fanout-run-worktrees-${testId}`;
+  const baseDir = join(repoRoot, specFolder, 'research', 'artifacts');
+  const trackedPath = join(repoRoot, 'tracked-out-of-scope', 'leaf-escaped.txt');
+  const packetNotePath = join(repoRoot, specFolder, 'packet-note.md');
+  const worktreeBase = join(repoRoot, '.worktrees');
+
+  // git resolves its target repository from these vars in preference to the working
+  // directory, so an inherited one would send the fixture into the repository this test
+  // itself runs from. The worktree base is pinned so the fixture never touches the real one.
+  const env: NodeJS.ProcessEnv = {
+    ...envWithBin(hermetic, binDir),
+    DEEP_LOOP_REPO_ROOT: repoRoot,
+    SPECKIT_WORKTREE_BASE: worktreeBase,
+  };
+  for (const key of ['GIT_DIR', 'GIT_WORK_TREE', 'GIT_COMMON_DIR', 'GIT_INDEX_FILE', 'GIT_CEILING_DIRECTORIES']) {
+    delete env[key];
+  }
+  expect(spawnSync('git', ['init', '-q', repoRoot], { encoding: 'utf8', env }).status).toBe(0);
+  spawnSync('git', ['-C', repoRoot, 'config', 'core.excludesFile', '/dev/null'], { encoding: 'utf8', env });
+  // The artifact tree is pre-created because the run validates its physical location before
+  // any lineage starts, and an unresolvable path cannot be proven inside the packet.
+  mkdirSync(join(baseDir, 'lineages'), { recursive: true });
+  // One commit, so a worktree has a HEAD to be created from, and one tracked out-of-scope
+  // file, so a restore has committed bytes to roll back to.
+  mkdirSync(join(repoRoot, 'tracked-out-of-scope'), { recursive: true });
+  writeFileSync(trackedPath, 'committed-before-dispatch\n');
+  const gitIdentity = ['-c', 'user.email=fanout-test@example.invalid', '-c', 'user.name=fanout-test'];
+  expect(spawnSync(
+    'git', [...gitIdentity, '-C', repoRoot, 'add', 'tracked-out-of-scope/leaf-escaped.txt'], { encoding: 'utf8', env },
+  ).status).toBe(0);
+  expect(spawnSync(
+    'git', [...gitIdentity, '-C', repoRoot, 'commit', '-q', '-m', 'fixture'], { encoding: 'utf8', env },
+  ).status).toBe(0);
+  // Packet content that is uncommitted on purpose: HEAD does not carry it, so only a seed can
+  // put these bytes in a tree created from HEAD.
+  mkdirSync(join(repoRoot, specFolder), { recursive: true });
+  writeFileSync(packetNotePath, 'uncommitted-packet-content\n');
+
+  const fanoutConfig = JSON.stringify({
+    executors: [{ label: 'contained', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', count: 1 }],
+    concurrency: 1,
+  });
+
+  const readLedgerEvents = (): Array<Record<string, unknown>> => readFileSync(
+    join(baseDir, 'orchestration-status.log'),
+    'utf8',
+  ).trim().split('\n').map((line) => JSON.parse(line) as Record<string, unknown>);
+
+  return { repoRoot, binDir, specFolder, baseDir, trackedPath, worktreeBase, env, fanoutConfig, readLedgerEvents };
+};
+
+/** The lane stub records the tree it was pointed at and proves the packet was seeded into it. */
+const writeTreeReportingStub = (binDir: string, specFolder: string): string => {
+  const stubPath = join(binDir, 'opencode');
+  writeFileSync(
+    stubPath,
+    [
+      '#!/bin/sh',
+      'dir=""',
+      'prev=""',
+      'for arg in "$@"; do',
+      '  if [ "$prev" = "--dir" ]; then dir="$arg"; fi',
+      '  prev="$arg"',
+      'done',
+      writeFanoutArtifactsShell(),
+      'printf "%s\\n" "$dir" > "$lineage_dir/tree-root.txt"',
+      `if [ -f "$dir/${specFolder}/packet-note.md" ]; then`,
+      `  cp "$dir/${specFolder}/packet-note.md" "$lineage_dir/seeded-packet-note.md"`,
+      'fi',
+      'echo "stub-done"',
+      'exit 0',
+      '',
+    ].join('\n'),
+    { mode: 0o755 },
+  );
+  return stubPath;
+};
+
+describe('fanout-run.cjs — worktree isolation changes nothing while it is off', () => {
+  it('dispatches in the shared checkout with no worktree events, and rejects a non-boolean flag', async () => {
+    const fixture = prepareWorktreeRepo('worktrees-off');
+    writeTreeReportingStub(fixture.binDir, fixture.specFolder);
+
+    const result = await spawnCjs(
+      fanoutRunScript,
+      [
+        '--spec-folder', fixture.specFolder,
+        '--loop-type', 'research',
+        '--fanout-config-json', fixture.fanoutConfig,
+        '--base-artifact-dir', fixture.baseDir,
+        '--no-metadata-refresh',
+      ],
+      { cwd: fixture.repoRoot, env: fixture.env, timeoutMs: 20_000 },
+    );
+
+    expect(result.exitCode, `${result.stdout}\n${result.stderr}`).toBe(0);
+    // The lane ran in the checkout, with the tree root every dispatch had before the option
+    // existed, and its artifacts are in the lineage directory the run has always used.
+    const lineageDir = join(fixture.baseDir, 'lineages', 'contained');
+    expect(existsSync(join(lineageDir, 'research.md'))).toBe(true);
+    expect(readFileSync(join(lineageDir, 'tree-root.txt'), 'utf8').trim()).toBe(fixture.repoRoot);
+    // Nothing asked for a tree, so nothing made one.
+    expect(existsSync(fixture.worktreeBase)).toBe(false);
+    expect(fixture.readLedgerEvents().filter((event) => String(event.event).startsWith('worktree_'))).toEqual([]);
+
+    // The flag's own contract: absent defers to the config, and anything that is not a boolean
+    // is refused before a run starts.
+    const { normalizeWorktreesOption } = requireCjs(fanoutRunScript) as {
+      normalizeWorktreesOption: (raw: unknown) => boolean | null;
+    };
+    expect(normalizeWorktreesOption(undefined)).toBeNull();
+    expect(normalizeWorktreesOption('')).toBeNull();
+    expect(normalizeWorktreesOption('true')).toBe(true);
+    expect(normalizeWorktreesOption('false')).toBe(false);
+    expect(() => normalizeWorktreesOption('maybe')).toThrow('worktrees must be true or false');
+  });
+});
+
+describe('fanout-run.cjs — worktree isolation is an opt-in that copies the lane back', () => {
+  it('runs the lane in its own worktree and publishes the results into the main checkout', async () => {
+    const fixture = prepareWorktreeRepo('worktrees-on');
+    writeTreeReportingStub(fixture.binDir, fixture.specFolder);
+
+    const result = await spawnCjs(
+      fanoutRunScript,
+      [
+        '--spec-folder', fixture.specFolder,
+        '--loop-type', 'research',
+        '--fanout-config-json', fixture.fanoutConfig,
+        '--base-artifact-dir', fixture.baseDir,
+        '--worktrees',
+        '--no-metadata-refresh',
+      ],
+      { cwd: fixture.repoRoot, env: fixture.env, timeoutMs: 20_000 },
+    );
+
+    expect(result.exitCode).toBe(0);
+    // The lane's checkout directory was never used: its work landed under the run-keyed name
+    // publication uses, and the lane read a tree of its own.
+    expect(existsSync(join(fixture.baseDir, 'lineages', 'contained'))).toBe(false);
+    const published = readdirSync(join(fixture.baseDir, 'lineages'));
+    expect(published).toHaveLength(1);
+    expect(published[0]).toMatch(/-contained$/);
+    const publishedDir = join(fixture.baseDir, 'lineages', published[0]);
+    expect(readFileSync(join(publishedDir, 'research.md'), 'utf8')).toBe('ok\n');
+    // Only a seed can have put this byte-for-byte copy of an uncommitted packet file into a
+    // tree created from HEAD.
+    expect(readFileSync(join(publishedDir, 'seeded-packet-note.md'), 'utf8')).toBe('uncommitted-packet-content\n');
+    const treeRoot = readFileSync(join(publishedDir, 'tree-root.txt'), 'utf8').trim();
+    expect(isPathInside(treeRoot, fixture.worktreeBase)).toBe(true);
+    expect(treeRoot).not.toBe(fixture.repoRoot);
+    // The lane was copied back and handed over: no tree of this run is left behind.
+    const residue = existsSync(fixture.worktreeBase)
+      ? readdirSync(fixture.worktreeBase).filter((name) => name.startsWith('fanout-'))
+      : [];
+    expect(residue).toEqual([]);
+
+    const ledgerEvents = fixture.readLedgerEvents();
+    // The startup sweep is part of this path, and the reclaim module refuses a call that has not
+    // read the ledger: a swept event with no failure beside it is what proves the resumable
+    // labels came from the ledger rather than from a default.
+    expect(ledgerEvents.filter((event) => event.event === 'worktree_reclaim_swept')).toEqual([
+      expect.objectContaining({ status: 'ok' }),
+    ]);
+    expect(ledgerEvents.filter((event) => event.event === 'worktree_reclaim_failed')).toEqual([]);
+    expect(ledgerEvents.filter((event) => event.event === 'worktree_created')).toEqual([
+      expect.objectContaining({
+        label: 'contained',
+        status: 'ok',
+        worktree_path: expect.stringContaining('.worktrees'),
+        seeded_paths: 1,
+      }),
+    ]);
+    expect(ledgerEvents.filter((event) => event.event === 'worktree_published')).toHaveLength(1);
+    expect(ledgerEvents.filter((event) => event.event === 'worktree_degraded')).toEqual([]);
+    expect(ledgerEvents.filter((event) => event.event === 'worktree_publish_failed')).toEqual([]);
+  });
+});
+
+describe('fanout-run.cjs — a worktree that cannot be made degrades that lane instead of failing it', () => {
+  it('keeps the lane running in the shared checkout under forced preserve and completes the run', async () => {
+    const fixture = prepareWorktreeRepo('worktrees-degraded');
+    // A regular file where the worktree base belongs: neither the startup sweep nor this
+    // lane's create can put a directory there, so the lane must fall back to the checkout.
+    writeFileSync(fixture.worktreeBase, 'not-a-directory\n');
+    writeFileSync(
+      join(fixture.binDir, 'opencode'),
+      [
+        '#!/bin/sh',
+        `echo escaped > ${shellQuote(fixture.trackedPath)}`,
+        writeFanoutArtifactsShell(),
+        'echo "stub-done"',
+        'exit 0',
+        '',
+      ].join('\n'),
+      { mode: 0o755 },
+    );
+
+    const fanoutConfig = JSON.stringify({
+      executors: [{ label: 'contained', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', count: 1 }],
+      concurrency: 1,
+      containment: { mode: 'restore', worktrees: true },
+    });
+
+    const result = await spawnCjs(
+      fanoutRunScript,
+      [
+        '--spec-folder', fixture.specFolder,
+        '--loop-type', 'research',
+        '--fanout-config-json', fanoutConfig,
+        '--base-artifact-dir', fixture.baseDir,
+        '--no-metadata-refresh',
+      ],
+      { cwd: fixture.repoRoot, env: fixture.env, timeoutMs: 20_000 },
+    );
+
+    // The run completes, and the lane produced its artifacts where a lane without a tree
+    // always has.
+    expect(result.exitCode).toBe(0);
+    expect(existsSync(join(fixture.baseDir, 'lineages', 'contained', 'research.md'))).toBe(true);
+    // Restore was requested and the degradation is the only thing that stopped it: the bytes
+    // the stub wrote are still on disk instead of rolling back to the committed content.
+    expect(readFileSync(fixture.trackedPath, 'utf8')).toBe('escaped\n');
+
+    const ledgerEvents = fixture.readLedgerEvents();
+    expect(ledgerEvents.filter((event) => event.event === 'worktree_degraded')).toEqual([
+      expect.objectContaining({ label: 'contained', status: 'warning', severity: 'warning' }),
+    ]);
+    // The startup sweep met the same unusable base and reported it without failing the run.
+    expect(ledgerEvents.filter((event) => event.event === 'worktree_reclaim_failed')).toHaveLength(1);
   });
 });

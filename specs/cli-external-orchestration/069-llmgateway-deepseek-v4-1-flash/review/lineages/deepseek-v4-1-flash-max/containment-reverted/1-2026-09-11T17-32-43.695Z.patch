@@ -1,0 +1,79 @@
+diff --git a/repo-rules/delegation-and-orchestration.md b/repo-rules/delegation-and-orchestration.md
+index deb5550873..fefc69280a 100644
+--- a/repo-rules/delegation-and-orchestration.md
++++ b/repo-rules/delegation-and-orchestration.md
+@@ -24,7 +24,7 @@ trigger_phrases:
+   - "deep loop"
+ importance_tier: important
+ contextType: reference
+-version: 1.0.0.1
++version: 1.0.0.2
+ ---
+ 
+ # Rule: Delegation and orchestration
+@@ -151,7 +151,7 @@ opinion twice.
+ 
+ A delegate reporting `COMPLETE` has reported a claim about itself. See
+ [`evidence-and-proof.md`](evidence-and-proof.md) §7, a finding is a hypothesis until
+-something you ran confirms it. Three checks before you quote a return:
++something you ran confirms it. Four checks before you quote a return:
+ 
+ - **Does the citation resolve?** Open one of them. A fabricated `file:line` is the
+   cheapest thing to detect and the most expensive thing to propagate.
+@@ -172,14 +172,12 @@ what the failure revealed, or record the failure as the finding, a delegate that
+ not answer is evidence about the question. What you may not do is drop it, because the
+ next reader cannot tell an unasked question from an unanswerable one.
+ 
+-**Persist your side too.** The delegate's state is written down; yours usually is not.
+-Keep the brief you sent, the checks you ran on the return, and the verdict you reached,
+-in whatever artifact owns the work. A verified return with no record of the verification
+-is indistinguishable, later, from an unverified one.
++**Persist your side too.** The delegate's state is written down and yours usually is not.
++Keep the brief, the checks you ran and the verdict, in whatever artifact owns the work. A
++verified return with no record of the verification later reads as an unverified one.
+ 
+-**When two delegates disagree, do not average them.** Disagreement means the question was
+-underspecified or the evidence is genuinely thin. Find which, and say which, a tally is
+-not a finding.
++**When two delegates disagree, do not average them.** It means the question was
++underspecified or the evidence is thin. Find which, and say which. A tally is not a finding.
+ 
+ ---
+ 
+@@ -206,23 +204,19 @@ You also stay accountable for what the delegate did. "The sub-agent wrote it" is
+ defect report; it is the same sentence as "not my code", which
+ [`evidence-and-proof.md`](evidence-and-proof.md) already refuses.
+ 
+-**Do not commit what you did not read, and remember that staging by name is not enough.**
+-While a delegate is running, its edits sit in the same working tree as yours. `git add -A`
+-cannot tell them apart, so it is the obvious trap. The one that actually catches people is
+-quieter: **`git commit` commits the whole index, not the paths you just added.** A delegate
+-told to stage its own work as it goes, which is the right instruction, is staging into that
+-same index. Your next commit takes its files too, under a message about something else,
+-and the delegate reads the result as you having committed work it was told to leave alone.
+-
+-So name the paths at commit time, not only at add time: `git commit -- <paths>` or
+-`git commit --only <paths>`. Check `git diff --cached --name-only` first when a delegate is
+-live. Two catches worth knowing before they cost you a commit. A pathspec commit only sees
+-tracked changes, so a brand new file still needs its `git add` and silently contributes
+-nothing without one. And a pathspec built from `git diff --cached --name-only` is the whole
+-index dressed up as a list: it names every file every delegate has staged, and passing it to
+-`git commit` sweeps them all exactly as if you had passed nothing. Build the pathspec from the
+-paths you told the delegate to own, and filter the index against those, never the reverse. When a delegate's work does belong in your commit, read it first and say so in the
+-message.
++**Do not commit what you did not read, and staging by name is not enough.** A live
++delegate's edits sit in your working tree. `git add -A` is the obvious trap. The quieter
++one: **`git commit` commits the whole index, not the paths you just added.** A delegate
++staging its own work as it goes, which is the right instruction, stages into that same
++index, so your next commit takes its files under a message about something else.
++
++Name the paths at commit time, not only at add time: `git commit -- <paths>` or
++`git commit --only <paths>`. Two catches. A pathspec commit only sees tracked changes, so
++a new file still needs its `git add` and contributes nothing silently without one. And a
++pathspec built from `git diff --cached --name-only` is the whole index dressed as a list,
++so passing it sweeps everything exactly as passing nothing would. Build the pathspec from
++the paths you told the delegate to own, and filter the index against those, never the
++reverse. When a delegate's work does belong in your commit, read it first and say so.
+ 
+ ---
+ 

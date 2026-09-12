@@ -1,0 +1,1 @@
+obsidian backlinks\ file=Home 

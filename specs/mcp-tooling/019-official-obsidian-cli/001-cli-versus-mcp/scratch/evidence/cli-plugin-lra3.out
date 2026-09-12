@@ -1,0 +1,6 @@
+type	community
+name	Local REST API with MCP
+version	5.1.0
+author	Adam Coddington
+enabled	false
+description	A secure REST API and Model Context Protocol (MCP) server for your vault.

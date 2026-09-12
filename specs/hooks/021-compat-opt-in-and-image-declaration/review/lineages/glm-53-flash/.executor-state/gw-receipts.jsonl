@@ -1,0 +1,10 @@
+{"receipt":"evt-config-echo","variant":"base","exit":1}
+{"receipt":"evt-config-echo","variant":"mirror","exit":1}
+{"receipt":"evt-iteration","variant":"base","exit":1}
+{"receipt":"evt-iteration","variant":"mirror","exit":1}
+{"receipt":"evt-adjudication","variant":"base","exit":1}
+{"receipt":"evt-adjudication","variant":"mirror","exit":1}
+{"receipt":"evt-loopdecision","variant":"base","exit":1}
+{"receipt":"evt-loopdecision","variant":"mirror","exit":1}
+{"receipt":"evt-synthesis","variant":"base","exit":1}
+{"receipt":"evt-synthesis","variant":"mirror","exit":1}

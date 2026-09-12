@@ -1,0 +1,1270 @@
+diff --git a/.opencode/commands/deep/assets/deep-agent-improvement-presentation.txt b/.opencode/commands/deep/assets/deep-agent-improvement-presentation.txt
+index eeaabaf255..e427d628cd 100644
+--- a/.opencode/commands/deep/assets/deep-agent-improvement-presentation.txt
++++ b/.opencode/commands/deep/assets/deep-agent-improvement-presentation.txt
+@@ -341,6 +341,27 @@ Do **not** document or attempt journal replay, iteration carry-forward, or `resu
+ - Converged: `STATUS=OK REASON="converged"` (when all 5 legal-stop gates pass)
+ - Error: `STATUS=FAIL ERROR="{message}"`
+ 
++### What the completion message must carry
++
++A path and a count are not a report. The reader asked a question and the run answered it, so
++the answer belongs in the message and the artifact path belongs after it, for going deeper.
++Handing over only a path moves the work of reading the report onto the person who asked for it.
++
++**Carry:**
++- what changed in the candidate
++- the score delta against the baseline, not the absolute scores alone
++- the promote, keep-baseline or rollback call, and the evidence for it
++- then the artifact location
++
++**Leave out:** per-iteration narration, internal loop metrics, the full evidence chain, and
++anything the reader would skim past to reach the answer.
++
++Write it to the voice half of the human voice standard, the voice directives and the word and
++tell lists, not its document-structure sections. Concision, ordering and sentence shape are
++already owned by the repo's communication rules and are not respecified here.
++
++---
++
+ ### Example Output
+ 
+ ```
+diff --git a/.opencode/commands/deep/assets/deep-ai-council-presentation.txt b/.opencode/commands/deep/assets/deep-ai-council-presentation.txt
+index 1575ad71ac..bc32268fff 100644
+--- a/.opencode/commands/deep/assets/deep-ai-council-presentation.txt
++++ b/.opencode/commands/deep/assets/deep-ai-council-presentation.txt
+@@ -294,6 +294,29 @@ Deep council complete.
+ Topics: [N completed]/[N configured] | Rounds: [N total] | Stop reason: [converged|max_rounds|max_topics|cancelled]
+ Convergence: threshold=[0.20] semantic=adjudicator-verdict-stability
+ Artifacts: ai-council/session-report.md, ai-council/deep-ai-council-findings-registry.json, ai-council/topics/**
++### What the completion message must carry
++
++A path and a count are not a report. The reader asked a question and the run answered it, so
++the answer belongs in the message and the artifact path belongs after it, for going deeper.
++Handing over only a path moves the work of reading the report onto the person who asked for it.
++
++**Carry:**
++- the recommended direction and the reason for it
++- the level of agreement, and any dissent by name
++- the risk the dissenting seat raised
++- then the artifact paths
++
++Dissent must travel. A convergence figure reported without it reads as consensus.
++
++**Leave out:** per-iteration narration, internal loop metrics, the full evidence chain, and
++anything the reader would skim past to reach the answer.
++
++Write it to the voice half of the human voice standard, the voice directives and the word and
++tell lists, not its document-structure sections. Concision, ordering and sentence shape are
++already owned by the repo's communication rules and are not respecified here.
++
++---
++
+ Ready for: implementation planning or next packet phase
+ STATUS=OK PATH=[spec-folder-path]
+ ```
+diff --git a/.opencode/commands/deep/assets/deep-model-benchmark-presentation.txt b/.opencode/commands/deep/assets/deep-model-benchmark-presentation.txt
+index 717b5191d1..50a36fd017 100644
+--- a/.opencode/commands/deep/assets/deep-model-benchmark-presentation.txt
++++ b/.opencode/commands/deep/assets/deep-model-benchmark-presentation.txt
+@@ -328,6 +328,29 @@ Reviewer mismatch line in the Lane B report:
+ REVIEWER_BENCHMARK: fixture reviewer-stale-verdict expected FAIL, got PASS — rule not safe to promote
+ ```
+ 
++### What the completion message must carry
++
++A path and a count are not a report. The reader asked a question and the run answered it, so
++the answer belongs in the message and the artifact path belongs after it, for going deeper.
++Handing over only a path moves the work of reading the report onto the person who asked for it.
++
++**Carry:**
++- the aggregate against the required threshold
++- which fixtures failed, or the pass count when none did
++- the promotion-eligibility call
++- then the report path
++
++A measurement is not a recommendation. Report the score and the call it supports, separately.
++
++**Leave out:** per-iteration narration, internal loop metrics, the full evidence chain, and
++anything the reader would skim past to reach the answer.
++
++Write it to the voice half of the human voice standard, the voice directives and the word and
++tell lists, not its document-structure sections. Concision, ordering and sentence shape are
++already owned by the repo's communication rules and are not respecified here.
++
++---
++
+ ### Example Output
+ 
+ ```
+diff --git a/.opencode/commands/deep/assets/deep-research-presentation.txt b/.opencode/commands/deep/assets/deep-research-presentation.txt
+index de12c9154d..f57e9837fd 100644
+--- a/.opencode/commands/deep/assets/deep-research-presentation.txt
++++ b/.opencode/commands/deep/assets/deep-research-presentation.txt
+@@ -276,6 +276,28 @@ Ready for: /speckit:plan [feature-description]
+ STATUS=OK PATH=[spec-folder-path]
+ ```
+ 
++### What the completion message must carry
++
++A path and a count are not a report. The reader asked a question and the run answered it, so
++the answer belongs in the message and the artifact path belongs after it, for going deeper.
++Handing over only a path moves the work of reading the report onto the person who asked for it.
++
++**Carry:**
++- the answer to the research question, stated first
++- the two to five findings that carry it
++- the uncertainty that would change the answer
++- the direction ruled out, when ruling it out was the useful result
++- then the artifact path
++
++**Leave out:** per-iteration narration, internal loop metrics, the full evidence chain, and
++anything the reader would skim past to reach the answer.
++
++Write it to the voice half of the human voice standard, the voice directives and the word and
++tell lists, not its document-structure sections. Concision, ordering and sentence shape are
++already owned by the repo's communication rules and are not respecified here.
++
++---
++
+ **Failure:**
+ ```
+ Error: [error description]  Phase: [phase name]
+diff --git a/.opencode/commands/deep/assets/deep-review-presentation.txt b/.opencode/commands/deep/assets/deep-review-presentation.txt
+index fe891152fc..bcc11c903a 100644
+--- a/.opencode/commands/deep/assets/deep-review-presentation.txt
++++ b/.opencode/commands/deep/assets/deep-review-presentation.txt
+@@ -363,6 +363,28 @@ Ready for: /speckit:plan [remediation] (if FAIL/CONDITIONAL)
+ STATUS=OK PATH=[spec-folder-path]
+ ```
+ 
++### What the completion message must carry
++
++A path and a count are not a report. The reader asked a question and the run answered it, so
++the answer belongs in the message and the artifact path belongs after it, for going deeper.
++Handing over only a path moves the work of reading the report onto the person who asked for it.
++
++**Carry:**
++- the verdict, stated first
++- every P0 named, each with its `file:line`
++- the P1 findings summarised, not listed in full
++- which one to fix first
++- then the report path
++
++**Leave out:** per-iteration narration, internal loop metrics, the full evidence chain, and
++anything the reader would skim past to reach the answer.
++
++Write it to the voice half of the human voice standard, the voice directives and the word and
++tell lists, not its document-structure sections. Concision, ordering and sentence shape are
++already owned by the repo's communication rules and are not respecified here.
++
++---
++
+ ### Failure
+ 
+ ```
+diff --git a/.opencode/scripts/git-hooks/commit-msg b/.opencode/scripts/git-hooks/commit-msg
+index ad668e169a..e20dfb3db4 100755
+--- a/.opencode/scripts/git-hooks/commit-msg
++++ b/.opencode/scripts/git-hooks/commit-msg
+@@ -112,6 +112,30 @@ if (( SUBJECT_LENGTH > 100 )); then
+   ERRORS+=("Subject is ${SUBJECT_LENGTH} characters; maximum is 100.")
+ fi
+ 
++# Attribution lines never enter history. The two keys are refused wherever they
++# appear; a trailer that names the vendor is refused in any case. Prose that
++# merely mentions the vendor does not have the trailer shape, so it stays
++# allowed and its disposition is the operator's separate decision.
++ATTRIBUTION_LINE_RE='^(Co-Authored-By|Claude-Session):'
++TRAILER_SHAPE_RE='^[A-Za-z][A-Za-z0-9-]*:[[:space:]]+[^[:space:]]'
++if [[ -n "$BODY" ]]; then
++  while IFS= read -r line || [[ -n "$line" ]]; do
++    FORBIDDEN=0
++    if [[ "$line" =~ $ATTRIBUTION_LINE_RE ]]; then
++      FORBIDDEN=1
++    elif [[ "$line" =~ $TRAILER_SHAPE_RE ]]; then
++      shopt -s nocasematch
++      if [[ "$line" =~ anthropic ]]; then
++        FORBIDDEN=1
++      fi
++      shopt -u nocasematch
++    fi
++    if (( FORBIDDEN == 1 )); then
++      ERRORS+=("Attribution lines are forbidden: '$line'")
++    fi
++  done <<< "$BODY"
++fi
++
+ HAS_EXPLANATORY_BODY=0
+ HAS_BREAKING_FOOTER=0
+ # Machine trailers. Spec: and Commit-Id: get their own colon-only branch rather
+diff --git a/.opencode/scripts/git-hooks/prepare-commit-msg b/.opencode/scripts/git-hooks/prepare-commit-msg
+index 1fdcce0e29..4af7af8650 100755
+--- a/.opencode/scripts/git-hooks/prepare-commit-msg
++++ b/.opencode/scripts/git-hooks/prepare-commit-msg
+@@ -127,20 +127,68 @@ if (( REAL_END == 0 )); then
+   exit 0
+ fi
+ 
++# Attribution lines never belong in history. Removing them here means a runtime
++# that appends one cannot land it: the message is cleaned before the stamp runs.
++is_forbidden_attribution() { # is_forbidden_attribution <line>
++  local line="$1"
++
++  if [[ "$line" =~ ^(Co-Authored-By|Claude-Session): ]]; then
++    return 0
++  fi
++  if [[ "$line" =~ ^[A-Za-z][A-Za-z0-9-]*:[[:space:]]+[^[:space:]] ]]; then
++    shopt -s nocasematch
++    if [[ "$line" =~ anthropic ]]; then
++      shopt -u nocasematch
++      return 0
++    fi
++    shopt -u nocasematch
++  fi
++  return 1
++}
++
+ # Cherry-pick copies are re-addressed: drop every copied id from the real body.
+ REAL=()
+ REAL_COUNT=0
++STRIPPED=0
+ index=0
+ while (( index < REAL_END )); do
+   if (( CHERRY_PICK == 1 )) && [[ "${LINES[$index]}" = Commit-Id:* ]]; then
+     index=$((index + 1))
+     continue
+   fi
++  if is_forbidden_attribution "${LINES[$index]}"; then
++    STRIPPED=1
++    index=$((index + 1))
++    continue
++  fi
+   REAL[REAL_COUNT]="${LINES[$index]}"
+   REAL_COUNT=$((REAL_COUNT + 1))
+   index=$((index + 1))
+ done
+ 
++# Removing lines can leave blank runs behind; one blank still separates paragraphs.
++if (( STRIPPED == 1 )); then
++  keep=0
++  cursor=0
++  previous_blank=1
++  while (( cursor < REAL_COUNT )); do
++    line="${REAL[$cursor]}"
++    if [[ -z "${line//[[:space:]]/}" ]]; then
++      if (( previous_blank == 0 )); then
++        REAL[keep]="$line"
++        keep=$((keep + 1))
++        previous_blank=1
++      fi
++    else
++      REAL[keep]="$line"
++      keep=$((keep + 1))
++      previous_blank=0
++    fi
++    cursor=$((cursor + 1))
++  done
++  REAL_COUNT=$keep
++fi
++
+ # Dropping copied ids can expose blank lines that no longer separate anything.
+ while (( REAL_COUNT > 0 )); do
+   previous=$((REAL_COUNT - 1))
+@@ -151,6 +199,11 @@ while (( REAL_COUNT > 0 )); do
+   fi
+ done
+ 
++# A message the stripping emptied is left to git, which aborts it.
++if (( REAL_COUNT == 0 )); then
++  exit 0
++fi
++
+ # ───────────────────────────────────────────────────────────────
+ # 3. STAMPING DECISION
+ # ───────────────────────────────────────────────────────────────
+diff --git a/.opencode/scripts/git-hooks/tests/commit-msg.test.sh b/.opencode/scripts/git-hooks/tests/commit-msg.test.sh
+index 580a1f16df..2c3b6a5513 100755
+--- a/.opencode/scripts/git-hooks/tests/commit-msg.test.sh
++++ b/.opencode/scripts/git-hooks/tests/commit-msg.test.sh
+@@ -251,6 +251,52 @@ MSG
+ run_hook; RC=$?
+ check "prose quoting another id is not a collision" 0 "$RC"
+ 
++# ── 14. a Co-Authored-By line is refused ────────────────────────────────────
++setup_repo
++cat > "$TMP/message.txt" <<'MSG'
++feat(sk-git): add a thing
++
++This explains why the thing was added.
++
++Co-Authored-By: Claude <noreply@anthropic.com>
++MSG
++run_hook; RC=$?
++check "a Co-Authored-By line is blocked" 1 "$RC" "Co-Authored-By: Claude"
++
++# ── 15. a Claude-Session line is refused ────────────────────────────────────
++setup_repo
++cat > "$TMP/message.txt" <<'MSG'
++feat(sk-git): add a thing
++
++This explains why the thing was added.
++
++Claude-Session: https://claude.ai/session/abc
++MSG
++run_hook; RC=$?
++check "a Claude-Session line is blocked" 1 "$RC" "Claude-Session: https://claude.ai/session/abc"
++
++# ── 16. a vendor trailer is refused in any case ─────────────────────────────
++setup_repo
++cat > "$TMP/message.txt" <<'MSG'
++feat(sk-git): add a thing
++
++This explains why the thing was added.
++
++Tool: Anthropic Claude
++MSG
++run_hook; RC=$?
++check "a vendor trailer is blocked" 1 "$RC" "Tool: Anthropic Claude"
++
++# ── 17. a prose mention of the vendor is not a trailer and passes ───────────
++setup_repo
++cat > "$TMP/message.txt" <<'MSG'
++feat(sk-git): add a thing
++
++This explains why the Anthropic vendor handling changed.
++MSG
++run_hook; RC=$?
++check "a prose vendor mention passes" 0 "$RC"
++
+ echo ""
+ echo "PASS=$PASS FAIL=$FAIL"
+ [[ "$FAIL" -eq 0 ]]
+diff --git a/.opencode/scripts/git-hooks/tests/prepare-commit-msg.test.sh b/.opencode/scripts/git-hooks/tests/prepare-commit-msg.test.sh
+index dbb630f3b1..ffef76bc6b 100755
+--- a/.opencode/scripts/git-hooks/tests/prepare-commit-msg.test.sh
++++ b/.opencode/scripts/git-hooks/tests/prepare-commit-msg.test.sh
+@@ -315,6 +315,45 @@ check_same "allocator failure leaves the message untouched" "$TMP/before.txt" "$
+ check_absent "allocator failure stamps no id" '^Commit-Id:' "$TMP/message.txt"
+ check_count "allocator failure reports one line" 'allocator failed' 1 "$TMP/out.log"
+ 
++# ── 15. attribution lines are stripped before the block is stamped ──────────
++setup_repo
++cat > "$TMP/message.txt" <<'MSG'
++feat(sk-git): strip attribution before stamping
++
++This body explains the attribution case.
++
++Co-Authored-By: Claude <noreply@anthropic.com>
++Claude-Session: https://claude.ai/session/abc
++Tool: Anthropic Claude
++MSG
++run_hook message; RC=$?
++check_rc "attribution case exits 0" 0 "$RC"
++check_absent "Co-Authored-By is stripped" '^Co-Authored-By:' "$TMP/message.txt"
++check_absent "Claude-Session is stripped" '^Claude-Session:' "$TMP/message.txt"
++check_absent "a vendor trailer is stripped" '^Tool: Anthropic' "$TMP/message.txt"
++check_count "attribution case mints one id" '^Commit-Id: [0-9]{7}$' 1 "$TMP/message.txt"
++check_blank_before_id "the block stays separated after stripping" "$TMP/message.txt"
++cp "$TMP/message.txt" "$TMP/after-first-run.txt"
++run_hook message
++check_same "attribution stripping is idempotent" "$TMP/after-first-run.txt" "$TMP/message.txt"
++
++# ── 16. a middle attribution line is stripped and blank runs collapse ───────
++setup_repo
++cat > "$TMP/message.txt" <<'MSG'
++feat(sk-git): strip a middle attribution line
++
++First paragraph.
++
++Co-Authored-By: Someone <s@example.com>
++
++Second paragraph.
++MSG
++run_hook message; RC=$?
++check_rc "middle attribution case exits 0" 0 "$RC"
++check_absent "middle attribution line is stripped" '^Co-Authored-By:' "$TMP/message.txt"
++check_count "the blank run collapses to one" '^$' 3 "$TMP/message.txt"
++check_count "middle attribution case mints one id" '^Commit-Id: [0-9]{7}$' 1 "$TMP/message.txt"
++
+ echo ""
+ echo "PASS=$PASS FAIL=$FAIL"
+ [[ "$FAIL" -eq 0 ]]
+diff --git a/specs/sk-git/028-crawlable-commit-history/005-history-rewrite/scripts/rewrite-run.sh b/specs/sk-git/028-crawlable-commit-history/005-history-rewrite/scripts/rewrite-run.sh
+index f3da43edae..9e11503d4a 100755
+--- a/specs/sk-git/028-crawlable-commit-history/005-history-rewrite/scripts/rewrite-run.sh
++++ b/specs/sk-git/028-crawlable-commit-history/005-history-rewrite/scripts/rewrite-run.sh
+@@ -10,7 +10,8 @@
+ #
+ # Usage:
+ #   rewrite-run.sh --source <repo-or-url> --plan <plan.jsonl> --work <dir> \
+-#       [--refs main,skilled/v4.0.0.0] [--tags] [--rehearse]
++#       [--subject-plan <subject-plan.jsonl>] [--refs main,skilled/v4.0.0.0] \
++#       [--tags] [--rehearse]
+ #
+ # Output:
+ #   <work>/rewrite.log                timestamped step log and invariants
+@@ -24,19 +25,22 @@ set -euo pipefail
+ usage() {
+   cat >&2 <<'USAGE'
+ usage: rewrite-run.sh --source <repo-or-url> --plan <plan.jsonl> --work <dir>
++                      [--subject-plan <subject-plan.jsonl>]
+                       [--refs main,skilled/v4.0.0.0] [--tags] [--rehearse]
+ 
+-  --source   repository or URL to clone twice (backup and mirror)
+-  --plan     frozen JSONL plan of old SHA, ordinal and packet
+-  --work     scratch directory for the clones, maps and log
+-  --refs     comma-separated branch names to rewrite
+-  --tags     also rewrite every tag on the mirror
+-  --rehearse run everything and stop before printing push lines
++  --source        repository or URL to clone twice (backup and mirror)
++  --plan          frozen JSONL plan of old SHA, ordinal and packet
++  --subject-plan  frozen JSONL plan of old SHA and replacement subject
++  --work          scratch directory for the clones, maps and log
++  --refs          comma-separated branch names to rewrite
++  --tags          also rewrite every tag on the mirror
++  --rehearse      run everything and stop before printing push lines
+ USAGE
+ }
+ 
+ SOURCE=""
+ PLAN=""
++SUBJECT_PLAN=""
+ WORK=""
+ REFS="main,skilled/v4.0.0.0"
+ TAGS=0
+@@ -52,6 +56,10 @@ while [ $# -gt 0 ]; do
+       PLAN="${2:-}"
+       shift 2
+       ;;
++    --subject-plan)
++      SUBJECT_PLAN="${2:-}"
++      shift 2
++      ;;
+     --work)
+       WORK="${2:-}"
+       shift 2
+@@ -85,6 +93,9 @@ if [ -z "$SOURCE" ] || [ -z "$PLAN" ] || [ -z "$WORK" ]; then
+   exit 2
+ fi
+ [ -f "$PLAN" ] || { echo "error: plan '$PLAN' not found" >&2; exit 2; }
++if [ -n "$SUBJECT_PLAN" ]; then
++  [ -f "$SUBJECT_PLAN" ] || { echo "error: subject plan '$SUBJECT_PLAN' not found" >&2; exit 2; }
++fi
+ command -v git-filter-repo >/dev/null 2>&1 || { echo "error: git-filter-repo not on PATH" >&2; exit 2; }
+ 
+ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+@@ -106,7 +117,7 @@ die() {
+ 
+ # A source URL may carry a credential before the host; the log and the push lines never should.
+ SOURCE_SHOWN="$(printf '%s' "$SOURCE" | sed -E 's#(://)[^/@]+@#\1<redacted>@#')"
+-log "start: source=$SOURCE_SHOWN plan=$PLAN work=$WORK refs=$REFS tags=$TAGS rehearse=$REHEARSE"
++log "start: source=$SOURCE_SHOWN plan=$PLAN subject-plan=${SUBJECT_PLAN:-none} work=$WORK refs=$REFS tags=$TAGS rehearse=$REHEARSE"
+ 
+ # ───────────────────────────────────────────────────────────────
+ # 1. CLONES AND TIPS
+@@ -266,12 +277,18 @@ set -e
+ script_repr="$(python3 -c 'import sys; print(repr(sys.argv[1]))' "$STAMP_SCRIPT")"
+ plan_repr="$(python3 -c 'import sys; print(repr(sys.argv[1]))' "$PLAN")"
+ map1_repr="$(python3 -c 'import sys; print(repr(sys.argv[1]))' "$WORK/commit-map-1")"
++if [ -n "$SUBJECT_PLAN" ]; then
++  subject_repr="$(python3 -c 'import sys; print(repr(sys.argv[1]))' "$SUBJECT_PLAN")"
++else
++  subject_repr="None"
++fi
+ 
+ cat > "$WORK/pass1_callback.py" <<PY
+ import importlib.util
+ 
+ SCRIPT = ${script_repr}
+ PLAN = ${plan_repr}
++SUBJECT_PLAN = ${subject_repr}
+ 
+ 
+ def _load():
+@@ -283,15 +300,21 @@ def _load():
+ 
+ _MODULE = _load()
+ _PLAN = _MODULE.load_plan(PLAN)
++_SUBJECT_PLAN = _MODULE.load_plan(SUBJECT_PLAN) if SUBJECT_PLAN else {}
++
++
++def _planned_subject(original_id):
++    row = _SUBJECT_PLAN.get(original_id)
++    return None if row is None else row.get("subject_new")
+ 
+ 
+ def stamp(commit):
+     row = _PLAN.get(commit.original_id)
+     if row is not None:
+-        commit.message = _MODULE.stamp_message(commit.message, row)
++        commit.message = _MODULE.stamp_message(commit.message, row, _planned_subject(commit.original_id))
+ PY
+ 
+-log "pass 1: stamp Spec and Commit-Id trailers on the mirror"
++log "pass 1: stamp the planned subjects and Spec and Commit-Id trailers on the mirror"
+ set +e
+ (
+   cd "$MIRROR"
+@@ -378,16 +401,30 @@ log "pass 2: copied cumulative commit map to $WORK/commit-map"
+ 
+ log "running invariants"
+ set +e
+-python3 - "$MIRROR" "$BACKUP" "$PLAN" "$WORK/commit-map" "$REFSPEC_CSV" <<'PY' | tee -a "$LOG"
++python3 - "$MIRROR" "$BACKUP" "$PLAN" "$WORK/commit-map" "$REFSPEC_CSV" "$SUBJECT_PLAN" <<'PY' | tee -a "$LOG"
+ import json
+ import re
+ import subprocess
+ import sys
+ 
+-mirror, backup, plan_path, map_path, refspec = sys.argv[1:6]
++mirror, backup, plan_path, map_path, refspec, subject_plan_path = sys.argv[1:7]
+ refs = [ref for ref in refspec.split(",") if ref]
+ ZERO = "0" * 40
+ HEX = re.compile(rb"(?<![0-9a-zA-Z])[0-9a-f]{10,40}(?![0-9a-zA-Z])")
++GRAMMAR = re.compile(
++    r"^(build|chore|ci|docs|feat|fix|merge|perf|refactor|release|revert|style|test)"
++    r"\(([a-z0-9]+(-[a-z0-9]+)*)\)(!)?: (.+)$"
++)
++TRAILING_PUNCTUATION = re.compile(r"[.!?;:,]$")
++VAGUE_SUMMARIES = frozenset(
++    {"change files", "changes", "checkpoint", "cleanup", "fix", "fix bug", "misc",
++     "misc changes", "miscellaneous changes", "stuff", "update", "update files",
++     "update stuff", "various changes", "work in progress", "wip"}
++)
++EXEMPT_PREFIXES = ("Merge ", 'Revert "', "fixup! ", "squash! ", "amend! ")
++ATTRIBUTION_FLAG = re.compile(rb"^(Co-Authored-By|Claude-Session):")
++TRAILER_SHAPE = re.compile(rb"^[A-Za-z][A-Za-z0-9-]*:[ \t]+\S")
++VENDOR_NAME = re.compile(rb"(?i)anthropic")
+ 
+ results = []
+ 
+@@ -400,6 +437,10 @@ def report(label, ok, detail=""):
+     print(line)
+ 
+ 
++def example_suffix(items):
++    return " e.g. %s" % items[0] if items else ""
++
++
+ def git(repo, *args):
+     return subprocess.run(["git", "-C", repo, *args], capture_output=True)
+ 
+@@ -438,6 +479,52 @@ def load_messages(repo, refs_):
+     return table
+ 
+ 
++def subject_faults(subject):
++    """Return the reasons a subject fails the commit-msg grammar."""
++    match = GRAMMAR.match(subject)
++    if match is None:
++        return ["grammar"]
++    faults = []
++    summary = match.group(5)
++    if match.group(2).isdigit():
++        faults.append("numeric scope")
++    if summary[0] not in "abcdefghijklmnopqrstuvwxyz":
++        faults.append("lowercase verb")
++    if "  " in summary:
++        faults.append("repeated spaces")
++    if TRAILING_PUNCTUATION.search(summary):
++        faults.append("trailing punctuation")
++    if summary in VAGUE_SUMMARIES:
++        faults.append("vague summary")
++    if len(subject) > 100:
++        faults.append("length")
++    return faults
++
++
++def forbidden_attribution(message):
++    """Return the attribution lines a message still carries."""
++    found = []
++    for line in message.split(b"\n"):
++        body = line[:-1] if line.endswith(b"\r") else line
++        if ATTRIBUTION_FLAG.match(body):
++            found.append(body)
++        elif TRAILER_SHAPE.match(body) and VENDOR_NAME.search(body):
++            found.append(body)
++    return found
++
++
++def planned_packets(row):
++    """Return the ordered packets the stamper was told to emit."""
++    packets = []
++    spec = row.get("spec")
++    if spec:
++        packets.append(str(spec))
++    for candidate in row.get("candidates") or []:
++        if str(candidate) not in packets:
++            packets.append(str(candidate))
++    return packets
++
++
+ plan = {}
+ with open(plan_path, "r", encoding="utf-8") as handle:
+     for line in handle:
+@@ -446,6 +533,15 @@ with open(plan_path, "r", encoding="utf-8") as handle:
+             row = json.loads(stripped)
+             plan[row["old"]] = row
+ 
++subjects = {}
++if subject_plan_path:
++    with open(subject_plan_path, "r", encoding="utf-8") as handle:
++        for line in handle:
++            stripped = line.strip()
++            if stripped:
++                row = json.loads(stripped)
++                subjects[row["old"]] = row
++
+ pairs = {}
+ with open(map_path, "r", encoding="utf-8") as handle:
+     map_lines = handle.read().splitlines()
+@@ -493,6 +589,7 @@ except Exception as exc:
+ 
+ # 3. one Commit-Id per message, equal to the plan ordinal
+ messages = {}
++old_of_new = {}
+ try:
+     messages = load_messages(mirror, refs)
+     old_of_new = {new: old for old, new in pairs.items() if new != ZERO}
+@@ -554,6 +651,72 @@ try:
+ except Exception as exc:
+     report("no old 10-hex prefix remains in messages", False, str(exc))
+ 
++# 7. no forbidden attribution line remains
++try:
++    if not messages:
++        raise RuntimeError("no commit messages were loaded")
++    residue = [
++        line.decode("utf-8", "replace")
++        for body in messages.values()
++        for line in forbidden_attribution(body)
++    ]
++    report("zero forbidden attribution lines remain in messages", not residue,
++           "residue=%d%s" % (len(residue), example_suffix(residue)))
++except Exception as exc:
++    report("zero forbidden attribution lines remain in messages", False, str(exc))
++
++# 8. every non-exempt subject passes the commit-msg grammar
++try:
++    if not messages:
++        raise RuntimeError("no commit messages were loaded")
++    checked = 0
++    exempt = 0
++    bad = []
++    for ref in refs:
++        for sha in rev_list(mirror, ref):
++            subject = messages.get(sha, b"").split(b"\n", 1)[0].decode("utf-8", "replace")
++            if subject.startswith(EXEMPT_PREFIXES):
++                exempt += 1
++                continue
++            old = old_of_new.get(sha)
++            planned = subjects.get(old) if old is not None else None
++            if planned is not None and planned.get("subject_new") is None:
++                continue
++            checked += 1
++            faults = subject_faults(subject)
++            if faults:
++                bad.append("%s (%s)" % (subject, ",".join(faults)))
++    report("every non-exempt subject passes the commit-msg grammar", not bad,
++           "checked=%d exempt=%d bad=%d%s" % (checked, exempt, len(bad), example_suffix(bad)))
++except Exception as exc:
++    report("every non-exempt subject passes the commit-msg grammar", False, str(exc))
++
++# 9. one Spec line per planned packet, dominant first
++try:
++    if not messages:
++        raise RuntimeError("no commit messages were loaded")
++    checked = 0
++    bad = []
++    for ref in refs:
++        for sha in rev_list(mirror, ref):
++            old = old_of_new.get(sha)
++            if old is None or old not in plan:
++                bad.append("%s has no plan row" % sha[:7])
++                continue
++            checked += 1
++            expected = planned_packets(plan[old])
++            found = [
++                line[len(b"Spec: "):].rstrip(b"\r").decode("utf-8", "replace")
++                for line in messages.get(sha, b"").split(b"\n")
++                if line.startswith(b"Spec: ")
++            ]
++            if found != expected:
++                bad.append("%s expected %s found %s" % (sha[:7], expected, found))
++    report("every commit's Spec lines match its planned packets, dominant first",
++           not bad, "checked=%d bad=%d%s" % (checked, len(bad), example_suffix(bad)))
++except Exception as exc:
++    report("every commit's Spec lines match its planned packets, dominant first", False, str(exc))
++
+ print("INVARIANTS: %s" % ("PASS" if all(results) else "FAIL"))
+ sys.exit(0 if all(results) else 1)
+ PY
+diff --git a/specs/sk-git/028-crawlable-commit-history/005-history-rewrite/scripts/stamp-callback.py b/specs/sk-git/028-crawlable-commit-history/005-history-rewrite/scripts/stamp-callback.py
+index 9fe0931d18..13785f2e1c 100755
+--- a/specs/sk-git/028-crawlable-commit-history/005-history-rewrite/scripts/stamp-callback.py
++++ b/specs/sk-git/028-crawlable-commit-history/005-history-rewrite/scripts/stamp-callback.py
+@@ -6,10 +6,12 @@
+ Stamp the machine trailer paragraph onto rewritten commit messages.
+ 
+ The history rewrite needs every commit to end with the same trailer
+-paragraph a fresh commit gets: a ``Spec:`` line when the frozen plan
+-found a packet and a ``Commit-Id:`` line always.  This module owns that
+-message shape plus the second-pass citation remap, and it stays free of
+-git calls so both callbacks can import it inside ``git filter-repo``.
++paragraph a fresh commit gets: one ``Spec:`` line per packet the frozen
++plan found, the dominant packet first, and a ``Commit-Id:`` line always.
++It also replaces a subject from the subject plan and drops attribution
++lines that must not enter history.  This module owns that message shape
++plus the second-pass citation remap, and it stays free of git calls so
++both callbacks can import it inside ``git filter-repo``.
+ 
+ The trailer paragraph joins the message's existing final paragraph when
+ that paragraph is already a run of ``Token: value`` lines, so git's
+@@ -40,6 +42,10 @@ SPEC_LINE = re.compile(rb"^Spec:")
+ COMMIT_ID_LINE = re.compile(rb"^Commit-Id:")
+ # A line git's trailer parser recognizes as ``Token: value``.
+ TRAILER_LINE = re.compile(rb"^([A-Za-z][A-Za-z0-9-]*):[ \t]+\S.*$")
++# Attribution keys that never enter history, matched on a byte line.
++ATTRIBUTION_LINE = re.compile(rb"^(Co-Authored-By|Claude-Session):")
++# A trailer line naming the vendor, in any case; a prose mention stays.
++ATTRIBUTION_VENDOR = re.compile(rb"(?i)anthropic")
+ # Legacy messages end in a paragraph such as ``chore: align skill docs``: the shape of a
+ # trailer, the meaning of a subject. Treating it as a trailer block would bury the keys
+ # above prose, where git's parser no longer sees them.
+@@ -101,6 +107,17 @@ def _is_trailer_line(body: bytes) -> bool:
+     return match is not None and match.group(1).lower() not in PROSE_TOKENS
+ 
+ 
++def _is_attribution_line(body: bytes) -> bool:
++    """Return True for a line that must not survive into history.
++
++    The key rule is unconditional; the vendor rule needs the trailer
++    shape, so ordinary prose that names the vendor is not touched.
++    """
++    if ATTRIBUTION_LINE.match(body):
++        return True
++    return TRAILER_LINE.match(body) is not None and ATTRIBUTION_VENDOR.search(body) is not None
++
++
+ def _is_trailer_block(lines: List[bytes]) -> Optional[int]:
+     """Return the start of a final all-trailer paragraph, or None.
+ 
+@@ -118,20 +135,68 @@ def _is_trailer_block(lines: List[bytes]) -> Optional[int]:
+     return start
+ 
+ 
+-def stamp_message(message: bytes, row: dict) -> bytes:
+-    """Return message with the plan's Spec and Commit-Id trailers.
++def spec_lines(row: dict) -> List[bytes]:
++    """Return the ordered, deduplicated ``Spec:`` lines the plan asks for.
++
++    The dominant packet leads; a candidate it already named is not
++    repeated.  A packet the plan resolved from a Refs: line stays even
++    when no touched file belongs to it, because the stamp replaces that
++    Refs: line.
++    """
++    packets: List[str] = []
++    spec = row.get("spec")
++    if spec:
++        packets.append(str(spec))
++    for candidate in row.get("candidates") or []:
++        if str(candidate) not in packets:
++            packets.append(str(candidate))
++    return [b"Spec: " + packet.encode("utf-8") for packet in packets]
++
++
++def _replace_subject(message: bytes, subject_new: str) -> bytes:
++    """Return message with its first line replaced by subject_new."""
++    encoded = subject_new.encode("utf-8")
++    _, separator, rest = message.partition(b"\n")
++    if not separator:
++        return encoded
++    return encoded + b"\n" + rest
++
++
++def _collapse_blanks(lines: List[bytes]) -> List[bytes]:
++    """Return lines with each run of blank lines reduced to one."""
++    collapsed: List[bytes] = []
++    for line in lines:
++        if line.strip() == b"" and collapsed and collapsed[-1].strip() == b"":
++            continue
++        collapsed.append(line)
++    return collapsed
++
++
++def stamp_message(message: bytes, row: dict, subject_new: Optional[str] = None) -> bytes:
++    """Return message with the plan's subject and machine trailers.
+ 
+-    The plan's packet replaces a Refs: line that names the same packet
+-    and leaves a Refs: line that names another one alone.  Existing
++    A non-null subject_new replaces the subject line.  The plan's
++    packets become one Spec: line each, dominant first, and the plan's
++    packet replaces a Refs: line that names the same packet while a
++    Refs: line that names another one stays.  Attribution lines are
++    dropped wherever they sit and blank runs they leave behind are
++    collapsed, so the trailer paragraph stays contiguous.  Existing
+     Spec: and Commit-Id: lines are replaced, so a second stamp is
+     idempotent.
+     """
++    if subject_new is not None:
++        message = _replace_subject(message, subject_new)
++
+     spec = row.get("spec")
+     ordinal = str(row["ordinal"])
+ 
+     kept: List[bytes] = []
++    dropped = False
+     for line in message.split(b"\n"):
+         body = _line_body(line)
++        if _is_attribution_line(body):
++            dropped = True
++            continue
+         ref_match = REFS_LINE.match(body)
+         if ref_match is not None and spec is not None and _names_same_packet(ref_match.group(1), spec):
+             continue
+@@ -141,12 +206,12 @@ def stamp_message(message: bytes, row: dict) -> bytes:
+ 
+     while kept and kept[-1].strip() == b"":
+         kept.pop()
++    if dropped:
++        kept = _collapse_blanks(kept)
+     if kept:
+         kept[-1] = kept[-1].rstrip()
+ 
+-    keys: List[bytes] = []
+-    if spec:
+-        keys.append(b"Spec: " + str(spec).encode("utf-8"))
++    keys: List[bytes] = spec_lines(row)
+     keys.append(b"Commit-Id: " + ordinal.encode("ascii"))
+ 
+     start = _is_trailer_block(kept)
+diff --git a/specs/sk-git/028-crawlable-commit-history/005-history-rewrite/scripts/tests/test_stamp_callback.py b/specs/sk-git/028-crawlable-commit-history/005-history-rewrite/scripts/tests/test_stamp_callback.py
+index 9a603c21de..7a4c8f8f99 100644
+--- a/specs/sk-git/028-crawlable-commit-history/005-history-rewrite/scripts/tests/test_stamp_callback.py
++++ b/specs/sk-git/028-crawlable-commit-history/005-history-rewrite/scripts/tests/test_stamp_callback.py
+@@ -6,12 +6,14 @@
+ Tests for the commit message stamper, citation remapper and runner.
+ 
+ The unit tests pin the trailer shape: a plain body, a body that ends
+-in a Co-Authored-By block, a Refs: line that the plan supersedes and
+-one that must survive, a message with no packet, and a second stamp
+-that changes nothing.  The remap tests pin 10-hex, 40-hex and decoy
+-tokens.  One integration test builds a throwaway five-commit repo with
+-a tag, writes a plan, rehearses the rewrite and checks the invariants
+-and the stamped ordinals on the rewritten mirror.
++in a trailer block, a Refs: line that the plan supersedes and one that
++must survive, a message with no packet, a second stamp that changes
++nothing, subjects replaced from the subject plan and attribution lines
++dropped wherever they sit.  The remap tests pin 10-hex, 40-hex and
++decoy tokens.  One integration test builds a throwaway six-commit repo
++with a merge, a tag and attribution trailers, writes both plans,
++rehearses the rewrite and checks the invariants and the stamped
++ordinals on the rewritten mirror.
+ 
+ Usage: python3 -m unittest test_stamp_callback.py
+ """
+@@ -23,7 +25,7 @@ import subprocess
+ import tempfile
+ import unittest
+ from pathlib import Path
+-from typing import Dict, List
++from typing import Dict, List, Optional, Tuple
+ 
+ SCRIPT_DIR = Path(__file__).resolve().parents[1]
+ STAMP_PATH = SCRIPT_DIR / "stamp-callback.py"
+@@ -41,8 +43,42 @@ def _load_stamp_module():
+ STAMP = _load_stamp_module()
+ 
+ PACKET = "sk-git/028-x"
+-ROW = {"old": "a" * 40, "ordinal": "0000001", "spec": PACKET, "rule": "refs", "tie": False}
+-ROW_NO_PACKET = {"old": "a" * 40, "ordinal": "0000002", "spec": None, "rule": "none", "tie": False}
++EARLIER_PACKET = "sk-git/027-a"
++LATER_PACKET = "sk-git/029-y"
++REFS_PACKET = "hooks/019-r"
++TOUCHED_PACKET = "hooks/016-t"
++ROW = {
++    "old": "a" * 40,
++    "ordinal": "0000001",
++    "spec": PACKET,
++    "rule": "refs",
++    "tie": False,
++    "candidates": [PACKET],
++}
++ROW_NO_PACKET = {
++    "old": "a" * 40,
++    "ordinal": "0000002",
++    "spec": None,
++    "rule": "none",
++    "tie": False,
++    "candidates": [],
++}
++ROW_MULTI = {
++    "old": "a" * 40,
++    "ordinal": "0000003",
++    "spec": PACKET,
++    "rule": "dominant-touch",
++    "tie": False,
++    "candidates": [EARLIER_PACKET, PACKET, LATER_PACKET],
++}
++ROW_REFS_OUTSIDE = {
++    "old": "a" * 40,
++    "ordinal": "0000004",
++    "spec": REFS_PACKET,
++    "rule": "refs",
++    "tie": False,
++    "candidates": [TOUCHED_PACKET],
++}
+ 
+ OLD_FULL = "35e05b0e4bf6e0050bd65da49bc635d13498a43c"
+ NEW_FULL = "a99e9eb2aca84aff93b110948e7d29e886904d7f"
+@@ -62,11 +98,11 @@ class StampMessageTest(unittest.TestCase):
+         expected = b"Subject line\n\nBody text here.\n\nSpec: sk-git/028-x\nCommit-Id: 0000001\n"
+         self.assertEqual(STAMP.stamp_message(message, ROW), expected)
+ 
+-    def test_body_ending_in_coauthor_block_joins_that_paragraph(self) -> None:
+-        message = b"Subject\n\nBody\n\nCo-Authored-By: A <a@b.c>\nClaude-Session: xyz\n"
++    def test_body_ending_in_a_trailer_block_joins_that_paragraph(self) -> None:
++        message = b"Subject\n\nBody\n\nTested-by: A <a@b.c>\nReviewed-by: B <b@c.d>\n"
+         expected = (
+             b"Subject\n\nBody\n\nSpec: sk-git/028-x\nCommit-Id: 0000001\n"
+-            b"Co-Authored-By: A <a@b.c>\nClaude-Session: xyz\n"
++            b"Tested-by: A <a@b.c>\nReviewed-by: B <b@c.d>\n"
+         )
+         self.assertEqual(STAMP.stamp_message(message, ROW), expected)
+ 
+@@ -104,6 +140,7 @@ class StampMessageTest(unittest.TestCase):
+             b"Subject\n\nBody\n",
+             b"Subject\n\nBody\n\nCo-Authored-By: A <a@b.c>\nClaude-Session: xyz\n",
+             b"Subject\n\nBody\n\nRefs: specs/sk-git/028-x\n",
++            b"Subject\n\nBody\n\nTested-by: A <a@b.c>\n",
+         ):
+             once = STAMP.stamp_message(message, ROW)
+             self.assertEqual(STAMP.stamp_message(once, ROW), once, message)
+@@ -116,6 +153,73 @@ class StampMessageTest(unittest.TestCase):
+         self.assertIn(b"a" * 40, plan)
+         self.assertEqual(plan[b"a" * 40]["ordinal"], "0000001")
+ 
++    def test_subject_from_the_plan_replaces_the_subject_line(self) -> None:
++        message = b"chore: old subject\n\nBody text.\n"
++        stamped = STAMP.stamp_message(message, ROW, "feat(sk-git): carry the planned subject")
++        expected = (
++            b"feat(sk-git): carry the planned subject\n\nBody text.\n\n"
++            b"Spec: sk-git/028-x\nCommit-Id: 0000001\n"
++        )
++        self.assertEqual(stamped, expected)
++
++    def test_subject_stays_when_the_plan_subject_is_null(self) -> None:
++        message = b"chore: old subject\n\nBody text.\n"
++        self.assertEqual(
++            STAMP.stamp_message(message, ROW, None),
++            STAMP.stamp_message(message, ROW),
++        )
++        self.assertTrue(STAMP.stamp_message(message, ROW, None).startswith(b"chore: old subject\n"))
++
++    def test_every_candidate_gets_a_spec_line_dominant_first(self) -> None:
++        message = b"Subject\n\nBody\n"
++        stamped = STAMP.stamp_message(message, ROW_MULTI)
++        expected = (
++            b"Subject\n\nBody\n\n"
++            b"Spec: sk-git/028-x\n"
++            b"Spec: sk-git/027-a\n"
++            b"Spec: sk-git/029-y\n"
++            b"Commit-Id: 0000003\n"
++        )
++        self.assertEqual(stamped, expected)
++
++    def test_refs_packet_outside_the_candidates_keeps_its_spec_line(self) -> None:
++        message = b"Subject\n\nBody\n\nRefs: specs/hooks/019-r\n"
++        stamped = STAMP.stamp_message(message, ROW_REFS_OUTSIDE)
++        expected = (
++            b"Subject\n\nBody\n\n"
++            b"Spec: hooks/019-r\n"
++            b"Spec: hooks/016-t\n"
++            b"Commit-Id: 0000004\n"
++        )
++        self.assertEqual(stamped, expected)
++
++    def test_attribution_lines_are_stripped_from_middle_and_end(self) -> None:
++        message = (
++            b"Subject\n\nBody\n\n"
++            b"Co-Authored-By: A <a@b.c>\n\n"
++            b"More body\n\n"
++            b"Co-Authored-By: B <b@c.d>\nClaude-Session: xyz\n"
++        )
++        expected = b"Subject\n\nBody\n\nMore body\n\nSpec: sk-git/028-x\nCommit-Id: 0000001\n"
++        self.assertEqual(STAMP.stamp_message(message, ROW), expected)
++
++    def test_vendor_trailer_is_stripped_in_any_case(self) -> None:
++        message = b"Subject\n\nBody\n\nTool: Anthropic Claude\ntool: anthropic cli\n"
++        expected = b"Subject\n\nBody\n\nSpec: sk-git/028-x\nCommit-Id: 0000001\n"
++        self.assertEqual(STAMP.stamp_message(message, ROW), expected)
++
++    def test_prose_mentioning_the_vendor_stays(self) -> None:
++        message = b"Subject\n\nThe Anthropic vendor handling changed here.\n"
++        stamped = STAMP.stamp_message(message, ROW)
++        self.assertIn(b"The Anthropic vendor handling changed here.", stamped)
++
++    def test_spec_lines_keep_the_plan_order_after_the_dominant_packet(self) -> None:
++        lines = STAMP.spec_lines(ROW_MULTI)
++        self.assertEqual(
++            lines,
++            [b"Spec: sk-git/028-x", b"Spec: sk-git/027-a", b"Spec: sk-git/029-y"],
++        )
++
+ 
+ class RemapMessageTest(unittest.TestCase):
+     """Unit tests over the second-pass citation remap."""
+@@ -146,8 +250,24 @@ class RemapMessageTest(unittest.TestCase):
+ class RehearsalIntegrationTest(unittest.TestCase):
+     """Builds a throwaway repo and rehearses the full rewrite."""
+ 
++    def _commit(self, seed: Path, subject: str, filename: str = "file.txt") -> None:
++        """Commit one file change with an attribution trailer block."""
++        with (seed / filename).open("a", encoding="utf-8") as handle:
++            handle.write("%s\n" % subject)
++        _git(seed, "add", "-A")
++        message = (
++            "%s\n\nBody for %s.\n\n"
++            "Co-Authored-By: Claude <noreply@anthropic.com>\n"
++            "Claude-Session: https://claude.ai/session/%s\n"
++            % (subject, subject, subject.replace(" ", "-"))
++        )
++        message_path = seed / "message.txt"
++        message_path.write_text(message, encoding="utf-8")
++        _git(seed, "commit", "-q", "-F", str(message_path))
++        message_path.unlink()
++
+     def _build_seed(self, root: Path) -> Path:
+-        """Create a five-commit repo with a tag and hooks disabled."""
++        """Create a six-commit repo with a merge, attributions and a tag."""
+         seed = root / "seed"
+         seed.mkdir()
+         no_hooks = root / "no-hooks"
+@@ -157,42 +277,101 @@ class RehearsalIntegrationTest(unittest.TestCase):
+         _git(seed, "config", "user.email", "stamp@example.test")
+         _git(seed, "config", "commit.gpgsign", "false")
+         _git(seed, "config", "core.hooksPath", str(no_hooks))
+-        for index in range(1, 6):
+-            with (seed / "file.txt").open("a", encoding="utf-8") as handle:
+-                handle.write("line %d\n" % index)
+-            _git(seed, "add", "-A")
+-            _git(seed, "commit", "-q", "-m", "commit number %d" % index)
++        for index in range(1, 4):
++            self._commit(seed, "commit number %d" % index)
++        main = _git(seed, "rev-parse", "--abbrev-ref", "HEAD").strip()
++        _git(seed, "checkout", "-q", "-b", "side")
++        self._commit(seed, "side commit", "side.txt")
++        _git(seed, "checkout", "-q", main)
++        _git(seed, "merge", "--no-ff", "-q", "-m", "Merge branch 'side'", "side")
++        self._commit(seed, "commit number 5")
+         _git(seed, "tag", "-a", "v1.0", "-m", "release one")
+         return seed
+ 
++    def _subjects_by_sha(self, seed: Path) -> Dict[str, str]:
++        """Return every commit subject keyed by its full SHA."""
++        table = {}
++        for sha in _git(seed, "rev-list", "--reverse", "--topo-order", "HEAD").split():
++            table[sha] = _git(seed, "log", "-1", "--format=%s", sha).strip()
++        return table
++
+     def _write_plan(self, seed: Path, plan_path: Path) -> List[str]:
+-        """Write one plan row per commit in topological order."""
++        """Write one plan row per commit, with candidates per subject."""
+         shas = _git(seed, "rev-list", "--reverse", "--topo-order", "HEAD").split()
++        subjects = self._subjects_by_sha(seed)
++        by_subject = {
++            "commit number 1": (None, []),
++            "commit number 2": (PACKET, [EARLIER_PACKET, PACKET, LATER_PACKET]),
++            "commit number 3": (REFS_PACKET, [TOUCHED_PACKET]),
++            "side commit": (None, []),
++            "Merge branch 'side'": (None, []),
++            "commit number 5": (PACKET, [PACKET]),
++        }
+         with plan_path.open("w", encoding="utf-8") as handle:
+             for index, sha in enumerate(shas, start=1):
++                spec, candidates = by_subject[subjects[sha]]
+                 row = {
+                     "old": sha,
+                     "ordinal": "%07d" % index,
+-                    "spec": PACKET if index == 2 else None,
++                    "spec": spec,
+                     "rule": "refs",
+                     "tie": False,
++                    "candidates": candidates,
+                 }
+                 handle.write(json.dumps(row) + "\n")
+         return shas
+ 
+-    def test_rehearsal_stamps_five_commits_and_keeps_the_tag(self) -> None:
+-        root = Path(tempfile.mkdtemp(prefix="stamp-callback-", dir="/tmp"))
+-        self.addCleanup(shutil.rmtree, root, ignore_errors=True)
+-        seed = self._build_seed(root)
+-        branch = _git(seed, "rev-parse", "--abbrev-ref", "HEAD").strip()
+-        plan_path = root / "plan.jsonl"
+-        self._write_plan(seed, plan_path)
+-        work = root / "work"
++    def _write_subject_plan(self, seed: Path, subject_plan_path: Path) -> None:
++        """Write one subject plan row per commit; one row stays a residual."""
++        shas = _git(seed, "rev-list", "--reverse", "--topo-order", "HEAD").split()
++        subjects = self._subjects_by_sha(seed)
++        replacements = {
++            "commit number 1": "chore(test-fixture): replace the first fixture subject",
++            "commit number 2": "feat(test-fixture): add the second fixture subject",
++            "commit number 3": "docs(test-fixture): describe the third fixture subject",
++            "commit number 5": "fix(test-fixture): correct the fifth fixture subject",
++        }
++        with subject_plan_path.open("w", encoding="utf-8") as handle:
++            for sha in shas:
++                subject = subjects[sha]
++                if subject == "side commit":
++                    row = self._subject_row(sha, subject, None, ["R4"], True, "the rules cannot decide this subject")
++                elif subject.startswith("Merge "):
++                    row = self._subject_row(sha, subject, subject, ["R1"], False, None)
++                else:
++                    row = self._subject_row(
++                        sha, subject, replacements[subject], ["R2", "R3"], False, None
++                    )
++                handle.write(json.dumps(row) + "\n")
+ 
++    def _subject_row(
++        self,
++        sha: str,
++        subject_old: str,
++        subject_new: Optional[str],
++        rules: List[str],
++        residual: bool,
++        reason: Optional[str],
++    ) -> Dict[str, object]:
++        """Assemble one subject plan row."""
++        return {
++            "old": sha,
++            "subject_old": subject_old,
++            "subject_new": subject_new,
++            "rules": rules,
++            "residual": residual,
++            "reason": reason,
++        }
++
++    def _rehearse(
++        self, seed: Path, plan_path: Path, subject_plan_path: Path, work: Path
++    ) -> subprocess.CompletedProcess:
++        """Run the real runner in rehearsal mode against the fixture."""
+         env = dict(os.environ)
+         env["SPECKIT_SKIP_COMMIT_MSG_VALIDATE"] = "1"
+         env["SPECKIT_SKIP_PREPARE_COMMIT_MSG"] = "1"
+-        completed = subprocess.run(
++        branch = _git(seed, "rev-parse", "--abbrev-ref", "HEAD").strip()
++        return subprocess.run(
+             [
+                 "bash",
+                 str(RUNNER_PATH),
+@@ -200,6 +379,8 @@ class RehearsalIntegrationTest(unittest.TestCase):
+                 str(seed),
+                 "--plan",
+                 str(plan_path),
++                "--subject-plan",
++                str(subject_plan_path),
+                 "--work",
+                 str(work),
+                 "--refs",
+@@ -210,6 +391,19 @@ class RehearsalIntegrationTest(unittest.TestCase):
+             capture_output=True,
+             env=env,
+         )
++
++    def test_rehearsal_applies_subjects_specs_and_attribution_rules(self) -> None:
++        root = Path(tempfile.mkdtemp(prefix="stamp-callback-", dir="/tmp"))
++        self.addCleanup(shutil.rmtree, root, ignore_errors=True)
++        seed = self._build_seed(root)
++        branch = _git(seed, "rev-parse", "--abbrev-ref", "HEAD").strip()
++        plan_path = root / "plan.jsonl"
++        subject_plan_path = root / "subject-plan.jsonl"
++        self._write_plan(seed, plan_path)
++        self._write_subject_plan(seed, subject_plan_path)
++        work = root / "work"
++
++        completed = self._rehearse(seed, plan_path, subject_plan_path, work)
+         self.assertEqual(completed.returncode, 0, completed.stderr.decode("utf-8", "replace"))
+ 
+         log_text = (work / "rewrite.log").read_text(encoding="utf-8")
+@@ -222,20 +416,73 @@ class RehearsalIntegrationTest(unittest.TestCase):
+             "tag count equals backup",
+             "commit-map rows equal the commit count",
+             "no old 10-hex prefix remains in messages",
++            "zero forbidden attribution lines remain in messages",
++            "every non-exempt subject passes the commit-msg grammar",
++            "every commit's Spec lines match its planned packets, dominant first",
+         ):
+             self.assertIn("INVARIANT PASS: " + label, log_text)
+ 
+         mirror = work / "mirror.git"
+-        bodies = _git(mirror, "log", "--format=%B", "refs/heads/" + branch)
+-        for index in range(1, 6):
+-            self.assertIn("%07d" % index, bodies)
+-        self.assertEqual(bodies.count("Commit-Id:"), 5)
+-        self.assertEqual(bodies.count("Spec: " + PACKET), 1)
++        messages: Dict[str, str] = {}
++        for record in _git(mirror, "log", "-z", "--format=%B", "refs/heads/" + branch).split("\x00"):
++            if record:
++                messages[record.split("\n", 1)[0]] = record
++
++        backup_bodies = _git(work / "backup.git", "log", "--format=%B", "refs/heads/" + branch)
++        self.assertIn("Co-Authored-By", backup_bodies)
++        self.assertIn("Claude-Session", backup_bodies)
++        self.assertIn("commit number 1", backup_bodies)
++
++        self.assertIn("feat(test-fixture): add the second fixture subject", messages)
++        self.assertIn("docs(test-fixture): describe the third fixture subject", messages)
++        self.assertIn("chore(test-fixture): replace the first fixture subject", messages)
++        self.assertIn("fix(test-fixture): correct the fifth fixture subject", messages)
++        self.assertNotIn("commit number 1", messages)
++        self.assertIn("side commit", messages)
++        self.assertIn("Merge branch 'side'", messages)
++
++        bodies = "\n".join(messages.values())
++        self.assertNotIn("Co-Authored-By", bodies)
++        self.assertNotIn("Claude-Session", bodies)
++        self.assertNotIn("anthropic", bodies.lower())
++        self.assertEqual(bodies.count("Commit-Id:"), 6)
++
++        multi = messages["feat(test-fixture): add the second fixture subject"]
++        self.assertIn("Spec: sk-git/028-x\nSpec: sk-git/027-a\nSpec: sk-git/029-y\n", multi)
++        refs_only = messages["docs(test-fixture): describe the third fixture subject"]
++        self.assertIn("Spec: hooks/019-r\nSpec: hooks/016-t\n", refs_only)
++        self.assertNotIn("Refs: specs/hooks/019-r", refs_only)
+ 
+         tags = _git(mirror, "tag").split()
+         self.assertIn("v1.0", tags)
+         self.assertEqual(len(tags), 1)
+ 
++    def test_rehearsal_fails_when_a_subject_breaks_the_grammar(self) -> None:
++        root = Path(tempfile.mkdtemp(prefix="stamp-callback-", dir="/tmp"))
++        self.addCleanup(shutil.rmtree, root, ignore_errors=True)
++        seed = self._build_seed(root)
++        plan_path = root / "plan.jsonl"
++        subject_plan_path = root / "subject-plan.jsonl"
++        self._write_plan(seed, plan_path)
++        self._write_subject_plan(seed, subject_plan_path)
++        rows = []
++        for line in subject_plan_path.read_text(encoding="utf-8").splitlines():
++            row = json.loads(line)
++            if row["subject_old"] == "commit number 5":
++                row["subject_new"] = "chore(no-scope): ends with a period."
++            rows.append(json.dumps(row))
++        subject_plan_path.write_text("\n".join(rows) + "\n", encoding="utf-8")
++        work = root / "work"
++
++        completed = self._rehearse(seed, plan_path, subject_plan_path, work)
++        self.assertNotEqual(completed.returncode, 0)
++        log_text = (work / "rewrite.log").read_text(encoding="utf-8")
++        self.assertIn(
++            "INVARIANT FAIL: every non-exempt subject passes the commit-msg grammar",
++            log_text,
++        )
++        self.assertIn("INVARIANTS: FAIL", log_text)
++
+ 
+ if __name__ == "__main__":
+     unittest.main()

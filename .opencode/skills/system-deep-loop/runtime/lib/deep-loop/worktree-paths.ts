@@ -78,7 +78,11 @@ type DirectoryLever = 'directory-flag' | 'read-root' | 'spawn-directory';
  */
 const DIRECTORY_LEVER_BY_KIND: Record<ExecutorKind, DirectoryLever> = {
   native: 'directory-flag',
-  'cli-claude-code': 'directory-flag',
+  // Verified against the command builder rather than inferred: this kind's argv carries
+  // a model, a permission mode and an output format, and no directory flag at all. Marked
+  // as flag-bearing it would compute a value nobody applies, leaving the lane in the shared
+  // checkout while every signal claimed it was isolated.
+  'cli-claude-code': 'spawn-directory',
   'cli-opencode': 'directory-flag',
   'cli-cursor': 'read-root',
   'cli-codex': 'spawn-directory',

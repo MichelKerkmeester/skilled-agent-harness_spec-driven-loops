@@ -1,0 +1,121 @@
+{
+  "startupMs": 2945,
+  "results": [
+    {
+      "label": "search_jsonlogic",
+      "tool": "obsidian_search_notes",
+      "args": {
+        "mode": "jsonlogic",
+        "query": {
+          "glob": [
+            "*.md",
+            "{{ path }}"
+          ]
+        }
+      },
+      "ms": 1,
+      "isError": true,
+      "text": "Input validation error: Invalid arguments for tool obsidian_search_notes: query: Invalid input: expected string, received object"
+    },
+    {
+      "label": "list_notes_deep",
+      "tool": "obsidian_list_notes",
+      "args": {
+        "path": "Tags",
+        "depth": 3
+      },
+      "ms": 19,
+      "isError": true,
+      "text": "Error: Not found: Tags\n\nRecovery: List a parent directory to find the correct casing or check the spelling."
+    },
+    {
+      "label": "list_notes_badpath",
+      "tool": "obsidian_list_notes",
+      "args": {
+        "path": "ZZZ-no-such-folder"
+      },
+      "ms": 5,
+      "isError": true,
+      "text": "Error: Not found: ZZZ-no-such-folder\n\nRecovery: List a parent directory to find the correct casing or check the spelling."
+    },
+    {
+      "label": "open_in_ui",
+      "tool": "obsidian_open_in_ui",
+      "args": {
+        "path": "zz-mcp-scratch.md"
+      },
+      "ms": 19,
+      "isError": false,
+      "text": "**Opened zz-mcp-scratch.md**\n*Opened:* true\n*Created if missing:* false"
+    },
+    {
+      "label": "open_in_ui_missing",
+      "tool": "obsidian_open_in_ui",
+      "args": {
+        "path": "ZZZ-does-not-exist.md"
+      },
+      "ms": 73,
+      "isError": true,
+      "text": "Error: Cannot open 'ZZZ-does-not-exist.md' — file does not exist.\n\nRecovery: Verify the path with obsidian_list_notes or obsidian_search_notes — or, if creation is intended, retry with failIfMissing: false."
+    },
+    {
+      "label": "list_commands_gated",
+      "tool": "obsidian_list_commands",
+      "args": {},
+      "ms": 1,
+      "isError": false,
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":7,\"error\":{\"code\":-32602,\"message\":\"Tool obsidian_list_commands not found\"}}"
+    },
+    {
+      "label": "execute_command_gated",
+      "tool": "obsidian_execute_command",
+      "args": {
+        "commandId": "app:reload"
+      },
+      "ms": 0,
+      "isError": false,
+      "text": "{\"jsonrpc\":\"2.0\",\"id\":8,\"error\":{\"code\":-32602,\"message\":\"Tool obsidian_execute_command not found\"}}"
+    },
+    {
+      "label": "write_note_collision",
+      "tool": "obsidian_write_note",
+      "args": {
+        "target": {
+          "type": "path",
+          "path": "zz-mcp-scratch.md"
+        },
+        "content": "OVERWRITTEN"
+      },
+      "ms": 8,
+      "isError": true,
+      "text": "Error: Note 'zz-mcp-scratch.md' already exists.\n\nRecovery: To modify in place, use obsidian_patch_note (surgical section edits), obsidian_append_to_note (append content), or obsidian_replace_in_note (search-and-replace). To replace the entire file, retry with overwrite: true."
+    },
+    {
+      "label": "get_after_collision",
+      "tool": "obsidian_get_note",
+      "args": {
+        "format": "content",
+        "target": {
+          "type": "path",
+          "path": "zz-mcp-scratch.md"
+        }
+      },
+      "ms": 5,
+      "isError": false,
+      "text": "**zz-mcp-scratch.md** (format: content)\n\n---\nstatus: probe\ntags:\n  - zzprobe\n---\n# MCP scratch\n\n## Alpha\nalpha CHANGED\n\n## Beta\nbeta REPLACED"
+    },
+    {
+      "label": "delete_note",
+      "tool": "obsidian_delete_note",
+      "args": {
+        "target": {
+          "type": "path",
+          "path": "zz-mcp-scratch.md"
+        }
+      },
+      "ms": 6,
+      "isError": true,
+      "text": "Cannot request input 'confirm' (elicitation/create): the client on this 2025-era connection did not declare the required capability"
+    }
+  ]
+}

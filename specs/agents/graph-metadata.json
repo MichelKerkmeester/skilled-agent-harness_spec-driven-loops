@@ -10,7 +10,8 @@
     "agents/005-git-workspace-repo-agnostic",
     "agents/003-communication-quality",
     "agents/006-restraint-and-routing-gates",
-    "agents/007-orchestrator-inline-authority"
+    "agents/007-orchestrator-inline-authority",
+    "agents/010-repo-rule-system-integration"
   ],
   "manual": {
     "depends_on": [],
@@ -28,13 +29,13 @@
     "entities": [],
     "causal_summary": "Track folder consolidating agents packets.",
     "created_at": "2026-08-06T00:00:00.000Z",
-    "last_save_at": "2026-08-29T11:14:45.279Z",
+    "last_save_at": "2026-09-11T20:59:38.392Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [],
     "source_fingerprint": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
     "source_doc_hashes": {},
-    "last_active_child_id": "agents/005-git-workspace-repo-agnostic",
-    "last_active_at": "2026-08-16T09:05:53.148Z"
+    "last_active_child_id": "agents/010-repo-rule-system-integration",
+    "last_active_at": "2026-09-11T20:59:38.392Z"
   }
 }

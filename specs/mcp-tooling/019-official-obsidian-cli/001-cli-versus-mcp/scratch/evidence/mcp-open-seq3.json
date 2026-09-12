@@ -1,0 +1,100 @@
+{
+  "startupMs": 1031,
+  "results": [
+    {
+      "label": "list_notes_Tags",
+      "tool": "obsidian_list_notes",
+      "args": {
+        "path": "Tags/"
+      },
+      "ms": 17,
+      "isError": true,
+      "text": "Error: Not found: Tags\n\nRecovery: List a parent directory to find the correct casing or check the spelling."
+    },
+    {
+      "label": "list_notes_Finance",
+      "tool": "obsidian_list_notes",
+      "args": {
+        "path": "Finance"
+      },
+      "ms": 12,
+      "isError": false,
+      "text": "**Finance** — 201 entries · 197 files, 4 directories · depth=2\n\nEntry `type`: a trailing `/` marks a `directory`; every other line is a `file`.\n```\n├── Expenses/\n│   ├── ABN AMRO.md\n│   ├── Aansprakelijkheid.md\n│   ├── Accountant.md\n│   ├── Apple Care (iPhone).md\n│   ├── Barber.md\n│   ├── Basic Fit.md\n│   ├── Boxingstad.md\n│   ├── Claude.md\n│   ├── Cline.md\n│   ├── Cursor.md\n│   ├── DUO.md\n│   ├── Devin.md\n│   ├── Eten.md\n│   ├── GPT.md\n│   ├── Gemini.md\n│   ├── Greenchoice.md\n│   ├── Health Insurance.md\n│   ├── Huis - Belastingen.md\n│   ├── Huis - Hypotheek (Bruto).md\n│   ├── Huis - VVE.md\n│   ├── Inboedel (+ Buitenshuis).md\n│   ├── Internet.md\n│   ├── Kimi Code.md\n│   ├── Knab.md\n│   ├── Local Taxes.md\n│   ├── Lot of Happiness.md\n│   ├── Mega.md\n│   ├── MySudo.md\n│   ├── Netflix.md\n│   ├── Ongevallen  verzekering.md\n│   ├── Opencode Go.md\n│   ├── Overlijdensverzekering.md\n│   ├── Pearle Glasses.md\n│   ├── Pearle Lenses.md\n│   ├── Phone.md\n│   ├── Prime (Apple+, HBO, SkyShowtime).md\n│   ├── Raycast.md\n│   ├── Rechtsbijstand verzekering.md\n│   ├── Rent, Service + Parking.md\n│   ├── Revolut.md\n│   ├── Ring.md\n│   ├── Swapfiets.md\n│   ├── Warmtestad.md\n│   ├── Wasmachine.md\n│   ├── Water.md\n│   ├── Youtube.md\n│   ├── iCloud.md\n│   ├── ʸ Amesto Virtual Office.md\n│   ├── ʸ Apple Care (Macbook).md\n│   ├── ʸ Arriva Dal Korting.md\n│   ├── ʸ Athlytic.md\n│   ├── ʸ Bitdefender Desktop.md\n│   ├── ʸ Bitdefender Mobile.md\n│   ├── ʸ Clean My Mac.md\n│   ├── ʸ Cleanshot.md\n│   ├── ʸ Domain kerkmeester.com.md\n│   ├── ʸ Domain kerkmeester.nl.md\n│   ├── ʸ Domain michaelkerkmeester.com.md\n│   ├── ʸ Domain michaelkerkmeester.nl.md\n│   ├── ʸ Domain michelkerkmeester.com.md\n│   ├── ʸ Domain michelkerkmeester.nl.md\n│   ├── ʸ Domain michielkerkmeester.com.md\n│   ├── ʸ Domain michielkerkmeester.nl.md\n│   ├── ʸ Domain mitchelkerkmeester.com (2).md\n│   ├── ʸ Domain mitchelkerkmeester.com.md\n│   ├── ʸ Eigen risico.md\n│   ├── ʸ Figma.md\n│   ├── ʸ Fontbase.md\n│   ├── ʸ Gitkraken.md\n│   ├── ʸ Health Insurance.md\n│   ├── ʸ Hevy.md\n│   ├── ʸ Home Assistant.md\n│   ├── ʸ Notion.md\n│   ├── ʸ Proton Mail.md\n│   ├── ʸ Raindrop.md\n│   ├── ʸ Webflow.md\n│   └── ʸ Whoop.md\n├── Finance Expenses.md\n├── Finance Income.md\n├── Finance Overview.md\n├── Finance Reports.md\n├── Finance Reports.md.bak-year-20260825-061030\n├── Finance Sales.md\n├── Income/\n│   ├── Barter  ‘25.md\n│   ├── Barter  ‘26 (May).md\n│   ├── Barter  ‘26 (September).md\n│   ├── Dataprovider.md\n│   ├── David.md\n│   ├── Hamza.md\n│   ├── Tom Scholtens.md\n│   └── Xavier.md\n├── Reports/\n│   ├── 01 • Jan ‘25.md\n│   ├── 02 • Feb ‘25.md\n│   ├── 03 • Mar ‘25.md\n│   ├── 04 • Apr ‘25.md\n│   ├── 05 • May ‘25.md\n│   ├── 06 • Jun ‘25.md\n│   ├── 07 • Jul ‘25.md\n│   ├── 08 • Aug ‘25.md\n│   ├── 09 • Sep ‘25.md\n│   ├── 10 • Oct ‘25.md\n│   ├── 11 • Nov ‘25.md\n│   ├── 12 • Dec ‘25.md\n│   ├── 13 • Jan ‘26.md\n│   ├── 14 • Feb ‘26.md\n│   ├── 15 • Mar ‘26.md\n│   ├── 16 • Apr ‘26.md\n│   ├── 17 • May ‘26.md\n│   ├── 18 • Jun ‘26.md\n│   ├── 19 • Jul ‘26.md\n│   ├── 20 • Aug ‘26.md\n│   ├── 21 • Sep ‘26.md\n│   ├── 22 • Oct ‘26.md\n│   ├── 23 • Nov ‘26.md\n│   ├── 24 • Dec ‘26.md\n│   ├── 25 • Jan ‘27.md\n│   ├── 26 • Feb ‘27.md\n│   ├── 27 • Mar ‘27.md\n│   ├── 28 • Apr ‘27.md\n│   ├── 29 • May ‘27.md\n│   ├── 30 • Jun ‘27.md\n│   ├── 31 • Jul ‘27.md\n│   ├── 32 • Aug ‘27.md\n│   ├── 33 • Sep ‘27.md\n│   ├── 34 • Oct ‘27.md\n│   ├── 35 • Nov ‘27.md\n│   ├── 36 • Dec ‘27.md\n│   └── Untitled.md\n└── Sales/\n    ├── 10 Hours  €50.md\n    ├── 104 Hours  €52.5.md\n    ├── 12 Hours  €75.md\n    ├── 132 Hours  €50.md\n    ├── 14 Hours  €80.md\n    ├── 15 Hours.md\n    ├── 16 Hours  €75 (2).md\n    ├── 16 Hours  €75 (3).md\n    ├── 16 Hours  €75 (4).md\n    ├── 16 Hours  €75 (5).md\n    ├── 16 Hours  €75 (6).md\n    ├── 16 Hours  €75.md\n    ├── 160 Hours  €52.5.md\n    ├── 176 Hours  €52.5.md\n    ├── 192 Hours  €50.md\n    ├── 32 Hours  €75.md\n    ├── 4 Hours  €75.md\n    ├── 40 Hours  €62.5.md\n    ├── 50 Hours.md\n    ├── 70 Hours.md\n    ├── ADA Design System 13.md\n    ├── ADA Design System 23.md\n    ├── ADA Design System 33.md\n    ├── B2B & Wasabi 13.md\n    ├── B2B & Wasabi 23.md\n    ├── B2B & Wasabi 33.md\n    ├── Calculator Iconography.md\n    ├── De Stille Kern 12.md\n    ├── De Stille Kern 22.md\n    ├── Development 12 (2).md\n    ├── Development 12.md\n    ├── Development 22 (2).md\n    ├── Development 22.md\n    ├── Envato 2022.md\n    ├── F079 - Design & Development 40 Hours  €80.md\n    ├── F080 - Design & Development 40 Hours  €80.md\n    ├── F081 - Design & Development 40 Hours  €80.md\n    ├── F082 - Finsweet Consent Pro.md\n    ├── F083 - Design & Development 40 Hours  €80.md\n    ├── F084 - Design & Development 40 Hours  €80.md\n    ├── F085 - Design & Development 40 Hours  €80.md\n    ├── F086 - Design & Development 40 Hours  €80.md\n    ├── F087 - Design & Development 40 Hours  €80.md\n    ├── F088 - Design & Development 40 Hours  €80.md\n    ├── F089 - Design & Development 40 Hours  €80.md\n    ├── F090 - Design & Development 40 Hours  €80.md\n    ├── F091 - Design & Development 40 Hours  €80.md\n    ├── F092 - Design & Development 40 Hours  €80.md\n    ├── F093 - Design & Development 20 Hours  €80.md\n    ├── Find a Dentist.md\n    ├── Mock-up Aqua bag.md\n    ├── Mock-up BBQ Summer.md\n    ├── Mock-up Bands.md\n    ├── Mock-ups 21 Days, Workout, Muscle.md\n    ├── Ontbijtsmoothie Boek.md\n    ├── Projects 10 - 13.md\n    ├── Projects 14 - 15.md\n    ├── Projects 18 - 20.md\n    ├── Voedingsschema Boek.md\n    ├── Voedingsschema Calculator.md\n    ├── Webshop 60 Hours  €80.md\n    ├── Website 24 Hours  €80 (2).md\n    ├── Website 24 Hours  €80.md\n    ├── Website 40 Hours  €80.md\n    ├── Website 62 Hours  €80.md\n    ├── Website Phase 1.md\n    ├── Website Phase 2 (13).md\n    ├── Website Phase 2 (23).md\n    └── Website Phase 2 (33).md\n```"
+    },
+    {
+      "label": "search_jsonlogic_str",
+      "tool": "obsidian_search_notes",
+      "args": {
+        "mode": "jsonlogic",
+        "query": "{\"glob\":[\"*.md\",{\"var\":\"path\"}]}"
+      },
+      "ms": 1,
+      "isError": true,
+      "text": "Error: `logic` (JSONLogic tree) is required for jsonlogic mode.\n\nRecovery: Pass a JSONLogic tree as `logic`. `glob` and `regexp` take `[PATTERN, VALUE]` — pattern first, e.g. `{\"glob\": [\"Projects/*.md\", {\"var\": \"path\"}]}`."
+    },
+    {
+      "label": "write_overwrite",
+      "tool": "obsidian_write_note",
+      "args": {
+        "target": {
+          "type": "path",
+          "path": "zz-mcp-scratch.md"
+        },
+        "content": "OVERWRITTEN",
+        "overwrite": true
+      },
+      "ms": 29,
+      "isError": false,
+      "text": "**Wrote zz-mcp-scratch.md**\n*Size:* 100 → 11 bytes\n*Section targeted:* false\n*Created:* false"
+    },
+    {
+      "label": "delete_with_elicit",
+      "tool": "obsidian_delete_note",
+      "args": {
+        "target": {
+          "type": "path",
+          "path": "zz-mcp-scratch.md"
+        }
+      },
+      "ms": 202,
+      "isError": false,
+      "text": "**Deleted zz-mcp-scratch.md** (size: 11 → 0 bytes)"
+    },
+    {
+      "label": "get_after_delete",
+      "tool": "obsidian_get_note",
+      "args": {
+        "format": "content",
+        "target": {
+          "type": "path",
+          "path": "zz-mcp-scratch.md"
+        }
+      },
+      "ms": 364,
+      "isError": true,
+      "text": "Error: Not found: zz-mcp-scratch.md\n\nRecovery: Verify the path with obsidian_list_notes or use obsidian_search_notes to locate the note."
+    }
+  ],
+  "elicits": [
+    {
+      "message": "Permanently delete 'zz-mcp-scratch.md' (11 bytes)? This cannot be undone via the API; recovery would require Obsidian's local trash.",
+      "requestedSchema": {
+        "type": "object",
+        "properties": {
+          "confirm": {
+            "type": "boolean",
+            "description": "Set to true to delete the note. Any other value cancels."
+          }
+        },
+        "required": [
+          "confirm"
+        ],
+        "$schema": "https://json-schema.org/draft/2020-12/schema"
+      },
+      "mode": "form",
+      "_meta": {
+        "progressToken": 0
+      }
+    }
+  ]
+}

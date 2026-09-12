@@ -1,0 +1,146 @@
+{
+  "startupMs": 724,
+  "results": [
+    {
+      "label": "read00",
+      "tool": "obsidian_get_note",
+      "args": {
+        "format": "content",
+        "target": {
+          "type": "path",
+          "path": "zz-cli-scratch-renamed.md"
+        }
+      },
+      "ms": 15,
+      "isError": false,
+      "text": "**zz-cli-scratch-renamed.md** (format: content)\n\nprepended-line\n# CLI scratch\nline one\nappended-line"
+    },
+    {
+      "label": "read01",
+      "tool": "obsidian_get_note",
+      "args": {
+        "format": "content",
+        "target": {
+          "type": "path",
+          "path": "zz-cli-scratch-renamed.md"
+        }
+      },
+      "ms": 3,
+      "isError": false,
+      "text": "**zz-cli-scratch-renamed.md** (format: content)\n\nprepended-line\n# CLI scratch\nline one\nappended-line"
+    },
+    {
+      "label": "read02",
+      "tool": "obsidian_get_note",
+      "args": {
+        "format": "content",
+        "target": {
+          "type": "path",
+          "path": "zz-cli-scratch-renamed.md"
+        }
+      },
+      "ms": 3,
+      "isError": false,
+      "text": "**zz-cli-scratch-renamed.md** (format: content)\n\nprepended-line\n# CLI scratch\nline one\nappended-line"
+    },
+    {
+      "label": "read03",
+      "tool": "obsidian_get_note",
+      "args": {
+        "format": "content",
+        "target": {
+          "type": "path",
+          "path": "zz-cli-scratch-renamed.md"
+        }
+      },
+      "ms": 3,
+      "isError": false,
+      "text": "**zz-cli-scratch-renamed.md** (format: content)\n\nprepended-line\n# CLI scratch\nline one\nappended-line"
+    },
+    {
+      "label": "read04",
+      "tool": "obsidian_get_note",
+      "args": {
+        "format": "content",
+        "target": {
+          "type": "path",
+          "path": "zz-cli-scratch-renamed.md"
+        }
+      },
+      "ms": 3,
+      "isError": false,
+      "text": "**zz-cli-scratch-renamed.md** (format: content)\n\nprepended-line\n# CLI scratch\nline one\nappended-line"
+    },
+    {
+      "label": "read05",
+      "tool": "obsidian_get_note",
+      "args": {
+        "format": "content",
+        "target": {
+          "type": "path",
+          "path": "zz-cli-scratch-renamed.md"
+        }
+      },
+      "ms": 3,
+      "isError": false,
+      "text": "**zz-cli-scratch-renamed.md** (format: content)\n\nprepended-line\n# CLI scratch\nline one\nappended-line"
+    },
+    {
+      "label": "read06",
+      "tool": "obsidian_get_note",
+      "args": {
+        "format": "content",
+        "target": {
+          "type": "path",
+          "path": "zz-cli-scratch-renamed.md"
+        }
+      },
+      "ms": 4,
+      "isError": false,
+      "text": "**zz-cli-scratch-renamed.md** (format: content)\n\nprepended-line\n# CLI scratch\nline one\nappended-line"
+    },
+    {
+      "label": "read07",
+      "tool": "obsidian_get_note",
+      "args": {
+        "format": "content",
+        "target": {
+          "type": "path",
+          "path": "zz-cli-scratch-renamed.md"
+        }
+      },
+      "ms": 3,
+      "isError": false,
+      "text": "**zz-cli-scratch-renamed.md** (format: content)\n\nprepended-line\n# CLI scratch\nline one\nappended-line"
+    },
+    {
+      "label": "read08",
+      "tool": "obsidian_get_note",
+      "args": {
+        "format": "content",
+        "target": {
+          "type": "path",
+          "path": "zz-cli-scratch-renamed.md"
+        }
+      },
+      "ms": 4,
+      "isError": false,
+      "text": "**zz-cli-scratch-renamed.md** (format: content)\n\nprepended-line\n# CLI scratch\nline one\nappended-line"
+    },
+    {
+      "label": "read09",
+      "tool": "obsidian_get_note",
+      "args": {
+        "format": "content",
+        "target": {
+          "type": "path",
+          "path": "zz-cli-scratch-renamed.md"
+        }
+      },
+      "ms": 4,
+      "isError": false,
+      "text": "**zz-cli-scratch-renamed.md** (format: content)\n\nprepended-line\n# CLI scratch\nline one\nappended-line"
+    }
+  ],
+  "elicits": []
+}

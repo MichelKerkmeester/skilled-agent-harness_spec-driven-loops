@@ -1,0 +1,1 @@
+{"ok":false,"phase":"runtime","reason":"Event type does not match the frozen namespace grammar","code":"RUNTIME_ERROR"}

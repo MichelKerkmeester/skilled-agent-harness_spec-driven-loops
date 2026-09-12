@@ -1,27 +1,23 @@
 {
+  "level": "1",
   "specFolder": "hooks/021-compat-opt-in-and-image-declaration",
-  "description": "Gate DeepSeek cache-compat advice on an explicit wire-protocol opt-in and declare image input for the llmgateway model",
+  "description": "`llmgateway/deepseek-v4.1-flash` produces a blocking-looking warning at every Pi launch:",
   "keywords": [
-    "gate",
-    "deepseek",
-    "cache-compat",
-    "advice",
-    "explicit",
-    "wire-protocol",
-    "opt-in",
-    "declare",
-    "image",
-    "input",
     "llmgateway",
-    "model"
+    "deepseek-v4",
+    "1-flash",
+    "produces",
+    "blocking-looking",
+    "warning",
+    "every",
+    "launch"
   ],
-  "lastUpdated": "2026-09-11T07:59:30.639Z",
+  "lastUpdated": "2026-09-11T08:05:57.727Z",
   "specId": "021",
   "folderSlug": "compat-opt-in-and-image-declaration",
   "parentChain": [
     "hooks"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

@@ -1,0 +1,1 @@
+{"type":"event","event":"synthesis_complete","mode":"review","totalIterations":1,"activeP0":0,"activeP1":1,"activeP2":4,"dimensionCoverage":0.25,"verdict":"CONDITIONAL","releaseReadinessState":"in-progress","stopReason":"maxIterationsReached","timestamp":"2026-09-11T17:50:59Z","sessionId":"fanout-glm-53-flash-1789146937931-6gxjep","generation":1,"lineageMode":"new"}

@@ -1,0 +1,8 @@
+[
+ {"label":"list_notes_Tags","tool":"obsidian_list_notes","args":{"path":"Tags/"}},
+ {"label":"list_notes_Finance","tool":"obsidian_list_notes","args":{"path":"Finance"}},
+ {"label":"search_jsonlogic_str","tool":"obsidian_search_notes","args":{"mode":"jsonlogic","query":"{\"glob\":[\"*.md\",{\"var\":\"path\"}]}"}},
+ {"label":"write_overwrite","tool":"obsidian_write_note","args":{"target":{"type":"path","path":"zz-mcp-scratch.md"},"content":"OVERWRITTEN","overwrite":true}},
+ {"label":"delete_with_elicit","tool":"obsidian_delete_note","args":{"target":{"type":"path","path":"zz-mcp-scratch.md"}}},
+ {"label":"get_after_delete","tool":"obsidian_get_note","args":{"format":"content","target":{"type":"path","path":"zz-mcp-scratch.md"}}}
+]

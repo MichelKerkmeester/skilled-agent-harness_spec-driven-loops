@@ -1,0 +1,2350 @@
+diff --git a/.opencode/commands/goal-opencode.md b/.opencode/commands/goal-opencode.md
+index 74a98b0983..728798b159 100644
+--- a/.opencode/commands/goal-opencode.md
++++ b/.opencode/commands/goal-opencode.md
+@@ -1,6 +1,6 @@
+ ---
+ description: Manage the passive session goal.
+-argument-hint: "set <objective> [--budget N] | show | history | doctor | health | clear | complete | pause [reason] | resume"
++argument-hint: "bind <packet-path> | unbind | resent | log <item> | <state> | <evidence> | packet <packet-path> | set <objective> [--budget N] | show | history | doctor | health | clear | complete | pause [reason] | resume"
+ allowed-tools: opencode_goal, opencode_goal_status
+ ---
+ 
+@@ -31,12 +31,17 @@ Bind routing to these resolved `ARGS_PRESENT`, `QUERY`, `FIRST`, and `REST` valu
+ 
+ ## 3. CONTRACT
+ 
+-**Inputs:** `$ARGUMENTS` — `set <objective> [--budget N] | show | history | doctor | health | clear | complete | pause [reason] | resume`
+-**Outputs:** `STATUS=<OK|FAIL> ACTION=<set|clear|complete|pause|resume|history|doctor|health|show>`
++**Inputs:** `$ARGUMENTS` — `bind <packet-path> | resent | packet <packet-path> | set <objective> [--budget N] | show | history | doctor | health | clear | complete | pause [reason] | resume`
++**Outputs:** `STATUS=<OK|FAIL> ACTION=<bind|resent|packet|set|clear|complete|pause|resume|history|doctor|health|show>`
+ 
+ This command is state-free. It never reads or writes `.opencode/skills/.state/goal` directly.
+ 
+ - Empty arguments or `show` route to `opencode_goal_status`.
++- `bind <packet-path>` routes to `opencode_goal` with `action: "bind"` and `packetPath`. The packet's `goal.md` becomes the directive: the objective is derived from it, the injection renders from the file on every turn, and the frontmatter never leaves the file.
++- `unbind` routes to `opencode_goal` with `action: "unbind"`, dropping the packet pointer and keeping the record.
++- `resent` routes to `opencode_goal` with `action: "resent"`, recording that the current durable slice was resent in chat so the reminder stops.
++- `log <item> | <state> | <evidence>` routes to `opencode_goal` with `action: "log"` and the three parts; the row lands below the packet's log anchor under the per-packet lock and never touches the durable slice.
++- `packet <packet-path>` routes to `opencode_goal` with `action: "packet"` and `packetPath`: a session-free read of the packet's durable slice, hash and size.
+ - `set <objective> --budget N` routes to `opencode_goal` with `action: "set"`, `objective` with the budget suffix removed, and `tokenBudget: N`.
+ - `set <objective>` routes to `opencode_goal` with `action: "set"` and `objective: REST`.
+ - Bare text routes to `opencode_goal` with `action: "set"` and `objective: QUERY`.
+@@ -46,7 +51,7 @@ This command is state-free. It never reads or writes `.opencode/skills/.state/go
+ 
+ Status output reports continuation budget fields affected by `OPENCODE_GOAL_MAX_AUTO_TURNS` and `OPENCODE_GOAL_MAX_WALL_MS`: `remaining_auto_turns`, `remaining_wall_ms`, and `provider_retry_after_ms`.
+ 
+-Successful `set` responses include `mutation=created`, `mutation=refreshed`, or `mutation=replaced` immediately after the status line. `created` means no prior goal existed, `refreshed` means the active goal objective was unchanged, and `replaced` means a different objective or terminal prior goal produced a fresh goal record.
++Successful `set` responses include `mutation=created`, `mutation=refreshed`, or `mutation=replaced` immediately after the status line; `bind` responses carry `mutation=bound` or `mutation=rebound` plus `packet_path`, `packet_nested`, `packet_slice_hash` and `resend_pending`. `created` means no prior goal existed, `refreshed` means the active goal objective was unchanged, and `replaced` means a different objective or terminal prior goal produced a fresh goal record.
+ 
+ When `OPENCODE_GOAL_PLUGIN_DISABLED=1`, plugin tools fail closed. The command must print the tool result verbatim, including `STATUS=FAIL ACTION=<action> ERROR="..."` and `code=PLUGIN_DISABLED`.
+ 
+@@ -60,7 +65,10 @@ Your FIRST and ONLY action is the single tool call selected below. Do NOT read f
+ 
+ 1. If `ARGS_PRESENT=false`, call `opencode_goal_status({})` and print its result exactly.
+ 2. If `FIRST` is `show`, call `opencode_goal_status({})` and print its result exactly.
+-3. If `FIRST` is `set`, parse an optional trailing `--budget N` from `REST`:
++3. If `FIRST` is `bind`, call `opencode_goal({ action: "bind", packetPath: REST })`. If `REST` is empty, print `STATUS=FAIL ACTION=bind ERROR="A packet path is required"` and `code=INVALID_PACKET_PATH` without calling a tool.
++3a. If `FIRST` is `resent`, call `opencode_goal({ action: "resent" })`. If `FIRST` is `unbind`, call `opencode_goal({ action: "unbind" })`. If `FIRST` is `log`, split `REST` on `|` into item, state and evidence and call `opencode_goal({ action: "log", item, state, evidence })`.
++3b. If `FIRST` is `packet`, call `opencode_goal({ action: "packet", packetPath: REST })`.
++3c. If `FIRST` is `set`, parse an optional trailing `--budget N` from `REST`:
+    - If present, `N` must be a positive base-10 integer (`1` or greater). If `N` is missing, non-numeric, zero, or negative, print `STATUS=FAIL ACTION=set ERROR="Token budget must be a positive integer"` and `code=INVALID_TOKEN_BUDGET` without calling a tool.
+    - Remove the trailing `--budget N` from the objective. If the remaining objective is empty, print `STATUS=FAIL ACTION=set ERROR="Objective is required"` and `code=INVALID_OBJECTIVE` without calling a tool.
+    - Call `opencode_goal({ action: "set", objective: <objective>, tokenBudget: N })` when budget is present, otherwise call `opencode_goal({ action: "set", objective: REST })`.
+diff --git a/.opencode/commands/speckit/assets/speckit-complete.yaml b/.opencode/commands/speckit/assets/speckit-complete.yaml
+index 5941051444..289e6998fc 100644
+--- a/.opencode/commands/speckit/assets/speckit-complete.yaml
++++ b/.opencode/commands/speckit/assets/speckit-complete.yaml
+@@ -212,13 +212,18 @@ goal_prompting:
+     # supported runtimes document no adapter for it, including the one whose
+     # native goal surface is the reason this offer exists. A runtime without a
+     # surface hands off to the operator; none is ever faked.
++    # When the resolved packet carries a goal.md, the set path binds instead of
++    # setting text: bindGoal derives the objective from the file, so the packet
++    # is the source from the first turn and the operator has nothing to paste.
++    bind_when_goal_present:
++      rule: "If <spec_path>/goal.md exists, call the bind action with spec_path and skip the text set; goal_objective is then the packet's objective slice."
+     dispatch_by_runtime:
+       opencode:
+         tool: opencode_goal
+-        invocation: 'opencode_goal({ action: "set", objective: goal_objective })'
++        invocation: 'opencode_goal({ action: "bind", packetPath: spec_path }) when <spec_path>/goal.md exists, otherwise opencode_goal({ action: "set", objective: goal_objective })'
+         status_tool: opencode_goal_status
+       pi:
+-        command: 'bin/goal.cjs set <objective>'
++        command: 'bin/goal.cjs bind <spec_path> when <spec_path>/goal.md exists, otherwise bin/goal.cjs set <objective>'
+         note: "Scope flags carry the native session identity."
+       cursor:
+         surface: "injection-only; no management surface"
+@@ -227,8 +232,30 @@ goal_prompting:
+         surface: "native session-goal command, when the runtime provides one"
+         handoff: "Report the objective for the operator to set; do not fabricate a call."
+   objective_shape:
+-    rule: "Pointer plus copied completion criteria; never a file body."
+-    why: "Nothing dereferences a path in an objective, and every surface caps what it holds."
++    rule: "Pointer first, then the binding sentence when the packet is phased, then the completion criteria copied out; never the file body and never its frontmatter."
++    why: "Nothing dereferences a path in an objective, every surface caps what it holds, and a truncation must keep the address. The chat resend is a different payload: the whole durable slice, so the operator can paste it; the objective stored by the runtime is the projection above."
++  # The packet goal.md is the source of the directive, and the session binds to
++  # it rather than to a remembered string. Everything below is the agent's
++  # posture around that file; the mechanics live in the goal hook core.
++  packet_goal:
++    bind_by_runtime:
++      opencode: 'opencode_goal({ action: "bind", packetPath: spec_path })'
++      pi: 'node .opencode/hooks/goal/bin/goal.cjs bind <spec_path> --runtime Pi --session <native session id> --workspace <repo root>'
++      cursor: "injection-only; report the objective for the operator to set, do not fabricate a call"
++      devin: "injection-only; report the objective for the operator to set, do not fabricate a call"
++      claude-code: "native goal command; render the durable slice, frontmatter excluded, and ask the operator to set it"
++      codex: "native goal command; render the durable slice, frontmatter excluded, and ask the operator to set it"
++    resend:
++      trigger: "The durable slice hash of the parent goal.md changed: a decision, a binding row or a criterion. Log rows and frontmatter never trigger."
++      payload: "The durable slice of the parent goal.md with frontmatter excluded, rendered from the file, never from memory."
++      after: "Ask the operator to set it. On a runtime with a bound session, record the send with the goal command's resent action."
++      child_rule: "A child goal change that alters a parent decision or criterion is applied to the parent first, then the parent is resent."
++    reminder:
++      while_unset: "Repeat a one-line reminder at every command entry and turn where the runtime injects; never repeat the full slice unless asked."
++      never_halts: "Work never stops because a goal is unset or a reminder went unanswered. Only an explicit operator stop halts."
++      after_set: "Acknowledge in one line and continue the current work at once; do not restate the goal, do not ask whether to proceed."
++    log:
++      rule: "Progress, evidence and deviations go to the goal log, below the durable slice, never into the directive. On a bound session the goal command's log action is the only path: it takes the per-packet lock. A direct table-row append is allowed only for a packet no session is bound to."
+   status_tool_by_runtime:
+     opencode: opencode_goal_status
+     default: "none; report state from the packet documents instead"
+diff --git a/.opencode/commands/speckit/assets/speckit-implement.yaml b/.opencode/commands/speckit/assets/speckit-implement.yaml
+index 2901c479b5..0d305e822d 100644
+--- a/.opencode/commands/speckit/assets/speckit-implement.yaml
++++ b/.opencode/commands/speckit/assets/speckit-implement.yaml
+@@ -119,13 +119,18 @@ goal_prompting:
+     # supported runtimes document no adapter for it, including the one whose
+     # native goal surface is the reason this offer exists. A runtime without a
+     # surface hands off to the operator; none is ever faked.
++    # When the resolved packet carries a goal.md, the set path binds instead of
++    # setting text: bindGoal derives the objective from the file, so the packet
++    # is the source from the first turn and the operator has nothing to paste.
++    bind_when_goal_present:
++      rule: "If <spec_path>/goal.md exists, call the bind action with spec_path and skip the text set; goal_objective is then the packet's objective slice."
+     dispatch_by_runtime:
+       opencode:
+         tool: opencode_goal
+-        invocation: 'opencode_goal({ action: "set", objective: goal_objective })'
++        invocation: 'opencode_goal({ action: "bind", packetPath: spec_path }) when <spec_path>/goal.md exists, otherwise opencode_goal({ action: "set", objective: goal_objective })'
+         status_tool: opencode_goal_status
+       pi:
+-        command: 'bin/goal.cjs set <objective>'
++        command: 'bin/goal.cjs bind <spec_path> when <spec_path>/goal.md exists, otherwise bin/goal.cjs set <objective>'
+         note: "Scope flags carry the native session identity."
+       cursor:
+         surface: "injection-only; no management surface"
+@@ -134,8 +139,30 @@ goal_prompting:
+         surface: "native session-goal command, when the runtime provides one"
+         handoff: "Report the objective for the operator to set; do not fabricate a call."
+   objective_shape:
+-    rule: "Pointer plus copied completion criteria; never a file body."
+-    why: "Nothing dereferences a path in an objective, and every surface caps what it holds."
++    rule: "Pointer first, then the binding sentence when the packet is phased, then the completion criteria copied out; never the file body and never its frontmatter."
++    why: "Nothing dereferences a path in an objective, every surface caps what it holds, and a truncation must keep the address. The chat resend is a different payload: the whole durable slice, so the operator can paste it; the objective stored by the runtime is the projection above."
++  # The packet goal.md is the source of the directive, and the session binds to
++  # it rather than to a remembered string. Everything below is the agent's
++  # posture around that file; the mechanics live in the goal hook core.
++  packet_goal:
++    bind_by_runtime:
++      opencode: 'opencode_goal({ action: "bind", packetPath: spec_path })'
++      pi: 'node .opencode/hooks/goal/bin/goal.cjs bind <spec_path> --runtime Pi --session <native session id> --workspace <repo root>'
++      cursor: "injection-only; report the objective for the operator to set, do not fabricate a call"
++      devin: "injection-only; report the objective for the operator to set, do not fabricate a call"
++      claude-code: "native goal command; render the durable slice, frontmatter excluded, and ask the operator to set it"
++      codex: "native goal command; render the durable slice, frontmatter excluded, and ask the operator to set it"
++    resend:
++      trigger: "The durable slice hash of the parent goal.md changed: a decision, a binding row or a criterion. Log rows and frontmatter never trigger."
++      payload: "The durable slice of the parent goal.md with frontmatter excluded, rendered from the file, never from memory."
++      after: "Ask the operator to set it. On a runtime with a bound session, record the send with the goal command's resent action."
++      child_rule: "A child goal change that alters a parent decision or criterion is applied to the parent first, then the parent is resent."
++    reminder:
++      while_unset: "Repeat a one-line reminder at every command entry and turn where the runtime injects; never repeat the full slice unless asked."
++      never_halts: "Work never stops because a goal is unset or a reminder went unanswered. Only an explicit operator stop halts."
++      after_set: "Acknowledge in one line and continue the current work at once; do not restate the goal, do not ask whether to proceed."
++    log:
++      rule: "Progress, evidence and deviations go to the goal log, below the durable slice, never into the directive. On a bound session the goal command's log action is the only path: it takes the per-packet lock. A direct table-row append is allowed only for a packet no session is bound to."
+   status_tool_by_runtime:
+     opencode: opencode_goal_status
+     default: "none; report state from the packet documents instead"
+diff --git a/.opencode/commands/speckit/assets/speckit-plan.yaml b/.opencode/commands/speckit/assets/speckit-plan.yaml
+index 845bf35656..2d6a24a69d 100644
+--- a/.opencode/commands/speckit/assets/speckit-plan.yaml
++++ b/.opencode/commands/speckit/assets/speckit-plan.yaml
+@@ -154,13 +154,18 @@ goal_prompting:
+     # supported runtimes document no adapter for it, including the one whose
+     # native goal surface is the reason this offer exists. A runtime without a
+     # surface hands off to the operator; none is ever faked.
++    # When the resolved packet carries a goal.md, the set path binds instead of
++    # setting text: bindGoal derives the objective from the file, so the packet
++    # is the source from the first turn and the operator has nothing to paste.
++    bind_when_goal_present:
++      rule: "If <spec_path>/goal.md exists, call the bind action with spec_path and skip the text set; goal_objective is then the packet's objective slice."
+     dispatch_by_runtime:
+       opencode:
+         tool: opencode_goal
+-        invocation: 'opencode_goal({ action: "set", objective: goal_objective })'
++        invocation: 'opencode_goal({ action: "bind", packetPath: spec_path }) when <spec_path>/goal.md exists, otherwise opencode_goal({ action: "set", objective: goal_objective })'
+         status_tool: opencode_goal_status
+       pi:
+-        command: 'bin/goal.cjs set <objective>'
++        command: 'bin/goal.cjs bind <spec_path> when <spec_path>/goal.md exists, otherwise bin/goal.cjs set <objective>'
+         note: "Scope flags carry the native session identity."
+       cursor:
+         surface: "injection-only; no management surface"
+@@ -169,8 +174,30 @@ goal_prompting:
+         surface: "native session-goal command, when the runtime provides one"
+         handoff: "Report the objective for the operator to set; do not fabricate a call."
+   objective_shape:
+-    rule: "Pointer plus copied completion criteria; never a file body."
+-    why: "Nothing dereferences a path in an objective, and every surface caps what it holds."
++    rule: "Pointer first, then the binding sentence when the packet is phased, then the completion criteria copied out; never the file body and never its frontmatter."
++    why: "Nothing dereferences a path in an objective, every surface caps what it holds, and a truncation must keep the address. The chat resend is a different payload: the whole durable slice, so the operator can paste it; the objective stored by the runtime is the projection above."
++  # The packet goal.md is the source of the directive, and the session binds to
++  # it rather than to a remembered string. Everything below is the agent's
++  # posture around that file; the mechanics live in the goal hook core.
++  packet_goal:
++    bind_by_runtime:
++      opencode: 'opencode_goal({ action: "bind", packetPath: spec_path })'
++      pi: 'node .opencode/hooks/goal/bin/goal.cjs bind <spec_path> --runtime Pi --session <native session id> --workspace <repo root>'
++      cursor: "injection-only; report the objective for the operator to set, do not fabricate a call"
++      devin: "injection-only; report the objective for the operator to set, do not fabricate a call"
++      claude-code: "native goal command; render the durable slice, frontmatter excluded, and ask the operator to set it"
++      codex: "native goal command; render the durable slice, frontmatter excluded, and ask the operator to set it"
++    resend:
++      trigger: "The durable slice hash of the parent goal.md changed: a decision, a binding row or a criterion. Log rows and frontmatter never trigger."
++      payload: "The durable slice of the parent goal.md with frontmatter excluded, rendered from the file, never from memory."
++      after: "Ask the operator to set it. On a runtime with a bound session, record the send with the goal command's resent action."
++      child_rule: "A child goal change that alters a parent decision or criterion is applied to the parent first, then the parent is resent."
++    reminder:
++      while_unset: "Repeat a one-line reminder at every command entry and turn where the runtime injects; never repeat the full slice unless asked."
++      never_halts: "Work never stops because a goal is unset or a reminder went unanswered. Only an explicit operator stop halts."
++      after_set: "Acknowledge in one line and continue the current work at once; do not restate the goal, do not ask whether to proceed."
++    log:
++      rule: "Progress, evidence and deviations go to the goal log, below the durable slice, never into the directive. On a bound session the goal command's log action is the only path: it takes the per-packet lock. A direct table-row append is allowed only for a packet no session is bound to."
+   status_tool_by_runtime:
+     opencode: opencode_goal_status
+     default: "none; report state from the packet documents instead"
+diff --git a/.opencode/commands/speckit/save.md b/.opencode/commands/speckit/save.md
+index 5e6de4d795..40b9a77e9e 100644
+--- a/.opencode/commands/speckit/save.md
++++ b/.opencode/commands/speckit/save.md
+@@ -58,7 +58,7 @@ Procedure:
+ 3. Extract session summary, key decisions, modified files, trigger phrases, technical context, tool calls, and notable exchanges.
+ 4. Choose one route category (listed under MODE ROUTING).
+ 5. In default mode, return the save plan without mutating.
+-6. In explicit apply/full-auto mode, run the writer, inspect the post-save quality review, and patch HIGH metadata issues when practical. Canonical spec-doc content is authored in the packet documents themselves; the writer owns the continuity frontmatter and the generated metadata pair.
++6. In explicit apply/full-auto mode, run the writer, inspect the post-save quality review, and patch HIGH metadata issues when practical. When the packet carries a `goal.md`, append one progress row to its log for what this session did. On a bound session use the goal command's log action and nothing else (`node .opencode/hooks/goal/bin/goal.cjs log "<item> | <state> | <evidence>"`, or `opencode_goal({ action: "log", item, state, evidence })` on OpenCode), because it takes the per-packet lock; a direct table-row append below the log anchor is only for a packet no session is bound to. Never touch the durable slice from a save. Canonical spec-doc content is authored in the packet documents themselves; the writer owns the continuity frontmatter and the generated metadata pair.
+ 7. Render the result using the presentation asset.
+ 
+ Tool map:
+diff --git a/.opencode/hooks/goal/README.md b/.opencode/hooks/goal/README.md
+index 14ed37d124..dcc3ee6737 100644
+--- a/.opencode/hooks/goal/README.md
++++ b/.opencode/hooks/goal/README.md
+@@ -1,11 +1,13 @@
+ ---
+ title: "Goal Hooks: Session-Isolated Cross-Runtime Goals"
+-description: "Session-scoped goal storage, native runtime bindings, explicit legacy quarantine, and verification for Pi and Cursor."
++description: "Packet-bound goals: the packet goal.md is the directive, a per-session record holds the pointer and liveness, and Pi, Cursor, Devin and OpenCode inject the stripped durable slice."
+ trigger_phrases:
+   - "cross-runtime goal core"
+   - "goal manage cli"
+   - "session goal isolation"
+   - "legacy active goal migration"
++  - "packet goal binding"
++  - "goal durable slice"
+ ---
+ 
+ # Goal Hooks: Session-Isolated Cross-Runtime Goals
+@@ -22,7 +24,9 @@ workspace + runtime + native session id -> one opaque state file and one archive
+ 
+ There is no default session and no process-global current-goal pointer. Missing identity makes reads return no goal and makes management fail with a stable error. The legacy singleton `active-goal.json` is diagnostic input only and is never an injection fallback.
+ 
+-The core (`lib/goal-core.cjs`) was ported from the OpenCode `opencode-goal` plugin's session state machine, template, and prompt-injection hardening. OpenCode's `.opencode/plugins/opencode-goal.js` remains a separate, larger native implementation with its own per-OpenCode-session files, fixed opaque SHA-256 state keys, token accounting, lifecycle events, and guarded continuation. The two share the same kill switch and the same state-directory contract, but the OpenCode plugin does not import this core.
++The directive itself lives in the packet. A session binds to a spec packet, and that packet's `goal.md` is the single source of the goal: the record under the state root keeps only the pointer, an operator copy derived from the file, liveness, telemetry and the hash of the slice last resent in chat. Rendering reads the file every time, so editing `goal.md` changes what the model sees on the next turn, and a bound record whose document is gone injects nothing rather than a stale copy. The frontmatter never leaves the file: `lib/goal-slice.cjs` draws the boundary once for every surface, the CommonJS core and the ESM plugin alike.
++
++The core (`lib/goal-core.cjs`) was ported from the OpenCode `opencode-goal` plugin's session state machine, template, and prompt-injection hardening. OpenCode's `.opencode/plugins/opencode-goal.js` remains a separate, larger native implementation with its own per-OpenCode-session files, fixed opaque SHA-256 state keys, token accounting, lifecycle events, and guarded continuation. The two share the kill switch, the state-directory contract and the packet slice module; the OpenCode plugin requires `lib/goal-slice.cjs` and nothing else from this tree.
+ 
+ ---
+ 
+@@ -53,7 +57,9 @@ The core owns scope validation, opaque path resolution, atomic state I/O, the go
+ 
+ The canonical scope digest hashes the unambiguous JSON serialization of the resolved repository root, runtime, and native session id. Raw identities never appear in filenames or aggregate diagnostics. State files use mode `0600`; created directories use mode `0700`; writes use a temporary file, `fsync`, and atomic rename. Lifecycle mutations take cross-process filesystem locks. The previous runtime-plus-session-digest layout is adopted only under the matching workspace-default state root, where ownership is unambiguous.
+ 
+-**Manage CLI.** `bin/goal.cjs` is a thin router over the core for runtimes with no plugin tool surface. Current-session actions (`set`, `show`, `history`, `clear`, `complete`, `pause`, `resume`) require `--runtime`, `--session`, and `--workspace`. `doctor` and `health` are aggregate-only (counts and legacy classification, no raw identities). Legacy actions are explicit: `legacy-inspect` (non-mutating classification), `legacy-migrate` (bind a valid legacy record to this exact native session: refuses an occupied target, never replaces another session's goal, moves the singleton to `.archive/.legacy/` only after the scoped record is written), and `legacy-archive` (preserve bytes without assigning an owner). Malformed legacy data cannot migrate; it can only be inspected and archived.
++**Packet binding.** `bind <packet-path>` resolves the path inside the workspace, refuses anything outside it or without a `goal.md`, derives the operator copy (the pointer first, the binding sentence when the packet is phased, then the completion criteria copied out) and stores the pointer. `resent` records the current durable-slice hash so the reminder stops; `resendPending` compares that hash with the file, and a log append or a reflow never changes it while a decision, binding row or criterion does. `log` appends one row to the packet's progress table under a per-packet lock, keyed on the packet's real path and held under the workspace's own state root so two sessions with different state directories still serialize, and refuses any write that would alter the durable slice; a CRLF document keeps CRLF. `unbind` drops the pointer and keeps the record. `packet <path>` is a session-free read of a packet's slice, hash and size. Adapters append `renderResendReminder()` to the injection while the copy is behind: one line, never a block, naming the exact command on that runtime that records the resend (`/goal-pi resent`, `/goal-opencode resent`, or the scoped CLI line on Cursor and Devin). `show` reports `packet_state=bound|missing|unbound`, with a hint when the bound document is gone, and a text `set` past 4000 characters reports the truncation instead of clamping silently.
++
++**Manage CLI.** `bin/goal.cjs` is a thin router over the core for runtimes with no plugin tool surface. Current-session actions (`set`, `bind`, `unbind`, `resent`, `log`, `show`, `history`, `clear`, `complete`, `pause`, `resume`) require `--runtime`, `--session`, and `--workspace`; `packet` needs only `--workspace`. A rebind to a different packet archives the prior record. `doctor` and `health` are aggregate-only (counts and legacy classification, no raw identities). Legacy actions are explicit: `legacy-inspect` (non-mutating classification), `legacy-migrate` (bind a valid legacy record to this exact native session: refuses an occupied target, never replaces another session's goal, moves the singleton to `.archive/.legacy/` only after the scoped record is written), and `legacy-archive` (preserve bytes without assigning an owner). Malformed legacy data cannot migrate; it can only be inspected and archived.
+ 
+ ---
+ 
+@@ -64,13 +70,13 @@ The core is runtime-neutral; each adapter binds it to a native lifecycle event a
+ | Runtime | Adapter | Event / wiring | Payload difference it handles | Delivery |
+ |---|---|---|---|---|
+ | **Pi** | `pi/goal-context.ts` | `input` + `session_start` + `turn_end`; registers `/goal-pi` command, discovered via `.pi/extensions/` | `ctx.sessionManager.getSessionId()` for native identity; `ctx.cwd` for workspace | `input` → `{action: "transform", text: ...}` (per-turn injection, chains additively). `session_start` → restore via `pi.sendMessage`. `turn_end` → heuristic verify, observe-only nudge via `pi.sendMessage` when not met, records turn. `/goal-pi` shells to `bin/goal.cjs` with scope flags. |
+-| **Cursor** | `cursor/goal-inject.mjs` | `sessionStart` only | `session_id` then `conversation_id` fallback; `workspace_roots[0]` for workspace | `{permission: 'allow', agent_message: brief}`. Injection-only: no management (prompt commands don't receive native identity), no mid-session refresh, no verify/continue. Model-visibility is recorded-evidence, not a proven end-to-end guarantee. |
+-| **OpenCode** | `.opencode/plugins/opencode-goal.js` (mirrored at `opencode/`) | Native OpenCode plugin, outside this core | Owns per-OpenCode-session files, token accounting, lifecycle events | Native `/goal-opencode` tools, native verifier, guarded continuation. A separate implementation that shares the kill switch and state-directory contract but does not import this core. |
+-| **Claude** | — | — | — | `by-design`: goal state ships only on native session-bound goal surfaces. No adapter in this core. |
+-| **Codex** | — | — | — | `by-design`: same. No adapter. |
+-| **Devin** | — | — | — | `by-design`: same. No adapter. |
++| **Cursor** | `cursor/goal-inject.mjs` | `sessionStart` only | `session_id` then `conversation_id` fallback; `workspace_roots[0]` for workspace | `{permission: 'allow', agent_message: brief + reminder}`. Injection-only: management needs identity the prompt command does not carry, so `/goal-cursor` answers only `packet <path>`, a session-free read. No mid-session refresh, no verify/continue. Model-visibility is recorded-evidence, not a proven end-to-end guarantee. |
++| **Devin** | `devin/goal-inject.mjs` | `SessionStart` + `UserPromptSubmit` in `.devin/hooks.v1.json` | `session_id`; `cwd` or `DEVIN_PROJECT_DIR` for workspace | `{hookSpecificOutput: {hookEventName, additionalContext: brief + reminder}}`. Injection-only: the repository exposes no Devin prompt-command surface. |
++| **OpenCode** | `.opencode/plugins/opencode-goal.js` (mirrored at `opencode/`) | Native OpenCode plugin, outside this core | Owns per-OpenCode-session files, token accounting, lifecycle events | Native `/goal-opencode` tools with `bind`, `resent` and `packet`, native verifier, guarded continuation. A separate implementation that shares the kill switch, the state-directory contract and `lib/goal-slice.cjs`. |
++| **Claude** | — | native goal command | — | Keeps its host goal command. The speckit workflows render the parent goal's durable slice, frontmatter excluded, and hand it over to be set; the `AGENTS.md` goal posture row binds the agent on every turn. |
++| **Codex** | — | native goal command | — | Same as Claude. |
+ 
+-A runtime is not called fully supported unless injection and management bind the same native current-session identity. Cursor therefore remains injection-only, and its `/goal-cursor` prompt fails closed instead of invoking an unbound CLI. Pi is the only runtime here with both injection and management bound to the same native identity, plus a heuristic verify surface.
++A runtime is not called fully supported unless injection and management bind the same native current-session identity. Cursor and Devin therefore remain injection-only, and `/goal-cursor` fails closed for anything but the packet read. Pi and OpenCode bind injection and management to the same native identity; Pi also carries a heuristic verify surface.
+ 
+ OpenCode's real plugin cannot live in this tree because its loader globs `.opencode/plugins/` by a flat pattern, so `opencode/opencode-goal.js` is a browsability-only symlink back into that folder and nothing loads through it. Pi loads in the other direction: the real `pi/goal-context.ts` lives here, and `.pi/extensions/` holds the relative symlink Pi discovers.
+ 
+@@ -81,12 +87,15 @@ OpenCode's real plugin cannot live in this tree because its loader globs `.openc
+ ```text
+ goal/
+ +-- lib/
+-|   +-- goal-core.cjs              # scope validation, opaque paths, atomic state, lifecycle, rendering, verifier, legacy quarantine
+-|   `-- goal-core.test.cjs         # core, lifecycle, concurrency, legacy, hardening, CLI contract coverage
++|   +-- goal-core.cjs              # scope validation, opaque paths, atomic state, lifecycle, packet binding, rendering, verifier, legacy quarantine
++|   +-- goal-core.test.cjs         # core, lifecycle, concurrency, legacy, hardening, packet, CLI contract coverage
++|   +-- goal-slice.cjs             # packet goal.md projections: frontmatter split, durable and chat slices, objective slice, hash
++|   `-- goal-slice.test.cjs        # no-leak, slice boundary, nested versus singular, hash stability, unbound paths
+ +-- bin/
+ |   +-- goal.cjs                   # manage CLI: stable envelope + explicit scope/legacy actions
+ |   `-- goal.test.cjs              # CLI binding, privacy, concurrency, legacy action coverage
+-+-- cursor/   goal-inject.mjs       # sessionStart-only injection
+++-- cursor/   goal-inject.mjs       # sessionStart-only injection plus the resend reminder
+++-- devin/    goal-inject.mjs       # SessionStart + UserPromptSubmit injection plus the resend reminder
+ +-- pi/       goal-context.ts       # Pi native lifecycle + /goal-pi command (real file; `.pi/extensions/` symlinks to it)
+ `-- opencode/ opencode-goal.js      # browsability symlink -> ../../../plugins/opencode-goal.js
+ ```
+@@ -97,13 +106,15 @@ goal/
+ 
+ | File | Responsibility |
+ |---|---|
+-| `lib/goal-core.cjs` | Scope validation (`resolveGoalScope`), opaque SHA-256 path resolution, atomic state I/O (temp + fsync + rename, mode 0600/0700, cross-process locks), the goal lifecycle (`set`/`show`/`clear`/`complete`/`pause`/`resume`/`history`), `renderGoalBrief` (byte-compatible `[active_goal]` block), `buildGoalPrompt` (RICCE skeleton), `verifyGoalHeuristic`, diagnostics (`doctor`/`health`), and legacy quarantine (`legacy-inspect`/`legacy-migrate`/`legacy-archive`). Reads fail open; mutations raise stable `GoalError` codes. |
++| `lib/goal-core.cjs` | Scope validation (`resolveGoalScope`), opaque SHA-256 path resolution, atomic state I/O (temp + fsync + rename, mode 0600/0700, cross-process locks), the goal lifecycle (`set`/`show`/`clear`/`complete`/`pause`/`resume`/`history`), packet binding (`bindGoal`/`unbindGoal`/`noteResent`/`resendPending`/`appendGoalLog`/`describePacketGoal`), `renderGoalBrief` (byte-compatible `[active_goal]` block, rendered from the packet when bound) and `renderResendReminder`, `buildGoalPrompt` (RICCE skeleton), `verifyGoalHeuristic`, diagnostics (`doctor`/`health`), and legacy quarantine (`legacy-inspect`/`legacy-migrate`/`legacy-archive`). Reads fail open; mutations raise stable `GoalError` codes. |
++| `lib/goal-slice.cjs` | The one definition of where a goal document's frontmatter ends and its durable slice begins. Produces the measured slice, the chat slice, the objective slice and the slice hash; reads a packet's goal inside the workspace and nowhere else. Imported by the core and by the OpenCode plugin. |
+ | `bin/goal.cjs` | Stable `STATUS=`/`ACTION=` command envelope and explicit scope/legacy actions. Never writes goal state directly: every mutation goes through the shared core. |
+ | `pi/goal-context.ts` | Pi native lifecycle binding. Registers `/goal-pi`, injects on `input`, restores on `session_start`, verifies on `turn_end`. Dynamic-imports the core (supports both canonical and discovery-symlink paths). |
+-| `cursor/goal-inject.mjs` | Cursor `sessionStart`-only injection. Reads the active goal, renders the brief, returns it as `agent_message`. Fails open unconditionally. |
++| `cursor/goal-inject.mjs` | Cursor `sessionStart`-only injection. Reads the active goal, renders the brief and the resend reminder, returns them as `agent_message`. Fails open unconditionally. |
++| `devin/goal-inject.mjs` | Devin `SessionStart` and `UserPromptSubmit` injection. Same brief and reminder, returned as `additionalContext` in Devin's `hookSpecificOutput` envelope. Fails open to `{}`. |
+ | `lib/goal-core.test.cjs`, `bin/goal.test.cjs` | Core, lifecycle, concurrency, legacy, hardening, CLI binding, privacy, and legacy action coverage. |
+ 
+-`.opencode/plugins/opencode-goal.js` is the OpenCode-native plugin; it is a separate implementation that shares the kill switch and state directory but does not import this core.
++`.opencode/plugins/opencode-goal.js` is the OpenCode-native plugin; it is a separate implementation that shares the kill switch, the state directory and `lib/goal-slice.cjs`, and imports nothing else from this tree.
+ 
+ ---
+ 
+@@ -126,9 +137,10 @@ Set a flag inline for one command, export it for a session, or persist it in `.o
+ 
+ | Boundary | Rule |
+ |---|---|
+-| Imports | The core imports Node builtins only and `../../shared/hook-flags.cjs`. Adapters import `../lib/goal-core.cjs` (Cursor via `createRequire`; Pi via dynamic `import`). Nothing imports the OpenCode plugin. |
+-| Scope | Every read or mutation resolves a composite `workspace + runtime + native session id` scope. No default session, no process-global current-goal pointer. Missing identity → no goal on read, stable error on mutation. |
+-| State | Atomic writes (temp + fsync + rename), mode 0600 files / 0700 dirs, cross-process filesystem locks. Raw identities never appear in filenames or aggregate diagnostics. |
++| Imports | The core imports Node builtins, `../../shared/hook-flags.cjs` and `./goal-slice.cjs`. Adapters import `../lib/goal-core.cjs` (Cursor and Devin via `createRequire`; Pi via dynamic `import`). The OpenCode plugin imports `goal-slice.cjs` only. Nothing imports the plugin. |
++| Scope | Every read or mutation resolves a composite `workspace + runtime + native session id` scope. No default session, no process-global current-goal pointer. Missing identity → no goal on read, stable error on mutation. A packet is shared content; which packet a session is bound to is per-session state. |
++| Directive | The bound packet's `goal.md` is the source. Tooling writes only its log, below the durable slice, and only through the locked append. Decisions, binding rows and criteria are the operator's to change, and every change is resent in chat with the frontmatter stripped. |
++| State | Atomic writes (temp + fsync + rename), mode 0600 files / 0700 dirs, cross-process filesystem locks. Record locks live in the session's state dir; packet-log locks live under the workspace's default state root and are keyed on the packet's real path, so an alias and its target, and two sessions with different state dirs, all contend on one lock. Raw identities never appear in filenames or aggregate diagnostics. |
+ | Failure | Reads fail open: missing identity, missing state, malformed scoped JSON, or adapter error selects no goal. Mutations fail closed with stable `GoalError` codes and do not guess identity. |
+ | Rollback | To roll back runtime injection, disable the adapter while preserving both scoped state and legacy quarantine files. Do not merge scoped records back into a singleton. |
+ 
+@@ -138,10 +150,12 @@ Set a flag inline for one command, export it for a session, or persist it in `.o
+ 
+ ```bash
+ node --test \
++  .opencode/hooks/goal/lib/goal-slice.test.cjs \
+   .opencode/hooks/goal/lib/goal-core.test.cjs \
+   .opencode/hooks/goal/bin/goal.test.cjs \
+   .opencode/hooks/goal/pi/goal-pi.test.mjs \
+-  .opencode/hooks/goal/cursor/goal-cursor.test.mjs
++  .opencode/hooks/goal/cursor/goal-cursor.test.mjs \
++  .opencode/hooks/goal/devin/goal-devin.test.mjs
+ ```
+ 
+ Expected result: all tests pass.
+@@ -168,3 +182,4 @@ Expected result: no alignment drift. Use temporary `OPENCODE_GOAL_STATE_DIR` pat
+ - [`../injection-contract.md`](../injection-contract.md): runtime injection visibility contract.
+ - [`../shared/README.md`](../shared/README.md): the shared kill-switch resolver the adapters use.
+ - [`../../commands/goal-opencode.md`](../../commands/goal-opencode.md): OpenCode-native command router.
++- [`../../skills/system-spec-kit/references/workflows/goal-set-string-playbook.md`](../../skills/system-spec-kit/references/workflows/goal-set-string-playbook.md): what an operator sets, the durable budget and the resend rule.
+diff --git a/.opencode/hooks/goal/bin/goal.cjs b/.opencode/hooks/goal/bin/goal.cjs
+index 89437a8be7..6581777123 100755
+--- a/.opencode/hooks/goal/bin/goal.cjs
++++ b/.opencode/hooks/goal/bin/goal.cjs
+@@ -135,6 +135,12 @@ function goalLines(goal, runtimeLabel = 'cli') {
+     `last_check=${goal.lastVerifierVerdict || 'not_evaluated'}`,
+     `verifier_reason=${core.quoteValue(goal.lastVerifierReason || '')}`,
+     `injection_preview=${core.quoteValue(injectionPreview)}`,
++    `packet_path=${core.quoteValue(goal.packetPath || '')}`,
++    `packet_state=${core.packetState(goal, goal.workspace)}`,
++    `packet_bound=${core.packetState(goal, goal.workspace) === 'bound' ? 'true' : 'false'}`,
++    ...(core.packetState(goal, goal.workspace) === 'missing'
++      ? [`hint=${core.quoteValue('the bound packet goal.md is missing or outside the workspace; this session injects nothing until you bind again or unbind')}`]
++      : []),
+   ];
+ }
+ 
+@@ -147,13 +153,82 @@ function runShow(runtimeLabel, options) {
+   printOk('show', goalLines(goal, runtimeLabel));
+ }
+ 
++function runBind(rest, runtimeLabel, options) {
++  const { objective: packetPath, tokenBudget, error } = parseSetArgs(rest);
++  if (error) return printFail('bind', new core.GoalError(error.code, error.message));
++  if (!packetPath) return printFail('bind', new core.GoalError('INVALID_PACKET_PATH', 'A packet path is required'));
++  try {
++    const { record, packet, mutation } = core.bindGoal({ packetPath, tokenBudget, runtimeLabel }, options);
++    printOk('bind', [
++      ...goalLines(record, runtimeLabel),
++      `packet_nested=${packet.nested ? 'true' : 'false'}`,
++      `packet_durable_chars=${packet.durableChars}`,
++      `packet_budget=${packet.budgetState}`,
++      `packet_slice_hash=${core.quoteValue(packet.hash)}`,
++      `resend_pending=${core.resendPending(record, record.workspace) ? 'true' : 'false'}`,
++      ...(packet.budgetState === 'over' || packet.budgetState === 'warn'
++        ? [`warning=${core.quoteValue(`durable slice is ${packet.durableChars} characters; ${packet.budgetState === 'over' ? 'past the error tier' : 'past the warning tier'} (${packet.budget.warnChars}/${packet.budget.errorChars})`)}`]
++        : []),
++    ], mutation);
++  } catch (error) {
++    printFail('bind', error);
++  }
++}
++
++function runUnbind(runtimeLabel, options) {
++  try {
++    const { record, mutation } = core.unbindGoal(options);
++    printOk('unbind', goalLines(record, runtimeLabel), mutation);
++  } catch (error) {
++    printFail('unbind', error);
++  }
++}
++
++function runResent(runtimeLabel, options) {
++  try {
++    const { record, packet, mutation } = core.noteResent(options);
++    printOk('resent', [...goalLines(record, runtimeLabel), `packet_slice_hash=${core.quoteValue(packet.hash)}`, 'resend_pending=false'], mutation);
++  } catch (error) {
++    printFail('resent', error);
++  }
++}
++
++function runLog(rest, options) {
++  const [item, state, evidence] = rest.join(' ').split('|').map((part) => part.trim());
++  try {
++    const result = core.appendGoalLog({ item, state, evidence }, options);
++    printOk('log', [`packet_path=${core.quoteValue(result.packetPath)}`, `row=${core.quoteValue(result.row)}`], 'logged');
++  } catch (error) {
++    printFail('log', error);
++  }
++}
++
++function runPacket(rest, options) {
++  const packetPath = rest.join(' ').trim();
++  if (!packetPath) return printFail('packet', new core.GoalError('INVALID_PACKET_PATH', 'A packet path is required'));
++  const packet = core.describePacketGoal(packetPath, { workspace: options.scope.workspace });
++  if (!packet) return printFail('packet', new core.GoalError('PACKET_GOAL_NOT_FOUND', 'No goal.md at that packet path inside the workspace'));
++  printOk('packet', [
++    `packet_path=${core.quoteValue(packet.packetPath)}`,
++    `packet_nested=${packet.nested ? 'true' : 'false'}`,
++    `packet_durable_chars=${packet.durableChars}`,
++    `packet_budget=${packet.budgetState}`,
++    `packet_slice_hash=${core.quoteValue(packet.hash)}`,
++    `objective_slice=${core.quoteValue(packet.objectiveSlice)}`,
++    `chat_slice=${core.quoteValue(packet.chatSlice)}`,
++  ]);
++}
++
+ function runSet(rest, runtimeLabel, options) {
+   const { objective, tokenBudget, error } = parseSetArgs(rest);
+   if (error) return printFail('set', new core.GoalError(error.code, error.message));
+   if (!objective) return printFail('set', new core.GoalError('INVALID_OBJECTIVE', 'Objective is required'));
+   try {
+-    const { record, mutation } = core.setGoal({ objective, tokenBudget, runtimeLabel }, options);
+-    printOk('set', goalLines(record, runtimeLabel), mutation);
++    const { record, mutation, truncated } = core.setGoal({ objective, tokenBudget, runtimeLabel }, options);
++    printOk('set', [
++      ...goalLines(record, runtimeLabel),
++      ...(truncated ? [`warning=${core.quoteValue(`objective was ${truncated.rawLength} characters and was truncated to ${truncated.maxChars}; the tail is lost`)}`] : []),
++    ], mutation);
+   } catch (error_) {
+     printFail('set', error_);
+   }
+@@ -320,6 +395,11 @@ function main(argv) {
+   switch (action) {
+     case 'show': return runShow(runtimeLabel, options);
+     case 'set': return runSet(rest, runtimeLabel, options);
++    case 'bind': return runBind(rest, runtimeLabel, options);
++    case 'unbind': return runUnbind(runtimeLabel, options);
++    case 'resent': return runResent(runtimeLabel, options);
++    case 'log': return runLog(rest, options);
++    case 'packet': return runPacket(rest, options);
+     case 'history': return runHistory(options);
+     case 'doctor': return runDoctor('doctor', options);
+     case 'health': return runDoctor('health', options);
+diff --git a/.opencode/hooks/goal/cursor/goal-inject.mjs b/.opencode/hooks/goal/cursor/goal-inject.mjs
+index 6ea3932ff0..600deec7b9 100644
+--- a/.opencode/hooks/goal/cursor/goal-inject.mjs
++++ b/.opencode/hooks/goal/cursor/goal-inject.mjs
+@@ -33,7 +33,7 @@
+ import { createRequire } from 'node:module';
+ 
+ const require = createRequire(import.meta.url);
+-const { readGoalRecord, renderGoalBrief, recordTurn, isPluginDisabled } = require('../lib/goal-core.cjs');
++const { readGoalRecord, renderGoalBrief, renderResendReminder, recordTurn, isPluginDisabled } = require('../lib/goal-core.cjs');
+ 
+ // ─────────────────────────────────────────────────────────────────────────────
+ // 2. HELPERS
+@@ -77,11 +77,16 @@ async function main() {
+     const goal = readGoalRecord(options);
+     if (!goal || goal.status !== 'active') return allow();
+ 
+-    const brief = renderGoalBrief({ goal, runtimeLabel: 'Cursor' });
++    const brief = renderGoalBrief({ goal, runtimeLabel: 'Cursor', workspace: cwd });
+     if (!brief) return allow();
+ 
+     recordTurn({}, options);
+-    return allow({ agent_message: brief });
++    // Cursor has no management command, so the reminder carries the one CLI
++    // line that records the resend with this session's own scope.
++    const reminder = renderResendReminder(goal, cwd, {
++      recordCommand: `node .opencode/hooks/goal/bin/goal.cjs resent --runtime cursor --session ${JSON.stringify(sessionId)} --workspace ${JSON.stringify(cwd)}`,
++    });
++    return allow({ agent_message: reminder ? `${brief}\n${reminder}` : brief });
+   } catch {
+     return allow(); // any goal-core error -> fail open, no injection
+   }
+diff --git a/.opencode/hooks/goal/goal-plugin.md b/.opencode/hooks/goal/goal-plugin.md
+index 7ef2b6bc7f..7be2efa5af 100644
+--- a/.opencode/hooks/goal/goal-plugin.md
++++ b/.opencode/hooks/goal/goal-plugin.md
+@@ -29,15 +29,18 @@ This is a local OpenCode plugin contract, not an MCP tool and not a daemon-backe
+ | Surface | Path | Role |
+ |---|---|---|
+ | Plugin | `.opencode/plugins/opencode-goal.js` | Auto-loaded OpenCode plugin with `event`, `experimental.chat.system.transform`, `opencode_goal`, and `opencode_goal_status`. |
+-| Command | `.opencode/commands/goal-opencode.md` | State-free `/goal` router for `set`, `show`, `history`, `doctor`, `health`, `clear`, `complete`, `pause`, and `resume`. |
+-| State | `.opencode/skills/.state/goal/` | Runtime JSON state, keyed by a fixed SHA-256 digest of the session id, intentionally outside spec docs. |
++| Command | `.opencode/commands/goal-opencode.md` | State-free `/goal` router for `bind`, `unbind`, `resent`, `log`, `packet`, `set`, `show`, `history`, `doctor`, `health`, `clear`, `complete`, `pause`, and `resume`. |
++| State | `.opencode/skills/.state/goal/` | Per-session JSON record keyed by a fixed SHA-256 digest of the session id: the packet pointer, the operator copy, liveness and telemetry. The directive is the bound packet's `goal.md`. |
++| Slice | `.opencode/hooks/goal/lib/goal-slice.cjs` | The packet goal projections the plugin renders from; shared with the runtime-neutral core so the frontmatter boundary is defined once. |
+ | Tests | `.opencode/plugins/tests/opencode-goal-*.test.cjs` | Unit coverage for state, tool path, lifecycle, supervisor, continuation, export contract, and injection behavior. |
+ 
+ ---
+ 
+ ## 3. BEHAVIOR CONTRACT
+ 
+-- `/goal set <objective>` stores a sanitized raw `objective`, derives a deterministic `goalPrompt`, and records prompt metadata under `promptEnhancement`.
++- `/goal bind <packet-path>` resolves the path inside the workspace, refuses anything outside it or without a `goal.md`, derives the objective from the file (pointer, binding sentence when phased, criteria copied out) and stores `packetPath`. From then on injection renders from the file on every turn; a bound goal whose file is gone injects nothing.
++- `/goal resent` records the durable-slice hash that was resent in chat so `resend_pending` clears. `/goal unbind` drops the pointer and keeps the record. `/goal log <item> | <state> | <evidence>` appends one row below the packet's log anchor through the shared core's locked append. `/goal packet <packet-path>` reads a packet's slice, hash, size and budget tier without binding. An action the tool does not know fails with `UNKNOWN_ACTION` instead of falling back to `show`.
++- `/goal set <objective>` stores a sanitized raw `objective`, derives a deterministic `goalPrompt`, and records prompt metadata under `promptEnhancement`. A different objective on a bound goal replaces the record and drops the packet pointer: text and packet are two modes, and `set` selects text. Bind again to return to the packet.
+ - `/goal set <objective> --budget N` passes `tokenBudget: N` through the command router; invalid, zero, negative, or missing budget values fail before a tool call.
+ - `/goal history` lists archived goal records from `.opencode/skills/.state/goal/.archive/` without creating or mutating active state.
+ - Reads adopt valid legacy hex-keyed active and archived files into the fixed digest path without overwriting an occupied target. Malformed or mismatched sources remain untouched.
+@@ -78,7 +81,12 @@ This is a local OpenCode plugin contract, not an MCP tool and not a daemon-backe
+ | Field | Values | Meaning |
+ |---|---|---|
+ | `store_health` | `no_active_goal`, `state_age_ms:<N>` | Diagnostic on the active-goal state file: absent, or its age in milliseconds. |
+-| `mutation` | `created`, `refreshed`, `replaced` | Set-time outcome: `created` when no goal existed, `refreshed` when the same objective was re-set, `replaced` when a different objective overwrote an existing goal. |
++| `mutation` | `created`, `refreshed`, `replaced`, `bound`, `rebound`, `unbound`, `resent`, `logged` | Set-time outcome: `created` when no goal existed, `refreshed` when the same objective was re-set, `replaced` when a different objective overwrote an existing goal; `bound` and `rebound` for a packet bind, `resent` after the slice hash is recorded. |
++| `packet_path` | repo-relative path or empty | The bound packet directory; empty when the goal was set from text. |
++| `packet_state` | `bound`, `missing`, `unbound` | `bound` when the pointer resolves to a document, `missing` when the pointer is set but the document is gone or outside the workspace (a `hint=` line follows and injection is silent), `unbound` when the goal was set from text. |
++| `packet_bound` | `true`, `false` | `true` only when `packet_state=bound`. |
++| `warning` | text | Present after a text `set` whose objective exceeded 4000 characters and was truncated, and after a `bind` whose durable slice is past the warning or error tier. |
++| `resend_pending` | `true`, `false` | Whether the packet's durable slice changed since it was last marked resent. Log rows and reflow never flip it. |
+ | `max_auto_turns` | positive integer | Effective auto-turn cap after `OPENCODE_GOAL_MAX_AUTO_TURNS` and stored state normalization. |
+ | `remaining_auto_turns` | integer >= 0 | Auto-continuation turns still available before the cap suppresses continuation. |
+ | `max_wall_ms` | positive integer | Effective wall-clock cap after `OPENCODE_GOAL_MAX_WALL_MS`. |
+@@ -102,7 +110,7 @@ The default heuristic marks a goal `met` only when the latest assistant evidence
+ 
+ - Keep `.opencode/commands/goal-opencode.md` as a thin one-tool router. Do not duplicate state parsing or prompt construction in command markdown.
+ - Do not route `opencode-goal` through the skill-advisor daemon CLI or any other daemon-backed bridge. Goal state is session-local plugin state.
+-- Do not store objective-derived runtime state in spec docs or packet continuity surfaces unless the user explicitly asks to save continuity.
++- The packet `goal.md` is the directive and the plugin only reads it. Tooling writes a packet goal's log, below the durable slice, through the shared core's locked append; nothing writes the decisions, binding rows or criteria unprompted, and nothing sends the file's frontmatter anywhere.
+ - Do not auto-run shell commands inferred from the goal objective. Verification evidence must come from explicit tests, command output, or supervisor-safe state.
+ - Restart OpenCode after changing `.opencode/plugins/opencode-goal.js`, `.opencode/commands/goal-opencode.md`, or this plugin's load-time configuration.
+ 
+@@ -130,7 +138,7 @@ For documentation-only changes, also run the relevant `sk-doc` structure check a
+ 
+ ## 8. CROSS-RUNTIME RELATIONSHIP
+ 
+-This plugin is the OpenCode-native goal system. Cursor and Pi reach the same passive-goal behavior through a runtime-neutral sibling under `.opencode/hooks/goal/` — not this plugin.
++This plugin is the OpenCode-native goal system. Cursor, Pi and Devin reach the same passive-goal behavior through a runtime-neutral sibling under `.opencode/hooks/goal/`, not this plugin. Both implementations read the bound packet through one module, `.opencode/hooks/goal/lib/goal-slice.cjs`, so a goal bound on one runtime renders the same slice on another.
+ 
+ **State model.** `opencode-goal` keeps per-OpenCode-session state and native token accounting under `<full-sha256-of-session-id>.json`. Valid files from the earlier reversible hex-key format migrate lazily on active reads, injection, orphan sweeps, and history access; occupied digest targets remain authoritative. The sibling core hashes the unambiguous serialization of repository root, runtime, and native session id into one opaque `<full-sha256>.json` basename with a matching archive namespace. Its legacy `active-goal.json` is diagnostic-only and never supplies prompt injection. Cross-runtime usage accounting remains `turn-count-estimate` because these adapters do not expose OpenCode's native token feed.
+ 
+@@ -140,19 +148,20 @@ This plugin is the OpenCode-native goal system. Cursor and Pi reach the same pas
+ |---|---|---|---|
+ | OpenCode | Native plugin | `/goal-opencode` | Native verifier and guarded continuation |
+ | Pi | Native session-bound extension | Native registered `/goal-pi` | `turn_end` heuristic; no forced continuation |
+-| Cursor | Session-bound `sessionStart` hook | Unsupported without native command identity | Turn touch only; no continuation |
+-| Claude Code | No sibling-core adapter | No repository command; live native capability unverified here | Outside this contract |
+-| Codex | None | None | None |
++| Cursor | Session-bound `sessionStart` hook, with the resend reminder | `/goal-cursor packet <path>` only; binding needs identity the command lacks | Turn touch only; no continuation |
++| Devin | `SessionStart` + `UserPromptSubmit` hook, with the resend reminder | None; the repository exposes no Devin command surface | Turn touch only |
++| Claude Code | Native host goal command | Native; the speckit workflows render the stripped durable slice to set | Outside this contract |
++| Codex | Native host goal command | Same as Claude Code | Outside this contract |
+ 
+ **Command surface.** Each retained goal-capable runtime uses its own command boundary:
+ 
+ | Runtime | Command | Source | Drives |
+ |---|---|---|---|
+ | OpenCode | `/goal-opencode` | `.opencode/commands/goal-opencode.md` | `opencode_goal` / `opencode_goal_status` plugin tools |
+-| Cursor | `/goal-cursor` | `.cursor/commands/goal-cursor.md` | Fails with `UNSUPPORTED_SESSION_BINDING`; never calls the CLI |
++| Cursor | `/goal-cursor` | `.cursor/commands/goal-cursor.md` | `packet <path>` through the session-free CLI read; every other action fails with `UNSUPPORTED_SESSION_BINDING` |
+ | Pi | `/goal-pi` | Registered by `.opencode/hooks/goal/pi/goal-context.ts` | Shared CLI with native runtime/session/workspace flags appended by the extension |
+ 
+-The shared CLI keeps the base OpenCode action envelope and adds explicit `legacy-inspect`, `legacy-migrate`, and `legacy-archive` actions. All current-session actions require explicit native binding; only aggregate diagnostics and non-binding legacy inspection/archive work without it. See `.opencode/hooks/goal/README.md` for state layout, error behavior, rollback, and verification.
++The shared CLI keeps the base OpenCode action envelope and adds `bind`, `unbind`, `resent`, `log`, `packet` and the explicit `legacy-inspect`, `legacy-migrate`, and `legacy-archive` actions. All current-session actions require explicit native binding; only aggregate diagnostics and non-binding legacy inspection/archive work without it. See `.opencode/hooks/goal/README.md` for state layout, error behavior, rollback, and verification.
+ 
+ ---
+ 
+diff --git a/.opencode/hooks/goal/lib/goal-core.cjs b/.opencode/hooks/goal/lib/goal-core.cjs
+index f7bb466593..158f66341f 100644
+--- a/.opencode/hooks/goal/lib/goal-core.cjs
++++ b/.opencode/hooks/goal/lib/goal-core.cjs
+@@ -34,6 +34,7 @@ const { dirname, isAbsolute, join, relative, resolve, sep } = require('node:path
+ const { createHash, randomUUID } = require('node:crypto');
+ 
+ const { isHookEnabled } = require('../../shared/hook-flags.cjs');
++const goalSlice = require('./goal-slice.cjs');
+ 
+ // ─────────────────────────────────────────────────────────────────────────────
+ // 2. CONSTANTS
+@@ -72,6 +73,11 @@ const OBJECTIVE_PREVIEW_MAX_CHARS = 600;
+ const VALID_STATUSES = new Set(['active', 'paused', 'completed', 'cleared']);
+ const ACTIONS = [
+   'set',
++  'bind',
++  'unbind',
++  'resent',
++  'log',
++  'packet',
+   'show',
+   'clear',
+   'complete',
+@@ -380,15 +386,26 @@ function calculateObjectivePreviewChars(maxInjectionChars) {
+  * native token feed exists outside OpenCode. Falls back to a compact block
+  * (same shape as opencode-goal's fallback) when over `maxChars`.
+  */
+-function renderGoalBrief({ goal, runtimeLabel = 'cross-runtime', maxChars = DEFAULT_MAX_INJECTION_CHARS } = {}) {
++function renderGoalBrief({ goal, runtimeLabel = 'cross-runtime', maxChars = DEFAULT_MAX_INJECTION_CHARS, workspace = null } = {}) {
+   if (!goal || goal.status !== 'active') return '';
++  // A bound session renders from the packet goal.md, never from a remembered
++  // copy: the file is the source and the record only points at it. A bound
++  // record whose document is gone is unbound and injects nothing.
++  let objectiveSource = goal.objective;
++  let promptSource = goal.goalPrompt || goal.objective;
++  if (typeof goal.packetPath === 'string' && goal.packetPath) {
++    const packet = resolvePacketGoal(goal, workspace);
++    if (!packet) return '';
++    objectiveSource = packet.objectiveSlice;
++    promptSource = buildGoalPrompt(packet.objectiveSlice, { runtimeLabel });
++  }
+   const objectivePreviewLimit = calculateObjectivePreviewChars(maxChars);
+-  const objective = sanitizeInlineText(goal.objective, Math.min(DEFAULT_MAX_OBJECTIVE_CHARS, objectivePreviewLimit));
++  const objective = sanitizeInlineText(objectiveSource, Math.min(DEFAULT_MAX_OBJECTIVE_CHARS, objectivePreviewLimit));
+   // The Role line is baked at set time from the runtime that created the goal,
+   // but the brief should name whichever runtime is reading it now. Relabel it
+   // to the caller's runtime so a goal set in one CLI reads correctly in another.
+   const safeRuntimeLabel = String(runtimeLabel).replace(/[^A-Za-z0-9 _-]/g, '').trim().slice(0, 40) || 'cross-runtime';
+-  const storedPrompt = sanitizePromptText(goal.goalPrompt || goal.objective, DEFAULT_MAX_GOAL_PROMPT_CHARS);
++  const storedPrompt = sanitizePromptText(promptSource, DEFAULT_MAX_GOAL_PROMPT_CHARS);
+   const goalPrompt = storedPrompt.replace(
+     /^Role: Focused .+? execution agent operating under the active session goal\./m,
+     `Role: Focused ${safeRuntimeLabel} execution agent operating under the active session goal.`,
+@@ -858,6 +875,242 @@ function archiveLegacyGoal(rawOptions = {}) {
+   });
+ }
+ 
++// ─────────────────────────────────────────────────────────────────────────────
++// 9b. PACKET BINDING (the packet goal.md is the source of the directive)
++// ─────────────────────────────────────────────────────────────────────────────
++
++/**
++ * Read the bound packet's goal document for a record. Null when the record is
++ * unbound or the document is gone, and every caller treats null as unbound:
++ * no injection, no fallback to a remembered objective.
++ */
++function resolvePacketGoal(record, workspace) {
++  if (!record || typeof record.packetPath !== 'string' || !record.packetPath) return null;
++  const root = typeof workspace === 'string' && workspace ? workspace : record.workspace;
++  if (!root) return null;
++  return goalSlice.readPacketGoal(root, record.packetPath);
++}
++
++// A packet lock is keyed on the packet's real path, so an alias and its
++// target contend, and it lives under the workspace's own state root rather
++// than whatever state dir a session was given, so two sessions that keep
++// their records in different places still serialize their appends.
++function packetLockName(packetRealPath) {
++  return `packet:${createHash('sha256').update(packetRealPath, 'utf8').digest('hex')}`;
++}
++
++function packetLockRoot(workspace) {
++  return join(workspace, STATE_SUBDIR);
++}
++
++/** Atomic text write for a tracked document: temp, fsync, rename, default mode. */
++function writeTextAtomic(targetPath, text) {
++  const tempPath = `${targetPath}.${process.pid}.${Date.now()}.tmp`;
++  let fd = null;
++  try {
++    fd = openSync(tempPath, 'w');
++    writeSync(fd, text, null, 'utf8');
++    fsyncSync(fd);
++    closeSync(fd);
++    fd = null;
++    renameSync(tempPath, targetPath);
++  } catch (error) {
++    if (fd !== null) {
++      try { closeSync(fd); } catch { /* already closed */ }
++    }
++    try { unlinkSync(tempPath); } catch { /* nothing to clean up */ }
++    throw new GoalError('WRITE_GOAL_FAILED', `Failed to write goal document: ${error.message}`);
++  }
++}
++
++/**
++ * Bind the session to a packet. The packet's goal.md becomes the directive;
++ * the record keeps only the pointer, the operator copy derived from it, and
++ * bookkeeping. Binding never guesses: the path must resolve inside the
++ * workspace and the document must exist.
++ */
++function bindGoal({ packetPath, tokenBudget = null, runtimeLabel = null } = {}, rawOptions = {}) {
++  if (isPluginDisabled()) throw new GoalError('PLUGIN_DISABLED', `${DISABLED_ENV}=1 disables goal core execution`);
++  return withScopeMutation(rawOptions, (goalScope) => {
++    const packet = goalSlice.readPacketGoal(goalScope.workspace, packetPath);
++    if (!packet) throw new GoalError('PACKET_GOAL_NOT_FOUND', 'No goal.md at that packet path inside the workspace');
++    const current = readGoalRecordForScope(goalScope);
++    const nowMsValue = Date.now();
++    const promptRuntimeLabel = runtimeLabel || goalScope.runtime;
++    const objective = sanitizeInlineText(packet.objectiveSlice, DEFAULT_MAX_OBJECTIVE_CHARS);
++    const goalPrompt = buildGoalPrompt(packet.objectiveSlice, { runtimeLabel: promptRuntimeLabel });
++    const base = current && (current.status === 'active' || current.status === 'paused')
++      ? { ...current, status: 'active', revision: (current.revision || 0) + 1 }
++      : buildNewRecord(objective, goalPrompt, tokenBudget, goalScope.runtime, nowMsValue);
++    // A rebind to a different packet, or a bind over a terminal record, leaves
++    // the prior record behind in the archive so history keeps it.
++    if (current && (current.packetPath !== packet.packetPath || base !== current && current.status !== 'active' && current.status !== 'paused')) {
++      archiveGoalRecord(current, goalScope);
++    }
++    const record = {
++      ...base,
++      objective,
++      goalPrompt,
++      tokenBudget: tokenBudget ?? base.tokenBudget ?? null,
++      packetPath: packet.packetPath,
++      workspace: goalScope.workspace,
++      boundAtMs: nowMsValue,
++      boundBy: goalScope.runtime,
++      lastResentSliceHash: base.packetPath === packet.packetPath ? (base.lastResentSliceHash || null) : null,
++      updatedAt: isoFromMs(nowMsValue),
++      updatedAtMs: nowMsValue,
++      lastActivityAtMs: nowMsValue,
++      runtime: goalScope.runtime,
++    };
++    writeJsonAtomic(goalScope.statePath, record);
++    return { record, packet, mutation: current ? 'rebound' : 'bound' };
++  });
++}
++
++/** Drop the packet pointer. The record and its operator copy stay as they are. */
++function unbindGoal(rawOptions = {}) {
++  if (isPluginDisabled()) throw new GoalError('PLUGIN_DISABLED', `${DISABLED_ENV}=1 disables goal core execution`);
++  return withScopeMutation(rawOptions, (goalScope) => {
++    const current = requireCurrentGoal(goalScope);
++    const nowMsValue = Date.now();
++    const record = { ...current, updatedAt: isoFromMs(nowMsValue), updatedAtMs: nowMsValue, revision: (current.revision || 0) + 1 };
++    delete record.packetPath;
++    delete record.boundAtMs;
++    delete record.boundBy;
++    delete record.lastResentSliceHash;
++    writeJsonAtomic(goalScope.statePath, record);
++    return { record, mutation: 'unbound' };
++  });
++}
++
++/**
++ * Session-free read of a packet's goal document: what any runtime may show
++ * without a session identity, because it binds nothing and writes nothing.
++ * Returns null when the path escapes the workspace or has no goal document.
++ */
++function describePacketGoal(packetPath, rawOptions = {}) {
++  const workspaceStart = typeof rawOptions.workspace === 'string' && rawOptions.workspace.trim()
++    ? rawOptions.workspace.trim()
++    : rawOptions.cwd || process.cwd();
++  const workspace = resolveRepoRoot(workspaceStart);
++  const packet = goalSlice.readPacketGoal(workspace, packetPath);
++  if (!packet) return null;
++  return {
++    packetPath: packet.packetPath,
++    nested: packet.nested,
++    durableChars: packet.durableChars,
++    budgetState: packet.budgetState,
++    hash: packet.hash,
++    chatSlice: packet.chatSlice,
++    objectiveSlice: packet.objectiveSlice,
++  };
++}
++
++/**
++ * The one-line reminder a runtime appends to its injection while the operator
++ * copy is behind the packet. It never blocks and never repeats a resend on its
++ * own; it tells the agent to do both.
++ */
++function renderResendReminder(goal, workspace, options = {}) {
++  if (!goal || goal.status !== 'active' || !resendPending(goal, workspace)) return '';
++  return goalSlice.renderResendReminderText(goal.packetPath, options);
++}
++
++/**
++ * Whether the operator's copy is behind the packet. True when the durable
++ * slice hash differs from the one last resent; a log edit never changes it.
++ */
++function resendPending(record, workspace) {
++  const packet = resolvePacketGoal(record, workspace);
++  if (!packet) return false;
++  return packet.hash !== (record.lastResentSliceHash || null);
++}
++
++/**
++ * The truth about a record's packet: `unbound` when it never pointed at one,
++ * `bound` when the document resolves, `missing` when the pointer is set but
++ * the document is gone or escapes the workspace. Injection is silent in the
++ * missing case, so the envelope must say why.
++ */
++function packetState(record, workspace) {
++  if (!record || typeof record.packetPath !== 'string' || !record.packetPath) return 'unbound';
++  return resolvePacketGoal(record, workspace) ? 'bound' : 'missing';
++}
++
++/** Record that the current durable slice was resent in chat, so the reminder stops. */
++function noteResent(rawOptions = {}) {
++  if (isPluginDisabled()) throw new GoalError('PLUGIN_DISABLED', `${DISABLED_ENV}=1 disables goal core execution`);
++  return withScopeMutation(rawOptions, (goalScope) => {
++    const current = requireCurrentGoal(goalScope);
++    const packet = resolvePacketGoal(current, goalScope.workspace);
++    if (!packet) throw new GoalError('PACKET_GOAL_NOT_FOUND', 'The bound packet goal.md is missing');
++    const nowMsValue = Date.now();
++    const record = { ...current, lastResentSliceHash: packet.hash, updatedAt: isoFromMs(nowMsValue), updatedAtMs: nowMsValue };
++    writeJsonAtomic(goalScope.statePath, record);
++    return { record, packet, mutation: 'resent' };
++  });
++}
++
++/**
++ * Append one row to a packet goal's progress table without needing a session
++ * record. The log is the only region tooling may write unprompted; it sits
++ * below the durable slice, so the hash and the operator copy are untouched.
++ * Serialized per packet on its real path, under the workspace's state root,
++ * so two sessions appending at once cannot interleave whatever state dir
++ * each keeps its record in. The OpenCode plugin calls this directly.
++ */
++function appendPacketLog({ workspace, packetPath, item, state = 'Done', evidence = '' } = {}) {
++  const safeItem = sanitizeInlineText(item, 200);
++  if (!safeItem) throw new GoalError('INVALID_LOG_ITEM', 'A log item is required');
++  const safeState = sanitizeInlineText(state, 40) || 'Done';
++  const safeEvidence = sanitizeInlineText(evidence, 400);
++  const root = resolveRepoRoot(workspace || process.cwd());
++  const packet = goalSlice.readPacketGoal(root, packetPath);
++  if (!packet) throw new GoalError('PACKET_GOAL_NOT_FOUND', 'No goal.md at that packet path inside the workspace');
++  return withFileLocks(packetLockRoot(root), [packetLockName(packet.packetRealPath)], () => {
++    const content = readFileSync(packet.goalPath, 'utf8');
++    const hashBefore = goalSlice.durableSliceHash(content);
++    const logIndex = content.indexOf(goalSlice.LOG_ANCHOR);
++    if (logIndex < 0) throw new GoalError('GOAL_LOG_MISSING', 'The goal document has no log anchor');
++    const row = `| ${safeItem} | ${safeState} | ${safeEvidence} |`;
++    const head = content.slice(0, logIndex);
++    const tail = content.slice(logIndex);
++    // A CRLF document keeps CRLF: the inserted row reuses the terminator the
++    // file already uses, so one append never mixes line endings.
++    const terminator = /\r\n/.test(content) ? '\r\n' : '\n';
++    // The progress table is the first table in the log; its last row is where
++    // a new row goes. Without a table the row lands right after the heading.
++    const lines = tail.split(terminator);
++    let insertAt = -1;
++    let inTable = false;
++    for (let index = 0; index < lines.length; index += 1) {
++      const isRow = /^\|.*\|\s*$/.test(lines[index]);
++      if (isRow) { inTable = true; insertAt = index; continue; }
++      if (inTable) break;
++    }
++    if (insertAt < 0) {
++      throw new GoalError('GOAL_LOG_MISSING', 'The goal log has no progress table to append to');
++    }
++    lines.splice(insertAt + 1, 0, row);
++    const updated = head + lines.join(terminator);
++    if (goalSlice.durableSliceHash(updated) !== hashBefore) {
++      throw new GoalError('GOAL_LOG_WRITE_REFUSED', 'A log append must not change the durable slice');
++    }
++    writeTextAtomic(packet.goalPath, updated);
++    return { packetPath: packet.packetPath, row };
++  });
++}
++
++/** Append a log row against the session's bound packet. */
++function appendGoalLog({ item, state = 'Done', evidence = '' } = {}, rawOptions = {}) {
++  if (isPluginDisabled()) throw new GoalError('PLUGIN_DISABLED', `${DISABLED_ENV}=1 disables goal core execution`);
++  const goalScope = resolveGoalScope(rawOptions);
++  const current = readGoalRecordForScope(goalScope);
++  const packet = resolvePacketGoal(current, goalScope.workspace);
++  if (!packet) throw new GoalError('PACKET_GOAL_NOT_FOUND', 'No bound packet goal.md to log against');
++  return appendPacketLog({ workspace: goalScope.workspace, packetPath: packet.packetPath, item, state, evidence });
++}
++
+ // ─────────────────────────────────────────────────────────────────────────────
+ // 10. GOAL LIFECYCLE
+ // ─────────────────────────────────────────────────────────────────────────────
+@@ -898,6 +1151,10 @@ function setGoal({ objective, tokenBudget = null, runtimeLabel = null } = {}, ra
+   if (isPluginDisabled()) throw new GoalError('PLUGIN_DISABLED', `${DISABLED_ENV}=1 disables goal core execution`);
+   const sanitizedObjective = sanitizeInlineText(objective, DEFAULT_MAX_OBJECTIVE_CHARS);
+   if (!sanitizedObjective) throw new GoalError('INVALID_OBJECTIVE', 'Objective is required');
++  // A text objective past the cap is clamped, and a clamp is a silent loss of
++  // whatever sat at the tail, which is where criteria live. Report it.
++  const rawLength = String(objective || '').length;
++  const truncated = rawLength > DEFAULT_MAX_OBJECTIVE_CHARS;
+ 
+   return withScopeMutation(rawOptions, (goalScope) => {
+     const current = readGoalRecordForScope(goalScope);
+@@ -935,7 +1192,7 @@ function setGoal({ objective, tokenBudget = null, runtimeLabel = null } = {}, ra
+     }
+ 
+     writeJsonAtomic(goalScope.statePath, record);
+-    return { record, mutation };
++    return { record, mutation, truncated: truncated ? { rawLength, maxChars: DEFAULT_MAX_OBJECTIVE_CHARS } : null };
+   });
+ }
+ 
+@@ -1153,6 +1410,16 @@ module.exports = {
+   renderGoalBrief,
+   verifyGoalHeuristic,
+   setGoal,
++  bindGoal,
++  unbindGoal,
++  noteResent,
++  resendPending,
++  resolvePacketGoal,
++  packetState,
++  describePacketGoal,
++  renderResendReminder,
++  appendPacketLog,
++  appendGoalLog,
+   showGoal,
+   clearGoal,
+   completeGoal,
+diff --git a/.opencode/hooks/goal/lib/goal-core.test.cjs b/.opencode/hooks/goal/lib/goal-core.test.cjs
+index 0d5125acc6..a4011ba45b 100644
+--- a/.opencode/hooks/goal/lib/goal-core.test.cjs
++++ b/.opencode/hooks/goal/lib/goal-core.test.cjs
+@@ -719,3 +719,213 @@ test('CLI bare text falls through to set, mirroring the /goal-opencode router',
+   assert.ok(result.stdout.startsWith('STATUS=OK ACTION=set'));
+   assert.equal(envelopeField(result.stdout, 'objective'), '"Ship the widget"');
+ });
++
++// ─────────────────────────────────────────────────────────────────────────────
++// PACKET BINDING
++// ─────────────────────────────────────────────────────────────────────────────
++
++function packetGoalDoc({ nested = false, criteria = ['validate.sh passes'] } = {}) {
++  const binding = nested
++    ? '<!-- ANCHOR:binding -->\n## 2. BINDING\n| Phase | Goal document |\n|---|---|\n| 001-a | `001-a/goal.md` |\n<!-- /ANCHOR:binding -->\n\n'
++    : '';
++  return [
++    '---',
++    'title: "Goal: fixture"',
++    '_memory:',
++    '  continuity:',
++    '    session_dedup:',
++    '      session_id: "SECRET-SESSION"',
++    '---',
++    '# Goal: fixture',
++    '<!-- ANCHOR:directive -->',
++    '## 1. DURABLE DIRECTIVE',
++    '**Objective:** Ship the fixture.',
++    '<!-- /ANCHOR:directive -->',
++    binding + '<!-- ANCHOR:completion -->',
++    '## 3. COMPLETION CRITERIA',
++    ...criteria.map((c) => `- [ ] ${c}`),
++    '<!-- /ANCHOR:completion -->',
++    '<!-- ANCHOR:log -->',
++    '## 4. LOG',
++    '| Item | State | Evidence |',
++    '|---|---|---|',
++    '| scaffolded | Done | file |',
++    '<!-- /ANCHOR:log -->',
++    '',
++  ].join('\n');
++}
++
++function writePacketGoal(rel, content) {
++  const dir = join(stateDir, rel);
++  mkdirSync(dir, { recursive: true });
++  writeFileSync(join(dir, 'goal.md'), content, 'utf8');
++  return join(dir, 'goal.md');
++}
++
++test('bindGoal derives the objective from the packet and renders without frontmatter', () => {
++  writePacketGoal('specs/t/001-fixture', packetGoalDoc({ nested: true }));
++  const { record, packet, mutation } = core.bindGoal({ packetPath: 'specs/t/001-fixture' }, opts());
++  assert.equal(mutation, 'bound');
++  assert.equal(record.packetPath, 'specs/t/001-fixture');
++  assert.equal(packet.nested, true);
++  assert.ok(record.objective.startsWith('Execute specs/t/001-fixture/goal.md.'));
++  const brief = core.renderGoalBrief({ goal: core.showGoal(opts()), runtimeLabel: 'pi' });
++  assert.ok(brief.startsWith('[active_goal:'));
++  assert.ok(brief.includes('objective: Execute specs/t/001-fixture/goal.md.'));
++  assert.ok(!brief.includes('SECRET'));
++  assert.ok(!brief.includes('---\ntitle'));
++});
++
++test('a bound session renders the file as it is now, not the copy stored at bind time', () => {
++  const goalPath = writePacketGoal('specs/t/001-fixture', packetGoalDoc({ criteria: ['first criterion'] }));
++  core.bindGoal({ packetPath: 'specs/t/001-fixture' }, opts());
++  writeFileSync(goalPath, packetGoalDoc({ criteria: ['second criterion'] }), 'utf8');
++  const brief = core.renderGoalBrief({ goal: core.showGoal(opts()), runtimeLabel: 'pi' });
++  assert.ok(brief.includes('second criterion'));
++  assert.ok(!brief.includes('first criterion'));
++});
++
++test('a bound record whose goal.md is gone injects nothing and does not fall back', () => {
++  const goalPath = writePacketGoal('specs/t/001-fixture', packetGoalDoc());
++  core.bindGoal({ packetPath: 'specs/t/001-fixture' }, opts());
++  rmSync(goalPath);
++  assert.equal(core.renderGoalBrief({ goal: core.showGoal(opts()), runtimeLabel: 'pi' }), '');
++});
++
++test('bindGoal refuses paths outside the workspace and packets without a goal document', () => {
++  assert.throws(() => core.bindGoal({ packetPath: '../outside' }, opts()), { code: 'PACKET_GOAL_NOT_FOUND' });
++  assert.throws(() => core.bindGoal({ packetPath: 'specs/t/missing' }, opts()), { code: 'PACKET_GOAL_NOT_FOUND' });
++  assert.equal(core.showGoal(opts()), null);
++});
++
++test('resend is pending after a durable change and settles after noteResent, never after a log append', () => {
++  const goalPath = writePacketGoal('specs/t/001-fixture', packetGoalDoc({ criteria: ['first'] }));
++  const { record } = core.bindGoal({ packetPath: 'specs/t/001-fixture' }, opts());
++  assert.equal(core.resendPending(record, record.workspace), true);
++  const resent = core.noteResent(opts()).record;
++  assert.equal(core.resendPending(resent, resent.workspace), false);
++  core.appendGoalLog({ item: 'built', state: 'Done', evidence: 'tests' }, opts());
++  assert.equal(core.resendPending(core.showGoal(opts()), resent.workspace), false);
++  assert.ok(readFileSync(goalPath, 'utf8').includes('| built | Done | tests |'));
++  writeFileSync(goalPath, packetGoalDoc({ criteria: ['first', 'second'] }), 'utf8');
++  assert.equal(core.resendPending(core.showGoal(opts()), resent.workspace), true);
++});
++
++test('appendGoalLog refuses to touch the durable slice and keeps the frontmatter intact', () => {
++  const goalPath = writePacketGoal('specs/t/001-fixture', packetGoalDoc());
++  core.bindGoal({ packetPath: 'specs/t/001-fixture' }, opts());
++  const before = readFileSync(goalPath, 'utf8');
++  core.appendGoalLog({ item: 'step', state: 'In Progress', evidence: 'x' }, opts());
++  const after = readFileSync(goalPath, 'utf8');
++  assert.equal(after.split('<!-- ANCHOR:log -->')[0], before.split('<!-- ANCHOR:log -->')[0]);
++  assert.ok(after.includes('session_id: "SECRET-SESSION"'));
++});
++
++test('unbindGoal drops the pointer and the record renders from its stored copy again', () => {
++  writePacketGoal('specs/t/001-fixture', packetGoalDoc());
++  core.bindGoal({ packetPath: 'specs/t/001-fixture' }, opts());
++  const { record } = core.unbindGoal(opts());
++  assert.equal(record.packetPath, undefined);
++  assert.ok(core.renderGoalBrief({ goal: record, runtimeLabel: 'pi' }).startsWith('[active_goal:'));
++});
++
++test('two sessions bound to one packet keep separate records and resend state', () => {
++  writePacketGoal('specs/t/001-fixture', packetGoalDoc());
++  core.bindGoal({ packetPath: 'specs/t/001-fixture' }, scopedOpts('pi', 'session-a'));
++  core.bindGoal({ packetPath: 'specs/t/001-fixture' }, scopedOpts('pi', 'session-b'));
++  core.noteResent(scopedOpts('pi', 'session-a'));
++  assert.equal(core.resendPending(core.showGoal(scopedOpts('pi', 'session-a')), stateDir), false);
++  assert.equal(core.resendPending(core.showGoal(scopedOpts('pi', 'session-b')), stateDir), true);
++});
++
++test('CLI bind, resent, log and unbind return STATUS=OK envelopes with packet fields', () => {
++  writePacketGoal('specs/t/001-fixture', packetGoalDoc({ nested: true }));
++  const bind = runCli(['bind', 'specs/t/001-fixture', '--workspace', stateDir]);
++  assert.equal(bind.status, 0);
++  assert.ok(bind.stdout.startsWith('STATUS=OK ACTION=bind'));
++  assert.equal(envelopeField(bind.stdout, 'packet_bound'), 'true');
++  assert.equal(envelopeField(bind.stdout, 'packet_nested'), 'true');
++  assert.equal(envelopeField(bind.stdout, 'resend_pending'), 'true');
++  const resent = runCli(['resent', '--workspace', stateDir]);
++  assert.equal(envelopeField(resent.stdout, 'resend_pending'), 'false');
++  const log = runCli(['log', 'phase one | Done | tests green', '--workspace', stateDir]);
++  assert.ok(log.stdout.startsWith('STATUS=OK ACTION=log'));
++  const unbind = runCli(['unbind', '--workspace', stateDir]);
++  assert.equal(envelopeField(unbind.stdout, 'packet_bound'), 'false');
++});
++
++test('CLI packet reads a packet goal without a bound session and without frontmatter', () => {
++  writePacketGoal('specs/t/001-fixture', packetGoalDoc({ nested: true }));
++  const res = runCli(['packet', 'specs/t/001-fixture', '--workspace', stateDir]);
++  assert.ok(res.stdout.startsWith('STATUS=OK ACTION=packet'));
++  assert.equal(envelopeField(res.stdout, 'packet_nested'), 'true');
++  assert.ok(!res.stdout.includes('SECRET-SESSION'));
++  assert.equal(core.showGoal(opts()), null);
++});
++
++test('two writers through an alias and the real path serialize on one lock and both rows land', async () => {
++  const { symlinkSync } = require('node:fs');
++  const goalPath = writePacketGoal('specs/t/001-fixture', packetGoalDoc());
++  symlinkSync(join(stateDir, 'specs', 't', '001-fixture'), join(stateDir, 'specs', 't', 'alias'));
++  core.bindGoal({ packetPath: 'specs/t/001-fixture' }, scopedOpts('pi', 'writer-a'));
++  core.bindGoal({ packetPath: 'specs/t/alias' }, scopedOpts('pi', 'writer-b'));
++  const startAt = Date.now() + 150;
++  const workerSource = [
++    'const core = require(process.argv[1]);',
++    'const options = JSON.parse(process.argv[2]);',
++    'const startAtMs = Number(process.argv[3]);',
++    'while (Date.now() < startAtMs) {}',
++    'for (let i = 0; i < 5; i += 1) core.appendGoalLog({ item: `${options.scope.sessionId}-${i}`, state: "Done", evidence: "x" }, options);',
++  ].join('\n');
++  const { spawn } = require('node:child_process');
++  const run = (opts) => new Promise((resolve) => {
++    const child = spawn('node', ['-e', workerSource, join(__dirname, 'goal-core.cjs'), JSON.stringify(opts), String(startAt)], { stdio: 'ignore' });
++    child.on('exit', resolve);
++  });
++  await Promise.all([run(scopedOpts('pi', 'writer-a')), run(scopedOpts('pi', 'writer-b'))]);
++  const rows = (readFileSync(goalPath, 'utf8').match(/\| writer-[ab]-\d \| Done \| x \|/g) || []).length;
++  assert.equal(rows, 10);
++});
++
++test('a rebind to a different packet archives the prior record', () => {
++  writePacketGoal('specs/t/001-fixture', packetGoalDoc());
++  writePacketGoal('specs/t/002-other', packetGoalDoc({ criteria: ['other'] }));
++  const first = core.bindGoal({ packetPath: 'specs/t/001-fixture' }, opts()).record;
++  const second = core.bindGoal({ packetPath: 'specs/t/002-other' }, opts());
++  assert.equal(second.mutation, 'rebound');
++  const archived = core.listArchivedGoals(opts());
++  assert.ok(archived.some((entry) => entry.goal.goalId === first.goalId && entry.goal.packetPath === 'specs/t/001-fixture'));
++});
++
++test('show reports packet_state=missing with a hint once the bound document is gone', () => {
++  const goalPath = writePacketGoal('specs/t/001-fixture', packetGoalDoc());
++  core.bindGoal({ packetPath: 'specs/t/001-fixture' }, scopedOpts('cli', 'default-session'));
++  assert.equal(core.packetState(core.showGoal(scopedOpts('cli', 'default-session')), stateDir), 'bound');
++  rmSync(goalPath);
++  const res = runCli(['show', '--workspace', stateDir]);
++  assert.equal(envelopeField(res.stdout, 'packet_state'), 'missing');
++  assert.equal(envelopeField(res.stdout, 'packet_bound'), 'false');
++  assert.ok(res.stdout.includes('hint='));
++});
++
++test('a text objective past the cap is reported as truncated, not silently clamped', () => {
++  const res = runCli(['set', 'x'.repeat(4500), '--workspace', stateDir]);
++  assert.ok(res.stdout.startsWith('STATUS=OK ACTION=set'));
++  assert.ok(res.stdout.includes('warning="objective was 4500 characters and was truncated to 4000'));
++});
++
++test('a CRLF goal document keeps CRLF after a log append', () => {
++  const goalPath = writePacketGoal('specs/t/001-fixture', packetGoalDoc().replace(/\n/g, '\r\n'));
++  core.bindGoal({ packetPath: 'specs/t/001-fixture' }, opts());
++  core.appendGoalLog({ item: 'crlf', state: 'Done', evidence: 'x' }, opts());
++  const after = readFileSync(goalPath, 'utf8');
++  assert.equal((after.match(/\r\n/g) || []).length, after.split('\n').length - 1);
++  assert.ok(after.includes('| crlf | Done | x |'));
++});
++
++test('appendPacketLog appends without a session record', () => {
++  const goalPath = writePacketGoal('specs/t/001-fixture', packetGoalDoc());
++  const result = core.appendPacketLog({ workspace: stateDir, packetPath: 'specs/t/001-fixture', item: 'no-record', state: 'Done', evidence: 'e' });
++  assert.equal(result.packetPath, 'specs/t/001-fixture');
++  assert.ok(readFileSync(goalPath, 'utf8').includes('| no-record | Done | e |'));
++});
+diff --git a/.opencode/hooks/goal/pi/goal-context.ts b/.opencode/hooks/goal/pi/goal-context.ts
+index b7e10c9e18..3eb1f1d3e5 100644
+--- a/.opencode/hooks/goal/pi/goal-context.ts
++++ b/.opencode/hooks/goal/pi/goal-context.ts
+@@ -33,6 +33,8 @@ type GoalRecord = {
+   runtime?: string;
+   lastVerifierVerdict?: string;
+   lastVerifierReason?: string | null;
++  packetPath?: string;
++  workspace?: string;
+ };
+ 
+ type GoalOptions = {
+@@ -43,7 +45,8 @@ type GoalOptions = {
+ type GoalCore = {
+   isPluginDisabled(): boolean;
+   resolveRepoRoot(startDir: string): string;
+-  renderGoalBrief(input: { goal: GoalRecord | null; runtimeLabel: string }): string;
++  renderGoalBrief(input: { goal: GoalRecord | null; runtimeLabel: string; workspace?: string }): string;
++  renderResendReminder(goal: GoalRecord | null, workspace: string, options?: { recordCommand?: string }): string;
+   verifyGoalHeuristic(input: { goal: GoalRecord; transcriptText: string }): { verdict: string; reason: string };
+   readGoalRecord(options: GoalOptions): GoalRecord | null;
+   recordTurn(input: object, options: GoalOptions): GoalRecord | null;
+@@ -176,7 +179,7 @@ function extractTurnEndText(event: TurnEndEvent): string {
+ 
+ export default function goalContext(pi: ExtensionAPI): void {
+   pi.registerCommand("goal-pi", {
+-    description: "Manage the active goal for this Pi session",
++    description: "Manage the active goal for this Pi session: bind <packet>, show, resent, log, packet <path>, set, clear",
+     handler: (args, ctx) => runGoalCommand(pi, args, ctx),
+   });
+ 
+@@ -184,10 +187,16 @@ export default function goalContext(pi: ExtensionAPI): void {
+     try {
+       const core = await loadGoalCore();
+       if (core.isPluginDisabled()) return { action: "continue" };
+-      const goal = core.readGoalRecord(goalOptions(ctx));
+-      const brief = core.renderGoalBrief({ goal, runtimeLabel: RUNTIME_LABEL });
++      const options = goalOptions(ctx);
++      const goal = core.readGoalRecord(options);
++      const brief = core.renderGoalBrief({ goal, runtimeLabel: RUNTIME_LABEL, workspace: options.scope.workspace });
+       if (!brief) return { action: "continue" };
+-      return { action: "transform", text: `${event.text}\n\n${brief}` };
++      // A bound packet whose durable slice moved past the operator's copy gets
++      // one reminder line per turn. It rides the same injection and never
++      // blocks: the agent resends, the operator sets, work continues.
++      const reminder = core.renderResendReminder(goal, options.scope.workspace, { recordCommand: "/goal-pi resent" });
++      const text = reminder ? `${event.text}\n\n${brief}\n${reminder}` : `${event.text}\n\n${brief}`;
++      return { action: "transform", text };
+     } catch {
+       // Fail open because a goal-state bug must never alter a valid user turn.
+       return { action: "continue" };
+@@ -198,8 +207,9 @@ export default function goalContext(pi: ExtensionAPI): void {
+     try {
+       const core = await loadGoalCore();
+       if (core.isPluginDisabled()) return;
+-      const goal = core.readGoalRecord(goalOptions(ctx));
+-      const brief = core.renderGoalBrief({ goal, runtimeLabel: RUNTIME_LABEL });
++      const options = goalOptions(ctx);
++      const goal = core.readGoalRecord(options);
++      const brief = core.renderGoalBrief({ goal, runtimeLabel: RUNTIME_LABEL, workspace: options.scope.workspace });
+       if (!brief) return;
+       pi.sendMessage({ customType: "goal-context-restore", content: brief, display: false });
+     } catch {
+diff --git a/.opencode/plugins/opencode-goal.js b/.opencode/plugins/opencode-goal.js
+index cc10dfbf7c..9c7e5269ff 100644
+--- a/.opencode/plugins/opencode-goal.js
++++ b/.opencode/plugins/opencode-goal.js
+@@ -19,6 +19,12 @@ import { tool } from '@opencode-ai/plugin/tool';
+ 
+ const require = createRequire(import.meta.url);
+ const { isHookEnabled } = require('../hooks/shared/hook-flags.cjs');
++// The packet goal.md projections are shared with the runtime-neutral core so the
++// two implementations cannot disagree on where the frontmatter ends.
++const goalSlice = require('../hooks/goal/lib/goal-slice.cjs');
++// The locked packet-log append lives in the runtime-neutral core so both
++// implementations serialize on the same lock; nothing else is imported.
++const { appendPacketLog: appendPacketLogShared } = require('../hooks/goal/lib/goal-core.cjs');
+ 
+ // ─────────────────────────────────────────────────────────────────────────────
+ // 2. CONSTANTS
+@@ -162,7 +168,7 @@ const STATUS_TRANSITIONS = Object.freeze({
+ });
+ const VALID_VERIFIER_VERDICTS = new Set(['met', 'not_met', 'blocked']);
+ const EMPTY_INJECTION_PREVIEW = '';
+-const GOAL_ACTIONS = ['set', 'show', 'clear', 'complete', 'pause', 'history', 'resume', 'doctor', 'health'];
++const GOAL_ACTIONS = ['set', 'bind', 'unbind', 'resent', 'log', 'packet', 'show', 'clear', 'complete', 'pause', 'history', 'resume', 'doctor', 'health'];
+ const mutationQueues = new Map();
+ const jsonlAppendQueues = new Map();
+ const knownStateDirs = new Set();
+@@ -1251,6 +1257,19 @@ function normalizeStoredGoal(rawGoal, fallbackSessionID, rawOptions = {}, expect
+     accountedMessageUsage: normalizeAccountedMessageUsage(rawGoal.accountedMessageUsage),
+     usageSource: sanitizeInlineText(rawGoal.usageSource || 'unavailable', 80),
+     providerRetryAfterMs: normalizeDeadlineMs(rawGoal.providerRetryAfterMs),
++    // Packet binding: the pointer to the goal.md that is the directive, the
++    // workspace it resolves against, and the slice hash last resent in chat.
++    // Absent on an unbound record; a bound record renders from the file.
++    packetPath: typeof rawGoal.packetPath === 'string' && rawGoal.packetPath.trim()
++      ? sanitizeInlineText(rawGoal.packetPath, 1000)
++      : null,
++    workspace: typeof rawGoal.workspace === 'string' && rawGoal.workspace.trim()
++      ? sanitizeInlineText(rawGoal.workspace, 1000)
++      : null,
++    boundAtMs: Number.isFinite(rawGoal.boundAtMs) ? Math.max(0, Math.trunc(rawGoal.boundAtMs)) : null,
++    lastResentSliceHash: typeof rawGoal.lastResentSliceHash === 'string' && /^sha256:[a-f0-9]{64}$/.test(rawGoal.lastResentSliceHash)
++      ? rawGoal.lastResentSliceHash
++      : null,
+   };
+ }
+ 
+@@ -1786,6 +1805,79 @@ async function setGoal(sessionID, objective, rawOptions = {}) {
+   return goal;
+ }
+ 
++/**
++ * Bind the session to a packet. The packet goal.md becomes the directive; the
++ * record keeps the pointer, an operator copy derived from it, and bookkeeping.
++ * The path must resolve inside the workspace and the document must exist.
++ *
++ * @param {string} sessionID - OpenCode session id
++ * @param {string} packetPath - Repo-relative packet directory
++ * @param {Object} [rawOptions] - State helper options; `directory` is the workspace
++ * @returns {Promise<Object>} Updated goal record
++ */
++async function bindGoal(sessionID, packetPath, rawOptions = {}) {
++  const options = normalizeOptions(rawOptions);
++  // Bind against the repository root, not the subdirectory the tool was
++  // called from, so a packet path means the same thing on every surface.
++  const workspace = goalSlice.resolveWorkspaceRoot(options.directory || process.cwd());
++  const packet = goalSlice.readPacketGoal(workspace, packetPath);
++  if (!packet) throw new GoalError('PACKET_GOAL_NOT_FOUND', 'No goal.md at that packet path inside the workspace');
++  const objective = sanitizeInlineText(packet.objectiveSlice, options.maxObjectiveChars);
++  const requestedBudget = normalizeTokenBudget(rawOptions.tokenBudget);
++  let mutation = 'bound';
++  const goal = await mutateGoal(sessionID, (current) => {
++    const timestamp = nowMs(options);
++    const tokenBudget = requestedBudget === undefined ? current?.tokenBudget ?? null : requestedBudget;
++    const promptFields = buildEnhancedGoalPrompt(packet.objectiveSlice, options);
++    const base = current && (current.status === 'active' || current.status === 'paused')
++      ? { ...current, status: 'active' }
++      : buildNewGoal(sessionID, objective, tokenBudget, options);
++    if (current) mutation = 'rebound';
++    return {
++      ...base,
++      objective,
++      goalPrompt: promptFields.goalPrompt,
++      promptEnhancement: promptFields.promptEnhancement,
++      tokenBudget,
++      packetPath: packet.packetPath,
++      workspace: resolvePath(workspace),
++      boundAtMs: timestamp,
++      lastResentSliceHash: base.packetPath === packet.packetPath ? (base.lastResentSliceHash || null) : null,
++      updatedAtMs: timestamp,
++      updatedAt: isoFromMs(timestamp),
++    };
++  }, options);
++  if (goal && typeof goal === 'object') {
++    Object.defineProperty(goal, 'mutation', { value: mutation, enumerable: false, configurable: true });
++  }
++  return goal;
++}
++
++/**
++ * Record that the current durable slice was resent in chat, so the reminder stops.
++ *
++ * @param {string} sessionID - OpenCode session id
++ * @param {Object} [rawOptions] - State helper options
++ * @returns {Promise<Object>} Updated goal record
++ */
++async function noteResent(sessionID, rawOptions = {}) {
++  const options = normalizeOptions(rawOptions);
++  return mutateGoal(sessionID, (current) => {
++    if (!current) throw new GoalError('GOAL_NOT_FOUND', 'No goal is set');
++    const packet = resolvePacketGoalForRecord(current, options);
++    if (!packet) throw new GoalError('PACKET_GOAL_NOT_FOUND', 'The bound packet goal.md is missing');
++    const timestamp = nowMs(options);
++    return { ...current, lastResentSliceHash: packet.hash, updatedAtMs: timestamp, updatedAt: isoFromMs(timestamp) };
++  }, options);
++}
++
++/** Whether the operator copy is behind the bound packet's durable slice. */
++function resendPending(goal, rawOptions = {}) {
++  const packet = resolvePacketGoalForRecord(goal, rawOptions);
++  if (!packet) return false;
++  return packet.hash !== (goal.lastResentSliceHash || null);
++}
++
+ /**
+  * Clear the current session goal.
+  *
+@@ -2611,13 +2703,46 @@ async function maybeContinueGoal(sessionID, rawOptions = {}) {
+  * @param {Object} [rawOptions] - Render options
+  * @returns {string} Injection block, or empty string when no block should render
+  */
++function resolvePacketGoalForRecord(goal, rawOptions = {}) {
++  if (!goal || typeof goal.packetPath !== 'string' || !goal.packetPath) return null;
++  const workspace = goal.workspace || goalSlice.resolveWorkspaceRoot(rawOptions.directory || process.cwd());
++  return goalSlice.readPacketGoal(workspace, goal.packetPath);
++}
++
++function packetStateForRecord(goal, rawOptions = {}) {
++  if (!goal || typeof goal.packetPath !== 'string' || !goal.packetPath) return 'unbound';
++  return resolvePacketGoalForRecord(goal, rawOptions) ? 'bound' : 'missing';
++}
++
++/**
++ * Drop the packet pointer. The record and its operator copy stay as they are.
++ */
++async function unbindGoal(sessionID, rawOptions = {}) {
++  const options = normalizeOptions(rawOptions);
++  return mutateGoal(sessionID, (current) => {
++    if (!current) throw new GoalError('GOAL_NOT_FOUND', 'No goal is set');
++    const timestamp = nowMs(options);
++    return { ...current, packetPath: null, workspace: null, boundAtMs: null, lastResentSliceHash: null, updatedAtMs: timestamp, updatedAt: isoFromMs(timestamp) };
++  }, options);
++}
++
+ function renderGoalInjection(goal, rawOptions = {}) {
+   if (!goal || goal.status !== 'active') return EMPTY_INJECTION_PREVIEW;
+   countMetric(rawOptions, 'renderGoalInjection');
+   const options = normalizeOptions(rawOptions);
++  // A bound session renders from the packet goal.md as it is now. A bound
++  // record whose document is gone injects nothing rather than a stale copy.
++  let objectiveSource = goal.objective;
++  let promptSource = goal.goalPrompt || goal.objective;
++  if (typeof goal.packetPath === 'string' && goal.packetPath) {
++    const packet = resolvePacketGoalForRecord(goal, rawOptions);
++    if (!packet) return EMPTY_INJECTION_PREVIEW;
++    objectiveSource = packet.objectiveSlice;
++    promptSource = buildEnhancedGoalPrompt(packet.objectiveSlice, options).goalPrompt;
++  }
+   const objectivePreviewLimit = calculateObjectivePreviewChars(options.maxInjectionChars);
+-  const objective = sanitizeInlineText(goal.objective, Math.min(options.maxObjectiveChars, objectivePreviewLimit));
+-  const goalPrompt = sanitizePromptText(goal.goalPrompt || goal.objective, options.maxGoalPromptChars);
++  const objective = sanitizeInlineText(objectiveSource, Math.min(options.maxObjectiveChars, objectivePreviewLimit));
++  const goalPrompt = sanitizePromptText(promptSource, options.maxGoalPromptChars);
+   const reason = sanitizeInlineText(goal.lastVerifierReason || 'none', DEFAULT_MAX_REASON_CHARS) || 'none';
+   const tokenBudget = goal.tokenBudget === null || goal.tokenBudget === undefined ? 'none' : String(goal.tokenBudget);
+   const tokensUsed = Number.isFinite(goal.tokensUsed) ? Math.max(0, Math.trunc(goal.tokensUsed)) : 0;
+@@ -2714,6 +2839,11 @@ async function appendGoalBrief(input = {}, output = { system: [] }, rawOptions =
+     const marker = `[active_goal:${goal.goalId}]`;
+     if (output.system.some((entry) => typeof entry === 'string' && entry.includes(marker))) return;
+     output.system.push(block);
++    // While the operator copy is behind the bound packet, one reminder line
++    // rides the same injection. It never blocks; it tells the agent to resend.
++    if (resendPending(goal, rawOptions)) {
++      output.system.push(goalSlice.renderResendReminderText(goal.packetPath, { recordCommand: '/goal-opencode resent' }));
++    }
+   } catch (error) {
+     writeDebugStderr('appendGoalBrief', error);
+     await appendGoalJsonl(GOAL_EVENTS_LOG_FILENAME, {
+@@ -2758,6 +2888,13 @@ function goalStateLines(action, goal, rawOptions = {}, mutation = null, renderOp
+     `goal_id=${goal.goalId}`,
+     `status=${goal.status}`,
+     `objective=${quoteValue(goal.objective)}`,
++    `packet_path=${quoteValue(goal.packetPath || '')}`,
++    `packet_state=${packetStateForRecord(goal, options)}`,
++    `packet_bound=${packetStateForRecord(goal, options) === 'bound' ? 'true' : 'false'}`,
++    `resend_pending=${resendPending(goal, options) ? 'true' : 'false'}`,
++    ...(packetStateForRecord(goal, options) === 'missing'
++      ? [`hint=${quoteValue('the bound packet goal.md is missing or outside the workspace; this session injects nothing until you bind again or unbind')}`]
++      : []),
+     `goal_prompt=${quoteValue(goal.goalPrompt || '')}`,
+     `prompt_framework=${quoteValue(goal.promptEnhancement?.framework || '')}`,
+     `prompt_methodology=${quoteValue(goal.promptEnhancement?.methodology || '')}`,
+@@ -2837,6 +2974,11 @@ function failureLines(error, action = 'show') {
+ }
+ 
+ async function executeGoalAction(args, context, rawOptions = {}) {
++  // An action the tool does not know is an error, never a silent `show`: a
++  // success-shaped envelope for a typo would tell the caller nothing went wrong.
++  if (args?.action !== undefined && !GOAL_ACTIONS.includes(args.action)) {
++    return failureLines(new GoalError('UNKNOWN_ACTION', `Unknown goal action '${String(args.action).slice(0, 40)}'; expected one of ${GOAL_ACTIONS.join(', ')}`), 'show');
++  }
+   const action = GOAL_ACTIONS.includes(args?.action) ? args.action : 'show';
+   const sessionID = sessionIdFromContext(context);
+   const options = normalizeOptions(rawOptions);
+@@ -2854,12 +2996,65 @@ async function executeGoalAction(args, context, rawOptions = {}) {
+       const health = await inspectGoalHealth({ ...options, runtimeState: rawOptions.runtimeState });
+       return healthLines(action, health);
+     }
++    if (action === 'bind') {
++      const goal = await bindGoal(sessionID, args?.packetPath, {
++        ...options,
++        directory: options.directory || context?.directory,
++        tokenBudget: args?.tokenBudget,
++      });
++      const packet = resolvePacketGoalForRecord(goal, { ...options, directory: options.directory || context?.directory });
++      const budgetLine = packet && (packet.budgetState === 'over' || packet.budgetState === 'warn')
++        ? `\npacket_budget=${packet.budgetState}\nwarning=${quoteValue(`durable slice is ${packet.durableChars} characters; past the ${packet.budgetState === 'over' ? 'error' : 'warning'} tier`)}`
++        : (packet ? `\npacket_budget=${packet.budgetState}` : '');
++      return goalStateLines(action, goal, options, goal.mutation || 'bound', renderOptions) + budgetLine;
++    }
++    if (action === 'resent') {
++      const goal = await noteResent(sessionID, { ...options, directory: options.directory || context?.directory });
++      return goalStateLines(action, goal, options, 'resent', renderOptions);
++    }
++    if (action === 'unbind') {
++      const goal = await unbindGoal(sessionID, options);
++      return goalStateLines(action, goal, options, 'unbound', renderOptions);
++    }
++    if (action === 'log') {
++      const current = await readGoal(sessionID, options);
++      const packet = resolvePacketGoalForRecord(current, { ...options, directory: options.directory || context?.directory });
++      if (!packet) throw new GoalError('PACKET_GOAL_NOT_FOUND', 'No bound packet goal.md to log against');
++      const [item, state, evidence] = String(args?.item ?? args?.objective ?? '').split('|').map((part) => part.trim());
++      const result = appendPacketLogShared({
++        workspace: current.workspace || goalSlice.resolveWorkspaceRoot(options.directory || context?.directory || process.cwd()),
++        packetPath: packet.packetPath,
++        item,
++        state: args?.state ?? state,
++        evidence: args?.evidence ?? evidence,
++      });
++      return ['STATUS=OK ACTION=log', 'mutation=logged', `packet_path=${quoteValue(result.packetPath)}`, `row=${quoteValue(result.row)}`].join('\n');
++    }
++    if (action === 'packet') {
++      const workspace = goalSlice.resolveWorkspaceRoot(options.directory || context?.directory || process.cwd());
++      const packet = goalSlice.readPacketGoal(workspace, args?.packetPath);
++      if (!packet) throw new GoalError('PACKET_GOAL_NOT_FOUND', 'No goal.md at that packet path inside the workspace');
++      return [
++        `STATUS=OK ACTION=${action}`,
++        `packet_path=${quoteValue(packet.packetPath)}`,
++        `packet_nested=${packet.nested ? 'true' : 'false'}`,
++        `packet_durable_chars=${packet.durableChars}`,
++        `packet_budget=${packet.budgetState}`,
++        `packet_slice_hash=${quoteValue(packet.hash)}`,
++        `objective_slice=${quoteValue(packet.objectiveSlice)}`,
++        `chat_slice=${quoteValue(packet.chatSlice)}`,
++      ].join('\n');
++    }
+     if (action === 'set') {
+       const goal = await setGoal(sessionID, args?.objective, {
+         ...options,
+         tokenBudget: args?.tokenBudget,
+       });
+-      return goalStateLines(action, goal, options, goal.mutation || 'created', renderOptions);
++      const rawLength = String(args?.objective ?? '').length;
++      const truncationLine = rawLength > options.maxObjectiveChars
++        ? `\nwarning=${quoteValue(`objective was ${rawLength} characters and was truncated to ${options.maxObjectiveChars}; the tail is lost`)}`
++        : '';
++      return goalStateLines(action, goal, options, goal.mutation || 'created', renderOptions) + truncationLine;
+     }
+     if (action === 'clear') {
+       await clearGoal(sessionID, options);
+@@ -3058,10 +3253,14 @@ export default async function MkGoalPlugin(ctx, rawOptions = {}) {
+ 
+     tool: {
+       opencode_goal: tool({
+-        description: 'Set, show, clear, complete, pause, resume, inspect history, or check goal plugin health',
++        description: 'Bind or unbind a packet goal, mark it resent, append a log row, read a packet, set, show, clear, complete, pause, resume, inspect history, or check goal plugin health',
+         args: {
+           action: tool.schema.enum(GOAL_ACTIONS),
+           objective: tool.schema.string().optional(),
++          packetPath: tool.schema.string().optional(),
++          item: tool.schema.string().optional(),
++          state: tool.schema.string().optional(),
++          evidence: tool.schema.string().optional(),
+           tokenBudget: tool.schema.number().int().positive().nullable().optional(),
+           reason: tool.schema.string().optional(),
+         },
+@@ -3091,6 +3290,11 @@ export default async function MkGoalPlugin(ctx, rawOptions = {}) {
+  */
+ const __test = Object.freeze({
+   GoalError,
++  appendGoalBrief,
++  bindGoal,
++  unbindGoal,
++  noteResent,
++  resendPending,
+   accountUsage,
+   buildEnhancedGoalPrompt,
+   clearGoal,
+diff --git a/.opencode/plugins/tests/opencode-goal-export-contract.test.cjs b/.opencode/plugins/tests/opencode-goal-export-contract.test.cjs
+index 546341504a..47641157fd 100644
+--- a/.opencode/plugins/tests/opencode-goal-export-contract.test.cjs
++++ b/.opencode/plugins/tests/opencode-goal-export-contract.test.cjs
+@@ -30,6 +30,8 @@ test('default export exposes the complete pinned __test seam list', async () =>
+   assert.deepEqual(Object.keys(pluginModule.default.__test).sort(), [
+     'GoalError',
+     'accountUsage',
++    'appendGoalBrief',
++    'bindGoal',
+     'buildEnhancedGoalPrompt',
+     'clearGoal',
+     'ensureGoalStateDir',
+@@ -40,10 +42,13 @@ test('default export exposes the complete pinned __test seam list', async () =>
+     'markGoalStatus',
+     'maybeContinueGoal',
+     'maybeVerifyGoal',
++    'noteResent',
+     'readGoal',
+     'renderGoalInjection',
++    'resendPending',
+     'sessionKeyForSession',
+     'setGoal',
++    'unbindGoal',
+     'writeGoalAtomic',
+   ]);
+ });
+diff --git a/.opencode/plugins/tests/opencode-goal-tool-path.test.cjs b/.opencode/plugins/tests/opencode-goal-tool-path.test.cjs
+index 41ea6a3d8c..a2d1d7b275 100644
+--- a/.opencode/plugins/tests/opencode-goal-tool-path.test.cjs
++++ b/.opencode/plugins/tests/opencode-goal-tool-path.test.cjs
+@@ -157,3 +157,92 @@ test('regression graph key files exclude non-deliverable legacy basenames', asyn
+     );
+   }
+ });
++
++// ─────────────────────────────────────────────────────────────────────────────
++// PACKET BINDING THROUGH THE TOOL PATH
++// ─────────────────────────────────────────────────────────────────────────────
++
++const { mkdir, writeFile } = require('node:fs/promises');
++
++async function writePacketGoal(root, rel) {
++  const dir = join(root, rel);
++  await mkdir(dir, { recursive: true });
++  await mkdir(join(root, '.git'), { recursive: true });
++  await writeFile(join(dir, 'goal.md'), [
++    '---', 'title: "Goal: fixture"', '_memory:', '  continuity:', '    session_dedup:', '      session_id: "SECRET"', '---',
++    '<!-- ANCHOR:directive -->', '**Objective:** Ship it.', '<!-- /ANCHOR:directive -->',
++    '<!-- ANCHOR:completion -->', '- [ ] TOOLPATH_CRITERION', '<!-- /ANCHOR:completion -->',
++    '<!-- ANCHOR:log -->', '| Item | State | Evidence |', '|---|---|---|', '<!-- /ANCHOR:log -->', '',
++  ].join('\n'), 'utf8');
++}
++
++test('executeGoalAction bind derives the objective from the packet and the injection never carries frontmatter', async () => withState(async ({ __test, ctx, opts, stateDir }) => {
++  await writePacketGoal(stateDir, 'specs/t/001-fixture');
++  const bindOpts = { ...opts, directory: stateDir };
++  const bindRes = await __test.executeGoalAction({ action: 'bind', packetPath: 'specs/t/001-fixture' }, ctx, bindOpts);
++  assert.match(String(bindRes), /STATUS=OK ACTION=bind/);
++  assert.match(String(bindRes), /mutation=bound/);
++  assert.match(String(bindRes), /packet_bound=true/);
++  assert.match(String(bindRes), /resend_pending=true/);
++  const goal = await __test.readGoal(ctx.sessionID, opts);
++  assert.equal(goal.packetPath, 'specs/t/001-fixture');
++  assert.ok(String(goal.objective).startsWith('Execute specs/t/001-fixture/goal.md.'));
++  const block = __test.renderGoalInjection(goal, bindOpts);
++  assert.ok(block.includes('TOOLPATH_CRITERION'));
++  assert.ok(!block.includes('SECRET'));
++  const resentRes = await __test.executeGoalAction({ action: 'resent' }, ctx, bindOpts);
++  assert.match(String(resentRes), /resend_pending=false/);
++}));
++
++test('executeGoalAction packet reads a packet without binding, and bind refuses a missing document', async () => withState(async ({ __test, ctx, opts, stateDir }) => {
++  await writePacketGoal(stateDir, 'specs/t/001-fixture');
++  const readOpts = { ...opts, directory: stateDir };
++  const packetRes = await __test.executeGoalAction({ action: 'packet', packetPath: 'specs/t/001-fixture' }, ctx, readOpts);
++  assert.match(String(packetRes), /STATUS=OK ACTION=packet/);
++  assert.match(String(packetRes), /packet_nested=false/);
++  assert.ok(!String(packetRes).includes('SECRET'));
++  assert.equal(await __test.readGoal(ctx.sessionID, opts), null);
++  const missing = await __test.executeGoalAction({ action: 'bind', packetPath: 'specs/t/never' }, ctx, readOpts);
++  assert.match(String(missing), /STATUS=FAIL/);
++  assert.match(String(missing), /PACKET_GOAL_NOT_FOUND/);
++}));
++
++
++test('the system transform carries the resend reminder while the bound packet is unresent', async () => withState(async ({ __test, ctx, opts, stateDir, pluginModule }) => {
++  await writePacketGoal(stateDir, 'specs/t/001-fixture');
++  const bindOpts = { ...opts, directory: stateDir };
++  await __test.executeGoalAction({ action: 'bind', packetPath: 'specs/t/001-fixture' }, ctx, bindOpts);
++  const output = { system: [] };
++  await pluginModule.default.__test.appendGoalBrief({ sessionID: ctx.sessionID }, output, bindOpts);
++  assert.ok(output.system.some((entry) => entry.includes('[goal_resend_pending]')), 'reminder rides the injection');
++  await __test.executeGoalAction({ action: 'resent' }, ctx, bindOpts);
++  const after = { system: [] };
++  await pluginModule.default.__test.appendGoalBrief({ sessionID: ctx.sessionID }, after, bindOpts);
++  assert.ok(!after.system.some((entry) => entry.includes('[goal_resend_pending]')), 'reminder clears after resent');
++}));
++
++test('executeGoalAction unbind, log, packet budget and an unknown action', async () => withState(async ({ __test, ctx, opts, stateDir }) => {
++  await writePacketGoal(stateDir, 'specs/t/001-fixture');
++  const bindOpts = { ...opts, directory: join(stateDir, 'specs') };
++  const bindRes = await __test.executeGoalAction({ action: 'bind', packetPath: 'specs/t/001-fixture' }, ctx, bindOpts);
++  assert.match(String(bindRes), /packet_bound=true/, 'bind resolves against the repo root, not the subdirectory');
++  assert.match(String(bindRes), /packet_state=bound/);
++  const logRes = await __test.executeGoalAction({ action: 'log', item: 'from plugin', state: 'Done', evidence: 'tool' }, ctx, bindOpts);
++  assert.match(String(logRes), /STATUS=OK ACTION=log/);
++  const doc = await readFile(join(stateDir, 'specs', 't', '001-fixture', 'goal.md'), 'utf8');
++  assert.ok(doc.includes('| from plugin | Done | tool |'));
++  const packetRes = await __test.executeGoalAction({ action: 'packet', packetPath: 'specs/t/001-fixture' }, ctx, bindOpts);
++  assert.match(String(packetRes), /packet_budget=/);
++  const unknown = await __test.executeGoalAction({ action: 'explode' }, ctx, bindOpts);
++  assert.match(String(unknown), /STATUS=FAIL/);
++  assert.match(String(unknown), /UNKNOWN_ACTION/);
++  const unbindRes = await __test.executeGoalAction({ action: 'unbind' }, ctx, bindOpts);
++  assert.match(String(unbindRes), /mutation=unbound/);
++  assert.match(String(unbindRes), /packet_state=unbound/);
++}));
++
++test('executeGoalAction set reports a truncated text objective', async () => withState(async ({ __test, ctx, opts }) => {
++  const res = await __test.executeGoalAction({ action: 'set', objective: 'y'.repeat(4500) }, ctx, opts);
++  assert.match(String(res), /STATUS=OK ACTION=set/);
++  assert.match(String(res), /warning="objective was 4500 characters and was truncated to 4000/);
++}));
+diff --git a/.opencode/skills/.state/goal/README.md b/.opencode/skills/.state/goal/README.md
+index 3c5538bfe5..4ee36d928f 100644
+--- a/.opencode/skills/.state/goal/README.md
++++ b/.opencode/skills/.state/goal/README.md
+@@ -5,7 +5,7 @@ trigger_phrases:
+   - "goal runtime state"
+   - "active session goals"
+   - "goal state archive"
+-version: 1.0.0.1
++version: 1.1.0.0
+ ---
+ 
+ # Goal Runtime State
+@@ -18,6 +18,8 @@ version: 1.0.0.1
+ 
+ This folder stores machine-specific state for the [`opencode-goal.js`](../../../plugins/opencode-goal.js) plugin. The plugin reads and writes goal records for each OpenCode session, records continuation decisions and archives inactive goals.
+ 
++This store is a per-session index, not the directive. A session binds to a spec packet, and that packet's `goal.md` is the single source of the goal; each record here keeps the packet pointer, an operator copy derived from the file, liveness, telemetry and the hash of the durable slice last resent in chat. The directive is never duplicated into a record as its own truth: rendering reads the packet file every time.
++
+ The state gives an OpenCode session a durable completion objective across turns. The plugin can reload the objective for each system-prompt transform, update usage and verifier evidence from lifecycle events and decide whether an idle session should continue. Keeping this information in a session-keyed file lets the plugin preserve goal progress without placing runtime state in command markdown, spec documents or a shared memory database.
+ 
+ Raw runtime data is git-ignored. Only this `README.md` is tracked, so external users can see the folder and understand its purpose without receiving local session data.
+@@ -28,7 +30,9 @@ Raw runtime data is git-ignored. Only this `README.md` is tracked, so external u
+ 
+ | Path | Shape | Purpose |
+ |---|---|---|
+-| `<session-id-hex>.json` | Formatted JSON object | Stores one session goal. Fields include `sessionId`, `goalId`, `objective`, `goalPrompt`, `promptEnhancement`, `status`, budget and usage counters, timestamps, continuation state and verifier results. |
++| `<session-id-hex>.json` | Formatted JSON object | Stores one session goal. Fields include `sessionId`, `goalId`, `objective`, `goalPrompt`, `promptEnhancement`, `status`, budget and usage counters, timestamps, continuation state and verifier results, plus the packet fields `packetPath`, `workspace`, `boundAtMs` and `lastResentSliceHash` when the session is bound. |
++| `<sha256-of-workspace-runtime-session>.json` | Formatted JSON object | The runtime-neutral core's record for Pi, Cursor and Devin sessions, same packet fields, keyed by the composite scope. |
++| `.locks/<sha256>.lock/` | Directory | Cross-process locks: record mutations keyed by session scope, and packet log appends keyed by the packet's real path. Packet-log locks always live under this workspace-default root, whatever state directory a session was given, so every session appending to one packet contends here. |
+ | `.continuation.log` | JSON Lines | Records continuation decisions with `ts`, `sid`, `goalId`, `decision`, `reason` and `autoTurnsUsed`. |
+ | `.goal-events.log` | JSON Lines | Records debug and persistence events when goal debugging is enabled. |
+ | `.continuation.log.<timestamp>-<uuid>` | JSON Lines | Rotated continuation-log segment. |
+@@ -62,6 +66,12 @@ The idle verifier marks a verified goal complete, marks a blocked verdict as blo
+ 
+ ---
+ 
++## 3b. MIGRATION NOTE
++
++Two key schemes share this folder: the OpenCode plugin keys by the SHA-256 of the session id and adopts the older hex-encoded name lazily, and the runtime-neutral core keys by the SHA-256 of workspace, runtime and session id and adopts its older runtime-prefixed name only under the workspace's own state root. Neither scheme changed when the packet fields arrived. A record without `packetPath` renders from its stored copy exactly as before, so nothing is rekeyed, nothing is rewritten in place, and a record only gains the packet fields when a session binds. On this checkout the folder held no records when the change landed, so the note is for other machines.
++
++---
++
+ ## 4. STATE LIFECYCLE
+ 
+ ### 4.1 GOAL SET
+diff --git a/.opencode/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/goal-manage-cli.md b/.opencode/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/goal-manage-cli.md
+index 07e7db4585..f4b44a8d73 100644
+--- a/.opencode/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/goal-manage-cli.md
++++ b/.opencode/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/goal-manage-cli.md
+@@ -11,7 +11,7 @@ stage: routing
+ expected_intent: UNKNOWN
+ expected_workflow_mode: UNKNOWN
+ expected_leaf_resources: []
+-version: 1.4.0.7
++version: 1.5.0.0
+ ---
+ 
+ # Goal Manage CLI: Session Isolation And Legacy Cutover
+@@ -22,7 +22,7 @@ version: 1.4.0.7
+ 
+ This scenario validates the runtime-neutral goal core without touching operator state. It proves that two sessions keep different goals, missing identity never writes or injects, aggregate diagnostics do not reveal raw session ids, legacy state requires explicit ownership, malformed legacy data can only be archived, and rollback disables injection while preserving every state layout.
+ 
+-OpenCode's native `opencode-goal` plugin is a separate regression control. Pi is the fully supported cross-runtime path. Cursor is injection-only because its prompt command does not receive the hook's native session id. Codex has no goal adapter. Claude Code has no repository adapter or goal command; any separate live native capability is outside this scenario.
++OpenCode's native `opencode-goal` plugin is a separate regression control. Pi is the fully supported cross-runtime path. Cursor and Devin are injection-only because their prompt surfaces do not receive the hook's native session id; Cursor additionally answers a session-free packet read. Claude Code and Codex keep their native host goal command and are outside this scenario. Section G proves the packet-bound path: the packet's `goal.md` is the directive, its frontmatter never reaches an output, and the resend reminder tracks the durable slice.
+ 
+ ---
+ 
+@@ -144,14 +144,36 @@ printf '%s' '{"session_id":"session-b","workspace_roots":["'"$WORKSPACE"'"]}' \
+ 
+ Expected: CLI management fails with `PLUGIN_DISABLED`; Cursor returns only `{"permission":"allow"}` with no `agent_message`. Pi rollback uses `-extensions/goal-context.ts` in `.pi/settings.json`; preserve the state root and do not merge scoped files into `active-goal.json`.
+ 
++### G. Packet binding, frontmatter containment and the resend reminder
++
++```bash
++GOAL_PACKET_ROOT="$(mktemp -d /tmp/goal-packet.XXXXXX)"
++export OPENCODE_GOAL_STATE_DIR="$GOAL_PACKET_ROOT"
++PACKET=specs/system-speckit/033-system-speckit-v4/036-goal-unification
++
++node "$GOAL_CLI" packet "$PACKET" --runtime pi --session session-c --workspace "$WORKSPACE"
++node "$GOAL_CLI" bind "$PACKET" --runtime pi --session session-c --workspace "$WORKSPACE"
++node "$GOAL_CLI" show --runtime pi --session session-c --workspace "$WORKSPACE"
++node "$GOAL_CLI" resent --runtime pi --session session-c --workspace "$WORKSPACE"
++node "$GOAL_CLI" log "playbook run | Done | section G" --runtime pi --session session-c --workspace "$WORKSPACE"
++node "$GOAL_CLI" bind ../outside --runtime pi --session session-c --workspace "$WORKSPACE"
++printf '%s' '{"session_id":"session-c","workspace_roots":["'"$WORKSPACE"'"]}' | node .opencode/hooks/goal/cursor/goal-inject.mjs
++printf '%s' '{"session_id":"session-c","hook_event_name":"UserPromptSubmit","cwd":"'"$WORKSPACE"'"}' | node .opencode/hooks/goal/devin/goal-inject.mjs
++node "$GOAL_CLI" unbind --runtime pi --session session-c --workspace "$WORKSPACE"
++```
++
++Expected: `packet` reports `packet_nested=true`, `packet_budget=`, and a `chat_slice` with no `---` fence and no `session_id:` line; `bind` reports `mutation=bound`, `packet_bound=true`, `resend_pending=true`; `show` reports an `objective=` starting with `Execute <packet>/goal.md.` and an `injection_preview` with no frontmatter; `resent` flips `resend_pending=false`; `log` appends one row below the packet's log anchor and leaves everything above it byte-identical; `bind ../outside` fails with `PACKET_GOAL_NOT_FOUND`; the Cursor and Devin adapters carry the brief and, before `resent`, a `[goal_resend_pending]` line; `unbind` reports `packet_state=unbound` and `packet_bound=false`. A second `bind` through `specs/.../036-goal-unification` from another session while the first still logs must not lose rows: both take the same real-path lock under the workspace state root. Revert the appended log row afterwards, or run against a scratch copy of the packet.
++
+ ### Automated companion gate
+ 
+ ```bash
+ node --test \
++  .opencode/hooks/goal/lib/goal-slice.test.cjs \
+   .opencode/hooks/goal/lib/goal-core.test.cjs \
+   .opencode/hooks/goal/bin/goal.test.cjs \
+   .opencode/hooks/goal/pi/goal-pi.test.mjs \
+-  .opencode/hooks/goal/cursor/goal-cursor.test.mjs
++  .opencode/hooks/goal/cursor/goal-cursor.test.mjs \
++  .opencode/hooks/goal/devin/goal-devin.test.mjs
+ ```
+ 
+ ---
+@@ -164,6 +186,8 @@ node --test \
+ | `.opencode/hooks/goal/bin/goal.cjs` | Session-bound management and explicit legacy action envelope. |
+ | `.opencode/hooks/goal/pi/goal-context.ts` | Pi native identity and `/goal-pi`. |
+ | `.opencode/hooks/goal/cursor/goal-inject.mjs` | Cursor session-bound injection. |
++| `.opencode/hooks/goal/devin/goal-inject.mjs` | Devin session-bound injection. |
++| `.opencode/hooks/goal/lib/goal-slice.cjs` | Packet `goal.md` projections shared with the OpenCode plugin. |
+ | `.opencode/hooks/goal/README.md` | Current state layout, support matrix, failure contract, and rollback. |
+ 
+ ---
+diff --git a/.opencode/skills/system-skill-advisor/feature-catalog/hooks-and-plugin/goal-opencode-plugin.md b/.opencode/skills/system-skill-advisor/feature-catalog/hooks-and-plugin/goal-opencode-plugin.md
+index cf1af17fbf..8581096bf4 100644
+--- a/.opencode/skills/system-skill-advisor/feature-catalog/hooks-and-plugin/goal-opencode-plugin.md
++++ b/.opencode/skills/system-skill-advisor/feature-catalog/hooks-and-plugin/goal-opencode-plugin.md
+@@ -7,7 +7,7 @@ trigger_phrases:
+   - "opencode_goal"
+   - "active goal injection"
+   - "OPENCODE_GOAL_AUTONOMY"
+-version: 0.8.0.33
++version: 0.8.1.0
+ ---
+ 
+ # Goal OpenCode Plugin
+@@ -16,7 +16,7 @@ version: 0.8.0.33
+ 
+ ## 1. OVERVIEW
+ 
+-The `/goal` OpenCode plugin persists a session-local objective and injects a compact active-goal block into the system context so long-running work stays oriented toward the same completion condition.
++The `/goal` OpenCode plugin binds a session to a packet `goal.md` (or holds a text objective) and injects a compact active-goal block into the system context, rendered from the packet file on every turn, so long-running work stays oriented toward the same completion condition.
+ 
+ This entry lives with the Skill Advisor hook/plugin documentation because it uses the same OpenCode plugin surface: command markdown stays state-free, plugin tools own state mutation, and runtime hooks add bounded context without exposing raw state files to slash commands.
+ 
+@@ -26,11 +26,11 @@ This entry lives with the Skill Advisor hook/plugin documentation because it use
+ 
+ ### State Store And Command Router
+ 
+-`.opencode/plugins/opencode-goal.js` stores one JSON goal record per OpenCode session under `.opencode/skills/.state/goal/` by default, keyed by a sanitized session id. Writes go through an in-process mutation queue and atomic temp-file rename. `.opencode/commands/goal_opencode.md` is a thin router: empty arguments and `show` call `opencode_goal_status`, while `set`, `set --budget N`, bare text, `history`, `doctor`, `health`, `clear`, `complete`, `pause` and `resume` call `opencode_goal`.
++`.opencode/plugins/opencode-goal.js` stores one JSON goal record per OpenCode session under `.opencode/skills/.state/goal/` by default, keyed by a sanitized session id. Writes go through an in-process mutation queue and atomic temp-file rename. `.opencode/commands/goal-opencode.md` is a thin router: empty arguments and `show` call `opencode_goal_status`, while `bind <packet-path>`, `unbind`, `resent`, `log <item> | <state> | <evidence>`, `packet <packet-path>`, `set`, `set --budget N`, bare text, `history`, `doctor`, `health`, `clear`, `complete`, `pause` and `resume` call `opencode_goal`. The packet projections come from `.opencode/hooks/goal/lib/goal-slice.cjs`, shared with the runtime-neutral goal core.
+ 
+ ### Passive Injection
+ 
+-The plugin registers `experimental.chat.system.transform`. When a session has an active goal, it appends a bounded `[active_goal:<goal-id>]` block containing status, objective, last verifier result, usage counters and a directive to continue toward the objective. Objective and evidence text are sanitized before storage or injection.
++The plugin registers `experimental.chat.system.transform`. When a session has an active goal, it appends a bounded `[active_goal:<goal-id>]` block containing status, objective, last verifier result, usage counters and a directive to continue toward the objective; when bound to a packet the objective and prompt are projected from the packet's `goal.md` with the frontmatter stripped, and a `[goal_resend_pending]` line follows while the operator copy is behind the file. Objective and evidence text are sanitized before storage or injection.
+ 
+ ### Tools And Lifecycle
+ 
+@@ -55,7 +55,8 @@ Live verification: the plugin is registered and driven end-to-end in a real Open
+ | File | Layer | Role |
+ |---|---|---|
+ | `.opencode/plugins/opencode-goal.js` | OpenCode plugin | State store, passive injection, tools, supervisor verification and guarded continuation |
+-| `.opencode/commands/goal_opencode.md` | Slash command | Thin command router for `opencode_goal` and `opencode_goal_status` |
++| `.opencode/commands/goal-opencode.md` | Slash command | Thin command router for `opencode_goal` and `opencode_goal_status` |
++| `.opencode/hooks/goal/lib/goal-slice.cjs` | Shared module | Packet `goal.md` projections the plugin renders from |
+ | `.opencode/skills/.state/goal/` | State directory | Default per-session JSON state location |
+ 
+ ### Validation And Tests
+diff --git a/.opencode/skills/system-spec-kit/feature-catalog/ux-hooks/goal-opencode-plugin.md b/.opencode/skills/system-spec-kit/feature-catalog/ux-hooks/goal-opencode-plugin.md
+index 4357fbebc7..872ef55881 100644
+--- a/.opencode/skills/system-spec-kit/feature-catalog/ux-hooks/goal-opencode-plugin.md
++++ b/.opencode/skills/system-spec-kit/feature-catalog/ux-hooks/goal-opencode-plugin.md
+@@ -1,13 +1,14 @@
+ ---
+ title: "Goal OpenCode plugin"
+-description: "Local /goal OpenCode plugin that persists session objectives, injects active-goal context, exposes opencode_goal tools, and documents restart and validation boundaries."
++description: "Local /goal OpenCode plugin that binds a session to a packet goal.md, injects its durable slice as active-goal context, exposes opencode_goal tools including bind, resent and packet, and documents restart and validation boundaries."
+ trigger_phrases:
+   - "goal opencode plugin"
+   - "opencode-goal"
+   - "/goal command"
+   - "active_goal injection"
+   - "goalPrompt"
+-version: 3.8.0.0
++  - "bind packet goal"
++version: 3.9.0.0
+ ---
+ 
+ # Goal OpenCode plugin
+@@ -18,7 +19,7 @@ This catalog entry maps the current `/goal` OpenCode plugin behavior to its impl
+ 
+ ## 1. OVERVIEW
+ 
+-The goal plugin gives OpenCode a session-level completion objective. Users call `/goal set <objective>` or `/goal set <objective> --budget N`, and the plugin persists the state, injects an active-goal block on each turn, and exposes tool-backed status, history, doctor/health, resume, and mutation operations.
++The goal plugin gives OpenCode a session-level completion objective. Users call `/goal bind <packet-path>` to make a packet's `goal.md` the directive, or `/goal set <objective>` for a text goal, and the plugin persists the per-session record, injects an active-goal block on each turn (rendered from the packet file when bound, frontmatter never included), and exposes tool-backed status, history, doctor/health, resume, resent, packet read and mutation operations.
+ 
+ This feature is cataloged under UX hooks because it is a runtime-injection and operator-feedback surface. It runs entirely inside the OpenCode plugin host: no daemon, no CLI bridge, and no dependency on anything else in this package.
+ 
+@@ -34,7 +35,7 @@ This feature is cataloged under UX hooks because it is a runtime-injection and o
+ 
+ `.opencode/commands/goal-opencode.md` is intentionally thin. It parses `$ARGUMENTS`, calls exactly one plugin tool, and never reads or writes `.opencode/skills/.state/goal` directly.
+ 
+-Stored state keeps both the raw sanitized `objective` and the deterministic `goalPrompt`. The raw objective is audit data; `goalPrompt` is the model-facing execution brief. Idle verification uses an injected `supervisorVerifier` when present; otherwise `OPENCODE_GOAL_VERIFIER=heuristic` applies a deterministic fail-closed verifier over the latest assistant evidence and goal objective. `OPENCODE_GOAL_VERIFIER=llm` opts into `ctx.client.session.promptAsync` semantic verdicts. Status output includes verifier provenance as `verifier_source` with `injected`, `default-heuristic`, or `default-llm` when a verdict has run. Autonomy is disabled unless `OPENCODE_GOAL_AUTONOMY=active` or smoke-tested with `OPENCODE_GOAL_AUTONOMY=smoke`. `OPENCODE_GOAL_MAX_AUTO_TURNS` and `OPENCODE_GOAL_MAX_WALL_MS` tune the guarded continuation caps; status output includes `remaining_auto_turns`, `remaining_wall_ms`, and `provider_retry_after_ms`.
++Stored state keeps the packet pointer when bound, plus the raw sanitized `objective` and the deterministic `goalPrompt`. The packet projections come from `.opencode/hooks/goal/lib/goal-slice.cjs`, shared with the runtime-neutral core, so the frontmatter boundary is defined once. `resend_pending` in status output tells the agent the packet's durable slice changed since it was last resent in chat; `resent` clears it. The raw objective is audit data; `goalPrompt` is the model-facing execution brief. Idle verification uses an injected `supervisorVerifier` when present; otherwise `OPENCODE_GOAL_VERIFIER=heuristic` applies a deterministic fail-closed verifier over the latest assistant evidence and goal objective. `OPENCODE_GOAL_VERIFIER=llm` opts into `ctx.client.session.promptAsync` semantic verdicts. Status output includes verifier provenance as `verifier_source` with `injected`, `default-heuristic`, or `default-llm` when a verdict has run. Autonomy is disabled unless `OPENCODE_GOAL_AUTONOMY=active` or smoke-tested with `OPENCODE_GOAL_AUTONOMY=smoke`. `OPENCODE_GOAL_MAX_AUTO_TURNS` and `OPENCODE_GOAL_MAX_WALL_MS` tune the guarded continuation caps; status output includes `remaining_auto_turns`, `remaining_wall_ms`, and `provider_retry_after_ms`.
+ 
+ Each OpenCode session resolves to a fixed 64-character SHA-256 state key, so long native ids cannot exceed the filesystem component limit and raw identity is not reversible from the filename. Valid active and archived files from the previous hex-key format migrate lazily after embedded-id validation; an occupied digest target wins without deleting the conflicting source.
+ 
+@@ -49,8 +50,9 @@ State does not grow unboundedly: on `session.deleted` the goal-state file is arc
+ | File | Layer | Role |
+ |------|-------|------|
+ | `.opencode/plugins/opencode-goal.js` | OpenCode plugin | State, injection, lifecycle, verifier, continuation gates, and plugin tools. |
+-| `.opencode/commands/goal-opencode.md` | Slash command | Thin `/goal` router for `set`, `show`, `history`, `doctor`, `health`, `clear`, `complete`, `pause`, and `resume`. |
+-| `.opencode/skills/.state/goal/` | Runtime state | Per-session JSON goal records and bounded debug logs. |
++| `.opencode/commands/goal-opencode.md` | Slash command | Thin `/goal` router for `bind`, `unbind`, `resent`, `log`, `packet`, `set`, `show`, `history`, `doctor`, `health`, `clear`, `complete`, `pause`, and `resume`. |
++| `.opencode/hooks/goal/lib/goal-slice.cjs` | Shared module | Packet `goal.md` projections: durable slice, chat slice, objective slice, hash. |
++| `.opencode/skills/.state/goal/` | Runtime state | Per-session JSON records (pointer, operator copy, liveness, telemetry) and bounded debug logs. |
+ | `.opencode/hooks/goal/goal-plugin.md` | Operator reference | Contract, env vars, boundaries, verification, and restart guidance. |
+ 
+ ### Validation And Tests
+@@ -58,7 +60,7 @@ State does not grow unboundedly: on `session.deleted` the goal-state file is arc
+ | File | Type | Role |
+ |---|---|---|
+ | `.opencode/plugins/tests/opencode-goal-state.test.cjs` | Automated test | State persistence, generated prompt fields, injection, caps, sanitization, redaction, and status output. |
+-| `.opencode/plugins/tests/opencode-goal-tool-path.test.cjs` | Automated test | Plugin tool context persistence and status output. |
++| `.opencode/plugins/tests/opencode-goal-tool-path.test.cjs` | Automated test | Plugin tool context persistence, status output, packet bind, resent, packet read and the injected resend reminder. |
+ | `.opencode/plugins/tests/opencode-goal-export-contract.test.cjs` | Automated test | Export contract. |
+ | `.opencode/plugins/tests/speckit-goal-offer-contract.test.cjs` | Automated test | Speckit goal-offer presentation and router contract. |
+ | `.opencode/plugins/tests/opencode-goal-capabilities.test.cjs` | Automated test | History, doctor/health, resume, budget, env caps, provider-limit detection, and retry-after recovery. |
+diff --git a/.opencode/skills/system-spec-kit/runtime/lib/validation/spec-doc-structure.ts b/.opencode/skills/system-spec-kit/runtime/lib/validation/spec-doc-structure.ts
+index cbfe4bb7db..45b76a6567 100644
+--- a/.opencode/skills/system-spec-kit/runtime/lib/validation/spec-doc-structure.ts
++++ b/.opencode/skills/system-spec-kit/runtime/lib/validation/spec-doc-structure.ts
+@@ -7,7 +7,7 @@ import path from 'node:path';
+ import { createHash } from 'node:crypto';
+ import { fileURLToPath } from 'node:url';
+ 
+-import { resolveLevelContract, type SpecKitLevel } from '../templates/level-contract-resolver.js';
++import { resolveGoalDurableBudget, resolveLevelContract, type SpecKitLevel } from '../templates/level-contract-resolver.js';
+ 
+ /** The five structural rules {@link runSpecDocStructureRule} can evaluate. */
+ export type SpecDocRuleName =
+@@ -141,6 +141,8 @@ export const RULE_FAILURE_CODES: Readonly<Record<SpecDocRuleName, readonly strin
+     'SPECDOC_SUFFICIENCY_002',
+     'SPECDOC_SUFFICIENCY_003',
+     'SPECDOC_SUFFICIENCY_004',
++    'SPECDOC_SUFFICIENCY_005',
++    'SPECDOC_SUFFICIENCY_006',
+   ],
+   CROSS_ANCHOR_CONTAMINATION: [
+     'SPECDOC_CONTAM_001',
+@@ -1012,6 +1014,71 @@ function looksLikeCitation(text: string): boolean {
+   return /\[[^\]]+\]\([^)]+\)|`[^`]+(?:\/[^`]+)?`|https?:\/\/|iteration-\d+|source:/i.test(text);
+ }
+ 
++const GOAL_DOC = 'goal.md';
++const GOAL_LOG_ANCHOR = '<!-- ANCHOR:log -->';
++
++/**
++ * The durable slice of a goal document: what an operator sets as the session
++ * objective. It starts after the frontmatter's closing fence and ends at the
++ * log anchor, anchors and comments included, so the count matches what an
++ * author sees in the file. Frontmatter is bookkeeping and never part of it.
++ */
++export function extractGoalDurableSlice(content: string): string {
++  // Same boundary the runtime extractor draws: bare CR normalized too, and a
++  // fence tolerates trailing spaces or tabs, so both count the same slice.
++  const normalized = content.replace(/\r\n?/g, '\n');
++  const fence = normalized.match(/^(?:\uFEFF)?(?:\s*<!--[\s\S]*?-->\s*)*---[ \t]*\n[\s\S]*?\n---[ \t]*(?:\n|$)/);
++  const body = fence ? normalized.slice(fence[0].length) : normalized;
++  const logIndex = body.indexOf(GOAL_LOG_ANCHOR);
++  return logIndex >= 0 ? body.slice(0, logIndex) : body;
++}
++
++// A phase child sits inside a folder that is itself a packet. Its goal binds
++// through the parent and is never set directly, so the budget skips it.
++function isPhaseChildFolder(folder: string): boolean {
++  return fs.existsSync(path.join(path.dirname(folder), 'spec.md'));
++}
++
++function validateGoalDocument(folder: string, level: string, content: string, diagnostics: RuleDiagnostic[]): void {
++  const budget = resolveGoalDurableBudget();
++  const budgetApplies = level === 'phase' || !isPhaseChildFolder(folder);
++  if (budget && budgetApplies) {
++    const length = extractGoalDurableSlice(content).length;
++    if (length > budget.errorChars) {
++      diagnostics.push({
++        code: 'SPECDOC_SUFFICIENCY_005',
++        severity: 'error',
++        detail: `${GOAL_DOC}: durable slice is ${length} characters (> ${budget.errorChars})`,
++      });
++    } else if (length > budget.warnChars) {
++      diagnostics.push({
++        code: 'SPECDOC_SUFFICIENCY_005',
++        severity: 'warning',
++        detail: `${GOAL_DOC}: durable slice is ${length} characters (> ${budget.warnChars}); it fails past ${budget.errorChars}`,
++      });
++    }
++  }
++
++  const binding = parseAnchors(content).anchors.find((anchor) => anchor.id === 'binding');
++  if (!binding) {
++    return;
++  }
++  for (const line of binding.body.split('\n')) {
++    const row = line.match(/^\|\s*[^|]+\|\s*`([^`]+)`\s*\|/);
++    if (!row) {
++      continue;
++    }
++    const target = row[1].trim();
++    if (target.includes('..') || path.isAbsolute(target) || !fs.existsSync(path.join(folder, target))) {
++      diagnostics.push({
++        code: 'SPECDOC_SUFFICIENCY_006',
++        severity: 'error',
++        detail: `${GOAL_DOC}: binding row names '${target}' which does not exist`,
++      });
++    }
++  }
++}
++
+ function validateSpecDocSufficiency(folder: string, level: string): RuleResult {
+   const diagnostics: RuleDiagnostic[] = [];
+   const contract = resolveLevelContract(normalizeSpecKitLevel(level));
+@@ -1092,6 +1159,10 @@ function validateSpecDocSufficiency(folder: string, level: string): RuleResult {
+       }
+     }
+ 
++    if (document.basename === GOAL_DOC) {
++      validateGoalDocument(folder, level, document.content, diagnostics);
++    }
++
+     if (document.basename === 'decision-record.md') {
+       for (const anchor of parsed.anchors.filter((entry) => entry.id.startsWith('adr-'))) {
+         if (/-(?:decision|alternatives|consequences)$/.test(anchor.id) && anchor.body.trim().length < 24) {
+diff --git a/.opencode/skills/system-spec-kit/runtime/tests/spec-doc-structure.vitest.ts b/.opencode/skills/system-spec-kit/runtime/tests/spec-doc-structure.vitest.ts
+index a8b5545a3d..40d0417ec6 100644
+--- a/.opencode/skills/system-spec-kit/runtime/tests/spec-doc-structure.vitest.ts
++++ b/.opencode/skills/system-spec-kit/runtime/tests/spec-doc-structure.vitest.ts
+@@ -8,6 +8,7 @@ import { afterEach, describe, expect, it } from 'vitest';
+ 
+ import {
+   RULE_FAILURE_CODES,
++  extractGoalDurableSlice,
+   runSpecDocStructureRule,
+   type MergePlan,
+ } from '../lib/validation/spec-doc-structure';
+@@ -200,6 +201,74 @@ afterEach(() => {
+   }
+ });
+ 
++
++// A goal document whose durable slice can be sized exactly: the frontmatter and
++// the log are outside the slice by definition, so only the padding inside the
++// directive anchor moves the measurement.
++function writeGoalDoc(folder: string, options: { level: 'phase' | '1'; sliceChars: number; bindingRows?: string[] }): string {
++  const frontmatter = [
++    '---',
++    'title: "Goal: fixture"',
++    'description: "fixture"',
++    'trigger_phrases:',
++    '  - "goal fixture"',
++    'importance_tier: "important"',
++    'contextType: "planning"',
++    '_memory:',
++    '  continuity:',
++    '    packet_pointer: "fixture/goal"',
++    '    last_updated_at: "2026-09-11T00:00:00Z"',
++    '    last_updated_by: "vitest"',
++    '    recent_action: "Wrote fixture"',
++    '    next_safe_action: "Run validator"',
++    '    blockers: []',
++    '    key_files: []',
++    '    session_dedup:',
++    `      fingerprint: "sha256:${'0'.repeat(64)}"`,
++    '      session_id: "vitest"',
++    '      parent_session_id: null',
++    '    completion_pct: 0',
++    '    open_questions: []',
++    '    answered_questions: []',
++    '---',
++    '',
++  ].join('\n');
++  const binding = options.level === 'phase'
++    ? [
++        '<!-- ANCHOR:binding -->',
++        '## 2. BINDING',
++        '| Phase | Goal document |',
++        '|-------|---------------|',
++        ...(options.bindingRows ?? []),
++        '<!-- /ANCHOR:binding -->',
++        '',
++      ].join('\n')
++    : '';
++  const skeleton = [
++    '# Goal: fixture',
++    '',
++    '<!-- SPECKIT_TEMPLATE_SOURCE: goal | v2.2 -->',
++    '',
++    '<!-- ANCHOR:directive -->',
++    '## 1. DURABLE DIRECTIVE',
++    '**Objective:** PADDING',
++    '<!-- /ANCHOR:directive -->',
++    '',
++    binding,
++    '<!-- ANCHOR:completion -->',
++    '## 3. COMPLETION CRITERIA',
++    '- [ ] validate.sh passes',
++    '<!-- /ANCHOR:completion -->',
++    '',
++  ].join('\n');
++  const baseLength = skeleton.replace('PADDING', '').length;
++  const padding = 'x'.repeat(Math.max(0, options.sliceChars - baseLength));
++  const content = `${frontmatter}${skeleton.replace('PADDING', padding)}<!-- ANCHOR:log -->\n## 4. LOG\nvolatile\n<!-- /ANCHOR:log -->\n`;
++  const goalPath = path.join(folder, 'goal.md');
++  fs.writeFileSync(goalPath, content, 'utf8');
++  return goalPath;
++}
++
+ describe('spec-doc-structure contract', () => {
+   // drift: verified against shipped behavior during Unit H
+   it('freezes the failure-code ordering from Gate C research', () => {
+@@ -226,6 +295,8 @@ describe('spec-doc-structure contract', () => {
+       'SPECDOC_SUFFICIENCY_002',
+       'SPECDOC_SUFFICIENCY_003',
+       'SPECDOC_SUFFICIENCY_004',
++      'SPECDOC_SUFFICIENCY_005',
++      'SPECDOC_SUFFICIENCY_006',
+     ]);
+     expect(RULE_FAILURE_CODES.CROSS_ANCHOR_CONTAMINATION).toEqual([
+       'SPECDOC_CONTAM_001',
+@@ -240,6 +311,60 @@ describe('spec-doc-structure contract', () => {
+     ]);
+   });
+ 
++  it('measures the goal durable slice from the frontmatter fence to the log anchor', () => {
++    const folder = makeTempDir('speckit-goal-measure-');
++    const goalPath = writeGoalDoc(folder, { level: '1', sliceChars: 1500 });
++    expect(extractGoalDurableSlice(fs.readFileSync(goalPath, 'utf8')).length).toBe(1500);
++  });
++
++  it('measures the same slice as the runtime extractor when a fence carries trailing whitespace or bare CR', () => {
++    const folder = makeTempDir('speckit-goal-parity-');
++    const goalPath = writeGoalDoc(folder, { level: '1', sliceChars: 1200 });
++    const clean = fs.readFileSync(goalPath, 'utf8');
++    const trailing = clean.replace(/^---\n/, '---  \n').replace(/\n---\n/, '\n---\t\n');
++    const crOnly = clean.replace(/\n/g, '\r');
++    expect(extractGoalDurableSlice(trailing).length).toBe(extractGoalDurableSlice(clean).length);
++    expect(extractGoalDurableSlice(crOnly).length).toBe(extractGoalDurableSlice(clean).length);
++    expect(extractGoalDurableSlice(trailing)).not.toContain('title:');
++  });
++
++  it('fails a top-level goal whose durable slice exceeds the error tier', () => {
++    const folder = makeTempDir('speckit-goal-over-');
++    writeGoalDoc(folder, { level: '1', sliceChars: 4001 });
++    const result = runSpecDocStructureRule({ folder, level: '1', rule: 'SPEC_DOC_SUFFICIENCY' });
++    expect(result.status).toBe('fail');
++    expect(result.diagnostics.some((d) => d.code === 'SPECDOC_SUFFICIENCY_005' && d.severity === 'error')).toBe(true);
++  });
++
++  it('warns a phase parent goal between the warning and error tiers', () => {
++    const folder = makeTempDir('speckit-goal-warm-');
++    fs.mkdirSync(path.join(folder, '001-child'));
++    fs.writeFileSync(path.join(folder, '001-child', 'goal.md'), '# child\n', 'utf8');
++    writeGoalDoc(folder, { level: 'phase', sliceChars: 3200, bindingRows: ['| 001-child | `001-child/goal.md` |'] });
++    const result = runSpecDocStructureRule({ folder, level: 'phase', rule: 'SPEC_DOC_SUFFICIENCY' });
++    expect(result.status).toBe('warn');
++    expect(result.diagnostics.filter((d) => d.code === 'SPECDOC_SUFFICIENCY_005').map((d) => d.severity)).toEqual(['warning']);
++    expect(result.diagnostics.some((d) => d.code === 'SPECDOC_SUFFICIENCY_006')).toBe(false);
++  });
++
++  it('leaves a phase child goal unbounded', () => {
++    const parent = makeTempDir('speckit-goal-parent-');
++    fs.writeFileSync(path.join(parent, 'spec.md'), '# parent\n', 'utf8');
++    const child = path.join(parent, '001-child');
++    fs.mkdirSync(child);
++    writeGoalDoc(child, { level: '1', sliceChars: 6000 });
++    const result = runSpecDocStructureRule({ folder: child, level: '1', rule: 'SPEC_DOC_SUFFICIENCY' });
++    expect(result.diagnostics.some((d) => d.code === 'SPECDOC_SUFFICIENCY_005')).toBe(false);
++  });
++
++  it('fails a binding row that names a child goal which does not exist', () => {
++    const folder = makeTempDir('speckit-goal-binding-');
++    writeGoalDoc(folder, { level: 'phase', sliceChars: 800, bindingRows: ['| 002-missing | `002-missing/goal.md` |'] });
++    const result = runSpecDocStructureRule({ folder, level: 'phase', rule: 'SPEC_DOC_SUFFICIENCY' });
++    expect(result.status).toBe('fail');
++    expect(result.details).toContain("SPECDOC_SUFFICIENCY_006: goal.md: binding row names '002-missing/goal.md' which does not exist");
++  });
++
+   it('accepts a non-canonical doc that omits the _memory block (continuity is single-source in implementation-summary.md)', () => {
+     const folder = copyFixture('063-template-compliant-level3');
+     stripMemoryBlock(path.join(folder, 'spec.md'));
+diff --git a/specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash/description.json b/specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash/description.json
+index e5e33b7a19..a1a35b949e 100644
+--- a/specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash/description.json
++++ b/specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash/description.json
+@@ -15,7 +15,7 @@
+     "deep-loop",
+     "fan-out"
+   ],
+-  "lastUpdated": "2026-09-10T20:21:17.515Z",
++  "lastUpdated": "2026-09-11T11:03:33.148Z",
+   "specId": "069",
+   "folderSlug": "llmgateway-deepseek-v4-1-flash",
+   "parentChain": [
+diff --git a/specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash/graph-metadata.json b/specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash/graph-metadata.json
+index 4b34a6bb4c..236b3c22d7 100644
+--- a/specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash/graph-metadata.json
++++ b/specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash/graph-metadata.json
+@@ -38,21 +38,29 @@
+       "repoint",
+       "implementation"
+     ],
+-    "importance_tier": "normal",
++    "importance_tier": "important",
+     "status": "in_progress",
+     "key_files": [
+       "spec.md",
+       "plan.md",
+       "tasks.md",
+       "acceptance-criteria.md",
++      "decision-record.md",
+       "implementation-summary.md",
++      "handover.md",
+       ".pi/models.json",
+       ".pi/settings.json",
+       ".pi/custom-providers.md",
+       ".opencode/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md",
+       ".opencode/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md",
+       ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+-      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts"
++      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
++      ".opencode/skills/cli-external-orchestration/cli-opencode/SKILL.md",
++      ".opencode/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md",
++      ".opencode/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/model-dispatch/cline-provider-id-format-dispatch.md",
++      ".opencode/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts",
++      ".opencode/hooks/dispatch/pi/dispatch-preflight-lint.ts",
++      "specs/descriptions.json"
+     ],
+     "entities": [
+       {
+@@ -79,12 +87,24 @@
+         "path": "acceptance-criteria.md",
+         "source": "derived"
+       },
++      {
++        "name": "decision-record.md",
++        "kind": "doc",
++        "path": "decision-record.md",
++        "source": "derived"
++      },
+       {
+         "name": "implementation-summary.md",
+         "kind": "doc",
+         "path": "implementation-summary.md",
+         "source": "derived"
+       },
++      {
++        "name": "handover.md",
++        "kind": "doc",
++        "path": "handover.md",
++        "source": "derived"
++      },
+       {
+         "name": "models.json",
+         "kind": "config",
+@@ -122,87 +142,75 @@
+         "source": "derived"
+       },
+       {
+-        "name": "Feature Specification",
+-        "kind": "proper_noun",
+-        "path": "spec.md",
+-        "source": "derived"
+-      },
+-      {
+-        "name": "Problem Statement The",
+-        "kind": "proper_noun",
+-        "path": "spec.md",
+-        "source": "derived"
+-      },
+-      {
+-        "name": "Purpose The",
+-        "kind": "proper_noun",
+-        "path": "spec.md",
++        "name": "SKILL.md",
++        "kind": "doc",
++        "path": ".opencode/skills/cli-external-orchestration/cli-opencode/SKILL.md",
+         "source": "derived"
+       },
+       {
+-        "name": "In Scope",
+-        "kind": "proper_noun",
+-        "path": "spec.md",
++        "name": "cli-reference.md",
++        "kind": "doc",
++        "path": ".opencode/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md",
+         "source": "derived"
+       },
+       {
+-        "name": "The Pi",
+-        "kind": "proper_noun",
+-        "path": "spec.md",
++        "name": "cline-provider-id-format-dispatch.md",
++        "kind": "doc",
++        "path": ".opencode/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/model-dispatch/cline-provider-id-format-dispatch.md",
+         "source": "derived"
+       },
+       {
+-        "name": "File Path",
+-        "kind": "proper_noun",
+-        "path": "spec.md",
++        "name": "executor-config.vitest.ts",
++        "kind": "test",
++        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts",
+         "source": "derived"
+       },
+       {
+-        "name": "Implementation Plan",
+-        "kind": "proper_noun",
+-        "path": "plan.md",
++        "name": "dispatch-preflight-lint.ts",
++        "kind": "code",
++        "path": ".opencode/hooks/dispatch/pi/dispatch-preflight-lint.ts",
+         "source": "derived"
+       },
+       {
+-        "name": "Technical Context",
+-        "kind": "proper_noun",
+-        "path": "plan.md",
++        "name": "descriptions.json",
++        "kind": "config",
++        "path": "specs/descriptions.json",
+         "source": "derived"
+       },
+       {
+-        "name": "Overview The",
++        "name": "Feature Specification",
+         "kind": "proper_noun",
+-        "path": "plan.md",
++        "path": "spec.md",
+         "source": "derived"
+       },
+       {
+-        "name": "Pattern One",
++        "name": "In Progress",
+         "kind": "proper_noun",
+-        "path": "plan.md",
++        "path": "spec.md",
+         "source": "derived"
+       },
+       {
+-        "name": "Key Components",
++        "name": "Problem Statement The",
+         "kind": "proper_noun",
+-        "path": "plan.md",
++        "path": "spec.md",
+         "source": "derived"
+       },
+       {
+-        "name": "Data Flow",
++        "name": "The Reopened Second Pass The",
+         "kind": "proper_noun",
+-        "path": "plan.md",
++        "path": "spec.md",
+         "source": "derived"
+       },
+       {
+-        "name": "Task Format",
++        "name": "Purpose The",
+         "kind": "proper_noun",
+-        "path": "tasks.md",
++        "path": "spec.md",
+         "source": "derived"
+       }
+     ],
+     "causal_summary": "The bare literal `deepseek-v4-flash-vision-exp` was the DevPass route for DeepSeek Flash and the cli-pi default in the deep-loop fan-out",
+     "created_at": "2026-09-10T20:03:32Z",
+-    "last_save_at": "2026-09-10T20:21:29.109Z",
++    "last_save_at": "2026-09-11T11:05:42.982Z",
+     "save_lineage": "graph_only",
+     "last_accessed_at": null,
+     "source_docs": [
+@@ -210,15 +218,19 @@
+       "plan.md",
+       "tasks.md",
+       "acceptance-criteria.md",
+-      "implementation-summary.md"
++      "decision-record.md",
++      "implementation-summary.md",
++      "handover.md"
+     ],
+-    "source_fingerprint": "sha256:dfbd1b37c75445bb83c62599c22c41dc7562b776e419659ee99bcd5314b3bb56",
++    "source_fingerprint": "sha256:0be795e6a935dd67db545060d73ff17c28cb3c1272bec077a44e03d1ad165068",
+     "source_fingerprint_docset": 3,
+     "source_doc_hashes": {
+-      "spec.md": "1c79f287106d1e892578839de60663721daf5e8414feecaf15f2f89bdb60d6e8",
+-      "plan.md": "23c938af70159370e88c281e762af5ee32adfb55921e320fd03cd542a290a5e0",
+-      "tasks.md": "f3f1ef13c350fc8f20e70e4b5c1cb251eca216663834760ccc961c9f9a0f0f64",
+-      "implementation-summary.md": "74c1251a39efe801ebb7c4e4f5ef13afe4cd0cc7d2bca31975fb77bf3869268b"
++      "spec.md": "e785cedabdfb91b7d98275878a9a0d1d21c2badae8404136a1c7b45f2743dad9",
++      "plan.md": "436bebd852bf117e250a6258b10ca2d7cfaaee580f827becc2d765c0bb04b0a6",
++      "tasks.md": "31cb055e84cf1b8950840478416fd65360dc7e927f7b1c7092e09945c66c4be2",
++      "decision-record.md": "173ed7c17fc392284a7d9a67befd77fee529ed509d906425b87967d5ebc8ef7d",
++      "implementation-summary.md": "589e8761ebb042f2a08f661ca23916a0ab8b271eb536a4cc7edb0e3e908724e5",
++      "handover.md": "f1a4dcb69182398feee089817a5db5760562525cfceccb2b058ab5bd8c6f2874"
+     },
+     "last_active_at": null
+   }

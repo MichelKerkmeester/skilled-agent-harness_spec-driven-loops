@@ -1,0 +1,71 @@
+TASK
+
+Research four proposed changes to this repository's repo-rule system, then widen into what else the system needs. Read-only. Every proposal must be run through the four decision tests in `.opencode/skills/sk-doc/sk-create-repo-rule/references/decision-tests.md`, and a well-evidenced refusal is a better result than an invented rule.
+
+THE CONSTRAINT THAT DECIDES MOST PROPOSALS
+
+Gate 5 fires on the FIRST WRITE of a session and never on a read-only turn (`AGENTS.md:122`). A rule file is silent on any turn that only reads. Anything that must bind while reading cannot live in a rule file and belongs in `AGENTS.md` instead.
+
+P1. A TEST-RESTRAINT RULE. The operator wants a rule that stops agents adding unneeded tests, and instead prefers improving existing test infrastructure, consolidating overlapping tests, and reducing test count while keeping coverage. Doing more with less. Read what already exists: `repo-rules/prevent-overengineering.md` has a Tests paragraph, and `AGENTS.md` section 3 states a coverage floor and an earns-its-place bar. Decide whether this is a new rule, a section inside the overengineering rule, or already covered. Say which, with the deciding test.
+
+P2. A CONTEXT-GATHERING DELEGATION RULE. The operator wants context gathering and similar cheap, high-volume reading work to prefer lighter and cheaper models, reserving expensive reasoning for judgement. It must connect to `repo-rules/delegation-and-orchestration.md`.
+   **Hard requirement: the rule must be runtime-agnostic and model-agnostic.** It must never name a model or a roster, because rosters change. Find the language that expresses "prefer the cheapest model that can do this class of work" without naming one. Check whether any existing document already solves this naming problem and copy its approach.
+   Every runtime here ships a context agent: `.claude/agents/context.md`, `.opencode/agents/context.md`, `.codex/agents/context.toml`, `.cursor/agents/context.md`, `.pi/agents/context.md`, `.devin/agents/context`. Read at least two and report what they already bind, so the rule does not restate them.
+
+P3. A DESIGN-LOADING RULE. The operator wants a concise rule ensuring any agent doing UI or visual design work loads the design fundamentals first. Every runtime also ships a design agent at the same paths as above with `design` instead of `context`. Read at least two design agents and the `sk-design` skill router. Report what already binds this, whether a rule adds anything, and how a rule would interact with the agents rather than duplicate them.
+
+P4. SHORTEN THE ORCHESTRATION RULE. `repo-rules/delegation-and-orchestration.md` is 249 lines against a 250 ceiling, the largest in the corpus and one line from failing the new checker. Find what can go without losing an obligation: restatement, worked examples that repeat the principle, cross-references that could be one line. Name specific line ranges and what each cut costs. Do not propose cutting a self-check item or a named failure.
+
+P5. WIDER ANALYSIS. Having read the system, report what else it needs that nobody asked for. Rank by damage prevented. Refusals count: if the honest answer is that the set is complete, say so and defend it.
+
+METHOD
+
+Read before asserting. Start with `AGENTS.md`, `REPO RULES.md`, the eleven files under `repo-rules/`, the references under `.opencode/skills/sk-doc/sk-create-repo-rule/`, and the agent definitions named above. Widen only as a question requires.
+
+OUTPUT
+
+One section per proposal, P1 through P5. For each: the verdict (new rule, section in an existing rule, AGENTS.md row, or refuse), the deciding test, the evidence with file:line, and what it would cost. Then a ranked list across all five.
+
+DO NOT
+
+- Do not draft rule text. Decide what should exist, not how it reads.
+- Do not edit any file.
+- Do not name a model or a model roster in any proposed rule wording.
+- Do not manufacture proposals. Zero new rules is an acceptable outcome.
+
+ITERATION 3 OF 10.
+Earlier iterations of this lineage already found the following. Do NOT repeat them.
+Go deeper, test what they assumed, or cover a surface they missed.
+
+### Iteration 1
+## The chain, with the code
+## Corrections and options
+- **Correction to my last turn:** the "one-line pointer in AC-003's Verification cell" I floated would **not** clear this flag. The sentinel never reads document content; it stats a path. The packet edit is irrelevant to the advisory.
+- **Silence per session:** `SYSTEM_COMPLETION_DISABLED=1` or `SYSTEM_COMPLETION_SENTINEL_DISABLED=1` is a full no-op (`README.md:115-116`). This is the zero-risk option; the advisory has no teeth.
+- **Root fix (recommended if the noise recurs across sessions):** tighten `SPEC_FOLDER_TEXT_PATTERN` at `completion-evidence-sentinel.cjs:75` so a file citation can't resolve as a packet folder — strip a `:NN` suffix and a trailing `*.md` segment, or prefer a token that is an existing directory. That is a runtime code change in `system-spec-kit`, must keep `node --test .opencode/plugins/tests/system-completion-sentinel.test.cjs` green (`README.md:144-147`), and is **outside this read-only task's authority** — I have not touched it.
+
+### Iteration 2
+## Method and status
+## P1. Test restraint
+- Suppression already binds: `AGENTS.md:207` states the coverage floor, the earns-its-place bar, and the three prohibitions ("no test per branch, no re-asserting framework or language, no mirroring the implementation"); `prevent-overengineering.md:130-131` routes the floor and bar to §3 and applies the restraint ladder to test code; `REPO RULES.md:40` routes test additions to that rule.
+- The class is pre-refused: "testing" is one of the ten candidates already declined by this same four-part test (`decision-tests.md:95-97`; verified in the 010 refusal table at `synthesis.md:404`).
+- The genuinely new content (prefer improving test infrastructure, consolidating overlapping tests, reducing test count with coverage kept) has no recorded failure. Across roughly forty refused candidates in the prior research run, none was a test-bloat failure (`synthesis.md:398-462`); Test 4 says an unnamed failure routes nowhere and is recorded, not written.
+## P2. Context-gathering delegation on cheaper models
+- The exact class is already a recorded refusal scenario: RRD-003's prompt is "which CLI executor we should pick for research runs, and which thinking level to set", and the expected outcome is a test-2 refusal with the Out clause quoted, no new file, scope untouched (`manual-testing-playbook/rule-decision/routing-refusal.md:31-34`, `:46`, `:57`).
+- What the context agents already bind, so a rule must not restate it: read-only, LEAF-only, no nested dispatch, scope lock, canonical continuity first, query-type tool routing, output budgets and the Context Package, anti-hallucination rules (`.claude/agents/context.md:9`, `:17-18`, `:21-28`, `:61`; `.pi/agents/context.md:14`, `:22`, `:26-34`). None of them mention a model or cost. The Codex variant hardcodes one concrete model id and its reasoning effort in the agent config (`.codex/agents/context.toml:5-7`), which is where a model binding legitimately lives; a rule naming any model would drift against that file on the next roster change.
+- The model-agnostic language the requirement asks to copy already exists in three places. The roster-deferral idiom: "Read the config for the current roster; a list written here goes stale between commits" and "Enumerate at runtime, never from a written list" (`AGENTS.md:356`, `:360`). The single-source idiom: each CLI mode's `references/providers-and-models.md` is the dedicated single-source index of providers, model ids and dispatch shapes (`cli-external-orchestration/SKILL.md:196`). The capability-class phrasing: "that runtime's cheapest capable dispatch model" (`specs/hooks/002-injection-bloat-reduction/010-playbook-cheapest-model/spec.md:65`). Copy the approach: state the objective and defer the roster to the runtime's own catalog or config.
+## P3. Design fundamentals before design work
+- Both design agents read bind it as a first duty. "Load the routed skill before acting, and run its own verification before claiming a result" (`.opencode/agents/design.md:180`; `.claude/agents/design.md:166`; `.pi/agents/design.md:174`), with the anti-pattern "Route first, then load one" (`.opencode/agents/design.md:225` and mirrors).
+- The hub owns routing and does it in two stages (`sk-design/SKILL.md:15-16`, `:41-46`), defaults an unclear design question to the fundamentals mode (`:141-143`), and points every decide request at its own scale sources; `AGENTS.md:455` already routes extraction work to `sk-design-md-generator`.
+- Boundary evidence against a broader rule: the hub explicitly declares implementation out of its scope and assigns it to `sk-code` (`sk-design/SKILL.md:32-33`), and the design agent hands decided values to the code agent without dispatching it (`.opencode/agents/design.md:138`). A rule that makes every agent doing UI work load design fundamentals would sit on the wrong side of that deliberate split.
+## P4. Shortening `delegation-and-orchestration.md`
+- **57-64 (setup sentence plus the four-row posture table): ~8 lines.** Every row's obligation survives at `:97-98` (write the scope down), `:115-117` (what the delegate must read), `:129` and `:151` (confidence is not accuracy), and §5 (you own verification). Keeps the heading at 55 and the cost check at 66-69. Cost: loses the at-a-glance before/after summary, and note the 043 audit specifically repaired this table's corrupted row-four cell (`043:163-164`), so deleting it should be deliberate.
+- **50-51 (the posture gloss after the binding sentence): 2 lines.** Restates the bold rule at 46-48. Cost: "you own the decomposition" is not stated elsewhere; small.
+- **229-230 (§8 bullet "Not a routing document"): 2 lines.** Restates `REPO RULES.md:85-89`. Cost: removes the in-file boundary reminder; §8's required misreading guard survives in bullets 224-228 and 231-232, which is what `creation-standards.md:120-122` cites this file for.
+- **Optional: mid-213 to 218 (the "Two catches" and pathspec-construction block): ~6 lines.** Keeps the obligation at 206-212, the index trap, and the `git commit -- <paths>` instruction. Cost: loses two documented commit-sweep failure modes, including the pathspec-from-index trap. Take this only if the 12 lines above are not enough; content of this class belongs to `sk-git` mechanics, and a cross-reference would need adding there if this is cut.
+## P5. Wider analysis
+## Ranked list across all five
+
+
+Be selective about what you open; a partial answer with resolving citations beats an exhaustive read that never finishes.
+Return only this iteration's findings, in the output format above.

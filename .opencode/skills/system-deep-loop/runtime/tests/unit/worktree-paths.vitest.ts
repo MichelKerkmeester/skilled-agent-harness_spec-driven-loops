@@ -10,8 +10,8 @@ const REPO_ROOT = '/repo/main-checkout';
 const WORKTREE_DIR = '/repo/worktrees/lineage-alpha';
 const LINEAGE_DIR_NAME = 'run-artifacts/research/lineages/lineage-alpha';
 
-const FLAG_KINDS: readonly ExecutorKind[] = ['native', 'cli-claude-code', 'cli-opencode'];
-const SPAWN_KINDS: readonly ExecutorKind[] = ['cli-codex', 'cli-devin', 'cli-pi'];
+const FLAG_KINDS: readonly ExecutorKind[] = ['native', 'cli-opencode'];
+const SPAWN_KINDS: readonly ExecutorKind[] = ['cli-claude-code', 'cli-codex', 'cli-devin', 'cli-pi'];
 const CURSOR_KIND: ExecutorKind = 'cli-cursor';
 
 function resolvePaths(kind: ExecutorKind, worktreeDir: string | null) {

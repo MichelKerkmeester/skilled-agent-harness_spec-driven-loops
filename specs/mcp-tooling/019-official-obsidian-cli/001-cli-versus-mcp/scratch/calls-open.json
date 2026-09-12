@@ -1,0 +1,21 @@
+[
+ {"label":"list_notes","tool":"obsidian_list_notes","args":{}},
+ {"label":"list_tags","tool":"obsidian_list_tags","args":{}},
+ {"label":"search_text","tool":"obsidian_search_notes","args":{"mode":"text","query":"prepended-line"}},
+ {"label":"search_none","tool":"obsidian_search_notes","args":{"mode":"text","query":"zzz-no-such-string-anywhere"}},
+ {"label":"write_note_create","tool":"obsidian_write_note","args":{"target":{"type":"path","path":"zz-mcp-scratch.md"},"content":"# MCP scratch\n\n## Alpha\nalpha body\n\n## Beta\nbeta body\n"}},
+ {"label":"get_note_content","tool":"obsidian_get_note","args":{"format":"content","target":{"type":"path","path":"zz-mcp-scratch.md"}}},
+ {"label":"get_note_docmap","tool":"obsidian_get_note","args":{"format":"document-map","target":{"type":"path","path":"zz-mcp-scratch.md"}}},
+ {"label":"get_note_section","tool":"obsidian_get_note","args":{"format":"section","target":{"type":"path","path":"zz-mcp-scratch.md"},"section":{"type":"heading","target":"Alpha"}}},
+ {"label":"append","tool":"obsidian_append_to_note","args":{"target":{"type":"path","path":"zz-mcp-scratch.md"},"content":"appended by mcp"}},
+ {"label":"patch_section","tool":"obsidian_patch_note","args":{"target":{"type":"path","path":"zz-mcp-scratch.md"},"section":{"type":"heading","target":"Beta"},"operation":"replace","content":"beta REPLACED"}},
+ {"label":"replace_in_note","tool":"obsidian_replace_in_note","args":{"target":{"type":"path","path":"zz-mcp-scratch.md"},"replacements":[{"search":"alpha body","replace":"alpha CHANGED"}]}},
+ {"label":"frontmatter_set","tool":"obsidian_manage_frontmatter","args":{"operation":"set","target":{"type":"path","path":"zz-mcp-scratch.md"},"key":"status","value":"probe"}},
+ {"label":"frontmatter_get","tool":"obsidian_manage_frontmatter","args":{"operation":"get","target":{"type":"path","path":"zz-mcp-scratch.md"},"key":"status"}},
+ {"label":"tags_add","tool":"obsidian_manage_tags","args":{"target":{"type":"path","path":"zz-mcp-scratch.md"},"operation":"add","tags":["zzprobe"]}},
+ {"label":"tags_list","tool":"obsidian_manage_tags","args":{"target":{"type":"path","path":"zz-mcp-scratch.md"},"operation":"list"}},
+ {"label":"get_note_full","tool":"obsidian_get_note","args":{"format":"full","target":{"type":"path","path":"zz-mcp-scratch.md"},"includeLinks":true}},
+ {"label":"get_note_missing","tool":"obsidian_get_note","args":{"format":"content","target":{"type":"path","path":"ZZZ-does-not-exist.md"}}},
+ {"label":"get_note_active","tool":"obsidian_get_note","args":{"format":"content","target":{"type":"active"}}},
+ {"label":"get_note_periodic","tool":"obsidian_get_note","args":{"format":"content","target":{"type":"periodic","period":"daily"}}}
+]

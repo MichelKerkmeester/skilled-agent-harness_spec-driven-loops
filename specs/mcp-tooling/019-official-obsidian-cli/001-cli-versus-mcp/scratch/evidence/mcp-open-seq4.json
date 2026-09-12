@@ -1,0 +1,26 @@
+{
+  "startupMs": 854,
+  "results": [
+    {
+      "label": "append_no_target",
+      "tool": "obsidian_append_to_note",
+      "args": {
+        "content": "should not land anywhere"
+      },
+      "ms": 1,
+      "isError": true,
+      "text": "Input validation error: Invalid arguments for tool obsidian_append_to_note: target: Invalid input: expected object, received undefined"
+    },
+    {
+      "label": "get_no_target",
+      "tool": "obsidian_get_note",
+      "args": {
+        "format": "content"
+      },
+      "ms": 1,
+      "isError": true,
+      "text": "Input validation error: Invalid arguments for tool obsidian_get_note: target: Invalid input: expected object, received undefined"
+    }
+  ],
+  "elicits": []
+}

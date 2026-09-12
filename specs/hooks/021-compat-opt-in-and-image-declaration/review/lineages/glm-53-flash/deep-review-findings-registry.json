@@ -1,0 +1,231 @@
+{
+  "sessionId": "fanout-glm-53-flash-1789146937931-6gxjep",
+  "generation": 1,
+  "lineageMode": "new",
+  "updatedAt": "2026-09-11T17:50:59Z",
+  "openFindings": [
+    {
+      "findingId": "F1",
+      "title": "Passive affinity warning lost on opted-in DeepSeek channels: warningText recomputes missing from the DeepSeek-only list",
+      "description": "post-change the deepseek adapter warningtext uses the deepseek-only list so affinitymissing on an opted-in channel never reaches the passive model_select warning",
+      "severity": "P1",
+      "status": "active",
+      "disposition": "active",
+      "dimension": "correctness",
+      "dimensions": ["correctness"],
+      "file": ".pi/extensions/pi-cache-optimizer/index.ts:3097-3105",
+      "evidence": [
+        ".pi/extensions/pi-cache-optimizer/index.ts:3097-3105",
+        ".pi/extensions/pi-cache-optimizer/index.ts:2960-2968",
+        ".pi/extensions/pi-cache-optimizer/index.ts:4053-4055",
+        ".pi/extensions/pi-cache-optimizer/index.ts:4102-4104",
+        "specs/hooks/021-compat-opt-in-and-image-declaration/scratch/verify-no-warning.txt:39-43"
+      ],
+      "impact": "The only proactive notification surface stops mentioning session affinity for opted-in DeepSeek channels; the state survives only in /cache-optimizer compat|doctor.",
+      "recommendation": "Compose the warningText missing-list (or mark affinity reported) in the DeepSeek adapter; add harness control D (opted-in, affinity-missing, replay-satisfied).",
+      "findingClass": "notification-coverage",
+      "confidence": "high",
+      "scopeProof": "Bounded by the notification chain model_select -> notifyCacheCompatIfNeeded -> selectAdapterForModel -> adapter.warningText, all inside the changed file; callers outside the extension were not enumerated.",
+      "affectedSurfaceHints": [".pi/extensions/pi-cache-optimizer/index.ts (DeepSeek adapter warningText; notifyCacheCompatIfNeeded)"],
+      "contentHash": "aa180feede3b19c70d8d0448ba7796d41f114d84390ffc3925e37a295e5db02f",
+      "contentHashRecipe": {
+        "path": ".pi/extensions/pi-cache-optimizer/index.ts",
+        "lineRange": "3097-3105",
+        "findingType": "notification-coverage",
+        "normalizedDescription": "post-change the deepseek adapter warningtext uses the deepseek-only list so affinitymissing on an opted-in channel never reaches the passive model_select warning",
+        "note": "sha256 of the four fields joined by US; the description contributes its first 80 normalized characters"
+      },
+      "firstSeenIteration": 1,
+      "lastSeenIteration": 1
+    },
+    {
+      "findingId": "F2",
+      "title": "Opted-in DeepSeek on openai-responses silently loses the reasoning-replay check (predicate narrowed to openai-completions)",
+      "description": "isDeepSeekWireCompatApplicable requires isOpenAICompatibleProxyApi so an opted-in channel on openai-responses silently loses the reasoning-replay check",
+      "severity": "P2",
+      "status": "active",
+      "disposition": "active",
+      "dimension": "correctness",
+      "dimensions": ["correctness"],
+      "file": ".pi/extensions/pi-cache-optimizer/index.ts:2987-2990",
+      "evidence": [
+        ".pi/extensions/pi-cache-optimizer/index.ts:2987-2990",
+        ".pi/extensions/pi-cache-optimizer/index.ts:1495-1498",
+        "specs/hooks/021-compat-opt-in-and-image-declaration/review/change-under-review.diff:100-103"
+      ],
+      "impact": "A responses-transport opted-in channel loses the reasoning-content advice that previously fired; no test exercises that combination.",
+      "recommendation": "Record the narrowing as a limitation or add a responses-fixture test asserting the intended empty result.",
+      "findingClass": "applicability-narrowing",
+      "confidence": "high",
+      "scopeProof": "The predicate and its replacement are both in the diff; every test fixture in the changed suites uses api openai-completions, so the responses combination is uncovered by construction.",
+      "affectedSurfaceHints": [".pi/extensions/pi-cache-optimizer/index.ts (isDeepSeekWireCompatApplicable)"],
+      "contentHash": "e75240ac0450f393c2e364f470f4c8be7c3cd367175b50ab935a3493a002192e",
+      "contentHashRecipe": {
+        "path": ".pi/extensions/pi-cache-optimizer/index.ts",
+        "lineRange": "2987-2990",
+        "findingType": "applicability-narrowing",
+        "normalizedDescription": "isDeepSeekWireCompatApplicable requires isOpenAICompatibleProxyApi so an opted-in channel on openai-responses silently loses the reasoning-replay check",
+        "note": "sha256 of the four fields joined by US; the description contributes its first 80 normalized characters"
+      },
+      "firstSeenIteration": 1,
+      "lastSeenIteration": 1
+    },
+    {
+      "findingId": "F3",
+      "title": "The opt-in key thinkingFormat is no longer named anywhere in the extension's own advice output",
+      "description": "after the change no extension output names the thinkingFormat optin that gates all deepseek-specific advice; discovery relies on precedent outside the extension",
+      "severity": "P2",
+      "status": "active",
+      "disposition": "active",
+      "dimension": "maintainability",
+      "dimensions": ["maintainability"],
+      "file": ".pi/extensions/pi-cache-optimizer/index.ts:260,2989",
+      "evidence": [
+        ".pi/extensions/pi-cache-optimizer/index.ts:260",
+        ".pi/extensions/pi-cache-optimizer/index.ts:2989",
+        "specs/hooks/021-compat-opt-in-and-image-declaration/review/change-under-review.diff:139-143",
+        "specs/hooks/021-compat-opt-in-and-image-declaration/implementation-summary.md:127"
+      ],
+      "impact": "The mechanism the whole change rests on is its least documented artifact; the spec's risk note that the doctor still reports the opt-in overstates: the doctor reports state, not the key name.",
+      "recommendation": "One advisory line in the not-opted-in doctor output naming the dormant gate, or an informational (never-written) mention in the advice lines.",
+      "findingClass": "documentation-gap",
+      "confidence": "medium",
+      "scopeProof": "Exhaustive grep over the 10,622-line extension; discovery precedent verified in the operator's own models.json (cline-pass 9, openrouter 113-114) and the vendored README via limitation 5.",
+      "affectedSurfaceHints": [".pi/extensions/pi-cache-optimizer/index.ts (advice, doctor, fix outputs)", ".pi/extensions/pi-cache-optimizer/README.md (191, 272 - outside the frozen scope per limitation 5)"],
+      "contentHash": "b19448ff179fa28cb1e1d4b67d153f1ddeb8e60279c1c7743bb394e3ced388d1",
+      "contentHashRecipe": {
+        "path": ".pi/extensions/pi-cache-optimizer/index.ts",
+        "lineRange": "260+2989",
+        "findingType": "documentation-gap",
+        "normalizedDescription": "after the change no extension output names the thinkingformat optin that gates all deepseek-specific advice; discovery relies on precedent outside the extension",
+        "note": "sha256 of the four fields joined by US; the description contributes its first 80 normalized characters"
+      },
+      "firstSeenIteration": 1,
+      "lastSeenIteration": 1
+    },
+    {
+      "findingId": "F4",
+      "title": "Continuity metadata: all-zeros fingerprint placeholder and next_safe_action contradicting limitation 5",
+      "description": "implementationsummary continuity fingerprint is the allzeros placeholder and its nextsafeaction contradicts the readme limitation named as the next safe action",
+      "severity": "P2",
+      "status": "active",
+      "disposition": "active",
+      "dimension": "traceability",
+      "dimensions": ["traceability"],
+      "file": "specs/hooks/021-compat-opt-in-and-image-declaration/implementation-summary.md:18-25",
+      "evidence": [
+        "specs/hooks/021-compat-opt-in-and-image-declaration/implementation-summary.md:18",
+        "specs/hooks/021-compat-opt-in-and-image-declaration/implementation-summary.md:25",
+        "specs/hooks/021-compat-opt-in-and-image-declaration/implementation-summary.md:28",
+        "specs/hooks/021-compat-opt-in-and-image-declaration/implementation-summary.md:127"
+      ],
+      "impact": "Continuity consumers cannot bind the completion claim to content (fingerprint matches nothing); the packet's own next-step guidance disagrees with itself.",
+      "recommendation": "Regenerate the continuity metadata pair after the last doc edit and reconcile the two next-action statements.",
+      "findingClass": "traceability-metadata",
+      "confidence": "high",
+      "scopeProof": "Values read directly from the packet's continuity frontmatter and limitations section; freshness-enforcement impact depends on SPECKIT_COMPLETION_FRESHNESS, which this lineage could not check.",
+      "affectedSurfaceHints": ["specs/hooks/021-compat-opt-in-and-image-declaration/implementation-summary.md (_memory.continuity)"],
+      "contentHash": "d81c76ddeaa366cdca400cd8df24239896cdac01438aa5565086fc3fb54cf84b",
+      "contentHashRecipe": {
+        "path": "specs/hooks/021-compat-opt-in-and-image-declaration/implementation-summary.md",
+        "lineRange": "18-25",
+        "findingType": "traceability-metadata",
+        "normalizedDescription": "implementationsummary continuity fingerprint is the allzeros placeholder and its nextsafeaction contradicts the readme limitation named as the next safe action",
+        "note": "sha256 of the four fields joined by US; the description contributes its first 80 normalized characters"
+      },
+      "firstSeenIteration": 1,
+      "lastSeenIteration": 1
+    },
+    {
+      "findingId": "F5",
+      "title": "Provenance drift: brief cites 80576ef8aa, landed change is 8d897d2a83; models.json carries uncommitted id drift",
+      "description": "the review brief cites commit 80576ef8aa but the landed change including the spec packet is 8d897d2a83 and modelsjson carries uncommitted id drift",
+      "severity": "P2",
+      "status": "active",
+      "disposition": "active",
+      "dimension": "traceability",
+      "dimensions": ["traceability"],
+      "file": "specs/hooks/021-compat-opt-in-and-image-declaration/review/brief.md:17-18",
+      "evidence": [
+        "specs/hooks/021-compat-opt-in-and-image-declaration/review/brief.md:17-18",
+        "specs/hooks/021-compat-opt-in-and-image-declaration/review/change-under-review.diff:1-5",
+        ".pi/models.json:13-14"
+      ],
+      "impact": "A later reader following the brief's hash finds a commit without the packet; the working-tree models.json differs from the reviewed commit by two lines (cline-pass id) that do not touch the reviewed declarations.",
+      "recommendation": "One-line provenance note in the packet; the working-tree drift needs awareness only.",
+      "findingClass": "provenance-drift",
+      "confidence": "high",
+      "scopeProof": "Read-only git (--no-optional-locks) log/show: the landed 18-file change shares the brief's subject and carries this packet; the uncommitted hunk (models.json 13-14) does not intersect the reviewed llmgateway declarations (50, 57).",
+      "affectedSurfaceHints": ["specs/hooks/021-compat-opt-in-and-image-declaration/review/brief.md", "specs/hooks/021-compat-opt-in-and-image-declaration/review/change-under-review.diff", ".pi/models.json (uncommitted 13-14)"],
+      "contentHash": "b895b4a289bb2461ae52169666ebada5e3c017182160811fd89bd7cdfe5c759b",
+      "contentHashRecipe": {
+        "path": "specs/hooks/021-compat-opt-in-and-image-declaration/review/brief.md",
+        "lineRange": "17-18",
+        "findingType": "provenance-drift",
+        "normalizedDescription": "the review brief cites commit 80576ef8aa but the landed change including the spec packet is 8d897d2a83 and modelsjson carries uncommitted id drift",
+        "note": "sha256 of the four fields joined by US; the description contributes its first 80 normalized characters"
+      },
+      "firstSeenIteration": 1,
+      "lastSeenIteration": 1
+    }
+  ],
+  "resolvedFindings": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": false,
+    "traceability": false,
+    "maintainability": false
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 4
+  },
+  "openFindingsCount": 5,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.0,
+  "verdict": "CONDITIONAL",
+  "releaseReadinessState": "in-progress",
+  "stopReason": "maxIterationsReached",
+  "metrics": {
+    "iterationsCompleted": 1,
+    "convergenceScore": 0.0,
+    "weightedStopScore": 0.0,
+    "newFindingsRatio": 1.0,
+    "dimensionCoverageRatio": 0.25,
+    "signedDimensions": ["correctness"],
+    "incidentalDimensions": ["traceability", "maintainability"],
+    "coverageAge": 0,
+    "hardStop": "maxIterationsReached",
+    "stopPolicy": "max-iterations",
+    "avgEvidencePerFinding": 3.4
+  },
+  "divergence": {
+    "completed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": ["security (D2): uncovered, first in the risk-ordered queue when the cap permits", "responses-API applicability coverage (F2)", "harness control D (F1)"]
+  },
+  "searchCoverage": {
+    "requiredBugClasses": ["notification-coverage", "applicability-narrowing", "write-set-drift", "contract-assertion-accuracy"],
+    "covered": ["notification-coverage", "applicability-narrowing"],
+    "ruledOut": ["write-set-drift", "contract-assertion-accuracy"],
+    "deferred": ["responses-api-coverage", "harness-control-d"],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "candidateCoverage": {
+    "covered": ["notification-coverage", "applicability-narrowing", "write-set-drift", "contract-assertion-accuracy"],
+    "requiredBugClasses": ["notification-coverage", "applicability-narrowing", "write-set-drift", "contract-assertion-accuracy"]
+  },
+  "searchDebt": [
+    { "id": "DEBT-001", "obligation": "responses-API fixture coverage for the narrowed applicability (F2 remediation)", "source": "SL-002" },
+    { "id": "DEBT-002", "obligation": "harness control D: opted-in + affinity-missing + replay-satisfied (F1 remediation verification)", "source": "SL-001" }
+  ],
+  "ruledOutCandidates": [
+    "leftover thinkingFormat references in repair, placement or safety code",
+    "vacuous new assertions"
+  ],
+  "cleanSearchProof": "every required bug class answered by direct reads or greps with cited evidence; no negative control fired"
+}

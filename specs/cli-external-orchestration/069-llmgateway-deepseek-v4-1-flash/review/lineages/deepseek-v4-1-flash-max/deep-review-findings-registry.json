@@ -1,0 +1,364 @@
+{
+  "sessionId": "fanout-deepseek-v4-1-flash-max-1789146954427-phycl9",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 1,
+    "timestamp": "2026-09-11T17:31:10Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "title": "Retired id still named on a non-changelog surface (traceability)",
+      "file": ".opencode/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/model-dispatch/supported-model-allowlist-smoke.md",
+      "line": 29,
+      "description": "Lines 29 and 46 declare \"default is `deepseek-v4-flash-vision-exp`\" as the PI-017 expectation. Ground truth: `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:214` sets `PI_DEFAULT_MODEL = 'deepseek-v4.1-flash'`, and `:189` is the allowlist's `'deepseek-v4.1-flash'`. REQ-001 says no live surface names the deactivated id, and AC-001 (`acceptance-criteria.md:57`) records the sweep as a clean miss. The file is a present-tense testing contract, not a historical log, and its own command sequence reads the config that now contradicts it, so a tester re-running PI-017 records a false FAIL. This playbook directory was already in the packet's scope for a sibling file (`spec.md:80`).",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F002",
+      "severity": "P2",
+      "title": "Recorded retired-id scan evidence is overstated (traceability)",
+      "file": "specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash/acceptance-criteria.md",
+      "line": 57,
+      "description": "AC-001 reads \"Scan over `.opencode` and `.pi` returned no hit; the only surviving instance is the OpenRouter-prefixed literal\", and `implementation-summary.md:138` repeats it. Two bare (unprefixed) hits survive at `supported-model-allowlist-smoke.md:29` and `:46`. Same root cause as F001, different remediation: the recorded evidence is wrong even where the shipped code is right.",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F003",
+      "severity": "P2",
+      "title": "Handover trap \"pi has no `--mode text`\" is false (traceability)",
+      "file": "specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash/handover.md",
+      "line": 125,
+      "description": "The row is marked load-bearing and repeated at `:153` and `:171`; the installed binary accepts the flag (`dist/cli/args.js:42`) and documents it as the default (`dist/cli/args.js:274`). The repository's own working commands use it (`.pi/custom-providers.md:127`, `:128`, `:138`), so the trap marks correct commands as defects.",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F004",
+      "severity": "P2",
+      "title": "Validator warning misattributed to AC_COVERAGE (traceability)",
+      "file": "specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash/handover.md",
+      "line": 211,
+      "description": "§4 and §5 both name `AC_COVERAGE` as the packet's single warning. That rule is declared info-severity (`validator-registry.json`) and every advisory path leaves `RULE_STATUS=\"pass\"` (`check-ac-coverage.sh:464-495`); `mapShellRuleStatus()` maps even a `fail` from an info-severity rule to `info` (`orchestrator.ts:275-286`), so it cannot surface as a warning. Confidence note: this lineage did not execute `validate.sh`, so the classification of the current warning is inferred from the rule sources (`FRONTMATTER_MEMORY_BLOCK` at `orchestrator.ts:942` / `spec-doc-structure.ts:685-880` is the reachable warner, with five warning-severity length diagnostics on this packet); the refutation of the AC_COVERAGE attribution is not inferred.",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F005",
+      "severity": "P2",
+      "title": "AC-coverage counts wrong in the handover (traceability)",
+      "file": "specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash/handover.md",
+      "line": 267,
+      "description": "The note claims 16 of 21 flagged with 6 from the first pass. The rule's own analyzer returns `rows=21 covered=6 malformed=15` with `AC-001, AC-006 … AC-011` (seven first-pass rows) plus all eight second-pass rows (`AC-014` … `AC-021`) flagged. The conclusion \"this predates this pass\" is therefore backwards for the majority of the deficit.",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F006",
+      "severity": "P2",
+      "title": "Pi default-provider claim contradicts settings.json (maintainability)",
+      "file": ".opencode/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md",
+      "line": 86,
+      "description": "The roster (\"pi's default here is `defaultProvider: cline-pass`\") and `.pi/custom-providers.md:27`, `:35`, `:67`, `:152` all describe a Cline default; `.pi/settings.json:4-5` sets `\"defaultProvider\": \"llmgateway\"` with `\"defaultModel\": \"z-ai/glm-5.3-flash\"`. The roster sentence sits in a paragraph this packet rewrote and the claim was carried through untouched. Related, not asserted: `z-ai/glm-5.3-flash` is not a declared id in the `llmgateway` block (`.pi/models.json:54` declares `glm-5.3-flash`) and pi falls through silently when the configured pair does not resolve (`dist/core/model-resolver.js:502-528`), which needs a `pi` run to settle and is carried as a deferred check.",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F007",
+      "severity": "P2",
+      "title": "Duplicated closure paragraph in the acceptance criteria (maintainability)",
+      "file": "specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash/acceptance-criteria.md",
+      "line": 135,
+      "description": "The paragraph beginning \"One thing is left open rather than closed\" appears at `:126-129` and again at `:135` in the same section, with no cross-reference and no distinct content, so one open item reads as two.",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 6
+  },
+  "openFindingsCount": 7,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.75,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {}
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [],
+  "cleanSearchProof": [],
+  "searchCoverage": {
+    "requiredBugClasses": [],
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": null
+  },
+  "traceability": {
+    "summary": {
+      "required": 3,
+      "executed": 3,
+      "pass": 0,
+      "partial": 3,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 2
+    },
+    "results": [
+      {
+        "protocolId": "spec_code",
+        "status": "partial",
+        "gateClass": "hard",
+        "applicable": true,
+        "counts": {
+          "pass": 0,
+          "partial": 1,
+          "fail": 0,
+          "skipped": 0
+        },
+        "evidence": [
+          "executor-config.ts:189",
+          "executor-config.ts:214",
+          "executor-config.ts:243",
+          "fanout-run.cjs:1984",
+          "fanout-run.cjs:2080",
+          "fanout-run.cjs:2099",
+          "fanout-run.cjs:2285",
+          "cli-opencode/SKILL.md:174",
+          "acceptance-criteria.md:57"
+        ],
+        "findingRefs": [
+          "F001",
+          "F002"
+        ],
+        "summary": "REQ-002/003/006/007/009 resolve to shipped code and recorded probes; REQ-001 does not, because one non-changelog surface still names the retired id."
+      },
+      {
+        "protocolId": "checklist_evidence",
+        "status": "partial",
+        "gateClass": "hard",
+        "applicable": true,
+        "counts": {
+          "pass": 0,
+          "partial": 1,
+          "fail": 0,
+          "skipped": 0
+        },
+        "evidence": [
+          "tasks.md:125-155",
+          "tasks.md:208-214",
+          "implementation-summary.md:129-146"
+        ],
+        "findingRefs": [
+          "F005"
+        ],
+        "summary": "Checklist items are marked without per-item file:line evidence; the packet-level runs are recorded, and 15 of 21 acceptance criteria lack citations."
+      },
+      {
+        "protocolId": "skill_agent",
+        "status": "notApplicable",
+        "gateClass": "advisory",
+        "applicable": false,
+        "counts": {
+          "pass": 0,
+          "partial": 0,
+          "fail": 0,
+          "skipped": 1
+        },
+        "evidence": [],
+        "findingRefs": [],
+        "summary": "Target type is spec-folder; no skill/agent pair in scope."
+      },
+      {
+        "protocolId": "agent_cross_runtime",
+        "status": "notApplicable",
+        "gateClass": "advisory",
+        "applicable": false,
+        "counts": {
+          "pass": 0,
+          "partial": 0,
+          "fail": 0,
+          "skipped": 1
+        },
+        "evidence": [],
+        "findingRefs": [],
+        "summary": "No agent definitions in scope."
+      },
+      {
+        "protocolId": "feature_catalog_code",
+        "status": "notApplicable",
+        "gateClass": "advisory",
+        "applicable": false,
+        "counts": {
+          "pass": 0,
+          "partial": 0,
+          "fail": 0,
+          "skipped": 1
+        },
+        "evidence": [],
+        "findingRefs": [],
+        "summary": "No catalog claim depends on this change."
+      },
+      {
+        "protocolId": "playbook_capability",
+        "status": "partial",
+        "gateClass": "advisory",
+        "applicable": true,
+        "counts": {
+          "pass": 0,
+          "partial": 1,
+          "fail": 0,
+          "skipped": 0
+        },
+        "evidence": [
+          "supported-model-allowlist-smoke.md:29",
+          "supported-model-allowlist-smoke.md:46",
+          "cline-provider-id-format-dispatch.md"
+        ],
+        "findingRefs": [
+          "F001"
+        ],
+        "summary": "The id-format control was updated; the allowlist-smoke scenario's expected default contradicts shipped behavior."
+      }
+    ]
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

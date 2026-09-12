@@ -1,0 +1,22 @@
+**REVIEW SETUP BINDINGS (this lineage)**
+```
+review_target: specs/hooks/021-compat-opt-in-and-image-declaration
+review_target_type: spec-folder
+review_dimensions: all
+spec_folder: specs/hooks/021-compat-opt-in-and-image-declaration
+execution_mode: AUTONOMOUS
+lineage_mode: auto
+artifact_dir: specs/hooks/021-compat-opt-in-and-image-declaration/review/lineages/deepseek-v41-flash (bound from config.fanout_lineage_artifact_dir; resolveArtifactRoot node skipped)
+executor: cli-pi model=deepseek-v4.1-flash reasoningEffort=max
+stopPolicy: max-iterations, maxIterations: 1 → stopReason maxIterationsReached
+```
+
+**Result: CONDITIONAL — P0=0, P1=1, P2=5.** The change does what the packet claims on the surfaces the packet names (gate, no manufactured `thinkingFormat`, `false` opt-out, both `models.json` declarations effective). Three suspected under-reports were ruled out with runtime evidence (`thinkingFormat`/`requiresReasoningContentOnAssistantMessages` are consumed only by `pi-ai`'s `openai-completions`; `detectCompat` auto-detects real DeepSeek endpoints; `provider-composer.js` merges provider compat).
+
+The one confirmed regression (F001): the **chat-surface affinity advisory is now unreachable for every DeepSeek-named channel**. `describeMissingCacheCompatForModel` composes correctly, but the DeepSeek adapter's `warningText` (`index.ts:3097-3105`) renders only the DeepSeek-only list and returns `undefined` when the gate is off, while `notifyCacheCompatIfNeeded` consults one first-match adapter with no fallback (`index.ts:4053-4055`, `4102-4104`). Evidence: `scratch/verify-no-warning.txt` control C — `chat warnings=0` beside `full diagnosis missing: ["sendSessionAffinityHeaders"]` — and the packet's own decision row (`implementation-summary.md:93`) claims the opposite outcome. F002–F006: one non-discriminating regression test, stale `thinkingFormat` doctrine in placement/comments, an affinity probe whose request side is uncommitted and unevidenced (provider-wide declaration probed on one model), committed gateway `apiKeyHash`/account metadata, and an unchecked plan DoD under a Complete status.
+
+**Written (9 artifacts, all inside the lineage):** `deep-review-config.json`, `deep-review-state.jsonl` (config + iteration + `synthesis_complete`/`maxIterationsReached`), `deep-review-findings-registry.json`, `deep-review-strategy.md`, `deep-review-dashboard.md`, `review-report.md` (9 core sections; no Resource Map gate — none present), `iterations/iteration-001.md` (final line byte-exact `Review verdict: CONDITIONAL`; claim-adjudication packet for F001), `deltas/iter-001.jsonl`, `prompts/iteration-001.md`.
+
+**Not verifiable inside this lineage (deferred, not contradicted):** `validate.sh --strict` (forbidden here), metadata freshness, and request-side affinity evidence; the security-sensitive `minStabilizationPasses=2` override is unmet by a cap-limited single pass and is recorded as deferred. Honest notes: pre-change behaviour was reconstructed from `review/change-under-review.diff`, not executed; the `sk_vision` tool cached a zoom copy under `~/.cache/sk-vision/` (outside the repo); `.pi/pi-fast-mode-w-subagent-support-config.json` was touched by the pi harness during this session, not by any command I issued.
+
+FANOUT_LINEAGE_COMPLETE:deepseek-v41-flash

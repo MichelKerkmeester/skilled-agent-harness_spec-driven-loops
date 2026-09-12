@@ -1,0 +1,1 @@
+obsidian eval code=app.workspace.trigger\(\"quick-preview\"\)\;\ Array.from\(document.querySelectorAll\(\".modal-close-button\,\ .modal-bg\"\)\).forEach\(e=\>e.dispatchEvent\(new\ MouseEvent\(\"click\"\,\{bubbles:true\}\)\)\)\;\ document.querySelectorAll\(\".modal-container\"\).length 

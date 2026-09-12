@@ -167,7 +167,7 @@ cheap refusal path stays available even when the operation is unclear.
 4. **Fill `assets/repo-rule-template.md`.** Ten fixed elements, open numbered body, aim under 160 lines.
 5. **Run `references/creation-standards.md` against the draft.** Structure is checkable and is not the bar; a rule can pass every assertion and be worth nobody's context.
 6. **Wire it**: a trigger row and an index row in the router, and a pointer from the `AGENTS.md` section it governs.
-7. **Verify**: frontmatter parses, dividers equal numbered sections, every link resolves, no trigger phrase collides with another rule.
+7. **Verify by running the checker**, not by eye: `node .opencode/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs`. It asserts count parity across the rule files and both router tables, row coverage with link resolution, trigger-phrase uniqueness, the line ceiling, frontmatter keys, and divider parity, and exits non-zero on any failure. A hand check of the same properties is how every one of them drifted before the checker existed. What it cannot judge is whether the rule is worth loading at all, which is `references/creation-standards.md` and still needs a reader.
 
 ### Revise
 

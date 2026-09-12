@@ -17,7 +17,7 @@ This scenario validates the routing refusal for `RRD-003`. It focuses on refusin
 
 ### Why This Matters
 
-The router declares what the rule set is In and Out for, and Out is not advisory. Which agent, which command, which model, which flags: all of it is owned elsewhere. The failure this prevents is boundary dissolution. The set has widened its scope statement exactly twice, both times deliberately, and a third widening to admit routing would dissolve the distinction the set exists to hold. The scenario also checks a subtler thing: the workflow must quote the scope statement rather than paraphrase it, because a paraphrase is how a boundary gets remembered wrong and then applied wrong.
+The router declares what the rule set is In and Out for, and Out is not advisory. Which agent, which command, which model, which flags: all of it is owned elsewhere. The failure this prevents is boundary dissolution. The set has widened its scope statement exactly four times, each time deliberately, and a fifth widening to admit routing would dissolve the distinction the set exists to hold. The scenario also checks a subtler thing: the workflow must quote the scope statement rather than paraphrase it, because a paraphrase is how a boundary gets remembered wrong and then applied wrong.
 
 ---
 

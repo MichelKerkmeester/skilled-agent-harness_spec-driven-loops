@@ -414,7 +414,7 @@ This skill operates within the behavioral framework defined in [AGENTS.md](../..
 
 Key integrations:
 - **Gate 2**: Skill routing via `skill_advisor.py`
-- **Tool Routing**: Per AGENTS.md Section 6 decision tree
+- **Tool Routing**: Per AGENTS.md Section 5 decision tree
 - **Continuity**: Context preserved by `/speckit:save`, which writes through `generate-context.js`
 
 ### Cross-Skill Collaboration

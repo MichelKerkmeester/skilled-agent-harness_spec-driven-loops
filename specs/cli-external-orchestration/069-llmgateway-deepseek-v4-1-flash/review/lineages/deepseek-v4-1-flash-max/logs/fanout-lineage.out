@@ -1,0 +1,19 @@
+The lineage is complete and internally consistent. Final verification passed:
+
+**Lineage outcome — `deepseek-v4-1-flash-max` (session `fanout-…-phycl9`)**
+
+**Verdict: CONDITIONAL** (no active P0; 1×P1, 6×P2; `hasAdvisories: true`; routes to `/speckit:plan`). Stopped by `maxIterationsReached` (`stopPolicy: max-iterations`, `maxIterations: 1`); convergence 0.75 recorded as telemetry only.
+
+**Headline finding (P1, F001)** — the retired id is *not* gone from live surfaces: `supported-model-allowlist-smoke.md:29` and `:46` still declare `deepseek-v4-flash-vision-exp` as the expected `PI_DEFAULT_MODEL`. This falsifies REQ-001 and falsifies AC-001's "clean sweep" evidence (the actual scan also surfs up this same pair of bare hits). The other six findings are P2: overstated scan evidence (F002), false `--mode text` trap row (F003), the single validator warning misattributed to `AC_COVERAGE` when it is `FRONTMATTER_MEMORY_BLOCK` (F004), wrong AC arithmetic — 15 malformed/7 first-pass vs handover's 16/6 (F005), the Pi `defaultProvider` claim contradicting `.pi/settings.json` (F006), and a duplicated closure paragraph (F007). All three `scratch/review-claims-to-verify.md` claims were settled as CONFIRMED against primary sources.
+
+**Artifacts** (all inside `review/lineages/deepseek-v4-1-flash-max/`):
+- `review-report.md` — 9 core sections, no resource-map section (`resource_map_present: false`)
+- `iterations/iteration-001.md` · `deltas/iteration-001.jsonl` · `prompts/` · `logs/deep-review-run.log`
+- `deep-review-state.jsonl` (4 records: config, iteration, claim_adjudication, synthesis_complete) · `deep-review-config.json` (status `complete`, `releaseReadinessState: release-blocking`)
+- Reducer-derived: `deep-review-findings-registry.json`, `deep-review-dashboard.md`, `deep-review-strategy.md`
+
+**Last repair** — the iteration file's `### P1` block still listed F003–F005, contradicting its own scorecard, adjudication packets, delta, registry and report (`P1=1 P2=6`). Fixed the grouping and re-ran `reduce-state.cjs --artifact-dir <lineage>`: 7 findings, P1 1 / P2 6, corruption 0, exit 0. New phase-log row records it.
+
+**Constraints honored** — no nested CLI/agent/subprocess; `generate-context.js`, `validate.sh` and live dispatch not run (recorded as not-performed); every write confined to the lineage; packet docs untouched (mtimes 11:54–14:34, pre-run).
+
+Operator's next: run `/speckit:plan` for the remediations (F001/F002 smallest fix: update the two playbook lines, re-sweep, correct AC-001), and settle the two deferred live checks — the Pi turn on the new id and the `llmgateway` + `z-ai/glm-5.3-flash` resolution question (DV-1).

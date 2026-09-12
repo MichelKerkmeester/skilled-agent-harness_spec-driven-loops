@@ -1,0 +1,4 @@
+[
+ {"label":"append_no_target","tool":"obsidian_append_to_note","args":{"content":"should not land anywhere"}},
+ {"label":"get_no_target","tool":"obsidian_get_note","args":{"format":"content"}}
+]

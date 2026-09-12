@@ -1,0 +1,1 @@
+obsidian read\ file=Home 

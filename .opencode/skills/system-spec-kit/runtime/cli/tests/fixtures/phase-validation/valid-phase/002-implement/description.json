@@ -1,0 +1,40 @@
+{
+  "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/system-spec-kit/node_modules/@spec-kit/runtime/cli/tests/fixtures/phase-validation/valid-phase/002-implement",
+  "description": "The phase-validation fixture needs a valid implementation child that uses the current Level 1 template anchors and headers instead of stale minimal",
+  "keywords": [
+    "phase-validation",
+    "fixture",
+    "needs",
+    "valid",
+    "implementation",
+    "child",
+    "current",
+    "level",
+    "template",
+    "anchors",
+    "headers",
+    "instead",
+    "stale",
+    "minimal"
+  ],
+  "lastUpdated": "2026-09-07T16:14:54.788Z",
+  "specId": "002",
+  "folderSlug": "implement",
+  "parentChain": [
+    "system-speckit",
+    "z_archive",
+    "022-hybrid-rag-fusion",
+    "system-spec-kit",
+    "node_modules",
+    "@spec-kit",
+    "runtime",
+    "cli",
+    "tests",
+    "fixtures",
+    "phase-validation",
+    "valid-phase"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

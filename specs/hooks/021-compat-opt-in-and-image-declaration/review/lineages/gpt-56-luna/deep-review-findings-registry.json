@@ -1,0 +1,275 @@
+{
+  "sessionId": "fanout-gpt-56-luna-1789146937931-6gxjep",
+  "generation": 1,
+  "lineageMode": "new",
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 1,
+    "timestamp": "2026-09-11T17:27:09Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "title": "DeepSeek startup adapter suppresses generic affinity advice",
+      "file": ".pi/extensions/pi-cache-optimizer/index.ts",
+      "line": 3097,
+      "lineRange": "3097-3105",
+      "description": "DeepSeek startup adapter suppresses generic affinity advice",
+      "dimension": "correctness",
+      "dimensions": [
+        "correctness"
+      ],
+      "findingClass": "missing-consumer-path",
+      "scopeProof": "The selected adapter, notification consumer, generic composer, and plan claim are all in the declared review scope.",
+      "affectedSurfaceHints": [
+        "model_select startup notification",
+        "DeepSeek adapter warningText",
+        "/cache-optimizer compat",
+        "/cache-optimizer doctor"
+      ],
+      "evidence": "index.ts:2997-3010 composes generic affinity, while index.ts:3097-3105 reads only the DeepSeek list; first-match selection and notification are at index.ts:4053-4110.",
+      "impact": "Missing affinity can be silent on DeepSeek-named proxy channels outside the already-configured target.",
+      "recommendation": "Route startup warningText through the composed list or emit generic affinity advice separately, with model_select regressions.",
+      "disposition": "active",
+      "status": "active",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial inline review discovery"
+        }
+      ],
+      "mergedFindingIds": [],
+      "content_hash": "sha256:1f4da6cd7830b791dd73d4f4d402985007522c4cd33be99619785c30ed1275ed",
+      "filePath": ".pi/extensions/pi-cache-optimizer/index.ts",
+      "findingType": "correctness"
+    },
+    {
+      "findingId": "F002",
+      "severity": "P2",
+      "title": "No-manufactured-thinkingFormat test never supplies the removed branch key",
+      "file": ".pi/extensions/pi-cache-optimizer/tests/review-findings.test.ts",
+      "line": 1151,
+      "lineRange": "1151-1167",
+      "description": "No-manufactured-thinkingFormat test never supplies the removed branch key",
+      "dimension": "maintainability",
+      "dimensions": [
+        "maintainability"
+      ],
+      "findingClass": "vacuous-test",
+      "scopeProof": "The current test and removed branch are both in the declared extension test and diff scope.",
+      "affectedSurfaceHints": [
+        "DeepSeek suggestion helper",
+        "rendered warning helper",
+        "regression suite"
+      ],
+      "evidence": "review-findings.test.ts:1151-1167 omits thinkingFormat, while the removed implementation branch in change-under-review.diff:124-143 was conditional on it.",
+      "impact": "A future conditional thinkingFormat suggestion branch could reappear without breaking this test.",
+      "recommendation": "Pass thinkingFormat in the helper input and assert it is excluded from the suggestion and rendered advice.",
+      "disposition": "active",
+      "status": "active",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial inline review discovery"
+        }
+      ],
+      "mergedFindingIds": [],
+      "content_hash": "sha256:f60c83e993777198732cc6e8bf38db46d32bff43c48cce349a73f85d79f3568f",
+      "filePath": ".pi/extensions/pi-cache-optimizer/tests/review-findings.test.ts",
+      "findingType": "test-coverage"
+    },
+    {
+      "findingId": "F003",
+      "severity": "P2",
+      "title": "Affinity probe does not preserve request-header evidence for its acceptance claim",
+      "file": "specs/hooks/021-compat-opt-in-and-image-declaration/scratch/live-affinity-probe.md",
+      "line": 28,
+      "lineRange": "28-44",
+      "description": "Affinity probe does not preserve request-header evidence for its acceptance claim",
+      "dimension": "traceability",
+      "dimensions": [
+        "traceability"
+      ],
+      "findingClass": "evidence-gap",
+      "scopeProof": "The live-affinity probe markdown and response JSON are declared packet evidence.",
+      "affectedSurfaceHints": [
+        "live affinity declaration",
+        "models.json provider compat",
+        "packet verification evidence"
+      ],
+      "evidence": "live-affinity-probe.md:28-44 records HTTP 200; live-affinity-probe.json contains response data but no request trace or echoed request headers.",
+      "impact": "The repository cannot independently distinguish a header-bearing successful request from one without those headers.",
+      "recommendation": "Preserve a redacted verbose request trace, server-side echo, or equivalent controlled artifact.",
+      "disposition": "active",
+      "status": "active",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial inline review discovery"
+        }
+      ],
+      "mergedFindingIds": [],
+      "content_hash": "sha256:455606fe92956c8326a4c2ce33bfbaafeebfe8dfcd184a42caabdb4aa45938be",
+      "filePath": "specs/hooks/021-compat-opt-in-and-image-declaration/scratch/live-affinity-probe.md",
+      "findingType": "evidence-gap"
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 2
+  },
+  "openFindingsCount": 3,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.0,
+  "graphConvergenceScore": 0.0,
+  "graphDecision": "CONTINUE",
+  "graphBlockers": [],
+  "graphSignals": {
+    "dimensionCoverage": 0,
+    "findingStability": 0,
+    "p0ResolutionRate": 1,
+    "evidenceDensity": 0,
+    "hotspotSaturation": 0
+  },
+  "candidateCoverage": {
+    "covered": [
+      "consumer-path",
+      "config-evidence",
+      "test-vacuity",
+      "scope-and-secret-safety"
+    ],
+    "ruledOut": [
+      "name-only-protocol-inference",
+      "thinkingFormat-writer-residue",
+      "literal-credential-exposure"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {
+      "consumer-path": [
+        "F001"
+      ],
+      "test-vacuity": [
+        "F002"
+      ],
+      "config-evidence": [
+        "F003"
+      ]
+    }
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [
+    "name-only-protocol-inference",
+    "thinkingFormat-writer-residue",
+    "literal-credential-exposure"
+  ],
+  "cleanSearchProof": [
+    "No literal credential value was present in the reviewed packet artifacts.",
+    "No current changed suggestion or fix path assigns thinkingFormat."
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "consumer-path",
+      "config-evidence",
+      "test-vacuity",
+      "scope-and-secret-safety"
+    ],
+    "covered": [
+      "consumer-path",
+      "config-evidence",
+      "test-vacuity",
+      "scope-and-secret-safety"
+    ],
+    "ruledOut": [
+      "name-only-protocol-inference",
+      "thinkingFormat-writer-residue",
+      "literal-credential-exposure"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 2,
+      "executed": 6,
+      "pass": 0,
+      "partial": 2,
+      "fail": 1,
+      "blocked": 0,
+      "notApplicable": 3,
+      "gatingFailures": 1
+    },
+    "results": [
+      {
+        "protocolId": "spec_code",
+        "status": "fail",
+        "gateClass": "hard",
+        "findingRefs": [
+          "F001"
+        ]
+      },
+      {
+        "protocolId": "checklist_evidence",
+        "status": "partial",
+        "gateClass": "hard",
+        "findingRefs": [
+          "F001",
+          "F003"
+        ]
+      },
+      {
+        "protocolId": "playbook_capability",
+        "status": "partial",
+        "gateClass": "advisory",
+        "findingRefs": [
+          "F001",
+          "F002"
+        ]
+      }
+    ]
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [
+      "startup notification regression replay",
+      "request-header evidence replay"
+    ],
+    "currentFocus": "broad all-dimensions pass"
+  },
+  "fieldWarnings": [
+    "Convergence stabilization was not eligible before the max-iterations cap.",
+    "resource-map.md was absent at target initialization; coverage gate skipped."
+  ],
+  "corruptionWarnings": []
+}

@@ -1,0 +1,40 @@
+TASK
+
+Research four proposed changes to this repository's repo-rule system, then widen into what else the system needs. Read-only. Every proposal must be run through the four decision tests in `.opencode/skills/sk-doc/sk-create-repo-rule/references/decision-tests.md`, and a well-evidenced refusal is a better result than an invented rule.
+
+THE CONSTRAINT THAT DECIDES MOST PROPOSALS
+
+Gate 5 fires on the FIRST WRITE of a session and never on a read-only turn (`AGENTS.md:122`). A rule file is silent on any turn that only reads. Anything that must bind while reading cannot live in a rule file and belongs in `AGENTS.md` instead.
+
+P1. A TEST-RESTRAINT RULE. The operator wants a rule that stops agents adding unneeded tests, and instead prefers improving existing test infrastructure, consolidating overlapping tests, and reducing test count while keeping coverage. Doing more with less. Read what already exists: `repo-rules/prevent-overengineering.md` has a Tests paragraph, and `AGENTS.md` section 3 states a coverage floor and an earns-its-place bar. Decide whether this is a new rule, a section inside the overengineering rule, or already covered. Say which, with the deciding test.
+
+P2. A CONTEXT-GATHERING DELEGATION RULE. The operator wants context gathering and similar cheap, high-volume reading work to prefer lighter and cheaper models, reserving expensive reasoning for judgement. It must connect to `repo-rules/delegation-and-orchestration.md`.
+   **Hard requirement: the rule must be runtime-agnostic and model-agnostic.** It must never name a model or a roster, because rosters change. Find the language that expresses "prefer the cheapest model that can do this class of work" without naming one. Check whether any existing document already solves this naming problem and copy its approach.
+   Every runtime here ships a context agent: `.claude/agents/context.md`, `.opencode/agents/context.md`, `.codex/agents/context.toml`, `.cursor/agents/context.md`, `.pi/agents/context.md`, `.devin/agents/context`. Read at least two and report what they already bind, so the rule does not restate them.
+
+P3. A DESIGN-LOADING RULE. The operator wants a concise rule ensuring any agent doing UI or visual design work loads the design fundamentals first. Every runtime also ships a design agent at the same paths as above with `design` instead of `context`. Read at least two design agents and the `sk-design` skill router. Report what already binds this, whether a rule adds anything, and how a rule would interact with the agents rather than duplicate them.
+
+P4. SHORTEN THE ORCHESTRATION RULE. `repo-rules/delegation-and-orchestration.md` is 249 lines against a 250 ceiling, the largest in the corpus and one line from failing the new checker. Find what can go without losing an obligation: restatement, worked examples that repeat the principle, cross-references that could be one line. Name specific line ranges and what each cut costs. Do not propose cutting a self-check item or a named failure.
+
+P5. WIDER ANALYSIS. Having read the system, report what else it needs that nobody asked for. Rank by damage prevented. Refusals count: if the honest answer is that the set is complete, say so and defend it.
+
+METHOD
+
+Read before asserting. Start with `AGENTS.md`, `REPO RULES.md`, the eleven files under `repo-rules/`, the references under `.opencode/skills/sk-doc/sk-create-repo-rule/`, and the agent definitions named above. Widen only as a question requires.
+
+OUTPUT
+
+One section per proposal, P1 through P5. For each: the verdict (new rule, section in an existing rule, AGENTS.md row, or refuse), the deciding test, the evidence with file:line, and what it would cost. Then a ranked list across all five.
+
+DO NOT
+
+- Do not draft rule text. Decide what should exist, not how it reads.
+- Do not edit any file.
+- Do not name a model or a model roster in any proposed rule wording.
+- Do not manufacture proposals. Zero new rules is an acceptable outcome.
+
+ITERATION 1 OF 10.
+First pass. Read selectively and establish ground truth; do not attempt to read every file.
+
+Be selective about what you open; a partial answer with resolving citations beats an exhaustive read that never finishes.
+Return only this iteration's findings, in the output format above.

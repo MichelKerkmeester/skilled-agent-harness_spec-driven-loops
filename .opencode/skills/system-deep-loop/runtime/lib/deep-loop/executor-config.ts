@@ -699,7 +699,14 @@ const fanoutControlShape = {
     // working tree (a build, an editor save, a formatter); a burst is somebody else.
     // Three ignores the former and still catches the latter. Zero disables the check.
     churnThreshold: z.number().int().nonnegative().default(3),
-  }).default({ mode: 'preserve', churnThreshold: 3 }),
+    // Isolation is the structural fix for a shared checkout: a lane that cannot write
+    // outside its own tree cannot destroy a neighbouring session's work. It stays opt-in
+    // until a full run has been observed on it, so the evidence for the default arrives
+    // before the default does rather than after it.
+    worktrees: z.boolean().default(false),
+  // `prefault` rather than `default`: Zod returns a default unparsed, so a literal that names
+  // only some fields would leave the rest undefined at runtime while the type claims them all.
+  }).prefault({ mode: 'preserve', churnThreshold: 3 }),
   // The stop policy is a dispatch-level directive carried by the CLI flag, not
   // config data. Object parsing drops unknown keys silently, so a caller who put
   // it here would believe forced depth was pinned while the run stopped on
@@ -744,6 +751,7 @@ export interface FanoutConfig {
   readonly containment: {
     readonly mode: 'preserve' | 'restore';
     readonly churnThreshold: number;
+    readonly worktrees: boolean;
   };
 }
 

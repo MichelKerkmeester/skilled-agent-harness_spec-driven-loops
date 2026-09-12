@@ -1,0 +1,45 @@
+diff --git a/specs/sk-git/028-crawlable-commit-history/description.json b/specs/sk-git/028-crawlable-commit-history/description.json
+index fa868e53ab..4a7720f94e 100644
+--- a/specs/sk-git/028-crawlable-commit-history/description.json
++++ b/specs/sk-git/028-crawlable-commit-history/description.json
+@@ -16,12 +16,14 @@
+     "spec",
+     "packet"
+   ],
+-  "lastUpdated": "2026-09-11T10:48:21.296Z",
++  "lastUpdated": "2026-09-11T17:47:37.211Z",
+   "specId": "028",
+   "folderSlug": "crawlable-commit-history",
+   "parentChain": [
+     "sk-git"
+   ],
+-  "memorySequence": 0,
+-  "memoryNameHistory": []
++  "memorySequence": 1,
++  "memoryNameHistory": [
++    "11-09-26_18-47__all-three-runs-are-progressing-normally-the-clock.md"
++  ]
+ }
+\ No newline at end of file
+diff --git a/specs/sk-git/028-crawlable-commit-history/graph-metadata.json b/specs/sk-git/028-crawlable-commit-history/graph-metadata.json
+index e39677d2f0..530534cbf8 100644
+--- a/specs/sk-git/028-crawlable-commit-history/graph-metadata.json
++++ b/specs/sk-git/028-crawlable-commit-history/graph-metadata.json
+@@ -212,7 +212,7 @@
+     ],
+     "causal_summary": "sk-git's commit contract produces readable conventional commits, but nothing in a commit is addressable the way a spec packet is",
+     "created_at": "2026-09-11T07:16:22Z",
+-    "last_save_at": "2026-09-11T17:08:51.071Z",
++    "last_save_at": "2026-09-11T17:47:37.320Z",
+     "save_lineage": "graph_only",
+     "last_accessed_at": null,
+     "source_docs": [
+@@ -224,6 +224,7 @@
+     "source_doc_hashes": {
+       "spec.md": "12b344047a9e87080fae9473d260807325e9c3e5e774ee018230813f23d80beb"
+     },
+-    "last_active_at": null
++    "last_active_child_id": null,
++    "last_active_at": "2026-09-11T17:47:37.320Z"
+   }
+ }

@@ -33,6 +33,8 @@ than to headers.
 
 **HTTP 200.** Full response in `scratch/live-image-probe.json`.
 
+The API key hash, organization id and project id in that file were redacted after the probe ran. Every field this claim rests on, including the 200 status and the routing result, is untouched.
+
 Model answer, verbatim:
 
 ```

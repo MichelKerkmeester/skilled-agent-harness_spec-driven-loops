@@ -1,0 +1,1 @@
+obsidian eval code=document.querySelectorAll\(\".modal-container\"\).forEach\(m=\>m.dispatchEvent\(new\ KeyboardEvent\(\"keydown\"\,\{key:\"Escape\"\,bubbles:true\}\)\)\)\;\ app.workspace.containerEl.ownerDocument.querySelectorAll\(\".modal-container\"\).length 

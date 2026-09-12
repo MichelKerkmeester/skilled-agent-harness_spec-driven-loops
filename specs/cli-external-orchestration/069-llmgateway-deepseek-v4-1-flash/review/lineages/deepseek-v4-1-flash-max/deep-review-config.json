@@ -1,0 +1,100 @@
+{
+  "topic": "Review of packet 069 (llmgateway DeepSeek V4.1 Flash route repoint): both DeepSeek roster moves, the Pi config, the deep-loop fan-out wiring, and the packet's own verification claims",
+  "sessionId": "fanout-deepseek-v4-1-flash-max-1789146954427-phycl9",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "lineageLabel": "deepseek-v4-1-flash-max",
+  "fanout": {
+    "lineageLabel": "deepseek-v4-1-flash-max",
+    "artifactDirOverride": "specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash/review/lineages/deepseek-v4-1-flash-max",
+    "isolation": "detached write surface; every artifact of this lineage lives inside the lineage directory"
+  },
+  "maxIterations": 1,
+  "convergenceThreshold": 0.1,
+  "antiConvergence": {
+    "minIterations": 1,
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations"
+  },
+  "stuckThreshold": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": false,
+  "specFolder": "cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash",
+  "createdAt": "2026-09-11T17:16:25Z",
+  "status": "complete",
+  "releaseReadinessState": "release-blocking",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-pi",
+    "model": "deepseek-v4.1-flash",
+    "reasoningEffort": "max",
+    "serviceTier": null,
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 900,
+    "invocationFingerprint": "inv:8172c46b5187de30dbac81ccf4547181c44083c2679635808a2d6b1c1c0ff642",
+    "dispatchMode": "inline-detached-lineage"
+  },
+  "mode": "review",
+  "reviewTarget": "specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "resource_map_present": false,
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "overlay": [
+      "skill_agent",
+      "agent_cross_runtime",
+      "feature_catalog_code",
+      "playbook_capability"
+    ]
+  },
+  "qualityGateThreshold": true,
+  "runtimeCapabilityResolver": ".opencode/skills/system-deep-loop/deep-review/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "review-report-v*.md": "write-once",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": [
+      "latestJSONLDelta",
+      "newIterationFile",
+      "priorReducedState"
+    ],
+    "outputs": [
+      "findingsRegistry",
+      "dashboardMetrics",
+      "strategyUpdates"
+    ],
+    "metrics": [
+      "dimensionsCovered",
+      "findingsBySeverity",
+      "openFindings",
+      "resolvedFindings",
+      "convergenceScore"
+    ]
+  },
+  "stopReason": "maxIterationsReached",
+  "completedAt": "2026-09-11T17:31:10Z"
+}

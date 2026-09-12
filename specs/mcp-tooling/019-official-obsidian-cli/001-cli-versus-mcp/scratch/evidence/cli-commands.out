@@ -1,0 +1,16 @@
+app:delete-file
+app:go-back
+app:go-forward
+app:open-another-vault
+app:open-help
+app:open-sandbox-vault
+app:open-settings
+app:open-vault
+app:reload
+app:show-debug-info
+app:show-release-notes
+app:switch-vault
+app:toggle-default-new-pane-mode
+app:toggle-left-sidebar
+app:toggle-ribbon
+app:toggle-right-sidebar

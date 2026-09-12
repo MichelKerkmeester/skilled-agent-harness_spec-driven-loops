@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/008-second-pass-subjects-and-attribution"
+    packet_pointer: "sk-git/028-crawlable-commit-history/008-second-pass-subjects-and-attribution"
     last_updated_at: "2026-09-11T17:06:04Z"
     last_updated_by: "template-author"
     recent_action: "Initialized Level 3 template"

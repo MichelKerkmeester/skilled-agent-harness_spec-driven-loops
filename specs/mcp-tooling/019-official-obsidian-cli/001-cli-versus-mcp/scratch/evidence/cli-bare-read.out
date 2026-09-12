@@ -1,0 +1,1158 @@
+---
+db_view: true
+database:
+  id: testbed-db
+  name: Testbed
+  icon: 🧪
+  coverImage: ""
+  coverImagePositionY: 50
+  description: Mock database exercising every column type and view on desktop and phone.
+  sourceFolder: Database Testbed/Records
+  sourceRules: []
+  sourceLogic: and
+  newRecordFolder: Database Testbed/Records
+  recordIconField: ""
+  computedSyncMode: display-only
+  summaryFormulas: {}
+  columns:
+    - key: file.name
+      label: Title
+      type: text
+    - key: summary
+      label: Summary
+      type: text
+    - key: status
+      label: Status
+      type: status
+      statusOptions:
+        - value: Backlog
+          color: gray
+        - value: In Progress
+          color: blue
+        - value: Blocked
+          color: red
+        - value: In Review
+          color: orange
+        - value: Done
+          color: green
+        - value: Archived
+          color: purple
+    - key: priority
+      label: Priority
+      type: select
+      statusOptions:
+        - value: Low
+          color: slate
+        - value: Medium
+          color: yellow
+        - value: High
+          color: orange
+        - value: Critical
+          color: rose
+    - key: labels
+      label: Labels
+      type: multi-select
+      statusOptions:
+        - value: research
+          color: cyan
+        - value: design
+          color: violet
+        - value: urgent
+          color: red
+        - value: mobile
+          color: teal
+        - value: backend
+          color: indigo
+        - value: docs
+          color: brown
+        - value: infra
+          color: lime
+    - key: amount
+      label: Amount
+      type: number
+    - key: budget
+      label: Budget
+      type: currency
+    - key: net
+      label: Net
+      type: computed
+      computedKey: net
+    - key: margin
+      label: Margin %
+      type: computed
+      computedKey: margin
+    - key: due
+      label: Due
+      type: date
+    - key: reviewed_at
+      label: Reviewed
+      type: datetime
+    - key: pinned
+      label: Pinned
+      type: checkbox
+    - key: related
+      label: Related
+      type: relation
+      relationConfig:
+        targetDatabaseId: testbed-db
+    - key: related_count
+      label: "Related #"
+      type: rollup
+      rollupConfig:
+        relationField: related
+        targetField: file.name
+        aggregation: count
+    - key: attachments
+      label: Files
+      type: files
+    - key: link
+      label: Link
+      type: text
+      textRenderMode: link
+    - key: notes
+      label: Notes
+      type: text
+      wrap: true
+    - key: year
+      label: Year
+      type: text
+  computedFields:
+    - key: net
+      label: Net
+      expression: IF(OR([budget] == null, [amount] == null), null, [budget] - [amount])
+      type: number
+    - key: margin
+      label: Margin %
+      expression: IF(OR([budget] == null, [amount] == null, [budget] == 0), null, ([budget] - [amount]) / [budget] * 100)
+      type: number
+  statusPresets: []
+  defaultStatusPresetId: ""
+  views:
+    - id: tb-table
+      name: All Records
+      viewType: table
+      sourceFolder: ""
+      sourceRules: []
+      sourceLogic: and
+      showRecordIcon: false
+      recordIconFieldOverrideEnabled: false
+      recordIconField: ""
+      newRecordFolder: ""
+      displayWidth: wide
+      sortColumn: ""
+      sortDirection: asc
+      sortRules:
+        - field: margin
+          direction: desc
+      columnOrder:
+        - file.name
+        - summary
+        - status
+        - priority
+        - labels
+        - amount
+        - budget
+        - net
+        - margin
+        - due
+        - reviewed_at
+        - pinned
+        - related
+        - related_count
+        - attachments
+        - link
+        - notes
+        - year
+      columnWidths:
+        file.name: 220
+        summary: 210
+        notes: 280
+        link: 200
+        related: 190
+        reviewed_at: 150
+      hiddenColumns: []
+      sortColumnOrder: ""
+      statusFilter: ""
+      groupByField: ""
+      groupOrders: {}
+      showEmptyGroups: {}
+      collapsedGroups: {}
+      boardGroupField: ""
+      boardSubgroupEnabled: false
+      boardSubgroupField: ""
+      boardColumnWidth: 280
+      defaultColumnWidth: 150
+      titleField: ""
+      boardCardOrders: {}
+      boardHiddenGroups: {}
+      manualOrder:
+        ranks:
+          Database Testbed/Records/01 — Q3 Compliance Audit.md: 2DHi
+          Database Testbed/Records/02 — Onboarding Flow Redesign.md: 4QZQ
+          Database Testbed/Records/04 — This Is A Deliberately Very Long Record Title That Should Overflow And Force Truncation On Narrow Phone Columns.md: 6dr8
+          Database Testbed/Records/21 — Billing Webhooks.md: 8r8q
+          Database Testbed/Records/24 — Performance Budget.md: B4QY
+          Database Testbed/Records/18 — Accessibility Pass.md: DHiG
+          Database Testbed/Records/19 — Search Relevance.md: FUzy
+          Database Testbed/Records/17 — Enterprise Deal Desk.md: HiHg
+          Database Testbed/Records/05 — API Rate Limiter.md: JvZO
+          Database Testbed/Records/06 — Data Warehouse Migration.md: M8r6
+          Database Testbed/Records/23 — Legacy Import Tool.md: OM8o
+          Database Testbed/Records/11 — Docs Overhaul.md: QZQW
+          Database Testbed/Records/15 — Budget Reforecast.md: SmiE
+          Database Testbed/Records/10 — Pricing Experiment.md: Uzzw
+          Database Testbed/Records/25 — Localization Sprint.md: XDHe
+          Database Testbed/Records/09 — Mobile Nav Bug Sweep.md: ZQZM
+          Database Testbed/Records/16 — Zero-Cost Cleanup.md: bdr4
+          Database Testbed/Records/03 — Marketing Site Refresh.md: dr8m
+          Database Testbed/Records/07 — Logo.md: g4QU
+          Database Testbed/Records/13 — SSO Rollout.md: iHiC
+          Database Testbed/Records/12 — Incident Retro.md: kUzu
+          Database Testbed/Records/20 — Notification Center.md: miHc
+          Database Testbed/Records/26 — Security Review.md: ovZK
+          Database Testbed/Records/14 — Empty Shell.md: r8r2
+          Database Testbed/Records/27 — Roadmap Planning.md: tM8k
+          Database Testbed/Records/22 — Design Tokens.md: vZQS
+          Database Testbed/Records/08 — Customer Interviews Round Two.md: xmiA
+      galleryImageField: ""
+      galleryImageAspectRatio: 0.75
+      galleryCardSize: 250
+      galleryImageFit: cover
+      boardImageField: ""
+      boardImageAspectRatio: 0.75
+      boardImageFit: cover
+      showEmptyFields: false
+      listCompactFields: false
+      statusPresets: []
+      defaultStatusPresetId: ""
+      filterLogic: and
+      filters: []
+      summaryRules:
+        - field: amount
+          summary: SUM
+        - field: budget
+          summary: SUM
+        - field: net
+          summary: AVERAGE
+        - field: margin
+          summary: AVERAGE
+      conditionalFormats:
+        - id: cf-blocked
+          condition:
+            field: status
+            op: eq
+            value: Blocked
+          valueSource: literal
+          target: record
+          bold: true
+          color: red
+      chartType: bar
+      chartGroupField: ""
+      chartDateBucket: ""
+      chartNumberBucket: ""
+      chartStackField: ""
+      chartSeriesField: ""
+      chartAggregation: count
+      chartValueField: ""
+      chartSecondaryAggregation: count
+      chartSecondaryValueField: ""
+      chartSortBy: ""
+      chartHiddenGroups: {}
+      chartOmitZeroValues: false
+      chartCumulative: false
+      chartHeight: ""
+      chartGridLines: ""
+      chartAxisNames: ""
+      chartShowTitle: true
+      chartTitle: ""
+      chartShowDataLabels: false
+      chartDataLabelMode: ""
+      chartDataLabelColor: ""
+      chartSmoothLine: false
+      chartGradientArea: false
+      chartColorPalette: ""
+      chartColorByValue: false
+      chartShowDonutCenter: false
+      chartDonutCenterMode: ""
+      chartValueAxisRange: ""
+      chartReferenceLines: []
+      calendarMonth: ""
+      calendarStartDateField: ""
+      calendarEndDateField: ""
+      calendarTitleField: ""
+      calendarColorField: ""
+      calendarKeepCellAspectRatio: false
+      calendarScale: ""
+      calendarDay: ""
+      calendarWeekStart: ""
+      timelineStartDateField: ""
+      timelineEndDateField: ""
+      timelineGroupField: ""
+      timelineTitleField: ""
+      timelineColorField: ""
+      timelineScale: ""
+      timelineAnchor: ""
+      timelineColumnSizeMode: ""
+      viewStates:
+        table:
+          sortRules:
+            - field: margin
+              direction: desc
+    - id: tb-board
+      name: By Status
+      viewType: board
+      sourceFolder: ""
+      sourceRules: []
+      sourceLogic: and
+      showRecordIcon: false
+      recordIconFieldOverrideEnabled: false
+      recordIconField: ""
+      newRecordFolder: ""
+      displayWidth: wide
+      sortColumn: ""
+      sortDirection: asc
+      sortRules: []
+      columnOrder:
+        - file.name
+        - summary
+        - status
+        - priority
+        - labels
+        - amount
+        - budget
+        - net
+        - margin
+        - due
+        - reviewed_at
+        - pinned
+        - related
+        - related_count
+        - attachments
+        - link
+        - notes
+        - year
+      columnWidths: {}
+      hiddenColumns: []
+      sortColumnOrder: ""
+      statusFilter: ""
+      groupByField: ""
+      groupOrders: {}
+      showEmptyGroups: {}
+      collapsedGroups: {}
+      boardGroupField: status
+      boardSubgroupEnabled: false
+      boardSubgroupField: ""
+      boardColumnWidth: 280
+      defaultColumnWidth: 150
+      titleField: ""
+      boardCardOrders: {}
+      boardHiddenGroups: {}
+      manualOrder:
+        ranks:
+          Database Testbed/Records/01 — Q3 Compliance Audit.md: 2DHi
+          Database Testbed/Records/02 — Onboarding Flow Redesign.md: 4QZQ
+          Database Testbed/Records/04 — This Is A Deliberately Very Long Record Title That Should Overflow And Force Truncation On Narrow Phone Columns.md: 6dr8
+          Database Testbed/Records/21 — Billing Webhooks.md: 8r8q
+          Database Testbed/Records/24 — Performance Budget.md: B4QY
+          Database Testbed/Records/18 — Accessibility Pass.md: DHiG
+          Database Testbed/Records/19 — Search Relevance.md: FUzy
+          Database Testbed/Records/17 — Enterprise Deal Desk.md: HiHg
+          Database Testbed/Records/05 — API Rate Limiter.md: JvZO
+          Database Testbed/Records/06 — Data Warehouse Migration.md: M8r6
+          Database Testbed/Records/23 — Legacy Import Tool.md: OM8o
+          Database Testbed/Records/11 — Docs Overhaul.md: QZQW
+          Database Testbed/Records/15 — Budget Reforecast.md: SmiE
+          Database Testbed/Records/10 — Pricing Experiment.md: Uzzw
+          Database Testbed/Records/25 — Localization Sprint.md: XDHe
+          Database Testbed/Records/09 — Mobile Nav Bug Sweep.md: ZQZM
+          Database Testbed/Records/16 — Zero-Cost Cleanup.md: bdr4
+          Database Testbed/Records/03 — Marketing Site Refresh.md: dr8m
+          Database Testbed/Records/07 — Logo.md: g4QU
+          Database Testbed/Records/13 — SSO Rollout.md: iHiC
+          Database Testbed/Records/12 — Incident Retro.md: kUzu
+          Database Testbed/Records/20 — Notification Center.md: miHc
+          Database Testbed/Records/26 — Security Review.md: ovZK
+          Database Testbed/Records/14 — Empty Shell.md: r8r2
+          Database Testbed/Records/27 — Roadmap Planning.md: tM8k
+          Database Testbed/Records/22 — Design Tokens.md: vZQS
+          Database Testbed/Records/08 — Customer Interviews Round Two.md: xmiA
+      galleryImageField: ""
+      galleryImageAspectRatio: 0.75
+      galleryCardSize: 250
+      galleryImageFit: cover
+      boardImageField: ""
+      boardImageAspectRatio: 0.75
+      boardImageFit: cover
+      showEmptyFields: false
+      listCompactFields: false
+      statusPresets: []
+      defaultStatusPresetId: ""
+      filterLogic: and
+      filters: []
+      summaryRules: []
+      conditionalFormats: []
+      chartType: bar
+      chartGroupField: ""
+      chartDateBucket: ""
+      chartNumberBucket: ""
+      chartStackField: ""
+      chartSeriesField: ""
+      chartAggregation: count
+      chartValueField: ""
+      chartSecondaryAggregation: count
+      chartSecondaryValueField: ""
+      chartSortBy: ""
+      chartHiddenGroups: {}
+      chartOmitZeroValues: false
+      chartCumulative: false
+      chartHeight: ""
+      chartGridLines: ""
+      chartAxisNames: ""
+      chartShowTitle: true
+      chartTitle: ""
+      chartShowDataLabels: false
+      chartDataLabelMode: ""
+      chartDataLabelColor: ""
+      chartSmoothLine: false
+      chartGradientArea: false
+      chartColorPalette: ""
+      chartColorByValue: false
+      chartShowDonutCenter: false
+      chartDonutCenterMode: ""
+      chartValueAxisRange: ""
+      chartReferenceLines: []
+      calendarMonth: ""
+      calendarStartDateField: ""
+      calendarEndDateField: ""
+      calendarTitleField: ""
+      calendarColorField: ""
+      calendarKeepCellAspectRatio: false
+      calendarScale: ""
+      calendarDay: ""
+      calendarWeekStart: ""
+      timelineStartDateField: ""
+      timelineEndDateField: ""
+      timelineGroupField: ""
+      timelineTitleField: ""
+      timelineColorField: ""
+      timelineScale: ""
+      timelineAnchor: ""
+      timelineColumnSizeMode: ""
+      viewStates:
+        board: {}
+    - id: tb-gallery
+      name: Cards
+      viewType: gallery
+      sourceFolder: ""
+      sourceRules: []
+      sourceLogic: and
+      showRecordIcon: false
+      recordIconFieldOverrideEnabled: false
+      recordIconField: ""
+      newRecordFolder: ""
+      displayWidth: wide
+      sortColumn: ""
+      sortDirection: asc
+      sortRules: []
+      columnOrder:
+        - file.name
+        - summary
+        - status
+        - priority
+        - labels
+        - amount
+        - budget
+        - net
+        - margin
+        - due
+        - reviewed_at
+        - pinned
+        - related
+        - related_count
+        - attachments
+        - link
+        - notes
+        - year
+      columnWidths: {}
+      hiddenColumns: []
+      sortColumnOrder: ""
+      statusFilter: ""
+      groupByField: ""
+      groupOrders: {}
+      showEmptyGroups: {}
+      collapsedGroups: {}
+      boardGroupField: ""
+      boardSubgroupEnabled: false
+      boardSubgroupField: ""
+      boardColumnWidth: 280
+      defaultColumnWidth: 150
+      titleField: ""
+      boardCardOrders: {}
+      boardHiddenGroups: {}
+      manualOrder:
+        ranks:
+          Database Testbed/Records/01 — Q3 Compliance Audit.md: 2DHi
+          Database Testbed/Records/02 — Onboarding Flow Redesign.md: 4QZQ
+          Database Testbed/Records/04 — This Is A Deliberately Very Long Record Title That Should Overflow And Force Truncation On Narrow Phone Columns.md: 6dr8
+          Database Testbed/Records/21 — Billing Webhooks.md: 8r8q
+          Database Testbed/Records/24 — Performance Budget.md: B4QY
+          Database Testbed/Records/18 — Accessibility Pass.md: DHiG
+          Database Testbed/Records/19 — Search Relevance.md: FUzy
+          Database Testbed/Records/17 — Enterprise Deal Desk.md: HiHg
+          Database Testbed/Records/05 — API Rate Limiter.md: JvZO
+          Database Testbed/Records/06 — Data Warehouse Migration.md: M8r6
+          Database Testbed/Records/23 — Legacy Import Tool.md: OM8o
+          Database Testbed/Records/11 — Docs Overhaul.md: QZQW
+          Database Testbed/Records/15 — Budget Reforecast.md: SmiE
+          Database Testbed/Records/10 — Pricing Experiment.md: Uzzw
+          Database Testbed/Records/25 — Localization Sprint.md: XDHe
+          Database Testbed/Records/09 — Mobile Nav Bug Sweep.md: ZQZM
+          Database Testbed/Records/16 — Zero-Cost Cleanup.md: bdr4
+          Database Testbed/Records/03 — Marketing Site Refresh.md: dr8m
+          Database Testbed/Records/07 — Logo.md: g4QU
+          Database Testbed/Records/13 — SSO Rollout.md: iHiC
+          Database Testbed/Records/12 — Incident Retro.md: kUzu
+          Database Testbed/Records/20 — Notification Center.md: miHc
+          Database Testbed/Records/26 — Security Review.md: ovZK
+          Database Testbed/Records/14 — Empty Shell.md: r8r2
+          Database Testbed/Records/27 — Roadmap Planning.md: tM8k
+          Database Testbed/Records/22 — Design Tokens.md: vZQS
+          Database Testbed/Records/08 — Customer Interviews Round Two.md: xmiA
+      galleryImageField: attachments
+      galleryImageAspectRatio: 0.75
+      galleryCardSize: 260
+      galleryImageFit: cover
+      boardImageField: ""
+      boardImageAspectRatio: 0.75
+      boardImageFit: cover
+      showEmptyFields: true
+      listCompactFields: false
+      statusPresets: []
+      defaultStatusPresetId: ""
+      filterLogic: and
+      filters: []
+      summaryRules: []
+      conditionalFormats: []
+      chartType: bar
+      chartGroupField: ""
+      chartDateBucket: ""
+      chartNumberBucket: ""
+      chartStackField: ""
+      chartSeriesField: ""
+      chartAggregation: count
+      chartValueField: ""
+      chartSecondaryAggregation: count
+      chartSecondaryValueField: ""
+      chartSortBy: ""
+      chartHiddenGroups: {}
+      chartOmitZeroValues: false
+      chartCumulative: false
+      chartHeight: ""
+      chartGridLines: ""
+      chartAxisNames: ""
+      chartShowTitle: true
+      chartTitle: ""
+      chartShowDataLabels: false
+      chartDataLabelMode: ""
+      chartDataLabelColor: ""
+      chartSmoothLine: false
+      chartGradientArea: false
+      chartColorPalette: ""
+      chartColorByValue: false
+      chartShowDonutCenter: false
+      chartDonutCenterMode: ""
+      chartValueAxisRange: ""
+      chartReferenceLines: []
+      calendarMonth: ""
+      calendarStartDateField: ""
+      calendarEndDateField: ""
+      calendarTitleField: ""
+      calendarColorField: ""
+      calendarKeepCellAspectRatio: false
+      calendarScale: ""
+      calendarDay: ""
+      calendarWeekStart: ""
+      timelineStartDateField: ""
+      timelineEndDateField: ""
+      timelineGroupField: ""
+      timelineTitleField: ""
+      timelineColorField: ""
+      timelineScale: ""
+      timelineAnchor: ""
+      timelineColumnSizeMode: ""
+      viewStates:
+        gallery: {}
+    - id: tb-list
+      name: Punch List
+      viewType: list
+      sourceFolder: ""
+      sourceRules: []
+      sourceLogic: and
+      showRecordIcon: false
+      recordIconFieldOverrideEnabled: false
+      recordIconField: ""
+      newRecordFolder: ""
+      displayWidth: wide
+      sortColumn: priority
+      sortDirection: asc
+      sortRules: []
+      columnOrder:
+        - file.name
+        - summary
+        - status
+        - priority
+        - labels
+        - amount
+        - budget
+        - net
+        - margin
+        - due
+        - reviewed_at
+        - pinned
+        - related
+        - related_count
+        - attachments
+        - link
+        - notes
+        - year
+      columnWidths: {}
+      hiddenColumns: []
+      sortColumnOrder: ""
+      statusFilter: ""
+      groupByField: ""
+      groupOrders: {}
+      showEmptyGroups: {}
+      collapsedGroups: {}
+      boardGroupField: ""
+      boardSubgroupEnabled: false
+      boardSubgroupField: ""
+      boardColumnWidth: 280
+      defaultColumnWidth: 150
+      titleField: ""
+      boardCardOrders: {}
+      boardHiddenGroups: {}
+      manualOrder:
+        ranks:
+          Database Testbed/Records/01 — Q3 Compliance Audit.md: 2DHi
+          Database Testbed/Records/02 — Onboarding Flow Redesign.md: 4QZQ
+          Database Testbed/Records/04 — This Is A Deliberately Very Long Record Title That Should Overflow And Force Truncation On Narrow Phone Columns.md: 6dr8
+          Database Testbed/Records/21 — Billing Webhooks.md: 8r8q
+          Database Testbed/Records/24 — Performance Budget.md: B4QY
+          Database Testbed/Records/18 — Accessibility Pass.md: DHiG
+          Database Testbed/Records/19 — Search Relevance.md: FUzy
+          Database Testbed/Records/17 — Enterprise Deal Desk.md: HiHg
+          Database Testbed/Records/05 — API Rate Limiter.md: JvZO
+          Database Testbed/Records/06 — Data Warehouse Migration.md: M8r6
+          Database Testbed/Records/23 — Legacy Import Tool.md: OM8o
+          Database Testbed/Records/11 — Docs Overhaul.md: QZQW
+          Database Testbed/Records/15 — Budget Reforecast.md: SmiE
+          Database Testbed/Records/10 — Pricing Experiment.md: Uzzw
+          Database Testbed/Records/25 — Localization Sprint.md: XDHe
+          Database Testbed/Records/09 — Mobile Nav Bug Sweep.md: ZQZM
+          Database Testbed/Records/16 — Zero-Cost Cleanup.md: bdr4
+          Database Testbed/Records/03 — Marketing Site Refresh.md: dr8m
+          Database Testbed/Records/07 — Logo.md: g4QU
+          Database Testbed/Records/13 — SSO Rollout.md: iHiC
+          Database Testbed/Records/12 — Incident Retro.md: kUzu
+          Database Testbed/Records/20 — Notification Center.md: miHc
+          Database Testbed/Records/26 — Security Review.md: ovZK
+          Database Testbed/Records/14 — Empty Shell.md: r8r2
+          Database Testbed/Records/27 — Roadmap Planning.md: tM8k
+          Database Testbed/Records/22 — Design Tokens.md: vZQS
+          Database Testbed/Records/08 — Customer Interviews Round Two.md: xmiA
+      galleryImageField: ""
+      galleryImageAspectRatio: 0.75
+      galleryCardSize: 250
+      galleryImageFit: cover
+      boardImageField: ""
+      boardImageAspectRatio: 0.75
+      boardImageFit: cover
+      showEmptyFields: false
+      listCompactFields: true
+      statusPresets: []
+      defaultStatusPresetId: ""
+      filterLogic: and
+      filters:
+        - field: pinned
+          op: eq
+          value: "true"
+      summaryRules: []
+      conditionalFormats: []
+      chartType: bar
+      chartGroupField: ""
+      chartDateBucket: ""
+      chartNumberBucket: ""
+      chartStackField: ""
+      chartSeriesField: ""
+      chartAggregation: count
+      chartValueField: ""
+      chartSecondaryAggregation: count
+      chartSecondaryValueField: ""
+      chartSortBy: ""
+      chartHiddenGroups: {}
+      chartOmitZeroValues: false
+      chartCumulative: false
+      chartHeight: ""
+      chartGridLines: ""
+      chartAxisNames: ""
+      chartShowTitle: true
+      chartTitle: ""
+      chartShowDataLabels: false
+      chartDataLabelMode: ""
+      chartDataLabelColor: ""
+      chartSmoothLine: false
+      chartGradientArea: false
+      chartColorPalette: ""
+      chartColorByValue: false
+      chartShowDonutCenter: false
+      chartDonutCenterMode: ""
+      chartValueAxisRange: ""
+      chartReferenceLines: []
+      calendarMonth: ""
+      calendarStartDateField: ""
+      calendarEndDateField: ""
+      calendarTitleField: ""
+      calendarColorField: ""
+      calendarKeepCellAspectRatio: false
+      calendarScale: ""
+      calendarDay: ""
+      calendarWeekStart: ""
+      timelineStartDateField: ""
+      timelineEndDateField: ""
+      timelineGroupField: ""
+      timelineTitleField: ""
+      timelineColorField: ""
+      timelineScale: ""
+      timelineAnchor: ""
+      timelineColumnSizeMode: ""
+      viewStates:
+        list: {}
+    - id: tb-calendar
+      name: Calendar
+      viewType: calendar
+      sourceFolder: ""
+      sourceRules: []
+      sourceLogic: and
+      showRecordIcon: false
+      recordIconFieldOverrideEnabled: false
+      recordIconField: ""
+      newRecordFolder: ""
+      displayWidth: wide
+      sortColumn: ""
+      sortDirection: asc
+      sortRules: []
+      columnOrder:
+        - file.name
+        - summary
+        - status
+        - priority
+        - labels
+        - amount
+        - budget
+        - net
+        - margin
+        - due
+        - reviewed_at
+        - pinned
+        - related
+        - related_count
+        - attachments
+        - link
+        - notes
+        - year
+      columnWidths: {}
+      hiddenColumns: []
+      sortColumnOrder: ""
+      statusFilter: ""
+      groupByField: ""
+      groupOrders: {}
+      showEmptyGroups: {}
+      collapsedGroups: {}
+      boardGroupField: ""
+      boardSubgroupEnabled: false
+      boardSubgroupField: ""
+      boardColumnWidth: 280
+      defaultColumnWidth: 150
+      titleField: ""
+      boardCardOrders: {}
+      boardHiddenGroups: {}
+      manualOrder:
+        ranks:
+          Database Testbed/Records/01 — Q3 Compliance Audit.md: 2DHi
+          Database Testbed/Records/02 — Onboarding Flow Redesign.md: 4QZQ
+          Database Testbed/Records/04 — This Is A Deliberately Very Long Record Title That Should Overflow And Force Truncation On Narrow Phone Columns.md: 6dr8
+          Database Testbed/Records/21 — Billing Webhooks.md: 8r8q
+          Database Testbed/Records/24 — Performance Budget.md: B4QY
+          Database Testbed/Records/18 — Accessibility Pass.md: DHiG
+          Database Testbed/Records/19 — Search Relevance.md: FUzy
+          Database Testbed/Records/17 — Enterprise Deal Desk.md: HiHg
+          Database Testbed/Records/05 — API Rate Limiter.md: JvZO
+          Database Testbed/Records/06 — Data Warehouse Migration.md: M8r6
+          Database Testbed/Records/23 — Legacy Import Tool.md: OM8o
+          Database Testbed/Records/11 — Docs Overhaul.md: QZQW
+          Database Testbed/Records/15 — Budget Reforecast.md: SmiE
+          Database Testbed/Records/10 — Pricing Experiment.md: Uzzw
+          Database Testbed/Records/25 — Localization Sprint.md: XDHe
+          Database Testbed/Records/09 — Mobile Nav Bug Sweep.md: ZQZM
+          Database Testbed/Records/16 — Zero-Cost Cleanup.md: bdr4
+          Database Testbed/Records/03 — Marketing Site Refresh.md: dr8m
+          Database Testbed/Records/07 — Logo.md: g4QU
+          Database Testbed/Records/13 — SSO Rollout.md: iHiC
+          Database Testbed/Records/12 — Incident Retro.md: kUzu
+          Database Testbed/Records/20 — Notification Center.md: miHc
+          Database Testbed/Records/26 — Security Review.md: ovZK
+          Database Testbed/Records/14 — Empty Shell.md: r8r2
+          Database Testbed/Records/27 — Roadmap Planning.md: tM8k
+          Database Testbed/Records/22 — Design Tokens.md: vZQS
+          Database Testbed/Records/08 — Customer Interviews Round Two.md: xmiA
+      galleryImageField: ""
+      galleryImageAspectRatio: 0.75
+      galleryCardSize: 250
+      galleryImageFit: cover
+      boardImageField: ""
+      boardImageAspectRatio: 0.75
+      boardImageFit: cover
+      showEmptyFields: false
+      listCompactFields: false
+      statusPresets: []
+      defaultStatusPresetId: ""
+      filterLogic: and
+      filters: []
+      summaryRules: []
+      conditionalFormats: []
+      chartType: bar
+      chartGroupField: ""
+      chartDateBucket: ""
+      chartNumberBucket: ""
+      chartStackField: ""
+      chartSeriesField: ""
+      chartAggregation: count
+      chartValueField: ""
+      chartSecondaryAggregation: count
+      chartSecondaryValueField: ""
+      chartSortBy: ""
+      chartHiddenGroups: {}
+      chartOmitZeroValues: false
+      chartCumulative: false
+      chartHeight: ""
+      chartGridLines: ""
+      chartAxisNames: ""
+      chartShowTitle: true
+      chartTitle: ""
+      chartShowDataLabels: false
+      chartDataLabelMode: ""
+      chartDataLabelColor: ""
+      chartSmoothLine: false
+      chartGradientArea: false
+      chartColorPalette: ""
+      chartColorByValue: false
+      chartShowDonutCenter: false
+      chartDonutCenterMode: ""
+      chartValueAxisRange: ""
+      chartReferenceLines: []
+      calendarMonth: 2026-08
+      calendarStartDateField: due
+      calendarEndDateField: ""
+      calendarTitleField: ""
+      calendarColorField: status
+      calendarKeepCellAspectRatio: false
+      calendarScale: month
+      calendarDay: ""
+      calendarWeekStart: ""
+      timelineStartDateField: ""
+      timelineEndDateField: ""
+      timelineGroupField: ""
+      timelineTitleField: ""
+      timelineColorField: ""
+      timelineScale: ""
+      timelineAnchor: ""
+      timelineColumnSizeMode: ""
+      viewStates:
+        calendar: {}
+    - id: tb-timeline
+      name: Timeline
+      viewType: timeline
+      sourceFolder: ""
+      sourceRules: []
+      sourceLogic: and
+      showRecordIcon: false
+      recordIconFieldOverrideEnabled: false
+      recordIconField: ""
+      newRecordFolder: ""
+      displayWidth: wide
+      sortColumn: ""
+      sortDirection: asc
+      sortRules: []
+      columnOrder:
+        - file.name
+        - summary
+        - status
+        - priority
+        - labels
+        - amount
+        - budget
+        - net
+        - margin
+        - due
+        - reviewed_at
+        - pinned
+        - related
+        - related_count
+        - attachments
+        - link
+        - notes
+        - year
+      columnWidths: {}
+      hiddenColumns: []
+      sortColumnOrder: ""
+      statusFilter: ""
+      groupByField: ""
+      groupOrders: {}
+      showEmptyGroups: {}
+      collapsedGroups: {}
+      boardGroupField: ""
+      boardSubgroupEnabled: false
+      boardSubgroupField: ""
+      boardColumnWidth: 280
+      defaultColumnWidth: 150
+      titleField: ""
+      boardCardOrders: {}
+      boardHiddenGroups: {}
+      manualOrder:
+        ranks:
+          Database Testbed/Records/27 — Roadmap Planning.md: 2DHi
+          Database Testbed/Records/26 — Security Review.md: 4QZQ
+          Database Testbed/Records/25 — Localization Sprint.md: 6dr8
+          Database Testbed/Records/24 — Performance Budget.md: 8r8q
+          Database Testbed/Records/23 — Legacy Import Tool.md: B4QY
+          Database Testbed/Records/22 — Design Tokens.md: DHiG
+          Database Testbed/Records/21 — Billing Webhooks.md: FUzy
+          Database Testbed/Records/20 — Notification Center.md: HiHg
+          Database Testbed/Records/19 — Search Relevance.md: JvZO
+          Database Testbed/Records/18 — Accessibility Pass.md: M8r6
+          Database Testbed/Records/17 — Enterprise Deal Desk.md: OM8o
+          Database Testbed/Records/16 — Zero-Cost Cleanup.md: QZQW
+          Database Testbed/Records/15 — Budget Reforecast.md: SmiE
+          Database Testbed/Records/14 — Empty Shell.md: Uzzw
+          Database Testbed/Records/12 — Incident Retro.md: XDHe
+          Database Testbed/Records/13 — SSO Rollout.md: ZQZM
+          Database Testbed/Records/11 — Docs Overhaul.md: bdr4
+          Database Testbed/Records/10 — Pricing Experiment.md: dr8m
+          Database Testbed/Records/09 — Mobile Nav Bug Sweep.md: g4QU
+          Database Testbed/Records/08 — Customer Interviews Round Two.md: iHiC
+          Database Testbed/Records/07 — Logo.md: kUzu
+          Database Testbed/Records/04 — This Is A Deliberately Very Long Record Title That Should Overflow And Force Truncation On Narrow Phone Columns.md: miHc
+          Database Testbed/Records/06 — Data Warehouse Migration.md: ovZK
+          Database Testbed/Records/05 — API Rate Limiter.md: r8r2
+          Database Testbed/Records/03 — Marketing Site Refresh.md: tM8k
+          Database Testbed/Records/02 — Onboarding Flow Redesign.md: vZQS
+          Database Testbed/Records/01 — Q3 Compliance Audit.md: xmiA
+      galleryImageField: ""
+      galleryImageAspectRatio: 0.75
+      galleryCardSize: 250
+      galleryImageFit: cover
+      boardImageField: ""
+      boardImageAspectRatio: 0.75
+      boardImageFit: cover
+      showEmptyFields: false
+      listCompactFields: false
+      statusPresets: []
+      defaultStatusPresetId: ""
+      filterLogic: and
+      filters: []
+      summaryRules: []
+      conditionalFormats: []
+      chartType: bar
+      chartGroupField: ""
+      chartDateBucket: ""
+      chartNumberBucket: ""
+      chartStackField: ""
+      chartSeriesField: ""
+      chartAggregation: count
+      chartValueField: ""
+      chartSecondaryAggregation: count
+      chartSecondaryValueField: ""
+      chartSortBy: ""
+      chartHiddenGroups: {}
+      chartOmitZeroValues: false
+      chartCumulative: false
+      chartHeight: ""
+      chartGridLines: ""
+      chartAxisNames: ""
+      chartShowTitle: true
+      chartTitle: ""
+      chartShowDataLabels: false
+      chartDataLabelMode: ""
+      chartDataLabelColor: ""
+      chartSmoothLine: false
+      chartGradientArea: false
+      chartColorPalette: ""
+      chartColorByValue: false
+      chartShowDonutCenter: false
+      chartDonutCenterMode: ""
+      chartValueAxisRange: ""
+      chartReferenceLines: []
+      calendarMonth: ""
+      calendarStartDateField: ""
+      calendarEndDateField: ""
+      calendarTitleField: ""
+      calendarColorField: ""
+      calendarKeepCellAspectRatio: false
+      calendarScale: ""
+      calendarDay: ""
+      calendarWeekStart: ""
+      timelineStartDateField: due
+      timelineEndDateField: ""
+      timelineGroupField: status
+      timelineTitleField: ""
+      timelineColorField: status
+      timelineScale: month
+      timelineAnchor: 2026-08-28
+      timelineColumnSizeMode: ""
+      viewStates:
+        timeline: {}
+    - id: tb-chart
+      name: Budget by Status
+      viewType: chart
+      sourceFolder: ""
+      sourceRules: []
+      sourceLogic: and
+      showRecordIcon: false
+      recordIconFieldOverrideEnabled: false
+      recordIconField: ""
+      newRecordFolder: ""
+      displayWidth: wide
+      sortColumn: ""
+      sortDirection: asc
+      sortRules: []
+      columnOrder:
+        - file.name
+        - summary
+        - status
+        - priority
+        - labels
+        - amount
+        - budget
+        - net
+        - margin
+        - due
+        - reviewed_at
+        - pinned
+        - related
+        - related_count
+        - attachments
+        - link
+        - notes
+        - year
+      columnWidths: {}
+      hiddenColumns: []
+      sortColumnOrder: ""
+      statusFilter: ""
+      groupByField: ""
+      groupOrders: {}
+      showEmptyGroups: {}
+      collapsedGroups: {}
+      boardGroupField: ""
+      boardSubgroupEnabled: false
+      boardSubgroupField: ""
+      boardColumnWidth: 280
+      defaultColumnWidth: 150
+      titleField: ""
+      boardCardOrders: {}
+      boardHiddenGroups: {}
+      manualOrder:
+        ranks:
+          Database Testbed/Records/27 — Roadmap Planning.md: 2DHi
+          Database Testbed/Records/25 — Localization Sprint.md: 4QZQ
+          Database Testbed/Records/26 — Security Review.md: 6dr8
+          Database Testbed/Records/22 — Design Tokens.md: 8r8q
+          Database Testbed/Records/23 — Legacy Import Tool.md: B4QY
+          Database Testbed/Records/24 — Performance Budget.md: DHiG
+          Database Testbed/Records/21 — Billing Webhooks.md: FUzy
+          Database Testbed/Records/19 — Search Relevance.md: HiHg
+          Database Testbed/Records/20 — Notification Center.md: JvZO
+          Database Testbed/Records/17 — Enterprise Deal Desk.md: M8r6
+          Database Testbed/Records/18 — Accessibility Pass.md: OM8o
+          Database Testbed/Records/16 — Zero-Cost Cleanup.md: QZQW
+          Database Testbed/Records/15 — Budget Reforecast.md: SmiE
+          Database Testbed/Records/14 — Empty Shell.md: Uzzw
+          Database Testbed/Records/13 — SSO Rollout.md: XDHe
+          Database Testbed/Records/11 — Docs Overhaul.md: ZQZM
+          Database Testbed/Records/08 — Customer Interviews Round Two.md: bdr4
+          Database Testbed/Records/12 — Incident Retro.md: dr8m
+          Database Testbed/Records/10 — Pricing Experiment.md: g4QU
+          Database Testbed/Records/09 — Mobile Nav Bug Sweep.md: iHiC
+          Database Testbed/Records/06 — Data Warehouse Migration.md: kUzu
+          Database Testbed/Records/07 — Logo.md: miHc
+          Database Testbed/Records/05 — API Rate Limiter.md: ovZK
+          Database Testbed/Records/04 — This Is A Deliberately Very Long Record Title That Should Overflow And Force Truncation On Narrow Phone Columns.md: r8r2
+          Database Testbed/Records/03 — Marketing Site Refresh.md: tM8k
+          Database Testbed/Records/02 — Onboarding Flow Redesign.md: vZQS
+          Database Testbed/Records/01 — Q3 Compliance Audit.md: xmiA
+      galleryImageField: ""
+      galleryImageAspectRatio: 0.75
+      galleryCardSize: 250
+      galleryImageFit: cover
+      boardImageField: ""
+      boardImageAspectRatio: 0.75
+      boardImageFit: cover
+      showEmptyFields: false
+      listCompactFields: false
+      statusPresets: []
+      defaultStatusPresetId: ""
+      filterLogic: and
+      filters: []
+      summaryRules: []
+      conditionalFormats: []
+      chartType: bar
+      chartGroupField: status
+      chartDateBucket: ""
+      chartNumberBucket: ""
+      chartStackField: ""
+      chartSeriesField: ""
+      chartAggregation: sum
+      chartValueField: budget
+      chartSecondaryAggregation: count
+      chartSecondaryValueField: ""
+      chartSortBy: ""
+      chartHiddenGroups: {}
+      chartOmitZeroValues: false
+      chartCumulative: false
+      chartHeight: ""
+      chartGridLines: ""
+      chartAxisNames: ""
+      chartShowTitle: true
+      chartTitle: Budget by Status
+      chartShowDataLabels: false
+      chartDataLabelMode: ""
+      chartDataLabelColor: ""
+      chartSmoothLine: false
+      chartGradientArea: false
+      chartColorPalette: ""
+      chartColorByValue: false
+      chartShowDonutCenter: false
+      chartDonutCenterMode: ""
+      chartValueAxisRange: ""
+      chartReferenceLines: []
+      calendarMonth: ""
+      calendarStartDateField: ""
+      calendarEndDateField: ""
+      calendarTitleField: ""
+      calendarColorField: ""
+      calendarKeepCellAspectRatio: false
+      calendarScale: ""
+      calendarDay: ""
+      calendarWeekStart: ""
+      timelineStartDateField: ""
+      timelineEndDateField: ""
+      timelineGroupField: ""
+      timelineTitleField: ""
+      timelineColorField: ""
+      timelineScale: ""
+      timelineAnchor: ""
+      timelineColumnSizeMode: ""
+      viewStates:
+        chart: {}
+---
+
+> This file is a Note Database view (`db_view: true`). Open it in Obsidian to browse the Testbed database. Rows live in `Records/`.

@@ -1,0 +1,12 @@
+DENY  cli-pi     <- user turn 1 (as written)
+DENY  cli-codex  <- user turn 1 (as written)
+DENY  cli-pi     <- user turn 2 (as written)
+DENY  cli-codex  <- user turn 2 (as written)
+ALLOW cli-pi     <- hyphenated: both
+ALLOW cli-codex  <- hyphenated: both
+ALLOW cli-pi     <- hyphenated: pi only
+DENY  cli-codex  <- hyphenated: pi only
+DENY  cli-pi     <- hyphenated: codex only
+ALLOW cli-codex  <- hyphenated: codex only
+DENY  cli-pi     <- negated pi
+DENY  cli-codex  <- negated pi

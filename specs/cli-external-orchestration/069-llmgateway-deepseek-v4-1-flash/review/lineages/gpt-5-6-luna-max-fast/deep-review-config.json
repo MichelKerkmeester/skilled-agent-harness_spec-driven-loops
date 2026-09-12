@@ -1,0 +1,193 @@
+{
+  "topic": "Review of packet 069: DeepSeek V4.1 Flash gateway repoint, sibling routes, Pi configuration, fan-out wiring, and verification claims",
+  "sessionId": "fanout-gpt-5-6-luna-max-fast-1789146954427-phycl9",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "requestedLineageMode": "auto",
+  "lineageResolution": "fresh-lineage-root-with-existing-ledger-only",
+  "generation": 1,
+  "continuedFromRun": null,
+  "lineageLabel": "gpt-5-6-luna-max-fast",
+  "fanout": {
+    "lineageLabel": "gpt-5-6-luna-max-fast",
+    "artifactDirOverride": "specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash/review/lineages/gpt-5-6-luna-max-fast",
+    "artifactDirAbsolute": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash/review/lineages/gpt-5-6-luna-max-fast",
+    "isolation": "detached write surface; every artifact of this lineage lives inside the lineage directory"
+  },
+  "maxIterations": 1,
+  "convergenceThreshold": 0.1,
+  "antiConvergence": {
+    "minIterations": 1,
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations"
+  },
+  "stuckThreshold": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": false,
+  "specFolder": "specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash",
+  "createdAt": "2026-09-11T17:39:55Z",
+  "status": "complete",
+  "releaseReadinessState": "in-progress",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-codex",
+    "executable": "codex",
+    "model": "gpt-5.6-luna",
+    "reasoningEffort": "max",
+    "serviceTier": "fast",
+    "sandboxMode": "workspace-write",
+    "permissionMode": "acceptEdits",
+    "timeoutSeconds": 900,
+    "dispatchMode": "inline-detached-lineage",
+    "nestedDispatchAllowed": false,
+    "invocationMetadataPath": "specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash/review/lineages/gpt-5-6-luna-max-fast/invocation-metadata.json"
+  },
+  "mode": "review",
+  "reviewTarget": "specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "resource_map_present": false,
+  "resourceMap": {
+    "emit": false,
+    "reason": "No resource-map.md was present at phase init; this capped detached lineage records direct evidence instead."
+  },
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "overlay": [
+      "skill_agent",
+      "agent_cross_runtime",
+      "feature_catalog_code",
+      "playbook_capability"
+    ]
+  },
+  "qualityGateThreshold": true,
+  "runtimeCapabilityResolver": ".opencode/skills/system-deep-loop/deep-review/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+  "fileProtection": {
+    "deep-review-config.json": "immutable-after-init",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "review-report-v*.md": "write-once",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": [
+      "latestJSONLDelta",
+      "newIterationFile",
+      "priorReducedState"
+    ],
+    "outputs": [
+      "findingsRegistry",
+      "dashboardMetrics",
+      "strategyUpdates"
+    ],
+    "metrics": [
+      "dimensionsCovered",
+      "findingsBySeverity",
+      "openFindings",
+      "resolvedFindings",
+      "convergenceScore"
+    ],
+    "implementation": "direct-inline-recording"
+  },
+  "setupBindings": {
+    "review_target": "specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash",
+    "review_target_type": "spec-folder",
+    "review_dimensions": "all",
+    "spec_folder": "specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash",
+    "execution_mode": "AUTONOMOUS",
+    "lineage_mode": "auto"
+  },
+  "stopReason": "maxIterationsReached",
+  "finalVerdict": "CONDITIONAL",
+  "activeFindings": {
+    "P0": 0,
+    "P1": 2,
+    "P2": 2
+  },
+  "coverage": {
+    "dimensionsCovered": [
+      "correctness",
+      "security",
+      "traceability",
+      "maintainability"
+    ],
+    "dimensionCoverage": 1,
+    "requiredProtocols": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "requiredProtocolsCovered": false,
+    "stabilizationPasses": 1
+  },
+  "completedAt": "2026-09-11T17:50:00Z",
+  "terminalGateResults": {
+    "convergenceGate": {
+      "pass": true,
+      "score": 0.45,
+      "reason": "maxIterationsReached hard stop"
+    },
+    "dimensionCoverageGate": {
+      "pass": false,
+      "covered": [
+        "correctness",
+        "security",
+        "traceability",
+        "maintainability"
+      ],
+      "missing": [],
+      "requiredProtocolsCovered": false
+    },
+    "p0ResolutionGate": {
+      "pass": true,
+      "activeP0": 0
+    },
+    "evidenceDensityGate": {
+      "pass": true,
+      "avgEvidencePerFinding": 7
+    },
+    "hotspotSaturationGate": {
+      "pass": false,
+      "reason": "one capped pass cannot establish revisit or saturation"
+    },
+    "claimAdjudicationGate": {
+      "pass": true,
+      "activeP0P1": 2
+    },
+    "fixCompletenessReplayGate": {
+      "pass": true,
+      "securitySensitive": false,
+      "requiredRows": 0,
+      "passingRows": 0
+    },
+    "candidateCoverageGate": {
+      "pass": false,
+      "searchDebt": [
+        "live_route_behavior",
+        "graph_hotspot_saturation"
+      ]
+    },
+    "graphlessFallbackGate": {
+      "pass": true,
+      "mode": "graphless_fallback",
+      "missing": [],
+      "unavailabilityReason": "Graph writer not invoked under detached containment"
+    }
+  }
+}

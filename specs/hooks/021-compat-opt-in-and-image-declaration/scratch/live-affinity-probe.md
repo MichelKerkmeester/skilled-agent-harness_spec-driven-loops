@@ -38,6 +38,8 @@ USAGE: {'prompt_tokens': 37, 'completion_tokens': 72, 'prompt_cache_hit_tokens':
 
 Full response in `scratch/live-affinity-probe.json`.
 
+The API key hash, organization id and project id in that file were redacted after the probe ran. Every field this claim rests on, including the 200 status and the routing result, is untouched.
+
 ## Verdict
 
 The endpoint accepts all three affinity headers and answers normally. Enabling

@@ -1,0 +1,1 @@
+mcp call obsidian_get_note {"format":"content","target":{"type":"path","path":"zz-cli-scratch-renamed.md"}}

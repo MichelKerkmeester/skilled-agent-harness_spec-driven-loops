@@ -1,0 +1,1 @@
+mcp call obsidian_list_notes {}

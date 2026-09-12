@@ -1,0 +1,422 @@
+advanced-canvas:clone-node-down	
+advanced-canvas:clone-node-left	
+advanced-canvas:clone-node-right	
+advanced-canvas:clone-node-up	
+advanced-canvas:continue-presentation	
+advanced-canvas:copy-wikilink-to-node	
+advanced-canvas:create-file-node	
+advanced-canvas:create-group-around-selection	
+advanced-canvas:create-new-slide	
+advanced-canvas:create-text-node	
+advanced-canvas:end-presentation	
+advanced-canvas:expand-node-down	
+advanced-canvas:expand-node-left	
+advanced-canvas:expand-node-right	
+advanced-canvas:expand-node-up	
+advanced-canvas:export-all-as-image	
+advanced-canvas:export-selected-as-image	
+advanced-canvas:flip-selection-horizontally	
+advanced-canvas:flip-selection-vertically	
+advanced-canvas:navigate-down	
+advanced-canvas:navigate-left	
+advanced-canvas:navigate-right	
+advanced-canvas:navigate-up	
+advanced-canvas:next-node	
+advanced-canvas:previous-node	
+advanced-canvas:pull-backlinks-to-canvas	
+advanced-canvas:pull-outgoing-links-to-canvas	
+advanced-canvas:save-node-as-template	
+advanced-canvas:select-all-edges	
+advanced-canvas:select-connected-edges	
+advanced-canvas:select-incoming-edges	
+advanced-canvas:select-outgoing-edges	
+advanced-canvas:set-start-node	
+advanced-canvas:start-presentation	
+advanced-canvas:swap-nodes	
+advanced-canvas:toggle-collapse-group	
+advanced-canvas:toggle-readonly	
+advanced-canvas:zoom-to-fit	
+advanced-canvas:zoom-to-selection	
+app:delete-file	
+app:go-back	⌘ ⌥ ←
+app:go-forward	⌘ ⌥ →
+app:open-another-vault	
+app:open-help	F1
+app:open-sandbox-vault	
+app:open-settings	⌘ ,
+app:open-vault	
+app:reload	
+app:show-debug-info	
+app:show-release-notes	
+app:switch-vault	
+app:toggle-default-new-pane-mode	
+app:toggle-left-sidebar	
+app:toggle-ribbon	
+app:toggle-right-sidebar	
+backlink:open	
+backlink:open-backlinks	
+backlink:toggle-backlinks-in-document	
+bases:add-item	
+bases:add-view	
+bases:change-view	
+bases:copy-table	
+bases:insert	
+bases:new-file	
+bookmarks:bookmark-all-tabs	
+bookmarks:bookmark-current-heading	
+bookmarks:bookmark-current-search	
+bookmarks:bookmark-current-section	
+bookmarks:bookmark-current-view	
+bookmarks:open	
+bookmarks:unbookmark-current-view	
+canvas:convert-to-file	
+canvas:export-as-image	
+canvas:jump-to-group	
+canvas:new-file	
+command-palette:open	⌘ P
+daily-notes	
+daily-notes:goto-next	
+daily-notes:goto-prev	
+darlal-switcher-plus:switcher-plus:open	
+darlal-switcher-plus:switcher-plus:open-commands	
+darlal-switcher-plus:switcher-plus:open-editors	
+darlal-switcher-plus:switcher-plus:open-headings	
+darlal-switcher-plus:switcher-plus:open-related-items	
+darlal-switcher-plus:switcher-plus:open-related-items-active	
+darlal-switcher-plus:switcher-plus:open-starred	
+darlal-switcher-plus:switcher-plus:open-symbols	
+darlal-switcher-plus:switcher-plus:open-symbols-active	
+darlal-switcher-plus:switcher-plus:open-vaults	
+darlal-switcher-plus:switcher-plus:open-workspaces	
+editing-toolbar:add-wrap	
+editing-toolbar:ai-canvas-expand	
+editing-toolbar:ai-canvas-global-prompt	
+editing-toolbar:ai-inline-completion	⌘ J
+editing-toolbar:ai-login-pkmer	
+editing-toolbar:ai-logout-pkmer	
+editing-toolbar:ai-rewrite-casual	
+editing-toolbar:ai-rewrite-continue	
+editing-toolbar:ai-rewrite-custom	
+editing-toolbar:ai-rewrite-explain	
+editing-toolbar:ai-rewrite-fix-grammar	
+editing-toolbar:ai-rewrite-improve	
+editing-toolbar:ai-rewrite-make-longer	
+editing-toolbar:ai-rewrite-make-shorter	
+editing-toolbar:ai-rewrite-professional	
+editing-toolbar:ai-rewrite-simplify	
+editing-toolbar:ai-rewrite-summarize	
+editing-toolbar:ai-rewrite-translate-de	
+editing-toolbar:ai-rewrite-translate-en	
+editing-toolbar:ai-rewrite-translate-es	
+editing-toolbar:ai-rewrite-translate-fr	
+editing-toolbar:ai-rewrite-translate-ja	
+editing-toolbar:ai-rewrite-translate-zh	
+editing-toolbar:ai-toolbox-canvas	
+editing-toolbar:ai-toolbox-frontmatter	
+editing-toolbar:ai-toolbox-list	
+editing-toolbar:ai-toolbox-table	
+editing-toolbar:center	
+editing-toolbar:change-background-color	
+editing-toolbar:change-font-color	
+editing-toolbar:codeblock	
+editing-toolbar:dedupe-lines	
+editing-toolbar:editor-copy	
+editing-toolbar:editor-cut	
+editing-toolbar:editor-paste	
+editing-toolbar:editor-redo	
+editing-toolbar:editor-undo	
+editing-toolbar:editor:attach-file	
+editing-toolbar:editor:clear-formatting	
+editing-toolbar:editor:cycle-list-checklist	
+editing-toolbar:editor:insert-callout	
+editing-toolbar:editor:insert-embed	
+editing-toolbar:editor:insert-link	
+editing-toolbar:editor:insert-mathblock	
+editing-toolbar:editor:insert-table	
+editing-toolbar:editor:insert-tag	
+editing-toolbar:editor:insert-wikilink	
+editing-toolbar:editor:swap-line-down	
+editing-toolbar:editor:swap-line-up	
+editing-toolbar:editor:toggle-blockquote	
+editing-toolbar:editor:toggle-checklist-status	
+editing-toolbar:editor:toggle-code	
+editing-toolbar:editor:toggle-comments	
+editing-toolbar:extract-between	
+editing-toolbar:format-eraser	
+editing-toolbar:fullscreen-focus	⌘ ⇧ F11
+editing-toolbar:get-plain-text	
+editing-toolbar:header0-text	
+editing-toolbar:header1-text	
+editing-toolbar:header2-text	
+editing-toolbar:header3-text	
+editing-toolbar:header4-text	
+editing-toolbar:header5-text	
+editing-toolbar:header6-text	
+editing-toolbar:hide-show-menu	
+editing-toolbar:hrline	
+editing-toolbar:indent-list	
+editing-toolbar:insert-blank-lines	
+editing-toolbar:insert-callout	
+editing-toolbar:insert-link	
+editing-toolbar:justify	
+editing-toolbar:left	
+editing-toolbar:list-to-table	
+editing-toolbar:merge-lines	
+editing-toolbar:number-lines	
+editing-toolbar:remove-blank-lines	
+editing-toolbar:remove-whitespace-all	
+editing-toolbar:remove-whitespace-compress	
+editing-toolbar:remove-whitespace-trim	
+editing-toolbar:renumber-ordered-list	
+editing-toolbar:right	
+editing-toolbar:smart-symbols	
+editing-toolbar:split-lines	
+editing-toolbar:subscript	
+editing-toolbar:superscript	
+editing-toolbar:table-to-list	
+editing-toolbar:toggle-bold	
+editing-toolbar:toggle-bullet-list	
+editing-toolbar:toggle-fixed-toolbar	
+editing-toolbar:toggle-following-toolbar	
+editing-toolbar:toggle-format-brush	
+editing-toolbar:toggle-highlight	
+editing-toolbar:toggle-inline-math	
+editing-toolbar:toggle-italics	
+editing-toolbar:toggle-numbered-list	
+editing-toolbar:toggle-strikethrough	
+editing-toolbar:toggle-top-toolbar	
+editing-toolbar:undent-list	
+editing-toolbar:underline	
+editing-toolbar:workplace-fullscreen-focus	⌘ F11
+editor:add-cursor-above	
+editor:add-cursor-below	
+editor:attach-file	
+editor:clear-formatting	
+editor:context-menu	
+editor:cycle-list-checklist	
+editor:delete-paragraph	⌘ D
+editor:download-attachments	
+editor:focus	
+editor:focus-bottom	
+editor:focus-left	
+editor:focus-right	
+editor:focus-top	
+editor:fold-all	
+editor:fold-less	
+editor:fold-more	
+editor:follow-link	⌥ Enter
+editor:indent-list	
+editor:insert-callout	
+editor:insert-codeblock	
+editor:insert-embed	
+editor:insert-footnote	
+editor:insert-horizontal-rule	
+editor:insert-link	⌘ K
+editor:insert-mathblock	
+editor:insert-table	
+editor:insert-tag	
+editor:insert-wikilink	
+editor:open-link-in-new-leaf	⌘ Enter
+editor:open-link-in-new-split	⌘ ⌥ Enter
+editor:open-link-in-new-window	⌘ ⌥ ⇧ Enter
+editor:open-search	⌘ F
+editor:open-search-replace	⌘ ⌥ F
+editor:rename-heading	
+editor:save-file	⌘ S
+editor:set-heading	
+editor:set-heading-0	
+editor:set-heading-1	
+editor:set-heading-2	
+editor:set-heading-3	
+editor:set-heading-4	
+editor:set-heading-5	
+editor:set-heading-6	
+editor:swap-line-down	
+editor:swap-line-up	
+editor:table-col-after	
+editor:table-col-align-center	
+editor:table-col-align-left	
+editor:table-col-align-right	
+editor:table-col-before	
+editor:table-col-copy	
+editor:table-col-delete	
+editor:table-col-left	
+editor:table-col-right	
+editor:table-row-after	
+editor:table-row-before	
+editor:table-row-copy	
+editor:table-row-delete	
+editor:table-row-down	
+editor:table-row-up	
+editor:toggle-blockquote	
+editor:toggle-bold	⌘ B
+editor:toggle-bullet-list	
+editor:toggle-checklist-status	⌘ L
+editor:toggle-code	
+editor:toggle-comments	⌘ /
+editor:toggle-fold	
+editor:toggle-fold-properties	
+editor:toggle-highlight	
+editor:toggle-inline-math	
+editor:toggle-italics	⌘ I
+editor:toggle-line-numbers	
+editor:toggle-numbered-list	
+editor:toggle-readable-line-length	
+editor:toggle-source	
+editor:toggle-spellcheck	
+editor:toggle-strikethrough	
+editor:unfold-all	
+editor:unindent-list	
+file-explorer:duplicate-file	
+file-explorer:move-file	
+file-explorer:new-file	⌘ N
+file-explorer:new-file-in-current-tab	
+file-explorer:new-file-in-new-pane	⌘ ⇧ N
+file-explorer:new-folder	
+file-explorer:open	
+file-explorer:reveal-active-file	
+file-recovery:open	
+global-search:open	⌘ ⇧ F
+graph:animate	
+graph:open	⌘ G
+graph:open-local	
+health-connect-readiness:health-connect-backfill-14d	
+health-connect-readiness:health-connect-log-food	
+health-connect-readiness:health-connect-scan-apple-health	
+health-connect-readiness:health-connect-sync-today	
+health-md:insert-health-chart	
+iconic:change-icon-current-file	
+iconic:open-rulebook	
+iconic:toggle-all-file-icons	
+iconic:toggle-all-folder-icons	
+iconic:toggle-bigger-icons	
+iconic:toggle-clickable-icons	
+iconic:toggle-markdown-tab-icons	
+iconic:toggle-menu-actions	
+iconic:toggle-minimal.folder-icons	
+iconic:toggle-move-file-icons	
+iconic:toggle-quick-switcher-icons	
+iconic:toggle-suggestion-icons	
+iconic:toggle-tag-pill-icons	
+iconic:toggle-title-icons	
+insert-current-date	
+insert-current-time	
+insert-template	
+js-engine:execute-js-file	
+markdown-importer:open	
+markdown:add-alias	
+markdown:add-metadata-property	⌘ ;
+markdown:clear-metadata-properties	
+markdown:toggle-preview	⌘ E
+mobile:quick-action	
+note-composer:extract-heading	
+note-composer:merge-file	
+note-composer:split-file	
+note-database:configure-reports-computed-fields	
+note-database:convert-active-base-to-database	
+note-database:export-current-view-as-csv-markdown-zip	
+note-database:import-csv-markdown	
+note-database:open-dashboard	
+note-database:show-database-files	
+note-database:undo-last-database-edit	
+obsidian-charts:chart-from-table-column	
+obsidian-charts:chart-from-table-row	
+obsidian-charts:chart-to-svg	
+obsidian-charts:creation-helper	
+obsidian-meta-bind-plugin:copy-command-id	
+obsidian-meta-bind-plugin:open-button-builder	
+obsidian-meta-bind-plugin:open-docs	
+obsidian-meta-bind-plugin:open-help	
+obsidian-meta-bind-plugin:open-playground	
+obsidian-outliner:fold	⌘ ↑
+obsidian-outliner:indent-list	
+obsidian-outliner:move-list-item-down	⌘ ⇧ ↓
+obsidian-outliner:move-list-item-up	⌘ ⇧ ↑
+obsidian-outliner:outdent-list	
+obsidian-outliner:system-info	⌘ ⌥ ⇧ I
+obsidian-outliner:unfold	⌘ ↓
+obsidian42-brat:AddBetaPlugin	
+obsidian42-brat:allCommands	
+obsidian42-brat:checkForUpdatesAndDontUpdate	
+obsidian42-brat:checkForUpdatesAndUpdate	
+obsidian42-brat:disablePlugin	
+obsidian42-brat:enablePlugin	
+obsidian42-brat:GrabBetaTheme	
+obsidian42-brat:openCommunityPagePlugin	
+obsidian42-brat:openGitHubRepoTheme	
+obsidian42-brat:openGitHubZRepository	
+obsidian42-brat:opentPluginSettings	
+obsidian42-brat:reinstallOnePlugin	
+obsidian42-brat:removeGraduatedFromBrat	
+obsidian42-brat:restartPlugin	
+obsidian42-brat:updateBetaThemes	
+obsidian42-brat:updateGraduatedToStableAndRemove	
+obsidian42-brat:updateOnePlugin	
+open-with-default-app:open	
+open-with-default-app:show	
+outgoing-links:open	
+outgoing-links:open-for-current	
+outline:open	
+outline:open-for-current	
+properties:open	
+properties:open-local	
+realclaudian:close-current-tab	
+realclaudian:copy-startup-diagnostics	
+realclaudian:create-collab-project	
+realclaudian:inline-edit	⌘ ⌥ I
+realclaudian:join-collab-project	
+realclaudian:new-session	
+realclaudian:new-tab	
+realclaudian:open-collab	
+realclaudian:open-view	⌘ ⌥ A
+realclaudian:resume-collab-project-setup	
+switcher:open	⌘ O
+sync:open-sync-log	
+sync:open-sync-view	
+sync:setup	
+sync:view-version-history	
+tag-pane:open	
+theme:switch	
+theme:toggle-light-dark	
+virtual-linker:activate-virtual-linker	
+virtual-linker:convert-selected-virtual-links	
+virtual-linker:deactivate-virtual-linker	
+window:reset-zoom	
+window:toggle-always-on-top	
+window:zoom-in	
+window:zoom-out	
+workspace:close	⌘ W
+workspace:close-others	
+workspace:close-others-tab-group	
+workspace:close-tab-group	
+workspace:close-window	⌘ ⇧ W
+workspace:copy-full-path	
+workspace:copy-path	
+workspace:copy-url	
+workspace:edit-file-title	F2
+workspace:export-pdf	
+workspace:goto-last-tab	⌘ 9
+workspace:goto-tab-1	⌘ 1
+workspace:goto-tab-2	⌘ 2
+workspace:goto-tab-3	⌘ 3
+workspace:goto-tab-4	⌘ 4
+workspace:goto-tab-5	⌘ 5
+workspace:goto-tab-6	⌘ 6
+workspace:goto-tab-7	⌘ 7
+workspace:goto-tab-8	⌘ 8
+workspace:move-to-new-window	
+workspace:new-tab	⌘ T
+workspace:new-window	
+workspace:next-tab	⌃ Tab, ⌘ ⇧ ]
+workspace:open-in-new-window	
+workspace:previous-tab	⌃ ⇧ Tab, ⌘ ⇧ [
+workspace:show-trash	
+workspace:split-horizontal	
+workspace:split-vertical	
+workspace:toggle-pin	
+workspace:toggle-stacked-tabs	
+workspace:undo-close-pane	⌘ ⇧ T
+workspaces:load	
+workspaces:open-modal	
+workspaces:save	
+workspaces:save-and-load	

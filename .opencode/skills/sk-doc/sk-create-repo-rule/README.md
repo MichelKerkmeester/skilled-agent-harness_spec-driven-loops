@@ -53,7 +53,7 @@ Rules do not all load at once. The repository root holds `REPO RULES.md`, a rout
 
 1. You are about to take an action, say deleting a file or reporting a result.
 2. You match that action against the trigger table. The action, never the topic of the request.
-3. You open the one rule file that row names and follow it.
+3. You open every rule file that row names and follow it.
 4. Two rows match, so you load both. No row matches, so nothing loads and you do not go looking for a rule to apply.
 
 The load is mandatory. What you load is not the top of the ladder. A rule sits below `AGENTS.md` and below a live instruction from you. Where a rule and `AGENTS.md` appear to disagree, `AGENTS.md` wins, the rule is wrong and the right response is to say so rather than follow it.

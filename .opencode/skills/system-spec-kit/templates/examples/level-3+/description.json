@@ -1,0 +1,31 @@
+{
+  "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/system-spec-kit/templates/examples/level-3+",
+  "description": "The application currently has no user authentication, allowing anyone to access all features without identity verification",
+  "keywords": [
+    "application",
+    "currently",
+    "user",
+    "authentication",
+    "allowing",
+    "anyone",
+    "access",
+    "features",
+    "without",
+    "identity",
+    "verification"
+  ],
+  "lastUpdated": "2026-09-07T16:14:55.108Z",
+  "specId": "",
+  "folderSlug": "level-3",
+  "parentChain": [
+    "system-speckit",
+    "z_archive",
+    "022-hybrid-rag-fusion",
+    "system-spec-kit",
+    "templates",
+    "examples"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3+"
+}

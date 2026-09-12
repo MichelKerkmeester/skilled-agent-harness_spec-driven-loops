@@ -1,0 +1,22 @@
+{
+  "run_id": "1789146954427-phycl9",
+  "loop_type": "review",
+  "spec_folder": "specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash",
+  "base_artifact_dir": "specs/cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash/review",
+  "total_cli_lineages": 3,
+  "orphaned_lineages": [],
+  "total": 3,
+  "succeeded": 0,
+  "failed": 3,
+  "all_failed": true,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 3
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 3,
+    "salvage_miss": 0
+  }
+}

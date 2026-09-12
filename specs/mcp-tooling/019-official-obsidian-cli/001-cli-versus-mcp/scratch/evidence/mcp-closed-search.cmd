@@ -1,0 +1,1 @@
+mcp call obsidian_search_notes {"mode":"text","query":"roadmap"}
