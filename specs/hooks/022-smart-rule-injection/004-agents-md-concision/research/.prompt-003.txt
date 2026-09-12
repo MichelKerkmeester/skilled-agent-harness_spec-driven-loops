@@ -1,0 +1,85 @@
+You are reviewing one document for this repository. Read-only: do not edit anything.
+
+QUESTION
+`AGENTS.md` is 502 lines and is loaded on every single turn. The operator's observation,
+verbatim: "a lot of stuff written that in theory could be more concisely written or with
+little less detail." Find what can go, and prove it can.
+
+THE TEST THAT DECIDES EVERY CANDIDATE
+This repository has eleven rule files under `repo-rules/`, routed by `REPO RULES.md`, and
+they load at Gate 5. Gate 5 fires on the FIRST WRITE of a session and never on a read-only
+turn. So:
+- Content that must bind when NOTHING has fired belongs in `AGENTS.md`. It cannot move.
+- Content that only matters once you are about to take a specific action can live in the
+  rule that fires on that action, and `AGENTS.md` keeps at most a compressed pointer.
+Apply that test to every candidate and state which side it lands on. A candidate that
+cannot name the rule that would carry it is not a candidate.
+
+THREE FAILURE MODES TO AVOID, each of which has happened here
+1. Cutting something that binds on a read-only turn. It then silently stops applying,
+   because no rule file loads on those turns. This is the expensive mistake.
+2. Moving content to a rule whose trigger does not actually fire when the content is
+   needed. Check the rule's own "Fires when" list, do not assume from its title.
+3. Recommending a rewrite that is merely shorter. Density is not the goal; removing a
+   second copy of something is. Shortening a passage that exists once, and binds, buys
+   nothing and costs clarity.
+
+WHAT TO READ
+- AGENTS.md in full, all 502 lines.
+- REPO RULES.md, especially its trigger table and scope statement.
+- Every file under repo-rules/ at least far enough to know its "Fires when" list and its
+  section headings. There are eleven.
+- .opencode/skills/sk-doc/sk-create-repo-rule/references/decision-tests.md, which carries
+  the four admission tests this repository already uses.
+
+RETURN THIS SHAPE
+1. DUPLICATION — passages in AGENTS.md already carried by a rule that fires before the
+   action the passage governs. For each: the AGENTS.md lines, the rule and section that
+   carries it, the rule's triggering condition, and the line count recovered.
+2. OVER-DETAIL — passages that belong in AGENTS.md but say more than the always-loaded
+   document needs, where a shorter form loses no obligation. Quote the proposed shorter
+   form, do not describe it.
+3. MUST NOT MOVE — anything you considered and rejected, with the reason. This section is
+   required. A review that only proposes cuts has not reviewed.
+4. RANKED — by lines recovered per unit of risk, most confident first.
+
+Every claim carries a line number that resolves. Do not propose rewording for its own sake.
+If the honest answer is that the document is close to as tight as it can be, say that and
+show the work; that is a legitimate result and better than an invented cut.
+
+ITERATION 3 OF 5.
+Earlier iterations of this lineage already found the following. Do NOT repeat them.
+Go deeper, test what they assumed, or cover a surface they missed.
+
+### Iteration 1
+## 1. DUPLICATION
+## 2. OVER-DETAIL
+## 3. MUST NOT MOVE
+## 4. RANKED — lines recovered per unit of risk, most confident first
+
+### Iteration 2
+## 1. DUPLICATION
+- **Safe, zero-risk variant (recommended): delete the twins in `uncertainty-and-honesty.md` §6**, leaving AGENTS.md untouched. That is a rule-file edit, outside this review's remit, but it is the actual redundancy: AGENTS.md is the always-loaded carrier.
+- **AGENTS-side cut (2 lines) only if `communication.md` §1 first absorbs the two definitions.** The carrier test passes only on that condition: `communication.md` "Fires when: About to write any substantive reply..." (35-37) and §8's load command (AGENTS.md:405, "Load it before communicating... Load it before answering") reach every reply, including read-only turns. Today communication.md §1 (57-66) names the owners but does not carry the definitions, so an AGENTS-side cut without that edit would go quiet on read-only turns — the exact failure `decision-tests.md:48-51` records ("A total move needs a total trigger, or the content goes quiet"). Replacement shape for 152-155:
+## 2. OVER-DETAIL
+## 3. MUST NOT MOVE
+- **Gates §2 in full (61-136), and Gate 3 especially (65-79).** Gate 3 fires before the Gate 5 load can even run — line 104 says the routing load "queues behind Gate 3" — so content that shapes the gate's own question cannot live behind it.
+- **PLAN-WORKFLOW LOCK (30-42).** `scope-discipline.md:106-108` states it deliberately does not restate the protocol: "a hard blocker copied into a tier-3 document reads as though an operator instruction could outrank it. Read it there." The AGENTS.md copy is the only copy of the steps.
+- **VIOLATION RECOVERY (134-136).** Documented refusal: `decision-tests.md:43-46` records relocating it was refused because "its trigger fires exactly when the trigger-loaded path may already be broken."
+- **Confidence Thresholds (92-97).** `uncertainty-and-honesty.md:48-49`: "The scale is the Confidence Thresholds table in `AGENTS.md` §2 and there is exactly one of it; this file carries no second copy."
+- **Restraint Signals table (217-225).** `prevent-overengineering.md:104`: "Its Restraint Signals table binds and is not repeated here." Its vocabulary ("flexible", "might need") occurs during planning, which is routinely read-only.
+- **The five Verification Standards (243-247).** Line 239 self-declares: "These five bind unconditionally, including on a read-only turn where Gate 5 never fires and no rule file loads." Even the rows with full rule expansions cannot rely on those expansions loading.
+- **Ownership bullets (185, 187, 188) and the close-out bullet (501).** Four rule files point back at these lines as the binding copy: `handoff-and-questions.md:52` ("`AGENTS.md` §10 ... already require an honest status"), `:109-110` ("`AGENTS.md` §3 already refuses 'should I continue?'"), `:150` ("`AGENTS.md` §3 refuses partial work framed as a checkpoint"), `scope-discipline.md:123` ("`AGENTS.md` §3 Ownership & Completion binds"). Cutting them breaks resolvable references. Failure-dodging ("pre-existing") also happens in the close-out of read-only review turns.
+- **Documentation & Honesty table (483-485), Logic-Sync (391-393), Escalation (399).** Uncertainty, contradictions between doc and code, and sub-threshold confidence all arise while reading and analyzing — read-only moments. `uncertainty-and-honesty.md`'s trigger is "You do not know, and a plausible answer is available", but Gate 5 cannot load it on those turns.
+- **Git Workspace Safety table (326-335), including the push row 333.** `decision-tests.md:95-97` records git/PR among ten candidates the repo already refused as a rule; the table is their routed home. The push row overlaps `blast-radius.md:93-96` by design — the always-loaded copy carries the allowlist posture, and hooks are the backstop (334-335). Reviewed as a candidate, kept.
+- **§9 routing tables (427-436) and §10 Dispatch Rules (493-494).** Routing and dispatch mechanics are Out of the rule set's scope by the router's own boundary (`REPO RULES.md:85-89`; `decision-tests.md:62-67`). No rule may carry them; scoping them to a rule would be the fifth widening the repo has refused.
+- **MEMORY SAVE RULE (284-290), spec-folder §6 (367-381), GOAL POSTURE RULE (292-298).** Memory and spec-folder are refused candidates (`decision-tests.md:95-97`); Goal Posture's trigger is "on every turn" (293). §6's pointer table already delegates all mechanics to system-spec-kit.
+- **Execution-behavior bullets 178-181, 185-186, 191-192, 195-196.** 179 is the sharpest failure-mode-2 case: its carrier (`evidence-and-proof.md` §8) loads on report/claim triggers (`evidence-and-proof.md:34-38`), not at implementation start — the proof plan would arrive after the moment it governs. `root-cause-and-debugging.md:86-88` explicitly declines to set the retry count ("set outside this file"), so 192's pointer ("the code skill's repeated-failure limit — its count governs a debugging loop, not Section 7's") is unique to AGENTS.md. 191's first four steps (reproduce, read the error, locate the producer, trace consumers) are fully excisable read-only, which is how diagnosis-only turns run.
+- **Self-Check (300-307).** Binds "before ANY tool-using response" — read-only turns included; its skill-routing and scope-drift items apply there.
+- **§5 tools/MCP/search/terminal (311-363).** Govern read-only activity directly (searches, MCP reads), and none of the eleven rule files' trigger sets touches tool search, MCP, or terminal discipline — there is no carrier to move to.
+- **Quick Reference table (443-474) as a whole.** Rows like "Claim completion" and "Goal state" are in-document second copies, but the table's own preamble (448) sets it as an entry-point index; only two rows are proposed (F7), the rest serve task-to-section lookup that no other single place provides.
+## 4. RANKED — lines recovered per unit of risk
+
+
+Be selective about what you open; a partial answer with resolving citations beats an exhaustive read that never finishes.
+Return only this iteration's findings, in the output format above.

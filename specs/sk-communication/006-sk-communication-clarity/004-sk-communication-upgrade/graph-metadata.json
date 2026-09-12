@@ -18,11 +18,11 @@
       "skill upgrade plan",
       "one home for the standard",
       "rewrite pass declaration",
-      "package gate",
+      "provider instruction reply base",
       "skill upgrade tasks",
-      "rubric duplication search",
-      "package gate task",
-      "command mirror sync"
+      "engine item tasks",
+      "command mirror sync",
+      "acceptance criteria"
     ],
     "key_topics": [
       "sk-communication",
@@ -155,7 +155,7 @@
         "source": "derived"
       },
       {
-        "name": "Overview Change",
+        "name": "Overview This",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -179,19 +179,19 @@
         "source": "derived"
       },
       {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Completion Criteria",
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation The",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "This phase's own research run replaced its premise",
     "created_at": "2026-09-12T12:44:37Z",
-    "last_save_at": "2026-09-12T17:29:33.907Z",
+    "last_save_at": "2026-09-12T17:52:26.415Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,12 +210,12 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:dfaa3800615c76cc4671f1fd6a9146f99e42f22776cd863657f523cc2dc35aae",
+    "source_fingerprint": "sha256:e2a21ccf868415f3d9381357e2a6b9fbbc4452b07f00710fca298729cdd0293d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9c067c24f54af412baec42691cd0cf682b3a4529ed1e40b59fa6f606689ade12",
-      "plan.md": "4b1ac2127fdf62da680d0f2668882bea3ac5b2b83f7df4ebc372bc5b8cdbed6d",
-      "tasks.md": "7ee7462284f9978a00ce50ea5603355fa89151b280d4246ffb586d5225a7a5e6",
+      "plan.md": "c40bb9e89fc39620fcfaaadfb259cd417c70931eecb6d7949a545df0ce35f128",
+      "tasks.md": "c869f9d32b869b9614e080fefdb3bc17e36711f17256e19d0cee4294bc70692e",
       "implementation-summary.md": "2ae658ed389435d2fb5d68ce2d2d4be34bfdfc6e1646a26b04ce4ab7bbeea1ab",
       "research/research.md": "f6de0c65bd242a0acce50a7d77c475b80fad64b01afdd4cd81cf6b25c17fb4f3"
     },

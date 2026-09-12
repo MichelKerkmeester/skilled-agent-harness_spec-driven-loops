@@ -11,7 +11,7 @@ import { spawnSync } from 'node:child_process';
 import { performance } from 'node:perf_hooks';
 import { closeSync, fstatSync, openSync, readFileSync, readSync } from 'node:fs';
 import { createRequire } from 'node:module';
-import { fileURLToPath, pathToFileURL } from 'node:url';
+import { fileURLToPath } from 'node:url';
 import {
   parseHookStdin, hookLog,
   withTimeout, HOOK_TIMEOUT_MS, COMPACTION_TOKEN_BUDGET, getRequiredSessionId,
@@ -30,6 +30,7 @@ import {
 } from '@spec-kit/shared/unicode-normalization';
 import { refreshAuthoredContinuitySnapshot } from '../../lib/continuity/authored-continuity-snapshot.js';
 import { notifyDirectiveLifecycleBoundary } from './directive-lifecycle-boundary.js';
+import { isMainModule } from '../../lib/esm-entry.js';
 
 const require = createRequire(import.meta.url);
 
@@ -550,8 +551,7 @@ async function main(): Promise<void> {
 // ───────────────────────────────────────────────────────────────────
 
 function isCliEntrypoint(): boolean {
-  const entrypoint = process.argv[1];
-  return Boolean(entrypoint && import.meta.url === pathToFileURL(entrypoint).href);
+  return isMainModule(import.meta.url);
 }
 
 // Run — exit cleanly even on error (hooks must never block Claude)

@@ -7,9 +7,10 @@
 
 import { spawnSync } from 'node:child_process';
 import { existsSync, statSync } from 'node:fs';
-import { dirname, isAbsolute, join, resolve } from 'node:path';
+import { dirname, isAbsolute, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createRequire } from 'node:module';
+import { isMainModule } from '../../lib/esm-entry.js';
 
 const __dlRequire = createRequire(import.meta.url);
 
@@ -28,9 +29,7 @@ const TARGET_REL = 'skills/system-skill-advisor/runtime/dist/hooks/claude/direct
 const MAX_ROOT_WALK_DEPTH = 14;
 const CHILD_TIMEOUT_MS = 500;
 const MAX_STDIO_BYTES = 64 * 1024;
-const IS_CLI_ENTRY = process.argv[1]
-  ? resolve(process.argv[1]) === fileURLToPath(import.meta.url)
-  : false;
+const IS_CLI_ENTRY = isMainModule(import.meta.url);
 
 export interface HostDirectiveLifecycleBoundary {
   readonly sessionId?: string | null;

@@ -14,7 +14,7 @@ _memory:
     last_updated_at: "2026-09-12T19:30:00Z"
     last_updated_by: "opus-5-session"
     recent_action: "Realigned the criteria with the spec, the eight engine items and the phase 007 prerequisite"
-    next_safe_action: "Wait for phase 002's allocation table and phase 007's reply base, then change the package source and the skill documents"
+    next_safe_action: "Wait for phase 002's allocation table and phase 007's reply base"
     blockers:
       - "Phase 002's allocation table has not been built"
       - "Phase 007 has not produced the reply base"

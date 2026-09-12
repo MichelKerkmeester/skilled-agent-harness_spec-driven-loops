@@ -59,7 +59,7 @@ The frozen invariants are read from the code rather than assumed. The canonical 
 
 ### Pattern
 
-One standard, one home, many consumers. The skill holds no rubric and points at the standard, so a change to the standard reaches the skill with no edit to a command. This phase preserves that shape and extends it, because the engine becomes a runtime consumer of the standard instead of a holder of a private sentence about it.
+One standard, one home, many consumers. The skill holds no rubric and points at the standard, so a change to the standard reaches the skill with no edit to a command. This phase preserves that shape and extends it, because the engine becomes a runtime consumer of the standard instead of a holder of a private sentence about it. The engine lives at `.opencode/skills/sk-communication/cli-communication-projection/`. The module paths below are relative to that directory.
 
 ### Key Components
 

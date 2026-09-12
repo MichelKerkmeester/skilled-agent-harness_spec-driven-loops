@@ -1,0 +1,54 @@
+You are reviewing one document for this repository. Read-only: do not edit anything.
+
+QUESTION
+`AGENTS.md` is 502 lines and is loaded on every single turn. The operator's observation,
+verbatim: "a lot of stuff written that in theory could be more concisely written or with
+little less detail." Find what can go, and prove it can.
+
+THE TEST THAT DECIDES EVERY CANDIDATE
+This repository has eleven rule files under `repo-rules/`, routed by `REPO RULES.md`, and
+they load at Gate 5. Gate 5 fires on the FIRST WRITE of a session and never on a read-only
+turn. So:
+- Content that must bind when NOTHING has fired belongs in `AGENTS.md`. It cannot move.
+- Content that only matters once you are about to take a specific action can live in the
+  rule that fires on that action, and `AGENTS.md` keeps at most a compressed pointer.
+Apply that test to every candidate and state which side it lands on. A candidate that
+cannot name the rule that would carry it is not a candidate.
+
+THREE FAILURE MODES TO AVOID, each of which has happened here
+1. Cutting something that binds on a read-only turn. It then silently stops applying,
+   because no rule file loads on those turns. This is the expensive mistake.
+2. Moving content to a rule whose trigger does not actually fire when the content is
+   needed. Check the rule's own "Fires when" list, do not assume from its title.
+3. Recommending a rewrite that is merely shorter. Density is not the goal; removing a
+   second copy of something is. Shortening a passage that exists once, and binds, buys
+   nothing and costs clarity.
+
+WHAT TO READ
+- AGENTS.md in full, all 502 lines.
+- REPO RULES.md, especially its trigger table and scope statement.
+- Every file under repo-rules/ at least far enough to know its "Fires when" list and its
+  section headings. There are eleven.
+- .opencode/skills/sk-doc/sk-create-repo-rule/references/decision-tests.md, which carries
+  the four admission tests this repository already uses.
+
+RETURN THIS SHAPE
+1. DUPLICATION — passages in AGENTS.md already carried by a rule that fires before the
+   action the passage governs. For each: the AGENTS.md lines, the rule and section that
+   carries it, the rule's triggering condition, and the line count recovered.
+2. OVER-DETAIL — passages that belong in AGENTS.md but say more than the always-loaded
+   document needs, where a shorter form loses no obligation. Quote the proposed shorter
+   form, do not describe it.
+3. MUST NOT MOVE — anything you considered and rejected, with the reason. This section is
+   required. A review that only proposes cuts has not reviewed.
+4. RANKED — by lines recovered per unit of risk, most confident first.
+
+Every claim carries a line number that resolves. Do not propose rewording for its own sake.
+If the honest answer is that the document is close to as tight as it can be, say that and
+show the work; that is a legitimate result and better than an invented cut.
+
+ITERATION 1 OF 5.
+First pass. Read selectively and establish ground truth; do not attempt to read every file.
+
+Be selective about what you open; a partial answer with resolving citations beats an exhaustive read that never finishes.
+Return only this iteration's findings, in the output format above.

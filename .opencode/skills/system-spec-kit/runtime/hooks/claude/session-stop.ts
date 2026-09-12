@@ -21,6 +21,7 @@ import {
   type HookState, type HookProducerMetadata, type PersistedHookState,
 } from './hook-state.js';
 import { estimateCost, type TranscriptUsage } from './claude-transcript.js';
+import { isMainModule } from '../../lib/esm-entry.js';
 
 const require = createRequire(import.meta.url);
 
@@ -52,7 +53,7 @@ const SPEC_FOLDER_SEGMENT_RE = /^\d{2,3}(?:--|-)[\w-]+$/;
 const SPEC_FOLDER_NAMESPACE_SEGMENT_RE = /^[a-z][\w-]+$/i;
 const HOOK_DIR = dirname(fileURLToPath(import.meta.url));
 const AUTOSAVE_TIMEOUT_MS = 4000;
-const IS_CLI_ENTRY = process.argv[1] ? resolve(process.argv[1]) === fileURLToPath(import.meta.url) : false;
+const IS_CLI_ENTRY = isMainModule(import.meta.url);
 
 // ───────────────────────────────────────────────────────────────────
 // 2. HELPERS

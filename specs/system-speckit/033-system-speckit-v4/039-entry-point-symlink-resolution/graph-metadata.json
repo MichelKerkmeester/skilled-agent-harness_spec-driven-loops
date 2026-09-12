@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/033-system-speckit-v4/039-entry-point-symlink-resolution",
+  "spec_folder": "system-speckit/033-system-speckit-v4/039-entry-point-symlink-resolution",
+  "parent_id": "system-speckit/033-system-speckit-v4",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "generator exits 0 without writing",
+      "validate passes but touched 0 files",
+      "isMainModule symlink",
+      "entry point guard worktree",
+      "entry point plan",
+      "isMainModule plan",
+      "entry point tasks",
+      "entry point acceptance criteria",
+      "entry point summary"
+    ],
+    "key_topics": [
+      "generator",
+      "exits",
+      "without",
+      "writing",
+      "validate",
+      "passes",
+      "touched",
+      "files",
+      "ismainmodule",
+      "symlink",
+      "entry",
+      "point"
+    ],
+    "importance_tier": "supporting",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "runtime/cli/lib/esm-entry.ts",
+      "runtime/tests/esm-entry-symlink.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "esm-entry.ts",
+        "kind": "code",
+        "path": "runtime/cli/lib/esm-entry.ts",
+        "source": "derived"
+      },
+      {
+        "name": "esm-entry-symlink.vitest.ts",
+        "kind": "test",
+        "path": "runtime/tests/esm-entry-symlink.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement An",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. APPROACH",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. SEQUENCE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. VERIFICATION",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. TASKS",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Tasks: Entry-point resolution through a link",
+        "kind": "quoted",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "trigger_phrases:   -",
+        "kind": "quoted",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "importance_tier:",
+        "kind": "quoted",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "An executable module decides whether to run its work by asking whether it is the process",
+    "created_at": "2026-09-12T18:16:48.421Z",
+    "last_save_at": "2026-09-12T18:50:34.732Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:bdb2142b89952d9ce803a117318a3932e09acb0636d85229d20021b4e7c34e2f",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "6a52d709e3014c7a5fdc94f5097cdfe6aa0bdafcb6558289b6f4c540bacabff6",
+      "plan.md": "49cb528a2f3fe9b3a051263b74a4aaac1e162917e1b5538d704d6bd2c420aef7",
+      "tasks.md": "39bcca870f8831896e35a8c1aad2dce83ef9e86aefc40f4edb1e37678b0f8c42",
+      "implementation-summary.md": "23f0f557739fe3e6bdd54cb17029fbc5f75501b8d8e39b82f6a6fb0a26c3c5b4"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

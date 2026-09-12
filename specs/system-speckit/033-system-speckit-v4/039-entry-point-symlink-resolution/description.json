@@ -1,0 +1,24 @@
+{
+  "specFolder": "system-speckit/033-system-speckit-v4/039-entry-point-symlink-resolution",
+  "description": "An executable module decides whether to run its work by asking whether it is the process",
+  "keywords": [
+    "executable",
+    "module",
+    "decides",
+    "whether",
+    "run",
+    "work",
+    "asking",
+    "process"
+  ],
+  "lastUpdated": "2026-09-12T18:02:06.153Z",
+  "specId": "039",
+  "folderSlug": "entry-point-symlink-resolution",
+  "parentChain": [
+    "system-speckit",
+    "033-system-speckit-v4"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

@@ -7,6 +7,7 @@
 // ───────────────────────────────────────────────────────────────────
 
 import fs from 'node:fs';
+import { isMainModule } from '../lib/esm-entry.js';
 
 // ───────────────────────────────────────────────────────────────────
 // 2. TYPES
@@ -270,7 +271,7 @@ async function readStdin(): Promise<string> {
   return Buffer.concat(chunks).toString('utf8');
 }
 
-if (import.meta.url === `file://${process.argv[1]}`) {
+if (isMainModule(import.meta.url)) {
   const parsed = parseCliArgs(process.argv.slice(2));
   if (!parsed) {
     console.error('Usage: inline-gate-renderer.ts --level <1|2|3|3+|phase|review|research> [--out-dir DIR file...] [template-file]');

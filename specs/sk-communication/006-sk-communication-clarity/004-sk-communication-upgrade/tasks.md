@@ -45,7 +45,7 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-The eight engine items land in rising risk order, then the document companions.
+The eight engine items land in rising risk order inside `.opencode/skills/sk-communication/cli-communication-projection/`. The paths below are relative to that directory. The document companions follow.
 
 - [ ] T006 Collapse the instruction and its temperature into one declaration and point both profiles and the fixture at it (`src/config/local-provider.ts`, `src/runtime/external-cli-projection.ts`, `test/providers/helpers.ts`)
 - [ ] T007 Correct the instruction's target noun so it names the role the profiles actually declare (`src/config/local-provider.ts`)

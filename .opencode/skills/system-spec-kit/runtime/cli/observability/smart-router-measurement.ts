@@ -8,7 +8,7 @@
 
 import * as fs from 'node:fs';
 import * as path from 'node:path';
-import { fileURLToPath, pathToFileURL } from 'node:url';
+import { pathToFileURL } from 'node:url';
 
 import {
   readSmartRouterComplianceJsonl,
@@ -16,6 +16,7 @@ import {
   type ComplianceClass,
   type ComplianceRecord,
 } from './smart-router-telemetry.js';
+import { isMainModule } from '../lib/esm-entry.js';
 
 interface AdvisorRecommendation {
   readonly skill: string;
@@ -136,9 +137,7 @@ const DEFAULT_JSONL_PATH = '.opencode/skills/system-spec-kit/runtime/cli/observa
 const DEFAULT_STATIC_COMPLIANCE_PATH = '.opencode/reports/smart-router-static/compliance.jsonl';
 const DEFAULT_LIVE_COMPLIANCE_PATH = '.opencode/skills/.state/smart-router-telemetry/compliance.jsonl';
 const UNKNOWN_RESOURCE = '__unknown_unparsed__';
-const IS_CLI_ENTRY = process.argv[1]
-  ? path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)
-  : false;
+const IS_CLI_ENTRY = isMainModule(import.meta.url);
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null && !Array.isArray(value);

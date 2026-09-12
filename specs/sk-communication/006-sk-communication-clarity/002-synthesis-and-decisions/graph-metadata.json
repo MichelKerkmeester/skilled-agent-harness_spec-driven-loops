@@ -134,7 +134,7 @@
         "source": "derived"
       },
       {
-        "name": "Overview Read",
+        "name": "Overview The",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -152,7 +152,7 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow Lineage",
+        "name": "Data Flow Both",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Two model families will return overlapping and sometimes conflicting recommendation sets, and a",
     "created_at": "2026-09-12T12:44:35Z",
-    "last_save_at": "2026-09-12T17:29:32.638Z",
+    "last_save_at": "2026-09-12T17:57:13.199Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,12 +207,12 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a3cc463a99dff05ddd39814a1a073af0800416d57f41982ab05ce34ba830c9f6",
+    "source_fingerprint": "sha256:0a69ca43d1067c1da778ad431f40be31d6d83a2a4305431d7f95f0ae32d6c6a9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4521f3f8e62d829e2072654c9d099bb13bf4cc12bb8f04934d769e088bccaa0e",
-      "plan.md": "6cb824728a61ec6cd49a7a5dd5d61fd5f2df91b26f1943af3191f4037d97558a",
-      "tasks.md": "396aa66d3f2bd858bafe7b6cbb27763fb3c2e7f7b4ab542fc589c27f6551f543",
+      "plan.md": "b790733a3cf5430dd16b8d2e264c0b1ab3a65fecb7d3891d4ffc310956538313",
+      "tasks.md": "4b8501361e3c55ed449073e8e7a284953899da9d82033291fa75bde5a04fa9c8",
       "decision-record.md": "dccbb3f1cccdb8a10ac19721b1d2fe33eafcd4a4f80000de92ab0013cf7defd2",
       "implementation-summary.md": "24c686e5be84be112c225522d66b9c683301b5caa40fd77d9f3d3798e37dd781"
     },
