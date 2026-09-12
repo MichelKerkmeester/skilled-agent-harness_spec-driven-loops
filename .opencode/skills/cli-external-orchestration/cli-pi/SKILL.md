@@ -2,7 +2,7 @@
 name: cli-pi
 description: "Pi CLI executor for guarded headless coding, JSON/RPC integration, native skills/extensions, and community-package delegation."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 1.5.2.0
+version: 1.5.3.0
 hard_rules:
   - id: stdin-redirect-required
     check: stdin-redirect-required

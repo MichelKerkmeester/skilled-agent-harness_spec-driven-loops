@@ -68,22 +68,22 @@ GPT-5.6 via the `openai` provider — two personas (sol/luna) × three speed tie
 
 ### opencode-go
 
-opencode-go gateway (subsidized "2x usage" rate); fronts the DeepSeek, GLM, and Qwen families and hosts this mode's **default model** (`opencode-go/deepseek-v4-flash-vision-exp`, the flash family's opencode-go route — the direct DeepSeek API provider was retired). Confirm live slugs via `opencode models opencode-go`.
+opencode-go gateway (subsidized "2x usage" rate); fronts the DeepSeek, GLM, and Qwen families and hosts this mode's **default model** (`opencode-go/deepseek-v4.1-flash`, the flash family's opencode-go route — the direct DeepSeek API provider was retired). Confirm live slugs via `opencode models opencode-go`.
 
 | Model id | Default? | Notes |
 |----------|----------|-------|
-| `opencode-go/deepseek-v4-flash-vision-exp` | ✓ | DeepSeek V4 Flash Vision via the Go gateway — **the mode default**. Same price as plain flash on this route ($0.22 in / $0.66 out per 1M, identical), and it additionally accepts images, so nothing is traded for the capability. Reasoning model pinned to `--variant max` by policy. List-verified 2026-09-05; **not dispatch-tested, because opencode-go is out of monthly quota** (`Monthly usage limit reached. Resets in 2 days.`) |
+| `opencode-go/deepseek-v4.1-flash` | ✓ | DeepSeek V4.1 Flash via the Go gateway — **the mode default**. Takes images as well as text, so a dispatch that needs a screenshot or diagram does not have to leave the default route. Reasoning model pinned to `--variant max` by policy, a tier this route carries. List-verified and **dispatch-verified 2026-09-11** (a live `opencode run` turn returned its token for $0.0012). It superseded `deepseek-v4-flash-vision-exp` on this route at an identical catalog cost — $0.15 in / $0.60 out per 1M, cached reads $0.003 — and the same 1M context and 384K output ceiling, so the move trades no capability and no price |
 | `opencode-go/glm-5.3` | — | Z.AI GLM 5.3 via the Go gateway; list-verified in `opencode models opencode-go` on 2026-08-14 (not dispatch-tested). opencode-go also fronts `glm-5.1`/`glm-5.2`, out of this catalog's curated scope |
 | `opencode-go/glm-5.3-flash` | — | Z.AI GLM-5.3-Flash via the Go gateway; reasoning model whose ladder here is `low`/`high`/**`max`** — this route has **no `xhigh`** — pinned to `--variant max` by policy; ladder re-verified in `opencode models opencode-go --verbose` on 2026-09-04 |
 | `opencode-go/qwen3.8-max` | — | Qwen 3.8 Max via the Go gateway; a live `opencode run --model opencode-go/qwen3.8-max` turn completed 2026-08-07 |
 
 ### cline-pass
 
-Cline provider (Cline Pass account, base `https://api.cline.bot/api/v1`, OpenAI-compatible); pass the full three-segment `cline-pass/cline-pass/<model-id>` to `--model`. Authenticate with `opencode auth login` (the `/login` flow) — the provider registers as **`cline-pass`**, not `cline` (`opencode models cline` errors "Provider not found"). Confirm live slugs via `opencode models cline-pass`. The cline-pass DeepSeek V4 Flash entry reports `reasoning: true` with thinking tiers running `none`→`xhigh`, **no `max` tier**. **Default effort: `--variant xhigh`** — dispatch it at its top thinking tier by default, following the DeepSeek family's top-tier-only policy (the opencode-go `--variant max` pin has no `max` here, so `xhigh` is the equivalent top tier). The cline-pass DeepSeek entry is a direct-dispatch roster entry only; it is not wired into the fan-out executor registry (which would force the unsupported `--variant max`). Note: opencode has no per-model default-effort config key, so this default is a dispatch convention here — the interactive TUI picker remembers the effort per model on its own.
+Cline provider (Cline Pass account, base `https://api.cline.bot/api/v1`, OpenAI-compatible); pass the full three-segment `cline-pass/cline-pass/<model-id>` to `--model`. Authenticate with `opencode auth login` (the `/login` flow) — the provider registers as **`cline-pass`**, not `cline` (`opencode models cline` errors "Provider not found"). Confirm live slugs via `opencode models cline-pass`. The cline-pass DeepSeek V4.1 Flash entry reports `reasoning: true` with thinking tiers running `none`→`xhigh`, **no `max` tier**. **Default effort: `--variant xhigh`** — dispatch it at its top thinking tier by default, following the DeepSeek family's top-tier-only policy (the opencode-go `--variant max` pin has no `max` here, so `xhigh` is the equivalent top tier). The cline-pass DeepSeek entry is a direct-dispatch roster entry only; it is not wired into the fan-out executor registry (which would force the unsupported `--variant max`). Note: opencode has no per-model default-effort config key, so this default is a dispatch convention here — the interactive TUI picker remembers the effort per model on its own.
 
 | Model id | Default? | Notes |
 |----------|----------|-------|
-| `cline-pass/cline-pass/deepseek-v4-flash` | — | DeepSeek V4 Flash via the Cline provider; reasoning model; **default effort `--variant xhigh`** (its top thinking tier; no `max` tier); list-verified in `opencode models cline-pass` on 2026-08-18 (not dispatch-tested). cline-pass also fronts `glm-5.2`, `kimi-k2.6`/`kimi-k2.7-code`/`kimi-k3`, `mimo-v2.5`/`mimo-v2.5-pro`, `minimax-m3`, `qwen3.7-max`/`qwen3.7-plus`, out of this catalog's curated scope. DeepSeek V4 Pro was retired from the roster and is not a dispatch target here |
+| `cline-pass/cline-pass/deepseek-v4.1-flash` | — | DeepSeek V4.1 Flash via the Cline provider; reasoning model; **default effort `--variant xhigh`** (its top thinking tier; no `max` tier). **Listing-only — not yet dispatchable here.** Cline's own API lists `deepseek/deepseek-v4.1-flash`, but opencode resolves provider models from models.dev, which carries no cline-pass V4.1 entry, so this id fails at resolution with `Unexpected server error` before any request leaves the machine — the identical signature the GLM-5.3-Flash note below describes. The route is additionally out of quota until the monthly Cline Pass window resets, so the older `cline-pass/cline-pass/deepseek-v4-flash` id cannot be dispatch-tested either, and no cost, context or output figure here has been measured. Re-verify against `opencode models cline-pass` and one live turn before relying on this row; the V4.1 id supersedes the V4-Flash one only once that turn passes. cline-pass also fronts `glm-5.2`, `kimi-k2.6`/`kimi-k2.7-code`/`kimi-k3`, `mimo-v2.5`/`mimo-v2.5-pro`, `minimax-m3`, `qwen3.7-max`/`qwen3.7-plus`, out of this catalog's curated scope. DeepSeek V4 Pro was retired from the roster and is not a dispatch target here |
 
 > **GLM-5.3-Flash is NOT available on cli-opencode's Cline route.** Unlike cli-pi (which passes the raw Cline id `z-ai/glm-5.3-flash` straight through and works), opencode's `cline-pass` adapter returns `Unexpected server error` for every id form (`cline-pass/z-ai/glm-5.3-flash`, `cline-pass/cline-pass/glm-5.3-flash`), and `opencode models cline-pass` lists only `glm-5.3` (no `-flash` variant). Verified 2026-08-27. Reach GLM-5.3-Flash on cli-opencode via **`opencode-go/glm-5.3-flash`** or **`llmgateway/glm-5.3-flash`** instead.
 
@@ -110,13 +110,13 @@ Dispatch this mode's default without opening any other file:
 
 | Field | Value |
 |-------|-------|
-| Default model | `opencode-go/deepseek-v4-flash-vision-exp` |
+| Default model | `opencode-go/deepseek-v4.1-flash` |
 | Default effort | `--variant max` (flash is max-tier-pinned by policy) |
 | Default format | `--format json` |
 
 ```bash
 opencode run \
-  --model opencode-go/deepseek-v4-flash-vision-exp \
+  --model opencode-go/deepseek-v4.1-flash \
   --variant max \
   --format json \
   --dir "$REPO_ROOT" \
@@ -129,15 +129,15 @@ If the default provider is not configured, the mode ASKS the operator before sub
 
 ## 4. REASONING-EFFORT / THINKING LEVER
 
-cli-opencode expresses reasoning effort through the **`--variant`** flag, which maps to a provider-specific effort scale. Default skill behavior is `--variant high` for non-pinned models; the `opencode-go/deepseek-v4-flash-vision-exp` default is pinned to `--variant max` by policy.
+cli-opencode expresses reasoning effort through the **`--variant`** flag, which maps to a provider-specific effort scale. Default skill behavior is `--variant high` for non-pinned models; the `opencode-go/deepseek-v4.1-flash` default is pinned to `--variant max` by policy.
 
 | Provider | `--variant` behavior |
 |----------|----------------------|
-| `opencode-go` (`deepseek-v4-flash-vision-exp`) | reasoning model pinned to `--variant max` (max thinking tier) by policy — the fan-out builder upgrades a lower requested effort automatically |
+| `opencode-go` (`deepseek-v4.1-flash`) | reasoning model pinned to `--variant max` (max thinking tier) by policy — the fan-out builder upgrades a lower requested effort automatically |
 | `minimax` (MiniMax-M3) | behavior unverified — omitted by default; confirm before relying |
 | `xiaomi` (mimo) | maps to MiMo effort (low/medium/high); **always use `--variant high`** |
 | `openai` GPT-5.6 (sol/luna) | maps to OpenAI effort `none`/`low`/`medium`/`high`/**`xhigh`**; Pro tiers `medium`/`high`/`xhigh`; `-fast` slugs are the low-latency Fast tier with the same range |
-| `cline-pass` (deepseek-v4-flash) | reasoning effort accepted — tiers `none`/`low`/`medium`/`high`/**`xhigh`**; **no `max`**; **default/pinned `--variant xhigh`** (top thinking tier) |
+| `cline-pass` (deepseek-v4.1-flash) | reasoning effort accepted — tiers `none`/`low`/`medium`/`high`/**`xhigh`**; **no `max`**; **default/pinned `--variant xhigh`** (top thinking tier) |
 | `llmgateway` (DevPass) | per-model, not per-provider. `deepseek-v4.1-flash` carries three efforts plus off, `low`/**`high`**/**`max`**, with `minimal` folding into `low` and `medium`/`xhigh` folding into `high`; `glm-5.3-flash` carries the full ladder to `max`. Both reach **`max`**, so the pin lands. Always pass `--variant` explicitly here |
 
 ---
@@ -149,7 +149,7 @@ When dispatching as a non-interactive child (spec-gate-neutralized worker), pref
 
 ```bash
 SYSTEM_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1 opencode run \
-  --model opencode-go/deepseek-v4-flash-vision-exp --variant max --format json \
+  --model opencode-go/deepseek-v4.1-flash --variant max --format json \
   --dir "$REPO_ROOT" "<prompt>" </dev/null > stdout.log 2> stderr.log
 ```
 

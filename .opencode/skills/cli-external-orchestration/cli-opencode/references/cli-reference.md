@@ -260,7 +260,7 @@ No supported providers are configured on this machine. Run one:
   - `opencode auth login`                   (Kimi For Coding plan — Kimi/Moonshot coding subscription; provider kimi-for-coding; model kimi-for-coding/k2p7)
   - `opencode auth login`                   (Z.AI GLM Coding Plan — GLM coding subscription; provider zai-coding-plan; model zai-coding-plan/glm-5.2)
   - `opencode providers login openai`       (OpenAI premium alternative — paid)
-  - `opencode auth login`                   (Cline — Cline Pass account; provider cline-pass, NOT cline; model form cline-pass/cline-pass/<id>, e.g. cline-pass/cline-pass/deepseek-v4-flash)
+  - `opencode auth login`                   (Cline — Cline Pass account; provider cline-pass, NOT cline; model form cline-pass/cline-pass/<id>, e.g. cline-pass/cline-pass/deepseek-v4.1-flash)
 Which would you like to set up? Confirm when login finishes; the skill will retry the original dispatch.
 ```
 
