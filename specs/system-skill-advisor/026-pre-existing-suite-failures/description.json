@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "specFolder": "system-skill-advisor/026-pre-existing-suite-failures",
   "description": "Five advisor suites failed, and they were carried as \"pre-existing\" across the whole decommission without anyone asking what they were",
   "keywords": [
@@ -15,13 +16,12 @@
     "anyone",
     "asking"
   ],
-  "lastUpdated": "2026-09-12T08:37:01.795Z",
+  "lastUpdated": "2026-09-12T09:29:40.114Z",
   "specId": "026",
   "folderSlug": "pre-existing-suite-failures",
   "parentChain": [
     "system-skill-advisor"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

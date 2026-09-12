@@ -59,6 +59,10 @@ contextType: "general"
 - [x] T009 Run the shipped routing-accuracy floor gate and read its verdict
 - [x] T010 Establish what moved the accuracy pins, by diffing routing inputs since the baseline commit
 - [x] T011 Run `validate.sh --strict` on this packet and require `RESULT: PASSED`
+- [x] T012 Identify the two regressed prompts by name from the parity suite's accepted-regression list
+- [x] T013 Measure both in the pinned regime and live, and record the margins
+- [x] T014 Attempt a vocabulary fix and measure it, to separate dilution from a missing term
+- [x] T015 Re-capture the baseline and confirm the diff is only the four expected lines
 <!-- /ANCHOR:phase-3 -->
 
 ---
