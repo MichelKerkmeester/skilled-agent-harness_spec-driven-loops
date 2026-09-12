@@ -1,5 +1,5 @@
 {
-  "manifestHash": "6a7ad2ef225e8930059596e69a6ce6126ba6af6ca0feba1f46e61903b7a28b62",
+  "manifestHash": "3181abe368c54510dbf261ace65f3ecf5b7e2d2a8fc366e53f8488a9d958700e",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -8877,6 +8877,12 @@
     "accessible document diff report": [
       "accessible document diff report"
     ],
+    "accuracy neutral vocabulary fix": [
+      "accuracy neutral vocabulary fix"
+    ],
+    "accuracy neutrality check": [
+      "accuracy neutrality check"
+    ],
     "acquire loop lock": [
       "acquire loop lock"
     ],
@@ -17390,6 +17396,9 @@
     "census reconciliation tasks": [
       "census reconciliation tasks"
     ],
+    "census recount task": [
+      "census recount task"
+    ],
     "census then fix": [
       "census then fix"
     ],
@@ -24921,6 +24930,9 @@
     "command md yaml tasks": [
       "command md yaml tasks"
     ],
+    "command metadata census pin": [
+      "command metadata census pin"
+    ],
     "command metadata core schema": [
       "command metadata core schema"
     ],
@@ -27116,9 +27128,6 @@
     ],
     "content routing accuracy": [
       "content routing accuracy"
-    ],
-    "content to visual form mapping": [
-      "content to visual form mapping"
     ],
     "content type freshness": [
       "content type freshness"
@@ -36644,9 +36653,6 @@
     "depth 1 council dispatch": [
       "depth 1 council dispatch"
     ],
-    "depth calibrated explanation": [
-      "depth-calibrated explanation"
-    ],
     "depth detection parallel vs sequential": [
       "depth detection parallel vs sequential"
     ],
@@ -38701,8 +38707,14 @@
     "dfidf cold start cache": [
       "dfidf cold start cache"
     ],
+    "diagnose before fixing suite failures": [
+      "diagnose before fixing suite failures"
+    ],
     "diagnose existing ui": [
       "diagnose existing ui"
+    ],
+    "diagnose five advisor failures": [
+      "diagnose five advisor failures"
     ],
     "diagnostic counters": [
       "diagnostic counters"
@@ -43706,23 +43718,11 @@
     "expected workflow mode omitted": [
       "expected workflow mode omitted"
     ],
-    "expert plain novice depth": [
-      "expert plain novice depth"
-    ],
     "explain visually command modality depth": [
       "explain visually command modality depth"
     ],
     "explain visually command shipped": [
       "explain-visually command shipped"
-    ],
-    "explain visually lane boundary": [
-      "explain visually lane boundary"
-    ],
-    "explain visually skill guide": [
-      "explain visually skill guide"
-    ],
-    "explanation depth rubric": [
-      "explanation depth rubric"
     ],
     "explicit any ledger closure": [
       "explicit-any ledger closure"
@@ -49948,6 +49948,9 @@
     "goal open items research": [
       "goal open items research"
     ],
+    "goal opencode command": [
+      "/goal-opencode command"
+    ],
     "goal opencode plugin": [
       "goal opencode plugin"
     ],
@@ -51056,6 +51059,9 @@
     ],
     "h2uppercaserequired flip closeout": [
       "h2uppercaserequired flip closeout"
+    ],
+    "half applied rename projection": [
+      "half applied rename projection"
     ],
     "half auto upgrade doc alignment": [
       "half-auto upgrade doc alignment"
@@ -61719,6 +61725,9 @@
     "meaning judge wiring": [
       "meaning-judge-wiring"
     ],
+    "measure fix against accuracy pin": [
+      "measure fix against accuracy pin"
+    ],
     "measure packet shapes": [
       "measure packet shapes"
     ],
@@ -62830,6 +62839,9 @@
     ],
     "memory save canonical spec doc bypass": [
       "memory_save canonical spec doc bypass"
+    ],
+    "memory save command bridge drift": [
+      "memory save command bridge drift"
     ],
     "memory save concurrency cap": [
       "memory-save concurrency cap"
@@ -64481,12 +64493,6 @@
     ],
     "modality and depth dials sk communication": [
       "modality and depth dials sk-communication"
-    ],
-    "modality selection": [
-      "modality selection"
-    ],
-    "modality selection table": [
-      "modality selection table"
     ],
     "mode": [
       "mode"
@@ -75924,6 +75930,9 @@
     "pre existing advisor failures": [
       "pre-existing advisor failures"
     ],
+    "pre existing advisor suite failures": [
+      "pre-existing advisor suite failures"
+    ],
     "pre existing broken leaves": [
       "pre-existing broken leaves"
     ],
@@ -75938,6 +75947,9 @@
     ],
     "pre existing failure remediation tasks": [
       "pre-existing failure remediation tasks"
+    ],
+    "pre existing failures summary": [
+      "pre-existing failures summary"
     ],
     "pre existing test failures triage": [
       "pre-existing test failures triage"
@@ -77299,9 +77311,6 @@
     "protected marker inflation": [
       "protected marker inflation"
     ],
-    "protected span byte exact": [
-      "protected span byte-exact"
-    ],
     "protected span fidelity validation": [
       "Protected-span fidelity validation"
     ],
@@ -78367,9 +78376,6 @@
     "read back verification": [
       "read back verification"
     ],
-    "read before you draw": [
-      "read before you draw"
-    ],
     "read cache implementation plan": [
       "read cache implementation plan"
     ],
@@ -79302,6 +79308,9 @@
     ],
     "recorded findings goal": [
       "recorded findings goal"
+    ],
+    "recount census pin": [
+      "recount census pin"
     ],
     "recover from council interruption": [
       "recover from council interruption"
@@ -87284,6 +87293,12 @@
     "scorer ablation": [
       "scorer ablation"
     ],
+    "scorer baseline 152 versus 154": [
+      "scorer baseline 152 versus 154"
+    ],
+    "scorer baseline ratchet regression": [
+      "scorer baseline ratchet regression"
+    ],
     "scorer baseline recapture": [
       "scorer baseline recapture"
     ],
@@ -90048,9 +90063,6 @@
     ],
     "simplify mermaid diagram": [
       "simplify mermaid diagram"
-    ],
-    "simplify words not facts": [
-      "simplify words not facts"
     ],
     "simulate task completion": [
       "simulate task completion"
@@ -96270,9 +96282,6 @@
     "skip re embedding unchanged chunks": [
       "skip re-embedding unchanged chunks"
     ],
-    "skip the diagram": [
-      "skip the diagram"
-    ],
     "skipped channels visibility": [
       "skipped channels visibility"
     ],
@@ -96353,9 +96362,6 @@
     ],
     "smallest animation tool": [
       "smallest animation tool"
-    ],
-    "smallest visual form": [
-      "smallest visual form"
     ],
     "smart embedder precedence chain": [
       "smart embedder precedence chain"
@@ -100285,6 +100291,9 @@
     "suite backed manual only classification": [
       "suite backed manual only classification"
     ],
+    "suite failure task breakdown": [
+      "suite failure task breakdown"
+    ],
     "suite path proof objective": [
       "suite path proof objective"
     ],
@@ -102969,6 +102978,9 @@
     ],
     "three field status tasks": [
       "three field status tasks"
+    ],
+    "three fixed two are a decision": [
+      "three fixed two are a decision"
     ],
     "three fixture tiers": [
       "three fixture tiers"
@@ -107726,9 +107738,6 @@
     ],
     "which template blockers are safe to fix": [
       "which template blockers are safe to fix"
-    ],
-    "which visual form to use": [
-      "which visual form to use"
     ],
     "which voice reference to load": [
       "which voice reference to load"

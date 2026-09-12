@@ -1,10 +1,10 @@
 ---
 title: "CL-007 Goal OpenCode Plugin"
-description: "Manual validation for the /goal command, opencode_goal tools, passive injection, supervisor lifecycle and default-off continuation gates."
+description: "Manual validation for the /goal-opencode command, opencode_goal tools, passive injection, supervisor lifecycle and default-off continuation gates."
 trigger_phrases:
   - "cl-007"
   - "goal opencode plugin"
-  - "/goal command"
+  - "/goal-opencode command"
   - "opencode_goal"
 version: 0.8.1.0
 id: CL-007
@@ -18,7 +18,7 @@ expected_leaf_resources:
 
 # CL-007 Goal OpenCode Plugin
 
-Prompt: Manual validation for the /goal command, opencode_goal tools, passive injection, supervisor lifecycle and default-off continuation gates.
+Prompt: Manual validation for the /goal-opencode command, opencode_goal tools, passive injection, supervisor lifecycle and default-off continuation gates.
 
 
 <!-- sk-doc-template: manual_testing_playbook -->
@@ -27,14 +27,14 @@ Prompt: Manual validation for the /goal command, opencode_goal tools, passive in
 
 ## 1. OVERVIEW
 
-Validate that `/goal` routes through the OpenCode plugin tools, persists per-session state, injects a bounded active-goal block, reports status through `opencode_goal_status`, verifies completion through injected or default verifiers, and keeps active continuation default-off unless `OPENCODE_GOAL_AUTONOMY` explicitly enables smoke or active mode.
+Validate that `/goal-opencode` routes through the OpenCode plugin tools, persists per-session state, injects a bounded active-goal block, reports status through `opencode_goal_status`, verifies completion through injected or default verifiers, and keeps active continuation default-off unless `OPENCODE_GOAL_AUTONOMY` explicitly enables smoke or active mode.
 
 ---
 
 ## 2. SCENARIO CONTRACT
 
 - OpenCode plugin host can load `.opencode/plugins/opencode-goal.js`.
-- `/goal` command exists at `.opencode/commands/goal-opencode.md` and routes `bind`, `resent` and `packet` alongside the lifecycle actions.
+- `/goal-opencode` command exists at `.opencode/commands/goal-opencode.md` and routes `bind`, `resent` and `packet` alongside the lifecycle actions.
 - Use a disposable session or temporary `stateDir` so existing session goals are not overwritten.
 - Live OpenCode-run tool invocation is verified (an `opencode serve` run lists `opencode_goal`/`opencode_goal_status` and a live model turn persists per-session state); when a live session is unavailable in this run, execute the plugin tool path directly and record that as the fallback, not as an open blocker.
 
@@ -61,34 +61,34 @@ node .opencode/plugins/tests/opencode-goal-capabilities.test.cjs
 3. In a live OpenCode session when tool invocation is available, run:
 
 ```text
-/goal set Finish the documentation propagation task
-/goal set Finish the documentation propagation task --budget 1234
-/goal show
-/goal history
-/goal doctor
-/goal health
-/goal pause waiting for user approval
-/goal resume
-/goal complete
-/goal clear
+/goal-opencode set Finish the documentation propagation task
+/goal-opencode set Finish the documentation propagation task --budget 1234
+/goal-opencode show
+/goal-opencode history
+/goal-opencode doctor
+/goal-opencode health
+/goal-opencode pause waiting for user approval
+/goal-opencode resume
+/goal-opencode complete
+/goal-opencode clear
 ```
 
-4. Capture the `STATUS=OK` envelopes and verify mutation responses include the post-mutation state, including `mutation=created|refreshed|replaced` on `/goal set`, `token_budget=1234` after `--budget`, and `store_health=` on status/set output.
+4. Capture the `STATUS=OK` envelopes and verify mutation responses include the post-mutation state, including `mutation=created|refreshed|replaced` on `/goal-opencode set`, `token_budget=1234` after `--budget`, and `store_health=` on status/set output.
 5. Verify `opencode_goal_status` includes `injection_preview=` and that the preview contains `[active_goal:<goal-id>]` only while the goal is active.
-6. Verify `/goal history` includes `archive_count=`, `/goal doctor` and `/goal health` include `active_state_file_count=`, `archive_file_count=`, `continuation_log_bytes=`, `goal_events_log_bytes=`, `last_sweep_at=`, and `orphan_candidate_count=`.
-7. Verify `/goal resume` reactivates a paused goal and that a completed goal still rejects resume with `code=INVALID_STATUS_TRANSITION`.
+6. Verify `/goal-opencode history` includes `archive_count=`, `/goal-opencode doctor` and `/goal-opencode health` include `active_state_file_count=`, `archive_file_count=`, `continuation_log_bytes=`, `goal_events_log_bytes=`, `last_sweep_at=`, and `orphan_candidate_count=`.
+7. Verify `/goal-opencode resume` reactivates a paused goal and that a completed goal still rejects resume with `code=INVALID_STATUS_TRANSITION`.
 8. With `OPENCODE_GOAL_AUTONOMY` unset, confirm continuation is suppressed with `autonomy_disabled`.
 9. With `OPENCODE_GOAL_AUTONOMY=smoke`, confirm the decision is `would_fire` and no prompt is submitted.
 10. With `OPENCODE_GOAL_AUTONOMY=active`, confirm `promptAsync` is called only when every guard passes; if a live OpenCode session is unavailable in this run, fall back to the plugin tool path directly (see §1).
-11. With `OPENCODE_GOAL_MAX_AUTO_TURNS=3` and `OPENCODE_GOAL_MAX_WALL_MS=4000`, restart OpenCode and verify `/goal show` reports `remaining_auto_turns=`, `remaining_wall_ms=`, and `provider_retry_after_ms=`.
+11. With `OPENCODE_GOAL_MAX_AUTO_TURNS=3` and `OPENCODE_GOAL_MAX_WALL_MS=4000`, restart OpenCode and verify `/goal-opencode show` reports `remaining_auto_turns=`, `remaining_wall_ms=`, and `provider_retry_after_ms=`.
 12. With `OPENCODE_GOAL_VERIFIER` unset or `heuristic`, verify only explicit objective-specific evidence completes and the adversarial negative matrix remains `not_met`. With `OPENCODE_GOAL_VERIFIER=llm`, verify `ctx.client.session.promptAsync` is called and status reports `verifier_source=default-llm`.
 
 ### Expected Signals
 
-- `/goal` does not read or write `.opencode/skills/.state/goal` directly; all state access goes through `opencode_goal` or `opencode_goal_status`.
-- `/goal set` output includes `mutation=created|refreshed|replaced` matching the actual set-time outcome.
-- `/goal set <objective> --budget N` rejects invalid budgets and reports the accepted token budget in status output.
-- `/goal history`, `/goal doctor`, `/goal health`, and `/goal resume` route through `opencode_goal`; none reads `.opencode/skills/.state/goal` directly from command markdown.
+- `/goal-opencode` does not read or write `.opencode/skills/.state/goal` directly; all state access goes through `opencode_goal` or `opencode_goal_status`.
+- `/goal-opencode set` output includes `mutation=created|refreshed|replaced` matching the actual set-time outcome.
+- `/goal-opencode set <objective> --budget N` rejects invalid budgets and reports the accepted token budget in status output.
+- `/goal-opencode history`, `/goal-opencode doctor`, `/goal-opencode health`, and `/goal-opencode resume` route through `opencode_goal`; none reads `.opencode/skills/.state/goal` directly from command markdown.
 - Status/set output includes `store_health=no_active_goal` or `store_health=state_age_ms:<N>`.
 - Status/set output includes `verifier_source=none|injected|default-heuristic|default-llm`.
 - Status/set output includes `remaining_auto_turns`, `remaining_wall_ms`, and `provider_retry_after_ms`; env caps honor `OPENCODE_GOAL_MAX_AUTO_TURNS` and `OPENCODE_GOAL_MAX_WALL_MS`.
@@ -102,11 +102,11 @@ node .opencode/plugins/tests/opencode-goal-capabilities.test.cjs
 
 | Symptom | Detection | Action |
 | --- | --- | --- |
-| Command edits state directly | `/goal` command reads or writes `.state/goal` | Block release; command must route through plugin tools only. |
+| Command edits state directly | `/goal-opencode` command reads or writes `.state/goal` | Block release; command must route through plugin tools only. |
 | Cross-session state leak | Goal set in one session appears in another | Inspect `sessionKeyForSession` and state path logic. |
 | Prompt injection leaks into context | Injection preview contains unredacted role or instruction text | Inspect `sanitizeInlineText` and `renderGoalInjection`. |
 | Active continuation fires by default | `OPENCODE_GOAL_AUTONOMY` unset still submits a prompt | Block release; default-off gate regressed. |
-| Resume revives terminal goals | `/goal resume` succeeds after `/goal complete` | Block release; transition map must reject `complete` to `active`. |
+| Resume revives terminal goals | `/goal-opencode resume` succeeds after `/goal-opencode complete` | Block release; transition map must reject `complete` to `active`. |
 | Doctor or history mutates state | `history`, `doctor`, or `health` creates active JSON files | Block release; these verbs must stay read-only. |
 | Env caps ignored | `OPENCODE_GOAL_MAX_AUTO_TURNS` or `OPENCODE_GOAL_MAX_WALL_MS` does not alter status/caps after restart | Inspect `normalizeOptions` env reads and status output. |
 | Default verifier false-completes | Weak or mixed evidence marks a goal complete under `OPENCODE_GOAL_VERIFIER=heuristic` | Block release; the heuristic must fail closed unless evidence is explicit and objective-specific. |
@@ -186,7 +186,7 @@ Command file read confirmed `.opencode/commands/goal-opencode.md` exists and rou
 
 ```text
 4: allowed-tools: opencode_goal, opencode_goal_status
-15: Manage the passive session goal through the `opencode-goal` plugin. `/goal` is a state-free router: it resolves the requested action from `$ARGUMENTS` and dispatches to the `opencode_goal` / `opencode_goal_status` plugin tools, which own all goal state and session resolution.
+15: Manage the passive session goal through the `opencode-goal` plugin. `/goal-opencode` is a state-free router: it resolves the requested action from `$ARGUMENTS` and dispatches to the `opencode_goal` / `opencode_goal_status` plugin tools, which own all goal state and session resolution.
 37: This command is state-free. It never reads or writes `.opencode/skills/.state/goal` directly.
 39: - Empty arguments or `show` route to `opencode_goal_status`.
 40: - `set <objective>` routes to `opencode_goal` with `action: "set"` and `objective: REST`.
@@ -201,7 +201,7 @@ Found 17 matches
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/goal-opencode.md:
   Line 4: allowed-tools: opencode_goal, opencode_goal_status
 
-  Line 15: Manage the passive session goal through the `opencode-goal` plugin. `/goal` is a state-free router: it resolves the requested action from `$ARGUMENTS` and dispatches to the `opencode_goal` / `opencode_goal_status` plugin tools, which own all goal state and session resolution.
+  Line 15: Manage the passive session goal through the `opencode-goal` plugin. `/goal-opencode` is a state-free router: it resolves the requested action from `$ARGUMENTS` and dispatches to the `opencode_goal` / `opencode_goal_status` plugin tools, which own all goal state and session resolution.
 
   Line 37: This command is state-free. It never reads or writes `.opencode/skills/.state/goal` directly.
 
@@ -289,7 +289,7 @@ Observed output:
 
 ### Live Tool Invocation Fallback
 
-Live `/goal` slash-command invocation was not available from this tool session. Per scenario contract, the plugin tool path was executed directly and recorded as fallback evidence, not as a live OpenCode success claim.
+Live `/goal-opencode` slash-command invocation was not available from this tool session. Per scenario contract, the plugin tool path was executed directly and recorded as fallback evidence, not as a live OpenCode success claim.
 
 Initial status via `opencode_goal_status({})`:
 
@@ -512,4 +512,4 @@ Found 11 matches
 
 PASS
 
-All commanded tests completed successfully, direct plugin tool fallback returned `STATUS=OK` envelopes with `mutation=created`, `store_health=...`, and bounded `injection_preview` only while active, and continuation guard assertions covered `autonomy_disabled`, `would_fire`, and active `promptAsync` paths. Live `/goal` slash-command invocation was not available from this tool session and is recorded as fallback evidence rather than a live OpenCode success claim.
+All commanded tests completed successfully, direct plugin tool fallback returned `STATUS=OK` envelopes with `mutation=created`, `store_health=...`, and bounded `injection_preview` only while active, and continuation guard assertions covered `autonomy_disabled`, `would_fire`, and active `promptAsync` paths. Live `/goal-opencode` slash-command invocation was not available from this tool session and is recorded as fallback evidence rather than a live OpenCode success claim.
