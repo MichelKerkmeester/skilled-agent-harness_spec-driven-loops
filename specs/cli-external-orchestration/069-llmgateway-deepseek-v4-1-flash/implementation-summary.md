@@ -11,10 +11,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/069-llmgateway-deepseek-v4-1-flash"
-    last_updated_at: "2026-09-10T22:10:00Z"
-    last_updated_by: "claude-opus-5"
-    recent_action: "Repointed the DevPass DeepSeek route and closed the packet"
-    next_safe_action: "None; the packet is complete"
+    last_updated_at: "2026-09-11T09:00:00Z"
+    last_updated_by: "implementer"
+    recent_action: "Reopened: opencode-go dispatch-verified and moved, cline-pass wired listing-only with its fallback named"
+    next_safe_action: "Operator: one pi turn on opencode-go/deepseek-v4.1-flash, then the cline-pass round-trips after the monthly quota resets"
     blockers: []
     key_files:
       - ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts"
@@ -24,7 +24,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-09-10-llmgateway-deepseek-v41"
       parent_session_id: null
-    completion_pct: 100
+    completion_pct: 85
     open_questions: []
     answered_questions: []
 ---
@@ -42,8 +42,8 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 069-llmgateway-deepseek-v4-1-flash |
-| **Status** | Complete |
-| **Completed** | 2026-09-10 |
+| **Status** | In Progress (reopened) |
+| **Completed** | First pass 2026-09-10; reopened 2026-09-11, two live gates deferred |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -60,6 +60,16 @@ Your DevPass DeepSeek dispatches now reach `deepseek-v4.1-flash`, which the same
 
 The rosters carry what the provider documents and what the probes returned. Three claims did not survive contact. The old row's sparse tier ladder was wrong in both directions: `minimal`, `medium` and `xhigh` are all accepted, and they fold onto three real levels rather than adding tiers. The gateway fronts 262 models, not 183. And the upstream rewrite reports `deepseek/`, not the `gonka24/` name the old route produced.
 
+### Phase 2: The Sibling Routes Reopened
+
+The first pass moved one literal and deliberately left the `opencode-go` and `cline-pass` DeepSeek routes alone. The operator reopened them on 2026-09-11, and probing split the premise: it held for one route and not the other.
+
+`opencode-go` was a clean swap. Its catalog carries `deepseek-v4.1-flash`, a live `opencode run` turn returned a reply, and the record matches the id it replaces on every axis that matters — same $0.15 in and $0.60 out per million tokens with $0.003 cached reads, same 1M context and 384K output, same image input, same `low`/`high`/`max` variants. Nothing is traded for the newer model. It is the cli-opencode mode default now, and the deep-loop pin assertion follows it.
+
+`cline-pass` is the opposite result, and it is written up as such. Cline's own API lists `deepseek/deepseek-v4.1-flash`, but opencode resolves provider models from models.dev, which carries no cline-pass V4.1 entry, so the id dies at resolution before a request is sent. The account's monthly quota then answers `429 "You have reached your monthly Clinepass limit"` for every Cline model — including the V4-Flash id that was live-verified in August. That control is what makes the block attributable to the account rather than to the new id. The row moved, and it says listing-only, names the blocker, and keeps `cline-pass/cline-pass/deepseek-v4-flash` as the fallback.
+
+One non-obvious dependency surfaced: pi's own model catalog was stale relative to models.dev and omitted the new id entirely. `pi update --models` fixed it, and the refresh is recorded because a correct config otherwise resolved to nothing, silently.
+
 ### Files Changed
 
 | File | Action | Purpose |
@@ -73,6 +83,10 @@ The rosters carry what the provider documents and what the probes returned. Thre
 | Both skills' `SKILL.md` and a new `changelog/` entry each | Modified, Created | Anchors moved to 1.5.2.0 and 1.4.5.0 |
 | `.pi/models.json` | Modified | Provider block with measured context, ceiling and rates |
 | `.pi/settings.json`, `.pi/custom-providers.md` | Modified | Picker entry, setup and round-trip verification commands |
+| `cli-opencode/SKILL.md`, `cli-opencode/references/cli-reference.md` | Modified (reopened pass) | Mode default in four places, Cline login example, keyword and anchor to 1.4.6.0 |
+| `cli-pi/SKILL.md`, `cli-pi/changelog/v1.5.3.0.md` | Modified, Created (reopened pass) | Anchor moved to 1.5.3.0; second-pass entry |
+| `cli-pi/manual-testing-playbook/model-dispatch/cline-provider-id-format-dispatch.md` | Modified (reopened pass) | Id-format control: id, expected default and quota skip blocker, in both of its copies |
+| `.pi/models.json`, `.pi/settings.json`, `.pi/custom-providers.md` | Modified (reopened pass) | cline-pass V4.1 id, picker entry, setup doc and the quota caveat |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -101,7 +115,10 @@ One recovery is worth recording. A loop meant to revert version-field churn on u
 | The pin was probed before it was pointed | A forced tier the route lacks fails at dispatch, which is exactly the class of silent breakage this packet is repairing. |
 | The Pi thinking-level map was left as it was | Its three mapped tiers are exactly the three that differ. The unmapped aliases are accepted by the route but fold onto those same three, so mapping them would offer the picker levels that change nothing. |
 | Version churn on untouched docs was reverted | The strict formula says every child document's build segment moves, but no gate requires it, and 113 version-only edits would bury a model-id change in noise. |
-| The OpenRouter fan-out literals were left alone | An earlier packet decided that deliberately and called them the deep-loop runtime's contract. Overturning another owner's recorded decision is not this packet's business. |
+| The OpenRouter fan-out literals were left alone | An earlier packet decided that deliberately and called them the deep-loop runtime's contract. Overturning another owner's recorded decision is not this packet's business — and the sibling routes sat under that same reasoning until the operator explicitly overrode it. |
+| The reopened routes were taken into this packet rather than a new one | The operator asked for this spec to be reopened. Keeping one packet means the reversal of the original exclusion is recorded where the exclusion was made, and AC-013 becomes a superseded decision rather than a deleted one. |
+| `cline-pass` moved but was marked listing-only | It is what the evidence supports: a listing from Cline and nothing else, with the quota blocking the fallback id too. The operator chose to wire it with the live gate deferred rather than promote it, because advertising a route that fails on first dispatch is the exact defect this packet exists to remove. |
+| The V4-Flash Cline id was kept as a named fallback | It is the only dispatch-verified Cline DeepSeek route and the replacement has no measurement behind it, so the row names where to retreat to instead of leaving a dispatcher to rediscover it. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -119,6 +136,13 @@ One recovery is worth recording. A loop meant to revert version-field churn on u
 | `executor-config.vitest.ts` | PASS. 92 tests, 0 failures |
 | `check-frontmatter-versions.sh` | PASS. 2,961 files, exit 0 |
 | Repository scan for the retired id | PASS. No live surface. The only match is the OpenRouter-prefixed literal, a different route |
+| Live dispatch, `opencode-go/deepseek-v4.1-flash` (reopened pass) | PASS. Returned its token, exit 0, $0.0012 |
+| Catalog comparison, new id against the one it replaces | PASS. Identical cost, context, output ceiling, image input and effort variants |
+| `pi --list-models` after `pi update --models` | PASS. 1M context, 384K output, `thinking yes`, `images yes`. The id was absent before the refresh |
+| `cline-pass` live dispatch (reopened pass) | NOT RUN — blocked. `429 "monthly Clinepass limit"` on every attempt, including the known-good V4-Flash control, which is what attributes the block to the account |
+| `cline-pass` resolution | FAILS BY DESIGN of the catalog: Cline lists `deepseek/deepseek-v4.1-flash`, models.dev carries no cline-pass entry, so opencode never sends the request |
+| pi-side dispatch on the new id | DEFERRED to the operator. The dispatch-authorization hook denies a cli-pi self-dispatch from inside a pi session |
+| Second-pass suites and gate | PASS. 213 tests, 0 failures; `check-frontmatter-versions.sh` 2,894 files, exit 0 |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -133,6 +157,10 @@ One recovery is worth recording. A loop meant to revert version-field churn on u
 3. **The fan-out still maps two OpenRouter literals to a provider the operator says is not in use.** They were left deliberately by an earlier packet as the deep-loop runtime's contract rather than either skill's. They are inert unless a lineage names one of those exact literals.
 
 4. **The effort-pin pattern lives in three places.** The script, its TypeScript source and a private copy inside the fan-out test. The test copy is what caught the drift this time, but nothing forces the three to agree.
+
+5. **The `cline-pass` V4.1 route is unproven, and the roster says so in the row itself.** It is listed by Cline and never dispatch-tested. The context and output figures inherited from the V4-Flash entry may be wrong, and the quota blocks verification until the monthly window resets. `cline-pass/cline-pass/deepseek-v4-flash` stays the dispatch to use until one V4.1 turn passes.
+
+6. **A stale pi catalog can hide a correct id without erroring.** `pi --list-models` omitted `opencode-go/deepseek-v4.1-flash` until `pi update --models` ran, so the wired config resolved to nothing and said nothing about why.
 <!-- /ANCHOR:limitations -->
 
 ---

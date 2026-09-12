@@ -30,6 +30,8 @@ contextType: "general"
 
 ### Overview
 The route is probed before anything is wired, because the whole failure is that a documented route stopped existing without anyone noticing. Three calls settle it: the retired id, the candidate, and the candidate under the effort tier the pin forces. Only then does the literal move, and it moves in the runtime first because that is what dispatches, then through the rosters that describe it. The rosters carry what the probe returned rather than what the old row said.
+
+The reopened pass runs the same shape on two routes at once, and the shape is what exposed the difference between them. `opencode-go` probed clean on every axis, so it moves completely, including the cli-opencode mode default. `cline-pass` produced a listing and nothing else, so it moves in the rosters and the config while the row itself says it is unproven and names the fallback. The rule the pass follows: a route that cannot be dispatched is documented as such, never promoted to verified to satisfy a premise.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -40,7 +42,7 @@ The route is probed before anything is wired, because the whole failure is that 
 ### Definition of Ready
 - [x] The candidate confirmed live on the account that will use it
 - [x] The forced effort tier confirmed non-erroring before the pin is pointed at it
-- [x] The operator's scope confirmed as gateway-only, so sibling routes stay put
+- [x] The operator's scope confirmed as gateway-only for the first pass, then reopened on 2026-09-11 to include the two sibling DeepSeek routes (ADR-001)
 
 ### Definition of Done
 - [x] All acceptance criteria met
@@ -82,7 +84,8 @@ The gateway's deactivation is the producer. Everything below described or dispat
 | `.pi/settings.json` | The picker entry | Updated | Named in the setup doc |
 | `.pi/custom-providers.md` | Gateway setup and verification | Updated | Its own round-trip commands now name a live id |
 | Both skills' roster sections | What a dispatcher reads before choosing | Updated | No live reference to the retired id survives |
-| The `opencode-go`, `cline-pass` and OpenRouter literals | Different routes to the same family | Not a consumer, deliberately unchanged | Distinct strings, confirmed by the scan |
+| The `opencode-go` and `cline-pass` DeepSeek literals | Different routes to the same family | **Updated in the reopened pass.** `opencode-go` moved completely and is dispatch-verified; `cline-pass` moved in the rosters and config and is marked listing-only, with its blocker and fallback named | Live dispatch on `opencode-go`; Cline's own model listing plus the known-good control that proves the quota block on `cline-pass` |
+| The OpenRouter literals | A different route to the same family | Not a consumer, deliberately unchanged | Distinct strings, confirmed by the scan |
 
 Required inventories:
 - Live references to the retired id: `rg -n 'llmgateway/deepseek-v4-flash-vision-exp' .opencode .pi`, changelogs excluded because they record what was true.

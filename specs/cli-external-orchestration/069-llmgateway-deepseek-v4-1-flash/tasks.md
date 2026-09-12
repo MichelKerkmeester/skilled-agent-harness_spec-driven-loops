@@ -67,12 +67,30 @@ contextType: "general"
 
 ---
 
+<!-- ANCHOR:phase-4 -->
+## Phase 4: Reopened Sibling Routes
+
+The first pass excluded these two routes deliberately. The operator reopened them on 2026-09-11, and they
+probe very differently, so the tasks split by route rather than by file.
+
+- [x] T016 Probe `opencode-go` for a V4.1 Flash id, then dispatch one live turn at the pinned effort
+- [x] T017 Read the candidate's catalog record against the id it replaces: cost, context, output ceiling, image input, effort variants
+- [x] T018 Read Cline's own model listing for a V4.1 id, and establish from models.dev that opencode has no cline-pass entry to resolve it with
+- [x] T019 Establish the Cline quota block by dispatch, and run the known-good V4-Flash id as a control so the block is attributable to the account and not to the id
+- [x] T020 Move the `opencode-go` literal through both skills, the Pi picker and the deep-loop pin assertion
+- [x] T021 Move the `cline-pass` literal through both skills, the Pi provider block and the setup doc, marked listing-only with its fallback named
+- [x] T022 Refresh the Pi catalog and confirm it resolves the new id with image support
+- [x] T023 Re-run both suites, the frontmatter gate and the scan, and record which live gates are deferred and why
+<!-- /ANCHOR:phase-4 -->
+
+---
+
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
 - [x] All tasks marked `[x]`
 - [x] No `[B]` blocked tasks remaining
-- [x] Manual verification passed
+- [ ] Manual verification passed — **partly deferred by design.** The `opencode-go` swap is dispatch-verified. Two live gates remain open and are named rather than assumed: the pi-side turn on the new id (the dispatch-authorization hook denies a cli-pi self-dispatch from inside a pi session, so the operator owns it) and the cline-pass turn (the account's monthly quota answers `429`, resetting in about six days)
 <!-- /ANCHOR:completion -->
 
 ---
@@ -129,6 +147,12 @@ contextType: "general"
 - [x] CHK-021 [P0] Live dispatch behaviour confirmed against the gateway, not inferred from a listing
 - [x] CHK-022 [P1] Edge cases tested: retired id, prefixed id, every effort tier
 - [x] CHK-023 [P1] Error scenarios validated: `410`, `400` and `200` each observed and told apart
+- [x] CHK-024 [P0] The `opencode-go` route is dispatch-verified, not listing-verified
+- [x] CHK-025 [P0] The `cline-pass` row is nowhere claimed as dispatch-verified, and names both its blocker and its fallback
+- [x] CHK-026 [P1] The Cline block is attributable: the known-good V4-Flash id failed identically, so the `429` is the account's quota and not the new id
+- [x] CHK-027 [P1] The deferred live gates name their owner — the pi-side turn and the post-quota cline-pass turn
+- [x] CHK-028 [P1] The Pi catalog gap is recorded, because a correct config alone did not resolve the new id
+- [x] CHK-029 [P0] Both suites and the frontmatter gate pass from the final state after the second pass
 <!-- /ANCHOR:testing -->
 
 ---

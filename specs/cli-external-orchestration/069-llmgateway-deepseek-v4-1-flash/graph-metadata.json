@@ -38,21 +38,29 @@
       "repoint",
       "implementation"
     ],
-    "importance_tier": "normal",
+    "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
       "implementation-summary.md",
+      "handover.md",
       ".pi/models.json",
       ".pi/settings.json",
       ".pi/custom-providers.md",
       ".opencode/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md",
       ".opencode/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md",
       ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
-      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts"
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+      ".opencode/skills/cli-external-orchestration/cli-opencode/SKILL.md",
+      ".opencode/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md",
+      ".opencode/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/model-dispatch/cline-provider-id-format-dispatch.md",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts",
+      ".opencode/hooks/dispatch/pi/dispatch-preflight-lint.ts",
+      "specs/descriptions.json"
     ],
     "entities": [
       {
@@ -80,9 +88,21 @@
         "source": "derived"
       },
       {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
         "source": "derived"
       },
       {
@@ -122,7 +142,49 @@
         "source": "derived"
       },
       {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-opencode/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-reference.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md",
+        "source": "derived"
+      },
+      {
+        "name": "cline-provider-id-format-dispatch.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/model-dispatch/cline-provider-id-format-dispatch.md",
+        "source": "derived"
+      },
+      {
+        "name": "executor-config.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-preflight-lint.ts",
+        "kind": "code",
+        "path": ".opencode/hooks/dispatch/pi/dispatch-preflight-lint.ts",
+        "source": "derived"
+      },
+      {
+        "name": "descriptions.json",
+        "kind": "config",
+        "path": "specs/descriptions.json",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -134,75 +196,21 @@
         "source": "derived"
       },
       {
+        "name": "The Reopened Second Pass The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Purpose The",
         "kind": "proper_noun",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Scope",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "The Pi",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "File Path",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern One",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The bare literal `deepseek-v4-flash-vision-exp` was the DevPass route for DeepSeek Flash and the cli-pi default in the deep-loop fan-out",
     "created_at": "2026-09-10T20:03:32Z",
-    "last_save_at": "2026-09-10T20:21:29.109Z",
+    "last_save_at": "2026-09-12T06:01:12.870Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,15 +218,19 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "implementation-summary.md"
+      "decision-record.md",
+      "implementation-summary.md",
+      "handover.md"
     ],
-    "source_fingerprint": "sha256:dfbd1b37c75445bb83c62599c22c41dc7562b776e419659ee99bcd5314b3bb56",
+    "source_fingerprint": "sha256:013bd55d666b3459ab5b6acd6c7ee7bbfdacb06982c62ae7c0635e7bc295b314",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1c79f287106d1e892578839de60663721daf5e8414feecaf15f2f89bdb60d6e8",
-      "plan.md": "23c938af70159370e88c281e762af5ee32adfb55921e320fd03cd542a290a5e0",
-      "tasks.md": "f3f1ef13c350fc8f20e70e4b5c1cb251eca216663834760ccc961c9f9a0f0f64",
-      "implementation-summary.md": "74c1251a39efe801ebb7c4e4f5ef13afe4cd0cc7d2bca31975fb77bf3869268b"
+      "spec.md": "e785cedabdfb91b7d98275878a9a0d1d21c2badae8404136a1c7b45f2743dad9",
+      "plan.md": "436bebd852bf117e250a6258b10ca2d7cfaaee580f827becc2d765c0bb04b0a6",
+      "tasks.md": "31cb055e84cf1b8950840478416fd65360dc7e927f7b1c7092e09945c66c4be2",
+      "decision-record.md": "173ed7c17fc392284a7d9a67befd77fee529ed509d906425b87967d5ebc8ef7d",
+      "implementation-summary.md": "589e8761ebb042f2a08f661ca23916a0ab8b271eb536a4cc7edb0e3e908724e5",
+      "handover.md": "30c224415f94764be7402c4b05d03ac59ffdbc8001f2e0a441824c114859aba6"
     },
     "last_active_at": null
   }
