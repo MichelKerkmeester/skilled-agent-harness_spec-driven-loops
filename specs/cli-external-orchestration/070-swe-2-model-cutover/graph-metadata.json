@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/070-swe-2-model-cutover",
+  "spec_folder": "cli-external-orchestration/070-swe-2-model-cutover",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "swe-2 cutover",
+      "devin swe alias drift",
+      "replace swe 1.7 with swe 2",
+      "devin curated roster refresh",
+      "swe-2 cutover plan",
+      "devin roster verification approach",
+      "widen advisor vocabulary",
+      "compiled routing re-mint",
+      "swe-2 cutover tasks",
+      "devin roster task breakdown",
+      "alias drift verification checklist",
+      "swe-2 task dependencies"
+    ],
+    "key_topics": [
+      "swe-2",
+      "cutover",
+      "devin",
+      "swe",
+      "alias",
+      "drift",
+      "replace",
+      "curated",
+      "roster",
+      "refresh",
+      "plan",
+      "verification"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/cli-external-orchestration/cli-devin/SKILL.md",
+      ".opencode/skills/cli-external-orchestration/cli-devin/references/providers-and-models.md",
+      ".opencode/skills/cli-external-orchestration/cli-devin/references/cli-reference.md",
+      ".opencode/skills/cli-external-orchestration/cli-devin/README.md",
+      ".opencode/skills/cli-external-orchestration/ROUTER.md",
+      ".opencode/skills/cli-external-orchestration/graph-metadata.json",
+      ".opencode/skills/cli-external-orchestration/hub-router.json",
+      ".opencode/skills/cli-external-orchestration/description.json",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+      ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
+      ".opencode/skills/cli-external-orchestration/cli-devin/changelog/v1.4.2.0.md",
+      ".opencode/skills/system-skill-advisor/references/runtime/cli-front-door-contract.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-devin/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "providers-and-models.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-devin/references/providers-and-models.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-reference.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-devin/references/cli-reference.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-devin/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/cli-external-orchestration/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/cli-external-orchestration/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": ".opencode/skills/cli-external-orchestration/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "executor-config.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "v1.4.2.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-devin/changelog/v1.4.2.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-front-door-contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-skill-advisor/references/runtime/cli-front-door-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Devin",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Fusion",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The operator asked for a version bump",
+    "created_at": "2026-09-12T04:13:31.248Z",
+    "last_save_at": "2026-09-12T04:17:50.345Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:938313abaf177f99528b94a520dbe4e0cba3043c3f3c1082612fdfc6e05dfff9",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "476fdab1db1a5ead8c2857db10585b95a886e2d4f7938c19a7157ca4212e8701",
+      "plan.md": "e76e95b87035c28f4ba8139f20e28f497f699dafa70d7f13279c4c4822d372b1",
+      "tasks.md": "38ca7ae74b6e6cbe4fb94f9563438111a1798d81aabaeef81b90f2c6477b778a",
+      "implementation-summary.md": "a4091e1cdccfb902ffa54fe5db891b579261a160f77a5f1cb2c100b2aed8ada0"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

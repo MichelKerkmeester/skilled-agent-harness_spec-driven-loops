@@ -2,7 +2,7 @@
 name: cli-devin
 description: "Devin CLI executor for Cognition-backed coding, cloud handoff, subagent delegation, and cross-AI validation."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 1.4.1.0
+version: 1.4.2.0
 hard_rules:
   - id: stdin-redirect-required
     check: stdin-redirect-required
@@ -24,7 +24,7 @@ hard_rules:
 >
 > A running CLI skill never dispatches itself. The cli-X skills are for **cross-AI delegation only** — never self-invocation.
 
-Orchestrate Cognition's Devin CLI for tasks that benefit from a second AI perspective, multi-model selection (DeepSeek, GLM-5.2, GPT-5.6 Luna Max, Grok (4.5 and 4.6), SWE-1.7), subagent delegation with `run_subagent`, cloud handoff via `/handoff`, or parallel code generation.
+Orchestrate Cognition's Devin CLI for tasks that benefit from a second AI perspective, multi-model selection (DeepSeek, GLM-5.2, GPT-5.6 Luna Max, Grok (4.5 and 4.6), SWE-2), subagent delegation with `run_subagent`, cloud handoff via `/handoff`, or parallel code generation.
 
 **Core Principle**: Use Devin for what it does best. Delegate, validate, integrate. The calling AI stays the conductor.
 
@@ -37,7 +37,7 @@ Orchestrate Cognition's Devin CLI for tasks that benefit from a second AI perspe
 - **Cross-AI Validation** — code review second perspective, security audit alternative analysis, bug detection, independent implementation attempts.
 - **Cloud Handoff** — long-running tasks, complex refactors, CI-like validation, browser-dependent workflows offloaded to a cloud Devin session via `/handoff`.
 - **Subagent Delegation** — specialized profile matches (`subagent_explore`, `subagent_general`, custom `.devin/agents/[name]/AGENT.md` profiles), parallel task processing through Devin's native subagent system.
-- **Multi-Model Dispatch** — tasks that specifically want a model available through Devin's multi-model surface (DeepSeek, GLM-5.2, GPT-5.6 Luna Max, Grok (4.5 and 4.6), SWE-1.7), selected per-dispatch with `--model`.
+- **Multi-Model Dispatch** — tasks that specifically want a model available through Devin's multi-model surface (DeepSeek, GLM-5.2, GPT-5.6 Luna Max, Grok (4.5 and 4.6), SWE-2), selected per-dispatch with `--model`.
 - **Parallel Code Generation** — offloading generation, simultaneous code generations, background docs/test generation through subagents.
 - **Specialized Generation** — explicit Devin requests, test suite generation, code translation, batch documentation, visual input via clipboard paste or `@` file mentions.
 
@@ -197,7 +197,7 @@ then confirm when login finishes — the skill will retry the original dispatch.
 
 ### Default Invocation (Skill Default)
 
-**Default model + permission mode**: `swe` (alias → `swe-1-7-lightning`) · `dangerous` permission mode.
+**Default model + permission mode**: `swe` (alias → `swe-2`) · `dangerous` permission mode.
 
 ```bash
 devin -p \
@@ -230,7 +230,7 @@ devin -p \
 | "Use glm no-thinking" | `--model glm-5-2-none --permission-mode dangerous` |
 | "Use glm max" | `--model glm-5-2-max --permission-mode dangerous` |
 | "Use deepseek" | `--model deepseek-v4-flash-max --permission-mode dangerous` |
-| "Use swe max" | `--model swe-1-7 --permission-mode dangerous` |
+| "Use swe max" | `--model swe-2-max --permission-mode dangerous` |
 | "Use glm accept-edits" | `--model glm-5-2 --permission-mode accept-edits` |
 | "Use autonomous sandbox" | `--sandbox --permission-mode autonomous` |
 
@@ -238,9 +238,9 @@ Honor whichever dimensions the user names. Model stays on `swe` and permission m
 
 ### Model Selection
 
-Default `swe` (alias → `swe-1-7-lightning`). Switch per-dispatch with `--model <name>`; there is no headless reasoning-effort flag, so autonomy is set through `--permission-mode`. Curated families, alphabetical: DeepSeek (`deepseek-v4-flash-max`), GLM-5.2 (`glm-5-2` = **GLM-5.2 High**, free tier; `glm-5-2-1m` = High 1M; `glm-5-2-max` = Max; `glm-5-2-max-1m` = Max 1M; `glm-5-2-none` = No Thinking; `glm-5-2-none-1m` = No Thinking 1M), GPT-5.6 Luna Max (`gpt-5-6-luna-max`, `gpt-5-6-luna-max-priority`), SWE-1.7 (`swe-1-7`, `swe-1-7-lightning`, `swe-1-7-medium`) — full roster and the permission-mode effort lever in [references/providers-and-models.md](references/providers-and-models.md).
+Default `swe` (alias → `swe-2`). Switch per-dispatch with `--model <name>`; there is no headless reasoning-effort flag, so autonomy is set through `--permission-mode`. Curated families, alphabetical: DeepSeek (`deepseek-v4-flash-max`), GLM-5.2 (`glm-5-2` = **GLM-5.2 High**, free tier; `glm-5-2-1m` = High 1M; `glm-5-2-max` = Max; `glm-5-2-max-1m` = Max 1M; `glm-5-2-none` = No Thinking; `glm-5-2-none-1m` = No Thinking 1M), GPT-5.6 Luna Max (`gpt-5-6-luna-max`, `gpt-5-6-luna-max-priority`), SWE-2 (`swe-2-max`, `swe-2-high`, `swe-2-medium`; free, 262K context), SWE-1.7 (`swe-1-7`, `swe-1-7-lightning`, `swe-1-7-medium`) — full roster and the permission-mode effort lever in [references/providers-and-models.md](references/providers-and-models.md).
 
-**Selection Strategy**: default `swe` for quick edits and cost-sensitive work; switch to `gpt-5-6-luna-max` for reasoning-heavy work (architecture, security, deep planning); use `glm-5-2` / `glm-5-2-max` for general generation; use `swe-1-7` for max-effort SWE work. Per-task rationale table: [cli-reference.md](./references/cli-reference.md) §5.
+**Selection Strategy**: default `swe` for quick edits and cost-sensitive work; switch to `gpt-5-6-luna-max` for reasoning-heavy work (architecture, security, deep planning); use `glm-5-2` / `glm-5-2-max` for general generation; use `swe-2-max` for max-effort SWE work. Per-task rationale table: [cli-reference.md](./references/cli-reference.md) §5.
 
 ### Devin Subagent Delegation
 
@@ -449,7 +449,7 @@ This skill operates within the behavioral framework defined in [AGENTS.md](../..
 
 Key integrations:
 - **Gate 2**: Skill routing via `skill_advisor.py`
-- **Tool Routing**: Per AGENTS.md Section 6 decision tree
+- **Tool Routing**: Per AGENTS.md Section 5 decision tree
 - **Continuity**: Context preserved by `/speckit:save`, which writes through `generate-context.js`
 - **Execution**: Shared deep-loop runtime (`../../system-deep-loop/runtime/scripts/fanout-run.cjs`)
 

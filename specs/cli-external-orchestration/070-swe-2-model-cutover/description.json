@@ -1,0 +1,19 @@
+{
+  "level": "1",
+  "specFolder": "cli-external-orchestration/070-swe-2-model-cutover",
+  "description": "The operator asked for a version bump",
+  "keywords": [
+    "operator",
+    "asked",
+    "version",
+    "bump"
+  ],
+  "lastUpdated": "2026-09-12T04:17:50.120Z",
+  "specId": "070",
+  "folderSlug": "swe-2-model-cutover",
+  "parentChain": [
+    "cli-external-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

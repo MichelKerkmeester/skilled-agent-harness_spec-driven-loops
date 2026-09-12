@@ -196,7 +196,8 @@
         "cognition devin",
         "devin subagent",
         "devin cloud handoff",
-        "swe-1.7 dispatch"
+        "swe-1.7 dispatch",
+        "swe-2 dispatch"
       ]
     },
     "cli-pi-aliases": {

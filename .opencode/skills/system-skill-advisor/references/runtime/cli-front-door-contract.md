@@ -6,6 +6,7 @@ trigger_phrases:
   - "skill advisor cli commands"
   - "advisor exit codes"
   - "advisor cli output shape"
+version: 0.11.0.0
 importance_tier: "important"
 contextType: "reference"
 ---

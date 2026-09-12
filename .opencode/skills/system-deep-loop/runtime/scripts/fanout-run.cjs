@@ -1560,6 +1560,47 @@ function startLineageProgressHeartbeat({ cadenceMs, label, ledgerPath, getGauges
   return () => clearInterval(timer);
 }
 
+/**
+ * Shared-checkout churn detector.
+ *
+ * Write containment cannot tell its own leaf's churn from a second writer's, and its
+ * remedy is destructive: a restore overwrites bytes this run never wrote. The tree
+ * alone cannot name the writer, but the timing can. A lineage edits under its own
+ * artifact dir, so a BURST of newly dirty paths outside that dir between two
+ * heartbeats is another writer, while a couple of files coming and going is ordinary
+ * working-tree life. Sampling reuses the containment snapshot so the detector and the
+ * guard agree on what "dirty outside the lineage" means; a threshold of 0 disables
+ * the detector.
+ *
+ * Returns a sample function. The first sample only establishes the baseline, and a
+ * detection is final: sampling stops because the run's remaining heartbeats cannot
+ * make a restore safe once a foreign writer is proven.
+ */
+function startSharedCheckoutChurnDetector({ threshold, sampleDirtyPaths, onDetected }) {
+  const limit = Number(threshold);
+  if (!Number.isFinite(limit) || limit <= 0) return () => {};
+  let previousPaths = null;
+  let stopped = false;
+  return () => {
+    if (stopped) return;
+    try {
+      const currentPaths = new Set(sampleDirtyPaths());
+      const newlyDirty = previousPaths === null
+        ? 0
+        : Array.from(currentPaths).filter((path) => !previousPaths.has(path)).length;
+      previousPaths = currentPaths;
+      if (newlyDirty > limit) {
+        stopped = true;
+        onDetected(newlyDirty);
+      }
+    } catch {
+      // A detector that can fail a lane is worse than no detector: an unreadable
+      // tree (git absent, worktree gone) ends sampling and changes nothing.
+      stopped = true;
+    }
+  };
+}
+
 function startLineageStallWatchdog({ thresholdMs, label, ledgerPath, getLastEventAtMs, getGauges }) {
   if (!Number.isFinite(thresholdMs) || thresholdMs <= 0) {
     return () => {};
@@ -2235,6 +2276,10 @@ function buildCursorLineageCommand(lineage, prompt, resolvedSandbox, resolvedPer
 // list` (not dispatch-tested). Gemini 3.8 Flash High was retired from this
 // scope on 2026-09-06: Devin bills it at twice the 3.7 rate and one research
 // pass exhausted the daily quota; it remains reachable through cursor only.
+// The three SWE-2 effort ids joined 2026-09-12. Cognition had already repointed
+// the bare `swe` alias to that family, so the default was reaching SWE-2 before
+// these ids were pinnable. `swe-2-max` is dispatch-verified on 3000.10.21; the
+// other two are list-verified only. There is no bare `swe-2` id to pin.
 const DEVIN_ALLOWED_MODELS = new Set([
   'deepseek-v4-flash-max',
   'glm-5-2',
@@ -2249,6 +2294,9 @@ const DEVIN_ALLOWED_MODELS = new Set([
   'swe-1-7',
   'swe-1-7-lightning',
   'swe-1-7-medium',
+  'swe-2-high',
+  'swe-2-max',
+  'swe-2-medium',
 ]);
 const DEVIN_DEFAULT_MODEL = 'swe';
 
@@ -2648,8 +2696,10 @@ async function main() {
     });
   const runId = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
   const parsedFanoutConfig = parseFanoutConfig(rawConfig);
-  // CLI flag first, then the fan-out config value, then the schema default.
-  const containmentMode = containmentModeOverride ?? parsedFanoutConfig.containment.mode ?? 'preserve';
+  // CLI flag first, then the fan-out config value, then the schema default. Mutable
+  // because a detected second writer latches this run into preserve for good.
+  let containmentMode = containmentModeOverride ?? parsedFanoutConfig.containment.mode ?? 'preserve';
+  const containmentChurnThreshold = parsedFanoutConfig.containment.churnThreshold;
   const rawGuardConfig = rawConfigWithCliBudgetOverrides(rawConfig, args);
   const stallWatchdogMs = normalizeStallWatchdogMs(rawGuardConfig);
   const lineageBudgetGuards = normalizeLineageBudgetGuards(rawGuardConfig);
@@ -2963,13 +3013,6 @@ async function main() {
         getGauges: () => latestGauges,
       });
 
-      const stopProgressHeartbeat = startLineageProgressHeartbeat({
-        cadenceMs: progressHeartbeatMs,
-        label: lineage.label,
-        ledgerPath,
-        getGauges: () => latestGauges,
-      });
-
       // A non-streaming executor (a print-mode CLI that returns output only at the
       // end) emits no incremental stdout, so the stall-watchdog and the pool's stall
       // clock -- both fed by streamed output -- would flag a genuinely-working lineage
@@ -3026,6 +3069,45 @@ async function main() {
           unattributablePaths: orchestratorOwnedPaths,
         })
         : [];
+
+      // Churn sampling reuses the containment snapshot, exclusions included, so a
+      // sibling lineage's in-flight writes are not mistaken for a foreign writer's.
+      const sampleSharedCheckoutChurn = startSharedCheckoutChurnDetector({
+        threshold: containmentChurnThreshold,
+        sampleDirtyPaths: () => snapshotOutOfScopeDirtyPaths({
+          repoRoot: containmentRepoRoot,
+          artifactDir: lineageDir,
+          unattributableDirs: [...staticUnattributableDirs, ...preDispatchForeignRunDirs],
+          unattributablePaths: orchestratorOwnedPaths,
+        }).map((entry) => entry.path),
+        onDetected: (count) => {
+          // Latch preserve for the rest of the run, overriding the flag and the
+          // config: a later quiet sample cannot un-prove the foreign writer this
+          // burst shows, and restore acts on bytes this run did not write. Set
+          // before the append so a ledger write failure cannot leave the
+          // destructive mode armed on a checkout another writer shares.
+          containmentMode = 'preserve';
+          appendFanoutStatusLedger(ledgerPath, {
+            event: 'shared_checkout_detected',
+            label: lineage.label,
+            at: new Date().toISOString(),
+            severity: 'warning',
+            newly_dirty_paths: count,
+            churn_threshold: containmentChurnThreshold,
+            gauges: latestGauges,
+          });
+        },
+      });
+
+      // Started here so the sampler exists for every heartbeat it takes; the first
+      // sample is the baseline, so no detection can fire before dispatch.
+      const stopProgressHeartbeat = startLineageProgressHeartbeat({
+        cadenceMs: progressHeartbeatMs,
+        label: lineage.label,
+        ledgerPath,
+        getGauges: () => latestGauges,
+        onProgress: sampleSharedCheckoutChurn,
+      });
 
       let result;
       try {
@@ -3176,6 +3258,7 @@ async function main() {
       // outside the git worktree (hermetic test lineages).
       let containmentFindings = null;
       let containmentRecoveryHint = null;
+      let containmentQuarantinePath = null;
       if (containmentEnabled) {
         const containment = enforceWriteContainment({
           repoRoot: containmentRepoRoot,
@@ -3222,6 +3305,7 @@ async function main() {
           }
           containmentFindings = containment.violations;
           containmentRecoveryHint = containment.recoveryHint;
+          containmentQuarantinePath = containment.quarantinePath;
         }
       }
 
@@ -3231,7 +3315,7 @@ async function main() {
         // write found by the guard describes a COMPLETE lineage: report it as an advisory
         // rather than reject a lineage whose deliverables all exist.
         output.status = CONTAINMENT_ADVISORY_STATUS;
-        output.containment = { violations: containmentFindings, recoveryHint: containmentRecoveryHint };
+        output.containment = { violations: containmentFindings, recoveryHint: containmentRecoveryHint, quarantinePath: containmentQuarantinePath };
       }
       if (stateRead.statePath && !stateRead.missing && !stateRead.parseError) {
         const slotWindowEndIso = new Date().toISOString();

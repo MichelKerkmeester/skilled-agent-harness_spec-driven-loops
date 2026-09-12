@@ -59,16 +59,19 @@ Alphabetical by family, then by model uid within each family.
 | GPT-5.6 Luna | `gpt-5-6-luna-max` | 1M | Luna Max thinking; cheapest GPT-5.6 persona (added 2026-08-14) |
 | GPT-5.6 Luna | `gpt-5-6-luna-max-priority` | 1M | Luna Max, Fast — `-priority` is Devin's Fast suffix (added 2026-08-14) |
 | SWE-1.7 | `swe-1-7` | 262K | Max effort — free (beta) |
-| SWE-1.7 | `swe-1-7-lightning` | 203K | Lightning speed tier (beta); the `swe` alias resolves here |
+| SWE-2 | `swe-2-max` | 262K | Max effort — free; the `swe` alias resolves to this family |
+| SWE-2 | `swe-2-high` | 262K | High effort — free |
+| SWE-2 | `swe-2-medium` | 262K | Medium effort — free |
+| SWE-1.7 | `swe-1-7-lightning` | 203K | Lightning speed tier (beta) |
 | SWE-1.7 | `swe-1-7-medium` | 262K | Medium effort — free (beta) |
 
 ### Notes on the roster
-- Pass a family slug, alias, or full model uid to `--model` (e.g. `--model swe`, `--model glm-5-2-max`). The `swe` alias currently resolves to `swe-1-7-lightning`; pin the exact uid in scripts for predictability.
+- Pass a family slug, alias, or full model uid to `--model` (e.g. `--model swe`, `--model glm-5-2-max`). The `swe` alias resolves to the SWE-2 family; pin the exact uid in scripts for predictability.
 - **DeepSeek Max tiers + GPT-5.6 Luna Max join (2026-08-14).** `deepseek-v4-flash-max` (the Max thinking tier of the DeepSeek V4 Flash family) and `gpt-5-6-luna-max` + `gpt-5-6-luna-max-priority` (the first GPT-5.6 persona in this catalog) were confirmed present verbatim in the live `devin models list` output on 2026-08-14. Devin encodes the "Fast" speed tier as the `-priority` suffix, not `-fast`, so `gpt-5-6-luna-max-priority` is the Fast variant of Luna Max. These four were **list-verified only, not dispatch-tested** (operator decision).
 - **DeepSeek Flash is Max-thinking-only (policy).** Dispatch DeepSeek V4 Flash only via `deepseek-v4-flash-max` — on devin the max thinking tier is baked into the uid, and this roster carries no bare `deepseek-v4-flash`. The sibling cli-pi and cli-opencode surfaces reach the same tier through a flag: their fan-out builders pin `deepseek-v4-flash` to max thinking (`--thinking max` / `--variant max`).
 **Gemini 3.8 Flash High retired from cli-devin (2026-09-06).** The uid `gemini-3-8-flash-high` was in scope from 2026-08-15 and is now rejected by the fan-out allowlist: Devin bills it at twice the 3.7 rate and a single two-iteration research pass exhausted the daily quota. Gemini 3.8 Flash High stays reachable through the cursor route; do not dispatch it through Devin.
 - GLM tier suffixes stack: `-max` = Max reasoning, `-1m` = 1M context, `-none` = reasoning disabled; `glm-5-2` (no suffix) is GLM-5.2 High (free tier).
-- This is a curated subset. Devin's full 37-family roster (Claude, GPT, other Gemini, Kimi, older SWE, and the `adaptive` router) is available via `devin models list` but is out of this catalog's scope.
+- This is a curated subset. Devin's full 48-family roster (Claude, GPT, other Gemini, Kimi, older SWE, Fusion pairings, and the `adaptive` router) is available via `devin models list` but is out of this catalog's scope.
 - Subagents dispatched via `run_subagent` take a profile, not a model: `subagent_explore` runs on the cheap default, `subagent_general` inherits the parent model. To pin a model on a write-capable subagent, use a custom `.devin/agents/<name>/AGENT.md` with a `model:` field.
 
 ---
@@ -79,7 +82,7 @@ Dispatch this mode's default without opening any other file:
 
 | Field | Value |
 |-------|-------|
-| Default model | `swe` (alias → `swe-1-7-lightning`) |
+| Default model | `swe` (alias → `swe-2`) |
 | Default permission mode | `--permission-mode accept-edits` |
 | Prompt separator | `--` before the print-mode prompt (required) |
 

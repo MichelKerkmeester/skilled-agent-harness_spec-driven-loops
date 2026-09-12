@@ -23,7 +23,7 @@ Comprehensive reference for all Devin CLI commands, flags, models, configuration
 
 ### Core Principle
 
-Devin CLI is Cognition's terminal-based AI coding agent — a fast, minimal agent that lives both in the terminal and in the cloud. It fronts a broad multi-model surface; this skill curates six families in scope — DeepSeek, Gemini, GLM-5.2, GPT-5.6 (Luna Max), Grok (4.5 and 4.6), and SWE-1.7 (full catalog: [providers-and-models.md](./providers-and-models.md)). Devin's native Adaptive model router and its full 37-family roster remain available via `devin models list` but are out of this skill's curated scope. The skill dispatches `swe` (alias → `swe-1-7-lightning`) at `accept-edits` permission mode by default; users can override the model and mode. It provides direct access to multi-model coding, subagent delegation, cloud handoff, MCP integration, and session management — all governed by configurable permission modes.
+Devin CLI is Cognition's terminal-based AI coding agent — a fast, minimal agent that lives both in the terminal and in the cloud. It fronts a broad multi-model surface; this skill curates six families in scope — DeepSeek, Gemini, GLM-5.2, GPT-5.6 (Luna Max), Grok (4.5 and 4.6), and SWE-2 (full catalog: [providers-and-models.md](./providers-and-models.md)). Devin's native Adaptive model router and its full 48-family roster remain available via `devin models list` but are out of this skill's curated scope. The skill dispatches `swe` (alias → `swe-2`) at `accept-edits` permission mode by default; users can override the model and mode. It provides direct access to multi-model coding, subagent delegation, cloud handoff, MCP integration, and session management — all governed by configurable permission modes.
 
 ### Purpose
 
@@ -109,7 +109,7 @@ Credentials:
 
 | Flag | Short | Values | Description |
 |------|-------|--------|-------------|
-| `--model` | | `<model-name>` | Model to use — `swe` (default alias → `swe-1-7-lightning`), plus the curated DeepSeek / GLM-5.2 / GPT-5.6 Luna Max / Grok (4.5 and 4.6) / SWE-1.7 families (see §5) |
+| `--model` | | `<model-name>` | Model to use — `swe` (default alias → `swe-2`), plus the curated DeepSeek / GLM-5.2 / GPT-5.6 Luna Max / Grok (4.5 and 4.6) / SWE-2 families (see §5) |
 | `--permission-mode` | | canonical: `normal`, `accept-edits`, `smart`, `dangerous`, `autonomous` — aliases: `auto`→`normal`, `yolo`/`bypass`→`dangerous` | Permission mode controlling tool auto-approval. **`devin --help` prints only 4 of these 8 accepted values** — it is not the authoritative enum. See the probe below. |
 | `--print` | `-p` | `[<prompt>]` | Non-interactive mode: print response and exit |
 | `--continue` | `-c` | (none) | Continue the most recent session in the current directory |
@@ -198,9 +198,9 @@ devin -- add a login page
 
 ### Supported Models
 
-Devin dispatches **`swe`** (alias → `swe-1-7-lightning`) at the **`accept-edits`** permission mode by default. The model is switched per-dispatch with `--model <alias>` (short names resolve to the latest version in that family). There is no headless reasoning-effort flag — depth is expressed through the permission mode (autonomy) and the chosen model, not a reasoning flag; interactive REPL sessions cycle thinking depth with `Alt+T` (macOS: `Opt+T`).
+Devin dispatches **`swe`** (alias → `swe-2`) at the **`accept-edits`** permission mode by default. The model is switched per-dispatch with `--model <alias>` (short names resolve to the latest version in that family). There is no headless reasoning-effort flag — depth is expressed through the permission mode (autonomy) and the chosen model, not a reasoning flag; interactive REPL sessions cycle thinking depth with `Alt+T` (macOS: `Opt+T`).
 
-**Full curated roster (DeepSeek / Gemini / GLM-5.2 / GPT-5.6 Luna Max / SWE-1.7 families) → [providers-and-models.md](./providers-and-models.md).** Devin's native Adaptive router and full 37-family roster are out of this skill's curated scope.
+**Full curated roster (DeepSeek / Gemini / GLM-5.2 / GPT-5.6 Luna Max / SWE-2 families) → [providers-and-models.md](./providers-and-models.md).** Devin's native Adaptive router and full 48-family roster are out of this skill's curated scope.
 
 ### Setting the Model
 
@@ -231,12 +231,13 @@ devin -p --model swe -- "list all TODO comments"
 | Security audits | `gpt-5-6-luna-max` | Catches subtle vulnerability patterns |
 | Complex planning | `gpt-5-6-luna-max` / `glm-5-2-max` | Multi-strategy evaluation benefits from depth |
 | Code generation | `glm-5-2` / `glm-5-2-max` | Balanced for most generation tasks |
-| Standard code review | `glm-5-2` / `swe-1-7` | Efficient for pattern-based review |
-| Implementation | `glm-5-2` / `swe-1-7` | Balanced for translating specs to code |
-| Test generation | `swe-1-7` / `glm-5-2` | Solid test structure output |
+| Standard code review | `glm-5-2` / `swe-2-high` | Efficient for pattern-based review |
+| Implementation | `glm-5-2` / `swe-2-high` | Balanced for translating specs to code |
+| Test generation | `swe-2-high` / `glm-5-2` | Solid test structure output |
 | Documentation | `glm-5-2` / `swe` | Efficient for structured doc generation |
-| Quick edits / lookups | `swe` | Minimize cost and latency (lightning tier) |
-| Cost-sensitive work | `swe` / `swe-1-7-medium` | Reasonable intelligence at low cost |
+| Quick edits / lookups | `swe-2-medium` | Lowest-effort SWE-2 tier, free |
+| Lowest latency, cost accepted | `swe-1-7-lightning` | The only lightning tier; metered, not free |
+| Cost-sensitive work | `swe` / `swe-2-medium` | SWE-2 is free across all three effort tiers |
 
 Always specify `--model` explicitly in scripts for predictability; omitting it relies on the CLI default from `~/.config/devin/config.json`, which may differ across machines.
 
@@ -587,7 +588,7 @@ devin list --format json
 | `Command not found: devin` | Not installed or not in PATH | Run `devin setup` or `curl -fsSL https://devin.ai/install \| bash`; verify with `which devin` |
 | Task ran but no files changed | `devin -p` defaulted to `auto` (read-only) | Add `--permission-mode accept-edits` or `dangerous` |
 | Session resume fails | Session ID invalid or expired | List sessions via `devin list`; start a new session |
-| Slow response | Large context or complex task | Break task into smaller steps; use `auto` for analysis; use `swe` (lightning tier) for quick lookups |
+| Slow response | Large context or complex task | Break task into smaller steps; use `auto` for analysis; use `swe-2-medium` for quick lookups, or `swe-1-7-lightning` when latency matters more than cost |
 | `--sandbox` fails to start | Platform prerequisites missing | Run `devin sandbox setup` (Linux needs `bwrap` + `socat`; macOS works out of the box) |
 | Cloud handoff fails | Network issue or uncommitted changes blocking | Commit or stash unwanted changes; verify connectivity to `app.devin.ai` |
 | Subagent denied tools | Background subagent cannot prompt for permissions | Resume the subagent in the foreground to approve tools |

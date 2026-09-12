@@ -232,7 +232,7 @@ export function isPiModelAllowed(model: string): model is PiSupportedModel {
  *
  * DeepSeek's id is bare on cli-pi (`deepseek-v4.1-flash`, fronted by DevPass) and
  * provider-prefixed on cli-opencode
- * (`deepseek/deepseek-v4-flash`, `opencode-go/deepseek-v4-flash`); the OpenRouter `-latest`
+ * (`deepseek/deepseek-v4-flash`, `opencode-go/deepseek-v4.1-flash`); the OpenRouter `-latest`
  * variant (`deepseek/deepseek-v4-flash-latest`) is the same reasoning family and is pinned
  * too. GLM-5.3-Flash is matched on both its bare DevPass literal (`glm-5.3-flash`) and
  * its OpenRouter vendor-prefixed literal (`z-ai/glm-5.3-flash`); DevPass offers `max`, so the
@@ -373,12 +373,19 @@ export const DEVIN_SUPPORTED_MODELS = [
   'swe-1-7',
   'swe-1-7-lightning',
   'swe-1-7-medium',
+  'swe-2-high',
+  'swe-2-max',
+  'swe-2-medium',
 ] as const;
 export type DevinSupportedModel = typeof DEVIN_SUPPORTED_MODELS[number];
 
 /**
- * Follows the skill's curated default: `swe` is the SWE-1.7 Lightning alias,
- * rather than Devin's model router.
+ * Follows the skill's curated default: the bare `swe` alias, rather than Devin's
+ * model router. Cognition repointed that alias to the SWE-2 family, so the
+ * default resolves to SWE-2 now and the literal here did not have to move.
+ * The three SWE-2 effort ids joined 2026-09-12; `swe-2-max` is dispatch-verified
+ * on devin 3000.10.21, the other two list-verified only. There is no bare
+ * `swe-2` id to pin.
  */
 export const DEVIN_DEFAULT_MODEL: DevinSupportedModel = 'swe';
 
@@ -683,6 +690,16 @@ const fanoutControlShape = {
   // timeout. Capped at 5 minutes; zero (the old opt-out) is now rejected, not accepted.
   lagCeilingMs: z.number().int().positive().max(300000).default(300000),
   progressHeartbeatSeconds: z.number().nonnegative().default(60),
+  // Preserve is the default because attribution on a shared checkout is a guess, and a
+  // restore acts on that guess by overwriting the bytes found on disk; restore is opt-in.
+  containment: z.object({
+    mode: z.enum(['preserve', 'restore']).default('preserve'),
+    // How many newly dirty paths outside the lineage, per progress heartbeat, mean a
+    // second writer shares this checkout. A couple of them is ordinary life on a
+    // working tree (a build, an editor save, a formatter); a burst is somebody else.
+    // Three ignores the former and still catches the latter. Zero disables the check.
+    churnThreshold: z.number().int().nonnegative().default(3),
+  }).default({ mode: 'preserve', churnThreshold: 3 }),
   // The stop policy is a dispatch-level directive carried by the CLI flag, not
   // config data. Object parsing drops unknown keys silently, so a caller who put
   // it here would believe forced depth was pinned while the run stopped on
@@ -724,6 +741,10 @@ export interface FanoutConfig {
   readonly maxRetries: number;
   readonly lagCeilingMs: number;
   readonly progressHeartbeatSeconds: number;
+  readonly containment: {
+    readonly mode: 'preserve' | 'restore';
+    readonly churnThreshold: number;
+  };
 }
 
 function isFanoutManifest(config: ParsedFanoutConfig): config is FanoutManifest {
@@ -841,6 +862,7 @@ export function parseFanoutConfig(raw: unknown): FanoutConfig {
     maxRetries: parsedConfig.maxRetries,
     lagCeilingMs: parsedConfig.lagCeilingMs,
     progressHeartbeatSeconds: parsedConfig.progressHeartbeatSeconds,
+    containment: parsedConfig.containment,
   };
 
   // Reuse the canonical single-executor validator per entry (kind/model/flags).

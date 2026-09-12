@@ -43,7 +43,7 @@ The skill routes a request through the smart router, picks a curated model and a
 
 | Capability | What the skill can operate |
 |---|---|
-| **Multi-model dispatch** | a curated roster of six families (DeepSeek, Gemini, GLM-5.2, GPT-5.6 Luna Max, Grok 4.5 and 4.6, and SWE-1.7) chosen per dispatch with `--model` |
+| **Multi-model dispatch** | a curated roster of six families (DeepSeek, Gemini, GLM-5.2, GPT-5.6 Luna Max, Grok 4.5 and 4.6, and SWE-2) chosen per dispatch with `--model` |
 | **Subagent delegation** | read-only and full-access workers through `run_subagent`, plus custom `.devin/agents/<name>/AGENT.md` profiles |
 | **Cloud handoff** | a cloud VM with its own shell, browser and repo access via `/handoff` |
 | **Session management** | continue and resume workflows with `devin -c` and `devin -r <session-id>` |
@@ -88,7 +88,7 @@ devin --version
 devin -p --model swe --permission-mode accept-edits -- "Add input validation to src/utils.ts" 2>&1
 ```
 
-The default model is `swe` (alias for `swe-1-7-lightning`) and the default permission mode is `accept-edits`. Success looks like the file edited in place plus a text response on stdout. `devin -p` is non-interactive and exits after one turn.
+The default model is `swe` (alias for `swe-2`) and the default permission mode is `accept-edits`. Success looks like the file edited in place plus a text response on stdout. `devin -p` is non-interactive and exits after one turn.
 
 **Step 4: Hand a long-running task to the cloud.**
 
@@ -166,7 +166,7 @@ Use cli-devin when the task benefits from a second AI perspective: an independen
 | Self-invocation refused | The calling session is already inside Devin | Use a different runtime or exit the Devin session first |
 | Cloud handoff fails | Network issue or uncommitted changes block the transfer | Commit or stash the changes and verify connectivity to `app.devin.ai` |
 | Background subagent denied tools | Background workers cannot prompt for new permissions | Pre-approve the tools in the session or resume the subagent in the foreground |
-| Slow response | Large context or complex task | Split the task, pin `swe-1-7-lightning` for quick edits, use `auto` for pure analysis or raise the model tier for hard reasoning |
+| Slow response | Large context or complex task | Split the task, pin `swe-2-medium` for quick edits or `swe-1-7-lightning` when latency beats cost, use `auto` for pure analysis or raise the model tier for hard reasoning |
 | `--sandbox` not available | Platform prerequisites missing | Run `devin sandbox setup` (Linux needs `bwrap` and `socat`). macOS works out of the box |
 
 Full recovery procedures live in `references/cli-reference.md` and `references/integration-patterns.md`.
@@ -181,7 +181,7 @@ A: When the task benefits from a second AI perspective or a fresh context window
 
 **Q: Which model should I pick?**
 
-A: The default `swe` (alias for `swe-1-7-lightning`) balances speed and cost. Use `gpt-5-6-luna-max` for reasoning-heavy work, `glm-5-2` for general generation, `swe-1-7` for max-effort SWE work and `swe-1-7-lightning` for quick edits. The curated roster lives in `references/providers-and-models.md` and the full family list is available through `devin models list`.
+A: The default `swe` (alias for `swe-2`, free at 262K context) balances speed and cost. Use `gpt-5-6-luna-max` for reasoning-heavy work, `glm-5-2` for general generation, `swe-2-max` for max-effort SWE work and `swe-2-medium` for quick edits. The curated roster lives in `references/providers-and-models.md` and the full family list is available through `devin models list`.
 
 **Q: Can Devin keep working after I close my laptop?**
 

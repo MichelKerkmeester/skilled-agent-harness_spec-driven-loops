@@ -15,7 +15,7 @@ import {
 } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { isAbsolute, join, relative, resolve } from 'node:path';
-import { spawn } from 'node:child_process';
+import { spawn, spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { createRequire } from 'node:module';
 
@@ -1473,6 +1473,7 @@ describe('fanout-run.cjs — cli-devin adapter', () => {
       'glm-5-2', 'glm-5-2-1m', 'glm-5-2-max', 'glm-5-2-max-1m', 'glm-5-2-none', 'glm-5-2-none-1m',
       'gpt-5-6-luna-max', 'gpt-5-6-luna-max-priority',
       'swe', 'swe-1-7', 'swe-1-7-lightning', 'swe-1-7-medium',
+      'swe-2-high', 'swe-2-max', 'swe-2-medium',
     ];
     for (const model of allowed) {
       const command = buildLineageCommand({ kind: 'cli-devin', model }, 'p', 'workspace-write', 'default', opts);
@@ -1484,7 +1485,7 @@ describe('fanout-run.cjs — cli-devin adapter', () => {
     const binDir = makeTempDir('fanout-run-devin-rejected-model-');
     writeStubBinary(binDir, 'devin');
     const opts = { env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` } };
-    for (const model of ['kimi-k3-high', 'gpt-5-6-sol-high', 'cursor-grok-4.6-high', 'adaptive', 'opus', 'gemini-3-8-flash-high', 'gemini-3-8-flash-low', 'gemini-3-7-flash-high', 'deepseek-v4', 'deepseek-v4-pro', 'deepseek-v4-pro-max']) {
+    for (const model of ['kimi-k3-high', 'gpt-5-6-sol-high', 'cursor-grok-4.6-high', 'adaptive', 'opus', 'gemini-3-8-flash-high', 'gemini-3-8-flash-low', 'gemini-3-7-flash-high', 'deepseek-v4', 'deepseek-v4-pro', 'deepseek-v4-pro-max', 'swe-2', 'swe-1-7-lightning-medium']) {
       expect(() => buildLineageCommand({ kind: 'cli-devin', model }, 'p', 'workspace-write', 'default', opts))
         .toThrow(/not in the enforced allowlist/);
     }
@@ -2686,6 +2687,305 @@ describe('fanout-run.cjs — non-zero CLI exit is a fan-out failure', () => {
     expect(summary.failed).toBe(1);
     expect(summary.succeeded).toBe(1);
     expect(summary.all_failed).toBe(false);
+  });
+});
+
+describe('fanout-run.cjs — a containment finding does not fail a lineage that produced its artifacts', () => {
+  it('resolves a lineage with complete artifacts and a containment violation, carrying an advisory status', async () => {
+    const hermetic = useHermeticEnv('containment-advisory');
+    const repoRoot = hermetic.tmpDir;
+    const binDir = makeTempDir('fanout-run-containment-bin-');
+    const specFolder = 'specs/test-fanout-run-containment';
+    const baseDir = join(repoRoot, specFolder, 'research', 'artifacts');
+    const strayPath = join(repoRoot, 'stray-out-of-scope', 'leaf-escaped.txt');
+
+    // git resolves its target repository from these vars in preference to the working
+    // directory, so an inherited one would send the fixture's checks into the repository
+    // this test itself runs from.
+    const env: NodeJS.ProcessEnv = { ...envWithBin(hermetic, binDir), DEEP_LOOP_REPO_ROOT: repoRoot };
+    for (const key of ['GIT_DIR', 'GIT_WORK_TREE', 'GIT_COMMON_DIR', 'GIT_INDEX_FILE', 'GIT_CEILING_DIRECTORIES']) {
+      delete env[key];
+    }
+    // Containment diffs a real worktree, and that worktree must not inherit the developer's
+    // global gitignore: an ignored stray path never reaches git status. The artifact tree is
+    // pre-created because the pre-dispatch baseline can only be resolved once it exists.
+    expect(spawnSync('git', ['init', '-q', repoRoot], { encoding: 'utf8', env }).status).toBe(0);
+    spawnSync('git', ['-C', repoRoot, 'config', 'core.excludesFile', '/dev/null'], { encoding: 'utf8', env });
+    mkdirSync(join(baseDir, 'lineages', 'contained'), { recursive: true });
+
+    // The leaf writes every artifact the loop requires AND one path outside its lineage
+    // dir, so the only thing under test is what an already-complete lineage does with a found
+    // out-of-scope write.
+    writeFileSync(
+      join(binDir, 'opencode'),
+      [
+        '#!/bin/sh',
+        `mkdir -p ${shellQuote(join(repoRoot, 'stray-out-of-scope'))}`,
+        `echo escaped > ${shellQuote(strayPath)}`,
+        writeFanoutArtifactsShell(),
+        'echo "stub-done"',
+        'exit 0',
+        '',
+      ].join('\n'),
+      { mode: 0o755 },
+    );
+
+    const fanoutConfig = JSON.stringify({
+      executors: [{ label: 'contained', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', count: 1 }],
+      concurrency: 1,
+    });
+
+    const result = await spawnCjs(
+      fanoutRunScript,
+      [
+        '--spec-folder',
+        specFolder,
+        '--loop-type',
+        'research',
+        '--fanout-config-json',
+        fanoutConfig,
+        '--base-artifact-dir',
+        baseDir,
+        '--no-metadata-refresh',
+      ],
+      { cwd: repoRoot, env, timeoutMs: 20_000 },
+    );
+
+    // Fulfilled, not rejected: the finding is reported without discarding a lineage whose
+    // artifacts all exist.
+    expect(result.exitCode).toBe(0);
+    const payload = JSON.parse(result.stdout.split('\n').filter(Boolean).at(-1) ?? '{}') as {
+      results?: Array<{
+        status?: string;
+        output?: { status?: string; containment?: { violations?: Array<{ path?: string }> } };
+      }>;
+      summary?: { succeeded?: number; failed?: number; all_failed?: boolean };
+    };
+    expect(payload.summary).toMatchObject({ succeeded: 1, failed: 0, all_failed: false });
+    expect(payload.results?.[0]?.status).toBe('fulfilled');
+    expect(payload.results?.[0]?.output?.status).toBe('completed_with_containment_advisory');
+    expect(payload.results?.[0]?.output?.containment?.violations?.map((violation) => violation.path))
+      .toContain('stray-out-of-scope/leaf-escaped.txt');
+
+    // The finding reaches the ledger, and the out-of-scope file is still on disk: the guard
+    // reports what it saw instead of undoing it.
+    expect(existsSync(strayPath)).toBe(true);
+    const ledgerLines = readFileSync(join(baseDir, 'orchestration-status.log'), 'utf8')
+      .trim()
+      .split('\n')
+      .map((line) => JSON.parse(line) as Record<string, unknown>);
+    expect(ledgerLines.filter((event) => event.event === 'containment_violation')).toHaveLength(1);
+  });
+});
+
+describe('fanout-run.cjs — containment mode is an explicit opt-in', () => {
+  it('lets the --containment-mode flag override the fan-out config value, and rejects an unknown value', async () => {
+    // The config asks for 'restore' while the flag pins 'preserve', so the tracked
+    // out-of-scope file the leaf modifies must survive on disk. The same config without the
+    // flag is the negative control: it restores the file, so the first case cannot pass
+    // merely because a restore never happens.
+    const runCase = async (testId: string, extraArgs: string[]): Promise<string> => {
+      const hermetic = useHermeticEnv(testId);
+      const repoRoot = hermetic.tmpDir;
+      const binDir = makeTempDir(`fanout-run-containment-mode-bin-${testId}-`);
+      const specFolder = 'specs/test-fanout-run-containment-mode';
+      const baseDir = join(repoRoot, specFolder, 'research', 'artifacts');
+      const trackedPath = join(repoRoot, 'tracked-out-of-scope', 'leaf-escaped.txt');
+
+      const env: NodeJS.ProcessEnv = { ...envWithBin(hermetic, binDir), DEEP_LOOP_REPO_ROOT: repoRoot };
+      for (const key of ['GIT_DIR', 'GIT_WORK_TREE', 'GIT_COMMON_DIR', 'GIT_INDEX_FILE', 'GIT_CEILING_DIRECTORIES']) {
+        delete env[key];
+      }
+      expect(spawnSync('git', ['init', '-q', repoRoot], { encoding: 'utf8', env }).status).toBe(0);
+      spawnSync('git', ['-C', repoRoot, 'config', 'core.excludesFile', '/dev/null'], { encoding: 'utf8', env });
+      mkdirSync(join(baseDir, 'lineages', 'contained'), { recursive: true });
+      // Tracked and committed before dispatch, so a restore has HEAD content to roll back to.
+      mkdirSync(join(repoRoot, 'tracked-out-of-scope'), { recursive: true });
+      writeFileSync(trackedPath, 'committed-before-dispatch\n');
+      const gitIdentity = ['-c', 'user.email=fanout-test@example.invalid', '-c', 'user.name=fanout-test'];
+      expect(spawnSync(
+        'git', [...gitIdentity, '-C', repoRoot, 'add', 'tracked-out-of-scope/leaf-escaped.txt'], { encoding: 'utf8', env },
+      ).status).toBe(0);
+      expect(spawnSync(
+        'git', [...gitIdentity, '-C', repoRoot, 'commit', '-q', '-m', 'fixture'], { encoding: 'utf8', env },
+      ).status).toBe(0);
+
+      writeFileSync(
+        join(binDir, 'opencode'),
+        [
+          '#!/bin/sh',
+          `echo escaped > ${shellQuote(trackedPath)}`,
+          writeFanoutArtifactsShell(),
+          'echo "stub-done"',
+          'exit 0',
+          '',
+        ].join('\n'),
+        { mode: 0o755 },
+      );
+
+      const fanoutConfig = JSON.stringify({
+        executors: [{ label: 'contained', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', count: 1 }],
+        concurrency: 1,
+        containment: { mode: 'restore' },
+      });
+
+      const result = await spawnCjs(
+        fanoutRunScript,
+        [
+          '--spec-folder', specFolder,
+          '--loop-type', 'research',
+          '--fanout-config-json', fanoutConfig,
+          '--base-artifact-dir', baseDir,
+          '--no-metadata-refresh',
+          ...extraArgs,
+        ],
+        { cwd: repoRoot, env, timeoutMs: 20_000 },
+      );
+
+      expect(result.exitCode).toBe(0);
+      return readFileSync(trackedPath, 'utf8');
+    };
+
+    expect(await runCase('containment-mode-flag', ['--containment-mode', 'preserve'])).toBe('escaped\n');
+    expect(await runCase('containment-mode-config', [])).toBe('committed-before-dispatch\n');
+
+    // An unknown mode fails fast at argument validation, before any lineage is dispatched.
+    const invalidCwd = makeTempDir('fanout-run-containment-mode-invalid-');
+    const invalid = await spawnCjs(
+      fanoutRunScript,
+      [
+        '--spec-folder', 'specs/test-fanout-run-containment-mode',
+        '--loop-type', 'research',
+        '--fanout-config-json', JSON.stringify({ executors: [{ label: 'contained', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', count: 1 }] }),
+        '--base-artifact-dir', 'specs/test-fanout-run-containment-mode/research/artifacts',
+        '--containment-mode', 'revert',
+      ],
+      { cwd: invalidCwd, timeoutMs: 20_000 },
+    );
+    expect(invalid.exitCode).toBe(3);
+    expect(invalid.stdout).toContain('containmentMode must be preserve or restore');
+  });
+});
+
+describe('fanout-run.cjs — shared-checkout churn forces preserve', () => {
+  // Both cases run the same fixture: a git repo whose only tracked content is a set of
+  // out-of-scope files the stub overwrites in one burst while the run is in flight, with
+  // restore requested. Whether those bytes survive the run is the observable difference
+  // between a latched preserve and the requested restore.
+  const runChurnCase = async (
+    testId: string,
+    churnCount: number,
+  ): Promise<{
+    exitCode: number | null;
+    detectedEvents: Array<Record<string, unknown>>;
+    trackedContents: string[];
+  }> => {
+    const hermetic = useHermeticEnv(testId);
+    const repoRoot = hermetic.tmpDir;
+    const binDir = makeTempDir(`fanout-run-churn-bin-${testId}-`);
+    const specFolder = `specs/test-fanout-run-churn-${testId}`;
+    const baseDir = join(repoRoot, specFolder, 'research', 'artifacts');
+    const churnPaths = Array.from(
+      { length: churnCount },
+      (_, index) => join(repoRoot, 'tracked-churn', `churn-${index + 1}.txt`),
+    );
+    const trackedRelativePaths = churnPaths.map((churnPath) => relative(repoRoot, churnPath));
+
+    const env: NodeJS.ProcessEnv = { ...envWithBin(hermetic, binDir), DEEP_LOOP_REPO_ROOT: repoRoot };
+    for (const key of ['GIT_DIR', 'GIT_WORK_TREE', 'GIT_COMMON_DIR', 'GIT_INDEX_FILE', 'GIT_CEILING_DIRECTORIES']) {
+      delete env[key];
+    }
+    expect(spawnSync('git', ['init', '-q', repoRoot], { encoding: 'utf8', env }).status).toBe(0);
+    spawnSync('git', ['-C', repoRoot, 'config', 'core.excludesFile', '/dev/null'], { encoding: 'utf8', env });
+    mkdirSync(join(baseDir, 'lineages', 'contained'), { recursive: true });
+    mkdirSync(join(repoRoot, 'tracked-churn'), { recursive: true });
+    for (const churnPath of churnPaths) writeFileSync(churnPath, 'committed-before-dispatch\n');
+    const gitIdentity = ['-c', 'user.email=fanout-test@example.invalid', '-c', 'user.name=fanout-test'];
+    expect(spawnSync(
+      'git', [...gitIdentity, '-C', repoRoot, 'add', ...trackedRelativePaths], { encoding: 'utf8', env },
+    ).status).toBe(0);
+    expect(spawnSync(
+      'git', [...gitIdentity, '-C', repoRoot, 'commit', '-q', '-m', 'fixture'], { encoding: 'utf8', env },
+    ).status).toBe(0);
+
+    // The sleeps are the fixture's timing contract: the heartbeat takes its baseline
+    // before the burst lands between two samples, and the lane then stays alive long
+    // enough for the next sample to see it.
+    writeFileSync(
+      join(binDir, 'opencode'),
+      [
+        '#!/bin/sh',
+        'sleep 1',
+        ...churnPaths.map((churnPath) => `echo escaped > ${shellQuote(churnPath)}`),
+        'sleep 2',
+        writeFanoutArtifactsShell(),
+        'echo "stub-done"',
+        'exit 0',
+        '',
+      ].join('\n'),
+      { mode: 0o755 },
+    );
+
+    const fanoutConfig = JSON.stringify({
+      executors: [{ label: 'contained', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', count: 1 }],
+      concurrency: 1,
+      progressHeartbeatSeconds: 0.2,
+      containment: { mode: 'restore', churnThreshold: 3 },
+    });
+
+    const result = await spawnCjs(
+      fanoutRunScript,
+      [
+        '--spec-folder', specFolder,
+        '--loop-type', 'research',
+        '--fanout-config-json', fanoutConfig,
+        '--base-artifact-dir', baseDir,
+        '--no-metadata-refresh',
+      ],
+      { cwd: repoRoot, env, timeoutMs: 30_000 },
+    );
+
+    const ledgerEvents = readFileSync(join(baseDir, 'orchestration-status.log'), 'utf8')
+      .trim()
+      .split('\n')
+      .map((line) => JSON.parse(line) as Record<string, unknown>);
+
+    return {
+      exitCode: result.exitCode,
+      detectedEvents: ledgerEvents.filter((event) => event.event === 'shared_checkout_detected'),
+      trackedContents: churnPaths.map((churnPath) => readFileSync(churnPath, 'utf8')),
+    };
+  };
+
+  it('a burst above the threshold emits shared_checkout_detected and latches preserve despite a requested restore', async () => {
+    const run = await runChurnCase('churn-above', 4);
+
+    expect(run.exitCode).toBe(0);
+    expect(run.detectedEvents).toEqual([
+      expect.objectContaining({
+        label: 'contained',
+        severity: 'warning',
+        newly_dirty_paths: 4,
+        churn_threshold: 3,
+      }),
+    ]);
+    // Restore was requested, and the burst is what stopped it: the bytes the stub wrote
+    // are still on disk. Without the latch the same fixture restores them, as the
+    // containment-mode opt-in case above asserts.
+    expect(run.trackedContents).toEqual(['escaped\n', 'escaped\n', 'escaped\n', 'escaped\n']);
+  });
+
+  it('churn at or below the threshold leaves the requested restore mode alone', async () => {
+    const run = await runChurnCase('churn-below', 3);
+
+    expect(run.exitCode).toBe(0);
+    expect(run.detectedEvents).toHaveLength(0);
+    // No latch, so the requested restore applies and the committed content is back.
+    expect(run.trackedContents).toEqual([
+      'committed-before-dispatch\n',
+      'committed-before-dispatch\n',
+      'committed-before-dispatch\n',
+    ]);
   });
 });
 
