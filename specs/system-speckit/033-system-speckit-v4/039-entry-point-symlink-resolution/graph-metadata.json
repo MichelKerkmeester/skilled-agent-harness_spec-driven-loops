@@ -44,7 +44,8 @@
       "acceptance-criteria.md",
       "implementation-summary.md",
       "runtime/cli/lib/esm-entry.ts",
-      "runtime/tests/esm-entry-symlink.vitest.ts"
+      "runtime/tests/esm-entry-symlink.vitest.ts",
+      "runtime/tests/directive-lifecycle-adapter-parity.vitest.ts"
     ],
     "entities": [
       {
@@ -87,6 +88,12 @@
         "name": "esm-entry-symlink.vitest.ts",
         "kind": "test",
         "path": "runtime/tests/esm-entry-symlink.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "directive-lifecycle-adapter-parity.vitest.ts",
+        "kind": "test",
+        "path": "runtime/tests/directive-lifecycle-adapter-parity.vitest.ts",
         "source": "derived"
       },
       {
@@ -184,17 +191,11 @@
         "kind": "quoted",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Acceptance Criteria",
-        "kind": "proper_noun",
-        "path": "acceptance-criteria.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "An executable module decides whether to run its work by asking whether it is the process",
     "created_at": "2026-09-12T18:16:48.421Z",
-    "last_save_at": "2026-09-12T18:50:34.732Z",
+    "last_save_at": "2026-09-12T19:08:20.387Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +205,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bdb2142b89952d9ce803a117318a3932e09acb0636d85229d20021b4e7c34e2f",
+    "source_fingerprint": "sha256:90842290a810b60c9bcfb50a068c2ebf549b647892a8bcfbb02b7ffc8e306ecc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6a52d709e3014c7a5fdc94f5097cdfe6aa0bdafcb6558289b6f4c540bacabff6",
       "plan.md": "49cb528a2f3fe9b3a051263b74a4aaac1e162917e1b5538d704d6bd2c420aef7",
       "tasks.md": "39bcca870f8831896e35a8c1aad2dce83ef9e86aefc40f4edb1e37678b0f8c42",
-      "implementation-summary.md": "23f0f557739fe3e6bdd54cb17029fbc5f75501b8d8e39b82f6a6fb0a26c3c5b4"
+      "implementation-summary.md": "35941d0cd968c7e1f697cdb9a6b66c517cda16b19e879d097aec58f4c01c37ae"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -125,7 +125,7 @@ describe('registered adapter payload and envelope parity', () => {
   );
 
   it.each(['claude', 'codex', 'cursor', 'devin'] as const)(
-    '%s discovery path preserves its documented direct-entry behavior',
+    '%s answers when run through its mirror symlink, like a direct invocation',
     (runtime) => {
       const mirror = join(repoRoot, `.${runtime}`, 'hooks', 'user-prompt-submit.js');
       expect(lstatSync(mirror).isSymbolicLink()).toBe(true);
@@ -141,8 +141,12 @@ describe('registered adapter payload and envelope parity', () => {
         env: { ...process.env, SPECKIT_USER_PROMPT_TARGET: targetStub(), DIRECTIVE_TEST_CONTEXT: 'discovery context' },
       });
       expect(direct.status, direct.stderr).toBe(0);
-      if (runtime === 'claude') expect(direct.stdout).toContain('hookSpecificOutput');
-      else expect(direct.stdout).toBe('');
+      // Every adapter answers through the mirror, including the three that used to stay silent.
+      // Their entry check compared the path they were invoked with against the location they
+      // resolve for themselves, and a symlink makes those two differ, so the module loaded and
+      // did nothing while still exiting 0. The claude adapter carries no such check and always
+      // answered here, which is the behaviour the other three now match.
+      expect(direct.stdout).toContain(runtime === 'cursor' ? 'permission' : 'hookSpecificOutput');
     },
   );
 });
