@@ -24,7 +24,8 @@ Unlike every sibling runtime, Pi's guard layer is **native code, not config**: `
 | Surface | Mechanism | Source | Can it drift? |
 |---|---|---|---|
 | `agents/*.md` (13) | **generated** | `.opencode/agents/*.md` | Yes — `sync-agents-pi.cjs --check` |
-| `prompts/*.md` (35) | **generated** pointer stubs | `.opencode/commands/**/*.md` | Yes — `sync-prompts-pi.cjs --check` |
+| `prompts/*.md` (36) | **generated** pointer stubs, except the two native commands below | `.opencode/commands/**/*.md` | Yes — `sync-prompts-pi.cjs --check` |
+| `prompts/goal-pi.md`, `prompts/vision.md` | hand-authored native commands | none | No — exempt by `command-scope.cjs` |
 | `extensions/*.ts` + `lib/` | **hand-authored** guard bridges | shared guard cores under `.opencode/**` | Behavioral drift only; no checker |
 | `mcp.json` | **hand-authored** | — | Registers the code_mode MCP server. The advisor is not an MCP server and is not registered here: `extensions/prompt-advisor.ts` reaches it in-process. |
 | `settings.json` | **hand-authored** | — | Pi package configuration |
@@ -90,7 +91,7 @@ No installed surface reads `.pi/agents/**/*.md` today. Pi core exposes `--skill`
 ## 6. REQUIRED PARITY
 
 - **Gate 1 lookup instruction: inherited, not mirrored.** Pi loads `AGENTS.md` (or `CLAUDE.md`) from the working directory and its ancestors at startup, so the root `AGENTS.md` Gate 1 line reaches every Pi session in this repository without a `.pi` copy. Source: `@earendil-works/pi-coding-agent` 0.85.1, `README.md` §"Pi loads `AGENTS.md`" and `dist/core/resource-loader.js` `loadContextFileFromDir`, whose candidate list is `AGENTS.override.md`, `AGENTS.md`, `AGENTS.MD`, `CLAUDE.md`, `CLAUDE.MD`; `--no-context-files` is the only way to disable it. Recorded 2026-09-07; `/doctor speckit-retrieval` phase 0 reports it as `gate1_reach.pi`.
-- 13 agents and 35 prompts, matching the canonical trees exactly. The command count moves as commands are added or retired; the generators' `--check` is authoritative, not this number.
+- 13 agents and 36 prompts: 34 generated from the canonical tree plus two hand-authored native commands. The command count moves as commands are added or retired; the generators' `--check` is authoritative, not this number.
 - Every prompt stub's cited canonical path must exist. A stub pointing at a deleted file is the drift mode that actually occurred here (`interface-motion` outlived its command).
 
 ---

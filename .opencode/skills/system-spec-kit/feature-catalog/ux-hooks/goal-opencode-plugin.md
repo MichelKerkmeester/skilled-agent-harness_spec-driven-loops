@@ -1,10 +1,10 @@
 ---
 title: "Goal OpenCode plugin"
-description: "Local /goal OpenCode plugin that binds a session to a packet goal.md, injects its durable slice as active-goal context, exposes opencode_goal tools including bind, resent and packet, and documents restart and validation boundaries."
+description: "Local /goal-opencode OpenCode plugin that binds a session to a packet goal.md, injects its durable slice as active-goal context, exposes opencode_goal tools including bind, resent and packet, and documents restart and validation boundaries."
 trigger_phrases:
   - "goal opencode plugin"
   - "opencode-goal"
-  - "/goal command"
+  - "/goal-opencode command"
   - "active_goal injection"
   - "goalPrompt"
   - "bind packet goal"
@@ -13,13 +13,13 @@ version: 3.9.0.0
 
 # Goal OpenCode plugin
 
-This catalog entry maps the current `/goal` OpenCode plugin behavior to its implementation files, validation tests, and operator reference.
+This catalog entry maps the current `/goal-opencode` OpenCode plugin behavior to its implementation files, validation tests, and operator reference.
 
 <!-- sk-doc-template: skill_asset_feature_catalog -->
 
 ## 1. OVERVIEW
 
-The goal plugin gives OpenCode a session-level completion objective. Users call `/goal bind <packet-path>` to make a packet's `goal.md` the directive, or `/goal set <objective>` for a text goal, and the plugin persists the per-session record, injects an active-goal block on each turn (rendered from the packet file when bound, frontmatter never included, the packet's completion criteria carried as their own `criteria:` lines in both the full and compact block), and exposes tool-backed status, history, doctor/health, resume, resent, packet read and mutation operations.
+The goal plugin gives OpenCode a session-level completion objective. Users call `/goal-opencode bind <packet-path>` to make a packet's `goal.md` the directive, or `/goal-opencode set <objective>` for a text goal, and the plugin persists the per-session record, injects an active-goal block on each turn (rendered from the packet file when bound, frontmatter never included, the packet's completion criteria carried as their own `criteria:` lines in both the full and compact block), and exposes tool-backed status, history, doctor/health, resume, resent, packet read and mutation operations.
 
 This feature is cataloged under UX hooks because it is a runtime-injection and operator-feedback surface. It runs entirely inside the OpenCode plugin host: no daemon, no CLI bridge, and no dependency on anything else in this package.
 
@@ -39,7 +39,7 @@ Stored state keeps the packet pointer when bound, plus the raw sanitized `object
 
 Each OpenCode session resolves to a fixed 64-character SHA-256 state key, so long native ids cannot exceed the filesystem component limit and raw identity is not reversible from the filename. Valid active and archived files from the previous hex-key format migrate lazily after embedded-id validation; an occupied digest target wins without deleting the conflicting source.
 
-State does not grow unboundedly: on `session.deleted` the goal-state file is archived then pruned past a retention window, `/goal history` lists archived records read-only, and a throttled sweep on `session.created` archives orphaned active-state files past their own age threshold. `/goal doctor` and `/goal health` report active/archive counts, log sizes, last sweep time, and orphan candidates. `/goal resume` reactivates a `paused`, `usage_limited` or `budget_limited` goal on the OpenCode plugin; the runtime-neutral core resumes a `paused` goal only, because it has none of the other three states. See `.opencode/hooks/goal/goal-plugin.md` for the retention/sweep env vars and the `store_health`/`mutation` output fields.
+State does not grow unboundedly: on `session.deleted` the goal-state file is archived then pruned past a retention window, `/goal-opencode history` lists archived records read-only, and a throttled sweep on `session.created` archives orphaned active-state files past their own age threshold. `/goal-opencode doctor` and `/goal-opencode health` report active/archive counts, log sizes, last sweep time, and orphan candidates. `/goal-opencode resume` reactivates a `paused`, `usage_limited` or `budget_limited` goal on the OpenCode plugin; the runtime-neutral core resumes a `paused` goal only, because it has none of the other three states. See `.opencode/hooks/goal/goal-plugin.md` for the retention/sweep env vars and the `store_health`/`mutation` output fields.
 
 ---
 
@@ -50,7 +50,7 @@ State does not grow unboundedly: on `session.deleted` the goal-state file is arc
 | File | Layer | Role |
 |------|-------|------|
 | `.opencode/plugins/opencode-goal.js` | OpenCode plugin | State, injection, lifecycle, verifier, continuation gates, and plugin tools. |
-| `.opencode/commands/goal-opencode.md` | Slash command | Thin `/goal` router for `bind`, `unbind`, `resent`, `log`, `packet`, `set`, `show`, `history`, `doctor`, `health`, `clear`, `complete`, `pause`, and `resume`. |
+| `.opencode/commands/goal-opencode.md` | Slash command | Thin `/goal-opencode` router for `bind`, `unbind`, `resent`, `log`, `packet`, `set`, `show`, `history`, `doctor`, `health`, `clear`, `complete`, `pause`, and `resume`. |
 | `.opencode/hooks/goal/lib/goal-slice.cjs` | Shared module | Packet `goal.md` projections: durable slice, chat slice, objective slice, hash. |
 | `.opencode/skills/.state/goal/` | Runtime state | Per-session JSON records (pointer, operator copy, liveness, telemetry) and bounded debug logs. |
 | `.opencode/hooks/goal/goal-plugin.md` | Operator reference | Contract, env vars, boundaries, verification, and restart guidance. |
