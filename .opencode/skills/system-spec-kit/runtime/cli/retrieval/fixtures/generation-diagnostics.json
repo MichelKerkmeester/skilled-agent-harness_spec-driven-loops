@@ -1,12 +1,12 @@
 {
   "counts": {
     "duplicate-phrase": 54,
-    "missing-frontmatter": 7106,
+    "missing-frontmatter": 7107,
     "non-yaml-frontmatter": 1,
-    "ok": 14755,
+    "ok": 14773,
     "valid-empty-list": 7531
   },
-  "documentsScanned": 29447,
+  "documentsScanned": 29466,
   "ignoredMalformedDocuments": 1,
   "ignoredPaths": [
     {
@@ -16,7 +16,7 @@
   ],
   "ignoredPathsUnmatched": [],
   "malformedDocuments": 0,
-  "manifestHash": "6238f377a31706f7701e873a4ced4284c6c30b0b55664c32c46e74fe8736ad06",
+  "manifestHash": "6a7ad2ef225e8930059596e69a6ce6126ba6af6ca0feba1f46e61903b7a28b62",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -31,7 +31,7 @@
       "editor-fallback": 2,
       "generic-workflow-word": 3,
       "numeric-only": 41,
-      "ok": 35748,
+      "ok": 35802,
       "prose-sentence": 27,
       "single-token": 304,
       "stop-word-only": 3
@@ -95775,6 +95775,12 @@
       "line": 1,
       "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/010-repo-wide-goal-research/research/deep-research-strategy.md",
       "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/012-open-items-research/research/deep-research-strategy.md",
+      "reason": "no opening frontmatter delimiter"
     }
   ],
   "skippedPaths": [
@@ -98475,6 +98481,14 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/011-deep-research-swe-2/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/012-deep-research-glm-5-3/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-skill-advisor/z_archive",
       "reason": "excluded directory"
     },
@@ -100140,6 +100154,14 @@
     },
     {
       "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/011-goal-drift-remediation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/012-open-items-research/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/012-open-items-research/scratch",
       "reason": "excluded directory"
     },
     {

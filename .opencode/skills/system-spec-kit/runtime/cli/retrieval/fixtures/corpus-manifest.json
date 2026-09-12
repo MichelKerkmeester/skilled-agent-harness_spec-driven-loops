@@ -1,5 +1,5 @@
 {
-  "corpusHash": "9ea8777a132d7a6d852038f57e76bb3ba8a379c8c7f8e00755972d5ded14ca90",
+  "corpusHash": "da87a0cf6575d9a98fcdfa4efb0aefb34f46b1f7235221a3fa6baeaf550296a4",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -17,7 +17,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 29447,
+  "includedPathCount": 29466,
   "includedPaths": [
     ".opencode/hooks/README.md",
     ".opencode/hooks/codex-watchdog/README.md",
@@ -18778,6 +18778,18 @@
     "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/010-deep-research-residue/plan.md",
     "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/010-deep-research-residue/spec.md",
     "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/010-deep-research-residue/tasks.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/011-deep-research-swe-2/implementation-summary.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/011-deep-research-swe-2/plan.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/011-deep-research-swe-2/spec.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/011-deep-research-swe-2/tasks.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/012-deep-research-glm-5-3/implementation-summary.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/012-deep-research-glm-5-3/plan.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/012-deep-research-glm-5-3/spec.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/012-deep-research-glm-5-3/tasks.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/013-research-findings-remediation/implementation-summary.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/013-research-findings-remediation/plan.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/013-research-findings-remediation/spec.md",
+    "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/013-research-findings-remediation/tasks.md",
     "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/goal.md",
     "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/spec.md",
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-additional-release-readiness-findings/__tier2-h-deferred.md",
@@ -29416,6 +29428,13 @@
     "specs/system-speckit/033-system-speckit-v4/036-goal-unification/011-goal-drift-remediation/plan.md",
     "specs/system-speckit/033-system-speckit-v4/036-goal-unification/011-goal-drift-remediation/spec.md",
     "specs/system-speckit/033-system-speckit-v4/036-goal-unification/011-goal-drift-remediation/tasks.md",
+    "specs/system-speckit/033-system-speckit-v4/036-goal-unification/012-open-items-research/goal.md",
+    "specs/system-speckit/033-system-speckit-v4/036-goal-unification/012-open-items-research/implementation-summary.md",
+    "specs/system-speckit/033-system-speckit-v4/036-goal-unification/012-open-items-research/plan.md",
+    "specs/system-speckit/033-system-speckit-v4/036-goal-unification/012-open-items-research/research/deep-research-strategy.md",
+    "specs/system-speckit/033-system-speckit-v4/036-goal-unification/012-open-items-research/research/research.md",
+    "specs/system-speckit/033-system-speckit-v4/036-goal-unification/012-open-items-research/spec.md",
+    "specs/system-speckit/033-system-speckit-v4/036-goal-unification/012-open-items-research/tasks.md",
     "specs/system-speckit/033-system-speckit-v4/036-goal-unification/before-after.md",
     "specs/system-speckit/033-system-speckit-v4/036-goal-unification/goal.md",
     "specs/system-speckit/033-system-speckit-v4/036-goal-unification/spec.md",
@@ -29468,7 +29487,7 @@
     "specs/system-speckit/045-daemon-and-test-harness-hardening/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "6238f377a31706f7701e873a4ced4284c6c30b0b55664c32c46e74fe8736ad06",
+  "manifestHash": "6a7ad2ef225e8930059596e69a6ce6126ba6af6ca0feba1f46e61903b7a28b62",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -32175,6 +32194,14 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/011-deep-research-swe-2/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/012-deep-research-glm-5-3/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-skill-advisor/z_archive",
       "reason": "excluded directory"
     },
@@ -33840,6 +33867,14 @@
     },
     {
       "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/011-goal-drift-remediation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/012-open-items-research/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/012-open-items-research/scratch",
       "reason": "excluded directory"
     },
     {

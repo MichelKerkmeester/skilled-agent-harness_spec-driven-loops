@@ -61,6 +61,9 @@ This is a local OpenCode plugin contract, not an MCP tool and not a daemon-backe
 |---|---|---|
 | `OPENCODE_GOAL_DISABLED` | unset | Canonical. Set `1` to disable goal injection and plugin behavior. |
 | `OPENCODE_GOAL_PLUGIN_DISABLED` | unset | Legacy alias of the line above, honoured by the shared resolver. |
+| `OPENCODE_GOAL_VERIFIER_TIMEOUT_MS` | `30000` | Ceiling on one verifier run, in milliseconds. |
+| `OPENCODE_GOAL_CONTINUATION_TIMEOUT_MS` | `30000` | Ceiling on one guarded continuation turn, in milliseconds. |
+| `OPENCODE_GOAL_JSONL_MAX_BYTES` | `5242880` | Size at which a goal event log rotates. |
 | `OPENCODE_GOAL_STATE_DIR` | unset | Relocates the record store for both engines. The packet lock deliberately stays under the workspace state directory, so two sessions with different stores still serialize. |
 | `OPENCODE_GOAL_AUTONOMY` | unset | `active` enables guarded continuation; `smoke` logs would-fire decisions; unset or `passive` suppresses continuation. |
 | `OPENCODE_GOAL_DEBUG` | unset | Set `1` to append bounded debug events under `.state/goal`. |

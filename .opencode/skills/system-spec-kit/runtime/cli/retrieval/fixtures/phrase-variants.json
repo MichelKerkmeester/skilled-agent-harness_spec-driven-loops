@@ -1,5 +1,5 @@
 {
-  "manifestHash": "6238f377a31706f7701e873a4ced4284c6c30b0b55664c32c46e74fe8736ad06",
+  "manifestHash": "6a7ad2ef225e8930059596e69a6ce6126ba6af6ca0feba1f46e61903b7a28b62",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -9653,6 +9653,9 @@
     "advisor daemon framing": [
       "advisor daemon framing"
     ],
+    "advisor daemon probe tests": [
+      "advisor daemon probe tests"
+    ],
     "advisor daemon protocol": [
       "advisor daemon protocol"
     ],
@@ -10019,9 +10022,6 @@
     "advisor plugin bridge cutover": [
       "advisor plugin bridge cutover"
     ],
-    "advisor plugin bridge tests": [
-      "advisor plugin bridge tests"
-    ],
     "advisor plugin cli": [
       "advisor plugin cli"
     ],
@@ -10054,6 +10054,9 @@
     ],
     "advisor proxy removal": [
       "advisor proxy removal"
+    ],
+    "advisor python parity tests": [
+      "advisor python parity tests"
     ],
     "advisor quality fixes": [
       "advisor quality fixes"
@@ -18417,6 +18420,12 @@
     "check running timer": [
       "check running timer"
     ],
+    "check side residue coverage narrowing": [
+      "check-side residue coverage narrowing"
+    ],
+    "check side residue fix": [
+      "check-side residue fix"
+    ],
     "check skill graph health": [
       "check skill graph health"
     ],
@@ -19011,6 +19020,12 @@
     "citation retrofit coverage floor": [
       "citation retrofit coverage floor"
     ],
+    "citation spot check research": [
+      "citation spot check research"
+    ],
+    "citation verification checklist": [
+      "citation verification checklist"
+    ],
     "citationpolicy do not cite results": [
       "citationPolicy do_not_cite_results"
     ],
@@ -19064,6 +19079,9 @@
     ],
     "claim sweep results": [
       "claim sweep results"
+    ],
+    "claim verification tasks": [
+      "claim verification tasks"
     ],
     "claimadjudicationgate": [
       "claimAdjudicationGate"
@@ -21042,6 +21060,9 @@
     ],
     "cli pi fanout wiring tasks": [
       "cli-pi fanout wiring tasks"
+    ],
+    "cli pi gateway lineage": [
+      "cli-pi gateway lineage"
     ],
     "cli pi goal hook validation report": [
       "cli-pi goal hook validation report"
@@ -25649,11 +25670,20 @@
     "compat override": [
       "compat override"
     ],
+    "compat readme stale trigger phrase": [
+      "compat readme stale trigger phrase"
+    ],
+    "compat readme trigger phrase fixed": [
+      "compat readme trigger phrase fixed"
+    ],
     "compat shim advisor": [
       "compat shim advisor"
     ],
     "compat shim stdin": [
       "compat shim stdin"
+    ],
+    "compat suite verification": [
+      "compat suite verification"
     ],
     "compatibility": [
       "compatibility"
@@ -34616,6 +34646,9 @@
     "deep research executor split": [
       "deep research executor split"
     ],
+    "deep research fan out lineage": [
+      "deep research fan-out lineage"
+    ],
     "deep research fan out recipe": [
       "deep research fan-out recipe"
     ],
@@ -35034,6 +35067,9 @@
     ],
     "deep research tamper evident read": [
       "deep research tamper-evident read"
+    ],
+    "deep research task breakdown": [
+      "deep research task breakdown"
     ],
     "deep research task list": [
       "deep research task list"
@@ -44445,6 +44481,9 @@
     "fable subagent guard": [
       "fable subagent guard"
     ],
+    "fabricated state log timestamps": [
+      "fabricated state log timestamps"
+    ],
     "fabricated timestamps": [
       "fabricated timestamps"
     ],
@@ -46417,6 +46456,9 @@
     "five iteration plan": [
       "five iteration plan"
     ],
+    "five iterations no convergence": [
+      "five iterations no convergence"
+    ],
     "five lane fusion": [
       "five lane fusion"
     ],
@@ -47509,6 +47551,12 @@
     "four integration options": [
       "four integration options"
     ],
+    "four iteration count": [
+      "four iteration count"
+    ],
+    "four iterations no convergence": [
+      "four iterations no convergence"
+    ],
     "four laws unchanged": [
       "Four Laws unchanged"
     ],
@@ -47908,6 +47956,9 @@
     ],
     "frontmatter drift tasks": [
       "frontmatter drift tasks"
+    ],
+    "frontmatter gate check": [
+      "frontmatter gate check"
     ],
     "frontmatter hub vocabulary": [
       "frontmatter hub vocabulary"
@@ -49309,6 +49360,9 @@
     "github ruleset investigation": [
       "github ruleset investigation"
     ],
+    "gitignore claim refuted": [
+      "gitignore claim refuted"
+    ],
     "gitignore negation plan": [
       "gitignore negation plan"
     ],
@@ -49432,6 +49486,9 @@
     "glm 5 2 review report": [
       "glm-5-2 review report"
     ],
+    "glm 5 3 deep research decommission": [
+      "glm 5.3 deep research decommission"
+    ],
     "glm 5 3 flash": [
       "glm-5.3-flash"
     ],
@@ -49467,6 +49524,15 @@
     ],
     "glm 5 3 phase 003 tasks": [
       "glm 5.3 phase 003 tasks"
+    ],
+    "glm 5 3 research dispatch plan": [
+      "glm 5.3 research dispatch plan"
+    ],
+    "glm 5 3 research summary": [
+      "glm 5.3 research summary"
+    ],
+    "glm 5 3 research tasks": [
+      "glm 5.3 research tasks"
     ],
     "glm fan out unreachable": [
       "glm fan-out unreachable"
@@ -49825,8 +49891,14 @@
     "goal legacy cutover": [
       "goal legacy cutover"
     ],
+    "goal line length standard": [
+      "goal line length standard"
+    ],
     "goal log": [
       "goal log"
+    ],
+    "goal machine checks": [
+      "goal machine checks"
     ],
     "goal manage cli": [
       "goal manage cli"
@@ -49839,6 +49911,9 @@
     ],
     "goal manifest entry": [
       "goal manifest entry"
+    ],
+    "goal manifest rename": [
+      "goal manifest rename"
     ],
     "goal md across runtimes": [
       "goal.md across runtimes"
@@ -49869,6 +49944,9 @@
     ],
     "goal open decisions tasks": [
       "goal open decisions tasks"
+    ],
+    "goal open items research": [
+      "goal open items research"
     ],
     "goal opencode plugin": [
       "goal opencode plugin"
@@ -50031,6 +50109,9 @@
     ],
     "goal unification verification": [
       "goal unification verification"
+    ],
+    "goal unowned surfaces": [
+      "goal unowned surfaces"
     ],
     "goal validator": [
       "goal validator"
@@ -55954,6 +56035,9 @@
     "latency sweep": [
       "latency sweep"
     ],
+    "latent failure untraveled path": [
+      "latent failure untraveled path"
+    ],
     "launch wrapper child detection guard hook": [
       "launch wrapper child detection guard hook"
     ],
@@ -57254,6 +57338,9 @@
     "lineage executor schema": [
       "lineage executor schema"
     ],
+    "lineage iteration count": [
+      "lineage iteration count"
+    ],
     "lineage metadata repair plan": [
       "lineage metadata repair plan"
     ],
@@ -57831,6 +57918,9 @@
     ],
     "llmgateway glm 5 3 flash fanout": [
       "llmgateway glm-5.3-flash fanout"
+    ],
+    "llmgateway glm flash research": [
+      "llmgateway glm flash research"
     ],
     "llmgateway image declaration": [
       "llmgateway image declaration"
@@ -61234,6 +61324,9 @@
     ],
     "mcp to cli": [
       "mcp to cli"
+    ],
+    "mcp to cli migration checklist": [
+      "mcp to cli migration checklist"
     ],
     "mcp to cli tool transition": [
       "mcp to cli tool transition"
@@ -80086,6 +80179,9 @@
     "refusal reproduction": [
       "refusal reproduction"
     ],
+    "refuse a refuted claim": [
+      "refuse a refuted claim"
+    ],
     "refuse symlink traversal at open": [
       "refuse symlink traversal at open"
     ],
@@ -80097,6 +80193,9 @@
     ],
     "refuted audit findings": [
       "refuted audit findings"
+    ],
+    "refuted research finding record": [
+      "refuted research finding record"
     ],
     "regenerate 113 clean packets": [
       "regenerate 113 clean packets"
@@ -80844,6 +80943,9 @@
     "remediation plan delivered": [
       "remediation plan delivered"
     ],
+    "remediation plan research findings": [
+      "remediation plan research findings"
+    ],
     "remediation priority": [
       "remediation priority"
     ],
@@ -80855,6 +80957,12 @@
     ],
     "remediation sequence": [
       "remediation sequence"
+    ],
+    "remediation summary research findings": [
+      "remediation summary research findings"
+    ],
+    "remediation task breakdown": [
+      "remediation task breakdown"
     ],
     "remediation task list per finding": [
       "remediation task list per finding"
@@ -82165,6 +82273,9 @@
     "research findings registry": [
       "research findings registry"
     ],
+    "research findings remediation": [
+      "research findings remediation"
+    ],
     "research frontmatter authoring complete": [
       "research frontmatter authoring complete"
     ],
@@ -82467,6 +82578,9 @@
     ],
     "research tuning guide": [
       "research tuning guide"
+    ],
+    "research verification checklist": [
+      "research verification checklist"
     ],
     "resend the goal": [
       "resend the goal"
@@ -87861,11 +87975,17 @@
     "second lens review": [
       "second lens review"
     ],
+    "second lineage findings": [
+      "second lineage findings"
+    ],
     "second opinion": [
       "second opinion"
     ],
     "second pass audit remediation": [
       "second-pass audit remediation"
+    ],
+    "second research lineage advisor": [
+      "second research lineage advisor"
     ],
     "secondary factors override": [
       "secondary factors override"
@@ -100498,6 +100618,18 @@
     "swe 2 cutover tasks": [
       "swe-2 cutover tasks"
     ],
+    "swe 2 deep research decommission": [
+      "swe-2 deep research decommission"
+    ],
+    "swe 2 research dispatch plan": [
+      "swe-2 research dispatch plan"
+    ],
+    "swe 2 research summary": [
+      "swe-2 research summary"
+    ],
+    "swe 2 research tasks": [
+      "swe-2 research tasks"
+    ],
     "swe 2 task dependencies": [
       "swe-2 task dependencies"
     ],
@@ -102781,8 +102913,17 @@
     "thinkinglevelmap tasks": [
       "thinkingLevelMap tasks"
     ],
+    "third lineage findings": [
+      "third lineage findings"
+    ],
+    "third lineage task breakdown": [
+      "third lineage task breakdown"
+    ],
     "third party performance webflow": [
       "third party performance webflow"
+    ],
+    "third research lineage advisor": [
+      "third research lineage advisor"
     ],
     "thirteen packets research review": [
       "thirteen packets research review"
@@ -103634,6 +103775,12 @@
     "transport reconciliation tasks": [
       "transport reconciliation tasks"
     ],
+    "transport removal lessons": [
+      "transport removal lessons"
+    ],
+    "transport removal lessons third reading": [
+      "transport removal lessons third reading"
+    ],
     "transport return reconciliation": [
       "transport return reconciliation"
     ],
@@ -103843,6 +103990,9 @@
     ],
     "trigger phrase configuration": [
       "trigger phrase configuration"
+    ],
+    "trigger phrase correction": [
+      "trigger phrase correction"
     ],
     "trigger phrase generic negatives": [
       "trigger phrase generic negatives"
@@ -105981,6 +106131,9 @@
     "verification checklist": [
       "verification checklist"
     ],
+    "verification class blind to failure class": [
+      "verification class blind to failure class"
+    ],
     "verification confidence scoring": [
       "verification confidence scoring"
     ],
@@ -106037,6 +106190,9 @@
     ],
     "verify alignment drift tasks": [
       "verify alignment drift tasks"
+    ],
+    "verify before acting on a finding": [
+      "verify before acting on a finding"
     ],
     "verify class rename against fixtures": [
       "verify class rename against fixtures"
@@ -107493,6 +107649,9 @@
     "which file does this css rule go in": [
       "which file does this css rule go in"
     ],
+    "which findings survived verification": [
+      "which findings survived verification"
+    ],
     "which folders owe readme and code": [
       "which folders owe readme and code"
     ],
@@ -108242,6 +108401,9 @@
     ],
     "write containment regenerable state exemption": [
       "write-containment regenerable state exemption"
+    ],
+    "write containment research": [
+      "write containment research"
     ],
     "write containment revert": [
       "write containment revert"

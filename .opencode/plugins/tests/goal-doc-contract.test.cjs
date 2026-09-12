@@ -84,3 +84,54 @@ test('the disable variable a goal surface names is the concern its canonical nam
     assert.equal(named, canonical, `${rel} prints ${named} where an operator must set ${canonical}`);
   }
 });
+
+// Two checks that would have caught defects this repository actually shipped: a
+// configurable knob an operator can set but cannot discover, and a kill-switch
+// name taught in a document that disables nothing. Both are cheap to state and
+// both fail on the exact regression they describe.
+
+test('every goal environment variable the code reads is documented', () => {
+  const SOURCES = [
+    '.opencode/plugins/opencode-goal.js',
+    '.opencode/hooks/goal/lib/goal-core.cjs',
+    '.opencode/hooks/goal/lib/goal-slice.cjs',
+    '.opencode/hooks/goal/bin/goal.cjs',
+  ];
+  const names = new Set();
+  for (const rel of SOURCES) {
+    for (const m of read(rel).matchAll(/'(OPENCODE_GOAL_[A-Z0-9_]+)'/g)) names.add(m[1]);
+  }
+  assert.ok(names.size > 0, 'the sources name at least one goal variable');
+
+  const example = read('.env.example');
+  const undocumented = [...names].filter((name) => !example.includes(name)).sort();
+  assert.deepEqual(
+    undocumented,
+    [],
+    `these are read in code and appear in no example file, so an operator cannot discover them:\n${undocumented.join('\n')}`,
+  );
+});
+
+test('every goal kill-switch name a document teaches actually disables something', () => {
+  const resolver = read('.opencode/hooks/shared/hook-flags.cjs');
+  const canonical = (resolver.match(/goal:\s*"([A-Z_]+)"/) || [])[1];
+  const aliasBlock = (resolver.match(/goal:\s*\[([^\]]*)\]/) || [])[1] || '';
+  const live = new Set([canonical, ...[...aliasBlock.matchAll(/"([A-Z_]+)"/g)].map((m) => m[1])]);
+  assert.ok(canonical, 'the shared resolver declares a canonical goal flag');
+
+  const ROSTERS = [
+    '.env.example',
+    '.opencode/plugins/README.md',
+    '.opencode/hooks/goal/README.md',
+    '.opencode/hooks/goal/goal-plugin.md',
+  ];
+  const dead = [];
+  for (const rel of ROSTERS) {
+    let text;
+    try { text = read(rel); } catch { continue; }
+    for (const m of text.matchAll(/\b([A-Z][A-Z0-9_]*GOAL[A-Z0-9_]*DISABLED)\b/g)) {
+      if (!live.has(m[1])) dead.push(`${rel} -> ${m[1]}`);
+    }
+  }
+  assert.deepEqual(dead, [], `documents teach kill-switch names the resolver does not honour:\n${dead.join('\n')}`);
+});
