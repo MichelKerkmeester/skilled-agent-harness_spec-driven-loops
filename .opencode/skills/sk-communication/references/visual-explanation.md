@@ -58,7 +58,7 @@ Which form carries the content. Pick the smallest one that answers the question 
 
 ### Selection Rules
 
-1. Prefer the plainest form that works. Reach for HTML last, not first.
+1. Prefer the plainest form that works. Reach for HTML structure last, not first — this is about what the visual is, not where it goes. Every form above is published as a page by default.
 2. Include only what resolves the current question. Omit files, props, states, branches, and boundaries that do not.
 3. Put the visual first and keep prose short. Place supporting text directly beside the part it explains.
 4. Read before you draw. Never diagram a structure inferred from a filename or a symbol you have not opened.
@@ -94,7 +94,14 @@ fenced and inline code · file and directory paths · terminal commands, scripts
 
 This lane **creates new explanatory material** in-context. It does not rewrite a byte stream, does not call a local or hosted model, and is therefore not gated by the projection lane's enablement flag or egress rules.
 
-It writes a file only when the operator passes `--artifact`, and then only a newly created, self-contained HTML file. Rewriting an existing on-disk file remains out of scope for the whole skill.
+It publishes the visual as a new self-contained page by default, and renders in the reply instead when
+the operator passes `--inline`. Either way it creates only new material: rewriting an existing on-disk
+file remains out of scope for the whole skill.
+
+The default is publishing rather than display because of where each form actually lands. A published
+page renders Mermaid as a diagram; the same Mermaid fenced in a reply displays, in most terminals, as
+its own source. A command whose stated job is "the smallest visual that makes the point land" fails
+that job at the last step if its default output is source text the reader has to imagine.
 
 **Note:** Explanation output is display-only by default; the terminal is the primary surface.
 
@@ -107,4 +114,4 @@ It writes a file only when the operator passes `--artifact`, and then only a new
 ### Core
 
 - [SKILL.md](../SKILL.md) — the two-lane model, triggers, and operator trigger commands.
-- `.opencode/commands/rewrite/explain-visually.md` — the command contract: `/rewrite:explain-visually [--depth=expert|plain|novice] [--artifact] [topic]`.
+- `.opencode/commands/rewrite/explain-visually.md` — the command contract: `/rewrite:explain-visually [--depth=expert|plain|novice] [--inline] [topic]`.

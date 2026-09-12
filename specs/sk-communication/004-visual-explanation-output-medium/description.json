@@ -1,0 +1,23 @@
+{
+  "level": "1",
+  "specFolder": "sk-communication/004-visual-explanation-output-medium",
+  "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+  "keywords": [
+    "broken",
+    "missing",
+    "inefficient",
+    "sentences",
+    "describing",
+    "specific",
+    "pain",
+    "point"
+  ],
+  "lastUpdated": "2026-09-12T10:02:43.634Z",
+  "specId": "004",
+  "folderSlug": "visual-explanation-output-medium",
+  "parentChain": [
+    "sk-communication"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
