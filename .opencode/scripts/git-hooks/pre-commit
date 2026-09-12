@@ -356,8 +356,22 @@ if [[ "${SPECKIT_SKIP_ROUTE_REMINT:-0}" != "1" ]] && command -v node >/dev/null 
 
     # Prove it. An add that silently did nothing leaves the commit carrying a stale
     # manifest, and no later local gate can see that, so confirm both paths are in
-    # the index before letting the commit through.
-    ROUTE_CONFIRM="$(git diff --cached --name-only -- "$ROUTE_RUNTIME_FILE" "$ROUTE_AUTHORED_FILE" 2>/dev/null | wc -l | tr -d ' ')"
+    # the index carrying exactly what the mint just wrote.
+    #
+    # Ask that question directly, per path: tracked, and no worktree-versus-index
+    # difference. The earlier form counted paths whose staged blob differed from
+    # HEAD, which is a different proposition and wrong in both directions. A mint
+    # that produced no change left both manifests equal to HEAD, so the count was
+    # zero and a correct commit was blocked. Worse, a stale blob already staged from
+    # an earlier run still differed from HEAD, so the count was two and a failed add
+    # passed, which is precisely the case this check exists to catch.
+    ROUTE_CONFIRM=0
+    for ROUTE_MANIFEST in "$ROUTE_RUNTIME_FILE" "$ROUTE_AUTHORED_FILE"; do
+      if git ls-files --error-unmatch -- "$ROUTE_MANIFEST" >/dev/null 2>&1 \
+         && git diff --quiet -- "$ROUTE_MANIFEST" 2>/dev/null; then
+        ROUTE_CONFIRM=$((ROUTE_CONFIRM + 1))
+      fi
+    done
     if [[ "$ROUTE_CONFIRM" != "2" ]]; then
       echo "" >&2
       echo "BLOCKED [gate:route-remint]: re-minted $ROUTE_HUB but only $ROUTE_CONFIRM of 2 manifests reached the index." >&2

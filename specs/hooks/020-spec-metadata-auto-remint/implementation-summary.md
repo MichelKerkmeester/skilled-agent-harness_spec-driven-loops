@@ -121,6 +121,30 @@ Tracing it also exposed a live bug in the gate being added here. It resolved a d
 ---
 
 <!-- ANCHOR:limitations -->
+## Follow-Up: The Sibling Route-Remint Gate Proved The Wrong Proposition
+
+The route-remint gate sits directly above this one in the same `pre-commit` file and shares its shape: re-mint, copy the runtime manifest over its authored twin, `git add` both, then confirm the add landed. Its confirmation step was wrong, and it was wrong in both directions.
+
+It counted paths whose **staged blob differs from HEAD**, while its own comment says the intent is to confirm both paths are **in the index**. Those are independent propositions.
+
+- A mint that produced no change left both manifests equal to HEAD, so the count was zero and a correct commit was blocked. This fired twice in one session, on `sk-code` and on `cli-external-orchestration`, and both times the only way forward was the documented bypass.
+- Worse in the other direction: a stale blob already staged from an earlier run still differs from HEAD, so the count reached two and a failed `git add` passed. That is precisely the failure the check exists to catch.
+
+The confirmation now asks the intended question per path: the path is tracked, and there is no worktree-versus-index difference, so the index holds exactly what the mint just wrote. A no-op mint passes, and a failed add still blocks.
+
+Reproduced both directions in an isolated repository with hooks disabled, and again against this repository's real `sk-code` manifests:
+
+| Scenario | Old check | New check |
+|---|---|---|
+| Mint produced no change | 0, blocks a correct commit | 2, allows |
+| Mint rewrote, add did not land | 2, passes a stale index | 1, blocks |
+
+`bash -n` and `shellcheck -S error` both clean on the edited hook.
+
+The diagnosis came from a DeepSeek dispatch through cli-opencode. It found the false-pass direction, which the original report of this defect had missed, and both directions were confirmed here before the change was written.
+
+---
+
 ## Known Limitations
 
 1. **Seven working directories inside two packets still get no derived metadata.** They are named `research`, `packet-docs`, `sandbox-test` and `scopes/A` through `C`, and they hold a `spec.md` without following the numbered-folder convention. That is now the correct outcome rather than a failure, and renaming them would change paths inside two completed packets. It is an operator decision, not a repair.
