@@ -1,5 +1,5 @@
 {
-  "manifestHash": "7d2e42001157e9dad4fb32e6b6568c7de06eb614bb8127d6f3c04a10a9b23b0f",
+  "manifestHash": "58a56d8ec76e89d58b2787a7525e38801e807b586405d62f862c97be51152c86",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -7797,9 +7797,6 @@
     "045 010 upgrade safety operability audit": [
       "045-010-upgrade-safety-operability-audit"
     ],
-    "045 daemon and test harness hardening": [
-      "045-daemon-and-test-harness-hardening"
-    ],
     "045 hardening review": [
       "045 hardening review"
     ],
@@ -9261,6 +9258,9 @@
     "additive migration": [
       "additive migration"
     ],
+    "additive template": [
+      "additive template"
+    ],
     "additive validator change plan": [
       "additive validator change plan"
     ],
@@ -9290,6 +9290,15 @@
     ],
     "adjacent span coalescing": [
       "adjacent-span-coalescing"
+    ],
+    "adjacent surface plan": [
+      "adjacent surface plan"
+    ],
+    "adjacent surface rules": [
+      "adjacent surface rules"
+    ],
+    "adjacent surface tasks": [
+      "adjacent surface tasks"
     ],
     "adjacent upcaster verification": [
       "adjacent upcaster verification"
@@ -9475,11 +9484,17 @@
     "adr numeric prefix false positive": [
       "ADR numeric prefix false positive"
     ],
+    "adr per contradiction": [
+      "adr per contradiction"
+    ],
     "adr prefix registry": [
       "ADR prefix registry"
     ],
     "adr req dr packet label cleanup": [
       "ADR REQ DR packet label cleanup"
+    ],
+    "adr tasks": [
+      "adr tasks"
     ],
     "adr utilization review": [
       "adr utilization review"
@@ -11170,6 +11185,9 @@
     "agents md cleanup tasks": [
       "agents-md cleanup tasks"
     ],
+    "agents md communication": [
+      "agents md communication"
+    ],
     "agents md improvement": [
       "AGENTS.md improvement"
     ],
@@ -11775,6 +11793,15 @@
     ],
     "all tasks": [
       "all tasks"
+    ],
+    "allocation approach": [
+      "allocation approach"
+    ],
+    "allocation table": [
+      "allocation table"
+    ],
+    "allocation tasks": [
+      "allocation tasks"
     ],
     "allocator": [
       "allocator"
@@ -12742,6 +12769,9 @@
     "artifact routing gate": [
       "artifact routing gate"
     ],
+    "artifact verification": [
+      "artifact verification"
+    ],
     "artifact walker": [
       "artifact walker"
     ],
@@ -13275,6 +13305,9 @@
     ],
     "assets tasks": [
       "assets tasks"
+    ],
+    "assign by governed unit": [
+      "assign by governed unit"
     ],
     "assigned task listing": [
       "assigned task listing"
@@ -14206,11 +14239,17 @@
     "barter symlinks readme": [
       "barter symlinks readme"
     ],
+    "base plus supplement": [
+      "base plus supplement"
+    ],
     "based": [
       "based"
     ],
     "baseline": [
       "baseline"
+    ],
+    "baseline and delta": [
+      "baseline and delta"
     ],
     "baseline capture plan": [
       "baseline capture plan"
@@ -15279,6 +15318,9 @@
     ],
     "blind non inferiority evaluation": [
       "Blind non-inferiority evaluation"
+    ],
+    "blind scoring": [
+      "blind scoring"
     ],
     "blinded adjudication implementation plan": [
       "blinded adjudication implementation plan"
@@ -19053,6 +19095,9 @@
     "citation spot check research": [
       "citation spot check research"
     ],
+    "citation verification": [
+      "citation verification"
+    ],
     "citation verification checklist": [
       "citation verification checklist"
     ],
@@ -19079,6 +19124,9 @@
     ],
     "claim adjudication": [
       "claim adjudication"
+    ],
+    "claim based omission floor": [
+      "claim based omission floor"
     ],
     "claim continuity": [
       "claim continuity"
@@ -19124,6 +19172,9 @@
     ],
     "clarify handoff ladder fixtures": [
       "clarify handoff ladder fixtures"
+    ],
+    "clarity program decisions": [
+      "clarity program decisions"
     ],
     "clarity research": [
       "clarity research"
@@ -24537,6 +24588,15 @@
     "colon rule": [
       "colon rule"
     ],
+    "colon rule adoption": [
+      "colon rule adoption"
+    ],
+    "colon rule conflict": [
+      "colon rule conflict"
+    ],
+    "colon rule rejected": [
+      "colon rule rejected"
+    ],
     "color analysis sk vision colors": [
       "Color analysis (sk_vision_colors)"
     ],
@@ -25416,6 +25476,9 @@
     "comment only diff assertion": [
       "comment only diff assertion"
     ],
+    "comment present state": [
+      "comment present state"
+    ],
     "comment reconstruction": [
       "comment reconstruction"
     ],
@@ -25523,6 +25586,12 @@
     "commonmark fence": [
       "commonmark fence"
     ],
+    "communication behavior benchmark": [
+      "communication behavior benchmark"
+    ],
+    "communication candidate map": [
+      "communication candidate map"
+    ],
     "communication documentation review": [
       "communication documentation review"
     ],
@@ -25597,6 +25666,9 @@
     ],
     "communication rule tasks": [
       "communication rule tasks"
+    ],
+    "communication source classification": [
+      "communication source classification"
     ],
     "community css themes json": [
       "community-css-themes json"
@@ -26268,6 +26340,9 @@
     "completion criteria copied verbatim": [
       "completion criteria copied verbatim"
     ],
+    "completion event reaches no rules": [
+      "completion event reaches no rules"
+    ],
     "completion evidence hook": [
       "completion evidence hook"
     ],
@@ -26523,6 +26598,9 @@
     "conceptual novelty plateau": [
       "conceptual novelty plateau"
     ],
+    "concise not compressed": [
+      "concise not compressed"
+    ],
     "concurrency capped fanout": [
       "concurrency-capped fanout"
     ],
@@ -26625,6 +26703,9 @@
     "confidence uncertainty threshold dedup": [
       "confidence uncertainty threshold dedup"
     ],
+    "confident unsupported claim shapes": [
+      "confident unsupported claim shapes"
+    ],
     "config 1 1 align plan": [
       "config 1:1 align plan"
     ],
@@ -26708,6 +26789,9 @@
     ],
     "confirm no do not edit fence changed": [
       "confirm no do-not-edit fence changed"
+    ],
+    "confirm the target file": [
+      "confirm the target file"
     ],
     "confirmed drift table": [
       "confirmed drift table"
@@ -26967,11 +27051,17 @@
     "consumer audit tasks": [
       "consumer audit tasks"
     ],
+    "consumer enumeration": [
+      "consumer enumeration"
+    ],
     "consumer inventory rename": [
       "consumer inventory rename"
     ],
     "consumer measurement plan": [
       "consumer measurement plan"
+    ],
+    "consumer repointing": [
+      "consumer repointing"
     ],
     "consumer rewire": [
       "consumer rewire"
@@ -27583,6 +27673,12 @@
     "contradiction detection": [
       "contradiction detection"
     ],
+    "contradiction page": [
+      "contradiction page"
+    ],
+    "contradiction scan": [
+      "contradiction scan"
+    ],
     "contradiction supersession implementation": [
       "contradiction supersession implementation"
     ],
@@ -27898,6 +27994,9 @@
     ],
     "copilot writer wiring": [
       "copilot writer wiring"
+    ],
+    "copy editing instruction": [
+      "copy editing instruction"
     ],
     "copy paste alignment examples": [
       "copy paste alignment examples"
@@ -28450,6 +28549,12 @@
     ],
     "counterfactual routing replay": [
       "counterfactual routing replay"
+    ],
+    "counterweight cross reference": [
+      "counterweight cross-reference"
+    ],
+    "counterweight rule": [
+      "counterweight rule"
     ],
     "coupling cohesion review prompts": [
       "coupling cohesion review prompts"
@@ -30896,6 +31001,12 @@
     "customize obsidian theme": [
       "customize obsidian theme"
     ],
+    "cut and reorder lane": [
+      "cut and reorder lane"
+    ],
+    "cut and reorder pass": [
+      "cut and reorder pass"
+    ],
     "cut out the logo from this image": [
       "cut out the logo from this image"
     ],
@@ -31864,6 +31975,15 @@
     ],
     "decision": [
       "decision"
+    ],
+    "decision and handoff plan": [
+      "decision and handoff plan"
+    ],
+    "decision and handoff rules": [
+      "decision and handoff rules"
+    ],
+    "decision and handoff tasks": [
+      "decision and handoff tasks"
     ],
     "decision audit jsonl capture": [
       "decision audit JSONL capture"
@@ -36161,6 +36281,9 @@
     "defer to parent vs default to child": [
       "defer to parent vs default to child"
     ],
+    "deferred candidate record": [
+      "deferred candidate record"
+    ],
     "deferred closeout complete": [
       "deferred closeout complete"
     ],
@@ -36490,6 +36613,9 @@
     ],
     "delta evidence opt out": [
       "delta evidence opt-out"
+    ],
+    "delta report task": [
+      "delta report task"
     ],
     "deltabyrelation dominantrelation": [
       "deltaByRelation dominantRelation"
@@ -36865,6 +36991,9 @@
     ],
     "derived status enum boundary": [
       "derived status enum boundary"
+    ],
+    "derived surface regeneration": [
+      "derived surface regeneration"
     ],
     "derived sync": [
       "derived sync"
@@ -41235,6 +41364,9 @@
     "dup hash collapse tasks": [
       "dup hash collapse tasks"
     ],
+    "duplicate assignment check": [
+      "duplicate assignment check"
+    ],
     "duplicate content collapse": [
       "duplicate content collapse"
     ],
@@ -41258,6 +41390,9 @@
     ],
     "duplicated status enum drift": [
       "duplicated status enum drift"
+    ],
+    "duplication scan": [
+      "duplication scan"
     ],
     "durability invariant over throughput": [
       "durability invariant over throughput"
@@ -41601,6 +41736,9 @@
     ],
     "edit doc page content": [
       "edit doc page content"
+    ],
+    "edit not append": [
+      "edit not append"
     ],
     "edit note yaml metadata": [
       "edit note YAML metadata"
@@ -43159,6 +43297,12 @@
     "event for event shadow harness": [
       "event-for-event shadow harness"
     ],
+    "event frequency measurement plan": [
+      "event frequency measurement plan"
+    ],
+    "event frequency measurement tasks": [
+      "event frequency measurement tasks"
+    ],
     "event history": [
       "event history"
     ],
@@ -43174,6 +43318,9 @@
     "event loop lag sampler trigger backfill chunk shipped": [
       "event loop lag sampler trigger backfill chunk shipped"
     ],
+    "event rate measurement finding": [
+      "event rate measurement finding"
+    ],
     "event subscription endpoint": [
       "event subscription endpoint"
     ],
@@ -43185,6 +43332,21 @@
     ],
     "event time invalidation tasks": [
       "event-time invalidation tasks"
+    ],
+    "event triggered injection closeout": [
+      "event-triggered injection closeout"
+    ],
+    "event triggered injection decision": [
+      "event triggered injection decision"
+    ],
+    "event triggered injection plan": [
+      "event-triggered injection plan"
+    ],
+    "event triggered injection research": [
+      "event-triggered injection research"
+    ],
+    "event triggered injection tasks": [
+      "event-triggered injection tasks"
     ],
     "event type registry implementation": [
       "event type registry implementation"
@@ -43246,11 +43408,23 @@
     "evidence before claims pi remote": [
       "evidence before claims — pi remote"
     ],
+    "evidence boundary fix": [
+      "evidence boundary fix"
+    ],
+    "evidence boundary landing tasks": [
+      "evidence boundary landing tasks"
+    ],
     "evidence capture": [
       "evidence capture"
     ],
     "evidence cited redesign": [
       "evidence cited redesign"
+    ],
+    "evidence criterion closeout": [
+      "evidence criterion closeout"
+    ],
+    "evidence criterion landing plan": [
+      "evidence criterion landing plan"
     ],
     "evidence envelopes implementation summary": [
       "evidence envelopes implementation summary"
@@ -43427,11 +43601,17 @@
     "excluded for memory z archive": [
       "EXCLUDED_FOR_MEMORY z_archive"
     ],
+    "exclusion count": [
+      "exclusion count"
+    ],
     "exclusion record parity": [
       "exclusion record parity"
     ],
     "exclusion record tasks": [
       "exclusion record tasks"
+    ],
+    "exclusion retirement": [
+      "exclusion retirement"
     ],
     "executable edge route parsing": [
       "executable edge route parsing"
@@ -44847,6 +45027,9 @@
     "fan out cross lineage merge": [
       "fan-out cross-lineage merge"
     ],
+    "fan out executors": [
+      "fan-out executors"
+    ],
     "fan out fan in durable orchestration": [
       "fan-out fan-in durable orchestration"
     ],
@@ -45742,6 +45925,9 @@
     "fidelity render handover": [
       "fidelity render handover"
     ],
+    "fidelity validator quality check": [
+      "fidelity validator quality check"
+    ],
     "field by field template diff": [
       "field-by-field template diff"
     ],
@@ -46458,6 +46644,9 @@
     ],
     "first generation shadow parity perf summary": [
       "first generation shadow parity perf summary"
+    ],
+    "first line contract": [
+      "first line contract"
     ],
     "first rule in a repository": [
       "first rule in a repository"
@@ -51198,6 +51387,9 @@
     "hand fixture vs real renderer": [
       "hand fixture vs real renderer"
     ],
+    "hand maintained exclusion": [
+      "hand maintained exclusion"
+    ],
     "hand rolled env flag parsing": [
       "hand-rolled env flag parsing"
     ],
@@ -54121,8 +54313,20 @@
     "inject agent definition into cli dispatch prompt": [
       "inject agent definition into cli dispatch prompt"
     ],
+    "inject on what just happened": [
+      "inject on what just happened"
+    ],
+    "inject repo rules on a prompt": [
+      "inject repo rules on a prompt"
+    ],
     "injectable project root": [
       "injectable project root"
+    ],
+    "injection bar and refusals": [
+      "injection bar and refusals"
+    ],
+    "injection bar test plan": [
+      "injection bar test plan"
     ],
     "injection bloat audit plan": [
       "injection bloat audit plan"
@@ -54141,6 +54345,9 @@
     ],
     "injection bloat reduction": [
       "injection bloat reduction"
+    ],
+    "injection candidate bar": [
+      "injection candidate bar"
     ],
     "injection contract directive sync": [
       "injection contract directive sync"
@@ -54171,6 +54378,9 @@
     ],
     "injection reduction rollback": [
       "injection reduction rollback"
+    ],
+    "injection refusal ledger tasks": [
+      "injection refusal ledger tasks"
     ],
     "injection selectivity": [
       "injection selectivity"
@@ -57403,6 +57613,9 @@
     ],
     "lineage delta resource map": [
       "lineage delta resource map"
+    ],
+    "lineage dispatch tasks": [
+      "lineage dispatch tasks"
     ],
     "lineage executor schema": [
       "lineage executor schema"
@@ -61787,6 +62000,9 @@
     ],
     "meaning judge wiring": [
       "meaning-judge-wiring"
+    ],
+    "measure event frequency from the log": [
+      "measure event frequency from the log"
     ],
     "measure fix against accuracy pin": [
       "measure fix against accuracy pin"
@@ -66228,6 +66444,9 @@
     "new hub manifest store": [
       "new hub manifest store"
     ],
+    "new repo rule": [
+      "new repo rule"
+    ],
     "new sk doc mode packet": [
       "new sk-doc mode packet"
     ],
@@ -66336,6 +66555,9 @@
     "no api call mode": [
       "no api call mode"
     ],
+    "no archaeology in comments": [
+      "no archaeology in comments"
+    ],
     "no bridge socket worktree divergence": [
       "no-bridge-socket worktree divergence"
     ],
@@ -66371,6 +66593,9 @@
     ],
     "no drift no debt": [
       "no drift no debt"
+    ],
+    "no early convergence": [
+      "no early convergence"
     ],
     "no fabrication goal binding": [
       "no fabrication goal binding"
@@ -66438,6 +66663,9 @@
     ],
     "no non ollama active embedder resolver": [
       "no non-Ollama active embedder resolver"
+    ],
+    "no op projection outcome": [
+      "no-op projection outcome"
     ],
     "no op rejection": [
       "no-op-rejection"
@@ -68373,8 +68601,20 @@
     "one behavioral contract five schemas": [
       "one behavioral contract five schemas"
     ],
+    "one home for the standard": [
+      "one home for the standard"
+    ],
+    "one home for the wording standard": [
+      "one home for the wording standard"
+    ],
+    "one instruction per mark": [
+      "one instruction per mark"
+    ],
     "one model one opinion": [
       "one model one opinion"
+    ],
+    "one owning document": [
+      "one owning document"
     ],
     "one score one scale one name similarity": [
       "one score one scale one name similarity"
@@ -69862,6 +70102,15 @@
     "ownership hierarchy": [
       "ownership hierarchy"
     ],
+    "owning gate run": [
+      "owning gate run"
+    ],
+    "owning skill gate": [
+      "owning skill gate"
+    ],
+    "owning surface map": [
+      "owning surface map"
+    ],
     "ox alpha cline provider pi": [
       "ox alpha cline provider pi"
     ],
@@ -70081,6 +70330,12 @@
     ],
     "package documentation conformance": [
       "package documentation conformance"
+    ],
+    "package gate": [
+      "package gate"
+    ],
+    "package gate task": [
+      "package gate task"
     ],
     "package into skill": [
       "package-into-skill"
@@ -76011,6 +76266,9 @@
     "pre confirmation margin analysis decision": [
       "pre-confirmation margin analysis decision"
     ],
+    "pre drafting reader model": [
+      "pre-drafting reader model"
+    ],
     "pre existing advisor failures": [
       "pre-existing advisor failures"
     ],
@@ -76884,6 +77142,9 @@
     "projection contract decisions": [
       "projection contract decisions"
     ],
+    "projection engine logic": [
+      "projection engine logic"
+    ],
     "projection generation rebuild summary": [
       "projection generation rebuild summary"
     ],
@@ -77332,8 +77593,20 @@
     "prompt time advisor brief adapters": [
       "prompt-time advisor brief adapters"
     ],
+    "prompt time injection research closeout": [
+      "prompt-time injection research closeout"
+    ],
     "prompt time mutation block hardening": [
       "prompt-time mutation block hardening"
+    ],
+    "prompt time rule injection plan": [
+      "prompt-time rule injection plan"
+    ],
+    "prompt time rule injection research": [
+      "prompt-time rule injection research"
+    ],
+    "prompt time rule injection tasks": [
+      "prompt-time rule injection tasks"
     ],
     "prompt token contract": [
       "prompt-token-contract"
@@ -77623,6 +77896,9 @@
     "publication quality gate": [
       "publication quality gate"
     ],
+    "publish language search": [
+      "publish language search"
+    ],
     "pull design context example": [
       "pull design context example"
     ],
@@ -77772,6 +78048,9 @@
     ],
     "qualifiedidtoleaf plan": [
       "qualifiedidtoleaf plan"
+    ],
+    "qualifier against the tiers": [
+      "qualifier against the tiers"
     ],
     "qualify allowed tools mcp names": [
       "qualify allowed-tools mcp names"
@@ -78415,6 +78694,9 @@
     "re scan after rewrite": [
       "re-scan after rewrite"
     ],
+    "reach a read only turn": [
+      "reach a read-only turn"
+    ],
     "reachability checklist": [
       "reachability checklist"
     ],
@@ -78579,6 +78861,9 @@
     ],
     "reader table tasks": [
       "reader table tasks"
+    ],
+    "reader triage before drafting": [
+      "reader triage before drafting"
     ],
     "readiness action full scan selective reindex": [
       "readiness action full_scan selective_reindex"
@@ -79213,6 +79498,9 @@
     "receipt key trio disposition": [
       "receipt key trio disposition"
     ],
+    "receipt that confirms a claim": [
+      "receipt that confirms a claim"
+    ],
     "receipts and effect recovery": [
       "receipts and effect recovery"
     ],
@@ -79287,6 +79575,9 @@
     ],
     "reconcile codex hooks": [
       "reconcile codex hooks"
+    ],
+    "reconcile disagreement": [
+      "reconcile disagreement"
     ],
     "reconcile handler registration": [
       "reconcile handler registration"
@@ -79497,6 +79788,9 @@
     ],
     "recursive validation remediation tasks": [
       "recursive validation remediation tasks"
+    ],
+    "recursive validation task": [
+      "recursive validation task"
     ],
     "recursive validation tasks": [
       "recursive validation tasks"
@@ -80263,6 +80557,12 @@
     "refreshskillembeddings dispatcher": [
       "refreshSkillEmbeddings dispatcher"
     ],
+    "refusal and admission evidence rows": [
+      "refusal and admission evidence rows"
+    ],
+    "refusal and admission ledger": [
+      "refusal and admission ledger"
+    ],
     "refusal census": [
       "refusal census"
     ],
@@ -80277,6 +80577,9 @@
     ],
     "refuse symlink traversal at open": [
       "refuse symlink traversal at open"
+    ],
+    "refused candidate ledger": [
+      "refused candidate ledger"
     ],
     "refuses authored failures": [
       "refuses authored failures"
@@ -81625,6 +81928,21 @@
     "replayable deep loop observability": [
       "replayable deep-loop observability"
     ],
+    "reply scoring harness": [
+      "reply scoring harness"
+    ],
+    "reply shape plan": [
+      "reply shape plan"
+    ],
+    "reply shape rules": [
+      "reply shape rules"
+    ],
+    "reply shape tasks": [
+      "reply shape tasks"
+    ],
+    "reply versus publish line": [
+      "reply versus publish line"
+    ],
     "repo agnostic": [
       "repo agnostic"
     ],
@@ -81651,6 +81969,9 @@
     ],
     "repo rule anatomy": [
       "repo rule anatomy"
+    ],
+    "repo rule communication change": [
+      "repo rule communication change"
     ],
     "repo rule mode": [
       "repo rule mode"
@@ -82456,6 +82777,9 @@
     "research lineage plan": [
       "research lineage plan"
     ],
+    "research lineage task ledger": [
+      "research lineage task ledger"
+    ],
     "research lineages divergence": [
       "research lineages divergence"
     ],
@@ -83044,6 +83368,9 @@
     ],
     "restart durability tests": [
       "restart durability tests"
+    ],
+    "restatement cadence": [
+      "restatement cadence"
     ],
     "restore by count verification": [
       "restore by count verification"
@@ -84398,6 +84725,9 @@
     "rewrite interface command bodies literal prompts": [
       "rewrite interface command bodies literal prompts"
     ],
+    "rewrite pass declaration": [
+      "rewrite pass declaration"
+    ],
     "rewrite references same commit": [
       "rewrite references same commit"
     ],
@@ -84412,6 +84742,9 @@
     ],
     "rewrite response command rename": [
       "rewrite response command rename"
+    ],
+    "rewrite response contract": [
+      "rewrite response contract"
     ],
     "rewrite subfolder commands": [
       "rewrite subfolder commands"
@@ -84730,6 +85063,12 @@
     ],
     "root coverage table": [
       "root coverage table"
+    ],
+    "root doc clause": [
+      "root doc clause"
+    ],
+    "root doc clause tasks": [
+      "root doc clause tasks"
     ],
     "root gate closeout": [
       "root gate closeout"
@@ -85250,6 +85589,9 @@
     "router triad summary": [
       "router triad summary"
     ],
+    "router trigger row": [
+      "router trigger row"
+    ],
     "router unification program": [
       "router unification program"
     ],
@@ -85261,6 +85603,9 @@
     ],
     "router vocabulary task breakdown": [
       "router vocabulary task breakdown"
+    ],
+    "router walk": [
+      "router walk"
     ],
     "router wiring tasks": [
       "router wiring tasks"
@@ -85586,6 +85931,9 @@
     "rubric deduplication method": [
       "rubric deduplication method"
     ],
+    "rubric duplication search": [
+      "rubric duplication search"
+    ],
     "rubric methodology": [
       "rubric methodology"
     ],
@@ -85604,8 +85952,14 @@
     "rule blank": [
       "rule blank"
     ],
+    "rule contradiction resolution": [
+      "rule contradiction resolution"
+    ],
     "rule count 39 registry": [
       "rule count 39 registry"
+    ],
+    "rule file example and repair": [
+      "rule file example and repair"
     ],
     "rule file readability": [
       "rule file readability"
@@ -86218,6 +86572,9 @@
     ],
     "runtime mirror realignment": [
       "runtime mirror realignment"
+    ],
+    "runtime mirror rollout": [
+      "runtime mirror rollout"
     ],
     "runtime mirror sync": [
       "runtime mirror sync"
@@ -88488,6 +88845,9 @@
     "send feedback to clickup": [
       "send feedback to clickup"
     ],
+    "send the standard as the instruction": [
+      "send the standard as the instruction"
+    ],
     "sendsessionaffinityheaders": [
       "sendSessionAffinityHeaders"
     ],
@@ -88502,6 +88862,9 @@
     ],
     "senses fork plan": [
       "senses fork plan"
+    ],
+    "sentence relation rule": [
+      "sentence relation rule"
     ],
     "sentence transformers cross encoder skill": [
       "sentence-transformers cross-encoder skill"
@@ -88520,6 +88883,9 @@
     ],
     "sentinel decision record": [
       "sentinel decision record"
+    ],
+    "sentinel event placement": [
+      "sentinel event placement"
     ],
     "sentinel gate plan": [
       "sentinel gate plan"
@@ -89198,6 +89564,18 @@
     ],
     "shadow to union promotion plan": [
       "shadow to union promotion plan"
+    ],
+    "shallow evidence claims closeout": [
+      "shallow evidence claims closeout"
+    ],
+    "shallow evidence claims plan": [
+      "shallow evidence claims plan"
+    ],
+    "shallow evidence claims research": [
+      "shallow evidence claims research"
+    ],
+    "shallow evidence claims tasks": [
+      "shallow evidence claims tasks"
     ],
     "shard auto rebuild": [
       "shard auto rebuild"
@@ -90388,6 +90766,9 @@
     "size cap retained generation": [
       "size cap retained generation"
     ],
+    "size check": [
+      "size check"
+    ],
     "size preset viewbox": [
       "size preset viewbox"
     ],
@@ -91426,6 +91807,9 @@
     "sk communication clarity": [
       "sk-communication clarity"
     ],
+    "sk communication clarity research": [
+      "sk-communication clarity research"
+    ],
     "sk communication feature catalog": [
       "sk-communication feature catalog"
     ],
@@ -91452,6 +91836,9 @@
     ],
     "sk communication trigger commands": [
       "sk-communication trigger commands"
+    ],
+    "sk communication upgrade": [
+      "sk-communication upgrade"
     ],
     "sk communication voice routing": [
       "sk-communication voice routing"
@@ -96552,6 +96939,12 @@
     "smart rule injection": [
       "smart rule injection"
     ],
+    "smart rule injection plan": [
+      "smart rule injection plan"
+    ],
+    "smart rule injection tasks": [
+      "smart rule injection tasks"
+    ],
     "snake case category folder convention": [
       "snake_case category folder convention"
     ],
@@ -98915,6 +99308,12 @@
     "standard component definitions": [
       "standard component definitions"
     ],
+    "standard restructure plan": [
+      "standard restructure plan"
+    ],
+    "standard restructure tasks": [
+      "standard restructure tasks"
+    ],
     "standards alignment audit": [
       "standards alignment audit"
     ],
@@ -99076,6 +99475,9 @@
     ],
     "state relocation tasks": [
       "state relocation tasks"
+    ],
+    "state restatement cadence": [
+      "state restatement cadence"
     ],
     "state safety atomic state deferred writer": [
       "state safety atomic-state deferred writer"
@@ -100903,8 +101305,14 @@
     "synthesis fold in": [
       "synthesis fold-in"
     ],
+    "synthesis plan": [
+      "synthesis plan"
+    ],
     "synthesis presentation research": [
       "synthesis presentation research"
+    ],
+    "synthesis tasks": [
+      "synthesis tasks"
     ],
     "synthesis v1 verification report": [
       "synthesis v1 verification report"
@@ -102008,6 +102416,9 @@
     "tailscale serve pwa install": [
       "tailscale serve pwa install"
     ],
+    "tangent suppression": [
+      "tangent suppression"
+    ],
     "tanstack mini shai hulud audit": [
       "TanStack Mini Shai-Hulud audit",
       "tanstack mini shai-hulud audit"
@@ -102240,6 +102651,9 @@
     ],
     "template addendum derivation": [
       "template addendum derivation"
+    ],
+    "template additive change": [
+      "template additive change"
     ],
     "template alignment 031 036": [
       "template alignment 031-036"
@@ -102691,6 +103105,9 @@
     "ten agent specialization": [
       "ten agent specialization"
     ],
+    "ten candidates": [
+      "ten candidates"
+    ],
     "ten iteration gpt 5 6 review": [
       "ten-iteration gpt-5.6 review"
     ],
@@ -103101,6 +103518,9 @@
     ],
     "three hubs extension matrix": [
       "three hubs extension matrix"
+    ],
+    "three injection research lineages": [
+      "three injection research lineages"
     ],
     "three lane research": [
       "three lane research"
@@ -103764,6 +104184,9 @@
     ],
     "transform dedup tasks": [
       "transform dedup tasks"
+    ],
+    "transform layer": [
+      "transform layer"
     ],
     "transform verb make it dispatch plan": [
       "transform verb make it dispatch plan"
@@ -104845,6 +105268,9 @@
     ],
     "unconditional skill pairing design": [
       "unconditional skill pairing design"
+    ],
+    "unconfirmed cause qualifier": [
+      "unconfirmed cause qualifier"
     ],
     "uncovered executor coverage": [
       "uncovered executor coverage"
@@ -105990,6 +106416,9 @@
     "validator template debt tasks": [
       "validator template debt tasks"
     ],
+    "validator unconditional markers": [
+      "validator unconditional markers"
+    ],
     "validator warn heuristics": [
       "validator-warn heuristics"
     ],
@@ -106206,6 +106635,9 @@
     "verbless fragment": [
       "verbless fragment"
     ],
+    "verbless fragment ban": [
+      "verbless fragment ban"
+    ],
     "verbose internal logging": [
       "verbose internal logging"
     ],
@@ -106269,6 +106701,9 @@
     "verification lives in tasks": [
       "verification lives in tasks"
     ],
+    "verification plan": [
+      "verification plan"
+    ],
     "verification reconciliation plan": [
       "verification reconciliation plan"
     ],
@@ -106283,6 +106718,9 @@
     ],
     "verification sweep": [
       "verification sweep"
+    ],
+    "verification tasks": [
+      "verification tasks"
     ],
     "verified events cache": [
       "verified events cache"
@@ -106727,6 +107165,9 @@
     ],
     "voice guidance deduplication": [
       "voice guidance deduplication"
+    ],
+    "voice half delegation": [
+      "voice half delegation"
     ],
     "voice mode scenario categories": [
       "voice mode scenario categories"
@@ -107961,6 +108402,9 @@
     "why was my rule refused": [
       "why was my rule refused"
     ],
+    "why was the injection hook refused": [
+      "why was the injection hook refused"
+    ],
     "widen advisor vocabulary": [
       "widen advisor vocabulary"
     ],
@@ -108050,6 +108494,12 @@
     ],
     "word mcp only where retired": [
       "word mcp only where retired"
+    ],
+    "wording standard restructure": [
+      "wording standard restructure"
+    ],
+    "wording standard routing": [
+      "wording standard routing"
     ],
     "work stream partition": [
       "work-stream partition"
@@ -108470,6 +108920,9 @@
     ],
     "write a screenshot scenario fixture": [
       "write a screenshot scenario fixture"
+    ],
+    "write authority binding": [
+      "write authority binding"
     ],
     "write back spokes": [
       "write back spokes"
