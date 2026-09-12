@@ -1,0 +1,27 @@
+{
+  "level": "1",
+  "specFolder": "system-skill-advisor/025-mcp-decommission-cli-front-door/011-deep-research-swe-2",
+  "description": "One model's read of a subject is one opinion, and phase 010 supplied exactly one: a single DeepSeek lineage",
+  "keywords": [
+    "one",
+    "model",
+    "read",
+    "subject",
+    "opinion",
+    "phase",
+    "supplied",
+    "exactly",
+    "single",
+    "deepseek",
+    "lineage"
+  ],
+  "lastUpdated": "2026-09-12T07:34:31.613Z",
+  "specId": "011",
+  "folderSlug": "deep-research-swe-2",
+  "parentChain": [
+    "system-skill-advisor",
+    "025-mcp-decommission-cli-front-door"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

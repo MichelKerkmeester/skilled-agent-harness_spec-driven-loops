@@ -1,0 +1,108 @@
+{
+  "topic": "What the skill advisor's MCP-transport decommission teaches, as a lessons study rather than a defect hunt. Case study: the eight-phase packet specs/system-skill-advisor/025-mcp-decommission-cli-front-door, which removed the advisor's MCP transport and made the daemon-backed CLI at .opencode/bin/skill-advisor.cjs the single front door. Shipped: five runtime server declarations deleted, the MCP SDK removed, the plugin bridge deleted, the daemon wire replaced with the advisor's own newline-delimited protocol, the directory renamed mcp-server to runtime, environment handling rehomed to the launcher, roughly 190 documents rewritten, 26 bridge tests retired and 7 contract tests inverted. Phase 009 already ran the defect hunt and closed nine required findings, so do not repeat it. Answer three questions. FIRST, which failures were latent while the CLI was only a fallback and surfaced solely because it became the primary path; name each at its file and give the mechanism that kept it hidden. SECOND, what classes of residue a transport removal leaves behind beyond obvious name references; ground each class in something actually present in this packet and say which class the existing sweep would have missed. THIRD, what a repeatable checklist for the next transport-to-CLI migration would contain, ordered so the steps preventing the most expensive failures come first. BINDING RULES: ground every claim in a file, or a command with its output, or a packet document, and label anything you cannot cite as a hypothesis; a green test proves nothing until its output and exit status are read; historical records such as changelogs, dated benchmark reports and frozen fixtures legitimately keep old names while live instruction surfaces must not, so say which bucket each hit falls in; write only inside your bound lineage directory, because editing a packet document while the loop is live is reverted by write containment and this packet has already lost work that way twice; do not read the research output under sibling phases 010 or 011, because an independent third reading is the point and agreement only counts if you did not look.",
+  "maxIterations": 4,
+  "minIterations": 3,
+  "convergenceThreshold": 0.1,
+  "antiConvergence": {
+    "minIterations": 3,
+    "convergenceMode": "off",
+    "stopPolicy": "max-iterations",
+    "divergent": {}
+  },
+  "stuckThreshold": 3,
+  "minIdeaObservations": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": false,
+  "specFolder": "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/012-deep-research-glm-5-3",
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": false
+  },
+  "createdAt": "2026-09-12T06:13:09Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-pi",
+    "model": "glm-5.3-flash",
+    "reasoningEffort": "max",
+    "serviceTier": null,
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "fanout-glm-5-3-research-1789192876106-xyzuzo",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": [
+      "new",
+      "resume",
+      "restart"
+    ],
+    "deferredModes": [
+      "fork",
+      "completed-continue"
+    ],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "divergence-frontier",
+      "next-focus"
+    ]
+  },
+  "capabilityMatrixPath": ".opencode/skills/system-deep-loop/deep-research/assets/runtime-capabilities.json",
+  "capabilityMatrixDocPath": ".opencode/skills/system-deep-loop/deep-research/references/guides/capability-matrix.md",
+  "runtimeCapabilityResolver": ".opencode/skills/system-deep-loop/deep-research/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+  "pauseSentinelPath": ".deep-research-pause",
+  "archiveRoot": "_archive",
+  "migrationWindowDays": 28,
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research.md": "mutable"
+  },
+  "_optimizerManaged": {
+    "description": "Fields managed by the offline loop optimizer (042.004). See optimizer-manifest.json for the canonical tunable/locked field registry.",
+    "manifestPath": ".opencode/skills/system-spec-kit/runtime/cli/optimizer/optimizer-manifest.json",
+    "tunableFields": [
+      "convergenceThreshold",
+      "stuckThreshold",
+      "maxIterations"
+    ],
+    "lockedFields": [
+      "lineage",
+      "reducer",
+      "fileProtection",
+      "sessionId",
+      "status",
+      "antiConvergence.convergenceMode",
+      "antiConvergence.stopPolicy"
+    ],
+    "promotionMode": "advisory-only"
+  },
+  "lineageNotes": {
+    "provenance": "Detached fan-out lineage of the deep-research workflow; the dispatching session is the sole executor of every iteration (no nested CLI/agent dispatch), per the dispatch prompt. Per-iteration executor-dispatch steps of the workflow YAML are satisfied by this same session running inline.",
+    "invocationMetadata": "invocation-metadata.json (effectiveConfig.kind=cli-pi, model=glm-5.3-flash, invocationFingerprint=inv:d190392346a3d1f03c35ef1c047f67c0118b8b3ad0df16d22625bc1f51c5df8f)",
+    "resourceMapEmission": "resource_map.emit=false (the --no-resource-map operator flag) so emission cannot write outside this lineage; synthesis omits the map citation",
+    "reducerExecution": "The workflow reducer (reduce-state.cjs) is not invoked; this session performs the reducer's duties by hand, mirrored into the per-iteration delta records, because the runner bounds every write to this lineage directory"
+  }
+}

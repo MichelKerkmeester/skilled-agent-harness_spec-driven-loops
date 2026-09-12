@@ -1,0 +1,26 @@
+{
+  "specFolder": "system-skill-advisor/025-mcp-decommission-cli-front-door/013-research-findings-remediation",
+  "description": "A research finding is a hypothesis about the repository until something run against the repository confirms it",
+  "keywords": [
+    "research",
+    "finding",
+    "hypothesis",
+    "about",
+    "repository",
+    "until",
+    "something",
+    "run",
+    "against",
+    "confirms"
+  ],
+  "lastUpdated": "2026-09-12T07:35:53.364Z",
+  "specId": "013",
+  "folderSlug": "research-findings-remediation",
+  "parentChain": [
+    "system-skill-advisor",
+    "025-mcp-decommission-cli-front-door"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

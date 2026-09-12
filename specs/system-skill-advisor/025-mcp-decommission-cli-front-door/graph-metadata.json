@@ -13,7 +13,10 @@
     "system-skill-advisor/025-mcp-decommission-cli-front-door/007-docs-and-residue-sweep",
     "system-skill-advisor/025-mcp-decommission-cli-front-door/008-verification-and-closeout",
     "system-skill-advisor/025-mcp-decommission-cli-front-door/009-deep-review-decommission",
-    "system-skill-advisor/025-mcp-decommission-cli-front-door/010-deep-research-residue"
+    "system-skill-advisor/025-mcp-decommission-cli-front-door/010-deep-research-residue",
+    "system-skill-advisor/025-mcp-decommission-cli-front-door/011-deep-research-swe-2",
+    "system-skill-advisor/025-mcp-decommission-cli-front-door/012-deep-research-glm-5-3",
+    "system-skill-advisor/025-mcp-decommission-cli-front-door/013-research-findings-remediation"
   ],
   "manual": {
     "depends_on": [],
@@ -206,17 +209,17 @@
     ],
     "causal_summary": "The skill advisor is the last subsystem in this framework's own runtime that ships an MCP server, and that server owns no behavior",
     "created_at": "2026-09-11T06:48:54Z",
-    "last_save_at": "2026-09-11T19:47:36.126Z",
+    "last_save_at": "2026-09-12T07:38:55.356Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:6e66b2b62ac05ff6f99127cece2b38e9b18be2a931539ac990d2d7a7de1bc8b6",
+    "source_fingerprint": "sha256:bc780c532d3f27a07e15f16a05dd0ea0b82caee1559cef9615127e8844710f78",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5e1cc99e19ef987ae21a6c1a6c46546ed102d2ddf36c4e647f08e6604189cb2f"
+      "spec.md": "639f86bb6039807ac6e6af45c0d27e25eebccc14396e28b08b5bd7df3697a287"
     },
     "last_active_at": null
   }

@@ -3,7 +3,8 @@ title: "Skill Advisor Compat Tests"
 description: "Compatibility coverage for the advisor daemon, Python parity and redirect contracts."
 trigger_phrases:
   - "skill advisor compat tests"
-  - "advisor plugin bridge tests"
+  - "advisor daemon probe tests"
+  - "advisor python parity tests"
 ---
 
 # Skill Advisor Compat Tests
@@ -44,6 +45,8 @@ compat/
 |---|---|
 | `daemon-probe.vitest.ts` | Verifies live, stale, absent, unavailable and disabled daemon probe states. |
 | `python-compat.vitest.ts` | Runs `tests/python/test_skill_advisor.py` from the Vitest suite. |
+| `redirect-metadata.vitest.ts` | Checks the redirect metadata contract callers rely on. |
+| `shim.vitest.ts` | Covers the compatibility shim's behavior. |
 
 ---
 

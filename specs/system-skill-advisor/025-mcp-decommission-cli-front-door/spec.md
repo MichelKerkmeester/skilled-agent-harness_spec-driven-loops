@@ -169,9 +169,13 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 005-mcp-transport-removal | 006-runtime-package-rename | No runtime config declares the advisor server, the SDK is absent from the dependency tree, and every runtime boots clean | Five config roots at zero hits; dependency tree check; cold boot per runtime |
 | 006-runtime-package-rename | 007-docs-and-residue-sweep | Nothing outside history resolves a path under the old directory name, and the CLI still answers from the renamed tree | Path sweep; live CLI call after the move |
 | 007-docs-and-residue-sweep | 008-verification-and-closeout | No live instruction surface presents the advisor as an MCP server or names a retired tool id | Residue sweep with reasoned exemptions listed |
-| 008-verification-and-closeout | (packet complete) | Every parent completion criterion holds with evidence recorded against it | `validate.sh --recursive --strict` exits 0; goal DONE WHEN table fully populated |
-| 008-verification-and-closeout | 009-deep-review-decommission | [Criteria TBD] | [Verification TBD] |
-| 009-deep-review-decommission | 010-deep-research-residue | [Criteria TBD] | [Verification TBD] |
+| 008-verification-and-closeout | (implementation arc complete) | Every parent completion criterion holds with evidence recorded against it | `validate.sh --recursive --strict` exits 0; goal DONE WHEN table fully populated |
+| 008-verification-and-closeout | 009-deep-review-decommission | The packet's own completion claims survive an adversarial reading that treats them as unproven | Nine required findings raised, each with a reproduction |
+| 009-deep-review-decommission | 010-deep-research-residue | Every required finding closes at its stated file and line, and closing them introduced nothing new | Confirming review verdict; suite counts read rather than inferred |
+| 010-deep-research-residue | 011-deep-research-swe-2 | A first reading exists, so a second one has something to be independent of | One lineage with a synthesis grounded in files and commits |
+| 011-deep-research-swe-2 | 012-deep-research-glm-5-3 | Two readings agree without either having seen the other | Cited commits and file ranges spot-checked against the repository |
+| 012-deep-research-glm-5-3 | 013-research-findings-remediation | A third reading either corroborates the first two or names what they missed, and its own claims are checked before any is acted on | All cited paths resolve; each actionable claim confirmed or refuted against the tree |
+| 013-research-findings-remediation | (packet complete) | Every research claim that survived verification is fixed, and every one that did not is recorded as refused | Compatibility suites green; frontmatter gate clean; recursive validate at zero errors |
 <!-- /ANCHOR:phase-map -->
 
 ---
