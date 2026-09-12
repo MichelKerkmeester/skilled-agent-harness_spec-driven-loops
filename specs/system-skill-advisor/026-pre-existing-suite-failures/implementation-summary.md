@@ -60,7 +60,21 @@ Five failures had been carried as "pre-existing" across an eight-phase packet wi
 
 The third was a pinned census expecting 21 declared commands where the tree holds 20. Its own comment says to recount and update rather than relax, so I recounted: three in `sk-design`, twelve in `sk-doc`, five in `system-deep-loop`. The missing one is `/deep:skill-benchmark`, removed when the skill-benchmark lane was retired. The pin now reads 20 and records why.
 
-### The two that are not defects
+### The two, identified and disposed of
+
+They were found by name. The parity suite pins a list of accepted regressions, and the run reported nine where the list holds seven. The two additions are the regression, and reading them settled what to do.
+
+One asks to use the deep-review workflow for a docs audit; its gold hub is the deep-loop and it now loses to `sk-doc`. The other asks to review the current pull request for routing regressions; its gold hub is `sk-code` and it now loses to `sk-git`.
+
+Both are wrong only in the pinned no-database regime the gate scores in. With a live skill graph the daemon ranks both correctly, the deep-loop ahead by 0.032 and `sk-code` ahead by 0.035, so a real session is unaffected. Adding aliases to strengthen the losing side was tried and moved neither prompt, which is what identifies dilution rather than a missing term: a hub consolidation added roughly thirty terms to `sk-code` and restructured the deep-loop modes, and nothing was removed, but each term carries less weight once the vocabulary grows.
+
+That is the same disposition the suite already records for an existing entry, which is correct live and wrong in the pinned regime. Both ids joined that list with their measured margins written beside them, and the baseline was re-captured so the ratchet pins the reviewed truth.
+
+### Why the earlier caution was wrong
+
+I had said re-capturing lowers a release floor. It does not. The floors are separate hardcoded constants the baseline never touches, and the live number clears them with room.
+
+### The two that were not defects
 
 Both assert the scorer still routes a fixed 195-prompt corpus exactly as well as a baseline captured on 2026-09-04. It gets 152 where the baseline says 154. The parity suite reports the same fact from the other direction, 100 where it expects 102.
 
@@ -109,6 +123,8 @@ Each failure was read at its assertion rather than its name, which is what separ
 | Accuracy with the file restored from HEAD | 152 correct of 195, so the fix is neutral |
 | Shipped routing-accuracy floor gate | PASS — joint 111 true-true against a floor of 101, 3 false-true against a ceiling of 3, 1 false-false against 1 |
 | Corpus and holdout hashes | Unchanged, so the data did not move |
+| Baseline re-capture diff | Four lines only: date, commit, 154 to 152, and the derived accuracy. Every other metric was already identical |
+| Both parity suites after the re-capture | PASS — 9 tests |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -116,9 +132,9 @@ Each failure was read at its assertion rather than its name, which is what separ
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Two suites still fail, by design of this packet.** They are an operator decision, recorded with their numbers rather than silently re-pinned.
-2. **The two regressed prompts were never identified individually.** The baseline stores only aggregates, so naming them needs a scored run at the baseline commit compared against one at the current tip.
-3. **A pin this tight may be the wrong instrument.** Ninety routing inputs changed between captures without anyone intending a routing change, and the pin cannot tell that from a regression.
+1. **The two prompts are accepted, not recovered.** They route correctly in a real session and wrongly in the pinned regime. Resolving the underlying vocabulary bleed between the hubs is still open work.
+2. **A pin this tight may be the wrong instrument.** Ninety routing inputs changed between captures without anyone intending a routing change, and the pin cannot tell that from a regression.
+3. **One daemon-dependent suite passes alone and fails inside a full run.** It needs a warm daemon, and some earlier suite in the run leaves it cold. It is unrelated to anything here, referencing neither changed file, and surfaced only because the daemons were stopped for an unrelated cold-start test.
 <!-- /ANCHOR:limitations -->
 
 ---

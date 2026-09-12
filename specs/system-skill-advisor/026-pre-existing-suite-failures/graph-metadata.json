@@ -39,7 +39,7 @@
       "pin"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -92,12 +92,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Problem Statement Five",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -117,6 +111,12 @@
       },
       {
         "name": "The Python",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Five advisor suites failed, and they were carried as \"pre-existing\" across the whole decommission without anyone asking what they were",
     "created_at": "2026-09-12T08:37:02.127Z",
-    "last_save_at": "2026-09-12T08:37:02.127Z",
+    "last_save_at": "2026-09-12T09:29:40.326Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3071ce04db76a8d7e9efd24e16627a36af651fa4afbe0f233bd6683cbc3323dd",
+    "source_fingerprint": "sha256:19b1a014862873535a091a22a481b51ae970be669ea96a5fd2b3877fa5547e00",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "47b5951889c9644703a2ddd7ac0de322973ce27f0a5b6a625224222e22afa0a2",
+      "spec.md": "2a8655f76c5ded28e2c6ac93b58a528a7ff01c62be6bafaab3ab22b4c853ba02",
       "plan.md": "3004515529337bab2297d9ad5802e2611c16311eed87374a11601704874b2bc1",
-      "tasks.md": "a2264b69c9f8428f8060c7bf9c32ff1a52f3a315e8ce8a4380d917d1cfd54121",
-      "implementation-summary.md": "e51c6c2d09d3a44d09b496e96ea2e71bc4dfc998c04458dcc3aad4f8ab9c642e"
+      "tasks.md": "8e3e85991ff6a28c9ef4ab2dc2a5b1d8a679578daaec42270958d04891e43bd0",
+      "implementation-summary.md": "327eb638d21cda4cd68dd78e19380a55f4837ac1622ff499b0f62b001313c31b"
     },
     "last_active_child_id": null,
     "last_active_at": null

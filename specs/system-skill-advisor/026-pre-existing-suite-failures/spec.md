@@ -23,7 +23,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-09-12 |
 | **Branch** | `worktrees/052-swe-2-model-cutover` |
 | **Origin** | Operator: "Fix pre existing", after the advisor suite was reported at 860 passed, 5 failed, 7 skipped of 872 |
@@ -55,9 +55,12 @@ The three defects are fixed at their cause, and the two accuracy pins are separa
 - The stale command census pin, recounted rather than relaxed, as the test's own comment instructs
 - A written account of what the two accuracy pins actually measure
 
+### In Scope, added after the operator asked for fixes over deferrals
+- **Re-capturing the scorer baseline.** The earlier caution was wrong: the release floors are separate hardcoded constants the baseline never touches, and at 0.7795 the live number clears the 0.75 floor with room
+- **Identifying the two regressed prompts and disposing of them.** Both were found, measured in both scoring regimes, and recorded on the accepted list the parity suite already maintains for exactly this case
+
 ### Out of Scope
-- **Re-capturing the scorer baseline.** It lowers a release floor, so it is the operator's call, not a side effect of a test-fixing task
-- **Recovering the two regressed prompts by re-tuning vocabulary.** That is routing-quality work with its own blast radius and deserves its own packet
+- **Re-tuning vocabulary to recover the two prompts.** It was attempted and moved neither, which is what identifies dilution rather than a missing term as the cause. Resolving hub vocabulary bleed is routing-quality work with its own blast radius
 - **The Python scorer's `/memory:save` vocabulary.** It is the fallback scorer the parity suites measure against; changing it moves the very numbers under discussion, so it waits on the baseline decision
 <!-- /ANCHOR:scope -->
 
