@@ -1,5 +1,5 @@
 {
-  "corpusHash": "20cd5a176dffc59410936ae36d83896d6130df1c80f8598fa0a4630229907979",
+  "corpusHash": "db25f6da781c876db2e1d181632317966fd8f2a1ead5118bcf094c342ffd19d2",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -17,7 +17,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 29474,
+  "includedPathCount": 29536,
   "includedPaths": [
     ".opencode/hooks/README.md",
     ".opencode/hooks/codex-watchdog/README.md",
@@ -2787,6 +2787,7 @@
     ".opencode/skills/sk-communication/benchmark/reports/README.md",
     ".opencode/skills/sk-communication/changelog/v1.0.0.0.md",
     ".opencode/skills/sk-communication/changelog/v1.1.0.0.md",
+    ".opencode/skills/sk-communication/changelog/v1.2.0.0.md",
     ".opencode/skills/sk-communication/cli-communication-projection/README.md",
     ".opencode/skills/sk-communication/cli-communication-projection/docs/configuration.md",
     ".opencode/skills/sk-communication/cli-communication-projection/docs/enablement.md",
@@ -7299,6 +7300,7 @@
     ".opencode/skills/system-skill-advisor/changelog/v0.1.0.md",
     ".opencode/skills/system-skill-advisor/changelog/v0.10.0.md",
     ".opencode/skills/system-skill-advisor/changelog/v0.11.0.0.md",
+    ".opencode/skills/system-skill-advisor/changelog/v0.11.1.0.md",
     ".opencode/skills/system-skill-advisor/changelog/v0.2.0.md",
     ".opencode/skills/system-skill-advisor/changelog/v0.3.0.md",
     ".opencode/skills/system-skill-advisor/changelog/v0.4.0.md",
@@ -9433,6 +9435,10 @@
     "specs/hooks/021-compat-opt-in-and-image-declaration/review/lineages/gpt-56-luna/review-report.md",
     "specs/hooks/021-compat-opt-in-and-image-declaration/spec.md",
     "specs/hooks/021-compat-opt-in-and-image-declaration/tasks.md",
+    "specs/hooks/022-smart-rule-injection/001-deep-research/research/iterations/iteration-001.md",
+    "specs/hooks/022-smart-rule-injection/001-deep-research/research/iterations/iteration-002.md",
+    "specs/hooks/022-smart-rule-injection/001-deep-research/research/prior-findings.md",
+    "specs/hooks/022-smart-rule-injection/spec.md",
     "specs/mcp-tooling/007-mcp-tooling-parent/001-research-and-context/plan.md",
     "specs/mcp-tooling/007-mcp-tooling-parent/001-research-and-context/spec.md",
     "specs/mcp-tooling/007-mcp-tooling-parent/001-research-and-context/tasks.md",
@@ -10679,6 +10685,58 @@
     "specs/sk-communication/005-deprecate-visual-explanation-lane/plan.md",
     "specs/sk-communication/005-deprecate-visual-explanation-lane/spec.md",
     "specs/sk-communication/005-deprecate-visual-explanation-lane/tasks.md",
+    "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/acceptance-criteria.md",
+    "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/implementation-summary.md",
+    "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/plan.md",
+    "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/spec.md",
+    "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/tasks.md",
+    "specs/sk-communication/006-sk-communication-clarity/002-synthesis-and-decisions/acceptance-criteria.md",
+    "specs/sk-communication/006-sk-communication-clarity/002-synthesis-and-decisions/implementation-summary.md",
+    "specs/sk-communication/006-sk-communication-clarity/002-synthesis-and-decisions/plan.md",
+    "specs/sk-communication/006-sk-communication-clarity/002-synthesis-and-decisions/spec.md",
+    "specs/sk-communication/006-sk-communication-clarity/002-synthesis-and-decisions/tasks.md",
+    "specs/sk-communication/006-sk-communication-clarity/003-root-doc-and-repo-rules/acceptance-criteria.md",
+    "specs/sk-communication/006-sk-communication-clarity/003-root-doc-and-repo-rules/implementation-summary.md",
+    "specs/sk-communication/006-sk-communication-clarity/003-root-doc-and-repo-rules/plan.md",
+    "specs/sk-communication/006-sk-communication-clarity/003-root-doc-and-repo-rules/spec.md",
+    "specs/sk-communication/006-sk-communication-clarity/003-root-doc-and-repo-rules/tasks.md",
+    "specs/sk-communication/006-sk-communication-clarity/004-sk-communication-upgrade/acceptance-criteria.md",
+    "specs/sk-communication/006-sk-communication-clarity/004-sk-communication-upgrade/implementation-summary.md",
+    "specs/sk-communication/006-sk-communication-clarity/004-sk-communication-upgrade/plan.md",
+    "specs/sk-communication/006-sk-communication-clarity/004-sk-communication-upgrade/spec.md",
+    "specs/sk-communication/006-sk-communication-clarity/004-sk-communication-upgrade/tasks.md",
+    "specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/acceptance-criteria.md",
+    "specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/implementation-summary.md",
+    "specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/plan.md",
+    "specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/spec.md",
+    "specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/tasks.md",
+    "specs/sk-communication/006-sk-communication-clarity/context/clarity.md",
+    "specs/sk-communication/006-sk-communication-clarity/context/claude-style-patch-main/README.md",
+    "specs/sk-communication/006-sk-communication-clarity/context/claude-style-patch-main/STYLE.md",
+    "specs/sk-communication/006-sk-communication-clarity/context/i-have-adhd-main/.cursor/skills/i-have-adhd/SKILL.md",
+    "specs/sk-communication/006-sk-communication-clarity/context/i-have-adhd-main/.github/install/INSTALL.ja.md",
+    "specs/sk-communication/006-sk-communication-clarity/context/i-have-adhd-main/.github/install/INSTALL.ko.md",
+    "specs/sk-communication/006-sk-communication-clarity/context/i-have-adhd-main/.github/install/INSTALL.pt-BR.md",
+    "specs/sk-communication/006-sk-communication-clarity/context/i-have-adhd-main/.github/install/INSTALL.vi.md",
+    "specs/sk-communication/006-sk-communication-clarity/context/i-have-adhd-main/.github/install/INSTALL.zh-CN.md",
+    "specs/sk-communication/006-sk-communication-clarity/context/i-have-adhd-main/.github/pull_request_template.md",
+    "specs/sk-communication/006-sk-communication-clarity/context/i-have-adhd-main/.github/readme/README.ja.md",
+    "specs/sk-communication/006-sk-communication-clarity/context/i-have-adhd-main/.github/readme/README.ko.md",
+    "specs/sk-communication/006-sk-communication-clarity/context/i-have-adhd-main/.github/readme/README.pt-BR.md",
+    "specs/sk-communication/006-sk-communication-clarity/context/i-have-adhd-main/.github/readme/README.th.md",
+    "specs/sk-communication/006-sk-communication-clarity/context/i-have-adhd-main/.github/readme/README.vi.md",
+    "specs/sk-communication/006-sk-communication-clarity/context/i-have-adhd-main/.github/readme/README.zh-CN.md",
+    "specs/sk-communication/006-sk-communication-clarity/context/i-have-adhd-main/.opencode/command/i-have-adhd.md",
+    "specs/sk-communication/006-sk-communication-clarity/context/i-have-adhd-main/AGENTS.md",
+    "specs/sk-communication/006-sk-communication-clarity/context/i-have-adhd-main/CONTRIBUTING.md",
+    "specs/sk-communication/006-sk-communication-clarity/context/i-have-adhd-main/GEMINI.md",
+    "specs/sk-communication/006-sk-communication-clarity/context/i-have-adhd-main/INSTALL.md",
+    "specs/sk-communication/006-sk-communication-clarity/context/i-have-adhd-main/README.md",
+    "specs/sk-communication/006-sk-communication-clarity/context/i-have-adhd-main/evals/README.md",
+    "specs/sk-communication/006-sk-communication-clarity/context/i-have-adhd-main/evals/RESULTS.md",
+    "specs/sk-communication/006-sk-communication-clarity/context/i-have-adhd-main/evals/rubric.md",
+    "specs/sk-communication/006-sk-communication-clarity/context/i-have-adhd-main/skills/i-have-adhd/SKILL.md",
+    "specs/sk-communication/006-sk-communication-clarity/spec.md",
     "specs/sk-design/001-design-foundations/plan.md",
     "specs/sk-design/001-design-foundations/spec.md",
     "specs/sk-design/001-design-foundations/tasks.md",
@@ -18800,6 +18858,10 @@
     "specs/system-skill-advisor/026-pre-existing-suite-failures/plan.md",
     "specs/system-skill-advisor/026-pre-existing-suite-failures/spec.md",
     "specs/system-skill-advisor/026-pre-existing-suite-failures/tasks.md",
+    "specs/system-skill-advisor/027-empty-recommendation-diagnostic/implementation-summary.md",
+    "specs/system-skill-advisor/027-empty-recommendation-diagnostic/plan.md",
+    "specs/system-skill-advisor/027-empty-recommendation-diagnostic/spec.md",
+    "specs/system-skill-advisor/027-empty-recommendation-diagnostic/tasks.md",
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-additional-release-readiness-findings/__tier2-h-deferred.md",
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-additional-release-readiness-findings/implementation-summary.md",
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-additional-release-readiness-findings/plan.md",
@@ -29495,7 +29557,7 @@
     "specs/system-speckit/045-daemon-and-test-harness-hardening/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "3181abe368c54510dbf261ace65f3ecf5b7e2d2a8fc366e53f8488a9d958700e",
+  "manifestHash": "7d2e42001157e9dad4fb32e6b6568c7de06eb614bb8127d6f3c04a10a9b23b0f",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -30707,6 +30769,26 @@
     },
     {
       "path": "specs/sk-communication/005-deprecate-visual-explanation-lane/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/002-synthesis-and-decisions/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/003-root-doc-and-repo-rules/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/004-sk-communication-upgrade/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/scratch",
       "reason": "excluded directory"
     },
     {

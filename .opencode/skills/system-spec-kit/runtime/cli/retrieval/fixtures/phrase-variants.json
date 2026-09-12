@@ -1,5 +1,5 @@
 {
-  "manifestHash": "3181abe368c54510dbf261ace65f3ecf5b7e2d2a8fc366e53f8488a9d958700e",
+  "manifestHash": "7d2e42001157e9dad4fb32e6b6568c7de06eb614bb8127d6f3c04a10a9b23b0f",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -9267,6 +9267,12 @@
     "additive validator change proof": [
       "additive validator change proof"
     ],
+    "adhd output shaping": [
+      "adhd output shaping"
+    ],
+    "adhd shaping research": [
+      "adhd shaping research"
+    ],
     "adherence iteration ledger": [
       "adherence iteration ledger"
     ],
@@ -9692,6 +9698,9 @@
     "advisor derived block regenerator": [
       "advisor derived block regenerator"
     ],
+    "advisor diagnostics verification": [
+      "advisor diagnostics verification"
+    ],
     "advisor directive block": [
       "advisor directive block"
     ],
@@ -9979,6 +9988,9 @@
     ],
     "advisor naming gate tasks": [
       "advisor naming gate tasks"
+    ],
+    "advisor no match diagnostic": [
+      "advisor no match diagnostic"
     ],
     "advisor output contract fallback budget fix": [
       "advisor output contract fallback budget fix"
@@ -10326,6 +10338,9 @@
     "advisor skill graph tests": [
       "advisor skill graph tests"
     ],
+    "advisor skipped status meaning": [
+      "advisor skipped status meaning"
+    ],
     "advisor smoke test": [
       "advisor smoke test"
     ],
@@ -10392,6 +10407,9 @@
     "advisor suite drift tasks": [
       "advisor suite drift tasks"
     ],
+    "advisor suite fully green": [
+      "advisor suite fully green"
+    ],
     "advisor suite green": [
       "advisor suite green"
     ],
@@ -10415,6 +10433,9 @@
     ],
     "advisor test path rename 37 failures": [
       "advisor test path rename 37 failures"
+    ],
+    "advisor test seam export": [
+      "advisor test seam export"
     ],
     "advisor tool count 8 vs 9": [
       "advisor tool count 8 vs 9"
@@ -19104,6 +19125,12 @@
     "clarify handoff ladder fixtures": [
       "clarify handoff ladder fixtures"
     ],
+    "clarity research": [
+      "clarity research"
+    ],
+    "clarity rules": [
+      "clarity rules"
+    ],
     "class h root router md": [
       "class-H root ROUTER.md"
     ],
@@ -19398,6 +19425,9 @@
     "claude session pid not set": [
       "CLAUDE_SESSION_PID not set"
     ],
+    "claude style patch": [
+      "claude style patch"
+    ],
     "claude user prompt submit": [
       "claude user-prompt-submit"
     ],
@@ -19529,6 +19559,9 @@
     ],
     "cli adapter stress tests": [
       "cli adapter stress tests"
+    ],
+    "cli advisor unavailable misleading": [
+      "cli advisor unavailable misleading"
     ],
     "cli aliases errors": [
       "CLI aliases errors"
@@ -24501,6 +24534,9 @@
     "collision rejection plan": [
       "collision rejection plan"
     ],
+    "colon rule": [
+      "colon rule"
+    ],
     "color analysis sk vision colors": [
       "Color analysis (sk_vision_colors)"
     ],
@@ -24743,6 +24779,9 @@
     ],
     "command bridge regeneration": [
       "command-bridge regeneration"
+    ],
+    "command bridge rename": [
+      "command bridge rename"
     ],
     "command bridges": [
       "command bridges"
@@ -25537,6 +25576,12 @@
     ],
     "communication quality": [
       "communication quality"
+    ],
+    "communication repo rule": [
+      "communication repo rule"
+    ],
+    "communication research lineage": [
+      "communication research lineage"
     ],
     "communication rewrite research status": [
       "communication rewrite research status"
@@ -26930,6 +26975,9 @@
     ],
     "consumer rewire": [
       "consumer rewire"
+    ],
+    "consumer search before changing a marker": [
+      "consumer search before changing a marker"
     ],
     "consumption log pii redaction query hash": [
       "consumption-log pii redaction query_hash"
@@ -38722,6 +38770,9 @@
     "diagnostic counters tasks": [
       "diagnostic counters tasks"
     ],
+    "diagnostics branch split": [
+      "diagnostics branch split"
+    ],
     "diagnostics bucket plan": [
       "diagnostics bucket plan"
     ],
@@ -42381,6 +42432,9 @@
     ],
     "empty packet closure gate": [
       "empty packet closure gate"
+    ],
+    "empty recommendation reported as outage": [
+      "empty recommendation reported as outage"
     ],
     "empty trigger phrases": [
       "empty trigger phrases"
@@ -52042,6 +52096,9 @@
     "hook injection contract": [
       "hook injection contract"
     ],
+    "hook instead of gate 5": [
+      "hook instead of gate 5"
+    ],
     "hook kill switch adr": [
       "hook kill-switch ADR"
     ],
@@ -54058,6 +54115,9 @@
     "initialize deep improvement run": [
       "initialize deep-improvement run"
     ],
+    "inject a rule at prompt time": [
+      "inject a rule at prompt time"
+    ],
     "inject agent definition into cli dispatch prompt": [
       "inject agent definition into cli dispatch prompt"
     ],
@@ -54111,6 +54171,9 @@
     ],
     "injection reduction rollback": [
       "injection reduction rollback"
+    ],
+    "injection selectivity": [
+      "injection selectivity"
     ],
     "inline contradiction supersession warning": [
       "inline contradiction supersession warning"
@@ -63684,6 +63747,9 @@
     "misalign high remediation 026": [
       "misalign-high remediation 026"
     ],
+    "misleading error message fixed": [
+      "misleading error message fixed"
+    ],
     "misplaced iteration recovered": [
       "misplaced iteration recovered"
     ],
@@ -66021,8 +66087,14 @@
     "negative control constitutional": [
       "negative control constitutional"
     ],
+    "negative control evidence": [
+      "negative control evidence"
+    ],
     "negative control fails first": [
       "negative control fails first"
+    ],
+    "negative control for a diagnostic fix": [
+      "negative control for a diagnostic fix"
     ],
     "negative control named error": [
       "negative control named error"
@@ -66038,6 +66110,9 @@
     ],
     "negative control sk prompt teardown": [
       "negative control sk-prompt teardown"
+    ],
+    "negative control task": [
+      "negative control task"
     ],
     "negative knowledge": [
       "negative knowledge"
@@ -66314,6 +66389,15 @@
     ],
     "no live edit handoff tasks": [
       "no live edit handoff tasks"
+    ],
+    "no match diagnostic plan": [
+      "no match diagnostic plan"
+    ],
+    "no match diagnostic summary": [
+      "no match diagnostic summary"
+    ],
+    "no match diagnostic tasks": [
+      "no match diagnostic tasks"
     ],
     "no memory surface left": [
       "no memory surface left"
@@ -85613,6 +85697,9 @@
     "rule template contract": [
       "rule template contract"
     ],
+    "rule that binds on a read only turn": [
+      "rule that binds on a read-only turn"
+    ],
     "rule version provenance": [
       "rule_version provenance"
     ],
@@ -91336,6 +91423,9 @@
     "sk communication benchmark reports": [
       "sk-communication benchmark reports"
     ],
+    "sk communication clarity": [
+      "sk-communication clarity"
+    ],
     "sk communication feature catalog": [
       "sk-communication feature catalog"
     ],
@@ -94738,6 +94828,9 @@
     "skill advisor mcp identity": [
       "skill advisor MCP identity"
     ],
+    "skill advisor no match diagnostic": [
+      "skill advisor no-match diagnostic"
+    ],
     "skill advisor orphan references": [
       "skill-advisor orphan references"
     ],
@@ -96455,6 +96548,9 @@
     ],
     "smart routing underscore stale comments": [
       "smart_routing underscore stale comments"
+    ],
+    "smart rule injection": [
+      "smart rule injection"
     ],
     "snake case category folder convention": [
       "snake_case category folder convention"
@@ -98284,6 +98380,9 @@
     "stacked bars tooltip transfer": [
       "stacked-bars tooltip transfer"
     ],
+    "stacked compression": [
+      "stacked compression"
+    ],
     "stacked filters": [
       "stacked filters"
     ],
@@ -99186,6 +99285,9 @@
     "stop cleanup unreachable branch": [
       "stop cleanup unreachable branch"
     ],
+    "stop embedding on every message": [
+      "stop embedding on every message"
+    ],
     "stop evaluator": [
       "stop evaluator"
     ],
@@ -99804,6 +99906,9 @@
     ],
     "style library mjs tasks": [
       "style-library.mjs tasks"
+    ],
+    "style patch research": [
+      "style patch research"
     ],
     "style reference chart": [
       "style reference chart"
@@ -101536,6 +101641,9 @@
     ],
     "system skill advisor v0 11 0 0": [
       "system-skill-advisor v0.11.0.0"
+    ],
+    "system skill advisor v0 11 1 0": [
+      "system-skill-advisor v0.11.1.0"
     ],
     "system spec gate": [
       "system-spec-gate"
@@ -106094,6 +106202,9 @@
     ],
     "verbatim value rule": [
       "verbatim value rule"
+    ],
+    "verbless fragment": [
+      "verbless fragment"
     ],
     "verbose internal logging": [
       "verbose internal logging"
