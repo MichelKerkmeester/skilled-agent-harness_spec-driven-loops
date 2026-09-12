@@ -40,7 +40,25 @@ See [`deep-loop-mode-classification/deep-loop-mode-classification.md`](deep-loop
 
 ---
 
-## 3. COMPILED ROUTING
+## 3. FAN-OUT WRITE CONTAINMENT
+
+### Fan-Out Write Containment And Per-Lineage Worktrees
+
+#### Description
+
+How a fan-out keeps a dispatched lane's writes inside its own directory, why the remedy is preservation rather than reversion, and how a per-lineage worktree removes the attribution question instead of answering it.
+
+#### Current Reality
+
+Preservation is the default remedy and restore is opt-in per run. Per-lineage worktrees are available behind a flag and default off.
+
+#### Source Files
+
+See [fanout-write-containment/fanout-write-containment.md](fanout-write-containment/fanout-write-containment.md).
+
+---
+
+## 4. COMPILED ROUTING
 
 ### Compiled Routing And Legacy Fallback
 

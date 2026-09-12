@@ -3,19 +3,29 @@
 // ───────────────────────────────────────────────────────────────────
 
 // ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ COMPONENT: deep-loop codex write-containment guard                        ║
+// ║ COMPONENT: deep-loop write-containment guard                              ║
 // ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ PURPOSE: A codex leaf runs under `--sandbox workspace-write`, which lets   ║
-// ║          it write anywhere in the workspace -- the artifact dir boundary   ║
-// ║          is prompt-only. This module turns that boundary into a structural ║
-// ║          one: after a dispatch, diff the git working tree for NEW changes  ║
-// ║          outside the artifact dir, save those changes as a recoverable     ║
-// ║          patch, revert exactly those paths, emit a containment_violation   ║
-// ║          event, and let the caller fail the iteration.                     ║
-// ║          Pre-existing dirty paths are subtracted so unrelated in-flight    ║
-// ║          work is never reverted. Fails OPEN: when it cannot reason about   ║
-// ║          git (no repo, no binary, artifact dir outside the worktree) it    ║
-// ║          returns empty results and never breaks the loop it guards.        ║
+// ║ PURPOSE: A dispatched leaf can write anywhere in the workspace, because   ║
+// ║          the artifact-dir boundary it is given is prompt-only. This       ║
+// ║          module turns that boundary into a structural one: after a        ║
+// ║          dispatch, diff the git working tree for changes outside the      ║
+// ║          artifact dir, and report them.                                   ║
+// ║                                                                           ║
+// ║          The remedy is PRESERVATION by default. The tree cannot say which ║
+// ║          writer made a change, and on a shared checkout the honest answer ║
+// ║          is often a second session rather than this lane. Undoing what it  ║
+// ║          cannot attribute destroys a neighbour's work while reporting     ║
+// ║          success, so the finding is recorded and the bytes are left       ║
+// ║          alone, with a copy quarantined under the lineage directory.      ║
+// ║          Restoring is opt-in per run, and safe only where one operator    ║
+// ║          owns the checkout; it returns a path to its pre-dispatch bytes,  ║
+// ║          never to HEAD, so work that was already in flight survives.      ║
+// ║                                                                           ║
+// ║          Pre-existing dirty paths are subtracted so unrelated in-flight   ║
+// ║          work is never counted against the lane. Fails OPEN: when it      ║
+// ║          cannot reason about git (no repo, no binary, artifact dir        ║
+// ║          outside the worktree) it returns empty results and never breaks  ║
+// ║          the loop it guards.                                              ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 
 import { spawnSync } from 'node:child_process';

@@ -242,6 +242,63 @@ function findAllowlistEntry(distFile: string): AllowlistException | undefined {
   return ALLOWLIST_EXCEPTIONS.find((entry) => entry.file === distFile);
 }
 
+
+// ───────────────────────────────────────────────────────────────────
+// 4b. COMPILED SIBLINGS
+// ───────────────────────────────────────────────────────────────────
+
+/**
+ * A compiled `.js` sitting in the same directory as the `.ts` it came from.
+ *
+ * These are worse than an orphan in a build directory, because they win. Anything that resolves
+ * the path literally rather than through the compiler loads the sibling instead of the source, so
+ * an edit to the source appears to do nothing and the test that should have caught it reads the
+ * stale bytes too. Nothing regenerates them, so they drift the moment the source changes.
+ *
+ * A deliberate one is allowed, and has to say why it exists.
+ */
+interface SiblingException {
+  readonly file: string;
+  readonly reason: string;
+}
+
+const SIBLING_ALLOWLIST: SiblingException[] = [
+  {
+    file: 'system-spec-kit/runtime/cli/tests/manual-playbook-runner.js',
+    reason: 'plain-Node copy for runners that cannot load TypeScript; documented beside the fixtures',
+  },
+  {
+    file: 'system-spec-kit/runtime/cli/tests/fixtures/manual-playbook-fixture.js',
+    reason: 'plain-Node copy for runners that cannot load TypeScript; documented beside the fixtures',
+  },
+];
+
+/** Directories whose contents are build output or dependencies, not authored source. */
+const SIBLING_SKIP_DIRS = new Set(['dist', 'node_modules', '.git']);
+
+function findCompiledSiblings(dir: string, packageRoot: string, found: string[] = []): string[] {
+  let entries: fs.Dirent[];
+  try {
+    entries = fs.readdirSync(dir, { withFileTypes: true });
+  } catch {
+    return found;
+  }
+  for (const entry of entries) {
+    const full = path.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      if (SIBLING_SKIP_DIRS.has(entry.name)) continue;
+      findCompiledSiblings(full, packageRoot, found);
+      continue;
+    }
+    if (!entry.isFile() || !entry.name.endsWith('.js')) continue;
+    const source = `${full.slice(0, -'.js'.length)}.ts`;
+    if (fs.existsSync(source)) {
+      found.push(toPosix(path.relative(path.dirname(packageRoot), full)));
+    }
+  }
+  return found;
+}
+
 // ───────────────────────────────────────────────────────────────────
 // 5. MAIN LOGIC
 // ───────────────────────────────────────────────────────────────────
@@ -313,7 +370,24 @@ function main(): void {
     process.exit(1);
   }
 
-  console.log('\nSource/dist alignment check passed: every scanned dist *.js file maps to a source .ts file.');
+  const siblings = findCompiledSiblings(packageRoot, packageRoot)
+    .filter((file) => !SIBLING_ALLOWLIST.some((entry) => entry.file === file));
+
+  console.log(`  compiled siblings beside a source: ${siblings.length} undeclared, ${SIBLING_ALLOWLIST.length} declared`);
+
+  if (siblings.length > 0) {
+    console.error(`\nCompiled-sibling check FAILED: ${siblings.length} file(s) shadow their own source:\n`);
+    for (const file of siblings) {
+      console.error(`  ${file}`);
+    }
+    console.error('\nA compiled file beside its source wins resolution for anything that does not go');
+    console.error('through the compiler, so the source can be edited with no effect. Delete it, or');
+    console.error('declare it with the reason it has to exist.');
+    process.exit(1);
+  }
+
+  console.log('\nSource/dist alignment check passed: every scanned dist *.js file maps to a source .ts file,');
+  console.log('and no compiled file shadows the source it came from.');
   process.exit(0);
 }
 

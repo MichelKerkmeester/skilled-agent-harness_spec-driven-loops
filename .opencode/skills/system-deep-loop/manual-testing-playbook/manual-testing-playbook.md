@@ -169,6 +169,13 @@ Keep global verdict logic and routing-architecture explanations in this root pla
 | `AI-003` | Command-Bridge Guard | Command-bridge modes do not fire from bare advisor aliases | [advisor-integration/command-bridge-guard.md](advisor-integration/command-bridge-guard.md) | No |
 | `AI-004` | No False Fire | Plain code-edit prompt routes to `sk-code`, not deep-loop | [advisor-integration/no-false-fire-code-edit.md](advisor-integration/no-false-fire-code-edit.md) | Yes |
 
+### Write Containment (`WC-001..WC-002`)
+
+| Feature ID | Feature Name | Scenario Name / Objective | Per-Feature File | Critical Path |
+|---|---|---|---|---|
+| `WC-001` | Shared-Checkout Preservation | A neighbour's out-of-scope edits survive a fan-out byte-identical | [write-containment/shared-checkout-run.md](write-containment/shared-checkout-run.md) | Yes |
+| `WC-002` | Worktree Isolation | A lane runs in its own tree, publishes into the main checkout, and leaves none behind | [write-containment/worktree-isolated-run.md](write-containment/worktree-isolated-run.md) | Yes |
+
 ### Runtime and Backend (`RB-001..RB-004`)
 
 | Feature ID | Feature Name | Scenario Name / Objective | Per-Feature File | Critical Path |

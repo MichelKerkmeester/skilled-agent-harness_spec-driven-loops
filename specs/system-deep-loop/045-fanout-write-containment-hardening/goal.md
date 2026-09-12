@@ -62,12 +62,8 @@ Frozen choices. Changing one is an amendment.
 
 ### Operator copy
 
-The operator holds this directive as the session objective, and that copy is
-what judges completion, not this file. Whenever anything above the log changes
-(objective, a decision, the binding table, a criterion), resend the full text
-of this file in chat so the operator can update their copy. A child goal change
-that alters a parent decision or criterion is an amendment to the parent: apply
-it there first, then resend the parent.
+The operator's copy judges completion, not this file. Resend this file in chat
+whenever anything above the log changes.
 <!-- /ANCHOR:directive -->
 
 ---
@@ -76,16 +72,12 @@ it there first, then resend the parent.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-Three to seven bullets, each checkable without opening another file. Copy them
-verbatim into the objective: nothing dereferences a path, so criteria left only
-here are invisible to whatever judges completion.
-
-- [ ] A lane that writes outside its lineage directory on a default run leaves every such file byte-identical, proven by a unit test that hashes before and after
-- [ ] A quarantine directory exists after such a lane holding the manifest, the content and the patch against HEAD
-- [ ] A complete lane with containment findings settles as completed with advisory and is counted separately in the orchestration summary
-- [ ] A fan-out with the worktree option on completes against an uncommitted packet, with every lineage directory present in the main checkout and no worktree left behind
-- [ ] The deep-loop runtime Vitest suite exits zero, including the incident reproduction case
-- [ ] Nothing in the four command YAMLs or the five documentation surfaces still describes the revert-and-fail model
+- [x] A lane that writes outside its lineage directory on a default run leaves every such file byte-identical, proven by a unit test that hashes before and after
+- [x] A quarantine directory exists after such a lane holding the manifest, the content and the patch against HEAD
+- [x] A complete lane with containment findings settles as completed with advisory and is counted separately in the orchestration summary
+- [x] A fan-out with the worktree option on completes against an uncommitted packet, with every lineage directory present in the main checkout and no worktree left behind
+- [x] The deep-loop runtime Vitest suite exits zero, including the incident reproduction case
+- [x] Nothing in the four command YAMLs or the five documentation surfaces still describes the revert-and-fail model
 <!-- /ANCHOR:completion -->
 
 ---
