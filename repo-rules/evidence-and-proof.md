@@ -55,6 +55,17 @@ carries its receipt, or is explicitly labeled as inferred.**
 Prose that mixes the three without marking them reads as if all of it were observed.
 That is how a confident summary certifies work nobody checked.
 
+**A receipt confirms only what could have contradicted it.** If the claim being false would
+have left the receipt unchanged, the receipt is not an observation of that claim, whatever
+you ran. It belongs in INFERRED until repaired. Four shapes recur, each with one repair.
+A search that found nothing: demonstrate the search on a known instance of what you claim
+is absent, or you have tested your pattern, not the claim. A read that stopped short: read
+the span where the failure would actually print. A total carried from another analysis:
+derive it here, at the total's own level, because verifying its parts is not deriving the
+whole. A match that never distinguished roles: compare what the two sides are, not the
+digits they share. With no known instance to hand, the honest output is INFERRED plus the
+step that would confirm it.
+
 ---
 
 ## 2. COMMAND EVIDENCE

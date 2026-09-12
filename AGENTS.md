@@ -240,7 +240,7 @@ These five bind unconditionally, including on a read-only turn where Gate 5 neve
 
 | Standard | Rule |
 |---|---|
-| **Confirmed vs inferred** | A load-bearing claim carries its evidence (file:line, command, artifact). An inferred one says what would confirm it. |
+| **Confirmed vs inferred** | A load-bearing claim carries its evidence, and that evidence confirms it only if the claim being false would have changed what the evidence showed. A reading that comes out the same either way is inference. An inferred claim says what would confirm it. |
 | **Observed command evidence** | A command is evidence only once its output AND exit status are read. Exit status alone has been wrong in both directions. |
 | **Finding = hypothesis** | A sub-agent's "COMPLETE" and a reviewer's "P0" are claims about themselves until something you ran confirms them. |
 | **Your own read is also one lens** | A judgment answered from your own reading alone is the same single-lens claim. Ground it, or say it is judgment and what would change it. |
