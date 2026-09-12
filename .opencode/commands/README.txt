@@ -113,7 +113,6 @@ command/
 │   ├── diagram.md            # Create an HTML/SVG diagram or a validated ASCII flowchart
 │   └── assets/                # Auto/confirm/presentation workflow assets
 ├── rewrite/                  # Plain-English and visual re-expression commands
-│   ├── explain-visually.md   # Explain the prior reply or a topic as the smallest useful diagram
 │   ├── response.md           # Rewrite the active AI's last reply in plain English
 │   └── response-by-external-agent.md   # Same, via an external CLI agent or local LLM
 └── speckit/                  # Spec folder workflow, continuity write and retrieval commands
@@ -204,7 +203,6 @@ Re-express something that already exists — the active AI's last reply, or a na
 |---------|------------|---------|
 | Response | `/rewrite:response [--show-original]` | Rewrite the active AI's most recent reply into plain English in-context |
 | Response by External Agent | `/rewrite:response-by-external-agent [cli-<skill>\|native\|local] [target-text]` | Same projection, run through an external CLI agent or a local LLM |
-| Explain Visually | `/rewrite:explain-visually [--depth=expert\|plain\|novice] [--artifact] [topic]` | Explain the prior reply or a topic as the smallest diagram that answers the question |
 
 ### Spec Kit Commands
 
