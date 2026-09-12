@@ -66,10 +66,10 @@ that says what fails at the cheaper one** in the response, not just in your head
 | Add a dependency | permanent supply-chain, version and trust surface |
 
 > **This orders moves by what being wrong costs, and it is deliberately not the numbered
-> rung ladder.** For code, `AGENTS.md` §3 names
-> `sk-code/shared/references/universal/code-quality-standards.md` §1 as the authoritative
-> rungs, and that ladder orders *solution sources*, standard library, then native
-> platform, then an installed dependency. Two orderings, two axes, one authority: cite
+> rung ladder.** For code, `AGENTS.md` §3 names the code skill's universal quality
+> standards as the authoritative rungs. Route through `sk-code` to reach them, because
+> where that file sits is each repository's own business. That ladder orders *solution
+> sources*: standard library, then native platform, then an installed dependency. Two orderings, two axes, one authority: cite
 > rung numbers from that file, and cite moves by name from this one. Naming a "rung 2"
 > here would mean something different there, which is exactly the confusion this section
 > stopped causing.

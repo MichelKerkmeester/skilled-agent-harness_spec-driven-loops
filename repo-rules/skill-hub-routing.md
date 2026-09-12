@@ -65,7 +65,7 @@ Two consequences follow. A `metadata` mode's vocabulary reaches the advisor **on
 
 ## 2. REGISTERED IS NOT ROUTED
 
-Before saying a mode is integrated, confirm every surface carries it. The authoritative list, with what each one breaks, is section 7 of [`parent-skills-nested-packets.md`](../.opencode/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md).
+Before saying a mode is integrated, confirm every surface carries it. The authoritative list, with what each one breaks, is section 7 of `parent-skills-nested-packets.md`, which `sk-doc` routes to.
 
 The two most often missed are the two nothing used to enforce:
 
@@ -82,13 +82,8 @@ The two most often missed are the two nothing used to enforce:
 
 A per-hub gate run without its hub argument reports on whichever hub it defaults to. The output is green, detailed and about something else.
 
-Pass the hub path explicitly, and read the subject line before the verdict:
-
-```bash
-node .opencode/commands/doctor/scripts/parent-skill-check.cjs .opencode/skills/<hub>
-```
-
-Then replay both stages with a real request for the mode, rather than trusting either gate alone. The commands are in the reference above.
+Pass the hub path explicitly to the repository's parent-skill checker, and read the
+subject line before the verdict. Then replay both stages with a real request for the mode, rather than trusting either gate alone. The commands are in the reference above.
 
 **The failure this prevents:** a green run that certifies a hub you never touched. This is the green-run-lies case from [`evidence-and-proof.md`](evidence-and-proof.md) with a specific, repeatable shape.
 
@@ -111,7 +106,7 @@ This rule is a pointer, deliberately. It carries the discipline; the mechanics b
 | What must a new mode land on, and in what order | `parent-skills-nested-packets.md` §7 |
 | Hub doctrine, one identity, the `routingClass` table | `parent-skills-nested-packets.md` §1-2 |
 | Which metadata file is required or forbidden at which root | `skill-root-metadata-contract.md` |
-| How the advisor scores, and its regression corpus | `.opencode/skills/system-skill-advisor/` |
+| How the advisor scores, and its regression corpus | the skill-advisor system skill |
 | Authoring or repairing a hub | `sk-doc` → `sk-create-skill` |
 
 ---
