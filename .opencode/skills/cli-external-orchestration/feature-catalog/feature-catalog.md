@@ -89,7 +89,7 @@ One runtime-neutral inspector classifies a Bash command as `direct`, `ambiguous`
 
 #### Current Reality
 
-A quoted command-position executor is normalized as a real dispatch: `"devin" -p x` classifies as `direct cli-devin` (identical to the unquoted form) and is audit-visible, while multi-word quoted prose and quoted arguments correctly stay `none`. Under Pi, a `direct` dispatch is denied unless the user's own request names the matching executor, an `ambiguous` command is denied, `none` is a no-op, and a `cli-pi` self-dispatch is never authorized. The shared inspector suite passes 356/356 and the Pi preflight suite passes 32/32.
+A quoted command-position executor is normalized as a real dispatch: `"devin" -p x` classifies as `direct cli-devin` (identical to the unquoted form) and is audit-visible, while multi-word quoted prose and quoted arguments correctly stay `none`. Under Pi, a `direct` dispatch is denied unless the user's own request names the matching executor, an `ambiguous` command is denied, and `none` is a no-op. Run the shared inspector suite (`npx vitest run --config .opencode/hooks/vitest.config.ts .opencode/hooks/dispatch/lib/dispatch-audit.test.mjs`) and the Pi preflight suite (`npx vitest run --config .opencode/hooks/vitest.config.ts .opencode/hooks/dispatch/pi/dispatch-preflight-lint.test.ts`). All cases are expected to pass.
 
 #### Source Files
 

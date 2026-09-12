@@ -35,7 +35,7 @@ The same classification feeds two consumers: the observational audit trail (`mat
 
 - `none` → no-op (not a dispatch; the preflight returns early).
 - `ambiguous` → deny — the command does not prove one direct executor.
-- `direct` → deny unless the user's own request names the matching executor (or a `/deep:* --executor=cli-X` override authorizes it); a `cli-pi` self-dispatch is never authorized.
+- `direct` → deny unless the user's own request names the matching executor (or a `/deep:* --executor=cli-X` override authorizes it).
 
 The gate reads the user's original request text (captured before sibling transforms and stripped of injected directives) so that an explicit, un-negated executor mention is what authorizes a dispatch — not the injected advisor or spec-gate content.
 
