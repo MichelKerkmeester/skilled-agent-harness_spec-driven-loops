@@ -164,7 +164,7 @@ running it from the worktree records paths that do not yet exist.
 | Symptom | Cause | Fix (step) |
 |---------|-------|------------|
 | "Double" / empty folders after merge | `git mv` left ignored cruft in old dirs | 4a leftover scan + `rm -rf` |
-| Strict-validate "passes" but touched 0 files | Ran in bare worktree (no deps) or via symlinked deps | Run toolchain on `main` (4b) |
+| Strict-validate "passes" but touched 0 files | Ran in bare worktree (no deps), or reached deps whose resolution re-anchors to the source checkout | Run toolchain on `main` (4b) |
 | Metadata attests paths that do not exist | Generators ran from the worktree | Run the generators on `main` post-merge (4b, 4c) |
 | Renames show as add/delete, blame lost | Content edits mixed into rename commit | Separate rename + edit commits (step 2) |
 

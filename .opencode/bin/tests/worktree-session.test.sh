@@ -160,5 +160,50 @@ expect "env-base launch succeeds" test "$F4_RC" -eq 0
 expect "env-base launch allocates under the env base" test -d "$F4_BASE"
 expect "env-base launch persists the base into repo config" test "$F4_CFG" = "$F4_BASE"
 
+
+# A dependency root holding a workspace package's own entry cannot be shared as one link: the
+# entry's relative text re-anchors through wherever the link sits, so the session silently
+# reads the main checkout's copy. Asserted on the bytes a child process loads, because a path
+# is spellable and the wrong file can be reported under the right-looking name.
+# Physical paths: the wrapper canonicalizes both sides of its containment checks, and a
+# temp root reached through a symlinked parent would be skipped as outside the worktree.
+F5_FIXTURE="$ROOT/f5"
+mkdir -p "$F5_FIXTURE/pkg" "$F5_FIXTURE/node_modules/@scope" "$F5_FIXTURE/node_modules/vendored"
+F5_FIXTURE="$(cd "$F5_FIXTURE" && pwd -P)"
+make_fixture "$F5_FIXTURE"
+printf '{"name":"@scope/pkg","main":"index.js"}\n' > "$F5_FIXTURE/pkg/package.json"
+printf 'module.exports = "MAIN";\n' > "$F5_FIXTURE/pkg/index.js"
+printf 'node_modules\n' > "$F5_FIXTURE/.gitignore"
+git -C "$F5_FIXTURE" add -A
+git -C "$F5_FIXTURE" commit -q -m workspace
+printf 'module.exports = "VENDORED";\n' > "$F5_FIXTURE/node_modules/vendored/index.js"
+ln -s ../../pkg "$F5_FIXTURE/node_modules/@scope/pkg"
+mkdir -p "$ROOT/f5-base"
+F5_BASE="$(cd "$ROOT/f5-base" && pwd -P)"
+set +e
+(
+  cd "$F5_FIXTURE" || exit 1
+  env -u AI_SESSION_CHILD \
+    PATH="$BIN_DIR:$PATH" \
+    SPECKIT_WORKTREE_SHARED_PATHS='node_modules' \
+    SPECKIT_WORKTREE_BASE="$F5_BASE" \
+    bash "$WRAPPER" myrt
+) >/dev/null 2>"$ROOT/f5.stderr"
+F5_RC=$?
+set -e
+F5_WT="$(find "$F5_BASE" -mindepth 1 -maxdepth 1 -type d 2>/dev/null | head -1)"
+
+expect "workspace-link launch succeeds" test "$F5_RC" -eq 0
+expect "dependency root is a real directory, so relative links cannot re-anchor" test ! -L "$F5_WT/node_modules"
+expect "scope directory is real for the same reason" test ! -L "$F5_WT/node_modules/@scope"
+expect "third-party entry stays shared with the main checkout" test -L "$F5_WT/node_modules/vendored"
+expect "workspace link is recreated with the checkout's own relative text" \
+  test "$(readlink "$F5_WT/node_modules/@scope/pkg")" = "../../pkg"
+
+printf 'module.exports = "WORKTREE";\n' > "$F5_WT/pkg/index.js"
+F5_LOADED="$(cd "$F5_WT" && node -e 'process.stdout.write(require("@scope/pkg"))' 2>/dev/null || true)"
+F5_MAIN="$(cd "$F5_FIXTURE" && node -e 'process.stdout.write(require("@scope/pkg"))' 2>/dev/null || true)"
+expect "worktree loads its own bytes for the workspace package" test "$F5_LOADED" = "WORKTREE"
+expect "main checkout still loads its own, so the probe can see both" test "$F5_MAIN" = "MAIN"
 echo "worktree-session tests: PASS=$PASS FAIL=$FAIL"
 [ "$FAIL" -eq 0 ]

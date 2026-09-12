@@ -446,9 +446,15 @@ create_detached_worktree() {
 # a temp directory loses that hub's dependencies and reports the hub broken.
 #
 # Provisioning INSTALLS rather than symlinking a tree from the source checkout.
-# A package's node_modules carries its own workspace self-links, which are
-# relative and resolve back to wherever they were created -- symlink the tree
-# and the worktree silently compiles against the other checkout's build output.
+# The binding rule is narrower than the technique: no shared path may resolve a
+# repository-internal reference back to the source checkout. A package's
+# node_modules carries its own workspace self-links, which are relative and
+# re-anchor through wherever the link physically sits, so a wholesale link
+# leaves the worktree reading the source checkout's code. A compiled entry point
+# reached through a link separately decides it is not the entry point and exits 0
+# without doing its work. Installing satisfies both the blunt way; sharing is
+# safe only once the links are split and the self-links recreated relative to
+# the worktree.
 
 # A workspace member never gets its own node_modules -- npm hoists its packages
 # to the workspace root -- so the presence of that directory cannot decide

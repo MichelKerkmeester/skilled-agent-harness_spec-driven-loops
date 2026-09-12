@@ -2575,11 +2575,32 @@ function metadataRefreshRequested(args) {
  * against `repoRoot`, or `commands: null` with the missing dist files listed
  * when the spec-kit CLI has not been built on this checkout.
  */
+/**
+ * The canonical spelling of a generator's path, or the path unchanged when it has none.
+ *
+ * These generators do their work behind a guard comparing the script path they were invoked
+ * with against the location they derive from their own module. Node canonicalizes the second
+ * and not the first, so invoking one through any non-canonical path - a linked build directory,
+ * or merely a root reached through a symlinked parent - makes the two disagree. The guard then
+ * reads false, the work never runs, and the process still exits 0, which the caller records as
+ * a successful refresh of metadata that was never written.
+ *
+ * Canonicalizing here makes the two agree. The generator still writes into the checkout it is
+ * told about, because the root travels in the argument vector rather than in this path.
+ */
+function canonicalGeneratorPath(generatorFile) {
+  try {
+    return fs.realpathSync(generatorFile);
+  } catch {
+    return generatorFile;
+  }
+}
+
 function buildMetadataRefreshCommands(specFolder, repoRoot, cliDistDirOverride) {
   const distDir = cliDistDirOverride || path.join(repoRoot, SPEC_KIT_CLI_DIST_REL);
   const planned = [
-    { file: path.join(distDir, 'spec-folder', 'generate-description.js'), args: [specFolder, repoRoot] },
-    { file: path.join(distDir, 'graph', 'backfill-graph-metadata.js'), args: [specFolder] },
+    { file: canonicalGeneratorPath(path.join(distDir, 'spec-folder', 'generate-description.js')), args: [specFolder, repoRoot] },
+    { file: canonicalGeneratorPath(path.join(distDir, 'graph', 'backfill-graph-metadata.js')), args: [specFolder] },
   ];
   const missing = planned
     .filter((generator) => !fs.existsSync(generator.file))
