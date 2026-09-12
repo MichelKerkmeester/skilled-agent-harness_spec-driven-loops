@@ -4450,3 +4450,147 @@ describe('fanout-run.cjs — isolation moves the attribution boundary rather tha
     expect(readFileSync(fixture.trackedPath, 'utf8')).toBe(neighbourBytes);
   });
 });
+
+// The startup pass does two things beyond reclaiming trees: it sweeps the publish staging a dead
+// publisher left behind, and it must leave a peer run's staging alone. The run id is generated
+// inside the process, so the checkpoint the run writes before it sweeps is the only handle an
+// outside test has on it.
+describe('fanout-run.cjs — the startup pass sweeps this run’s publish staging', () => {
+  it('removes this run’s incomplete staging and leaves a different run’s staging untouched', async () => {
+    const fixture = prepareWorktreeRepo('worktrees-staging-sweep');
+    writeTreeReportingStub(fixture.binDir, fixture.specFolder);
+
+    const pending = spawnCjs(
+      fanoutRunScript,
+      [
+        '--spec-folder', fixture.specFolder,
+        '--loop-type', 'research',
+        '--fanout-config-json', fixture.fanoutConfig,
+        '--base-artifact-dir', fixture.baseDir,
+        '--worktrees',
+        '--no-metadata-refresh',
+        '--pre-dispatch-wait-ms', '2000',
+      ],
+      { cwd: fixture.repoRoot, env: fixture.env, timeoutMs: 30_000 },
+    );
+
+    const checkpointPath = join(fixture.baseDir, 'orchestration-wait-checkpoint.json');
+    await waitForFile(checkpointPath);
+    const { runId } = parseJsonFile<{ runId?: string }>(checkpointPath);
+    expect(typeof runId).toBe('string');
+
+    const lineagesDir = join(fixture.baseDir, 'lineages');
+    const ownStaging = join(lineagesDir, `.staging-${runId}-residue-2`);
+    const peerStaging = join(lineagesDir, '.staging-peer-run-residue-1');
+    mkdirSync(ownStaging, { recursive: true });
+    writeFileSync(join(ownStaging, 'partial-copy.txt'), 'half-written\n');
+    mkdirSync(peerStaging, { recursive: true });
+    writeFileSync(join(peerStaging, 'partial-copy.txt'), 'peer-half-written\n');
+
+    const result = await pending;
+    expect(result.exitCode, `${result.stdout}\n${result.stderr}`).toBe(0);
+
+    // This run's residue is gone and the peer's is byte-identical: a sweep that took every
+    // staging directory it found would still pass the first half of this pair alone.
+    expect(existsSync(ownStaging)).toBe(false);
+    expect(readFileSync(join(peerStaging, 'partial-copy.txt'), 'utf8')).toBe('peer-half-written\n');
+
+    const events = fixture.readLedgerEvents();
+    const swept = events.filter((event) => event.event === 'worktree_staging_swept');
+    expect(swept).toHaveLength(1);
+    expect(swept[0]).toMatchObject({ status: 'ok', run_id: runId });
+    expect(swept[0].removed).toEqual([ownStaging]);
+    expect(events.filter((event) => event.event === 'worktree_staging_sweep_failed')).toEqual([]);
+    // The reclamation pass the staging sweep joined still ran in the same startup pass.
+    expect(events.filter((event) => event.event === 'worktree_reclaim_swept')).toHaveLength(1);
+  });
+});
+
+// Publication is the point where a lane's work is either copied back or kept, so a failed publish
+// leaves the tree in place on purpose. The pool's retry of that same lane then needs a name of its
+// own, or it collides with the tree held for recovery and drops to the shared checkout.
+describe('fanout-run.cjs — a retry of a lane whose tree was retained gets its own directory', () => {
+  it('creates a second, differently-named worktree and leaves the retained one byte-intact', async () => {
+    const fixture = prepareWorktreeRepo('worktrees-retry');
+    const attemptsPath = join(fixture.repoRoot, 'lane-attempts');
+    // Attempt one leaves the one file publication refuses to overwrite and produces no artifact,
+    // so the publish is refused and the artifact miss is retryable. Attempt two produces the
+    // artifact the run validates.
+    writeFileSync(
+      join(fixture.binDir, 'opencode'),
+      [
+        '#!/bin/sh',
+        `attempts_file=${shellQuote(attemptsPath)}`,
+        'attempts=$(cat "$attempts_file" 2>/dev/null || printf "0")',
+        'attempts=$((attempts + 1))',
+        'printf "%s\\n" "$attempts" > "$attempts_file"',
+        'lineage_dir=""',
+        'for state_dir in "$SPECKIT_OPENCODE_STATE_DIR" "$SPECKIT_CLAUDE_CODE_STATE_DIR"; do',
+        '  if [ -n "$state_dir" ]; then',
+        '    lineage_dir=$(dirname "$state_dir")',
+        '    break',
+        '  fi',
+        'done',
+        'if [ -n "$lineage_dir" ]; then',
+        '  mkdir -p "$lineage_dir"',
+        '  if [ "$attempts" = "1" ]; then',
+        '    printf "unfinished-copy\\n" > "$lineage_dir/publish-manifest.json"',
+        '    exit 0',
+        '  fi',
+        '  printf "ok\\n" > "$lineage_dir/research.md"',
+        '  printf "ok\\n" > "$lineage_dir/review-report.md"',
+        'fi',
+        'echo "stub-done"',
+        'exit 0',
+        '',
+      ].join('\n'),
+      { mode: 0o755 },
+    );
+
+    const result = await spawnCjs(
+      fanoutRunScript,
+      [
+        '--spec-folder', fixture.specFolder,
+        '--loop-type', 'research',
+        '--fanout-config-json', fixture.fanoutConfig,
+        '--base-artifact-dir', fixture.baseDir,
+        '--worktrees',
+        '--no-metadata-refresh',
+      ],
+      { cwd: fixture.repoRoot, env: fixture.env, timeoutMs: 40_000 },
+    );
+    expect(result.exitCode, `${result.stdout}\n${result.stderr}`).toBe(0);
+
+    const events = fixture.readLedgerEvents();
+    // One lane, two attempts, and the retry is not degraded to the shared checkout.
+    expect(events.filter((event) => event.event === 'retry_scheduled')).toHaveLength(1);
+    const created = events.filter((event) => event.event === 'worktree_created');
+    expect(created).toHaveLength(2);
+    const createdPaths = created.map((event) => String(event.worktree_path));
+    expect(createdPaths[0]).not.toBe(createdPaths[1]);
+    expect(events.filter((event) => event.event === 'worktree_degraded')).toEqual([]);
+
+    // Attempt one's publication was refused, which is what retained its tree; attempt two
+    // published and its tree was handed back.
+    const publishFailures = events.filter((event) => event.event === 'worktree_publish_failed');
+    expect(publishFailures).toHaveLength(1);
+    expect(publishFailures[0]).toMatchObject({
+      label: 'contained',
+      reason: 'source-holds-manifest-name',
+      worktree_path: createdPaths[0],
+    });
+    const published = events.filter((event) => event.event === 'worktree_published');
+    expect(published).toHaveLength(1);
+    expect(published[0].worktree_path).toBe(createdPaths[1]);
+
+    // The retained tree is still there with the bytes it held, and the published attempt's tree
+    // is gone because its work was copied back first.
+    expect(existsSync(createdPaths[0])).toBe(true);
+    expect(existsSync(createdPaths[1])).toBe(false);
+    const retainedLineageDir = join(
+      createdPaths[0],
+      relative(fixture.repoRoot, join(fixture.baseDir, 'lineages', 'contained')),
+    );
+    expect(readFileSync(join(retainedLineageDir, 'publish-manifest.json'), 'utf8')).toBe('unfinished-copy\n');
+  });
+});
