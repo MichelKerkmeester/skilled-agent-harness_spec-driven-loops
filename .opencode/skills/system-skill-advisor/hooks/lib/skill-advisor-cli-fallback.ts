@@ -404,7 +404,10 @@ type CliFallbackHookResult = AdvisorHookResult & {
   readonly ambiguous?: boolean;
 };
 
-function resultFromCliData(args: {
+// Exported as a test seam. The diagnostics this builds are the only signal a
+// reader gets about why no brief appeared, and a wrong one here sends them
+// hunting a transport failure that never happened.
+export function resultFromCliData(args: {
   readonly data: CliRecommendData;
   readonly options: SkillAdvisorCliFallbackOptions;
   readonly startedAt: number;
@@ -424,9 +427,16 @@ function resultFromCliData(args: {
   const warnings = Array.isArray(args.data.warnings)
     ? args.data.warnings.filter((value): value is string => typeof value === 'string')
     : [];
+  // A live or stale advisor that returned nothing above the threshold answered
+  // the question; it simply had no skill to name. Reporting that as an outage
+  // sends a reader hunting a transport failure that never happened, which has
+  // already cost one long investigation.
+  const answeredWithNoMatch = freshness === 'live' || freshness === 'stale';
   const reason = status === 'ok'
     ? 'ok'
-    : (freshness === 'absent' ? 'advisor_absent' : 'advisor_unavailable');
+    : answeredWithNoMatch
+      ? 'no_recommendation'
+      : (freshness === 'absent' ? 'advisor_absent' : 'advisor_unavailable');
   const hookResult: CliFallbackHookResult = {
     status,
     freshness,
@@ -435,11 +445,18 @@ function resultFromCliData(args: {
     ...(ambiguous === undefined ? {} : { ambiguous }),
     diagnostics: status === 'ok'
       ? (freshness === 'stale' && warnings[0] ? { staleReason: warnings[0] } : null)
-      : {
-        errorCode: 'NON_ZERO_EXIT',
-        errorClass: 'unknown',
-        errorMessage: freshness === 'absent' ? 'CLI_ADVISOR_ABSENT' : 'CLI_ADVISOR_UNAVAILABLE',
-      },
+      : answeredWithNoMatch
+        ? {
+          // No error code or class: nothing failed, so naming a failure class
+          // here is what made this look like an outage in the first place.
+          reason: 'no_recommendation',
+          errorMessage: 'CLI_ADVISOR_NO_MATCH',
+        }
+        : {
+          errorCode: 'NON_ZERO_EXIT',
+          errorClass: 'unknown',
+          errorMessage: freshness === 'absent' ? 'CLI_ADVISOR_ABSENT' : 'CLI_ADVISOR_UNAVAILABLE',
+        },
     metrics: {
       durationMs: Number((args.now() - args.startedAt).toFixed(3)),
       cacheHit: cacheHitFrom(args.data),
