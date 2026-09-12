@@ -25,7 +25,7 @@
 3. **VERIFY** — Syntax checks and tests **MUST** pass before claiming completion. **NO** blind commits.
 4. **HALT** — Stop immediately if uncertain, if line numbers don't match, or if tests fail.
 
-Law 4 blocks forward progress and completion while a check is failing. A failing check may enter the bounded remediation loop in Section 3, but the hard stop remains until the authoritative gate passes.
+Law 4 blocks forward progress and completion while a check is failing. A failing check may be repaired, but the hard stop remains until the authoritative gate passes.
 
 #### PLAN-WORKFLOW LOCK — HARD BLOCKER (cannot be overridden)
 
@@ -59,8 +59,6 @@ Beyond Law 4 (uncertainty, line-number mismatch, failing tests), also halt on:
 ## 2. ⛔ MANDATORY GATES — STOP BEFORE ACTING
 
 **⚠️ BEFORE using ANY tool (except Gate Actions: the trigger index lookup, `.opencode/bin/skill-advisor.cjs`), you MUST pass all applicable gates below.**
-
-### 🔒 PRE-EXECUTION GATES (Pass before ANY tool use)
 
 #### GATE 3: SPEC FOLDER QUESTION [HARD] BLOCK — ASKED FIRST
 **Fires when** the turn will write a file — creating, editing, deleting, moving, or generating one — or will write continuity state (a save, a resume, a further iteration). **Does not fire** when the request is purely read-only: review, audit, inspect, analyze, explain, standing alone. A read-only word next to a write trigger does not disqualify it.
@@ -107,7 +105,7 @@ Trigger: EACH new user message (re-evaluate even in ongoing conversations)
 
 ### Skill Routing Reference
 
-Skills are on-demand domain expertise invoked through Gate 2 (§2): when the advisor confidence is ≥ 0.8, you MUST invoke the recommended skill. Invoking a skill means reading its `SKILL.md` and the resources ITS router resolves for the task at hand, then following those instructions to completion. Read a `references/`, `scripts/`, or `assets/` file when the skill's own routing points at it — not the whole bundle by default; ingesting a skill tree wholesale costs more context than it returns and is not what this rule asks for. A skill already in context is not re-invoked.
+Skills are on-demand domain expertise invoked through Gate 2 (§2). Invoking a skill means reading its `SKILL.md` and the resources ITS router resolves for the task at hand, then following those instructions to completion. Read a `references/`, `scripts/`, or `assets/` file when the skill's own routing points at it — not the whole bundle by default; ingesting a skill tree wholesale costs more context than it returns and is not what this rule asks for. A skill already in context is not re-invoked.
 
 **Advisor metadata placement.** These filenames also name spec-folder continuity metadata (§6) under a completely separate schema — never the same file, never interchangeable. At a skill root, `graph-metadata.json` is the advisor identity file and is required at BOTH parent-hub and standalone roots; `description.json`, `mode-registry.json`, and `hub-router.json` are **hub-only** (forbidden on a standalone root). None of them live at a mode/packet or `shared/` sublevel. Full contract (per-class required/forbidden matrix, key schemas, hub doctrine, and the `ci-skill-root-metadata.cjs` fleet audit): `.opencode/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md`.
 
@@ -129,7 +127,7 @@ Trigger: the FIRST write of the session, in any repository whose root holds a `R
 - Skip: the §6 exemption class only (a few characters in one file). Any new behavior, API, or control flow loads the rule.
 
 #### CONSOLIDATED QUESTION PROTOCOL
-Consolidate multiple questions into a SINGLE prompt before any analysis or tool calls — never split across messages. **Bypass phrases:** "skip context" / "fresh start" / "skip memory" / [skip] for memory loading; Level 1 tasks skip completion verification.
+Consolidate multiple questions into a SINGLE prompt before any analysis or tool calls — never split across messages. **Bypass phrases:** "skip context" / "fresh start" / "skip memory" / [skip] for memory loading.
 
 #### VIOLATION RECOVERY [SELF-CORRECTION]
 Trigger: About to skip gates, or realized gates were skipped → STOP → STATE: "Before I proceed, I need to ask about documentation:" → ASK Gate 3 (A/B/C/D/E) → WAIT
@@ -189,7 +187,7 @@ Trigger: About to skip gates, or realized gates were skipped → STOP → STATE:
 
 **Debugging & Iteration:**
 - Reproduce the exact symptom when safe, trace the responsible producer and its consumers, fix the root cause, and rerun the same check.
-- If an attempt repeats without new evidence, stop patching at the failure site: restate the problem one level up — at the interface, the data flow, or the module boundary — and inspect the available interface before trying again. A fix that works only by special-casing a caller is evidence the seam is wrong: name the seam and the files a seam fix would touch, then ask — SCOPE LOCK still binds, and editing outside scope needs a yes. Do not repeat the same guess; stop local retries at the code skill's repeated-failure limit — its count governs a debugging loop, not Section 7's — then escalate in Section 7's format.
+- If an attempt repeats without new evidence, stop patching at the failure site: restate the problem one level up — at the interface, the data flow, or the module boundary — and inspect the available interface before trying again. A fix that works only by special-casing a caller is evidence the seam is wrong: name the seam and the files a seam fix would touch, then ask — SCOPE LOCK still binds, and editing outside scope needs a yes. Do not repeat the same guess; stop local retries after three failed fixes for the same symptom, the code skill's limit — its count governs a debugging loop, not Section 7's — then escalate in Section 7's format.
 
 **Verification & Reasoning:**
 - **Use frequent self-checks and reasoning loops** to catch and fix your own mistakes before asking for help.
@@ -209,8 +207,6 @@ Trigger: About to skip gates, or realized gates were skipped → STOP → STATE:
 - **Truth over agreement** — correct user misconceptions with evidence; never agree for conversational flow
 
 #### Restraint Signals
-
-> Expanded by [`prevent-overengineering.md`](repo-rules/prevent-overengineering.md).
 
 One table, not a checklist to recite. Each row is a signal the work is drifting off the stated problem; the response is what to do, not a line to say.
 
@@ -251,13 +247,11 @@ Proof plans, negative controls, final-state proof and per-shape proof (filters i
 ### 🔒 POST-EXECUTION GATES
 
 #### FINAL-STATE VERIFICATION [HARD] BLOCK
-
-> Expanded by [`evidence-and-proof.md`](repo-rules/evidence-and-proof.md).
 Trigger: Before claiming a machine-state task is done or that its output works.
 1. Confirm every required artifact exists at the exact path and matches the required format.
 2. Rerun the objective proof plan and the authoritative workspace gate from the final state. Read the output and exit status.
 3. Inspect the scoped diff or status. Remove task-created temporary output and confirm no unrelated file was changed.
-4. If any check fails, keep the completion claim blocked, enter the bounded remediation loop, or report the blocker with evidence.
+4. If any check fails, keep the completion claim blocked, repair it, or report the blocker with evidence.
 
 The Completion Verification Rule remains an additional requirement for spec-packet completion and metadata reconciliation.
 
