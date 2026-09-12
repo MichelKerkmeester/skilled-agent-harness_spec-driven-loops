@@ -64,10 +64,10 @@ npx vitest run --config .opencode/hooks/vitest.config.ts .opencode/hooks/dispatc
 3. Live in-process classification + Pi deny decision against the real modules (quote-safe, env-wrapped, unquoted, prose, argument, and self-dispatch cases):
 
 ```bash
-npx tsx -e '
+NODE_PRESERVE_SYMLINKS=1 npx tsx -e '
 (async () => {
   const { inspectDispatch, matchDispatchShape } = await import("./.opencode/hooks/dispatch/lib/dispatch-audit.mjs");
-  const { shouldDenyPiDispatch } = await import("./.opencode/hooks/dispatch/pi/dispatch-preflight-lint.ts");
+  const { shouldDenyPiDispatch } = await import("./.pi/extensions/dispatch-preflight-lint.ts");
   const rows = ["\"devin\" -p \"task\"", "env KEY=v \"pi\" --offline -p \"x\"", "devin -p task", "\"devin -p task\"", "echo \"devin\" -p \"hi\""];
   for (const c of rows) { const i = inspectDispatch(c); const s = matchDispatchShape(c); console.log(JSON.stringify({cmd:c, kind:i.kind, executor:i.executor??null, auditSkill:s?.skill??null})); }
   console.log("--- deny ---");
@@ -75,14 +75,15 @@ npx tsx -e '
   console.log(JSON.stringify(deny("\"devin\" -p \"task\"", "run the thing")));
   console.log(JSON.stringify(deny("\"devin\" -p \"task\"", "use cli-devin")));
   console.log(JSON.stringify(deny("\"pi\" --offline -p \"x\"", "use cli-pi")));
+  console.log(JSON.stringify(deny("\"pi\" --offline -p \"x\"", "run the thing")));
 })();
 '
 ```
 
 ### Expected
 
-- Step 1: `Test Files 8 passed (8)`, `Tests 356 passed (356)`, no failures.
-- Step 2: `Test Files 1 passed (1)`, `Tests 32 passed (32)`, no failures.
+- Step 1: `Test Files 1 passed (1)`, `Tests 74 passed (74)`, no failures.
+- Step 2: `Test Files 1 passed (1)`, `Tests 34 passed (34)`, no failures.
 - Step 3: `"devin" -p "task"`, the env-wrapped quoted `pi`, and the unquoted `devin -p task` each classify as a single `direct` executor and carry a matching non-null `auditSkill`; `"devin -p task"` (one quoted token) and `echo "devin" -p "hi"` (quoted argument) classify as `none` with a null `auditSkill`; the quote-safe `devin` dispatch is `denied:true` with no explicit executor mention, `denied:false` when the user names `cli-devin`, and the `pi` dispatch is `denied:false` when the operator named `cli-pi` and `denied:true` when they did not.
 
 ---
@@ -96,8 +97,8 @@ npx vitest run --config .opencode/hooks/vitest.config.ts .opencode/hooks/dispatc
 ```
 
 ```text
- Test Files  8 passed (8)
-      Tests  356 passed (356)
+ Test Files  1 passed (1)
+      Tests  74 passed (74)
 ```
 
 Pi preflight suite:
@@ -108,7 +109,7 @@ npx vitest run --config .opencode/hooks/vitest.config.ts .opencode/hooks/dispatc
 
 ```text
  Test Files  1 passed (1)
-      Tests  32 passed (32)
+      Tests  34 passed (34)
 ```
 
 Live in-process classification + Pi deny decision (real command run against the real modules, output read back verbatim):
@@ -122,6 +123,7 @@ Live in-process classification + Pi deny decision (real command run against the 
 --- deny ---
 {"cmd":"\"devin\" -p \"task\"","kind":"direct","dispatchSkill":"cli-devin","denied":true}
 {"cmd":"\"devin\" -p \"task\"","kind":"direct","dispatchSkill":"cli-devin","denied":false}
+{"cmd":"\"pi\" --offline -p \"x\"","kind":"direct","dispatchSkill":"cli-pi","denied":false}
 {"cmd":"\"pi\" --offline -p \"x\"","kind":"direct","dispatchSkill":"cli-pi","denied":true}
 ```
 
@@ -129,7 +131,7 @@ Reading of the evidence:
 
 - The quote-safe executor `"devin" -p "task"` classifies as `direct cli-devin` and is audit-visible (`auditSkill: cli-devin`) — identical to the unquoted `devin -p task`. The env-wrapped quoted `pi` resolves through the `env KEY=v` wrapper to `direct cli-pi`.
 - The two controls hold: a single quoted prose token (`"devin -p task"`) and a quoted argument to `echo` both stay `none`, so the normalization does not manufacture false positives.
-- At the Pi gate, the now-`direct` quote-safe dispatch is denied when the user did not name the executor (the bypass is closed: an unauthorized quoted CLI can no longer slip through as `none`), allowed when the user explicitly named `cli-devin`, and a `cli-pi` dispatch is allowed when the operator named `cli-pi` but denied when they did not.
+- At the Pi gate, the now-`direct` quote-safe dispatch is denied when the user did not name the executor (the bypass is closed: an unauthorized quoted CLI can no longer slip through as `none`), allowed when the user explicitly named `cli-devin`, and a `cli-pi` dispatch is allowed when the operator named `cli-pi` (the first new line, `denied:false`, operator text `use cli-pi`) but denied when they did not (the second new line, `denied:true`, operator text `run the thing`).
 
 ---
 
