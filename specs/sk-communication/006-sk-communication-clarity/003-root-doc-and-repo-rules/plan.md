@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Phase 3: root-doc-and-repo-rules"
-description: "Apply the adopted allocations surface by surface, landing each rule file together with its router row, and verify one instruction per mark afterwards."
+description: "Split the reply-shape rule in two along the sentence-mechanics seam, route both halves, and record the two baselines every later phase measures against."
 trigger_phrases:
   - "repo rules plan"
   - "router trigger row"
@@ -26,14 +26,27 @@ contextType: "general"
 | **Language/Stack** | Markdown governance documents with YAML front matter |
 | **Framework** | The router-and-rule-file pattern: `REPO RULES.md` routes, `repo-rules/*.md` bind |
 | **Storage** | Version-controlled files at the repository root and under `repo-rules/` |
-| **Testing** | A trigger-table walk and a per-mark contradiction scan |
+| **Testing** | A pure-move check across the two halves, a trigger-table walk in both directions, and two recorded baselines |
 
 ### Overview
 
-Work one surface at a time, in reach order: the rule files first, then the router rows that make
-them reachable, then the root doc last and only for clauses that cannot live below. A new rule file
-and its router row land in the same change, because a file with no trigger row is a rule that never
-loads and a trigger row pointing at nothing is a broken router.
+This phase is a move rather than an authoring pass. The reply-shape rule takes ten of the
+twenty-nine adopted candidates, the largest single allocation in the program, and it already records
+its own length ceiling, so it is split before anything is added to it. The seam is the unit a rule
+governs: sentence and paragraph mechanics on one side, whole-reply shape on the other.
+
+The split lands a new half under `repo-rules/`, and its trigger row and index row land in the same
+change, because a file with no trigger row is a rule that never loads and a row pointing at nothing
+is a broken router. No rule sentence is added, removed or reworded by the move.
+
+Two baselines are recorded while the change is made. The first is each half's size, so phases 006
+and 008 can check their own additions against the size the split produced. The second is every
+mark's existing instruction, so any later phase can show that no mark gained a second instruction.
+Neither baseline can be reconstructed after the edit, which is why both are captured first.
+
+The root doc is not in this phase's diff. Phase 002 found no clause that cannot live below it, so
+`AGENTS.md` keeps its two binding clauses and its three pointers to the reply-shape rule, and the
+router carries the reach of the new half instead.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -45,11 +58,18 @@ loads and a trigger row pointing at nothing is a broken router.
 - [ ] Problem statement clear and scope documented
 - [ ] Success criteria measurable
 - [ ] Dependencies identified
+- [ ] Phase 002's decision record is present, with every decision Accepted
+- [ ] The pre-change text of the reply-shape rule is read in full rather than recalled
+- [ ] The split seam is stated as the unit each rule governs, not as a topical grouping
 
 ### Definition of Done
 - [ ] All acceptance criteria met
 - [ ] Tests passing (if applicable)
 - [ ] Docs updated (spec/plan/tasks)
+- [ ] Both halves exist, and every rule sentence from the pre-change file appears exactly once
+- [ ] The router reaches both halves, walked in both directions
+- [ ] The per-half size baseline and the per-mark instruction baseline are recorded
+- [ ] `AGENTS.md` is absent from the scoped diff
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -61,21 +81,29 @@ loads and a trigger row pointing at nothing is a broken router.
 
 A three-tier governance stack, ordered by reach. The root doc binds unconditionally, the rule files
 bind when the router's trigger matches the action about to be taken, and general judgment fills the
-rest. A clause belongs on the highest tier whose reach it actually needs, and no higher.
+rest. The split happens inside the third tier and moves nothing between tiers.
+
+One tier-3 obligation is now carried by two files. Each half states its own scope in its own header,
+so a reader who loads one half is told what the other half owns rather than left to discover it.
 
 ### Key Components
-- **`AGENTS.md` §8 and §3**: the clauses that must bind when no rule file loads.
-- **`REPO RULES.md`**: the trigger table, the index and the scope statement. It holds no rules.
-- **`repo-rules/communication.md`**: reply shape, fires on every substantive reply.
-- **`repo-rules/presenting-decisions.md`**: the shape of a handed-over decision.
-- **`repo-rules/handoff-and-questions.md`**: the handback and the question surface.
-- **New rule files**: one per recommendation cluster no existing file owns.
+
+- **`repo-rules/communication.md`**: the whole-reply half after the split. The ten candidates phase
+  006 writes land here, which is what the split exists to make room for.
+- **A new half file under `repo-rules/`**: sentence and paragraph mechanics. It carries the standard
+  routed-from line, the bounded-by statement, a fires-when list and a self-check, like every other
+  rule file in the set.
+- **`REPO RULES.md`**: the trigger row and the index row that make the new half reachable. Both land
+  in the same change as the file they name.
+- **`AGENTS.md`**: unchanged. Its absence from the diff is checked rather than assumed, because it
+  names the reply-shape rule in three places.
 
 ### Data Flow
 
 The action about to be taken selects trigger rows. Selected rows name rule files. Rule files bind,
-below the root doc and below a live operator instruction. Nothing else discovers a rule file, so
-the router is the single reachability path and the thing to verify.
+below the root doc and below a live operator instruction. Both halves of the split are reached the
+same way, and the two rows may fire on the same action, which the router allows and expects. The
+split is about how much one file asks a reader to hold, not about narrowing when a file loads.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -84,23 +112,23 @@ the router is the single reachability path and the thing to verify.
 ## FIX ADDENDUM: AFFECTED SURFACES
 
 This phase changes shared policy, so the table applies in full rather than as a not-applicable
-record.
+record. The move touches two rule files and one router, and it leaves every other surface alone.
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| `REPO RULES.md` trigger table | The only path from an action to a rule file | Update, one row per new or renamed rule | Walk every row and open every file it names |
-| `REPO RULES.md` index | The human-readable roster of rules | Update alongside the trigger table | Row count matches the file count under `repo-rules/` |
-| `repo-rules/communication.md` | Reply shape, broadest trigger in the set | Update with adopted bans | Read the file end to end, and check its length discipline |
-| `repo-rules/presenting-decisions.md` | Decision shape | Update where allocated, otherwise unchanged | Diff review against the allocation table |
-| `repo-rules/handoff-and-questions.md` | Handback and question surface | Update where allocated, otherwise unchanged | Diff review against the allocation table |
-| `AGENTS.md` §3 and §8 | Binds when nothing loads | Update only for clauses that cannot live below | Each added clause states why it cannot live below |
-| Other `repo-rules/*.md` | Not communication-shaped | Not a consumer | Confirm they are absent from the diff |
+| `repo-rules/communication.md` | Reply shape, broadest trigger in the set | Keep the whole-reply rules and move the sentence and paragraph mechanics into the new half | Compare both halves against the pre-change file and confirm every sentence appears exactly once |
+| The new half under `repo-rules/` | Does not exist yet | Create it with the standard header, its own fires-when list and its own self-check | Read the header and the closing self-check, and confirm the routed-from line names the router |
+| `REPO RULES.md` trigger table | The only path from an action to a rule file | Add one row for the new half | Walk every row and open every file it names |
+| `REPO RULES.md` index | The human-readable roster of rules | Add one row for the new half | Index row count matches the file count under `repo-rules/` |
+| `AGENTS.md` | Binds when nothing loads, and names the reply-shape rule in three places | No change, because no clause cannot live below and every pointer stays true | Confirm the file is absent from the diff, then read each pointer against the router |
+| Other `repo-rules/*.md` | Not part of this move | No change | Confirm they are absent from the diff |
+| Phase 005's baseline | The measurement's before | Capture it during setup, before the first edit | Date the capture against the first edit rather than against the phase's close |
 
 Required inventories:
-- Same-class producers: every file that gives a punctuation or construction instruction. `rg -n 'em dash|semicolon|serial comma|colon|fragment' AGENTS.md 'REPO RULES.md' repo-rules/`
-- Consumers of changed symbols: every document that cites a changed rule file by name or path. `rg -n 'communication\.md|presenting-decisions\.md|handoff-and-questions\.md' . --glob '*.md'`
-- Matrix axes: surface tier and adopted recommendation. The required rows are the adopted rows of the allocation table.
-- Algorithm invariant: one instruction per mark across the whole stack. Adversarial cases are a mark named in two files, a mark named in a rule and in the root doc, and a mark whose instruction differs between its ban and its suggested replacement.
+- Same-class producers: every file that gives a punctuation or construction instruction. `rg -n 'em dash|semicolon|serial comma|colon|fragment' "AGENTS.md" "REPO RULES.md" repo-rules/`
+- Consumers of changed symbols: every document that cites the reply-shape rule by name or path. `rg -n 'communication\.md' . --glob '*.md'`
+- Matrix axes: governed unit by half. The required rows are the sections of the pre-change file, and each one lands on exactly one side of the seam.
+- Algorithm invariant: one instruction per mark across the whole stack, unchanged by a move that relocates instruction text. Adversarial cases are a mark whose instruction is split across the seam, a mark named in one half's self-check while the other half governs it, and a header sentence in one half that restates a rule the other half owns.
 <!-- /ANCHOR:affected-surfaces -->
 
 
@@ -109,7 +137,12 @@ Required inventories:
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
-Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Verification phase checkboxes and task state.
+Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Verification phase
+checkboxes and task state.
+
+Setup produces the two captures and the section-to-half assignment. Implementation produces the
+split and its two router rows. Verification proves the move was pure, walks the router in both
+directions and records the two baselines.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -120,8 +153,9 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
 | Unit | None, these are governance documents with no executable surface | Not applicable |
-| Integration | Trigger-table reachability both ways, and one instruction per mark | `rg`, plus opening every file the table names |
-| Manual | Each added paragraph names a failure specific enough to argue with | Read the diff, not a grep of it |
+| Integration | Trigger-table reachability in both directions, and a pure-move check across the two halves | `rg`, plus opening every file the table names |
+| Baseline | Each half's size, and every mark's instruction before and after the move | `wc`, and a read of the pre-change file |
+| Manual | Each half read for a rule that belongs on the other side of the seam | Read both halves, not a grep of them |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -131,9 +165,12 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Phase 002 allocation table | Internal | Red until phase 002 closes | No authorized scope, the phase cannot open |
-| Operator approval for a root-doc change | External | Yellow | Rule-file changes still land, the root-doc clauses wait |
-| The rule-authoring contract for a new rule file | Internal | Green | A new file ships without its standard header and fails its own gate |
+| Phase 002's decision record | Internal | Green, eight decisions Accepted | Without it the punctuation scope is unset, and the colon decision is what keeps a mark's instruction out of this phase's diff |
+| Phase 002's allocation table | Internal | Not yet recorded | No change beyond the split and the two baselines it names is authorized, so rule content waits for phases 006, 007 and 008 |
+| The pre-change text of the reply-shape rule | Internal | Green, read during setup | A split made from memory would miss a section and duplicate another |
+| The rule-file shape under `repo-rules/` | Internal | Green, every file under `repo-rules/` already carries it | A new half without the standard header fails its own gate |
+| Phase 005's measurement baseline | Internal | The capture is this phase's setup step | Captured after the rules change, it cannot support a regression claim, which is why the capture sits here rather than in phase 005 |
+| Phases 006 and 008, as consumers of both baselines | Internal | Pending, both phases unopened | A missing baseline leaves their size claims and their no-contradiction-added claims unbacked |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -141,8 +178,8 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: A landed clause degrades replies, or two rules are found to disagree after the change.
-- **Procedure**: Each surface is one file, so reverting is per file. Revert the root doc first, because its reach is widest, then the rule file, then the router row that named it. A new rule file is removed together with its trigger and index rows, never before them.
+- **Trigger**: A half loads on the wrong action, or the move changed the instruction for a mark rather than relocating it.
+- **Procedure**: The change is one diff across two rule files plus one router. Rejoin the two halves into `repo-rules/communication.md`, and remove the new half's trigger row and index row in the same change rather than before it. Then re-run the trigger walk, so no row names a file that no longer exists. The recorded baselines are evidence rather than state, so they stay as the record of what the pre-split rule looked like.
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -154,15 +191,15 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 ## L2: PHASE DEPENDENCIES
 
 ```
-Rule files ──► Router rows ──► Contradiction scan ──► Root doc clauses ──► Handoff to 004
+Pre-change capture ──► Split ──► Router rows ──► Baselines recorded ──► Handoff to phases 006 and 008
 ```
 
 | Phase | Depends On | Blocks |
 |-------|------------|--------|
-| Rule files | Phase 002 allocation table | Router rows |
-| Router rows | Rule files | Contradiction scan |
-| Contradiction scan | Router rows | Root doc clauses |
-| Root doc clauses | Contradiction scan, operator approval | Handoff to 004 |
+| Pre-change capture | The pre-change file, read in full | The split, because a capture taken after the move is not a before |
+| Split | Pre-change capture | Router rows |
+| Router rows | Split | The handoff, because an unreachable half is an unfinished split |
+| Baselines recorded | Router rows | Phase 006's size claim, phase 008's size claim, and phase 005's before-and-after |
 <!-- /ANCHOR:phase-deps -->
 
 ---
@@ -172,10 +209,10 @@ Rule files ──► Router rows ──► Contradiction scan ──► Root doc
 
 | Phase | Complexity | Estimated Effort |
 |-------|------------|------------------|
-| Setup | Low | 30 minutes re-reading the current text of each surface |
-| Core Implementation | High | 4 to 8 hours, because rule prose is the product here |
-| Verification | Medium | 1 hour for the trigger walk and the contradiction scan |
-| **Total** | | **About 6 to 10 hours** |
+| Setup | Low | 1 hour, mostly reading the pre-change file end to end and taking both captures |
+| Core Implementation | Medium | 2 to 4 hours, because the work is a move of existing prose rather than new rule text |
+| Verification | Medium | 1 hour for the pure-move check, the trigger walk and the two baseline records |
+| **Total** | | **About 4 to 6 hours** |
 <!-- /ANCHOR:effort -->
 
 ---
@@ -184,15 +221,15 @@ Rule files ──► Router rows ──► Contradiction scan ──► Root doc
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Backup created (if data changes)
-- [ ] Feature flag configured
-- [ ] Monitoring alerts set
+- [ ] The pre-change text of the reply-shape rule is frozen, with its revision recorded
+- [ ] The per-mark instruction set is captured before the first edit
+- [ ] The router's current trigger table and index are read, so the change is a diff against them rather than a rewrite
+- [ ] The split, the new half and both router rows are staged to land as one change
 
 ### Rollback Procedure
-1. Revert `AGENTS.md` first, because its reach is widest and its effect is immediate
-2. Revert the affected rule file
-3. Remove the router trigger and index rows that named a removed file
-4. Re-run the trigger-table walk, so the router does not name a file that no longer exists
+1. Revert the router rows and the two rule files in one change, because a row kept after its file is gone names nothing
+2. Re-run the trigger-table walk, so the router is confirmed to name only files that exist
+3. Re-read the recorded baselines, which stay as the pre-split record rather than being reverted with the files
 
 ### Data Reversal
 - **Has data migrations?** No
@@ -200,4 +237,3 @@ Rule files ──► Router rows ──► Contradiction scan ──► Root doc
 <!-- /ANCHOR:enhanced-rollback -->
 
 ---
-
