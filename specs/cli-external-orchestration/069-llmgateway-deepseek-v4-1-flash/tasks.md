@@ -90,7 +90,7 @@ probe very differently, so the tasks split by route rather than by file.
 
 - [x] All tasks marked `[x]`
 - [x] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed — **partly deferred by design.** The `opencode-go` swap is dispatch-verified. Two live gates remain open and are named rather than assumed: the pi-side turn on the new id (the dispatch-authorization hook denies a cli-pi self-dispatch from inside a pi session, so the operator owns it) and the cline-pass turn (the account's monthly quota answers `429`, resetting in about six days)
+- [ ] Manual verification passed — **partly deferred by design.** The `opencode-go` swap is dispatch-verified, and the pi-side turn on the new id is verified too: on 2026-09-12, `pi -p --offline --model llmgateway/deepseek-v4.1-flash --thinking max "Reply with the single word: ok" </dev/null` exited 0 and returned `ok`. One live gate remains open and is named rather than assumed: the cline-pass turn (the account's monthly quota answers `429`, resetting in about six days)
 <!-- /ANCHOR:completion -->
 
 ---

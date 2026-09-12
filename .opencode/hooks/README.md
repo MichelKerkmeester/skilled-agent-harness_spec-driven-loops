@@ -183,6 +183,9 @@ node --test .opencode/hooks/dispatch/lib/dispatch-rule-checks.test.mjs .opencode
 
 # dispatch-audit is a vitest suite and cannot run under node --test
 npx vitest run --root .opencode/hooks/dispatch/lib dispatch-audit.test.mjs
+
+# Pi preflight is a vitest suite whose relative imports are written for the extension symlink base
+npx vitest run --config .opencode/hooks/vitest.config.ts .opencode/hooks/dispatch/pi/dispatch-preflight-lint.test.ts
 ```
 
 Expected result: all suites pass.
