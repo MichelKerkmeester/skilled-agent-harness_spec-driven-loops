@@ -34,6 +34,7 @@ import {
   type SpawnCjsResult,
 } from '../helpers/spawn-cjs';
 import { detectSameKindFromStack } from '../../lib/deep-loop/executor-audit.js';
+import { writeWorktreeLease } from '../../lib/deep-loop/worktree-lease.js';
 import {
   CURSOR_DEFAULT_MODEL as TS_CURSOR_DEFAULT_MODEL,
   CURSOR_SUPPORTED_MODELS,
@@ -4230,5 +4231,222 @@ describe('fanout-run.cjs — a worktree that cannot be made degrades that lane i
     ]);
     // The startup sweep met the same unusable base and reported it without failing the run.
     expect(ledgerEvents.filter((event) => event.event === 'worktree_reclaim_failed')).toHaveLength(1);
+  });
+});
+
+describe('fanout-run.cjs — a peer run survives this run reclaiming its own worktrees', () => {
+  it('keeps a live peer worktree byte-identical and records the reason it was kept', async () => {
+    const fixture = prepareWorktreeRepo('worktrees-peer');
+    writeTreeReportingStub(fixture.binDir, fixture.specFolder);
+
+    // A worktree belonging to a DIFFERENT run, leased to a process that is alive. This is the
+    // case reclamation must refuse, and planting it is what stops every assertion below from
+    // passing vacuously against a pass that simply found nothing to consider.
+    mkdirSync(fixture.worktreeBase, { recursive: true });
+    const peerDir = join(fixture.worktreeBase, 'fanout-peerrun-otherlane');
+    expect(spawnSync(
+      'git',
+      ['-C', fixture.repoRoot, 'worktree', 'add', '--detach', peerDir, 'HEAD'],
+      { encoding: 'utf8', env: fixture.env },
+    ).status).toBe(0);
+    const peerMarker = join(peerDir, 'peer-in-flight.txt');
+    writeFileSync(peerMarker, 'work the peer has not finished\n');
+    writeWorktreeLease(peerDir, {
+      ownerPid: process.pid,
+      runId: 'peer-run',
+      label: 'otherlane',
+      ttlMs: 600_000,
+    });
+    const peerBytesBefore = readFileSync(peerMarker, 'utf8');
+
+    const result = await spawnCjs(
+      fanoutRunScript,
+      [
+        '--spec-folder', fixture.specFolder,
+        '--loop-type', 'research',
+        '--fanout-config-json', fixture.fanoutConfig,
+        '--base-artifact-dir', fixture.baseDir,
+        '--worktrees',
+        '--no-metadata-refresh',
+      ],
+      { cwd: fixture.repoRoot, env: fixture.env, timeoutMs: 20_000 },
+    );
+    expect(result.exitCode).toBe(0);
+
+    // The peer's tree is still there and its unfinished work is byte-identical. A deleted
+    // worktree has no committed copy to recover from, which is why this is the assertion that
+    // decides whether isolation is safe to switch on.
+    expect(existsSync(peerDir)).toBe(true);
+    expect(readFileSync(peerMarker, 'utf8')).toBe(peerBytesBefore);
+
+    // Survival alone proves nothing: a pass that skipped the peer entirely also leaves it
+    // intact. The recorded decision is what proves the pass considered it and refused.
+    const swept = fixture.readLedgerEvents().filter((event) => event.event === 'worktree_reclaim_swept');
+    expect(swept).toHaveLength(1);
+    const decisions = swept[0].decisions as Array<{ path: string; action: string; reason: string }>;
+    const peerDecision = decisions.find((decision) => decision.path.endsWith('fanout-peerrun-otherlane'));
+    expect(peerDecision).toBeDefined();
+    expect(peerDecision?.action).toBe('kept');
+    expect(peerDecision?.reason).toEqual(expect.any(String));
+    expect(peerDecision?.reason).not.toBe('');
+  });
+
+  it('reclaims the same peer once its owner is gone, so the liveness check is what kept it', async () => {
+    const fixture = prepareWorktreeRepo('worktrees-peer-dead');
+    writeTreeReportingStub(fixture.binDir, fixture.specFolder);
+
+    mkdirSync(fixture.worktreeBase, { recursive: true });
+    const deadDir = join(fixture.worktreeBase, 'fanout-deadrun-otherlane');
+    expect(spawnSync(
+      'git',
+      ['-C', fixture.repoRoot, 'worktree', 'add', '--detach', deadDir, 'HEAD'],
+      { encoding: 'utf8', env: fixture.env },
+    ).status).toBe(0);
+    // Identical to the kept case in every respect except the one that decides it: this lease
+    // names an owner that cannot answer, and its heartbeat is long expired. If the pass keeps
+    // this too, then the case above was keeping everything rather than discriminating.
+    const goneForever = 0x7fffffff;
+    writeWorktreeLease(deadDir, {
+      ownerPid: goneForever,
+      runId: 'dead-run',
+      label: 'otherlane',
+      ttlMs: 1,
+    });
+    await new Promise((settle) => { setTimeout(settle, 25); });
+
+    const result = await spawnCjs(
+      fanoutRunScript,
+      [
+        '--spec-folder', fixture.specFolder,
+        '--loop-type', 'research',
+        '--fanout-config-json', fixture.fanoutConfig,
+        '--base-artifact-dir', fixture.baseDir,
+        '--worktrees',
+        '--no-metadata-refresh',
+      ],
+      { cwd: fixture.repoRoot, env: fixture.env, timeoutMs: 20_000 },
+    );
+    expect(result.exitCode).toBe(0);
+
+    const swept = fixture.readLedgerEvents().filter((event) => event.event === 'worktree_reclaim_swept');
+    expect(swept).toHaveLength(1);
+    const decisions = swept[0].decisions as Array<{ path: string; action: string; reason: string }>;
+    const deadDecision = decisions.find((decision) => decision.path.endsWith('fanout-deadrun-otherlane'));
+    expect(deadDecision).toBeDefined();
+    expect(deadDecision?.action).toBe('reclaimed');
+    expect(existsSync(deadDir)).toBe(false);
+  });
+});
+
+describe('fanout-run.cjs — publication carries the bytes, not just the directory', () => {
+  it('publishes content that hash-equals what the manifest recorded for every file', async () => {
+    const fixture = prepareWorktreeRepo('worktrees-content');
+    writeTreeReportingStub(fixture.binDir, fixture.specFolder);
+
+    const result = await spawnCjs(
+      fanoutRunScript,
+      [
+        '--spec-folder', fixture.specFolder,
+        '--loop-type', 'research',
+        '--fanout-config-json', fixture.fanoutConfig,
+        '--base-artifact-dir', fixture.baseDir,
+        '--worktrees',
+        '--no-metadata-refresh',
+      ],
+      { cwd: fixture.repoRoot, env: fixture.env, timeoutMs: 20_000 },
+    );
+    expect(result.exitCode).toBe(0);
+
+    const published = readdirSync(join(fixture.baseDir, 'lineages'));
+    expect(published).toHaveLength(1);
+    const publishedDir = join(fixture.baseDir, 'lineages', published[0]);
+
+    // Proving a worktree was removed is not proving its contents arrived. The manifest is
+    // written last precisely so its presence marks a complete publish, so re-hashing what
+    // landed against what it claims is the check that a truncated or partial copy fails.
+    const manifest = JSON.parse(
+      readFileSync(join(publishedDir, 'publish-manifest.json'), 'utf8'),
+    ) as { entries: Array<{ path: string; kind: string; sha256?: string }> };
+    const hashedFiles = manifest.entries.filter((entry) => entry.kind === 'file' && entry.sha256);
+    expect(hashedFiles.length).toBeGreaterThan(0);
+    for (const entry of hashedFiles) {
+      const landed = join(publishedDir, entry.path);
+      expect(existsSync(landed)).toBe(true);
+      expect(createHash('sha256').update(readFileSync(landed)).digest('hex')).toBe(entry.sha256);
+    }
+
+    // And the lane's own deliverable is among them rather than the manifest describing only
+    // its own bookkeeping.
+    expect(hashedFiles.some((entry) => entry.path === 'research.md')).toBe(true);
+  });
+});
+
+describe('fanout-run.cjs — isolation moves the attribution boundary rather than silencing it', () => {
+  it('catches the lane escaping inside its own worktree and leaves a neighbour in the main checkout alone', async () => {
+    const fixture = prepareWorktreeRepo('worktrees-boundary');
+    const readyPath = join(fixture.repoRoot, 'lane-mid-flight');
+    const goPath = join(fixture.repoRoot, 'lane-may-finish');
+
+    // The lane writes outside its lineage directory but INSIDE its own worktree, then holds
+    // still so a neighbour can write to the main checkout while it is genuinely mid-flight.
+    // Without the handshake the neighbour's write would land in the pre-dispatch baseline and
+    // the test would prove nothing.
+    writeFileSync(
+      join(fixture.binDir, 'opencode'),
+      [
+        '#!/bin/sh',
+        'dir=""',
+        'prev=""',
+        'for arg in "$@"; do',
+        '  if [ "$prev" = "--dir" ]; then dir="$arg"; fi',
+        '  prev="$arg"',
+        'done',
+        writeFanoutArtifactsShell(),
+        'mkdir -p "$dir/tracked-out-of-scope"',
+        'printf "lane wrote outside its lineage dir\\n" > "$dir/tracked-out-of-scope/leaf-escaped.txt"',
+        `: > ${shellQuote(readyPath)}`,
+        `while [ ! -f ${shellQuote(goPath)} ]; do sleep 0.05; done`,
+        'echo "stub-done"',
+        'exit 0',
+        '',
+      ].join('\n'),
+      { mode: 0o755 },
+    );
+
+    const pending = spawnCjs(
+      fanoutRunScript,
+      [
+        '--spec-folder', fixture.specFolder,
+        '--loop-type', 'research',
+        '--fanout-config-json', fixture.fanoutConfig,
+        '--base-artifact-dir', fixture.baseDir,
+        '--worktrees',
+        '--no-metadata-refresh',
+      ],
+      { cwd: fixture.repoRoot, env: fixture.env, timeoutMs: 30_000 },
+    );
+
+    const deadline = Date.now() + 20_000;
+    while (!existsSync(readyPath)) {
+      if (Date.now() >= deadline) throw new Error('lane never reported itself mid-flight');
+      await new Promise((settle) => { setTimeout(settle, 20); });
+    }
+    const neighbourBytes = 'a neighbouring session wrote this mid-lane\n';
+    writeFileSync(fixture.trackedPath, neighbourBytes);
+    writeFileSync(goPath, '');
+
+    const result = await pending;
+    expect(result.exitCode).toBe(0);
+
+    const violations = fixture.readLedgerEvents()
+      .filter((event) => event.event === 'containment_violation')
+      .flatMap((event) => (event.violations as Array<{ path: string }> | undefined) ?? []);
+
+    // The boundary moved INTO the worktree: the lane's escape is still caught there.
+    expect(violations.some((violation) => violation.path.endsWith('tracked-out-of-scope/leaf-escaped.txt'))).toBe(true);
+
+    // And the neighbour's bytes are untouched. A guard that had simply gone quiet would also
+    // report no violation for them, which is why both halves are asserted together.
+    expect(readFileSync(fixture.trackedPath, 'utf8')).toBe(neighbourBytes);
   });
 });
