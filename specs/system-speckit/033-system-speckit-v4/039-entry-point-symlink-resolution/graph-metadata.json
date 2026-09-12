@@ -18,6 +18,7 @@
       "entry point plan",
       "isMainModule plan",
       "entry point tasks",
+      "isMainModule tasks",
       "entry point acceptance criteria",
       "entry point summary"
     ],
@@ -43,9 +44,8 @@
       "tasks.md",
       "acceptance-criteria.md",
       "implementation-summary.md",
-      "runtime/cli/lib/esm-entry.ts",
       "runtime/tests/esm-entry-symlink.vitest.ts",
-      "runtime/tests/directive-lifecycle-adapter-parity.vitest.ts"
+      "runtime/cli/lib/esm-entry.ts"
     ],
     "entities": [
       {
@@ -79,21 +79,15 @@
         "source": "derived"
       },
       {
-        "name": "esm-entry.ts",
-        "kind": "code",
-        "path": "runtime/cli/lib/esm-entry.ts",
-        "source": "derived"
-      },
-      {
         "name": "esm-entry-symlink.vitest.ts",
         "kind": "test",
         "path": "runtime/tests/esm-entry-symlink.vitest.ts",
         "source": "derived"
       },
       {
-        "name": "directive-lifecycle-adapter-parity.vitest.ts",
-        "kind": "test",
-        "path": "runtime/tests/directive-lifecycle-adapter-parity.vitest.ts",
+        "name": "esm-entry.ts",
+        "kind": "code",
+        "path": "runtime/cli/lib/esm-entry.ts",
         "source": "derived"
       },
       {
@@ -169,33 +163,39 @@
         "source": "derived"
       },
       {
-        "name": "1. TASKS",
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Notation",
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Tasks: Entry-point resolution through a link",
-        "kind": "quoted",
+        "name": "Phase 1: Fix the comparison",
+        "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "trigger_phrases:   -",
-        "kind": "quoted",
+        "name": "Phase 2: Migrate the hand-rolled copies",
+        "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "importance_tier:",
-        "kind": "quoted",
+        "name": "Phase 3: Prove it",
+        "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
       }
     ],
     "causal_summary": "An executable module decides whether to run its work by asking whether it is the process",
     "created_at": "2026-09-12T18:16:48.421Z",
-    "last_save_at": "2026-09-12T19:08:20.387Z",
+    "last_save_at": "2026-09-12T19:59:07.436Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:90842290a810b60c9bcfb50a068c2ebf549b647892a8bcfbb02b7ffc8e306ecc",
+    "source_fingerprint": "sha256:f341ab3b9199496acdd9e7118630c39b12ab1fd665b061268432baa83179e861",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6a52d709e3014c7a5fdc94f5097cdfe6aa0bdafcb6558289b6f4c540bacabff6",
       "plan.md": "49cb528a2f3fe9b3a051263b74a4aaac1e162917e1b5538d704d6bd2c420aef7",
-      "tasks.md": "39bcca870f8831896e35a8c1aad2dce83ef9e86aefc40f4edb1e37678b0f8c42",
-      "implementation-summary.md": "35941d0cd968c7e1f697cdb9a6b66c517cda16b19e879d097aec58f4c01c37ae"
+      "tasks.md": "61bf06be0e9173b828fc004698fece6acd8084a9090a0d12c1e6db7bed059f5d",
+      "implementation-summary.md": "9981add87993e3de77be2719ce5cdbed73d6e9941340cca47d4e62a2c170be1b"
     },
     "last_active_child_id": null,
     "last_active_at": null

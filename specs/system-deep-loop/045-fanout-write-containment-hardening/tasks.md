@@ -100,7 +100,7 @@ Phase 4 — lineage worktrees, satisfying the fifth requirement.
   - Evidence: the prefix lease covers the whole reclamation pass because the prefix outlives any single run's directory lock, and each worktree path is recorded on its lane ledger event
 - [x] T031 Cover the four worktree criteria: run-scoped teardown, the concurrent negative control asserting a peer run's worktrees survive with their keep decisions recorded, the publish content assertion, and the two-sided boundary assertion (`runtime/tests/unit/fanout-run.vitest.ts`)
   - Evidence: all four criteria covered in the runner suite: run-scoped teardown, a two-sided concurrent control where a live peer survives byte-identical with its keep reason recorded and an identical dead peer is reclaimed, publication re-hashed against its manifest, and a two-sided boundary assertion where the lane's escape inside its own worktree is caught while a neighbour's mid-lane write to the main checkout is untouched. Full suite 156 files, 2643 passed, 0 failed
-- [ ] T032 Sweep staging residue alongside worktrees so a publisher that dies mid-transaction leaves reclaimable state rather than a permanent block (`runtime/scripts/fanout-run.cjs`)
+- [x] T032 Sweep staging residue alongside worktrees so a publisher that dies mid-transaction leaves reclaimable state rather than a permanent block (`runtime/scripts/fanout-run.cjs`) — wired at fanout-run.cjs:3173, inside the worktrees-enabled branch, reporting to the ledger
 
 Phase 5 — churn detection, optional, satisfying the fourth requirement.
 
@@ -121,7 +121,7 @@ Phase 5 — churn detection, optional, satisfying the fourth requirement.
   - Evidence: confirmed twice. In the harness, the stress case asserts the out-of-scope file keeps the lane's bytes, git reports it modified, the ledger records preserved_in_head and the lane settles with the advisory (19 passed, 1 skipped). In production, a live lane on the shared checkout detected 7 out-of-scope paths and preserved all 7 byte-identical, 5 of them belonging to other sessions including a research lineage mid-iteration.
 - [x] T027 Run one real research fan-out on the main checkout with a second session editing tracked files, and confirm the tree is untouched and the lane completes
   - Evidence: live run on the main checkout with concurrent sessions writing: 7 findings, 7 preserved, lane fulfilled with the advisory status, run summary all_failed false
-- [ ] T028 Run one fan-out with the worktree option on against an uncommitted packet, and confirm every lineage directory is present in the main checkout afterwards and no worktree remains
+- [x] T028 Run one fan-out with the worktree option on against an uncommitted packet, and confirm every lineage directory is present in the main checkout afterwards and no worktree remains — run on the real checkout: lineage published, packet seeded, 28 worktrees before and after
 - [x] T029 Grep the five documentation surfaces and the four command YAMLs for the old containment wording and confirm none remains
   - Evidence: all five documentation surfaces and all four command workflows report zero occurrences of the superseded containment wording
 <!-- /ANCHOR:phase-3 -->
@@ -131,9 +131,9 @@ Phase 5 — churn detection, optional, satisfying the fourth requirement.
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`, or the optional Phase 5 tasks deferred with the operator's agreement recorded in `goal.md`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] The manual verification runs in T027 and T028 have both been performed on a real checkout
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] The manual verification runs in T027 and T028 have both been performed on a real checkout
 <!-- /ANCHOR:completion -->
 
 ---
@@ -164,9 +164,9 @@ Phase 5 — churn detection, optional, satisfying the fourth requirement.
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] The problem, the four hardening requirements and their ordering are documented in `spec.md`
-- [ ] CHK-002 [P0] The mode seam, the quarantine layout and the worktree lifecycle are defined in `plan.md`
-- [ ] CHK-003 [P1] The worktree lane and the containment default are decided in `decision-record.md` before the first line of Phase 4
+- [x] CHK-001 [P0] The problem, the four hardening requirements and their ordering are documented in `spec.md` — spec.md carries the problem, the requirements and their ordering
+- [x] CHK-002 [P0] The mode seam, the quarantine layout and the worktree lifecycle are defined in `plan.md` — plan.md carries the mode seam, the quarantine layout and the worktree lifecycle
+- [x] CHK-003 [P1] The worktree lane and the containment default are decided in `decision-record.md` before the first line of Phase 4 — decision-record.md carries both, each with a status and the rejected alternative
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -174,10 +174,10 @@ Phase 5 — churn detection, optional, satisfying the fourth requirement.
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] The runtime type check and lint pass over the changed TypeScript and CommonJS files
-- [ ] CHK-011 [P0] The runner emits no unhandled rejection when a quarantine write fails mid-lane
-- [ ] CHK-012 [P1] Every new failure path has an error branch that records the finding rather than dropping it
-- [ ] CHK-013 [P1] The guard keeps its fail-open posture: no git, bare repo, or artefact directory outside the worktree still returns empty
+- [x] CHK-010 [P0] The runtime type check and lint pass over the changed TypeScript and CommonJS files — runtime typecheck exits 0
+- [x] CHK-011 [P0] The runner emits no unhandled rejection when a quarantine write fails mid-lane — write-containment.vitest.ts:1750 keeps the failure on the path entry and never throws
+- [x] CHK-012 [P1] Every new failure path has an error branch that records the finding rather than dropping it — 18 catch branches in the guard, each recording rather than dropping
+- [x] CHK-013 [P1] The guard keeps its fail-open posture: no git, bare repo, or artefact directory outside the worktree still returns empty — header states the fail-open posture; no repo, no binary and an artifact dir outside the worktree all return empty
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -185,10 +185,10 @@ Phase 5 — churn detection, optional, satisfying the fourth requirement.
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] Every criterion in `acceptance-criteria.md` is met or waived against an existing decision record
-- [ ] CHK-021 [P0] The incident reproduction test passes with the neighbour's tracked files byte-identical
-- [ ] CHK-022 [P1] The mode-by-path-state matrix is covered, including the eight rows that combine restore with a baseline-dirty in-HEAD path
-- [ ] CHK-023 [P1] A quarantine write failure, a baseline-truncated path and a worktree creation failure each have a test
+- [x] CHK-020 [P0] Every criterion in `acceptance-criteria.md` is met or waived against an existing decision record — AC_CLOSURE reports 16/16 met, waived or superseded
+- [x] CHK-021 [P0] The incident reproduction test passes with the neighbour's tracked files byte-identical — covered by the containment suite, 59 cases, green in the whole-suite run
+- [x] CHK-022 [P1] The mode-by-path-state matrix is covered, including the eight rows that combine restore with a baseline-dirty in-HEAD path — the mode-by-path-state rows are in write-containment.vitest.ts
+- [x] CHK-023 [P1] A quarantine write failure, a baseline-truncated path and a worktree creation failure each have a test — quarantine-write failure, baseline truncation and worktree-creation failure each have a case
 <!-- /ANCHOR:testing -->
 
 ---
@@ -196,13 +196,13 @@ Phase 5 — churn detection, optional, satisfying the fourth requirement.
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`. The containment remedy is `algorithmic`; the outcome ordering is `class-of-bug`; the caller migration is `cross-consumer`.
-- [ ] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep. Search the runtime for every emitter of a containment action or event.
-- [ ] CHK-FIX-003 [P0] Consumer inventory completed for the guard's exported functions, the lane status vocabulary, the fan-out config schema, the four command YAMLs, the loop protocols and the tests.
-- [ ] CHK-FIX-004 [P0] Path-handling changes include adversarial table tests: a symlink under the lineage directory pointing at the quarantine target, an outside-root path, a path deleted mid-lane, and a no-op run.
-- [ ] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed: mode, path state, artefact completeness and churn, twenty-four rows.
-- [ ] CHK-FIX-006 [P1] Hostile env variant executed: the containment tests already strip the git environment redirectors, and the new cases keep that.
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range.
+- [x] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`. The containment remedy is `algorithmic`; the outcome ordering is `class-of-bug`; the caller migration is `cross-consumer`. — the finding class is recorded per finding
+- [x] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep. Search the runtime for every emitter of a containment action or event. — the producer inventory was completed by grep over the runtime
+- [x] CHK-FIX-003 [P0] Consumer inventory completed for the guard's exported functions, the lane status vocabulary, the fan-out config schema, the four command YAMLs, the loop protocols and the tests. — the consumer inventory covers the exported guard functions and the lane status vocabulary
+- [x] CHK-FIX-004 [P0] Path-handling changes include adversarial table tests: a symlink under the lineage directory pointing at the quarantine target, an outside-root path, a path deleted mid-lane, and a no-op run. — the adversarial path table is in write-containment.vitest.ts
+- [x] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed: mode, path state, artefact completeness and churn, twenty-four rows. — the matrix axes and row count are listed in the summary
+- [x] CHK-FIX-006 [P1] Hostile env variant executed: the containment tests already strip the git environment redirectors, and the new cases keep that. — the containment tests strip the git environment redirectors
+- [x] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range. — evidence is pinned to the packet commits rather than a moving range
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -210,9 +210,9 @@ Phase 5 — churn detection, optional, satisfying the fourth requirement.
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No credential, token or absolute home path is written into a quarantine manifest
-- [ ] CHK-031 [P0] The quarantine writer refuses a destination that canonicalizes outside the lineage directory
-- [ ] CHK-032 [P1] No containment path deletes a file; preservation remains the only outcome for a not-in-HEAD path
+- [x] CHK-030 [P0] No credential, token or absolute home path is written into a quarantine manifest — no home path, token or credential is read into the manifest
+- [x] CHK-031 [P0] The quarantine writer refuses a destination that canonicalizes outside the lineage directory — the quarantine writer canonicalizes and refuses a destination outside the lineage directory
+- [x] CHK-032 [P1] No containment path deletes a file; preservation remains the only outcome for a not-in-HEAD path — preservation is the only outcome for a not-in-HEAD path
 <!-- /ANCHOR:security -->
 
 ---
@@ -220,9 +220,9 @@ Phase 5 — churn detection, optional, satisfying the fourth requirement.
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] `spec.md`, `plan.md`, `tasks.md` and `acceptance-criteria.md` describe the same shipped behaviour
-- [ ] CHK-041 [P1] The containment module's own header comment describes preserve-by-default rather than the revert-and-fail model
-- [ ] CHK-042 [P2] The runtime library README and the fan-out feature catalog entry are updated
+- [x] CHK-040 [P1] `spec.md`, `plan.md`, `tasks.md` and `acceptance-criteria.md` describe the same shipped behaviour — the four documents describe the shipped behaviour
+- [x] CHK-041 [P1] The containment module's own header comment describes preserve-by-default rather than the revert-and-fail model — the module header now describes preserve-by-default; it still described revert-and-fail until this pass
+- [x] CHK-042 [P2] The runtime library README and the fan-out feature catalog entry are updated — the lib README row and a new fan-out feature-catalog entry both describe it
 <!-- /ANCHOR:docs -->
 
 ---
@@ -230,8 +230,8 @@ Phase 5 — churn detection, optional, satisfying the fourth requirement.
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Temp files in `scratch/` only
-- [ ] CHK-051 [P1] `scratch/` cleaned before completion
+- [x] CHK-050 [P1] Temp files in `scratch/` only — scratch/ holds only .gitkeep
+- [x] CHK-051 [P1] `scratch/` cleaned before completion — scratch/ clean
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -253,10 +253,10 @@ Phase 5 — churn detection, optional, satisfying the fourth requirement.
 <!-- ANCHOR:arch-verify -->
 ## L3+: Architecture Verification
 
-- [ ] CHK-100 [P0] The containment default and the worktree lane are documented in `decision-record.md`
-- [ ] CHK-101 [P1] Both decision records carry a status
-- [ ] CHK-102 [P1] Both decision records name the rejected alternative and why it lost
-- [ ] CHK-103 [P2] The migration path for a caller still passing the old containment signature is documented
+- [x] CHK-100 [P0] The containment default and the worktree lane are documented in `decision-record.md` — both are in decision-record.md
+- [x] CHK-101 [P1] Both decision records carry a status — each decision record carries a status
+- [x] CHK-102 [P1] Both decision records name the rejected alternative and why it lost — each names what it rejected and why
+- [x] CHK-103 [P2] The migration path for a caller still passing the old containment signature is documented — the mode parameter is optional and defaults to preserve, so an old caller keeps working
 <!-- /ANCHOR:arch-verify -->
 
 ---
@@ -264,10 +264,10 @@ Phase 5 — churn detection, optional, satisfying the fourth requirement.
 <!-- ANCHOR:perf-verify -->
 ## L3+: Performance Verification
 
-- [ ] CHK-110 [P1] The churn sampler adds no more than one status invocation per heartbeat per lane
-- [ ] CHK-111 [P1] Baseline capture stays inside the per-file and per-lane bounds on a run with a noisy neighbour
-- [ ] CHK-112 [P2] A six-lineage worktree run is measured for wall-clock setup cost against the same run without worktrees
-- [ ] CHK-113 [P2] The measured setup cost and the disk footprint per worktree are recorded in `implementation-summary.md`
+- [x] CHK-110 [P1] The churn sampler adds no more than one status invocation per heartbeat per lane — one sample per heartbeat at fanout-run.cjs:3601, and none at all after a detection latches
+- [x] CHK-111 [P1] Baseline capture stays inside the per-file and per-lane bounds on a run with a noisy neighbour — bounded at 2 MiB per file and 64 MiB per lane
+- [x] CHK-112 [P2] A six-lineage worktree run is measured for wall-clock setup cost against the same run without worktrees — six lineages at concurrency 3: 16.5 s without worktrees, 149.7 s with
+- [x] CHK-113 [P2] The measured setup cost and the disk footprint per worktree are recorded in `implementation-summary.md` — recorded in implementation-summary.md, with 1.6 GB of checkout per tree
 <!-- /ANCHOR:perf-verify -->
 
 ---
@@ -275,11 +275,11 @@ Phase 5 — churn detection, optional, satisfying the fourth requirement.
 <!-- ANCHOR:deploy-ready -->
 ## L3+: Deployment Readiness
 
-- [ ] CHK-120 [P0] The rollback in `plan.md` has been exercised: setting the mode back to restore recovers the previous remedy with no code change
-- [ ] CHK-121 [P0] The containment mode and the worktree option are both settable per run, so neither needs a code change to disable
-- [ ] CHK-122 [P1] The new ledger events appear in the observability stream with a resolved status, not `unknown`
-- [ ] CHK-123 [P1] The manual testing playbook entry for a shared-checkout run exists
-- [ ] CHK-124 [P2] An interrupted-run worktree sweep has been observed cleaning up after a killed driver
+- [x] CHK-120 [P0] The rollback in `plan.md` has been exercised: setting the mode back to restore recovers the previous remedy with no code change — a run with the mode set back to restore completes and succeeds, with no code change
+- [x] CHK-121 [P0] The containment mode and the worktree option are both settable per run, so neither needs a code change to disable — containmentMode and worktrees are both per-run runner arguments
+- [x] CHK-122 [P1] The new ledger events appear in the observability stream with a resolved status, not `unknown` — every new event carries a resolved status; only the pre-existing lifecycle events omit one, and none is unknown
+- [x] CHK-123 [P1] The manual testing playbook entry for a shared-checkout run exists — WC-001 and WC-002 now exist in the manual testing playbook
+- [x] CHK-124 [P2] An interrupted-run worktree sweep has been observed cleaning up after a killed driver — observed end to end: a killed driver leaves a tree, it is kept while the lane is resumable, and reclaimed once it is not
 <!-- /ANCHOR:deploy-ready -->
 
 ---
@@ -287,10 +287,10 @@ Phase 5 — churn detection, optional, satisfying the fourth requirement.
 <!-- ANCHOR:compliance-verify -->
 ## L3+: Compliance Verification
 
-- [ ] CHK-130 [P1] The change has been reviewed against the repository rule that worktree creation is not an autonomous AI decision; the runner's ephemeral lane is justified in `decision-record.md`
-- [ ] CHK-131 [P1] No new dependency is introduced; the change uses the Node standard library and the git binary only
-- [ ] CHK-132 [P2] The quarantine tree is confirmed not to capture files outside the repository
-- [ ] CHK-133 [P2] Quarantine retention is stated so an operator knows what accumulates and where
+- [x] CHK-130 [P1] The change has been reviewed against the repository rule that worktree creation is not an autonomous AI decision; the runner's ephemeral lane is justified in `decision-record.md` — the runner creates ephemeral trees outside the numbered namespace and never through the allocator
+- [x] CHK-131 [P1] No new dependency is introduced; the change uses the Node standard library and the git binary only — no dependency added; Node standard library and the git binary only
+- [x] CHK-132 [P2] The quarantine tree is confirmed not to capture files outside the repository — containment canonicalizes every path and refuses anything resolving outside the tree
+- [x] CHK-133 [P2] Quarantine retention is stated so an operator knows what accumulates and where — retention is stated in the implementation summary
 <!-- /ANCHOR:compliance-verify -->
 
 ---
@@ -298,10 +298,10 @@ Phase 5 — churn detection, optional, satisfying the fourth requirement.
 <!-- ANCHOR:docs-verify -->
 ## L3+: Documentation Verification
 
-- [ ] CHK-140 [P1] All packet documents are synchronized with the shipped behaviour
-- [ ] CHK-141 [P1] The guard's exported function signatures are documented where they changed
-- [ ] CHK-142 [P2] The operator-facing guidance about editing during a live lineage reflects preserve-by-default
-- [ ] CHK-143 [P2] The incident and its resolution are summarized in `implementation-summary.md`
+- [x] CHK-140 [P1] All packet documents are synchronized with the shipped behaviour — all packet documents match the shipped behaviour after this pass
+- [x] CHK-141 [P1] The guard's exported function signatures are documented where they changed — the changed signatures are described where they changed
+- [x] CHK-142 [P2] The operator-facing guidance about editing during a live lineage reflects preserve-by-default — the operator guidance reflects preserve-by-default
+- [x] CHK-143 [P2] The incident and its resolution are summarized in `implementation-summary.md` — the incident and its resolution are in implementation-summary.md
 <!-- /ANCHOR:docs-verify -->
 
 ---

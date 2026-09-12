@@ -28,7 +28,7 @@ Each domain owns its own `README.md` with contents, consumers and tests. The two
 | `council/` | Multi-seat dispatch, adjudicator-verdict stability and cost guards for the deep-ai-council mode. |
 | `coverage-graph/` | Schema, queries and Bayesian signals for deep-loop convergence detection. |
 | `cycle-detection/` | Detects unproductive repetition across iterations by comparing bounded state-signature history against a versioned policy. |
-| `deep-loop/` | Atomic state, loop locking, JSONL repair and executor config for the deep-loop runtime backend. |
+| `deep-loop/` | Atomic state, loop locking, JSONL repair and executor config for the deep-loop runtime backend, plus the write-containment guard and the per-lineage worktree lifecycle. Containment preserves what it cannot attribute rather than undoing it, because on a shared checkout the writer is often another session; restoring is opt-in per run. |
 | `dispatch-receipts/` | Records a durable integrity-checked receipt before a dispatch crosses the process-spawn boundary, so a resumed session recognizes an already-launched run. |
 | `event-envelope/` | Foundational canonical-serialization and event-schema registry substrate underneath most domains, excluding `council/`, `coverage-graph/` and `write-set-conflict-graph/`. |
 | `health-degeneration-harness/` | Turns normalized budget, cycle and coverage signals into a per-mode health state and a recommended response action. |
