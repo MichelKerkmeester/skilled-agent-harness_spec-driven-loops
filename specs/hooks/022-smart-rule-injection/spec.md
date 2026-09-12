@@ -30,6 +30,9 @@ _memory:
     completion_pct: 0
 ---
 
+<!-- SPECKIT_TEMPLATE_SOURCE: phase-parent-spec | v2.2 -->
+<!-- SPECKIT_LEVEL: 2 -->
+
 # Feature Specification: Smart rule injection via hooks
 
 ## 1. PROBLEM

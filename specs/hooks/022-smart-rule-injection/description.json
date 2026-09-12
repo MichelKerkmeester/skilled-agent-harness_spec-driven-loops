@@ -1,0 +1,19 @@
+{
+  "level": 2,
+  "specFolder": "hooks/022-smart-rule-injection",
+  "description": "Decide from repository evidence which repo rules, if any, are better served by a prompt-time injection hook than by the Gate 5 load, and design the",
+  "keywords": [
+    "smart rule injection",
+    "prompt-time injection",
+    "event-triggered injection",
+    "evidence criterion",
+    "gate 5",
+    "decision record"
+  ],
+  "lastUpdated": "2026-09-12T00:00:00Z",
+  "specId": "022",
+  "folderSlug": "smart-rule-injection",
+  "parentChain": ["hooks"],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
