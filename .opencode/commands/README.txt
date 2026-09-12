@@ -46,7 +46,7 @@ Commands are organized into five groups plus root-level utilities:
 | **doctor** | `commands/doctor/` | 3 | MCP, Spec Kit, update, and subsystem diagnostics |
 | **design** | `commands/design/` | 3 | Style Reference extraction, standalone charts and diagrams |
 | **prompt** | `commands/prompt/` | 1 | Prompt engineering surface (`/prompt:improve`) via sk-prompt |
-| **rewrite** | `commands/rewrite/` | 3 | Re-express an existing reply or topic in plain English, or as a diagram |
+| **rewrite** | `commands/rewrite/` | 2 | Re-express an existing reply in plain English |
 | **speckit** | `commands/speckit/` | 6 | Spec folder workflows (plan, implement, resume, complete), continuity write (save) and lexical retrieval (search) |
 | **root** | `commands/` | 3 | Standalone `/agent-router`, `/goal-opencode` and `/vision` utilities |
 
