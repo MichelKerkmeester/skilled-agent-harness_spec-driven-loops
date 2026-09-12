@@ -195,7 +195,7 @@
     ],
     "causal_summary": "An executable module decides whether to run its work by asking whether it is the process",
     "created_at": "2026-09-12T18:16:48.421Z",
-    "last_save_at": "2026-09-12T19:59:07.436Z",
+    "last_save_at": "2026-09-12T20:54:30.414Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f341ab3b9199496acdd9e7118630c39b12ab1fd665b061268432baa83179e861",
+    "source_fingerprint": "sha256:0ea9366e31775c37cd3c492768581e4e812c9be3a4935ba99c0ab54f1363710c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6a52d709e3014c7a5fdc94f5097cdfe6aa0bdafcb6558289b6f4c540bacabff6",
       "plan.md": "49cb528a2f3fe9b3a051263b74a4aaac1e162917e1b5538d704d6bd2c420aef7",
-      "tasks.md": "61bf06be0e9173b828fc004698fece6acd8084a9090a0d12c1e6db7bed059f5d",
-      "implementation-summary.md": "9981add87993e3de77be2719ce5cdbed73d6e9941340cca47d4e62a2c170be1b"
+      "tasks.md": "c90d91eeb966db1148650dcdd4d21c784d4ca35fe47522091c51c84e1185f63e",
+      "implementation-summary.md": "375855278a514fea3710cf5f944e3060380c1d25c5766ebaa1288a3b2b1f4d2f"
     },
     "last_active_child_id": null,
     "last_active_at": null
