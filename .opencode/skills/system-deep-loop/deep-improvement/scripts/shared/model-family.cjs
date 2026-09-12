@@ -5,7 +5,7 @@
 'use strict';
 
 /**
- * Pilot teaching T1/T3 (spec 143): self-scores and same-family grading are the
+ * Self-scores and same-family grading are the
  * score-inflation mechanism (~+6/25 measured). A grader that shares a model
  * family with the generator inherits its blind spots, so benchmark runs with
  * an LLM grader must refuse the combination unless explicitly overridden.
