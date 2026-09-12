@@ -25,6 +25,7 @@ import {
   isGeneratedMetadataGrandfatherEnabled,
   isStatusCompletionConsistencyGateEnabled,
 } from '../config/capability-flags.js';
+import { isMainModule } from '../esm-entry.js';
 
 /** Options controlling a {@link validateFolder} run. */
 export interface ValidateOpts {
@@ -1078,7 +1079,7 @@ function writeRepairHint(report: ValidationReport): void {
 // Compare resolved filesystem paths, not the raw URL string: a repo path with
 // spaces or "|" makes import.meta.url percent-encode while argv stays literal,
 // so `file://${argv}` equality silently fails and the CLI entry never runs.
-if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+if (isMainModule(import.meta.url)) {
   try {
     const { folder, opts } = parseCliArgs(process.argv.slice(2));
     const report = validateFolder(folder, opts);

@@ -41,6 +41,7 @@ import { publishJson, stableStringify } from './lib/artifact.mjs';
 import { EXCLUDED_DIR_NAMES as CORPUS_EXCLUDED_DIR_NAMES } from './lib/corpus.mjs';
 import { compareCodeUnits } from './lib/normalize.mjs';
 import { formatCommand, parseJsonLines, resolveRipgrep, ripgrepVersion } from './lib/rg-lane.mjs';
+import { isMainModule } from '../lib/esm-entry.mjs';
 
 // ───────────────────────────────────────────────────────────────────
 // 1. CONSTANTS
@@ -601,7 +602,7 @@ export async function main(argv) {
   return report.counts.live > 0 ? EXIT_LIVE_HITS : EXIT_CLEAN;
 }
 
-if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+if (isMainModule(import.meta.url)) {
   main(process.argv.slice(2)).then(
     (code) => { process.exitCode = code; },
     (error) => {

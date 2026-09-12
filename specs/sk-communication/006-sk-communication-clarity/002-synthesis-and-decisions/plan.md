@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Phase 2: synthesis-and-decisions"
-description: "Turn the two research syntheses into one allocation table, record the four candidates with no owning surface as deliberate non-work, and write the rejection list with a reason per rejection."
+description: "Turn the two research syntheses into one allocation table, record the four candidates with no owning surface as deliberate non-work and write the rejection list with a reason per rejection."
 trigger_phrases:
   - "synthesis plan"
   - "allocation approach"
@@ -31,7 +31,7 @@ contextType: "general"
 ### Overview
 
 The deciding is over. `decision-record.md` holds eight Accepted ADRs, three settling rule conflicts and
-five settling engine questions, and every downstream phase reads that file for its authorised scope.
+five settling engine questions. Every downstream phase reads that file for its authorised scope.
 Nothing here reopens one or treats a settled question as work to do.
 
 What remains is the synthesis those decisions unblocked: one allocation table over the candidate union
@@ -45,8 +45,8 @@ and a rejection list with one reason per rejection.
 | ADR-001 | The colon-clause ban is rejected and the existing rule stands | No file changes. Read by phases 3, 6 and 8, which all touch punctuation guidance |
 | ADR-002 | The banned framework word applies to reply prose, with a carve-out for framework vocabulary | The reply-shape rule's filler list, in phase 8 |
 | ADR-003 | The cause-then-fix order is kept, with the cause's epistemic status stated when nothing confirms it | The evidence rule, in phase 8 |
-| ADR-004 | The projection stays a smoothing pass, and both rewrite commands declare the pass they perform | Both command documents, in phase 4 |
-| ADR-005 | The wording standard's reply base becomes the provider instruction, and no detector layer is built | The hoisted instruction constant, in phase 4. Phase 7 must land first, because the base is its output |
+| ADR-004 | The projection stays a smoothing pass and both rewrite commands declare the pass they perform | Both command documents, in phase 4 |
+| ADR-005 | The wording standard's reply base becomes the provider instruction and no detector layer is built | The hoisted instruction constant, in phase 4. Phase 7 must land first, because the base is its output |
 | ADR-006 | A claim, caveat or requirement present in the source and absent from the candidate rejects it | The fidelity validator's existing guard, in phase 4 |
 | ADR-007 | An unchanged candidate is recorded as its own no-op outcome | The accept record's change-kind field, in phase 4 |
 | ADR-008 | Both provider profiles use provider-default thinking mode | The external CLI profile, in phase 4 |
@@ -63,9 +63,9 @@ and a rejection list with one reason per rejection.
 - [ ] The candidate union and its arithmetic taken from the phase 001 synthesis
 
 ### Definition of Done
-- [ ] Every candidate in the union carries exactly one verdict, and no row is blank
+- [ ] Every candidate in the union carries exactly one verdict and no row is blank
 - [ ] Every adopted candidate names exactly one owning document and the failure it prevents
-- [ ] The four candidates with no owning surface are recorded as deliberate non-work with a blocking reason, and the rejection list carries a reason per rejection
+- [ ] The four candidates with no owning surface are recorded as deliberate non-work with a blocking reason. The rejection list carries a reason per rejection
 - [ ] All acceptance criteria met
 - [ ] `validate.sh --strict` run from the final state, with its output and exit status read
 <!-- /ANCHOR:quality-gates -->
@@ -79,8 +79,8 @@ and a rejection list with one reason per rejection.
 
 One pass over the merged candidate list, with a fixed decision shape per row. The shape is what keeps
 the pass honest: a row cannot be adopted without an owning document, a named failure and, where a
-settled decision produced the verdict, the ADR it came from. Already-covered is a real outcome rather
-than a gap, and so is recorded non-work.
+settled decision produced the verdict, the ADR it came from. Already-covered and recorded non-work are
+real outcomes rather than gaps.
 
 ### Key Components
 
@@ -99,10 +99,10 @@ than a gap, and so is recorded non-work.
 
 ### Data Flow
 
-Both research syntheses feed the candidate union. The union feeds the allocation table. The table is
-what phases 003, 004, 006, 007 and 008 execute against, so it is the only place a downstream phase
-reads its scope from. `decision-record.md` sits beside the table as the authority for each settled
-question the rows cite, and it is never edited by this phase.
+Both research syntheses feed the candidate union. The union feeds the allocation table, and that table
+is where phases 003, 004, 006, 007 and 008 read their scope. `decision-record.md` sits beside the table
+as the authority for each settled question the rows cite and as the scope source for phase 009, which
+takes its two candidates from the decisions rather than from a row. This phase never edits that file.
 
 ### Decisions this phase does not make
 
@@ -123,15 +123,16 @@ retained with an explicit verdict per row rather than deleted.
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| `repo-rules/` and `AGENTS.md` | The surfaces the allocation rows name | Unchanged in this phase | The scoped diff shows changes only under this phase folder |
+| `repo-rules/` | The surface most allocation rows name | Unchanged in this phase | The scoped diff shows changes only under this phase folder |
 | `sk-communication` and its benchmark folder | Named as an owning surface for two measurement candidates | Unchanged in this phase | `git status` confirms no change under the skill |
-| `decision-record.md` | Authority for what the eight decisions adopted and rejected | Already written, and not reopened | Read each Status field and treat nothing as settled unless it reads Accepted |
+| `decision-record.md` | Authority for what the eight decisions adopted and rejected | Already written and not reopened | Read each Status field and treat nothing as settled unless it reads Accepted |
 
 Required inventories, answered for this phase:
 - Same-class producers: none, no behavior changes here.
 - Consumers of changed symbols: none, no symbol changes here.
-- Matrix axes: candidate source and owning document, and the rows are the allocation table itself.
-- Algorithm invariant: one candidate maps to exactly one owning document, and a duplicate assignment
+- No allocation row names `AGENTS.md`, so the root doc stays as it is and no new clause is proposed.
+- Matrix axes: candidate source and owning document. The rows are the allocation table itself.
+- Algorithm invariant: one candidate maps to exactly one owning document and a duplicate assignment
   fails the closure gate.
 <!-- /ANCHOR:affected-surfaces -->
 
@@ -141,7 +142,7 @@ Required inventories, answered for this phase:
 ## 4. IMPLEMENTATION PHASES
 
 Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Verification phase
-checkboxes and task state. Three work items carry this phase, and the tasks file orders them:
+checkboxes and task state. Three work items carry this phase and the tasks file orders them:
 
 1. Build the allocation table over the candidate union, with a verdict, an owning document and a named
    failure per adopted row.
@@ -158,8 +159,8 @@ checkboxes and task state. Three work items carry this phase, and the tasks file
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
 | Unit | None, this phase writes documents | Not applicable |
-| Integration | The row count equals the candidate union, every row carries a verdict, no candidate is assigned twice, and each of the eight ADRs is reachable and Accepted | Table read, a duplicate scan over the owning-document column, and each ADR's Status field read beside its rows |
-| Manual | Each adopted row's named failure is specific enough to argue with, and each non-work row's blocking reason names what would have to change | Read each row and reject any failure statement that could sit in any rule set |
+| Integration | The row count equals the candidate union, every row carries a verdict, no candidate is assigned twice and each of the eight ADRs is reachable and Accepted | Table read, a duplicate scan over the owning-document column and each ADR's Status field read beside its rows |
+| Manual | Each adopted row's named failure is specific enough to argue with and each non-work row's blocking reason names what would have to change | Read each row and reject any failure statement that could sit in any rule set |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -180,7 +181,7 @@ checkboxes and task state. Three work items carry this phase, and the tasks file
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: A row's verdict rests on a finding whose citation does not resolve, or on an ADR that does not read Accepted.
+- **Trigger**: A row's verdict rests on a finding whose citation does not resolve or on an ADR that does not read Accepted.
 - **Procedure**: Supersede the affected ADR with a new one rather than editing it, then correct the row it fed. This phase's writes are confined to this folder, so nothing else needs reverting.
 <!-- /ANCHOR:rollback -->
 

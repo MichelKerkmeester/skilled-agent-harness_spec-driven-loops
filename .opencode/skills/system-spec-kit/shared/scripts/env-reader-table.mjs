@@ -4,8 +4,8 @@
 // to, with the reader files listed per variable. `--check` compares the table
 // the README carries against the derived one and exits 1 on any drift, so the
 // README can claim the table is generated and a test can hold it to that.
-import { readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
-import { dirname, join, relative } from 'node:path';
+import { readdirSync, readFileSync, realpathSync, statSync, writeFileSync } from 'node:fs';
+import { dirname, join, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const SHARED_ROOT = dirname(dirname(fileURLToPath(import.meta.url)));
@@ -81,7 +81,34 @@ export function checkReadme(readme = readFileSync(README, 'utf8'), readers = sca
   return { ok: actual === expected, expected, actual };
 }
 
-if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
+/**
+ * Whether this module is the process entrypoint.
+ *
+ * The launch path is made absolute and canonical before comparison, because a module's own URL
+ * already is both. Compared raw, a script reached by a relative path or through a linked directory
+ * differed from itself, concluded it had merely been imported, and exited 0 having done nothing.
+ *
+ * Defined locally rather than imported: the shared helper for this lives in the runtime package,
+ * and reaching for it from here would point this package at one that depends on it.
+ */
+function isMainModule() {
+  const entrypoint = process.argv[1];
+  if (!entrypoint) {
+    return false;
+  }
+
+  const absolute = resolve(entrypoint);
+  let canonical = absolute;
+  try {
+    canonical = realpathSync(absolute);
+  } catch {
+    // Falls through to the unresolved path below.
+  }
+
+  return fileURLToPath(import.meta.url) === canonical;
+}
+
+if (isMainModule()) {
   const mode = process.argv[2] ?? '--print';
   const readers = scanEnvReaders();
   if (mode === '--check') {

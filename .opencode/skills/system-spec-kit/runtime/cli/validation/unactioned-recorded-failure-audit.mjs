@@ -9,6 +9,7 @@
 // Over-flagging is the intended bias (a false positive costs a glance; a miss costs a
 // silent unfixed defect), so a failure marker is cleared only by an explicit route.
 import { readFileSync } from 'node:fs';
+import { isMainModule } from '../lib/esm-entry.mjs';
 
 const FAILURE_MARKERS = [
   /\bfail(?:ed|ure)?\b/i,
@@ -74,6 +75,6 @@ function main(argv) {
   process.exit(total > 0 ? 1 : 0);
 }
 
-if (import.meta.url === `file://${process.argv[1]}`) {
+if (isMainModule(import.meta.url)) {
   main(process.argv.slice(2));
 }

@@ -5,8 +5,8 @@
 // live in `.codex/hooks.json` (SessionStart, UserPromptSubmit, Stop, PreCompact).
 
 import { spawnSync } from 'node:child_process';
-import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { isMainModule } from '../../lib/esm-entry.js';
 
 const MAX_STDIN_BYTES = 1024 * 1024;
 const MAX_STDIO_BYTES = 1024 * 1024;
@@ -155,8 +155,7 @@ export function emitNormalizedCodexContext(event: CodexHookEvent, rawOutput: str
 
 /** Run a hook only when its module is the active CLI entrypoint. */
 export function runCodexHook(metaUrl: string, main: () => Promise<void>): void {
-  const entrypoint = process.argv[1];
-  if (!entrypoint || resolve(entrypoint) !== fileURLToPath(metaUrl)) return;
+  if (!isMainModule(metaUrl)) return;
 
   void main().catch((error: unknown) => {
     // Fail-open by contract, but a swallowed failure hides a broken adapter; report it.

@@ -6,12 +6,12 @@
 
 import * as fs from 'node:fs';
 import * as path from 'node:path';
-import { fileURLToPath } from 'node:url';
 
 import type {
   ComplianceClass,
   ComplianceRecord,
 } from './smart-router-telemetry.js';
+import { isMainModule } from '../lib/esm-entry.js';
 
 export interface AnalyzerOptions {
   readonly workspaceRoot?: string;
@@ -41,9 +41,7 @@ export interface TelemetryAnalysis {
 
 const DEFAULT_INPUT_PATH = '.opencode/skills/.state/smart-router-telemetry/compliance.jsonl';
 const DEFAULT_OUTPUT_DIR = '.opencode/skills/system-spec-kit/runtime/cli/observability';
-const IS_CLI_ENTRY = process.argv[1]
-  ? path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)
-  : false;
+const IS_CLI_ENTRY = isMainModule(import.meta.url);
 const CLASSES: ComplianceClass[] = [
   'always',
   'conditional_expected',

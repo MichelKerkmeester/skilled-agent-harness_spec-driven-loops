@@ -140,19 +140,19 @@
         "source": "derived"
       },
       {
-        "name": "Key Components",
+        "name": "Baseline Provenance The",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Data Flow Cases",
+        "name": "Release Gate",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Current Role",
+        "name": "Result Interpretation Both",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Nothing in this repository measures whether a communication rule changes a reply",
     "created_at": "2026-09-12T12:44:38Z",
-    "last_save_at": "2026-09-12T16:50:01.285Z",
+    "last_save_at": "2026-09-12T17:57:16.972Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,12 +206,12 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5938ffdab7d1bdec7cffcd861e425ad862d53d67136d33cbc01bad53a35d0837",
+    "source_fingerprint": "sha256:d28d64bd4eb5692ebba0722da8939c5c5c93877c3512fcdb7cc67554bb5bddd9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4cbfc4aa226080ce34777275cf14554adb68d1633eb984c01edba5d86ced606a",
-      "plan.md": "6f1da925ca6eb85100062b2e6135408aa708f950d6209d7b06e9798d46fb7ea1",
-      "tasks.md": "97b48e176ed956c2a3dcadea7017db46726b5f1b03d8c55bf23645bcbd1f1e98",
+      "plan.md": "da38e5744a5781ba292fc7313ccd458082dabd22d798d98ccafa6ce051008ea3",
+      "tasks.md": "293593787d791a8a70bbb33e37c41a7728428c213262a5212103e3c149a88cc4",
       "implementation-summary.md": "160bf4c687a0dbed63dc152c5d9095b350d0de614f5961a5b9512dc8f467fbfe"
     },
     "last_active_at": null

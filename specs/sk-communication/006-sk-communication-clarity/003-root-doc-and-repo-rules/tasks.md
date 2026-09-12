@@ -35,7 +35,7 @@ contextType: "general"
 ## Phase 1: Setup
 
 - [ ] T001 Read `repo-rules/communication.md` end to end and list its sections, rather than working from a summary of it (`repo-rules/communication.md`)
-- [ ] T002 Assign every section of the pre-change file to exactly one side of the seam, the unit each rule governs rather than the topic it mentions (`scratch/`)
+- [ ] T002 Assign every section of the pre-change file to exactly one side of the seam, by the unit each rule governs rather than the topic it mentions (`scratch/`)
 - [ ] T003 Capture the pre-change per-mark instruction set: for every punctuation mark or construction the stack governs, the file that carries the instruction and the direction it gives (`scratch/`)
 - [ ] T004 Capture phase 005's pre-change measurement baseline, before the first edit, because a baseline taken after the rules change cannot support a regression claim
 - [ ] T005 [P] Read the current trigger table and index in `REPO RULES.md` and record the rows that reach the reply-shape rule (`REPO RULES.md`)
@@ -49,7 +49,7 @@ contextType: "general"
 
 - [ ] T007 Create the new half under `repo-rules/` with the routed-from line, the bounded-by statement, a fires-when list and a self-check (`repo-rules/`)
 - [ ] T008 Move the sentence and paragraph mechanics into the new half, so each moved sentence appears once and reads as it did before the move (`repo-rules/`)
-- [ ] T009 Keep the whole-reply rules in `repo-rules/communication.md`, and update its own header so its scope statement names what it still owns and points at the other half (`repo-rules/communication.md`)
+- [ ] T009 Keep the whole-reply rules in `repo-rules/communication.md` and update its own header, so its scope statement names what it still owns and points at the other half (`repo-rules/communication.md`)
 - [ ] T010 Add the trigger row for the new half, in the same change as the file it names (`REPO RULES.md`)
 - [ ] T011 Add the index row for the new half, in the same change as the file it names (`REPO RULES.md`)
 - [ ] T012 Confirm across both halves that no rule sentence was added, removed or reworded, so the diff is a move rather than an edit (`repo-rules/`)
@@ -112,7 +112,7 @@ contextType: "general"
 
 - [ ] CHK-010 [P0] The diff across the two halves is a pure move, with no rule sentence added, removed or reworded
 - [ ] CHK-011 [P0] No rule file relaxes a hard blocker or authorizes what the root doc forbids
-- [ ] CHK-012 [P1] Each half stays within the readable size the split was made for, and neither grows past the pre-split file's own length statement
+- [ ] CHK-012 [P1] Each half stays within the readable size the split was made for and neither grows past the length statement the pre-split file carried
 - [ ] CHK-013 [P1] The new half follows the existing rule-file shape rather than inventing a second one
 <!-- /ANCHOR:code-quality -->
 
@@ -132,7 +132,7 @@ contextType: "general"
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-FIX-001 [P0] Each change carries a finding class, and it traces to an adopted allocation row or to the split this phase's spec names, with shared-policy rows treated as cross-consumer
+- [ ] CHK-FIX-001 [P0] Each change carries a finding class and traces to an adopted allocation row or to the split this phase's spec names, with shared-policy rows treated as cross-consumer
 - [ ] CHK-FIX-002 [P0] Same-class producer inventory run: every file giving a punctuation or construction instruction
 - [ ] CHK-FIX-003 [P0] Consumer inventory run: every document citing the reply-shape rule by name or path
 - [ ] CHK-FIX-004 [P0] Not applicable, no path, parser, redaction or security logic is in scope

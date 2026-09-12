@@ -79,6 +79,7 @@ import { compareCodeUnits } from '../retrieval/lib/normalize.mjs';
 import { ripgrepVersion } from '../retrieval/lib/rg-lane.mjs';
 import { RECIPES, search } from '../retrieval/rg-wrapper.mjs';
 import { findRepoRoot as resolveRepoRoot } from '../../hooks/lib/workspace/repo-root.mjs';
+import { isMainModule } from '../lib/esm-entry.mjs';
 
 // ───────────────────────────────────────────────────────────────────
 // 1. CONSTANTS
@@ -1204,6 +1205,6 @@ function formatArtifacts(artifacts) {
   return `\nartifacts:\n${names.map((name) => `  ${name.padEnd(18)} ${artifacts[name]}`).join('\n')}\n`;
 }
 
-if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+if (isMainModule(import.meta.url)) {
   process.exitCode = main(process.argv.slice(2));
 }

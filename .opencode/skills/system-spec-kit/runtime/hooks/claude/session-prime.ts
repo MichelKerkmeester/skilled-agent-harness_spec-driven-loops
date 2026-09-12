@@ -6,7 +6,6 @@
 // based on the session source (compact, startup, resume, clear).
 
 import { createRequire } from 'node:module';
-import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
   parseHookStdin, hookLog, formatHookOutput, truncateToTokenBudget,
@@ -24,6 +23,7 @@ import {
   validatePendingCompactPrimeSemantics,
 } from './hook-state.js';
 import { notifyDirectiveLifecycleBoundary } from './directive-lifecycle-boundary.js';
+import { isMainModule } from '../../lib/esm-entry.js';
 
 const require = createRequire(import.meta.url);
 
@@ -43,9 +43,7 @@ function sessionLifecycleHookEnabled(): boolean {
 // ───────────────────────────────────────────────────────────────────
 
 const CACHE_TTL_MS = 30 * 60 * 1000;
-const IS_CLI_ENTRY = process.argv[1]
-  ? resolve(process.argv[1]) === fileURLToPath(import.meta.url)
-  : false;
+const IS_CLI_ENTRY = isMainModule(import.meta.url);
 // ───────────────────────────────────────────────────────────────────
 // 2. SOURCE HANDLERS
 // ───────────────────────────────────────────────────────────────────

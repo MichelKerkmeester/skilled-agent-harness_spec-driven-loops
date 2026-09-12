@@ -7,6 +7,7 @@ import path from 'node:path';
 import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 
+import { isMainModule } from '../esm-entry.js';
 import { resolveGoalDurableBudget, resolveLevelContract, type SpecKitLevel } from '../templates/level-contract-resolver.js';
 
 /** The five structural rules {@link runSpecDocStructureRule} can evaluate. */
@@ -1497,7 +1498,7 @@ function main(argv: string[]): number {
   return 0;
 }
 
-if (import.meta.url === `file://${process.argv[1]}`) {
+if (isMainModule(import.meta.url)) {
   try {
     process.exitCode = main(process.argv.slice(2));
   } catch (error: unknown) {

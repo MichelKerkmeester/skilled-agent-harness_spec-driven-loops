@@ -43,6 +43,7 @@ import { CATEGORY, MALFORMED_CATEGORIES, readTriggerPhrases } from './lib/frontm
 import { compareCodeUnits, NORMALIZATION } from './lib/normalize.mjs';
 import { judgeTriggerPhrase } from './lib/phrase-judge.mjs';
 import { findRepoRoot as resolveRepoRoot } from '../../hooks/lib/workspace/repo-root.mjs';
+import { isMainModule } from '../lib/esm-entry.mjs';
 
 // ───────────────────────────────────────────────────────────────────
 // 1. CONSTANTS
@@ -543,6 +544,6 @@ function formatReport(report) {
   return `${lines.join('\n')}\n`;
 }
 
-if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+if (isMainModule(import.meta.url)) {
   process.exitCode = main();
 }

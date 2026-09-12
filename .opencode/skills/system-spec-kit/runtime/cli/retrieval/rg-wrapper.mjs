@@ -51,6 +51,7 @@ import {
   rankMatches,
   runRecipe,
 } from './lib/rg-lane.mjs';
+import { isMainModule } from '../lib/esm-entry.mjs';
 
 // ───────────────────────────────────────────────────────────────────
 // 1. CONSTANTS
@@ -338,6 +339,6 @@ export function main(argv) {
   return record.exitCode;
 }
 
-if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+if (isMainModule(import.meta.url)) {
   process.exitCode = main(process.argv.slice(2));
 }

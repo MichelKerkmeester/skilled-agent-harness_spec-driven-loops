@@ -13,8 +13,8 @@
 
 import * as path from 'node:path';
 import { assertPathInsideRoot } from '../utils/path-utils.js';
+import { isMainModule } from '../lib/esm-entry.js';
 import * as fs from 'node:fs';
-import { fileURLToPath } from 'node:url';
 import {
   generatePerFolderDescription,
   savePerFolderDescription,
@@ -158,9 +158,7 @@ function main(): void {
   console.log(`description.json created in ${folderPath}`);
 }
 
-const IS_CLI_ENTRY = process.argv[1]
-  ? path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)
-  : false;
+const IS_CLI_ENTRY = isMainModule(import.meta.url);
 
 if (IS_CLI_ENTRY) {
   main();
