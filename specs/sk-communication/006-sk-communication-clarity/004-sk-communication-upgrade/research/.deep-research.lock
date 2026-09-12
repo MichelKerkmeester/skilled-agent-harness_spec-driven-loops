@@ -1,0 +1,11 @@
+{
+  "owner_pid": 5391,
+  "started_at_iso": "2026-09-12T16:04:35.867Z",
+  "ttl_ms": 300000,
+  "last_heartbeat_iso": "2026-09-12T16:04:35.867Z",
+  "packet_id": "specs/sk-communication/006-sk-communication-clarity/004-sk-communication-upgrade",
+  "runtime_kind": "main",
+  "phase": "running",
+  "last_activity_iso": "2026-09-12T16:04:35.867Z",
+  "acquire_nonce": "5391-1789229075868-fa8cfa8f-8183-415e-9909-94fde8416ce5"
+}

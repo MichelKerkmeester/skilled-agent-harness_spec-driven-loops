@@ -1,0 +1,18 @@
+{
+  "specFolder": "sk-communication/006-sk-communication-clarity/007-wording-standard-restructure",
+  "description": "Phase 2: wording-standard-restructure",
+  "keywords": [
+    "phase",
+    "wording-standard-restructure"
+  ],
+  "lastUpdated": "2026-09-12T16:39:31.508Z",
+  "specId": "007",
+  "folderSlug": "wording-standard-restructure",
+  "parentChain": [
+    "sk-communication",
+    "006-sk-communication-clarity"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

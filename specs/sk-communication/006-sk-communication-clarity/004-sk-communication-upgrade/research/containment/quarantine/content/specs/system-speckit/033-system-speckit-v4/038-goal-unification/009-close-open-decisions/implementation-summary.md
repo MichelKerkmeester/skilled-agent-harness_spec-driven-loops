@@ -1,0 +1,130 @@
+---
+title: "Implementation Summary"
+description: "The four operator decisions, the last review advisories and the Devin host unknown are all closed, each pinned by a test; nothing is deferred."
+trigger_phrases:
+  - "implementation summary"
+  - "what shipped"
+  - "validation evidence"
+  - "continuation notes"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/033-system-speckit-v4/038-goal-unification/009-close-open-decisions"
+    last_updated_at: "2026-09-11T20:30:00Z"
+    last_updated_by: "claude-code"
+    recent_action: "Closed the four operator decisions, the remaining advisories and the Devin host unknown"
+    next_safe_action: "Commit and push"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-09-11-system-spec-kit-goals"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|-------|-------|
+| **Phase** | 9 of 9 |
+| **Status** | Complete |
+| **Date** | 2026-09-11 |
+| **Branch** | `skilled/v4.0.0.0` |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## 2. WHAT WAS BUILT
+
+Completion criteria now render as their own field, one per line, in the full block and in the compact
+fallback where losing them would matter most. A budget drops whole criteria and says how many it left
+behind, instead of cutting one mid-requirement. The objective line names the packet only, so the
+criteria appear once rather than twice.
+
+A log append refuses a goal document that is not valid UTF-8, with a named error, and leaves the bytes
+exactly as they were. Node replacement-decodes invalid bytes rather than throwing, so writing the
+decoded string back would have rewritten an author's text as replacement characters.
+
+The binding-row rule reads a target written as a code span, a markdown link or bare text, and requires
+it to resolve inside the packet by real path. That matches the containment the runtime already
+enforces, so a packet can no longer validate while the runtime refuses to bind it.
+
+Claude Code and Codex have a resend signal: read the slice hash at every command entry with the
+session-free packet action and compare it with the hash last rendered this session. The three
+lifecycle workflows now also state the nesting rules, and a test fails when their goal blocks differ.
+
+The goal contract documents joined the retrieval corpus, and the coverage table records why.
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## 3. HOW IT WAS DELIVERED
+
+| File | Change |
+|------|--------|
+| `.opencode/hooks/goal/lib/goal-slice.cjs` | Objective split, whole-item criteria selection |
+| `.opencode/hooks/goal/lib/goal-core.cjs` | Criteria field in both block shapes, headline-only prompt, non-UTF-8 refusal |
+| `.opencode/plugins/opencode-goal.js` | The same renderer changes |
+| `.opencode/skills/system-spec-kit/runtime/lib/validation/spec-doc-structure.ts` | Link notation and real-path containment |
+| `.opencode/commands/speckit/assets/speckit-{plan,implement,complete}.yaml` | Nesting rules and the session-free resend signal |
+| `.opencode/skills/system-spec-kit/runtime/cli/retrieval/lib/corpus.mjs` | The hooks corpus root |
+| `.opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md` | The coverage row |
+| `.opencode/hooks/goal/README.md` | What a text set does to a binding |
+| cli-devin goal-hook playbook | The host merge rule from a live run |
+| Tests across the hook, plugin and runtime suites | Eleven new tests, two negative-controlled |
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+<!-- ANCHOR:decisions -->
+## 4. DECISIONS
+
+| Decision | Answer and why |
+|----------|----------------|
+| Criteria shape | Their own field. The criteria decide when work is done and sit where truncation lands first; one copy, whole items, and a stated count when trimmed. |
+| Non-UTF-8 append | Refuse with a named error. A goal is authored text, and losing it to a progress note is the worse trade. |
+| Resend on the two session-free runtimes | A hash check in the workflows they already run. It fires on the same change the bound runtimes use and stays silent on a log edit. |
+| Infrastructure | Both: the workflow drift check and the hooks corpus root. |
+| Devin host merge | Settled by a live run rather than a design change; the host concatenates, so no merge adapter was needed. |
+<!-- /ANCHOR:decisions -->
+
+---
+
+<!-- ANCHOR:verification -->
+## 5. VERIFICATION
+
+| Gate | Result |
+|------|--------|
+| Goal hook suites | 132 passed, 0 failed |
+| OpenCode plugin suites | 142 passed, 0 failed |
+| Spec-doc validator suite | 30 passed |
+| Retrieval coverage and repo-root suites | 19 passed |
+| Negative controls | A renamed criteria label fails the parity test; an altered workflow file fails the drift check |
+| Live Devin probe | Both hook contexts reported in one turn, CLI 3000.6.14 |
+<!-- /ANCHOR:verification -->
+
+---
+
+<!-- ANCHOR:limitations -->
+## 6. KNOWN LIMITATIONS
+
+The Devin merge rule is host behaviour, not a documented contract, so it deserves a re-check after a
+Devin upgrade. The playbook says so.
+
+Nothing else is open. The two items kept as recorded decisions in the previous phase stay kept for the
+same reasons: a live test depends on the duplicated envelope aliases, and a record schema depends on
+the unused plugin timestamp.
+<!-- /ANCHOR:limitations -->

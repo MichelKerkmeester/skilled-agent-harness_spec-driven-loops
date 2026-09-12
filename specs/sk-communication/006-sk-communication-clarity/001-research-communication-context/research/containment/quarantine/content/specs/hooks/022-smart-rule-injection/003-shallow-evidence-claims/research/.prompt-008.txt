@@ -1,0 +1,239 @@
+You are researching one question for this repository. Read-only: do not edit anything.
+
+QUESTION
+What change to the rule corpus or to AGENTS.md would actually reduce confident claims that
+the evidence does not support?
+
+REFRAME THE PROBLEM BEFORE YOU START — this is the key insight, test it, do not assume it
+The obvious framing is "claims made with no evidence". That framing is wrong for this
+repository, and the incident record below shows why. In every real case the agent DID run
+a command, DID read a file, and DID cite something. The failure was that the evidence was
+read too SHALLOWLY, and then reported with full confidence. A rule demanding "cite your
+evidence" would have been satisfied by every one of these failures.
+
+So the real question is narrower and harder: what makes an agent stop at the first
+plausible reading of a tool result? Test whether that reframing holds before building on it.
+
+THE INCIDENT RECORD — real failures from one session in this repository, use them as the
+test set. Any proposal must be checked against these: would it actually have caught this one?
+1. An agent was told a skill was not a registered mode. It was registered in four places.
+   Cause: grepped for a prefixed name when the registry keys on the bare name. One grep,
+   one negative result, reported as fact.
+2. Five scripts were reported broken. Two were. Cause: the grep could not match a
+   multi-line require statement, and the load test inspected only the first line of error
+   output, so a real module-not-found printed "loads ok".
+3. A file was said to need 233 lines after a cut. The correct answer was 230. Cause: an
+   arithmetic total was inherited from a prior analysis and never re-derived, though every
+   individual line range in it was verified.
+4. Twice, a verification grep failed because the text it searched for was wrapped across
+   two lines. Correct fixes were reported as unapplied.
+5. A finding was reported as a second conflicting confidence scale. It was a scoring
+   weight with a similar-looking number.
+Notice what these share: a tool ran, its output was read, and the reading was partial.
+Also notice failure 3 is different in kind from the others. Say how, and whether one rule
+can address both kinds.
+
+WHAT ALREADY EXISTS — verify each, then say precisely why it did not prevent the above
+- AGENTS.md carries five verification standards that bind unconditionally, including
+  "Observed command evidence": a command is evidence only once its output AND exit status
+  are read.
+- AGENTS.md carries "Never fabricate", "UNKNOWN when uncertain", and an explicit
+  uncertainty prefix.
+- repo-rules/evidence-and-proof.md carries the four ways a green run lies.
+- repo-rules/uncertainty-and-honesty.md carries the confidence thresholds.
+The corpus is not silent on this. Every incident above happened anyway, in a session where
+these were loaded. Explaining that gap is the core of a good answer. A proposal that only
+restates existing text is refused by the corpus's own restraint test.
+
+THE ADMISSION BAR — apply it, do not re-derive it
+.opencode/skills/sk-doc/sk-create-repo-rule/references/decision-tests.md carries four
+tests. Test 1 matters most here: a rule file loads at Gate 5, which fires on the FIRST
+WRITE. Most of the incidents above happened on read-only turns. So a new RULE FILE may be
+structurally unable to help, and the answer may be an AGENTS.md row instead. Decide that
+explicitly rather than defaulting to one.
+
+SHAPE OF THE ANSWER
+1. DIAGNOSIS — why the existing standards did not fire. Be specific per incident.
+2. WHERE IT BELONGS — new rule file, section in an existing rule, or AGENTS.md row.
+   Test 1 decides most of this; show the reasoning.
+3. THE PROPOSAL — exact wording you would add, and the incident numbers above it would
+   have caught. A proposal catching none of them is refused.
+4. WHAT IT COSTS — what it would fire on wrongly, and how often.
+5. VERDICT.
+
+Every claim carries a file:line that resolves. A well-evidenced refusal beats an invented
+rule; the corpus has refused twenty-eight proposals across two prior rounds and was right
+to. Nothing converges early: later iterations test earlier ones, not restate them.
+
+ITERATION 8 OF 10.
+Earlier iterations of this lineage already found the following. Do NOT repeat them.
+Go deeper, test what they assumed, or cover a surface they missed.
+
+### Iteration 1
+## 1. DIAGNOSIS
+- **Incident 1 (negative grep → "not registered"):** Row 2 requires that "output AND exit status are read" (`AGENTS.md:244`; `evidence-and-proof.md:62-63`). A grep that found nothing *was* a command; its (empty) output and (failing) status were read; the receipt was cited per row 1. The only clause in the corpus on negative search results is `evidence-and-proof.md:81-84` — and its confirmation requirement is "you have confirmed it read the file", a NUL-byte mechanism that re-running with `-a` fixes. The actual failure was a key-form mismatch (prefixed vs bare name), which that clause cannot see. `AGENTS.md:345` says "Widen the pattern rather than trusting a single hit" — the corpus carries the positive mirror and not the negative one. The routing rule that fires on "report that a mode is registered" (`REPO RULES.md:50` → `skill-hub-routing.md`) loads only via Gate 5, which "fires on the FIRST WRITE" (`AGENTS.md:122`).
+- **Incident 2 (5 broken, 2 were):** Both directions failed for one reason: an instrument's sensitivity was never checked. The "loads ok" line was read because "output AND exit status are read" is silent on *completeness* — reading a prefix satisfies it (`evidence-and-proof.md:62-63`). The four ways a green run lies (`evidence-and-proof.md:79-89`) do not include "the checker reported on a prefix of its own output."
+- **Incident 3 (233 vs 230):** The clause that would have caught it exists — "Computed answer: derive it a second way, independently" (`evidence-and-proof.md:122-123`) — but its trigger shape is "computed answer". An *inherited* total does not present as a computation; it presents as a known fact with a prior analysis as receipt, which row 1 (`AGENTS.md:243`) accepts. `evidence-and-proof.md:189-193` warns against docs as final word about *code*, not numbers carried across analyses.
+- **Incident 4 (wrapped text):** Same class as 1 — a negative result from a line-oriented pattern reported as fact. Again `evidence-and-proof.md:81-84` asks only whether the file was read, not whether the pattern could match the text as authored.
+- **Incident 5 (false "second scale"):** The corpus *encourages* reporting contradictions — `uncertainty-and-honesty.md:91-99` requires a halt and report; `AGENTS.md:97` escalates conflicts regardless of score. Nothing requires confirming the two sides occupy the same role before declaring conflict. "Confirmed vs inferred" (`AGENTS.md:243`) was satisfied by a digit match; no rule tests what kind of confirmation an identity claim needs.
+## 2. WHERE IT BELONGS
+- **New rule file: REFUSED by Test 1.** "On a turn where nothing fires, must this still hold? Yes → it belongs in `AGENTS.md`. Refuse the rule" (`decision-tests.md:38`). Claims are made while reading and reporting — read-only turns — and Gate 5 "fires on the FIRST WRITE" (`AGENTS.md:122`). Most incidents happened on read-only turns. Refused route: `decision-tests.md:131`.
+- **Section inside `evidence-and-proof.md`: admissible as an expansion, structurally unable to be the fix.** The rule file does not load on read-only turns (`AGENTS.md:122`), and even loaded it did not fire (the brief's central datum). Also fails Test 3 part 1: this is one standard with three shapes, i.e. "a single row, not a cluster" → "a section in an existing rule" (`decision-tests.md:90-91`), and the ADMISSION bar's own table routes "a single row" to "a section, not a file" (`decision-tests.md:134`).
+- **AGENTS.md row: ADMITTED.** The §4 table's members "bind unconditionally, including on a read-only turn where Gate 5 never fires and no rule file loads" (`AGENTS.md:239`) — that is exactly the class. Precedent for this placement on this exact trigger: refusals at `synthesis.md:430` and `:437`. Test 3 part 4 (AGENTS.md anchor) is definitionally satisfied by editing the anchored section itself. Cost note: an AGENTS.md row edit is an operator escalation, "not caution, it is the precedence ladder working" (`.opencode/skills/sk-doc/sk-create-repo-rule/references/agents-md-integration.md:122-127`).
+- Optional expansion (new section in `evidence-and-proof.md` owning the three shapes' mechanics) is **not proposed for admission now**: it adds no reach the row lacks, it touches a federated shared file (`.opencode/skills/sk-doc/sk-create-repo-rule/references/agents-md-integration.md:141-144`), and the refusal register's only justified rule-file body edit across the prior rounds was a rendering repair (`synthesis.md:233`). Later iterations can test the need.
+## 3. THE PROPOSAL
+- **#1** — "not registered" is a "none found"; the query must find a known instance (the bare registry key). A grep for the prefixed name cannot; the row blocks the claim. **Caught.**
+- **#2** — both halves: "script broken" derives from a "no require found" search → known-instance control on the multi-line pattern; "loads ok" → could the first line have said no? No; only a full read could, so the row forces naming and reading the disconfirming output. **Caught** (jointly with row 2, which then applies to the output actually read).
+- **#3** — the inherited total is exactly "a total needs a derivation at the total's level"; component verification does not satisfy it. **Caught.**
+- **#4** — "fix not applied" is a "none found"; the query must find the fix as authored (tolerating the wrap). **Caught.**
+- **#5** — "a conflict needs both sides shown to be the same kind"; the digit match does not show the scoring weight is a threshold. **Caught.**
+## 4. WHAT IT COSTS
+- **Edit cost:** operator escalation for an AGENTS.md row (`agents-md-integration.md:122-127`); the "five" count sentence at `AGENTS.md:239` must become "six"; the change propagates to sibling repositories automatically (root `AGENTS.md` is an absolute symlink into this checkout — `synthesis.md:13`), so the duty lands there without per-sibling edits.
+- **Fires wrongly on:** direct positives whose falsifier is trivial ("file exists", "tests passed") — the row's question resolves in one beat because the failure form (a missing path, a fail marker) is the shape you already looked at. Real friction lands only where a positive control is expensive — then the row's output is the INFERRED label, which is the honest answer anyway, not a re-run.
+- **How often:** one self-question per load-bearing claim — tens per dense research turn. Base rate against it: 5 false confident claims in one session (the brief). The row adds one meta-question against five retractions; it does not add a gate, a file, or a hook.
+- **Misuse risk:** the INFERRED escape could become a substitute for checking. That is bounded by the existing close-out duty to "say what is inferred" (`AGENTS.md:501`) — labeling is already required, so the row only moves the label earlier and gives it a criterion.
+- **Admission risk:** a reviewer could call it covered by row 4 (`AGENTS.md:246` — judgments from own reading) or `evidence-and-proof.md` §3.2/§6. The defense, with citations: row 4 is scoped to "a judgment" and its remedy is to call it judgment — wrong remedy for a factual claim with a right answer; §3.2's confirmation is file-read, not query-form; §6 triggers on "computed answer" and lives where read-only turns never load it (`AGENTS.md:122`). All three coexisted with all five incidents.
+- **Honest residual:** like every row, it can be skipped. It cannot be mechanically enforced. Its marginal value is that it names the failure shape — coverage — that the other five leave open, and it is the only placement that exists on the turns where the failures happen.
+## 5. VERDICT
+
+### Iteration 2
+## 1. DIAGNOSIS
+## 2. WHERE IT BELONGS
+## 3. THE PROPOSAL
+- **#1** — clause 1: the prefixed grep cannot find the known bare key; the "none found" is not evidence. **Caught.**
+- **#2** — both halves: the single-line "no require found" search cannot find the multi-line known instance (clause 1); "loads ok" is flagged by the opener directly — a truncated read could not have contradicted a module-not-found. v2 catches this half *on its own*; I1 needed row 2 jointly. **Caught.**
+- **#3** — clause 2, plus the opener (a prior analysis's total cannot be contradicted by today's file state). **Caught.**
+- **#4** — clause 1: a line-oriented search cannot find the wrapped known instance. **Caught.**
+- **#5** — clause 3: a digit match does not establish role-kind. **Caught.**
+## 4. WHAT IT COSTS
+- **Edit mechanics:** two lines; count-sentence maintenance has a landed precedent (`002-event … iteration-001.md:83`); operator escalation required (`agents-md-integration.md:122-127`). The CI gate covers `REPO RULES.md` and `repo-rules/**` only (`repo-rules-corpus.yml:5-8`), so the count sentence and table have no machine check — promotion discipline governs, as it did for row five.
+- **Propagation honesty:** the three AGENTS.md files are currently uniform and the text is path-free (`001-deep-research … iteration-010.md:50-51`), but the maintenance mechanism is contested between two prior verifications — symlink per `010-synthesis.md:13`, "UNKNOWN from a read-only seat" per `iteration-010.md:51`. If synchronization rather than symlink, add the sibling text update; either way no repo-rules federation work.
+- **Wrong fires / frequency:** one self-question per load-bearing claim — tens per dense research turn; the newly-blocked classes (false absences, carried totals, look-alike matches) are exactly the observed failure population. False friction = expensive absence proofs → INFERRED label, already required at close-out (`AGENTS.md:501`).
+- **Misuse risk:** shape-ritualism on trivia, bounded by the table's claim context; dropping the in-row escape makes the affordable compliant path row 1's honest label rather than a new escape habit.
+- **Admission risks pre-cleared:** home (tested), doctrine novelty (it promotes §4), row-4 overlap (partition), count/reach (landed precedent + hook closure).
+- **Residual:** unenforceable, skippable; its only reach is the resident layer, which is the only layer present on the turns where the failures happen.
+## 5. VERDICT
+
+### Iteration 3
+## 1. DIAGNOSIS
+- **#1** — The resident layer already carries a routing-claim sentence, and it is direction-blind: "Never report a mode as routed because a registry entry exists — check both stages" (`AGENTS.md:114`). The purpose-built rule fires on "Reporting that a mode is **registered, routed, reachable or integrated**" (`skill-hub-routing.md:38`) — positive direction — and loads "before wiring, rewiring or removing a mode" (`:29`; tier note `:31`); read-only claim turns never load it, because Gate 5 "fires on the FIRST write" (`AGENTS.md:122`). The negative ("not registered") is unowned in both layers, while the refusal register records the positive ground as covered (`synthesis.md:448`).
+- **#2** — The nearest sentence to a prefix read, "Never report output you did not see, or the output you *expected*" (`evidence-and-proof.md:65`), sits under §2 COMMAND EVIDENCE and is literally satisfied: the first line *was* seen. §3's four green-run lies (`:76-89`) contain no "the checker reported on a prefix of its own output."
+- **#3** — `uncertainty-and-honesty.md:35` fires on "a … number you have not verified" — self-assessed, and the agent held a prior analysis as receipt, which `AGENTS.md:243` accepts. §6 triggers on "computed answer" (`evidence-and-proof.md:122`); §11 scopes doc-as-wrong to *code* (`:189-193`); every rule-file home loads only at Gate 5.
+- **#4** — Same class as #1: `evidence-and-proof.md:81-84` asks only that the file was read — it was; the line-oriented pattern could not match the wrap.
+- **#5** — The corpus invites the report (`uncertainty-and-honesty.md:91-99`; `AGENTS.md:97`) and §1 insists there is exactly one scale (`uncertainty-and-honesty.md:48-49`); nothing requires showing both sides occupy the same role before declaring conflict.
+## 2. WHERE IT BELONGS
+- **Rule file: refused by Test 1** (`decision-tests.md:38-41`) — this binds on read-only turns; and the hooks track's own ten-iteration verdict for the adjacent question was "LEAVE AT GATE 5 … CHANGE THE RULE INSTEAD" (`iteration-010.md:55`), all injection candidates refused (`:57`).
+- **Section inside `evidence-and-proof.md`: not the fix** — no reach on the failing turns, and single-row content routes to a section, not a file (`decision-tests.md:90`, `:134`).
+- **AGENTS.md row: admitted.** Table members bind where no rule file loads (`AGENTS.md:239`); Test-1 refusals route there (`decision-tests.md:131`); a named failure exists (the five incidents — restraint test, `decision-tests.md:111-115`).
+- **Rival edit executed and refused** (I2's attack 2): `AGENTS.md:94` "Proceed with citable source". (a) intake vs claim time — the table is consulted judging a request (`AGENTS.md:85`), the failures are per-claim mid-work; (b) scale collision — `AGENTS.md:85` and `uncertainty-and-honesty.md:48-49` make this the single request-confidence scale; a receipt-power qualifier imports claim-grade semantics into task-grade semantics, the mirror of incident 5; (c) `synthesis.md:437` records that ground as owned at `AGENTS.md:85`. Recorded, not adopted.
+- **Register re-checked first-hand** (`synthesis.md:408-461`): nearest are `:430` (registration/availability → `AGENTS.md:363`, MCP-manual availability, not a registration-negative), `:437` (scale → `:85`), `:448` (positive routing claims). None owns receipt–claim matching.
+- **Propagation, resolved for the edit.** Uniform today at the exact edit locus, verified first-hand: `AGENTS.md:236-249`, `Mobile CLI/AGENTS.md:236-249`, `Obsidian Plugin/AGENTS.md:236-249` read line-identical (same line digests, e.g. `:239`/`:243`). Symlink-vs-copies is undecidable from a read-only file seat; the landing step therefore includes a one-read post-edit check of `:239` in both siblings, catching either failure. Precedent shape: the last landing of this table is recorded as "identical across the three repositories" (`002-event …:83`).
+## 3. THE PROPOSAL
+- **#1** — clause 1: widened (bare) search finds the key. **Caught.**
+- **#2** — first half: widened (module token) search finds the wrapped require, **refuting it on its own terms** (v2 needed an assumption); second half: the opener — a first line reading "loads ok" is identical whether or not the module is missing, so it cannot settle load status. **Caught.**
+- **#3** — clause 2. **Caught.**
+- **#4** — clause 1: fragment search finds the wrapped fix. **Caught.**
+- **#5** — clause 3. **Caught.**
+## 4. WHAT IT COSTS
+- **Edit mechanics:** two lines; an AGENTS.md row change escalates to the operator (`agents-md-integration.md:122-127`). No machine check watches the count sentence — CI covers `REPO RULES.md`, `repo-rules/**` and the checker only (`repo-rules-corpus.yml:5-8`). Propagation is checkable (§2).
+- **Wrong fires:** direct positives collapse in one beat ("file exists" ← ls; "tests passed" ← runner with fail marker); freshly derived totals satisfy clause 2. Friction class is absence claims — one extra widened search plus one known-instance check each; three of five incidents are exactly that class.
+- **Gaming risk:** widen until *anything* matches, then stop — bounded by the instance being of the searched kind and by row 1's INFERRED duty (`AGENTS.md:243`) plus close-out (`:501`); residual blindness for forms nobody thought of remains, stated honestly.
+- **Overlap pre-cleared:** row 4 (`AGENTS.md:246`) is own-reading judgments; `evidence-and-proof.md:65` is command output; `uncertainty-and-honesty.md:35` is self-assessed verification. None carries receipt reach.
+- **Residual:** unenforceable, skippable; its only reach is the layer present on the turns where the failures happened — the constraint that picked it.
+
+### Iteration 4
+## 1. DIAGNOSIS
+- **Recruitment is structurally impossible on the failing turns.** `REPO RULES.md:12-13` says "Match on the action you are about to take" and "Load before the action. A rule read afterwards is a post-mortem." Its table lists claim-time actions: "report a result · quote a number" (`REPO RULES.md:42`), "name a path, flag, function, version, or number you have not verified" (`REPO RULES.md:46`). But the only load mechanism fires on the first write (`AGENTS.md:122`), and the router's designed fallback for turns where nothing fires is "**AGENTS.md alone governs**" (`REPO RULES.md:18`). The trigger catalog describes claim actions its mechanism never loads for. This is stronger than "rule files do not load on read-only turns": the system's own design says AGENTS.md alone governs there.
+- **The one exception proves the hole.** Exactly one rule has a per-reply trigger, communication.md ("the one rule here whose trigger is every substantive reply", `REPO RULES.md:81-82`). It disclaims rigor twice: "Delivery, not rigor" (`communication.md:53`) and "Not a constraint on rigor... a verification standard owned by `evidence-and-proof.md` or `uncertainty-and-honesty.md`" (`communication.md:183-186`), with `AGENTS.md:411` keeping the separation. So the only rule surface present at claim time is boundary-barred from carrying a claim-power test, and the file that owns rigor has no read-time load command. Its self-declared trigger, "Load before making any claim someone will act on" (`evidence-and-proof.md:29`), with fires-when at `:34-38`, is a dead letter under Gate 5.
+- **Per incident, the nearest sentence has the wrong remedy or the wrong scope.** #1 and #4: `evidence-and-proof.md:81-84` is literally about a search returning nothing, but its remedy is `-a`, the NUL-byte blindness. Both searches read the file and failed on the pattern, so the clause tests reach into the file, not into the key space or across a wrap. #2: `AGENTS.md:244` is satisfied by a prefix, the nearest rigor clause ("Require the affirmative marker", `evidence-and-proof.md:69-70`) is scoped to exit-code passes, and the only falsifier doctrine ("Before the fix... prove the fix", `evidence-and-proof.md:94-97`) is scoped to change verification, not property verification. #3: `evidence-and-proof.md:122-123` triggers on "Computed answer"; a carried total presents as a known fact, and the resident row has no DERIVED tier to catch it. #5: `uncertainty-and-honesty.md:35` fires on "a number you have not verified", self-assessed, and the digits were verified. The contradiction halt (`uncertainty-and-honesty.md:91-93`) requires no same-kind precondition, so the corpus pushed toward the report. The one resident falsifier-shaped phrase, "what would change it" (`AGENTS.md:246`), is scoped to own-reading judgments and remedies by relabeling.
+- **The mechanism behind "stopping at the first plausible reading".** Every stop-condition in the corpus is typed to a claim subtype the agent must first believe it is making: a none-found, a computed answer, a conflict, an inferred claim. Each incident contained a subtype misclassification upstream of clause application. The agent believed it had searched (#1, #4), believed the read was the result (#2), believed the number was known (#3), believed it held a contradiction (#5). A clause gated on subtype recognition inherits the recognition failure. The five unconditional standards (`AGENTS.md:239-247`) are conduct-shaped ("read it", "cite it", "ground it") and the honesty triggers are self-assessed, so a confident and wrong agent satisfies all of them. What is absent is one untyped stop-question: **could what I read have disagreed?**
+## 2. WHERE IT BELONGS
+- **New rule file: refused.** Test 1 (`decision-tests.md:38-40`) sends always-binding content to AGENTS.md, and the recruitment evidence above shows a rigor file has no read-time surface at all.
+- **Section in `evidence-and-proof.md`: refused as the fix, admissible only as mechanics.** No reach on the failing turns (its own trigger at `:29` cannot fire), and single-row content routes to a section not a file (`decision-tests.md:90`, `:134`) precisely because a section there still cannot fire.
+- **Section in `communication.md`: refused on boundary, despite it being the only read-time file.** "Delivery, not rigor" (`communication.md:53`), "Not a constraint on rigor" (`:183-186`), and `AGENTS.md:411` keeping the two layers separate. Placing a claim-power test there inverts the boundary the file itself polices.
+- **AGENTS.md row: admitted.** Members bind where no rule file loads (`AGENTS.md:239`), Test 1 routes refusals to "`AGENTS.md`, as a compressed row" (`decision-tests.md:40`, `:131`). A row-1 amendment (adding the DERIVED tier) was tested and is narrower: it catches only #3 and the new test subsumes it.
+## 3. THE PROPOSAL
+- **#1**: the prefixed grep could not have hit a bare registry key, so "not registered" was INFERRED. Caught.
+- **#2**: the single-line pattern could not match a wrapped require (caught), and the "loads ok" first line is identical whether or not the module resolves, so that read could not disagree (caught).
+- **#3**: the prior range checks cannot fail when the total is wrong, so the total needed its own derivation. Caught.
+- **#4**: a line-oriented search cannot match wrapped text, so "fix not applied" was INFERRED. Caught.
+- **#5**: the digit match is identical whether the number is a scoring weight or a scale, so "second scale" was INFERRED. Caught.
+## 4. WHAT IT COSTS
+- **Fires wrongly on:** claims with trivially sensitive receipts ("file exists" against a listing, "tests passed" against a runner showing counts). The counterfactual resolves in one beat because the disagreeing shape was in view. Real friction lands only on expensive absence proofs, where the output is the INFERRED label, already a legal required state (`AGENTS.md:243`, `evidence-and-proof.md:51-53`).
+- **Frequency:** one self-question per load-bearing claim, tens per dense turn. The base rate it addresses is five confident false claims in one session.
+- **Gaming:** blanket INFERRED to dodge the question, bounded because row 1 then requires saying what would confirm it (`AGENTS.md:243`), so avoidance costs the same work. Close-out keeps the label visible (`AGENTS.md:501`, `evidence-and-proof.md:164-168`).
+- **Edit mechanics:** changing an AGENTS.md row escalates to the operator (`agents-md-integration.md:122`, `:126-127`). CI does not watch the count sentence (`repo-rules-corpus.yml:5-8` covers the router, `repo-rules/**` and the checker only). Landing is three files today: the table is line-identical here (`AGENTS.md:236-249`) and in both siblings (`Mobile CLI/AGENTS.md:236-249`, `Obsidian Plugin/AGENTS.md:236-249`, same content digests at `:239`, `:243`), verified first-hand from this seat.
+- **Admission risks pre-cleared:** row 4 (`AGENTS.md:246`) is judgment-scoped with a relabel remedy, the new row is receipt-scoped with a check remedy. Negative control (`evidence-and-proof.md:94-97`) is fix-scoped, §2 command evidence (`:62`) is read-scoped, §6 computed (`:122`) is shape-scoped and file-absent. A grep across `AGENTS.md` and `repo-rules/` finds no resident sentence carrying the sensitivity test.
+- **Residual:** unenforceable and skippable, like every text rule. It does not make an agent stop. It gives the stop-condition a form that does not depend on the agent first doubting itself, which is the one thing the record shows never happened.
+## 5. VERDICT
+
+### Iteration 5
+## 1. DIAGNOSIS
+- **#1 / #4** — `evidence-and-proof.md:81-84` is the one clause about a search returning nothing, and it is scoped to the *search's execution* ("until you have confirmed it read the file") with a byte-encoding remedy (`-a`). The failures were properties of the *query's form against the target's form*: a prefixed name against a bare registry key, a line-oriented pattern against a wrapped string. The corpus never asks whether the pattern could match the target's authored form.
+- **#2** — `AGENTS.md:244` governs *whether* output was read, never *how much*: one line satisfies it, and the first line reads identically whether or not the module resolves. The nearest completeness clause, "Require the affirmative marker" (`evidence-and-proof.md:69-70`), is scoped to exit-code passes of a gate, not to a load probe.
+- **#5** — `uncertainty-and-honesty.md:91-93` halts "when two things that must both be true are not" and the report format at `:95-97` accepts "Fact A, with its source." Nothing requires the two sides to be shown the same *kind* of thing, so a digit match satisfied both the halt and the format. The fires-when at `:35` ("a number you have not verified") is self-assessed, and the digits *were* verified — their role was not.
+## 2. WHERE IT BELONGS
+- **New rule file: refused — Test 1** (`decision-tests.md:32-33`, `:38-41`). Reads and reports happen on read-only turns; `REPO RULES.md:3-4` ties loading to the first write, and `:18` states the designed outcome: "Nothing fires → `AGENTS.md` alone governs." Corroborated by the injection layer: a rule file has neither residency nor an enforcer.
+- **Per-turn injected directive: refused** — three surfaces exist, not two, and this one is gated on enforcement (`spec.md:77`). The proposal has no gate.
+- **New AGENTS.md row: refused this round, on two grounds.** Test 3 restraint — "A review of a rule set that only adds has not reviewed it" (`decision-tests.md:121`) — after four iterations produced four rows for one defect; and the defect sits inside the existing row's wording, so a sixth row duplicates reach it does not have. **Cost delta is real:** a row stays "five" at `AGENTS.md:239`, so no count-sentence maintenance, unlike iterations 1-4.
+- **Amendment to `AGENTS.md:243` + one clause at `evidence-and-proof.md:51`: admitted.** Test 3 part 2 routes single-standard content to the rule that owns it (`decision-tests.md:90-91`, `:133`); §1 already owns the tier definitions, and `evidence-and-proof.md:30` subordinates it to `AGENTS.md` — so leaving §1 loose while `AGENTS.md` tightens would make §1 wrong, which is why the mirror is coherence, not scope creep.
+## 3. THE PROPOSAL
+## 4. WHAT IT COSTS
+- **Fires wrongly on** direct positives whose disagreeing shape is already in view — a listing confirming existence, a runner's count confirming pass. One beat to resolve, no extra command. The friction class is absence and aggregate claims: widen the query, derive the total, or label INFERRED. Frequency: one classification per load-bearing claim; the claims that cost an extra command are the same population as four of the five incidents.
+- **Honest ceiling.** This reduces the *confidence* of unsupported claims, not their *rate*. #1 is still reported — as "not registered (inferred; to confirm, search the bare key)." That is exactly the question as posed. Elimination needs an enforcer, one exists and is muted (`injection-contract.md:240-244`; `plugins/system-completion-sentinel.js:110-114`), and it fires on completion claims, not mid-turn findings — so unmuting it would not have caught #1, #4 or #5.
+- **Misuse:** blanket INFERRED, bounded because `:53` and `AGENTS.md:243` attach a duty to it that costs what checking costs.
+- **Edit mechanics:** an AGENTS.md row change is an escalation, not a mechanical edit (`agents-md-integration.md:122-127`). CI does not cover it (`repo-rules-corpus.yml:5-8` = `REPO RULES.md`, `repo-rules/**`, the checker). **Propagation is UNKNOWN from this seat:** the parent tree holds only `Public/` (`ls .`), no sibling `AGENTS.md` is reachable, and my grep for the row matched `Public/AGENTS.md:243` alone. Iterations 3-4's "line-identical in two siblings" is not reproducible here, and ripgrep does not traverse symlinks — the same instrument blindness this research is about may sit under their verification. Landing must enumerate the sibling surface rather than assume two files.
+## 5. VERDICT
+
+### Iteration 6
+## 1. DIAGNOSIS
+- **#1 / #4** — `evidence-and-proof.md:81-84` is the one clause about a fruitless search, and its remedy is `-a`, byte-encoding. It asks whether the file was read, never whether the pattern could match the target's authored form (prefixed vs bare key; line-oriented vs wrapped text). `AGENTS.md:345` "widen the pattern" is the positive mirror only.
+- **#2** — `AGENTS.md:244` governs *whether* output was read, not how much; the first line "loads ok" satisfied it, fetched from a read that could never show the error line. The nearest completeness clause, `evidence-and-proof.md:69-70` ("require the affirmative marker"), was satisfied *by the misleading first line itself*.
+- **#3** — `evidence-and-proof.md:52` owns the missing tier (DERIVED: "Show the observation and the step from it"); the total was re-presented as a known fact, and the resident row has no middle tier. `evidence-and-proof.md:122` triggers on "computed answer", not on an inherited one.
+- **#5** — `uncertainty-and-honesty.md:91-99` halts on two facts that conflict, with a report format accepting "Fact A, with its source"; nothing requires the two sides to be the same *kind*, so a digit match satisfied halt and format. `:35` fires on unverified numbers, and the digits were verified — their role was not.
+## 2. WHERE IT BELONGS
+- **New rule file: refused — Test 1** (`decision-tests.md:32-33`, `:38-41` → `:131`). The failures occur while reading and reporting; `REPO RULES.md:18` states the designed outcome: "Nothing fires → `AGENTS.md` alone governs."
+- **New AGENTS.md row: refused.** I5's restraint ground (`decision-tests.md:121`) stands, and there is a stronger one: row 1 *owns* the confirmed/inferred boundary. A sixth row would give "confirmed" two competing criteria — receipt-presence (`AGENTS.md:243`) versus discriminating power — while a confirmed claim under one is inferred under the other. The fix belongs inside row 1, not beside it.
+- **Section in communication.md / per-turn injection: refused** (I4-I5, `communication.md:183-186`; enforcement-gated surfaces, `iteration-005.md:20`). Not re-argued.
+- **Admitted: row 1 amendment (`AGENTS.md:243`) + tier mirror at `evidence-and-proof.md:51`.** The mirror is coherence, not scope creep: `evidence-and-proof.md:30` subordinates the file to `AGENTS.md`, and §1 owns the tier definitions (`:49-53`) — leaving §1's OBSERVED loose while row 1 tightens would make §1 wrong. Count sentence stays "five" (`AGENTS.md:239`); no maintenance.
+## 3. THE PROPOSAL
+- **#1** — calibrate the pattern on a mode key with a known registration (bare form). A grep that has never hit a known instance cannot support "not registered." The control either exposes the form bug — and usually *finds the mode* — or proves the pattern blind. **Caught, and repairable, not merely re-labeled.**
+- **#2** — the single-line pattern has never retrieved a known multi-line require (caught); the probe read has never shown its own failure line, so "loads ok" rides an undemonstrated read (caught; confirm by reading the span).
+- **#3** — the range audit has never produced a total at any level; no known-case demonstration exists, so the claim is not OBSERVED and routes to the DERIVED derivation duty (`evidence-and-proof.md:52`, `:122-123`). **Caught.**
+- **#4** — a fragment search calibrated on known-present text retrieves the wrapped fix; the un-calibrated line-pattern cannot. **Caught, and repairable.**
+- **#5** — the similarity match must produce its rejection on a known weight/label pair before "second scale" stands; it cannot, so inference, confirm by comparing roles. **Caught.**
+## 4. WHAT IT COSTS
+- **Fires wrongly on:** direct positives whose claim *is* the reading ("file exists" against a listing; the contradicting result, an omission, is a familiar outcome of the same check). One beat, usually zero extra commands. Real friction lands on interpreted claims — absence, breakage, totality, sameness — the incident population itself.
+- **Frequency — the profile improves.** The unit is the *instrument per turn*, not the claim: one calibration of a grep pattern covers every later claim behind it. A dense research turn runs a handful of distinct checks, so a handful of controls, not I4/I5's tens of per-claim self-questions. Against five retractions in one session, the trade is favorable.
+- **Gaming:** a rigged control (a demonstration that cannot fail). Bounded because the control's output sits in the transcript, inspectable; blanket INFERRED remains available only at the price `evidence-and-proof.md:53` already sets ("say what would confirm it").
+- **Edit mechanics:** an AGENTS.md row change escalates, it is not mechanical (`agents-md-integration.md:122-127`). CI does not cover it (`repo-rules-corpus.yml:5-8` = `REPO RULES.md`, `repo-rules/**`, the checker only — confirmed first-hand). Count sentence unchanged.
+- **Propagation — resolved this iteration, first-hand:** siblings at `Development/Mobile CLI/AGENTS.md` and `Development/Obsidian Plugin/AGENTS.md`, `:239-249` identical to this file (same digests); `synthesis.md:13` records both as absolute symlinks into this checkout, so one edit lands in three places; a post-edit read of `:243` in both siblings is the cheap check. I5's UNKNOWN is withdrawn — the enumeration it prescribed is what found this.
+- **Residual:** unenforceable, skippable, like every text rule. It changes the criterion an honest agent applies; it does not make a dishonest one run the control.
+## 5. VERDICT
+
+### Iteration 7
+## 1. DIAGNOSIS
+- **#1 / #4** — the one clause about a fruitless search (`evidence-and-proof.md:81-84`) asks whether the file was read; its remedy is `-a`, byte-encoding. The failures were query-form against target-form (prefixed vs bare key; line-oriented vs wrapped text). The resident mirror is positive-only: `AGENTS.md:345`.
+- **#2** — a prefix read satisfies `AGENTS.md:244`, and the "affirmative marker" clause (`evidence-and-proof.md:69-70`) was satisfied *by the misleading first line itself*.
+- **#3** — `evidence-and-proof.md:52` owns DERIVED and `:122-123` is scoped to "computed answer"; an inherited total presents as a known fact with a prior analysis as receipt, which row 1 accepts.
+- **#5** — the contradiction machinery (`uncertainty-and-honesty.md:91-99`; `AGENTS.md:97`) invites the report and its format accepts "Fact A, with its source"; `:35` fires on unverified numbers and the digits were verified — their role was not.
+## 2. WHERE IT BELONGS
+- **New rule file: refused.** Test 1 (`decision-tests.md:38-41`): this binds on read-only turns; Gate 5 fires on the first write (`AGENTS.md:122`); the designed outcome is "Nothing fires → `AGENTS.md` alone governs" (`REPO RULES.md:18`). Stronger, from the corpus's own prior record: injection and "Gate-5-to-read-only, universal loading" were both tested and refused, and the recorded live remedy for an uncovered clause of this class is a text promotion into the resident layer — "REFUSE the injection. LEAVE AT GATE 5 … CHANGE THE RULE INSTEAD" (`specs/hooks/022-smart-rule-injection/001-deep-research/research/iterations/iteration-010.md:55`), with its own candidate routed "beside 'Finding = hypothesis'" (`:59`).
+- **New AGENTS.md row: refused.** I5's restraint ground (`decision-tests.md:121`) and I6's ownership ground stand. New supporting test: row 3 (`AGENTS.md:245`) already establishes the register, so the amendment adds a *criterion*, not a doctrine; a sixth row would split "confirmed" across two criteria and leave the first-party/second-party asymmetry standing.
+- **Halt Conditions list (`AGENTS.md:52-55`): tested and refused.** All four members are execution-state triggers with a stop-and-report remedy (missing file, string not found, merge conflict, unclear boundary). Claim-time classification's remedy is a label or one more observation, not a halt.
+- **Admitted: row 1 amendment (`AGENTS.md:243`) + the `evidence-and-proof.md:51` mirror** — same footprint as I6, with three repairs below. The mirror is coherence: `evidence-and-proof.md:30` subordinates the file and §1 (`:49-53`) owns the tier definitions.
+- **Coordination flag:** round 1's live recommendation promotes the delegation self-lens (`repo-rules/delegation-and-orchestration.md:45-47`, "no single model's verdict, the delegate's or your own, closes a question") into this same table (`iteration-010.md:59`). Two promotions into one table should land deliberately; this one is the narrower and incident-tested one.
+## 3. THE PROPOSAL
+## 4. WHAT IT COSTS
+- **Wrong fires:** direct positives collapse in one beat ("file exists" against a listing; "tests passed" against a runner with counts) — same class as I6, no extra commands. Real friction is absence, aggregate, and classification claims — one control (or label) each.
+- **Delta friction of the three repairs:** (i) the provenance clause occasionally forces finding a visible control where a remembered one would have passed wrongly; when none exists the output is INFERRED plus a confirm-step, which is the honest answer. (ii) The fragility clause occasionally demands a second, better control. (iii) The derivation arm *removes* an I6 false-negative on repaired totals rather than adding cost.
+- **Frequency:** per instrument per turn, plus per one-way claim; base rate is five false confident claims in one session.
+- **Edit mechanics:** row change escalates to the operator (`agents-md-integration.md:122-127`); the count sentence stays "five" (`AGENTS.md:239`); CI's path filter covers the mirror file but not AGENTS.md row semantics (`repo-rules-corpus.yml:5-8`).
+- **Propagation — re-verified first-hand this iteration:** `:243`/`:245` are line-identical in all three files (`Public/AGENTS.md:243-245`, `/Users/michelkerkmeester/MEGA/Development/Mobile CLI/AGENTS.md:243-245`, `…/Obsidian Plugin/AGENTS.md:243-245`, same content digests). The mechanism is contested by earlier reads (a symlink claim vs I5's UNKNOWN, `prior-findings.md:114`, overturned by `iteration-006.md:50`), so the landing step edits-or-confirms all three places rather than trusting either.
+- **Gaming:** a rigged control is now bounded by the receipt clause — the control's answer must be visible in the transcript, inspectable; blanket INFERRED stays priced by "say what would confirm it" (`evidence-and-proof.md:53`).
+- **Ceiling:** text only. Enforcement routes are closed by record (`iteration-010.md:55-57`); this buys honest classification and, on #1/#4, one recovering command.
+## 5. VERDICT
+
+
+Be selective about what you open; a partial answer with resolving citations beats an exhaustive read that never finishes.
+Return only this iteration's findings, in the output format above.

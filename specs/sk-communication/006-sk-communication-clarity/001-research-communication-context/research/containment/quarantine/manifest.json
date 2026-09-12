@@ -1,0 +1,17 @@
+{
+  "timestamp": "2026-09-12T15:08:50.526Z",
+  "entries": [
+    {
+      "path": "specs/hooks/022-smart-rule-injection/002-event-triggered-injection/research/iterations/iteration-010.md",
+      "hash": "057e656876f1f874a477179efc0e81156b5430ee",
+      "content_stored": true,
+      "content_path": "content/specs/hooks/022-smart-rule-injection/002-event-triggered-injection/research/iterations/iteration-010.md"
+    },
+    {
+      "path": "specs/hooks/022-smart-rule-injection/002-event-triggered-injection/research/prior-findings.md",
+      "hash": "5663e668b4b8b6dcf8a405e78179df1d6bb4c154",
+      "content_stored": true,
+      "content_path": "content/specs/hooks/022-smart-rule-injection/002-event-triggered-injection/research/prior-findings.md"
+    }
+  ]
+}

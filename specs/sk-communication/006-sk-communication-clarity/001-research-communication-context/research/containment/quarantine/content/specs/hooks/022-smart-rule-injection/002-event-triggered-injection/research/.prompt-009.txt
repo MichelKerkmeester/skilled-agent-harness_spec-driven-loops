@@ -1,0 +1,265 @@
+You are researching one question for this repository. Read-only: do not edit anything.
+
+QUESTION
+What should the system inject at an EVENT, rather than at a prompt? An event is something
+that just happened: work completed, a goal was met, a turn ended, a session ended, a gate
+passed or failed.
+
+WHY THIS IS OPEN, AND WHAT IS ALREADY SETTLED
+A prior ten-iteration round asked whether to inject rule content keyed on the USER'S
+PROMPT VOCABULARY. It refused eighteen candidates and the refusal stands. Do not
+re-propose any prompt-vocabulary trigger; that question is closed.
+
+This round asks a different question the prior round never tested. An event trigger has a
+silence condition for free: the event is rare and discrete, so the hook is quiet by
+default. That is exactly what every refused candidate lacked.
+
+GROUND TRUTH — verify, then build on it, do not rediscover it
+Read `.opencode/hooks/injection-contract.md` section 4 in full. Three facts matter:
+- The Completion Evidence Sentinel already DETECTS when a completion claim looks
+  unsupported by evidence, and injects nothing. Channel `[LOG]`. Advisory-only was an
+  explicit v1 decision, not an oversight.
+- Session Stop runs and injects nothing. Channel `[NONE]`.
+- The goal hook already reads BACKWARD COMPOSITION at turn end, flattening the ending
+  message plus tool results into evidence. That mechanism is proven and running.
+So there are live detectors with their output channel switched off. Whether to switch any
+on is a policy change, and one prior candidate was refused specifically for upgrading an
+advisory log to an injection without consent. Treat that as a real cost, not a formality.
+
+THREE THINGS TO COVER, IN THIS ORDER
+1. THE OPERATOR'S FIRST IDEA: when work completes or a goal is met, inject guidance on how
+   to present final findings. The repo has rules for this that bind only on write turns.
+   Does the completion event reach them, and is the guidance worth the channel?
+2. THE OPERATOR'S SECOND IDEA: smartly trigger the structured question tool. Note the
+   timing problem before you evaluate it: deciding a turn SHOULD have asked requires
+   judging a reply that does not exist at prompt time, and at turn end that turn is over.
+   Say plainly whether that is fatal or solvable.
+3. CANDIDATES THE OPERATOR DID NOT NAME. This is a required section, not optional. Survey
+   every event the runtimes actually expose and ask what each one is uniquely positioned
+   to carry. Propose at least three the operator has not thought of, and hold them to the
+   same bar. An obvious idea nobody proposed because it is bad is also a finding.
+
+THE BAR — apply it, do not re-derive it
+`injection-contract.md` records that two prompt-time directives were RETIRED for
+"restating a disposition every turn", and that the survivor stays "because it is not a
+disposition — it names a specific prohibition a pre-commit gate enforces, and the gate is
+what makes it load-bearing." Every candidate says which side it falls on.
+
+REQUIREMENTS FOR EVERY CANDIDATE
+- The EVENT it keys on, and which runtimes actually fire it. Runtimes differ; a candidate
+  that works on one runtime only is a partial answer, and say so.
+- The SILENCE condition. Being event-keyed is not automatically enough: say how often the
+  event really fires in a working session.
+- What it costs when it fires wrongly.
+- PORTABILITY: the rule corpus is shared by symlink across three repos whose skills are
+  independent directories. Hub names are stable; paths inside hubs are not.
+
+READ THESE
+- .opencode/hooks/injection-contract.md, all of it
+- .opencode/hooks/completion/, .opencode/hooks/session-lifecycle/, .opencode/hooks/goal/
+- AGENTS.md, the Gate 5 block and the close-out requirements in section 10
+- repo-rules/handoff-and-questions.md and repo-rules/presenting-decisions.md, the two rules
+  the operator's ideas are reaching for
+- specs/hooks/022-smart-rule-injection/001-deep-research/research/ for what is already refused
+
+ANSWER IN THIS SHAPE
+1. EVENT SURFACE — which events exist, which fire on read-only sessions, which are unused.
+2. IDEA ONE — completion presentation. Verdict plus evidence.
+3. IDEA TWO — question triggering. Verdict plus evidence.
+4. NEW CANDIDATES — at least three, held to the same bar.
+5. VERDICT — ranked, each with the test that decided it.
+
+Every claim carries a file:line that resolves. A well-evidenced refusal beats an invented
+hook. Nothing converges early: later iterations test earlier ones, not restate them.
+
+ITERATION 9 OF 10.
+Earlier iterations of this lineage already found the following. Do NOT repeat them.
+Go deeper, test what they assumed, or cover a surface they missed.
+
+### Iteration 1
+## 1. EVENT SURFACE
+## 2. IDEA ONE: completion presentation
+## 3. IDEA TWO: structured question triggering
+## 4. NEW CANDIDATES
+## 5. VERDICT
+
+### Iteration 2
+## 1. EVENT SURFACE
+## 2. IDEA ONE — completion presentation
+- **The trigger does not exist as an event.** "A goal was met" is emitted by nothing on any runtime. It is a 0.72-confidence heuristic verdict (`goal/README.md:46`) computed only at Pi `turn_end` (`goal-context.ts:229-231`), and it deliberately produces *silence* when met (`:233`). "Work completed" is the sentinel's tail-400-char claim regex (`completion/README.md:31`) — a heuristic, not an event, and its one model-visible instance exists to flag *unsupported* claims, not to carry presentation guidance.
+- **The payload is resident and the moment is contract-owned.** `AGENTS.md:405-409` carries the communication/presenting/handoff digests with load commands; `:501` carries the close-out obligation verbatim. The rule defers at its own moment: "Where the run has its own contract for this, that contract wins" (`presenting-decisions.md:129-132`), and the deep modes' completion contracts own their reports (`AGENTS.md:464-465`).
+- **Delivery is structurally late**, and on Claude verifiably fire-and-forget (correction 2). Upgrading any of the four log-channel sentinels is the same consent cost the prior round refused for this detector (001, iteration 6 C2; refusal restated in `iteration-010.md`).
+- Deciding test: trigger absence. Secondary: restatement. Nothing new reopens it.
+## 3. IDEA TWO — structured question triggering
+- **Detection solvable** — the reply exists at turn end and is readable on every runtime that fires one (`completion/README.md:64-69`).
+- **Remedy fatal, now bounded from the outside.** Pi exposes the strongest timing surfaces that exist in any runtime: `message_end` handlers can *replace* the finalized assistant message (pi docs `extensions.md:621`), and `ui_prompt_start/end` fire around blocking user prompts (`:583-599`). Neither helps: a role-preserving replacement cannot make the model *ask*, and `ui_prompt_*` observes extension-authored prompts, not model prose. Claude's block-continuation exists in the API but is doubly disabled for these hooks — advisory-only by design (`completion/README.md:64`) and `async: true` in config (`.claude/settings.json:146`, `:152`). No runtime currently contains a surface that can reopen a finished turn for a better question.
+- **The judgment is the second killer.** "Should have asked" requires the three-condition bar (`handoff-and-questions.md:101-106`: alternatives nameable; the answer changes what you do next; not resolvable from code/default) — none computable from reply text — and prose is the rule's default (`:108-110`), so a form detector fires on compliant turns.
+- Deciding test: remedy availability at fire time.
+## 4. NEW CANDIDATES
+## 5. VERDICT
+
+### Iteration 3
+## 1. EVENT SURFACE
+## 2. IDEA ONE — completion presentation
+## 3. IDEA TWO — structured question triggering
+- 5 of 6 runtimes contain no turn-reopening surface at all.
+- The 1 of 6 that does (OpenCode's goal continuation, §1) is doubly unusable: it requires an *active, un-met goal* (`opencode-goal.js:2621-2675`) and its authored prompt tells the model **not to ask** (`:2473`). The fleet's single reopen channel exists to *suppress* the behavior this idea wants to increase.
+- Pi's `message_end` replacement (the only other modifier surface, pi docs `extensions.md:621` per iteration 2) has an operator-side workaround iteration 2 did not test: append the ask to the finalized message so the human sees a question the model never asked. Mechanically available. Refused this pass on **authorship integrity** — the replacement attributes speech to the model, and the operator would answer a question composed by a heuristic — plus it still cannot compute "should have asked." Recorded as candidate NC-C below.
+## 4. NEW CANDIDATES
+- *Event:* `PostToolUse`/`tool_result` on Write|Edit, all six runtimes (`post-edit-quality/README.md:26`).
+- *Runtimes:* 6 fire, **3 deliver** — Cursor `agent_message` (`:69`), Pi tool-result content (`:70`), OpenCode transform drain (`:71`); **3 stdout-only** — Claude (`:66`), Codex (`:67`), Devin (`:68`), where the repo's own words are "not model context in normal use." (Correction to `injection-contract.md:204`, which names only Claude/Devin; Codex shares the shape.)
+- *Silence:* findings only. The router returns at most one checker per edit (`:16`) and every no-finding path is silence (`:128-129`); the comment-hygiene checker fires only on actual violations.
+- *Wrong-fire cost:* low — specific file:line findings, redacted (`:56`), line-level escape (`hygiene-ok`), warn-only, kill-switch `SK_CODE_POST_EDIT_QUALITY_DISABLED` (`:115`).
+- *Portability:* the payload is produced by the shared runtime-neutral core (`lib/post-edit-router.cjs`, `:99`); the change is 3 adapter transports in skill-owned code, adding no new cross-repo path references. Nothing here reads the rule corpus.
+- *Bar side — survivor side, uniquely in this round.* The comment-hygiene finding restates the exact prohibition the admitted directive carries (`injection-contract.md:52-54`), enforced by the pre-commit gate; the event delivers it at the edit — *before* the gate's late block — on the runtimes that already chose this delivery.
+- *Consent status:* this is a **transport repair, not a channel activation**: the identical payload is already model-visible on 3 of 6, and Claude's own registration returns `hookSpecificOutput.additionalContext` on its drift path (`.claude/settings.json:175`), so the envelope is in use in the same registration. It is not the class the prior round refused (a log upgraded without consent); nothing new is admitted to the model that half the fleet does not already receive.
+- *Required verification before adoption:* a live probe (`claude --debug`) that PostToolUse additionalContext is delivered. **Self-kill condition:** if Claude/Codex stdout turns out to reach the model after all, the candidate evaporates and there is nothing to build.
+- *Event:* session start (all 6); payload would be the completion-sentinel's accumulated advisories from prior sessions. New shape: nobody proposed surfacing the *backlog* rather than the current turn's finding.
+- *Silence:* advisories exist. Rare by construction.
+- *Wrong-fire cost:* past-tense claims with no live remedy; dedup is keyed per packet+claim (`completion/README.md:43`), so replay re-serves what the operator already read; session start is the one channel the architecture keeps to continuity, with its advisory family deliberately stderr-only (`injection-contract.md:252-256`).
+- *Bar side — retired.* No gate, no remedy for a claim already made — and the existing mechanism on `session.created` is a *sweep* that prunes this state (`completion/README.md:52`), not a reader. The direction of the shipped design is the opposite of this candidate.
+- *Event:* Pi `message_end` — 1 of 6 (partial answer, stated as such).
+- *What it was uniquely positioned to do:* append the structured-choice question the model failed to ask onto the finalized, operator-visible message — the only surface in any runtime that can put text into the human's view after the turn ended.
+- *Silence:* the same uncomputable predicate as Idea Two — none.
+- *Wrong-fire cost:* the mechanism manufactures the failure it pretends to fix: a question attributed to the model, answered by the operator, composed by a heuristic. A wrong fire changes what the operator does next on fabricated authority — the highest wrong-fire cost of any candidate in either round.
+- *Bar side — retired*, now on a second, stronger leg: even with a perfect detector it cannot be admitted, because it delivers content the model never produced. The honest conclusion: the only surface that can *fake* the ask is exactly the surface that must not.
+- *"Can any detector output carry a gate leg?"* Tested: the sentinel's evidence condition is checkable — `check-completion.sh` prints `RESULT: BLOCKED` for missing evidence markers (`check-completion.sh:468-470`, detection at `:323-325`) — but that string is a report, not an enforcement; the authoritative gate for completion claims is `validate.sh`, a command the model runs (`AGENTS.md:264-266`). The sentinel cannot inherit a gate leg it does not have. Pi's sentinel channel remains a deficiency notice with a resident remedy. Thread closed, refusal stands.
+
+### Iteration 4
+## 1. EVENT SURFACE
+## 2. IDEA ONE — completion presentation
+- **The rules are not write-gated, so the question inverts.** Their triggers are "every substantive reply" (`AGENTS.md:404`) and "end a turn, of any kind" (`handoff-and-questions.md:35`); their substance is resident with load commands (`AGENTS.md:405-409`) and the close-out is verbatim at `:501`. There is no completion moment at which the payload is absent.
+- **The completion event reaches the model on Pi only, and only as detector output** — the sentinel advisory (`completion/README.md:68`) and the goal nudge when *not* met (`goal-context.ts:233-238`). Neither carries presentation guidance; one flags unsupported claims, the other is operator-created goal state. That allocation was decided, not omitted (`injection-contract.md:240-244`).
+- **New test — frequency.** Turn-end fires every turn on all five runtimes that wire it. Key a presentation directive on "a turn ended" and it is the retired every-turn shape with an event costume; key it on "a completion claim" and it is the sentinel's heuristic (`completion/README.md:31`), whose channel decision is the thing the repo deliberately left off. Either key, event-keying bought nothing: **the silence condition for this idea was never "which event," it was "which detector output," and that channel is the consent decision already refused twice** (001 iteration 6 C2; `iteration-010.md`).
+- Latency and restatement are unchanged from iterations 1–3 (`presenting-decisions.md:129-132`; Claude Stop async, `.claude/settings.json:146`, `:152`). I do not restate them.
+## 3. IDEA TWO — question triggering
+- Detection remains solved — the reply exists at turn end on every runtime with a turn-end event (`completion/README.md:64-69`; `goal-context.ts:149-153`).
+- **New this pass — the rewrite surface is two of six, not one.** Iteration 3 refused Pi `message_end` asking ("the only surface that can fake the ask"); OpenCode's `chat.message` seam now does the same class of edit with `atomicReplace` and `appendAfterOriginal` capabilities (`.opencode/plugins/sk-communication-projection.js:1-13`, `:40-43`). The second surface makes the refusal *stronger*, not the idea viable: a rewrite still cannot make the model ask, and appending an ask is the same authorship violation on a second runtime. Its own capability comment pre-empts the only other use: the seam "exposes only the current message (no transcript), so a projection cannot select bounded context here yet" (`:33-37`) — a context-blind rewrite cannot even decide *when* to append. NC-C's refusal generalizes; "the surface that must not fake the ask" is now a pair.
+- The substance bar is unchanged: three-condition judgment (`handoff-and-questions.md:101-106`), prose is the compliant default (`:108-110`), the surface table exists so nobody invents a tool (`:125-140`). The 1-of-6 reopen channel remains consent-gated and asks the model *not* to ask (`opencode-goal.js:2473` per iteration 3).
+- Claude's block path stays doubly off (`completion/README.md:64`; `.claude/settings.json:146`, `:152` — reverified).
+## 4. NEW CANDIDATES
+- *Event/runtimes:* `PreCompact` (Claude/Codex), Pi `session_before_compact` (exposed, unregistered — `native-skills-and-extensions.md:83`, `:146`), Cursor `preCompact` (registered, delivery unconfirmed — `session-lifecycle/README.md:62`).
+- *What it was uniquely positioned to carry:* "in-flight claims become summarized memory — verify or mark them now," the pre-side of iteration 1's N1.
+- *Silence:* passes — compaction only, rare.
+- *Wrong-fire cost:* low.
+- *Deciding test — delivery mechanics, which kill it before the bar does.* On Claude/Codex the pre-event has **no channel by design**: `compact-inject` "deliberately emits no stdout on PreCompact: the cache is delivered by the next `SessionStart(source=compact)`" (`session-lifecycle/README.md:42`; `injection-contract.md:226-230`). The only deliverable position is therefore *after* the summary exists — N1's position, already refused on the gate leg ("names no prohibition a gate enforces", iteration 1 §5-3). Pi's pre-compaction event is the one theoretical delivery surface, and its contract is not resolvable in-repo and no repo extension registers it.
+- *Portability:* text-only; moot.
+- *Bar side — retired* (disposition, no gate), plus the new mechanical finding: **the "pre" side of compaction cannot be addressed; every compaction payload lands post-hoc.** REFUSE. Deciding test: delivery mechanics.
+- *Event/runtimes:* `PostToolUse` on an edit to `repo-rules/**`, `REPO RULES.md`, or `AGENTS.md`; fires on all six (same transport as NC-A, `post-edit-quality/README.md:26`). This is the first candidate in the lineage that touches the corpus layer at all.
+- *Payload:* "you edited a rule/router document; the corpus has a mechanical consistency check."
+- *Silence:* real — corpus edits are rare.
+- *Wrong-fire cost:* low.
+- *Two legs fail before the bar.* (1) *Design lock:* the corpus's own statement is "nothing else reads it… no hook or workflow touches the router" (`check-repo-rules.cjs:5-9`); a hook keyed to corpus paths is the first automatic consumer and invites the second-loader class the corpus CI exists to close (`.github/workflows/repo-rules-corpus.yml`). (2) *Portability:* the checker lives deep inside a hub — `.opencode/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs` — so the payload either names a hub-internal path (forbidden: hub names are stable, paths inside hubs are not) or degrades to "the corpus has a checker somewhere." A payload that cannot name its runner is not actionable.
+- *Bar side — retired.* No local gate at the edit (CI runs post-push), no prohibition named. REFUSE. Deciding test: design lock + payload portability.
+
+### Iteration 5
+## 1. EVENT SURFACE
+- Cursor's confirmed-but-unwired set: `beforeReadFile`, `afterFileEdit`, `afterAgentThought`, `subagentStart`, `subagentStop`, `postToolUseFailure`, `afterMCPExecution`, `afterAgentResponse` — "No current repository guard consumes these events" (cursor README `:31-38`, documented names at `cli-cursor/references/hook-contract.md:71`).
+- Claude's `PermissionRequest` — acknowledged and deliberately unclaimed as duplicative (`coverage-rationale.md:74`).
+- Pi: ~25 of 33 events unregistered; the repo has already tested the ones with candidate-shaped payloads (`agent_end` iteration 1, `message_end` NC-C, pre-compact NC-D).
+- Session-end on every editor + Pi: fires, injects nothing, by design (`injection-contract.md:220-224`; session-lifecycle README `:45`).
+## 2. IDEA ONE — completion presentation
+- *After the final message exists* — Stop/turn_end/session.idle, the sentinel's tail-400 trigger (`completion/README.md:31`), goal "met". Timely-relevant, but the action window has closed; the only thing an injection could shape is a future turn, and the message is frequently the session's last.
+- *Before the final message is composed* — prompt-time (closed class) and tool-time. Tool-time is the only live corridor: the model composes its final message after its last tool result. But at any tool event the "this turn will end with a completion claim" predicate is **definitionally undecidable** — the sentinel's own trigger is a property of the finished text (`completion/README.md:31`), not of any tool event. Key it there and it is the every-tool-call constant the retired directives were (`injection-contract.md:54`).
+## 3. IDEA TWO — structured question triggering
+## 4. NEW CANDIDATES
+- *Event/runtimes:* Devin `PermissionRequest` (live, [BLOCK], `injection-contract.md:246-250`); Claude `PermissionRequest` (exposed, deliberately unclaimed, `coverage-rationale.md:74`). Codex fires no permission event; Pi has no separate approval event; Cursor's consent moment is `preToolUse`, already covered (cursor README `:30`). Partial by construction.
+- *Payload:* `AGENTS.md:164` — "Name the rollback, stop for yes" — surfaced at the approval prompt.
+- *Silence:* only when a permission is actually requested; rare and discrete. Good.
+- *Wrong-fire cost:* low (operator-facing prompt text).
+- *Bar side — retired.* The model's obligation is to name the rollback *before composing the call*; by permission time the call exists, and the operator already sees it. Devin's existing adapter composes allow/deny for this exact event from the same cores (`injection-contract.md:248`). The payload's action window closed one step earlier, same lateness test as Idea One.
+- *Deciding test:* action window + existing owner.
+- *Event/runtimes:* Cursor documents `subagentStart`/`subagentStop` as exposed and **unwired** (cursor README `:38`; `hook-contract.md:71`); no other runtime has a named child-completion hook in the registry. The deployment guards are dispatch-side only (`.claude/settings.json:38-57`; `coverage-rationale.md:76-78`), so a returned child arrives as an ordinary tool result everywhere else. Partial answer, stated.
+- *Payload:* `AGENTS.md:245` — a sub-agent's "COMPLETE" is a claim about itself until something you ran confirms it.
+- *Silence:* only when a child returns; rare and discrete.
+- *Wrong-fire cost:* low.
+- *Bar side — retired.* The payload is resident **unconditionally** (`AGENTS.md:239`: "These five bind unconditionally"); no gate enforces parent-side confirmation at the child's return, and the only runtime that names the event has never wired it. The event has no unique object — which is exactly why nothing is wired there.
+- *Deciding test:* restatement + unwired delivery.
+- *Event/runtimes:* SessionStart fires on all six (`session-lifecycle/README.md:53-60`); the flag is the framework's own vocabulary (Gate-3 child-dispatch exemption; `lib/spec-gate/README.md:99`). Delivery needs one adapter line where session context exists; OpenCode's session events are plugin-owned (session-lifecycle README `:60`).
+- *Silence:* fires only for dispatched children; parents never see it.
+- *Wrong-fire cost:* low.
+
+### Iteration 6
+## 1. EVENT SURFACE
+- **Directive lane:** a boundary adapter runs on host lifecycle events and re-arms full delivery of the constant directive — "re-arms full delivery only on a lifecycle boundary (`startup` / `resume` / `compact` / `clear` / `post-compact`) … the directives appear at startup and after a compaction, not on every turn" (`directive-lifecycle/README.md:18`); boundary → `full` re-delivery on the next prompt (`:20`, `:37`). The boundary adapter itself "emits no model-visible output" (`:55`) — the event drives state; the next prompt carries the content.
+- **Wiring is cross-runtime, verified at the import sites:** Claude `session-prime.ts:26` + `compact-inject.ts:32`; Codex `session-start.ts:16` + `compact-inject.ts:15`; Cursor `session-start.ts:16` + `precompact.ts:35`; Devin `session-start.ts:16` + `post-compaction.cjs:121` (all under `.opencode/skills/system-spec-kit/runtime/hooks/`). OpenCode maps it in-plugin: `session.compacted`/`session.compact` → `'compact'` boundary (`.opencode/plugins/system-skill-advisor.js:784`; boundary comment `:962`).
+- **Gate-3 lane:** `session.resumed`/`session.compacted`/`session.compact` advance the question's lifecycle epoch and clear its delivery shadow (`.opencode/plugins/system-spec-gate.js:183-187`; core at `runtime/hooks/lib/spec-gate/spec-gate-core.mjs:260-268`) — re-ask prep for the fixed question, idle today because suppression is opt-in, default-off (`spec-gate/README.md:30`).
+- **Continuity lane:** PreCompact caches a brief delivered by the next `SessionStart(compact)`; Devin `PostCompaction`/Pi `session_compact` emit recovery directly (`session-lifecycle/README.md:34`, `:42-43`).
+## 2. IDEA ONE — completion presentation
+- **Reach — the event reaches a detector, never the presentation rules.** No injection anywhere in the fleet carries presentation content: the contract's full enumeration (§2–§4) is routes, questions, goals, findings, recovery — none is `presenting-decisions.md` or the `handoff-and-questions.md` close-out. The completion event's only model-visible carrier today is Pi's evidence advisory (`completion/README.md:68`). To carry the guidance you must either upgrade that advisory's channel (the consent class refused in the prior round's iteration 6 C2 and restated in `iterations/iteration-010.md`) or build a second detector on a claim event — same channel, same consent ledger, and now a measured noise floor.
+- **The "rare and discrete" premise is false for this event specifically.** 477 fires / 63 days; bursts of 8–10 on one folder per day; the sampled class split above. Attaching presentation guidance to a detector that already fires ~8×/day fleet-wide, >95% one low-specificity class, means the operator's learned response to the injected line is skim — the exact failure the retirement record describes ("a reader who ignores it once ignores it a hundred times", `specs/hooks/014-retire-governor-and-proof-directives/spec.md:67-69`). And the wrong fires land on read-only research wrap-ups (`:476`) — the moment where a "present final findings" nudge has nothing to improve.
+- **The operator's "work completed" state does not exist as an event; it exists as a text heuristic.** The trigger is the last 400 characters matching claim words (`completion/README.md:31`). "When work completes" is not detectable as a state; "the tail of the message looks claim-ish" is. Goal-met has the opposite shape — deliberately silent, `last_check` computed on Pi only, never a continuation (`goal/README.md:46`).
+- **Standing legs (one line each, not restated):** restatement — payload resident at `AGENTS.md:404-409` with the close-out verbatim at `:501`, and the rule defers to mode contracts at its own moment (`presenting-decisions.md:129-132`); action window — iteration 5's event-position test stands.
+- **Fleet note, not a proposal:** the measured log also surfaces two quality defects in the *existing* detector — the Level-1 branch mis-fires on folder types that never carry `implementation-summary.md`, and path extraction admits file:line shapes (`:468`). That is correction/backlog material for the completion concern, the opposite direction from adding payload.
+## 3. IDEA TWO — structured question triggering
+- **The fleet's own re-ask precedent defines the boundary.** The one machine-authored question (Gate 3) is *fixed-content* and *forward-looking* ("before any Write/Edit, pick one", `injection-contract.md:72-84`), and its boundary re-arm requires a **stable question identity** — receipts confirm only "a question hash with `lifecycleEpoch >= 1`" (`spec-gate/README.md:30`). A missed-ask detector inverts every property: content composed on the fly from the reply it judges, direction backward (about the turn that just ended), identity one-shot. The re-arm machinery at compaction (`system-spec-gate.js:183-187`) cannot carry it; it exists precisely because its question never varies.
+- **Authorship is the fatal link (iteration 5's finding, generalized this pass).** Each ship-approved ask is (a) authored by the harness *before* the model composes and (b) fixed-enum — Gate 3's A–E, the mid-run deny reason. A useful missed ask is (a) authored in the model's head and (b) unbounded. Any detector can find "no question in the reply" (recall); none can find "should have been one", because the alternatives — and the counterfactual reply — never existed outside the model.
+- **Standing legs:** three-condition bar (`handoff-and-questions.md:101-106`), prose-is-compliant default (`:108-110`), per-runtime surface table with unverified rows plus the no-invented-names rule (`:125-131`, `:138-140`), and the rewrite surfaces (Pi `message_end`, OpenCode `chat.message`) = authorship violation on two runtimes (NC-C; iteration 4, inherited).
+- **Sub-question answered:** not fatal *for the Gate-3 class* — that ask already ships mid-run and is re-armed at boundaries. Fatal for the general class, on authorship, not on timing alone.
+## 4. NEW CANDIDATES
+- *Event/runtimes:* compaction/resume, all six — five adapter runtimes notify the directive boundary at start + compact (import sites in §1); OpenCode maps it in-plugin (`system-skill-advisor.js:784`). The event and its plumbing exist everywhere.
+- *Shape:* payload is a **pointer** ("if you loaded `repo-rules/` before this session compacted, that content was summarized away; re-read the files your triggers matched before the next write"), not content — fully portable.
+- *Silence:* fires only on sessions that compact. Genuinely rare and discrete — the property Idea One lacked.
+- *Wrong-fire cost:* low (a pointer; worst case a re-read).
+- *The novelty:* **the first candidate in this lineage whose payload is not a restatement.** The prior refusal leg — "restates what is already in context" — does not apply by construction; the content was compacted, not re-said. Recovery re-injects retained summary + spec-folder pointer and nothing else (`session-lifecycle/README.md:34`, `:43`); no lane carries rule content.
+- *Bar side — RETIRED, and the refusal is the finding:* the content leg passes, the gate leg fails (no machine adjudicates rule awareness; corpus is level 3), and decisively — **the one lane that already solves delivery at this exact boundary has an explicit admission rule that bars it**: "Every prompt carries the directive that has an enforcement mechanism, and nothing else" (`specs/hooks/014-retire-governor-and-proof-directives/spec.md:77`). The corpus is also single-consumer by design statement — "nothing else reads it … no hook or workflow touches the router" (`.opencode/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs:5-7`).
+- *Deciding test:* **the boundary lane's admission rule.** Solved delivery does not solve admission — the cleanest demonstration available that the event side was never the binding constraint.
+- *Event/runtimes:* `PreToolUse` on Write|Edit already wired on Claude (`.claude/settings.json:169-171`), and the enforce path exists on all six (`spec-gate/README.md:44-49`): Pi `tool_call`, OpenCode `tool.execute.before`, etc. The ledger needs read-tool tracking — shape-keyed, partial fidelity (bash `cat`, subagent context, offset reads).
+
+### Iteration 7
+## 1. EVENT SURFACE
+## 2. IDEA ONE — completion presentation
+- **The completion lane is the async one.** On the runtime where an upgrade would ride an existing registration, Stop is `async: true` (`.claude/settings.json:146`, `:152`) while the edit lane is synchronous (`:176`). The envelope itself proves Stop *can* carry `additionalContext` (drift fallback `:150`) — the obstruction is not capability; it is the recorded advisory-only decision (`completion/README.md:20`, `:133`), the consent class unchanged.
+- **"A goal was met" leaves no durable model-visible artifact to attach guidance to — verified in code this time.** OpenCode's supervisor writes the verdict and completes the goal on `met` (`opencode-goal.js:2423-2428`; `opencode-goal-supervisor.test.cjs:114-117`), and only `active` records inject (`goal/README.md:42`). The shared core computes the heuristic verdict at turn end and uses it *only* for the not-met nudge (`goal-context.ts:229-239`); nothing writes `lastVerifierVerdict` on that path, so the rendered `last_check` falls back to `not_evaluated` (`goal-core.cjs:526-527`). Both engines produce silence on met, by construction.
+- Standing legs, one line each: payload resident (`AGENTS.md:404-409`, close-out verbatim `:501`); mode contracts own their reports at the rule's own moment (`presenting-decisions.md:129-132`); upgrade of the sentinel channel is the twice-refused consent class (prior round `iteration-010.md`).
+## 3. IDEA TWO — structured question triggering
+## 4. NEW CANDIDATES
+- *Event/runtimes:* `PostToolUse`/`tool_result` on edits to anchor sources (agent files, command files, card/docs); all six fire, settlement per NC-A (3/6 model-visible today).
+- *Payload:* "this file fans out into generated mirrors; the pre-commit `mirror-parity` gate blocks until they are regenerated and staged."
+- *Silence:* none that survives the test — the failure state (anchor newer than mirror) is **the legitimate intermediate state of a correct edit → regenerate → stage workflow**, so the finding fires on the compliant path itself, on every anchor edit.
+- *Wrong-fire cost:* noise on correct work; degrades the router's "one checker per edit" discipline (`post-edit-quality/README.md:16`).
+- *Portability:* fails. The regenerators are hub-internal (`.opencode/scripts/git-hooks/pre-commit:146-151`: `system-spec-kit/...`); a payload cannot name them, and without a runner it is not actionable.
+- *Bar side — the round's first content-passes/mechanics-fails candidate.* The prohibition is specific and gate-enforced (survivor content), and the commit gate's message already names the fix (`pre-commit:166`: "regenerate the mirror the message names, git add its output, and re-commit"); what fails is the event: every other gate in this family is a **final-state** check, and its violations are transition states. The accepted counterexample (dist staleness, `post-edit-quality/README.md:54`) is kept out of the dispatch table and is the *only* detector for its condition; mirrors already have three (local gate, CI's mirror job per `pre-commit:107`, the sync `--check` scripts).
+- *Deciding test:* **final-state vs intermediate-state, plus gate-message completeness.** REFUSE.
+- *Event/runtimes:* `SessionStart` on Claude/Codex/Cursor/Devin (`git-hooks-check/README.md:57-62`); Pi/OpenCode absent.
+- *Payload:* "the commit/push gates are not installed; run the installer."
+- *Silence:* genuinely rare — only `missing`/`broken`/`mismatched`/`non-executable` symlinks (`:34-39`).
+- *Wrong-fire cost:* the remedy is **context-forbidden where self-heal declined**: the check skips auto-install in a linked worktree precisely because "installing from a session tree would point the shared symlinks at scripts that vanish when the worktree is removed" (`:47`). A model told to run the installer from that context would execute the documented hazard.
+- *Portability:* passes — repo-level bins, not hub-internal paths.
+- *Bar side — refused on the mechanism test.** Where the action is safe, the mechanism already performs it silently (self-heal when live-sync is enabled from the main checkout, `:20`, `:47`); where it does not, the remedy is the one the design forbids there. The candidate's domain is empty. The in-fleet precedent (codex-hooks notice, `.claude/settings.json:132`) differs exactly in this: its remedy is context-independent.
+- *Deciding test:* **mechanism-already-answers (E3's test, first applied to the enforcement-infrastructure event) + remedy-context-forbidden.** REFUSE.
+- *Event/runtimes:* constructed from tool results; sources exist on all six, model-visible settlement only on NC-A's set. First **harness-state** candidate of the round.
+- *Payload:* the repetition count + `AGENTS.md:192` ("stop local retries at the code skill's repeated-failure limit").
+- *Silence:* best by construction — only a stuck session repeats an identical-failing command; this is C4's refused candidate with its frequency objection removed (`iteration 6 §4 C4`).
+- *Wrong-fire cost:* mid-debug trust damage; identical command ≠ identical failure (files change between runs), and a bounded-state store (shape of the OpenCode call-ID correlation map, `post-edit-quality/README.md:71`) must be built new.
+
+### Iteration 8
+## 1. EVENT SURFACE
+- **A third backward read at a tool event**: `fable-subagent-guard.mjs` (Claude only, PreToolUse `Task|Agent`) reads the session transcript's last *main-loop* model line, sidechain-excluded (`:39-64`), and denies Fable-inheriting dispatches (`:94-114`). Backward reads are production in three places now — goal verify, sentinel, this guard.
+- **Claude's registered event set, first-hand** (`.claude/settings.json:16-203`): `PreToolUse` (Bash / Task / Task|Agent / `mcp__claude_ai_.*` / Write|Edit), `UserPromptSubmit`, `SessionStart`, `Stop` (async×2, `:146`, `:152`), `SessionEnd` (`:157-167`), `PostToolUse` (Write|Edit / Bash), `PreCompact`. No `Notification` registration here. `SYSTEM_SPEC_GATE_ENFORCE: "0"` is set in-repo (`:7`) — the write-gate deny path is off on this runtime today.
+- **Read-only sessions**: unchanged from iteration 6 — session start, prompt submit, turn-end family, compaction fire; session end is `[NONE]` (`injection-contract.md:220-224`); tool events are shape-keyed. The git-preflight is **read-only-quiet by state**: `git status`/`log`/`diff` evaluate to no violation and produce nothing; it speaks only when a git-shaped command would quietly do something other than it appears. **Unused sets**: unchanged since iteration 5 (Cursor's unwired list, Claude `PermissionRequest`, Pi's ~25/33) — inherited, not re-read.
+## 2. IDEA ONE — completion presentation
+- **Does the completion event reach the rules? No.** The presentation carriers are the resident digests with load commands (`AGENTS.md:405`, `:407`, `:409`; close-out verbatim `:501`) plus each run's own completion contract (`presenting-decisions.md:129-132`). No injection anywhere in the fleet carries presentation content (iteration 6's finding, `prior-findings.md:111`), and the completion event's only model-visible output remains Pi's evidence advisory (`completion/README.md:68`). *(The operator's premise "rules that bind only on write turns" is already corrected: `AGENTS.md:405` binds on "every substantive reply"; `handoff-and-questions.md:35` on "end a turn, of any kind.")*
+- **Is the guidance worth the channel? No — under the fleet's own doctrine.** The shipped family's first criterion is *the event precedes the damage while the action window is open* (`git-preflight-advisory.mjs:5-9`; `016/spec.md:54-56`). At completion time the reply exists and the human has read it — the family's total silence in that position is the model. Its payload discipline is a state discriminator against live repo state (`git-rule-checks.mjs:11-16`); "the tail of the message looks claim-ish" (`completion/README.md:31`) has no state to discriminate, fires 477 times / 63 days with >95% one low-specificity class (iteration 6's measurement, `iteration-006.md:19`), and the content would be disposition-shaped — the exact class the prompt lane retired (`injection-contract.md:54`).
+- Standing legs, one line each: measured frequency; action window (iteration 5); restatement; channel upgrade is the twice-refused consent class. Nothing here reopens.
+## 3. IDEA TWO — structured question triggering
+- Before the reply exists (prompt time, tool time), "should have asked" is not evaluable — the sentinel's own trigger is a property of finished text (`completion/README.md:31`). After it exists (turn end), every surface that *has* the reply can only rewrite or append — authorship violations already refused on two runtimes (NC-C; `iteration-004.md` §3), and the operator has already answered the turn. The one family of surfaces that could make the model ask again — turn-reopening continuations — is Claude's (doubly off: advisory-only by design, `completion/README.md:64`; `async: true` here `.claude/settings.json:146`, `:152`) plus OpenCode's goal continuation (requires an active un-met goal and its prompt tells the model *not* to ask; `opencode-goal.js:2473` per iteration 3). No runtime crosses the boundary.
+- Cross-check against the newly found family: the admitted composed content **judges the pending command, not a completed reply**, and never speaks in the model's voice (`git-preflight-advisory.mjs:128-138`). A missed ask has no author outside the model and no state discriminator (§ the doctrine's "a check that cannot find a discriminator does not belong", `git-rule-checks.mjs:13-14`). The three-condition bar (`handoff-and-questions.md:101-110`) is prose-default on the compliant side, so any form detector fires on compliant turns.
+- **Answer: fatal — on authorship and disjointness, not on detection difficulty.** The only surviving form of this class is the one already shipped (fixed-enum, pre-composition, Gate 3 — `injection-contract.md:72-84`), and it is a different mechanism with a different admission.
+## 4. NEW CANDIDATES
+- *Event/runtimes:* the family above, 6/6.
+- *Content/trace:* the prohibition is existing sk-git prose (`SKILL.md:507`, "never `git branch`, `git checkout` plus `-b`, or `git switch` plus `-c`"; `AGENTS.md:331`) but is **not one of the 17 encoded rules** (`SKILL.md:7-75`; `git-rule-checks.mjs:153-429`) — so today it rides prompt routing only, which is exactly the gap `016/spec.md:54-56` exists to close.
+- *Silence:* matches only the three banned shapes; the sanctioned form (`git worktree add -b`) stays silent. *Wrong-fire:* one capped, suppressible advisory line.
+- *Deciding test — the doctrine's own discriminator rule:* the broad form is verb-keyed and "does not belong here" (`git-rule-checks.mjs:13-14`); the narrow form (a hand-picked name inside the allocator's numbered namespace, colliding silently with future allocations) has a state read and the damage is real and silent. But frequency is **unmeasured**, and 016's own limitation says it cannot be derived from reflogs (`001/implementation-summary.md:123-124`). The program's step order bars encoding first (`spec.md:129-131`).
+- *Verdict:* **SURVIVOR SIDE IN PRINCIPLE, DEFER — measurement before encoding**, per the fleet's own 3-of-5 refuted lesson (`001/implementation-summary.md:96`).
+- *Event:* `tool.execute.before` before a native external MCP call (`.opencode/plugins/mcp-route-guard.js:71-83`). The same finding is model-visible on the other five runtimes (`injection-contract.md:169-175`); OpenCode is log-only (`mcp-route-guard.js:4-10`).
+- *The only stated reason is console corruption* (`:40-43`), which the transform drain does not commit — two sibling plugins drain findings into model context exactly this way (`.opencode/plugins/README.md:33`, `:35`). But "log-only" is written as the adapter's purpose (`:8`), so this is a **consent question, not a pure transport gap** (unlike NC-A, whose registration already carries `additionalContext` on its drift path, `.claude/settings.json:175`).
+- *Domain check:* the plugin is dormant until a native external server is registered; `opencode.json:10-20` registers only the code-mode launcher — **zero live fires today**.
+- *Verdict:* **DEFER — empty domain, then a parity decision owned by the mcp-route-guard concern.** Deciding test: dormant-domain + consent.
+- *Shape:* mirrors the retained destructive tier — rare operation plus explicit destructive token plus positive state (dirty target), exactly the `reset-hard-discards-changes` form (`git-rule-checks.mjs:336-342`); the 17 checks contain nothing for it.
+- *Deciding test — the program's own phase rule:* "Every encoded rule must trace to existing sk-git prose or an observed incident. No invented rules" (`016/spec.md:131`). Prose covers reap *order* and the reaper's proof requirements (`SKILL.md:372`; `feature-catalog/session-lifecycle/worktree-reaper.md:81`), never forced removal of a dirty tree; no recorded incident exists. Encoding it would be rule invention.
+- *Verdict:* **REFUSE — trace rule.** (If the operator wants it, the route is prose → incident → rule, in that order.)
+
+
+Be selective about what you open; a partial answer with resolving citations beats an exhaustive read that never finishes.
+Return only this iteration's findings, in the output format above.

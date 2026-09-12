@@ -1,0 +1,103 @@
+diff --git a/.opencode/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs b/.opencode/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs
+index 684ac0d5d2..2aee1039a8 100644
+--- a/.opencode/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs
++++ b/.opencode/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs
+@@ -4,9 +4,10 @@
+ // ───────────────────────────────────────────────────────────────────
+ // The corpus under repo-rules/ is hand-maintained and nothing else reads it:
+ // ordinary link checkers walk other roots, and no hook or workflow touches the
+-// router. One report keeps files, router rows, phrases and structure in
++// router or the bodies of the rule files themselves. One report keeps files,
++// router rows, phrases, structure, body links and firing conditions in
+ // agreement, so drift fails here instead of surfacing later as a rule that
+-// silently never loads.
++// silently never loads or points at a file that is gone.
+ 'use strict';
+ 
+ // ─────────────────────────────────────────────────────────────────────────────
+@@ -175,14 +176,17 @@ function loadContext(root) {
+       const content = fs.readFileSync(path.join(root, RULES_DIR, name), 'utf8');
+       const lines = content.split(/\r\n|\r|\n/u);
+       const range = frontmatterRange(lines);
+-      const body = range === null ? lines : lines.slice(range.end + 1);
++      const bodyStart = range === null ? 0 : range.end + 1;
++      const body = lines.slice(bodyStart);
+       return {
+         name,
+         lines: lineCount(content),
+         phrases: parseTriggerPhrases(lines, range),
+         keys: parseTopLevelKeys(lines, range),
+         dividers: body.filter((line) => line.trim() === '---').length,
+-        sections: body.filter((line) => /^##\s+\d+\./u.test(line)).length
++        sections: body.filter((line) => /^##\s+\d+\./u.test(line)).length,
++        body,
++        bodyStartLine: bodyStart + 1
+       };
+     });
+ 
+@@ -299,13 +303,64 @@ function checkDividerParity(context) {
+   };
+ }
+ 
++// 7. Every link inside a rule body resolves, relative to the rules directory.
++function checkRuleLinks(context) {
++  const problems = [];
++  let links = 0;
++  for (const rule of context.rules) {
++    rule.body.forEach((line, index) => {
++      for (const link of extractLinks(line)) {
++        const target = normalizeTarget(link);
++        if (isExternal(target)) continue;
++        links += 1;
++        if (!fs.existsSync(path.resolve(context.root, RULES_DIR, target))) {
++          problems.push(`${rule.name}: line ${rule.bodyStartLine + index}: unresolved ${target}`);
++        }
++      }
++    });
++  }
++  return {
++    ok: problems.length === 0,
++    detail: problems.length === 0
++      ? `files=${context.rules.length} links=${links} all resolve`
++      : summarize(problems)
++  };
++}
++
++// 8. Every rule declares at least one firing condition, or it can never be reached.
++function checkFiresWhenSections(context) {
++  const problems = [];
++  for (const rule of context.rules) {
++    const start = rule.body.findIndex((line) => /^##\s+Fires when\s*$/u.test(line));
++    if (start === -1) {
++      problems.push(`${rule.name}: no "## Fires when" section`);
++      continue;
++    }
++    let items = 0;
++    for (let index = start + 1; index < rule.body.length; index += 1) {
++      const line = rule.body[index];
++      if (/^##\s/u.test(line)) break;
++      if (/^\s*(?:[-*+]|\d+[.)])\s+\S/u.test(line)) items += 1;
++    }
++    if (items === 0) problems.push(`${rule.name}: empty "## Fires when" section`);
++  }
++  return {
++    ok: problems.length === 0,
++    detail: problems.length === 0
++      ? `files=${context.rules.length} all declare firing conditions`
++      : summarize(problems)
++  };
++}
++
+ const CHECKS = [
+   ['count parity', checkCounts],
+   ['row coverage', checkWiring],
+   ['phrase uniqueness', checkTriggerPhraseUniqueness],
+   ['line ceiling', checkLineCeiling],
+   ['frontmatter keys', checkFrontmatterKeys],
+-  ['divider parity', checkDividerParity]
++  ['divider parity', checkDividerParity],
++  ['rule links', checkRuleLinks],
++  ['fires-when sections', checkFiresWhenSections]
+ ];
+ 
+ function main() {

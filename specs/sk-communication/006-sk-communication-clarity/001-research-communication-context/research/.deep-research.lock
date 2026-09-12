@@ -1,0 +1,11 @@
+{
+  "owner_pid": 20019,
+  "started_at_iso": "2026-09-12T15:15:09.670Z",
+  "ttl_ms": 300000,
+  "last_heartbeat_iso": "2026-09-12T15:15:09.670Z",
+  "packet_id": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context",
+  "runtime_kind": "main",
+  "phase": "running",
+  "last_activity_iso": "2026-09-12T15:15:09.670Z",
+  "acquire_nonce": "20019-1789226109670-7c049574-e752-4bb9-9d5f-9dcf36855add"
+}

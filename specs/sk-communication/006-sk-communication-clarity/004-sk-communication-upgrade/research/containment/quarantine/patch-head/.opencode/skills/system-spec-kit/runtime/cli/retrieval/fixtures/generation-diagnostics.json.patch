@@ -1,0 +1,991 @@
+diff --git a/.opencode/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json b/.opencode/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json
+index 0e10a495f7..e9fca9395d 100644
+--- a/.opencode/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json
++++ b/.opencode/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json
+@@ -1,12 +1,12 @@
+ {
+   "counts": {
+     "duplicate-phrase": 54,
+-    "missing-frontmatter": 7135,
++    "missing-frontmatter": 7231,
+     "non-yaml-frontmatter": 1,
+-    "ok": 14815,
++    "ok": 14803,
+     "valid-empty-list": 7531
+   },
+-  "documentsScanned": 29536,
++  "documentsScanned": 29620,
+   "ignoredMalformedDocuments": 1,
+   "ignoredPaths": [
+     {
+@@ -16,22 +16,22 @@
+   ],
+   "ignoredPathsUnmatched": [],
+   "malformedDocuments": 0,
+-  "manifestHash": "7d2e42001157e9dad4fb32e6b6568c7de06eb614bb8127d6f3c04a10a9b23b0f",
++  "manifestHash": "5ddce87cebe2eb31283c6d922fcf3c3fc3d5f1268e8ac89e567f5bfcde060f39",
+   "parserVersion": "1.0.0",
+   "phraseQuality": {
+     "documents": {
+       "editor-fallback": 3,
+-      "generic-workflow-word": 174,
++      "generic-workflow-word": 170,
+       "numeric-only": 112,
+       "prose-sentence": 18,
+-      "single-token": 819,
++      "single-token": 814,
+       "stop-word-only": 12
+     },
+     "phrases": {
+       "editor-fallback": 2,
+       "generic-workflow-word": 3,
+       "numeric-only": 41,
+-      "ok": 35842,
++      "ok": 35898,
+       "prose-sentence": 27,
+       "single-token": 304,
+       "stop-word-only": 3
+@@ -39546,12 +39546,192 @@
+       "path": "specs/hooks/022-smart-rule-injection/001-deep-research/research/iterations/iteration-002.md",
+       "reason": "no opening frontmatter delimiter"
+     },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/hooks/022-smart-rule-injection/001-deep-research/research/iterations/iteration-003.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/hooks/022-smart-rule-injection/001-deep-research/research/iterations/iteration-004.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/hooks/022-smart-rule-injection/001-deep-research/research/iterations/iteration-005.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/hooks/022-smart-rule-injection/001-deep-research/research/iterations/iteration-006.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/hooks/022-smart-rule-injection/001-deep-research/research/iterations/iteration-007.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/hooks/022-smart-rule-injection/001-deep-research/research/iterations/iteration-008.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/hooks/022-smart-rule-injection/001-deep-research/research/iterations/iteration-009.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/hooks/022-smart-rule-injection/001-deep-research/research/iterations/iteration-010.md",
++      "reason": "no opening frontmatter delimiter"
++    },
+     {
+       "category": "missing-frontmatter",
+       "line": 1,
+       "path": "specs/hooks/022-smart-rule-injection/001-deep-research/research/prior-findings.md",
+       "reason": "no opening frontmatter delimiter"
+     },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/hooks/022-smart-rule-injection/002-event-triggered-injection/research/iterations/iteration-001.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/hooks/022-smart-rule-injection/002-event-triggered-injection/research/iterations/iteration-002.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/hooks/022-smart-rule-injection/002-event-triggered-injection/research/iterations/iteration-003.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/hooks/022-smart-rule-injection/002-event-triggered-injection/research/iterations/iteration-004.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/hooks/022-smart-rule-injection/002-event-triggered-injection/research/iterations/iteration-005.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/hooks/022-smart-rule-injection/002-event-triggered-injection/research/iterations/iteration-006.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/hooks/022-smart-rule-injection/002-event-triggered-injection/research/iterations/iteration-007.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/hooks/022-smart-rule-injection/002-event-triggered-injection/research/iterations/iteration-008.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/hooks/022-smart-rule-injection/002-event-triggered-injection/research/iterations/iteration-009.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/hooks/022-smart-rule-injection/002-event-triggered-injection/research/iterations/iteration-010.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/hooks/022-smart-rule-injection/002-event-triggered-injection/research/prior-findings.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/hooks/022-smart-rule-injection/003-shallow-evidence-claims/research/iterations/iteration-001.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/hooks/022-smart-rule-injection/003-shallow-evidence-claims/research/iterations/iteration-002.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/hooks/022-smart-rule-injection/003-shallow-evidence-claims/research/iterations/iteration-003.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/hooks/022-smart-rule-injection/003-shallow-evidence-claims/research/iterations/iteration-004.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/hooks/022-smart-rule-injection/003-shallow-evidence-claims/research/iterations/iteration-005.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/hooks/022-smart-rule-injection/003-shallow-evidence-claims/research/iterations/iteration-006.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/hooks/022-smart-rule-injection/003-shallow-evidence-claims/research/iterations/iteration-007.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/hooks/022-smart-rule-injection/003-shallow-evidence-claims/research/iterations/iteration-008.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/hooks/022-smart-rule-injection/003-shallow-evidence-claims/research/iterations/iteration-009.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/hooks/022-smart-rule-injection/003-shallow-evidence-claims/research/iterations/iteration-010.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/hooks/022-smart-rule-injection/003-shallow-evidence-claims/research/prior-findings.md",
++      "reason": "no opening frontmatter delimiter"
++    },
+     {
+       "category": "valid-empty-list",
+       "line": 3,
+@@ -42011,6 +42191,342 @@
+       "rawKey": "trigger_phrases",
+       "reason": "declared empty trigger list"
+     },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/containment/quarantine/content/.opencode/commands/deep/assets/compiled/deep-research.contract.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/containment/quarantine/content/specs/hooks/022-smart-rule-injection/002-event-triggered-injection/research/iterations/iteration-001.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/containment/quarantine/content/specs/hooks/022-smart-rule-injection/002-event-triggered-injection/research/iterations/iteration-003.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/containment/quarantine/content/specs/hooks/022-smart-rule-injection/002-event-triggered-injection/research/iterations/iteration-004.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/containment/quarantine/content/specs/hooks/022-smart-rule-injection/002-event-triggered-injection/research/iterations/iteration-005.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/containment/quarantine/content/specs/hooks/022-smart-rule-injection/002-event-triggered-injection/research/iterations/iteration-006.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/containment/quarantine/content/specs/hooks/022-smart-rule-injection/002-event-triggered-injection/research/iterations/iteration-007.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/containment/quarantine/content/specs/hooks/022-smart-rule-injection/002-event-triggered-injection/research/iterations/iteration-008.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/containment/quarantine/content/specs/hooks/022-smart-rule-injection/002-event-triggered-injection/research/iterations/iteration-009.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/containment/quarantine/content/specs/hooks/022-smart-rule-injection/002-event-triggered-injection/research/iterations/iteration-010.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/containment/quarantine/content/specs/hooks/022-smart-rule-injection/002-event-triggered-injection/research/prior-findings.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/containment/quarantine/content/specs/hooks/022-smart-rule-injection/003-shallow-evidence-claims/research/iterations/iteration-001.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/containment/quarantine/content/specs/hooks/022-smart-rule-injection/003-shallow-evidence-claims/research/iterations/iteration-002.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/containment/quarantine/content/specs/hooks/022-smart-rule-injection/003-shallow-evidence-claims/research/iterations/iteration-003.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/containment/quarantine/content/specs/hooks/022-smart-rule-injection/003-shallow-evidence-claims/research/iterations/iteration-004.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/containment/quarantine/content/specs/hooks/022-smart-rule-injection/003-shallow-evidence-claims/research/iterations/iteration-005.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/containment/quarantine/content/specs/hooks/022-smart-rule-injection/003-shallow-evidence-claims/research/iterations/iteration-006.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/containment/quarantine/content/specs/hooks/022-smart-rule-injection/003-shallow-evidence-claims/research/iterations/iteration-007.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/containment/quarantine/content/specs/hooks/022-smart-rule-injection/003-shallow-evidence-claims/research/iterations/iteration-008.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/containment/quarantine/content/specs/hooks/022-smart-rule-injection/003-shallow-evidence-claims/research/iterations/iteration-009.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/containment/quarantine/content/specs/hooks/022-smart-rule-injection/003-shallow-evidence-claims/research/iterations/iteration-010.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/containment/quarantine/content/specs/hooks/022-smart-rule-injection/003-shallow-evidence-claims/research/prior-findings.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/review/lineages/1789221489298-ipjoou-worktree-live/deep-review-dashboard.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/review/lineages/1789221489298-ipjoou-worktree-live/deep-review-strategy.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/review/lineages/1789221489298-ipjoou-worktree-live/iterations/iteration-001.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/review/lineages/1789221489298-ipjoou-worktree-live/prompts/iteration-001.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/containment/quarantine/content/specs/system-deep-loop/045-fanout-write-containment-hardening/review/lineages/1789221489298-ipjoou-worktree-live/review-report.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 2,
++      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/deep-research-dashboard.md",
++      "reason": "no trigger_phrases key in frontmatter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/iterations/iteration-001.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/iterations/iteration-002.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/iterations/iteration-003.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/iterations/iteration-004.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/iterations/iteration-005.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/iterations/iteration-006.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/iterations/iteration-007.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/iterations/iteration-008.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/iterations/iteration-009.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/iterations/iteration-010.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/prompts/iteration-001.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/prompts/iteration-002.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/prompts/iteration-003.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/prompts/iteration-004.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/prompts/iteration-005.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/prompts/iteration-006.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/prompts/iteration-007.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/prompts/iteration-008.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/prompts/iteration-009.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/prompts/iteration-010.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 2,
++      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/resource-map.md",
++      "reason": "no trigger_phrases key in frontmatter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 2,
++      "path": "specs/sk-communication/006-sk-communication-clarity/004-sk-communication-upgrade/research/deep-research-dashboard.md",
++      "reason": "no trigger_phrases key in frontmatter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/sk-communication/006-sk-communication-clarity/004-sk-communication-upgrade/research/iterations/iteration-001.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/sk-communication/006-sk-communication-clarity/004-sk-communication-upgrade/research/iterations/iteration-002.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/sk-communication/006-sk-communication-clarity/004-sk-communication-upgrade/research/iterations/iteration-003.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/sk-communication/006-sk-communication-clarity/004-sk-communication-upgrade/research/prompts/iteration-001.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/sk-communication/006-sk-communication-clarity/004-sk-communication-upgrade/research/prompts/iteration-002.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/sk-communication/006-sk-communication-clarity/004-sk-communication-upgrade/research/prompts/iteration-003.md",
++      "reason": "no opening frontmatter delimiter"
++    },
+     {
+       "category": "missing-frontmatter",
+       "line": 1,
+@@ -60164,6 +60680,66 @@
+       "path": "specs/system-deep-loop/045-fanout-write-containment-hardening/research/synthesis.md",
+       "reason": "no opening frontmatter delimiter"
+     },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/system-deep-loop/045-fanout-write-containment-hardening/research/worktree-symlinks/iteration-001.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/system-deep-loop/045-fanout-write-containment-hardening/research/worktree-symlinks/iteration-002.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/system-deep-loop/045-fanout-write-containment-hardening/research/worktree-symlinks/iteration-003.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/system-deep-loop/045-fanout-write-containment-hardening/research/worktree-symlinks/iteration-004.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/system-deep-loop/045-fanout-write-containment-hardening/research/worktree-symlinks/iteration-005.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/system-deep-loop/045-fanout-write-containment-hardening/review/lineages/1789221489298-ipjoou-worktree-live/deep-review-dashboard.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/system-deep-loop/045-fanout-write-containment-hardening/review/lineages/1789221489298-ipjoou-worktree-live/deep-review-strategy.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/system-deep-loop/045-fanout-write-containment-hardening/review/lineages/1789221489298-ipjoou-worktree-live/iterations/iteration-001.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/system-deep-loop/045-fanout-write-containment-hardening/review/lineages/1789221489298-ipjoou-worktree-live/prompts/iteration-001.md",
++      "reason": "no opening frontmatter delimiter"
++    },
++    {
++      "category": "missing-frontmatter",
++      "line": 1,
++      "path": "specs/system-deep-loop/045-fanout-write-containment-hardening/review/lineages/1789221489298-ipjoou-worktree-live/review-report.md",
++      "reason": "no opening frontmatter delimiter"
++    },
+     {
+       "category": "missing-frontmatter",
+       "line": 1,
+@@ -95768,186 +96344,186 @@
+     {
+       "category": "missing-frontmatter",
+       "line": 1,
+-      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/001-goal-unification-research/research/fanout-attribution.md",
++      "path": "specs/system-speckit/033-system-speckit-v4/038-goal-unification/001-goal-unification-research/research/fanout-attribution.md",
+       "reason": "no opening frontmatter delimiter"
+     },
+     {
+       "category": "missing-frontmatter",
+       "line": 2,
+-      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-2/deep-review-dashboard.md",
++      "path": "specs/system-speckit/033-system-speckit-v4/038-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-2/deep-review-dashboard.md",
+       "reason": "no trigger_phrases key in frontmatter"
+     },
+     {
+       "category": "valid-empty-list",
+       "line": 3,
+-      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-2/deep-review-strategy.md",
++      "path": "specs/system-speckit/033-system-speckit-v4/038-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-2/deep-review-strategy.md",
+       "rawKey": "trigger_phrases",
+       "reason": "declared empty trigger list"
+     },
+     {
+       "category": "missing-frontmatter",
+       "line": 2,
+-      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-2/iterations/iteration-001.md",
++      "path": "specs/system-speckit/033-system-speckit-v4/038-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-2/iterations/iteration-001.md",
+       "reason": "no trigger_phrases key in frontmatter"
+     },
+     {
+       "category": "missing-frontmatter",
+       "line": 2,
+-      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-2/iterations/iteration-002.md",
++      "path": "specs/system-speckit/033-system-speckit-v4/038-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-2/iterations/iteration-002.md",
+       "reason": "no trigger_phrases key in frontmatter"
+     },
+     {
+       "category": "missing-frontmatter",
+       "line": 2,
+-      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-2/iterations/iteration-003.md",
++      "path": "specs/system-speckit/033-system-speckit-v4/038-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-2/iterations/iteration-003.md",
+       "reason": "no trigger_phrases key in frontmatter"
+     },
+     {
+       "category": "missing-frontmatter",
+       "line": 2,
+-      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-2/iterations/iteration-004.md",
++      "path": "specs/system-speckit/033-system-speckit-v4/038-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-2/iterations/iteration-004.md",
+       "reason": "no trigger_phrases key in frontmatter"
+     },
+     {
+       "category": "missing-frontmatter",
+       "line": 2,
+-      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-2/iterations/iteration-005.md",
++      "path": "specs/system-speckit/033-system-speckit-v4/038-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-2/iterations/iteration-005.md",
+       "reason": "no trigger_phrases key in frontmatter"
+     },
+     {
+       "category": "valid-empty-list",
+       "line": 3,
+-      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-2/resource-map.md",
++      "path": "specs/system-speckit/033-system-speckit-v4/038-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-2/resource-map.md",
+       "rawKey": "trigger_phrases",
+       "reason": "declared empty trigger list"
+     },
+     {
+       "category": "valid-empty-list",
+       "line": 3,
+-      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-2/review-report.md",
++      "path": "specs/system-speckit/033-system-speckit-v4/038-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-2/review-report.md",
+       "rawKey": "trigger_phrases",
+       "reason": "declared empty trigger list"
+     },
+     {
+       "category": "missing-frontmatter",
+       "line": 2,
+-      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-3/deep-review-dashboard.md",
++      "path": "specs/system-speckit/033-system-speckit-v4/038-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-3/deep-review-dashboard.md",
+       "reason": "no trigger_phrases key in frontmatter"
+     },
+     {
+       "category": "valid-empty-list",
+       "line": 3,
+-      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-3/deep-review-strategy.md",
++      "path": "specs/system-speckit/033-system-speckit-v4/038-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-3/deep-review-strategy.md",
+       "rawKey": "trigger_phrases",
+       "reason": "declared empty trigger list"
+     },
+     {
+       "category": "missing-frontmatter",
+       "line": 2,
+-      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-3/iterations/iteration-001.md",
++      "path": "specs/system-speckit/033-system-speckit-v4/038-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-3/iterations/iteration-001.md",
+       "reason": "no trigger_phrases key in frontmatter"
+     },
+     {
+       "category": "missing-frontmatter",
+       "line": 2,
+-      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-3/iterations/iteration-002.md",
++      "path": "specs/system-speckit/033-system-speckit-v4/038-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-3/iterations/iteration-002.md",
+       "reason": "no trigger_phrases key in frontmatter"
+     },
+     {
+       "category": "missing-frontmatter",
+       "line": 2,
+-      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-3/iterations/iteration-003.md",
++      "path": "specs/system-speckit/033-system-speckit-v4/038-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-3/iterations/iteration-003.md",
+       "reason": "no trigger_phrases key in frontmatter"
+     },
+     {
+       "category": "missing-frontmatter",
+       "line": 2,
+-      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-3/iterations/iteration-004.md",
++      "path": "specs/system-speckit/033-system-speckit-v4/038-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-3/iterations/iteration-004.md",
+       "reason": "no trigger_phrases key in frontmatter"
+     },
+     {
+       "category": "missing-frontmatter",
+       "line": 2,
+-      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-3/iterations/iteration-005.md",
++      "path": "specs/system-speckit/033-system-speckit-v4/038-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-3/iterations/iteration-005.md",
+       "reason": "no trigger_phrases key in frontmatter"
+     },
+     {
+       "category": "valid-empty-list",
+       "line": 3,
+-      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-3/resource-map.md",
++      "path": "specs/system-speckit/033-system-speckit-v4/038-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-3/resource-map.md",
+       "rawKey": "trigger_phrases",
+       "reason": "declared empty trigger list"
+     },
+     {
+       "category": "valid-empty-list",
+       "line": 3,
+-      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-3/review-report.md",
++      "path": "specs/system-speckit/033-system-speckit-v4/038-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-3/review-report.md",
+       "rawKey": "trigger_phrases",
+       "reason": "declared empty trigger list"
+     },
+     {
+       "category": "missing-frontmatter",
+       "line": 2,
+-      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review/deep-review-dashboard.md",
++      "path": "specs/system-speckit/033-system-speckit-v4/038-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review/deep-review-dashboard.md",
+       "reason": "no trigger_phrases key in frontmatter"
+     },
+     {
+       "category": "valid-empty-list",
+       "line": 3,
+-      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review/deep-review-strategy.md",
++      "path": "specs/system-speckit/033-system-speckit-v4/038-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review/deep-review-strategy.md",
+       "rawKey": "trigger_phrases",
+       "reason": "declared empty trigger list"
+     },
+     {
+       "category": "valid-empty-list",
+       "line": 3,
+-      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review/iterations/iteration-001.md",
++      "path": "specs/system-speckit/033-system-speckit-v4/038-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review/iterations/iteration-001.md",
+       "rawKey": "trigger_phrases",
+       "reason": "declared empty trigger list"
+     },
+     {
+       "category": "valid-empty-list",
+       "line": 3,
+-      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review/iterations/iteration-002.md",
++      "path": "specs/system-speckit/033-system-speckit-v4/038-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review/iterations/iteration-002.md",
+       "rawKey": "trigger_phrases",
+       "reason": "declared empty trigger list"
+     },
+     {
+       "category": "valid-empty-list",
+       "line": 3,
+-      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review/iterations/iteration-003.md",
++      "path": "specs/system-speckit/033-system-speckit-v4/038-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review/iterations/iteration-003.md",
+       "rawKey": "trigger_phrases",
+       "reason": "declared empty trigger list"
+     },
+     {
+       "category": "missing-frontmatter",
+       "line": 2,
+-      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review/resource-map.md",
++      "path": "specs/system-speckit/033-system-speckit-v4/038-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review/resource-map.md",
+       "reason": "no trigger_phrases key in frontmatter"
+     },
+     {
+       "category": "valid-empty-list",
+       "line": 3,
+-      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review/review-report.md",
++      "path": "specs/system-speckit/033-system-speckit-v4/038-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review/review-report.md",
+       "rawKey": "trigger_phrases",
+       "reason": "declared empty trigger list"
+     },
+     {
+       "category": "missing-frontmatter",
+       "line": 1,
+-      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification/review/review-scope.md",
++      "path": "specs/system-speckit/033-system-speckit-v4/038-goal-unification/007-retirement-docs-and-verification/review/review-scope.md",
+       "reason": "no opening frontmatter delimiter"
+     },
+     {
+       "category": "missing-frontmatter",
+       "line": 1,
+-      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/010-repo-wide-goal-research/research/deep-research-strategy.md",
++      "path": "specs/system-speckit/033-system-speckit-v4/038-goal-unification/010-repo-wide-goal-research/research/deep-research-strategy.md",
+       "reason": "no opening frontmatter delimiter"
+     },
+     {
+       "category": "missing-frontmatter",
+       "line": 1,
+-      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/012-open-items-research/research/deep-research-strategy.md",
++      "path": "specs/system-speckit/033-system-speckit-v4/038-goal-unification/012-open-items-research/research/deep-research-strategy.md",
+       "reason": "no opening frontmatter delimiter"
+     }
+   ],
+@@ -100281,103 +100857,87 @@
+       "reason": "excluded directory"
+     },
+     {
+-      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/001-goal-unification-research/research/lineages",
+-      "reason": "excluded directory"
+-    },
+-    {
+-      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/001-goal-unification-research/scratch",
+-      "reason": "excluded directory"
+-    },
+-    {
+-      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/002-decisions-and-contract-freeze/scratch",
+-      "reason": "excluded directory"
+-    },
+-    {
+-      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/003-speckit-goal-contract/scratch",
+-      "reason": "excluded directory"
+-    },
+-    {
+-      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/004-goal-core-packet-backed/scratch",
++      "path": "specs/system-speckit/033-system-speckit-v4/036-spec-doc-healer/scratch",
+       "reason": "excluded directory"
+     },
+     {
+-      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/005-runtime-surfaces/scratch",
++      "path": "specs/system-speckit/033-system-speckit-v4/037-derived-artifact-registry/001-registry-walker-and-proof/scratch",
+       "reason": "excluded directory"
+     },
+     {
+-      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/006-speckit-command-integration/scratch",
++      "path": "specs/system-speckit/033-system-speckit-v4/037-derived-artifact-registry/002-transactional-remint/scratch",
+       "reason": "excluded directory"
+     },
+     {
+-      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-2/scratch",
++      "path": "specs/system-speckit/033-system-speckit-v4/038-goal-unification/001-goal-unification-research/research/lineages",
+       "reason": "excluded directory"
+     },
+     {
+-      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-3/scratch",
++      "path": "specs/system-speckit/033-system-speckit-v4/038-goal-unification/001-goal-unification-research/scratch",
+       "reason": "excluded directory"
+     },
+     {
+-      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification/scratch",
++      "path": "specs/system-speckit/033-system-speckit-v4/038-goal-unification/002-decisions-and-contract-freeze/scratch",
+       "reason": "excluded directory"
+     },
+     {
+-      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/008-hardening-research/research/lineages",
++      "path": "specs/system-speckit/033-system-speckit-v4/038-goal-unification/003-speckit-goal-contract/scratch",
+       "reason": "excluded directory"
+     },
+     {
+-      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/008-hardening-research/scratch",
++      "path": "specs/system-speckit/033-system-speckit-v4/038-goal-unification/004-goal-core-packet-backed/scratch",
+       "reason": "excluded directory"
+     },
+     {
+-      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/009-close-open-decisions/scratch",
++      "path": "specs/system-speckit/033-system-speckit-v4/038-goal-unification/005-runtime-surfaces/scratch",
+       "reason": "excluded directory"
+     },
+     {
+-      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/010-repo-wide-goal-research/research/lineages",
++      "path": "specs/system-speckit/033-system-speckit-v4/038-goal-unification/006-speckit-command-integration/scratch",
+       "reason": "excluded directory"
+     },
+     {
+-      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/010-repo-wide-goal-research/scratch",
++      "path": "specs/system-speckit/033-system-speckit-v4/038-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-2/scratch",
+       "reason": "excluded directory"
+     },
+     {
+-      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/011-goal-drift-remediation/scratch",
++      "path": "specs/system-speckit/033-system-speckit-v4/038-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-3/scratch",
+       "reason": "excluded directory"
+     },
+     {
+-      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/012-open-items-research/research/lineages",
++      "path": "specs/system-speckit/033-system-speckit-v4/038-goal-unification/007-retirement-docs-and-verification/scratch",
+       "reason": "excluded directory"
+     },
+     {
+-      "path": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/012-open-items-research/scratch",
++      "path": "specs/system-speckit/033-system-speckit-v4/038-goal-unification/008-hardening-research/research/lineages",
+       "reason": "excluded directory"
+     },
+     {
+-      "path": "specs/system-speckit/034-spec-doc-healer/scratch",
++      "path": "specs/system-speckit/033-system-speckit-v4/038-goal-unification/008-hardening-research/scratch",
+       "reason": "excluded directory"
+     },
+     {
+-      "path": "specs/system-speckit/035-derived-artifact-registry/001-registry-walker-and-proof/scratch",
++      "path": "specs/system-speckit/033-system-speckit-v4/038-goal-unification/009-close-open-decisions/scratch",
+       "reason": "excluded directory"
+     },
+     {
+-      "path": "specs/system-speckit/035-derived-artifact-registry/002-transactional-remint/scratch",
++      "path": "specs/system-speckit/033-system-speckit-v4/038-goal-unification/010-repo-wide-goal-research/research/lineages",
+       "reason": "excluded directory"
+     },
+     {
+-      "path": "specs/system-speckit/045-daemon-and-test-harness-hardening/001-production-db-isolation/scratch",
++      "path": "specs/system-speckit/033-system-speckit-v4/038-goal-unification/010-repo-wide-goal-research/scratch",
+       "reason": "excluded directory"
+     },
+     {
+-      "path": "specs/system-speckit/045-daemon-and-test-harness-hardening/002-orphan-daemon-reaping/scratch",
++      "path": "specs/system-speckit/033-system-speckit-v4/038-goal-unification/011-goal-drift-remediation/scratch",
+       "reason": "excluded directory"
+     },
+     {
+-      "path": "specs/system-speckit/045-daemon-and-test-harness-hardening/003-test-hang-containment/scratch",
++      "path": "specs/system-speckit/033-system-speckit-v4/038-goal-unification/012-open-items-research/research/lineages",
+       "reason": "excluded directory"
+     },
+     {
+-      "path": "specs/system-speckit/045-daemon-and-test-harness-hardening/004-live-follow-log-hygiene/scratch",
++      "path": "specs/system-speckit/033-system-speckit-v4/038-goal-unification/012-open-items-research/scratch",
+       "reason": "excluded directory"
+     },
+     {

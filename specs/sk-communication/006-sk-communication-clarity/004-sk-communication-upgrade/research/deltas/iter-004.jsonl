@@ -1,0 +1,20 @@
+{"type":"iteration","iteration":4,"mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","newInfoRatio":0.68,"status":"complete","focus":"Is a re-render in plainer words still the right lane? Render-lane limits, protected-span order admissibility, and the keep/extend/split verdict"}
+{"type":"finding","id":"f-iter004-001","severity":"P1","label":"The render lane has four modes, all presentation-only, and its input contract carries no message text, so reordering is unrepresentable rather than disallowed","iteration":4}
+{"type":"finding","id":"f-iter004-002","severity":"P2","label":"The render layer re-verifies byte identity between the displayed text and the validated text; that is self-consistency, not order preservation, and an accepted projection reports the single constant projection-accepted","iteration":4}
+{"type":"finding","id":"f-iter004-003","severity":"P1","label":"The contract's only order-specific guarantee is the protected-span token sequence, compared position by position, rejected by name as PLACEHOLDER_REORDERED and fail-closed to the exact original","iteration":4}
+{"type":"finding","id":"f-iter004-004","severity":"P1","label":"A prose reorder that never moves a spanned segment passes the whole current contract indistinguishably from a copy edit; the engine cannot tell the two operations apart","iteration":4}
+{"type":"finding","id":"f-iter004-005","severity":"P2","label":"No order or wording observation survives into either decision record, so a detected prose reorder would not be reported as one","iteration":4}
+{"type":"finding","id":"f-iter004-006","severity":"P1","label":"Verdict: keep the copy-editing lane and split cut-and-reorder into a separate declared operation; do not relax the token-order check","iteration":4}
+{"type":"invariant","id":"inv-iter004-001","label":"A spanned segment may not change position: any deviation of the token sequence from the span order is a hard rejection, not a quality downgrade","iteration":4}
+{"type":"invariant","id":"inv-iter004-002","label":"The render layer may only select between the validated projection and the exact original, and may never compose or reorder text","iteration":4}
+{"type":"observation","id":"obs-iter004-001","packet":"004","classification":"real","iteration":4}
+{"type":"observation","id":"obs-iter004-002","packet":"004","classification":"gap","iteration":4}
+{"type":"edge","id":"e-iter004-001","relation":"CONTRADICTS","source":"f-iter004-004","target":"c-iter004-001","iteration":4}
+{"type":"edge","id":"e-iter004-002","relation":"SUPPORTS","source":"f-iter004-003","target":"c-iter004-002","iteration":4}
+{"type":"edge","id":"e-iter004-003","relation":"CITES","source":"f-iter004-006","target":"s-iter004-001","iteration":4}
+{"type":"node","id":"c-iter004-001","kind":"CLAIM","label":"One lane is enough for both copy editing and cut-and-reorder","iteration":4}
+{"type":"node","id":"c-iter004-002","kind":"CLAIM","label":"Copy editing and cut-and-reorder carry incompatible guarantees","iteration":4}
+{"type":"node","id":"s-iter004-001","kind":"SOURCE","label":"clarity.md rule 17: smoothing is not rewriting","iteration":4}
+{"type":"ruled_out","direction":"Treating src/render as the place a reorder would have to be caught","reason":"RenderDecisionInput has no text field, so no reorder can be expressed there; any reorder must occur at the provider/validator boundary","iteration":4}
+{"type":"ruled_out","direction":"Treating the render-layer INVALID_INPUT byte-identity check as an order check","reason":"It compares the accepted text against its own recorded hash, so a consistently hashed reordered projection passes it","iteration":4}
+{"type":"ruled_out","direction":"Searching src/ for a semantic-difference module holding a prose-order test","reason":"The only module referencing semanticDifference is validator.ts itself; the comparison is one call at validator.ts:212-221 and its rule ids are the five shape rules at :223-227, none of which is an order rule","iteration":4}

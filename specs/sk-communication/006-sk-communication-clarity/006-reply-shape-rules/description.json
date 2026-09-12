@@ -1,0 +1,18 @@
+{
+  "specFolder": "sk-communication/006-sk-communication-clarity/006-reply-shape-rules",
+  "description": "Phase 1: reply-shape-rules",
+  "keywords": [
+    "phase",
+    "reply-shape-rules"
+  ],
+  "lastUpdated": "2026-09-12T16:39:30.684Z",
+  "specId": "006",
+  "folderSlug": "reply-shape-rules",
+  "parentChain": [
+    "sk-communication",
+    "006-sk-communication-clarity"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

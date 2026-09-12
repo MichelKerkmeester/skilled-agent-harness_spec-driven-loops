@@ -1,0 +1,28 @@
+diff --git a/.opencode/commands/deep/assets/compiled/deep-research.contract.md b/.opencode/commands/deep/assets/compiled/deep-research.contract.md
+index d8bd68ae6c..39cb67f140 100644
+--- a/.opencode/commands/deep/assets/compiled/deep-research.contract.md
++++ b/.opencode/commands/deep/assets/compiled/deep-research.contract.md
+@@ -22,12 +22,12 @@
+     },
+     {
+       "path": ".opencode/commands/deep/assets/deep-research-auto.yaml",
+-      "sha256": "8f1d526f2fb87c1a902f4a044015fed378f87b7a97f33162451d0db51345edf8",
++      "sha256": "0d416fe20f9c1b115037007bee2f89e1c722956ccdd2055343cbe34ad2bf475a",
+       "section": "full"
+     },
+     {
+       "path": ".opencode/commands/deep/assets/deep-research-confirm.yaml",
+-      "sha256": "7c1602c77265a1af592e162e00da071a16b6948cadd04b04fba79ecd7bd12ca0",
++      "sha256": "b5aa73b66d903091cc0467f242f45ec977255c8f00244ed39f723068459e150a",
+       "section": "full"
+     },
+     {
+@@ -47,7 +47,7 @@
+     },
+     {
+       "path": ".opencode/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md",
+-      "sha256": "f87b785e7fd2f25563f418aa06c78ac6cac681c4591ceec26583e79852b00967",
++      "sha256": "98b8c3c3b14dacd9653f42ea93e15887d0e815edfc390fe38ea0b470d67ef77a",
+       "section": "full"
+     },
+     {

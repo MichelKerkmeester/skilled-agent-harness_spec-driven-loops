@@ -1,0 +1,2275 @@
+{
+  "sessionId": "research-sk-communication-006-001-20260912T135900Z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-which-recommendations-in-each-source-are-already-covered-by-a-named-line-in-the-",
+      "inboxId": null,
+      "text": "Which recommendations in each source are already covered by a named line in the current stack, cited file:line?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-2-which-are-genuinely-new-and-what-specific-failure-does-each-prevent-that-no-curr",
+      "inboxId": null,
+      "text": "Which are genuinely new, and what specific failure does each prevent that no current rule names?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-3-which-contradict-a-rule-the-repository-already-has-and-on-what-exact-point-does-",
+      "inboxId": null,
+      "text": "Which contradict a rule the repository already has, and on what exact point does the disagreement turn?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-4-for-each-candidate-which-single-surface-should-own-it-the-root-doc-a-named-exist",
+      "inboxId": null,
+      "text": "For each candidate, which single surface should own it: the root doc, a named existing repo rule, a new repo rule, the skill, or the wording standard?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-5-what-does-the-adhd-source-s-mechanism-half-offer-citing-its-session-start-hook-r",
+      "inboxId": null,
+      "text": "What does the ADHD source's mechanism half offer, citing its session-start hook, runtime mirrors, eval harness and release gate by path, that this repository has no equivalent for?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "question-1-which-recommendations-in-each-source-are-already-covered-by-a-named-line-in-the-",
+      "inboxId": null,
+      "text": "Which recommendations in each source are already covered by a named line in the current stack, cited file:line?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-2-which-are-genuinely-new-and-what-specific-failure-does-each-prevent-that-no-curr",
+      "inboxId": null,
+      "text": "Which are genuinely new, and what specific failure does each prevent that no current rule names?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-3-which-contradict-a-rule-the-repository-already-has-and-on-what-exact-point-does-",
+      "inboxId": null,
+      "text": "Which contradict a rule the repository already has, and on what exact point does the disagreement turn?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-4-for-each-candidate-which-single-surface-should-own-it-the-root-doc-a-named-exist",
+      "inboxId": null,
+      "text": "For each candidate, which single surface should own it: the root doc, a named existing repo rule, a new repo rule, the skill, or the wording standard?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-5-what-does-the-adhd-source-s-mechanism-half-offer-citing-its-session-start-hook-r",
+      "inboxId": null,
+      "text": "What does the ADHD source's mechanism half offer, citing its session-start hook, runtime mirrors, eval harness and release gate by path, that this repository has no equivalent for?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "The other four key questions stay open for the other two sources: covered-vs-new for",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Cross-source synthesis across clarity.md and STYLE.md is now largely in place (two two-source",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "The deferred `sk-code-quality` comment-checklist read (F8).",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "`i-have-adhd-main` remains uninventoried, including the mechanism half: session-start hook,",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "The deferred `sk-code-quality` comment-checklist read (F8 from iteration 2) is still open.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "`research/research.md` was not created. `deep-research-config.json` sets",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "The three sources are now all inventoried. The cross-source synthesis the topic finally needs",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Whether the repo's doctor runtime-mirror surface performs a byte-compare or a load smoke test,",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Whether the doctor runtime-mirror surface performs a byte-compare or a load smoke test, and whether",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "The deferred `sk-code-quality` comment-checklist read (candidate 25; F8 from iteration 2) — still",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "`research/research.md` config-vs-strategy discrepancy — still open (iteration 3 edge case).",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "New: which phase schedules the baseline capture for the reply-quality harness (phase 002's record",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Whether the unread `code-style-guide.md` §4 / Webflow style-guide §5 comment sections carry",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "The baseline-capture scheduling question from iteration 4's F4 — still with the reducer/operator.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Whether CI also runs the pi checkers, the codex-hooks-installer check and the fallback-health",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Duplicate `CHK-CMT-01` id in the checklist asset — belongs to `sk-code-quality`'s owner.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "The 001→002 handoff's missing `research.md` — now a named gate blocker (F2); resolution belongs",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "New: the reducer should republish C-4 with the corrected location list before phase 002 consumes",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "The 001 to 002 handoff's missing `research.md` (iteration 5 F2), a named gate blocker owned by the",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "The baseline-capture scheduling question from iteration 4's F4 (with the reducer/operator).",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Whether CI also runs the pi checkers, the codex-hooks-installer check and the fallback-health rows",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Duplicate `CHK-CMT-01` id in the `sk-code-quality` checklist asset (owned by that skill).",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Whether the unread `code-style-guide.md` section 4 and Webflow style-guide section 5 comment",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Baseline-capture scheduling (phase 002's record with the operator).",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "001 to 002 handoff's missing `research.md` (workflow/reducer; gate blocker).",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Duplicate `CHK-CMT-01` id (`sk-code-quality` owner).",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "CI runs the pi checkers, the codex-hooks-installer check and the fallback-health rows (repo CI surface;",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "C-4 republication (reducer, F2).",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Unread comment sections in `code-style-guide.md` section 4 / Webflow section 5 (sk-code-quality surface;",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "New: does `scripts/hvr_scan.py` hard-require section 9's headings? That decides whether extracting",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "The five key questions stay open as recorded in `strategy.md:34-43`.",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Carried forward: 001 to 002 handoff's missing `research.md`; baseline-capture scheduling; the",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "The five key questions stay open as recorded in strategy.md:34-43; this iteration did not close any.",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Open for the reducer: if the operator adopts the split model, who owns the mode's failure mode when",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "The five key questions stay open as recorded in `strategy.md:34-43`; this iteration answers the",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which phase owns the blind judge and the weighted scorer (conditions 1-3) — a phase-002/005",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Carried forward unchanged: the 001→002 handoff's missing `research.md`; C-4 republication; the",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Baseline-capture ownership (Finding 4) — still with the reducer/operator; this iteration names it",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [
+    "Which recommendations in each source are already covered by a named line in the current stack, cited file:line?",
+    "Which are genuinely new, and what specific failure does each prevent that no current rule names?",
+    "Which contradict a rule the repository already has, and on what exact point does the disagreement turn?",
+    "For each candidate, which single surface should own it: the root doc, a named existing repo rule, a new repo rule, the skill, or the wording standard?",
+    "What does the ADHD source's mechanism half offer, citing its session-start hook, runtime mirrors, eval harness and release gate by path, that this repository has no equivalent for?"
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-1-5-rule-14-first-sentence-job-communication-md-6-beside-the-empty-opener-entry",
+      "text": "Rule 14 (first-sentence job): `communication.md` §6, beside the empty-opener entry.",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/sk-communication/006-sk-communication-clarity/context/clarity.md:37-192`",
+        "`AGENTS.md:140-228` (§3), `:402-410` (§8), `:482` (§10)",
+        "`REPO RULES.md:1-80` (§1-§3)",
+        "`repo-rules/communication.md:1-202`",
+        "`repo-rules/presenting-decisions.md:1-156`",
+        "`repo-rules/handoff-and-questions.md:1-165`",
+        "`repo-rules/uncertainty-and-honesty.md:128`, `:143`",
+        "`.opencode/skills/sk-communication/SKILL.md:1-170`",
+        "`.opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md:54-105`, `:110-350`, `:366-515`",
+        "`.opencode/skills/sk-doc/sk-create-with-human-voice/references/scope-and-exemptions.md:1-45`",
+        "`.opencode/commands/rewrite/response.md:1-50`"
+      ]
+    },
+    {
+      "id": "finding-1-4-rule-17-cut-and-reorder-hvr-s-pre-publish-checklist-449-515-is-the-closest-home-",
+      "text": "Rule 17 (cut and reorder): HVR's pre-publish checklist (`:449-515`) is the closest home; no",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/sk-communication/006-sk-communication-clarity/context/clarity.md:37-192`",
+        "`AGENTS.md:140-228` (§3), `:402-410` (§8), `:482` (§10)",
+        "`REPO RULES.md:1-80` (§1-§3)",
+        "`repo-rules/communication.md:1-202`",
+        "`repo-rules/presenting-decisions.md:1-156`",
+        "`repo-rules/handoff-and-questions.md:1-165`",
+        "`repo-rules/uncertainty-and-honesty.md:128`, `:143`",
+        "`.opencode/skills/sk-communication/SKILL.md:1-170`",
+        "`.opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md:54-105`, `:110-350`, `:366-515`",
+        "`.opencode/skills/sk-doc/sk-create-with-human-voice/references/scope-and-exemptions.md:1-45`",
+        "`.opencode/commands/rewrite/response.md:1-50`"
+      ]
+    },
+    {
+      "id": "finding-1-6-rule-3-arguable-claim-presenting-decisions-md-1-as-a-domain-scoped-boundary-note",
+      "text": "Rule 3 (arguable claim): `presenting-decisions.md` §1, as a domain-scoped boundary note.",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/sk-communication/006-sk-communication-clarity/context/clarity.md:37-192`",
+        "`AGENTS.md:140-228` (§3), `:402-410` (§8), `:482` (§10)",
+        "`REPO RULES.md:1-80` (§1-§3)",
+        "`repo-rules/communication.md:1-202`",
+        "`repo-rules/presenting-decisions.md:1-156`",
+        "`repo-rules/handoff-and-questions.md:1-165`",
+        "`repo-rules/uncertainty-and-honesty.md:128`, `:143`",
+        "`.opencode/skills/sk-communication/SKILL.md:1-170`",
+        "`.opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md:54-105`, `:110-350`, `:366-515`",
+        "`.opencode/skills/sk-doc/sk-create-with-human-voice/references/scope-and-exemptions.md:1-45`",
+        "`.opencode/commands/rewrite/response.md:1-50`"
+      ]
+    },
+    {
+      "id": "finding-1-2-rule-4-borrowability-hvr-4-5-which-already-owns-vague-claim-and-specificity-cont",
+      "text": "Rule 4 (borrowability): HVR §4/§5, which already owns vague-claim and specificity content",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/sk-communication/006-sk-communication-clarity/context/clarity.md:37-192`",
+        "`AGENTS.md:140-228` (§3), `:402-410` (§8), `:482` (§10)",
+        "`REPO RULES.md:1-80` (§1-§3)",
+        "`repo-rules/communication.md:1-202`",
+        "`repo-rules/presenting-decisions.md:1-156`",
+        "`repo-rules/handoff-and-questions.md:1-165`",
+        "`repo-rules/uncertainty-and-honesty.md:128`, `:143`",
+        "`.opencode/skills/sk-communication/SKILL.md:1-170`",
+        "`.opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md:54-105`, `:110-350`, `:366-515`",
+        "`.opencode/skills/sk-doc/sk-create-with-human-voice/references/scope-and-exemptions.md:1-45`",
+        "`.opencode/commands/rewrite/response.md:1-50`"
+      ]
+    },
+    {
+      "id": "finding-1-1-rules-1-2-reader-model-presenting-decisions-md-whose-fires-when-already-covers-a",
+      "text": "Rules 1-2 (reader model): `presenting-decisions.md`, whose fires-when already covers \"answer a",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/sk-communication/006-sk-communication-clarity/context/clarity.md:37-192`",
+        "`AGENTS.md:140-228` (§3), `:402-410` (§8), `:482` (§10)",
+        "`REPO RULES.md:1-80` (§1-§3)",
+        "`repo-rules/communication.md:1-202`",
+        "`repo-rules/presenting-decisions.md:1-156`",
+        "`repo-rules/handoff-and-questions.md:1-165`",
+        "`repo-rules/uncertainty-and-honesty.md:128`, `:143`",
+        "`.opencode/skills/sk-communication/SKILL.md:1-170`",
+        "`.opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md:54-105`, `:110-350`, `:366-515`",
+        "`.opencode/skills/sk-doc/sk-create-with-human-voice/references/scope-and-exemptions.md:1-45`",
+        "`.opencode/commands/rewrite/response.md:1-50`"
+      ]
+    },
+    {
+      "id": "finding-1-3-rules-10-and-15-sentence-links-paragraph-progression-communication-md-2-but-it-i",
+      "text": "Rules 10 and 15 (sentence links, paragraph progression): `communication.md` §2, but it is at its",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/sk-communication/006-sk-communication-clarity/context/clarity.md:37-192`",
+        "`AGENTS.md:140-228` (§3), `:402-410` (§8), `:482` (§10)",
+        "`REPO RULES.md:1-80` (§1-§3)",
+        "`repo-rules/communication.md:1-202`",
+        "`repo-rules/presenting-decisions.md:1-156`",
+        "`repo-rules/handoff-and-questions.md:1-165`",
+        "`repo-rules/uncertainty-and-honesty.md:128`, `:143`",
+        "`.opencode/skills/sk-communication/SKILL.md:1-170`",
+        "`.opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md:54-105`, `:110-350`, `:366-515`",
+        "`.opencode/skills/sk-doc/sk-create-with-human-voice/references/scope-and-exemptions.md:1-45`",
+        "`.opencode/commands/rewrite/response.md:1-50`"
+      ]
+    },
+    {
+      "id": "finding-2-9-not-x-but-y-carve-out-no-change-recommended-keeping-hvr-140-s-absolute-ban-is-th",
+      "text": "\"Not-X-but-Y\" carve-out: no change recommended; keeping `HVR:140`'s absolute ban is the",
+      "addedAtIteration": 2,
+      "sources": [
+        "`specs/sk-communication/006-sk-communication-clarity/context/claude-style-patch-main/STYLE.md:1-95`",
+        "`specs/sk-communication/006-sk-communication-clarity/context/claude-style-patch-main/README.md:1-42`",
+        "`specs/sk-communication/006-sk-communication-clarity/context/clarity.md:37-50`",
+        "`repo-rules/communication.md:1-202`",
+        "`repo-rules/presenting-decisions.md:1-156`",
+        "`repo-rules/handoff-and-questions.md:1-165`",
+        "`AGENTS.md:44`, `:144`, `:153-154`, `:209`, `:243`",
+        "`.opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md:29`, `:69-96`,",
+        "`.opencode/skills/sk-code/SKILL.md:27`",
+        "`grep` negative checks: `nominaliz`, `compress|telegraph|telescop`, `Tractatus`, `fragment`,"
+      ]
+    },
+    {
+      "id": "finding-2-2-load-bearing-style-md-69-bans-the-word-the-repository-uses-it-as-core-vocabulary",
+      "text": "**\"Load-bearing\".** `STYLE.md:69` bans the word. The repository uses it as core vocabulary for",
+      "addedAtIteration": 2,
+      "sources": [
+        "`specs/sk-communication/006-sk-communication-clarity/context/claude-style-patch-main/STYLE.md:1-95`",
+        "`specs/sk-communication/006-sk-communication-clarity/context/claude-style-patch-main/README.md:1-42`",
+        "`specs/sk-communication/006-sk-communication-clarity/context/clarity.md:37-50`",
+        "`repo-rules/communication.md:1-202`",
+        "`repo-rules/presenting-decisions.md:1-156`",
+        "`repo-rules/handoff-and-questions.md:1-165`",
+        "`AGENTS.md:44`, `:144`, `:153-154`, `:209`, `:243`",
+        "`.opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md:29`, `:69-96`,",
+        "`.opencode/skills/sk-code/SKILL.md:27`",
+        "`grep` negative checks: `nominaliz`, `compress|telegraph|telescop`, `Tractatus`, `fragment`,"
+      ]
+    },
+    {
+      "id": "finding-2-1-not-x-but-y-style-md-39-says-not-to-use-the-antithesis-as-a-rhythmic-habit-and-p",
+      "text": "**Not-X-but-Y.** `STYLE.md:39` says not to use the antithesis as a rhythmic habit and permits",
+      "addedAtIteration": 2,
+      "sources": [
+        "`specs/sk-communication/006-sk-communication-clarity/context/claude-style-patch-main/STYLE.md:1-95`",
+        "`specs/sk-communication/006-sk-communication-clarity/context/claude-style-patch-main/README.md:1-42`",
+        "`specs/sk-communication/006-sk-communication-clarity/context/clarity.md:37-50`",
+        "`repo-rules/communication.md:1-202`",
+        "`repo-rules/presenting-decisions.md:1-156`",
+        "`repo-rules/handoff-and-questions.md:1-165`",
+        "`AGENTS.md:44`, `:144`, `:153-154`, `:209`, `:243`",
+        "`.opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md:29`, `:69-96`,",
+        "`.opencode/skills/sk-code/SKILL.md:27`",
+        "`grep` negative checks: `nominaliz`, `compress|telegraph|telescop`, `Tractatus`, `fragment`,"
+      ]
+    },
+    {
+      "id": "finding-2-3-pre-drafting-intent-becomes-a-two-source-signal-style-md-15-fixes-what-the-respo",
+      "text": "**Pre-drafting intent becomes a two-source signal.** `STYLE.md:15` fixes what the response is",
+      "addedAtIteration": 2,
+      "sources": [
+        "`specs/sk-communication/006-sk-communication-clarity/context/claude-style-patch-main/STYLE.md:1-95`",
+        "`specs/sk-communication/006-sk-communication-clarity/context/claude-style-patch-main/README.md:1-42`",
+        "`specs/sk-communication/006-sk-communication-clarity/context/clarity.md:37-50`",
+        "`repo-rules/communication.md:1-202`",
+        "`repo-rules/presenting-decisions.md:1-156`",
+        "`repo-rules/handoff-and-questions.md:1-165`",
+        "`AGENTS.md:44`, `:144`, `:153-154`, `:209`, `:243`",
+        "`.opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md:29`, `:69-96`,",
+        "`.opencode/skills/sk-code/SKILL.md:27`",
+        "`grep` negative checks: `nominaliz`, `compress|telegraph|telescop`, `Tractatus`, `fragment`,"
+      ]
+    },
+    {
+      "id": "finding-2-8-colon-rule-an-amendment-decision-against-communication-md-104-106-and-hvr-114-no",
+      "text": "Colon rule: an amendment decision against `communication.md:104-106` and `HVR:114`, not a",
+      "addedAtIteration": 2,
+      "sources": [
+        "`specs/sk-communication/006-sk-communication-clarity/context/claude-style-patch-main/STYLE.md:1-95`",
+        "`specs/sk-communication/006-sk-communication-clarity/context/claude-style-patch-main/README.md:1-42`",
+        "`specs/sk-communication/006-sk-communication-clarity/context/clarity.md:37-50`",
+        "`repo-rules/communication.md:1-202`",
+        "`repo-rules/presenting-decisions.md:1-156`",
+        "`repo-rules/handoff-and-questions.md:1-165`",
+        "`AGENTS.md:44`, `:144`, `:153-154`, `:209`, `:243`",
+        "`.opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md:29`, `:69-96`,",
+        "`.opencode/skills/sk-code/SKILL.md:27`",
+        "`grep` negative checks: `nominaliz`, `compress|telegraph|telescop`, `Tractatus`, `fragment`,"
+      ]
+    },
+    {
+      "id": "finding-2-11-exemplar-paragraph-style-md-73-77-hvr-2-as-a-worked-target-beside-the-micro-exam",
+      "text": "Exemplar paragraph (`STYLE.md:73-77`): HVR §2, as a worked target beside the micro-examples.",
+      "addedAtIteration": 2,
+      "sources": [
+        "`specs/sk-communication/006-sk-communication-clarity/context/claude-style-patch-main/STYLE.md:1-95`",
+        "`specs/sk-communication/006-sk-communication-clarity/context/claude-style-patch-main/README.md:1-42`",
+        "`specs/sk-communication/006-sk-communication-clarity/context/clarity.md:37-50`",
+        "`repo-rules/communication.md:1-202`",
+        "`repo-rules/presenting-decisions.md:1-156`",
+        "`repo-rules/handoff-and-questions.md:1-165`",
+        "`AGENTS.md:44`, `:144`, `:153-154`, `:209`, `:243`",
+        "`.opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md:29`, `:69-96`,",
+        "`.opencode/skills/sk-code/SKILL.md:27`",
+        "`grep` negative checks: `nominaliz`, `compress|telegraph|telescop`, `Tractatus`, `fragment`,"
+      ]
+    },
+    {
+      "id": "finding-2-7-fragment-ban-style-md-35-communication-md-6-beside-the-empty-opener-entry-note-t",
+      "text": "Fragment ban (`STYLE.md:35`): `communication.md` §6 beside the empty-opener entry. Note the",
+      "addedAtIteration": 2,
+      "sources": [
+        "`specs/sk-communication/006-sk-communication-clarity/context/claude-style-patch-main/STYLE.md:1-95`",
+        "`specs/sk-communication/006-sk-communication-clarity/context/claude-style-patch-main/README.md:1-42`",
+        "`specs/sk-communication/006-sk-communication-clarity/context/clarity.md:37-50`",
+        "`repo-rules/communication.md:1-202`",
+        "`repo-rules/presenting-decisions.md:1-156`",
+        "`repo-rules/handoff-and-questions.md:1-165`",
+        "`AGENTS.md:44`, `:144`, `:153-154`, `:209`, `:243`",
+        "`.opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md:29`, `:69-96`,",
+        "`.opencode/skills/sk-code/SKILL.md:27`",
+        "`grep` negative checks: `nominaliz`, `compress|telegraph|telescop`, `Tractatus`, `fragment`,"
+      ]
+    },
+    {
+      "id": "finding-2-5-label-before-payload-principle-style-md-37-with-the-fold-repair-style-md-33",
+      "text": "Label-before-payload principle (`STYLE.md:37`) with the fold repair (`STYLE.md:33`):",
+      "addedAtIteration": 2,
+      "sources": [
+        "`specs/sk-communication/006-sk-communication-clarity/context/claude-style-patch-main/STYLE.md:1-95`",
+        "`specs/sk-communication/006-sk-communication-clarity/context/claude-style-patch-main/README.md:1-42`",
+        "`specs/sk-communication/006-sk-communication-clarity/context/clarity.md:37-50`",
+        "`repo-rules/communication.md:1-202`",
+        "`repo-rules/presenting-decisions.md:1-156`",
+        "`repo-rules/handoff-and-questions.md:1-165`",
+        "`AGENTS.md:44`, `:144`, `:153-154`, `:209`, `:243`",
+        "`.opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md:29`, `:69-96`,",
+        "`.opencode/skills/sk-code/SKILL.md:27`",
+        "`grep` negative checks: `nominaliz`, `compress|telegraph|telescop`, `Tractatus`, `fragment`,"
+      ]
+    },
+    {
+      "id": "finding-2-6-nominalization-and-stacked-compression-style-md-19-43-hvr-4-beside-the-analogy",
+      "text": "Nominalization and stacked compression (`STYLE.md:19`, `:43`): HVR §4, beside the analogy",
+      "addedAtIteration": 2,
+      "sources": [
+        "`specs/sk-communication/006-sk-communication-clarity/context/claude-style-patch-main/STYLE.md:1-95`",
+        "`specs/sk-communication/006-sk-communication-clarity/context/claude-style-patch-main/README.md:1-42`",
+        "`specs/sk-communication/006-sk-communication-clarity/context/clarity.md:37-50`",
+        "`repo-rules/communication.md:1-202`",
+        "`repo-rules/presenting-decisions.md:1-156`",
+        "`repo-rules/handoff-and-questions.md:1-165`",
+        "`AGENTS.md:44`, `:144`, `:153-154`, `:209`, `:243`",
+        "`.opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md:29`, `:69-96`,",
+        "`.opencode/skills/sk-code/SKILL.md:27`",
+        "`grep` negative checks: `nominaliz`, `compress|telegraph|telescop`, `Tractatus`, `fragment`,"
+      ]
+    },
+    {
+      "id": "finding-2-4-pre-drafting-intent-style-md-15-plus-clarity-rule-3-presenting-decisions-md-1-as",
+      "text": "Pre-drafting intent (`STYLE.md:15` plus clarity rule 3): `presenting-decisions.md` §1, as a",
+      "addedAtIteration": 2,
+      "sources": [
+        "`specs/sk-communication/006-sk-communication-clarity/context/claude-style-patch-main/STYLE.md:1-95`",
+        "`specs/sk-communication/006-sk-communication-clarity/context/claude-style-patch-main/README.md:1-42`",
+        "`specs/sk-communication/006-sk-communication-clarity/context/clarity.md:37-50`",
+        "`repo-rules/communication.md:1-202`",
+        "`repo-rules/presenting-decisions.md:1-156`",
+        "`repo-rules/handoff-and-questions.md:1-165`",
+        "`AGENTS.md:44`, `:144`, `:153-154`, `:209`, `:243`",
+        "`.opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md:29`, `:69-96`,",
+        "`.opencode/skills/sk-code/SKILL.md:27`",
+        "`grep` negative checks: `nominaliz`, `compress|telegraph|telescop`, `Tractatus`, `fragment`,"
+      ]
+    },
+    {
+      "id": "finding-2-12-rule-shape-from-readme-readme-md-16-18-a-template-level-question-for-the-repo-ru",
+      "text": "Rule shape from README (`README.md:16-18`): a template-level question for the repo-rule file",
+      "addedAtIteration": 2,
+      "sources": [
+        "`specs/sk-communication/006-sk-communication-clarity/context/claude-style-patch-main/STYLE.md:1-95`",
+        "`specs/sk-communication/006-sk-communication-clarity/context/claude-style-patch-main/README.md:1-42`",
+        "`specs/sk-communication/006-sk-communication-clarity/context/clarity.md:37-50`",
+        "`repo-rules/communication.md:1-202`",
+        "`repo-rules/presenting-decisions.md:1-156`",
+        "`repo-rules/handoff-and-questions.md:1-165`",
+        "`AGENTS.md:44`, `:144`, `:153-154`, `:209`, `:243`",
+        "`.opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md:29`, `:69-96`,",
+        "`.opencode/skills/sk-code/SKILL.md:27`",
+        "`grep` negative checks: `nominaliz`, `compress|telegraph|telescop`, `Tractatus`, `fragment`,"
+      ]
+    },
+    {
+      "id": "finding-2-10-tractatus-numbering-style-md-51-no-existing-surface-the-reply-side-formatting-la",
+      "text": "Tractatus numbering (`STYLE.md:51`): no existing surface. The reply-side formatting lane does",
+      "addedAtIteration": 2,
+      "sources": [
+        "`specs/sk-communication/006-sk-communication-clarity/context/claude-style-patch-main/STYLE.md:1-95`",
+        "`specs/sk-communication/006-sk-communication-clarity/context/claude-style-patch-main/README.md:1-42`",
+        "`specs/sk-communication/006-sk-communication-clarity/context/clarity.md:37-50`",
+        "`repo-rules/communication.md:1-202`",
+        "`repo-rules/presenting-decisions.md:1-156`",
+        "`repo-rules/handoff-and-questions.md:1-165`",
+        "`AGENTS.md:44`, `:144`, `:153-154`, `:209`, `:243`",
+        "`.opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md:29`, `:69-96`,",
+        "`.opencode/skills/sk-code/SKILL.md:27`",
+        "`grep` negative checks: `nominaliz`, `compress|telegraph|telescop`, `Tractatus`, `fragment`,"
+      ]
+    },
+    {
+      "id": "finding-3-8-evals-cases-jsonl-1-14-fourteen-cases-across-direct-answer-agent-autonomy-debugg",
+      "text": "`evals/cases.jsonl:1-14` — fourteen cases across direct-answer, agent-autonomy, debugging,",
+      "addedAtIteration": 3,
+      "sources": [
+        "`i-have-adhd-main/skills/i-have-adhd/SKILL.md:1-142` (in full)",
+        "`i-have-adhd-main/README.md:1-103`",
+        "`i-have-adhd-main/hooks/hooks.json:1-17`, `hooks/always-on.mjs:1-44`, `hooks/always-on.sh:1-37`",
+        "`i-have-adhd-main/opencode.json:1-4`, `package.json:1-16`, `plugin.json:1-4`,",
+        "`i-have-adhd-main/.opencode/command/i-have-adhd.md:1-8`",
+        "`i-have-adhd-main/skills/i-have-adhd/agents/gemini.toml:1-24`, `agents/openai.yaml:1-7`",
+        "`i-have-adhd-main/evals/README.md:1-84`, `evals/rubric.md:1-26`, `evals/cases.jsonl:1-14`,",
+        "`i-have-adhd-main/.github/workflows/plugin-load-check.yml:1-47`, `pi-load-check.yml:1-31`,",
+        "`AGENTS.md:153`, `:154`, `:192`, `:297`, `:399`, `:402`, `:407`, `:500`; §3 Restraint Signals",
+        "`REPO RULES.md:1-80` (§1-§3, via iteration 1)",
+        "`repo-rules/communication.md:72`, `:76`, `:79`, `:94`, `:104`, `:121`, `:132`, `:141`, `:154`,",
+        "`repo-rules/presenting-decisions.md:50`, `:89`, `:96`, `:100-113`, `:117-125`",
+        "`repo-rules/handoff-and-questions.md:43`, `:45`, `:53`, `:63`, `:70-80`, `:86`, `:104`, `:159`",
+        "`repo-rules/uncertainty-and-honesty.md:55`, `:107`, `:117`",
+        "`repo-rules/root-cause-and-debugging.md:92`, `:125`",
+        "`repo-rules/delegation-and-orchestration.md:108`, `:211`",
+        "`.opencode/hooks/session-lifecycle/README.md:1-60`",
+        "`.opencode/skills/sk-communication/benchmark/README.md` §1-§3;",
+        "`.opencode/commands/doctor/assets/doctor-runtime-mirrors.yaml` (existence)",
+        "`.opencode/skills/sk-doc/sk-create-quality-control` (existence)",
+        "`research/deep-research-config.json`, `research/deep-research-state.jsonl`,"
+      ]
+    },
+    {
+      "id": "finding-3-11-evals-readme-md-35-37-the-isolation-requirement-setting-sources-for-claude-and",
+      "text": "`evals/README.md:35-37` — the isolation requirement: `--setting-sources \"\"` for Claude and",
+      "addedAtIteration": 3,
+      "sources": [
+        "`i-have-adhd-main/skills/i-have-adhd/SKILL.md:1-142` (in full)",
+        "`i-have-adhd-main/README.md:1-103`",
+        "`i-have-adhd-main/hooks/hooks.json:1-17`, `hooks/always-on.mjs:1-44`, `hooks/always-on.sh:1-37`",
+        "`i-have-adhd-main/opencode.json:1-4`, `package.json:1-16`, `plugin.json:1-4`,",
+        "`i-have-adhd-main/.opencode/command/i-have-adhd.md:1-8`",
+        "`i-have-adhd-main/skills/i-have-adhd/agents/gemini.toml:1-24`, `agents/openai.yaml:1-7`",
+        "`i-have-adhd-main/evals/README.md:1-84`, `evals/rubric.md:1-26`, `evals/cases.jsonl:1-14`,",
+        "`i-have-adhd-main/.github/workflows/plugin-load-check.yml:1-47`, `pi-load-check.yml:1-31`,",
+        "`AGENTS.md:153`, `:154`, `:192`, `:297`, `:399`, `:402`, `:407`, `:500`; §3 Restraint Signals",
+        "`REPO RULES.md:1-80` (§1-§3, via iteration 1)",
+        "`repo-rules/communication.md:72`, `:76`, `:79`, `:94`, `:104`, `:121`, `:132`, `:141`, `:154`,",
+        "`repo-rules/presenting-decisions.md:50`, `:89`, `:96`, `:100-113`, `:117-125`",
+        "`repo-rules/handoff-and-questions.md:43`, `:45`, `:53`, `:63`, `:70-80`, `:86`, `:104`, `:159`",
+        "`repo-rules/uncertainty-and-honesty.md:55`, `:107`, `:117`",
+        "`repo-rules/root-cause-and-debugging.md:92`, `:125`",
+        "`repo-rules/delegation-and-orchestration.md:108`, `:211`",
+        "`.opencode/hooks/session-lifecycle/README.md:1-60`",
+        "`.opencode/skills/sk-communication/benchmark/README.md` §1-§3;",
+        "`.opencode/commands/doctor/assets/doctor-runtime-mirrors.yaml` (existence)",
+        "`.opencode/skills/sk-doc/sk-create-quality-control` (existence)",
+        "`research/deep-research-config.json`, `research/deep-research-state.jsonl`,"
+      ]
+    },
+    {
+      "id": "finding-3-10-evals-readme-md-52-58-blinding-is-structural-not-asked-of-the-grader-conditions-",
+      "text": "`evals/README.md:52-58` — blinding is structural, not asked of the grader: conditions are",
+      "addedAtIteration": 3,
+      "sources": [
+        "`i-have-adhd-main/skills/i-have-adhd/SKILL.md:1-142` (in full)",
+        "`i-have-adhd-main/README.md:1-103`",
+        "`i-have-adhd-main/hooks/hooks.json:1-17`, `hooks/always-on.mjs:1-44`, `hooks/always-on.sh:1-37`",
+        "`i-have-adhd-main/opencode.json:1-4`, `package.json:1-16`, `plugin.json:1-4`,",
+        "`i-have-adhd-main/.opencode/command/i-have-adhd.md:1-8`",
+        "`i-have-adhd-main/skills/i-have-adhd/agents/gemini.toml:1-24`, `agents/openai.yaml:1-7`",
+        "`i-have-adhd-main/evals/README.md:1-84`, `evals/rubric.md:1-26`, `evals/cases.jsonl:1-14`,",
+        "`i-have-adhd-main/.github/workflows/plugin-load-check.yml:1-47`, `pi-load-check.yml:1-31`,",
+        "`AGENTS.md:153`, `:154`, `:192`, `:297`, `:399`, `:402`, `:407`, `:500`; §3 Restraint Signals",
+        "`REPO RULES.md:1-80` (§1-§3, via iteration 1)",
+        "`repo-rules/communication.md:72`, `:76`, `:79`, `:94`, `:104`, `:121`, `:132`, `:141`, `:154`,",
+        "`repo-rules/presenting-decisions.md:50`, `:89`, `:96`, `:100-113`, `:117-125`",
+        "`repo-rules/handoff-and-questions.md:43`, `:45`, `:53`, `:63`, `:70-80`, `:86`, `:104`, `:159`",
+        "`repo-rules/uncertainty-and-honesty.md:55`, `:107`, `:117`",
+        "`repo-rules/root-cause-and-debugging.md:92`, `:125`",
+        "`repo-rules/delegation-and-orchestration.md:108`, `:211`",
+        "`.opencode/hooks/session-lifecycle/README.md:1-60`",
+        "`.opencode/skills/sk-communication/benchmark/README.md` §1-§3;",
+        "`.opencode/commands/doctor/assets/doctor-runtime-mirrors.yaml` (existence)",
+        "`.opencode/skills/sk-doc/sk-create-quality-control` (existence)",
+        "`research/deep-research-config.json`, `research/deep-research-state.jsonl`,"
+      ]
+    },
+    {
+      "id": "finding-3-9-evals-rubric-md-10-16-five-weighted-dimensions-correctness-35-autonomy-25",
+      "text": "`evals/rubric.md:10-16` — five weighted dimensions (correctness 35%, autonomy 25%,",
+      "addedAtIteration": 3,
+      "sources": [
+        "`i-have-adhd-main/skills/i-have-adhd/SKILL.md:1-142` (in full)",
+        "`i-have-adhd-main/README.md:1-103`",
+        "`i-have-adhd-main/hooks/hooks.json:1-17`, `hooks/always-on.mjs:1-44`, `hooks/always-on.sh:1-37`",
+        "`i-have-adhd-main/opencode.json:1-4`, `package.json:1-16`, `plugin.json:1-4`,",
+        "`i-have-adhd-main/.opencode/command/i-have-adhd.md:1-8`",
+        "`i-have-adhd-main/skills/i-have-adhd/agents/gemini.toml:1-24`, `agents/openai.yaml:1-7`",
+        "`i-have-adhd-main/evals/README.md:1-84`, `evals/rubric.md:1-26`, `evals/cases.jsonl:1-14`,",
+        "`i-have-adhd-main/.github/workflows/plugin-load-check.yml:1-47`, `pi-load-check.yml:1-31`,",
+        "`AGENTS.md:153`, `:154`, `:192`, `:297`, `:399`, `:402`, `:407`, `:500`; §3 Restraint Signals",
+        "`REPO RULES.md:1-80` (§1-§3, via iteration 1)",
+        "`repo-rules/communication.md:72`, `:76`, `:79`, `:94`, `:104`, `:121`, `:132`, `:141`, `:154`,",
+        "`repo-rules/presenting-decisions.md:50`, `:89`, `:96`, `:100-113`, `:117-125`",
+        "`repo-rules/handoff-and-questions.md:43`, `:45`, `:53`, `:63`, `:70-80`, `:86`, `:104`, `:159`",
+        "`repo-rules/uncertainty-and-honesty.md:55`, `:107`, `:117`",
+        "`repo-rules/root-cause-and-debugging.md:92`, `:125`",
+        "`repo-rules/delegation-and-orchestration.md:108`, `:211`",
+        "`.opencode/hooks/session-lifecycle/README.md:1-60`",
+        "`.opencode/skills/sk-communication/benchmark/README.md` §1-§3;",
+        "`.opencode/commands/doctor/assets/doctor-runtime-mirrors.yaml` (existence)",
+        "`.opencode/skills/sk-doc/sk-create-quality-control` (existence)",
+        "`research/deep-research-config.json`, `research/deep-research-state.jsonl`,"
+      ]
+    },
+    {
+      "id": "finding-3-2-f-conflict-1-highest-value-rule-8-s-cause-then-fix-shape-conflicts-with-the-evid",
+      "text": "F-conflict-1 (highest value): rule 8's cause-then-fix shape conflicts with the evidence rules",
+      "addedAtIteration": 3,
+      "sources": [
+        "`i-have-adhd-main/skills/i-have-adhd/SKILL.md:1-142` (in full)",
+        "`i-have-adhd-main/README.md:1-103`",
+        "`i-have-adhd-main/hooks/hooks.json:1-17`, `hooks/always-on.mjs:1-44`, `hooks/always-on.sh:1-37`",
+        "`i-have-adhd-main/opencode.json:1-4`, `package.json:1-16`, `plugin.json:1-4`,",
+        "`i-have-adhd-main/.opencode/command/i-have-adhd.md:1-8`",
+        "`i-have-adhd-main/skills/i-have-adhd/agents/gemini.toml:1-24`, `agents/openai.yaml:1-7`",
+        "`i-have-adhd-main/evals/README.md:1-84`, `evals/rubric.md:1-26`, `evals/cases.jsonl:1-14`,",
+        "`i-have-adhd-main/.github/workflows/plugin-load-check.yml:1-47`, `pi-load-check.yml:1-31`,",
+        "`AGENTS.md:153`, `:154`, `:192`, `:297`, `:399`, `:402`, `:407`, `:500`; §3 Restraint Signals",
+        "`REPO RULES.md:1-80` (§1-§3, via iteration 1)",
+        "`repo-rules/communication.md:72`, `:76`, `:79`, `:94`, `:104`, `:121`, `:132`, `:141`, `:154`,",
+        "`repo-rules/presenting-decisions.md:50`, `:89`, `:96`, `:100-113`, `:117-125`",
+        "`repo-rules/handoff-and-questions.md:43`, `:45`, `:53`, `:63`, `:70-80`, `:86`, `:104`, `:159`",
+        "`repo-rules/uncertainty-and-honesty.md:55`, `:107`, `:117`",
+        "`repo-rules/root-cause-and-debugging.md:92`, `:125`",
+        "`repo-rules/delegation-and-orchestration.md:108`, `:211`",
+        "`.opencode/hooks/session-lifecycle/README.md:1-60`",
+        "`.opencode/skills/sk-communication/benchmark/README.md` §1-§3;",
+        "`.opencode/commands/doctor/assets/doctor-runtime-mirrors.yaml` (existence)",
+        "`.opencode/skills/sk-doc/sk-create-quality-control` (existence)",
+        "`research/deep-research-config.json`, `research/deep-research-state.jsonl`,"
+      ]
+    },
+    {
+      "id": "finding-3-3-f-conflict-2-tension-not-a-contradiction-action-first-vs-verdict-first",
+      "text": "F-conflict-2 (tension, not a contradiction): action-first vs verdict-first",
+      "addedAtIteration": 3,
+      "sources": [
+        "`i-have-adhd-main/skills/i-have-adhd/SKILL.md:1-142` (in full)",
+        "`i-have-adhd-main/README.md:1-103`",
+        "`i-have-adhd-main/hooks/hooks.json:1-17`, `hooks/always-on.mjs:1-44`, `hooks/always-on.sh:1-37`",
+        "`i-have-adhd-main/opencode.json:1-4`, `package.json:1-16`, `plugin.json:1-4`,",
+        "`i-have-adhd-main/.opencode/command/i-have-adhd.md:1-8`",
+        "`i-have-adhd-main/skills/i-have-adhd/agents/gemini.toml:1-24`, `agents/openai.yaml:1-7`",
+        "`i-have-adhd-main/evals/README.md:1-84`, `evals/rubric.md:1-26`, `evals/cases.jsonl:1-14`,",
+        "`i-have-adhd-main/.github/workflows/plugin-load-check.yml:1-47`, `pi-load-check.yml:1-31`,",
+        "`AGENTS.md:153`, `:154`, `:192`, `:297`, `:399`, `:402`, `:407`, `:500`; §3 Restraint Signals",
+        "`REPO RULES.md:1-80` (§1-§3, via iteration 1)",
+        "`repo-rules/communication.md:72`, `:76`, `:79`, `:94`, `:104`, `:121`, `:132`, `:141`, `:154`,",
+        "`repo-rules/presenting-decisions.md:50`, `:89`, `:96`, `:100-113`, `:117-125`",
+        "`repo-rules/handoff-and-questions.md:43`, `:45`, `:53`, `:63`, `:70-80`, `:86`, `:104`, `:159`",
+        "`repo-rules/uncertainty-and-honesty.md:55`, `:107`, `:117`",
+        "`repo-rules/root-cause-and-debugging.md:92`, `:125`",
+        "`repo-rules/delegation-and-orchestration.md:108`, `:211`",
+        "`.opencode/hooks/session-lifecycle/README.md:1-60`",
+        "`.opencode/skills/sk-communication/benchmark/README.md` §1-§3;",
+        "`.opencode/commands/doctor/assets/doctor-runtime-mirrors.yaml` (existence)",
+        "`.opencode/skills/sk-doc/sk-create-quality-control` (existence)",
+        "`research/deep-research-config.json`, `research/deep-research-state.jsonl`,"
+      ]
+    },
+    {
+      "id": "finding-3-4-f-conflict-3-contradiction-risk-self-guarded-a-five-item-cap-against-completenes",
+      "text": "F-conflict-3 (contradiction risk, self-guarded): a five-item cap against completeness duties",
+      "addedAtIteration": 3,
+      "sources": [
+        "`i-have-adhd-main/skills/i-have-adhd/SKILL.md:1-142` (in full)",
+        "`i-have-adhd-main/README.md:1-103`",
+        "`i-have-adhd-main/hooks/hooks.json:1-17`, `hooks/always-on.mjs:1-44`, `hooks/always-on.sh:1-37`",
+        "`i-have-adhd-main/opencode.json:1-4`, `package.json:1-16`, `plugin.json:1-4`,",
+        "`i-have-adhd-main/.opencode/command/i-have-adhd.md:1-8`",
+        "`i-have-adhd-main/skills/i-have-adhd/agents/gemini.toml:1-24`, `agents/openai.yaml:1-7`",
+        "`i-have-adhd-main/evals/README.md:1-84`, `evals/rubric.md:1-26`, `evals/cases.jsonl:1-14`,",
+        "`i-have-adhd-main/.github/workflows/plugin-load-check.yml:1-47`, `pi-load-check.yml:1-31`,",
+        "`AGENTS.md:153`, `:154`, `:192`, `:297`, `:399`, `:402`, `:407`, `:500`; §3 Restraint Signals",
+        "`REPO RULES.md:1-80` (§1-§3, via iteration 1)",
+        "`repo-rules/communication.md:72`, `:76`, `:79`, `:94`, `:104`, `:121`, `:132`, `:141`, `:154`,",
+        "`repo-rules/presenting-decisions.md:50`, `:89`, `:96`, `:100-113`, `:117-125`",
+        "`repo-rules/handoff-and-questions.md:43`, `:45`, `:53`, `:63`, `:70-80`, `:86`, `:104`, `:159`",
+        "`repo-rules/uncertainty-and-honesty.md:55`, `:107`, `:117`",
+        "`repo-rules/root-cause-and-debugging.md:92`, `:125`",
+        "`repo-rules/delegation-and-orchestration.md:108`, `:211`",
+        "`.opencode/hooks/session-lifecycle/README.md:1-60`",
+        "`.opencode/skills/sk-communication/benchmark/README.md` §1-§3;",
+        "`.opencode/commands/doctor/assets/doctor-runtime-mirrors.yaml` (existence)",
+        "`.opencode/skills/sk-doc/sk-create-quality-control` (existence)",
+        "`research/deep-research-config.json`, `research/deep-research-state.jsonl`,"
+      ]
+    },
+    {
+      "id": "finding-3-14-f-contradictory-inventory-noise-one-structural-reading-note",
+      "text": "F-contradictory-inventory-noise: one structural reading note",
+      "addedAtIteration": 3,
+      "sources": [
+        "`i-have-adhd-main/skills/i-have-adhd/SKILL.md:1-142` (in full)",
+        "`i-have-adhd-main/README.md:1-103`",
+        "`i-have-adhd-main/hooks/hooks.json:1-17`, `hooks/always-on.mjs:1-44`, `hooks/always-on.sh:1-37`",
+        "`i-have-adhd-main/opencode.json:1-4`, `package.json:1-16`, `plugin.json:1-4`,",
+        "`i-have-adhd-main/.opencode/command/i-have-adhd.md:1-8`",
+        "`i-have-adhd-main/skills/i-have-adhd/agents/gemini.toml:1-24`, `agents/openai.yaml:1-7`",
+        "`i-have-adhd-main/evals/README.md:1-84`, `evals/rubric.md:1-26`, `evals/cases.jsonl:1-14`,",
+        "`i-have-adhd-main/.github/workflows/plugin-load-check.yml:1-47`, `pi-load-check.yml:1-31`,",
+        "`AGENTS.md:153`, `:154`, `:192`, `:297`, `:399`, `:402`, `:407`, `:500`; §3 Restraint Signals",
+        "`REPO RULES.md:1-80` (§1-§3, via iteration 1)",
+        "`repo-rules/communication.md:72`, `:76`, `:79`, `:94`, `:104`, `:121`, `:132`, `:141`, `:154`,",
+        "`repo-rules/presenting-decisions.md:50`, `:89`, `:96`, `:100-113`, `:117-125`",
+        "`repo-rules/handoff-and-questions.md:43`, `:45`, `:53`, `:63`, `:70-80`, `:86`, `:104`, `:159`",
+        "`repo-rules/uncertainty-and-honesty.md:55`, `:107`, `:117`",
+        "`repo-rules/root-cause-and-debugging.md:92`, `:125`",
+        "`repo-rules/delegation-and-orchestration.md:108`, `:211`",
+        "`.opencode/hooks/session-lifecycle/README.md:1-60`",
+        "`.opencode/skills/sk-communication/benchmark/README.md` §1-§3;",
+        "`.opencode/commands/doctor/assets/doctor-runtime-mirrors.yaml` (existence)",
+        "`.opencode/skills/sk-doc/sk-create-quality-control` (existence)",
+        "`research/deep-research-config.json`, `research/deep-research-state.jsonl`,"
+      ]
+    },
+    {
+      "id": "finding-3-1-f-inventory-29-classified-rows",
+      "text": "F-inventory: 29 classified rows",
+      "addedAtIteration": 3,
+      "sources": [
+        "`i-have-adhd-main/skills/i-have-adhd/SKILL.md:1-142` (in full)",
+        "`i-have-adhd-main/README.md:1-103`",
+        "`i-have-adhd-main/hooks/hooks.json:1-17`, `hooks/always-on.mjs:1-44`, `hooks/always-on.sh:1-37`",
+        "`i-have-adhd-main/opencode.json:1-4`, `package.json:1-16`, `plugin.json:1-4`,",
+        "`i-have-adhd-main/.opencode/command/i-have-adhd.md:1-8`",
+        "`i-have-adhd-main/skills/i-have-adhd/agents/gemini.toml:1-24`, `agents/openai.yaml:1-7`",
+        "`i-have-adhd-main/evals/README.md:1-84`, `evals/rubric.md:1-26`, `evals/cases.jsonl:1-14`,",
+        "`i-have-adhd-main/.github/workflows/plugin-load-check.yml:1-47`, `pi-load-check.yml:1-31`,",
+        "`AGENTS.md:153`, `:154`, `:192`, `:297`, `:399`, `:402`, `:407`, `:500`; §3 Restraint Signals",
+        "`REPO RULES.md:1-80` (§1-§3, via iteration 1)",
+        "`repo-rules/communication.md:72`, `:76`, `:79`, `:94`, `:104`, `:121`, `:132`, `:141`, `:154`,",
+        "`repo-rules/presenting-decisions.md:50`, `:89`, `:96`, `:100-113`, `:117-125`",
+        "`repo-rules/handoff-and-questions.md:43`, `:45`, `:53`, `:63`, `:70-80`, `:86`, `:104`, `:159`",
+        "`repo-rules/uncertainty-and-honesty.md:55`, `:107`, `:117`",
+        "`repo-rules/root-cause-and-debugging.md:92`, `:125`",
+        "`repo-rules/delegation-and-orchestration.md:108`, `:211`",
+        "`.opencode/hooks/session-lifecycle/README.md:1-60`",
+        "`.opencode/skills/sk-communication/benchmark/README.md` §1-§3;",
+        "`.opencode/commands/doctor/assets/doctor-runtime-mirrors.yaml` (existence)",
+        "`.opencode/skills/sk-doc/sk-create-quality-control` (existence)",
+        "`research/deep-research-config.json`, `research/deep-research-state.jsonl`,"
+      ]
+    },
+    {
+      "id": "finding-3-5-f-mech-1-the-session-start-hook-the-repository-owns-a-stronger-surface-not-an-ab",
+      "text": "F-mech-1: the session-start hook — the repository owns a stronger surface, not an absent one",
+      "addedAtIteration": 3,
+      "sources": [
+        "`i-have-adhd-main/skills/i-have-adhd/SKILL.md:1-142` (in full)",
+        "`i-have-adhd-main/README.md:1-103`",
+        "`i-have-adhd-main/hooks/hooks.json:1-17`, `hooks/always-on.mjs:1-44`, `hooks/always-on.sh:1-37`",
+        "`i-have-adhd-main/opencode.json:1-4`, `package.json:1-16`, `plugin.json:1-4`,",
+        "`i-have-adhd-main/.opencode/command/i-have-adhd.md:1-8`",
+        "`i-have-adhd-main/skills/i-have-adhd/agents/gemini.toml:1-24`, `agents/openai.yaml:1-7`",
+        "`i-have-adhd-main/evals/README.md:1-84`, `evals/rubric.md:1-26`, `evals/cases.jsonl:1-14`,",
+        "`i-have-adhd-main/.github/workflows/plugin-load-check.yml:1-47`, `pi-load-check.yml:1-31`,",
+        "`AGENTS.md:153`, `:154`, `:192`, `:297`, `:399`, `:402`, `:407`, `:500`; §3 Restraint Signals",
+        "`REPO RULES.md:1-80` (§1-§3, via iteration 1)",
+        "`repo-rules/communication.md:72`, `:76`, `:79`, `:94`, `:104`, `:121`, `:132`, `:141`, `:154`,",
+        "`repo-rules/presenting-decisions.md:50`, `:89`, `:96`, `:100-113`, `:117-125`",
+        "`repo-rules/handoff-and-questions.md:43`, `:45`, `:53`, `:63`, `:70-80`, `:86`, `:104`, `:159`",
+        "`repo-rules/uncertainty-and-honesty.md:55`, `:107`, `:117`",
+        "`repo-rules/root-cause-and-debugging.md:92`, `:125`",
+        "`repo-rules/delegation-and-orchestration.md:108`, `:211`",
+        "`.opencode/hooks/session-lifecycle/README.md:1-60`",
+        "`.opencode/skills/sk-communication/benchmark/README.md` §1-§3;",
+        "`.opencode/commands/doctor/assets/doctor-runtime-mirrors.yaml` (existence)",
+        "`.opencode/skills/sk-doc/sk-create-quality-control` (existence)",
+        "`research/deep-research-config.json`, `research/deep-research-state.jsonl`,"
+      ]
+    },
+    {
+      "id": "finding-3-6-f-mech-2-runtime-mirrors-covered-and-the-source-s-list-is-shorter-than-the-repo-",
+      "text": "F-mech-2: runtime mirrors — covered, and the source's list is shorter than the repo's",
+      "addedAtIteration": 3,
+      "sources": [
+        "`i-have-adhd-main/skills/i-have-adhd/SKILL.md:1-142` (in full)",
+        "`i-have-adhd-main/README.md:1-103`",
+        "`i-have-adhd-main/hooks/hooks.json:1-17`, `hooks/always-on.mjs:1-44`, `hooks/always-on.sh:1-37`",
+        "`i-have-adhd-main/opencode.json:1-4`, `package.json:1-16`, `plugin.json:1-4`,",
+        "`i-have-adhd-main/.opencode/command/i-have-adhd.md:1-8`",
+        "`i-have-adhd-main/skills/i-have-adhd/agents/gemini.toml:1-24`, `agents/openai.yaml:1-7`",
+        "`i-have-adhd-main/evals/README.md:1-84`, `evals/rubric.md:1-26`, `evals/cases.jsonl:1-14`,",
+        "`i-have-adhd-main/.github/workflows/plugin-load-check.yml:1-47`, `pi-load-check.yml:1-31`,",
+        "`AGENTS.md:153`, `:154`, `:192`, `:297`, `:399`, `:402`, `:407`, `:500`; §3 Restraint Signals",
+        "`REPO RULES.md:1-80` (§1-§3, via iteration 1)",
+        "`repo-rules/communication.md:72`, `:76`, `:79`, `:94`, `:104`, `:121`, `:132`, `:141`, `:154`,",
+        "`repo-rules/presenting-decisions.md:50`, `:89`, `:96`, `:100-113`, `:117-125`",
+        "`repo-rules/handoff-and-questions.md:43`, `:45`, `:53`, `:63`, `:70-80`, `:86`, `:104`, `:159`",
+        "`repo-rules/uncertainty-and-honesty.md:55`, `:107`, `:117`",
+        "`repo-rules/root-cause-and-debugging.md:92`, `:125`",
+        "`repo-rules/delegation-and-orchestration.md:108`, `:211`",
+        "`.opencode/hooks/session-lifecycle/README.md:1-60`",
+        "`.opencode/skills/sk-communication/benchmark/README.md` §1-§3;",
+        "`.opencode/commands/doctor/assets/doctor-runtime-mirrors.yaml` (existence)",
+        "`.opencode/skills/sk-doc/sk-create-quality-control` (existence)",
+        "`research/deep-research-config.json`, `research/deep-research-state.jsonl`,"
+      ]
+    },
+    {
+      "id": "finding-3-7-f-mech-3-the-eval-harness-genuinely-new-and-it-measures-the-thing-this-repo-does",
+      "text": "F-mech-3: the eval harness — genuinely new, and it measures the thing this repo does not",
+      "addedAtIteration": 3,
+      "sources": [
+        "`i-have-adhd-main/skills/i-have-adhd/SKILL.md:1-142` (in full)",
+        "`i-have-adhd-main/README.md:1-103`",
+        "`i-have-adhd-main/hooks/hooks.json:1-17`, `hooks/always-on.mjs:1-44`, `hooks/always-on.sh:1-37`",
+        "`i-have-adhd-main/opencode.json:1-4`, `package.json:1-16`, `plugin.json:1-4`,",
+        "`i-have-adhd-main/.opencode/command/i-have-adhd.md:1-8`",
+        "`i-have-adhd-main/skills/i-have-adhd/agents/gemini.toml:1-24`, `agents/openai.yaml:1-7`",
+        "`i-have-adhd-main/evals/README.md:1-84`, `evals/rubric.md:1-26`, `evals/cases.jsonl:1-14`,",
+        "`i-have-adhd-main/.github/workflows/plugin-load-check.yml:1-47`, `pi-load-check.yml:1-31`,",
+        "`AGENTS.md:153`, `:154`, `:192`, `:297`, `:399`, `:402`, `:407`, `:500`; §3 Restraint Signals",
+        "`REPO RULES.md:1-80` (§1-§3, via iteration 1)",
+        "`repo-rules/communication.md:72`, `:76`, `:79`, `:94`, `:104`, `:121`, `:132`, `:141`, `:154`,",
+        "`repo-rules/presenting-decisions.md:50`, `:89`, `:96`, `:100-113`, `:117-125`",
+        "`repo-rules/handoff-and-questions.md:43`, `:45`, `:53`, `:63`, `:70-80`, `:86`, `:104`, `:159`",
+        "`repo-rules/uncertainty-and-honesty.md:55`, `:107`, `:117`",
+        "`repo-rules/root-cause-and-debugging.md:92`, `:125`",
+        "`repo-rules/delegation-and-orchestration.md:108`, `:211`",
+        "`.opencode/hooks/session-lifecycle/README.md:1-60`",
+        "`.opencode/skills/sk-communication/benchmark/README.md` §1-§3;",
+        "`.opencode/commands/doctor/assets/doctor-runtime-mirrors.yaml` (existence)",
+        "`.opencode/skills/sk-doc/sk-create-quality-control` (existence)",
+        "`research/deep-research-config.json`, `research/deep-research-state.jsonl`,"
+      ]
+    },
+    {
+      "id": "finding-3-12-f-mech-4-the-release-gate-new-and-the-source-s-own-results-show-why-it-matters",
+      "text": "F-mech-4: the release gate — new, and the source's own results show why it matters",
+      "addedAtIteration": 3,
+      "sources": [
+        "`i-have-adhd-main/skills/i-have-adhd/SKILL.md:1-142` (in full)",
+        "`i-have-adhd-main/README.md:1-103`",
+        "`i-have-adhd-main/hooks/hooks.json:1-17`, `hooks/always-on.mjs:1-44`, `hooks/always-on.sh:1-37`",
+        "`i-have-adhd-main/opencode.json:1-4`, `package.json:1-16`, `plugin.json:1-4`,",
+        "`i-have-adhd-main/.opencode/command/i-have-adhd.md:1-8`",
+        "`i-have-adhd-main/skills/i-have-adhd/agents/gemini.toml:1-24`, `agents/openai.yaml:1-7`",
+        "`i-have-adhd-main/evals/README.md:1-84`, `evals/rubric.md:1-26`, `evals/cases.jsonl:1-14`,",
+        "`i-have-adhd-main/.github/workflows/plugin-load-check.yml:1-47`, `pi-load-check.yml:1-31`,",
+        "`AGENTS.md:153`, `:154`, `:192`, `:297`, `:399`, `:402`, `:407`, `:500`; §3 Restraint Signals",
+        "`REPO RULES.md:1-80` (§1-§3, via iteration 1)",
+        "`repo-rules/communication.md:72`, `:76`, `:79`, `:94`, `:104`, `:121`, `:132`, `:141`, `:154`,",
+        "`repo-rules/presenting-decisions.md:50`, `:89`, `:96`, `:100-113`, `:117-125`",
+        "`repo-rules/handoff-and-questions.md:43`, `:45`, `:53`, `:63`, `:70-80`, `:86`, `:104`, `:159`",
+        "`repo-rules/uncertainty-and-honesty.md:55`, `:107`, `:117`",
+        "`repo-rules/root-cause-and-debugging.md:92`, `:125`",
+        "`repo-rules/delegation-and-orchestration.md:108`, `:211`",
+        "`.opencode/hooks/session-lifecycle/README.md:1-60`",
+        "`.opencode/skills/sk-communication/benchmark/README.md` §1-§3;",
+        "`.opencode/commands/doctor/assets/doctor-runtime-mirrors.yaml` (existence)",
+        "`.opencode/skills/sk-doc/sk-create-quality-control` (existence)",
+        "`research/deep-research-config.json`, `research/deep-research-state.jsonl`,"
+      ]
+    },
+    {
+      "id": "finding-3-13-f-mech-5-load-smoke-tests-the-repo-counterpart-is-unverified",
+      "text": "F-mech-5: load smoke tests — the repo counterpart is unverified",
+      "addedAtIteration": 3,
+      "sources": [
+        "`i-have-adhd-main/skills/i-have-adhd/SKILL.md:1-142` (in full)",
+        "`i-have-adhd-main/README.md:1-103`",
+        "`i-have-adhd-main/hooks/hooks.json:1-17`, `hooks/always-on.mjs:1-44`, `hooks/always-on.sh:1-37`",
+        "`i-have-adhd-main/opencode.json:1-4`, `package.json:1-16`, `plugin.json:1-4`,",
+        "`i-have-adhd-main/.opencode/command/i-have-adhd.md:1-8`",
+        "`i-have-adhd-main/skills/i-have-adhd/agents/gemini.toml:1-24`, `agents/openai.yaml:1-7`",
+        "`i-have-adhd-main/evals/README.md:1-84`, `evals/rubric.md:1-26`, `evals/cases.jsonl:1-14`,",
+        "`i-have-adhd-main/.github/workflows/plugin-load-check.yml:1-47`, `pi-load-check.yml:1-31`,",
+        "`AGENTS.md:153`, `:154`, `:192`, `:297`, `:399`, `:402`, `:407`, `:500`; §3 Restraint Signals",
+        "`REPO RULES.md:1-80` (§1-§3, via iteration 1)",
+        "`repo-rules/communication.md:72`, `:76`, `:79`, `:94`, `:104`, `:121`, `:132`, `:141`, `:154`,",
+        "`repo-rules/presenting-decisions.md:50`, `:89`, `:96`, `:100-113`, `:117-125`",
+        "`repo-rules/handoff-and-questions.md:43`, `:45`, `:53`, `:63`, `:70-80`, `:86`, `:104`, `:159`",
+        "`repo-rules/uncertainty-and-honesty.md:55`, `:107`, `:117`",
+        "`repo-rules/root-cause-and-debugging.md:92`, `:125`",
+        "`repo-rules/delegation-and-orchestration.md:108`, `:211`",
+        "`.opencode/hooks/session-lifecycle/README.md:1-60`",
+        "`.opencode/skills/sk-communication/benchmark/README.md` §1-§3;",
+        "`.opencode/commands/doctor/assets/doctor-runtime-mirrors.yaml` (existence)",
+        "`.opencode/skills/sk-doc/sk-create-quality-control` (existence)",
+        "`research/deep-research-config.json`, `research/deep-research-state.jsonl`,"
+      ]
+    },
+    {
+      "id": "finding-4-7-a-release-gate-stated-in-terms-of-what-this-repository-can-actually-observe-89-w",
+      "text": "\"A release gate stated in terms of what this repository can actually observe\" (`:89`), with",
+      "addedAtIteration": 4,
+      "sources": [
+        "`research/deep-research-config.json`, `research/deep-research-state.jsonl` (3 iteration records),",
+        "`research/iterations/iteration-001.md` F1-F12, `iteration-002.md` F1-F9, `iteration-003.md`",
+        "`research/deltas/iter-003.jsonl` line 1 (accepted record schema, `runId`/`lineageId` pair)",
+        "`specs/sk-communication/006-sk-communication-clarity/spec.md:147, :150, :163-166`",
+        "`specs/sk-communication/006-sk-communication-clarity/002-synthesis-and-decisions/spec.md:42, :150`",
+        "`specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/spec.md:2-6,",
+        "`.opencode/skills/sk-communication/benchmark/` directory listing (`README.md`,",
+        "Underlying anchors were consumed via the iteration narratives, not re-read: `AGENTS.md:144, :153-154,"
+      ]
+    },
+    {
+      "id": "finding-4-6-a-reply-scoring-harness-under-the-skill-s-existing-benchmark-folder-with-fixed-c",
+      "text": "\"A reply-scoring harness under the skill's existing benchmark folder, with fixed cases and a blind",
+      "addedAtIteration": 4,
+      "sources": [
+        "`research/deep-research-config.json`, `research/deep-research-state.jsonl` (3 iteration records),",
+        "`research/iterations/iteration-001.md` F1-F12, `iteration-002.md` F1-F9, `iteration-003.md`",
+        "`research/deltas/iter-003.jsonl` line 1 (accepted record schema, `runId`/`lineageId` pair)",
+        "`specs/sk-communication/006-sk-communication-clarity/spec.md:147, :150, :163-166`",
+        "`specs/sk-communication/006-sk-communication-clarity/002-synthesis-and-decisions/spec.md:42, :150`",
+        "`specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/spec.md:2-6,",
+        "`.opencode/skills/sk-communication/benchmark/` directory listing (`README.md`,",
+        "Underlying anchors were consumed via the iteration narratives, not re-read: `AGENTS.md:144, :153-154,"
+      ]
+    },
+    {
+      "id": "finding-4-1-communication-md-absorbs-10-of-29-candidates-the-single-largest-allocation-a-spl",
+      "text": "**`communication.md` absorbs 10 of 29 candidates** — the single largest allocation. A split is no",
+      "addedAtIteration": 4,
+      "sources": [
+        "`research/deep-research-config.json`, `research/deep-research-state.jsonl` (3 iteration records),",
+        "`research/iterations/iteration-001.md` F1-F12, `iteration-002.md` F1-F9, `iteration-003.md`",
+        "`research/deltas/iter-003.jsonl` line 1 (accepted record schema, `runId`/`lineageId` pair)",
+        "`specs/sk-communication/006-sk-communication-clarity/spec.md:147, :150, :163-166`",
+        "`specs/sk-communication/006-sk-communication-clarity/002-synthesis-and-decisions/spec.md:42, :150`",
+        "`specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/spec.md:2-6,",
+        "`.opencode/skills/sk-communication/benchmark/` directory listing (`README.md`,",
+        "Underlying anchors were consumed via the iteration narratives, not re-read: `AGENTS.md:144, :153-154,"
+      ]
+    },
+    {
+      "id": "finding-4-5-candidates-with-no-surface-today-11-editing-lane-21-gap-statement-only-24-unveri",
+      "text": "**Candidates with no surface today: 11 (editing lane), 21 (gap statement only), 24 (unverified),",
+      "addedAtIteration": 4,
+      "sources": [
+        "`research/deep-research-config.json`, `research/deep-research-state.jsonl` (3 iteration records),",
+        "`research/iterations/iteration-001.md` F1-F12, `iteration-002.md` F1-F9, `iteration-003.md`",
+        "`research/deltas/iter-003.jsonl` line 1 (accepted record schema, `runId`/`lineageId` pair)",
+        "`specs/sk-communication/006-sk-communication-clarity/spec.md:147, :150, :163-166`",
+        "`specs/sk-communication/006-sk-communication-clarity/002-synthesis-and-decisions/spec.md:42, :150`",
+        "`specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/spec.md:2-6,",
+        "`.opencode/skills/sk-communication/benchmark/` directory listing (`README.md`,",
+        "Underlying anchors were consumed via the iteration narratives, not re-read: `AGENTS.md:144, :153-154,"
+      ]
+    },
+    {
+      "id": "finding-4-9-gate-strictness-is-a-phase-002-decision-not-a-005-implementation-detail-the-sour",
+      "text": "**Gate strictness is a phase-002 decision, not a 005 implementation detail.** The source's own",
+      "addedAtIteration": 4,
+      "sources": [
+        "`research/deep-research-config.json`, `research/deep-research-state.jsonl` (3 iteration records),",
+        "`research/iterations/iteration-001.md` F1-F12, `iteration-002.md` F1-F9, `iteration-003.md`",
+        "`research/deltas/iter-003.jsonl` line 1 (accepted record schema, `runId`/`lineageId` pair)",
+        "`specs/sk-communication/006-sk-communication-clarity/spec.md:147, :150, :163-166`",
+        "`specs/sk-communication/006-sk-communication-clarity/002-synthesis-and-decisions/spec.md:42, :150`",
+        "`specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/spec.md:2-6,",
+        "`.opencode/skills/sk-communication/benchmark/` directory listing (`README.md`,",
+        "Underlying anchors were consumed via the iteration narratives, not re-read: `AGENTS.md:144, :153-154,"
+      ]
+    },
+    {
+      "id": "finding-4-4-no-new-root-doc-clause-agents-md-8-s-two-clause-floor-is-deliberate-strategy-12-",
+      "text": "**No new root-doc clause.** `AGENTS.md` §8's two-clause floor is deliberate (strategy §12); the 29",
+      "addedAtIteration": 4,
+      "sources": [
+        "`research/deep-research-config.json`, `research/deep-research-state.jsonl` (3 iteration records),",
+        "`research/iterations/iteration-001.md` F1-F12, `iteration-002.md` F1-F9, `iteration-003.md`",
+        "`research/deltas/iter-003.jsonl` line 1 (accepted record schema, `runId`/`lineageId` pair)",
+        "`specs/sk-communication/006-sk-communication-clarity/spec.md:147, :150, :163-166`",
+        "`specs/sk-communication/006-sk-communication-clarity/002-synthesis-and-decisions/spec.md:42, :150`",
+        "`specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/spec.md:2-6,",
+        "`.opencode/skills/sk-communication/benchmark/` directory listing (`README.md`,",
+        "Underlying anchors were consumed via the iteration narratives, not re-read: `AGENTS.md:144, :153-154,"
+      ]
+    },
+    {
+      "id": "finding-4-2-the-sk-communication-block-is-not-breached-no-wording-rule-is-assigned-to-the-sk",
+      "text": "**The `sk-communication` block is not breached.** No wording rule is assigned to the skill.",
+      "addedAtIteration": 4,
+      "sources": [
+        "`research/deep-research-config.json`, `research/deep-research-state.jsonl` (3 iteration records),",
+        "`research/iterations/iteration-001.md` F1-F12, `iteration-002.md` F1-F9, `iteration-003.md`",
+        "`research/deltas/iter-003.jsonl` line 1 (accepted record schema, `runId`/`lineageId` pair)",
+        "`specs/sk-communication/006-sk-communication-clarity/spec.md:147, :150, :163-166`",
+        "`specs/sk-communication/006-sk-communication-clarity/002-synthesis-and-decisions/spec.md:42, :150`",
+        "`specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/spec.md:2-6,",
+        "`.opencode/skills/sk-communication/benchmark/` directory listing (`README.md`,",
+        "Underlying anchors were consumed via the iteration narratives, not re-read: `AGENTS.md:144, :153-154,"
+      ]
+    },
+    {
+      "id": "finding-4-10-the-baseline-cannot-wait-for-phase-005-phase-005-s-own-dependency-reads-a-baseli",
+      "text": "**The baseline cannot wait for phase 005.** Phase 005's own dependency reads: \"A baseline captured",
+      "addedAtIteration": 4,
+      "sources": [
+        "`research/deep-research-config.json`, `research/deep-research-state.jsonl` (3 iteration records),",
+        "`research/iterations/iteration-001.md` F1-F12, `iteration-002.md` F1-F9, `iteration-003.md`",
+        "`research/deltas/iter-003.jsonl` line 1 (accepted record schema, `runId`/`lineageId` pair)",
+        "`specs/sk-communication/006-sk-communication-clarity/spec.md:147, :150, :163-166`",
+        "`specs/sk-communication/006-sk-communication-clarity/002-synthesis-and-decisions/spec.md:42, :150`",
+        "`specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/spec.md:2-6,",
+        "`.opencode/skills/sk-communication/benchmark/` directory listing (`README.md`,",
+        "Underlying anchors were consumed via the iteration narratives, not re-read: `AGENTS.md:144, :153-154,"
+      ]
+    },
+    {
+      "id": "finding-4-3-two-authority-split-persists-six-candidates-land-on-hvr-the-wording-standard-and",
+      "text": "**Two-authority split persists.** Six candidates land on HVR (the wording standard), and two of",
+      "addedAtIteration": 4,
+      "sources": [
+        "`research/deep-research-config.json`, `research/deep-research-state.jsonl` (3 iteration records),",
+        "`research/iterations/iteration-001.md` F1-F12, `iteration-002.md` F1-F9, `iteration-003.md`",
+        "`research/deltas/iter-003.jsonl` line 1 (accepted record schema, `runId`/`lineageId` pair)",
+        "`specs/sk-communication/006-sk-communication-clarity/spec.md:147, :150, :163-166`",
+        "`specs/sk-communication/006-sk-communication-clarity/002-synthesis-and-decisions/spec.md:42, :150`",
+        "`specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/spec.md:2-6,",
+        "`.opencode/skills/sk-communication/benchmark/` directory listing (`README.md`,",
+        "Underlying anchors were consumed via the iteration narratives, not re-read: `AGENTS.md:144, :153-154,"
+      ]
+    },
+    {
+      "id": "finding-4-8-phase-005-s-out-of-scope-list-already-excludes-what-the-source-s-harness-does-be",
+      "text": "Phase 005's out-of-scope list already excludes what the source's harness does beyond its target",
+      "addedAtIteration": 4,
+      "sources": [
+        "`research/deep-research-config.json`, `research/deep-research-state.jsonl` (3 iteration records),",
+        "`research/iterations/iteration-001.md` F1-F12, `iteration-002.md` F1-F9, `iteration-003.md`",
+        "`research/deltas/iter-003.jsonl` line 1 (accepted record schema, `runId`/`lineageId` pair)",
+        "`specs/sk-communication/006-sk-communication-clarity/spec.md:147, :150, :163-166`",
+        "`specs/sk-communication/006-sk-communication-clarity/002-synthesis-and-decisions/spec.md:42, :150`",
+        "`specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/spec.md:2-6,",
+        "`.opencode/skills/sk-communication/benchmark/` directory listing (`README.md`,",
+        "Underlying anchors were consumed via the iteration narratives, not re-read: `AGENTS.md:144, :153-154,"
+      ]
+    },
+    {
+      "id": "finding-5-8-2-carries-p1-chk-cmt-01-no-ephemeral-artifact-ids-in-any-comment-ticket-clickup-",
+      "text": "§2 carries `[P1] CHK-CMT-01: No ephemeral artifact ids in any comment (ticket/ClickUp ids,",
+      "addedAtIteration": 5,
+      "sources": [
+        "`research/deep-research-config.json`, `research/deep-research-state.jsonl` (4 iteration records",
+        "`research/iterations/iteration-004.md` (F1, F2, F5, Recommended Next Focus; re-read for the",
+        "`research/deltas/iter-004.jsonl` line 1 (accepted gateway record schema)",
+        "`specs/sk-communication/006-sk-communication-clarity/002-synthesis-and-decisions/spec.md`",
+        "`specs/sk-communication/006-sk-communication-clarity/spec.md` (Phase Documentation Map, Phase",
+        "`.opencode/skills/sk-code/sk-code-quality/assets/code-quality-checklist/overview-header-and-comments.md`",
+        "`.opencode/skills/sk-code/shared/references/universal/code-quality-standards.md:77` (bounded",
+        "`.opencode/commands/doctor/assets/doctor-runtime-mirrors.yaml` (full, 160 lines)",
+        "`.github/workflows/spec-kit-check.yml:142-145`; `.opencode/commands/doctor/_routes.yaml:193-196`;",
+        "Bounded grep over `check-comment-hygiene.sh`, `comment-hygiene-hook.md`, `quality-checklist.md`,"
+      ]
+    },
+    {
+      "id": "finding-5-9-4-carries-p0-chk-cmt-01-no-commented-out-code-delete-unused-code-git-preserves-h",
+      "text": "§4 carries `[P0] CHK-CMT-01: No commented-out code (delete unused code, git preserves history)`",
+      "addedAtIteration": 5,
+      "sources": [
+        "`research/deep-research-config.json`, `research/deep-research-state.jsonl` (4 iteration records",
+        "`research/iterations/iteration-004.md` (F1, F2, F5, Recommended Next Focus; re-read for the",
+        "`research/deltas/iter-004.jsonl` line 1 (accepted gateway record schema)",
+        "`specs/sk-communication/006-sk-communication-clarity/002-synthesis-and-decisions/spec.md`",
+        "`specs/sk-communication/006-sk-communication-clarity/spec.md` (Phase Documentation Map, Phase",
+        "`.opencode/skills/sk-code/sk-code-quality/assets/code-quality-checklist/overview-header-and-comments.md`",
+        "`.opencode/skills/sk-code/shared/references/universal/code-quality-standards.md:77` (bounded",
+        "`.opencode/commands/doctor/assets/doctor-runtime-mirrors.yaml` (full, 160 lines)",
+        "`.github/workflows/spec-kit-check.yml:142-145`; `.opencode/commands/doctor/_routes.yaml:193-196`;",
+        "Bounded grep over `check-comment-hygiene.sh`, `comment-hygiene-hook.md`, `quality-checklist.md`,"
+      ]
+    },
+    {
+      "id": "finding-5-4-defer-is-not-a-closure-legal-verdict-ac-001-s-vocabulary-is-exactly-adopt-reject",
+      "text": "**\"Defer\" is not a closure-legal verdict.** AC-001's vocabulary is exactly adopt / reject /",
+      "addedAtIteration": 5,
+      "sources": [
+        "`research/deep-research-config.json`, `research/deep-research-state.jsonl` (4 iteration records",
+        "`research/iterations/iteration-004.md` (F1, F2, F5, Recommended Next Focus; re-read for the",
+        "`research/deltas/iter-004.jsonl` line 1 (accepted gateway record schema)",
+        "`specs/sk-communication/006-sk-communication-clarity/002-synthesis-and-decisions/spec.md`",
+        "`specs/sk-communication/006-sk-communication-clarity/spec.md` (Phase Documentation Map, Phase",
+        "`.opencode/skills/sk-code/sk-code-quality/assets/code-quality-checklist/overview-header-and-comments.md`",
+        "`.opencode/skills/sk-code/shared/references/universal/code-quality-standards.md:77` (bounded",
+        "`.opencode/commands/doctor/assets/doctor-runtime-mirrors.yaml` (full, 160 lines)",
+        "`.github/workflows/spec-kit-check.yml:142-145`; `.opencode/commands/doctor/_routes.yaml:193-196`;",
+        "Bounded grep over `check-comment-hygiene.sh`, `comment-hygiene-hook.md`, `quality-checklist.md`,"
+      ]
+    },
+    {
+      "id": "finding-5-6-ac-005-cannot-be-met-by-this-run-s-shape-ac-005-reads-given-two-lineages-that",
+      "text": "**AC-005 cannot be met by this run's shape.** AC-005 reads \"Given **two lineages** that",
+      "addedAtIteration": 5,
+      "sources": [
+        "`research/deep-research-config.json`, `research/deep-research-state.jsonl` (4 iteration records",
+        "`research/iterations/iteration-004.md` (F1, F2, F5, Recommended Next Focus; re-read for the",
+        "`research/deltas/iter-004.jsonl` line 1 (accepted gateway record schema)",
+        "`specs/sk-communication/006-sk-communication-clarity/002-synthesis-and-decisions/spec.md`",
+        "`specs/sk-communication/006-sk-communication-clarity/spec.md` (Phase Documentation Map, Phase",
+        "`.opencode/skills/sk-code/sk-code-quality/assets/code-quality-checklist/overview-header-and-comments.md`",
+        "`.opencode/skills/sk-code/shared/references/universal/code-quality-standards.md:77` (bounded",
+        "`.opencode/commands/doctor/assets/doctor-runtime-mirrors.yaml` (full, 160 lines)",
+        "`.github/workflows/spec-kit-check.yml:142-145`; `.opencode/commands/doctor/_routes.yaml:193-196`;",
+        "Bounded grep over `check-comment-hygiene.sh`, `comment-hygiene-hook.md`, `quality-checklist.md`,"
+      ]
+    },
+    {
+      "id": "finding-5-7-req-007-ac-007-is-pre-committed-by-the-map-ac-007-requires-the-reader-profile-qu",
+      "text": "**REQ-007/AC-007 is pre-committed by the map.** AC-007 requires the reader-profile question to",
+      "addedAtIteration": 5,
+      "sources": [
+        "`research/deep-research-config.json`, `research/deep-research-state.jsonl` (4 iteration records",
+        "`research/iterations/iteration-004.md` (F1, F2, F5, Recommended Next Focus; re-read for the",
+        "`research/deltas/iter-004.jsonl` line 1 (accepted gateway record schema)",
+        "`specs/sk-communication/006-sk-communication-clarity/002-synthesis-and-decisions/spec.md`",
+        "`specs/sk-communication/006-sk-communication-clarity/spec.md` (Phase Documentation Map, Phase",
+        "`.opencode/skills/sk-code/sk-code-quality/assets/code-quality-checklist/overview-header-and-comments.md`",
+        "`.opencode/skills/sk-code/shared/references/universal/code-quality-standards.md:77` (bounded",
+        "`.opencode/commands/doctor/assets/doctor-runtime-mirrors.yaml` (full, 160 lines)",
+        "`.github/workflows/spec-kit-check.yml:142-145`; `.opencode/commands/doctor/_routes.yaml:193-196`;",
+        "Bounded grep over `check-comment-hygiene.sh`, `comment-hygiene-hook.md`, `quality-checklist.md`,"
+      ]
+    },
+    {
+      "id": "finding-5-5-some-owning-surfaces-are-not-documents-doctor-surface-ci-c24-gap-statement-only",
+      "text": "**Some owning surfaces are not documents.** \"Doctor surface + CI\" (c24), \"gap statement only\"",
+      "addedAtIteration": 5,
+      "sources": [
+        "`research/deep-research-config.json`, `research/deep-research-state.jsonl` (4 iteration records",
+        "`research/iterations/iteration-004.md` (F1, F2, F5, Recommended Next Focus; re-read for the",
+        "`research/deltas/iter-004.jsonl` line 1 (accepted gateway record schema)",
+        "`specs/sk-communication/006-sk-communication-clarity/002-synthesis-and-decisions/spec.md`",
+        "`specs/sk-communication/006-sk-communication-clarity/spec.md` (Phase Documentation Map, Phase",
+        "`.opencode/skills/sk-code/sk-code-quality/assets/code-quality-checklist/overview-header-and-comments.md`",
+        "`.opencode/skills/sk-code/shared/references/universal/code-quality-standards.md:77` (bounded",
+        "`.opencode/commands/doctor/assets/doctor-runtime-mirrors.yaml` (full, 160 lines)",
+        "`.github/workflows/spec-kit-check.yml:142-145`; `.opencode/commands/doctor/_routes.yaml:193-196`;",
+        "Bounded grep over `check-comment-hygiene.sh`, `comment-hygiene-hook.md`, `quality-checklist.md`,"
+      ]
+    },
+    {
+      "id": "finding-5-2-ac-001-given-the-merged-recommendation-list-when-the-phase-closes-then-every-row",
+      "text": "AC-001: \"Given the **merged** recommendation list, When the phase closes, Then every row",
+      "addedAtIteration": 5,
+      "sources": [
+        "`research/deep-research-config.json`, `research/deep-research-state.jsonl` (4 iteration records",
+        "`research/iterations/iteration-004.md` (F1, F2, F5, Recommended Next Focus; re-read for the",
+        "`research/deltas/iter-004.jsonl` line 1 (accepted gateway record schema)",
+        "`specs/sk-communication/006-sk-communication-clarity/002-synthesis-and-decisions/spec.md`",
+        "`specs/sk-communication/006-sk-communication-clarity/spec.md` (Phase Documentation Map, Phase",
+        "`.opencode/skills/sk-code/sk-code-quality/assets/code-quality-checklist/overview-header-and-comments.md`",
+        "`.opencode/skills/sk-code/shared/references/universal/code-quality-standards.md:77` (bounded",
+        "`.opencode/commands/doctor/assets/doctor-runtime-mirrors.yaml` (full, 160 lines)",
+        "`.github/workflows/spec-kit-check.yml:142-145`; `.opencode/commands/doctor/_routes.yaml:193-196`;",
+        "Bounded grep over `check-comment-hygiene.sh`, `comment-hygiene-hook.md`, `quality-checklist.md`,"
+      ]
+    },
+    {
+      "id": "finding-5-14-deliberate-blind-spot-asset-output-block-hook-config-structure-is-out-of-scope-f",
+      "text": "Deliberate blind spot (asset output block): hook **config structure** is out of scope for",
+      "addedAtIteration": 5,
+      "sources": [
+        "`research/deep-research-config.json`, `research/deep-research-state.jsonl` (4 iteration records",
+        "`research/iterations/iteration-004.md` (F1, F2, F5, Recommended Next Focus; re-read for the",
+        "`research/deltas/iter-004.jsonl` line 1 (accepted gateway record schema)",
+        "`specs/sk-communication/006-sk-communication-clarity/002-synthesis-and-decisions/spec.md`",
+        "`specs/sk-communication/006-sk-communication-clarity/spec.md` (Phase Documentation Map, Phase",
+        "`.opencode/skills/sk-code/sk-code-quality/assets/code-quality-checklist/overview-header-and-comments.md`",
+        "`.opencode/skills/sk-code/shared/references/universal/code-quality-standards.md:77` (bounded",
+        "`.opencode/commands/doctor/assets/doctor-runtime-mirrors.yaml` (full, 160 lines)",
+        "`.github/workflows/spec-kit-check.yml:142-145`; `.opencode/commands/doctor/_routes.yaml:193-196`;",
+        "Bounded grep over `check-comment-hygiene.sh`, `comment-hygiene-hook.md`, `quality-checklist.md`,"
+      ]
+    },
+    {
+      "id": "finding-5-1-handoff-criterion-every-recommendation-carries-an-adopt-or-reject-verdict-and-if",
+      "text": "Handoff criterion: \"Every recommendation carries an adopt or reject verdict and, if adopted,",
+      "addedAtIteration": 5,
+      "sources": [
+        "`research/deep-research-config.json`, `research/deep-research-state.jsonl` (4 iteration records",
+        "`research/iterations/iteration-004.md` (F1, F2, F5, Recommended Next Focus; re-read for the",
+        "`research/deltas/iter-004.jsonl` line 1 (accepted gateway record schema)",
+        "`specs/sk-communication/006-sk-communication-clarity/002-synthesis-and-decisions/spec.md`",
+        "`specs/sk-communication/006-sk-communication-clarity/spec.md` (Phase Documentation Map, Phase",
+        "`.opencode/skills/sk-code/sk-code-quality/assets/code-quality-checklist/overview-header-and-comments.md`",
+        "`.opencode/skills/sk-code/shared/references/universal/code-quality-standards.md:77` (bounded",
+        "`.opencode/commands/doctor/assets/doctor-runtime-mirrors.yaml` (full, 160 lines)",
+        "`.github/workflows/spec-kit-check.yml:142-145`; `.opencode/commands/doctor/_routes.yaml:193-196`;",
+        "Bounded grep over `check-comment-hygiene.sh`, `comment-hygiene-hook.md`, `quality-checklist.md`,"
+      ]
+    },
+    {
+      "id": "finding-5-12-hook-adapter-fallback-health-every-row-is-a-file-exists-read-a-plain-path-existe",
+      "text": "Hook-adapter fallback health: every row is a `file_exists` read — \"a plain path-existence read,",
+      "addedAtIteration": 5,
+      "sources": [
+        "`research/deep-research-config.json`, `research/deep-research-state.jsonl` (4 iteration records",
+        "`research/iterations/iteration-004.md` (F1, F2, F5, Recommended Next Focus; re-read for the",
+        "`research/deltas/iter-004.jsonl` line 1 (accepted gateway record schema)",
+        "`specs/sk-communication/006-sk-communication-clarity/002-synthesis-and-decisions/spec.md`",
+        "`specs/sk-communication/006-sk-communication-clarity/spec.md` (Phase Documentation Map, Phase",
+        "`.opencode/skills/sk-code/sk-code-quality/assets/code-quality-checklist/overview-header-and-comments.md`",
+        "`.opencode/skills/sk-code/shared/references/universal/code-quality-standards.md:77` (bounded",
+        "`.opencode/commands/doctor/assets/doctor-runtime-mirrors.yaml` (full, 160 lines)",
+        "`.github/workflows/spec-kit-check.yml:142-145`; `.opencode/commands/doctor/_routes.yaml:193-196`;",
+        "Bounded grep over `check-comment-hygiene.sh`, `comment-hygiene-hook.md`, `quality-checklist.md`,"
+      ]
+    },
+    {
+      "id": "finding-5-13-invariant-mutation-boundaries-check-only-the-route-must-not-run-any-generator-in",
+      "text": "Invariant (`mutation_boundaries`): check-only; the route \"MUST NOT run any generator in write",
+      "addedAtIteration": 5,
+      "sources": [
+        "`research/deep-research-config.json`, `research/deep-research-state.jsonl` (4 iteration records",
+        "`research/iterations/iteration-004.md` (F1, F2, F5, Recommended Next Focus; re-read for the",
+        "`research/deltas/iter-004.jsonl` line 1 (accepted gateway record schema)",
+        "`specs/sk-communication/006-sk-communication-clarity/002-synthesis-and-decisions/spec.md`",
+        "`specs/sk-communication/006-sk-communication-clarity/spec.md` (Phase Documentation Map, Phase",
+        "`.opencode/skills/sk-code/sk-code-quality/assets/code-quality-checklist/overview-header-and-comments.md`",
+        "`.opencode/skills/sk-code/shared/references/universal/code-quality-standards.md:77` (bounded",
+        "`.opencode/commands/doctor/assets/doctor-runtime-mirrors.yaml` (full, 160 lines)",
+        "`.github/workflows/spec-kit-check.yml:142-145`; `.opencode/commands/doctor/_routes.yaml:193-196`;",
+        "Bounded grep over `check-comment-hygiene.sh`, `comment-hygiene-hook.md`, `quality-checklist.md`,"
+      ]
+    },
+    {
+      "id": "finding-5-10-one-layer-out-sk-code-shared-references-universal-code-quality-standards-md-77-n",
+      "text": "One layer out, `sk-code/shared/references/universal/code-quality-standards.md:77`: \"No",
+      "addedAtIteration": 5,
+      "sources": [
+        "`research/deep-research-config.json`, `research/deep-research-state.jsonl` (4 iteration records",
+        "`research/iterations/iteration-004.md` (F1, F2, F5, Recommended Next Focus; re-read for the",
+        "`research/deltas/iter-004.jsonl` line 1 (accepted gateway record schema)",
+        "`specs/sk-communication/006-sk-communication-clarity/002-synthesis-and-decisions/spec.md`",
+        "`specs/sk-communication/006-sk-communication-clarity/spec.md` (Phase Documentation Map, Phase",
+        "`.opencode/skills/sk-code/sk-code-quality/assets/code-quality-checklist/overview-header-and-comments.md`",
+        "`.opencode/skills/sk-code/shared/references/universal/code-quality-standards.md:77` (bounded",
+        "`.opencode/commands/doctor/assets/doctor-runtime-mirrors.yaml` (full, 160 lines)",
+        "`.github/workflows/spec-kit-check.yml:142-145`; `.opencode/commands/doctor/_routes.yaml:193-196`;",
+        "Bounded grep over `check-comment-hygiene.sh`, `comment-hygiene-hook.md`, `quality-checklist.md`,"
+      ]
+    },
+    {
+      "id": "finding-5-3-sc-001-the-allocation-table-s-row-count-equals-the-union-of-the-lineages-recomme",
+      "text": "SC-001: \"The allocation table's row count equals the union of the lineages' recommendation",
+      "addedAtIteration": 5,
+      "sources": [
+        "`research/deep-research-config.json`, `research/deep-research-state.jsonl` (4 iteration records",
+        "`research/iterations/iteration-004.md` (F1, F2, F5, Recommended Next Focus; re-read for the",
+        "`research/deltas/iter-004.jsonl` line 1 (accepted gateway record schema)",
+        "`specs/sk-communication/006-sk-communication-clarity/002-synthesis-and-decisions/spec.md`",
+        "`specs/sk-communication/006-sk-communication-clarity/spec.md` (Phase Documentation Map, Phase",
+        "`.opencode/skills/sk-code/sk-code-quality/assets/code-quality-checklist/overview-header-and-comments.md`",
+        "`.opencode/skills/sk-code/shared/references/universal/code-quality-standards.md:77` (bounded",
+        "`.opencode/commands/doctor/assets/doctor-runtime-mirrors.yaml` (full, 160 lines)",
+        "`.github/workflows/spec-kit-check.yml:142-145`; `.opencode/commands/doctor/_routes.yaml:193-196`;",
+        "Bounded grep over `check-comment-hygiene.sh`, `comment-hygiene-hook.md`, `quality-checklist.md`,"
+      ]
+    },
+    {
+      "id": "finding-5-11-seven-check-steps-yaml-execution-steps-runtime-mirrors-cursor-devin-agent-comman",
+      "text": "Seven `--check` steps (yaml `execution.steps`): runtime mirrors (cursor/devin agent, command and",
+      "addedAtIteration": 5,
+      "sources": [
+        "`research/deep-research-config.json`, `research/deep-research-state.jsonl` (4 iteration records",
+        "`research/iterations/iteration-004.md` (F1, F2, F5, Recommended Next Focus; re-read for the",
+        "`research/deltas/iter-004.jsonl` line 1 (accepted gateway record schema)",
+        "`specs/sk-communication/006-sk-communication-clarity/002-synthesis-and-decisions/spec.md`",
+        "`specs/sk-communication/006-sk-communication-clarity/spec.md` (Phase Documentation Map, Phase",
+        "`.opencode/skills/sk-code/sk-code-quality/assets/code-quality-checklist/overview-header-and-comments.md`",
+        "`.opencode/skills/sk-code/shared/references/universal/code-quality-standards.md:77` (bounded",
+        "`.opencode/commands/doctor/assets/doctor-runtime-mirrors.yaml` (full, 160 lines)",
+        "`.github/workflows/spec-kit-check.yml:142-145`; `.opencode/commands/doctor/_routes.yaml:193-196`;",
+        "Bounded grep over `check-comment-hygiene.sh`, `comment-hygiene-hook.md`, `quality-checklist.md`,"
+      ]
+    },
+    {
+      "id": "finding-6-5-opencode-skills-sk-doc-sk-create-with-human-voice-references-hvr-rules-md-114-th",
+      "text": "`.opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md:114`: the Em Dash Ban",
+      "addedAtIteration": 6,
+      "sources": [
+        "`research/deep-research-config.json`, `research/deep-research-state.jsonl` (5 iteration records +",
+        "`research/iterations/iteration-001.md` through `iteration-005.md` (citation census via grep only,",
+        "`repo-rules/communication.md:45-60`, `:102-130` (bounded reads)",
+        "`AGENTS.md:140-150`, `:240-246` (bounded reads)",
+        "`repo-rules/handoff-and-questions.md:37-41` (bounded read)",
+        "`repo-rules/evidence-and-proof.md:42`, `:204` (grep hits)",
+        "`.opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md:110-120` (bounded read)",
+        "`research/deltas/iter-005.jsonl` line 1 and `.opencode/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs` (arg handling) for schema mirroring"
+      ]
+    },
+    {
+      "id": "finding-6-6-agents-md-144-hit-load-bearing-claim-legible",
+      "text": "`AGENTS.md:144` (hit, \"load-bearing claim legible\")",
+      "addedAtIteration": 6,
+      "sources": [
+        "`research/deep-research-config.json`, `research/deep-research-state.jsonl` (5 iteration records +",
+        "`research/iterations/iteration-001.md` through `iteration-005.md` (citation census via grep only,",
+        "`repo-rules/communication.md:45-60`, `:102-130` (bounded reads)",
+        "`AGENTS.md:140-150`, `:240-246` (bounded reads)",
+        "`repo-rules/handoff-and-questions.md:37-41` (bounded read)",
+        "`repo-rules/evidence-and-proof.md:42`, `:204` (grep hits)",
+        "`.opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md:110-120` (bounded read)",
+        "`research/deltas/iter-005.jsonl` line 1 and `.opencode/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs` (arg handling) for schema mirroring"
+      ]
+    },
+    {
+      "id": "finding-6-4-agents-md-144-keep-every-load-bearing-claim-legible-size-effort-to-its-blast-rad",
+      "text": "`AGENTS.md:144`: \"keep every load-bearing claim legible, size effort to its blast radius, and",
+      "addedAtIteration": 6,
+      "sources": [
+        "`research/deep-research-config.json`, `research/deep-research-state.jsonl` (5 iteration records +",
+        "`research/iterations/iteration-001.md` through `iteration-005.md` (citation census via grep only,",
+        "`repo-rules/communication.md:45-60`, `:102-130` (bounded reads)",
+        "`AGENTS.md:140-150`, `:240-246` (bounded reads)",
+        "`repo-rules/handoff-and-questions.md:37-41` (bounded read)",
+        "`repo-rules/evidence-and-proof.md:42`, `:204` (grep hits)",
+        "`.opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md:110-120` (bounded read)",
+        "`research/deltas/iter-005.jsonl` line 1 and `.opencode/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs` (arg handling) for schema mirroring"
+      ]
+    },
+    {
+      "id": "finding-6-7-agents-md-243-hit-a-load-bearing-claim-carries-its-evidence",
+      "text": "`AGENTS.md:243` (hit, \"A load-bearing claim carries its evidence\")",
+      "addedAtIteration": 6,
+      "sources": [
+        "`research/deep-research-config.json`, `research/deep-research-state.jsonl` (5 iteration records +",
+        "`research/iterations/iteration-001.md` through `iteration-005.md` (citation census via grep only,",
+        "`repo-rules/communication.md:45-60`, `:102-130` (bounded reads)",
+        "`AGENTS.md:140-150`, `:240-246` (bounded reads)",
+        "`repo-rules/handoff-and-questions.md:37-41` (bounded read)",
+        "`repo-rules/evidence-and-proof.md:42`, `:204` (grep hits)",
+        "`.opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md:110-120` (bounded read)",
+        "`research/deltas/iter-005.jsonl` line 1 and `.opencode/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs` (arg handling) for schema mirroring"
+      ]
+    },
+    {
+      "id": "finding-6-2-repo-rules-communication-md-104-106-never-use-an-em-dash-replace-it-with-a-comma",
+      "text": "`repo-rules/communication.md:104-106`: \"**Never use an em dash.** Replace it with a comma, a full",
+      "addedAtIteration": 6,
+      "sources": [
+        "`research/deep-research-config.json`, `research/deep-research-state.jsonl` (5 iteration records +",
+        "`research/iterations/iteration-001.md` through `iteration-005.md` (citation census via grep only,",
+        "`repo-rules/communication.md:45-60`, `:102-130` (bounded reads)",
+        "`AGENTS.md:140-150`, `:240-246` (bounded reads)",
+        "`repo-rules/handoff-and-questions.md:37-41` (bounded read)",
+        "`repo-rules/evidence-and-proof.md:42`, `:204` (grep hits)",
+        "`.opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md:110-120` (bounded read)",
+        "`research/deltas/iter-005.jsonl` line 1 and `.opencode/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs` (arg handling) for schema mirroring"
+      ]
+    },
+    {
+      "id": "finding-6-3-repo-rules-communication-md-116-126-this-rule-carries-the-ban-because-it-fires-o",
+      "text": "`repo-rules/communication.md:116-126`: \"This rule carries the ban because it fires on every",
+      "addedAtIteration": 6,
+      "sources": [
+        "`research/deep-research-config.json`, `research/deep-research-state.jsonl` (5 iteration records +",
+        "`research/iterations/iteration-001.md` through `iteration-005.md` (citation census via grep only,",
+        "`repo-rules/communication.md:45-60`, `:102-130` (bounded reads)",
+        "`AGENTS.md:140-150`, `:240-246` (bounded reads)",
+        "`repo-rules/handoff-and-questions.md:37-41` (bounded read)",
+        "`repo-rules/evidence-and-proof.md:42`, `:204` (grep hits)",
+        "`.opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md:110-120` (bounded read)",
+        "`research/deltas/iter-005.jsonl` line 1 and `.opencode/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs` (arg handling) for schema mirroring"
+      ]
+    },
+    {
+      "id": "finding-6-1-repo-rules-communication-md-49-51-the-shape-of-a-decision-you-hand-over-the-verd",
+      "text": "`repo-rules/communication.md:49-51`: \"The shape of a decision you hand over, the verdict-first",
+      "addedAtIteration": 6,
+      "sources": [
+        "`research/deep-research-config.json`, `research/deep-research-state.jsonl` (5 iteration records +",
+        "`research/iterations/iteration-001.md` through `iteration-005.md` (citation census via grep only,",
+        "`repo-rules/communication.md:45-60`, `:102-130` (bounded reads)",
+        "`AGENTS.md:140-150`, `:240-246` (bounded reads)",
+        "`repo-rules/handoff-and-questions.md:37-41` (bounded read)",
+        "`repo-rules/evidence-and-proof.md:42`, `:204` (grep hits)",
+        "`.opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md:110-120` (bounded read)",
+        "`research/deltas/iter-005.jsonl` line 1 and `.opencode/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs` (arg handling) for schema mirroring"
+      ]
+    },
+    {
+      "id": "finding-6-9-repo-rules-evidence-and-proof-md-204-hit-every-load-bearing-sentence-is-marked-o",
+      "text": "`repo-rules/evidence-and-proof.md:204` (hit, \"Every load-bearing sentence is marked OBSERVED,",
+      "addedAtIteration": 6,
+      "sources": [
+        "`research/deep-research-config.json`, `research/deep-research-state.jsonl` (5 iteration records +",
+        "`research/iterations/iteration-001.md` through `iteration-005.md` (citation census via grep only,",
+        "`repo-rules/communication.md:45-60`, `:102-130` (bounded reads)",
+        "`AGENTS.md:140-150`, `:240-246` (bounded reads)",
+        "`repo-rules/handoff-and-questions.md:37-41` (bounded read)",
+        "`repo-rules/evidence-and-proof.md:42`, `:204` (grep hits)",
+        "`.opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md:110-120` (bounded read)",
+        "`research/deltas/iter-005.jsonl` line 1 and `.opencode/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs` (arg handling) for schema mirroring"
+      ]
+    },
+    {
+      "id": "finding-6-8-repo-rules-evidence-and-proof-md-42-hit-every-load-bearing-claim-the-rule-s-decl",
+      "text": "`repo-rules/evidence-and-proof.md:42` (hit, \"Every load-bearing claim ...\", the rule's declaration",
+      "addedAtIteration": 6,
+      "sources": [
+        "`research/deep-research-config.json`, `research/deep-research-state.jsonl` (5 iteration records +",
+        "`research/iterations/iteration-001.md` through `iteration-005.md` (citation census via grep only,",
+        "`repo-rules/communication.md:45-60`, `:102-130` (bounded reads)",
+        "`AGENTS.md:140-150`, `:240-246` (bounded reads)",
+        "`repo-rules/handoff-and-questions.md:37-41` (bounded read)",
+        "`repo-rules/evidence-and-proof.md:42`, `:204` (grep hits)",
+        "`.opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md:110-120` (bounded read)",
+        "`research/deltas/iter-005.jsonl` line 1 and `.opencode/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs` (arg handling) for schema mirroring"
+      ]
+    },
+    {
+      "id": "finding-7-1-agents-md-144-hit-keep-every-load-bearing-claim-legible",
+      "text": "`AGENTS.md:144` — hit (\"keep every load-bearing claim legible\")",
+      "addedAtIteration": 7,
+      "sources": [
+        "`research/deep-research-config.json`, `research/deep-research-state.jsonl` (6 iteration records + 1 containment event), `research/deep-research-strategy.md` (sections 3, 9, 10A, 11, 11A, 13)",
+        "`research/iterations/iteration-006.md` (full read)",
+        "`research/iterations/iteration-004.md:118` (C-4 row)",
+        "`AGENTS.md` and `repo-rules/` (exact-term census)",
+        "`research/deltas/iter-006.jsonl` line 1 (schema mirroring)"
+      ]
+    },
+    {
+      "id": "finding-7-2-agents-md-243-hit-a-load-bearing-claim-carries-its-evidence",
+      "text": "`AGENTS.md:243` — hit (\"A load-bearing claim carries its evidence\")",
+      "addedAtIteration": 7,
+      "sources": [
+        "`research/deep-research-config.json`, `research/deep-research-state.jsonl` (6 iteration records + 1 containment event), `research/deep-research-strategy.md` (sections 3, 9, 10A, 11, 11A, 13)",
+        "`research/iterations/iteration-006.md` (full read)",
+        "`research/iterations/iteration-004.md:118` (C-4 row)",
+        "`AGENTS.md` and `repo-rules/` (exact-term census)",
+        "`research/deltas/iter-006.jsonl` line 1 (schema mirroring)"
+      ]
+    },
+    {
+      "id": "finding-7-4-repo-rules-evidence-and-proof-md-204-hit-every-load-bearing-sentence-is-marked-o",
+      "text": "`repo-rules/evidence-and-proof.md:204` — hit (\"Every load-bearing sentence is marked OBSERVED, DERIVED, or INFERRED.\", the rule's self-check row)",
+      "addedAtIteration": 7,
+      "sources": [
+        "`research/deep-research-config.json`, `research/deep-research-state.jsonl` (6 iteration records + 1 containment event), `research/deep-research-strategy.md` (sections 3, 9, 10A, 11, 11A, 13)",
+        "`research/iterations/iteration-006.md` (full read)",
+        "`research/iterations/iteration-004.md:118` (C-4 row)",
+        "`AGENTS.md` and `repo-rules/` (exact-term census)",
+        "`research/deltas/iter-006.jsonl` line 1 (schema mirroring)"
+      ]
+    },
+    {
+      "id": "finding-7-3-repo-rules-evidence-and-proof-md-42-hit-every-load-bearing-claim-the-rule-s-decl",
+      "text": "`repo-rules/evidence-and-proof.md:42` — hit (\"Every load-bearing claim ...\", the rule's declaration sentence)",
+      "addedAtIteration": 7,
+      "sources": [
+        "`research/deep-research-config.json`, `research/deep-research-state.jsonl` (6 iteration records + 1 containment event), `research/deep-research-strategy.md` (sections 3, 9, 10A, 11, 11A, 13)",
+        "`research/iterations/iteration-006.md` (full read)",
+        "`research/iterations/iteration-004.md:118` (C-4 row)",
+        "`AGENTS.md` and `repo-rules/` (exact-term census)",
+        "`research/deltas/iter-006.jsonl` line 1 (schema mirroring)"
+      ]
+    },
+    {
+      "id": "finding-7-5-repo-rules-handoff-and-questions-md-39-no-hyphenated-term-the-bare-noun-load-onl",
+      "text": "`repo-rules/handoff-and-questions.md:39` — no hyphenated term (the bare noun \"load\" only)",
+      "addedAtIteration": 7,
+      "sources": [
+        "`research/deep-research-config.json`, `research/deep-research-state.jsonl` (6 iteration records + 1 containment event), `research/deep-research-strategy.md` (sections 3, 9, 10A, 11, 11A, 13)",
+        "`research/iterations/iteration-006.md` (full read)",
+        "`research/iterations/iteration-004.md:118` (C-4 row)",
+        "`AGENTS.md` and `repo-rules/` (exact-term census)",
+        "`research/deltas/iter-006.jsonl` line 1 (schema mirroring)"
+      ]
+    },
+    {
+      "id": "finding-8-4-existing-section-boundaries-do-not-match-the-document-reply-line-so-a-clean-two-",
+      "text": "**Existing section boundaries do not match the document/reply line, so a clean two-file split is",
+      "addedAtIteration": 8,
+      "sources": [
+        "repo-rules/communication.md:105-135",
+        ".opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md:15-74,147,315-524",
+        ".opencode/skills/sk-communication/SKILL.md:172-181,231,260",
+        ".opencode/skills/sk-doc/sk-create-with-human-voice/SKILL.md:59,66,208,244,252",
+        ".opencode/skills/sk-doc/sk-create-with-human-voice/README.md:30,53,190-191,207",
+        ".opencode/skills/sk-doc/README.md:204",
+        ".opencode/skills/sk-doc/ROUTER.md:217,349",
+        ".opencode/commands/rewrite/response.md:72,149",
+        ".opencode/commands/rewrite/response-by-external-agent.md:137,249",
+        "state ledger: 8 iteration records (1-7, 9)"
+      ]
+    },
+    {
+      "id": "finding-8-5-recommendation-and-what-breaks-recommendation-do-not-split-the-standard-into-doc",
+      "text": "**Recommendation and what breaks.** Recommendation: do not split the standard into document and",
+      "addedAtIteration": 8,
+      "sources": [
+        "repo-rules/communication.md:105-135",
+        ".opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md:15-74,147,315-524",
+        ".opencode/skills/sk-communication/SKILL.md:172-181,231,260",
+        ".opencode/skills/sk-doc/sk-create-with-human-voice/SKILL.md:59,66,208,244,252",
+        ".opencode/skills/sk-doc/sk-create-with-human-voice/README.md:30,53,190-191,207",
+        ".opencode/skills/sk-doc/README.md:204",
+        ".opencode/skills/sk-doc/ROUTER.md:217,349",
+        ".opencode/commands/rewrite/response.md:72,149",
+        ".opencode/commands/rewrite/response-by-external-agent.md:137,249",
+        "state ledger: 8 iteration records (1-7, 9)"
+      ]
+    },
+    {
+      "id": "finding-8-2-the-voice-personality-exclusion-cannot-be-removed-by-file-geometry-a-split-only-",
+      "text": "**The `VOICE PERSONALITY` exclusion cannot be removed by file geometry; a split only moves it.**",
+      "addedAtIteration": 8,
+      "sources": [
+        "repo-rules/communication.md:105-135",
+        ".opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md:15-74,147,315-524",
+        ".opencode/skills/sk-communication/SKILL.md:172-181,231,260",
+        ".opencode/skills/sk-doc/sk-create-with-human-voice/SKILL.md:59,66,208,244,252",
+        ".opencode/skills/sk-doc/sk-create-with-human-voice/README.md:30,53,190-191,207",
+        ".opencode/skills/sk-doc/README.md:204",
+        ".opencode/skills/sk-doc/ROUTER.md:217,349",
+        ".opencode/commands/rewrite/response.md:72,149",
+        ".opencode/commands/rewrite/response-by-external-agent.md:137,249",
+        "state ledger: 8 iteration records (1-7, 9)"
+      ]
+    },
+    {
+      "id": "finding-8-1-the-document-versus-reply-line-already-exists-in-prose-and-it-is-imperative-rath",
+      "text": "**The document-versus-reply line already exists in prose, and it is imperative rather than",
+      "addedAtIteration": 8,
+      "sources": [
+        "repo-rules/communication.md:105-135",
+        ".opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md:15-74,147,315-524",
+        ".opencode/skills/sk-communication/SKILL.md:172-181,231,260",
+        ".opencode/skills/sk-doc/sk-create-with-human-voice/SKILL.md:59,66,208,244,252",
+        ".opencode/skills/sk-doc/sk-create-with-human-voice/README.md:30,53,190-191,207",
+        ".opencode/skills/sk-doc/README.md:204",
+        ".opencode/skills/sk-doc/ROUTER.md:217,349",
+        ".opencode/commands/rewrite/response.md:72,149",
+        ".opencode/commands/rewrite/response-by-external-agent.md:137,249",
+        "state ledger: 8 iteration records (1-7, 9)"
+      ]
+    },
+    {
+      "id": "finding-8-3-the-scoring-band-exclusion-is-the-one-row-an-extraction-could-genuinely-delete-a",
+      "text": "**The scoring-band exclusion is the one row an extraction could genuinely delete, and a",
+      "addedAtIteration": 8,
+      "sources": [
+        "repo-rules/communication.md:105-135",
+        ".opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md:15-74,147,315-524",
+        ".opencode/skills/sk-communication/SKILL.md:172-181,231,260",
+        ".opencode/skills/sk-doc/sk-create-with-human-voice/SKILL.md:59,66,208,244,252",
+        ".opencode/skills/sk-doc/sk-create-with-human-voice/README.md:30,53,190-191,207",
+        ".opencode/skills/sk-doc/README.md:204",
+        ".opencode/skills/sk-doc/ROUTER.md:217,349",
+        ".opencode/commands/rewrite/response.md:72,149",
+        ".opencode/commands/rewrite/response-by-external-agent.md:137,249",
+        "state ledger: 8 iteration records (1-7, 9)"
+      ]
+    },
+    {
+      "id": "finding-8-7-the-routing-and-index-surfaces-enumerate-exactly-one-path-sk-doc-readme-md-204-t",
+      "text": "The routing and index surfaces enumerate exactly one path: `sk-doc/README.md:204` (\"the writing",
+      "addedAtIteration": 8,
+      "sources": [
+        "repo-rules/communication.md:105-135",
+        ".opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md:15-74,147,315-524",
+        ".opencode/skills/sk-communication/SKILL.md:172-181,231,260",
+        ".opencode/skills/sk-doc/sk-create-with-human-voice/SKILL.md:59,66,208,244,252",
+        ".opencode/skills/sk-doc/sk-create-with-human-voice/README.md:30,53,190-191,207",
+        ".opencode/skills/sk-doc/README.md:204",
+        ".opencode/skills/sk-doc/ROUTER.md:217,349",
+        ".opencode/commands/rewrite/response.md:72,149",
+        ".opencode/commands/rewrite/response-by-external-agent.md:137,249",
+        "state ledger: 8 iteration records (1-7, 9)"
+      ]
+    },
+    {
+      "id": "finding-8-8-the-scanner-s-movement-guard-the-mode-s-own-test-table-documents-fails-closed-on",
+      "text": "The scanner's movement guard. The mode's own test table documents \"Fails closed on a moved",
+      "addedAtIteration": 8,
+      "sources": [
+        "repo-rules/communication.md:105-135",
+        ".opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md:15-74,147,315-524",
+        ".opencode/skills/sk-communication/SKILL.md:172-181,231,260",
+        ".opencode/skills/sk-doc/sk-create-with-human-voice/SKILL.md:59,66,208,244,252",
+        ".opencode/skills/sk-doc/sk-create-with-human-voice/README.md:30,53,190-191,207",
+        ".opencode/skills/sk-doc/README.md:204",
+        ".opencode/skills/sk-doc/ROUTER.md:217,349",
+        ".opencode/commands/rewrite/response.md:72,149",
+        ".opencode/commands/rewrite/response-by-external-agent.md:137,249",
+        "state ledger: 8 iteration records (1-7, 9)"
+      ]
+    },
+    {
+      "id": "finding-8-6-the-single-path-referenced-never-copied-contract-the-mode-s-rule-at",
+      "text": "The single-path \"referenced, never copied\" contract. The mode's rule at",
+      "addedAtIteration": 8,
+      "sources": [
+        "repo-rules/communication.md:105-135",
+        ".opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md:15-74,147,315-524",
+        ".opencode/skills/sk-communication/SKILL.md:172-181,231,260",
+        ".opencode/skills/sk-doc/sk-create-with-human-voice/SKILL.md:59,66,208,244,252",
+        ".opencode/skills/sk-doc/sk-create-with-human-voice/README.md:30,53,190-191,207",
+        ".opencode/skills/sk-doc/README.md:204",
+        ".opencode/skills/sk-doc/ROUTER.md:217,349",
+        ".opencode/commands/rewrite/response.md:72,149",
+        ".opencode/commands/rewrite/response-by-external-agent.md:137,249",
+        "state ledger: 8 iteration records (1-7, 9)"
+      ]
+    },
+    {
+      "id": "finding-9-6-binding-classification-of-the-ten-rules-unconditional-compatible-no-existing-rul",
+      "text": "**Binding classification of the ten rules.** Unconditional-compatible, no existing rule",
+      "addedAtIteration": 9,
+      "sources": [
+        "`specs/sk-communication/006-sk-communication-clarity/context/i-have-adhd-main/skills/i-have-adhd/SKILL.md:21-140`",
+        "`specs/sk-communication/006-sk-communication-clarity/context/i-have-adhd-main/` (tree listing)",
+        "`repo-rules/communication.md:30-60,181-200`",
+        "`REPO RULES.md:75-109`",
+        "`.opencode/skills/system-skill-advisor/runtime/config/route-exclusions.json:1-3`",
+        "`.opencode/skills/system-skill-advisor/runtime/lib/routing/route-exclusions.ts:26,60-62,88`",
+        "`.opencode/skills/sk-communication/cli-communication-projection/docs/enablement.md:1-80,112,143`",
+        "`.opencode/skills/sk-communication/cli-communication-projection/src/config/enablement.ts:9,25,33,56`",
+        "`.opencode/skills/sk-communication/cli-communication-projection/enablement.local.json.example:1-8`",
+        "`research/deep-research-config.json`, `research/deep-research-state.jsonl`, `research/deep-research-strategy.md`"
+      ]
+    },
+    {
+      "id": "finding-9-7-mode-surface-answer-with-the-trade-off-of-each-candidate-the-only-existing-machi",
+      "text": "**Mode-surface answer, with the trade-off of each candidate.** The only existing machinery shaped",
+      "addedAtIteration": 9,
+      "sources": [
+        "`specs/sk-communication/006-sk-communication-clarity/context/i-have-adhd-main/skills/i-have-adhd/SKILL.md:21-140`",
+        "`specs/sk-communication/006-sk-communication-clarity/context/i-have-adhd-main/` (tree listing)",
+        "`repo-rules/communication.md:30-60,181-200`",
+        "`REPO RULES.md:75-109`",
+        "`.opencode/skills/system-skill-advisor/runtime/config/route-exclusions.json:1-3`",
+        "`.opencode/skills/system-skill-advisor/runtime/lib/routing/route-exclusions.ts:26,60-62,88`",
+        "`.opencode/skills/sk-communication/cli-communication-projection/docs/enablement.md:1-80,112,143`",
+        "`.opencode/skills/sk-communication/cli-communication-projection/src/config/enablement.ts:9,25,33,56`",
+        "`.opencode/skills/sk-communication/cli-communication-projection/enablement.local.json.example:1-8`",
+        "`research/deep-research-config.json`, `research/deep-research-state.jsonl`, `research/deep-research-strategy.md`"
+      ]
+    },
+    {
+      "id": "finding-9-3-one-of-the-ten-rules-contradicts-an-existing-repo-rule-and-the-contradiction-is-",
+      "text": "**One of the ten rules contradicts an existing repo rule, and the contradiction is resolvable",
+      "addedAtIteration": 9,
+      "sources": [
+        "`specs/sk-communication/006-sk-communication-clarity/context/i-have-adhd-main/skills/i-have-adhd/SKILL.md:21-140`",
+        "`specs/sk-communication/006-sk-communication-clarity/context/i-have-adhd-main/` (tree listing)",
+        "`repo-rules/communication.md:30-60,181-200`",
+        "`REPO RULES.md:75-109`",
+        "`.opencode/skills/system-skill-advisor/runtime/config/route-exclusions.json:1-3`",
+        "`.opencode/skills/system-skill-advisor/runtime/lib/routing/route-exclusions.ts:26,60-62,88`",
+        "`.opencode/skills/sk-communication/cli-communication-projection/docs/enablement.md:1-80,112,143`",
+        "`.opencode/skills/sk-communication/cli-communication-projection/src/config/enablement.ts:9,25,33,56`",
+        "`.opencode/skills/sk-communication/cli-communication-projection/enablement.local.json.example:1-8`",
+        "`research/deep-research-config.json`, `research/deep-research-state.jsonl`, `research/deep-research-strategy.md`"
+      ]
+    },
+    {
+      "id": "finding-9-4-rule-6-specific-time-estimates-skill-md-82-87-is-not-safely-unconditional-for",
+      "text": "**Rule 6 (specific time estimates, `SKILL.md:82-87`) is not safely unconditional for",
+      "addedAtIteration": 9,
+      "sources": [
+        "`specs/sk-communication/006-sk-communication-clarity/context/i-have-adhd-main/skills/i-have-adhd/SKILL.md:21-140`",
+        "`specs/sk-communication/006-sk-communication-clarity/context/i-have-adhd-main/` (tree listing)",
+        "`repo-rules/communication.md:30-60,181-200`",
+        "`REPO RULES.md:75-109`",
+        "`.opencode/skills/system-skill-advisor/runtime/config/route-exclusions.json:1-3`",
+        "`.opencode/skills/system-skill-advisor/runtime/lib/routing/route-exclusions.ts:26,60-62,88`",
+        "`.opencode/skills/sk-communication/cli-communication-projection/docs/enablement.md:1-80,112,143`",
+        "`.opencode/skills/sk-communication/cli-communication-projection/src/config/enablement.ts:9,25,33,56`",
+        "`.opencode/skills/sk-communication/cli-communication-projection/enablement.local.json.example:1-8`",
+        "`research/deep-research-config.json`, `research/deep-research-state.jsonl`, `research/deep-research-strategy.md`"
+      ]
+    },
+    {
+      "id": "finding-9-5-rule-9-carries-its-own-unconditional-conditional-split-the-numeric-cap-is-the-co",
+      "text": "**Rule 9 carries its own unconditional/conditional split.** The numeric cap is the conditional",
+      "addedAtIteration": 9,
+      "sources": [
+        "`specs/sk-communication/006-sk-communication-clarity/context/i-have-adhd-main/skills/i-have-adhd/SKILL.md:21-140`",
+        "`specs/sk-communication/006-sk-communication-clarity/context/i-have-adhd-main/` (tree listing)",
+        "`repo-rules/communication.md:30-60,181-200`",
+        "`REPO RULES.md:75-109`",
+        "`.opencode/skills/system-skill-advisor/runtime/config/route-exclusions.json:1-3`",
+        "`.opencode/skills/system-skill-advisor/runtime/lib/routing/route-exclusions.ts:26,60-62,88`",
+        "`.opencode/skills/sk-communication/cli-communication-projection/docs/enablement.md:1-80,112,143`",
+        "`.opencode/skills/sk-communication/cli-communication-projection/src/config/enablement.ts:9,25,33,56`",
+        "`.opencode/skills/sk-communication/cli-communication-projection/enablement.local.json.example:1-8`",
+        "`research/deep-research-config.json`, `research/deep-research-state.jsonl`, `research/deep-research-strategy.md`"
+      ]
+    },
+    {
+      "id": "finding-9-1-the-repo-s-binding-convention-for-a-reply-shape-rule-is-unconditional-loading-wi",
+      "text": "**The repo's binding convention for a reply-shape rule is unconditional loading, with the",
+      "addedAtIteration": 9,
+      "sources": [
+        "`specs/sk-communication/006-sk-communication-clarity/context/i-have-adhd-main/skills/i-have-adhd/SKILL.md:21-140`",
+        "`specs/sk-communication/006-sk-communication-clarity/context/i-have-adhd-main/` (tree listing)",
+        "`repo-rules/communication.md:30-60,181-200`",
+        "`REPO RULES.md:75-109`",
+        "`.opencode/skills/system-skill-advisor/runtime/config/route-exclusions.json:1-3`",
+        "`.opencode/skills/system-skill-advisor/runtime/lib/routing/route-exclusions.ts:26,60-62,88`",
+        "`.opencode/skills/sk-communication/cli-communication-projection/docs/enablement.md:1-80,112,143`",
+        "`.opencode/skills/sk-communication/cli-communication-projection/src/config/enablement.ts:9,25,33,56`",
+        "`.opencode/skills/sk-communication/cli-communication-projection/enablement.local.json.example:1-8`",
+        "`research/deep-research-config.json`, `research/deep-research-state.jsonl`, `research/deep-research-strategy.md`"
+      ]
+    },
+    {
+      "id": "finding-9-2-two-off-by-default-mechanisms-exist-today-and-neither-is-per-reader-or-per-turn",
+      "text": "**Two off-by-default mechanisms exist today, and neither is per-reader or per-turn.**",
+      "addedAtIteration": 9,
+      "sources": [
+        "`specs/sk-communication/006-sk-communication-clarity/context/i-have-adhd-main/skills/i-have-adhd/SKILL.md:21-140`",
+        "`specs/sk-communication/006-sk-communication-clarity/context/i-have-adhd-main/` (tree listing)",
+        "`repo-rules/communication.md:30-60,181-200`",
+        "`REPO RULES.md:75-109`",
+        "`.opencode/skills/system-skill-advisor/runtime/config/route-exclusions.json:1-3`",
+        "`.opencode/skills/system-skill-advisor/runtime/lib/routing/route-exclusions.ts:26,60-62,88`",
+        "`.opencode/skills/sk-communication/cli-communication-projection/docs/enablement.md:1-80,112,143`",
+        "`.opencode/skills/sk-communication/cli-communication-projection/src/config/enablement.ts:9,25,33,56`",
+        "`.opencode/skills/sk-communication/cli-communication-projection/enablement.local.json.example:1-8`",
+        "`research/deep-research-config.json`, `research/deep-research-state.jsonl`, `research/deep-research-strategy.md`"
+      ]
+    },
+    {
+      "id": "finding-10-7-five-concrete-reply-cases-each-keyed-to-a-named-adopted-candidate-with-the-obser",
+      "text": "**Five concrete reply cases, each keyed to a named adopted candidate, with the observable that",
+      "addedAtIteration": 10,
+      "sources": [
+        "`.opencode/skills/sk-communication/benchmark/README.md:1-40` (full file, read this iteration)",
+        "`specs/sk-communication/006-sk-communication-clarity/context/i-have-adhd-main/evals/rubric.md:1-27` (full file, read this iteration)",
+        "`specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/deep-research-config.json`",
+        "`specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/deep-research-state.jsonl`",
+        "`specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/deep-research-strategy.md:34-43,45-53,237-241,372-376,385-390,402`",
+        "`specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/iterations/iteration-009.md:36-43,87-98,136-137`",
+        "`specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/iterations/iteration-004.md` (via grep: candidate-numbering context)",
+        "`context/i-have-adhd-main/skills/i-have-adhd/SKILL.md:33-117` (line anchors carried from iteration-009.md:87-98)",
+        "`repo-rules/communication.md:57-60,189-192,196-200` and `REPO RULES.md:80-83` (line anchors carried from iteration-009.md:36-43,62-68,82-85,94-98)"
+      ]
+    },
+    {
+      "id": "finding-10-3-release-condition-1-it-has-no-blocking-findings-rubric-md-23-is-not-observable-i",
+      "text": "**Release condition 1 (\"It has no blocking findings\", rubric.md:23) is not observable in this",
+      "addedAtIteration": 10,
+      "sources": [
+        "`.opencode/skills/sk-communication/benchmark/README.md:1-40` (full file, read this iteration)",
+        "`specs/sk-communication/006-sk-communication-clarity/context/i-have-adhd-main/evals/rubric.md:1-27` (full file, read this iteration)",
+        "`specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/deep-research-config.json`",
+        "`specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/deep-research-state.jsonl`",
+        "`specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/deep-research-strategy.md:34-43,45-53,237-241,372-376,385-390,402`",
+        "`specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/iterations/iteration-009.md:36-43,87-98,136-137`",
+        "`specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/iterations/iteration-004.md` (via grep: candidate-numbering context)",
+        "`context/i-have-adhd-main/skills/i-have-adhd/SKILL.md:33-117` (line anchors carried from iteration-009.md:87-98)",
+        "`repo-rules/communication.md:57-60,189-192,196-200` and `REPO RULES.md:80-83` (line anchors carried from iteration-009.md:36-43,62-68,82-85,94-98)"
+      ]
+    },
+    {
+      "id": "finding-10-4-release-condition-2-correctness-and-safety-are-each-within-0-1-points-of-baselin",
+      "text": "**Release condition 2 (\"Correctness and safety are each within 0.1 points of baseline or",
+      "addedAtIteration": 10,
+      "sources": [
+        "`.opencode/skills/sk-communication/benchmark/README.md:1-40` (full file, read this iteration)",
+        "`specs/sk-communication/006-sk-communication-clarity/context/i-have-adhd-main/evals/rubric.md:1-27` (full file, read this iteration)",
+        "`specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/deep-research-config.json`",
+        "`specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/deep-research-state.jsonl`",
+        "`specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/deep-research-strategy.md:34-43,45-53,237-241,372-376,385-390,402`",
+        "`specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/iterations/iteration-009.md:36-43,87-98,136-137`",
+        "`specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/iterations/iteration-004.md` (via grep: candidate-numbering context)",
+        "`context/i-have-adhd-main/skills/i-have-adhd/SKILL.md:33-117` (line anchors carried from iteration-009.md:87-98)",
+        "`repo-rules/communication.md:57-60,189-192,196-200` and `REPO RULES.md:80-83` (line anchors carried from iteration-009.md:36-43,62-68,82-85,94-98)"
+      ]
+    },
+    {
+      "id": "finding-10-5-release-condition-3-its-weighted-score-is-higher-than-baseline-rubric-md-25-is-n",
+      "text": "**Release condition 3 (\"Its weighted score is higher than baseline\", rubric.md:25) is not",
+      "addedAtIteration": 10,
+      "sources": [
+        "`.opencode/skills/sk-communication/benchmark/README.md:1-40` (full file, read this iteration)",
+        "`specs/sk-communication/006-sk-communication-clarity/context/i-have-adhd-main/evals/rubric.md:1-27` (full file, read this iteration)",
+        "`specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/deep-research-config.json`",
+        "`specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/deep-research-state.jsonl`",
+        "`specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/deep-research-strategy.md:34-43,45-53,237-241,372-376,385-390,402`",
+        "`specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/iterations/iteration-009.md:36-43,87-98,136-137`",
+        "`specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/iterations/iteration-004.md` (via grep: candidate-numbering context)",
+        "`context/i-have-adhd-main/skills/i-have-adhd/SKILL.md:33-117` (line anchors carried from iteration-009.md:87-98)",
+        "`repo-rules/communication.md:57-60,189-192,196-200` and `REPO RULES.md:80-83` (line anchors carried from iteration-009.md:36-43,62-68,82-85,94-98)"
+      ]
+    },
+    {
+      "id": "finding-10-6-release-condition-4-any-public-competitor-claim-uses-the-same-cases-models-trial",
+      "text": "**Release condition 4 (\"Any public competitor claim uses the same cases, models, trials, and",
+      "addedAtIteration": 10,
+      "sources": [
+        "`.opencode/skills/sk-communication/benchmark/README.md:1-40` (full file, read this iteration)",
+        "`specs/sk-communication/006-sk-communication-clarity/context/i-have-adhd-main/evals/rubric.md:1-27` (full file, read this iteration)",
+        "`specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/deep-research-config.json`",
+        "`specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/deep-research-state.jsonl`",
+        "`specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/deep-research-strategy.md:34-43,45-53,237-241,372-376,385-390,402`",
+        "`specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/iterations/iteration-009.md:36-43,87-98,136-137`",
+        "`specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/iterations/iteration-004.md` (via grep: candidate-numbering context)",
+        "`context/i-have-adhd-main/skills/i-have-adhd/SKILL.md:33-117` (line anchors carried from iteration-009.md:87-98)",
+        "`repo-rules/communication.md:57-60,189-192,196-200` and `REPO RULES.md:80-83` (line anchors carried from iteration-009.md:36-43,62-68,82-85,94-98)"
+      ]
+    },
+    {
+      "id": "finding-10-8-the-harness-must-keep-blocker-flags-categorical-and-dimension-scores-comparative",
+      "text": "**The harness must keep blocker flags categorical and dimension scores comparative; collapsing",
+      "addedAtIteration": 10,
+      "sources": [
+        "`.opencode/skills/sk-communication/benchmark/README.md:1-40` (full file, read this iteration)",
+        "`specs/sk-communication/006-sk-communication-clarity/context/i-have-adhd-main/evals/rubric.md:1-27` (full file, read this iteration)",
+        "`specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/deep-research-config.json`",
+        "`specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/deep-research-state.jsonl`",
+        "`specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/deep-research-strategy.md:34-43,45-53,237-241,372-376,385-390,402`",
+        "`specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/iterations/iteration-009.md:36-43,87-98,136-137`",
+        "`specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/iterations/iteration-004.md` (via grep: candidate-numbering context)",
+        "`context/i-have-adhd-main/skills/i-have-adhd/SKILL.md:33-117` (line anchors carried from iteration-009.md:87-98)",
+        "`repo-rules/communication.md:57-60,189-192,196-200` and `REPO RULES.md:80-83` (line anchors carried from iteration-009.md:36-43,62-68,82-85,94-98)"
+      ]
+    },
+    {
+      "id": "finding-10-1-the-only-benchmark-this-repository-has-for-sk-communication-measures-advisor-rou",
+      "text": "**The only benchmark this repository has for `sk-communication` measures advisor routing, not",
+      "addedAtIteration": 10,
+      "sources": [
+        "`.opencode/skills/sk-communication/benchmark/README.md:1-40` (full file, read this iteration)",
+        "`specs/sk-communication/006-sk-communication-clarity/context/i-have-adhd-main/evals/rubric.md:1-27` (full file, read this iteration)",
+        "`specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/deep-research-config.json`",
+        "`specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/deep-research-state.jsonl`",
+        "`specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/deep-research-strategy.md:34-43,45-53,237-241,372-376,385-390,402`",
+        "`specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/iterations/iteration-009.md:36-43,87-98,136-137`",
+        "`specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/iterations/iteration-004.md` (via grep: candidate-numbering context)",
+        "`context/i-have-adhd-main/skills/i-have-adhd/SKILL.md:33-117` (line anchors carried from iteration-009.md:87-98)",
+        "`repo-rules/communication.md:57-60,189-192,196-200` and `REPO RULES.md:80-83` (line anchors carried from iteration-009.md:36-43,62-68,82-85,94-98)"
+      ]
+    },
+    {
+      "id": "finding-10-2-the-source-s-rubric-gives-the-harness-its-structure-five-weighted-dimensions-a-b",
+      "text": "**The source's rubric gives the harness its structure: five weighted dimensions, a blind judge",
+      "addedAtIteration": 10,
+      "sources": [
+        "`.opencode/skills/sk-communication/benchmark/README.md:1-40` (full file, read this iteration)",
+        "`specs/sk-communication/006-sk-communication-clarity/context/i-have-adhd-main/evals/rubric.md:1-27` (full file, read this iteration)",
+        "`specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/deep-research-config.json`",
+        "`specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/deep-research-state.jsonl`",
+        "`specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/deep-research-strategy.md:34-43,45-53,237-241,372-376,385-390,402`",
+        "`specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/iterations/iteration-009.md:36-43,87-98,136-137`",
+        "`specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/iterations/iteration-004.md` (via grep: candidate-numbering context)",
+        "`context/i-have-adhd-main/skills/i-have-adhd/SKILL.md:33-117` (line anchors carried from iteration-009.md:87-98)",
+        "`repo-rules/communication.md:57-60,189-192,196-200` and `REPO RULES.md:80-83` (line anchors carried from iteration-009.md:36-43,62-68,82-85,94-98)"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-576e544d5b83",
+      "text": "`sk-communication` as an owning surface for any of the 18 rules. Its SKILL.md defines a",
+      "contentHash": "576e544d5b83",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-95f7f8803dac",
+      "text": "A pre-writing reader-model rule hiding inside `presenting-decisions.md` §3 or",
+      "contentHash": "95f7f8803dac",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-aaab1df749de",
+      "text": "Rule 10 as covered by `communication.md:74`: that clause is sentence-internal (nested",
+      "contentHash": "aaab1df749de",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-8dfb59eb1c6c",
+      "text": "Rule 15 as covered by the atomic-paragraph rule: atomicity and progression are different axes,",
+      "contentHash": "8dfb59eb1c6c",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-6fc845a7d9d8",
+      "text": "No new dead ends to promote. The `sk-communication` display-only boundary and the",
+      "contentHash": "6fc845a7d9d8",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-d515c5c209f8",
+      "text": "STYLE.md as a second source for a pre-drafting reader model: its reader constraints are",
+      "contentHash": "d515c5c209f8",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-7c1e5826c207",
+      "text": "The comment-tic half as covered by HVR: HVR's scope is documents (`HVR:29`), so it cannot",
+      "contentHash": "7c1e5826c207",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-ee28a5ca865f",
+      "text": "The depth-signaling ban and the \"honestly\" ban as new: covered by `HVR:304`, `HVR:318`,",
+      "contentHash": "ee28a5ca865f",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-1e1723245472",
+      "text": "The README install and license sections as communication recommendations: they are",
+      "contentHash": "1e1723245472",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-7736dd48716a",
+      "text": "**`README.md:22-30` (install) and `:99-101` (license)** as communication recommendations —",
+      "contentHash": "7736dd48716a",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-9e567979ad5f",
+      "text": "**Counting the rule restatements in `README.md:71-80` and `agents/gemini.toml:7-23` as",
+      "contentHash": "9e567979ad5f",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-6e7fdbe56698",
+      "text": "**Reading the source as if it carried a rubric for reply quality.** It does not; `rubric.md` is",
+      "contentHash": "6e7fdbe56698",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-9f2da21a24fb",
+      "text": "**The `.github/readme/*.md` translations and `.github/install/*.md` locales** as independent",
+      "contentHash": "9f2da21a24fb",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-c17a4fb7dd6f",
+      "text": "**Treating the Gemini/OpenAI agent mirrors as alternative rulesets.** `agents/openai.yaml:1-7`",
+      "contentHash": "c17a4fb7dd6f",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-61aa148eb5c8",
+      "text": "**Treating the source's six overrides as new rules.** Five map onto existing repo rules",
+      "contentHash": "61aa148eb5c8",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-c6fbbf66ead5",
+      "text": "No new dead ends worth reducer promotion. The synthesis confirmed the two standing constraints and",
+      "contentHash": "c6fbbf66ead5",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-a5d7f2c0825c",
+      "text": "Note for the reducer: candidates 11, 21, 24 and 28 have no home surface today. That is a finding",
+      "contentHash": "a5d7f2c0825c",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-e68b7a2acbda",
+      "text": "Re-reading the three vendored sources to \"re-derive\" the merge: the three iteration narratives carry",
+      "contentHash": "e68b7a2acbda",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-f8bbf1641b70",
+      "text": "Retrying any strategy §9 BLOCKED direction. None was approached; the two standing blocked items",
+      "contentHash": "f8bbf1641b70",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-4f3a5bc7b28f",
+      "text": "Treating the 34 covered rows as merge inputs: covered rows are closed; only candidate rows (47)",
+      "contentHash": "4f3a5bc7b28f",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-15f019c1d605",
+      "text": "Counting the conflict ADRs as additional allocation rows on top of the 29 candidates: C-1 is",
+      "contentHash": "15f019c1d605",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-3c36b8267b4b",
+      "text": "Expecting the mirror check to execute its targets as a load smoke test: the fallback rows are",
+      "contentHash": "3c36b8267b4b",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-8beb1424e682",
+      "text": "No new dead ends worth reducer promotion. The two standing exhausted items (`sk-communication`",
+      "contentHash": "8beb1424e682",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-40809d817b21",
+      "text": "Treating \"defer\" as a closure-legal verdict for c11/c21/c24/c28: AC-001's vocabulary is",
+      "contentHash": "40809d817b21",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-33e4a1bc8af4",
+      "text": "No new dead ends worth reducer promotion. The standing exhausted items (`sk-communication` as a",
+      "contentHash": "33e4a1bc8af4",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-9a2edbd71a12",
+      "text": "Re-opening the merge, the corrected counts (32 gate-facing rows) or the two closed verifications",
+      "contentHash": "9a2edbd71a12",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-6396a33e7ef1",
+      "text": "Treating the four-occurrence count in C-4 as wrong because only three lines are named: the count",
+      "contentHash": "6396a33e7ef1",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-e52a4a1cd15b",
+      "text": "No new dead ends worth reducer promotion. The standing exhausted items (`sk-communication` as a rule",
+      "contentHash": "e52a4a1cd15b",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-10c3de03b300",
+      "text": "Retrying any strategy §9 BLOCKED direction: none was approached; the standing blocked items were used",
+      "contentHash": "10c3de03b300",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-83ad4ce622dd",
+      "text": "Spending further research actions on the content of the five key questions: the dispatch focus holds, and",
+      "contentHash": "83ad4ce622dd",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-a2ee70d31338",
+      "text": "\"A document/reply split removes the hand-maintained exclusion list\" — eliminated. Candidate for",
+      "contentHash": "a2ee70d31338",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-9a0708e9825d",
+      "text": "Re-enumerating the consumers: the dispatch pre-completed the enumeration and it was reused.",
+      "contentHash": "9a0708e9825d",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-9539a1fed7ad",
+      "text": "Treating a document/reply file split as the mechanism that deletes the exclusion table: findings 2",
+      "contentHash": "9539a1fed7ad",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-f2b8830d21a7",
+      "text": "Re-deriving the mechanism-half inventory inside this iteration: dropped for budget, and it is a",
+      "contentHash": "f2b8830d21a7",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-11188ae63672",
+      "text": "The prose half of ADHD rule 5 (`SKILL.md:73-78`) is a candidate for reducer promotion to",
+      "contentHash": "11188ae63672",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-8ca2d990412a",
+      "text": "Candidate for reducer promotion to \"exhausted\": using the existing routing benchmark as the",
+      "contentHash": "8ca2d990412a",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-31f6911977f5",
+      "text": "No new dead ends worth reducer promotion. The two standing items remain the `sk-communication`",
+      "contentHash": "31f6911977f5",
+      "addedAtIteration": 10
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 10,
+    "openQuestions": 5,
+    "resolvedQuestions": 0,
+    "carriedForwardOpenQuestions": 38,
+    "keyFindings": 93,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.94,
+    "coverageBySources": {
+      "code": 72,
+      "other": 27
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": []
+}

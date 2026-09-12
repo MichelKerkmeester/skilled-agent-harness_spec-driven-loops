@@ -1,0 +1,526 @@
+diff --git a/.opencode/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json b/.opencode/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json
+index 72a3fd2831..7f5335161f 100644
+--- a/.opencode/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json
++++ b/.opencode/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json
+@@ -1,5 +1,5 @@
+ {
+-  "manifestHash": "7d2e42001157e9dad4fb32e6b6568c7de06eb614bb8127d6f3c04a10a9b23b0f",
++  "manifestHash": "5ddce87cebe2eb31283c6d922fcf3c3fc3d5f1268e8ac89e567f5bfcde060f39",
+   "parserVersion": "1.0.0",
+   "variants": {
+     "0 05 ambiguity window": [
+@@ -7797,9 +7797,6 @@
+     "045 010 upgrade safety operability audit": [
+       "045-010-upgrade-safety-operability-audit"
+     ],
+-    "045 daemon and test harness hardening": [
+-      "045-daemon-and-test-harness-hardening"
+-    ],
+     "045 hardening review": [
+       "045 hardening review"
+     ],
+@@ -9475,12 +9472,18 @@
+     "adr numeric prefix false positive": [
+       "ADR numeric prefix false positive"
+     ],
++    "adr per contradiction": [
++      "adr per contradiction"
++    ],
+     "adr prefix registry": [
+       "ADR prefix registry"
+     ],
+     "adr req dr packet label cleanup": [
+       "ADR REQ DR packet label cleanup"
+     ],
++    "adr tasks": [
++      "adr tasks"
++    ],
+     "adr utilization review": [
+       "adr utilization review"
+     ],
+@@ -11170,6 +11173,9 @@
+     "agents md cleanup tasks": [
+       "agents-md cleanup tasks"
+     ],
++    "agents md communication": [
++      "agents md communication"
++    ],
+     "agents md improvement": [
+       "AGENTS.md improvement"
+     ],
+@@ -11776,6 +11782,15 @@
+     "all tasks": [
+       "all tasks"
+     ],
++    "allocation approach": [
++      "allocation approach"
++    ],
++    "allocation table": [
++      "allocation table"
++    ],
++    "allocation tasks": [
++      "allocation tasks"
++    ],
+     "allocator": [
+       "allocator"
+     ],
+@@ -12742,6 +12757,9 @@
+     "artifact routing gate": [
+       "artifact routing gate"
+     ],
++    "artifact verification": [
++      "artifact verification"
++    ],
+     "artifact walker": [
+       "artifact walker"
+     ],
+@@ -14212,6 +14230,9 @@
+     "baseline": [
+       "baseline"
+     ],
++    "baseline and delta": [
++      "baseline and delta"
++    ],
+     "baseline capture plan": [
+       "baseline capture plan"
+     ],
+@@ -15280,6 +15301,9 @@
+     "blind non inferiority evaluation": [
+       "Blind non-inferiority evaluation"
+     ],
++    "blind scoring": [
++      "blind scoring"
++    ],
+     "blinded adjudication implementation plan": [
+       "blinded adjudication implementation plan"
+     ],
+@@ -19053,6 +19077,9 @@
+     "citation spot check research": [
+       "citation spot check research"
+     ],
++    "citation verification": [
++      "citation verification"
++    ],
+     "citation verification checklist": [
+       "citation verification checklist"
+     ],
+@@ -24537,6 +24564,12 @@
+     "colon rule": [
+       "colon rule"
+     ],
++    "colon rule adoption": [
++      "colon rule adoption"
++    ],
++    "colon rule conflict": [
++      "colon rule conflict"
++    ],
+     "color analysis sk vision colors": [
+       "Color analysis (sk_vision_colors)"
+     ],
+@@ -25523,6 +25556,12 @@
+     "commonmark fence": [
+       "commonmark fence"
+     ],
++    "communication behavior benchmark": [
++      "communication behavior benchmark"
++    ],
++    "communication candidate map": [
++      "communication candidate map"
++    ],
+     "communication documentation review": [
+       "communication documentation review"
+     ],
+@@ -25598,6 +25637,9 @@
+     "communication rule tasks": [
+       "communication rule tasks"
+     ],
++    "communication source classification": [
++      "communication source classification"
++    ],
+     "community css themes json": [
+       "community-css-themes json"
+     ],
+@@ -27583,6 +27625,12 @@
+     "contradiction detection": [
+       "contradiction detection"
+     ],
++    "contradiction page": [
++      "contradiction page"
++    ],
++    "contradiction scan": [
++      "contradiction scan"
++    ],
+     "contradiction supersession implementation": [
+       "contradiction supersession implementation"
+     ],
+@@ -27899,6 +27947,9 @@
+     "copilot writer wiring": [
+       "copilot writer wiring"
+     ],
++    "copy editing instruction": [
++      "copy editing instruction"
++    ],
+     "copy paste alignment examples": [
+       "copy paste alignment examples"
+     ],
+@@ -30896,6 +30947,9 @@
+     "customize obsidian theme": [
+       "customize obsidian theme"
+     ],
++    "cut and reorder pass": [
++      "cut and reorder pass"
++    ],
+     "cut out the logo from this image": [
+       "cut out the logo from this image"
+     ],
+@@ -36491,6 +36545,9 @@
+     "delta evidence opt out": [
+       "delta evidence opt-out"
+     ],
++    "delta report task": [
++      "delta report task"
++    ],
+     "deltabyrelation dominantrelation": [
+       "deltaByRelation dominantRelation"
+     ],
+@@ -36866,6 +36923,9 @@
+     "derived status enum boundary": [
+       "derived status enum boundary"
+     ],
++    "derived surface regeneration": [
++      "derived surface regeneration"
++    ],
+     "derived sync": [
+       "derived sync"
+     ],
+@@ -41235,6 +41295,9 @@
+     "dup hash collapse tasks": [
+       "dup hash collapse tasks"
+     ],
++    "duplicate assignment check": [
++      "duplicate assignment check"
++    ],
+     "duplicate content collapse": [
+       "duplicate content collapse"
+     ],
+@@ -44847,6 +44910,9 @@
+     "fan out cross lineage merge": [
+       "fan-out cross-lineage merge"
+     ],
++    "fan out executors": [
++      "fan-out executors"
++    ],
+     "fan out fan in durable orchestration": [
+       "fan-out fan-in durable orchestration"
+     ],
+@@ -45742,6 +45808,9 @@
+     "fidelity render handover": [
+       "fidelity render handover"
+     ],
++    "fidelity validator quality check": [
++      "fidelity validator quality check"
++    ],
+     "field by field template diff": [
+       "field-by-field template diff"
+     ],
+@@ -57404,6 +57473,9 @@
+     "lineage delta resource map": [
+       "lineage delta resource map"
+     ],
++    "lineage dispatch tasks": [
++      "lineage dispatch tasks"
++    ],
+     "lineage executor schema": [
+       "lineage executor schema"
+     ],
+@@ -66228,6 +66300,9 @@
+     "new hub manifest store": [
+       "new hub manifest store"
+     ],
++    "new repo rule": [
++      "new repo rule"
++    ],
+     "new sk doc mode packet": [
+       "new sk-doc mode packet"
+     ],
+@@ -66372,6 +66447,9 @@
+     "no drift no debt": [
+       "no drift no debt"
+     ],
++    "no early convergence": [
++      "no early convergence"
++    ],
+     "no fabrication goal binding": [
+       "no fabrication goal binding"
+     ],
+@@ -68373,9 +68451,18 @@
+     "one behavioral contract five schemas": [
+       "one behavioral contract five schemas"
+     ],
++    "one home for the standard": [
++      "one home for the standard"
++    ],
++    "one instruction per mark": [
++      "one instruction per mark"
++    ],
+     "one model one opinion": [
+       "one model one opinion"
+     ],
++    "one owning document": [
++      "one owning document"
++    ],
+     "one score one scale one name similarity": [
+       "one score one scale one name similarity"
+     ],
+@@ -69862,6 +69949,9 @@
+     "ownership hierarchy": [
+       "ownership hierarchy"
+     ],
++    "owning surface map": [
++      "owning surface map"
++    ],
+     "ox alpha cline provider pi": [
+       "ox alpha cline provider pi"
+     ],
+@@ -70082,6 +70172,12 @@
+     "package documentation conformance": [
+       "package documentation conformance"
+     ],
++    "package gate": [
++      "package gate"
++    ],
++    "package gate task": [
++      "package gate task"
++    ],
+     "package into skill": [
+       "package-into-skill"
+     ],
+@@ -76884,6 +76980,9 @@
+     "projection contract decisions": [
+       "projection contract decisions"
+     ],
++    "projection engine logic": [
++      "projection engine logic"
++    ],
+     "projection generation rebuild summary": [
+       "projection generation rebuild summary"
+     ],
+@@ -79288,6 +79387,9 @@
+     "reconcile codex hooks": [
+       "reconcile codex hooks"
+     ],
++    "reconcile disagreement": [
++      "reconcile disagreement"
++    ],
+     "reconcile handler registration": [
+       "reconcile handler registration"
+     ],
+@@ -79498,6 +79600,9 @@
+     "recursive validation remediation tasks": [
+       "recursive validation remediation tasks"
+     ],
++    "recursive validation task": [
++      "recursive validation task"
++    ],
+     "recursive validation tasks": [
+       "recursive validation tasks"
+     ],
+@@ -81625,6 +81730,9 @@
+     "replayable deep loop observability": [
+       "replayable deep-loop observability"
+     ],
++    "reply scoring harness": [
++      "reply scoring harness"
++    ],
+     "repo agnostic": [
+       "repo agnostic"
+     ],
+@@ -81652,6 +81760,9 @@
+     "repo rule anatomy": [
+       "repo rule anatomy"
+     ],
++    "repo rule communication change": [
++      "repo rule communication change"
++    ],
+     "repo rule mode": [
+       "repo rule mode"
+     ],
+@@ -84398,6 +84509,9 @@
+     "rewrite interface command bodies literal prompts": [
+       "rewrite interface command bodies literal prompts"
+     ],
++    "rewrite pass declaration": [
++      "rewrite pass declaration"
++    ],
+     "rewrite references same commit": [
+       "rewrite references same commit"
+     ],
+@@ -84413,6 +84527,9 @@
+     "rewrite response command rename": [
+       "rewrite response command rename"
+     ],
++    "rewrite response contract": [
++      "rewrite response contract"
++    ],
+     "rewrite subfolder commands": [
+       "rewrite subfolder commands"
+     ],
+@@ -84731,6 +84848,12 @@
+     "root coverage table": [
+       "root coverage table"
+     ],
++    "root doc clause": [
++      "root doc clause"
++    ],
++    "root doc clause tasks": [
++      "root doc clause tasks"
++    ],
+     "root gate closeout": [
+       "root gate closeout"
+     ],
+@@ -85250,6 +85373,9 @@
+     "router triad summary": [
+       "router triad summary"
+     ],
++    "router trigger row": [
++      "router trigger row"
++    ],
+     "router unification program": [
+       "router unification program"
+     ],
+@@ -85262,6 +85388,9 @@
+     "router vocabulary task breakdown": [
+       "router vocabulary task breakdown"
+     ],
++    "router walk": [
++      "router walk"
++    ],
+     "router wiring tasks": [
+       "router wiring tasks"
+     ],
+@@ -85586,6 +85715,9 @@
+     "rubric deduplication method": [
+       "rubric deduplication method"
+     ],
++    "rubric duplication search": [
++      "rubric duplication search"
++    ],
+     "rubric methodology": [
+       "rubric methodology"
+     ],
+@@ -85604,6 +85736,9 @@
+     "rule blank": [
+       "rule blank"
+     ],
++    "rule contradiction resolution": [
++      "rule contradiction resolution"
++    ],
+     "rule count 39 registry": [
+       "rule count 39 registry"
+     ],
+@@ -86219,6 +86354,9 @@
+     "runtime mirror realignment": [
+       "runtime mirror realignment"
+     ],
++    "runtime mirror rollout": [
++      "runtime mirror rollout"
++    ],
+     "runtime mirror sync": [
+       "runtime mirror sync"
+     ],
+@@ -91426,6 +91564,9 @@
+     "sk communication clarity": [
+       "sk-communication clarity"
+     ],
++    "sk communication clarity research": [
++      "sk-communication clarity research"
++    ],
+     "sk communication feature catalog": [
+       "sk-communication feature catalog"
+     ],
+@@ -91453,6 +91594,9 @@
+     "sk communication trigger commands": [
+       "sk-communication trigger commands"
+     ],
++    "sk communication upgrade": [
++      "sk-communication upgrade"
++    ],
+     "sk communication voice routing": [
+       "sk-communication voice routing"
+     ],
+@@ -100903,9 +101047,15 @@
+     "synthesis fold in": [
+       "synthesis fold-in"
+     ],
++    "synthesis plan": [
++      "synthesis plan"
++    ],
+     "synthesis presentation research": [
+       "synthesis presentation research"
+     ],
++    "synthesis tasks": [
++      "synthesis tasks"
++    ],
+     "synthesis v1 verification report": [
+       "synthesis v1 verification report"
+     ],
+@@ -103765,6 +103915,9 @@
+     "transform dedup tasks": [
+       "transform dedup tasks"
+     ],
++    "transform layer": [
++      "transform layer"
++    ],
+     "transform verb make it dispatch plan": [
+       "transform verb make it dispatch plan"
+     ],
+@@ -106206,6 +106359,9 @@
+     "verbless fragment": [
+       "verbless fragment"
+     ],
++    "verbless fragment ban": [
++      "verbless fragment ban"
++    ],
+     "verbose internal logging": [
+       "verbose internal logging"
+     ],
+@@ -106269,6 +106425,9 @@
+     "verification lives in tasks": [
+       "verification lives in tasks"
+     ],
++    "verification plan": [
++      "verification plan"
++    ],
+     "verification reconciliation plan": [
+       "verification reconciliation plan"
+     ],
+@@ -106284,6 +106443,9 @@
+     "verification sweep": [
+       "verification sweep"
+     ],
++    "verification tasks": [
++      "verification tasks"
++    ],
+     "verified events cache": [
+       "verified events cache"
+     ],
+@@ -108051,6 +108213,9 @@
+     "word mcp only where retired": [
+       "word mcp only where retired"
+     ],
++    "wording standard routing": [
++      "wording standard routing"
++    ],
+     "work stream partition": [
+       "work-stream partition"
+     ],
+@@ -108471,6 +108636,9 @@
+     "write a screenshot scenario fixture": [
+       "write a screenshot scenario fixture"
+     ],
++    "write authority binding": [
++      "write authority binding"
++    ],
+     "write back spokes": [
+       "write back spokes"
+     ],

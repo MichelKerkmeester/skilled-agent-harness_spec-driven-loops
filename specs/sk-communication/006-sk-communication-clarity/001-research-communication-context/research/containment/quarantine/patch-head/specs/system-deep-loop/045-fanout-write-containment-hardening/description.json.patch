@@ -1,0 +1,13 @@
+diff --git a/specs/system-deep-loop/045-fanout-write-containment-hardening/description.json b/specs/system-deep-loop/045-fanout-write-containment-hardening/description.json
+index b2577b89d7..f49924c241 100644
+--- a/specs/system-deep-loop/045-fanout-write-containment-hardening/description.json
++++ b/specs/system-deep-loop/045-fanout-write-containment-hardening/description.json
+@@ -19,7 +19,7 @@
+     "file",
+     "changed"
+   ],
+-  "lastUpdated": "2026-09-12T07:33:05.624Z",
++  "lastUpdated": "2026-09-12T12:15:31.335Z",
+   "specId": "045",
+   "folderSlug": "fanout-write-containment-hardening",
+   "parentChain": [
