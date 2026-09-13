@@ -1,12 +1,12 @@
 {
   "counts": {
     "duplicate-phrase": 54,
-    "missing-frontmatter": 7238,
+    "missing-frontmatter": 7246,
     "non-yaml-frontmatter": 1,
-    "ok": 14840,
+    "ok": 14847,
     "valid-empty-list": 7531
   },
-  "documentsScanned": 29664,
+  "documentsScanned": 29679,
   "ignoredMalformedDocuments": 1,
   "ignoredPaths": [
     {
@@ -16,7 +16,7 @@
   ],
   "ignoredPathsUnmatched": [],
   "malformedDocuments": 0,
-  "manifestHash": "58a56d8ec76e89d58b2787a7525e38801e807b586405d62f862c97be51152c86",
+  "manifestHash": "b1346c47bab4f518a78086920e2f675a735a643f81943fed396cc54913368a86",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -31,7 +31,7 @@
       "editor-fallback": 2,
       "generic-workflow-word": 3,
       "numeric-only": 41,
-      "ok": 35993,
+      "ok": 36010,
       "prose-sentence": 27,
       "single-token": 304,
       "stop-word-only": 3
@@ -34444,6 +34444,18 @@
     },
     {
       "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".opencode/skills/system-deep-loop/manual-testing-playbook/write-containment/shared-checkout-run.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".opencode/skills/system-deep-loop/manual-testing-playbook/write-containment/worktree-isolated-run.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
       "line": 1,
       "path": ".opencode/skills/system-deep-loop/runtime/changelog/v1.0.0.0.md",
       "reason": "no opening frontmatter delimiter"
@@ -39730,6 +39742,42 @@
       "category": "missing-frontmatter",
       "line": 1,
       "path": "specs/hooks/022-smart-rule-injection/003-shallow-evidence-claims/research/prior-findings.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks/022-smart-rule-injection/004-agents-md-concision/research/iterations/iteration-001.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks/022-smart-rule-injection/004-agents-md-concision/research/iterations/iteration-002.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks/022-smart-rule-injection/004-agents-md-concision/research/iterations/iteration-003.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks/022-smart-rule-injection/004-agents-md-concision/research/iterations/iteration-004.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks/022-smart-rule-injection/004-agents-md-concision/research/iterations/iteration-005.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks/022-smart-rule-injection/004-agents-md-concision/research/prior-findings.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
@@ -100996,6 +101044,10 @@
     },
     {
       "path": "specs/system-speckit/033-system-speckit-v4/038-goal-unification/012-open-items-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/039-entry-point-symlink-resolution/scratch",
       "reason": "excluded directory"
     },
     {

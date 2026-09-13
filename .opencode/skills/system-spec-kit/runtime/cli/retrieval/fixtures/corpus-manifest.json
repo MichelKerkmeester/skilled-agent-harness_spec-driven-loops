@@ -1,5 +1,5 @@
 {
-  "corpusHash": "0e4af2c8fd219bb48c66e9a770c471d5e8e175b75bd9f8a32e05b679eebcdfe2",
+  "corpusHash": "4903a7c45aaa2da1ad8512dcadf1e91045585443ed298ebefd2613bad0751b24",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -17,7 +17,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 29664,
+  "includedPathCount": 29679,
   "includedPaths": [
     ".opencode/hooks/README.md",
     ".opencode/hooks/codex-watchdog/README.md",
@@ -7081,6 +7081,7 @@
     ".opencode/skills/system-deep-loop/deep-review/scripts/tests/README.md",
     ".opencode/skills/system-deep-loop/feature-catalog/compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.md",
     ".opencode/skills/system-deep-loop/feature-catalog/deep-loop-mode-classification/deep-loop-mode-classification.md",
+    ".opencode/skills/system-deep-loop/feature-catalog/fanout-write-containment/fanout-write-containment.md",
     ".opencode/skills/system-deep-loop/feature-catalog/feature-catalog.md",
     ".opencode/skills/system-deep-loop/manual-testing-playbook/advisor-integration/command-bridge-guard.md",
     ".opencode/skills/system-deep-loop/manual-testing-playbook/advisor-integration/lexical-mode-scoring.md",
@@ -7102,6 +7103,8 @@
     ".opencode/skills/system-deep-loop/manual-testing-playbook/state-and-convergence-discipline/convergence-stop.md",
     ".opencode/skills/system-deep-loop/manual-testing-playbook/state-and-convergence-discipline/externalized-state.md",
     ".opencode/skills/system-deep-loop/manual-testing-playbook/state-and-convergence-discipline/hub-logic-boundary.md",
+    ".opencode/skills/system-deep-loop/manual-testing-playbook/write-containment/shared-checkout-run.md",
+    ".opencode/skills/system-deep-loop/manual-testing-playbook/write-containment/worktree-isolated-run.md",
     ".opencode/skills/system-deep-loop/runtime/README.md",
     ".opencode/skills/system-deep-loop/runtime/changelog/v1.0.0.0.md",
     ".opencode/skills/system-deep-loop/runtime/changelog/v1.1.0.0.md",
@@ -9480,6 +9483,12 @@
     "specs/hooks/022-smart-rule-injection/003-shallow-evidence-claims/research/prior-findings.md",
     "specs/hooks/022-smart-rule-injection/003-shallow-evidence-claims/spec.md",
     "specs/hooks/022-smart-rule-injection/003-shallow-evidence-claims/tasks.md",
+    "specs/hooks/022-smart-rule-injection/004-agents-md-concision/research/iterations/iteration-001.md",
+    "specs/hooks/022-smart-rule-injection/004-agents-md-concision/research/iterations/iteration-002.md",
+    "specs/hooks/022-smart-rule-injection/004-agents-md-concision/research/iterations/iteration-003.md",
+    "specs/hooks/022-smart-rule-injection/004-agents-md-concision/research/iterations/iteration-004.md",
+    "specs/hooks/022-smart-rule-injection/004-agents-md-concision/research/iterations/iteration-005.md",
+    "specs/hooks/022-smart-rule-injection/004-agents-md-concision/research/prior-findings.md",
     "specs/hooks/022-smart-rule-injection/decisions.md",
     "specs/hooks/022-smart-rule-injection/plan.md",
     "specs/hooks/022-smart-rule-injection/spec.md",
@@ -18775,6 +18784,7 @@
     "specs/system-deep-loop/045-fanout-write-containment-hardening/acceptance-criteria.md",
     "specs/system-deep-loop/045-fanout-write-containment-hardening/decision-record.md",
     "specs/system-deep-loop/045-fanout-write-containment-hardening/goal.md",
+    "specs/system-deep-loop/045-fanout-write-containment-hardening/handover.md",
     "specs/system-deep-loop/045-fanout-write-containment-hardening/implementation-summary.md",
     "specs/system-deep-loop/045-fanout-write-containment-hardening/plan.md",
     "specs/system-deep-loop/045-fanout-write-containment-hardening/research/iterations/iteration-001.md",
@@ -29680,12 +29690,17 @@
     "specs/system-speckit/033-system-speckit-v4/038-goal-unification/before-after.md",
     "specs/system-speckit/033-system-speckit-v4/038-goal-unification/goal.md",
     "specs/system-speckit/033-system-speckit-v4/038-goal-unification/spec.md",
+    "specs/system-speckit/033-system-speckit-v4/039-entry-point-symlink-resolution/acceptance-criteria.md",
+    "specs/system-speckit/033-system-speckit-v4/039-entry-point-symlink-resolution/implementation-summary.md",
+    "specs/system-speckit/033-system-speckit-v4/039-entry-point-symlink-resolution/plan.md",
+    "specs/system-speckit/033-system-speckit-v4/039-entry-point-symlink-resolution/spec.md",
+    "specs/system-speckit/033-system-speckit-v4/039-entry-point-symlink-resolution/tasks.md",
     "specs/system-speckit/033-system-speckit-v4/CHANGELOG-v4.0.0.0.md",
     "specs/system-speckit/033-system-speckit-v4/spec.md",
     "specs/system-speckit/033-system-speckit-v4/timeline.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "58a56d8ec76e89d58b2787a7525e38801e807b586405d62f862c97be51152c86",
+  "manifestHash": "b1346c47bab4f518a78086920e2f675a735a643f81943fed396cc54913368a86",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -34121,6 +34136,10 @@
     },
     {
       "path": "specs/system-speckit/033-system-speckit-v4/038-goal-unification/012-open-items-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/033-system-speckit-v4/039-entry-point-symlink-resolution/scratch",
       "reason": "excluded directory"
     },
     {
