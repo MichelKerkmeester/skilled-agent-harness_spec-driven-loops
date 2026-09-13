@@ -48,6 +48,7 @@
       "goal.md",
       "decision-record.md",
       "implementation-summary.md",
+      "handover.md",
       ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts",
       ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
       ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
@@ -59,8 +60,7 @@
       ".opencode/commands/deep/assets/deep-review-auto.yaml",
       ".opencode/commands/deep/assets/deep-review-confirm.yaml",
       ".opencode/skills/system-deep-loop/SKILL.md",
-      ".opencode/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md",
-      ".opencode/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md"
+      ".opencode/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md"
     ],
     "entities": [
       {
@@ -103,6 +103,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
         "source": "derived"
       },
       {
@@ -200,17 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Problem Statement The",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The fan-out runner snapshots dirty paths outside the lineage directory before dispatch, and after the lane it treats every tracked file that changed outside that directory as the leaf's write",
     "created_at": "2026-09-08T17:47:19Z",
-    "last_save_at": "2026-09-12T20:31:42.809Z",
+    "last_save_at": "2026-09-13T06:29:46.441Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,16 +220,18 @@
       "acceptance-criteria.md",
       "goal.md",
       "decision-record.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "handover.md"
     ],
-    "source_fingerprint": "sha256:cc6b32e06307fcd7096aba6a598efc2c6f1ed1d075521579be64f12c21dfb112",
+    "source_fingerprint": "sha256:28c40512cc300eac494ece11359d6a9978725be3b21779d844485119310eb137",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9d3613c7bab3d719a50b5bddf9de9faaf47fadf16100b9a1fd8b85cc715ea267",
       "plan.md": "f36d80a6194c9277944faa463008affd78bf89a92a966ab4fae6a7b79c97c272",
       "tasks.md": "4563fe68a3807164e22db857fd40f65caf950d8b4ef2725acd3cd077d7f94a16",
       "decision-record.md": "7eba009074a659899a6a1bf4620466699855ee773b40f820d89b8ce12b51dacd",
-      "implementation-summary.md": "aff9cfb7e3a6ce98fe230d31061bf92071413445d51a724e2506ec5f33942606"
+      "implementation-summary.md": "aff9cfb7e3a6ce98fe230d31061bf92071413445d51a724e2506ec5f33942606",
+      "handover.md": "1ece96c6da22482c5e2e64e92b0adf3c325e319ae99a06bfd094646ba1c3c333"
     },
     "last_active_at": null
   }
