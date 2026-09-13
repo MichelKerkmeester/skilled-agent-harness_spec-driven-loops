@@ -1,7 +1,7 @@
 # Review scope: goal unification build
 
 Review these surfaces for correctness, regressions and contract drift. Read the decision record at
-`specs/system-speckit/033-system-speckit-v4/036-goal-unification/002-decisions-and-contract-freeze/decision-record.md`
+`specs/system-speckit/033-system-speckit-v4/038-goal-unification/002-decisions-and-contract-freeze/decision-record.md`
 first; every finding must cite file:line and name the decision it bears on.
 
 - `.opencode/hooks/goal/lib/goal-slice.cjs` and `goal-core.cjs` (packet binding, resend hash, locked log append, render path)

@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-speckit/033-system-speckit-v4/036-goal-unification/007-retirement-docs-and-verification",
+  "specFolder": "system-speckit/033-system-speckit-v4/038-goal-unification/007-retirement-docs-and-verification",
   "description": "The store, its locks and archive, the hook README and plugin doc, the spec-kit SKILL section and the changelog all describe the old model",
   "keywords": [
     "store",
@@ -24,7 +24,7 @@
   "parentChain": [
     "system-speckit",
     "033-system-speckit-v4",
-    "036-goal-unification"
+    "038-goal-unification"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

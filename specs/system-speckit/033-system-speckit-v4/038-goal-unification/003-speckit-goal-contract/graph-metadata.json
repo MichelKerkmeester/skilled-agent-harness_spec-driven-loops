@@ -207,7 +207,7 @@
     ],
     "causal_summary": "The template and playbook tell an agent to resend the full text of goal.md, which includes frontmatter",
     "created_at": "2026-09-11T07:11:48Z",
-    "last_save_at": "2026-09-12T16:14:52.979Z",
+    "last_save_at": "2026-09-13T06:53:53.523Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,7 +217,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:54556a95b67b54d565416833052ed6abb3d96d0822443d1e98c6edc30b61cc1d",
+    "source_fingerprint": "sha256:b38b3418e44649bfceb40222298d6ce235d60ad3990964c3526164ffdbea22a5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3e418027e219335e7d44a1a35ad99bbb4e8ad0abccb8642659c5d6fb95978736",

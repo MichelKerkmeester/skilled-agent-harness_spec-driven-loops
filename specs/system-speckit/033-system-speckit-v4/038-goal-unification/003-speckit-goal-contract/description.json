@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-speckit/033-system-speckit-v4/036-goal-unification/003-speckit-goal-contract",
+  "specFolder": "system-speckit/033-system-speckit-v4/038-goal-unification/003-speckit-goal-contract",
   "description": "The template and playbook tell an agent to resend the full text of goal.md, which includes frontmatter",
   "keywords": [
     "template",
@@ -20,7 +20,7 @@
   "parentChain": [
     "system-speckit",
     "033-system-speckit-v4",
-    "036-goal-unification"
+    "038-goal-unification"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-speckit/033-system-speckit-v4/036-goal-unification/010-repo-wide-goal-research",
+  "specFolder": "system-speckit/033-system-speckit-v4/038-goal-unification/010-repo-wide-goal-research",
   "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
   "keywords": [
     "broken",
@@ -18,7 +18,7 @@
   "parentChain": [
     "system-speckit",
     "033-system-speckit-v4",
-    "036-goal-unification"
+    "038-goal-unification"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

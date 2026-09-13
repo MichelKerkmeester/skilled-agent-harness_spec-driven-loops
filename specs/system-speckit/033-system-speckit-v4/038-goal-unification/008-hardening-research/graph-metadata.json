@@ -205,7 +205,7 @@
     ],
     "causal_summary": "The packet shipped green, but a first review already showed the unit tests missed real defects",
     "created_at": "2026-09-11T10:52:14Z",
-    "last_save_at": "2026-09-12T16:14:53.936Z",
+    "last_save_at": "2026-09-13T06:53:53.955Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,7 +216,7 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:ad1556a395e22a5f49d2bca8d08b268eff98665cf84e54c32b0f4972d701ff67",
+    "source_fingerprint": "sha256:1b1115bd95944b75cc55780c79852482bd6672bbd99a72887e2606a3c019f178",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f71d72f0667ff3be873a073e05d5a26630ef4b74935fa77e9b640ebfce47d3ac",

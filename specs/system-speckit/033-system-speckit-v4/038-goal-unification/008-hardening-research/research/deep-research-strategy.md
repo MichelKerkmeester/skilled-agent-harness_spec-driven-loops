@@ -13,7 +13,7 @@ The goal unification build shipped and passed its gates. Find, with `file:line` 
 
 ## Subject
 
-Read first: `specs/system-speckit/033-system-speckit-v4/036-goal-unification/002-decisions-and-contract-freeze/decision-record.md` (eight frozen decisions; do not re-litigate them), then `007-retirement-docs-and-verification/review/lineages/deepseek-review/review-report.md` (fifteen findings, five P1 fixed, six P2 open follow-ups), then the code:
+Read first: `specs/system-speckit/033-system-speckit-v4/038-goal-unification/002-decisions-and-contract-freeze/decision-record.md` (eight frozen decisions; do not re-litigate them), then `007-retirement-docs-and-verification/review/lineages/deepseek-review/review-report.md` (fifteen findings, five P1 fixed, six P2 open follow-ups), then the code:
 
 - `.opencode/hooks/goal/lib/goal-slice.cjs`, `goal-core.cjs`, `bin/goal.cjs`
 - `.opencode/hooks/goal/pi/goal-context.ts`, `cursor/goal-inject.mjs`, `devin/goal-inject.mjs`
