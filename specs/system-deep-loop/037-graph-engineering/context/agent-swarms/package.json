@@ -93,14 +93,14 @@
     "html2canvas-pro": "^2.2.4",
     "image-size": "file:vendor/image-size",
     "input-otp": "^1.4.2",
-    "js-yaml": "^4.3.1",
+    "js-yaml": "^4.3.2",
     "langchain": "^1.4.4",
     "lucide-react": "^1.8.0",
     "mammoth": "1.12.1",
     "mysql2": "^3.23.1",
     "nitro": "3.0.260603-beta",
     "node-sql-parser": "^5.4.0",
-    "nodemailer": "^9.0.5",
+    "nodemailer": "^9.1.1",
     "papaparse": "^5.5.3",
     "pdf-lib": "^1.17.1",
     "pdfjs-dist": "4.7.76",
@@ -150,14 +150,14 @@
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.56.1",
     "vite": "^7.3.5",
-    "vitest": "^3.2.7"
+    "vitest": "^4.1.11"
   },
   "overrides": {
     "@babel/core": "^7.29.6",
     "@langchain/classic": {
       "js-yaml": "^5.2.2"
     },
-    "@xmldom/xmldom": "^0.8.13",
+    "@xmldom/xmldom": "^0.8.15",
     "esbuild": "^0.28.1",
     "fast-uri": "^3.1.5",
     "nanoid": "3.3.17",

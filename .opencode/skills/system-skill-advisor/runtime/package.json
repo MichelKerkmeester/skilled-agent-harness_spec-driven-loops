@@ -28,9 +28,9 @@
     "vite": "^8.1.2",
     "protobufjs": "^7.6.4",
     "tar": "^7.5.19",
-    "sharp": "^0.35.3"
+    "sharp": "^0.35.4"
   },
   "devDependencies": {
-    "vitest": "^4.0.18"
+    "vitest": "^4.1.11"
   }
 }
