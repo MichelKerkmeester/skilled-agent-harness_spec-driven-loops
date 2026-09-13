@@ -429,7 +429,7 @@ Per-lineage worktrees shipped behind a flag that defaulted off, and ADR-003's ow
 
 | Risk | Impact | Mitigation |
 |------|--------|------------|
-| An executor resolves a path relative to the original checkout and writes outside the worktree | H | Unchanged from ADR-003 (prompt-pack rewrite plus dispatch flags). The tally reports provisioning per attempt, not confinement: while a lane is isolated, containment watches its tree, and a flag-lever kind (`cli-opencode`, `native`) keeps its process cwd in the checkout, so a bare checkout write by such a lane is not observed. Watching the checkout for flag-lever kinds is the instrument this risk still needs; it is not part of this change |
+| An executor resolves a path relative to the original checkout and writes outside the worktree | H | Unchanged from ADR-003 (prompt-pack rewrite plus dispatch flags). The tally reports provisioning per attempt, not confinement: while a lane is isolated, containment watches its tree, and a flag-lever kind (`cli-opencode`, `native`) keeps its process cwd in the checkout, so a bare checkout write by such a lane is not observed. Watching the checkout for flag-lever kinds is the instrument this risk still needs; it is not part of this change (delivered afterwards as ADR-005) |
 | Provisioning cost lands on every run, including small ones | M | One flag and one config field opt out; the startup sweep means an interrupted run is cleaned by the next one |
 | Degradation becomes the quiet failure mode, seen but tolerated | M | `degraded` is a per-run count in the summary file and stdout; `enabled: true` with `degraded > 0` is the signal to look at |
 
@@ -443,7 +443,7 @@ Per-lineage worktrees shipped behind a flag that defaulted off, and ADR-003's ow
 | 2 | **Beyond Local Maxima?** | PASS | Four options weighed, including staying opt-in and flipping without the tally |
 | 3 | **Sufficient?** | PASS | One schema default, one per-attempt counter, one summary field, tests for the on, off and degraded paths, and comments corrected where they asserted the old default |
 | 4 | **Fits Goal?** | PASS | It closes the packet's last open question and makes REQ-005's isolation the default rather than the exception |
-| 5 | **Open Horizons?** | PASS | The tally is the provisioning record a per-kind isolation audit builds on; observing a mispathed executor still needs the checkout watched while isolated (see Risks) |
+| 5 | **Open Horizons?** | PASS | The tally is the provisioning record a per-kind isolation audit builds on; observing a mispathed executor still needs the checkout watched while isolated (see Risks; delivered as ADR-005) |
 
 **Checks Summary**: 5/5 PASS
 

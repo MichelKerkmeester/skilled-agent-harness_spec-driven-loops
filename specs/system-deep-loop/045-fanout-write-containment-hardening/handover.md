@@ -20,7 +20,7 @@ Continuity handover for two completed packets. Read this first on resume, then t
 <!-- ANCHOR:state -->
 ## Current State
 
-**Both packets are complete, and this one is signed off.** On 2026-09-13 the operator approved all three rows of the fan-out containment sign-off table. This session's worktree-default flip and its review fixes (`15bbc48b79`) sit on `skilled/v4.0.0.0` on top of `1c157667067` and are pushed to `origin/skilled/v4.0.0.0` together with the sign-off commit. The operator then directed the checkout watch ADR-004 named; it is committed on the same branch on top of the sign-off commit (`e910a812c0`) and is not pushed.
+**Both packets are complete, and this one is signed off.** On 2026-09-13 the operator approved all three rows of the fan-out containment sign-off table. This session's worktree-default flip and its review fixes (`15bbc48b79`) sit on `skilled/v4.0.0.0` on top of `1c157667067` and are pushed to `origin/skilled/v4.0.0.0` together with the sign-off commit. The operator then directed the checkout watch ADR-004 named; it is committed on the same branch on top of the sign-off commit (`e910a812c0`) as `bdda9abe12`, and that commit is pushed to both `skilled/v4.0.0.0` and `main`.
 
 Verification from the final state: the deep-loop suite reports 156 files, 2654 passed and 7 skipped, exit 0, re-run after the checkout watch. Packet 045 returns `RESULT: PASSED`; the spec-kit figures for packet B from the earlier final state were 259 files and 3891 passed.
 <!-- /ANCHOR:state -->
