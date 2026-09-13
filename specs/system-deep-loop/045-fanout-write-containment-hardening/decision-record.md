@@ -1,6 +1,6 @@
 ---
 title: "Decision Record: fan-out write containment hardening"
-description: "The four decisions this packet freezes: preserve-by-default containment, baseline-targeted restore, a detached ephemeral worktree lane outside sk-git's numbered namespace, and worktree isolation on by default with a per-attempt isolation tally."
+description: "The five decisions this packet freezes: preserve-by-default containment, baseline-targeted restore, a detached ephemeral worktree lane outside sk-git's numbered namespace, worktree isolation on by default with a per-attempt isolation tally, and a report-only watch of the shared checkout for isolated lanes whose process cwd stays in it."
 trigger_phrases:
   - "containment decision record"
   - "preserve by default decision"
@@ -13,8 +13,8 @@ _memory:
     packet_pointer: "system-deep-loop/045-fanout-write-containment-hardening"
     last_updated_at: "2026-09-13T12:00:00Z"
     last_updated_by: "operator-session"
-    recent_action: "Appended ADR-004: worktree isolation is on by default, with a per-attempt isolation tally"
-    next_safe_action: "None; signed off 2026-09-13; watch degraded counts on real-executor runs"
+    recent_action: "Appended ADR-005: the shared checkout is watched for isolated lanes whose cwd stays in it"
+    next_safe_action: "Operator sign-off for the checkout-watch extension; watch checkout_writes on real runs"
     blockers: []
     key_files:
       - "spec.md"
@@ -459,3 +459,66 @@ Per-lineage worktrees shipped behind a flag that defaulted off, and ADR-003's ow
 
 **How to roll back**: `--worktrees false` for one run, `containment.worktrees: false` for a caller, or revert the one-line schema default; the runner then returns to shared-checkout behaviour with every other comment still true.
 <!-- /ANCHOR:adr-004 -->
+
+---
+
+<!-- ANCHOR:adr-005 -->
+## ADR-005: The shared checkout is watched for isolated lanes whose process cwd stays in it
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-09-13 |
+| **Deciders** | Operator (directed the follow-up be built in this packet); packet author (the watch design) |
+
+---
+
+### Context
+
+ADR-004's own risk table names the gap this decision closes: the isolation tally reports provisioning, not confinement. A lane that is isolated can still have its process started in the shared checkout, because its kind reaches its tree through a directory argument (`native`, `cli-opencode`) or a read root (`cli-cursor`). Containment watches the lane's tree while that lane is isolated, so a cwd-relative write by such a lane lands in the shared checkout with no finding and the run reports `isolated: 1, degraded: 0`. The operator, on being shown the gap, directed that the watch be built here rather than deferred.
+
+---
+
+### Decision
+
+An attempt that is isolated and whose spawn cwd is still the containment repo root is watched in the shared checkout for the length of its dispatch: the runner snapshots the checkout's out-of-scope dirty paths before dispatch, diffs it after with the same detection containment uses, appends a `checkout_write_detected` warning naming the changed paths (capped at 20, with the full count) when the checkout changed, and counts the attempt in `isolation.checkout_watched` and `isolation.checkout_writes`. The watch is report-only: it never restores, never latches the run's containment mode, and never changes the lane's outcome. The run's artifact plane is excluded from checkout-rooted scans, because the supervisor and publishing siblings write there and a scan cannot attribute those writes to a lane.
+
+---
+
+### Alternatives Considered
+
+| Option | Score | Why not chosen |
+|--------|-------|----------------|
+| **Watch the checkout and report** (chosen) | 9/10 | Covers the default path's blind spot with tested machinery, adds no destructive behaviour, and gives the observation window a signal |
+| Watch the checkout and enforce a remedy there | 4/10 | A remedy in the shared checkout restores or preserves paths a concurrent session may own — the exact destructive act this packet exists to stop, and attribution is weaker there than inside a lane's tree |
+| Close the lever instead (start directory-flag kinds in their tree) | 6/10 | The stronger fix, but it depends on every write path of every kind honouring the directory argument; cli-opencode's shell writes already ignore `--dir`, so completeness cannot be proven today. Left as the better future direction |
+| Do nothing; keep the documented residual | 3/10 | The gap stays unobserved on the default path, and the operator decided it should not |
+
+---
+
+### Five Checks Evaluation
+
+| # | Check | Result | Evidence |
+|---|-------|--------|----------|
+| 1 | **Necessary?** | PASS | The default path can write the checkout with no finding and no count; the tally cannot see it |
+| 2 | **Beyond Local Maxima?** | PASS | Four options weighed, including the lever fix that would remove the need for the watch |
+| 3 | **Sufficient?** | PASS | One predicate, one reuse of the tested detection, one event, two counters on all three summary writers, and a positive and negative test |
+| 4 | **Fits Goal?** | PASS | The packet's aim is attribution-safe containment; the watch extends observation without ever restoring |
+| 5 | **Open Horizons?** | PASS | The counters are the signal an observation window reads; the remaining boundaries are named in the limitations |
+
+**Checks Summary**: 5/5 PASS
+
+---
+
+### Implementation
+
+- `runtime/scripts/fanout-run.cjs`: the watch predicate (isolated attempt whose spawn cwd is the containment repo root), its pre-dispatch baseline, the post-dispatch diff, the `checkout_write_detected` event and the two counters on the final, stopped and empty-tick summaries.
+- `runtime/scripts/fanout-run.cjs`: the artifact plane is exempt from checkout-rooted scans, so a sibling's publication is never counted as a lane's write.
+- `runtime/tests/unit/fanout-run.vitest.ts`: an isolated lane that writes an in-checkout tracked file is reported exactly once, its bytes stay, and it settles fulfilled; the unchanged-checkout control reports watched with no write. The worktree fixture also points its temp variables outside the checkout, because the runner's TypeScript loader otherwise caches into the checkout mid-run and reads as a write no lane made.
+
+**Known boundaries**: a spawn-directory kind (`cli-pi`, `cli-claude-code`, `cli-codex`, `cli-devin`) can still write the checkout by absolute path; the watch checks completed dispatches only, so a lane that throws is not compared (the same ordering containment already has); and a detected write may belong to a concurrent session, which is why it is a warning that names paths rather than a violation.
+
+**How to roll back**: delete the watch predicate and its check block; nothing else depends on it, and no schema field changed.
+<!-- /ANCHOR:adr-005 -->

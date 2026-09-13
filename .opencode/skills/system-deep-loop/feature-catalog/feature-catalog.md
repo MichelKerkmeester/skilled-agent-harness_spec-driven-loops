@@ -50,7 +50,7 @@ How a fan-out keeps a dispatched lane's writes inside its own directory, why the
 
 #### Current Reality
 
-Preservation is the default remedy and restore is opt-in per run. Per-lineage worktrees are on by default; `--worktrees false` (or `containment.worktrees: false`) puts a run back on the shared checkout.
+Preservation is the default remedy and restore is opt-in per run. Per-lineage worktrees are on by default; `--worktrees false` (or `containment.worktrees: false`) puts a run back on the shared checkout. A lane that is isolated but whose process cwd still points at the shared checkout is watched there: a write it makes is reported as a `checkout_write_detected` warning and counted in the run summary's isolation object, never restored.
 
 #### Source Files
 

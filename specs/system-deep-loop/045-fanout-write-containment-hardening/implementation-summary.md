@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Planned stub. Nothing is built yet; this document records what shipped once the containment hardening phases land."
+description: "What shipped for the fan-out write containment hardening: preserve-by-default containment with baseline-targeted restore, separated lane outcomes, per-lineage worktrees on by default with a per-attempt isolation tally, and a report-only watch of the shared checkout for isolated lanes whose process cwd stays in it."
 trigger_phrases:
   - "implementation summary"
   - "what shipped"
@@ -13,8 +13,8 @@ _memory:
     packet_pointer: "system-deep-loop/045-fanout-write-containment-hardening"
     last_updated_at: "2026-09-13T11:00:00Z"
     last_updated_by: "operator-session"
-    recent_action: "Recorded the worktree default flip and its isolation tally"
-    next_safe_action: "None; signed off 2026-09-13; observe degraded counts on real-executor runs"
+    recent_action: "Recorded the checkout-watch extension: report-only checkout watch, counts and tests"
+    next_safe_action: "Operator sign-off for the checkout-watch extension; observe checkout_writes on real runs"
     blockers: []
     key_files:
       - "spec.md"
@@ -42,8 +42,8 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 045-fanout-write-containment-hardening |
-| **Status** | Complete |
-| **Completed** | 2026-09-13 |
+| **Status** | In Progress |
+| **Completed** | Not completed |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->
 
@@ -52,7 +52,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-The packet shipped in three phases: preserve-by-default containment with baseline-targeted restore and separated lane outcomes; per-lineage worktrees; and concurrent-editor detection. The worktree mechanism then became the default on the operator's decision, with a per-attempt isolation tally in the run summary, because preserve bounds the damage while isolation removes it.
+The packet shipped in three phases: preserve-by-default containment with baseline-targeted restore and separated lane outcomes; per-lineage worktrees; and concurrent-editor detection. The worktree mechanism then became the default on the operator's decision, with a per-attempt isolation tally in the run summary, because preserve bounds the damage while isolation removes it. A final extension closed the gap that decision left open: an isolated lane whose process cwd is still the shared checkout is watched there, and a change it makes is reported and counted rather than inferred away.
 
 ### harden fan-out write containment for shared checkouts
 
@@ -72,7 +72,7 @@ The phase that follows removes the question rather than answering it: each linea
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Delivered in the three phases the plan sequenced, then extended: the quarantine and baseline work with outcome separation and caller migration; per-lineage worktrees; concurrent-editor detection. Verification is the deep-loop runtime Vitest suite plus manual runs on the real checkout, and the worktree default's flip was verified the same way — a no-flag run that isolates end to end, tally assertions for the on, off and degraded paths, and a full-suite run from the final state.
+Delivered in the three phases the plan sequenced, then extended: the quarantine and baseline work with outcome separation and caller migration; per-lineage worktrees; concurrent-editor detection. Verification is the deep-loop runtime Vitest suite plus manual runs on the real checkout, and the worktree default's flip was verified the same way — a no-flag run that isolates end to end, tally assertions for the on, off and degraded paths, and a full-suite run from the final state. The checkout-watch extension that followed the sign-off was verified the same way: a positive case that reports exactly one write, a negative control with nothing to report, and a full suite from the final state (156 files, 2654 passed, 7 skipped, exit 0).
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -107,6 +107,7 @@ Delivered in the three phases the plan sequenced, then extended: the quarantine 
 | Interrupted-run reclaim | Observed end to end: killing a driver mid-run leaves its tree; a later run keeps it with the reason `resumable-label` while the lane can still be resumed, and reclaims it once it cannot. The liveness proof requires the heartbeat to be stale beyond twice the lease term as well as the owner being gone |
 | Restore still reachable per run | A run with the mode set back to restore completes and succeeds, with no code change |
 | Worktree default flip and isolation tally | **GREEN.** The schema default `worktrees: true`, the partial containment object and both opt-out shapes are covered in `executor-config.vitest.ts`; a no-flag spawn isolates a lane and reports `isolation { enabled: true, isolated: 1, degraded: 0 }`, the explicit-off case reports `{ enabled: false, isolated: 0, degraded: 0 }`, a lane whose tree cannot be made reports `{ enabled: true, isolated: 0, degraded: 1 }`, and the SIGTERM stopped summary carries the same key. Full suite from the final state: 156 files passed, 2653 passed, 7 skipped, 0 failed, exit 0 |
+| Checkout watch for isolated lanes whose cwd stays in the checkout | **GREEN.** An isolated `cli-opencode` lane that writes an in-checkout tracked file is reported exactly once as `checkout_write_detected` naming the path, the bytes stay on disk, the lane still settles fulfilled and its tree-rooted guard reports no violation alongside; the unchanged-checkout control reports `checkout_watched: 1` with `checkout_writes: 0`, and the stopped summary carries both counters. Full suite from the final state: 156 files passed, 2654 passed, 7 skipped, 0 failed, exit 0 |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -123,7 +124,7 @@ Delivered in the three phases the plan sequenced, then extended: the quarantine 
 7. **Isolation is skipped when the artifact tree lives in a different checkout than the working directory** The packet paths cannot then be expressed inside the worktree root, so the lane degrades to the shared checkout rather than seeding from the wrong tree. The safe direction, but the isolation is simply not gained there.
 8. **The staging-residue sweep runs before any lane publishes** A publisher that died mid-transaction leaves an incomplete staging copy that nothing would ever rename. It is swept once per run at `runtime/scripts/fanout-run.cjs:3173`, inside the branch that only runs when worktrees are enabled, which is the only time staging exists. Only this run's residue is eligible, and a failed sweep is reported to the ledger rather than failing a run whose lanes have not started.
 9. **Baseline capture copies the whole dirty working set, not just what the lane touches** It cannot know in advance which paths a lane will write, so it captures every dirty path outside the lineage directory before dispatch. A measured live run on a busy shared checkout captured 893 files at 8.2 MB into one lineage directory, including in-progress files belonging to eight other packets. The per-file and per-lane bounds cap the size but not the scope, and the cost scales with how dirty the checkout is rather than with what the lane does.
-10. **Worktree isolation depends on path rewriting** An executor that resolves a path relative to the original checkout could still write outside its worktree. The rewrite covers the prompt pack and the dispatch flags; anything an executor derives on its own is out of reach. While a lane is isolated, containment and the churn sampler watch the lane's tree rather than the shared checkout, and a flag-lever kind (`cli-opencode`, `native`) keeps its process cwd in the checkout, so a bare checkout write by such a lane is not detected — the isolation tally reports provisioning per attempt, not confinement, and watching the checkout for those kinds is still owed.
+10. **Worktree isolation depends on path rewriting** An executor that resolves a path relative to the original checkout could still write outside its worktree. The rewrite covers the prompt pack and the dispatch flags; anything an executor derives on its own is out of reach. While a lane is isolated, containment and the churn sampler watch the lane's tree rather than the shared checkout, so the runner added a report-only checkout watch for exactly the case where that matters: an isolated lane whose process cwd is still the shared checkout (the directory-flag and read-root kinds) is snapshotted before dispatch and diffed after, and a change is reported as `checkout_write_detected` and counted in `isolation.checkout_watched` / `checkout_writes` instead of going unobserved. It never restores and never changes the lane's outcome. Still unobserved: an absolute-path write by a kind whose cwd is its own tree (`cli-pi`, `cli-claude-code`, `cli-codex`, `cli-devin`), and a lane that fails before the post-dispatch comparison — the watch shares containment's success-path ordering.
 11. **Splitting the link costs time on the session launch path** Both provisioners now share a dependency root by linking its entries rather than the root itself, which replaces two link operations with 334 and adds roughly 0.8 s to every session launch. Measured, not estimated, and already reduced from 1.5 s by removing a subprocess per entry; the remaining cost is one link syscall per package and does not compress further without changing the approach.
 12. **The entry-point guard is repaired at the call site, not at its source** The metadata generators decide whether to do any work by comparing the path they were invoked with against the location they derive from their own file, and those disagree whenever the invocation path is not canonical. The runner now invokes them by their canonical path, which makes them fire. The guard itself is unchanged and still misfires for any other caller that reaches it through a link; there are fourteen such sites in the spec-kit build output, and fixing them belongs to that skill.
 <!-- /ANCHOR:limitations -->

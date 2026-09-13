@@ -2967,7 +2967,7 @@ async function main() {
     resolveClaudePermissionMode,
   } = await import('../lib/deep-loop/executor-config.ts');
   const { buildExecutorDispatchEnv, detectSameKindFromStack, CLI_DISPATCH_STACK_ENV } = await import('../lib/deep-loop/executor-audit.ts');
-  const { snapshotOutOfScopeDirtyPaths, enforceWriteContainment, __internals: containmentInternals } = await import('../lib/deep-loop/write-containment.ts');
+  const { snapshotOutOfScopeDirtyPaths, detectNewOutOfScopeViolations, enforceWriteContainment, __internals: containmentInternals } = await import('../lib/deep-loop/write-containment.ts');
   const {
     DEFAULT_LINEAGE_TIMESTAMP_TOLERANCE_MS,
     checkLineageTimestampWindow,
@@ -3022,8 +3022,10 @@ async function main() {
   // One count per dispatch attempt, written where the attempt's tree is decided: a retried lane
   // can appear in both counts, so these are attempt counts, not lineage counts. A degraded
   // attempt runs in the shared checkout (or never reached a dispatch), which `enabled: true`
-  // with `degraded > 0` reports.
-  const isolationTally = { isolated: 0, degraded: 0 };
+  // with `degraded > 0` reports. The checkout counters belong to the companion watch: an
+  // attempt counts as watched when its dispatch was followed by a checkout comparison, and as
+  // a write when that comparison found the checkout had changed while the attempt ran.
+  const isolationTally = { isolated: 0, degraded: 0, checkout_watched: 0, checkout_writes: 0 };
   const rawGuardConfig = rawConfigWithCliBudgetOverrides(rawConfig, args);
   const stallWatchdogMs = normalizeStallWatchdogMs(rawGuardConfig);
   const lineageBudgetGuards = normalizeLineageBudgetGuards(rawGuardConfig);
@@ -3106,7 +3108,7 @@ async function main() {
       all_failed: false,
       gauges: { lag: 0, pending: 0, failed: 0 },
       convergence: { status: 'converged', reason: 'empty_tick', no_new_findings: true },
-      isolation: { enabled: worktreesEnabled, isolated: 0, degraded: 0 },
+      isolation: { enabled: worktreesEnabled, isolated: 0, degraded: 0, checkout_watched: 0, checkout_writes: 0 },
     };
     writeOrchestrationSummary(summaryPath, {
       run_id: runId,
@@ -3248,7 +3250,13 @@ async function main() {
       spec_folder: specFolder,
       base_artifact_dir: baseArtifactDir,
       total_cli_lineages: cliLineages.length,
-      isolation: { enabled: worktreesEnabled, isolated: isolationTally.isolated, degraded: isolationTally.degraded },
+      isolation: {
+        enabled: worktreesEnabled,
+        isolated: isolationTally.isolated,
+        degraded: isolationTally.degraded,
+        checkout_watched: isolationTally.checkout_watched,
+        checkout_writes: isolationTally.checkout_writes,
+      },
       stopped: true,
       stopped_signal: signal,
       stopped_at_iso: stoppedAtIso,
@@ -3570,6 +3578,12 @@ async function main() {
         ...siblingLineageDirs,
         ...kindLegitimateDirs,
         ...(worktreeBase === null ? [] : [worktreeBase]),
+        // The run's artifact plane is written live by the supervisor and by siblings as they
+        // publish, so a checkout-rooted scan cannot tell those writes from a lane's stray one.
+        // Exempting the plane also covers the published, staging and claim names a scan would
+        // otherwise read as new paths; the exemption is inert for a tree-rooted scan, which
+        // never reaches outside its own tree.
+        lineagesDir,
       ];
       // The tree this lane can actually dirty, and the runner-owned paths inside it: the lease
       // this process rewrites on every heartbeat is the supervisor's own bookkeeping, never the
@@ -3593,6 +3607,21 @@ async function main() {
           unattributablePaths: laneUnattributablePaths,
         })
         : [];
+
+      // A lane can be isolated and still have its process started in the shared checkout: a
+      // kind that reaches its tree through a directory argument keeps its cwd where it was, so
+      // a cwd-relative write lands outside the root the guard above watches. The checkout is
+      // watched for the length of the dispatch to cover that case. The watch is report-only,
+      // because a candidate here may belong to another writer sharing the checkout: it is
+      // recorded and counted, never restored, and it cannot change the lane's outcome.
+      const checkoutWatchBaseline = laneWorktree !== null && laneWorktree.spawnCwd === containmentRepoRoot
+        ? snapshotOutOfScopeDirtyPaths({
+          repoRoot: containmentRepoRoot,
+          artifactDir: lineageDirInCheckout,
+          unattributableDirs: [...staticUnattributableDirs, ...preDispatchForeignRunDirs],
+          unattributablePaths: laneUnattributablePaths,
+        })
+        : null;
 
       // Churn sampling reuses the containment snapshot, exclusions included, so a
       // sibling lineage's in-flight writes are not mistaken for a foreign writer's.
@@ -3848,6 +3877,46 @@ async function main() {
         }
       }
 
+      if (checkoutWatchBaseline !== null) {
+        const checkoutChanges = detectNewOutOfScopeViolations({
+          repoRoot: containmentRepoRoot,
+          artifactDir: lineageDirInCheckout,
+          unattributableDirs: [
+            ...staticUnattributableDirs,
+            ...preDispatchForeignRunDirs,
+            ...(await discoverForeignLiveRunDirs({ specFolder, baseArtifactDir })),
+          ],
+          unattributablePaths: laneUnattributablePaths,
+          preDispatchDirtyPaths: checkoutWatchBaseline,
+        });
+        isolationTally.checkout_watched += 1;
+        if (checkoutChanges.length > 0) {
+          // Attribution stays open, so this is a warning that names what changed rather than a
+          // violation: the writer may be another session sharing the checkout. The path list is
+          // capped because a burst can be large; the count still reports its full size.
+          isolationTally.checkout_writes += 1;
+          appendFanoutStatusLedger(ledgerPath, {
+            type: 'event',
+            event: 'checkout_write_detected',
+            severity: 'warning',
+            at: new Date().toISOString(),
+            label: lineage.label,
+            run_id: runId,
+            loop_type: loopType,
+            spec_folder: specFolder,
+            iteration: attempt,
+            gauges: latestGauges,
+            newly_dirty_paths: checkoutChanges.length,
+            changed_paths: checkoutChanges.slice(0, 20).map((change) => ({
+              path: change.path,
+              kind: change.kind,
+              status: change.status,
+            })),
+            changed_paths_truncated: checkoutChanges.length > 20,
+          });
+        }
+      }
+
       const output = { label: lineage.label, exitCode, timedOut, salvage, ...slotAccounting };
       if (containmentFindings !== null) {
         // Every artifact and stop-policy gate above already passed, so an out-of-scope
@@ -3897,6 +3966,8 @@ async function main() {
       enabled: worktreesEnabled,
       isolated: isolationTally.isolated,
       degraded: isolationTally.degraded,
+      checkout_watched: isolationTally.checkout_watched,
+      checkout_writes: isolationTally.checkout_writes,
     },
     ...(timestampAnomalies.length > 0 ? { timestamp_anomalies: timestampAnomalies } : {}),
   };
