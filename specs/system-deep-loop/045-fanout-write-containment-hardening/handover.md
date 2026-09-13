@@ -1,6 +1,6 @@
 ---
 title: "Handover: fan-out write containment and entry-point link resolution"
-description: "Both packets are complete and pushed. This records the delivered state of fan-out write containment and the entry-point link repair, the two operator decisions still open, and the traps a cold session would otherwise rediscover at cost."
+description: "Both packets are complete; this one is signed off and its work is pushed. This records the delivered state of fan-out write containment and the entry-point link repair, the operator's decision on the remaining containment gap, and the traps a cold session would otherwise rediscover at cost."
 trigger_phrases:
   - "fan-out write containment handover"
   - "worktree default decision"
@@ -20,7 +20,7 @@ Continuity handover for two completed packets. Read this first on resume, then t
 <!-- ANCHOR:state -->
 ## Current State
 
-**Both packets are complete.** This session's worktree-default flip and its review fixes are committed on `skilled/v4.0.0.0` on top of `1c157667067`, unpushed; `origin/main` still equals `origin/skilled/v4.0.0.0` at `e4a6212b62` until that commit is pushed.
+**Both packets are complete, and this one is signed off.** On 2026-09-13 the operator approved all three rows of the fan-out containment sign-off table. This session's worktree-default flip and its review fixes (`15bbc48b79`) sit on `skilled/v4.0.0.0` on top of `1c157667067` and are pushed to `origin/skilled/v4.0.0.0` together with the sign-off commit.
 
 Verification from the final state: the deep-loop suite reports 156 files, 2653 passed and 7 skipped, exit 0, re-run after the review fixes. Packet 045 returns `RESULT: PASSED`; the spec-kit figures for packet B from the earlier final state were 259 files and 3891 passed.
 <!-- /ANCHOR:state -->
@@ -63,7 +63,7 @@ Three copies of the helper exist, one per build boundary the code cannot cross, 
 
 These are decisions, not defects.
 
-1. **Whether the shared checkout keeps a write watch while lanes are isolated.** ADR-004 records that containment watches the lane's tree, so a bare checkout write by a flag-lever kind (`cli-opencode`, `native`) is not observed; the isolation tally reports provisioning, not confinement. Watching the checkout for those kinds is the instrument that risk still needs.
+1. **Whether the shared checkout keeps a write watch while lanes are isolated.** ADR-004 records that containment watches the lane's tree, so a bare checkout write by a flag-lever kind (`cli-opencode`, `native`) is not observed; the isolation tally reports provisioning, not confinement. **Decided 2026-09-13: build it** in this packet, and it is the one item this handover does not yet record as delivered.
 2. **Concurrency ceilings are unbounded.** There is a single runner process and heap, no quota admission control, and an unclassified resource exhaustion is retried into.
 <!-- /ANCHOR:operator-decisions -->
 

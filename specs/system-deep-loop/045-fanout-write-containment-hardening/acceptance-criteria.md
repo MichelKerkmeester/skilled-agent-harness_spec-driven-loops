@@ -14,7 +14,7 @@ _memory:
     last_updated_at: "2026-09-13T11:00:00Z"
     last_updated_by: "operator-session"
     recent_action: "Resolved the worktree-default question; added its criterion"
-    next_safe_action: "Operator sign-off in tasks.md; no engineering work remains"
+    next_safe_action: "None; packet signed off 2026-09-13"
     blockers: []
     key_files:
       - "spec.md"
@@ -47,7 +47,7 @@ _memory:
 
 **Packet:** specs/system-deep-loop/045-fanout-write-containment-hardening
 **Level:** 3
-**Status:** In Progress
+**Status:** Complete
 **Date:** 2026-09-08
 <!-- /ANCHOR:metadata -->
 
@@ -103,5 +103,5 @@ waiver is treated as an unmet criterion rather than as a pass.
 
 **Closeable:** Yes
 
-Every criterion above is `Met`, each with evidence observed from the delivered state, including the final one for the worktree default and its tally. Formal closure is the operator sign-off table in `tasks.md`; no engineering work remains on this packet.
+Every criterion above is `Met`, each with evidence observed from the delivered state, including the final one for the worktree default and its tally. The operator signed off all three rows of the sign-off table in `tasks.md` on 2026-09-13; no engineering work remains on this packet.
 <!-- /ANCHOR:closure -->

@@ -14,7 +14,7 @@ _memory:
     last_updated_at: "2026-09-13T12:00:00Z"
     last_updated_by: "operator-session"
     recent_action: "Amended the durable decisions with the worktree default flip and its isolation tally (ADR-004)"
-    next_safe_action: "Operator sign-off in tasks.md; observe degraded counts on real-executor runs"
+    next_safe_action: "None; signed off 2026-09-13; observe degraded counts on real-executor runs"
     blockers: []
     key_files:
       - "spec.md"
