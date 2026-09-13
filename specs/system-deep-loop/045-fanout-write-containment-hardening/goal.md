@@ -97,7 +97,7 @@ and findings belong here.
 | Packet authored at Level 3 | Done | `spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md`, `decision-record.md`, `goal.md` |
 | Guard, runner and test suite read end to end | Done | `runtime/lib/deep-loop/write-containment.ts` 786 lines, the runner's containment block, `runtime/tests/unit/write-containment.vitest.ts` 1,331 lines |
 | Incident evidence confirmed | Done | The `failed` event for label `luna` names 1,858 reverted paths; the research run record says the artefacts were complete |
-| Implementation | Done | Preserve-by-default containment, per-lineage worktrees, concurrent-editor detection, and the worktree default flip with its isolation tally; packet docs reconciled |
+| Implementation | Done | Preserve-by-default containment, per-lineage worktrees, concurrent-editor detection, the worktree default flip with its isolation tally, and the report-only checkout watch for isolated lanes whose cwd stays in the shared checkout; packet docs reconciled |
 
 ### Deviations and findings
 
@@ -106,5 +106,6 @@ and findings belong here.
 | The existing patch directory is `containment-reverted/`, not `containment/quarantine/` | The specification adds the quarantine tree and keeps the old directory for the restore path, so operators following current documentation still find what it names |
 | The runner checks containment before artefact validation | This is why a complete lane never reached the code that would have called it complete; the outcome-separation phase reorders it rather than adding a special case |
 | The guard's own comments already describe this failure mode | The module documents that a HEAD restore silently discards a concurrent session's work; the incident was a known risk that had never been acted on |
-| Worktree isolation became the default (ADR-004) | The operator decided the flip on the delivered evidence. The per-attempt tally reports tree provisioning, not confinement: while a lane is isolated, containment watches its tree, and a flag-lever kind keeps its process cwd in the checkout, so watching the checkout for those kinds remains open work |
+| Worktree isolation became the default (ADR-004) | The operator decided the flip on the delivered evidence. The per-attempt tally reports tree provisioning, not confinement: while a lane is isolated, containment watches its tree, and a flag-lever kind keeps its process cwd in the checkout |
+| The checkout gap ADR-004 named is closed (ADR-005) | The operator directed the watch be built here. An isolated attempt whose process cwd stays in the checkout is snapshotted and diffed there; a change is reported as `checkout_write_detected` with the changed paths and counted in `isolation.checkout_watched` / `checkout_writes`, report-only, artifact plane exempted. Left open: an absolute-path write by a kind whose cwd is its tree, and a lane that fails before the comparison |
 <!-- /ANCHOR:log -->

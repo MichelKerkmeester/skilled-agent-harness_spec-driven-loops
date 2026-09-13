@@ -1,6 +1,6 @@
 ---
 title: "Handover: fan-out write containment and entry-point link resolution"
-description: "Both packets are complete; this one is signed off and its work is pushed. This records the delivered state of fan-out write containment and the entry-point link repair, the operator's decision on the remaining containment gap, and the traps a cold session would otherwise rediscover at cost."
+description: "Both packets are complete; this one is signed off and its work is pushed, and the containment gap the sign-off left open is now delivered as a checkout watch. This records the delivered state of fan-out write containment and the entry-point link repair, the one operator decision still open, and the traps a cold session would otherwise rediscover at cost."
 trigger_phrases:
   - "fan-out write containment handover"
   - "worktree default decision"
@@ -20,9 +20,9 @@ Continuity handover for two completed packets. Read this first on resume, then t
 <!-- ANCHOR:state -->
 ## Current State
 
-**Both packets are complete, and this one is signed off.** On 2026-09-13 the operator approved all three rows of the fan-out containment sign-off table. This session's worktree-default flip and its review fixes (`15bbc48b79`) sit on `skilled/v4.0.0.0` on top of `1c157667067` and are pushed to `origin/skilled/v4.0.0.0` together with the sign-off commit.
+**Both packets are complete, and this one is signed off.** On 2026-09-13 the operator approved all three rows of the fan-out containment sign-off table. This session's worktree-default flip and its review fixes (`15bbc48b79`) sit on `skilled/v4.0.0.0` on top of `1c157667067` and are pushed to `origin/skilled/v4.0.0.0` together with the sign-off commit. The operator then directed the checkout watch ADR-004 named; it is committed on the same branch on top of the sign-off commit (`e910a812c0`) and is not pushed.
 
-Verification from the final state: the deep-loop suite reports 156 files, 2653 passed and 7 skipped, exit 0, re-run after the review fixes. Packet 045 returns `RESULT: PASSED`; the spec-kit figures for packet B from the earlier final state were 259 files and 3891 passed.
+Verification from the final state: the deep-loop suite reports 156 files, 2654 passed and 7 skipped, exit 0, re-run after the checkout watch. Packet 045 returns `RESULT: PASSED`; the spec-kit figures for packet B from the earlier final state were 259 files and 3891 passed.
 <!-- /ANCHOR:state -->
 
 ---
@@ -63,7 +63,7 @@ Three copies of the helper exist, one per build boundary the code cannot cross, 
 
 These are decisions, not defects.
 
-1. **Whether the shared checkout keeps a write watch while lanes are isolated.** ADR-004 records that containment watches the lane's tree, so a bare checkout write by a flag-lever kind (`cli-opencode`, `native`) is not observed; the isolation tally reports provisioning, not confinement. **Decided 2026-09-13: build it** in this packet, and it is the one item this handover does not yet record as delivered.
+1. **The shared checkout watch is delivered; two boundaries remain.** ADR-004 recorded that containment watched the lane's tree, so a bare checkout write by a flag-lever kind (`cli-opencode`, `native`, `cli-cursor`) was not observed. **Decided 2026-09-13: build it — delivered** (ADR-005): such an attempt is watched in the checkout, a change is reported as `checkout_write_detected` and counted in `isolation.checkout_watched` / `checkout_writes`, report-only, with the artifact plane exempted so a sibling's publication is not attributed to a lane. Still unobserved: an absolute-path write by a kind whose cwd is its own tree, and a lane that fails before the post-dispatch comparison.
 2. **Concurrency ceilings are unbounded.** There is a single runner process and heap, no quota admission control, and an unclassified resource exhaustion is retried into.
 <!-- /ANCHOR:operator-decisions -->
 
@@ -97,5 +97,5 @@ NODE_PRESERVE_SYMLINKS=1 bash "$(realpath .opencode)/skills/system-spec-kit/runt
 
 The same pair of commands against the entry-point packet also returns PASSED.
 
-Cold-read order: this file, then `implementation-summary.md` for what shipped and its recorded limitations, then `decision-record.md` for the worktree-default decision (ADR-004) and the risks it leaves open, then `spec.md` for the incident that started it.
+Cold-read order: this file, then `implementation-summary.md` for what shipped and its recorded limitations, then `decision-record.md` for the worktree-default decision (ADR-004), the checkout watch that closed the risk it left open (ADR-005) and the boundaries that remain, then `spec.md` for the incident that started it.
 <!-- /ANCHOR:resume -->

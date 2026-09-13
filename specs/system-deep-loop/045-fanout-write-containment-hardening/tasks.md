@@ -316,6 +316,17 @@ Phase 5 — churn detection, optional, satisfying the fourth requirement.
 - [x] CHK-151 [P1] Every pre-existing test that depends on shared-checkout semantics declares that dependency explicitly — the three git fixtures that assert shared-checkout behaviour pin `--worktrees false`; the full suite from the final state passes 156/156 with 2653 tests passed and no other test needing a pin
 <!-- /ANCHOR:post-closure-extension -->
 
+<!-- ANCHOR:checkout-watch-extension -->
+## Post-Sign-Off Extension: Shared-Checkout Watch
+
+Operator-directed on 2026-09-13 after the sign-off above, closing the risk ADR-004 named: an isolated lane whose process cwd stays in the shared checkout.
+
+- [x] T036 [P1] Watch the shared checkout for an isolated lane whose process cwd stays in it — for a directory-flag or read-root kind the runner snapshots the checkout before dispatch and diffs it after with the same detection containment uses, appends a `checkout_write_detected` warning naming the changed paths (capped at 20 with the full count), and counts the attempt in `isolation.checkout_watched` / `isolation.checkout_writes` on the final, stopped and empty-tick summaries; the watch never restores and never changes the lane's outcome
+- [x] T037 [P1] Exclude the run's artifact plane from checkout-rooted scans — the lineages directory is exempt because the supervisor and publishing siblings write there; without it a sibling's publication reads as the lane's write
+- [x] CHK-152 [P1] The watch is report-only and provable both ways — the escaping-lane test reports exactly one `checkout_write_detected` naming the tracked path, leaves the bytes on disk and still settles the lane fulfilled, while its tree-rooted guard reports no violation; the unchanged-checkout control reports `checkout_watched: 1` with `checkout_writes: 0`
+- [x] CHK-153 [P1] Full suite from the final state after the extension — 156/156 files, 2654 passed, 7 skipped, 0 failed, exit 0 (1234 s)
+<!-- /ANCHOR:checkout-watch-extension -->
+
 <!-- ANCHOR:sign-off -->
 ## L3+: Sign-Off
 
@@ -324,6 +335,9 @@ Phase 5 — churn detection, optional, satisfying the fourth requirement.
 | Operator | Packet owner | [x] Approved | 2026-09-13 |
 | Operator | Deep-loop runtime owner | [x] Approved | 2026-09-13 |
 | Operator | Verification | [x] Approved | 2026-09-13 |
+| Operator | Packet owner (checkout-watch extension) | [ ] Approved | |
+| Operator | Deep-loop runtime owner (checkout-watch extension) | [ ] Approved | |
+| Operator | Verification (checkout-watch extension) | [ ] Approved | |
 <!-- /ANCHOR:sign-off -->
 
 

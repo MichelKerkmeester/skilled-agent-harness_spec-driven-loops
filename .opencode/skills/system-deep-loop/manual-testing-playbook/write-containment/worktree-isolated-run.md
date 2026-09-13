@@ -16,7 +16,10 @@ version: "1.0.0.0"
 
 With worktrees enabled each lane runs in its own checkout, so attribution stops being a guess. The
 two things that can go wrong are invisible: a lane reading the main checkout's code rather than its
-own, and a tree surviving the run that created it.
+own, and a tree surviving the run that created it. A lane that is isolated but whose process cwd
+still points at the main checkout is watched there, so a write it makes into the checkout is
+reported as a `checkout_write_detected` warning and counted in the run summary instead of staying
+invisible.
 
 ---
 

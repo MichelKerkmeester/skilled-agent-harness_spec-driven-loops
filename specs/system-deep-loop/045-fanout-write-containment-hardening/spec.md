@@ -33,7 +33,7 @@ The deep-loop fan-out guard cannot tell a leaf's stray write from a human's edit
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P0 |
-| **Status** | Complete |
+| **Status** | In Progress |
 | **Created** | 2026-09-08 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Origin** | The 2026-09-08 containment incident on the chart visual-upgrade research run: lane `luna` completed five iterations, then reverted 1,858 out-of-scope paths written by a concurrent session and was recorded `failed`. The second lane was stopped by hand before it could repeat the sweep over 932 further live edits. |
@@ -121,6 +121,7 @@ Ordered by safety gained per line changed. The first three requirements stop the
 | REQ-004 | The runner samples out-of-lineage working-tree churn at the existing progress heartbeat. Above the threshold — twelve newly-dirty tracked paths outside the lineage directory within one heartbeat window, or forty cumulative for the lane — it emits `shared_checkout_detected` and forces preserve mode for the remainder of the run, overriding any restore opt-in. Both numbers are configurable; the justification for these defaults is in section 7. |
 | REQ-006 | Every caller and document that asserts the old behaviour is migrated: the four command YAMLs (each of which both spawns the runner and inlines its own containment call), the hub SKILL.md, both loop protocols, the runtime library README and the fan-out feature catalog entry. |
 | REQ-007 | Per-lineage worktrees are the default. A run isolates every lane unless a caller opts out with `--worktrees false` on the invocation or `containment.worktrees: false` in the fan-out config, and the resolution order is flag, then config, then schema default. A lane whose tree cannot be created still runs, in the shared checkout under forced preserve, and the orchestration summary gains an `isolation` object — `enabled`, and the per-attempt counts `isolated` and `degraded` — so a run that could not isolate is reported rather than silently indistinguishable from one that could. |
+| REQ-008 | An isolated lane whose process cwd is still the shared checkout is watched there. For a lane that is isolated but whose kind reaches its tree through a directory argument or a read root — so a cwd-relative write lands in the shared checkout — the runner snapshots the checkout before dispatch, diffs it after, appends a `checkout_write_detected` warning naming the changed paths (capped at 20, with the full count), and counts the attempt in `isolation.checkout_watched` and `isolation.checkout_writes`. The watch is report-only: it never restores, never changes the lane's outcome, and the run's artifact plane is excluded from the scan so a sibling's publication is not attributed to a lane. |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
@@ -136,6 +137,7 @@ Ordered by safety gained per line changed. The first three requirements stop the
 - **SC-003**: A fan-out run against an uncommitted packet completes with every lineage in its own worktree and every lineage directory present in the main checkout afterwards.
 - **SC-004**: The 2026-09-08 incident is reproducible as a test: a simulated neighbour dirties tracked files during a lane, and no path it touched is modified by the guard.
 - **SC-005**: A default-configured run with no worktree flag dispatches its lanes inside their own worktrees and the orchestration summary reports `isolation.enabled: true` with each lane counted as isolated; a lane whose tree cannot be made is counted as degraded and the run still completes.
+- **SC-006**: A default run whose isolated lane writes into the shared checkout reports exactly that write as a `checkout_write_detected` warning naming the path, counts it in the summary's isolation object, leaves the bytes on disk and still settles the lane fulfilled; a watched attempt whose checkout is unchanged reports `checkout_watched` with no write.
 <!-- /ANCHOR:success-criteria -->
 
 ---

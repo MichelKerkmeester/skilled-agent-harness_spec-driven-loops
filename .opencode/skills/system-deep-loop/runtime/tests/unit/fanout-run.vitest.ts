@@ -16,7 +16,7 @@ import {
   writeFileSync,
 } from 'node:fs';
 import { tmpdir } from 'node:os';
-import { isAbsolute, join, relative, resolve } from 'node:path';
+import { isAbsolute, dirname, join, relative, resolve } from 'node:path';
 import { spawn, spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { createRequire } from 'node:module';
@@ -3127,7 +3127,7 @@ describe('fanout-run.cjs — graceful self-stop', () => {
     expect(summary.status).toBe('partial');
     // The stopped path carries the isolation tally too, so an interrupted run does not read as a
     // run that isolated: this fixture is not a git repo, so the lane degrades to the checkout.
-    expect(summary.isolation).toEqual({ enabled: true, isolated: 0, degraded: 1 });
+    expect(summary.isolation).toEqual({ enabled: true, isolated: 0, degraded: 1, checkout_watched: 0, checkout_writes: 0 });
     expect(summary.results).toEqual([expect.objectContaining({ label: 'slow', status: 'running' })]);
     expect(summary.gauges).toMatchObject({ failed: 0 });
   });
@@ -4050,6 +4050,15 @@ const prepareWorktreeRepo = (testId: string) => {
     DEEP_LOOP_REPO_ROOT: repoRoot,
     SPECKIT_WORKTREE_BASE: worktreeBase,
   };
+  // The hermetic TMPDIR is this fixture's checkout, and the runner's TypeScript loader writes
+  // its transform cache under TMPDIR asynchronously; those files would otherwise appear in the
+  // checkout mid-run and read as writes no lane made. A sibling of the checkout is where a real
+  // run keeps them.
+  const runnerTmp = join(dirname(repoRoot), 'runner-tmp');
+  mkdirSync(runnerTmp, { recursive: true });
+  env.TMPDIR = runnerTmp;
+  env.TEMP = runnerTmp;
+  env.TMP = runnerTmp;
   for (const key of ['GIT_DIR', 'GIT_WORK_TREE', 'GIT_COMMON_DIR', 'GIT_INDEX_FILE', 'GIT_CEILING_DIRECTORIES']) {
     delete env[key];
   }
@@ -4114,6 +4123,31 @@ const writeTreeReportingStub = (binDir: string, specFolder: string): string => {
   return stubPath;
 };
 
+/** The lane stub also writes into the shared checkout, which is the case the checkout watch exists for. */
+const writeTreeEscapingStub = (binDir: string, specFolder: string, escapedPath: string): string => {
+  const stubPath = join(binDir, 'opencode');
+  writeFileSync(
+    stubPath,
+    [
+      '#!/bin/sh',
+      'dir=""',
+      'prev=""',
+      'for arg in "$@"; do',
+      '  if [ "$prev" = "--dir" ]; then dir="$arg"; fi',
+      '  prev="$arg"',
+      'done',
+      writeFanoutArtifactsShell(),
+      'printf "%s\\n" "$dir" > "$lineage_dir/tree-root.txt"',
+      `printf "escaped\\n" > ${shellQuote(escapedPath)}`,
+      'echo "stub-done"',
+      'exit 0',
+      '',
+    ].join('\n'),
+    { mode: 0o755 },
+  );
+  return stubPath;
+};
+
 describe('fanout-run.cjs — worktree isolation is on by default and off on request', () => {
   it('isolates with no flag at all, and reports it in the run summary', async () => {
     const fixture = prepareWorktreeRepo('worktrees-default');
@@ -4140,9 +4174,58 @@ describe('fanout-run.cjs — worktree isolation is on by default and off on requ
     const treeRoot = readFileSync(join(fixture.baseDir, 'lineages', published[0], 'tree-root.txt'), 'utf8').trim();
     expect(isPathInside(treeRoot, fixture.worktreeBase)).toBe(true);
     const summary = JSON.parse(readFileSync(join(fixture.baseDir, 'orchestration-summary.json'), 'utf8')) as {
-      isolation: { enabled: boolean; isolated: number; degraded: number };
+      isolation: { enabled: boolean; isolated: number; degraded: number; checkout_watched: number; checkout_writes: number };
     };
-    expect(summary.isolation).toEqual({ enabled: true, isolated: 1, degraded: 0 });
+    // The lane is a directory-flag kind, so its process cwd stayed in the checkout: the watch
+    // ran, saw nothing, and the run still reports that it looked.
+    expect(summary.isolation).toEqual({ enabled: true, isolated: 1, degraded: 0, checkout_watched: 1, checkout_writes: 0 });
+  });
+
+  it('watches the shared checkout for an isolated lane whose process cwd stays there, and reports the write it sees', async () => {
+    const fixture = prepareWorktreeRepo('worktrees-checkout-watch');
+    writeTreeEscapingStub(fixture.binDir, fixture.specFolder, fixture.trackedPath);
+
+    const result = await spawnCjs(
+      fanoutRunScript,
+      [
+        '--spec-folder', fixture.specFolder,
+        '--loop-type', 'research',
+        '--fanout-config-json', fixture.fanoutConfig,
+        '--base-artifact-dir', fixture.baseDir,
+        '--no-metadata-refresh',
+      ],
+      { cwd: fixture.repoRoot, env: fixture.env, timeoutMs: 20_000 },
+    );
+
+    expect(result.exitCode, `${result.stdout}\n${result.stderr}`).toBe(0);
+    // The lane ran in a tree of its own and wrote outside it anyway, into the checkout its
+    // process cwd still points at. The bytes are still there: the watch reports, never restores.
+    const published = readdirSync(join(fixture.baseDir, 'lineages'));
+    expect(published).toHaveLength(1);
+    expect(published[0]).toMatch(/-contained$/);
+    const publishedDir = join(fixture.baseDir, 'lineages', published[0]);
+    expect(readFileSync(join(publishedDir, 'research.md'), 'utf8')).toBe('ok\n');
+    expect(isPathInside(readFileSync(join(publishedDir, 'tree-root.txt'), 'utf8').trim(), fixture.worktreeBase)).toBe(true);
+    expect(readFileSync(fixture.trackedPath, 'utf8')).toBe('escaped\n');
+
+    const ledgerEvents = fixture.readLedgerEvents();
+    expect(ledgerEvents.filter((event) => event.event === 'checkout_write_detected')).toEqual([
+      expect.objectContaining({
+        label: 'contained',
+        severity: 'warning',
+        newly_dirty_paths: 1,
+        changed_paths_truncated: false,
+        changed_paths: [expect.objectContaining({ path: 'tracked-out-of-scope/leaf-escaped.txt' })],
+      }),
+    ]);
+    // The tree-rooted guard saw nothing, because the write landed outside its root: that gap is
+    // exactly what the checkout watch closes for this kind.
+    expect(ledgerEvents.filter((event) => event.event === 'containment_violation')).toEqual([]);
+
+    const summary = JSON.parse(readFileSync(join(fixture.baseDir, 'orchestration-summary.json'), 'utf8')) as {
+      isolation: { enabled: boolean; isolated: number; degraded: number; checkout_watched: number; checkout_writes: number };
+    };
+    expect(summary.isolation).toEqual({ enabled: true, isolated: 1, degraded: 0, checkout_watched: 1, checkout_writes: 1 });
   });
 
   it('dispatches in the shared checkout when the flag turns isolation off, and rejects a non-boolean flag', async () => {
@@ -4172,9 +4255,9 @@ describe('fanout-run.cjs — worktree isolation is on by default and off on requ
     expect(existsSync(fixture.worktreeBase)).toBe(false);
     expect(fixture.readLedgerEvents().filter((event) => String(event.event).startsWith('worktree_'))).toEqual([]);
     const summary = JSON.parse(readFileSync(join(fixture.baseDir, 'orchestration-summary.json'), 'utf8')) as {
-      isolation: { enabled: boolean; isolated: number; degraded: number };
+      isolation: { enabled: boolean; isolated: number; degraded: number; checkout_watched: number; checkout_writes: number };
     };
-    expect(summary.isolation).toEqual({ enabled: false, isolated: 0, degraded: 0 });
+    expect(summary.isolation).toEqual({ enabled: false, isolated: 0, degraded: 0, checkout_watched: 0, checkout_writes: 0 });
 
     // The flag's own contract: absent defers to the config, and anything that is not a boolean
     // is refused before a run starts.
@@ -4248,9 +4331,9 @@ describe('fanout-run.cjs — forced-on worktree isolation copies the lane back a
     expect(ledgerEvents.filter((event) => event.event === 'worktree_degraded')).toEqual([]);
     expect(ledgerEvents.filter((event) => event.event === 'worktree_publish_failed')).toEqual([]);
     const summary = JSON.parse(readFileSync(join(fixture.baseDir, 'orchestration-summary.json'), 'utf8')) as {
-      isolation: { enabled: boolean; isolated: number; degraded: number };
+      isolation: { enabled: boolean; isolated: number; degraded: number; checkout_watched: number; checkout_writes: number };
     };
-    expect(summary.isolation).toEqual({ enabled: true, isolated: 1, degraded: 0 });
+    expect(summary.isolation).toEqual({ enabled: true, isolated: 1, degraded: 0, checkout_watched: 1, checkout_writes: 0 });
   });
 });
 
@@ -4307,9 +4390,9 @@ describe('fanout-run.cjs — a worktree that cannot be made degrades that lane i
     expect(ledgerEvents.filter((event) => event.event === 'worktree_reclaim_failed')).toHaveLength(1);
     // Nothing here ran isolated, and the run still completed: the summary has to say so.
     const summary = JSON.parse(readFileSync(join(fixture.baseDir, 'orchestration-summary.json'), 'utf8')) as {
-      isolation: { enabled: boolean; isolated: number; degraded: number };
+      isolation: { enabled: boolean; isolated: number; degraded: number; checkout_watched: number; checkout_writes: number };
     };
-    expect(summary.isolation).toEqual({ enabled: true, isolated: 0, degraded: 1 });
+    expect(summary.isolation).toEqual({ enabled: true, isolated: 0, degraded: 1, checkout_watched: 0, checkout_writes: 0 });
   });
 });
 
