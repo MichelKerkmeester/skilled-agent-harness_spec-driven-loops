@@ -29,7 +29,10 @@
       "stacked compression",
       "adhd output shaping",
       "communication repo rule",
-      "phase parent"
+      "phase parent",
+      "session handover",
+      "clarity program resume",
+      "swarm validation unverified"
     ],
     "key_topics": [
       "sk-communication",
@@ -49,6 +52,7 @@
     "status": "draft",
     "key_files": [
       "spec.md",
+      "handover.md",
       "AGENTS.md",
       "REPO RULES.md",
       "repo-rules/communication.md",
@@ -67,6 +71,12 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
         "source": "derived"
       },
       {
@@ -164,20 +174,58 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Session Handover Document",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Session Handover Document State",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handover Summary",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context Transfer",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions Made Eight",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Blockers Encountered",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The repository governs how a reply reads across three layers: `AGENTS.md` keeps the two clauses",
     "created_at": "2026-09-12T12:44:34Z",
-    "last_save_at": "2026-09-12T17:29:31.316Z",
+    "last_save_at": "2026-09-13T14:00:47.764Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "handover.md"
     ],
-    "source_fingerprint": "sha256:f1c5191b2a28e94ef8e2b3b30edda4886eb79a9abdb99374c1bf02b564b78a2c",
+    "source_fingerprint": "sha256:c9118448d2e0d3a1fd91b8d9a6f306ea8dda57348626cf8641b93cbfea65d50d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7b80673d7be93ff6306ec9a7ec6e2de8e4f6b565df4d04d98877e75dfeb7ac6c"
+      "spec.md": "7b80673d7be93ff6306ec9a7ec6e2de8e4f6b565df4d04d98877e75dfeb7ac6c",
+      "handover.md": "f267747a0b9a41034095aa657bb7ef695c8345b65f3f10d4f094cc04602e5cef"
     },
     "last_active_at": null
   }
