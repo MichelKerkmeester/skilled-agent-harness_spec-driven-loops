@@ -1,5 +1,5 @@
 {
-  "manifestHash": "58a56d8ec76e89d58b2787a7525e38801e807b586405d62f862c97be51152c86",
+  "manifestHash": "b1346c47bab4f518a78086920e2f675a735a643f81943fed396cc54913368a86",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -42697,6 +42697,12 @@
     "engine importjs": [
       "engine.importJs"
     ],
+    "engine item criteria": [
+      "engine item criteria"
+    ],
+    "engine item tasks": [
+      "engine item tasks"
+    ],
     "engine markdown builder": [
       "engine.markdown builder"
     ],
@@ -42960,6 +42966,24 @@
     ],
     "entry isdirectory false for symlink": [
       "entry.isDirectory false for symlink"
+    ],
+    "entry point acceptance criteria": [
+      "entry point acceptance criteria"
+    ],
+    "entry point guard worktree": [
+      "entry point guard worktree"
+    ],
+    "entry point plan": [
+      "entry point plan"
+    ],
+    "entry point summary": [
+      "entry point summary"
+    ],
+    "entry point symlink resolution": [
+      "entry point symlink resolution"
+    ],
+    "entry point tasks": [
+      "entry point tasks"
     ],
     "enum constrain schemas": [
       "enum constrain schemas"
@@ -45119,6 +45143,9 @@
     ],
     "fan out write containment": [
       "fan-out write containment"
+    ],
+    "fan out write containment handover": [
+      "fan-out write containment handover"
     ],
     "fan out write failure salvage": [
       "fan-out write-failure salvage"
@@ -49230,6 +49257,9 @@
     ],
     "generator emission migration results": [
       "generator emission migration results"
+    ],
+    "generator exits 0 without writing": [
+      "generator exits 0 without writing"
     ],
     "generator graph metadata guess": [
       "generator graph metadata guess"
@@ -55239,6 +55269,15 @@
     ],
     "isleaseheld readonly probe": [
       "isLeaseHeld readonly probe"
+    ],
+    "ismainmodule plan": [
+      "isMainModule plan"
+    ],
+    "ismainmodule symlink": [
+      "isMainModule symlink"
+    ],
+    "ismainmodule tasks": [
+      "isMainModule tasks"
     ],
     "isolate ai sessions git worktree": [
       "isolate ai sessions git worktree"
@@ -70331,12 +70370,6 @@
     "package documentation conformance": [
       "package documentation conformance"
     ],
-    "package gate": [
-      "package gate"
-    ],
-    "package gate task": [
-      "package gate task"
-    ],
     "package into skill": [
       "package-into-skill"
     ],
@@ -71674,6 +71707,9 @@
     ],
     "per lineage worktree containment": [
       "per-lineage worktree containment"
+    ],
+    "per lineage worktree isolation": [
+      "per-lineage worktree isolation"
     ],
     "per mode authority cutover contract": [
       "per-mode authority cutover contract"
@@ -76602,6 +76638,9 @@
     "preserve by default decision": [
       "preserve by default decision"
     ],
+    "preserve rather than revert out of scope writes": [
+      "preserve rather than revert out-of-scope writes"
+    ],
     "preserve research packet": [
       "preserve research packet"
     ],
@@ -77802,6 +77841,9 @@
     ],
     "provider fallback cascade correctness": [
       "provider fallback cascade correctness"
+    ],
+    "provider instruction reply base": [
+      "provider instruction reply base"
     ],
     "provider map flip": [
       "provider map flip"
@@ -83495,6 +83537,9 @@
     "resume classifier restart evidence": [
       "resume classifier restart evidence"
     ],
+    "resume containment work": [
+      "resume containment work"
+    ],
     "resume contracts and fixtures": [
       "resume contracts and fixtures"
     ],
@@ -85930,9 +85975,6 @@
     ],
     "rubric deduplication method": [
       "rubric deduplication method"
-    ],
-    "rubric duplication search": [
-      "rubric duplication search"
     ],
     "rubric methodology": [
       "rubric methodology"
@@ -89657,6 +89699,9 @@
     ],
     "shared branch autosync research": [
       "shared branch autosync research"
+    ],
+    "shared checkout churn detection": [
+      "shared checkout churn detection"
     ],
     "shared checkout concurrent editor": [
       "shared checkout concurrent editor"
@@ -106089,6 +106134,9 @@
     "validate obsidian plugin reduction": [
       "validate obsidian plugin reduction"
     ],
+    "validate passes but touched 0 files": [
+      "validate passes but touched 0 files"
+    ],
     "validate recursive orchestrator": [
       "validate recursive orchestrator"
     ],
@@ -108746,6 +108794,9 @@
     ],
     "worktree creation checklist": [
       "worktree creation checklist"
+    ],
+    "worktree default decision": [
+      "worktree default decision"
     ],
     "worktree git hooks coverage": [
       "worktree git hooks coverage"
