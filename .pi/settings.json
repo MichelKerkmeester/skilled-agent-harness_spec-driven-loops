@@ -2,7 +2,7 @@
   "lastChangelogVersion": "0.85.1",
   "theme": "dark",
   "defaultProvider": "llmgateway",
-  "defaultModel": "z-ai/glm-5.3-flash",
+  "defaultModel": "deepseek-v4.1-flash",
   "defaultThinkingLevel": "xhigh",
   "showHardwareCursor": true,
   "autocompleteMaxVisible": 20,
