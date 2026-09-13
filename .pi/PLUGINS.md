@@ -13,21 +13,21 @@ Entries are sorted alphabetically by package name.
 
 ---
 
-#### @juicesharp/rpiv-ask-user-question (v2.6.0)
+#### @juicesharp/rpiv-ask-user-question (v2.10.0)
 [github.com/juicesharp/rpiv-mono/tree/main/packages/rpiv-ask-user-question](https://github.com/juicesharp/rpiv-mono/tree/main/packages/rpiv-ask-user-question)
 
 A structured questionnaire the model can put to you when it would otherwise guess — typed options instead of free-form replies
 
 ---
 
-#### @juicesharp/rpiv-todo (v2.6.0)
+#### @juicesharp/rpiv-todo (v2.10.0)
 [github.com/juicesharp/rpiv-mono/tree/main/packages/rpiv-todo](https://github.com/juicesharp/rpiv-mono/tree/main/packages/rpiv-todo)
 
 A todo list for the model, rendered as a live overlay that survives /reload and conversation compaction
 
 ---
 
-#### pi-blackhole (v0.4.7)
+#### pi-blackhole (v0.5.3)
 [github.com/k0valik/pi-blackhole](https://github.com/k0valik/pi-blackhole)
 
 Unified compaction + observational memory — compresses conversation context while preserving durable observations and reflections
@@ -86,7 +86,7 @@ Claude Code-compatible command-driven statusline extension
 
 ---
 
-#### pi-web-access (v0.23.0)
+#### pi-web-access (v0.29.0)
 [github.com/nicobailon/pi-web-access](https://github.com/nicobailon/pi-web-access)
 
 Web search, URL fetching, GitHub repo cloning, PDF extraction, YouTube video understanding, and local video analysis — zero-config Exa search plus many provider backends
