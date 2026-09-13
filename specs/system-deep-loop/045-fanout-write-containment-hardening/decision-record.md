@@ -14,7 +14,7 @@ _memory:
     last_updated_at: "2026-09-13T12:00:00Z"
     last_updated_by: "operator-session"
     recent_action: "Appended ADR-004: worktree isolation is on by default, with a per-attempt isolation tally"
-    next_safe_action: "Operator sign-off in tasks.md; watch degraded counts on real-executor runs"
+    next_safe_action: "None; signed off 2026-09-13; watch degraded counts on real-executor runs"
     blockers: []
     key_files:
       - "spec.md"

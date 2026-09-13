@@ -33,7 +33,7 @@ The deep-loop fan-out guard cannot tell a leaf's stray write from a human's edit
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P0 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-09-08 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Origin** | The 2026-09-08 containment incident on the chart visual-upgrade research run: lane `luna` completed five iterations, then reverted 1,858 out-of-scope paths written by a concurrent session and was recorded `failed`. The second lane was stopped by hand before it could repeat the sweep over 932 further live edits. |

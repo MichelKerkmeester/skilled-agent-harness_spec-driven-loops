@@ -39,7 +39,7 @@
       "implementation"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -202,7 +202,7 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The fan-out runner snapshots dirty paths outside the lineage directory before dispatch, and after the lane it treats every tracked file that changed outside that directory as the leaf's write",
     "created_at": "2026-09-08T17:47:19Z",
-    "last_save_at": "2026-09-13T11:43:32.904Z",
+    "last_save_at": "2026-09-13T13:04:05.566Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -223,15 +223,15 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:3c1ec6fd180929d8b59a16d52a5338c949a00eb50945dab82024bf00016318ac",
+    "source_fingerprint": "sha256:a2d8c4d8507abedcf8702b96da92ca2cb2f66842675d50557197bee77b9938df",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8cf5d16ef6209790e1b2ace5761717f78e696e72fad937059ce2d67792999c25",
+      "spec.md": "49fc382da5d25ad6ee46a3488fe0d80b999774502af7917517b42f0d198352d4",
       "plan.md": "f36d80a6194c9277944faa463008affd78bf89a92a966ab4fae6a7b79c97c272",
-      "tasks.md": "10dbffba80e5e8bd84a32959ac2d174be4b60b878b077c7290559a1e6a43b8d5",
-      "decision-record.md": "0386abc045d6dd4d0d4db435c385752f9cbefbb200720168ea69582a1720fcd3",
-      "implementation-summary.md": "df3fba26e33c33b05e3db2f6f59b1928ec5b59ad9d0e975936aedac095555508",
-      "handover.md": "3298be8f760e7d498b5be621d279ff3c32f3a690b1928fe6a82c46f9db3a934d"
+      "tasks.md": "430a496e5adbf80038212f863422cbe5cecfb101cb1da5487906c451a9b55e13",
+      "decision-record.md": "25c54693b17f6eb8ee88a40b15283930a02e4c21f5ed1a84c409a48fc7da4d94",
+      "implementation-summary.md": "4f8a780d46e8092571e2b8176f2ee28806a50ec9f47821e392f1caef6aa3b3d0",
+      "handover.md": "c24063f2b8e9b3e35dc5802ea230ef416a74b6124419ac1388a06327818b8d57"
     },
     "last_active_at": null
   }

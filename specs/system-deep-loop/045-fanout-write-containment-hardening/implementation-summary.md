@@ -14,7 +14,7 @@ _memory:
     last_updated_at: "2026-09-13T11:00:00Z"
     last_updated_by: "operator-session"
     recent_action: "Recorded the worktree default flip and its isolation tally"
-    next_safe_action: "Operator sign-off in tasks.md; observe degraded counts on real-executor runs"
+    next_safe_action: "None; signed off 2026-09-13; observe degraded counts on real-executor runs"
     blockers: []
     key_files:
       - "spec.md"
@@ -42,8 +42,8 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 045-fanout-write-containment-hardening |
-| **Status** | In Progress |
-| **Completed** | Not completed |
+| **Status** | Complete |
+| **Completed** | 2026-09-13 |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->
 

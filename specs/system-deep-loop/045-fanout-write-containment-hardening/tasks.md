@@ -321,9 +321,9 @@ Phase 5 — churn detection, optional, satisfying the fourth requirement.
 
 | Approver | Role | Status | Date |
 |----------|------|--------|------|
-| Operator | Packet owner | [ ] Approved | |
-| Operator | Deep-loop runtime owner | [ ] Approved | |
-| Operator | Verification | [ ] Approved | |
+| Operator | Packet owner | [x] Approved | 2026-09-13 |
+| Operator | Deep-loop runtime owner | [x] Approved | 2026-09-13 |
+| Operator | Verification | [x] Approved | 2026-09-13 |
 <!-- /ANCHOR:sign-off -->
 
 
