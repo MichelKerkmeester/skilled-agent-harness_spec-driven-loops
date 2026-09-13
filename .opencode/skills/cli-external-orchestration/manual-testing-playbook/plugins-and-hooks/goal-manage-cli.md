@@ -149,7 +149,7 @@ Expected: CLI management fails with `PLUGIN_DISABLED`; Cursor returns only `{"pe
 ```bash
 GOAL_PACKET_ROOT="$(mktemp -d /tmp/goal-packet.XXXXXX)"
 export OPENCODE_GOAL_STATE_DIR="$GOAL_PACKET_ROOT"
-PACKET=specs/system-speckit/033-system-speckit-v4/036-goal-unification
+PACKET=specs/system-speckit/033-system-speckit-v4/038-goal-unification
 
 node "$GOAL_CLI" packet "$PACKET" --runtime pi --session session-c --workspace "$WORKSPACE"
 node "$GOAL_CLI" bind "$PACKET" --runtime pi --session session-c --workspace "$WORKSPACE"
@@ -162,7 +162,7 @@ printf '%s' '{"session_id":"session-c","hook_event_name":"UserPromptSubmit","cwd
 node "$GOAL_CLI" unbind --runtime pi --session session-c --workspace "$WORKSPACE"
 ```
 
-Expected: `packet` reports `packet_nested=true`, `packet_budget=`, and a `chat_slice` with no `---` fence and no `session_id:` line; `bind` reports `mutation=bound`, `packet_bound=true`, `resend_pending=true`; `show` reports an `objective=` starting with `Execute <packet>/goal.md.` and an `injection_preview` carrying the packet's `criteria:` lines and no frontmatter; `resent` flips `resend_pending=false`; `log` appends one row below the packet's log anchor and leaves everything above it byte-identical; `bind ../outside` fails with `PACKET_GOAL_NOT_FOUND`; the Cursor and Devin adapters carry the brief and, before `resent`, a `[goal_resend_pending]` line; `unbind` reports `packet_state=unbound` and `packet_bound=false`. A second `bind` through `specs/.../036-goal-unification` from another session while the first still logs must not lose rows: both take the same real-path lock under the workspace state root. Revert the appended log row afterwards, or run against a scratch copy of the packet.
+Expected: `packet` reports `packet_nested=true`, `packet_budget=`, and a `chat_slice` with no `---` fence and no `session_id:` line; `bind` reports `mutation=bound`, `packet_bound=true`, `resend_pending=true`; `show` reports an `objective=` starting with `Execute <packet>/goal.md.` and an `injection_preview` carrying the packet's `criteria:` lines and no frontmatter; `resent` flips `resend_pending=false`; `log` appends one row below the packet's log anchor and leaves everything above it byte-identical; `bind ../outside` fails with `PACKET_GOAL_NOT_FOUND`; the Cursor and Devin adapters carry the brief and, before `resent`, a `[goal_resend_pending]` line; `unbind` reports `packet_state=unbound` and `packet_bound=false`. A second `bind` through `specs/.../038-goal-unification` from another session while the first still logs must not lose rows: both take the same real-path lock under the workspace state root. Revert the appended log row afterwards, or run against a scratch copy of the packet.
 
 ### Automated companion gate
 
