@@ -5,5 +5,6 @@
   "midRunCompaction": "resume",
   "tailBehavior": "minimal",
   "memory": true,
-  "compactAfterTokens": 272000
+  "compactAfterTokens": 272000,
+  "model": { "provider": "llmgateway", "id": "deepseek-v4.1-flash", "thinking": "low" }
 }
