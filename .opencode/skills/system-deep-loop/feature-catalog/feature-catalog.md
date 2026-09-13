@@ -50,7 +50,7 @@ How a fan-out keeps a dispatched lane's writes inside its own directory, why the
 
 #### Current Reality
 
-Preservation is the default remedy and restore is opt-in per run. Per-lineage worktrees are available behind a flag and default off.
+Preservation is the default remedy and restore is opt-in per run. Per-lineage worktrees are on by default; `--worktrees false` (or `containment.worktrees: false`) puts a run back on the shared checkout.
 
 #### Source Files
 

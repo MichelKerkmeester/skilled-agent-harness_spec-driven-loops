@@ -1,6 +1,6 @@
 ---
 title: "Decision Record: fan-out write containment hardening"
-description: "The three decisions this packet freezes: preserve-by-default containment, baseline-targeted restore, and a detached ephemeral worktree lane outside sk-git's numbered namespace."
+description: "The four decisions this packet freezes: preserve-by-default containment, baseline-targeted restore, a detached ephemeral worktree lane outside sk-git's numbered namespace, and worktree isolation on by default with a per-attempt isolation tally."
 trigger_phrases:
   - "containment decision record"
   - "preserve by default decision"
@@ -11,23 +11,24 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/045-fanout-write-containment-hardening"
-    last_updated_at: "2026-09-08T18:20:00Z"
-    last_updated_by: "spec-author"
-    recent_action: "Recorded three decisions with their rejected alternatives"
-    next_safe_action: "Get operator confirmation on the worktree lane before Phase 4 begins"
+    last_updated_at: "2026-09-13T12:00:00Z"
+    last_updated_by: "operator-session"
+    recent_action: "Appended ADR-004: worktree isolation is on by default, with a per-attempt isolation tally"
+    next_safe_action: "Operator sign-off in tasks.md; watch degraded counts on real-executor runs"
     blockers: []
     key_files:
       - "spec.md"
       - "plan.md"
       - "goal.md"
+      - "acceptance-criteria.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-author-045-fanout-write-containment-hardening"
       parent_session_id: null
-    completion_pct: 0
-    open_questions:
-      - "Whether the operator accepts an unnumbered runner-owned worktree lane"
-    answered_questions: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Whether the operator accepts an unnumbered runner-owned worktree lane — accepted; the lane is runner-owned and unnumbered (ADR-003), and ADR-004 turned its default on"
 ---
 # Decision Record: fan-out write containment hardening
 
@@ -369,3 +370,92 @@ fail against the previous implementation.
 sites in the spec-kit build still compare an invocation path against a resolved one, so any other
 caller reaching them through a link gets the same silent no-op. Fixing the guard at source belongs
 to that skill.
+
+---
+
+<!-- ANCHOR:adr-004 -->
+## ADR-004: Worktree isolation is on by default, with a per-attempt isolation tally
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-09-13 |
+| **Deciders** | Operator (the default flip, decided in session); packet author (the tally) |
+
+---
+
+### Context
+
+Per-lineage worktrees shipped behind a flag that defaulted off, and ADR-003's own reasoning said why the default had to wait: the mechanism was verified at the lifecycle level with a stub executor, and the one input that decides whether isolation is real — an executor resolving a path relative to the original checkout — was not part of that verification. The consequence of leaving it off is the incident class this packet exists for: every default-configured run dispatches into the shared checkout, where a stray write lands in a neighbour's tree as a modification and attribution stays a guess. Preserve bounds that damage; it does not remove it.
+
+### Constraints
+
+- The flip changes where every dispatch runs in every checkout that runs a fan-out, including other live sessions. Measured cost: 1.6 GB of checked-out files per lane, and six lanes at concurrency 3 cost 149.7 s with worktrees against 16.5 s without.
+- The degrade path must stay: a lane whose tree cannot be made has to keep running, so isolation failing must not become the run failing.
+- A per-run off switch has to exist, because a run may be started specifically to reproduce shared-checkout behaviour.
+- Stub-level evidence does not become real-executor evidence by being promoted to a default; the observation window moves after the flip rather than closing.
+- This runtime's own test suite is the first consumer: fixtures that assert shared-checkout semantics must say so explicitly.
+
+### Decision
+
+**We chose**: `worktrees` defaults to true. The resolution order stays flag, then fan-out config, then schema default, so `--worktrees false` opts a single run out and `containment.worktrees: false` opts a caller out. A lane whose tree cannot be created degrades to the shared checkout under forced preserve, keeps running, and is counted: the orchestration summary gains `isolation: { enabled, isolated, degraded }`, counted per dispatch attempt at the point that attempt's tree is decided, and written on every orchestration-summary path and on stdout.
+
+### Alternatives Considered
+
+| Option | Pros | Cons | Score |
+|--------|------|------|-------|
+| **Default on, with the per-attempt tally** | Isolation applies to every run without anyone remembering a flag; the tally keeps the degrade path honest, so a run that could not isolate is distinguishable from one that did; rollback is one flag or one line | Every run pays the provisioning cost, and the default's blast radius includes other live sessions | 9/10 |
+| Stay opt-in until a full run is observed on a real executor | The observation the old comment asked for happens before the default moves | The observation may never arrive, and every default-config run stays exposed to the incident class in the meantime; the cost numbers are already measured | 6/10 |
+| Default on with no tally | Smallest change | A run whose trees all failed to create reads exactly like a run that isolated every lane; the silent-failure shape ADR-003 named returns one level up | 5/10 |
+| Remove preserve mode once isolation is the default | Preserve's dirty-tree outcome disappears | The degrade path still lands in the shared checkout, and preserve is what that path uses to avoid acting on a guess | 3/10 |
+
+**Why this one**: Isolation is the structural fix, and the packet's own ADR says only isolation makes containment a true statement. The tally keeps a stub-verified default honest: it reports whether a run could isolate instead of hiding a fallback, and it names — rather than closes — the mispathed-executor input a stub cannot exercise (see Risks).
+
+---
+
+### Consequences
+
+**What improves**:
+- Every fan-out run isolates its lanes by default, so a lane's declared write surface is its own tree and the containment check inside it is exact.
+- A degraded attempt is visible in the run summary instead of being indistinguishable from an isolated one.
+
+**What it costs**:
+- Provisioning is on the hot path of every run: 1.6 GB per lane and roughly 133 s of the measured six-lane total, on a checkout shared with other sessions.
+- Fixtures that assert shared-checkout semantics must state that dependency; three in this runtime now pin `--worktrees false`.
+
+**Risks**:
+
+| Risk | Impact | Mitigation |
+|------|--------|------------|
+| An executor resolves a path relative to the original checkout and writes outside the worktree | H | Unchanged from ADR-003 (prompt-pack rewrite plus dispatch flags). The tally reports provisioning per attempt, not confinement: while a lane is isolated, containment watches its tree, and a flag-lever kind (`cli-opencode`, `native`) keeps its process cwd in the checkout, so a bare checkout write by such a lane is not observed. Watching the checkout for flag-lever kinds is the instrument this risk still needs; it is not part of this change |
+| Provisioning cost lands on every run, including small ones | M | One flag and one config field opt out; the startup sweep means an interrupted run is cleaned by the next one |
+| Degradation becomes the quiet failure mode, seen but tolerated | M | `degraded` is a per-run count in the summary file and stdout; `enabled: true` with `degraded > 0` is the signal to look at |
+
+---
+
+### Five Checks Evaluation
+
+| # | Check | Result | Evidence |
+|---|-------|--------|----------|
+| 1 | **Necessary?** | PASS | The operator decided the flip; the alternative is every default run continuing to dispatch into the shared checkout, which is the incident this packet exists for |
+| 2 | **Beyond Local Maxima?** | PASS | Four options weighed, including staying opt-in and flipping without the tally |
+| 3 | **Sufficient?** | PASS | One schema default, one per-attempt counter, one summary field, tests for the on, off and degraded paths, and comments corrected where they asserted the old default |
+| 4 | **Fits Goal?** | PASS | It closes the packet's last open question and makes REQ-005's isolation the default rather than the exception |
+| 5 | **Open Horizons?** | PASS | The tally is the provisioning record a per-kind isolation audit builds on; observing a mispathed executor still needs the checkout watched while isolated (see Risks) |
+
+**Checks Summary**: 5/5 PASS
+
+---
+
+### Implementation
+
+**What changes**:
+- `runtime/lib/deep-loop/executor-config.ts`: `worktrees` defaults to true; the rationale comment states why.
+- `runtime/scripts/fanout-run.cjs`: per-attempt `isolated`/`degraded` counters at the single site where a lane's tree is decided; `isolation` written on every summary path; a module-load failure degrades every attempt and is recorded instead of aborting the run; resolution-order comments corrected.
+- `runtime/tests/unit/fanout-run.vitest.ts`: a no-flag spawn proves the default end to end; the explicit-off case and the degraded case assert the tally; three shared-checkout fixtures pin `--worktrees false`.
+- `runtime/tests/unit/executor-config.vitest.ts`: the schema default and the config opt-out.
+
+**How to roll back**: `--worktrees false` for one run, `containment.worktrees: false` for a caller, or revert the one-line schema default; the runner then returns to shared-checkout behaviour with every other comment still true.
+<!-- /ANCHOR:adr-004 -->

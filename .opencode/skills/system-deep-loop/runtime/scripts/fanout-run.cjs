@@ -234,9 +234,9 @@ function normalizeContainmentMode(raw) {
   return raw;
 }
 
-// Returns null when the flag is absent, so the fan-out config value can supply the mode
-// instead. Isolation is off by default because it changes where every dispatch runs, so the
-// flag is how an operator asks for the run that produces the evidence for flipping it.
+// Returns null when the flag is absent, so the fan-out config value can supply the value
+// instead. Isolation is on by default, so the string 'false' is the per-run opt-out while a
+// bare `--worktrees` still forces it on.
 function normalizeWorktreesOption(raw) {
   if (raw === undefined || raw === false || raw === null || raw === '') {
     return null;
@@ -2672,16 +2672,17 @@ function runPacketMetadataRefresh(input) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 4b. LINEAGE WORKTREE ISOLATION (OPT-IN)
+// 4b. LINEAGE WORKTREE ISOLATION (DEFAULT ON)
 // ─────────────────────────────────────────────────────────────────────────────
 
 // A lane that shares the checkout can dirty a file another session owns, and containment can
 // only report that after it happened. A tree per lane is the structural fix: the lane writes
-// where nobody else does, and finished artifacts are copied back. It is off by default
-// because it changes where every dispatch runs, so the run that justifies the default has to
-// be observed before the default moves rather than after.
+// where nobody else does, and finished artifacts are copied back. It is on by default (the
+// worktrees option above carries the opt-out). Containment watches the tree the lane runs in, so
+// a flag-lever kind that resolves a path against the original checkout is not observed; the
+// summary's isolation tally reports provisioning per attempt, not confinement.
 
-/** Every worktree function a lane needs, loaded once and only when the run opted in. */
+/** Every worktree function a lane needs, loaded once when isolation is on; a load failure degrades the run rather than failing it. */
 async function loadWorktreeModules() {
   const [lifecycle, paths, publish, reclaim, lease] = await Promise.all([
     import('../lib/deep-loop/worktree-lifecycle.ts'),
@@ -3015,10 +3016,14 @@ async function main() {
   let containmentMode = containmentModeOverride ?? parsedFanoutConfig.containment.mode ?? 'preserve';
   const containmentChurnThreshold = parsedFanoutConfig.containment.churnThreshold;
   // Same resolution order as the containment mode above: the flag, then the config, then the
-  // schema default. Isolation stays off unless a caller asks for it.
+  // schema default, which is on: every lane is isolated unless a caller opts out.
   const worktreesEnabled = normalizeWorktreesOption(args.worktrees)
-    ?? parsedFanoutConfig.containment.worktrees
-    ?? false;
+    ?? parsedFanoutConfig.containment.worktrees;
+  // One count per dispatch attempt, written where the attempt's tree is decided: a retried lane
+  // can appear in both counts, so these are attempt counts, not lineage counts. A degraded
+  // attempt runs in the shared checkout (or never reached a dispatch), which `enabled: true`
+  // with `degraded > 0` reports.
+  const isolationTally = { isolated: 0, degraded: 0 };
   const rawGuardConfig = rawConfigWithCliBudgetOverrides(rawConfig, args);
   const stallWatchdogMs = normalizeStallWatchdogMs(rawGuardConfig);
   const lineageBudgetGuards = normalizeLineageBudgetGuards(rawGuardConfig);
@@ -3101,6 +3106,7 @@ async function main() {
       all_failed: false,
       gauges: { lag: 0, pending: 0, failed: 0 },
       convergence: { status: 'converged', reason: 'empty_tick', no_new_findings: true },
+      isolation: { enabled: worktreesEnabled, isolated: 0, degraded: 0 },
     };
     writeOrchestrationSummary(summaryPath, {
       run_id: runId,
@@ -3120,10 +3126,27 @@ async function main() {
 
   // Worktree isolation is resolved once for the run: one base, one prefix and one lease budget
   // shared by every lane, so this run's trees are recognizable to its own sweep and to a later
-  // run's. Off by default, in which case nothing below is loaded or called.
+  // run's. On by default; an opted-out run loads and calls nothing below. A load failure cannot
+  // fail the run: no lane can get a tree, so every attempt below is counted degraded.
   const worktreeLeaseTtlMs = 3 * Math.max(progressHeartbeatMs, WORKTREE_LEASE_MIN_TTL_MS);
   const worktreeBase = worktreesEnabled ? resolveWorktreeBase(containmentRepoRoot) : null;
-  const worktrees = worktreesEnabled ? await loadWorktreeModules() : null;
+  let worktrees = null;
+  if (worktreesEnabled) {
+    try {
+      worktrees = await loadWorktreeModules();
+    } catch (error) {
+      appendFanoutStatusLedger(ledgerPath, {
+        event: 'worktree_setup_failed',
+        status: 'warning',
+        severity: 'warning',
+        at: new Date().toISOString(),
+        run_id: runId,
+        loop_type: loopType,
+        spec_folder: specFolder,
+        error: error instanceof Error ? error.message : String(error),
+      });
+    }
+  }
   if (worktrees !== null) {
     // One sweep, before any lane is dispatched: it reclaims what a dead run left under this
     // prefix and keeps every tree a lane of this run can still resume, which is why the ledger
@@ -3225,6 +3248,7 @@ async function main() {
       spec_folder: specFolder,
       base_artifact_dir: baseArtifactDir,
       total_cli_lineages: cliLineages.length,
+      isolation: { enabled: worktreesEnabled, isolated: isolationTally.isolated, degraded: isolationTally.degraded },
       stopped: true,
       stopped_signal: signal,
       stopped_at_iso: stoppedAtIso,
@@ -3351,8 +3375,17 @@ async function main() {
           });
         }
         if (laneWorktree !== null) {
+          isolationTally.isolated += 1;
           lineageDir = laneWorktree.writeSurface;
+        } else {
+          // The lane still runs, in the shared checkout: the case the summary must report,
+          // because a fallback nobody counts reads like full isolation.
+          isolationTally.degraded += 1;
         }
+      } else if (worktreesEnabled) {
+        // Modules failed to load before dispatch, so no lane can be isolated: every attempt
+        // lands in the shared checkout and the summary counts it.
+        isolationTally.degraded += 1;
       }
       const stateDir = path.join(lineageDir, '.executor-state');
       fs.mkdirSync(lineageDir, { recursive: true });
@@ -3777,7 +3810,7 @@ async function main() {
           // A lane that could not be isolated writes in the shared checkout, where a restore acts
           // on bytes another writer may own; this lane is forced to preserve without changing the
           // run-wide mode that a lane in its own tree still uses.
-          mode: laneWorktree === null && worktrees !== null ? 'preserve' : containmentMode,
+          mode: laneWorktree === null && worktreesEnabled ? 'preserve' : containmentMode,
           iteration: attempt,
           label: lineage.label,
         });
@@ -3858,9 +3891,15 @@ async function main() {
   });
 
   const timestampAnomalies = collectTimestampAnomalies(results);
-  const finalSummary = timestampAnomalies.length > 0
-    ? { ...summary, timestamp_anomalies: timestampAnomalies }
-    : summary;
+  const finalSummary = {
+    ...summary,
+    isolation: {
+      enabled: worktreesEnabled,
+      isolated: isolationTally.isolated,
+      degraded: isolationTally.degraded,
+    },
+    ...(timestampAnomalies.length > 0 ? { timestamp_anomalies: timestampAnomalies } : {}),
+  };
 
   writeOrchestrationSummary(summaryPath, {
     run_id: runId,

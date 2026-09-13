@@ -2749,6 +2749,9 @@ describe('fanout-run.cjs — a containment finding does not fail a lineage that 
         fanoutConfig,
         '--base-artifact-dir',
         baseDir,
+        // The stray write lands in the checkout, so the lane has to run there too for the
+        // baseline scan to see it.
+        '--worktrees', 'false',
         '--no-metadata-refresh',
       ],
       { cwd: repoRoot, env, timeoutMs: 20_000 },
@@ -2839,6 +2842,8 @@ describe('fanout-run.cjs — containment mode is an explicit opt-in', () => {
           '--loop-type', 'research',
           '--fanout-config-json', fanoutConfig,
           '--base-artifact-dir', baseDir,
+          // Both cases watch the tracked file in the checkout itself, so the lane runs there.
+          '--worktrees', 'false',
           '--no-metadata-refresh',
           ...extraArgs,
         ],
@@ -2943,6 +2948,8 @@ describe('fanout-run.cjs — shared-checkout churn forces preserve', () => {
         '--loop-type', 'research',
         '--fanout-config-json', fanoutConfig,
         '--base-artifact-dir', baseDir,
+        // The churn lands in the checkout's tracked files, which is what the heartbeat reads.
+        '--worktrees', 'false',
         '--no-metadata-refresh',
       ],
       { cwd: repoRoot, env, timeoutMs: 30_000 },
@@ -3111,12 +3118,16 @@ describe('fanout-run.cjs — graceful self-stop', () => {
       stopped?: boolean;
       stopped_signal?: string;
       status?: string;
+      isolation?: { enabled?: boolean; isolated?: number; degraded?: number };
       results?: Array<{ label: string; status: string }>;
       gauges?: { lag?: number; pending?: number; failed?: number };
     };
     expect(summary.stopped).toBe(true);
     expect(summary.stopped_signal).toBe('SIGTERM');
     expect(summary.status).toBe('partial');
+    // The stopped path carries the isolation tally too, so an interrupted run does not read as a
+    // run that isolated: this fixture is not a git repo, so the lane degrades to the checkout.
+    expect(summary.isolation).toEqual({ enabled: true, isolated: 0, degraded: 1 });
     expect(summary.results).toEqual([expect.objectContaining({ label: 'slow', status: 'running' })]);
     expect(summary.gauges).toMatchObject({ failed: 0 });
   });
@@ -4103,9 +4114,9 @@ const writeTreeReportingStub = (binDir: string, specFolder: string): string => {
   return stubPath;
 };
 
-describe('fanout-run.cjs — worktree isolation changes nothing while it is off', () => {
-  it('dispatches in the shared checkout with no worktree events, and rejects a non-boolean flag', async () => {
-    const fixture = prepareWorktreeRepo('worktrees-off');
+describe('fanout-run.cjs — worktree isolation is on by default and off on request', () => {
+  it('isolates with no flag at all, and reports it in the run summary', async () => {
+    const fixture = prepareWorktreeRepo('worktrees-default');
     writeTreeReportingStub(fixture.binDir, fixture.specFolder);
 
     const result = await spawnCjs(
@@ -4121,6 +4132,37 @@ describe('fanout-run.cjs — worktree isolation changes nothing while it is off'
     );
 
     expect(result.exitCode, `${result.stdout}\n${result.stderr}`).toBe(0);
+    // Neither the flag nor the config asked for anything, and the lane still ran in a tree
+    // of its own: the schema default is the only thing that could have decided it.
+    const published = readdirSync(join(fixture.baseDir, 'lineages'));
+    expect(published).toHaveLength(1);
+    expect(published[0]).toMatch(/-contained$/);
+    const treeRoot = readFileSync(join(fixture.baseDir, 'lineages', published[0], 'tree-root.txt'), 'utf8').trim();
+    expect(isPathInside(treeRoot, fixture.worktreeBase)).toBe(true);
+    const summary = JSON.parse(readFileSync(join(fixture.baseDir, 'orchestration-summary.json'), 'utf8')) as {
+      isolation: { enabled: boolean; isolated: number; degraded: number };
+    };
+    expect(summary.isolation).toEqual({ enabled: true, isolated: 1, degraded: 0 });
+  });
+
+  it('dispatches in the shared checkout when the flag turns isolation off, and rejects a non-boolean flag', async () => {
+    const fixture = prepareWorktreeRepo('worktrees-off');
+    writeTreeReportingStub(fixture.binDir, fixture.specFolder);
+
+    const result = await spawnCjs(
+      fanoutRunScript,
+      [
+        '--spec-folder', fixture.specFolder,
+        '--loop-type', 'research',
+        '--fanout-config-json', fixture.fanoutConfig,
+        '--base-artifact-dir', fixture.baseDir,
+        '--worktrees', 'false',
+        '--no-metadata-refresh',
+      ],
+      { cwd: fixture.repoRoot, env: fixture.env, timeoutMs: 20_000 },
+    );
+
+    expect(result.exitCode, `${result.stdout}\n${result.stderr}`).toBe(0);
     // The lane ran in the checkout, with the tree root every dispatch had before the option
     // existed, and its artifacts are in the lineage directory the run has always used.
     const lineageDir = join(fixture.baseDir, 'lineages', 'contained');
@@ -4129,6 +4171,10 @@ describe('fanout-run.cjs — worktree isolation changes nothing while it is off'
     // Nothing asked for a tree, so nothing made one.
     expect(existsSync(fixture.worktreeBase)).toBe(false);
     expect(fixture.readLedgerEvents().filter((event) => String(event.event).startsWith('worktree_'))).toEqual([]);
+    const summary = JSON.parse(readFileSync(join(fixture.baseDir, 'orchestration-summary.json'), 'utf8')) as {
+      isolation: { enabled: boolean; isolated: number; degraded: number };
+    };
+    expect(summary.isolation).toEqual({ enabled: false, isolated: 0, degraded: 0 });
 
     // The flag's own contract: absent defers to the config, and anything that is not a boolean
     // is refused before a run starts.
@@ -4143,7 +4189,7 @@ describe('fanout-run.cjs — worktree isolation changes nothing while it is off'
   });
 });
 
-describe('fanout-run.cjs — worktree isolation is an opt-in that copies the lane back', () => {
+describe('fanout-run.cjs — forced-on worktree isolation copies the lane back and lands in the summary', () => {
   it('runs the lane in its own worktree and publishes the results into the main checkout', async () => {
     const fixture = prepareWorktreeRepo('worktrees-on');
     writeTreeReportingStub(fixture.binDir, fixture.specFolder);
@@ -4201,6 +4247,10 @@ describe('fanout-run.cjs — worktree isolation is an opt-in that copies the lan
     expect(ledgerEvents.filter((event) => event.event === 'worktree_published')).toHaveLength(1);
     expect(ledgerEvents.filter((event) => event.event === 'worktree_degraded')).toEqual([]);
     expect(ledgerEvents.filter((event) => event.event === 'worktree_publish_failed')).toEqual([]);
+    const summary = JSON.parse(readFileSync(join(fixture.baseDir, 'orchestration-summary.json'), 'utf8')) as {
+      isolation: { enabled: boolean; isolated: number; degraded: number };
+    };
+    expect(summary.isolation).toEqual({ enabled: true, isolated: 1, degraded: 0 });
   });
 });
 
@@ -4255,6 +4305,11 @@ describe('fanout-run.cjs — a worktree that cannot be made degrades that lane i
     ]);
     // The startup sweep met the same unusable base and reported it without failing the run.
     expect(ledgerEvents.filter((event) => event.event === 'worktree_reclaim_failed')).toHaveLength(1);
+    // Nothing here ran isolated, and the run still completed: the summary has to say so.
+    const summary = JSON.parse(readFileSync(join(fixture.baseDir, 'orchestration-summary.json'), 'utf8')) as {
+      isolation: { enabled: boolean; isolated: number; degraded: number };
+    };
+    expect(summary.isolation).toEqual({ enabled: true, isolated: 0, degraded: 1 });
   });
 });
 

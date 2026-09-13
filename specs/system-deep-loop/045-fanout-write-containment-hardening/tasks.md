@@ -306,6 +306,16 @@ Phase 5 — churn detection, optional, satisfying the fourth requirement.
 
 ---
 
+<!-- ANCHOR:post-closure-extension -->
+## Post-Closure Extension: Worktree Default Flip
+
+- [x] T033 [P1] Flip the fan-out worktree default to on while keeping both per-run off switches — `containment.worktrees` defaults to true in the schema; `--worktrees false` and `containment.worktrees: false` both resolve off; the resolution is flag, then config, then schema default, with no trailing fallback of its own
+- [x] T034 [P1] Count per-attempt isolation outcomes and report them in the run summary — one count per dispatch attempt at the single prepare site (isolated when a tree exists, degraded otherwise, including a module-load failure that is caught and counted rather than aborting the run); `isolation { enabled, isolated, degraded }` is written with the final, stopped and empty-tick summaries and on stdout
+- [x] T035 [P1] Prove the default, the opt-out and the degrade path end to end — a no-flag spawn isolates a lane and reports `{enabled:true, isolated:1, degraded:0}`; the explicit-off fixture reports `{enabled:false, isolated:0, degraded:0}`; the non-git degrade fixture and the interrupted-run (SIGTERM) summary both report `{enabled:true, isolated:0, degraded:1}`
+- [x] CHK-150 [P1] The default flip is recorded as a decision with alternatives and a rollback — ADR-004 records four scored alternatives and a rollback of one flag or one schema line
+- [x] CHK-151 [P1] Every pre-existing test that depends on shared-checkout semantics declares that dependency explicitly — the three git fixtures that assert shared-checkout behaviour pin `--worktrees false`; the full suite from the final state passes 156/156 with 2653 tests passed and no other test needing a pin
+<!-- /ANCHOR:post-closure-extension -->
+
 <!-- ANCHOR:sign-off -->
 ## L3+: Sign-Off
 
