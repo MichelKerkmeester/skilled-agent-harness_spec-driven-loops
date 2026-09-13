@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/036-goal-unification/002-decisions-and-contract-freeze"
+    packet_pointer: "system-speckit/033-system-speckit-v4/038-goal-unification/002-decisions-and-contract-freeze"
     last_updated_at: "2026-09-11T10:30:00Z"
     last_updated_by: "claude-code"
     recent_action: "Shaped eight ADR blocks awaiting the research synthesis"

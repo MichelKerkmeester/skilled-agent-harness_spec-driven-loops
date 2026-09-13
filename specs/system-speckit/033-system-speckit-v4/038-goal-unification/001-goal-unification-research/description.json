@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-speckit/033-system-speckit-v4/036-goal-unification/001-goal-unification-research",
+  "specFolder": "system-speckit/033-system-speckit-v4/038-goal-unification/001-goal-unification-research",
   "description": "Seven design decisions must be frozen before any code changes, and each one is a judgment call the repository cannot settle by grep",
   "keywords": [
     "seven",
@@ -24,7 +24,7 @@
   "parentChain": [
     "system-speckit",
     "033-system-speckit-v4",
-    "036-goal-unification"
+    "038-goal-unification"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

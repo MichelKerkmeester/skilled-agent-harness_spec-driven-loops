@@ -75,18 +75,18 @@ alters a parent decision or criterion is amended here first, then resent.
 
 | Phase | Goal document |
 |-------|---------------|
-| 001-goal-unification-research | `001/goal.md` |
-| 002-decisions-and-contract-freeze | `002/goal.md` |
-| 003-speckit-goal-contract | `003/goal.md` |
-| 004-goal-core-packet-backed | `004/goal.md` |
-| 005-runtime-surfaces | `005/goal.md` |
-| 006-speckit-command-integration | `006/goal.md` |
-| 007-retirement-docs-and-verification | `007/goal.md` |
-| 008-hardening-research | `008/goal.md` |
-| 009-close-open-decisions | `009/goal.md` |
-| 010-repo-wide-goal-research | `010/goal.md` |
-| 011-goal-drift-remediation | `011/goal.md` |
-| 012-open-items-research | `012/goal.md` |
+| 001 | `001-goal-unification-research/goal.md` |
+| 002 | `002-decisions-and-contract-freeze/goal.md` |
+| 003 | `003-speckit-goal-contract/goal.md` |
+| 004 | `004-goal-core-packet-backed/goal.md` |
+| 005 | `005-runtime-surfaces/goal.md` |
+| 006 | `006-speckit-command-integration/goal.md` |
+| 007 | `007-retirement-docs-and-verification/goal.md` |
+| 008 | `008-hardening-research/goal.md` |
+| 009 | `009-close-open-decisions/goal.md` |
+| 010 | `010-repo-wide-goal-research/goal.md` |
+| 011 | `011-goal-drift-remediation/goal.md` |
+| 012 | `012-open-items-research/goal.md` |
 
 **Precedence.** Decisions above outrank child detail; child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.

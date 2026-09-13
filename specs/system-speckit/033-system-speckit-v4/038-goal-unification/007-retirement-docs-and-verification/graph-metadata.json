@@ -206,7 +206,7 @@
     ],
     "causal_summary": "The store, its locks and archive, the hook README and plugin doc, the spec-kit SKILL section and the changelog all describe the old model",
     "created_at": "2026-09-11T07:11:51Z",
-    "last_save_at": "2026-09-12T16:14:53.431Z",
+    "last_save_at": "2026-09-13T06:53:53.523Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,7 +216,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e52d9a2a98d08c6905ca5ea6180684f15cff4d65f8cb8149e70ddf88af46ac02",
+    "source_fingerprint": "sha256:5af9862db13d659374a7dc532db5e289949aac0025f41b1a2dbd09eea5874396",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "29968ce973d2552394747adae0c7c69eb64dc0be87317c7df9a0cb2f4e4690a1",

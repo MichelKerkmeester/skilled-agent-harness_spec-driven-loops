@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-speckit/033-system-speckit-v4/036-goal-unification/005-runtime-surfaces",
+  "specFolder": "system-speckit/033-system-speckit-v4/038-goal-unification/005-runtime-surfaces",
   "description": "Only opencode has a working goal command",
   "keywords": [
     "only",
@@ -15,7 +15,7 @@
   "parentChain": [
     "system-speckit",
     "033-system-speckit-v4",
-    "036-goal-unification"
+    "038-goal-unification"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

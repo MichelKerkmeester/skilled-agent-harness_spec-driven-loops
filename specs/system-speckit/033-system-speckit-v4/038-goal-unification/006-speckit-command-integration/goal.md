@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-system-speckit-v4/036-goal-unification/006-speckit-command-integration"
+    packet_pointer: "system-speckit/033-system-speckit-v4/038-goal-unification/006-speckit-command-integration"
     last_updated_at: "2026-09-11T07:40:00Z"
     last_updated_by: "claude-code"
     recent_action: "Authored the durable directive"

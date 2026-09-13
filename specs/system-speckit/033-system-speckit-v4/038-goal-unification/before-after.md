@@ -21,11 +21,11 @@ contextType: "general"
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Subject:** specs/system-speckit/033-system-speckit-v4/036-goal-unification
+**Subject:** specs/system-speckit/033-system-speckit-v4/038-goal-unification
 **Status:** Accepted
 **Date:** 2026-09-11
 **Owner:** Michel Kerkmeester
-**Related packet:** specs/system-speckit/033-system-speckit-v4/036-goal-unification
+**Related packet:** specs/system-speckit/033-system-speckit-v4/038-goal-unification
 <!-- /ANCHOR:metadata -->
 
 ---

@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-speckit/033-system-speckit-v4/036-goal-unification/002-decisions-and-contract-freeze",
+  "specFolder": "system-speckit/033-system-speckit-v4/038-goal-unification/002-decisions-and-contract-freeze",
   "description": "Phases 003 through 007 each depend on a decision no single phase can make alone",
   "keywords": [
     "phases",
@@ -16,7 +16,7 @@
   "parentChain": [
     "system-speckit",
     "033-system-speckit-v4",
-    "036-goal-unification"
+    "038-goal-unification"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

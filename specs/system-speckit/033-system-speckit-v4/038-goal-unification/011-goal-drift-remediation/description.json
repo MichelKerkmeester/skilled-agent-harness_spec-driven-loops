@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-speckit/033-system-speckit-v4/036-goal-unification/011-goal-drift-remediation",
+  "specFolder": "system-speckit/033-system-speckit-v4/038-goal-unification/011-goal-drift-remediation",
   "description": "Phase 1: goal-drift-remediation",
   "keywords": [
     "phase",
@@ -11,7 +11,7 @@
   "parentChain": [
     "system-speckit",
     "033-system-speckit-v4",
-    "036-goal-unification"
+    "038-goal-unification"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],
