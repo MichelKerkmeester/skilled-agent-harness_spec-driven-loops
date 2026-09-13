@@ -42,7 +42,7 @@ A Devin session that works a packet without its goal drifts from the directive t
 
 ```bash
 export OPENCODE_GOAL_STATE_DIR="$(mktemp -d /tmp/goal-devin.XXXXXX)"
-PACKET=specs/system-speckit/033-system-speckit-v4/036-goal-unification
+PACKET=specs/system-speckit/033-system-speckit-v4/038-goal-unification
 node .opencode/hooks/goal/bin/goal.cjs bind "$PACKET" --runtime devin --session session-d --workspace "$PWD"
 printf '%s' '{"session_id":"session-d","hook_event_name":"SessionStart","cwd":"'"$PWD"'"}' | node .opencode/hooks/goal/devin/goal-inject.mjs
 printf '%s' '{"session_id":"session-d","hook_event_name":"UserPromptSubmit","cwd":"'"$PWD"'"}' | node .opencode/hooks/goal/devin/goal-inject.mjs
