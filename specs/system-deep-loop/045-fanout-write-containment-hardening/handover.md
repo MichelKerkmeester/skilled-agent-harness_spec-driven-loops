@@ -20,9 +20,9 @@ Continuity handover for two completed packets. Read this first on resume, then t
 <!-- ANCHOR:state -->
 ## Current State
 
-**Both packets are complete and pushed.** `origin/main` equals `origin/skilled/v4.0.0.0` at `e4a6212b62`. The working tree is fully clean, with nothing uncommitted and nothing stashed.
+**Both packets are complete.** This session's worktree-default flip and its review fixes are committed on `skilled/v4.0.0.0` on top of `1c157667067`, unpushed; `origin/main` still equals `origin/skilled/v4.0.0.0` at `e4a6212b62` until that commit is pushed.
 
-Verification from the final state: both packets return `RESULT: PASSED`, 0 errors and 0 warnings. The deep-loop suite reports 156 files and 2651 passed. The spec-kit suite reports 259 files and 3891 passed.
+Verification from the final state: the deep-loop suite reports 156 files, 2653 passed and 7 skipped, exit 0, re-run after the review fixes. Packet 045 returns `RESULT: PASSED`; the spec-kit figures for packet B from the earlier final state were 259 files and 3891 passed.
 <!-- /ANCHOR:state -->
 
 ---
@@ -34,7 +34,7 @@ Verification from the final state: both packets return `RESULT: PASSED`, 0 error
 
 The fan-out guard used to revert out-of-scope writes to HEAD, which destroyed a neighbouring session's live work. The remedy is now preservation by default, with restore opted in per run. A restore, when chosen, targets the pre-dispatch bytes rather than HEAD, so it cannot discard work the lane never touched. A containment finding no longer erases a finished lane's own outcome.
 
-Per-lineage git worktrees exist behind a flag and default OFF, so isolation is available but not yet trusted by default. All 82 checklist items are checked with evidence.
+Per-lineage git worktrees are on by default, with a per-run opt-out (`--worktrees false`), and the run summary carries a per-attempt isolation tally so a run that could not isolate says so. All 87 checklist items are checked with evidence.
 
 Measured facts:
 
@@ -63,7 +63,7 @@ Three copies of the helper exist, one per build boundary the code cannot cross, 
 
 These are decisions, not defects.
 
-1. **Whether per-lineage worktrees become the default.** The evidence now exists. The cost is 0.8 s added per session launch for link provisioning, plus 1.6 GB per lane.
+1. **Whether the shared checkout keeps a write watch while lanes are isolated.** ADR-004 records that containment watches the lane's tree, so a bare checkout write by a flag-lever kind (`cli-opencode`, `native`) is not observed; the isolation tally reports provisioning, not confinement. Watching the checkout for those kinds is the instrument that risk still needs.
 2. **Concurrency ceilings are unbounded.** There is a single runner process and heap, no quota admission control, and an unclassified resource exhaustion is retried into.
 <!-- /ANCHOR:operator-decisions -->
 
@@ -97,5 +97,5 @@ NODE_PRESERVE_SYMLINKS=1 bash "$(realpath .opencode)/skills/system-spec-kit/runt
 
 The same pair of commands against the entry-point packet also returns PASSED.
 
-Cold-read order: this file, then `implementation-summary.md` for what shipped and its recorded limitations, then `decision-record.md` for why the worktree default is still off, then `spec.md` for the incident that started it.
+Cold-read order: this file, then `implementation-summary.md` for what shipped and its recorded limitations, then `decision-record.md` for the worktree-default decision (ADR-004) and the risks it leaves open, then `spec.md` for the incident that started it.
 <!-- /ANCHOR:resume -->

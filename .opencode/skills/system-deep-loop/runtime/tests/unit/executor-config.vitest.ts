@@ -447,6 +447,21 @@ describe('parseFanoutConfig', () => {
     })).toThrow(ExecutorConfigError);
   });
 
+  it('defaults worktree isolation on and lets the config opt a run out', () => {
+    // Isolation is the structural fix for a shared checkout, so it is on unless a caller
+    // asks otherwise; an explicit false is the config-level opt-out.
+    expect(parseFanoutConfig({ executors: [{ kind: 'native', label: 'opus' }] }).containment.worktrees).toBe(true);
+    // The prefault keeps the default when the containment object is partial: a caller that only
+    // sets the mode still gets isolation.
+    expect(parseFanoutConfig({
+      containment: { mode: 'restore' },
+      executors: [{ kind: 'native', label: 'opus' }],
+    }).containment.worktrees).toBe(true);
+    expect(parseFanoutConfig({
+      containment: { worktrees: false },
+      executors: [{ kind: 'native', label: 'opus' }],
+    }).containment.worktrees).toBe(false);
+  });
   it('accepts cli-codex as a fan-out lineage', () => {
     const config = parseFanoutConfig({
       executors: [{ kind: 'cli-codex', model: 'gpt-5.6-codex', label: 'codex' }],

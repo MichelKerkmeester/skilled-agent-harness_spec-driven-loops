@@ -22,8 +22,8 @@ own, and a tree surviving the run that created it.
 
 ## 2. SCENARIO CONTRACT
 
-**Realistic user request**: An operator runs a fan-out with the worktree option against a packet
-that is not yet committed.
+**Realistic user request**: An operator runs a fan-out — worktree isolation on by default — against
+a packet that is not yet committed.
 
 **Preconditions**: A packet with uncommitted content, since HEAD carries nothing and only a seed can
 put those bytes in a tree created from it.
@@ -37,7 +37,7 @@ this run remains afterwards.
 ## 3. TEST EXECUTION
 
 1. Count the registered worktrees before starting.
-2. Run the fan-out with the worktree option against the uncommitted packet.
+2. Run the fan-out (worktrees are the default; no flag needed) against the uncommitted packet.
 3. When it settles, count the registered worktrees again and list the published lineage directories.
 4. Confirm the uncommitted packet content reached the lane by reading it back from the published
    artifacts.

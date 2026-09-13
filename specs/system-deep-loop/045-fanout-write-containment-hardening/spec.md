@@ -120,6 +120,7 @@ Ordered by safety gained per line changed. The first three requirements stop the
 |----|-------------|
 | REQ-004 | The runner samples out-of-lineage working-tree churn at the existing progress heartbeat. Above the threshold — twelve newly-dirty tracked paths outside the lineage directory within one heartbeat window, or forty cumulative for the lane — it emits `shared_checkout_detected` and forces preserve mode for the remainder of the run, overriding any restore opt-in. Both numbers are configurable; the justification for these defaults is in section 7. |
 | REQ-006 | Every caller and document that asserts the old behaviour is migrated: the four command YAMLs (each of which both spawns the runner and inlines its own containment call), the hub SKILL.md, both loop protocols, the runtime library README and the fan-out feature catalog entry. |
+| REQ-007 | Per-lineage worktrees are the default. A run isolates every lane unless a caller opts out with `--worktrees false` on the invocation or `containment.worktrees: false` in the fan-out config, and the resolution order is flag, then config, then schema default. A lane whose tree cannot be created still runs, in the shared checkout under forced preserve, and the orchestration summary gains an `isolation` object — `enabled`, and the per-attempt counts `isolated` and `degraded` — so a run that could not isolate is reported rather than silently indistinguishable from one that could. |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
@@ -134,6 +135,7 @@ Ordered by safety gained per line changed. The first three requirements stop the
 - **SC-002**: A completed research lane with containment findings appears in the orchestration summary as completed with advisory, and its research artefacts are not reprocessed as a failure.
 - **SC-003**: A fan-out run against an uncommitted packet completes with every lineage in its own worktree and every lineage directory present in the main checkout afterwards.
 - **SC-004**: The 2026-09-08 incident is reproducible as a test: a simulated neighbour dirties tracked files during a lane, and no path it touched is modified by the guard.
+- **SC-005**: A default-configured run with no worktree flag dispatches its lanes inside their own worktrees and the orchestration summary reports `isolation.enabled: true` with each lane counted as isolated; a lane whose tree cannot be made is counted as degraded and the run still completes.
 <!-- /ANCHOR:success-criteria -->
 
 ---
