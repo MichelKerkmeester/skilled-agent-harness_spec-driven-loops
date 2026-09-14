@@ -44,7 +44,7 @@ skill that points at the standard is phase 4's. The reply-shape rule that delega
 is phase 6's.
 
 **Dependencies**:
-- Phase 2's decision on the standard's shape, which the research already answered but the operator has not ratified.
+- Phase 2's decision on the standard's shape, ratified as ADR-009: a base plus a supplement, not two halves.
 - Phase 6, because two of the six candidates are reply-facing and reach a reply only through the reply-shape rule's voice-half delegation.
 
 **Deliverables**:
@@ -153,7 +153,7 @@ anything the structure can express.
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | Phase 2's ratification of the base-plus-supplement shape | The restructure could be the wrong shape | This phase does not open until the decision is recorded |
+| Dependency | ADR-009, which ratifies the base-plus-supplement shape | None remaining, the shape is settled | Recorded in phase 2's decision record, so this phase may open on that axis |
 | Dependency | Phase 6's voice-half delegation | Two reply-facing candidates would load for documents and not for replies | Sequence after phase 6, and check both surfaces together |
 | Risk | A document consumer silently loses content | Documents are the standard's original consumer and the regression would be invisible | REQ-001 requires opening each consumer, not trusting the pointer |
 | Risk | The split is attempted along section boundaries | The boundaries do not match the line, so content lands in the wrong half | The research established this; the split follows the reply-versus-publish line, not the section numbers |

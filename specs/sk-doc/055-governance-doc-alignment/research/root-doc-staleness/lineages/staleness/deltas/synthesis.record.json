@@ -1,0 +1,1 @@
+{"type": "event", "event": "synthesis_complete", "mode": "research", "totalIterations": 5, "answeredCount": 5, "totalQuestions": 5, "stopReason": "maxIterationsReached", "sessionId": "fanout-staleness-1789357391666-zngraa", "generation": 1, "timestamp": "2026-09-14T04:42:34Z"}
