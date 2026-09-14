@@ -1,0 +1,20 @@
+{
+  "type": "iteration",
+  "eventVersion": 1,
+  "iteration": 5,
+  "run": 5,
+  "mode": "research",
+  "status": "insight",
+  "focus": "Complete classification and sibling reconciliation",
+  "newInfoRatio": 0.39,
+  "findingsCount": 12,
+  "ruledOut": ["synthesize-before-cap", "use-sibling-tally-as-verdict", "merge-contradictions-into-covered-map"],
+  "sessionId": "fanout-luna-1789402391295-tfhy3y",
+  "lineageId": "fanout-luna-1789402391295-tfhy3y",
+  "generation": 1,
+  "lineageMode": "new",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "timestamp": "2026-09-14T16:44:00Z"
+}

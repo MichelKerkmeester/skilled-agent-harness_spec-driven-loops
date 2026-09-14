@@ -154,15 +154,16 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | Phase | Folder | Focus | Execution | Status |
 |-------|--------|-------|-----------|--------|
 | 1 | 001-research-communication-context/ | Classify all three sources against the stack; 29 candidates, 4 conflicts | 1st | Complete |
-| 2 | 002-synthesis-and-decisions/ | Eight decisions recorded in `decision-record.md`. Remaining: the allocation table, the four unhomed candidates as deliberate non-work, the rejection list | 2nd | Decisions recorded, allocation table pending |
-| 3 | 003-root-doc-and-repo-rules/ | Split the reply-shape rule and capture both baselines. No rule content | 3rd | Pending |
-| 6 | 006-reply-shape-rules/ | The 10 reply-shape candidates, into the split halves | 4th | Pending |
-| 8 | 008-decision-and-handoff-rules/ | 5 candidates across the decision, handback and evidence rules | 4th, parallel with phase 6 | Pending |
-| 7 | 007-wording-standard-restructure/ | Base plus supplement, 6 candidates, one exclusion retired | 5th | Pending |
-| 4 | 004-sk-communication-upgrade/ | 8 engine items, including sending the standard as the instruction. Its own research is Complete | 6th, after phase 7 | Research complete, build pending |
-| 9 | 009-adjacent-surface-rules/ | 2 candidates on the code skill and the rule template | 7th | Pending |
-| 5 | 005-verification-and-rollout/ | Baseline, harness, blind scoring, mirrors, recursive validation | 8th, last | Pending |
+| 2 | 002-synthesis-and-decisions/ | Nine decisions recorded in `decision-record.md`, the allocation table, the non-work register and the rejection list in `allocation-table.md` | 2nd | Complete |
+| 3 | 003-root-doc-and-repo-rules/ | Split the reply-shape rule and capture both baselines. No rule content | 3rd | Complete |
+| 6 | 006-reply-shape-rules/ | The 10 reply-shape candidates, into the split halves | 4th | Complete |
+| 8 | 008-decision-and-handoff-rules/ | 5 candidates across the decision, handback and evidence rules | 4th, parallel with phase 6 | Complete |
+| 7 | 007-wording-standard-restructure/ | Base plus supplement, 6 candidates, one exclusion retired | 5th | Complete |
+| 4 | 004-sk-communication-upgrade/ | 8 engine items, including sending the standard as the instruction. Its own research is Complete | 6th, after phase 7 | Complete |
+| 9 | 009-adjacent-surface-rules/ | 2 candidates on the code skill and the rule template | 7th | Complete |
+| 5 | 005-verification-and-rollout/ | Baseline, harness, blind scoring, mirrors, recursive validation | 8th, last | Complete, the gate reports two non-effects |
 
+| 10 | 010-review-remediation/ | Close all six deep-review findings, the two P1 and the four P2, with Sonnet 5 | 9th, last | Complete |
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins
@@ -185,6 +186,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 002-synthesis-and-decisions | 009-adjacent-surface-rules | Both adjacent candidates carry a verdict, and the code skill's real comment-guidance file is confirmed | Decision record, plus reading the code skill's own routing |
 | 007-wording-standard-restructure | 005-verification-and-rollout | Every consumer of the standard resolves, and the exclusion list is one row shorter | Open every consumer; count the exclusion rows |
 | 004-sk-communication-upgrade | 005-verification-and-rollout | The package gate passes from the final state and the standard still has one home | `npm run check` in the package, plus the duplication search |
+| 009-adjacent-surface-rules | 010-review-remediation | Every finding carries a verdict and an owner | Read the 010 tasks and the review report side by side |
 <!-- /ANCHOR:phase-map -->
 
 ---

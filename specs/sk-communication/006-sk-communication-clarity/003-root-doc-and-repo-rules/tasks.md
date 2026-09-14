@@ -34,12 +34,18 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Read `repo-rules/communication.md` end to end and list its sections, rather than working from a summary of it (`repo-rules/communication.md`)
-- [ ] T002 Assign every section of the pre-change file to exactly one side of the seam, by the unit each rule governs rather than the topic it mentions (`scratch/`)
-- [ ] T003 Capture the pre-change per-mark instruction set: for every punctuation mark or construction the stack governs, the file that carries the instruction and the direction it gives (`scratch/`)
-- [ ] T004 Capture phase 005's pre-change measurement baseline, before the first edit, because a baseline taken after the rules change cannot support a regression claim
-- [ ] T005 [P] Read the current trigger table and index in `REPO RULES.md` and record the rows that reach the reply-shape rule (`REPO RULES.md`)
-- [ ] T006 Read the three places where `AGENTS.md` names the reply-shape rule and confirm each pointer stays true once the split lands (`AGENTS.md`)
+- [x] T001 Read `repo-rules/communication.md` end to end and list its sections, rather than working from a summary of it (`repo-rules/communication.md`)
+  - Evidence: scratch/seam-assignment.md, the section-to-side table lists every section heading of the full read with its line range
+- [x] T002 Assign every section of the pre-change file to exactly one side of the seam, by the unit each rule governs rather than the topic it mentions (`scratch/`)
+  - Evidence: scratch/seam-assignment.md, the Side column assigns all nine sections, the five self-check items and the scope preamble
+- [x] T003 Capture the pre-change per-mark instruction set: for every punctuation mark or construction the stack governs, the file that carries the instruction and the direction it gives (`scratch/`)
+  - Evidence: scratch/per-mark-baseline.md, 28 rows across 18 governed marks, each with the file, the line and the direction, plus three marks recorded as not governed
+- [x] T004 Capture phase 005's pre-change measurement baseline, before the first edit, because a baseline taken after the rules change cannot support a regression claim
+  - Evidence: scratch/measurement-baseline.md, the commit, 13 hashes, the six case rows, the negative control, the capture time and the blind-scoring rule
+- [x] T005 [P] Read the current trigger table and index in `REPO RULES.md` and record the rows that reach the reply-shape rule (`REPO RULES.md`)
+  - Evidence: scratch/seam-assignment.md, the trigger-table row at REPO RULES.md:47 and the index row at 65, the only two in the 36-70 window
+- [x] T006 Read the three places where `AGENTS.md` names the reply-shape rule and confirm each pointer stays true once the split lands (`AGENTS.md`)
+  - Evidence: scratch/seam-assignment.md, the pointers at AGENTS.md:146, 399 and 487, each with a note on what the split does to it
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -47,13 +53,20 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T007 Create the new half under `repo-rules/` with the routed-from line, the bounded-by statement, a fires-when list and a self-check (`repo-rules/`)
-- [ ] T008 Move the sentence and paragraph mechanics into the new half, so each moved sentence appears once and reads as it did before the move (`repo-rules/`)
-- [ ] T009 Keep the whole-reply rules in `repo-rules/communication.md` and update its own header, so its scope statement names what it still owns and points at the other half (`repo-rules/communication.md`)
-- [ ] T010 Add the trigger row for the new half, in the same change as the file it names (`REPO RULES.md`)
-- [ ] T011 Add the index row for the new half, in the same change as the file it names (`REPO RULES.md`)
-- [ ] T012 Confirm across both halves that no rule sentence was added, removed or reworded, so the diff is a move rather than an edit (`repo-rules/`)
-- [ ] T013 Record the per-half size baseline: the size of each half immediately after the split, measured the same way for both, so phases 006 and 008 can check their own additions against it
+- [x] T007 Create the new half under `repo-rules/` with the routed-from line, the bounded-by statement, a fires-when list and a self-check (`repo-rules/`)
+  - Evidence: repo-rules/prose-mechanics.md, the six-key frontmatter, the copied routed-from and bounded-by lines, the five-item fires-when list and the inherited self-check, in the ten-element rule shape
+- [x] T008 Move the sentence and paragraph mechanics into the new half, so each moved sentence appears once and reads as it did before the move (`repo-rules/`)
+  - Evidence: repo-rules/prose-mechanics.md:37-93, the former sections 2 to 4 of repo-rules/communication.md:70-126 moved whole, wording unchanged, the phrase scan puts every moved instruction in prose-mechanics.md alone
+- [x] T009 Keep the whole-reply rules in `repo-rules/communication.md` and update its own header, so its scope statement names what it still owns and points at the other half (`repo-rules/communication.md`)
+  - Evidence: repo-rules/communication.md:43-45, the scope paragraph under The rule now names what the file still owns and points at prose-mechanics.md, the register at 51, length at 64, filler at 82, recovery at 99 and the scope exemptions at 115 stayed
+- [x] T010 Add the trigger row for the new half, in the same change as the file it names (`REPO RULES.md`)
+  - Evidence: REPO RULES.md:48, the trigger row directly after the communication row, added in the same edit set as repo-rules/prose-mechanics.md, its settles cell reads How a sentence reads: sentence and paragraph shape, plain words, punctuation
+- [x] T011 Add the index row for the new half, in the same change as the file it names (`REPO RULES.md`)
+  - Evidence: REPO RULES.md:67, the index row directly after the Communication row, its summary matches the new rule's description, the checker's 9/9 confirms the match
+- [x] T012 Confirm across both halves that no rule sentence was added, removed or reworded, so the diff is a move rather than an edit (`repo-rules/`)
+  - Evidence: the only wording changes in the two halves are the shortened description at repo-rules/communication.md:3, the version at 27, the scope sentences at 44-45 and prose-mechanics.md:32-33, the moved blocks and the renumbered headings, every moved sentence appears once, worded as it was
+- [x] T013 Record the per-half size baseline: the size of each half immediately after the split, measured the same way for both, so phases 006 and 008 can check their own additions against it
+  - Evidence: scratch/seam-assignment.md, SIZE AFTER SPLIT, the wc -l -c output for both halves, 135 lines and 5658 characters against 106 and 3945, recorded beside SIZE BEFORE SPLIT
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -61,12 +74,18 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T014 Walk every trigger row and open every file it names, confirming none is missing (`REPO RULES.md`)
-- [ ] T015 Walk every file under `repo-rules/` and confirm at least one trigger row names it (`repo-rules/`)
-- [ ] T016 Repeat the per-mark instruction scan and confirm every mark carries one instruction, unchanged from the captured baseline
-- [ ] T017 Read both halves for a rule that belongs on the other side of the seam, by reading rather than by grep (`repo-rules/`)
-- [ ] T018 Confirm the scoped diff contains no change to `AGENTS.md` and no change to a rule file this phase does not own
-- [ ] T019 Confirm both baselines are recorded in the packet, where phases 005, 006 and 008 read them (`implementation-summary.md`)
+- [x] T014 Walk every trigger row and open every file it names, confirming none is missing (`REPO RULES.md`)
+  - Evidence: the checker run after the change, 12 trigger rows, every named file resolves, RESULT: PASSED (9/9 checks)
+- [x] T015 Walk every file under `repo-rules/` and confirm at least one trigger row names it (`repo-rules/`)
+  - Evidence: the same run, 12 files under repo-rules/, 12 trigger rows, 12 index rows, no rule file unnamed
+- [x] T016 Repeat the per-mark instruction scan and confirm every mark carries one instruction, unchanged from the captured baseline
+  - Evidence: the scan repeated against scratch/per-mark-baseline.md, all 28 rows, every mark still carries one instruction, wording unchanged, what changed is the carrier file of the ten instruction rows the moved sections held at communication.md:79-82 and 104-126, they now sit at prose-mechanics.md:37-93, no instruction appears in both halves
+- [x] T017 Read both halves for a rule that belongs on the other side of the seam, by reading rather than by grep (`repo-rules/`)
+  - Evidence: both halves read against the seam assignment, the register, length, filler, table and recovery rules govern the reply in communication.md, the sentence, paragraph, word and punctuation mechanics govern the unit below it in prose-mechanics.md, no rule sits on the far side of the seam
+- [x] T018 Confirm the scoped diff contains no change to `AGENTS.md` and no change to a rule file this phase does not own
+  - Evidence: git status --porcelain over the scoped paths, AGENTS.md absent, the changed set is the two halves, the router and the packet docs, the three scratch baselines were already untracked before this dispatch
+- [x] T019 Confirm both baselines are recorded in the packet, where phases 005, 006 and 008 read them (`implementation-summary.md`)
+  - Evidence: implementation-summary.md, the Verification table records the measurement and per-mark baselines pinned at 4512473abdec9c7f0ea02126f85bb5c709b2ac26 and the size figures themselves, so phases 005, 006 and 008 read them from the packet
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -74,9 +93,9 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---
@@ -181,7 +200,9 @@ contextType: "general"
 | P1 Items | 13 | 0/13 |
 | P2 Items | 1 | 0/1 |
 
-**Verification Date**: Pending, this phase has not run
+**Verification Date**: 2026-09-14
+**Validate RESULT (strict)**: RESULT: PASSED, errors 0, warnings 0, exit 0
+**Metadata repair**: the first strict run reported 2 errors, both stale generated fields in graph-metadata.json, the stored fields had gone stale against the edited source docs, repair-derived.cjs regenerated them as the run prescribed, the rerun above is the final state
 <!-- /ANCHOR:summary -->
 
 ---

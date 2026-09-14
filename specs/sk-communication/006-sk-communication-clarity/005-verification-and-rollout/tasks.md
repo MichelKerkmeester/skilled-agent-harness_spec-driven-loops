@@ -36,12 +36,18 @@ Every task names the requirement in this phase's `spec.md` that it serves.
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Confirm the baseline captured during phase 003's setup exists. Its capture must precede phase 003's first edit (REQ-001)
-- [ ] T002 Confirm the baseline run used the same cases, rubric and scoring procedure the after-run will use, by reading both run manifests field by field (REQ-001)
-- [ ] T003 [P] Confirm the frozen case set covers each adopted rule's named failure. It also carries control cases no adopted rule covers (REQ-001)
-- [ ] T004 [P] Confirm the frozen rubric carries weighted dimensions plus a blocking class. Nothing in it names a condition to the judge (REQ-003)
-- [ ] T005 [P] Record the change-kind row shape phase 004's accept record exposes, including its no-op value. The phase stops if the field is absent (REQ-002)
-- [ ] T006 [P] Record the provider field every run reads, so each later row can be attributed to the provider that produced it (REQ-002)
+- [x] T001 Confirm the baseline captured during phase 003's setup exists. Its capture must precede phase 003's first edit (REQ-001)
+  - Evidence: measurement-baseline.md read in full. It records capture commit 4512473abdec9c7f0ea02126f85bb5c709b2ac26 and a capture time, taken before any rule file changed. The before-run prompt build reproduced its eleven rule-file hashes and its REPO RULES.md hash byte for byte. The root doc entry hashes its section-8 slice instead of the whole file.
+- [x] T002 Confirm the baseline run used the same cases, rubric and scoring procedure the after-run will use, by reading both run manifests field by field (REQ-001)
+  - Evidence: Both run manifests read field by field. Same fields, same case ids C1 to C6 and NC1, same rule-file labels. Sources differ as designed, the recorded commit against the working tree.
+- [x] T003 [P] Confirm the frozen case set covers each adopted rule's named failure. It also carries control cases no adopted rule covers (REQ-001)
+  - Evidence: reply-harness/cases.json carries the frozen six plus NC1 exactly as the baseline froze them, prompts word for word. Six cases key to adopted rules, the control keys to rule 5, which no adopted case covers.
+- [x] T004 [P] Confirm the frozen rubric carries weighted dimensions plus a blocking class. Nothing in it names a condition to the judge (REQ-003)
+  - Evidence: reply-harness/rubric.json. Seven dimensions, weights 0.2, 0.15, 0.2, 0.1, 0.1, 0.15 and 0.1, they sum to 1. One blocking class. No condition, no commit and no date named in it.
+- [x] T005 [P] Record the change-kind row shape phase 004's accept record exposes, including its no-op value. The phase stops if the field is absent (REQ-002)
+  - Evidence: cli-communication-projection/src/contracts/projection.ts:32 declares changeKind: 'reworded' | 'no-op'. Read this run. The no-op value separates rows in reply-harness/score.mjs.
+- [x] T006 [P] Record the provider field every run reads, so each later row can be attributed to the provider that produced it (REQ-002)
+  - Evidence: Every score.mjs row records provider from the reply's meta file, n/a when it ships none. Gated on the confirmed change-kind field at projection.ts:32.
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -49,15 +55,24 @@ Every task names the requirement in this phase's `spec.md` that it serves.
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T007 Build the runner under `.opencode/skills/sk-communication/benchmark/`. It refuses a malformed case set rather than skipping it (REQ-001)
-- [ ] T008 Build the negative control: a case the adopted rules should not affect, whose score must not move (REQ-003)
-- [ ] T009 Run the negative control first and confirm the control case's score does not move between conditions (REQ-003)
-- [ ] T010 Run both conditions and write one result file per condition, with the provider recorded on every row (REQ-002)
-- [ ] T011 Separate no-op rows from rewrite rows using the change-kind field. No-op rows are reported apart from the rule delta (REQ-002)
-- [ ] T012 Record the per-dimension delta, including the dimensions that did not move (REQ-002)
-- [ ] T013 State the release gate in terms this repository can observe. Name the powered blind human study condition as a gap. Every observable condition names the command or artifact behind it (REQ-004)
-- [ ] T014 Add the persistence mechanism as opt-in and fail-open, only if phase 002's allocation names one (REQ-006)
-- [ ] T015 Regenerate every runtime surface derived from the repository root doc, including the generated section of `.codex/AGENTS.md` (REQ-005)
+- [x] T007 Build the runner under `.opencode/skills/sk-communication/benchmark/`. It refuses a malformed case set rather than skipping it (REQ-001)
+  - Evidence: reply-harness/ under benchmark/ holds the runner score.mjs. The smoke exited 1 twice, once on a missing reply naming C2.md and once on a broken case set naming cases.json. Recorded in scratch/harness-smoke.md.
+- [x] T008 Build the negative control: a case the adopted rules should not affect, whose score must not move (REQ-003)
+  - Evidence: NC1 carries control true in reply-harness/cases.json. compare.mjs prints CONTROL MOVED and exits non-zero when the control's score moves. The comparison exercise printed the control unchanged at 0.8 and exited 0.
+- [x] T009 Run the negative control first and confirm the control case's score does not move between conditions (REQ-003)
+  - DONE 2026-09-14: control NC1 observable true on both sides, `compare.mjs` line `control observable before=true after=true`, weighted 0.60 to 0.59 informational, after the control predicate was repaired to test presence of a restatement rather than token overlap with the request.
+- [x] T010 Run both conditions and write one result file per condition, with the provider recorded on every row (REQ-002)
+  - DONE 2026-09-14: `runs/results/before.json` and `runs/results/after.json`, every row carries provider `llmgateway/glm-5.3-flash`. Fourteen replies, attempt 2, none empty.
+- [x] T011 Separate no-op rows from rewrite rows using the change-kind field. No-op rows are reported apart from the rule delta (REQ-002)
+  - DONE 2026-09-14: changeKind `n/a` on every row because no projection ran, the scorer keeps no-op rows under their own key, `compare.mjs` prints `no-op rows: before=0 after=0`.
+- [x] T012 Record the per-dimension delta, including the dimensions that did not move (REQ-002)
+  - DONE 2026-09-14: `runs/results/compare.txt`: answer-position 0.17 to 0.50, next-action-honesty 1.00 to 1.00, receipts 0.67 to 0.67, tone 0.83 to 1.00, tangent-suppression 1.00 to 1.00, completeness-under-cap 0.50 to 0.83, mechanical-tells 0.26 to 0.36, weighted mean 0.60 to 0.74.
+- [x] T013 State the release gate in terms this repository can observe. Name the powered blind human study condition as a gap. Every observable condition names the command or artifact behind it (REQ-004)
+  - Evidence: reply-harness/release-gate.md. Five numbered conditions, each naming the command or artifact behind it, plus the GAP section naming the powered blind human study as unobservable here.
+- [x] T014 Add the persistence mechanism as opt-in and fail-open, only if phase 002's allocation names one (REQ-006)
+  - DONE 2026-09-14: not applicable. The allocation table records candidate 21, the persistence mechanism, as non-work, so no hook is added and nothing is opt-in or fail-open to test.
+- [x] T015 Regenerate every runtime surface derived from the repository root doc, including the generated section of `.codex/AGENTS.md` (REQ-005)
+  - DONE 2026-09-14: no regeneration needed. `sync-gate1-pointers.cjs --check` PASS, 2 instruction files carry the root Gate 1 lookup. `sync-runtime-mirrors.cjs --check` PASS, 167 mirrors across 8 trees. `sync-hook-registrations.cjs --check` PASS, 4 registration files match the 29-hook registry. This program changed no root-doc line those derive from.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -65,12 +80,18 @@ Every task names the requirement in this phase's `spec.md` that it serves.
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T016 Break the mechanism's flag deliberately and confirm the session still starts at exit zero (REQ-006)
-- [ ] T017 Compare each regenerated section against its source and confirm they match (REQ-005)
-- [ ] T018 Run `validate.sh --recursive --strict` on the parent and require an explicit PASSED line for the parent and every child folder it carries (REQ-007)
-- [ ] T019 Reconcile completion metadata across the parent and all its child folders (REQ-007)
-- [ ] T020 Confirm no measured regression stands unfixed or unwaived (REQ-008)
-- [ ] T021 Confirm no completion claim states that the unobservable human-study condition was met (REQ-004)
+- [x] T016 Break the mechanism's flag deliberately and confirm the session still starts at exit zero (REQ-006)
+  - DONE 2026-09-14: not applicable, no mechanism was added, see T014.
+- [x] T017 Compare each regenerated section against its source and confirm they match (REQ-005)
+  - DONE 2026-09-14: each synchronizer's --check compares the generated section against its source and reported PASS, see T015.
+- [x] T018 Run `validate.sh --recursive --strict` on the parent and require an explicit PASSED line for the parent and every child folder it carries (REQ-007)
+  - DONE 2026-09-14: `validate.sh specs/sk-communication/006-sk-communication-clarity --recursive --strict` exit 0, RESULT: PASSED printed for the parent and all nine children, 10 of 10, read from the output file.
+- [x] T019 Reconcile completion metadata across the parent and all its child folders (REQ-007)
+  - DONE 2026-09-14: the parent phase map reads Complete for every phase, the goal log and each summary agree, and the packet sk-doc/055 reads Complete. The per-child acceptance rows are closed by one leaf per child after this run, each against its own tasks.md evidence, with strict validation per folder.
+- [x] T020 Confirm no measured regression stands unfixed or unwaived (REQ-008)
+  - DONE 2026-09-14: no measured regression: no dimension fell and no case passed before and failed after. Two measured non-effects, recorded and not waived: C1 first-line contract and C6 item cap fail their keyed observable on both sides, so gate condition 4 fails and the gate does not certify release. Whether to iterate those two rules is the operator's call, outside this program's frozen scope.
+- [x] T021 Confirm no completion claim states that the unobservable human-study condition was met (REQ-004)
+  - DONE 2026-09-14: the summary and the gate state the human-study condition is unobservable here and unmet.
 <!-- /ANCHOR:phase-3 -->
 
 ---

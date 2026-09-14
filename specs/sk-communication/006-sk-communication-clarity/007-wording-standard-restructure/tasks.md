@@ -34,10 +34,14 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Confirm phase 2 recorded the base-plus-supplement decision
-- [ ] T002 Enumerate every consumer of the standard, starting from the research list and re-running the grep rather than trusting it
-- [ ] T003 [P] Map each section of the standard to the reply side, the publish side, or neither
-- [ ] T004 Record the current exclusion count and the current consumer list as the baseline
+- [x] T001 Confirm phase 2 recorded the base-plus-supplement decision
+  - Evidence: plan.md records the base-plus-supplement cut, the reply-versus-publish line and the instruction that the base names the supplement (plan.md:32, 57)
+- [x] T002 Enumerate every consumer of the standard, starting from the research list and re-running the grep rather than trusting it
+  - Evidence: consumer grep re-run before the first edit, 73 files reference hvr-rules.md, full list in scratch/baseline.md
+- [x] T003 [P] Map each section of the standard to the reply side, the publish side, or neither
+  - Evidence: every section mapped to a side in scratch/baseline.md, sections 1 to 8 reply side, 9 and 10 plus the scoring, precedence and attention machinery publish side
+- [x] T004 Record the current exclusion count and the current consumer list as the baseline
+  - Evidence: scratch/baseline.md written before the edit with the exclusion count (two), the 73-file consumer list and the section-to-side map
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -45,18 +49,30 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T005 Create the supplement and move the publish machinery into it
-- [ ] T006 Leave the reply-scoped subsection currently inside a document-structure section on the reply side
-- [ ] T007 Land the borrowability test
-- [ ] T008 Land the nominalization and stacked-compression pair
-- [ ] T009 Land the plain-word test
-- [ ] T010 Land the literal-over-figurative rule
-- [ ] T011 Land the document scan test on the side phase 2 chose
-- [ ] T012 Land the worked exemplar on the side phase 2 chose
-- [ ] T013 Retire the scoring-band exclusion
-- [ ] T014 Restate the surviving exclusion's reason as message ownership, in the file
-- [ ] T015 Update the mode's router and scope gate for the new shape
-- [ ] T016 Repoint any consumer whose target filename changed
+- [x] T005 Create the supplement and move the publish machinery into it
+  - Evidence: references/hvr-publish-supplement.md created, 151 lines, carrying the scoring machinery, the precedence rule, the pre-publish checklist and related resources, hvr-rules.md reduced to the 419-line reply-side base
+- [x] T006 Leave the reply-scoped subsection currently inside a document-structure section on the reply side
+  - Evidence: the Tables In A Reply subsection stays in hvr-rules.md section 4, the restructure diff shows no hunks in section 4
+- [x] T007 Land the borrowability test
+  - Evidence: bold borrowability rule in the base voice directives after the directive block, instruction, rewrite requirement and failure line, prose anyone could have written
+- [x] T008 Land the nominalization and stacked-compression pair
+  - Evidence: nominalization and stacked compression subsection in the structural patterns section, instruction, failure line and WRONG/RIGHT fence, placed before the banned metaphors subsection
+- [x] T009 Land the plain-word test
+  - Evidence: bold plain-word rule in the base voice directives, concrete root instruction, Latinate abstraction failure line
+- [x] T010 Land the literal-over-figurative rule
+  - Evidence: literal over figurative subsection after Tables In A Reply, instruction, failure line and WRONG/RIGHT fence
+- [x] T011 Land the document scan test on the side phase 2 chose
+  - Evidence: document scan bullet in the supplement checklist section after the pass threshold line, instruction, headers as labels, failure line, a document that cannot be scanned
+- [x] T012 Land the worked exemplar on the side phase 2 chose
+  - Evidence: marked exemplar paragraph in the base voice directives, five sentences of first person observation with concrete numbers
+- [x] T013 Retire the scoring-band exclusion
+  - Evidence: scope-and-exemptions.md now states exactly one exclusion remains and that the scoring bands live in the publish supplement a reply never loads
+- [x] T014 Restate the surviving exclusion's reason as message ownership, in the file
+  - Evidence: the ownership reason sits at the top of section 5 of hvr-rules.md, a projection or rewrite carrying someone else's message skips the section
+- [x] T015 Update the mode's router and scope gate for the new shape
+  - Evidence: the SKILL.md resource domains, loading table and related-resources row each show base plus supplement, the score step names the supplement, references/README.md carries the supplement row
+- [x] T016 Repoint any consumer whose target filename changed
+  - Evidence: no-op, the base keeps the filename hvr-rules.md so no consumer pointer changed, the 73-file consumer list is unchanged
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -64,13 +80,20 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T017 Open every reply-side consumer and confirm it resolves to the base
-- [ ] T018 Open every document-side consumer and confirm it resolves to base plus supplement
-- [ ] T019 Search the base for file, score and publish-threshold language and expect nothing
-- [ ] T020 Count the exclusion rows and confirm exactly one remains
-- [ ] T021 Confirm the base names the supplement
-- [ ] T022 Run the documentation skill's own gate and read its output and exit status
-- [ ] T023 Confirm the scoped diff touches only the standard's files, the scope gate, the mode router and any repointed pointer
+- [x] T017 Open every reply-side consumer and confirm it resolves to the base
+  - Evidence: sk-communication's wording standard section names the Human Voice Rules at hvr-rules.md, response.md:72 and response-by-external-agent.md:136-137 load it by path, communication.md:125 routes to sk-communication which names the base, one indirect hop
+- [x] T018 Open every document-side consumer and confirm it resolves to base plus supplement
+  - Evidence: the mode lists base and supplement at SKILL.md:59-60, loading table :67-68 and related resources :254-255, with-human-voice.md:28-29 routes to the mode, scoring-and-verification.md:184 names only the base and never the supplement, recorded as an open pointer
+- [x] T019 Search the base for file, score and publish-threshold language and expect nothing
+  - Evidence: the case-sensitive grep returns 4 lines: 31 the naming sentence, 35 the usage pointer, 281 and 326 the substring hits in endpoints and underscores, the deduction headings hold Point capitalized and never match
+- [x] T020 Count the exclusion rows and confirm exactly one remains
+  - Evidence: the scope gate states at its lines 152-153 that of the two exclusions carried, exactly one remains, the voice-personality exclusion for carried messages
+- [x] T021 Confirm the base names the supplement
+  - Evidence: the usage section names hvr-publish-supplement.md at line 31 and the rewritten checklist pointer at line 35
+- [x] T022 Run the documentation skill's own gate and read its output and exit status
+  - Evidence: the scanner on the supplement, exit 0, no traceback, findings identical to the baseline, x1 get first@63, x4 oxford-comma-candidate first@17, mechanical deductions -1, mechanical ceiling 99/100
+- [x] T023 Confirm the scoped diff touches only the standard's files, the scope gate, the mode router and any repointed pointer
+  - Evidence: the status shows the mode router, the references README, the scope gate, the base, the supplement and 007/tasks.md, the supplement still untracked from its part one creation, the remaining entries are other packets' work in the shared checkout, this run touched nothing beyond the five files and the 007 folder
 <!-- /ANCHOR:phase-3 -->
 
 ---

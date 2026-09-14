@@ -22,7 +22,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-09-12 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
@@ -108,6 +108,7 @@ contradictions resolved in writing rather than left for whoever edits next.
 | `decision-record.md` | Create | One ADR per contested recommendation and per resolved contradiction |
 | `spec.md` | Modify | Record the allocation table once decided |
 | `tasks.md` | Modify | Tick each decision as it is recorded |
+| `allocation-table.md` | Create | The allocation table, the non-work register, the rejection list and the reader-profile split |
 <!-- /ANCHOR:scope -->
 
 ---

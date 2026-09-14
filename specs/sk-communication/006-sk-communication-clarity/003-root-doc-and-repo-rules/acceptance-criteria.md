@@ -12,11 +12,10 @@ _memory:
   continuity:
     packet_pointer: "sk-communication/006-sk-communication-clarity/003-root-doc-and-repo-rules"
     last_updated_at: "2026-09-12T17:55:00Z"
-    last_updated_by: "markdown-agent"
+    last_updated_by: "claude-conductor"
     recent_action: "Aligned the plan, the tasks and these criteria with the rewritten spec"
-    next_safe_action: "Open the phase, take the two captures, then split the reply-shape rule"
-    blockers:
-      - "Phase 002's allocation table is not yet recorded, so the split and its two baselines are the only changes this phase may make"
+    next_safe_action: "None"
+    blockers: []
     key_files:
       - "repo-rules/communication.md"
       - "REPO RULES.md"
@@ -24,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "opus-5-clarity-program"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -44,7 +43,7 @@ _memory:
 
 **Packet:** sk-communication/006-sk-communication-clarity/003-root-doc-and-repo-rules
 **Level:** 2
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-09-12
 <!-- /ANCHOR:metadata -->
 
@@ -59,13 +58,13 @@ adopted allocation row. `AC-ID` is stable once written: supersede a criterion, n
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given the scoped diff, When each change is traced, Then it maps to an adopted row in phase 002's allocation table or to the split this phase's spec names as its own deliverable, so nothing else appears | Walk the diff against the allocation table and the spec's deliverable list, in both directions | Unmet | - |
-| AC-002 | REQ-002 | Given the new half file, When the router is walked, Then a trigger row names it, the index names it and the trigger describes the action the file governs rather than a topic | Open every file each trigger row names, then walk every file under `repo-rules/` back to a row | Unmet | - |
-| AC-003 | REQ-003 | Given any punctuation mark or named construction, When the stack is scanned, Then exactly one instruction governs it and it is the instruction the pre-change baseline recorded | Scan each mark across `AGENTS.md`, `REPO RULES.md` and `repo-rules/`, compared with the recorded per-mark baseline | Unmet | - |
-| AC-004 | REQ-004 | Given the two halves, When each is read, Then no rule sentence was added, removed or reworded and every failure statement from before the move still sits with the rule it belongs to | Compare both halves against the pre-change file, sentence by sentence, by reading rather than by grep | Unmet | - |
-| AC-005 | REQ-005 | Given `AGENTS.md`, When the scoped diff is inspected, Then the file does not appear, because no clause needs the root doc and its three pointers still read true with the new half reached through the router | Confirm the file is absent from the diff, then read each pointer against the router's rows | Unmet | - |
-| AC-006 | REQ-006 | Given the split, When each half's size is measured, Then both are recorded as the per-half size baseline, measured the same way and neither half is past the length statement the pre-split file carried | Measure and record each half, then read the length statement the pre-split file made about itself | Unmet | - |
-| AC-007 | REQ-007 | Given the new half file, When it is opened, Then it carries the routed-from line, the bounded-by statement, a fires-when list and a self-check | Read the new file's header and its closing section | Unmet | - |
+| AC-001 | REQ-001 | Given the scoped diff, When each change is traced, Then it maps to an adopted row in phase 002's allocation table or to the split this phase's spec names as its own deliverable, so nothing else appears | Walk the diff against the allocation table and the spec's deliverable list, in both directions, Met by T018, the scoped git status, the changed set is the two halves, the router and the packet docs, AGENTS.md absent | Met | - |
+| AC-002 | REQ-002 | Given the new half file, When the router is walked, Then a trigger row names it, the index names it and the trigger describes the action the file governs rather than a topic | Open every file each trigger row names, then walk every file under `repo-rules/` back to a row, Met by T010, T011, T014 and T015, the settles cell names the action, the checker 9/9, 12 files, 12 trigger rows, 12 index rows, no rule file unnamed | Met | - |
+| AC-003 | REQ-003 | Given any punctuation mark or named construction, When the stack is scanned, Then exactly one instruction governs it and it is the instruction the pre-change baseline recorded | Scan each mark across `AGENTS.md`, `REPO RULES.md` and `repo-rules/`, compared with the recorded per-mark baseline, Met by T016, all 28 baseline rows hold, one instruction per mark, no instruction appears in both halves | Met | - |
+| AC-004 | REQ-004 | Given the two halves, When each is read, Then no rule sentence was added, removed or reworded and every failure statement from before the move still sits with the rule it belongs to | Compare both halves against the pre-change file, sentence by sentence, by reading rather than by grep, Met by T012 and T017, every moved sentence appears once, worded as it was, both halves read, no rule sits on the far side of the seam | Met | - |
+| AC-005 | REQ-005 | Given `AGENTS.md`, When the scoped diff is inspected, Then the file does not appear, because no clause needs the root doc and its three pointers still read true with the new half reached through the router | Confirm the file is absent from the diff, then read each pointer against the router's rows, Met by T018 and T006, AGENTS.md absent from the scoped diff, the What Was Built statement, the three pointers read true, the router names both halves | Met | - |
+| AC-006 | REQ-006 | Given the split, When each half's size is measured, Then both are recorded as the per-half size baseline, measured the same way and neither half is past the length statement the pre-split file carried | Measure and record each half, then read the length statement the pre-split file made about itself, Met by T013, the wc -l -c output for both halves, 135 lines and 5658 characters against 106 and 3945, recorded beside SIZE BEFORE SPLIT | Met | - |
+| AC-007 | REQ-007 | Given the new half file, When it is opened, Then it carries the routed-from line, the bounded-by statement, a fires-when list and a self-check | Read the new file's header and its closing section, Met by T007, the copied routed-from and bounded-by lines, the five-item fires-when list and the inherited self-check | Met | - |
 
 ### Evidence the rows share
 
@@ -98,7 +97,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
 Every row is `Unmet` because this phase has not run. The phase is blocked on phase 002's allocation
 table for anything beyond the split. The split itself is authorized by the research that made it this

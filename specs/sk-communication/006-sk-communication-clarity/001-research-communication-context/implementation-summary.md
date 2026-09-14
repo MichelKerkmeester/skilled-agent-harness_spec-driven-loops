@@ -12,16 +12,16 @@ _memory:
   continuity:
     packet_pointer: "sk-communication/006-sk-communication-clarity/001-research-communication-context"
     last_updated_at: "2026-09-12T12:44:35Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialized Level 2 template"
-    next_safe_action: "Replace continuity placeholders"
+    last_updated_by: "claude-conductor"
+    recent_action: "Both lineages complete, disagreements listed"
+    next_safe_action: "None"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-001-research-communication-context"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -95,6 +95,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
+1. **The second lineage read the stack after the build.** The GPT-5.6 LUNA lineage ran on 2026-09-14 against the current rule files, after phases 003 to 009 had landed the adopted candidates. Six of its eight disagreements with the DeepSeek synthesis mark a candidate as already-covered because this program had by then placed it, which reads as confirmation that the placement landed rather than as a classification dispute. The two remaining disagreements, root ownership and the ADHD contract shape, are recorded in its section 6 for the operator.
 1. **[Limitation]** [Specific detail with workaround if one exists.]
 <!-- /ANCHOR:limitations -->
 

@@ -12,7 +12,8 @@
     "sk-communication/006-sk-communication-clarity/006-reply-shape-rules",
     "sk-communication/006-sk-communication-clarity/007-wording-standard-restructure",
     "sk-communication/006-sk-communication-clarity/008-decision-and-handoff-rules",
-    "sk-communication/006-sk-communication-clarity/009-adjacent-surface-rules"
+    "sk-communication/006-sk-communication-clarity/009-adjacent-surface-rules",
+    "sk-communication/006-sk-communication-clarity/010-review-remediation"
   ],
   "manual": {
     "depends_on": [],
@@ -49,7 +50,7 @@
       "compression"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "goal.md",
@@ -67,7 +68,9 @@
       "context/claude-style-patch-main/STYLE.md",
       "context/i-have-adhd-main/skills/i-have-adhd/SKILL.md",
       "001-research-communication-context/research/research.md",
-      "004-sk-communication-upgrade/research/research.md"
+      "004-sk-communication-upgrade/research/research.md",
+      "002-synthesis-and-decisions/allocation-table.md",
+      "repo-rules/prose-mechanics.md"
     ],
     "entities": [
       {
@@ -149,6 +152,18 @@
         "source": "derived"
       },
       {
+        "name": "allocation-table.md",
+        "kind": "doc",
+        "path": "002-synthesis-and-decisions/allocation-table.md",
+        "source": "derived"
+      },
+      {
+        "name": "prose-mechanics.md",
+        "kind": "doc",
+        "path": "repo-rules/prose-mechanics.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -197,19 +212,7 @@
         "source": "derived"
       },
       {
-        "name": "a",
-        "kind": "key_phrase",
-        "path": "goal.md",
-        "source": "derived"
-      },
-      {
-        "name": "an",
-        "kind": "key_phrase",
-        "path": "goal.md",
-        "source": "derived"
-      },
-      {
-        "name": "its",
+        "name": "no",
         "kind": "key_phrase",
         "path": "goal.md",
         "source": "derived"
@@ -217,7 +220,7 @@
     ],
     "causal_summary": "The repository governs how a reply reads across three layers: `AGENTS.md` keeps the two clauses",
     "created_at": "2026-09-12T12:44:34Z",
-    "last_save_at": "2026-09-14T05:57:21.625Z",
+    "last_save_at": "2026-09-14T17:49:27.522Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -225,12 +228,13 @@
       "goal.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:2f011dbc1f64be7eb15807c5679d1aacb3a7adbf5a08a6c26c7e7f98713eb3ed",
+    "source_fingerprint": "sha256:bcd8af0175a961b84e9cf461ae4b2f7c86cbbbac3970de9c64a3d4648af2562d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d2e948308183e55006f4f1d8a48955006f44a9ccc8e9ff0ea79cd0889876e4f3",
+      "spec.md": "2ba7c70c767405e376c13fa99ff0fe829b07948d5ed9f99d2274f335b74860b5",
       "handover.md": "f267747a0b9a41034095aa657bb7ef695c8345b65f3f10d4f094cc04602e5cef"
     },
-    "last_active_at": null
+    "last_active_child_id": "sk-communication/006-sk-communication-clarity/001-research-communication-context",
+    "last_active_at": "2026-09-14T16:13:28.503Z"
   }
 }

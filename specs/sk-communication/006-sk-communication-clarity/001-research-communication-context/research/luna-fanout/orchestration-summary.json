@@ -1,0 +1,23 @@
+{
+  "run_id": "1789402391295-tfhy3y",
+  "loop_type": "research",
+  "spec_folder": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context",
+  "base_artifact_dir": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout",
+  "total_cli_lineages": 1,
+  "orphaned_lineages": [],
+  "total": 1,
+  "succeeded": 1,
+  "failed": 0,
+  "all_failed": false,
+  "completed_with_containment_advisory": 1,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0
+  }
+}

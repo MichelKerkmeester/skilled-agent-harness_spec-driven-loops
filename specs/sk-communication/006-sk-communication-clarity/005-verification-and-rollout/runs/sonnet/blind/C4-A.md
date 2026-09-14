@@ -1,0 +1,7 @@
+Case: C4
+
+a deliberately failing command
+
+Reply A:
+
+`ls` exited 1 and printed `ls: no-such-file-xyz: No such file or directory`, since that path doesn't exist in the current directory.

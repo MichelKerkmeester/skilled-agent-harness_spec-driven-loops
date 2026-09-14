@@ -1,0 +1,22 @@
+Case: C6
+
+any simple question whose group of equally relevant items exceeds five
+
+Reply B:
+
+12 files, confirmed against the directory:
+
+- **blast-radius.md** — reversibility ladder, rollback sentences, and when an action needs a stop-for-yes.
+- **communication.md** — how a reply reads: length, filler, tables, register.
+- **delegation-and-orchestration.md** — the posture when handing work to another runtime: briefing, verifying returns, one-model-is-one-opinion.
+- **evidence-and-proof.md** — what counts as proof: observed vs. derived vs. inferred, baselines, close-out honesty.
+- **handoff-and-questions.md** — what a turn hands back to the operator, and when to ask as a structured choice.
+- **presenting-decisions.md** — verdict-first ordering, one recommended path, stating the plan before a long stretch.
+- **prevent-overengineering.md** — smallest-thing-that-works discipline: the reversal-cost order, options, abstractions, dependencies.
+- **prose-mechanics.md** — sentence and paragraph shape, plain words, punctuation (the em-dash/semicolon/serial-comma ban).
+- **root-cause-and-debugging.md** — fixing the producer not the symptom, escalation format when stuck.
+- **scope-discipline.md** — what's in scope, the adjacent-defect protocol, deviating from an approved plan.
+- **skill-hub-routing.md** — the two-stage hub routing model and what "integrated" actually requires to claim.
+- **uncertainty-and-honesty.md** — confidence bands, UNKNOWN as an answer, contradiction halts.
+
+Nothing else to act on here — this was read-only.
