@@ -1,5 +1,5 @@
 ---
-title: "Rule: Prose mechanics"
+title: "Rule: Communication prose"
 description: "How a sentence reads: sentence and paragraph shape, plain words, punctuation."
 trigger_phrases:
   - "one idea per sentence"
@@ -17,10 +17,10 @@ trigger_phrases:
   - "connective tissue"
 importance_tier: important
 contextType: reference
-version: 1.1.0.0
+version: 1.1.1.0
 ---
 
-# Rule: Prose mechanics
+# Rule: Communication prose
 
 > Routed from [`REPO RULES.md`](../REPO%20RULES.md). Load before writing any substantive reply.
 > Expands `AGENTS.md`, never overrides it. Where they appear to disagree, `AGENTS.md` wins and this file is wrong. Say so.
@@ -137,4 +137,10 @@ reply telegraphic, the reader rebuilds the argument the reply no longer states.
 
 ## 6. SELF-CHECK
 
+- [ ] Every sentence carries one idea, and no sentence stacks clauses a reader has to unpick.
+- [ ] Every paragraph stands on its own, and the rhythm varies rather than marching.
+- [ ] Each sentence says how it attaches to the one before, rather than sitting beside it.
+- [ ] Where a sentence explains how something works, it names the moving part.
+- [ ] Plain words, with exact names kept only for the things that have them.
 - [ ] No em dash, no semicolon, no serial comma.
+- [ ] Nothing was compressed past the point where the reader has to re-expand it.
