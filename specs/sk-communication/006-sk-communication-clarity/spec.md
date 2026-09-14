@@ -154,7 +154,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | Phase | Folder | Focus | Execution | Status |
 |-------|--------|-------|-----------|--------|
 | 1 | 001-research-communication-context/ | Classify all three sources against the stack; 29 candidates, 4 conflicts | 1st | Complete |
-| 2 | 002-synthesis-and-decisions/ | Settle 3 rule conflicts, 5 engine decisions and 2 plan corrections | 2nd | Pending |
+| 2 | 002-synthesis-and-decisions/ | Eight decisions recorded in `decision-record.md`. Remaining: the allocation table, the four unhomed candidates as deliberate non-work, the rejection list | 2nd | Decisions recorded, allocation table pending |
 | 3 | 003-root-doc-and-repo-rules/ | Split the reply-shape rule and capture both baselines. No rule content | 3rd | Pending |
 | 6 | 006-reply-shape-rules/ | The 10 reply-shape candidates, into the split halves | 4th | Pending |
 | 8 | 008-decision-and-handoff-rules/ | 5 candidates across the decision, handback and evidence rules | 4th, parallel with phase 6 | Pending |

@@ -1,24 +1,29 @@
 {
+  "level": "2",
   "specFolder": "sk-doc/055-governance-doc-alignment",
-  "description": "Governance documentation alignment: 006-resume queue plus router and root-doc research",
+  "description": "The 006 clarity program paused with its validation state unproven: a swarm rewrote twelve documents, and the repair pass that would confirm them was",
   "keywords": [
-    "governance",
-    "documentation",
-    "alignment",
-    "006-resume",
-    "queue",
-    "plus",
-    "router",
-    "root-doc",
-    "research"
+    "clarity",
+    "program",
+    "paused",
+    "validation",
+    "state",
+    "unproven",
+    "swarm",
+    "rewrote",
+    "twelve",
+    "documents",
+    "repair",
+    "pass",
+    "confirm",
+    "them"
   ],
-  "lastUpdated": "2026-09-13T11:50:18.932Z",
+  "lastUpdated": "2026-09-13T13:40:34.494Z",
   "specId": "055",
   "folderSlug": "governance-doc-alignment",
   "parentChain": [
     "sk-doc"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

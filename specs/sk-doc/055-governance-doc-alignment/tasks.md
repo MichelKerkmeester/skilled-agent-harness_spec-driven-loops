@@ -60,12 +60,15 @@ Note: T009 and T010 run as the two lineages of ONE fan-out invocation, under the
 
 - [ ] T008 [P0] Run the dispatch preflight: `command -v pi`, the two ALWAYS-loads read, the credential observed inside the dispatched child, the roster mapping re-read from the enforcement file
   - Evidence: the four preflight receipts recorded in the dispatch log, the enforced model reads `llmgateway/glm-5.3-flash` with the effort pin at `max`
-- [ ] T009 [P] [P0] Run the router alignment lineage, 3 iterations, briefed to its named files, the 11 rule files, the router, the 5 recently edited rules (`research/router-alignment/`) (REQ-003)
+- [x] T009 [P] [P0] Run the router alignment lineage, 3 iterations, briefed to its named files, the 11 rule files, the router, the 5 recently edited rules (`research/router-alignment/`) (REQ-003)
   - Evidence: 3 iteration files, 3 deltas, the reducer reports 3, every finding cites the commit it read
-- [ ] T010 [P] [P0] Run the root-doc lineage, 5 iterations, the not-reality and redundant-detail failure classes kept apart (`research/root-doc-staleness/`) (REQ-004)
+  - DONE 2026-09-14: `research/router-alignment/lineages/1789357372647-ynq4so-alignment/`, status log terminal event `completed` at 04:31Z, published by the runner.
+- [x] T010 [P] [P0] Run the root-doc lineage, 5 iterations, the not-reality and redundant-detail failure classes kept apart (`research/root-doc-staleness/`) (REQ-004)
   - Evidence: 5 iterations, 5 deltas, every redundancy finding names its discrimination case, case-one findings quote the delegate's own line
-- [ ] T011 [P0] Write both syntheses (`research.md` in both research folders) (REQ-003, REQ-004)
+  - DONE 2026-09-14: 5 iterations complete in the state log. The runner hung at its publish step (status log `lag:1, pending:0` for two hours past 05:42Z), so the lineage was published by hand from the worktree, whose contents were diffed byte-identical against the safeguard copy first. Deviation recorded in plan.md section 8.
+- [x] T011 [P0] Write both syntheses (`research.md` in both research folders) (REQ-003, REQ-004)
   - Evidence: both syntheses non-empty, consistent with their deltas, the receipts name the model and effort behind each iteration
+  - DONE 2026-09-14: both `research.md` files present under their lineage folders, written by the leaves' own synthesis step.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -75,7 +78,11 @@ Note: T009 and T010 run as the two lineages of ONE fan-out invocation, under the
 
 - [ ] T012 [P1] Record the sequencing question's answer in this packet's continuity, `answered_questions`, and the implementation summary (SC-004)
   - Evidence: the recorded answer, either before or after 006's phase 003, with the deciding reason, blocked until the operator answers
-- [ ] T013 [B] [P1] Act on both streams' adopted findings (`AGENTS.md`, `REPO RULES.md`, `repo-rules/`) (REQ-006)
+- [x] T013 [P1] Act on both streams' adopted findings (`AGENTS.md`, `REPO RULES.md`, `repo-rules/`) (REQ-006)
+  - Unblocked 2026-09-14: the sequencing question is answered, align now.
+  - `AGENTS.md` half DONE 2026-09-14, operator-approved as one batch: 6 hunks, 9 insertions, 14 deletions, section 8 byte-identical, zero `checklist.md` references remain, derived surfaces unaffected (CLAUDE.md is a symlink; the Codex copy derives only the Gate 1 lookup). Rollback: `git checkout -- AGENTS.md`.
+  - Three departures from the research, recorded: three git rows kept because a raw branch or push command needs no skill loaded; the validate.sh subsection kept because it is already a pointer with one binding sentence; no advisor build clause because the compiled file is present and the start hook self-heals it. The operator additionally kept the full eight-row git table.
+  - `REPO RULES.md` and `repo-rules/` half DONE 2026-09-14, operator chose "all findings", body then description then index, "just do it, report after": 4 rule `description:` lines corrected to their bodies (scope, delegation, evidence, communication), 7 drifted index summaries replaced by those descriptions verbatim, communication settles cell carries the no-tables rule, two under-routed triggers added (new skill under a hub, change something else to ease a fix), handoff fork clause disambiguated from presenting, scope statement labels both widenings and drops the wrong exclusivity claim. New `index summaries` check in `check-repo-rules.cjs` (negative control failed on 7 rows before the edit, `RESULT: PASSED (9/9 checks)` after, exit read without a pipe), listed in the mode's SKILL.md and enforced by the existing CI workflow. Rollback: `git checkout -- "REPO RULES.md" repo-rules/ .opencode/skills/sk-doc/sk-create-repo-rule/`.
   - Evidence: each action cites its finding, redundancy findings cite their case and, for case one, the delegate's own line, blocked until T011 delivers both syntheses and T012 records the sequencing answer
 - [ ] T014 [P0] From the final state, re-run the whole gate: `validate.sh` on this packet, strictly (`specs/sk-doc/055-governance-doc-alignment`)
   - Evidence: RESULT: PASSED, Errors: 0, output and exit status both read

@@ -96,7 +96,7 @@ Return 006 to 10-of-10 validated state, then research the router and the root do
 | `specs/sk-communication/006-sk-communication-clarity/spec.md` | Modify | Stream A: the phase-map row for phase 002 records the decision record's existence |
 | `specs/sk-communication/006-sk-communication-clarity/007-wording-standard-restructure/spec.md` | Modify | Stream A: both ratification references reworded once the decision record answers them |
 | `specs/sk-communication/006-sk-communication-clarity/002-synthesis-and-decisions/decision-record.md` | Modify | Conditional, only when the ratification is missing there |
-| `AGENTS.md`, `REPO RULES.md`, `repo-rules/` | Modify | Deferred, acting on findings, after the sequencing question is answered |
+| `AGENTS.md`, `REPO RULES.md`, `repo-rules/` | Modify | Acting on findings. The sequencing question is answered: align now. AGENTS.md first, by operator priority |
 | `specs/sk-communication/006-sk-communication-clarity/handover.md` | Add | The untracked handover joins this packet's creation commit |
 <!-- /ANCHOR:scope -->
 
@@ -154,8 +154,8 @@ Return 006 to 10-of-10 validated state, then research the router and the root do
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Does governance alignment land before or after 006's phase 003 adds a rule file and a router row? The 006 handover raises the question and decides nothing.
-- Does the 006 decision record actually ratify the wording standard's base-plus-supplement shape, or does the ratification still need recording before 007's wording changes?
+- Answered 2026-09-14: governance alignment lands now, and the split's new file brings one more router row later. The router research established today's drift predates the recent edits, so nothing was gained by waiting.
+- Answered 2026-09-14: it did not. The ratification is now recorded as ADR-009 in the 006 decision record, and 007's three references point at it.
 <!-- /ANCHOR:questions -->
 
 ---

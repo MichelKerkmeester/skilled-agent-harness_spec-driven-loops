@@ -202,7 +202,7 @@
     ],
     "causal_summary": "The 006 clarity program paused with its validation state unproven: a swarm rewrote twelve documents, and the repair pass that would confirm them was killed partway",
     "created_at": "2026-09-13T11:50:18Z",
-    "last_save_at": "2026-09-13T13:40:34.723Z",
+    "last_save_at": "2026-09-14T05:45:43.218Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,12 +212,12 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7bfc93e8761b5c8f74568e2f5f684fc1ce5086928772c704e7627cfdc96366a5",
+    "source_fingerprint": "sha256:bec2e6012e092a5668a8b386b2f07a26cf44de47eece884feea88a4d00e576f6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2d2892a3beaeb2bbb1c7ded5c8103713d2d173682c3e757422e181bbcdbb214e",
-      "plan.md": "9204bfd45ba04bed2f002b19f4eb8c4c370b1c07eb9279834d1b7ebd310c7fe5",
-      "tasks.md": "fbf72b17c3401c00496eb06cf22b7adf00970c8743f1d81feaf6afcc133f3099",
+      "spec.md": "ef1f3bb3c38de9b389b6cc3586ccecc2e8098bd27ab1e0f373f189c0da5a5f0a",
+      "plan.md": "32177ebdd8dcbb19aab4d92b734a4546ff15a68379b0c6cad2caf47595849c34",
+      "tasks.md": "d5b9965ff71802d0281c3d66e413d945594d93d1ce10dd8856bfc8e1452d745b",
       "implementation-summary.md": "cdd601b10035458e9c0aa2ea3fb287cbb085d0e5bd318d08d166510313377753"
     },
     "last_active_at": null

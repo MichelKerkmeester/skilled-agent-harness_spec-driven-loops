@@ -35,15 +35,18 @@ _memory:
       - "Content-loss floor: claim-based omission check"
       - "An unchanged candidate: recorded as a distinct no-op"
       - "Thinking mode: provider-default on both profiles"
+      - "The wording standard: a base plus a supplement, not two halves"
 ---
 # Decision Record: sk-communication clarity program
 
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 
-> Eight decisions, taken by the operator on 2026-09-12 against the two research syntheses in this
+> Nine decisions. Eight taken by the operator on 2026-09-12 against the two research syntheses in this
 > packet. Three settle rule conflicts the sources raised. Five settle engine questions the
-> skill-logic research raised. Every downstream phase reads this file for its authorised scope.
+> skill-logic research raised. The ninth was ratified on 2026-09-14, after a check found it had
+> been carried forward as decided without ever being put to the operator. Every downstream phase
+> reads this file for its authorised scope.
 
 ---
 
@@ -832,5 +835,118 @@ The two profiles disagree: the local provider uses provider-default and the exte
 **How to roll back**: Set it back to disabled. The field is a single literal on one profile.
 <!-- /ANCHOR:adr-008-impl -->
 <!-- /ANCHOR:adr-008 -->
+
+---
+
+<!-- ANCHOR:adr-009 -->
+## ADR-009: Restructure the wording standard as a base plus a supplement
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-09-14 |
+| **Deciders** | Operator, on the engine-logic research synthesis |
+
+---
+
+<!-- ANCHOR:adr-009-context -->
+### Context
+
+The wording standard is written for documents. It carries a pre-publish checklist, a hundred-point
+score and a publish threshold, and the projection consumes it for live replies by excluding two of
+its sections by hand. The obvious repair is a split into a document half and a reply half, and the
+research established that this does not work. The voice-personality exclusion exists because a
+projection carries someone else's message, which is a reason about ownership rather than about
+documentness, so that exclusion follows the voice directives into whichever half a reply loads and
+gains a row, because the same section also carries penalty machinery a reply never runs. Only the
+scoring bands genuinely disappear. The section boundaries do not match the line either: a
+document-structure section contains a reply-scoped subsection, and the checklist's voice block
+depends on the section a reply needs.
+
+This decision was carried forward as settled through several reports before anyone noticed it had
+never been put to the operator. It is recorded here at the point that was found, rather than
+backdated.
+
+### Constraints
+
+- Documents are the standard's original consumer and a regression there is invisible from the reply side.
+- The skill's own rule gives the standard exactly one home.
+- ADR-005 depends on a reply base existing, because the provider instruction resolves to it.
+<!-- /ANCHOR:adr-009-context -->
+
+---
+
+<!-- ANCHOR:adr-009-decision -->
+### Decision
+
+**We chose**: Restructure the standard as a base plus a supplement, where a reply loads the base and a document loads the base plus the publish machinery.
+
+**How it works**: The publish machinery leaves the current file for a supplement. What remains is the base, which is a proper subset of what a document needs. The base names the supplement so neither can be loaded in ignorance of the other.
+<!-- /ANCHOR:adr-009-decision -->
+
+---
+
+<!-- ANCHOR:adr-009-alternatives -->
+### Alternatives Considered
+
+| Option | Pros | Cons | Score |
+|--------|------|------|-------|
+| **Base plus supplement** | A reply loads a proper subset, one hand-maintained exclusion genuinely retires, the cut follows the reply-versus-publish line | The line does not match the section numbers, so the cut is content work rather than a file move | 8/10 |
+| Two halves | The obvious shape, and the one the packet originally assumed | Moves the voice-personality exclusion into the reply half and adds a row to it, so the hand-maintained list grows rather than shrinks | 3/10 |
+| Leave it as one file | No restructure, no risk to document consumers | The skill keeps excluding two sections by hand, and ADR-005 has no reply base to point the engine at | 4/10 |
+
+**Why this one**: It is the only shape where the exclusion list actually gets shorter, and it is the only one that gives ADR-005 the base it depends on.
+<!-- /ANCHOR:adr-009-alternatives -->
+
+---
+
+<!-- ANCHOR:adr-009-consequences -->
+### Consequences
+
+**What improves**:
+- One of the two hand-maintained exclusions retires, following the precedent that already routed the scoring arithmetic into its own file.
+- A reply stops loading publish machinery it can never act on.
+
+**What it costs**:
+- Every consumer of the standard has to be opened and confirmed rather than assumed. Mitigation: phase 007 makes that a blocking requirement rather than a spot check.
+
+**Risks**:
+
+| Risk | Impact | Mitigation |
+|------|--------|------------|
+| A document consumer silently loses content | High | Phase 007 requires opening each consumer in both families, and a regression there is invisible from the reply side |
+| A later reader tries to remove the surviving exclusion structurally | Medium | Phase 007 restates that exclusion's reason as ownership inside the file, so the next attempt sees why geometry cannot fix it |
+<!-- /ANCHOR:adr-009-consequences -->
+
+---
+
+<!-- ANCHOR:adr-009-five-checks -->
+### Five Checks Evaluation
+
+| # | Check | Result | Evidence |
+|---|-------|--------|----------|
+| 1 | **Necessary?** | PASS | ADR-005 cannot be implemented without a reply base, and the exclusion list cannot shrink without a restructure |
+| 2 | **Beyond Local Maxima?** | PASS | The obvious two-half split was tested against the section boundaries and the exclusion's stated reason, and it failed both |
+| 3 | **Sufficient?** | PASS | A base and a supplement, with no third file and no new format |
+| 4 | **Fits Goal?** | PASS | Phase 007 is on the critical path to phase 004 because of this decision |
+| 5 | **Open Horizons?** | PASS | The base can gain or shed sections later without moving any consumer |
+
+**Checks Summary**: 5/5 PASS
+<!-- /ANCHOR:adr-009-five-checks -->
+
+---
+
+<!-- ANCHOR:adr-009-impl -->
+### Implementation
+
+**What changes**:
+- Phase 007 performs the restructure and lands the six candidates assigned to the standard.
+- Phase 004 depends on the base, because the provider instruction resolves to it.
+
+**How to roll back**: Recombine the supplement into the base and restore the second exclusion row. Every consumer then resolves to one file again, which is today's state.
+<!-- /ANCHOR:adr-009-impl -->
+<!-- /ANCHOR:adr-009 -->
 
 ---

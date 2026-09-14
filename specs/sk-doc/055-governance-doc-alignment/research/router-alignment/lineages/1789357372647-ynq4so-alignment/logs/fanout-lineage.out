@@ -1,0 +1,29 @@
+Verification: every runner check passes. The state log holds 4 records, the iteration set is exactly 1, 2, 3 on disk and in the state, the synthesis event carries stopReason=maxIterationsReached (normalized-start=maxiteration), research.md is 15,336 bytes, the registry holds 26 findings, and the deltas parse at 29 lines, which is the 26 findings plus 3 metrics records. The earlier FAIL was my own assert constant (I expected 31), the data itself is right. The lineage directory contains exactly the runner's infrastructure plus my 13 artifacts, 85,609 bytes total, nothing else touched.
+
+Verdict: the router still reaches all 11 rule files, 1:1 in both directions, mechanically guarded by the checker and CI. It still phrases every row as an action, 11 of 11, by its own rule. What it no longer does is describe: 7 of the 11 index summaries are not their rule's own description, the drift was shipped with the router's 11:47 landing on 09-12 and not caused by the five later edits, and no check of the 8 compares summary to description, so nothing would ever catch it. One fresh divergence did come from the recent edits, the It-settles omission of the no-tables rule. All 26 findings cite file:line at read-at commit 94a72a4931.
+
+What the five questions answered, one line each:
+
+- Reachability: PASS in both directions, 1:1, no orphan, no dead link (REPO RULES.md:40-50, checker:202-246)
+- Index accuracy: 4 verbatim, 2 one-token, 3 truncated of operative clauses, 2 condensed paraphrases, and no test of the 8 compares summary to description, so the drift is invisible to the machinery (checker:202-360)
+- Trigger phrasing: zero defects, the two event sub-clauses faithfully copy their files' own Fires-when wording (communication.md:38, uncertainty-and-honesty.md:37)
+- Competing rows: three, all resolved by composition with disjoint obligations (proof, shape, handback), two under-reach gaps (skill-hub-routing.md:36, scope-discipline.md:36), nothing dead
+- Scope statement: still describes the eleven, the fifth-widening refusal still holds, and two of its sentences survive only through their qualifiers, recorded with both readings
+
+Artifacts written, every one inside the lineage directory:
+
+- iterations/iteration-001.md, -002.md, -003.md (34,059 bytes: the three forced-depth iterations, one focus each)
+- deltas/iter-001.jsonl, -002.jsonl, -003.jsonl (16,910 bytes, 29 lines: 26 findings plus 3 metrics records, all INFERRED nuances marked)
+- research.md (15,336 bytes, the synthesis, verdict first, convergence report inside: stopReason maxIterationsReached, questions answered 5 of 5, trend 1.0, 0.6, 0.5)
+- deep-research-state.jsonl (4 records: three iteration records plus the synthesis_complete event)
+- findings-registry.json (26 findings), deep-research-strategy.md, deep-research-dashboard.md, deep-research-config.json (frozen at init), resource-map.md (the source inventory, 3,008 bytes)
+
+Receipts: executor this process, one dispatch, no nested CLI, model glm-5.3-flash, reasoning effort max, all three iterations. The 006 sequencing question is noted, not decided, exactly as briefed, and this research's one contribution to it is F-207: the 09-12 race did not cause today's divergence, so the sequencing call rests on the future deltas, not on this gap.
+
+Honest limits: the six unflagged rule bodies were read at Fires-when and cited-section depth, not cover to cover, and every claim about them cites the sections that were read. The 8th checker check's provenance stays UNKNOWN, marked in F-106. The Claude-AskUserQuestion confirmation rests on specs prose alone, recorded as INFERRED in F-308.
+
+Committed versus dirty: nothing is committed. All 13 lineage artifacts are untracked files under the lineage directory, the tracked worktree is clean, and the runner's ledgers and locks are untouched. Nothing in this lineage ran validate.sh or generate-context.js, per the containment contract, so the packet-level validation remains yours to run with the 055 closure.
+
+What is yours to do next: answer the 055 sequencing question before any finding is acted on (055 spec.md:80,99,136,157), and launch Stream C, the root-doc lineage, which is independent of this one. Nothing here waits on you.
+
+FANOUT_LINEAGE_COMPLETE:alignment

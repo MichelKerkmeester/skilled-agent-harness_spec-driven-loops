@@ -1,0 +1,141 @@
+{
+  "run_id": "1789357372647-ynq4so",
+  "label": "alignment",
+  "attempt": 1,
+  "source_dir": "/Users/michelkerkmeester/worktrees/public/fanout-1789357372647-ynq4so-attempt-1-alignment/specs/sk-doc/055-governance-doc-alignment/research/router-alignment/lineages/alignment",
+  "published_at_iso": "2026-09-14T04:31:35.490Z",
+  "entries": [
+    {
+      "path": "deep-research-audit-ledger/frames/0000000000000001.frame",
+      "kind": "file",
+      "bytes": 3839,
+      "sha256": "2cd83584cea589fb0662ae95a4be3a4d9dc487c7ca6e00f9615195a6f6aac7a4"
+    },
+    {
+      "path": "deep-research-audit-ledger/frames/0000000000000002.frame",
+      "kind": "file",
+      "bytes": 4059,
+      "sha256": "ec38dd3e6d6b66f6a5363c9d33a3ec0ca26ce995ace1e6a7d070b1df4a38d8cf"
+    },
+    {
+      "path": "deep-research-config.json",
+      "kind": "file",
+      "bytes": 2662,
+      "sha256": "950bef4d7d99a7ec25932a892c8ccc8888f9023c25e7b72268578bdbda3bfcd7"
+    },
+    {
+      "path": "deep-research-dashboard.md",
+      "kind": "file",
+      "bytes": 620,
+      "sha256": "8f1701d4f3e67696d267f4542aa650c30857228ea5d8830a2baa8265a88d8e94"
+    },
+    {
+      "path": "deep-research-effect-ledger/frames/0000000000000001.frame",
+      "kind": "file",
+      "bytes": 3602,
+      "sha256": "e90d9bd7a787f4c066b3b85bfa282f4fcd9d8c80740ae8e38846fb3e70e6fe0e"
+    },
+    {
+      "path": "deep-research-effect-ledger/frames/0000000000000002.frame",
+      "kind": "file",
+      "bytes": 3722,
+      "sha256": "9a344a753a6b06d2de773e43589f7bbafad38006d410907bd6ab97c8befcca6c"
+    },
+    {
+      "path": "deep-research-state.jsonl",
+      "kind": "file",
+      "bytes": 2099,
+      "sha256": "f9a13359fa5ad2b47f8000b77eedbc5e14943a2fcdd6dd28582485124754ab54"
+    },
+    {
+      "path": "deep-research-strategy.md",
+      "kind": "file",
+      "bytes": 2517,
+      "sha256": "d9def1c3217cdc7311abaa5dbcbfe83ededf658fe4063624d24aa152784ca874"
+    },
+    {
+      "path": "deltas/iter-001.jsonl",
+      "kind": "file",
+      "bytes": 4781,
+      "sha256": "930459d91d7a238c4e3a7dc1f61527ac9ab4aa773ad30a6ac14eb3709d3b6b1d"
+    },
+    {
+      "path": "deltas/iter-002.jsonl",
+      "kind": "file",
+      "bytes": 5854,
+      "sha256": "598052c4787009d2eab04d09ebd6db642ecc0d1ea00f1f3490ee60a3fb1b2d37"
+    },
+    {
+      "path": "deltas/iter-003.jsonl",
+      "kind": "file",
+      "bytes": 6275,
+      "sha256": "1c062e664c5a77ec629dfa1b0650f1675d9ecb29e2c1a05d4476a94af114de9c"
+    },
+    {
+      "path": "findings-registry.json",
+      "kind": "file",
+      "bytes": 8398,
+      "sha256": "0d91c35c58ffcb67ce8115f36b6fc35dd864e8a239c72043c3e37c071483c257"
+    },
+    {
+      "path": "invocation-metadata.json",
+      "kind": "file",
+      "bytes": 397,
+      "sha256": "97b4109035619c8306286a8512b48569f653057427b0770e28365c8a8ef2e61d"
+    },
+    {
+      "path": "iterations/iteration-001.md",
+      "kind": "file",
+      "bytes": 9678,
+      "sha256": "65e8967902611e2fa0dfef3efc42b9cddf58b6543afd1229a8e57ba9096ef41e"
+    },
+    {
+      "path": "iterations/iteration-002.md",
+      "kind": "file",
+      "bytes": 10342,
+      "sha256": "e7b768b8b558edfe9d7a6bba55e4650c7eed3934bcdf312feca6fcf3891e1b63"
+    },
+    {
+      "path": "iterations/iteration-003.md",
+      "kind": "file",
+      "bytes": 14039,
+      "sha256": "2341621fcd682c74200cee48e990d9dbb1350dfcee0b86757c8a47aa53110eca"
+    },
+    {
+      "path": "locks-and-fencing-v1/218eebf4be3b98ac4d68f7b4d314206992fa99147c9b1e75b75a92cdb24b6fe5/coordinator-state.json",
+      "kind": "file",
+      "bytes": 634,
+      "sha256": "e3d5cae29663cc86f52795ee41c4461e64ae8b04948f55182d15a1d67c495644"
+    },
+    {
+      "path": "locks-and-fencing-v1/218eebf4be3b98ac4d68f7b4d314206992fa99147c9b1e75b75a92cdb24b6fe5/grant-journal.jsonl",
+      "kind": "file",
+      "bytes": 2734,
+      "sha256": "6b4d030ac3f43ad5d9e799d07ce261baf233da4e4fc397a27d00c7a312692d7a"
+    },
+    {
+      "path": "logs/fanout-lineage.err",
+      "kind": "file",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "logs/fanout-lineage.out",
+      "kind": "file",
+      "bytes": 4257,
+      "sha256": "9be1c5fbae2fee86a4eb0e92ce7ab9770e22b0e440cd527a39075f40930fa08b"
+    },
+    {
+      "path": "research.md",
+      "kind": "file",
+      "bytes": 15336,
+      "sha256": "e12aaa09c255e856a3cb8a567f16948f4d05c77f816a9b11dd19515dd3d9273e"
+    },
+    {
+      "path": "resource-map.md",
+      "kind": "file",
+      "bytes": 3008,
+      "sha256": "fef5cb338e9d8a245006aed50190fc0b50dc558d07a53443812e4049e71a4d49"
+    }
+  ]
+}

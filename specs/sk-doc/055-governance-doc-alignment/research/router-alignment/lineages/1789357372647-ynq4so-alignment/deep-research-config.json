@@ -1,0 +1,26 @@
+{
+  "sessionId": "fanout-alignment-1789357372647-ynq4so",
+  "lineageLabel": "alignment",
+  "loopType": "research",
+  "specFolder": "specs/sk-doc/055-governance-doc-alignment",
+  "artifactDir": "/Users/michelkerkmeester/worktrees/public/fanout-1789357372647-ynq4so-attempt-1-alignment/specs/sk-doc/055-governance-doc-alignment/research/router-alignment/lineages/alignment",
+  "researchTopic": "Does the repo-local rule router still reach and accurately describe the rules that exist? Read REPO RULES.md and all 11 files under repo-rules/. Answer five things, citing file:line for every claim. First, reachability in both directions: every rule file named by at least one trigger row, and every file a trigger row names actually existing. Second, index accuracy: one index row per rule file, each summary matching that rule own description frontmatter rather than a paraphrase that has drifted. Third, trigger phrasing: the router first instruction is to match on the action you are about to take rather than the topic of the request, so any row phrased as a topic is a defect by the router own rule. Fourth, overlapping rows that compete for the same action, and rows that could never fire. Fifth, whether the scope statement, which records four deliberate widenings and pre-refuses a fifth, still describes the current set. Five of the 11 rule files carry recent edits that may not have reached the router: communication.md, evidence-and-proof.md, prevent-overengineering.md, skill-hub-routing.md and delegation-and-orchestration.md. Note but do not decide one sequencing question: a separate packet plans to split communication.md in two, which will add a file and a row, so aligning now may mean aligning twice.",
+  "stopPolicy": "max-iterations",
+  "maxIterations": 3,
+  "convergenceThreshold": 0.05,
+  "loopTypeSettings": { "loop_type": "research" },
+  "executor": { "kind": "cli-pi", "model": "glm-5.3-flash", "reasoningEffort": "max", "executionMode": "inline-orchestrator-process", "nestedDispatch": "none" },
+  "readAtCommit": "94a72a493192a7c9f5e21199ccc8ced356356de1",
+  "readAtCommitDate": "2026-09-13T17:17:51+02:00",
+  "statePaths": {
+    "stateLog": "deep-research-state.jsonl",
+    "iterationPattern": "iterations/iteration-NNN.md",
+    "deltaPattern": "deltas/iter-NNN.jsonl",
+    "report": "research.md",
+    "resourceMap": "resource-map.md"
+  },
+  "resourceMap": { "emit": true },
+  "convergenceThresholdSemantics": "newInfoRatio: fully-new=1.0, partially-new=0.5, +0.10 simplicity bonus, capped 1.0; lower = more iterations; telemetry only under stopPolicy=max-iterations",
+  "initiatedAt": "2026-09-14T04:12:00Z",
+  "frozenAfterInit": true
+}

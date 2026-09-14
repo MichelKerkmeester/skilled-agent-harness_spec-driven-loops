@@ -119,7 +119,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Phase 2's ratification of the base-plus-supplement shape | Internal | Red until phase 2 closes | The restructure could be the wrong shape |
+| ADR-009, ratifying the base-plus-supplement shape | Internal | Green, recorded 2026-09-14 | None, the shape is settled |
 | Phase 6's voice-half delegation | Internal | Red until phase 6 closes | Two reply-facing candidates would load for documents and not for replies |
 | The documentation skill's own gate | Internal | Green | No independent check that the mode still validates |
 <!-- /ANCHOR:dependencies -->
