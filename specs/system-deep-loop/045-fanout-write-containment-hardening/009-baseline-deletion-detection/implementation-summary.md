@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+description: "A baseline untracked file the lane deleted is detected with its hash, restored from the captured copy under restore, or recorded as unrecoverable."
 trigger_phrases:
   - "implementation summary"
   - "what shipped"
@@ -12,9 +12,9 @@ _memory:
   continuity:
     packet_pointer: "system-deep-loop/045-fanout-write-containment-hardening/009-baseline-deletion-detection"
     last_updated_at: "2026-09-14T17:44:14Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialized Level 2 template"
-    next_safe_action: "Replace continuity placeholders"
+    last_updated_by: "claude-fable-5-1"
+    recent_action: "Added baseline deletion detection and filled the packet docs"
+    next_safe_action: "Commit once the full suite exits zero"
     blockers: []
     key_files: []
     session_dedup:
@@ -46,20 +46,9 @@ _memory:
 ---
 
 <!-- ANCHOR:what-built -->
-## What Was Built
+## 2. WHAT WAS BUILT
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
-
-### Phase 2: baseline-deletion-detection
-
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
-
-### Files Changed
-
-| File | Action | Purpose |
-|------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+A lane can no longer delete a neighbour's untracked file unnoticed. `snapshotOutOfScopeDirtyPaths` in `runtime/lib/deep-loop/write-containment.ts` now records which baseline entries were untracked, the only moment that fact is observable; `detectNewOutOfScopeViolations` keeps its status pass and adds a reverse pass that reports a baseline untracked path missing from status and from disk as a `deleted` violation carrying the baseline hash; and `revertOutOfScopeViolations` writes the captured baseline copy back under restore, recreating the directory, or records the loss as `unrecoverable`. A path deleted before dispatch stays subtracted.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -67,7 +56,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-[How was this tested, verified and shipped? What was the rollout approach?]
+One dispatch to DeepSeek V4.1 Flash at max through the gateway on cli-pi. Two of the three new tests failed against the unmodified detector with nothing reported; the third, the pre-dispatch guard, passed before and after. The orchestrator reviewed the diff and ran the whole suite before committing.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -77,7 +66,9 @@ Explain what the user gains, not what files you touched.]
 
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| Decide by disk, not by status absence | A status call that failed open must not manufacture deletions |
+| No HEAD fallback for an untracked deletion | The path was never in HEAD; the baseline copy is the only source |
+| Leave the data-loss flag keyed on HEAD restores | Widening it lives in the event builder, outside this change; noted for the retention phase |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -87,7 +78,10 @@ Explain what the user gains, not what files you touched.]
 
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| Deletion tests against unmodified detector | FAIL as expected: nothing reported |
+| Both touched test files plus typecheck | PASS, exit 0, 211 tests |
+| Full deep-loop suite | `npm test` in the runtime: 151 files, 145 passed and 6 failed, 2583 tests passed; the six failures are the cli-adapter manifest-integrity cases still broken by another session's uncommitted cli-hermes manifest edit, unrelated to this change; the containment and fan-out files passed (211 tests), typecheck exit 0 |
+| `validate.sh --strict` on this phase | RESULT: PASSED |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -95,7 +89,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **Data-loss flag.** The containment event's data-loss flag still keys only on HEAD restores; an unrecoverable deletion is not reflected in it.
 <!-- /ANCHOR:limitations -->
 
 ---

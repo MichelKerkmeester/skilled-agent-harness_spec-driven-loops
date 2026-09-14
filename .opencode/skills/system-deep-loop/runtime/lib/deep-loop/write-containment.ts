@@ -50,13 +50,37 @@ export interface ContainmentViolation {
   /** Absolute path resolved against repoRoot. */
   absolutePath: string;
   kind: ContainmentViolationKind;
-  /** Raw XY status code from `git status --porcelain`. */
+  /**
+   * Raw XY status code from `git status --porcelain`.
+   *
+   * A path the lane deleted is the exception: git stops reporting it entirely once it is gone,
+   * so it keeps the code the pre-dispatch baseline observed for it -- the last status anyone saw.
+   */
   status: string;
+  /**
+   * Git blob hash the pre-dispatch baseline recorded for this path.
+   *
+   * Set only on a path the lane DELETED. Those bytes are gone, so hashing the path again cannot
+   * reproduce this value, and it is the only identity the file has left -- including the value a
+   * restored copy is checked against.
+   */
+  baselineHash?: string;
 }
 
 export interface ContainmentRevertAction {
   path: string;
-  action: 'restored_from_head' | 'restored_from_baseline' | 'preserved_untracked' | 'preserved_in_head';
+  /**
+   * What the remedy did. `unrecoverable` names the one outcome that is not a remedy at all: the
+   * path is gone and no pre-dispatch bytes were captured for it, so nothing was written and
+   * nothing could be. Recorded rather than omitted, because a path missing from this list reads
+   * as a path the guard never had to act on.
+   */
+  action:
+    | 'restored_from_head'
+    | 'restored_from_baseline'
+    | 'preserved_untracked'
+    | 'preserved_in_head'
+    | 'unrecoverable';
   ok: boolean;
   error?: string;
 }
@@ -135,6 +159,15 @@ export interface DirtyPathEntry {
    * is visible to whoever later restores from it instead of looking like nothing to record.
    */
   baselineTruncated?: boolean;
+  /**
+   * True when the path was untracked at snapshot time.
+   *
+   * Recorded because an untracked path is the one whose later deletion leaves no trace to detect:
+   * git reports a deletion as the difference between the index and the working tree, and an
+   * untracked path has no index entry to differ from. Absent -- never `false` -- on a tracked
+   * path, whose entry keeps exactly the shape callers already depend on.
+   */
+  untracked?: boolean;
 }
 
 export interface DetectOptions extends ContainmentOptions {
@@ -812,6 +845,9 @@ export function snapshotOutOfScopeDirtyPaths(opts: ContainmentOptions): DirtyPat
       out.push({
         path: entryPath,
         hash,
+        // Recorded here, at snapshot time, because this is the only moment the fact is still
+        // observable: once the path is gone, nothing in the tree says it was untracked.
+        ...(classifyViolation(entry.status) === 'untracked' ? { untracked: true } : {}),
         ...(captured?.contentPath ? { baselineContentPath: captured.contentPath } : {}),
         ...(captured?.truncated ? { baselineTruncated: true } : {}),
       });
@@ -822,7 +858,9 @@ export function snapshotOutOfScopeDirtyPaths(opts: ContainmentOptions): DirtyPat
 
 /**
  * Post-dispatch detection: NEW out-of-scope violations introduced by the leaf,
- * computed as (current out-of-scope dirty) minus (pre-dispatch baseline).
+ * computed as (current out-of-scope dirty) minus (pre-dispatch baseline), plus
+ * every baseline-tracked untracked path the lane removed -- a deletion git reports
+ * nowhere, because an untracked path has no index entry for its removal to differ from.
  */
 export function detectNewOutOfScopeViolations(opts: DetectOptions): ContainmentViolation[] {
   const scope = resolveArtifactScope(opts);
@@ -836,6 +874,7 @@ export function detectNewOutOfScopeViolations(opts: DetectOptions): ContainmentV
   const entries = readStatusEntries({ repoRoot: opts.repoRoot, env: opts.env });
   const preMap = new Map(opts.preDispatchDirtyPaths.map((e) => [toPosix(e.path), e.hash]));
   const violations: ContainmentViolation[] = [];
+  const reportedPaths = new Set(entries.map((entry) => toPosix(entry.path)));
   for (const entry of entries) {
     const p = toPosix(entry.path);
     if (isContainedInArtifact(scope.repoRealRoot, scope.artifactRealRoot, scope.artifactRelPosix, p)) continue;
@@ -851,6 +890,30 @@ export function detectNewOutOfScopeViolations(opts: DetectOptions): ContainmentV
       absolutePath: resolve(opts.repoRoot, p),
       kind: classifyViolation(entry.status),
       status: entry.status,
+    });
+  }
+  // The status pass can only see paths git still reports, and an untracked path the lane deleted
+  // is reported nowhere: its removal has no index entry to differ from. So the subtraction is
+  // walked in the other direction too -- a baseline entry the status pass did not account for, on
+  // a path that is no longer on disk, is a deletion this lane made.
+  for (const baseline of opts.preDispatchDirtyPaths) {
+    const p = toPosix(baseline.path);
+    // Only the untracked case. A path that was already dirty or deleted before dispatch stays
+    // subtracted exactly as it was, so a pre-existing deletion is never charged to this lane.
+    if (!baseline.untracked) continue;
+    if (reportedPaths.has(p)) continue;
+    if (isContainedInArtifact(scope.repoRealRoot, scope.artifactRealRoot, scope.artifactRelPosix, p)) continue;
+    if (isUnattributable(p, scope.unattributableRelPosix, scope.unattributableFileRelPosix)) continue;
+    // Absent from status is not enough on its own: a status call that failed open returns no
+    // entries at all, and an ignored path never had one. The path has to be gone from disk.
+    if (lstatSync(join(scope.repoRealRoot, p), { throwIfNoEntry: false }) !== undefined) continue;
+    violations.push({
+      path: p,
+      absolutePath: resolve(opts.repoRoot, p),
+      kind: 'deleted',
+      // The code the path carried in the baseline, which is the last one anyone observed.
+      status: '??',
+      ...(baseline.hash ? { baselineHash: baseline.hash } : {}),
     });
   }
   return violations;
@@ -1243,6 +1306,12 @@ export function quarantineViolations(input: {
  * bytes -- it is the last commit, and rolling back to it discards whatever a concurrent
  * editor had written before this lane started. A dirty path whose baseline holds no bytes
  * is left exactly as it is on disk, for the same reason.
+ *
+ * A not-in-HEAD path the lane DELETED is the other case a restore can act on: nothing is left
+ * on disk to preserve, and the baseline's captured bytes are the only source, so they are
+ * written back. With no bytes captured, nothing can be put back and the path is recorded as
+ * unrecoverable -- under 'preserve' too, since preserving a path that is already gone is not
+ * an action that can be taken.
  */
 export function revertOutOfScopeViolations(opts: {
   repoRoot: string;
@@ -1305,7 +1374,41 @@ export function revertOutOfScopeViolations(opts: {
       // window -- so treating it as this leaf's own and deleting it is unsound and
       // irreversible. Preserve it on disk and report it; the caller decides whether it
       // stays a non-fatal advisory or fails the iteration based on packet scope.
-      reverted.push({ path: violation.path, action: 'preserved_untracked', ok: true });
+      const baseline = baselineByPath.get(toPosix(violation.path));
+      const stillOnDisk =
+        lstatSync(join(opts.repoRoot, violation.path), { throwIfNoEntry: false }) !== undefined;
+      // The bytes a deletion can be put back from are the pre-dispatch ones, because HEAD never
+      // held this path. So an uncaptured baseline is not a cue to fall back to HEAD here; it
+      // means these bytes are simply beyond reach.
+      const baselineBytes =
+        mode === 'restore' && baseline !== undefined
+          ? readBaselineContent(baseline, opts.baselineContentRoot)
+          : null;
+      if (stillOnDisk) {
+        reverted.push({ path: violation.path, action: 'preserved_untracked', ok: true });
+      } else if (baselineBytes === null) {
+        reverted.push({
+          path: violation.path,
+          action: 'unrecoverable',
+          ok: false,
+          error: 'the path is gone and the baseline holds no bytes to write back',
+        });
+      } else {
+        try {
+          // The deletion may have taken the directory with it, so the chain the path was
+          // recorded under is recreated before its bytes are written back into it.
+          mkdirSync(dirname(join(opts.repoRoot, violation.path)), { recursive: true });
+          writeFileSync(join(opts.repoRoot, violation.path), baselineBytes);
+          reverted.push({ path: violation.path, action: 'restored_from_baseline', ok: true });
+        } catch (error) {
+          reverted.push({
+            path: violation.path,
+            action: 'restored_from_baseline',
+            ok: false,
+            error: `baseline restore failed: ${(error as Error).message}`,
+          });
+        }
+      }
     }
   }
   return { reverted };

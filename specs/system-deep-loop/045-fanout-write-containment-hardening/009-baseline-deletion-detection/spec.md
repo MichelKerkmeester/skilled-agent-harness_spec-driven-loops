@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 2: baseline-deletion-detection"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+description: "A file that was untracked at the pre-dispatch baseline and no longer exists after dispatch is detected as a deletion, restored from the captured baseline under restore, and recorded as unrecoverable otherwise."
 trigger_phrases:
   - "feature specification"
   - "problem statement"
@@ -21,10 +21,10 @@ contextType: "general"
 | Field | Value |
 |-------|-------|
 | **Level** | 2 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | Draft |
+| **Priority** | P0 |
+| **Status** | Complete |
 | **Created** | 2026-09-14 |
-| **Branch** | `scaffold/009-baseline-deletion-detection` |
+| **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 9 of 13 |
 | **Predecessor** | 008-quarantine-destination-canonical |
@@ -57,10 +57,10 @@ This is **Phase 9** of the Remediate the deep review findings on the fan-out wri
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+The detector iterated the post-dispatch git status and subtracted the baseline, so an untracked file present at baseline and deleted by the lane was absent from status and never seen. The no-deletion guarantee therefore had a blind spot exactly where a lane could destroy a neighbour's unsaved work. The deep review rated it P1.
 
 ### Purpose
-[One-sentence outcome statement. What does success look like?]
+A lane that deletes a neighbour's untracked file is reported, and the file comes back when a baseline copy exists.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -69,19 +69,21 @@ This is **Phase 9** of the Remediate the deep review findings on the fan-out wri
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- An `untracked` marker on baseline entries, recorded at the only moment it is observable
+- A reverse pass over the baseline reporting a gone untracked path as kind `deleted` with its baseline hash
+- Restore from the captured baseline copy, directory recreated, or an `unrecoverable` record
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+- Paths deleted before dispatch - still subtracted
+- Tracked deletions - already detected through git status
+- The event's data-loss flag - keyed on HEAD restores; noted, not widened here
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+| `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts` | Modify | Baseline entries carry `untracked`; detection walks the baseline for gone untracked paths; the revert restores from the baseline copy or records `unrecoverable` |
+| `.opencode/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts` | Modify | Three tests in a new describe block |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -93,13 +95,14 @@ This is **Phase 9** of the Remediate the deep review findings on the fan-out wri
 
 | ID | Requirement |
 |----|-------------|
-| REQ-001 | [Requirement description] |
+| REQ-001 | A baseline entry that was untracked, is absent from current status, outside the artifact tree, not unattributable, and no longer on disk is reported as a violation of kind `deleted` carrying the baseline hash |
+| REQ-002 | Under restore with a captured baseline copy the path is written back byte-identically, parent directories recreated; without a copy the action is `unrecoverable` under either remedy |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement |
 |----|-------------|
-| REQ-002 | [Requirement description] |
+| REQ-003 | A path deleted before dispatch and an untouched baseline untracked path are not reported |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
@@ -110,8 +113,8 @@ This is **Phase 9** of the Remediate the deep review findings on the fan-out wri
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: The preserve-mode deletion test fails against the unmodified detector and passes after
+- **SC-002**: The deep-loop runtime suite exits zero
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -121,8 +124,8 @@ This is **Phase 9** of the Remediate the deep review findings on the fan-out wri
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+| Risk | A failed status call manufactures deletions | Low | The on-disk check decides; a path still present is never reported |
+| Risk | A deletion is reported as fatal-class | Low | The runner already settles a complete lane with advisory; the finding never overwrites the verdict |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -135,16 +138,13 @@ This is **Phase 9** of the Remediate the deep review findings on the fan-out wri
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
-- **NFR-P01**: [Response time target - e.g., <200ms p95]
-- **NFR-P02**: [Throughput target - e.g., 100 req/sec]
+- **NFR-P01**: One lstat per baseline untracked entry after the status pass
 
 ### Security
-- **NFR-S01**: [Auth requirement - e.g., JWT tokens required]
-- **NFR-S02**: [Data protection - e.g., TLS + encrypted at rest]
+- **NFR-S01**: Restore writes only what the baseline captured, at the baseline path
 
 ### Reliability
-- **NFR-R01**: [Uptime target - e.g., 99.9%]
-- **NFR-R02**: [Error rate - e.g., <1%]
+- **NFR-R01**: Fail-open on git errors is preserved; the disk check guards against an empty status
 <!-- /ANCHOR:nfr -->
 
 ---
@@ -153,18 +153,17 @@ This is **Phase 9** of the Remediate the deep review findings on the fan-out wri
 ## L2: EDGE CASES
 
 ### Data Boundaries
-- Empty input: [How system handles]
-- Maximum length: [Limit and behavior]
-- Invalid format: [Validation response]
+- Directory removed with the file: parent chain recreated on restore
+- Binary content: restored byte-identically
+- Baseline entry with a truncated capture: unrecoverable
 
 ### Error Scenarios
-- External service failure: [Fallback behavior]
-- Network timeout: [Retry strategy]
-- Concurrent access: [Conflict resolution]
+- Status call failed open: nothing reported unless the path is truly gone
+- Ignored path: not in the baseline, never reported
 
 ### State Transitions
-- Partial completion: [Recovery behavior]
-- Session expiry: [User experience]
+- Partial completion: not affected
+- Session expiry: not applicable
 <!-- /ANCHOR:edge-cases -->
 
 ---
@@ -174,18 +173,17 @@ This is **Phase 9** of the Remediate the deep review findings on the fan-out wri
 
 | Dimension | Score | Notes |
 |-----------|-------|-------|
-| Scope | [/25] | [Files, LOC, systems] |
-| Risk | [/25] | [Auth, API, breaking changes] |
-| Research | [/20] | [Investigation needs] |
-| **Total** | **[/70]** | **Level 2** |
+| Scope | 6/25 | One module, one test file |
+| Risk | 10/25 | Detection gains a class in the shared guard |
+| Research | 3/20 | Finding located by the review |
+| **Total** | **19/70** | **Level 2** |
 <!-- /ANCHOR:complexity -->
 
 ---
 
 ## 10. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+- None open.
 <!-- /ANCHOR:questions -->
 
 ---
