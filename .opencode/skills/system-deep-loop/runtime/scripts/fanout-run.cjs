@@ -828,6 +828,14 @@ const LINEAGE_REGISTRY_FILES = {
   review: ['deep-review-findings-registry.json'],
 };
 
+// The findings field each loop type's registry aggregates. Research collects `keyFindings`;
+// review collects `openFindings`, so reading one loop's field for the other would report every
+// lane that did register findings as empty.
+const LINEAGE_REGISTRY_FINDINGS_FIELDS = {
+  research: 'keyFindings',
+  review: 'openFindings',
+};
+
 // Count the finding rows a lane recorded across its delta files. Rows other than findings are
 // ignored: only findings are what the registry exists to aggregate.
 function countDeltaFindingRecords(lineageDir) {
@@ -858,7 +866,8 @@ function countDeltaFindingRecords(lineageDir) {
   return count;
 }
 
-function hasLineageKeyFindings(loopType, lineageDir) {
+function hasLineageRegisteredFindings(loopType, lineageDir) {
+  const findingsField = LINEAGE_REGISTRY_FINDINGS_FIELDS[loopType];
   for (const registryName of LINEAGE_REGISTRY_FILES[loopType] ?? []) {
     const registryPath = path.join(lineageDir, registryName);
     if (!hasNonEmptyFile(registryPath)) {
@@ -866,7 +875,7 @@ function hasLineageKeyFindings(loopType, lineageDir) {
     }
     try {
       const registry = JSON.parse(fs.readFileSync(registryPath, 'utf8'));
-      if (hasNonEmptyArrayField(registry?.keyFindings)) {
+      if (findingsField && hasNonEmptyArrayField(registry?.[findingsField])) {
         return true;
       }
     } catch {
@@ -880,7 +889,7 @@ function hasLineageKeyFindings(loopType, lineageDir) {
 // or null when the lane either recorded no findings or registered some.
 function findEmptyLineageRegistry(loopType, lineageDir) {
   const deltaFindingCount = countDeltaFindingRecords(lineageDir);
-  if (deltaFindingCount === 0 || hasLineageKeyFindings(loopType, lineageDir)) {
+  if (deltaFindingCount === 0 || hasLineageRegisteredFindings(loopType, lineageDir)) {
     return null;
   }
   return { delta_finding_count: deltaFindingCount };
@@ -3748,6 +3757,7 @@ module.exports = {
   runLineageProcess,
   forcedDepthIterationViolation,
   retainIterationRecords,
+  findEmptyLineageRegistry,
   iterationNumbersOnDisk,
   DEVIN_ALLOWED_MODELS,
   DEVIN_DEFAULT_MODEL,

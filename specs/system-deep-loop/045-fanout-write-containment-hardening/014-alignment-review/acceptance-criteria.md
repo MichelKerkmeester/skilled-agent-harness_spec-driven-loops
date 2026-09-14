@@ -1,5 +1,5 @@
 ---
-title: "Acceptance Criteria: Phase 6: review-lane-advisory-and-strict-config"
+title: "Acceptance Criteria: Phase 1: alignment-review"
 description: "The criteria this packet must satisfy before it may be closed, each one met, waived by a decision record, or superseded by one."
 trigger_phrases:
   - "acceptance criteria"
@@ -10,23 +10,23 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/045-fanout-write-containment-hardening/013-review-lane-advisory-and-strict-config"
-    last_updated_at: "2026-09-14T17:44:17Z"
-    last_updated_by: "claude-fable-5-1"
+    packet_pointer: "scaffold/014-alignment-review"
+    last_updated_at: "2026-09-14T22:56:44Z"
+    last_updated_by: "scaffold"
     recent_action: "Authored the acceptance criteria for this packet"
     next_safe_action: "Meet, waive or supersede the open criteria"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "2026-09-14-013-review-lane-advisory-and-strict-config"
+      session_id: "[SESSION-ID]"
       parent_session_id: null
-    completion_pct: 100
+    completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: acceptance-criteria | v2.2 -->
-# Acceptance Criteria: Phase 6: review-lane-advisory-and-strict-config
+# Acceptance Criteria: Phase 1: alignment-review
 
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 
@@ -39,9 +39,9 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-deep-loop/045-fanout-write-containment-hardening/013-review-lane-advisory-and-strict-config
-**Level:** 2
-**Status:** Complete
+**Packet:** [PACKET-ID]
+**Level:** [2/3/3+]
+**Status:** [Draft/In Progress/Complete]
 **Date:** 2026-09-14
 <!-- /ANCHOR:metadata -->
 
@@ -54,9 +54,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given a review lane with open findings, When it settles, Then no empty-registry warning is raised; a research lane with deltas and no key findings still warns | `fanout-run.vitest.ts:4663` and `:4728`; the review fixture warned against the unmodified runner | Met | - |
-| AC-002 | REQ-002 | Given a config with `containment.worktrees`, When parsed, Then it is rejected with a message naming the key, in both shapes | `executor-config.vitest.ts:526`; accepted silently before | Met | - |
-| AC-003 | REQ-003 | Given the two retained review lineages, When the check is replayed, Then both return no warning | `045-fanout-write-containment-hardening/review/lineages/deepseek/deep-review-findings-registry.json:1` and `review/lineages/luna/deep-review-findings-registry.json:1` replayed through the exported check: `deepseek: null`, `luna: null` | Met | - |
+| AC-001 | REQ-001 | Given [context], When [action], Then [observable outcome] | [command, file:line, or artifact that proves it] | Unmet | - |
 
 ### Status values
 

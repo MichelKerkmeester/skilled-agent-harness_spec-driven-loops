@@ -120,6 +120,7 @@ Follow-on work the alternatives research surfaced. Each phase is one fix, dispat
 | 010-containment-on-failed-lanes | 011-restore-never-through-symlink | [Criteria TBD] | [Verification TBD] |
 | 011-restore-never-through-symlink | 012-quarantine-retention-per-pass | [Criteria TBD] | [Verification TBD] |
 | 012-quarantine-retention-per-pass | 013-review-lane-advisory-and-strict-config | [Criteria TBD] | [Verification TBD] |
+| 013-review-lane-advisory-and-strict-config | 014-alignment-review | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->
 
 ---

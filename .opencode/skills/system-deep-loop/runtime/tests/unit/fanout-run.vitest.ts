@@ -4658,3 +4658,134 @@ describe('fanout-run.cjs — a fulfilled lane whose deltas carry findings but wh
     });
   });
 });
+
+describe('fanout-run.cjs — the empty-registry advisory reads the registry shape of the loop it inspects', () => {
+  it('stays silent for a review lane whose registry carries open findings', async () => {
+    const hermetic = useHermeticEnv('review-open-findings-registry');
+    const repoRoot = hermetic.tmpDir;
+    const binDir = makeTempDir('fanout-run-review-registry-bin-');
+    const specFolder = 'specs/test-fanout-run-review-registry';
+    const baseDir = join(repoRoot, specFolder, 'review', 'artifacts');
+
+    mkdirSync(baseDir, { recursive: true });
+
+    // A review lane registers its findings under `openFindings`, not the research
+    // `keyFindings`; a lane that wrote them there while its deltas also carry finding
+    // rows has a populated registry and must not be reported as empty.
+    writeFileSync(
+      join(binDir, 'opencode'),
+      [
+        '#!/bin/sh',
+        writeFanoutArtifactsShell(),
+        'if [ -n "$lineage_dir" ]; then',
+        '  mkdir -p "$lineage_dir/deltas"',
+        '  printf \'{"openFindings":[{"findingId":"F-001"}],"openFindingsCount":1}\\n\' > "$lineage_dir/deep-review-findings-registry.json"',
+        '  i=1',
+        '  while [ "$i" -le 3 ]; do',
+        '    printf \'{"type":"finding","id":"f-%s","label":"delta finding %s"}\\n\' "$i" "$i" > "$lineage_dir/deltas/iter-00$i.jsonl"',
+        '    i=$((i + 1))',
+        '  done',
+        'fi',
+        'echo "stub-done"',
+        'exit 0',
+        '',
+      ].join('\n'),
+      { mode: 0o755 },
+    );
+
+    const fanoutConfig = JSON.stringify({
+      executors: [{ label: 'review-registry', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', count: 1 }],
+      concurrency: 1,
+    });
+
+    const result = await spawnCjs(
+      fanoutRunScript,
+      [
+        '--spec-folder', specFolder,
+        '--loop-type', 'review',
+        '--fanout-config-json', fanoutConfig,
+        '--base-artifact-dir', baseDir,
+        '--no-metadata-refresh',
+      ],
+      { cwd: repoRoot, env: envWithBin(hermetic, binDir), timeoutMs: 20_000 },
+    );
+
+    expect(result.exitCode, `${result.stdout}\n${result.stderr}`).toBe(0);
+    const payload = JSON.parse(result.stdout.split('\n').filter(Boolean).at(-1) ?? '{}') as {
+      results?: Array<{ status?: string }>;
+      summary?: { succeeded?: number; failed?: number; all_failed?: boolean };
+    };
+    expect(payload.summary).toMatchObject({ succeeded: 1, failed: 0, all_failed: false });
+    expect(payload.results?.[0]?.status).toBe('fulfilled');
+
+    const ledgerLines = readFileSync(join(baseDir, 'orchestration-status.log'), 'utf8')
+      .trim()
+      .split('\n')
+      .map((line) => JSON.parse(line) as Record<string, unknown>);
+    expect(ledgerLines.filter((event) => event.event === 'lineage_registry_empty')).toHaveLength(0);
+  });
+
+  it('stays silent for a research lane whose registry carries key findings', async () => {
+    const hermetic = useHermeticEnv('research-key-findings-registry');
+    const repoRoot = hermetic.tmpDir;
+    const binDir = makeTempDir('fanout-run-research-registry-bin-');
+    const specFolder = 'specs/test-fanout-run-research-registry';
+    const baseDir = join(repoRoot, specFolder, 'research', 'artifacts');
+
+    mkdirSync(baseDir, { recursive: true });
+
+    // Research lanes register their findings under `keyFindings`; that field is still
+    // evidence of a populated registry, so only the review shape changed.
+    writeFileSync(
+      join(binDir, 'opencode'),
+      [
+        '#!/bin/sh',
+        writeFanoutArtifactsShell(),
+        'if [ -n "$lineage_dir" ]; then',
+        '  mkdir -p "$lineage_dir/deltas"',
+        '  printf \'{"keyFindings":[{"id":"K-001"}]}\\n\' > "$lineage_dir/findings-registry.json"',
+        '  i=1',
+        '  while [ "$i" -le 3 ]; do',
+        '    printf \'{"type":"finding","id":"f-%s","label":"delta finding %s"}\\n\' "$i" "$i" > "$lineage_dir/deltas/iter-00$i.jsonl"',
+        '    i=$((i + 1))',
+        '  done',
+        'fi',
+        'echo "stub-done"',
+        'exit 0',
+        '',
+      ].join('\n'),
+      { mode: 0o755 },
+    );
+
+    const fanoutConfig = JSON.stringify({
+      executors: [{ label: 'research-registry', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', count: 1 }],
+      concurrency: 1,
+    });
+
+    const result = await spawnCjs(
+      fanoutRunScript,
+      [
+        '--spec-folder', specFolder,
+        '--loop-type', 'research',
+        '--fanout-config-json', fanoutConfig,
+        '--base-artifact-dir', baseDir,
+        '--no-metadata-refresh',
+      ],
+      { cwd: repoRoot, env: envWithBin(hermetic, binDir), timeoutMs: 20_000 },
+    );
+
+    expect(result.exitCode, `${result.stdout}\n${result.stderr}`).toBe(0);
+    const payload = JSON.parse(result.stdout.split('\n').filter(Boolean).at(-1) ?? '{}') as {
+      results?: Array<{ status?: string }>;
+      summary?: { succeeded?: number; failed?: number; all_failed?: boolean };
+    };
+    expect(payload.summary).toMatchObject({ succeeded: 1, failed: 0, all_failed: false });
+    expect(payload.results?.[0]?.status).toBe('fulfilled');
+
+    const ledgerLines = readFileSync(join(baseDir, 'orchestration-status.log'), 'utf8')
+      .trim()
+      .split('\n')
+      .map((line) => JSON.parse(line) as Record<string, unknown>);
+    expect(ledgerLines.filter((event) => event.event === 'lineage_registry_empty')).toHaveLength(0);
+  });
+});

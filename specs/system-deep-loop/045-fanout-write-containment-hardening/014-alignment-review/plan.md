@@ -1,6 +1,6 @@
 ---
-title: "Implementation Plan: Phase 6: review-lane-advisory-and-strict-config"
-description: "Map the registry field per loop type in the advisory, make the containment schema strict, and name the failing branch so an unknown key surfaces."
+title: "Implementation Plan: Phase 1: alignment-review"
+description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
   - "implementation plan"
   - "technical approach"
@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: Phase 6: review-lane-advisory-and-strict-config
+# Implementation Plan: Phase 1: alignment-review
 
 <!-- SPECKIT_LEVEL: 2 -->
 
@@ -23,13 +23,13 @@ contextType: "general"
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | TypeScript (ESM) plus a CommonJS runner script |
-| **Framework** | None |
-| **Storage** | Git working tree, JSONL state and status ledgers |
-| **Testing** | Vitest |
+| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
+| **Framework** | [e.g., React, FastAPI] |
+| **Storage** | [e.g., PostgreSQL, None] |
+| **Testing** | [e.g., Jest, pytest] |
 
 ### Overview
-The advisory looks up the field for the loop it inspects. The containment schema refuses unknown keys, and because the fan-out config is a union whose failures collapse to a bare message, the parser reports the closest branch's issue so the key name reaches the thrown error.
+[2-3 sentences: what this implements and the technical approach]
 <!-- /ANCHOR:summary -->
 
 ---
@@ -38,14 +38,14 @@ The advisory looks up the field for the loop it inspects. The containment schema
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [x] Problem statement clear and scope documented
-- [x] Success criteria measurable
-- [x] Dependencies identified
+- [ ] Problem statement clear and scope documented
+- [ ] Success criteria measurable
+- [ ] Dependencies identified
 
 ### Definition of Done
-- [x] All acceptance criteria met
-- [x] Tests passing (if applicable)
-- [x] Docs updated (spec/plan/tasks)
+- [ ] All acceptance criteria met
+- [ ] Tests passing (if applicable)
+- [ ] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -54,15 +54,14 @@ The advisory looks up the field for the loop it inspects. The containment schema
 ## 3. ARCHITECTURE
 
 ### Pattern
-Per-loop field map; strict schema with branch-aware error
+[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
 
 ### Key Components
-- **hasLineageRegisteredFindings**: Reads the loop's registry field
-- **containment strict schema**: Rejects unknown keys
-- **normalizeFanoutUnionIssue**: Surfaces the closest branch's message
+- **[Component 1]**: [Purpose]
+- **[Component 2]**: [Purpose]
 
 ### Data Flow
-Settled lane → registry field by loop → warning or silence. Config → union parse → closest branch issue → error naming the key.
+[Brief description of how data moves through the system]
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -70,16 +69,18 @@ Settled lane → registry field by loop → warning or silence. Config → union
 <!-- ANCHOR:affected-surfaces -->
 ## FIX ADDENDUM: AFFECTED SURFACES
 
+Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
+
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| Empty-registry advisory | Checked the research field for every loop | update | fanout-run.vitest.ts:4663, :4728 |
-| Containment schema | Accepted unknown keys | update | executor-config.vitest.ts:526 |
-| Retained review lineages | Raised false warnings | re-checked | both return null |
+| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
+| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
 
 Required inventories:
-- Consumers of the advisory: the ledger; unchanged shape.
-- Consumers of the schema error: the runner's input error path; message now names the key.
-- Matrix axes: loop (research, review) x registry (findings, empty) x config shape (legacy, manifest).
+- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
+- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
+- Matrix axes: list every independent input axis and the required rows before implementation.
+- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
 <!-- /ANCHOR:affected-surfaces -->
 
 
@@ -98,9 +99,9 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | Advisory silence per loop, research warning | Vitest |
-| Unit | Rejected key in both shapes | Vitest |
-| Replay | Two retained review lineages | node one-liner |
+| Unit | [Components/functions] | [Jest/pytest/etc.] |
+| Integration | [API endpoints/flows] | [Tools] |
+| Manual | [User journeys] | Browser |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -110,7 +111,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| None | - | Green | - |
+| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -118,8 +119,8 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: A legitimate config key is refused
-- **Procedure**: Revert this phase's commit
+- **Trigger**: [Conditions requiring rollback]
+- **Procedure**: [How to revert changes]
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -151,10 +152,10 @@ Phase 1.5 (Config) ───┘
 
 | Phase | Complexity | Estimated Effort |
 |-------|------------|------------------|
-| Setup | Low | minutes |
-| Core Implementation | Low | one dispatch |
-| Verification | Med | full suite run |
-| **Total** | | **one dispatch plus one suite run** |
+| Setup | [Low/Med/High] | [e.g., 1-2 hours] |
+| Core Implementation | [Low/Med/High] | [e.g., 4-8 hours] |
+| Verification | [Low/Med/High] | [e.g., 1-2 hours] |
+| **Total** | | **[e.g., 6-12 hours]** |
 <!-- /ANCHOR:effort -->
 
 ---

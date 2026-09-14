@@ -798,7 +798,9 @@ const fanoutControlShape = {
   progressHeartbeatSeconds: z.number().nonnegative().default(60),
   // Preserve is the default because attribution on a shared checkout is a guess, and a
   // restore acts on that guess by overwriting the bytes found on disk; restore is opt-in.
-  containment: z.object({
+  // Strict: an unknown key in this block is usually a removed option the caller still
+  // believes in, and a silently stripped key would run with none of the guard they named.
+  containment: z.strictObject({
     mode: z.enum(['preserve', 'restore']).default('preserve'),
     // How many newly dirty paths outside the lineage, per progress heartbeat, mean a
     // second writer shares this checkout. A couple of them is ordinary life on a
@@ -931,6 +933,23 @@ export function compileFanoutManifest(manifest: FanoutManifest): LineageExecutor
 }
 
 /**
+ * Surface the fan-out union branch that matched the input most closely.
+ *
+ * Zod reports a failed union as one issue whose message is only "Invalid input", while
+ * the per-branch issues that name the offending field live in `issue.errors`. The branch
+ * with the fewest issues recognized the most of the input, so reporting it keeps a single
+ * unknown or mistyped key visible instead of hiding it behind the union wrapper.
+ */
+function normalizeFanoutUnionIssue(issue: z.ZodIssue): ExecutorConfigIssue[] {
+  if (issue.code !== 'invalid_union' || issue.errors.length === 0) {
+    return [{ path: issue.path, message: issue.message }];
+  }
+  const closest = issue.errors.reduce((best, candidate) =>
+    (candidate.length < best.length ? candidate : best));
+  return closest.flatMap(normalizeFanoutUnionIssue);
+}
+
+/**
  * Parse and validate a raw fan-out configuration.
  *
  * Each entry's executor subset is routed through {@link parseExecutorConfig} so
@@ -944,7 +963,7 @@ export function compileFanoutManifest(manifest: FanoutManifest): LineageExecutor
 export function parseFanoutConfig(raw: unknown): FanoutConfig {
   const parsed = fanoutConfigSchema.safeParse(raw);
   if (!parsed.success) {
-    throw new ExecutorConfigError({ issues: parsed.error.issues.map((issue) => ({ path: issue.path, message: issue.message })) });
+    throw new ExecutorConfigError({ issues: parsed.error.issues.flatMap(normalizeFanoutUnionIssue) });
   }
 
   const parsedConfig = parsed.data;
