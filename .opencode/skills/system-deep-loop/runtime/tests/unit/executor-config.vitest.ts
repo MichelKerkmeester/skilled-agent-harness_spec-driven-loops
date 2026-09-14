@@ -447,14 +447,18 @@ describe('parseFanoutConfig', () => {
     })).toThrow(ExecutorConfigError);
   });
 
-  it('defaults worktree isolation on and lets the config opt a run out', () => {
-    // Isolation is the structural fix for a shared checkout, so it is on unless a caller
-    // asks otherwise; an explicit false is the config-level opt-out.
-    expect(parseFanoutConfig({ executors: [{ kind: 'native', label: 'opus' }] }).containment.worktrees).toBe(true);
-    // The prefault keeps the default when the containment object is partial: a caller that only
-    // sets the mode still gets isolation.
+  it('defaults worktree isolation off and lets the config opt a run in', () => {
+    // Isolation costs roughly 1.6 GB of checkout per lane, so it is chosen per run rather than
+    // inherited by every run; an explicit true is the config-level opt-in.
+    expect(parseFanoutConfig({ executors: [{ kind: 'native', label: 'opus' }] }).containment.worktrees).toBe(false);
+    // A partial containment object keeps the default: a caller that only sets the mode has not
+    // asked for a tree.
     expect(parseFanoutConfig({
       containment: { mode: 'restore' },
+      executors: [{ kind: 'native', label: 'opus' }],
+    }).containment.worktrees).toBe(false);
+    expect(parseFanoutConfig({
+      containment: { worktrees: true },
       executors: [{ kind: 'native', label: 'opus' }],
     }).containment.worktrees).toBe(true);
     expect(parseFanoutConfig({

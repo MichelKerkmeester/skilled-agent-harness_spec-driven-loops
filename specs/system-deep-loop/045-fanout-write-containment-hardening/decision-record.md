@@ -522,3 +522,15 @@ An attempt that is isolated and whose spawn cwd is still the containment repo ro
 
 **How to roll back**: delete the watch predicate and its check block; nothing else depends on it, and no schema field changed.
 <!-- /ANCHOR:adr-005 -->
+
+---
+
+## ADR-006: Worktree isolation returns to off by default
+
+**Status:** Accepted, 2026-09-14. Supersedes the default set by ADR-004; the mechanism, the tally and the checkout watch are unchanged.
+
+**Context.** ADR-004 turned isolation on for every lane. The cost was measured afterwards on this repository, not before: 1.6 GB of checked-out files per lane, and about 22 seconds of setup per lane at six lanes. The operator judged that a cost to choose per run rather than one every run inherits.
+
+**Decision.** The schema default is `false`. A run opts in with `--worktrees true` or the config field. Nothing else moves: a lane that opts in gets the same isolation, tally and watch it had under ADR-004.
+
+**Consequences.** A default run is back on the shared checkout, guarded by preserve-by-default containment and the churn detector rather than by a tree of its own. The evidence for either default is now recorded, so a future flip is a decision about cost, not about whether the mechanism works.

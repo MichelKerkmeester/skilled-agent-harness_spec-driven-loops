@@ -3016,7 +3016,9 @@ async function main() {
   let containmentMode = containmentModeOverride ?? parsedFanoutConfig.containment.mode ?? 'preserve';
   const containmentChurnThreshold = parsedFanoutConfig.containment.churnThreshold;
   // Same resolution order as the containment mode above: the flag, then the config, then the
-  // schema default, which is on: every lane is isolated unless a caller opts out.
+  // schema default, which is off: a lane runs in the shared checkout unless a caller opts in.
+  // Isolation was measured at roughly 1.6 GB of checkout per lane; that is a cost to choose,
+  // not one to inherit.
   const worktreesEnabled = normalizeWorktreesOption(args.worktrees)
     ?? parsedFanoutConfig.containment.worktrees;
   // One count per dispatch attempt, written where the attempt's tree is decided: a retried lane

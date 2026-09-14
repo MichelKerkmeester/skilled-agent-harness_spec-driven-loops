@@ -704,7 +704,7 @@ const fanoutControlShape = {
     // because preserve bounds the damage while isolation removes it. A lane whose tree
     // cannot be made degrades to the shared checkout, and the run summary counts those, so
     // an unisolated run is visible instead of silent. --worktrees false opts a run out.
-    worktrees: z.boolean().default(true),
+    worktrees: z.boolean().default(false),
   // `prefault` rather than `default`: Zod returns a default unparsed, so a literal that names
   // only some fields would leave the rest undefined at runtime while the type claims them all.
   }).prefault({ mode: 'preserve', churnThreshold: 3 }),

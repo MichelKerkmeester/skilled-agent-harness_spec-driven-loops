@@ -4149,7 +4149,7 @@ const writeTreeEscapingStub = (binDir: string, specFolder: string, escapedPath: 
 };
 
 describe('fanout-run.cjs — worktree isolation is on by default and off on request', () => {
-  it('isolates with no flag at all, and reports it in the run summary', async () => {
+  it('runs in the shared checkout with no flag at all, and reports that isolation was off', async () => {
     const fixture = prepareWorktreeRepo('worktrees-default');
     writeTreeReportingStub(fixture.binDir, fixture.specFolder);
 
@@ -4166,19 +4166,18 @@ describe('fanout-run.cjs — worktree isolation is on by default and off on requ
     );
 
     expect(result.exitCode, `${result.stdout}\n${result.stderr}`).toBe(0);
-    // Neither the flag nor the config asked for anything, and the lane still ran in a tree
-    // of its own: the schema default is the only thing that could have decided it.
+    // Neither the flag nor the config asked for a tree, and the lane ran where it always did:
+    // the schema default is off, because a tree costs roughly 1.6 GB per lane and is chosen
+    // per run rather than inherited by every run.
     const published = readdirSync(join(fixture.baseDir, 'lineages'));
     expect(published).toHaveLength(1);
-    expect(published[0]).toMatch(/-contained$/);
     const treeRoot = readFileSync(join(fixture.baseDir, 'lineages', published[0], 'tree-root.txt'), 'utf8').trim();
-    expect(isPathInside(treeRoot, fixture.worktreeBase)).toBe(true);
+    expect(isPathInside(treeRoot, fixture.worktreeBase)).toBe(false);
+    expect(existsSync(fixture.worktreeBase)).toBe(false);
     const summary = JSON.parse(readFileSync(join(fixture.baseDir, 'orchestration-summary.json'), 'utf8')) as {
-      isolation: { enabled: boolean; isolated: number; degraded: number; checkout_watched: number; checkout_writes: number };
+      isolation: { enabled: boolean };
     };
-    // The lane is a directory-flag kind, so its process cwd stayed in the checkout: the watch
-    // ran, saw nothing, and the run still reports that it looked.
-    expect(summary.isolation).toEqual({ enabled: true, isolated: 1, degraded: 0, checkout_watched: 1, checkout_writes: 0 });
+    expect(summary.isolation.enabled).toBe(false);
   });
 
   it('watches the shared checkout for an isolated lane whose process cwd stays there, and reports the write it sees', async () => {
@@ -4192,6 +4191,7 @@ describe('fanout-run.cjs — worktree isolation is on by default and off on requ
         '--loop-type', 'research',
         '--fanout-config-json', fixture.fanoutConfig,
         '--base-artifact-dir', fixture.baseDir,
+        '--worktrees',
         '--no-metadata-refresh',
       ],
       { cwd: fixture.repoRoot, env: fixture.env, timeoutMs: 20_000 },
