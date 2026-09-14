@@ -4882,3 +4882,124 @@ describe('fanout-run.cjs — a retry of a lane whose tree was retained gets its 
     expect(readFileSync(join(retainedLineageDir, 'publish-manifest.json'), 'utf8')).toBe('unfinished-copy\n');
   });
 });
+
+// ─────────────────────────────────────────────────────────────────────────────
+// A containment snapshot that loses every retry to a neighbour's .git/index.lock
+// returns what a clean tree returns. The run must still complete, and the loss must
+// reach the orchestration ledger instead of staying invisible.
+// ─────────────────────────────────────────────────────────────────────────────
+
+describe('fanout-run.cjs — a containment snapshot that loses to index.lock is reported', () => {
+  function resolveRealGit(): string {
+    const resolved = spawnSync('sh', ['-c', 'command -v git'], { encoding: 'utf8' }).stdout.trim();
+    if (resolved === '') throw new Error('git is not on PATH');
+    return resolved;
+  }
+
+  /**
+   * A `git` that fails `status` while the lock file exists, and delegates everything else.
+   *
+   * Current git skips its optional index refresh when the lock is held and exits 0, so a
+   * held lock alone no longer produces the non-zero "Unable to create '.../index.lock'"
+   * exit the retry exists for; the shim reproduces that exit for the one call the run
+   * drives, while every other call stays on real git.
+   */
+  function writeLockFailingGitShim(shimDir: string, lockPath: string): void {
+    writeFileSync(
+      join(shimDir, 'git'),
+      [
+        '#!/bin/sh',
+        `LOCK=${shellQuote(lockPath)}`,
+        'for arg in "$@"; do',
+        '  if [ "$arg" = "status" ] && [ -e "$LOCK" ]; then',
+        `    echo "fatal: Unable to create '${lockPath}': File exists." >&2`,
+        '    exit 128',
+        '  fi',
+        'done',
+        `exec ${shellQuote(resolveRealGit())} "$@"`,
+        '',
+      ].join('\n'),
+      { mode: 0o755 },
+    );
+  }
+
+  it('completes the run and records a containment_git_contention warning naming the status call', async () => {
+    const hermetic = useHermeticEnv('containment-git-contention');
+    const repoRoot = hermetic.tmpDir;
+    const binDir = makeTempDir('fanout-run-lock-contention-bin-');
+    const shimDir = makeTempDir('fanout-run-lock-contention-shim-');
+    const specFolder = 'specs/test-fanout-run-lock-contention';
+    const baseDir = join(repoRoot, specFolder, 'research', 'artifacts');
+    const lockPath = join(repoRoot, '.git', 'index.lock');
+
+    // git resolves its target repository from these vars in preference to the working
+    // directory, so an inherited one would send the fixture's checks into the repository
+    // this test itself runs from.
+    const env: NodeJS.ProcessEnv = { ...envWithBin(hermetic, binDir), DEEP_LOOP_REPO_ROOT: repoRoot };
+    for (const key of ['GIT_DIR', 'GIT_WORK_TREE', 'GIT_COMMON_DIR', 'GIT_INDEX_FILE', 'GIT_CEILING_DIRECTORIES']) {
+      delete env[key];
+    }
+    expect(spawnSync('git', ['init', '-q', repoRoot], { encoding: 'utf8', env }).status).toBe(0);
+    spawnSync('git', ['-C', repoRoot, 'config', 'core.excludesFile', '/dev/null'], { encoding: 'utf8', env });
+    mkdirSync(join(baseDir, 'lineages', 'contained'), { recursive: true });
+
+    // The status shim rides in front of the stub binaries, so the run's containment
+    // calls resolve it while the stub itself is found as usual.
+    writeLockFailingGitShim(shimDir, lockPath);
+    env.PATH = `${shimDir}:${env.PATH ?? ''}`;
+
+    // The stub leaves the lock behind for the post-dispatch snapshot to lose to. The
+    // heartbeat is spaced out so no churn sample can spend the same budget mid-run.
+    writeFileSync(
+      join(binDir, 'opencode'),
+      [
+        '#!/bin/sh',
+        `touch ${shellQuote(lockPath)}`,
+        writeFanoutArtifactsShell(),
+        'echo "stub-done"',
+        'exit 0',
+        '',
+      ].join('\n'),
+      { mode: 0o755 },
+    );
+
+    const fanoutConfig = JSON.stringify({
+      executors: [{ label: 'contained', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', count: 1 }],
+      concurrency: 1,
+      progressHeartbeatSeconds: 30,
+    });
+
+    const result = await spawnCjs(
+      fanoutRunScript,
+      [
+        '--spec-folder', specFolder,
+        '--loop-type', 'research',
+        '--fanout-config-json', fanoutConfig,
+        '--base-artifact-dir', baseDir,
+        // The lock lives in the checkout, so the lane has to run there for the snapshot to hit it.
+        '--worktrees', 'false',
+        '--no-metadata-refresh',
+      ],
+      { cwd: repoRoot, env, timeoutMs: 30_000 },
+    );
+
+    // Fails open, so the lane still completes; the loss is recorded, not escalated.
+    expect(result.exitCode, `${result.stdout}\n${result.stderr}`).toBe(0);
+    const payload = JSON.parse(result.stdout.split('\n').filter(Boolean).at(-1) ?? '{}') as {
+      results?: Array<{ status?: string }>;
+      summary?: { succeeded?: number; failed?: number; all_failed?: boolean };
+    };
+    expect(payload.summary).toMatchObject({ succeeded: 1, failed: 0, all_failed: false });
+    expect(payload.results?.[0]?.status).toBe('fulfilled');
+
+    const ledgerLines = readFileSync(join(baseDir, 'orchestration-status.log'), 'utf8')
+      .trim()
+      .split('\n')
+      .map((line) => JSON.parse(line) as Record<string, unknown>);
+    const contentionEvents = ledgerLines.filter((event) => event.event === 'containment_git_contention');
+    expect(contentionEvents).toHaveLength(1);
+    expect(contentionEvents[0]).toMatchObject({ severity: 'warning', label: 'contained', iteration: 1 });
+    expect(String(contentionEvents[0].command)).toContain('status');
+    expect(String(contentionEvents[0].command)).toContain('--porcelain=v1');
+  });
+});

@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Retry a git call that lost an index.lock race with another session, and record on the ledger when one still failed"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+description: "A git call inside write containment that loses to another session's index.lock retries with backoff before failing open, and an exhausted retry is recorded on the fan-out ledger as a warning naming the command."
 trigger_phrases:
   - "feature specification"
   - "problem statement"
@@ -21,10 +21,10 @@ contextType: "general"
 | Field | Value |
 |-------|-------|
 | **Level** | 2 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | Draft |
+| **Priority** | P0 |
+| **Status** | Complete |
 | **Created** | 2026-09-14 |
-| **Branch** | `scaffold/008-index-lock-retry` |
+| **Branch** | `skilled/v4.0.0.0` |
 | **Parent** | `../spec.md` |
 | **Predecessor** | `../003-publish-manifest-provenance/spec.md` |
 <!-- /ANCHOR:metadata -->
@@ -35,10 +35,10 @@ contextType: "general"
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+Every git call in the containment guard returned an empty result on any non-zero exit and discarded stderr, and every caller read empty as a clean tree. A neighbouring session holding `.git/index.lock` for a moment therefore made a snapshot or a detection silently empty, indistinguishable from a genuinely clean checkout.
 
 ### Purpose
-[One-sentence outcome statement. What does success look like?]
+Lock contention is waited out, and when it cannot be, the loss is visible on the ledger instead of looking like a clean tree.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -47,19 +47,23 @@ contextType: "general"
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- A retrying git spawn in the containment module, retrying only index.lock losses
+- A module-level drain of exhausted losses, and ledger warnings from the runner after each containment call
+- Tests for the waited-out lock, the exhausted budget, and the ledger warning
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+- Other non-zero git exits - they are not transient and keep failing open on the first attempt
+- The lane verdict - contention never changes it
+- Git's own behaviour under a held lock - noted below as a test limitation
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+| `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts` | Modify | `spawnGit` retries index.lock losses with 250, 500, 1000, 2000 ms backoff; the two direct hash-object spawns use it; `drainGitContentionWarnings()` exported |
+| `.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` | Modify | Drains after each snapshot and the enforce call; appends `containment_git_contention` warnings to the ledger |
+| `.opencode/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts` | Modify | Two new tests with a real held lock |
+| `.opencode/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts` | Modify | One stub-lane test asserting the ledger warning |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -71,13 +75,14 @@ contextType: "general"
 
 | ID | Requirement |
 |----|-------------|
-| REQ-001 | [Requirement description] |
+| REQ-001 | A git call whose stderr names index.lock retries with bounded backoff; a call that fails for any other reason returns on its first attempt exactly as before |
+| REQ-002 | A call that spends its whole budget is recorded with its argv and attempt count, retrievable once through a drain |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement |
 |----|-------------|
-| REQ-002 | [Requirement description] |
+| REQ-003 | The runner drains after each containment call and appends a `containment_git_contention` warning per entry; the lane's verdict is unchanged |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
@@ -88,8 +93,9 @@ contextType: "general"
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: A lock held for two seconds no longer yields an empty snapshot
+- **SC-002**: A lock held past the budget yields exactly one ledger warning and the lane completes
+- **SC-003**: The deep-loop runtime suite exits zero
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -99,8 +105,8 @@ contextType: "general"
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+| Risk | Retry stalls the loop | Low | The budget sums to under four seconds; unrelated failures never retry |
+| Risk | Apple Git 2.50 skips the status refresh under a held lock, so `git status` does not reproduce the fatal on this machine | Med | Tests hold a real lock and shim only `git status` to emit the fatal; `git checkout` reproduces it for real and goes through the same wrapper |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -113,16 +119,13 @@ contextType: "general"
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
-- **NFR-P01**: [Response time target - e.g., <200ms p95]
-- **NFR-P02**: [Throughput target - e.g., 100 req/sec]
+- **NFR-P01**: No delay unless a call actually loses to index.lock; worst case under 4.5 s per call
 
 ### Security
-- **NFR-S01**: [Auth requirement - e.g., JWT tokens required]
-- **NFR-S02**: [Data protection - e.g., TLS + encrypted at rest]
+- **NFR-S01**: The recorded command is git's argv, nothing more
 
 ### Reliability
-- **NFR-R01**: [Uptime target - e.g., 99.9%]
-- **NFR-R02**: [Error rate - e.g., <1%]
+- **NFR-R01**: Fail-open is preserved; the guard never throws on contention
 <!-- /ANCHOR:nfr -->
 
 ---
@@ -131,18 +134,17 @@ contextType: "general"
 ## L2: EDGE CASES
 
 ### Data Boundaries
-- Empty input: [How system handles]
-- Maximum length: [Limit and behavior]
-- Invalid format: [Validation response]
+- Empty stderr: no retry
+- Lock released between attempts: the retry returns the real result
+- Drain called twice: the second returns nothing
 
 ### Error Scenarios
-- External service failure: [Fallback behavior]
-- Network timeout: [Retry strategy]
-- Concurrent access: [Conflict resolution]
+- Spawn error: returned on the first attempt, never retried
+- Lock held past the budget: fail-open result plus one recorded loss
 
 ### State Transitions
-- Partial completion: [Recovery behavior]
-- Session expiry: [User experience]
+- Partial completion: contention during the pre-dispatch snapshot leaves the lane running
+- Session expiry: not applicable
 <!-- /ANCHOR:edge-cases -->
 
 ---
@@ -152,18 +154,17 @@ contextType: "general"
 
 | Dimension | Score | Notes |
 |-----------|-------|-------|
-| Scope | [/25] | [Files, LOC, systems] |
-| Risk | [/25] | [Auth, API, breaking changes] |
-| Research | [/20] | [Investigation needs] |
-| **Total** | **[/70]** | **Level 2** |
+| Scope | 8/25 | Two runtime files, two test files |
+| Risk | 10/25 | Every containment git call passes through the new wrapper |
+| Research | 5/20 | Git's lock semantics had to be checked against the source |
+| **Total** | **23/70** | **Level 2** |
 <!-- /ANCHOR:complexity -->
 
 ---
 
 ## 10. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+- None open.
 <!-- /ANCHOR:questions -->
 
 ---

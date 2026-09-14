@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+description: "Containment git calls wait out a neighbour's index.lock with bounded backoff, and a loss that outlasts the budget is a ledger warning instead of an invisible empty snapshot."
 trigger_phrases:
   - "implementation summary"
   - "what shipped"
@@ -12,9 +12,9 @@ _memory:
   continuity:
     packet_pointer: "system-deep-loop/045-fanout-write-containment-hardening/004-index-lock-retry"
     last_updated_at: "2026-09-14T09:09:00Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialized Level 2 template"
-    next_safe_action: "Replace continuity placeholders"
+    last_updated_by: "claude-fable-5-1"
+    recent_action: "Added the index.lock retry and ledger warning and filled the packet docs"
+    next_safe_action: "Commit once the full suite exits zero"
     blockers: []
     key_files: []
     session_dedup:
@@ -48,7 +48,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## 2. WHAT WAS BUILT
 
-Nothing yet. This phase is planned; its change lands in `runtime/lib/deep-loop/write-containment.ts` and is verified by the deep-loop suite before the next phase starts.
+A neighbour's `index.lock` can no longer make the containment guard read an empty tree as a clean one. `spawnGit` in `runtime/lib/deep-loop/write-containment.ts` retries a git call whose stderr names the lock with 250, 500, 1000 and 2000 ms backoff, returns on the first attempt for every other failure, and records a call that spends its whole budget. `drainGitContentionWarnings()` hands those records to the runner, which drains after each containment snapshot and the enforce call in `runtime/scripts/fanout-run.cjs` and appends a `containment_git_contention` warning naming the command. The lane's verdict is untouched.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -56,7 +56,7 @@ Nothing yet. This phase is planned; its change lands in `runtime/lib/deep-loop/w
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-[How was this tested, verified and shipped? What was the rollout approach?]
+One dispatch to DeepSeek V4.1 Flash at max through the gateway on cli-pi. The delegate found that Apple Git 2.50 makes the status refresh optional under a held lock, confirmed it in git's source, and built the fixtures with a real held lock plus a shim that makes only `git status` emit the fatal; `git checkout` reproduces it for real. The orchestrator reviewed the diff and ran the whole deep-loop suite before committing.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -66,7 +66,9 @@ Nothing yet. This phase is planned; its change lands in `runtime/lib/deep-loop/w
 
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| Retry only on the lock file name | Every other non-zero exit is permanent and must keep failing open on the first attempt |
+| Record losses in a drainable list | The module's return types stay unchanged; the runner reports at the sites it already writes the ledger |
+| Budget of 3.75 s across four sleeps | Outlasts a neighbour's multi-second write while staying far below any run timeout |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -76,7 +78,10 @@ Nothing yet. This phase is planned; its change lands in `runtime/lib/deep-loop/w
 
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| Two-second-lock test against unmodified wrapper | FAIL as expected: snapshot empty during the lock |
+| Both touched test files plus typecheck | PASS, exit 0, 204 tests |
+| Full deep-loop suite | `npm test` in the runtime: 156 files, 2666 passed, 7 skipped, exit 0, 1263 s |
+| `validate.sh --strict` on this phase | RESULT: PASSED |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -84,7 +89,7 @@ Nothing yet. This phase is planned; its change lands in `runtime/lib/deep-loop/w
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **Real git status under a lock.** Apple Git 2.50 skips the index refresh when the lock is held and exits 0, so on this machine the status fatal is reproduced through a shim; the checkout path reproduces it for real and goes through the same wrapper.
 <!-- /ANCHOR:limitations -->
 
 ---

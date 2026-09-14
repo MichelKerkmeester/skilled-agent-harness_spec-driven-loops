@@ -12,16 +12,16 @@ _memory:
   continuity:
     packet_pointer: "system-deep-loop/045-fanout-write-containment-hardening/004-index-lock-retry"
     last_updated_at: "2026-09-14T09:09:01Z"
-    last_updated_by: "scaffold"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    last_updated_by: "claude-fable-5-1"
+    recent_action: "Phase fix landed and criteria checked"
+    next_safe_action: "Commit once the full suite exits zero"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-09-14-004-index-lock-retry"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -77,9 +77,9 @@ Three to seven bullets, each checkable without opening another file. Copy them
 verbatim into the objective: nothing dereferences a path, so criteria left only
 here are invisible to whatever judges completion.
 
-- [ ] A stub holding .git/index.lock for two seconds no longer produces an empty containment snapshot; the retry succeeds and the finding is reported
-- [ ] A lock held past the retry budget yields a ledger warning and the lane still completes
-- [ ] The test fails against the current wrapper
+- [x] A stub holding .git/index.lock for two seconds no longer produces an empty containment snapshot; the retry succeeds and the finding is reported
+- [x] A lock held past the retry budget yields a ledger warning and the lane still completes
+- [x] The test fails against the current wrapper
 <!-- /ANCHOR:completion -->
 
 ---
@@ -95,11 +95,13 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Phase fix | Pending | dispatched to DeepSeek V4.1 Flash max via the gateway on cli-pi when its turn comes |
+| Phase fix | Done | One DeepSeek V4.1 Flash max dispatch on cli-pi via the gateway; `spawnGit` and drain in `write-containment.ts`, four drain sites in `fanout-run.cjs`, three tests; touched files plus typecheck exit 0 |
+| Full suite | Green | `npm test` in the runtime: 156 files, 2666 passed, 7 skipped, exit 0, 1263 s |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| none yet | - |
+| Git behaviour | Apple Git 2.50 skips the status refresh under a held lock and exits 0; the fixture shims `git status` only, over a real held lock, and the checkout path reproduces the fatal for real |
+| Adjacent, not fixed | The delegate noticed the dispatch-audit hook treats any `-p` token plus a shell expansion as an ambiguous executor dispatch; outside this packet |
 <!-- /ANCHOR:log -->

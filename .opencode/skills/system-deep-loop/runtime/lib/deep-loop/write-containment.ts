@@ -279,20 +279,106 @@ interface GitCallOptions {
   env?: NodeJS.ProcessEnv;
 }
 
-function gitOutput(args: string[], opts: GitCallOptions): { ok: boolean; stdout: string } {
-  try {
-    const result = spawnSync('git', ['-C', opts.repoRoot, ...args], {
-      encoding: 'utf8',
-      env: opts.env ?? process.env,
-      maxBuffer: 10 * 1024 * 1024,
-    });
-    if (result.error || typeof result.status !== 'number' || result.status !== 0) {
-      return { ok: false, stdout: typeof result.stdout === 'string' ? result.stdout : '' };
+/**
+ * Backoff for a git call that lost to another process's `.git/index.lock`.
+ *
+ * That lock is held for the duration of whichever write git is doing, so losing the
+ * race is transient by construction. With no wait, the failed call's empty stdout is
+ * what every caller reads, and every caller here reads empty as "clean tree". The
+ * delays sum to under four seconds, which outlasts a neighbour's multi-second write
+ * while staying far below a run timeout; a call that still cannot take the lock keeps
+ * the module's fail-open result instead of blocking the loop.
+ */
+const GIT_INDEX_LOCK_RETRY_DELAYS_MS = [250, 500, 1000, 2000];
+
+/** A git call that spent its whole retry budget losing to a neighbour's index.lock. */
+interface GitContentionWarning {
+  /** The git argv as invoked, so an operator can identify which call was degraded. */
+  command: string;
+  /** How many times it ran before the budget was spent. */
+  attempts: number;
+}
+
+const gitContentionWarnings: GitContentionWarning[] = [];
+
+/**
+ * Take the git calls that lost to a neighbour's index.lock and report them exactly once.
+ *
+ * Failing open is deliberate: the guard must never break the loop it watches, and an
+ * empty result from one of these git calls is indistinguishable from a real one at
+ * the call sites. This is what keeps the degradation visible instead. Draining clears
+ * the list, so each caller reports only the losses since its own last drain.
+ */
+export function drainGitContentionWarnings(): GitContentionWarning[] {
+  return gitContentionWarnings.splice(0, gitContentionWarnings.length);
+}
+
+/**
+ * True when git refused to run because another process holds `.git/index.lock`.
+ *
+ * The message family is "Unable to create '.../index.lock': File exists". Matching
+ * the lock name keeps the retry off every other non-zero exit, which is not transient
+ * and must keep failing open on its first attempt exactly as it did before.
+ */
+function isIndexLockContention(stderr: string): boolean {
+  return stderr.includes('index.lock');
+}
+
+/** Block the calling thread; every git wrapper in this module is synchronous by contract. */
+function sleepSync(ms: number): void {
+  Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, ms);
+}
+
+/**
+ * Run one git process, retrying only a transient `.git/index.lock` loss.
+ *
+ * The final attempt's stderr is carried back because whether a failure is transient
+ * can only be judged from what git said, and a call that spent the whole budget is
+ * recorded rather than allowed to look as if it had never run.
+ */
+function spawnGit(input: {
+  repoRoot: string;
+  args: string[];
+  env?: NodeJS.ProcessEnv;
+  stdin?: string | Buffer;
+  maxBuffer?: number;
+}): { ok: boolean; stdout: string; stderr: string } {
+  const maxAttempts = GIT_INDEX_LOCK_RETRY_DELAYS_MS.length + 1;
+  let outcome = { ok: false, stdout: '', stderr: '' };
+  for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
+    try {
+      const result = spawnSync('git', ['-C', input.repoRoot, ...input.args], {
+        encoding: 'utf8',
+        env: input.env ?? process.env,
+        ...(input.stdin !== undefined ? { input: input.stdin } : {}),
+        ...(input.maxBuffer !== undefined ? { maxBuffer: input.maxBuffer } : {}),
+      });
+      outcome = {
+        ok: !result.error && typeof result.status === 'number' && result.status === 0,
+        stdout: typeof result.stdout === 'string' ? result.stdout : '',
+        stderr: typeof result.stderr === 'string' ? result.stderr : '',
+      };
+    } catch (error) {
+      // A synchronous spawn failure cannot be lock contention; keep the fail-open result.
+      return { ok: false, stdout: '', stderr: (error as Error).message };
     }
-    return { ok: true, stdout: typeof result.stdout === 'string' ? result.stdout : '' };
-  } catch {
-    return { ok: false, stdout: '' };
+    if (outcome.ok) return outcome;
+    if (!isIndexLockContention(outcome.stderr)) return outcome;
+    if (attempt === maxAttempts) {
+      gitContentionWarnings.push({
+        command: ['git', '-C', input.repoRoot, ...input.args].join(' '),
+        attempts: attempt,
+      });
+      return outcome;
+    }
+    sleepSync(GIT_INDEX_LOCK_RETRY_DELAYS_MS[attempt - 1]);
   }
+  return outcome;
+}
+
+function gitOutput(args: string[], opts: GitCallOptions): { ok: boolean; stdout: string } {
+  const result = spawnGit({ repoRoot: opts.repoRoot, args, env: opts.env, maxBuffer: 10 * 1024 * 1024 });
+  return { ok: result.ok, stdout: result.stdout };
 }
 
 /** Absolute worktree toplevel, or '' when repoRoot is not inside a git worktree. */
@@ -344,17 +430,9 @@ function gitHashObject(repoRoot: string, filePath: string, env?: NodeJS.ProcessE
 
 /** Compute the git blob hash from stdin without writing to the object store. */
 function gitHashStdin(repoRoot: string, content: string, env?: NodeJS.ProcessEnv): string {
-  try {
-    const result = spawnSync('git', ['-C', repoRoot, 'hash-object', '--stdin'], {
-      encoding: 'utf8',
-      input: content,
-      env: env ?? process.env,
-    });
-    if (result.error || result.status !== 0) return '';
-    return (typeof result.stdout === 'string' ? result.stdout : '').trim();
-  } catch {
-    return '';
-  }
+  const result = spawnGit({ repoRoot, args: ['hash-object', '--stdin'], env, stdin: content });
+  if (!result.ok) return '';
+  return result.stdout.trim();
 }
 
 /**
@@ -365,17 +443,9 @@ function gitHashStdin(repoRoot: string, content: string, env?: NodeJS.ProcessEnv
  * written. The object is dangling, which is the whole of its effect on the repository.
  */
 function gitHashObjectWrite(repoRoot: string, content: Buffer, env?: NodeJS.ProcessEnv): string {
-  try {
-    const result = spawnSync('git', ['-C', repoRoot, 'hash-object', '-w', '--stdin'], {
-      encoding: 'utf8',
-      input: content,
-      env: env ?? process.env,
-    });
-    if (result.error || result.status !== 0) return '';
-    return (typeof result.stdout === 'string' ? result.stdout : '').trim();
-  } catch {
-    return '';
-  }
+  const result = spawnGit({ repoRoot, args: ['hash-object', '-w', '--stdin'], env, stdin: content });
+  if (!result.ok) return '';
+  return result.stdout.trim();
 }
 
 /**
