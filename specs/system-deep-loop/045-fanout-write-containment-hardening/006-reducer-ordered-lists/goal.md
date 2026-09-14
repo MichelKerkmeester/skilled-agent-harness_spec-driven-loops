@@ -1,6 +1,6 @@
 ---
-title: "Goal: churn cumulative arm"
-description: "Phase 005 of the fan-out containment work: Detect a neighbour that dirties the shared checkout slowly, not only in bursts."
+title: "Goal: reducer ordered lists"
+description: "Phase 007 of the fan-out containment work: Register findings a lane wrote as a numbered list, and flag a lane that registered nothing."
 trigger_phrases:
   - "packet goal"
   - "durable directive"
@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/045-fanout-write-containment-hardening/005-churn-cumulative-arm"
+    packet_pointer: "system-deep-loop/045-fanout-write-containment-hardening/006-reducer-ordered-lists"
     last_updated_at: "2026-09-14T08:26:47Z"
     last_updated_by: "scaffold"
     recent_action: "Authored the durable directive"
@@ -19,13 +19,13 @@ _memory:
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "2026-09-14-005-churn-cumulative-arm"
+      session_id: "2026-09-14-007-reducer-ordered-lists"
       parent_session_id: null
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
-# Goal: churn cumulative arm
+# Goal: reducer ordered lists
 
 <!-- SPECKIT_TEMPLATE_SOURCE: goal | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
@@ -44,7 +44,7 @@ _memory:
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
 
-**Objective:** Detect a neighbour that dirties the shared checkout slowly, as a safety net for the opt-in restore remedy; under the preserve default nothing depends on it.
+**Objective:** Register findings a lane wrote as a numbered list, and flag a lane that registered nothing.
 
 ### Decisions
 
@@ -52,9 +52,8 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | The churn detector keeps a cumulative count of newly dirty out-of-lineage paths across heartbeats and trips when it crosses a second threshold, alongside the existing per-window burst threshold. |
-| D2 | A detection still latches preserve and is final. |
-| D3 | Fixed by DeepSeek V4.1 Flash at max through the gateway on cli-pi, one dispatch for this phase alone, verified by the deep-loop suite before the next phase starts. |
+| D1 | The lineage reducer extracts ordered-list items as well as bullets. A fulfilled lane whose registry is empty while its deltas are not is reported on the ledger as a warning, never silently passed. |
+| D2 | Fixed by DeepSeek V4.1 Flash at max through the gateway on cli-pi, one dispatch for this phase alone, verified by the deep-loop suite before the next phase starts. |
 
 ### Operator copy
 
@@ -77,9 +76,9 @@ Three to seven bullets, each checkable without opening another file. Copy them
 verbatim into the objective: nothing dereferences a path, so criteria left only
 here are invisible to whatever judges completion.
 
-- [ ] A neighbour dirtying one path per heartbeat for more windows than the cumulative threshold trips the detector, with a test that fails against the burst-only detector
-- [ ] A burst still trips within one window as before
-- [ ] The threshold is settable per run and defaults to a documented value
+- [ ] The retained SWE-2 lineage re-reduces to a non-empty registry
+- [ ] A lane with three deltas and an empty registry emits a ledger warning naming the lane
+- [ ] Bullet-list extraction is unchanged, with the existing cases still green
 <!-- /ANCHOR:completion -->
 
 ---

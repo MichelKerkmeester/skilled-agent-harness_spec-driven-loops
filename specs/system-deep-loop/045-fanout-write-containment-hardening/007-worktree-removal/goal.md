@@ -1,6 +1,6 @@
 ---
-title: "Goal: churn cumulative arm"
-description: "Phase 005 of the fan-out containment work: Detect a neighbour that dirties the shared checkout slowly, not only in bursts."
+title: "Goal: worktree removal"
+description: "Phase 007 of the fan-out containment work: Remove the per-lineage worktree mechanism entirely, since attribution is not a requirement and preserve-by-default plus never-fatal meet the operator's need."
 trigger_phrases:
   - "packet goal"
   - "durable directive"
@@ -10,8 +10,8 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/045-fanout-write-containment-hardening/005-churn-cumulative-arm"
-    last_updated_at: "2026-09-14T08:26:47Z"
+    packet_pointer: "system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal"
+    last_updated_at: "2026-09-14T09:09:01Z"
     last_updated_by: "scaffold"
     recent_action: "Authored the durable directive"
     next_safe_action: "Execute against the completion criteria"
@@ -19,13 +19,13 @@ _memory:
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "2026-09-14-005-churn-cumulative-arm"
+      session_id: "2026-09-14-007-worktree-removal"
       parent_session_id: null
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
-# Goal: churn cumulative arm
+# Goal: worktree removal
 
 <!-- SPECKIT_TEMPLATE_SOURCE: goal | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
@@ -44,7 +44,7 @@ _memory:
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
 
-**Objective:** Detect a neighbour that dirties the shared checkout slowly, as a safety net for the opt-in restore remedy; under the preserve default nothing depends on it.
+**Objective:** Remove the per-lineage worktree mechanism entirely, since attribution is not a requirement and preserve-by-default plus never-fatal meet the operator's need.
 
 ### Decisions
 
@@ -52,9 +52,10 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | The churn detector keeps a cumulative count of newly dirty out-of-lineage paths across heartbeats and trips when it crosses a second threshold, alongside the existing per-window burst threshold. |
-| D2 | A detection still latches preserve and is final. |
-| D3 | Fixed by DeepSeek V4.1 Flash at max through the gateway on cli-pi, one dispatch for this phase alone, verified by the deep-loop suite before the next phase starts. |
+| D1 | The five worktree modules, their wiring in the runner, the worktrees flag and config field, the launch-wrapper split-link provisioning, their tests, and the skip-worktree cone plan are deleted rather than left dormant. |
+| D2 | Lineage path resolution collapses to the shared-checkout mapping that predates isolation. Publication by run-keyed name stays, because it is what keeps concurrent runs from colliding on one checkout. |
+| D3 | This is the last phase: every other fix lands on the runner first, so the removal is verified against a repaired runner. |
+| D4 | Fixed by DeepSeek V4.1 Flash at max through the gateway on cli-pi, one dispatch for this phase alone, verified by the deep-loop suite before the next phase starts. |
 
 ### Operator copy
 
@@ -77,9 +78,9 @@ Three to seven bullets, each checkable without opening another file. Copy them
 verbatim into the objective: nothing dereferences a path, so criteria left only
 here are invisible to whatever judges completion.
 
-- [ ] A neighbour dirtying one path per heartbeat for more windows than the cumulative threshold trips the detector, with a test that fails against the burst-only detector
-- [ ] A burst still trips within one window as before
-- [ ] The threshold is settable per run and defaults to a documented value
+- [ ] No file under runtime/lib/deep-loop matches worktree-* and no flag or config key named worktrees remains
+- [ ] The deep-loop suite and the launch-wrapper tests exit zero after removal
+- [ ] A fan-out on the shared checkout with a neighbour writing mid-run completes with every lane fulfilled and every out-of-scope file preserved, run live on this checkout
 <!-- /ANCHOR:completion -->
 
 ---

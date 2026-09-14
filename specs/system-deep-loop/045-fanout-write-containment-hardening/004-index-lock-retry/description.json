@@ -1,6 +1,5 @@
 {
-  "level": "2",
-  "specFolder": "system-deep-loop/045-fanout-write-containment-hardening/002-iteration-record-dedupe",
+  "specFolder": "system-deep-loop/045-fanout-write-containment-hardening/004-index-lock-retry",
   "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
   "keywords": [
     "broken",
@@ -12,13 +11,14 @@
     "pain",
     "point"
   ],
-  "lastUpdated": "2026-09-14T09:09:01.892Z",
-  "specId": "002",
-  "folderSlug": "iteration-record-dedupe",
+  "lastUpdated": "2026-09-14T09:09:10.724Z",
+  "specId": "004",
+  "folderSlug": "index-lock-retry",
   "parentChain": [
     "system-deep-loop",
     "045-fanout-write-containment-hardening"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": []
+  "memoryNameHistory": [],
+  "level": "2"
 }

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-deep-loop/045-fanout-write-containment-hardening/005-churn-cumulative-arm",
-  "spec_folder": "system-deep-loop/045-fanout-write-containment-hardening/005-churn-cumulative-arm",
+  "packet_id": "system-deep-loop/045-fanout-write-containment-hardening/006-reducer-ordered-lists",
+  "spec_folder": "system-deep-loop/045-fanout-write-containment-hardening/006-reducer-ordered-lists",
   "parent_id": "system-deep-loop/045-fanout-write-containment-hardening",
   "children_ids": [],
   "manual": {
@@ -195,8 +195,8 @@
       }
     ],
     "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
-    "created_at": "2026-09-14T08:24:18Z",
-    "last_save_at": "2026-09-14T09:09:12.270Z",
+    "created_at": "2026-09-14T08:24:20Z",
+    "last_save_at": "2026-09-14T09:09:13.760Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:383d911d9708701ce542b88b4fdea87e4fb90a6ad797f2775b13ea70eecfb587",
+    "source_fingerprint": "sha256:e9a36505fb2330f873a9f568a24538d1421f2b1896458bac24d2d34627975f9e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "19455b75781a973997012fa3d6394d1ae68c383fa04d127e35aac9dc02436c41",
-      "plan.md": "26bf69c705d6bb968c2a27507534959e59eb0e46bbfa40db1758f6c5e6e5a48e",
-      "tasks.md": "ce384176caabd70cfa7f908970ed3ea04ed4a55181668f1002a1fc8086e004c6",
-      "implementation-summary.md": "0532ba608e7861f6371a066ebc100ca1db0422a07ac53fcffb912ca8a5980ea9"
+      "spec.md": "09cdd0491f7b15d7089918cea49413db1a1c12db2a668383f3fbc5de917e9fc0",
+      "plan.md": "b272a12dee142c093f31bce8304595d6146cd9c6a01a788a7104d8738475facc",
+      "tasks.md": "734f5969cb0cbbd080553c00fee08c6911de3881c0dae7ac6ce6ea656264e69c",
+      "implementation-summary.md": "4701af83594e0a2610c9fbed437c4f5dfbe502ea016e3d93c340ad669993a9f1"
     },
     "last_active_at": null
   }

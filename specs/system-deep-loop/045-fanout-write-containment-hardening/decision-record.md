@@ -534,3 +534,16 @@ An attempt that is isolated and whose spawn cwd is still the containment repo ro
 **Decision.** The schema default is `false`. A run opts in with `--worktrees true` or the config field. Nothing else moves: a lane that opts in gets the same isolation, tally and watch it had under ADR-004.
 
 **Consequences.** A default run is back on the shared checkout, guarded by preserve-by-default containment and the churn detector rather than by a tree of its own. The evidence for either default is now recorded, so a future flip is a decision about cost, not about whether the mechanism works.
+
+---
+
+## ADR-007: Attribution is not a requirement, so worktrees go
+
+**Status:** Accepted, 2026-09-14. Supersedes the mechanism in ADR-004 and ADR-006 and the skip-worktree cone the alternatives research recommended.
+
+**Context.** The packet chased exact per-lane attribution and four research lanes confirmed it needs a git identity per lane. The operator's requirement is narrower: a fan-out must not halt because it believes another session has something blocked, and nothing anyone wrote may be deleted. Preservation already guarantees the second. The first is broken today by one rule: a neighbour's new untracked file outside the packet fails the lane's iteration even though it was preserved, because the guard would rather halt than record an unattributed pass.
+
+**Decision.** Under preserve, an out-of-scope untracked path is advisory and never fatal. Worktrees, the cone, and the three phases that existed only for them are removed. The duplicate-record halt is fixed at its source, three reference lines that told the leaf to write the state log directly, with runner deduplication as defence.
+
+**Consequences.** Concurrent fan-outs and concurrent sessions share one checkout with no halt path attributable to a neighbour. The guard reports what it cannot attribute rather than failing on it. Roughly two thousand lines of isolation code and their tests leave the runtime.
+

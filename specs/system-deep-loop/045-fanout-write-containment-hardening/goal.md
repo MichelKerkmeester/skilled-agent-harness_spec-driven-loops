@@ -46,7 +46,7 @@ _memory:
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
 
-**Objective:** Make the deep-loop fan-out guard preserve rather than destroy what it cannot attribute, keep a finished lane's outcome, and give each lineage its own worktree so attribution is exact.
+**Objective:** Make the deep-loop fan-out guard preserve rather than destroy what it cannot attribute, keep a finished lane's outcome, and never halt a lane because of another session's writes.
 
 ### Decisions
 
@@ -60,7 +60,7 @@ Frozen choices. Changing one is an amendment.
 | D4 | A lane with complete artefacts and containment findings settles as completed with advisory, not failed. Containment findings never overwrite a lane's own verdict. |
 | D5 | Each lineage runs in a detached ephemeral worktree outside sk-git's numbered namespace, created and removed by the runner, never through the numbered allocator. |
 | D6 | Isolation is off by default, opt-in with `--worktrees true`; 1.6 GB per lane is a cost to choose, not inherit. (ADR-006 supersedes ADR-004.) |
-| D7 | The isolation mechanism is a skip-worktree cone, not sparse checkout: 1.5 s and 52 MB per lane, no repository-wide git configuration. |
+| D7 | Attribution is not a requirement. Worktrees, the cone and their three phases are removed; a neighbour's untracked write is advisory under preserve, never fatal. (ADR-007.) |
 | D8 | Each defect the research surfaced is a phase here, fixed by DeepSeek V4.1 Flash at max via the gateway on cli-pi, one phase per dispatch, suite-verified before the next. |
 
 ### Operator copy
@@ -76,7 +76,7 @@ whenever anything above the log changes.
 
 **Read the child goal before working a phase.** Each is authoritative for its phase; decisions above outrank child detail.
 
-Phases 001 through 008 under this folder, each with its own `goal.md`.
+Phases 001 through 007 under this folder, each with its own `goal.md`.
 <!-- /ANCHOR:binding -->
 
 ---
@@ -91,7 +91,7 @@ Phases 001 through 008 under this folder, each with its own `goal.md`.
 - [x] A fan-out with the worktree option on completes against an uncommitted packet, with every lineage directory present in the main checkout and no worktree left behind
 - [x] The deep-loop runtime Vitest suite exits zero, including the incident reproduction case
 - [x] Nothing in the four command YAMLs or the five documentation surfaces still describes the revert-and-fail model
-- [ ] Every phase 001 through 008 validates PASSED with its own criteria checked
+- [ ] Every phase 001 through 007 validates PASSED with its own criteria checked
 - [ ] The deep-loop suite exits zero after the last phase lands
 <!-- /ANCHOR:completion -->
 
