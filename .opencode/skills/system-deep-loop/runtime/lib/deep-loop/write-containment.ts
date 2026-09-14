@@ -29,7 +29,7 @@
 // ╚══════════════════════════════════════════════════════════════════════════╝
 
 import { spawnSync } from 'node:child_process';
-import { appendFileSync, copyFileSync, mkdirSync, mkdtempSync, readFileSync, readlinkSync, realpathSync, rmSync, statSync, writeFileSync } from 'node:fs';
+import { appendFileSync, copyFileSync, lstatSync, mkdirSync, mkdtempSync, readFileSync, readlinkSync, realpathSync, rmSync, statSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { basename, dirname, isAbsolute, join, relative, resolve, sep } from 'node:path';
 
@@ -240,11 +240,24 @@ export interface QuarantineEntry {
   error?: string;
 }
 
+export interface QuarantineRefusal {
+  /** Repo-relative POSIX path of the destination that was refused. */
+  path: string;
+  /** Why: a symlinked component, or a resolution outside the artifact directory. */
+  reason: string;
+}
+
 export interface QuarantineResult {
   /** Repo-relative POSIX path of the quarantine dir, or null when it could not be created. */
   dirPath: string | null;
   /** One entry per guarded path, in the order they were given. */
   entries: QuarantineEntry[];
+  /**
+   * A destination the writer declined to write through, with the reason. A refusal is a
+   * decision, not a failure: the path resolved outside the artifact tree or passed through a
+   * symlink, so writing it would put the record where its own manifest could not name it.
+   */
+  refused: QuarantineRefusal[];
   /** Why the record is incomplete, when it is. */
   error?: string;
 }
@@ -935,12 +948,54 @@ function readBaselineContent(entry: DirtyPathEntry, baselineContentRoot?: string
 }
 
 /**
+ * The reason a quarantine destination may not be written to, or null when it may.
+ *
+ * Deriving a path from the artifact directory is not the same as owning it: a lane owns its
+ * lineage directory, so it can put a symlink where the quarantine tree belongs, and every
+ * write beneath that link lands outside the artifact tree while the manifest still names a
+ * path inside it. Resolving the deepest existing ancestor catches a link anywhere above the
+ * destination; refusing on ANY symlinked component below the artifact root also catches a link
+ * that currently resolves back inside, so the rule does not depend on where it points today.
+ */
+function quarantineDestinationRefusal(destination: string, artifactDir: string): string | null {
+  const root = resolve(artifactDir);
+  const ancestorReal = realpathAncestor(destination);
+  if (!isSubpath(ancestorReal, realpathSafe(artifactDir))) {
+    return `destination resolves outside the artifact directory: ${ancestorReal}`;
+  }
+  let current = root;
+  for (const segment of relative(root, resolve(destination)).split(sep)) {
+    if (segment === '' || segment === '.') continue;
+    current = join(current, segment);
+    try {
+      if (lstatSync(current).isSymbolicLink()) return `destination passes through a symlink: ${current}`;
+    } catch {
+      // A component that does not exist cannot carry a write anywhere, and nothing below it exists.
+      break;
+    }
+  }
+  return null;
+}
+
+/**
  * Run one write, creating its parent directories; null on success, the failure message otherwise.
  *
  * A record exists so it can be read back later, so a write that fails must cost the record
  * only the part it covers: the caller keeps the message on that path's entry and goes on.
+ * The canonicality check comes first, on the same contract: a destination that escapes gets
+ * no write and a named reason rather than an exception.
  */
-function writeQuarantineFile(destination: string, write: (absolutePath: string) => void): string | null {
+function writeQuarantineFile(
+  destination: string,
+  artifactDir: string,
+  refuse: (destination: string, reason: string) => void,
+  write: (absolutePath: string) => void,
+): string | null {
+  const refusal = quarantineDestinationRefusal(destination, artifactDir);
+  if (refusal !== null) {
+    refuse(destination, refusal);
+    return refusal;
+  }
   try {
     mkdirSync(dirname(destination), { recursive: true });
     write(destination);
@@ -959,6 +1014,9 @@ function writeQuarantineFile(destination: string, write: (absolutePath: string) 
 function quarantineOnePath(input: {
   violation: ContainmentViolation;
   quarantineDir: string;
+  artifactDir: string;
+  /** Records a destination the canonicality check refused, with the reason. */
+  refuse: (destination: string, reason: string) => void;
   repoRoot: string;
   baselineEntry?: DirtyPathEntry;
   baselineContentRoot?: string;
@@ -986,9 +1044,14 @@ function quarantineOnePath(input: {
       entry.content_truncated = true;
     } else {
       const contentPath = `content/${violation.path}`;
-      const writeError = writeQuarantineFile(join(input.quarantineDir, contentPath), (destination) => {
-        copyFileSync(violation.absolutePath, destination);
-      });
+      const writeError = writeQuarantineFile(
+        join(input.quarantineDir, contentPath),
+        input.artifactDir,
+        input.refuse,
+        (destination) => {
+          copyFileSync(violation.absolutePath, destination);
+        },
+      );
       if (writeError !== null) {
         fail(`content copy failed: ${writeError}`);
       } else {
@@ -1012,9 +1075,14 @@ function quarantineOnePath(input: {
     fail('git diff HEAD -- <path> failed');
   } else if (headDiff.stdout.trim() !== '') {
     const patchPath = `patch-head/${violation.path}.patch`;
-    const writeError = writeQuarantineFile(join(input.quarantineDir, patchPath), (destination) => {
-      writeFileSync(destination, headDiff.stdout, 'utf8');
-    });
+    const writeError = writeQuarantineFile(
+      join(input.quarantineDir, patchPath),
+      input.artifactDir,
+      input.refuse,
+      (destination) => {
+        writeFileSync(destination, headDiff.stdout, 'utf8');
+      },
+    );
     if (writeError !== null) fail(`patch-head write failed: ${writeError}`);
     else entry.head_patch_path = patchPath;
   }
@@ -1035,9 +1103,14 @@ function quarantineOnePath(input: {
       fail(`patch-baseline diff failed: ${held.error}`);
     } else {
       const patchPath = `patch-baseline/${violation.path}.patch`;
-      const writeError = writeQuarantineFile(join(input.quarantineDir, patchPath), (destination) => {
-        writeFileSync(destination, held.diff, 'utf8');
-      });
+      const writeError = writeQuarantineFile(
+        join(input.quarantineDir, patchPath),
+        input.artifactDir,
+        input.refuse,
+        (destination) => {
+          writeFileSync(destination, held.diff, 'utf8');
+        },
+      );
       if (writeError !== null) fail(`patch-baseline write failed: ${writeError}`);
       else entry.baseline_patch_path = patchPath;
     }
@@ -1061,6 +1134,10 @@ function quarantineOnePath(input: {
  * Never throws. A record that cannot be written is a degraded record, not a failed lane: the
  * failure is kept on that path's entry, the rest of the sweep continues, and the guard goes
  * on reporting the violation it already found.
+ *
+ * The tree is canonicalized before every write, because the lane that owns its lineage
+ * directory can leave a symlink where the quarantine belongs: a refused destination is named
+ * on the result and nothing is written to it.
  */
 export function quarantineViolations(input: {
   repoRoot: string;
@@ -1082,11 +1159,23 @@ export function quarantineViolations(input: {
     (input.preDispatchDirtyPaths ?? []).map((entry) => [toPosix(entry.path), entry]),
   );
 
+  // A refusal is collected rather than thrown: the guard still reports the breach it already
+  // found, and the record it could not safely write is named instead of taking the lane down.
+  const refused: QuarantineRefusal[] = [];
+  const refuse = (destination: string, reason: string): void => {
+    refused.push({ path: `${prefix}${toPosix(relative(input.artifactDir, destination))}`, reason });
+  };
+
   let mkdirError: string | null = null;
-  try {
-    mkdirSync(quarantineDir, { recursive: true });
-  } catch (error) {
-    mkdirError = (error as Error).message;
+  const dirRefusal = quarantineDestinationRefusal(quarantineDir, input.artifactDir);
+  if (dirRefusal !== null) {
+    refuse(quarantineDir, dirRefusal);
+  } else {
+    try {
+      mkdirSync(quarantineDir, { recursive: true });
+    } catch (error) {
+      mkdirError = (error as Error).message;
+    }
   }
 
   const lane = { bytes: 0 };
@@ -1094,6 +1183,8 @@ export function quarantineViolations(input: {
     quarantineOnePath({
       violation,
       quarantineDir,
+      artifactDir: input.artifactDir,
+      refuse,
       repoRoot: input.repoRoot,
       baselineEntry: baselineByPath.get(toPosix(violation.path)),
       baselineContentRoot: input.baselineContentRoot,
@@ -1102,20 +1193,30 @@ export function quarantineViolations(input: {
     }),
   );
 
+  if (dirRefusal !== null) {
+    // Every write above was refused on this one reason, and each entry carries it.
+    return { dirPath: null, entries, refused, error: `quarantine dir refused: ${dirRefusal}` };
+  }
   if (mkdirError !== null) {
     // Every write above failed on this one reason, and each entry carries it.
-    return { dirPath: null, entries, error: `quarantine dir unavailable: ${mkdirError}` };
+    return { dirPath: null, entries, refused, error: `quarantine dir unavailable: ${mkdirError}` };
+  }
+  const manifestPath = join(quarantineDir, 'manifest.json');
+  const manifestRefusal = quarantineDestinationRefusal(manifestPath, input.artifactDir);
+  if (manifestRefusal !== null) {
+    refuse(manifestPath, manifestRefusal);
+    return { dirPath, entries, refused, error: `manifest refused: ${manifestRefusal}` };
   }
   try {
     writeFileSync(
-      join(quarantineDir, 'manifest.json'),
+      manifestPath,
       `${JSON.stringify({ timestamp: new Date().toISOString(), entries }, null, 2)}\n`,
       'utf8',
     );
   } catch (error) {
-    return { dirPath, entries, error: `manifest write failed: ${(error as Error).message}` };
+    return { dirPath, entries, refused, error: `manifest write failed: ${(error as Error).message}` };
   }
-  return { dirPath, entries };
+  return { dirPath, entries, refused };
 }
 
 /**

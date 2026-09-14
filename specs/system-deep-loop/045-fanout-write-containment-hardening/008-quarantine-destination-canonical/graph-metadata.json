@@ -39,14 +39,16 @@
       "approach"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts"
     ],
     "entities": [
       {
@@ -86,6 +88,18 @@
         "source": "derived"
       },
       {
+        "name": "write-containment.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts",
+        "source": "derived"
+      },
+      {
+        "name": "write-containment.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -116,7 +130,7 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement",
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -134,7 +148,7 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Pattern Guard",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -146,7 +160,7 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
+        "name": "Data Flow Destination",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -180,23 +194,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "The quarantine writer created directories and wrote content copies, patches and the manifest under a path derived from the lane's own directory without canonicalizing it",
     "created_at": "2026-09-14T17:44:13Z",
-    "last_save_at": "2026-09-14T17:46:50.782Z",
+    "last_save_at": "2026-09-14T18:22:09.716Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +209,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8c4b9f0a4d7871abf00ee8fb9bd83059dfc56acb254175e91c38cb3b2d8a792e",
+    "source_fingerprint": "sha256:7164e3b767e8e2709889aed6047a13d634789fc76898d58e488625531d932e87",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "aaea0177f6cc019532a3e484cf70daa13f20f5cede1e8509d4943075a5789d66",
-      "plan.md": "9705b245426acda8b11ca1eac2a8e1b3c09706e34844c3a51d4592b96e3082ee",
-      "tasks.md": "99718c762974d1dfec89df860f8e2fb4a6bcb05d9a00a7a4ddc224b4632540d0",
-      "implementation-summary.md": "decf0cec0fb72eda8e75e99debde42edb9fbf9fadd386f63a07541a5911ff923"
+      "spec.md": "a6dd3a31ac0fa34c535f315713ebad4aeadb9751e9a2c9ade23724ab3f561167",
+      "plan.md": "ffd7180621d8d079260239055d2ebf63f3cdb8678352530ff56d3a17b146f0a1",
+      "tasks.md": "57b71b57a08957d32fae6a24e54016fb3c5b676f612d375bc09d262fa463543c",
+      "implementation-summary.md": "e2b8f56cd0e12777ae749db9c84fdc321658c935c2ba570f82c13910d2833b1f"
     },
     "last_active_at": null
   }

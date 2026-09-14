@@ -10,18 +10,18 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/008-quarantine-destination-canonical"
+    packet_pointer: "system-deep-loop/045-fanout-write-containment-hardening/008-quarantine-destination-canonical"
     last_updated_at: "2026-09-14T17:44:14Z"
-    last_updated_by: "scaffold"
+    last_updated_by: "claude-fable-5-1"
     recent_action: "Authored the acceptance criteria for this packet"
     next_safe_action: "Meet, waive or supersede the open criteria"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "[SESSION-ID]"
+      session_id: "2026-09-14-008-quarantine-destination-canonical"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,9 +39,9 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** [PACKET-ID]
-**Level:** [2/3/3+]
-**Status:** [Draft/In Progress/Complete]
+**Packet:** system-deep-loop/045-fanout-write-containment-hardening/008-quarantine-destination-canonical
+**Level:** 2
+**Status:** Complete
 **Date:** 2026-09-14
 <!-- /ANCHOR:metadata -->
 
@@ -54,7 +54,9 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given [context], When [action], Then [observable outcome] | [command, file:line, or artifact that proves it] | Unmet | - |
+| AC-001 | REQ-001 | Given a lane whose quarantine path is a symlink out of the repository, When containment runs, Then nothing is written at the link's target | `write-containment.vitest.ts:1986`; the record appeared at the target against the unmodified writer | Met | - |
+| AC-002 | REQ-002 | Given that lane, When containment runs, Then the result names the refusal and the violations and advisories are unchanged | `write-containment.vitest.ts:2039` | Met | - |
+| AC-003 | REQ-003 | Given an ordinary quarantine directory, When containment runs, Then the manifest and patches are written as before | `write-containment.vitest.ts:2068` | Met | - |
 
 ### Status values
 

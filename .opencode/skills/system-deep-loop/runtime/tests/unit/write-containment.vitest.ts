@@ -1968,3 +1968,125 @@ describe('write-containment — the quarantine record of what a guarded path wro
     expect(result.quarantinePath).toBeNull();
   });
 });
+
+// ─────────────────────────────────────────────────────────────────────────────
+// QUARANTINE DESTINATION CANONICALITY
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * The quarantine tree is derived from the artifact directory, but deriving a path is not the
+ * same as owning it: a lane owns its lineage directory, so it can leave a symlink where the
+ * quarantine tree belongs. Every write beneath that link then lands outside the artifact tree
+ * while the manifest still names paths inside it. These cases pin the refusal: the guard's own
+ * record never leaves the tree, and a refusal changes nothing about detection or remedy.
+ */
+describe('write-containment — quarantine never writes through a symlinked destination', () => {
+  const QUARANTINE = 'containment/quarantine';
+
+  it('writes nothing through a quarantine path that is a symlink out of the repository', () => {
+    const { root, artifactDir } = baselineRepo();
+    const escapeTarget = mkdtempSync(join(tmpdir(), 'write-containment-escape-'));
+    tempRoots.push(escapeTarget);
+    mkdirSync(join(artifactDir, 'containment'), { recursive: true });
+    symlinkSync(escapeTarget, join(artifactDir, QUARANTINE), 'dir');
+
+    const preDispatch = snapshotOutOfScopeDirtyPaths({ repoRoot: root, artifactDir });
+    writeFileSync(join(root, 'tracked-outside.txt'), 'LANE_WROTE_THIS\n');
+    const violations = detectNewOutOfScopeViolations({
+      repoRoot: root,
+      artifactDir,
+      preDispatchDirtyPaths: preDispatch,
+    });
+
+    const quarantine = quarantineViolations({
+      repoRoot: root,
+      artifactDir,
+      artifactRelPosix: 'artifact',
+      violations,
+      preDispatchDirtyPaths: preDispatch,
+    });
+
+    // A file appearing here is the escape: the link carried the guard's own record out of the tree.
+    expect(readdirSync(escapeTarget)).toEqual([]);
+    expect(quarantine.dirPath).toBeNull();
+    expect(quarantine.refused[0]?.path).toBe(`artifact/${QUARANTINE}`);
+    expect(quarantine.refused[0]?.reason).toMatch(/outside the artifact|symlink/i);
+    expect(quarantine.entries.every((entry) => entry.content_stored === false)).toBe(true);
+
+    // Detection and remedy are untouched: the same fixture without the link partitions the same.
+    const ordinary = baselineRepo();
+    const ordinaryPreDispatch = snapshotOutOfScopeDirtyPaths({ repoRoot: ordinary.root, artifactDir: ordinary.artifactDir });
+    writeFileSync(join(ordinary.root, 'tracked-outside.txt'), 'LANE_WROTE_THIS\n');
+    const plain = enforceWriteContainment({
+      repoRoot: ordinary.root,
+      artifactDir: ordinary.artifactDir,
+      preDispatchDirtyPaths: ordinaryPreDispatch,
+      iteration: 1,
+    });
+    const result = enforceWriteContainment({
+      repoRoot: root,
+      artifactDir,
+      preDispatchDirtyPaths: preDispatch,
+      iteration: 1,
+    });
+    expect(result.violations.map((v) => v.path)).toEqual(plain.violations.map((v) => v.path));
+    expect(result.advisories.map((v) => v.path)).toEqual(plain.advisories.map((v) => v.path));
+    expect(result.violations.map((v) => v.path)).toEqual(['tracked-outside.txt']);
+    expect(result.quarantinePath).toBeNull();
+    expect(readdirSync(escapeTarget)).toEqual([]);
+  });
+
+  it('refuses a quarantine path that is a symlink even when it resolves back inside the tree', () => {
+    const { root, artifactDir } = baselineRepo();
+    const decoy = join(artifactDir, 'decoy');
+    mkdirSync(decoy, { recursive: true });
+    mkdirSync(join(artifactDir, 'containment'), { recursive: true });
+    symlinkSync(decoy, join(artifactDir, QUARANTINE), 'dir');
+
+    const preDispatch = snapshotOutOfScopeDirtyPaths({ repoRoot: root, artifactDir });
+    writeFileSync(join(root, 'tracked-outside.txt'), 'LANE_WROTE_THIS\n');
+    const violations = detectNewOutOfScopeViolations({
+      repoRoot: root,
+      artifactDir,
+      preDispatchDirtyPaths: preDispatch,
+    });
+
+    const quarantine = quarantineViolations({
+      repoRoot: root,
+      artifactDir,
+      artifactRelPosix: 'artifact',
+      violations,
+      preDispatchDirtyPaths: preDispatch,
+    });
+
+    // Resolving back inside does not make a link safe: the rule cannot depend on where it points.
+    expect(readdirSync(decoy)).toEqual([]);
+    expect(quarantine.refused[0]?.path).toBe(`artifact/${QUARANTINE}`);
+    expect(quarantine.refused[0]?.reason).toMatch(/symlink/i);
+  });
+
+  it('still writes the manifest and the patches when the destination is an ordinary directory', () => {
+    const { root, artifactDir } = baselineRepo();
+    const preDispatch = snapshotOutOfScopeDirtyPaths({ repoRoot: root, artifactDir });
+    writeFileSync(join(root, 'tracked-outside.txt'), 'LANE_WROTE_THIS\n');
+    const violations = detectNewOutOfScopeViolations({
+      repoRoot: root,
+      artifactDir,
+      preDispatchDirtyPaths: preDispatch,
+    });
+
+    const quarantine = quarantineViolations({
+      repoRoot: root,
+      artifactDir,
+      artifactRelPosix: 'artifact',
+      violations,
+      preDispatchDirtyPaths: preDispatch,
+    });
+
+    expect(quarantine.refused).toEqual([]);
+    expect(quarantine.dirPath).toBe(`artifact/${QUARANTINE}`);
+    expect(existsSync(join(artifactDir, QUARANTINE, 'manifest.json'))).toBe(true);
+    expect(existsSync(join(artifactDir, QUARANTINE, 'content/tracked-outside.txt'))).toBe(true);
+    expect(existsSync(join(artifactDir, QUARANTINE, 'patch-head/tracked-outside.txt.patch'))).toBe(true);
+  });
+});

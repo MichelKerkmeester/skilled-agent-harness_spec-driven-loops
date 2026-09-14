@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 1: quarantine-destination-canonical"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+description: "The quarantine writer canonicalizes every destination and refuses a symlinked component, so a lane cannot redirect the runner's evidence writes outside the artifact root."
 trigger_phrases:
   - "feature specification"
   - "problem statement"
@@ -21,10 +21,10 @@ contextType: "general"
 | Field | Value |
 |-------|-------|
 | **Level** | 2 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | Draft |
+| **Priority** | P0 |
+| **Status** | Complete |
 | **Created** | 2026-09-14 |
-| **Branch** | `scaffold/008-quarantine-destination-canonical` |
+| **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 8 of 13 |
 | **Predecessor** | 007-worktree-removal |
@@ -57,10 +57,10 @@ This is **Phase 8** of the Remediate the deep review findings on the fan-out wri
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+The quarantine writer created directories and wrote content copies, patches and the manifest under a path derived from the lane's own directory without canonicalizing it. A lane owns that directory, so a symlink planted at the quarantine path made the runner write other files' content wherever the link pointed while reporting a successful quarantine. The deep review rated this the P0.
 
 ### Purpose
-[One-sentence outcome statement. What does success look like?]
+Every quarantine write lands beneath the real artifact root or is refused and recorded; nothing is ever written through a symlink.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -69,19 +69,21 @@ This is **Phase 8** of the Remediate the deep review findings on the fan-out wri
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- Canonical destination check before every mkdir and write in the quarantine writer
+- A `refused` list on the quarantine result naming each refused path and reason
+- Tests for an escaping link, a link that resolves back inside the tree, and the ordinary directory case
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+- Detection and the remedy - untouched
+- The patch capture's own path - covered by the retention phase
+- Throwing on refusal - the writer never fails the lane
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+| `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts` | Modify | `quarantineDestinationRefusal` resolves the deepest existing ancestor with realpath, requires it under the real artifact dir, and refuses any symlinked component below it; called before every mkdir and write; refusals collected on the result |
+| `.opencode/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts` | Modify | Three new tests |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -93,13 +95,14 @@ This is **Phase 8** of the Remediate the deep review findings on the fan-out wri
 
 | ID | Requirement |
 |----|-------------|
-| REQ-001 | [Requirement description] |
+| REQ-001 | Before any directory creation or write under the quarantine root, the deepest existing ancestor is resolved and must lie under the real artifact directory; a symlinked component at or below the artifact root is refused |
+| REQ-002 | A refusal is recorded on the quarantine result with path and reason and never throws; the lane's violations and advisories are unchanged |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement |
 |----|-------------|
-| REQ-002 | [Requirement description] |
+| REQ-003 | An ordinary quarantine still writes the manifest and patches exactly as before |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
@@ -110,8 +113,8 @@ This is **Phase 8** of the Remediate the deep review findings on the fan-out wri
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: The escaping-link test fails against the unmodified writer and passes after
+- **SC-002**: The deep-loop runtime suite exits zero
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -121,8 +124,8 @@ This is **Phase 8** of the Remediate the deep review findings on the fan-out wri
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+| Risk | A legitimate symlinked artifact root is refused | Low | The check compares real paths, so a root that is itself a symlink resolves and passes; only components below it may not be links |
+| Dependency | Node realpath and lstat | Green | None |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -135,16 +138,13 @@ This is **Phase 8** of the Remediate the deep review findings on the fan-out wri
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
-- **NFR-P01**: [Response time target - e.g., <200ms p95]
-- **NFR-P02**: [Throughput target - e.g., 100 req/sec]
+- **NFR-P01**: One realpath and one lstat per path component per write; negligible beside the git calls
 
 ### Security
-- **NFR-S01**: [Auth requirement - e.g., JWT tokens required]
-- **NFR-S02**: [Data protection - e.g., TLS + encrypted at rest]
+- **NFR-S01**: No quarantine byte is ever written through a symlink, inside or outside the tree
 
 ### Reliability
-- **NFR-R01**: [Uptime target - e.g., 99.9%]
-- **NFR-R02**: [Error rate - e.g., <1%]
+- **NFR-R01**: A refusal never throws; the lane's outcome is unchanged
 <!-- /ANCHOR:nfr -->
 
 ---
@@ -153,18 +153,17 @@ This is **Phase 8** of the Remediate the deep review findings on the fan-out wri
 ## L2: EDGE CASES
 
 ### Data Boundaries
-- Empty input: [How system handles]
-- Maximum length: [Limit and behavior]
-- Invalid format: [Validation response]
+- Link pointing outside the repository: refused, nothing at the target
+- Link resolving back inside the tree: still refused, a link is a link
+- Ordinary directory: written as before
 
 ### Error Scenarios
-- External service failure: [Fallback behavior]
-- Network timeout: [Retry strategy]
-- Concurrent access: [Conflict resolution]
+- realpath fails on a dangling link: refused with the reason
+- Artifact dir itself is a symlink: resolved and accepted as the root
 
 ### State Transitions
-- Partial completion: [Recovery behavior]
-- Session expiry: [User experience]
+- Partial completion: refusals on one path do not stop the others
+- Session expiry: not applicable
 <!-- /ANCHOR:edge-cases -->
 
 ---
@@ -174,18 +173,17 @@ This is **Phase 8** of the Remediate the deep review findings on the fan-out wri
 
 | Dimension | Score | Notes |
 |-----------|-------|-------|
-| Scope | [/25] | [Files, LOC, systems] |
-| Risk | [/25] | [Auth, API, breaking changes] |
-| Research | [/20] | [Investigation needs] |
-| **Total** | **[/70]** | **Level 2** |
+| Scope | 6/25 | One module, one test file |
+| Risk | 12/25 | Security boundary in the shared guard |
+| Research | 3/20 | Finding located by the review |
+| **Total** | **21/70** | **Level 2** |
 <!-- /ANCHOR:complexity -->
 
 ---
 
 ## 10. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+- None open.
 <!-- /ANCHOR:questions -->
 
 ---
