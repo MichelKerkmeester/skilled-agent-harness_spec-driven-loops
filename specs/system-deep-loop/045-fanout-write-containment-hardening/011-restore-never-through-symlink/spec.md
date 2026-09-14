@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 4: restore-never-through-symlink"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+description: "The opt-in restore checks the violated path with lstat before writing baseline bytes and never writes through a symlink; the refusal is recorded with its reason and the lane's outcome is unchanged."
 trigger_phrases:
   - "feature specification"
   - "problem statement"
@@ -21,10 +21,10 @@ contextType: "general"
 | Field | Value |
 |-------|-------|
 | **Level** | 2 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | Draft |
+| **Priority** | P0 |
+| **Status** | Complete |
 | **Created** | 2026-09-14 |
-| **Branch** | `scaffold/011-restore-never-through-symlink` |
+| **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 11 of 13 |
 | **Predecessor** | 010-containment-on-failed-lanes |
@@ -57,10 +57,10 @@ This is **Phase 11** of the Remediate the deep review findings on the fan-out wr
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+Under restore, the baseline write used `writeFileSync` on the violated path. A lane that replaced a tracked file with a symlink pointing outside the repository made that write land at the link's target, so a restore meant to undo the lane's change overwrote a file the lane chose. The deep review rated it P1.
 
 ### Purpose
-[One-sentence outcome statement. What does success look like?]
+A baseline restore writes only to a regular file at the violated path; a symlink there is left alone and named.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -69,19 +69,21 @@ This is **Phase 11** of the Remediate the deep review findings on the fan-out wr
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- An lstat check before the baseline write
+- A `reason` on the revert action naming the symlink
+- Tests for the link case and the ordinary-file case, plus a negative control against the unmodified module
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+- The HEAD restore path - `git checkout` replaces the link itself, confirmed
+- Preserve mode - never writes
+- Reclassifying the finding - a symlinked path stays a violation
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+| `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts` | Modify | lstat before the baseline write; a symlink records `preserved_in_head` with `ok: true` and a `reason`; `reason` added to the revert action type |
+| `.opencode/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts` | Modify | Two new tests |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -93,13 +95,14 @@ This is **Phase 11** of the Remediate the deep review findings on the fan-out wr
 
 | ID | Requirement |
 |----|-------------|
-| REQ-001 | [Requirement description] |
+| REQ-001 | Before writing baseline bytes, the path is checked with lstat; a symlink is never written through, and the action is recorded as `preserved_in_head` with a reason naming the link |
+| REQ-002 | The lane's outcome is unchanged: the path stays a violation and the event carries the action |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement |
 |----|-------------|
-| REQ-002 | [Requirement description] |
+| REQ-003 | An ordinary file at the path is still restored from the captured bytes |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
@@ -110,8 +113,8 @@ This is **Phase 11** of the Remediate the deep review findings on the fan-out wr
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: The link test fails against the unmodified restore, which overwrites the outside target, and passes after
+- **SC-002**: The deep-loop runtime suite exits zero
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -121,8 +124,8 @@ This is **Phase 11** of the Remediate the deep review findings on the fan-out wr
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+| Risk | A symlinked path is silently left as the lane set it | Low | It stays a violation on the event with the reason; an operator sees it |
+| Dependency | lstat semantics on the platform | Green | Standard |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -135,16 +138,13 @@ This is **Phase 11** of the Remediate the deep review findings on the fan-out wr
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
-- **NFR-P01**: [Response time target - e.g., <200ms p95]
-- **NFR-P02**: [Throughput target - e.g., 100 req/sec]
+- **NFR-P01**: One lstat per restored path
 
 ### Security
-- **NFR-S01**: [Auth requirement - e.g., JWT tokens required]
-- **NFR-S02**: [Data protection - e.g., TLS + encrypted at rest]
+- **NFR-S01**: A restore never writes outside the repository through a link
 
 ### Reliability
-- **NFR-R01**: [Uptime target - e.g., 99.9%]
-- **NFR-R02**: [Error rate - e.g., <1%]
+- **NFR-R01**: The refusal is recorded, never thrown
 <!-- /ANCHOR:nfr -->
 
 ---
@@ -153,18 +153,16 @@ This is **Phase 11** of the Remediate the deep review findings on the fan-out wr
 ## L2: EDGE CASES
 
 ### Data Boundaries
-- Empty input: [How system handles]
-- Maximum length: [Limit and behavior]
-- Invalid format: [Validation response]
+- Link to a file outside the repository: untouched, refusal recorded
+- Link to a file inside the repository: same rule; a link is never written through
+- Ordinary file: restored
 
 ### Error Scenarios
-- External service failure: [Fallback behavior]
-- Network timeout: [Retry strategy]
-- Concurrent access: [Conflict resolution]
+- Path removed between detection and restore: handled by the deletion branch
 
 ### State Transitions
-- Partial completion: [Recovery behavior]
-- Session expiry: [User experience]
+- Partial completion: not affected
+- Session expiry: not applicable
 <!-- /ANCHOR:edge-cases -->
 
 ---
@@ -174,18 +172,17 @@ This is **Phase 11** of the Remediate the deep review findings on the fan-out wr
 
 | Dimension | Score | Notes |
 |-----------|-------|-------|
-| Scope | [/25] | [Files, LOC, systems] |
-| Risk | [/25] | [Auth, API, breaking changes] |
-| Research | [/20] | [Investigation needs] |
-| **Total** | **[/70]** | **Level 2** |
+| Scope | 4/25 | One branch, one test file |
+| Risk | 8/25 | Restore path in the shared guard |
+| Research | 2/20 | Finding located by the review |
+| **Total** | **14/70** | **Level 2** |
 <!-- /ANCHOR:complexity -->
 
 ---
 
 ## 10. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+- None open.
 <!-- /ANCHOR:questions -->
 
 ---

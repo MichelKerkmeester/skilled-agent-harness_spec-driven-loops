@@ -83,6 +83,12 @@ export interface ContainmentRevertAction {
     | 'unrecoverable';
   ok: boolean;
   error?: string;
+  /**
+   * Why the remedy declined to act, on the outcome that refuses rather than restores.
+   *
+   * Absent everywhere else: an action that ran already says what it did through `action` and `ok`.
+   */
+  reason?: string;
 }
 
 export interface ContainmentRevertResult {
@@ -1307,6 +1313,13 @@ export function quarantineViolations(input: {
  * editor had written before this lane started. A dirty path whose baseline holds no bytes
  * is left exactly as it is on disk, for the same reason.
  *
+ * A SYMLINK at the violated path is never written through, in either source: the write a
+ * baseline restore makes follows the final component where the lane left a link, so the bytes
+ * would land at a place this guard never chose -- reachable from anywhere the lane can point
+ * that link, including outside the repository. The link is preserved and the refusal is named
+ * on the action. A HEAD restore needs no such guard of its own: `git checkout HEAD -- <path>`
+ * replaces the link itself rather than writing through it.
+ *
  * A not-in-HEAD path the lane DELETED is the other case a restore can act on: nothing is left
  * on disk to preserve, and the baseline's captured bytes are the only source, so they are
  * written back. With no bytes captured, nothing can be put back and the path is recorded as
@@ -1346,11 +1359,25 @@ export function revertOutOfScopeViolations(opts: {
           });
         } else {
           const baselineBytes = readBaselineContent(baseline, opts.baselineContentRoot);
+          // A symlink at the violated path is never written through. `writeFileSync` follows one in
+          // the final component, so the captured bytes would land at whatever the link names -- a
+          // location this guard never chose, reachable from anywhere the lane can point the link and
+          // possibly outside the repository. The link is left as the lane left it and the action
+          // records the refusal, so the outcome is unchanged and the ledger says why.
+          const symlinked = lstatSync(join(opts.repoRoot, violation.path), { throwIfNoEntry: false })
+            ?.isSymbolicLink() ?? false;
           if (baselineBytes === null) {
             // The bytes exist on this tree and nowhere else we may reach: the restore target the
             // baseline described is unavailable, so the file is left as the lane left it rather
             // than rolled back past work the baseline is the only record of.
             reverted.push({ path: violation.path, action: 'preserved_in_head', ok: true });
+          } else if (symlinked) {
+            reverted.push({
+              path: violation.path,
+              action: 'preserved_in_head',
+              ok: true,
+              reason: 'the path is a symlink, and a restore must not write through it to whatever it targets',
+            });
           } else {
             try {
               writeFileSync(join(opts.repoRoot, violation.path), baselineBytes);

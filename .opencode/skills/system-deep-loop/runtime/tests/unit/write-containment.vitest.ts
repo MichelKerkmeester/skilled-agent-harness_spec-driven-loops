@@ -6,7 +6,7 @@
 // revert / enforce over a real temp git repo so the diff + restore logic
 // is verified against actual `git status` porcelain, not a mock.
 
-import { mkdirSync, mkdtempSync, readdirSync, readFileSync, realpathSync, rmSync, symlinkSync, writeFileSync, unlinkSync, existsSync } from 'node:fs';
+import { existsSync, lstatSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, realpathSync, rmSync, symlinkSync, writeFileSync, unlinkSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
@@ -2205,5 +2205,120 @@ describe('write-containment — quarantine never writes through a symlinked dest
     expect(existsSync(join(artifactDir, QUARANTINE, 'manifest.json'))).toBe(true);
     expect(existsSync(join(artifactDir, QUARANTINE, 'content/tracked-outside.txt'))).toBe(true);
     expect(existsSync(join(artifactDir, QUARANTINE, 'patch-head/tracked-outside.txt.patch'))).toBe(true);
+  });
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// RESTORE TARGET CANONICALITY
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Restoring from the captured baseline is the one remedy that writes into the working tree,
+ * and a plain write follows a symlink in the final path component: a lane that swaps the
+ * violated path for a link turns the restore into a write to whatever the link names, which
+ * is a location the guard never chose and may sit outside the repository. The refusal keeps
+ * the write where the guard intended -- nowhere -- and says why on the recorded action.
+ * The HEAD branch needs no such guard: `git checkout HEAD -- <path>` replaces the link
+ * itself rather than writing through it. An ordinary file is still restored byte-for-byte.
+ */
+describe('write-containment — a baseline restore never writes through a symlink', () => {
+  function makeBaselineDir(): string {
+    const dir = mkdtempSync(join(tmpdir(), 'restore-symlink-baseline-'));
+    tempRoots.push(dir);
+    return dir;
+  }
+
+  function makeOutsideDir(): string {
+    const dir = mkdtempSync(join(tmpdir(), 'restore-symlink-outside-'));
+    tempRoots.push(dir);
+    return dir;
+  }
+
+  it('leaves the link target untouched and records the refusal as preserved_in_head', () => {
+    const { root, artifactDir } = baselineRepo();
+    const baselineDir = makeBaselineDir();
+    const outsideDir = makeOutsideDir();
+    const outsidePath = join(outsideDir, 'outside-target.txt');
+    const outsideBytes = 'OUTSIDE_TARGET\n';
+    writeFileSync(outsidePath, outsideBytes);
+    const violatedPath = join(root, 'tracked-outside.txt');
+
+    // Dirty before the lane started, so the baseline holds the bytes a restore would write.
+    writeFileSync(violatedPath, 'CONCURRENT_EDIT\n');
+    const preDispatch = snapshotOutOfScopeDirtyPaths({
+      repoRoot: root,
+      artifactDir,
+      captureContentDir: baselineDir,
+    });
+    expect(preDispatch.find((entry) => entry.path === 'tracked-outside.txt')?.baselineContentPath)
+      .toBeDefined();
+
+    // The lane swaps the path for a link out of the repository, which the guard cannot
+    // attribute and must therefore never act through.
+    unlinkSync(violatedPath);
+    symlinkSync(outsidePath, violatedPath);
+
+    const violations = detectNewOutOfScopeViolations({
+      repoRoot: root,
+      artifactDir,
+      preDispatchDirtyPaths: preDispatch,
+    });
+    expect(violations.map((violation) => violation.path)).toEqual(['tracked-outside.txt']);
+
+    const revert = revertOutOfScopeViolations({
+      repoRoot: root,
+      violations,
+      mode: 'restore',
+      preDispatchDirtyPaths: preDispatch,
+      baselineContentRoot: baselineDir,
+    });
+
+    // The captured bytes went nowhere: writing them would have landed them at the link target.
+    expect(readFileSync(outsidePath, 'utf8')).toBe(outsideBytes);
+    expect(revert.reverted).toEqual([
+      {
+        path: 'tracked-outside.txt',
+        action: 'preserved_in_head',
+        ok: true,
+        reason: expect.stringMatching(/symlink/i),
+      },
+    ]);
+    // The link is left exactly as the lane left it, and nothing replaced it.
+    expect(lstatSync(violatedPath).isSymbolicLink()).toBe(true);
+  });
+
+  it('still writes the captured bytes when the path is an ordinary file', () => {
+    const { root, artifactDir } = baselineRepo();
+    const baselineDir = makeBaselineDir();
+    const violatedPath = join(root, 'tracked-outside.txt');
+
+    writeFileSync(violatedPath, 'CONCURRENT_EDIT\n');
+    const preDispatch = snapshotOutOfScopeDirtyPaths({
+      repoRoot: root,
+      artifactDir,
+      captureContentDir: baselineDir,
+    });
+    writeFileSync(violatedPath, 'LEAF_CLOBBER\n');
+
+    const violations = detectNewOutOfScopeViolations({
+      repoRoot: root,
+      artifactDir,
+      preDispatchDirtyPaths: preDispatch,
+    });
+    expect(violations.map((violation) => violation.path)).toEqual(['tracked-outside.txt']);
+
+    const revert = revertOutOfScopeViolations({
+      repoRoot: root,
+      violations,
+      mode: 'restore',
+      preDispatchDirtyPaths: preDispatch,
+      baselineContentRoot: baselineDir,
+    });
+
+    expect(revert.reverted).toEqual([
+      { path: 'tracked-outside.txt', action: 'restored_from_baseline', ok: true },
+    ]);
+    expect(readFileSync(violatedPath, 'utf8')).toBe('CONCURRENT_EDIT\n');
+    expect(lstatSync(violatedPath).isSymbolicLink()).toBe(false);
   });
 });
