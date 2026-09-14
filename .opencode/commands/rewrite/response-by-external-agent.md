@@ -53,6 +53,8 @@ The `/rewrite:response-by-external-agent` command performs a one-shot plain-Engl
 - Operates as a display-only projection: changes no canonical transcript bytes, writes no files to disk, and modifies no repository state.
 - Preserves technical accuracy, logical flow, and protected tokens byte-for-byte.
 
+The pass is a copy edit. It rewords without reordering, cutting or adding, and it returns the exact original on any fidelity failure.
+
 ---
 
 ## 2. CONTRACT
@@ -136,7 +138,7 @@ Execute the following steps in order:
 - Load the wording standard. This file does not restate it:
   - `.opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md`, the standard itself: voice directives, punctuation standards, structural patterns and the word lists.
   - `.opencode/skills/sk-doc/sk-create-with-human-voice/references/scope-and-exemptions.md`, the scope gate: which spans of the target a rewrite may touch, and which it carries rather than owns.
-  - `.opencode/skills/sk-communication/SKILL.md` section 3, "The Wording Standard", for the two parts of the standard a projection excludes and the reason.
+  - `.opencode/skills/sk-communication/SKILL.md` section 3, "The Wording Standard", for the part of the standard a projection excludes and the reason.
 - Rewrite the resolved target text in-context under that standard. Two projection constraints override it wherever they collide:
   - **Preserve exact meaning**: Every factual statement, logical relationship, instruction and conclusion survives. The original author's claims are the accuracy baseline, so a hedge they meant stays even where the standard prefers certainty.
   - **Exact span fidelity**: Re-insert every protected span identified in Step 2 byte-for-byte.
@@ -246,5 +248,5 @@ STATUS=OK
 - **Guaranteed Cleanup:** `COMMUNICATION_PROJECTION_ENABLED` is scoped strictly to the child subprocess execution and ceases to exist immediately upon exit, even during errors or cancellations.
 - **Pipeline Routing (Branch B):** The external-cli path runs through the package's `external-cli-project` entrypoint, so every cli-* rewrite passes the same privacy routing, fidelity validation, and exact-original fallback as the local provider path. A denied route, dispatch failure, or rejected rewrite returns the byte-exact original.
 - **Supported External CLIs:** The six supported external CLI skills are `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-opencode`, and `cli-pi`.
-- **The Standard Reaches Branch A Only:** Branches B and C hand the target to another model under the package's own one-line copy-editing instruction, `COPY_EDITING_INSTRUCTION` in `src/config/local-provider.ts` and `src/runtime/external-cli-projection.ts`. That instruction is a compiled package constant carried in the versioned prompt profile, so it is changed under the package gate rather than from a command file. An external or local rewrite is therefore held to fidelity validation and the exact-original fallback, not to the Human Voice Rules.
+- **The Standard Reaches Branch A Only:** Branches B and C hand the target to another model under the package's copy-editing instruction. `resolveCopyEditingInstruction()` in `src/config/copy-editing-instruction.ts` builds it. The function reads the wording standard's reply base from the sk-doc skill the first time a prompt profile is built and caches the result, so the standard has one home and the package carries no copy. The instruction is changed under the package gate rather than from a command file. An external or local rewrite is therefore held to that instruction, to fidelity validation and to the exact-original fallback, and Branch A alone loads the Human Voice Rules.
 - **Preload Requirement:** The executing agent must read `.opencode/skills/cli-external-orchestration/<cli-skill>/SKILL.md` prior to external dispatch.

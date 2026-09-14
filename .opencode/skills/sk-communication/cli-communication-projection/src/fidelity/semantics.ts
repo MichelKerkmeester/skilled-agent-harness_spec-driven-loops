@@ -107,6 +107,109 @@ export function compareSemanticMeaning(
   return null;
 }
 
+// Modal words mark claim sentences and function words carry no claim content. Both
+// stay out of the comparison so a rewording passes when the claim itself survives.
+
+const CLAIM_MARKER_PATTERN = /\b(?:must|never|always|only|should|cannot|required|unless|except|but|however|note that)\b/u;
+
+const CLAIM_FUNCTION_WORDS = new Set([
+  'a',
+  'an',
+  'the',
+  'and',
+  'of',
+  'to',
+  'in',
+  'on',
+  'at',
+  'is',
+  'are',
+  'was',
+  'were',
+  'be',
+  'been',
+  'it',
+  'its',
+  'that',
+  'this',
+  'with',
+  'as',
+  'for',
+  'by',
+  'from',
+  'not',
+  'no',
+  'do',
+  'does',
+  'did',
+  'has',
+  'have',
+  'had',
+  'you',
+  'your',
+  'we',
+  'our',
+  'they',
+  'their',
+  'if',
+  'then',
+  'than',
+  'so',
+  'there',
+  'here',
+  'will',
+  'would',
+  'can',
+  'could',
+  'may',
+  'might',
+  'also',
+  'when',
+  'while',
+  'what',
+  'which',
+  'who',
+  'how',
+  'why',
+  'each',
+  'into',
+  'just',
+  'too',
+  'very',
+  'both',
+  'all',
+  'any',
+  'some',
+]);
+
+/** Return the claim-omission veto when a source claim misses from the candidate. */
+export function compareClaimCoverage(
+  sourceText: string,
+  candidateText: string,
+): SemanticDifference | null {
+  const claimSentences = extractClaimSentences(sourceText);
+  if (claimSentences.length === 0) {
+    return null;
+  }
+  const candidateStems = new Set(
+    lowercaseWords(candidateText).map((word) => stemWord(word)),
+  );
+  let survivingClaims = 0;
+  for (const sentence of claimSentences) {
+    if (claimSurvives(sentence, candidateStems)) {
+      survivingClaims += 1;
+    }
+  }
+  if (survivingClaims === claimSentences.length) {
+    return null;
+  }
+  return {
+    reasonCode: FidelityReasonCodes.CLAIM_OMITTED,
+    expectedCount: claimSentences.length,
+    actualCount: survivingClaims,
+  };
+}
+
 /** Detect provider refusals that replace a non-refusal source. */
 export function isUnexpectedRefusal(sourceText: string, candidateText: string): boolean {
   const refusal = /(?:^|\n)\s*(?:sorry\b|i\s+(?:cannot|can't|won't|am unable to)\b|as an ai\b|i must decline\b|i am not able to\b)/iu;
@@ -217,4 +320,47 @@ function countMapDifference(
 
 function totalCount(map: ReadonlyMap<string, number>): number {
   return [...map.values()].reduce((total, count) => total + count, 0);
+}
+
+function extractClaimSentences(sourceText: string): string[] {
+  const sentences = sourceText.match(/[^.!?]+[.!?]*/gu) ?? [];
+  return sentences.filter((sentence) => CLAIM_MARKER_PATTERN.test(sentence));
+}
+
+function claimSurvives(sentence: string, candidateStems: ReadonlySet<string>): boolean {
+  return lowercaseWords(sentence).every((word) => {
+    if (word.length < 2 || CLAIM_FUNCTION_WORDS.has(word)) {
+      return true;
+    }
+    const stem = stemWord(word);
+    return candidateStems.has(stem) || candidateStems.has(`${stem}e`);
+  });
+}
+
+function lowercaseWords(value: string): string[] {
+  return value.toLowerCase().match(/[\p{L}\p{N}']+/gu) ?? [];
+}
+
+function stemWord(word: string): string {
+  let stem = word;
+  if (stem.length > 4 && stem.endsWith('ies')) {
+    return `${stem.slice(0, -3)}y`;
+  }
+  if (stem.length > 4 && stem.endsWith('ing')) {
+    stem = stem.slice(0, -3);
+  } else if (stem.length > 4 && stem.endsWith('ed')) {
+    stem = stem.slice(0, -2);
+  } else if (
+    stem.length > 3
+    && stem.endsWith('s')
+    && !stem.endsWith('ss')
+    && !stem.endsWith('us')
+    && !stem.endsWith('is')
+  ) {
+    stem = stem.slice(0, -1);
+  }
+  if (stem.length > 3 && stem.endsWith('e') && !stem.endsWith('ee')) {
+    stem = stem.slice(0, -1);
+  }
+  return stem;
 }

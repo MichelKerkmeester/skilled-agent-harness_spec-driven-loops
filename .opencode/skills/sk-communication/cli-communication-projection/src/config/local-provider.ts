@@ -11,6 +11,7 @@ import { createLlamaCppModelRecord, createOllamaModelRecord } from '../providers
 import { mergeCapabilitySnapshot } from '../providers/registry.js';
 import { ProviderFamilies } from '../providers/types.js';
 import { createDefaultProviderTransport } from '../transports/http.js';
+import { resolveCopyEditingInstruction, COPY_EDITING_TEMPERATURE } from './copy-editing-instruction.js';
 
 import type { PrivacyClass, PrivacyDecision } from '../contracts/context.js';
 import type { PromptProfileRecord } from '../contracts/prompt.js';
@@ -60,16 +61,11 @@ export interface LocalProjectionBuildOptions {
 /** Git-ignored opt-in file at the package root, shared with the enablement gate. */
 const LOCAL_OVERRIDE_URL = new URL('../../enablement.local.json', import.meta.url);
 
-/** Copy-editing instruction proven by the package test helper shape. */
-const COPY_EDITING_INSTRUCTION =
-  'Rewrite only the user message in plain English. Output only the rewrite.';
-
 /** Bounded window the loader stamps onto locally observed model capabilities. */
 const CAPABILITY_EXPIRY_WINDOW_MS = 7 * 24 * 60 * 60 * 1000;
 
 const CONTEXT_MAXIMUM_AGE_MS = 600_000;
 const CONTEXT_LIMIT_CODEPOINTS = 4_000;
-const COPY_EDITING_TEMPERATURE = 0.2;
 
 /**
  * Parse a parsed enablement-file object into the full projection wiring, or
@@ -218,12 +214,12 @@ function createLocalRecord(
   }
 }
 
-function createCopyEditingPrompt(record: ProviderModelRecord): PromptProfileRecord {
+export function createCopyEditingPrompt(record: ProviderModelRecord): PromptProfileRecord {
   return {
     contractKind: 'prompt-profile',
     schemaVersion: '1.0.0',
     promptVersion: 'local-provider-v1',
-    systemInstruction: COPY_EDITING_INSTRUCTION,
+    systemInstruction: resolveCopyEditingInstruction(),
     copyEditingScope: 'assistant-message-only',
     protectedValuePolicyVersion: 'protected-spans/1.0.0',
     temperature: COPY_EDITING_TEMPERATURE,

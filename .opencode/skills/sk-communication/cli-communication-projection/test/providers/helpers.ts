@@ -2,6 +2,7 @@
 // MODULE: Provider Test Helpers
 // ───────────────────────────────────────────────────────────────────
 
+import { resolveCopyEditingInstruction } from '../../src/config/copy-editing-instruction.js';
 import {
   createExactOriginalRecord,
   protectMarkdown,
@@ -115,7 +116,7 @@ export function createPromptProfile(
     contractKind: 'prompt-profile',
     schemaVersion: '1.0.0',
     promptVersion: 'provider-test-v1',
-    systemInstruction: 'Rewrite only the user message in plain English. Output only the rewrite.',
+    systemInstruction: resolveCopyEditingInstruction(),
     copyEditingScope: 'assistant-message-only',
     protectedValuePolicyVersion: 'protected-spans/1.0.0',
     temperature: 0.3,

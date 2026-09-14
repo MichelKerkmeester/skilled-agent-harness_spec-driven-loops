@@ -15,6 +15,7 @@
         "feature-catalog/provider-and-privacy/provider-adapters-and-execution.md",
         "feature-catalog/runtime-adapters/six-runtime-adapter-matrix.md",
         "manual-testing-playbook/advisor-routing/advisor-routes-projection-request.md",
+        "manual-testing-playbook/fidelity-and-privacy/claim-omission-and-no-op.md",
         "manual-testing-playbook/fidelity-and-privacy/exact-original-fidelity-fallback.md",
         "manual-testing-playbook/fidelity-and-privacy/external-cli-provider-fallback.md",
         "manual-testing-playbook/fidelity-and-privacy/privacy-precedes-provider-ranking.md",

@@ -110,7 +110,7 @@ Run scenarios in dependency order so failures are localized:
 | Wave | Category | Scenario IDs | Purpose |
 |---|---|---|---|
 | 1 | Advisor Routing | `COMM-001` | Confirm the request reaches the owning skill. |
-| 2 | Fidelity And Privacy | `COMM-002..COMM-003`, `COMM-009` | Confirm immutable fallback, privacy-before-ranking, and external-cli fail-closed dispatch. |
+| 2 | Fidelity And Privacy | `COMM-002..COMM-003`, `COMM-009`, `COMM-010` | Confirm immutable fallback, privacy-before-ranking, and external-cli fail-closed dispatch. |
 | 3 | Presentation Tiers | `COMM-004..COMM-005` | Confirm atomic ownership and original visibility. |
 | 4 | Release Gating | `COMM-006..COMM-008` | Confirm provisional evidence, doctor blocks, and human-certified release evidence. |
 
@@ -141,6 +141,16 @@ Prompt: `Verify that a failed communication projection returns the exact origina
 
 > **Feature File:** [COMM-002](fidelity-and-privacy/exact-original-fidelity-fallback.md)
 > **Catalog:** [Protected-span fidelity validation](../feature-catalog/fidelity-and-render/protected-span-fidelity-validation.md)
+
+
+### COMM-010 | Claim omission veto and no-op recording
+
+Verify a rewrite that drops a required claim is rejected with the claim-omitted reason and an unchanged rewrite is recorded as a no-op without earned pass markers.
+
+Prompt: `Verify that the projection rejects a rewrite which drops a required claim and records an unchanged rewrite as a no-op, then give me a PASS or FAIL verdict.`
+
+> **Feature File:** [COMM-010](fidelity-and-privacy/claim-omission-and-no-op.md)
+> **Catalog:** [Provider adapters and execution](../feature-catalog/provider-and-privacy/provider-adapters-and-execution.md)
 
 ### COMM-003 | Privacy precedes provider ranking
 
