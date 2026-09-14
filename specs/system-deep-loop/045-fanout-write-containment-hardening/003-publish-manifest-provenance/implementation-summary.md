@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+description: "The attribution table and merged registry now name each lineage's executor kind, model and reasoning effort from the invocation metadata the runner already writes."
 trigger_phrases:
   - "implementation summary"
   - "what shipped"
@@ -12,9 +12,9 @@ _memory:
   continuity:
     packet_pointer: "system-deep-loop/045-fanout-write-containment-hardening/003-publish-manifest-provenance"
     last_updated_at: "2026-09-14T08:24:17Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialized Level 2 template"
-    next_safe_action: "Replace continuity placeholders"
+    last_updated_by: "claude-fable-5-1"
+    recent_action: "Read executor provenance in the merge and filled the packet docs"
+    next_safe_action: "Commit once the full suite exits zero"
     blockers: []
     key_files: []
     session_dedup:
@@ -48,7 +48,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## 2. WHAT WAS BUILT
 
-Nothing yet. This phase is planned; its change lands in `runtime/lib/deep-loop/worktree-publish.ts` and is verified by the deep-loop suite before the next phase starts.
+The attribution table and the merged registry now name each lineage's executor. The per-lineage loader in `runtime/scripts/fanout-merge.cjs` reads `invocation-metadata.json`, which the runner writes beside every lineage before dispatch, and takes kind, model and reasoning effort from its `effectiveConfig`; the old state-log and summary lookups remain as fallbacks and `unknown` is printed only when no source has the value. A new `buildLineageExecutors` helper adds a label-keyed `lineageExecutors` map to both the research and review merge outputs. Re-running the merge over the retained research directory turned four `unknown` rows into `cli-devin`, `cli-codex` and `cli-opencode` with their models.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -56,7 +56,7 @@ Nothing yet. This phase is planned; its change lands in `runtime/lib/deep-loop/w
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-[How was this tested, verified and shipped? What was the rollout approach?]
+One dispatch to DeepSeek V4.1 Flash at max through the gateway on cli-pi, briefed with the loader lines, the provenance file and the retained lineages. The delegate ran the read-path test against the unmodified script first, then its file, the result-envelopes consumer and typecheck. The orchestrator reviewed the diff, re-ran the merge in place on the packet's research directory, and ran the whole deep-loop suite before committing.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -66,7 +66,9 @@ Nothing yet. This phase is planned; its change lands in `runtime/lib/deep-loop/w
 
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| Read invocation metadata rather than add a publish manifest | The runner already persists the provenance before dispatch; the worktree publish manifest is removed in the last phase |
+| Keep the old lookups as fallbacks | Artifacts that predate the file still merge |
+| Sort labels before building the map | The serialized registry does not depend on lineage arrival order |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -76,7 +78,11 @@ Nothing yet. This phase is planned; its change lands in `runtime/lib/deep-loop/w
 
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| Read-path test against unmodified script | FAIL as expected: `lineageExecutors` undefined |
+| `fanout-merge.vitest.ts` (56), `result-envelopes.vitest.ts` (30), typecheck | PASS, exit 0 |
+| Merge re-run on the packet's research directory | attribution table has zero `unknown` rows, 66 key findings |
+| Full deep-loop suite | `npm test` in the runtime: 156 files, 2663 passed, 7 skipped, exit 0, 1304 s |
+| `validate.sh --strict` on this phase | RESULT: PASSED |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -84,7 +90,7 @@ Nothing yet. This phase is planned; its change lands in `runtime/lib/deep-loop/w
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **Review merges.** No review-shaped run is retained, so the review map is proven by the unit test rather than a real directory.
 <!-- /ANCHOR:limitations -->
 
 ---

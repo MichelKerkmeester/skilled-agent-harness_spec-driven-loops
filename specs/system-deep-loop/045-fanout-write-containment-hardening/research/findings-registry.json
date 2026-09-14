@@ -5,6 +5,28 @@
     "1789363775244-64o2qi-swe2",
     "1789366204116-kfp53e-glm"
   ],
+  "lineageExecutors": {
+    "1789363775244-64o2qi-deepseek": {
+      "kind": "cli-devin",
+      "model": "deepseek-v4-flash-max",
+      "reasoningEffort": null
+    },
+    "1789363775244-64o2qi-luna": {
+      "kind": "cli-codex",
+      "model": "gpt-5.6-luna",
+      "reasoningEffort": "max"
+    },
+    "1789363775244-64o2qi-swe2": {
+      "kind": "cli-devin",
+      "model": "swe-2-max",
+      "reasoningEffort": null
+    },
+    "1789366204116-kfp53e-glm": {
+      "kind": "cli-opencode",
+      "model": "llmgateway/glm-5.3-flash",
+      "reasoningEffort": "max"
+    }
+  },
   "openQuestions": [
     {
       "id": "kq-clonefile-timing",

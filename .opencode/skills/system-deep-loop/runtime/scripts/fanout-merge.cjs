@@ -624,6 +624,22 @@ function normalizeRegistrySchema(registry, { canonicalKey, aliases, lineage }) {
 // 3. RESEARCH MERGE
 // ─────────────────────────────────────────────────────────────────────────────
 
+// Executor provenance is label-keyed so a reader can group merged findings by model
+// without decoding lineage directory names. Labels are sorted before insertion so the
+// serialized map does not depend on lineage arrival order.
+function buildLineageExecutors(lineageData) {
+  const executors = {};
+  const sorted = [...lineageData].sort((a, b) => (a.label < b.label ? -1 : a.label > b.label ? 1 : 0));
+  for (const { label, kind, model, reasoningEffort } of sorted) {
+    executors[label] = {
+      kind: kind ?? 'unknown',
+      model: model ?? 'unknown',
+      reasoningEffort: reasoningEffort ?? null,
+    };
+  }
+  return executors;
+}
+
 /**
  * Merge research findings registries from all lineages.
  * Deduplicates by findingId; cross-model attribution via lineage labels.
@@ -706,6 +722,7 @@ function mergeResearchRegistries(lineageData, options = {}) {
 
   return {
     mergedFrom: lineageData.map(({ label }) => label).sort(),
+    lineageExecutors: buildLineageExecutors(lineageData),
     openQuestions: sortByContentThenId([...openQuestionsById.values()], ['id', 'question', 'text']),
     resolvedQuestions: sortByContentThenId([...resolvedQuestionsById.values()], ['id', 'question', 'text']),
     keyFindings: mergedFindings,
@@ -819,6 +836,7 @@ function mergeReviewRegistries(lineageData, options = {}) {
 
   return {
     mergedFrom: lineageData.map(({ label }) => label).sort(),
+    lineageExecutors: buildLineageExecutors(lineageData),
     mergedVerdict,
     openFindings: mergedFindings,
     resolvedFindings: mergedResolvedFindings,
@@ -875,7 +893,7 @@ function buildAttributionMd(lineageData, loopType) {
           ? 'CONDITIONAL'
           : 'PASS'
         : 'n/a';
-    lines.push(`| ${label} | ${kind ?? 'unknown'} | ${model ?? 'default'} | ${iters} | ${convergenceScore} | ${salvage} | ${verdict} |`);
+    lines.push(`| ${label} | ${kind ?? 'unknown'} | ${model ?? 'unknown'} | ${iters} | ${convergenceScore} | ${salvage} | ${verdict} |`);
   }
 
   lines.push('');
@@ -1170,15 +1188,27 @@ async function main() {
         registry = mergeReconstructedResearchRegistry(registry, reconstructed);
       }
     }
-    // Infer kind/model from state log executor records
+    // Executor provenance is persisted next to the lineage before dispatch; the state
+    // log event and orchestration summary are fallbacks for artifacts that predate it.
+    const invocationMetadata = readJsonFile(
+      artifactRoot,
+      path.join(lineageDir, 'invocation-metadata.json'),
+      `lineage ${label} invocation metadata`,
+    );
+    const effectiveConfig =
+      invocationMetadata && typeof invocationMetadata.effectiveConfig === 'object' && invocationMetadata.effectiveConfig !== null
+        ? invocationMetadata.effectiveConfig
+        : {};
     const executorRecord = stateRecords.find((r) => r.type === 'event' && r.event === 'executor_start');
+    const summaryEntry = orchestrationSummary?.[label] ?? {};
     return {
       label,
       lineageDir,
       registry,
       stateRecords,
-      kind: executorRecord?.kind ?? orchestrationSummary?.[label]?.kind ?? 'unknown',
-      model: executorRecord?.model ?? orchestrationSummary?.[label]?.model ?? 'unknown',
+      kind: effectiveConfig.kind ?? executorRecord?.kind ?? summaryEntry.kind ?? 'unknown',
+      model: effectiveConfig.model ?? executorRecord?.model ?? summaryEntry.model ?? 'unknown',
+      reasoningEffort: effectiveConfig.reasoningEffort ?? executorRecord?.reasoningEffort ?? summaryEntry.reasoningEffort ?? null,
     };
   });
 

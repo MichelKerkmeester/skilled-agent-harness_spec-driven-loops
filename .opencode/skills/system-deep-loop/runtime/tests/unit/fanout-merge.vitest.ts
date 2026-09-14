@@ -9,6 +9,15 @@ import { afterEach, describe, expect, it } from 'vitest';
 import { runtimeRoot, spawnCjs } from '../helpers/spawn-cjs';
 
 const require = createRequire(import.meta.url);
+
+type LineageDataFixture = {
+  label: string;
+  registry: Record<string, unknown> | null;
+  kind?: string;
+  model?: string;
+  reasoningEffort?: string | null;
+};
+
 const {
   mergeResearchRegistries,
   mergeReviewRegistries,
@@ -18,11 +27,11 @@ const {
   normalizeRegistrySchema,
 } = require('../../scripts/fanout-merge.cjs') as {
   mergeResearchRegistries: (
-    lineageData: Array<{ label: string; registry: Record<string, unknown> | null }>,
+    lineageData: LineageDataFixture[],
     options?: { enableNearDuplicateDedup?: boolean },
   ) => Record<string, unknown>;
   mergeReviewRegistries: (
-    lineageData: Array<{ label: string; registry: Record<string, unknown> | null }>,
+    lineageData: LineageDataFixture[],
     options?: { enableNearDuplicateDedup?: boolean },
   ) => Record<string, unknown>;
   buildAttributionMd: (lineageData: unknown[], loopType: string) => string;
@@ -525,6 +534,30 @@ describe('mergeResearchRegistries', () => {
     expect(warnings[0].lineage).toBe('glm');
     expect(warnings[0].coercedCount).toBe(1);
   });
+
+  it('publishes per-lineage executor provenance so findings can be grouped by model', () => {
+    const result = mergeResearchRegistries([
+      {
+        label: 'beta',
+        registry: { keyFindings: [{ id: 'F2', title: 'Beta finding' }], openQuestions: [], ruledOutDirections: [] },
+        kind: 'cli-devin',
+        model: 'swe-2-max',
+        reasoningEffort: null,
+      },
+      {
+        label: 'alpha',
+        registry: { keyFindings: [{ id: 'F1', title: 'Alpha finding' }], openQuestions: [], ruledOutDirections: [] },
+        kind: 'cli-codex',
+        model: 'gpt-5.6-luna',
+        reasoningEffort: 'max',
+      },
+    ]);
+
+    expect(result.lineageExecutors).toEqual({
+      alpha: { kind: 'cli-codex', model: 'gpt-5.6-luna', reasoningEffort: 'max' },
+      beta: { kind: 'cli-devin', model: 'swe-2-max', reasoningEffort: null },
+    });
+  });
 });
 
 // ─── Review merge unit tests (strongest-restriction) ──────────────────────
@@ -840,6 +873,18 @@ describe('mergeReviewRegistries — strongest-restriction', () => {
     expect(findings).toHaveLength(2);
     expect(findings.map((f) => f.findingId).sort()).toEqual(['F1', 'F2']);
     expect(result.mergedVerdict).toBe('FAIL');
+  });
+
+  it('publishes per-lineage executor provenance alongside the verdict for a review merge', () => {
+    const result = mergeReviewRegistries([
+      { label: 'glm', registry: { openFindings: [] }, kind: 'cli-opencode', model: 'llmgateway/glm-5.3-flash', reasoningEffort: 'max' },
+      { label: 'bare', registry: { openFindings: [] } },
+    ]);
+
+    expect(result.lineageExecutors).toEqual({
+      bare: { kind: 'unknown', model: 'unknown', reasoningEffort: null },
+      glm: { kind: 'cli-opencode', model: 'llmgateway/glm-5.3-flash', reasoningEffort: 'max' },
+    });
   });
 });
 
@@ -1319,5 +1364,90 @@ describe('fanout-merge.cjs — script', () => {
     expect(result.exitCode).toBe(3);
     expect(result.stdout).toContain('merged registry must be a real file');
     expect(readFileSync(targetPath, 'utf8')).toBe('outside-bytes\n');
+  });
+});
+
+// ─── lineage executor provenance ─────────────────────────────────────────────
+
+describe('fanout-merge.cjs — lineage executor provenance', () => {
+  it('reads kind and model from invocation-metadata.json for attribution and lineageExecutors', async () => {
+    const baseDir = makeTempDir('fanout-merge-provenance-');
+    const lineageDir = join(baseDir, 'lineages', 'lin-codex');
+    mkdirSync(lineageDir, { recursive: true });
+    writeFileSync(
+      join(lineageDir, 'findings-registry.json'),
+      JSON.stringify({
+        keyFindings: [{ id: 'F1', title: 'Provenance finding' }],
+        openQuestions: [],
+        ruledOutDirections: [],
+      }),
+      'utf8',
+    );
+    writeFileSync(
+      join(lineageDir, 'invocation-metadata.json'),
+      JSON.stringify({
+        effectiveConfig: { kind: 'cli-codex', model: 'gpt-5.6-luna', reasoningEffort: 'max' },
+        invocationFingerprint: 'inv:test',
+      }),
+      'utf8',
+    );
+
+    const result = await spawnCjs(fanoutMergeScript, [
+      '--loop-type', 'research',
+      '--artifact-dir', baseDir,
+    ]);
+
+    expect(result.exitCode, result.stderr).toBe(0);
+    const merged = JSON.parse(readFileSync(join(baseDir, 'findings-registry.json'), 'utf8')) as {
+      lineageExecutors: Record<string, { kind: string; model: string; reasoningEffort: string | null }>;
+    };
+    expect(merged.lineageExecutors).toEqual({
+      'lin-codex': { kind: 'cli-codex', model: 'gpt-5.6-luna', reasoningEffort: 'max' },
+    });
+
+    const attribution = readFileSync(join(baseDir, 'fanout-attribution.md'), 'utf8');
+    expect(attribution).toContain('| lin-codex | cli-codex | gpt-5.6-luna |');
+  });
+
+  it('degrades to the executor event and then to unknown when invocation-metadata.json is missing', async () => {
+    const baseDir = makeTempDir('fanout-merge-provenance-fallback-');
+    const eventDir = join(baseDir, 'lineages', 'lin-event');
+    mkdirSync(eventDir, { recursive: true });
+    writeFileSync(
+      join(eventDir, 'findings-registry.json'),
+      JSON.stringify({ keyFindings: [{ id: 'F1', title: 'Event finding' }], openQuestions: [], ruledOutDirections: [] }),
+      'utf8',
+    );
+    writeFileSync(
+      join(eventDir, 'deep-research-state.jsonl'),
+      `${JSON.stringify({ type: 'event', event: 'executor_start', kind: 'cli-claude', model: 'claude-sonnet-5' })}\n`,
+      'utf8',
+    );
+
+    const bareDir = join(baseDir, 'lineages', 'lin-bare');
+    mkdirSync(bareDir, { recursive: true });
+    writeFileSync(
+      join(bareDir, 'findings-registry.json'),
+      JSON.stringify({ keyFindings: [{ id: 'F2', title: 'Bare finding' }], openQuestions: [], ruledOutDirections: [] }),
+      'utf8',
+    );
+
+    const result = await spawnCjs(fanoutMergeScript, [
+      '--loop-type', 'research',
+      '--artifact-dir', baseDir,
+    ]);
+
+    expect(result.exitCode, result.stderr).toBe(0);
+    const merged = JSON.parse(readFileSync(join(baseDir, 'findings-registry.json'), 'utf8')) as {
+      lineageExecutors: Record<string, { kind: string; model: string; reasoningEffort: string | null }>;
+    };
+    expect(merged.lineageExecutors).toEqual({
+      'lin-bare': { kind: 'unknown', model: 'unknown', reasoningEffort: null },
+      'lin-event': { kind: 'cli-claude', model: 'claude-sonnet-5', reasoningEffort: null },
+    });
+
+    const attribution = readFileSync(join(baseDir, 'fanout-attribution.md'), 'utf8');
+    expect(attribution).toContain('| lin-event | cli-claude | claude-sonnet-5 |');
+    expect(attribution).toContain('| lin-bare | unknown | unknown |');
   });
 });
