@@ -39,14 +39,16 @@
       "approach"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/fanout-merge.vitest.ts"
     ],
     "entities": [
       {
@@ -86,13 +88,31 @@
         "source": "derived"
       },
       {
+        "name": "fanout-merge.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-merge.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/fanout-merge.vitest.ts",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Problem Statement",
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Every",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -116,12 +136,6 @@
         "source": "derived"
       },
       {
-        "name": "Data Boundaries",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -134,7 +148,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Loader",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -146,13 +166,7 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
+        "name": "Data Flow Runner",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -180,23 +194,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "The attribution table printed `unknown` in the Kind and Model column for every lineage of a completed run",
     "created_at": "2026-09-14T08:24:16Z",
-    "last_save_at": "2026-09-14T08:26:53.994Z",
+    "last_save_at": "2026-09-14T12:15:50.971Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +209,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:da7fd86461349f56c0b31a890991284ec2112e0b2c441a1527fecfc6ad4faf50",
+    "source_fingerprint": "sha256:d4e404a43ee365aadfe9382383fdc384f9f1b98f0785eb0eb20db0b679a5ae75",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3b9a1618b077a2154933ff407f5aef0db45a94c09014950a9b46c1c1cf620b9e",
-      "plan.md": "71eebfd2c93bf1fc58b12533e179113876d4d8eb72ec5919510823e9cf999c53",
-      "tasks.md": "d7c4921adad2b7f1e8d94380ce682d86dc79173c80ae0eb2c5aa51aca25730a6",
-      "implementation-summary.md": "b2589a942669933679e9369e44fcd25f46d68b480ed117653f08aea825222902"
+      "spec.md": "7378289bed2799af9eb7da630c93241647f7428da79ff8b4c6db8c61d9ee0ece",
+      "plan.md": "eeed827fcee8f3cf2976a8b439dddbdaeb545479d02b181eecf1e7e0d431495c",
+      "tasks.md": "38f23902a8ef24adfddbc479b0d83eeb04f1ed196ed298cdc025a13e9d263523",
+      "implementation-summary.md": "6a7b8eac128eff8db7b92c5f5722f0f17b3d6445165aaef637c053845f8d7c8d"
     },
     "last_active_at": null
   }

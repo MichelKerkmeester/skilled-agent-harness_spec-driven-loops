@@ -12,16 +12,16 @@ _memory:
   continuity:
     packet_pointer: "system-deep-loop/045-fanout-write-containment-hardening/003-publish-manifest-provenance"
     last_updated_at: "2026-09-14T08:26:47Z"
-    last_updated_by: "scaffold"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    last_updated_by: "claude-fable-5-1"
+    recent_action: "Phase fix landed and criteria checked"
+    next_safe_action: "Commit once the full suite exits zero"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-09-14-003-publish-manifest-provenance"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -52,7 +52,7 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | The publish manifest carries executor kind, model, reasoning effort and label; the attribution table reads them and never prints unknown for a published lane. |
+| D1 | The lineage's invocation metadata, which the runner writes before dispatch, is the provenance record: the merge reads executor kind, model and reasoning effort from it, the attribution table prints them, and the merged registry carries them per label. Unknown appears only when no source has the value. |
 | D2 | Fixed by DeepSeek V4.1 Flash at max through the gateway on cli-pi, one dispatch for this phase alone, verified by the deep-loop suite before the next phase starts. |
 
 ### Operator copy
@@ -76,9 +76,9 @@ Three to seven bullets, each checkable without opening another file. Copy them
 verbatim into the objective: nothing dereferences a path, so criteria left only
 here are invisible to whatever judges completion.
 
-- [ ] A published manifest from a stub run carries kind and model fields matching the fan-out config
-- [ ] fanout-attribution.md for a completed run shows no unknown in the kind or model column
-- [ ] The merged registry can group findings by model without reconstructing from lineage names
+- [x] A published manifest from a stub run carries kind and model fields matching the fan-out config
+- [x] fanout-attribution.md for a completed run shows no unknown in the kind or model column
+- [x] The merged registry can group findings by model without reconstructing from lineage names
 <!-- /ANCHOR:completion -->
 
 ---
@@ -94,11 +94,13 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Phase fix | Pending | dispatched to DeepSeek V4.1 Flash max via the gateway on cli-pi when its turn comes |
+| Phase fix | Done | One DeepSeek V4.1 Flash max dispatch on cli-pi via the gateway; loader and helper in `fanout-merge.cjs`, four tests; file, consumer and typecheck exit 0 |
+| Full suite | Green | `npm test` in the runtime: 156 files, 2663 passed, 7 skipped, exit 0, 1304 s |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| none yet | - |
+| D1 amended | The provenance lives in `invocation-metadata.json`, which the runner already writes; the worktree publish manifest is deleted in the last phase, so it cannot be the carrier |
+| Packet artifact | The merge was re-run in place on this packet's research directory: `fanout-attribution.md` now shows kind and model for all four lineages |
 <!-- /ANCHOR:log -->
