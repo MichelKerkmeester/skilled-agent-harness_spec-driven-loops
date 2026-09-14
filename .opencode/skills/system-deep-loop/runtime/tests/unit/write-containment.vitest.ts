@@ -437,6 +437,123 @@ describe('write-containment — restore prefers the baseline bytes over HEAD', (
     expect(readFileSync(join(root, 'tracked-outside.txt'), 'utf8')).toBe('ORIGINAL_OUTSIDE\n');
   });
 });
+// An untracked path that is deleted after the dispatch appears in NO git status entry: git
+// reports a deletion as the difference between the index and the working tree, and an untracked
+// path has no index entry to differ from. Subtracting the baseline therefore has to run both
+// ways -- the baseline is the only record that the file ever existed, what it hashed to, and,
+// when the bytes were captured, what to put back.
+describe('write-containment — a baseline untracked path the lane deleted is a violation', () => {
+  function makeBaselineDir(): string {
+    const dir = mkdtempSync(join(tmpdir(), 'baseline-deletion-'));
+    tempRoots.push(dir);
+    return dir;
+  }
+
+  it('reports the deletion with the baseline hash under the default preserve remedy', () => {
+    const { root, artifactDir } = baselineRepo();
+    const deletedPath = 'baseline-untracked.txt';
+    writeFileSync(join(root, deletedPath), 'PRESENT_AT_DISPATCH\n');
+    const preDispatch = snapshotOutOfScopeDirtyPaths({ repoRoot: root, artifactDir });
+    const baselineEntry = preDispatch.find((entry) => entry.path === deletedPath);
+    expect(baselineEntry?.hash).toBe(git(root, ['hash-object', '--', deletedPath]).trim());
+
+    // The lane removes the file, which is the whole of its footprint: nothing is left for a
+    // status diff to compare against.
+    unlinkSync(join(root, deletedPath));
+
+    const violations = detectNewOutOfScopeViolations({
+      repoRoot: root,
+      artifactDir,
+      preDispatchDirtyPaths: preDispatch,
+    });
+
+    expect(violations.map((violation) => violation.path)).toEqual([deletedPath]);
+    expect(violations[0].kind).toBe('deleted');
+    expect(violations[0].baselineHash).toBe(baselineEntry!.hash);
+
+    // Under the default remedy nothing is put back -- there is nothing left to preserve, and
+    // no captured bytes were asked for -- so the loss is recorded as exactly that.
+    const revert = revertOutOfScopeViolations({ repoRoot: root, violations });
+    expect(revert.reverted).toEqual([
+      { path: deletedPath, action: 'unrecoverable', ok: false, error: expect.any(String) },
+    ]);
+    expect(revert.reverted[0].error).toMatch(/holds no bytes/);
+    expect(existsSync(join(root, deletedPath))).toBe(false);
+
+    // Reported, and fatal: an untracked path that still existed would be an advisory another
+    // writer could reclaim, but these bytes are already gone, so there is no remedy to defer to.
+    const enforced = enforceWriteContainment({
+      repoRoot: root,
+      artifactDir,
+      preDispatchDirtyPaths: preDispatch,
+    });
+    expect(enforced.violations.map((violation) => violation.path)).toEqual([deletedPath]);
+    expect(enforced.advisories).toEqual([]);
+  });
+
+  it('recreates the directory and writes the pre-dispatch bytes back byte-identically under restore', () => {
+    const { root, artifactDir } = baselineRepo();
+    const baselineDir = makeBaselineDir();
+    const deletedDir = join(root, 'lane-deleted-dir');
+    const deletedPath = 'lane-deleted-dir/baseline-untracked.bin';
+    // Not text: byte identity is the claim being pinned, and a NUL makes a text comparison fail.
+    const bytes = Buffer.from([0x00, 0x01, 0xfe, 0xff, 0x0a]);
+    mkdirSync(deletedDir, { recursive: true });
+    writeFileSync(join(root, deletedPath), bytes);
+
+    const preDispatch = snapshotOutOfScopeDirtyPaths({
+      repoRoot: root,
+      artifactDir,
+      captureContentDir: baselineDir,
+    });
+    expect(preDispatch.find((entry) => entry.path === deletedPath)?.baselineContentPath).toBeDefined();
+
+    // The lane removes the whole directory, so the restore has to rebuild the chain too.
+    rmSync(deletedDir, { recursive: true });
+
+    const violations = detectNewOutOfScopeViolations({
+      repoRoot: root,
+      artifactDir,
+      preDispatchDirtyPaths: preDispatch,
+    });
+    expect(violations.map((violation) => violation.path)).toEqual([deletedPath]);
+
+    const revert = revertOutOfScopeViolations({
+      repoRoot: root,
+      violations,
+      mode: 'restore',
+      preDispatchDirtyPaths: preDispatch,
+      baselineContentRoot: baselineDir,
+    });
+
+    expect(revert.reverted).toEqual([
+      { path: deletedPath, action: 'restored_from_baseline', ok: true },
+    ]);
+    expect(readFileSync(join(root, deletedPath)).equals(bytes)).toBe(true);
+  });
+
+  it('leaves a path deleted before dispatch, and an untouched baseline untracked path, unreported', () => {
+    const { root, artifactDir } = baselineRepo();
+    // Deleted BEFORE the dispatch: its baseline hash is already empty, which subtracts it today,
+    // and the deletion pass must not turn that subtraction into a violation.
+    unlinkSync(join(root, 'deep/file.txt'));
+    writeFileSync(join(root, 'pre-existing-untracked.txt'), 'PRESENT_BEFORE_AND_AFTER\n');
+
+    const preDispatch = snapshotOutOfScopeDirtyPaths({ repoRoot: root, artifactDir });
+    expect(dirtySorted(preDispatch)).toEqual(['deep/file.txt', 'pre-existing-untracked.txt']);
+
+    const violations = detectNewOutOfScopeViolations({
+      repoRoot: root,
+      artifactDir,
+      preDispatchDirtyPaths: preDispatch,
+    });
+
+    // The tracked deletion is pre-existing, and the untracked file is still on disk unchanged:
+    // neither is this lane's doing, so neither is reported.
+    expect(violations).toEqual([]);
+  });
+});
+
 describe('write-containment — regression case (a): in-artifact write passes', () => {
   it('detects zero violations when the leaf writes only inside the artifact dir', () => {
     const { root, artifactDir } = baselineRepo();

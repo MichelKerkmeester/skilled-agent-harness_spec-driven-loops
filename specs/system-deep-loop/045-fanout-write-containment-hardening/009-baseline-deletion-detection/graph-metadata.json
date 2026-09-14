@@ -39,14 +39,16 @@
       "approach"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts"
     ],
     "entities": [
       {
@@ -86,6 +88,18 @@
         "source": "derived"
       },
       {
+        "name": "write-containment.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts",
+        "source": "derived"
+      },
+      {
+        "name": "write-containment.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -116,7 +130,7 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement",
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -134,7 +148,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Baseline",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -146,13 +166,7 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
+        "name": "Data Flow Baseline",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -180,23 +194,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "The detector iterated the post-dispatch git status and subtracted the baseline, so an untracked file present at baseline and deleted by the lane was absent from status and never seen",
     "created_at": "2026-09-14T17:44:14Z",
-    "last_save_at": "2026-09-14T17:46:53.372Z",
+    "last_save_at": "2026-09-14T19:47:10.181Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +209,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5bf0ffe8724a7213cfb2b840c7be4eb0bf7bde60196d72bd7f9a9454fa08c8b4",
+    "source_fingerprint": "sha256:c85ef0dda20ef6cbb1cc8bfb09de0d55ee185e12984df085667ca3ba6df55748",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b164ac008a4a81107f39269a4388def2d54938db096083c5cfba19f60d2577c5",
-      "plan.md": "b36507d7a0ecb008df300f2ff316c8b588241f098aae3c1ca94e532b7b4dedc8",
-      "tasks.md": "78bda1dbface05b8ca27001ae7b403cf2cc3ca5c79b30a3f235707e7f0552076",
-      "implementation-summary.md": "7d5cee7262d6cb78b585d8ace64eec167fdfd2284fc7499109cd94f8388ad6dc"
+      "spec.md": "0d5c006b3d0c4cc0dc22b7d566ef53f78e6001f26396332c608b1fa2eb9726d9",
+      "plan.md": "2aabc45893fc69ce373ffe3bafdc6a8fa44d1ea4f720ad1ea1000c2c0e8e695d",
+      "tasks.md": "5ae2efb9b39fb972ab5ae19298d1a27a874ca1ff030b1cd8037f218db8e9ec91",
+      "implementation-summary.md": "844ba7e602c91253139a59d1cef4670708f8d0291c367a62661d8dfab1c8a301"
     },
     "last_active_at": null
   }
