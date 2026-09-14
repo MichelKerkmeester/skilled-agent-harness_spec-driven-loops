@@ -697,8 +697,13 @@ const fanoutControlShape = {
     // How many newly dirty paths outside the lineage, per progress heartbeat, mean a
     // second writer shares this checkout. A couple of them is ordinary life on a
     // working tree (a build, an editor save, a formatter); a burst is somebody else.
-    // Three ignores the former and still catches the latter. Zero disables the check.
+    // Three ignores the former and still catches the latter. Zero disables this arm.
     churnThreshold: z.number().int().nonnegative().default(3),
+    // The same question asked of the whole run instead of one window: a neighbour that
+    // dirties a path every few heartbeats never exceeds the per-window threshold above,
+    // and a running total is the only count that sees it. Twelve sits above the slow
+    // trickle a working tree produces on its own, and zero disables this arm.
+    churnCumulativeThreshold: z.number().int().nonnegative().default(12),
     // Isolation is the structural fix for a shared checkout: a lane that cannot write
     // outside its own tree cannot destroy a neighbouring session's work. It is the default
     // because preserve bounds the damage while isolation removes it. A lane whose tree
@@ -707,7 +712,7 @@ const fanoutControlShape = {
     worktrees: z.boolean().default(false),
   // `prefault` rather than `default`: Zod returns a default unparsed, so a literal that names
   // only some fields would leave the rest undefined at runtime while the type claims them all.
-  }).prefault({ mode: 'preserve', churnThreshold: 3 }),
+  }).prefault({ mode: 'preserve', churnThreshold: 3, churnCumulativeThreshold: 12 }),
   // The stop policy is a dispatch-level directive carried by the CLI flag, not
   // config data. Object parsing drops unknown keys silently, so a caller who put
   // it here would believe forced depth was pinned while the run stopped on
@@ -752,6 +757,7 @@ export interface FanoutConfig {
   readonly containment: {
     readonly mode: 'preserve' | 'restore';
     readonly churnThreshold: number;
+    readonly churnCumulativeThreshold: number;
     readonly worktrees: boolean;
   };
 }
