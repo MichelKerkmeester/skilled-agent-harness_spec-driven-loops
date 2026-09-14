@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Under preserve, an out-of-scope untracked path is advisory and never fails the lane, so a neighbour's new file cannot halt a fan-out"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+description: "Under preserve, an out-of-scope untracked path is an advisory and never fails a fan-out lane, so a neighbour dropping a new file cannot halt it."
 trigger_phrases:
   - "feature specification"
   - "problem statement"
@@ -21,10 +21,10 @@ contextType: "general"
 | Field | Value |
 |-------|-------|
 | **Level** | 2 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | Draft |
+| **Priority** | P0 |
+| **Status** | Complete |
 | **Created** | 2026-09-14 |
-| **Branch** | `scaffold/007-never-fatal-untracked` |
+| **Branch** | `skilled/v4.0.0.0` |
 | **Parent** | `../spec.md` |
 | **Predecessor** | none |
 <!-- /ANCHOR:metadata -->
@@ -35,10 +35,10 @@ contextType: "general"
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+The write-containment guard failed a fan-out iteration whenever an untracked file appeared outside the lane's packet tree, even under the preserve remedy, where nothing is ever rolled back. A neighbouring session dropping one new file anywhere in the checkout therefore halted a lane that had done nothing wrong, and the halt protected nothing because the file was already preserved.
 
 ### Purpose
-[One-sentence outcome statement. What does success look like?]
+Under preserve, an out-of-scope untracked path is an advisory the ledger records; the lane's own verdict stands.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -47,19 +47,22 @@ contextType: "general"
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- The `violations` versus `advisories` partition in `enforceWriteContainment`, preserve mode only
+- Unit coverage for the new partition in both modes
+- A runner-level stub-lane test proving the lane settles fulfilled with a ledger advisory
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+- Detection, scope rules, carve-outs and the regenerable-state exemption - frozen by the parent's decision D2
+- The restore remedy's partition - it still fails an unrelated untracked write, proving the change is scoped
+- In-HEAD breaches and escaping symlinks - their classification is unchanged in both modes
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+| `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts` | Modify | Preserved untracked paths become advisories under preserve; restore keeps the packet-scope partition |
+| `.opencode/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts` | Modify | Two new tests for the partition per mode; five existing fatal-untracked tests now opt into restore explicitly |
+| `.opencode/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts` | Modify | Stub-lane test: stray untracked file mid-run settles as advisory; graceful self-stop fixture asks for a tree explicitly |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -71,13 +74,14 @@ contextType: "general"
 
 | ID | Requirement |
 |----|-------------|
-| REQ-001 | [Requirement description] |
+| REQ-001 | Under preserve (or omitted mode) every path the revert reports as preserved untracked is returned in `advisories`, never in `violations`, unless it escapes the artifact tree through a symlink |
+| REQ-002 | Under restore the current partition is unchanged: an untracked path outside the packet tree still fails the iteration |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement |
 |----|-------------|
-| REQ-002 | [Requirement description] |
+| REQ-003 | A runner stub lane whose checkout gains a stray untracked file mid-run settles fulfilled, the file is byte-identical, and the status ledger carries a `containment_advisory` event naming it |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
@@ -88,8 +92,8 @@ contextType: "general"
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: The new preserve-mode unit test fails against the unmodified guard and passes after the change
+- **SC-002**: The deep-loop runtime suite exits zero with the change in place
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -99,8 +103,8 @@ contextType: "general"
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+| Risk | A genuinely stray lane write outside the packet now passes silently under preserve | Low | It is still preserved, quarantined, logged as an advisory and counted on the ledger; nothing is lost and the operator can see it |
+| Dependency | Preserve-by-default remedy from the parent packet | Already shipped | None needed |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -113,16 +117,13 @@ contextType: "general"
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
-- **NFR-P01**: [Response time target - e.g., <200ms p95]
-- **NFR-P02**: [Throughput target - e.g., 100 req/sec]
+- **NFR-P01**: No extra git calls; the partition reuses the revert result already computed
 
 ### Security
-- **NFR-S01**: [Auth requirement - e.g., JWT tokens required]
-- **NFR-S02**: [Data protection - e.g., TLS + encrypted at rest]
+- **NFR-S01**: An escaping symlink inside the artifact tree stays fatal in both modes
 
 ### Reliability
-- **NFR-R01**: [Uptime target - e.g., 99.9%]
-- **NFR-R02**: [Error rate - e.g., <1%]
+- **NFR-R01**: No file is deleted or rolled back under preserve, before or after this change
 <!-- /ANCHOR:nfr -->
 
 ---
@@ -131,18 +132,17 @@ contextType: "general"
 ## L2: EDGE CASES
 
 ### Data Boundaries
-- Empty input: [How system handles]
-- Maximum length: [Limit and behavior]
-- Invalid format: [Validation response]
+- Empty input: no detected paths returns the same empty result as before
+- Repo-root stray file: advisory under preserve, fatal under restore (no packet relationship)
+- Escaping symlink named inside the artifact tree: fatal in both modes
 
 ### Error Scenarios
-- External service failure: [Fallback behavior]
-- Network timeout: [Retry strategy]
-- Concurrent access: [Conflict resolution]
+- Git unavailable: the wrapper fails open and the guard reports nothing, unchanged by this phase
+- Concurrent access: the neighbour's file is never touched; the advisory names it
 
 ### State Transitions
-- Partial completion: [Recovery behavior]
-- Session expiry: [User experience]
+- Partial completion: the lane's own verdict decides; the advisory never overwrites it
+- Session expiry: not applicable
 <!-- /ANCHOR:edge-cases -->
 
 ---
@@ -152,18 +152,17 @@ contextType: "general"
 
 | Dimension | Score | Notes |
 |-----------|-------|-------|
-| Scope | [/25] | [Files, LOC, systems] |
-| Risk | [/25] | [Auth, API, breaking changes] |
-| Research | [/20] | [Investigation needs] |
-| **Total** | **[/70]** | **Level 2** |
+| Scope | 8/25 | One function, three files, about 180 lines mostly tests |
+| Risk | 10/25 | Shared runtime guard; behaviour change gated by remedy mode |
+| Research | 4/20 | Root cause already established by the parent's research |
+| **Total** | **22/70** | **Level 2** |
 <!-- /ANCHOR:complexity -->
 
 ---
 
 ## 10. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+- None open.
 <!-- /ANCHOR:questions -->
 
 ---

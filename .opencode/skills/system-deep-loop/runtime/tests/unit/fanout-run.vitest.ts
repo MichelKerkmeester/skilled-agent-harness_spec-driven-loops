@@ -2752,6 +2752,9 @@ describe('fanout-run.cjs — a containment finding does not fail a lineage that 
         // The stray write lands in the checkout, so the lane has to run there too for the
         // baseline scan to see it.
         '--worktrees', 'false',
+        // The finding has to stay fatal for this case to study the driver's advisory-status
+        // path, and under the default preserve remedy an untracked path is an advisory.
+        '--containment-mode', 'restore',
         '--no-metadata-refresh',
       ],
       { cwd: repoRoot, env, timeoutMs: 20_000 },
@@ -2781,6 +2784,93 @@ describe('fanout-run.cjs — a containment finding does not fail a lineage that 
       .split('\n')
       .map((line) => JSON.parse(line) as Record<string, unknown>);
     expect(ledgerLines.filter((event) => event.event === 'containment_violation')).toHaveLength(1);
+  });
+});
+
+describe('fanout-run.cjs — an out-of-packet untracked write settles as an advisory, never a lane failure', () => {
+  it('completes the lineage with a containment advisory for the stray file, which survives byte-for-byte', async () => {
+    const hermetic = useHermeticEnv('containment-untracked-advisory');
+    const repoRoot = hermetic.tmpDir;
+    const binDir = makeTempDir('fanout-run-untracked-advisory-bin-');
+    const specFolder = 'specs/test-fanout-run-untracked-advisory';
+    const baseDir = join(repoRoot, specFolder, 'research', 'artifacts');
+    const strayPath = join(repoRoot, 'stray-out-of-scope', 'leaf-escaped.txt');
+    const strayBytes = Buffer.from('escaped\n');
+
+    // git resolves its target repository from these vars in preference to the working
+    // directory, so an inherited one would send the fixture's checks into the repository
+    // this test itself runs from.
+    const env: NodeJS.ProcessEnv = { ...envWithBin(hermetic, binDir), DEEP_LOOP_REPO_ROOT: repoRoot };
+    for (const key of ['GIT_DIR', 'GIT_WORK_TREE', 'GIT_COMMON_DIR', 'GIT_INDEX_FILE', 'GIT_CEILING_DIRECTORIES']) {
+      delete env[key];
+    }
+    // Containment diffs a real worktree, and that worktree must not inherit the developer's
+    // global gitignore: an ignored stray path never reaches git status. The artifact tree is
+    // pre-created because the pre-dispatch baseline can only be resolved once it exists.
+    expect(spawnSync('git', ['init', '-q', repoRoot], { encoding: 'utf8', env }).status).toBe(0);
+    spawnSync('git', ['-C', repoRoot, 'config', 'core.excludesFile', '/dev/null'], { encoding: 'utf8', env });
+    mkdirSync(join(baseDir, 'lineages', 'contained'), { recursive: true });
+
+    // The leaf writes every artifact the loop requires AND one new untracked path outside its
+    // lineage dir, with no containment mode asked for: the default remedy applies.
+    writeFileSync(
+      join(binDir, 'opencode'),
+      [
+        '#!/bin/sh',
+        `mkdir -p ${shellQuote(join(repoRoot, 'stray-out-of-scope'))}`,
+        `echo escaped > ${shellQuote(strayPath)}`,
+        writeFanoutArtifactsShell(),
+        'echo "stub-done"',
+        'exit 0',
+        '',
+      ].join('\n'),
+      { mode: 0o755 },
+    );
+
+    const fanoutConfig = JSON.stringify({
+      executors: [{ label: 'contained', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', count: 1 }],
+      concurrency: 1,
+    });
+
+    const result = await spawnCjs(
+      fanoutRunScript,
+      [
+        '--spec-folder', specFolder,
+        '--loop-type', 'research',
+        '--fanout-config-json', fanoutConfig,
+        '--base-artifact-dir', baseDir,
+        // The stray write lands in the checkout, so the lane has to run there too for the
+        // baseline scan to see it.
+        '--worktrees', 'false',
+        '--no-metadata-refresh',
+      ],
+      { cwd: repoRoot, env, timeoutMs: 20_000 },
+    );
+
+    // Completed, not rejected: preservation already guarantees the bytes survive, so an
+    // out-of-packet untracked write is a finding to report rather than a reason to halt.
+    expect(result.exitCode).toBe(0);
+    const payload = JSON.parse(result.stdout.split('\n').filter(Boolean).at(-1) ?? '{}') as {
+      results?: Array<{ status?: string }>;
+      summary?: { succeeded?: number; failed?: number; all_failed?: boolean };
+    };
+    expect(payload.summary).toMatchObject({ succeeded: 1, failed: 0, all_failed: false });
+    expect(payload.results?.[0]?.status).toBe('fulfilled');
+
+    // Byte-identical: the guard reports the path instead of undoing it.
+    expect(existsSync(strayPath)).toBe(true);
+    expect(readFileSync(strayPath).equals(strayBytes)).toBe(true);
+
+    // The advisory reaches the ledger, and no fatal containment event does.
+    const ledgerLines = readFileSync(join(baseDir, 'orchestration-status.log'), 'utf8')
+      .trim()
+      .split('\n')
+      .map((line) => JSON.parse(line) as Record<string, unknown>);
+    const advisoryEvents = ledgerLines.filter((event) => event.event === 'containment_advisory');
+    expect(advisoryEvents).toHaveLength(1);
+    expect((advisoryEvents[0].violations as Array<{ path?: string }>).map((violation) => violation.path))
+      .toContain('stray-out-of-scope/leaf-escaped.txt');
+    expect(ledgerLines.filter((event) => event.event === 'containment_violation')).toEqual([]);
   });
 });
 
@@ -3082,6 +3172,9 @@ describe('fanout-run.cjs — graceful self-stop', () => {
         fanoutConfig,
         '--base-artifact-dir',
         baseDir,
+        // This case studies the isolation tally on a stopped run, so it asks for a tree
+        // explicitly instead of inheriting a default.
+        '--worktrees',
       ],
       { cwd: hermetic.tmpDir },
     );

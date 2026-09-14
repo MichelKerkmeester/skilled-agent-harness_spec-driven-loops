@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+description: "A neighbour's new file no longer halts a fan-out lane under preserve; the guard records it as an advisory and the lane's verdict stands."
 trigger_phrases:
   - "implementation summary"
   - "what shipped"
@@ -12,9 +12,9 @@ _memory:
   continuity:
     packet_pointer: "system-deep-loop/045-fanout-write-containment-hardening/001-never-fatal-untracked"
     last_updated_at: "2026-09-14T09:08:59Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialized Level 2 template"
-    next_safe_action: "Replace continuity placeholders"
+    last_updated_by: "claude-fable-5-1"
+    recent_action: "Fixed the preserve partition and filled the packet docs"
+    next_safe_action: "Commit once the full suite exits zero"
     blockers: []
     key_files: []
     session_dedup:
@@ -48,7 +48,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## 2. WHAT WAS BUILT
 
-Nothing yet. This phase is planned; its change lands in `runtime/lib/deep-loop/write-containment.ts` and is verified by the deep-loop suite before the next phase starts.
+Under the preserve remedy a neighbour's new file outside the packet no longer halts a fan-out lane. The partition in `enforceWriteContainment` now treats every preserved untracked path as an advisory when the mode is preserve or omitted, while restore keeps its packet-scope rule and an escaping symlink stays fatal in both modes. Two unit tests pin the partition per mode, five existing tests that pinned the old rule now ask for restore explicitly, and a runner stub lane proves the lane settles fulfilled with a `containment_advisory` ledger event naming the untouched file.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -56,7 +56,7 @@ Nothing yet. This phase is planned; its change lands in `runtime/lib/deep-loop/w
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-[How was this tested, verified and shipped? What was the rollout approach?]
+One dispatch to DeepSeek V4.1 Flash at max thinking through the gateway on cli-pi, with a brief naming the three files, the frozen behaviour and the gate. The new preserve-mode tests were run against the unmodified guard first and failed at the expected assertions. The orchestrator then reviewed the diff and ran the whole deep-loop suite before committing.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -66,7 +66,9 @@ Nothing yet. This phase is planned; its change lands in `runtime/lib/deep-loop/w
 
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| Advisory regardless of packet relationship under preserve | Preservation already guarantees nothing is lost, so a halt bought only a false stop from another session's write |
+| Restore keeps the packet-scope partition | Proves the change is scoped to preserve and keeps the opt-in remedy's stricter posture |
+| Graceful self-stop fixture asks for a tree explicitly | The test had assumed the old worktree default and was red at HEAD; the fixture now states its need instead of inheriting a default |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -76,7 +78,10 @@ Nothing yet. This phase is planned; its change lands in `runtime/lib/deep-loop/w
 
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| New preserve test against unmodified guard | FAIL as expected: violations held the stray path |
+| Touched test files plus typecheck | PASS, exit 0, 199 tests |
+| Full deep-loop suite | PASS: 156 files, 2657 tests, 7 skipped, exit 0 |
+| `validate.sh --strict` on this phase | RESULT: PASSED |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -84,7 +89,7 @@ Nothing yet. This phase is planned; its change lands in `runtime/lib/deep-loop/w
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **Lane status string.** The lane settles `fulfilled` with a ledger advisory; the driver reserves its dedicated advisory status for the violations partition, so a stray untracked file does not change the status string.
 <!-- /ANCHOR:limitations -->
 
 ---
