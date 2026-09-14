@@ -447,25 +447,6 @@ describe('parseFanoutConfig', () => {
     })).toThrow(ExecutorConfigError);
   });
 
-  it('defaults worktree isolation off and lets the config opt a run in', () => {
-    // Isolation costs roughly 1.6 GB of checkout per lane, so it is chosen per run rather than
-    // inherited by every run; an explicit true is the config-level opt-in.
-    expect(parseFanoutConfig({ executors: [{ kind: 'native', label: 'opus' }] }).containment.worktrees).toBe(false);
-    // A partial containment object keeps the default: a caller that only sets the mode has not
-    // asked for a tree.
-    expect(parseFanoutConfig({
-      containment: { mode: 'restore' },
-      executors: [{ kind: 'native', label: 'opus' }],
-    }).containment.worktrees).toBe(false);
-    expect(parseFanoutConfig({
-      containment: { worktrees: true },
-      executors: [{ kind: 'native', label: 'opus' }],
-    }).containment.worktrees).toBe(true);
-    expect(parseFanoutConfig({
-      containment: { worktrees: false },
-      executors: [{ kind: 'native', label: 'opus' }],
-    }).containment.worktrees).toBe(false);
-  });
 
   it('defaults the cumulative churn threshold and rejects values that are not non-negative integers', () => {
     // The cumulative arm catches a writer that spreads its paths one heartbeat apart, which no

@@ -42,15 +42,15 @@ See [`deep-loop-mode-classification/deep-loop-mode-classification.md`](deep-loop
 
 ## 3. FAN-OUT WRITE CONTAINMENT
 
-### Fan-Out Write Containment And Per-Lineage Worktrees
+### Fan-Out Write Containment
 
 #### Description
 
-How a fan-out keeps a dispatched lane's writes inside its own directory, why the remedy is preservation rather than reversion, and how a per-lineage worktree removes the attribution question instead of answering it.
+How a fan-out keeps a dispatched lane's writes inside its own directory, and why the remedy is preservation rather than reversion.
 
 #### Current Reality
 
-Preservation is the default remedy and restore is opt-in per run. Per-lineage worktrees are on by default; `--worktrees false` (or `containment.worktrees: false`) puts a run back on the shared checkout. A lane that is isolated but whose process cwd still points at the shared checkout is watched there: a write it makes is reported as a `checkout_write_detected` warning and counted in the run summary's isolation object, never restored.
+Preservation is the default remedy and restore is opt-in per run. Every lane runs in the shared checkout, so the containment guard watches the checkout itself: an out-of-scope write stays on disk and is reported as an advisory or a violation. A burst of newly dirty paths between heartbeats proves a second writer and latches preservation even when restore was requested.
 
 #### Source Files
 

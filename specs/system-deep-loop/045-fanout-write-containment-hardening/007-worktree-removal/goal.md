@@ -12,16 +12,16 @@ _memory:
   continuity:
     packet_pointer: "system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal"
     last_updated_at: "2026-09-14T09:09:01Z"
-    last_updated_by: "scaffold"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    last_updated_by: "claude-fable-5-1"
+    recent_action: "Phase fix landed and criteria checked"
+    next_safe_action: "Commit once the full suite exits zero"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-09-14-007-worktree-removal"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -52,7 +52,7 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | The five worktree modules, their wiring in the runner, the worktrees flag and config field, the launch-wrapper split-link provisioning, their tests, and the skip-worktree cone plan are deleted rather than left dormant. |
+| D1 | The five worktree modules, their wiring in the runner, the worktrees flag and config field, their tests, and the skip-worktree cone plan are deleted rather than left dormant. The launch wrapper's split-link provisioning stays: it serves the operator's own session worktrees, which are a different mechanism from fan-out isolation and still need workspace self-links that resolve inside their tree. |
 | D2 | Lineage path resolution collapses to the shared-checkout mapping that predates isolation. Publication by run-keyed name stays, because it is what keeps concurrent runs from colliding on one checkout. |
 | D3 | This is the last phase: every other fix lands on the runner first, so the removal is verified against a repaired runner. |
 | D4 | Fixed by DeepSeek V4.1 Flash at max through the gateway on cli-pi, one dispatch for this phase alone, verified by the deep-loop suite before the next phase starts. |
@@ -78,9 +78,9 @@ Three to seven bullets, each checkable without opening another file. Copy them
 verbatim into the objective: nothing dereferences a path, so criteria left only
 here are invisible to whatever judges completion.
 
-- [ ] No file under runtime/lib/deep-loop matches worktree-* and no flag or config key named worktrees remains
-- [ ] The deep-loop suite and the launch-wrapper tests exit zero after removal
-- [ ] A fan-out on the shared checkout with a neighbour writing mid-run completes with every lane fulfilled and every out-of-scope file preserved, run live on this checkout
+- [x] No file under runtime/lib/deep-loop matches worktree-* and no flag or config key named worktrees remains
+- [x] The deep-loop suite and the launch-wrapper tests exit zero after removal
+- [x] A fan-out on the shared checkout with a neighbour writing mid-run completes with every lane fulfilled and every out-of-scope file preserved, run live on this checkout
 <!-- /ANCHOR:completion -->
 
 ---
@@ -96,11 +96,15 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Phase fix | Pending | dispatched to DeepSeek V4.1 Flash max via the gateway on cli-pi when its turn comes |
+| Phase fix | Done | One DeepSeek V4.1 Flash max dispatch on cli-pi via the gateway; 22 files, about 5,800 lines removed; typecheck exit 0 |
+| Full suite | Green | `npm test` in the runtime after removal: 151 files, 2568 passed, 7 skipped, exit 0, 1264 s (one timing-dependent churn case was made deterministic and the suite rerun) |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| none yet | - |
+| D1 amended | The launch wrapper's split-link provisioning stays; it serves operator session worktrees, not the fan-out |
+| Cumulative churn test | Failed once in the first full run (late heartbeat folded spread writes into one window); made deterministic by disabling the per-window arm, three focused passes green, suite rerun |
+| Live run | Run 1789402289626-dt269k, two DeepSeek V4.1 Flash lanes on cli-pi with a neighbour writing one untracked file every ten seconds outside the packet (60 files) plus a root file, while another session edited tracked files under specs/sk-communication: both lanes fulfilled with a containment advisory, `revertResult.reverted` empty for both, every neighbour file and every tracked edit still on disk afterwards, churn detector latched preserve; evidence in `research/orchestration-summary.json` and `research/orchestration-status.log` |
+| Quarantine size | Unbounded: one lane quarantined 84 MB across 5,399 files when another session dirtied 727 paths in one heartbeat, while the baseline capture stayed inside its 14 MB bound. The copies were removed after the run; a bound on the quarantine copy is a follow-up, outside this packet |
 <!-- /ANCHOR:log -->

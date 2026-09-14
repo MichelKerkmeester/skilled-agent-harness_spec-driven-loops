@@ -234,22 +234,6 @@ function normalizeContainmentMode(raw) {
   return raw;
 }
 
-// Returns null when the flag is absent, so the fan-out config value can supply the value
-// instead. Isolation is on by default, so the string 'false' is the per-run opt-out while a
-// bare `--worktrees` still forces it on.
-function normalizeWorktreesOption(raw) {
-  if (raw === undefined || raw === false || raw === null || raw === '') {
-    return null;
-  }
-  if (raw === true || raw === 'true') {
-    return true;
-  }
-  if (raw === 'false') {
-    return false;
-  }
-  throw inputError('worktrees must be true or false');
-}
-
 function jsonOut(payload) {
   process.stdout.write(`${JSON.stringify(payload)}\n`);
 }
@@ -509,19 +493,6 @@ const DEEP_LOOP_LOCK_FILENAMES = ['.deep-research.lock', '.deep-review.lock'];
 // plausibly sits at below its packet, and never walks more directories than a packet holds.
 const FOREIGN_RUN_SCAN_MAX_DEPTH = 6;
 const FOREIGN_RUN_SCAN_MAX_DIRS = 2000;
-
-// A lane's worktree is named `${prefix}-${runId}-${label}` under the worktree base, so the
-// prefix is what lets a sweep tell the trees this runner made from any other directory.
-const FANOUT_WORKTREE_PREFIX = 'fanout';
-// Default base for lineage worktrees: inside the checkout and already ignored by git. The
-// override exists so a run can put its trees on a different filesystem from the one it reads.
-const DEFAULT_WORKTREE_BASE_DIRNAME = '.worktrees';
-// Lease budget for a lane's worktree. A sweep may treat a lease as stale only once its
-// heartbeat is older than twice this window; the heartbeat stops when the lane's process
-// exits, so the window also has to cover the settle work that runs after it (validation,
-// containment, copy-back), and the minimum keeps a zero or sub-second progress heartbeat from
-// producing a window that expires while that work is still happening.
-const WORKTREE_LEASE_MIN_TTL_MS = 60000;
 
 function stopActiveLineageProcesses(signal) {
   for (const child of activeLineageProcesses) {
@@ -1724,7 +1695,7 @@ function startSharedCheckoutChurnDetector({
       }
     } catch {
       // A detector that can fail a lane is worse than no detector: an unreadable
-      // tree (git absent, worktree gone) ends sampling and changes nothing.
+      // tree (git absent, checkout gone) ends sampling and changes nothing.
       stopped = true;
     }
   };
@@ -2772,271 +2743,6 @@ function runPacketMetadataRefresh(input) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 4b. LINEAGE WORKTREE ISOLATION (DEFAULT ON)
-// ─────────────────────────────────────────────────────────────────────────────
-
-// A lane that shares the checkout can dirty a file another session owns, and containment can
-// only report that after it happened. A tree per lane is the structural fix: the lane writes
-// where nobody else does, and finished artifacts are copied back. It is on by default (the
-// worktrees option above carries the opt-out). Containment watches the tree the lane runs in, so
-// a flag-lever kind that resolves a path against the original checkout is not observed; the
-// summary's isolation tally reports provisioning per attempt, not confinement.
-
-/** Every worktree function a lane needs, loaded once when isolation is on; a load failure degrades the run rather than failing it. */
-async function loadWorktreeModules() {
-  const [lifecycle, paths, publish, reclaim, lease] = await Promise.all([
-    import('../lib/deep-loop/worktree-lifecycle.ts'),
-    import('../lib/deep-loop/worktree-paths.ts'),
-    import('../lib/deep-loop/worktree-publish.ts'),
-    import('../lib/deep-loop/worktree-reclaim.ts'),
-    import('../lib/deep-loop/worktree-lease.ts'),
-  ]);
-  return {
-    createLineageWorktree: lifecycle.createLineageWorktree,
-    seedWorktree: lifecycle.seedWorktree,
-    removeLineageWorktree: lifecycle.removeLineageWorktree,
-    resolveLineagePaths: paths.resolveLineagePaths,
-    publishLineageDirectory: publish.publishLineageDirectory,
-    sweepStagingResidue: publish.sweepStagingResidue,
-    reclaimWorktrees: reclaim.reclaimWorktrees,
-    refreshWorktreeLease: lease.refreshWorktreeLease,
-    setWorktreeLeaseState: lease.setWorktreeLeaseState,
-    leaseFilename: lease.WORKTREE_LEASE_FILENAME,
-  };
-}
-
-/**
- * Root the per-lineage worktrees are created under.
- *
- * Same precedence as the launch wrapper that owns session worktrees, so one operator setting
- * moves both, and a base that resolves relative is joined against the checkout by the create
- * call. The default sits inside the checkout and is already ignored by git.
- */
-function resolveWorktreeBase(repoRoot, env = process.env) {
-  const fromEnv = typeof env.SPECKIT_WORKTREE_BASE === 'string' ? env.SPECKIT_WORKTREE_BASE.trim() : '';
-  if (fromEnv !== '') {
-    return expandHomeDir(fromEnv);
-  }
-
-  try {
-    // Git resolves these in preference to -C, so a hook's inherited environment would read
-    // the config of whichever repository invoked the hook instead of this one.
-    const gitEnv = { ...env };
-    for (const key of ['GIT_DIR', 'GIT_WORK_TREE', 'GIT_COMMON_DIR', 'GIT_INDEX_FILE', 'GIT_CONFIG', 'GIT_CEILING_DIRECTORIES']) {
-      delete gitEnv[key];
-    }
-    const configured = spawnSync('git', ['-C', repoRoot, 'config', '--get', 'speckit.worktreeBase'], {
-      encoding: 'utf8',
-      env: gitEnv,
-      maxBuffer: 1024 * 1024,
-    });
-    const value = typeof configured.stdout === 'string' ? configured.stdout.trim() : '';
-    if (configured.status === 0 && value !== '') {
-      return expandHomeDir(value);
-    }
-  } catch {
-    // A repository without the setting is the normal case; the default below still applies.
-  }
-
-  return path.join(repoRoot, DEFAULT_WORKTREE_BASE_DIRNAME);
-}
-
-/** Repository-relative POSIX form of a directory, or null when it does not sit inside one. */
-function lineageDirNameRelative(repoRoot, absoluteDir) {
-  const relativePath = path.relative(repoRoot, absoluteDir);
-  const escapes = relativePath === '..' || relativePath.startsWith(`..${path.sep}`);
-  if (relativePath === '' || path.isAbsolute(relativePath) || escapes) {
-    return null;
-  }
-  return relativePath.split(path.sep).join('/');
-}
-
-/**
- * Repo-relative paths the packet holds uncommitted, or null when git cannot answer.
- *
- * Null and an empty list are different answers: empty is a fully committed packet whose HEAD
- * copy is already complete, while null says the working tree could not be read at all, and a
- * lane started against a stale packet would silently answer the wrong question. This run's own
- * artifact tree is excluded, because seeding it would copy a run's output into the tree that is
- * about to produce it.
- */
-function listPacketUncommittedPaths(input) {
-  const { repoRoot, specFolder, artifactDir, parseStatusPorcelain } = input;
-  const specFolderRelative = path.relative(repoRoot, path.resolve(process.cwd(), specFolder));
-  const artifactRelative = path.relative(repoRoot, path.resolve(process.cwd(), artifactDir));
-  const escapes = (value) => value === '' || value === '..' || value.startsWith(`..${path.sep}`) || path.isAbsolute(value);
-  if (escapes(specFolderRelative) || escapes(artifactRelative)) {
-    return null;
-  }
-
-  try {
-    const status = spawnSync('git', [
-      '-C', repoRoot, 'status', '--porcelain=v1', '-z', '--no-renames', '--untracked-files=all', '--', specFolderRelative,
-    ], { encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 });
-    if (status.error || status.status !== 0 || typeof status.stdout !== 'string') {
-      return null;
-    }
-    const paths = [];
-    for (const entry of parseStatusPorcelain(status.stdout)) {
-      const entryPath = path.join(...entry.path.split('/'));
-      if (entryPath === artifactRelative || entryPath.startsWith(`${artifactRelative}${path.sep}`)) {
-        continue;
-      }
-      paths.push(entryPath.split(path.sep).join('/'));
-    }
-    return [...new Set(paths)].sort();
-  } catch {
-    return null;
-  }
-}
-
-/**
- * Create one lane's tree and seed it with the packet content HEAD does not carry.
- *
- * Returns null for every outcome that is not a usable tree. A lane that cannot be isolated
- * still has to run, so each failure reports itself and hands the caller the dispatch it had
- * before this option existed. A tree that was made and then could not be used is removed first,
- * so a failed setup leaves behind no directory a sweep would have to guess about.
- */
-function prepareLaneWorktree(input) {
-  const {
-    modules, repoRoot, worktreeBase, runId, label, attempt, ownerPid, ttlMs, specFolder, baseArtifactDir,
-    lineage, lineageDir, parseStatusPorcelain, logEvent,
-  } = input;
-
-  const degrade = (reason) => {
-    logEvent({ event: 'worktree_degraded', status: 'warning', severity: 'warning', label, reason });
-    return null;
-  };
-
-  // A retry of a lane whose predecessor's tree was kept on purpose after a failed publish would
-  // find that name taken and drop to the shared checkout, so the attempt is part of the name this
-  // create uses. It leads the label because the reclaim sweep recognizes a lane a resume may still
-  // need by the name's suffix, and a trailing attempt would hide the tree from that guard.
-  const worktreeLabel = `attempt-${attempt}-${label}`;
-
-  const created = modules.createLineageWorktree({
-    repoRoot,
-    worktreeBase,
-    prefix: FANOUT_WORKTREE_PREFIX,
-    runId,
-    label: worktreeLabel,
-    ownerPid,
-    ttlMs,
-  });
-  if (!created.ok) {
-    return degrade(`worktree creation failed: ${created.error}`);
-  }
-  const worktreeDir = created.worktreeDir;
-
-  // The seed and the lane's write surface are named relative to the tree, so a path this
-  // checkout cannot express inside the tree is a lane that must not be started there.
-  const required = lineageDirNameRelative(repoRoot, lineageDir);
-  const seedPaths = required === null
-    ? null
-    : listPacketUncommittedPaths({ repoRoot, specFolder, artifactDir: baseArtifactDir, parseStatusPorcelain });
-  const seeded = required === null || seedPaths === null
-    ? null
-    : modules.seedWorktree({ repoRoot, worktreeDir, paths: seedPaths });
-
-  if (seeded === null || !seeded.ok) {
-    const reason = required === null
-      ? `lineage directory ${lineageDir} is not inside ${repoRoot}`
-      : seedPaths === null
-        ? 'the packet content is unreadable, so the tree cannot be trusted to match it'
-        : `worktree seed failed: ${seeded.errors.join('; ')}`;
-    modules.removeLineageWorktree({ repoRoot, worktreeDir, force: true });
-    return degrade(reason);
-  }
-
-  const paths = modules.resolveLineagePaths({
-    kind: lineage.kind,
-    repoRoot,
-    worktreeDir,
-    lineageDirName: required,
-  });
-  logEvent({
-    event: 'worktree_created',
-    status: 'ok',
-    label,
-    worktree_path: worktreeDir,
-    containment_root: paths.containmentRoot,
-    seeded_paths: seeded.copied.length,
-  });
-  return {
-    worktreeDir,
-    writeSurface: paths.writeSurface,
-    spawnCwd: paths.spawnCwd,
-    directoryFlag: paths.directoryFlag,
-    readRoot: paths.readRoot,
-    containmentRoot: paths.containmentRoot,
-    leasePath: path.join(worktreeDir, modules.leaseFilename),
-  };
-}
-
-/**
- * Publish a settled lane's directory into the main checkout, then hand its tree back.
- *
- * Publish before remove, because until the copy-back lands the tree is the only copy of the
- * lane's work: a refused or failed publication keeps it and moves its lease to `retained`, which
- * is what tells a later sweep the tree is a deliberate keep rather than debris. Nothing here
- * throws — the lane's outcome is decided before it runs — so teardown can never change that
- * outcome.
- */
-function settleLineageWorktree(input) {
-  const { modules, worktree, repoRoot, targetParent, runId, label, attempt, ownerPid, ttlMs, logEvent } = input;
-
-  let published;
-  try {
-    published = modules.publishLineageDirectory({
-      repoRoot,
-      sourceDir: worktree.writeSurface,
-      targetParent,
-      label,
-      runId,
-      attempt,
-      ownerPid,
-      ttlMs,
-    });
-  } catch (error) {
-    published = { ok: false, publishedPath: null, reason: error instanceof Error ? error.message : String(error) };
-  }
-
-  if (!published.ok) {
-    modules.setWorktreeLeaseState(worktree.worktreeDir, 'retained');
-    logEvent({
-      event: 'worktree_publish_failed',
-      status: 'error',
-      severity: 'error',
-      label,
-      worktree_path: worktree.worktreeDir,
-      reason: published.reason,
-    });
-    return;
-  }
-
-  logEvent({
-    event: 'worktree_published',
-    status: 'ok',
-    label,
-    worktree_path: worktree.worktreeDir,
-    published_path: published.publishedPath,
-  });
-
-  const removed = modules.removeLineageWorktree({ repoRoot, worktreeDir: worktree.worktreeDir, force: true });
-  if (!removed.ok) {
-    logEvent({
-      event: 'worktree_remove_failed',
-      status: 'warning',
-      severity: 'warning',
-      label,
-      worktree_path: worktree.worktreeDir,
-      reason: removed.error,
-    });
-  }
-}
-
-// ─────────────────────────────────────────────────────────────────────────────
 // 5. CORE LOGIC
 // ─────────────────────────────────────────────────────────────────────────────
 
@@ -3067,7 +2773,7 @@ async function main() {
     resolveClaudePermissionMode,
   } = await import('../lib/deep-loop/executor-config.ts');
   const { buildExecutorDispatchEnv, detectSameKindFromStack, CLI_DISPATCH_STACK_ENV } = await import('../lib/deep-loop/executor-audit.ts');
-  const { snapshotOutOfScopeDirtyPaths, detectNewOutOfScopeViolations, enforceWriteContainment, drainGitContentionWarnings, __internals: containmentInternals } = await import('../lib/deep-loop/write-containment.ts');
+  const { snapshotOutOfScopeDirtyPaths, enforceWriteContainment, drainGitContentionWarnings, __internals: containmentInternals } = await import('../lib/deep-loop/write-containment.ts');
   const {
     DEFAULT_LINEAGE_TIMESTAMP_TOLERANCE_MS,
     checkLineageTimestampWindow,
@@ -3102,7 +2808,7 @@ async function main() {
   ];
   // Repo root for write containment, resolved once for the whole run: the working
   // directory, unless an operator pins DEEP_LOOP_REPO_ROOT or the artifact tree
-  // resolves into a different worktree via symlink. Every lineage lives under the
+  // resolves into a different checkout via symlink. Every lineage lives under the
   // same tree, so this is the same for all of them (see runtime-bootstrap).
   const containmentRepoRoot = require('./runtime-bootstrap.cjs')
     .resolveContainmentRepoRoot(process.env, process.cwd(), {
@@ -3119,19 +2825,7 @@ async function main() {
   // threshold already takes, and a caller who wants one arm and not the other sets the other
   // to 0.
   const containmentChurnCumulativeThreshold = parsedFanoutConfig.containment.churnCumulativeThreshold;
-  // Same resolution order as the containment mode above: the flag, then the config, then the
-  // schema default, which is off: a lane runs in the shared checkout unless a caller opts in.
-  // Isolation was measured at roughly 1.6 GB of checkout per lane; that is a cost to choose,
-  // not one to inherit.
-  const worktreesEnabled = normalizeWorktreesOption(args.worktrees)
-    ?? parsedFanoutConfig.containment.worktrees;
-  // One count per dispatch attempt, written where the attempt's tree is decided: a retried lane
-  // can appear in both counts, so these are attempt counts, not lineage counts. A degraded
-  // attempt runs in the shared checkout (or never reached a dispatch), which `enabled: true`
-  // with `degraded > 0` reports. The checkout counters belong to the companion watch: an
-  // attempt counts as watched when its dispatch was followed by a checkout comparison, and as
-  // a write when that comparison found the checkout had changed while the attempt ran.
-  const isolationTally = { isolated: 0, degraded: 0, checkout_watched: 0, checkout_writes: 0 };
+
   const rawGuardConfig = rawConfigWithCliBudgetOverrides(rawConfig, args);
   const stallWatchdogMs = normalizeStallWatchdogMs(rawGuardConfig);
   const lineageBudgetGuards = normalizeLineageBudgetGuards(rawGuardConfig);
@@ -3214,7 +2908,6 @@ async function main() {
       all_failed: false,
       gauges: { lag: 0, pending: 0, failed: 0 },
       convergence: { status: 'converged', reason: 'empty_tick', no_new_findings: true },
-      isolation: { enabled: worktreesEnabled, isolated: 0, degraded: 0, checkout_watched: 0, checkout_writes: 0 },
     };
     writeOrchestrationSummary(summaryPath, {
       run_id: runId,
@@ -3231,101 +2924,6 @@ async function main() {
   fs.mkdirSync(lineagesDir, { recursive: true });
   const orphanedLineages = markOrphanedLineages(ledgerPath);
   const initialRetryCounts = readRetryCountsFromLedger(ledgerPath);
-
-  // Worktree isolation is resolved once for the run: one base, one prefix and one lease budget
-  // shared by every lane, so this run's trees are recognizable to its own sweep and to a later
-  // run's. On by default; an opted-out run loads and calls nothing below. A load failure cannot
-  // fail the run: no lane can get a tree, so every attempt below is counted degraded.
-  const worktreeLeaseTtlMs = 3 * Math.max(progressHeartbeatMs, WORKTREE_LEASE_MIN_TTL_MS);
-  const worktreeBase = worktreesEnabled ? resolveWorktreeBase(containmentRepoRoot) : null;
-  let worktrees = null;
-  if (worktreesEnabled) {
-    try {
-      worktrees = await loadWorktreeModules();
-    } catch (error) {
-      appendFanoutStatusLedger(ledgerPath, {
-        event: 'worktree_setup_failed',
-        status: 'warning',
-        severity: 'warning',
-        at: new Date().toISOString(),
-        run_id: runId,
-        loop_type: loopType,
-        spec_folder: specFolder,
-        error: error instanceof Error ? error.message : String(error),
-      });
-    }
-  }
-  if (worktrees !== null) {
-    // One sweep, before any lane is dispatched: it reclaims what a dead run left under this
-    // prefix and keeps every tree a lane of this run can still resume, which is why the ledger
-    // has to be read first. A failed sweep reports and leaves every entry alone rather than
-    // failing a run whose lanes have not started.
-    try {
-      const sweep = worktrees.reclaimWorktrees({
-        repoRoot: containmentRepoRoot,
-        worktreeBase,
-        prefix: FANOUT_WORKTREE_PREFIX,
-        currentRunId: runId,
-        ownerPid: process.pid,
-        resumableLabels: Object.keys(initialRetryCounts),
-        graceMs: worktreeLeaseTtlMs,
-        ttlMs: worktreeLeaseTtlMs,
-      });
-      appendFanoutStatusLedger(ledgerPath, {
-        event: 'worktree_reclaim_swept',
-        status: 'ok',
-        at: new Date().toISOString(),
-        run_id: runId,
-        loop_type: loopType,
-        spec_folder: specFolder,
-        reclaimed: sweep.reclaimed,
-        kept: sweep.kept,
-        decisions: sweep.decisions,
-      });
-    } catch (error) {
-      appendFanoutStatusLedger(ledgerPath, {
-        event: 'worktree_reclaim_failed',
-        status: 'warning',
-        severity: 'warning',
-        at: new Date().toISOString(),
-        run_id: runId,
-        loop_type: loopType,
-        spec_folder: specFolder,
-        error: error instanceof Error ? error.message : String(error),
-      });
-    }
-
-    // A publisher that died mid-transaction leaves an incomplete staging copy under the parent
-    // publication uses, and nothing will ever rename it. It is swept once here, before any lane
-    // publishes into that parent. Only this run's residue is eligible: another run's staging is
-    // that run's to finish. A failed sweep is reported and never fails a run whose lanes have not
-    // started.
-    try {
-      const staging = worktrees.sweepStagingResidue({ targetParent: lineagesDir, runId });
-      appendFanoutStatusLedger(ledgerPath, {
-        event: 'worktree_staging_swept',
-        status: 'ok',
-        at: new Date().toISOString(),
-        run_id: runId,
-        loop_type: loopType,
-        spec_folder: specFolder,
-        removed: staging.removed,
-        in_use: staging.inUse,
-        errors: staging.errors,
-      });
-    } catch (error) {
-      appendFanoutStatusLedger(ledgerPath, {
-        event: 'worktree_staging_sweep_failed',
-        status: 'warning',
-        severity: 'warning',
-        at: new Date().toISOString(),
-        run_id: runId,
-        loop_type: loopType,
-        spec_folder: specFolder,
-        error: error instanceof Error ? error.message : String(error),
-      });
-    }
-  }
 
   const lineageSnapshots = new Map();
   const lineageSlotAccounting = new Map();
@@ -3356,13 +2954,6 @@ async function main() {
       spec_folder: specFolder,
       base_artifact_dir: baseArtifactDir,
       total_cli_lineages: cliLineages.length,
-      isolation: {
-        enabled: worktreesEnabled,
-        isolated: isolationTally.isolated,
-        degraded: isolationTally.degraded,
-        checkout_watched: isolationTally.checkout_watched,
-        checkout_writes: isolationTally.checkout_writes,
-      },
       stopped: true,
       stopped_signal: signal,
       stopped_at_iso: stoppedAtIso,
@@ -3394,42 +2985,7 @@ async function main() {
       const hrStart = process.hrtime();
       const attempt = Number.isFinite(Number(context.attempt)) ? Number(context.attempt) : 1;
       const livenessKey = `${lineage.label}:${attempt}`;
-      const lineageDirInCheckout = path.join(lineagesDir, lineage.label);
-      // The tree this lane runs in: its own worktree once the setup below hands it one, otherwise
-      // the shared checkout. Everything from the prompt to containment to artifact validation
-      // reads this one value, so a lane never mixes the two trees.
-      let lineageDir = lineageDirInCheckout;
-      let laneWorktree = null;
-      // Runner-owned ledger entries about this lane's tree, in the same shape as the run's
-      // other events.
-      const logWorktreeEvent = (entry) => appendFanoutStatusLedger(ledgerPath, {
-        ...entry,
-        run_id: runId,
-        loop_type: loopType,
-        spec_folder: specFolder,
-        at: new Date().toISOString(),
-        gauges: latestGauges,
-      });
-      // One teardown per attempt, declared before the first exit a lane can take, so the tree
-      // goes back on every path and the pool's retry never collides with it. A no-op until a tree
-      // exists, which is what leaves the shared-checkout path unchanged.
-      const finishLaneWorktree = () => {
-        if (laneWorktree === null) return;
-        const settled = laneWorktree;
-        laneWorktree = null;
-        settleLineageWorktree({
-          modules: worktrees,
-          worktree: settled,
-          repoRoot: containmentRepoRoot,
-          targetParent: lineagesDir,
-          runId,
-          label: lineage.label,
-          attempt,
-          ownerPid: process.pid,
-          ttlMs: worktreeLeaseTtlMs,
-          logEvent: logWorktreeEvent,
-        });
-      };
+      const lineageDir = path.join(lineagesDir, lineage.label);
 
       const budgetDecision = evaluateLineageBudgetCap({
         lineage,
@@ -3457,50 +3013,6 @@ async function main() {
         throw failure;
       }
 
-      if (worktrees !== null) {
-        try {
-          laneWorktree = prepareLaneWorktree({
-            modules: worktrees,
-            repoRoot: containmentRepoRoot,
-            worktreeBase,
-            runId,
-            label: lineage.label,
-            attempt,
-            ownerPid: process.pid,
-            ttlMs: worktreeLeaseTtlMs,
-            specFolder,
-            baseArtifactDir,
-            lineage,
-            // Resolved physically, so a lineage directory reached through a symlinked artifact
-            // tree is named the way the seed will recreate it inside the worktree.
-            lineageDir: physicalPathForValidation(path.resolve(process.cwd(), lineageDirInCheckout)),
-            parseStatusPorcelain: containmentInternals.parseStatusPorcelain,
-            logEvent: logWorktreeEvent,
-          });
-        } catch (error) {
-          // A preparation failure degrades this lane rather than failing it: the lane still has a
-          // checkout to run in, and the warning names what went wrong.
-          logWorktreeEvent({
-            event: 'worktree_degraded',
-            status: 'warning',
-            severity: 'warning',
-            label: lineage.label,
-            reason: `worktree preparation threw: ${error instanceof Error ? error.message : String(error)}`,
-          });
-        }
-        if (laneWorktree !== null) {
-          isolationTally.isolated += 1;
-          lineageDir = laneWorktree.writeSurface;
-        } else {
-          // The lane still runs, in the shared checkout: the case the summary must report,
-          // because a fallback nobody counts reads like full isolation.
-          isolationTally.degraded += 1;
-        }
-      } else if (worktreesEnabled) {
-        // Modules failed to load before dispatch, so no lane can be isolated: every attempt
-        // lands in the shared checkout and the summary counts it.
-        isolationTally.degraded += 1;
-      }
       const stateDir = path.join(lineageDir, '.executor-state');
       fs.mkdirSync(lineageDir, { recursive: true });
       fs.mkdirSync(stateDir, { recursive: true });
@@ -3550,15 +3062,6 @@ async function main() {
           convergenceMode,
           stopPolicy,
           researchTopic,
-          // Only a lane with its own tree carries these. The builders that take a directory
-          // argument override their default root with it, and a lane in the shared checkout keeps
-          // the exact option set it had before.
-          ...(laneWorktree === null
-            ? {}
-            : {
-                directoryRoot: laneWorktree.directoryFlag === null ? null : laneWorktree.directoryFlag.value,
-                readRoot: laneWorktree.readRoot,
-              }),
         },
       );
 
@@ -3591,7 +3094,7 @@ async function main() {
         // fully inert. ENFORCE=0 alone is NOT enough — that only stops the deny, while
         // the classify step still injects the Gate-3 question, which a cli-opencode
         // child then answers instead of doing its work. DISABLED makes both classify
-        // and enforce no-ops; AI_SESSION_CHILD lets the worktree wrapper exec in place.
+        // and enforce no-ops; AI_SESSION_CHILD lets the session wrapper exec in place.
         // buildExecutorDispatchEnv filters these keys (outside the per-kind allowlist),
         // so they are re-injected here to reach the child. Harmless for the codex path.
         SYSTEM_SPEC_GATE_DISABLED: '1',
@@ -3699,13 +3202,10 @@ async function main() {
       // a sibling lineage, one level up: its artifact dir is not under this run's base dir, so
       // nothing above knows about it. Discovered from the live locks under the shared packet, and
       // re-discovered before the containment check because such a run can start mid-iteration.
-      // Peer trees under the worktree base are another lane's workspace: a lane that could not
-      // be isolated scans the shared checkout, where they would otherwise read as somebody's
-      // unattributed writes.
+
       const staticUnattributableDirs = [
         ...siblingLineageDirs,
         ...kindLegitimateDirs,
-        ...(worktreeBase === null ? [] : [worktreeBase]),
         // The run's artifact plane is written live by the supervisor and by siblings as they
         // publish, so a checkout-rooted scan cannot tell those writes from a lane's stray one.
         // Exempting the plane also covers the published, staging and claim names a scan would
@@ -3713,13 +3213,7 @@ async function main() {
         // never reaches outside its own tree.
         lineagesDir,
       ];
-      // The tree this lane can actually dirty, and the runner-owned paths inside it: the lease
-      // this process rewrites on every heartbeat is the supervisor's own bookkeeping, never the
-      // lane's write, so it is exempted the same way the run's ledgers are.
-      const laneContainmentRoot = laneWorktree === null ? containmentRepoRoot : laneWorktree.containmentRoot;
-      const laneUnattributablePaths = laneWorktree === null
-        ? orchestratorOwnedPaths
-        : [...orchestratorOwnedPaths, laneWorktree.leasePath];
+
       // Kept for the containment check as well as the baseline: a run that was live when this
       // leaf started but released its lock before the check would otherwise have the files it
       // left behind become unowned, and land back on this leaf.
@@ -3728,29 +3222,13 @@ async function main() {
         : [];
       const preDispatchDirtyPaths = containmentEnabled
         ? snapshotOutOfScopeDirtyPaths({
-          repoRoot: laneContainmentRoot,
+          repoRoot: containmentRepoRoot,
           artifactDir: lineageDir,
           captureContentDir: lineageDir,
           unattributableDirs: [...staticUnattributableDirs, ...preDispatchForeignRunDirs],
-          unattributablePaths: laneUnattributablePaths,
+          unattributablePaths: orchestratorOwnedPaths,
         })
         : [];
-      appendContainmentGitContentionWarnings();
-
-      // A lane can be isolated and still have its process started in the shared checkout: a
-      // kind that reaches its tree through a directory argument keeps its cwd where it was, so
-      // a cwd-relative write lands outside the root the guard above watches. The checkout is
-      // watched for the length of the dispatch to cover that case. The watch is report-only,
-      // because a candidate here may belong to another writer sharing the checkout: it is
-      // recorded and counted, never restored, and it cannot change the lane's outcome.
-      const checkoutWatchBaseline = laneWorktree !== null && laneWorktree.spawnCwd === containmentRepoRoot
-        ? snapshotOutOfScopeDirtyPaths({
-          repoRoot: containmentRepoRoot,
-          artifactDir: lineageDirInCheckout,
-          unattributableDirs: [...staticUnattributableDirs, ...preDispatchForeignRunDirs],
-          unattributablePaths: laneUnattributablePaths,
-        })
-        : null;
       appendContainmentGitContentionWarnings();
 
       // Churn sampling reuses the containment snapshot, exclusions included, so a
@@ -3760,10 +3238,10 @@ async function main() {
         cumulativeThreshold: containmentChurnCumulativeThreshold,
         sampleDirtyPaths: () => {
           const dirtyPaths = snapshotOutOfScopeDirtyPaths({
-            repoRoot: laneContainmentRoot,
+            repoRoot: containmentRepoRoot,
             artifactDir: lineageDir,
             unattributableDirs: [...staticUnattributableDirs, ...preDispatchForeignRunDirs],
-            unattributablePaths: laneUnattributablePaths,
+            unattributablePaths: orchestratorOwnedPaths,
           }).map((entry) => entry.path);
           appendContainmentGitContentionWarnings();
           return dirtyPaths;
@@ -3800,10 +3278,7 @@ async function main() {
         getGauges: () => latestGauges,
         onProgress: () => {
           sampleSharedCheckoutChurn();
-          // The lease rides the existing heartbeat rather than a timer of its own: the same signal
-          // that reports the lane alive is what keeps its tree owned, so no second timer can
-          // disagree with it about whether the lane is still there.
-          if (laneWorktree !== null) worktrees.refreshWorktreeLease(laneWorktree.worktreeDir);
+
         },
       });
 
@@ -3815,9 +3290,7 @@ async function main() {
         // spawn. The canonical mode name (not the raw loopType) keys the effect
         // ledger so the enablement consumer can read it back.
         const dispatchOpts = {
-          // A lane with its own tree is spawned in it; every kind that reaches its tree through a
-          // directory argument is still told about it by the command line below.
-          cwd: laneWorktree === null ? process.cwd() : laneWorktree.spawnCwd,
+          cwd: process.cwd(),
           timeoutMs,
           env: dispatchEnv,
           maxBuffer: 20 * 1024 * 1024,
@@ -3902,7 +3375,6 @@ async function main() {
         failure.timedOut = timedOut;
         failure.killedBySignal = killedBySignal;
         failure.salvage = salvage;
-        finishLaneWorktree();
         throw failure;
       }
 
@@ -3915,7 +3387,6 @@ async function main() {
         failure.timedOut = false;
         failure.salvage = { salvaged: salvage.salvaged, failed: Math.max(1, salvage.failed) };
         failure.missingArtifacts = missingArtifacts;
-        finishLaneWorktree();
         throw failure;
       }
 
@@ -3928,7 +3399,6 @@ async function main() {
         failure.timedOut = false;
         failure.salvage = salvage;
         failure.stopPolicyViolation = stopPolicyViolation;
-        finishLaneWorktree();
         throw failure;
       }
 
@@ -3946,7 +3416,6 @@ async function main() {
         failure.timedOut = false;
         failure.salvage = { salvaged: salvage.salvaged, failed: salvage.failed };
         failure.missingArtifacts = [];
-        finishLaneWorktree();
         throw failure;
       }
 
@@ -3965,20 +3434,17 @@ async function main() {
       let containmentQuarantinePath = null;
       if (containmentEnabled) {
         const containment = enforceWriteContainment({
-          repoRoot: laneContainmentRoot,
+          repoRoot: containmentRepoRoot,
           artifactDir: lineageDir,
           unattributableDirs: [
             ...staticUnattributableDirs,
             ...preDispatchForeignRunDirs,
             ...(await discoverForeignLiveRunDirs({ specFolder, baseArtifactDir })),
           ],
-          unattributablePaths: laneUnattributablePaths,
+          unattributablePaths: orchestratorOwnedPaths,
           preDispatchDirtyPaths,
           baselineContentRoot: lineageDir,
-          // A lane that could not be isolated writes in the shared checkout, where a restore acts
-          // on bytes another writer may own; this lane is forced to preserve without changing the
-          // run-wide mode that a lane in its own tree still uses.
-          mode: laneWorktree === null && worktreesEnabled ? 'preserve' : containmentMode,
+          mode: containmentMode,
           iteration: attempt,
           label: lineage.label,
         });
@@ -4014,46 +3480,6 @@ async function main() {
           containmentFindings = containment.violations;
           containmentRecoveryHint = containment.recoveryHint;
           containmentQuarantinePath = containment.quarantinePath;
-        }
-      }
-
-      if (checkoutWatchBaseline !== null) {
-        const checkoutChanges = detectNewOutOfScopeViolations({
-          repoRoot: containmentRepoRoot,
-          artifactDir: lineageDirInCheckout,
-          unattributableDirs: [
-            ...staticUnattributableDirs,
-            ...preDispatchForeignRunDirs,
-            ...(await discoverForeignLiveRunDirs({ specFolder, baseArtifactDir })),
-          ],
-          unattributablePaths: laneUnattributablePaths,
-          preDispatchDirtyPaths: checkoutWatchBaseline,
-        });
-        isolationTally.checkout_watched += 1;
-        if (checkoutChanges.length > 0) {
-          // Attribution stays open, so this is a warning that names what changed rather than a
-          // violation: the writer may be another session sharing the checkout. The path list is
-          // capped because a burst can be large; the count still reports its full size.
-          isolationTally.checkout_writes += 1;
-          appendFanoutStatusLedger(ledgerPath, {
-            type: 'event',
-            event: 'checkout_write_detected',
-            severity: 'warning',
-            at: new Date().toISOString(),
-            label: lineage.label,
-            run_id: runId,
-            loop_type: loopType,
-            spec_folder: specFolder,
-            iteration: attempt,
-            gauges: latestGauges,
-            newly_dirty_paths: checkoutChanges.length,
-            changed_paths: checkoutChanges.slice(0, 20).map((change) => ({
-              path: change.path,
-              kind: change.kind,
-              status: change.status,
-            })),
-            changed_paths_truncated: checkoutChanges.length > 20,
-          });
         }
       }
 
@@ -4113,7 +3539,6 @@ async function main() {
         });
       }
 
-      finishLaneWorktree();
       return output;
     },
   });
@@ -4121,13 +3546,6 @@ async function main() {
   const timestampAnomalies = collectTimestampAnomalies(results);
   const finalSummary = {
     ...summary,
-    isolation: {
-      enabled: worktreesEnabled,
-      isolated: isolationTally.isolated,
-      degraded: isolationTally.degraded,
-      checkout_watched: isolationTally.checkout_watched,
-      checkout_writes: isolationTally.checkout_writes,
-    },
     ...(timestampAnomalies.length > 0 ? { timestamp_anomalies: timestampAnomalies } : {}),
   };
 
@@ -4186,7 +3604,6 @@ module.exports = {
   CURSOR_DEFAULT_MODEL,
   PI_ALLOWED_MODELS,
   PI_DEFAULT_MODEL,
-  normalizeWorktreesOption,
   buildLineageCommand,
   buildInvocationFingerprintPayload,
   isCodexBinaryAvailable,
