@@ -137,6 +137,7 @@ Attach the resolved persona via the mode's native surface where the CLI loads it
 | `cli-opencode` | PARTIAL: route `--agent orchestrate` → Task subagent (`mode: subagent` personas are rejected at top-level `--agent`). Else INLINE. |
 | `cli-codex` | INLINE (mandatory): `.codex/agents/*.toml` is TUI-only; `codex exec` / `-p` load config, not a persona. |
 | `cli-pi` | INLINE (mandatory): core Pi has no persona surface on `pi -p`. |
+| `cli-hermes` | INLINE (mandatory): a headless `hermes chat` has no persona surface; profiles are whole-home islands and `delegate_task` children receive goal and context only. |
 | fanout runtime | INLINE into the composed prompt string (`fanout-run.cjs` has no persona slot). |
 
 ### 6.3 Inline block format

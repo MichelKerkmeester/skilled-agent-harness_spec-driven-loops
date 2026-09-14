@@ -1,0 +1,84 @@
+{
+  "topic": "Hermes Agent (Nous Research, installed at ~/.hermes, v0.21.1) as the seventh cli-external-orchestration runtime: what it can and cannot do as a headless dispatch target; how its providers, repo-local .hermes configuration, skills, agents, commands, hooks, plugins and MCP host compare with the six existing runtimes (cli-opencode, cli-claude-code, cli-codex, cli-cursor, cli-devin, cli-pi); whether it is fit for deep-loop fan-out; and what phase plan the integration should follow. FIRST read specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research-angles.md (the ten angles and the rules of engagement: read-only access to ~/.hermes, no mutating hermes commands, cite file:line, fetch Hermes documentation online and date it) and resource-map.md (known context, do not rediscover it). Work one angle per iteration, then deepen the angles with the most open questions.",
+  "maxIterations": 5,
+  "minIterations": 5,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "minIterations": 5,
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations",
+    "divergent": {}
+  },
+  "stuckThreshold": 3,
+  "minIdeaObservations": 2,
+  "maxDurationMinutes": 240,
+  "maxToolCallsPerIteration": 12,
+  "progressiveSynthesis": true,
+  "specFolder": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research",
+  "createdAt": "2026-09-14T16:30:00Z",
+  "status": "initialized",
+  "executionMode": "auto",
+  "stop_policy": "max-iterations",
+  "resource_map_present": true,
+  "resource_map": {
+    "emit": true
+  },
+  "fanout_lineage_artifact_dir": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2",
+  "executor": {
+    "kind": "cli-devin",
+    "model": "swe-2-max",
+    "reasoningEffort": null,
+    "serviceTier": null,
+    "sandboxMode": "workspace-write",
+    "permissionMode": "acceptEdits",
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "fanout-swe2-1789402663119-cvvtf8",
+    "parentSessionId": "dr-071-001-fanout-20260914",
+    "lineageMode": "new",
+    "allowedModes": [
+      "new",
+      "resume",
+      "restart"
+    ],
+    "deferredModes": [
+      "fork",
+      "completed-continue"
+    ],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "divergence-frontier",
+      "next-focus"
+    ]
+  },
+  "capabilityMatrixPath": ".opencode/skills/system-deep-loop/deep-research/assets/runtime-capabilities.json",
+  "capabilityMatrixDocPath": ".opencode/skills/system-deep-loop/deep-research/references/guides/capability-matrix.md",
+  "pauseSentinelPath": ".deep-research-pause",
+  "archiveRoot": "_archive",
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research/research.md": "mutable"
+  },
+  "nextRunAt": null,
+  "remainingDelayMs": null
+}

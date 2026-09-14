@@ -1,0 +1,28 @@
+{
+  "level": "3",
+  "specFolder": "cli-external-orchestration/071-cli-hermes-creation/003-deep-loop-executor-support",
+  "description": "`/deep:research` and `/deep:review` could dispatch to six CLI kinds but not to Hermes, and nothing in the runtime knew Hermes's dispatch shape, its",
+  "keywords": [
+    "deep",
+    "research",
+    "review",
+    "dispatch",
+    "six",
+    "cli",
+    "kinds",
+    "hermes",
+    "nothing",
+    "runtime",
+    "knew",
+    "shape"
+  ],
+  "lastUpdated": "2026-09-14T18:10:52.867Z",
+  "specId": "003",
+  "folderSlug": "deep-loop-executor-support",
+  "parentChain": [
+    "cli-external-orchestration",
+    "071-cli-hermes-creation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

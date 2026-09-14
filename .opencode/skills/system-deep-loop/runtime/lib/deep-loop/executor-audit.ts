@@ -63,6 +63,7 @@ const EXECUTOR_BINARY_BY_KIND: Partial<Record<ExecutorKind, string>> = {
   'cli-cursor': 'cursor-agent',
   'cli-devin': 'devin',
   'cli-pi': 'pi',
+  'cli-hermes': 'hermes',
 };
 
 // Pi's session environment variable is unconfirmed; leave this kind absent
@@ -74,6 +75,11 @@ const EXECUTOR_SESSION_ENV_BY_KIND: Partial<Record<ExecutorKind, string>> = {
   // Confirmed live 2026-07-24: `cursor-agent -p` sets CURSOR_CONVERSATION_ID in
   // its own subprocess env, matching the --output-format json `session_id` field.
   'cli-cursor': 'CURSOR_CONVERSATION_ID',
+  // Hermes exports HERMES_SESSION_ID into its own process env at agent init, and its
+  // terminal tool inherits it into every child, so a Hermes-hosted shell carries it.
+  // (Source-read on v0.21.1, agent/agent_init.py; the turn-author marker is scrubbed
+  // from children and is deliberately not used here.)
+  'cli-hermes': 'HERMES_SESSION_ID',
 };
 
 const EXECUTOR_STATE_ENV_BY_KIND: Partial<Record<ExecutorKind, string[]>> = {
@@ -89,6 +95,10 @@ const EXECUTOR_STATE_ENV_BY_KIND: Partial<Record<ExecutorKind, string[]>> = {
   // repo-owned detection var is the sole entry rather than a fabricated one.
   'cli-devin': ['SPECKIT_DEVIN_STATE_DIR'],
   'cli-pi': ['SPECKIT_PI_STATE_DIR'],
+  // HERMES_HOME is a real home override (profile-aware, read before any module import),
+  // so an operator who relocated the home is detected there; the fan-out never sets it,
+  // because a fresh home carries no credentials.
+  'cli-hermes': ['SPECKIT_HERMES_STATE_DIR', 'HERMES_HOME'],
 };
 
 const EXECUTOR_DEFAULT_HOME_DIR_BY_KIND: Partial<Record<ExecutorKind, string>> = {
@@ -98,6 +108,7 @@ const EXECUTOR_DEFAULT_HOME_DIR_BY_KIND: Partial<Record<ExecutorKind, string>> =
   'cli-cursor': '.cursor',
   'cli-devin': '.devin',
   'cli-pi': '.pi',
+  'cli-hermes': '.hermes',
 };
 
 // Two of the five recursion layers ask "is the caller sitting inside this CLI right now" —
@@ -150,6 +161,11 @@ const EXECUTOR_ENV_PREFIXES_BY_KIND: Partial<Record<ExecutorKind, string[]>> = {
   // dies on "No API key found for llmgateway" while the identical direct dispatch succeeds.
   // Add a prefix here only with the same standard of evidence.
   'cli-pi': ['LLMGATEWAY_', 'CLINE_'],
+  // Hermes reads its own HERMES_* settings from the environment, and the operator's LLM
+  // Gateway provider entry names its key through `key_env`, which the packet contract
+  // pins to the same LLMGATEWAY_ prefix cli-pi already earned above. Hermes also loads
+  // `~/.hermes/.env` itself, so a key kept there needs no pass-through at all.
+  'cli-hermes': ['HERMES_', 'LLMGATEWAY_'],
 };
 
 type RunAuditedExecutorCommandInput = {

@@ -66,6 +66,21 @@
       }
     },
     {
+      "id": "hermes-single",
+      "prompt": "delegate to hermes",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "cli-hermes"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "cli-hermes"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
       "id": "cursor-single",
       "prompt": "delegate to cursor",
       "expectedAction": "route",

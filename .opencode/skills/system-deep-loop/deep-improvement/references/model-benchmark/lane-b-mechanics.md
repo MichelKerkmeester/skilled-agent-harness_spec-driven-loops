@@ -46,7 +46,7 @@ Lane B benchmarks a model or prompt framework instead of mutating an agent file,
 
 ## 3. DISPATCHER
 
-`scripts/model-benchmark/dispatch-model.cjs` is the model-agnostic dispatcher. Its current executor map is `cli-opencode`, `cli-claude-code`, `cli-cursor`, `cli-devin`, and `cli-pi`; it is loaded only on the model-benchmark path, never in agent-improvement mode. The source authority is `scripts/model-benchmark/dispatch-model.cjs` (`KNOWN_EXECUTORS` and the dispatch switch).
+`scripts/model-benchmark/dispatch-model.cjs` is the model-agnostic dispatcher. Its current executor map is `cli-opencode`, `cli-claude-code`, `cli-cursor`, `cli-devin`, `cli-pi`, and `cli-hermes`; it is loaded only on the model-benchmark path, never in agent-improvement mode. The source authority is `scripts/model-benchmark/dispatch-model.cjs` (`KNOWN_EXECUTORS` and the dispatch switch).
 
 ---
 

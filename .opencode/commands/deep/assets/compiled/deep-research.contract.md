@@ -12,7 +12,7 @@
     },
     {
       "path": ".opencode/commands/deep/assets/deep-research-presentation.txt",
-      "sha256": "de1f2a261ac695637c7f7f9de801017c32e0d45a43da2f7fc21ab7ea19707483",
+      "sha256": "3806f9d124863e6cf23005bae8cadd5a0d34e0f6a9137b7458af8b1aa5341766",
       "section": "full"
     },
     {
@@ -22,7 +22,7 @@
     },
     {
       "path": ".opencode/commands/deep/assets/deep-research-auto.yaml",
-      "sha256": "0d416fe20f9c1b115037007bee2f89e1c722956ccdd2055343cbe34ad2bf475a",
+      "sha256": "3d22023bc3500c8ae3336ed24cf6b9466ffff013f16e21a206a3d8ccf7828e29",
       "section": "full"
     },
     {
@@ -91,7 +91,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "5c8176204daa5f1aeec2a2c334589c8c9846348f1c5bc5472d8bdb1755a111d5"
+  "compiledBodyDigest": "191fd3b4620c62438576770a34f3f47344b391180262ca990bbcc9ead72885a9"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:research
@@ -185,7 +185,7 @@ PRE-BOUND SETUP ANSWERS:
   maxIterations: 10  # positive integer
   convergenceThreshold: 0.05  # decimal 0..1
   convergence_mode: default  # default | off | sliding-window | divergent
-  executor: native  # native | cli-codex | cli-claude-code | cli-opencode | cli-cursor | cli-devin | cli-pi (`EXECUTOR_KINDS` in `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts`)
+  executor: native  # native | cli-codex | cli-claude-code | cli-opencode | cli-cursor | cli-devin | cli-pi | cli-hermes (`EXECUTOR_KINDS` in `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts`)
   executor_model: ""  # optional executor-specific model id (cli-opencode e.g. xiaomi-token-plan-ams/mimo-v2.5-pro, minimax-coding-plan/MiniMax-M2.7-highspeed)
   executor_config_dir: ""  # optional, cli-claude-code only; maps to CLAUDE_CONFIG_DIR
   executor_reasoning: ""  # optional reasoning effort
@@ -249,7 +249,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    |-- --convergence=N -> convergenceThreshold = N
    |-- --convergence-mode=default|off|sliding-window|divergent -> antiConvergence.convergenceMode = value
    |-- --spec-folder=PATH -> spec_path = PATH, omit Q1
-   |-- --executor=<type> -> config.executor.type (`native` | `cli-codex` | `cli-claude-code` | `cli-opencode` | `cli-cursor` | `cli-devin` | `cli-pi`; `EXECUTOR_KINDS` in `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` is authoritative)
+   |-- --executor=<type> -> config.executor.type (`native` | `cli-codex` | `cli-claude-code` | `cli-opencode` | `cli-cursor` | `cli-devin` | `cli-pi` | `cli-hermes`; `EXECUTOR_KINDS` in `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` is authoritative)
    |-- --model=<id> -> config.executor.model (for example `gpt-5.4`)
    |-- --config-dir=<path> -> config.executor.configDir (cli-claude-code only; fan-out sets CLAUDE_CONFIG_DIR)
    |-- --reasoning-effort=<level> -> config.executor.reasoningEffort (`none` | `minimal` | `low` | `medium` | `high` | `xhigh` | `max`)
@@ -319,7 +319,8 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
      E) cli-cursor — requires `cursor-agent`. Model must be on the enforced allowlist. No `--reasoning-effort` (effort is baked into the model id), no `--service-tier`.
      F) cli-devin — requires `devin`. Model must be on the enforced allowlist. No `--reasoning-effort`, no `--service-tier`.
      G) cli-pi — requires `pi`. Model must be on the enforced allowlist. `reasoningEffort` maps to `--thinking`. No `--service-tier`, no sandbox flag.
-     D-G build their commands through the shared fan-out command builder (`LINEAGE_COMMAND_ADAPTERS` in `.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs`). Per-kind flag support (`EXECUTOR_KIND_FLAG_SUPPORT`) and the cli-cursor/cli-devin/cli-pi model allowlists (`CURSOR_SUPPORTED_MODELS`, `DEVIN_SUPPORTED_MODELS`, `PI_SUPPORTED_MODELS`) are owned by `executor-config.ts`; this contract does not restate them. Off-allowlist model or missing binary fails closed — a requested CLI executor never degrades to native.
+     H) cli-hermes — requires `hermes` and the operator's `llmgateway` provider. Model must be `deepseek-v4.1-flash` or `glm-5.3-flash` (pinned to `--reasoning max`). Prompt travels on stdin; no `--service-tier`, no sandbox flag; `liveTools.mcpServers` names MCP servers the leaf may reach.
+     D-H build their commands through the shared fan-out command builder (`LINEAGE_COMMAND_ADAPTERS` in `.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs`). Per-kind flag support (`EXECUTOR_KIND_FLAG_SUPPORT`) and the cli-cursor/cli-devin/cli-pi model allowlists (`CURSOR_SUPPORTED_MODELS`, `DEVIN_SUPPORTED_MODELS`, `PI_SUPPORTED_MODELS`) are owned by `executor-config.ts`; this contract does not restate them. Off-allowlist model or missing binary fails closed — a requested CLI executor never degrades to native.
 
    Reply format examples:
    - `"A, A"`

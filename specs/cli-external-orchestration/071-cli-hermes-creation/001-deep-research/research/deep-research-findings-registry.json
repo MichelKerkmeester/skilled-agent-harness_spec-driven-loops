@@ -1,0 +1,2292 @@
+{
+  "mergedFrom": [
+    "deepseek",
+    "swe2"
+  ],
+  "lineageExecutors": {
+    "deepseek": {
+      "kind": "cli-devin",
+      "model": "deepseek-v4-flash-max",
+      "reasoningEffort": null
+    },
+    "swe2": {
+      "kind": "cli-devin",
+      "model": "swe-2-max",
+      "reasoningEffort": null
+    }
+  },
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "q7",
+      "question": "How are MCP servers configured, can the repo's native servers and code-mode manual connect over stdio, and what is the deny-by-default enforcement point?",
+      "answer": "Answered in iteration 7; see iterations/iteration-007.md",
+      "iteration": 7,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "q5",
+      "question": "How can the repo's 13 agents and nested commands be reached from Hermes (profiles, delegate_task, skills, inlined persona, slash commands)?",
+      "answer": "Answered in iteration 5; see iterations/iteration-005.md",
+      "iteration": 5,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "q4",
+      "question": "How far is this repo's SKILL.md format from Hermes's requirements, which hubs would load or be quarantined, and is there a non-installing report command?",
+      "answer": "Answered in iteration 4; see iterations/iteration-004.md",
+      "iteration": 4,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "q8",
+      "question": "Is Hermes fit as a deep-loop fan-out executor (write flags, yolo/approval, timeout, state isolation, self-invocation detection, trustworthy exit codes, containment)?",
+      "answer": "Answered in iteration 8; see iterations/iteration-008.md",
+      "iteration": 8,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "q3",
+      "question": "What does Hermes read from the working directory, how does skills trust/quarantine treat a symlinked skill tree, and what must live at the repo root versus ~/.hermes?",
+      "answer": "Answered in iteration 3; see iterations/iteration-003.md",
+      "iteration": 3,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "q1",
+      "question": "What is Hermes's exact headless dispatch contract (flags, exit codes, machine-readable stdout, session id) and how does it compare with the six runtimes?",
+      "answer": "Three shapes: hermes -z (answer-only stdout, no session id), chat -q on non-TTY (oneshot implied), chat -Q (quiet; response to stdout, session_id: to stderr, Error: to stderr). Exit codes: -z 0/1/2 (success/failure/usage), chat -Q 0/1/130. --query-file is injection-safe. No JSON output format on chat -Q; session id via --usage-file in -z. Distinct vs six runtimes: session-id-on-stderr, exit 2 usage errors, native --worktree.",
+      "evidence": "file:~/.hermes/hermes-agent/hermes_cli/_parser.py:113-118,194-199; hermes_cli/oneshot.py:187-265; cli.py:4065-4117; six cli-reference.md files",
+      "iteration": 1,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "q10",
+      "question": "What phase plan should phases 002+ follow, which candidate phases merge/split/drop, and what stays UNKNOWN until a live contract pin?",
+      "answer": "Answered in iteration 10; see iterations/iteration-010.md",
+      "iteration": 10,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "q9",
+      "question": "Where does Hermes cost more or less than the six runtimes (runtime, latency, background subsystems, memory injection, approvals, telemetry), and which hard rules must the skill packet carry?",
+      "answer": "Answered in iteration 9; see iterations/iteration-009.md",
+      "iteration": 9,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "q6",
+      "question": "Which hook events/payloads/consent semantics does Hermes have, and can the repo's guard cores be bridged as hooks, plugins, or Agent Plugins v1?",
+      "answer": "Answered in iteration 6; see iterations/iteration-006.md",
+      "iteration": 6,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "q2",
+      "question": "Which providers/models can Hermes reach with the credential kinds already on this machine, and what is a fail-closed HERMES_SUPPORTED_MODELS roster?",
+      "answer": "Answered in iteration 2; see iterations/iteration-002.md",
+      "iteration": 2,
+      "_lineages": [
+        "deepseek"
+      ]
+    }
+  ],
+  "keyFindings": [
+    {
+      "type": "finding",
+      "id": "f-iter007-002",
+      "severity": "P1",
+      "label": "code_mode stdio server fits hermes mcp add shape",
+      "summary": "--command/--args/--env KEY=VALUE covers node .opencode/bin/mcp-code-mode-launcher.cjs with UTCP_CONFIG_FILE=.utcp_config.json; ${VAR} env substitution; stdio env filtered for secrets",
+      "evidence": "live hermes mcp add --help; file:~/.hermes/hermes-agent/tools/mcp_tool_config.py:1-62; .claude/mcp.json",
+      "iteration": 7,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter009-005",
+      "severity": "P1",
+      "label": "SOUL.md + memory injection are isolation costs",
+      "summary": "--ignore-rules skips AGENTS.md/SOUL.md/.cursorrules/memory/preloaded skills; --safe-mode adds plugins+MCP off; telemetry opt-in gated; cost = provider only",
+      "evidence": "hermes_cli/_parser.py:165-170; ~/.hermes/SOUL.md; root AGENTS.md telemetry rule",
+      "iteration": 9,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "f-iter001-002--577d7407686c",
+      "title": "--query-file is injection-safe",
+      "summary": "Reads query from file or stdin (-), nothing shell-interpreted, mutually exclusive with -q",
+      "severity": "P1",
+      "evidence": "file:~/.hermes/hermes-agent/hermes_cli/_parser.py:198-199; live hermes chat --help 2026-09-14",
+      "iteration": 1,
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "f-iter001-002",
+      "_conflict_id": "f-iter001-002--577d7407686c",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter001-002",
+          "peerId": "f-iter001-002--c4b6ef952907",
+          "peerLineages": [
+            "swe2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter002-005--27edae398621",
+      "severity": "P2",
+      "label": "Reasoning caps tri-state; effort-name mapping for custom route needs live pin",
+      "summary": "--reasoning none..ultra; per-model caps from OpenRouter/Nous catalogs cached on disk; gateway accepted names low/high/max for deepseek-v4.1-flash — mapping documented, unconfirmed",
+      "evidence": "file:~/.hermes/hermes-agent/hermes_cli/models_reasoning_caps.py:20-80; fanout-run.cjs:2504-2516; cli-pi providers-and-models.md:113-114",
+      "iteration": 2,
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "f-iter002-005",
+      "_conflict_id": "f-iter002-005--27edae398621",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter002-005",
+          "peerId": "f-iter002-005--ccd696735bdd",
+          "peerLineages": [
+            "swe2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter001-003--69114fed0788",
+      "title": "-Q stdout machine-readable, session id on stderr",
+      "summary": "Response to stdout; session_id: line to stderr; backend errors as Error: on stderr",
+      "severity": "P1",
+      "evidence": "file:~/.hermes/hermes-agent/cli.py:4087-4103",
+      "iteration": 1,
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "f-iter001-003",
+      "_conflict_id": "f-iter001-003--69114fed0788",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter001-003",
+          "peerId": "f-iter001-003--1ddd38b009ca",
+          "peerLineages": [
+            "swe2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter006-003",
+      "severity": "P1",
+      "label": "Project-local plugins are the repo-carriable bridge",
+      "summary": "./.hermes/plugins/<name>/ discovered (opt-in HERMES_ENABLE_PROJECT_PLUGINS); register(ctx) subscribes hooks, registers tools + CLI subcommands; config/state bridge namespace-jailed",
+      "evidence": "plugins/AGENTS.md discovery table; docs/rfcs/plugin-config-state-bridge.md",
+      "iteration": 6,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter008-006",
+      "severity": "P1",
+      "label": "Exit codes trustworthy; ~/.hermes writes outside containment",
+      "summary": "0/1/2 chat -Q usable for stop-policy; stderr parsed for Error:/session_id:; sessions/memories/logs outside repo do not trip the repo-watching guard; HERMES_HOME + --ignore-rules/--safe-mode handle state leakage",
+      "evidence": "iteration 1 findings; live hermes chat --help",
+      "iteration": 8,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter002-001--f3206dafca3e",
+      "severity": "P1",
+      "label": "CANONICAL_PROVIDERS universe is broad, API-key based",
+      "summary": "45+ providers incl. deepseek, zai, xiaomi, minimax, xai, openai-codex OAuth, ai-gateway, custom, local; transports openai_chat/anthropic_messages/codex_responses",
+      "evidence": "file:~/.hermes/hermes-agent/hermes_cli/models_catalog_static.py:312-352; hermes_cli/providers.py:100-110",
+      "iteration": 2,
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "f-iter002-001",
+      "_conflict_id": "f-iter002-001--f3206dafca3e",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter002-001",
+          "peerId": "f-iter002-001--d00318585584",
+          "peerLineages": [
+            "swe2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter003-001--b42a6ee52fc7",
+      "severity": "P1",
+      "label": "CWD instruction files: exactly AGENTS.md, CLAUDE.md, .cursorrules",
+      "summary": "_CONTEXT_FILES fixed tuple; SOUL.md is user-level (~/.hermes/SOUL.md), not repo; AGENTS.md also a project marker",
+      "evidence": "file:~/.hermes/hermes-agent/agent/coding_context.py:31-40",
+      "iteration": 3,
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "f-iter003-001",
+      "_conflict_id": "f-iter003-001--b42a6ee52fc7",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter003-001",
+          "peerId": "f-iter003-001--680828230a2a",
+          "peerLineages": [
+            "swe2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter005-006",
+      "severity": "P2",
+      "label": "Profile useful only for per-lineage state isolation",
+      "summary": "A dedicated profile or HERMES_HOME override isolates sessions/memories/logs per lineage for fan-out",
+      "evidence": "file:~/.hermes/hermes-agent/hermes_cli/profiles.py:133-280",
+      "iteration": 5,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter005-001--6a5640efb8ed",
+      "severity": "P1",
+      "label": "Profiles are state islands, not personas",
+      "summary": "A profile is a separate HERMES_HOME (config/skills/memories/sessions/logs); independent islands by design; wrong granularity for 13 personas",
+      "evidence": "file:~/.hermes/hermes-agent/hermes_cli/profiles.py:133-280; root AGENTS.md profile rule",
+      "iteration": 5,
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "f-iter005-001",
+      "_conflict_id": "f-iter005-001--6a5640efb8ed",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter005-001",
+          "peerId": "f-iter005-001--329b7340c52a",
+          "peerLineages": [
+            "swe2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter004-006",
+      "severity": "P1",
+      "label": "Hermes honors agentskills.io structurally, stricter on description",
+      "summary": "agentskills: name (lowercase+hyphens, matches dir) + description (max 1024); Hermes: same shape, 60-char budget, metadata.hermes.*/version/author/license/platforms expected",
+      "evidence": "https://agentskills.io/specification.md fetched 2026-09-14; ~/.hermes/hermes-agent/skills/AGENTS.md",
+      "iteration": 4,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter010-003",
+      "severity": "P2",
+      "label": "Seven UNKNOWNs for the live contract pin",
+      "summary": "budget-exhaustion exit code, skills trust+scan verdict, reasoning-name mapping, code_mode MCP add, real dispatch byte-shape, HERMES_HOME bootstrap, dispatch latency",
+      "evidence": "iterations 1-9 UNKNOWN markers",
+      "iteration": 10,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter003-003--4f4856d59fd3",
+      "severity": "P1",
+      "label": "Symlinked .hermes/skills is followed and flattened",
+      "summary": "cand.resolve() + os.walk(followlinks=True): every nested SKILL.md under .opencode/skills becomes an individual skill; no parent-hub concept; dedup by frontmatter name first-wins",
+      "evidence": "file:~/.hermes/hermes-agent/agent/skill_utils.py:468-478,736-760",
+      "iteration": 3,
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "f-iter003-003",
+      "_conflict_id": "f-iter003-003--4f4856d59fd3",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter003-003",
+          "peerId": "f-iter003-003--ee38b8c28edd",
+          "peerLineages": [
+            "swe2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter005-002--72d0ec965f4f",
+      "severity": "P1",
+      "label": "delegate_task cannot consume repo agent files",
+      "summary": "Children get goal+context system prompt, roles leaf/orchestrator only; no preset file format for .claude/agents/*.md",
+      "evidence": "file:~/.hermes/hermes-agent/tools/delegate_tool.py:57-66,156-262",
+      "iteration": 5,
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "f-iter005-002",
+      "_conflict_id": "f-iter005-002--72d0ec965f4f",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter005-002",
+          "peerId": "f-iter005-002--76e98f70851f",
+          "peerLineages": [
+            "swe2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter002-004--ac20cc4add8c",
+      "severity": "P1",
+      "label": "Other repo-routed models not portable without Hermes-side credentials",
+      "summary": "Codex OAuth isolated in ~/.hermes/auth.json; minimax/mimo/grok/opencode-go live in pi auth store other tools do not read",
+      "evidence": "file:~/.hermes/hermes-agent/hermes_cli/auth_codex.py:3-4; cli-pi providers-and-models.md:105",
+      "iteration": 2,
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "f-iter002-004",
+      "_conflict_id": "f-iter002-004--ac20cc4add8c",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter002-004",
+          "peerId": "f-iter002-004--5eeab751c712",
+          "peerLineages": [
+            "swe2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter005-005--6047f93b747a",
+      "severity": "P2",
+      "label": "Nested opencode commands not exposable as Hermes slash commands",
+      "summary": "COMMAND_REGISTRY + skill slash commands only; no workflow engine; cli-pi precedent: flatten to prompt templates (.pi/prompts), carrier = --query-file",
+      "evidence": "hermes_cli/commands.py; agent/skill_commands.py; resource-map Commands",
+      "iteration": 5,
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "f-iter005-005",
+      "_conflict_id": "f-iter005-005--6047f93b747a",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter005-005",
+          "peerId": "f-iter005-005--56ad990d33e3",
+          "peerLineages": [
+            "swe2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter001-006--95e0df4b5419",
+      "title": "Comparison table vs six runtimes complete",
+      "summary": "Hermes distinctive: session-id-on-stderr, exit 2 usage errors, no JSON output format on chat -Q, native --worktree isolation",
+      "severity": "P1",
+      "evidence": "file:.opencode/skills/cli-external-orchestration/cli-*/references/cli-reference.md (six files)",
+      "iteration": 1,
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "f-iter001-006",
+      "_conflict_id": "f-iter001-006--95e0df4b5419",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter001-006",
+          "peerId": "f-iter001-006--1d7620866711",
+          "peerLineages": [
+            "swe2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter006-004",
+      "severity": "P1",
+      "label": "Guard core to hook event mapping defined",
+      "summary": "completion-evidence→pre_verify (native block); dispatch audit/preflight→pre_tool_call; git preflight/check-git-hooks/dist-freshness→on_session_start; session context→on_session_start/end; spec gate→pre_tool_call on file tools",
+      "evidence": "hermes_cli/plugins.py:107-135; .opencode/hooks/ inventory",
+      "iteration": 6,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter010-004",
+      "severity": "P2",
+      "label": "Five operator decisions",
+      "summary": "confirm plan, configure llmgateway provider, run skills trust, persona strategy, 010/011 fold vs separate",
+      "evidence": "parent spec.md:70; iterations 2,3,5",
+      "iteration": 10,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter002-003--c09ba2623125",
+      "severity": "P1",
+      "label": "LLMGATEWAY_API_KEY is the one directly portable credential kind",
+      "summary": "DevPass OpenAI-compatible base https://api.llmgateway.io/v1, env var already exported; Hermes custom provider accepts base_url+key_env+default_model",
+      "evidence": "file:~/.hermes/hermes-agent/hermes_cli/runtime_provider_custom.py:110-128; cli-pi providers-and-models.md:99-105",
+      "iteration": 2,
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "f-iter002-003",
+      "_conflict_id": "f-iter002-003--c09ba2623125",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter002-003",
+          "peerId": "f-iter002-003--e64275ebd975",
+          "peerLineages": [
+            "swe2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter008-005",
+      "severity": "P1",
+      "label": "Self-invocation: HERMES_TURN_AUTHOR marker, scrubbed from children",
+      "summary": "Dispatcher sets it on recipient one-shot; Hermes consumes+removes so children do not inherit; nested hermes NOT blocked natively; cli-hermes not SELF_PRESENCE_EXEMPT; ancestry layer required",
+      "evidence": "file:~/.hermes/hermes-agent/agent/turn_author.py:3-15,85-90; executor-audit.ts:108",
+      "iteration": 8,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter009-003",
+      "severity": "P1",
+      "label": "hermes pause does NOT stop CLI dispatches",
+      "summary": "estop scopes to cron/kanban/new gateway turns; in-flight never killed; runner kill is the fan-out emergency stop",
+      "evidence": "file:~/.hermes/hermes-agent/agent/estop.py:1-60; live hermes pause --help",
+      "iteration": 9,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter004-004--922cfba63b71",
+      "severity": "P1",
+      "label": "Flattening + hub load: ~174 peer skills instead of hierarchy",
+      "summary": "Every hub and mode SKILL.md loads as an individual skill via the symlinked tree; hubs with routing descriptions become dispatchable skills",
+      "evidence": "iteration 3 f-iter003-003; scan of .opencode/skills tree",
+      "iteration": 4,
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "f-iter004-004",
+      "_conflict_id": "f-iter004-004--922cfba63b71",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter004-004",
+          "peerId": "f-iter004-004--8396cf2caed1",
+          "peerLineages": [
+            "swe2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter004-002--f4f830b90ea6",
+      "severity": "P1",
+      "label": "All 174 descriptions exceed the 60-char prompt budget",
+      "summary": "Every repo description truncates to 57 chars + ... in the index; routing signal lost uniformly; hard only for new skills, warning for existing",
+      "evidence": "scan output 174/174; file:~/.hermes/hermes-agent/agent/skill_utils.py:716-733",
+      "iteration": 4,
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "f-iter004-002",
+      "_conflict_id": "f-iter004-002--f4f830b90ea6",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter004-002",
+          "peerId": "f-iter004-002--3137f63cca1d",
+          "peerLineages": [
+            "swe2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter008-002",
+      "severity": "P1",
+      "label": "No preventive OS sandbox: same class as opencode/devin/pi",
+      "summary": "EXECUTOR_PREVENTIVE_SANDBOX_CAPABILITY false; flag support: model, reasoningEffort (--reasoning first-class), timeoutSeconds, liveTools; no sandboxMode/serviceTier",
+      "evidence": "file:.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:79-135",
+      "iteration": 8,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "f-iter001-004--54e78d154238",
+      "title": "Exit codes: -z 0/1/2; chat -Q 0/1/130",
+      "summary": "-z: 0 success, 1 agent failure/no response, 2 usage error or failed/partial with empty response; chat -Q: 0 success, 1 failed, 130 interrupt",
+      "severity": "P1",
+      "evidence": "file:~/.hermes/hermes-agent/hermes_cli/oneshot.py:187-265; file:~/.hermes/hermes-agent/cli.py:4108-4117",
+      "iteration": 1,
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "f-iter001-004",
+      "_conflict_id": "f-iter001-004--54e78d154238",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter001-004",
+          "peerId": "f-iter001-004--3b49bfc7e473",
+          "peerLineages": [
+            "swe2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter008-003",
+      "severity": "P1",
+      "label": "Web search forceable per dispatch",
+      "summary": "Explicit -t/--toolsets replaces configured set; web is a valid toolset; matrix entry {inherit:true, disabled:false, cached:false, live:true} like codex/opencode",
+      "evidence": "file:~/.hermes/hermes-agent/hermes_cli/oneshot.py:194-224; toolsets.py",
+      "iteration": 8,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter002-006",
+      "severity": "P1",
+      "label": "HERMES_SUPPORTED_MODELS starts at two DevPass models",
+      "summary": "Fail-closed roster mirrors PI_SUPPORTED_MODELS: deepseek-v4.1-flash and glm-5.3-flash via llmgateway/<id>, effort pin max; everything else off-roster until configured and live-pinned",
+      "evidence": "file:.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:182-215",
+      "iteration": 2,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter009-001",
+      "severity": "P1",
+      "label": "Startup 0.86s measured; version drift real",
+      "summary": "hermes --version 0.86s wall; Python 3.11 venv, git install, 1195 commits behind; packet must pin v0.21.1",
+      "evidence": "live time hermes --version 2026-09-14",
+      "iteration": 9,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter007-005",
+      "severity": "P2",
+      "label": "hermes mcp serve inverse not useful now",
+      "summary": "Hermes as MCP server exposes conversations; no cross-runtime consumer topology among the six; code-mode manual covers that role",
+      "evidence": "live hermes mcp serve --help 2026-09-14",
+      "iteration": 7,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter008-001",
+      "severity": "P1",
+      "label": "buildHermesLineageCommand shape resolvable today",
+      "summary": "hermes chat -Q --oneshot --max-turns N --run-budget S --yolo --accept-hooks -t <toolsets> --pass-session-id -q <prompt> </dev/null --in <repo root>; --yolo must be explicit (chat -Q does not auto-set it)",
+      "evidence": "live hermes chat --help; hermes_cli/oneshot.py:194-224",
+      "iteration": 8,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter003-005--c729ca233c72",
+      "severity": "P2",
+      "label": "No read-only command reports project-skill load result",
+      "summary": "hermes skills list shows Trust column for installed skills only; hermes skills check covers hub-installed only; load verdict UNKNOWN until trust mutation in a later phase",
+      "evidence": "live hermes skills list + skills check 2026-09-14",
+      "iteration": 3,
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "f-iter003-005",
+      "_conflict_id": "f-iter003-005--c729ca233c72",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter003-005",
+          "peerId": "f-iter003-005--8e7656104f8a",
+          "peerLineages": [
+            "swe2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter002-002--51ed6124fe96",
+      "severity": "P1",
+      "label": "Zero configured provider credentials on this machine today",
+      "summary": "hermes status: Model not set, Provider Auto, all API keys not set; .env key inventory is debug/timeout settings only; no smoke dispatch permitted",
+      "evidence": "live hermes status + config show 2026-09-14; key-name inventory ~/.hermes/.env",
+      "iteration": 2,
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "f-iter002-002",
+      "_conflict_id": "f-iter002-002--51ed6124fe96",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter002-002",
+          "peerId": "f-iter002-002--00d3a8dd63c4",
+          "peerLineages": [
+            "swe2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter007-003",
+      "severity": "P1",
+      "label": "Deny-by-default per tool via server:tool notation",
+      "summary": "hermes tools list/disable/enable with server:tool; whole-server toggles; checklist stored in operator config",
+      "evidence": "file:~/.hermes/hermes-agent/hermes_cli/tools_config_mcp.py:88-142; live hermes tools --help",
+      "iteration": 7,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter009-006",
+      "severity": "P1",
+      "label": "Full comparison table produced (14 capabilities x 7 runtimes)",
+      "summary": "Hermes wins: HERMES_HOME isolation, live web forcing, trustworthy exit codes, session-id-on-stderr; costs: user-level config, flattening, no preventive sandbox, pause not CLI-scoped",
+      "evidence": "synthesized from iterations 1-9; six packets",
+      "iteration": 9,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter006-001",
+      "severity": "P1",
+      "label": "Hooks are user-config-only with consent allowlist",
+      "summary": "hooks: in ~/.hermes/config.yaml; allowlist at ~/.hermes/shell-hooks-allowlist.json; --accept-hooks/HERMES_ACCEPT_HOOKS=1/hooks_auto_accept bypass TTY; none configured live",
+      "evidence": "file:~/.hermes/hermes-agent/agent/shell_hooks.py:141-163; live hermes hooks list 2026-09-14",
+      "iteration": 6,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter005-004--7533636f5b3a",
+      "severity": "P1",
+      "label": "Persona routes: inline prompt or persona-skill",
+      "summary": "Inline (cli-codex/cli-pi precedent) or translate agent .md into a Hermes skill preloaded via -s; skill slash commands inject as user message",
+      "evidence": "tools/delegate_tool.py:1-9; agent/skill_commands.py; cli-codex/cli-pi SKILL.md",
+      "iteration": 5,
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "f-iter005-004",
+      "_conflict_id": "f-iter005-004--7533636f5b3a",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter005-004",
+          "peerId": "f-iter005-004--f134419780b6",
+          "peerLineages": [
+            "swe2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter003-004--67db118b7faa",
+      "severity": "P1",
+      "label": "Quarantine fail-closed per skill dir; symlink escape inside skill flagged critical",
+      "summary": "is_quarantined_project_skill gates every project SKILL.md; scanner crash quarantines; symlinks inside a skill dir resolving outside are critical traversal",
+      "evidence": "file:~/.hermes/hermes-agent/agent/skill_utils.py:525-550; tools/skills_guard.py:526-545",
+      "iteration": 3,
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "f-iter003-004",
+      "_conflict_id": "f-iter003-004--67db118b7faa",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter003-004",
+          "peerId": "f-iter003-004--3ef6ee44eac8",
+          "peerLineages": [
+            "swe2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter001-005--e51decbe4a5a",
+      "title": "Isolation flags: --ignore-user-config/--ignore-rules/--safe-mode",
+      "summary": "Skip config (credentials still load), skip rules/memory/preloaded skills, disable plugins+MCP; none isolate the sessions DB",
+      "severity": "P2",
+      "evidence": "file:~/.hermes/hermes-agent/hermes_cli/_parser.py:165-170",
+      "iteration": 1,
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "f-iter001-005",
+      "_conflict_id": "f-iter001-005--e51decbe4a5a",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter001-005",
+          "peerId": "f-iter001-005--d1a33e40a15e",
+          "peerLineages": [
+            "swe2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter009-004",
+      "severity": "P2",
+      "label": "Terminal backends offer optional extra containment",
+      "summary": "local/docker/ssh/modal/daytona/singularity with local_env_policy; hardening option, not phase-1 requirement",
+      "evidence": "tools/environments/ inventory",
+      "iteration": 9,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter007-001",
+      "severity": "P1",
+      "label": "MCP servers are user-config-only",
+      "summary": "mcp_servers: in ~/.hermes/config.yaml; hermes mcp add mutates it; repo cannot carry MCP config; operator step required",
+      "evidence": "file:~/.hermes/hermes-agent/hermes_cli/mcp_config.py:55-141; live hermes mcp list 2026-09-14",
+      "iteration": 7,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter010-001",
+      "severity": "P1",
+      "label": "Parent phase set sound; two merges, one narrowing, no splits/drops",
+      "summary": "Merge 006 into 004; merge 008 into 004; narrow 007 to project-local plugin; keep 005 separate",
+      "evidence": "parent spec.md:108-139; iterations 5,6,7",
+      "iteration": 10,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter004-003--a44ab8867051",
+      "severity": "P2",
+      "label": "Advisory warnings fire on nearly every repo skill",
+      "summary": "missing version/author/license, missing metadata.hermes.{tags,related_skills}; shell-utility-reference where prose names shell tools; all warnings, not blocks",
+      "evidence": "file:~/.hermes/hermes-agent/tools/skill_linter.py:79-130",
+      "iteration": 4,
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "f-iter004-003",
+      "_conflict_id": "f-iter004-003--a44ab8867051",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter004-003",
+          "peerId": "f-iter004-003--08587d5573d8",
+          "peerLineages": [
+            "swe2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter004-001--bb1e633430c2",
+      "severity": "P1",
+      "label": "All 174 repo SKILL.md files pass the hard validator",
+      "summary": "name+description+non-empty body+YAML all present; 0 name-dir mismatches; hard-reject cases in repo: none",
+      "evidence": "scan of 174 SKILL.md files 2026-09-14; file:~/.hermes/hermes-agent/tools/skill_manager_tool.py:130-175",
+      "iteration": 4,
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "f-iter004-001",
+      "_conflict_id": "f-iter004-001--bb1e633430c2",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter004-001",
+          "peerId": "f-iter004-001--66cd0f45a2f6",
+          "peerLineages": [
+            "swe2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter003-002--ee6ea8d3f49d",
+      "severity": "P1",
+      "label": "Project skills dirs: .hermes/skills + .agents/skills, trust-gated",
+      "summary": "Nearest .git ancestor (64-level walk-up); loads only when root in skills.trusted_project_dirs; trust recorded in user-level config.yaml, repo cannot carry it",
+      "evidence": "file:~/.hermes/hermes-agent/agent/skill_utils.py:410-500; hermes_cli/main_agent_cmds.py:179-233",
+      "iteration": 3,
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "f-iter003-002",
+      "_conflict_id": "f-iter003-002--ee6ea8d3f49d",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter003-002",
+          "peerId": "f-iter003-002--4a9cf56c5a80",
+          "peerLineages": [
+            "swe2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter009-002",
+      "severity": "P2",
+      "label": "Background subsystems off by default",
+      "summary": "No curator/gateway/cron config; curator auxiliary-defaulted, never a gate; assumption background-subsystems-assumed-off",
+      "evidence": "~/.hermes/config.yaml; hermes_cli/config_defaults.py:736,1355-1364",
+      "iteration": 9,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter010-005",
+      "severity": "P1",
+      "label": "Verdict: fit as seventh runtime and for fan-out, with hard-rule caveats",
+      "summary": "No preventive sandbox, user-level trust/hooks/MCP, flattening skill surface, pause not a CLI stop; runner containment is the control",
+      "evidence": "synthesis of iterations 1-9",
+      "iteration": 10,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter007-006",
+      "severity": "P1",
+      "label": "Structural difference: six runtimes carry MCP config in-repo, Hermes does not",
+      "summary": "opencode.json/.claude/mcp.json/.codex/config.toml/.cursor/mcp.json/.pi/mcp.json/.devin/mcp_config.json vs user-level mcp_servers; hard-rule candidate mcp-config-operator-required",
+      "evidence": "resource-map Config; hermes_cli/mcp_config.py:55-141",
+      "iteration": 7,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter006-005",
+      "severity": "P2",
+      "label": "Agent Plugins v1 portable packages; defer",
+      "summary": "plugin.json + skills/ + MCP (stdio/remote, SSE rejected), strict path scoping; MCP discovery wired at plugins.py:1402; hook surface not equivalent to native set",
+      "evidence": "file:~/.hermes/hermes-agent/hermes_cli/agent_plugins.py:87-90,257-316; plugins.py:1402",
+      "iteration": 6,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter006-002",
+      "severity": "P1",
+      "label": "VALID_HOOKS rich enough for every repo guard core",
+      "summary": "pre_tool_call, post_tool_call, pre_llm_call, pre_verify (block/continue), on_session_start/end/finalize/reset, subagent_start/stop, pre_gateway_dispatch, transform_*, api hooks",
+      "evidence": "file:~/.hermes/hermes-agent/hermes_cli/plugins.py:107-135",
+      "iteration": 6,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter008-004",
+      "severity": "P1",
+      "label": "HERMES_HOME is a real state-dir override",
+      "summary": "Profile-aware get_hermes_home(); -p/--profile sets HERMES_HOME before imports; per-lineage isolation via HERMES_HOME env; repo var SPECKIT_HERMES_STATE_DIR; env prefix HERMES_",
+      "evidence": "file:.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts:80-144; hermes_constants (root AGENTS.md)",
+      "iteration": 8,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter010-002",
+      "severity": "P1",
+      "label": "Ranked plan R1-R8",
+      "summary": "R1 contract-pin, R2 executor support (angle-8 builder spec), R3 skill packet (absorbs 006+008), R4 runtime folder, R5 hook/plugin layer (narrowed), R6 model routing (operator gate), R7 playbook/catalog, R8 governance closeout",
+      "evidence": "parent spec.md:108-139; iterations 1-9",
+      "iteration": 10,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter003-006--71ff0371095d",
+      "severity": "P1",
+      "label": "Repo-root vs ~/.hermes split defined",
+      "summary": "Repo: AGENTS.md/CLAUDE.md/.cursorrules + .hermes/skills/.agents/skills; user: SOUL.md, config.yaml (trust), .env, plugins, memories, sessions, logs, cache; memory injection user-level, scoped only via --ignore-rules",
+      "evidence": "file:~/.hermes/hermes-agent/agent/skill_utils.py:410; hermes_cli/main_agent_cmds.py:179-233; ~/.hermes layout",
+      "iteration": 3,
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "f-iter003-006",
+      "_conflict_id": "f-iter003-006--71ff0371095d",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter003-006",
+          "peerId": "f-iter003-006--717244ebeaa9",
+          "peerLineages": [
+            "swe2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter004-005",
+      "severity": "P2",
+      "label": "No read-only load-result report; quarantine risk low for this repo",
+      "summary": "skills list/check cover installed skills only; repo tree has no symlink escapes and no importlib-trick scripts (AST audit is install-time)",
+      "evidence": "iteration 3 f-iter003-005; file:~/.hermes/hermes-agent/tools/skills_ast_audit.py:21-81",
+      "iteration": 4,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter006-006",
+      "severity": "P1",
+      "label": "Recommended: one project-local native plugin ./.hermes/plugins/repo-guards",
+      "summary": "Smaller than shell hooks (repo-carriable, no operator allowlist) and safer than Agent Plugins v1 (native contract); shells out to existing guard cores; needs HERMES_ENABLE_PROJECT_PLUGINS=1 per dispatch",
+      "evidence": "synthesis of findings 1-5; live hermes plugins list 2026-09-14",
+      "iteration": 6,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter009-007",
+      "severity": "P1",
+      "label": "Seven hard rules for the cli-hermes packet",
+      "summary": "stdin-redirect-required, hermes-availability-required, yolo-required-for-writes, hermes-home-isolation-required, mcp-config-operator-required, hooks-user-level, web-search-explicit",
+      "evidence": "synthesized from iterations 1-9; cli-pi/cli-devin hard-rule precedent",
+      "iteration": 9,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter005-003--c56f38a04af3",
+      "severity": "P1",
+      "label": "import-agent maps CLAUDE.md/mcp/skills/memories, NOT agent files",
+      "summary": "Supported agents claude-code/codex; .claude/agents/*.md not in mapping; would copy repo state into ~/.hermes under claude-code-imports; harmful here — do not use",
+      "evidence": "file:~/.hermes/hermes-agent/hermes_cli/agent_import.py:26-32,294-303; live hermes import-agent --help 2026-09-14",
+      "iteration": 5,
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "f-iter005-003",
+      "_conflict_id": "f-iter005-003--c56f38a04af3",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter005-003",
+          "peerId": "f-iter005-003--028c061a023c",
+          "peerLineages": [
+            "swe2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter001-001--e257e486dbd8",
+      "title": "Three headless shapes: -z oneshot, chat -q non-TTY oneshot, chat -Q quiet",
+      "summary": "hermes -z prints only final response text (no session id line); chat -q on non-TTY implies --oneshot; chat -Q suppresses banner/spinner and prints response + session info",
+      "severity": "P1",
+      "evidence": "file:~/.hermes/hermes-agent/hermes_cli/_parser.py:113-118,194-199; file:~/.hermes/hermes-agent/cli.py:2470-2475",
+      "iteration": 1,
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "f-iter001-001",
+      "_conflict_id": "f-iter001-001--e257e486dbd8",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter001-001",
+          "peerId": "f-iter001-001--07a5d2286ccd",
+          "peerLineages": [
+            "swe2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "type": "finding",
+      "id": "f-iter007-004",
+      "severity": "P2",
+      "label": "Pre-spawn security hardening",
+      "summary": "validate_mcp_server_entry + is_mcp_server_entry_suspicious reject exfiltration shapes; suspicious servers dropped before stdio spawn; OAuth device flow; Bearer tokens to .env never config",
+      "evidence": "file:~/.hermes/hermes-agent/hermes_cli/mcp_security.py:59-143; hermes_cli/mcp_config.py:178-238",
+      "iteration": 7,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "f-iter001-001--07a5d2286ccd",
+      "iteration": 1,
+      "label": "Two headless modes: -z (auto-yolo, no session id) vs chat -Q (deterministic deny for writes, session_id on stderr); non-TTY chat is naturally one-shot",
+      "confidence": "high",
+      "_lineages": [
+        "swe2"
+      ],
+      "_conflictOf": "f-iter001-001",
+      "_conflict_id": "f-iter001-001--07a5d2286ccd",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter001-001",
+          "peerId": "f-iter001-001--e257e486dbd8",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter001-002--c4b6ef952907",
+      "iteration": 1,
+      "label": "Exit codes 0/1/2/130 via hard os._exit; -Q gives response-only stdout + session info on stderr",
+      "confidence": "high",
+      "_lineages": [
+        "swe2"
+      ],
+      "_conflictOf": "f-iter001-002",
+      "_conflict_id": "f-iter001-002--c4b6ef952907",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter001-002",
+          "peerId": "f-iter001-002--577d7407686c",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter001-003--1ddd38b009ca",
+      "iteration": 1,
+      "label": "--yolo required for write-capable dispatch; single_query gate denies writes without it",
+      "confidence": "high",
+      "_lineages": [
+        "swe2"
+      ],
+      "_conflictOf": "f-iter001-003",
+      "_conflict_id": "f-iter001-003--1ddd38b009ca",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter001-003",
+          "peerId": "f-iter001-003--69114fed0788",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter001-004--3b49bfc7e473",
+      "iteration": 1,
+      "label": "--run-budget SECONDS: in-agent wall-clock with 80% wrap-up notice — unique among runtimes",
+      "confidence": "high",
+      "_lineages": [
+        "swe2"
+      ],
+      "_conflictOf": "f-iter001-004",
+      "_conflict_id": "f-iter001-004--3b49bfc7e473",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter001-004",
+          "peerId": "f-iter001-004--54e78d154238",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter001-005--d1a33e40a15e",
+      "iteration": 1,
+      "label": "--ignore-rules/--ignore-user-config/--safe-mode tier the config+rules+memory injection surface",
+      "confidence": "high",
+      "_lineages": [
+        "swe2"
+      ],
+      "_conflictOf": "f-iter001-005",
+      "_conflict_id": "f-iter001-005--d1a33e40a15e",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter001-005",
+          "peerId": "f-iter001-005--e51decbe4a5a",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter001-006--1d7620866711",
+      "iteration": 1,
+      "label": "--in DIR controls cwd; --pass-session-id exposes session id to the agent",
+      "confidence": "high",
+      "_lineages": [
+        "swe2"
+      ],
+      "_conflictOf": "f-iter001-006",
+      "_conflict_id": "f-iter001-006--1d7620866711",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter001-006",
+          "peerId": "f-iter001-006--95e0df4b5419",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter002-001--d00318585584",
+      "iteration": 2,
+      "label": "~35-provider static catalog (models_catalog_static.py) + plugin model-providers extension",
+      "confidence": "high",
+      "_lineages": [
+        "swe2"
+      ],
+      "_conflictOf": "f-iter002-001",
+      "_conflict_id": "f-iter002-001--d00318585584",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter002-001",
+          "peerId": "f-iter002-001--f3206dafca3e",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter002-002--00d3a8dd63c4",
+      "iteration": 2,
+      "label": "Provider selection independent of model; -m/--model and --provider flags",
+      "confidence": "high",
+      "_lineages": [
+        "swe2"
+      ],
+      "_conflictOf": "f-iter002-002",
+      "_conflict_id": "f-iter002-002--00d3a8dd63c4",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter002-002",
+          "peerId": "f-iter002-002--51ed6124fe96",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter002-003--e64275ebd975",
+      "iteration": 2,
+      "label": "7 auth modes: api_key, oauth_device_code, oauth_external, oauth_minimax, external_process, copilot, aws_sdk",
+      "confidence": "high",
+      "_lineages": [
+        "swe2"
+      ],
+      "_conflictOf": "f-iter002-003",
+      "_conflict_id": "f-iter002-003--e64275ebd975",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter002-003",
+          "peerId": "f-iter002-003--c09ba2623125",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter002-004--5eeab751c712",
+      "iteration": 2,
+      "label": "Codex OAuth import path via ~/.codex/auth.json — only zero-secret credential bridge available today",
+      "confidence": "high",
+      "_lineages": [
+        "swe2"
+      ],
+      "_conflictOf": "f-iter002-004",
+      "_conflict_id": "f-iter002-004--5eeab751c712",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter002-004",
+          "peerId": "f-iter002-004--ac20cc4add8c",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter002-005--ccd696735bdd",
+      "iteration": 2,
+      "label": "Tri-state reasoning capability (True/False/None-unknown); --reasoning levels exactly match repo REASONING_EFFORTS enum",
+      "confidence": "high",
+      "_lineages": [
+        "swe2"
+      ],
+      "_conflictOf": "f-iter002-005",
+      "_conflict_id": "f-iter002-005--ccd696735bdd",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter002-005",
+          "peerId": "f-iter002-005--27edae398621",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter003-001--680828230a2a",
+      "iteration": 3,
+      "label": "cli-hermes maps onto existing tables: model→-m, reasoningEffort→--reasoning, configDir→HERMES_HOME/--profile, no sandboxMode",
+      "confidence": "high",
+      "_lineages": [
+        "swe2"
+      ],
+      "_conflictOf": "f-iter003-001",
+      "_conflict_id": "f-iter003-001--680828230a2a",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter003-001",
+          "peerId": "f-iter003-001--b42a6ee52fc7",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter003-002--4a9cf56c5a80",
+      "iteration": 3,
+      "label": "Lineage dispatch: chat -Q --query-file --yolo --run-budget --source tool --in <repo> </dev/null; -z rejected",
+      "confidence": "high",
+      "_lineages": [
+        "swe2"
+      ],
+      "_conflictOf": "f-iter003-002",
+      "_conflict_id": "f-iter003-002--4a9cf56c5a80",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter003-002",
+          "peerId": "f-iter003-002--ee6ea8d3f49d",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter003-003--ee38b8c28edd",
+      "iteration": 3,
+      "label": "HERMES_AGENT=true + HERMES_SESSION_ID inherited markers — self-invocation detection like CURSOR_AGENT=1",
+      "confidence": "high",
+      "_lineages": [
+        "swe2"
+      ],
+      "_conflictOf": "f-iter003-003",
+      "_conflict_id": "f-iter003-003--ee38b8c28edd",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter003-003",
+          "peerId": "f-iter003-003--4f4856d59fd3",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter003-004--3ef6ee44eac8",
+      "iteration": 3,
+      "label": "--profile sets HERMES_HOME pre-import; profiles are credential-isolated islands — phase-1 = shared home + --ignore-rules",
+      "confidence": "high",
+      "_lineages": [
+        "swe2"
+      ],
+      "_conflictOf": "f-iter003-004",
+      "_conflict_id": "f-iter003-004--3ef6ee44eac8",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter003-004",
+          "peerId": "f-iter003-004--67db118b7faa",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter003-005--8e7656104f8a",
+      "iteration": 3,
+      "label": "Out-of-repo writes containment-safe; --worktree writes .git/worktrees inside repo — forbidden in lineage commands",
+      "confidence": "high",
+      "_lineages": [
+        "swe2"
+      ],
+      "_conflictOf": "f-iter003-005",
+      "_conflict_id": "f-iter003-005--8e7656104f8a",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter003-005",
+          "peerId": "f-iter003-005--c729ca233c72",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter003-006--717244ebeaa9",
+      "iteration": 3,
+      "label": "-t/--toolsets gives per-dispatch web control and can strip delegation/memory toolsets",
+      "confidence": "high",
+      "_lineages": [
+        "swe2"
+      ],
+      "_conflictOf": "f-iter003-006",
+      "_conflict_id": "f-iter003-006--717244ebeaa9",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter003-006",
+          "peerId": "f-iter003-006--71ff0371095d",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter004-001--66cd0f45a2f6",
+      "iteration": 4,
+      "label": "Full 7-runtime matrix across 19 surfaces — all cells sourced",
+      "confidence": "high",
+      "_lineages": [
+        "swe2"
+      ],
+      "_conflictOf": "f-iter004-001",
+      "_conflict_id": "f-iter004-001--66cd0f45a2f6",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter004-001",
+          "peerId": "f-iter004-001--bb1e633430c2",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter004-002--3137f63cca1d",
+      "iteration": 4,
+      "label": "Hermes gaps: no repo-local .hermes config dir, heaviest ambient injection, Python cold start, delegation on by default, no OS sandbox",
+      "confidence": "high",
+      "_lineages": [
+        "swe2"
+      ],
+      "_conflictOf": "f-iter004-002",
+      "_conflict_id": "f-iter004-002--3137f63cca1d",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter004-002",
+          "peerId": "f-iter004-002--f4f830b90ea6",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter004-003--08587d5573d8",
+      "iteration": 4,
+      "label": "Unique deltas: deny-for-writes single_query gate, consent-allowlisted shell hooks, home-scoped MCP only",
+      "confidence": "high",
+      "_lineages": [
+        "swe2"
+      ],
+      "_conflictOf": "f-iter004-003",
+      "_conflict_id": "f-iter004-003--08587d5573d8",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter004-003",
+          "peerId": "f-iter004-003--a44ab8867051",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter004-004--8396cf2caed1",
+      "iteration": 4,
+      "label": "Every run writes sessions/memories/logs into HERMES_HOME — containment-safe but state-noisy unless profiled",
+      "confidence": "high",
+      "_lineages": [
+        "swe2"
+      ],
+      "_conflictOf": "f-iter004-004",
+      "_conflict_id": "f-iter004-004--8396cf2caed1",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter004-004",
+          "peerId": "f-iter004-004--922cfba63b71",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter005-001--329b7340c52a",
+      "iteration": 5,
+      "label": "Verdict: integrate as seventh runtime, gated on provider config + live smoke + repo-local config decision",
+      "confidence": "high",
+      "_lineages": [
+        "swe2"
+      ],
+      "_conflictOf": "f-iter005-001",
+      "_conflict_id": "f-iter005-001--329b7340c52a",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter005-001",
+          "peerId": "f-iter005-001--6a5640efb8ed",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter005-002--76e98f70851f",
+      "iteration": 5,
+      "label": "R1-R9 ranked recommendations, each naming its prevented failure",
+      "confidence": "high",
+      "_lineages": [
+        "swe2"
+      ],
+      "_conflictOf": "f-iter005-002",
+      "_conflict_id": "f-iter005-002--76e98f70851f",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter005-002",
+          "peerId": "f-iter005-002--72d0ec965f4f",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter005-003--028c061a023c",
+      "iteration": 5,
+      "label": "Phase plan: 002 pin+smoke → 003 executor tables → 004 packet → 005 optional hardening",
+      "confidence": "high",
+      "_lineages": [
+        "swe2"
+      ],
+      "_conflictOf": "f-iter005-003",
+      "_conflict_id": "f-iter005-003--028c061a023c",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter005-003",
+          "peerId": "f-iter005-003--c56f38a04af3",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter005-004--f134419780b6",
+      "iteration": 5,
+      "label": "Required for merge: R1-R8 + phases 002-004; optional: profile isolation, terminal-backend sandbox, non-leaf delegation",
+      "confidence": "high",
+      "_lineages": [
+        "swe2"
+      ],
+      "_conflictOf": "f-iter005-004",
+      "_conflict_id": "f-iter005-004--f134419780b6",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter005-004",
+          "peerId": "f-iter005-004--7533636f5b3a",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter005-005--56ad990d33e3",
+      "iteration": 5,
+      "label": "UNKNOWN register U1-U6 handed to phase 002; U1 (live chat -Q) is the gate",
+      "confidence": "high",
+      "_lineages": [
+        "swe2"
+      ],
+      "_conflictOf": "f-iter005-005",
+      "_conflict_id": "f-iter005-005--56ad990d33e3",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "f-iter005-005",
+          "peerId": "f-iter005-005--6047f93b747a",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "f-iter001-007",
+      "iteration": 1,
+      "label": "No provider configured on this machine — smoke dispatch precondition unmet (hermes status 2026-09-14)",
+      "confidence": "high",
+      "_lineages": [
+        "swe2"
+      ]
+    },
+    {
+      "id": "f-iter003-007",
+      "iteration": 3,
+      "label": "--query-file - consumes stdin as prompt; --query-file PATH avoids ARG_MAX on long briefs",
+      "confidence": "high",
+      "_lineages": [
+        "swe2"
+      ]
+    },
+    {
+      "id": "f-iter003-008",
+      "iteration": 3,
+      "label": "Exit codes trustworthy; no distinct budget-exhaustion code — pair --run-budget under runner timeoutSeconds",
+      "confidence": "high",
+      "_lineages": [
+        "swe2"
+      ]
+    },
+    {
+      "id": "f-iter003-009",
+      "iteration": 3,
+      "label": "Bleed channels: --ignore-rules kills SOUL.md/memory/rules injection; MCP cold-start bound; hooks inert today",
+      "confidence": "high",
+      "_lineages": [
+        "swe2"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ro-iter008---yolo as sandbox",
+      "approach": "--yolo as sandbox",
+      "reason": "approval bypass only",
+      "iteration": 8,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "ro-iter010-009 before operator credential step",
+      "approach": "009 before operator credential step",
+      "reason": "unreachable and untestable",
+      "iteration": 10,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "ro-iter005-13 profiles for the repo's 13 agents",
+      "approach": "13 profiles for the repo's 13 agents",
+      "reason": "Profiles are whole-home independent islands, not personas; 13 full homes with duplicated state",
+      "evidence": "file:~/.hermes/hermes-agent/hermes_cli/profiles.py:133-280",
+      "iteration": 5,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "ro-iter004-Adding Hermes-standard frontmatter (60-char desc, metadata.hermes.*) to all 174 repo skills as a load precondition",
+      "approach": "Adding Hermes-standard frontmatter (60-char desc, metadata.hermes.*) to all 174 repo skills as a load precondition",
+      "reason": "Skills load without it; only routing signal degrades; a later phase can decide per-packet",
+      "evidence": "file:~/.hermes/hermes-agent/tools/skill_manager_tool.py:130-175",
+      "iteration": 4,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "ro-iter006-Agent Plugins v1 as the first bridge",
+      "approach": "Agent Plugins v1 as the first bridge",
+      "reason": "New portable format with unsettled hook surface vs native VALID_HOOKS; defer",
+      "evidence": "file:~/.hermes/hermes-agent/hermes_cli/agent_plugins.py:87-90,351+",
+      "iteration": 6,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "ro-iter006-Agent Plugins v1 first",
+      "approach": "Agent Plugins v1 first",
+      "reason": "unsettled hook surface",
+      "iteration": 6,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "ro-iter002-Assuming any provider reachable before credential config",
+      "approach": "Assuming any provider reachable before credential config",
+      "reason": "hermes status shows every API key not set; config.yaml has only plugins.enabled",
+      "evidence": "live hermes status 2026-09-14",
+      "iteration": 2,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "ro-iter009-Assuming background subsystems need killing per dispatch",
+      "approach": "Assuming background subsystems need killing per dispatch",
+      "reason": "curator/gateway/cron have no config sections; curator is auxiliary-defaulted and never a gate",
+      "evidence": "~/.hermes/config.yaml; hermes_cli/config_defaults.py:736,1355-1364",
+      "iteration": 9,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "ro-iter003-Carrying the trust grant inside the repo .hermes folder",
+      "approach": "Carrying the trust grant inside the repo .hermes folder",
+      "reason": "hermes skills trust writes skills.trusted_project_dirs to user-level ~/.hermes/config.yaml",
+      "evidence": "file:~/.hermes/hermes-agent/hermes_cli/main_agent_cmds.py:179-233",
+      "iteration": 3,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "ro-iter005-Direct slash-command registration for .opencode/commands",
+      "approach": "Direct slash-command registration for .opencode/commands",
+      "reason": "Hermes has no workflow engine; opencode YAML commands have no Hermes equivalent",
+      "evidence": "hermes_cli/commands.py + agent/skill_commands.py (hermes_cli/AGENTS.md)",
+      "iteration": 5,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "ro-iter008-Env-inheritance-based nesting detection",
+      "approach": "Env-inheritance-based nesting detection",
+      "reason": "Hermes removes HERMES_TURN_AUTHOR from child subprocesses; ancestry + SPECKIT lineage marker must do the work",
+      "evidence": "file:~/.hermes/hermes-agent/agent/turn_author.py:85-90",
+      "iteration": 8,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "ro-iter001-002",
+      "approach": "Exit-code-only success detection",
+      "reason": "chat -Q exits 0 on partial-with-response; must parse stderr for Error:/session_id:",
+      "evidence": "file:~/.hermes/hermes-agent/cli.py:4108-4117",
+      "iteration": 1,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "ro-iter001-Exit-code-only success detection",
+      "approach": "Exit-code-only success detection",
+      "reason": "chat -Q exits 0 on partial-with-response; must parse stderr for Error:/session_id:",
+      "evidence": "file:~/.hermes/hermes-agent/cli.py:4108-4117",
+      "iteration": 1,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "ro-iter003-Per-file symlinks into .opencode/skills from .hermes",
+      "approach": "Per-file symlinks into .opencode/skills from .hermes",
+      "reason": "skills_guard flags symlink_escape (critical) for symlinks resolving outside a skill dir",
+      "evidence": "file:~/.hermes/hermes-agent/tools/skills_guard.py:538-543",
+      "iteration": 3,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "ro-iter010-Phase 009 before the operator credential step",
+      "approach": "Phase 009 before the operator credential step",
+      "reason": "Model routing is unreachable and untestable until the llmgateway provider is configured in ~/.hermes",
+      "evidence": "iteration 2",
+      "iteration": 10,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "ro-iter002-Porting OAuth credentials from pi/opencode/codex auth stores into Hermes",
+      "approach": "Porting OAuth credentials from pi/opencode/codex auth stores into Hermes",
+      "reason": "Each runtime keeps its own OAuth session; Hermes Codex tokens live in ~/.hermes/auth.json, explicitly not ~/.codex/",
+      "evidence": "file:~/.hermes/hermes-agent/hermes_cli/auth_codex.py:3-4",
+      "iteration": 2,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "ro-iter006-Re-implementing guard cores inside a Hermes plugin",
+      "approach": "Re-implementing guard cores inside a Hermes plugin",
+      "reason": "Shell out to existing .mjs/.sh guard cores instead; one implementation per guard",
+      "evidence": "plugins/AGENTS.md; .opencode/hooks/dispatch/lib/dispatch-audit.mjs",
+      "iteration": 6,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "ro-iter007-Repo-carried MCP config like the six runtimes",
+      "approach": "Repo-carried MCP config like the six runtimes",
+      "reason": "mcp_servers: lives in user-level ~/.hermes/config.yaml; hermes mcp add mutates that file",
+      "evidence": "file:~/.hermes/hermes-agent/hermes_cli/mcp_config.py:55-141",
+      "iteration": 7,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "ro-iter006-Shell hooks as the repo carrier for guard cores",
+      "approach": "Shell hooks as the repo carrier for guard cores",
+      "reason": "Declared in user-level config.yaml with per-command consent allowlist; repo cannot carry them",
+      "evidence": "file:~/.hermes/hermes-agent/agent/shell_hooks.py:141-163",
+      "iteration": 6,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "ro-iter010-Splitting any candidate phase",
+      "approach": "Splitting any candidate phase",
+      "reason": "No candidate exceeds a phase-sized scope in the evidence",
+      "evidence": "iterations 1-9",
+      "iteration": 10,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "ro-iter010-Standalone 006 and 008 phases",
+      "approach": "Standalone 006 and 008 phases",
+      "reason": "Their deliverables are skill-packet content (persona-skills/prompt templates; MCP policy text + operator doc); merging keeps each phase executable",
+      "evidence": "parent spec.md:108-139; iterations 5,7",
+      "iteration": 10,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "ro-iter009-Terminal-backend confinement (docker/ssh) in phase 1",
+      "approach": "Terminal-backend confinement (docker/ssh) in phase 1",
+      "reason": "Optional hardening only; repo-watching guard + HERMES_HOME isolation suffice for the first phase",
+      "evidence": "tools/environments/ inventory",
+      "iteration": 9,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "ro-iter008-Treating --yolo as a preventive sandbox",
+      "approach": "Treating --yolo as a preventive sandbox",
+      "reason": "Approval bypass only; no OS confinement flag exists; fan-out post-hoc write-containment is the control",
+      "evidence": "executor-config.ts:124-135; live hermes chat --help",
+      "iteration": 8,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "ro-iter008-Treating ~/.hermes writes as containment-relevant",
+      "approach": "Treating ~/.hermes writes as containment-relevant",
+      "reason": "The fan-out containment guard watches the repository only; ~/.hermes sessions/memories/logs are outside it",
+      "evidence": "executor-audit.ts state-dir map",
+      "iteration": 8,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "ro-iter005-direct slash-command registration",
+      "approach": "direct slash-command registration",
+      "reason": "no workflow engine in Hermes",
+      "iteration": 5,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "ro-iter002-dispatching before credential configuration",
+      "approach": "dispatching before credential configuration",
+      "reason": "hermes status shows all keys not set",
+      "iteration": 2,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "ro-iter008-env-inheritance nesting detection",
+      "approach": "env-inheritance nesting detection",
+      "reason": "TURN_AUTHOR scrubbed from children",
+      "iteration": 8,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "ro-iter001-exit-code-only success detection",
+      "approach": "exit-code-only success detection",
+      "reason": "chat -Q exits 0 on partial-with-response; stderr must be parsed",
+      "iteration": 1,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "ro-iter001-hermes -z as fan-out dispatch shape",
+      "approach": "hermes -z as fan-out dispatch shape",
+      "reason": "no session id on stdout; no max-turns/run-budget on top-level flags",
+      "iteration": 1,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "ro-iter001-001",
+      "approach": "hermes -z as the fan-out dispatch shape",
+      "reason": "No session id on stdout, no --max-turns/--run-budget on the top-level flag set",
+      "evidence": "file:~/.hermes/hermes-agent/hermes_cli/_parser.py:113-118",
+      "iteration": 1,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "ro-iter001-hermes -z as the fan-out dispatch shape",
+      "approach": "hermes -z as the fan-out dispatch shape",
+      "reason": "No session id on stdout, no --max-turns/--run-budget on the top-level flag set",
+      "evidence": "file:~/.hermes/hermes-agent/hermes_cli/_parser.py:113-118",
+      "iteration": 1,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "ro-iter005-hermes import-agent claude-code in the integration plan",
+      "approach": "hermes import-agent claude-code in the integration plan",
+      "reason": "Copies repo CLAUDE.md/mcp/skills/memories into ~/.hermes under claude-code-imports, bypasses trust/quarantine, duplicates repo-managed state; does not import agent files anyway",
+      "evidence": "file:~/.hermes/hermes-agent/hermes_cli/agent_import.py:26-32,294-303",
+      "iteration": 5,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "ro-iter005-hermes import-agent in the integration plan",
+      "approach": "hermes import-agent in the integration plan",
+      "reason": "duplicative copy that bypasses trust/quarantine",
+      "iteration": 5,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "ro-iter007-hermes mcp serve as an integration goal",
+      "approach": "hermes mcp serve as an integration goal",
+      "reason": "No consumer topology among the six runtimes; code-mode manual already covers the MCP-server role",
+      "evidence": "live hermes mcp serve --help 2026-09-14",
+      "iteration": 7,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "ro-iter007-hermes mcp serve as integration goal",
+      "approach": "hermes mcp serve as integration goal",
+      "reason": "no consumer topology",
+      "iteration": 7,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "ro-iter009-hermes pause as a fan-out containment control",
+      "approach": "hermes pause as a fan-out containment control",
+      "reason": "Emergency stop scopes to cron/kanban/new gateway turns only; CLI chat is not stopped; runner kill is the real stop",
+      "evidence": "file:~/.hermes/hermes-agent/agent/estop.py:1-60; live hermes pause --help",
+      "iteration": 9,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "ro-iter009-hermes pause as containment control",
+      "approach": "hermes pause as containment control",
+      "reason": "CLI not stopped by estop",
+      "iteration": 9,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "ro-iter003-hermes skills check as project-skill load reporter",
+      "approach": "hermes skills check as project-skill load reporter",
+      "reason": "covers hub-installed skills only",
+      "iteration": 3,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "ro-iter003-hermes skills check as the project-skill load-result reporter",
+      "approach": "hermes skills check as the project-skill load-result reporter",
+      "reason": "It covers only hub-installed skills; project skills surface only after the trust mutation",
+      "evidence": "live hermes skills check 2026-09-14",
+      "iteration": 3,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "ro-iter009-killing background subsystems per dispatch",
+      "approach": "killing background subsystems per dispatch",
+      "reason": "off by default",
+      "iteration": 9,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "ro-iter004-mass frontmatter retrofit as load precondition",
+      "approach": "mass frontmatter retrofit as load precondition",
+      "reason": "skills load without it; routing loss only",
+      "iteration": 4,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "ro-iter003-per-file symlinks into .opencode/skills",
+      "approach": "per-file symlinks into .opencode/skills",
+      "reason": "symlink_escape critical flag",
+      "iteration": 3,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "ro-iter002-porting OAuth credentials between runtime auth stores",
+      "approach": "porting OAuth credentials between runtime auth stores",
+      "reason": "each runtime keeps its own OAuth session; Hermes Codex tokens in ~/.hermes/auth.json",
+      "iteration": 2,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "ro-iter005-profiles as personas",
+      "approach": "profiles as personas",
+      "reason": "whole-home islands, wrong granularity",
+      "iteration": 5,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "ro-iter006-re-implementing guards in plugin",
+      "approach": "re-implementing guards in plugin",
+      "reason": "shell out to existing cores",
+      "iteration": 6,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "ro-iter007-repo-carried MCP config",
+      "approach": "repo-carried MCP config",
+      "reason": "user-level config.yaml only",
+      "iteration": 7,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "ro-iter003-repo-carried trust grant",
+      "approach": "repo-carried trust grant",
+      "reason": "trust lives in user-level config.yaml",
+      "iteration": 3,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "ro-iter006-shell hooks as repo carrier",
+      "approach": "shell hooks as repo carrier",
+      "reason": "user-config-only with allowlist",
+      "iteration": 6,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "ro-iter010-splitting candidate phases",
+      "approach": "splitting candidate phases",
+      "reason": "none exceeds phase scope",
+      "iteration": 10,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "ro-iter010-standalone 006 and 008 phases",
+      "approach": "standalone 006 and 008 phases",
+      "reason": "deliverables are packet content",
+      "iteration": 10,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "ro-iter009-terminal-backend confinement in phase 1",
+      "approach": "terminal-backend confinement in phase 1",
+      "reason": "optional hardening only",
+      "iteration": 9,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "ro-iter008-~/.hermes writes as containment-relevant",
+      "approach": "~/.hermes writes as containment-relevant",
+      "reason": "guard watches repo only",
+      "iteration": 8,
+      "_lineages": [
+        "deepseek"
+      ]
+    }
+  ],
+  "metrics": {
+    "iterationsCompleted": 10,
+    "openQuestions": 0,
+    "resolvedQuestions": 10,
+    "keyFindings": 90,
+    "sourceFindings": 361,
+    "reconstructionGaps": 0,
+    "convergenceScore": 0.45,
+    "coverageBySources": {}
+  },
+  "schema_mismatch": [
+    {
+      "type": "schema_mismatch",
+      "severity": "warn",
+      "lineage": "swe2",
+      "message": "Registry uses non-canonical key \"findings\" instead of \"keyFindings\"; coerced 30 entries.",
+      "aliasKey": "findings",
+      "canonicalKey": "keyFindings",
+      "coercedCount": 30
+    }
+  ]
+}

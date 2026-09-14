@@ -27,7 +27,7 @@ Schema reference for `hub-router.json`, the routing brain a thin parent hub uses
 **Worked example**: `sk-code` publishes two workflow modes in `mode-registry.json` — `quality` and `code-review` — plus two surface packets, `code-webflow` and `code-opencode`. Every mode, workflow or surface, is an ordinary registry mode with an ordinary router signal entry; the surface packets carry `packetKind: surface`. `sk-code` is *surface-primary*: it declares no default workflow, so a request that names only a surface defers rather than assuming a process.
 
 **Consumer inventory**:
-- `/deep:skill-benchmark` router-replay reads `projectHubRouter` to replay parent-hub routing decisions.
+- `.opencode/bin/compiled-route.cjs --hub <hub> --prompt <text>` replays a parent-hub routing decision against the compiled router (`servingAuthority: legacy` means the hub still routes through `hub-router.json`).
 - `parent-hub-vocab-sync` reads vocabulary ownership so aliases stay attached to the owning mode or surface.
 - `parent-skill-check` check 5 validates router conformance against the registry, class vocabulary, and on-disk resources.
 

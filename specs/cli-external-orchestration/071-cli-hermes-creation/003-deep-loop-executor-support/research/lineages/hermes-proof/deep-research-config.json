@@ -1,0 +1,81 @@
+{
+  "topic": "List the eight hard rule ids declared in .opencode/skills/cli-external-orchestration/cli-hermes/SKILL.md and state which one a fan-out lineage exercises by construction, citing the file and line for each id.",
+  "maxIterations": 1,
+  "minIterations": 1,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "convergenceMode": "default",
+    "divergent": {}
+  },
+  "stuckThreshold": 3,
+  "minIdeaObservations": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": "specs/cli-external-orchestration/071-cli-hermes-creation/003-deep-loop-executor-support",
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "createdAt": "2026-09-14T19:23:37Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "stop_policy": "max-iterations",
+  "executor": {
+    "kind": "cli-hermes",
+    "model": "deepseek-v4.1-flash",
+    "reasoningEffort": "max",
+    "serviceTier": null,
+    "sandboxMode": "workspace-write",
+    "permissionMode": "acceptEdits",
+    "webSearch": "inherit",
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "fanout-hermes-proof-1789413817214-0ezbso",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": [
+      "new",
+      "resume",
+      "restart"
+    ],
+    "deferredModes": [
+      "fork",
+      "completed-continue"
+    ],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "fanout_lineage_artifact_dir": "specs/cli-external-orchestration/071-cli-hermes-creation/003-deep-loop-executor-support/research/lineages/hermes-proof",
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "divergence-frontier",
+      "next-focus"
+    ]
+  },
+  "pauseSentinelPath": ".deep-research-pause",
+  "archiveRoot": "_archive",
+  "migrationWindowDays": 28,
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research.md": "mutable"
+  }
+}

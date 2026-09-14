@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/071-cli-hermes-creation/003-deep-loop-executor-support",
+  "spec_folder": "cli-external-orchestration/071-cli-hermes-creation/003-deep-loop-executor-support",
+  "parent_id": "cli-external-orchestration/071-cli-hermes-creation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli-hermes executor kind",
+      "buildHermesLineageCommand",
+      "hermes fan-out lineage",
+      "hermes supported models",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies"
+    ],
+    "key_topics": [
+      "cli-hermes",
+      "executor",
+      "kind",
+      "buildhermeslineagecommand",
+      "hermes",
+      "fan-out",
+      "lineage",
+      "supported",
+      "models",
+      "implementation",
+      "plan",
+      "technical"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+      ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      ".opencode/hooks/dispatch/lib/dispatch-audit.mjs",
+      ".opencode/hooks/dispatch/lib/dispatch-rule-checks.mjs",
+      ".opencode/hooks/dispatch/lib/dispatch-audit.test.mjs",
+      ".opencode/commands/deep/assets/deep-research-presentation.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "executor-config.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "executor-audit.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-audit.mjs",
+        "kind": "file",
+        "path": ".opencode/hooks/dispatch/lib/dispatch-audit.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-rule-checks.mjs",
+        "kind": "file",
+        "path": ".opencode/hooks/dispatch/lib/dispatch-rule-checks.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-audit.test.mjs",
+        "kind": "file",
+        "path": ".opencode/hooks/dispatch/lib/dispatch-audit.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-presentation.txt",
+        "kind": "file",
+        "path": ".opencode/commands/deep/assets/deep-research-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Clean Architecture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`/deep:research` and `/deep:review` could dispatch to six CLI kinds but not to Hermes, and nothing in the runtime knew Hermes's dispatch shape, its self-invocation markers or its roster",
+    "created_at": "2026-09-14T17:24:45Z",
+    "last_save_at": "2026-09-14T21:16:50.836Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ac72ef4a2a97ed56bb931dae4cb7ed5db6bfbd5ddfbf1c8494f31a8998fd2825",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "7f0df9a6ae9ccc5d76f7d8ef9e39f6a92f4d88da4cba9fec1f3023cb7a10cb0f",
+      "plan.md": "be3878bd7b1ec14fded2435d5735901be1f94dfaf009a6c57dbc8998de080699",
+      "tasks.md": "9dd5e09dbd8747691fa4cec0cd750c3a8fff6c67900aee0e88dd7363126e5d3c",
+      "implementation-summary.md": "e8aa0f01b6eada93c1a87165e9f59ccc4f41b3a5f8f4ab4b3ea431fe0a2e55ef"
+    },
+    "last_active_at": null
+  }
+}

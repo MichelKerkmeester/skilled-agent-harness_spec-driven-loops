@@ -8,7 +8,7 @@ import { z } from 'zod';
 // 1. TYPE DEFINITIONS
 // ───────────────────────────────────────────────────────────────────
 
-export const EXECUTOR_KINDS = ['native', 'cli-codex', 'cli-claude-code', 'cli-opencode', 'cli-cursor', 'cli-devin', 'cli-pi'] as const;
+export const EXECUTOR_KINDS = ['native', 'cli-codex', 'cli-claude-code', 'cli-opencode', 'cli-cursor', 'cli-devin', 'cli-pi', 'cli-hermes'] as const;
 export type ExecutorKind = typeof EXECUTOR_KINDS[number];
 
 // Ordered low→high. `ultra` is codex gpt-5.6-sol's top reasoning tier, above `max`.
@@ -24,6 +24,8 @@ export type WebSearchPolicy = typeof WEB_SEARCH_POLICIES[number];
 /** Live-tool policies resolved for one executor invocation. */
 export interface LiveToolsConfig {
   readonly webSearch: WebSearchPolicy;
+  /** MCP server names the leaf may reach, appended to its toolset list; Hermes only. */
+  readonly mcpServers: readonly string[];
 }
 
 /** Fan-out assignment models accepted by the schema. */
@@ -51,9 +53,17 @@ export type CursorApprovalMode = 'plan' | 'auto-review' | 'force';
 // 2. CONSTANTS
 // ───────────────────────────────────────────────────────────────────
 
+/**
+ * An MCP server is addressed by the toolset name Hermes assigns it, which is the server's
+ * configured name; the pattern is Hermes's own identifier shape, so a name that cannot be
+ * a toolset fails at parse time instead of surfacing as a silent `-t` miss.
+ */
+export const MCP_SERVER_NAME_PATTERN = /^[A-Za-z0-9][A-Za-z0-9_-]{0,63}$/;
+
 export const liveToolsSchema = z.object({
   webSearch: z.enum(WEB_SEARCH_POLICIES).default('inherit'),
-}).default({ webSearch: 'inherit' });
+  mcpServers: z.array(z.string().regex(MCP_SERVER_NAME_PATTERN)).default([]),
+}).default({ webSearch: 'inherit', mcpServers: [] });
 
 export const executorConfigSchema = z.object({
   kind: z.enum(EXECUTOR_KINDS).default('native'),
@@ -97,6 +107,13 @@ export const EXECUTOR_KIND_FLAG_SUPPORT: Record<ExecutorKind, readonly (keyof Ex
   // of the model id, so reasoningEffort is forwarded; it has no OS sandbox or
   // service-tier surface, so neither sandboxMode nor serviceTier is supported.
   'cli-pi': ['model', 'reasoningEffort', 'timeoutSeconds', 'liveTools'],
+  // Hermes takes `--reasoning` as a first-class flag whose level set is exactly this
+  // config's REASONING_EFFORTS, so reasoningEffort forwards without a map. It has no OS
+  // sandbox flag (`--yolo` is an approval bypass, not confinement) and no service tier.
+  // No configDir yet: `HERMES_HOME` is a real home override, but a fresh home carries a
+  // fresh `.env` and `auth.json`, so remapping it logs the lineage out of every provider;
+  // per-lineage profiles wait for a seeded-credential contract.
+  'cli-hermes': ['model', 'reasoningEffort', 'timeoutSeconds', 'liveTools'],
 };
 
 /**
@@ -122,6 +139,7 @@ export const EXECUTOR_PREVENTIVE_SANDBOX_CAPABILITY: Record<ExecutorKind, boolea
   'cli-cursor': true, // --sandbox enabled/disabled is a real OS confinement flag, independent of the approval mode
   'cli-devin': false, // --sandbox is deliberately never passed (conflicts with non-interactive auto-approval); confinement is the fan-out's post-hoc write-containment guard, not an OS boundary
   'cli-pi': false, // sandboxMode is not in EXECUTOR_KIND_FLAG_SUPPORT for this kind; read-only is a tool-allowlist restriction only
+  'cli-hermes': false, // no confinement flag exists; a read-only leaf narrows the toolset and omits --yolo (Hermes then blocks flagged actions), neither of which is an OS boundary
 };
 
 /** Proven web-search policies for every shipped executor kind. */
@@ -173,6 +191,15 @@ export const EXECUTOR_WEB_SEARCH_CAPABILITY_MATRIX = {
     cached: false,
     live: false,
   },
+  // Hermes selects toolsets per dispatch with `-t`, so the builder can include or omit the
+  // `web` toolset explicitly: `live` names it, `disabled` leaves it out, `inherit` keeps the
+  // stock roster (which carries it). Nothing caches, so `cached` stays unsupported.
+  'cli-hermes': {
+    inherit: true,
+    disabled: true,
+    cached: false,
+    live: true,
+  },
 } as const satisfies Record<ExecutorKind, Record<WebSearchPolicy, boolean>>;
 
 /**
@@ -216,6 +243,27 @@ export const PI_DEFAULT_MODEL: PiSupportedModel = 'deepseek-v4.1-flash';
 /** True when `model` is in the enforced cli-pi allowlist. */
 export function isPiModelAllowed(model: string): model is PiSupportedModel {
   return (PI_SUPPORTED_MODELS as readonly string[]).includes(model);
+}
+
+/**
+ * Hermes is a provider pass-through like Pi, with a much wider catalog. Dispatch stays scoped
+ * to the two models reachable through the operator's LLM Gateway (DevPass) custom provider,
+ * the only credential kind on this machine that Hermes can share with the other runtimes.
+ * Both ids are the bare literals the gateway expects under `llmgateway/<id>`, and both are
+ * Flash-family reasoning models the max-tier pin below already covers.
+ */
+export const HERMES_SUPPORTED_MODELS = [
+  'deepseek-v4.1-flash',
+  'glm-5.3-flash',
+] as const;
+export type HermesSupportedModel = typeof HERMES_SUPPORTED_MODELS[number];
+
+/** Same rotation default as cli-pi: the gateway-fronted DeepSeek Flash literal. */
+export const HERMES_DEFAULT_MODEL: HermesSupportedModel = 'deepseek-v4.1-flash';
+
+/** True when `model` is in the enforced cli-hermes allowlist. */
+export function isHermesModelAllowed(model: string): model is HermesSupportedModel {
+  return (HERMES_SUPPORTED_MODELS as readonly string[]).includes(model);
 }
 
 /**
@@ -584,6 +632,64 @@ export function parseExecutorConfig(raw: unknown): ExecutorConfig {
  * @param path - Error path prefix for nested fan-out entries.
  * @throws {@link ExecutorConfigError} If the requested policy is unsupported.
  */
+/**
+ * Which executor kinds can name MCP servers per lineage. Only Hermes exposes a configured
+ * MCP server as a toolset name on its command line (`-t ...,<server>`); every sibling either
+ * reads servers from a repo dotfolder the lineage cannot vary or has no per-run switch.
+ */
+export const EXECUTOR_MCP_SERVER_CAPABILITY: Record<ExecutorKind, boolean> = {
+  native: false,
+  'cli-codex': false,
+  'cli-claude-code': false,
+  'cli-opencode': false,
+  'cli-cursor': false,
+  'cli-devin': false,
+  'cli-pi': false,
+  'cli-hermes': true,
+};
+
+/**
+ * Toolset names a lineage may never smuggle in through the MCP list: `delegation` spawns
+ * sub-agents outside the runner's boundary, `memory` bleeds state across sessions, and
+ * `clarify` waits on a user who is not there.
+ */
+export const MCP_SERVER_RESERVED_NAMES: readonly string[] = ['delegation', 'memory', 'clarify'];
+
+/**
+ * Reject a lineage that names MCP servers on an executor kind without a per-run MCP switch,
+ * or that names a reserved toolset.
+ *
+ * @param config - Validated executor configuration.
+ * @param path - Error path prefix for nested fan-out entries.
+ * @throws {@link ExecutorConfigError} If the request cannot be honored.
+ */
+export function assertExecutorMcpServerCapability(
+  config: ExecutorConfig,
+  path: PropertyKey[] = [],
+): void {
+  const servers = config.liveTools.mcpServers;
+  if (servers.length === 0) {
+    return;
+  }
+  if (!EXECUTOR_MCP_SERVER_CAPABILITY[config.kind]) {
+    throw new ExecutorConfigError({
+      issues: [{
+        path: [...path, 'liveTools', 'mcpServers'],
+        message: `liveTools.mcpServers is not supported by executor kind '${config.kind}'; only cli-hermes names MCP servers per lineage`,
+      }],
+    });
+  }
+  const reserved = servers.filter((name) => MCP_SERVER_RESERVED_NAMES.includes(name.toLowerCase()));
+  if (reserved.length > 0) {
+    throw new ExecutorConfigError({
+      issues: [{
+        path: [...path, 'liveTools', 'mcpServers'],
+        message: `liveTools.mcpServers may not name a reserved toolset: ${reserved.join(', ')}`,
+      }],
+    });
+  }
+}
+
 export function assertExecutorWebSearchCapability(
   config: ExecutorConfig,
   path: PropertyKey[] = [],
@@ -933,6 +1039,7 @@ export function parseFanoutConfig(raw: unknown): FanoutConfig {
 export function preflightFanoutCapabilities(lineages: readonly LineageExecutor[]): void {
   lineages.forEach((lineage, index) => {
     assertExecutorWebSearchCapability(lineage, ['lineages', index]);
+    assertExecutorMcpServerCapability(lineage, ['lineages', index]);
   });
 }
 

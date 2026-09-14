@@ -24,6 +24,7 @@ export const ADAPTER_KINDS = [
   'cli-claude-code',
   'cli-devin',
   'cli-cursor',
+  'cli-hermes',
 ] as const;
 
 export type AdapterKind = typeof ADAPTER_KINDS[number];
@@ -34,6 +35,7 @@ const BINARY_BY_KIND: Record<AdapterKind, string> = {
   'cli-claude-code': 'claude',
   'cli-devin': 'devin',
   'cli-cursor': 'cursor-agent',
+  'cli-hermes': 'hermes',
 };
 
 const SHIM_BY_KIND: Record<AdapterKind, string> = {
@@ -42,6 +44,7 @@ const SHIM_BY_KIND: Record<AdapterKind, string> = {
   'cli-claude-code': 'claude-code-shim.cjs',
   'cli-devin': 'devin-shim.cjs',
   'cli-cursor': 'cursor-shim.cjs',
+  'cli-hermes': 'hermes-shim.cjs',
 };
 
 export const MODEL_BY_KIND: Record<AdapterKind, string> = {
@@ -50,6 +53,7 @@ export const MODEL_BY_KIND: Record<AdapterKind, string> = {
   'cli-claude-code': 'claude-opus-4-8',
   'cli-devin': 'glm-5-2',
   'cli-cursor': 'composer-2.5',
+  'cli-hermes': 'deepseek-v4.1-flash',
 };
 
 export interface AdapterShimCapture {
@@ -163,10 +167,10 @@ export async function runAdapterFanout(
     count: options.count ?? 1,
   };
   if (fixture.kind === 'cli-claude-code') executor.configDir = configDir;
-  if (fixture.kind === 'cli-opencode' || fixture.kind === 'cli-pi' || fixture.kind === 'cli-claude-code') {
+  if (fixture.kind === 'cli-opencode' || fixture.kind === 'cli-pi' || fixture.kind === 'cli-claude-code' || fixture.kind === 'cli-hermes') {
     executor.reasoningEffort = 'high';
   }
-  if (fixture.kind !== 'cli-pi' && options.sandboxMode) {
+  if (fixture.kind !== 'cli-pi' && fixture.kind !== 'cli-hermes' && options.sandboxMode) {
     executor.sandboxMode = options.sandboxMode;
   }
 

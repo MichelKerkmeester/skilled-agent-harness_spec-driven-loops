@@ -93,6 +93,7 @@ INTENT_SIGNALS = {
     "CURSOR":      {"weight": 4, "keywords": ["cursor", "cursor cli", "cursor-agent", "cli-cursor", "composer", "cursor composer", "composer dispatch", "delegate to cursor", "cursor agent dispatch", "grok coding dispatch"]},
     "DEVIN":       {"weight": 4, "keywords": ["devin", "devin cli", "cli-devin", "cognition devin", "delegate to devin", "swe-2 dispatch", "autonomous swe agent", "devin cloud session", "devin headless", "grok 4.5 devin dispatch", "grok 4.6 devin dispatch"]},
     "PI":          {"weight": 4, "keywords": ["pi cli", "cli-pi", "pi dispatch", "pi headless", "delegate to pi", "pi thinking", "pi passthrough", "pi print mode", "pi multi-provider"]},
+    "HERMES":      {"weight": 4, "keywords": ["hermes cli", "cli-hermes", "hermes agent", "nous hermes", "delegate to hermes", "hermes chat", "hermes oneshot", "hermes dispatch", "hermes headless", "hermes query-file"]},
 }
 
 RESOURCE_MAP = {
@@ -119,6 +120,10 @@ RESOURCE_MAP = {
     "PI": [
         "cli-pi/references/cli-reference.md",
         "cli-pi/references/integration-patterns.md"
+    ],
+    "HERMES": [
+        "cli-hermes/references/cli-reference.md",
+        "cli-hermes/references/integration-patterns.md"
     ],
 }
 ```

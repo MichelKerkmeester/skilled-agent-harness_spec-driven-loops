@@ -1,0 +1,18 @@
+{
+  "specFolder": "cli-external-orchestration/071-cli-hermes-creation/007-hermes-model-registry-and-routing",
+  "description": "Phase 6: hermes-model-registry-and-routing",
+  "keywords": [
+    "phase",
+    "hermes-model-registry-and-routing"
+  ],
+  "lastUpdated": "2026-09-14T17:24:49.512Z",
+  "specId": "007",
+  "folderSlug": "hermes-model-registry-and-routing",
+  "parentChain": [
+    "cli-external-orchestration",
+    "071-cli-hermes-creation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}

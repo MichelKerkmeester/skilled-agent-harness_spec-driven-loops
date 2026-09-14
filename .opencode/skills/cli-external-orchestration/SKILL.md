@@ -1,18 +1,18 @@
 ---
 name: cli-external-orchestration
-description: "Parent hub for external CLI dispatch: routes to six workflow modes through mode-registry.json. Holds no per-mode logic; dispatches by workflowMode."
+description: "Parent hub for external CLI dispatch: routes to seven workflow modes through mode-registry.json. Holds no per-mode logic; dispatches by workflowMode."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 1.4.5.0
+version: 1.5.0.0
 metadata:
   author: OpenCode
   family: cli
 ---
 
-<!-- Keywords: cli-external-orchestration, mode-registry, hub-router, workflowMode, packetKind, cli-opencode, opencode-cli, opencode-run, cli-claude-code, claude-code, claude-cli, cli-codex, codex-cli, codex-exec, cli-cursor, cursor-cli, cursor-agent, composer, cli-devin, devin-cli, cli-pi, pi-cli, pi-agent, pi.dev, cross-ai, agent-delegation, executor-delegation -->
+<!-- Keywords: cli-external-orchestration, mode-registry, hub-router, workflowMode, packetKind, cli-opencode, opencode-cli, opencode-run, cli-claude-code, claude-code, claude-cli, cli-codex, codex-cli, codex-exec, cli-cursor, cursor-cli, cursor-agent, composer, cli-devin, devin-cli, cli-pi, pi-cli, pi-agent, pi.dev, cli-hermes, hermes-cli, hermes-agent, nous-hermes, cross-ai, agent-delegation, executor-delegation -->
 
 # CLI External Dispatch Hub (cli-external-orchestration)
 
-One skill, six workflow modes, one shared `family: cli` identity. `cli-external-orchestration` is the public, advisor-routable home for every external CLI dispatch orchestrator in this repo. Before routing, the hub reads `hub-router.json` to resolve a `workflowMode`, then delegates through `mode-registry.json`. This hub holds NO per-mode logic — each mode keeps its own dispatch contract, recursion bounds, and hard rules in its packet, and the hub only routes by `workflowMode`.
+One skill, seven workflow modes, one shared `family: cli` identity. `cli-external-orchestration` is the public, advisor-routable home for every external CLI dispatch orchestrator in this repo. Before routing, the hub reads `hub-router.json` to resolve a `workflowMode`, then delegates through `mode-registry.json`. This hub holds NO per-mode logic — each mode keeps its own dispatch contract, recursion bounds, and hard rules in its packet, and the hub only routes by `workflowMode`.
 
 ---
 
@@ -28,6 +28,7 @@ Use this skill (through the hub) for any cross-AI CLI dispatch. Invoke it as `cl
 | **cli-cursor** | workflow | Cursor CLI orchestration: cursor-agent-backed coding, Composer-model dispatch, read-only plan/ask modes; fails closed when `cursor-agent` is absent | `cli-external-orchestration/cli-cursor/` |
 | **cli-devin** | workflow | Devin CLI orchestration: Cognition-backed coding, cloud handoff, subagent delegation, MCP host integration; fails closed when `devin` is absent | `cli-external-orchestration/cli-devin/` |
 | **cli-pi** | workflow | Pi CLI orchestration: guarded headless print, JSON event, RPC, native-resource, and community-package dispatch; fails closed when `pi` is absent | `cli-external-orchestration/cli-pi/` |
+| **cli-hermes** | workflow | Hermes Agent CLI orchestration: quiet oneshot chat dispatch, LLM Gateway model routing, project skills and plugins, cross-AI validation; fails closed when `hermes` is absent or when no provider is configured | `cli-external-orchestration/cli-hermes/` |
 
 ### When NOT to Use
 
@@ -49,8 +50,8 @@ Routing is two-stage. Stage 1 (hub → mode): the compiled router / `hub-router.
 
 ### Two-Axis Model
 
-- `packetKind: "workflow"` — `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, and `cli-pi` orchestrate a CLI binary and their dispatched writes land in THIS repo's workspace (`mutatesWorkspace:true`). None is a transport packet: all classify intent, choose/confirm a provider, and conduct the dispatched session. (`cli-cursor`'s native worktree/cloud-worker surfaces are opt-in escape hatches, not its default dispatch shape.)
-- Zero extensions: no surface-axis, no transport-axis, no runtime-loop. All six modes are primary, independently-routable dispatch workflows.
+- `packetKind: "workflow"` — `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`, and `cli-hermes` orchestrate a CLI binary and their dispatched writes land in THIS repo's workspace (`mutatesWorkspace:true`). None is a transport packet: all classify intent, choose/confirm a provider, and conduct the dispatched session. (`cli-cursor`'s native worktree/cloud-worker surfaces are opt-in escape hatches, not its default dispatch shape.)
+- Zero extensions: no surface-axis, no transport-axis, no runtime-loop. All seven modes are primary, independently-routable dispatch workflows.
 
 ### Routing Rule
 
@@ -76,7 +77,7 @@ Stage 2 of routing lives in `ROUTER.md` at the hub root, next to `SKILL.md` and 
 
 ### Executor Delegation
 
-A prompt naming a specific executor (e.g. "use cli-opencode", "delegate to opencode", "get a claude code second opinion", "delegate to codex", "delegate to cursor", "delegate to devin", "delegate to pi", or a small model that dispatches through one) is resolved by the system-skill-advisor's executor-delegation scorer, which sources its alias table from THIS hub's `mode-registry.json` — keyed by each mode's `packetSkillName` — and resolves to `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, or `cli-pi`. See `system-skill-advisor/runtime/lib/scorer/executor-delegation.ts`.
+A prompt naming a specific executor (e.g. "use cli-opencode", "delegate to opencode", "get a claude code second opinion", "delegate to codex", "delegate to cursor", "delegate to devin", "delegate to pi", or a small model that dispatches through one) is resolved by the system-skill-advisor's executor-delegation scorer, which sources its alias table from THIS hub's `mode-registry.json` — keyed by each mode's `packetSkillName` — and resolves to `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`, or `cli-hermes`. See `system-skill-advisor/runtime/lib/scorer/executor-delegation.ts`.
 
 ---
 
@@ -140,6 +141,13 @@ cli-external-orchestration/
     assets/
     manual-testing-playbook/
     changelog/
+  cli-hermes/
+    SKILL.md
+    README.md
+    references/
+    assets/
+    manual-testing-playbook/
+    changelog/
 ```
 
 ### Companion Metadata
@@ -179,7 +187,7 @@ Each mode's guard is runtime-signal-based (env var / process ancestry / lockfile
 
 ### ⚠️ ESCALATE IF
 
-- A packet cannot be classified as `workflow` (all six current modes are; a future mode may not be).
+- A packet cannot be classified as `workflow` (all seven current modes are; a future mode may not be).
 - Router signals, vocabulary classes, and registry modes cannot be made bidirectionally consistent.
 - The executor-delegation scorer resolves a delegation prompt to `cli-external-orchestration` itself instead of a real executor — that is the exact silent-misroute failure mode ADR-005 rewrote the scorer to prevent; report it rather than working around it.
 
@@ -192,7 +200,7 @@ Each mode's guard is runtime-signal-based (env var / process ancestry / lockfile
 - Surface router: `ROUTER.md`.
 - Advisor description: `description.json`.
 - Skill graph identity: `graph-metadata.json`.
-- Workflow packets: `cli-opencode/SKILL.md`, `cli-claude-code/SKILL.md`, `cli-codex/SKILL.md`, `cli-cursor/SKILL.md`, `cli-devin/SKILL.md`, `cli-pi/SKILL.md`.
+- Workflow packets: `cli-opencode/SKILL.md`, `cli-claude-code/SKILL.md`, `cli-codex/SKILL.md`, `cli-cursor/SKILL.md`, `cli-devin/SKILL.md`, `cli-pi/SKILL.md`, `cli-hermes/SKILL.md`.
 - Per-mode provider/model/invocation catalogs: each mode's `references/providers-and-models.md` is the dedicated single-source index of that mode's providers, model ids, personas/effort tiers, and dispatch shapes.
 - Executor-delegation scorer (hub-aware, sources from this hub's registry): `../system-skill-advisor/runtime/lib/scorer/executor-delegation.ts`.
 - Constitutional CLI dispatch skill-preload rule: the retired constitutional rule docs.

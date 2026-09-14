@@ -192,10 +192,10 @@ function resolveExecutorKind(executorConfig = {}, councilConfig = {}) {
   // the shared read-only command builder instead of carrying divergent flag logic.
   if (kind === 'cli-codex') {
     throw new RangeError(
-      'cli-codex is not a supported AI Council seat executor (codex is intentionally excluded; seats run via native, opencode, cursor, devin, or pi); use deep-review or deep-research for codex-backed loops',
+      'cli-codex is not a supported AI Council seat executor (codex is intentionally excluded; seats run via native, opencode, cursor, devin, pi, or hermes); use deep-review or deep-research for codex-backed loops',
     );
   }
-  if (!['native', 'cli-opencode', 'cli-cursor', 'cli-devin', 'cli-pi', 'opencode'].includes(kind)) {
+  if (!['native', 'cli-opencode', 'cli-cursor', 'cli-devin', 'cli-pi', 'cli-hermes', 'opencode'].includes(kind)) {
     throw new RangeError(`unsupported council executor kind: ${kind}`);
   }
   return kind === 'opencode' ? 'cli-opencode' : kind;
@@ -266,7 +266,8 @@ function runSeatSubprocess(seatPrompt, options) {
   const killGraceMs = options.killGraceMs || DEFAULT_SEAT_KILL_GRACE_MS;
   let command;
   let args;
-  if (options.executorKind === 'cli-cursor' || options.executorKind === 'cli-devin' || options.executorKind === 'cli-pi') {
+  let input = null;
+  if (['cli-cursor', 'cli-devin', 'cli-pi', 'cli-hermes'].includes(options.executorKind)) {
     // Read-only deliberation seats reuse the shared builder's hardened flags for each CLI.
     // Pass the seat's spawn cwd so a read-only cursor seat's --add-dir points at the
     // directory the subprocess actually runs in, not the orchestrator's cwd.
@@ -279,6 +280,8 @@ function runSeatSubprocess(seatPrompt, options) {
     );
     command = built.command;
     args = built.args;
+    // Hermes carries the prompt on stdin (`--query-file -`); the other seats put it in argv.
+    input = typeof built.input === 'string' ? built.input : null;
   } else {
     command = 'opencode';
     args = opencodeSeatArgs(model, seatPrompt);
@@ -287,9 +290,13 @@ function runSeatSubprocess(seatPrompt, options) {
     const child = spawnFn(command, args, {
       cwd: options.cwd || process.cwd(),
       env: options.env || process.env,
-      stdio: ['ignore', 'pipe', 'pipe'],
+      stdio: [input === null ? 'ignore' : 'pipe', 'pipe', 'pipe'],
       detached: process.platform !== 'win32',
     });
+    if (input !== null && child.stdin && typeof child.stdin.end === 'function') {
+      child.stdin.on?.('error', () => {});
+      child.stdin.end(input);
+    }
     let stdout = '';
     let stderr = '';
     let settled = false;
@@ -371,7 +378,9 @@ async function dispatchSeat(seatInput, dispatchContext = {}, options = {}) {
           ? 'devin'
           : executorKind === 'cli-pi'
             ? 'pi'
-            : 'opencode',
+            : executorKind === 'cli-hermes'
+              ? 'hermes'
+              : 'opencode',
       primary_agent: 'plan',
       model: null,
     },

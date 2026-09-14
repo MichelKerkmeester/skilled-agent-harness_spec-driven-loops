@@ -34,12 +34,19 @@ export const DISPATCH_SHAPES = [
   { test: /\bdevin\b[^\n;&|]*\s(-p|--print)\b/, skill: 'cli-devin', packetPath: 'cli-external-orchestration/cli-devin' },
   { test: /\bcursor-agent\b[^\n;&|]*\s(-p|--print)\b/, skill: 'cli-cursor', packetPath: 'cli-external-orchestration/cli-cursor' },
   { test: /\bpi\b[^\n;&|]*\s(-p|--print)\b/, skill: 'cli-pi', packetPath: 'cli-external-orchestration/cli-pi' },
+  // Hermes has no print flag: its headless forms are `hermes chat` with a query flag
+  // (`-q`, `--query`, `--query-file`, or the non-TTY `--oneshot`) and the top-level `-z`
+  // oneshot. A bare `hermes chat` or a management subcommand is not a dispatch.
+  { test: /\bhermes\s+chat\b[^\n;&|]*\s(-q|--query|--query-file|--oneshot)\b|\bhermes\b[^\n;&|]*\s(-z)\b/, skill: 'cli-hermes', packetPath: 'cli-external-orchestration/cli-hermes' },
 ];
 
 const MAX_INSPECTED_COMMAND_CHARS = 32_768;
 const ASSIGNMENT_TOKEN = /^[A-Za-z_][A-Za-z0-9_]*=(.*)$/s;
-const EXECUTOR_BASENAMES = new Set(['opencode', 'claude', 'codex', 'devin', 'cursor-agent', 'pi']);
+const EXECUTOR_BASENAMES = new Set(['opencode', 'claude', 'codex', 'devin', 'cursor-agent', 'pi', 'hermes']);
 const PRINT_FLAGS = new Set(['-p', '--print']);
+// Hermes's equivalents of a print flag, scoped to the hermes branch so `-q` on any other
+// command (grep, curl) never reads as dispatch evidence.
+const HERMES_QUERY_FLAGS = new Set(['-q', '--query', '--query-file', '--oneshot', '-z']);
 const SEPARATORS = new Set(['&&', '||', ';', '|', '&']);
 
 function basename(value) {
@@ -205,6 +212,15 @@ function directExecutor(tokens) {
       ? `cli-${binary === 'cursor-agent' ? 'cursor' : binary === 'claude' ? 'claude-code' : binary}`
       : null;
   }
+  if (binary === 'hermes') {
+    const rest = tokens.slice(start.index + 1);
+    const isChat = rest[0]?.value === 'chat';
+    const hasQueryFlag = rest.some((token) => HERMES_QUERY_FLAGS.has(token.value));
+    // `hermes chat` plus a query flag, or the top-level `-z` oneshot, dispatches; a bare
+    // `hermes chat`, `hermes status` or `hermes skills list` does not.
+    if ((isChat && hasQueryFlag) || rest.some((token) => token.value === '-z')) return 'cli-hermes';
+    return null;
+  }
   return null;
 }
 
@@ -213,7 +229,7 @@ function hasKnownExecutorToken(tokens) {
 }
 
 function hasDispatchText(value) {
-  return /\bopencode\s+run\b|\b(?:claude|devin|cursor-agent|pi)\b[^\n;&|]*\s(?:-p|--print)\b|\bcodex\s+exec\b[^\n;&|]*\s(?:-p|--print)\b/.test(value);
+  return /\bopencode\s+run\b|\b(?:claude|devin|cursor-agent|pi)\b[^\n;&|]*\s(?:-p|--print)\b|\bcodex\s+exec\b[^\n;&|]*\s(?:-p|--print)\b|\bhermes\s+chat\b[^\n;&|]*\s(?:-q|--query|--query-file|--oneshot)\b|\bhermes\b[^\n;&|]*\s-z\b/.test(value);
 }
 
 function hasDispatchEvidence(tokens, commandHasPrintFlag) {

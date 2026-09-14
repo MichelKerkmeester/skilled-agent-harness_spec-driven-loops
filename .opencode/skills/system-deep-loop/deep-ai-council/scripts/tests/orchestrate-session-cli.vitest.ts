@@ -123,6 +123,7 @@ describe('deep-ai-council session CLI runner', () => {
     ['cli-cursor', 'cli-cursor'],
     ['cli-devin', 'cli-devin'],
     ['cli-pi', 'cli-pi'],
+    ['cli-hermes', 'cli-hermes'],
   ])('accepts executor kind %s and resolves it as %s', (kind, resolved) => {
     expect(resolveExecutorKind({ executor: { kind } }, {})).toBe(resolved);
   });
@@ -130,7 +131,7 @@ describe('deep-ai-council session CLI runner', () => {
   it('deliberately rejects cli-codex seats', () => {
     expect(() => resolveExecutorKind({ executor: { kind: 'cli-codex' } }, {})).toThrowError(RangeError);
     expect(() => resolveExecutorKind({ executor: { kind: 'cli-codex' } }, {})).toThrow(
-      'cli-codex is not a supported AI Council seat executor (codex is intentionally excluded; seats run via native, opencode, cursor, devin, or pi); use deep-review or deep-research for codex-backed loops',
+      'cli-codex is not a supported AI Council seat executor (codex is intentionally excluded; seats run via native, opencode, cursor, devin, pi, or hermes); use deep-review or deep-research for codex-backed loops',
     );
   });
 
@@ -338,6 +339,15 @@ describe('deep-ai-council session CLI runner', () => {
       command: 'pi',
       expectedArgs: (prompt: string) => ['-p', '--offline', '--model', 'opencode-go/deepseek-v4-flash', '--tools', 'read,grep,find,ls', '--no-extensions', '--no-skills', '--no-prompt-templates', '--thinking', 'max', prompt],
     },
+    {
+      kind: 'cli-hermes',
+      model: 'glm-5.3-flash',
+      command: 'hermes',
+      expectedArgs: () => [
+        'chat', '-Q', '--oneshot', '--query-file', '-', '--provider', 'llmgateway', '--model', 'glm-5.3-flash',
+        '--ignore-rules', '--source', 'tool', '--max-turns', '200', '--run-budget', '840', '-t', 'file,todo,web', '--reasoning', 'max',
+      ],
+    },
   ])('dispatches read-only %kind seats through the shared builder', async ({ kind, model, command, expectedArgs }) => {
     await withTempPacket(async (packetSpecFolder) => {
       const binDir = mkdtempSync(join(tmpdir(), `council-${kind}-bin-`));
@@ -345,11 +355,13 @@ describe('deep-ai-council session CLI runner', () => {
         installExecutorStubs(binDir, [command]);
         const env = { ...process.env, PATH: `${binDir}${delimiter}${process.env.PATH ?? ''}` };
         const spawns: Array<{ command: string; args: string[] }> = [];
+        const stdinWrites: string[] = [];
         const fakeSpawn = vi.fn((spawnedCommand: string, args: string[]) => {
           spawns.push({ command: spawnedCommand, args });
-          const child = new EventEmitter() as EventEmitter & { stdout: EventEmitter; stderr: EventEmitter; kill: ReturnType<typeof vi.fn> };
+          const child = new EventEmitter() as EventEmitter & { stdout: EventEmitter; stderr: EventEmitter; stdin: { on: () => void; end: (chunk: string) => void }; kill: ReturnType<typeof vi.fn> };
           child.stdout = new EventEmitter();
           child.stderr = new EventEmitter();
+          child.stdin = { on: () => {}, end: (chunk: string) => { stdinWrites.push(chunk); } };
           child.kill = vi.fn();
           queueMicrotask(() => {
             child.stdout.emit('data', Buffer.from('Council seat verdict: SUPPORT\\n'));
@@ -374,10 +386,18 @@ describe('deep-ai-council session CLI runner', () => {
 
         expect(spawns).toHaveLength(1);
         const observed = spawns[0];
-        const prompt = kind === 'cli-pi' ? observed.args[observed.args.length - 1] : observed.args[1];
+        const prompt = kind === 'cli-hermes'
+          ? stdinWrites[0]
+          : kind === 'cli-pi' ? observed.args[observed.args.length - 1] : observed.args[1];
         expect(observed).toEqual({ command, args: expectedArgs(prompt) });
         const built = buildLineageCommand({ kind, model }, prompt, 'read-only', 'plan', { env });
         expect(observed).toEqual({ command: built.command, args: built.args });
+        if (kind === 'cli-hermes') {
+          expect(stdinWrites).toEqual([built.input]);
+          expect(prompt).toContain('Seat');
+        } else {
+          expect(stdinWrites).toEqual([]);
+        }
         expect(result.execution_provenance).toMatchObject({
           requested: { executor_family: kind, primary_agent: 'plan', model },
           effective: { command, primary_agent: 'plan', model: null },

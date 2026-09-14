@@ -163,10 +163,10 @@ describe.sequential('cli-codex manifest integrity', () => {
     expect(workflowModes).not.toContain('native');
   });
 
-  it('freezes fourteen rows across seven subjects with only cli-codex implemented', () => {
+  it('freezes fourteen rows across eight subjects with only cli-codex implemented', () => {
     expect(EDGE_CASE_ROWS).toHaveLength(14);
-    expect(CLI_ADAPTER_SUBJECTS).toHaveLength(7);
-    expect(CLI_ADAPTER_STRESS_MATRIX).toHaveLength(98);
+    expect(CLI_ADAPTER_SUBJECTS).toHaveLength(8);
+    expect(CLI_ADAPTER_STRESS_MATRIX).toHaveLength(112);
     const codexCells = CLI_ADAPTER_STRESS_MATRIX.filter((cell) => cell.subject === 'cli-codex');
     expect(codexCells).toHaveLength(14);
     expect(codexCells.every((cell) => cell.testStatus === 'implemented' && cell.testName)).toBe(true);

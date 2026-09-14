@@ -9,6 +9,7 @@ import {
   CURSOR_SUPPORTED_MODELS,
   DEVIN_SUPPORTED_MODELS,
   EXECUTOR_KINDS,
+  HERMES_SUPPORTED_MODELS,
   PI_SUPPORTED_MODELS,
   type ExecutorKind,
 } from '../../lib/deep-loop/executor-config';
@@ -64,6 +65,7 @@ const MODELS_BY_KIND: Record<ExecutorKind, readonly (string | undefined)[]> = {
   'cli-cursor': CURSOR_SUPPORTED_MODELS,
   'cli-devin': DEVIN_SUPPORTED_MODELS,
   'cli-pi': PI_SUPPORTED_MODELS,
+  'cli-hermes': HERMES_SUPPORTED_MODELS,
 };
 
 const COMMAND_BY_KIND: Record<ExecutorKind, string> = {
@@ -74,6 +76,7 @@ const COMMAND_BY_KIND: Record<ExecutorKind, string> = {
   'cli-cursor': 'cursor-agent',
   'cli-devin': 'devin',
   'cli-pi': 'pi',
+  'cli-hermes': 'hermes',
 };
 
 const CREDENTIALS_GATED_KINDS = new Set<ExecutorKind>(EXECUTOR_KINDS);
@@ -147,6 +150,13 @@ function expectedRepresentativeArgs(kind: ExecutorKind, model: string | undefine
       return ['-p', MATRIX_PROMPT, '--model', model ?? '', '--permission-mode', 'auto', '--respect-workspace-trust', 'false'];
     case 'cli-pi':
       return ['-p', '--offline', '--model', 'llmgateway/deepseek-v4.1-flash', '--tools', 'read,grep,find,ls', '--no-extensions', '--no-skills', '--no-prompt-templates', '--thinking', 'max', MATRIX_PROMPT];
+    case 'cli-hermes':
+      // Read-only representative: no --yolo, the narrowed toolset, the prompt on stdin
+      // rather than in argv, and the max pin the Flash-family roster carries.
+      return [
+        'chat', '-Q', '--oneshot', '--query-file', '-', '--provider', 'llmgateway', '--model', 'deepseek-v4.1-flash',
+        '--ignore-rules', '--source', 'tool', '--max-turns', '200', '--run-budget', '840', '-t', 'file,todo,web', '--reasoning', 'max',
+      ];
   }
 }
 

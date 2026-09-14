@@ -82,7 +82,23 @@ const HEADLESS_DISPATCH_SHAPES = [
   /\bcodex\s+exec\b/,
   /\bdevin\s+(?:[^|;&]*\s)?-p\b/,
   /\bcursor-agent\s+(?:[^|;&]*\s)?-p\b/,
+  // Hermes has no print flag; its headless forms are `hermes chat` with a query flag and
+  // the top-level `-z` oneshot.
+  /\bhermes\s+chat\b(?:[^|;&]*\s)?(?:-q|--query|--query-file|--oneshot)\b/,
+  /\bhermes\s+(?:[^|;&]*\s)?-z\b/,
 ];
+
+const HERMES_CHAT = /\bhermes\s+chat\b/;
+// `--query-file` is Hermes's own stdin contract: `-` reads the prompt from stdin and a
+// path reads a file, and either way the run never waits on an inherited terminal stdin.
+const HERMES_STDIN_HANDLED = /--query-file(\s|=)/;
+// Toolsets whose presence means the run can execute commands, so `--yolo` is needed: only a
+// flagged terminal or code action hits Hermes's approval gate. `file` is deliberately absent
+// because ordinary file writes are never gated and a read-only leaf keeps `file` for reading.
+const HERMES_WRITE_TOOLSETS = /(?:^|[\s=,])(?:terminal|coding|code_execution|browser)(?:[\s,]|$)/;
+// `--ignore-rules` also suppresses preloaded-skill injection, so a dispatch that preloads a
+// project skill with `-s`/`--skills` is the one sanctioned shape that omits the flag.
+const HERMES_SKILL_PRELOAD = /(?:^|\s)(?:-s|--skills)(?:\s+|=)\S+/;
 
 /**
  * Build a check that refuses a dispatch whose binary is absent from PATH.
@@ -121,7 +137,9 @@ export const CHECKS = {
     if (!HEADLESS_DISPATCH_SHAPES.some((shape) => shape.test(cmd))) return true; // not a dispatch shape → n/a
     if (STDIN_REDIRECT.test(cmd)) return true; // stdin handled
     // A pipe feeding the CLI (`... | opencode run`) also closes inherited stdin.
-    if (/\|\s*(?:[A-Z_]+=\S+\s+)*(?:opencode\s+run|pi|claude|codex|devin|cursor-agent)\b/.test(cmd)) return true;
+    if (/\|\s*(?:[A-Z_]+=\S+\s+)*(?:opencode\s+run|pi|claude|codex|devin|cursor-agent|hermes)\b/.test(cmd)) return true;
+    // Hermes reads its prompt through --query-file (a path, or `-` for stdin), never waiting on a terminal.
+    if (HERMES_CHAT.test(cmd) && HERMES_STDIN_HANDLED.test(cmd)) return true;
     return false;
   },
   // Without an explicit model the run falls back to the configured default; when that
@@ -149,6 +167,40 @@ export const CHECKS = {
   'command-v-cursor-agent-required': binaryOnPathCheck('cursor-agent', /\bcursor-agent\s+/),
   'command-v-devin-required': binaryOnPathCheck('devin', /\bdevin\s+/),
   'command-v-pi-required': binaryOnPathCheck('pi', /\bpi\s+/),
+  'command-v-hermes-required': binaryOnPathCheck('hermes', /\bhermes\s+/),
+  // A headless `hermes chat` without --yolo blocks any tool call Hermes flags as dangerous
+  // (nobody is present to approve it), so a run given a write-capable toolset could fail a
+  // flagged step mid-task. Ordinary writes run either way; read-only runs (no write toolset
+  // named) are the intended --yolo-less shape and pass.
+  'hermes-yolo-required-for-writes': (cmd) => {
+    if (!HERMES_CHAT.test(cmd)) return true;
+    const toolsets = cmd.match(/(?:^|\s)(?:-t|--toolsets)(?:\s+|=)([^\s]+)/);
+    if (!toolsets) return true; // no explicit list: the toolset rule reports that case
+    if (!HERMES_WRITE_TOOLSETS.test(toolsets[1])) return true;
+    return /(^|\s)--yolo(\s|$)/.test(cmd);
+  },
+  // Without --ignore-rules Hermes injects SOUL.md, its memories, session search and the CWD
+  // instruction files into the leaf prompt, bleeding prior sessions into the task.
+  'hermes-ignore-rules-required': (cmd) => !HERMES_CHAT.test(cmd)
+    || /(^|\s)--ignore-rules(\s|$)/.test(cmd)
+    || HERMES_SKILL_PRELOAD.test(cmd),
+  // Hermes's stock roster enables `delegation` and `memory`; a leaf must name its toolsets and
+  // leave both out, or it can spawn sub-agents outside the runner's boundary and write memories.
+  'hermes-explicit-toolsets-required': (cmd) => {
+    if (!HERMES_CHAT.test(cmd)) return true;
+    const toolsets = cmd.match(/(?:^|\s)(?:-t|--toolsets)(?:\s+|=)([^\s]+)/);
+    if (!toolsets) return false;
+    return !/(?:^|,)(?:delegation|memory)(?:,|$)/.test(toolsets[1]);
+  },
+  // --worktree runs `git worktree add` inside the repository, which the fan-out
+  // write-containment guard attributes to the lineage and reverts.
+  'hermes-no-worktree-flag': (cmd) => !HERMES_CHAT.test(cmd) || !/(^|\s)--worktree(\s|$)/.test(cmd),
+  // MCP servers are configured only in the user-level config; a dispatch that adds one is
+  // performing an operator step, not a task.
+  'hermes-mcp-config-operator-required': (cmd) => !/\bhermes\s+mcp\s+(?:add|remove|rm|install)\b/.test(cmd),
+  // Shell hooks are user-level with a consent allowlist; --accept-hooks blesses whatever the
+  // operator's config declares, so a dispatch never passes it.
+  'hermes-hooks-user-level': (cmd) => !/\bhermes\b/.test(cmd) || !/(^|\s)--accept-hooks(\s|$)/.test(cmd),
   // Non-interactive claude -p with a Bash-heavy prompt and no permission bypass can deadlock.
   'non-interactive-permission-mode-risk': (cmd) => {
     if (!/\bclaude\s+-p\b|\bclaude\s+--print\b/.test(cmd)) return true;

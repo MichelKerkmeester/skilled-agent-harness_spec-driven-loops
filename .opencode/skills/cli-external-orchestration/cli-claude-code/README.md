@@ -169,6 +169,7 @@ The cli-X skills each dispatch to a different provider and never overlap.
 | `cli-cursor` | Cursor | Composer-model dispatch, read-only plan and ask exploration |
 | `cli-devin` | Cognition-backed | Cloud coding via `devin -p`, subagent delegation, `/handoff` |
 | `cli-pi` | Pi | Guarded headless print and JSON-event dispatch |
+| `cli-hermes` | Hermes Agent | Quiet oneshot dispatch through the LLM Gateway roster, prompt on stdin |
 
 If you are already inside one runtime, the matching cli-X skill refuses to load. Use a different runtime or exit first.
 

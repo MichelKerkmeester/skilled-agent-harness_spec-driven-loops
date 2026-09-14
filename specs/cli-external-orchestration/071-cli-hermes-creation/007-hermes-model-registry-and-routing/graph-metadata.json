@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/071-cli-hermes-creation/007-hermes-model-registry-and-routing",
+  "spec_folder": "cli-external-orchestration/071-cli-hermes-creation/007-hermes-model-registry-and-routing",
+  "parent_id": "cli-external-orchestration/071-cli-hermes-creation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "feature specification",
+      "problem statement",
+      "requirements and scope",
+      "success criteria",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies"
+    ],
+    "key_topics": [
+      "feature",
+      "specification",
+      "problem",
+      "statement",
+      "requirements",
+      "scope",
+      "success",
+      "criteria",
+      "implementation",
+      "plan",
+      "technical",
+      "approach"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-skill-advisor/runtime/scripts/check-prompt-quality-card-sync.sh",
+      ".opencode/agents/prompt-improver.md",
+      ".claude/agents/prompt-improver.md",
+      ".pi/agents/prompt-improver.md",
+      ".codex/agents/prompt-improver.toml",
+      ".opencode/skills/sk-prompt/SKILL.md",
+      ".opencode/skills/sk-prompt/assets/cli-prompt-quality-card.md",
+      ".opencode/skills/cli-external-orchestration/cli-hermes/references/providers-and-models.md",
+      "scratch/offroster/runner.log"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-prompt-quality-card-sync.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-skill-advisor/runtime/scripts/check-prompt-quality-card-sync.sh",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-improver.md",
+        "kind": "doc",
+        "path": ".opencode/agents/prompt-improver.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-improver.toml",
+        "kind": "file",
+        "path": ".codex/agents/prompt-improver.toml",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-prompt/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-prompt-quality-card.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-prompt/assets/cli-prompt-quality-card.md",
+        "source": "derived"
+      },
+      {
+        "name": "providers-and-models.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-hermes/references/providers-and-models.md",
+        "source": "derived"
+      },
+      {
+        "name": "runner.log",
+        "kind": "file",
+        "path": "scratch/offroster/runner.log",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Registry",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 003 wrote the allowlist, but nothing had shown the runner refusing an off-roster id, the prompt-improver eligibility tables did not know `cli-hermes` existed, and the prompt-card drift guard skipped the new packet",
+    "created_at": "2026-09-14T17:24:48Z",
+    "last_save_at": "2026-09-14T19:42:17.349Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0056fa868015ac5cc99ea01b20369ddadf6ebfed967779ae74973625236e8f36",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "f76a3e436313cd8afd05849a6ee051772325cce630c072cda2018d44985ede09",
+      "plan.md": "0c5c1c51c91fc5f8da08ae8e97204599abfa44da796ca04a0f95e2c138ff5ba6",
+      "tasks.md": "b8974be2844b7e0630dcce50679d83ee8e54ec90337cbcbd1234076a0fb52419",
+      "implementation-summary.md": "9cf3a2191e63f17f8332dcfe723fe0fd2dcead1591966cad84d907a6e0817731"
+    },
+    "last_active_at": null
+  }
+}

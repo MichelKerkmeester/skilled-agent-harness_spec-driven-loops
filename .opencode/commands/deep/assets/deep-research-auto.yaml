@@ -1444,6 +1444,7 @@ workflow:
           notes:
             - "cli-pi single-executor: dispatches per-iteration through the shared fan-out command builder (buildLineageCommand) so the enforced cli-pi model allowlist + headless write flags stay one source of truth; runAuditedExecutorCommand emits INTENT + COMPLETION receipts"
             - "Fails closed when pi is absent or the model is off the allowlist (buildLineageCommand throws, exit non-zero) — a requested cli-pi executor never degrades to native"
+            - "cli-hermes single-executor: the same shared builder emits `hermes chat -Q --oneshot --query-file -` with the prompt on stdin, the two-id llmgateway roster and the max reasoning pin; fails closed when hermes is absent or the model is off the roster"
         record_executor_audit:
           skip_when: "config.executor.type == 'native'"
           target: "{state_paths.state_log}"

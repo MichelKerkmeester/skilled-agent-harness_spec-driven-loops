@@ -1,0 +1,353 @@
+
+
+
+
+
+
+
+
+The lineage directory already has runtime infrastructure. Let me inspect the invocation metadata, the observability log, and the workflow YAML to understand exactly what phases produce.
+
+The lineage infra is in place (audit/effect ledgers, locks, containment baseline). Now let me read the workflow YAML, the JSONL schemas, and the append gateway to replicate the phases faithfully.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Now let me examine the append gateway and the runner's validation contract to make sure my records pass.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+The gateway's projection refreshes the state log from the ledger, which could clobber direct writes. Let me probe the actual behavior inside a scratch subdirectory of my lineage before committing to a write strategy.
+
+The gateway works and projects the state log from the ledger (wiping direct writes — that's the intended authoritative path). Now let me check what the parent merge reads from lineage registries and deltas, then clean up the probe.
+
+
+
+
+
+
+
+Probe cleaned up. Now let me read the templates and the iteration output format.
+
+
+
+
+
+I now have the complete contract. Executing **phase_init**: creating the state packet in the lineage directory.
+
+
+
+
+
+
+
+
+
+phase_init complete. Now **iteration 1 — Angle 1: headless dispatch contract**. Let me gather the parser source and live help output.
+
+The Hermes dev guide surfaced as context (useful source, treated as data). Continuing iteration 1 — the remaining flags, parser source, and exit-code handling.
+
+
+
+
+
+
+
+
+
+The `-z` oneshot contract is clear. Now the `chat -Q` exit path and session-id printing.
+
+
+
+The `-Q` contract is now pinned. Let me pull the six runtimes' headless contracts for comparison.
+
+
+
+All evidence gathered for Angle 1. Writing the iteration artifacts now.
+
+
+
+
+
+Now recording iteration 1 through the append gateway (run-directory bound to the lineage).
+
+Iteration 1 recorded durably. Now the reducer pass: strategy, registry, dashboard.
+
+
+
+
+
+Iteration 1 fully closed. Starting **iteration 2 — Angle 2: providers, models, reasoning**.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Strong findings for Angle 2. Writing iteration 2 artifacts.
+
+
+
+
+
+Iteration 2 recorded. Let me create a small lineage-internal reducer helper to apply deltas to the registry consistently for the remaining iterations.
+
+
+
+
+
+
+
+
+
+
+
+
+
+Iteration 2 closed. Starting **iteration 3 — Angle 3: repo-root `.hermes/`, instruction files, skills trust/quarantine**.
+
+
+
+
+
+
+
+
+
+
+
+
+
+Angle 3 evidence complete. Writing iteration 3 artifacts.
+
+
+
+
+
+
+
+Iteration 3 closed. Starting **iteration 4 — Angle 4: skill format compatibility**.
+
+
+
+
+
+
+
+
+
+
+
+
+
+agentskills.io spec fetched. Writing iteration 4 artifacts.
+
+
+
+
+
+
+
+Iteration 4 closed. Starting **iteration 5 — Angle 5: agents, commands and persona**.
+
+
+
+
+
+
+
+Angle 5 evidence complete. Writing iteration 5 artifacts.
+
+
+
+
+
+
+
+
+
+
+
+
+
+Iteration 5 closed. Starting **iteration 6 — Angle 6: hooks and plugins**.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Iteration 6 closed. Starting **iteration 7 — Angle 7: MCP**.
+
+
+
+
+
+
+
+
+
+Angle 7 evidence complete. Writing iteration 7 artifacts.
+
+
+
+
+
+
+
+Iteration 7 closed. Starting **iteration 8 — Angle 8: deep-loop fan-out fitness**.
+
+
+
+
+
+Angle 8 evidence complete. Writing iteration 8 artifacts.
+
+
+
+
+
+Fixing a stray character in the delta file.
+
+
+
+
+
+
+
+Iteration 8 closed. Starting **iteration 9 — Angle 9: constraints and differences**.
+
+
+
+
+
+
+
+Angle 9 evidence complete. Writing iteration 9 artifacts.
+
+
+
+
+
+
+
+
+
+
+
+Iteration 9 closed. Starting the final **iteration 10 — Angle 10: recommendation**. First, the parent spec's candidate phases.
+
+
+
+Parent spec candidate phases captured. Writing the final iteration 10.
+
+
+
+
+
+
+
+
+
+
+
+All 10 iterations complete. Now **phase_synthesis** — compiling the final research.md.
+
+Now the remaining synthesis artifacts: resource-map, config status, and the terminal synthesis record.
+
+
+
+Final verification — mirroring the runner's validation contract before closing.
+
+
+
+All phases complete. The deepseek lineage ran its full lifecycle:
+
+- **phase_init**: config, strategy (10 key questions), registry, state log seeded
+- **phase_main_loop**: 10/10 iterations (one research angle each), each with iteration narrative, structured delta, and a durable append-gateway record (ledger sequence 1-10); strategy/registry/dashboard reduced after every iteration
+- **phase_synthesis**: `research.md` (findings by angle, 14×7 runtime comparison table, Eliminated Alternatives, Divergence Map, UNKNOWNs, operator decisions, ranked R1-R8 phase plan), lineage resource-map, config status `complete`, terminal `synthesis_complete` record with `stopReason: maxIterationsReached`
+
+Runner validation mirrored and passing: state log parses (10 iteration records 1-10 + synthesis event), iteration files exactly 1-10, research.md on disk, registry carries 60 keyFindings with 10/10 questions resolved, all 10 deltas parse.
+
+FANOUT_LINEAGE_COMPLETE:deepseek

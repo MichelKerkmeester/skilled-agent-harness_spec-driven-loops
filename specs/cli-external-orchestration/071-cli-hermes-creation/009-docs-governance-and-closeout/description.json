@@ -1,0 +1,18 @@
+{
+  "specFolder": "cli-external-orchestration/071-cli-hermes-creation/009-docs-governance-and-closeout",
+  "description": "Phase 8: docs-governance-and-closeout",
+  "keywords": [
+    "phase",
+    "docs-governance-and-closeout"
+  ],
+  "lastUpdated": "2026-09-14T17:24:51.051Z",
+  "specId": "009",
+  "folderSlug": "docs-governance-and-closeout",
+  "parentChain": [
+    "cli-external-orchestration",
+    "071-cli-hermes-creation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}

@@ -9,6 +9,7 @@ export const CLI_ADAPTER_SUBJECTS = [
   'cli-claude-code',
   'cli-devin',
   'cli-cursor',
+  'cli-hermes',
   'fanout-run',
 ] as const;
 
@@ -64,6 +65,7 @@ export const PHASE_TWO_ADAPTER_SUBJECTS = [
   'cli-claude-code',
   'cli-devin',
   'cli-cursor',
+  'cli-hermes',
 ] as const satisfies readonly CliAdapterSubject[];
 
 export type PhaseTwoAdapterSubject = typeof PHASE_TWO_ADAPTER_SUBJECTS[number];

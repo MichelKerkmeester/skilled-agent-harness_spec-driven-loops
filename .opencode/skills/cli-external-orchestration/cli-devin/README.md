@@ -148,7 +148,7 @@ Use cli-devin when the task benefits from a second AI perspective: an independen
 
 | Skill | Relationship |
 |---|---|
-| `cli-codex`, `cli-claude-code`, `cli-opencode`, `cli-cursor` and `cli-pi` | sibling dispatchers in the cli-* family, one dispatch at a time unless the operator authorizes parallel |
+| `cli-codex`, `cli-claude-code`, `cli-opencode`, `cli-cursor`, `cli-pi` and `cli-hermes` | sibling dispatchers in the cli-* family, one dispatch at a time unless the operator authorizes parallel |
 | `sk-code` | owns the application-code standards a dispatched session loads for review or generation |
 | `system-deep-loop` | owns the shared fan-out runtime that executes orchestrated cli-devin dispatches |
 | `sk-prompt` | owns per-model prompt-craft when the target model has a profile |
