@@ -24,7 +24,7 @@ trigger_phrases:
   - "cause then fix"
 importance_tier: important
 contextType: reference
-version: 1.1.0.0
+version: 1.1.1.0
 ---
 
 # Rule: Evidence and proof
@@ -232,3 +232,8 @@ and expensive after it, the same asymmetry as §8's proof plan, one step earlier
 - [ ] The close-out says what failed and what is inferred, not only what worked.
 - [ ] Every claim about behavior came from the code or a command, not from memory or a doc.
 - [ ] Where a document and the code disagreed, I said so rather than trusting the document.
+- [ ] Every receipt I cite could have come out differently if the claim were false, or it is marked inferred.
+- [ ] I reproduced the failure with the same check that now proves the fix, or said why I could not.
+- [ ] A filter enumerated its variants first, a computed answer was derived twice, an exact artifact was checked by name and shape.
+- [ ] Every sub-agent, reviewer or tool finding I acted on was confirmed against the real symptom first.
+- [ ] The proof plan existed before the first edit, and it passed from the final state with the scoped diff clean of residue.

@@ -24,7 +24,7 @@ trigger_phrases:
   - "deep loop"
 importance_tier: important
 contextType: reference
-version: 1.0.0.2
+version: 1.0.1.0
 ---
 
 # Rule: Delegation and orchestration
@@ -228,3 +228,5 @@ reverse. When a delegate's work does belong in your commit, read it first and sa
 - [ ] Delegating was cheaper than doing it, and I can say why.
 - [ ] A failed verification was re-dispatched or recorded, never dropped.
 - [ ] My brief, my checks, and my verdict are written down somewhere durable.
+- [ ] Every gate the delegate cannot ask about was answered in the prompt itself, not only waived in the environment.
+- [ ] I read the exit status as the process ending, and checked the artifacts and their content for the verdict.

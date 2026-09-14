@@ -21,7 +21,7 @@ trigger_phrases:
   - "stuck escalation format"
 importance_tier: important
 contextType: reference
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Rule: Root cause and debugging
@@ -157,3 +157,6 @@ A stuck report without evidence per attempt asks someone else to start from zero
 - [ ] No test, assertion, or check was weakened to get green.
 - [ ] If I called it a flake, I have one of the two pieces of evidence.
 - [ ] Re-ran the failing check *and* the whole gate.
+- [ ] When an attempt repeated, I restated the problem one level up instead of trying the same guess.
+- [ ] A fix that only works by special-casing a caller was reported as a seam, with the files a seam fix would touch, and asked about.
+- [ ] I owned the failure I met, and when stuck I escalated in the format with the evidence, the cause if known and the decision needed.

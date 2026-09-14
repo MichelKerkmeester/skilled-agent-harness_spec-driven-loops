@@ -1,6 +1,6 @@
 ---
 title: "Rule: Skill hub routing"
-description: "A parent hub projects one advisor identity and routes in two stages. A nested mode registered on one surface is not reachable, and a per-hub gate run without its hub argument reports on a hub you did not touch."
+description: "A hub routes in two stages, so a mode registered on one surface is not reachable, and a gate run without its hub argument reports on a hub you did not touch."
 trigger_phrases:
   - "hub routing"
   - "parent hub"

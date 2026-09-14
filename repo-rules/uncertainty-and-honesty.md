@@ -20,7 +20,7 @@ trigger_phrases:
   - "hedge that changes nothing"
 importance_tier: important
 contextType: reference
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Rule: Uncertainty and honest reporting
@@ -142,3 +142,5 @@ to act on it.
 - [ ] Any contradiction was halted and reported, not worked around.
 - [ ] Every hedge I wrote changes what the reader should do next.
 - [ ] The close-out leads with the verdict, not with what I did to reach it.
+- [ ] Where I did not know, I wrote UNKNOWN with what would resolve it, rather than a plausible fill.
+- [ ] A correction to my own earlier claim was stated once and plainly, without a retraction narrative.
