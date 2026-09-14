@@ -1,0 +1,267 @@
+{
+  "run_id": "1789363775244-64o2qi",
+  "label": "luna",
+  "attempt": 1,
+  "source_dir": "/Users/michelkerkmeester/worktrees/public/fanout-1789363775244-64o2qi-attempt-1-luna/specs/system-deep-loop/045-fanout-write-containment-hardening/research/lineages/luna",
+  "published_at_iso": "2026-09-14T06:01:47.074Z",
+  "entries": [
+    {
+      "path": ".legacy-projection-watermarks/research-state.json",
+      "kind": "file",
+      "bytes": 845,
+      "sha256": "e66d58ee9afcdf08d44fa67d24ea15c5f6862fcff8bf5ff3f53ab026782690d4"
+    },
+    {
+      "path": "convergence-report.md",
+      "kind": "file",
+      "bytes": 660,
+      "sha256": "81e780ac0e34771787c4517632ef763197cc5fd4f366067fb7fa6586d5079c50"
+    },
+    {
+      "path": "deep-research-audit-ledger/frames/0000000000000001.frame",
+      "kind": "file",
+      "bytes": 3815,
+      "sha256": "a690f6943763a280639af26c62c7ad96aab57e9ce0437dff94079d70e4379c4a"
+    },
+    {
+      "path": "deep-research-audit-ledger/frames/0000000000000002.frame",
+      "kind": "file",
+      "bytes": 3783,
+      "sha256": "76815cb9799ef018ebc70f402e39e4191ab6089fabde5e9d392370f80f5599a9"
+    },
+    {
+      "path": "deep-research-audit-ledger/frames/0000000000000003.frame",
+      "kind": "file",
+      "bytes": 3795,
+      "sha256": "55cdaded0900b3038d7a68cc3374089c534900d75d90108d98c0ed0eda838da2"
+    },
+    {
+      "path": "deep-research-audit-ledger/frames/0000000000000004.frame",
+      "kind": "file",
+      "bytes": 3795,
+      "sha256": "12ca5c05cd822a54d49d19a1ef1af217af6721cd304d8ac856d0fc1dc86cb0f5"
+    },
+    {
+      "path": "deep-research-audit-ledger/frames/0000000000000005.frame",
+      "kind": "file",
+      "bytes": 3795,
+      "sha256": "247a47c4077c0040ef9552fbcbab66d73ada990d4594871f84ed96d8e5a347f8"
+    },
+    {
+      "path": "deep-research-audit-ledger/frames/0000000000000006.frame",
+      "kind": "file",
+      "bytes": 4031,
+      "sha256": "cdc712fb5064498c15bdbb71b1442119926a47e2cf259491f53a26432e798aa4"
+    },
+    {
+      "path": "deep-research-config.json",
+      "kind": "file",
+      "bytes": 3689,
+      "sha256": "87e09ab5d681d1a86ff69ddea6210e3c4c822c2740ffd4d0639c5f75443e7f24"
+    },
+    {
+      "path": "deep-research-dashboard.md",
+      "kind": "file",
+      "bytes": 1617,
+      "sha256": "3578ed5f279e7e5086812e26bd85114ff8a62510e6be0e60980d43008450b383"
+    },
+    {
+      "path": "deep-research-effect-ledger/frames/0000000000000001.frame",
+      "kind": "file",
+      "bytes": 3544,
+      "sha256": "1e926d4000a7e7ba71f5c2571bcf3072691d42d45646b3d73d88023a8b35f471"
+    },
+    {
+      "path": "deep-research-effect-ledger/frames/0000000000000002.frame",
+      "kind": "file",
+      "bytes": 3692,
+      "sha256": "4c49b1718eaa1d569c42ab0d7cc9f158474ac55747a5fecec67ba83b7be63d5c"
+    },
+    {
+      "path": "deep-research-ledger/frames/0000000000000001.frame",
+      "kind": "file",
+      "bytes": 3024,
+      "sha256": "5cfd928b64c7955f28c125713219015b1a6aa3d3a4c3152f818d5f5050040247"
+    },
+    {
+      "path": "deep-research-ledger/frames/0000000000000002.frame",
+      "kind": "file",
+      "bytes": 3252,
+      "sha256": "46f9c5c91037909b88d96c400f082b8b3655bf8d0435cb08ecdf559cd6406506"
+    },
+    {
+      "path": "deep-research-ledger/frames/0000000000000003.frame",
+      "kind": "file",
+      "bytes": 3252,
+      "sha256": "86b616df3b8ad67083d4999daedf5c8d9236dc0d6e767a8af0e690964fe535df"
+    },
+    {
+      "path": "deep-research-ledger/frames/0000000000000004.frame",
+      "kind": "file",
+      "bytes": 3372,
+      "sha256": "4f4a798e1493101ec6add54ea3a8a331e882f29d6cbb0b2d208e33b51373dbed"
+    },
+    {
+      "path": "deep-research-state.jsonl",
+      "kind": "file",
+      "bytes": 5708,
+      "sha256": "6488cdba0221de0ffee3d9238497a9a7ff4b9d64380aed3512572406d7ce532c"
+    },
+    {
+      "path": "deep-research-strategy.md",
+      "kind": "file",
+      "bytes": 11377,
+      "sha256": "318f3cf5d31f17f777787951c43cc04d1565c1f7ae24a6d93a5e872905554896"
+    },
+    {
+      "path": "deltas/iter-001.jsonl",
+      "kind": "file",
+      "bytes": 4048,
+      "sha256": "dec57ca1810eaf71bb04f304d7b4927cf00e8eab4b13a2a5a5c49f2dd723d3c6"
+    },
+    {
+      "path": "deltas/iter-002.jsonl",
+      "kind": "file",
+      "bytes": 4818,
+      "sha256": "314c48cf1673ee9debaab9ca95ea51d800d6b521f43c31ddd7d791508c3db5bc"
+    },
+    {
+      "path": "deltas/iter-003.jsonl",
+      "kind": "file",
+      "bytes": 5506,
+      "sha256": "6e3bb0cb591979d96e809d946cc8b8d2914c0bec41a8f76b83c2945a07a3ba12"
+    },
+    {
+      "path": "events/config.json",
+      "kind": "file",
+      "bytes": 1654,
+      "sha256": "edd0a2f96bdeb69561c612357ba5f96bcce8a4522d49ca32ce1dc207ec1c0893"
+    },
+    {
+      "path": "events/iteration-001.json",
+      "kind": "file",
+      "bytes": 1624,
+      "sha256": "0392e5f0597142ad34f36e809f54d54f591960c96c9d7029dc4a58e3fa26a4f5"
+    },
+    {
+      "path": "events/iteration-002.json",
+      "kind": "file",
+      "bytes": 1756,
+      "sha256": "ea95287efdba88cde492e1069270ec6db5bbdc8fb318f7d3247534dde81c7b5a"
+    },
+    {
+      "path": "events/iteration-003.json",
+      "kind": "file",
+      "bytes": 1911,
+      "sha256": "292c85e29aff7eac3f8d7613d448591c5070704dc70b602fb61816405923acb6"
+    },
+    {
+      "path": "events/synthesis.json",
+      "kind": "file",
+      "bytes": 323,
+      "sha256": "aece098ed74486afd1ea745109de07470c3862276f0e04c775ac026bf0ac1abe"
+    },
+    {
+      "path": "findings-registry.json",
+      "kind": "file",
+      "bytes": 11918,
+      "sha256": "1b1bac84260b2e6c6a137818c054ab752808f3dc2e7f42aae3c976dd14582e51"
+    },
+    {
+      "path": "invocation-metadata.json",
+      "kind": "file",
+      "bytes": 404,
+      "sha256": "c84316a9040d089acbf240bb5a3eb7793124533d54f468818b7d3a6893cc6ad9"
+    },
+    {
+      "path": "iterations/iteration-001.md",
+      "kind": "file",
+      "bytes": 9854,
+      "sha256": "337c6ebd8a596c4bfee0748ff6639fb8a5b5624028ac6359f20688e8cb8e3d19"
+    },
+    {
+      "path": "iterations/iteration-002.md",
+      "kind": "file",
+      "bytes": 14315,
+      "sha256": "95b183a9e49d9337e2d543dd67258cc5fe637717ffafe1dd1c5ac15a8d9c81b9"
+    },
+    {
+      "path": "iterations/iteration-003.md",
+      "kind": "file",
+      "bytes": 16651,
+      "sha256": "84a51bf749afc3a5ee1e42a53930ad8fcef69bef099c21f4621891fdf8960dd3"
+    },
+    {
+      "path": "locks-and-fencing-v1/218eebf4be3b98ac4d68f7b4d314206992fa99147c9b1e75b75a92cdb24b6fe5/coordinator-state.json",
+      "kind": "file",
+      "bytes": 634,
+      "sha256": "d658bef99ccbfa9a20fca071044449782de8d6bfea3c943b3f1a3c25cc9b9409"
+    },
+    {
+      "path": "locks-and-fencing-v1/218eebf4be3b98ac4d68f7b4d314206992fa99147c9b1e75b75a92cdb24b6fe5/grant-journal.jsonl",
+      "kind": "file",
+      "bytes": 2734,
+      "sha256": "bc80e7e22fdfa51218eeda73d8d1a4011a38c21eef603e32ac3947c8ac19f5a8"
+    },
+    {
+      "path": "locks-and-fencing-v1/3068150e6d888ae96b4387058ce2a375a706fb9aa66f593dd212a4db0fd55ca6/coordinator-state.json",
+      "kind": "file",
+      "bytes": 613,
+      "sha256": "f5c96cc82f544acc3afdcd9c85cb9bff912f9edf16d8e5039ea6d1841a24a462"
+    },
+    {
+      "path": "locks-and-fencing-v1/3068150e6d888ae96b4387058ce2a375a706fb9aa66f593dd212a4db0fd55ca6/grant-journal.jsonl",
+      "kind": "file",
+      "bytes": 5300,
+      "sha256": "4cd34b415463e3945970a1451cf04c869f5505dd2e70e75164dd11d23e1df973"
+    },
+    {
+      "path": "logs/fanout-lineage.err",
+      "kind": "file",
+      "bytes": 266884,
+      "sha256": "2ce7042ecf0a1b521cbe0aa45e54f76873e2f70b216884624fc70d7b7644436e"
+    },
+    {
+      "path": "logs/fanout-lineage.out",
+      "kind": "file",
+      "bytes": 29,
+      "sha256": "38a4a9233c95d5a0455a1f26bf5f88b28ac463a0578395025b2f2d237a4e2f40"
+    },
+    {
+      "path": "prompts/iteration-001.md",
+      "kind": "file",
+      "bytes": 3415,
+      "sha256": "ce25e8b4f91a8e9022e88845002e92370a978918cad289ad7947f112b0d25ea4"
+    },
+    {
+      "path": "prompts/iteration-002.md",
+      "kind": "file",
+      "bytes": 656,
+      "sha256": "1cdae5e19ebec8d7e3af59843da5e20e43129f79d089b392720a4146acd6de33"
+    },
+    {
+      "path": "prompts/iteration-003.md",
+      "kind": "file",
+      "bytes": 593,
+      "sha256": "bd74b7a1a3fb073f3547a57d7bc8e60dc2d980187a80f066852e46d463301c14"
+    },
+    {
+      "path": "research.md",
+      "kind": "file",
+      "bytes": 28711,
+      "sha256": "8baad28ed2005f0397e766b18e22cb5fffbfbd51ca89d3cd22b4fa36d6ed89b7"
+    },
+    {
+      "path": "resource-map.md",
+      "kind": "file",
+      "bytes": 4709,
+      "sha256": "707f792bc86c66f7b97c05cdafd158e7e273118fbd316517ee505b17bd93f80d"
+    },
+    {
+      "path": "synthesis-v1.md",
+      "kind": "file",
+      "bytes": 1529,
+      "sha256": "c290f3c5282f4eceef2ba185f899edd3acacdf24166d73f89b046f1aba0312b5"
+    }
+  ]
+}

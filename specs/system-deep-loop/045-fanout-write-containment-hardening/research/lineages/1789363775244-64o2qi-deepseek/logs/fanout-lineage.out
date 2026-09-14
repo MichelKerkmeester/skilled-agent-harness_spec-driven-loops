@@ -1,0 +1,135 @@
+
+
+Skill loaded. Now let me read the rest of the deep-research SKILL.md and the key protocol/state references, plus survey the packet's existing research.
+
+
+
+The lineage dir exists with runner scaffolding. Let me inspect it plus the protocol/state references that define the artifact formats.
+
+The lineage scaffolding is in place. Now let me read the state format and JSONL references to get the exact artifact contracts.
+
+
+
+Now let me examine the runner's expectations for lineage completion and the worktree machinery the research topic targets.
+
+Found the measurements. Now let me read the runner's completion validation and merge logic to pin down exactly what files the lineage must produce.
+
+
+
+
+
+
+
+
+
+The runner contract is now clear. Next: read the worktree machinery — the ground truth for what any alternative must preserve.
+
+
+
+Now let me examine write-containment.ts (the churn detector) and search for "entry-point" guards.
+
+
+
+
+
+The picture is nearly complete. Let me check executor-config caps, the seed/dispatch flow, and any additional measurements in the packet.
+
+
+
+
+
+
+
+A decisive data point: tracked files total only ~25 MB — the 1.6 GB/lane must include untracked/ignored content. Let me read the exact measurement context in the decision record.
+
+
+
+
+
+
+
+
+
+
+
+
+
+All core measurements are grounded. Let me grab the remaining mechanism details: publish, lease liveness, containment's git invocation, and the runner's seed set.
+
+
+
+I have the full mechanism picture. Let me verify the merge script's expected registry filename, then run phase_init.
+
+
+
+
+
+The contract is fully mapped. Now I'll run the loop: phase_init → 3 iterations → synthesis, all inside the lineage directory.
+
+
+
+
+
+
+
+
+
+
+
+Phase init complete. Now iteration 1 — first a quick grounding check on the per-worktree index cost.
+
+Index (16.4 MB) confirmed. Now writing iteration 1.
+
+
+
+
+
+Now update state + strategy for iteration 1, then gather the fail-open evidence for iteration 2.
+
+
+
+
+
+Fail-open semantics confirmed. Writing iteration 2.
+
+
+
+
+
+Iteration 3 now — first the web verification of git behaviors.
+
+
+
+
+
+
+
+
+
+
+
+
+
+All iterations complete. Now phase_synthesis — updating strategy, registry, dashboard, writing research.md, and the terminal event.
+
+
+
+
+
+Now the final registry, strategy, and dashboard updates.
+
+
+
+
+
+Final self-verification against the runner's completion contract.
+
+
+
+
+
+Lineage complete: phase_init, phase_main_loop (3 iterations, convergence treated as telemetry per max-iterations policy), and phase_synthesis all executed inline in this session. All writes landed inside the lineage directory; runner contract verified (3 iteration records 1–3, iteration files 1–3 on disk, non-empty `research.md`, terminal `synthesis_complete` event with `stopReason: maxIterationsReached`).
+
+Headline result: the 1.6 GB / ~22 s per-lane cost is tracked-tree materialization (1,421 MB / 82,393 files, 85% in `specs/`), not objects — the object store is already shared. The sparse cone worktree (`git worktree add --no-checkout` + `git sparse-checkout set`) is the only alternative that keeps all five machinery surfaces (registration, lease, sweep, publish, churn detector) and exact attribution at ~0.6 GB (60% cut), and the only one under which `git worktree move` survives. Every clone variant (shallow/reference/partial), CoW/overlay, write redirection, and sandbox-with-object-store is rejected with code- and documentation-grounded reasons, all in `research.md` and `findings-registry.json`.
+
+FANOUT_LINEAGE_COMPLETE:deepseek

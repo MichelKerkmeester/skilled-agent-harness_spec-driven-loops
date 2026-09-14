@@ -1,0 +1,49 @@
+{
+  "type": "iteration",
+  "iteration": 2,
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "newInfoRatio": 0.84,
+  "status": "insight",
+  "focus": "Overlay, copy-on-write, sandbox, and one-worktree write redirection",
+  "findingsCount": 9,
+  "noveltyJustification": "Separated filesystem byte sharing from Git metadata ownership and traced the exact-attribution boundary through explicit git -C roots, shared dependency links, checkout watch behavior, and churn sampling.",
+  "ruledOut": [
+    "one-worktree environment-only write redirection as exact attribution",
+    "shared Git metadata or a shared overlay upper/work pair",
+    "unregistered copy-on-write directories as a replacement for git worktree move"
+  ],
+  "toolsUsed": [
+    "Read",
+    "Grep",
+    "WebSearch",
+    "WebFetch"
+  ],
+  "sourcesQueried": [
+    "implementation-summary.md:98-110",
+    "worktree-lifecycle.ts:138-183,294-307,384-507,560-628,800-846",
+    "worktree-paths.ts:97-126",
+    "write-containment.ts:282-336,637-773,1058-1074",
+    "runtime-bootstrap.cjs:23-73",
+    "fanout-run.cjs:3591-3651,3827-3905",
+    "worktree-symlinks/synthesis.md:45-75",
+    "OverlayFS documentation",
+    "git-clone documentation",
+    "git-worktree documentation"
+  ],
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-5.6-luna",
+    "reasoningEffort": "max",
+    "serviceTier": "fast",
+    "sandboxMode": "workspace-write"
+  },
+  "runId": "fanout-luna-1789363775244-64o2qi",
+  "lineageId": "fanout-luna-1789363775244-64o2qi",
+  "sessionId": "fanout-luna-1789363775244-64o2qi",
+  "generation": 1,
+  "timestamp": "2026-09-14T05:49:00Z",
+  "durationMs": 0
+}

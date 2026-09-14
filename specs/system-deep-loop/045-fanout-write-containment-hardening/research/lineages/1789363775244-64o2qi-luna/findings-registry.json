@@ -1,0 +1,288 @@
+{
+  "sessionId": "fanout-luna-1789363775244-64o2qi",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "iterations": 3,
+    "answeredCount": 5,
+    "totalQuestions": 5,
+    "timestamp": "2026-09-14T06:00:00Z"
+  },
+  "keyQuestions": [
+    {
+      "id": "q1-sparse-partial-attribution",
+      "text": "Can sparse or partial checkouts reduce materialized bytes while retaining a real per-lane status boundary and exact attribution?",
+      "resolved": false,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "q2-history-object-store-cost",
+      "text": "What do shallow history, reference or shared object stores, and clone-on-write change in setup and disk cost without changing write ownership?",
+      "resolved": false,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "q3-one-checkout-isolation",
+      "text": "Can an overlay, copy-on-write directory, or sandboxed lane make one checkout exact without changing the runtime’s path and git assumptions?",
+      "resolved": true,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "q4-dependency-and-churn-breakage",
+      "text": "Which mechanisms break the shared dependency roots, workspace self-links, compiled entry-point guards, or the churn detector?",
+      "resolved": true,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "q5-relocation",
+      "text": "Does each mechanism preserve relocation and git worktree move semantics?",
+      "resolved": true,
+      "resolvedAtIteration": 3
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "q1-sparse-partial-attribution",
+      "text": "Can sparse or partial checkouts reduce materialized bytes while retaining a real per-lane status boundary and exact attribution?",
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "q2-history-object-store-cost",
+      "text": "What do shallow history, reference or shared object stores, and clone-on-write change in setup and disk cost without changing write ownership?",
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "q3-one-checkout-isolation",
+      "text": "Can an overlay, copy-on-write directory, or sandboxed lane make one checkout exact without changing the runtime’s path and git assumptions?",
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "q4-dependency-and-churn-breakage",
+      "text": "Which mechanisms break the shared dependency roots, workspace self-links, compiled entry-point guards, or the churn detector?",
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "q5-relocation",
+      "text": "Does each mechanism preserve relocation and git worktree move semantics?",
+      "resolvedAtIteration": 3
+    }
+  ],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "What is the actual byte and setup delta for a mandatory-path sparse profile?",
+      "addedAtIteration": 1,
+      "source": "iteration-001"
+    },
+    {
+      "text": "Which dynamic reads must be included so the profile cannot silently no-op?",
+      "addedAtIteration": 1,
+      "source": "iteration-001"
+    },
+    {
+      "text": "Can filesystem copy-on-write isolate the Git index and status boundary without a full checkout?",
+      "addedAtIteration": 1,
+      "source": "iteration-001"
+    },
+    {
+      "text": "Which candidate has the smallest measured cost while retaining the full runtime and dependency closure?",
+      "addedAtIteration": 2,
+      "source": "iteration-002"
+    },
+    {
+      "text": "What exact path-routing and registration changes would be needed for a private-upper COW lane to pass containment and relocation tests?",
+      "addedAtIteration": 2,
+      "source": "iteration-002"
+    },
+    {
+      "text": "Can the final recommendation preserve exact attribution and safe relocation without adding a second mutable copy of the entire tree?",
+      "addedAtIteration": 2,
+      "source": "iteration-002"
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "f001-001",
+      "iteration": 1,
+      "severity": "P1",
+      "title": "Sparse is the only Git-native byte-saving option in this pass",
+      "status": "supported",
+      "sources": ["https://git-scm.com/docs/sparse-checkout", ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/worktree-paths.ts:97-126"]
+    },
+    {
+      "id": "f001-002",
+      "iteration": 1,
+      "severity": "P1",
+      "title": "Shallow, partial, and reference modes do not independently remove dense checkout cost",
+      "status": "supported",
+      "sources": ["https://git-scm.com/docs/git-clone", "specs/system-deep-loop/045-fanout-write-containment-hardening/implementation-summary.md:105-106"]
+    },
+    {
+      "id": "f001-003",
+      "iteration": 1,
+      "severity": "P1",
+      "title": "Sparse plus partial retains exact physical attribution only as a real lane worktree",
+      "status": "supported",
+      "sources": [".opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts:740-773", "https://git-scm.com/docs/git-worktree"]
+    },
+    {
+      "id": "f002-001",
+      "iteration": 2,
+      "severity": "P1",
+      "title": "COW saves bytes only when each lane owns a private upper/work view and Git metadata",
+      "status": "supported",
+      "sources": ["https://docs.kernel.org/filesystems/overlayfs.html", ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/worktree-lifecycle.ts:163-183,294-307"]
+    },
+    {
+      "id": "f002-002",
+      "iteration": 2,
+      "severity": "P1",
+      "title": "One-worktree environment redirection is not exact under explicit git -C and shared cwd seams",
+      "status": "supported",
+      "sources": [".opencode/skills/system-deep-loop/runtime/lib/deep-loop/worktree-lifecycle.ts:163-183,294-307", ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/worktree-paths.ts:109-126", ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3611-3651,3880-3905"]
+    },
+    {
+      "id": "f002-003",
+      "iteration": 2,
+      "severity": "P1",
+      "title": "COW does not reanchor dependency self-links or repair compiled entry-point realpath guards",
+      "status": "supported",
+      "sources": [".opencode/skills/system-deep-loop/runtime/lib/deep-loop/worktree-lifecycle.ts:138-158,394-475", "specs/system-deep-loop/045-fanout-write-containment-hardening/research/worktree-symlinks/synthesis.md:51-75"]
+    },
+    {
+      "id": "f002-004",
+      "iteration": 2,
+      "severity": "P1",
+      "title": "Git move survives only for registered worktrees; arbitrary overlay and sandbox mount contracts need external relocation repair",
+      "status": "supported",
+      "sources": ["https://git-scm.com/docs/git-worktree", ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/worktree-lifecycle.ts:466-475"]
+    },
+    {
+      "id": "f003-001",
+      "iteration": 3,
+      "severity": "P1",
+      "title": "Sparse plus blobless partial in a registered worktree is the lowest-risk exact cost optimization",
+      "status": "supported",
+      "sources": ["https://git-scm.com/docs/sparse-checkout", "https://git-scm.com/docs/git-clone", ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/worktree-paths.ts:97-126"]
+    },
+    {
+      "id": "f003-002",
+      "iteration": 3,
+      "severity": "P1",
+      "title": "Shallow and reference/shared modes do not independently reduce the measured dense checkout",
+      "status": "supported",
+      "sources": ["https://git-scm.com/docs/git-clone", "specs/system-deep-loop/045-fanout-write-containment-hardening/implementation-summary.md:105-106"]
+    },
+    {
+      "id": "f003-003",
+      "iteration": 3,
+      "severity": "P1",
+      "title": "Private-upper COW can be exact only with a new merged-root and private-Git metadata seam",
+      "status": "supported",
+      "sources": ["https://docs.kernel.org/filesystems/overlayfs.html", ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/worktree-lifecycle.ts:163-183,294-307", ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts:282-336,740-773"]
+    },
+    {
+      "id": "f003-004",
+      "iteration": 3,
+      "severity": "P1",
+      "title": "Git-managed move semantics are retained by registered worktrees, not arbitrary COW, sandbox, or virtual views",
+      "status": "supported",
+      "sources": ["https://git-scm.com/docs/git-worktree", ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/worktree-lifecycle.ts:466-475"]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "direction": "shallow clone alone",
+      "reason": "Truncates history but does not sparsify the working tree.",
+      "iteration": 1
+    },
+    {
+      "direction": "reference/shared clone alone",
+      "reason": "The packet already shares the object store; alternates do not remove checkout bytes.",
+      "iteration": 1
+    },
+    {
+      "direction": "sparse profile without runtime closure",
+      "reason": "Missing runtime or dependency inputs can produce incomplete execution or silent entry-point no-ops.",
+      "iteration": 1
+    },
+    {
+      "direction": "one-worktree environment-only write redirection",
+      "reason": "Lifecycle Git calls strip redirectors and the shared-checkout watch is report-only, so the design cannot assign all writes exactly.",
+      "iteration": 2
+    },
+    {
+      "direction": "shared overlay upper/work or shared Git index",
+      "reason": "A shared mutable layer collapses the status and write ownership boundary; OverlayFS documents upper/work as per-mount state.",
+      "iteration": 2
+    },
+    {
+      "direction": "unregistered COW directory for Git move semantics",
+      "reason": "Git move/repair applies to registered linked worktrees, not arbitrary mount or sandbox metadata.",
+      "iteration": 2
+    },
+    {
+      "direction": "wholesale COW view of shared dependency roots",
+      "reason": "COW does not reanchor workspace self-links or compiled entry-point realpath guards without lane-local materialization or path rewriting.",
+      "iteration": 2
+    },
+    {
+      "direction": "shallow or reference modes as standalone checkout-cost reductions",
+      "reason": "They reduce history or object storage while the dense working-tree component remains.",
+      "iteration": 3
+    },
+    {
+      "direction": "one physical checkout with environment-only write redirection",
+      "reason": "Explicit git -C roots, redirector stripping, shared cwd cases, and report-only checkout watch prevent exact attribution.",
+      "iteration": 3
+    },
+    {
+      "direction": "unregistered COW or sandbox views where Git move semantics are required",
+      "reason": "Git move/repair operates on registered worktree state; arbitrary mounts require an external relocation protocol.",
+      "iteration": 3
+    },
+    {
+      "direction": "sparse profile without runtime and dependency closure",
+      "reason": "Missing inputs can produce incomplete or silent execution.",
+      "iteration": 3
+    }
+  ],
+  "iterationMetrics": [
+    {
+      "iteration": 1,
+      "focus": "Git-native reductions — sparse, partial, shallow, and reference approaches",
+      "newInfoRatio": 0.91,
+      "findingsCount": 8,
+      "status": "insight"
+    },
+    {
+      "iteration": 2,
+      "focus": "Overlay, copy-on-write, sandbox, and one-worktree write redirection",
+      "newInfoRatio": 0.84,
+      "findingsCount": 9,
+      "status": "insight"
+    },
+    {
+      "iteration": 3,
+      "focus": "Exact-attribution and relocation decision matrix",
+      "newInfoRatio": 0.78,
+      "findingsCount": 11,
+      "status": "insight"
+    }
+  ],
+  "metrics": {
+    "iterationsCompleted": 3,
+    "keyFindings": 11,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "newInfoRatio": 0.78,
+    "sourceFindings": 28,
+    "reconstructionGaps": 0
+  },
+  "status": "complete",
+  "lastUpdated": "2026-09-14T06:01:00Z",
+  "updatedAt": "2026-09-14T06:01:00Z"
+}

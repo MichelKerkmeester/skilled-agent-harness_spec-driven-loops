@@ -1,0 +1,12 @@
+{
+  "iteration": 1,
+  "status": "completed",
+  "executor": "cli-devin",
+  "model": "swe-2-max",
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "artifacts": [
+    "iterations/iteration-001.md",
+    "deltas/iter-001.jsonl"
+  ],
+  "completion_note": "Iteration performed inline by the detached executor session; no nested dispatch. Sources: worktree-lifecycle.ts, worktree-paths.ts, worktree-reclaim.ts, fanout-run.cjs, implementation-summary.md, decision-record.md, tasks.md, direct measurement of this lane's checkout."
+}

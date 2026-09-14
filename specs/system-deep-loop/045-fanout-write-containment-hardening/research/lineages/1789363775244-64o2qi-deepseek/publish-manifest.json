@@ -1,0 +1,135 @@
+{
+  "run_id": "1789363775244-64o2qi",
+  "label": "deepseek",
+  "attempt": 1,
+  "source_dir": "/Users/michelkerkmeester/worktrees/public/fanout-1789363775244-64o2qi-attempt-1-deepseek/specs/system-deep-loop/045-fanout-write-containment-hardening/research/lineages/deepseek",
+  "published_at_iso": "2026-09-14T05:41:42.820Z",
+  "entries": [
+    {
+      "path": "deep-research-audit-ledger/frames/0000000000000001.frame",
+      "kind": "file",
+      "bytes": 3835,
+      "sha256": "9ac7bb03bbda901df392d9c79520ffbb257dfcf1508cb3f68e3d08e31f55cd72"
+    },
+    {
+      "path": "deep-research-audit-ledger/frames/0000000000000002.frame",
+      "kind": "file",
+      "bytes": 4055,
+      "sha256": "a954e8c95232dbad69d983fcf09f5931d451d27a065dc5a30edb00f74443b012"
+    },
+    {
+      "path": "deep-research-config.json",
+      "kind": "file",
+      "bytes": 1764,
+      "sha256": "3d5c57d1725e941e7ecd3edd5ae018162a176b4cfa68f81cf1cd17cb788cbef9"
+    },
+    {
+      "path": "deep-research-dashboard.md",
+      "kind": "file",
+      "bytes": 1842,
+      "sha256": "5df34ec7c9f20b5c6e1c9e218d97564dcbae40365b1e98fd8d915922e46c519c"
+    },
+    {
+      "path": "deep-research-effect-ledger/frames/0000000000000001.frame",
+      "kind": "file",
+      "bytes": 3588,
+      "sha256": "f7c158d521ae2d9c40ccf14822cf93cea0f551d06bff2772bdd0810531f8205b"
+    },
+    {
+      "path": "deep-research-effect-ledger/frames/0000000000000002.frame",
+      "kind": "file",
+      "bytes": 3716,
+      "sha256": "8e06e19c32931ed9a3742044ae2217c549f70f553fb17f45c0d1c4c0c3112c35"
+    },
+    {
+      "path": "deep-research-state.jsonl",
+      "kind": "file",
+      "bytes": 3833,
+      "sha256": "18676cd117a8cacc3c22ef182702464b860a4e27f26dc5344ef55fa45babfdae"
+    },
+    {
+      "path": "deep-research-strategy.md",
+      "kind": "file",
+      "bytes": 10543,
+      "sha256": "b766590c211f9b4c73219fe25b571e3ac274df3a3f74fd1c669812fabdbbde69"
+    },
+    {
+      "path": "deltas/iter-001.jsonl",
+      "kind": "file",
+      "bytes": 1069,
+      "sha256": "5214eebaa08a7d8f7fefad7b9d29aa7d51cbc1126c60149b00f96c2632951936"
+    },
+    {
+      "path": "deltas/iter-002.jsonl",
+      "kind": "file",
+      "bytes": 1609,
+      "sha256": "0fedf64a01e9de2306b5c98d41b0d8078e3f4c68a6a1489aecc5b24387f7b1ad"
+    },
+    {
+      "path": "deltas/iter-003.jsonl",
+      "kind": "file",
+      "bytes": 473,
+      "sha256": "a25708f828130a897c3af183c10dd5656f45974a747d9ad239d228f4aad82c0c"
+    },
+    {
+      "path": "findings-registry.json",
+      "kind": "file",
+      "bytes": 8187,
+      "sha256": "d6b6a5e106cadd2e57738d260b54a94fd9bc9ebf17674e941be63b0f32ef3e33"
+    },
+    {
+      "path": "invocation-metadata.json",
+      "kind": "file",
+      "bytes": 410,
+      "sha256": "8cea3f244ca8b90cf32b7012793adcb6383a90949f2f337052684473199f6085"
+    },
+    {
+      "path": "iterations/iteration-001.md",
+      "kind": "file",
+      "bytes": 10722,
+      "sha256": "12df69f4a26e82369c4eddb2c3319fbe2287376a60033b349e0a5c6e7212843a"
+    },
+    {
+      "path": "iterations/iteration-002.md",
+      "kind": "file",
+      "bytes": 9958,
+      "sha256": "1783531219f71f75249030fded7a470df0f5b168cd71852adbd5c10e5c609bdd"
+    },
+    {
+      "path": "iterations/iteration-003.md",
+      "kind": "file",
+      "bytes": 12020,
+      "sha256": "55bcf20e033314a50426a063d49b1cbbc02564618d2d709a1e701c7779fc1178"
+    },
+    {
+      "path": "locks-and-fencing-v1/218eebf4be3b98ac4d68f7b4d314206992fa99147c9b1e75b75a92cdb24b6fe5/coordinator-state.json",
+      "kind": "file",
+      "bytes": 634,
+      "sha256": "13caf9b17ab4545e6142b18e5aafd086c5e893215fee9069447d3134277de01b"
+    },
+    {
+      "path": "locks-and-fencing-v1/218eebf4be3b98ac4d68f7b4d314206992fa99147c9b1e75b75a92cdb24b6fe5/grant-journal.jsonl",
+      "kind": "file",
+      "bytes": 2734,
+      "sha256": "e7ceabc49cf8c3ca0bb701ba1ec99ab9ccfee8939be4dbf30c1a8fe00f1c85e8"
+    },
+    {
+      "path": "logs/fanout-lineage.err",
+      "kind": "file",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "logs/fanout-lineage.out",
+      "kind": "file",
+      "bytes": 3534,
+      "sha256": "b540a7059eda65e298633b73be705d823267b20edcd3619fc4eee8965cbe5f30"
+    },
+    {
+      "path": "research.md",
+      "kind": "file",
+      "bytes": 11195,
+      "sha256": "1a1cbfb3819b280445129c61fa40b73c077e9067303459e0e23d73f8361f03c2"
+    }
+  ]
+}
