@@ -9,7 +9,7 @@
 import { existsSync, lstatSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, realpathSync, rmSync, symlinkSync, writeFileSync, unlinkSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { tmpdir } from 'node:os';
-import { join } from 'node:path';
+import { join, sep } from 'node:path';
 import { spawn, spawnSync } from 'node:child_process';
 
 import { afterEach, describe, expect, it } from 'vitest';
@@ -1662,11 +1662,13 @@ describe('write-containment — orchestrator-owned ledgers are not the leaf’s 
  * rollback.
  */
 describe('write-containment — a reverted tracked edit survives as a recoverable patch', () => {
+  /** The patch file names a pass wrote, under the quarantine pass directory it wrote them in. */
   function patchFileNames(
     artifactDir: string,
+    pass: string,
     dirName: 'containment-reverted' | 'containment-out-of-scope',
   ): string[] {
-    const dir = join(artifactDir, dirName);
+    const dir = join(artifactDir, 'containment', 'quarantine', pass, dirName);
     return existsSync(dir) ? readdirSync(dir) : [];
   }
 
@@ -1691,11 +1693,13 @@ describe('write-containment — a reverted tracked edit survives as a recoverabl
 
     const patchPath = result.event!.revertedPatchPath;
     expect(patchPath).toMatch(
-      /^artifact\/containment-reverted\/3-\d{4}-\d{2}-\d{2}T\d{2}-\d{2}-\d{2}\.\d{3}Z\.patch$/,
+      /^artifact\/containment\/quarantine\/3\/containment-reverted\/3-\d{4}-\d{2}-\d{2}T\d{2}-\d{2}-\d{2}\.\d{3}Z\.patch$/,
     );
     expect(result.event!.revertedPatchError).toBeUndefined();
     expect(result.recoveryHint).toBe(`recoverable patch: ${patchPath}`);
-    expect(patchFileNames(artifactDir, 'containment-reverted')).toHaveLength(1);
+    // The hint names the patch the same pass returned as its quarantine directory.
+    expect(patchPath!.startsWith(`${result.quarantinePath}/`)).toBe(true);
+    expect(patchFileNames(artifactDir, '3', 'containment-reverted')).toHaveLength(1);
 
     // The erased content is IN the patch, not merely referenced by it.
     const patchBody = readFileSync(join(root, patchPath!), 'utf8');
@@ -1723,10 +1727,10 @@ describe('write-containment — a reverted tracked edit survives as a recoverabl
     ]);
     expect(readFileSync(join(root, 'tracked-outside.txt'), 'utf8')).toBe('OPERATOR_EDIT\n');
     expect(preserved.event!.revertedPatchPath).toMatch(
-      /^artifact\/containment-out-of-scope\/6-\d{4}-\d{2}-\d{2}T\d{2}-\d{2}-\d{2}\.\d{3}Z\.patch$/,
+      /^artifact\/containment\/quarantine\/6\/containment-out-of-scope\/6-\d{4}-\d{2}-\d{2}T\d{2}-\d{2}-\d{2}\.\d{3}Z\.patch$/,
     );
-    expect(patchFileNames(artifactDir, 'containment-out-of-scope')).toHaveLength(1);
-    expect(patchFileNames(artifactDir, 'containment-reverted')).toEqual([]);
+    expect(patchFileNames(artifactDir, '6', 'containment-out-of-scope')).toHaveLength(1);
+    expect(patchFileNames(artifactDir, '6', 'containment-reverted')).toEqual([]);
 
     // Opted-in remedy: the bytes really were rolled back, so the patch belongs under the name
     // that says so.
@@ -1740,9 +1744,9 @@ describe('write-containment — a reverted tracked edit survives as a recoverabl
 
     expect(readFileSync(join(root, 'tracked-outside.txt'), 'utf8')).toBe('ORIGINAL_OUTSIDE\n');
     expect(restored.event!.revertedPatchPath).toMatch(
-      /^artifact\/containment-reverted\/7-\d{4}-\d{2}-\d{2}T\d{2}-\d{2}-\d{2}\.\d{3}Z\.patch$/,
+      /^artifact\/containment\/quarantine\/7\/containment-reverted\/7-\d{4}-\d{2}-\d{2}T\d{2}-\d{2}-\d{2}\.\d{3}Z\.patch$/,
     );
-    expect(patchFileNames(artifactDir, 'containment-reverted')).toHaveLength(1);
+    expect(patchFileNames(artifactDir, '7', 'containment-reverted')).toHaveLength(1);
   });
 
   it('restores the erased edit when the saved patch is applied — the recoverability claim', () => {
@@ -1801,13 +1805,14 @@ describe('write-containment — a reverted tracked edit survives as a recoverabl
     expect(readFileSync(join(root, 'concurrent-new-file.txt'), 'utf8')).toBe('CONCURRENT\n');
     expect(result.event!.revertedPatchPath).toBeUndefined();
     expect(result.recoveryHint).toBeNull();
-    expect(patchFileNames(artifactDir, 'containment-out-of-scope')).toEqual([]);
+    expect(patchFileNames(artifactDir, '4', 'containment-out-of-scope')).toEqual([]);
   });
 
   it('still reverts, and records the write failure, when the patch cannot be saved', () => {
     const { root, artifactDir } = baselineRepo();
-    // Occupy the patch directory's name with a file so the capture's mkdir throws.
-    writeFileSync(join(artifactDir, 'containment-reverted'), 'not a directory\n');
+    // Occupy the pass directory's name with a file so the capture's mkdir throws.
+    mkdirSync(join(artifactDir, 'containment', 'quarantine'), { recursive: true });
+    writeFileSync(join(artifactDir, 'containment', 'quarantine', '5'), 'not a directory\n');
     const preDispatch = snapshotOutOfScopeDirtyPaths({ repoRoot: root, artifactDir });
 
     writeFileSync(join(root, 'tracked-outside.txt'), 'OPERATOR_EDIT\n');
@@ -1952,7 +1957,6 @@ describe('write-containment — a symlink cannot carry a write out of the artifa
  */
 describe('write-containment — the quarantine record of what a guarded path wrote', () => {
   const QUARANTINE = 'containment/quarantine';
-  const MANIFEST = `${QUARANTINE}/manifest.json`;
 
   interface Manifest {
     entries: ManifestEntry[];
@@ -1969,12 +1973,23 @@ describe('write-containment — the quarantine record of what a guarded path wro
     error?: string;
   }
 
-  function manifest(artifactDir: string): Manifest {
-    return JSON.parse(readFileSync(join(artifactDir, MANIFEST), 'utf8')) as Manifest;
+  /** Quarantine-relative paths of every manifest on disk, which is one per pass. */
+  function manifestsUnder(artifactDir: string): string[] {
+    const root = join(artifactDir, QUARANTINE);
+    if (!existsSync(root)) return [];
+    return (readdirSync(root, { recursive: true }) as string[])
+      .filter((relative) => relative.endsWith('manifest.json'))
+      .map((relative) => relative.split(sep).join('/'))
+      .sort();
   }
 
-  function entryFor(artifactDir: string, path: string): ManifestEntry {
-    const entry = manifest(artifactDir).entries.find((candidate) => candidate.path === path);
+  function manifest(artifactDir: string, pass: string): Manifest {
+    const path = join(artifactDir, QUARANTINE, pass, 'manifest.json');
+    return JSON.parse(readFileSync(path, 'utf8')) as Manifest;
+  }
+
+  function entryFor(artifactDir: string, pass: string, path: string): ManifestEntry {
+    const entry = manifest(artifactDir, pass).entries.find((candidate) => candidate.path === path);
     if (entry === undefined) throw new Error(`no quarantine entry for ${path}`);
     return entry;
   }
@@ -1992,25 +2007,25 @@ describe('write-containment — the quarantine record of what a guarded path wro
       label: 'sol',
     });
 
-    expect(result.quarantinePath).toBe(`artifact/${QUARANTINE}`);
-    const entry = entryFor(artifactDir, 'tracked-outside.txt');
+    expect(result.quarantinePath).toBe(`artifact/${QUARANTINE}/1`);
+    const entry = entryFor(artifactDir, '1', 'tracked-outside.txt');
     expect(entry.content_stored).toBe(true);
     expect(entry.content_truncated).toBeUndefined();
     expect(entry.content_path).toBe('content/tracked-outside.txt');
     expect(entry.error).toBeUndefined();
 
-    const storedPath = join(artifactDir, QUARANTINE, 'content/tracked-outside.txt');
+    const storedPath = join(artifactDir, QUARANTINE, '1', 'content/tracked-outside.txt');
     expect(readFileSync(storedPath, 'utf8')).toBe('LANE_WROTE_THIS\n');
     // The hash the manifest records is the hash of the bytes on disk, which the copy shares.
     const onDiskHash = git(root, ['hash-object', '--', 'tracked-outside.txt']).trim();
     expect(entry.hash).toBe(onDiskHash);
-    expect(git(root, ['hash-object', '--', `artifact/${QUARANTINE}/content/tracked-outside.txt`]).trim())
+    expect(git(root, ['hash-object', '--', `artifact/${QUARANTINE}/1/content/tracked-outside.txt`]).trim())
       .toBe(onDiskHash);
 
     // The patch is a real diff against HEAD, not a note about one.
     expect(entry.head_patch_path).toBe('patch-head/tracked-outside.txt.patch');
     const patchBody = readFileSync(
-      join(artifactDir, QUARANTINE, 'patch-head/tracked-outside.txt.patch'),
+      join(artifactDir, QUARANTINE, '1', 'patch-head/tracked-outside.txt.patch'),
       'utf8',
     );
     expect(patchBody).toContain('+LANE_WROTE_THIS');
@@ -2037,18 +2052,18 @@ describe('write-containment — the quarantine record of what a guarded path wro
       label: 'sol',
     });
 
-    const entry = entryFor(artifactDir, 'big-outside.bin');
+    const entry = entryFor(artifactDir, '2', 'big-outside.bin');
     expect(entry.content_truncated).toBe(true);
     expect(entry.content_stored).toBe(false);
     expect(entry.content_path).toBeUndefined();
-    expect(existsSync(join(artifactDir, QUARANTINE, 'content/big-outside.bin'))).toBe(false);
+    expect(existsSync(join(artifactDir, QUARANTINE, '2', 'content/big-outside.bin'))).toBe(false);
     // The hash and the patch survive the bound: only the bytes were traded away.
     expect(entry.hash).toBe(git(root, ['hash-object', '--', 'big-outside.bin']).trim());
     expect(entry.head_patch_path).toBe('patch-head/big-outside.bin.patch');
-    expect(existsSync(join(artifactDir, QUARANTINE, 'patch-head/big-outside.bin.patch'))).toBe(true);
+    expect(existsSync(join(artifactDir, QUARANTINE, '2', 'patch-head/big-outside.bin.patch'))).toBe(true);
   });
 
-  it('keeps the failure on that path entry and never throws when the quarantine destination is unwritable', () => {
+  it('keeps the failure on that path entry and never throws, and names no directory, when the quarantine destination is unwritable', () => {
     const { root, artifactDir } = baselineRepo();
     // Occupy the directory's name with a file, so every mkdir below it fails.
     writeFileSync(join(artifactDir, 'containment'), 'not a directory\n');
@@ -2066,6 +2081,7 @@ describe('write-containment — the quarantine record of what a guarded path wro
       artifactRelPosix: 'artifact',
       violations,
       preDispatchDirtyPaths: preDispatch,
+      iteration: 1,
     });
 
     expect(quarantine.dirPath).toBeNull();
@@ -2080,9 +2096,95 @@ describe('write-containment — the quarantine record of what a guarded path wro
       repoRoot: root,
       artifactDir,
       preDispatchDirtyPaths: preDispatch,
+      iteration: 1,
     });
     expect(result.violations.map((violation) => violation.path)).toEqual(['tracked-outside.txt']);
     expect(result.quarantinePath).toBeNull();
+  });
+
+  it('retains a manifest and a patch set per pass, each named on the pass that wrote it', () => {
+    const { root, artifactDir } = baselineRepo();
+    const firstPreDispatch = snapshotOutOfScopeDirtyPaths({ repoRoot: root, artifactDir });
+
+    // Pass 1 sees the file as this lane left it.
+    writeFileSync(join(root, 'tracked-outside.txt'), 'FIRST_PASS_WROTE_THIS\n');
+    const first = enforceWriteContainment({
+      repoRoot: root,
+      artifactDir,
+      preDispatchDirtyPaths: firstPreDispatch,
+      iteration: 1,
+    });
+
+    // Pass 2 is a second iteration of the same lane, so it captures its own baseline: without
+    // that, pass 1's preserved bytes are the baseline for pass 2 and the write it records
+    // reads as pre-existing. Pass 1's evidence on disk is what this asserts must not move.
+    const secondPreDispatch = snapshotOutOfScopeDirtyPaths({ repoRoot: root, artifactDir });
+    writeFileSync(join(root, 'tracked-outside.txt'), 'SECOND_PASS_WROTE_THIS\n');
+    const second = enforceWriteContainment({
+      repoRoot: root,
+      artifactDir,
+      preDispatchDirtyPaths: secondPreDispatch,
+      iteration: 2,
+    });
+
+    const firstDir = first.quarantinePath!;
+    const secondDir = second.quarantinePath!;
+    expect(firstDir).toBe(`artifact/${QUARANTINE}/1`);
+    expect(secondDir).toBe(`artifact/${QUARANTINE}/2`);
+    expect(secondDir).not.toBe(firstDir);
+
+    // One manifest per pass, and the pass that wrote each is the one named on the result.
+    expect(manifestsUnder(artifactDir)).toEqual([
+      `1/manifest.json`,
+      `2/manifest.json`,
+    ]);
+
+    // Pass 1's bytes and HEAD patch are untouched by the later pass.
+    expect(readFileSync(join(root, firstDir, 'content/tracked-outside.txt'), 'utf8'))
+      .toBe('FIRST_PASS_WROTE_THIS\n');
+    expect(readFileSync(join(root, firstDir, 'patch-head/tracked-outside.txt.patch'), 'utf8'))
+      .toContain('+FIRST_PASS_WROTE_THIS');
+    expect(entryFor(artifactDir, '1', 'tracked-outside.txt').hash)
+      .toBe(git(root, ['hash-object', '--', join(firstDir, 'content/tracked-outside.txt')]).trim());
+
+    // The second pass read the first pass's retained bytes as the state it changed from.
+    expect(readFileSync(join(root, secondDir, 'content/tracked-outside.txt'), 'utf8'))
+      .toBe('SECOND_PASS_WROTE_THIS\n');
+    expect(readFileSync(join(root, secondDir, 'patch-head/tracked-outside.txt.patch'), 'utf8'))
+      .toContain('+SECOND_PASS_WROTE_THIS');
+
+    // Two passes, four files: neither pass lost a record to the other.
+    expect(manifestsUnder(artifactDir)).toHaveLength(2);
+    expect(readdirSync(join(root, firstDir, 'patch-head'))).toEqual(['tracked-outside.txt.patch']);
+    expect(readdirSync(join(root, secondDir, 'patch-head'))).toEqual(['tracked-outside.txt.patch']);
+  });
+
+  it('keys the quarantine directory by attempt when a pass is a retry, so neither retry overwrites the other', () => {
+    const { root, artifactDir } = baselineRepo();
+    const preDispatch = snapshotOutOfScopeDirtyPaths({ repoRoot: root, artifactDir });
+    writeFileSync(join(root, 'tracked-outside.txt'), 'RETRY_WROTE_THIS\n');
+
+    const retryOne = enforceWriteContainment({
+      repoRoot: root,
+      artifactDir,
+      preDispatchDirtyPaths: preDispatch,
+      iteration: 3,
+      attempt: 1,
+    });
+    const retryTwo = enforceWriteContainment({
+      repoRoot: root,
+      artifactDir,
+      preDispatchDirtyPaths: preDispatch,
+      iteration: 3,
+      attempt: 2,
+    });
+
+    expect(retryOne.quarantinePath).toBe(`artifact/${QUARANTINE}/3-attempt-1`);
+    expect(retryTwo.quarantinePath).toBe(`artifact/${QUARANTINE}/3-attempt-2`);
+    expect(manifestsUnder(artifactDir)).toEqual([
+      '3-attempt-1/manifest.json',
+      '3-attempt-2/manifest.json',
+    ]);
   });
 });
 
@@ -2099,13 +2201,14 @@ describe('write-containment — the quarantine record of what a guarded path wro
  */
 describe('write-containment — quarantine never writes through a symlinked destination', () => {
   const QUARANTINE = 'containment/quarantine';
+  const PASS = '1';
 
-  it('writes nothing through a quarantine path that is a symlink out of the repository', () => {
+  it('writes nothing through a quarantine pass directory that is a symlink out of the repository', () => {
     const { root, artifactDir } = baselineRepo();
     const escapeTarget = mkdtempSync(join(tmpdir(), 'write-containment-escape-'));
     tempRoots.push(escapeTarget);
-    mkdirSync(join(artifactDir, 'containment'), { recursive: true });
-    symlinkSync(escapeTarget, join(artifactDir, QUARANTINE), 'dir');
+    mkdirSync(join(artifactDir, QUARANTINE), { recursive: true });
+    symlinkSync(escapeTarget, join(artifactDir, QUARANTINE, PASS), 'dir');
 
     const preDispatch = snapshotOutOfScopeDirtyPaths({ repoRoot: root, artifactDir });
     writeFileSync(join(root, 'tracked-outside.txt'), 'LANE_WROTE_THIS\n');
@@ -2121,12 +2224,14 @@ describe('write-containment — quarantine never writes through a symlinked dest
       artifactRelPosix: 'artifact',
       violations,
       preDispatchDirtyPaths: preDispatch,
+      iteration: 1,
     });
 
     // A file appearing here is the escape: the link carried the guard's own record out of the tree.
     expect(readdirSync(escapeTarget)).toEqual([]);
+    // The capture above the record runs first and is refused too, so there is no record to name.
     expect(quarantine.dirPath).toBeNull();
-    expect(quarantine.refused[0]?.path).toBe(`artifact/${QUARANTINE}`);
+    expect(quarantine.refused[0]?.path).toBe(`artifact/${QUARANTINE}/${PASS}`);
     expect(quarantine.refused[0]?.reason).toMatch(/outside the artifact|symlink/i);
     expect(quarantine.entries.every((entry) => entry.content_stored === false)).toBe(true);
 
@@ -2153,12 +2258,12 @@ describe('write-containment — quarantine never writes through a symlinked dest
     expect(readdirSync(escapeTarget)).toEqual([]);
   });
 
-  it('refuses a quarantine path that is a symlink even when it resolves back inside the tree', () => {
+  it('refuses a quarantine pass directory that is a symlink even when it resolves back inside the tree', () => {
     const { root, artifactDir } = baselineRepo();
     const decoy = join(artifactDir, 'decoy');
     mkdirSync(decoy, { recursive: true });
-    mkdirSync(join(artifactDir, 'containment'), { recursive: true });
-    symlinkSync(decoy, join(artifactDir, QUARANTINE), 'dir');
+    mkdirSync(join(artifactDir, QUARANTINE), { recursive: true });
+    symlinkSync(decoy, join(artifactDir, QUARANTINE, PASS), 'dir');
 
     const preDispatch = snapshotOutOfScopeDirtyPaths({ repoRoot: root, artifactDir });
     writeFileSync(join(root, 'tracked-outside.txt'), 'LANE_WROTE_THIS\n');
@@ -2174,11 +2279,14 @@ describe('write-containment — quarantine never writes through a symlinked dest
       artifactRelPosix: 'artifact',
       violations,
       preDispatchDirtyPaths: preDispatch,
+      iteration: 1,
     });
 
     // Resolving back inside does not make a link safe: the rule cannot depend on where it points.
+    // The refusal names the deepest destination the writer reached, not the whole quarantine
+    // tree: a link that deep is the one that would have carried a write out of the artifact dir.
     expect(readdirSync(decoy)).toEqual([]);
-    expect(quarantine.refused[0]?.path).toBe(`artifact/${QUARANTINE}`);
+    expect(quarantine.refused[0]?.path).toBe(`artifact/${QUARANTINE}/${PASS}`);
     expect(quarantine.refused[0]?.reason).toMatch(/symlink/i);
   });
 
@@ -2198,13 +2306,14 @@ describe('write-containment — quarantine never writes through a symlinked dest
       artifactRelPosix: 'artifact',
       violations,
       preDispatchDirtyPaths: preDispatch,
+      iteration: 1,
     });
 
     expect(quarantine.refused).toEqual([]);
-    expect(quarantine.dirPath).toBe(`artifact/${QUARANTINE}`);
-    expect(existsSync(join(artifactDir, QUARANTINE, 'manifest.json'))).toBe(true);
-    expect(existsSync(join(artifactDir, QUARANTINE, 'content/tracked-outside.txt'))).toBe(true);
-    expect(existsSync(join(artifactDir, QUARANTINE, 'patch-head/tracked-outside.txt.patch'))).toBe(true);
+    expect(quarantine.dirPath).toBe(`artifact/${QUARANTINE}/${PASS}`);
+    expect(existsSync(join(artifactDir, QUARANTINE, PASS, 'manifest.json'))).toBe(true);
+    expect(existsSync(join(artifactDir, QUARANTINE, PASS, 'content/tracked-outside.txt'))).toBe(true);
+    expect(existsSync(join(artifactDir, QUARANTINE, PASS, 'patch-head/tracked-outside.txt.patch'))).toBe(true);
   });
 });
 

@@ -12,16 +12,16 @@ _memory:
   continuity:
     packet_pointer: "scaffold/012-quarantine-retention-per-pass"
     last_updated_at: "2026-09-14T17:44:17Z"
-    last_updated_by: "scaffold"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    last_updated_by: "claude-fable-5-1"
+    recent_action: "Phase fix landed and criteria checked"
+    next_safe_action: "Commit once the full suite exits zero"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "[SESSION-ID]"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -77,9 +77,9 @@ Three to seven bullets, each checkable without opening another file. Copy them
 verbatim into the objective: nothing dereferences a path, so criteria left only
 here are invisible to whatever judges completion.
 
-- [ ] Two containment passes on the same lane leave two manifests and both sets of patches on disk, with the second pass's path distinct from the first
-- [ ] The same test against the unmodified writer leaves one manifest
-- [ ] The deep-loop runtime suite exits zero
+- [x] Two containment passes on the same lane leave two manifests and both sets of patches on disk, with the second pass's path distinct from the first
+- [x] The same test against the unmodified writer leaves one manifest
+- [x] The deep-loop runtime suite exits zero
 <!-- /ANCHOR:completion -->
 
 ---
@@ -95,11 +95,13 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| [Item] | [Pending/In Progress/Done] | [Command output, file:line, or artifact] |
+| Phase fix | Done | One DeepSeek V4.1 Flash max dispatch on cli-pi via the gateway; pass-keyed exclusive quarantine in `write-containment.ts`, two tests, ten assertions re-pointed; touched files plus typecheck exit 0 |
+| Full suite | Green | `npm test` in the runtime: 152 files, 2614 passed, 8 skipped, exit 0, 1205 s; contract drift and render tests rerun green after the protocol edit and recompile |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| [What diverged from the directive] | [Why, and what was done instead] |
+| Docs naming the fixed path | The protocol line and the parent plan named the old layout; both updated by the orchestrator and the deep/research contract regenerated |
+| Delegate self-caught defects | A patch write through a link at the pass directory, and an exclusive mkdir discarding a manifest; both fixed before return |
 <!-- /ANCHOR:log -->

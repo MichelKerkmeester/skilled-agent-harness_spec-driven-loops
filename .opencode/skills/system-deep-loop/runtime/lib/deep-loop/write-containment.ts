@@ -29,7 +29,7 @@
 // ╚══════════════════════════════════════════════════════════════════════════╝
 
 import { spawnSync } from 'node:child_process';
-import { appendFileSync, copyFileSync, lstatSync, mkdirSync, mkdtempSync, readFileSync, readlinkSync, realpathSync, rmSync, statSync, writeFileSync } from 'node:fs';
+import { appendFileSync, closeSync, copyFileSync, lstatSync, mkdirSync, mkdtempSync, openSync, readFileSync, readlinkSync, realpathSync, rmSync, statSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { basename, dirname, isAbsolute, join, relative, resolve, sep } from 'node:path';
 
@@ -221,6 +221,11 @@ export interface EnforceInput extends DetectOptions {
   /** When set, the containment_violation event is appended to this JSONL log. */
   stateLogPath?: string;
   iteration?: number;
+  /**
+   * Which dispatch of `iteration` this pass is, for a caller that retries one iteration.
+   * Part of the pass identity that keeps a retry's record from replacing the run it retried.
+   */
+  attempt?: number;
   label?: string;
   /**
    * Remedy forwarded to the revert. Omitted means 'preserve', so a caller that has not
@@ -253,6 +258,10 @@ export interface EnforceResult {
    * Repo-relative POSIX path of the directory holding what each guarded path left behind:
    * its bytes, its diff against HEAD and its diff against the pre-dispatch bytes. Null when
    * no path was quarantined, or when the directory could not be created.
+   *
+   * The directory belongs to THIS pass. It is keyed by the pass's iteration, and by its
+   * attempt as well when the caller sent one, so a later pass writes beside it instead of
+   * over it and the record of what an earlier pass saw stays where it was written.
    *
    * `recoveryHint` names the one patch a caller surfaces in its fatal message. This names the
    * record an operator reads afterwards, and it exists under both remedies.
@@ -304,6 +313,26 @@ export interface QuarantineResult {
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. PATH HELPERS
 // ─────────────────────────────────────────────────────────────────────────────
+
+/** Quarantine tree, relative to the artifact directory; one directory per containment pass. */
+const PASS_QUARANTINE_DIR = join('containment', 'quarantine');
+
+/**
+ * The identity of one containment pass: the iteration, plus the attempt when the caller
+ * retries one.
+ *
+ * It is a path segment, so a value the caller did not send reads as `unknown` rather than
+ * collapsing the directory back onto the shared tree, and a non-integer or non-finite value
+ * does the same: coercing one would put a `.`-bearing or `Infinity` segment in a path. Two
+ * passes that both send an iteration therefore land in two directories, and the segment still
+ * says which pass a reader is looking at.
+ */
+function passSegment(input: { iteration?: number; attempt?: number }): string {
+  const segment = (value: number | undefined): string =>
+    typeof value === 'number' && Number.isInteger(value) ? String(value) : 'unknown';
+  const iteration = segment(input.iteration);
+  return input.attempt === undefined ? iteration : `${iteration}-attempt-${segment(input.attempt)}`;
+}
 
 /** True when `child` is equal to or nested under `parent` (both resolved absolute). */
 function isSubpath(childAbs: string, parentAbs: string): boolean {
@@ -954,6 +983,8 @@ function captureRevertPatch(input: {
   artifactRelPosix: string;
   violations: ContainmentViolation[];
   iteration?: number;
+  /** Which dispatch of `iteration` this pass is; part of the pass directory's name when set. */
+  attempt?: number;
   /**
    * The remedy the caller applies after this capture. Omitted means 'preserve', matching the
    * remedy's own default: a capture made alongside no rollback must not land in a directory
@@ -974,27 +1005,43 @@ function captureRevertPatch(input: {
   if (!ok) return { path: null, error: 'git diff HEAD -- <paths> failed' };
   if (stdout.trim() === '') return { path: null };
 
-  // Coercing rather than trusting the declared type: the primary caller is untyped
-  // CommonJS, and this value becomes a path segment.
-  const iterationSegment =
-    typeof input.iteration === 'number' && Number.isFinite(input.iteration)
-      ? String(input.iteration)
-      : 'unknown';
-  const fileName = `${iterationSegment}-${new Date().toISOString().replace(/:/g, '-')}.patch`;
+  // The file name repeats the pass identity the quarantine directory carries, so two passes of
+  // the same lane leave two patch files rather than one name for the second to overwrite -- and
+  // the returned path can be read back to the pass that wrote it.
+  const fileName = `${passSegment(input)}-${new Date().toISOString().replace(/:/g, '-')}.patch`;
   // The directory name is a claim about what happened to the bytes, so it follows the remedy:
   // only 'restore' rolls a path back, and only a rollback's patch belongs under a name that
   // says so. Under 'preserve' the bytes stay exactly where they are, and the patch is the
   // record of an out-of-scope write.
   const patchDirName = input.mode === 'restore' ? 'containment-reverted' : 'containment-out-of-scope';
-  const absolutePath = join(input.artifactDir, patchDirName, fileName);
+  // Inside the pass's own quarantine directory: the combined patch is the same evidence the
+  // per-path records are, taken over every guarded path at once, so a later pass that cannot
+  // name this one would replace the record of a rollback that already happened.
+  const relativePath = toPosix(join(PASS_QUARANTINE_DIR, passSegment(input), patchDirName, fileName));
+  const absolutePath = join(input.artifactDir, relativePath);
+  // The same canonicality rule the per-path record holds: a lane can leave a link where the pass
+  // directory belongs, and a plain write through it would drop the patch outside the artifact
+  // tree while the caller keeps reporting a path inside it.
+  const refusal = quarantineDestinationRefusal(absolutePath, input.artifactDir);
+  if (refusal !== null) return { path: null, error: `patch destination refused: ${refusal}` };
+  // Created exclusively for the same reason the per-path records are: this is the only copy of
+  // what a rollback undid, so a name already taken is reported rather than written over.
+  let handle: number;
   try {
     mkdirSync(dirname(absolutePath), { recursive: true });
-    writeFileSync(absolutePath, stdout, 'utf8');
+    handle = openSync(absolutePath, 'wx');
   } catch (error) {
     return { path: null, error: `patch write failed: ${(error as Error).message}` };
   }
+  try {
+    writeFileSync(handle, stdout, 'utf8');
+  } catch (error) {
+    return { path: null, error: `patch write failed: ${(error as Error).message}` };
+  } finally {
+    closeSync(handle);
+  }
   const prefix = input.artifactRelPosix === '' ? '' : `${input.artifactRelPosix}/`;
-  return { path: `${prefix}${patchDirName}/${fileName}` };
+  return { path: `${prefix}${relativePath}` };
 }
 
 /**
@@ -1053,6 +1100,11 @@ function quarantineDestinationRefusal(destination: string, artifactDir: string):
  * only the part it covers: the caller keeps the message on that path's entry and goes on.
  * The canonicality check comes first, on the same contract: a destination that escapes gets
  * no write and a named reason rather than an exception.
+ *
+ * Every file here is created exclusively, so whether the destination already exists is decided
+ * by the filesystem rather than by a check this process could lose a race on. The pass
+ * directory itself is shared by the writes of one pass; the FILES under it are not, which is
+ * what keeps a later pass from replacing an earlier pass's record.
  */
 function writeQuarantineFile(
   destination: string,
@@ -1065,12 +1117,22 @@ function writeQuarantineFile(
     refuse(destination, refusal);
     return refusal;
   }
+  // The claim is taken before the directory it sits in: a name already held means the file is
+  // not this pass's to write, so it is reported and left alone rather than truncated under it.
+  let handle: number;
   try {
     mkdirSync(dirname(destination), { recursive: true });
+    handle = openSync(destination, 'wx');
+  } catch (error) {
+    return (error as Error).message;
+  }
+  try {
     write(destination);
     return null;
   } catch (error) {
     return (error as Error).message;
+  } finally {
+    closeSync(handle);
   }
 }
 
@@ -1104,6 +1166,13 @@ function quarantineOnePath(input: {
   const fail = (message: string): void => {
     if (failure === null) failure = message;
   };
+  // Every record below goes through the same guarded write, so a destination that cannot be
+  // written costs its own entry a message and nothing else. The label is what tells an operator
+  // reading a single failed entry WHICH of the three records it is about.
+  const guard = (destination: string, label: string, write: (absolutePath: string) => void): void => {
+    const writeError = writeQuarantineFile(destination, input.artifactDir, input.refuse, write);
+    if (writeError !== null) fail(`${label} failed: ${writeError}`);
+  };
 
   // The bytes as the lane left them, which is the last moment they exist: a later lane, a
   // commit or a checkout replaces them, and nothing else in the run keeps a copy.
@@ -1113,17 +1182,12 @@ function quarantineOnePath(input: {
       entry.content_truncated = true;
     } else {
       const contentPath = `content/${violation.path}`;
-      const writeError = writeQuarantineFile(
-        join(input.quarantineDir, contentPath),
-        input.artifactDir,
-        input.refuse,
-        (destination) => {
-          copyFileSync(violation.absolutePath, destination);
-        },
-      );
-      if (writeError !== null) {
-        fail(`content copy failed: ${writeError}`);
-      } else {
+      let copied = false;
+      guard(join(input.quarantineDir, contentPath), 'content copy', (destination) => {
+        copyFileSync(violation.absolutePath, destination);
+        copied = true;
+      });
+      if (copied) {
         input.lane.bytes += size;
         entry.content_stored = true;
         entry.content_path = contentPath;
@@ -1144,16 +1208,12 @@ function quarantineOnePath(input: {
     fail('git diff HEAD -- <path> failed');
   } else if (headDiff.stdout.trim() !== '') {
     const patchPath = `patch-head/${violation.path}.patch`;
-    const writeError = writeQuarantineFile(
-      join(input.quarantineDir, patchPath),
-      input.artifactDir,
-      input.refuse,
-      (destination) => {
-        writeFileSync(destination, headDiff.stdout, 'utf8');
-      },
-    );
-    if (writeError !== null) fail(`patch-head write failed: ${writeError}`);
-    else entry.head_patch_path = patchPath;
+    let written = false;
+    guard(join(input.quarantineDir, patchPath), 'patch-head write', (destination) => {
+      writeFileSync(destination, headDiff.stdout, 'utf8');
+      written = true;
+    });
+    if (written) entry.head_patch_path = patchPath;
   }
 
   // The diff against the bytes captured before the dispatch, for the paths that hold them:
@@ -1172,16 +1232,12 @@ function quarantineOnePath(input: {
       fail(`patch-baseline diff failed: ${held.error}`);
     } else {
       const patchPath = `patch-baseline/${violation.path}.patch`;
-      const writeError = writeQuarantineFile(
-        join(input.quarantineDir, patchPath),
-        input.artifactDir,
-        input.refuse,
-        (destination) => {
-          writeFileSync(destination, held.diff, 'utf8');
-        },
-      );
-      if (writeError !== null) fail(`patch-baseline write failed: ${writeError}`);
-      else entry.baseline_patch_path = patchPath;
+      let written = false;
+      guard(join(input.quarantineDir, patchPath), 'patch-baseline write', (destination) => {
+        writeFileSync(destination, held.diff, 'utf8');
+        written = true;
+      });
+      if (written) entry.baseline_patch_path = patchPath;
     }
   }
 
@@ -1190,15 +1246,17 @@ function quarantineOnePath(input: {
 }
 
 /**
- * Write what each guarded path left behind into `<artifactDir>/containment/quarantine/`:
- * `manifest.json`, the current bytes under `content/`, the diff against HEAD under
- * `patch-head/`, and the diff against the pre-dispatch bytes under `patch-baseline/`.
+ * Write what each guarded path left behind into `<artifactDir>/containment/quarantine/<pass>/`,
+ * one directory per containment pass: `manifest.json`, the current bytes under `content/`, the
+ * diff against HEAD under `patch-head/`, and the diff against the pre-dispatch bytes under
+ * `patch-baseline/`.
  *
  * The working tree keeps what the lane left, so this record is the only durable answer to
  * what an out-of-scope write actually said. The combined patch beside it answers what a
  * rollback undid, which is a different question, and neither the tree nor the loop state
- * holds the bytes themselves. A later pass over the same artifact dir replaces the manifest
- * and the files it names.
+ * holds the bytes themselves. A later pass over the same artifact dir writes into its OWN
+ * directory: it cannot replace this pass's manifest or the files it names, and the directory
+ * returned here is the one that answers what this pass saw.
  *
  * Never throws. A record that cannot be written is a degraded record, not a failed lane: the
  * failure is kept on that path's entry, the rest of the sweep continues, and the guard goes
@@ -1219,11 +1277,16 @@ export function quarantineViolations(input: {
   preDispatchDirtyPaths?: DirtyPathEntry[];
   /** Absolute directory the entries' `baselineContentPath` values were captured under. */
   baselineContentRoot?: string;
+  /** The iteration this pass belongs to; part of the pass directory's name. */
+  iteration?: number;
+  /** Which dispatch of `iteration` this pass is; part of the pass directory's name when set. */
+  attempt?: number;
   env?: NodeJS.ProcessEnv;
 }): QuarantineResult {
-  const quarantineDir = join(input.artifactDir, 'containment', 'quarantine');
+  const pass = passSegment(input);
+  const quarantineDir = join(input.artifactDir, PASS_QUARANTINE_DIR, pass);
   const prefix = input.artifactRelPosix === '' ? '' : `${input.artifactRelPosix}/`;
-  const dirPath = `${prefix}containment/quarantine`;
+  const dirPath = `${prefix}${toPosix(join(PASS_QUARANTINE_DIR, pass))}`;
   const baselineByPath = new Map(
     (input.preDispatchDirtyPaths ?? []).map((entry) => [toPosix(entry.path), entry]),
   );
@@ -1241,6 +1304,9 @@ export function quarantineViolations(input: {
     refuse(quarantineDir, dirRefusal);
   } else {
     try {
+      // The whole chain is created here, and an existing pass directory is reused rather than
+      // refused: the patch capture may already have created it for the same pass. What may not
+      // be replaced is a FILE, which every write below claims exclusively by name.
       mkdirSync(quarantineDir, { recursive: true });
     } catch (error) {
       mkdirError = (error as Error).message;
@@ -1270,20 +1336,20 @@ export function quarantineViolations(input: {
     // Every write above failed on this one reason, and each entry carries it.
     return { dirPath: null, entries, refused, error: `quarantine dir unavailable: ${mkdirError}` };
   }
+  // The manifest is the pass's completion marker, written last: a manifest on disk means the
+  // entries beside it are finished, which is what a reader of a later pass relies on.
   const manifestPath = join(quarantineDir, 'manifest.json');
   const manifestRefusal = quarantineDestinationRefusal(manifestPath, input.artifactDir);
   if (manifestRefusal !== null) {
     refuse(manifestPath, manifestRefusal);
     return { dirPath, entries, refused, error: `manifest refused: ${manifestRefusal}` };
   }
-  try {
-    writeFileSync(
-      manifestPath,
-      `${JSON.stringify({ timestamp: new Date().toISOString(), entries }, null, 2)}\n`,
-      'utf8',
-    );
-  } catch (error) {
-    return { dirPath, entries, refused, error: `manifest write failed: ${(error as Error).message}` };
+  const manifestBody = `${JSON.stringify({ timestamp: new Date().toISOString(), entries }, null, 2)}\n`;
+  const manifestError = writeQuarantineFile(manifestPath, input.artifactDir, refuse, (destination) => {
+    writeFileSync(destination, manifestBody, 'utf8');
+  });
+  if (manifestError !== null) {
+    return { dirPath, entries, refused, error: `manifest write failed: ${manifestError}` };
   }
   return { dirPath, entries, refused };
 }
@@ -1492,8 +1558,10 @@ function appendContainmentEvent(stateLogPath: string, event: ContainmentViolatio
  * guarded path left behind, save what a restore would undo as a patch, apply the remedy, and
  * (when stateLogPath is provided) append a containment_violation event. Returns the
  * violations, revert result, the event (null when clean), `recoveryHint` naming the saved
- * patch for the caller's fatal message, and `quarantinePath` naming the durable record.
- * The caller fails the iteration fail-closed when `violations.length > 0`.
+ * patch for the caller's fatal message, and `quarantinePath` naming the durable record. The
+ * record is per pass: pass the iteration (and the attempt, for a caller that retries one) and
+ * a second pass over the same lane adds a second manifest and a second set of patches rather
+ * than replacing the first. The caller fails the iteration fail-closed when `violations.length > 0`.
  */
 export function enforceWriteContainment(input: EnforceInput): EnforceResult {
   const detected = detectNewOutOfScopeViolations(input);
@@ -1532,6 +1600,7 @@ export function enforceWriteContainment(input: EnforceInput): EnforceResult {
     artifactRelPosix,
     violations: guarded,
     iteration: input.iteration,
+    attempt: input.attempt,
     mode: input.mode,
     env: input.env,
   });
@@ -1545,6 +1614,8 @@ export function enforceWriteContainment(input: EnforceInput): EnforceResult {
     violations: guarded,
     preDispatchDirtyPaths: input.preDispatchDirtyPaths,
     baselineContentRoot: input.baselineContentRoot,
+    iteration: input.iteration,
+    attempt: input.attempt,
     env: input.env,
   });
   const revertResult = revertOutOfScopeViolations({
