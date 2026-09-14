@@ -849,6 +849,71 @@ function readLineageStateRecords(loopType, lineageDir) {
   }
 }
 
+// Registry file a settled lineage is expected to have written, per loop type. Research also
+// has a compatibility name the merge reads, so either name counts as the lane's registry.
+const LINEAGE_REGISTRY_FILES = {
+  research: ['findings-registry.json', 'deep-research-findings-registry.json'],
+  review: ['deep-review-findings-registry.json'],
+};
+
+// Count the finding rows a lane recorded across its delta files. Rows other than findings are
+// ignored: only findings are what the registry exists to aggregate.
+function countDeltaFindingRecords(lineageDir) {
+  const deltaDir = path.join(lineageDir, 'deltas');
+  let fileNames;
+  try {
+    fileNames = fs.readdirSync(deltaDir).filter((name) => /^iter-\d+\.jsonl$/.test(name));
+  } catch {
+    return 0;
+  }
+
+  let count = 0;
+  for (const fileName of fileNames) {
+    let records;
+    try {
+      records = parseJsonlRecords(path.join(deltaDir, fileName));
+    } catch {
+      // A malformed delta is surfaced by the reducer's own corruption path; this advisory
+      // counts only the rows readable here.
+      continue;
+    }
+    for (const record of records) {
+      if (record && typeof record === 'object' && record.type === 'finding') {
+        count += 1;
+      }
+    }
+  }
+  return count;
+}
+
+function hasLineageKeyFindings(loopType, lineageDir) {
+  for (const registryName of LINEAGE_REGISTRY_FILES[loopType] ?? []) {
+    const registryPath = path.join(lineageDir, registryName);
+    if (!hasNonEmptyFile(registryPath)) {
+      continue;
+    }
+    try {
+      const registry = JSON.parse(fs.readFileSync(registryPath, 'utf8'));
+      if (hasNonEmptyArrayField(registry?.keyFindings)) {
+        return true;
+      }
+    } catch {
+      // An unreadable registry cannot evidence findings; the delta count still decides.
+    }
+  }
+  return false;
+}
+
+// The warning payload for a lane that fulfilled with fragments the merge cannot aggregate,
+// or null when the lane either recorded no findings or registered some.
+function findEmptyLineageRegistry(loopType, lineageDir) {
+  const deltaFindingCount = countDeltaFindingRecords(lineageDir);
+  if (deltaFindingCount === 0 || hasLineageKeyFindings(loopType, lineageDir)) {
+    return null;
+  }
+  return { delta_finding_count: deltaFindingCount };
+}
+
 // A lineage's synthesis stopReason is written by its model and cannot be held to an exact
 // spelling. The iteration-count check above already proves the lineage ran every iteration,
 // so this only needs to confirm the reason belongs to the max-iterations family (e.g.
@@ -4027,6 +4092,25 @@ async function main() {
         } catch {
           // Timestamp telemetry is advisory and cannot affect lineage fulfillment.
         }
+      }
+
+      // A fulfilled lane whose deltas hold finding records but whose registry holds none
+      // leaves the merge with evidence it cannot aggregate. Every artifact gate above
+      // already passed, so the lane keeps its verdict and the gap is named on the ledger.
+      const emptyRegistry = findEmptyLineageRegistry(loopType, lineageDir);
+      if (emptyRegistry) {
+        appendFanoutStatusLedger(ledgerPath, {
+          type: 'event',
+          event: 'lineage_registry_empty',
+          severity: 'warning',
+          at: new Date().toISOString(),
+          label: lineage.label,
+          run_id: runId,
+          loop_type: loopType,
+          spec_folder: specFolder,
+          gauges: latestGauges,
+          ...emptyRegistry,
+        });
       }
 
       finishLaneWorktree();

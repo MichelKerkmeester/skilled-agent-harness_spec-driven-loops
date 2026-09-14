@@ -129,6 +129,8 @@ const {
         maxEntries: number;
         fuzzyThreshold: number;
       };
+      keyFindings?: Array<{ id: string; text: string }>;
+      strategyWarnings?: string[];
     };
     strategy: string;
     dashboard: string;
@@ -834,5 +836,70 @@ describe('deep-research reduce-state recovery gate', () => {
     );
     expect(parsed.findings).not.toContain('Ruled-Out Direction');
     expect(parsed.ruledOut).toEqual(['Some ruled-out approach']);
+  });
+});
+
+describe('deep-research reduce-state strategy fallback', () => {
+  it('keeps an anchor-less strategy file unchanged while still writing registry findings', () => {
+    const specFolder = makeTempSpec();
+    const researchDir = join(specFolder, 'research');
+    const iterationDir = join(researchDir, 'iterations');
+    mkdirSync(iterationDir, { recursive: true });
+    writeFileSync(
+      join(iterationDir, 'iteration-001.md'),
+      [
+        '# Iteration 001: list dialects',
+        '',
+        '## Findings',
+        '',
+        '1. Numbered finding survives the fallback',
+        '2. Second numbered finding survives the fallback',
+        '',
+        '- Bulleted finding survives the fallback',
+        '',
+        '### F-1 - Structural finding survives the fallback',
+        '',
+        'Body text for the structural finding.',
+        '',
+      ].join('\n'),
+      'utf8',
+    );
+    // Deliberately no trailing newline: a rewrite normalizes one in, so byte identity
+    // proves the reducer left the leaf-authored bytes untouched.
+    const leafStrategy = [
+      '# Deep Research Strategy',
+      '',
+      '## 3. KEY QUESTIONS (remaining)',
+      '',
+      '- [ ] What should be checked?',
+      '',
+      '## 11. NEXT FOCUS',
+      '',
+      'list dialect coverage',
+    ].join('\n');
+    const strategyPath = join(researchDir, 'deep-research-strategy.md');
+    writeFileSync(strategyPath, leafStrategy, 'utf8');
+    writeState(specFolder, `${JSON.stringify({ type: 'iteration', run: 1, status: 'complete' })}\n`);
+    const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => undefined);
+
+    try {
+      const result = reduceResearchState(specFolder, { write: true });
+
+      expect(result.registry.keyFindings?.length ?? 0).toBeGreaterThan(0);
+      expect(result.registry.strategyWarnings).toEqual([
+        expect.stringContaining('key-questions'),
+      ]);
+      expect(warnSpy).toHaveBeenCalledWith(expect.stringContaining('key-questions'));
+      expect(readFileSync(strategyPath, 'utf8')).toBe(leafStrategy);
+
+      const persistedRegistry = JSON.parse(
+        readFileSync(join(researchDir, 'findings-registry.json'), 'utf8'),
+      ) as { keyFindings?: unknown[]; strategyWarnings?: unknown[] };
+      expect(persistedRegistry.keyFindings?.length ?? 0).toBeGreaterThan(0);
+      expect(persistedRegistry.strategyWarnings).toHaveLength(1);
+      expect(readFileSync(join(researchDir, 'deep-research-dashboard.md'), 'utf8').length).toBeGreaterThan(0);
+    } finally {
+      warnSpy.mockRestore();
+    }
   });
 });

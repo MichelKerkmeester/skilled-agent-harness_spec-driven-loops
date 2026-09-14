@@ -5046,3 +5046,77 @@ describe('fanout-run.cjs — a containment snapshot that loses to index.lock is 
     expect(String(contentionEvents[0].command)).toContain('--porcelain=v1');
   });
 });
+
+describe('fanout-run.cjs — a fulfilled lane whose deltas carry findings but whose registry is empty', () => {
+  it('warns on the ledger with the lane label and the delta finding count', async () => {
+    const hermetic = useHermeticEnv('empty-registry-warning');
+    const repoRoot = hermetic.tmpDir;
+    const binDir = makeTempDir('fanout-run-empty-registry-bin-');
+    const specFolder = 'specs/test-fanout-run-empty-registry';
+    const baseDir = join(repoRoot, specFolder, 'research', 'artifacts');
+
+    // The artifact tree exists before the dispatch so the runner's physical-path check
+    // resolves it against the child's physical working directory.
+    mkdirSync(baseDir, { recursive: true });
+
+    // The lane leaves every required artifact and three deltas of finding records with no
+    // findings registry: fulfilled, and unaggregatable at the same time.
+    writeFileSync(
+      join(binDir, 'opencode'),
+      [
+        '#!/bin/sh',
+        writeFanoutArtifactsShell(),
+        'if [ -n "$lineage_dir" ]; then',
+        '  mkdir -p "$lineage_dir/deltas"',
+        '  i=1',
+        '  while [ "$i" -le 3 ]; do',
+        '    printf \'{"type":"finding","id":"f-%s","label":"delta finding %s"}\\n\' "$i" "$i" > "$lineage_dir/deltas/iter-00$i.jsonl"',
+        '    i=$((i + 1))',
+        '  done',
+        'fi',
+        'echo "stub-done"',
+        'exit 0',
+        '',
+      ].join('\n'),
+      { mode: 0o755 },
+    );
+
+    const fanoutConfig = JSON.stringify({
+      executors: [{ label: 'empty-registry', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', count: 1 }],
+      concurrency: 1,
+    });
+
+    const result = await spawnCjs(
+      fanoutRunScript,
+      [
+        '--spec-folder', specFolder,
+        '--loop-type', 'research',
+        '--fanout-config-json', fanoutConfig,
+        '--base-artifact-dir', baseDir,
+        '--worktrees', 'false',
+        '--no-metadata-refresh',
+      ],
+      { cwd: repoRoot, env: envWithBin(hermetic, binDir), timeoutMs: 20_000 },
+    );
+
+    expect(result.exitCode, `${result.stdout}\n${result.stderr}`).toBe(0);
+    const payload = JSON.parse(result.stdout.split('\n').filter(Boolean).at(-1) ?? '{}') as {
+      results?: Array<{ status?: string }>;
+      summary?: { succeeded?: number; failed?: number; all_failed?: boolean };
+    };
+    expect(payload.summary).toMatchObject({ succeeded: 1, failed: 0, all_failed: false });
+    expect(payload.results?.[0]?.status).toBe('fulfilled');
+
+    const ledgerLines = readFileSync(join(baseDir, 'orchestration-status.log'), 'utf8')
+      .trim()
+      .split('\n')
+      .map((line) => JSON.parse(line) as Record<string, unknown>);
+    const registryEvents = ledgerLines.filter((event) => event.event === 'lineage_registry_empty');
+    expect(registryEvents).toHaveLength(1);
+    expect(registryEvents[0]).toMatchObject({
+      severity: 'warning',
+      label: 'empty-registry',
+      delta_finding_count: 3,
+    });
+  });
+});

@@ -12,16 +12,16 @@ _memory:
   continuity:
     packet_pointer: "system-deep-loop/045-fanout-write-containment-hardening/006-reducer-ordered-lists"
     last_updated_at: "2026-09-14T08:26:47Z"
-    last_updated_by: "scaffold"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    last_updated_by: "claude-fable-5-1"
+    recent_action: "Phase fix landed and criteria checked"
+    next_safe_action: "Commit once the full suite exits zero"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-09-14-007-reducer-ordered-lists"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -52,7 +52,7 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | The lineage reducer extracts ordered-list items as well as bullets. A fulfilled lane whose registry is empty while its deltas are not is reported on the ledger as a warning, never silently passed. |
+| D1 | The lineage reducer already reads numbered lists; the registry went missing because the reducer threw on a strategy file written without anchor markers before it wrote the registry it had built. It now keeps such a strategy file unchanged, records the warning, and writes the registry and dashboard. A fulfilled lane whose registry is empty while its deltas are not is reported on the ledger as a warning, never silently passed. |
 | D2 | Fixed by DeepSeek V4.1 Flash at max through the gateway on cli-pi, one dispatch for this phase alone, verified by the deep-loop suite before the next phase starts. |
 
 ### Operator copy
@@ -76,9 +76,9 @@ Three to seven bullets, each checkable without opening another file. Copy them
 verbatim into the objective: nothing dereferences a path, so criteria left only
 here are invisible to whatever judges completion.
 
-- [ ] The retained SWE-2 lineage re-reduces to a non-empty registry
-- [ ] A lane with three deltas and an empty registry emits a ledger warning naming the lane
-- [ ] Bullet-list extraction is unchanged, with the existing cases still green
+- [x] The retained SWE-2 lineage re-reduces to a non-empty registry
+- [x] A lane with three deltas and an empty registry emits a ledger warning naming the lane
+- [x] Bullet-list extraction is unchanged, with the existing cases still green
 <!-- /ANCHOR:completion -->
 
 ---
@@ -94,11 +94,13 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Phase fix | Pending | dispatched to DeepSeek V4.1 Flash max via the gateway on cli-pi when its turn comes |
+| Phase fix | Done | One DeepSeek V4.1 Flash max dispatch on cli-pi via the gateway; coded anchor errors and the catch in `reduce-state.cjs`, settle advisory in `fanout-run.cjs`, two tests; touched files plus typecheck exit 0 |
+| Full suite | Green | `npm test` in the runtime: 156 files, 2670 passed, 7 skipped, exit 0, 1333 s |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| none yet | - |
+| Premise corrected | List extraction already read numbered items; the reproduction showed the reducer throwing on the Devin-written strategy file before the registry write. D1 amended before dispatch |
+| SWE-2 replay | 27 key findings on a temp copy, strategy file untouched |
 <!-- /ANCHOR:log -->
