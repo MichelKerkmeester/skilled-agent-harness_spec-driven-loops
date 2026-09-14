@@ -1,14 +1,14 @@
 {
-  "run_id": "1789363775244-64o2qi",
+  "run_id": "1789366204116-kfp53e",
   "loop_type": "research",
   "spec_folder": "specs/system-deep-loop/045-fanout-write-containment-hardening",
   "base_artifact_dir": "specs/system-deep-loop/045-fanout-write-containment-hardening/research",
-  "total_cli_lineages": 3,
+  "total_cli_lineages": 1,
   "orphaned_lineages": [],
-  "total": 3,
-  "succeeded": 2,
+  "total": 1,
+  "succeeded": 0,
   "failed": 1,
-  "all_failed": false,
+  "all_failed": true,
   "completed_with_containment_advisory": 0,
   "gauges": {
     "lag": 0,
@@ -22,52 +22,9 @@
   },
   "isolation": {
     "enabled": true,
-    "isolated": 3,
+    "isolated": 1,
     "degraded": 0,
     "checkout_watched": 0,
     "checkout_writes": 0
-  },
-  "timestamp_anomalies": [
-    {
-      "label": "deepseek",
-      "state_log": "/Users/michelkerkmeester/worktrees/public/fanout-1789363775244-64o2qi-attempt-1-deepseek/specs/system-deep-loop/045-fanout-write-containment-hardening/research/lineages/deepseek/deep-research-state.jsonl",
-      "window": {
-        "start_at_iso": "2026-09-14T05:30:14.764Z",
-        "end_at_iso": "2026-09-14T05:41:42.790Z",
-        "tolerance_ms": 120000
-      },
-      "counts": {
-        "anomalous": 4,
-        "untimestamped": 1,
-        "unparseable": 0,
-        "total": 5
-      },
-      "sample": [
-        {
-          "index": 1,
-          "reason": "after_window",
-          "timestamp": "2026-09-14T06:20:00Z",
-          "deltaMs": 2177210
-        },
-        {
-          "index": 2,
-          "reason": "after_window",
-          "timestamp": "2026-09-14T06:40:00Z",
-          "deltaMs": 3377210
-        },
-        {
-          "index": 3,
-          "reason": "after_window",
-          "timestamp": "2026-09-14T07:00:00Z",
-          "deltaMs": 4577210
-        },
-        {
-          "index": 4,
-          "reason": "after_window",
-          "timestamp": "2026-09-14T07:10:00Z",
-          "deltaMs": 5177210
-        }
-      ]
-    }
-  ]
+  }
 }

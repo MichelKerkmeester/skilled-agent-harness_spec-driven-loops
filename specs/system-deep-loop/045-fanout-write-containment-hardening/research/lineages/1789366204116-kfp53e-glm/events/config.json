@@ -1,0 +1,21 @@
+{
+  "type": "config",
+  "topic": "Per-lineage git worktrees give fan-out lanes exact write isolation but cost roughly 1.6 GB of checkout and about 22 seconds of setup per lane, measured at six lanes. Research alternative mechanisms that preserve the same parallel fan-out and the same attribution guarantee at a fraction of that cost. Evaluate concretely against this repository: sparse or partial checkouts, shallow and reference clones, overlay or copy-on-write filesystems, a single worktree with per-lane write redirection, per-lane sandboxed working directories with a shared object store, and any approach that keeps one checkout but makes attribution exact without a full tree. For each, state setup cost, disk cost, whether attribution stays exact, what breaks (symlinked dependency roots, workspace self-links, compiled entry-point guards, the churn detector), and whether git worktree move or relocation survives.",
+  "maxIterations": 3,
+  "minIterations": 3,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "convergenceMode": "off",
+    "stopPolicy": "max-iterations",
+    "divergent": {}
+  },
+  "resource_map_present": false,
+  "resource_map": { "emit": true },
+  "specFolder": "specs/system-deep-loop/045-fanout-write-containment-hardening",
+  "runId": "fanout-glm-1789366204116-kfp53e",
+  "lineageId": "fanout-glm-1789366204116-kfp53e",
+  "sessionId": "fanout-glm-1789366204116-kfp53e",
+  "generation": 1,
+  "executor": "cli-opencode model=llmgateway/glm-5.3-flash",
+  "createdAt": "2026-09-14T06:26:29.000Z"
+}
