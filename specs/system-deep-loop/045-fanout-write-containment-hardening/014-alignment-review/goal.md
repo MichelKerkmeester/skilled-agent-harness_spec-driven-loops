@@ -1,5 +1,5 @@
 ---
-title: "Goal: review lane advisory and strict config"
+title: "Goal: alignment review"
 description: "The durable directive this packet executes against and the criteria that decide when it is done."
 trigger_phrases:
   - "packet goal"
@@ -10,23 +10,23 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "scaffold/013-review-lane-advisory-and-strict-config"
-    last_updated_at: "2026-09-14T17:44:17Z"
-    last_updated_by: "claude-fable-5-1"
-    recent_action: "Phase fix landed and criteria checked"
-    next_safe_action: "Commit once the full suite exits zero"
+    packet_pointer: "scaffold/014-alignment-review"
+    last_updated_at: "2026-09-14T22:56:44Z"
+    last_updated_by: "scaffold"
+    recent_action: "Authored the durable directive"
+    next_safe_action: "Execute against the completion criteria"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "[SESSION-ID]"
       parent_session_id: null
-    completion_pct: 100
+    completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: goal | v2.2 -->
-# Goal: review lane advisory and strict config
+# Goal: alignment review
 
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 
@@ -44,7 +44,7 @@ _memory:
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
 
-**Objective:** Stop the empty-registry advisory misfiring on review lanes, and reject the removed worktrees key instead of accepting it silently.
+**Objective:** Run a fifteen-iteration alignment review of the remediated tree and bind every confirmed finding to a phase or record it as reviewed.
 
 ### Decisions
 
@@ -52,9 +52,9 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | The empty-registry check reads the registry shape of the loop it inspects: key findings for research, open findings for review; a review lane with open findings raises no warning. |
-| D2 | The fan-out containment schema is strict: an unknown key such as the removed worktrees option fails config parsing with a message naming the key. |
-| D3 | Fixed by DeepSeek V4.1 Flash at max through the gateway on cli-pi, one dispatch for this phase alone, verified by the deep-loop suite before the next phase starts. |
+| D1 | The review reads six dimensions against the repo rules: sk-code and OpenCode alignment, feature catalog and playbook alignment, SKILL.md against its references and assets, deep-loop command alignment, deep-loop agent alignment, and general architecture. |
+| D2 | Executors in fallback order: DeepSeek V4.1 Flash max on cli-devin as the primary, three lanes of five iterations at concurrency three; a lane that fails moves to LUNA max fast on cli-codex, then to DeepSeek V4.1 Flash max on cli-pi via the gateway. The gateway serves no V4.2 Flash id, so V4.1 stands in for the third rung until one exists. |
+| D3 | No early stop: the stop policy is max-iterations with convergence off, and the merged verdict is strongest-restriction across lanes. |
 
 ### Operator copy
 
@@ -77,10 +77,9 @@ Three to seven bullets, each checkable without opening another file. Copy them
 verbatim into the objective: nothing dereferences a path, so criteria left only
 here are invisible to whatever judges completion.
 
-- [x] A review lane fixture with open findings in its registry and finding rows in its deltas raises no empty-registry warning, and a research lane with none still does
-- [x] A fan-out config carrying containment.worktrees is rejected with a message naming the key
-- [x] The retained review run's two lineage_registry_empty events are shown to be false positives by re-running the check over them
-- [x] The deep-loop runtime suite exits zero
+- [ ] Fifteen iterations completed across the lanes, each state record carrying the route-proof fields, merged with an attribution table naming kind and model per lane
+- [ ] Every P0 and P1 finding is verified against the repository and either bound to a new phase under this packet or recorded as reviewed with the reason
+- [ ] The parent goal's last criterion is checked with the verdict and the binding table cited
 <!-- /ANCHOR:completion -->
 
 ---
@@ -96,12 +95,11 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Phase fix | Done | One DeepSeek V4.1 Flash max dispatch on cli-pi via the gateway; per-loop field map in `fanout-run.cjs`, strict containment schema with branch-aware errors in `executor-config.ts`, three tests; touched files plus typecheck exit 0 |
-| Full suite | Green | `npm test` in the runtime: 152 files, 2619 passed, 8 skipped, exit 0, 1230 s |
+| [Item] | [Pending/In Progress/Done] | [Command output, file:line, or artifact] |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| Union error shape | Strict alone reported only Invalid input; the parser now names the closest branch's issue so the key surfaces |
+| [What diverged from the directive] | [Why, and what was done instead] |
 <!-- /ANCHOR:log -->

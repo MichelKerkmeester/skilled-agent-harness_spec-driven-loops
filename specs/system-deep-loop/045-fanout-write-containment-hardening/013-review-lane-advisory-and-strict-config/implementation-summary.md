@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+description: "The empty-registry advisory reads the right field per loop type and the containment schema rejects unknown keys by name."
 trigger_phrases:
   - "implementation summary"
   - "what shipped"
@@ -12,9 +12,9 @@ _memory:
   continuity:
     packet_pointer: "system-deep-loop/045-fanout-write-containment-hardening/013-review-lane-advisory-and-strict-config"
     last_updated_at: "2026-09-14T17:44:17Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialized Level 2 template"
-    next_safe_action: "Replace continuity placeholders"
+    last_updated_by: "claude-fable-5-1"
+    recent_action: "Fixed the review-lane advisory and made the containment schema strict; filled the packet docs"
+    next_safe_action: "Commit once the full suite exits zero"
     blockers: []
     key_files: []
     session_dedup:
@@ -46,20 +46,9 @@ _memory:
 ---
 
 <!-- ANCHOR:what-built -->
-## What Was Built
+## 2. WHAT WAS BUILT
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
-
-### Phase 6: review-lane-advisory-and-strict-config
-
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
-
-### Files Changed
-
-| File | Action | Purpose |
-|------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+The empty-registry advisory no longer misfires on review lanes, and a stale config key fails loudly. In `runtime/scripts/fanout-run.cjs` a per-loop field map lets `hasLineageRegisteredFindings` read `keyFindings` for research and `openFindings` for review, and the check is exported so it can be replayed over real lineages. In `runtime/lib/deep-loop/executor-config.ts` the containment object is strict, and because the fan-out config is a union whose branch failures collapse to a bare message, the parser now reports the closest branch's issue so the offending key, such as the removed `worktrees`, appears in the thrown error. Replayed over the two retained review lineages, the check returns no warning for either.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -67,7 +56,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-[How was this tested, verified and shipped? What was the rollout approach?]
+One dispatch to DeepSeek V4.1 Flash at max through the gateway on cli-pi. Both new tests were run against the unmodified code first: the review fixture raised the warning and the schema accepted the key. The delegate flagged the union normalization as its one judgment call, needed for the key to reach the message. The orchestrator reviewed the diff and ran the whole suite before committing.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -77,7 +66,8 @@ Explain what the user gains, not what files you touched.]
 
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| Map the field per loop rather than accept either field for both | A research lane whose registry only had open findings would be a different defect |
+| Name the closest union branch | Strictness that reports only Invalid input is not actionable |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -87,7 +77,11 @@ Explain what the user gains, not what files you touched.]
 
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| Review-lane and rejected-key tests against unmodified code | FAIL as expected on both |
+| Both touched test files plus typecheck | PASS, exit 0, 250 tests |
+| Retained review lineages | null for both |
+| Full deep-loop suite | `npm test` in the runtime: 152 files, 2619 passed, 8 skipped, exit 0, 1230 s |
+| `validate.sh --strict` on this phase | RESULT: PASSED |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -95,7 +89,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **Scope of strictness.** Only the containment object is strict; other config objects keep their existing leniency.
 <!-- /ANCHOR:limitations -->
 
 ---

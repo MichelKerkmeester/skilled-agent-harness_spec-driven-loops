@@ -523,6 +523,22 @@ describe('parseFanoutConfig', () => {
     })).toThrow(ExecutorConfigError);
   });
 
+  it('rejects an unknown containment key by name instead of silently dropping it', () => {
+    // The containment block once carried `worktrees`. Object parsing strips unknown keys,
+    // so a config still carrying it would parse into a run with no trace of the guard the
+    // caller believed they set; the key must fail by name so the stale setting is visible.
+    expect(() => parseFanoutConfig({
+      containment: { worktrees: true },
+      executors: [{ kind: 'native', label: 'opus' }],
+    })).toThrowError(/worktrees/);
+    expect(() => parseFanoutConfig({
+      containment: { worktrees: true },
+      models: [{ id: 'native', kind: 'native' }],
+      branches: [{ id: 'b1' }],
+      replicas: 1,
+    })).toThrowError(/worktrees/);
+  });
+
   it('accepts cli-codex as a fan-out lineage', () => {
     const config = parseFanoutConfig({
       executors: [{ kind: 'cli-codex', model: 'gpt-5.6-codex', label: 'codex' }],
