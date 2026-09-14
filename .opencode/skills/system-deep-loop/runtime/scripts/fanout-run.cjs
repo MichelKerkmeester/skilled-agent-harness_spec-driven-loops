@@ -2985,7 +2985,7 @@ async function main() {
     resolveClaudePermissionMode,
   } = await import('../lib/deep-loop/executor-config.ts');
   const { buildExecutorDispatchEnv, detectSameKindFromStack, CLI_DISPATCH_STACK_ENV } = await import('../lib/deep-loop/executor-audit.ts');
-  const { snapshotOutOfScopeDirtyPaths, detectNewOutOfScopeViolations, enforceWriteContainment, __internals: containmentInternals } = await import('../lib/deep-loop/write-containment.ts');
+  const { snapshotOutOfScopeDirtyPaths, detectNewOutOfScopeViolations, enforceWriteContainment, drainGitContentionWarnings, __internals: containmentInternals } = await import('../lib/deep-loop/write-containment.ts');
   const {
     DEFAULT_LINEAGE_TIMESTAMP_TOLERANCE_MS,
     checkLineageTimestampWindow,
@@ -3574,6 +3574,28 @@ async function main() {
       // such a write, only flag it.
       const containmentEnabled = true;
       // containmentRepoRoot is resolved once per run above.
+      // A snapshot that spends its whole retry budget losing to a neighbour's
+      // .git/index.lock returns exactly what a clean tree returns. The loss is reported
+      // on the ledger rather than left to read as a clean tree, and the lane's verdict
+      // is untouched: an empty snapshot stays the guard's fail-open answer.
+      const appendContainmentGitContentionWarnings = () => {
+        for (const warning of drainGitContentionWarnings()) {
+          appendFanoutStatusLedger(ledgerPath, {
+            type: 'event',
+            event: 'containment_git_contention',
+            severity: 'warning',
+            at: new Date().toISOString(),
+            label: lineage.label,
+            run_id: runId,
+            loop_type: loopType,
+            spec_folder: specFolder,
+            iteration: attempt,
+            command: warning.command,
+            attempts: warning.attempts,
+            gauges: latestGauges,
+          });
+        }
+      };
       // Sibling lineages run concurrently and write their own artifacts after this
       // leaf's baseline is captured. Those writes are indistinguishable from this
       // leaf's, so treating them as its violations reverts a sibling's legitimate
@@ -3627,6 +3649,7 @@ async function main() {
           unattributablePaths: laneUnattributablePaths,
         })
         : [];
+      appendContainmentGitContentionWarnings();
 
       // A lane can be isolated and still have its process started in the shared checkout: a
       // kind that reaches its tree through a directory argument keeps its cwd where it was, so
@@ -3642,17 +3665,22 @@ async function main() {
           unattributablePaths: laneUnattributablePaths,
         })
         : null;
+      appendContainmentGitContentionWarnings();
 
       // Churn sampling reuses the containment snapshot, exclusions included, so a
       // sibling lineage's in-flight writes are not mistaken for a foreign writer's.
       const sampleSharedCheckoutChurn = startSharedCheckoutChurnDetector({
         threshold: containmentChurnThreshold,
-        sampleDirtyPaths: () => snapshotOutOfScopeDirtyPaths({
-          repoRoot: laneContainmentRoot,
-          artifactDir: lineageDir,
-          unattributableDirs: [...staticUnattributableDirs, ...preDispatchForeignRunDirs],
-          unattributablePaths: laneUnattributablePaths,
-        }).map((entry) => entry.path),
+        sampleDirtyPaths: () => {
+          const dirtyPaths = snapshotOutOfScopeDirtyPaths({
+            repoRoot: laneContainmentRoot,
+            artifactDir: lineageDir,
+            unattributableDirs: [...staticUnattributableDirs, ...preDispatchForeignRunDirs],
+            unattributablePaths: laneUnattributablePaths,
+          }).map((entry) => entry.path);
+          appendContainmentGitContentionWarnings();
+          return dirtyPaths;
+        },
         onDetected: (count) => {
           // Latch preserve for the rest of the run, overriding the flag and the
           // config: a later quiet sample cannot un-prove the foreign writer this
@@ -3863,6 +3891,7 @@ async function main() {
           iteration: attempt,
           label: lineage.label,
         });
+        appendContainmentGitContentionWarnings();
         if (containment.advisories.length > 0) {
           appendFanoutStatusLedger(ledgerPath, {
             type: 'event',

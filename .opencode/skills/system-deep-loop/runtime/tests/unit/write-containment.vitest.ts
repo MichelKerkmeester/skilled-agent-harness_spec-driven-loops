@@ -10,7 +10,7 @@ import { mkdirSync, mkdtempSync, readdirSync, readFileSync, realpathSync, rmSync
 import { createRequire } from 'node:module';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { spawnSync } from 'node:child_process';
+import { spawn, spawnSync } from 'node:child_process';
 
 import { afterEach, describe, expect, it } from 'vitest';
 
@@ -22,6 +22,7 @@ import {
   quarantineViolations,
   buildContainmentViolationEvent,
   classifyViolation,
+  drainGitContentionWarnings,
   __internals,
   BASELINE_MAX_FILE_BYTES,
 } from '../../lib/deep-loop/write-containment.js';
@@ -125,6 +126,130 @@ describe('write-containment — snapshotOutOfScopeDirtyPaths', () => {
     tempRoots.push(notARepo);
     const dirty = snapshotOutOfScopeDirtyPaths({ repoRoot: notARepo, artifactDir: notARepo });
     expect(dirty).toEqual([]);
+  });
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// A neighbour's git write holds .git/index.lock for the length of its own command,
+// and a snapshot that loses that race returns exactly what a clean tree returns.
+// These cases drive the retry: contention that outlasts a moment must be waited
+// out, and a lock that outlasts the budget must fail open yet stay visible.
+// ─────────────────────────────────────────────────────────────────────────────
+
+function shQuote(value: string): string {
+  return `'${value.replace(/'/g, "'\\''")}'`;
+}
+
+/** Absolute path of the git this test resolves through PATH, embedded in the shim. */
+function resolveRealGit(): string {
+  const resolved = spawnSync('sh', ['-c', 'command -v git'], { encoding: 'utf8' }).stdout.trim();
+  if (resolved === '') throw new Error('git is not on PATH');
+  return resolved;
+}
+
+/**
+ * A `git` that fails `status` while the lock file exists, and delegates everything else.
+ *
+ * Current git treats its index refresh as optional: with the lock held it skips the
+ * refresh and exits 0, so a held lock alone no longer makes `git status` fail. Other
+ * git entry points still die with "Unable to create '.../index.lock': File exists",
+ * which is the failure family the retry exists for, so the shim reproduces it for
+ * the one call this fixture drives while leaving every other call on real git.
+ */
+function makeLockFailingGitShim(lockPath: string): string {
+  const shimDir = mkdtempSync(join(tmpdir(), 'write-containment-git-shim-'));
+  tempRoots.push(shimDir);
+  writeFileSync(
+    join(shimDir, 'git'),
+    [
+      '#!/bin/sh',
+      `LOCK=${shQuote(lockPath)}`,
+      'for arg in "$@"; do',
+      '  if [ "$arg" = "status" ] && [ -e "$LOCK" ]; then',
+      `    echo "fatal: Unable to create '${lockPath}': File exists." >&2`,
+      '    exit 128',
+      '  fi',
+      'done',
+      `exec ${shQuote(resolveRealGit())} "$@"`,
+      '',
+    ].join('\n'),
+    { mode: 0o755 },
+  );
+  return shimDir;
+}
+
+/** PATH with the shim first, so the module resolves the fixture's git. */
+function envWithGitShim(shimDir: string): NodeJS.ProcessEnv {
+  return { ...cleanGitEnv(), PATH: `${shimDir}:${process.env.PATH ?? ''}` };
+}
+
+/**
+ * Hold a real .git/index.lock from a detached process, then remove it.
+ *
+ * The remover has to be another process: the snapshot call is synchronous and blocks
+ * the event loop, so a timer in this process could not fire while it retries.
+ */
+function startLockHolder(lockPath: string, holdMs: number): void {
+  const script = [
+    "const fs = require('node:fs');",
+    `const lockPath = ${JSON.stringify(lockPath)};`,
+    "fs.writeFileSync(lockPath, '');",
+    `setTimeout(() => { try { fs.unlinkSync(lockPath); } catch {} }, ${holdMs});`,
+  ].join(' ');
+  spawn(process.execPath, ['-e', script], { detached: true, stdio: 'ignore' }).unref();
+}
+
+async function waitForPath(targetPath: string, timeoutMs = 5_000): Promise<void> {
+  const deadline = Date.now() + timeoutMs;
+  while (!existsSync(targetPath)) {
+    if (Date.now() > deadline) throw new Error(`timed out waiting for ${targetPath}`);
+    await new Promise((resolve) => setTimeout(resolve, 10));
+  }
+}
+
+describe('write-containment — a git snapshot waits out a neighbour’s index.lock', () => {
+  it('retries until a two-second lock is released and returns the real dirty snapshot', async () => {
+    const { root, artifactDir } = baselineRepo();
+    writeFileSync(join(root, 'tracked-outside.txt'), 'CHANGED\n');
+    const lockPath = join(root, '.git', 'index.lock');
+    const shimDir = makeLockFailingGitShim(lockPath);
+
+    startLockHolder(lockPath, 2_000);
+    await waitForPath(lockPath);
+
+    const dirty = snapshotOutOfScopeDirtyPaths({
+      repoRoot: root,
+      artifactDir,
+      env: envWithGitShim(shimDir),
+    });
+
+    expect(dirtySorted(dirty)).toEqual(['tracked-outside.txt']);
+  });
+
+  it('gives up within the retry budget, fails open, and reports the loss exactly once', () => {
+    const { root, artifactDir } = baselineRepo();
+    writeFileSync(join(root, 'tracked-outside.txt'), 'CHANGED\n');
+    const lockPath = join(root, '.git', 'index.lock');
+    const shimDir = makeLockFailingGitShim(lockPath);
+    writeFileSync(lockPath, '');
+
+    // Nothing before this case drives a lock, so an entry here would be a leak from
+    // another test; assert the empty start rather than draining it silently.
+    expect(drainGitContentionWarnings()).toEqual([]);
+
+    const dirty = snapshotOutOfScopeDirtyPaths({
+      repoRoot: root,
+      artifactDir,
+      env: envWithGitShim(shimDir),
+    });
+
+    expect(dirty).toEqual([]);
+    const drained = drainGitContentionWarnings();
+    expect(drained).toHaveLength(1);
+    expect(drained[0].command).toContain('status');
+    expect(drained[0].command).toContain('--porcelain=v1');
+    expect(drained[0].attempts).toBe(5);
+    expect(drainGitContentionWarnings()).toEqual([]);
   });
 });
 
