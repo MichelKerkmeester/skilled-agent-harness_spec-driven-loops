@@ -1,0 +1,11 @@
+{
+  "owner_pid": 51821,
+  "started_at_iso": "2026-09-14T06:26:31.125Z",
+  "ttl_ms": 300000,
+  "last_heartbeat_iso": "2026-09-14T06:26:31.125Z",
+  "packet_id": "specs/system-deep-loop/045-fanout-write-containment-hardening",
+  "runtime_kind": "main",
+  "phase": "running",
+  "last_activity_iso": "2026-09-14T06:26:31.125Z",
+  "acquire_nonce": "51821-1789367191126-c31d11e8-7d54-49b0-953e-38612dcd7ed0"
+}
