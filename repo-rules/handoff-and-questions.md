@@ -20,9 +20,14 @@ trigger_phrases:
   - "handing control back"
   - "the operator has to act"
   - "nothing is blocked on you"
+  - "state restatement cadence"
+  - "where were we"
+  - "catch me up"
+  - "closing contract"
+  - "one concrete next action"
 importance_tier: important
 contextType: reference
-version: 1.1.0.0
+version: 1.2.0.0
 ---
 
 # Rule: Handoff and questions
@@ -57,11 +62,26 @@ The handback is a report about what happens next, and it is a different document
 that ends at "what only you can verify" has told the operator that something is theirs without
 telling them what to do about it.
 
+**Restate the state when the reader must re-orient.** The cadence is triggered, not
+timed. It fires when the direction of the work changes, when two attempts at the same
+fix have failed or when the work resumes after a gap. The restatement says what is
+done, what is open and what changed. It replaces the previous stated state. It does not
+summarize the reply.
+
+The failure this prevents: a reader who returns mid task and trusts a stated state that
+the turns since have superseded.
+
 **Position it last.** The handback is the part read under time pressure, and a reader who
 stops halfway through a reply should still have hit it.
 
-The failure this prevents: a complete, accurate, well-evidenced report that the operator reads,
-agrees with, and takes no action on, because no action was ever named.
+The close of the turn is a contract with two clauses. Completed work is shown, as the
+changed file, the passing check or the output, so the claim is provable in the reply.
+What happens next is exactly one concrete action, in the form that lets the operator do
+it, or the one line that says nothing is.
+
+The failure this prevents: a close out the operator reads, agrees with and acts on
+nothing from, because the work was claimed instead of shown and the next steps
+scattered, no single concrete action among them.
 
 ---
 

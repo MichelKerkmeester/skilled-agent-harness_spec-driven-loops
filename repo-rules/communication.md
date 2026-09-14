@@ -1,11 +1,7 @@
 ---
 title: "Rule: Communication"
-description: "Write so the reader can act after one pass: one idea per sentence, plain words, no table in a reply, nothing that does not carry information."
+description: "Write so the reader can act after one pass: no table in a reply, nothing that does not carry information."
 trigger_phrases:
-  - "one idea per sentence"
-  - "atomic paragraphs"
-  - "vary the rhythm"
-  - "plain words"
   - "cut filler"
   - "empty opener"
   - "corporate language"
@@ -18,13 +14,22 @@ trigger_phrases:
   - "change modality not volume"
   - "I don't follow"
   - "in simple terms"
-  - "em dash"
-  - "remove the dashes"
-  - "punctuation"
   - "too abstract"
+  - "first line"
+  - "payload not label"
+  - "carry the reader forward"
+  - "paragraph progression"
+  - "number the steps"
+  - "multi-step work"
+  - "item cap"
+  - "cap the list"
+  - "two lines"
+  - "farewell closer"
+  - "tangent"
+  - "offer once at the end"
 importance_tier: important
 contextType: reference
-version: 1.0.0.0
+version: 1.2.0.0
 ---
 
 # Rule: Communication
@@ -48,7 +53,8 @@ that does not carry information.**
 
 This file governs how a reply reads. The shape of a decision you hand over, the verdict-first
 ordering and the recommendation, moved to [`presenting-decisions.md`](presenting-decisions.md)
-when this file reached its length ceiling.
+when this file reached its length ceiling. Sentence, word and punctuation mechanics live in
+[`prose-mechanics.md`](prose-mechanics.md).
 
 Delivery, not rigor. Nothing here licenses a softer claim than the evidence supports.
 
@@ -65,76 +71,20 @@ something, or take the work over. Everything else is working. A boundary reply t
 reads like working notes buries the verdict; working narration written as a boundary
 report costs the reader a page to learn you ran `grep`.
 
----
-
-## 2. SENTENCES AND PARAGRAPHS
-
-**One idea per sentence.** Short, declarative, subject-verb-object where that reads
-naturally. When a sentence stacks clauses, split it, nested qualification is where a
-reader loses the thread, and it is also where an author hides an unexamined claim.
-
-**Atomic paragraphs.** Each chunk stands alone. A reader who lands mid-reply should be
-able to act on the paragraph in front of them without reconstructing the four above it.
-
-**Vary the rhythm.** Uniform sentence length reads mechanical, and uniform structure
-hides emphasis, if every point is a bullet, no point is more important than any other.
-Prefer prose when a list would fragment a single argument; the list format implies the
-items are independent, and readers believe it.
-
-The failure this prevents: a technically correct reply the reader has to parse twice.
+The failure this prevents: the wrong register, the verdict buried in working notes or
+the working notes inflated into a report.
 
 ---
 
-## 3. WORDS
-
-Plain words by default. Reserve exact names for the things that have them, languages,
-frameworks, APIs, dependencies, commands, where precision is the point and a synonym
-would be wrong.
-
-Introduce unavoidable jargon one term at a time, in a sentence that defines it by use.
-Three new terms in one paragraph is a paragraph nobody finishes.
-
-The failure this prevents: the reader stops reading and starts decoding, and stops
-noticing whether they agree.
-
----
-
-## 4. PUNCTUATION THE READER TRIPS ON
-
-**Never use an em dash.** Replace it with a comma, a full stop or a colon, whichever the
-sentence actually wanted. A dash is usually hiding a decision you have not made: an aside
-that belongs in commas, a second sentence, or a list that belongs after a colon.
-
-Two more from the same family:
-
-- **No semicolon.** Two sentences, or a conjunction.
-- **No serial comma.** Drop it before the `and` or `or` that closes a list.
-
-**The failure this prevents:** dashes read as authored voice to a human and as a tell to a
-reader who has seen a lot of generated text. Either way they cost trust the content earned.
-
-This rule carries the ban because it fires on every substantive reply. The full standard,
-including the vocabulary and structural tells this one does not repeat, is
-the Human Voice Rules, which `sk-doc` routes to.
-Load all of it when writing a document.
-
-**In a reply, take its voice half and leave its document half.** The voice directives, the
-vocabulary lists and the tell lists apply to anything a reader reads, and a reply is read.
-The document-structure sections do not, because a reply has no headings, no front matter and
-no publish step. A message that presents the result of a long run is the case that decides
-this: it is a reply by delivery and a document by content, and it takes the voice half like
-any other reply.
-
----
-
-## 5. LENGTH
+## 2. LENGTH
 
 **Match length to the question.** A first answer rarely needs pages. A question that
 resolves in three lines gets three lines; opening with a wall of text answers a
 question nobody asked and buries the one they did.
 
 Length is earned by the reader's need, never by the work you did to get there. Effort
-spent is not a reason to spend the reader's attention.
+spent is not a reason to spend the reader's attention. The cut has a floor, see
+[`prose-mechanics.md`](prose-mechanics.md) §4.
 
 The failure this prevents: the answer is in there, and they did not find it.
 
@@ -143,9 +93,12 @@ reads as a form rather than an answer. One or two facts go in a sentence; parall
 in a bulleted list. A table earns its place in a file someone returns to, never in a reply
 they read once.
 
+The failure this prevents: the reader parses a grid to learn what one sentence would
+have said.
+
 ---
 
-## 6. CUT FILLER
+## 3. CUT FILLER
 
 Every sentence carries information. The recurring offenders, each of which reads as
 content and is not:
@@ -157,12 +110,14 @@ content and is not:
 - **Corporate and marketing register:** "robust", "seamless", "leverage", "best-in-class".
 - **Narrating the obvious:** announcing a tool call the reader can see the result of.
 
+Cutting these stops at the joints too, same floor, see [`prose-mechanics.md`](prose-mechanics.md) §4.
+
 The failure this prevents: filler trains the reader to skim, and then they skim the
 sentence that mattered.
 
 ---
 
-## 7. WHEN THE READER DID NOT FOLLOW
+## 4. WHEN THE READER DID NOT FOLLOW
 
 "I don't follow", "what?", "too abstract", "in simple terms": all the same signal, and
 the wrong response to every one of them is the same explanation at greater length.
@@ -178,7 +133,81 @@ because it was the same explanation.
 
 ---
 
-## 8. WHAT THIS RULE IS NOT
+## 5. THE FIRST LINE
+
+**The first line carries the payload.** The answer, the verdict or the action, in the
+first sentence, not a label for it. The positive test: read the first line on its own.
+If it told you the outcome, it did its job. Four habits break it. Announcing: "I will now
+check the tests". Labelling: "Overview:". The fragment opener, a "Context." that means
+nothing until the next line arrives. The set-up that promises the good part in a moment.
+
+The failure this prevents: a first line that announces, labels, fragments or sets up, and
+the payload waits.
+
+---
+
+## 6. HOW THE REPLY MOVES
+
+**Each paragraph carries the reader forward.** Standing alone is the floor, not the
+finish. A paragraph that only stops does not advance the answer: each one picks up where
+the last one landed, what changed, what it implies, what comes next.
+
+The failure this prevents: paragraphs that are each sound alone and carry nobody forward,
+so the reader assembles the order themselves.
+
+---
+
+## 7. NUMBERED STEPS
+
+**Number the steps when there is more than one.** Multi-step work, anything the reader
+must run, check or answer, gets its own number, 1, 2, 3. The numbers stop where the work
+stops. The number is the reader's bookmark: it says which step they are on and which ones
+they have done.
+
+The failure this prevents: the steps are all present, in one paragraph, and the reader
+cannot track which they have done.
+
+---
+
+## 8. THE VISIBLE ITEM CAP
+
+**Cap what the list shows, not what the reader learns.** Aim for five items, group what
+relates, rank the relevant first. The rest is retained, not discarded: the cap says what
+it holds back, "the first five of nine", and shows it when the reader asks or when it
+becomes what comes next. The cap is a cut too, it answers to the same floor, see
+[`prose-mechanics.md`](prose-mechanics.md) §4.
+
+The failure this prevents: a list that buries item six, or a cap that hides it, so the
+reader mistakes a shortened list for the complete one.
+
+---
+
+## 9. THE OUTCOME AND THE CLOSE
+
+**The outcome fits in two lines.** What the work concluded, what changed, what to do
+next, the reader has it by the second line, not buried mid-reply where the skim stops.
+End when the answer is done. The closing-deletion test: a last line that only asks
+whether anything else is needed, or recaps what the reply just said, deletes, and what
+dies with it was a closer. Two lines hold when the joints hold, the cut answers to the
+same floor, see [`prose-mechanics.md`](prose-mechanics.md) §4.
+
+The failure this prevents: the outcome hidden mid-reply, or the last line a farewell
+closer that adds nothing.
+
+---
+
+## 10. TANGENTS
+
+**Suppress the tangent.** The reply answers the question it was asked. A second issue
+worth raising gets offered once, at the end, in one line, not an answer of its own. The
+reader decides whether it happens.
+
+The failure this prevents: the second issue hijacks the reply, and the question that was
+asked waits.
+
+---
+
+## 11. WHAT THIS RULE IS NOT
 
 - **Not a constraint on rigor.** These shape delivery. Nothing here softens a claim, a
   caveat, or a verification standard owned by
@@ -193,9 +222,8 @@ because it was the same explanation.
 
 ---
 
-## 9. SELF-CHECK
+## 12. SELF-CHECK
 
-- [ ] No em dash, no semicolon, no serial comma.
 - [ ] Every sentence carries information; no empty opener, restated summary, or unnamed warning survived.
 - [ ] Length matches what the reader asked, not what the work cost.
 - [ ] Where the reader said they did not follow, I changed modality rather than adding words.

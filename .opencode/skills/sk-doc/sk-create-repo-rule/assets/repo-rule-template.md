@@ -28,6 +28,8 @@ not become a rule, and finding that out after writing one is the expensive order
 **Aim for 160 lines or fewer.** Up to 200 is fine, up to 250 is allowed if the rule can
 say why it needs the room, and over 250 means split it or cut it.
 
+A rule earns the example line when it names a habit.
+
 ---
 
 ## 2. THE TEMPLATE
@@ -63,6 +65,10 @@ version: 1.0.0.0
 vaguer rule than you have.>**
 
 <Optional: one short paragraph that sharpens the sentence. Not a restatement.>
+
+<Optional: one example line, the tempting wrong move beside its repair.>
+
+- **Wrong: <the tempting move>.** <The repair: what to do instead.>
 
 ---
 

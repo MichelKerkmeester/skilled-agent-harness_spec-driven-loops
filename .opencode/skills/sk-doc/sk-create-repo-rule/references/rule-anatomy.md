@@ -82,6 +82,7 @@ These scale with the rule's subject. A generator sets no target for them.
 | Self-check items | One per obligation the body actually creates |
 | Total lines | Follows section count, which follows the subject |
 | Inter-rule cross-references | Sparse; rules are more independent than the cross-reference doctrine implies. See section 4 |
+| Example-and-repair line | Optional: the tempting wrong move beside its repair, earned when the rule names a habit. The template carries it and the shipped corpus predates it |
 
 ---
 
