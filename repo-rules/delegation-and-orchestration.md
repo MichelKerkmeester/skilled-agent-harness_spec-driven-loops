@@ -1,6 +1,6 @@
 ---
 title: "Rule: Delegation and orchestration"
-description: "Delegating makes you the orchestrator; brief with evidence, and no single model verdict closes a question."
+description: "Delegating makes you the orchestrator; brief with evidence, and no single model's verdict closes a question."
 trigger_phrases:
   - "orchestrate posture"
   - "one model is one opinion"

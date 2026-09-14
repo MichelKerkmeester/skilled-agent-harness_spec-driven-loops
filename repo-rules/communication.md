@@ -1,6 +1,6 @@
 ---
 title: "Rule: Communication"
-description: "Write so the reader can act after one pass: one idea per sentence, plain words, nothing that does not carry information."
+description: "Write so the reader can act after one pass: one idea per sentence, plain words, no table in a reply, nothing that does not carry information."
 trigger_phrases:
   - "one idea per sentence"
   - "atomic paragraphs"

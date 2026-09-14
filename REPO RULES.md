@@ -38,16 +38,16 @@ is not.
 | You are about to… | Load | It settles |
 |-------------------|------|-----------|
 | Add a file, module, class, interface, option, layer, or dependency · generalize something that works · write "flexible", "future-proof", "scalable", "extensible", "might need", "best practice", "while we're here" · add a test beyond the coverage floor | [`prevent-overengineering.md`](repo-rules/prevent-overengineering.md) | Whether this should exist at all, and at what size |
-| Touch a file outside the ask · fix something noticed in passing · rename, reformat, or delete beyond the named area · deviate from an approved plan · decide what to do with the rest when part of the work is blocked | [`scope-discipline.md`](repo-rules/scope-discipline.md) | What is yours to change, and how to raise what isn't |
+| Touch a file outside the ask · fix something noticed in passing · change something else because it would make the fix easier · rename, reformat, or delete beyond the named area · deviate from an approved plan · decide what to do with the rest when part of the work is blocked | [`scope-discipline.md`](repo-rules/scope-discipline.md) | What is yours to change, and how to raise what isn't |
 | Say "done", "works", "fixed", "passing", "no regressions" · report a result · quote a number · act on a tool's or sub-agent's success report · close out a turn | [`evidence-and-proof.md`](repo-rules/evidence-and-proof.md) | What counts as proof, how a green run lies, what an honest close-out contains |
 | Hand work to another runtime: a CLI executor, sub-agent, fan-out lineage, or deep loop · Decide whether to hand work to another runtime at all · compose the prompt one will act on · accept or quote what one returned · answer a judgment question from your own reading alone | [`delegation-and-orchestration.md`](repo-rules/delegation-and-orchestration.md) | The orchestrating posture, what a brief must carry, why one model is one opinion |
 | Delete, overwrite, migrate, deploy, publish, send, install · force-push or rewrite history · change a shared contract · touch auth, data, or config · make any call that leaves this machine · truncate · touch branches, tags, or reflogs | [`blast-radius.md`](repo-rules/blast-radius.md) | Reversibility, the rollback sentence, when to stop for a yes |
 | Diagnose a failure · make a red check green · attempt the same fix twice · add a special case, retry, sleep, or broadened catch · call a failure a flake, infra, or pre-existing | [`root-cause-and-debugging.md`](repo-rules/root-cause-and-debugging.md) | Fixing the producer instead of the symptom, and when to level up to the seam |
 | Answer without certainty · contradict the operator · fill a gap with a plausible guess · hit a contradiction between two things that must both be true · name a path, flag, function, version, or number you have not verified | [`uncertainty-and-honesty.md`](repo-rules/uncertainty-and-honesty.md) | Confidence bands, UNKNOWN, contradiction halts |
-| Write any substantive reply · the reader says they did not follow | [`communication.md`](repo-rules/communication.md) | How a reply reads: sentence shape, plain words, punctuation, length, filler |
+| Write any substantive reply · the reader says they did not follow | [`communication.md`](repo-rules/communication.md) | How a reply reads: sentence shape, plain words, punctuation, length, filler, and no table in a reply |
 | Present a recommendation, a fork, or a trade-off · answer a complex or ambiguous request · start a multi-step stretch the reader cannot see inside · report what a long run found · list every option you considered | [`presenting-decisions.md`](repo-rules/presenting-decisions.md) | Verdict first, one recommended path, saying where you are going before a long stretch |
-| End a turn · report work done, blocked, or partly done · ask the operator anything · state a fork or two acceptable paths · continue past a decision nobody made | [`handoff-and-questions.md`](repo-rules/handoff-and-questions.md) | What is the operator's to do next, and when a question becomes a structured choice |
-| Wire, rewire or remove a mode in a parent-hub skill · edit a hub's registry, router, `ROUTER.md`, `graph-metadata.json` or `SKILL.md` mode table · report that a mode is registered, routed, reachable or integrated · quote a per-hub gate result | [`skill-hub-routing.md`](repo-rules/skill-hub-routing.md) | The two routing stages, what "integrated" requires, and checking the hub you actually changed |
+| End a turn · report work done, blocked, or partly done · ask the operator anything · end a turn on a fork or two acceptable paths · continue past a decision nobody made | [`handoff-and-questions.md`](repo-rules/handoff-and-questions.md) | What is the operator's to do next, and when a question becomes a structured choice |
+| Wire, rewire or remove a mode in a parent-hub skill · edit a hub's registry, router, `ROUTER.md`, `graph-metadata.json` or `SKILL.md` mode table · report that a mode is registered, routed, reachable or integrated · quote a per-hub gate result · create a new skill under a hub, or refactor one that already lives there | [`skill-hub-routing.md`](repo-rules/skill-hub-routing.md) | The two routing stages, what "integrated" requires, and checking the hub you actually changed |
 
 ---
 
@@ -56,16 +56,16 @@ is not.
 | Rule | Summary |
 |------|---------|
 | [Overengineering](repo-rules/prevent-overengineering.md) | Build the smallest thing that solves the stated problem; take a costlier move only by naming what fails at the cheaper one. |
-| [Scope discipline](repo-rules/scope-discipline.md) | The requested scope is the deliverable, adjacent problems get named, not fixed. |
-| [Evidence and proof](repo-rules/evidence-and-proof.md) | A claim is only as strong as the observation behind it. |
+| [Scope discipline](repo-rules/scope-discipline.md) | The requested scope is the deliverable. Adjacent problems get named, not fixed. |
+| [Evidence and proof](repo-rules/evidence-and-proof.md) | A claim is only as strong as the observation behind it, and a receipt confirms only what could have contradicted it. Distinguish observed from derived from inferred. |
 | [Delegation and orchestration](repo-rules/delegation-and-orchestration.md) | Delegating makes you the orchestrator; brief with evidence, and no single model's verdict closes a question. |
 | [Blast radius](repo-rules/blast-radius.md) | Size effort to what the change can break; no irreversible step without a named rollback and a yes. |
-| [Root cause](repo-rules/root-cause-and-debugging.md) | Fix the producer, not the symptom; every fix names the mechanism. |
-| [Uncertainty and honesty](repo-rules/uncertainty-and-honesty.md) | Never fabricate; mark the confidence you actually have. |
-| [Communication](repo-rules/communication.md) | Write so the reader can act after one pass: one idea per sentence, plain words, nothing that does not carry information. |
-| [Presenting decisions](repo-rules/presenting-decisions.md) | When the reader has to decide, put the verdict first and recommend one path. |
+| [Root cause](repo-rules/root-cause-and-debugging.md) | Fix the producer, not the symptom; every fix names the mechanism that caused the failure. |
+| [Uncertainty and honesty](repo-rules/uncertainty-and-honesty.md) | Never fabricate; mark the confidence you actually have and halt on a contradiction. |
+| [Communication](repo-rules/communication.md) | Write so the reader can act after one pass: one idea per sentence, plain words, no table in a reply, nothing that does not carry information. |
+| [Presenting decisions](repo-rules/presenting-decisions.md) | When the reader has to decide or act on what you found, lead with the verdict, recommend one path, and say where you are going before a long stretch of work. |
 | [Handoff and questions](repo-rules/handoff-and-questions.md) | End every turn by naming what is now the operator's to do, in the form that lets them do it. |
-| [Hub routing](repo-rules/skill-hub-routing.md) | A hub projects one advisor identity and routes in two stages; registered is not routed, and a gate run without its hub argument checks something else. |
+| [Hub routing](repo-rules/skill-hub-routing.md) | A parent hub projects one advisor identity and routes in two stages. A nested mode registered on one surface is not reachable, and a per-hub gate run without its hub argument reports on a hub you did not touch. |
 
 Each file expands `AGENTS.md` and is bounded by it: where a rule file appears to
 permit something `AGENTS.md` restricts, `AGENTS.md` wins and the rule file is wrong.
@@ -77,10 +77,11 @@ permit something `AGENTS.md` restricts, `AGENTS.md` wins and the rule file is wr
 **In:** how to think and act, restraint, scope, evidence, risk, diagnosis, honesty,
 the posture to hold when work is handed to another runtime, how the resulting reply
 reads, what you may claim about wiring you have changed, and how a turn hands control
-back to the operator. Delivery joined the list
-when `AGENTS.md` §8 moved down; it is the one rule here whose trigger is every
-substantive reply rather than a specific action, and §8 keeps the two clauses that
-must bind even when nothing loads.
+back to the operator. The delegation posture was the first widening and Delivery the
+second, added when `AGENTS.md` §8 moved down. Delivery is one of two rules here whose
+trigger is a whole turn rather than a specific action, the other being the handback rule,
+which fires at every turn's end, and §8 keeps the two clauses that must bind even when
+nothing loads.
 
 **Out:** skill routing, workflow selection, spec-folder mechanics, and the *mechanics*
 of agent and CLI dispatch: which agent, which command, which model, which flags.

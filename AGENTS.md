@@ -107,7 +107,7 @@ Trigger: EACH new user message (re-evaluate even in ongoing conversations)
 
 Skills are on-demand domain expertise invoked through Gate 2 (§2). Invoking a skill means reading its `SKILL.md` and the resources ITS router resolves for the task at hand, then following those instructions to completion. Read a `references/`, `scripts/`, or `assets/` file when the skill's own routing points at it — not the whole bundle by default; ingesting a skill tree wholesale costs more context than it returns and is not what this rule asks for. A skill already in context is not re-invoked.
 
-**Advisor metadata placement.** These filenames also name spec-folder continuity metadata (§6), under a separate schema. Never the same file, never interchangeable. At a skill root, `graph-metadata.json` is the advisor identity file and is required on parent-hub and standalone roots alike. `description.json`, `mode-registry.json` and `hub-router.json` are hub-only, and forbidden on a standalone root. None of them belong at a mode, packet or `shared/` sublevel. Full contract, including the fleet audit: `.opencode/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md`.
+**Advisor metadata placement.** These filenames also name spec-folder continuity metadata (§6) under a separate schema, never the same file and never interchangeable. Which of them a hub root and a standalone root must carry, and which each forbids, is the metadata contract's: `.opencode/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md`.
 
 **A parent hub projects one advisor identity, and its modes route in two stages.** The advisor scores the hub, then the hub's `hub-router.json` and root `ROUTER.md` pick the mode and its leaves. A mode's routing class decides how it is reached, so check the class before assuming. **Never report a mode as routed because a registry entry exists — check both stages, against the hub you actually changed.** Class table and surface list: `.opencode/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md`, expanded by [`skill-hub-routing.md`](repo-rules/skill-hub-routing.md).
 
@@ -260,14 +260,14 @@ The Completion Verification Rule remains an additional requirement for spec-pack
 #### COMPLETION VERIFICATION RULE [HARD] BLOCK
 Trigger: Claiming "done", "complete", "finished", "works"
 1. Run `bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh <spec-folder> --strict` (exit 0 = pass, including a run that reported warnings · 1 = user error, meaning the run never validated anything · 2 = validation error · 3 = system error). A warning is advice and does not fail the run: `--strict` selects the rules that only run under strict, and no longer decides what a warning means. A rule that should block says so itself by reporting an error.
-2. Load `checklist.md` → verify ALL items → mark `[x]` with evidence.
+2. Work the Verification Checklist inside `tasks.md` and every row of `acceptance-criteria.md` → mark each with evidence. The acceptance criteria are the closure gate.
 3. Reconcile completion metadata so packet docs do not claim conflicting completion states — covers:
    - `spec.md` status and shipped/current-state claims.
-   - `plan.md` / `tasks.md` / `checklist.md` evidence rows.
+   - `plan.md` / `tasks.md` / `acceptance-criteria.md` evidence rows.
    - `handover.md` or `_memory.continuity` fields when present.
    - `implementation-summary.md` final state, validation evidence, and continuation notes.
 4. When `SPECKIT_COMPLETION_FRESHNESS=true`, completion claims must also pass `CONTINUITY_FRESHNESS`: the stored `session_dedup.fingerprint` matches recomputed content and packet-scoped paths are clean. The rule decides its own applicability at its entry point, so every caller gets the same answer, and it reports nothing when the flag is off. A stale result reports a warning, which does not block; `SPECKIT_COMPLETION_FRESHNESS_ENFORCE` escalates it to an error, which does.
-- Skip: Level 1 tasks (checklist.md is optional at every level).
+- Skip: Level 1 tasks (`acceptance-criteria.md` is scaffolded from Level 2 and is the closure gate there).
 
 ##### Invoking validate.sh
 
@@ -281,9 +281,7 @@ The four traps and their exact commands are `system-spec-kit`'s, in
 Trigger: "save context", "save memory", `/speckit:save`
 - If spec folder established at Gate 3 → USE IT (don't re-ask). Carry-over applies ONLY to memory saves
 - If NO folder and Gate 3 never answered → HARD BLOCK → Ask user
-- **Compose the session JSON yourself** rather than letting the generator reconstruct one — you have strictly better information about your own session than any reconstruction does. Method selection, execution paths and validation checkpoints: `system-spec-kit/references/memory/save-workflow.md`.
-- **The save writes metadata, not prose.** The continuity writer `node .opencode/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js` refreshes the generated metadata pair, and canonical doc content is owned by a different path. Editing the continuity frontmatter directly is a legitimate shortcut when only continuity changed.
-- **Read the post-save quality review before calling the save done.** HIGH issues must be patched by hand; the review is emitted, not advisory decoration.
+- Who composes the session JSON, what the continuity writer touches and what it leaves to the canonical docs, and the post-save quality review whose HIGH issues must be patched by hand: all three are the command's and the workflow's, at `/speckit:save` and `system-spec-kit/references/memory/save-workflow.md`.
 
 #### GOAL POSTURE RULE [ALWAYS ON]
 Trigger: a session bound to a spec packet, on every turn.
@@ -300,7 +298,7 @@ Trigger: a session bound to a spec packet, on every turn.
 - [ ] Passed Gate 5? Repository has a `REPO RULES.md` → matched the action in its trigger table and LOADED every rule file it names?
 - [ ] Saving continuity? Using the continuity writer `generate-context.js` (not Write tool)?
 - [ ] Aligned with ORIGINAL request? No scope drift?
-- [ ] Claiming completion? `checklist.md` verified?
+- [ ] Claiming completion? Every `acceptance-criteria.md` row Met, Waived or Superseded?
 
 ---
 
@@ -460,7 +458,7 @@ Entry points only. Where a Flow column is present it names an order that is not 
 | **Deep review** | `/deep:review` | loop → convergence → `review-report.md` → memory save |
 | **Deep AI Council** | `/deep:ai-council` | deliberate → critique → converge → artifacts → gate |
 | **Improvement / benchmarks** | `/deep:agent-improvement` · `/deep:model-benchmark` | — |
-| **Claim completion** | Final-State Verification | `validate.sh <spec-folder> --strict` → checklist all items → reconcile metadata |
+| **Claim completion** | Final-State Verification | `validate.sh <spec-folder> --strict` → acceptance criteria all closed → reconcile metadata |
 | **Goal state** | the bound packet's `goal.md` | durable slice is the source → resend stripped on change → never stop for it |
 | **End session** | `/speckit:save` | → `handover.md` update → continuation prompt |
 | **Trigger index maintenance** | `node .opencode/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs` | run after trigger phrases change; commit the regenerated index and manifest together; `/doctor speckit-retrieval` reports a pair one run did not produce |
@@ -472,11 +470,8 @@ Entry points only. Where a Flow column is present it names an order that is not 
 ##### Documentation & Honesty
 
 > Expanded by [`uncertainty-and-honesty.md`](repo-rules/uncertainty-and-honesty.md).
-| Mandate                  | Details                                                |
-| --------------------------| --------------------------------------------------------|
-| **Never fabricate**      | Use "UNKNOWN" when uncertain                           |
-| **Clarify threshold**    | Ask if confidence < 80% (see §2 Confidence Thresholds) |
-| **Explicit uncertainty** | Prefix claims with "I'M UNCERTAIN ABOUT THIS:"         |
+- **Never fabricate.** Mark what you do not know as UNKNOWN and flag a shaky claim as uncertain. The exact wording is [`uncertainty-and-honesty.md`](repo-rules/uncertainty-and-honesty.md)'s.
+- **Clarify threshold:** ask below 80% confidence, per the §2 Confidence Thresholds table, which is the single copy of that scale.
 
 ##### Dispatch Rules
 
