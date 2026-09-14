@@ -54,14 +54,15 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | Preserve-and-quarantine is the default containment remedy. Restore is opt-in through a runner flag and a config field, and is documented as safe only on a single-operator checkout. |
-| D2 | Detection is unchanged. The scope rules, the unattributable carve-outs, the symlink-escape handling and the regenerable-state exemption stay exactly as they are; this packet changes the remedy. |
-| D3 | Under restore, a path already dirty before dispatch returns to its pre-dispatch bytes, never to HEAD. That requires the baseline to store content, bounded at 2 MiB per file and 64 MiB per lane. |
-| D4 | A lane with complete artefacts and containment findings settles as completed with advisory, not failed. Containment findings never overwrite a lane's own verdict. |
-| D5 | Superseded by D7. Lineages ran in detached ephemeral worktrees outside sk-git's numbered namespace, runner-created and removed. |
-| D6 | Superseded by D7. Isolation was opt-in before removal (ADR-006 supersedes ADR-004). |
-| D7 | Attribution is not a requirement. Worktrees, the cone and their three phases are removed; a neighbour's untracked write is advisory under preserve, never fatal. (ADR-007.) |
-| D8 | Each defect the research surfaced is a phase here, fixed by DeepSeek V4.1 Flash at max via the gateway on cli-pi, one phase per dispatch, suite-verified before the next. |
+| D1 | Preserve-and-quarantine is the default remedy. Restore is opt-in through a runner flag and a config field, documented as safe only on a single-operator checkout. |
+| D2 | Detection is unchanged: scope rules, unattributable carve-outs, symlink-escape handling and the regenerable-state exemption stay; this packet changes the remedy. |
+| D3 | Under restore, a path dirty before dispatch returns to its pre-dispatch bytes, never to HEAD; the baseline stores content, bounded at 2 MiB per file and 64 MiB per lane. |
+| D4 | A lane with complete artefacts and containment findings settles as completed with advisory, not failed; containment findings never overwrite a lane's verdict. |
+| D5 | Superseded by D7: lineages ran in detached ephemeral worktrees. |
+| D6 | Superseded by D7: isolation became opt-in first (ADR-006). |
+| D7 | Attribution is not a requirement. Worktrees, the cone and their phases are removed; a neighbour's untracked write is advisory under preserve, never fatal (ADR-007). |
+| D8 | Each defect the research surfaced is a phase, fixed by DeepSeek V4.1 Flash max via the gateway on cli-pi, one dispatch per phase, suite-verified before the next. |
+| D9 | After remediation, phase 014 runs a 15-iteration alignment review (sk-code and OpenCode, feature catalog and playbooks, SKILL.md against references and assets, deep-loop commands and agents, architecture) against the repo rules; executors by fallback: DeepSeek V4.1 Flash max on cli-devin, LUNA max fast on cli-codex, DeepSeek V4.2 Flash max on cli-pi via the gateway. |
 
 ### Operator copy
 
@@ -74,9 +75,9 @@ whenever anything above the log changes.
 <!-- ANCHOR:binding -->
 ## 2. BINDING
 
-**Read the child goal before working a phase.** Each is authoritative for its phase; decisions above outrank child detail.
+**Read the child goal before working a phase**; decisions above outrank it.
 
-Phases 001 through 013 under this folder, each with its own `goal.md`; 008 through 013 remediate the ten-iteration deep review's confirmed findings.
+Phases 001 through 014 under this folder, each with its own `goal.md`: 008 to 013 remediate the first review, 014 is the alignment review.
 <!-- /ANCHOR:binding -->
 
 ---
@@ -85,15 +86,16 @@ Phases 001 through 013 under this folder, each with its own `goal.md`; 008 throu
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [x] A lane that writes outside its lineage directory on a default run leaves every such file byte-identical, proven by a unit test that hashes before and after
-- [x] A quarantine directory exists after such a lane holding the manifest, the content and the patch against HEAD
-- [x] A complete lane with containment findings settles as completed with advisory and is counted separately in the orchestration summary
-- [x] A fan-out with the worktree option on completes against an uncommitted packet, with every lineage directory present in the main checkout and no worktree left behind
-- [x] The deep-loop runtime Vitest suite exits zero, including the incident reproduction case
-- [x] Nothing in the four command YAMLs or the five documentation surfaces still describes the revert-and-fail model
-- [x] Every phase 001 through 007 validates PASSED with its own criteria checked
-- [x] The deep-loop suite exits zero after the last phase lands
+- [x] A default-run lane writing outside its lineage directory leaves every such file byte-identical, proven by a hashing test
+- [x] A quarantine directory after such a lane holds the manifest, the content and the patch against HEAD
+- [x] A complete lane with containment findings settles as completed with advisory, counted separately in the summary
+- [x] A worktree-option fan-out completed against an uncommitted packet with every lineage in the main checkout and no worktree left
+- [x] The deep-loop runtime Vitest suite exits zero, incident reproduction included
+- [x] No command YAML or documentation surface still describes the revert-and-fail model
+- [x] Every phase 001 through 007 validates PASSED with its criteria checked
+- [x] The suite exits zero after the last phase lands
 - [ ] Each confirmed P0 and P1 review finding is closed by a phase, and a fresh review of the remediated tree has no active P0
+- [ ] The 15-iteration alignment review has run and each confirmed finding is bound to a phase or recorded as reviewed
 <!-- /ANCHOR:completion -->
 
 ---

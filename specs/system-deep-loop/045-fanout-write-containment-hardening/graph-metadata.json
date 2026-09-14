@@ -229,7 +229,7 @@
     ],
     "causal_summary": "The fan-out runner snapshots dirty paths outside the lineage directory before dispatch, and after the lane it treats every tracked file that changed outside that directory as the leaf's write",
     "created_at": "2026-09-08T17:47:19Z",
-    "last_save_at": "2026-09-14T17:47:28.373Z",
+    "last_save_at": "2026-09-14T18:16:51.794Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -242,7 +242,7 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:834dee657de48185aba115cd17ac79c46e3c4cbd47dff4586e1bf453193ebe23",
+    "source_fingerprint": "sha256:7f25c1653a7bbb03472645f24c91ef8c7f4792137e011c2e9a016c0a2802a82f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b001a0cd63230d217fa0ac8b623ebf4d68ebce161cbbe66ad7a31431ff299034",
