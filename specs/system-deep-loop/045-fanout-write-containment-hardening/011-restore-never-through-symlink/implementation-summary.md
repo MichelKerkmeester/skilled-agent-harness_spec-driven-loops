@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+description: "A baseline restore never writes through a symlink at the violated path; the refusal is recorded and the lane's outcome is unchanged."
 trigger_phrases:
   - "implementation summary"
   - "what shipped"
@@ -12,9 +12,9 @@ _memory:
   continuity:
     packet_pointer: "system-deep-loop/045-fanout-write-containment-hardening/011-restore-never-through-symlink"
     last_updated_at: "2026-09-14T17:44:16Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialized Level 2 template"
-    next_safe_action: "Replace continuity placeholders"
+    last_updated_by: "claude-fable-5-1"
+    recent_action: "Guarded the baseline restore against symlinks and filled the packet docs"
+    next_safe_action: "Commit once the full suite exits zero"
     blockers: []
     key_files: []
     session_dedup:
@@ -46,20 +46,9 @@ _memory:
 ---
 
 <!-- ANCHOR:what-built -->
-## What Was Built
+## 2. WHAT WAS BUILT
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
-
-### Phase 4: restore-never-through-symlink
-
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
-
-### Files Changed
-
-| File | Action | Purpose |
-|------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+The opt-in restore no longer writes through a symlink. In `runtime/lib/deep-loop/write-containment.ts` the baseline write branch of `revertOutOfScopeViolations` checks the violated path with lstat first; a symlink is left exactly as the lane set it, the action is recorded as `preserved_in_head` with `ok: true` and a `reason` naming the link, and no bytes are written. The path stays a violation on the event, so the lane's outcome is unchanged. The HEAD restore path needed no guard because `git checkout` replaces the link itself.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -67,7 +56,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-[How was this tested, verified and shipped? What was the rollout approach?]
+One dispatch to DeepSeek V4.1 Flash at max through the gateway on cli-pi. The link test was run against the unmodified restore first, where the outside file was overwritten through the link, and a negative control against the HEAD module in a scratch copy reproduced the same. The orchestrator reviewed the diff and ran the whole suite before committing.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -77,7 +66,8 @@ Explain what the user gains, not what files you touched.]
 
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| Record the refusal as preserved with a reason | The path stays a violation; the operator sees why nothing was written |
+| Leave the HEAD path unguarded | git checkout replaces the link, confirmed, so a guard there would be dead code |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -87,7 +77,10 @@ Explain what the user gains, not what files you touched.]
 
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| Link test against unmodified restore | FAIL as expected: outside target overwritten |
+| Both touched test files plus typecheck | PASS, exit 0, 214 tests |
+| Full deep-loop suite | `npm test` in the runtime: 152 files, 151 passed and 1 failed, 2611 tests passed; the one failure is another session's untracked cli-hermes adapter test still in progress, unrelated to this change; the containment and fan-out files passed (214 tests), typecheck exit 0 |
+| `validate.sh --strict` on this phase | RESULT: PASSED |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -95,7 +88,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **Scope.** Only the baseline write branch changed; the containment finding for a symlinked path is unchanged.
 <!-- /ANCHOR:limitations -->
 
 ---
