@@ -59,13 +59,25 @@ Frozen choices. Changing one is an amendment.
 | D3 | Under restore, a path already dirty before dispatch returns to its pre-dispatch bytes, never to HEAD. That requires the baseline to store content, bounded at 2 MiB per file and 64 MiB per lane. |
 | D4 | A lane with complete artefacts and containment findings settles as completed with advisory, not failed. Containment findings never overwrite a lane's own verdict. |
 | D5 | Each lineage runs in a detached ephemeral worktree outside sk-git's numbered namespace, created and removed by the runner, never through the numbered allocator. |
-| D6 | Isolation is on by default, opt-out per run (`--worktrees false`), with a per-attempt tally in the summary. (ADR-004.) |
+| D6 | Isolation is off by default, opt-in with `--worktrees true`; 1.6 GB per lane is a cost to choose, not inherit. (ADR-006 supersedes ADR-004.) |
+| D7 | The isolation mechanism is a skip-worktree cone, not sparse checkout: 1.5 s and 52 MB per lane, no repository-wide git configuration. |
+| D8 | Each defect the research surfaced is a phase here, fixed by DeepSeek V4.1 Flash at max via the gateway on cli-pi, one phase per dispatch, suite-verified before the next. |
 
 ### Operator copy
 
 The operator's copy judges completion, not this file. Resend this file in chat
 whenever anything above the log changes.
 <!-- /ANCHOR:directive -->
+
+---
+
+<!-- ANCHOR:binding -->
+## 2. BINDING
+
+**Read the child goal before working a phase.** Each is authoritative for its phase; decisions above outrank child detail.
+
+Phases 001 through 008 under this folder, each with its own `goal.md`.
+<!-- /ANCHOR:binding -->
 
 ---
 
@@ -79,6 +91,8 @@ whenever anything above the log changes.
 - [x] A fan-out with the worktree option on completes against an uncommitted packet, with every lineage directory present in the main checkout and no worktree left behind
 - [x] The deep-loop runtime Vitest suite exits zero, including the incident reproduction case
 - [x] Nothing in the four command YAMLs or the five documentation surfaces still describes the revert-and-fail model
+- [ ] Every phase 001 through 008 validates PASSED with its own criteria checked
+- [ ] The deep-loop suite exits zero after the last phase lands
 <!-- /ANCHOR:completion -->
 
 ---

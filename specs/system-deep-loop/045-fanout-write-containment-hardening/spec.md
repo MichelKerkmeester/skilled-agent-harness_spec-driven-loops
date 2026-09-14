@@ -100,6 +100,25 @@ A fan-out lineage never destroys work it cannot prove it wrote, a completed lane
 
 ---
 
+<!-- ANCHOR:phase-map -->
+## Phase Documentation Map
+
+Follow-on work the alternatives research surfaced. Each phase is one defect or one mechanism, fixed by its own dispatch, verified before the next starts.
+
+| Phase | Folder | Status | Description |
+|-------|--------|--------|-------------|
+| 1 | `001-skip-worktree-cone/` | draft | Give each fan-out lane a worktree that materializes only what it reads, at a fraction of the full checkout, with no repository-wide git configuration change. |
+| 2 | `002-iteration-record-dedupe/` | draft | Stop the runner rejecting a completed lane because its state log holds each iteration record twice. |
+| 3 | `003-publish-manifest-provenance/` | draft | Make every published lineage say which executor kind and model produced it. |
+| 4 | `004-eighth-dependency-root/` | draft | Provision the dependency root the shared-path list omits. |
+| 5 | `005-churn-cumulative-arm/` | draft | Detect a neighbour that dirties the shared checkout slowly, not only in bursts. |
+| 6 | `006-shared-root-write-escape/` | draft | Keep a lane write inside its own tree even when the path it writes runs through a shared dependency root. |
+| 7 | `007-reducer-ordered-lists/` | draft | Register findings a lane wrote as a numbered list, and flag a lane that registered nothing. |
+| 8 | `008-reclaim-relocated-trees/` | draft | Let the reclaim sweep find and judge a lane worktree that was moved outside the base. |
+<!-- /ANCHOR:phase-map -->
+
+---
+
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 

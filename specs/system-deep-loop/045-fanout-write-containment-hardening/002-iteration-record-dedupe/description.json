@@ -1,0 +1,24 @@
+{
+  "specFolder": "system-deep-loop/045-fanout-write-containment-hardening/002-iteration-record-dedupe",
+  "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+  "keywords": [
+    "broken",
+    "missing",
+    "inefficient",
+    "sentences",
+    "describing",
+    "specific",
+    "pain",
+    "point"
+  ],
+  "lastUpdated": "2026-09-14T08:26:01.558Z",
+  "specId": "002",
+  "folderSlug": "iteration-record-dedupe",
+  "parentChain": [
+    "system-deep-loop",
+    "045-fanout-write-containment-hardening"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}
