@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+description: "A leaf-written strategy file without anchor markers no longer costs a lane its findings registry, and a fulfilled lane that registered nothing is named on the ledger."
 trigger_phrases:
   - "implementation summary"
   - "what shipped"
@@ -12,9 +12,9 @@ _memory:
   continuity:
     packet_pointer: "system-deep-loop/045-fanout-write-containment-hardening/006-reducer-ordered-lists"
     last_updated_at: "2026-09-14T08:24:20Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialized Level 2 template"
-    next_safe_action: "Replace continuity placeholders"
+    last_updated_by: "claude-fable-5-1"
+    recent_action: "Made the reducer write the registry past a missing anchor and filled the packet docs"
+    next_safe_action: "Commit once the full suite exits zero"
     blockers: []
     key_files: []
     session_dedup:
@@ -48,7 +48,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## 2. WHAT WAS BUILT
 
-Nothing yet. This phase is planned; its change lands in `deep-research/scripts/reduce-state.cjs` and is verified by the deep-loop suite before the next phase starts.
+A leaf that writes its strategy file without the anchor markers no longer costs a lane its registry. The two anchor throws in `deep-research/scripts/reduce-state.cjs` now carry a code, and `reduceResearchState` catches only that code: it leaves the strategy file byte-identical, records the message in `registry.strategyWarnings`, and still writes the registry and dashboard it had built. At fulfilled settle, `runtime/scripts/fanout-run.cjs` counts finding rows in the lane's deltas and, when the registry holds no key findings, appends a `lineage_registry_empty` ledger warning with the label and the count. The retained SWE-2 lineage now reduces to 27 key findings.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -56,7 +56,7 @@ Nothing yet. This phase is planned; its change lands in `deep-research/scripts/r
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-[How was this tested, verified and shipped? What was the rollout approach?]
+The orchestrator reproduced the missing registry on a temp copy of the SWE-2 lineage first, which overturned the goal's stated premise and amended D1. One dispatch to DeepSeek V4.1 Flash at max through the gateway on cli-pi then made the change, ran both new tests red first, the touched files, the cli reducer consumer and typecheck, and the reproduction. The orchestrator reviewed the diff and ran the whole deep-loop suite before committing.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -66,7 +66,9 @@ Nothing yet. This phase is planned; its change lands in `deep-research/scripts/r
 
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| Catch only the coded anchor error | Every other reducer failure still fails the reduce; the gap is an input problem, not a reducer bug |
+| Skip the strategy write rather than rewrite partially | A partial rewrite would mangle the leaf's file; its bytes stay untouched |
+| Warn at settle, never fail | The lane's artifacts passed every gate; the merge simply cannot aggregate what was not registered |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -76,7 +78,12 @@ Nothing yet. This phase is planned; its change lands in `deep-research/scripts/r
 
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| Anchor-less fixture against unmodified reducer | FAIL as expected: missing anchor throw |
+| Ledger test against unmodified runner | FAIL as expected: zero warning events |
+| Both touched test files plus typecheck | PASS, exit 0, 161 tests |
+| Reproduction on the SWE-2 copy | 27 key findings, one strategy warning, strategy file unchanged |
+| Full deep-loop suite | `npm test` in the runtime: 156 files, 2670 passed, 7 skipped, exit 0, 1333 s |
+| `validate.sh --strict` on this phase | RESULT: PASSED |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -84,7 +91,7 @@ Nothing yet. This phase is planned; its change lands in `deep-research/scripts/r
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **Strategy content.** An anchor-less strategy file is not updated by the reducer, so its questions and next-focus sections reflect only what the leaf wrote.
 <!-- /ANCHOR:limitations -->
 
 ---

@@ -2544,7 +2544,11 @@ function replaceAnchorSection(content, anchorId, heading, body) {
   const replacement = buildAnchorSection(anchorId, heading, body);
 
   if (!pattern.test(content)) {
-    throw new Error(`Missing anchor section ${anchorId} in strategy file`);
+    // A leaf-authored strategy file may legitimately omit the machine anchors, so callers
+    // distinguish this input gap from a real reducer failure by the error code.
+    const error = new Error(`Missing anchor section ${anchorId} in strategy file`);
+    error.code = 'MISSING_ANCHOR';
+    throw error;
   }
 
   return content.replace(pattern, replacement);
@@ -2560,7 +2564,9 @@ function upsertAnchorSectionBefore(content, anchorId, heading, body, beforeAncho
 
   const beforePattern = new RegExp(`\\n?<!-- ANCHOR:${beforeAnchorId} -->`, 'm');
   if (!beforePattern.test(content)) {
-    throw new Error(`Missing insertion anchor ${beforeAnchorId} in strategy file`);
+    const error = new Error(`Missing insertion anchor ${beforeAnchorId} in strategy file`);
+    error.code = 'MISSING_ANCHOR';
+    throw error;
   }
 
   return content.replace(beforePattern, `\n${replacement}\n$&`);
@@ -3008,7 +3014,22 @@ function reduceResearchState(specFolder, options = {}) {
     newInfoRatio: ratioHistory,
     score: scoreHistory,
   }, evidenceRecords.at(-1));
-  const strategy = updateStrategyContent(strategyContent, registry, iterationFiles, records);
+  // A strategy file the leaf authored without the machine-owned anchor markers cannot be
+  // rewritten section by section, and a partial rewrite would mangle it. That gap is a
+  // warning-class input problem: keep the leaf's bytes untouched, record why on the
+  // registry, and still emit the registry and dashboard the reduce already computed.
+  let strategyWarnings = [];
+  let strategy = strategyContent;
+  try {
+    strategy = updateStrategyContent(strategyContent, registry, iterationFiles, records);
+  } catch (error) {
+    if (!error || error.code !== 'MISSING_ANCHOR') {
+      throw error;
+    }
+    strategyWarnings = [error.message];
+    console.warn(`[deep-research] strategy file left unchanged: ${error.message}`);
+  }
+  registry.strategyWarnings = strategyWarnings;
   const dashboard = renderDashboard(config, registry, records, iterationFiles);
   let resourceMap = null;
   let resourceMapSkipped = true;
@@ -3054,7 +3075,9 @@ function reduceResearchState(specFolder, options = {}) {
       generation: registry.generation ?? null,
     });
     writeUtf8(registryPath, `${JSON.stringify(registry, null, 2)}\n`);
-    writeUtf8(strategyPath, strategy.endsWith('\n') ? strategy : `${strategy}\n`);
+    if (strategyWarnings.length === 0) {
+      writeUtf8(strategyPath, strategy.endsWith('\n') ? strategy : `${strategy}\n`);
+    }
     writeUtf8(dashboardPath, dashboard);
     if (emitResourceMapOutput && resourceMap) {
       assertSafeResourceMapOutput(researchDir, resourceMapPath);

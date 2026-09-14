@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Make the lineage reducer extract numbered findings and flag a fulfilled lane whose registry stays empty"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+description: "The deep-research reducer writes the findings registry even when a leaf-authored strategy file lacks the anchor markers, and a fulfilled lane whose registry is empty while its deltas hold findings is flagged on the fan-out ledger."
 trigger_phrases:
   - "feature specification"
   - "problem statement"
@@ -21,10 +21,10 @@ contextType: "general"
 | Field | Value |
 |-------|-------|
 | **Level** | 2 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | Draft |
+| **Priority** | P0 |
+| **Status** | Complete |
 | **Created** | 2026-09-14 |
-| **Branch** | `scaffold/007-reducer-ordered-lists` |
+| **Branch** | `skilled/v4.0.0.0` |
 | **Parent** | `../spec.md` |
 | **Predecessor** | `../005-churn-cumulative-arm/spec.md` |
 <!-- /ANCHOR:metadata -->
@@ -35,10 +35,10 @@ contextType: "general"
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+The retained SWE-2 lineage finished three iterations with 25 finding records in its deltas and numbered findings in its iteration files, yet its registry held no findings. The reducer had already built the registry when it threw on the lineage's strategy file, which the Devin leaf wrote without the machine-owned anchor markers, and the throw came before the registry write. Nothing on the ledger said the lane had registered nothing.
 
 ### Purpose
-[One-sentence outcome statement. What does success look like?]
+A registry the reducer has built is always written, and a lane that fulfilled without registering its findings is named on the ledger.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -47,19 +47,23 @@ contextType: "general"
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- The reducer's strategy rewrite degrading to a warning when an anchor is missing, with the registry and dashboard still written
+- A `lineage_registry_empty` ledger warning at fulfilled settle when deltas hold findings and the registry holds none
+- Tests for both, plus the existing list-extraction cases staying green
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+- List extraction - the reducer already reads bullets and numbered items; the goal's original premise was corrected in D1
+- Rewriting a strategy file without anchors - the leaf's bytes stay untouched
+- The lane verdict - the warning never changes it
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+| `.opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` | Modify | Missing-anchor throws carry a code; `reduceResearchState` catches that code, records `strategyWarnings`, skips the strategy write and still writes registry and dashboard |
+| `.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` | Modify | Counts delta finding rows and checks the lane registry at fulfilled settle; appends `lineage_registry_empty` |
+| `.opencode/skills/system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts` | Modify | Anchor-less strategy fixture |
+| `.opencode/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts` | Modify | Fulfilled lane with deltas and no registry |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -71,13 +75,14 @@ contextType: "general"
 
 | ID | Requirement |
 |----|-------------|
-| REQ-001 | [Requirement description] |
+| REQ-001 | When the strategy file lacks an anchor section, the reducer leaves it byte-identical, records the message in `registry.strategyWarnings`, and writes the registry and dashboard |
+| REQ-002 | Any other reducer error still propagates as before |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement |
 |----|-------------|
-| REQ-002 | [Requirement description] |
+| REQ-003 | At fulfilled settle, a lane whose deltas hold at least one finding record and whose registry has no `keyFindings` gets a `lineage_registry_empty` ledger warning with the label and the delta finding count |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
@@ -88,8 +93,8 @@ contextType: "general"
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: The retained SWE-2 lineage re-reduces to a registry with 27 key findings and one strategy warning
+- **SC-002**: The deep-loop runtime suite exits zero
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -99,8 +104,8 @@ contextType: "general"
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+| Risk | A partially rewritten strategy file | Low | The whole rewrite is skipped on a missing anchor, never applied partially |
+| Dependency | Reducer error code contract | Green | Only the two anchor throws carry the code |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -113,16 +118,13 @@ contextType: "general"
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
-- **NFR-P01**: [Response time target - e.g., <200ms p95]
-- **NFR-P02**: [Throughput target - e.g., 100 req/sec]
+- **NFR-P01**: One read of the lane's delta files at settle; no extra git calls
 
 ### Security
-- **NFR-S01**: [Auth requirement - e.g., JWT tokens required]
-- **NFR-S02**: [Data protection - e.g., TLS + encrypted at rest]
+- **NFR-S01**: Not applicable
 
 ### Reliability
-- **NFR-R01**: [Uptime target - e.g., 99.9%]
-- **NFR-R02**: [Error rate - e.g., <1%]
+- **NFR-R01**: A malformed delta or unreadable registry never throws at settle; the advisory counts what it can read
 <!-- /ANCHOR:nfr -->
 
 ---
@@ -131,18 +133,17 @@ contextType: "general"
 ## L2: EDGE CASES
 
 ### Data Boundaries
-- Empty input: [How system handles]
-- Maximum length: [Limit and behavior]
-- Invalid format: [Validation response]
+- Strategy file with all anchors: rewritten exactly as before
+- No deltas directory: no warning
+- Registry present with findings: no warning
 
 ### Error Scenarios
-- External service failure: [Fallback behavior]
-- Network timeout: [Retry strategy]
-- Concurrent access: [Conflict resolution]
+- Reducer error other than a missing anchor: propagates
+- Unreadable registry: the delta count alone decides
 
 ### State Transitions
-- Partial completion: [Recovery behavior]
-- Session expiry: [User experience]
+- Partial completion: the warning is evaluated only on the fulfilled path
+- Session expiry: not applicable
 <!-- /ANCHOR:edge-cases -->
 
 ---
@@ -152,18 +153,17 @@ contextType: "general"
 
 | Dimension | Score | Notes |
 |-----------|-------|-------|
-| Scope | [/25] | [Files, LOC, systems] |
-| Risk | [/25] | [Auth, API, breaking changes] |
-| Research | [/20] | [Investigation needs] |
-| **Total** | **[/70]** | **Level 2** |
+| Scope | 7/25 | Reducer, runner, two test files |
+| Risk | 8/25 | Reducer write path and the fulfilled settle path |
+| Research | 6/20 | Root cause found by reproduction, not by the stated premise |
+| **Total** | **21/70** | **Level 2** |
 <!-- /ANCHOR:complexity -->
 
 ---
 
 ## 10. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+- None open.
 <!-- /ANCHOR:questions -->
 
 ---
