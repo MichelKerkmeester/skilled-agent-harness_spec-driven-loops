@@ -467,7 +467,7 @@ TASK #2: Implement Notification System
 
 ### Rule 7: External CLI Delegation — Explicit User Request Only
 
-**Trigger:** The user names an external CLI executor in their own words — one of the six `cli-external-orchestration` modes: `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`.
+**Trigger:** The user names an external CLI executor in their own words — one of the seven `cli-external-orchestration` modes: `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`, `cli-hermes`.
 
 **Action:**
 
@@ -843,5 +843,5 @@ The orchestrator's own behavior can cause context overload. Follow these rules:
 - `.opencode/agents/ai-council.md` — the LEAF for multi-strategy planning and architecture synthesis.
 - `.opencode/agents/deep-research.md` — the LEAF for evidence-first iterative investigation.
 - `.opencode/agents/deep-review.md` — the LEAF for `/deep:review` iterative code-audit passes.
-- `.opencode/skills/cli-external-orchestration/SKILL.md` — the hub that routes the six external CLI executor modes, and owns their invariants (§4 Rule 7).
+- `.opencode/skills/cli-external-orchestration/SKILL.md` — the hub that routes the seven external CLI executor modes, and owns their invariants (§4 Rule 7).
 - `repo-rules/delegation-and-orchestration.md` — the orchestrating posture: what a brief must carry, and why a delegate's return is unverified.

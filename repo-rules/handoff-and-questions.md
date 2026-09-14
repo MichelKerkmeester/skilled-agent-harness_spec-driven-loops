@@ -27,7 +27,7 @@ trigger_phrases:
   - "one concrete next action"
 importance_tier: important
 contextType: reference
-version: 1.2.0.0
+version: 1.2.1.0
 ---
 
 # Rule: Handoff and questions
@@ -183,3 +183,4 @@ check first or use the fallback.
 - [ ] Any choice I offered carries a recommendation and a reason.
 - [ ] Nothing was handed back that I could have decided or done myself.
 - [ ] No question-tool name appears that I did not confirm for the runtime I am in.
+- [ ] Where the direction changed, two fixes failed or the work resumed after a gap, I restated what is done, what is open and what changed.

@@ -27,7 +27,7 @@ trigger_phrases:
   - "how long will this take"
 importance_tier: important
 contextType: reference
-version: 1.1.0.0
+version: 1.1.1.0
 ---
 
 # Rule: Presenting decisions
@@ -174,3 +174,5 @@ no such contract.
 - [ ] Assumptions I made on missing evidence are stated, not silent.
 - [ ] Before a long stretch, I said where I was going, and I revised it when it changed.
 - [ ] A synthesis I reported carries its findings, not just its path and its counts.
+- [ ] Before drafting I decided who reads this and what they hold, and the gap between that and what they need is what the reply supplies.
+- [ ] A long stretch carried a concrete time estimate, in minutes or hours, never a vague one.

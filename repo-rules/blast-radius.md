@@ -20,7 +20,7 @@ trigger_phrases:
   - "name the rollback first"
 importance_tier: important
 contextType: reference
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Rule: Blast radius and reversibility
@@ -152,3 +152,4 @@ is there an existing tool, what is the rollback. Prefer what the project already
 - [ ] Enumerated what still speaks the old contract, by searching rather than assuming.
 - [ ] Removal is scoped to the requested surface; nothing wider happened silently.
 - [ ] Cheap, reversible forks were decided rather than deliberated.
+- [ ] Any installation went through the same scope, approval and verification as any other mutation.

@@ -22,7 +22,7 @@ trigger_phrases:
   - "good stopping point"
 importance_tier: important
 contextType: reference
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Rule: Scope discipline
@@ -162,3 +162,5 @@ when editing it feels easier than asking.
 - [ ] No formatting or cleanup noise rides along with the real change.
 - [ ] I named the files, the tools, and the check before the first edit.
 - [ ] Nothing entered the plan that was not in the frozen scope.
+- [ ] Every action on the always-needs-a-yes list had its yes before it happened.
+- [ ] Every deviation from the approved plan was stated and approved, and a plan I judged wrong was followed with the amendment proposed beside it.

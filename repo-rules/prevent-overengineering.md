@@ -24,7 +24,7 @@ trigger_phrases:
   - "fallback for a constraint that does not exist"
 importance_tier: important
 contextType: reference
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Rule: Prevent overengineering
@@ -162,3 +162,6 @@ Restraint constrains *how much you build*, never *how much you deliver*.
 - [ ] Nothing is justified only by a future nobody asked for.
 - [ ] If I judged part of the scope unnecessary, I built it anyway and said so.
 - [ ] Any fallback path I added names the environment that requires it.
+- [ ] Where the change touches a caller or a shared contract, I named the owner, one real caller and the contract before editing.
+- [ ] Every catch handles what it catches, and no check re-validates what a type or a caller contract already guarantees.
+- [ ] Every performance claim carries a measurement, and every new dependency names what the project's own tools could not do.

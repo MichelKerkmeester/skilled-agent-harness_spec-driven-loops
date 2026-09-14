@@ -48,6 +48,7 @@ Run this agent only on an eligible (model, route) pair. Eligibility is a propert
 | `cli-codex` | GPT Luna | Yes | — |
 | `cli-pi` | any model except Luna | Yes | — |
 | `cli-opencode` | any model except Luna | Yes | — |
+| `cli-hermes` | `deepseek-v4.1-flash` or `glm-5.3-flash` through `llmgateway` | Yes | The Hermes roster is closed at these two ids; neither is Luna, Opus or Fable |
 | `cli-pi` or `cli-opencode` | Luna | No | Intentional asymmetry: Luna is eligible through `cli-codex` only |
 
 The denied list outranks the allowance list: Opus and Fable stay denied even where an allowance clause would otherwise admit them, such as Opus reached through `cli-opencode`.
