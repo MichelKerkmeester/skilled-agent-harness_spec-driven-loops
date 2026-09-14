@@ -52,7 +52,7 @@
       "implementation"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -62,6 +62,7 @@
       "decision-record.md",
       "implementation-summary.md",
       "handover.md",
+      "007-worktree-removal/research/orchestration-summary.json",
       ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts",
       ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
       ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
@@ -72,8 +73,7 @@
       ".opencode/commands/deep/assets/deep-research-confirm.yaml",
       ".opencode/commands/deep/assets/deep-review-auto.yaml",
       ".opencode/commands/deep/assets/deep-review-confirm.yaml",
-      ".opencode/skills/system-deep-loop/SKILL.md",
-      ".opencode/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md"
+      ".opencode/skills/system-deep-loop/SKILL.md"
     ],
     "entities": [
       {
@@ -122,6 +122,12 @@
         "name": "handover.md",
         "kind": "doc",
         "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "orchestration-summary.json",
+        "kind": "config",
+        "path": "007-worktree-removal/research/orchestration-summary.json",
         "source": "derived"
       },
       {
@@ -191,12 +197,6 @@
         "source": "derived"
       },
       {
-        "name": "loop-protocol.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -215,7 +215,7 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -223,7 +223,7 @@
     ],
     "causal_summary": "The fan-out runner snapshots dirty paths outside the lineage directory before dispatch, and after the lane it treats every tracked file that changed outside that directory as the leaf's write",
     "created_at": "2026-09-08T17:47:19Z",
-    "last_save_at": "2026-09-14T09:09:05.192Z",
+    "last_save_at": "2026-09-14T16:49:35.999Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -236,14 +236,14 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:93d568baa70de3ea7a4583357e773a609a32f1d6695c7c3b0362ca4655736997",
+    "source_fingerprint": "sha256:01cda40dd8b5c26698e37252013eced7ec67aa2025c94d12bd0a16458c38756e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c68423dc19b507b2122c334c78dac30771d374f2b6acb131b22590666724ebc1",
+      "spec.md": "11d28725cef1c373d91948e1fb126b44d56f93f008cc6834fce3ed4e89432572",
       "plan.md": "f36d80a6194c9277944faa463008affd78bf89a92a966ab4fae6a7b79c97c272",
       "tasks.md": "1fdbdbf23c948c5f17b2ba2e5f3ea23c9eb04cb3ecf110406b25cdf1b0791a0b",
       "decision-record.md": "964b5955ecf2a9015de0a5c24159930a7e2c39a2ac16b5be1dab1be4d05b528a",
-      "implementation-summary.md": "07b271a5bbe2e9cbbb163570201a78f491ded235246a8144091efb626328bb2e",
+      "implementation-summary.md": "e3736dc3fff4368de25e071fda9b7be9542b51ec9e8df308db81bf26b11ebdd4",
       "handover.md": "ce7fe9732f766ca7f70862a20c8968ad3ceae1f7088c889dc4e914f1b0b18675"
     },
     "last_active_at": null

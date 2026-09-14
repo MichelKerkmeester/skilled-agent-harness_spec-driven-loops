@@ -33,7 +33,7 @@ The deep-loop fan-out guard cannot tell a leaf's stray write from a human's edit
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P0 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-09-08 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Origin** | The 2026-09-08 containment incident on the chart visual-upgrade research run: lane `luna` completed five iterations, then reverted 1,858 out-of-scope paths written by a concurrent session and was recorded `failed`. The second lane was stopped by hand before it could repeat the sweep over 932 further live edits. |
@@ -107,13 +107,13 @@ Follow-on work the alternatives research surfaced. Each phase is one fix, dispat
 
 | Phase | Folder | Status | Description |
 |-------|--------|--------|-------------|
-| 1 | `001-never-fatal-untracked/` | draft | Stop a neighbour's new file from halting a fan-out lane: under preserve, an out-of-scope untracked path is advisory, never fatal. |
-| 2 | `002-iteration-record-dedupe/` | draft | Stop the runner rejecting a completed lane because its state log holds each iteration record twice. |
-| 3 | `003-publish-manifest-provenance/` | draft | Make every published lineage say which executor kind and model produced it. |
-| 4 | `004-index-lock-retry/` | draft | Keep a lane's git calls from losing silently to another session's index.lock. |
-| 5 | `005-churn-cumulative-arm/` | draft | Detect a neighbour that dirties the shared checkout slowly, as a safety net for the opt-in restore remedy; under the preserve default nothing depends on it. |
-| 6 | `006-reducer-ordered-lists/` | draft | Register findings a lane wrote as a numbered list, and flag a lane that registered nothing. |
-| 7 | `007-worktree-removal/` | draft | Remove the per-lineage worktree mechanism entirely, since attribution is not a requirement and preserve-by-default plus never-fatal meet the operator's need. |
+| 1 | `001-never-fatal-untracked/` | complete | Stop a neighbour's new file from halting a fan-out lane: under preserve, an out-of-scope untracked path is advisory, never fatal. |
+| 2 | `002-iteration-record-dedupe/` | complete | Stop the runner rejecting a completed lane because its state log holds each iteration record twice. |
+| 3 | `003-publish-manifest-provenance/` | complete | Make every published lineage say which executor kind and model produced it. |
+| 4 | `004-index-lock-retry/` | complete | Keep a lane's git calls from losing silently to another session's index.lock. |
+| 5 | `005-churn-cumulative-arm/` | complete | Detect a neighbour that dirties the shared checkout slowly, as a safety net for the opt-in restore remedy; under the preserve default nothing depends on it. |
+| 6 | `006-reducer-ordered-lists/` | complete | Register findings a lane wrote as a numbered list, and flag a lane that registered nothing. |
+| 7 | `007-worktree-removal/` | complete | Remove the per-lineage worktree mechanism entirely, since attribution is not a requirement and preserve-by-default plus never-fatal meet the operator's need. |
 <!-- /ANCHOR:phase-map -->
 
 ---
@@ -136,7 +136,7 @@ Ordered by safety gained per line changed. The first three requirements stop the
 
 | ID | Requirement |
 |----|-------------|
-| REQ-004 | The runner samples out-of-lineage working-tree churn at the existing progress heartbeat. Above the threshold — twelve newly-dirty tracked paths outside the lineage directory within one heartbeat window, or forty cumulative for the lane — it emits `shared_checkout_detected` and forces preserve mode for the remainder of the run, overriding any restore opt-in. Both numbers are configurable; the justification for these defaults is in section 7. |
+| REQ-004 | The runner samples out-of-lineage working-tree churn at the existing progress heartbeat. Above either threshold — three newly dirty paths outside the lineage directory within one heartbeat window, or twelve cumulative across the lane, the runner's shipped defaults — it emits `shared_checkout_detected` and forces preserve mode for the remainder of the run, overriding any restore opt-in. Both numbers are configurable; the justification for these defaults is in section 7. |
 | REQ-006 | Every caller and document that asserts the old behaviour is migrated: the four command YAMLs (each of which both spawns the runner and inlines its own containment call), the hub SKILL.md, both loop protocols, the runtime library README and the fan-out feature catalog entry. |
 | REQ-007 | Per-lineage worktrees are the default. A run isolates every lane unless a caller opts out with `--worktrees false` on the invocation or `containment.worktrees: false` in the fan-out config, and the resolution order is flag, then config, then schema default. A lane whose tree cannot be created still runs, in the shared checkout under forced preserve, and the orchestration summary gains an `isolation` object — `enabled`, and the per-attempt counts `isolated` and `degraded` — so a run that could not isolate is reported rather than silently indistinguishable from one that could. |
 | REQ-008 | An isolated lane whose process cwd is still the shared checkout is watched there. For a lane that is isolated but whose kind reaches its tree through a directory argument or a read root — so a cwd-relative write lands in the shared checkout — the runner snapshots the checkout before dispatch, diffs it after, appends a `checkout_write_detected` warning naming the changed paths (capped at 20, with the full count), and counts the attempt in `isolation.checkout_watched` and `isolation.checkout_writes`. The watch is report-only: it never restores, never changes the lane's outcome, and the run's artifact plane is excluded from the scan so a sibling's publication is not attributed to a lane. |

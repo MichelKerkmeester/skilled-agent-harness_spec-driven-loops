@@ -91,8 +91,8 @@ Phases 001 through 007 under this folder, each with its own `goal.md`.
 - [x] A fan-out with the worktree option on completes against an uncommitted packet, with every lineage directory present in the main checkout and no worktree left behind
 - [x] The deep-loop runtime Vitest suite exits zero, including the incident reproduction case
 - [x] Nothing in the four command YAMLs or the five documentation surfaces still describes the revert-and-fail model
-- [ ] Every phase 001 through 007 validates PASSED with its own criteria checked
-- [ ] The deep-loop suite exits zero after the last phase lands
+- [x] Every phase 001 through 007 validates PASSED with its own criteria checked
+- [x] The deep-loop suite exits zero after the last phase lands
 <!-- /ANCHOR:completion -->
 
 ---
@@ -112,6 +112,7 @@ and findings belong here.
 | Guard, runner and test suite read end to end | Done | `runtime/lib/deep-loop/write-containment.ts` 786 lines, the runner's containment block, `runtime/tests/unit/write-containment.vitest.ts` 1,331 lines |
 | Incident evidence confirmed | Done | The `failed` event for label `luna` names 1,858 reverted paths; the research run record says the artefacts were complete |
 | Implementation | Done | Preserve-by-default containment, per-lineage worktrees, concurrent-editor detection, the worktree default flip with its isolation tally, and the report-only checkout watch for isolated lanes whose cwd stays in the shared checkout; packet docs reconciled |
+| Fix phases 001 to 007 | Done | Commits `5340e39233`, `bcb1333560`, `4581feb2bd`, `65ea476de3`, `a766c23a8f`, `cbb1e4ae53`, `ca713e3478`, each suite-verified; final suite 151 files, 2568 passed, exit 0; live two-lane run on this checkout with a neighbour and another session writing mid-run: both lanes fulfilled, nothing reverted |
 
 ### Deviations and findings
 
