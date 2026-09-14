@@ -752,11 +752,34 @@ function iterationNumbersOnDisk(lineageDir) {
 function countIterationFiles(lineageDir) {
   return iterationNumbersOnDisk(lineageDir).length;
 }
+function retainIterationRecords(records) {
+  // Collapse repeated iteration numbers to one record each, preferring the copy the
+  // append gateway wrote over a bare direct-write copy of the same iteration.
+  const routeProofFields = ['target_agent', 'resolved_route', 'agent_definition_loaded', 'mode'];
+  const hasRouteProof = (record) => routeProofFields.every((field) => record[field] !== undefined);
+  const retained = new Map();
+  for (const record of records || []) {
+    if (!record || record.type !== 'iteration' || !Number.isInteger(record.iteration)) continue;
+    const kept = retained.get(record.iteration);
+    if (kept === undefined || (!hasRouteProof(kept) && hasRouteProof(record))) {
+      retained.set(record.iteration, record);
+    }
+  }
+  return retained;
+}
 
 // A count alone lets a gapped or out-of-range set pass for a full run: files 1, 2
 // and 4 count as three, and a stray iteration-099 fills in for a missing one.
 // Forced depth means every iteration from 1 to the cap ran once, so the set on
 // disk and the set the state log recorded both have to be exactly 1..cap.
+//
+// A repeated state record is not that failure. Two independent executor models
+// recorded every iteration twice, once by writing the state log directly and once
+// through the append gateway, so the contract this validator would enforce is one
+// the leaves already broke. Duplicates collapse to one record per iteration,
+// preferring the copy that carries the gateway's route-proof fields and the first
+// copy when neither does. A duplicate iteration file on disk stays a violation:
+// that is an extra artifact, not one artifact recorded twice.
 function forcedDepthIterationViolation({ diskNumbers, records, cap }) {
   const expected = Array.from({ length: cap }, (_, index) => index + 1);
   const describe = (numbers) => (numbers.length === 0 ? 'none' : numbers.join(','));
@@ -773,12 +796,7 @@ function forcedDepthIterationViolation({ diskNumbers, records, cap }) {
       return `expected iteration files 1..${cap}, got ${describe(diskNumbers)}`;
     }
   }
-  const recorded = (records || [])
-    .filter((record) => record && record.type === 'iteration' && Number.isInteger(record.iteration))
-    .map((record) => record.iteration);
-  if (recorded.length !== unique(recorded).length) {
-    return `duplicate state records for iterations: ${describe(recorded)}`;
-  }
+  const recorded = [...retainIterationRecords(records).keys()];
   if (recorded.length > 0 && !sameSet(recorded)) {
     return `expected state records for iterations 1..${cap}, got ${describe(unique(recorded))}`;
   }
@@ -4021,6 +4039,7 @@ if (require.main === module && isTsxLoaded) {
 module.exports = {
   runLineageProcess,
   forcedDepthIterationViolation,
+  retainIterationRecords,
   iterationNumbersOnDisk,
   DEVIN_ALLOWED_MODELS,
   DEVIN_DEFAULT_MODEL,

@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Deduplicate iteration state records by iteration and prefer the routed record, so a completed lane is not rejected"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+description: "The forced-depth validator collapses duplicate iteration records before checking the set, and the deep-research references no longer instruct a direct write to the state log."
 trigger_phrases:
   - "feature specification"
   - "problem statement"
@@ -21,10 +21,10 @@ contextType: "general"
 | Field | Value |
 |-------|-------|
 | **Level** | 2 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | Draft |
+| **Priority** | P0 |
+| **Status** | Complete |
 | **Created** | 2026-09-14 |
-| **Branch** | `scaffold/002-iteration-record-dedupe` |
+| **Branch** | `skilled/v4.0.0.0` |
 | **Parent** | `../spec.md` |
 | **Predecessor** | `../001-never-fatal-untracked/spec.md` |
 <!-- /ANCHOR:metadata -->
@@ -35,10 +35,10 @@ contextType: "general"
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+Two of four research lanes, on two executor kinds, finished all three iterations and were still rejected with `duplicate state records for iterations: 1,2,3,1,2,3`. The leaf appended each record directly and again through the append gateway, because three reference lines told it to write the state log itself.
 
 ### Purpose
-[One-sentence outcome statement. What does success look like?]
+A completed lane is never rejected for recording an iteration twice, and no reference instructs a direct write to the state log.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -47,19 +47,25 @@ contextType: "general"
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- Deduplication of iteration records by number inside `forcedDepthIterationViolation`, preferring the copy that carries route-proof fields
+- The four reference lines that instructed a direct append to `deep-research-state.jsonl`
+- Unit tests for the tolerated duplicate, the still-detected gap and the still-fatal duplicate file on disk
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+- The append gateway itself - it already writes a correct record
+- Duplicate iteration files on disk - an extra artifact stays a violation
+- The reducer - it reads the log through its own path and is unchanged
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+| `.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` | Modify | `retainIterationRecords` collapses repeated iteration numbers; the validator checks the collapsed set |
+| `.opencode/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts` | Modify | Two replaced assertions and two new tests |
+| `.opencode/skills/system-deep-loop/deep-research/references/guides/quick-reference.md` | Modify | Iteration step names the append gateway |
+| `.opencode/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md` | Modify | Config-record and resume-event steps name the append gateway |
+| `.opencode/skills/system-deep-loop/deep-research/references/protocol/spec-check-protocol.md` | Modify | Audit-event sentence names the append gateway |
+| `.opencode/commands/deep/assets/compiled/deep-research.contract.md` | Regenerate | Recompiled because it digests the two protocol docs |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -71,13 +77,14 @@ contextType: "general"
 
 | ID | Requirement |
 |----|-------------|
-| REQ-001 | [Requirement description] |
+| REQ-001 | Iteration records with the same number collapse to one before the 1..cap set check, retaining the copy with route-proof fields and otherwise the first |
+| REQ-002 | A log with a genuine gap still fails with the expected-set message; a duplicate iteration file on disk still fails |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement |
 |----|-------------|
-| REQ-002 | [Requirement description] |
+| REQ-003 | No reference under deep-research/references instructs a direct write to the state log |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
@@ -88,8 +95,9 @@ contextType: "general"
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: A 1,2,3,1,2,3 log with routed and unrouted copies validates and the routed copies are retained
+- **SC-002**: Both retained real lineages replay to no violation at cap 3
+- **SC-003**: The deep-loop runtime suite exits zero
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -99,8 +107,8 @@ contextType: "general"
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+| Risk | A duplicate masks a missing iteration | Low | The gap test proves 1,2,2 at cap 3 still fails |
+| Dependency | Route-proof fields on gateway-written records | Green | Fallback retains the first copy when neither carries them |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -113,16 +121,13 @@ contextType: "general"
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
-- **NFR-P01**: [Response time target - e.g., <200ms p95]
-- **NFR-P02**: [Throughput target - e.g., 100 req/sec]
+- **NFR-P01**: One pass over the state records; no extra I/O
 
 ### Security
-- **NFR-S01**: [Auth requirement - e.g., JWT tokens required]
-- **NFR-S02**: [Data protection - e.g., TLS + encrypted at rest]
+- **NFR-S01**: Not applicable
 
 ### Reliability
-- **NFR-R01**: [Uptime target - e.g., 99.9%]
-- **NFR-R02**: [Error rate - e.g., <1%]
+- **NFR-R01**: The validator never throws on malformed records; non-iteration records are skipped as before
 <!-- /ANCHOR:nfr -->
 
 ---
@@ -131,18 +136,17 @@ contextType: "general"
 ## L2: EDGE CASES
 
 ### Data Boundaries
-- Empty input: [How system handles]
-- Maximum length: [Limit and behavior]
-- Invalid format: [Validation response]
+- Empty log: unchanged, returns null
+- All copies unrouted: the first copy is retained
+- Duplicate files on disk: still a violation
 
 ### Error Scenarios
-- External service failure: [Fallback behavior]
-- Network timeout: [Retry strategy]
-- Concurrent access: [Conflict resolution]
+- Gap plus duplicate (1,2,2 at cap 3): fails with the expected-set message
+- Out-of-range record: still fails the set check
 
 ### State Transitions
-- Partial completion: [Recovery behavior]
-- Session expiry: [User experience]
+- Partial completion: not affected; the validator runs at settle time
+- Session expiry: not applicable
 <!-- /ANCHOR:edge-cases -->
 
 ---
@@ -152,18 +156,17 @@ contextType: "general"
 
 | Dimension | Score | Notes |
 |-----------|-------|-------|
-| Scope | [/25] | [Files, LOC, systems] |
-| Risk | [/25] | [Auth, API, breaking changes] |
-| Research | [/20] | [Investigation needs] |
-| **Total** | **[/70]** | **Level 2** |
+| Scope | 6/25 | One function, four docs, tests |
+| Risk | 8/25 | Settle-time validator on the shared runner |
+| Research | 4/20 | Root cause established by the parent's research |
+| **Total** | **18/70** | **Level 2** |
 <!-- /ANCHOR:complexity -->
 
 ---
 
 ## 10. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+- None open.
 <!-- /ANCHOR:questions -->
 
 ---
