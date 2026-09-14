@@ -470,10 +470,10 @@ describe('write-containment — regression case (c): pre-existing dirty file is 
 // window by the parent orchestrator or a concurrent session are indistinguishable from
 // the leaf's own untracked writes. The old guard `rmSync`-deleted them (irreversible data
 // loss). A not-in-HEAD out-of-scope path is now ALWAYS preserved on disk, breach or not.
-// Whether it also fails the iteration depends on where it lives: a write inside the
-// packet's own directory tree (an ancestor of this leaf's artifact dir) stays a non-fatal
-// advisory, since it may be a concurrent write to the packet's own docs; a write with no
-// such relationship is a genuine out-of-scope breach and fails the iteration too.
+// Whether it also fails the iteration follows the remedy, not where it landed: under
+// restore the packet relationship still decides -- inside the packet's own directory tree
+// it is a non-fatal advisory, outside it a fatal breach -- while under the default
+// preserve remedy every preserved path is an advisory.
 describe('write-containment — concurrent-writer safety (never delete unattributable files)', () => {
   it('preserves a not-in-HEAD file with no relation to the packet on disk, but still fails the iteration', () => {
     const { root, artifactDir } = baselineRepo();
@@ -486,10 +486,11 @@ describe('write-containment — concurrent-writer safety (never delete unattribu
       repoRoot: root,
       artifactDir,
       preDispatchDirtyPaths: preDispatch,
+      mode: 'restore',
       label: 'sol',
     });
 
-    // Fatal: it cannot be tied to this leaf's own packet, so the caller fails the iteration.
+    // Fatal under the restore remedy it asks for: it cannot be tied to this leaf's own packet.
     expect(result.violations.map((v) => v.path)).toEqual(['concurrent.json']);
     expect(result.advisories).toEqual([]);
     // Still never deleted, fatal or not.
@@ -557,11 +558,65 @@ describe('write-containment — preserve is the default remedy', () => {
   });
 });
 
+// Preservation is what bounds the damage: the bytes a path holds survive the remedy no matter
+// where the path landed. Halting a lane over a preserved path therefore protects nothing under
+// the default remedy -- the halt only adds a false stop when another session wrote the file --
+// so preserve reports it and moves on, keeping the path visible in the event and the ledger.
+// 'restore' is the caller asking containment to act on the tree, and there a preserved path's
+// relation to the packet still decides whether it can only be reported or must fail the lane.
+describe('write-containment — a preserved untracked path is advisory under preserve, fatal under restore', () => {
+  it('reports an out-of-packet untracked file as a non-fatal advisory under preserve, byte-for-byte intact', () => {
+    const { root, artifactDir } = baselineRepo();
+    const preDispatch = snapshotOutOfScopeDirtyPaths({ repoRoot: root, artifactDir });
+
+    // A concurrent actor writes an untracked file with no relation to this leaf's packet.
+    const strayPath = join(root, 'concurrent-new-file.txt');
+    const strayBytes = Buffer.from('{"parallel":true}\n');
+    writeFileSync(strayPath, strayBytes);
+
+    const result = enforceWriteContainment({
+      repoRoot: root,
+      artifactDir,
+      preDispatchDirtyPaths: preDispatch,
+      label: 'sol',
+    });
+
+    // Non-fatal: nothing was rolled back, so the guard reports the path instead of halting.
+    expect(result.violations).toEqual([]);
+    expect(result.advisories.map((violation) => violation.path)).toEqual(['concurrent-new-file.txt']);
+    // Still never deleted, advisory or not.
+    expect(existsSync(strayPath)).toBe(true);
+    expect(readFileSync(strayPath).equals(strayBytes)).toBe(true);
+  });
+
+  it('fails the same out-of-packet untracked file when the caller asks for restore', () => {
+    const { root, artifactDir } = baselineRepo();
+    const preDispatch = snapshotOutOfScopeDirtyPaths({ repoRoot: root, artifactDir });
+
+    const strayPath = join(root, 'concurrent-new-file.txt');
+    const strayBytes = Buffer.from('{"parallel":true}\n');
+    writeFileSync(strayPath, strayBytes);
+
+    const result = enforceWriteContainment({
+      repoRoot: root,
+      artifactDir,
+      preDispatchDirtyPaths: preDispatch,
+      label: 'sol',
+      mode: 'restore',
+    });
+
+    expect(result.violations.map((violation) => violation.path)).toEqual(['concurrent-new-file.txt']);
+    expect(result.advisories).toEqual([]);
+    expect(existsSync(strayPath)).toBe(true);
+    expect(readFileSync(strayPath).equals(strayBytes)).toBe(true);
+  });
+});
+
 // Regression: a not-in-HEAD out-of-scope write was ALWAYS a non-fatal advisory regardless
-// of where it landed, so a genuinely out-of-scope write could never fail an iteration. A
-// write inside the packet's own directory tree — e.g. a spec doc a concurrent process
-// writes alongside this lineage — is legitimate and stays a non-fatal advisory; a write
-// with no relation to the packet at all is now a fatal breach.
+// of where it landed, so under the restore remedy a genuinely out-of-scope write could
+// never fail an iteration. There, a write inside the packet's own directory tree — e.g. a
+// spec doc a concurrent process writes alongside this lineage — is legitimate and stays a
+// non-fatal advisory; a write with no relation to the packet at all is a fatal breach.
 describe('write-containment — untracked breach fatality is scoped to the packet, not blanket-exempt', () => {
   function packetRepo(): { root: string; artifactDir: string; packetDir: string } {
     const root = makeRepo();
@@ -589,6 +644,7 @@ describe('write-containment — untracked breach fatality is scoped to the packe
       repoRoot: root,
       artifactDir,
       preDispatchDirtyPaths: preDispatch,
+      mode: 'restore',
     });
 
     expect(result.violations.map((v) => v.path)).toEqual(['random-elsewhere.txt']);
@@ -632,6 +688,7 @@ describe('write-containment — regenerable-state exemption is scoped to the pac
       repoRoot: root,
       artifactDir,
       preDispatchDirtyPaths: preDispatch,
+      mode: 'restore',
     });
 
     expect(result.advisories.map((v) => v.path)).toEqual([
@@ -1095,6 +1152,7 @@ describe('write-containment — a concurrent run in a sibling phase folder', () 
       artifactDir,
       unattributableDirs: foreign,
       preDispatchDirtyPaths: preDispatch,
+      mode: 'restore',
       iteration: 1,
       label: 'luna-max',
     });
@@ -1129,6 +1187,7 @@ describe('write-containment — a concurrent run in a sibling phase folder', () 
       artifactDir,
       unattributableDirs: foreign,
       preDispatchDirtyPaths: preDispatch,
+      mode: 'restore',
       iteration: 1,
       label: 'luna-max',
     });

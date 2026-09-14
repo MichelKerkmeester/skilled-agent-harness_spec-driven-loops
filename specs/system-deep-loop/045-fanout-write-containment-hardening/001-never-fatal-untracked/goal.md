@@ -12,16 +12,16 @@ _memory:
   continuity:
     packet_pointer: "system-deep-loop/045-fanout-write-containment-hardening/001-never-fatal-untracked"
     last_updated_at: "2026-09-14T09:09:01Z"
-    last_updated_by: "scaffold"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    last_updated_by: "claude-fable-5-1"
+    recent_action: "Phase fix landed and criteria checked"
+    next_safe_action: "Commit once the full suite exits zero"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-09-14-001-never-fatal-untracked"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -77,9 +77,9 @@ Three to seven bullets, each checkable without opening another file. Copy them
 verbatim into the objective: nothing dereferences a path, so criteria left only
 here are invisible to whatever judges completion.
 
-- [ ] A stub lane runs while a second process drops a new untracked file outside the packet mid-run; the lane settles completed with advisory, the file is byte-identical, and the ledger names it
-- [ ] The same run under restore still fails as before, proving the change is scoped to preserve
-- [ ] The test fails against the current guard
+- [x] A stub lane runs while a second process drops a new untracked file outside the packet mid-run; the lane settles completed with advisory, the file is byte-identical, and the ledger names it
+- [x] The same run under restore still fails as before, proving the change is scoped to preserve
+- [x] The test fails against the current guard
 <!-- /ANCHOR:completion -->
 
 ---
@@ -95,11 +95,13 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Phase fix | Pending | dispatched to DeepSeek V4.1 Flash max via the gateway on cli-pi when its turn comes |
+| Phase fix | Done | One DeepSeek V4.1 Flash max dispatch on cli-pi via the gateway; partition changed in `write-containment.ts`, tests added in both vitest files; touched files plus typecheck exit 0 (199 tests) |
+| Full suite | Green | `npm test` in the runtime: 156 files, 2657 passed, 7 skipped, exit 0, 1262 s |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| none yet | - |
+| Graceful self-stop fixture | Was red at HEAD from the worktree default flip; the delegate made the fixture ask for a tree explicitly, assertions kept |
+| Lane status | Settles `fulfilled` plus a `containment_advisory` ledger event; the dedicated advisory status string stays reserved for the violations partition |
 <!-- /ANCHOR:log -->

@@ -1254,13 +1254,19 @@ export function enforceWriteContainment(input: EnforceInput): EnforceResult {
     preDispatchDirtyPaths: input.preDispatchDirtyPaths,
     baselineContentRoot: input.baselineContentRoot,
   });
-  // Partition by what the revert actually did: HEAD-restored paths are recoverable breaches
-  // and always fatal. A preserved not-in-HEAD path is a non-fatal advisory only when it sits
-  // inside the packet's own directory tree -- an ancestor of (or equal to) this leaf's
-  // artifact dir, e.g. a spec doc some other process in the same packet wrote alongside this
-  // lineage. A preserved path with no such relationship is a genuine out-of-scope breach: it
-  // still cannot be safely deleted (it may be an unregistered concurrent writer), but it must
-  // fail the iteration rather than silently becoming a permanent, unattributed pass.
+  // Partition by what the revert actually did. A path holding HEAD content -- restored or
+  // preserved -- is a recoverable breach and always fatal, and so is an escaping symlink:
+  // its name sits inside the artifact tree while its bytes leave it, which is this lane's
+  // own hole in containment rather than a neighbour's write. A preserved not-in-HEAD path
+  // is where the remedy decides. Under 'restore' the caller asked for containment to act,
+  // so the path's relation to the packet settles it: inside the packet's own directory tree
+  // -- an ancestor of (or equal to) this leaf's artifact dir, e.g. a spec doc some other
+  // process in the same packet wrote alongside this lineage -- it is a non-fatal advisory,
+  // while a path with no such relationship is a genuine out-of-scope breach that fails the
+  // iteration. Under 'preserve' -- the default -- nothing was rolled back and the bytes are
+  // already guaranteed to survive, so a halt would protect nothing and the only thing it
+  // adds is a false stop caused by another session's concurrent write; every preserved path
+  // is an advisory wherever it landed.
   const preservedPaths = new Set(
     revertResult.reverted.filter((a) => a.action === 'preserved_untracked').map((a) => a.path),
   );
@@ -1274,10 +1280,15 @@ export function enforceWriteContainment(input: EnforceInput): EnforceResult {
     // trivially "under" the repo root.
     return dir !== '' && isInsideArtifact(artifactRelPosix, dir);
   };
-  const violations = guarded.filter((v) => !preservedPaths.has(v.path) || !isPacketScopedPath(v.path));
+  const isPreservedAdvisory = (violation: ContainmentViolation): boolean => {
+    if (!preservedPaths.has(violation.path)) return false;
+    if (escapesArtifactTree(violation)) return false;
+    return input.mode === 'restore' ? isPacketScopedPath(violation.path) : true;
+  };
+  const violations = guarded.filter((violation) => !isPreservedAdvisory(violation));
   const advisories = [
     ...exempted,
-    ...guarded.filter((v) => preservedPaths.has(v.path) && isPacketScopedPath(v.path)),
+    ...guarded.filter(isPreservedAdvisory),
   ];
   // The logged event carries every detected path (fatal + advisory) for visibility -- an
   // operator reading the state log needs to see preserved advisories too, not just the
