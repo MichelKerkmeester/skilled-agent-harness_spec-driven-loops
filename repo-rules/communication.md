@@ -29,7 +29,7 @@ trigger_phrases:
   - "offer once at the end"
 importance_tier: important
 contextType: reference
-version: 1.2.0.0
+version: 1.2.1.0
 ---
 
 # Rule: Communication
@@ -54,7 +54,7 @@ that does not carry information.**
 This file governs how a reply reads. The shape of a decision you hand over, the verdict-first
 ordering and the recommendation, moved to [`presenting-decisions.md`](presenting-decisions.md)
 when this file reached its length ceiling. Sentence, word and punctuation mechanics live in
-[`prose-mechanics.md`](prose-mechanics.md).
+[`communication-prose.md`](communication-prose.md).
 
 Delivery, not rigor. Nothing here licenses a softer claim than the evidence supports.
 
@@ -84,7 +84,7 @@ question nobody asked and buries the one they did.
 
 Length is earned by the reader's need, never by the work you did to get there. Effort
 spent is not a reason to spend the reader's attention. The cut has a floor, see
-[`prose-mechanics.md`](prose-mechanics.md) §4.
+[`communication-prose.md`](communication-prose.md) §4.
 
 The failure this prevents: the answer is in there, and they did not find it.
 
@@ -110,7 +110,7 @@ content and is not:
 - **Corporate and marketing register:** "robust", "seamless", "leverage", "best-in-class".
 - **Narrating the obvious:** announcing a tool call the reader can see the result of.
 
-Cutting these stops at the joints too, same floor, see [`prose-mechanics.md`](prose-mechanics.md) §4.
+Cutting these stops at the joints too, same floor, see [`communication-prose.md`](communication-prose.md) §4.
 
 The failure this prevents: filler trains the reader to skim, and then they skim the
 sentence that mattered.
@@ -175,7 +175,7 @@ cannot track which they have done.
 relates, rank the relevant first. The rest is retained, not discarded: the cap says what
 it holds back, "the first five of nine", and shows it when the reader asks or when it
 becomes what comes next. The cap is a cut too, it answers to the same floor, see
-[`prose-mechanics.md`](prose-mechanics.md) §4.
+[`communication-prose.md`](communication-prose.md) §4.
 
 The failure this prevents: a list that buries item six, or a cap that hides it, so the
 reader mistakes a shortened list for the complete one.
@@ -189,7 +189,7 @@ next, the reader has it by the second line, not buried mid-reply where the skim 
 End when the answer is done. The closing-deletion test: a last line that only asks
 whether anything else is needed, or recaps what the reply just said, deletes, and what
 dies with it was a closer. Two lines hold when the joints hold, the cut answers to the
-same floor, see [`prose-mechanics.md`](prose-mechanics.md) §4.
+same floor, see [`communication-prose.md`](communication-prose.md) §4.
 
 The failure this prevents: the outcome hidden mid-reply, or the last line a farewell
 closer that adds nothing.
@@ -224,7 +224,13 @@ asked waits.
 
 ## 12. SELF-CHECK
 
-- [ ] Every sentence carries information; no empty opener, restated summary, or unnamed warning survived.
-- [ ] Length matches what the reader asked, not what the work cost.
+- [ ] The first line carries the answer or the action, not a label, an announcement or a setup.
+- [ ] Each paragraph carries the reader forward and says what changed, what it implies and what comes next.
+- [ ] Multi-step work reads as a numbered path with a bounded number of steps.
+- [ ] The outcome sits in the first two lines, and nothing after them is a farewell.
+- [ ] No group runs past five items, and nothing was dropped to keep it under.
+- [ ] A tangent appears once, at the end, on a line that says it is deferred, or not at all.
+- [ ] Every sentence carries information: no empty opener, restated summary or unnamed warning survived.
+- [ ] Length matches what the reader asked, not what the work cost, and no table stands in a reply.
 - [ ] Where the reader said they did not follow, I changed modality rather than adding words.
 - [ ] Nothing I cut for concision was something they needed.
