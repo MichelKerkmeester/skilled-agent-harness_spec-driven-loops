@@ -95,6 +95,8 @@ Note: T009 and T010 run as the two lineages of ONE fan-out invocation, under the
   - Evidence: each action cites its finding, redundancy findings cite their case and, for case one, the delegate's own line, blocked until T011 delivers both syntheses and T012 records the sequencing answer
 - [x] T014 [P0] From the final state, re-run the whole gate: `validate.sh` on this packet, strictly (`specs/sk-doc/055-governance-doc-alignment`)
   - DONE 2026-09-14: `validate.sh specs/sk-doc/055-governance-doc-alignment --strict` RESULT: PASSED, Errors: 0, exit 0, rerun after the summary.
+- [x] T015 [P1] Operator-requested follow-up, 2026-09-14: trim the Skill Routing Reference and Gate 4 in `AGENTS.md`
+  - DONE: the invocation paragraph reduced to Gate 2's own rule plus the one prompt-time clause about not ingesting a skill tree, the two-stage hub paragraph reduced to its binding sentence plus pointers to `skill-hub-routing.md` and the nested-packets reference, and Gate 4 dropped the list of what Gate 2 and the deep-mode invariants already enforce while keeping its two tiebreakers, which no skill owns. Hard blockers untouched, gate-1 pointer sync PASS.
   - Evidence: RESULT: PASSED, Errors: 0, output and exit status both read
 <!-- /ANCHOR:phase-3 -->
 

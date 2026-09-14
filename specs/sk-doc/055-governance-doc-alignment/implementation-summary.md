@@ -65,6 +65,7 @@ The 006 resume queue closed as follows: the base-plus-supplement shape was ratif
 | `repo-rules/scope-discipline.md`, `delegation-and-orchestration.md`, `evidence-and-proof.md`, `communication.md` | Modified | Descriptions aligned to their bodies |
 | `.opencode/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs` | Modified | New index-summaries check, the ninth |
 | `.opencode/skills/sk-doc/sk-create-repo-rule/SKILL.md` | Modified | Names all nine checks |
+| `AGENTS.md`, Skill Routing Reference and Gate 4 | Modified, follow-up | Reduced to their binding clauses plus pointers on the operator's request after closure |
 | `research/router-alignment/`, `research/root-doc-staleness/` | Created | Both lineages, their syntheses and dispatch receipts |
 <!-- /ANCHOR:what-built -->
 

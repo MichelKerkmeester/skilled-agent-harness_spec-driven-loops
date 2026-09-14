@@ -105,15 +105,15 @@ Trigger: EACH new user message (re-evaluate even in ongoing conversations)
 
 ### Skill Routing Reference
 
-Skills are on-demand domain expertise invoked through Gate 2 (§2). Invoking a skill means reading its `SKILL.md` and the resources ITS router resolves for the task at hand, then following those instructions to completion. Read a `references/`, `scripts/`, or `assets/` file when the skill's own routing points at it — not the whole bundle by default; ingesting a skill tree wholesale costs more context than it returns and is not what this rule asks for. A skill already in context is not re-invoked.
+Gate 2 owns invocation: read the skill's `SKILL.md` and the files its router resolves for the task, nothing more by default, and never re-read a skill already in context. Ingesting a skill tree wholesale costs more context than it returns.
 
 **Advisor metadata placement.** These filenames also name spec-folder continuity metadata (§6) under a separate schema, never the same file and never interchangeable. Which of them a hub root and a standalone root must carry, and which each forbids, is the metadata contract's: `.opencode/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md`.
 
-**A parent hub projects one advisor identity, and its modes route in two stages.** The advisor scores the hub, then the hub's `hub-router.json` and root `ROUTER.md` pick the mode and its leaves. A mode's routing class decides how it is reached, so check the class before assuming. **Never report a mode as routed because a registry entry exists — check both stages, against the hub you actually changed.** Class table and surface list: `.opencode/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md`, expanded by [`skill-hub-routing.md`](repo-rules/skill-hub-routing.md).
+**Hub routing.** A parent hub routes in two stages, the advisor to the hub and the hub's own router to the mode. **Never report a mode as routed because a registry entry exists.** The stages, the routing classes and the checks are [`skill-hub-routing.md`](repo-rules/skill-hub-routing.md) and `.opencode/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md`.
 
 #### GATE 4: SKILL-OWNED WORKFLOW TIEBREAKERS
-Gate 2 and the deep-mode `SKILL.md` invariants already enforce two things, so this gate does not repeat them. **Trigger-phrase routing:** "deep-research", "deep-review", ":auto", "iterations", "convergence". **State-machine discipline:** no manual `/tmp` state, no direct `@deep-research` or `@deep-review` Task dispatch, no skipping `deep-research-state.jsonl`, `deltas/` or `logs/`. The deep modes are packets under `system-deep-loop/`, not standalone skills. Two tiebreakers are NOT covered there:
-- **Executor CLI ≠ skill route.** "Use cli-opencode gpt-5.5 high" is the HOW — it still runs INSIDE the skill's workflow. Never let the executor name override the skill-owned route.
+Trigger-phrase routing and the deep-loop state discipline are Gate 2's and the deep-mode `SKILL.md` invariants' own. Two tiebreakers live here because no skill owns them:
+- **Executor CLI ≠ skill route.** "Use cli-opencode gpt-5.5 high" is the HOW. It still runs inside the skill's workflow, and the executor name never overrides the skill-owned route.
 - **Skill advisor ambiguity.** When `command-spec-kit` matches alongside `cli-*` for iteration phrases, `command-spec-kit` wins. The CLI executor is a tool inside the command's workflow, not a replacement for it.
 
 #### GATE 5: REPO RULES LOAD [HARD] BLOCK
@@ -426,6 +426,7 @@ Use the agent directory that matches the active runtime/provider profile:
 | **Cursor**        | `.cursor/agents/`   |
 | **Pi**            | `.pi/agents/`       |
 | **Devin**         | `.devin/agents/`    |
+| **Hermes**        | none; personas are inlined (see `cli-hermes`) |
 
 **Resolution rule:** Pick one directory by runtime and stay consistent for that workflow phase.
 
