@@ -1615,18 +1615,30 @@ function startLineageProgressHeartbeat({ cadenceMs, label, ledgerPath, getGauges
  * alone cannot name the writer, but the timing can. A lineage edits under its own
  * artifact dir, so a BURST of newly dirty paths outside that dir between two
  * heartbeats is another writer, while a couple of files coming and going is ordinary
- * working-tree life. Sampling reuses the containment snapshot so the detector and the
+ * working-tree life. A burst is not the only shape a second writer has: one that
+ * spreads its paths a heartbeat apart stays under any per-window count, so the same
+ * sample also feeds a running total, and either count crossing its own threshold is
+ * proof enough. Sampling reuses the containment snapshot so the detector and the
  * guard agree on what "dirty outside the lineage" means; a threshold of 0 disables
- * the detector.
+ * that arm, and both at 0 disable the detector.
  *
  * Returns a sample function. The first sample only establishes the baseline, and a
  * detection is final: sampling stops because the run's remaining heartbeats cannot
  * make a restore safe once a foreign writer is proven.
  */
-function startSharedCheckoutChurnDetector({ threshold, sampleDirtyPaths, onDetected }) {
+function startSharedCheckoutChurnDetector({
+  threshold,
+  cumulativeThreshold,
+  sampleDirtyPaths,
+  onDetected,
+}) {
   const limit = Number(threshold);
-  if (!Number.isFinite(limit) || limit <= 0) return () => {};
+  const limitEnabled = Number.isFinite(limit) && limit > 0;
+  const cumulativeLimit = Number(cumulativeThreshold);
+  const cumulativeEnabled = Number.isFinite(cumulativeLimit) && cumulativeLimit > 0;
+  if (!limitEnabled && !cumulativeEnabled) return () => {};
   let previousPaths = null;
+  let cumulativeDirty = 0;
   let stopped = false;
   return () => {
     if (stopped) return;
@@ -1636,9 +1648,14 @@ function startSharedCheckoutChurnDetector({ threshold, sampleDirtyPaths, onDetec
         ? 0
         : Array.from(currentPaths).filter((path) => !previousPaths.has(path)).length;
       previousPaths = currentPaths;
-      if (newlyDirty > limit) {
+      cumulativeDirty += newlyDirty;
+      const burstDetected = limitEnabled && newlyDirty > limit;
+      const cumulativeDetected = cumulativeEnabled && cumulativeDirty > cumulativeLimit;
+      if (burstDetected || cumulativeDetected) {
+        // Both counts are reported whichever arm fired, so the ledger says how close
+        // the other one came without a second sample to recompute it from.
         stopped = true;
-        onDetected(newlyDirty);
+        onDetected({ newlyDirty, cumulativeDirty });
       }
     } catch {
       // A detector that can fail a lane is worse than no detector: an unreadable
@@ -3033,6 +3050,10 @@ async function main() {
   // because a detected second writer latches this run into preserve for good.
   let containmentMode = containmentModeOverride ?? parsedFanoutConfig.containment.mode ?? 'preserve';
   const containmentChurnThreshold = parsedFanoutConfig.containment.churnThreshold;
+  // The cumulative arm needs no flag of its own: it takes the same config route the per-window
+  // threshold already takes, and a caller who wants one arm and not the other sets the other
+  // to 0.
+  const containmentChurnCumulativeThreshold = parsedFanoutConfig.containment.churnCumulativeThreshold;
   // Same resolution order as the containment mode above: the flag, then the config, then the
   // schema default, which is off: a lane runs in the shared checkout unless a caller opts in.
   // Isolation was measured at roughly 1.6 GB of checkout per lane; that is a cost to choose,
@@ -3671,6 +3692,7 @@ async function main() {
       // sibling lineage's in-flight writes are not mistaken for a foreign writer's.
       const sampleSharedCheckoutChurn = startSharedCheckoutChurnDetector({
         threshold: containmentChurnThreshold,
+        cumulativeThreshold: containmentChurnCumulativeThreshold,
         sampleDirtyPaths: () => {
           const dirtyPaths = snapshotOutOfScopeDirtyPaths({
             repoRoot: laneContainmentRoot,
@@ -3681,10 +3703,10 @@ async function main() {
           appendContainmentGitContentionWarnings();
           return dirtyPaths;
         },
-        onDetected: (count) => {
+        onDetected: ({ newlyDirty, cumulativeDirty }) => {
           // Latch preserve for the rest of the run, overriding the flag and the
           // config: a later quiet sample cannot un-prove the foreign writer this
-          // burst shows, and restore acts on bytes this run did not write. Set
+          // sample shows, and restore acts on bytes this run did not write. Set
           // before the append so a ledger write failure cannot leave the
           // destructive mode armed on a checkout another writer shares.
           containmentMode = 'preserve';
@@ -3693,8 +3715,12 @@ async function main() {
             label: lineage.label,
             at: new Date().toISOString(),
             severity: 'warning',
-            newly_dirty_paths: count,
+            newly_dirty_paths: newlyDirty,
             churn_threshold: containmentChurnThreshold,
+            // Reported whichever arm fired, so a burst that pre-empted the running total
+            // still says how far along it was.
+            cumulative_dirty_paths: cumulativeDirty,
+            churn_cumulative_threshold: containmentChurnCumulativeThreshold,
             gauges: latestGauges,
           });
         },

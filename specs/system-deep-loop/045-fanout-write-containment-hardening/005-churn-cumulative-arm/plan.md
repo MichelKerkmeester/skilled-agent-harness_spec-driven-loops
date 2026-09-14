@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Give the shared-checkout churn detector a cumulative arm so slow drift trips it"
-description: "[2-3 sentences: what this implements and the technical approach]"
+description: "One running total inside the existing churn sampler, one fan-out config field, and two ledger fields. The burst arm, the latch and the sampling cadence are untouched."
 trigger_phrases:
   - "implementation plan"
   - "technical approach"
@@ -8,6 +8,22 @@ trigger_phrases:
   - "testing strategy"
 importance_tier: "normal"
 contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/045-fanout-write-containment-hardening/005-churn-cumulative-arm"
+    last_updated_at: "2026-09-14T13:30:00Z"
+    last_updated_by: "deepseek-v4.1-flash-max"
+    recent_action: "Added the cumulative churn arm and filled the packet docs"
+    next_safe_action: "Commit once the full suite exits zero"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-09-14-005-churn-cumulative-arm"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 # Implementation Plan: Give the shared-checkout churn detector a cumulative arm so slow drift trips it
@@ -23,13 +39,13 @@ contextType: "general"
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | CommonJS runner script plus a TypeScript (ESM) config library |
+| **Framework** | None |
+| **Storage** | Git working tree, JSONL orchestration status ledger |
+| **Testing** | Vitest, with a stub `opencode` binary for the integration case |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+`startSharedCheckoutChurnDetector` already computed `newlyDirty` per sample; it now also accumulates it. Either count crossing its own threshold detects, the callback reports both, and the runner writes them. The threshold arrives through `containment.churnCumulativeThreshold` on the fan-out config, the same route `churnThreshold` takes.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -38,14 +54,14 @@ contextType: "general"
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Tests passing (if applicable)
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -54,14 +70,15 @@ contextType: "general"
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Accumulator beside an existing windowed counter, both fed by one sample
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **`startSharedCheckoutChurnDetector`**: samples the containment snapshot, computes newly dirty paths, accumulates them, and detects on either arm
+- **`containment.churnCumulativeThreshold`**: the config field that arms the accumulator, default 12, zero disabling that arm
+- **`shared_checkout_detected` ledger event**: carries both counts and both thresholds
 
 ### Data Flow
-[Brief description of how data moves through the system]
+The progress heartbeat calls the sampler. The sampler asks the containment snapshot for dirty out-of-lineage paths, diffs them against the previous sample, adds the difference to the running total, and either arm may detect. On detection the callback latches `containmentMode` to preserve and appends one ledger event; sampling stops.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -69,18 +86,17 @@ contextType: "general"
 <!-- ANCHOR:affected-surfaces -->
 ## FIX ADDENDUM: AFFECTED SURFACES
 
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
+| `startSharedCheckoutChurnDetector` | Windowed count only, threshold 0 disabled the whole detector | update | `fanout-run.vitest.ts:3114`, `:3132`, `:3145` |
+| `containment` schema and type | Owned `mode`, `churnThreshold`, `worktrees` | update | `executor-config.vitest.ts:470`; typecheck exit 0 |
+| Runner call site and ledger append | Wrote `newly_dirty_paths` and `churn_threshold` | update | `fanout-run.cjs:3056`, `:3722` |
+| Snapshot, exclusions, latch, cadence | Sampling input and remedy | unchanged | Existing churn cases stay green |
 
 Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
+- Same-class producers: `rg -n 'churnThreshold|churnCumulativeThreshold' .opencode/skills/system-deep-loop/runtime` - the schema, the prefault, the interface, the runner resolution and the detector call site.
+- Consumers of the changed symbol: the single detector call site; no other caller reads the ledger fields.
+- Matrix axes: arm (per-window, cumulative) x window shape (burst in one window, one path per window, quiet) x config (default, explicit value, zero).
 <!-- /ANCHOR:affected-surfaces -->
 
 
@@ -99,9 +115,9 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Unit | Config default, zero, explicit value, negative and non-integer rejection | Vitest against `executor-config.ts` |
+| Integration | Stub lane spreading one write per heartbeat until the cumulative threshold trips; burst and below-threshold cases as controls | Vitest against `fanout-run.cjs` with a stub `opencode` on PATH |
+| Manual | None; the observed event was read from a standalone run of the same fixture | - |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -111,7 +127,8 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| The containment snapshot and its exclusions | Internal | Green | Unchanged; the arm reads whatever that snapshot returns |
+| Git status porcelain output | External | Green | Already the input the detector counts from |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -119,8 +136,8 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: The cumulative arm forces preserve on ordinary working-tree drift
+- **Procedure**: Set `containment.churnCumulativeThreshold: 0` to disarm it per run, or revert this phase's commit to remove the arm
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -152,10 +169,10 @@ Phase 1.5 (Config) ───┘
 
 | Phase | Complexity | Estimated Effort |
 |-------|------------|------------------|
-| Setup | [Low/Med/High] | [e.g., 1-2 hours] |
-| Core Implementation | [Low/Med/High] | [e.g., 4-8 hours] |
-| Verification | [Low/Med/High] | [e.g., 1-2 hours] |
-| **Total** | | **[e.g., 6-12 hours]** |
+| Setup | Low | minutes |
+| Core Implementation | Low | one dispatch |
+| Verification | Med | two test files plus typecheck |
+| **Total** | | **one dispatch plus one verification pass** |
 <!-- /ANCHOR:effort -->
 
 ---
@@ -164,19 +181,19 @@ Phase 1.5 (Config) ───┘
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Backup created (if data changes)
-- [ ] Feature flag configured
-- [ ] Monitoring alerts set
+- [x] Backup created (not applicable: no data changes)
+- [x] Feature flag configured (`containment.churnCumulativeThreshold`, zero disarms)
+- [x] Monitoring alerts set (the ledger event is the alert)
 
 ### Rollback Procedure
-1. [Immediate action - e.g., disable feature flag]
-2. [Revert code - e.g., git revert or redeploy previous version]
-3. [Verify rollback - e.g., smoke test critical paths]
-4. [Notify stakeholders - if user-facing]
+1. Disarm per run with `containment.churnCumulativeThreshold: 0`; no redeploy needed
+2. Revert this phase's commit if the arm itself is wrong
+3. Re-run the two touched test files and the typecheck to confirm the revert
+4. Notify the packet's next phase only if the config field is removed rather than disarmed
 
 ### Data Reversal
-- **Has data migrations?** [Yes/No]
-- **Reversal procedure**: [Steps or "N/A"]
+- **Has data migrations?** No
+- **Reversal procedure**: N/A
 <!-- /ANCHOR:enhanced-rollback -->
 
 ---

@@ -3006,6 +3006,7 @@ describe('fanout-run.cjs — shared-checkout churn forces preserve', () => {
   const runChurnCase = async (
     testId: string,
     churnCount: number,
+    options: { cumulativeThreshold?: number; spreadSeconds?: number } = {},
   ): Promise<{
     exitCode: number | null;
     detectedEvents: Array<Record<string, unknown>>;
@@ -3040,14 +3041,28 @@ describe('fanout-run.cjs — shared-checkout churn forces preserve', () => {
     ).status).toBe(0);
 
     // The sleeps are the fixture's timing contract: the heartbeat takes its baseline
-    // before the burst lands between two samples, and the lane then stays alive long
-    // enough for the next sample to see it.
+    // before the churn lands, and the lane then stays alive long enough for the next
+    // sample to see it. A burst lands between two samples; with spreadSeconds the stub
+    // instead sends one path per interval, so no single window sees more than a couple
+    // of writes and only a running total can prove the writer.
+    const spreadSeconds = options.spreadSeconds;
+    const churnLines = spreadSeconds === undefined
+      ? [
+        'sleep 1',
+        ...churnPaths.map((churnPath) => `echo escaped > ${shellQuote(churnPath)}`),
+      ]
+      : [
+        'sleep 0.6',
+        ...churnPaths.flatMap((churnPath) => [
+          `echo escaped > ${shellQuote(churnPath)}`,
+          `sleep ${spreadSeconds}`,
+        ]),
+      ];
     writeFileSync(
       join(binDir, 'opencode'),
       [
         '#!/bin/sh',
-        'sleep 1',
-        ...churnPaths.map((churnPath) => `echo escaped > ${shellQuote(churnPath)}`),
+        ...churnLines,
         'sleep 2',
         writeFanoutArtifactsShell(),
         'echo "stub-done"',
@@ -3061,7 +3076,13 @@ describe('fanout-run.cjs — shared-checkout churn forces preserve', () => {
       executors: [{ label: 'contained', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', count: 1 }],
       concurrency: 1,
       progressHeartbeatSeconds: 0.2,
-      containment: { mode: 'restore', churnThreshold: 3 },
+      containment: {
+        mode: 'restore',
+        churnThreshold: 3,
+        ...(options.cumulativeThreshold === undefined
+          ? {}
+          : { churnCumulativeThreshold: options.cumulativeThreshold }),
+      },
     });
 
     const result = await spawnCjs(
@@ -3119,6 +3140,28 @@ describe('fanout-run.cjs — shared-checkout churn forces preserve', () => {
       'committed-before-dispatch\n',
       'committed-before-dispatch\n',
     ]);
+  });
+
+  it('a neighbour dirtying one path per heartbeat trips the cumulative arm without any burst', async () => {
+    // The per-window threshold is 3 and the stub spreads its writes wider than one heartbeat
+    // each, so the event proves the running total is what fired: a slow writer that stays
+    // under every window is exactly the shape a per-window count cannot see.
+    const run = await runChurnCase('churn-cumulative', 6, { cumulativeThreshold: 3, spreadSeconds: 0.3 });
+
+    expect(run.exitCode).toBe(0);
+    expect(run.detectedEvents).toHaveLength(1);
+    const [detected] = run.detectedEvents;
+    expect(detected).toMatchObject({
+      label: 'contained',
+      severity: 'warning',
+      churn_threshold: 3,
+      churn_cumulative_threshold: 3,
+    });
+    // No window exceeded the burst threshold; the running total crossed its own.
+    expect(Number(detected.newly_dirty_paths)).toBeLessThanOrEqual(3);
+    expect(Number(detected.cumulative_dirty_paths)).toBeGreaterThan(3);
+    // The latch still overrides the requested restore.
+    expect(run.trackedContents).toEqual(Array.from({ length: 6 }, () => 'escaped\n'));
   });
 });
 

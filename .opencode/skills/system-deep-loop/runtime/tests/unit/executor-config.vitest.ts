@@ -466,6 +466,31 @@ describe('parseFanoutConfig', () => {
       executors: [{ kind: 'native', label: 'opus' }],
     }).containment.worktrees).toBe(false);
   });
+
+  it('defaults the cumulative churn threshold and rejects values that are not non-negative integers', () => {
+    // The cumulative arm catches a writer that spreads its paths one heartbeat apart, which no
+    // per-window count can see; the default sits above the trickle a working tree produces on
+    // its own, and zero is the explicit opt-out of that arm.
+    expect(parseFanoutConfig({ executors: [{ kind: 'native', label: 'opus' }] }).containment.churnCumulativeThreshold)
+      .toBe(12);
+    expect(parseFanoutConfig({
+      containment: { churnCumulativeThreshold: 0 },
+      executors: [{ kind: 'native', label: 'opus' }],
+    }).containment.churnCumulativeThreshold).toBe(0);
+    expect(parseFanoutConfig({
+      containment: { churnCumulativeThreshold: 40 },
+      executors: [{ kind: 'native', label: 'opus' }],
+    }).containment.churnCumulativeThreshold).toBe(40);
+    expect(() => parseFanoutConfig({
+      containment: { churnCumulativeThreshold: -1 },
+      executors: [{ kind: 'native', label: 'opus' }],
+    })).toThrow(ExecutorConfigError);
+    expect(() => parseFanoutConfig({
+      containment: { churnCumulativeThreshold: 2.5 },
+      executors: [{ kind: 'native', label: 'opus' }],
+    })).toThrow(ExecutorConfigError);
+  });
+
   it('accepts cli-codex as a fan-out lineage', () => {
     const config = parseFanoutConfig({
       executors: [{ kind: 'cli-codex', model: 'gpt-5.6-codex', label: 'codex' }],
