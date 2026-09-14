@@ -1,0 +1,3 @@
+# Iteration 002 Research Prompt
+
+Evaluate overlay or copy-on-write filesystem views, per-lane sandbox working directories backed by a shared Git object store, and a single-worktree design with per-lane write redirection. Ground each conclusion in the current runtime's Git invocation, path mapping, shared dependency roots, self-link rewriting, entry-point guard behavior, containment baseline, checkout watch, and churn detector. Distinguish measured packet costs from derived or inferred deltas. For every mechanism, cover setup cost, disk cost, exact attribution, dependency/self-link/compiled-guard/churn failures, and Git worktree move or relocation.

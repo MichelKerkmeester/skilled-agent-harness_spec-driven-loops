@@ -1,0 +1,13 @@
+{
+  "type": "event",
+  "event": "synthesis_complete",
+  "mode": "research",
+  "sessionId": "fanout-luna-1789363775244-64o2qi",
+  "generation": 1,
+  "totalIterations": 3,
+  "answeredCount": 5,
+  "totalQuestions": 5,
+  "stopReason": "maxIterationsReached",
+  "convergenceMode": "off",
+  "timestamp": "2026-09-14T06:00:00Z"
+}

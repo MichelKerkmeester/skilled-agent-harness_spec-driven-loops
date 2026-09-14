@@ -1,0 +1,90 @@
+{
+  "openQuestions": [
+    {
+      "id": "kq-clonefile-timing",
+      "text": "What is the measured setup time of --no-checkout + cp -Rc + index normalization on this APFS host?",
+      "status": "partial",
+      "note": "Reasoned at ~1-4 s from clonefile op counts; needs a prototype measurement to confirm."
+    },
+    {
+      "id": "kq-index-normalization",
+      "text": "Which index normalization is correct after manual materialization: clearing skip-worktree bits or seeding the worktree index from the main index?",
+      "status": "partial",
+      "note": "Both are defensible; the index-seed route touches the private worktree gitdir layout and should be pinned by a test."
+    },
+    {
+      "id": "kq-dep-root-escape",
+      "text": "Should the symlinked dep-root write-escape be filed as a containment defect on the shipped design?",
+      "status": "unknown",
+      "note": "A lane writing through a linked node_modules mutates the shared install invisibly to both guards; clonefile-ing the roots closes it."
+    },
+    {
+      "id": "kq-churn-cumulative",
+      "text": "Should the missing cumulative churn arm (spec's 40/lane) and the default-3-vs-12 divergence be filed?",
+      "status": "unknown",
+      "note": "REQ-004 specifies two arms; the implementation ships one burst check at default 3."
+    }
+  ],
+  "resolvedQuestions": [
+    {
+      "id": "kq-cost-decomposition",
+      "answer": "The 22 s / 1.6 GB is git worktree add materializing 82,393 tracked files plus the lane index; the object store was already shared (worktree .git = 4 KB pointer). specs/ alone is 1.3 GB / 78% of tracked files.",
+      "resolvedInRun": 1,
+      "source": "worktree-lifecycle.ts:592-593; implementation-summary.md:105-106; direct du/ls-files measurement"
+    },
+    {
+      "id": "kq-git-native",
+      "answer": "Sparse cones and --no-checkout+restore keep exact attribution (private per-lane index; out-of-cone writes still surface as untracked). Shallow/reference/partial clones pay the same materialization and lose worktree semantics — ruled out.",
+      "resolvedInRun": 1,
+      "source": "fanout-run.cjs:3591-3609,3827-3845; worktree-lifecycle.ts:823-846; worktree-reclaim.ts:56-88"
+    },
+    {
+      "id": "kq-fs-sharing",
+      "answer": "git worktree add --no-checkout + APFS cp -Rc gives a registered lane in ~1-4 s at ~0 disk with exact attribution and a baseline frozen against foreign writes; it also dissolves self-link and entry-guard hazards when dep roots are cloned rather than linked.",
+      "resolvedInRun": 2,
+      "source": "APFS clonefile semantics over worktree-lifecycle.ts provisioning; worktree-symlinks/synthesis.md"
+    },
+    {
+      "id": "kq-single-checkout",
+      "answer": "Exact attribution on shared bytes requires kernel mediation: OS write denial (prevention — vacuously exact but changes the question) or observe-by-PID (exact but privileged/entitlement-gated). Tree-diff on shared bytes is structurally unsound by the module's own admission.",
+      "resolvedInRun": 3,
+      "source": "write-containment.ts:14-19; executor-config.ts:118-124; fanout-run.cjs:3563-3600"
+    },
+    {
+      "id": "kq-breakage",
+      "answer": "Self-links and entry guards are dissolved by a full clone, unchanged under links; the churn detector runs everywhere but is shipped burst-only (spec's cumulative arm absent, default 3 vs 12); symlinked dep roots are a write-escape channel under linking.",
+      "resolvedInRun": 3,
+      "source": "worktree-lifecycle.ts:457-557; fanout-run.cjs:1593-1631; spec.md:121,174; executor-config.ts:701"
+    },
+    {
+      "id": "kq-relocation",
+      "answer": "git worktree move survives every registered variant (sparse cone, clonefile, full); absolute dep links target the unmoved main checkout; relative self-links were built for relocation. Only enclosing-checkout moves break registrations — a shared constraint.",
+      "resolvedInRun": 3,
+      "source": "worktree-lifecycle.ts:466-471"
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": [],
+  "suppressedCandidates": [],
+  "promotedIdeas": [
+    {
+      "id": "verdict",
+      "text": "Ranked: (a) --no-checkout + APFS clonefile incl. dep roots; (b) sparse-cone worktree as portable fallback; (c) seatbelt-style write denial as optional complement on degraded/shared paths.",
+      "promotedInRun": 3
+    }
+  ],
+  "divergence": {
+    "saturatedDirections": [
+      "clone-family mechanisms (shallow/reference/partial)",
+      "overlayfs over a live lower",
+      "shared-checkout attribution without kernel mediation"
+    ],
+    "pivotsTaken": [
+      "cost decomposition -> git-native reductions -> filesystem sharing -> single-checkout attribution limits -> relocation matrix"
+    ],
+    "remainingFrontier": [
+      "clonefile + index-normalization prototype measurement",
+      "upstream filing: dep-root write-escape, churn cumulative arm"
+    ]
+  }
+}

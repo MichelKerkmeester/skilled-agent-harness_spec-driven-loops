@@ -1,0 +1,34 @@
+{
+  "sessionId": "fanout-deepseek-1789363775244-64o2qi",
+  "topic": "Cheaper per-lane isolation than full git worktrees: sparse or partial checkouts, shallow and reference clones, overlay or copy-on-write filesystems, single worktree with per-lane write redirection, per-lane sandboxed working directories with a shared object store, and one-checkout exact-attribution variants. For each: setup cost, disk cost, attribution exactness, what breaks (symlinked dependency roots, workspace self-links, compiled entry-point guards, the churn detector), and whether git worktree move or relocation survives.",
+  "specFolder": "specs/system-deep-loop/045-fanout-write-containment-hardening",
+  "mode": "research",
+  "loopType": "research",
+  "maxIterations": 3,
+  "convergenceMode": "off",
+  "convergenceThreshold": 0.05,
+  "stuckThreshold": 3,
+  "stopPolicy": "max-iterations",
+  "lineageMode": "new",
+  "generation": 1,
+  "executor": {
+    "kind": "cli-devin",
+    "model": "deepseek-v4-flash-max",
+    "reasoningEffort": null,
+    "permissionMode": "acceptEdits",
+    "sandboxMode": "workspace-write"
+  },
+  "artifactDir": "/Users/michelkerkmeester/worktrees/public/fanout-1789363775244-64o2qi-attempt-1-deepseek/specs/system-deep-loop/045-fanout-write-containment-hardening/research/lineages/deepseek",
+  "resourceMapPresent": false,
+  "createdAt": "2026-09-14T06:05:00Z",
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "findings-registry.json": "auto-generated",
+    "deep-research-dashboard.md": "auto-generated",
+    "iterations/iteration-NNN.md": "write-once",
+    "deltas/iter-NNN.jsonl": "write-once",
+    "research.md": "workflow-owned"
+  }
+}

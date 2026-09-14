@@ -1,0 +1,823 @@
+{
+  "mergedFrom": [
+    "1789363775244-64o2qi-deepseek",
+    "1789363775244-64o2qi-luna",
+    "1789363775244-64o2qi-swe2"
+  ],
+  "openQuestions": [
+    {
+      "id": "kq-clonefile-timing",
+      "text": "What is the measured setup time of --no-checkout + cp -Rc + index normalization on this APFS host?",
+      "status": "partial",
+      "note": "Reasoned at ~1-4 s from clonefile op counts; needs a prototype measurement to confirm.",
+      "_lineages": [
+        "1789363775244-64o2qi-swe2"
+      ]
+    },
+    {
+      "id": "kq-index-normalization",
+      "text": "Which index normalization is correct after manual materialization: clearing skip-worktree bits or seeding the worktree index from the main index?",
+      "status": "partial",
+      "note": "Both are defensible; the index-seed route touches the private worktree gitdir layout and should be pinned by a test.",
+      "_lineages": [
+        "1789363775244-64o2qi-swe2"
+      ]
+    },
+    {
+      "id": "kq-churn-cumulative",
+      "text": "Should the missing cumulative churn arm (spec's 40/lane) and the default-3-vs-12 divergence be filed?",
+      "status": "unknown",
+      "note": "REQ-004 specifies two arms; the implementation ships one burst check at default 3.",
+      "_lineages": [
+        "1789363775244-64o2qi-swe2"
+      ]
+    },
+    {
+      "id": "kq-dep-root-escape",
+      "text": "Should the symlinked dep-root write-escape be filed as a containment defect on the shipped design?",
+      "status": "unknown",
+      "note": "A lane writing through a linked node_modules mutates the shared install invisibly to both guards; clonefile-ing the roots closes it.",
+      "_lineages": [
+        "1789363775244-64o2qi-swe2"
+      ]
+    }
+  ],
+  "resolvedQuestions": [
+    {
+      "id": "q3",
+      "question": "Can a non-git mechanism deliver exact attribution?",
+      "answer": "No. Exact attribution requires a per-lane index + tree of the same repo (the invariant); every non-git lane is detector-blind, hard-fails, or recreates the wrong-tree bug.",
+      "lineage": "deepseek",
+      "_lineages": [
+        "1789363775244-64o2qi-deepseek"
+      ]
+    },
+    {
+      "id": "q2",
+      "question": "What is the minimum read cone a lane needs?",
+      "answer": ".opencode/ (~253 MB) + target spec family (specs/system-deep-loop, ~356 MB) + any other dispatch-named spec path + seed paths; cone mode is include-only per directory, so granularity is family not packet.",
+      "lineage": "deepseek",
+      "_lineages": [
+        "1789363775244-64o2qi-deepseek"
+      ]
+    },
+    {
+      "id": "q5",
+      "question": "What survives relocation and what must change in the runner?",
+      "answer": "Only the sparse worktree survives git worktree move (per-worktree gitdir carries the cone; relative self-links). Runner changes: cone-aware createLineageWorktree, per-run cone computation, minimum git >= 2.37, and a stub-executor measurement run to confirm the per-lane time saving.",
+      "lineage": "deepseek",
+      "_lineages": [
+        "1789363775244-64o2qi-deepseek"
+      ]
+    },
+    {
+      "id": "q4",
+      "question": "Which breakage classes does each mechanism violate?",
+      "answer": "Sparse: none (inherits split-relink, relative self-links, provisioning, exact detector). Clones: sweep/lease/publish break (new repo boundary); partial clones additionally break the detector via promisor fetches. CoW/sandbox/redirection: detector, self-links (re-anchor), and reclaim break.",
+      "lineage": "deepseek",
+      "_lineages": [
+        "1789363775244-64o2qi-deepseek"
+      ]
+    },
+    {
+      "id": "q1",
+      "question": "Which git-native materialization lever cuts the cost while keeping all machinery?",
+      "answer": "Sparse cone worktree; the cone is a superset of .opencode/, the target spec family, dispatch-named spec paths, and the seed list.",
+      "lineage": "deepseek",
+      "_lineages": [
+        "1789363775244-64o2qi-deepseek"
+      ]
+    },
+    {
+      "id": "kq-single-checkout",
+      "answer": "Exact attribution on shared bytes requires kernel mediation: OS write denial (prevention — vacuously exact but changes the question) or observe-by-PID (exact but privileged/entitlement-gated). Tree-diff on shared bytes is structurally unsound by the module's own admission.",
+      "resolvedInRun": 3,
+      "source": "write-containment.ts:14-19; executor-config.ts:118-124; fanout-run.cjs:3563-3600",
+      "_lineages": [
+        "1789363775244-64o2qi-swe2"
+      ]
+    },
+    {
+      "id": "kq-breakage",
+      "answer": "Self-links and entry guards are dissolved by a full clone, unchanged under links; the churn detector runs everywhere but is shipped burst-only (spec's cumulative arm absent, default 3 vs 12); symlinked dep roots are a write-escape channel under linking.",
+      "resolvedInRun": 3,
+      "source": "worktree-lifecycle.ts:457-557; fanout-run.cjs:1593-1631; spec.md:121,174; executor-config.ts:701",
+      "_lineages": [
+        "1789363775244-64o2qi-swe2"
+      ]
+    },
+    {
+      "id": "kq-git-native",
+      "answer": "Sparse cones and --no-checkout+restore keep exact attribution (private per-lane index; out-of-cone writes still surface as untracked). Shallow/reference/partial clones pay the same materialization and lose worktree semantics — ruled out.",
+      "resolvedInRun": 1,
+      "source": "fanout-run.cjs:3591-3609,3827-3845; worktree-lifecycle.ts:823-846; worktree-reclaim.ts:56-88",
+      "_lineages": [
+        "1789363775244-64o2qi-swe2"
+      ]
+    },
+    {
+      "id": "kq-cost-decomposition",
+      "answer": "The 22 s / 1.6 GB is git worktree add materializing 82,393 tracked files plus the lane index; the object store was already shared (worktree .git = 4 KB pointer). specs/ alone is 1.3 GB / 78% of tracked files.",
+      "resolvedInRun": 1,
+      "source": "worktree-lifecycle.ts:592-593; implementation-summary.md:105-106; direct du/ls-files measurement",
+      "_lineages": [
+        "1789363775244-64o2qi-swe2"
+      ]
+    },
+    {
+      "id": "kq-fs-sharing",
+      "answer": "git worktree add --no-checkout + APFS cp -Rc gives a registered lane in ~1-4 s at ~0 disk with exact attribution and a baseline frozen against foreign writes; it also dissolves self-link and entry-guard hazards when dep roots are cloned rather than linked.",
+      "resolvedInRun": 2,
+      "source": "APFS clonefile semantics over worktree-lifecycle.ts provisioning; worktree-symlinks/synthesis.md",
+      "_lineages": [
+        "1789363775244-64o2qi-swe2"
+      ]
+    },
+    {
+      "id": "kq-relocation",
+      "answer": "git worktree move survives every registered variant (sparse cone, clonefile, full); absolute dep links target the unmoved main checkout; relative self-links were built for relocation. Only enclosing-checkout moves break registrations — a shared constraint.",
+      "resolvedInRun": 3,
+      "source": "worktree-lifecycle.ts:466-471",
+      "_lineages": [
+        "1789363775244-64o2qi-swe2"
+      ]
+    },
+    {
+      "id": "q1-sparse-partial-attribution",
+      "text": "Can sparse or partial checkouts reduce materialized bytes while retaining a real per-lane status boundary and exact attribution?",
+      "resolvedAtIteration": 1,
+      "_lineages": [
+        "1789363775244-64o2qi-luna"
+      ]
+    },
+    {
+      "id": "q2-history-object-store-cost",
+      "text": "What do shallow history, reference or shared object stores, and clone-on-write change in setup and disk cost without changing write ownership?",
+      "resolvedAtIteration": 1,
+      "_lineages": [
+        "1789363775244-64o2qi-luna"
+      ]
+    },
+    {
+      "id": "q3-one-checkout-isolation",
+      "text": "Can an overlay, copy-on-write directory, or sandboxed lane make one checkout exact without changing the runtime’s path and git assumptions?",
+      "resolvedAtIteration": 2,
+      "_lineages": [
+        "1789363775244-64o2qi-luna"
+      ]
+    },
+    {
+      "id": "q4-dependency-and-churn-breakage",
+      "text": "Which mechanisms break the shared dependency roots, workspace self-links, compiled entry-point guards, or the churn detector?",
+      "resolvedAtIteration": 2,
+      "_lineages": [
+        "1789363775244-64o2qi-luna"
+      ]
+    },
+    {
+      "id": "q5-relocation",
+      "text": "Does each mechanism preserve relocation and git worktree move semantics?",
+      "resolvedAtIteration": 3,
+      "_lineages": [
+        "1789363775244-64o2qi-luna"
+      ]
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "iteration-1-finding-6",
+      "title": "**`--no-checkout` + selective restore is the file-granular variant of the same lever.** `git worktree add --no-checkout` registers the worktree and its gitdir without materializing files; `git restore --source=HEAD -- <paths>` or non-cone sparse patterns then materialize only what the lane reads. Same attribution, same lifecycle, finer control — at the price of maintaining a materialization list instead of a cone.",
+      "text": "**`--no-checkout` + selective restore is the file-granular variant of the same lever.** `git worktree add --no-checkout` registers the worktree and its gitdir without materializing files; `git restore --source=HEAD -- <paths>` or non-cone sparse patterns then materialize only what the lane reads. Same attribution, same lifecycle, finer control — at the price of maintaining a materialization list instead of a cone.",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/1789363775244-64o2qi-swe2/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "1789363775244-64o2qi-swe2"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-1",
+      "title": "**`git worktree add --no-checkout` + APFS `cp -Rc` is the strongest mechanism found.** Registration alone (gitdir under the shared `.git/worktrees/`, `.git` pointer file, no files materialized) costs tens of milliseconds; `cp -Rc` then clones the working tree as copy-on-write extents — a metadata operation per file, not a byte copy — putting realistic setup at roughly 1–4 s against the measured ~22 s [SOURCE: .opencode/skills/system-deep-loop/runtime/lib/deep-loop/worktree-lifecycle.ts:592-593; specs/system-deep-loop/045-fanout-write-containment-hardening/implementation-summary.md:105]. Disk cost is ~0 at provisioning and grows only by the lane's own writes (CoW splits at write time). Six lanes cost ~0 + deltas instead of ~9.6 GB.",
+      "text": "**`git worktree add --no-checkout` + APFS `cp -Rc` is the strongest mechanism found.** Registration alone (gitdir under the shared `.git/worktrees/`, `.git` pointer file, no files materialized) costs tens of milliseconds; `cp -Rc` then clones the working tree as copy-on-write extents — a metadata operation per file, not a byte copy — putting realistic setup at roughly 1–4 s against the measured ~22 s [SOURCE: .opencode/skills/system-deep-loop/runtime/lib/deep-loop/worktree-lifecycle.ts:592-593; specs/system-deep-loop/045-fanout-write-containment-hardening/implementation-summary.md:105]. Disk cost is ~0 at provisioning and grows only by the lane's own writes (CoW splits at write time). Six lanes cost ~0 + deltas instead of ~9.6 GB.",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/1789363775244-64o2qi-swe2/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "1789363775244-64o2qi-swe2"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-7",
+      "title": "**`git worktree move` survives every registered-worktree variant; shared-checkout options have nothing to move.** Move rewrites registration and the `.git` pointer, not link text — so absolute dependency links pointing *at the unmoved main checkout* survive, and the relative self-links were made relative for exactly this reason [SOURCE: .opencode/skills/system-deep-loop/runtime/lib/deep-loop/worktree-lifecycle.ts:466-471]. Sparse cones move (cone metadata lives in the worktree gitdir); clonefile trees move with CoW sharing preserved on the same volume. What breaks identically across all worktree variants is moving the *enclosing* main checkout — registrations hold absolute gitdir paths — a shared constraint, not a differentiator. The reclaim sweep, lease, and publish machinery are registration-keyed and unchanged in every variant.",
+      "text": "**`git worktree move` survives every registered-worktree variant; shared-checkout options have nothing to move.** Move rewrites registration and the `.git` pointer, not link text — so absolute dependency links pointing *at the unmoved main checkout* survive, and the relative self-links were made relative for exactly this reason [SOURCE: .opencode/skills/system-deep-loop/runtime/lib/deep-loop/worktree-lifecycle.ts:466-471]. Sparse cones move (cone metadata lives in the worktree gitdir); clonefile trees move with CoW sharing preserved on the same volume. What breaks identically across all worktree variants is moving the *enclosing* main checkout — registrations hold absolute gitdir paths — a shared constraint, not a differentiator. The reclaim sweep, lease, and publish machinery are registration-keyed and unchanged in every variant.",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/1789363775244-64o2qi-swe2/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "1789363775244-64o2qi-swe2"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-9",
+      "title": "**A \"sandboxed working directory\" without git registration loses the attribution mechanism.** The entire guard is `git status` over a lane-local index [SOURCE: .opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts:1-29]. A plain directory of copies/links has no index; attribution would need a byte-manifest diff the runtime does not have. So the phrase \"per-lane sandboxed working directories with a shared object store\" reduces to *a worktree whose bytes arrive by clone instead of checkout* — option 1 — and the \"shared object store\" half is already free.",
+      "text": "**A \"sandboxed working directory\" without git registration loses the attribution mechanism.** The entire guard is `git status` over a lane-local index [SOURCE: .opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts:1-29]. A plain directory of copies/links has no index; attribution would need a byte-manifest diff the runtime does not have. So the phrase \"per-lane sandboxed working directories with a shared object store\" reduces to *a worktree whose bytes arrive by clone instead of checkout* — option 1 — and the \"shared object store\" half is already free.",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/1789363775244-64o2qi-swe2/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "1789363775244-64o2qi-swe2"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-3",
+      "title": "**A full clonefile makes the packet seed redundant.** `seedWorktree` exists because HEAD lacks the packet's uncommitted bytes; `cp -Rc` of the working tree clones exactly those working-tree bytes — uncommitted packet content arrives for free, for every path, removing `listPacketUncommittedPaths` + `seedWorktree` from the hot path [SOURCE: .opencode/skills/system-deep-loop/runtime/lib/deep-loop/worktree-lifecycle.ts:693-752; .opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:2763-2791]. Seeding stays needed only for the sparse-cone variant.",
+      "text": "**A full clonefile makes the packet seed redundant.** `seedWorktree` exists because HEAD lacks the packet's uncommitted bytes; `cp -Rc` of the working tree clones exactly those working-tree bytes — uncommitted packet content arrives for free, for every path, removing `listPacketUncommittedPaths` + `seedWorktree` from the hot path [SOURCE: .opencode/skills/system-deep-loop/runtime/lib/deep-loop/worktree-lifecycle.ts:693-752; .opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:2763-2791]. Seeding stays needed only for the sparse-cone variant.",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/1789363775244-64o2qi-swe2/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "1789363775244-64o2qi-swe2"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-2",
+      "title": "**Clonefile preserves — and slightly strengthens — attribution.** Each lane still has a private worktree index, so `git status` attribution is lane-local and exact, exactly as today. Better: a concurrent editor writing the main checkout splits the *editor's* extents, so the lane's bytes are frozen at clone time — the lane baseline cannot be moved under it by foreign writes. The lane's index-versus-bytes delta (the main checkout's uncommitted paths cloned in) is the same thing `snapshotOutOfScopeDirtyPaths` already captures as the pre-dispatch baseline [SOURCE: .opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3601-3609].",
+      "text": "**Clonefile preserves — and slightly strengthens — attribution.** Each lane still has a private worktree index, so `git status` attribution is lane-local and exact, exactly as today. Better: a concurrent editor writing the main checkout splits the *editor's* extents, so the lane's bytes are frozen at clone time — the lane baseline cannot be moved under it by foreign writes. The lane's index-versus-bytes delta (the main checkout's uncommitted paths cloned in) is the same thing `snapshotOutOfScopeDirtyPaths` already captures as the pre-dispatch baseline [SOURCE: .opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3601-3609].",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/1789363775244-64o2qi-swe2/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "1789363775244-64o2qi-swe2"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-4",
+      "title": "**Cloning the dependency roots (instead of symlinking them) dissolves the self-link problem.** The self-link defect exists because a relative link like `node_modules/@spec-kit/shared → ../../shared` re-anchors through its physical location: carried into a lane as part of a wholesale link, it resolves back into the main checkout's source [SOURCE: specs/system-deep-loop/045-fanout-write-containment-hardening/research/worktree-symlinks/synthesis.md]. A full-tree clone contains the link *and* its target inside the lane, so the same relative text resolves to the lane's own CoW-identical copy — correct provenance with zero rewriting. Compiled entry-point guards (`path.resolve(process.argv[1])` vs `fileURLToPath(import.meta.url)`) likewise pass, because both sides resolve inside the lane's real files — the no-op-through-symlinked-dist failure cannot occur.",
+      "text": "**Cloning the dependency roots (instead of symlinking them) dissolves the self-link problem.** The self-link defect exists because a relative link like `node_modules/@spec-kit/shared → ../../shared` re-anchors through its physical location: carried into a lane as part of a wholesale link, it resolves back into the main checkout's source [SOURCE: specs/system-deep-loop/045-fanout-write-containment-hardening/research/worktree-symlinks/synthesis.md]. A full-tree clone contains the link *and* its target inside the lane, so the same relative text resolves to the lane's own CoW-identical copy — correct provenance with zero rewriting. Compiled entry-point guards (`path.resolve(process.argv[1])` vs `fileURLToPath(import.meta.url)`) likewise pass, because both sides resolve inside the lane's real files — the no-op-through-symlinked-dist failure cannot occur.",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/1789363775244-64o2qi-swe2/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "1789363775244-64o2qi-swe2"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-4",
+      "title": "**Every cheaper shared-checkout idea was already scored and stays scored.** One shared worktree for the whole run: 3/10, \"the misattribution problem moved one level down\" [SOURCE: specs/system-deep-loop/045-fanout-write-containment-hardening/decision-record.md:276]. Watch-and-remedy in the shared checkout: 4/10, remedy acts on bytes a concurrent session may own [SOURCE: specs/system-deep-loop/045-fanout-write-containment-hardening/decision-record.md:495]. The containment module itself states the invariant: \"The tree cannot say which writer made a change\" [SOURCE: .opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts:14-19]. Tree-diff attribution on shared bytes is structurally unsound; every carve-out in the code — `unattributableDirs`, `unattributablePaths`, foreign-run discovery — is an admission of that [SOURCE: .opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3563-3600].",
+      "text": "**Every cheaper shared-checkout idea was already scored and stays scored.** One shared worktree for the whole run: 3/10, \"the misattribution problem moved one level down\" [SOURCE: specs/system-deep-loop/045-fanout-write-containment-hardening/decision-record.md:276]. Watch-and-remedy in the shared checkout: 4/10, remedy acts on bytes a concurrent session may own [SOURCE: specs/system-deep-loop/045-fanout-write-containment-hardening/decision-record.md:495]. The containment module itself states the invariant: \"The tree cannot say which writer made a change\" [SOURCE: .opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts:14-19]. Tree-diff attribution on shared bytes is structurally unsound; every carve-out in the code — `unattributableDirs`, `unattributablePaths`, foreign-run discovery — is an admission of that [SOURCE: .opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3563-3600].",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/1789363775244-64o2qi-swe2/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "1789363775244-64o2qi-swe2"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-7",
+      "title": "**Index normalization is the one real engineering detail.** After `--no-checkout`, the lane index must be reconciled to the cloned bytes — either a sparse-checkout/`update-index --no-skip-worktree` pass that clears skip bits (a stat pass, not a byte copy) or seeding the lane's private index from the main checkout's index (the worktree index lives at `<commondir>/worktrees/<name>/index`, a stable-but-private layout). Even a degenerate full `git status` content-hash pass over the tree is seconds, not 22 s — and only stat-cache validation is needed after an index copy.",
+      "text": "**Index normalization is the one real engineering detail.** After `--no-checkout`, the lane index must be reconciled to the cloned bytes — either a sparse-checkout/`update-index --no-skip-worktree` pass that clears skip bits (a stat pass, not a byte copy) or seeding the lane's private index from the main checkout's index (the worktree index lives at `<commondir>/worktrees/<name>/index`, a stable-but-private layout). Even a degenerate full `git status` content-hash pass over the tree is seconds, not 22 s — and only stat-cache validation is needed after an index copy.",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/1789363775244-64o2qi-swe2/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "1789363775244-64o2qi-swe2"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-2",
+      "title": "**OS-level write denial is the one single-checkout option that works — and it changes the question.** Wrapping the lane spawn in a seatbelt profile (macOS `sandbox-exec`) or Landlock (Linux) that permits writes only to the lineage directory plus the executor's known legitimate dirs makes out-of-scope writes impossible — EPERM at the syscall, ~0 setup, ~0 disk, reads fully shared. Attribution becomes vacuously exact: there is no successful out-of-scope write to attribute. What it buys in certainty it pays in semantics: a lane whose executor writes outside the allowlist *fails* rather than producing a contained finding, and a denied write leaves no bytes to quarantine — the forensic record of \"what the lane tried to write\" disappears. The allowlist is enumerable from machinery the runner already owns (per-kind `stateDir`, `resolvedClaudeConfigDir`, the dispatch-env allowlist) [SOURCE: .opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3466-3495,3478-3480]. Today only `cli-codex` and `cli-cursor` map `sandboxMode` to real OS confinement; every other kind is post-hoc guard only [SOURCE: .opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:118-124] — a runner-level sandbox wrapper would be uniform across kinds and would cover `cli-opencode`, which has no sandbox flag at all [SOURCE: .opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3418-3423]. Verdict: viable and cheapest, but it is a *prevention* answer to an *attribution* question — a policy choice, strongest as a complement to a private-tree mechanism, not a replacement.",
+      "text": "**OS-level write denial is the one single-checkout option that works — and it changes the question.** Wrapping the lane spawn in a seatbelt profile (macOS `sandbox-exec`) or Landlock (Linux) that permits writes only to the lineage directory plus the executor's known legitimate dirs makes out-of-scope writes impossible — EPERM at the syscall, ~0 setup, ~0 disk, reads fully shared. Attribution becomes vacuously exact: there is no successful out-of-scope write to attribute. What it buys in certainty it pays in semantics: a lane whose executor writes outside the allowlist *fails* rather than producing a contained finding, and a denied write leaves no bytes to quarantine — the forensic record of \"what the lane tried to write\" disappears. The allowlist is enumerable from machinery the runner already owns (per-kind `stateDir`, `resolvedClaudeConfigDir`, the dispatch-env allowlist) [SOURCE: .opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3466-3495,3478-3480]. Today only `cli-codex` and `cli-cursor` map `sandboxMode` to real OS confinement; every other kind is post-hoc guard only [SOURCE: .opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:118-124] — a runner-level sandbox wrapper would be uniform across kinds and would cover `cli-opencode`, which has no sandbox flag at all [SOURCE: .opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3418-3423]. Verdict: viable and cheapest, but it is a *prevention* answer to an *attribution* question — a policy choice, strongest as a complement to a private-tree mechanism, not a replacement.",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/1789363775244-64o2qi-swe2/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "1789363775244-64o2qi-swe2"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-8",
+      "title": "**Overlayfs-over-live-lower fails attribution under concurrent writers.** A union mount's lower stays *live*: a foreign write in the main checkout shows through the lane's overlay and lands in the lane's `git status` — re-creating the 1,858-path misattribution this packet exists to kill [SOURCE: specs/system-deep-loop/045-fanout-write-containment-hardening/spec.md:22,51]. Overlay over a *frozen* lower restores isolation but forfeits working-tree bytes (re-introducing the seed) and `.git` handling needs a per-lane index regardless (`GIT_INDEX_FILE` or copy-up). Verdict: overlayfs is the wrong primitive against a live lower; the correct Linux analogue of clonefile is `cp --reflink` (btrfs/xfs), which freezes extents per file like APFS. macOS has no overlayfs regardless — this host is APFS.",
+      "text": "**Overlayfs-over-live-lower fails attribution under concurrent writers.** A union mount's lower stays *live*: a foreign write in the main checkout shows through the lane's overlay and lands in the lane's `git status` — re-creating the 1,858-path misattribution this packet exists to kill [SOURCE: specs/system-deep-loop/045-fanout-write-containment-hardening/spec.md:22,51]. Overlay over a *frozen* lower restores isolation but forfeits working-tree bytes (re-introducing the seed) and `.git` handling needs a per-lane index regardless (`GIT_INDEX_FILE` or copy-up). Verdict: overlayfs is the wrong primitive against a live lower; the correct Linux analogue of clonefile is `cp --reflink` (btrfs/xfs), which freezes extents per file like APFS. macOS has no overlayfs regardless — this host is APFS.",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/1789363775244-64o2qi-swe2/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "1789363775244-64o2qi-swe2"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-8",
+      "title": "**Partial clone (`--filter=blob:none`) is a non-answer locally.** Promisor filters defer blob fetch from a remote; here every object is already local in the shared store, so there is nothing to defer. Ruled out.",
+      "text": "**Partial clone (`--filter=blob:none`) is a non-answer locally.** Promisor filters defer blob fetch from a remote; here every object is already local in the shared store, so there is nothing to defer. Ruled out.",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/1789363775244-64o2qi-swe2/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "1789363775244-64o2qi-swe2"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-1",
+      "title": "**Per-lane write *redirection* on one checkout reduces to the mechanisms already ruled out.** Transparent remapping of a lane's writes needs mount namespaces (Linux `unshare -m` + bind/overlay) or a FUSE layer. macOS has no mount namespaces and macFUSE requires a kernel extension; on Linux the only write-redirecting mount is overlayfs — which Iteration 2 showed fails attribution over a live lower. A redirector that shunts only out-of-scope writes into a scratch area makes those writes *invisible* to `git status` — worse observability than the failure it prevents. And `GIT_INDEX_FILE`-per-lane over shared bytes gives a private index over shared bytes: a foreign write still lands in the lane's diff. There is no redirect primitive that is both cheap and attribution-preserving on this host. Ruled out.",
+      "text": "**Per-lane write *redirection* on one checkout reduces to the mechanisms already ruled out.** Transparent remapping of a lane's writes needs mount namespaces (Linux `unshare -m` + bind/overlay) or a FUSE layer. macOS has no mount namespaces and macFUSE requires a kernel extension; on Linux the only write-redirecting mount is overlayfs — which Iteration 2 showed fails attribution over a live lower. A redirector that shunts only out-of-scope writes into a scratch area makes those writes *invisible* to `git status` — worse observability than the failure it prevents. And `GIT_INDEX_FILE`-per-lane over shared bytes gives a private index over shared bytes: a foreign write still lands in the lane's diff. There is no redirect primitive that is both cheap and attribution-preserving on this host. Ruled out.",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/1789363775244-64o2qi-swe2/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "1789363775244-64o2qi-swe2"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-3",
+      "title": "**Per-process write attribution (observe-by-PID) is exact but unreachable.** macOS EndpointSecurity reports the instigating process on file events — genuinely exact attribution on shared bytes — but requires an Apple entitlement and a signed system extension. `fs_usage`/DTrace need root or SIP-disabled. On Linux, fanotify permission events and eBPF `vfs_write` tracepoints carry the writer's PID — real, but privileged and platform-gated. For a Node runner spawning unprivileged CLIs, this class is ruled out on deployment grounds, not capability.",
+      "text": "**Per-process write attribution (observe-by-PID) is exact but unreachable.** macOS EndpointSecurity reports the instigating process on file events — genuinely exact attribution on shared bytes — but requires an Apple entitlement and a signed system extension. `fs_usage`/DTrace need root or SIP-disabled. On Linux, fanotify permission events and eBPF `vfs_write` tracepoints carry the writer's PID — real, but privileged and platform-gated. For a Node runner spawning unprivileged CLIs, this class is ruled out on deployment grounds, not capability.",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/1789363775244-64o2qi-swe2/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "1789363775244-64o2qi-swe2"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-8",
+      "title": "**Recommended order:** (a) `git worktree add --no-checkout` + `cp -Rc` clonefile materialization including the dependency roots — ~1–4 s setup, ~0 disk, exact attribution, frozen lane baseline, dep-root write-escape closed, self-link and entry-guard hazards dissolved, seed step eliminated; (b) sparse-cone worktree as the portable fallback — cone ≈ 3% of tree, keeps links+seed, binds the read surface; (c) seatbelt-style write denial as an optional complement on the shared-checkout/degraded path — prevention plus the churn detector as the environmental signal. Linux ports via `cp --reflink` (btrfs/xfs); elsewhere degrade to today's full checkout.",
+      "text": "**Recommended order:** (a) `git worktree add --no-checkout` + `cp -Rc` clonefile materialization including the dependency roots — ~1–4 s setup, ~0 disk, exact attribution, frozen lane baseline, dep-root write-escape closed, self-link and entry-guard hazards dissolved, seed step eliminated; (b) sparse-cone worktree as the portable fallback — cone ≈ 3% of tree, keeps links+seed, binds the read surface; (c) seatbelt-style write denial as an optional complement on the shared-checkout/degraded path — prevention plus the churn detector as the environmental signal. Linux ports via `cp --reflink` (btrfs/xfs); elsewhere degrade to today's full checkout.",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/1789363775244-64o2qi-swe2/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "1789363775244-64o2qi-swe2"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-10",
+      "title": "**Relocation survives.** `git worktree move` rewrites registration only; same-volume moves preserve CoW sharing (extents follow inodes), and the absolute dependency links point at the *main* checkout, which did not move. The documented danger — absolute links pointing *into* a moved lane — is already engineered away by relative self-links [SOURCE: .opencode/skills/system-deep-loop/runtime/lib/deep-loop/worktree-lifecycle.ts:466-471]. Cross-volume moves materialize bytes (same as any tree), and moving the enclosing main checkout breaks all worktree registrations equally.",
+      "text": "**Relocation survives.** `git worktree move` rewrites registration only; same-volume moves preserve CoW sharing (extents follow inodes), and the absolute dependency links point at the *main* checkout, which did not move. The documented danger — absolute links pointing *into* a moved lane — is already engineered away by relative self-links [SOURCE: .opencode/skills/system-deep-loop/runtime/lib/deep-loop/worktree-lifecycle.ts:466-471]. Cross-volume moves materialize bytes (same as any tree), and moving the enclosing main checkout breaks all worktree registrations equally.",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/1789363775244-64o2qi-swe2/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "1789363775244-64o2qi-swe2"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-9",
+      "title": "**Scale makes the cost decisive.** Fan-out concurrency caps at 8 lanes and 256 expanded lineages [SOURCE: .opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:635,685]. At the measured cost, 8 concurrent lanes peak at ~12.8 GB of checkout and a 256-lineage run serializes roughly 94 minutes of provisioning; under clonefile both collapse to registration overhead plus write deltas.",
+      "text": "**Scale makes the cost decisive.** Fan-out concurrency caps at 8 lanes and 256 expanded lineages [SOURCE: .opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:635,685]. At the measured cost, 8 concurrent lanes peak at ~12.8 GB of checkout and a 256-lineage run serializes roughly 94 minutes of provisioning; under clonefile both collapse to registration overhead plus write deltas.",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/1789363775244-64o2qi-swe2/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "1789363775244-64o2qi-swe2"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-7",
+      "title": "**Shallow and reference clones are strictly worse than the worktree they would replace.** A `git clone --depth N` or `--reference`/`--shared` clone still pays full working-tree materialization plus index — the entire measured cost — while adding a second repository with its own refs and an `objects/info/alternates` coupling that a detached worktree already provides for free. It also abandons the registration the lifecycle is built on: `git worktree remove`, `worktree prune`, `worktree move`, the lease-in-tree convention, and the prefix reclaim sweep all assume a linked worktree [SOURCE: .opencode/skills/system-deep-loop/runtime/lib/deep-loop/worktree-lifecycle.ts:823-846; .opencode/skills/system-deep-loop/runtime/lib/deep-loop/worktree-reclaim.ts:56-88]. Ruled out: same cost, weaker semantics, new object-liveness hazard (alternates require the lender never to GC the borrowed objects).",
+      "text": "**Shallow and reference clones are strictly worse than the worktree they would replace.** A `git clone --depth N` or `--reference`/`--shared` clone still pays full working-tree materialization plus index — the entire measured cost — while adding a second repository with its own refs and an `objects/info/alternates` coupling that a detached worktree already provides for free. It also abandons the registration the lifecycle is built on: `git worktree remove`, `worktree prune`, `worktree move`, the lease-in-tree convention, and the prefix reclaim sweep all assume a linked worktree [SOURCE: .opencode/skills/system-deep-loop/runtime/lib/deep-loop/worktree-lifecycle.ts:823-846; .opencode/skills/system-deep-loop/runtime/lib/deep-loop/worktree-reclaim.ts:56-88]. Ruled out: same cost, weaker semantics, new object-liveness hazard (alternates require the lender never to GC the borrowed objects).",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/1789363775244-64o2qi-swe2/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "1789363775244-64o2qi-swe2"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-4",
+      "title": "**Sparse-cone worktrees preserve every semantic the runner depends on, at cone-fraction cost.** A worktree created `--no-checkout` and then materialized through `git sparse-checkout` still gets a private index and worktree gitdir, so `git status --porcelain` inside it diffs that lane's index against that lane's bytes — the exact-attribution mechanism containment already uses [SOURCE: .opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3591-3609,3827-3845]. Attribution stays exact within the tree, and a lane write outside the cone lands on disk as an *untracked* file, which the physical untracked-file scan still reports — out-of-cone escapes remain visible to the guard. Setup cost scales with cone size (~52 MB cone → well under 5 s); disk cost is cone bytes plus seed plus lane output.",
+      "text": "**Sparse-cone worktrees preserve every semantic the runner depends on, at cone-fraction cost.** A worktree created `--no-checkout` and then materialized through `git sparse-checkout` still gets a private index and worktree gitdir, so `git status --porcelain` inside it diffs that lane's index against that lane's bytes — the exact-attribution mechanism containment already uses [SOURCE: .opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3591-3609,3827-3845]. Attribution stays exact within the tree, and a lane write outside the cone lands on disk as an *untracked* file, which the physical untracked-file scan still reports — out-of-cone escapes remain visible to the guard. Setup cost scales with cone size (~52 MB cone → well under 5 s); disk cost is cone bytes plus seed plus lane output.",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/1789363775244-64o2qi-swe2/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "1789363775244-64o2qi-swe2"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-1",
+      "title": "**The 22 s is working-tree materialization, not git objects.** `createLineageWorktree` runs exactly one git command that does real I/O: `git worktree add --detach <base>/fanout-<runId>-attempt-N-<label> HEAD` [SOURCE: .opencode/skills/system-deep-loop/runtime/lib/deep-loop/worktree-lifecycle.ts:592-593]. A linked worktree shares the object store — this lane's own `.git` entry is a 4 KB pointer file, and the packet records \"the git object store is shared rather than copied\" [SOURCE: specs/system-deep-loop/045-fanout-write-containment-hardening/implementation-summary.md:106]. The measured cost is therefore the checkout writing 82,393 tracked files (1.6 GB) plus the per-worktree index build.",
+      "text": "**The 22 s is working-tree materialization, not git objects.** `createLineageWorktree` runs exactly one git command that does real I/O: `git worktree add --detach <base>/fanout-<runId>-attempt-N-<label> HEAD` [SOURCE: .opencode/skills/system-deep-loop/runtime/lib/deep-loop/worktree-lifecycle.ts:592-593]. A linked worktree shares the object store — this lane's own `.git` entry is a 4 KB pointer file, and the packet records \"the git object store is shared rather than copied\" [SOURCE: specs/system-deep-loop/045-fanout-write-containment-hardening/implementation-summary.md:106]. The measured cost is therefore the checkout writing 82,393 tracked files (1.6 GB) plus the per-worktree index build.",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/1789363775244-64o2qi-swe2/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "1789363775244-64o2qi-swe2"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-5",
+      "title": "**The binding constraint of a cone is the read surface, not attribution.** A lane reading a tracked file outside its cone finds nothing on disk. Research lineages are told they may read anywhere, so the cone must cover the plausible read surface (packet, `.opencode/skills`, root docs) or the prompt gains a `git show HEAD:<path>` fallback, which materializes nothing. Lanes whose reads are enumerable (a review lane scoped to a folder) fit cones cleanly; open-ended research lanes need a wide cone or the fallback.",
+      "text": "**The binding constraint of a cone is the read surface, not attribution.** A lane reading a tracked file outside its cone finds nothing on disk. Research lineages are told they may read anywhere, so the cone must cover the plausible read surface (packet, `.opencode/skills`, root docs) or the prompt gains a `git show HEAD:<path>` fallback, which materializes nothing. Lanes whose reads are enumerable (a review lane scoped to a folder) fit cones cleanly; open-ended research lanes need a wide cone or the fallback.",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/1789363775244-64o2qi-swe2/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "1789363775244-64o2qi-swe2"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-2",
+      "title": "**The checkout is dominated by content a lane never needs.** Measured on this worktree: `specs/` alone is 1.3 GB of the 1.6 GB tree and holds 64,280 of the 82,393 tracked files (78%); the packet a lineage actually works in is 872 KB; the two runtime skill trees a lane reads are ~51 MB combined (`system-deep-loop` 20 MB, `system-spec-kit` 31 MB). A cone covering packet + runtime + root docs is ~52 MB — roughly 3% of the tree.",
+      "text": "**The checkout is dominated by content a lane never needs.** Measured on this worktree: `specs/` alone is 1.3 GB of the 1.6 GB tree and holds 64,280 of the 82,393 tracked files (78%); the packet a lineage actually works in is 872 KB; the two runtime skill trees a lane reads are ~51 MB combined (`system-deep-loop` 20 MB, `system-spec-kit` 31 MB). A cone covering packet + runtime + root docs is ~52 MB — roughly 3% of the tree.",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/1789363775244-64o2qi-swe2/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "1789363775244-64o2qi-swe2"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-3",
+      "title": "**The non-checkout provisioning steps are already cheap.** Shared dependency linking walks the 7 `DEFAULT_SHARED_PATHS` entries, detects repo-internal self-links, and rewrites them as relative links — a bounded readdir/lstat/realpath pass plus symlink creation [SOURCE: .opencode/skills/system-deep-loop/runtime/lib/deep-loop/worktree-lifecycle.ts:147-158,407-509]. Seeding copies only the packet's uncommitted paths (KB-scale) [SOURCE: .opencode/skills/system-deep-loop/runtime/lib/deep-loop/worktree-lifecycle.ts:707-752; .opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:2763-2791]. The lease is one file write [SOURCE: .opencode/skills/system-deep-loop/runtime/lib/deep-loop/worktree-lifecycle.ts:617-628]. None of these explains 22 s; the `worktree add` materialization does.",
+      "text": "**The non-checkout provisioning steps are already cheap.** Shared dependency linking walks the 7 `DEFAULT_SHARED_PATHS` entries, detects repo-internal self-links, and rewrites them as relative links — a bounded readdir/lstat/realpath pass plus symlink creation [SOURCE: .opencode/skills/system-deep-loop/runtime/lib/deep-loop/worktree-lifecycle.ts:147-158,407-509]. Seeding copies only the packet's uncommitted paths (KB-scale) [SOURCE: .opencode/skills/system-deep-loop/runtime/lib/deep-loop/worktree-lifecycle.ts:707-752; .opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:2763-2791]. The lease is one file write [SOURCE: .opencode/skills/system-deep-loop/runtime/lib/deep-loop/worktree-lifecycle.ts:617-628]. None of these explains 22 s; the `worktree add` materialization does.",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/1789363775244-64o2qi-swe2/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "1789363775244-64o2qi-swe2"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-5",
+      "title": "**The shipped detector is burst-only; the spec's cumulative arm was never built.** REQ-004 specifies \"twelve newly-dirty tracked paths within one heartbeat window, *or forty cumulative for the lane*\" [SOURCE: specs/system-deep-loop/045-fanout-write-containment-hardening/spec.md:121]. The implementation compares each sample to the previous one and fires only on a per-window burst; there is no cumulative counter [SOURCE: .opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1611-1624]. A slow neighbour dripping ≤threshold newly-dirty paths per heartbeat never latches preserve — the \"slower neighbour that never spikes\" case section 7 explicitly motivates [SOURCE: specs/system-deep-loop/045-fanout-write-containment-hardening/spec.md:174]. Separately, the shipped schema default is 3, not the specified 12 [SOURCE: .opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:701]. This matters more for the cheap options: in a private lane tree the detector is only a lane-activity tripwire (foreign writers cannot reach the tree), but on the shared-checkout fallback — and under any single-checkout mechanism — it is the *only* foreign-writer signal, and it currently misses the drip.",
+      "text": "**The shipped detector is burst-only; the spec's cumulative arm was never built.** REQ-004 specifies \"twelve newly-dirty tracked paths within one heartbeat window, *or forty cumulative for the lane*\" [SOURCE: specs/system-deep-loop/045-fanout-write-containment-hardening/spec.md:121]. The implementation compares each sample to the previous one and fires only on a per-window burst; there is no cumulative counter [SOURCE: .opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1611-1624]. A slow neighbour dripping ≤threshold newly-dirty paths per heartbeat never latches preserve — the \"slower neighbour that never spikes\" case section 7 explicitly motivates [SOURCE: specs/system-deep-loop/045-fanout-write-containment-hardening/spec.md:174]. Separately, the shipped schema default is 3, not the specified 12 [SOURCE: .opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts:701]. This matters more for the cheap options: in a private lane tree the detector is only a lane-activity tripwire (foreign writers cannot reach the tree), but on the shared-checkout fallback — and under any single-checkout mechanism — it is the *only* foreign-writer signal, and it currently misses the drip.",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/1789363775244-64o2qi-swe2/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "1789363775244-64o2qi-swe2"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-5",
+      "title": "**Today's symlinked dependency roots are a write-escape channel the guard cannot see.** `linkSharedPath` symlinks each shared root into the lane [SOURCE: .opencode/skills/system-deep-loop/runtime/lib/deep-loop/worktree-lifecycle.ts:520-557]. A lane that writes *through* such a link — `bun install`, a cache write, a build touching `node_modules` — mutates the main checkout's real install, while `git status` in the lane sees only unchanged symlink text. The checkout-watch misses it too: those roots are gitignored. Clonefile-ing the dep roots closes this channel (lane writes split CoW pages, never shared bytes); the link scheme keeps it open. This is a containment hole in the shipped design, independent of cost.",
+      "text": "**Today's symlinked dependency roots are a write-escape channel the guard cannot see.** `linkSharedPath` symlinks each shared root into the lane [SOURCE: .opencode/skills/system-deep-loop/runtime/lib/deep-loop/worktree-lifecycle.ts:520-557]. A lane that writes *through* such a link — `bun install`, a cache write, a build touching `node_modules` — mutates the main checkout's real install, while `git status` in the lane sees only unchanged symlink text. The checkout-watch misses it too: those roots are gitignored. Clonefile-ing the dep roots closes this channel (lane writes split CoW pages, never shared bytes); the link scheme keeps it open. This is a containment hole in the shipped design, independent of cost.",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/1789363775244-64o2qi-swe2/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "1789363775244-64o2qi-swe2"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-6",
+      "title": "**Two clone-time exclusions are load-bearing.** (a) The lane's own `.git` pointer must be created by registration, never cloned — cloning the main checkout's `.git` file/dir would point the lane at the main index and destroy attribution. (b) The worktree base (default `.worktrees/` *inside* the checkout [SOURCE: .opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:518,2741]) must be excluded or the clone recurses into sibling lanes' trees. Both are one-line filters on the copy.",
+      "text": "**Two clone-time exclusions are load-bearing.** (a) The lane's own `.git` pointer must be created by registration, never cloned — cloning the main checkout's `.git` file/dir would point the lane at the main index and destroy attribution. (b) The worktree base (default `.worktrees/` *inside* the checkout [SOURCE: .opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:518,2741]) must be excluded or the clone recurses into sibling lanes' trees. Both are one-line filters on the copy.",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/1789363775244-64o2qi-swe2/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "1789363775244-64o2qi-swe2"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-6",
+      "title": "**Under clonefile/sparse lanes the detector's semantics *improve*.** Foreign writers cannot enter a private tree, so a churn burst inside a cloned or coned lane is unambiguously the lane's own out-of-scope churn — a cleaner signal than today's, where the same code path doubles as both foreign-writer detection (shared checkout) and lane tripwire (isolated lane) [SOURCE: .opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3626-3653]. Under write-denial the detector becomes purely environmental: any observed churn is foreign by construction.",
+      "text": "**Under clonefile/sparse lanes the detector's semantics *improve*.** Foreign writers cannot enter a private tree, so a churn burst inside a cloned or coned lane is unambiguously the lane's own out-of-scope churn — a cleaner signal than today's, where the same code path doubles as both foreign-writer detection (shared checkout) and lane tripwire (isolated lane) [SOURCE: .opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3626-3653]. Under write-denial the detector becomes purely environmental: any observed churn is foreign by construction.",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/1789363775244-64o2qi-swe2/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "1789363775244-64o2qi-swe2"
+      ]
+    },
+    {
+      "id": "f002-003",
+      "iteration": 2,
+      "severity": "P1",
+      "title": "COW does not reanchor dependency self-links or repair compiled entry-point realpath guards",
+      "status": "supported",
+      "sources": [
+        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/worktree-lifecycle.ts:138-158,394-475",
+        "specs/system-deep-loop/045-fanout-write-containment-hardening/research/worktree-symlinks/synthesis.md:51-75"
+      ],
+      "_lineages": [
+        "1789363775244-64o2qi-luna"
+      ]
+    },
+    {
+      "id": "f002-001",
+      "iteration": 2,
+      "severity": "P1",
+      "title": "COW saves bytes only when each lane owns a private upper/work view and Git metadata",
+      "status": "supported",
+      "sources": [
+        "https://docs.kernel.org/filesystems/overlayfs.html",
+        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/worktree-lifecycle.ts:163-183,294-307"
+      ],
+      "_lineages": [
+        "1789363775244-64o2qi-luna"
+      ]
+    },
+    {
+      "id": "f-cow-rejected",
+      "finding": "CoW/overlay lanes (APFS clonefile, overlayfs) win disk and lose everything else: the lane is not a git working tree, so the detector hard-fails (repo resolvable, artifact outside worktree) or fails open, the sweep cannot reclaim the dir (git worktree remove requires registration), and git index coherence breaks; clonefile is macOS/same-filesystem-only, overlayfs needs Linux + privilege.",
+      "evidence": "file:.opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts:744-752; https://keith.github.io/xcode-man-pages/clonefile.2.html",
+      "lineage": "deepseek",
+      "_lineages": [
+        "1789363775244-64o2qi-deepseek"
+      ]
+    },
+    {
+      "id": "f-invariant",
+      "finding": "Exact attribution requires a per-lane index plus a per-lane tree of the same repo; the churn detector is exact only inside a real git working tree, and git has no per-writer identity for writes into a shared tree. One shared checkout cannot be made exact; the only cheaper-than-full exact form is sparse.",
+      "evidence": "file:.opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts:744-773",
+      "lineage": "deepseek",
+      "_lineages": [
+        "1789363775244-64o2qi-deepseek"
+      ]
+    },
+    {
+      "id": "f002-004",
+      "iteration": 2,
+      "severity": "P1",
+      "title": "Git move survives only for registered worktrees; arbitrary overlay and sandbox mount contracts need external relocation repair",
+      "status": "supported",
+      "sources": [
+        "https://git-scm.com/docs/git-worktree",
+        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/worktree-lifecycle.ts:466-475"
+      ],
+      "_lineages": [
+        "1789363775244-64o2qi-luna"
+      ]
+    },
+    {
+      "id": "f-relocation",
+      "finding": "git worktree move/relocation survives only under the sparse worktree: sparse state lives in the per-worktree gitdir (moves with the tree) and the self-links are relative by design; clones hold path-dependent remotes, and non-git lanes have no registration.",
+      "evidence": "https://git-scm.com/docs/git-worktree; worktree-lifecycle.ts:463-475",
+      "lineage": "deepseek",
+      "_lineages": [
+        "1789363775244-64o2qi-deepseek"
+      ]
+    },
+    {
+      "id": "f003-004",
+      "iteration": 3,
+      "severity": "P1",
+      "title": "Git-managed move semantics are retained by registered worktrees, not arbitrary COW, sandbox, or virtual views",
+      "status": "supported",
+      "sources": [
+        "https://git-scm.com/docs/git-worktree",
+        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/worktree-lifecycle.ts:466-475"
+      ],
+      "_lineages": [
+        "1789363775244-64o2qi-luna"
+      ]
+    },
+    {
+      "id": "f002-002",
+      "iteration": 2,
+      "severity": "P1",
+      "title": "One-worktree environment redirection is not exact under explicit git -C and shared cwd seams",
+      "status": "supported",
+      "sources": [
+        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/worktree-lifecycle.ts:163-183,294-307",
+        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/worktree-paths.ts:109-126",
+        ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3611-3651,3880-3905"
+      ],
+      "_lineages": [
+        "1789363775244-64o2qi-luna"
+      ]
+    },
+    {
+      "id": "f-sandbox-rejected",
+      "finding": "Per-lane sandboxed dirs with a shared object store collapse into a clone or a worktree (a dir without a git identity cannot use the store and is detector-blind); the per-lane-index + checkout-index variant recreates the wrong-tree bug because the runner's status calls read the repo default index.",
+      "evidence": "file:.opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts:398-400,702-752",
+      "lineage": "deepseek",
+      "_lineages": [
+        "1789363775244-64o2qi-deepseek"
+      ]
+    },
+    {
+      "id": "f003-003",
+      "iteration": 3,
+      "severity": "P1",
+      "title": "Private-upper COW can be exact only with a new merged-root and private-Git metadata seam",
+      "status": "supported",
+      "sources": [
+        "https://docs.kernel.org/filesystems/overlayfs.html",
+        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/worktree-lifecycle.ts:163-183,294-307",
+        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts:282-336,740-773"
+      ],
+      "_lineages": [
+        "1789363775244-64o2qi-luna"
+      ]
+    },
+    {
+      "id": "f003-002",
+      "iteration": 3,
+      "severity": "P1",
+      "title": "Shallow and reference/shared modes do not independently reduce the measured dense checkout",
+      "status": "supported",
+      "sources": [
+        "https://git-scm.com/docs/git-clone",
+        "specs/system-deep-loop/045-fanout-write-containment-hardening/implementation-summary.md:105-106"
+      ],
+      "_lineages": [
+        "1789363775244-64o2qi-luna"
+      ]
+    },
+    {
+      "id": "f-clone-rejected",
+      "finding": "Shallow clones cut history not tree and add a repo boundary the sweep cannot see; reference/shared clones carry the documented corruption hazard (source-repo maintenance can prune referenced objects); partial clones require a real transport (--local ignores filters) and make the churn detector's status/hash-object trigger promisor fetches that couple lane liveness to the source path.",
+      "evidence": "https://git-scm.com/docs/git-clone; https://git-scm.com/docs/partial-clone",
+      "lineage": "deepseek",
+      "_lineages": [
+        "1789363775244-64o2qi-deepseek"
+      ]
+    },
+    {
+      "id": "f001-002",
+      "iteration": 1,
+      "severity": "P1",
+      "title": "Shallow, partial, and reference modes do not independently remove dense checkout cost",
+      "status": "supported",
+      "sources": [
+        "https://git-scm.com/docs/git-clone",
+        "specs/system-deep-loop/045-fanout-write-containment-hardening/implementation-summary.md:105-106"
+      ],
+      "_lineages": [
+        "1789363775244-64o2qi-luna"
+      ]
+    },
+    {
+      "id": "f-redirection-rejected",
+      "finding": "Single worktree with per-lane write redirection was already scored 3/10 in ADR-003 (misattribution moved one level down); five of seven executor kinds reach their tree only via spawn cwd or read root, and the ADR-005 checkout watch is report-only — its legitimate place is the degrade path, where it already lives.",
+      "evidence": "decision-record.md:276,480-486; worktree-paths.ts:79-127",
+      "lineage": "deepseek",
+      "_lineages": [
+        "1789363775244-64o2qi-deepseek"
+      ]
+    },
+    {
+      "id": "f-sparse-wins",
+      "finding": "Sparse cone worktrees (git worktree add --no-checkout + git sparse-checkout set) keep every machinery surface — registration, lease, sweep, publish, churn detector — and cut disk ~60% (0.6 GB cone vs 1.6 GB) with setup/teardown scaling with materialization; attribution stays exact because the lane remains a linked worktree of the same repo.",
+      "evidence": "file:.opencode/skills/system-deep-loop/runtime/lib/deep-loop/worktree-lifecycle.ts:569-628; measured tracked tree 1,421 MB / 82,393 files",
+      "lineage": "deepseek",
+      "_lineages": [
+        "1789363775244-64o2qi-deepseek"
+      ]
+    },
+    {
+      "id": "f001-001",
+      "iteration": 1,
+      "severity": "P1",
+      "title": "Sparse is the only Git-native byte-saving option in this pass",
+      "status": "supported",
+      "sources": [
+        "https://git-scm.com/docs/sparse-checkout",
+        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/worktree-paths.ts:97-126"
+      ],
+      "_lineages": [
+        "1789363775244-64o2qi-luna"
+      ]
+    },
+    {
+      "id": "f003-001",
+      "iteration": 3,
+      "severity": "P1",
+      "title": "Sparse plus blobless partial in a registered worktree is the lowest-risk exact cost optimization",
+      "status": "supported",
+      "sources": [
+        "https://git-scm.com/docs/sparse-checkout",
+        "https://git-scm.com/docs/git-clone",
+        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/worktree-paths.ts:97-126"
+      ],
+      "_lineages": [
+        "1789363775244-64o2qi-luna"
+      ]
+    },
+    {
+      "id": "f001-003",
+      "iteration": 1,
+      "severity": "P1",
+      "title": "Sparse plus partial retains exact physical attribution only as a real lane worktree",
+      "status": "supported",
+      "sources": [
+        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts:740-773",
+        "https://git-scm.com/docs/git-worktree"
+      ],
+      "_lineages": [
+        "1789363775244-64o2qi-luna"
+      ]
+    },
+    {
+      "id": "f-cost-composition",
+      "finding": "The 1.6 GB/lane is tracked tree materialization (85% specs/, deep-review artifact dirs), not objects: the object store (2.06 GiB in-pack) is already shared by worktrees, so object-sharing alternatives (reference/shared clones) attack nothing.",
+      "evidence": "git ls-tree -r -l HEAD; git count-objects -vH; implementation-summary.md:106",
+      "lineage": "deepseek",
+      "_lineages": [
+        "1789363775244-64o2qi-deepseek"
+      ]
+    },
+    {
+      "id": "f-config-trap",
+      "finding": "The sparse config trap (core.sparseCheckout leaking to the shared config and making the main checkout sparse) is real and is handled by git >= 2.37 (sparse-checkout set enables extensions.worktreeConfig and writes per-worktree); adoption residue is the repo-wide extension, which older git refuses.",
+      "evidence": "https://git-scm.com/docs/git-sparse-checkout; https://github.com/git/git/commit/7316dc5f6f2c8297d32e47d5859933ffacb6c00e",
+      "lineage": "deepseek",
+      "_lineages": [
+        "1789363775244-64o2qi-deepseek"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "direction": "one physical checkout with environment-only write redirection",
+      "reason": "Explicit git -C roots, redirector stripping, shared cwd cases, and report-only checkout watch prevent exact attribution.",
+      "iteration": 3,
+      "_lineages": [
+        "1789363775244-64o2qi-luna"
+      ]
+    },
+    {
+      "direction": "one-worktree environment-only write redirection",
+      "reason": "Lifecycle Git calls strip redirectors and the shared-checkout watch is report-only, so the design cannot assign all writes exactly.",
+      "iteration": 2,
+      "_lineages": [
+        "1789363775244-64o2qi-luna"
+      ]
+    },
+    {
+      "direction": "reference/shared clone alone",
+      "reason": "The packet already shares the object store; alternates do not remove checkout bytes.",
+      "iteration": 1,
+      "_lineages": [
+        "1789363775244-64o2qi-luna"
+      ]
+    },
+    {
+      "direction": "shallow clone alone",
+      "reason": "Truncates history but does not sparsify the working tree.",
+      "iteration": 1,
+      "_lineages": [
+        "1789363775244-64o2qi-luna"
+      ]
+    },
+    {
+      "direction": "shallow or reference modes as standalone checkout-cost reductions",
+      "reason": "They reduce history or object storage while the dense working-tree component remains.",
+      "iteration": 3,
+      "_lineages": [
+        "1789363775244-64o2qi-luna"
+      ]
+    },
+    {
+      "direction": "shared overlay upper/work or shared Git index",
+      "reason": "A shared mutable layer collapses the status and write ownership boundary; OverlayFS documents upper/work as per-mount state.",
+      "iteration": 2,
+      "_lineages": [
+        "1789363775244-64o2qi-luna"
+      ]
+    },
+    {
+      "direction": "sparse profile without runtime and dependency closure",
+      "reason": "Missing inputs can produce incomplete or silent execution.",
+      "iteration": 3,
+      "_lineages": [
+        "1789363775244-64o2qi-luna"
+      ]
+    },
+    {
+      "direction": "sparse profile without runtime closure",
+      "reason": "Missing runtime or dependency inputs can produce incomplete execution or silent entry-point no-ops.",
+      "iteration": 1,
+      "_lineages": [
+        "1789363775244-64o2qi-luna"
+      ]
+    },
+    {
+      "direction": "unregistered COW directory for Git move semantics",
+      "reason": "Git move/repair applies to registered linked worktrees, not arbitrary mount or sandbox metadata.",
+      "iteration": 2,
+      "_lineages": [
+        "1789363775244-64o2qi-luna"
+      ]
+    },
+    {
+      "direction": "unregistered COW or sandbox views where Git move semantics are required",
+      "reason": "Git move/repair operates on registered worktree state; arbitrary mounts require an external relocation protocol.",
+      "iteration": 3,
+      "_lineages": [
+        "1789363775244-64o2qi-luna"
+      ]
+    },
+    {
+      "direction": "wholesale COW view of shared dependency roots",
+      "reason": "COW does not reanchor workspace self-links or compiled entry-point realpath guards without lane-local materialization or path rewriting.",
+      "iteration": 2,
+      "_lineages": [
+        "1789363775244-64o2qi-luna"
+      ]
+    }
+  ],
+  "metrics": {
+    "iterationsCompleted": 9,
+    "openQuestions": 4,
+    "resolvedQuestions": 16,
+    "keyFindings": 47,
+    "sourceFindings": 64,
+    "reconstructionGaps": 0,
+    "convergenceScore": 0.539,
+    "coverageBySources": {}
+  }
+}

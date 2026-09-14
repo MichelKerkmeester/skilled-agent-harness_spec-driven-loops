@@ -1,0 +1,49 @@
+{
+  "topic": "Per-lineage git worktrees give fan-out lanes exact write isolation but cost roughly 1.6 GB of checkout and about 22 seconds of setup per lane, measured at six lanes. Research alternative mechanisms that preserve the same parallel fan-out and the same attribution guarantee at a fraction of that cost: sparse or partial checkouts, shallow and reference clones, overlay or copy-on-write filesystems, a single worktree with per-lane write redirection, per-lane sandboxed working directories with a shared object store, and any approach that keeps one checkout but makes attribution exact without a full tree. For each, state setup cost, disk cost, whether attribution stays exact, what breaks (symlinked dependency roots, workspace self-links, compiled entry-point guards, the churn detector), and whether git worktree move or relocation survives.",
+  "research_topic": "Per-lineage git worktrees give fan-out lanes exact write isolation but cost roughly 1.6 GB of checkout and about 22 seconds of setup per lane, measured at six lanes. Research alternative mechanisms that preserve the same parallel fan-out and the same attribution guarantee at a fraction of that cost. Evaluate concretely against this repository: sparse or partial checkouts, shallow and reference clones, overlay or copy-on-write filesystems, a single worktree with per-lane write redirection, per-lane sandboxed working directories with a shared object store, and any approach that keeps one checkout but makes attribution exact without a full tree. For each, state setup cost, disk cost, whether attribution stays exact, what breaks (symlinked dependency roots, workspace self-links, compiled entry-point guards, the churn detector), and whether git worktree move or relocation survives. Ground every claim in the code under .opencode/skills/system-deep-loop/runtime and the measurements recorded in the packet.",
+  "specFolder": "specs/system-deep-loop/045-fanout-write-containment-hardening",
+  "artifact_dir": "/Users/michelkerkmeester/worktrees/public/fanout-1789363775244-64o2qi-attempt-1-swe2/specs/system-deep-loop/045-fanout-write-containment-hardening/research/lineages/swe2",
+  "fanout_lineage_artifact_dir": "/Users/michelkerkmeester/worktrees/public/fanout-1789363775244-64o2qi-attempt-1-swe2/specs/system-deep-loop/045-fanout-write-containment-hardening/research/lineages/swe2",
+  "loop_type": "research",
+  "stopPolicy": "max-iterations",
+  "stop_policy": "max-iterations",
+  "maxIterations": 3,
+  "minIterations": 3,
+  "convergenceMode": "off",
+  "executionMode": "auto",
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "executor": {
+    "kind": "cli-devin",
+    "model": "swe-2-max",
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 3600
+  },
+  "lineage": {
+    "sessionId": "fanout-swe2-1789363775244-64o2qi",
+    "generation": 1,
+    "lineageId": "swe2",
+    "lineageMode": "detached"
+  },
+  "scopeBoundary": {
+    "writeRoot": "/Users/michelkerkmeester/worktrees/public/fanout-1789363775244-64o2qi-attempt-1-swe2/specs/system-deep-loop/045-fanout-write-containment-hardening/research/lineages/swe2",
+    "forbiddenWrites": [
+      "specs/system-deep-loop/045-fanout-write-containment-hardening/spec.md",
+      "specs/system-deep-loop/045-fanout-write-containment-hardening/plan.md",
+      "specs/system-deep-loop/045-fanout-write-containment-hardening/tasks.md",
+      "specs/system-deep-loop/045-fanout-write-containment-hardening/decision-record.md",
+      "specs/system-deep-loop/045-fanout-write-containment-hardening/implementation-summary.md",
+      "specs/system-deep-loop/045-fanout-write-containment-hardening/research/deep-research-state.jsonl",
+      "specs/system-deep-loop/045-fanout-write-containment-hardening/research/deep-research-strategy.md",
+      "specs/system-deep-loop/045-fanout-write-containment-hardening/research/findings-registry.json",
+      "specs/system-deep-loop/045-fanout-write-containment-hardening/research/deep-research-dashboard.md",
+      ".opencode/skills",
+      ".git"
+    ],
+    "writeback": "skipped by detached lineage boundary"
+  },
+  "status": "complete",
+  "stopReason": "maxIterationsReached"
+}

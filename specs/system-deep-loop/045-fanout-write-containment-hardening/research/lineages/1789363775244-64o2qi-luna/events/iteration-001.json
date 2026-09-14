@@ -1,0 +1,48 @@
+{
+  "type": "iteration",
+  "iteration": 1,
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "newInfoRatio": 0.91,
+  "status": "insight",
+  "focus": "Git-native reductions — sparse, partial, shallow, and reference approaches",
+  "findingsCount": 8,
+  "noveltyJustification": "Separated checkout-byte reduction from object/history reduction and mapped sparse selection to this runtime’s seven shared roots, status baseline, and relocation contracts.",
+  "ruledOut": [
+    "shallow clone alone as a checkout-cost solution",
+    "reference/shared clone alone as a checkout-cost solution",
+    "sparse profiles that omit runtime or dependency closure"
+  ],
+  "toolsUsed": [
+    "Read",
+    "Grep",
+    "WebSearch",
+    "WebFetch"
+  ],
+  "sourcesQueried": [
+    "implementation-summary.md:98-106",
+    "worktree-lifecycle.ts:138-158,560-751",
+    "worktree-paths.ts:97-126",
+    "write-containment.ts:329-336,689-773",
+    "worktree-symlinks/synthesis.md:45-75",
+    "git-sparse-checkout documentation",
+    "git-config documentation",
+    "git-clone documentation",
+    "git-worktree documentation"
+  ],
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-5.6-luna",
+    "reasoningEffort": "max",
+    "serviceTier": "fast",
+    "sandboxMode": "workspace-write"
+  },
+  "runId": "fanout-luna-1789363775244-64o2qi",
+  "lineageId": "fanout-luna-1789363775244-64o2qi",
+  "sessionId": "fanout-luna-1789363775244-64o2qi",
+  "generation": 1,
+  "timestamp": "2026-09-14T05:43:00Z",
+  "durationMs": 0
+}
