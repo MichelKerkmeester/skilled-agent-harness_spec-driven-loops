@@ -97,6 +97,8 @@ Note: T009 and T010 run as the two lineages of ONE fan-out invocation, under the
   - DONE 2026-09-14: `validate.sh specs/sk-doc/055-governance-doc-alignment --strict` RESULT: PASSED, Errors: 0, exit 0, rerun after the summary.
 - [x] T015 [P1] Operator-requested follow-up, 2026-09-14: trim the Skill Routing Reference and Gate 4 in `AGENTS.md`
   - DONE: the invocation paragraph reduced to Gate 2's own rule plus the one prompt-time clause about not ingesting a skill tree, the two-stage hub paragraph reduced to its binding sentence plus pointers to `skill-hub-routing.md` and the nested-packets reference, and Gate 4 dropped the list of what Gate 2 and the deep-mode invariants already enforce while keeping its two tiebreakers, which no skill owns. Hard blockers untouched, gate-1 pointer sync PASS.
+  - DONE, second pass: the plan-lock amendment step, the advisor direct-call mechanics, the two registers, the blast-radius bullets, the pre-write pass, the Gate 5 restatement and the debugging bullets each reduced to the binding clause plus the owning rule or reference. The three-retry count stays in the root because the root-cause rule defers to it. 6822 words before the program, 6292 after.
+  - DONE, third pass on the operator's request: the memory save pointer shortened, the MCP routing section reduced to the roster location and the two honesty clauses, the completion rule's sub-bullets and the freshness paragraph reduced to one line each, the goal posture to three bullets, the agent directory table to one sentence, four quick-reference rows with no ordering to carry dropped, the dispatch rules table to two bullets. 483 lines to 453, 5942 words.
   - Evidence: RESULT: PASSED, Errors: 0, output and exit status both read
 <!-- /ANCHOR:phase-3 -->
 

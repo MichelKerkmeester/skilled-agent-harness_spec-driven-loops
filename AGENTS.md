@@ -37,7 +37,7 @@ When an approved plan names a specific workflow, command, agent or skill (e.g., 
 1. **VERIFY, don't assume** — READ the named workflow's contract (its `SKILL.md` or command doc) to test any friction you believe it has.
 2. **FLAG deviations** — If it genuinely blocks the task, STATE the deviation to the user ("plan says X, I propose Y because Z") and get approval before proceeding.
 3. **NEVER silently hand-roll a substitute** for a plan-named purpose-built workflow.
-4. **PROPOSE the amendment, don't absorb it** — when the contract does NOT block the task (you can still comply) but is wrong for this case, follow it for this task AND name the fix in the same response: the file to change, the rule, and the one-line replacement. A blocking contract is step 2 and needs approval first; the difference is whether you can comply, not how wrong it feels. A silent workaround leaves the next run to rediscover the same friction.
+4. **PROPOSE the amendment, don't absorb it** — when the contract does not block the task but is wrong for this case, follow it for this task and name the fix in the same response: the file, the rule, the one-line replacement. The difference from step 2 is whether you can comply. The full discipline is [`scope-discipline.md`](repo-rules/scope-discipline.md) §6.
 
 > Reinventing a workflow's core feature because you assumed friction you never checked against its contract is a HARD violation.
 
@@ -96,7 +96,7 @@ Trigger: EACH new user message (re-evaluate even in ongoing conversations)
 
 ####  GATE 2: SKILL ROUTING [REQUIRED for non-trivial tasks]
 1. A) Primary: use the automatic Skill Advisor Hook brief already surfaced by the runtime when present. See `.opencode/skills/system-skill-advisor/hooks/skill-advisor-hook.md`.
-2. B) Direct call: run `node .opencode/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"[request]"}' --format json` when no hook brief is present, when scripting a check, or when diagnosing hook behavior. The CLI is the advisor's single front door and the hook brief resolves through it, so both routes agree. It starts the daemon when needed. When the daemon is unreachable the CLI falls back to a local Python scorer, marks the answer degraded, and the brief shows `Advisor: stale`.
+2. B) Direct call: run `node .opencode/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"[request]"}' --format json` when no hook brief is present or when diagnosing hook behavior. It is the advisor's single front door, the hook brief resolves through it, and a degraded answer shows as `Advisor: stale`. Daemon start and fallback mechanics: `.opencode/skills/system-skill-advisor/hooks/skill-advisor-hook.md`.
 3. C) Cite user's explicit direction: "User specified: [exact quote]"
 - Confidence ≥ 0.8 → MUST invoke skill | < 0.8 → general approach | User names skill → cite and proceed
 - **Artifact trigger — binds on what you are about to write, independently of the advisor score.** Before the FIRST code write, route through `sk-code`. Before the FIRST `.md` write, route through `sk-doc`, except spec-folder docs, which are `system-spec-kit`'s. Each skill's router owns what applies below it, so read what it defines rather than assuming a surface, mode or taxonomy. Routing means LOADING what the router resolves: a route you named but did not open does not satisfy this, and a skill already in context is not re-read. That load is a Read, not a Gate Action, so on a file-modification request it queues behind Gate 3 like any other tool call. If the resolved contract is wrong for this case, follow it anyway and propose the amendment (§1 PLAN-WORKFLOW LOCK step 4).
@@ -147,10 +147,7 @@ Trigger: About to skip gates, or realized gates were skipped → STOP → STATE:
 
 1. **Spend lavishly where confirmation is cheapest to skip.** The expensive failures hide in the gap between green and reality, and between a doc and the truth.
 
-2. **Two registers:**
-   - *While working:* Clipped — act, don't narrate; open with the result, not "I'll"/"Let me"; batch tool calls.
-   - *Before a multi-step stretch:* Post the intended path first, as a short numbered list of what you will do and what the reader should expect at each checkpoint. Then work. Clipped means not narrating each step, never starting without saying where you are going.
-   - *At boundaries:* Dense — verdict first, then receipts. Reason about the problem, not yourself.
+2. **Two registers:** clipped while working, the intended path posted before a long stretch, dense at a boundary with the verdict first. The registers are [`uncertainty-and-honesty.md`](repo-rules/uncertainty-and-honesty.md) §6, the intended path is [`presenting-decisions.md`](repo-rules/presenting-decisions.md) §4.
 
 3. **Follow the brief's intent, not just its letter;** when you deviate, record why. An undocumented deviation is the sin, not the deviation.
 
@@ -158,11 +155,8 @@ Trigger: About to skip gates, or realized gates were skipped → STOP → STATE:
 
 > Expanded by [`blast-radius.md`](repo-rules/blast-radius.md).
 
-- **Match effort to blast-radius.** Open non-trivial work with stakes read ("low-blast, reversible" / "high-blast: touches auth + data").
-- **Name the rollback, stop for yes** — Before delete/overwrite/migrate/deploy/send, write how to undo and wait for confirmation.
-- **Name what still speaks the old contract** — Confirm deployed servers, installed clients, caches, and API consumers won't break.
-- **Sanitize by persistence boundary** — Distinguish working-tree removal from sensitive-data eradication. Inventory every persistence location, but keep ordinary removal scoped to the requested surface and do not rewrite history, branches, or reflogs until the rollback is named and the operator approves the destructive action.
-- **Acquire dependencies deliberately** — Prefer tools already available in the project. Installation is a scoped mutation and must pass the same scope, approval, and verification rules as other changes.
+- **Name the rollback, stop for yes** — before delete, overwrite, migrate, deploy, send or install, write how to undo and wait for confirmation. This wait is mandatory and no rule file relaxes it.
+- The stakes read, the reversibility ladder, who still speaks the old contract, persistence boundaries and installation as a mutation are [`blast-radius.md`](repo-rules/blast-radius.md).
 
 ### Request Analysis & Execution
 
@@ -176,8 +170,7 @@ Trigger: About to skip gates, or realized gates were skipped → STOP → STATE:
 - **Plan before acting** on multi-step work. Decide which files to read first, which tools to use, and how the result will be verified before making changes.
 - **Define proof before implementation.** Convert acceptance criteria into observable checks and identify the authoritative final gate before changing files.
 - **Use a research-first approach.** Read the actual code, docs, and local instructions first; prefer surgical edits over broad rewrites.
-- **Make one pre-write pass before adding code**, after reading what exists, not while planning. Two questions, in order. *Does this need to exist?* Walk the restraint ladder cheapest rung first: not at all, then a simpler existing thing, then the minimum that works. Concluding "unnecessary" never licenses a cut, so build the frozen scope and raise the amendment in the same response. *What does it touch?* If the change can break a caller or a shared contract, name the owning module, one real caller, and the contract that must hold, before the first edit. Authoritative rungs: the code skill's universal quality standards §1.
-- **Repo-local rules load at Gate 5 (§2), before your first write.** `REPO RULES.md` is a router, not a rulebook. It matches the action you are about to take to a file under `repo-rules/`, and holds no rules of its own. Those files carry the repo-local thinking and acting discipline: restraint, scope, evidence, blast radius, diagnosis, honesty. They bind exactly as this document's rules do, and below them on conflict. The gate owns the mechanics; do not re-derive them here.
+- **Make one pre-write pass before adding code**, after reading what exists: does this need to exist, and what does it touch. Concluding "unnecessary" never licenses a cut, so build the frozen scope and raise the amendment in the same response. The ladder and the touch check are [`prevent-overengineering.md`](repo-rules/prevent-overengineering.md) §2.
 
 **Ownership & Completion:**
 - **Take responsibility for issues encountered during execution.** Do not dodge ownership with phrases like `not caused by my changes` or `pre-existing issue`; work toward the fix.
@@ -186,10 +179,8 @@ Trigger: About to skip gates, or realized gates were skipped → STOP → STATE:
 - **Do not ask for permission to continue an already-approved step that is clear and in scope.** Avoid `should I continue?` or `want me to keep going?` when you can proceed safely under the existing rules. This never waives a mandatory wait — Gate 3, PLAN-WORKFLOW LOCK approval, the worktree-versus-branch choice, remote-push go-ahead, and the blast-radius "stop for yes" all still block.
 
 **Debugging & Iteration:**
-- Reproduce the exact symptom when safe, trace the responsible producer and its consumers, fix the root cause, and rerun the same check.
-- If an attempt repeats without new evidence, stop patching at the failure site. Restate the problem one level up, at the interface, the data flow or the module boundary, and inspect what that level exposes before trying again.
-- A fix that works only by special-casing a caller means the seam is wrong. Name the seam and the files a seam fix would touch, then ask: SCOPE LOCK still binds, and editing outside scope needs a yes.
-- Never repeat the same guess. Stop local retries after three failed fixes for the same symptom, then escalate in Section 7's format. That count governs this debugging loop, not Section 7's own bound.
+- Reproduce the symptom, trace to the producer, fix at source, rerun the same check. The loop, restating the problem one level up when an attempt repeats, and reporting a wrong seam rather than special-casing a caller are [`root-cause-and-debugging.md`](repo-rules/root-cause-and-debugging.md).
+- **Stop local retries after three failed fixes for the same symptom**, then escalate in Section 7's format. That count governs the debugging loop and lives here because the rule file defers to it.
 
 **Verification & Reasoning:**
 - **Use frequent self-checks and reasoning loops** to catch and fix your own mistakes before asking for help.
@@ -261,12 +252,8 @@ The Completion Verification Rule remains an additional requirement for spec-pack
 Trigger: Claiming "done", "complete", "finished", "works"
 1. Run `bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh <spec-folder> --strict` (exit 0 = pass, including a run that reported warnings · 1 = user error, meaning the run never validated anything · 2 = validation error · 3 = system error). A warning is advice and does not fail the run: `--strict` selects the rules that only run under strict, and no longer decides what a warning means. A rule that should block says so itself by reporting an error.
 2. Work the Verification Checklist inside `tasks.md` and every row of `acceptance-criteria.md` → mark each with evidence. The acceptance criteria are the closure gate.
-3. Reconcile completion metadata so packet docs do not claim conflicting completion states — covers:
-   - `spec.md` status and shipped/current-state claims.
-   - `plan.md` / `tasks.md` / `acceptance-criteria.md` evidence rows.
-   - `handover.md` or `_memory.continuity` fields when present.
-   - `implementation-summary.md` final state, validation evidence, and continuation notes.
-4. When `SPECKIT_COMPLETION_FRESHNESS=true`, completion claims must also pass `CONTINUITY_FRESHNESS`: the stored `session_dedup.fingerprint` matches recomputed content and packet-scoped paths are clean. The rule decides its own applicability at its entry point, so every caller gets the same answer, and it reports nothing when the flag is off. A stale result reports a warning, which does not block; `SPECKIT_COMPLETION_FRESHNESS_ENFORCE` escalates it to an error, which does.
+3. Reconcile completion metadata across `spec.md`, the evidence rows, continuity fields and `implementation-summary.md`, so no packet doc claims a different completion state.
+4. When `SPECKIT_COMPLETION_FRESHNESS=true`, the continuity freshness rule also applies. It decides its own applicability and severity, and `system-spec-kit` owns it.
 - Skip: Level 1 tasks (`acceptance-criteria.md` is scaffolded from Level 2 and is the closure gate there).
 
 ##### Invoking validate.sh
@@ -281,15 +268,13 @@ The four traps and their exact commands are `system-spec-kit`'s, in
 Trigger: "save context", "save memory", `/speckit:save`
 - If spec folder established at Gate 3 → USE IT (don't re-ask). Carry-over applies ONLY to memory saves
 - If NO folder and Gate 3 never answered → HARD BLOCK → Ask user
-- Who composes the session JSON, what the continuity writer touches and what it leaves to the canonical docs, and the post-save quality review whose HIGH issues must be patched by hand: all three are the command's and the workflow's, at `/speckit:save` and `system-spec-kit/references/memory/save-workflow.md`.
+- Composition, what the writer touches and the post-save review are `/speckit:save`'s and `system-spec-kit/references/memory/save-workflow.md`'s.
 
 #### GOAL POSTURE RULE [ALWAYS ON]
 Trigger: a session bound to a spec packet, on every turn.
-- The bound packet's `goal.md` is the single source of goal state. Read it, never a remembered summary of it, and never send its frontmatter to chat, to an objective, or to an injection path.
-- When anything in the durable slice changes (a decision, a binding row or a criterion), resend the stripped slice in chat unprompted, and keep reminding while the goal is unset.
-- Work never stops because a goal is unset or a reminder went unanswered. Only the operator stops it.
-- After a goal is set, acknowledge it in one line and continue immediately. Do not restate it, and do not ask whether to proceed.
-- Mechanics (binding, the strip, the budget, the log) are `system-spec-kit`'s and the goal hook's, not this document's.
+- The bound packet's `goal.md` is the single source of goal state. Read it, never a remembered summary, and never send its frontmatter to chat, an objective or an injection path.
+- When the durable slice changes, resend the stripped slice in chat unprompted, and keep reminding while the goal is unset. Work never stops for an unset goal. Only the operator stops it.
+- After a goal is set, acknowledge it in one line and continue. Mechanics are `system-spec-kit`'s and the goal hook's.
 
 #### Self-Check (before ANY tool-using response):
 - [ ] File modification? Asked spec folder question?
@@ -348,13 +333,7 @@ Match the need to a capability. Tool names differ per runtime — use whatever t
 
 ### MCP Tool Routing
 
-**Two systems.** Native MCP servers are registered per runtime (`opencode.json`, `.claude/mcp.json`, `.codex/config.toml`) and called directly. Code Mode manuals are registered in `.utcp_config.json` and called through `call_tool_chain()`. Read the config for the current roster; a list written here goes stale between commits.
-
-The Skill Advisor runs outside both systems: it has no MCP transport and no server declaration in any runtime config. Its single surface is the daemon-backed CLI at `node .opencode/bin/skill-advisor.cjs`, and the prompt-time brief arrives through the hooks and the OpenCode plugin that call it.
-
-**Enumerate at runtime, never from a written list.** `search_tools()`, `list_tools()` and `tool_info()` are the discovery surface. Naming is transport-dependent — `mcp-code-mode/references/naming-convention.md` owns the prefixing rules and the `cli`-manual exception.
-
-**Registration is not availability.** A manual whose package or credential is missing contributes no tools and raises no error — the only symptom is a shorter list. Never promise that a manual named in the config is live.
+The roster lives in the runtime configs and `.utcp_config.json`, never in this document. Enumerate tools at runtime, and never promise that a manual named in a config is live: a missing package or credential contributes no tools and raises no error. Mechanics and naming are `mcp-code-mode`'s.
 
 ---
 
@@ -416,19 +395,7 @@ When using the orchestrate agent or Task tool for complex multi-step workflows, 
 
 #### Runtime Agent Directory Resolution
 
-Use the agent directory that matches the active runtime/provider profile:
-
-| Runtime / Profile | Agent Directory     |
-| -------------------| ---------------------|
-| **Opencode**      | `.opencode/agents/` |
-| **Claude Code**   | `.claude/agents/`   |
-| **Codex CLI**     | `.codex/agents/`    |
-| **Cursor**        | `.cursor/agents/`   |
-| **Pi**            | `.pi/agents/`       |
-| **Devin**         | `.devin/agents/`    |
-| **Hermes**        | none; personas are inlined (see `cli-hermes`) |
-
-**Resolution rule:** Pick one directory by runtime and stay consistent for that workflow phase.
+Use the active runtime's own agent directory, `.opencode/agents/`, `.claude/agents/`, `.codex/agents/`, `.cursor/agents/`, `.pi/agents/` or `.devin/agents/`, and stay with it for the workflow phase. Hermes has none, its personas are inlined, see `cli-hermes`.
 
 #### Template & Validation Requirements
 
@@ -450,7 +417,6 @@ Entry points only. Where a Flow column is present it names an order that is not 
 | **Design reference extraction** | `sk-design-md-generator`; `mcp-figma` for Figma sources | measure → build via `sk-code` |
 | **Research / exploration** | the trigger index lookup | then the ripgrep recipes in `retrieval-conventions.md`, scoped by track and packet |
 | **Git workflow** | `sk-git` | worktree → commit → finish (PR); see §5 Git Workspace Safety |
-| **Prompt improvement** | `/prompt:improve` → `sk-prompt` | — |
 | **Markdown writing** | `@markdown` or `/create:*` | route through `sk-doc` for the template before writing |
 | **Documentation quality** | `sk-doc` | classify → template → validate → DQI score |
 | **Phase workflow** | `/speckit:plan :with-phases` or `/speckit:complete :with-phases` | decompose → plan first child |
@@ -458,13 +424,10 @@ Entry points only. Where a Flow column is present it names an order that is not 
 | **Deep research** | `/deep:research` | loop → convergence → synthesize → memory save |
 | **Deep review** | `/deep:review` | loop → convergence → `review-report.md` → memory save |
 | **Deep AI Council** | `/deep:ai-council` | deliberate → critique → converge → artifacts → gate |
-| **Improvement / benchmarks** | `/deep:agent-improvement` · `/deep:model-benchmark` | — |
 | **Claim completion** | Final-State Verification | `validate.sh <spec-folder> --strict` → acceptance criteria all closed → reconcile metadata |
 | **Goal state** | the bound packet's `goal.md` | durable slice is the source → resend stripped on change → never stop for it |
 | **End session** | `/speckit:save` | → `handover.md` update → continuation prompt |
 | **Trigger index maintenance** | `node .opencode/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs` | run after trigger phrases change; commit the regenerated index and manifest together; `/doctor speckit-retrieval` reports a pair one run did not produce |
-| **Analysis / evaluation** | `/speckit:search` | — |
-| **Doctor surface** | `/doctor <target>`; `/doctor:mcp install\|debug`; `/doctor:update` | — |
 
 #### Operational Mandates
 
@@ -478,10 +441,8 @@ Entry points only. Where a Flow column is present it names an order that is not 
 
 > The posture a dispatch requires is expanded by [`delegation-and-orchestration.md`](repo-rules/delegation-and-orchestration.md); the CLI contracts stay here.
 
-| Rule                  | Requirement                                                                                                           |
-| -----------------------| -----------------------------------------------------------------------------------------------------------------------|
-| **CLI dispatch**      | Before composing any `cli-X` prompt, MUST `Read` `.opencode/skills/cli-external-orchestration/cli-X/SKILL.md` first.  |
-| **Agent I/O pointer** | Optional dispatch headers documented in `.opencode/skills/system-spec-kit/references/workflows/agent-io-contract.md`. |
+- **CLI dispatch:** before composing any `cli-X` prompt, read `.opencode/skills/cli-external-orchestration/cli-X/SKILL.md` first.
+- **Agent I/O headers** are optional and documented in `.opencode/skills/system-spec-kit/references/workflows/agent-io-contract.md`.
 
 ##### Communication
 
