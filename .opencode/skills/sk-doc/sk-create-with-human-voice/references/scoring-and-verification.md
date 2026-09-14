@@ -181,4 +181,5 @@ every scan since is suspect.
 - [`../SKILL.md`](../SKILL.md) - the workflow that runs these passes.
 - [`scope-and-exemptions.md`](scope-and-exemptions.md) - what the passes are allowed to touch.
 - [`../assets/voice-report-template.md`](../assets/voice-report-template.md) - the shape of the result.
-- [`hvr-rules.md`](hvr-rules.md) - the penalties, the term lists and the pre-publish checklist.
+- [`hvr-rules.md`](hvr-rules.md) - the base: the term lists and the punctuation and structure rules.
+- [`hvr-publish-supplement.md`](hvr-publish-supplement.md) - the supplement: the point values, precedence and the pre-publish checklist.

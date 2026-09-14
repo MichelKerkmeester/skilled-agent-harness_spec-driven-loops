@@ -56,7 +56,8 @@ route here: `apply`, which edits, and `score`, which reports and does not.
 - `references/scoring-and-verification.md` - pass order, precedence arithmetic, bands, and the re-scan.
 - `assets/voice-report-template.md` - the shape of the result.
 - `scripts/hvr_scan.py` - the mechanical pass. Parses the standard at run time.
-- `references/hvr-rules.md` - the standard. Referenced, never copied.
+- `references/hvr-rules.md` - the base, what a reply loads. Referenced, never copied.
+- `references/hvr-publish-supplement.md` - the supplement, what a published document adds. Loaded after the base when a document is scored or published.
 
 ### Resource Loading Levels
 
@@ -64,6 +65,7 @@ route here: `apply`, which edits, and `score`, which reports and does not.
 |-------|--------------|-----------|
 | ALWAYS | Every invocation | `references/scope-and-exemptions.md` |
 | ALWAYS | Every invocation | `references/hvr-rules.md` |
+| CONDITIONAL | A document is being scored or published | `references/hvr-publish-supplement.md` |
 | CONDITIONAL | A score is being computed or quoted | `references/scoring-and-verification.md` |
 | CONDITIONAL | A result is being reported | `assets/voice-report-template.md` |
 
@@ -170,7 +172,7 @@ the standard and refuses to report a clean scan.
 
 3. **Read the mechanical findings as candidates.** Word sense decides, not spelling. `harness` the noun is fine, `harness` the verb is not, and the scanner reports both.
 4. **Run the judgment pass.** Structure, sentence habits, content habits and voice. The scanner prints this list on every run precisely because it cannot check any of it.
-5. **Compute the score** under the precedence rule using the point arithmetic in `references/scoring-and-verification.md`, or report hard blockers and density on a long document. The category weights in the standard's sections 1 and 9 describe where attention goes, not a second arithmetic, and no run combines the two.
+5. **Compute the score** under the precedence rule and the point table in `references/hvr-publish-supplement.md`, using the point arithmetic in `references/scoring-and-verification.md`, or report hard blockers and density on a long document. The category weights in the publish supplement's sections 1 and 3 describe where attention goes, not a second arithmetic, and no run combines the two.
 6. **Report** using `assets/voice-report-template.md`. Do not edit.
 
 ### Apply
@@ -249,7 +251,8 @@ Routed by [`references/README.md`](references/README.md). Load
 
 | Resource | Purpose |
 |---|---|
-| [`references/hvr-rules.md`](references/hvr-rules.md) | The standard. Voice directives, punctuation bans, structural patterns, term lists, precedence and the pre-publish checklist |
+| [`references/hvr-rules.md`](references/hvr-rules.md) | The base. Voice directives, punctuation bans, structural patterns, term lists |
+| [`references/hvr-publish-supplement.md`](references/hvr-publish-supplement.md) | The supplement. Scoring, precedence, the pre-publish checklist and related resources |
 | [`README.md`](README.md) | What the mode does, why the scanner over-reports, and how to verify it |
 | [`scripts/hvr_scan.py`](scripts/hvr_scan.py) | The mechanical pass, parsed from the standard at run time |
 | [`../sk-create-quality-control/SKILL.md`](../sk-create-quality-control/SKILL.md) | The file-level audit whose HVR step this mode performs |

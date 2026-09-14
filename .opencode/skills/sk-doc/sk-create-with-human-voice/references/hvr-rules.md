@@ -9,7 +9,7 @@ trigger_phrases:
   - "natural writing standards"
 importance_tier: important
 contextType: general
-version: 1.1.0.25
+version: 1.3.0.25
 ---
 
 # Human Voice Rules (HVR) - Writing Standards Reference
@@ -28,26 +28,11 @@ AI-generated text carries tells: em dashes everywhere, three-item lists, hedging
 
 Apply to all AI-generated documentation: READMEs, implementation summaries, decision records, install guides and spec folder docs.
 
+A reply loads this file, and a document also loads the publish supplement, `hvr-publish-supplement.md`.
+
 - Read the voice directives (Section 2) to understand the target voice
 - Use word lists (Sections 6-8) as reference during writing
-- Run the pre-publish checklist (Section 9) before finalizing
-- **Scoring:** Hard blockers cost -5 points. Soft deductions cost -2 or -1. Clean document starts at 100.
-
-### Scoring
-
-A document starts at 100 points. Hard blockers (-5 each) and soft deductions (-2 or -1 each) reduce the score. Below 70 is a failing grade. Below 85 needs revision before publishing. That subtraction is the whole arithmetic, and `references/scoring-and-verification.md` section 3 owns it.
-
-### Where To Spend Attention
-
-The shares below allocate a reader's attention across the standard. They are a rubric for the judgment pass, not a second way to compute a score: nothing multiplies a finding by a share, and no run combines them with the point arithmetic above.
-
-| Category | Share of attention | Sections |
-|----------|--------|----------|
-| **Punctuation** | 15% | Section 3 |
-| **Structure** | 25% | Section 4 (structural patterns, copula avoidance, synonym cycling) |
-| **Content** | 25% | Section 4 (metaphors, generalisations, significance inflation, conclusions) |
-| **Words** | 20% | Sections 6, 7 |
-| **Voice** | 15% | Section 2 |
+- Run the pre-publish checklist in `hvr-publish-supplement.md` before finalizing
 
 ---
 
@@ -103,6 +88,18 @@ voice_directives:
     wrong: "This approach might improve results."
     right: "This approach improves results."
     note: "Hedge only when genuine uncertainty exists."
+```
+
+The directives above state the target. Two tests and one exemplar decide whether a draft reaches it.
+
+**Borrowability.** If any writer could have produced the sentence, it carries no sourcing. Rewrite it from what you actually observed. The failure it prevents: prose anyone could have written.
+
+**Plain word.** When two words hold the same precision, keep the one with the concrete root. "Start" beats "commence". The failure it prevents: Latinate abstraction where a plain word holds the same precision.
+
+**The exemplar.** One paragraph, written as this section prescribes:
+
+```
+We ran the migration at 2am. It finished in 9 minutes, not the 40 the old path needed. Two services stalled. The retry loop caught both. We migrated the remaining services the next morning.
 ```
 
 ---
@@ -163,6 +160,15 @@ RIGHT (in a reply):
 Trimmed `a.md`.
 ```
 
+### Literal Over Figurative
+
+In a reply, replace an idiom the reader must decode with the plain statement. The failure it prevents: a reader decoding instead of reading.
+
+```
+WRONG: "We should circle back on the pricing next week."
+RIGHT: "I will send you the pricing next week."
+```
+
 ### Three-Item Enumeration Fix
 
 AI defaults to exactly three items. Use 2, 4 or 5 instead. If you naturally have 3, cut one or add a fourth.
@@ -196,6 +202,15 @@ Analogies help readers grasp technical concepts. Overusing them is an AI tell.
 | **"Think of it as/like"** | 2 per document max | Third occurrence signals AI pattern |
 | **Placement** | After the technical statement | State the fact first, then the analogy. Never lead with the analogy. |
 | **Drop when unnecessary** | If plain language is clear | "The script validates inputs" needs no analogy |
+
+### Nominalization And Stacked Compression
+
+Turn the noun back into its verb, then cut the metaphor. The failure it prevents: abstract nouns hiding actions, metaphor piled on nominalization.
+
+```
+WRONG: "The implementation of the optimization delivers a bridge between the two systems."
+RIGHT: "The optimization connects the two systems."
+```
 
 ### Banned Metaphors
 
@@ -321,6 +336,8 @@ Never include meta-commentary about the writing process. No disclaimers about to
 
 ## 5. VOICE PERSONALITY
 
+This section binds writing you own. A projection or rewrite that carries someone else's message skips it, because a reaction the original never held is a fidelity defect.
+
 Avoiding AI patterns is only half the job. Sterile, voiceless writing that follows every rule can still read as AI-generated. Clean writing needs personality.
 
 ### Have Opinions
@@ -349,22 +366,9 @@ ABSTRACT: "The results were disappointing."
 SPECIFIC: "We expected at least a 10% lift. We got 2%."
 ```
 
-### Rule Precedence
-
-When a word or phrase appears in multiple categories, apply exactly one penalty using first-match-wins:
-
-1. Phrase hard blocker (-5, Section 7)
-2. Hard word blocker (-5, Section 6)
-3. Context-dependent blocker (-5 metaphorical, 0 literal)
-4. Soft deduction -2 (Section 8)
-5. Soft deduction -1 (Section 8)
-6. Context flag (0, advisory)
-
-A term listed in both hard blocker and soft deduction is evaluated only as hard blocker. Context-dependent terms cleared as literal get no lower-tier penalty. Structural removal directives (cut_always modifiers in Section 4) are not scored penalties and apply independently.
-
 ---
 
-## 6. HARD BLOCKER WORDS (-5 POINTS EACH)
+## 6. HARD BLOCKER WORDS
 
 Never use these. Each occurrence is automatic failure.
 
@@ -379,7 +383,7 @@ Never use these. Each occurrence is automatic failure.
 
 ---
 
-## 7. PHRASE HARD BLOCKERS (-5 POINTS EACH)
+## 7. PHRASE HARD BLOCKERS
 
 Never use any of these:
 
@@ -443,91 +447,3 @@ Never use any of these:
 - **"things"/"stuff"** - Replace with specific noun.
 - **"solution"** - Overused in B2B. Say what it is: platform, tool, service.
 - **"excited"** - AI-typical enthusiasm. State the specific reason for interest instead.
-
----
-
-## 9. PRE-PUBLISH CHECKLIST
-
-### Scoring
-
-A clean document starts at 100 points and every finding subtracts from it. The table below says where to look, in the order attention is worth spending, and it computes nothing.
-
-| Category | Share of attention | What It Covers |
-|----------|--------|----------------|
-| **Punctuation** | 15% | Em dashes, semicolons, Oxford commas, ellipsis |
-| **Structure** | 25% | Heading hierarchy, TOC format, section dividers, two-tier voice, subsection numbering |
-| **Content** | 25% | Banned metaphors, generalisations, unnecessary modifiers, meta-commentary |
-| **Words** | 20% | Hard blocker words, phrase hard blockers, context-dependent words |
-| **Voice** | 15% | Active voice, direct address, sentence rhythm, hedging, certainty |
-
-**Pass threshold:** 85+ (publish-ready). 70-84 (needs revision). Below 70 (failing, must rewrite).
-
-### Checklist
-
-```yaml
-pre_publish_checklist:
-  punctuation:
-    - "No em dashes, semicolons or Oxford commas"
-    - "No asterisks for emphasis. Max 1 ellipsis."
-
-  structure:
-    - "H2 sections numbered ALL CAPS, separated by `---` dividers"
-    - "Numbered H3/H4 subsections use ALL CAPS"
-    - "Unnumbered H3/H4 use Title Case"
-    - "No Table of Contents and no `<!-- ANCHOR -->` navigation comments; navigate by the numbered H2 hierarchy"
-    - "--- dividers between H2 sections"
-    - "Blockquote tagline after H1 (if applicable)"
-    - "No 'not just X, but also Y' patterns"
-    - "No exactly 3-item inline enumerations"
-    - "No exactly 3 H3 subsections under every H2"
-    - "No setup language (Section 4)"
-    - "No copula avoidance ('serves as', 'stands as' -- use 'is')"
-    - "No synonym cycling (same entity = same word)"
-    - "No false ranges ('from X to Y' without meaningful scale)"
-    - "No fragmented headers (generic sentence restating heading)"
-    - "Max 2 'Think of it as/like' per document"
-    - "Max 1 analogy per concept, placed after technical statement"
-
-  content:
-    - "No banned metaphors or vague generalisations"
-    - "No unnecessary modifiers"
-    - "No meta-commentary, knowledge-cutoff disclaimers or training-data hedging"
-    - "No significance inflation ('marks a pivotal moment', 'setting the stage')"
-    - "No generic positive conclusions ('The future looks bright', 'Exciting times')"
-
-  words:
-    - "No hard blocker words (Section 6)"
-    - "No phrase hard blockers (Section 7)"
-    - "Context-dependent words checked"
-
-  voice:
-    - "Active voice throughout"
-    - "Direct address where appropriate (you/your)"
-    - "Varied sentence lengths"
-    - "No hedging when certainty is possible"
-    - "Claims backed by data or examples"
-    - "Pronouns have clear antecedents"
-    - "Writing has personality, not just correctness (Section 5)"
-    - "Complexity acknowledged, not flattened into neat categories"
-```
-
----
-
-## 10. RELATED RESOURCES
-
-### Templates That Apply HVR
-
-| Template | Location | Focus |
-|----------|----------|-------|
-| Implementation Summary | `.opencode/skills/system-spec-kit/templates/*/implementation-summary.md` | Narrative prose, explain "why", direct address |
-| Decision Record | `.opencode/skills/system-spec-kit/templates/level-3*/decision-record.md` | Clear rationale, no hedging, active voice |
-| README | `.opencode/skills/sk-doc/sk-create-readme/assets/readme-template.md` | Welcoming tone, practical focus |
-| Install Guide | `.opencode/skills/sk-doc/sk-create-readme/assets/install-guide-template.md` | Direct instructions, imperative mood |
-
-### Standards
-- [core-standards.md](../../shared/references/core-standards.md) - Document formatting standards
-- [sk-doc SKILL.md](../../SKILL.md) - Parent skill with HVR enforcement rules
-
-### Creation Guides
-- [references/README.md](../../sk-create-readme/references/README.md) - README creation workflow and standards
-- [references/README.md](../../sk-create-readme/references/README.md) - Install guide creation workflow

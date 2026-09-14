@@ -12,7 +12,7 @@ version: 1.1.0.4
 
 # sk-create-with-human-voice References
 
-Three references, in the order the table gives.
+Four references, in the order the table gives.
 
 ---
 
@@ -22,7 +22,8 @@ Three references, in the order the table gives.
 |------|------|
 | [`scope-and-exemptions.md`](scope-and-exemptions.md) | **First, always.** Decides which spans of the target the standard governs. Skipping it is how a voice edit corrupts a quotation, a generated file or a test fixture |
 | [`scoring-and-verification.md`](scoring-and-verification.md) | Once the scope is settled. Pass order, the precedence arithmetic, the bands, and the re-scan that proves a rewrite landed |
-| [`hvr-rules.md`](hvr-rules.md) | The standard. Voice directives, punctuation bans, structural patterns, term lists, precedence and the pre-publish checklist. `scripts/hvr_scan.py` parses it at run time |
+| [`hvr-rules.md`](hvr-rules.md) | The base. Voice directives, punctuation bans, structural patterns, term lists. `scripts/hvr_scan.py` parses it at run time |
+| [`hvr-publish-supplement.md`](hvr-publish-supplement.md) | The supplement, loaded after the base when a document is scored or published. Scoring, precedence, the pre-publish checklist and related resources |
 
 ---
 
