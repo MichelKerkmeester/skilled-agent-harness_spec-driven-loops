@@ -149,6 +149,10 @@ For anything past roughly 400 lines, report the hard-blocker count and the deduc
 density (deductions per hundred lines) instead of an absolute score, and say which you
 used. An absolute score on a long document is a number nobody can act on.
 
+Of the two exclusions this gate carried, exactly one remains: the voice-personality
+exclusion for carried messages. The scoring-band exclusion retires, because the scoring
+bands now live in the publish supplement, which a reply never loads.
+
 ---
 
 ## 6. WHAT TO DO WITH AN EXEMPT SPAN
