@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-deep-loop/045-fanout-write-containment-hardening/008-quarantine-destination-canonical",
+  "description": "Phase 1: quarantine-destination-canonical",
+  "keywords": [
+    "phase",
+    "quarantine-destination-canonical"
+  ],
+  "lastUpdated": "2026-09-14T17:44:14.029Z",
+  "specId": "008",
+  "folderSlug": "quarantine-destination-canonical",
+  "parentChain": [
+    "system-deep-loop",
+    "045-fanout-write-containment-hardening"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

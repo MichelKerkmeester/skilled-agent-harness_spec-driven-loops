@@ -34,7 +34,7 @@ Verification from the final state: the deep-loop suite reports 156 files, 2654 p
 
 The fan-out guard used to revert out-of-scope writes to HEAD, which destroyed a neighbouring session's live work. The remedy is now preservation by default, with restore opted in per run. A restore, when chosen, targets the pre-dispatch bytes rather than HEAD, so it cannot discard work the lane never touched. A containment finding no longer erases a finished lane's own outcome.
 
-Per-lineage git worktrees are off by default, with a per-run opt-in (`--worktrees true`), and the run summary carries a per-attempt isolation tally so a run that could not isolate says so. All 91 checklist items are checked with evidence.
+Per-lineage git worktrees were built, turned off by default, and then removed entirely in phase 007 (ADR-007): every lane runs in the shared checkout under preserve-by-default containment, and there is no isolation option or tally any more. All 91 checklist items are checked with evidence.
 
 Measured facts:
 

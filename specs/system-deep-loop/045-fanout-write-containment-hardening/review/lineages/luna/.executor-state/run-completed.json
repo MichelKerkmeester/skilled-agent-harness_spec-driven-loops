@@ -1,0 +1,30 @@
+{
+  "stem": "deep_review.run_completed",
+  "scope": {
+    "runId": "fanout-luna-1789404700951-8xtlnk",
+    "sessionId": "fanout-luna-1789404700951-8xtlnk"
+  },
+  "data": {
+    "terminalStatus": "completed",
+    "convergenceEventId": "luna-iter-005-convergence",
+    "synthesisEventId": "luna-synthesis-started",
+    "reportEventId": "luna-review-report-committed",
+    "continuityEventId": "none",
+    "finalLedgerTailHash": "d17d3f84d598a7a5c05493dfd740372a8b38c45d070b46cba53cc708a4a92e61",
+    "counts": {
+      "dimensions": 5,
+      "iterations": 5,
+      "candidates": 8,
+      "findings": 8,
+      "evidence": 8
+    },
+    "verdict": "fail",
+    "completionReason": "maxIterationsReached",
+    "incompleteReason": null
+  },
+  "eventId": "luna-run-completed",
+  "producer": {
+    "name": "deep-review-inline",
+    "version": "1.0.0"
+  }
+}

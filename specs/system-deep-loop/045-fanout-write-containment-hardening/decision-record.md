@@ -376,6 +376,8 @@ to that skill.
 <!-- ANCHOR:adr-004 -->
 ## ADR-004: Worktree isolation is on by default, with a per-attempt isolation tally
 
+**Status:** Superseded by ADR-006 (default) and ADR-007 (mechanism removed).
+
 ### Metadata
 
 | Field | Value |
@@ -464,6 +466,8 @@ Per-lineage worktrees shipped behind a flag that defaulted off, and ADR-003's ow
 
 <!-- ANCHOR:adr-005 -->
 ## ADR-005: The shared checkout is watched for isolated lanes whose process cwd stays in it
+
+**Status:** Superseded by ADR-007; the watch left with the mechanism it guarded.
 
 ### Metadata
 

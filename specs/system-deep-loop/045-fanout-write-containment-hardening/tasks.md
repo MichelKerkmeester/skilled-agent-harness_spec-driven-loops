@@ -82,7 +82,7 @@ Phase 3 — caller and documentation migration, satisfying the sixth requirement
 - [x] T016 [P] Update the containment role line and the fan-out feature catalog entry (`runtime/lib/deep-loop/README.md`, `runtime/feature-catalog/fanout/fanout-run.md`)
   - Evidence: containment role line in the runtime library README now states detection, the preserve default and the baseline-targeted opt-in. The fan-out feature-catalog paragraph was left as written: it describes detection and orchestrator-owned exemptions, which this work did not change
 
-Phase 4 — lineage worktrees, satisfying the fifth requirement.
+Phase 4 — lineage worktrees, satisfying the fifth requirement at the time. The mechanism these tasks delivered was removed in phase 007 (ADR-007); the rows stay as the record of what shipped and was reversed, and their cited tests no longer exist.
 
 - [x] T017 Create one detached worktree per lineage from HEAD, named by run and label under the resolved worktree base, symlink the shared dependency directories, and write the ownership lease into the worktree root at creation, refreshed on the existing progress heartbeat (`runtime/scripts/fanout-run.cjs`)
   - Evidence: detached worktree per lineage from HEAD with shared dependencies linked and the ownership lease written LAST, so a half-created tree never reads as owned; worktree-lifecycle and worktree-lease suites green

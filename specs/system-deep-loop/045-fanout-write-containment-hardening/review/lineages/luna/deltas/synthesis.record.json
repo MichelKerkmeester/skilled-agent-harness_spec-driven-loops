@@ -1,0 +1,17 @@
+{
+  "type": "event",
+  "event": "synthesis_complete",
+  "mode": "review",
+  "totalIterations": 5,
+  "activeP0": 1,
+  "activeP1": 6,
+  "activeP2": 1,
+  "dimensionCoverage": 1,
+  "verdict": "FAIL",
+  "releaseReadinessState": "release-blocking",
+  "stopReason": "maxIterationsReached",
+  "sessionId": "fanout-luna-1789404700951-8xtlnk",
+  "generation": 1,
+  "timestamp": "2026-09-14T17:36:04Z",
+  "note": "Inline detached review executor completed all five configured iterations. The canonical event gateway recorded the typed synthesis and completion transitions; this file preserves the workflow's terminal synthesis record with the required max-iterations stop reason inside the lineage artifact directory. No target or repository file was modified."
+}
