@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+description: "Containment runs for every lane the moment its process ends, so a failed or artifact-less lane's out-of-scope writes are reported and quarantined while its verdict stays failed."
 trigger_phrases:
   - "implementation summary"
   - "what shipped"
@@ -12,9 +12,9 @@ _memory:
   continuity:
     packet_pointer: "system-deep-loop/045-fanout-write-containment-hardening/010-containment-on-failed-lanes"
     last_updated_at: "2026-09-14T17:44:15Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialized Level 2 template"
-    next_safe_action: "Replace continuity placeholders"
+    last_updated_by: "claude-fable-5-1"
+    recent_action: "Moved containment ahead of the verdict gates and filled the packet docs"
+    next_safe_action: "Commit once the full suite exits zero"
     blockers: []
     key_files: []
     session_dedup:
@@ -46,20 +46,9 @@ _memory:
 ---
 
 <!-- ANCHOR:what-built -->
-## What Was Built
+## 2. WHAT WAS BUILT
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
-
-### Phase 3: containment-on-failed-lanes
-
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
-
-### Files Changed
-
-| File | Action | Purpose |
-|------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+A failed lane's out-of-scope writes are no longer invisible. In `runtime/scripts/fanout-run.cjs` the write-containment step (baseline comparison, quarantine, ledger events and the git-contention drain) now runs in the lifecycle step that follows the lane process, before log saving, salvage and every verdict gate. The failure, missing-artifact, stop-policy and salvage gates are unchanged and still rethrow, so a failed lane stays failed, and a complete lane's advisory status reads the same findings it always did. Two stub lanes, one exiting non-zero and one producing no artifacts, each with a stray write, now leave a containment event on the ledger and a quarantine manifest on disk while settling failed.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -67,7 +56,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-[How was this tested, verified and shipped? What was the rollout approach?]
+One dispatch to DeepSeek V4.1 Flash at max through the gateway on cli-pi, once the other session's runner edits had landed so the file was clean. The non-zero-exit test was run against the unmodified runner first, where no containment event appeared. The orchestrator reviewed the diff and ran the whole suite before committing.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -77,7 +66,8 @@ Explain what the user gains, not what files you touched.]
 
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| Observe before judging | Containment is evidence about what the lane did; the verdict is a separate question answered afterwards |
+| Leave the gates untouched | A byte-identical gate is the proof that no verdict changed |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -87,7 +77,10 @@ Explain what the user gains, not what files you touched.]
 
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| Non-zero-exit test against unmodified runner | FAIL as expected: no containment event |
+| Both touched test files plus typecheck | PASS, exit 0, 218 tests |
+| Full deep-loop suite | `npm test` in the runtime: 152 files, 2616 passed, 8 skipped, exit 0, 1228 s |
+| `validate.sh --strict` on this phase | RESULT: PASSED |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -95,7 +88,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **Retries.** Each attempt runs its own containment pass; the summary reports the last attempt's findings as before.
 <!-- /ANCHOR:limitations -->
 
 ---

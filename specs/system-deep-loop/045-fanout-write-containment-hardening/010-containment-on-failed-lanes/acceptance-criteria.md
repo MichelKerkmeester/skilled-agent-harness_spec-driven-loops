@@ -10,18 +10,18 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/010-containment-on-failed-lanes"
+    packet_pointer: "system-deep-loop/045-fanout-write-containment-hardening/010-containment-on-failed-lanes"
     last_updated_at: "2026-09-14T17:44:15Z"
-    last_updated_by: "scaffold"
+    last_updated_by: "claude-fable-5-1"
     recent_action: "Authored the acceptance criteria for this packet"
     next_safe_action: "Meet, waive or supersede the open criteria"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "[SESSION-ID]"
+      session_id: "2026-09-14-010-containment-on-failed-lanes"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,9 +39,9 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** [PACKET-ID]
-**Level:** [2/3/3+]
-**Status:** [Draft/In Progress/Complete]
+**Packet:** system-deep-loop/045-fanout-write-containment-hardening/010-containment-on-failed-lanes
+**Level:** 2
+**Status:** Complete
 **Date:** 2026-09-14
 <!-- /ANCHOR:metadata -->
 
@@ -54,7 +54,9 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given [context], When [action], Then [observable outcome] | [command, file:line, or artifact that proves it] | Unmet | - |
+| AC-001 | REQ-001 | Given a stub lane that writes outside its directory and exits non-zero, When the run settles, Then the ledger holds a containment event and the quarantine manifest exists | `fanout-run.vitest.ts:3237`; no event against the unmodified runner | Met | - |
+| AC-002 | REQ-002 | Given that lane, When the run settles, Then it is failed and the summary counts it as such | `fanout-run.vitest.ts:3237` | Met | - |
+| AC-003 | REQ-003 | Given a stub lane with a stray write and no artifacts, When the run settles, Then the same holds | `fanout-run.vitest.ts:3259` | Met | - |
 
 ### Status values
 

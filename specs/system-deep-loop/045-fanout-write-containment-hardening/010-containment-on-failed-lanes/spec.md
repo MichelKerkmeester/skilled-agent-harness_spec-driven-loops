@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 3: containment-on-failed-lanes"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+description: "Write containment runs for every lane immediately after its process ends, before the failure, missing-artifact, stop-policy and salvage gates decide the verdict, so a failed lane's out-of-scope writes are reported and quarantined too."
 trigger_phrases:
   - "feature specification"
   - "problem statement"
@@ -21,10 +21,10 @@ contextType: "general"
 | Field | Value |
 |-------|-------|
 | **Level** | 2 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | Draft |
+| **Priority** | P0 |
+| **Status** | Complete |
 | **Created** | 2026-09-14 |
-| **Branch** | `scaffold/010-containment-on-failed-lanes` |
+| **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 10 of 13 |
 | **Predecessor** | 009-baseline-deletion-detection |
@@ -57,10 +57,10 @@ This is **Phase 10** of the Remediate the deep review findings on the fan-out wr
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+The containment block ran only after every verdict gate passed. A lane that exited non-zero, timed out, or produced no artifacts threw at a gate first, so its out-of-scope writes were never compared, quarantined or reported, exactly where evidence matters most. The deep review rated it P1.
 
 ### Purpose
-[One-sentence outcome statement. What does success look like?]
+Every lane's writes are contained and reported, whatever its outcome; the verdict is decided afterwards and never changed by a containment finding.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -69,19 +69,20 @@ This is **Phase 10** of the Remediate the deep review findings on the fan-out wr
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- Moving the containment step (snapshot comparison, quarantine, ledger events, contention drain) to the point where the lane process ends, in the same lifecycle step that stops the pollers
+- Two stub-lane tests: non-zero exit and missing artifacts, both with an out-of-scope write
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+- The gates themselves - unchanged and still rethrow
+- The advisory status for complete lanes - same logic, same result
+- Retry attempts - each attempt's process end runs containment on its own pass
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+| `.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` | Modify | Containment moved into the post-process lifecycle step, ahead of log saving, salvage and every verdict gate; `containmentFindings` still feeds only the post-gate advisory status |
+| `.opencode/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts` | Modify | New describe block with two stub-lane tests |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -93,13 +94,14 @@ This is **Phase 10** of the Remediate the deep review findings on the fan-out wr
 
 | ID | Requirement |
 |----|-------------|
-| REQ-001 | [Requirement description] |
+| REQ-001 | Containment runs after the lane process ends regardless of exit code, artifacts or salvage outcome, and its ledger events and quarantine record are written before any gate rethrows |
+| REQ-002 | A failed lane stays failed; a containment finding never changes a verdict |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement |
 |----|-------------|
-| REQ-002 | [Requirement description] |
+| REQ-003 | A complete lane's advisory path is unchanged |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
@@ -110,8 +112,8 @@ This is **Phase 10** of the Remediate the deep review findings on the fan-out wr
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: The non-zero-exit test fails against the unmodified runner with no containment event, and passes after
+- **SC-002**: The deep-loop runtime suite exits zero
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -121,8 +123,8 @@ This is **Phase 10** of the Remediate the deep review findings on the fan-out wr
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+| Risk | Containment cost on a lane that will be retried | Low | One pass per attempt, each retained under its own pass directory |
+| Risk | A containment error masking the lane's real failure | Low | The containment step never throws; the gates run after it unchanged |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -135,16 +137,13 @@ This is **Phase 10** of the Remediate the deep review findings on the fan-out wr
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
-- **NFR-P01**: [Response time target - e.g., <200ms p95]
-- **NFR-P02**: [Throughput target - e.g., 100 req/sec]
+- **NFR-P01**: No extra git calls; the same pass, earlier
 
 ### Security
-- **NFR-S01**: [Auth requirement - e.g., JWT tokens required]
-- **NFR-S02**: [Data protection - e.g., TLS + encrypted at rest]
+- **NFR-S01**: A failed lane's writes are quarantined with the same canonical, per-pass writer
 
 ### Reliability
-- **NFR-R01**: [Uptime target - e.g., 99.9%]
-- **NFR-R02**: [Error rate - e.g., <1%]
+- **NFR-R01**: Verdict gates are byte-for-byte unchanged
 <!-- /ANCHOR:nfr -->
 
 ---
@@ -153,18 +152,17 @@ This is **Phase 10** of the Remediate the deep review findings on the fan-out wr
 ## L2: EDGE CASES
 
 ### Data Boundaries
-- Empty input: [How system handles]
-- Maximum length: [Limit and behavior]
-- Invalid format: [Validation response]
+- Non-zero exit with a stray write: violation event, quarantine record, lane failed
+- Zero exit, no artifacts, stray write: same
+- Complete lane with a stray write: advisory as before
 
 ### Error Scenarios
-- External service failure: [Fallback behavior]
-- Network timeout: [Retry strategy]
-- Concurrent access: [Conflict resolution]
+- Timeout: the process end still runs containment
+- Salvage failure: containment already recorded
 
 ### State Transitions
-- Partial completion: [Recovery behavior]
-- Session expiry: [User experience]
+- Partial completion: covered, that is the point
+- Session expiry: not applicable
 <!-- /ANCHOR:edge-cases -->
 
 ---
@@ -174,18 +172,17 @@ This is **Phase 10** of the Remediate the deep review findings on the fan-out wr
 
 | Dimension | Score | Notes |
 |-----------|-------|-------|
-| Scope | [/25] | [Files, LOC, systems] |
-| Risk | [/25] | [Auth, API, breaking changes] |
-| Research | [/20] | [Investigation needs] |
-| **Total** | **[/70]** | **Level 2** |
+| Scope | 8/25 | One runner lifecycle move, one test file |
+| Risk | 10/25 | Lane lifecycle ordering in the shared runner |
+| Research | 3/20 | Finding located by the review |
+| **Total** | **21/70** | **Level 2** |
 <!-- /ANCHOR:complexity -->
 
 ---
 
 ## 10. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+- None open.
 <!-- /ANCHOR:questions -->
 
 ---
