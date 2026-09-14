@@ -75,7 +75,7 @@ Set up all state files for a new research session.
    - Emit a `migration` event for every legacy alias consumed
 3. **Resolve local artifact owner**: `artifact_dir = resolveArtifactRoot(specFolder, 'research').artifactDir`, then `mkdir -p {artifact_dir}/iterations`
 4. **Write config**: `research/deep-research-config.json` from template + user parameters
-5. **Initialize state log**: First line of `research/deep-research-state.jsonl` with config record
+5. **Initialize state log**: Append the config record as the first line of `research/deep-research-state.jsonl` through the append gateway, the only way a record reaches the log
 6. **Initialize strategy**: `research/deep-research-strategy.md` from template with:
    - Topic from user input
    - Initial key questions (3-5, from topic analysis)
@@ -108,7 +108,7 @@ If state files already exist from a prior session:
 2. Read JSONL, count iteration records
 3. Read strategy.md for current state
 4. Set iteration counter to last completed + 1
-5. Append the canonical resume event to `deep-research-state.jsonl` (all fields below are required by the reducer):
+5. Record the canonical resume event through the append gateway, the only way a record reaches `deep-research-state.jsonl` (all fields below are required by the reducer):
 
 ```json
 {"type":"event","event":"resumed","mode":"research","sessionId":"rsr-2026-03-18T10-00-00Z","parentSessionId":"rsr-2026-03-18T10-00-00Z","lineageMode":"resume","continuedFromRun":4,"generation":1,"timestamp":"2026-03-18T14:05:00Z"}

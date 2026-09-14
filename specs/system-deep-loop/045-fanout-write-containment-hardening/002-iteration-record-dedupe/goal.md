@@ -12,16 +12,16 @@ _memory:
   continuity:
     packet_pointer: "system-deep-loop/045-fanout-write-containment-hardening/002-iteration-record-dedupe"
     last_updated_at: "2026-09-14T08:26:47Z"
-    last_updated_by: "scaffold"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    last_updated_by: "claude-fable-5-1"
+    recent_action: "Phase fix landed and criteria checked"
+    next_safe_action: "Commit once the full suite exits zero"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-09-14-002-iteration-record-dedupe"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -78,10 +78,10 @@ Three to seven bullets, each checkable without opening another file. Copy them
 verbatim into the objective: nothing dereferences a path, so criteria left only
 here are invisible to whatever judges completion.
 
-- [ ] A state log holding 1,2,3,1,2,3 with routed and unrouted copies passes validation and the routed copies are the ones retained
-- [ ] A state log genuinely missing an iteration still fails, with a test proving the deduplication did not mask it
-- [ ] No reference under deep-research/references instructs a direct write to deep-research-state.jsonl
-- [ ] The retained LUNA and GLM lineages under research/lineages replay as fulfilled
+- [x] A state log holding 1,2,3,1,2,3 with routed and unrouted copies passes validation and the routed copies are the ones retained
+- [x] A state log genuinely missing an iteration still fails, with a test proving the deduplication did not mask it
+- [x] No reference under deep-research/references instructs a direct write to deep-research-state.jsonl
+- [x] The retained LUNA and GLM lineages under research/lineages replay as fulfilled
 <!-- /ANCHOR:completion -->
 
 ---
@@ -97,11 +97,14 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Phase fix | Pending | dispatched to DeepSeek V4.1 Flash max via the gateway on cli-pi when its turn comes |
+| Phase fix | Done | One DeepSeek V4.1 Flash max dispatch on cli-pi via the gateway; collapse helper in `fanout-run.cjs`, four tests, four reference lines; touched file plus typecheck exit 0 |
+| Full suite | Green | `npm test` in the runtime: 156 files, 2659 passed, 7 skipped, exit 0, 1259 s |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| none yet | - |
+| Fifth reference line | The delegate flagged `loop-protocol.md:111` (resume event) outside its list; the orchestrator rewrote it to name the gateway |
+| Replay | LUNA and GLM lineages replay to null at cap 3 |
+| Compiled contract | The deep/research command contract digests the two protocol docs; the first full suite failed two contract tests until `compile-command-contracts.cjs --command deep/research --write` was rerun, and the recompiled contract ships with this phase |
 <!-- /ANCHOR:log -->

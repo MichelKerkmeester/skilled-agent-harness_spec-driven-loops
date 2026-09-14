@@ -158,7 +158,7 @@ The workflow writes or replaces exactly one machine-owned fence nested under the
 
 ## 6. AUDIT EVENTS
 
-All protocol events are appended to `research/deep-research-state.jsonl`.
+All protocol events reach `research/deep-research-state.jsonl` through the append gateway, the only way a record reaches the log.
 
 Every audit payload is typed. At minimum, emit:
 - `type`

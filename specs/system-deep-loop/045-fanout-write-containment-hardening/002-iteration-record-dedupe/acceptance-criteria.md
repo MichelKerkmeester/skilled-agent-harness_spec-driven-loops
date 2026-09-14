@@ -10,18 +10,18 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/002-iteration-record-dedupe"
+    packet_pointer: "system-deep-loop/045-fanout-write-containment-hardening/002-iteration-record-dedupe"
     last_updated_at: "2026-09-14T08:24:16Z"
-    last_updated_by: "scaffold"
+    last_updated_by: "claude-fable-5-1"
     recent_action: "Authored the acceptance criteria for this packet"
     next_safe_action: "Meet, waive or supersede the open criteria"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "[SESSION-ID]"
+      session_id: "2026-09-14-002-iteration-record-dedupe"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,9 +39,9 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** [PACKET-ID]
-**Level:** [2/3/3+]
-**Status:** [Draft/In Progress/Complete]
+**Packet:** system-deep-loop/045-fanout-write-containment-hardening/002-iteration-record-dedupe
+**Level:** 2
+**Status:** Complete
 **Date:** 2026-09-14
 <!-- /ANCHOR:metadata -->
 
@@ -54,7 +54,9 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given [context], When [action], Then [observable outcome] | [command, file:line, or artifact that proves it] | Unmet | - |
+| AC-001 | REQ-001 | Given a log holding 1,2,3,1,2,3 with one routed copy each, When validated at cap 3, Then no violation and the routed copies are retained | `fanout-run.vitest.ts:623` and `:643`; the first failed at the null assertion against the unmodified validator | Met | - |
+| AC-002 | REQ-002 | Given 1,2,2 at cap 3 or a duplicate iteration file, When validated, Then the lane still fails | `fanout-run.vitest.ts:611` and `:658` | Met | - |
+| AC-003 | REQ-003 | Given the deep-research references, When grepped for state-log write instructions, Then every one names the append gateway | `deep-research/references/protocol/loop-protocol.md:78` and `:111`, `guides/quick-reference.md:159`, `protocol/spec-check-protocol.md:161`; grep over the references finds no direct-write instruction | Met | - |
 
 ### Status values
 

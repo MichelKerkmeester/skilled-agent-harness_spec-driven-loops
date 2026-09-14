@@ -39,14 +39,20 @@
       "approach"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
+      ".opencode/skills/system-deep-loop/deep-research/references/guides/quick-reference.md",
+      ".opencode/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md",
+      ".opencode/skills/system-deep-loop/deep-research/references/protocol/spec-check-protocol.md",
+      ".opencode/commands/deep/assets/compiled/deep-research.contract.md"
     ],
     "entities": [
       {
@@ -86,13 +92,49 @@
         "source": "derived"
       },
       {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "quick-reference.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/deep-research/references/guides/quick-reference.md",
+        "source": "derived"
+      },
+      {
+        "name": "loop-protocol.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-check-protocol.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/deep-research/references/protocol/spec-check-protocol.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research.contract.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/assets/compiled/deep-research.contract.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Problem Statement",
+        "name": "Problem Statement Two",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -134,7 +176,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Settle",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -146,57 +194,15 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
+        "name": "Data Flow State",
         "kind": "proper_noun",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "Two of four research lanes, on two executor kinds, finished all three iterations and were still rejected with `duplicate state records for iterations: 1,2,3,1,2,3`",
     "created_at": "2026-09-14T08:24:16Z",
-    "last_save_at": "2026-09-14T09:09:08.040Z",
+    "last_save_at": "2026-09-14T11:48:21.915Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +213,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4eacdc6da872f18ce815022bf29f06ce5fae8c6a711abda579ed70983e358ca1",
+    "source_fingerprint": "sha256:3889aab8b79773da5b73743a87227901daf0c3d2d4f7975c291cc7e754a62d41",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a96fb4d1a340111e8dd4bcf26f51e167969c5ed048830e38ec23da98e6f2f410",
-      "plan.md": "5d70d4a74fd850abce2cfcda1c4ca116f0dd594acca41f2fb52edbf546eda23d",
-      "tasks.md": "3ca762c73cc925e5722a5d7a006157fb736ea34c3a1afe72aa4e25487527e6e6",
-      "implementation-summary.md": "7066483b7fce78b575f7259f3c4501e234e7249e81623c535bdc61b324b8e529"
+      "spec.md": "795e1daf43e310253f4946859bdef305fda4f48f9ef48201605666f313b2c33e",
+      "plan.md": "cef173645b4cfca5683f249375f8e81003d37fbec3458b19e03cc340b06cd275",
+      "tasks.md": "773b6a57492f8a2c48232afa03a8d9bb50b817fe1a1e39388e08ffd2a473b2e6",
+      "implementation-summary.md": "33c8da5f331314bdc3b6f045da3281685bb53a81d8be6939101bf1baa35e84bb"
     },
     "last_active_at": null
   }

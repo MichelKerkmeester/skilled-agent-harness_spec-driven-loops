@@ -498,8 +498,9 @@ describe('fanout-run.cjs — computeLineageTimeoutMs lineage timeout override', 
 });
 
 describe('fanout-run.cjs — max-iterations stop-reason tolerance', () => {
-  const { isMaxIterationsStopReason, findMaxIterationsPolicyViolation } = requireCjs(fanoutRunScript) as {
+  const { isMaxIterationsStopReason, findMaxIterationsPolicyViolation, retainIterationRecords } = requireCjs(fanoutRunScript) as {
     isMaxIterationsStopReason: (stopReason: unknown) => boolean;
+    retainIterationRecords: (records: Array<Record<string, unknown>>) => Map<number, Record<string, unknown>>;
     findMaxIterationsPolicyViolation: (input: {
       loopType: string;
       stopPolicy: string;
@@ -607,28 +608,60 @@ describe('fanout-run.cjs — max-iterations stop-reason tolerance', () => {
     expect(violation).toContain('expected iteration files 1..3, got 1,2,4');
   });
 
-  it('rejects state records that repeat an iteration number instead of covering the range', () => {
+  it('still fails a repeated iteration number whose duplicate leaves a gap', () => {
     const { dir, stateRead } = makeResearchLineageDir(3, true);
     stateRead.records = [
-      { type: 'iteration', iteration: 1 }, { type: 'iteration', iteration: 1 }, { type: 'iteration', iteration: 2 },
+      { type: 'iteration', iteration: 1 }, { type: 'iteration', iteration: 2 }, { type: 'iteration', iteration: 2 },
       { type: 'event', event: 'maxIterationsReached', stopReason: 'maxIterationsReached' },
     ];
     const violation = findMaxIterationsPolicyViolation({
       loopType: 'research', stopPolicy: 'max-iterations', lineage: { iterations: 3 }, stateRead, lineageDir: dir,
     });
-    expect(violation).toContain('duplicate state records for iterations: 1,1,2');
+    expect(violation).toContain('expected state records for iterations 1..3, got 1,2');
   });
 
-  it('rejects a complete range whose state log repeats an iteration', () => {
+  it('passes a state log that records every iteration twice when one copy carries the route proof', () => {
     const { dir, stateRead } = makeResearchLineageDir(3, true);
+    const directWrites = [1, 2, 3].map((iteration) => ({ type: 'iteration', iteration }));
+    const gatewayWrites = [1, 2, 3].map((iteration) => ({
+      type: 'iteration', iteration,
+      mode: 'research',
+      target_agent: 'deep-research',
+      agent_definition_loaded: true,
+      resolved_route: 'Resolved route: mode=research target_agent=deep-research',
+    }));
     stateRead.records = [
-      { type: 'iteration', iteration: 1 }, { type: 'iteration', iteration: 2 }, { type: 'iteration', iteration: 3 }, { type: 'iteration', iteration: 2 },
+      ...directWrites, ...gatewayWrites,
       { type: 'event', event: 'maxIterationsReached', stopReason: 'maxIterationsReached' },
     ];
     const violation = findMaxIterationsPolicyViolation({
       loopType: 'research', stopPolicy: 'max-iterations', lineage: { iterations: 3 }, stateRead, lineageDir: dir,
     });
-    expect(violation).toContain('duplicate state records for iterations: 1,2,3,2');
+    expect(violation).toBeNull();
+  });
+
+  it('retains the route-proof copy of a duplicated iteration record', () => {
+    const directWrite = { type: 'iteration', iteration: 2, run: 2 };
+    const gatewayWrite = {
+      type: 'iteration', iteration: 2, run: 2,
+      mode: 'research',
+      target_agent: 'deep-research',
+      agent_definition_loaded: true,
+      resolved_route: 'Resolved route: mode=research target_agent=deep-research',
+    };
+    expect(retainIterationRecords([directWrite, gatewayWrite]).get(2)).toBe(gatewayWrite);
+    expect(retainIterationRecords([gatewayWrite, directWrite]).get(2)).toBe(gatewayWrite);
+    const plainCopy = { type: 'iteration', iteration: 2, run: 3 };
+    expect(retainIterationRecords([directWrite, plainCopy]).get(2)).toBe(directWrite);
+  });
+
+  it('still rejects a duplicate iteration file on disk', () => {
+    const { dir, stateRead } = makeResearchLineageDir(3, true);
+    renameSync(join(dir, 'iterations', 'iteration-002.md'), join(dir, 'iterations', 'iteration-01.md'));
+    const violation = findMaxIterationsPolicyViolation({
+      loopType: 'research', stopPolicy: 'max-iterations', lineage: { iterations: 3 }, stateRead, lineageDir: dir,
+    });
+    expect(violation).toContain('duplicate iteration files on disk');
   });
 
   it('accepts the exact contiguous set on disk and in the state log', () => {
