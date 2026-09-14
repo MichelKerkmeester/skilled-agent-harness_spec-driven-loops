@@ -1,0 +1,10 @@
+name: repo-guards
+version: 1.0.0.0
+description: "Bridges this repository's shared guard cores into a Hermes session: dispatch preflight, self-dispatch refusal, read-only leaf refusal, git advisory delivery, completion-evidence nudge, session context with the bound packet goal."
+author: "OpenCode"
+kind: standalone
+provides_hooks:
+  - pre_tool_call
+  - transform_tool_result
+  - pre_verify
+  - on_session_end

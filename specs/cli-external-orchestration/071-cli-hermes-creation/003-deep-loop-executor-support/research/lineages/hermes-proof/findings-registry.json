@@ -1,0 +1,50 @@
+{
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "q1",
+      "question": "List the eight hard rule ids declared in .opencode/skills/cli-external-orchestration/cli-hermes/SKILL.md and state which one a fan-out lineage exercises by construction, citing the file and line for each id.",
+      "answer": "The eight hard rule ids are stdin-redirect-required (SKILL.md:7), hermes-availability-required (SKILL.md:11), yolo-required-for-writes (SKILL.md:15), ignore-rules-required (SKILL.md:19), explicit-toolsets-required (SKILL.md:23), no-worktree-flag (SKILL.md:27), mcp-config-operator-required (SKILL.md:31), hooks-user-level (SKILL.md:35). The rule a fan-out lineage exercises by construction is stdin-redirect-required (SKILL.md:7): the lineage dispatch is non-interactive by construction and buildHermesLineageCommand emits chat -Q --oneshot --query-file - with the prompt on stdin.",
+      "evidence": "file:.opencode/skills/cli-external-orchestration/cli-hermes/SKILL.md:7,11,15,19,23,27,31,35,208; file:.opencode/skills/cli-external-orchestration/cli-hermes/changelog/v1.0.0.0.md:13; file:.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:2603",
+      "iteration": 1
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "f-iter001-001",
+      "severity": "P1",
+      "label": "Eight hard rule ids declared in the cli-hermes SKILL.md frontmatter",
+      "summary": "stdin-redirect-required (l.7), hermes-availability-required (l.11), yolo-required-for-writes (l.15), ignore-rules-required (l.19), explicit-toolsets-required (l.23), no-worktree-flag (l.27), mcp-config-operator-required (l.31), hooks-user-level (l.35)",
+      "evidence": "file:.opencode/skills/cli-external-orchestration/cli-hermes/SKILL.md:7,11,15,19,23,27,31,35",
+      "iteration": 1
+    },
+    {
+      "id": "f-iter001-002",
+      "severity": "P1",
+      "label": "A fan-out lineage exercises stdin-redirect-required by construction",
+      "summary": "Non-interactive dispatch is inherent to a lineage; buildHermesLineageCommand emits --query-file - with the prompt on stdin, satisfying the rule's MUST",
+      "evidence": "file:.opencode/skills/cli-external-orchestration/cli-hermes/SKILL.md:7,208; file:.opencode/skills/cli-external-orchestration/cli-hermes/changelog/v1.0.0.0.md:13; file:.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:2603",
+      "iteration": 1
+    },
+    {
+      "id": "f-iter001-003",
+      "severity": "P2",
+      "label": "Adjunct structural rules are conditional, not by-construction",
+      "summary": "yolo-required-for-writes binds only write leaves; no-worktree-flag is enforced by the containment guard on violation; hermes-availability-required is a pre-dispatch probe",
+      "evidence": "file:.opencode/skills/cli-external-orchestration/cli-hermes/SKILL.md:11,15,27; changelog/v1.0.0.0.md:13",
+      "iteration": 1
+    }
+  ],
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "rejectedPatterns": [],
+  "suppressedCandidates": [],
+  "metrics": {
+    "totalIterations": 1,
+    "sourceFindings": 3,
+    "reconstructionGaps": 0,
+    "answeredQuestions": 1,
+    "totalQuestions": 1
+  }
+}

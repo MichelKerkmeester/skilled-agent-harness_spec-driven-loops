@@ -1,0 +1,95 @@
+{
+  "run_id": "1789402663119-cvvtf8",
+  "loop_type": "research",
+  "spec_folder": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research",
+  "base_artifact_dir": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research",
+  "total_cli_lineages": 2,
+  "orphaned_lineages": [],
+  "total": 2,
+  "succeeded": 2,
+  "failed": 0,
+  "all_failed": false,
+  "completed_with_containment_advisory": 2,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0
+  },
+  "timestamp_anomalies": [
+    {
+      "label": "deepseek",
+      "state_log": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/deepseek/deep-research-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-09-14T16:17:43.124Z",
+        "end_at_iso": "2026-09-14T16:53:05.112Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 1,
+        "untimestamped": 0,
+        "unparseable": 0,
+        "total": 11
+      },
+      "sample": [
+        {
+          "index": 10,
+          "reason": "after_window",
+          "timestamp": "2026-09-14T22:00:00Z",
+          "deltaMs": 18294888
+        }
+      ]
+    },
+    {
+      "label": "swe2",
+      "state_log": "specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/lineages/swe2/deep-research-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-09-14T16:17:44.382Z",
+        "end_at_iso": "2026-09-14T17:02:35.923Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 7,
+        "untimestamped": 1,
+        "unparseable": 0,
+        "total": 13
+      },
+      "sample": [
+        {
+          "index": 6,
+          "reason": "after_window",
+          "timestamp": "2026-09-14T17:15:00Z",
+          "deltaMs": 624077
+        },
+        {
+          "index": 7,
+          "reason": "after_window",
+          "timestamp": "2026-09-14T17:15:05Z",
+          "deltaMs": 629077
+        },
+        {
+          "index": 8,
+          "reason": "after_window",
+          "timestamp": "2026-09-14T17:22:00Z",
+          "deltaMs": 1044077
+        },
+        {
+          "index": 9,
+          "reason": "after_window",
+          "timestamp": "2026-09-14T17:22:05Z",
+          "deltaMs": 1049077
+        },
+        {
+          "index": 10,
+          "reason": "after_window",
+          "timestamp": "2026-09-14T17:30:00Z",
+          "deltaMs": 1524077
+        }
+      ]
+    }
+  ]
+}

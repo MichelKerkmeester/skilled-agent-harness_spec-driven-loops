@@ -23,7 +23,7 @@ The council is **primarily an IN-CLI capability**. When invoked from inside an a
 
 **Both modes obey the one-CLI-per-round invariant** (§5 ALWAYS rule 6):
 - In-CLI round: all seats use the current runtime's models.
-- External-CLI round: all seats use ONE supported external CLI (e.g. all `cli-opencode` seats with different reasoning levels, or all `cli-cursor`, `cli-devin`, or `cli-pi` seats with different models).
+- External-CLI round: all seats use ONE supported external CLI (e.g. all `cli-opencode` seats with different reasoning levels, or all `cli-cursor`, `cli-devin`, `cli-pi`, or `cli-hermes` seats with different models).
 - Cross-CLI deliberation is staged as MULTIPLE rounds (one in-CLI + one external, or two different externals) — never folded into the same round.
 
 The default and most common council run is a single in-CLI round. Add external rounds only when the active runtime cannot supply the required vantage or when explicit cross-AI validation is requested.
@@ -354,7 +354,7 @@ node .opencode/skills/system-deep-loop/deep-ai-council/scripts/advise-council-co
    - The graph is rebuilt from packet-local `ai-council/**` artifacts and must not replace append-only council state.
 
 6. **ALWAYS run a single CLI per round (one-CLI-per-round invariant)**
-   - All seats within ONE deliberation round MUST be dispatched through the SAME supported CLI executor (for example all seats from `cli-opencode`, `cli-cursor`, `cli-devin`, or `cli-pi`). Seat diversity WITHIN a round comes from different models/reasoning lenses on the same CLI (e.g. `deepseek/deepseek-v4-pro --variant high` + `xiaomi/mimo-v2.5-pro`).
+   - All seats within ONE deliberation round MUST be dispatched through the SAME supported CLI executor (for example all seats from `cli-opencode`, `cli-cursor`, `cli-devin`, `cli-pi`, or `cli-hermes`). Seat diversity WITHIN a round comes from different models/reasoning lenses on the same CLI (e.g. `deepseek/deepseek-v4-pro --variant high` + `xiaomi/mimo-v2.5-pro`).
    - Mixing executors within one round (e.g. one seat via OpenCode + one seat via OpenCode + one seat via Claude Code) is FORBIDDEN — it conflates orchestration boundaries, complicates rollback, and produces noisy convergence signals because per-CLI guarantees (sandbox, runtime, tool surface, output schema) differ.
    - When MULTIPLE CLIs are appropriate for a deliberation, each additional CLI is a NEW DEDICATED ROUND with its own state event, its own seats, and its own convergence pass — never folded into the same round.
 

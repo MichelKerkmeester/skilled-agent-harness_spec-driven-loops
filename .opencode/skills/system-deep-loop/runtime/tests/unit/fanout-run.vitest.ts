@@ -41,6 +41,8 @@ import {
   DEVIN_SUPPORTED_MODELS,
   PI_DEFAULT_MODEL as TS_PI_DEFAULT_MODEL,
   PI_SUPPORTED_MODELS,
+  HERMES_DEFAULT_MODEL as TS_HERMES_DEFAULT_MODEL,
+  HERMES_SUPPORTED_MODELS,
 } from '../../lib/deep-loop/executor-config.js';
 
 const tempDirs: string[] = [];
@@ -1547,6 +1549,8 @@ describe('fanout-run.cjs — executor model mirror parity with the TS source', (
     CURSOR_DEFAULT_MODEL,
     PI_ALLOWED_MODELS,
     PI_DEFAULT_MODEL,
+    HERMES_ALLOWED_MODELS,
+    HERMES_DEFAULT_MODEL,
   } = requireCjs(fanoutRunScript) as {
     DEVIN_ALLOWED_MODELS: Set<string>;
     DEVIN_DEFAULT_MODEL: string;
@@ -1554,6 +1558,8 @@ describe('fanout-run.cjs — executor model mirror parity with the TS source', (
     CURSOR_DEFAULT_MODEL: string;
     PI_ALLOWED_MODELS: Set<string>;
     PI_DEFAULT_MODEL: string;
+    HERMES_ALLOWED_MODELS: Set<string>;
+    HERMES_DEFAULT_MODEL: string;
   };
 
   it('keeps the Devin CJS allowlist aligned with the TS source', () => {
@@ -1578,6 +1584,154 @@ describe('fanout-run.cjs — executor model mirror parity with the TS source', (
 
   it('keeps the Pi CJS default aligned with the TS source', () => {
     expect(PI_DEFAULT_MODEL).toBe(TS_PI_DEFAULT_MODEL);
+  });
+
+  it('keeps the Hermes CJS allowlist aligned with the TS source', () => {
+    expect([...HERMES_ALLOWED_MODELS].sort()).toEqual([...HERMES_SUPPORTED_MODELS].sort());
+  });
+
+  it('keeps the Hermes CJS default aligned with the TS source', () => {
+    expect(HERMES_DEFAULT_MODEL).toBe(TS_HERMES_DEFAULT_MODEL);
+  });
+});
+
+describe('fanout-run.cjs — cli-hermes adapter', () => {
+  const { buildLineageCommand, isHermesBinaryAvailable } = requireCjs(fanoutRunScript) as {
+    buildLineageCommand: (
+      lineage: Record<string, unknown>,
+      prompt: string,
+      resolvedSandbox: string,
+      resolvedPermission: string,
+      options?: { env?: NodeJS.ProcessEnv },
+    ) => unknown;
+    isHermesBinaryAvailable: (env?: NodeJS.ProcessEnv) => boolean;
+  };
+  const withStub = (label: string) => {
+    const binDir = makeTempDir(`fanout-run-hermes-${label}-`);
+    writeStubBinary(binDir, 'hermes');
+    return { env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` } };
+  };
+  // The fixed prefix every write lineage carries: quiet oneshot chat, prompt on stdin,
+  // the pinned provider name, then the model.
+  const prefix = (model: string) => ['chat', '-Q', '--oneshot', '--query-file', '-', '--provider', 'llmgateway', '--model', model, '--ignore-rules', '--source', 'tool', '--max-turns', '200'];
+
+  it('fails closed before command construction when hermes is absent', () => {
+    const env = { ...process.env, PATH: makeTempDir('fanout-run-no-hermes-') };
+    expect(isHermesBinaryAvailable(env)).toBe(false);
+    expect(() => buildLineageCommand(
+      { kind: 'cli-hermes', model: 'deepseek-v4.1-flash' },
+      'bounded prompt', 'workspace-write', 'default', { env },
+    )).toThrow(/command -v hermes failed/);
+  });
+
+  it('builds the quiet oneshot chat form with the prompt on stdin, --yolo for a write leaf, and the max pin for both roster ids', () => {
+    const opts = withStub('allowlist');
+    for (const model of ['deepseek-v4.1-flash', 'glm-5.3-flash']) {
+      const command = buildLineageCommand(
+        { kind: 'cli-hermes', model },
+        'bounded prompt', 'workspace-write', 'default', opts,
+      ) as { command: string; args: string[]; input?: string; effectiveConfig: { model: string; reasoningEffort: string | null } };
+      expect(command.command).toBe('hermes');
+      expect(command.args).toEqual([
+        ...prefix(model), '--run-budget', '840', '-t', 'terminal,file,skills,todo,web', '--yolo', '--reasoning', 'max',
+      ]);
+      expect(command.input).toBe('bounded prompt');
+      expect(command.args).not.toContain('bounded prompt');
+      expect(command.args).not.toContain('--worktree');
+      expect(command.args).not.toContain('-z');
+      expect(command.effectiveConfig.model).toBe(model);
+      expect(command.effectiveConfig.reasoningEffort).toBe('max');
+    }
+  });
+
+  it('defaults an omitted model to deepseek-v4.1-flash', () => {
+    const command = buildLineageCommand(
+      { kind: 'cli-hermes' }, 'p', 'workspace-write', 'default', withStub('default-model'),
+    ) as { args: string[]; effectiveConfig: { model: string } };
+    expect(command.args.slice(0, 9)).toEqual(prefix('deepseek-v4.1-flash').slice(0, 9));
+    expect(command.effectiveConfig.model).toBe('deepseek-v4.1-flash');
+  });
+
+  it('keeps the run budget one margin under the lineage timeout and never below the margin', () => {
+    const opts = withStub('budget');
+    const budgetFor = (timeoutSeconds: number) => {
+      const command = buildLineageCommand(
+        { kind: 'cli-hermes', model: 'glm-5.3-flash', timeoutSeconds }, 'p', 'workspace-write', 'default', opts,
+      ) as { args: string[] };
+      return command.args[command.args.indexOf('--run-budget') + 1];
+    };
+    expect(budgetFor(900)).toBe('840');
+    expect(budgetFor(300)).toBe('240');
+    expect(budgetFor(30)).toBe('60');
+  });
+
+  it('names the web toolset per the lineage web-search policy', () => {
+    const opts = withStub('web');
+    const toolsetsFor = (webSearch: string) => {
+      const command = buildLineageCommand(
+        { kind: 'cli-hermes', model: 'glm-5.3-flash', liveTools: { webSearch } }, 'p', 'workspace-write', 'default', opts,
+      ) as { args: string[]; effectiveConfig: { webSearch: string } };
+      expect(command.effectiveConfig.webSearch).toBe(webSearch);
+      return command.args[command.args.indexOf('-t') + 1];
+    };
+    expect(toolsetsFor('live')).toBe('terminal,file,skills,todo,web');
+    expect(toolsetsFor('inherit')).toBe('terminal,file,skills,todo,web');
+    expect(toolsetsFor('disabled')).toBe('terminal,file,skills,todo');
+    // Hermes's `search` toolset is web search only; file reading lives in `file`.
+    for (const policy of ['live', 'inherit', 'disabled']) {
+      expect(toolsetsFor(policy).split(',')).not.toContain('search');
+      expect(toolsetsFor(policy).split(',')).toContain('file');
+    }
+    // A leaf never carries the delegation or memory toolsets.
+    for (const policy of ['live', 'inherit', 'disabled']) {
+      expect(toolsetsFor(policy)).not.toMatch(/delegation|memory/);
+    }
+  });
+
+  it('appends the lineage MCP server names to the toolset list and refuses reserved or malformed names', () => {
+    const opts = withStub('mcp');
+    const toolsetsFor = (mcpServers: string[], sandbox = 'workspace-write') => {
+      const command = buildLineageCommand(
+        { kind: 'cli-hermes', model: 'glm-5.3-flash', liveTools: { webSearch: 'disabled', mcpServers } },
+        'p', sandbox, sandbox === 'read-only' ? 'plan' : 'default', opts,
+      ) as { args: string[] };
+      return command.args[command.args.indexOf('-t') + 1];
+    };
+    expect(toolsetsFor(['code_mode'])).toBe('terminal,file,skills,todo,code_mode');
+    expect(toolsetsFor(['code_mode', 'code_mode', 'file'])).toBe('terminal,file,skills,todo,code_mode');
+    expect(toolsetsFor(['code_mode'], 'read-only')).toBe('file,todo,code_mode');
+    expect(toolsetsFor([])).toBe('terminal,file,skills,todo');
+    expect(() => toolsetsFor(['delegation'])).toThrow(/reserved toolset/);
+    expect(() => toolsetsFor(['code mode'])).toThrow(/not a valid Hermes toolset name/);
+  });
+
+  it('omits --yolo and narrows the toolset for a read-only leaf', () => {
+    const readOnly = buildLineageCommand(
+      { kind: 'cli-hermes', model: 'glm-5.3-flash' }, 'p', 'read-only', 'plan', withStub('readonly'),
+    ) as { args: string[] };
+    expect(readOnly.args).not.toContain('--yolo');
+    // A read-only leaf keeps `file` (Hermes has no read-only file toolset) and drops `terminal`;
+    // the repo plugin refuses the write tools when the runner sets the read-only marker.
+    expect(readOnly.args[readOnly.args.indexOf('-t') + 1]).toBe('file,todo,web');
+  });
+
+  it('rejects an out-of-roster model, the router alias auto, and a provider-prefixed id before command construction', () => {
+    const opts = withStub('rejected');
+    for (const model of ['gpt-3.5-turbo', 'auto', 'llmgateway/deepseek-v4.1-flash']) {
+      expect(() => buildLineageCommand(
+        { kind: 'cli-hermes', model }, 'p', 'workspace-write', 'default', opts,
+      )).toThrow(/not in the enforced allowlist/);
+    }
+  });
+
+  it('lets the Flash max pin win over any requested effort, so an unknown level never reaches the dispatch', () => {
+    // Both roster ids are pinned to max before the level check, which is why an unknown
+    // effort dispatches at max instead of failing: the pin is the roster's contract.
+    const command = buildLineageCommand(
+      { kind: 'cli-hermes', model: 'glm-5.3-flash', reasoningEffort: 'ludicrous' }, 'p', 'workspace-write', 'default', withStub('effort'),
+    ) as { args: string[]; effectiveConfig: { reasoningEffort: string | null } };
+    expect(command.args[command.args.indexOf('--reasoning') + 1]).toBe('max');
+    expect(command.effectiveConfig.reasoningEffort).toBe('max');
   });
 });
 

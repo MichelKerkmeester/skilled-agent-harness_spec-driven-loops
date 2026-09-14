@@ -58,6 +58,21 @@
     },
     {
       "leaves": [
+        "assets/prompt-quality-card.md",
+        "assets/prompt-templates.md",
+        "references/agent-delegation.md",
+        "references/cli-reference.md",
+        "references/hermes-tools.md",
+        "references/hook-contract.md",
+        "references/integration-patterns.md",
+        "references/mcp-policy.md",
+        "references/providers-and-models.md"
+      ],
+      "packet": "cli-hermes",
+      "workflowMode": "cli-hermes"
+    },
+    {
+      "leaves": [
         "assets/permissions-matrix.example-packet-local.json",
         "assets/permissions-matrix.example-readonly.json",
         "assets/permissions-matrix.example-repo-wide.json",

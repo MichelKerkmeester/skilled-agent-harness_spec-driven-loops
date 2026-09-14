@@ -9,13 +9,14 @@ trigger_phrases:
   - "cli-cursor hooks"
   - "Cursor CLI spec-gate integration"
   - "cross-runtime goal isolation"
-last_updated: "2026-08-10"
-version: 1.4.0.12
+  - "cli-hermes dispatch"
+last_updated: "2026-09-14"
+version: 1.5.0.0
 ---
 
 # cli-external-orchestration: Feature Catalog
 
-This catalog inventories the live `cli-external-orchestration` hub surface. The hub scores and dispatches one of six CLI-executor workflow packets (`cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`), each independently classifying intent, choosing or confirming a provider, and conducting the dispatched session. `cli-cursor` also exposes a Cursor hook and spec-gate adapter surface whose `.cursor/hooks.json` configuration is shared with the Cursor desktop editor. A default-on, flag-gated compiled-routing fast path can resolve the same decision ahead of registry-driven routing without changing what it resolves to.
+This catalog inventories the live `cli-external-orchestration` hub surface. The hub scores and dispatches one of seven CLI-executor workflow packets (`cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`, `cli-hermes`), each independently classifying intent, choosing or confirming a provider, and conducting the dispatched session. `cli-cursor` also exposes a Cursor hook and spec-gate adapter surface whose `.cursor/hooks.json` configuration is shared with the Cursor desktop editor. A default-on, flag-gated compiled-routing fast path can resolve the same decision ahead of registry-driven routing without changing what it resolves to.
 
 ---
 
@@ -31,11 +32,11 @@ Use this catalog as the current-state inventory for the `cli-external-orchestrat
 
 #### Description
 
-`mode-registry.json` and `hub-router.json` jointly resolve a request to a single executor, an ordered bundle, or a deferred disambiguation across the hub's six packets.
+`mode-registry.json` and `hub-router.json` jointly resolve a request to a single executor, an ordered bundle, or a deferred disambiguation across the hub's seven packets.
 
 #### Current Reality
 
-All four packets are `packetKind: "workflow"` with zero extension axes; each dispatches writes into this repository's own workspace. The router defers rather than silently defaulting to `cli-opencode` on genuine ambiguity.
+All seven packets are `packetKind: "workflow"` with zero extension axes; each dispatches writes into this repository's own workspace. `cli-hermes` carries its own catalog package at [`../cli-hermes/feature-catalog/feature-catalog.md`](../cli-hermes/feature-catalog/feature-catalog.md). The router defers rather than silently defaulting to `cli-opencode` on genuine ambiguity.
 
 #### Source Files
 
@@ -85,7 +86,7 @@ See [`cursor-hooks-and-spec-gate/cursor-hooks-and-spec-gate.md`](cursor-hooks-an
 
 #### Description
 
-One runtime-neutral inspector classifies a Bash command as `direct`, `ambiguous`, or `none`, and the Pi preflight gate turns that classification into an allow/deny authorization decision. The inspector is shared across the Claude, Codex, Devin, and Pi dispatch hooks and feeds both the observational audit trail and the Pi gate.
+One runtime-neutral inspector classifies a Bash command as `direct`, `ambiguous`, or `none`, and the Pi preflight gate turns that classification into an allow/deny authorization decision. The inspector is shared across the Claude, Codex, Devin, and Pi dispatch hooks and feeds both the observational audit trail and the Pi gate. It recognizes all seven executors, including the print-flagless `cli-hermes` shapes.
 
 #### Current Reality
 

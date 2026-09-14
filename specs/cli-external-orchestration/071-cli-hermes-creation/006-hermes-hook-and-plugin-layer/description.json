@@ -1,0 +1,18 @@
+{
+  "specFolder": "cli-external-orchestration/071-cli-hermes-creation/006-hermes-hook-and-plugin-layer",
+  "description": "Phase 5: hermes-hook-and-plugin-layer",
+  "keywords": [
+    "phase",
+    "hermes-hook-and-plugin-layer"
+  ],
+  "lastUpdated": "2026-09-14T17:24:48.728Z",
+  "specId": "006",
+  "folderSlug": "hermes-hook-and-plugin-layer",
+  "parentChain": [
+    "cli-external-orchestration",
+    "071-cli-hermes-creation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}

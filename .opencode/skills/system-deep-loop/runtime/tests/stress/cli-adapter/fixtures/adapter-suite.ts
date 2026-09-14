@@ -61,7 +61,7 @@ function lineageFor(kind: AdapterKind): Record<string, unknown> {
   return {
     kind,
     model: MODEL_BY_KIND[kind],
-    ...(kind === 'cli-opencode' || kind === 'cli-pi' || kind === 'cli-claude-code'
+    ...(kind === 'cli-opencode' || kind === 'cli-pi' || kind === 'cli-claude-code' || kind === 'cli-hermes'
       ? { reasoningEffort: 'high' }
       : {}),
   };
@@ -83,6 +83,8 @@ function authEnv(kind: AdapterKind): NodeJS.ProcessEnv {
       return { CURSOR_AUTH_TOKEN: 'shim-cursor-token' };
     case 'cli-pi':
       return {};
+    case 'cli-hermes':
+      return { LLMGATEWAY_API_KEY: 'shim-llmgateway-token' };
   }
 }
 
@@ -121,6 +123,15 @@ function expectSuccessArgs(kind: AdapterKind, args: readonly string[]): void {
         '--force', '--sandbox', 'enabled',
       ]));
       expect(args).not.toContain('--auto-review');
+      break;
+    case 'cli-hermes':
+      // The roster pins both Flash models to their top tier, so the requested 'high' lands as 'max'.
+      expect(args).toEqual(expect.arrayContaining([
+        'chat', '-Q', '--oneshot', '--query-file', '-', '--provider', 'llmgateway', '--model', MODEL_BY_KIND[kind],
+        '--ignore-rules', '--source', 'tool', '--yolo', '--reasoning', 'max',
+      ]));
+      expect(args).not.toContain('--worktree');
+      expect(args).not.toContain('-z');
       break;
   }
 }
@@ -273,6 +284,14 @@ export function defineAdapterStressSuite(kind: AdapterKind): void {
       if (kind === 'cli-cursor') {
         expect(captures[0].env).toMatchObject({ CURSOR_AUTH_TOKEN: 'shim-cursor-token' });
       }
+      if (kind === 'cli-hermes') {
+        expect(captures[0].env).toMatchObject({ LLMGATEWAY_API_KEY: 'shim-llmgateway-token' });
+        expect(captures[0].stdin).toContain('FANOUT_LINEAGE_COMPLETE');
+        // The repo plugin reads the bound packet from this path; a write leaf carries no read-only marker.
+        expect(typeof captures[0].env.HERMES_SPEC_FOLDER).toBe('string');
+        expect(captures[0].env.HERMES_SPEC_FOLDER).not.toBe('');
+        expect(captures[0].env.SPECKIT_HERMES_READ_ONLY).toBeNull();
+      }
     });
 
     it(testName(0), async () => {
@@ -326,8 +345,15 @@ export function defineAdapterStressSuite(kind: AdapterKind): void {
       const run = await runAdapterFanout(fixture, { mode: 'stdin' });
       const capture = readAdapterCaptures(fixture)[0];
       expect(run.result.exitCode).toBe(0);
-      expect(capture.stdin).toBe('');
-      expect(fanoutLog(run.lineageDir)).toContain('stdin-closed:0');
+      if (kind === 'cli-hermes') {
+        // Hermes reads the prompt from stdin (`--query-file -`); the pipe is written once and
+        // closed, so the shim sees the whole prompt and then end-of-input, never a wait.
+        expect(capture.stdin.length).toBeGreaterThan(0);
+        expect(fanoutLog(run.lineageDir)).toContain(`stdin-closed:${capture.stdin.length}`);
+      } else {
+        expect(capture.stdin).toBe('');
+        expect(fanoutLog(run.lineageDir)).toContain('stdin-closed:0');
+      }
     });
 
     it(testName(5), async () => {
@@ -361,6 +387,10 @@ export function defineAdapterStressSuite(kind: AdapterKind): void {
       } else if (kind === 'cli-devin') {
         expect(readOnlyArgs).toEqual(expect.arrayContaining(['--permission-mode', 'auto']));
         expect(readOnlyArgs).not.toContain('--sandbox');
+      } else if (kind === 'cli-hermes') {
+        expect(readOnlyArgs).toEqual(expect.arrayContaining(['-t', 'file,todo,web']));
+        expect(readOnlyArgs).not.toContain('--yolo');
+        expect(readOnlyArgs[readOnlyArgs.indexOf('-t') + 1].split(',')).not.toContain('terminal');
       } else {
         expect(readOnlyArgs).toEqual(expect.arrayContaining(['--mode', 'plan', '--trust']));
         expect(readOnlyArgs).not.toContain('--force');

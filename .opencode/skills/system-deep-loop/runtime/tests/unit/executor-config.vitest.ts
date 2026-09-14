@@ -20,13 +20,17 @@ import {
   PI_SUPPORTED_MODELS,
   PI_DEFAULT_MODEL,
   isPiModelAllowed,
+  HERMES_SUPPORTED_MODELS,
+  HERMES_DEFAULT_MODEL,
+  isHermesModelAllowed,
   isFlashMaxPinnedModel,
   pinReasoningEffortForModel,
+  assertExecutorMcpServerCapability,
 } from '../../lib/deep-loop/executor-config';
 
 describe('executor-config', () => {
-  it('defines seven executor kinds including cli-devin and cli-pi', () => {
-    expect(EXECUTOR_KINDS).toHaveLength(7);
+  it('defines eight executor kinds including cli-devin, cli-pi and cli-hermes', () => {
+    expect(EXECUTOR_KINDS).toHaveLength(8);
     expect([...EXECUTOR_KINDS]).toEqual([
       'native',
       'cli-codex',
@@ -35,7 +39,21 @@ describe('executor-config', () => {
       'cli-cursor',
       'cli-devin',
       'cli-pi',
+      'cli-hermes',
     ]);
+  });
+
+  it('allows only confirmed-safe cli-hermes fields', () => {
+    expect(EXECUTOR_KIND_FLAG_SUPPORT['cli-hermes']).toEqual(['model', 'reasoningEffort', 'timeoutSeconds', 'liveTools']);
+    expect(parseExecutorConfig({
+      kind: 'cli-hermes',
+      model: 'candidate-model',
+      reasoningEffort: 'max',
+      timeoutSeconds: 120,
+      liveTools: { webSearch: 'live' },
+    })).toMatchObject({ kind: 'cli-hermes', model: 'candidate-model', reasoningEffort: 'max', timeoutSeconds: 120 });
+    expect(() => parseExecutorConfig({ kind: 'cli-hermes', sandboxMode: 'read-only' })).toThrow(/not supported by executor kind 'cli-hermes'/);
+    expect(() => parseExecutorConfig({ kind: 'cli-hermes', configDir: '/tmp/hermes-home' })).toThrow(/not supported by executor kind 'cli-hermes'/);
   });
 
   it('allows only confirmed-safe cli-pi fields', () => {
@@ -64,7 +82,7 @@ describe('executor-config', () => {
       sandboxMode: null,
       timeoutSeconds: 900,
       governor: null,
-      liveTools: { webSearch: 'inherit' },
+      liveTools: { webSearch: 'inherit', mcpServers: [] },
     });
   });
 
@@ -313,9 +331,40 @@ describe('executor-config', () => {
   });
 });
 
+describe('executor MCP server list', () => {
+  it('accepts server names on cli-hermes and defaults the list to empty', () => {
+    const config = parseExecutorConfig({
+      kind: 'cli-hermes',
+      model: 'glm-5.3-flash',
+      liveTools: { mcpServers: ['code_mode', 'gitkraken'] },
+    });
+    expect(config.liveTools).toEqual({ webSearch: 'inherit', mcpServers: ['code_mode', 'gitkraken'] });
+    expect(() => assertExecutorMcpServerCapability(config)).not.toThrow();
+    expect(parseExecutorConfig({ kind: 'cli-hermes' }).liveTools.mcpServers).toEqual([]);
+  });
+
+  it('rejects a name that cannot be a Hermes toolset', () => {
+    expect(() => parseExecutorConfig({
+      kind: 'cli-hermes',
+      liveTools: { mcpServers: ['code mode'] },
+    })).toThrow(ExecutorConfigError);
+  });
+
+  it('refuses a non-empty list on every other executor kind and any reserved toolset name', () => {
+    for (const kind of EXECUTOR_KINDS.filter((candidate) => candidate !== 'cli-hermes')) {
+      const config = parseExecutorConfig({ kind, liveTools: { mcpServers: ['code_mode'] } });
+      expect(() => assertExecutorMcpServerCapability(config, ['lineages', 0])).toThrow(/only cli-hermes names MCP servers/);
+    }
+    for (const reserved of ['delegation', 'Memory', 'clarify']) {
+      const config = parseExecutorConfig({ kind: 'cli-hermes', liveTools: { mcpServers: [reserved] } });
+      expect(() => assertExecutorMcpServerCapability(config)).toThrow(/reserved toolset/);
+    }
+  });
+});
+
 describe('executor web-search policy', () => {
   it('normalizes omission to inherit and accepts every typed policy value', () => {
-    expect(parseExecutorConfig({ kind: 'native' }).liveTools).toEqual({ webSearch: 'inherit' });
+    expect(parseExecutorConfig({ kind: 'native' }).liveTools).toEqual({ webSearch: 'inherit', mcpServers: [] });
     for (const webSearch of WEB_SEARCH_POLICIES) {
       expect(parseExecutorConfig({
         kind: 'cli-codex',
@@ -349,6 +398,7 @@ describe('executor web-search policy', () => {
       'cli-cursor': { inherit: true, disabled: false, cached: false, live: false },
       'cli-devin': { inherit: true, disabled: false, cached: false, live: false },
       'cli-pi': { inherit: true, disabled: false, cached: false, live: false },
+      'cli-hermes': { inherit: true, disabled: true, cached: false, live: true },
     });
   });
 
@@ -366,9 +416,10 @@ describe('executor web-search policy', () => {
       'cli-cursor': true,
       'cli-devin': false,
       'cli-pi': false,
+      'cli-hermes': false,
     });
-    // devin, pi, and opencode are the three CLI kinds with no preventive OS sandbox.
-    expect(['cli-devin', 'cli-pi', 'cli-opencode'].every(
+    // devin, pi, hermes, and opencode are the four CLI kinds with no preventive OS sandbox.
+    expect(['cli-devin', 'cli-pi', 'cli-hermes', 'cli-opencode'].every(
       (kind) => EXECUTOR_PREVENTIVE_SANDBOX_CAPABILITY[kind as keyof typeof EXECUTOR_PREVENTIVE_SANDBOX_CAPABILITY] === false,
     )).toBe(true);
     // Every kind that accepts sandboxMode as a supported field but has no preventive
@@ -891,6 +942,32 @@ describe('PI_SUPPORTED_MODELS / isPiModelAllowed', () => {
 
   it('rejects the router alias auto', () => {
     expect(isPiModelAllowed('auto')).toBe(false);
+  });
+});
+
+describe('HERMES_SUPPORTED_MODELS / isHermesModelAllowed', () => {
+  it('contains exactly the two LLM Gateway literals the operator confirmed', () => {
+    expect([...HERMES_SUPPORTED_MODELS].sort()).toEqual(['deepseek-v4.1-flash', 'glm-5.3-flash']);
+  });
+
+  it('defaults to deepseek-v4.1-flash, which is itself an allowed model', () => {
+    expect(HERMES_DEFAULT_MODEL).toBe('deepseek-v4.1-flash');
+    expect(isHermesModelAllowed(HERMES_DEFAULT_MODEL)).toBe(true);
+  });
+
+  it('accepts every allowlisted id and rejects out-of-roster ids, aliases and provider-prefixed forms', () => {
+    for (const model of HERMES_SUPPORTED_MODELS) {
+      expect(isHermesModelAllowed(model)).toBe(true);
+    }
+    expect(isHermesModelAllowed('gpt-3.5-turbo')).toBe(false);
+    expect(isHermesModelAllowed('auto')).toBe(false);
+    expect(isHermesModelAllowed('llmgateway/deepseek-v4.1-flash')).toBe(false);
+  });
+
+  it('pins both roster models to the max reasoning tier', () => {
+    for (const model of HERMES_SUPPORTED_MODELS) {
+      expect(pinReasoningEffortForModel(model, 'high')).toBe('max');
+    }
   });
 });
 

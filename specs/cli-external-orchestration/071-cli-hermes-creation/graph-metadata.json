@@ -1,0 +1,184 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/071-cli-hermes-creation",
+  "spec_folder": "cli-external-orchestration/071-cli-hermes-creation",
+  "parent_id": null,
+  "children_ids": [
+    "cli-external-orchestration/071-cli-hermes-creation/001-deep-research",
+    "cli-external-orchestration/071-cli-hermes-creation/002-hermes-contract-pin",
+    "cli-external-orchestration/071-cli-hermes-creation/003-deep-loop-executor-support",
+    "cli-external-orchestration/071-cli-hermes-creation/004-cli-hermes-skill-packet",
+    "cli-external-orchestration/071-cli-hermes-creation/005-hermes-runtime-folder",
+    "cli-external-orchestration/071-cli-hermes-creation/006-hermes-hook-and-plugin-layer",
+    "cli-external-orchestration/071-cli-hermes-creation/007-hermes-model-registry-and-routing",
+    "cli-external-orchestration/071-cli-hermes-creation/008-hermes-playbook-and-catalog",
+    "cli-external-orchestration/071-cli-hermes-creation/009-docs-governance-and-closeout"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli-hermes creation",
+      "hermes agent integration",
+      "hermes cli executor",
+      "nous research hermes",
+      "seventh cli runtime",
+      ".hermes folder",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
+    ],
+    "key_topics": [
+      "cli-hermes",
+      "creation",
+      "hermes",
+      "agent",
+      "integration",
+      "cli",
+      "executor",
+      "nous",
+      "research",
+      "seventh",
+      "runtime",
+      "folder"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "goal.md",
+      "001-deep-research/spec.md",
+      "001-deep-research/research-angles.md",
+      "001-deep-research/resource-map.md",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+      ".opencode/hooks/dispatch/lib/dispatch-audit.mjs",
+      "001-deep-research/research/research.md",
+      "001-deep-research/goal.md",
+      "002-hermes-contract-pin/goal.md",
+      "003-deep-loop-executor-support/goal.md",
+      "004-cli-hermes-skill-packet/goal.md",
+      "005-hermes-runtime-folder/goal.md",
+      "006-hermes-hook-and-plugin-layer/goal.md",
+      "007-hermes-model-registry-and-routing/goal.md",
+      "008-hermes-playbook-and-catalog/goal.md",
+      "009-docs-governance-and-closeout/goal.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "research-angles.md",
+        "kind": "doc",
+        "path": "001-deep-research/research-angles.md",
+        "source": "derived"
+      },
+      {
+        "name": "executor-config.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-audit.mjs",
+        "kind": "file",
+        "path": ".opencode/hooks/dispatch/lib/dispatch-audit.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hermes Agent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Nous Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Which Hermes",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Does Hermes",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "the LLM Gateway",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "sk-create-",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "every",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "This repository dispatches work to six external coding CLIs as `cli-external-orchestration` modes (`cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`)",
+    "created_at": "2026-09-14T16:04:01Z",
+    "last_save_at": "2026-09-14T21:19:15.415Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "goal.md"
+    ],
+    "source_fingerprint": "sha256:1731bc2e67ebea78777fd4b191f3267a7c1c24426363a77d72b2511847cab41b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "f9ac25beb889d79561828e5db84caae0c01e7d0640914ef237063744e62d6c72"
+    },
+    "last_active_at": null
+  }
+}

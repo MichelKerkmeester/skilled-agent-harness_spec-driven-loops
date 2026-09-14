@@ -141,6 +141,7 @@ const KNOWN_EXECUTORS = new Set([
   'cli-cursor',
   'cli-devin',
   'cli-pi',
+  'cli-hermes',
 ]);
 
 function sha256Hex(input) {
@@ -414,7 +415,7 @@ function buildSpawnSpec(executor, promptText, resolved) {
   // Read-only is the default; write-capable is the explicit opt-in.
   const writeCapable = writeCapableOptIn();
   const buildSharedLineageSpec = () => {
-    // Cursor/devin/pi command construction is delegated to the shared fan-out
+    // Cursor/devin/pi/hermes command construction is delegated to the shared fan-out
     // builder so the lane inherits the single source of the hardened
     // sandbox/permission/trust flags. Those CLIs have no lane-specific arg
     // divergence (unlike opencode/claude), so the builder's output is exactly the
@@ -465,6 +466,7 @@ function buildSpawnSpec(executor, promptText, resolved) {
     case 'cli-cursor':
     case 'cli-devin':
     case 'cli-pi':
+    case 'cli-hermes':
       return buildSharedLineageSpec();
     default:
       throw new Error(`Unknown executor: ${executor}`);

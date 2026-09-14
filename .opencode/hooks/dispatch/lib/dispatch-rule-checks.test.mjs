@@ -95,6 +95,38 @@ test('other checks discriminate correctly', () => {
   assert.deepEqual(ids('git status && ls -la'), []); // non-dispatch bash never fires
 });
 
+test('hermes headless shapes need stdin handled: --query-file counts, a bare -q does not', () => {
+  const stdin = CHECKS['stdin-redirect-required'];
+  assert.equal(stdin('hermes chat -Q --oneshot -q "task"'), false);
+  assert.equal(stdin('hermes chat -Q --oneshot -q "task" </dev/null'), true);
+  assert.equal(stdin('hermes chat -Q --oneshot --query-file prompt.md --yolo'), true);
+  assert.equal(stdin('cat prompt.md | hermes chat -Q --oneshot --query-file -'), true);
+  assert.equal(stdin('hermes -z "task"'), false);
+  assert.equal(stdin('hermes skills list'), true); // not a dispatch shape
+});
+
+test('hermes rules discriminate on the flags the packet contract pins', () => {
+  const CH = path.join(CLI_ORCHESTRATION, 'cli-hermes/SKILL.md');
+  const rules = readHardRules(CH).filter((r) => r.check !== 'command-v-hermes-required');
+  const ids = (cmd) => evaluate(cmd, rules).map((v) => v.id).sort();
+  const good = 'hermes chat -Q --oneshot --query-file p.md --provider llmgateway --model deepseek-v4.1-flash --ignore-rules --source tool -t terminal,file,skills,todo,web --yolo';
+  assert.deepEqual(ids(good), []);
+  // A read-only run names no terminal toolset, so it may omit --yolo; `file` alone is reading.
+  assert.deepEqual(ids('hermes chat -Q --oneshot --query-file p.md --ignore-rules -t file,todo'), []);
+  // Preloading a project skill is the one shape that omits --ignore-rules, because the flag
+  // would suppress the preload.
+  assert.deepEqual(ids('hermes chat -Q --oneshot --query-file p.md -s cli-hermes --source tool -t file,todo'), []);
+  assert.deepEqual(ids('hermes chat -Q --oneshot --query-file p.md --skills=cli-hermes -t file,todo'), []);
+  assert.deepEqual(ids(good.replace(' --yolo', '')), ['yolo-required-for-writes']);
+  assert.deepEqual(ids(good.replace(' --ignore-rules', '')), ['ignore-rules-required']);
+  assert.deepEqual(ids(good.replace(' -t terminal,file,skills,todo,web', '')), ['explicit-toolsets-required']);
+  assert.deepEqual(ids(good.replace('todo,web', 'todo,web,delegation')), ['explicit-toolsets-required']);
+  assert.deepEqual(ids(`${good} --worktree`), ['no-worktree-flag']);
+  assert.deepEqual(ids(`${good} --accept-hooks`), ['hooks-user-level']);
+  assert.deepEqual(ids('hermes mcp add code_mode --command node'), ['mcp-config-operator-required']);
+  assert.deepEqual(ids('git status && ls -la'), []); // non-dispatch bash never fires
+});
+
 test('fail-open: a check that throws never produces a violation', () => {
   const throwing = [{ id: 'boom', check: 'boom', message: 'x', severity: 'block' }];
   const saved = CHECKS.boom;

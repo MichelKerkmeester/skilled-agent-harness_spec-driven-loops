@@ -29,6 +29,7 @@ const dispatchModel = require(DISPATCH_MODEL_PATH) as {
     usage_parser_status: 'parsed' | 'absent' | 'error';
   };
   deriveProvider: (slug: unknown) => string | null;
+  KNOWN_EXECUTORS: Set<string>;
 };
 
 type Envelope = {
@@ -273,6 +274,41 @@ describe('dispatchReal: envelope on a stubbed cli-opencode success', () => {
     expect(env.tokens_in).toBe(1234);
     expect(env.tokens_out).toBe(567);
     expect(env.cost_usd).toBe(0.0042);
+  });
+
+  it('routes a cli-hermes dispatch through the shared builder with the prompt on stdin', () => {
+    const binDir = fs.mkdtempSync(path.join(os.tmpdir(), 'env-hermes-bin-'));
+    fs.writeFileSync(path.join(binDir, 'hermes'), '#!/bin/sh\nexit 0\n', { mode: 0o755 });
+    const savedPath = process.env.PATH;
+    process.env.PATH = `${binDir}${path.delimiter}${savedPath ?? ''}`;
+    let captured: { bin: string; args: string[]; input: unknown } | null = null;
+    const fakeSpawn = (bin: string, args: string[], opts: { input?: unknown }) => {
+      captured = { bin, args, input: opts.input };
+      return { status: 0, stdout: 'OK', stderr: '' };
+    };
+    try {
+      expect(dispatchModel.KNOWN_EXECUTORS.has('cli-hermes')).toBe(true);
+      const env = dispatchModel.dispatchReal({
+        executor: 'cli-hermes',
+        prompt_file: promptFile,
+        cwd: dir,
+        model: 'glm-5.3-flash',
+        _spawn: fakeSpawn,
+      });
+      expect(env.ok).toBe(true);
+      expect(env.executor).toBe('cli-hermes');
+      expect(captured).not.toBeNull();
+      const spawn = captured as unknown as { bin: string; args: string[]; input: unknown };
+      expect(spawn.bin).toBe('hermes');
+      // Read-only judgment: the narrowed toolset, no --yolo, and the prompt travels on stdin.
+      expect(spawn.args).toEqual(expect.arrayContaining(['chat', '-Q', '--oneshot', '--query-file', '-', '--model', 'glm-5.3-flash', '-t', 'file,todo,web']));
+      expect(spawn.args).not.toContain('--yolo');
+      expect(spawn.args).not.toContain('real prompt');
+      expect(spawn.input).toBe('real prompt');
+    } finally {
+      process.env.PATH = savedPath;
+      fs.rmSync(binDir, { recursive: true, force: true });
+    }
   });
 
   it('adds the --format json flag to the cli-opencode spawn args', () => {

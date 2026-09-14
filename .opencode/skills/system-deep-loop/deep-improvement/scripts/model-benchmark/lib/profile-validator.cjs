@@ -38,6 +38,7 @@ const KNOWN_EXECUTORS = new Set([
   'cli-cursor',
   'cli-devin',
   'cli-pi',
+  'cli-hermes',
 ]);
 
 const KNOWN_SCORERS = new Set(['pattern', '5dim']);

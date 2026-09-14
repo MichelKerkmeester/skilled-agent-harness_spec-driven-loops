@@ -476,6 +476,7 @@ const SPECKIT_STATE_ENV_BY_KIND = {
   'cli-cursor': 'SPECKIT_CURSOR_STATE_DIR',
   'cli-devin': 'SPECKIT_DEVIN_STATE_DIR',
   'cli-pi': 'SPECKIT_PI_STATE_DIR',
+  'cli-hermes': 'SPECKIT_HERMES_STATE_DIR',
 };
 
 const activeLineageProcesses = new Set();
@@ -2561,6 +2562,128 @@ function buildPiLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermiss
   });
 }
 
+// Mirrors HERMES_SUPPORTED_MODELS in executor-config.ts. Hermes is a provider
+// pass-through with a wide catalog, so this synchronous duplicate keeps command
+// construction fail-closed without importing the TypeScript module. Both ids are the
+// bare literals the operator's LLM Gateway (DevPass) provider expects.
+const HERMES_ALLOWED_MODELS = new Set([
+  'deepseek-v4.1-flash',
+  'glm-5.3-flash',
+]);
+const HERMES_DEFAULT_MODEL = 'deepseek-v4.1-flash';
+// The name of the operator's custom provider block in ~/.hermes/config.yaml. The packet
+// contract pins it, because Hermes resolves `--provider` by that user-defined name and
+// nothing in the repo can carry the block itself.
+const HERMES_PROVIDER = 'llmgateway';
+// Hermes's `--reasoning` level set, from `hermes chat --help` on v0.21.1. It is the same
+// set as the config's REASONING_EFFORTS, so the map is identity; keeping it as a set (not
+// trusting equality by name) means a future rename on either side fails closed here.
+const HERMES_REASONING_LEVELS = new Set(['none', 'minimal', 'low', 'medium', 'high', 'xhigh', 'max', 'ultra']);
+// Toolsets a leaf lineage may use. `delegation` is deliberately absent so a leaf cannot
+// spawn Hermes sub-agents outside the runner's delegation boundary, and `memory` is absent
+// so no prior session bleeds into or out of the iteration. `web` joins per the lineage's
+// web-search policy: Hermes's stock roster enables it, so `inherit` keeps it. Hermes's
+// `search` toolset is web search only, so it never stands in for file reading; `read_file`
+// and `search_files` live in `file` together with the write tools, and Hermes has no
+// read-only file toolset. A read-only leaf therefore keeps `file` and drops `terminal`,
+// and the repo plugin refuses `write_file` and `patch` when SPECKIT_HERMES_READ_ONLY is set.
+const HERMES_LEAF_TOOLSETS = ['terminal', 'file', 'skills', 'todo'];
+const HERMES_READ_ONLY_TOOLSETS = ['file', 'todo'];
+const HERMES_READ_ONLY_ENV = 'SPECKIT_HERMES_READ_ONLY';
+// The plugin renders the bound packet's goal slice into the session prompt from this path.
+const HERMES_SPEC_FOLDER_ENV = 'HERMES_SPEC_FOLDER';
+// Names that may never enter a leaf's toolset list through the MCP door: see the toolset
+// comment above for `delegation` and `memory`; `clarify` waits on a user who is not there.
+const HERMES_MCP_RESERVED_NAMES = new Set(['delegation', 'memory', 'clarify']);
+const HERMES_MCP_SERVER_NAME = /^[A-Za-z0-9][A-Za-z0-9_-]{0,63}$/;
+// Bounds a runaway tool loop below the wall-clock budget; Hermes's own default is 500.
+const HERMES_MAX_TURNS = 200;
+// Hermes ends the turn itself when the run budget expires, but the expiry has no distinct
+// exit code, so the budget sits under the runner's kill by this margin: the in-agent
+// wrap-up wins the race and the runner's timeout stays the exception path.
+const HERMES_RUN_BUDGET_MARGIN_SECONDS = 60;
+const HERMES_DEFAULT_TIMEOUT_SECONDS = 900;
+
+function hermesToolsetsFor(resolvedSandbox, webSearch, mcpServers = []) {
+  const roster = resolvedSandbox === 'read-only' ? HERMES_READ_ONLY_TOOLSETS : HERMES_LEAF_TOOLSETS;
+  const base = webSearch === 'disabled' ? roster : [...roster, 'web'];
+  // A configured MCP server is invisible to a Hermes run unless its name is in the -t list
+  // (observed live: `-t search,todo` hid the code-mode server, naming it reached its tools),
+  // so the lineage's MCP servers are appended here rather than assumed from the operator's
+  // config. Validated again at this seam because the CJS runner is also called directly.
+  const extras = [];
+  for (const name of mcpServers) {
+    if (typeof name !== 'string' || !HERMES_MCP_SERVER_NAME.test(name)) {
+      throw inputError(`cli-hermes liveTools.mcpServers entry '${String(name)}' is not a valid Hermes toolset name`);
+    }
+    if (HERMES_MCP_RESERVED_NAMES.has(name.toLowerCase())) {
+      throw inputError(`cli-hermes liveTools.mcpServers may not name the reserved toolset '${name}'`);
+    }
+    if (!base.includes(name) && !extras.includes(name)) extras.push(name);
+  }
+  return [...base, ...extras];
+}
+
+function buildHermesLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermission, options) {
+  if (!isHermesBinaryAvailable(options.env || process.env)) {
+    throw inputError('cli-hermes executor unavailable: command -v hermes failed');
+  }
+  const model = lineage.model || HERMES_DEFAULT_MODEL;
+  if (!HERMES_ALLOWED_MODELS.has(model)) {
+    throw inputError(
+      `cli-hermes model '${model}' is not in the enforced allowlist: ${[...HERMES_ALLOWED_MODELS].join(', ')}`,
+    );
+  }
+  const webSearch = effectiveWebSearchPolicy(lineage);
+  const timeoutSeconds = Number(lineage.timeoutSeconds) > 0 ? Number(lineage.timeoutSeconds) : HERMES_DEFAULT_TIMEOUT_SECONDS;
+  const runBudget = Math.max(HERMES_RUN_BUDGET_MARGIN_SECONDS, timeoutSeconds - HERMES_RUN_BUDGET_MARGIN_SECONDS);
+  // `chat -Q --oneshot` is the auditable headless form: the response on stdout, the
+  // session id on stderr, a hard-exit code. The top-level `-z` form is never used here
+  // because it drops the session id and auto-approves everything. The prompt travels on
+  // stdin through `--query-file -`, which Hermes reads verbatim (nothing is shell-
+  // interpreted), so a long iteration brief never hits the argv limit. `--ignore-rules`
+  // keeps SOUL.md, memories and the CWD instruction files out of the leaf's prompt;
+  // `--source tool` keeps the run out of the operator's session lists.
+  const args = [
+    'chat', '-Q', '--oneshot', '--query-file', '-',
+    '--provider', HERMES_PROVIDER, '--model', model,
+    '--ignore-rules', '--source', 'tool',
+    '--max-turns', String(HERMES_MAX_TURNS), '--run-budget', String(runBudget),
+    '-t', hermesToolsetsFor(resolvedSandbox, webSearch, lineage.liveTools?.mcpServers || []).join(','),
+  ];
+  // A write lineage carries --yolo: without it a headless run blocks any tool call Hermes
+  // flags as dangerous (nobody is present to approve), which would fail the leaf mid-task.
+  // Ordinary writes run either way, so a read-only leaf is read-only through the narrowed
+  // toolset above and never carries the flag.
+  if (resolvedSandbox !== 'read-only') {
+    args.push('--yolo');
+  }
+  const hermesEffort = pinReasoningEffortForModel(model, lineage.reasoningEffort);
+  if (hermesEffort) {
+    if (!HERMES_REASONING_LEVELS.has(hermesEffort)) {
+      throw inputError(
+        `cli-hermes reasoningEffort '${hermesEffort}' has no hermes --reasoning level: ${[...HERMES_REASONING_LEVELS].join(', ')}`,
+      );
+    }
+    args.push('--reasoning', hermesEffort);
+  }
+  return finalizeLineageCommand({
+    kind: lineage.kind,
+    command: 'hermes',
+    args,
+    input: prompt,
+    prompt,
+    promptArgIndexes: [],
+    executableVersion: resolveExecutableVersion('hermes', options),
+    model,
+    reasoningEffort: hermesEffort || null,
+    serviceTier: null,
+    resolvedSandbox,
+    resolvedPermission,
+    webSearch,
+  });
+}
+
 const LINEAGE_COMMAND_ADAPTERS = Object.freeze({
   native: buildNativeLineageCommand,
   'cli-codex': buildCodexLineageCommand,
@@ -2569,6 +2692,7 @@ const LINEAGE_COMMAND_ADAPTERS = Object.freeze({
   'cli-cursor': buildCursorLineageCommand,
   'cli-devin': buildDevinLineageCommand,
   'cli-pi': buildPiLineageCommand,
+  'cli-hermes': buildHermesLineageCommand,
 });
 
 /**
@@ -2617,6 +2741,18 @@ function isDevinBinaryAvailable(env = process.env) {
 
 function isPiBinaryAvailable(env = process.env) {
   const result = spawnSync('/bin/sh', ['-c', 'command -v pi >/dev/null 2>&1'], {
+    env,
+    stdio: 'ignore',
+  });
+  return result.status === 0;
+}
+
+// PATH preflight only. Hermes's provider credentials live in ~/.hermes/.env and
+// auth.json, so an authenticated shell and an unauthenticated one look identical here;
+// a dispatch with no configured provider exits 1 with the reason on stdout, which the
+// exit-code gate below catches.
+function isHermesBinaryAvailable(env = process.env) {
+  const result = spawnSync('/bin/sh', ['-c', 'command -v hermes >/dev/null 2>&1'], {
     env,
     stdio: 'ignore',
   });
@@ -3101,6 +3237,13 @@ async function main() {
         AI_SESSION_CHILD: '1',
         ...(stateEnvKey ? { [stateEnvKey]: stateDir } : {}),
         ...(resolvedClaudeConfigDir ? { CLAUDE_CONFIG_DIR: resolvedClaudeConfigDir } : {}),
+        // A Hermes leaf learns its packet through the repo plugin, which reads this path, and
+        // a read-only Hermes leaf keeps the `file` toolset (Hermes has no read-only file
+        // toolset), so the plugin needs the marker to refuse the write tools.
+        ...(lineage.kind === 'cli-hermes' ? {
+          [HERMES_SPEC_FOLDER_ENV]: specFolder,
+          ...(resolveSandboxMode(lineage.sandboxMode) === 'read-only' ? { [HERMES_READ_ONLY_ENV]: '1' } : {}),
+        } : {}),
       };
 
       // Recursion guard (fail closed): the executor stack can already name the hosting
@@ -3594,6 +3737,8 @@ if (require.main === module && isTsxLoaded) {
 }
 
 module.exports = {
+  HERMES_READ_ONLY_ENV,
+  HERMES_SPEC_FOLDER_ENV,
   runLineageProcess,
   forcedDepthIterationViolation,
   retainIterationRecords,
@@ -3604,12 +3749,15 @@ module.exports = {
   CURSOR_DEFAULT_MODEL,
   PI_ALLOWED_MODELS,
   PI_DEFAULT_MODEL,
+  HERMES_ALLOWED_MODELS,
+  HERMES_DEFAULT_MODEL,
   buildLineageCommand,
   buildInvocationFingerprintPayload,
   isCodexBinaryAvailable,
   isCursorBinaryAvailable,
   isDevinBinaryAvailable,
   isPiBinaryAvailable,
+  isHermesBinaryAvailable,
   buildLoopPrompt,
   findMaxIterationsPolicyViolation,
   isMaxIterationsStopReason,

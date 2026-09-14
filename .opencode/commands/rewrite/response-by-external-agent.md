@@ -9,7 +9,7 @@ allowed-tools: Bash, Read, Grep, Glob
 **BEFORE READING ANYTHING ELSE IN THIS FILE, CHECK `$ARGUMENTS`:**
 
 ```
-IF $ARGUMENTS contains an explicit engine choice (cli-claude-code, cli-codex, cli-cursor, cli-devin, cli-opencode, cli-pi, native, local):
+IF $ARGUMENTS contains an explicit engine choice (cli-claude-code, cli-codex, cli-cursor, cli-devin, cli-opencode, cli-pi, cli-hermes, native, local):
     → Extract the engine and any optional target text
     → Continue reading this file
 
@@ -19,7 +19,7 @@ IF $ARGUMENTS is empty, undefined, or does not specify an engine:
         question: "Which rewrite engine would you like to use for the plain-English projection?"
         options:
           - label: "External AI (cli-* skill)"
-            description: "Route to one of the 6 external CLI skills: cli-claude-code, cli-codex, cli-cursor, cli-devin, cli-opencode, cli-pi"
+            description: "Route to one of the 7 external CLI skills: cli-claude-code, cli-codex, cli-cursor, cli-devin, cli-opencode, cli-pi, cli-hermes"
           - label: "Native (In-Context)"
             description: "The active AI performs the plain-English rewrite in-context without running external or local models"
           - label: "Local LLM"
@@ -61,7 +61,7 @@ The pass is a copy edit. It rewords without reordering, cutting or adding, and i
 
 **Inputs:**
 - `$ARGUMENTS` — `[<engine>] [target-text]`
-  - `<engine>`: Engine identifier (`cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-opencode`, `cli-pi`, `native`, or `local`).
+  - `<engine>`: Engine identifier (`cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-opencode`, `cli-pi`, `cli-hermes`, `native`, or `local`).
   - `[target-text]`: Optional explicit text to project. Defaults to the immediately preceding assistant turn in the active session.
 
 **Outputs:** Formatted plain-English projection followed by structured status line.
@@ -144,8 +144,8 @@ Execute the following steps in order:
   - **Exact span fidelity**: Re-insert every protected span identified in Step 2 byte-for-byte.
 - Proceed to Step 4 to display the result.
 
-#### Branch B: External AI CLI Skill (`cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-opencode`, `cli-pi`)
-- Validate the chosen CLI skill against the six supported external skills, then map `cli-<skill>` to its engine id: `cli-claude-code` → `claude-code`; `cli-codex`, `cli-cursor`, `cli-devin`, `cli-opencode`, `cli-pi` → `codex`, `cursor`, `devin`, `opencode`, `pi`.
+#### Branch B: External AI CLI Skill (`cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-opencode`, `cli-pi`, `cli-hermes`)
+- Validate the chosen CLI skill against the seven supported external skills, then map `cli-<skill>` to its engine id: `cli-claude-code` → `claude-code`; `cli-codex`, `cli-cursor`, `cli-devin`, `cli-opencode`, `cli-pi`, `cli-hermes` → `codex`, `cursor`, `devin`, `opencode`, `pi`, `hermes`.
 - **Model resolution**: The entrypoint supplies a documented default model for `claude-code`, `codex`, `cursor`, `devin`, and `opencode` when the model argument is omitted, so an engine-only invocation runs. `pi` has no default and needs an explicit `provider/model` id. To pin a considered model, read `.opencode/skills/cli-external-orchestration/<cli-skill>/SKILL.md` and pass it explicitly.
 - Route the rewrite through the package's external-cli provider entrypoint, passing the target text on stdin and scoping projection to this single process. Pass an explicit model, or omit it to use the engine's documented default (required for `pi`):
   ```bash
@@ -247,6 +247,6 @@ STATUS=OK
 - **Default-OFF Invariant:** Global default-off state is preserved across all environments. `enablement.local.json` is never written to enable projection.
 - **Guaranteed Cleanup:** `COMMUNICATION_PROJECTION_ENABLED` is scoped strictly to the child subprocess execution and ceases to exist immediately upon exit, even during errors or cancellations.
 - **Pipeline Routing (Branch B):** The external-cli path runs through the package's `external-cli-project` entrypoint, so every cli-* rewrite passes the same privacy routing, fidelity validation, and exact-original fallback as the local provider path. A denied route, dispatch failure, or rejected rewrite returns the byte-exact original.
-- **Supported External CLIs:** The six supported external CLI skills are `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-opencode`, and `cli-pi`.
+- **Supported External CLIs:** The seven supported external CLI skills are `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-opencode`, `cli-pi`, and `cli-hermes`.
 - **The Standard Reaches Branch A Only:** Branches B and C hand the target to another model under the package's copy-editing instruction. `resolveCopyEditingInstruction()` in `src/config/copy-editing-instruction.ts` builds it. The function reads the wording standard's reply base from the sk-doc skill the first time a prompt profile is built and caches the result, so the standard has one home and the package carries no copy. The instruction is changed under the package gate rather than from a command file. An external or local rewrite is therefore held to that instruction, to fidelity validation and to the exact-original fallback, and Branch A alone loads the Human Voice Rules.
 - **Preload Requirement:** The executing agent must read `.opencode/skills/cli-external-orchestration/<cli-skill>/SKILL.md` prior to external dispatch.
