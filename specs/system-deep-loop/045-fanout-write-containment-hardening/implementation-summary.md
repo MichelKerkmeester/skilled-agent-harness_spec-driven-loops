@@ -85,7 +85,7 @@ Delivered in the three phases the plan sequenced, then extended: the quarantine 
 | Preserve and quarantine by default, restore opt-in | The guard cannot attribute a write on a shared checkout, and an unattributable finding must not be met with an irreversible remedy |
 | Restore targets the pre-dispatch bytes, not HEAD | HEAD is where the last commit left the file, not where the operator left it; rolling back to HEAD discards work the lane never touched |
 | Detached ephemeral worktrees outside the numbered namespace | The numbered allocator issues never-reused values for day-scale human workspaces; a fan-out creates hour-scale sandboxes at a rate that would make the namespace unreadable |
-| Worktree isolation on by default, opt-out per run | Isolation is the structural fix and preserve only bounds the damage; the per-attempt degraded count in the summary is what keeps a default honest under a stub-verified mechanism |
+| Worktree isolation off by default, opt-in per run | Isolation is the structural fix and preserve only bounds the damage; the per-attempt degraded count in the summary is what keeps a default honest under a stub-verified mechanism |
 <!-- /ANCHOR:decisions -->
 
 ---
