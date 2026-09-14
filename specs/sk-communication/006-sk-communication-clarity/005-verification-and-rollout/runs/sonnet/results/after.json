@@ -1,0 +1,236 @@
+{
+  "condition": "after",
+  "generatedAt": "2026-09-14T17:48:45.680Z",
+  "repliesDir": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/runs/sonnet/after-replies",
+  "casesFile": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-communication/benchmark/reply-harness/cases.json",
+  "weights": {
+    "answer-position": 0.2,
+    "next-action-honesty": 0.15,
+    "receipts": 0.2,
+    "tone": 0.1,
+    "tangent-suppression": 0.1,
+    "completeness-under-cap": 0.15,
+    "mechanical-tells": 0.1
+  },
+  "rows": [
+    {
+      "caseId": "C1",
+      "control": false,
+      "provider": "claude-sonnet-5",
+      "changeKind": "n/a",
+      "predicate": {
+        "mechanic": "firstSentenceHasPathOrSymbol",
+        "pass": true,
+        "detail": {
+          "firstSentence": "This is the freshest one, from the last commit on your branch (`65ea476de3`, \"wait out a neighbour's index.lock in containment and report an exhausted retry\")."
+        }
+      },
+      "scannerCounts": {
+        "review": 1
+      },
+      "dimensionScores": {
+        "answer-position": 1,
+        "next-action-honesty": 1,
+        "receipts": 1,
+        "tone": 1,
+        "tangent-suppression": 1,
+        "completeness-under-cap": 1,
+        "mechanical-tells": 0.75
+      },
+      "weightedScore": 0.975,
+      "blockingFired": false,
+      "replyFile": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/runs/sonnet/after-replies/C1.md"
+    },
+    {
+      "caseId": "C2",
+      "control": false,
+      "provider": "claude-sonnet-5",
+      "changeKind": "n/a",
+      "predicate": {
+        "mechanic": "closingNextActionLine",
+        "pass": true,
+        "detail": {
+          "closingLine": "Nothing here is yours to act on unless you want the multiline case handled, that's a small, contained fix (make `parseDescription` detect a `>`/`|` line and fall back to `null` or throw, rather than returning a fragment) and I can make it if you want it.",
+          "closingNextActionLine": true,
+          "anythingLeftOpenDeclared": false
+        }
+      },
+      "scannerCounts": {
+        "review": 1,
+        "soft1": 2
+      },
+      "dimensionScores": {
+        "answer-position": 1,
+        "next-action-honesty": 1,
+        "receipts": 1,
+        "tone": 1,
+        "tangent-suppression": 1,
+        "completeness-under-cap": 1,
+        "mechanical-tells": 0.55
+      },
+      "weightedScore": 0.955,
+      "blockingFired": false,
+      "replyFile": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/runs/sonnet/after-replies/C2.md"
+    },
+    {
+      "caseId": "C3",
+      "control": false,
+      "provider": "claude-sonnet-5",
+      "changeKind": "n/a",
+      "predicate": {
+        "mechanic": "commandAndStatusBeforeInterpretation",
+        "pass": false,
+        "detail": {
+          "commandIdx": -1,
+          "statusIdx": 221,
+          "interpretationIdx": -1
+        }
+      },
+      "scannerCounts": {
+        "review": 1,
+        "hard": 1
+      },
+      "dimensionScores": {
+        "answer-position": 1,
+        "next-action-honesty": 1,
+        "receipts": 0,
+        "tone": 0,
+        "tangent-suppression": 1,
+        "completeness-under-cap": 1,
+        "mechanical-tells": 0.25
+      },
+      "weightedScore": 0.625,
+      "blockingFired": true,
+      "replyFile": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/runs/sonnet/after-replies/C3.md"
+    },
+    {
+      "caseId": "C4",
+      "control": false,
+      "provider": "claude-sonnet-5",
+      "changeKind": "n/a",
+      "predicate": {
+        "mechanic": "noSoftenersAndConcreteNextStep",
+        "pass": true,
+        "detail": {
+          "softeners": 0,
+          "concreteNextStep": true
+        }
+      },
+      "scannerCounts": {
+        "hard": 1
+      },
+      "dimensionScores": {
+        "answer-position": 1,
+        "next-action-honesty": 1,
+        "receipts": 0,
+        "tone": 1,
+        "tangent-suppression": 1,
+        "completeness-under-cap": 1,
+        "mechanical-tells": 0.5
+      },
+      "weightedScore": 0.75,
+      "blockingFired": false,
+      "replyFile": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/runs/sonnet/after-replies/C4.md"
+    },
+    {
+      "caseId": "C5",
+      "control": false,
+      "provider": "claude-sonnet-5",
+      "changeKind": "n/a",
+      "predicate": {
+        "mechanic": "noTangentSentencesAndLabeledDeferral",
+        "pass": true,
+        "detail": {
+          "tangentSentences": [],
+          "unlabeledDeferredLines": []
+        }
+      },
+      "scannerCounts": {
+        "soft1": 1,
+        "hard": 4,
+        "review": 1
+      },
+      "dimensionScores": {
+        "answer-position": 1,
+        "next-action-honesty": 1,
+        "receipts": 0,
+        "tone": 1,
+        "tangent-suppression": 1,
+        "completeness-under-cap": 1,
+        "mechanical-tells": 0
+      },
+      "weightedScore": 0.7,
+      "blockingFired": false,
+      "replyFile": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/runs/sonnet/after-replies/C5.md"
+    },
+    {
+      "caseId": "C6",
+      "control": false,
+      "provider": "claude-sonnet-5",
+      "changeKind": "n/a",
+      "predicate": {
+        "mechanic": "noGroupOverFiveAndAllItemsRetained",
+        "pass": false,
+        "detail": {
+          "groupSizes": [
+            12
+          ],
+          "overFive": [
+            12
+          ],
+          "expectedItems": [],
+          "missingItems": []
+        }
+      },
+      "scannerCounts": {
+        "hard": 13,
+        "review": 2,
+        "soft1": 1
+      },
+      "dimensionScores": {
+        "answer-position": 0,
+        "next-action-honesty": 1,
+        "receipts": 0,
+        "tone": 1,
+        "tangent-suppression": 1,
+        "completeness-under-cap": 0,
+        "mechanical-tells": 0
+      },
+      "weightedScore": 0.35,
+      "blockingFired": true,
+      "replyFile": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/runs/sonnet/after-replies/C6.md"
+    },
+    {
+      "caseId": "NC1",
+      "control": true,
+      "provider": "claude-sonnet-5",
+      "changeKind": "n/a",
+      "predicate": {
+        "mechanic": "restatementPresent",
+        "pass": true,
+        "detail": {
+          "words": 51,
+          "asksInstead": false,
+          "cue": true,
+          "opening": "There's no earlier reply from me in this conversation, this is your first message this session, so there's nothing yet for me to restate. If you meant something"
+        }
+      },
+      "scannerCounts": {
+        "review": 1
+      },
+      "dimensionScores": {
+        "answer-position": 0,
+        "next-action-honesty": 1,
+        "receipts": 0,
+        "tone": 1,
+        "tangent-suppression": 1,
+        "completeness-under-cap": 1,
+        "mechanical-tells": 0.75
+      },
+      "weightedScore": 0.575,
+      "blockingFired": false,
+      "replyFile": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/runs/sonnet/after-replies/NC1.md"
+    }
+  ],
+  "noOps": []
+}

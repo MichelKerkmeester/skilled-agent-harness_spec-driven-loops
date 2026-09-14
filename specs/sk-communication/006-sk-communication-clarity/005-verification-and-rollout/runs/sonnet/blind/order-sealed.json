@@ -1,0 +1,92 @@
+{
+  "sealedRecord": true,
+  "sideA": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/runs/sonnet/before-replies",
+  "sideB": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/runs/sonnet/after-replies",
+  "writtenAt": "2026-09-14T17:48:45.706Z",
+  "cases": {
+    "C1": {
+      "A": {
+        "condition": "a",
+        "source": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/runs/sonnet/before-replies/C1.md",
+        "provider": "claude-sonnet-5"
+      },
+      "B": {
+        "condition": "b",
+        "source": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/runs/sonnet/after-replies/C1.md",
+        "provider": "claude-sonnet-5"
+      }
+    },
+    "C2": {
+      "A": {
+        "condition": "a",
+        "source": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/runs/sonnet/before-replies/C2.md",
+        "provider": "claude-sonnet-5"
+      },
+      "B": {
+        "condition": "b",
+        "source": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/runs/sonnet/after-replies/C2.md",
+        "provider": "claude-sonnet-5"
+      }
+    },
+    "C3": {
+      "B": {
+        "condition": "a",
+        "source": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/runs/sonnet/before-replies/C3.md",
+        "provider": "claude-sonnet-5"
+      },
+      "A": {
+        "condition": "b",
+        "source": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/runs/sonnet/after-replies/C3.md",
+        "provider": "claude-sonnet-5"
+      }
+    },
+    "C4": {
+      "A": {
+        "condition": "a",
+        "source": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/runs/sonnet/before-replies/C4.md",
+        "provider": "claude-sonnet-5"
+      },
+      "B": {
+        "condition": "b",
+        "source": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/runs/sonnet/after-replies/C4.md",
+        "provider": "claude-sonnet-5"
+      }
+    },
+    "C5": {
+      "B": {
+        "condition": "a",
+        "source": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/runs/sonnet/before-replies/C5.md",
+        "provider": "claude-sonnet-5"
+      },
+      "A": {
+        "condition": "b",
+        "source": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/runs/sonnet/after-replies/C5.md",
+        "provider": "claude-sonnet-5"
+      }
+    },
+    "C6": {
+      "A": {
+        "condition": "a",
+        "source": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/runs/sonnet/before-replies/C6.md",
+        "provider": "claude-sonnet-5"
+      },
+      "B": {
+        "condition": "b",
+        "source": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/runs/sonnet/after-replies/C6.md",
+        "provider": "claude-sonnet-5"
+      }
+    },
+    "NC1": {
+      "B": {
+        "condition": "a",
+        "source": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/runs/sonnet/before-replies/NC1.md",
+        "provider": "claude-sonnet-5"
+      },
+      "A": {
+        "condition": "b",
+        "source": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/runs/sonnet/after-replies/NC1.md",
+        "provider": "claude-sonnet-5"
+      }
+    }
+  }
+}

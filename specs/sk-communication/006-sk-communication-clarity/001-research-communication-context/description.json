@@ -1,18 +1,27 @@
 {
+  "level": "2",
   "specFolder": "sk-communication/006-sk-communication-clarity/001-research-communication-context",
-  "description": "Phase 1: research-communication-context",
+  "description": "Three external communication sources sit in `../context/` and none has been read against this",
   "keywords": [
-    "phase",
-    "research-communication-context"
+    "three",
+    "external",
+    "communication",
+    "sources",
+    "sit",
+    "context",
+    "none",
+    "read",
+    "against"
   ],
-  "lastUpdated": "2026-09-12T12:44:35.430Z",
+  "lastUpdated": "2026-09-14T15:57:32.320Z",
   "specId": "001",
   "folderSlug": "research-communication-context",
   "parentChain": [
     "sk-communication",
     "006-sk-communication-clarity"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "14-09-26_17-13__the-luna-lineage-is-running-started-16-13z-one.md"
+  ]
 }

@@ -12,12 +12,10 @@ _memory:
   continuity:
     packet_pointer: "sk-communication/006-sk-communication-clarity/006-reply-shape-rules"
     last_updated_at: "2026-09-12T15:40:00Z"
-    last_updated_by: "opus-5-session"
+    last_updated_by: "claude-conductor"
     recent_action: "Authored the acceptance criteria for this packet"
-    next_safe_action: "Wait for phase 3's split, then assign the ten candidates by governed unit"
-    blockers:
-      - "Phase 3 has not run"
-      - "Phase 2 has not run"
+    next_safe_action: "None"
+    blockers: []
     key_files:
       - "repo-rules/communication.md"
       - "REPO RULES.md"
@@ -25,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "opus-5-clarity-program"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -45,7 +43,7 @@ _memory:
 
 **Packet:** sk-communication/006-sk-communication-clarity/006-reply-shape-rules
 **Level:** 2
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-09-12
 <!-- /ANCHOR:metadata -->
 
@@ -58,12 +56,12 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given the ten candidates, When the phase closes, Then each appears in exactly one half | Walk the ten allocation rows against both files, both directions | Unmet | - |
-| AC-002 | REQ-002 | Given an added rule, When it is read, Then it names a failure specific enough to argue with | Read every added rule; reject any failure statement that would fit any rule set | Unmet | - |
-| AC-003 | REQ-003 | Given any mark or construction, When the set is scanned, Then exactly one instruction governs it | Per-mark ripgrep across the root doc, the router and the rule directory, against the phase 3 baseline | Unmet | - |
-| AC-004 | REQ-004 | Given a brevity rule, When it is read, Then the counterweight is reachable from it | Follow the cross-reference from each brevity rule | Unmet | - |
-| AC-005 | REQ-005 | Given either half, When its size is measured, Then it is at or under the recorded ceiling | Measure both halves the same way the original ceiling was measured | Unmet | - |
-| AC-006 | REQ-006 | Given the first-line rule, When it is read, Then it states a positive test and not only bans | Read the rule and confirm a reader can tell what the first line must do | Unmet | - |
+| AC-001 | REQ-001 | Given the ten candidates, When the phase closes, Then each appears in exactly one half | Walk the ten allocation rows against both files, both directions, Met by T004 and T019, the by-unit assignment recorded in scratch/size-and-marks.md before the first edit, every added failure wording traced to its allocation row | Met | - |
+| AC-002 | REQ-002 | Given an added rule, When it is read, Then it names a failure specific enough to argue with | Read every added rule; reject any failure statement that would fit any rule set, Met by T019, all nine added failure lines read against their allocation rows, each names a contestable failure in the row's own wording | Met | - |
+| AC-003 | REQ-003 | Given any mark or construction, When the set is scanned, Then exactly one instruction governs it | Per-mark ripgrep across the root doc, the router and the rule directory, against the phase 3 baseline, Met by T018, instruction lines rescanned against 003/scratch/per-mark-baseline.md, no governed mark gained a second instruction | Met | - |
+| AC-004 | REQ-004 | Given a brevity rule, When it is read, Then the counterweight is reachable from it | Follow the cross-reference from each brevity rule, Met by T020, all five references followed, each resolves to prose-mechanics.md §4, CONCISE IS NOT COMPRESSED, :118-127 | Met | - |
+| AC-005 | REQ-005 | Given either half, When its size is measured, Then it is at or under the recorded ceiling | Measure both halves the same way the original ceiling was measured, Met by T021, communication.md 230 of 250, prose-mechanics.md 140 of 250, both under the 250-line ceiling the checker enforces, corpus max 234 | Met | - |
+| AC-006 | REQ-006 | Given the first-line rule, When it is read, Then it states a positive test and not only bans | Read the rule and confirm a reader can tell what the first line must do, Met by T007, the positive test at communication.md:139-140 beside the contract at :138, the four opener habits at :140-142, the failure line at :144-145 | Met | - |
 
 ### Status values
 
@@ -88,7 +86,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
 This phase is blocked on phases 2 and 3. The statement is written when the phase closes, naming which criteria carried it and what was consciously left out.
 <!-- /ANCHOR:closure -->

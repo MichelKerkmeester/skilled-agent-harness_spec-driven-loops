@@ -12,11 +12,10 @@ _memory:
   continuity:
     packet_pointer: "sk-communication/006-sk-communication-clarity/008-decision-and-handoff-rules"
     last_updated_at: "2026-09-12T15:40:00Z"
-    last_updated_by: "opus-5-session"
+    last_updated_by: "claude-conductor"
     recent_action: "Authored the acceptance criteria for this packet"
-    next_safe_action: "Wait for phase 2's conflict resolution, then write the four uncontested clauses"
-    blockers:
-      - "Phase 2 has not run"
+    next_safe_action: "None"
+    blockers: []
     key_files:
       - "repo-rules/presenting-decisions.md"
       - "repo-rules/handoff-and-questions.md"
@@ -25,7 +24,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "opus-5-clarity-program"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -45,7 +44,7 @@ _memory:
 
 **Packet:** sk-communication/006-sk-communication-clarity/008-decision-and-handoff-rules
 **Level:** 2
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-09-12
 <!-- /ANCHOR:metadata -->
 
@@ -58,13 +57,13 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given the five candidates, When the phase closes, Then each lands in exactly one file per the allocation table | Walk the five rows against the three files, both directions | Unmet | - |
-| AC-002 | REQ-002 | Given an added clause, When read, Then it names the failure it prevents | Read every added clause | Unmet | - |
-| AC-003 | REQ-003 | Given the qualifier, When read beside the three tiers, Then an unconfirmed cause still cannot be presented as confirmed | Read the clause and the tier table together, and attempt the three adversarial readings | Unmet | - |
-| AC-004 | REQ-004 | Given reader triage, When read, Then its distinction from the existing restate step is stated in the rule | Read both passages | Unmet | - |
-| AC-005 | REQ-005 | Given the restatement clause, When read, Then a reader can tell whether they complied | Read the clause and check it states a cadence rather than a preference | Unmet | - |
-| AC-006 | REQ-006 | Given the handback rule, When diffed, Then the closing contract is an edit to the existing obligation | Diff review of that file | Unmet | - |
-| AC-007 | - | Given the three files, When scanned together, Then no close-out obligation appears in two of them | Duplication scan across all three | Unmet | - |
+| AC-001 | REQ-001 | Given the five candidates, When the phase closes, Then each lands in exactly one file per the allocation table | Walk the five rows against the three files, both directions, Met by T011 and T016, one hit per key phrase and exactly the three owned rule files in the scoped diff | Met | - |
+| AC-002 | REQ-002 | Given an added clause, When read, Then it names the failure it prevents | Read every added clause, Met by T015, five clauses and five failure lines | Met | - |
+| AC-003 | REQ-003 | Given the qualifier, When read beside the three tiers, Then an unconfirmed cause still cannot be presented as confirmed | Read the clause and the tier table together, and attempt the three adversarial readings, Met by T012, no unmarked case remains and the three recorded readings all fail | Met | - |
+| AC-004 | REQ-004 | Given reader triage, When read, Then its distinction from the existing restate step is stated in the rule | Read both passages, Met by T014, the distinction stated at presenting-decisions.md:96-97 | Met | - |
+| AC-005 | REQ-005 | Given the restatement clause, When read, Then a reader can tell whether they complied | Read the clause and check it states a cadence rather than a preference, Met by T008, three triggers named at handoff-and-questions.md:65-72 | Met | - |
+| AC-006 | REQ-006 | Given the handback rule, When diffed, Then the closing contract is an edit to the existing obligation | Diff review of that file, Met by T013, the contract inserted beside the existing duty at handoff-and-questions.md:60-84 with no second obligation | Met | - |
+| AC-007 | - | Given the three files, When scanned together, Then no close-out obligation appears in two of them | Duplication scan across all three, Met by T011, one hit each across all twelve rule files, recorded in scratch/baseline.md AFTER | Met | - |
 
 ### Status values
 
@@ -89,7 +88,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
 This phase is blocked on phase 2. The statement is written when the phase closes, naming which criteria carried it and what was consciously left out.
 <!-- /ANCHOR:closure -->

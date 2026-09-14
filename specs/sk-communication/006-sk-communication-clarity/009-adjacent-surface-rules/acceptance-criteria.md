@@ -12,12 +12,10 @@ _memory:
   continuity:
     packet_pointer: "sk-communication/006-sk-communication-clarity/009-adjacent-surface-rules"
     last_updated_at: "2026-09-12T15:40:00Z"
-    last_updated_by: "opus-5-session"
+    last_updated_by: "claude-conductor"
     recent_action: "Authored the acceptance criteria for this packet"
-    next_safe_action: "Wait for phase 2, then read the code skill's routing to confirm the target file"
-    blockers:
-      - "Phase 2 has not run"
-      - "The code skill's comment-guidance file is unconfirmed"
+    next_safe_action: "None"
+    blockers: []
     key_files:
       - ".opencode/skills/sk-code/SKILL.md"
       - "REPO RULES.md"
@@ -25,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "opus-5-clarity-program"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -45,7 +43,7 @@ _memory:
 
 **Packet:** sk-communication/006-sk-communication-clarity/009-adjacent-surface-rules
 **Level:** 2
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-09-12
 <!-- /ANCHOR:metadata -->
 
@@ -58,12 +56,12 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given both candidates, When the phase closes, Then each traces to an adopted row in the decision record | Walk both rows against the decision record | Unmet | - |
-| AC-002 | REQ-002 | Given the comment addition, When read beside the hard blocker, Then it does not read as an exception and names which wins | Read both passages together and attempt the exception reading | Unmet | - |
-| AC-003 | REQ-003 | Given each change, When its owning skill's gate runs, Then it passes from the final state | Run both gates and read output and exit status | Unmet | - |
-| AC-004 | REQ-004 | Given either surface, When searched for communication rule or wording-standard text, Then nothing was copied in | Ripgrep both surfaces for that vocabulary | Unmet | - |
-| AC-005 | REQ-005 | Given an existing rule file, When validated against the changed template, Then it passes with no edits | Validate a sample of existing rule files | Unmet | - |
-| AC-006 | REQ-006 | Given the code skill's routing, When read, Then it names the file the comment rule was added to | Read the routing and compare with the edited path | Unmet | - |
+| AC-001 | REQ-001 | Given both candidates, When the phase closes, Then each traces to an adopted row in the decision record | Walk both rows against the decision record, Met by T001 | Met | - |
+| AC-002 | REQ-002 | Given the comment addition, When read beside the hard blocker, Then it does not read as an exception and names which wins | Read both passages together and attempt the exception reading, Met by T006 and T012 | Met | - |
+| AC-003 | REQ-003 | Given each change, When its owning skill's gate runs, Then it passes from the final state | Run both gates and read output and exit status, Met by T009 and T010 | Met | - |
+| AC-004 | REQ-004 | Given either surface, When searched for communication rule or wording-standard text, Then nothing was copied in | Ripgrep both surfaces for that vocabulary, Met by T013 | Met | - |
+| AC-005 | REQ-005 | Given an existing rule file, When validated against the changed template, Then it passes with no edits | Validate a sample of existing rule files, Met by T011, checker 9/9 | Met | - |
+| AC-006 | REQ-006 | Given the code skill's routing, When read, Then it names the file the comment rule was added to | Read the routing and compare with the edited path, Met by T002 | Met | - |
 
 ### Status values
 
@@ -88,7 +86,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
 This phase is blocked on phase 2, and one target path is unconfirmed. The statement is written when the phase closes, naming which criteria carried it and what was consciously left out.
 <!-- /ANCHOR:closure -->

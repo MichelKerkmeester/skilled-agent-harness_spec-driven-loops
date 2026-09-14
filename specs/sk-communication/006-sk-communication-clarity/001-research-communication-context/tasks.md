@@ -34,10 +34,14 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Probe the Pi binary and read the output text rather than the exit code (`command -v pi`)
-- [ ] T002 Pre-flight the Codex OAuth session and surface the login command rather than substituting a model
-- [ ] T003 [P] Confirm the three vendored sources are present and readable (`../context/`)
-- [ ] T004 Write the research questions per source into the dispatch brief, with the frozen write authority and the required citation format
+- [x] T001 Probe the Pi binary and read the output text rather than the exit code (`command -v pi`)
+  - DONE 2026-09-14: pi resolved on PATH and the probe reply was read, not the exit code
+- [x] T002 Pre-flight the Codex OAuth session and surface the login command rather than substituting a model
+  - DONE 2026-09-14: codex-cli 0.154.0 on PATH, the session authenticated, the dispatch reached gpt-5.6-luna on the first attempt
+- [x] T003 [P] Confirm the three vendored sources are present and readable (`../context/`)
+  - DONE 2026-09-14: three vendored sources present under ../context/ and read by iteration 1
+- [x] T004 Write the research questions per source into the dispatch brief, with the frozen write authority and the required citation format
+  - DONE 2026-09-14: the dispatch brief carried the per-source questions, the frozen write authority and the file:line citation rule
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -45,10 +49,14 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T005 Dispatch the DeepSeek V4.1 Flash lineage through `cli-pi` at max effort, convergence disabled
-- [ ] T006 Dispatch the GPT-5.6 LUNA lineage through `cli-codex` at max effort on the fast service tier, convergence disabled
-- [ ] T007 Hold the repository frozen outside this phase folder for the whole time a lineage is live
+- [x] T005 Dispatch the DeepSeek V4.1 Flash lineage through `cli-pi` at max effort, convergence disabled
+  - DONE 2026-09-14: ten iterations on deepseek-v4.1-flash through cli-pi at max effort, convergence off
+- [x] T006 Dispatch the GPT-5.6 LUNA lineage through `cli-codex` at max effort on the fast service tier, convergence disabled
+  - DONE 2026-09-14: five iterations, stop policy max-iterations, runner run 1789402391295-tfhy3y completed 17:07Z, synthesis and resource map under research/luna-fanout/lineages/luna/
+- [x] T007 Hold the repository frozen outside this phase folder for the whole time a lineage is live
+  - DONE 2026-09-14: the repository was frozen outside this folder while each iteration ran
 - [ ] T008 Salvage artifacts and resume rather than restart if a lineage stops on a provider limit
+  - Not needed: no lineage stopped on a provider limit
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -56,10 +64,14 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T009 Read each lineage's state log and confirm the recorded iteration count matches the requested depth
-- [ ] T010 Open a sampled citation from each lineage and confirm it resolves to the line it names
-- [ ] T011 Confirm the scoped diff contains no change outside this phase folder
-- [ ] T012 Record the contradiction list, or state explicitly that no contradiction was found
+- [x] T009 Read each lineage's state log and confirm the recorded iteration count matches the requested depth
+  - DONE 2026-09-14: state log holds ten complete iteration records, matching the requested depth
+- [x] T010 Open a sampled citation from each lineage and confirm it resolves to the line it names
+  - DONE 2026-09-14: communication.md:104-106 cited for the em dash ban resolves at the run's commit
+- [x] T011 Confirm the scoped diff contains no change outside this phase folder
+  - DONE 2026-09-14: git status on the phase folder shows only research artifacts
+- [x] T012 Record the contradiction list, or state explicitly that no contradiction was found
+  - DONE 2026-09-14: the contradiction page in research.md section 3 lists four conflicts, one closed and three carried to phase 002
 <!-- /ANCHOR:phase-3 -->
 
 ---

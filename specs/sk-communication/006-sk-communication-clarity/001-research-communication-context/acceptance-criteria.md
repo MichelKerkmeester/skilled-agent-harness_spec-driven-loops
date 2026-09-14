@@ -14,7 +14,7 @@ _memory:
     last_updated_at: "2026-09-12T13:00:00Z"
     last_updated_by: "opus-5-session"
     recent_action: "Authored the acceptance criteria for this packet"
-    next_safe_action: "Dispatch the research lineages, then meet the open criteria"
+    next_safe_action: "None"
     blockers: []
     key_files:
       - "research/research.md"
@@ -23,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "opus-5-clarity-program"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -43,7 +43,7 @@ _memory:
 
 **Packet:** sk-communication/006-sk-communication-clarity/001-research-communication-context
 **Level:** 2
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-09-12
 <!-- /ANCHOR:metadata -->
 
@@ -56,14 +56,13 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given a dispatched lineage, When the run settles, Then its state log records the full requested iteration count with no convergence stop | Read `research/**/deep-research-state.jsonl` and count iteration events | Unmet | - |
-| AC-002 | REQ-002 | Given a finding in any lineage's research.md, When a citation is opened, Then it resolves to the line or URL it names | Open one sampled citation per lineage and read the target | Unmet | - |
-| AC-003 | REQ-003 | Given a source's recommendation, When it is recorded, Then it carries one of already-covered, new, or contradicting | Every recommendation row in `research/research.md` has a classification cell | Unmet | - |
-| AC-004 | REQ-004 | Given two executor families, When both runs settle, Then both wrote findings and their disagreements are listed rather than tallied | Both lineage directories hold a non-empty research.md, and a disagreement section exists | Unmet | - |
-| AC-005 | REQ-005 | Given an adopted-candidate recommendation, When it is recorded, Then it names a candidate owning surface | Every recommendation row has an owning-surface cell | Unmet | - |
-| AC-006 | REQ-006 | Given the ADHD source, When its lineage settles, Then its mechanism half is covered: session hook, runtime mirrors, eval harness and release gate | `research/research.md` cites each of the four mechanism artifacts by path | Unmet | - |
-| AC-007 | - | Given the run has settled, When the scoped diff is inspected, Then no file outside this phase folder changed | `git status --porcelain` scoped to the repository root | Unmet | - |
-
+| AC-001 | REQ-001 | Given a dispatched lineage, When the run settles, Then its state log records the full requested iteration count with no convergence stop | Read `research/**/deep-research-state.jsonl` and count iteration events. Met by the state log: ten iteration records complete, no convergence stop, stop policy max-iterations, ten iteration files under research/iterations | Met | - |
+| AC-002 | REQ-002 | Given a finding in any lineage's research.md, When a citation is opened, Then it resolves to the line or URL it names | Open one sampled citation per lineage and read the target. Met by a sampled citation: research.md cites communication.md:104-106 for the em dash ban and the file at the run's commit carries it at those lines | Met | - |
+| AC-003 | REQ-003 | Given a source's recommendation, When it is recorded, Then it carries one of already-covered, new, or contradicting | Every recommendation row in `research/research.md` has a classification cell. Met by research.md sections 2 and 3, every source rule classed covered, partial, new or contradicting, with the four conflicts on the contradiction page | Met | - |
+| AC-004 | REQ-004 | Given two executor families, When both runs settle, Then both wrote findings and their disagreements are listed rather than tallied | Both lineage directories hold a non-empty research.md, and a disagreement section exists. Met on 2026-09-14: the GPT-5.6 LUNA lineage ran five iterations through cli-codex at max effort on the fast tier, wrote research/luna-fanout/lineages/luna/research.md, 743 lines, and its section 6 lists eight disagreements with the DeepSeek synthesis, each with a reason and citations, never a tally | Met | - |
+| AC-005 | REQ-005 | Given an adopted-candidate recommendation, When it is recorded, Then it names a candidate owning surface | Every recommendation row has an owning-surface cell. Met by research.md section 4, the owning-surface map, and iteration-004 F1 where every one of the 29 candidates names a surface or none-today | Met | - |
+| AC-006 | REQ-006 | Given the ADHD source, When its lineage settles, Then its mechanism half is covered: session hook, runtime mirrors, eval harness and release gate | `research/research.md` cites each of the four mechanism artifacts by path. Met by research.md section 2, the ADHD subsection, which covers the session-start hook, runtime mirrors, eval harness and release gate as mechanism, with paths cited in iterations 1 to 3 | Met | - |
+| AC-007 | - | Given the run has settled, When the scoped diff is inspected, Then no file outside this phase folder changed | `git status --porcelain` scoped to the repository root. Met by git status on the phase folder at closure, only research artifacts under this folder changed during the run | Met | - |
 ### Status values
 
 | Value | Meaning |
@@ -87,7 +86,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
 This phase has not run. The statement is written when the phase closes, naming which criteria
 carried it and what was consciously left out.

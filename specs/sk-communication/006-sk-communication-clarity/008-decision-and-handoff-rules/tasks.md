@@ -34,10 +34,10 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Confirm phase 2 recorded the error-reporting resolution, including the qualifier's exact form
-- [ ] T002 Capture the baseline: what each of the three files currently says about close-outs and causes
-- [ ] T003 [P] Re-read the five allocation rows
-- [ ] T004 Locate the existing restate-the-request step, so reader triage can be distinguished from it
+- [x] T001 Confirm phase 2 recorded the error-reporting resolution, including the qualifier's exact form (evidence: decision-record.md:251,280-282, the qualifier record accepted, its decision clause fixes the exact form, label it as suspected and name the next check)
+- [x] T002 Capture the baseline: what each of the three files currently says about close-outs and causes (evidence: scratch/baseline.md, the BEFORE section, written before the first edit)
+- [x] T003 [P] Re-read the five allocation rows (evidence: allocation-table.md:27,39,40,44,45, five adopt rows, only the qualifier carries a qualifier record)
+- [x] T004 Locate the existing restate-the-request step, so reader triage can be distinguished from it (evidence: presenting-decisions.md:89-90 as read, the ASK step and its wording, recorded in scratch/baseline.md)
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -45,12 +45,12 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T005 Write reader triage before drafting, stating its distinction from the existing restate step
-- [ ] T006 Write the concrete time-estimate clause
-- [ ] T007 Edit the handback rule's existing obligation to carry the closing contract, rather than appending a second one
-- [ ] T008 Write the state-restatement cadence as a cadence, not a preference
-- [ ] T009 Write the unconfirmed-cause qualifier into the evidence rule
-- [ ] T010 Read the qualifier beside the three tiers and revise until it cannot be read as licence
+- [x] T005 Write reader triage before drafting, stating its distinction from the existing restate step (evidence: presenting-decisions.md:92-100, the rule beside the ASK step, its failure line at :98)
+- [x] T006 Write the concrete time-estimate clause (evidence: presenting-decisions.md:121-125, the estimate rides the intended-path duty, the failure line extended at :131-133)
+- [x] T007 Edit the handback rule's existing obligation to carry the closing contract, rather than appending a second one (evidence: handoff-and-questions.md:77-84, the contract amended into the existing close of section 1, no section added)
+- [x] T008 Write the state-restatement cadence as a cadence, not a preference (evidence: handoff-and-questions.md:65-72, the cadence is triggered, not timed, three triggers named, its failure line at :71)
+- [x] T009 Write the unconfirmed-cause qualifier into the evidence rule (evidence: evidence-and-proof.md:71-80, the reporting clause at the end of section 1 after the receipt paragraph, its wording tracks the qualifier record's decision at decision-record.md:282)
+- [x] T010 Read the qualifier beside the three tiers and revise until it cannot be read as licence (evidence: evidence-and-proof.md:74-76, the clause reads itself against the tiers, a suspected cause is INFERRED and takes nothing from the proof)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -58,12 +58,12 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T011 Run the duplication scan across all three files together
-- [ ] T012 Read the qualifier against the three tiers and confirm an unconfirmed cause still cannot be asserted
-- [ ] T013 Confirm the handback change is an edit and not an append
-- [ ] T014 Confirm reader triage states its distinction from the existing restate step
-- [ ] T015 Read every added clause and confirm it names its prevented failure
-- [ ] T016 Confirm the scoped diff touches only the three files and, if widened, the router
+- [x] T011 Run the duplication scan across all three files together (evidence: scratch/baseline.md, the AFTER section, five key phrases, one hit each across all twelve rule files)
+- [x] T012 Read the qualifier against the three tiers and confirm an unconfirmed cause still cannot be asserted (evidence: evidence-and-proof.md:73-76, no unmarked case, the INFERRED convention at :53 already demanded what would confirm it)
+- [x] T013 Confirm the handback change is an edit and not an append (evidence: handoff-and-questions.md:60-84, the Position it last duty kept, the contract inserted beside it, the original failure line rewritten in place)
+- [x] T014 Confirm reader triage states its distinction from the existing restate step (evidence: presenting-decisions.md:96-97, this is not the ASK step, which restates the request, the triage decides who the reply is for)
+- [x] T015 Read every added clause and confirm it names its prevented failure (evidence: five clauses, five failure lines, presenting-decisions.md:98 and :131, handoff-and-questions.md:71 and :82, evidence-and-proof.md:79)
+- [x] T016 Confirm the scoped diff touches only the three files and, if widened, the router (evidence: the scoped porcelain after the edits shows this dispatch in exactly the three owned rule files plus the granted packet docs, the router's modification predates this run per the before state)
 <!-- /ANCHOR:phase-3 -->
 
 ---
