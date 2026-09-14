@@ -19,6 +19,8 @@ The `/rewrite:response` command instructs the active AI to rewrite its own most 
 - Acts as a display-only projection that leaves canonical transcript history and project files unchanged.
 - Preserves core meaning, technical accuracy, and protected tokens byte-for-byte.
 
+The pass is a copy edit. It rewords without reordering, cutting or adding, and it returns the exact original on any fidelity failure.
+
 ---
 
 ## 2. CONTRACT
@@ -71,7 +73,7 @@ Execute the following steps in order:
 - Load the standard. This file does not restate it:
   - `.opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md`, the standard itself: voice directives, punctuation standards, structural patterns and the word lists. This is what "plain English" means in this repository.
   - `.opencode/skills/sk-doc/sk-create-with-human-voice/references/scope-and-exemptions.md`, the scope gate. A reply to a user is in scope. A quotation, an error string or a cited source carried inside that reply is not.
-  - `.opencode/skills/sk-communication/SKILL.md` section 3, "The Wording Standard", for the two parts of the standard a projection excludes and the reason.
+  - `.opencode/skills/sk-communication/SKILL.md` section 3, "The Wording Standard", for the part of the standard a projection excludes and the reason.
 - Rewrite the target under that standard. Three projection constraints override it wherever they collide:
   - **Assistant-only scope**: Rewrite only the text of the most recent assistant message. Never a user prompt, never an earlier turn.
   - **Preserve exact meaning**: Every factual statement, logical relationship, instruction and conclusion survives. The original author's claims are the accuracy baseline, so a hedge they meant stays even where the standard prefers certainty.

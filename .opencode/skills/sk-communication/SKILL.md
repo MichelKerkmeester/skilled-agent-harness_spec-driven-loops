@@ -2,7 +2,7 @@
 name: sk-communication
 description: Projects terse CLI output to plain English byte-safely, across six runtimes, leaving canonical bytes unchanged.
 allowed-tools: [Read, Write, Bash, Grep, Glob]
-version: 1.2.0.0
+version: 1.3.0.0
 ---
 
 <!-- Keywords: communication projection, claudish to english, rewrite CLI output, plain-english projection, presentation projection, privacy-first rewrite, full-projection, safe-native, provider adapters, exact-original fallback, deepseek ollama llama.cpp, blind non-inferiority evaluation, compatibility doctor, release gate -->
@@ -171,14 +171,17 @@ Consume it through the package's subpath exports (`@portable-cli/communication-p
 
 ### The Wording Standard
 
-"Plain English" is not defined in this skill. It is the Human Voice Rules at [`../sk-doc/sk-create-with-human-voice/references/hvr-rules.md`](../sk-doc/sk-create-with-human-voice/references/hvr-rules.md), and the workflow that applies them is the `sk-create-with-human-voice` mode under `sk-doc`. Every rewrite path here routes to that standard instead of carrying a private rubric, so a change to the standard reaches this skill with no edit to a command.
+"Plain English" is not defined in this skill. It is the Human Voice Rules at [`../sk-doc/sk-create-with-human-voice/references/hvr-rules.md`](../sk-doc/sk-create-with-human-voice/references/hvr-rules.md), and the workflow that applies them is the `sk-create-with-human-voice` mode under `sk-doc`. Every rewrite path here routes to that standard instead of carrying a private rubric, so a change to the standard reaches this skill with no edit to a command. The provider receives the standard's reply base as its instruction. The instruction is read from that file the first time a prompt profile is built and then cached. The standard has one home, and the engine carries no copy.
 
-Two parts of the standard are excluded, and a projection that honors them has damaged the message it was carrying:
+One part of the standard is excluded, and a projection that honors it has damaged the message it was carrying:
 
 | Excluded | Why |
 |---|---|
 | `VOICE PERSONALITY` | It asks for opinions, mixed feeling and controlled imperfection in writing you own. A projection carries someone else's message, so a reaction the original never held is a fidelity failure rather than a voice improvement. |
-| The scoring bands of `PRE-PUBLISH CHECKLIST` | Nothing in either lane is a document being published. There is no file, no score and no publish threshold. |
+
+The scoring bands of the pre-publish checklist need no exclusion of their own. They live in the standard's publish supplement, `hvr-publish-supplement.md`, which a reply never loads.
+
+The pass a provider performs is a smoothing pass, never a cut-and-reorder. An unchanged candidate is recorded as a no-op rather than a pass.
 
 Everything else binds, under the invariants in section 4. Where dropping a banned word would change what the original claimed, the word stays and the claim wins. That precedence is the standard's own, at [`../sk-doc/sk-create-with-human-voice/references/scope-and-exemptions.md`](../sk-doc/sk-create-with-human-voice/references/scope-and-exemptions.md), which also carries the spans a rewrite may never touch: a quotation, an error string, a command, a path or an identifier.
 
@@ -257,7 +260,7 @@ Run the package's authoritative gate from the package directory: `npm run check`
 
 ### Related Workflows
 
-- `sk-doc` → `sk-create-with-human-voice` owns the wording standard this skill's rewrites are held to, and section 3 records the two parts of it that a projection excludes.
+- `sk-doc` → `sk-create-with-human-voice` owns the wording standard this skill's rewrites are held to, and section 3 records the part of it that a projection excludes.
 - `sk-code` builds and verifies integration code against this package.
 - `sk-design-md-generator` extracts a measured Style Reference from a live source.
 - `sk-git` handles the worktree, commits, and PR when integrating.

@@ -12,6 +12,7 @@ import {
 import { deepFreeze, freezeExactOriginal } from './freeze.js';
 import { restoreProtectedSpans } from './protected-spans.js';
 import {
+  compareClaimCoverage,
   compareSemanticMeaning,
   countContentCodepoints,
   isUnexpectedRefusal,
@@ -180,6 +181,11 @@ async function validateProjectionCandidateInternal(
     return fallback(protection, FidelityReasonCodes.INVALID_ENCODING, checks, null, null);
   }
 
+  // An unchanged candidate has nothing for the structure and semantic comparisons
+  // below to compare, so it earns none of their `passed()` markers. A consumer
+  // reading `checks` for those rule ids sees fewer entries on that path, and
+  // `changeKind` on the accepted outcome is what tells it the text is a no-op
+  // rather than a rewording.
   if (restored.text !== sourceText) {
     if (isUnexpectedRefusal(sourceText, restored.text)) {
       return fallback(protection, FidelityReasonCodes.REFUSAL_OUTPUT, checks, 0, 1);
@@ -208,6 +214,7 @@ async function validateProjectionCandidateInternal(
         0,
       );
     }
+    checks.push(passed(FidelityReasonCodes.MARKDOWN_STRUCTURE_CHANGED));
 
     const semanticDifference = compareSemanticMeaning(sourceText, restored.text);
     if (semanticDifference !== null) {
@@ -219,12 +226,22 @@ async function validateProjectionCandidateInternal(
         semanticDifference.actualCount,
       );
     }
+    checks.push(passed(FidelityReasonCodes.FACT_ADDED));
+    checks.push(passed(FidelityReasonCodes.POLARITY_CHANGED));
+    checks.push(passed(FidelityReasonCodes.REQUIREMENT_STRENGTH_CHANGED));
+    checks.push(passed(FidelityReasonCodes.PRIORITY_CHANGED));
+
+    const claimDifference = compareClaimCoverage(sourceText, restored.text);
+    if (claimDifference !== null) {
+      return fallback(
+        protection,
+        claimDifference.reasonCode,
+        checks,
+        claimDifference.expectedCount,
+        claimDifference.actualCount,
+      );
+    }
   }
-  checks.push(passed(FidelityReasonCodes.MARKDOWN_STRUCTURE_CHANGED));
-  checks.push(passed(FidelityReasonCodes.FACT_ADDED));
-  checks.push(passed(FidelityReasonCodes.POLARITY_CHANGED));
-  checks.push(passed(FidelityReasonCodes.REQUIREMENT_STRENGTH_CHANGED));
-  checks.push(passed(FidelityReasonCodes.PRIORITY_CHANGED));
 
   if (request.judgeMode === 'required') {
     if (judge === undefined) {
@@ -252,6 +269,7 @@ async function validateProjectionCandidateInternal(
     projectionSha256: createSha256Digest(projectionBytes),
     projectionByteLength: projectionBytes.byteLength,
     projectionText: restored.text,
+    changeKind: restored.text === sourceText ? 'no-op' : 'reworded',
     validationProfileVersion: 'fidelity/1.0.0',
     exactOriginal: protection.exactOriginal,
     checks,

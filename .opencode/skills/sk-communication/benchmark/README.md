@@ -25,6 +25,7 @@ This skill is benchmarked on advisor-routing accuracy: whether a projection-inte
 | Path | Contents |
 |---|---|
 | [`reports/`](./reports/) | One folder per run, indexed by `reports/README.md` |
+| [`reply-harness/`](./reply-harness/) | The reply comparison harness. Frozen case set, weighted rubric, prompt builder, mechanical scorer, reply blinding and the condition comparison, documented in its own `README.md` |
 
 ---
 

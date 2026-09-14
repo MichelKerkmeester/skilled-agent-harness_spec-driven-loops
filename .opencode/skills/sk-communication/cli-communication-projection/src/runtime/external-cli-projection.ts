@@ -2,6 +2,7 @@
 // MODULE: External CLI Projection Runtime
 // ───────────────────────────────────────────────────────────────────
 
+import { resolveCopyEditingInstruction, COPY_EDITING_TEMPERATURE } from '../config/copy-editing-instruction.js';
 import { createExactOriginalRecord } from '../contracts/exact-original.js';
 import { createExternalCliModelRecord } from '../providers/presets.js';
 import { createChildProcessCliRunner, createExternalCliTransport } from '../transports/cli.js';
@@ -35,9 +36,6 @@ export interface ExternalCliProjectionInput {
 }
 
 const CAPABILITY_EXPIRY_WINDOW_MS = 7 * 24 * 60 * 60 * 1000;
-const COPY_EDITING_INSTRUCTION =
-  'Rewrite only the user message in plain English. Output only the rewrite.';
-const COPY_EDITING_TEMPERATURE = 0.2;
 
 // External agents cannot claim zero data retention, so the rewrite runs under an
 // egress-consented hosted-retained policy and a required meaning judge; a judge
@@ -199,16 +197,16 @@ function buildContext(now: string): ContextSelectionInput {
   };
 }
 
-function buildPrompt(record: ProviderModelRecord): PromptProfileRecord {
+export function buildPrompt(record: ProviderModelRecord): PromptProfileRecord {
   return {
     contractKind: 'prompt-profile',
     schemaVersion: '1.0.0',
     promptVersion: 'external-cli-v1',
-    systemInstruction: COPY_EDITING_INSTRUCTION,
+    systemInstruction: resolveCopyEditingInstruction(),
     copyEditingScope: 'assistant-message-only',
     protectedValuePolicyVersion: 'protected-spans/1.0.0',
     temperature: COPY_EDITING_TEMPERATURE,
-    thinkingMode: 'disabled',
+    thinkingMode: 'provider-default',
     providerControlMappings: [
       {
         providerId: record.controlProviderId,

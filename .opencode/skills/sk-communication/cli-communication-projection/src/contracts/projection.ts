@@ -25,10 +25,17 @@ export interface ProjectionCandidate extends ProjectionBase {
   readonly modelId: string;
 }
 
-/** Projection accepted after every required validator passes. */
+/**
+ * Projection accepted after every required validator passes.
+ *
+ * This is the wire shape a producer fills from the accepted fidelity outcome,
+ * `AcceptedFidelityOutcome` in `../fidelity/types.js`. Nothing in this package
+ * constructs it yet.
+ */
 export interface AcceptedProjection extends ProjectionBase {
   readonly status: 'accepted';
   readonly projectedTextId: string;
+  readonly changeKind: 'reworded' | 'no-op';
   readonly validationProfileVersion: string;
 }
 

@@ -46,6 +46,7 @@ export const FidelityReasonCodes = {
   ACCEPTED: 'accepted',
   CANCELLED: 'cancelled',
   CAVEAT_CHANGED: 'caveat-changed',
+  CLAIM_OMITTED: 'claim-omitted',
   EMPTY_OUTPUT: 'empty-output',
   FACT_ADDED: 'fact-added',
   FACT_OMITTED: 'fact-omitted',
@@ -216,6 +217,7 @@ export interface AcceptedFidelityOutcome {
   readonly projectionSha256: string;
   readonly projectionByteLength: number;
   readonly projectionText: string;
+  readonly changeKind: 'reworded' | 'no-op';
   readonly validationProfileVersion: 'fidelity/1.0.0';
   readonly exactOriginal: ExactOriginalRecord;
   readonly checks: readonly FidelityCheck[];

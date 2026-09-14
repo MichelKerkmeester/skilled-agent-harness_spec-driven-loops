@@ -6,7 +6,7 @@ trigger_phrases:
   - "communication projection capabilities"
   - "plain-English projection inventory"
   - "communication projection feature inventory"
-last_updated: "2026-08-12"
+last_updated: "2026-09-14"
 version: 1.0.0.0
 ---
 
@@ -116,7 +116,7 @@ Validates provider records, compiles supported prompt controls, executes an appr
 
 #### Current Reality
 
-The provider layer ships adapters for Ollama, llama.cpp, OpenCode Go, and generic hosted OpenAI-compatible chat. It requires fresh capability evidence for requested controls, passes credential references rather than secret values, applies deadlines and cancellation, parses family-specific responses, records content-free evidence, and attempts only the privacy router's approved sequence before falling back to the exact original.
+The provider layer ships adapters for Ollama, llama.cpp, OpenCode Go, and generic hosted OpenAI-compatible chat. It requires fresh capability evidence for requested controls, passes credential references rather than secret values, applies deadlines and cancellation, parses family-specific responses, records content-free evidence, and attempts only the privacy router's approved sequence before falling back to the exact original. The shared prompt carries one copy-editing instruction, and the instruction is the wording standard's reply base, read from the sk-doc skill the first time a prompt profile is built and then cached. A returned candidate survives the claim-omission check, which rejects a dropped claim, caveat or requirement, and an unchanged candidate is recorded as a no-op rather than a pass.
 
 #### Source Files
 
