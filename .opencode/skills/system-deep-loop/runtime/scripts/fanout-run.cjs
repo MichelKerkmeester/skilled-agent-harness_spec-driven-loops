@@ -3464,6 +3464,74 @@ async function main() {
         stopStallWatchdog();
       }
 
+      // Write-containment observes the tree once the lane process has ended and BEFORE any
+      // verdict gate below decides the outcome. A lane that exits non-zero, is killed, or
+      // leaves artifacts missing is exactly the one whose out-of-scope writes must still be
+      // snapshotted, quarantined and reported; running the guard after the gates would skip
+      // those lanes entirely. The gates keep their own verdict: a finding is recorded on the
+      // ledger and never turns a failed lane into a passing one.
+      //
+      // Uniform across every dispatch kind: diff the working tree for NEW
+      // out-of-artifact-dir writes. Under the default preserve mode the path stays on disk
+      // and is reported, never deleted, since it may be a concurrent parent/sibling write
+      // this leaf cannot be proven to own; restore mode is an explicit opt-in that rolls a
+      // path back. The leaf must still be free to write its iteration file/delta/state
+      // record inside lineageDir; only OUT-of-lineageDir writes are detected. Fails open
+      // when the artifact dir is outside the git worktree (hermetic test lineages).
+      let containmentFindings = null;
+      let containmentRecoveryHint = null;
+      let containmentQuarantinePath = null;
+      if (containmentEnabled) {
+        const containment = enforceWriteContainment({
+          repoRoot: containmentRepoRoot,
+          artifactDir: lineageDir,
+          unattributableDirs: [
+            ...staticUnattributableDirs,
+            ...preDispatchForeignRunDirs,
+            ...(await discoverForeignLiveRunDirs({ specFolder, baseArtifactDir })),
+          ],
+          unattributablePaths: orchestratorOwnedPaths,
+          preDispatchDirtyPaths,
+          baselineContentRoot: lineageDir,
+          mode: containmentMode,
+          iteration: attempt,
+          label: lineage.label,
+        });
+        appendContainmentGitContentionWarnings();
+        if (containment.advisories.length > 0) {
+          appendFanoutStatusLedger(ledgerPath, {
+            type: 'event',
+            event: 'containment_advisory',
+            severity: 'warning',
+            at: new Date().toISOString(),
+            label: lineage.label,
+            run_id: runId,
+            loop_type: loopType,
+            spec_folder: specFolder,
+            iteration: attempt,
+            gauges: latestGauges,
+            violations: containment.advisories.map((v) => ({ path: v.path, kind: v.kind, status: v.status })),
+            detected: containment.revertResult.reverted.filter((r) => r.action === 'preserved_untracked'),
+          });
+        }
+        if (containment.violations.length > 0) {
+          if (containment.event) {
+            appendFanoutStatusLedger(ledgerPath, {
+              ...containment.event,
+              at: new Date().toISOString(),
+              label: lineage.label,
+              run_id: runId,
+              loop_type: loopType,
+              spec_folder: specFolder,
+              gauges: latestGauges,
+            });
+          }
+          containmentFindings = containment.violations;
+          containmentRecoveryHint = containment.recoveryHint;
+          containmentQuarantinePath = containment.quarantinePath;
+        }
+      }
+
       // Save subprocess stdout for salvage sweep (write failures in weak CLI executors).
       const logsDir = path.join(lineageDir, 'logs');
       fs.mkdirSync(logsDir, { recursive: true });
@@ -3562,75 +3630,13 @@ async function main() {
         throw failure;
       }
 
-      // Structural write-containment, uniform across every dispatch kind: diff the
-      // working tree for NEW out-of-artifact-dir writes. Runs AFTER every artifact and
-      // stop-policy gate, so a finding here describes a lineage that has already proven
-      // complete -- information about it, never a reason to fail it. Under the default
-      // preserve mode the path stays on disk and is reported, never deleted, since it may
-      // be a concurrent parent/sibling write this leaf cannot be proven to own; restore
-      // mode is an explicit opt-in that rolls a path back. The leaf must
-      // still be free to write its iteration file/delta/state record inside lineageDir;
-      // only OUT-of-lineageDir writes are detected. Fails open when the artifact dir is
-      // outside the git worktree (hermetic test lineages).
-      let containmentFindings = null;
-      let containmentRecoveryHint = null;
-      let containmentQuarantinePath = null;
-      if (containmentEnabled) {
-        const containment = enforceWriteContainment({
-          repoRoot: containmentRepoRoot,
-          artifactDir: lineageDir,
-          unattributableDirs: [
-            ...staticUnattributableDirs,
-            ...preDispatchForeignRunDirs,
-            ...(await discoverForeignLiveRunDirs({ specFolder, baseArtifactDir })),
-          ],
-          unattributablePaths: orchestratorOwnedPaths,
-          preDispatchDirtyPaths,
-          baselineContentRoot: lineageDir,
-          mode: containmentMode,
-          iteration: attempt,
-          label: lineage.label,
-        });
-        appendContainmentGitContentionWarnings();
-        if (containment.advisories.length > 0) {
-          appendFanoutStatusLedger(ledgerPath, {
-            type: 'event',
-            event: 'containment_advisory',
-            severity: 'warning',
-            at: new Date().toISOString(),
-            label: lineage.label,
-            run_id: runId,
-            loop_type: loopType,
-            spec_folder: specFolder,
-            iteration: attempt,
-            gauges: latestGauges,
-            violations: containment.advisories.map((v) => ({ path: v.path, kind: v.kind, status: v.status })),
-            detected: containment.revertResult.reverted.filter((r) => r.action === 'preserved_untracked'),
-          });
-        }
-        if (containment.violations.length > 0) {
-          if (containment.event) {
-            appendFanoutStatusLedger(ledgerPath, {
-              ...containment.event,
-              at: new Date().toISOString(),
-              label: lineage.label,
-              run_id: runId,
-              loop_type: loopType,
-              spec_folder: specFolder,
-              gauges: latestGauges,
-            });
-          }
-          containmentFindings = containment.violations;
-          containmentRecoveryHint = containment.recoveryHint;
-          containmentQuarantinePath = containment.quarantinePath;
-        }
-      }
-
       const output = { label: lineage.label, exitCode, timedOut, salvage, ...slotAccounting };
       if (containmentFindings !== null) {
-        // Every artifact and stop-policy gate above already passed, so an out-of-scope
-        // write found by the guard describes a COMPLETE lineage: report it as an advisory
-        // rather than reject a lineage whose deliverables all exist.
+        // Every artifact and stop-policy gate has passed by the time this output is built,
+        // so an out-of-scope write found by the guard describes a COMPLETE lineage: report
+        // it as an advisory rather than reject a lineage whose deliverables all exist. A
+        // lane that failed its gates threw before the findings could reach here, keeping
+        // its own verdict.
         output.status = CONTAINMENT_ADVISORY_STATUS;
         output.containment = { violations: containmentFindings, recoveryHint: containmentRecoveryHint, quarantinePath: containmentQuarantinePath };
       }

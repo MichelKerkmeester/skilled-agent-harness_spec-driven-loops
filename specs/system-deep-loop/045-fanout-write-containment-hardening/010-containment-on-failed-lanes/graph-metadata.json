@@ -39,14 +39,16 @@
       "approach"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts"
     ],
     "entities": [
       {
@@ -86,6 +88,18 @@
         "source": "derived"
       },
       {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -116,7 +130,7 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement",
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -134,7 +148,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Lifecycle",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -146,13 +166,7 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
+        "name": "Data Flow Process",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -180,23 +194,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "The containment block ran only after every verdict gate passed",
     "created_at": "2026-09-14T17:44:14Z",
-    "last_save_at": "2026-09-14T17:46:56.080Z",
+    "last_save_at": "2026-09-14T22:47:29.027Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +209,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:153a85ef7e4a55d67ef9ee794da4baaffe9b683cdf413aa6d3a5661dec84e916",
+    "source_fingerprint": "sha256:14cf094583d8174d61b799291fe8f28ab8540a0917b03964724d3326d07d1043",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4ab2157edc0fcc2f4d09972ad2b86102ba45614929175e4db88713a95171ed64",
-      "plan.md": "5321fefb8479d95d048a5e4e0973e057bdc5295a7e9d9596aff948505b68f119",
-      "tasks.md": "f320f4b1438f58e12a67a24a5ded612f64747f92badeb1b2a276ba34ae8fad1f",
-      "implementation-summary.md": "0f0a4a9e253f4045d77d33b47abaf8f1f3a7ce18b493cebf70124810c8a0e31a"
+      "spec.md": "f17ff045e04f6d235050d32bafbcf5cf58e33ed5835a95dfb3a01b1d6353bcd7",
+      "plan.md": "a70c9e77b81cab7d5589767864573999b1e6cd8e3635ee212308dabdc2755f7e",
+      "tasks.md": "7293e7dd744b37b81c0339b68358acc35e0fc9561634d566fb5e4e6c02664487",
+      "implementation-summary.md": "4b9e7226cfd98ae9001ac6e00ef6795de346e1eb341169b7d8069505669db17a"
     },
     "last_active_at": null
   }

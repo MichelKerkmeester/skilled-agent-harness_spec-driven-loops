@@ -3143,6 +3143,138 @@ describe('fanout-run.cjs — containment mode is an explicit opt-in', () => {
   });
 });
 
+describe('fanout-run.cjs — containment runs for failed lanes', () => {
+  // Both cases run the same fixture: a git worktree whose lane dir is pre-created, a stub
+  // that writes one new path outside its lineage dir and then settles however the case says.
+  // The observable difference is what the run records about that write when the lane never
+  // reaches completion.
+  const runFailedLaneCase = async (
+    testId: string,
+    stubLines: string[],
+  ): Promise<{
+    exitCode: number | null;
+    payload: {
+      results?: Array<{ status?: string }>;
+      summary?: { failed?: number; succeeded?: number; all_failed?: boolean };
+    };
+    ledgerEvents: Array<Record<string, unknown>>;
+    quarantineManifestPath: string | null;
+    strayPath: string;
+  }> => {
+    const hermetic = useHermeticEnv(`containment-failed-${testId}`);
+    const repoRoot = hermetic.tmpDir;
+    const binDir = makeTempDir(`fanout-run-containment-failed-bin-${testId}-`);
+    const specFolder = `specs/test-fanout-run-containment-failed-${testId}`;
+    const baseDir = join(repoRoot, specFolder, 'research', 'artifacts');
+    const lineageDir = join(baseDir, 'lineages', 'contained');
+    const strayPath = join(repoRoot, 'stray-out-of-scope', 'leaf-escaped.txt');
+
+    // git resolves its target repository from these vars in preference to the working
+    // directory, so an inherited one would send the fixture's checks into the repository
+    // this test itself runs from.
+    const env: NodeJS.ProcessEnv = { ...envWithBin(hermetic, binDir), DEEP_LOOP_REPO_ROOT: repoRoot };
+    for (const key of ['GIT_DIR', 'GIT_WORK_TREE', 'GIT_COMMON_DIR', 'GIT_INDEX_FILE', 'GIT_CEILING_DIRECTORIES']) {
+      delete env[key];
+    }
+    // Containment diffs a real worktree, and that worktree must not inherit the developer's
+    // global gitignore: an ignored stray path never reaches git status. The artifact tree is
+    // pre-created because the pre-dispatch baseline can only be resolved once it exists.
+    expect(spawnSync('git', ['init', '-q', repoRoot], { encoding: 'utf8', env }).status).toBe(0);
+    spawnSync('git', ['-C', repoRoot, 'config', 'core.excludesFile', '/dev/null'], { encoding: 'utf8', env });
+    mkdirSync(lineageDir, { recursive: true });
+
+    writeFileSync(
+      join(binDir, 'opencode'),
+      [
+        '#!/bin/sh',
+        `mkdir -p ${shellQuote(join(repoRoot, 'stray-out-of-scope'))}`,
+        `echo escaped > ${shellQuote(strayPath)}`,
+        ...stubLines,
+        '',
+      ].join('\n'),
+      { mode: 0o755 },
+    );
+
+    // One attempt, so the ledger and the quarantine record each describe exactly one pass
+    // over the lane regardless of how the failure would otherwise classify for retry.
+    const fanoutConfig = JSON.stringify({
+      executors: [{ label: 'contained', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', count: 1 }],
+      concurrency: 1,
+      maxRetries: 0,
+    });
+
+    const result = await spawnCjs(
+      fanoutRunScript,
+      [
+        '--spec-folder', specFolder,
+        '--loop-type', 'research',
+        '--fanout-config-json', fanoutConfig,
+        '--base-artifact-dir', baseDir,
+        // 'restore' makes an untracked stray path outside the packet a fatal finding rather
+        // than a preserve advisory, so the ledger event under test is the violation one.
+        '--containment-mode', 'restore',
+        '--no-metadata-refresh',
+      ],
+      { cwd: repoRoot, env, timeoutMs: 20_000 },
+    );
+
+    const ledgerEvents = readFileSync(join(baseDir, 'orchestration-status.log'), 'utf8')
+      .trim()
+      .split('\n')
+      .map((line) => JSON.parse(line) as Record<string, unknown>);
+    const quarantineRoot = join(lineageDir, 'containment', 'quarantine');
+    const passDirs = existsSync(quarantineRoot) ? readdirSync(quarantineRoot) : [];
+
+    return {
+      exitCode: result.exitCode,
+      payload: JSON.parse(result.stdout.split('\n').filter(Boolean).at(-1) ?? '{}'),
+      ledgerEvents,
+      quarantineManifestPath: passDirs.length > 0 ? join(quarantineRoot, passDirs[0], 'manifest.json') : null,
+      strayPath,
+    };
+  };
+
+  it('reports an out-of-scope write from a lane that exits non-zero and keeps it failed', async () => {
+    const run = await runFailedLaneCase('exit-nonzero', ['echo "stub-fail"', 'exit 1']);
+
+    // The lane settles failed and the finding never rewrites that verdict.
+    expect(run.exitCode).toBe(3);
+    expect(run.payload.summary).toMatchObject({ failed: 1, succeeded: 0, all_failed: true });
+    expect(run.payload.results?.[0]?.status).toBe('rejected');
+
+    // The write the failed lane left behind is reported on the ledger even though the
+    // artifact and salvage gates never got the chance to run.
+    const containmentEvents = run.ledgerEvents.filter((event) => event.event === 'containment_violation');
+    expect(containmentEvents).toHaveLength(1);
+    expect((containmentEvents[0].violations as Array<{ path?: string }>).map((violation) => violation.path))
+      .toContain('stray-out-of-scope/leaf-escaped.txt');
+
+    // And the durable quarantine record exists, with the stray bytes preserved rather than
+    // destroyed by the guard.
+    expect(run.quarantineManifestPath).not.toBeNull();
+    expect(existsSync(run.quarantineManifestPath as string)).toBe(true);
+    expect(existsSync(run.strayPath)).toBe(true);
+  });
+
+  it('reports an out-of-scope write from a lane that produced no artifacts and keeps it failed', async () => {
+    const run = await runFailedLaneCase('no-artifacts', ['echo "stub-done-without-artifact"', 'exit 0']);
+
+    // Exit 0 is not a pass when the artifact gate finds nothing: the lane is still failed.
+    expect(run.exitCode).toBe(3);
+    expect(run.payload.summary).toMatchObject({ failed: 1, succeeded: 0, all_failed: true });
+    expect(run.payload.results?.[0]?.status).toBe('rejected');
+
+    const containmentEvents = run.ledgerEvents.filter((event) => event.event === 'containment_violation');
+    expect(containmentEvents).toHaveLength(1);
+    expect((containmentEvents[0].violations as Array<{ path?: string }>).map((violation) => violation.path))
+      .toContain('stray-out-of-scope/leaf-escaped.txt');
+
+    expect(run.quarantineManifestPath).not.toBeNull();
+    expect(existsSync(run.quarantineManifestPath as string)).toBe(true);
+    expect(existsSync(run.strayPath)).toBe(true);
+  });
+});
+
 describe('fanout-run.cjs — shared-checkout churn forces preserve', () => {
   // Both cases run the same fixture: a git repo whose only tracked content is a set of
   // out-of-scope files the stub overwrites in one burst while the run is in flight, with

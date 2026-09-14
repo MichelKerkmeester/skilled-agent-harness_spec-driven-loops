@@ -12,16 +12,16 @@ _memory:
   continuity:
     packet_pointer: "scaffold/010-containment-on-failed-lanes"
     last_updated_at: "2026-09-14T17:44:15Z"
-    last_updated_by: "scaffold"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    last_updated_by: "claude-fable-5-1"
+    recent_action: "Phase fix landed and criteria checked"
+    next_safe_action: "Commit once the full suite exits zero"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "[SESSION-ID]"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -77,10 +77,10 @@ Three to seven bullets, each checkable without opening another file. Copy them
 verbatim into the objective: nothing dereferences a path, so criteria left only
 here are invisible to whatever judges completion.
 
-- [ ] A stub lane that exits non-zero after writing outside its directory yields a containment event on the ledger and a quarantine record, and the lane still settles failed
-- [ ] A stub lane that produces no artifacts after writing outside its directory yields the same
-- [ ] The same tests against the unmodified runner show no containment event for either lane
-- [ ] The deep-loop runtime suite exits zero
+- [x] A stub lane that exits non-zero after writing outside its directory yields a containment event on the ledger and a quarantine record, and the lane still settles failed
+- [x] A stub lane that produces no artifacts after writing outside its directory yields the same
+- [x] The same tests against the unmodified runner show no containment event for either lane
+- [x] The deep-loop runtime suite exits zero
 <!-- /ANCHOR:completion -->
 
 ---
@@ -96,11 +96,12 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| [Item] | [Pending/In Progress/Done] | [Command output, file:line, or artifact] |
+| Phase fix | Done | One DeepSeek V4.1 Flash max dispatch on cli-pi via the gateway; containment moved to the post-process step in `fanout-run.cjs`, two stub-lane tests; touched files plus typecheck exit 0 |
+| Full suite | Green | `npm test` in the runtime: 152 files, 2616 passed, 8 skipped, exit 0, 1228 s |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| [What diverged from the directive] | [Why, and what was done instead] |
+| Ordering | Dispatched after phases 011 and 012 so the other session's runner edits could land first; the file was clean at dispatch |
 <!-- /ANCHOR:log -->
