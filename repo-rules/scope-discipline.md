@@ -1,6 +1,6 @@
 ---
 title: "Rule: Scope discipline"
-description: "The requested scope is the deliverable; adjacent problems get named, not fixed."
+description: "The requested scope is the deliverable. Adjacent problems get named, not fixed."
 trigger_phrases:
   - "frozen scope"
   - "scope lock"

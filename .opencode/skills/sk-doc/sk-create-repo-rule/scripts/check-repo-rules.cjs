@@ -86,6 +86,16 @@ function parseTriggerPhrases(lines, range) {
   return phrases;
 }
 
+function parseDescription(lines, range) {
+  if (range === null) return null;
+  for (let index = range.start; index < range.end; index += 1) {
+    const match = lines[index].match(/^description\s*:\s*(.*)$/u);
+    if (match === null) continue;
+    return match[1].trim().replace(/^"(.*)"$/u, '$1').replace(/^'(.*)'$/u, '$1').trim();
+  }
+  return null;
+}
+
 function parseTopLevelKeys(lines, range) {
   const keys = new Set();
   if (range === null) return keys;
@@ -183,6 +193,7 @@ function loadContext(root) {
         lines: lineCount(content),
         phrases: parseTriggerPhrases(lines, range),
         keys: parseTopLevelKeys(lines, range),
+        description: parseDescription(lines, range),
         dividers: body.filter((line) => line.trim() === '---').length,
         sections: body.filter((line) => /^##\s+\d+\./u.test(line)).length,
         body,
@@ -352,6 +363,37 @@ function checkFiresWhenSections(context) {
   };
 }
 
+// The index summary is a copy of the rule's own description, and a copy nobody compares
+// drifts: seven of eleven had diverged before this check existed, invisibly to every other
+// check and to CI. Whitespace is normalized because the router wraps cells and the
+// frontmatter does not; the words must match exactly.
+function checkIndexSummaries(context) {
+  const problems = [];
+  const normalize = (value) => value.replace(/\s+/gu, ' ').trim();
+  const byName = new Map(context.rules.map((rule) => [rule.name, rule]));
+  for (const row of context.indexRows) {
+    const cells = row.text.split('|').map((cell) => cell.trim());
+    const summary = cells[2] === undefined ? '' : cells[2];
+    const target = row.links.map(normalizeTarget).find((link) => link.startsWith(`${RULES_DIR}/`));
+    if (target === undefined) continue;
+    const rule = byName.get(path.basename(target));
+    if (rule === undefined) continue;
+    if (rule.description === null) {
+      problems.push(`${rule.name}: no description in frontmatter`);
+      continue;
+    }
+    if (normalize(summary) !== normalize(rule.description)) {
+      problems.push(`line ${row.lineNumber}: ${rule.name} summary differs from its description`);
+    }
+  }
+  return {
+    ok: problems.length === 0,
+    detail: problems.length === 0
+      ? `indexRows=${context.indexRows.length} every summary matches its rule's description`
+      : summarize(problems)
+  };
+}
+
 const CHECKS = [
   ['count parity', checkCounts],
   ['row coverage', checkWiring],
@@ -360,7 +402,8 @@ const CHECKS = [
   ['frontmatter keys', checkFrontmatterKeys],
   ['divider parity', checkDividerParity],
   ['rule links', checkRuleLinks],
-  ['fires-when sections', checkFiresWhenSections]
+  ['fires-when sections', checkFiresWhenSections],
+  ['index summaries', checkIndexSummaries]
 ];
 
 function main() {

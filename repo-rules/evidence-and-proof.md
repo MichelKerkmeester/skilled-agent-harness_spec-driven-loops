@@ -1,6 +1,6 @@
 ---
 title: "Rule: Evidence and proof"
-description: "A claim is only as strong as the observation behind it; distinguish observed from derived from inferred."
+description: "A claim is only as strong as the observation behind it, and a receipt confirms only what could have contradicted it. Distinguish observed from derived from inferred."
 trigger_phrases:
   - "observed derived inferred"
   - "how a green run lies"
