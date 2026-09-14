@@ -172,6 +172,10 @@ const INIT_FLAG = '__componentNameInit';
 - [ ] **[P1] CHK-CMT-03**: Maximum 5 comments per 10 lines of code (not over-commented)
 - [ ] **[P1] CHK-CMT-04**: Platform constraints documented (WEBFLOW, MOTION, LENIS, HLS.JS)
 
+- [ ] **[P1] CHK-CMT-07**: Each comment describes what the code does now, never how it got there, what it used to do or which change introduced it
+
+A comment that narrates its own history is wrong the moment the next change lands. On any collision, the root document's comment-hygiene hard block wins. This rule adds to it and does not soften it. Before: `// this check used to live in the old loader`. After: `// skips blank lines so the count stays true`.
+
 > **Cross-stack motion.dev reference**: For motion.dev API surface, decision matrix, and integration patterns that apply across stacks (not just Webflow), see [`../../../sk-code-webflow/references/animation/quick-start.md`](../../../sk-code-webflow/references/animation/quick-start.md) and the documents in [`../../../sk-code-webflow/references/animation`](../../../sk-code-webflow/references/animation). The MOTION constraint above remains a Webflow-CDN-specific platform marker.
 
 ### Function Comments

@@ -19,9 +19,12 @@ trigger_phrases:
   - "honest close-out"
   - "committed pushed dirty"
   - "what only the operator can verify"
+  - "unconfirmed cause"
+  - "suspected cause"
+  - "cause then fix"
 importance_tier: important
 contextType: reference
-version: 1.0.0.0
+version: 1.1.0.0
 ---
 
 # Rule: Evidence and proof
@@ -65,6 +68,16 @@ derive it here, at the total's own level, because verifying its parts is not der
 whole. A match that never distinguished roles: compare what the two sides are, not the
 digits they share. With no known instance to hand, the honest output is INFERRED plus the
 step that would confirm it.
+
+When a report leads with a cause, the cause carries its standing, and the cause-then-fix
+order holds. Where no run confirms the cause, label it as suspected and name the next
+check. A confirmed cause is reported as a finding. Against the tiers, a suspected cause
+is INFERRED, and the INFERRED tier already demands what would confirm it, so the clause
+adds a reporting shape and takes nothing from the proof. There is no unmarked case: a
+cause is either a finding with its receipt or suspected with its next check.
+
+The failure this prevents: an unconfirmed cause asserted as definitive, which the next
+reader treats as settled and stops testing.
 
 ---
 

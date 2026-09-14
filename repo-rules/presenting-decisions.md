@@ -20,9 +20,14 @@ trigger_phrases:
   - "went quiet for twenty minutes"
   - "presenting a synthesis"
   - "handing over a file path"
+  - "who is the reader"
+  - "reader triage"
+  - "what does the reader already know"
+  - "time estimate"
+  - "how long will this take"
 importance_tier: important
 contextType: reference
-version: 1.0.0.0
+version: 1.1.0.0
 ---
 
 # Rule: Presenting decisions
@@ -84,6 +89,16 @@ the reader. A silent one cannot, and it will be discovered as a defect later.
 
 ## 3. ASK THEN DO
 
+**Triage the reader before you draft.** Decide who will read this and what they already
+hold. Then name what they need. The gap between the two is what the reply owes. Decide
+that gap, with the verdict, before the first sentence. This is not the ASK step, which
+restates the request. The triage decides who the reply is for and what it must supply,
+which no restatement carries.
+
+The failure this prevents: two of them. An accurate and complete answer pitched at a
+reader nobody modeled, and a takeaway settled after the drafting, which the first
+sentence misses.
+
 For a complex or ambiguous request, preface the answer:
 
 1. **ASK:** restate the request in your own words. A paraphrase back, not a question
@@ -103,6 +118,10 @@ Section 3 fires once, on an ambiguous request. This one fires on length. Before 
 of work the reader cannot see inside, post the intended path: a short numbered list of
 what you will do, and what they should expect at each checkpoint.
 
+When the stretch is long, attach a concrete time estimate to that list. Minutes or
+hours, never vague. It is part of what the reader should expect at each checkpoint. The
+reader can correct an estimate. Nobody can correct a silence.
+
 **Clipped means not narrating each step. It never means starting without saying where you
 are going.** Those are different obligations and `AGENTS.md` §3 holds both.
 
@@ -110,7 +129,8 @@ Update the path when it changes. A roadmap nobody revised is worse than none, be
 reader is now tracking a plan you abandoned.
 
 The failure this prevents: twenty minutes of silence, then a result the reader has to
-reverse-engineer a plan from in order to judge.
+reverse-engineer a plan from in order to judge, and a duration expectation nobody
+stated, which the reader meets as a surprise.
 
 ---
 
