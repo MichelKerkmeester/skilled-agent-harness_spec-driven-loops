@@ -42,8 +42,8 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 045-fanout-write-containment-hardening |
-| **Status** | In Progress |
-| **Completed** | Not completed |
+| **Status** | Complete |
+| **Completed** | 2026-09-14 |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->
 
@@ -58,7 +58,7 @@ The packet shipped in three phases: preserve-by-default containment with baselin
 
 When this ships, you will be able to run a multi-hour deep-loop fan-out on your main checkout and keep working in it. A lane that writes outside its own directory will leave your files exactly where you put them and drop a copy of what it wrote into a quarantine you can read, instead of rewinding your uncommitted work to the last commit. A lane that finished its research or its review will be reported as finished even when containment has something to say about it.
 
-The phase that follows removes the question rather than answering it: each lineage gets its own worktree, so a write outside its directory really is that lineage's write and the main checkout is never touched at all.
+The worktree phase was then reversed. Four research lanes on four models converged that attribution cannot be made exact after the fact on a shared tree, and the operator ruled attribution out as a requirement: what matters is that a lane never halts because of another session's writes and that no output is lost, which preserve by default already delivers. Seven fix phases closed the packet, each one dispatch to DeepSeek V4.1 Flash at max on cli-pi and each verified by the whole runtime suite before the next: an out-of-scope untracked path is advisory under preserve, never fatal (001); a state log holding each iteration twice validates and the references name the append gateway (002); the attribution table and merged registry name each lineage's executor from its invocation metadata (003); containment git calls wait out a neighbour's index.lock and report an exhausted retry (004); the churn detector also trips on slow cumulative churn (005); the reducer writes the registry past a strategy file without anchors and a lane that registered nothing is flagged (006); and the worktree mechanism, its modules, tests, option, events and docs are removed, leaving one shared-checkout code path (007).
 
 ### Files Changed
 
@@ -108,6 +108,8 @@ Delivered in the three phases the plan sequenced, then extended: the quarantine 
 | Restore still reachable per run | A run with the mode set back to restore completes and succeeds, with no code change |
 | Worktree default flip and isolation tally | **GREEN.** The schema default `worktrees: true`, the partial containment object and both opt-out shapes are covered in `executor-config.vitest.ts`; a no-flag spawn isolates a lane and reports `isolation { enabled: true, isolated: 1, degraded: 0 }`, the explicit-off case reports `{ enabled: false, isolated: 0, degraded: 0 }`, a lane whose tree cannot be made reports `{ enabled: true, isolated: 0, degraded: 1 }`, and the SIGTERM stopped summary carries the same key. Full suite from the final state: 156 files passed, 2653 passed, 7 skipped, 0 failed, exit 0 |
 | Checkout watch for isolated lanes whose cwd stays in the checkout | **GREEN.** An isolated `cli-opencode` lane that writes an in-checkout tracked file is reported exactly once as `checkout_write_detected` naming the path, the bytes stay on disk, the lane still settles fulfilled and its tree-rooted guard reports no violation alongside; the unchanged-checkout control reports `checkout_watched: 1` with `checkout_writes: 0`, and the stopped summary carries both counters. Full suite from the final state: 156 files passed, 2654 passed, 7 skipped, 0 failed, exit 0 |
+| Fix phases 001 to 007 | **GREEN.** Each phase's touched files, typecheck and the whole runtime suite exit 0 before the next phase; suite sizes 156 files / 2657 tests at 001 rising to 2670 at 006, then 151 files / 2568 tests after the worktree removal in 007 |
+| Live shared-checkout fan-out after removal | **PASSED.** Two DeepSeek lanes on this checkout with a neighbour writing sixty untracked files and another session editing tracked files mid-run: both lanes fulfilled with a containment advisory, empty revert lists, every file still on disk; `007-worktree-removal/research/orchestration-summary.json` |
 <!-- /ANCHOR:verification -->
 
 ---
