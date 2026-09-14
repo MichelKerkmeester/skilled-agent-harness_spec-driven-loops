@@ -58,8 +58,8 @@ Frozen choices. Changing one is an amendment.
 | D2 | Detection is unchanged. The scope rules, the unattributable carve-outs, the symlink-escape handling and the regenerable-state exemption stay exactly as they are; this packet changes the remedy. |
 | D3 | Under restore, a path already dirty before dispatch returns to its pre-dispatch bytes, never to HEAD. That requires the baseline to store content, bounded at 2 MiB per file and 64 MiB per lane. |
 | D4 | A lane with complete artefacts and containment findings settles as completed with advisory, not failed. Containment findings never overwrite a lane's own verdict. |
-| D5 | Each lineage runs in a detached ephemeral worktree outside sk-git's numbered namespace, created and removed by the runner, never through the numbered allocator. |
-| D6 | Isolation is off by default, opt-in with `--worktrees true`; 1.6 GB per lane is a cost to choose, not inherit. (ADR-006 supersedes ADR-004.) |
+| D5 | Superseded by D7. Lineages ran in detached ephemeral worktrees outside sk-git's numbered namespace, runner-created and removed. |
+| D6 | Superseded by D7. Isolation was opt-in before removal (ADR-006 supersedes ADR-004). |
 | D7 | Attribution is not a requirement. Worktrees, the cone and their three phases are removed; a neighbour's untracked write is advisory under preserve, never fatal. (ADR-007.) |
 | D8 | Each defect the research surfaced is a phase here, fixed by DeepSeek V4.1 Flash at max via the gateway on cli-pi, one phase per dispatch, suite-verified before the next. |
 
@@ -76,7 +76,7 @@ whenever anything above the log changes.
 
 **Read the child goal before working a phase.** Each is authoritative for its phase; decisions above outrank child detail.
 
-Phases 001 through 007 under this folder, each with its own `goal.md`.
+Phases 001 through 013 under this folder, each with its own `goal.md`; 008 through 013 remediate the ten-iteration deep review's confirmed findings.
 <!-- /ANCHOR:binding -->
 
 ---
@@ -93,6 +93,7 @@ Phases 001 through 007 under this folder, each with its own `goal.md`.
 - [x] Nothing in the four command YAMLs or the five documentation surfaces still describes the revert-and-fail model
 - [x] Every phase 001 through 007 validates PASSED with its own criteria checked
 - [x] The deep-loop suite exits zero after the last phase lands
+- [ ] Each confirmed P0 and P1 review finding is closed by a phase, and a fresh review of the remediated tree has no active P0
 <!-- /ANCHOR:completion -->
 
 ---
@@ -113,6 +114,7 @@ and findings belong here.
 | Incident evidence confirmed | Done | The `failed` event for label `luna` names 1,858 reverted paths; the research run record says the artefacts were complete |
 | Implementation | Done | Preserve-by-default containment, per-lineage worktrees, concurrent-editor detection, the worktree default flip with its isolation tally, and the report-only checkout watch for isolated lanes whose cwd stays in the shared checkout; packet docs reconciled |
 | Fix phases 001 to 007 | Done | Commits `5340e39233`, `bcb1333560`, `4581feb2bd`, `65ea476de3`, `a766c23a8f`, `cbb1e4ae53`, `ca713e3478`, each suite-verified; final suite 151 files, 2568 passed, exit 0; live two-lane run on this checkout with a neighbour and another session writing mid-run: both lanes fulfilled, nothing reverted |
+| Deep review, 10 iterations | Done, verdict FAIL | Five LUNA at max fast on cli-codex, five DeepSeek V4.1 Flash at max on cli-pi, merged strongest-restriction: one P0 per lane, seven P1, twenty-one P2; verified findings bound to phases 008 to 013, parent doc findings fixed directly; `review/fanout-attribution.md` |
 
 ### Deviations and findings
 
