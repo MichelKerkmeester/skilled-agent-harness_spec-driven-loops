@@ -54,7 +54,8 @@ Frozen choices. Changing one is an amendment.
 |----|----------|
 | D1 | The max-iterations validator deduplicates iteration records by iteration number before checking the set, and prefers the record carrying route-proof fields. |
 | D2 | Two of four research lanes, on two executor kinds, were rejected this way with three iterations complete; the leaf writes the state file directly as well as through the gateway. The runner tolerates that rather than depending on a contract two models broke. |
-| D3 | Fixed by DeepSeek V4.1 Flash at max through the gateway on cli-pi, one dispatch for this phase alone, verified by the deep-loop suite before the next phase starts. |
+| D3 | The three reference lines that told the leaf to append to the state log directly, in quick-reference.md, loop-protocol.md and spec-check-protocol.md, are corrected to name the gateway, which is the single source of the duplicate. |
+| D4 | Fixed by DeepSeek V4.1 Flash at max through the gateway on cli-pi, one dispatch for this phase alone, verified by the deep-loop suite before the next phase starts. |
 
 ### Operator copy
 
@@ -79,6 +80,7 @@ here are invisible to whatever judges completion.
 
 - [ ] A state log holding 1,2,3,1,2,3 with routed and unrouted copies passes validation and the routed copies are the ones retained
 - [ ] A state log genuinely missing an iteration still fails, with a test proving the deduplication did not mask it
+- [ ] No reference under deep-research/references instructs a direct write to deep-research-state.jsonl
 - [ ] The retained LUNA and GLM lineages under research/lineages replay as fulfilled
 <!-- /ANCHOR:completion -->
 

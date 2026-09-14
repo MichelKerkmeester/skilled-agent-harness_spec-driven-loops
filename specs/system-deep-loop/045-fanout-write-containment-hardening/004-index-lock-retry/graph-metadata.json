@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-deep-loop/045-fanout-write-containment-hardening/005-churn-cumulative-arm",
-  "spec_folder": "system-deep-loop/045-fanout-write-containment-hardening/005-churn-cumulative-arm",
+  "packet_id": "system-deep-loop/045-fanout-write-containment-hardening/004-index-lock-retry",
+  "spec_folder": "system-deep-loop/045-fanout-write-containment-hardening/004-index-lock-retry",
   "parent_id": "system-deep-loop/045-fanout-write-containment-hardening",
   "children_ids": [],
   "manual": {
@@ -195,8 +195,8 @@
       }
     ],
     "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
-    "created_at": "2026-09-14T08:24:18Z",
-    "last_save_at": "2026-09-14T09:09:12.270Z",
+    "created_at": "2026-09-14T09:09:00Z",
+    "last_save_at": "2026-09-14T09:09:10.833Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:383d911d9708701ce542b88b4fdea87e4fb90a6ad797f2775b13ea70eecfb587",
+    "source_fingerprint": "sha256:3b171b5caf3d27690024b9ef54b69f546bc99e6cd6544e44db9f9ebfad99dc6f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "19455b75781a973997012fa3d6394d1ae68c383fa04d127e35aac9dc02436c41",
-      "plan.md": "26bf69c705d6bb968c2a27507534959e59eb0e46bbfa40db1758f6c5e6e5a48e",
-      "tasks.md": "ce384176caabd70cfa7f908970ed3ea04ed4a55181668f1002a1fc8086e004c6",
-      "implementation-summary.md": "0532ba608e7861f6371a066ebc100ca1db0422a07ac53fcffb912ca8a5980ea9"
+      "spec.md": "8057cbff625f6d992fb11f8fe19e24cb6ae17510aab2975deeec119f8cb0ba44",
+      "plan.md": "d35a61bf81f40f1eb90fe4a584748ac9d9995a92e199e3e642e501c3fe80199c",
+      "tasks.md": "5aca361cadf74c8001d3cedd1f9ad7e4de5a4f2e340c9b30ad032c5fb5aeda75",
+      "implementation-summary.md": "31a36600d2434d200dbfa498f70c434ecdcc503c86e1049792357803b9a36d90"
     },
     "last_active_at": null
   }

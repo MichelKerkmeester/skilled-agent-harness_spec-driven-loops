@@ -26,7 +26,7 @@ contextType: "general"
 | **Created** | 2026-09-14 |
 | **Branch** | `scaffold/002-iteration-record-dedupe` |
 | **Parent** | `../spec.md` |
-| **Predecessor** | `../001-skip-worktree-cone/spec.md` |
+| **Predecessor** | `../001-never-fatal-untracked/spec.md` |
 <!-- /ANCHOR:metadata -->
 
 ---

@@ -103,18 +103,17 @@ A fan-out lineage never destroys work it cannot prove it wrote, a completed lane
 <!-- ANCHOR:phase-map -->
 ## Phase Documentation Map
 
-Follow-on work the alternatives research surfaced. Each phase is one defect or one mechanism, fixed by its own dispatch, verified before the next starts.
+Follow-on work the alternatives research surfaced. Each phase is one fix, dispatched on its own and suite-verified before the next; the last removes the worktree mechanism.
 
 | Phase | Folder | Status | Description |
 |-------|--------|--------|-------------|
-| 1 | `001-skip-worktree-cone/` | draft | Give each fan-out lane a worktree that materializes only what it reads, at a fraction of the full checkout, with no repository-wide git configuration change. |
+| 1 | `001-never-fatal-untracked/` | draft | Stop a neighbour's new file from halting a fan-out lane: under preserve, an out-of-scope untracked path is advisory, never fatal. |
 | 2 | `002-iteration-record-dedupe/` | draft | Stop the runner rejecting a completed lane because its state log holds each iteration record twice. |
 | 3 | `003-publish-manifest-provenance/` | draft | Make every published lineage say which executor kind and model produced it. |
-| 4 | `004-eighth-dependency-root/` | draft | Provision the dependency root the shared-path list omits. |
-| 5 | `005-churn-cumulative-arm/` | draft | Detect a neighbour that dirties the shared checkout slowly, not only in bursts. |
-| 6 | `006-shared-root-write-escape/` | draft | Keep a lane write inside its own tree even when the path it writes runs through a shared dependency root. |
-| 7 | `007-reducer-ordered-lists/` | draft | Register findings a lane wrote as a numbered list, and flag a lane that registered nothing. |
-| 8 | `008-reclaim-relocated-trees/` | draft | Let the reclaim sweep find and judge a lane worktree that was moved outside the base. |
+| 4 | `004-index-lock-retry/` | draft | Keep a lane's git calls from losing silently to another session's index.lock. |
+| 5 | `005-churn-cumulative-arm/` | draft | Detect a neighbour that dirties the shared checkout slowly, as a safety net for the opt-in restore remedy; under the preserve default nothing depends on it. |
+| 6 | `006-reducer-ordered-lists/` | draft | Register findings a lane wrote as a numbered list, and flag a lane that registered nothing. |
+| 7 | `007-worktree-removal/` | draft | Remove the per-lineage worktree mechanism entirely, since attribution is not a requirement and preserve-by-default plus never-fatal meet the operator's need. |
 <!-- /ANCHOR:phase-map -->
 
 ---

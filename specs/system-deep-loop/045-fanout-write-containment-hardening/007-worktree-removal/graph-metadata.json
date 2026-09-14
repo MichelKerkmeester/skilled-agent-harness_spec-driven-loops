@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-deep-loop/045-fanout-write-containment-hardening/005-churn-cumulative-arm",
-  "spec_folder": "system-deep-loop/045-fanout-write-containment-hardening/005-churn-cumulative-arm",
+  "packet_id": "system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal",
+  "spec_folder": "system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal",
   "parent_id": "system-deep-loop/045-fanout-write-containment-hardening",
   "children_ids": [],
   "manual": {
@@ -195,8 +195,8 @@
       }
     ],
     "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
-    "created_at": "2026-09-14T08:24:18Z",
-    "last_save_at": "2026-09-14T09:09:12.270Z",
+    "created_at": "2026-09-14T09:09:00Z",
+    "last_save_at": "2026-09-14T09:09:15.165Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:383d911d9708701ce542b88b4fdea87e4fb90a6ad797f2775b13ea70eecfb587",
+    "source_fingerprint": "sha256:9c4107e9b8acda16095b041b704bd2d947d1f62f46ff5b737562688970f91f05",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "19455b75781a973997012fa3d6394d1ae68c383fa04d127e35aac9dc02436c41",
-      "plan.md": "26bf69c705d6bb968c2a27507534959e59eb0e46bbfa40db1758f6c5e6e5a48e",
-      "tasks.md": "ce384176caabd70cfa7f908970ed3ea04ed4a55181668f1002a1fc8086e004c6",
-      "implementation-summary.md": "0532ba608e7861f6371a066ebc100ca1db0422a07ac53fcffb912ca8a5980ea9"
+      "spec.md": "f2f931c5f76192d634e08ccf7634c04cdbf11d42e34a2a6af5199904b2a9b6d1",
+      "plan.md": "2e5a740e5a16f2de52f68b42db671eafd5fe3028480ec445498ffeefef8b5cda",
+      "tasks.md": "48e2eb65f3643bbffe1fca4ea526ec4bb18b6028d1142ad31a1be0cd55a79c75",
+      "implementation-summary.md": "7a33af9269c8871b2b7f58c0c01d7445f66fe09ad73bc6db011203a3b8bd8c51"
     },
     "last_active_at": null
   }

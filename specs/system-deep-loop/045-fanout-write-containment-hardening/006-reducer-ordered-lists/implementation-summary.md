@@ -1,0 +1,92 @@
+---
+title: "Implementation Summary"
+description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+trigger_phrases:
+  - "implementation summary"
+  - "what shipped"
+  - "validation evidence"
+  - "continuation notes"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/045-fanout-write-containment-hardening/006-reducer-ordered-lists"
+    last_updated_at: "2026-09-14T08:24:20Z"
+    last_updated_by: "template-author"
+    recent_action: "Initialized Level 2 template"
+    next_safe_action: "Replace continuity placeholders"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-007-reducer-ordered-lists"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 006-reducer-ordered-lists |
+| **Completed** | 2026-09-14 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## 2. WHAT WAS BUILT
+
+Nothing yet. This phase is planned; its change lands in `deep-research/scripts/reduce-state.cjs` and is verified by the deep-loop suite before the next phase starts.
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+[How was this tested, verified and shipped? What was the rollout approach?]
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+<!-- ANCHOR:decisions -->
+## Key Decisions
+
+| Decision | Why |
+|----------|-----|
+| [What was decided] | [Active-voice rationale with specific reasoning] |
+<!-- /ANCHOR:decisions -->
+
+---
+
+<!-- ANCHOR:verification -->
+## Verification
+
+| Check | Result |
+|-------|--------|
+| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+<!-- /ANCHOR:verification -->
+
+---
+
+<!-- ANCHOR:limitations -->
+## Known Limitations
+
+1. **[Limitation]** [Specific detail with workaround if one exists.]
+<!-- /ANCHOR:limitations -->
+
+---
+
+

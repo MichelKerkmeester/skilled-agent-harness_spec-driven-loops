@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Give the shared-checkout churn detector a cumulative arm so slow drift trips it"
+title: "Feature Specification: Under preserve, an out-of-scope untracked path is advisory and never fails the lane, so a neighbour's new file cannot halt a fan-out"
 description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
 trigger_phrases:
   - "feature specification"
@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Give the shared-checkout churn detector a cumulative arm so slow drift trips it
+# Feature Specification: Under preserve, an out-of-scope untracked path is advisory and never fails the lane, so a neighbour's new file cannot halt a fan-out
 
 <!-- SPECKIT_LEVEL: 2 -->
 ---
@@ -24,9 +24,9 @@ contextType: "general"
 | **Priority** | [P0/P1/P2] |
 | **Status** | Draft |
 | **Created** | 2026-09-14 |
-| **Branch** | `scaffold/005-churn-cumulative-arm` |
+| **Branch** | `scaffold/007-never-fatal-untracked` |
 | **Parent** | `../spec.md` |
-| **Predecessor** | `../004-index-lock-retry/spec.md` |
+| **Predecessor** | none |
 <!-- /ANCHOR:metadata -->
 
 ---

@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Give the shared-checkout churn detector a cumulative arm so slow drift trips it"
+title: "Feature Specification: Retry a git call that lost an index.lock race with another session, and record on the ledger when one still failed"
 description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
 trigger_phrases:
   - "feature specification"
@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Give the shared-checkout churn detector a cumulative arm so slow drift trips it
+# Feature Specification: Retry a git call that lost an index.lock race with another session, and record on the ledger when one still failed
 
 <!-- SPECKIT_LEVEL: 2 -->
 ---
@@ -24,9 +24,9 @@ contextType: "general"
 | **Priority** | [P0/P1/P2] |
 | **Status** | Draft |
 | **Created** | 2026-09-14 |
-| **Branch** | `scaffold/005-churn-cumulative-arm` |
+| **Branch** | `scaffold/008-index-lock-retry` |
 | **Parent** | `../spec.md` |
-| **Predecessor** | `../004-index-lock-retry/spec.md` |
+| **Predecessor** | `../003-publish-manifest-provenance/spec.md` |
 <!-- /ANCHOR:metadata -->
 
 ---
