@@ -704,12 +704,6 @@ const fanoutControlShape = {
     // and a running total is the only count that sees it. Twelve sits above the slow
     // trickle a working tree produces on its own, and zero disables this arm.
     churnCumulativeThreshold: z.number().int().nonnegative().default(12),
-    // Isolation is the structural fix for a shared checkout: a lane that cannot write
-    // outside its own tree cannot destroy a neighbouring session's work. It is the default
-    // because preserve bounds the damage while isolation removes it. A lane whose tree
-    // cannot be made degrades to the shared checkout, and the run summary counts those, so
-    // an unisolated run is visible instead of silent. --worktrees false opts a run out.
-    worktrees: z.boolean().default(false),
   // `prefault` rather than `default`: Zod returns a default unparsed, so a literal that names
   // only some fields would leave the rest undefined at runtime while the type claims them all.
   }).prefault({ mode: 'preserve', churnThreshold: 3, churnCumulativeThreshold: 12 }),
@@ -758,7 +752,6 @@ export interface FanoutConfig {
     readonly mode: 'preserve' | 'restore';
     readonly churnThreshold: number;
     readonly churnCumulativeThreshold: number;
-    readonly worktrees: boolean;
   };
 }
 

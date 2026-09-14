@@ -874,7 +874,7 @@ function runCappedPool(options) {
 /**
  * Build the ordered-results + summary envelope for a completed pool run.
  *
- * A lane whose artefacts are complete but whose worktree held an out-of-scope write still
+ * A lane whose artefacts are complete but which wrote out of scope still
  * succeeded, so it stays inside `succeeded`; that caveat gets its own count because it is
  * otherwise invisible to a reader of the summary.
  *

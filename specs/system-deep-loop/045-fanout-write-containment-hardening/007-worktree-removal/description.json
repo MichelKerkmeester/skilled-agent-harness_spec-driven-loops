@@ -1,17 +1,23 @@
 {
+  "level": "2",
   "specFolder": "system-deep-loop/045-fanout-write-containment-hardening/007-worktree-removal",
-  "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+  "description": "The per-lineage worktree mechanism cost 1.6 GB and about 22 seconds per lane, existed only to make write attribution exact, and attribution is not a",
   "keywords": [
-    "broken",
-    "missing",
-    "inefficient",
-    "sentences",
-    "describing",
-    "specific",
-    "pain",
-    "point"
+    "per-lineage",
+    "worktree",
+    "mechanism",
+    "cost",
+    "about",
+    "seconds",
+    "per",
+    "lane",
+    "existed",
+    "only",
+    "write",
+    "attribution",
+    "exact"
   ],
-  "lastUpdated": "2026-09-14T09:09:15.053Z",
+  "lastUpdated": "2026-09-14T15:51:08.026Z",
   "specId": "007",
   "folderSlug": "worktree-removal",
   "parentChain": [
@@ -19,6 +25,5 @@
     "045-fanout-write-containment-hardening"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

@@ -26,8 +26,8 @@ finding is reported.
 **Realistic user request**: An operator runs a research fan-out while a second session is editing
 files in the same checkout.
 
-**Preconditions**: A checkout with at least one dirty file outside the run's spec folder. Worktree
-isolation off for this run (`--worktrees false`), so the lane shares the checkout.
+**Preconditions**: A checkout with at least one dirty file outside the run's spec folder. The lane
+shares the checkout.
 
 **Expected outcome**: The run completes. Every dirty file outside the lineage directory keeps its
 bytes. The lane settles as completed with a containment advisory rather than failed, and the
@@ -38,7 +38,7 @@ orchestration summary counts it separately.
 ## 3. TEST EXECUTION
 
 1. Note the content hash of a dirty file outside the run's spec folder.
-2. Run the fan-out with `--worktrees false` against the spec folder, leaving the containment mode at
+2. Run the fan-out against the spec folder, leaving the containment mode at
    its default.
 3. While it runs, edit another file outside the spec folder from a second shell.
 4. When the run settles, re-hash both files.
