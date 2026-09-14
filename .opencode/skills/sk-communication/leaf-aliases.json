@@ -66,6 +66,11 @@
   },
   {
     "workflowMode": "sk-communication",
+    "leafResourceId": "manual-testing-playbook/fidelity-and-privacy/claim-omission-and-no-op.md",
+    "diskPath": "manual-testing-playbook/fidelity-and-privacy/claim-omission-and-no-op.md"
+  },
+  {
+    "workflowMode": "sk-communication",
     "leafResourceId": "manual-testing-playbook/fidelity-and-privacy/exact-original-fidelity-fallback.md",
     "diskPath": "manual-testing-playbook/fidelity-and-privacy/exact-original-fidelity-fallback.md"
   },
