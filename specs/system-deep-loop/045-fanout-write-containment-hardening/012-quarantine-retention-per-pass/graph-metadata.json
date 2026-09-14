@@ -39,14 +39,16 @@
       "approach"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts"
     ],
     "entities": [
       {
@@ -86,6 +88,18 @@
         "source": "derived"
       },
       {
+        "name": "write-containment.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts",
+        "source": "derived"
+      },
+      {
+        "name": "write-containment.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -116,7 +130,7 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement",
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -134,7 +148,7 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Pattern Pass",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -146,7 +160,7 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
+        "name": "Data Flow Enforce",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -180,23 +194,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "The quarantine writer targeted one fixed directory per lane and its docs said a later pass replaces the manifest and named files",
     "created_at": "2026-09-14T17:44:16Z",
-    "last_save_at": "2026-09-14T17:47:01.395Z",
+    "last_save_at": "2026-09-14T22:17:48.590Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +209,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c9f792763525349004ebc3bfa1f375d5e4af9ebdfdb3d9d766b8b7204bef8ec1",
+    "source_fingerprint": "sha256:1ce98218354aa209829c91f7561c5ffd0e278ee8798ac1086e7bb9621e5588ec",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d63b0f263172ed71f9f731d69cd7e50f7a436157b7d0c8def6cc9a0ce0cac6b8",
-      "plan.md": "53512ca8e1d3d5e491355d2c222b317970e22f5e9efd66698b0aa0da561c9efc",
-      "tasks.md": "d608d58b0bccee7c322ea7b3fd19c09d4a9cff3140ab39ea08ff04d1d3caad79",
-      "implementation-summary.md": "ee31fdb3d2025b96faa3431bda17d473be6a6a05fb3bb08e41340f7309f81597"
+      "spec.md": "f568bfc5a1e78409d26c0d84ff97bbddd7604e23c4c560a501e53a973a5b6e6c",
+      "plan.md": "527866a61136f3541952a5e86c9cac89a0d5f8585d79ea2a570ef6c98c243de4",
+      "tasks.md": "f903aca58078190768bdf5b24b5bd4b9cd00fbb6f9d52edee328a4931f7f96e0",
+      "implementation-summary.md": "3e5ed703b49b95e9fa465c6d4c0caa4a9f2120fb0257432d9f48a228726c4aa4"
     },
     "last_active_at": null
   }

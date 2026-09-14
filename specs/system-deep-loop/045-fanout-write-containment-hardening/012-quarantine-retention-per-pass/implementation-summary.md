@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+description: "Each containment pass keeps its own quarantine evidence under a pass-keyed directory; nothing an earlier pass wrote is ever replaced."
 trigger_phrases:
   - "implementation summary"
   - "what shipped"
@@ -12,9 +12,9 @@ _memory:
   continuity:
     packet_pointer: "system-deep-loop/045-fanout-write-containment-hardening/012-quarantine-retention-per-pass"
     last_updated_at: "2026-09-14T17:44:17Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialized Level 2 template"
-    next_safe_action: "Replace continuity placeholders"
+    last_updated_by: "claude-fable-5-1"
+    recent_action: "Made quarantine evidence per-pass and filled the packet docs"
+    next_safe_action: "Commit once the full suite exits zero"
     blockers: []
     key_files: []
     session_dedup:
@@ -46,20 +46,9 @@ _memory:
 ---
 
 <!-- ANCHOR:what-built -->
-## What Was Built
+## 2. WHAT WAS BUILT
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
-
-### Phase 5: quarantine-retention-per-pass
-
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
-
-### Files Changed
-
-| File | Action | Purpose |
-|------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+A later containment pass no longer overwrites an earlier one. In `runtime/lib/deep-loop/write-containment.ts` the quarantine tree is now `containment/quarantine/<pass>/`, where the pass segment is the iteration plus `-attempt-<n>` when the runner passes one; the combined revert patch lives under the same pass directory, still keyed by remedy; every quarantine and patch file is created with an exclusive open so an existing file is reported rather than replaced; and the patch destination passes the same canonicality refusal as every other write. The returned quarantine path and recovery hint name the pass that wrote them. The runner needed no change: it already passes the attempt and forwards the paths.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -67,7 +56,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-[How was this tested, verified and shipped? What was the rollout approach?]
+One dispatch to DeepSeek V4.1 Flash at max through the gateway on cli-pi. Against the unmodified writer the retention test failed and an on-disk probe showed one manifest surviving two passes. The delegate caught two defects its own change introduced: the new patch write following a link at the pass directory, fixed by routing it through the refusal, and an exclusive mkdir discarding a manifest when the patch had already created the directory, fixed by reusing the directory and claiming only files. The orchestrator reviewed the diff, updated the protocol line and parent plan, regenerated the compiled contract and ran the whole suite before committing.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -77,7 +66,9 @@ Explain what the user gains, not what files you touched.]
 
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| Reuse the pass directory, claim files exclusively | The combined patch and the quarantine share a directory; only files must never be replaced |
+| Key by attempt as well as iteration | A retry is a distinct pass whose evidence must survive |
+| Route the patch through the canonicality refusal | A pass directory is below the artifact root and a lane can plant a link there |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -87,7 +78,10 @@ Explain what the user gains, not what files you touched.]
 
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| Retention test and probe against unmodified writer | FAIL as expected: one manifest after two passes |
+| Both touched test files plus typecheck | PASS, exit 0, 216 tests |
+| Full deep-loop suite | `npm test` in the runtime: 152 files, 2614 passed, 8 skipped, exit 0, 1205 s; contract drift and render tests rerun green after the protocol edit and recompile |
+| `validate.sh --strict` on this phase | RESULT: PASSED |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -95,7 +89,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **Growth.** Retained passes accumulate under the lane; the quarantine size bound still applies per pass.
 <!-- /ANCHOR:limitations -->
 
 ---
