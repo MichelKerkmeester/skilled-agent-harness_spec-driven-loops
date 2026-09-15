@@ -312,6 +312,59 @@ export interface MemorySaveFailedData extends MemorySaveRequestedData {
   readonly failureReason: string;
 }
 
+// Run-now records are appended at the loop boundary, before any dissection of
+// the run's research state, so they carry only the boundary bookkeeping a
+// reader needs to correlate the sentinel with the iteration it dispatched.
+export interface RunNowRequestedData extends JsonObject {
+  readonly mode: string;
+  readonly run: Uint32;
+  readonly sessionId: string;
+  readonly generation: Uint32;
+  readonly sentinelPath: string;
+}
+
+export interface RunNowRejectedData extends RunNowRequestedData {
+  readonly reason: string;
+  readonly pauseSentinelPath: string;
+}
+
+export interface RunNowAcceptedData extends RunNowRequestedData {
+  readonly dispatchEvent: string;
+}
+
+export type RunNowRestoredData = RunNowRequestedData;
+
+// The synthesis report is the last write of a run, so its payload carries the
+// reconciliation counts a reader needs to tell a complete report from one that
+// only looked complete; nullable counts stay null when the source artifact was
+// unreadable rather than collapsing to zero.
+export interface SynthesisIncompleteData extends JsonObject {
+  readonly mode: string;
+  readonly severity: string;
+  readonly totalIterations: Uint32;
+  readonly answeredCount: Uint32;
+  readonly totalQuestions: Uint32;
+  readonly stopReason: string;
+  readonly reason: string;
+  readonly invariantFailures: string[];
+  readonly missingArtifacts: JsonObject[];
+  readonly registryFindingCount: Uint32 | null;
+  readonly iterationFindingCount: Uint32;
+  readonly countOnlyFindingCount: Uint32;
+  readonly identifiableFindingCount: Uint32;
+  readonly missingStructuredFindingCount: Uint32;
+  readonly sourceFindingCount: Uint32 | null;
+  readonly reconstructionGapCount: Uint32 | null;
+  readonly stateParseFailureCount: Uint32;
+}
+
+export interface SynthesisCompleteData extends JsonObject {
+  readonly totalIterations: Uint32;
+  readonly answeredCount: Uint32;
+  readonly totalQuestions: Uint32;
+  readonly stopReason: string;
+}
+
 export interface RunCompletedData extends JsonObject {
   readonly terminalStatus: 'blocked' | 'completed' | 'incomplete';
   readonly convergenceEventId: string;
@@ -351,6 +404,12 @@ export const DeepResearchEventStems = Object.freeze([
   'deep_research.memory_save_completed',
   'deep_research.memory_save_failed',
   'deep_research.run_completed',
+  'deep_research.run_now_requested',
+  'deep_research.run_now_rejected',
+  'deep_research.run_now_accepted',
+  'deep_research.run_now_restored',
+  'deep_research.synthesis_incomplete',
+  'deep_research.synthesis_complete',
 ] as const);
 
 export type DeepResearchEventStem = typeof DeepResearchEventStems[number];
@@ -379,6 +438,12 @@ export const DeepResearchWireEventTypes = Object.freeze({
   'deep_research.memory_save_completed': 'deep-research.ledger.memory-save-completed',
   'deep_research.memory_save_failed': 'deep-research.ledger.memory-save-failed',
   'deep_research.run_completed': 'deep-research.ledger.run-completed',
+  'deep_research.run_now_requested': 'deep-research.ledger.run-now-requested',
+  'deep_research.run_now_rejected': 'deep-research.ledger.run-now-rejected',
+  'deep_research.run_now_accepted': 'deep-research.ledger.run-now-accepted',
+  'deep_research.run_now_restored': 'deep-research.ledger.run-now-restored',
+  'deep_research.synthesis_incomplete': 'deep-research.ledger.synthesis-incomplete',
+  'deep_research.synthesis_complete': 'deep-research.ledger.synthesis-complete',
 } as const satisfies Readonly<Record<DeepResearchEventStem, string>>);
 
 export type DeepResearchWireEventType =
@@ -408,6 +473,12 @@ export interface DeepResearchPayloadMap {
   readonly 'deep_research.memory_save_completed': MemorySaveCompletedData;
   readonly 'deep_research.memory_save_failed': MemorySaveFailedData;
   readonly 'deep_research.run_completed': RunCompletedData;
+  readonly 'deep_research.run_now_requested': RunNowRequestedData;
+  readonly 'deep_research.run_now_rejected': RunNowRejectedData;
+  readonly 'deep_research.run_now_accepted': RunNowAcceptedData;
+  readonly 'deep_research.run_now_restored': RunNowRestoredData;
+  readonly 'deep_research.synthesis_incomplete': SynthesisIncompleteData;
+  readonly 'deep_research.synthesis_complete': SynthesisCompleteData;
 }
 
 export interface DeepResearchScopeMap {
@@ -434,6 +505,12 @@ export interface DeepResearchScopeMap {
   readonly 'deep_research.memory_save_completed': DeepResearchBaseScope;
   readonly 'deep_research.memory_save_failed': DeepResearchBaseScope;
   readonly 'deep_research.run_completed': DeepResearchBaseScope;
+  readonly 'deep_research.run_now_requested': DeepResearchBaseScope;
+  readonly 'deep_research.run_now_rejected': DeepResearchBaseScope;
+  readonly 'deep_research.run_now_accepted': DeepResearchBaseScope;
+  readonly 'deep_research.run_now_restored': DeepResearchBaseScope;
+  readonly 'deep_research.synthesis_incomplete': DeepResearchBaseScope;
+  readonly 'deep_research.synthesis_complete': DeepResearchBaseScope;
 }
 
 export interface DeepResearchLedgerPayload<

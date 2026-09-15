@@ -10,18 +10,18 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/020-direct-append-sites-through-gateway"
+    packet_pointer: "system-deep-loop/045-fanout-write-containment-hardening/020-direct-append-sites-through-gateway"
     last_updated_at: "2026-09-15T01:34:53Z"
-    last_updated_by: "scaffold"
+    last_updated_by: "claude-fable-5-1"
     recent_action: "Authored the acceptance criteria for this packet"
     next_safe_action: "Meet, waive or supersede the open criteria"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "[SESSION-ID]"
+      session_id: "2026-09-14-020-direct-append-sites-through-gateway"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,9 +39,9 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** [PACKET-ID]
-**Level:** [2/3/3+]
-**Status:** [Draft/In Progress/Complete]
+**Packet:** system-deep-loop/045-fanout-write-containment-hardening/020-direct-append-sites-through-gateway
+**Level:** 2
+**Status:** Complete
 **Date:** 2026-09-15
 <!-- /ANCHOR:metadata -->
 
@@ -54,7 +54,9 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given [context], When [action], Then [observable outcome] | [command, file:line, or artifact that proves it] | Unmet | - |
+| AC-001 | REQ-001 | Given the ten command assets, When the append-site checker runs, Then it reports zero violations and zero exemptions | `check-protocol-append-sites.vitest.ts:365`; counts were three, three, one, one before | Met | - |
+| AC-002 | REQ-002 | Given the migrated events, When one more gateway append follows, Then every earlier row is still in the state log | `append-mode-event-cli.vitest.ts:749` and `:781` | Met | - |
+| AC-003 | REQ-003 | Given a row written directly, When the next gateway append runs, Then the row is gone | `append-mode-event-cli.vitest.ts:830` | Met | - |
 
 ### Status values
 

@@ -39,7 +39,7 @@
       "approach"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -116,7 +116,7 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement",
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -134,7 +134,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Twelve",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -147,12 +153,6 @@
       },
       {
         "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "The projection store appends only when the current state log is a durable prefix of the folded projection and otherwise replaces the file, so any row a YAML appended outside the ledger was dropped on the next gateway write",
     "created_at": "2026-09-15T01:34:52Z",
-    "last_save_at": "2026-09-15T01:34:55.271Z",
+    "last_save_at": "2026-09-15T08:10:18.688Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:883b2a853162adc8fea08278e27eca719747f94ce32102d3d2850bdb3f7425ce",
+    "source_fingerprint": "sha256:048d62a190c443b21932c835ba31913bdb07a8b22672ff777035a3e1cd9e6946",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "33531f65250b0b76f2fc2c1c147c2ba88c9006cb59fe0e1d922ccabbb5917804",
-      "plan.md": "d390b947d96ed6e346847371a480180ff7243039eba5bad32ed279d66a7fc90c",
-      "tasks.md": "29b955f7938b888d1343008e5f64adc04bec0dc007d8eb314bcb544e7caee58f",
-      "implementation-summary.md": "3436c9f285d2397ca094d4168b3297cc81bae52dc43a5080aaab7c522592d773"
+      "spec.md": "38785099fe61ef8d804ea6d94ec76777c95aca65f740e9e3736ecfd2bce97321",
+      "plan.md": "2e832a224b577e2a55198fa86637ff629159cf84528e56fe222a6ad780ee48a9",
+      "tasks.md": "40f8e6dc41863b4247fed46a3d9196947294824a034187c19b2e751906d3ce9d",
+      "implementation-summary.md": "7e1279108bf47518fda7f18e280cdfbe67ad9d4f060bf52f3e2c3f44603abaf7"
     },
     "last_active_at": null
   }

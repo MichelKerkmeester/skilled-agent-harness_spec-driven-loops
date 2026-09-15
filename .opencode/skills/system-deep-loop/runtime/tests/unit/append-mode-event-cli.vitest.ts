@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, it } from 'vitest';
 
 import { spawnSync } from 'node:child_process';
-import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { appendFileSync, existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -558,5 +558,298 @@ describe('append-mode-event CLI subprocess execution', () => {
 
     expect(result.exitCode).toBe(0);
     expect(result.json.ok).toBe(true);
+  });
+});
+
+describe('gateway-recorded rows survive a later projection refresh', () => {
+  // The state log is a projection the gateway rebuilds from the ledger. A row
+  // recorded THROUGH the gateway is part of the fold and survives later
+  // appends; a row written beside the projection is not, and the next refresh
+  // replaces it. The cases pin that difference for every row shape the command
+  // workflows used to append directly: research iteration-error and run-now
+  // rows, the review migration marker, and review iteration-error and
+  // claim-adjudication rows.
+  const DIGEST = '0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef';
+
+  function projectedStatePath(runDir: string): string {
+    return join(runDir, 'research', 'deep-research-state.jsonl');
+  }
+
+  function readProjectedRows(statePath: string): Record<string, unknown>[] {
+    if (!existsSync(statePath)) return [];
+    const content = readFileSync(statePath, 'utf8').trim();
+    if (!content) return [];
+    return content.split(/\r?\n/).map((line) => JSON.parse(line) as Record<string, unknown>);
+  }
+
+  function writeEventFile(runDir: string, name: string, event: Record<string, unknown>): string {
+    const eventPath = join(runDir, name);
+    writeFileSync(eventPath, JSON.stringify(event), 'utf8');
+    return eventPath;
+  }
+
+  function appendEvent(runDir: string, name: string, event: Record<string, unknown>): CliResult {
+    return runCli([
+      '--mode',
+      'deep-research',
+      '--run-directory',
+      runDir,
+      '--event-json',
+      writeEventFile(runDir, name, event),
+    ]);
+  }
+
+  function iterationErrorRecord(): Record<string, unknown> {
+    return {
+      type: 'iteration',
+      iteration: 1,
+      run: 1,
+      mode: 'research',
+      status: 'error',
+      focus: 'correctness',
+      findingsCount: 0,
+      newInfoRatio: 0,
+      keyQuestions: [],
+      answeredQuestions: [],
+      durationMs: 0,
+      timestamp: '2026-01-01T00:00:00.000Z',
+      sessionId: 'session-rows',
+      generation: 1,
+    };
+  }
+
+  function runNowAcceptedRecord(): Record<string, unknown> {
+    return {
+      stem: 'deep_research.run_now_accepted',
+      scope: { runId: 'session-rows', lineageId: 'session-rows' },
+      data: {
+        mode: 'research',
+        run: 1,
+        sessionId: 'session-rows',
+        generation: 1,
+        sentinelPath: '/tmp/research/.deep-research-run-now',
+        dispatchEvent: 'iteration_start',
+      },
+    };
+  }
+
+  function ordinaryRecord(): Record<string, unknown> {
+    return {
+      stem: 'deep_research.question_registered',
+      scope: { runId: 'session-rows', lineageId: 'session-rows', questionId: 'question-1' },
+      data: {
+        normalizedQuestionDigest: DIGEST,
+        dependencyQuestionIds: [],
+        requiredSourceClasses: ['academic-paper'],
+        disconfirmingQueryRecipeIds: [],
+        budgetRef: 'budget-001',
+      },
+    };
+  }
+
+  function reviewMigrationRecord(): Record<string, unknown> {
+    return {
+      stem: 'deep_review.migration',
+      scope: { runId: 'session-review-rows', sessionId: 'session-review-rows' },
+      data: {
+        mode: 'review',
+        // Hidden sentinel names, exactly as the migration step emits them.
+        legacyArtifacts: ['deep-research-config.json', 'deep-research-state.jsonl', '.deep-research-pause'],
+        canonicalArtifacts: ['deep-review-config.json', 'deep-review-state.jsonl', '.deep-review-pause'],
+      },
+    };
+  }
+
+  function reviewClaimAdjudicationRecord(): Record<string, unknown> {
+    return {
+      stem: 'deep_review.claim_adjudication',
+      scope: { runId: 'session-review-rows', sessionId: 'session-review-rows' },
+      data: {
+        mode: 'review',
+        run: 2,
+        passed: false,
+        activeP0P1: 2,
+        missingPackets: ['claim-004'],
+        reason: 'active_p0_p1_present',
+        sessionId: 'session-review-rows',
+        generation: 1,
+      },
+    };
+  }
+
+  function reviewRecoveryBaselineRecord(): Record<string, unknown> {
+    return {
+      stem: 'deep_review.recovery_baseline',
+      scope: { runId: 'session-review-rows', sessionId: 'session-review-rows' },
+      data: {
+        mode: 'review',
+        iteration: 2,
+        recoveryBaselineCommit: '0a1b2c3d4e5f60718293a4b5c6d7e8f901234567',
+        worktree: '/tmp/review/worktree',
+      },
+    };
+  }
+
+  function reviewIterationErrorRecord(): Record<string, unknown> {
+    return {
+      stem: 'deep_review.iteration_error',
+      scope: { runId: 'session-review-rows', sessionId: 'session-review-rows' },
+      data: {
+        type: 'iteration',
+        iteration: 2,
+        run: 2,
+        mode: 'review',
+        status: 'error',
+        focus: 'security',
+        dimensions: ['security'],
+        filesReviewed: ['src/a.ts'],
+        findingsCount: 0,
+        findingsSummary: { P0: 0, P1: 0, P2: 0 },
+        findingsNew: [],
+        findingDetails: [],
+        traceabilityChecks: { summary: { checked: 0, covered: 0 }, results: [] },
+        newFindingsRatio: 0,
+        durationMs: 0,
+        sessionId: 'session-review-rows',
+        generation: 1,
+        lineageMode: 'review',
+      },
+    };
+  }
+
+  function reviewSynthesisCompleteRecord(): Record<string, unknown> {
+    return {
+      stem: 'deep_review.synthesis_complete',
+      scope: { runId: 'session-review-rows', sessionId: 'session-review-rows' },
+      data: {
+        mode: 'review',
+        totalIterations: 2,
+        activeP0: 0,
+        activeP1: 0,
+        activeP2: 1,
+        dimensionCoverage: 1,
+        verdict: 'PASS',
+        releaseReadinessState: 'in-progress',
+        stopReason: 'converged',
+      },
+    };
+  }
+
+  function appendReviewEvent(runDir: string, name: string, event: Record<string, unknown>): CliResult {
+    return runCli([
+      '--mode',
+      'deep-review',
+      '--run-directory',
+      runDir,
+      '--event-json',
+      writeEventFile(runDir, name, event),
+    ]);
+  }
+
+  it('keeps an iteration-error row and a run-now row after a later append', () => {
+    const runDir = createTempDir('rows-survive');
+
+    const iterationResult = appendEvent(runDir, 'iteration-error.json', iterationErrorRecord());
+    expect(iterationResult.exitCode, iterationResult.stderr).toBe(0);
+    expect(iterationResult.json.ok).toBe(true);
+    expect(iterationResult.json.projectionRefreshed).toBe(true);
+
+    const runNowResult = appendEvent(runDir, 'run-now.json', runNowAcceptedRecord());
+    expect(runNowResult.exitCode, runNowResult.stderr).toBe(0);
+    expect(runNowResult.json.projectionRefreshed).toBe(true);
+
+    const ordinaryResult = appendEvent(runDir, 'ordinary.json', ordinaryRecord());
+    expect(ordinaryResult.exitCode, ordinaryResult.stderr).toBe(0);
+    expect(ordinaryResult.json.projectionRefreshed).toBe(true);
+
+    const rows = readProjectedRows(projectedStatePath(runDir));
+    expect(rows).toHaveLength(3);
+    expect(rows[0]).toMatchObject({ type: 'iteration', iteration: 1, run: 1, status: 'error' });
+    expect(rows[1]).toMatchObject({
+      type: 'event',
+      event: 'run_now_accepted',
+      mode: 'research',
+      run: 1,
+      sessionId: 'session-rows',
+      generation: 1,
+      sentinelPath: '/tmp/research/.deep-research-run-now',
+      dispatchEvent: 'iteration_start',
+    });
+    expect(rows[2]).toMatchObject({ type: 'event', event: 'question_registered', questionId: 'question-1' });
+  });
+
+  it('keeps review claim-adjudication and iteration-error rows after a later append', () => {
+    const runDir = createTempDir('rows-survive-review');
+    const reviewStatePath = join(runDir, 'review', 'deep-review-state.jsonl');
+
+    const migrationResult = appendReviewEvent(runDir, 'migration.json', reviewMigrationRecord());
+    expect(migrationResult.exitCode, migrationResult.stderr).toBe(0);
+    expect(migrationResult.json.ok).toBe(true);
+    expect(migrationResult.json.projectionRefreshed).toBe(true);
+
+    const claimResult = appendReviewEvent(runDir, 'claim.json', reviewClaimAdjudicationRecord());
+    expect(claimResult.exitCode, claimResult.stderr).toBe(0);
+    expect(claimResult.json.projectionRefreshed).toBe(true);
+
+    const recoveryResult = appendReviewEvent(runDir, 'recovery.json', reviewRecoveryBaselineRecord());
+    expect(recoveryResult.exitCode, recoveryResult.stderr).toBe(0);
+    expect(recoveryResult.json.projectionRefreshed).toBe(true);
+
+    const iterationResult = appendReviewEvent(runDir, 'iteration-error.json', reviewIterationErrorRecord());
+    expect(iterationResult.exitCode, iterationResult.stderr).toBe(0);
+    expect(iterationResult.json.projectionRefreshed).toBe(true);
+
+    const synthesisResult = appendReviewEvent(runDir, 'synthesis.json', reviewSynthesisCompleteRecord());
+    expect(synthesisResult.exitCode, synthesisResult.stderr).toBe(0);
+    expect(synthesisResult.json.projectionRefreshed).toBe(true);
+
+    // The first rows must survive the later appends: they are part of the fold
+    // the projection is rebuilt from, not rows written beside it.
+    const rows = readProjectedRows(reviewStatePath);
+    expect(rows).toHaveLength(5);
+    expect(rows[0]).toMatchObject({
+      type: 'event',
+      event: 'migration',
+      mode: 'review',
+      legacyArtifacts: ['deep-research-config.json', 'deep-research-state.jsonl', '.deep-research-pause'],
+      canonicalArtifacts: ['deep-review-config.json', 'deep-review-state.jsonl', '.deep-review-pause'],
+    });
+    expect(rows[1]).toMatchObject({
+      type: 'event',
+      event: 'claim_adjudication',
+      mode: 'review',
+      run: 2,
+      passed: false,
+      activeP0P1: 2,
+    });
+    expect(rows[2]).toMatchObject({ type: 'event', event: 'recovery_baseline', iteration: 2 });
+    expect(rows[3]).toMatchObject({ type: 'iteration', iteration: 2, run: 2, status: 'error' });
+    expect(rows[4]).toMatchObject({ type: 'event', event: 'synthesis_complete', stopReason: 'converged' });
+  });
+
+  it('drops a row written directly to the projection on the next gateway append', () => {
+    const runDir = createTempDir('rows-negative-control');
+    const statePath = projectedStatePath(runDir);
+
+    const firstResult = appendEvent(runDir, 'first.json', ordinaryRecord());
+    expect(firstResult.exitCode, firstResult.stderr).toBe(0);
+
+    // The retired exemption sites wrote exactly this way: a bare append beside
+    // the projection, with no ledger event behind it.
+    appendFileSync(
+      statePath,
+      `${JSON.stringify({ type: 'event', event: 'run_now_accepted', mode: 'research', run: 1 })}\n`,
+      'utf8',
+    );
+    expect(readProjectedRows(statePath).some((row) => row.event === 'run_now_accepted')).toBe(true);
+
+    const secondResult = appendEvent(runDir, 'second.json', runNowAcceptedRecord());
+    expect(secondResult.exitCode, secondResult.stderr).toBe(0);
+    expect(secondResult.json.projectionRefreshed).toBe(true);
+
+    const rows = readProjectedRows(statePath);
+    expect(rows.some((row) => row.event === 'run_now_accepted' && row.stem === undefined)).toBe(false);
+    expect(rows.filter((row) => row.event === 'run_now_accepted')).toHaveLength(1);
+    expect(rows.some((row) => row.event === 'question_registered')).toBe(true);
   });
 });

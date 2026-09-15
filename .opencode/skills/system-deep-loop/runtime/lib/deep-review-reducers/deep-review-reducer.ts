@@ -134,6 +134,12 @@ export const DEEP_REVIEW_EVENT_ROUTING = Object.freeze({
   'deep_review.continuity_save_completed': Object.freeze(['artifactIndex']),
   'deep_review.continuity_save_failed': Object.freeze(['artifactIndex', 'status']),
   'deep_review.run_completed': Object.freeze(['reviewLoop', 'status']),
+  'deep_review.migration': Object.freeze(['reviewLoop', 'status']),
+  'deep_review.recovery_baseline': Object.freeze(['reviewLoop', 'status']),
+  'deep_review.synthesis_incomplete': Object.freeze(['reviewLoop', 'status']),
+  'deep_review.synthesis_complete': Object.freeze(['reviewLoop', 'status']),
+  'deep_review.claim_adjudication': Object.freeze(['reviewLoop', 'status']),
+  'deep_review.iteration_error': Object.freeze(['reviewLoop', 'status']),
 } as const satisfies Readonly<Record<DeepReviewEventStem, readonly ProjectionPlane[]>>);
 
 function stemsForPlane(plane: ProjectionPlane): readonly DeepReviewEventStem[] {
@@ -670,6 +676,12 @@ function foldReviewLoopEvent(
     case 'deep_review.pause_recorded':
     case 'deep_review.recovery_started':
     case 'deep_review.synthesis_started':
+    case 'deep_review.migration':
+    case 'deep_review.recovery_baseline':
+    case 'deep_review.synthesis_incomplete':
+    case 'deep_review.synthesis_complete':
+    case 'deep_review.claim_adjudication':
+    case 'deep_review.iteration_error':
       return reviewLoop;
     case 'deep_review.convergence_evaluated':
     case 'deep_review.graph_convergence_evaluated':
@@ -1383,6 +1395,12 @@ function artifactFromEvent(
     case 'deep_review.recovery_started':
     case 'deep_review.synthesis_started':
     case 'deep_review.run_completed':
+    case 'deep_review.migration':
+    case 'deep_review.recovery_baseline':
+    case 'deep_review.synthesis_incomplete':
+    case 'deep_review.synthesis_complete':
+    case 'deep_review.claim_adjudication':
+    case 'deep_review.iteration_error':
       return null;
   }
   return assertNeverStem((event as DeepReviewLedgerEvent).payload.stem as never);
@@ -1585,6 +1603,12 @@ function transitionForEvent(
     case 'deep_review.review_report_committed':
     case 'deep_review.continuity_save_requested':
     case 'deep_review.continuity_save_completed':
+    case 'deep_review.migration':
+    case 'deep_review.recovery_baseline':
+    case 'deep_review.synthesis_incomplete':
+    case 'deep_review.synthesis_complete':
+    case 'deep_review.claim_adjudication':
+    case 'deep_review.iteration_error':
       return null;
     case 'deep_review.continuity_save_failed':
       return { ...base, state: 'blocked', blockingReason: 'continuity-save-failed' };

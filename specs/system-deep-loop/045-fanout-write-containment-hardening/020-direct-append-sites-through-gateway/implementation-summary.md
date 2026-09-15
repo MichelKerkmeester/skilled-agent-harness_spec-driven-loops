@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+description: "Every direct state-log append in the deep-loop YAMLs now goes through the gateway under a canonical stem, the exemptions are gone, and a projection refresh cannot drop a row."
 trigger_phrases:
   - "implementation summary"
   - "what shipped"
@@ -12,9 +12,9 @@ _memory:
   continuity:
     packet_pointer: "system-deep-loop/045-fanout-write-containment-hardening/020-direct-append-sites-through-gateway"
     last_updated_at: "2026-09-15T01:34:53Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialized Level 2 template"
-    next_safe_action: "Replace continuity placeholders"
+    last_updated_by: "claude-fable-5-1"
+    recent_action: "Routed every direct append through the gateway and filled the packet docs"
+    next_safe_action: "Commit once the full suite exits zero"
     blockers: []
     key_files: []
     session_dedup:
@@ -46,20 +46,9 @@ _memory:
 ---
 
 <!-- ANCHOR:what-built -->
-## What Was Built
+## 2. WHAT WAS BUILT
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
-
-### Phase 1: direct-append-sites-through-gateway
-
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
-
-### Files Changed
-
-| File | Action | Purpose |
-|------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+No deep-loop command YAML writes a state log outside the gateway any more. The review and research ledger schemas under `runtime/lib/deep-review-ledger-schema/` and `runtime/lib/deep-research-ledger-schema/` gained twelve canonical stems with closed payload rules and two field kinds, the reducers route them without changing any projection, and every direct site in the four YAMLs, the review migration marker, recovery baseline, iteration-error and claim-adjudication records and the research run-now and synthesis records, now stages its record and calls `runtime/scripts/append-mode-event.cjs`. The checker declarations carry no exemptions and it reports zero violations across all ten assets. Survival tests append the migrated events and one more and find them intact, while the negative control shows a directly written row dropped by the next refresh, the defect this phase closes. Executing every record shape end to end caught one rejection the harness alone would have missed: a legacy artifact name with a leading dot failed the review schema's token pattern, so the artifact fields are declared as file-name JSON and the production literal is pinned in the test.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -67,7 +56,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-[How was this tested, verified and shipped? What was the rollout approach?]
+One dispatch to DeepSeek V4.1 Flash at max through the gateway on cli-pi. The delegate extended the allowed file list to the reducer packages and schema test fixtures because the exhaustive routing switches break the typecheck otherwise, reported that as a deviation, ran every record shape against the live gateway, and ran the whole suite itself. The orchestrator reviewed the diffs, reran the checker, the contract and gateway tests and typecheck, and ran the whole suite again before committing.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -77,7 +66,9 @@ Explain what the user gains, not what files you touched.]
 
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| A canonical stem per event rather than a generic passthrough | The ledger's closed payload rules are what make the projection trustworthy |
+| Declare artifact-name fields as JSON | They are file names, not system tokens; the token pattern rejected a real production value |
+| Leave append_jsonl directives alone | They are workflow directives the command runtime routes; none is a direct append |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -87,7 +78,11 @@ Explain what the user gains, not what files you touched.]
 
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| Append-site checker | ok, scanned 10, zero violations, zero exemptions |
+| Contract, checker and gateway tests plus typecheck | PASS, exit 0, 68 tests |
+| Every record shape against the live gateway | one rejection found and fixed; all pass |
+| Full deep-loop suite | `npm test` in the runtime: 152 files, 2644 passed, 8 skipped, exit 0, 1291 s |
+| `validate.sh --strict` on this phase | RESULT: PASSED |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -95,7 +90,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **append_jsonl directives.** These remain workflow directives; the in-repo tree has no executor that routes them through the gateway, which is the command runtime's contract, not this phase's.
 <!-- /ANCHOR:limitations -->
 
 ---
