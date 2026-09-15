@@ -46,7 +46,17 @@ READ_ONLY_MESSAGE = (
 # The bound packet's goal, rendered into the session prompt. Hermes has no session identity the
 # shared goal core can bind to, so the packet path arrives in the environment.
 SPEC_FOLDER_ENV = "HERMES_SPEC_FOLDER"
-GOAL_SLICE_MAX_CHARS = 4000
+# Hermes caps every plugin prompt section at 4000 characters and skips a section that exceeds
+# it, so each piece of context is its own section and each stays under the cap.
+SECTION_MAX_CHARS = 4000
+GOAL_SLICE_MAX_CHARS = 3600
+
+# Hermes has no flag that loads an agent file, so the persona named here is read from the repo's
+# agent directory and rendered into the session prompt; the name is a plain agent file stem.
+PERSONA_ENV = "HERMES_AGENT_PERSONA"
+AGENTS_DIR = REPO_ROOT / ".hermes" / "agents"
+PERSONA_NAME = re.compile(r"^[a-z0-9][a-z0-9-]{0,63}$")
+AGENT_SKILL_PREFIX = "agent-"
 
 # A git command flagged by the sk-git advisory core; the advisory travels on the tool result
 # because Hermes's pre_tool_call directive can only block, approve or modify.
@@ -202,8 +212,38 @@ def _goal_slice() -> str:
     return f"Bound packet: {folder}\n\n{body}"
 
 
+def _strip_frontmatter(text: str) -> str:
+    if text.startswith("---"):
+        closing = text.find("\n---", 3)
+        if closing > 0:
+            return text[closing + 4:]
+    return text
+
+
+def _persona() -> str:
+    """The agent persona named by the environment, frontmatter stripped, or empty when absent."""
+    name = os.environ.get(PERSONA_ENV, "").strip()
+    if not name or not PERSONA_NAME.match(name):
+        return ""
+    persona_path = AGENTS_DIR / f"{name}.md"
+    try:
+        persona_path.resolve().relative_to(REPO_ROOT.resolve())
+    except ValueError:
+        return ""
+    if not persona_path.is_file():
+        return ""
+    # The full persona is far larger than a prompt section may be, so it travels as the
+    # preloadable skill the generator mirrors from the same file; this section only binds the name.
+    skill = f"{AGENT_SKILL_PREFIX}{name}"
+    return (
+        f"Persona: {name}. Adopt the agent persona defined in .hermes/agents/{name}.md for this whole "
+        f"session. Its full text is the skill `{skill}`: it is already in context when the session was "
+        f"started with `-s {skill}`; otherwise load it with skill_view(\"{skill}\") before acting."
+    )
+
+
 def _session_context(session_info: Any) -> str:
-    """The session-start context the shared lifecycle hook produces, plus the bound packet's goal, frozen into the system prompt."""
+    """The session-start context the shared lifecycle hook produces, plus the named persona and the bound packet's goal, frozen into the system prompt."""
     try:
         session_id = ""
         if isinstance(session_info, dict):
@@ -212,12 +252,23 @@ def _session_context(session_info: Any) -> str:
         output = _hook_output(_run_core(SESSION_START, payload))
         context = output.get("additionalContext")
         parts = [context.strip()] if isinstance(context, str) and context.strip() else []
-        goal = _goal_slice()
-        if goal:
-            parts.append(goal)
         if _read_only_leaf():
             parts.append("This leaf is read-only: file writes and commands are refused by the repo guard.")
-        return "\n\n".join(parts)
+        return "\n\n".join(parts)[:SECTION_MAX_CHARS]
+    except Exception:
+        return ""
+
+
+def _persona_section(_session_info: Any) -> str:
+    try:
+        return _persona()[:SECTION_MAX_CHARS]
+    except Exception:
+        return ""
+
+
+def _goal_section(_session_info: Any) -> str:
+    try:
+        return _goal_slice()[:SECTION_MAX_CHARS]
     except Exception:
         return ""
 
@@ -238,7 +289,14 @@ def register(ctx: Any) -> None:
     # travels through the system-prompt section surface instead.
     register_section = getattr(ctx, "register_system_prompt_section", None)
     if callable(register_section):
-        try:
-            register_section("repo-guards-session-context", _session_context)
-        except Exception:
-            pass
+        for section_id, renderer in (
+            ("repo-guards-session-context", _session_context),
+            ("repo-guards-persona", _persona_section),
+            ("repo-guards-goal", _goal_section),
+        ):
+            try:
+                register_section(section_id, renderer, max_chars=SECTION_MAX_CHARS)
+            except TypeError:
+                register_section(section_id, renderer)
+            except Exception:
+                pass

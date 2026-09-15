@@ -60,6 +60,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-005 | REQ-002 | Given a read-only leaf (`SPECKIT_HERMES_READ_ONLY=1`), When a write or terminal tool is called, Then the plugin blocks it and reads still pass | `test_repo_guards.py`: `test_read_only_leaf_refuses_writes_and_commands_but_reads`; live second-pass playbook run | Met | - |
 | AC-006 | REQ-002 | Given a git command an sk-git rule flags, When it runs in a Hermes session, Then the advisory text reaches the tool result | `test_git_advisory_reaches_the_tool_result`; live second-pass playbook run | Met | - |
 | AC-007 | REQ-002 | Given `HERMES_SPEC_FOLDER`, When the session starts, Then the prompt section names the packet and quotes its goal slice | `test_goal_slice_comes_from_the_bound_packet`, `test_session_section_carries_the_goal_and_the_read_only_notice`; live second-pass playbook run | Met | - |
+| AC-008 | REQ-002 | Given `HERMES_AGENT_PERSONA=<name>` and `-s agent-<name>`, When the session starts, Then it adopts that persona and every plugin section stays under Hermes's 4000-character cap | `test_persona_comes_from_the_agents_directory`, section-size assertions; live 2026-09-15 `PERSONA=markdown` | Met | - |
 | AC-004 | REQ-004 | Given the plugin, When its imports are read, Then only the standard library and the already-present node cores are used | `__init__.py` imports json, os, re, subprocess, pathlib, typing | Met | - |
 
 ### Status values

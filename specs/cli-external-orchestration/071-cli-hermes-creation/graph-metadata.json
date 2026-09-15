@@ -167,17 +167,17 @@
     ],
     "causal_summary": "This repository dispatches work to six external coding CLIs as `cli-external-orchestration` modes (`cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`)",
     "created_at": "2026-09-14T16:04:01Z",
-    "last_save_at": "2026-09-15T04:46:39.766Z",
+    "last_save_at": "2026-09-15T05:08:23.238Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:7763492c199fbd3ce0b5c7c5540652ed001fdcc2c4125c91e140a842a61e595d",
+    "source_fingerprint": "sha256:d23d958c894eb6060447465c75cf1684692c6b3f73499b39530dcd7d7b567bab",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "85f31790f5098256b759cae3a2a5c5bd885a31034e0789f3ac0c181292a01853"
+      "spec.md": "a2944892fdf134ef6009e90644f4458e1b1e2e242fdb7b2880df392c5fb85da8"
     },
     "last_active_at": null
   }

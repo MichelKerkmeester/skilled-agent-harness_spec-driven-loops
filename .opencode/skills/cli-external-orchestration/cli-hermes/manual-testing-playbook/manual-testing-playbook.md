@@ -1,7 +1,7 @@
 ---
 title: "cli-hermes: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, evidence rules, orchestration guidance, and per-scenario validation files for the cli-hermes skill."
-version: 1.1.0.0
+version: 1.2.0.0
 ---
 
 # cli-hermes: Manual Testing Playbook
@@ -40,7 +40,7 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 36 deterministic scenarios across 11 categories validating the `cli-hermes` skill surface. Each scenario keeps its `HERMES-NNN` identifier (or `cli-hermes-EC-NNN` for the hermetic stress-matrix category) and links to one dedicated file with the complete execution contract.
+This playbook provides 37 deterministic scenarios across 11 categories validating the `cli-hermes` skill surface. Each scenario keeps its `HERMES-NNN` identifier (or `cli-hermes-EC-NNN` for the hermetic stress-matrix category) and links to one dedicated file with the complete execution contract.
 
 Coverage note: the ten operator categories cover the sanctioned headless shape, the provider preflight, prompt transport, the closed model roster, the approval boundary and the read-only contract, persona and template delivery, empty-response detection, cross-model validation, MCP reach, session resumption, the two run bounds, the project plugin's advisory, goal and blocking surfaces, and project-skill loading. The eleventh category is the shared hermetic stress matrix, executed by the runtime suite rather than by an operator.
 
@@ -118,7 +118,7 @@ Coverage note: the ten operator categories cover the sanctioned headless shape, 
 ### Inputs Required
 
 1. `manual-testing-playbook.md`
-2. All 36 linked scenario files under the eleven category folders
+2. All 37 linked scenario files under the eleven category folders
 3. Real command transcripts or cited captured evidence for every executable scenario
 4. The scenario-to-feature coverage map in §18
 5. Triage notes for every FAIL or SKIP result
@@ -150,7 +150,7 @@ Release is `READY` only when:
 
 1. No scenario has an unresolved FAIL.
 2. The critical baseline scenarios `HERMES-001`, `HERMES-002`, `HERMES-004`, `HERMES-005`, `HERMES-006`, `HERMES-007`, `HERMES-018` and `HERMES-021` have evidence or a still-valid named blocker.
-3. Coverage is 100%: all 36 root-index IDs map to exactly one scenario file.
+3. Coverage is 100%: all 37 root-index IDs map to exactly one scenario file.
 4. Every SKIP carries a specific blocker and a safe re-run condition.
 5. The root document and all scenario files pass the required document and link checks.
 
@@ -181,7 +181,7 @@ This section records safe execution waves for the manual-testing package. It doe
 ### Recommended Wave Layout
 
 - Wave 1, preflight and static checks: `HERMES-021`, `HERMES-001`, `HERMES-003`, `HERMES-017`
-- Wave 2, prompt transport and templates: `HERMES-002`, `HERMES-008`, `HERMES-009`, `HERMES-022`
+- Wave 2, prompt transport and templates: `HERMES-002`, `HERMES-008`, `HERMES-009`, `HERMES-022`, `HERMES-023`
 - Wave 3, the permission set, serialized within each pair: `HERMES-004` then `HERMES-005`, `HERMES-006` then `HERMES-007`
 - Wave 4, bounds and continuity: `HERMES-012`, `HERMES-013`, `HERMES-011`
 - Wave 5, project plugin surfaces, each with `HERMES_ENABLE_PROJECT_PLUGINS=1`: `HERMES-014`, `HERMES-015`, `HERMES-020`, `HERMES-018`
@@ -224,11 +224,12 @@ Read-only is a separate mechanism, not the absence of `--yolo` and not a narrowe
 
 ---
 
-## 9. AGENT ROUTING (`HERMES-008`)
+## 9. AGENT ROUTING (`HERMES-008`, `HERMES-023`)
 
 This category proves the inlined-persona route. Hermes has no flag that loads an agent file, so a persona reaches a dispatch only inside the prompt; the generated `.hermes/prompts/*.md` templates are the repeatable vehicle.
 
 - `HERMES-008`: [Inlined persona via the agent-router template](agent-routing/inlined-persona-via-agent-router-template.md)
+- `HERMES-023`: [Persona via the agent skill mirror and the plugin binding](agent-routing/persona-via-agent-skill-and-plugin.md)
 
 ---
 
@@ -345,6 +346,7 @@ No `feature-catalog/` package exists for `cli-hermes`, so no scenario carries a 
 ### AGENT ROUTING
 
 - HERMES-008: [Inlined persona via the agent-router template](agent-routing/inlined-persona-via-agent-router-template.md)
+- HERMES-023: [Persona via the agent skill mirror and the plugin binding](agent-routing/persona-via-agent-skill-and-plugin.md)
 
 ### PROMPT TEMPLATES
 

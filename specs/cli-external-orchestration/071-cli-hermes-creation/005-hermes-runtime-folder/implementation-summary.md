@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "The repo-root .hermes folder exists with generated markdown-only copies of all 56 skills, 33 generated prompt templates, the project plugin, the playbook symlink and a sync manifest; a live session reached a repo skill and ran a command template end to end."
+description: "The repo-root .hermes folder exists with an agents link, generated markdown-only copies of all 56 skills and 12 agent personas, 33 generated prompt templates, the project plugin, the playbook symlink and a sync manifest; a live session reached a repo skill and ran a command template end to end."
 trigger_phrases:
   - "implementation summary"
   - "what shipped"
@@ -60,7 +60,8 @@ You get `skills/<name>/SKILL.md` as a generated markdown-only copy of every cano
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.hermes/skills/<name>/SKILL.md` | Generated (56) | markdown-only copies naming their canonical directory |
+| `.hermes/skills/<name>/SKILL.md` | Generated (56 + 12 `agent-<name>`) | markdown-only copies naming their canonical source |
+| `.hermes/agents` | Created (symlink) | `../.claude/agents`, the shared runtime-neutral agent files |
 | `.opencode/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs` | Created | generator with `--check`; 3 node tests |
 | `.hermes/manual-testing-playbook` | Created (symlink) | `../.opencode/skills/cli-external-orchestration/cli-hermes/manual-testing-playbook` |
 | `.hermes/prompts/*.md` | Generated | 33 pointer stubs, one per canonical command |
