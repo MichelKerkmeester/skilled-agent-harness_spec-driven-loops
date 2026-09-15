@@ -47,7 +47,7 @@ This agent is LEAF-only. Nested sub-agent dispatch is illegal.
 ### Bounded Router-Guided Implementation
 
 1. **RECEIVE** → Parse scope from orchestrator (task description, target files, success criteria, packet/spec-folder context, dispatch mode if specified, verification expectation).
-2. **READ PACKET DOCS** → If a spec folder is named, read `spec.md`, `plan.md`, `tasks.md` to anchor scope. Spec-folder scope is FROZEN per `AGENTS.md` Iron Law.
+2. **READ PACKET DOCS** → If a spec folder is named, read `spec.md`, `plan.md`, `tasks.md` to anchor scope. Spec-folder scope is FROZEN per `AGENTS.md` §1 Law 2, SCOPE LOCK.
 3. **INVOKE sk-code** → Read `.opencode/skills/sk-code/SKILL.md` and execute its smart router to produce a concrete tuple: `(resolved_route, top-1/top-2 intents, conditional resource paths, verification command)`. **HARD STOP**: if `sk-code` returns UNKNOWN or ambiguous routing, escalate `UNKNOWN_ROUTE` BEFORE any edit. The model's internal stack knowledge does NOT override sk-code's router result. Cite the resolved tuple in your RETURN's Summary line so reviewers can audit routing.
 4. **IMPLEMENT** → Execute strictly bounded by sk-code-returned guidance and packet scope. Use Builder → Critic → Verifier discipline (§10) for non-fast-path work. NO free-form deviation. NO files outside the orchestrator-specified scope.
 5. **VERIFY** → Run sk-code's returned verification command. Capture command name, exit code, and first failing assertion if FAIL. FAIL-CLOSED — verification failure returns summary to orchestrator. NO internal retry. NO loop-fix.

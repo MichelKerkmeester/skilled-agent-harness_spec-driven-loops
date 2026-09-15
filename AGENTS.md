@@ -23,7 +23,7 @@ When an approved plan names a specific workflow, command, agent or skill (e.g., 
 1. **VERIFY, don't assume** — READ the named workflow's contract (its `SKILL.md` or command doc) to test any friction you believe it has.
 2. **FLAG deviations** — If it genuinely blocks the task, STATE the deviation to the user ("plan says X, I propose Y because Z") and get approval before proceeding.
 3. **NEVER silently hand-roll a substitute** for a plan-named purpose-built workflow.
-4. **PROPOSE the amendment, don't absorb it** — when the contract does not block the task but is wrong for this case, follow it for this task and name the fix in the same response: the file, the rule, the one-line replacement. The difference from step 2 is whether you can comply. The full discipline is [`scope-discipline.md`](repo-rules/scope-discipline.md) §6.
+4. **PROPOSE the amendment, don't absorb it** — when the contract does not block the task but is wrong for this case, follow it for this task and name the fix in the same response: the file, the rule, the one-line replacement. The difference from step 2 is whether you can comply. The adjacent case, a frozen scope you believe is wrong, is [`scope-discipline.md`](repo-rules/scope-discipline.md) §5 and §6.
 
 #### Comment Hygiene — HARD BLOCK (cannot be overridden)
 
@@ -78,14 +78,14 @@ Trigger: EACH new user message (re-evaluate even in ongoing conversations)
 2. B) Direct call: run `node .opencode/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"[request]"}' --format json` when no hook brief is present or when diagnosing hook behavior.
 3. C) Cite user's explicit direction: "User specified: [exact quote]"
 - Confidence ≥ 0.8 → MUST invoke skill | < 0.8 → general approach | User names skill → cite and proceed
-- **Artifact trigger — binds on what you are about to write, independently of the advisor score.** Before the FIRST code write, route through `sk-code`. Before the FIRST `.md` write, route through `sk-doc`, except spec-folder docs, which are `system-spec-kit`'s. Routing means loading what the router resolves, under the same loading rule as Gate 5.
+- **Artifact trigger — binds on what you are about to write, independently of the advisor score.** Before the FIRST code write, route through `sk-code`. Before the FIRST `.md` write, route through `sk-doc`, except spec-folder docs, which are `system-spec-kit`'s. Routing means loading what the router resolves, under the same loading rule as Gate 5. A skill already in context is not re-read. A resolved contract that is wrong for this case is followed and amended, as PLAN-WORKFLOW LOCK step 4 says.
 - Output: `SKILL ROUTING: [result]` or `SKILL ROUTING: User directed → [name]`; when the artifact trigger fires, add `ARTIFACT: [skill] → [what its router resolved]`
-- Skip: trivial queries only (greetings, single-line questions). Never ingest a skill tree wholesale, it costs more context than it returns. The artifact trigger skips only the §6 exemption class.
+- Skip: trivial queries only (greetings, single-line questions). The artifact trigger skips only the §6 exemption class.
 
 #### GATE 4: SKILL-OWNED WORKFLOW TIEBREAKERS
 Trigger-phrase routing and the deep-loop state discipline are Gate 2's and the deep-mode `SKILL.md` invariants' own. Two tiebreakers live here because they fire before the skill that owns them loads:
 - **Executor CLI ≠ skill route.** "Use cli-opencode gpt-5.5 high" is the HOW. It still runs inside the skill's workflow, and the executor name never overrides the skill-owned route.
-- **Skill advisor ambiguity.** When a `/speckit:*` or `/deep:*` command identity matches alongside `cli-*` for iteration phrases, the command identity wins. The CLI executor is a tool inside the command's workflow, not a replacement for it.
+- **Skill advisor ambiguity.** When the advisor's `command-spec-kit` bridge, keyed to `/speckit:plan`, `/speckit:resume`, `/deep:research` and `/deep:review`, matches alongside `cli-*` for iteration phrases, `command-spec-kit` wins. The CLI executor is a tool inside the command's workflow, not a replacement for it.
 
 #### GATE 5: REPO RULES LOAD [HARD] BLOCK
 Trigger: the FIRST write of the session, in any repository whose root holds a `REPO RULES.md`. Read-only turns never fire it, and a repository without that file has nothing to load — this document alone governs there.
@@ -116,7 +116,7 @@ Trigger: About to skip gates, or realized gates were skipped → STOP → STATE:
 - **Plan before acting** on multi-step work: name the files, the tools and the observable check before the first edit.
 - **Do not stop early.** No "natural checkpoint" or "future work" on incomplete work when a safe path forward exists.
 - **Do not ask permission to continue an already-approved, in-scope step.** This never waives a mandatory wait: Gate 3, PLAN-WORKFLOW LOCK approval, the worktree-versus-branch choice, the remote-push go-ahead and the blast-radius stop-for-yes all still block.
-- **Stop local retries after three failed fixes for the same symptom**, then escalate per §7.
+- **Stop local retries after three failed fixes for the same symptom**, then escalate per §7. That count governs the debugging loop. §7's two-attempt bound governs confidence, not retries.
 
 ### Quality & Restraint
 
@@ -142,7 +142,7 @@ Trigger: About to skip gates, or realized gates were skipped → STOP → STATE:
 
 ### Verification Standards
 
-These five bind unconditionally, including on a read-only turn where Gate 5 never fires and no rule file loads. A registry entry is never proof a request reaches the mode.
+These five bind unconditionally, including on a read-only turn where Gate 5 never fires and no rule file loads.
 
 | Standard | Rule |
 |---|---|
@@ -172,6 +172,7 @@ Trigger: Claiming "done", "complete", "finished", "works"
 Trigger: "save context", "save memory", `/speckit:save`
 - If spec folder established at Gate 3 → USE IT (don't re-ask). Carry-over applies ONLY to memory saves
 - If NO folder and Gate 3 never answered → HARD BLOCK → Ask user
+- The save runs the continuity writer `generate-context.js` through `/speckit:save`. Composition, what the writer touches and the post-save review are `system-spec-kit/references/memory/save-workflow.md`'s. HIGH review issues are patched by hand.
 
 #### GOAL POSTURE RULE [ALWAYS ON]
 Trigger: a session bound to a spec packet, on every turn.
@@ -190,12 +191,12 @@ Trigger: a session bound to a spec packet, on every turn.
 
 | Tool | Purpose |
 | ------| ---------|
-| **Trigger index + retrieval conventions** | Gate 1 answers from the committed trigger index. Free text uses the ripgrep recipes in `references/retrieval/retrieval-conventions.md`, over spec docs and skill docs only. A miss is a clean no-hit. Scope and declared losses: `system-spec-kit` SKILL.md §3. |
+| **Trigger index + retrieval conventions** | Gate 1 answers from the committed trigger index. Free text uses the ripgrep recipes in `system-spec-kit/references/retrieval/retrieval-conventions.md`, over spec docs and skill docs only. A miss is a clean no-hit. Scope and declared losses: `system-spec-kit` SKILL.md §3. |
 | **Git (sk-git)** | Worktree setup, conventional commits and PR creation. Mechanics: `.opencode/skills/sk-git/`. |
 
 #### Git Workspace Safety
 
-- **Never choose the workspace yourself and never create a branch yourself.** When a git workspace trigger fires, ask the operator to choose **A) Create a git worktree** or **B) Work on current branch**, and wait.
+- **Never choose the workspace yourself, and never create a branch with git primitives.** When a git workspace trigger fires, ask the operator to choose **A) Create a git worktree** or **B) Work on current branch**, and wait. Branches come only from `sk-git`'s commands.
 - **Ask before every push to a branch outside sk-git's remote allowlist.** A prior approval never carries forward. An explicit push instruction is itself the go-ahead.
 - Naming, numbering, commit identity, live-sync and the hooks that back all of it are `sk-git`'s. Publishing and reversibility are [`blast-radius.md`](repo-rules/blast-radius.md)'s.
 
@@ -257,7 +258,7 @@ Two things stay here because they bind regardless of what loads. **Delivery neve
 
 ## 9. 🤖 AGENT ROUTING
 
-Use the active runtime's own agent directory, `.opencode/agents/`, `.claude/agents/`, `.codex/agents/`, `.cursor/agents/`, `.pi/agents/` or `.devin/agents/`, and stay with it for the workflow phase. Hermes has none, its personas are inlined, see `cli-hermes`.
+Use the active runtime's own agent directory, `.opencode/agents/`, `.claude/agents/`, `.codex/agents/`, `.cursor/agents/`, `.pi/agents/` or `.devin/agents/`, and stay with it for the workflow phase.
 
 ---
 

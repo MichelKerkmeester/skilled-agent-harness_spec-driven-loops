@@ -120,7 +120,7 @@ The operator decides.
 
 ## 7. FINISHING
 
-`AGENTS.md` §3 Ownership & Completion binds: no early stop, no "natural checkpoint" on
+`AGENTS.md` §3 Execution Behavior binds: no early stop, no "natural checkpoint" on
 incomplete work, no asking permission to continue an approved, in-scope step. Two
 things are worth stating in scope terms:
 
