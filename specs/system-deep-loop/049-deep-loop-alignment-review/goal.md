@@ -54,7 +54,7 @@ Frozen choices. Changing one is an amendment.
 |----|----------|
 | D1 | Phase 001 ran twenty review iterations as four lanes of five in two waves, max-iterations, convergence off, with wave-two angles rewritten from wave one. |
 | D2 | Executors via the gateway on cli-pi: DeepSeek V4.1 Flash max for ten iterations, GLM 5.3 Flash max for ten, one lane of each per wave. |
-| D3 | Nothing is deferred: every confirmed finding, P0 to P3, becomes a phase, fixed by DeepSeek V4.1 Flash max on cli-pi, one dispatch per phase, suite-verified before the next; a refuted finding is recorded with its reason. |
+| D3 | Nothing is deferred: every confirmed finding, at every tier the machinery carries, becomes a phase, fixed by DeepSeek V4.1 Flash max on cli-pi, one dispatch per phase, suite-verified before the next; a refuted finding is recorded with its reason. |
 | D4 | Routing artifacts agree exactly per hub: SKILL.md, mode-registry.json, hub-router.json, ROUTER.md, leaf-manifest.json, graph-metadata.json and description.json. |
 | D5 | The repo rules bind the fixes: the smallest change that closes a finding, no abstraction a current requirement does not earn, comments carrying the durable why. |
 
@@ -87,7 +87,7 @@ Phase 001 is the review. Its eighty findings bind to phases 002 to 009: rosters,
 
 - [x] Phase 001's twenty iterations ran across four lanes on both executors, each numbered record carrying the route-proof fields
 - [x] Wave-two angles were rewritten in the phase spec from wave-one findings before wave two ran
-- [x] Every P0 to P3 finding is verified against the tree and bound to a phase or recorded as refuted with the reason
+- [x] Every finding at every tier is verified against the tree and bound to a phase or recorded as refuted with the reason
 - [ ] Every bound phase validates PASSED with its criteria checked and its suite green
 - [ ] The routing artifacts of every hub in scope agree exactly at the end
 - [ ] The deep-loop suite exits zero after the last phase lands
