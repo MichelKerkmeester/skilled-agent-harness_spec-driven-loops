@@ -1,295 +1,149 @@
 ---
-title: Deep Review Strategy - Luna Inline Fan-out Lineage
-description: Five-pass detached review of fan-out write-containment hardening.
-version: 1.11.0.13
+title: Deep Review Strategy - fanout write containment hardening
+sessionId: fanout-luna-1789427869613-2bzg57
+generation: 2
 ---
 
-# Deep Review Strategy - Luna Inline Fan-out Lineage
+# Deep Review Strategy
 
-## 1. REVIEW CHARTER
+## 1. OVERVIEW
 
-- Target: `specs/system-deep-loop/045-fanout-write-containment-hardening` (`spec-folder`, Level 3)
-- Execution: inline detached fan-out lineage; no nested executor dispatch
-- Executor binding: `cli-codex model=gpt-5.6-luna`
-- Dimensions: correctness, security, traceability, maintainability
-- Stop policy: `max-iterations`, hard ceiling 5; convergence threshold 0.10 is telemetry only
-- Artifact root: `specs/system-deep-loop/045-fanout-write-containment-hardening/review/lineages/luna`
-- Success criteria: every pass has a narrative, delta, gateway-backed state event, file:line evidence, and an exact terminal synthesis reason
+Bounded three-iteration review of the spec packet and its directly referenced containment, fan-out, executor-config, workflow, and evidence surfaces. The executor is inline in this detached lineage; no nested dispatch is permitted. Convergence is telemetry only because the stop policy is `max-iterations`.
 
 ## 2. TOPIC
 
-Review whether the packet's preserve/quarantine remedy, baseline handling, shared-checkout
-fan-out runner, caller YAMLs, tests, and post-closure records satisfy the frozen safety
-contract and agree with the later worktree-removal decisions.
+Review `specs/system-deep-loop/045-fanout-write-containment-hardening` against the current implementation and current review-mode workflow contracts.
 
-<!-- ANCHOR:review-dimensions -->
-## 3. REVIEW DIMENSIONS (remaining)
-- [ ] correctness
-- [ ] security
-- [ ] traceability
-- [ ] maintainability
+## 3. REVIEW DIMENSIONS
+<!-- MACHINE-OWNED: START -->
+- [x] D1 Correctness
+- [x] D2 Security
+- [x] D3 Traceability
+- [ ] D4 Maintainability
+<!-- MACHINE-OWNED: END -->
 
-<!-- /ANCHOR:review-dimensions -->
 ## 4. NON-GOALS
 
-- No implementation changes, test runs that write outside the lineage, git writes, checkout changes, or continuity saves.
-- No judgment of unrelated repository changes.
-- No nested CLI, agent, or subprocess iteration dispatch.
+- Do not modify implementation, tests, packet documents, workflow YAML, or runtime configuration.
+- Do not execute validators, builds, tests, continuity writers, Git writes, or nested executor dispatch.
+- Do not infer runtime behavior beyond the read-only source and test evidence available in the workspace.
 
 ## 5. STOP CONDITIONS
 
-- Run all five inline iterations even if telemetry reaches the convergence threshold early.
-- Synthesis must record `maxIterationsReached`.
-- A target read failure, ambiguous evidence, malformed state, or scope escape is recorded as a blocker rather than repaired outside the lineage.
+- Run exactly three iterations, even if convergence telemetry would otherwise signal an early stop.
+- Stop only at the configured cap; terminal synthesis must record `maxIterationsReached`.
 
-<!-- ANCHOR:completed-dimensions -->
-## 4. COMPLETED DIMENSIONS
-[None yet]
+## 6. COMPLETED DIMENSIONS
+<!-- MACHINE-OWNED: START -->
+| Dimension | Verdict | Iteration | Summary |
+|-----------|---------|-----------|---------|
+| Correctness | PASS | 1 | Current containment state transitions, failure ordering, preserve default, and canonical-root selection align with the reviewed invariants. |
+| Security | CONDITIONAL | 2 | Baseline, restore-parent, and quarantine check-create paths lack complete symlink or atomic no-follow guarantees. |
+| Traceability | CONDITIONAL | 3 | The cli-opencode caller, packet requirements, acceptance evidence, and plan thresholds are not reconciled with ADR-007 and the current no-worktree topology. |
+<!-- MACHINE-OWNED: END -->
 
-<!-- /ANCHOR:completed-dimensions -->
-<!-- ANCHOR:running-findings -->
-## 5. RUNNING FINDINGS
-- P0 (Blockers): 1
-- P1 (Required): 6
-- P2 (Suggestions): 1
-- Resolved: 0
+## 7. RUNNING FINDINGS
+<!-- MACHINE-OWNED: START -->
+- **P0 (Critical):** 0 active
+- **P1 (Major):** 6 active
+- **P2 (Minor):** 1 active
+- **Delta this iteration:** +0 P0, +3 P1, +1 P2
+<!-- MACHINE-OWNED: END -->
 
-<!-- /ANCHOR:running-findings -->
 ## 8. WHAT WORKED
 
-- Initialization preserved the existing lineage fixtures and bound all new evidence to the exact artifact root.
+- Direct source-to-test comparison worked for state transitions because the producer, runner call order, and focused tests were read together (iteration 1).
+- Trust-boundary review worked by tracing every baseline, restore, and quarantine write to its shared path helper and its nearest symlink test (iteration 2).
+- Caller-to-packet comparison exposed a supported-workflow guard and acceptance surface that still assume the removed worktree topology (iteration 3).
 
 ## 9. WHAT FAILED
 
-- Graph upsert and repository validators are unavailable for this contained executor because they would write outside the lineage; this is recorded as review telemetry, not silently treated as coverage.
+- No atomic no-follow primitive or ancestor-safe restore boundary is present in the reviewed security paths; this is recorded as three P1 findings (iteration 2).
+- The current caller and packet evidence cannot be treated as one contract: ADR-007, fanout-run.cjs, deep-review-auto.yaml, and the closure rows disagree (iteration 3).
 
-<!-- ANCHOR:exhausted-approaches -->
-## 9. EXHAUSTED APPROACHES (do not retry)
-### `agent_cross_runtime`: notApplicable; this lineage is inline cli-codex. -- BLOCKED (iteration 5, 3 attempts)
-- What was tried: `agent_cross_runtime`: notApplicable; this lineage is inline cli-codex.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: `agent_cross_runtime`: notApplicable; this lineage is inline cli-codex.
+## 10. EXHAUSTED APPROACHES
 
-### `baseline-content-traversal`: `readBaselineContent` consumes paths produced by the snapshot's fixed `containment/baseline/` prefix, and no independent traversal path was found in the reviewed producer/consumer chain at `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts:760-808,927-934`. -- BLOCKED (iteration 5, 1 attempts)
-- What was tried: `baseline-content-traversal`: `readBaselineContent` consumes paths produced by the snapshot's fixed `containment/baseline/` prefix, and no independent traversal path was found in the reviewed producer/consumer chain at `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts:760-808,927-934`.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: `baseline-content-traversal`: `readBaselineContent` consumes paths produced by the snapshot's fixed `containment/baseline/` prefix, and no independent traversal path was found in the reviewed producer/consumer chain at `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts:760-808,927-934`.
-
-### `checklist_evidence`: fail for the newly identified safety boundaries; the current acceptance evidence does not test destination symlinks, baseline-only untracked deletion, failure-path containment, or repeated quarantine retention. -- BLOCKED (iteration 4, 1 attempts)
-- What was tried: `checklist_evidence`: fail for the newly identified safety boundaries; the current acceptance evidence does not test destination symlinks, baseline-only untracked deletion, failure-path containment, or repeated quarantine retention.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: `checklist_evidence`: fail for the newly identified safety boundaries; the current acceptance evidence does not test destination symlinks, baseline-only untracked deletion, failure-path containment, or repeated quarantine retention.
-
-### `checklist_evidence`: fail. The closure evidence still does not cover the active P0/P1 boundary conditions. -- BLOCKED (iteration 5, 1 attempts)
-- What was tried: `checklist_evidence`: fail. The closure evidence still does not cover the active P0/P1 boundary conditions.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: `checklist_evidence`: fail. The closure evidence still does not cover the active P0/P1 boundary conditions.
-
-### `checklist_evidence`: partial. Acceptance rows assert both removed worktrees and default-on worktrees as met, so the evidence is internally non-authoritative. -- BLOCKED (iteration 3, 1 attempts)
-- What was tried: `checklist_evidence`: partial. Acceptance rows assert both removed worktrees and default-on worktrees as met, so the evidence is internally non-authoritative.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: `checklist_evidence`: partial. Acceptance rows assert both removed worktrees and default-on worktrees as met, so the evidence is internally non-authoritative.
-
-### `checklist_evidence`: partial. Existing tests exercise a symlink under the artifact tree and an unwritable quarantine destination, but no symlinked containment/quarantine destination that asserts no external file is created. -- BLOCKED (iteration 2, 1 attempts)
-- What was tried: `checklist_evidence`: partial. Existing tests exercise a symlink under the artifact tree and an unwritable quarantine destination, but no symlinked containment/quarantine destination that asserts no external file is created.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: `checklist_evidence`: partial. Existing tests exercise a symlink under the artifact tree and an unwritable quarantine destination, but no symlinked containment/quarantine destination that asserts no external file is created.
-
-### `checklist_evidence`: partial. The current unit tests cover tracked deletion and preserved untracked writes, but no pre-existing untracked deletion case or failure-lane containment case was found in the reviewed test span. -- BLOCKED (iteration 1, 1 attempts)
-- What was tried: `checklist_evidence`: partial. The current unit tests cover tracked deletion and preserved untracked writes, but no pre-existing untracked deletion case or failure-lane containment case was found in the reviewed test span.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: `checklist_evidence`: partial. The current unit tests cover tracked deletion and preserved untracked writes, but no pre-existing untracked deletion case or failure-lane containment case was found in the reviewed test span.
-
-### `feature_catalog_code`: not exercised in this correctness pass; scheduled for the traceability pass. -- BLOCKED (iteration 1, 1 attempts)
-- What was tried: `feature_catalog_code`: not exercised in this correctness pass; scheduled for the traceability pass.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: `feature_catalog_code`: not exercised in this correctness pass; scheduled for the traceability pass.
-
-### `feature_catalog_code`: pass for the reviewed fan-out feature entry; it describes shared-checkout behavior. -- BLOCKED (iteration 3, 1 attempts)
-- What was tried: `feature_catalog_code`: pass for the reviewed fan-out feature entry; it describes shared-checkout behavior.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: `feature_catalog_code`: pass for the reviewed fan-out feature entry; it describes shared-checkout behavior.
-
-### `feature_catalog_code`: pass; the feature entry remains a shared-checkout description. -- BLOCKED (iteration 4, 1 attempts)
-- What was tried: `feature_catalog_code`: pass; the feature entry remains a shared-checkout description.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: `feature_catalog_code`: pass; the feature entry remains a shared-checkout description.
-
-### `feature_catalog_code`: pass; the feature entry remains shared-checkout oriented. -- BLOCKED (iteration 5, 1 attempts)
-- What was tried: `feature_catalog_code`: pass; the feature entry remains shared-checkout oriented.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: `feature_catalog_code`: pass; the feature entry remains shared-checkout oriented.
-
-### `feature_catalog_code`: pending; the feature-catalog consumer sweep is deferred to iteration 3. -- BLOCKED (iteration 2, 1 attempts)
-- What was tried: `feature_catalog_code`: pending; the feature-catalog consumer sweep is deferred to iteration 3.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: `feature_catalog_code`: pending; the feature-catalog consumer sweep is deferred to iteration 3.
-
-### `outcome-counting`: the pool keeps completed-with-containment-advisory inside succeeded and increments a separate advisory counter at `.opencode/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs:617-629,878-904`; this is not a new defect. -- BLOCKED (iteration 5, 1 attempts)
-- What was tried: `outcome-counting`: the pool keeps completed-with-containment-advisory inside succeeded and increments a separate advisory counter at `.opencode/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs:617-629,878-904`; this is not a new defect.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: `outcome-counting`: the pool keeps completed-with-containment-advisory inside succeeded and increments a separate advisory counter at `.opencode/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs:617-629,878-904`; this is not a new defect.
-
-### `playbook_capability`: not exercised in this correctness pass; scheduled for the maintainability pass. -- BLOCKED (iteration 1, 1 attempts)
-- What was tried: `playbook_capability`: not exercised in this correctness pass; scheduled for the maintainability pass.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: `playbook_capability`: not exercised in this correctness pass; scheduled for the maintainability pass.
-
-### `playbook_capability`: pass for the reviewed shared-checkout preservation entry; no removed worktree capability was found there. -- BLOCKED (iteration 3, 1 attempts)
-- What was tried: `playbook_capability`: pass for the reviewed shared-checkout preservation entry; no removed worktree capability was found there.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: `playbook_capability`: pass for the reviewed shared-checkout preservation entry; no removed worktree capability was found there.
-
-### `playbook_capability`: pass; the playbook remains shared-checkout oriented. -- BLOCKED (iteration 5, 1 attempts)
-- What was tried: `playbook_capability`: pass; the playbook remains shared-checkout oriented.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: `playbook_capability`: pass; the playbook remains shared-checkout oriented.
-
-### `playbook_capability`: pass; the playbook still describes the shared-checkout preservation capability. -- BLOCKED (iteration 4, 1 attempts)
-- What was tried: `playbook_capability`: pass; the playbook still describes the shared-checkout preservation capability.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: `playbook_capability`: pass; the playbook still describes the shared-checkout preservation capability.
-
-### `playbook_capability`: pending; the manual capability sweep is deferred to iteration 4. -- BLOCKED (iteration 2, 1 attempts)
-- What was tried: `playbook_capability`: pending; the manual capability sweep is deferred to iteration 4.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: `playbook_capability`: pending; the manual capability sweep is deferred to iteration 4.
-
-### `quarantine-size-bound`: the over-bound case remains covered at `.opencode/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts:1903-1921`. -- BLOCKED (iteration 5, 1 attempts)
-- What was tried: `quarantine-size-bound`: the over-bound case remains covered at `.opencode/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts:1903-1921`.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: `quarantine-size-bound`: the over-bound case remains covered at `.opencode/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts:1903-1921`.
-
-### `skill_agent`: notApplicable; the target is a spec folder. -- BLOCKED (iteration 5, 3 attempts)
-- What was tried: `skill_agent`: notApplicable; the target is a spec folder.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: `skill_agent`: notApplicable; the target is a spec folder.
-
-### `spec_code`: fail for NFR-S01. The implementation's detector-side canonicalization is not applied to the quarantine writer's destination path. -- BLOCKED (iteration 2, 1 attempts)
-- What was tried: `spec_code`: fail for NFR-S01. The implementation's detector-side canonicalization is not applied to the quarantine writer's destination path.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: `spec_code`: fail for NFR-S01. The implementation's detector-side canonicalization is not applied to the quarantine writer's destination path.
-
-### `spec_code`: fail. Accepted goal/ADR decisions, parent requirements, executable caller branches, and closure records do not describe one current contract. -- BLOCKED (iteration 3, 1 attempts)
-- What was tried: `spec_code`: fail. Accepted goal/ADR decisions, parent requirements, executable caller branches, and closure records do not describe one current contract.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: `spec_code`: fail. Accepted goal/ADR decisions, parent requirements, executable caller branches, and closure records do not describe one current contract.
-
-### `spec_code`: fail. The replay preserves the implementation and canonical-document mismatches already identified. -- BLOCKED (iteration 5, 1 attempts)
-- What was tried: `spec_code`: fail. The replay preserves the implementation and canonical-document mismatches already identified.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: `spec_code`: fail. The replay preserves the implementation and canonical-document mismatches already identified.
-
-### `spec_code`: partial. The implementation has direct evidence for both gaps; REQ-001 and SC-001 do not carve out failed lanes, while the known limitation documents the mismatch. -- BLOCKED (iteration 1, 1 attempts)
-- What was tried: `spec_code`: partial. The implementation has direct evidence for both gaps; REQ-001 and SC-001 do not carve out failed lanes, while the known limitation documents the mismatch.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: `spec_code`: partial. The implementation has direct evidence for both gaps; REQ-001 and SC-001 do not carve out failed lanes, while the known limitation documents the mismatch.
-
-### `spec_code`: partial. The packet specifies quarantine evidence and symlink safety, but does not state whether repeated attempts must retain immutable historical records. -- BLOCKED (iteration 4, 1 attempts)
-- What was tried: `spec_code`: partial. The packet specifies quarantine evidence and symlink safety, but does not state whether repeated attempts must retain immutable historical records.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: `spec_code`: partial. The packet specifies quarantine evidence and symlink safety, but does not state whether repeated attempts must retain immutable historical records.
-
-### `target-symlink-detector`: existing target-side symlink cases remain present at `.opencode/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts:1718-1823`; the open security finding is the distinct trusted-destination seam. -- BLOCKED (iteration 5, 1 attempts)
-- What was tried: `target-symlink-detector`: existing target-side symlink cases remain present at `.opencode/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts:1718-1823`; the open security finding is the distinct trusted-destination seam.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: `target-symlink-detector`: existing target-side symlink cases remain present at `.opencode/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts:1718-1823`; the open security finding is the distinct trusted-destination seam.
-
-### Target-path symlink escapes are covered by the existing detector tests at `.opencode/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts:1718-1823`; that coverage does not prove trusted quarantine destinations safe. -- BLOCKED (iteration 2, 1 attempts)
-- What was tried: Target-path symlink escapes are covered by the existing detector tests at `.opencode/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts:1718-1823`; that coverage does not prove trusted quarantine destinations safe.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: Target-path symlink escapes are covered by the existing detector tests at `.opencode/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts:1718-1823`; that coverage does not prove trusted quarantine destinations safe.
-
-### The existing size-bound behavior is represented by tests around `.opencode/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts:1903-1921`; this pass does not promote it to a new finding. -- BLOCKED (iteration 4, 1 attempts)
-- What was tried: The existing size-bound behavior is represented by tests around `.opencode/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts:1903-1921`; this pass does not promote it to a new finding.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: The existing size-bound behavior is represented by tests around `.opencode/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts:1903-1921`; this pass does not promote it to a new finding.
-
-### The feature-catalog surface itself describes shared-checkout churn and does not add a new worktree requirement at `.opencode/skills/system-deep-loop/feature-catalog/fanout-write-containment/fanout-write-containment.md:8-28`. -- BLOCKED (iteration 3, 1 attempts)
-- What was tried: The feature-catalog surface itself describes shared-checkout churn and does not add a new worktree requirement at `.opencode/skills/system-deep-loop/feature-catalog/fanout-write-containment/fanout-write-containment.md:8-28`.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: The feature-catalog surface itself describes shared-checkout churn and does not add a new worktree requirement at `.opencode/skills/system-deep-loop/feature-catalog/fanout-write-containment/fanout-write-containment.md:8-28`.
-
-### The manual testing playbook points to shared-checkout preservation at `.opencode/skills/system-deep-loop/manual-testing-playbook/manual-testing-playbook.md:176`; the caller YAML and parent packet contradictions remain separate. -- BLOCKED (iteration 3, 1 attempts)
-- What was tried: The manual testing playbook points to shared-checkout preservation at `.opencode/skills/system-deep-loop/manual-testing-playbook/manual-testing-playbook.md:176`; the caller YAML and parent packet contradictions remain separate.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: The manual testing playbook points to shared-checkout preservation at `.opencode/skills/system-deep-loop/manual-testing-playbook/manual-testing-playbook.md:176`; the caller YAML and parent packet contradictions remain separate.
-
-### The normal changed-tracked-file path is not a false positive: current entries are compared against the baseline hash before a violation is emitted at `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts:830-835`. -- BLOCKED (iteration 1, 1 attempts)
-- What was tried: The normal changed-tracked-file path is not a false positive: current entries are compared against the baseline hash before a violation is emitted at `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts:830-835`.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: The normal changed-tracked-file path is not a false positive: current entries are compared against the baseline hash before a violation is emitted at `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts:830-835`.
-
-### The ordinary non-symlink quarantine path is not alleged to escape; the defect requires a pre-existing destination link or equivalent reparse point. -- BLOCKED (iteration 2, 1 attempts)
-- What was tried: The ordinary non-symlink quarantine path is not alleged to escape; the defect requires a pre-existing destination link or equivalent reparse point.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: The ordinary non-symlink quarantine path is not alleged to escape; the defect requires a pre-existing destination link or equivalent reparse point.
-
-### The ordinary quarantine success path is exercised at `.opencode/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts:1865-1901`; the missing cases are the destination boundary and repeated-pass identity. -- BLOCKED (iteration 4, 1 attempts)
-- What was tried: The ordinary quarantine success path is exercised at `.opencode/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts:1865-1901`; the missing cases are the destination boundary and repeated-pass identity.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: The ordinary quarantine success path is exercised at `.opencode/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts:1865-1901`; the missing cases are the destination boundary and repeated-pass identity.
-
-### The review did not infer a new defect from unrelated dirty paths; the candidates above are limited to the target's baseline and failure-path contracts. -- BLOCKED (iteration 1, 1 attempts)
-- What was tried: The review did not infer a new defect from unrelated dirty paths; the candidates above are limited to the target's baseline and failure-path contracts.
-- Why blocked: Repeated iteration evidence ruled this direction out.
-- Do NOT retry: The review did not infer a new defect from unrelated dirty paths; the candidates above are limited to the target's baseline and failure-path contracts.
-
-<!-- /ANCHOR:exhausted-approaches -->
+- The correctness invariant sweep is saturated for this lineage; do not repeat baseline deletion, failure ordering, preserve-default, or canonical-root selection as the primary angle.
+- The final-component symlink angle is saturated; the missing ancestor and atomicity cases remain active findings, not a reason to repeat the existing test.
 
 ## 10A. SATURATED / SWEPT DIMENSIONS AND EXPANSION FRONTIER
-- Completed pivots: 0
+<!-- MACHINE-OWNED: START -->
 - Failed pivots: 0
 - Audited overrides: 0
-- Swept: none yet
-- Pivot lineage: none yet
-- Remaining frontier: none recorded
+- Completed pivots: 2
+- Swept: correctness state transitions; security trusted writes
+- Pivot lineage: correctness -> security trust-boundary writes -> traceability caller/evidence contracts
+- Remaining frontier: maintainability only; synthesis is required at the cap
+<!-- MACHINE-OWNED: END -->
 
 ## 11. RULED OUT DIRECTIONS
 
-None yet.
+- Baseline-only untracked deletion: ruled out by the union comparison and focused deletion tests (iteration 1).
+- Failure-path bypass: ruled out by containment-before-failure-gates ordering (iteration 1).
+- Preserve-default regression: ruled out by implementation and strict config parsing (iteration 1).
+- Existing final-component quarantine symlink: ruled out by refusal logic and focused tests (iteration 2).
+- Strict rejection of the removed containment.worktrees config key: ruled out by executor-config.ts:803-817 (iteration 3).
 
-<!-- ANCHOR:next-focus -->
-## 11. NEXT FOCUS
-Synthesis at the hard five-iteration cap; preserve all eight open findings and record `maxIterationsReached`.
+## 12. NEXT FOCUS
+<!-- MACHINE-OWNED: START -->
+Synthesis: maintainability was not run; preserve the maxIterationsReached stop reason and the 3/4 dimension coverage gap.
+<!-- MACHINE-OWNED: END -->
 
-<!-- /ANCHOR:next-focus -->
 ## 13. KNOWN CONTEXT
 
 ### Bounded Context Snapshot
 
-- Target pointers: packet `spec.md`, `goal.md`, `decision-record.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md`, `implementation-summary.md`, `handover.md`; phase 007 removal packet; runtime containment/config/runner/pool sources; four deep command YAMLs; containment and fan-out tests; review contracts and protocols.
-- Behavior claims: preserve by default; restore pre-dispatch bytes; quarantine inside the lineage; completed lanes remain advisory; shared checkout is the current path after ADR-007; checkout watch is report-only.
-- Reuse and conventions: append gateway is the only canonical state writer; iteration files and deltas are reducer inputs; every P0/P1 requires a typed adjudication packet.
-- Review risks: root packet documents retain contradictory pre- and post-ADR-007 claims; resource-map is absent; graph and repository validators are intentionally not run under the exact lineage-only write constraint.
+- Target pointers: `spec.md`, `plan.md`, `acceptance-criteria.md`, `tasks.md`, `decision-record.md`, `goal.md`, `handover.md`; containment and fan-out runtime files; executor configuration; auto/confirm review workflows; directly referenced unit and runner tests.
+- Behavior claims: containment defaults preserve; restore is opt-in; churn thresholds are 3 per window and 12 cumulative; failed lanes are contained before failure gates; removed worktree behavior is superseded by the accepted ADR-007 direction.
+- Reuse and convention pointers: current `fanout-run.cjs` delegates containment to `write-containment.ts`; the append gateway owns canonical review ledger writes; review iterations require narrative, delta, and state artifacts.
+- Risk areas: stale worktree language and evidence, trust-boundary writes through symlinked paths, caller drift in `deep-review-auto.yaml`, and incomplete tests for parent-component symlink replacement.
 
 ## 14. CROSS-REFERENCE STATUS
-
 <!-- MACHINE-OWNED: START -->
+
 | Protocol | Level | Status | Iteration | Notes |
 |----------|-------|--------|-----------|-------|
-| `spec_code` | core | partial | 1 | Requirements and implementation diverge on baseline-only deletion and failure-path containment. |
-| `checklist_evidence` | core | partial | 1 | Adjacent tests exist, but the two boundary cases are not represented in the reviewed span. |
-| `skill_agent` | overlay | notApplicable | init | Target is a spec-folder review, not a skill |
-| `agent_cross_runtime` | overlay | notApplicable | init | No cross-runtime agent target in scope |
-| `feature_catalog_code` | overlay | pending | - | Scheduled for traceability pass |
-| `playbook_capability` | overlay | pending | - | Scheduled for maintainability pass |
+| spec_code | core | partial | 3 | ADR-007 and the current no-worktree runner disagree with retained packet requirements and the stale auto caller. |
+| checklist_evidence | core | partial | 3 | Acceptance rows marked Met include an absent test, mismatched line citations, and unreconciled closure metadata. |
+| skill_agent | overlay | notApplicable | 0 | Target is a spec folder, not a standalone skill. |
+| agent_cross_runtime | overlay | notApplicable | 0 | Target is not an agent definition. |
+| feature_catalog_code | overlay | partial | 3 | Runner boundary was checked; a separate catalog sweep remains incomplete. |
+| playbook_capability | overlay | pending | 3 | Maintainability/playbook coverage was deferred by the iteration cap. |
 <!-- MACHINE-OWNED: END -->
 
 ## 15. FILES UNDER REVIEW
-
 <!-- MACHINE-OWNED: START -->
-Scope is the bounded source set listed in each iteration record. Target files are read-only.
+
+| File | Dimensions Reviewed | Last Iteration | Findings | Status |
+|------|---------------------|----------------|----------|--------|
+| .opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts | D1, D2 | 2 | 3 P1 | partial |
+| .opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs | D1, D2 | 2 | 1 P1 | partial |
+| .opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts | D1 | 1 | 0 | partial |
+| .opencode/skills/system-deep-loop/runtime/scripts/runtime-bootstrap.cjs | D1 | 1 | 0 | partial |
+| .opencode/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts | D1, D2 | 2 | 2 P1 gaps | partial |
+| .opencode/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts | D1 | 1 | 0 | partial |
+| .opencode/commands/deep/assets/deep-review-auto.yaml | - | - | 0 | pending |
+| .opencode/commands/deep/assets/deep-review-confirm.yaml | - | - | 0 | pending |
+| specs/system-deep-loop/045-fanout-write-containment-hardening/spec.md | D1 | 1 | 0 | partial |
+| specs/system-deep-loop/045-fanout-write-containment-hardening/plan.md | - | - | 0 | pending |
+| specs/system-deep-loop/045-fanout-write-containment-hardening/acceptance-criteria.md | - | - | 0 | pending |
+| specs/system-deep-loop/045-fanout-write-containment-hardening/tasks.md | - | - | 0 | pending |
+| specs/system-deep-loop/045-fanout-write-containment-hardening/decision-record.md | D1 | 1 | 0 | partial |
+| specs/system-deep-loop/045-fanout-write-containment-hardening/goal.md | - | - | 0 | pending |
+| specs/system-deep-loop/045-fanout-write-containment-hardening/handover.md | - | - | 0 | pending |
 <!-- MACHINE-OWNED: END -->
 
 ## 16. REVIEW BOUNDARIES
-
 <!-- MACHINE-OWNED: START -->
-- Max iterations: 5
-- Convergence threshold: 0.10
+- Max iterations: 3
+- Convergence threshold: 0.1
 - Convergence mode: off
 - Stop policy: max-iterations
-- Session: `fanout-luna-1789404700951-8xtlnk`, generation 1, lineage resolved from `auto` to `new`
-- Per-iteration budget: 12 tool calls soft, 13 hard
-- Started: 2026-09-14T17:10:00.000Z
+- Session lineage: sessionId=fanout-luna-1789427869613-2bzg57, parentSessionId=null, generation=2, lineageMode=new, lineageModeInput=auto
+- Findings registry: `deep-review-findings-registry.json`
+- Release-readiness states: in-progress | converged | release-blocking
+- Severity threshold: P2
+- Review target type: spec-folder
+- Cross-reference checks: core=spec_code, checklist_evidence; overlay=skill_agent, agent_cross_runtime, feature_catalog_code, playbook_capability
+- Started: 2026-09-14T23:29:16.000Z
 <!-- MACHINE-OWNED: END -->

@@ -1,871 +1,198 @@
 {
-  "sessionId": "fanout-luna-1789404700951-8xtlnk",
-  "parentSessionId": null,
-  "generation": 1,
-  "lineageMode": "new",
-  "continuedFromRun": null,
-  "terminalStop": {
-    "stopReason": "maxIterationsReached",
-    "totalIterations": 5,
-    "timestamp": "2026-09-14T17:39:00Z"
-  },
-  "status": "COMPLETE",
+  "schemaVersion": 1,
+  "sessionId": "fanout-luna-1789427869613-2bzg57",
+  "generation": 2,
+  "status": "complete",
   "openFindings": [
     {
-      "findingId": "LUNA-F003",
-      "severity": "P0",
-      "title": "Quarantine destinations are not canonicalized before trusted writes",
-      "file": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts",
-      "line": 943,
-      "description": "A pre-existing symlink in the trusted quarantine destination can redirect content, patch, or manifest writes outside the artifact root.",
-      "findingClass": "security-boundary",
-      "deltaStatus": "active",
-      "scopeProof": "The trusted quarantine writer is part of the target containment implementation and NFR-S01 is explicit.",
-      "affectedSurfaceHints": [
-        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts",
-        ".opencode/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts",
-        "specs/system-deep-loop/045-fanout-write-containment-hardening/spec.md"
-      ],
-      "contentHash": "sha256:3333333333333333333333333333333333333333333333333333333333333333",
+      "id": "LUNA-S-001",
+      "severity": "P1",
       "dimension": "security",
-      "firstSeen": 2,
-      "lastSeen": 5,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 2,
-          "from": null,
-          "to": "P0",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "security"
-      ],
-      "mergedFindingIds": []
+      "title": "Baseline capture and read paths are not symlink-contained",
+      "file": "write-containment.ts:820-835",
+      "iteration": 2,
+      "confidence": 0.95,
+      "status": "open",
+      "evidenceRefs": [
+        "write-containment.ts:820-835",
+        "write-containment.ts:1048-1063",
+        "fanout-run.cjs:3375-3382"
+      ]
     },
     {
-      "findingId": "LUNA-F001",
+      "id": "LUNA-S-002",
       "severity": "P1",
-      "title": "Pre-existing untracked deletions disappear from the baseline diff",
-      "file": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts",
-      "line": 823,
-      "description": "A baseline-only untracked path deleted before the post-dispatch sample is not represented in current status entries and escapes containment detection.",
-      "findingClass": "algorithmic",
-      "deltaStatus": "active",
-      "scopeProof": "The finding is in the detector called by the target containment workflow and affects its stated baseline-preservation guarantee.",
-      "affectedSurfaceHints": [
-        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts",
-        ".opencode/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts"
-      ],
-      "contentHash": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
-      "dimension": "correctness",
-      "firstSeen": 1,
-      "lastSeen": 5,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 1,
-          "from": null,
-          "to": "P1",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "correctness"
-      ],
-      "mergedFindingIds": []
+      "dimension": "security",
+      "title": "Restore checks only the final component and can follow a symlinked parent",
+      "file": "write-containment.ts:1427-1450",
+      "iteration": 2,
+      "confidence": 0.97,
+      "status": "open",
+      "evidenceRefs": [
+        "write-containment.ts:1427-1450",
+        "write-containment.ts:1491-1495",
+        "write-containment.vitest.ts:2333-2432"
+      ]
     },
     {
-      "findingId": "LUNA-F002",
+      "id": "LUNA-S-003",
       "severity": "P1",
-      "title": "Failed or incomplete lanes skip containment entirely",
-      "file": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
-      "line": 3381,
-      "description": "Failure gates throw before enforceWriteContainment, so an out-of-scope write by a failed lane is unreported.",
-      "findingClass": "control-flow",
-      "deltaStatus": "active",
-      "scopeProof": "The runner ordering controls every target CLI lineage and the packet explicitly claims containment coverage.",
-      "affectedSurfaceHints": [
-        ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
-        "specs/system-deep-loop/045-fanout-write-containment-hardening/implementation-summary.md"
-      ],
-      "contentHash": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
-      "dimension": "correctness",
-      "firstSeen": 1,
-      "lastSeen": 5,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 1,
-          "from": null,
-          "to": "P1",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "correctness"
-      ],
-      "mergedFindingIds": []
+      "dimension": "security",
+      "title": "Quarantine destination validation is vulnerable to check-then-create replacement",
+      "file": "write-containment.ts:1066-1137",
+      "iteration": 2,
+      "confidence": 0.87,
+      "status": "open",
+      "evidenceRefs": [
+        "write-containment.ts:1066-1137",
+        "write-containment.ts:1145-1355",
+        "write-containment.vitest.ts:2202-2318"
+      ]
     },
     {
-      "findingId": "LUNA-F004",
+      "id": "LUNA-T-001",
       "severity": "P1",
-      "title": "Command caller migration still contains removed worktree assumptions and raw state writes",
-      "file": ".opencode/commands/deep/assets/deep-review-auto.yaml",
-      "line": 1307,
-      "description": "At least one command caller still rejects shared checkout and bypasses the gateway after phase 007 removed worktree isolation.",
-      "findingClass": "cross-consumer",
-      "deltaStatus": "active",
-      "scopeProof": "Phase 007 explicitly covers the command YAMLs and removes worktree runtime support.",
-      "affectedSurfaceHints": [
-        ".opencode/commands/deep/assets/deep-review-auto.yaml",
-        ".opencode/commands/deep/assets/deep-review-confirm.yaml",
-        ".opencode/commands/deep/assets/deep-research-auto.yaml",
-        ".opencode/commands/deep/assets/deep-research-confirm.yaml"
-      ],
-      "contentHash": "sha256:4444444444444444444444444444444444444444444444444444444444444444",
       "dimension": "traceability",
-      "firstSeen": 3,
-      "lastSeen": 5,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 3,
-          "from": null,
-          "to": "P1",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "traceability"
-      ],
-      "mergedFindingIds": []
+      "title": "Auto review cli-opencode dispatch still requires a removed linked worktree",
+      "file": "deep-review-auto.yaml:1304-1321",
+      "iteration": 3,
+      "confidence": 0.99,
+      "status": "open",
+      "evidenceRefs": [
+        "deep-review-auto.yaml:1304-1321",
+        "deep-review-auto.yaml:1379-1406",
+        "fanout-run.cjs:3213-3231",
+        "decision-record.md:544-553"
+      ]
     },
     {
-      "findingId": "LUNA-F005",
+      "id": "LUNA-T-002",
       "severity": "P1",
-      "title": "Canonical packet records disagree about isolation state",
-      "file": "specs/system-deep-loop/045-fanout-write-containment-hardening/goal.md",
-      "line": 62,
-      "description": "Goal and accepted ADRs say isolation is off or removed while parent requirements and closure records still describe worktree default-on behavior.",
-      "findingClass": "documentation-contract",
-      "deltaStatus": "active",
-      "scopeProof": "All cited files are canonical packet state surfaces.",
-      "affectedSurfaceHints": [
-        "specs/system-deep-loop/045-fanout-write-containment-hardening/goal.md",
-        "specs/system-deep-loop/045-fanout-write-containment-hardening/spec.md",
-        "specs/system-deep-loop/045-fanout-write-containment-hardening/acceptance-criteria.md",
-        "specs/system-deep-loop/045-fanout-write-containment-hardening/implementation-summary.md",
-        "specs/system-deep-loop/045-fanout-write-containment-hardening/handover.md"
-      ],
-      "contentHash": "sha256:5555555555555555555555555555555555555555555555555555555555555555",
       "dimension": "traceability",
-      "firstSeen": 3,
-      "lastSeen": 5,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 3,
-          "from": null,
-          "to": "P1",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "traceability"
-      ],
-      "mergedFindingIds": []
+      "title": "Canonical packet requirements still describe removed worktree behavior",
+      "file": "spec.md:20-26",
+      "iteration": 3,
+      "confidence": 0.98,
+      "status": "open",
+      "evidenceRefs": [
+        "spec.md:20-26",
+        "spec.md:65-72",
+        "spec.md:133-165",
+        "decision-record.md:544-553",
+        "fanout-run.cjs:3213-3231"
+      ]
     },
     {
-      "findingId": "LUNA-F006",
+      "id": "LUNA-T-003",
       "severity": "P1",
-      "title": "Churn threshold rationale contradicts executable defaults",
-      "file": "specs/system-deep-loop/045-fanout-write-containment-hardening/spec.md",
-      "line": 192,
-      "description": "The safety rationale states 12/40 while REQ-004 and the schema ship 3/12.",
-      "findingClass": "contract-mismatch",
-      "deltaStatus": "active",
-      "scopeProof": "The thresholds govern shared-checkout safety and are specified by the target packet.",
-      "affectedSurfaceHints": [
-        "specs/system-deep-loop/045-fanout-write-containment-hardening/spec.md",
-        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts"
-      ],
-      "contentHash": "sha256:6666666666666666666666666666666666666666666666666666666666666666",
       "dimension": "traceability",
-      "firstSeen": 3,
-      "lastSeen": 5,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 3,
-          "from": null,
-          "to": "P1",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "traceability"
-      ],
-      "mergedFindingIds": []
+      "title": "Acceptance evidence marks removed behavior as met and cites absent or mismatched tests",
+      "file": "acceptance-criteria.md:63-108",
+      "iteration": 3,
+      "confidence": 0.97,
+      "status": "open",
+      "evidenceRefs": [
+        "acceptance-criteria.md:48-50",
+        "acceptance-criteria.md:71-80",
+        "acceptance-criteria.md:103-108",
+        "tasks.md:301-340",
+        "fanout-run.vitest.ts:4380-4575"
+      ]
     },
     {
-      "findingId": "LUNA-F007",
-      "severity": "P1",
-      "title": "Quarantine evidence is a mutable single snapshot across retries",
-      "file": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts",
-      "line": 1058,
-      "description": "Repeated containment passes use one fixed quarantine directory and replace the manifest and named files, so prior out-of-scope evidence can be overwritten.",
-      "findingClass": "retention",
-      "deltaStatus": "active",
-      "scopeProof": "The writer is used by the target runner lifecycle and the packet requires durable quarantine evidence.",
-      "affectedSurfaceHints": [
-        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts",
-        ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
-        ".opencode/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts"
-      ],
-      "contentHash": "sha256:7777777777777777777777777777777777777777777777777777777777777777",
-      "dimension": "maintainability",
-      "firstSeen": 4,
-      "lastSeen": 5,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 4,
-          "from": null,
-          "to": "P1",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "maintainability"
-      ],
-      "mergedFindingIds": []
-    },
-    {
-      "findingId": "LUNA-F008",
+      "id": "LUNA-T-004",
       "severity": "P2",
-      "title": "Boundary regression tests omit the destination and failure seams",
-      "file": ".opencode/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts",
-      "line": 1714,
-      "description": "The containment tests omit trusted destination symlinks, baseline-only untracked deletion, and failed-lane containment.",
-      "findingClass": "test-coverage",
-      "deltaStatus": "active",
-      "scopeProof": "The cited unit and runner files are the packet's containment test and outcome surfaces.",
-      "affectedSurfaceHints": [
-        ".opencode/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts",
-        ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
-      ],
-      "contentHash": "sha256:8888888888888888888888888888888888888888888888888888888888888888",
-      "dimension": "maintainability",
-      "firstSeen": 4,
-      "lastSeen": 5,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 4,
-          "from": null,
-          "to": "P2",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "maintainability"
-      ],
-      "mergedFindingIds": []
+      "dimension": "traceability",
+      "title": "Plan churn thresholds disagree with the shipped defaults",
+      "file": "plan.md:61-70",
+      "iteration": 3,
+      "confidence": 0.96,
+      "status": "open",
+      "evidenceRefs": [
+        "plan.md:61-70",
+        "spec.md:140-149",
+        "executor-config.ts:789-824",
+        "fanout-run.cjs:3386-3420"
+      ]
     }
   ],
   "resolvedFindings": [],
-  "blockedStopHistory": [],
-  "persistentSameSeverity": [
-    {
-      "findingId": "LUNA-F003",
-      "severity": "P0",
-      "title": "Quarantine destinations are not canonicalized before trusted writes",
-      "file": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts",
-      "line": 943,
-      "description": "A pre-existing symlink in the trusted quarantine destination can redirect content, patch, or manifest writes outside the artifact root.",
-      "findingClass": "security-boundary",
-      "deltaStatus": "active",
-      "scopeProof": "The trusted quarantine writer is part of the target containment implementation and NFR-S01 is explicit.",
-      "affectedSurfaceHints": [
-        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts",
-        ".opencode/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts",
-        "specs/system-deep-loop/045-fanout-write-containment-hardening/spec.md"
-      ],
-      "contentHash": "sha256:3333333333333333333333333333333333333333333333333333333333333333",
-      "dimension": "security",
-      "firstSeen": 2,
-      "lastSeen": 5,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 2,
-          "from": null,
-          "to": "P0",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "security"
-      ],
-      "mergedFindingIds": []
-    },
-    {
-      "findingId": "LUNA-F001",
-      "severity": "P1",
-      "title": "Pre-existing untracked deletions disappear from the baseline diff",
-      "file": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts",
-      "line": 823,
-      "description": "A baseline-only untracked path deleted before the post-dispatch sample is not represented in current status entries and escapes containment detection.",
-      "findingClass": "algorithmic",
-      "deltaStatus": "active",
-      "scopeProof": "The finding is in the detector called by the target containment workflow and affects its stated baseline-preservation guarantee.",
-      "affectedSurfaceHints": [
-        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts",
-        ".opencode/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts"
-      ],
-      "contentHash": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
-      "dimension": "correctness",
-      "firstSeen": 1,
-      "lastSeen": 5,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 1,
-          "from": null,
-          "to": "P1",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "correctness"
-      ],
-      "mergedFindingIds": []
-    },
-    {
-      "findingId": "LUNA-F002",
-      "severity": "P1",
-      "title": "Failed or incomplete lanes skip containment entirely",
-      "file": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
-      "line": 3381,
-      "description": "Failure gates throw before enforceWriteContainment, so an out-of-scope write by a failed lane is unreported.",
-      "findingClass": "control-flow",
-      "deltaStatus": "active",
-      "scopeProof": "The runner ordering controls every target CLI lineage and the packet explicitly claims containment coverage.",
-      "affectedSurfaceHints": [
-        ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
-        "specs/system-deep-loop/045-fanout-write-containment-hardening/implementation-summary.md"
-      ],
-      "contentHash": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
-      "dimension": "correctness",
-      "firstSeen": 1,
-      "lastSeen": 5,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 1,
-          "from": null,
-          "to": "P1",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "correctness"
-      ],
-      "mergedFindingIds": []
-    },
-    {
-      "findingId": "LUNA-F004",
-      "severity": "P1",
-      "title": "Command caller migration still contains removed worktree assumptions and raw state writes",
-      "file": ".opencode/commands/deep/assets/deep-review-auto.yaml",
-      "line": 1307,
-      "description": "At least one command caller still rejects shared checkout and bypasses the gateway after phase 007 removed worktree isolation.",
-      "findingClass": "cross-consumer",
-      "deltaStatus": "active",
-      "scopeProof": "Phase 007 explicitly covers the command YAMLs and removes worktree runtime support.",
-      "affectedSurfaceHints": [
-        ".opencode/commands/deep/assets/deep-review-auto.yaml",
-        ".opencode/commands/deep/assets/deep-review-confirm.yaml",
-        ".opencode/commands/deep/assets/deep-research-auto.yaml",
-        ".opencode/commands/deep/assets/deep-research-confirm.yaml"
-      ],
-      "contentHash": "sha256:4444444444444444444444444444444444444444444444444444444444444444",
-      "dimension": "traceability",
-      "firstSeen": 3,
-      "lastSeen": 5,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 3,
-          "from": null,
-          "to": "P1",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "traceability"
-      ],
-      "mergedFindingIds": []
-    },
-    {
-      "findingId": "LUNA-F005",
-      "severity": "P1",
-      "title": "Canonical packet records disagree about isolation state",
-      "file": "specs/system-deep-loop/045-fanout-write-containment-hardening/goal.md",
-      "line": 62,
-      "description": "Goal and accepted ADRs say isolation is off or removed while parent requirements and closure records still describe worktree default-on behavior.",
-      "findingClass": "documentation-contract",
-      "deltaStatus": "active",
-      "scopeProof": "All cited files are canonical packet state surfaces.",
-      "affectedSurfaceHints": [
-        "specs/system-deep-loop/045-fanout-write-containment-hardening/goal.md",
-        "specs/system-deep-loop/045-fanout-write-containment-hardening/spec.md",
-        "specs/system-deep-loop/045-fanout-write-containment-hardening/acceptance-criteria.md",
-        "specs/system-deep-loop/045-fanout-write-containment-hardening/implementation-summary.md",
-        "specs/system-deep-loop/045-fanout-write-containment-hardening/handover.md"
-      ],
-      "contentHash": "sha256:5555555555555555555555555555555555555555555555555555555555555555",
-      "dimension": "traceability",
-      "firstSeen": 3,
-      "lastSeen": 5,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 3,
-          "from": null,
-          "to": "P1",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "traceability"
-      ],
-      "mergedFindingIds": []
-    },
-    {
-      "findingId": "LUNA-F006",
-      "severity": "P1",
-      "title": "Churn threshold rationale contradicts executable defaults",
-      "file": "specs/system-deep-loop/045-fanout-write-containment-hardening/spec.md",
-      "line": 192,
-      "description": "The safety rationale states 12/40 while REQ-004 and the schema ship 3/12.",
-      "findingClass": "contract-mismatch",
-      "deltaStatus": "active",
-      "scopeProof": "The thresholds govern shared-checkout safety and are specified by the target packet.",
-      "affectedSurfaceHints": [
-        "specs/system-deep-loop/045-fanout-write-containment-hardening/spec.md",
-        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts"
-      ],
-      "contentHash": "sha256:6666666666666666666666666666666666666666666666666666666666666666",
-      "dimension": "traceability",
-      "firstSeen": 3,
-      "lastSeen": 5,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 3,
-          "from": null,
-          "to": "P1",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "traceability"
-      ],
-      "mergedFindingIds": []
-    },
-    {
-      "findingId": "LUNA-F007",
-      "severity": "P1",
-      "title": "Quarantine evidence is a mutable single snapshot across retries",
-      "file": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts",
-      "line": 1058,
-      "description": "Repeated containment passes use one fixed quarantine directory and replace the manifest and named files, so prior out-of-scope evidence can be overwritten.",
-      "findingClass": "retention",
-      "deltaStatus": "active",
-      "scopeProof": "The writer is used by the target runner lifecycle and the packet requires durable quarantine evidence.",
-      "affectedSurfaceHints": [
-        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts",
-        ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
-        ".opencode/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts"
-      ],
-      "contentHash": "sha256:7777777777777777777777777777777777777777777777777777777777777777",
-      "dimension": "maintainability",
-      "firstSeen": 4,
-      "lastSeen": 5,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 4,
-          "from": null,
-          "to": "P1",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "maintainability"
-      ],
-      "mergedFindingIds": []
-    },
-    {
-      "findingId": "LUNA-F008",
-      "severity": "P2",
-      "title": "Boundary regression tests omit the destination and failure seams",
-      "file": ".opencode/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts",
-      "line": 1714,
-      "description": "The containment tests omit trusted destination symlinks, baseline-only untracked deletion, and failed-lane containment.",
-      "findingClass": "test-coverage",
-      "deltaStatus": "active",
-      "scopeProof": "The cited unit and runner files are the packet's containment test and outcome surfaces.",
-      "affectedSurfaceHints": [
-        ".opencode/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts",
-        ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
-      ],
-      "contentHash": "sha256:8888888888888888888888888888888888888888888888888888888888888888",
-      "dimension": "maintainability",
-      "firstSeen": 4,
-      "lastSeen": 5,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 4,
-          "from": null,
-          "to": "P2",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "maintainability"
-      ],
-      "mergedFindingIds": []
-    }
-  ],
-  "severityChanged": [],
-  "repeatedFindings": [
-    {
-      "findingId": "LUNA-F003",
-      "severity": "P0",
-      "title": "Quarantine destinations are not canonicalized before trusted writes",
-      "file": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts",
-      "line": 943,
-      "description": "A pre-existing symlink in the trusted quarantine destination can redirect content, patch, or manifest writes outside the artifact root.",
-      "findingClass": "security-boundary",
-      "deltaStatus": "active",
-      "scopeProof": "The trusted quarantine writer is part of the target containment implementation and NFR-S01 is explicit.",
-      "affectedSurfaceHints": [
-        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts",
-        ".opencode/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts",
-        "specs/system-deep-loop/045-fanout-write-containment-hardening/spec.md"
-      ],
-      "contentHash": "sha256:3333333333333333333333333333333333333333333333333333333333333333",
-      "dimension": "security",
-      "firstSeen": 2,
-      "lastSeen": 5,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 2,
-          "from": null,
-          "to": "P0",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "security"
-      ],
-      "mergedFindingIds": []
-    },
-    {
-      "findingId": "LUNA-F001",
-      "severity": "P1",
-      "title": "Pre-existing untracked deletions disappear from the baseline diff",
-      "file": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts",
-      "line": 823,
-      "description": "A baseline-only untracked path deleted before the post-dispatch sample is not represented in current status entries and escapes containment detection.",
-      "findingClass": "algorithmic",
-      "deltaStatus": "active",
-      "scopeProof": "The finding is in the detector called by the target containment workflow and affects its stated baseline-preservation guarantee.",
-      "affectedSurfaceHints": [
-        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts",
-        ".opencode/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts"
-      ],
-      "contentHash": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
-      "dimension": "correctness",
-      "firstSeen": 1,
-      "lastSeen": 5,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 1,
-          "from": null,
-          "to": "P1",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "correctness"
-      ],
-      "mergedFindingIds": []
-    },
-    {
-      "findingId": "LUNA-F002",
-      "severity": "P1",
-      "title": "Failed or incomplete lanes skip containment entirely",
-      "file": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
-      "line": 3381,
-      "description": "Failure gates throw before enforceWriteContainment, so an out-of-scope write by a failed lane is unreported.",
-      "findingClass": "control-flow",
-      "deltaStatus": "active",
-      "scopeProof": "The runner ordering controls every target CLI lineage and the packet explicitly claims containment coverage.",
-      "affectedSurfaceHints": [
-        ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
-        "specs/system-deep-loop/045-fanout-write-containment-hardening/implementation-summary.md"
-      ],
-      "contentHash": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
-      "dimension": "correctness",
-      "firstSeen": 1,
-      "lastSeen": 5,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 1,
-          "from": null,
-          "to": "P1",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "correctness"
-      ],
-      "mergedFindingIds": []
-    },
-    {
-      "findingId": "LUNA-F004",
-      "severity": "P1",
-      "title": "Command caller migration still contains removed worktree assumptions and raw state writes",
-      "file": ".opencode/commands/deep/assets/deep-review-auto.yaml",
-      "line": 1307,
-      "description": "At least one command caller still rejects shared checkout and bypasses the gateway after phase 007 removed worktree isolation.",
-      "findingClass": "cross-consumer",
-      "deltaStatus": "active",
-      "scopeProof": "Phase 007 explicitly covers the command YAMLs and removes worktree runtime support.",
-      "affectedSurfaceHints": [
-        ".opencode/commands/deep/assets/deep-review-auto.yaml",
-        ".opencode/commands/deep/assets/deep-review-confirm.yaml",
-        ".opencode/commands/deep/assets/deep-research-auto.yaml",
-        ".opencode/commands/deep/assets/deep-research-confirm.yaml"
-      ],
-      "contentHash": "sha256:4444444444444444444444444444444444444444444444444444444444444444",
-      "dimension": "traceability",
-      "firstSeen": 3,
-      "lastSeen": 5,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 3,
-          "from": null,
-          "to": "P1",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "traceability"
-      ],
-      "mergedFindingIds": []
-    },
-    {
-      "findingId": "LUNA-F005",
-      "severity": "P1",
-      "title": "Canonical packet records disagree about isolation state",
-      "file": "specs/system-deep-loop/045-fanout-write-containment-hardening/goal.md",
-      "line": 62,
-      "description": "Goal and accepted ADRs say isolation is off or removed while parent requirements and closure records still describe worktree default-on behavior.",
-      "findingClass": "documentation-contract",
-      "deltaStatus": "active",
-      "scopeProof": "All cited files are canonical packet state surfaces.",
-      "affectedSurfaceHints": [
-        "specs/system-deep-loop/045-fanout-write-containment-hardening/goal.md",
-        "specs/system-deep-loop/045-fanout-write-containment-hardening/spec.md",
-        "specs/system-deep-loop/045-fanout-write-containment-hardening/acceptance-criteria.md",
-        "specs/system-deep-loop/045-fanout-write-containment-hardening/implementation-summary.md",
-        "specs/system-deep-loop/045-fanout-write-containment-hardening/handover.md"
-      ],
-      "contentHash": "sha256:5555555555555555555555555555555555555555555555555555555555555555",
-      "dimension": "traceability",
-      "firstSeen": 3,
-      "lastSeen": 5,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 3,
-          "from": null,
-          "to": "P1",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "traceability"
-      ],
-      "mergedFindingIds": []
-    },
-    {
-      "findingId": "LUNA-F006",
-      "severity": "P1",
-      "title": "Churn threshold rationale contradicts executable defaults",
-      "file": "specs/system-deep-loop/045-fanout-write-containment-hardening/spec.md",
-      "line": 192,
-      "description": "The safety rationale states 12/40 while REQ-004 and the schema ship 3/12.",
-      "findingClass": "contract-mismatch",
-      "deltaStatus": "active",
-      "scopeProof": "The thresholds govern shared-checkout safety and are specified by the target packet.",
-      "affectedSurfaceHints": [
-        "specs/system-deep-loop/045-fanout-write-containment-hardening/spec.md",
-        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts"
-      ],
-      "contentHash": "sha256:6666666666666666666666666666666666666666666666666666666666666666",
-      "dimension": "traceability",
-      "firstSeen": 3,
-      "lastSeen": 5,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 3,
-          "from": null,
-          "to": "P1",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "traceability"
-      ],
-      "mergedFindingIds": []
-    },
-    {
-      "findingId": "LUNA-F007",
-      "severity": "P1",
-      "title": "Quarantine evidence is a mutable single snapshot across retries",
-      "file": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts",
-      "line": 1058,
-      "description": "Repeated containment passes use one fixed quarantine directory and replace the manifest and named files, so prior out-of-scope evidence can be overwritten.",
-      "findingClass": "retention",
-      "deltaStatus": "active",
-      "scopeProof": "The writer is used by the target runner lifecycle and the packet requires durable quarantine evidence.",
-      "affectedSurfaceHints": [
-        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts",
-        ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
-        ".opencode/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts"
-      ],
-      "contentHash": "sha256:7777777777777777777777777777777777777777777777777777777777777777",
-      "dimension": "maintainability",
-      "firstSeen": 4,
-      "lastSeen": 5,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 4,
-          "from": null,
-          "to": "P1",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "maintainability"
-      ],
-      "mergedFindingIds": []
-    },
-    {
-      "findingId": "LUNA-F008",
-      "severity": "P2",
-      "title": "Boundary regression tests omit the destination and failure seams",
-      "file": ".opencode/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts",
-      "line": 1714,
-      "description": "The containment tests omit trusted destination symlinks, baseline-only untracked deletion, and failed-lane containment.",
-      "findingClass": "test-coverage",
-      "deltaStatus": "active",
-      "scopeProof": "The cited unit and runner files are the packet's containment test and outcome surfaces.",
-      "affectedSurfaceHints": [
-        ".opencode/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts",
-        ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
-      ],
-      "contentHash": "sha256:8888888888888888888888888888888888888888888888888888888888888888",
-      "dimension": "maintainability",
-      "firstSeen": 4,
-      "lastSeen": 5,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 4,
-          "from": null,
-          "to": "P2",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "maintainability"
-      ],
-      "mergedFindingIds": []
-    }
-  ],
+  "repeatedFindings": [],
   "dimensionCoverage": {
-    "correctness": false,
-    "security": false,
-    "traceability": false,
-    "maintainability": false
+    "correctness": {
+      "status": "complete",
+      "iterations": [
+        1
+      ],
+      "verdict": "PASS"
+    },
+    "security": {
+      "status": "complete",
+      "iterations": [
+        2
+      ],
+      "verdict": "CONDITIONAL"
+    },
+    "traceability": {
+      "status": "complete",
+      "iterations": [
+        3
+      ],
+      "verdict": "CONDITIONAL"
+    },
+    "maintainability": {
+      "status": "deferred",
+      "iterations": [],
+      "verdict": "PENDING"
+    }
   },
   "findingsBySeverity": {
-    "P0": 1,
+    "P0": 0,
     "P1": 6,
     "P2": 1
   },
-  "openFindingsCount": 8,
-  "resolvedFindingsCount": 0,
+  "activeFindingCounts": {
+    "P0": 0,
+    "P1": 6,
+    "P2": 1
+  },
+  "resolvedFindingCounts": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 0
+  },
   "convergenceScore": 0,
-  "graphConvergenceScore": 0,
-  "graphDecision": "continue",
-  "graphBlockers": [],
-  "graphSignals": {},
-  "candidateCoverage": {
-    "covered": [],
-    "ruledOut": [],
-    "deferred": [],
-    "blocked": [],
-    "byBugClass": {}
-  },
-  "searchDebt": [],
-  "ruledOutCandidates": [],
-  "cleanSearchProof": [],
-  "searchCoverage": {
-    "requiredBugClasses": [],
-    "covered": [],
-    "ruledOut": [],
-    "deferred": [],
-    "blocked": [],
-    "graphCoverageMode": null
-  },
-  "traceability": {
-    "summary": {
-      "required": 0,
-      "executed": 0,
-      "pass": 0,
-      "partial": 0,
-      "fail": 0,
-      "blocked": 0,
-      "notApplicable": 0,
-      "gatingFailures": 0
+  "newFindingsRatio": 1,
+  "coverage": {
+    "filesReviewed": 35,
+    "declaredFiles": 15,
+    "dimensionsCovered": 3,
+    "dimensionsTotal": 4,
+    "coreProtocols": {
+      "complete": 0,
+      "total": 2
     },
-    "results": []
+    "overlayProtocols": {
+      "complete": 1,
+      "applicable": 2
+    }
   },
-  "divergence": {
-    "started": [],
-    "completed": [],
-    "failed": [],
-    "overrides": [],
-    "saturatedDirections": [],
-    "remainingFrontier": [],
-    "currentFocus": ""
+  "qualityGates": {
+    "evidence": "partial",
+    "scope": "pass",
+    "coverage": "in-progress"
   },
-  "fieldWarnings": [],
-  "corruptionWarnings": []
+  "warnings": [
+    "Maintainability was not run before the configured maximum iteration cap.",
+    "Six P1 findings remain active."
+  ],
+  "synthesis": {
+    "status": "complete",
+    "verdict": "CONDITIONAL",
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 3,
+    "reportRevisionId": "report-1",
+    "reportPath": "specs/system-deep-loop/045-fanout-write-containment-hardening/review/lineages/luna/review-report.md"
+  },
+  "updatedAt": "2026-09-15T00:00:00.000Z"
 }

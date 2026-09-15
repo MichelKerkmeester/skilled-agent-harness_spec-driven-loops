@@ -5,7 +5,7 @@ trigger_phrases:
   - "fan-out write containment"
   - "containment quarantine preserve"
   - "shared checkout concurrent editor"
-  - "per-lineage worktree containment"
+  - "shared-checkout containment"
 importance_tier: "important"
 contextType: "implementation"
 ---
@@ -21,7 +21,7 @@ contextType: "implementation"
 
 The deep-loop fan-out guard cannot tell a leaf's stray write from a human's edit in the same checkout, and its remedy is `git checkout HEAD -- <path>`, which is irreversible for uncommitted work. On 2026-09-08 that combination reverted 1,858 tracked paths belonging to a concurrent interactive session and failed a research lane whose artefacts were complete. This packet changes the default remedy from destroy to quarantine, makes restore (when chosen) return files to the bytes they held before dispatch rather than to HEAD, stops a containment finding from erasing a finished lane's outcome, and adds the structural fix that makes the whole question moot: run each CLI lineage in its own git worktree.
 
-**Key Decisions**: Preserve-and-quarantine becomes the default and restore becomes opt-in; each lineage gets an ephemeral detached worktree outside the sk-git numbered namespace rather than an allocator-issued one.
+**Key Decisions**: Preserve-and-quarantine becomes the default and restore becomes opt-in; the per-lineage worktree that followed was built, turned off by default and then removed (ADR-007), so every lane runs in the shared checkout. Historical text below that describes each lineage getting an ephemeral detached worktree outside the sk-git numbered namespace rather than an allocator-issued one.
 
 **Critical Dependencies**: sk-git's worktree grammar and reaper policy (the runner must not pollute the numbered namespace); the shared `node_modules` and `dist` symlink pattern that makes a bare worktree usable by the runtime.
 
@@ -38,6 +38,8 @@ The deep-loop fan-out guard cannot tell a leaf's stray write from a human's edit
 | **Branch** | `skilled/v4.0.0.0` |
 | **Origin** | The 2026-09-08 containment incident on the chart visual-upgrade research run: lane `luna` completed five iterations, then reverted 1,858 out-of-scope paths written by a concurrent session and was recorded `failed`. The second lane was stopped by hand before it could repeat the sweep over 932 further live edits. |
 <!-- /ANCHOR:metadata -->
+
+> **Reversal note.** Sections that describe per-lineage worktrees, their seeding, publication, reclamation, isolation tally and checkout watch record what shipped between phases 002 and 006 of the plan and was removed in phase 007 under ADR-007. Every lane now runs in the shared checkout under preserve-by-default containment; the requirement rows REQ-005 and REQ-007 and the success criteria SC-003 and SC-005 are superseded, not current.
 
 ---
 
@@ -121,6 +123,7 @@ Follow-on work the alternatives research surfaced. Each phase is one fix, dispat
 | 011-restore-never-through-symlink | 012-quarantine-retention-per-pass | [Criteria TBD] | [Verification TBD] |
 | 012-quarantine-retention-per-pass | 013-review-lane-advisory-and-strict-config | [Criteria TBD] | [Verification TBD] |
 | 013-review-lane-advisory-and-strict-config | 014-alignment-review | [Criteria TBD] | [Verification TBD] |
+| 014-alignment-review | 015-symlink-contained-paths | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->
 
 ---
@@ -159,9 +162,9 @@ Ordered by safety gained per line changed. The first three requirements stop the
 
 - **SC-001**: A lane that writes outside its lineage directory on a default-configured run leaves the working tree byte-identical to how the lane left it, and leaves a quarantine directory that reproduces the change.
 - **SC-002**: A completed research lane with containment findings appears in the orchestration summary as completed with advisory, and its research artefacts are not reprocessed as a failure.
-- **SC-003**: A fan-out run against an uncommitted packet completes with every lineage in its own worktree and every lineage directory present in the main checkout afterwards.
+- **SC-003** (superseded by ADR-007): A fan-out run against an uncommitted packet completes with every lineage in its own worktree and every lineage directory present in the main checkout afterwards.
 - **SC-004**: The 2026-09-08 incident is reproducible as a test: a simulated neighbour dirties tracked files during a lane, and no path it touched is modified by the guard.
-- **SC-005**: A default-configured run with no worktree flag dispatches its lanes inside their own worktrees and the orchestration summary reports `isolation.enabled: true` with each lane counted as isolated; a lane whose tree cannot be made is counted as degraded and the run still completes.
+- **SC-005** (superseded by ADR-007): A default-configured run with no worktree flag dispatches its lanes inside their own worktrees and the orchestration summary reports `isolation.enabled: true` with each lane counted as isolated; a lane whose tree cannot be made is counted as degraded and the run still completes.
 - **SC-006**: A default run whose isolated lane writes into the shared checkout reports exactly that write as a `checkout_write_detected` warning naming the path, counts it in the summary's isolation object, leaves the bytes on disk and still settles the lane fulfilled; a watched attempt whose checkout is unchanged reports `checkout_watched` with no write.
 <!-- /ANCHOR:success-criteria -->
 
@@ -204,7 +207,7 @@ The shipped defaults are three newly dirty out-of-lineage paths in one heartbeat
 
 ### Reliability
 - **NFR-R01**: The guard fails open when git is unavailable or the repository is bare: containment returns empty and never breaks the loop it guards. An artefact directory that resolves outside the worktree is a caller error and is refused with an error rather than silently passed.
-- **NFR-R02**: A worktree that cannot be created or removed degrades to the current in-checkout behaviour under preserve mode, with a warning event, rather than failing the run.
+- **NFR-R02** (superseded by ADR-007): A worktree that cannot be created or removed degrades to the current in-checkout behaviour under preserve mode, with a warning event, rather than failing the run.
 
 ---
 

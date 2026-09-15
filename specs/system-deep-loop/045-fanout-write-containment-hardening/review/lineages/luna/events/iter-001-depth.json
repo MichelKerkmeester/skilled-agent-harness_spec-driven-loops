@@ -1,0 +1,22 @@
+{
+  "stem": "deep_review.review_depth_recorded",
+  "scope": {
+    "runId": "fanout-luna-1789427869613-2bzg57",
+    "sessionId": "fanout-luna-1789427869613-2bzg57",
+    "generation": 2,
+    "iterationId": "iter-001"
+  },
+  "data": {
+    "reviewDepthSchemaVersion": "review-depth@2",
+    "applicability": "applicable",
+    "targetSelectionDigest": "0000000000000000000000000000000000000000000000000000000000000000",
+    "requiredBugClasses": ["baseline-deletion", "failure-path-ordering", "preserve-restore-state", "canonical-root-selection"],
+    "coveredBugClasses": ["baseline-deletion", "failure-path-ordering", "preserve-restore-state", "canonical-root-selection"],
+    "ruledOutBugClasses": ["threshold-boundary", "quarantine-pass-collision"],
+    "deferredBugClasses": ["trusted-destination-symlink", "parent-component-symlink"],
+    "blockedBugClasses": [],
+    "searchLedgerRowDigests": ["0000000000000000000000000000000000000000000000000000000000000000", "0000000000000000000000000000000000000000000000000000000000000000", "0000000000000000000000000000000000000000000000000000000000000000", "0000000000000000000000000000000000000000000000000000000000000000"],
+    "graphStatus": "unavailable",
+    "semanticSearchStatus": "unavailable"
+  }
+}

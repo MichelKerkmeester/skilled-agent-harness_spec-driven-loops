@@ -1,0 +1,17 @@
+{
+  "stem": "deep_review.continuity_save_requested",
+  "scope": {
+    "runId": "fanout-luna-1789427869613-2bzg57",
+    "sessionId": "fanout-luna-1789427869613-2bzg57"
+  },
+  "data": {
+    "targetPacket": "specs/system-deep-loop/045-fanout-write-containment-hardening",
+    "continuityPayloadDigest": "0000000000000000000000000000000000000000000000000000000000000000",
+    "sourceEventRange": {
+      "firstEventId": "event-008f206f-9020-45ce-a3c9-68ca8d874cb0",
+      "lastEventId": "event-cd31fde5-b32d-4222-8c7a-47b05bf2a4a7"
+    },
+    "route": "detached-lineage",
+    "mergeMode": "no-external-write"
+  }
+}

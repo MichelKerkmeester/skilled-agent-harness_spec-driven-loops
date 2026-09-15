@@ -1,0 +1,17 @@
+{
+  "stem": "deep_review.protocol_plan_recorded",
+  "scope": {
+    "runId": "fanout-luna-1789427869613-2bzg57",
+    "sessionId": "fanout-luna-1789427869613-2bzg57",
+    "protocolId": "checklist_evidence"
+  },
+  "data": {
+    "coreProtocolIds": ["checklist_evidence"],
+    "overlayProtocolIds": [],
+    "applicability": "applicable",
+    "gateClass": "blocking",
+    "contractVersion": "2.0.0",
+    "plannedEvidenceSourceRefs": ["acceptance-criteria.md:63-80", "tasks.md:85-103", "implementation-summary.md:120-140"],
+    "protocolPlanDigest": "0000000000000000000000000000000000000000000000000000000000000000"
+  }
+}

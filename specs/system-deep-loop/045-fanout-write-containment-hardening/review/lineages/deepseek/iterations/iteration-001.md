@@ -1,18 +1,18 @@
-# Iteration 1: D1 Correctness — the containment guard and its runner wiring
+# Iteration 1: D1 Correctness — the remediation's detection and evidence paths
 
 ## Focus
 
 Dimension: **correctness** (D1).
-Files: `runtime/lib/deep-loop/write-containment.ts`, `runtime/scripts/fanout-run.cjs` (containment wiring, baseline snapshot, churn detector), `runtime/scripts/runtime-bootstrap.cjs`, `runtime/scripts/fanout-pool.cjs` (settlement mapping read-only).
-Scope: the eight-commit change set `5340e39233..63b633c62f` on branch `skilled/v4.0.0.0`, read against the packet `spec.md` (REQ-001..REQ-008, NFR-P01, NFR-R01) and the packet's own acceptance criteria. No test execution: this lineage's write surface forbids commands that write outside the lineage directory, so every finding below is static evidence (file:line reads plus git history).
+Files: `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts`, `.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` (containment call sites), `.opencode/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts`.
+Scope: the six remediation commits for phases 008–013 (`47bdca586a`, `efe974e6f0`, `df7a1a2cf4`, `2ba05e1a28`, `52959f1065`, `57c02b8592`) read against HEAD `57c02b8592c8b74b9972525dde932be333c4c562`, plus the baseline-deletion and quarantine paths they touched. No test execution: this lineage's write surface forbids commands that write outside the lineage directory, so every finding below is static evidence (file:line reads plus git history).
 
 ## Scorecard
 
 - Dimensions covered: correctness
-- Files reviewed: 4 primary + 3 supporting
-- New findings: P0=0 P1=0 P2=4
+- Files reviewed: 3 primary + 2 supporting
+- New findings: P0=0 P1=0 P2=2
 - Refined findings: P0=0 P1=0 P2=0
-- New findings ratio: 0.62
+- New findings ratio: 0.45
 
 ## Findings
 
@@ -26,23 +26,21 @@ None.
 
 ### P2, Suggestion
 
-- **F-001**: A path deleted before dispatch is subtracted from detection forever, even if the lane then writes it, `runtime/lib/deep-loop/write-containment.ts:833-835`. `detectNewOutOfScopeViolations` short-circuits every baseline path whose recorded hash is empty (`if (!preHash) continue;`). The baseline hashes each dirty path with `git hash-object -- <path>` (`write-containment.ts:787`), and for a path deleted at baseline that command exits non-zero, so `gitHashObject` returns `''` (`write-containment.ts:425-429`). The recorded intent is the opposite — the comment at `write-containment.ts:783-786` says hashing every dirty path is what stops a stale advisory from hiding a later write — but the empty-hash branch preserves exactly that hole for the deletion shape. A neighbour's deletion before dispatch, followed by a lane (or the neighbour) recreating that path with new content, is never reported. Severity P2: under the shipped preserve default nothing is destroyed, so the cost is a missed report rather than data loss.
-- **F-002**: The churn detector's first window is uncounted, `runtime/scripts/fanout-run.cjs:1676-1687`. The sampler is fed by the progress heartbeat (`fanout-run.cjs:3272-3283` → `fanout-run.cjs:3236-3270`), which first fires one cadence (default 60 s) after dispatch, and the sampler takes its *first* sample as the baseline (`previousPaths === null` → `newlyDirty = 0`, `fanout-run.cjs:1679-1687`). Every path a neighbour dirties between the pre-dispatch snapshot and that first heartbeat is therefore absorbed as "ordinary working-tree life" and contributes nothing to either the per-window or the cumulative arm. A neighbour that writes a burst in the lane's first minute is invisible to the detector whose whole purpose is proving a second writer. Severity P2: the detector is a safety net for the opt-in restore remedy, and under preserve nothing depends on it.
-- **F-003**: NFR-P01 undercounts the sampler's real cost, `specs/system-deep-loop/045-fanout-write-containment-hardening/spec.md:183` vs `runtime/scripts/fanout-run.cjs:3236-3248` and `runtime/lib/deep-loop/write-containment.ts:772-808`. NFR-P01 promises "no more than one `git status --porcelain` invocation per progress heartbeat per lane". The sampler calls `snapshotOutOfScopeDirtyPaths`, which per sample runs `rev-parse --show-toplevel` and `rev-parse --is-bare-repository` (`write-containment.ts:385-393` via `resolveArtifactScope`), one `status --porcelain`, and then one `hash-object` per dirty path (`write-containment.ts:787`). On a checkout with N dirty paths the heartbeat spawns O(N) git processes per lane, which is the shape a busy shared checkout — the case this packet exists for — makes worst. The three `git status` calls that are not `status` are cheap individually and the hash calls are needed by the baseline snapshot; the finding is that the NFR's single-invocation claim is not true of the shipped sampler.
-- **F-004**: `resolveContainmentRepoRoot` can hand the guard a subdirectory while every guard path is repo-relative, `runtime/scripts/runtime-bootstrap.cjs:54-73` with `runtime/lib/deep-loop/write-containment.ts:616-624`. `resolveArtifactScope` computes `artifactRelPosix = relative(repoReal, artifactReal)` and compares it against `git status --porcelain` paths, which git emits relative to the worktree root regardless of the `-C` directory (verified: `git -C specs/system-deep-loop status --porcelain` returns `.opencode/...` paths, not paths relative to `specs/system-deep-loop`). `resolveContainmentRepoRoot` returns `cwd` unless the artifact tree is in a *different* worktree, so a runner launched from a subdirectory scopes every artifact path incorrectly: under preserve that is a flood of false advisories, and under the opt-in restore it would target paths the lane itself owns. Latent rather than live — every shipped caller dispatches with `working_directory: {repo_root}` (`deep-review-auto.yaml:1538`, and the same block in the three sibling YAMLs) — but the helper's contract does not state the toplevel requirement it depends on.
+- **F-101**: The empty-hash sentinel still hides a baseline path the lane recreates, `runtime/lib/deep-loop/write-containment.ts:917-919`. `detectNewOutOfScopeViolations` skips every baseline path whose recorded hash is empty (`const preHash = preMap.get(p) || ''; if (!preHash) continue;`). The snapshot stores `hash: ''` for any path `git hash-object` cannot read — including a tracked path deleted before dispatch, because `gitHashObject` returns `''` on a non-zero exit (`write-containment.ts:506-510`). The phase-009 addition (`:930-953`) walks the subtraction the other way, but only for entries marked `untracked` whose path is both absent from `git status` and absent from disk (`:936-938`, `:944`); the recreation direction is excluded by construction, since a lane that recreates the path produces a status entry and never reaches the deletion pass. The unit suite pins only the subtraction case (`tests/unit/write-containment.vitest.ts:535-554`); no test covers recreation. Severity P2: under the default preserve remedy nothing is destroyed, so the cost is a missed report, but the guard's own scope claim — every new out-of-scope write is detected — is false for this path shape.
+- **F-102**: A containment pass whose quarantine evidence failed to write is indistinguishable from a complete one, `runtime/lib/deep-loop/write-containment.ts:1510-1545` with `runtime/scripts/fanout-run.cjs:3526-3544` and `:3649-3652`. `enforceWriteContainment` returns the full `QuarantineResult` — `{dirPath, entries, refused, error}` (`write-containment.ts:1331-1354`) — but `buildContainmentViolationEvent` carries only `violations`, `reverted`, the patch path and `dataLossPossible`; the runner appends that event and keeps only `quarantinePath` for `output.containment`, dropping `refused` and `error` in both the successful-lane path and (with `quarantinePath` too) the failed-lane path at `:3585-3626`. A pass whose manifest write failed, or whose destinations the phase-008 canonicality check refused, therefore reads exactly like a complete pass wherever the violation is reported. Severity P2: the violation itself is still reported; what is lost is whether its durable record exists.
 
 ## Cross-Reference Results
 
 | Protocol | Status | Gate | Evidence | Notes |
 |----------|--------|------|----------|-------|
-| spec_code | partial (this iteration's slice) | hard | `spec.md:183` vs `write-containment.ts:772-808` | NFR-P01 cost claim (F-003); the full spec_code verdict is deferred to iteration 3 |
-| checklist_evidence | notApplicable | hard | packet has no `checklist.md` | recorded as F-013 in iteration 3 |
+| spec_code | partial (this iteration's slice) | hard | `write-containment.ts:917-919` vs the module's detection contract (`:894-898`) | F-101; the full spec_code verdict is in iteration 3 |
+| checklist_evidence | notApplicable | hard | packet has no `checklist.md` (verified absent) | recorded again in iteration 3 |
 
 ## Assessment
 
-- New findings ratio: 0.62 (4 new severity-1 findings against a small reviewed surface with no prior registry).
+- New findings ratio: 0.45 (2 new findings against a reviewed surface that is mostly remediation-verified; no prior registry).
 - Dimensions addressed: correctness.
-- Novelty justification: all four findings sit on code paths the change set itself introduced or rewired — the baseline hash branch (F-001), the churn sampler's first sample (F-002), the NFR the sampler was written against (F-003), and the repo-root resolver the guard now depends on for every lane (F-004). None is a restatement of an existing packet finding.
+- Novelty justification: both findings sit on paths the remediation rewrote — the baseline-subtraction rewrite of phase 009 (F-101) and the quarantine/refusal machinery of phases 008 and 012 whose result never reaches the reporting surface (F-102). Neither restates a prior finding: the prior P2 F-001 covered the deleted-at-baseline short-circuit, and this iteration confirms it survives the phase-009 fix in the recreation direction rather than re-reporting it; F-102 is new to the remediation's own output contract.
 
 ## Claim Adjudication
 
@@ -50,16 +48,19 @@ No new P0/P1 findings this iteration; no packets required.
 
 ## Ruled Out
 
-- Retry logic in `spawnGit` (`write-containment.ts:339-377`): retries only `index.lock` contention, bounded at 250/500/1000/2000 ms, and records an exhausted budget. Logic is sound; only the reporting reach is questioned in iteration 5.
-- Quarantine bounds: `BASELINE_MAX_FILE_BYTES` / `BASELINE_MAX_LANE_BYTES` are enforced per file and per sweep with `content_truncated` recorded (`write-containment.ts:983-999`). No finding.
-- Settlement mapping for the advisory status: `fanout-pool.cjs:883-908` counts it separately from success and failure and keeps it inside `succeeded`; `statusForLedgerEvent` (`fanout-run.cjs:326-344`) is unaffected because the advisory is carried on `output.status`, not a ledger event.
+- Phase-010 ordering: containment runs after the lane process ends and before every verdict gate, and its ledger event is appended before any gate can throw (`fanout-run.cjs:3466-3544`, gates at `:3585-3626`). Verified correct.
+- `passSegment` path safety (`write-containment.ts:1122-1133`): a non-integer or non-finite segment becomes `unknown`, never a `.`-bearing or `Infinity` path segment. Verified correct.
+- Quarantine destination refusal (`write-containment.ts:1076-1104`): resolves the deepest existing ancestor and rejects any symlinked component below the artifact root, collecting refusals instead of throwing. Verified correct.
+- Phase-012 exclusive creates: `openSync(destination, 'wx')` decides existence at the filesystem rather than by a check that could lose a race; the pass directory is reused, the files are not. Verified correct.
+- Prior P2s F-002 (first churn window), F-003 (sampler cost), F-007 (captured content) remain open but were not bound to phases 008–013; they are recorded as unremediated carry-overs in the report appendix rather than re-registered.
 
 ## Dead Ends
 
-- Attempting to run the containment unit suite: blocked by the lineage write-surface constraint (test tooling writes caches outside the lineage directory). Static reading only.
+- Running the containment unit suite to confirm the recreation gap: blocked by the lineage write-surface constraint. Static reading only.
+- Exercising `git hash-object` against a missing path to pin the exit code live: the prior review already established the `''` return, and `gitHashObject` (`:506-510`) makes it explicit; no command needed.
 
 ## Recommended Next Focus
 
-D2 Security: quarantine write paths, the restore writer's treatment of symlinks, secret exposure through quarantine content, and the silent-drop behavior of the removed `containment.worktrees` config key.
+D2 Security: the restore writer's path handling after phase 011, the quarantine destination contract after phase 008, and whether the remediation's refusals fail safely.
 
 Review verdict: PASS

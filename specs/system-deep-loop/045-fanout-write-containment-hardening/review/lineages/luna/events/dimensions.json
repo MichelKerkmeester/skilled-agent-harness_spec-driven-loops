@@ -1,0 +1,13 @@
+{
+  "stem": "deep_review.dimension_ordered",
+  "scope": {
+    "runId": "fanout-luna-1789427869613-2bzg57",
+    "sessionId": "fanout-luna-1789427869613-2bzg57"
+  },
+  "data": {
+    "orderedDimensionIds": ["correctness", "security", "traceability", "maintainability"],
+    "riskRationale": "Containment write paths and failure ordering carry the highest operational risk; trust-boundary writes follow; current caller and packet contract drift is reviewed before the cap.",
+    "scopeEvidenceRefs": ["write-containment.ts:820", "fanout-run.cjs:3476", "deep-review-auto.yaml:1304"],
+    "orderingPolicyVersion": "2.0.0"
+  }
+}

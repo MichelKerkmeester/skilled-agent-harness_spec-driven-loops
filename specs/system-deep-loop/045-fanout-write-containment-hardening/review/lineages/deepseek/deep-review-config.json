@@ -1,28 +1,59 @@
 {
-  "topic": "Review of the fan-out write containment hardening change set (commits 5340e39233 through 63b633c62f)",
+  "topic": "Fresh review of the remediated fan-out write containment tree after phases 008 to 013",
   "mode": "review",
+  "sessionId": "fanout-deepseek-1789427869613-2bzg57",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "lineageModeRequested": "auto",
+  "generation": 1,
+  "continuedFromRun": null,
   "reviewTarget": "specs/system-deep-loop/045-fanout-write-containment-hardening",
   "reviewTargetType": "spec-folder",
   "reviewDimensions": ["correctness", "security", "traceability", "maintainability"],
+  "reviewScopeFiles": [
+    ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts",
+    ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+    ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+    ".opencode/skills/system-deep-loop/runtime/scripts/runtime-bootstrap.cjs",
+    ".opencode/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs",
+    ".opencode/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts",
+    ".opencode/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
+    ".opencode/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts",
+    ".opencode/commands/deep/assets/deep-review-auto.yaml",
+    ".opencode/commands/deep/assets/deep-review-confirm.yaml",
+    ".opencode/commands/deep/assets/deep-research-auto.yaml",
+    ".opencode/commands/deep/assets/deep-research-confirm.yaml",
+    ".opencode/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md",
+    ".opencode/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md",
+    ".opencode/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-run.md",
+    "specs/system-deep-loop/045-fanout-write-containment-hardening/spec.md",
+    "specs/system-deep-loop/045-fanout-write-containment-hardening/acceptance-criteria.md",
+    "specs/system-deep-loop/045-fanout-write-containment-hardening/tasks.md",
+    "specs/system-deep-loop/045-fanout-write-containment-hardening/goal.md",
+    "specs/system-deep-loop/045-fanout-write-containment-hardening/handover.md",
+    "specs/system-deep-loop/045-fanout-write-containment-hardening/implementation-summary.md",
+    "specs/system-deep-loop/045-fanout-write-containment-hardening/decision-record.md",
+    "specs/system-deep-loop/045-fanout-write-containment-hardening/008-quarantine-destination-canonical/spec.md",
+    "specs/system-deep-loop/045-fanout-write-containment-hardening/009-baseline-deletion-detection/spec.md",
+    "specs/system-deep-loop/045-fanout-write-containment-hardening/010-containment-on-failed-lanes/spec.md",
+    "specs/system-deep-loop/045-fanout-write-containment-hardening/011-restore-never-through-symlink/spec.md",
+    "specs/system-deep-loop/045-fanout-write-containment-hardening/012-quarantine-retention-per-pass/spec.md",
+    "specs/system-deep-loop/045-fanout-write-containment-hardening/013-review-lane-advisory-and-strict-config/spec.md"
+  ],
   "resource_map_present": false,
-  "sessionId": "fanout-deepseek-1789404700951-8xtlnk",
-  "parentSessionId": null,
-  "lineageMode": "new",
-  "generation": 1,
-  "continuedFromRun": null,
-  "maxIterations": 5,
-  "convergenceThreshold": 0.1,
-  "stuckThreshold": 2,
+  "resource_map": { "emit": true },
   "severityThreshold": "P2",
   "crossReference": {
     "core": ["spec_code", "checklist_evidence"],
-    "overlay": ["feature_catalog_code", "playbook_capability"]
+    "overlay": ["skill_agent", "agent_cross_runtime", "feature_catalog_code", "playbook_capability"]
   },
-  "qualityGateThreshold": true,
-  "releaseReadinessState": "in-progress",
-  "specFolder": "specs/system-deep-loop/045-fanout-write-containment-hardening",
-  "executionMode": "auto",
+  "maxIterations": 3,
+  "convergenceThreshold": 0.1,
+  "antiConvergence": { "convergenceMode": "off", "divergent": {} },
   "stopPolicy": "max-iterations",
+  "stuckThreshold": 2,
+  "maxDurationMinutes": 120,
+  "specFolder": "specs/system-deep-loop/045-fanout-write-containment-hardening",
   "executor": {
     "kind": "cli-pi",
     "model": "deepseek-v4.1-flash",
@@ -32,7 +63,7 @@
   "lineage": {
     "artifactDir": "specs/system-deep-loop/045-fanout-write-containment-hardening/review/lineages/deepseek",
     "fanoutLabel": "deepseek",
-    "runId": "fanout-deepseek-1789404700951-8xtlnk"
+    "runId": "fanout-deepseek-1789427869613-2bzg57"
   },
   "fileProtection": {
     "deep-review-config.json": "immutable",
@@ -48,14 +79,8 @@
     "enabled": true,
     "inputs": ["latestJSONLDelta", "newIterationFile", "priorReducedState"],
     "outputs": ["findingsRegistry", "dashboardMetrics", "strategyUpdates"],
-    "metrics": [
-      "dimensionsCovered",
-      "findingsBySeverity",
-      "openFindings",
-      "resolvedFindings",
-      "convergenceScore"
-    ]
+    "metrics": ["dimensionsCovered", "findingsBySeverity", "openFindings", "resolvedFindings", "convergenceScore"]
   },
-  "createdAt": "2026-09-14T16:56:00Z",
-  "status": "initialized"
+  "createdAt": "2026-09-14T23:22:53Z",
+  "status": "complete"
 }

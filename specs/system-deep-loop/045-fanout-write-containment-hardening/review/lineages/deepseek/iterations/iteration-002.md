@@ -1,18 +1,18 @@
-# Iteration 2: D2 Security — the restore writer, quarantine writes, and the config surface
+# Iteration 2: D2 Security — the restore writer and the quarantine boundary after remediation
 
 ## Focus
 
 Dimension: **security** (D2).
-Files: `runtime/lib/deep-loop/write-containment.ts` (revert, quarantine, capture), `runtime/lib/deep-loop/executor-config.ts`, `runtime/scripts/fanout-run.cjs` (mode resolution), `.opencode/commands/deep/assets/*.yaml` (inline callers, read-only).
-Scope: the change set's write paths and trust boundaries, against the packet's NFR-S01/NFR-S02 and REQ-001/REQ-002. Static evidence only (no test execution available in this lineage).
+Files: `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts` (revert and quarantine writers), `.opencode/skills/system-deep-loop/runtime/scripts/runtime-bootstrap.cjs`, `.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` (containment call site), `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` (strict containment schema, phase 013).
+Scope: the phase-011 restore guard, the phase-008 quarantine refusal, and the phase-013 schema strictness, read against the remediation's own contract. Static evidence only (no test execution, no git write experiments).
 
 ## Scorecard
 
 - Dimensions covered: security
-- Files reviewed: 3 primary + 4 supporting
-- New findings: P0=0 P1=1 P2=3
+- Files reviewed: 4 primary + 2 supporting
+- New findings: P0=0 P1=1 P2=1
 - Refined findings: P0=0 P1=0 P2=0
-- New findings ratio: 0.55
+- New findings ratio: 0.50
 
 ## Findings
 
@@ -22,63 +22,49 @@ None.
 
 ### P1, Required
 
-- **F-005**: Baseline-targeted restore follows a symlink and can write outside the working tree, `runtime/lib/deep-loop/write-containment.ts:1184-1187`. Under the opt-in `restore` remedy, the new baseline branch restores bytes with `writeFileSync(join(opts.repoRoot, violation.path), baselineBytes)`. `fs.writeFileSync` opens with `w` and therefore follows a symlink in the final path component; the pre-existing HEAD branch (`checkoutFromHead`, `write-containment.ts:1167-1176`) does not have this property because `git checkout HEAD -- <path>` writes the link itself. The reachable sequence: a path is dirty before dispatch and its bytes are captured (`captureBaselineFile`, `write-containment.ts:739-757`), something swaps that path for a symlink during the lane (the guard's own premise is that it cannot prove who), and the restore writes the captured bytes through the link to its target — a file of the attacker's choosing that the process can write. The patch capture that precedes a restore (`captureRevertPatch`, `write-containment.ts:869-916`) makes the destroyed content recoverable but does not constrain where the write lands. Severity P1 rather than P0: the remedy is opt-in and documented as single-operator only, and the preconditions (already-dirty at baseline with captured bytes, plus a link swapped in at exactly that path mid-lane) are narrow. It is a genuine arbitrary-write primitive in the shipped code, so it is required rather than advisory.
+- **F-201**: The opt-in restore still writes through a symlinked *ancestor* directory, `runtime/lib/deep-loop/write-containment.ts:1433-1449` and `:1490-1495`. Phase 011 added `lstatSync(join(opts.repoRoot, violation.path))?.isSymbolicLink()` (`:1433-1434`), which inspects only the final component. Both baseline-write arms then build the destination by string join (`:1447-1449`, `:1493-1494`): `mkdirSync(dirname(join(repoRoot, path)))` followed by `writeFileSync(join(repoRoot, path), baselineBytes)`. If a lane replaces a *parent* directory of the violated path with a symlink to a directory outside the checkout — the link node itself is preserved by the not-in-HEAD branch (`:1480-1481`) — the final-component check sees the link target's own `a.txt` (or nothing) and passes, and the write follows the symlinked parent, so captured baseline bytes land outside the repository while the ledger reports a restored path inside it. The module already holds the rule this writer needs: `canonicalPath` resolves every component, including a dangling link, and `isSubpath` compares the result (`:616-677`); detection uses it (`:669-677`), the write path does not.
+
+**Claim adjudication (P1)**
+- *claim*: Under opt-in restore, a violated path whose parent directory the lane replaced with a symlink is written through that link, so captured baseline bytes land wherever the link points, possibly outside the repository.
+- *evidenceRefs*: `runtime/lib/deep-loop/write-containment.ts:1433-1434`, `:1447-1449`, `:1490-1495`, `:616-677`, `:1480-1481`.
+- *counterevidenceSought*: read the whole revert function for an ancestor canonicalization (none; `canonicalPath`/`isSubpath` are used only by detection and quarantine refusals); checked whether the symlink node is removed before the file write (the not-in-HEAD branch preserves it, `:1480-1481`); checked whether quarantine's destination refusal covers the repo-side write (it only guards artifact-dir destinations, `:1076-1104`); attempted no `git checkout` experiment because git writes are banned for this lineage, so the HEAD branch at `:1419-1425` is left unverified rather than claimed.
+- *alternativeExplanation*: The lane must plant the symlink itself, and that write is itself a reported violation. Under the default preserve remedy nothing is written at all. The damage is therefore reachable only under the explicit restore opt-in — which is exactly the mode whose contract after phase 011 is "never writes through a symlink", and a directory the lane controls is enough to redirect it.
+- *finalSeverity*: P1 — the guard's stated write-containment contract is bypassed on a path-handling surface, but the default remedy and the artifact-dir refusal both fail safe.
+- *confidence*: 0.8 (static proof complete; no runtime reproduction).
+- *downgradeTrigger*: downgrade to P2 if a caller is found that canonicalizes `join(repoRoot, violation.path)` before `revertOutOfScopeViolations` (none found across the shipped callers), or if restore mode is unreachable from the shipped command surface (it is reachable: `containmentMode` is wired through `fanout-run.cjs`).
 
 ### P2, Suggestion
 
-- **F-006**: The quarantine writer does not canonicalize its destination, `runtime/lib/deep-loop/write-containment.ts:943-951, 983-1044`. NFR-S01 states the quarantine writer "never follows a symlink out of that directory" (`spec.md:195`), and the detector does canonicalize the path it judges (`isContainedInArtifact`, `write-containment.ts:588-596`). The writer does not: `writeQuarantineFile` calls `mkdirSync(dirname(destination), { recursive: true })` and writes, and the destinations are built by string-joining the git-reported path (`content/${violation.path}`, `patch-baseline/${violation.path}.patch`). A symlink already present at any component of `<lineageDir>/containment/quarantine/...` redirects the write. The practical risk is low — the leaf already holds unrestricted write access to the checkout by design, so it gains nothing — but the stated containment rule is enforced on the read side and not on the write side, which is the asymmetry the requirement exists to prevent.
-- **F-007**: Quarantine copies out-of-scope file content into a publishable artifact plane, `runtime/lib/deep-loop/write-containment.ts:983-999` with `fanout-run.cjs:3223-3231`. The pre-dispatch baseline already copies *every* dirty out-of-scope file into `<lineage>/containment/baseline/` (`captureBaselineFile` via `snapshotOutOfScopeDirtyPaths`, `write-containment.ts:790-798`), and the quarantine copies violated paths again under `containment/quarantine/content/`. An implementation summary on this very packet records a live run capturing 893 files at 8.2 MB, "including in-progress files belonging to eight other packets" (`implementation-summary.md:128`). Any dirty file holding credentials or personal data is duplicated into the lineage directory, which is an artifact plane that gets copied back and can be committed. This is new exposure the packet introduced: the old remedy destroyed such files rather than copying them. Severity P2: it is bounded by the same size limits and it is an operator-visible artifact, but nothing filters or redacts content before it is copied.
-- **F-008**: The removed `containment.worktrees` key is silently accepted, `runtime/lib/deep-loop/executor-config.ts:695-716`. The schema dropped `worktrees` when the mechanism was removed, and the object schema drops unknown keys silently — the file says so in the comment directly below the containment block and guards the removed `stopPolicy` key with `z.never().optional()` for exactly that reason (`executor-config.ts:710-715`). `worktrees` got no such guard even though the packet's own spec (REQ-007, `spec.md:141`) and handover (`handover.md:35`) documented `containment.worktrees: false` as a supported opt-out, and callers that pinned `--worktrees`/`worktrees: true` now receive a shared-checkout run with no isolation and no warning. Severity P2: the removal is deliberate and ADR-007 records it, so the issue is the silent acceptance of a key whose behavior changed rather than the removal itself.
+- **F-202**: The restore writer addresses violation paths against a repo root that may be a subdirectory, `runtime/scripts/runtime-bootstrap.cjs:54-73` with `runtime/lib/deep-loop/write-containment.ts:1449`. `resolveContainmentRepoRoot` returns `cwd` unless the artifact tree lives in a different worktree, while git emits status paths relative to the worktree root regardless of `-C` (the prior review verified this live). The write arms join those paths against `opts.repoRoot` (`:1449`, `:1494`), so a run launched from a subdirectory under restore targets a wrong-but-in-repo path; the deletion pass's disk check correctly uses `scope.repoRealRoot` (`:944`), which shows the module already knows the right root. Latent for the shipped callers (all dispatch with `working_directory: {repo_root}`), but this lineage re-registers it because the remediation put the same path on a *write* surface rather than only detection — prior F-004, still active.
 
 ## Cross-Reference Results
 
 | Protocol | Status | Gate | Evidence | Notes |
 |----------|--------|------|----------|-------|
-| spec_code | partial (this iteration's slice) | hard | `spec.md:195` vs `write-containment.ts:943-951` | NFR-S01 write-side asymmetry (F-006); full verdict in iteration 3 |
-| playbook_capability | pass | advisory | `manual-testing-playbook/write-containment/shared-checkout-run.md` | scenario still describes the preserve remedy accurately |
+| spec_code | partial (security slice) | hard | phase-011 description "never writes through a symlink" vs `write-containment.ts:1433-1449` | F-201 is the residual gap; full verdict in iteration 3 |
+| checklist_evidence | notApplicable | hard | packet has no `checklist.md` | re-recorded |
 
 ## Assessment
 
-- New findings ratio: 0.55 (one P1 plus three P2 against the reviewed write paths).
+- New findings ratio: 0.50.
 - Dimensions addressed: security.
-- Novelty justification: F-005 and F-006 sit on writers the change set introduced or extended (baseline restore is new in REQ-002; the quarantine writer is new in REQ-001); F-008 is a direct consequence of phase 7's schema removal. None duplicates iteration 1.
-
-## Claim Adjudication
-
-### F-005
-
-```json
-{
-  "findingId": "F-005",
-  "claim": "In restore mode the baseline branch writes captured bytes with fs.writeFileSync to a repo-relative path, so a symlink swapped in at that path after capture redirects the write outside the working tree.",
-  "evidenceRefs": [
-    "runtime/lib/deep-loop/write-containment.ts:1184-1187",
-    "runtime/lib/deep-loop/write-containment.ts:1167-1176",
-    "runtime/lib/deep-loop/write-containment.ts:927-935"
-  ],
-  "counterevidenceSought": "Read the whole revert function for a guarded-open, lstat, or realpath check before the write; checked readBaselineContent for a canonicalization step; grepped the module for O_NOFOLLOW and lstat; compared against the HEAD branch. None exists.",
-  "alternativeExplanation": "The restore remedy is opt-in, documented as single-operator only, and the guard already assumes a checkout where every writer is trusted — under that assumption the symlink case cannot arise. Rejected as a full explanation because the packet's own premise is that attribution is impossible even on a shared checkout, and the fix is a one-line lstat/O_NOFOLLOW guard that costs nothing.",
-  "finalSeverity": "P1",
-  "confidence": 0.82,
-  "downgradeTrigger": "If the restore path is changed to write through a temp file plus rename, or to refuse a path that is not a regular file (lstat check), downgrade to P2 documentation of the residual risk.",
-  "transitions": [
-    { "iteration": 2, "from": null, "to": "P1", "reason": "Initial discovery, confirmed by re-reading the write site and the HEAD branch's different behavior" }
-  ]
-}
-```
+- Security-sensitive override: the target touches path handling, persistence and shared policy, so `minStabilizationPasses=2` applies to any legal STOP; iteration 3 is a third full pass, and the fix-completeness replay rows are recorded in the audit appendix.
+- Novelty justification: F-201 is the one level up from the fixed P1 (F-005/F-013 class) — same writer, same class, different path component; F-202 is a re-registered prior finding whose blast radius the remediation widened onto a write path.
 
 ## Ruled Out
 
-- Quarantine content bound: enforced at 2 MiB per file and 64 MiB per sweep with truncation recorded (`write-containment.ts:707, 716, 983-999`). Matches NFR-P02.
-- `isContainedInArtifact` narrowing rule: name test plus canonical test can only narrow, never widen (`write-containment.ts:574-596`). Correct as documented.
-- The escaping-symlink carve-out: an escaping path is held out of the regenerable-state exemption and stays fatal (`write-containment.ts:1286-1293`). Correct.
+- Quarantine destination canonicality (phase 008): `quarantineDestinationRefusal` resolves the deepest existing ancestor and refuses any symlinked component below the artifact root, collecting refusals rather than throwing (`write-containment.ts:1076-1104`, `:1294-1347`). Verified correct for the artifact side; the repo-side write is F-201.
+- Phase-013 strict schema: `containment` is a `z.strictObject` (`executor-config.ts:803`) and `normalizeFanoutUnionIssue` reports the closest union branch's issues (`:935-950`). Checked the removed-key shapes (`containment.worktrees` under either union branch): the closest branch is the one carrying the containment block, so the key is named. Ruled out.
+- Quarantine TOCTOU: the lane process has ended before containment runs (`fanout-run.cjs:3466-3469`), so only a concurrent third party could race the check; that is a different threat model than this guard adjudicates.
+- HEAD-branch restore through a parent symlink: not proven either way without a git write experiment, which this lineage forbids; recorded as unverified, not as a finding.
 
 ## Dead Ends
 
-- Reviewing the deleted worktree modules for security regressions: they no longer exist in HEAD and are not reachable code; only their documentation traces matter (iteration 3/4).
+- Running the containment suite against a planted ancestor symlink: blocked by the lineage write-surface constraint; the finding rests on the read of both write arms.
+- Fetching git documentation on checkout's symlinked-parent behaviour: review is code-only; no WebFetch.
 
 ## Recommended Next Focus
 
-D3 Traceability: run the `spec_code` and `checklist_evidence` protocols against the packet's requirements, acceptance criteria and shipped state, including the worktree supersession and the stale-evidence citations.
+D3 Traceability + D4 Maintainability: the packet docs against the remediated tree (spec, acceptance criteria, phase map) and the unswept duplication/diagnostics residue.
 
 Review verdict: CONDITIONAL

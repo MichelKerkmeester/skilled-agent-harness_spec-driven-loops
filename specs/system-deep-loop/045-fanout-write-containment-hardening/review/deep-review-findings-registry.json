@@ -15,22 +15,23 @@
       "reasoningEffort": "max"
     }
   },
-  "mergedVerdict": "FAIL",
+  "mergedVerdict": "CONDITIONAL",
   "openFindings": [
     {
-      "findingId": "F-001",
+      "findingId": "F-102",
       "severity": "P2",
-      "title": "A path deleted before dispatch is subtracted from detection forever",
+      "title": "A containment pass whose quarantine evidence failed to write is indistinguishable from a complete one",
       "dimension": "correctness",
-      "file": "runtime/lib/deep-loop/write-containment.ts:833-835",
-      "evidence": "detectNewOutOfScopeViolations skips any baseline path whose recorded hash is empty; a deleted-at-baseline path hashes to '' because git hash-object exits non-zero on a missing file (write-containment.ts:787, 425-429).",
-      "recommendation": "Track a distinct baseline state for unhashable-but-recorded paths (deleted/absent) and re-evaluate them with the content-identity check when they reappear, instead of treating an empty hash as unmatched.",
+      "file": "runtime/lib/deep-loop/write-containment.ts:1510-1545",
+      "evidence": "enforceWriteContainment returns the full QuarantineResult {dirPath, entries, refused, error} (write-containment.ts:1331-1354), but buildContainmentViolationEvent carries only violations, reverted, the patch path and dataLossPossible; the runner appends that event (fanout-run.cjs:3526-3544) and keeps only quarantinePath for output.containment (:3649-3652), dropping refused and error. For a lane that fails a gate, even quarantinePath is discarded with the thrown error (:3585-3626). A pass whose manifest failed, or whose destinations the phase-008 canonicality check refused, therefore reads exactly like a complete pass wherever the violation is reported.",
+      "recommendation": "Carry {dirPath, refused, error} on the containment event (or on output.containment for failed lanes too) so an incomplete quarantine record is visible next to the violation it belongs to.",
       "disposition": "active",
-      "findingClass": "state_transition",
-      "scopeProof": "Read the full detection path and baseline snapshot function; grepped the unit suite for a deleted-at-baseline case and found none (write-containment.vitest.ts covers leaf-deletes and leaf-modifies only).",
+      "findingClass": "observability_gap",
+      "scopeProof": "Read the enforce return contract, the event builder, and both runner consumers (successful and failed lane paths); grepped the event type for quarantine fields (none).",
       "affectedSurfaceHints": [
-        "write-containment.detectNewOutOfScopeViolations",
-        "write-containment.snapshotOutOfScopeDirtyPaths"
+        "write-containment.buildContainmentViolationEvent",
+        "write-containment.enforceWriteContainment",
+        "fanout-run.containmentEvent"
       ],
       "firstSeen": 1,
       "lastSeen": 1,
@@ -47,256 +48,19 @@
       ]
     },
     {
-      "findingId": "F-005",
-      "severity": "P1",
-      "title": "Baseline-targeted restore follows a symlink and can write outside the working tree",
-      "dimension": "security",
-      "file": "runtime/lib/deep-loop/write-containment.ts:1184-1187",
-      "evidence": "writeFileSync(join(repoRoot, violation.path), baselineBytes) opens with w and follows a final-component symlink; the HEAD branch uses git checkout and does not.",
-      "recommendation": "Refuse to restore a path that is not a regular file (lstat) or open with O_NOFOLLOW; fall back to preserving the path and reporting it.",
-      "disposition": "active",
-      "findingClass": "path_traversal",
-      "scopeProof": "Read the full revert function, the baseline reader and the HEAD branch; grepped for lstat/O_NOFOLLOW/realpath guards before the write and found none.",
-      "affectedSurfaceHints": [
-        "write-containment.revertOutOfScopeViolations",
-        "write-containment.readBaselineContent"
-      ],
-      "firstSeen": 2,
-      "lastSeen": 2,
-      "transitions": [
-        {
-          "iteration": 2,
-          "from": null,
-          "to": "P1",
-          "reason": "discovered and adjudicated in iteration 2"
-        }
-      ],
-      "_lineages": [
-        "deepseek"
-      ]
-    },
-    {
-      "findingId": "LUNA-F008",
+      "findingId": "F-304",
       "severity": "P2",
-      "title": "Boundary regression tests omit the destination and failure seams",
-      "file": ".opencode/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts",
-      "line": 1714,
-      "description": "The containment tests omit trusted destination symlinks, baseline-only untracked deletion, and failed-lane containment.",
-      "findingClass": "test-coverage",
-      "deltaStatus": "active",
-      "scopeProof": "The cited unit and runner files are the packet's containment test and outcome surfaces.",
-      "affectedSurfaceHints": [
-        ".opencode/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts",
-        ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
-      ],
-      "contentHash": "sha256:8888888888888888888888888888888888888888888888888888888888888888",
-      "dimension": "maintainability",
-      "firstSeen": 4,
-      "lastSeen": 5,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 4,
-          "from": null,
-          "to": "P2",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "maintainability"
-      ],
-      "mergedFindingIds": [],
-      "_lineages": [
-        "luna"
-      ]
-    },
-    {
-      "findingId": "LUNA-F005",
-      "severity": "P1",
-      "title": "Canonical packet records disagree about isolation state",
-      "file": "specs/system-deep-loop/045-fanout-write-containment-hardening/goal.md",
-      "line": 62,
-      "description": "Goal and accepted ADRs say isolation is off or removed while parent requirements and closure records still describe worktree default-on behavior.",
-      "findingClass": "documentation-contract",
-      "deltaStatus": "active",
-      "scopeProof": "All cited files are canonical packet state surfaces.",
-      "affectedSurfaceHints": [
-        "specs/system-deep-loop/045-fanout-write-containment-hardening/goal.md",
-        "specs/system-deep-loop/045-fanout-write-containment-hardening/spec.md",
-        "specs/system-deep-loop/045-fanout-write-containment-hardening/acceptance-criteria.md",
-        "specs/system-deep-loop/045-fanout-write-containment-hardening/implementation-summary.md",
-        "specs/system-deep-loop/045-fanout-write-containment-hardening/handover.md"
-      ],
-      "contentHash": "sha256:5555555555555555555555555555555555555555555555555555555555555555",
+      "title": "Residual worktree claims remain in the summary, tasks and handover records",
       "dimension": "traceability",
-      "firstSeen": 3,
-      "lastSeen": 5,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 3,
-          "from": null,
-          "to": "P1",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "traceability"
-      ],
-      "mergedFindingIds": [],
-      "_lineages": [
-        "luna"
-      ]
-    },
-    {
-      "findingId": "LUNA-F006",
-      "severity": "P1",
-      "title": "Churn threshold rationale contradicts executable defaults",
-      "file": "specs/system-deep-loop/045-fanout-write-containment-hardening/spec.md",
-      "line": 192,
-      "description": "The safety rationale states 12/40 while REQ-004 and the schema ship 3/12.",
-      "findingClass": "contract-mismatch",
-      "deltaStatus": "active",
-      "scopeProof": "The thresholds govern shared-checkout safety and are specified by the target packet.",
-      "affectedSurfaceHints": [
-        "specs/system-deep-loop/045-fanout-write-containment-hardening/spec.md",
-        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts"
-      ],
-      "contentHash": "sha256:6666666666666666666666666666666666666666666666666666666666666666",
-      "dimension": "traceability",
-      "firstSeen": 3,
-      "lastSeen": 5,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 3,
-          "from": null,
-          "to": "P1",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "traceability"
-      ],
-      "mergedFindingIds": [],
-      "_lineages": [
-        "luna"
-      ]
-    },
-    {
-      "findingId": "LUNA-F004",
-      "severity": "P1",
-      "title": "Command caller migration still contains removed worktree assumptions and raw state writes",
-      "file": ".opencode/commands/deep/assets/deep-review-auto.yaml",
-      "line": 1307,
-      "description": "At least one command caller still rejects shared checkout and bypasses the gateway after phase 007 removed worktree isolation.",
-      "findingClass": "cross-consumer",
-      "deltaStatus": "active",
-      "scopeProof": "Phase 007 explicitly covers the command YAMLs and removes worktree runtime support.",
-      "affectedSurfaceHints": [
-        ".opencode/commands/deep/assets/deep-review-auto.yaml",
-        ".opencode/commands/deep/assets/deep-review-confirm.yaml",
-        ".opencode/commands/deep/assets/deep-research-auto.yaml",
-        ".opencode/commands/deep/assets/deep-research-confirm.yaml"
-      ],
-      "contentHash": "sha256:4444444444444444444444444444444444444444444444444444444444444444",
-      "dimension": "traceability",
-      "firstSeen": 3,
-      "lastSeen": 5,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 3,
-          "from": null,
-          "to": "P1",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "traceability"
-      ],
-      "mergedFindingIds": [],
-      "_lineages": [
-        "luna"
-      ]
-    },
-    {
-      "findingId": "LUNA-F002",
-      "severity": "P1",
-      "title": "Failed or incomplete lanes skip containment entirely",
-      "file": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
-      "line": 3381,
-      "description": "Failure gates throw before enforceWriteContainment, so an out-of-scope write by a failed lane is unreported.",
-      "findingClass": "control-flow",
-      "deltaStatus": "active",
-      "scopeProof": "The runner ordering controls every target CLI lineage and the packet explicitly claims containment coverage.",
-      "affectedSurfaceHints": [
-        ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
-        "specs/system-deep-loop/045-fanout-write-containment-hardening/implementation-summary.md"
-      ],
-      "contentHash": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
-      "dimension": "correctness",
-      "firstSeen": 1,
-      "lastSeen": 5,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 1,
-          "from": null,
-          "to": "P1",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "correctness"
-      ],
-      "mergedFindingIds": [],
-      "_lineages": [
-        "luna"
-      ]
-    },
-    {
-      "findingId": "F-014",
-      "severity": "P2",
-      "title": "goal.md's durable slice still records the worktree default flip as the live decision",
-      "dimension": "traceability",
-      "file": "specs/system-deep-loop/045-fanout-write-containment-hardening/goal.md:16",
-      "evidence": "Continuity recent_action names the worktree default flip (:16); the answered question records ADR-004 turning the default on (:32); D5/D6 describe the ephemeral worktree and --worktrees true (:61-62); the Implementation row lists per-lineage worktrees as done (:114, :124); D7 (:63) records the removal, so adjacent rows contradict.",
-      "recommendation": "Amend the continuity fields and the D5/D6 rows to the shipped design, keeping D7 as the superseding entry.",
+      "file": "specs/system-deep-loop/045-fanout-write-containment-hardening/implementation-summary.md:3",
+      "evidence": "Implementation-summary presents worktrees and the isolation tally as shipped in the frontmatter description (:3), files table (:67), verification narrative (:75), key decisions (:87-88) and verification rows (:98-106) against the single removal paragraph at :61. tasks.md:88 is a checked task whose evidence names the deleted worktree-lifecycle and worktree-lease suites. handover.md:100 sends a cold reader to ADR-004 for the worktree-default decision without naming ADR-007, though :37 was corrected.",
+      "recommendation": "Mark the worktree claims in the summary and task evidence superseded or remove them, and correct the handover's cold-read order to ADR-007.",
       "disposition": "active",
-      "findingClass": "stale_goal_state",
-      "scopeProof": "Compared the durable slice's decisions and status rows with ADR-006/007 and the shipped schema.",
+      "findingClass": "stale_record",
+      "scopeProof": "Read each file's worktree mentions in context and cross-checked against the phase-007 removal and ADR-007.",
       "affectedSurfaceHints": [
-        "goal.continuity",
-        "goal.decisions"
-      ],
-      "firstSeen": 3,
-      "lastSeen": 3,
-      "transitions": [
-        {
-          "iteration": 3,
-          "from": null,
-          "to": "P2",
-          "reason": "discovered and adjudicated in iteration 3"
-        }
-      ],
-      "_lineages": [
-        "deepseek"
-      ]
-    },
-    {
-      "findingId": "F-013",
-      "severity": "P2",
-      "title": "handover.md briefs a cold session on the removed worktree default",
-      "dimension": "traceability",
-      "file": "specs/system-deep-loop/045-fanout-write-containment-hardening/handover.md:37",
-      "evidence": "Line 37 states per-lineage worktrees are off by default with --worktrees true; the worktree cost figures remain (:41-42); the cold-read order sends readers to ADR-004 for the worktree-default decision (:100) without naming ADR-007.",
-      "recommendation": "Rewrite the cold-start brief around the single shared-checkout path and ADR-007.",
-      "disposition": "active",
-      "findingClass": "stale_handoff",
-      "scopeProof": "Read the handoff's status, costs and cold-read sections against ADR-006/007 and the current runtime.",
-      "affectedSurfaceHints": [
-        "handover.status",
+        "implementation-summary.verification",
+        "tasks.phase-4",
         "handover.cold-read-order"
       ],
       "firstSeen": 3,
@@ -314,27 +78,43 @@
       ]
     },
     {
-      "findingId": "F-011",
-      "severity": "P2",
-      "title": "implementation-summary.md states the reversal in one paragraph and presents the mechanism as shipped everywhere else",
+      "findingId": "F-302",
+      "severity": "P1",
+      "title": "The closure gate is still In Progress and its Met rows cite deleted or shifted evidence",
       "dimension": "traceability",
-      "file": "specs/system-deep-loop/045-fanout-write-containment-hardening/implementation-summary.md:3",
-      "evidence": "Line 61 states the removal, but the frontmatter (:3), files table (:67), verification narrative (:75), key decisions (:87-88), five verification rows (:103-109) and known limitations 5-10 and 19 (:124-129, :140) still describe live worktrees with the removed suite sizes.",
-      "recommendation": "Strike or mark superseded every worktree row and limitation, and keep one paragraph recording the reversal.",
+      "file": "specs/system-deep-loop/045-fanout-write-containment-hardening/acceptance-criteria.md:77",
+      "evidence": "Status In Progress dated 2026-09-08 (:50-51). AC-015 is Met citing runtime/tests/unit/worktree-lifecycle.vitest.ts:531/:547, a file phase 007 deleted; AC-018 (:80) is Met citing runtime/tests/unit/fanout-run.vitest.ts:4184/:4212/:4228, but that file grew from 4374 to 4791 lines in the remediation and those lines are unrelated scaffolding (4184 a spawn-argument list, 4212 an opencode --variant test, 4228 closing braces). The closure statement (:107) reads closeable and awaiting sign-off. Prior F-010 class; AC-009/AC-017 were superseded but the gate was never re-anchored or re-dated.",
+      "recommendation": "Re-anchor or supersede the two Met rows, mark AC-015 Superseded by ADR-007 like AC-009/AC-017, and re-date the metadata against HEAD.",
       "disposition": "active",
-      "findingClass": "doc_inconsistency",
-      "scopeProof": "Read the summary end to end and cross-checked each worktree claim against HEAD.",
+      "findingClass": "stale_closure_evidence",
+      "scopeProof": "Verified the deleted suite by directory listing; read every cited line at HEAD; wc -l on the test file; checked for a newer AC file in the packet tree (none).",
       "affectedSurfaceHints": [
-        "implementation-summary.verification",
-        "implementation-summary.known-limitations"
+        "acceptance-criteria.AC-015",
+        "acceptance-criteria.AC-018",
+        "acceptance-criteria.metadata"
       ],
+      "claimAdjudication": {
+        "claim": "The packet's closure gate carries a non-terminal status and certifies two Met criteria with evidence that no longer resolves to the behaviour it names.",
+        "evidenceRefs": [
+          "specs/system-deep-loop/045-fanout-write-containment-hardening/acceptance-criteria.md:50",
+          "specs/system-deep-loop/045-fanout-write-containment-hardening/acceptance-criteria.md:77",
+          "specs/system-deep-loop/045-fanout-write-containment-hardening/acceptance-criteria.md:80",
+          "runtime/tests/unit/fanout-run.vitest.ts:4184",
+          "runtime/tests/unit/fanout-run.vitest.ts:4212"
+        ],
+        "counterevidenceSought": "Listed the unit test directory to prove the worktree suite is gone; read the cited lines at HEAD; checked the AC file's history and the prior registry's F-010 entry.",
+        "alternativeExplanation": "The gate's own metadata says In Progress, which is honest; but the row-level Met assertions are evidence claims that no longer hold, and the packet's completion criterion depends on the gate being actionable.",
+        "finalSeverity": "P1",
+        "confidence": 0.85,
+        "downgradeTrigger": "Downgrade to P2 if the rows are re-anchored or the file is marked historical by the operator; upgrade if a release decision is taken from the gate as written."
+      },
       "firstSeen": 3,
       "lastSeen": 3,
       "transitions": [
         {
           "iteration": 3,
           "from": null,
-          "to": "P2",
+          "to": "P1",
           "reason": "discovered and adjudicated in iteration 3"
         }
       ],
@@ -343,19 +123,20 @@
       ]
     },
     {
-      "findingId": "F-003",
+      "findingId": "F-101",
       "severity": "P2",
-      "title": "NFR-P01's single-invocation claim undercounts the churn sampler",
+      "title": "The empty-hash sentinel still hides a baseline path the lane recreates",
       "dimension": "correctness",
-      "file": "runtime/scripts/fanout-run.cjs:3236-3248",
-      "evidence": "Each sample calls snapshotOutOfScopeDirtyPaths, which runs two rev-parse calls (write-containment.ts:385-393 via resolveArtifactScope:616-621), one status --porcelain, and one hash-object per dirty path (write-containment.ts:787). NFR-P01 (spec.md:183) promises one status invocation per heartbeat.",
-      "recommendation": "Either narrow the sampler to a status-only read (skip hashing when only paths are needed) or amend NFR-P01 to state the real per-heartbeat cost.",
+      "file": "runtime/lib/deep-loop/write-containment.ts:917-919",
+      "evidence": "detectNewOutOfScopeViolations skips every baseline path whose recorded hash is empty (`const preHash = preMap.get(p) || ''; if (!preHash) continue;`). The snapshot stores hash:'' for any path git hash-object cannot read, including a tracked path deleted before dispatch, because gitHashObject returns '' on a non-zero exit (write-containment.ts:506-510). The phase-009 addition (:930-953) walks the subtraction the other way only for entries marked untracked whose path is absent from status AND absent from disk (:936-938, :944), so a lane that recreates the path is excluded by construction. The only test pins the subtraction case (tests/unit/write-containment.vitest.ts:535-554); no case covers recreation.",
+      "recommendation": "Give unhashable-but-recorded baseline paths a distinct absent state and re-evaluate them with the content-identity check when they reappear, instead of storing '' and treating it as unmatched forever.",
       "disposition": "active",
-      "findingClass": "performance_contract",
-      "scopeProof": "Traced the sampler's call chain to the git helpers and counted every spawnSync that executes per sample; no caching exists between samples.",
+      "findingClass": "state_transition",
+      "scopeProof": "Read the full detection path, the snapshot writer and gitHashObject; read the phase-009 deletion tests and grepped for a recreation case (none).",
       "affectedSurfaceHints": [
-        "fanout-run.sampleSharedCheckoutChurn",
-        "write-containment.snapshotOutOfScopeDirtyPaths"
+        "write-containment.detectNewOutOfScopeViolations",
+        "write-containment.snapshotOutOfScopeDirtyPaths",
+        "write-containment.gitHashObject"
       ],
       "firstSeen": 1,
       "lastSeen": 1,
@@ -372,91 +153,43 @@
       ]
     },
     {
-      "findingId": "F-018",
-      "severity": "P2",
-      "title": "NFR-R01 claims a fail-open property the module does not implement",
-      "dimension": "traceability",
-      "file": "specs/system-deep-loop/045-fanout-write-containment-hardening/spec.md:199",
-      "evidence": "NFR-R01 promises containment returns empty when the artifact directory is outside the worktree; write-containment.ts throws when resolveArtifactScope returns null while a git toplevel resolves; CHK-013 in tasks.md:180 records the same claim as verified.",
-      "recommendation": "Either amend NFR-R01 to the real behaviour or make the artifact-outside-worktree case fail open as stated.",
-      "disposition": "active",
-      "findingClass": "spec_code_mismatch",
-      "scopeProof": "Read the guard's scope resolution and the non-functional table; confirmed the throw path and that shipped callers never reach it.",
-      "affectedSurfaceHints": [
-        "spec.md.NFR-R01",
-        "write-containment.resolveArtifactScope"
-      ],
-      "firstSeen": 3,
-      "lastSeen": 3,
-      "transitions": [
-        {
-          "iteration": 3,
-          "from": null,
-          "to": "P2",
-          "reason": "discovered and adjudicated in iteration 3"
-        }
-      ],
-      "_lineages": [
-        "deepseek"
-      ]
-    },
-    {
-      "findingId": "LUNA-F001",
+      "findingId": "F-201",
       "severity": "P1",
-      "title": "Pre-existing untracked deletions disappear from the baseline diff",
-      "file": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts",
-      "line": 823,
-      "description": "A baseline-only untracked path deleted before the post-dispatch sample is not represented in current status entries and escapes containment detection.",
-      "findingClass": "algorithmic",
-      "deltaStatus": "active",
-      "scopeProof": "The finding is in the detector called by the target containment workflow and affects its stated baseline-preservation guarantee.",
-      "affectedSurfaceHints": [
-        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts",
-        ".opencode/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts"
-      ],
-      "contentHash": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
-      "dimension": "correctness",
-      "firstSeen": 1,
-      "lastSeen": 5,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 1,
-          "from": null,
-          "to": "P1",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "correctness"
-      ],
-      "mergedFindingIds": [],
-      "_lineages": [
-        "luna"
-      ]
-    },
-    {
-      "findingId": "F-007",
-      "severity": "P2",
-      "title": "Quarantine copies out-of-scope file content into a publishable artifact plane",
+      "title": "The opt-in restore still writes through a symlinked ancestor directory",
       "dimension": "security",
-      "file": "runtime/lib/deep-loop/write-containment.ts:983-999",
-      "evidence": "Baseline capture copies every dirty out-of-scope file into the lineage directory (write-containment.ts:790-798) and quarantine copies violated paths again; the packet's own summary records 893 files at 8.2 MB captured from eight other packets' work.",
-      "recommendation": "Document the exposure and consider an operator-facing opt-out for baseline content capture on a dirty shared checkout.",
+      "file": "runtime/lib/deep-loop/write-containment.ts:1433-1449",
+      "evidence": "Phase 011's lstat guard inspects only the final component (:1433-1434). Both baseline write arms then join the repo-relative path and write along it: mkdirSync(dirname(...)) + writeFileSync at :1447-1449 and :1493-1494. A lane that replaces a parent directory of the violated path with a symlink to a directory outside the checkout redirects the write; the link node itself is preserved by the not-in-HEAD branch (:1480-1481). canonicalPath/isSubpath (:616-677) already implement the every-component rule detection uses (:669-677); the write path does not call it.",
+      "recommendation": "Canonicalize the destination through every component (reuse canonicalPath) and refuse when it leaves the worktree, or refuse any violated path whose parent chain contains a symlink.",
       "disposition": "active",
-      "findingClass": "secret_exposure",
-      "scopeProof": "Traced the capture calls, read the size bounds, and cross-checked the packet's recorded live-run measurement.",
+      "findingClass": "path_traversal",
+      "scopeProof": "Read both baseline write arms in full, the not-in-HEAD preservation branch, the quarantine refusal (artifact-side only), and the detection canonicalization for comparison; no git write experiment was run, so the HEAD branch is recorded as unverified rather than claimed.",
       "affectedSurfaceHints": [
-        "write-containment.captureBaselineFile",
-        "fanout-run.snapshotOutOfScopeDirtyPaths"
+        "write-containment.revertOutOfScopeViolations",
+        "write-containment.canonicalPath",
+        "write-containment.isSubpath"
       ],
+      "claimAdjudication": {
+        "claim": "Under opt-in restore, a violated path whose parent directory the lane replaced with a symlink is written through that link, so captured baseline bytes land wherever the link points, possibly outside the repository.",
+        "evidenceRefs": [
+          "runtime/lib/deep-loop/write-containment.ts:1433-1434",
+          "runtime/lib/deep-loop/write-containment.ts:1447-1449",
+          "runtime/lib/deep-loop/write-containment.ts:1490-1495",
+          "runtime/lib/deep-loop/write-containment.ts:616-677",
+          "runtime/lib/deep-loop/write-containment.ts:1480-1481"
+        ],
+        "counterevidenceSought": "Read the whole revert function for an ancestor canonicalization (none); checked whether the symlink node is removed first (preserved, :1480-1481); checked whether quarantine's refusal covers the repo-side write (artifact-side only); no git checkout experiment (banned for this lineage).",
+        "alternativeExplanation": "The lane must plant the symlink itself and that write is a reported violation; under preserve nothing is written. The damage is reachable only under the restore opt-in, whose post-phase-011 contract is that a restore never writes through a symlink.",
+        "finalSeverity": "P1",
+        "confidence": 0.8,
+        "downgradeTrigger": "Downgrade to P2 if a caller canonicalizes join(repoRoot, violation.path) before revertOutOfScopeViolations (none found), or if restore mode is unreachable from the shipped command surface (it is wired through fanout-run.cjs)."
+      },
       "firstSeen": 2,
       "lastSeen": 2,
       "transitions": [
         {
           "iteration": 2,
           "from": null,
-          "to": "P2",
+          "to": "P1",
           "reason": "discovered and adjudicated in iteration 2"
         }
       ],
@@ -465,92 +198,20 @@
       ]
     },
     {
-      "findingId": "LUNA-F003",
-      "severity": "P0",
-      "title": "Quarantine destinations are not canonicalized before trusted writes",
-      "file": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts",
-      "line": 943,
-      "description": "A pre-existing symlink in the trusted quarantine destination can redirect content, patch, or manifest writes outside the artifact root.",
-      "findingClass": "security-boundary",
-      "deltaStatus": "active",
-      "scopeProof": "The trusted quarantine writer is part of the target containment implementation and NFR-S01 is explicit.",
-      "affectedSurfaceHints": [
-        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts",
-        ".opencode/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts",
-        "specs/system-deep-loop/045-fanout-write-containment-hardening/spec.md"
-      ],
-      "contentHash": "sha256:3333333333333333333333333333333333333333333333333333333333333333",
-      "dimension": "security",
-      "firstSeen": 2,
-      "lastSeen": 5,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 2,
-          "from": null,
-          "to": "P0",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "security"
-      ],
-      "mergedFindingIds": [],
-      "_lineages": [
-        "luna"
-      ]
-    },
-    {
-      "findingId": "LUNA-F007",
-      "severity": "P1",
-      "title": "Quarantine evidence is a mutable single snapshot across retries",
-      "file": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts",
-      "line": 1058,
-      "description": "Repeated containment passes use one fixed quarantine directory and replace the manifest and named files, so prior out-of-scope evidence can be overwritten.",
-      "findingClass": "retention",
-      "deltaStatus": "active",
-      "scopeProof": "The writer is used by the target runner lifecycle and the packet requires durable quarantine evidence.",
-      "affectedSurfaceHints": [
-        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts",
-        ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
-        ".opencode/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts"
-      ],
-      "contentHash": "sha256:7777777777777777777777777777777777777777777777777777777777777777",
-      "dimension": "maintainability",
-      "firstSeen": 4,
-      "lastSeen": 5,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 4,
-          "from": null,
-          "to": "P1",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "maintainability"
-      ],
-      "mergedFindingIds": [],
-      "_lineages": [
-        "luna"
-      ]
-    },
-    {
-      "findingId": "F-016",
+      "findingId": "F-303",
       "severity": "P2",
-      "title": "REQ-006's both-loop-protocols clause is half migrated and two stale comment blocks contradict the sweep claim",
+      "title": "The phase map and ADR-003 were never reconciled with the completed remediation",
       "dimension": "traceability",
-      "file": ".opencode/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md:280",
-      "evidence": "deep-research's loop-protocol.md:287-290 carries the full containment ruleset while deep-review's contains none (only the cli-opencode sandbox note at :280); hub SKILL.md:128 points readers at the research file; the superseded 'revert ... fail-closed' comments remain above the advisory calls at deep-review-auto.yaml:1517-1519 and deep-research-auto.yaml:1621-1623; AC-011 records a zero-occurrence sweep.",
-      "recommendation": "Mirror the ruleset into deep-review's protocol, correct the two comment blocks, and re-run the sweep with the result recorded.",
+      "file": "specs/system-deep-loop/045-fanout-write-containment-hardening/spec.md:117",
+      "evidence": "Phase-map rows 008-013 are field-shifted and still read '[Criteria TBD] | [Verification TBD]' (spec.md:117-124) while every child's metadata says Status: Complete (008-.../spec.md:25, 013-.../spec.md:25), and the map's own sentence still says 'the last removes the worktree mechanism' (:106). goal.md:16 still records the worktree default flip as recent_action. decision-record.md:240 keeps ADR-003 Status: Proposed although its mechanism was implemented in phase 4 and deleted in phase 7, while ADR-004/005/006/007 carry supersession notes.",
+      "recommendation": "Render the 008-014 rows with the standard four columns and completed statuses, correct the map sentence, supersede ADR-003, and update the goal continuity field.",
       "disposition": "active",
-      "findingClass": "incomplete_migration",
-      "scopeProof": "Grepped both loop protocols for containment rules, read the hub bullet, and read both comment blocks above the migrated calls.",
+      "findingClass": "stale_governance_record",
+      "scopeProof": "Compared the table header (:104-107) against its rows, read each child's metadata status, and checked every ADR status line.",
       "affectedSurfaceHints": [
-        "deep-review.loop-protocol",
-        "deep-research.loop-protocol",
-        "command-yaml.stale-comments"
+        "spec.md.phase-map",
+        "goal.continuity",
+        "decision-record.ADR-003"
       ],
       "firstSeen": 3,
       "lastSeen": 3,
@@ -567,77 +228,19 @@
       ]
     },
     {
-      "findingId": "F-012",
+      "findingId": "F-305",
       "severity": "P2",
-      "title": "tasks.md still records the removed worktree phase as delivered with deleted-suite evidence",
-      "dimension": "traceability",
-      "file": "specs/system-deep-loop/045-fanout-write-containment-hardening/tasks.md:87",
-      "evidence": "T017-T022, T028, T030-T033 are checked with evidence naming the deleted worktree-lifecycle and worktree-lease suites (:87-103, :124); CHK-002/003/023/100/112/113/121/124/130/151 assert worktree behaviour (:168-169, :191, :256, :269-270, :279, :282, :290, :316); the file holds 91 checked boxes and zero unchecked.",
-      "recommendation": "Annotate the worktree tasks and checks as superseded by phase 7 / ADR-007 rather than deleting the history.",
-      "disposition": "active",
-      "findingClass": "stale_task_evidence",
-      "scopeProof": "Read the phase-4 block and every CHK row mentioning worktrees; counted checked/unchecked boxes.",
-      "affectedSurfaceHints": [
-        "tasks.phase-4",
-        "tasks.verification-checklist"
-      ],
-      "firstSeen": 3,
-      "lastSeen": 3,
-      "transitions": [
-        {
-          "iteration": 3,
-          "from": null,
-          "to": "P2",
-          "reason": "discovered and adjudicated in iteration 3"
-        }
-      ],
-      "_lineages": [
-        "deepseek"
-      ]
-    },
-    {
-      "findingId": "F-019",
-      "severity": "P2",
-      "title": "Ten byte-identical inline containment call blocks duplicate the same options and message across four command YAMLs",
+      "title": "The remediation did not sweep the caller envelope's duplication and diagnostics residue",
       "dimension": "maintainability",
       "file": ".opencode/commands/deep/assets/deep-review-auto.yaml:1521",
-      "evidence": "The same six-option call and advisory message are copied at deep-research-auto.yaml:1244/1334/1424/1625, deep-research-confirm.yaml:1119, deep-review-auto.yaml:1521/1615/1705/1795 and deep-review-confirm.yaml:1191; two copies already carry stale comments and none can pass the mode option.",
-      "recommendation": "Extract one shared helper that performs the call, prints the advisory and returns the result, leaving each dispatch branch a one-line invocation.",
+      "evidence": "Ten byte-identical inline containment call blocks remain: deep-research-auto.yaml 4, deep-research-confirm.yaml 1, deep-review-auto.yaml 4 (:1521, :1615, :1705, :1795), deep-review-confirm.yaml 1. drainGitContentionWarnings is exported from write-containment.ts:393 and drained at exactly one site, fanout-run.cjs:3323, so an exhausted retry budget in an inline iteration is recorded and discarded. Prior F-019/F-020, unbound to any remediation phase.",
+      "recommendation": "Extract one shared helper for the call envelope, and drain or log the contention warnings where they are produced.",
       "disposition": "active",
       "findingClass": "duplication",
-      "scopeProof": "Printed all ten call blocks and compared them; verified the runtime guard is the single tested implementation while the call-site envelope has no test.",
+      "scopeProof": "Counted the call blocks per file by grep; grepped every drainGitContentionWarnings reference (export, tests, one call site).",
       "affectedSurfaceHints": [
         "command-yaml.inline-containment",
-        "write-containment.enforceWriteContainment"
-      ],
-      "firstSeen": 4,
-      "lastSeen": 4,
-      "transitions": [
-        {
-          "iteration": 4,
-          "from": null,
-          "to": "P2",
-          "reason": "discovered and adjudicated in iteration 4"
-        }
-      ],
-      "_lineages": [
-        "deepseek"
-      ]
-    },
-    {
-      "findingId": "F-010",
-      "severity": "P1",
-      "title": "The acceptance criteria remain In Progress and their Met evidence cites deleted files and out-of-range lines",
-      "dimension": "traceability",
-      "file": "specs/system-deep-loop/045-fanout-write-containment-hardening/acceptance-criteria.md:71",
-      "evidence": "File unchanged in the reviewed range; Status In Progress (:50) dated 2026-09-13 (:14) against spec Complete; AC-015 cites deleted worktree-lifecycle.vitest.ts:531/:547; AC-009/012/013/014/017/018 cite fanout-run.vitest.ts lines 4309/4400/4456/4504/4547/4181/4260/4395/3130/4184/4212/4228 beyond the file's 4374 lines; :107 claims every criterion Met including the worktree default.",
-      "recommendation": "Mark AC-009 and AC-012..AC-018 Superseded by ADR-007 in the waiver cells, re-anchor the remaining citations, and re-date the metadata against HEAD.",
-      "disposition": "active",
-      "findingClass": "stale_closure_evidence",
-      "scopeProof": "Diffed the file against the reviewed range (no commits touch it); resolved every cited path and line number against HEAD.",
-      "affectedSurfaceHints": [
-        "acceptance-criteria.AC-009",
-        "acceptance-criteria.AC-012..AC-018"
+        "write-containment.drainGitContentionWarnings"
       ],
       "firstSeen": 3,
       "lastSeen": 3,
@@ -645,7 +248,7 @@
         {
           "iteration": 3,
           "from": null,
-          "to": "P1",
+          "to": "P2",
           "reason": "discovered and adjudicated in iteration 3"
         }
       ],
@@ -654,224 +257,19 @@
       ]
     },
     {
-      "findingId": "F-022",
+      "findingId": "F-202",
       "severity": "P2",
-      "title": "The artifact-scope containment rule is implemented twice with no shared helper",
-      "dimension": "maintainability",
-      "file": ".opencode/commands/deep/assets/deep-review-auto.yaml:1328",
-      "evidence": "The cli-opencode guard defines canonicalLocation/escapesArtifactDir (:1328-1360) implementing the same name-plus-canonical rule as isContainedInArtifact in write-containment.ts:574-596, but the module's helper is not exported so the YAML reimplements it with a copied rationale comment.",
-      "recommendation": "Export the canonicalization helper from the module and call it from the command guard.",
-      "disposition": "active",
-      "findingClass": "duplicated_boundary_logic",
-      "scopeProof": "Read both implementations and the module's export list; confirmed the helper is internal and the guard cannot import it.",
-      "affectedSurfaceHints": [
-        "write-containment.isContainedInArtifact",
-        "deep-review-auto.cliOpencodeGuard"
-      ],
-      "firstSeen": 4,
-      "lastSeen": 4,
-      "transitions": [
-        {
-          "iteration": 4,
-          "from": null,
-          "to": "P2",
-          "reason": "discovered and adjudicated in iteration 4"
-        }
-      ],
-      "_lineages": [
-        "deepseek"
-      ]
-    },
-    {
-      "findingId": "F-002",
-      "severity": "P2",
-      "title": "The churn detector's first window is never counted",
-      "dimension": "correctness",
-      "file": "runtime/scripts/fanout-run.cjs:1676-1687",
-      "evidence": "The sampler's first sample sets previousPaths and contributes newlyDirty=0; the sampler is only fed by the progress heartbeat, which first fires one cadence after dispatch (fanout-run.cjs:3272-3283). Writes landing before that sample are absorbed as the baseline.",
-      "recommendation": "Seed the detector's first sample from the pre-dispatch baseline snapshot (already captured at fanout-run.cjs:3223-3231) so the first heartbeat window is measured rather than assumed quiet.",
-      "disposition": "active",
-      "findingClass": "boundary",
-      "scopeProof": "Read the detector factory, its call sites, and the heartbeat wiring; confirmed the first sample cannot fire before the first heartbeat by reading startLineageProgressHeartbeat's interval setup.",
-      "affectedSurfaceHints": [
-        "fanout-run.startSharedCheckoutChurnDetector",
-        "fanout-run.startLineageProgressHeartbeat"
-      ],
-      "firstSeen": 1,
-      "lastSeen": 1,
-      "transitions": [
-        {
-          "iteration": 1,
-          "from": null,
-          "to": "P2",
-          "reason": "discovered and adjudicated in iteration 1"
-        }
-      ],
-      "_lineages": [
-        "deepseek"
-      ]
-    },
-    {
-      "findingId": "F-017",
-      "severity": "P1",
-      "title": "The cli-opencode dispatch guard still requires an isolated linked worktree and now always throws",
-      "dimension": "traceability",
-      "file": ".opencode/commands/deep/assets/deep-review-auto.yaml:1308",
-      "evidence": "The if_cli_opencode branch throws when rev-parse --git-dir equals --git-common-dir (:1308-1310), requires the primary main/master worktree clean (:1321) and all changes inside the artifact dir (:1362), and logs recovery_baseline with worktree: repoRoot (:1368); no command asset creates a worktree any more and the YAML was untouched in the reviewed range, so an inline cli-opencode dispatch in the shared checkout always fails before dispatch.",
-      "recommendation": "Remove the linked-worktree precondition (keep the artifact-dir and prompt-section checks) or replace it with a deliberate, documented refusal; sweep the command assets again as part of the removal.",
-      "disposition": "active",
-      "findingClass": "incomplete_removal",
-      "scopeProof": "Read the whole guard branch, searched all four command YAMLs for worktree creation, and confirmed no commit in the reviewed range edits the file.",
-      "affectedSurfaceHints": [
-        "deep-review-auto.if_cli_opencode",
-        "commands.deep.removal_sweep"
-      ],
-      "firstSeen": 3,
-      "lastSeen": 3,
-      "transitions": [
-        {
-          "iteration": 3,
-          "from": null,
-          "to": "P1",
-          "reason": "discovered and adjudicated in iteration 3"
-        }
-      ],
-      "_lineages": [
-        "deepseek"
-      ]
-    },
-    {
-      "findingId": "F-004",
-      "severity": "P2",
-      "title": "The containment repo root can resolve to a subdirectory while all guard paths are repo-relative",
-      "dimension": "correctness",
+      "title": "The restore writer addresses violation paths against a repo root that may be a subdirectory",
+      "dimension": "security",
       "file": "runtime/scripts/runtime-bootstrap.cjs:54-73",
-      "evidence": "resolveContainmentRepoRoot returns cwd unless the artifact tree lives in a different worktree, while resolveArtifactScope derives artifactRelPosix from repoRoot and compares it against porcelain paths, which git emits relative to the worktree root regardless of -C (verified with git -C specs/system-deep-loop status --porcelain).",
+      "evidence": "resolveContainmentRepoRoot returns cwd unless the artifact tree lives in a different worktree, while git status paths are worktree-root-relative regardless of -C. The write arms join those paths against opts.repoRoot (write-containment.ts:1449, :1494); the deletion pass's disk check correctly uses scope.repoRealRoot (:944). Latent for shipped callers (all dispatch with working_directory: repo_root), re-registered because the remediation put this path on a write surface. Prior F-004, still active.",
       "recommendation": "Resolve the guard root to the git toplevel (the helper already has gitToplevel) or assert that cwd is the toplevel before containment runs.",
       "disposition": "active",
       "findingClass": "scope_resolution",
-      "scopeProof": "Read the resolver, its only caller (fanout-run.cjs:2813-2817), and the containment scope math; verified git's porcelain path basis with a live read-only git invocation from a subdirectory.",
+      "scopeProof": "Read the resolver, its only caller in fanout-run, and both write arms; confirmed the deletion pass uses the resolved scope root while the write arms do not.",
       "affectedSurfaceHints": [
         "runtime-bootstrap.resolveContainmentRepoRoot",
-        "write-containment.resolveArtifactScope"
-      ],
-      "firstSeen": 1,
-      "lastSeen": 1,
-      "transitions": [
-        {
-          "iteration": 1,
-          "from": null,
-          "to": "P2",
-          "reason": "discovered and adjudicated in iteration 1"
-        }
-      ],
-      "_lineages": [
-        "deepseek"
-      ]
-    },
-    {
-      "findingId": "F-021",
-      "severity": "P2",
-      "title": "The decision record's supersession chain leaves two removed-mechanism ADRs looking live",
-      "dimension": "maintainability",
-      "file": "specs/system-deep-loop/045-fanout-write-containment-hardening/decision-record.md:234",
-      "evidence": "ADR-003 (detached ephemeral lane) remains Status Proposed at :234-240 though implemented in phase 4 and deleted in phase 7; ADR-005 (checkout watch for isolated lanes) remains Status Accepted at :466-472 though no isolated lanes exist; ADR-007 :540-542 names only ADR-004 and ADR-006.",
-      "recommendation": "Mark ADR-003 Withdrawn/Superseded and ADR-005 Superseded by ADR-007; extend ADR-007's note to cover both.",
-      "disposition": "active",
-      "findingClass": "decision_record_drift",
-      "scopeProof": "Read every ADR status and the supersession notes in ADR-006 and ADR-007; cross-checked the removed code paths.",
-      "affectedSurfaceHints": [
-        "decision-record.ADR-003",
-        "decision-record.ADR-005",
-        "decision-record.ADR-007"
-      ],
-      "firstSeen": 4,
-      "lastSeen": 4,
-      "transitions": [
-        {
-          "iteration": 4,
-          "from": null,
-          "to": "P2",
-          "reason": "discovered and adjudicated in iteration 4"
-        }
-      ],
-      "_lineages": [
-        "deepseek"
-      ]
-    },
-    {
-      "findingId": "F-024",
-      "severity": "P2",
-      "title": "The empty-registry advisory tests the research key and misfires on every review lane",
-      "dimension": "completeness",
-      "file": "runtime/scripts/fanout-run.cjs:860-876",
-      "evidence": "hasLineageKeyFindings accepts only registry.keyFindings (:868), the research reducer's key (deep-research/scripts/reduce-state.cjs:2353), while the review reducer writes openFindings (runtime/scripts/reduce-state.cjs:1557) and the review registry list is exactly ['deep-review-findings-registry.json'] (:825-828); the only test uses a research lane with no registry (fanout-run.vitest.ts:4303-4373).",
-      "recommendation": "Accept openFindings (and the coerced findings alias) for review, or delegate emptiness detection to the merge's registry normalization so both agree.",
-      "disposition": "active",
-      "findingClass": "false_positive_diagnostic",
-      "scopeProof": "Read the check, the review and research registries and their reducers, the registry file lists, and the only covering test.",
-      "affectedSurfaceHints": [
-        "fanout-run.findEmptyLineageRegistry",
-        "fanout-run.hasLineageKeyFindings",
-        "reduce-state.reviewRegistry"
-      ],
-      "firstSeen": 5,
-      "lastSeen": 5,
-      "transitions": [
-        {
-          "iteration": 5,
-          "from": null,
-          "to": "P2",
-          "reason": "discovered and adjudicated in iteration 5"
-        }
-      ],
-      "_lineages": [
-        "deepseek"
-      ]
-    },
-    {
-      "findingId": "F-020",
-      "severity": "P2",
-      "title": "The index-lock contention warning is drained only by the fan-out runner",
-      "dimension": "maintainability",
-      "file": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3171",
-      "evidence": "drainGitContentionWarnings is exported at write-containment.ts:312 and called only at fanout-run.cjs:3171; the ten inline callers never drain, so an exhausted retry budget in an inline iteration is recorded and silently discarded.",
-      "recommendation": "Drain and log inside the shared helper, or log at record time inside the guard.",
-      "disposition": "active",
-      "findingClass": "unreachable_diagnostics",
-      "scopeProof": "Grepped every caller of drainGitContentionWarnings across the runtime; one drain site exists.",
-      "affectedSurfaceHints": [
-        "write-containment.drainGitContentionWarnings",
-        "fanout-run.containmentWarnings"
-      ],
-      "firstSeen": 4,
-      "lastSeen": 4,
-      "transitions": [
-        {
-          "iteration": 4,
-          "from": null,
-          "to": "P2",
-          "reason": "discovered and adjudicated in iteration 4"
-        }
-      ],
-      "_lineages": [
-        "deepseek"
-      ]
-    },
-    {
-      "findingId": "F-006",
-      "severity": "P2",
-      "title": "The quarantine writer does not canonicalize its destination",
-      "dimension": "security",
-      "file": "runtime/lib/deep-loop/write-containment.ts:943-951",
-      "evidence": "NFR-S01 promises the quarantine writer never follows a symlink out of the directory; writeQuarantineFile mkdirs and writes along a string-joined destination path with no canonicalization.",
-      "recommendation": "Canonicalize the destination root once and assert each write stays inside it before writing.",
-      "disposition": "active",
-      "findingClass": "symlink_escape",
-      "scopeProof": "Read the quarantine writer, its destination construction and the detector's canonicalization rule for comparison.",
-      "affectedSurfaceHints": [
-        "write-containment.writeQuarantineFile",
-        "write-containment.quarantineOnePath"
+        "write-containment.revertOutOfScopeViolations"
       ],
       "firstSeen": 2,
       "lastSeen": 2,
@@ -888,113 +286,46 @@
       ]
     },
     {
-      "findingId": "F-008",
-      "severity": "P2",
-      "title": "The removed containment.worktrees key is silently accepted",
-      "dimension": "security",
-      "file": "runtime/lib/deep-loop/executor-config.ts:695-716",
-      "evidence": "The schema dropped worktrees with no z.never() guard, while the same block guards the removed stopPolicy key for exactly the silent-drop reason.",
-      "recommendation": "Add a z.never().optional() guard for worktrees, matching the stopPolicy precedent.",
-      "disposition": "active",
-      "findingClass": "silent_config_drop",
-      "scopeProof": "Read the containment schema, its comment block and the packet docs that documented the key.",
-      "affectedSurfaceHints": [
-        "executor-config.fanoutControlShape"
-      ],
-      "firstSeen": 2,
-      "lastSeen": 2,
-      "transitions": [
-        {
-          "iteration": 2,
-          "from": null,
-          "to": "P2",
-          "reason": "discovered and adjudicated in iteration 2"
-        }
-      ],
-      "_lineages": [
-        "deepseek"
-      ]
-    },
-    {
-      "findingId": "F-023",
-      "severity": "P2",
-      "title": "The runtime fan-out catalog entry is stale and names its third CLI kind twice",
-      "dimension": "maintainability",
-      "file": ".opencode/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-run.md:3",
-      "evidence": "The entry lists '(opencode, claude, opencode)' at :3 and 'cli-opencode, cli-claude-code, cli-opencode' at :42 while the code maps cli-codex as the third kind (fanout-run.cjs:473-475); its HOW-IT-WORKS section (:40-59) predates containment enforcement, the churn sampler, the advisory status and the index-lock retry; the file was untouched in the reviewed range while the hub catalog entry was migrated by ca713e3478.",
-      "recommendation": "Correct the kind list and add the driver's post-045 responsibilities, or point related references at the hub containment entry explicitly.",
-      "disposition": "active",
-      "findingClass": "catalog_drift",
-      "scopeProof": "Compared the entry's claims against the kind map and the post-045 runner behavior; checked the file's history in the reviewed range.",
-      "affectedSurfaceHints": [
-        "feature-catalog.fanout-run.F025"
-      ],
-      "firstSeen": 4,
-      "lastSeen": 4,
-      "transitions": [
-        {
-          "iteration": 4,
-          "from": null,
-          "to": "P2",
-          "reason": "discovered and adjudicated in iteration 4"
-        }
-      ],
-      "_lineages": [
-        "deepseek"
-      ]
-    },
-    {
-      "findingId": "F-009",
-      "severity": "P0",
-      "title": "The spec still mandates the worktree mechanism the packet removed while reading Complete",
+      "findingId": "F-301",
+      "severity": "P1",
+      "title": "The spec still mandates the worktree mechanism it removed, in every section except the two requirement rows",
       "dimension": "traceability",
-      "file": "specs/system-deep-loop/045-fanout-write-containment-hardening/spec.md:133",
-      "evidence": "REQ-005 (:133), REQ-007 (:141) and REQ-008 (:142), SC-003 (:155), SC-005 (:157), NFR-R02 (:200) and the frontmatter (description :3, trigger phrases :8, executive summary :22, key decisions :24, critical dependencies :26) all mandate per-lineage worktrees; the phase map on the same page records 007-worktree-removal complete (:116) and ca713e3478 deleted the five worktree modules and their suites.",
-      "recommendation": "Mark REQ-005/007/008, SC-003/005 and NFR-R02 Superseded by ADR-007 and rewrite the frontmatter, executive summary, key decisions and dependencies to the shipped shared-checkout design.",
+      "file": "specs/system-deep-loop/045-fanout-write-containment-hardening/spec.md:3",
+      "evidence": "Frontmatter description (:3), trigger phrase (:8), executive summary (:22), key decisions (:24), critical dependencies (:26), purpose (:57), files table (:85-89), SC-003 (:162), SC-005 (:164), NFR-R02 (:207), failure modes (:220-221) and risks (:245-246) all present per-lineage worktrees as shipped; the packet reads Status Complete (:36) and phase 007 (ca713e3478) deleted the mechanism and its suites. Only REQ-005 (:140) and REQ-007 (:148) carry supersession markers, while the remediation record claims the parent-doc findings were fixed directly (goal.md:119).",
+      "recommendation": "Mark SC-003/SC-005/NFR-R02 Superseded by ADR-007 as the requirement rows already are, and rewrite the frontmatter, executive summary, purpose, dependency, failure-mode and risk text to the shared-checkout design.",
       "disposition": "active",
       "findingClass": "spec_implementation_divergence",
-      "scopeProof": "Read every requirement row, success criterion and frontmatter claim against the phase map, ADR-007, the deletion commit and the current runtime tree.",
+      "scopeProof": "Grepped every worktree occurrence in the file (31 hits) and checked each for a supersession marker; checked for a global historical note (none); cross-checked ADR-007, the phase-007 commit and the AC file.",
       "affectedSurfaceHints": [
-        "spec.md.requirements",
         "spec.md.frontmatter",
-        "decision-record.ADR-007"
+        "spec.md.success-criteria",
+        "spec.md.non-functional",
+        "spec.md.failure-modes"
       ],
+      "claimAdjudication": {
+        "claim": "The parent spec still presents per-lineage worktrees as shipped in its framing, success criteria, non-functional requirements, failure modes and risks, contradicting the tree phase 007 shipped and the packet's Complete status.",
+        "evidenceRefs": [
+          "specs/system-deep-loop/045-fanout-write-containment-hardening/spec.md:3",
+          "specs/system-deep-loop/045-fanout-write-containment-hardening/spec.md:22",
+          "specs/system-deep-loop/045-fanout-write-containment-hardening/spec.md:162",
+          "specs/system-deep-loop/045-fanout-write-containment-hardening/spec.md:164",
+          "specs/system-deep-loop/045-fanout-write-containment-hardening/spec.md:207",
+          "specs/system-deep-loop/045-fanout-write-containment-hardening/spec.md:140",
+          "specs/system-deep-loop/045-fanout-write-containment-hardening/goal.md:119"
+        ],
+        "counterevidenceSought": "Grepped all worktree mentions and their markers; looked for a global historical note above the sections (none); verified ADR-007 declares removal and AC marks the two worktree rows superseded.",
+        "alternativeExplanation": "The requirement table is normative and marked, so no reader would rebuild worktrees from §4; the frontmatter and executive summary, however, are the packet's abstract, and two unmarked success criteria can never pass.",
+        "finalSeverity": "P1",
+        "confidence": 0.85,
+        "downgradeTrigger": "Downgrade to P2 if the SC/NFR rows gain supersession markers in a follow-up edit; upgrade if the packet is reopened for implementation."
+      },
       "firstSeen": 3,
       "lastSeen": 3,
       "transitions": [
         {
           "iteration": 3,
           "from": null,
-          "to": "P0",
-          "reason": "discovered and adjudicated in iteration 3"
-        }
-      ],
-      "_lineages": [
-        "deepseek"
-      ]
-    },
-    {
-      "findingId": "F-015",
-      "severity": "P2",
-      "title": "The spec's own section-7 justification contradicts REQ-004's shipped thresholds",
-      "dimension": "traceability",
-      "file": "specs/system-deep-loop/045-fanout-write-containment-hardening/spec.md:192",
-      "evidence": "REQ-004 (:139) states the shipped defaults as three newly dirty paths per window or twelve cumulative, while the section-7 prose REQ-004 cites still says twelve per window and forty cumulative (:192).",
-      "recommendation": "Update the rationale prose to the shipped numbers, or state explicitly that the rationale was written for the original draft.",
-      "disposition": "active",
-      "findingClass": "internal_inconsistency",
-      "scopeProof": "Read REQ-004 and the section it cites; cross-checked against executor-config.ts defaults (3/12).",
-      "affectedSurfaceHints": [
-        "spec.md.section-7",
-        "spec.md.REQ-004"
-      ],
-      "firstSeen": 3,
-      "lastSeen": 3,
-      "transitions": [
-        {
-          "iteration": 3,
-          "from": null,
-          "to": "P2",
+          "to": "P1",
           "reason": "discovered and adjudicated in iteration 3"
         }
       ],
@@ -1005,13 +336,13 @@
   ],
   "resolvedFindings": [],
   "findingsBySeverity": {
-    "P0": 2,
-    "P1": 9,
-    "P2": 21
+    "P0": 0,
+    "P1": 3,
+    "P2": 6
   },
-  "openFindingsCount": 32,
+  "openFindingsCount": 9,
   "resolvedFindingsCount": 0,
-  "activeP0": 2,
-  "activeP1": 9,
-  "activeP2": 21
+  "activeP0": 0,
+  "activeP1": 3,
+  "activeP2": 6
 }

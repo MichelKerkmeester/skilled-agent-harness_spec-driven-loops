@@ -1,0 +1,17 @@
+{
+  "stem": "deep_review.protocol_plan_recorded",
+  "scope": {
+    "runId": "fanout-luna-1789427869613-2bzg57",
+    "sessionId": "fanout-luna-1789427869613-2bzg57",
+    "protocolId": "feature_catalog_code"
+  },
+  "data": {
+    "coreProtocolIds": [],
+    "overlayProtocolIds": ["feature_catalog_code"],
+    "applicability": "conditional",
+    "gateClass": "informational",
+    "contractVersion": "2.0.0",
+    "plannedEvidenceSourceRefs": ["deep-review/feature-catalog/loop-lifecycle/fanout-dispatch.md:1", "fanout-run.cjs:3213-3231"],
+    "protocolPlanDigest": "0000000000000000000000000000000000000000000000000000000000000000"
+  }
+}

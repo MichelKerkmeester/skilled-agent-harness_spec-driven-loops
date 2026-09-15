@@ -1,13 +1,13 @@
 {
   "topic": "Review of packet specs/system-deep-loop/045-fanout-write-containment-hardening",
-  "sessionId": "fanout-luna-1789404700951-8xtlnk",
+  "sessionId": "fanout-luna-1789427869613-2bzg57",
   "parentSessionId": null,
   "lineageMode": "new",
   "lineageModeInput": "auto",
-  "generation": 1,
+  "generation": 2,
   "continuedFromRun": null,
   "migrationWindowEndsAt": "",
-  "maxIterations": 5,
+  "maxIterations": 3,
   "convergenceThreshold": 0.1,
   "antiConvergence": {
     "minIterations": 2,
@@ -22,7 +22,7 @@
   "specFolder": "specs/system-deep-loop/045-fanout-write-containment-hardening",
   "artifactDir": "specs/system-deep-loop/045-fanout-write-containment-hardening/review/lineages/luna",
   "fanoutLineageArtifactDir": "specs/system-deep-loop/045-fanout-write-containment-hardening/review/lineages/luna",
-  "createdAt": "2026-09-14T17:10:00.000Z",
+  "createdAt": "2026-09-14T23:29:16.000Z",
   "status": "initialized",
   "releaseReadinessState": "in-progress",
   "executionMode": "auto",
@@ -38,7 +38,12 @@
   "mode": "review",
   "reviewTarget": "specs/system-deep-loop/045-fanout-write-containment-hardening",
   "reviewTargetType": "spec-folder",
-  "reviewDimensions": ["correctness", "security", "traceability", "maintainability"],
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
   "severityThreshold": "P2",
   "crossReference": {
     "core": ["spec_code", "checklist_evidence"],

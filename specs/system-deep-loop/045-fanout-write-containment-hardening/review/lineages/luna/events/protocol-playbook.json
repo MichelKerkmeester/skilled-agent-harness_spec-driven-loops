@@ -1,0 +1,17 @@
+{
+  "stem": "deep_review.protocol_plan_recorded",
+  "scope": {
+    "runId": "fanout-luna-1789427869613-2bzg57",
+    "sessionId": "fanout-luna-1789427869613-2bzg57",
+    "protocolId": "playbook_capability"
+  },
+  "data": {
+    "coreProtocolIds": [],
+    "overlayProtocolIds": ["playbook_capability"],
+    "applicability": "conditional",
+    "gateClass": "informational",
+    "contractVersion": "2.0.0",
+    "plannedEvidenceSourceRefs": ["manual-testing-playbook/fanout/fanout-cli-lineages-review.md:1", "deep-review-auto.yaml:1267-1429"],
+    "protocolPlanDigest": "0000000000000000000000000000000000000000000000000000000000000000"
+  }
+}

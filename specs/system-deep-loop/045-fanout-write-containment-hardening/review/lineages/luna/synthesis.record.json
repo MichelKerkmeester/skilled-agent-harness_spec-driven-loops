@@ -1,0 +1,24 @@
+{
+  "type": "event",
+  "event": "synthesis_complete",
+  "mode": "review",
+  "sessionId": "fanout-luna-1789427869613-2bzg57",
+  "lineage": "luna",
+  "totalIterations": 3,
+  "verdict": "CONDITIONAL",
+  "activeP0": 0,
+  "activeP1": 6,
+  "activeP2": 1,
+  "dimensionCoverage": 0.75,
+  "dimensionCoverageDetail": {
+    "correctness": "complete",
+    "security": "complete",
+    "traceability": "complete",
+    "maintainability": "deferred"
+  },
+  "stopReason": "maxIterationsReached",
+  "releaseReadinessState": "in-progress",
+  "reportRevisionId": "report-1",
+  "reportPath": "specs/system-deep-loop/045-fanout-write-containment-hardening/review/lineages/luna/review-report.md",
+  "timestamp": "2026-09-15T00:00:00.000Z"
+}

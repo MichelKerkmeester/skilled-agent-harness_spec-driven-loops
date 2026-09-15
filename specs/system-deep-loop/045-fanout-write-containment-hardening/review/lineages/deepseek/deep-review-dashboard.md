@@ -1,17 +1,18 @@
 # Deep Review Dashboard — lineage deepseek
 
-**Status:** complete (stop policy: max-iterations) — **Verdict: FAIL**
+**Status:** complete (stop policy: max-iterations) — **Verdict: CONDITIONAL**
 
 | Field | Value |
 |-------|-------|
-| Session | `fanout-deepseek-1789404700951-8xtlnk` |
+| Session | `fanout-deepseek-1789427869613-2bzg57` |
 | Target | `specs/system-deep-loop/045-fanout-write-containment-hardening` |
-| Change set | `5340e39233..63b633c62f` (8 commits) |
+| Remediation set | phases 008–013 (`47bdca586a`, `efe974e6f0`, `df7a1a2cf4`, `2ba05e1a28`, `52959f1065`, `57c02b8592`) |
 | Executor | `cli-pi`, model `deepseek-v4.1-flash`, label `deepseek` |
-| Iterations | 5 of 5 |
+| Iterations | 3 of 3 |
 | Stop reason | `maxIterationsReached` |
-| Active findings | P0=1, P1=3, P2=20 (24 total) |
-| Dimensions covered | correctness, security, traceability, maintainability, completeness |
+| Active findings | P0=0, P1=3, P2=6 (9 total) |
+| Dimensions covered | correctness, security, traceability, maintainability |
+| Evidence basis | static reads only (no test execution) |
 
 > Source of truth is `deep-review-state.jsonl`. This dashboard is a rendered projection; where the two disagree, the JSONL wins.
 
@@ -19,56 +20,49 @@
 
 | # | Focus | Verdict | New findings | Notes |
 |---|-------|---------|--------------|-------|
-| 1 | correctness | PASS | 4 P2 | Detection and cost defects in the guard and runner |
-| 2 | security | CONDITIONAL | 1 P1, 3 P2 | Baseline restore symlink write; quarantine destination; content exposure; silent config drop |
-| 3 | traceability | FAIL | 1 P0, 2 P1, 7 P2 | Spec/closure-gate/migration contradictions after the worktree removal |
-| 4 | maintainability | PASS | 5 P2 | Duplicated caller envelope, undrained diagnostics, ADR and catalog drift |
-| 5 | completeness | PASS | 1 P2 | Registry-empty check misfires for review; remaining phases verified clean |
+| 1 | correctness | PASS | 2 P2 | Detection sentinel survives the phase-009 fix; quarantine failure state never reaches the reporting surface |
+| 2 | security | CONDITIONAL | 1 P1, 1 P2 | Restore still traverses a symlinked ancestor; guard root can be a subdirectory on the write path |
+| 3 | traceability + maintainability | CONDITIONAL | 2 P1, 3 P2 | Spec/closure-gate residue after the worktree removal; unswept duplication and diagnostics |
 
 ## Finding Registry
 
-Full entries with evidence, recommendations and scope proofs: `deep-review-findings-registry.json` (24 open, 0 resolved).
+Full entries with evidence, recommendations, scope proofs and adjudication packets: `deep-review-findings-registry.json` (9 open, 0 resolved).
 
 | Severity | IDs |
 |----------|-----|
-| P0 | F-009 |
-| P1 | F-005, F-010, F-017 |
-| P2 | F-001..F-004, F-006..F-008, F-011..F-016, F-018..F-024 |
+| P0 | — |
+| P1 | F-201, F-301, F-302 |
+| P2 | F-101, F-102, F-202, F-303, F-304, F-305 |
 
 ## Dimension Coverage
 
 | Dimension | Iteration | Findings |
 |-----------|-----------|----------|
-| correctness | 1 | 4 |
-| security | 2 | 4 |
-| traceability | 3 | 10 |
-| maintainability | 4 | 5 |
-| completeness | 5 | 1 |
+| correctness | 1 | 2 |
+| security | 2 | 2 |
+| traceability | 3 | 4 |
+| maintainability | 3 | 1 |
 
 ## Convergence Telemetry
 
 | Metric | Value |
 |--------|-------|
-| New-findings ratios | 0.62, 0.55, 0.55, 0.71, 0.25 |
-| Trajectory | diverging (1-4) → converging (5) |
-| Convergence threshold | 0.1 (mode off; telemetry only) |
+| New-findings ratios | 0.45, 0.50, 0.60 |
+| Trajectory | broadened angles on the max-iterations policy (convergence mode off) |
+| Convergence threshold | 0.1 (telemetry only) |
 | Refined findings | 0 |
 
 ## Cross-Reference Status
 
 | Protocol | Status |
 |----------|--------|
-| spec_code (hard) | fail |
-| checklist_evidence (hard) | not applicable (no `checklist.md`) |
-| feature_catalog_code (overlay) | partial |
-| playbook_capability (overlay) | pass |
+| spec_code | fail (docs slice: F-301, F-302; runtime slice partial) |
+| checklist_evidence | notApplicable (no `checklist.md`) |
+| feature_catalog_code | partial (deferred to phase 014) |
+| skill_agent / agent_cross_runtime / playbook_capability | notApplicable (phase 014) |
+| AC_COVERAGE | exempt (no checklist; advisory predicate inactive) |
+| Resource map coverage | skipped (no resource map at init) |
 
-## Artifacts
+## Next Focus
 
-- `iterations/iteration-001.md` … `iteration-005.md` (write-once)
-- `deltas/iter-001.jsonl` … `iter-005.jsonl`
-- `deep-review-findings-registry.json`
-- `review-report.md`
-- `deep-review-strategy.md`
-- `deep-review-config.json` (immutable)
-- `resource-map.md` — not applicable (`resource_map_present: false`)
+Synthesis complete. Remediation workstreams W1–W5 are in `review-report.md` §4; phase 014 owns the cross-surface alignment dimensions.

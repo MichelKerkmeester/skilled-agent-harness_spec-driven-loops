@@ -1,5 +1,5 @@
 {
-  "run_id": "1789404700951-8xtlnk",
+  "run_id": "1789427869613-2bzg57",
   "loop_type": "review",
   "spec_folder": "specs/system-deep-loop/045-fanout-write-containment-hardening",
   "base_artifact_dir": "specs/system-deep-loop/045-fanout-write-containment-hardening/review",
@@ -19,5 +19,42 @@
     "timeout": 0,
     "exit": 0,
     "salvage_miss": 0
-  }
+  },
+  "timestamp_anomalies": [
+    {
+      "label": "deepseek",
+      "state_log": "specs/system-deep-loop/045-fanout-write-containment-hardening/review/lineages/deepseek/deep-review-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-09-14T23:17:50.458Z",
+        "end_at_iso": "2026-09-14T23:26:20.370Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 3,
+        "untimestamped": 1,
+        "unparseable": 0,
+        "total": 5
+      },
+      "sample": [
+        {
+          "index": 2,
+          "reason": "after_window",
+          "timestamp": "2026-09-14T23:31:00Z",
+          "deltaMs": 159630
+        },
+        {
+          "index": 3,
+          "reason": "after_window",
+          "timestamp": "2026-09-14T23:38:00Z",
+          "deltaMs": 579630
+        },
+        {
+          "index": 4,
+          "reason": "after_window",
+          "timestamp": "2026-09-14T23:42:00Z",
+          "deltaMs": 819630
+        }
+      ]
+    }
+  ]
 }

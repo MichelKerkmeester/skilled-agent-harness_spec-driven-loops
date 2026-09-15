@@ -1,0 +1,31 @@
+{
+  "stem": "deep_review.synthesis_started",
+  "scope": {
+    "runId": "fanout-luna-1789427869613-2bzg57",
+    "sessionId": "fanout-luna-1789427869613-2bzg57",
+    "reportRevisionId": "report-1"
+  },
+  "data": {
+    "finalizedEventRange": {
+      "firstEventId": "event-008f206f-9020-45ce-a3c9-68ca8d874cb0",
+      "lastEventId": "event-cd31fde5-b32d-4222-8c7a-47b05bf2a4a7"
+    },
+    "findingRegistryInputDigest": "0000000000000000000000000000000000000000000000000000000000000000",
+    "deduplicationPolicyDigest": "0000000000000000000000000000000000000000000000000000000000000000",
+    "verdictInputDigests": [
+      "0000000000000000000000000000000000000000000000000000000000000000"
+    ],
+    "unresolvedFindingIds": [
+      "LUNA-S-001",
+      "LUNA-S-002",
+      "LUNA-S-003",
+      "LUNA-T-001",
+      "LUNA-T-002",
+      "LUNA-T-003",
+      "LUNA-T-004"
+    ],
+    "deferredFindingIds": [
+      "maintainability"
+    ]
+  }
+}
