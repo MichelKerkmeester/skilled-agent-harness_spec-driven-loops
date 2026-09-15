@@ -1,0 +1,16 @@
+`released: false, EXIT=0` — the expired-lock idempotent no-op, exactly as strategy §13 :141 recorded *before* this release (TTL 5min, acquired 10:15:12Z, released 11:31Z — 76 minutes later). Contract-conformant. **The lane is complete.**
+
+---
+
+## Lane wave1-glm — FINAL: 5/5 iterations, verdict CONDITIONAL
+
+**Iteration 5 (Angle 10: the state/ledger write path; security+correctness)** — 2 new findings, **F019 (P1)** + **F020 (P2)**; both carried questions terminated:
+
+- **F019 (P1)** — the confirm variant persists its adjudication as a *flat legacy row* (`deep-review-confirm.yaml:1276/:1282`) while auto uses the dotted stem (`:1938/:1954`) — and the gateway's legacy-record acceptance is **deep-research-only** (`append-mode-event.cjs:398-408`; everything else → the `:445` throw). A confirm lane honoring its own `state_write_protocol` ("every directive", confirm:99) exits 2 at its own adjudication step. Full 7-field adjudication packet, confidence 0.75, downgradeTrigger recorded. **Terminates F003.**
+- **F020 (P2)** — 28 of 31 registered stems have **no producer** (4-variant+runner census: 4 dotted emissions, runner ZERO); the operative dialect never reaches the ledger; the ceremony = exactly **1+1 frames** (the authorization+effect pair, fence_token 1, 09:52:29.841Z) frozen through 4 iterations; the Phase-5 projection refresh would REPLACE the state file at flip (`append-mode-event.ts:457-459`) — the lane's SC-001 attribution collapses to the thin projection unless migrated. Security framing: the *authoritative* store is the unvalidated one. **Terminates F017.**
+
+**Closure evidence**: verify-iteration **EXIT 0** (5th consecutive) → adjudication (passed:true, activeP0P1:1) → reduce (open 20, 0 resolved, **convergenceScore 0.90**, corruption 0) → hard stop 5/5 → synthesis: `review-report.md` (all 10 sections + Planning Packet, Resource-Map section correctly skipped), the `synthesis_complete` event (12-line state log), final reduce = **byte-identical counts** (adversarial self-check PASS), config `status: complete`, §13 outcome recorded, release = expired-idempotent. Everything **unstaged/untracked** (`??`, the recorded end-state).
+
+**Lane totals**: 20 active findings — **P0 0, P1 2 (F001, F019), P2 18** · 0 resolved · ratios 1.00→0.38→0.19→0.11→0.10 · coverage 4/4 · 5/5 mechanical-gate passes · 5/5 adjudications passed · 0 corruption.
+
+**What only you can do** (all deferred to the parent, per the recorded constraints): the continuity save; the SC-001 merge — **namespace the F-IDs by sessionId** (`fanout-wave1-glm-1789465945073-px9i6h`), the twin lane's IDs collide; and the REQ-002 wave-2 angle rewrite before wave two launches. Nothing further blocks this lane.

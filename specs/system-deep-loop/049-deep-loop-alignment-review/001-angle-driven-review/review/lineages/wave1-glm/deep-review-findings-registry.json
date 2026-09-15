@@ -1,0 +1,744 @@
+{
+  "sessionId": "fanout-wave1-glm-1789465945073-px9i6h",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 5,
+    "timestamp": "2026-09-15T11:30:39Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "title": "Confirm variant line-1 config record diverges from auto: flag ignored, stopPolicy dropped, resource_map_present unbound",
+      "file": ".opencode/commands/deep/assets/deep-review-confirm.yaml",
+      "line": null,
+      "description": "confirm.yaml:412 hardcodes resource_map.emit true; confirm.yaml:422 renders the line-1 config without stopPolicy and references {resource_map_present}; auto.yaml:454-456 honors the parsed --no-resource-map flag; auto.yaml:466-467 states the agree-from-line-1 invariant and persists stopPolicy; census diff 2,3d1 and 9d6 (step_bind_reducer_artifact_arg, step_apply_lifecycle_request, step_detect_resource_map absent in confirm); grep resource[-_ ]?map over confirm yields only usage lines 99,143,412,422,1545,1546,1551,1552 — no binding",
+      "findingClass": "confirm-variant-config-record-drift",
+      "deltaStatus": "active",
+      "scopeProof": "In scope: angle 6 owns the deep-loop command YAMLs and their presentation assets (spec.md:83); this artifact is the confirm-variant half of the bound review-variant pair (prompt-001:28; strategy section 13); inside the system-deep-loop blast radius",
+      "affectedSurfaceHints": [
+        "system-deep-loop"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F019",
+      "severity": "P1",
+      "title": "The confirm variant persists its adjudication as a flat legacy record the review-mode gateway refuses: the shared protocol's own mandate fails mechanically",
+      "file": ".opencode/commands/deep/assets/deep-review-confirm.yaml",
+      "line": null,
+      "description": "the two variants persist the SAME event in two dialects — auto:1938/:1954 as the dotted stem deep_review.claim_adjudication (the form the gateway's stem path admits, append-mode-event.cjs:369-377) versus confirm:1276/:1282 as a flat row {type:event, event:claim_adjudication, ...} with no stem, no event_type, no envelope; the gateway's legacy-record acceptance is gated to deep-research ONLY (append-mode-event.cjs:398-408, its own comment: Non-research modes never enter here, so they keep the original unrecognized-format rejection) and everything else throws at :445; BOTH variants declare state_write_protocol.applies_to: every append_to_jsonl and append_jsonl directive in this workflow (confirm:99, auto:100) while the invocation census wires the gateway 12x in auto against 2x in confirm (iteration-4 census), the adjudication among confirm's unwired; empirically both wave-one lanes wrote flat rows directly — the operative dialect, unadmitted by the review-mode gateway's acceptance",
+      "findingClass": "gateway-legacy-acceptance-variant-split",
+      "deltaStatus": "active",
+      "scopeProof": "the review-variant pair only, this lane's bound scope; the research variant holds the legacy branch (:398-408) and is the exemption's beneficiary, not covered; seven cited loci across three files plus the four-YAML/runner producer census; terminates F003's mechanism-split question (cross-variant-persistence-mechanism-divergence) — recorded as linkage, not refinement; the registry transition belongs to the synthesis/parent binding",
+      "affectedSurfaceHints": [
+        "deep-review confirm-variant runs",
+        "review-mode append-gateway acceptance (append-mode-event.cjs)",
+        "the state_write_protocol clauses of both review variants"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F002",
+      "severity": "P2",
+      "title": "Confirm reducer invocation drops reducer_artifact_arg; artifact root silently defaults",
+      "file": ".opencode/commands/deep/assets/deep-review-confirm.yaml",
+      "line": null,
+      "description": "confirm.yaml:1546 invokes reduce-state.cjs without the artifact-dir argument; auto.yaml:2176 passes the reducer artifact argument after step_bind_reducer_artifact_arg (census 2d1); the string reducer_artifact_arg occurs zero times in confirm",
+      "findingClass": "reducer-artifact-arg-omission",
+      "deltaStatus": "active",
+      "scopeProof": "Angle-6 confirm-variant invocation locus; prompt-001:28; system-deep-loop blast radius",
+      "affectedSurfaceHints": [
+        "system-deep-loop"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F003",
+      "severity": "P2",
+      "title": "Same claim_adjudication event persisted through two mechanisms with different shapes; scanner contract names only the flat-row shape",
+      "file": ".opencode/commands/deep/assets/deep-review-auto.yaml",
+      "line": null,
+      "description": "auto.yaml:1938,1954 write the ledger-stem event pushed via the gateway shell loop at 1539-1540; confirm.yaml:1270,1276 write flat legacy rows via inline append_to_jsonl; the gate scanner contract auto.yaml:560 = confirm.yaml:513 scans state.jsonl for the most recent claim_adjudication event; whether the gateway projection of the stem event carries that event discriminator is unspecified in either YAML",
+      "findingClass": "cross-variant-persistence-mechanism-divergence",
+      "deltaStatus": "active",
+      "scopeProof": "The persistence mechanism of every angle-6 append directive is the angle question; prompt-001:28; system-deep-loop blast radius",
+      "affectedSurfaceHints": [
+        "system-deep-loop"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F004",
+      "severity": "P2",
+      "title": "Four copy-pasted containment comments: codex residue in three non-codex branches; promised fail-closed resolves to advisory-only at these call sites",
+      "file": ".opencode/commands/deep/assets/deep-review-auto.yaml",
+      "line": null,
+      "description": "the identical 5-line comment repeats at auto.yaml:1515-1519, 1565-1572, 1655-1662, 1745-1752 naming a workspace-write codex leaf in the cursor, devin and pi branches too; the violation branch at 1528-1532 only console.errors an advisory (paths left on disk) and 1538 exits with the dispatch exit code; write-containment.ts:221 confirms the TS itself appends the containment_violation event when given the stateLogPath; fail-closed semantics live in the runner (fanout-run.cjs:2452-2458)",
+      "findingClass": "stale-containment-branch-comment",
+      "deltaStatus": "active",
+      "scopeProof": "Angle-6 question, stale inline containment comments in executor branches (spec.md:83); these are those blocks; system-deep-loop blast radius",
+      "affectedSurfaceHints": [
+        "system-deep-loop"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F005",
+      "severity": "P2",
+      "title": "Stale provenance reference: auto:454 cites deep-review.md:71 which now renders the table separator",
+      "file": ".opencode/commands/deep/assets/deep-review-auto.yaml",
+      "line": null,
+      "description": "auto.yaml:454 cites deep-review.md:71 for the --no-resource-map flag; review.md:71 is the rule |------|-------|--------| — the flag row moved",
+      "findingClass": "stale-provenance-line-reference",
+      "deltaStatus": "active",
+      "scopeProof": "Angle-6 presentation and provenance crosscheck; prompt-001:28; system-deep-loop blast radius",
+      "affectedSurfaceHints": [
+        "system-deep-loop"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F006",
+      "severity": "P2",
+      "title": "Severity-scale vocabulary mismatch: target spec promises P0 to P3, every governing contract is 3-tier P0/P1/P2",
+      "file": "specs/system-deep-loop/049-deep-loop-alignment-review/001-angle-driven-review/spec.md",
+      "line": null,
+      "description": "spec.md:83 rates findings P0 to P3; spec.md:135 (REQ-003) repeats it; review-core.md:32-34 defines exactly P0, P1, P2 and :95 constrains severity to One of P0, P1, P2; the state record findingsSummary/findingsNew admit only P0/P1/P2 keys so a spec-P3 rating is unrepresentable in loop records",
+      "findingClass": "severity-scale-vocabulary-mismatch",
+      "deltaStatus": "active",
+      "scopeProof": "Binds the reviewed target spec (read-only) against the sk-code severity contract; both inside the four-tree blast radius (system-deep-loop, sk-code)",
+      "affectedSurfaceHints": [
+        "system-deep-loop",
+        "sk-code"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F007",
+      "severity": "P2",
+      "title": "Git policy swap at synthesis: auto leaves artifacts unstaged, confirm stages them; documented invariant is unqualified",
+      "file": ".opencode/commands/deep/assets/deep-review-confirm.yaml",
+      "line": null,
+      "description": "census diff 66c56: step_leave_artifacts_unstaged (auto) corresponds to step_stage_artifact_dir (confirm); the loop documentation states unqualified that synthesis must not mutate the shared Git index; the confirm step body was not read (confidence 0.6)",
+      "findingClass": "cross-variant-git-policy-swap",
+      "deltaStatus": "active",
+      "scopeProof": "Synthesis-tail step of the bound confirm-variant YAML; prompt-001:28; system-deep-loop blast radius",
+      "affectedSurfaceHints": [
+        "system-deep-loop"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F008",
+      "severity": "P2",
+      "title": "Confirm step-graph omits 12 auto steps including functional ones, with no in-YAML rationale",
+      "file": ".opencode/commands/deep/assets/deep-review-confirm.yaml",
+      "line": null,
+      "description": "census diff 2,3d1, 9d6, 21d17, 23,24d18, 42d35, 44,45d36, 62d52, 68d57; both variants render the same iteration prompt pack (confirm:1040-1041 = auto:1037-1038, same template_path and prompt-pack.ts#renderPromptPack) whose STATE summary needs generated inputs, yet step_generate_state_summary and step_marker_scan exist only in auto; confirm also lacks step_init_complete and resource-map detection while its config record consumes resource_map_present (see F001)",
+      "findingClass": "confirm-variant-step-omissions",
+      "deltaStatus": "active",
+      "scopeProof": "Angle-6 auto-versus-confirm step parity question, answered by the census diff; prompt-001:28; system-deep-loop blast radius",
+      "affectedSurfaceHints": [
+        "system-deep-loop"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F009",
+      "severity": "P2",
+      "title": "Sampling configuration is .opencode-only; three mirrors substitute either nothing or a different knob",
+      "file": ".opencode/agents/deep-review.md",
+      "line": null,
+      "description": "source fleet tunes temperature per agent (deep-review.md:5 = 0.1; debug.md:5, deep-improvement.md:5, design.md:5 = 0.2); no .claude or .pi mirror carries a temperature key (census, 24 files); .codex/agents/deep-review.toml:8 = model_reasoning_effort high, a different knob; dispatched routes pass model/effort flags explicitly so the drift surface is the manual invocation route",
+      "findingClass": "sampling-config-translation-loss",
+      "deltaStatus": "active",
+      "scopeProof": "Angle 7 = the agent trees and their mirrors (strategy section 13 pointer); all four trees inside the sanctioned unless-clause crossing",
+      "affectedSurfaceHints": [
+        "system-deep-loop"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F010",
+      "severity": "P2",
+      "title": "Permission deny-half translates three ways: runtime-enforced, prose-remembered, silent",
+      "file": ".opencode/agents/deep-review.md",
+      "line": null,
+      "description": "allow-to-present / deny-to-absent translation verified 12/12 (context = Read,Grep,Glob in .claude and read,grep,find,ls in .pi; prompt-improver likewise; review keeps Bash not Write/Edit); the deny enforcement differs: .opencode/agents/deep-review.md:6-17 denies task/webfetch/patch/chrome_devtools at the runtime layer (the mechanism .claude/agents/code.md:40 itself documents); .claude mirrors carry instructional prose reminders (deep-review.md:80, deep-improvement.md:21); .pi mirrors carry no prose trail — the spec hint that permission mappings drop to comments is confirmed at .claude/agents/code.md:40",
+      "findingClass": "permission-deny-translation-dialects",
+      "deltaStatus": "active",
+      "scopeProof": "Angle 7 permission-mapping question, the exact spec wording (spec.md Angle 7; strategy section 13); the 48-block matrix backs it",
+      "affectedSurfaceHints": [
+        "system-deep-loop"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F011",
+      "severity": "P2",
+      "title": "Tool lexicon: three spoken dialects, no documented crosswalk, provenance marking in one of four trees",
+      "file": ".pi/agents/",
+      "line": null,
+      "description": "three spoken lexicons: .claude TitleCase CSV with delegation by Agent-tool membership (ai-council.md:4, orchestrate.md:4 only); .pi lowercase block with find+ls and no glob, systematic across all 12; .codex declares no tools (deep-review.toml:5, sandbox_mode workspace-write + prose); provenance markers only in .codex (deep-review.toml:2, Converted-from); no README in .codex/agents/ or .pi/agents/",
+      "findingClass": "tool-lexicon-crosswalk-undocumented",
+      "deltaStatus": "active",
+      "scopeProof": "Angle 7 tool-vocabulary question (strategy section 13: the vocabulary the mirrors must preserve); the lexicon delta observed across all 12 .pi mirrors",
+      "affectedSurfaceHints": [
+        "system-deep-loop"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F012",
+      "severity": "P2",
+      "title": "Leaf contract triple-licensed: agent file, workflow, and state schema disagree on budgetProfile/edgeCases",
+      "file": ".opencode/agents/deep-review.md",
+      "line": null,
+      "description": "the agent body, verbatim across all four trees, demands choosing and recording one budget profile (deep-review.md:167: scan 9-11, verify 11-13, adjudicate 8-10), recording edge cases (line 14) and self-certifying the JSONL matches budgetProfile and edgeCases (line 520); the dispatch layer speaks a flat band (prompt packs line 97: Target 9, soft max 12, hard max 13) with no profile concept; the pack output-contract fieldlist and the state-record required/optional lists contain neither key; iteration-001 of this lane recorded neither; verify-iteration.cjs checks neither so the gate cannot see the drift",
+      "findingClass": "leaf-contract-schema-drift",
+      "deltaStatus": "active",
+      "scopeProof": "The contract split binds this very lane (the pack restates the workflow agent block); the state schema reference is the deep-review contract; all inside system-deep-loop",
+      "affectedSurfaceHints": [
+        "system-deep-loop"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F013",
+      "severity": "P2",
+      "title": "Model attraction structurally unowned: three trees silent, the fourth pins gpt-5.5",
+      "file": ".codex/agents/deep-review.toml",
+      "line": null,
+      "description": "no .opencode, .claude or .pi agent file declares a model (frontmatter census, 36 files); the whole-file grep for opus over .opencode/agents/deep-review.md returned zero hits, so the runs-model-opus property lives in the workflow dispatch configuration, not any agent artifact; .codex/agents/deep-review.toml:6-7 = model gpt-5.5 + reasoning effort high; dispatched routes override at dispatch time so the promise holds there; direct invocation inherits the runtime default, undocumented as needing agreement",
+      "findingClass": "model-attraction-unowned",
+      "deltaStatus": "active",
+      "scopeProof": "Angle 7 cross-runtime vocabulary question; the TOML pin vs the three silences is the parity gap; system-deep-loop plus the runner",
+      "affectedSurfaceHints": [
+        "system-deep-loop"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F014",
+      "severity": "P2",
+      "title": "The sandbox-to-permission-mode compression at the Claude-Code branch dilutes the OS-preventive claim, while the prevents-map credits it",
+      "file": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+      "line": null,
+      "description": "SANDBOX_MODES = read-only, workspace-write, danger-full-access with workspace-write the default (:37, :74, :488); sandboxPreventsOS scores cli-claude-code true (:135-142, order: native false, codex true, claude-code true, opencode false, cursor true, devin true, pi false, hermes false); the claude branch translates both workspace-write AND danger-full-access to force (:547-570, :3208, plumbing :2022 :2051 :2935); the hermes contrast entry applies the scrutiny that would demote force — that --yolo is an approval bypass, not confinement (:142)",
+      "findingClass": "sandbox-claim-vs-mechanism-asymmetry",
+      "deltaStatus": "active",
+      "scopeProof": "Angle 8 security posture: the prevents-map is the parity system's single truth source for containment classes (executor-config.ts:120-132 doctrine); both trees in scope",
+      "affectedSurfaceHints": [
+        "system-deep-loop"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F015",
+      "severity": "P2",
+      "title": "The enforced model allowlists are hand-maintained, dated-comment rosters with no validation-date protocol",
+      "file": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+      "line": null,
+      "description": "the cursor allowlist grows by dated additions: Grok 4.6 (2026-08-12), GPT-5.6 Luna Max (2026-08-14), Gemini 3.7 Flash High (2026-08-15) (:303-331); the devin allowlist repeats the pattern (:374-394); the design self-documents its failure mode — the silent resolution to a model outside the allowlist defeats the enforced-allowlist purpose (:312); no validation date, freshness check, or test guards the lists; the newest entry was 30 days old at review time",
+      "findingClass": "allowlist-rotation-unguarded",
+      "deltaStatus": "active",
+      "scopeProof": "Angle 8 flags-and-limits leg: the allowlists are the enforcement edge of the same-flags promise (executor-config.ts:243-264, :303-331, :368-394); in-scope tree",
+      "affectedSurfaceHints": [
+        "system-deep-loop"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F016",
+      "severity": "P2",
+      "title": "Five-surface kind/flag parity holds, but its only verification is manual (this review)",
+      "file": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+      "line": null,
+      "description": "the 8-kind canon (:11) mirrors the seven-tree directory census (7/7 matching cli- dirs, no missing, no extra); the aggregate SKILL.md token census yields 14 tokens = 8 canon + 6 self-explained artifacts (cli-copilot: no skill exists, annotated with a mitigation, cli-opencode/changelog/v1.3.15.2.md:60; hermes-creation/pi-creation: spec-packet paths; cli-guards/update-cli-config: prose fragments, cli-cursor/SKILL.md:242 :282); the flags-support differences are all justified, live-verified and dated in-place (cursor 2026-07-24, devin 2026-07-27, the pi/ hermes reasoning-idiom notes); the stress/ scenario canon is 14-identical where verified; the protocol references cover all 7 kinds; no test, script, or CI assertion guards the continued agreement — the divergence detector is this manual census",
+      "findingClass": "parity-agreement-unmechanized",
+      "deltaStatus": "active",
+      "scopeProof": "Angle 8 core question (the same kinds, flags, limits across five surfaces — strategy section 13); the surfaces are in-scope trees; the 049 commission aligns to exactly this",
+      "affectedSurfaceHints": [
+        "system-deep-loop",
+        "cli-external-orchestration"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F017",
+      "severity": "P2",
+      "title": "The containment promise diverges at three story levels: the comments promise, the inline code advises, the runner preserves",
+      "file": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      "line": null,
+      "description": "level 1: the YAML comments, copied x16 per auto variant across four trees, promise revert + containment_violation event + fail the iteration fail-closed (deep-review-auto.yaml:1515-1519); level 2: the YAML inline code at those sites ships console.error advisory plus process.exit(dispatchExit) (:1528-1538); level 3: the runner, the actual enforcement surface, defaults containmentMode to preserve (fanout-run.cjs:2984, the chain CLI override then parsed config then the literal), which detects, records, and quarantines a copy under the lineage (write-containment.ts:19, :318) but does not revert and does not fail; restore is the opt-in (:2452 commentary) and the second-writer latch locks preserve for good (:3424); the remediation contract (unrecoverable as the one outcome that is not a remedy :73-83, the quarantine-time git-blob hash :275, recoveryHint :256-266) describes machinery the default mode does not exercise; the review and research variants are copy-identical at the census (16/4/4/4) so the drift risk is inter-surface, not inter-loop",
+      "findingClass": "containment-promise-chain-divergence",
+      "deltaStatus": "active",
+      "scopeProof": "Angle 9 duplicated-rules question, the spec's own example (the inline containment blocks beside the runner's); all five surfaces census-counted; extends F004 (the comment-promise) to the architecture level with the ownership question newly identified — recorded as new, not a refinement",
+      "affectedSurfaceHints": [
+        "system-deep-loop"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F018",
+      "severity": "P2",
+      "title": "The mechanical post-dispatch gate is promised to both leaves but invoked by neither confirm-variant surface",
+      "file": ".opencode/commands/deep/assets/deep-review-confirm.yaml",
+      "line": null,
+      "description": "the verify-iteration.cjs invocation census: review-auto x1, review-confirm x0; both variants render the same prompt pack whose OUTPUT CONTRACT tells the dispatched leaf the gate (verify-iteration.cjs --loop-type review --artifact-dir <lineage> --iteration N) exits 0 only when all three artifacts hold (pack-001:113 = pack-002:113 = pack-004:113); the confirm-variant count of zero means its post-dispatch validation either runs under a different mechanism (prose delegation to the interactive operator) or does not invoke the binary; the auto-variant leaf is mechanically gated (this lane's iterations 1-3 each passed it) while the confirm-variant leaf's equivalent claims are self-certified; this is the validation-leg instance of the confirm-variant divergence pattern already noted in F008",
+      "findingClass": "mechanical-gate-invocation-asymmetry",
+      "deltaStatus": "active",
+      "scopeProof": "Angle 9 validator-multiplicity leg; the gate promised in the shared pack, invoked in exactly one of the two variant surfaces; in-scope trees",
+      "affectedSurfaceHints": [
+        "system-deep-loop"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F020",
+      "severity": "P2",
+      "title": "28 of 31 registered stems have no producer, the operative dialect never reaches the ledger, and the cutover cliff is pre-armed",
+      "file": ".opencode/skills/system-deep-loop/runtime/lib/mode-append-gateway/append-mode-event.ts",
+      "line": null,
+      "description": "the producer census across all four workflow YAMLs plus the runner finds dotted emission for exactly four stems (migration x2, claim_adjudication x2 — the UNREGISTERED variant, the schema'd name is claim_adjudication_recorded —, recovery_baseline x1, iteration_error x1) and ZERO in the runner; the 31-stem closed-shape vocabulary (exact-fields, 64-hex payloadDigest, sha256 chaining — the throw at deep-review-ledger-schema.ts:995) guards a four-stem yield; the ledger-backing gate returns not-enforced until authority flips (verify-iteration.cjs:152-153, :193-213, the :280 bypass detail) — BOTH wave-one lanes passed 4-5 iterations with no mode ledger on disk; the authorization ceremony armed the ledger story exactly once (the audit frame: authorization.decision.recorded, actor fanout-effect-writer, decision allow, fence_token 1, legacy_authoritative, occurred_at 2026-09-15T09:52:29.841Z; the effect twin's authorization_ref binds that record) and both ceremony ledgers froze at 1 frame through 4 iterations of unfenced lane writes; the security-primary observation: the AUTHORITATIVE store is the unvalidated one — flat rows, no digest, no chain, no fence — while the strongly-validated one is prefabricated and unemployed; the cliff: at flip, (a) every legacy iteration fails ledger_backing_missing (:280) unless migrated, and (b) the gateway's Phase-5 projection refresh REPLACES the state file from the ledger (append-mode-event.ts:288, :457-459; the receipt even distinguishes ledger-committed/projection-failed, :133-149) so this lane's line-1 config record — the SC-001 executor/model attribution — collapses to the thin run_initialized projection (topic/maxIterations/generation/timestamp only)",
+      "findingClass": "ledger-authority-cutover-cliff",
+      "deltaStatus": "active",
+      "scopeProof": "the lineage's own two ceremony frames and 9-row state log as the live specimen plus the mode gateway/gate/schema sources; dormant today (4x2 clean iterations, zero corruption warnings in either lane), the WHEN bounded by the untraced flip trigger (dead end 1); also closes F017's ownership question — the ceremony answers who authorizes (the runner, once) and the frozen frames prove the runtime advisory is the recorded design, not a broken promise",
+      "affectedSurfaceHints": [
+        "both wave-one lanes' state logs at cutover",
+        "the mode-append-gateway projection phase",
+        "the authority-flip activation path"
+      ],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 2,
+    "P2": 18
+  },
+  "openFindingsCount": 20,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.9,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {}
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [],
+  "cleanSearchProof": [],
+  "searchCoverage": {
+    "requiredBugClasses": [],
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": null
+  },
+  "traceability": {
+    "summary": {
+      "required": 1,
+      "executed": 1,
+      "pass": 1,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": [
+      {
+        "protocolId": "spec_code",
+        "status": "pass",
+        "gateClass": "hard",
+        "applicable": true,
+        "counts": {
+          "required": 2,
+          "executed": 1,
+          "pass": 1,
+          "partial": 0,
+          "fail": 0,
+          "blocked": 0,
+          "notApplicable": 1,
+          "gatingFailures": 0
+        },
+        "evidence": [
+          "strategy section 13 Angle 10 pointer (the mode-append-gateway, authorized-ledger, event-envelope, legacy-projections, the ledger schemas, append-mode-event.cjs, reduce-state.cjs, convergence.cjs — exemptions, stems without producers, producers without stems, projection replace semantics)"
+        ],
+        "summary": "all five pack-mandated targets traced at source: the 31-stem vocabulary against its producers (4 dotted emissions, runner zero), the authority/cutover binding (legacy_authoritative read at :213-217, flip machinery :204-206/:302-321, binding fail-closed :309-320), the projection's replace semantics (Phase 5, :288/:457-459, the receipt's divergence mode :133-149), the producers on both sides of the stem/legacy divide (auto-stem :1938 vs confirm-flat :1276), and this lane's own 9-row log as the live specimen; both carried questions (F003, F017) terminated with mechanism evidence"
+      },
+      {
+        "protocolId": "checklist_evidence",
+        "status": "notApplicable",
+        "gateClass": "hard",
+        "applicable": false,
+        "counts": {
+          "required": 2,
+          "executed": 0,
+          "pass": 0,
+          "partial": 0,
+          "fail": 0,
+          "blocked": 0,
+          "notApplicable": 1,
+          "gatingFailures": 0
+        },
+        "summary": "unchanged: no checklist.md in the target; parent-REQ rows assessed at synthesis"
+      }
+    ]
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

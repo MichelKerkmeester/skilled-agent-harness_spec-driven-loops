@@ -1,0 +1,37 @@
+The `wave1-deepseek` lineage is complete. All five iterations and the synthesis were executed in-process inside the lineage directory, per the fan-out-inline executor contract.
+
+## What ran
+
+Five iterations, one wave-one angle each, every one landed confirmed defects (new-findings ratio 1.00 throughout):
+
+| # | Angle | Verdict | P0/P1/P2 |
+|---|-------|---------|----------|
+| 1 | Routing artifact parity, `system-deep-loop` | CONDITIONAL | 0/4/2 |
+| 2 | Parity, `sk-code` + `cli-external-orchestration` | FAIL | 1/2/1 |
+| 3 | SKILL.md against references and assets | CONDITIONAL | 0/2/1 |
+| 4 | Feature catalogs against the runtime | CONDITIONAL | 0/2/2 |
+| 5 | Playbooks and READMEs against the runtime | FAIL | 0/2/1 |
+
+**Synthesis: FAIL / `release-blocking`** — 20 open findings (1 P0, 12 P1, 7 P2), 0 resolved, 1 drafted finding withdrawn.
+
+## Three findings that carry the most weight
+
+- **F007 (P0)** — `cli-external-orchestration/ROUTER.md` omits its own seventh registered mode `cli-hermes` from all three roster statements, while the same file's machine block registers it. The phase spec predicted this.
+- **F011 (P1, highest leverage)** — `generate-leaf-manifest.cjs`'s `walkLeafFiles` does `if (!entry.isFile()) continue;`, and Node reports a symlink as a non-file. Twelve `sk-code` workflow-doctrine files the hub and packet SKILL.md files declare loadable never become typed leaves. The CI drift gate can't catch it because it regenerates with the same walker and byte-compares.
+- **F019 (P1)** — the deep-review playbook asserts no test suite exists while 18 deep-review test files do; the packet's own test runs and passes.
+
+## Corrections I made against myself
+
+Iteration 2 narrowed two iteration-1 findings rather than defending them (F003 to fleet-wide convention drift, F004 off a withdrawn count-equality arm). Iteration 5 drafted a third finding on the cli README's conformance table, ran the cited validator, found it exits 0, and **withdrew it** — the adjacent gate-coverage question went to angle 15 as a hand-off note. Three iterations also produced false-positive populations from text-extraction shortcuts (129, 65, 34 items); all were caught before filing, and the pattern is recorded in strategy §7B.
+
+## Verified state
+
+- `verify-iteration.cjs` returns `{"ok":true}` for **all five** iterations from the final state.
+- State log: 13 records ending in `synthesis_complete` + `traceability_summary`, `stopReason: maxIterationsReached`.
+- Registry/deltas/strategy/dashboard/report all agree: 20 open, P0=1 P1=12 P2=7.
+- All JSON and JSONL artifacts re-parse; the registry passes `fanout-merge.cjs`'s `disposition ?? status === 'active'` filter with the P0 included.
+- **No reviewed source file was modified** — `git status` shows no tracked-file changes outside the review packet, and the review packet was already untracked.
+
+One caveat worth flagging: the verifier printed its error to stdout and **exited 0** when iteration 5 was malformed, which is exactly the "exit status has been wrong in both directions" trap. I read the output, not the code.
+
+**Your call to make:** nothing is committed. The lineage is written but untracked — `specs/system-deep-loop/049-deep-loop-alignment-review/001-angle-driven-review/review/lineages/wave1-deepseek/`. Whether that packet gets committed, and whether wave two launches against the rewritten angles, is the orchestrator's decision.

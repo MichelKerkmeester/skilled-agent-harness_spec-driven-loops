@@ -1,0 +1,471 @@
+{
+  "sessionId": "fanout-wave1-deepseek-1789465945073-px9i6h",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Seven hub routing artifacts carry six disagreeing version values, two with no version key",
+      "file": ".opencode/skills/system-deep-loop/SKILL.md",
+      "line": 3,
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "content_hash": "b1e1c4da0f9d3b7a6e8c2f4a1b5d7e9c3a6f8b2d4e1c7a9f5b3d8e6c2a4f7b19",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery; sibling-hub control makes this a hub-local defect"
+        }
+      ]
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "SKILL.md states two improvement-lane counts and a six-mode roster no artifact supports",
+      "file": ".opencode/skills/system-deep-loop/SKILL.md",
+      "line": 161,
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "content_hash": "c2f2d5eb1a0e4c8b3f7a9d2e6b1c5a8f4d3e7b9c1a6f2d8e4b7c3a9f5d1e6b24",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery; five artifacts agree against one self-contradicting document"
+        }
+      ]
+    },
+    {
+      "findingId": "F003",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "hub-router.json and ROUTER.md state opposite always-loaded-preamble policies",
+      "file": ".opencode/skills/system-deep-loop/hub-router.json",
+      "line": 13,
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "content_hash": "d3a3e6fc2b1f5d9c4a8b1e3f7c2d6b9a5e4f8c1d2b7a3e9f6c4d8b1a5e2f7c35",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery; two artifacts state opposite policies"
+        },
+        {
+          "iteration": 2,
+          "from": "P1",
+          "to": "P1",
+          "reason": "Scope corrected: the divergence is fleet-wide across all three hubs, not hub-local to system-deep-loop; severity unchanged, the hub-local claim withdrawn."
+        }
+      ]
+    },
+    {
+      "findingId": "F004",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Identical 61-leaf sets for both improvement lanes against a two-leaf ROUTER.md scope",
+      "file": ".opencode/skills/system-deep-loop/leaf-manifest.json",
+      "line": 96,
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "content_hash": "e4b4f7ad3c2a6e1d5b9c2f4a8d3e7c1b6f5a9d2e3c8b4f1a7d5e9c2b6f3a8d46",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery; generator contract and hub sync rule both disagree"
+        },
+        {
+          "iteration": 2,
+          "from": "P1",
+          "to": "P1",
+          "reason": "Claim narrowed: the 2-vs-61 arm is withdrawn because a sibling ROUTER.md declares RESOURCE_MAP as a first slice. Only the N-to-1 non-distinctness arm stands."
+        }
+      ]
+    },
+    {
+      "findingId": "F005",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Retired families still present in hub keyword block and graph-metadata discovery terms",
+      "file": ".opencode/skills/system-deep-loop/graph-metadata.json",
+      "line": 124,
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "content_hash": "f5c5a8be4d3b7f2e6c1d3a5b9e4f8d2c7a6b1e4f5d9c6a3b8e1f4d7c3a9b5e57",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery; advisory discovery text, not a control path"
+        }
+      ]
+    },
+    {
+      "findingId": "F006",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Two model-benchmark registry aliases are absent from the hub scoring vocabulary",
+      "file": ".opencode/skills/system-deep-loop/mode-registry.json",
+      "line": 147,
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "content_hash": "a6d6b9cf5e4c8a3f7d2e4b6c1f5a9e3d8b7c2f5a6e1d7b4c9f2a5e8d4b1c6f68",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery; real recall gap with lowest consequence"
+        }
+      ]
+    },
+    {
+      "findingId": "F007",
+      "severity": "P0",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "cli-external-orchestration ROUTER.md omits the seventh registered mode cli-hermes in all three roster statements",
+      "file": ".opencode/skills/cli-external-orchestration/ROUTER.md",
+      "line": 24,
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "content_hash": "b7e7cafe6f5d9b4a8e2c4d6f1a3b5c7d9e1f3a5b7c9d1e3f5a7b9c1d3e5f7a81",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P0",
+          "reason": "Initial discovery"
+        }
+      ]
+    },
+    {
+      "findingId": "F008",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "cli-external-orchestration SKILL.md:74 says all six modes against seven in the same file and five other statements",
+      "file": ".opencode/skills/cli-external-orchestration/SKILL.md",
+      "line": 74,
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "content_hash": "c8f8dbfa7a6e1c5b9f3d5e8a2b4c6d8e1f3a5b7c9d2e4f6a8b1c3d5e7f9a2b82",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ]
+    },
+    {
+      "findingId": "F009",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "cli-external-orchestration splits the mode-registry/hub-router version pair that sk-code keeps in parity",
+      "file": ".opencode/skills/cli-external-orchestration/mode-registry.json",
+      "line": 3,
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "content_hash": "d9a9ecab8b7f2d6c1a4e6f9b3c5d7e9a2f4b6c8d1e3f5a7b9c2d4e6f8a1b3c93",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ]
+    },
+    {
+      "findingId": "F010",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "cli-hermes leaf set carries a lane-unique reference no ROUTER.md sentence describes",
+      "file": ".opencode/skills/cli-external-orchestration/leaf-manifest.json",
+      "line": 1,
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "content_hash": "eabafdbc9c8a3e7d2b5f7a1c4d6e8b1f3a5c7e9d2b4f6a8c1e3d5b7f9a2c4d04",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ]
+    },
+    {
+      "findingId": "F011",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Leaf-manifest generator skips symlinks, leaving 12 sk-code workflow doctrine files untyped",
+      "file": ".opencode/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs",
+      "line": 73,
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "content_hash": "a1b2c3d4e5f60718293a4b5c6d7e8f9012345678abcdef0123456789abcdef01",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery; root cause traced to fs.Dirent.isFile() returning false for symlinks"
+        }
+      ]
+    },
+    {
+      "findingId": "F012",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Implement-debug-verify doctrine reachable only by prose citation in four surfaces",
+      "file": ".opencode/skills/sk-code/SKILL.md",
+      "line": 39,
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "content_hash": "b2c3d4e5f60718293a4b5c6d7e8f9012345678abcdef0123456789abcdef0102",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery; the shared control root is deliberately non-leaf and the surface copies are symlinks"
+        }
+      ]
+    },
+    {
+      "findingId": "F013",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "Two sk-code surfaces sit at 0.1.* against 1.0.0.2 or above with no changelog explanation",
+      "file": ".opencode/skills/sk-code/sk-code-mobile-cli/SKILL.md",
+      "line": 3,
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "content_hash": "c3d4e5f60718293a4b5c6d7e8f9012345678abcdef0123456789abcdef010203",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery; confidence 0.55, version skew without a documented reason"
+        }
+      ]
+    },
+    {
+      "findingId": "F014",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Compiled-routing catalog cites a superseded runtime layout generation in four places",
+      "file": ".opencode/skills/system-deep-loop/feature-catalog/compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.md",
+      "line": 28,
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "content_hash": "d4e5f60718293a4b5c6d7e8f9012345678abcdef0123456789abcdef01020304",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery; live layout is 013-live-activation and 014-runtime-engine"
+        }
+      ]
+    },
+    {
+      "findingId": "F015",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Eight catalog entries cite files absent at the cited path across four verified stale-reference classes",
+      "file": ".opencode/skills/system-deep-loop/runtime/feature-catalog/validation/mk-deep-loop-guard.md",
+      "line": 77,
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "content_hash": "e5f60718293a4b5c6d7e8f9012345678abcdef0123456789abcdef0102030405",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery; four classes each hand-verified against the live tree"
+        }
+      ]
+    },
+    {
+      "findingId": "F016",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "Runtime catalog prose claims 55 entries while four independent counts all give 54",
+      "file": ".opencode/skills/system-deep-loop/runtime/feature-catalog/feature-catalog.md",
+      "line": 19,
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "content_hash": "f60718293a4b5c6d7e8f9012345678abcdef0123456789abcdef010203040506",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery; four agreeing counts against one sentence"
+        }
+      ]
+    },
+    {
+      "findingId": "F017",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "Catalogs name three of the runtime seven cli executor kinds, omitting cli-hermes, cli-codex and cli-pi",
+      "file": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+      "line": 11,
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery; coverage thinness against the runtime roster"
+        }
+      ]
+    },
+    {
+      "findingId": "F018",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Compiled-contracts README headline count is wrong and the same error appears twice more in the legacy README",
+      "file": ".opencode/commands/deep/assets/compiled/README.md",
+      "line": 19,
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "content_hash": "a1c1d4e70f2b3a9c5e8d1b4f7a2c6e9d3b8f5a1c4e7d2b9f6a3c8e5d1b4f7a290",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery; the document self-refutes at :23 and in its own tree block"
+        }
+      ]
+    },
+    {
+      "findingId": "F019",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Deep-review playbook asserts no automated test suite exists while 18 deep-review test files do",
+      "file": ".opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/manual-testing-playbook.md",
+      "line": 610,
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "content_hash": "b2d2e5f81a3c4b0d6f9e2c5a8b1d4f7e3c6a9b2d5f8e1c4a7b3d6f9e2c5a8b13b",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery; verified against the tree and against the sibling playbooks intended form"
+        }
+      ]
+    },
+    {
+      "findingId": "F020",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Legacy README presents a repository-wide command-reference checker as a local acceptance test",
+      "file": ".opencode/commands/deep/assets/legacy/README.md",
+      "line": 108,
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "content_hash": "c3e3f6a92b4d5c1e7a0f3d6b9c2e5a8f4d7b0e3c6a9f2d5b8e1c4a7d0f3b6c24c",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery; filed at P2 because the ten failures sit outside this document subject tree"
+        }
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": false,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 1,
+    "P1": 12,
+    "P2": 7
+  },
+  "openFindingsCount": 20,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "corruptionWarnings": [],
+  "withdrawnFindings": [
+    {
+      "candidateId": "DRAFT-005-A",
+      "iteration": 5,
+      "severityIfFiled": "P2",
+      "title": "cli README conformance table claims a validator pass the hub does not earn",
+      "withdrawnReason": "Executed the cited validator: exit 0, all hard invariants passed, 0 warnings. The claim is true. The adjacent gate-coverage observation was carried to angle 15 as a hand-off note instead of filed here.",
+      "evidenceRef": ".opencode/skills/cli-external-orchestration/README.md:124"
+    }
+  ]
+}

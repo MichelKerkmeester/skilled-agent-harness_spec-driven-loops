@@ -1,0 +1,58 @@
+{
+  "topic": "Angle-driven alignment review, wave one: angles 1 to 10",
+  "mode": "review",
+  "reviewTarget": "specs/system-deep-loop/049-deep-loop-alignment-review/001-angle-driven-review",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": "all",
+  "specFolder": "specs/system-deep-loop/049-deep-loop-alignment-review/001-angle-driven-review",
+  "maxIterations": 20,
+  "convergenceThreshold": 0.1,
+  "antiConvergence": {
+    "convergenceMode": "off",
+    "divergent": {}
+  },
+  "stopPolicy": "max-iterations",
+  "executionMode": "auto",
+  "lineageMode": "new",
+  "resource_map": {
+    "emit": true
+  },
+  "fanout": {
+    "executors": [
+      {
+        "kind": "cli-pi",
+        "model": "deepseek-v4.1-flash",
+        "reasoningEffort": "max",
+        "label": "wave1-deepseek",
+        "iterations": 5
+      },
+      {
+        "kind": "cli-pi",
+        "model": "glm-5.3-flash",
+        "reasoningEffort": "max",
+        "label": "wave1-glm",
+        "iterations": 5
+      }
+    ],
+    "concurrency": 2
+  },
+  "waves": [
+    {
+      "wave": 1,
+      "labels": [
+        "wave1-deepseek",
+        "wave1-glm"
+      ],
+      "angles": "1-10"
+    },
+    {
+      "wave": 2,
+      "labels": [
+        "wave2-deepseek",
+        "wave2-glm"
+      ],
+      "angles": "11-20, rewritten after wave one"
+    }
+  ],
+  "createdAt": "2026-09-15T09:52:23.579889+00:00"
+}
