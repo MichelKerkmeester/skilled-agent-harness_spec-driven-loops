@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/014-extend-dispatch-coverage"
+    packet_pointer: "cli-external-orchestration/071-cli-hermes-creation/014-extend-dispatch-coverage"
     last_updated_at: "2026-09-15T16:29:32Z"
     last_updated_by: "template-author"
     recent_action: "Initialized Level 2 template"

@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/015-wire-executor-builders"
+    packet_pointer: "cli-external-orchestration/071-cli-hermes-creation/015-wire-executor-builders"
     last_updated_at: "2026-09-15T16:29:33Z"
     last_updated_by: "template-author"
     recent_action: "Initialized Level 2 template"
