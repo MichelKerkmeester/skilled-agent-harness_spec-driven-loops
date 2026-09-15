@@ -7,7 +7,7 @@ hard_rules:
   - id: stdin-redirect-required
     check: stdin-redirect-required
     message: "Any non-interactive `codex exec` MUST close/redirect stdin (`</dev/null`) — not only inside a read loop. Omitting it can hang with zero output, which is indistinguishable from a slow model."
-    severity: warn
+    severity: error
   - id: codex-availability-required
     check: command-v-codex-required
     message: "Run `command -v codex` before every dispatch; if it fails, refuse the route without constructing or launching a command."

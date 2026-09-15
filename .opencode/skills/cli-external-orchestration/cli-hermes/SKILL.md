@@ -7,7 +7,7 @@ hard_rules:
   - id: stdin-redirect-required
     check: stdin-redirect-required
     message: "Any non-interactive `hermes chat` MUST either feed the prompt on stdin through `--query-file -` or close stdin (`</dev/null`). An inherited terminal stdin can hang with zero output."
-    severity: warn
+    severity: error
   - id: hermes-availability-required
     check: command-v-hermes-required
     message: "Run `command -v hermes` before every dispatch; if it fails, refuse the route without constructing or launching a command."
@@ -18,12 +18,12 @@ hard_rules:
     severity: error
   - id: ignore-rules-required
     check: hermes-ignore-rules-required
-    message: "Every dispatch MUST pass `--ignore-rules`, except one that preloads a project skill with `-s`, because the flag also suppresses the preload. Without it Hermes injects SOUL.md, its memories, session search and the CWD instruction files into the leaf prompt, bleeding prior sessions into the task."
-    severity: warn
+    message: "Every dispatch MUST pass `--ignore-rules`, including one that preloads a project skill with `-s`: a live A/B proved the preload survives the flag. Without it Hermes injects SOUL.md, its memories, session search and the CWD instruction files into the leaf prompt, bleeding prior sessions into the task."
+    severity: error
   - id: explicit-toolsets-required
     check: hermes-explicit-toolsets-required
-    message: "Every dispatch MUST pass an explicit `-t` toolset list that excludes `delegation` and `memory`. The stock roster enables both, which lets a leaf spawn sub-agents outside the runner's boundary and write memories."
-    severity: warn
+    message: "Every dispatch MUST pass an explicit `-t` toolset list that includes `file` and excludes `delegation` and `memory`. The stock roster enables both, which lets a leaf spawn sub-agents outside the runner's boundary and write memories. `file` is the only toolset that reads files, since `search` is web search, so a list without it produces a leaf that reads nothing and still exits 0 with empty stdout."
+    severity: error
   - id: no-worktree-flag
     check: hermes-no-worktree-flag
     message: "Never pass `--worktree`. It runs `git worktree add` inside the repository, which the fan-out write-containment guard attributes to the lineage and reverts."

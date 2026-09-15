@@ -1,0 +1,23 @@
+{
+  "run_id": "1789487610012-kymuxs",
+  "loop_type": "research",
+  "spec_folder": "specs/cli-external-orchestration/071-cli-hermes-creation/012-runtime-surface-parity-research",
+  "base_artifact_dir": "specs/cli-external-orchestration/071-cli-hermes-creation/012-runtime-surface-parity-research/research",
+  "total_cli_lineages": 1,
+  "orphaned_lineages": [],
+  "total": 1,
+  "succeeded": 0,
+  "failed": 1,
+  "all_failed": true,
+  "completed_with_containment_advisory": 0,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 1
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 1,
+    "salvage_miss": 0
+  }
+}

@@ -96,9 +96,9 @@ const HERMES_STDIN_HANDLED = /--query-file(\s|=)/;
 // flagged terminal or code action hits Hermes's approval gate. `file` is deliberately absent
 // because ordinary file writes are never gated and a read-only leaf keeps `file` for reading.
 const HERMES_WRITE_TOOLSETS = /(?:^|[\s=,])(?:terminal|coding|code_execution|browser)(?:[\s,]|$)/;
-// `--ignore-rules` also suppresses preloaded-skill injection, so a dispatch that preloads a
-// project skill with `-s`/`--skills` is the one sanctioned shape that omits the flag.
-const HERMES_SKILL_PRELOAD = /(?:^|\s)(?:-s|--skills)(?:\s+|=)\S+/;
+// Hermes reads files only through the `file` toolset; `search` is web search. A list without
+// it yields a leaf that cannot read anything and still exits 0 with empty stdout.
+const HERMES_FILE_TOOLSET = /(?:^|,)file(?:,|$)/;
 
 /**
  * Build a check that refuses a dispatch whose binary is absent from PATH.
@@ -181,16 +181,19 @@ export const CHECKS = {
   },
   // Without --ignore-rules Hermes injects SOUL.md, its memories, session search and the CWD
   // instruction files into the leaf prompt, bleeding prior sessions into the task.
+  // A live A/B under --ignore-rules proved the skill preload survives the flag: with -s the
+  // session quoted the preloaded text, without it the same prompt returned no preload. The
+  // former carve-out for -s therefore sanctioned the exact context bleed this rule prevents.
   'hermes-ignore-rules-required': (cmd) => !HERMES_CHAT.test(cmd)
-    || /(^|\s)--ignore-rules(\s|$)/.test(cmd)
-    || HERMES_SKILL_PRELOAD.test(cmd),
+    || /(^|\s)--ignore-rules(\s|$)/.test(cmd),
   // Hermes's stock roster enables `delegation` and `memory`; a leaf must name its toolsets and
   // leave both out, or it can spawn sub-agents outside the runner's boundary and write memories.
   'hermes-explicit-toolsets-required': (cmd) => {
     if (!HERMES_CHAT.test(cmd)) return true;
     const toolsets = cmd.match(/(?:^|\s)(?:-t|--toolsets)(?:\s+|=)([^\s]+)/);
     if (!toolsets) return false;
-    return !/(?:^|,)(?:delegation|memory)(?:,|$)/.test(toolsets[1]);
+    if (/(?:^|,)(?:delegation|memory)(?:,|$)/.test(toolsets[1])) return false;
+    return HERMES_FILE_TOOLSET.test(toolsets[1]);
   },
   // --worktree runs `git worktree add` inside the repository, which the fan-out
   // write-containment guard attributes to the lineage and reverts.

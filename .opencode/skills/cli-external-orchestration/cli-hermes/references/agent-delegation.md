@@ -45,7 +45,7 @@ The repo's nested commands under `.opencode/commands/**` have no Hermes equivale
 
 ## 3A. PERSONA THROUGH THE REPO PLUGIN
 
-`.hermes/agents/` links the shared runtime-neutral agent files, and `sync-skills-hermes.cjs` mirrors each as the preloadable skill `agent-<name>` because Hermes has no agent flag and caps a plugin prompt section at 4000 characters (a 22k persona in a section was skipped outright). The native-shaped dispatch is `-s agent-<name>` plus `HERMES_AGENT_PERSONA=<name>` with `HERMES_ENABLE_PROJECT_PLUGINS=1`: the skill carries the whole persona and the plugin's persona section binds it for the session. Because `-s` is in play, `--ignore-rules` is omitted (the packet's documented exception). Inline stays the fallback for a run without the plugin or the mirror.
+`.hermes/agents/` links the shared runtime-neutral agent files, and `sync-skills-hermes.cjs` mirrors each as the preloadable skill `agent-<name>` because Hermes has no agent flag and caps a plugin prompt section at 4000 characters (a 22k persona in a section was skipped outright). The native-shaped dispatch is `-s agent-<name>` plus `HERMES_AGENT_PERSONA=<name>` with `HERMES_ENABLE_PROJECT_PLUGINS=1`: the skill carries the whole persona and the plugin's persona section binds it for the session. `--ignore-rules` is passed alongside `-s`: a live A/B under the flag showed the preload still reaching the model, so omitting it only bled SOUL.md, memories and session search into the leaf. Inline stays the fallback for a run without the plugin or the mirror.
 
 ---
 

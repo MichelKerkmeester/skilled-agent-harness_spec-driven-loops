@@ -58,6 +58,7 @@ function runAdapterShim(kind) {
         LLMGATEWAY_API_KEY: process.env.LLMGATEWAY_API_KEY || null,
         HERMES_SPEC_FOLDER: process.env.HERMES_SPEC_FOLDER || null,
         SPECKIT_HERMES_READ_ONLY: process.env.SPECKIT_HERMES_READ_ONLY || null,
+        HERMES_ENABLE_PROJECT_PLUGINS: process.env.HERMES_ENABLE_PROJECT_PLUGINS || null,
       },
       ...extra,
     })}\n`, 'utf8');

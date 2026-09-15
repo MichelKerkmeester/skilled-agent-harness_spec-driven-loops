@@ -291,6 +291,9 @@ export function defineAdapterStressSuite(kind: AdapterKind): void {
         expect(typeof captures[0].env.HERMES_SPEC_FOLDER).toBe('string');
         expect(captures[0].env.HERMES_SPEC_FOLDER).not.toBe('');
         expect(captures[0].env.SPECKIT_HERMES_READ_ONLY).toBeNull();
+        // Without this opt-in Hermes never loads the repo plugin, so the two markers above
+        // reach a session that cannot read them and every repo guard is inert.
+        expect(captures[0].env.HERMES_ENABLE_PROJECT_PLUGINS).toBe('1');
       }
     });
 

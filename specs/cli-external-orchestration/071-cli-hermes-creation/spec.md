@@ -141,6 +141,12 @@ Bring Hermes to the same parity the other six runtimes have, in the order that w
 The plan follows phase 001's ranked recommendation, confirmed by the operator on 2026-09-14: the earlier candidates for an agent and command bridge and for MCP host integration are content of phase 4, and the hook layer is narrowed to the project plugin.
 
 | 10 | 010-hermes-hook-parity/ | [Phase 10 scope] | Pending |
+| 11 | 011-dispatch-preflight-parity-research/ | [Phase 11 scope] | Pending |
+| 12 | 012-runtime-surface-parity-research/ | [Phase 12 scope] | Pending |
+| 13 | 013-close-silent-preflight-holes/ | [Phase 13 scope] | Pending |
+| 14 | 014-extend-dispatch-coverage/ | [Phase 14 scope] | Pending |
+| 15 | 015-wire-executor-builders/ | [Phase 15 scope] | Pending |
+| 16 | 016-dispatch-enforcement-ci-guard/ | [Phase 16 scope] | Pending |
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins
@@ -165,6 +171,12 @@ The plan follows phase 001's ranked recommendation, confirmed by the operator on
 | 007 | 008 | A rostered model dispatches through the executor and an off-roster id is refused | Runner output for both cases |
 | 008 | 009 | Playbook scenarios executed with recorded evidence | Playbook report files |
 | 009-docs-governance-and-closeout | 010-hermes-hook-parity | [Criteria TBD] | [Verification TBD] |
+| 010-hermes-hook-parity | 011-dispatch-preflight-parity-research | [Criteria TBD] | [Verification TBD] |
+| 011-dispatch-preflight-parity-research | 012-runtime-surface-parity-research | [Criteria TBD] | [Verification TBD] |
+| 012-runtime-surface-parity-research | 013-close-silent-preflight-holes | [Criteria TBD] | [Verification TBD] |
+| 013-close-silent-preflight-holes | 014-extend-dispatch-coverage | [Criteria TBD] | [Verification TBD] |
+| 014-extend-dispatch-coverage | 015-wire-executor-builders | [Criteria TBD] | [Verification TBD] |
+| 015-wire-executor-builders | 016-dispatch-enforcement-ci-guard | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->
 
 ---

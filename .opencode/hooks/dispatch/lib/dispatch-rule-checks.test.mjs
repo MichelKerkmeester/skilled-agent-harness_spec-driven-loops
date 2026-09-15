@@ -5,6 +5,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parseHardRules, readHardRules, evaluate, CHECKS, KNOWN_CHECKS } from './dispatch-rule-checks.mjs';
+import { DISPATCH_SHAPES, matchDispatchShape } from './dispatch-audit.mjs';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const CLI_ORCHESTRATION = path.resolve(HERE, '../../../skills/cli-external-orchestration');
@@ -113,10 +114,14 @@ test('hermes rules discriminate on the flags the packet contract pins', () => {
   assert.deepEqual(ids(good), []);
   // A read-only run names no terminal toolset, so it may omit --yolo; `file` alone is reading.
   assert.deepEqual(ids('hermes chat -Q --oneshot --query-file p.md --ignore-rules -t file,todo'), []);
-  // Preloading a project skill is the one shape that omits --ignore-rules, because the flag
-  // would suppress the preload.
-  assert.deepEqual(ids('hermes chat -Q --oneshot --query-file p.md -s cli-hermes --source tool -t file,todo'), []);
-  assert.deepEqual(ids('hermes chat -Q --oneshot --query-file p.md --skills=cli-hermes -t file,todo'), []);
+  // Preloading a project skill does NOT excuse --ignore-rules: a live A/B proved the preload
+  // survives the flag, so the old carve-out sanctioned the context bleed the rule prevents.
+  assert.deepEqual(ids('hermes chat -Q --oneshot --query-file p.md -s cli-hermes --source tool -t file,todo'), ['ignore-rules-required']);
+  assert.deepEqual(ids('hermes chat -Q --oneshot --query-file p.md --skills=cli-hermes -t file,todo'), ['ignore-rules-required']);
+  // A preloading dispatch that also passes the flag is the correct shape and stays clean.
+  assert.deepEqual(ids('hermes chat -Q --oneshot --query-file p.md --ignore-rules -s cli-hermes --source tool -t file,todo'), []);
+  // `search` is web search, so a list without `file` yields a leaf that reads nothing.
+  assert.deepEqual(ids('hermes chat -Q --oneshot --query-file p.md --ignore-rules -t search,todo'), ['explicit-toolsets-required']);
   assert.deepEqual(ids(good.replace(' --yolo', '')), ['yolo-required-for-writes']);
   assert.deepEqual(ids(good.replace(' --ignore-rules', '')), ['ignore-rules-required']);
   assert.deepEqual(ids(good.replace(' -t terminal,file,skills,todo,web', '')), ['explicit-toolsets-required']);
@@ -162,4 +167,27 @@ test('severity maps error and block to a blocking violation; anything else advis
   } finally {
     if (saved === undefined) delete CHECKS['always-fail']; else CHECKS['always-fail'] = saved;
   }
+});
+
+// Every documented headless dispatch must resolve to its own skill, or that runtime's whole
+// rule set is silently skipped: the preflight bails before evaluating when no shape matches.
+test('every runtime dispatch shape resolves to its skill (mutation-proof)', () => {
+  const documented = [
+    ['opencode run --model x "task" </dev/null', 'cli-opencode'],
+    ['claude -p "task" </dev/null', 'cli-claude-code'],
+    ['codex exec --model gpt-5.5 -c approval_policy=never --sandbox workspace-write "task" </dev/null', 'cli-codex'],
+    ['devin -p "task" </dev/null', 'cli-devin'],
+    ['cursor-agent -p "task" </dev/null', 'cli-cursor'],
+    ['pi -p --offline "task" </dev/null', 'cli-pi'],
+    ['hermes chat -Q --oneshot --query-file p.md </dev/null', 'cli-hermes'],
+  ];
+  for (const [cmd, skill] of documented) {
+    const shape = DISPATCH_SHAPES.find((d) => d.test.test(cmd));
+    assert.equal(shape?.skill, skill, `no shape matched the documented ${skill} dispatch: ${cmd}`);
+    assert.equal(matchDispatchShape(cmd)?.skill, skill, `tokenizer disagreed with the shape list for: ${cmd}`);
+  }
+  // Negative control: a non-dispatch command resolves to nothing, so a shape that matched
+  // everything could not pass the loop above by accident.
+  assert.equal(DISPATCH_SHAPES.find((d) => d.test.test('git status && ls -la')), undefined);
+  assert.equal(matchDispatchShape('git status && ls -la'), null);
 });

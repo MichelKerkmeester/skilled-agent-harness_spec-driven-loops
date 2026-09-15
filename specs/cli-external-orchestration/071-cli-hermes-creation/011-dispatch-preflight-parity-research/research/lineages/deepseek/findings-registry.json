@@ -1,0 +1,613 @@
+{
+  "sessionId": "fanout-deepseek-1789487309899-tyhai6",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 10,
+    "answeredCount": 24,
+    "totalQuestions": 24,
+    "timestamp": "2026-09-15T18:30:00Z"
+  },
+  "keyQuestions": [
+    {
+      "id": "question-1",
+      "text": "Which hard_rules entries exist across all seven cli-* skills, at what severity, and can each check actually detect its violation?",
+      "origin": "seed",
+      "source": "strategy",
+      "injectedAtIteration": 0,
+      "addedAtIteration": 0
+    },
+    {
+      "id": "question-2",
+      "text": "Which warn rules describe a condition that silently ruins a run and therefore belong at error?",
+      "origin": "seed",
+      "source": "strategy",
+      "injectedAtIteration": 0,
+      "addedAtIteration": 0
+    },
+    {
+      "id": "question-3",
+      "text": "Two skills declare no error rule at all: is that correct for them, or an oversight?",
+      "origin": "seed",
+      "source": "strategy",
+      "injectedAtIteration": 0,
+      "addedAtIteration": 0
+    },
+    {
+      "id": "question-4",
+      "text": "Which artifacts encode the false claim that --ignore-rules suppresses the skill preload, and what is the minimal correct change per artifact?",
+      "origin": "seed",
+      "source": "strategy",
+      "injectedAtIteration": 0,
+      "addedAtIteration": 0
+    },
+    {
+      "id": "question-5",
+      "text": "What is the exact test case that must flip for the exemption defect?",
+      "origin": "seed",
+      "source": "strategy",
+      "injectedAtIteration": 0,
+      "addedAtIteration": 0
+    },
+    {
+      "id": "question-6",
+      "text": "Which second rule rests on the same false premise?",
+      "origin": "seed",
+      "source": "strategy",
+      "injectedAtIteration": 0,
+      "addedAtIteration": 0
+    },
+    {
+      "id": "question-7",
+      "text": "For each cli-* runtime, which dispatch mistakes produce a silent wrong result rather than an error?",
+      "origin": "seed",
+      "source": "strategy",
+      "injectedAtIteration": 0,
+      "addedAtIteration": 0
+    },
+    {
+      "id": "question-8",
+      "text": "Which of those are detectable from the command string alone, and what is the check predicate for each?",
+      "origin": "seed",
+      "source": "strategy",
+      "injectedAtIteration": 0,
+      "addedAtIteration": 0
+    },
+    {
+      "id": "question-9",
+      "text": "What pre-execution hook surface does Cursor actually expose in this repo?",
+      "origin": "seed",
+      "source": "strategy",
+      "injectedAtIteration": 0,
+      "addedAtIteration": 0
+    },
+    {
+      "id": "question-10",
+      "text": "Can a Cursor preflight adapter exist, and what is the smallest one reusing the shared library unchanged?",
+      "origin": "seed",
+      "source": "strategy",
+      "injectedAtIteration": 0,
+      "addedAtIteration": 0
+    },
+    {
+      "id": "question-11",
+      "text": "Can OpenCode's plugin API deny a Bash tool call before execution, and where is that stated?",
+      "origin": "seed",
+      "source": "strategy",
+      "injectedAtIteration": 0,
+      "addedAtIteration": 0
+    },
+    {
+      "id": "question-12",
+      "text": "What is the smallest OpenCode adapter, compared against what the audit file already collects?",
+      "origin": "seed",
+      "source": "strategy",
+      "injectedAtIteration": 0,
+      "addedAtIteration": 0
+    },
+    {
+      "id": "question-13",
+      "text": "Is every check named in a cli-* SKILL.md implemented, and is every registry check reachable?",
+      "origin": "seed",
+      "source": "strategy",
+      "injectedAtIteration": 0,
+      "addedAtIteration": 0
+    },
+    {
+      "id": "question-14",
+      "text": "Does any adapter drift by re-implementing severity, shape detection, or rule parsing locally?",
+      "origin": "seed",
+      "source": "strategy",
+      "injectedAtIteration": 0,
+      "addedAtIteration": 0
+    },
+    {
+      "id": "question-15",
+      "text": "What single CI guard would catch the drift class?",
+      "origin": "seed",
+      "source": "strategy",
+      "injectedAtIteration": 0,
+      "addedAtIteration": 0
+    },
+    {
+      "id": "question-16",
+      "text": "What do the four Hermes plugin prompt sections cost against the caps, and what headroom remains?",
+      "origin": "seed",
+      "source": "strategy",
+      "injectedAtIteration": 0,
+      "addedAtIteration": 0
+    },
+    {
+      "id": "question-17",
+      "text": "Is a repo-rules digest section worth the headroom versus naming the file in the dispatch prompt?",
+      "origin": "seed",
+      "source": "strategy",
+      "injectedAtIteration": 0,
+      "addedAtIteration": 0
+    },
+    {
+      "id": "question-18",
+      "text": "What would break in the repo if the section 7 heading emoji changed?",
+      "origin": "seed",
+      "source": "strategy",
+      "injectedAtIteration": 0,
+      "addedAtIteration": 0
+    },
+    {
+      "id": "question-19",
+      "text": "For every executor the fan-out runner builds, what env and flags does the builder not set?",
+      "origin": "seed",
+      "source": "strategy",
+      "injectedAtIteration": 0,
+      "addedAtIteration": 0
+    },
+    {
+      "id": "question-20",
+      "text": "Which of those belong in the builder rather than a prompt rule, and what does each cost?",
+      "origin": "seed",
+      "source": "strategy",
+      "injectedAtIteration": 0,
+      "addedAtIteration": 0
+    },
+    {
+      "id": "question-21",
+      "text": "Which failure paths silently disable dispatch enforcement?",
+      "origin": "seed",
+      "source": "strategy",
+      "injectedAtIteration": 0,
+      "addedAtIteration": 0
+    },
+    {
+      "id": "question-22",
+      "text": "Would the operator ever notice each one, and what is the cheapest detector for those they would not?",
+      "origin": "seed",
+      "source": "strategy",
+      "injectedAtIteration": 0,
+      "addedAtIteration": 0
+    },
+    {
+      "id": "question-23",
+      "text": "How does every recommendation rank by (failure severity x confidence) / cost?",
+      "origin": "seed",
+      "source": "strategy",
+      "injectedAtIteration": 0,
+      "addedAtIteration": 0
+    },
+    {
+      "id": "question-24",
+      "text": "What phase decomposition follows, with dependencies and closing gates?",
+      "origin": "seed",
+      "source": "strategy",
+      "injectedAtIteration": 0,
+      "addedAtIteration": 0
+    }
+  ],
+  "resolvedQuestions": [
+    {
+      "id": "question-1",
+      "text": "Which hard_rules entries exist across all seven cli-* skills, at what severity, and can each check actually detect its violation?",
+      "resolvedAtIteration": 1,
+      "evidence": "see iterations/iteration-001.md"
+    },
+    {
+      "id": "question-2",
+      "text": "Which warn rules describe a condition that silently ruins a run and therefore belong at error?",
+      "resolvedAtIteration": 1,
+      "evidence": "see iterations/iteration-001.md"
+    },
+    {
+      "id": "question-3",
+      "text": "Two skills declare no error rule at all: is that correct for them, or an oversight?",
+      "resolvedAtIteration": 1,
+      "evidence": "see iterations/iteration-001.md"
+    },
+    {
+      "id": "question-4",
+      "text": "Which artifacts encode the false claim that --ignore-rules suppresses the skill preload, and what is the minimal correct change per artifact?",
+      "resolvedAtIteration": 2,
+      "evidence": "see iterations/iteration-002.md"
+    },
+    {
+      "id": "question-5",
+      "text": "What is the exact test case that must flip for the exemption defect?",
+      "resolvedAtIteration": 2,
+      "evidence": "see iterations/iteration-002.md"
+    },
+    {
+      "id": "question-6",
+      "text": "Which second rule rests on the same false premise?",
+      "resolvedAtIteration": 2,
+      "evidence": "see iterations/iteration-002.md"
+    },
+    {
+      "id": "question-7",
+      "text": "For each cli-* runtime, which dispatch mistakes produce a silent wrong result rather than an error?",
+      "resolvedAtIteration": 3,
+      "evidence": "see iterations/iteration-003.md"
+    },
+    {
+      "id": "question-8",
+      "text": "Which of those are detectable from the command string alone, and what is the check predicate for each?",
+      "resolvedAtIteration": 3,
+      "evidence": "see iterations/iteration-003.md"
+    },
+    {
+      "id": "question-9",
+      "text": "What pre-execution hook surface does Cursor actually expose in this repo?",
+      "resolvedAtIteration": 3,
+      "evidence": "see iterations/iteration-003.md"
+    },
+    {
+      "id": "question-10",
+      "text": "Can a Cursor preflight adapter exist, and what is the smallest one reusing the shared library unchanged?",
+      "resolvedAtIteration": 4,
+      "evidence": "see iterations/iteration-004.md"
+    },
+    {
+      "id": "question-11",
+      "text": "Can OpenCode's plugin API deny a Bash tool call before execution, and where is that stated?",
+      "resolvedAtIteration": 4,
+      "evidence": "see iterations/iteration-004.md"
+    },
+    {
+      "id": "question-12",
+      "text": "What is the smallest OpenCode adapter, compared against what the audit file already collects?",
+      "resolvedAtIteration": 4,
+      "evidence": "see iterations/iteration-004.md"
+    },
+    {
+      "id": "question-13",
+      "text": "Is every check named in a cli-* SKILL.md implemented, and is every registry check reachable?",
+      "resolvedAtIteration": 5,
+      "evidence": "see iterations/iteration-005.md"
+    },
+    {
+      "id": "question-14",
+      "text": "Does any adapter drift by re-implementing severity, shape detection, or rule parsing locally?",
+      "resolvedAtIteration": 5,
+      "evidence": "see iterations/iteration-005.md"
+    },
+    {
+      "id": "question-15",
+      "text": "What single CI guard would catch the drift class?",
+      "resolvedAtIteration": 5,
+      "evidence": "see iterations/iteration-005.md"
+    },
+    {
+      "id": "question-16",
+      "text": "What do the four Hermes plugin prompt sections cost against the caps, and what headroom remains?",
+      "resolvedAtIteration": 6,
+      "evidence": "see iterations/iteration-006.md"
+    },
+    {
+      "id": "question-17",
+      "text": "Is a repo-rules digest section worth the headroom versus naming the file in the dispatch prompt?",
+      "resolvedAtIteration": 6,
+      "evidence": "see iterations/iteration-006.md"
+    },
+    {
+      "id": "question-18",
+      "text": "What would break in the repo if the section 7 heading emoji changed?",
+      "resolvedAtIteration": 6,
+      "evidence": "see iterations/iteration-006.md"
+    },
+    {
+      "id": "question-19",
+      "text": "For every executor the fan-out runner builds, what env and flags does the builder not set?",
+      "resolvedAtIteration": 7,
+      "evidence": "see iterations/iteration-007.md"
+    },
+    {
+      "id": "question-20",
+      "text": "Which of those belong in the builder rather than a prompt rule, and what does each cost?",
+      "resolvedAtIteration": 7,
+      "evidence": "see iterations/iteration-007.md"
+    },
+    {
+      "id": "question-21",
+      "text": "Which failure paths silently disable dispatch enforcement?",
+      "resolvedAtIteration": 7,
+      "evidence": "see iterations/iteration-007.md"
+    },
+    {
+      "id": "question-22",
+      "text": "Would the operator ever notice each one, and what is the cheapest detector for those they would not?",
+      "resolvedAtIteration": 8,
+      "evidence": "see iterations/iteration-008.md"
+    },
+    {
+      "id": "question-23",
+      "text": "How does every recommendation rank by (failure severity x confidence) / cost?",
+      "resolvedAtIteration": 8,
+      "evidence": "see iterations/iteration-008.md"
+    },
+    {
+      "id": "question-24",
+      "text": "What phase decomposition follows, with dependencies and closing gates?",
+      "resolvedAtIteration": 8,
+      "evidence": "see iterations/iteration-008.md"
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "defect-codex-shape-no-match",
+      "text": "NEW DEFECT: DISPATCH_SHAPES requires -p/--print after 'codex exec', which the real dispatch shape lacks; both documented codex commands produce NO-MATCH, so the codex preflight and audit are inert while HEADLESS_DISPATCH_SHAPES classifies the same command correctly.",
+      "addedAtIteration": 4,
+      "sources": [
+        ".opencode/hooks/dispatch/lib/dispatch-audit.mjs:33",
+        ".opencode/hooks/dispatch/lib/dispatch-rule-checks.mjs:82"
+      ]
+    },
+    {
+      "id": "severity-stdin-flip",
+      "text": "stdin-redirect-required is declared warn in all seven cli-* skills while its violation is a silent hang with zero output; the check is deterministic from the command string across every headless shape, making the seven flips the highest-value severity change.",
+      "addedAtIteration": 1,
+      "sources": [
+        ".opencode/hooks/dispatch/lib/dispatch-rule-checks.mjs:72-89,136-144"
+      ]
+    },
+    {
+      "id": "exemption-artifact-trace",
+      "text": "The false -s exemption is encoded in six artifact classes: the check clause and constant, the rule message (canonical + generated mirror), two test assertions, the upstream live-help row, the persona dispatch contract in a reference plus two playbook scenarios, and the dated benchmark reports.",
+      "addedAtIteration": 2,
+      "sources": [
+        ".opencode/hooks/dispatch/lib/dispatch-rule-checks.mjs:99-101,184-186",
+        ".opencode/hooks/dispatch/lib/dispatch-rule-checks.test.mjs:116-119",
+        ".opencode/skills/cli-external-orchestration/cli-hermes/SKILL.md:19-22"
+      ]
+    },
+    {
+      "id": "exemption-test-flip",
+      "text": "The exact test that must flip: dispatch-rule-checks.test.mjs lines 118-119 asserting zero violations for -s cli-hermes and --skills=cli-hermes without --ignore-rules must become ['ignore-rules-required']; no second hard rule uses HERMES_SKILL_PRELOAD, so the registry enforcement site is singular and the persona dispatch contract is the second dependent.",
+      "addedAtIteration": 2,
+      "sources": [
+        ".opencode/hooks/dispatch/lib/dispatch-rule-checks.test.mjs:112-119"
+      ]
+    },
+    {
+      "id": "hermes-file-toolset",
+      "text": "hermes-explicit-toolsets-required does not require file; -t search,todo passes even though search is web-only and todo cannot read, so the leaf exits 0 with empty stdout. Requiring file in the parsed toolset list is the minimum fix.",
+      "addedAtIteration": 1,
+      "sources": [
+        ".opencode/hooks/dispatch/lib/dispatch-rule-checks.mjs:189-194",
+        ".opencode/skills/cli-external-orchestration/cli-hermes/SKILL.md:23-26"
+      ]
+    },
+    {
+      "id": "zero-error-skills",
+      "text": "cli-claude-code (2 rules) and cli-opencode (5 rules) declare zero error rules; both are oversights, and neither carries an availability rule while five sibling skills do.",
+      "addedAtIteration": 1,
+      "sources": [
+        ".opencode/skills/cli-external-orchestration/cli-claude-code/SKILL.md:6-14",
+        ".opencode/skills/cli-external-orchestration/cli-opencode/SKILL.md:6-26"
+      ]
+    },
+    {
+      "id": "opencode-severity-flips",
+      "text": "explicit-model-required (429 retry loop, no output) and command-flag-for-slash-prompt (slash text delivered as prose) both produce silent wrong results and belong at error; no-bare-agent-general errors loudly and stays warn with a predicate fix.",
+      "addedAtIteration": 1,
+      "sources": [
+        ".opencode/skills/cli-external-orchestration/cli-opencode/SKILL.md:11-22"
+      ]
+    },
+    {
+      "id": "pi-offline-gap",
+      "text": "Pi's --offline flag is mandatory in the fan-out builder (without it a non-interactive run hangs minutes on startup network probes) but no hard rule declares it and no check implements it.",
+      "addedAtIteration": 3,
+      "sources": [
+        ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:2559-2565"
+      ]
+    },
+    {
+      "id": "detectable-predicates",
+      "text": "Twelve check predicates are specified for the unenforced silent classes: hermes read-toolset/provider/source/no-z/budget, pi offline/provider-qualified-model, opencode dir, cursor model-pinned, claude/codex model-pinned, devin permission-mode advisory.",
+      "addedAtIteration": 3,
+      "sources": [
+        "iterations/iteration-003.md finding 2"
+      ]
+    },
+    {
+      "id": "budget-predicate",
+      "text": "Budget-shorter-than-work is decidable only when both numbers co-appear; the predicate compares --run-budget against a timeout wrapper minus the 60s margin the builder already uses.",
+      "addedAtIteration": 3,
+      "sources": [
+        ".opencode/skills/cli-external-orchestration/cli-hermes/SKILL.md:210,233-234"
+      ]
+    },
+    {
+      "id": "cursor-surface-live",
+      "text": "Cursor exposes a live preToolUse surface with matchers in .cursor/hooks.json; three adapters already run there, including a Shell-matcher git advisory built on the shared hard-rule engine. The dispatch gap is wiring, not platform.",
+      "addedAtIteration": 4,
+      "sources": [
+        ".cursor/hooks.json",
+        ".opencode/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs:28-33"
+      ]
+    },
+    {
+      "id": "cursor-shim-pattern",
+      "text": "The smallest Cursor dispatch preflight is a translation shim over the Claude adapter, exactly as task-dispatch-guard.mjs already translates Claude envelopes to Cursor's {permission:'deny', user_message, agent_message} + exit 2 or {permission:'allow', agent_message}.",
+      "addedAtIteration": 4,
+      "sources": [
+        ".opencode/hooks/task-dispatch/cursor/task-dispatch-guard.mjs:104-124"
+      ]
+    },
+    {
+      "id": "opencode-deny-signal",
+      "text": "OpenCode denies pre-execution by throwing from tool.execute.before; the plugins README names the throw as the deny signal and the deep-loop guard implements it with a prefixed error. The advisory channel is buffer-and-drain on experimental.chat.system.transform.",
+      "addedAtIteration": 5,
+      "sources": [
+        ".opencode/plugins/README.md:84,35",
+        ".opencode/plugins/system-deep-loop-guard.js:93"
+      ]
+    },
+    {
+      "id": "opencode-smallest-adapter",
+      "text": "The smallest OpenCode dispatch preflight adds tool.execute.before to the existing audit plugin; imports and project-dir resolution are already present, no subprocess is needed, and the dispatch kill-switch ordering (check first) is inherited.",
+      "addedAtIteration": 5,
+      "sources": [
+        ".opencode/plugins/cli-dispatch-audit.js:22-31,60-90"
+      ]
+    },
+    {
+      "id": "bijection-holds",
+      "text": "The declared-check/implemented-check bijection holds exactly (17/17) in both directions today and was verified by running the parser and registry, not by reading. The existing CI guard covers declared-to-implemented only.",
+      "addedAtIteration": 6,
+      "sources": [
+        ".opencode/hooks/dispatch/lib/dispatch-rule-checks.test.mjs:29-45"
+      ]
+    },
+    {
+      "id": "drift-inventory",
+      "text": "Realized drift: two dispatch-shape registries (codex divergence), four model rosters duplicated as literals between executor-config.ts and fanout-run.cjs, README documenting 5 of 17 checks, and a 'four availability rules' comment above five.",
+      "addedAtIteration": 6,
+      "sources": [
+        ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:2242-2595",
+        ".opencode/hooks/dispatch/README.md"
+      ]
+    },
+    {
+      "id": "single-ci-guard",
+      "text": "One table-driven guard catches the drift class: shape parity across both registries over one documented command per runtime, bijection both directions, roster agreement, and per-check pass+violation fixtures.",
+      "addedAtIteration": 6,
+      "sources": [
+        "iterations/iteration-006.md finding 9"
+      ]
+    },
+    {
+      "id": "hermes-section-budgets",
+      "text": "Measured prompt-section costs against the 4000-char per-section cap: session-context 303 without / 3402 with a bound packet (headroom 3697/598), persona 276-321 fixed, goal 0 to 3621 worst case (headroom 4000/379), advisories variable; no enforced total cap exists.",
+      "addedAtIteration": 7,
+      "sources": [
+        ".hermes/plugins/repo-guards/__init__.py:126-129,735-775"
+      ]
+    },
+    {
+      "id": "no-rules-digest",
+      "text": "A repo-rules digest section is not worth the headroom: 4000 chars carries 16% of the 25,085-char AGENTS.md, over-cap sections are skipped (not truncated), and it would be a fifth ungoverned copy; naming the file in the dispatch prompt costs one line.",
+      "addedAtIteration": 7,
+      "sources": [
+        ".hermes/plugins/repo-guards/__init__.py:126-129",
+        "AGENTS.md (measured)"
+      ]
+    },
+    {
+      "id": "emoji-blast-radius",
+      "text": "AGENTS.md carries exactly one U+200D at line 247 (teacher sequence); changing it breaks no automated check: emoji enforcement is removed from sk-doc, SECTION_EMOJIS does not police H2s, the Gate 1 pointer generator extracts a single marker line, and CLAUDE.md is a symlink.",
+      "addedAtIteration": 7,
+      "sources": [
+        "AGENTS.md:247",
+        ".opencode/skills/sk-doc/shared/scripts/validate_document.py (EMOJI_REQUIRED_TYPES)"
+      ]
+    },
+    {
+      "id": "hermes-plugin-optin-gap",
+      "text": "NEW DEFECT: the runner wires HERMES_SPEC_FOLDER and SPECKIT_HERMES_READ_ONLY but never HERMES_ENABLE_PROJECT_PLUGINS=1; the packet states that without it (and a plugins.enabled line) a Hermes dispatch runs with no repo guard hooks, so both wired markers are inert.",
+      "addedAtIteration": 8,
+      "sources": [
+        ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3268-3272",
+        ".opencode/skills/cli-external-orchestration/cli-hermes/references/hook-contract.md:53"
+      ]
+    },
+    {
+      "id": "persona-env-wiring",
+      "text": "HERMES_AGENT_PERSONA is never set (confirmed fact); the plugin persona section reads only that env, so the section renders empty; the native-shaped fix is persona env plus -s agent-<name>, sequenced after the exemption fix.",
+      "addedAtIteration": 8,
+      "sources": [
+        ".hermes/plugins/repo-guards/__init__.py:133,689-713"
+      ]
+    },
+    {
+      "id": "builder-parity-gaps",
+      "text": "Claude and OpenCode builders lack the availability probe the other five implement; codex default o4-mini and opencode default anthropic/claude-opus-4-8 diverge from the packet defaults; codex service tier defaults only when provided.",
+      "addedAtIteration": 8,
+      "sources": [
+        ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:2070,2200-2203,2737-2790"
+      ]
+    },
+    {
+      "id": "fail-open-inventory",
+      "text": "Twelve disablement paths; nine are invisible at runtime (missing skill file, parse failure, throwing check, unregistered hook, moved adapter, persisted kill switch, shape no-match, broken Pi symlink, wiring env gap). Cheapest detector bundle: one static CI wiring+fixtures test, one session-start kill-switch line, builder units plus one live lineage.",
+      "addedAtIteration": 9,
+      "sources": [
+        ".opencode/hooks/dispatch/lib/dispatch-rule-checks.mjs:61-67,233-239",
+        ".opencode/hooks/hook-install/README.md"
+      ]
+    },
+    {
+      "id": "registration-drift",
+      "text": "Only Codex is reconciled via install-codex-hooks --check; nothing asserts the Claude/Cursor/Devin configs still carry the preflight entry, and Devin's dispatch entry has no mkHookDrift fallback.",
+      "addedAtIteration": 9,
+      "sources": [
+        ".claude/settings.json",
+        ".codex/hooks.json:69",
+        ".devin/hooks.v1.json:72"
+      ]
+    },
+    {
+      "id": "ranked-plan",
+      "text": "Do-now: codex shape, Hermes plugin opt-in, exemption removal, hermes file-toolset, stdin flips x7, opencode flips, AGENTS joiner. Do-next: CI guard, OpenCode before-hook, Cursor shim, pi checks, predicate fixes and additions, builder parity, Devin fallback, mcp severity, kill-switch advisory, persona wiring, permission-mode redesign, doc sweep. Do-not: digest section, per-dispatch self-test, roster copy, engine reimplementation, generated-artifact edits, fail-closed.",
+      "addedAtIteration": 10,
+      "sources": [
+        "iterations/iteration-010.md"
+      ]
+    },
+    {
+      "id": "phase-plan",
+      "text": "Phases: (1) close the four silent holes (no deps), (2) extend coverage (after 1), (3) wire the builders (persona after 1), (4) make silence loud (after 1 and 3), each with a runnable closing gate the operator can scaffold from.",
+      "addedAtIteration": 10,
+      "sources": [
+        "iterations/iteration-010.md"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    "Flipping every warn rule to error irrespective of failure class",
+    "Editing the generated .hermes mirror or the dated benchmark reports",
+    "Treating Cursor or OpenCode as lacking a pre-execution surface",
+    "Adding a repo-rules digest prompt section",
+    "A third model-roster copy inside the hook engine",
+    "Per-runtime reimplementations of the shared hard-rule engine",
+    "Fail-closed posture for the preflight"
+  ],
+  "metrics": {
+    "iterationsCompleted": 10,
+    "openQuestions": 0,
+    "resolvedQuestions": 24,
+    "keyFindings": 27,
+    "convergenceScore": 0.05,
+    "meanNewInfoRatio": 0.835,
+    "coverageBySources": {
+      "hook-engine": 9,
+      "cli-skills": 7,
+      "adapters": 7,
+      "fanout-runtime": 6,
+      "hermes-plugin": 5,
+      "playbooks-references": 6,
+      "tests": 5
+    }
+  },
+  "status": "complete"
+}

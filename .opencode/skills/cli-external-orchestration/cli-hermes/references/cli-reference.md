@@ -47,7 +47,7 @@ Hermes has three headless forms, and only one is auditable:
 | `-t, --toolsets LIST` | Comma-separated toolsets to enable; replaces the configured set | live help |
 | `-s, --skills LIST` | Preload skills for the session | live help |
 | `--yolo` | Auto-approve the tool calls Hermes flags as dangerous; ordinary writes need no flag (observed 2026-09-14) | live help |
-| `--ignore-rules` | Skip `AGENTS.md`, `SOUL.md`, `.cursorrules`, memory and preloaded skills injection | live help |
+| `--ignore-rules` | Skip `AGENTS.md`, `SOUL.md`, `.cursorrules` and memory injection. Hermes's help text also claims it skips preloaded skills; a live A/B disproved that, so `-s` and this flag travel together | live help, preload clause **corrected by observation 2026-09-15** |
 | `--ignore-user-config` | Ignore `~/.hermes/config.yaml`; `.env` credentials still load | live help |
 | `--safe-mode` | Disable user config, rules, plugins and MCP servers | live help |
 | `--max-turns N` | Turn cap for the run (Hermes default 500) | live help |

@@ -7,7 +7,7 @@ hard_rules:
   - id: stdin-redirect-required
     check: stdin-redirect-required
     message: "Any non-interactive `pi -p` MUST close/redirect stdin (`</dev/null`) — omitting it hangs indefinitely with ZERO output, which reads as a slow model rather than a deadlock."
-    severity: warn
+    severity: error
   - id: pi-availability-required
     check: command-v-pi-required
     message: "Run command -v pi before every dispatch; if it fails, refuse the route without constructing or launching a command."

@@ -43,7 +43,7 @@ Operators run the exact prompt and command sequence for `HERMES-023` and confirm
 
 1. Restate the user request and confirm the scenario ID.
 2. Confirm the global preconditions in the root playbook, including `command -v hermes` and the plugin allowlist entry.
-3. Run the command sequence below exactly as written, from the repository root. `--ignore-rules` is omitted because `-s` is in play (the packet's documented exception).
+3. Run the command sequence below exactly as written, from the repository root. `--ignore-rules` travels with `-s`, because the preload survives the flag.
 4. Capture stdout, stderr, exit code and elapsed seconds separately.
 5. Judge the result against the pass/fail criteria and record the verdict with its evidence.
 
@@ -52,7 +52,7 @@ Operators run the exact prompt and command sequence for `HERMES-023` and confirm
 ```bash
 node .opencode/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs --check
 
-HERMES_AGENT_PERSONA=markdown HERMES_ENABLE_PROJECT_PLUGINS=1 perl -e 'alarm 300; exec @ARGV' -- hermes chat -Q --oneshot --source tool \
+HERMES_AGENT_PERSONA=markdown HERMES_ENABLE_PROJECT_PLUGINS=1 perl -e 'alarm 300; exec @ARGV' -- hermes chat -Q --oneshot --ignore-rules --source tool \
   --provider llmgateway --model glm-5.3-flash --reasoning none -t file,todo --max-turns 1 --run-budget 90 -s agent-markdown \
   -q "Your system prompt names a persona to adopt and its full text is a preloaded skill. On one line write PERSONA=<name>, then quote the persona's first H1 heading verbatim. If no persona section exists reply NO_PERSONA." \
   </dev/null >out.txt 2>err.txt

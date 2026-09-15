@@ -1,0 +1,24 @@
+{
+  "level": "2",
+  "specFolder": "cli-external-orchestration/071-cli-hermes-creation/011-dispatch-preflight-parity-research",
+  "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+  "keywords": [
+    "broken",
+    "missing",
+    "inefficient",
+    "sentences",
+    "describing",
+    "specific",
+    "pain",
+    "point"
+  ],
+  "lastUpdated": "2026-09-15T15:46:31.936Z",
+  "specId": "011",
+  "folderSlug": "dispatch-preflight-parity-research",
+  "parentChain": [
+    "cli-external-orchestration",
+    "071-cli-hermes-creation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
