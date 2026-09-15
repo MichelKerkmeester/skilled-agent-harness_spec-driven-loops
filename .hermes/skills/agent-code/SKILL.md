@@ -346,8 +346,8 @@ Return BLOCKED with the appropriate escalation classifier in any of:
 - Verification fails (per §1 step 5 fail-closed contract) → `VERIFY_FAIL`
 - Scope conflict detected (file outside orchestrator-named scope) → `SCOPE_CONFLICT`
 - Diagnosis-based @debug handoff is missing required fields → `LOW_CONFIDENCE`
-- Confidence < 80% on a load-bearing decision (per `AGENTS.md` §4) → `LOW_CONFIDENCE`
-- Logic-Sync conflict (per `AGENTS.md` §4) → `LOGIC_SYNC`
+- Confidence < 80% on a load-bearing decision (per `AGENTS.md` §2 Confidence Thresholds) → `LOW_CONFIDENCE`
+- Logic-Sync conflict (per `AGENTS.md` §7) → `LOGIC_SYNC`
 
 ---
 
