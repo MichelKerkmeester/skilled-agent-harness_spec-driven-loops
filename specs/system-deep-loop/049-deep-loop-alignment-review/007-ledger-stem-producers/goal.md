@@ -91,11 +91,19 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| [Item] | [Pending/In Progress/Done] | [Command output, file:line, or artifact] |
+| Census and checker | Done | 61 registered, 5 spoken, 56 reserved; `node scripts/check-ledger-stem-producers.cjs` exits 0 with zero violations over nine producer files |
+| Adjudication split | Done | The flat gate summary declared canonical in its own right; cross-post rejection at `runtime/tests/unit/deep-review-ledger-schema.vitest.ts:915`, fold case at `runtime/tests/unit/deep-review-projections-contract.vitest.ts:299` |
+| Cutover cliff | Done | `ATTRIBUTION_COLLAPSE` guard called at `runtime/lib/legacy-projections/shadow-projection-store.ts:573`, refusal proven at `runtime/tests/unit/legacy-projections.test.ts:661` |
+| Reporting | Done | Frames root reported at `runtime/scripts/verify-iteration.cjs:202`; the verify-authority CLI covered by ten cases in `runtime/tests/unit/verify-authority-cli.vitest.ts` |
+| Prose | Done | Eight state references carry the vocabulary, the authority-dependent write target and the projection ceiling |
+| Touched suites | Green | 8 files and 90 tests pass; `check-contract-drift.cjs` reports `OK commands=3`; comment hygiene clean on fifteen code files; `validate.sh --strict` reports PASSED |
+| Full suite | One external red | 153 of 154 files and 2676 of 2685 tests pass. The red asserts at `tests/stress/cli-adapter/fanout.vitest.ts:521` and is stale against the executor probe another session's commit `2a84717ed3` added to `fanout-run.cjs` - the same external condition the sibling packets 005 and 006 recorded in their own logs |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| [What diverged from the directive] | [Why, and what was done instead] |
+| Criterion 3 left unticked | The suite does not exit zero, and the cause is outside this packet's boundary. Recorded rather than ticked so the operator judges at closure; criteria 1 and 2 are met with the evidence above |
+| Shared branch | Another session landed this change set inside commit `1735176985` and broke the runtime typecheck at `lib/deep-loop/executor-config.ts:116` mid-phase; that file was not touched here |
+| Scope recovery | The dispatch prompt was not recoverable on disk, so the work items were reconstructed from this directive, the stored session memory and the repository state |
 <!-- /ANCHOR:log -->
