@@ -57,10 +57,10 @@ This is **Phase 15** of the Dispatch preflight parity implementation specificati
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+The fan-out builder is the only caller that cannot get a flag wrong, so anything it fails to set is unreachable rather than merely risky. Two of the seven builder paths spawned without checking their binary resolves, turning an absent executor into a mid-lineage spawn failure instead of a refusal before the run. And Hermes personas were built but unreachable: the plugin's persona section and the mirrored agent skills both existed with nothing able to name one, because no lineage field reached either.
 
 ### Purpose
-[One-sentence outcome statement. What does success look like?]
+Every builder refuses before it spawns when its binary is missing, and a fan-out lineage can run as a named persona.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -69,19 +69,22 @@ This is **Phase 15** of the Dispatch preflight parity implementation specificati
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- Binary availability probes for the Claude and OpenCode builder paths.
+- A persona field on a Hermes lineage that sets the plugin's persona variable and preloads the mirrored agent skill.
+- Validation refusing a persona name the repo plugin would itself reject.
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+- The three model-default divergences between builder and packet, which change cost and behaviour for every unpinned lineage and are an operator decision.
+- The codex service-tier default, same class.
+- The cross-registry CI guard - phase 016.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+| `.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` | Modify | Two availability probes, persona flag and persona environment |
+| `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` | Modify | Admit the persona field on a Hermes lineage |
+| `.opencode/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts` | Modify | Persona regression covering set, unset and invalid |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -93,13 +96,15 @@ This is **Phase 15** of the Dispatch preflight parity implementation specificati
 
 | ID | Requirement |
 |----|-------------|
-| REQ-001 | [Requirement description] |
+| REQ-001 | A Claude or OpenCode lineage refuses before spawning when its binary does not resolve |
+| REQ-002 | A Hermes lineage naming a persona preloads the mirrored agent skill and carries the persona variable |
+| REQ-003 | A persona name the repo plugin would reject is refused at build time |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement |
 |----|-------------|
-| REQ-002 | [Requirement description] |
+| REQ-004 | A lineage that names no persona is byte-identical to before |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
@@ -110,8 +115,8 @@ This is **Phase 15** of the Dispatch preflight parity implementation specificati
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: The persona regression asserts the set, unset and invalid cases and passes.
+- **SC-002**: The runner suites stay green, with one test added and none removed.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -121,8 +126,9 @@ This is **Phase 15** of the Dispatch preflight parity implementation specificati
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+| Dependency | The preload exemption fix | A persona dispatch would otherwise be sanctioned in the shape that bleeds prior context | Sequenced after that fix, so the preload and the flag now travel together |
+| Risk | Model defaults diverge from their packets in three builders | Medium: an unpinned lineage runs a different model than the docs promise | Left unchanged and raised as an operator decision, since it changes cost and behaviour |
+| Risk | A persona name could escape the agents directory | Low | Validated against the same grammar the repo plugin enforces, before the flag is built |
 <!-- /ANCHOR:risks -->
 
 ---

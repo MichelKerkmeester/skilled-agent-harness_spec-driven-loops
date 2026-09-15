@@ -113,7 +113,7 @@ export const EXECUTOR_KIND_FLAG_SUPPORT: Record<ExecutorKind, readonly (keyof Ex
   // No configDir yet: `HERMES_HOME` is a real home override, but a fresh home carries a
   // fresh `.env` and `auth.json`, so remapping it logs the lineage out of every provider;
   // per-lineage profiles wait for a seeded-credential contract.
-  'cli-hermes': ['model', 'reasoningEffort', 'timeoutSeconds', 'liveTools'],
+  'cli-hermes': ['model', 'reasoningEffort', 'timeoutSeconds', 'liveTools', 'agentPersona'],
 };
 
 /**
