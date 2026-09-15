@@ -41,7 +41,7 @@ This file enumerates the model/alias/default facts and the dispatch envelope. It
 
 ## 2. PROVIDERS & MODELS
 
-Devin resolves models through a single backing service (Cognition) that fronts 37 model families. The value passed to `--model` is a family slug, an alias, or a full model uid. This catalog is a **curated subset** — the six families kept in scope for cli-devin. Model uids, context, and tier are read live from `devin models list`.
+Devin resolves models through a single backing service (Cognition) that fronts 37 model families. The value passed to `--model` is a family slug, an alias, or a full model uid. This catalog is a **curated subset** — the eight families kept in scope for cli-devin. Model uids, context, and tier are read live from `devin models list`.
 
 ### Cognition
 
@@ -49,7 +49,11 @@ Alphabetical by family, then by model uid within each family.
 
 | Family | Model uid | Context | Notes |
 |--------|-----------|---------|-------|
-| DeepSeek | `deepseek-v4-flash-max` | 1M | DeepSeek V4 Flash, Max thinking tier (added 2026-08-14) |
+| DeepSeek V4 Flash | `deepseek-v4-flash-max` | 1M | V4 Flash, Max thinking tier (added 2026-08-14) |
+| DeepSeek V4.1 Flash | `deepseek-v4-1-flash-high` | 1M | V4.1 Flash, High thinking tier. A separate family from V4 Flash, not a rename |
+| DeepSeek V4.1 Flash | `deepseek-v4-1-flash-max` | 1M | V4.1 Flash, Max thinking tier |
+| GLM-5.3 Flash | `glm-5-3-flash-high` | 1M | GLM-5.3 Flash, High thinking tier |
+| GLM-5.3 Flash | `glm-5-3-flash-max` | 1M | GLM-5.3 Flash, Max thinking tier |
 | GLM-5.2 | `glm-5-2` | 200K | High — free tier |
 | GLM-5.2 | `glm-5-2-1m` | 1M | High, 1M context |
 | GLM-5.2 | `glm-5-2-max` | 200K | Max (paid) |
@@ -106,12 +110,17 @@ cli-devin has **no headless reasoning-effort flag** — there is no `--variant` 
 
 | Mode | Flag | Behavior | Best for |
 |------|------|----------|----------|
-| Auto | `--permission-mode auto` | Auto-approves read-only tools; prompts for writes/shell | Review, analysis, research (`devin -p` default) |
+| Auto | `--permission-mode auto` | Auto-approves read-only tools; prompts for writes AND shell | Reading and summarising only (`devin -p` default). NOT a research crawl: see the warning below |
 | Accept Edits | `--permission-mode accept-edits` | Auto-approves workspace edits + read-only; prompts for shell | Code generation, refactoring (**skill default**) |
 | Smart | `--permission-mode smart` | Auto-runs actions a fast model judges safe | Trusted workflows with judgment calls |
 | Dangerous | `--permission-mode dangerous` | Auto-approves all tools without prompting | Full trust — **requires explicit user approval** |
 
-> Note: `devin -p` defaults to `auto` (read-only). File-modification dispatches silently prompt or no-op unless you pass `--permission-mode accept-edits` (or higher).
+> **Headless, a prompt is a refusal.** `devin -p` defaults to `auto`, and in print mode there is
+> nobody to answer a prompt, so the tool call is rejected and the run exits 0 having done nothing.
+> That makes `auto` wrong for any task that must run a command, a research crawl included: observed
+> 2026-09-15, a crawl dispatched on `auto` returned success with no findings. Use `auto` only when
+> reading and summarising is genuinely the whole task. File modification needs `accept-edits` or
+> higher for the same reason.
 
 `--sandbox` is orthogonal containment, not a fifth permission mode. It enables Devin's OS sandboxing and does not select an additional `--permission-mode` value; combine it with one of the four modes above when containment is required. This separation matches the live `devin --help` surface.
 

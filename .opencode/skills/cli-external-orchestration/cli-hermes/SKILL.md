@@ -85,6 +85,7 @@ deep-loop runtime, validate the returned output, and keep the calling AI as cond
 ---
 
 ## 2. SMART ROUTING
+> **Fan-out fallback:** a deep-loop lineage that pins no model runs **DeepSeek V4.1 Flash**. The family is named here on purpose, without a version or an effort tier, so this line does not go stale when the family ships a point release; the runner resolves the current id. A drift test keeps the two in the same family.
 
 ### Prerequisite Detection
 

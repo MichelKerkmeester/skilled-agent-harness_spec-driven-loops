@@ -200,6 +200,8 @@ then confirm when login finishes — the skill will retry the original dispatch.
 
 **Default model + effort + tier**: `gpt-5.5` · `medium` reasoning · `fast` service tier. Balances speed, cost, and quality for the typical delegation.
 
+> **Fan-out fallback:** a deep-loop lineage that pins no model runs **GPT Luna**. The family is named here on purpose, without a version or an effort tier, so this line does not go stale when the family ships a point release; the runner resolves the current id. A drift test keeps the two in the same family.
+
 ```bash
 codex exec \
   --model gpt-5.5 \
