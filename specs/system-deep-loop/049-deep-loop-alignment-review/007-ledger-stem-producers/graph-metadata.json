@@ -39,14 +39,28 @@
       "approach"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-types.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/index.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-types.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/index.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/legacy-projections/legacy-projection-errors.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/legacy-projections/shadow-projection-store.ts",
+      ".opencode/skills/system-deep-loop/runtime/scripts/check-ledger-stem-producers.cjs",
+      ".opencode/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/check-ledger-stem-producers.vitest.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-review-ledger-schema.vitest.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-review-projections-contract.vitest.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/legacy-projections.test.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/verify-iteration.vitest.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/verify-authority-cli.vitest.ts"
     ],
     "entities": [
       {
@@ -86,7 +100,91 @@
         "source": "derived"
       },
       {
+        "name": "deep-review-ledger-types.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-ledger-types.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "legacy-projection-errors.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/legacy-projections/legacy-projection-errors.ts",
+        "source": "derived"
+      },
+      {
+        "name": "shadow-projection-store.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/legacy-projections/shadow-projection-store.ts",
+        "source": "derived"
+      },
+      {
+        "name": "check-ledger-stem-producers.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/check-ledger-stem-producers.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "verify-iteration.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "check-ledger-stem-producers.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/check-ledger-stem-producers.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-ledger-schema.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-review-ledger-schema.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-projections-contract.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-review-projections-contract.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "legacy-projections.test.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/legacy-projections.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "verify-iteration.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/verify-iteration.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "verify-authority-cli.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/verify-authority-cli.vitest.ts",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -108,95 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Problem Statement",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Clean Architecture",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "The ledger schemas register 61 dotted event stems, and a census of the nine producer surfaces found 56 of them written by no mechanical producer at all",
     "created_at": "2026-09-15T14:23:14Z",
-    "last_save_at": "2026-09-15T14:24:42.188Z",
+    "last_save_at": "2026-09-15T21:01:26.515Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2b25942acd9ed8634872b666098c7847ecb23318d518975857f897c9ea3b4579",
+    "source_fingerprint": "sha256:e0522136cd97c94e14ae2996a0c8205aa722abbd11268b5705cb5d79f27876a9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4cd6e6269b6d3957dce623e01259b1929c19d1da8c01efafb6c48ad6cefabdef",
-      "plan.md": "a95f26008b1e6a21877b82be018f20587c9ecb74abed087e9ac33047b06050d2",
-      "tasks.md": "42c9cb3a05381766628c422806e9f2a85b6365793ce9287215605aa09b16417b",
-      "implementation-summary.md": "0dcde8d0fda16e33b30c23bb403500877d5658ffe73b573dcd9e2d0ba4496b8d"
+      "spec.md": "12bba4247c4da6cfc928c183bac83fb4bd938429a880dd71e64eec3040a2fb65",
+      "plan.md": "1ba294c3c8173afa64d22c5f6b29ebf93e12299c9cfb859161227f0e6bcda6eb",
+      "tasks.md": "ee6084d6d134248351a4d56a1cf9ae469b34ff316bdd45c8cd1669ff2c502b77",
+      "implementation-summary.md": "a73fc84e9fe5a4480b562f81e19aedc6ab73b276140929d16dd46285bb8bdf60"
     },
     "last_active_at": null
   }
