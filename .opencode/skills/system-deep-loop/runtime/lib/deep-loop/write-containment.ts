@@ -29,7 +29,7 @@
 // ╚══════════════════════════════════════════════════════════════════════════╝
 
 import { spawnSync } from 'node:child_process';
-import { appendFileSync, closeSync, copyFileSync, lstatSync, mkdirSync, mkdtempSync, openSync, readFileSync, readlinkSync, realpathSync, rmSync, statSync, writeFileSync } from 'node:fs';
+import { appendFileSync, closeSync, constants, fstatSync, lstatSync, mkdirSync, mkdtempSync, openSync, readFileSync, readlinkSync, realpathSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { basename, dirname, isAbsolute, join, relative, resolve, sep } from 'node:path';
 
@@ -653,6 +653,202 @@ function canonicalPath(absolutePath: string): string {
 }
 
 /**
+ * The tree a guarded path belongs to, and the noun this module's refusals call it.
+ *
+ * Every read and write below is checked against the root that OWNS the path rather than one
+ * global root: the guard reads the working tree to record what a lane left, writes the working
+ * tree back under an opted-in restore, writes its own record tree, and copies the baseline
+ * store the caller points it at. Naming the owning root keeps a refusal meaningful -- "outside
+ * the artifact directory" says which boundary was crossed -- and lets a caller put its store
+ * wherever it likes without widening the rule that protects it.
+ */
+interface ContainmentRoot {
+  /** The root as the caller named it; every destination is built from this form. */
+  path: string;
+  /** What a refusal calls this root, so a reader learns which boundary was crossed. */
+  noun: string;
+}
+
+/**
+ * The outcome of an operation on one contained path: the value when it ran, `refused` when the
+ * path is not this guard's to touch, and `failed` when the filesystem said no.
+ *
+ * The two failures travel to different places downstream because they are different things: a
+ * refusal is a decision, and is named as one on the result a caller reads; a failure is an
+ * accident the guard passes on with whatever the filesystem said about it.
+ */
+type ContainedResult<T> =
+  | { ok: true; value: T }
+  | { ok: false; kind: 'refused' | 'failed'; reason: string };
+
+/** The working tree the guard reads guarded paths from, and restores them into. */
+function repositoryRoot(repoRoot: string): ContainmentRoot {
+  return { path: repoRoot, noun: 'repository root' };
+}
+
+/** The artifact tree the guard owns its own records in. */
+function artifactRoot(artifactDir: string): ContainmentRoot {
+  return { path: artifactDir, noun: 'artifact directory' };
+}
+
+/** The caller's baseline store, holding the pre-dispatch bytes a later restore reads back. */
+function baselineRoot(baselineContentDir: string): ContainmentRoot {
+  return { path: baselineContentDir, noun: 'baseline capture directory' };
+}
+
+/**
+ * Why nothing may be read or written at `destination`, or null when it may.
+ *
+ * Deriving a path from a root is not the same as owning it: any component between the root and
+ * the leaf can be replaced with a symlink, and the operation that follows then acts wherever
+ * the link points -- possibly outside the repository -- while its caller keeps believing it
+ * touched the path it named. Two checks close that:
+ *
+ * - the parent chain is resolved through symlinks and must stay beneath the root, which catches
+ *   a link anywhere above the destination by where it lands;
+ * - every component BELOW the root is lstat-ed, which catches a link that currently resolves
+ *   back inside, so the rule never depends on where a link happens to point today.
+ *
+ * The walk includes the final component, which is never followed: a link in the last position
+ * is refused rather than read or written through. A component that does not exist ends the
+ * walk, because nothing exists below it and so nothing below it can be a link yet.
+ */
+function pathRefusal(destination: string, root: ContainmentRoot): string | null {
+  const rootPath = resolve(root.path);
+  const target = resolve(destination);
+  const rel = relative(rootPath, target);
+  // A destination built from somewhere else is not this root's to touch, and walking it by name
+  // would mean walking components this root never resolved.
+  if (rel === '' || rel === '..' || rel.startsWith(`..${sep}`) || isAbsolute(rel)) {
+    return `destination is not beneath the ${root.noun}: ${target}`;
+  }
+  const parentReal = realpathAncestor(dirname(target));
+  if (!isSubpath(parentReal, realpathSafe(root.path))) {
+    return `destination resolves outside the ${root.noun}: ${parentReal}`;
+  }
+  let current = rootPath;
+  for (const segment of rel.split(sep)) {
+    if (segment === '' || segment === '.') continue;
+    current = join(current, segment);
+    try {
+      if (lstatSync(current).isSymbolicLink()) return `destination passes through a symlink: ${current}`;
+    } catch {
+      // A component that does not exist cannot carry a write anywhere, and nothing below it exists.
+      break;
+    }
+  }
+  return null;
+}
+
+/**
+ * Make `directory` exist, or report why it cannot.
+ *
+ * The walk repeats the component rule at every level and reads each level back after creating
+ * it, because the create is the moment a link can be slipped in: a name that appeared between
+ * the check and the mkdir would otherwise be taken for the directory this process just made,
+ * and every write below would follow it out of the tree. An existing directory is reused
+ * rather than refused, since the writes of one pass share a pass directory; a symlink at any
+ * level is refused whichever way it points.
+ */
+function ensureContainedDirectory(directory: string, root: ContainmentRoot): ContainedResult<void> {
+  const rootPath = resolve(root.path);
+  const rel = relative(rootPath, resolve(directory));
+  // The root itself is the one directory this guard does not create and does not check: it was
+  // given rather than derived, and every component below it is checked against it.
+  if (rel === '') return { ok: true, value: undefined };
+  const refusal = pathRefusal(directory, root);
+  if (refusal !== null) return { ok: false, kind: 'refused', reason: refusal };
+  let current = rootPath;
+  for (const segment of rel.split(sep)) {
+    if (segment === '' || segment === '.') continue;
+    const next = join(current, segment);
+    if (lstatSync(next, { throwIfNoEntry: false }) === undefined) {
+      try {
+        mkdirSync(next);
+      } catch (error) {
+        // Losing the create to another maker is not a failure: the level is judged by what is on
+        // disk now, exactly as a directory that was already there is.
+        if (lstatSync(next, { throwIfNoEntry: false }) === undefined) {
+          return { ok: false, kind: 'failed', reason: (error as Error).message };
+        }
+      }
+    }
+    const created = lstatSync(next, { throwIfNoEntry: false });
+    if (created === undefined) {
+      return { ok: false, kind: 'failed', reason: `destination vanished while being created: ${next}` };
+    }
+    if (created.isSymbolicLink()) {
+      return { ok: false, kind: 'refused', reason: `destination passes through a symlink: ${next}` };
+    }
+    if (!created.isDirectory()) {
+      return { ok: false, kind: 'failed', reason: `destination is not a directory: ${next}` };
+    }
+    current = next;
+  }
+  return { ok: true, value: undefined };
+}
+
+/**
+ * Open a contained file for reading; closing the handle is the caller's business.
+ *
+ * `O_NOFOLLOW` keeps the last promise the component walk makes: the name that was checked is
+ * the name that is read, even when a link appears in the moment between the two.
+ */
+function openContainedRead(source: string, root: ContainmentRoot): ContainedResult<number> {
+  const refusal = pathRefusal(source, root);
+  if (refusal !== null) return { ok: false, kind: 'refused', reason: refusal };
+  try {
+    return { ok: true, value: openSync(source, constants.O_RDONLY | constants.O_NOFOLLOW) };
+  } catch (error) {
+    return { ok: false, kind: 'failed', reason: (error as Error).message };
+  }
+}
+
+/** A contained file's bytes, or why they may not be read. */
+function readContainedFile(source: string, root: ContainmentRoot): ContainedResult<Buffer> {
+  const opened = openContainedRead(source, root);
+  if (!opened.ok) return opened;
+  try {
+    return { ok: true, value: readFileSync(opened.value) };
+  } catch (error) {
+    return { ok: false, kind: 'failed', reason: (error as Error).message };
+  } finally {
+    closeSync(opened.value);
+  }
+}
+
+/**
+ * Claim a contained file for writing: the parents are created first, the path is checked again
+ * on what that created, and the file itself is opened last.
+ *
+ * `claim` takes a name nobody else may hold yet, which is what a record file needs -- it is the
+ * only copy of what a lane left, so a name already taken is reported rather than written over.
+ * `replace` follows a file this pass is meant to rewrite: a captured baseline refreshed by a
+ * later snapshot, or a violated path being restored. Both modes refuse a symlink in the final
+ * component instead of following it, so a link planted between the check and the open is
+ * refused by the open rather than written through.
+ */
+function openContainedWrite(
+  destination: string,
+  root: ContainmentRoot,
+  mode: 'claim' | 'replace',
+): ContainedResult<number> {
+  const parent = ensureContainedDirectory(dirname(destination), root);
+  if (!parent.ok) return parent;
+  const refusal = pathRefusal(destination, root);
+  if (refusal !== null) return { ok: false, kind: 'refused', reason: refusal };
+  const flags =
+    mode === 'claim'
+      ? constants.O_WRONLY | constants.O_CREAT | constants.O_EXCL | constants.O_NOFOLLOW
+      : constants.O_WRONLY | constants.O_CREAT | constants.O_TRUNC | constants.O_NOFOLLOW;
+  try {
+    return { ok: true, value: openSync(destination, flags) };
+  } catch (error) {
+    return { ok: false, kind: 'failed', reason: (error as Error).message };
+  }
+}
+
+/**
  * True when a git-reported path is inside the artifact tree BOTH by name and after
  * every component is resolved through symlinks.
  *
@@ -814,26 +1010,49 @@ interface BaselineCaptureOutcome {
  * lane started. Keeping the bytes is what makes a faithful restore possible.
  *
  * Never throws: a baseline that cannot be captured is a degraded baseline, not a failed
- * lane, so a size over the bound, an exhausted budget, a vanished file or a failed write
- * all mark the entry truncated and let the sweep continue.
+ * lane, so a size over the bound, an exhausted budget, a vanished file, a failed write, or a
+ * source or destination this guard may not reach through a link all mark the entry truncated
+ * and let the sweep continue.
  */
 function captureBaselineFile(input: {
+  /** The base `sourceAbsolutePath` was built from, which is the root it must stay within. */
+  sourceRoot: string;
   sourceAbsolutePath: string;
   repoRelativePosixPath: string;
   captureContentDir: string;
   laneBytes: number;
 }): BaselineCaptureOutcome {
+  const source = openContainedRead(input.sourceAbsolutePath, repositoryRoot(input.sourceRoot));
+  if (!source.ok) return { truncated: true, bytes: 0 };
   try {
-    const size = statSync(input.sourceAbsolutePath).size;
-    if (size > BASELINE_MAX_FILE_BYTES) return { truncated: true, bytes: 0 };
-    if (input.laneBytes + size > BASELINE_MAX_LANE_BYTES) return { truncated: true, bytes: 0 };
+    // The cheap bound first, from the very handle the bytes will come from: without it a file
+    // far over the bound would be read into memory only to be thrown away.
+    const held = fstatSync(source.value).size;
+    if (held > BASELINE_MAX_FILE_BYTES) return { truncated: true, bytes: 0 };
+    if (input.laneBytes + held > BASELINE_MAX_LANE_BYTES) return { truncated: true, bytes: 0 };
+    const bytes = readFileSync(source.value);
+    // Then the same bound on what was actually read, so the lane's ceiling holds even when the
+    // file grew between the size above and the read.
+    if (bytes.byteLength > BASELINE_MAX_FILE_BYTES || input.laneBytes + bytes.byteLength > BASELINE_MAX_LANE_BYTES) {
+      return { truncated: true, bytes: 0 };
+    }
     const relativePath = toPosix(join('containment', 'baseline', input.repoRelativePosixPath));
-    const destination = join(input.captureContentDir, relativePath);
-    mkdirSync(dirname(destination), { recursive: true });
-    copyFileSync(input.sourceAbsolutePath, destination);
-    return { contentPath: relativePath, truncated: false, bytes: size };
+    const opened = openContainedWrite(
+      join(input.captureContentDir, relativePath),
+      baselineRoot(input.captureContentDir),
+      'replace',
+    );
+    if (!opened.ok) return { truncated: true, bytes: 0 };
+    try {
+      writeFileSync(opened.value, bytes);
+      return { contentPath: relativePath, truncated: false, bytes: bytes.byteLength };
+    } finally {
+      closeSync(opened.value);
+    }
   } catch {
     return { truncated: true, bytes: 0 };
+  } finally {
+    closeSync(source.value);
   }
 }
 
@@ -870,6 +1089,7 @@ export function snapshotOutOfScopeDirtyPaths(opts: ContainmentOptions): DirtyPat
       // keys it always did, so an existing caller's baseline shape does not change.
       const captured = opts.captureContentDir
         ? captureBaselineFile({
+            sourceRoot: scope.repoRealRoot,
             sourceAbsolutePath: join(scope.repoRealRoot, entryPath),
             repoRelativePosixPath: entryPath,
             captureContentDir: opts.captureContentDir,
@@ -1019,26 +1239,23 @@ function captureRevertPatch(input: {
   // name this one would replace the record of a rollback that already happened.
   const relativePath = toPosix(join(PASS_QUARANTINE_DIR, passSegment(input), patchDirName, fileName));
   const absolutePath = join(input.artifactDir, relativePath);
-  // The same canonicality rule the per-path record holds: a lane can leave a link where the pass
-  // directory belongs, and a plain write through it would drop the patch outside the artifact
-  // tree while the caller keeps reporting a path inside it.
-  const refusal = quarantineDestinationRefusal(absolutePath, input.artifactDir);
-  if (refusal !== null) return { path: null, error: `patch destination refused: ${refusal}` };
-  // Created exclusively for the same reason the per-path records are: this is the only copy of
-  // what a rollback undid, so a name already taken is reported rather than written over.
-  let handle: number;
-  try {
-    mkdirSync(dirname(absolutePath), { recursive: true });
-    handle = openSync(absolutePath, 'wx');
-  } catch (error) {
-    return { path: null, error: `patch write failed: ${(error as Error).message}` };
+  // The same whole-path rule the per-path record holds: a lane can leave a link anywhere above
+  // the pass directory, and a plain write through it would drop the patch outside the artifact
+  // tree while the caller keeps reporting a path inside it. The claim is exclusive for the same
+  // reason the per-path records are: this is the only copy of what a rollback undid, so a name
+  // already taken is reported rather than written over.
+  const opened = openContainedWrite(absolutePath, artifactRoot(input.artifactDir), 'claim');
+  if (!opened.ok) {
+    return opened.kind === 'refused'
+      ? { path: null, error: `patch destination refused: ${opened.reason}` }
+      : { path: null, error: `patch write failed: ${opened.reason}` };
   }
   try {
-    writeFileSync(handle, stdout, 'utf8');
+    writeFileSync(opened.value, stdout, 'utf8');
   } catch (error) {
     return { path: null, error: `patch write failed: ${(error as Error).message}` };
   } finally {
-    closeSync(handle);
+    closeSync(opened.value);
   }
   const prefix = input.artifactRelPosix === '' ? '' : `${input.artifactRelPosix}/`;
   return { path: `${prefix}${relativePath}` };
@@ -1047,50 +1264,20 @@ function captureRevertPatch(input: {
 /**
  * The bytes a baseline entry recorded for a path, or null when nothing may be restored from it.
  *
- * Null covers all three ways a baseline goes unusable -- the entry is marked truncated, no
- * capture dir was configured, or the recorded copy can no longer be read -- and they mean the
- * same thing at the moment of a restore: we do NOT hold what the file contained before the lane
- * started. HEAD is not a stand-in for those bytes, so a null here is never a cue to fall back
- * to it.
+ * Null covers every way a baseline goes unusable -- the entry is marked truncated, no capture
+ * dir was configured, the recorded copy can no longer be read, or the copy's own path passes
+ * through a link this guard will not follow -- and they mean the same thing at the moment of a
+ * restore: we do NOT hold what the file contained before the lane started. HEAD is not a
+ * stand-in for those bytes, so a null here is never a cue to fall back to it.
  */
 function readBaselineContent(entry: DirtyPathEntry, baselineContentRoot?: string): Buffer | null {
   if (entry.baselineTruncated) return null;
   if (!entry.baselineContentPath || !baselineContentRoot) return null;
-  try {
-    return readFileSync(join(baselineContentRoot, entry.baselineContentPath));
-  } catch {
-    return null;
-  }
-}
-
-/**
- * The reason a quarantine destination may not be written to, or null when it may.
- *
- * Deriving a path from the artifact directory is not the same as owning it: a lane owns its
- * lineage directory, so it can put a symlink where the quarantine tree belongs, and every
- * write beneath that link lands outside the artifact tree while the manifest still names a
- * path inside it. Resolving the deepest existing ancestor catches a link anywhere above the
- * destination; refusing on ANY symlinked component below the artifact root also catches a link
- * that currently resolves back inside, so the rule does not depend on where it points today.
- */
-function quarantineDestinationRefusal(destination: string, artifactDir: string): string | null {
-  const root = resolve(artifactDir);
-  const ancestorReal = realpathAncestor(destination);
-  if (!isSubpath(ancestorReal, realpathSafe(artifactDir))) {
-    return `destination resolves outside the artifact directory: ${ancestorReal}`;
-  }
-  let current = root;
-  for (const segment of relative(root, resolve(destination)).split(sep)) {
-    if (segment === '' || segment === '.') continue;
-    current = join(current, segment);
-    try {
-      if (lstatSync(current).isSymbolicLink()) return `destination passes through a symlink: ${current}`;
-    } catch {
-      // A component that does not exist cannot carry a write anywhere, and nothing below it exists.
-      break;
-    }
-  }
-  return null;
+  const stored = readContainedFile(
+    join(baselineContentRoot, entry.baselineContentPath),
+    baselineRoot(baselineContentRoot),
+  );
+  return stored.ok ? stored.value : null;
 }
 
 /**
@@ -1098,8 +1285,9 @@ function quarantineDestinationRefusal(destination: string, artifactDir: string):
  *
  * A record exists so it can be read back later, so a write that fails must cost the record
  * only the part it covers: the caller keeps the message on that path's entry and goes on.
- * The canonicality check comes first, on the same contract: a destination that escapes gets
- * no write and a named reason rather than an exception.
+ * The canonicality check comes first, on the same contract: a destination that escapes, or that
+ * reaches the file through a link planted before the open, gets no write and a named reason
+ * rather than an exception.
  *
  * Every file here is created exclusively, so whether the destination already exists is decided
  * by the filesystem rather than by a check this process could lose a race on. The pass
@@ -1110,29 +1298,20 @@ function writeQuarantineFile(
   destination: string,
   artifactDir: string,
   refuse: (destination: string, reason: string) => void,
-  write: (absolutePath: string) => void,
+  write: (handle: number) => void,
 ): string | null {
-  const refusal = quarantineDestinationRefusal(destination, artifactDir);
-  if (refusal !== null) {
-    refuse(destination, refusal);
-    return refusal;
-  }
-  // The claim is taken before the directory it sits in: a name already held means the file is
-  // not this pass's to write, so it is reported and left alone rather than truncated under it.
-  let handle: number;
-  try {
-    mkdirSync(dirname(destination), { recursive: true });
-    handle = openSync(destination, 'wx');
-  } catch (error) {
-    return (error as Error).message;
+  const opened = openContainedWrite(destination, artifactRoot(artifactDir), 'claim');
+  if (!opened.ok) {
+    if (opened.kind === 'refused') refuse(destination, opened.reason);
+    return opened.reason;
   }
   try {
-    write(destination);
+    write(opened.value);
     return null;
   } catch (error) {
     return (error as Error).message;
   } finally {
-    closeSync(handle);
+    closeSync(opened.value);
   }
 }
 
@@ -1168,34 +1347,45 @@ function quarantineOnePath(input: {
   };
   // Every record below goes through the same guarded write, so a destination that cannot be
   // written costs its own entry a message and nothing else. The label is what tells an operator
-  // reading a single failed entry WHICH of the three records it is about.
-  const guard = (destination: string, label: string, write: (absolutePath: string) => void): void => {
+  // reading a single failed entry WHICH of the three records it is about, and the handle is the
+  // claimed file itself, so the write cannot be redirected after the claim was taken.
+  const guard = (destination: string, label: string, write: (handle: number) => void): void => {
     const writeError = writeQuarantineFile(destination, input.artifactDir, input.refuse, write);
     if (writeError !== null) fail(`${label} failed: ${writeError}`);
   };
 
   // The bytes as the lane left them, which is the last moment they exist: a later lane, a
-  // commit or a checkout replaces them, and nothing else in the run keeps a copy.
-  try {
-    const size = statSync(violation.absolutePath).size;
-    if (size > BASELINE_MAX_FILE_BYTES || input.lane.bytes + size > BASELINE_MAX_LANE_BYTES) {
-      entry.content_truncated = true;
-    } else {
-      const contentPath = `content/${violation.path}`;
-      let copied = false;
-      guard(join(input.quarantineDir, contentPath), 'content copy', (destination) => {
-        copyFileSync(violation.absolutePath, destination);
-        copied = true;
-      });
-      if (copied) {
-        input.lane.bytes += size;
-        entry.content_stored = true;
-        entry.content_path = contentPath;
+  // commit or a checkout replaces them, and nothing else in the run keeps a copy. The source is
+  // reached by a handle this guard has already contained, so neither a link in the path nor one
+  // planted while the copy runs can substitute bytes from somewhere else and have them filed as
+  // this path's.
+  const source = openContainedRead(violation.absolutePath, repositoryRoot(input.repoRoot));
+  if (!source.ok) {
+    fail(`content copy failed: ${source.reason}`);
+  } else {
+    try {
+      const size = fstatSync(source.value).size;
+      if (size > BASELINE_MAX_FILE_BYTES || input.lane.bytes + size > BASELINE_MAX_LANE_BYTES) {
+        entry.content_truncated = true;
+      } else {
+        const contentPath = `content/${violation.path}`;
+        let copied = false;
+        guard(join(input.quarantineDir, contentPath), 'content copy', (handle) => {
+          writeFileSync(handle, readFileSync(source.value));
+          copied = true;
+        });
+        if (copied) {
+          input.lane.bytes += size;
+          entry.content_stored = true;
+          entry.content_path = contentPath;
+        }
       }
+    } catch (error) {
+      // A deleted or dangling path has nothing to copy; its hash and its patches still stand.
+      fail(`content copy failed: ${(error as Error).message}`);
+    } finally {
+      closeSync(source.value);
     }
-  } catch (error) {
-    // A deleted or dangling path has nothing to copy; its hash and its patches still stand.
-    fail(`content copy failed: ${(error as Error).message}`);
   }
 
   // The diff against HEAD: the content a rollback would have put in place of these bytes. A
@@ -1209,8 +1399,8 @@ function quarantineOnePath(input: {
   } else if (headDiff.stdout.trim() !== '') {
     const patchPath = `patch-head/${violation.path}.patch`;
     let written = false;
-    guard(join(input.quarantineDir, patchPath), 'patch-head write', (destination) => {
-      writeFileSync(destination, headDiff.stdout, 'utf8');
+    guard(join(input.quarantineDir, patchPath), 'patch-head write', (handle) => {
+      writeFileSync(handle, headDiff.stdout, 'utf8');
       written = true;
     });
     if (written) entry.head_patch_path = patchPath;
@@ -1233,8 +1423,8 @@ function quarantineOnePath(input: {
     } else {
       const patchPath = `patch-baseline/${violation.path}.patch`;
       let written = false;
-      guard(join(input.quarantineDir, patchPath), 'patch-baseline write', (destination) => {
-        writeFileSync(destination, held.diff, 'utf8');
+      guard(join(input.quarantineDir, patchPath), 'patch-baseline write', (handle) => {
+        writeFileSync(handle, held.diff, 'utf8');
         written = true;
       });
       if (written) entry.baseline_patch_path = patchPath;
@@ -1262,9 +1452,9 @@ function quarantineOnePath(input: {
  * failure is kept on that path's entry, the rest of the sweep continues, and the guard goes
  * on reporting the violation it already found.
  *
- * The tree is canonicalized before every write, because the lane that owns its lineage
- * directory can leave a symlink where the quarantine belongs: a refused destination is named
- * on the result and nothing is written to it.
+ * Every destination is checked along its whole path before it is created, because the lane that
+ * owns its lineage directory can leave a symlink where the quarantine belongs: a refused
+ * destination is named on the result and nothing is written through it.
  */
 export function quarantineViolations(input: {
   repoRoot: string;
@@ -1299,17 +1489,19 @@ export function quarantineViolations(input: {
   };
 
   let mkdirError: string | null = null;
-  const dirRefusal = quarantineDestinationRefusal(quarantineDir, input.artifactDir);
-  if (dirRefusal !== null) {
-    refuse(quarantineDir, dirRefusal);
-  } else {
-    try {
-      // The whole chain is created here, and an existing pass directory is reused rather than
-      // refused: the patch capture may already have created it for the same pass. What may not
-      // be replaced is a FILE, which every write below claims exclusively by name.
-      mkdirSync(quarantineDir, { recursive: true });
-    } catch (error) {
-      mkdirError = (error as Error).message;
+  let dirRefusal: string | null = null;
+  // The whole chain is created here, and an existing pass directory is reused rather than
+  // refused: the patch capture may already have created it for the same pass. What may not be
+  // replaced is a FILE, which every write below claims exclusively by name. A refusal here is
+  // the pass directory itself -- a link where it belongs, or a resolution out of the tree --
+  // and is named on the result like every other destination this guard declines.
+  const dirOutcome = ensureContainedDirectory(quarantineDir, artifactRoot(input.artifactDir));
+  if (!dirOutcome.ok) {
+    if (dirOutcome.kind === 'refused') {
+      dirRefusal = dirOutcome.reason;
+      refuse(quarantineDir, dirOutcome.reason);
+    } else {
+      mkdirError = dirOutcome.reason;
     }
   }
 
@@ -1339,14 +1531,14 @@ export function quarantineViolations(input: {
   // The manifest is the pass's completion marker, written last: a manifest on disk means the
   // entries beside it are finished, which is what a reader of a later pass relies on.
   const manifestPath = join(quarantineDir, 'manifest.json');
-  const manifestRefusal = quarantineDestinationRefusal(manifestPath, input.artifactDir);
+  const manifestRefusal = pathRefusal(manifestPath, artifactRoot(input.artifactDir));
   if (manifestRefusal !== null) {
     refuse(manifestPath, manifestRefusal);
     return { dirPath, entries, refused, error: `manifest refused: ${manifestRefusal}` };
   }
   const manifestBody = `${JSON.stringify({ timestamp: new Date().toISOString(), entries }, null, 2)}\n`;
-  const manifestError = writeQuarantineFile(manifestPath, input.artifactDir, refuse, (destination) => {
-    writeFileSync(destination, manifestBody, 'utf8');
+  const manifestError = writeQuarantineFile(manifestPath, input.artifactDir, refuse, (handle) => {
+    writeFileSync(handle, manifestBody, 'utf8');
   });
   if (manifestError !== null) {
     return { dirPath, entries, refused, error: `manifest write failed: ${manifestError}` };
@@ -1379,12 +1571,12 @@ export function quarantineViolations(input: {
  * editor had written before this lane started. A dirty path whose baseline holds no bytes
  * is left exactly as it is on disk, for the same reason.
  *
- * A SYMLINK at the violated path is never written through, in either source: the write a
- * baseline restore makes follows the final component where the lane left a link, so the bytes
- * would land at a place this guard never chose -- reachable from anywhere the lane can point
- * that link, including outside the repository. The link is preserved and the refusal is named
- * on the action. A HEAD restore needs no such guard of its own: `git checkout HEAD -- <path>`
- * replaces the link itself rather than writing through it.
+ * A repository path is never written through where a link stands in ANY of its components, in
+ * either source: a write follows the whole path, so the captured bytes would land at a place
+ * this guard never chose -- reachable from anywhere the lane can point that link, including
+ * outside the repository. The path is preserved and the refusal is named on the action. A HEAD
+ * restore needs no such guard of its own: `git checkout HEAD -- <path>` replaces a link in the
+ * final component rather than writing through it.
  *
  * A not-in-HEAD path the lane DELETED is the other case a restore can act on: nothing is left
  * on disk to preserve, and the baseline's captured bytes are the only source, so they are
@@ -1425,36 +1617,49 @@ export function revertOutOfScopeViolations(opts: {
           });
         } else {
           const baselineBytes = readBaselineContent(baseline, opts.baselineContentRoot);
-          // A symlink at the violated path is never written through. `writeFileSync` follows one in
-          // the final component, so the captured bytes would land at whatever the link names -- a
-          // location this guard never chose, reachable from anywhere the lane can point the link and
-          // possibly outside the repository. The link is left as the lane left it and the action
-          // records the refusal, so the outcome is unchanged and the ledger says why.
-          const symlinked = lstatSync(join(opts.repoRoot, violation.path), { throwIfNoEntry: false })
-            ?.isSymbolicLink() ?? false;
+          const target = join(opts.repoRoot, violation.path);
+          // Every component of the target is checked, not only the last: `writeFileSync` follows
+          // the whole path, so a link the lane left in place of any DIRECTORY above the leaf
+          // sends the captured bytes wherever it points -- a location this guard never chose and
+          // which the lane can aim outside the repository. The path is left as the lane left it
+          // and the action records the refusal, so the outcome is unchanged and the ledger says
+          // why.
+          const refusal = pathRefusal(target, repositoryRoot(opts.repoRoot));
           if (baselineBytes === null) {
             // The bytes exist on this tree and nowhere else we may reach: the restore target the
             // baseline described is unavailable, so the file is left as the lane left it rather
             // than rolled back past work the baseline is the only record of.
             reverted.push({ path: violation.path, action: 'preserved_in_head', ok: true });
-          } else if (symlinked) {
+          } else if (refusal !== null) {
             reverted.push({
               path: violation.path,
               action: 'preserved_in_head',
               ok: true,
-              reason: 'the path is a symlink, and a restore must not write through it to whatever it targets',
+              reason: refusal,
             });
           } else {
-            try {
-              writeFileSync(join(opts.repoRoot, violation.path), baselineBytes);
-              reverted.push({ path: violation.path, action: 'restored_from_baseline', ok: true });
-            } catch (error) {
+            const opened = openContainedWrite(target, repositoryRoot(opts.repoRoot), 'replace');
+            if (!opened.ok) {
               reverted.push({
                 path: violation.path,
                 action: 'restored_from_baseline',
                 ok: false,
-                error: `baseline restore failed: ${(error as Error).message}`,
+                error: `baseline restore failed: ${opened.reason}`,
               });
+            } else {
+              try {
+                writeFileSync(opened.value, baselineBytes);
+                reverted.push({ path: violation.path, action: 'restored_from_baseline', ok: true });
+              } catch (error) {
+                reverted.push({
+                  path: violation.path,
+                  action: 'restored_from_baseline',
+                  ok: false,
+                  error: `baseline restore failed: ${(error as Error).message}`,
+                });
+              } finally {
+                closeSync(opened.value);
+              }
             }
           }
         }
@@ -1487,19 +1692,36 @@ export function revertOutOfScopeViolations(opts: {
           error: 'the path is gone and the baseline holds no bytes to write back',
         });
       } else {
-        try {
-          // The deletion may have taken the directory with it, so the chain the path was
-          // recorded under is recreated before its bytes are written back into it.
-          mkdirSync(dirname(join(opts.repoRoot, violation.path)), { recursive: true });
-          writeFileSync(join(opts.repoRoot, violation.path), baselineBytes);
-          reverted.push({ path: violation.path, action: 'restored_from_baseline', ok: true });
-        } catch (error) {
+        // The deletion may have taken the directory with it, so the chain the path was recorded
+        // under is recreated before its bytes are written back into it -- recreated through the
+        // same contained create the write itself uses, so a link standing in for one of those
+        // directories is refused rather than written through.
+        const opened = openContainedWrite(
+          join(opts.repoRoot, violation.path),
+          repositoryRoot(opts.repoRoot),
+          'replace',
+        );
+        if (!opened.ok) {
           reverted.push({
             path: violation.path,
             action: 'restored_from_baseline',
             ok: false,
-            error: `baseline restore failed: ${(error as Error).message}`,
+            error: `baseline restore failed: ${opened.reason}`,
           });
+        } else {
+          try {
+            writeFileSync(opened.value, baselineBytes);
+            reverted.push({ path: violation.path, action: 'restored_from_baseline', ok: true });
+          } catch (error) {
+            reverted.push({
+              path: violation.path,
+              action: 'restored_from_baseline',
+              ok: false,
+              error: `baseline restore failed: ${(error as Error).message}`,
+            });
+          } finally {
+            closeSync(opened.value);
+          }
         }
       }
     }

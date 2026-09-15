@@ -9,10 +9,33 @@
 import { existsSync, lstatSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, realpathSync, rmSync, symlinkSync, writeFileSync, unlinkSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { tmpdir } from 'node:os';
-import { join, sep } from 'node:path';
+import { dirname, join, resolve, sep } from 'node:path';
 import { spawn, spawnSync } from 'node:child_process';
 
-import { afterEach, describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
+
+/**
+ * Test-only seam in front of the filesystem's directory create, null for every case that
+ * does not ask for it.
+ *
+ * Whether a writer survives a link planted between resolving a destination and creating it
+ * cannot be shown from outside: the window is a few statements wide and nothing the test can
+ * touch happens inside it. Running a hook from the create makes that window deterministic,
+ * so the race becomes a fixture instead of a hope, and the hook is the only thing standing
+ * between the module under test and plain `node:fs` for every other case in this file.
+ */
+let beforeDirectoryCreate: ((target: string) => void) | null = null;
+
+vi.mock('node:fs', async (importOriginal) => {
+  const actual = (await importOriginal()) as typeof import('node:fs');
+  return {
+    ...actual,
+    mkdirSync: (target: Parameters<typeof actual.mkdirSync>[0], options?: Parameters<typeof actual.mkdirSync>[1]) => {
+      if (typeof target === 'string') beforeDirectoryCreate?.(target);
+      return actual.mkdirSync(target as never, options as never);
+    },
+  };
+});
 
 import {
   snapshotOutOfScopeDirtyPaths,
@@ -2429,5 +2452,175 @@ describe('write-containment — a baseline restore never writes through a symlin
     ]);
     expect(readFileSync(violatedPath, 'utf8')).toBe('CONCURRENT_EDIT\n');
     expect(lstatSync(violatedPath).isSymbolicLink()).toBe(false);
+  });
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// WHOLE-PATH CONTAINMENT
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Canonicalizing a destination is not enough when only its LAST component is inspected:
+ * a lane owns its lineage directory and can replace any directory above the leaf with a
+ * symlink, after which every read and write through that name acts on wherever the link
+ * points while the guard keeps believing it touched the path it named. These cases pin the
+ * whole-path rule: the component chain is resolved and walked, the directory on the other
+ * side of a link is never touched, and the refusal is recorded on the result the caller
+ * reads instead of being thrown.
+ */
+describe('write-containment — every component of a guarded path is contained, not only the last', () => {
+  function makeOutsideDir(prefix: string): string {
+    const dir = mkdtempSync(join(tmpdir(), prefix));
+    tempRoots.push(dir);
+    return dir;
+  }
+
+  /**
+   * A tracked, pre-dispatch-dirty path whose PARENT directory the lane replaces with a link
+   * out of the repository: the baseline still holds that path's bytes, and the restore
+   * target now resolves to a file outside the tree.
+   */
+  function symlinkedParentFixture(baselineDir: string): {
+    root: string;
+    artifactDir: string;
+    outsidePath: string;
+    outsideBytes: string;
+    preDispatch: DirtyPathEntry[];
+  } {
+    const { root, artifactDir } = baselineRepo();
+    const outsideDir = makeOutsideDir('write-containment-outside-');
+    const outsideBytes = 'OUTSIDE_TARGET\n';
+    // Dirty before the lane started, so the baseline holds the bytes a restore would write.
+    writeFileSync(join(root, 'deep/file.txt'), 'CONCURRENT_EDIT\n');
+    const preDispatch = snapshotOutOfScopeDirtyPaths({ repoRoot: root, artifactDir, captureContentDir: baselineDir });
+    // The lane throws the directory away and points its name outside the repository.
+    rmSync(join(root, 'deep'), { recursive: true, force: true });
+    writeFileSync(join(outsideDir, 'file.txt'), outsideBytes);
+    symlinkSync(outsideDir, join(root, 'deep'), 'dir');
+    return { root, artifactDir, outsidePath: join(outsideDir, 'file.txt'), outsideBytes, preDispatch };
+  }
+
+  it('refuses a baseline restore whose parent directory is a symlink out of the repository', () => {
+    const baselineDir = makeOutsideDir('write-containment-restore-baseline-');
+    const { root, artifactDir, outsidePath, outsideBytes, preDispatch } = symlinkedParentFixture(baselineDir);
+    expect(preDispatch.find((entry) => entry.path === 'deep/file.txt')?.baselineContentPath).toBeDefined();
+
+    const violations = detectNewOutOfScopeViolations({ repoRoot: root, artifactDir, preDispatchDirtyPaths: preDispatch });
+    expect(violations.map((violation) => violation.path)).toContain('deep/file.txt');
+
+    const revert = revertOutOfScopeViolations({
+      repoRoot: root,
+      violations,
+      mode: 'restore',
+      preDispatchDirtyPaths: preDispatch,
+      baselineContentRoot: baselineDir,
+    });
+
+    // The captured bytes went nowhere: writing them would have landed them outside the tree.
+    expect(readFileSync(outsidePath, 'utf8')).toBe(outsideBytes);
+    expect(revert.reverted.find((action) => action.path === 'deep/file.txt')).toMatchObject({
+      action: 'preserved_in_head',
+      ok: true,
+      reason: expect.stringMatching(/symlink|outside the repository/i),
+    });
+  });
+
+  it('marks a baseline entry whose path passes through a symlinked component, capturing nothing from the link target', () => {
+    const baselineDir = makeOutsideDir('write-containment-capture-baseline-');
+    const { root, artifactDir } = baselineRepo();
+    const outsideDir = makeOutsideDir('write-containment-capture-outside-');
+    const outsideBytes = 'OUTSIDE_TARGET\n';
+    writeFileSync(join(root, 'deep/file.txt'), 'CONCURRENT_EDIT\n');
+    // The link is already there when the snapshot runs, so the bytes on the other side of it
+    // are exactly the bytes a capture would wrongly record as this tree's own.
+    rmSync(join(root, 'deep'), { recursive: true, force: true });
+    writeFileSync(join(outsideDir, 'file.txt'), outsideBytes);
+    symlinkSync(outsideDir, join(root, 'deep'), 'dir');
+
+    const preDispatch = snapshotOutOfScopeDirtyPaths({ repoRoot: root, artifactDir, captureContentDir: baselineDir });
+    const entry = preDispatch.find((candidate) => candidate.path === 'deep/file.txt');
+    // Marked, not silently omitted: a degraded baseline has to be visible to whoever later
+    // restores from it.
+    expect(entry?.baselineTruncated).toBe(true);
+    expect(entry?.baselineContentPath).toBeUndefined();
+    expect(existsSync(join(baselineDir, 'containment/baseline/deep/file.txt'))).toBe(false);
+
+    // The lane then writes through the same link, which is what makes the path a violation at
+    // all: an unchanged file is subtracted as pre-existing by design.
+    const laneBytes = 'LANE_CLOBBER\n';
+    writeFileSync(join(root, 'deep/file.txt'), laneBytes);
+
+    const violations = detectNewOutOfScopeViolations({ repoRoot: root, artifactDir, preDispatchDirtyPaths: preDispatch });
+    expect(violations.map((violation) => violation.path)).toContain('deep/file.txt');
+    const revert = revertOutOfScopeViolations({
+      repoRoot: root,
+      violations,
+      mode: 'restore',
+      preDispatchDirtyPaths: preDispatch,
+      baselineContentRoot: baselineDir,
+    });
+
+    // No bytes were captured, so the restore declines rather than reaching through the link.
+    expect(revert.reverted.find((action) => action.path === 'deep/file.txt')).toMatchObject({
+      action: 'preserved_in_head',
+      ok: true,
+    });
+    expect(readFileSync(join(outsideDir, 'file.txt'), 'utf8')).toBe(laneBytes);
+  });
+
+  it('refuses to capture through a symlinked component of the baseline store', () => {
+    const { root, artifactDir } = baselineRepo();
+    const captureDir = makeOutsideDir('write-containment-store-');
+    const escapeDir = makeOutsideDir('write-containment-store-escape-');
+    writeFileSync(join(root, 'tracked-outside.txt'), 'PREDISPATCH_EDIT\n');
+    // A link inside the store's own tree: the bytes would be written outside the store while
+    // the entry named a path inside it, and the restore would read them back from there.
+    symlinkSync(escapeDir, join(captureDir, 'containment'), 'dir');
+
+    const preDispatch = snapshotOutOfScopeDirtyPaths({ repoRoot: root, artifactDir, captureContentDir: captureDir });
+    const entry = preDispatch.find((candidate) => candidate.path === 'tracked-outside.txt');
+    expect(entry?.baselineTruncated).toBe(true);
+    expect(entry?.baselineContentPath).toBeUndefined();
+    expect(readdirSync(escapeDir)).toEqual([]);
+  });
+
+  it('refuses a quarantine pass directory swapped for a link between the check and the create', () => {
+    const { root, artifactDir } = baselineRepo();
+    const targetDir = makeOutsideDir('write-containment-race-target-');
+    const preDispatch = snapshotOutOfScopeDirtyPaths({ repoRoot: root, artifactDir });
+    writeFileSync(join(root, 'tracked-outside.txt'), 'LANE_WROTE_THIS\n');
+    const violations = detectNewOutOfScopeViolations({ repoRoot: root, artifactDir, preDispatchDirtyPaths: preDispatch });
+
+    const passDir = join(artifactDir, 'containment', 'quarantine', '1');
+    let planted = false;
+    // The swap happens inside the very create that was meant to make the directory: whatever
+    // the check saw a moment earlier, the name now being created is already a link out of the
+    // tree, and everything the writer does next resolves through it.
+    beforeDirectoryCreate = (target: string) => {
+      if (planted || resolve(target) !== passDir) return;
+      planted = true;
+      mkdirSync(dirname(passDir), { recursive: true });
+      symlinkSync(targetDir, passDir, 'dir');
+    };
+
+    let quarantine: ReturnType<typeof quarantineViolations>;
+    try {
+      quarantine = quarantineViolations({
+        repoRoot: root,
+        artifactDir,
+        artifactRelPosix: 'artifact',
+        violations,
+        preDispatchDirtyPaths: preDispatch,
+        iteration: 1,
+      });
+    } finally {
+      beforeDirectoryCreate = null;
+    }
+
+    expect(planted).toBe(true);
+    expect(quarantine.refused.some((refusal) => /symlink/i.test(refusal.reason))).toBe(true);
+    expect(quarantine.dirPath).toBeNull();
+    // Nothing landed on the other side of the link: no manifest, no bytes, no patch.
+    expect(readdirSync(targetDir)).toEqual([]);
   });
 });

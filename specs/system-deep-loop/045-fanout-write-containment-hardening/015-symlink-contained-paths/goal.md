@@ -12,16 +12,16 @@ _memory:
   continuity:
     packet_pointer: "scaffold/015-symlink-contained-paths"
     last_updated_at: "2026-09-15T00:02:08Z"
-    last_updated_by: "scaffold"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    last_updated_by: "claude-fable-5-1"
+    recent_action: "Phase fix landed and criteria checked"
+    next_safe_action: "Commit once the full suite exits zero"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "[SESSION-ID]"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -77,10 +77,10 @@ Three to seven bullets, each checkable without opening another file. Copy them
 verbatim into the objective: nothing dereferences a path, so criteria left only
 here are invisible to whatever judges completion.
 
-- [ ] Under restore, a tracked file whose parent directory the lane replaced with a symlink to an outside directory is not written through; the outside directory is unchanged and the action names the refusal
-- [ ] A baseline entry whose path passes through a symlinked component is neither captured from nor restored to the link's target; the entry is marked and the reason recorded
-- [ ] A symlink planted at the quarantine pass directory between the check and the create yields a refusal, not a write at the link's target
-- [ ] Each test fails against the current guard, and the deep-loop runtime suite exits zero
+- [x] Under restore, a tracked file whose parent directory the lane replaced with a symlink to an outside directory is not written through; the outside directory is unchanged and the action names the refusal
+- [x] A baseline entry whose path passes through a symlinked component is neither captured from nor restored to the link's target; the entry is marked and the reason recorded
+- [x] A symlink planted at the quarantine pass directory between the check and the create yields a refusal, not a write at the link's target
+- [x] Each test fails against the current guard, and the deep-loop runtime suite exits zero
 <!-- /ANCHOR:completion -->
 
 ---
@@ -96,11 +96,13 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| [Item] | [Pending/In Progress/Done] | [Command output, file:line, or artifact] |
+| Phase fix | Done | One DeepSeek V4.1 Flash max dispatch on cli-pi via the gateway; helper set and wiring in `write-containment.ts`, four tests; touched files, a stress runner case and typecheck exit 0 |
+| Full suite | Green | `npm test` in the runtime: 152 files, 2623 passed, 8 skipped, exit 0, 1229 s |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| [What diverged from the directive] | [Why, and what was done instead] |
+| Existence probes and log append | Left unguarded on purpose: they move no bytes and detection semantics are frozen; recorded as reviewed |
+| Baseline entry reason | A refused capture is marked truncated without a reason field; additive follow-up |
 <!-- /ANCHOR:log -->

@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+description: "Every byte-moving operation in the containment guard is contained against symlinked components at every level, with no-follow opens and the check-then-create window closed."
 trigger_phrases:
   - "implementation summary"
   - "what shipped"
@@ -12,9 +12,9 @@ _memory:
   continuity:
     packet_pointer: "system-deep-loop/045-fanout-write-containment-hardening/015-symlink-contained-paths"
     last_updated_at: "2026-09-15T00:02:08Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialized Level 2 template"
-    next_safe_action: "Replace continuity placeholders"
+    last_updated_by: "claude-fable-5-1"
+    recent_action: "Contained every guard path against symlinks and filled the packet docs"
+    next_safe_action: "Commit once the full suite exits zero"
     blockers: []
     key_files: []
     session_dedup:
@@ -46,20 +46,9 @@ _memory:
 ---
 
 <!-- ANCHOR:what-built -->
-## What Was Built
+## 2. WHAT WAS BUILT
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
-
-### Phase 1: symlink-contained-paths
-
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
-
-### Files Changed
-
-| File | Action | Purpose |
-|------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+No byte the containment guard moves can be redirected by a symlink any more. `runtime/lib/deep-loop/write-containment.ts` gained one helper set: `pathRefusal` resolves a path's parent with realpath, requires it beneath the owning root and refuses any symlinked component at or below it, never following the final component; `ensureContainedDirectory` creates directories level by level and re-reads each level it creates; `openContainedRead` and `openContainedWrite` open with the kernel no-follow flag, claiming new files exclusively and replacing captures in place. Baseline capture and read, patch capture, the quarantine pass directory and its record writes, the content copy, and both restore writes all go through them, and the earlier quarantine-only refusal is subsumed. Four tests prove each gap: a symlinked parent on restore, a symlinked component on a baseline path, a symlinked component inside the baseline store, and a link swapped in between the quarantine check and its create.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -67,7 +56,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-[How was this tested, verified and shipped? What was the rollout approach?]
+One dispatch to DeepSeek V4.1 Flash at max through the gateway on cli-pi, briefed with the three findings both review lanes agreed on. All four tests were run against the unmodified module first, each failing on its own gap. The race case needed a file-level fs mock that delegates to the real module and fires only there, because ESM namespaces cannot be spied. The orchestrator reviewed the diff and ran the whole suite before committing.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -77,7 +66,9 @@ Explain what the user gains, not what files you touched.]
 
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| Contain every component, not only the last | A link anywhere above the file redirects the write exactly as one at the file does |
+| Re-check on create and open with no-follow | A check the create does not repeat is a window; the kernel flag closes it where available |
+| Leave the two existence probes and the log append alone | They move no bytes, detection semantics are frozen, and the log path is the caller's |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -87,7 +78,11 @@ Explain what the user gains, not what files you touched.]
 
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| Four new tests against unmodified module | FAIL as expected, one gap each |
+| Both touched test files plus typecheck | PASS, exit 0, 224 tests |
+| Stress runner case with capture roots | PASS |
+| Full deep-loop suite | `npm test` in the runtime: 152 files, 2623 passed, 8 skipped, exit 0, 1229 s |
+| `validate.sh --strict` on this phase | RESULT: PASSED |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -95,7 +90,8 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **Reason on baseline entries.** A refused capture is marked as truncated; the entry carries no reason field, an additive change left for a later pass.
+2. **Windows.** The kernel no-follow flag is a no-op there; the component walk alone stands.
 <!-- /ANCHOR:limitations -->
 
 ---

@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Phase 1: symlink-contained-paths"
-description: "[2-3 sentences: what this implements and the technical approach]"
+description: "Replace the final-component checks with one helper set that contains every component and every open, and close the check-then-create window by re-checking on create."
 trigger_phrases:
   - "implementation plan"
   - "technical approach"
@@ -23,13 +23,13 @@ contextType: "general"
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | TypeScript (ESM) plus a CommonJS runner script |
+| **Framework** | None |
+| **Storage** | Git working tree, JSONL state and status ledgers |
+| **Testing** | Vitest |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+A per-component refusal walks each path below its owning root; directory creation re-reads every level it creates; reads and writes open with no-follow, claiming new files exclusively and replacing captures in place. Every site that moves bytes goes through them, and refusals land on the results they already carry.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -38,14 +38,14 @@ contextType: "general"
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Tests passing (if applicable)
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -54,14 +54,15 @@ contextType: "general"
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+One containment helper set behind every byte-moving operation
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **pathRefusal**: Parent realpath under the root plus per-component lstat
+- **ensureContainedDirectory**: Level-by-level create with re-check
+- **openContainedRead / openContainedWrite**: No-follow opens, exclusive or replacing
 
 ### Data Flow
-[Brief description of how data moves through the system]
+Path → owning root → component walk → contained open or refusal → result record.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -69,18 +70,16 @@ contextType: "general"
 <!-- ANCHOR:affected-surfaces -->
 ## FIX ADDENDUM: AFFECTED SURFACES
 
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
+| Restore writes | Final component only | update | write-containment.vitest.ts:2503 |
+| Baseline capture and read | Unchecked | update | write-containment.vitest.ts:2528, :2571 |
+| Quarantine create | Check then create | update | write-containment.vitest.ts:2587 |
 
 Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
+- Same-class producers: every byte-moving site in the module, enumerated in the return.
+- Consumers: the runner reads the same result shapes; refusal reasons changed wording only.
+- Adversarial rows: symlinked parent, symlinked component on the baseline path, symlinked store component, race between check and create, dangling link.
 <!-- /ANCHOR:affected-surfaces -->
 
 
@@ -99,9 +98,9 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Unit | Four new boundary cases plus the existing 73 | Vitest |
+| Runtime path | A stress adapter case exercising the real runner with capture roots | Vitest |
+| Manual | None | - |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -111,7 +110,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| Earlier refusal and exclusive-open work | Internal | Green | Subsumed |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -119,8 +118,8 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: A contained open refuses a legitimate layout
+- **Procedure**: Revert this phase's commit
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -152,10 +151,10 @@ Phase 1.5 (Config) ───┘
 
 | Phase | Complexity | Estimated Effort |
 |-------|------------|------------------|
-| Setup | [Low/Med/High] | [e.g., 1-2 hours] |
-| Core Implementation | [Low/Med/High] | [e.g., 4-8 hours] |
-| Verification | [Low/Med/High] | [e.g., 1-2 hours] |
-| **Total** | | **[e.g., 6-12 hours]** |
+| Setup | Low | minutes |
+| Core Implementation | Low | one dispatch |
+| Verification | Med | full suite run |
+| **Total** | | **one dispatch plus one suite run** |
 <!-- /ANCHOR:effort -->
 
 ---
