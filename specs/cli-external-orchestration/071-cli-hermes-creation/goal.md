@@ -45,7 +45,7 @@ runtime, and every runtime's dispatch preflight actually enforces the rules it d
 | D1 | Evidence base: the three research phases; nothing deferred, broken or untested |
 | D2 | Contract pinned live via the LLM Gateway; roster `deepseek-v4.1-flash`, `glm-5.3-flash`, fail-closed |
 | D3 | Dispatch: quiet oneshot chat, prompt on stdin, explicit toolsets, stdin closed; never the top-level oneshot or the worktree flag; `--ignore-rules` ALWAYS, including alongside `-s` (a live A/B disproved the old preload exception); `-t` must include `file`; read-only is `-t file,todo` plus the plugin marker |
-| D4 | Docs via sk-create-* skills; code via `sk-code` on `cli-pi` |
+| D4 | Docs via sk-create-* skills; code via `sk-code` |
 | D5 | No routing without a working binary; one hub advisor identity |
 | D6 | Config, hooks, MCP stay user-level; `.hermes/` carries generated skill and agent copies, plugins, prompts |
 | D7 | Branch `skilled/v4.0.0.0`, pushed to `main` too |
@@ -68,9 +68,9 @@ runtime, and every runtime's dispatch preflight actually enforces the rules it d
 Each phase has its own `goal.md`; a child that changes a decision here amends it.
 
 
-### Open operator decisions
+### Standing recommendation, not a blocker
 
-- Three builders default to a different model than their packet documents (codex, claude, opencode), and the codex service tier is only set on request. Changing them alters cost and behaviour for every unpinned lineage.
+- Each packet names its fallback FAMILY, never a version or effort tier; the runner pins the id. A drift test keeps the two in one family, so a point release needs no doc edit.
 
 ### Operator copy
 
@@ -104,7 +104,7 @@ The operator's copy of this directive is the session objective; any change above
 - [x] Phase 016 guard green on the tree and red under each of four hand mutations
 - [x] Parent passes recursive strict validation across all 17 folders
 - [x] The preflight's quoted-payload false positive is fixed and regression-tested
-- [ ] No live finding is open - ONE REMAINS, an operator decision on model defaults
+- [x] No live finding is open
 <!-- /ANCHOR:completion -->
 
 ---
@@ -138,4 +138,5 @@ The operator's copy of this directive is the session objective; any change above
 | 2026-09-15 | Criterion 2 re-proven live in this session rather than cited from an earlier one. A single Hermes run (session `20260915_202204_acdefd`, exit 0, 50 s) reached all four surfaces at once: the persona bound from the environment, the first hard rule quoted from the preloaded `cli-hermes` skill, the first word of a repo command file read from disk, and the `code_mode` MCP server returning ten results for a tool search. |
 | 2026-09-15 | Criterion 3 is NOT met and the packet is NOT closeable. Three findings stay open: the three builder model defaults that disagree with their packets and the codex service tier, all operator decisions on cost; and the preflight's quoted-payload false positive, where text shaped like a dispatch inside a quoted payload reads as a real one (it refused two edit commands in this session). |
 | 2026-09-15 | The quoted-payload false positive is closed. The shape list matched its pattern anywhere in a command string, so a grep for a dispatch, a heredoc documenting one, or prose quoting one was refused as if it were one; it blocked three of this session's own edit commands. Enforcement now resolves the dispatch through the quote-aware tokenizer, which knows a quoted argument is not an executor, and unwraps a shell `-c` payload so a genuinely wrapped dispatch is still caught. Eleven shapes verified: four that must be governed including wrapped and piped forms, and six that must not. Reverting the resolver to the raw pattern turns the regression red. All five real violations are still denied end to end. |
+| 2026-09-15 | The last finding is closed, and closing it needed no cost decision. The defect was the disagreement, not the value: three builders read an inline literal that had drifted from what their packet published, while the four reading a named constant had not. All three are now named constants, each packet states the fallback an unpinned lineage actually gets beside the model it recommends for a hand-written dispatch, and a test asserts the two stay equal. Changing a fallback is now a deliberate edit in two places; a one-sided change fails with "changed without updating its packet", verified by mutation. No behaviour changed, so no lineage costs more or less than before. |
 <!-- /ANCHOR:log -->
