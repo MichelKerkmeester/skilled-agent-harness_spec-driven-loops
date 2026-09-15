@@ -53,9 +53,8 @@ Beyond Law 4 (uncertainty, line-number mismatch, failing tests), also halt on:
 - **Options (stable labels):**
   - **A) Existing** - Continue in the detected/current spec or its current phase child when the requested work fits that scope. **Reply with the folder path.**
   - **B) New** - Create a new top-level packet only when the work is new or unrelated to suitable existing packets. Evaluate the new packet independently for standard versus phased structure. **Reply with a new folder path.**
-  - **C) Update related** - Use another related existing spec when the current packet is not the best scope match. **Reply with the folder path.**
-  - **D) Extend phased packet** - Add or target a specific child under an existing phase parent, or decompose a related standard packet that now meets both phase-qualification thresholds. **Reply with the child folder path.**
-  - **E) Skip** - Explicitly skip documentation after the required warning or when an existing exemption applies. Never make this the default.
+  - **C) Related** - Use another existing packet, a specific child under an existing phase parent, or a related standard packet decomposed into phases when it meets both phase-qualification thresholds. **Reply with the folder or child path.**
+  - **D) Skip** - Explicitly skip documentation after the required warning or when an existing exemption applies. Never make this the default.
 - **Which to choose:** `system-spec-kit/references/workflows/quick-reference.md` §8 and §9 for the priority, `system-spec-kit/references/structure/phase-definitions.md` §2 for the two thresholds a phased packet must meet independently.
 - **Router commands:** evaluate Gate 3 per selected route, not once for the router. A route that only reads needs no write path; a route that writes anything is bound by this gate like any other mutation.
 - **The answer holds for the ENTIRE session.** Re-ask only when the user says "new task" or "different feature", names a different spec folder, or asks you to.
@@ -105,7 +104,7 @@ Trigger: the FIRST write of the session, in any repository whose root holds a `R
 Consolidate multiple questions into a SINGLE prompt before any analysis or tool calls — never split across messages. **Bypass phrases:** "skip context" / "fresh start" / "skip memory" / [skip] for memory loading.
 
 #### VIOLATION RECOVERY [SELF-CORRECTION]
-Trigger: About to skip gates, or realized gates were skipped → STOP → STATE: "Before I proceed, I need to ask about documentation:" → ASK Gate 3 (A/B/C/D/E) → WAIT
+Trigger: About to skip gates, or realized gates were skipped → STOP → STATE: "Before I proceed, I need to ask about documentation:" → ASK Gate 3 (A/B/C/D) → WAIT
 
 ---
 

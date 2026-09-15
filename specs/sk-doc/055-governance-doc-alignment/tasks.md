@@ -147,9 +147,9 @@ Note: T009 and T010 run as the two lineages of ONE fan-out invocation, under the
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md
-- [ ] CHK-002 [P0] Technical approach defined in plan.md
-- [ ] CHK-003 [P1] Dependencies identified and available
+- [x] CHK-001 [P0] Requirements documented in spec.md (spec.md metadata sets REQ-001 through REQ-006, cited by every task in tasks.md)
+- [x] CHK-002 [P0] Technical approach defined in plan.md (plan.md section 8 sets the dispatch contract cited by T006, T009 and T010)
+- [x] CHK-003 [P1] Dependencies identified and available (T008, four preflight receipts: pi resolved, the two ALWAYS-loads read, the credential probe PROBE_OK, the roster mapping confirmed)
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -157,10 +157,10 @@ Note: T009 and T010 run as the two lineages of ONE fan-out invocation, under the
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] Code passes lint/format checks
-- [ ] CHK-011 [P0] No console errors or warnings
-- [ ] CHK-012 [P1] Error handling implemented
-- [ ] CHK-013 [P1] Code follows project patterns
+- [x] CHK-010 [P0] Code passes lint/format checks (implementation-summary.md Verification table, check-repo-rules.cjs RESULT: PASSED 9/9 checks, exit 0)
+- [x] CHK-011 [P0] No console errors or warnings (same check-repo-rules.cjs run, exit 0, no errors read)
+- [x] CHK-012 [P1] Error handling implemented (not applicable: documentation packet, no application code)
+- [x] CHK-013 [P1] Code follows project patterns (T013, the ninth check added to check-repo-rules.cjs following the existing eight, listed in the mode's SKILL.md)
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -168,10 +168,10 @@ Note: T009 and T010 run as the two lineages of ONE fan-out invocation, under the
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met
-- [ ] CHK-021 [P0] Manual testing complete
-- [ ] CHK-022 [P1] Edge cases tested
-- [ ] CHK-023 [P1] Error scenarios validated
+- [x] CHK-020 [P0] All acceptance criteria met (acceptance-criteria.md: AC-001 and AC-003 through AC-006 read Met, AC-002 reads Superseded backed by ADR-001)
+- [x] CHK-021 [P0] Manual testing complete (T015 fourth and fifth pass, independent Opus max-effort audit and Fable 5.1 high-effort review of the root-doc cut, plus T014 validate.sh RESULT: PASSED)
+- [x] CHK-022 [P1] Edge cases tested (implementation-summary.md Verification table, check-repo-rules.cjs negative control failed on seven rows before the edit, passed 9/9 after)
+- [x] CHK-023 [P1] Error scenarios validated (Phase 2 note, the route_proof_missing gate failure on every research iteration confirmed deterministic and not a defect)
 <!-- /ANCHOR:testing -->
 
 ---
@@ -179,13 +179,13 @@ Note: T009 and T010 run as the two lineages of ONE fan-out invocation, under the
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`.
-- [ ] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep.
-- [ ] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs, and tests.
-- [ ] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases.
-- [ ] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed.
-- [ ] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state.
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range.
+- [x] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`. (not applicable: documentation packet, findings used the not-reality and redundant-detail classes recorded under REQ-004, not a code-bug taxonomy)
+- [x] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep. (not applicable: documentation packet, no code producers to inventory)
+- [x] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs, and tests. (T013, CLAUDE.md symlink and the Codex Gate 1 derivation confirmed unaffected, downstream consumers checked)
+- [x] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases. (not applicable: documentation packet, no security, path, parser or redaction fix in scope)
+- [x] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed. (not applicable: documentation packet, no matrix testing in scope)
+- [x] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state. (not applicable: documentation packet, no process-wide state code touched)
+- [x] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range. (implementation-summary.md, both batches pinned to commit d9d6386f0f, T005 pins the pre-swarm baseline at 1de403dc53)
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -193,9 +193,9 @@ Note: T009 and T010 run as the two lineages of ONE fan-out invocation, under the
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No hardcoded secrets
-- [ ] CHK-031 [P0] Input validation implemented
-- [ ] CHK-032 [P1] Auth/authz working correctly
+- [x] CHK-030 [P0] No hardcoded secrets (not applicable: documentation packet, no code)
+- [x] CHK-031 [P0] Input validation implemented (not applicable: documentation packet, no code)
+- [x] CHK-032 [P1] Auth/authz working correctly (not applicable: documentation packet, no code)
 <!-- /ANCHOR:security -->
 
 ---
@@ -203,9 +203,9 @@ Note: T009 and T010 run as the two lineages of ONE fan-out invocation, under the
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec/plan/tasks synchronized
-- [ ] CHK-041 [P1] Code comments adequate
-- [ ] CHK-042 [P2] README updated (if applicable)
+- [x] CHK-040 [P1] Spec/plan/tasks synchronized (T014, validate.sh --strict RESULT: PASSED confirms spec, plan and tasks stay consistent)
+- [x] CHK-041 [P1] Code comments adequate (not applicable: documentation packet, the one script change is covered by CHK-013)
+- [x] CHK-042 [P2] README updated (if applicable) (not applicable: no README in scope, Known Limitations 4 records why the quick-reference removal needs no README line)
 <!-- /ANCHOR:docs -->
 
 ---
@@ -213,8 +213,8 @@ Note: T009 and T010 run as the two lineages of ONE fan-out invocation, under the
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Temp files in scratch/ only
-- [ ] CHK-051 [P1] scratch/ cleaned before completion
+- [x] CHK-050 [P1] Temp files in scratch/ only (the four files are cited evidence kept under scratch/ by the conductor's decision, the folder holds nothing disposable)
+- [x] CHK-051 [P1] scratch/ cleaned before completion (the four files are cited evidence kept under scratch/ by the conductor's decision, the folder holds nothing disposable)
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -224,9 +224,9 @@ Note: T009 and T010 run as the two lineages of ONE fan-out invocation, under the
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 12 | 0/12 |
-| P1 Items | 13 | 0/13 |
-| P2 Items | 1 | 0/1 |
+| P0 Items | 12 | 12/12 |
+| P1 Items | 13 | 13/13 |
+| P2 Items | 1 | 1/1 |
 
-**Verification Date**: 2026-09-13
+**Verification Date**: 2026-09-15, all 26 checklist rows worked against tasks.md, acceptance-criteria.md, implementation-summary.md and decision-record.md, then validate.sh --strict rerun for confirmation
 <!-- /ANCHOR:summary -->

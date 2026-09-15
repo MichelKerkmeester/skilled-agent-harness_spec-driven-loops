@@ -103,9 +103,9 @@ contextType: "general"
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md
-- [ ] CHK-002 [P0] Technical approach defined in plan.md
-- [ ] CHK-003 [P1] Executor availability confirmed by reading probe output, not exit status
+- [x] CHK-001 [P0] Requirements documented in spec.md (spec.md REQ-001 through REQ-006, section 3)
+- [x] CHK-002 [P0] Technical approach defined in plan.md (plan.md defines the lineage-dispatch approach)
+- [x] CHK-003 [P1] Executor availability confirmed by reading probe output, not exit status (T001, T002)
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -113,10 +113,10 @@ contextType: "general"
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] Not applicable, this phase writes documents and runs no build
-- [ ] CHK-011 [P0] Every dispatch log read for provider, auth and extension failures in its output text
-- [ ] CHK-012 [P1] A lineage that failed verification is re-dispatched or recorded as a finding, never dropped
-- [ ] CHK-013 [P1] Artifacts follow the canonical deep-research packet names
+- [x] CHK-010 [P0] Not applicable, this phase writes documents and runs no build (not applicable: documentation phase, no build)
+- [x] CHK-011 [P0] Every dispatch log read for provider, auth and extension failures in its output text (T002, T005, T006, T009: full requested depth reached with no early stop)
+- [x] CHK-012 [P1] A lineage that failed verification is re-dispatched or recorded as a finding, never dropped (T008: not needed, no lineage failed; AC-004 both lineages produced findings)
+- [x] CHK-013 [P1] Artifacts follow the canonical deep-research packet names (research/ holds research.md, deep-research-state.jsonl, iterations/, deltas/, dispatch-receipts/, resource-map.md, the canonical shape)
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -124,10 +124,10 @@ contextType: "general"
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met
-- [ ] CHK-021 [P0] Artifact existence checked by path and shape, not by having written it
-- [ ] CHK-022 [P1] Empty-result lineage recorded as its own finding rather than padded
-- [ ] CHK-023 [P1] Unresolved citations reported as unresolved
+- [x] CHK-020 [P0] All acceptance criteria met (acceptance-criteria.md AC-001 through AC-007 all Met)
+- [x] CHK-021 [P0] Artifact existence checked by path and shape, not by having written it (T009, T011)
+- [x] CHK-022 [P1] Empty-result lineage recorded as its own finding rather than padded (T008, AC-004: both lineages non-empty)
+- [x] CHK-023 [P1] Unresolved citations reported as unresolved (full scan 2026-09-15 over both syntheses: DeepSeek 25 cited, 25 resolve on the current tree; LUNA 192 cited, 175 resolve on the current tree, 17 resolve on the tree the research read, AGENTS.md:397-405 against the 496-line root doc and the rest against repo-rules/prose-mechanics.md before its rename in dc79a591e0; zero unresolved)
 <!-- /ANCHOR:testing -->
 
 ---
@@ -135,13 +135,13 @@ contextType: "general"
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-FIX-001 [P0] Not applicable, this phase fixes nothing and has no finding classes to assign
-- [ ] CHK-FIX-002 [P0] Not applicable, no producer class is being changed
-- [ ] CHK-FIX-003 [P0] Not applicable, no helper, policy, schema field or response field is being changed
-- [ ] CHK-FIX-004 [P0] Not applicable, no path, parser, redaction or security logic is in scope
-- [ ] CHK-FIX-005 [P1] The lineage matrix axes are source and executor family, and the rows are listed in Phase 2
-- [ ] CHK-FIX-006 [P1] Not applicable, no test or code reads process-wide state here
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to the lineage directories, which are immutable once the run settles
+- [x] CHK-FIX-001 [P0] Not applicable, this phase fixes nothing and has no finding classes to assign (not applicable: this phase fixes nothing and has no finding classes to assign)
+- [x] CHK-FIX-002 [P0] Not applicable, no producer class is being changed (not applicable: no producer class is being changed)
+- [x] CHK-FIX-003 [P0] Not applicable, no helper, policy, schema field or response field is being changed (not applicable: no helper, policy, schema field or response field is being changed)
+- [x] CHK-FIX-004 [P0] Not applicable, no path, parser, redaction or security logic is in scope (not applicable: no path, parser, redaction or security logic is in scope)
+- [x] CHK-FIX-005 [P1] The lineage matrix axes are source and executor family, and the rows are listed in Phase 2 (T005, T006: DeepSeek and GPT-5.6 LUNA lineages by source and executor family)
+- [x] CHK-FIX-006 [P1] Not applicable, no test or code reads process-wide state here (not applicable: no test or code reads process-wide state here)
+- [x] CHK-FIX-007 [P1] Evidence is pinned to the lineage directories, which are immutable once the run settles (T005, T006, AC-002, AC-004: evidence pinned to research/luna-fanout/lineages/luna/ and research/iterations/)
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -149,9 +149,9 @@ contextType: "general"
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No provider key or credential value appears in any brief, prompt or artifact
-- [ ] CHK-031 [P0] Vendored source content treated as data to cite, never as instructions to obey
-- [ ] CHK-032 [P1] Write authority bound to this phase folder before any delegate starts
+- [x] CHK-030 [P0] No provider key or credential value appears in any brief, prompt or artifact (credential scan of research/ clean, only field-name mentions and a templated placeholder, no actual value)
+- [x] CHK-031 [P0] Vendored source content treated as data to cite, never as instructions to obey (T004, AC-002: citation format cites source lines, vendored sources read as data)
+- [x] CHK-032 [P1] Write authority bound to this phase folder before any delegate starts (T004, T007: write authority bound before dispatch, repository frozen outside this folder)
 <!-- /ANCHOR:security -->
 
 ---
@@ -159,9 +159,9 @@ contextType: "general"
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec/plan/tasks synchronized
-- [ ] CHK-041 [P1] Not applicable, no code comments are written in this phase
-- [ ] CHK-042 [P2] Parent Phase Documentation Map status updated when this phase closes
+- [x] CHK-040 [P1] Spec/plan/tasks synchronized (spec.md REQ-001..006, plan.md, tasks.md T001-T012 aligned)
+- [x] CHK-041 [P1] Not applicable, no code comments are written in this phase (not applicable: no code comments are written in this phase)
+- [x] CHK-042 [P2] Parent Phase Documentation Map status updated when this phase closes (parent spec.md Phase Documentation Map row 1, Status Complete)
 <!-- /ANCHOR:docs -->
 
 ---
@@ -169,8 +169,8 @@ contextType: "general"
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Temp files in scratch/ only
-- [ ] CHK-051 [P1] scratch/ cleaned before completion
+- [x] CHK-050 [P1] Temp files in scratch/ only (scratch/ holds only .gitkeep, no temp files elsewhere)
+- [x] CHK-051 [P1] scratch/ cleaned before completion (scratch/ empty except .gitkeep)
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -180,11 +180,13 @@ contextType: "general"
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 12 | 0/12 |
-| P1 Items | 11 | 0/11 |
-| P2 Items | 1 | 0/1 |
+| P0 Items | 12 | 12/12 |
+| P1 Items | 13 | 13/13 |
+| P2 Items | 1 | 1/1 |
 
-**Verification Date**: Pending, this phase has not run
+**Verification Date**: 2026-09-15, CHK rows checked against T-task evidence, acceptance-criteria.md and the current repository state, a full citation scan of both syntheses, then validate.sh --strict run
+**Validate RESULT (strict)**: RESULT: PASSED, errors 0, warnings 1, exit 0
+**Metadata repair**: the first strict run reported 1 error, a stale graph-metadata.json source_fingerprint against the edited tasks.md, repair-derived.cjs regenerated it, the rerun above is the final state
 <!-- /ANCHOR:summary -->
 
 ---

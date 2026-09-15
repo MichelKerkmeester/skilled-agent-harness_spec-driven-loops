@@ -125,11 +125,15 @@ The document changes followed. Both mirrors were copied from their sources, and 
 ---
 
 <!-- ANCHOR:limitations -->
+## Verification Pass, 2026-09-15
+
+The checklist pass found one adversarial case the phase had named and never exercised: a copy edit that keeps every word and swaps the cause and the effect. The claim check reads content words as a set, so it passes such a candidate, and the structure signature ignores headingless prose. `compareCausalDirection` in `src/fidelity/semantics.ts` now reads the ordered causal connectives, `because` and `since` with the effect first, `therefore`, `leads to`, `causes` and their kin with the cause first, and returns `cause-inverted` only when the candidate states the same two clauses the other way round. A candidate that drops the sentence stays the claim check's to refuse. The validator runs it after the claim check. Five unit tests and one validator test cover the swap, the cross-family swap, a reworded preserved direction, a dropped sentence and a source with no cause. `npm run check` reports 83 files and 465 tests, exit 0. The README gained a rewrite-contract subsection naming the call-time instruction, both vetoes and the no-op kind.
+
 ## Known Limitations
 
 1. **The fidelity checks array is shorter on the no-op path by design.** An unchanged candidate skips the structure and semantic comparisons, so it records none of their pass markers. A consumer that counted markers would see fewer on a no-op. The change kind field is the signal to read instead.
 2. **The accepted projection contract type carries changeKind but nothing constructs it.** The type was unconstructed before this phase too. It is the wire shape a future orchestrator layer fills from the accepted fidelity result, which does carry the field and is constructed and tested.
-1. **Closure gates remain open.** The Completion Criteria checkboxes and the checklist rows in tasks.md wait for their own pass. Every acceptance-criteria row is Met, with its evidence cited in its Verification cell. The dispatched scope covered tasks T014 to T019, T021 and T026.
+1. **Closure gates closed on 2026-09-15.** Every checklist row in tasks.md carries its evidence and every acceptance row is Met, so this limitation is resolved and kept for the record.
 2. **The continuity fingerprint is the scaffold placeholder.** The save workflow recomputes the session fingerprint, so this file ships with the value written at initialization.
 <!-- /ANCHOR:limitations -->
 

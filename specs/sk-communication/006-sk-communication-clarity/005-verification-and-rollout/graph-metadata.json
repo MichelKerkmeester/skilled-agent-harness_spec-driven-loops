@@ -3,6 +3,7 @@
   "packet_id": "sk-communication/006-sk-communication-clarity/005-verification-and-rollout",
   "spec_folder": "sk-communication/006-sk-communication-clarity/005-verification-and-rollout",
   "parent_id": "sk-communication/006-sk-communication-clarity",
+  "status_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -39,7 +40,7 @@
       "validation"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -51,8 +52,8 @@
       "scratch/model-step.md",
       ".opencode/skills/sk-communication/changelog/v1.3.0.0.md",
       "runs/sonnet/results/compare.txt",
-      ".codex/AGENTS.md",
       "runs/results/before.json",
+      ".codex/AGENTS.md",
       "runs/results/after.json",
       "runs/results/compare.txt"
     ],
@@ -118,15 +119,15 @@
         "source": "derived"
       },
       {
-        "name": "AGENTS.md",
-        "kind": "doc",
-        "path": ".codex/AGENTS.md",
-        "source": "derived"
-      },
-      {
         "name": "before.json",
         "kind": "config",
         "path": "runs/results/before.json",
+        "source": "derived"
+      },
+      {
+        "name": "AGENTS.md",
+        "kind": "doc",
+        "path": ".codex/AGENTS.md",
         "source": "derived"
       },
       {
@@ -204,7 +205,7 @@
     ],
     "causal_summary": "Nothing in this repository measures whether a communication rule changes a reply",
     "created_at": "2026-09-12T12:44:38Z",
-    "last_save_at": "2026-09-14T17:49:26.077Z",
+    "last_save_at": "2026-09-15T05:35:09.055Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +215,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1fe0d857e502b1e71108331fd7eedf83cb952e7a60baec728b5fc970553b0634",
+    "source_fingerprint": "sha256:2596bd8e8fb9d00ae10ef4d17b5856486548790d214ba2f312ac3335bb86f837",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8347f243987d06d4f096fccf267e8e12dbb121033e7b1bd391fa63fa55e59fbc",
       "plan.md": "da38e5744a5781ba292fc7313ccd458082dabd22d798d98ccafa6ce051008ea3",
-      "tasks.md": "636e0681f60ba73c7c23619c4af76435840b5b18c5b3c1435dbfe1edebda9b24",
-      "implementation-summary.md": "68665f945d2532c43830ac8811f9f9c3d391ee9d1604004ca60c0903805026ad"
+      "tasks.md": "4090c69d3b2118e98076dc4ae9396264afde8d2b538d0b034b78b047eec36fe6",
+      "implementation-summary.md": "27c171f44b33a27be46df79832a35cd15225982fee897ac948869bf7cfc69d97"
     },
     "last_active_at": null
   }

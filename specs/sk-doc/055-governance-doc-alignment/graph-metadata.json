@@ -3,6 +3,7 @@
   "packet_id": "sk-doc/055-governance-doc-alignment",
   "spec_folder": "sk-doc/055-governance-doc-alignment",
   "parent_id": null,
+  "status_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -39,7 +40,7 @@
       "technical"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -56,6 +57,7 @@
       ".opencode/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs",
       ".opencode/skills/sk-doc/sk-create-repo-rule/SKILL.md",
       "research/root-doc-staleness/lineages/1789357391666-zngraa-staleness/research.md",
+      ".devin/SYNC.md",
       "specs/sk-communication/006-sk-communication-clarity/007-wording-standard-restructure/spec.md",
       "specs/sk-communication/006-sk-communication-clarity/002-synthesis-and-decisions/decision-record.md",
       "scratch/opus-root-doc-audit.md",
@@ -135,6 +137,12 @@
         "source": "derived"
       },
       {
+        "name": "SYNC.md",
+        "kind": "doc",
+        "path": ".devin/SYNC.md",
+        "source": "derived"
+      },
+      {
         "name": "opus-root-doc-audit.md",
         "kind": "doc",
         "path": "scratch/opus-root-doc-audit.md",
@@ -199,17 +207,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Pattern Other",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The 006 clarity program paused with its validation state unproven: a swarm rewrote twelve documents, and the repair pass that would confirm them was killed partway",
     "created_at": "2026-09-13T11:50:18Z",
-    "last_save_at": "2026-09-15T05:01:34.224Z",
+    "last_save_at": "2026-09-15T05:22:57.776Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,14 +222,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e037138dcf11258ead3749c7931b5fbefce4ce7b6fe86139ab2d5ddb2a15b089",
+    "source_fingerprint": "sha256:c9cd35d0e64e6af5ea20cb3cae5442018a83aa8a0247fa038374046ca538d9b0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c842c157614e1fd1460ba61b191dc06168e301810f0e48c44ad860f539a8dce5",
       "plan.md": "32177ebdd8dcbb19aab4d92b734a4546ff15a68379b0c6cad2caf47595849c34",
-      "tasks.md": "86ec5e5a98398b14a9916590fac00d87ef5db08034f64092c35d7f760ed3e80c",
+      "tasks.md": "6f60459e75589bbceadeab26c36256647c35164e33a84283abda136583806e9e",
       "decision-record.md": "2203d47bf3d42214310bfe090ad7c8cb0e720a9b94927f500b68c88cd1506e3d",
-      "implementation-summary.md": "a718cda3374f1ff2819b5c225edc128424a3079472a43ac57da2036adea0b5f1"
+      "implementation-summary.md": "9648caa6603ec6d2510449c5805be1f20d1dd21c810ee7b33402eafc6f6f380f"
     },
     "last_active_at": null
   }

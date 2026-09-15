@@ -32,7 +32,7 @@ In `:auto` mode, an explicit `--restart` or `--lineage-mode=restart` flag (invoc
 
 You were invoked via `opencode run --command deep/review` with the `:auto` suffix and a bound spec_folder and target in your message. The `:auto` suffix plus the bound spec_folder mean setup is ALREADY resolved. Therefore:
 
-- DO NOT emit the consolidated setup question (target/mode, research topic, Spec Folder A/B/C/D/E, execution mode, max iterations, executor). The bound spec_folder is your write authority; do not ask which spec folder should own the writes.
+- DO NOT emit the consolidated setup question (target/mode, research topic, Spec Folder A/B/C/D, execution mode, max iterations, executor). The bound spec_folder is your write authority; do not ask which spec folder should own the writes.
 - DO NOT halt for the repo-wide `CLAUDE.md` Gate-3 documentation gate. Under AUTONOMOUS execution with a validated prebound spec folder, Gate 3 is already satisfied by that folder (the prebound spec folder is your write authority).
 - PROCEED immediately: load the auto workflow YAML and dispatch the `deep-review` agent to run ONE iteration of the review loop over the bound target.
 - DISPATCH ONLY: you dispatch `deep-review` to run one iteration; you do NOT read, edit, patch, or run the review loop over the target yourself. The auto workflow YAML owns the loop itself — setup, dispatch-per-iteration, reducer sync, convergence checks, synthesis, and all loop-level artifact writes; the `deep-review` leaf owns only its own single-iteration artifacts — mixing your own inline work with the dispatch is a route violation.

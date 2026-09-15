@@ -70,7 +70,7 @@ Mode: [auto|confirm|ask]
 Feature flags: [with-context yes/no] [with-phases yes/no] [intake-only yes/no]
 
 Q0. Feature Description, if not provided: What feature should be planned?
-Q1. Spec Folder: A) Use existing  B) Create new  C) Update related  D) Extend phased packet  E) Skip documentation
+Q1. Spec Folder: A) Use existing  B) Create new  C) Related  D) Skip documentation
 Q2. Execution Mode, if no suffix: A) Autonomous  B) Interactive
 Q3. Dispatch Mode: A) Single Agent  B) Multi-Agent (1+2)  C) Multi-Agent (1+3)
 Q4. Prior Work Context, only when prior records exist: A) Latest  B) Recent 3  C) Skip

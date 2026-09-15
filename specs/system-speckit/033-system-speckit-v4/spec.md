@@ -146,7 +146,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 37 | 037-derived-artifact-registry/ | was `035-derived-artifact-registry`; one registry for every derived artifact, planned in three phases | draft |
 | 38 | 038-goal-unification/ | the packet goal.md made the single goal every runtime reads, 12 children | complete |
 
-| 40 | 040-gate-3-option-merge/ | Merge Gate 3 options C and D into one related-packet option and relabel Skip across every surface | Pending |
+| 40 | 040-gate-3-option-merge/ | Merge Gate 3 options C and D into one related-packet option and relabel Skip across every surface | complete |
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins

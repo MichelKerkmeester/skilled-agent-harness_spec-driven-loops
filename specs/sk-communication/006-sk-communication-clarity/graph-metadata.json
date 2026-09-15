@@ -70,7 +70,7 @@
       "001-research-communication-context/research/research.md",
       "004-sk-communication-upgrade/research/research.md",
       "002-synthesis-and-decisions/allocation-table.md",
-      "repo-rules/prose-mechanics.md"
+      "repo-rules/communication-prose.md"
     ],
     "entities": [
       {
@@ -158,9 +158,9 @@
         "source": "derived"
       },
       {
-        "name": "prose-mechanics.md",
+        "name": "communication-prose.md",
         "kind": "doc",
-        "path": "repo-rules/prose-mechanics.md",
+        "path": "repo-rules/communication-prose.md",
         "source": "derived"
       },
       {
@@ -220,7 +220,7 @@
     ],
     "causal_summary": "The repository governs how a reply reads across three layers: `AGENTS.md` keeps the two clauses",
     "created_at": "2026-09-12T12:44:34Z",
-    "last_save_at": "2026-09-14T17:49:27.522Z",
+    "last_save_at": "2026-09-15T05:35:09.057Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -228,11 +228,11 @@
       "goal.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:bcd8af0175a961b84e9cf461ae4b2f7c86cbbbac3970de9c64a3d4648af2562d",
+    "source_fingerprint": "sha256:c70204161613e9c14cb8c539d9869fb15c3e8920efa1c7dfcd4c4a82149485c8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2ba7c70c767405e376c13fa99ff0fe829b07948d5ed9f99d2274f335b74860b5",
-      "handover.md": "f267747a0b9a41034095aa657bb7ef695c8345b65f3f10d4f094cc04602e5cef"
+      "spec.md": "146139fbc78b933cf7d341a65a3e2f4e195bb696faa3c41945a99efdd46a7ca7",
+      "handover.md": "23148d08dadde4fedb050914443beb55a088201aa47b1c035634454f965162ef"
     },
     "last_active_child_id": "sk-communication/006-sk-communication-clarity/001-research-communication-context",
     "last_active_at": "2026-09-14T16:13:28.503Z"

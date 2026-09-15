@@ -63,7 +63,7 @@ The split followed the seam assignment recorded before any edit: sections 2, 3 a
 | REPO RULES.md | Modified | Added the trigger row and the index row for the new half, narrowed the communication rows to what that half still owns |
 | tasks.md | Modified | T007 to T019 closed with evidence, the validate RESULT recorded |
 | implementation-summary.md | Modified | This summary, the size figures and the baselines' commit |
-| scratch/seam-assignment.md | Modified | SIZE AFTER SPLIT recorded under SIZE BEFORE SPLIT, same measure, wc |
+| baselines/seam-assignment.md | Modified | SIZE AFTER SPLIT recorded under SIZE BEFORE SPLIT, same measure, wc |
 <!-- /ANCHOR:what-built -->
 
 ---

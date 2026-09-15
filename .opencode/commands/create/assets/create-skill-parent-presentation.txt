@@ -88,9 +88,8 @@ Example: modes research,review,ai-council  (optionally --surfaces webflow,animat
 Q3. Spec Folder
 A) Existing
 B) New
-C) Update related
-D) Extend phased packet
-E) Skip
+C) Related
+D) Skip
 
 Q4. Prior Work Context (when the existing spec has prior continuity)
 A) Load handover plus implementation-summary continuity
@@ -119,8 +118,8 @@ Hard stops:
 | `skill_path` | Yes | default if omitted | `[value]` |
 | `skill_root` | Yes | derived from skill name and path | `[value]` |
 | `execution_mode` | Yes | `:auto` or `:confirm` | `[value]` |
-| `spec_choice` | Yes | A/B/C/D/E | `[value]` |
-| `spec_path` | Conditional | required for A/B/C/E | `[value]` |
+| `spec_choice` | Yes | A/B/C/D | `[value]` |
+| `spec_path` | Conditional | required for A/B/C/D | `[value]` |
 | `router_state` | On update | classify the target root `ROUTER.md`: `stage1-only`, `active`, `legacy-migratable`, `already-current`, `conflict`, or `malformed` | `[value]` |
 | `router_action` | On update | exactly one of `create`, `migrate`, `unchanged` | `[value]` |
 

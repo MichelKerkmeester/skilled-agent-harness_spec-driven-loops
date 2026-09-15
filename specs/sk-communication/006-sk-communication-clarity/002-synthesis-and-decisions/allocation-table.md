@@ -159,7 +159,7 @@ No disagreement between the two research runs reached this phase. What was compa
 
 One disagreement is documented inside the first run, and it carries a diagnosis. The C-4 row of iteration-004 F2 named the addresses of the banned term's four occurrences, and the later census found four occurrences at different addresses, two of them in the evidence rule (iteration-006.md, finding F2). Diagnosis: thin evidence. The earlier row carried the right count without the right addresses. The correction was absorbed before this phase: the handoff takes the 29-candidate map as corrected by iteration-006 F2 (research.md section 8), and ADR-002's record protects exactly the occurrences the census found (decision-record.md, ADR-002, implementation).
 
-What was not compared: the second synthesis document itself, which this session did not read. Its decisions are compared as the decision record states them.
+What was not compared when this table was written: the engine synthesis document itself, whose decisions were compared as the decision record states them. A third lineage, GPT-5.6 LUNA, ran five iterations on 2026-09-14 after the build and recorded eight disagreements with the DeepSeek synthesis in its own section 6. Six mark a candidate already-covered because this program had by then placed it, which confirms the placement. The two that remain, root ownership and the ADHD contract shape, are recorded in phase 001's summary for the operator, who chose to record them and act on neither. No row in this table changed.
 
 <!-- /ANCHOR:lineage-disagreements -->
 

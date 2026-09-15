@@ -144,8 +144,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    Q1. Spec Folder (required):
      A) Use existing [suggest if found]
      B) Create new under `specs/[track]/[###]-[slug]/` (accept `.opencode/specs/` alias roots when already in use)
-     C) Update related [if match found]
-     D) Phase folder (e.g., `specs/NN-track/NNN-name/001-phase/` or matching `.opencode/specs/` alias)
+     C) Related [if match found, including a phase folder such as `specs/NN-track/NNN-name/001-phase/` or matching `.opencode/specs/` alias]
 
    Q2. Execution Mode (if no suffix):
      A) Autonomous -- all iterations without approval
@@ -175,7 +174,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 
 8. Parse response and store ALL results:
    - research_topic = [from Q0 or $ARGUMENTS]
-   - spec_choice = [A/B/C/D from Q1]
+   - spec_choice = [A/B/C from Q1]
    - spec_path = [derived path]
    - execution_mode = [AUTONOMOUS/INTERACTIVE]
    - maxIterations = [from Q3 or flag or default 10]

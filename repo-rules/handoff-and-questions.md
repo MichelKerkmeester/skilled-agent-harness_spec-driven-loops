@@ -27,7 +27,7 @@ trigger_phrases:
   - "one concrete next action"
 importance_tier: important
 contextType: reference
-version: 1.2.1.0
+version: 1.3.0.0
 ---
 
 # Rule: Handoff and questions
@@ -76,6 +76,8 @@ stops halfway through a reply should still have hit it.
 
 The close of the turn is a contract with two clauses. Completed work is shown, as the
 changed file, the passing check or the output, so the claim is provable in the reply.
+When a command ran, name the command and its exit status or result before any
+interpretation of it, because a result with no command behind it is a claim.
 What happens next is exactly one concrete action, in the form that lets the operator do
 it, or the one line that says nothing is.
 

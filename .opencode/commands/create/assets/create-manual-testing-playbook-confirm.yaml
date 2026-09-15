@@ -244,7 +244,7 @@ workflow_overview:
 # ─────────────────────────────────────────────────────────────────
 context_loading:
   trigger: "During UNIFIED SETUP PHASE, when memory_choice is answered (Q4 if applicable) and prior context exists"
-  applies_when: "spec_choice resolved to an existing spec_path (Option A/C/D) that contains handover.md or an implementation-summary.md with _memory.continuity, or operation is update against an existing playbook_root with prior generation history"
+  applies_when: "spec_choice resolved to an existing spec_path (Option A/C) that contains handover.md or an implementation-summary.md with _memory.continuity, or operation is update against an existing playbook_root with prior generation history"
   continuity_ladder:
     note: "Read the packet's own files in order. No background service is involved."
     order:
@@ -284,13 +284,13 @@ workflow:
 
   step_1b_spec_folder_setup:
     purpose: Resolve spec_choice into spec_path and create/confirm the documentation folder for tracking this work
-    condition: "spec_choice != E (Skip)"
+    condition: "spec_choice != D (Skip)"
     activities:
     - IF spec_choice == B (Create new):
       - Find next available spec number
       - Command: "ls -d specs/[0-9]*/ | sed 's/.*\\/\\([0-9]*\\)-.*/\\1/' | sort -n | tail -1"
       - Create folder: specs/[NNN]-[skill_name]-testing-playbook/
-    - IF spec_choice == A, C, or D (Existing, Update related, or Extend phased packet):
+    - IF spec_choice == A or C (Existing or Related):
       - Use selected spec_path
     - "Route spec.md, plan.md, tasks.md, and checklist.md creation through distributed governance (AGENTS.md Rule 5), matching this family's Level 2 documentation_level"
     templates:

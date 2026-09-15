@@ -57,7 +57,7 @@ Fix a CSS alignment issue affecting button positioning on mobile viewports. Esti
 
 ```bash
 User: /spec_kit:complete
-AI: Spec folder? A) Existing B) New C) Update related D) Skip
+AI: Spec folder? A) Existing B) New C) Related D) Skip
 User: B
 ```
 

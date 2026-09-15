@@ -7,7 +7,7 @@ import { fileURLToPath } from "node:url"
 const here = path.dirname(fileURLToPath(import.meta.url))
 const skillsDir = path.resolve(here, "../../..")
 const repoRoot = path.resolve(skillsDir, "..", "..")
-const baselinePath = path.join(repoRoot, "specs", "sk-communication", "006-sk-communication-clarity", "003-root-doc-and-repo-rules", "scratch", "measurement-baseline.md")
+const baselinePath = path.join(repoRoot, "specs", "sk-communication", "006-sk-communication-clarity", "003-root-doc-and-repo-rules", "baselines", "measurement-baseline.md")
 
 const die = (message) => {
   console.error("generate-prompts: " + message)
@@ -26,8 +26,10 @@ function parseArgs(argv) {
 function readCases() {
   const casesFile = path.join(here, "cases.json")
   let cases
+  let casesRaw
   try {
-    cases = JSON.parse(fs.readFileSync(casesFile, "utf8"))
+    casesRaw = fs.readFileSync(casesFile, "utf8")
+    cases = JSON.parse(casesRaw)
   } catch (error) {
     die(`${casesFile} is not readable JSON: ${error.message}`)
   }
@@ -38,12 +40,12 @@ function readCases() {
   }
   const ids = cases.map(c => c.id)
   if (new Set(ids).size !== ids.length) die(`${casesFile} repeats a case id: ${ids.join(", ")}`)
-  return cases
+  return { cases, casesHash: crypto.createHash("sha256").update(casesRaw).digest("hex") }
 }
 
 function gitShow(commit, p) {
   try {
-    return execFileSync("git", ["show", `${commit}:${p}`], { cwd: repoRoot, encoding: "utf8", maxBuffer: 32 * 1024 * 1024 })
+    return execFileSync("git", ["show", `${commit}:${p}`], { cwd: repoRoot, encoding: "utf8", maxBuffer: 32 * 1024 * 1024, timeout: 60000 })
   } catch (error) {
     die(`git show ${commit}:${p} failed: ${String(error.stderr || error.message).trim().slice(0, 300)}`)
   }
@@ -82,7 +84,7 @@ const args = parseArgs(process.argv.slice(2))
 if (args.condition !== "before" && args.condition !== "after") die("usage: node generate-prompts.mjs --condition before|after --out <dir>")
 if (!args.out) die("usage: node generate-prompts.mjs --condition before|after --out <dir>")
 const outDir = path.resolve(args.out)
-const cases = readCases()
+const { cases, casesHash } = readCases()
 
 let sections
 let ruleSetSource
@@ -103,7 +105,7 @@ if (args.condition === "before") {
   ]
   let ruleList = []
   try {
-    ruleList = execFileSync("git", ["ls-tree", "-r", "--name-only", commit, "--", "repo-rules/"], { cwd: repoRoot, encoding: "utf8" })
+    ruleList = execFileSync("git", ["ls-tree", "-r", "--name-only", commit, "--", "repo-rules/"], { cwd: repoRoot, encoding: "utf8", timeout: 60000 })
       .split(/\r?\n/).filter(Boolean).map(p => p.replace(/^repo-rules\//, "")).sort((x, y) => (x < y ? -1 : 1))
   } catch (error) {
     die(`git ls-tree for ${commit} failed: ${String(error.stderr || error.message).trim().slice(0, 300)}`)
@@ -145,6 +147,7 @@ const manifest = {
   ruleSetSource,
   caseIds: cases.map(c => c.id),
   ruleFileHashes: hashes,
+  casesHash,
   writtenAt: new Date().toISOString()
 }
 fs.writeFileSync(path.join(outDir, "manifest.json"), JSON.stringify(manifest, null, 2) + "\n")

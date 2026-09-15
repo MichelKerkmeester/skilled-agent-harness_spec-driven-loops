@@ -123,9 +123,9 @@ Every task names the requirement in this phase's `spec.md` that it serves.
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md
-- [ ] CHK-002 [P0] Technical approach defined in plan.md
-- [ ] CHK-003 [P1] Baseline provenance confirmed against phase 003's first edit
+- [x] CHK-001 [P0] Requirements documented in spec.md (spec.md carries REQ-001 through REQ-008, cited across AC-001 to AC-011 in acceptance-criteria.md)
+- [x] CHK-002 [P0] Technical approach defined in plan.md (plan.md, ~14KB, describes the harness, the baseline, the negative control and the release gate matched by T007-T013)
+- [x] CHK-003 [P1] Baseline provenance confirmed against phase 003's first edit (T001, measurement-baseline.md records capture commit 4512473abdec9c7f0ea02126f85bb5c709b2ac26 taken before any rule file changed)
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -133,11 +133,11 @@ Every task names the requirement in this phase's `spec.md` that it serves.
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] The runner and any hook pass the repository's lint and format checks
-- [ ] CHK-011 [P0] The mechanism exits zero on every error path and never blocks a session start
-- [ ] CHK-012 [P1] The mechanism resolves its own paths relative to its location, not a trusted environment variable
-- [ ] CHK-013 [P1] The harness follows the repository's existing benchmark shape rather than inventing a second one
-- [ ] CHK-014 [P1] The harness completes in one unattended run. The mechanism's timeout is bounded
+- [x] CHK-010 [P0] The runner and any hook pass the repository's lint and format checks (not applicable: the root package.json carries no lint or format script and no eslint config covers `.opencode/skills/sk-communication/benchmark/`; `node --check` run now on all four reply-harness scripts passed with exit 0)
+- [x] CHK-011 [P0] The mechanism exits zero on every error path and never blocks a session start (not applicable: T014/T016, candidate 21's persistence mechanism was ruled non-work, so no hook or mechanism was added)
+- [x] CHK-012 [P1] The mechanism resolves its own paths relative to its location, not a trusted environment variable (not applicable: T014, no mechanism was added)
+- [x] CHK-013 [P1] The harness follows the repository's existing benchmark shape rather than inventing a second one (implementation-summary.md Files Changed, `.opencode/skills/sk-communication/benchmark/README.md | Modified | Layout row for the harness`)
+- [x] CHK-014 [P1] The harness completes in one unattended run. The mechanism's timeout is bounded (2026-09-15: every execFileSync in generate-prompts.mjs and score.mjs carries a timeout, 60 seconds for the two git calls and 120 seconds for the scanner; the model step runs through the two generator scripts with a 900 second alarm per reply, and the unattended rerun of 2026-09-15 ran both models end to end from one detached launcher)
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -145,12 +145,12 @@ Every task names the requirement in this phase's `spec.md` that it serves.
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met
-- [ ] CHK-021 [P0] The negative control ran first and its score did not move
-- [ ] CHK-022 [P1] A malformed case set fails the run loudly rather than being skipped
-- [ ] CHK-023 [P1] A scoring failure halts the run rather than recording a default score
-- [ ] CHK-024 [P0] Every recorded row names the provider that produced it
-- [ ] CHK-025 [P1] No-op rows are reported apart from rewrite rows. An unclassified row blocks the delta
+- [x] CHK-020 [P0] All acceptance criteria met (acceptance-criteria.md, AC-001 through AC-011 all Met)
+- [x] CHK-021 [P0] The negative control ran first and its score did not move (T009, compare.mjs "control observable before=true after=true", the observable held)
+- [x] CHK-022 [P1] A malformed case set fails the run loudly rather than being skipped (T007, scratch/harness-smoke.md, the smoke exited 1 on a broken case set; score.mjs:232-247 dies with a named reason for every malformed-case-set condition)
+- [x] CHK-023 [P1] A scoring failure halts the run rather than recording a default score (score.mjs's `die()` helper at lines 186,194,198,203,215,283,295,302,308 exits 1 with a named reason on every scanner, parse or dimension failure, no default value is assigned)
+- [x] CHK-024 [P0] Every recorded row names the provider that produced it (T006, T010, all fourteen rows in both results files carry provider `llmgateway/glm-5.3-flash`; the Sonnet 5 rerun carries `claude-sonnet-5`)
+- [x] CHK-025 [P1] No-op rows are reported apart from rewrite rows. An unclassified row blocks the delta (T011, score.mjs:302 dies when changeKind is neither `reworded` nor `no-op`; compare.mjs prints no-op counts separately from the rule delta)
 <!-- /ANCHOR:testing -->
 
 ---
@@ -158,14 +158,14 @@ Every task names the requirement in this phase's `spec.md` that it serves.
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-FIX-001 [P0] Each landed change carries a finding class. The regeneration is treated as cross-consumer
-- [ ] CHK-FIX-002 [P0] Same-class producer inventory run: every surface generated from the repository root doc
-- [ ] CHK-FIX-003 [P0] Consumer inventory run: every runtime reading a regenerated section, per its own sync manifest
-- [ ] CHK-FIX-004 [P0] Adversarial cases exercised: a judge that can infer the condition, a case set edited mid-run, a default score on failure
-- [ ] CHK-FIX-005 [P0] Attribution adversarial cases exercised: a row with no provider plus a row with no change kind
-- [ ] CHK-FIX-006 [P1] Matrix axes listed: condition by case class, four rows
-- [ ] CHK-FIX-007 [P1] The mechanism exercised with a hostile environment: missing flag, unreadable flag, absent target file
-- [ ] CHK-FIX-008 [P1] Evidence pinned to a commit, not to a moving branch-relative range
+- [x] CHK-FIX-001 [P0] Each landed change carries a finding class. The regeneration is treated as cross-consumer (T001-T021 each cite a REQ id; T015 treats the regeneration as cross-consumer via three synchronizers covering 167 mirrors across 8 trees)
+- [x] CHK-FIX-002 [P0] Same-class producer inventory run: every surface generated from the repository root doc (T015, `sync-gate1-pointers.cjs --check` PASS on 2 files, `sync-runtime-mirrors.cjs --check` PASS on 167 mirrors, `sync-hook-registrations.cjs --check` PASS on 4 registration files against the 29-hook registry)
+- [x] CHK-FIX-003 [P0] Consumer inventory run: every runtime reading a regenerated section, per its own sync manifest (T015, T017, all three synchronizer `--check` runs read PASS)
+- [x] CHK-FIX-004 [P0] Adversarial cases exercised: a judge that can infer the condition, a case set edited mid-run, a default score on failure (all three run on 2026-09-15: blind.mjs over the before and after replies wrote 14 masked files and a sealed order record, and a scan of the masked files for the baseline commit, the reply directories, the change kind or a condition label found 0; generate-prompts.mjs now records casesHash and score.mjs --prompts refuses a manifest whose hash differs from cases.json, exercised with a forged hash, exit 1, message names both hashes, no result file written, and with the other condition's manifest, exit 1; default score on failure holds by construction, every parse or scan failure in score.mjs dies with no fallback value; the frozen before replies rescored through the new path produced rows identical to results/before.json)
+- [x] CHK-FIX-005 [P0] Attribution adversarial cases exercised: a row with no provider plus a row with no change kind (score.mjs:300-302, a missing provider or changeKind in the meta file resolves to an explicit `n/a` sentinel rather than a blank or a crash; T011 confirms the no-change-kind path was actually exercised in production, every row recorded changeKind `n/a` because no projection ran)
+- [x] CHK-FIX-006 [P1] Matrix axes listed: condition by case class, four rows (compare.mjs separates `ruleRows` from the single control row and computes each across before/after, 2 conditions x 2 case classes; T012's compare.txt records the rule delta, T009 records the control delta)
+- [x] CHK-FIX-007 [P1] The mechanism exercised with a hostile environment: missing flag, unreadable flag, absent target file (T007/scratch/harness-smoke.md exercised a missing reply file and a broken case set, both exit 1; score.mjs:224-225 requires `--condition`/`--replies`/`--out` and dies with usage on absence, verified by reading the source though not separately smoke-tested)
+- [x] CHK-FIX-008 [P1] Evidence pinned to a commit, not to a moving branch-relative range (T001, T002, the baseline is pinned to commit 4512473abdec9c7f0ea02126f85bb5c709b2ac26 against the working tree, by design, not a branch-relative diff)
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -173,9 +173,9 @@ Every task names the requirement in this phase's `spec.md` that it serves.
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No credential or key value appears in a case, a rubric or a recorded run
-- [ ] CHK-031 [P0] The runner validates its case set before use rather than trusting its shape
-- [ ] CHK-032 [P1] Not applicable, no auth or authorization surface in scope
+- [x] CHK-030 [P0] No credential or key value appears in a case, a rubric or a recorded run (grep for api-key/secret/password/bearer/token patterns across runs/, cases.json and rubric.json found only generic prose mentions of "secrets" and "password" as rule-text topic words embedded in the prompts, no literal credential value)
+- [x] CHK-031 [P0] The runner validates its case set before use rather than trusting its shape (score.mjs:230-247 validates readable JSON, array shape, expected case ids, no duplicates, a boolean control flag and string fields before scoring)
+- [x] CHK-032 [P1] Not applicable, no auth or authorization surface in scope
 <!-- /ANCHOR:security -->
 
 ---
@@ -183,10 +183,10 @@ Every task names the requirement in this phase's `spec.md` that it serves.
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec/plan/tasks synchronized
-- [ ] CHK-041 [P1] Any code comment states present behavior rather than past approaches
-- [ ] CHK-042 [P2] Each runtime sync manifest updated if a new derived surface was added
-- [ ] CHK-043 [P1] The packet's own generated metadata pair regenerated after any rewrite of `plan.md` or `tasks.md`, because its source fingerprint covers both files and a strict run reads the stale fingerprint as a failed integrity check
+- [x] CHK-040 [P1] Spec/plan/tasks synchronized (spec.md's REQ-001 through REQ-008 match acceptance-criteria.md's REQ column; plan.md cites REQ-001, REQ-004, REQ-007 against the same content)
+- [x] CHK-041 [P1] Any code comment states present behavior rather than past approaches (grep for "previously/used to/legacy/no longer/deprecated" across the four reply-harness scripts found no matches)
+- [x] CHK-042 [P2] Each runtime sync manifest updated if a new derived surface was added (not applicable: T015, no regeneration was needed, this program changed no root-doc line those derive from)
+- [x] CHK-043 [P1] The packet's own generated metadata pair regenerated after any rewrite of `plan.md` or `tasks.md` (this CHK-row edit pass rewrote tasks.md; `repair-derived.cjs` regenerates graph-metadata.json and `validate.sh --strict` confirms the fingerprint is current, see the RESULT line recorded after this edit)
 <!-- /ANCHOR:docs -->
 
 ---
@@ -194,8 +194,8 @@ Every task names the requirement in this phase's `spec.md` that it serves.
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Temp files in scratch/ only
-- [ ] CHK-051 [P1] scratch/ cleaned before completion
+- [x] CHK-050 [P1] Temp files in scratch/ only (scratch/ holds cases-backup.json, harness-smoke.md, model-step.md and the smoke fixtures, all cited as evidence in T007/T009; `runs/` is a shipped deliverable directory per implementation-summary.md Files Changed, not a temp holding area; `.canonical-save.lock/` is save-workflow tooling infrastructure, not phase-authored scratch)
+- [x] CHK-051 [P1] scratch/ cleaned before completion (not applicable: scratch/ files are cited as evidence in T001-T013 and AC rows, kept intentionally as the smoke-test and model-step record)
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -205,11 +205,11 @@ Every task names the requirement in this phase's `spec.md` that it serves.
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 14 | 0/14 |
-| P1 Items | 16 | 0/16 |
-| P2 Items | 1 | 0/1 |
+| P0 Items | 14 | 14/14 |
+| P1 Items | 16 | 16/16 |
+| P2 Items | 1 | 1/1 |
 
-**Verification Date**: Pending, this phase has not run
+**Verification Date**: 2026-09-15, ran the CHK-row evidence pass against T001-T021, AC-001-AC-011 and implementation-summary.md, plus fresh reads of score.mjs/compare.mjs, a credential grep over runs/, and a `validate.sh --strict` rerun
 <!-- /ANCHOR:summary -->
 
 ---

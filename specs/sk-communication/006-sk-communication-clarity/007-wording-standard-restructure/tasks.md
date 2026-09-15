@@ -125,9 +125,9 @@ contextType: "general"
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md
-- [ ] CHK-002 [P0] Technical approach defined in plan.md
-- [ ] CHK-003 [P1] Consumer list and exclusion count captured as a baseline before the first edit
+- [x] CHK-001 [P0] Requirements documented in spec.md (spec.md:122-133, REQ-001 through REQ-007)
+- [x] CHK-002 [P0] Technical approach defined in plan.md (plan.md Architecture and Implementation Phases sections, T001)
+- [x] CHK-003 [P1] Consumer list and exclusion count captured as a baseline before the first edit (T004, scratch/baseline.md)
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -135,10 +135,10 @@ contextType: "general"
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] Every added rule traces to one of the six allocation rows
-- [ ] CHK-011 [P0] The surviving exclusion states message ownership as its reason, in the file
-- [ ] CHK-012 [P1] The base is smaller than the current single file
-- [ ] CHK-013 [P1] Both files follow the standard's existing document shape
+- [x] CHK-010 [P0] Every added rule traces to one of the six allocation rows (T007-T012, implementation-summary Candidate To Section table)
+- [x] CHK-011 [P0] The surviving exclusion states message ownership as its reason, in the file (T014)
+- [x] CHK-012 [P1] The base is smaller than the current single file (T005, hvr-rules.md reduced to the 419-line reply-side base)
+- [x] CHK-013 [P1] Both files follow the standard's existing document shape (T005-T012, each candidate placed in its section's own shape per the Candidate To Section table)
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -146,10 +146,10 @@ contextType: "general"
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met
-- [ ] CHK-021 [P0] Every consumer opened, not assumed, in both families
-- [ ] CHK-022 [P1] The base searched for publish language with an empty result
-- [ ] CHK-023 [P1] The reply-scoped subsection confirmed to reach a reply
+- [x] CHK-020 [P0] All acceptance criteria met (acceptance-criteria.md, AC-001 through AC-007 all Met)
+- [x] CHK-021 [P0] Every consumer opened, not assumed, in both families (T017, T018)
+- [x] CHK-022 [P1] The base searched for publish language with an empty result (T019, AC-003, rerun grep confirms the same 4 lines are naming residue and substring coincidences, no actual publish-language violation)
+- [x] CHK-023 [P1] The reply-scoped subsection confirmed to reach a reply (T006, T017)
 <!-- /ANCHOR:testing -->
 
 ---
@@ -157,13 +157,13 @@ contextType: "general"
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-FIX-001 [P0] Each candidate carries a finding class, and the restructure is treated as cross-consumer
-- [ ] CHK-FIX-002 [P0] Same-class producer inventory run over every file stating wording guidance
-- [ ] CHK-FIX-003 [P0] Consumer inventory re-run rather than inherited from the research
-- [ ] CHK-FIX-004 [P0] Not applicable, no path, parser, redaction or security logic is in scope
-- [ ] CHK-FIX-005 [P1] Matrix axes listed: consumer family by file, four rows
-- [ ] CHK-FIX-006 [P1] Not applicable, no code reads process-wide state in this phase
-- [ ] CHK-FIX-007 [P1] Evidence pinned to a commit, not a moving branch-relative range
+- [x] CHK-FIX-001 [P0] Each candidate carries a finding class, and the restructure is treated as cross-consumer (implementation-summary Candidate To Section table classifies each of the six, T002 treats the 73-file consumer list as cross-consumer)
+- [x] CHK-FIX-002 [P0] Same-class producer inventory run over every file stating wording guidance (rerun repo grep for the standard's name and the plain-English phrase surfaces only the standard's own consumers, no rival producer, alongside T002's baseline)
+- [x] CHK-FIX-003 [P0] Consumer inventory re-run rather than inherited from the research (T002, 73 files, scratch/baseline.md)
+- [x] CHK-FIX-004 [P0] Not applicable, no path, parser, redaction or security logic is in scope (not applicable: doc restructure only, per the Files Changed table)
+- [x] CHK-FIX-005 [P1] Matrix axes listed: consumer family by file, four rows (plan.md FIX ADDENDUM, two consumer families times two files)
+- [x] CHK-FIX-006 [P1] Not applicable, no code reads process-wide state in this phase (not applicable: no code changed this phase)
+- [ ] CHK-FIX-007 [P1] Evidence pinned to a commit, not a moving branch-relative range (open: work is uncommitted, all evidence cites file:line and scratch files, not a commit hash)
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -171,9 +171,9 @@ contextType: "general"
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No credential or private identifier enters either file
-- [ ] CHK-031 [P0] The scope gate still names every span a rewrite may never touch
-- [ ] CHK-032 [P1] Not applicable, no auth or authorization surface in scope
+- [x] CHK-030 [P0] No credential or private identifier enters either file (rerun secret-pattern grep over the five changed files, no matches)
+- [x] CHK-031 [P0] The scope gate still names every span a rewrite may never touch (T013, T014, T020, scope-and-exemptions.md still gates the surviving exclusion)
+- [x] CHK-032 [P1] Not applicable, no auth or authorization surface in scope (not applicable)
 <!-- /ANCHOR:security -->
 
 ---
@@ -181,9 +181,9 @@ contextType: "general"
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec/plan/tasks synchronized
-- [ ] CHK-041 [P1] Not applicable, no code comments are written in this phase
-- [ ] CHK-042 [P2] Parent Phase Documentation Map status updated when this phase closes
+- [x] CHK-040 [P1] Spec/plan/tasks synchronized (spec.md REQ-001 through REQ-007, plan.md phases and T001-T023 all describe the same six candidates and base-plus-supplement cut)
+- [x] CHK-041 [P1] Not applicable, no code comments are written in this phase (not applicable: doc-only phase)
+- [x] CHK-042 [P2] Parent Phase Documentation Map status updated when this phase closes (parent spec.md:161, phase 7 row reads Complete)
 <!-- /ANCHOR:docs -->
 
 ---
@@ -191,8 +191,8 @@ contextType: "general"
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Temp files in scratch/ only
-- [ ] CHK-051 [P1] scratch/ cleaned before completion
+- [x] CHK-050 [P1] Temp files in scratch/ only (scratch/ holds only .gitkeep and baseline.md, verified by listing)
+- [x] CHK-051 [P1] scratch/ cleaned before completion (baseline.md is retained by design as the evidence T002, T004, T011 and T019 cite, not stray output; no other file present)
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -202,11 +202,11 @@ contextType: "general"
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 13 | 0/13 |
-| P1 Items | 11 | 0/11 |
-| P2 Items | 1 | 0/1 |
+| P0 Items | 12 | 12/12 |
+| P1 Items | 13 | 12/13 |
+| P2 Items | 1 | 1/1 |
 
-**Verification Date**: Pending, this phase has not run
+**Verification Date**: 2026-09-14, the base-scoring-language grep, the credential scan and the parent Phase Documentation Map read all ran from the final state; the one open P1 is the commit-pinning row
 <!-- /ANCHOR:summary -->
 
 ---

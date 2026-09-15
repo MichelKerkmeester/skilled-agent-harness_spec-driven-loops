@@ -97,7 +97,7 @@ What should this command do, which arguments should it accept, and which tools d
 Q2. Spec Folder
 A) Use existing: [suggest if related found]
 B) Create new spec folder
-C) Update related spec: [if partial match found]
+C) Related spec: [if partial match found]
 D) Skip documentation
 
 Q3. Execution Mode (if no :auto/:confirm suffix)

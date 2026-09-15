@@ -7,12 +7,12 @@
   "sourceDigests": [
     {
       "path": ".opencode/commands/deep/ai-council.md",
-      "sha256": "1b079fa5fb74d8f9f715cccc980c7db76d4adb7a2960b4f4e6fcbb4d7d223609",
+      "sha256": "1f80feded36159fdee6b9314fbe6848e01d0cdac687a47ea388772dd73c06bc4",
       "section": "full"
     },
     {
       "path": ".opencode/commands/deep/assets/deep-ai-council-presentation.txt",
-      "sha256": "2a70660010cf452c9f610303c1299e0b4180499885eb5fc6a7bcaa80f43326b6",
+      "sha256": "7abb4d64cddf66db70d23dd611a53441b10e2878ffa6177dad59b3c825b6fed8",
       "section": "full"
     },
     {
@@ -146,7 +146,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "e4bb1660d7ff40d22171b384c02af855fe2aeed788c5b25fedd1b072cb742c9e"
+  "compiledBodyDigest": "a62350d7c7cf02a63e706ebc5180d2e041f1c0d4cba6f30bea799acf027730da"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:ai-council
@@ -159,7 +159,7 @@ This generated contract collapses the maintained command authority chain into on
 
 You were invoked via `opencode run --command deep/ai-council` with the `:auto` suffix and a bound spec_folder and target in your message. The `:auto` suffix plus the bound spec_folder mean setup is ALREADY resolved. Therefore:
 
-- DO NOT emit the consolidated setup question (target/mode, research topic, Spec Folder A/B/C/D/E, execution mode, max iterations, executor). The bound spec_folder is your write authority; do not ask which spec folder should own the writes.
+- DO NOT emit the consolidated setup question (target/mode, research topic, Spec Folder A/B/C/D, execution mode, max iterations, executor). The bound spec_folder is your write authority; do not ask which spec folder should own the writes.
 - DO NOT halt for the repo-wide `CLAUDE.md` Gate-3 documentation gate. Under AUTONOMOUS execution with a validated prebound spec folder, Gate 3 is already satisfied by that folder (see gate3Precedence below).
 - PROCEED immediately: load the auto workflow YAML and convene the ai-council round over the bound topic.
 - CONVENE IN-CLI: run the round's seats using your OWN model bench / distinct reasoning lenses in-CLI — do NOT dispatch a task per seat (in-CLI is the default and common council mode). Produce at least 3 DISTINCT seats.
@@ -353,8 +353,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    Q1. Spec Folder (required):
      A) Use existing [suggest if found]
      B) Create new under `specs/[track]/[###]-[slug]/` (accept `.opencode/specs/` alias roots when already in use)
-     C) Update related [if match found]
-     D) Phase folder (e.g., `specs/NN-track/NNN-name/001-phase/` or matching `.opencode/specs/` alias)
+     C) Related [if match found, including a phase folder such as `specs/NN-track/NNN-name/001-phase/` or matching `.opencode/specs/` alias]
 
    Q2. Execution Mode (if no suffix):
      A) Autonomous - run setup, topic loops, synthesis, and save without approval
@@ -383,7 +382,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 8. Parse response and store ALL results:
    - deliberation_topic = [from Q0 or $ARGUMENTS]
    - topics = [from Q0, $ARGUMENTS, or derived single-item list]
-   - spec_choice = [A/B/C/D from Q1]
+   - spec_choice = [A/B/C from Q1]
    - spec_path = [derived path]
    - execution_mode = [AUTONOMOUS/INTERACTIVE]
    - max_rounds_per_topic = [from Q3 or flag or default 3]

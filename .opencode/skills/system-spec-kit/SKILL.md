@@ -494,7 +494,7 @@ The packet `goal.md` is the source of goal state. A session binds to it (`openco
 1. **Determine level (1/2/3/3+) before ANY file changes** - Count LOC, assess complexity/risk
 2. **Scaffold from contract-backed templates** - Use `create.sh` or `inline-gate-renderer`, NEVER create from scratch
 3. **Fill ALL placeholders** - Remove placeholder markers and sample content
-4. **Ask A/B/C/D/E when file modification detected** - Present options, wait for selection
+4. **Ask A/B/C/D when file modification detected** - Present options, wait for selection
 5. **Prefer coordinated related packets before new top-level folders** - Check active and related specs, their scope, status, and Phase Documentation Map. When related work qualifies for phase decomposition, recommend one phased packet rather than separate single-spec folders.
 6. **Get explicit user approval before changes** - Show level, path, templates, approach
 7. **Use consistent folder naming** - `specs/###-short-name/` format
@@ -521,7 +521,7 @@ The packet `goal.md` is the source of goal state. A session binds to it (`openco
 4. **Leave placeholders in final docs** - All must be replaced
 5. **Decide autonomously update vs create** - Always ask user
 6. **Claim done without clearing both completion gates** - Level 2+ requires the `tasks.md` verification checklist verified with evidence AND every `acceptance-criteria.md` criterion `Met`, `Waived` or `Superseded`
-7. **Proceed without spec folder confirmation** - Wait for A/B/C/D/E
+7. **Proceed without spec folder confirmation** - Wait for A/B/C/D
 8. **Skip validation before completion** - Completion Verification hard block
 9. **Add ToC sections to standard spec artifacts** - `spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md`, `decision-record.md`, `implementation-summary.md`, `handover.md`, `debug-delegation.md`, and `resource-map.md` must not contain ToC headings
 

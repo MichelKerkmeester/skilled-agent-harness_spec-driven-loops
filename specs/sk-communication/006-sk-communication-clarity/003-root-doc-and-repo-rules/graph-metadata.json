@@ -39,7 +39,7 @@
       "rules"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,9 +47,9 @@
       "acceptance-criteria.md",
       "implementation-summary.md",
       "repo-rules/communication.md",
-      "repo-rules/prose-mechanics.md",
       "repo-rules/presenting-decisions.md",
-      "repo-rules/handoff-and-questions.md"
+      "repo-rules/handoff-and-questions.md",
+      "repo-rules/communication-prose.md"
     ],
     "entities": [
       {
@@ -89,12 +89,6 @@
         "source": "derived"
       },
       {
-        "name": "prose-mechanics.md",
-        "kind": "doc",
-        "path": "repo-rules/prose-mechanics.md",
-        "source": "derived"
-      },
-      {
         "name": "presenting-decisions.md",
         "kind": "doc",
         "path": "repo-rules/presenting-decisions.md",
@@ -104,6 +98,12 @@
         "name": "handoff-and-questions.md",
         "kind": "doc",
         "path": "repo-rules/handoff-and-questions.md",
+        "source": "derived"
+      },
+      {
+        "name": "communication-prose.md",
+        "kind": "doc",
+        "path": "repo-rules/communication-prose.md",
         "source": "derived"
       },
       {
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The reply-shape rule takes ten of the twenty-nine adopted candidates, the largest single allocation",
     "created_at": "2026-09-12T12:44:36Z",
-    "last_save_at": "2026-09-14T15:48:36.242Z",
+    "last_save_at": "2026-09-15T05:19:36.334Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +209,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2835f470b2c1d2964a0fb71d0204acd47bf57fb06eb69cdaf91f3928129942fe",
+    "source_fingerprint": "sha256:0c089eb27a481213f6054841765f19d2e645b12a57c4d9d090d43c2bb90d59a1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2c7e936778cb98ee20ba44a849ab0dc47b53aec6da1311a4ae61fa1804ad097f",
       "plan.md": "dfecbb2fe8e665ff2c27e178fd681ea305ca5348c9a7f4b95b3b3d374671e9a3",
-      "tasks.md": "75f0dcd74c246119af1aee81e282aaf6e34b4fc4f57b2d9ab49fdb32911aa223",
-      "implementation-summary.md": "706a2db3823f57ba8242db83f8d474d59aaa0007b477165beb7d8953d7eb8434"
+      "tasks.md": "b4133dc9474fb6e15985dbbe32073918fcf90856b50a785b34b77b98eaa29e13",
+      "implementation-summary.md": "b8aa15414c24912e41d869e975a7acf3e0d0eee6836cdab865690cb5ac4289c1"
     },
     "last_active_at": null
   }

@@ -12,6 +12,7 @@ import {
 import { deepFreeze, freezeExactOriginal } from './freeze.js';
 import { restoreProtectedSpans } from './protected-spans.js';
 import {
+  compareCausalDirection,
   compareClaimCoverage,
   compareSemanticMeaning,
   countContentCodepoints,
@@ -239,6 +240,17 @@ async function validateProjectionCandidateInternal(
         checks,
         claimDifference.expectedCount,
         claimDifference.actualCount,
+      );
+    }
+
+    const causalDifference = compareCausalDirection(sourceText, restored.text);
+    if (causalDifference !== null) {
+      return fallback(
+        protection,
+        causalDifference.reasonCode,
+        checks,
+        causalDifference.expectedCount,
+        causalDifference.actualCount,
       );
     }
   }

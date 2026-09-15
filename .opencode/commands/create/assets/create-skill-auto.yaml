@@ -268,7 +268,7 @@ gate_logic:
 # ─────────────────────────────────────────────────────────────────
 context_loading:
   trigger: "During UNIFIED SETUP PHASE, non-interactive resolution before Step 1"
-  applies_when: "spec_path resolves to an existing spec folder (spec_choice A - Existing, C - Update related, or D - Extend phased packet) that contains handover.md or _memory.continuity in implementation-summary.md; not applicable to a freshly created spec folder (spec_choice B - New) or when spec_choice is E (Skip)"
+  applies_when: "spec_path resolves to an existing spec folder (spec_choice A - Existing, or C - Related) that contains handover.md or _memory.continuity in implementation-summary.md; not applicable to a freshly created spec folder (spec_choice B - New) or when spec_choice is D (Skip)"
   auto_resolution:
     default: "If prior context exists (handover.md <24h old or _memory.continuity present), load it automatically; sets memory_loaded: handover+continuity. Otherwise skip; sets memory_loaded: skipped."
     override: "Honor memory_choice if explicitly supplied as a command argument"

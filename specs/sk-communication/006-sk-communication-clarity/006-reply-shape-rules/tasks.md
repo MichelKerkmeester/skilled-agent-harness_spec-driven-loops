@@ -35,9 +35,9 @@ contextType: "general"
 ## Phase 1: Setup
 
 - [x] T001 Confirm phase 3's split landed and validates, because this phase is blocked on it
-  - Evidence: wc before the first edit read communication.md 135 5658 and prose-mechanics.md 106 3945, exactly the SIZE AFTER SPLIT figures at 003/scratch/seam-assignment.md:105-106, both halves present and both named by a router row (REPO RULES.md:47-48)
+  - Evidence: wc before the first edit read communication.md 135 5658 and prose-mechanics.md 106 3945, exactly the SIZE AFTER SPLIT figures at 003/baselines/seam-assignment.md:105-106, both halves present and both named by a router row (REPO RULES.md:47-48)
 - [x] T002 Capture the baseline: the per-mark instruction set and each half's size before the first edit
-  - Evidence: baseline = 003/scratch/per-mark-baseline.md, eighteen marks in twenty-eight governed rows, plus the seam-assignment sizes, both captured pre-change in 003 and confirmed unchanged before this phase's first edit
+  - Evidence: baseline = 003/baselines/per-mark-baseline.md, eighteen marks in twenty-eight governed rows, plus the seam-assignment sizes, both captured pre-change in 003 and confirmed unchanged before this phase's first edit
 - [x] T003 [P] Re-read the ten allocation rows and the two halves as they stand
   - Evidence: rows 3, 4, 5, 6, 7, 12, 15, 16, 17 and 20 read at 002/allocation-table.md:29-33 and :38-46, both halves read end to end this session, all before the first edit
 - [x] T004 Assign each candidate to a half by the unit it governs, and record the assignment before writing
@@ -83,7 +83,7 @@ contextType: "general"
 - [x] T017 Walk both halves and confirm each is named by at least one row
   - Evidence: communication.md named by the trigger row at REPO RULES.md:47 and the index row at :66, prose-mechanics.md by :48 and :67, no half unnamed
 - [x] T018 Run the per-mark contradiction scan and compare with the captured baseline
-  - Evidence: instruction lines rescanned against 003/scratch/per-mark-baseline.md, no mark gained a second instruction, the rationale line for no-tables (communication.md:96-97) and the opener-position habit at :140 recorded as the rationale layer, the full disposition in scratch/size-and-marks.md
+  - Evidence: instruction lines rescanned against 003/baselines/per-mark-baseline.md, no mark gained a second instruction, the rationale line for no-tables (communication.md:96-97) and the opener-position habit at :140 recorded as the rationale layer, the full disposition in scratch/size-and-marks.md
 - [x] T019 Read every added rule and confirm it names a failure specific enough to argue with
   - Evidence: all nine added failure lines read against their allocation rows, each names a contestable failure in the row's own wording, juxtaposition fakes the link, the moving parts never named, locally atomic paragraphs, the buried outcome, the shortened list read as complete, the second issue hijacking the reply
 - [x] T020 Follow every counterweight cross-reference and confirm it resolves
@@ -123,9 +123,9 @@ contextType: "general"
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md
-- [ ] CHK-002 [P0] Technical approach defined in plan.md
-- [ ] CHK-003 [P1] Baseline per-mark instruction set and per-half sizes captured before the first edit
+- [x] CHK-001 [P0] Requirements documented in spec.md (spec.md carries REQ-001 through REQ-006, cited across AC-001 to AC-006 in acceptance-criteria.md)
+- [x] CHK-002 [P0] Technical approach defined in plan.md (plan.md, ~7.7KB, present and read alongside spec.md)
+- [x] CHK-003 [P1] Baseline per-mark instruction set and per-half sizes captured before the first edit (T001, T002, wc read communication.md 135 5658 and prose-mechanics.md 106 3945, 003/baselines/per-mark-baseline.md read in full before the first edit)
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -133,10 +133,10 @@ contextType: "general"
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] Every added rule traces to one of the ten allocation rows
-- [ ] CHK-011 [P0] No added rule relaxes a hard blocker or a verification standard
-- [ ] CHK-012 [P1] Each half is within its recorded ceiling, or the overflow is recorded as a finding
-- [ ] CHK-013 [P1] Each rule follows the existing rule-file shape rather than inventing a second one
+- [x] CHK-010 [P0] Every added rule traces to one of the ten allocation rows (T004, T019, AC-001, AC-002, every added failure line traced to its allocation row)
+- [x] CHK-011 [P0] No added rule relaxes a hard blocker or a verification standard (read communication.md sections 5-10 and communication-prose.md section 4, all reply-shape and prose rules, none reference or modify Gate 3, the Four Laws or a verification standard)
+- [x] CHK-012 [P1] Each half is within its recorded ceiling, or the overflow is recorded as a finding (`wc -l` run now: communication.md 242/250, communication-prose.md 146/250, both under the checker's 250-line ceiling; these current counts exceed T021's recorded 230/140 by 12 and 6 lines, reflecting further edits to communication.md since this phase's own snapshot, still within ceiling)
+- [x] CHK-013 [P1] Each rule follows the existing rule-file shape rather than inventing a second one (implementation-summary.md "How It Was Delivered", each rule is a bold-led instruction with its own failure line inside the section that governs its unit)
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -144,10 +144,10 @@ contextType: "general"
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met
-- [ ] CHK-021 [P0] Trigger reachability verified in both directions
-- [ ] CHK-022 [P1] Per-mark contradiction scan compared against the captured baseline
-- [ ] CHK-023 [P1] Every counterweight cross-reference followed and confirmed to resolve
+- [x] CHK-020 [P0] All acceptance criteria met (acceptance-criteria.md, AC-001 through AC-006 all Met)
+- [x] CHK-021 [P0] Trigger reachability verified in both directions (T016, T017; REPO RULES.md rows 47/48 confirmed live, naming both communication.md and communication-prose.md)
+- [x] CHK-022 [P1] Per-mark contradiction scan compared against the captured baseline (T018, rescanned against 003/baselines/per-mark-baseline.md, no mark gained a second instruction)
+- [x] CHK-023 [P1] Every counterweight cross-reference followed and confirmed to resolve (T020; confirmed live, communication-prose.md carries a section 4 heading "CONCISE IS NOT COMPRESSED" at line 118, matching every cross-reference)
 <!-- /ANCHOR:testing -->
 
 ---
@@ -155,13 +155,13 @@ contextType: "general"
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-FIX-001 [P0] Each candidate carries a finding class, and shared-policy rows are treated as cross-consumer
-- [ ] CHK-FIX-002 [P0] Same-class producer inventory run over the root doc, the router and the rule directory
-- [ ] CHK-FIX-003 [P0] Consumer inventory run for every document citing either half
-- [ ] CHK-FIX-004 [P0] Not applicable, no path, parser, redaction or security logic is in scope
-- [ ] CHK-FIX-005 [P1] Matrix axes listed: governed unit by candidate, ten rows
-- [ ] CHK-FIX-006 [P1] Not applicable, no code reads process-wide state in this phase
-- [ ] CHK-FIX-007 [P1] Evidence pinned to a commit, not a moving branch-relative range
+- [x] CHK-FIX-001 [P0] Each candidate carries a finding class, and shared-policy rows are treated as cross-consumer (T004 records the by-unit assignment; T015, candidate 20 written as a patch across both halves rather than a new section)
+- [x] CHK-FIX-002 [P0] Same-class producer inventory run over the root doc, the router and the rule directory (T016, both router tables walked, twelve rule files named, all twelve exist and open)
+- [x] CHK-FIX-003 [P0] Consumer inventory run for every document citing either half (T017, both halves named by a router row; implementation-summary.md corpus-checker result, "32 body links resolve")
+- [x] CHK-FIX-004 [P0] Not applicable, no path, parser, redaction or security logic is in scope
+- [x] CHK-FIX-005 [P1] Matrix axes listed: governed unit by candidate, ten rows (T004, the by-unit assignment for all ten candidates recorded in scratch/size-and-marks.md)
+- [x] CHK-FIX-006 [P1] Not applicable, no code reads process-wide state in this phase
+- [ ] CHK-FIX-007 [P1] Evidence pinned to a commit, not a moving branch-relative range (open: no evidence in this phase cites a commit hash; a fresh `wc -l` shows communication.md and communication-prose.md have already drifted from T021's recorded line counts, 242 vs 230 and 146 vs 140, which is the exact failure mode this row exists to catch, though the specific added-section line ranges spot-checked still resolve)
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -169,9 +169,9 @@ contextType: "general"
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No credential, secret path or private identifier enters a rule file
-- [ ] CHK-031 [P0] Not applicable, no input-validation surface in scope
-- [ ] CHK-032 [P1] Not applicable, no auth or authorization surface in scope
+- [x] CHK-030 [P0] No credential, secret path or private identifier enters a rule file (grep for api-key/secret/password/bearer/token patterns across communication.md and communication-prose.md found no matches)
+- [x] CHK-031 [P0] Not applicable, no input-validation surface in scope
+- [x] CHK-032 [P1] Not applicable, no auth or authorization surface in scope
 <!-- /ANCHOR:security -->
 
 ---
@@ -179,9 +179,9 @@ contextType: "general"
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec/plan/tasks synchronized
-- [ ] CHK-041 [P1] Not applicable, no code comments are written in this phase
-- [ ] CHK-042 [P2] Parent Phase Documentation Map status updated when this phase closes
+- [x] CHK-040 [P1] Spec/plan/tasks synchronized (spec.md's REQ-001 through REQ-006 match acceptance-criteria.md's REQ column; plan.md and tasks.md describe the same ten allocation rows)
+- [x] CHK-041 [P1] Not applicable, no code comments are written in this phase
+- [x] CHK-042 [P2] Parent Phase Documentation Map status updated when this phase closes (parent spec.md line 159, row 6, "006-reply-shape-rules/ ... Complete")
 <!-- /ANCHOR:docs -->
 
 ---
@@ -189,8 +189,8 @@ contextType: "general"
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Temp files in scratch/ only
-- [ ] CHK-051 [P1] scratch/ cleaned before completion
+- [x] CHK-050 [P1] Temp files in scratch/ only (scratch/ holds only size-and-marks.md)
+- [x] CHK-051 [P1] scratch/ cleaned before completion (not applicable: size-and-marks.md is cited as evidence by T002, T004 and T018, kept intentionally rather than deleted)
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -200,11 +200,11 @@ contextType: "general"
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 13 | 0/13 |
-| P1 Items | 11 | 0/11 |
-| P2 Items | 1 | 0/1 |
+| P0 Items | 12 | 12/12 |
+| P1 Items | 13 | 12/13 |
+| P2 Items | 1 | 1/1 |
 
-**Verification Date**: 2026-09-14
+**Verification Date**: 2026-09-14, ran the CHK-row evidence pass against T001-T022, AC-001-AC-006 and implementation-summary.md, plus fresh `wc -l`/grep reads of communication.md and communication-prose.md and a `validate.sh --strict` rerun
 **Validate RESULT (strict)**: RESULT: PASSED, errors 0, warnings 0, exit 0
 **Metadata repair**: the first strict run reported 2 errors, both stale generated fields in graph-metadata.json, the stored description and the source fingerprint had gone stale against this phase's edited source docs, repair-derived.cjs regenerated them as the run prescribed, the rerun above is the final state
 <!-- /ANCHOR:summary -->
