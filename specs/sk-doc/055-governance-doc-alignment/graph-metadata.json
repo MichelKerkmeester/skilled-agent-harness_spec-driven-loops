@@ -57,7 +57,8 @@
       ".opencode/skills/sk-doc/sk-create-repo-rule/SKILL.md",
       "research/root-doc-staleness/lineages/1789357391666-zngraa-staleness/research.md",
       "specs/sk-communication/006-sk-communication-clarity/007-wording-standard-restructure/spec.md",
-      "specs/sk-communication/006-sk-communication-clarity/002-synthesis-and-decisions/decision-record.md"
+      "specs/sk-communication/006-sk-communication-clarity/002-synthesis-and-decisions/decision-record.md",
+      "scratch/opus-root-doc-audit.md"
     ],
     "entities": [
       {
@@ -133,6 +134,12 @@
         "source": "derived"
       },
       {
+        "name": "opus-root-doc-audit.md",
+        "kind": "doc",
+        "path": "scratch/opus-root-doc-audit.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -197,17 +204,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Data Flow The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The 006 clarity program paused with its validation state unproven: a swarm rewrote twelve documents, and the repair pass that would confirm them was killed partway",
     "created_at": "2026-09-13T11:50:18Z",
-    "last_save_at": "2026-09-14T20:31:52.347Z",
+    "last_save_at": "2026-09-15T03:26:54.712Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,12 +219,12 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b0fe616a6c79b9867d8fe85419fb883d5727b1ff2d076dac76947cb50a01a0cc",
+    "source_fingerprint": "sha256:9c6af5401e6d3a1c2cd33046fa02a4dfb97190331481c91a2a4702023bd15da0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c842c157614e1fd1460ba61b191dc06168e301810f0e48c44ad860f539a8dce5",
       "plan.md": "32177ebdd8dcbb19aab4d92b734a4546ff15a68379b0c6cad2caf47595849c34",
-      "tasks.md": "a2a3b98ec042dc12d95febe7ed9155ecaa1993c33a9d2a42f55adb34f3bba05a",
+      "tasks.md": "5fc655bcffcd1105139b85c664a8475478849ac18097785be3d9a531914a4cad",
       "decision-record.md": "2203d47bf3d42214310bfe090ad7c8cb0e720a9b94927f500b68c88cd1506e3d",
       "implementation-summary.md": "a718cda3374f1ff2819b5c225edc128424a3079472a43ac57da2036adea0b5f1"
     },
