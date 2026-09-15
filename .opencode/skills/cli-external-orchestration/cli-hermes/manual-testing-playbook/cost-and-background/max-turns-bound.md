@@ -68,6 +68,8 @@ cat out.txt
 
 **Executed 2026-09-14, second pass** with `--max-turns 1` and `-t file,todo`: exit 0 after 64 s (session `20260914_225938_85c996`). The agent log records `⚠️  Reached maximum iterations (1). Requesting summary...` and `Turn ended: reason=max_iterations_reached(1/1) ... api_calls=1/1 tool_turns=1`. The forced summary reports real file paths found in that single iteration and closes with its own caveat that both content searches hit the 250-result cap. Verdict PASS. Note the behavioural change from the first pass: with the file tools direct rather than deferred, one iteration completes real work, so the cap's proof is the log line rather than a bare refusal to answer.
 
+
+**Third pass 2026-09-15**: exit 0 after 48 s with 3855 bytes, session `20260915_145406_4ed2c8`, and both `Reached maximum iterations (1)` and `max_iterations_reached(1/1)` in the log. An earlier attempt in the same pass, run while three Hermes sessions shared the gateway, hit the cap correctly but then stalled on the post-cap summary stream and was killed by the 300-second alarm with both streams empty. The cap is not the fragile part; the summary request after it is, and this scenario should be run serially.
 ---
 
 ## 4. SOURCE FILES

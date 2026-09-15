@@ -99,6 +99,7 @@ Two lanes authored the packages from the skills' templates; the playbook lane ex
 | Operator contract validator | `PASS package=cli-external-orchestration/cli-hermes tier=FAIL_CLOSED scenarios=36 categories=11 violations=0 warnings=1` (census warning: hand-typed and derived agree) |
 | Stress bijection validator | `PASS ... cells: 112 ... missing tests: 0, missing playbooks: 0` |
 | Second pass | 22 PASS, 0 FAIL, 0 SKIP |
+| Third pass (all 44, cli-pi on deepseek-v4.1-flash high) | 43 PASS, 1 FAIL; found two plugin defects and two false doc claims, all corrected |
 | `validate_catalog_package.py --strict` | cli-hermes `PASS: 0 violations`; hub `0 fail, 9 warn` (pre-existing) |
 | `validate_document.py` on the playbook root and the catalog files | `Total issues: 0` |
 <!-- /ANCHOR:verification -->

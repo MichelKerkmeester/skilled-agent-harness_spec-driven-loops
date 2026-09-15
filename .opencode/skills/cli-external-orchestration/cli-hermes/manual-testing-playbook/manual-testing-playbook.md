@@ -292,7 +292,7 @@ This category checks the plugin's system-prompt section surface, which is how th
 This category covers project-skill preloading with its negative control, the deliberate absence of project rows from `hermes skills list`, and the plugin's self-dispatch refusal.
 
 - `HERMES-016`: [Project skill preload](skills-and-plugins/project-skill-preload.md)
-- `HERMES-017`: [Skills list omits project skills](skills-and-plugins/skills-list-omits-project-skills.md)
+- `HERMES-017`: [Skills list enumerates the loadable project skills](skills-and-plugins/skills-list-enumerates-project-skills.md)
 - `HERMES-018`: [Plugin self-dispatch refusal](skills-and-plugins/plugin-self-dispatch-refusal.md)
 - `HERMES-024`: [Post-edit quality advisory on a write result](skills-and-plugins/post-edit-quality-advisory-on-write-result.md)
 - `HERMES-025`: [Task-dispatch guard blocks a mismatched delegation](skills-and-plugins/task-dispatch-guard-blocks-delegation.md)
@@ -388,7 +388,7 @@ No `feature-catalog/` package exists for `cli-hermes`, so no scenario carries a 
 ### SKILLS AND PLUGINS
 
 - HERMES-016: [Project skill preload](skills-and-plugins/project-skill-preload.md)
-- HERMES-017: [Skills list omits project skills](skills-and-plugins/skills-list-omits-project-skills.md)
+- HERMES-017: [Skills list enumerates the loadable project skills](skills-and-plugins/skills-list-enumerates-project-skills.md)
 - HERMES-018: [Plugin self-dispatch refusal](skills-and-plugins/plugin-self-dispatch-refusal.md)
 - HERMES-024: [Post-edit quality advisory on a write result](skills-and-plugins/post-edit-quality-advisory-on-write-result.md)
 - HERMES-025: [Task-dispatch guard blocks a mismatched delegation](skills-and-plugins/task-dispatch-guard-blocks-delegation.md)

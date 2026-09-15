@@ -55,7 +55,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
 | AC-001 | REQ-001 | Given the playbook package, When validated, Then the root and scenario files exist at sibling depth | `PASS package=cli-external-orchestration/cli-hermes tier=FAIL_CLOSED scenarios=36 categories=11 violations=0`; Pi has 37 | Met | - |
-| AC-002 | REQ-002 | Given the live scenarios, When executed, Then at least half have recorded evidence | Second pass `benchmark/reports/2026-09-14-phase-008-second-pass/`: 22 PASS, 0 FAIL, 0 SKIP (22 of 36; the 14 stress cells run in the runtime suite) | Met | - |
+| AC-002 | REQ-002 | Given the live scenarios, When executed, Then at least half have recorded evidence | Third pass `benchmark/reports/2026-09-15-phase-008-third-pass/`: all 44 executed in one sitting, 43 PASS and 1 FAIL (a model disagreement), the 14 hermetic cells via the runtime suite at 18 of 18 | Met | - |
 | AC-003 | REQ-003 | Given the catalog packages, When the hub checker runs, Then both validate | `validate_catalog_package.py --strict`: cli-hermes `PASS: 0 violations`; hub `0 fail, 9 warn` (pre-existing warnings) | Met | - |
 | AC-004 | REQ-001 | Given the stress matrix, When its bijection validator runs, Then no cli-hermes cell is missing | `PASS: CLI adapter stress matrix bijection ... missing tests: 0, missing playbooks: 0` | Met | - |
 

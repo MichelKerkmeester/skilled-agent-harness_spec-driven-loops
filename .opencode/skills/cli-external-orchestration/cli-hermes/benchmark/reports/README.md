@@ -24,6 +24,7 @@ Each row below is one run folder. This run family validates the `cli-hermes` man
 
 | Executed | Folder | Trace mode | Result | Verdict | Source |
 |---|---|---|---|---|---|
+| 2026-09-15 | [`2026-09-15-phase-008-third-pass/`](./2026-09-15-phase-008-third-pass/) | live + hermetic, cli-pi on deepseek-v4.1-flash (high) | 43 PASS, 1 FAIL | **PASS** |
 | 2026-09-14 | [`2026-09-14-phase-008-second-pass/`](./2026-09-14-phase-008-second-pass/) | live, glm-5.3-flash via llmgateway | 22 PASS, 14 SKIP (hermetic) | **PASS** | `manual-testing-playbook` |
 | 2026-09-14 | [`2026-09-14-phase-008-first-pass/`](./2026-09-14-phase-008-first-pass/) | live, glm-5.3-flash via llmgateway | 17 PASS, 2 FAIL, 14 SKIP (hermetic) | **FAIL** | `manual-testing-playbook` | (superseded)
 

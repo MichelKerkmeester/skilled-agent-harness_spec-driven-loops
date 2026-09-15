@@ -87,7 +87,7 @@ verdict from phase 002.
 ## 3. COMPLETION CRITERIA
 
 - [x] Symlinks resolve; real files present
-- [x] A live session reaches a repo skill: `-s cli-hermes` quoted the packet's first hard rule id (`hermes skills list` shows no project rows; the listing form is superseded by the preload proof)
+- [x] A live session reaches a repo skill: `-s cli-hermes` quoted the packet's first hard rule id, and `hermes skills list` enumerates the loadable copies as `local` rows (61 of 68 on 2026-09-15; the seven absences are the quarantined ones)
 - [x] One prompt template runs a repo command end to end (`agent-router` template via `--query-file`, persona honored, exit 0 in 91 s)
 - [x] No hand-duplicated files; generated copies are checkable
 <!-- /ANCHOR:completion -->

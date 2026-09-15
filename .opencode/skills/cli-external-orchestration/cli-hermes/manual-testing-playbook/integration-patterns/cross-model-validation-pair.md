@@ -72,6 +72,8 @@ tail -1 a.txt; tail -1 b.txt
 
 **Executed 2026-09-14, second pass** (`-t file,todo`): `glm-5.3-flash` exit 0 in 21 s with stdout `--yolo` (session `20260914_225716_296999`); `deepseek-v4.1-flash` exit 0 in 112 s answering `` `--yolo` `` with its own sourcing caveat (session `20260914_225735_f665e0`). Both agree. Verdict PASS.
 
+
+**Third pass 2026-09-15**: the pair disagreed. `deepseek-v4.1-flash` answered `--yolo` (session `20260915_144107_4c8c71`); `glm-5.3-flash` answered `--dangerously-skip-permissions` (session `20260915_144156_997acb`), which is Claude Code's flag, not Hermes's. Both exited 0 through the identical dispatch shape, so the transport held and the disagreement is the model signal this scenario exists to surface. It is also a stability signal: the same model answered `--yolo` correctly in the second pass, so the wrong answer is non-determinism rather than a fixed belief.
 ---
 
 ## 4. SOURCE FILES
