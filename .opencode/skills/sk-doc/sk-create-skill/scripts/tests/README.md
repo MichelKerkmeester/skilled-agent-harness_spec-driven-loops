@@ -25,6 +25,7 @@ trigger_phrases:
 | `ci-leaf-manifest-freshness.test.cjs` | Checks leaf-manifest freshness traversal. |
 | `compiled-routing-lockstep-parity.test.cjs` | Checks compiled-routing lockstep fixtures and reports live parity. |
 | `create-journey-proof.test.cjs` | Checks standalone and parent-hub create journeys. |
+| `generate-leaf-manifest-scopes.test.cjs` | Tests per-mode leaf scoping and the hash-equal leaf-set refusal. |
 | `leaf-resource-contract.test.cjs` | Tests typed leaf-resource identity behavior. |
 | `root-router-contract.test.cjs` | Tests the two-state root ROUTER.md contract and its stable negative codes. |
 | `skill-derived-regenerator.test.cjs` | Tests derived-data regeneration and freshness behavior. |

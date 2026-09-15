@@ -39,14 +39,28 @@
       "approach"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/deep-improvement/references/shared/agent-mirror-crosswalk.md",
+      ".opencode/agents/README.txt",
+      ".claude/agents/README.txt",
+      ".opencode/skills/system-deep-loop/deep-improvement/README.md",
+      ".opencode/agents/deep-review.md",
+      ".claude/agents/deep-review.md",
+      ".pi/agents/deep-review.md",
+      ".codex/agents/deep-review.toml",
+      ".opencode/skills/system-deep-loop/leaf-scopes.json",
+      ".opencode/skills/sk-doc/leaf-scopes.json",
+      ".opencode/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs",
+      ".opencode/skills/sk-doc/sk-create-skill/scripts/lib/leaf-resource-contract.cjs",
+      ".opencode/skills/sk-doc/sk-create-skill/scripts/lib/root-router-contract.cjs",
+      ".opencode/skills/sk-doc/sk-create-skill/scripts/tests/generate-leaf-manifest-scopes.test.cjs"
     ],
     "entities": [
       {
@@ -86,6 +100,66 @@
         "source": "derived"
       },
       {
+        "name": "agent-mirror-crosswalk.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/references/shared/agent-mirror-crosswalk.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".opencode/agents/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.md",
+        "kind": "doc",
+        "path": ".opencode/agents/deep-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.toml",
+        "kind": "file",
+        "path": ".codex/agents/deep-review.toml",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-scopes.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-deep-loop/leaf-scopes.json",
+        "source": "derived"
+      },
+      {
+        "name": "generate-leaf-manifest.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-resource-contract.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/scripts/lib/leaf-resource-contract.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "root-router-contract.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/scripts/lib/root-router-contract.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "generate-leaf-manifest-scopes.test.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/scripts/tests/generate-leaf-manifest-scopes.test.cjs",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -116,7 +190,7 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement",
+        "name": "Problem Statement Six",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -132,71 +206,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Clean Architecture",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "Six trees mirror the same twelve agents, and the translation between them was undocumented and partly lossy",
     "created_at": "2026-09-15T14:23:15Z",
-    "last_save_at": "2026-09-15T14:24:45.612Z",
+    "last_save_at": "2026-09-15T23:47:48.094Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b634c0806e27f5097b42bec210f32d73530a5b22aabb27c5165e8a77e52ff10d",
+    "source_fingerprint": "sha256:91fc6cb4079106f81df639f3a8fdc83645bc5d2eb6878bc375a8423f59dc0d0f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "43b672947795f97e542868552166d7b635bb4e63831a070d512e77ca20a26468",
-      "plan.md": "c27aeef066745a8093ffa5a6c3281565f535dce48776001c51f381de90f58a2d",
-      "tasks.md": "ac87618b3389aed7702f0fcdad00164403c3b0853378e2126ad53c79752db456",
-      "implementation-summary.md": "6e650542236da10cec8a6ddd22f27cc4be65e2c36d8ea05f3743918032e3e0d4"
+      "spec.md": "fb8e84610b06ec2e281a98aa8f095770bfa6f373c4124b9d049982e8853ea8da",
+      "plan.md": "58bce6e782b778fc8c2b77bd7182cc580c4c318cdd568035f28fa74c7897fa6c",
+      "tasks.md": "45ac424f9aa2293a4e74c95719f1c110b5645a60d29ef8db4e3bf56b2495acb6",
+      "implementation-summary.md": "cedc08e33fba3c5aa0cffc3a76c5353530eac081f11a3ae1a5143ee3b5e63e52"
     },
     "last_active_at": null
   }

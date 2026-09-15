@@ -2,11 +2,18 @@ AGENTS DIRECTORY
 ================
 
 This directory contains agent definitions for the OpenCode runtime.
-Each .md file defines one agent surface with frontmatter (tools, permissions, model)
-and behavioral instructions.
+Each .md file carries frontmatter (mode, temperature, permission) and behavioral instructions,
+and is the canonical source the .codex and .pi trees are generated from.
 
 Sibling runtime: .claude/agents/ (.md)
 Inventory rule: if an agent file is not present in this directory, it is not a live runtime surface here.
+
+Translation contract: .opencode/skills/system-deep-loop/deep-improvement/references/shared/agent-mirror-crosswalk.md
+  How every frontmatter declaration lands in each runtime tree, which differences are sanctioned,
+  and what stands in for a declaration a runtime cannot carry.
+Model and effort: no agent file here pins a model. Dispatched routes pass model and effort
+  explicitly; manual invocation inherits the runtime default, so a silent tree means no pin,
+  not an unowned setting.
 
 Agents:
   ai-council:       multi-strategy AI Council planning, writes only ai-council artifacts

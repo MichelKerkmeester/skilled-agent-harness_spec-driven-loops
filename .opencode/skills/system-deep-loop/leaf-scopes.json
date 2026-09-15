@@ -1,0 +1,18 @@
+[
+  {
+    "workflowMode": "agent-improvement",
+    "leafScopes": [
+      "assets/agent-improvement",
+      "references/agent-improvement",
+      "references/shared"
+    ]
+  },
+  {
+    "workflowMode": "model-benchmark",
+    "leafScopes": [
+      "assets/model-benchmark",
+      "references/model-benchmark",
+      "references/shared"
+    ]
+  }
+]

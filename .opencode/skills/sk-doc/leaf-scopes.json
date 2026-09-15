@@ -1,0 +1,18 @@
+[
+  {
+    "workflowMode": "sk-create-skill",
+    "leafScopes": [
+      "assets/skill",
+      "references/README.md",
+      "references/shared",
+      "references/skill"
+    ]
+  },
+  {
+    "workflowMode": "sk-create-skill-parent",
+    "leafScopes": [
+      "assets/parent-skill",
+      "references/parent-skill"
+    ]
+  }
+]

@@ -10,13 +10,17 @@
  * checks that hub's `leaf-manifest.json`.
  *
  *   --write <skillDir>   generate leaf-manifest.json from mode-registry.json
- *                         (+ leaf-aliases.json when present) and write it.
+ *                         (+ leaf-aliases.json and leaf-scopes.json when present)
+ *                         and write it.
  *   --check <skillDir>   recompute the manifest and fail (nonzero exit) on
  *                         any byte drift against the committed file.
  *
  * An absent leaf-aliases.json is treated as zero authored aliases, so a hub
  * that has not authored one yet still generates and checks cleanly from its
- * on-disk packets alone.
+ * on-disk packets alone. An absent leaf-scopes.json means every mode walks its
+ * packet's full references/ + assets/ roots; a present file narrows a mode to
+ * its own packet-relative subtrees (or single leaf files), which is what an
+ * N-to-1 packet fan-out needs so its typed routes stay distinguishable.
  */
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -195,10 +199,94 @@ function collectStandaloneLeaves(skillDir, cfg) {
   return leaves;
 }
 
+// Authored leaf scoping is optional and per mode. A hub whose registry fans two
+// workflowModes onto one physical packet hands every mode the whole packet by
+// default, which makes the typed (workflowMode, leafResourceId) pair unable to
+// distinguish them. A scopes entry narrows one mode to its own packet-relative
+// subtrees (or single leaf files); a mode with no entry keeps the full walk.
+// Absence of the file means no mode is narrowed.
+function readLeafScopes(skillDir) {
+  const scopesPath = path.join(skillDir, 'leaf-scopes.json');
+  const byMode = new Map();
+  if (!fs.existsSync(scopesPath)) return byMode;
+  const data = readJson(scopesPath);
+  const entries = Array.isArray(data) ? data : (Array.isArray(data && data.scopes) ? data.scopes : null);
+  if (!entries) {
+    throw new contract.ContractError('MALFORMED_LEAF_SCOPES', `${scopesPath} must be an array or {"scopes":[...]}`);
+  }
+  for (const entry of entries) {
+    const workflowMode = entry && entry.workflowMode;
+    if (typeof workflowMode !== 'string' || workflowMode.length === 0) {
+      throw new contract.ContractError('MALFORMED_LEAF_SCOPES', `every leaf-scopes entry needs a non-empty workflowMode: ${JSON.stringify(entry)}`);
+    }
+    if (byMode.has(workflowMode)) {
+      throw new contract.ContractError('DUPLICATE_LEAF_SCOPE_MODE', `leaf-scopes.json declares workflowMode ${workflowMode} more than once`);
+    }
+    const rawScopes = entry.leafScopes;
+    if (!Array.isArray(rawScopes) || rawScopes.length === 0) {
+      throw new contract.ContractError('MALFORMED_LEAF_SCOPES', `workflowMode ${workflowMode} needs a non-empty leafScopes array`);
+    }
+    byMode.set(workflowMode, rawScopes.map((scope) => normalizeLeafScope(scope, workflowMode)));
+  }
+  return byMode;
+}
+
+// A scope is a packet-relative subtree (or a single leaf file) and must stay
+// inside one of the contract's routable roots. A scope that escapes them would
+// widen the packet a mode claims or enumerate files the manifest does not own,
+// so it fails closed rather than being silently clamped.
+function normalizeLeafScope(scope, workflowMode) {
+  const value = String(scope == null ? '' : scope).replace(/\\/g, '/');
+  const segments = value.split('/');
+  if (value.startsWith('/') || /^[A-Za-z]:\//.test(value)) {
+    throw new contract.ContractError('ABSOLUTE_LEAF_SCOPE', `workflowMode ${workflowMode} leaf scope must be relative: ${value}`);
+  }
+  if (value.length === 0 || segments.some((segment) => segment === '' || segment === '.')) {
+    throw new contract.ContractError('MALFORMED_LEAF_SCOPE', `workflowMode ${workflowMode} has a malformed leaf scope: ${JSON.stringify(scope)}`);
+  }
+  if (segments.includes('..')) {
+    throw new contract.ContractError('LEAF_SCOPE_TRAVERSAL', `workflowMode ${workflowMode} leaf scope must not contain ".." segments: ${value}`);
+  }
+  const rooted = contract.LEAF_ROOTS.some((root) => value === root.replace(/\/$/, '') || value.startsWith(root));
+  if (!rooted) {
+    throw new contract.ContractError('OUT_OF_ROOT_LEAF_SCOPE', `workflowMode ${workflowMode} leaf scope must begin with one of ${contract.LEAF_ROOTS.map((r) => `"${r}"`).join(', ')}: ${value}`);
+  }
+  return value;
+}
+
+// Walk one mode's declared scopes. A directory scope contributes every file
+// below it (the same follow-stat walk the default roots use); a file scope
+// contributes exactly that leaf. A declared scope with nothing on disk is an
+// authoring error, not an empty set: silently emitting zero leaves would hide
+// a typo behind a manifest that still looks valid.
+function collectScopedLeaves(skillDir, packetRoot, scopes, workflowMode) {
+  const leaves = [];
+  for (const scope of scopes) {
+    const full = path.join(packetRoot, scope);
+    let stat = null;
+    try {
+      stat = fs.statSync(full);
+    } catch {
+      stat = null;
+    }
+    if (!stat) {
+      throw new contract.ContractError('MISSING_LEAF_SCOPE', `mode ${workflowMode} declares leaf scope ${scope}, but nothing exists there`);
+    }
+    if (stat.isDirectory()) {
+      leaves.push(...walkLeafFiles(skillDir, packetRoot, scope));
+    } else if (stat.isFile()) {
+      leaves.push(scope);
+    } else {
+      throw new contract.ContractError('UNSUPPORTED_LEAF_SCOPE', `mode ${workflowMode} leaf scope must be a directory or a file: ${scope}`);
+    }
+  }
+  return leaves;
+}
+
 // One mode entry per declared mode (not per physical packet directory), so
 // an N-to-1 alias fan-out (two modes sharing one packet folder) keeps
 // distinct, independently addressable leaf sets.
-function collectModeEntries(skillDir, registryModes, aliasEntries) {
+function collectModeEntries(skillDir, registryModes, aliasEntries, leafScopes) {
   const rawPairs = [];
   const modeEntries = [];
   for (const mode of registryModes || []) {
@@ -212,10 +300,13 @@ function collectModeEntries(skillDir, registryModes, aliasEntries) {
       throw new contract.ContractError('PACKET_OUT_OF_ROOT', `mode ${mode.workflowMode} packet must stay within the skill root: ${mode.packet}`);
     }
     const packetRoot = path.join(skillDir, mode.packet);
-    const diskLeaves = [
-      ...walkLeafFiles(skillDir, packetRoot, 'references'),
-      ...walkLeafFiles(skillDir, packetRoot, 'assets'),
-    ];
+    const scopes = leafScopes instanceof Map ? leafScopes.get(mode.workflowMode) : undefined;
+    const diskLeaves = Array.isArray(scopes)
+      ? collectScopedLeaves(skillDir, packetRoot, scopes, mode.workflowMode)
+      : [
+        ...walkLeafFiles(skillDir, packetRoot, 'references'),
+        ...walkLeafFiles(skillDir, packetRoot, 'assets'),
+      ];
     const aliasLeaves = (aliasEntries || [])
       .filter((alias) => alias.workflowMode === mode.workflowMode)
       .map((alias) => alias.leafResourceId);
@@ -233,6 +324,14 @@ function collectModeEntries(skillDir, registryModes, aliasEntries) {
       throw new contract.ContractError(
         'ORPHAN_ALIAS_MODE',
         `alias workflowMode ${JSON.stringify(workflowMode)} has no matching registry mode for leafResourceId ${JSON.stringify(leafResourceId)}`,
+      );
+    }
+  }
+  for (const workflowMode of leafScopes instanceof Map ? leafScopes.keys() : []) {
+    if (!knownModes.has(workflowMode)) {
+      throw new contract.ContractError(
+        'ORPHAN_LEAF_SCOPE_MODE',
+        `leaf-scopes.json workflowMode ${JSON.stringify(workflowMode)} has no matching registry mode`,
       );
     }
   }
@@ -269,11 +368,21 @@ function buildManifestBytes(skillDir) {
   }
   const registry = readJson(registryPath);
   const aliasEntries = readAliasEntries(skillDir);
-  const { modeEntries, rawPairs } = collectModeEntries(skillDir, registry.modes, aliasEntries);
+  const leafScopes = readLeafScopes(skillDir);
+  const { modeEntries, rawPairs } = collectModeEntries(skillDir, registry.modes, aliasEntries, leafScopes);
 
   const dupes = contract.findDuplicateComposites(rawPairs);
   if (dupes.length) {
     throw new contract.ContractError('DUPLICATE_COMPOSITE', `duplicate (workflowMode, leafResourceId) pairs: ${dupes.join(', ')}`);
+  }
+
+  const collisions = contract.findCollidingModeLeafSets(modeEntries);
+  if (collisions.length) {
+    const [{ digest, workflowModes }] = collisions;
+    throw new contract.ContractError(
+      'MODE_LEAF_SET_COLLISION',
+      `workflowModes ${workflowModes.map((m) => `"${m}"`).join(' and ')} receive hash-equal leaf sets (${digest.slice(0, 12)}); give each mode its own leafScopes in leaf-scopes.json`,
+    );
   }
 
   const resourceContractVersion = registry.resourceContractVersion != null
