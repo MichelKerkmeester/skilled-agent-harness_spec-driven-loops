@@ -6,10 +6,10 @@ version: 1.0.0.0
 
 # code-quality — Manual Testing Playbook
 
-Type-1 resource-recall scenarios for the deterministic skill-benchmark (Lane C, router mode).
+Type-1 resource-recall scenarios for the code-quality skill's thin prompt-intent router.
 code-quality routes primarily by TARGET PATH — verified by its own unit test — and its parent-to-child
 discoverability is the hub `quality` signal. This playbook exercises the one thin prompt-intent `QUALITY`
-route so the harness can score its single routable checklist in Mode-A.
+route and its single routable checklist.
 
 <!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
 > **Result persistence**: a scenario run is complete only after its `PASS`, `FAIL`, or `SKIP` outcome and

@@ -46,7 +46,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 Validate pause sentinels halt research and review loops between iterations without entering synthesis.
 ### Commands
 1. `bash: rg -n '.deep-research-pause|paused|Delete .*\\.deep-research-pause|review/.deep-research-pause' .opencode/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md .opencode/skills/system-deep-loop/deep-research/README.md`
-2. `bash: rg -n 'step_check_pause_sentinel|paused|halt: true|review/.deep-research-pause|research/.deep-research-pause' .opencode/commands/deep/assets/deep-research-auto.yaml .opencode/commands/deep/assets/deep-research-confirm.yaml .opencode/commands/deep/assets/deep_research_review_auto.yaml .opencode/commands/deep/assets/deep_research_review_confirm.yaml`
+2. `bash: rg -n 'step_check_pause_sentinel|paused|halt: true|review/.deep-research-pause|research/.deep-research-pause' .opencode/commands/deep/assets/deep-research-auto.yaml .opencode/commands/deep/assets/deep-research-confirm.yaml .opencode/commands/deep/assets/deep-review-auto.yaml .opencode/commands/deep/assets/deep-review-confirm.yaml`
 3. `bash: rg -n 'pause|sentinel|review/.deep-research-pause' .opencode/skills/system-deep-loop/deep-research/references/guides/quick-reference.md .opencode/skills/system-deep-loop/deep-research/SKILL.md`
 ### Expected
 The sentinel is checked before dispatch, a paused event is logged, and the loop halts rather than flowing into synthesis in both research and review mode.

@@ -25,7 +25,7 @@ The directive is on by default for `system-deep-loop` (a member of the per-hub d
 
 ### Resolution Order
 
-By default (and always when `SPECKIT_COMPILED_ROUTING=1`), the directive shells out to `node .opencode/bin/compiled-route.cjs --hub system-deep-loop --prompt "<task>"` before running the registry-driven routing above. The front door is a thin, promoted delegate: it resolves `.opencode/bin/lib/compiled-routing/011-runtime-engine/lib/resolve.cjs` and calls `resolveRoute(hubId, taskText)`, which authorizes a compiled decision only when BOTH the tri-state runtime flag permits it AND `system-deep-loop`'s promoted activation manifest (`.opencode/bin/lib/compiled-routing/010-live-activation/activation/system-deep-loop/manifest.json`) reports `servingAuthority: "compiled"`. Any other combination, or any error while resolving, prints the legacy sentinel and `system-deep-loop` routes unchanged. As of this writing, `system-deep-loop`'s promoted manifest already reports `servingAuthority: "compiled"` and `shadowOnly: false`, and `system-deep-loop` is a member of the per-hub default-on cohort — so with the flag unset, compiled routing serves by default; `SPECKIT_COMPILED_ROUTING=0` is the only way to withhold it.
+By default (and always when `SPECKIT_COMPILED_ROUTING=1`), the directive shells out to `node .opencode/bin/compiled-route.cjs --hub system-deep-loop --prompt "<task>"` before running the registry-driven routing above. The front door is a thin, promoted delegate: it resolves `.opencode/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs` and calls `resolveRoute(hubId, taskText)`, which authorizes a compiled decision only when BOTH the tri-state runtime flag permits it AND `system-deep-loop`'s promoted activation manifest (`.opencode/bin/lib/compiled-routing/013-live-activation/activation/system-deep-loop/manifest.json`) reports `servingAuthority: "compiled"`. Any other combination, or any error while resolving, prints the legacy sentinel and `system-deep-loop` routes unchanged. As of this writing, `system-deep-loop`'s promoted manifest already reports `servingAuthority: "compiled"` and `shadowOnly: false`, and `system-deep-loop` is a member of the per-hub default-on cohort — so with the flag unset, compiled routing serves by default; `SPECKIT_COMPILED_ROUTING=0` is the only way to withhold it.
 
 ### Tri-State Flag
 
@@ -49,8 +49,8 @@ A served compiled decision returns one of four actions — `route` (use the retu
 |---|---|---|
 | `.opencode/skills/system-deep-loop/SKILL.md` | Shared | Carries the default-on compiled-routing directive `system-deep-loop` follows. |
 | `.opencode/bin/compiled-route.cjs` | Script | Promoted CLI front door the directive shells out to. |
-| `.opencode/bin/lib/compiled-routing/011-runtime-engine/lib/resolve.cjs` | Shared | Tri-state flag parsing and the manifest serving-authority gate. |
-| `.opencode/bin/lib/compiled-routing/010-live-activation/activation/system-deep-loop/manifest.json` | Shared | `system-deep-loop`'s promoted activation manifest (serving authority, shadow status, selected policy). |
+| `.opencode/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs` | Shared | Tri-state flag parsing and the manifest serving-authority gate. |
+| `.opencode/bin/lib/compiled-routing/013-live-activation/activation/system-deep-loop/manifest.json` | Shared | `system-deep-loop`'s promoted activation manifest (serving authority, shadow status, selected policy). |
 | `.opencode/bin/compiled-route-status.cjs` | Script | Per-hub serving-status probe with a drift-vs-break `causeCode`. |
 
 ### Validation And Tests

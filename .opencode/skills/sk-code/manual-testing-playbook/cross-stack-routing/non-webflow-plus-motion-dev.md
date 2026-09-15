@@ -28,8 +28,8 @@ Generic-Node guard: WEBFLOW markers are gated to actual Webflow signals (vendor 
 
 **Expected references loaded** (exact relative paths under `.opencode/skills/sk-code/`):
 - `references/stack-detection.md`
-- `references/smart-routing.md`
-- `references/smart-routing.md`
+- `ROUTER.md`
+- `ROUTER.md`
 - `sk-code-webflow/references/animation/quick-start.md`
 - `sk-code-webflow/references/animation/integration-patterns.md`
 - `sk-code-webflow/references/animation/scroll-and-gestures.md`
@@ -52,7 +52,7 @@ Generic-Node guard: WEBFLOW markers are gated to actual Webflow signals (vendor 
 
 **Failure triage**:
 1. If `WEBFLOW` is detected, re-read the generic-node guard in `code_surface_detection.md`.
-2. If no Motion.dev refs load, inspect `MOTION_DEV` signals in `references/smart-routing.md`.
+2. If no Motion.dev refs load, inspect `MOTION_DEV` signals in `ROUTER.md`.
 3. If the response proceeds to implementation, verify the universal prompt is routed as read-only analysis.
 
 ---
@@ -86,7 +86,7 @@ Evidence: `/tmp/skc-CS-002-<cli>.txt` (raw per-runtime transcript) and `results/
 ### Failure Triage
 
 1. If `WEBFLOW` is detected, re-read the generic-node guard in `code_surface_detection.md`.
-2. If no Motion.dev refs load, inspect `MOTION_DEV` signals in `references/smart-routing.md`.
+2. If no Motion.dev refs load, inspect `MOTION_DEV` signals in `ROUTER.md`.
 3. If the response proceeds to implementation, verify the universal prompt is routed as read-only analysis.
 
 ---
@@ -95,7 +95,7 @@ Evidence: `/tmp/skc-CS-002-<cli>.txt` (raw per-runtime transcript) and `results/
 
 - `../manual-testing-playbook.md` - Root directory page and scenario summary.
 - `.opencode/skills/sk-code/shared/references/stack-detection.md` - generic-node guard.
-- `.opencode/skills/sk-code/shared/references/smart-routing.md` - MOTION_DEV signals.
+- `.opencode/skills/sk-code/ROUTER.md` - MOTION_DEV signals.
 - `.opencode/skills/sk-code/sk-code-webflow/references/animation/decision-matrix.md` - CSS/Motion/WAAPI trade-offs.
 - `.opencode/skills/sk-code/sk-code-webflow/assets/animation/snippets/hover-gesture.js` - Required snippet.
 

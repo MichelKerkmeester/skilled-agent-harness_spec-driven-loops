@@ -85,7 +85,7 @@ the third surface, beside `sk-code-webflow` and `sk-code-opencode`.
 
 ### Detection and Bundling
 
-Surface detection (in `../../shared/references/stack-detection.md`) resolves PI_REMOTE from the CWD and
+Surface detection (in `../shared/references/stack-detection.md`) resolves PI_REMOTE from the CWD and
 changed/target files, at precedence **OPENCODE > PI_REMOTE > WEBFLOW > UNKNOWN**, OPENCODE still wins a
 `.opencode/` target; PI_REMOTE catches the pi-remote app paths that previously fell to UNKNOWN. The hub
 then bundles this surface behind the chosen workflow mode via `routerPolicy.outcomes.surfaceBundle`
@@ -105,7 +105,7 @@ mode and appends `sk-code-mobile-cli` as read-only evidence: e.g. a quality gate
 
 - `../sk-code-webflow`, `../sk-code-opencode`: sibling read-only surfaces on the same axis.
 - `../sk-code-quality`, `../sk-code-review`: workflow modes that bundle this surface.
-- `../../shared/`: the implement → debug → verify doctrine this surface folds in via symlink.
+- `../shared/`: the implement → debug → verify doctrine this surface folds in via symlink.
 - `system-spec-kit` (spec folders + memory), `sk-git` (worktrees, commits, finish).
 
 ---
@@ -144,7 +144,7 @@ the single `sk-code` identity and the hub bundles this surface.
 - `references/`: the token library, natural comment convention, guardrails, verification, and the
   workflow doctrine.
 - `changelog/`: release notes for this packet.
-- `../../ROUTER.md`, `../../mode-registry.json`, `../../hub-router.json`: the parent hub's routing.
+- `../ROUTER.md`, `../mode-registry.json`, `../hub-router.json`: the parent hub's routing.
 - The **Mobile CLI app repo**: the app source, its `specs/` (including the design-system spec
   `specs/003-design-system-library/`), and the live `token-library.md` / `designer-editability.md` and the Storybook catalog.
   This surface is its read-only evidence mirror; see §2 "The Mobile CLI App Repository".

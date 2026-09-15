@@ -49,9 +49,10 @@ Add a scroll-triggered reveal animation to my Webflow site using GSAP and Inters
 
 ## 3. COMMAND SEQUENCE
 
-The cutover executor runs this hub's compiled-routing parity command scoped to this directory and gates on the captured evidence contract:
+Capture this hub's compiled-routing parity evidence with the live front door and serving-status probe:
 ```
-run-skill-benchmark.cjs --skill sk-code --compiled-routing-parity on --route-gold off --playbook-dir <this-dir> --scenarios CB-CR-001 --trace-mode router
+node .opencode/bin/compiled-route-status.cjs --hub sk-code
+node .opencode/bin/compiled-route.cjs --hub sk-code --prompt "<the exact prompt in section 2>"
 ```
 
 ## Pass/Fail Criteria

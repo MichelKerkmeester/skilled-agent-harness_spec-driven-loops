@@ -1,6 +1,6 @@
 ---
 title: "sk-code Skill-Benchmark Artifacts"
-description: "Benchmark inputs and reports for sk-code, scored by the deep-improvement Lane C harness in router and live modes."
+description: "Historical benchmark inputs and reports for sk-code, produced by the retired deep-improvement Lane C harness in router and live modes."
 trigger_phrases:
   - "sk-code benchmark"
   - "skill-benchmark artifacts"
@@ -11,15 +11,17 @@ trigger_phrases:
 
 > Reports and inputs for benchmarking how well `sk-code` is routed, discovered, and used in practice, kept beside the skill they measure.
 
+> **Retired lane:** the Lane C skill-benchmark harness, its runner, its scoring contract and the `/deep:skill-benchmark` command were removed. This tree is a frozen index of the reports that lane produced; no new run can be started from it.
+
 ---
 
 ## 1. OVERVIEW
 
-The deep-improvement Lane C harness benchmarks `sk-code` against its own `manual_testing_playbook` scenarios across five dimensions (D1 routing, D2 discovery, D3 efficiency, D4 usefulness, D5 connectivity). This folder holds the run inputs and the dual reports each run writes.
+The retired deep-improvement Lane C harness benchmarked `sk-code` against its own `manual_testing_playbook` scenarios across five dimensions (D1 routing, D2 discovery, D3 efficiency, D4 usefulness, D5 connectivity). This folder holds the run inputs and the dual reports each archived run wrote.
 
 Two trace modes score the same playbook corpus:
 
-- **router** is deterministic and offline. For a hub skill it replays `hub-router.json` + `mode-registry.json`; for a flat skill it replays the machine-readable router in `sk-code/shared/references/smart-routing.md`. This is the CI gate.
+- **router** is deterministic and offline. For a hub skill it replays `hub-router.json` + `mode-registry.json`; for a flat skill it replays the machine-readable router in `sk-code/ROUTER.md`. This is the CI gate.
 - **live** dispatches each scenario through `cli-opencode` to a real model and grades the model's stated routing plus observed activation. This is the operator default for a true routing verdict.
 
 ### Key Statistics
@@ -42,31 +44,9 @@ Two trace modes score the same playbook corpus:
 
 ---
 
-## 2. QUICK START
+## 2. RE-RUNNING
 
-Run from the repository root.
-
-Router mode (deterministic, no network):
-
-```bash
-node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs \
-  --mode=skill-benchmark --skill=sk-code \
-  --outputs-dir=.opencode/skills/sk-code/benchmark/reports/2026-06-01--router-final--router \
-  --trace-mode=router
-```
-
-Live mode (dispatches through cli-opencode, needs a configured provider):
-
-```bash
-SKILL_BENCH_OPENCODE_MODEL=openai/gpt-5.5-fast SKILL_BENCH_OPENCODE_VARIANT=high \
-node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs \
-  --mode=skill-benchmark --skill=sk-code \
-  --outputs-dir=.opencode/skills/sk-code/benchmark/reports/2026-06-01--live-final--live \
-  --trace-mode=live --advisor-mode=python \
-  --scenarios=SD-001,LS-001,CS-001,RD-002,MR-001
-```
-
-Expected result: a `verdict=` line on stdout plus `skill-benchmark-report.json` and `skill-benchmark-report.md` in the outputs dir.
+There is no re-run path. The Lane C harness that produced these reports was removed, and `loop-host.cjs` now accepts only the surviving `agent-improvement` and `model-benchmark` modes. The run-label folders below are frozen records.
 
 ---
 
@@ -119,12 +99,14 @@ Start with the `.md` file for the verdict and the ranked bottlenecks. Open the `
 
 ## 5. TROUBLESHOOTING
 
+Retained from the retired lane; these symptoms describe historical runs only.
+
 | What you see | Cause | Fix |
 |---|---|---|
 | Live dispatch returns null after about 4 minutes | `xhigh` reasoning variant is too slow per dispatch | Set `SKILL_BENCH_OPENCODE_VARIANT=high` |
 | `provider/model not found` or 401 in live mode | The provider is not configured | Run `opencode providers list`, then log in to the provider you name in `SKILL_BENCH_OPENCODE_MODEL` |
 | Browser scenarios skip with `SKIP-NO-BROWSER` | `bdg` (Chrome) is unavailable | Install `bdg`, or accept the honest skip for non-Chrome legs |
-| Router mode reports orphan references | A routable doc is not reachable from the router | Add it to `RESOURCE_MAP` or the always-loaded default in `smart-routing.md` |
+| Router mode reports orphan references | A routable doc is not reachable from the router | Add it to `RESOURCE_MAP` or the always-loaded default in `ROUTER.md` |
 
 ---
 
@@ -134,7 +116,7 @@ Start with the `.md` file for the verdict and the ranked bottlenecks. Open the `
 
 | Skill | Relationship | Use When |
 |---|---|---|
-| [`deep-improvement`](../../system-deep-loop/deep-improvement/SKILL.md) | Owns the Lane C benchmark harness | Running or extending the benchmark |
+| [`deep-improvement`](../../system-deep-loop/deep-improvement/SKILL.md) | Owns the surviving improvement lanes | Running or extending the agent-improvement or model-benchmark lanes |
 | [`sk-code`](../SKILL.md) | The skill under measurement | Reading or tuning the router being scored |
 
 ### Related Documents
@@ -142,7 +124,6 @@ Start with the `.md` file for the verdict and the ranked bottlenecks. Open the `
 | Document | Purpose |
 |---|---|
 | [`ROUTER.md`](../ROUTER.md) | The machine-readable router the benchmark replays for a flat skill (a hub replays `hub-router.json`) |
-| [`/deep:skill-benchmark`](../../../commands/deep/skill-benchmark.md) | The command that drives a benchmark run |
 | [`sk-doc/sk-create-benchmark`](../../sk-doc/sk-create-benchmark/SKILL.md) | Authoring templates for this `benchmark/README.md` index + the run-label storage standard (§10: [`skill-benchmark-readme-template.md`](../../sk-doc/sk-create-benchmark/assets/skill-benchmark/skill-benchmark-readme-template.md), [`skill-benchmark-storage-guide.md`](../../sk-doc/sk-create-benchmark/references/skill-benchmark/skill-benchmark-storage-guide.md)); the per-run `skill-benchmark-report.md` stays renderer-owned |
 
 ---

@@ -45,7 +45,7 @@ The model is selective about which iterations count. `thought` iterations are ig
 | File | Type | Role |
 |---|---|---|
 | `.opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/composite-convergence-stop-behavior.md` | Manual playbook | Verifies weighted convergence behavior. |
-| `.opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/029_insight_status_prevents_false_stuck.md` | Manual playbook | Verifies `insight` status prevents false stuck classification. |
+| `.opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/insight-status-prevents-false-stuck.md` | Manual playbook | Verifies `insight` status prevents false stuck classification. |
 | `.opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/convergence-and-recovery/thought-status-convergence-handling.md` | Manual playbook | Verifies `thought` iterations are excluded from convergence math. |
 
 ---

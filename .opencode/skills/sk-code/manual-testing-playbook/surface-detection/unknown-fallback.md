@@ -34,7 +34,7 @@ Prompt: `Add a request-ID middleware to my Go HTTP server in cmd/api/main.go and
 
 **Expected references loaded**:
 - `references/stack-detection.md` (always loaded for router decision)
-- `references/smart-routing.md`
+- `ROUTER.md`
 - `references/universal/code-quality-standards.md` (universal baseline ALWAYS loads)
 
 **Expected NOT loaded**: any `sk-code-webflow/references/*`, any `sk-code-opencode/references/*`, any `sk-code-webflow/assets/*`, any `sk-code-opencode/assets/*`. Only universal-tier resources are permitted.

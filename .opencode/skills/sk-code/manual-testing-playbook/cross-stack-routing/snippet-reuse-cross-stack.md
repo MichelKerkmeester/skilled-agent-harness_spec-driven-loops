@@ -28,7 +28,7 @@ Can I reuse the sk-code Motion in-view reveal snippet in a non-Webflow vanilla J
 
 **Expected references loaded** (exact relative paths under `.opencode/skills/sk-code/`):
 - `references/stack-detection.md`
-- `references/smart-routing.md`
+- `ROUTER.md`
 - `sk-code-webflow/references/animation/quick-start.md`
 - `sk-code-webflow/references/animation/integration-patterns.md`
 - `sk-code-webflow/references/animation/scroll-and-gestures.md`
@@ -45,7 +45,7 @@ Can I reuse the sk-code Motion in-view reveal snippet in a non-Webflow vanilla J
 
 **Failure triage**:
 1. If the snippet is missing, inspect `sk-code-webflow/assets/animation/snippets/`.
-2. If the response says Webflow is required, re-read `references/smart-routing.md` Section 3.
+2. If the response says Webflow is required, re-read the `WEBFLOW MAP` in `ROUTER.md`.
 3. If no caveat appears, inspect `sk-code-webflow/references/javascript/style-guide/overview-naming-and-structure.md` for local naming guidance.
 
 ---
@@ -79,7 +79,7 @@ Evidence: `/tmp/skc-CS-005-<cli>.txt` (raw per-runtime transcript) and `results/
 ### Failure Triage
 
 1. If the snippet is missing, inspect `sk-code-webflow/assets/animation/snippets/`.
-2. If the response says Webflow is required, re-read `references/smart-routing.md` Section 3.
+2. If the response says Webflow is required, re-read the `WEBFLOW MAP` in `ROUTER.md`.
 3. If no caveat appears, inspect `sk-code-webflow/references/javascript/style-guide/overview-naming-and-structure.md` for local naming guidance.
 
 ---

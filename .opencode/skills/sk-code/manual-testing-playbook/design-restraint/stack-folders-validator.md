@@ -8,7 +8,7 @@ version: 4.1.0.4
 
 ## 1. OVERVIEW
 
-This scenario verifies the structural guard `assets/scripts/verify_stack_folders.py`. The code-opencode skill documents stack evidence by language, and each known language must resolve to a real `references/<language>/` folder. The `references/shared/` folder is expected cross-language material, not a language folder.
+This scenario verifies the structural guard `.opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_stack_folders.py`. The code-opencode skill documents stack evidence by language, and each known language must resolve to a real `references/<language>/` folder. The `references/shared/` folder is expected cross-language material, not a language folder.
 
 The validator asserts that every known language resolves to an on-disk references folder and that every directory under `references/` is either a known language or `shared/`. It exits non-zero with a per-problem report when the documented language set and the folders disagree.
 
@@ -77,7 +77,7 @@ Prompt: `Run the language reference folder validator, confirm a clean pass, then
 
 ### Pass/Fail Criteria
 
-- **PASS** iff: the clean run exits 0 AND an orphan folder in `references/` produces exit 1 naming the orphan, per `assets/scripts/verify_stack_folders.py`.
+- **PASS** iff: the clean run exits 0 AND an orphan folder in `references/` produces exit 1 naming the orphan, per `.opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_stack_folders.py`.
 - **FAIL** iff: an orphan is not caught (including when the orphan run reports the problem text but exits 0 instead of 1), a known language is wrongly flagged, `shared/` is wrongly flagged, or the clean run errors.
 
 Evidence: the exit code and report text captured from each `verify_stack_folders.py` invocation in steps 1, 4, and 7.

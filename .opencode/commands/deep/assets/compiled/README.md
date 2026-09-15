@@ -16,7 +16,7 @@ importance_tier: "important"
 
 ## 1. OVERVIEW
 
-`.opencode/commands/deep/assets/compiled/` stores the four flattened command contracts used by deep-command injection tooling.
+`.opencode/commands/deep/assets/compiled/` stores the three flattened command contracts used by deep-command injection tooling.
 
 The generated contracts combine maintained command, workflow, skill, reference and agent sources into grep-checkable executor instructions. Maintained source files remain authoritative.
 

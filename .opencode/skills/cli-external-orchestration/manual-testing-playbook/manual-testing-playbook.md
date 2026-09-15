@@ -44,7 +44,7 @@ Commands are shown from the repository root. Replace angle-bracket placeholders 
 
 ## 5. SCENARIOS
 
-Scored scenarios live as per-file YAML-frontmatter gold under `hub-routing/` (the sk-doc shape the Lane-C skill-benchmark loader reads):
+Scenarios live as per-file YAML-frontmatter typed gold under `hub-routing/`:
 
 | ID | File | Expected `workflowMode` |
 |----|------|--------------------------|
@@ -78,5 +78,5 @@ Unscored, directly-run manual scenarios validating shared `cli-external-orchestr
 ## 7. RELATED
 
 - Packet-level playbooks: `cli-opencode/manual-testing-playbook/manual-testing-playbook.md`, `cli-claude-code/manual-testing-playbook/manual-testing-playbook.md` (unchanged by the fold-in).
-- Lane-C automated benchmark: `benchmark/` (populated by a future benchmark pass — out of scope for the fold-in itself).
+- Benchmark tree: `benchmark/` (the retired Lane C harness left no run here; the tree now carries the compiled-routing archive convention).
 - Plugins-and-hooks scenarios (§5): each carries its own PASS/FAIL verdict independent of the hub-routing success criteria in §6, which scopes to `workflowMode` resolution only.

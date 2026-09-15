@@ -28,8 +28,8 @@ For a hover state on cards, should I use motion.dev or plain CSS? I need the rou
 
 **Expected references loaded** (exact relative paths under `.opencode/skills/sk-code/`):
 - `references/stack-detection.md`
-- `references/smart-routing.md`
-- `references/smart-routing.md`
+- `ROUTER.md`
+- `ROUTER.md`
 - `sk-code-webflow/references/animation/decision-matrix.md`
 - `sk-code-webflow/references/animation/performance-and-pitfalls.md`
 - `sk-code-webflow/references/animation/integration-patterns.md`
@@ -44,7 +44,7 @@ For a hover state on cards, should I use motion.dev or plain CSS? I need the rou
 - **FAIL** iff `decision-matrix.md` is omitted, the AI invents a surface, or it gives an implementation-only answer.
 
 **Failure triage**:
-1. If no decision matrix loads, inspect `CODE_QUALITY / DECISION` in `references/smart-routing.md`.
+1. If no decision matrix loads, inspect `CODE_QUALITY / DECISION` in `ROUTER.md`.
 2. If `WEBFLOW` is selected, verify the prompt contains no Webflow path, vendor global, or `wrangler.toml`.
 3. If the response is one-sided, compare it against `sk-code-webflow/references/animation/decision-matrix.md`.
 
@@ -78,7 +78,7 @@ Evidence: `/tmp/skc-CS-004-<cli>.txt` (raw per-runtime transcript) and `results/
 
 ### Failure Triage
 
-1. If no decision matrix loads, inspect `CODE_QUALITY / DECISION` in `references/smart-routing.md`.
+1. If no decision matrix loads, inspect `CODE_QUALITY / DECISION` in `ROUTER.md`.
 2. If `WEBFLOW` is selected, verify the prompt contains no Webflow path, vendor global, or `wrangler.toml`.
 3. If the response is one-sided, compare it against `sk-code-webflow/references/animation/decision-matrix.md`.
 

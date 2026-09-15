@@ -49,9 +49,10 @@ Delegate this to OpenCode and run the ablation suite with full plugin and Spec K
 
 ## 3. COMMAND SEQUENCE
 
-The cutover executor runs this hub's compiled-routing parity command scoped to this directory and gates on the captured evidence contract:
+Capture this hub's compiled-routing parity evidence with the live front door and serving-status probe:
 ```
-run-skill-benchmark.cjs --skill cli-external-orchestration --compiled-routing-parity on --route-gold off --playbook-dir <this-dir> --scenarios CE-CR-001 --trace-mode router
+node .opencode/bin/compiled-route-status.cjs --hub cli-external-orchestration
+node .opencode/bin/compiled-route.cjs --hub cli-external-orchestration --prompt "<the exact prompt in section 2>"
 ```
 
 ## Pass/Fail Criteria

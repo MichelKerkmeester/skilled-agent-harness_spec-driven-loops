@@ -34,7 +34,7 @@ Prompt: `Add a helper to .opencode/skills/system-spec-kit/runtime/lib/util/uniqu
 
 **Expected references loaded**:
 - `references/stack-detection.md`
-- `references/smart-routing.md`
+- `ROUTER.md`
 - `references/universal/code-quality-standards.md`
 - `references/phase-detection.md`
 - `sk-code-opencode/references/typescript/style-guide/overview-strict-and-naming.md`

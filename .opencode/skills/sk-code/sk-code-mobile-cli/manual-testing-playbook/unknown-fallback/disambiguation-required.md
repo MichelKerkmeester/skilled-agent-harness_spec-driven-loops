@@ -10,7 +10,7 @@ expected_resources:
   - references/design-system/css-class-naming-bem.md
   - references/conventions/comment-grammar.md
   - references/conventions/folder-docs.md
-  - references/component-story-upkeep.md
+  - references/storybook/component-story-upkeep.md
   - assets/guardrail-audit-checklist.md
   - assets/bem-rename-checklist.md
   - assets/story-coverage-checklist.md
@@ -88,7 +88,7 @@ Explain when a source folder needs a paired CODE.md under the folder-docs thresh
 1. `sed -n '1,19p' .opencode/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/unknown-fallback/disambiguation-required.md`
 2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .opencode/skills/sk-code/sk-code-mobile-cli/SKILL.md | sed -n '/"CODE_QUALITY":/p;/"LANGUAGE_STANDARDS":/p'`
 3. `sed -n '/^## 2b\. SMART ROUTING/,/^## 3\. SURFACE STANDARDS/p' .opencode/skills/sk-code/sk-code-mobile-cli/SKILL.md | sed -n '/"CODE_QUALITY":/,/\],/p'`
-4. `for p in references/conventions/editability-guardrails.md references/design-system/css-class-naming-bem.md references/conventions/comment-grammar.md references/conventions/folder-docs.md references/component-story-upkeep.md assets/guardrail-audit-checklist.md assets/bem-rename-checklist.md assets/story-coverage-checklist.md; do test -e ".opencode/skills/sk-code/sk-code-mobile-cli/$p" && echo "OK $p" || echo "MISS $p"; done`
+4. `for p in references/conventions/editability-guardrails.md references/design-system/css-class-naming-bem.md references/conventions/comment-grammar.md references/conventions/folder-docs.md references/storybook/component-story-upkeep.md assets/guardrail-audit-checklist.md assets/bem-rename-checklist.md assets/story-coverage-checklist.md; do test -e ".opencode/skills/sk-code/sk-code-mobile-cli/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
 

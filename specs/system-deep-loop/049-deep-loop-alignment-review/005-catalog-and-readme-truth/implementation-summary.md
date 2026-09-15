@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+description: "Ten classes of contradicted documentation closed across sixty-two files, each class swept to zero rather than its cited instance."
 trigger_phrases:
   - "implementation summary"
   - "what shipped"
@@ -12,9 +12,9 @@ _memory:
   continuity:
     packet_pointer: "system-deep-loop/049-deep-loop-alignment-review/005-catalog-and-readme-truth"
     last_updated_at: "2026-09-15T14:23:13Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialized Level 2 template"
-    next_safe_action: "Replace continuity placeholders"
+    last_updated_by: "claude-fable-5-1"
+    recent_action: "Swept the ten documentation classes and filled the packet docs"
+    next_safe_action: "Commit once the full suite exits zero"
     blockers: []
     key_files: []
     session_dedup:
@@ -46,20 +46,9 @@ _memory:
 ---
 
 <!-- ANCHOR:what-built -->
-## What Was Built
+## 2. WHAT WAS BUILT
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
-
-### Phase 4: catalog-and-readme-truth
-
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
-
-### Files Changed
-
-| File | Action | Purpose |
-|------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+Ten classes of documentation that contradicted the tree are closed across sixty-two catalog, README and playbook files in the three hubs. Absent-path citations were re-pointed at their successors or removed, including thirty-five sites pointing at a router document that had replaced a routing file. Three copies of `compiled-routing-and-legacy-fallback.md` stopped citing a superseded runtime generation. Two READMEs stopped claiming four flattened contracts where three exist. The deep-review playbook's assertion that no automated test suite exists became a twenty-row table of live test files, every path verified on disk. Removed benchmark artifacts are marked historical rather than advertised as a live lane, five council test files carry the prefix they actually have, `system-deep-loop/runtime/feature-catalog/feature-catalog.md` counts its fifty-four entries, a README states the real scope of the checker it names, a retired command path points at its successor, and two package READMEs reference the parent hub at the right depth.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -67,7 +56,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-[How was this tested, verified and shipped? What was the rollout approach?]
+One dispatch to DeepSeek V4.1 Flash at max through the gateway on cli-pi, with all ten classes enumerated in the brief and instructed to fix the class rather than the cited instance. The delegate verified each class against the tree first, recorded its choice wherever a path was ambiguous, and enumerated every residual match with the reason it stayed. The orchestrator confirmed the change was documentation only and that the shared branch's typecheck break came from another session's commit.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -77,7 +66,8 @@ Explain what the user gains, not what files you touched.]
 
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| Fix the class, not the instance | A cited instance is a sample; the review found nine absent paths by looking at four classes |
+| Enumerate residuals rather than widen scope | Router, reference and SKILL documents belong to other phases |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -87,7 +77,11 @@ Explain what the user gains, not what files you touched.]
 
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| Ten class sweeps | zero instances each in the editable surface |
+| Skill-root metadata | 13 checked, 13 passed |
+| Working tree | documentation only, no runtime code diff |
+| Full deep-loop suite | `npm test` in the runtime: 152 files, 149 passed and 3 failed, 2642 tests passed. All three failures belong to another session's cli-hermes work on the shared branch, which also breaks the typecheck at `executor-config.ts:116`: two assert its persona field list and transport probe, the third timed out under load and passes in isolation. This phase changed documentation only |
+| `validate.sh --strict` on this phase | RESULT: PASSED |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -95,7 +89,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **Shared branch break.** Another session's commit broke the runtime typecheck and one adapter test on the shared branch during this phase; this change is documentation only and neither failure touches it. The packet's suite criterion is checked when that session's work settles.
 <!-- /ANCHOR:limitations -->
 
 ---

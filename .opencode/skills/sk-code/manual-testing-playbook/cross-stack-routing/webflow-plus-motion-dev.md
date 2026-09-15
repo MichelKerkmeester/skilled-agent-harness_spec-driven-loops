@@ -34,8 +34,8 @@ grep -lqE "window\.Motion|window\.gsap|gsap\.(to|from|set|timeline|registerPlugi
 
 **Expected references loaded** (exact relative paths under `.opencode/skills/sk-code/`):
 - `references/stack-detection.md`
-- `references/smart-routing.md`
-- `references/smart-routing.md`
+- `ROUTER.md`
+- `ROUTER.md`
 - `sk-code-webflow/references/implementation/animation-workflows/overview-decision-tree-and-css.md`
 - `sk-code-webflow/references/animation/quick-start.md`
 - `sk-code-webflow/references/animation/integration-patterns.md`
@@ -57,7 +57,7 @@ grep -lqE "window\.Motion|window\.gsap|gsap\.(to|from|set|timeline|registerPlugi
 
 **Failure triage**:
 1. If surface is not `WEBFLOW`, verify the prompt includes `src/2_javascript/` and Webflow terms.
-2. If Motion.dev paths are missing, inspect `references/smart-routing.md` Section 3.
+2. If Motion.dev paths are missing, inspect the `MOTION_DEV MAP` in `ROUTER.md`.
 3. If an agent was dispatched, verify the universal prompt says analyze only and "DO NOT dispatch any agent."
 
 ---
@@ -91,7 +91,7 @@ Evidence: `/tmp/skc-CS-001-<cli>.txt` (raw per-runtime transcript) and `results/
 ### Failure Triage
 
 1. If surface is not `WEBFLOW`, verify the prompt includes `src/2_javascript/` and Webflow terms.
-2. If Motion.dev paths are missing, inspect `references/smart-routing.md` Section 3.
+2. If Motion.dev paths are missing, inspect the `MOTION_DEV MAP` in `ROUTER.md`.
 3. If an agent was dispatched, verify the universal prompt says analyze only and "DO NOT dispatch any agent."
 
 ---
@@ -100,7 +100,7 @@ Evidence: `/tmp/skc-CS-001-<cli>.txt` (raw per-runtime transcript) and `results/
 
 - `../manual-testing-playbook.md` - Root directory page and scenario summary.
 - `.opencode/skills/sk-code/shared/references/stack-detection.md` - WEBFLOW marker block.
-- `.opencode/skills/sk-code/shared/references/smart-routing.md` - WEBFLOW plus MOTION_DEV loading rules.
+- `.opencode/skills/sk-code/ROUTER.md` - WEBFLOW plus MOTION_DEV loading rules.
 - `.opencode/skills/sk-code/sk-code-webflow/references/animation/quick-start.md` - Motion install and import guidance.
 - `.opencode/skills/sk-code/sk-code-webflow/assets/animation/snippets/in-view-reveal.js` - Required snippet.
 

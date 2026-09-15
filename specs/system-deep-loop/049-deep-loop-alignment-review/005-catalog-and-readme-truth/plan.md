@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Phase 4: catalog-and-readme-truth"
-description: "[2-3 sentences: what this implements and the technical approach]"
+description: "Sweep each of the ten classes to zero in its editable surface, recording the choice where a path is ambiguous and the reason where a residual stays."
 trigger_phrases:
   - "implementation plan"
   - "technical approach"
@@ -23,13 +23,13 @@ contextType: "general"
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | TypeScript (ESM) plus a CommonJS runner script |
+| **Framework** | None |
+| **Storage** | Git working tree, JSONL state and status ledgers |
+| **Testing** | Vitest |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+Each class was verified against the tree before editing, then swept across every instance rather than the cited one. Paths were re-pointed at their successors or removed; counts were corrected or named to their deriving script; claims the tree contradicts were rewritten, including a playbook section replaced by a twenty-row table of live test files.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -38,14 +38,14 @@ contextType: "general"
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Tests passing (if applicable)
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -54,14 +54,15 @@ contextType: "general"
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Class sweep with per-instance choice recorded
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **Catalogs**: Paths, generations, counts
+- **READMEs**: Contract counts, checker scope, relative depth
+- **Playbooks**: Test tables, renamed files, retired commands
 
 ### Data Flow
-[Brief description of how data moves through the system]
+Each class is grepped to a set, each instance checked against the tree, then corrected and re-swept to zero.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -69,18 +70,16 @@ contextType: "general"
 <!-- ANCHOR:affected-surfaces -->
 ## FIX ADDENDUM: AFFECTED SURFACES
 
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
+| Nine absent-path citations | Cited files not on disk | update | residual matches are all outside the editable classes |
+| Three catalogs' runtime generation | Superseded | update | zero stale matches, three live references per file |
+| Deep-review playbook | Claimed no test suite | update | twenty rows, every path verified on disk |
 
 Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
+- Same-class producers: ten classes swept across sixty-two files.
+- Consumers: readers following citations; no code reads these documents.
+- Residuals enumerated: router, reference and SKILL documents, plus deliberate hypothetical targets.
 <!-- /ANCHOR:affected-surfaces -->
 
 
@@ -99,9 +98,9 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Sweep | One command per class showing zero instances | shell |
+| Gate | Skill-root metadata across thirteen roots | node |
+| Suite | Whole runtime | Vitest |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -111,7 +110,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| None | - | Green | - |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -119,8 +118,8 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: A re-pointed path proves wrong
+- **Procedure**: Revert this phase's commit
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -152,10 +151,10 @@ Phase 1.5 (Config) ───┘
 
 | Phase | Complexity | Estimated Effort |
 |-------|------------|------------------|
-| Setup | [Low/Med/High] | [e.g., 1-2 hours] |
-| Core Implementation | [Low/Med/High] | [e.g., 4-8 hours] |
-| Verification | [Low/Med/High] | [e.g., 1-2 hours] |
-| **Total** | | **[e.g., 6-12 hours]** |
+| Setup | Low | minutes |
+| Core Implementation | Low | one dispatch |
+| Verification | Med | full suite run |
+| **Total** | | **one dispatch plus one suite run** |
 <!-- /ANCHOR:effort -->
 
 ---

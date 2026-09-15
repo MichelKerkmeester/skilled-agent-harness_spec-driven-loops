@@ -89,7 +89,6 @@ The table is the complete direct-file inventory. Test names are the public navig
 | `locks-and-fencing.vitest.ts` | Executable checks for the locks and fencing runtime contract. |
 | `loop-lock-cli.vitest.ts` | Executable checks for the loop lock cli runtime contract. |
 | `loop-lock.vitest.ts` | Executable checks for the loop lock runtime contract. |
-| `mode-contracts.vitest.ts` | Executable checks for the mode contracts runtime contract. |
 | `model-benchmark-ledger-schema.vitest.ts` | Executable checks for the model benchmark ledger schema runtime contract. |
 | `model-benchmark-reducers.vitest.ts` | Executable checks for the model benchmark reducers runtime contract. |
 | `model-benchmark-sealed-artifacts.vitest.ts` | Executable checks for the model benchmark sealed artifacts runtime contract. |

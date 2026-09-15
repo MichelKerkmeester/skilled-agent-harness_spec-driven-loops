@@ -34,8 +34,8 @@ grep -lqE "window\.Motion|window\.gsap|gsap\.(to|from|set|timeline|registerPlugi
 
 **Expected references loaded** (exact relative paths under `.opencode/skills/sk-code/`):
 - `references/stack-detection.md`
-- `references/smart-routing.md`
-- `references/smart-routing.md`
+- `ROUTER.md`
+- `ROUTER.md`
 - `sk-code-webflow/references/performance/cwv-remediation.md`
 - `sk-code-webflow/references/performance/interaction-gated-loading.md`
 - `sk-code-webflow/references/performance/resource-loading.md`
@@ -54,7 +54,7 @@ grep -lqE "window\.Motion|window\.gsap|gsap\.(to|from|set|timeline|registerPlugi
 - **FAIL** iff either required performance reference is missing, surface is not `WEBFLOW`, or an agent is dispatched.
 
 **Failure triage**:
-1. If Webflow performance refs are missing, inspect the `PERFORMANCE` map in `references/smart-routing.md`.
+1. If Webflow performance refs are missing, inspect the `PERFORMANCE` map in `ROUTER.md`.
 2. If Motion performance refs are missing, inspect the `MOTION_DEV` map in the same file.
 3. If surface is wrong, verify `src/2_javascript/hero.js` is present in the prompt.
 
@@ -88,7 +88,7 @@ Evidence: `/tmp/skc-CS-006-<cli>.txt` (raw per-runtime transcript) and `results/
 
 ### Failure Triage
 
-1. If Webflow performance refs are missing, inspect the `PERFORMANCE` map in `references/smart-routing.md`.
+1. If Webflow performance refs are missing, inspect the `PERFORMANCE` map in `ROUTER.md`.
 2. If Motion performance refs are missing, inspect the `MOTION_DEV` map in the same file.
 3. If surface is wrong, verify `src/2_javascript/hero.js` is present in the prompt.
 
