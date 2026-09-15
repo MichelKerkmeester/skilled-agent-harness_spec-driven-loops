@@ -1,0 +1,198 @@
+
+
+
+
+
+
+
+
+All three lineages are initialized but none has run iterations yet — I'm starting fresh for devin-b. Now let me read the loop protocol and state references.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Now let me look at the parent packet spec to understand what was remediated, and the review contract.
+
+I have the full picture now. Let me set up the task tracking and begin phase_init.
+
+
+
+Now writing the phase_init state files inside the lineage directory.
+
+
+
+
+
+phase_init complete. Starting iteration 1 — Lane A (sk-code and OpenCode alignment).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+All cross-references resolve. Writing iteration 1 outputs (iteration file, JSONL delta, strategy update, registry, dashboard).
+
+
+
+
+
+Now updating the strategy, registry, and dashboard for iteration 1.
+
+
+
+
+
+
+
+Iteration 1 complete. Starting iteration 2 — Lane B (feature catalog and playbook alignment).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Lane B findings confirmed. Writing iteration 2 outputs.
+
+
+
+
+
+
+
+
+
+
+
+Iteration 2 complete. Starting iteration 3 — Lane C (SKILL.md vs references and assets).
+
+
+
+
+
+
+
+
+
+
+
+Lane C findings confirmed. Writing iteration 3 outputs.
+
+
+
+
+
+
+
+
+
+
+
+
+
+Iteration 3 complete. Starting iteration 4 — Lane D (command alignment).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Lane D findings confirmed. Writing iteration 4 outputs.
+
+
+
+
+
+
+
+Iteration 4 complete. Starting iteration 5 — Lane E+F (agents + architecture).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Lane E+F evidence gathered. Writing iteration 5 outputs.
+
+
+
+
+
+
+
+
+
+All 5 iterations complete. Beginning phase_synthesis — writing the final review report and synthesis record.
+
+
+
+Final verification of the lineage state before completing.
+
+
+
+
+
+Lineage devin-b executed the full deep-review lifecycle inline — phase_init, 5 iterations (one per alignment lane), and phase_synthesis — entirely inside `review/lineages/devin-b/`.
+
+**Run summary**
+- **5 iterations / 5 lanes**: sk-code+OpenCode, feature catalog+playbooks, SKILL.md vs references/assets, command YAMLs, agents+architecture.
+- **Verdict: CONDITIONAL** — 0 P0, 1 P1 (F006), 10 P2.
+- **F006 (P1)**: deep-review loop protocol is missing the two containment rules that parent REQ-006 mandated for both loop protocols; hub SKILL.md:128 points only at the research protocol. Adjudicated (confidence 0.9), bound to proposed phase `016-review-containment-doc-alignment`.
+- **P2 highlights**: hub prose vs registry count drift (F001/F003/F007/F008/F010), runtime catalog gaps (F004/F005), stale containment comments in the auto YAMLs (F009), `.code-review-cache` outside containment carve-outs (F002), cli-hermes omitted from the loop-protocol adapter list (F011).
+- **Verified**: JSONL (8 records) parses clean; synthesis event carries `stopReason: maxIterationsReached`; every iteration file ends with the exact final-line contract; registry (11 findings) reconciles with deltas; all writes confined to the lineage directory.
+
+FANOUT_LINEAGE_COMPLETE:devin-b

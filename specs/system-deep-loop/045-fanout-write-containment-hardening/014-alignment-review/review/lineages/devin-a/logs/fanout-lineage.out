@@ -1,0 +1,173 @@
+I'll start by reading the deep-review SKILL.md and exploring the target spec folder to understand the review workflow.
+
+Let me read the rest of the SKILL.md and explore the existing lineage state and review-mode contract.
+
+Fresh lineage with scaffolding only — no iterations yet. Let me read the loop protocol, state format, review contract, and the shared review state to understand the exact phase mechanics.
+
+This is a fan-out lineage (devin-a of three, 5 of 15 iterations) on an alignment-review packet. Let me read the rest of the protocol, the state format, and the review contract.
+
+Now let me read the target packet documents to understand what this alignment review covers.
+
+Now let me read the remaining packet docs and the state-format reference for the exact JSONL schema.
+
+The packet docs are scaffolds — the real work is the review itself. REQ-001 requires each iteration state record to carry `target_agent`, `resolved_route`, `agent_definition_loaded`, `mode`. Let me check the state format schema and the fan-out runner's expected outputs.
+
+Let me check the fan-out runner expectations and the JSONL schema to produce exactly what the runner validates.
+
+Let me check what the fan-out runner validates from a lineage (synthesis record, iteration outputs).
+
+
+
+The runner's contract is clear: `review-report.md`, state JSONL with iteration records 1..5 carrying route-proof fields, `deltas/iter-NNN.jsonl` finding records, and a synthesis event with `stopReason` starting with "maxiteration". Let me inspect the scaffolding frames and prompt pack template.
+
+The ledger frames are runner scaffolding — I'll leave them untouched. Let me read the prompt-pack template and strategy template to match the expected formats.
+
+I have the full contract. Now let me gather the remaining context for init: agent definitions, repo rules, and the mode registry.
+
+The .codex AGENTS.md is nodeterm canvas guidance — not applicable to this lineage run. I have the full contract now. Let me set up the task plan and begin phase_init.
+
+Before writing init files, let me check the strategy template format and the deep-review agent definition (for the route-proof field).
+
+I have everything needed for init. Now writing the four init state files into the lineage directory.
+
+
+
+phase_init complete. Starting iteration 1: sk-code and OpenCode alignment.
+
+
+
+Registry read. Now cross-checking sk-code claims against the deep-loop commands, plugins, and the OpenCode surface packet.
+
+
+
+
+
+
+
+Iteration 1 checks complete — found version drift between the sk-code hub and its registry. Writing iteration 1 artifacts.
+
+
+
+I introduced malformed JSON in the delta file — fixing it now.
+
+Delta fixed. Now appending the state record and updating strategy + dashboard.
+
+
+
+
+
+Iteration 1 complete. Starting iteration 2: deep-loop command alignment.
+
+The YAML's `state_write_protocol` claims the gateway does NOT refresh the legacy state file and direct writes must stay — which contradicts the prompt-pack template and SKILL.md. Let me verify the actual gateway behavior and check the compiled contract and research variant for parity.
+
+
+
+
+
+The gateway has no projection-refresh code — the prompt-pack contradicts the YAML's own state_write_protocol. Let me verify the research-variant YAMLs and header duplication, then check for the compiled contract's consistency.
+
+Header duplication confirmed in both deep-review YAMLs. Now checking whether the YAML passes `--convergence-mode` to the fan-out runner (the runner's comment suggests a known gap).
+
+
+
+
+
+The YAML fan-out call sites never forward `--convergence-mode` even though the runner now accepts it. Let me check how the runner builds the leaf config to see if it falls back to the fan-out config JSON.
+
+The picture is complete: the runner reads `--convergence-mode` from CLI args only, and none of the three YAML fan-out call sites forward it. Writing iteration 2 artifacts with findings F003 (P1), F004 (P2), F005 (P1).
+
+
+
+
+
+Same malformed-JSON slip in two `file` fields — rewriting the delta correctly.
+
+
+
+
+
+
+
+Iteration 2 done. Starting iteration 3: deep-loop agent alignment across runtimes.
+
+
+
+
+
+
+
+Iteration 3 evidence is clear: orchestrate's delegation tool surface diverges across runtimes. Writing iteration 3 artifacts.
+
+
+
+
+
+
+
+
+
+
+
+Iteration 3 complete. Starting iteration 4: SKILL.md vs references/assets + feature catalog/playbook alignment.
+
+The system-deep-loop SKILL.md has an internal "2 lanes" vs "3 lanes" contradiction for improvement modes. Let me check the registry (the authority) and the catalogs.
+
+
+
+The hub feature-catalog claims a 7-mode registry including an `alignment` mode — the actual registry has 5 modes with no `alignment`. Let me verify thoroughly and check the improvement-lane count claims.
+
+
+
+
+
+
+
+Iteration 4 evidence complete: the catalog's `alignment` mode is fabricated, SKILL.md contradicts itself on lane counts, and cli-external's ROUTER omits cli-hermes. Writing iteration 4 artifacts.
+
+
+
+
+
+
+
+
+
+
+
+
+
+Iteration 4 complete. Starting iteration 5: general architecture.
+
+
+
+
+
+F011 confirmed: the confirm YAML dispatches the LEAF deep-review agent to run the full loop — the exact forbidden pattern. Writing iteration 5 artifacts.
+
+
+
+
+
+
+
+
+
+All 5 iterations recorded. Now updating strategy, registry, and dashboard for iteration 5, then synthesizing.
+
+I spot a cumulative-count inconsistency in the JSONL records (P1 totals). Fixing all three deltas plus the state log.
+
+
+
+Now the final dashboard update and phase_synthesis.
+
+
+
+
+
+
+
+All artifacts in place with correct verdict lines. Writing the terminal synthesis record and running final validation.
+
+All checks pass. Completing the lineage.
+
+FANOUT_LINEAGE_COMPLETE:devin-a

@@ -1,0 +1,81 @@
+{
+  "topic": "Fifteen-iteration alignment review: sk-code and OpenCode, feature catalog and playbooks, SKILL.md against references and assets, deep-loop commands and agents, architecture, against the repo rules (lane devin-c)",
+  "mode": "review",
+  "reviewTarget": "specs/system-deep-loop/045-fanout-write-containment-hardening/014-alignment-review",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "resource_map_present": false,
+  "sessionId": "fanout-devin-c-1789432854146-6hhsgk",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "maxIterations": 5,
+  "convergenceThreshold": 0.1,
+  "convergenceMode": "off",
+  "stuckThreshold": 2,
+  "severityThreshold": "P2",
+  "stopPolicy": "max-iterations",
+  "crossReference": {
+    "core": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "overlay": [
+      "skill_agent",
+      "agent_cross_runtime",
+      "feature_catalog_code",
+      "playbook_capability"
+    ]
+  },
+  "qualityGateThreshold": true,
+  "releaseReadinessState": "in-progress",
+  "specFolder": "specs/system-deep-loop/045-fanout-write-containment-hardening/014-alignment-review",
+  "executor": {
+    "kind": "cli-devin",
+    "model": "deepseek-v4-flash-max"
+  },
+  "fanoutLane": {
+    "label": "devin-c",
+    "laneIterations": 5,
+    "merge": "strongest-restriction across lanes"
+  },
+  "createdAt": "2026-09-15T00:41:00.000+00:00",
+  "status": "complete",
+  "executionMode": "auto",
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": [
+      "latestJSONLDelta",
+      "newIterationFile",
+      "priorReducedState"
+    ],
+    "outputs": [
+      "findingsRegistry",
+      "dashboardMetrics",
+      "strategyUpdates"
+    ],
+    "metrics": [
+      "dimensionsCovered",
+      "findingsBySeverity",
+      "openFindings",
+      "resolvedFindings",
+      "convergenceScore"
+    ]
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "topic": "Fifteen-iteration alignment review: sk-code and OpenCode, feature catalog and playbooks, SKILL.md against references and assets, deep-loop commands and agents, architecture, against the repo rules",
+  "mode": "review",
+  "reviewTarget": "specs/system-deep-loop/045-fanout-write-containment-hardening/014-alignment-review",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": "all",
+  "specFolder": "specs/system-deep-loop/045-fanout-write-containment-hardening/014-alignment-review",
+  "maxIterations": 15,
+  "convergenceThreshold": 0.1,
+  "antiConvergence": {
+    "convergenceMode": "off",
+    "divergent": {}
+  },
+  "stopPolicy": "max-iterations",
+  "executionMode": "auto",
+  "lineageMode": "new",
+  "resource_map": {
+    "emit": true
+  },
+  "fanout": {
+    "executors": [
+      {
+        "kind": "cli-devin",
+        "model": "deepseek-v4-flash-max",
+        "label": "devin-a",
+        "iterations": 5
+      },
+      {
+        "kind": "cli-devin",
+        "model": "deepseek-v4-flash-max",
+        "label": "devin-b",
+        "iterations": 5
+      },
+      {
+        "kind": "cli-devin",
+        "model": "deepseek-v4-flash-max",
+        "label": "devin-c",
+        "iterations": 5
+      }
+    ],
+    "concurrency": 3
+  },
+  "fallback": [
+    "cli-codex gpt-5.6-luna max fast",
+    "cli-pi deepseek-v4.1-flash max via llmgateway"
+  ],
+  "createdAt": "2026-09-15T00:40:53.722888+00:00"
+}

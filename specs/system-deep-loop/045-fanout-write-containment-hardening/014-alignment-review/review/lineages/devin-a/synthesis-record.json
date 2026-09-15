@@ -1,0 +1,25 @@
+{
+  "type": "event",
+  "event": "synthesis_complete",
+  "mode": "review",
+  "sessionId": "fanout-devin-a-1789432854146-6hhsgk",
+  "generation": 1,
+  "lineageMode": "new",
+  "lineage": {
+    "label": "devin-a",
+    "executor": "cli-devin",
+    "model": "deepseek-v4-flash-max",
+    "artifact_dir": "specs/system-deep-loop/045-fanout-write-containment-hardening/014-alignment-review/review/lineages/devin-a"
+  },
+  "totalIterations": 5,
+  "verdict": "CONDITIONAL",
+  "activeP0": 0,
+  "activeP1": 5,
+  "activeP2": 6,
+  "hasAdvisories": true,
+  "dimensionCoverage": 1.0,
+  "stopReason": "maxIterationsReached",
+  "stopPolicy": "max-iterations",
+  "convergenceMode": "off",
+  "timestamp": "2026-09-15T01:32:00Z"
+}

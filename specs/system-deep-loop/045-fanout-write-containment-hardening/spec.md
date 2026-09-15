@@ -124,6 +124,10 @@ Follow-on work the alternatives research surfaced. Each phase is one fix, dispat
 | 012-quarantine-retention-per-pass | 013-review-lane-advisory-and-strict-config | [Criteria TBD] | [Verification TBD] |
 | 013-review-lane-advisory-and-strict-config | 014-alignment-review | [Criteria TBD] | [Verification TBD] |
 | 014-alignment-review | 015-symlink-contained-paths | [Criteria TBD] | [Verification TBD] |
+| 015-symlink-contained-paths | 016-command-yaml-alignment | [Criteria TBD] | [Verification TBD] |
+| 016-command-yaml-alignment | 017-protocol-and-catalog-alignment | [Criteria TBD] | [Verification TBD] |
+| 017-protocol-and-catalog-alignment | 018-orchestrate-mirror-alignment | [Criteria TBD] | [Verification TBD] |
+| 018-orchestrate-mirror-alignment | 019-forced-depth-empty-records | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->
 
 ---

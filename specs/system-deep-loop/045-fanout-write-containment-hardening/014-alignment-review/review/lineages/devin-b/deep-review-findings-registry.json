@@ -1,0 +1,250 @@
+{
+  "sessionId": "fanout-devin-b-1789432854146-6hhsgk",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "Hub SKILL.md surface axis under-specified vs registry",
+      "file": ".opencode/skills/sk-code/SKILL.md",
+      "line": 65,
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ]
+    },
+    {
+      "findingId": "F002",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "sk-code-review cache write path not carved out of containment attribution",
+      "file": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      "line": 3358,
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ]
+    },
+    {
+      "findingId": "F003",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "ROUTER.md prose names only PI_REMOTE as bundled evidence surface",
+      "file": ".opencode/skills/sk-code/ROUTER.md",
+      "line": 41,
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ]
+    },
+    {
+      "findingId": "F006",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "deep-review loop protocol missing the two containment rules (REQ-006 partial)",
+      "file": ".opencode/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md",
+      "line": 275,
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ]
+    },
+    {
+      "findingId": "F004",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "Runtime catalog fanout-run entry lists stale executor kinds",
+      "file": ".opencode/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-run.md",
+      "line": 42,
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ]
+    },
+    {
+      "findingId": "F005",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Runtime feature catalog lacks write-containment entry",
+      "file": ".opencode/skills/system-deep-loop/runtime/feature-catalog/feature-catalog.md",
+      "line": 19,
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ]
+    },
+    {
+      "findingId": "F007",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "system-deep-loop hub SKILL.md improvement-lane and mode-count contradictions",
+      "file": ".opencode/skills/system-deep-loop/SKILL.md",
+      "line": 80,
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ]
+    },
+    {
+      "findingId": "F008",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "cli-external-orchestration SKILL.md says all six modes, seven registered",
+      "file": ".opencode/skills/cli-external-orchestration/SKILL.md",
+      "line": 74,
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ]
+    },
+    {
+      "findingId": "F009",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "Stale inline containment comments in auto YAML codex branches",
+      "file": ".opencode/commands/deep/assets/deep-review-auto.yaml",
+      "line": 1517,
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ]
+    },
+    {
+      "findingId": "F010",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "Compiled-contracts README contradicts itself on contract count",
+      "file": ".opencode/commands/deep/assets/compiled/README.md",
+      "line": 171,
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ]
+    },
+    {
+      "findingId": "F011",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "deep-review loop protocol shared fan-out adapter list omits cli-hermes",
+      "file": ".opencode/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md",
+      "line": 281,
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 10
+  },
+  "openFindingsCount": 11,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.0,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

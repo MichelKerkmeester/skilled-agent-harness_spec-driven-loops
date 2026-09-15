@@ -1,0 +1,176 @@
+{
+  "sessionId": "fanout-devin-a-1789432854146-6hhsgk",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "id": "F001",
+      "severity": "P2",
+      "dimension": "maintainability",
+      "title": "Version drift: sk-code hub SKILL.md (4.2.2.0) vs mode-registry.json / hub-router.json (4.1.0.1)",
+      "file": ".opencode/skills/sk-code/SKILL.md:5",
+      "firstSeenIteration": 1,
+      "lastSeenIteration": 1,
+      "status": "active",
+      "findingClass": "instance-only"
+    },
+    {
+      "id": "F002",
+      "severity": "P2",
+      "dimension": "maintainability",
+      "title": "sk-code-opencode surface packet names review/quality modes by bare aliases",
+      "file": ".opencode/skills/sk-code/sk-code-opencode/SKILL.md:24-25",
+      "firstSeenIteration": 1,
+      "lastSeenIteration": 1,
+      "status": "active",
+      "findingClass": "instance-only"
+    },
+    {
+      "id": "F003",
+      "severity": "P1",
+      "dimension": "correctness",
+      "title": "Prompt-pack and workflow YAML contradict each other on the state-log write mechanism (gateway projection does not exist)",
+      "file": ".opencode/skills/system-deep-loop/deep-review/assets/prompt-pack-iteration.md.tmpl:101",
+      "firstSeenIteration": 2,
+      "lastSeenIteration": 2,
+      "status": "active",
+      "findingClass": "cross-consumer",
+      "claimAdjudication": {
+        "finalSeverity": "P1",
+        "confidence": 0.9,
+        "downgradeTrigger": "If append-mode-event.cjs gains a projection-refresh contract for review mode AND the prompt pack becomes true (or the YAML's direct-write exemption is removed), downgrade to P2 documentation drift."
+      }
+    },
+    {
+      "id": "F005",
+      "severity": "P1",
+      "dimension": "correctness",
+      "title": "YAML fan-out call sites drop --convergence-mode (and confirm drops threshold/stop-policy)",
+      "file": ".opencode/commands/deep/assets/deep-review-auto.yaml:235-242",
+      "firstSeenIteration": 2,
+      "lastSeenIteration": 2,
+      "status": "active",
+      "findingClass": "class-of-bug",
+      "claimAdjudication": {
+        "finalSeverity": "P1",
+        "confidence": 0.88,
+        "downgradeTrigger": "If any YAML call site starts passing --convergence-mode (or the runner reads antiConvergence from the fan-out config JSON), downgrade to P2 stale-doc."
+      }
+    },
+    {
+      "id": "F004",
+      "severity": "P2",
+      "dimension": "maintainability",
+      "title": "Duplicated banner comment block in both deep-review YAMLs",
+      "file": ".opencode/commands/deep/assets/deep-review-auto.yaml:1-5",
+      "firstSeenIteration": 2,
+      "lastSeenIteration": 2,
+      "status": "active",
+      "findingClass": "instance-only"
+    },
+    {
+      "id": "F006",
+      "severity": "P1",
+      "dimension": "correctness",
+      "title": "orchestrate delegation tool surface inconsistent across runtimes and absent from its own permission blocks",
+      "file": ".opencode/agents/orchestrate.md:38",
+      "firstSeenIteration": 3,
+      "lastSeenIteration": 3,
+      "status": "active",
+      "findingClass": "cross-consumer",
+      "claimAdjudication": {
+        "finalSeverity": "P1",
+        "confidence": 0.75,
+        "downgradeTrigger": "If pi/OpenCode are confirmed to grant task by default to primary agents (documented runtime semantics), downgrade to P2 mirror-tool-list drift."
+      }
+    },
+    {
+      "id": "F007",
+      "severity": "P2",
+      "dimension": "traceability",
+      "title": ".pi mirrors drop webfetch/external_directory with declared unmapping comments",
+      "file": ".pi/agents/deep-research.md:8",
+      "firstSeenIteration": 3,
+      "lastSeenIteration": 3,
+      "status": "active",
+      "findingClass": "instance-only"
+    },
+    {
+      "id": "F008",
+      "severity": "P1",
+      "dimension": "traceability",
+      "title": "Hub feature catalog claims non-existent alignment workflowMode and seven-mode registry (actual: five modes, two improvement lanes)",
+      "file": ".opencode/skills/system-deep-loop/feature-catalog/feature-catalog.md:15",
+      "firstSeenIteration": 4,
+      "lastSeenIteration": 4,
+      "status": "active",
+      "findingClass": "instance-only",
+      "claimAdjudication": {
+        "finalSeverity": "P1",
+        "confidence": 0.95,
+        "downgradeTrigger": "If an alignment mode is re-registered in mode-registry.json with a packet and command, downgrade to P2 stale-timing note."
+      }
+    },
+    {
+      "id": "F009",
+      "severity": "P2",
+      "dimension": "maintainability",
+      "title": "system-deep-loop SKILL.md contradicts itself on improvement-lane count (2 vs 3)",
+      "file": ".opencode/skills/system-deep-loop/SKILL.md:27",
+      "firstSeenIteration": 4,
+      "lastSeenIteration": 4,
+      "status": "active",
+      "findingClass": "instance-only"
+    },
+    {
+      "id": "F010",
+      "severity": "P2",
+      "dimension": "traceability",
+      "title": "cli-external-orchestration ROUTER.md stage-2 leaf sets cover six modes; registry/leaf-manifest register seven (cli-hermes missing)",
+      "file": ".opencode/skills/cli-external-orchestration/ROUTER.md:24-70",
+      "firstSeenIteration": 4,
+      "lastSeenIteration": 4,
+      "status": "active",
+      "findingClass": "instance-only"
+    },
+    {
+      "id": "F011",
+      "severity": "P1",
+      "dimension": "correctness",
+      "title": "deep-review-confirm.yaml native fan-out branch dispatches the LEAF deep-review agent as a full-loop executor (Run to convergence)",
+      "file": ".opencode/commands/deep/assets/deep-review-confirm.yaml:208-221",
+      "firstSeenIteration": 5,
+      "lastSeenIteration": 5,
+      "status": "active",
+      "findingClass": "instance-only",
+      "claimAdjudication": {
+        "finalSeverity": "P1",
+        "confidence": 0.9,
+        "downgradeTrigger": "If the confirm YAML's native branch is rewired to the deep/review command surface (config.fanout_lineage_artifact_dir single-lineage invocation) like the auto path, downgrade to P2 stale-branch note."
+      }
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 5,
+    "P2": 6
+  },
+  "openFindingsCount": 11,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.16,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}
