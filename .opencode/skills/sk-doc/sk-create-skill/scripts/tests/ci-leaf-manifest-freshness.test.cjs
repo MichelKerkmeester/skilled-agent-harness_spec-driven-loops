@@ -6,7 +6,7 @@
 
 /**
  * Covers fail-closed manifest discovery, stable traversal-failure reporting,
- * intentional exclusions, and the readable happy path.
+ * intentional exclusions, symlink leaf resolution, and the readable happy path.
  */
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -49,6 +49,19 @@ function makeNestedDir(skillsDir, relativePath) {
   const dir = path.join(skillsDir, relativePath);
   fs.mkdirSync(dir, { recursive: true });
   return dir;
+}
+
+// A registry-less skill that declares its leaf roots but ships no manifest yet, so
+// a test can author the leaf shape (including links) before generating.
+function makeLinkLeafSkill(skillsDir, skillId) {
+  const skillDir = path.join(skillsDir, skillId);
+  fs.mkdirSync(path.join(skillDir, 'references'), { recursive: true });
+  fs.writeFileSync(path.join(skillDir, 'leaf-manifest.config.json'), `${JSON.stringify({
+    workflowMode: skillId,
+    packet: '.',
+    leafRoots: ['references'],
+  }, null, 2)}\n`);
+  return skillDir;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -157,7 +170,90 @@ function testCleanHappyPathStaysGreenAfterMocksRestore() {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 5. RUN
+// 5. SYMLINK LEAF RESOLUTION
+// ─────────────────────────────────────────────────────────────────────────────
+
+// A symlinked leaf is emitted under the link's own packet-relative path, exactly
+// as a real file would be, and the gate then reads the committed manifest as fresh.
+function testSymlinkedLeafResolvesAsItsLinkedPath() {
+  const skillsDir = makeTmpSkillsDir();
+  const skillDir = makeLinkLeafSkill(skillsDir, 'linked-skill');
+  fs.mkdirSync(path.join(skillDir, 'shared', 'references'), { recursive: true });
+  fs.writeFileSync(path.join(skillDir, 'shared', 'references', 'doctrine.md'), '# Doctrine\n');
+  fs.symlinkSync('../shared/references/doctrine.md', path.join(skillDir, 'references', 'doctrine.md'));
+
+  const manifest = JSON.parse(buildManifestBytes(skillDir).toString('utf8'));
+  assert.deepEqual(manifest.modes[0].leaves, ['references/doctrine.md']);
+
+  fs.writeFileSync(path.join(skillDir, 'leaf-manifest.json'), buildManifestBytes(skillDir));
+  const result = captureRun({ skillsDir, format: 'json' });
+  const report = JSON.parse(result.output);
+  assert.equal(result.code, 0);
+  assert.equal(report.fresh, 1);
+  assert.equal(report.failed, 0);
+}
+
+// The doctrine layout: a hub packet's references/ dir links out to the skill's
+// shared doctrine, so the hub mode must enumerate the link as a leaf.
+function testHubModeSymlinkedLeafResolvesAsItsLinkedPath() {
+  const skillsDir = makeTmpSkillsDir();
+  const skillDir = path.join(skillsDir, 'linked-hub');
+  fs.mkdirSync(path.join(skillDir, 'surface-packet', 'references'), { recursive: true });
+  fs.mkdirSync(path.join(skillDir, 'shared', 'references'), { recursive: true });
+  fs.writeFileSync(path.join(skillDir, 'shared', 'references', 'doctrine.md'), '# Doctrine\n');
+  fs.symlinkSync('../../shared/references/doctrine.md', path.join(skillDir, 'surface-packet', 'references', 'doctrine.md'));
+  fs.writeFileSync(path.join(skillDir, 'mode-registry.json'), `${JSON.stringify({
+    resourceContractVersion: 1,
+    modes: [{ workflowMode: 'surface', packet: 'surface-packet' }],
+  }, null, 2)}\n`);
+
+  const manifest = JSON.parse(buildManifestBytes(skillDir).toString('utf8'));
+  assert.deepEqual(manifest.modes[0].leaves, ['references/doctrine.md']);
+}
+
+function testBrokenLeafSymlinkIsReported() {
+  const skillsDir = makeTmpSkillsDir();
+  const skillDir = makeLinkLeafSkill(skillsDir, 'broken-link-skill');
+  fs.symlinkSync('../shared/references/missing.md', path.join(skillDir, 'references', 'doctrine.md'));
+  fs.writeFileSync(path.join(skillDir, 'leaf-manifest.json'), '{}\n');
+
+  assert.throws(() => buildManifestBytes(skillDir), (error) => error.code === 'BROKEN_LEAF_SYMLINK');
+
+  const outcome = gate.checkOne(skillDir);
+  assert.equal(outcome.status, 'error');
+  assert.match(outcome.error, /^BROKEN_LEAF_SYMLINK: /);
+}
+
+function testLeafSymlinkOutsideSkillTreeIsReported() {
+  const skillsDir = makeTmpSkillsDir();
+  const skillDir = makeLinkLeafSkill(skillsDir, 'escaping-link-skill');
+  fs.writeFileSync(path.join(skillsDir, 'outside-doctrine.md'), '# Outside\n');
+  fs.symlinkSync('../../outside-doctrine.md', path.join(skillDir, 'references', 'doctrine.md'));
+  fs.writeFileSync(path.join(skillDir, 'leaf-manifest.json'), '{}\n');
+
+  assert.throws(() => buildManifestBytes(skillDir), (error) => error.code === 'LEAF_SYMLINK_OUT_OF_ROOT');
+
+  const outcome = gate.checkOne(skillDir);
+  assert.equal(outcome.status, 'error');
+  assert.match(outcome.error, /^LEAF_SYMLINK_OUT_OF_ROOT: /);
+}
+
+function testLeafSymlinkToDirectoryIsReported() {
+  const skillsDir = makeTmpSkillsDir();
+  const skillDir = makeLinkLeafSkill(skillsDir, 'dir-link-skill');
+  fs.mkdirSync(path.join(skillDir, 'shared'), { recursive: true });
+  fs.symlinkSync('../shared', path.join(skillDir, 'references', 'doctrine.md'));
+  fs.writeFileSync(path.join(skillDir, 'leaf-manifest.json'), '{}\n');
+
+  assert.throws(() => buildManifestBytes(skillDir), (error) => error.code === 'UNSUPPORTED_LEAF_SYMLINK');
+
+  const outcome = gate.checkOne(skillDir);
+  assert.equal(outcome.status, 'error');
+  assert.match(outcome.error, /^UNSUPPORTED_LEAF_SYMLINK: /);
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 6. RUN
 // ─────────────────────────────────────────────────────────────────────────────
 
 try {
@@ -165,6 +261,11 @@ try {
   testMultipleFailuresAreStructuredAndStable();
   testExcludedDirectoriesAreNotTraversalFailures();
   testCleanHappyPathStaysGreenAfterMocksRestore();
+  testSymlinkedLeafResolvesAsItsLinkedPath();
+  testHubModeSymlinkedLeafResolvesAsItsLinkedPath();
+  testBrokenLeafSymlinkIsReported();
+  testLeafSymlinkOutsideSkillTreeIsReported();
+  testLeafSymlinkToDirectoryIsReported();
 } finally {
   if (tmpRoot) fs.rmSync(tmpRoot, { recursive: true, force: true });
 }

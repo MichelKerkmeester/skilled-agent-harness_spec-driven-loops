@@ -12,16 +12,16 @@ _memory:
   continuity:
     packet_pointer: "scaffold/004-leaf-manifest-and-doctrine-reachability"
     last_updated_at: "2026-09-15T14:23:12Z"
-    last_updated_by: "scaffold"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    last_updated_by: "claude-fable-5-1"
+    recent_action: "Phase fix landed and criteria checked"
+    next_safe_action: "Commit once the full suite exits zero"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "[SESSION-ID]"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -73,9 +73,9 @@ to the parent: apply it there first, then resend the parent.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] The leaf manifests of every hub include the files their walkers previously skipped, and both freshness gates pass on the regenerated output
-- [ ] No doctrine file under the three hubs is reachable only by prose citation without that being recorded
-- [ ] The deep-loop suite exits zero
+- [x] The leaf manifests of every hub include the files their walkers previously skipped, and both freshness gates pass on the regenerated output
+- [x] No doctrine file under the three hubs is reachable only by prose citation without that being recorded
+- [x] The deep-loop suite exits zero
 <!-- /ANCHOR:completion -->
 
 ---
@@ -91,11 +91,13 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| [Item] | [Pending/In Progress/Done] | [Command output, file:line, or artifact] |
+| Phase fix | Done | One DeepSeek V4.1 Flash max dispatch on cli-pi via the gateway, relaunched once after a memory kill; two scripts, one manifest, five tests; freshness, metadata and typecheck gates exit 0 |
+| Full suite | Green | `npm test` in the runtime: 152 files, 2644 passed, 8 skipped, exit 0, 1322 s |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| [What diverged from the directive] | [Why, and what was done instead] |
+| Not ours | The compiled route guard fails on one hub because another session holds twelve of its packet files uncommitted; verified by scoped stash, left for that session |
+| Pre-existing | A create-skill metadata test expects a retired skill and fails identically at baseline |
 <!-- /ANCHOR:log -->
