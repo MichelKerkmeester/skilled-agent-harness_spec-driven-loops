@@ -10,7 +10,7 @@ importance_tier: "important"
 
 # Legacy Deep Command Bodies
 
-> Router bodies retained as the base payload for the four compiler-managed deep commands.
+> Router bodies retained as the base payload for the three compiler-managed deep commands.
 
 ---
 
@@ -84,7 +84,7 @@ Inputs such as target paths, iteration limits, convergence settings and executor
 
 ## 6. INJECTION BOUNDARY
 
-Render tooling's compiler registry contains exactly these four body-to-contract pairings. In `fallback` mode it returns the legacy body directly; in `fix` mode it prepends the matching fresh compiled contract to that body.
+Render tooling's compiler registry contains exactly these three body-to-contract pairings. In `fallback` mode it returns the legacy body directly; in `fix` mode it prepends the matching fresh compiled contract to that body.
 
 Compiled contracts live in the sibling `compiled/` folder. Their maintained sources remain authoritative, and generated contract files must not replace the workflow YAML as the owner of runtime execution. The fallback-only commands remain outside these asset directories because they are not registered with the contract compiler.
 
@@ -108,7 +108,7 @@ Validate command references with the shared checker:
 node .opencode/commands/scripts/validate-command-references.cjs
 ```
 
-Expected result: the checker reports that command references resolve cleanly.
+Expected result: the checker reports the repository-wide resolution state of command-asset references. It scans every command family under `.opencode/commands/`, so an unresolved reference anywhere in that tree — including trees outside these assets, such as `design/` — appears in its output and exit status.
 
 ---
 

@@ -166,6 +166,16 @@ workflow:
         - artifact_dir: "Resolved review packet directory for this target"
         - artifact_archive_root: "Resolved local review archive directory for this target"
 
+  step_bind_reducer_artifact_arg:
+    description: "Keep the reducer on the lineage-owned artifact directory during fan-out"
+    branch_on: "config.fanout_lineage_artifact_dir"
+    if_present:
+      bind:
+        reducer_artifact_arg: "--artifact-dir {artifact_dir}"
+    if_absent:
+      bind:
+        reducer_artifact_arg: ""
+
   step_fanout_spawn:
     description: "Spawn fan-out lineages; skip and proceed to phase_init normally when single-executor"
     skip_when: "config.fanout is absent"
@@ -218,6 +228,17 @@ workflow:
       step_create_directories:
         action: "Create spec folder and canonical review packet directories if they don't exist"
         command: "mkdir -p {state_paths.prompt_dir} {state_paths.iteration_dir} {state_paths.delta_dir}"
+
+      step_detect_resource_map:
+        action: "Detect resource-map.md before config creation so init can persist coverage-gate state"
+        inspect:
+          - "{spec_folder}/resource-map.md"
+        classify:
+          present: "resource-map.md exists at init"
+          absent: "resource-map.md does not exist at init"
+        outputs:
+          - resource_map_present: "Boolean true when {spec_folder}/resource-map.md exists, else false"
+          - resource_map_known_context: "When present: concise resource-map snapshot for Known Context and charter framing. When absent: 'resource-map.md not present; skipping coverage gate'."
 
       step_migrate_legacy_review_state:
         action: "Rehome legacy review artifacts into review/iterations before session classification"
@@ -396,6 +417,7 @@ workflow:
           reviewTargetType: "{review_target_type}"
           # Reuse the single normalized init-time value from step_normalize_review_dimensions.
           reviewDimensions: "{review_dimensions_normalized}"
+          resource_map_present: "{resource_map_present}"
           reviewScopeFiles: "{review_scope_files}"
           severityThreshold: "P2"
           crossReference:
@@ -406,10 +428,13 @@ workflow:
           convergenceThreshold: "{convergence_threshold}"
           antiConvergence.convergenceMode: "{convergence_mode}"
           antiConvergence.divergent: {}
+          # Bound the same way as the auto variant, so an operator's --stop-policy
+          # reaches the config record instead of being dropped at creation.
+          stopPolicy: "{stop_policy}"
           stuckThreshold: 2
           maxDurationMinutes: 120
           specFolder: "{spec_folder}"
-          resource_map.emit: true
+          resource_map.emit: "{resource_map_emit}"
           createdAt: "{ISO_8601_NOW}"
           status: "initialized"
           releaseReadinessState: "in-progress"
@@ -419,7 +444,7 @@ workflow:
       step_create_state_log:
         action: "Initialize JSONL state log with config record including review fields and lineage metadata"
         note: "Reuse review_dimensions_json from step_normalize_review_dimensions. Never re-normalize or wrap the raw template value."
-        content: '{"type":"config","mode":"review","reviewTarget":"{review_target}","reviewTargetType":"{review_target_type}","reviewDimensions":{review_dimensions_json},"resource_map_present":{resource_map_present},"resource_map":{"emit":true},"sessionId":"{session_id_init}","parentSessionId":null,"lineageMode":"new","generation":1,"continuedFromRun":null,"maxIterations":{max_iterations},"convergenceThreshold":{convergence_threshold},"antiConvergence":{"convergenceMode":"{convergence_mode}","divergent":{}},"createdAt":"{ISO_8601_NOW}","specFolder":"{spec_folder}"}'
+        content: '{"type":"config","mode":"review","reviewTarget":"{review_target}","reviewTargetType":"{review_target_type}","reviewDimensions":{review_dimensions_json},"resource_map_present":{resource_map_present},"resource_map":{"emit":{resource_map_emit}},"sessionId":"{session_id_init}","parentSessionId":null,"lineageMode":"new","generation":1,"continuedFromRun":null,"maxIterations":{max_iterations},"convergenceThreshold":{convergence_threshold},"antiConvergence":{"convergenceMode":"{convergence_mode}","divergent":{}},"stopPolicy":"{stop_policy}","createdAt":"{ISO_8601_NOW}","specFolder":"{spec_folder}"}'
         output: "{state_paths.state_log}"
 
       step_create_findings_registry:
@@ -440,11 +465,35 @@ workflow:
           convergence_threshold: "{convergence_threshold}"
         output: "{state_paths.strategy}"
 
+      step_seed_coverage_graph:
+        action: "Seed the review coverage graph before the first convergence check"
+        transform: |
+          1. Convert review_scope_files into FILE nodes.
+          2. Convert review target groupings into coarse SLICE nodes only; do not expand SYMBOL
+             or DEPENDENCY nodes in review mode.
+          3. Emit COVERS edges from SLICE nodes to FILE nodes when the grouping is known.
+          4. Bind coverage_seed_source to "scope_discovery" and coverage_seed_confidence to 0.50.
+          5. When scope discovery yields no files, emit [] for both arrays; the upsert script
+             returns a warning and review continues with an empty graph.
+        bash: "node .opencode/skills/system-deep-loop/runtime/scripts/upsert.cjs --spec-folder \"{spec_folder}\" --loop-type \"review\" --session-id \"{config.sessionId}\" --nodes '{coverage_seed_nodes_json}' --edges '{coverage_seed_edges_json}' --seed-source \"{coverage_seed_source}\" --seed-confidence \"{coverage_seed_confidence}\""
+        outputs:
+          - coverage_seed_nodes_json: "Seed nodes for review SLICE and FILE kinds only"
+          - coverage_seed_edges_json: "Seed COVERS edges where review target groupings resolved"
+          - coverage_seed_warning: "Warning emitted when the seed batch inserts zero nodes, else empty"
+        on_warning:
+          log: "Coverage graph seed inserted zero nodes; continuing with an empty graph."
+          proceed: true
+
       step_enrich_strategy_context:
         action: "Ensure Known Context is written only after strategy.md exists"
         condition: "prior_context_found"
         edit: "{state_paths.strategy}"
         note: "Append or replace the Known Context section with prior_context_summary and retained detail from prior_context"
+
+      step_enrich_strategy_resource_map:
+        action: "Inject resource-map status into Known Context after strategy.md exists"
+        edit: "{state_paths.strategy}"
+        note: "When resource_map_present is true, append the resource_map_known_context snapshot and add Resource Map Coverage to the Review Charter. When false, append 'resource-map.md not present; skipping coverage gate'."
 
       # ─── APPROVAL GATE: Post-Init ───
       gate_init_approval:
@@ -506,6 +555,8 @@ workflow:
           - p0_count: "Count P0 findings across all iterations"
           - p1_count: "Count P1 findings across all iterations"
           - p2_count: "Count P2 findings across all iterations"
+          - resource_map_present: "Extract boolean from deep-review-config.json, default false"
+          - resource_map_prompt_line: "If resource_map_present is true, return 'Resource Map Coverage: cross-check target_files from {spec_folder}/applied/T-*.md against {spec_folder}/resource-map.md and classify only missed coverage as gaps.' Else return 'Resource Map Coverage: resource-map.md not present; skipping coverage gate.'"
           - session_id: "Extract sessionId from deep-review-config.json"
           - generation: "Extract generation from deep-review-config.json, else 1"
           - last_3_summaries: "Summarize the latest 3 iteration records as 'run N: dimension (ratio, P0/P1/P2)'"
@@ -515,6 +566,7 @@ workflow:
           - security_sensitive_fix_scope: "Boolean true when the current review is a rerun after fixes involving security, path disclosure, auth/authz, sandboxing, env precedence, public schemas, persistence, or user-visible error payloads; derive from the latest review report, remediation notes, or planning packet when present, else false."
           - fix_completeness_replay_required_rows: "Count prior active or remediated P0/P1 findings, plus any prior security/path P2 findings, that require closed-gate replay before STOP."
           - fix_completeness_replay_passing_rows: "Count required replay rows marked PASS with file:line or command evidence and producer/consumer/matrix coverage."
+          - stop_policy: "Extract stopPolicy from deep-review-config.json, default 'convergence'. Valid values: convergence, max-iterations."
           - convergence_mode: "Extract antiConvergence.convergenceMode when it is one of 'default', 'off', 'sliding-window', or 'divergent'; default to 'default'"
           - convergence_mode_warning: "Boolean true when antiConvergence.convergenceMode is present with an unsupported value; use 'default'"
           - pivot_lineage: "Summarize registry.divergence.completed and registry.divergence.overrides with pivot ids, source iterations, and selected review direction; else 'none yet'"
@@ -909,7 +961,7 @@ workflow:
                       next_dimension: "{pivot_result.restoredFocus}"
                       pivot_lineage: "Pivot {pivot_result.pivotId} selected {pivot_result.selectedCandidate.id} from source iteration {current_iteration}."
                       saturated_directions: "{pivot_result.completedEvent.saturatedDirections}"
-                    command: "node .opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs {spec_folder} --create-missing-anchors"
+                    command: "node .opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs {spec_folder} {reducer_artifact_arg} --create-missing-anchors"
                     proceed_to: gate_pre_iteration
                   on_B:
                     message: "No ranked alternative can be selected because the adapter exposes no ranking score or rank contract."
@@ -942,7 +994,7 @@ workflow:
                       next_dimension: "{operator_selected_candidate.focus}"
                       pivot_lineage: "Pivot {pivot_result.pivotId} used an audited insufficient-endorsement override for {operator_selected_candidate.id}."
                       saturated_directions: "{operator_saturated_directions}"
-                    command: "node .opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs {spec_folder} --create-missing-anchors"
+                    command: "node .opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs {spec_folder} {reducer_artifact_arg} --create-missing-anchors"
                     proceed_to: gate_pre_iteration
                   on_C:
                     append_to_jsonl: '{"type":"event","event":"manualStop","mode":"review","run":{current_iteration},"stopReason":"manualStop","pivotId":"{pivot_result.pivotId}","timestamp":"{ISO_8601_NOW}","sessionId":"{session_id}","generation":{generation}}'
@@ -994,6 +1046,22 @@ workflow:
         if_no_pending_event:
           proceed: true
 
+      step_marker_scan:
+        action: "H-2 loop-prevention guard: scan previous iteration's rendered prompt for nested review marker"
+        algorithm: |
+          if current_iteration > 1:
+            PREV_PROMPT_PATH = "{state_paths.prompt_dir}/iteration-{previous_iteration}.md"
+            if file_exists(PREV_PROMPT_PATH):
+              PREV_PROMPT_FIRST_LINE = head -1 of PREV_PROMPT_PATH
+              if PREV_PROMPT_FIRST_LINE matches ^(DEEP-REVIEW|DEEP-RESEARCH|CODE-REVIEW)$:
+                log "ERROR: nested review-of-review loop detected (marker found in previous iteration prompt). Aborting."
+                halt with exit code 2
+        note: |
+          False-positive prevention: only matches when the first line is exactly one of the
+          three canonical markers. Markers appearing in comments or body text are ignored.
+          True-positive triggers only when a previous iteration's rendered prompt literally
+          starts with a deep-loop marker, indicating a nested review-of-review dispatch.
+
       # ─── APPROVAL GATE: Pre-Iteration ───
       gate_pre_iteration:
         type: approval_gate
@@ -1032,6 +1100,7 @@ workflow:
             Prior Findings: P0={p0_count} P1={p1_count} P2={p2_count}
             Dimension Coverage: {dimensions_covered_list} ({dimension_coverage})
             Traceability: core={core_protocol_status} overlay={overlay_protocol_status}
+            {resource_map_prompt_line}
             Coverage Age: {coverage_age}
             Last 2 ratios: {ratio_prev} -> {ratio_latest}
             Stuck count: {stuck_count}
@@ -1197,9 +1266,19 @@ workflow:
             - "</dev/null required: opencode v1.14.39 reads stdin at startup before session creation. Without explicit closed stdin, automation that redirects stdout/stderr hangs at 0% CPU after `+60s snapshot prune cleanup`. See the `cli-external-orchestration/cli-opencode` mode's SKILL.md (`.opencode/skills/cli-external-orchestration/cli-opencode/SKILL.md`) §4 ALWAYS rule + memory feedback_opencode_run_requires_dev_null_stdin.md."
         post_dispatch_validate:
           validator: ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/post-dispatch-validate.ts#validateIterationOutputs"
+          command: "node .opencode/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs --loop-type review --artifact-dir {artifact_dir} --iteration {current_iteration}"
+          command_note: "Mechanical leaf-reliability gate: exit 0 = complete; non-zero prints one machine reason (iteration_file_missing|iteration_verdict_missing|state_record_missing|route_proof_missing|route_proof_mismatch|delta_file_missing). The script enforces the artifact + route-proof contract instead of trusting the leaf to self-report, and a non-zero exit triggers on_failure.redispatch_once."
           assert_exists: "{state_paths.iteration_pattern}"
           assert_appended: "{state_paths.state_log}"
           assert_jsonl_fields: [type, iteration, mode, run, status, focus, dimensions, filesReviewed, findingsCount, findingsSummary, findingsNew, findingDetails, newFindingsRatio, sessionId, generation, lineageMode, timestamp, durationMs]
+          route_proof:
+            mode: review
+            target_agent: deep-review
+            agent_definition_loaded: true
+            resolved_route: "Resolved route: mode=review target_agent=deep-review"
+          dispatchReceipt:
+            receiptDir: "{state_paths.packet_dir}/dispatch-receipts"
+            dispatchId: "review-i{current_iteration}-g{generation}"
           assert_canonical_type: "iteration"
           assert_delta_file_exists: "{state_paths.delta_pattern}"
           assert_delta_file_has_iteration_record: true
@@ -1221,6 +1300,8 @@ workflow:
             - v2_shallow_finding_details
             - delta_iteration_id_mismatch
             - state_delta_iteration_mismatch
+            - route_proof_missing
+            - route_proof_mismatch
           warning_surface:
             source: "result.warnings"
             action: "emit schema_advisory canonical conflict event"
@@ -1229,7 +1310,7 @@ workflow:
             note: "Warnings do not fail dispatch. Hard failures still emit schema_mismatch through on_failure."
           on_failure:
             action: "emit schema_mismatch canonical conflict event"
-            escalation: "After 3 consecutive failures, trigger stuck_recovery event with diagnostic context"
+            redispatch_once: "On the FIRST failure of the mechanical command check for this iteration, re-run step_dispatch_iteration exactly once for the same iteration number, then re-run the check. If it still fails, record the iteration as error (per step_evaluate_results.on_missing_outputs) and continue. Never re-dispatch a given iteration more than once."
         record_executor_audit:
           skip_when: "config.executor.kind == 'native'"
           target: "{state_paths.state_log}"
@@ -1257,6 +1338,21 @@ workflow:
           - traceability_checks: "From latest JSONL iteration record when present"
         on_missing_outputs:
           action: "Mark iteration as 'error', continue to next"
+          # Canonical iteration record: include sessionId, generation, durationMs so the reducer can
+          # persist the failure without dropping the iteration. Schema source: state-format.md §Iteration Records.
+          # The row is staged for the append gateway: the state log is a projection of the
+          # ledger, so a directly appended error row is dropped by the next refresh.
+          command: |
+            GATEWAY=".opencode/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs"
+            [ -f "$GATEWAY" ] || GATEWAY="scripts/append-mode-event.cjs"
+            EVENT_FILE="$(mktemp "${TMPDIR:-/tmp}/deep-review-iteration-error.XXXXXX")"
+            cat <<'DEEP_LOOP_STATE_RECORD' > "$EVENT_FILE"
+            {"stem":"deep_review.iteration_error","scope":{"runId":"{session_id}","sessionId":"{session_id}"},"data":{"type":"iteration","iteration":{current_iteration},"run":{current_iteration},"mode":"review","status":"error","focus":"{next_dimension}","dimensions":["{next_dimension}"],"filesReviewed":[],"findingsCount":0,"findingsSummary":{"P0":0,"P1":0,"P2":0},"findingsNew":{"P0":0,"P1":0,"P2":0},"findingDetails":[],"traceabilityChecks":{"summary":{"required":0,"executed":0,"pass":0,"partial":0,"fail":0,"blocked":0,"notApplicable":0,"gatingFailures":0},"results":[]},"newFindingsRatio":0.0,"durationMs":0,"sessionId":"{config.sessionId}","generation":{config.generation},"lineageMode":"{config.lineageMode}"}}
+            DEEP_LOOP_STATE_RECORD
+            node "$GATEWAY" --mode review --run-directory "$(dirname "{state_paths.state_log}")" --event-json "$EVENT_FILE"
+            RECORD_STATUS=$?
+            rm -f "$EVENT_FILE"
+            exit "$RECORD_STATUS"
 
       step_post_iteration_claim_adjudication:
         action: "Validate typed claim-adjudication packets for any new P0/P1 findings and persist the result to state.jsonl so the next iteration's claimAdjudicationGate can read it"
@@ -1267,18 +1363,41 @@ workflow:
         on_pass:
           set:
             claim_adjudication_passed: true
-          append_jsonl: '{"type":"event","event":"claim_adjudication","mode":"review","run":{current_iteration},"passed":true,"activeP0P1":{active_p0_p1_count},"missingPackets":[],"timestamp":"{ISO_8601_NOW}","sessionId":"{session_id}","generation":{generation}}'
+          # The row is staged as a canonical ledger event and appended by the gateway:
+          # the state log is a projection of the ledger, so a write beside it is dropped
+          # by the next refresh.
+          command: |
+            GATEWAY=".opencode/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs"
+            [ -f "$GATEWAY" ] || GATEWAY="scripts/append-mode-event.cjs"
+            EVENT_FILE="$(mktemp "${TMPDIR:-/tmp}/deep-review-claim-adjudication.XXXXXX")"
+            cat <<'DEEP_LOOP_STATE_RECORD' > "$EVENT_FILE"
+            {"stem":"deep_review.claim_adjudication","scope":{"runId":"{session_id}","sessionId":"{session_id}"},"data":{"mode":"review","run":{current_iteration},"passed":true,"activeP0P1":{active_p0_p1_count},"missingPackets":[],"reason":null,"sessionId":"{session_id}","generation":{generation}}}
+            DEEP_LOOP_STATE_RECORD
+            node "$GATEWAY" --mode review --run-directory "$(dirname "{state_paths.state_log}")" --event-json "$EVENT_FILE"
+            RECORD_STATUS=$?
+            rm -f "$EVENT_FILE"
+            exit "$RECORD_STATUS"
           log: "Claim adjudication passed for iteration {current_iteration}. All new P0/P1 findings have typed packets."
         on_fail:
           action: "Mark the iteration as invalid for convergence. The next iteration's claimAdjudicationGate (step_check_convergence step 0) reads the persisted `passed: false` event and vetoes STOP until a follow-up iteration rewrites the packets."
           set:
             claim_adjudication_passed: false
-          append_jsonl: '{"type":"event","event":"claim_adjudication","mode":"review","run":{current_iteration},"passed":false,"activeP0P1":{active_p0_p1_count},"missingPackets":{missing_packet_ids},"reason":"Missing typed packet fields for new P0/P1 findings","timestamp":"{ISO_8601_NOW}","sessionId":"{session_id}","generation":{generation}}'
+          command: |
+            GATEWAY=".opencode/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs"
+            [ -f "$GATEWAY" ] || GATEWAY="scripts/append-mode-event.cjs"
+            EVENT_FILE="$(mktemp "${TMPDIR:-/tmp}/deep-review-claim-adjudication.XXXXXX")"
+            cat <<'DEEP_LOOP_STATE_RECORD' > "$EVENT_FILE"
+            {"stem":"deep_review.claim_adjudication","scope":{"runId":"{session_id}","sessionId":"{session_id}"},"data":{"mode":"review","run":{current_iteration},"passed":false,"activeP0P1":{active_p0_p1_count},"missingPackets":{missing_packet_ids},"reason":"Missing typed packet fields for new P0/P1 findings","sessionId":"{session_id}","generation":{generation}}}
+            DEEP_LOOP_STATE_RECORD
+            node "$GATEWAY" --mode review --run-directory "$(dirname "{state_paths.state_log}")" --event-json "$EVENT_FILE"
+            RECORD_STATUS=$?
+            rm -f "$EVENT_FILE"
+            exit "$RECORD_STATUS"
           log: "Claim adjudication incomplete for new P0/P1 findings. Event persisted. The next iteration's step_check_convergence claim-adjudication pre-check will veto STOP while `passed: false` remains the latest event and active P0/P1 > 0."
 
       step_reduce_review_state:
         action: "Run reducer to refresh the canonical findings registry before dashboard generation"
-        command: "node .opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs {spec_folder} --create-missing-anchors"
+        command: "node .opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs {spec_folder} {reducer_artifact_arg} --create-missing-anchors"
         read:
           - "{state_paths.state_log}"
           - "{state_paths.iteration_pattern}"
@@ -1543,7 +1662,7 @@ workflow:
 
       step_emit_resource_map:
         action: "Emit {state_paths.resource_map_output} from converged review deltas unless config.resource_map.emit is false"
-        command: "node .opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs {spec_folder} --create-missing-anchors --emit-resource-map"
+        command: "node .opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs {spec_folder} {reducer_artifact_arg} --create-missing-anchors --emit-resource-map"
         read:
           - "{state_paths.config}"
           - "{state_paths.delta_dir}/iter-*.jsonl"
@@ -1551,8 +1670,12 @@ workflow:
           - "{state_paths.resource_map_output}"
         guarantee: "Reducer skips cleanly when config.resource_map.emit == false and writes a deterministic resource-map when enabled."
 
+      step_resource_map_coverage_gate:
+        action: "If resource_map_present, compute the Resource Map Coverage Gate synthesis inputs; otherwise preserve the skip note"
+        note: "Cross-check target_files from {spec_folder}/applied/T-*.md against {spec_folder}/resource-map.md. Report touched entries, untouched entries split into expected-by-scope vs gap, and implementation paths absent from the map. Findings raised here use category resource-map-coverage with severity calibrated to the gate outcome."
+
       step_compile_review_report:
-        action: "Compile review/review-report.md with 9 sections and an embedded Planning Packet"
+        action: "Compile review/review-report.md with 9 core sections, a conditional Resource Map Coverage Gate section, and an embedded Planning Packet"
         instructions: |
           Create review/review-report.md with the following sections:
 
@@ -1586,6 +1709,11 @@ workflow:
               - Include status, evidence, and any unresolved drift per protocol
               - Include `AC_COVERAGE` status for lifecycle-active spec-folder targets: exempt, disabled, pass, or advisory-shortfall, with covered/total and floor when available
 
+          If `resource_map_present` is true, insert **## Resource Map Coverage Gate** after `Traceability Status` with exactly three bullets:
+             - `Entries touched`: count of resource-map paths that appear in applied reports
+             - `Entries not touched`: paths in resource-map not in implementation, labeled `expected-by-scope` or `gap`
+             - `Implementation paths absent from resource-map`: `target_files` in applied reports not on the map
+
           8. **Deferred Items**
              - Advisory-only or backlog-worthy follow-ups that do not block the current verdict
 
@@ -1609,7 +1737,201 @@ workflow:
 
       step_convergence_report:
         action: "Append convergence report to JSONL"
-        append_to_jsonl: '{"type":"event","event":"synthesis_complete","mode":"review","totalIterations":{iteration_count},"activeP0":{active_p0},"activeP1":{active_p1},"activeP2":{active_p2},"dimensionCoverage":{dimension_coverage},"verdict":"{verdict}","releaseReadinessState":"{release_readiness_state}","stopReason":"{reason}","timestamp":"{ISO_8601_NOW}"}'
+        command: |
+          GATEWAY=".opencode/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs"
+          [ -f "$GATEWAY" ] || GATEWAY="scripts/append-mode-event.cjs"
+          EVENT_DIR="$(mktemp -d "${TMPDIR:-/tmp}/deep-review-synthesis.XXXXXX")"
+          node --input-type=module - "$EVENT_DIR" <<'EOF'
+          import { existsSync, readFileSync, statSync, writeFileSync } from 'node:fs';
+          import { basename, dirname, join } from 'node:path';
+
+          const paths = {
+            stateLog: String.raw`{state_paths.state_log}`,
+            registry: String.raw`{state_paths.findings_registry}`,
+            review: String.raw`{state_paths.review_output}`,
+            dashboard: String.raw`{state_paths.dashboard}`,
+          };
+
+          function hasFile(filePath) {
+            try {
+              return existsSync(filePath) && statSync(filePath).isFile();
+            } catch {
+              return false;
+            }
+          }
+
+          function readJson(filePath) {
+            try {
+              return JSON.parse(readFileSync(filePath, 'utf8'));
+            } catch {
+              return null;
+            }
+          }
+
+          function readJsonl(filePath) {
+            if (!hasFile(filePath)) return { records: [], malformedLines: [] };
+            const records = [];
+            const malformedLines = [];
+            readFileSync(filePath, 'utf8')
+              .split(/\r?\n/)
+              .forEach((line, index) => {
+                const trimmed = line.trim();
+                if (!trimmed) return;
+                try {
+                  records.push(JSON.parse(trimmed));
+                } catch {
+                  malformedLines.push(index + 1);
+                }
+              });
+            return { records, malformedLines };
+          }
+
+          function countIterationFindings(record) {
+            if (!record || record.type !== 'iteration') return 0;
+            const numeric = Number(record.findingsCount);
+            if (Number.isFinite(numeric) && numeric > 0) return Math.floor(numeric);
+            if (Array.isArray(record.findingDetails)) return record.findingDetails.length;
+            return 0;
+          }
+
+          function normalizeFindingKey(value) {
+            return String(value || '').trim().toLowerCase().replace(/\s+/g, ' ');
+          }
+
+          function findingKeys(candidate) {
+            if (typeof candidate === 'string') {
+              const key = normalizeFindingKey(candidate);
+              return key ? [key] : [];
+            }
+            if (!candidate || typeof candidate !== 'object' || Array.isArray(candidate)) return [];
+            return [...new Set([
+              candidate.id,
+              candidate.findingId,
+              candidate.title,
+              candidate.summary,
+              candidate.text,
+              candidate.finding,
+              candidate.description,
+            ].map(normalizeFindingKey).filter(Boolean))];
+          }
+
+          function collectIterationFindingGroups(record) {
+            if (!record || record.type !== 'iteration' || !Array.isArray(record.findingDetails)) return [];
+            return record.findingDetails
+              .map(findingKeys)
+              .filter((keys) => keys.length > 0);
+          }
+
+          function collectRegistryFindingKeys(registry) {
+            return [registry?.openFindings, registry?.resolvedFindings, registry?.repeatedFindings]
+              .filter(Array.isArray)
+              .flatMap((findings) => findings)
+              .flatMap(findingKeys);
+          }
+
+          const eventDir = process.argv[2];
+          // The scope needs one run-stable token the synthesis step can derive from the
+          // state-log path it was handed; the artifact directory name is that token.
+          const scopeRunId = basename(dirname(paths.stateLog)) || 'review';
+
+          // The state log is a projection the gateway rebuilds from the ledger, so the
+          // synthesis row is staged as a canonical ledger event; a write beside the
+          // projection is dropped by the next refresh.
+          function recordEvent(event) {
+            const data = { ...event };
+            const eventName = data.event;
+            delete data.type;
+            delete data.event;
+            delete data.timestamp;
+            writeFileSync(
+              join(eventDir, `${eventName}.json`),
+              JSON.stringify({
+                stem: `deep_review.${eventName}`,
+                scope: { runId: scopeRunId, sessionId: scopeRunId },
+                data,
+              }),
+              'utf8',
+            );
+          }
+
+          const registry = readJson(paths.registry);
+          const openCount = Array.isArray(registry?.openFindings) ? registry.openFindings.length : null;
+          const resolvedCount = Array.isArray(registry?.resolvedFindings) ? registry.resolvedFindings.length : 0;
+          const repeatedCount = Array.isArray(registry?.repeatedFindings) ? registry.repeatedFindings.length : 0;
+          const registryFindingCount = openCount === null ? null : openCount + resolvedCount + repeatedCount;
+          const stateLog = readJsonl(paths.stateLog);
+          const stateRecords = stateLog.records;
+          const iterationFindingCount = stateRecords.reduce((sum, record) => sum + countIterationFindings(record), 0);
+          const identifiableFindingGroups = stateRecords.flatMap(collectIterationFindingGroups);
+          const registryFindingKeys = new Set(collectRegistryFindingKeys(registry));
+          const missingStructuredFindingCount = identifiableFindingGroups.filter((keys) => !keys.some((key) => registryFindingKeys.has(key))).length;
+          const identifiableFindingCount = identifiableFindingGroups.length;
+          const missingArtifacts = [
+            ['registry', paths.registry],
+            ['review', paths.review],
+            ['dashboard', paths.dashboard],
+          ].filter(([, filePath]) => !hasFile(filePath)).map(([name, filePath]) => ({ name, path: filePath }));
+          const invariantFailures = [];
+          if (stateLog.malformedLines.length > 0) invariantFailures.push('state_jsonl_parse_failure');
+          if (missingArtifacts.length > 0) invariantFailures.push('missing_synthesis_artifacts');
+          if (registryFindingCount === null) invariantFailures.push('registry_missing_openFindings');
+          if (iterationFindingCount > 0 && (registryFindingCount ?? 0) === 0) invariantFailures.push('state_findings_not_reflected_in_registry');
+          if (identifiableFindingCount > 0 && registryFindingCount !== null && registryFindingCount < identifiableFindingCount) invariantFailures.push('structured_state_findings_partially_reflected_in_registry');
+          if (missingStructuredFindingCount > 0) invariantFailures.push('structured_state_findings_missing_from_registry');
+
+          if (invariantFailures.length > 0) {
+            recordEvent({
+              type: 'event',
+              event: 'synthesis_incomplete',
+              mode: 'review',
+              severity: 'warning',
+              totalIterations: Number('{iteration_count}'),
+              activeP0: Number('{active_p0}'),
+              activeP1: Number('{active_p1}'),
+              activeP2: Number('{active_p2}'),
+              dimensionCoverage: Number('{dimension_coverage}'),
+              verdict: '{verdict}',
+              releaseReadinessState: '{release_readiness_state}',
+              stopReason: '{reason}',
+              reason: 'synthesis_artifact_invariant_failed',
+              invariantFailures,
+              missingArtifacts,
+              registryFindingCount,
+              iterationFindingCount,
+              identifiableFindingCount,
+              missingStructuredFindingCount,
+              stateParseFailureCount: stateLog.malformedLines.length,
+              timestamp: '{ISO_8601_NOW}',
+            });
+          } else {
+            recordEvent({
+              type: 'event',
+              event: 'synthesis_complete',
+              mode: 'review',
+              totalIterations: Number('{iteration_count}'),
+              activeP0: Number('{active_p0}'),
+              activeP1: Number('{active_p1}'),
+              activeP2: Number('{active_p2}'),
+              dimensionCoverage: Number('{dimension_coverage}'),
+              verdict: '{verdict}',
+              releaseReadinessState: '{release_readiness_state}',
+              stopReason: '{reason}',
+              timestamp: '{ISO_8601_NOW}',
+            });
+          }
+          EOF
+          NODE_STATUS=$?
+          for eventFile in "$EVENT_DIR"/*.json; do
+            [ -e "$eventFile" ] || continue
+            node "$GATEWAY" --mode review --run-directory "$(dirname "{state_paths.state_log}")" --event-json "$eventFile"
+            GATEWAY_STATUS=$?
+            if [ "$GATEWAY_STATUS" -ne 0 ]; then
+              rm -rf "$EVENT_DIR"
+              exit "$GATEWAY_STATUS"
+            fi
+          done
+          rm -rf "$EVENT_DIR"
+          exit "$NODE_STATUS"
         note: "Emit as numeric ratio (e.g., 0.75), not quoted string. Compute: dimensions_covered / total_dimensions."
 
       step_update_config_status:
@@ -1654,6 +1976,23 @@ workflow:
   phase_save:
     purpose: Preserve review context in packet continuity
     steps:
+
+      step_compose_save_payload:
+        action: "Compose the structured JSON payload consumed by generate-context.js"
+        output: "/tmp/save-context-data-<session-id>.json"
+        requirements:
+          - "Write this file before invoking generate-context.js; the loader fails closed if the explicit JSON file is absent."
+          - "Include `specFolder`, a concise `sessionSummary`, curated `observations`, `recent_context`, `toolCalls`, and `exchanges` from the completed review loop."
+          - "Use a session-scoped temp filename; do not use the retired shared `/tmp/save-context-data.json` path."
+        example_payload: |
+          {
+            "specFolder": "{spec_folder}",
+            "sessionSummary": "Deep review completed; see review/review-report.md for verdict, findings, and workstreams.",
+            "observations": ["Summarize the active findings, verdict, and remediation guidance."],
+            "recent_context": ["Point to the generated review artifacts and next action."],
+            "exchanges": [],
+            "toolCalls": []
+          }
 
       step_generate_context:
         action: "Route continuity content into the correct canonical spec document via generate-context.js"
@@ -1763,3 +2102,25 @@ rules:
     - auto_approve_on_behalf_of_user
     - modify_files_under_review
     - report_p0_without_file_line_evidence
+
+# ─────────────────────────────────────────────────────────────────
+# CONFIRM-VARIANT PARITY CENSUS
+# ─────────────────────────────────────────────────────────────────
+# This interactive variant shares one contract family with deep-review-auto.yaml. Every
+# auto-variant step is either present here or recorded below with the interactive reason
+# it is absent, so an omission is always explained rather than silent.
+confirm_parity:
+  omitted_steps:
+    step_apply_lifecycle_request: "Auto-only pre-step. An unattended run resolves its lineage request from persisted state; the interactive surface classifies the session in step_classify_session (resume/restart/cancel) and archives the packet inside its on_restart_choice branch, so the request is applied there instead."
+    step_init_complete: "Covered by gate_init_approval.on_A, which sets current_iteration 1 and zeroes stuck_count/p0_count/p1_count/p2_count before proceeding to phase_loop."
+    step_generate_state_summary: "Inlined into step_dispatch_iteration.pre_dispatch.generate_summary, which renders the same ~200-token summary (including resource_map_prompt_line) before each dispatch."
+    step_apply_divergent_pivot_result: "Auto-only pivot application. The interactive divergent-pivot gate applies the accepted pivot inside its on_A/on_B branches (binds next_dimension, pivot_lineage and saturated_directions, then reruns the reducer) before proceeding to gate_pre_iteration."
+  gateway_wiring:
+    note: "Both variants stage the same canonical record events through append-mode-event.cjs: the state-write-protocol command, the scratch-to-canonical migration, the iteration-error row, both claim-adjudication rows and the synthesis row. The declarative append_jsonl/append_to_jsonl rows that remain are identical in both files."
+    auto_only_sites:
+      - "deep_review.recovery_baseline is staged inside the detached-cli-opencode recovery branch of step_dispatch_iteration, which only exists for unattended executor sessions; the interactive surface has no detached-dispatch recovery path, so the site is absent here rather than left unwired."
+  step_addenda:
+    dispatch_lineage_guard: "The auto twin's cli-opencode dispatch branch carries a PRE-DISPATCH RULE telling a detached fan-out lineage to execute the iteration in-process instead of re-entering the dispatch script. The fan-out runner only hands lineages the auto contract, so the interactive confirm surface never runs as a lineage executor and has nothing to guard."
+  auto_corrections:
+    - "step_evaluate_results.iteration_error now uses the flat review config fields {config.sessionId}, {config.generation} and {config.lineageMode}: the review config schema has no lineage object, so the previous paths never resolved."
+    - "step_stage_artifact_dir replaces step_leave_artifacts_unstaged so every variant stages the artifact directory and leaves commit authority with the operator."

@@ -329,6 +329,8 @@ workflow:
             session_id_init: "{session_id}"
         if_absent:
           bind:
+            # The token is bound here so the fallback literal resolves to a real timestamp when no caller session_id is supplied.
+            AUTO_SESSION_ID: "{ISO_8601_NOW}"
             session_id_init: "{AUTO_SESSION_ID}"
 
       step_create_config:
@@ -365,7 +367,7 @@ workflow:
       step_create_state_log:
         action: "Initialize JSONL state log with config record"
         # Same parsed --no-resource-map flag honored here so config and state_log agree from line 1.
-        content: '{"type":"config","topic":"{research_topic}","maxIterations":{max_iterations},"minIterations":3,"convergenceThreshold":{convergence_threshold},"antiConvergence":{"convergenceMode":"{convergence_mode}","divergent":{}},"minIdeaObservations":2,"resource_map_present":{resource_map_present},"resource_map":{"emit":{resource_map_emit}},"createdAt":"{ISO_8601_NOW}","specFolder":"{spec_folder}","nextRunAt":null,"remainingDelayMs":null}'
+        content: '{"type":"config","topic":"{research_topic}","maxIterations":{max_iterations},"minIterations":3,"convergenceThreshold":{convergence_threshold},"antiConvergence":{"convergenceMode":"{convergence_mode}","divergent":{}},"minIdeaObservations":2,"resource_map_present":{resource_map_present},"resource_map":{"emit":{resource_map_emit}},"lineage":{"sessionId":"{session_id_init}","parentSessionId":null,"lineageMode":"new","generation":1,"continuedFromRun":null},"createdAt":"{ISO_8601_NOW}","specFolder":"{spec_folder}","nextRunAt":null,"remainingDelayMs":null}'
         output: "{state_paths.state_log}"
 
       step_create_strategy:

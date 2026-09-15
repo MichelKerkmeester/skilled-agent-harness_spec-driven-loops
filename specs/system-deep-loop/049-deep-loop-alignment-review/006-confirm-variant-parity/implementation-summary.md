@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+description: "Ten divergences between the interactive and unattended deep-command surfaces closed, with every remaining difference censused inside the file and machine-checked."
 trigger_phrases:
   - "implementation summary"
   - "what shipped"
@@ -12,9 +12,9 @@ _memory:
   continuity:
     packet_pointer: "system-deep-loop/049-deep-loop-alignment-review/006-confirm-variant-parity"
     last_updated_at: "2026-09-15T14:23:14Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialized Level 2 template"
-    next_safe_action: "Replace continuity placeholders"
+    last_updated_by: "claude-fable-5-1"
+    recent_action: "Closed the confirm-variant divergences and filled the packet docs"
+    next_safe_action: "Commit once the full suite exits zero"
     blockers: []
     key_files: []
     session_dedup:
@@ -46,20 +46,9 @@ _memory:
 ---
 
 <!-- ANCHOR:what-built -->
-## What Was Built
+## 2. WHAT WAS BUILT
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
-
-### Phase 5: confirm-variant-parity
-
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
-
-### Files Changed
-
-| File | Action | Purpose |
-|------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+The confirm variants of deep-research and deep-review now match their auto twins or say why they do not. Seven measured divergences were closed and three further functional holes the close-out exposed were closed with them: the missing mechanical post-dispatch gate, the unenforced minimum-iterations floor with its convergence-off branch, and the missing snapshot flag on the convergence call. Where the auto variant was itself wrong it was corrected rather than copied, in three places. Everything still different is written into a census block inside the confirm file, and four new tests fail if a future edit reopens the gap.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -67,7 +56,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-[How was this tested, verified and shipped? What was the rollout approach?]
+One dispatch to DeepSeek V4.1 Flash at max thinking through the gateway on cli-pi, with all seven divergences enumerated in the brief and the instruction to close each one or write a reason at the point of divergence, never silence. The delegate restored 383 lines into review-confirm and 190 into research-confirm, corrected the two auto files, regenerated both compiled contracts and added the parity tests.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -77,7 +66,10 @@ Explain what the user gains, not what files you touched.]
 
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| Census rather than restore the divergent-pivot step in both confirms | The interactive pivot gate applies the pivot inline in its own branches; restoring the step would have added an unreachable one |
+| Correct the auto variant where the auto side held the defect | Copying a wrong lineage read or an unstaged-artifacts step into confirm would have doubled the defect instead of closing it |
+| Close three holes beyond the named seven | Restoring a step whose enabling machinery is absent produces a step that runs and does nothing, which reads as parity without being it |
+| Write the census into the workflow file, not the packet | The reason has to be where the next editor of that file will see it |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -87,7 +79,13 @@ Explain what the user gains, not what files you touched.]
 
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| Auto-only steps without a census entry | zero in both pairs, counted independently of the delegate |
+| Confirm-only steps | zero in both pairs |
+| Census entries | four for review, ten for research, each naming the interactive reason |
+| Contract drift check | exit 0, three commands OK |
+| Command reference checker | exit 1 with ten unresolved references, all under design/, none in this phase's surface |
+| Full deep-loop suite | 2654 passed, 8 skipped, 1 failed across 152 files |
+| The one failure | a transport-unavailability assertion in the cli-adapter stress file, staled by a neighbouring commit that added binary probing; outside this phase's surface |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -95,7 +93,9 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **The census is a promise in prose.** The tests assert that every auto-only step has a census entry and that the entries name real steps; nothing machine-checks that a reason is true. A wrong reason passes.
+2. **One auto-only gateway site remains in each research variant pair.** Both sit inside steps that are themselves censused, so they are accounted for transitively rather than named on their own line.
+3. **Shared branch break.** A neighbouring session's commit added executor binary probing to the runner, which changed the failure message a cli-adapter stress test asserts. That test now fails and belongs to that session's change, not this one. This phase touches command assets and one contract test only. The failure is recorded as the baseline every later phase is measured against, not fixed here.
 <!-- /ANCHOR:limitations -->
 
 ---

@@ -39,14 +39,22 @@
       "approach"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/commands/deep/assets/deep-review-confirm.yaml",
+      ".opencode/commands/deep/assets/deep-research-confirm.yaml",
+      ".opencode/commands/deep/assets/deep-review-auto.yaml",
+      ".opencode/commands/deep/assets/deep-research-auto.yaml",
+      ".opencode/commands/deep/assets/compiled/deep-review.contract.md",
+      ".opencode/commands/deep/assets/compiled/deep-research.contract.md",
+      ".opencode/commands/deep/assets/legacy/README.md",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/render-command-contract.vitest.ts"
     ],
     "entities": [
       {
@@ -86,6 +94,54 @@
         "source": "derived"
       },
       {
+        "name": "deep-review-confirm.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep-review-confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-confirm.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep-research-confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep-review-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep-research-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.contract.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/assets/compiled/deep-review.contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research.contract.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/assets/compiled/deep-research.contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/assets/legacy/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "render-command-contract.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/render-command-contract.vitest.ts",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -116,7 +172,7 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement",
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -134,69 +190,21 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Each",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Key Components",
+        "name": "Pattern Restore",
         "kind": "proper_noun",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "The review measured seven divergences between the confirm and auto variants of the two deep commands",
     "created_at": "2026-09-15T14:23:13Z",
-    "last_save_at": "2026-09-15T14:24:38.498Z",
+    "last_save_at": "2026-09-15T19:20:27.484Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +215,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3588ad48eca2e3c93fb7f5290665107d766131a516a6568f20a24689c5168961",
+    "source_fingerprint": "sha256:0175c59898c336b8a1034df0d0171e1e107a4aec936c732a815c7494243e3187",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8f3119e180e3e98e44e6baa7c603306c85dbd8874d93c26260f9d061a175fbb2",
-      "plan.md": "68947fcc6f2273fd6918a3992a10178c58353fce6bd6dae072b5311e56d1eedf",
-      "tasks.md": "a2ff3c7d0e3c65792a5bdb2fcdaf908f2c90deec0217a35d2e239c844ac86bf5",
-      "implementation-summary.md": "e26952c967ee1df3b3ba193d7a2ff3b137c912a4b843b2f36806ab9b700c5588"
+      "spec.md": "68c254d522d9d5a021a4684ffa452cfc68a60d75b425cb4cf600b4ac6d7a8ef6",
+      "plan.md": "08c40f9b03b8ffa25f28a333f9cc61d42fa1451e85cd66a7073b8cce5b8ef72b",
+      "tasks.md": "a121d73614ef93c47fd58906126e30f2eea6fc710b2abc2107c068550149b1d2",
+      "implementation-summary.md": "70765a4c3a628201f3b3877c5b9781667124d9f3f229d8cf166ddafb5066893e"
     },
     "last_active_at": null
   }

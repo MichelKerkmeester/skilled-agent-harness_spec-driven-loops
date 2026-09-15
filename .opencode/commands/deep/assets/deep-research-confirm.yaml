@@ -255,6 +255,17 @@ workflow:
         dry_run_halt_event: '{"type":"event","event":"dry_run_halt","mode":"research","boundary":"state-mutation","step":"step_create_directories","detail":"Research packet directories would be created if missing.","timestamp":"{ISO_8601_NOW}"}'
         command: "mkdir -p {state_paths.prompt_dir} {state_paths.iteration_dir} {state_paths.delta_dir}"
 
+      step_detect_resource_map:
+        action: "Detect resource-map.md before config creation so init can persist the flag and seed Known Context"
+        inspect:
+          - "{spec_folder}/resource-map.md"
+        classify:
+          present: "resource-map.md exists at init"
+          absent: "resource-map.md does not exist at init"
+        outputs:
+          - resource_map_present: "Boolean true when {spec_folder}/resource-map.md exists, else false"
+          - resource_map_known_context: "When present: summarize the map by section with entry counts across READMEs, Documents, Commands, Agents, Skills, Specs, Scripts, Tests, Config, and Meta, plus a one-line theme summary for each section. When absent: 'resource-map.md not present; skipping coverage gate'."
+
       step_resolve_canonical_names:
         action: "Resolve canonical research packet artifact names before classification"
         inspect_legacy:
@@ -335,6 +346,17 @@ workflow:
         on_fresh:
           action: "Proceed with a new session"
 
+      step_resolve_session_id:
+        action: "Resolve init session id from caller when supplied, else preserve the auto-generated fallback"
+        branch_on: "session_id"
+        if_present:
+          bind:
+            session_id_init: "{session_id}"
+        if_absent:
+          bind:
+            AUTO_SESSION_ID: "{ISO_8601_NOW}"
+            session_id_init: "{AUTO_SESSION_ID}"
+
       step_create_config:
         action: "Create deep-research-config.json from template"
         dry_run_boundary: "state-mutation"
@@ -343,11 +365,13 @@ workflow:
         populate:
           topic: "{research_topic}"
           maxIterations: "{max_iterations}"
+          minIterations: 3
           # Semantic: newInfoRatio with negative-knowledge emphasis. See SKILL.md §"Convergence Threshold Semantics".
           convergenceThreshold: "{convergence_threshold}"
           antiConvergence.convergenceMode: "{convergence_mode}"
           antiConvergence.divergent: {}
           stuckThreshold: 3
+          minIdeaObservations: 2
           maxDurationMinutes: 120
           specFolder: "{spec_folder}"
           resource_map_present: "{resource_map_present}"
@@ -355,18 +379,20 @@ workflow:
           createdAt: "{ISO_8601_NOW}"
           status: "initialized"
           executionMode: "confirm"
-          lineage.sessionId: "{AUTO_SESSION_ID}"
+          lineage.sessionId: "{session_id_init}"
           lineage.parentSessionId: null
           lineage.lineageMode: "new"
           lineage.generation: 1
           lineage.continuedFromRun: null
+          nextRunAt: null
+          remainingDelayMs: null
         output: "{state_paths.config}"
 
       step_create_state_log:
         action: "Initialize JSONL state log with config record"
         dry_run_boundary: "state-mutation"
         dry_run_halt_event: '{"type":"event","event":"dry_run_halt","mode":"research","boundary":"state-mutation","step":"step_create_state_log","detail":"The initial config record would be written to the state log.","timestamp":"{ISO_8601_NOW}"}'
-        content: '{"type":"config","topic":"{research_topic}","maxIterations":{max_iterations},"convergenceThreshold":{convergence_threshold},"antiConvergence":{"convergenceMode":"{convergence_mode}","divergent":{}},"resource_map_present":{resource_map_present},"resource_map":{"emit":{resource_map_emit}},"createdAt":"{ISO_8601_NOW}","specFolder":"{spec_folder}"}'
+        content: '{"type":"config","topic":"{research_topic}","maxIterations":{max_iterations},"minIterations":3,"convergenceThreshold":{convergence_threshold},"antiConvergence":{"convergenceMode":"{convergence_mode}","divergent":{}},"minIdeaObservations":2,"resource_map_present":{resource_map_present},"resource_map":{"emit":{resource_map_emit}},"lineage":{"sessionId":"{session_id_init}","parentSessionId":null,"lineageMode":"new","generation":1,"continuedFromRun":null},"createdAt":"{ISO_8601_NOW}","specFolder":"{spec_folder}","nextRunAt":null,"remainingDelayMs":null}'
         output: "{state_paths.state_log}"
 
       step_create_strategy:
@@ -398,6 +424,12 @@ workflow:
         edit: "{state_paths.strategy}"
         note: "Append or replace the Known Context section with prior_context_summary and retained detail from prior_context"
 
+      step_enrich_strategy_resource_map:
+        action: "Inject resource-map status into Known Context after strategy.md exists"
+        dry_run_boundary: "state-mutation"
+        dry_run_halt_event: '{"type":"event","event":"dry_run_halt","mode":"research","boundary":"state-mutation","step":"step_enrich_strategy_resource_map","detail":"Resource-map status would be written into the strategy file.","timestamp":"{ISO_8601_NOW}"}'
+        edit: "{state_paths.strategy}"
+        note: "When resource_map_present is true, append the resource_map_known_context snapshot. When false, append 'resource-map.md not present; skipping coverage gate'."
       step_detect_spec_present:
         action: "Classify late-INIT spec.md state after the durable research packet exists"
         dry_run_event_policy: "Run the inspect and classify work, emit the spec_check_result as terminal JSONL preview only, and do not append it to the state log."
@@ -455,9 +487,12 @@ workflow:
             scope_host: "Seed Scope from the research ask without inventing implementation details"
             set:
               folder_state: "spec-just-created-by-this-run"
+              validate_spec_doc: true
             append_to_jsonl: '{"type":"spec_mutation","event":"spec_seed_created","folder_state":"spec-just-created-by-this-run","anchors_touched":["Requirements","Scope"],"diff_summary":"Seeded Level 1 spec.md from research topic with DR seed markers.","seed_markers":["DR-SEED:REQUIREMENTS","DR-SEED:SCOPE"],"timestamp":"{ISO_8601_NOW}"}'
           spec-present:
             edit: "{spec_folder}/spec.md"
+            set:
+              validate_spec_doc: true
             idempotency_check:
               host_anchor: "Open Questions"
               normalized_match: "Normalize the existing anchor text by lowercasing, stripping punctuation, collapsing whitespace, and trimming before comparing with {normalized_topic}."
@@ -475,10 +510,17 @@ workflow:
             verify_markers:
               - "<!-- DR-SEED:REQUIREMENTS -->"
               - "<!-- DR-SEED:SCOPE -->"
-            note: "Treat already-seeded spec.md as a no-op guard and continue."
+            set:
+              validate_spec_doc: false
           conflict-detected:
             append_to_jsonl: '{"type":"spec_mutation","event":"spec_mutation_conflict","folder_state":"conflict-detected","reason":"Pre-init spec.md mutation is ambiguous or unsafe.","specPath":"{spec_folder}/spec.md","timestamp":"{ISO_8601_NOW}"}'
             halt: true
+
+      step_validate_preinit_spec_doc:
+        action: "Run targeted strict validation after any deep-research pre-init spec.md mutation"
+        condition: "validate_spec_doc"
+        command: "SPECKIT_RULES=FRONTMATTER_VALID,LEVEL_DECLARED,TEMPLATE_SOURCE,TEMPLATE_HEADERS,PLACEHOLDER_FILLED,ANCHORS_VALID,SPEC_DOC_INTEGRITY,TOC_POLICY bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh {spec_folder} --strict"
+        note: "This enforces the authored-spec markdown structural contract without applying full-packet required-file or completeness checks to workflow-owned research artifacts. It uses the Node validation orchestrator, whose strict path was measured at about 108ms for a fresh Level 3 packet on the local harness."
 
       # ─── APPROVAL GATE: Post-Init ───
       gate_init_approval:
@@ -536,6 +578,12 @@ workflow:
           - carried_forward_open_questions: "Extract 'Carried-Forward Open Questions' section from strategy.md, else '[None yet]'"
           - answered_count: "Count answered questions from strategy.md"
           - total_questions: "Count total questions tracked in strategy.md"
+          - min_iterations_present: "Boolean true when deep-research-config.json has a numeric minIterations field"
+          - min_iterations_missing_warning: "Boolean true when minIterations is missing; use no floor and log a warning so older configs keep prior stop behavior"
+          - min_iterations_raw: "Extract numeric minIterations from deep-research-config.json when present, default 0"
+          - effective_min_iterations: "Clamp min_iterations_raw to the inclusive range 0..max_iterations; if min_iterations_raw exceeds max_iterations, use max_iterations"
+          - min_iterations_clamped: "Boolean true when min_iterations_raw > max_iterations"
+          - min_iterations_guard_already_passed: "Boolean true when state_log already contains event == 'min_iterations_guard_pass'"
           - least_explored: "First unanswered question not covered by the most recent iteration focus, else first unanswered question"
           - last_3_summaries: "Summarize the latest 3 iteration records as 'run N: focus (ratio)'"
           - latest_status: "Extract status from latest iteration record, else 'none yet'"
@@ -556,15 +604,24 @@ workflow:
           proceed: true
 
       step_validate_convergence_config:
-        action: "Validate convergence mode when loading config"
+        action: "Validate convergence floor settings when loading config"
+        if_min_iterations_missing:
+          dry_run_event_policy: "Emit the config_warning event as terminal JSONL preview only; do not append it during dry-run."
+          append_to_jsonl: '{"type":"event","event":"config_warning","mode":"research","field":"minIterations","fallback":0,"message":"minIterations missing; using no convergence floor for backward compatibility.","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
+          log: "minIterations missing; using no convergence floor for backward compatibility."
+        if_min_iterations_clamped:
+          dry_run_event_policy: "Emit the config_warning event as terminal JSONL preview only; do not append it during dry-run."
+          append_to_jsonl: '{"type":"event","event":"config_warning","mode":"research","field":"minIterations","configured":{min_iterations_raw},"effective":{effective_min_iterations},"maxIterations":{max_iterations},"message":"minIterations exceeds maxIterations; clamping to the hard cap.","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
+          log: "minIterations exceeds maxIterations; clamping to the hard cap."
         if_convergence_mode_invalid:
+          dry_run_event_policy: "Emit the config_warning event as terminal JSONL preview only; do not append it during dry-run."
           append_to_jsonl: '{"type":"event","event":"config_warning","mode":"research","field":"antiConvergence.convergenceMode","fallback":"default","message":"Unsupported convergenceMode; using default convergence behavior.","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
           log: "Unsupported convergenceMode; using default convergence behavior."
 
       step_graph_convergence:
         action: "Evaluate coverage-graph convergence before the inline 3-signal vote and persist the graph decision snapshot"
         dry_run_event_policy: "Run the convergence read, emit the graph_convergence event as terminal JSONL preview only, and do not append it to the state log."
-        bash: 'node .opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs --spec-folder "{spec_folder}" --loop-type "research" --session-id "{config.lineage.sessionId}" --convergence-mode "{convergence_mode}"'
+        bash: 'node .opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs --spec-folder "{spec_folder}" --loop-type "research" --session-id "{config.lineage.sessionId}" --convergence-mode "{convergence_mode}" --persist-snapshot --iteration "{current_iteration}"'
         note: "Run before the inline vote. STOP from the inline 3-signal vote is allowed only when the graph decision is STOP_ALLOWED or absent."
         outputs:
           - graph_decision: "Tool decision value (CONTINUE | STOP_ALLOWED | STOP_BLOCKED), else null when unavailable"
@@ -579,9 +636,10 @@ workflow:
         action: "Evaluate stop conditions and combine the inline 3-signal vote with graph convergence"
         algorithm: |
           1. if iteration_count >= max_iterations: STOP (maxIterationsReached). This terminal cap bypasses quality-guard overrides; record failed guards/blockers as synthesis evidence instead of continuing.
-          2. if remaining_questions == 0: STOP (all_questions_answered)
-          3. if stuck_count >= config.stuckThreshold: STUCK_RECOVERY
-          4. GRAPH-ASSISTED COMPOSITE CONVERGENCE:
+          2. if stuck_count >= config.stuckThreshold: STUCK_RECOVERY
+          3. if convergence_mode == "off": skip convergence stop candidates and continue unless a terminal cap, pause sentinel, or recovery halt has already fired.
+          4. if remaining_questions == 0: STOP (all_questions_answered)
+          5. GRAPH-ASSISTED COMPOSITE CONVERGENCE:
                step_graph_convergence already recorded graph_decision, graph_signals_json, graph_blockers_json, and graph_convergence_score for this run.
                The existing inline 3-signal vote still computes the inline STOP candidate and is not replaced.
                signals = []
@@ -615,12 +673,15 @@ workflow:
                  decision = "STOP"
                  reason = "composite_converged"
                  stop_blocked = false
-          5. else: CONTINUE
-          6. if decision == "STOP" and reason != "maxIterationsReached":
-               guardResult = checkQualityGuards(state, strategy)
-               if not guardResult.passed:
-                 log: "Quality guard failed: {guardResult.violations}. Overriding STOP to CONTINUE."
-                 decision = "CONTINUE"
+          6. else: CONTINUE
+          7. if decision == "STOP" and reason != "maxIterationsReached" and effective_min_iterations > 1 and iteration_count < effective_min_iterations:
+               decision = "CONTINUE"
+               reason = "minIterationsNotReached"
+               min_iterations_guard_blocked = true
+               min_iterations_guard_pass = false
+          8. if effective_min_iterations > 1 and iteration_count >= effective_min_iterations and min_iterations_guard_already_passed == false:
+               min_iterations_guard_pass = true
+          9. if decision == "STOP" and reason != "maxIterationsReached":
           See convergence.md for full pseudocode and signal definitions.
           Segment-aware convergence is experimental/reference-only; live workflow uses the current session as a single segment.
         outputs:
@@ -636,6 +697,8 @@ workflow:
           - gate_evidence_density_sources: "Source-diversity count or equivalent evidence-depth proxy"
           - gate_hotspot_saturation_pass: "Research placeholder gate; true unless an explicit blocker sets otherwise"
           - recovery_strategy: "One-line hint describing the next research action when decision == BLOCKED or STUCK_RECOVERY"
+          - min_iterations_guard_pass: "Boolean true when the configured convergence floor has cleared for the first time"
+          - min_iterations_guard_blocked: "Boolean true when the configured convergence floor overrides a STOP candidate to CONTINUE"
 
       step_emit_blocked_stop:
         action: "Persist a first-class blocked_stop event when the legal-stop decision tree returns blocked"
@@ -648,6 +711,12 @@ workflow:
             reason: "blockedStop"
             stop_blocked: false
 
+      step_emit_min_iterations_guard_pass:
+        action: "Persist a first-class event when the convergence floor clears"
+        if_pass:
+          dry_run_event_policy: "Emit the min_iterations_guard_pass event as terminal JSONL preview only; do not append it during dry-run."
+          append_to_jsonl: '{"type":"event","event":"min_iterations_guard_pass","mode":"research","run":{current_iteration},"iterationCount":{iteration_count},"minIterations":{effective_min_iterations},"timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
+          log: "Minimum iteration floor cleared for convergence stopping."
       step_handle_convergence:
         action: "Act on convergence decision"
         if_stop:
@@ -928,6 +997,21 @@ workflow:
           raw_event_forbidden: '{"type":"event","event":"stuck_recovery"}'
           canonical_event: '{"type":"event","event":"stuckRecovery","mode":"research","run":{current_iteration},"stopReason":"stuckRecovery","fromIteration":{current_iteration},"outcome":"recovered","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
 
+      step_marker_scan:
+        action: "H-2 loop-prevention guard: scan previous iteration's rendered prompt for nested research marker"
+        algorithm: |
+          if current_iteration > 1:
+            PREV_PROMPT_PATH = "{state_paths.prompt_dir}/iteration-{previous_iteration}.md"
+            if file_exists(PREV_PROMPT_PATH):
+              PREV_PROMPT_FIRST_LINE = head -1 of PREV_PROMPT_PATH
+              if PREV_PROMPT_FIRST_LINE matches ^(DEEP-REVIEW|DEEP-RESEARCH|CODE-REVIEW)$:
+                log "ERROR: nested research-of-review loop detected (marker found in previous iteration prompt). Aborting."
+                halt with exit code 2
+        note: |
+          False-positive prevention: only matches when the first line is exactly one of the
+          three canonical markers. Markers appearing in comments or body text are ignored.
+          True-positive triggers only when a previous iteration's rendered prompt literally
+          starts with a deep-loop marker, indicating a nested research-of-review dispatch.
       # ─── APPROVAL GATE: Pre-Iteration ───
       gate_pre_iteration:
         type: approval_gate
@@ -1135,15 +1219,40 @@ workflow:
             - "</dev/null required: opencode v1.14.39 reads stdin at startup before session creation. Without explicit closed stdin, automation that redirects stdout/stderr hangs at 0% CPU after `+60s snapshot prune cleanup`. See the `cli-external-orchestration/cli-opencode` mode's SKILL.md (`.opencode/skills/cli-external-orchestration/cli-opencode/SKILL.md`) §4 ALWAYS rule + memory feedback_opencode_run_requires_dev_null_stdin.md."
         post_dispatch_validate:
           validator: ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/post-dispatch-validate.ts#validateIterationOutputs"
+          command: "node .opencode/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs --loop-type research --artifact-dir {artifact_dir} --iteration {current_iteration}"
+          command_note: "Mechanical leaf-reliability gate: exit 0 = complete; non-zero prints one machine reason (iteration_file_missing|state_record_missing|route_proof_missing|route_proof_mismatch|delta_file_missing). The script enforces the artifact + route-proof contract instead of trusting the leaf to self-report, and a non-zero exit triggers on_failure.redispatch_once."
           assert_exists: "{state_paths.iteration_pattern}"
           assert_appended: "{state_paths.state_log}"
-          assert_jsonl_fields: [type, iteration, newInfoRatio, status, focus]
+          assert_jsonl_fields: [type, iteration, newInfoRatio, status, focus, mode]
+          route_proof:
+            mode: research
+            target_agent: deep-research
+            agent_definition_loaded: true
+            resolved_route: "Resolved route: mode=research target_agent=deep-research"
+          dispatchReceipt:
+            receiptDir: "{state_paths.packet_dir}/dispatch-receipts"
+            dispatchId: "research-i{current_iteration}-g{config.lineage.generation}"
           assert_canonical_type: "iteration"
           assert_delta_file_exists: "{state_paths.delta_pattern}"
           assert_delta_file_has_iteration_record: true
           on_failure:
             action: "emit schema_mismatch canonical conflict event"
-            escalation: "After 3 consecutive failures, trigger stuck_recovery event with diagnostic context"
+            redispatch_once: "On the FIRST failure of the mechanical command check for this iteration, re-run step_dispatch_iteration exactly once for the same iteration number, then re-run the check. If it still fails, record the iteration as error and continue. Never re-dispatch a given iteration more than once."
+            escalation: "After 3 consecutive failures across iterations, trigger stuck_recovery event with diagnostic context"
+          failure_reasons_reference:
+            - "iteration_file_missing — iteration narrative markdown not written"
+            - "iteration_file_empty — iteration narrative markdown is zero bytes"
+            - "jsonl_not_appended — state log file did not grow since pre-dispatch snapshot"
+            - "jsonl_missing_fields — last state-log record omits required schema fields"
+            - "jsonl_parse_error — last state-log line is not valid JSON"
+            - "jsonl_wrong_type — last state-log record uses type!='iteration' (e.g. 'iteration_delta'); reducer will silently drop"
+            - "delta_file_missing — per-iteration deltas/iter-NNN.jsonl not written"
+            - "delta_file_empty — per-iteration delta file exists but has zero bytes"
+            - "delta_file_missing_iteration_record — delta file lacks any record with type='iteration'"
+            - "route_proof_missing — state-log or delta iteration record omits route-proof fields"
+            - "route_proof_mismatch — state-log or delta iteration record does not match the resolved deep route"
+            - "executor_missing — non-native executor did not record provenance"
+            - "dispatch_failure_logged — last record is an explicit dispatch_failure event"
         record_executor_audit:
           skip_when: "config.executor.type == 'native'"
           target: "{state_paths.state_log}"
@@ -1671,6 +1780,10 @@ workflow:
           - "Do not overwrite a generated block that fails checksum validation or carries an explicit MANUAL-EDIT marker."
         append_to_jsonl: '{"type":"spec_mutation","event":"spec_mutation","phase":"post-synthesis","anchors_touched":["<chosen host anchor>"],"diff_summary":"Replaced generated deep-research findings fence from research/research.md.","generatedFence":"deep-research/spec-findings","timestamp":"{ISO_8601_NOW}"}'
 
+      step_validate_post_synthesis_spec_doc:
+        action: "Run targeted strict validation after deep-research writes back into spec.md"
+        command: "SPECKIT_RULES=FRONTMATTER_VALID,LEVEL_DECLARED,TEMPLATE_SOURCE,TEMPLATE_HEADERS,PLACEHOLDER_FILLED,ANCHORS_VALID,SPEC_DOC_INTEGRITY,TOC_POLICY bash .opencode/skills/system-spec-kit/runtime/cli/spec/validate.sh {spec_folder} --strict"
+        note: "Fail closed before completion if the deep-research spec.md sync breaks the authored-spec structural contract. This targeted check uses the fast Node validation orchestrator."
       step_update_config_status:
         action: "Mark config as complete"
         dry_run_boundary: "state-mutation"
@@ -1714,6 +1827,24 @@ workflow:
     purpose: Preserve research context in packet continuity
     steps:
 
+      step_compose_save_payload:
+        action: "Compose the structured JSON payload consumed by generate-context.js"
+        dry_run_boundary: "state-mutation"
+        dry_run_halt_event: '{"type":"event","event":"dry_run_halt","mode":"research","boundary":"state-mutation","step":"step_compose_save_payload","detail":"The save payload would be composed for generate-context.js.","timestamp":"{ISO_8601_NOW}"}'
+        output: "/tmp/save-context-data-<session-id>.json"
+        requirements:
+          - "Write this file before invoking generate-context.js; the loader fails closed if the explicit JSON file is absent."
+          - "Include `specFolder`, a concise `sessionSummary`, curated `observations`, `recent_context`, `toolCalls`, and `exchanges` from the completed research loop."
+          - "Use a session-scoped temp filename; do not use the retired shared `/tmp/save-context-data.json` path."
+        example_payload: |
+          {
+            "specFolder": "{spec_folder}",
+            "sessionSummary": "Deep research completed; see research/research.md for synthesized findings.",
+            "observations": ["Summarize the final research conclusions and evidence."],
+            "recent_context": ["Point to the generated research artifacts and next action."],
+            "exchanges": [],
+            "toolCalls": []
+          }
       step_generate_context:
         action: "Route continuity content into the correct canonical spec document via generate-context.js"
         dry_run_boundary: "state-mutation"
@@ -1797,3 +1928,30 @@ rules:
     - overwrite_jsonl_state_log
     - proceed_past_approval_gate_without_user_response
     - auto_approve_on_behalf_of_user
+
+# ─────────────────────────────────────────────────────────────────
+# CONFIRM-VARIANT PARITY CENSUS
+# ─────────────────────────────────────────────────────────────────
+# This interactive variant shares one contract family with deep-research-auto.yaml. Every
+# auto-variant step is either present here or recorded below with the interactive reason
+# it is absent, so an omission is always explained rather than silent.
+confirm_parity:
+  omitted_steps:
+    step_apply_divergent_pivot_result: "Auto-only pivot application. The interactive divergent-pivot gate applies the accepted pivot inside its on_A/on_B branches (binds next_focus, pivot_lineage and saturated_directions, then reruns the research reducer) before proceeding to gate_pre_iteration, and its failed branches skip to gate_pre_synthesis."
+    step_init_complete: "Covered by gate_init_approval.on_A, which sets current_iteration 1, current_segment 1 and stuck_count 0 before proceeding to phase_loop."
+    step_refresh_lineage_context: "The refreshed lineage prompt line is an unattended-run convenience for the next dispatch prompt; the interactive surface returns control to the operator at gate_pre_iteration with the live dashboard and strategy, so the prompt line is not rendered ahead of an operator decision."
+    step_rejected_pattern_cache: "Consumes registry.rejectedPatternIndex and registry.promotedIdeas, which this variant's step_read_state does not extract; restoring the step would require widening read_state for a suppression list the operator can judge directly at gate_pre_iteration."
+    step_ideas_backlog_lifecycle: "Same registry dependency as step_rejected_pattern_cache: the promoted/rejected idea registry data it consumes is not extracted by this variant's step_read_state, and idea promotion is a reducer-owned unattended concern."
+    step_run_now_check: "Run-now sentinel polling exists so an unattended run can be woken on demand; the interactive surface is already operator-driven, so no sentinel is polled."
+    step_run_now_restore_check: "Counterpart of step_run_now_check: it appends run_now_restored once the sentinel clears, which cannot occur in a session that never polls the sentinel."
+    step_telemetry_heartbeat_started: "Single-loop orchestration heartbeats feed the unattended status ledger; an interactive session reports progress at its own approval gates instead."
+    step_telemetry_heartbeat_progress: "Counterpart of step_telemetry_heartbeat_started for the unattended status ledger."
+    step_telemetry_heartbeat_terminal: "Counterpart of step_telemetry_heartbeat_started for the unattended status ledger."
+  gateway_wiring:
+    note: "Both variants stage the synthesis record through append-mode-event.cjs; the declarative append_jsonl/append_to_jsonl rows that remain are identical in both files."
+  step_addenda:
+    dispatch_lineage_guard: "The auto twin's dispatch branch carries a PRE-DISPATCH RULE telling a detached fan-out lineage to execute the iteration in-process instead of re-entering the dispatch script. The fan-out runner only hands lineages the auto contract, so the interactive confirm surface never runs as a lineage executor and has nothing to guard."
+    dispatch_log_offsets: "The auto twin's post-dispatch validation records optional_jsonl_fields (logOffset, logSize, logPath, skippedCount, slotDurationMs) so a fixed-rate unattended schedule can account for missed slots. The interactive surface has no fixed-rate schedule, so the fields are not recorded."
+  auto_corrections:
+    - "step_resolve_session_id binds AUTO_SESSION_ID to {ISO_8601_NOW} so the {AUTO_SESSION_ID} fallback literal resolves to a real timestamp instead of the contract carrying an unconsumable token."
+    - "step_create_state_log now records the lineage identity (sessionId from {session_id_init}, parentSessionId, lineageMode, generation, continuedFromRun) so the line-one config record agrees with the config file the reducer reads."
