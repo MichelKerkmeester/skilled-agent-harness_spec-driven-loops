@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Phase 3: orchestrate-mirror-alignment"
-description: "[2-3 sentences: what this implements and the technical approach]"
+description: "Grant the tool in the source, state the per-runtime name once in the shared body, regenerate the mirrors, and prove parity with the checker."
 trigger_phrases:
   - "implementation plan"
   - "technical approach"
@@ -23,13 +23,13 @@ contextType: "general"
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | TypeScript (ESM) plus a CommonJS runner script |
+| **Framework** | None |
+| **Storage** | Git working tree, JSONL state and status ledgers |
+| **Testing** | Vitest |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+The OpenCode source gains `task: allow`; a single body sentence names the delegation tool per runtime; the Pi and Codex mirrors are regenerated; all four mirror checks pass.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -38,14 +38,14 @@ contextType: "general"
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Tests passing (if applicable)
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -54,14 +54,15 @@ contextType: "general"
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Source-of-truth agent with generated mirrors
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **OpenCode source**: Permission grant and body
+- **Mirror generators**: Pi and Codex output
+- **Mirror-sync checker**: Parity proof
 
 ### Data Flow
-[Brief description of how data moves through the system]
+Source edit → generators → mirrors → checker.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -69,18 +70,16 @@ contextType: "general"
 <!-- ANCHOR:affected-surfaces -->
 ## FIX ADDENDUM: AFFECTED SURFACES
 
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
+| OpenCode permission block | No task grant | update | check-agent-mirror-sync exits 0 |
+| Pi mirror | No delegation declaration | regenerate | sync-agents-pi --check exits 0 |
+| Codex mirror | No delegation declaration | regenerate | sync-agents --check exits 0 |
 
 Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
+- Same-class producers: one source, three mirrors.
+- Consumers: the mirror gates in the pre-commit hook.
+- Per-runtime vocabulary confirmed: task, Agent, spawn_agent, subagent.
 <!-- /ANCHOR:affected-surfaces -->
 
 
@@ -99,9 +98,9 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Gate | Mirror-sync, Pi sync, roster mirror, runtime mirrors | node checkers |
+| Suite | Whole runtime | Vitest |
+| Manual | None | - |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -111,7 +110,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| Mirror generators | Internal | Green | - |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -119,8 +118,8 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: A runtime rejects the grant
+- **Procedure**: Revert this phase's commit
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -152,10 +151,10 @@ Phase 1.5 (Config) ───┘
 
 | Phase | Complexity | Estimated Effort |
 |-------|------------|------------------|
-| Setup | [Low/Med/High] | [e.g., 1-2 hours] |
-| Core Implementation | [Low/Med/High] | [e.g., 4-8 hours] |
-| Verification | [Low/Med/High] | [e.g., 1-2 hours] |
-| **Total** | | **[e.g., 6-12 hours]** |
+| Setup | Low | minutes |
+| Core Implementation | Low | one dispatch |
+| Verification | Med | full suite run |
+| **Total** | | **one dispatch plus one suite run** |
 <!-- /ANCHOR:effort -->
 
 ---
