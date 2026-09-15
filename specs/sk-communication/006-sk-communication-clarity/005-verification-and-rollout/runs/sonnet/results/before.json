@@ -1,6 +1,6 @@
 {
   "condition": "before",
-  "generatedAt": "2026-09-15T07:04:58.813Z",
+  "generatedAt": "2026-09-15T18:06:36.757Z",
   "repliesDir": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-communication/006-sk-communication-clarity/005-verification-and-rollout/runs/sonnet/before-replies",
   "casesFile": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-communication/benchmark/reply-harness/cases.json",
   "weights": {
@@ -178,17 +178,41 @@
           ],
           "capHeld": false,
           "expectedItems": [
-            "blast-radius.md",
-            "communication.md",
-            "delegation-and-orchestration.md",
-            "evidence-and-proof.md",
-            "handoff-and-questions.md",
-            "presenting-decisions.md",
-            "prevent-overengineering.md",
-            "root-cause-and-debugging.md",
-            "scope-discipline.md",
-            "skill-hub-routing.md",
-            "uncertainty-and-honesty.md"
+            [
+              "blast-radius.md"
+            ],
+            [
+              "communication.md"
+            ],
+            [
+              "delegation-and-orchestration.md"
+            ],
+            [
+              "evidence-and-proof.md"
+            ],
+            [
+              "communication-handoff-and-questions.md",
+              "handoff-and-questions.md"
+            ],
+            [
+              "communication-presenting-decisions.md",
+              "presenting-decisions.md"
+            ],
+            [
+              "prevent-overengineering.md"
+            ],
+            [
+              "root-cause-and-debugging.md"
+            ],
+            [
+              "scope-discipline.md"
+            ],
+            [
+              "skill-hub-routing.md"
+            ],
+            [
+              "uncertainty-and-honesty.md"
+            ]
           ],
           "missingItems": []
         }

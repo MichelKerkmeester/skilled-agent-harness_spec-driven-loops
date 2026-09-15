@@ -52,7 +52,7 @@ being written, or it silently stops applying to the short answers that need it m
 that does not carry information.**
 
 This file governs how a reply reads. The shape of a decision you hand over, the verdict-first
-ordering and the recommendation, moved to [`presenting-decisions.md`](presenting-decisions.md)
+ordering and the recommendation, moved to [`communication-presenting-decisions.md`](communication-presenting-decisions.md)
 when this file reached its length ceiling. Sentence, word and punctuation mechanics live in
 [`communication-prose.md`](communication-prose.md).
 
