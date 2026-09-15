@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 1: roster-completeness"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+description: "Every prose roster in the three hubs names the executor kinds the code registers and the modes the registry holds, with counts replaced by their source where one exists."
 trigger_phrases:
   - "feature specification"
   - "problem statement"
@@ -21,10 +21,10 @@ contextType: "general"
 | Field | Value |
 |-------|-------|
 | **Level** | 2 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | Draft |
+| **Priority** | P0 |
+| **Status** | Complete |
 | **Created** | 2026-09-15 |
-| **Branch** | `scaffold/002-roster-completeness` |
+| **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 2 of 9 |
 | **Predecessor** | 001-angle-driven-review |
@@ -57,10 +57,10 @@ This is **Phase 2** of the Remediate the alignment review findings specification
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+The external orchestration router listed six CLI kinds in its opening parenthetical, its leaf-set bullets and its disambiguation rule while its own machine block and the registry carried seven; its skill file said six modes in one line and seven in four others. The deep-loop protocols named three adapters, and the runtime fan-out catalog claimed three kinds while naming one of them twice, displacing another. The review rated the router omission its only P0.
 
 ### Purpose
-[One-sentence outcome statement. What does success look like?]
+No document states a roster or count that its own registry or the executor config contradicts.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -69,19 +69,25 @@ This is **Phase 2** of the Remediate the alignment review findings specification
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- The router's opening parenthetical, its seventh leaf bullet and its disambiguation rule
+- The skill file's one contradicting mode count
+- Both loop protocols' fan-out adapter lists
+- The runtime fan-out catalog's kind list and count
+- Regenerated compiled contracts for the edited protocol digests
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+- Version fields - the next phase owns them
+- The hub write-containment catalog - it carries no executor roster to correct
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+| `.opencode/skills/cli-external-orchestration/ROUTER.md` | Modify | Seventh kind in the parenthetical, the leaf bullets and the disambiguation rule |
+| `.opencode/skills/cli-external-orchestration/SKILL.md` | Modify | The contradicting count replaced by its registry source |
+| `.opencode/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md, deep-research/.../loop-protocol.md` | Modify | Adapter lists naming every kind, sourced to the executor config |
+| `.opencode/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-run.md` | Modify | Kind list corrected, duplicate name removed, count replaced by its source |
+| `.opencode/commands/deep/assets/compiled/deep-review.contract.md, deep-research.contract.md` | Regenerate | Digest the edited protocols |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -93,13 +99,14 @@ This is **Phase 2** of the Remediate the alignment review findings specification
 
 | ID | Requirement |
 |----|-------------|
-| REQ-001 | [Requirement description] |
+| REQ-001 | Every prose roster in the router, the skill file, both protocols and the runtime catalog names the same kinds the executor config registers |
+| REQ-002 | No document states a mode or kind count its own registry contradicts; a count that can name its source does |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement |
 |----|-------------|
-| REQ-002 | [Requirement description] |
+| REQ-003 | The compiled contracts are regenerated for every edited file they digest |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
@@ -110,8 +117,8 @@ This is **Phase 2** of the Remediate the alignment review findings specification
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: The router names the seventh kind in every roster statement, not only its machine block
+- **SC-002**: Contract drift tests and the deep-loop suite exit zero
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -121,8 +128,8 @@ This is **Phase 2** of the Remediate the alignment review findings specification
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+| Risk | A roster freezes again at the next kind | Med | Where a document can name the executor config as its source it does, so the next kind needs no prose edit there |
+| Dependency | The executor config as authority | Green | Eight entries: native plus seven CLI kinds |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -135,16 +142,13 @@ This is **Phase 2** of the Remediate the alignment review findings specification
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
-- **NFR-P01**: [Response time target - e.g., <200ms p95]
-- **NFR-P02**: [Throughput target - e.g., 100 req/sec]
+- **NFR-P01**: Not applicable
 
 ### Security
-- **NFR-S01**: [Auth requirement - e.g., JWT tokens required]
-- **NFR-S02**: [Data protection - e.g., TLS + encrypted at rest]
+- **NFR-S01**: Not applicable
 
 ### Reliability
-- **NFR-R01**: [Uptime target - e.g., 99.9%]
-- **NFR-R02**: [Error rate - e.g., <1%]
+- **NFR-R01**: The compiled contracts match the edited protocol bytes
 <!-- /ANCHOR:nfr -->
 
 ---
@@ -153,18 +157,14 @@ This is **Phase 2** of the Remediate the alignment review findings specification
 ## L2: EDGE CASES
 
 ### Data Boundaries
-- Empty input: [How system handles]
-- Maximum length: [Limit and behavior]
-- Invalid format: [Validation response]
+- A document that counts rather than lists: replaced by its source where one exists
+- The native kind: counted in the executor config, not a CLI kind
 
 ### Error Scenarios
-- External service failure: [Fallback behavior]
-- Network timeout: [Retry strategy]
-- Concurrent access: [Conflict resolution]
+- Contract stale after a protocol edit: the drift test fails until regenerated
 
 ### State Transitions
-- Partial completion: [Recovery behavior]
-- Session expiry: [User experience]
+- Not applicable
 <!-- /ANCHOR:edge-cases -->
 
 ---
@@ -174,18 +174,17 @@ This is **Phase 2** of the Remediate the alignment review findings specification
 
 | Dimension | Score | Notes |
 |-----------|-------|-------|
-| Scope | [/25] | [Files, LOC, systems] |
-| Risk | [/25] | [Auth, API, breaking changes] |
-| Research | [/20] | [Investigation needs] |
-| **Total** | **[/70]** | **Level 2** |
+| Scope | 6/25 | Five prose files, two contracts |
+| Risk | 4/25 | Documentation of what the code already does |
+| Research | 3/20 | Finding located by the review, verified against the registry |
+| **Total** | **13/70** | **Level 2** |
 <!-- /ANCHOR:complexity -->
 
 ---
 
 ## 10. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+- None open.
 <!-- /ANCHOR:questions -->
 
 ---

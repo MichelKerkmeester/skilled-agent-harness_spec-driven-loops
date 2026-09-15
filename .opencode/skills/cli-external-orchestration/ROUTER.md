@@ -21,8 +21,8 @@ skill_pointer: SKILL.md
 This is cli-external-orchestration's second-layer (surface) router, first-class at the hub root
 as `ROUTER.md`. The hub
 selects a workflow mode in [`hub-router.json`](hub-router.json)
-(`cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, or
-`cli-pi`); this doc maps a request's CLI-dispatch intent to the exact
+(`cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`,
+`cli-pi`, or `cli-hermes`); this doc maps a request's CLI-dispatch intent to the exact
 packet-local leaf resources that mode should load. Every path is
 packet-qualified (`<packet>/references|assets/…`, where
 `<packet>` is the mode's `mode-registry.json` `packet` field) and converts to
@@ -64,6 +64,10 @@ per-mode references, it is not part of the first slice.
 - **cli-pi leaves** — the Pi CLI command reference (headless print mode, the
   multi-provider passthrough + `--thinking` lever) and the integration-pattern
   guide a request to dispatch a Pi passthrough session loads.
+- **cli-hermes leaves** — the Hermes Agent CLI command reference (headless oneshot
+  chat, LLM Gateway model routing, exit codes, and the safe dispatch shape) and the
+  integration-pattern guide a request to dispatch a Hermes conductor or headless
+  executor session loads.
 
 A bare CLI-dispatch phrase that names no executor (e.g. "dispatch this to a CLI
 executor") names no mode, so it fires no intent and falls back to the hub default
@@ -142,5 +146,5 @@ RESOURCE_MAP = {
   matrices, recursion guards) load on demand inside the packet, not on the
   first slice.
 - No keyword match is the hub's `defer` fallback: confirm the target executor
-  (`cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, or
-  `cli-pi`) before loading anything.
+  (`cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`,
+  `cli-pi`, or `cli-hermes`) before loading anything.

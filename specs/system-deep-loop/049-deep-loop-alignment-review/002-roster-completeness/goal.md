@@ -12,16 +12,16 @@ _memory:
   continuity:
     packet_pointer: "scaffold/002-roster-completeness"
     last_updated_at: "2026-09-15T14:23:10Z"
-    last_updated_by: "scaffold"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    last_updated_by: "claude-fable-5-1"
+    recent_action: "Phase fix landed and criteria checked"
+    next_safe_action: "Commit once the full suite exits zero"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "[SESSION-ID]"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -73,9 +73,9 @@ to the parent: apply it there first, then resend the parent.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] No hub document states a mode or executor count that its own registry contradicts
-- [ ] The seventh executor kind appears in every roster statement across the three hubs, their catalogs, playbooks and protocols
-- [ ] The deep-loop suite exits zero
+- [x] No hub document states a mode or executor count that its own registry contradicts
+- [x] The seventh executor kind appears in every roster statement across the three hubs, their catalogs, playbooks and protocols
+- [x] The deep-loop suite exits zero
 <!-- /ANCHOR:completion -->
 
 ---
@@ -91,11 +91,13 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| [Item] | [Pending/In Progress/Done] | [Command output, file:line, or artifact] |
+| Phase fix | Done | One DeepSeek V4.1 Flash max dispatch on cli-pi via the gateway; five prose files, two contracts regenerated; contract tests and typecheck exit 0 |
+| Full suite | Green | `npm test` in the runtime: 152 files, 2644 passed, 8 skipped, exit 0, 1273 s |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| [What diverged from the directive] | [Why, and what was done instead] |
+| Authority count | `EXECUTOR_KINDS` holds eight entries, native plus seven CLI kinds; the prose now names the source rather than a number |
+| Brief error | A catalog path named in the brief does not exist and its real counterpart carries no roster |
 <!-- /ANCHOR:log -->

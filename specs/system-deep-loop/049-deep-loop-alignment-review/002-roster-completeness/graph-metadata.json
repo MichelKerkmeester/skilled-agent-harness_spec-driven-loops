@@ -39,14 +39,17 @@
       "approach"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/cli-external-orchestration/ROUTER.md",
+      ".opencode/skills/cli-external-orchestration/SKILL.md",
+      ".opencode/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-run.md"
     ],
     "entities": [
       {
@@ -86,6 +89,24 @@
         "source": "derived"
       },
       {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-run.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -116,7 +137,7 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement",
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -134,7 +155,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Documentation",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -146,13 +173,7 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
+        "name": "Data Flow Executor",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -174,29 +195,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "The external orchestration router listed six CLI kinds in its opening parenthetical, its leaf-set bullets and its disambiguation rule while its own machine block and the registry carried seven; its skill file said six modes in one line and seven in four others",
     "created_at": "2026-09-15T14:23:09Z",
-    "last_save_at": "2026-09-15T14:24:24.047Z",
+    "last_save_at": "2026-09-15T15:26:57.284Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +210,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e041f9e2604923d5670ac563453e358dd4fd46d9f0fd31c5a166067d952fe034",
+    "source_fingerprint": "sha256:f5f0bdd8cd37be2a3985007dfac8268342cdc7796ae423bfb9d70e22c6da931e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e10510b0459965c59b6e8d104d1b38d944af3dfc42970df700d09b0a1bbadfcc",
-      "plan.md": "d5b0c9978fc16d023977caf2ef4b80c52d4078cb6b6b2db6f1a5717d1a6ae2f2",
-      "tasks.md": "7eab8257beaa7e4d19e2a932c7d85ecc52efca1b2aff21c08e51b72fca08ca62",
-      "implementation-summary.md": "e96bfd874da2ef7efb4ac9f2bfd864a8c5350418d14e9906d2de6d6e589be6f0"
+      "spec.md": "93996a2ac4339b2a8ec8ce2da20c236cc8c35928b12de3a85de5a6120b6e84fa",
+      "plan.md": "42afe83700c3c82d901f457e4ba0423802836088d2195f1343709ddffd90ef72",
+      "tasks.md": "19c73b4bb9f55c8b0288d5b8d13b14f029cfdfcf6d652d56eea30e2b2ca7afd7",
+      "implementation-summary.md": "8ab3de26946f184f8aa69b9b74ef3290711f74084a07782d3b18245e01aa8299"
     },
     "last_active_at": null
   }
