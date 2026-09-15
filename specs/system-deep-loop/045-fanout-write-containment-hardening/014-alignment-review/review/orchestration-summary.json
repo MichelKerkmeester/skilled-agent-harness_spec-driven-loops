@@ -1,0 +1,154 @@
+{
+  "run_id": "1789432854146-6hhsgk",
+  "loop_type": "review",
+  "spec_folder": "specs/system-deep-loop/045-fanout-write-containment-hardening/014-alignment-review",
+  "base_artifact_dir": "specs/system-deep-loop/045-fanout-write-containment-hardening/014-alignment-review/review",
+  "total_cli_lineages": 3,
+  "orphaned_lineages": [],
+  "total": 3,
+  "succeeded": 3,
+  "failed": 0,
+  "all_failed": false,
+  "completed_with_containment_advisory": 0,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0
+  },
+  "timestamp_anomalies": [
+    {
+      "label": "devin-a",
+      "state_log": "specs/system-deep-loop/045-fanout-write-containment-hardening/014-alignment-review/review/lineages/devin-a/deep-review-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-09-15T00:40:54.150Z",
+        "end_at_iso": "2026-09-15T00:50:31.549Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 5,
+        "untimestamped": 1,
+        "unparseable": 0,
+        "total": 7
+      },
+      "sample": [
+        {
+          "index": 2,
+          "reason": "after_window",
+          "timestamp": "2026-09-15T00:56:00Z",
+          "deltaMs": 208451
+        },
+        {
+          "index": 3,
+          "reason": "after_window",
+          "timestamp": "2026-09-15T01:05:00Z",
+          "deltaMs": 748451
+        },
+        {
+          "index": 4,
+          "reason": "after_window",
+          "timestamp": "2026-09-15T01:15:00Z",
+          "deltaMs": 1348451
+        },
+        {
+          "index": 5,
+          "reason": "after_window",
+          "timestamp": "2026-09-15T01:25:00Z",
+          "deltaMs": 1948451
+        },
+        {
+          "index": 6,
+          "reason": "after_window",
+          "timestamp": "2026-09-15T01:32:00Z",
+          "deltaMs": 2368451
+        }
+      ]
+    },
+    {
+      "label": "devin-b",
+      "state_log": "specs/system-deep-loop/045-fanout-write-containment-hardening/014-alignment-review/review/lineages/devin-b/deep-review-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-09-15T00:40:55.317Z",
+        "end_at_iso": "2026-09-15T00:50:03.988Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 3,
+        "untimestamped": 1,
+        "unparseable": 0,
+        "total": 8
+      },
+      "sample": [
+        {
+          "index": 5,
+          "reason": "after_window",
+          "timestamp": "2026-09-15T00:52:05Z",
+          "deltaMs": 1012
+        },
+        {
+          "index": 6,
+          "reason": "after_window",
+          "timestamp": "2026-09-15T00:56:20Z",
+          "deltaMs": 256012
+        },
+        {
+          "index": 7,
+          "reason": "after_window",
+          "timestamp": "2026-09-15T00:58:30Z",
+          "deltaMs": 386012
+        }
+      ]
+    },
+    {
+      "label": "devin-c",
+      "state_log": "specs/system-deep-loop/045-fanout-write-containment-hardening/014-alignment-review/review/lineages/devin-c/deep-review-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-09-15T00:40:55.323Z",
+        "end_at_iso": "2026-09-15T00:47:22.961Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 5,
+        "untimestamped": 1,
+        "unparseable": 0,
+        "total": 7
+      },
+      "sample": [
+        {
+          "index": 2,
+          "reason": "after_window",
+          "timestamp": "2026-09-15T00:52:00.000Z",
+          "deltaMs": 157039
+        },
+        {
+          "index": 3,
+          "reason": "after_window",
+          "timestamp": "2026-09-15T00:59:00.000Z",
+          "deltaMs": 577039
+        },
+        {
+          "index": 4,
+          "reason": "after_window",
+          "timestamp": "2026-09-15T01:06:00.000Z",
+          "deltaMs": 997039
+        },
+        {
+          "index": 5,
+          "reason": "after_window",
+          "timestamp": "2026-09-15T01:13:00.000Z",
+          "deltaMs": 1417039
+        },
+        {
+          "index": 6,
+          "reason": "after_window",
+          "timestamp": "2026-09-15T01:16:00.000Z",
+          "deltaMs": 1597039
+        }
+      ]
+    }
+  ]
+}

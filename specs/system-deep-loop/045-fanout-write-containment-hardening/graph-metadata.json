@@ -23,7 +23,11 @@
     "system-deep-loop/045-fanout-write-containment-hardening/012-quarantine-retention-per-pass",
     "system-deep-loop/045-fanout-write-containment-hardening/013-review-lane-advisory-and-strict-config",
     "system-deep-loop/045-fanout-write-containment-hardening/014-alignment-review",
-    "system-deep-loop/045-fanout-write-containment-hardening/015-symlink-contained-paths"
+    "system-deep-loop/045-fanout-write-containment-hardening/015-symlink-contained-paths",
+    "system-deep-loop/045-fanout-write-containment-hardening/016-command-yaml-alignment",
+    "system-deep-loop/045-fanout-write-containment-hardening/017-protocol-and-catalog-alignment",
+    "system-deep-loop/045-fanout-write-containment-hardening/018-orchestrate-mirror-alignment",
+    "system-deep-loop/045-fanout-write-containment-hardening/019-forced-depth-empty-records"
   ],
   "manual": {
     "depends_on": [],
@@ -231,7 +235,7 @@
     ],
     "causal_summary": "The fan-out runner snapshots dirty paths outside the lineage directory before dispatch, and after the lane it treats every tracked file that changed outside that directory as the leaf's write",
     "created_at": "2026-09-08T17:47:19Z",
-    "last_save_at": "2026-09-15T00:03:02.954Z",
+    "last_save_at": "2026-09-15T00:56:56.122Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -244,10 +248,10 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:471fd36ceb92772dcac0b0aa759e31b9c169d4c51e061185be86ca1e55e638c5",
+    "source_fingerprint": "sha256:1b1b7f5bdbce35f27b36d4a83b4abb82cfeccd77d6529f827e8f2d57f97d6ff9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "156ec648ea8ceec07ef1816b8c911a411662f2e9ac1b83b4967f42f674403e39",
+      "spec.md": "3ff80ecc86f0e105d10d9a8a17a97e8392df55b9cdf44552e8dcb2d5a99466f5",
       "plan.md": "81e38bf445f70b74794a012682c1a8e0e8f4025c841987544ab43c47001f60a2",
       "tasks.md": "c15696faa84c91c1b9ba9d4e89fa008d697e261cfd1ac6dc70215dedecb5e71a",
       "decision-record.md": "91760d2824743ae19bf5155e222814db1488107baf99496fa2fa4f1056aaaaed",
