@@ -123,7 +123,7 @@ hours, never vague. It is part of what the reader should expect at each checkpoi
 reader can correct an estimate. Nobody can correct a silence.
 
 **Clipped means not narrating each step. It never means starting without saying where you
-are going.** Those are different obligations and `AGENTS.md` §3 holds both.
+are going.** Those are different obligations. `uncertainty-and-honesty.md` §6 holds the first and this section holds the second.
 
 Update the path when it changes. A roadmap nobody revised is worse than none, because the
 reader is now tracking a plan you abandoned.

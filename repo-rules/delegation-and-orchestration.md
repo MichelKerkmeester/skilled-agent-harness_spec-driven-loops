@@ -70,7 +70,7 @@ It is not. It has no memory of this session, and no access to what you already r
 
 Five things, in order. None is optional, and the first is a hard rule elsewhere.
 
-1. **Read the executor's own contract**, per `AGENTS.md` Dispatch Rules.
+1. **Read the executor's own contract**, per `AGENTS.md` §10 Operational Mandates, the CLI dispatch bullet.
 2. **Bind the write authority.** Say where the delegate may write before it starts.
    A delegate given the repository is a delegate that will eventually edit something
    nobody reviewed.
