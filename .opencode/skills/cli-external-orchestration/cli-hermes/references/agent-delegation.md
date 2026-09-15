@@ -33,13 +33,19 @@ The repo's thirteen agents (`.claude/agents/*.md`) reach a Hermes dispatch only 
 | `hermes profile create` per agent | No | Profiles isolate homes and credentials, not personas |
 | `hermes import-agent claude-code` | No | Imports `CLAUDE.md` into memories and copies skills into the user home; never imports agent files; bypasses trust and quarantine |
 
-Resolve the persona from the ACTIVE runtime's agent directory (AGENTS.md §7) and map each subtask to the right agent (code, review, design, deep-research, markdown). The canonical contract is `../../../sk-prompt/assets/cli-prompt-quality-card.md` "Persona Injection".
+Resolve the persona from the calling runtime's agent directory (AGENTS.md §9), since Hermes has none of its own and its personas travel inlined in the prompt, and map each subtask to the right agent (code, review, design, deep-research, markdown). The canonical contract is `../../../sk-prompt/assets/cli-prompt-quality-card.md` "Persona Injection".
 
 ---
 
 ## 3. COMMANDS
 
 The repo's nested commands under `.opencode/commands/**` have no Hermes equivalent: Hermes has no workflow engine and its slash commands are its own. The cli-pi precedent applies: flatten each command into a prompt template under `.hermes/prompts/` and carry it with `--query-file`. The runtime-folder phase generates those templates with a sync script; a dispatch loads the template text into its prompt file.
+
+---
+
+## 3A. PERSONA THROUGH THE REPO PLUGIN
+
+`.hermes/agents/` links the shared runtime-neutral agent files, and `sync-skills-hermes.cjs` mirrors each as the preloadable skill `agent-<name>` because Hermes has no agent flag and caps a plugin prompt section at 4000 characters (a 22k persona in a section was skipped outright). The native-shaped dispatch is `-s agent-<name>` plus `HERMES_AGENT_PERSONA=<name>` with `HERMES_ENABLE_PROJECT_PLUGINS=1`: the skill carries the whole persona and the plugin's persona section binds it for the session. Because `-s` is in play, `--ignore-rules` is omitted (the packet's documented exception). Inline stays the fallback for a run without the plugin or the mirror.
 
 ---
 
